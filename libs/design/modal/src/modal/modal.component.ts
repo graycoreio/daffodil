@@ -20,7 +20,8 @@ import {
   AfterViewInit,
 } from '@angular/core';
 
-import { daffFocusableElementsSelector } from '../../../core/focus/public_api';
+import { daffFocusableElementsSelector } from '@daffodil/design';
+
 import { daffFadeAnimations } from '../animations/modal-animation';
 import { getAnimationState } from '../animations/modal-animation-state';
 

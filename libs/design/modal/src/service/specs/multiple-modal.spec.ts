@@ -3,7 +3,6 @@ import {
   Component,
   NgModule,
   ViewContainerRef,
-  DebugElement,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,7 +15,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffModalModule } from '../../modal.module';
 import { DaffModalService } from '../modal.service';
-
 
 @Component({
   selector: 'daff-dynamic-component',

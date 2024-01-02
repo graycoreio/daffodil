@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffModalService } from '@daffodil/design';
+import { DaffModalService } from '@daffodil/design/modal';
 
 import { BasicModalContentComponent } from './modal-content.component';
 

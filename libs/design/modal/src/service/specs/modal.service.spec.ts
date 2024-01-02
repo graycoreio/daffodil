@@ -2,7 +2,6 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import {
   Component,
   NgModule,
-  DebugElement,
   ViewContainerRef,
 } from '@angular/core';
 import {
@@ -14,8 +13,8 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffModalService } from './modal.service';
-import { DaffModalModule } from '../modal.module';
+import { DaffModalModule } from '../../modal.module';
+import { DaffModalService } from '../modal.service';
 
 @Component({
   template: `
