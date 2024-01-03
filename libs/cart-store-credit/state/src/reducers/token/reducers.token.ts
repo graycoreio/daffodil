@@ -13,7 +13,7 @@ import { daffComposeReducers } from '@daffodil/core/state';
 
 import { DAFF_CART_STORE_CREDIT_EXTRA_REDUCERS } from './extra.token';
 import { DaffCartStoreCreditReducersState } from '../reducers.interface';
-import { daffCustomerStoreCreditReducer } from '../store-credit/public_api';
+import { daffCartStoreCreditReducer } from '../store-credit/public_api';
 
 /**
  * An internal token to hold the Daffodil cart reducers.
@@ -27,7 +27,7 @@ export const DAFF_CART_STORE_CREDIT_REDUCERS = new InjectionToken<ActionReducer<
     providedIn: 'any',
     factory: () => daffComposeReducers([
       combineReducers({
-        storeCredit: daffCustomerStoreCreditReducer,
+        storeCredit: daffCartStoreCreditReducer,
       }),
       ...inject(DAFF_CART_STORE_CREDIT_EXTRA_REDUCERS),
     ]),

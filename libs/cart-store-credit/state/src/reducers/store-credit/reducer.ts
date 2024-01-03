@@ -5,7 +5,7 @@ import {
   daffStartMutation,
 } from '@daffodil/core/state';
 
-import { daffCustomerStoreCreditInitialState } from './initial-state';
+import { daffCartStoreCreditInitialState } from './initial-state';
 import { DaffCartStoreCreditReducerState } from './type';
 import {
   DaffCartStoreCreditActions,
@@ -15,8 +15,8 @@ import {
 /**
  * The reducer for the cart store credit page state, see {@link DaffCartStoreCreditReducerState}.
  */
-export const daffCustomerStoreCreditReducer = <T extends DaffCartWithStoreCredit = DaffCartWithStoreCredit>(
-  state = daffCustomerStoreCreditInitialState,
+export const daffCartStoreCreditReducer = <T extends DaffCartWithStoreCredit = DaffCartWithStoreCredit>(
+  state = daffCartStoreCreditInitialState,
   action: DaffCartStoreCreditActions<T>,
 ): DaffCartStoreCreditReducerState => {
   switch (action.type) {
