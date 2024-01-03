@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
-import { DaffFormFieldControl } from '../form-field/form-field-control';
+import { DaffFormFieldControl } from '@daffodil/design/forms/form-field';
 
 /**
  * DaffInputComponent provides the same functionality as a native `<input>` and contains custom styling and functionality.

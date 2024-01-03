@@ -1,4 +1,4 @@
-import { DaffFormFieldControl } from '../../form-field-control';
+import { DaffFormFieldControl } from '../../control/form-field-control';
 
 /**
  * A behavior interface for tracking the disabled state of a form field.

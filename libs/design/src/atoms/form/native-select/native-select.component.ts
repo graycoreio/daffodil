@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
-import { DaffFormFieldControl } from '../form-field/form-field-control';
+import { DaffFormFieldControl } from '@daffodil/design/forms/form-field';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector

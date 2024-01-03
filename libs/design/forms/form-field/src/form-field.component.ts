@@ -10,8 +10,8 @@ import {
 } from '@angular/core';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffFormFieldControl } from '../form-field-control';
-import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
+import { DaffFormFieldControl } from './control/form-field-control';
+import { DaffFormFieldMissingControlMessage } from './utils/form-field-errors';
 
 // ChangeDetection is ignored because this component needs to be refactored
 // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection

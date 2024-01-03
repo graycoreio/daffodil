@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../../../../scss/core';
-@use '../../../../../scss/theming';
+@use '../../../scss/core';
+@use '../../../scss/theming';
 
 @mixin daff-form-field-theme($theme) {
 	$primary: map.get($theme, primary);

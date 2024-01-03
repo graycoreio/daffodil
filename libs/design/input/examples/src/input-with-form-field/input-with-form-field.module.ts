@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import {
-  DaffFormFieldModule,
-  DaffInputModule,
-} from '@daffodil/design';
+import { DaffInputModule } from '@daffodil/design';
+import { DaffFormFieldModule } from '@daffodil/design/forms/form-field';
 
 import { InputWithFormFieldComponent } from './input-with-form-field.component';
 

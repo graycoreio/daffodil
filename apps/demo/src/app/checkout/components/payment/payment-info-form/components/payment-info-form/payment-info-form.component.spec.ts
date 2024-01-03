@@ -18,8 +18,8 @@ import {
   DaffNativeSelectComponent,
   DaffInputModule,
   DaffInputComponent,
-  DaffFormFieldModule,
 } from '@daffodil/design';
+import { DaffFormFieldModule } from '@daffodil/design/forms/form-field';
 
 import { PaymentInfoFormComponent } from './payment-info-form.component';
 import { PaymentInfoFormFactory } from '../../factories/payment-info-form.factory';

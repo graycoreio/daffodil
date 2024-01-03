@@ -12,12 +12,14 @@ import {
 import { By } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { DaffFormFieldComponent } from './form-field.component';
-import { DaffErrorMessageComponent } from '../../error-message/error-message.component';
-import { DaffInputModule } from '../../input/public_api';
-import { DaffFormFieldControl } from '../form-field-control';
-import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
+import {
+  DaffInputModule,
+  DaffErrorMessageComponent,
+} from '@daffodil/design';
 
+import { DaffFormFieldControl } from './control/form-field-control';
+import { DaffFormFieldComponent } from './form-field.component';
+import { DaffFormFieldMissingControlMessage } from './utils/form-field-errors';
 
 @Component({ template: `
   <daff-form-field [formSubmitted]="formSubmittedValue">

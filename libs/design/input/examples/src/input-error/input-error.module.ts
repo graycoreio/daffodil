@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import {
-  DaffFormFieldModule,
-  DaffInputModule,
-} from '@daffodil/design';
+import { DaffInputModule } from '@daffodil/design';
+import { DaffFormFieldModule } from '@daffodil/design/forms/form-field';
 
 import { InputErrorComponent } from './input-error.component';
 

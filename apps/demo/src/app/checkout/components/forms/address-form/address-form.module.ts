@@ -5,8 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {
   DaffInputModule,
   DaffNativeSelectModule,
-  DaffFormFieldModule,
 } from '@daffodil/design';
+import { DaffFormFieldModule } from '@daffodil/design/forms/form-field';
 import { DaffGeographyStateModule } from '@daffodil/geography/state';
 
 import { AddressFormComponent } from './components/address-form/address-form.component';
