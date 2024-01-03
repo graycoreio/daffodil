@@ -9,7 +9,7 @@ import { DaffCustomerStoreCreditReducersState } from '../reducers.interface';
 /**
  * A token to hold the injectable extra reducers.
  *
- * Prefer using {@link daffCustomerProvideExtraReducers}.
+ * Prefer using {@link daffCustomerStoreCreditProvideExtraReducers}.
  */
 export const DAFF_CUSTOMER_STORE_CREDIT_EXTRA_REDUCERS = new InjectionToken<ActionReducer<DaffCustomerStoreCreditReducersState>[]>(
   'DAFF_CUSTOMER_STORE_CREDIT_EXTRA_REDUCERS',
@@ -24,14 +24,14 @@ export const DAFF_CUSTOMER_STORE_CREDIT_EXTRA_REDUCERS = new InjectionToken<Acti
  *
  * ```ts
  * providers: [
- *   ...daffCustomerProvideExtraReducers(
+ *   ...daffCustomerStoreCreditProvideExtraReducers(
  *     myReducer1,
  *     myReducer2
  *   )
  * ]
  * ```
  */
-export function daffCustomerProvideExtraReducers(
+export function daffCustomerStoreCreditProvideExtraReducers(
   ...reducers: ActionReducer<DaffCustomerStoreCreditReducersState>[]
 ): Provider[] {
   return reducers.map(reducer => ({

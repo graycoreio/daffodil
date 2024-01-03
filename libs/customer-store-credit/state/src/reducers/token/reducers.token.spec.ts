@@ -3,7 +3,7 @@ import { ActionReducer } from '@ngrx/store';
 
 import { DaffStateError } from '@daffodil/core/state';
 import {
-  daffCustomerProvideExtraReducers,
+  daffCustomerStoreCreditProvideExtraReducers,
   DaffCustomerStoreCreditReducersState,
   daffCustomerStoreCreditInitialState,
   DaffCustomerStoreCreditLoadFailure,
@@ -11,7 +11,7 @@ import {
 
 import { DAFF_CUSTOMER_STORE_CREDIT_REDUCERS } from './reducers.token';
 
-describe('@daffodil/customer-store-credit/state | daffCustomerProvideExtraReducers', () => {
+describe('@daffodil/customer-store-credit/state | daffCustomerStoreCreditProvideExtraReducers', () => {
   let extraError: DaffStateError;
 
   let extraReducer: ActionReducer<DaffCustomerStoreCreditReducersState>;
@@ -45,7 +45,7 @@ describe('@daffodil/customer-store-credit/state | daffCustomerProvideExtraReduce
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffCustomerProvideExtraReducers(extraReducer),
+        ...daffCustomerStoreCreditProvideExtraReducers(extraReducer),
       ],
     });
 
