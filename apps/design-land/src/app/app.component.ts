@@ -24,6 +24,7 @@ import { NOTIFICATION_EXAMPLES } from '@daffodil/design/notification/examples';
 import { PAGINATOR_EXAMPLES } from '@daffodil/design/paginator/examples';
 import { QUANTITY_FIELD_EXAMPLES } from '@daffodil/design/quantity-field/examples';
 import { RADIO_EXAMPLES } from '@daffodil/design/radio/examples';
+import { SELECT_EXAMPLES } from '@daffodil/design/select/examples';
 import { SIDEBAR_EXAMPLES } from '@daffodil/design/sidebar/examples';
 
 import { createCustomElementFromExample } from './core/elements/create-element-from-example';
@@ -47,6 +48,7 @@ export class DesignLandAppComponent {
       ...CALLOUT_EXAMPLES,
       ...CHECKBOX_EXAMPLES,
       ...CONTAINER_EXAMPLES,
+      ...SELECT_EXAMPLES,
       ...HERO_EXAMPLES,
       ...LOADING_ICON_EXAMPLES,
       ...MEDIA_GALLERY_EXAMPLES,

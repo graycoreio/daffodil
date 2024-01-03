@@ -1,3 +1,4 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +20,9 @@ import { DesignLandTemplateModule } from './core/template/template.module';
 
 @NgModule({
   imports: [
+    // why does OverlayModule have to be in root?
+    OverlayModule,
+
     BrowserModule,
     BrowserAnimationsModule,
     DesignLandAppRoutingModule,

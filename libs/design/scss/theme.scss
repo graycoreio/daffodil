@@ -38,6 +38,7 @@
 @use '../notification/src/notification-theme' as notification;
 @use '../paginator/src/paginator-theme' as paginator;
 @use '../sidebar/src/sidebar-theme' as sidebar;
+@use '../select/src/select-theme' as select;
 @use '../scss/state/skeleton/mixins' as skeleton;
 @use '../tree/src/tree-theme' as tree;
 
@@ -79,6 +80,7 @@
 	@include navbar.daff-navbar-theme($theme);
 	@include notification.daff-notification-theme($theme);
 	@include paginator.daff-paginator-theme($theme);
+	@include select.daff-select-theme($theme);
 	@include sidebar.daff-sidebar-theme($theme);
 	@include tree.daff-tree-theme($theme);
 }

@@ -1,0 +1,15 @@
+<daff-select [options]="options" [formControl]="control">
+  <label daffFormLabel>Select an address</label>
+  <ng-template daffSelectOption let-option="option">
+    <div>{{option.name}}</div>
+    <div>{{option.street}}</div>
+    <div>{{option.city}}, {{option.state}} {{option.postcode}}</div>
+  </ng-template>
+</daff-select>
+
+<div class="default-select__selected-value" *ngIf="control.value">
+  Selected Address:
+  <div>{{control.value.name}}</div>
+  <div>{{control.value.street}}</div>
+  <div>{{control.value.city}}, {{control.value.state}} {{control.value.postcode}}</div>
+</div>
