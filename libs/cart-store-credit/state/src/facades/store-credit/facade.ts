@@ -13,7 +13,7 @@ import {
   DaffCartStoreCreditReducerState,
   DaffCartStoreCreditStateRootSlice,
 } from '../../reducers/public_api';
-import { daffCustomerStoreCreditGetSelectors } from '../../selectors/public_api';
+import { daffCartStoreCreditGetSelectors } from '../../selectors/public_api';
 
 /**
  * @inheritdoc
@@ -39,7 +39,7 @@ export class DaffCartStoreCreditPageFacade implements DaffCartStoreCreditPageFac
       selectLoadingState,
       selectMutating,
       selectResolving,
-    } = daffCustomerStoreCreditGetSelectors();
+    } = daffCartStoreCreditGetSelectors();
 
     this.loadingState$ = this.store.pipe(select(selectLoadingState));
     this.loading$ = this.store.pipe(select(selectLoading));

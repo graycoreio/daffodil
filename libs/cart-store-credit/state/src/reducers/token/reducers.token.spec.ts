@@ -2,16 +2,16 @@ import { TestBed } from '@angular/core/testing';
 import { ActionReducer } from '@ngrx/store';
 
 import {
-  daffCustomerProvideExtraReducers,
+  daffCartStoreCreditProvideExtraReducers,
   DaffCartStoreCreditReducersState,
-  daffCustomerStoreCreditInitialState,
+  daffCartStoreCreditInitialState,
   DaffCartStoreCreditApplyFailure,
 } from '@daffodil/cart-store-credit/state';
 import { DaffStateError } from '@daffodil/core/state';
 
 import { DAFF_CART_STORE_CREDIT_REDUCERS } from './reducers.token';
 
-describe('@daffodil/cart-store-credit/state | daffCustomerProvideExtraReducers', () => {
+describe('@daffodil/cart-store-credit/state | daffCartStoreCreditProvideExtraReducers', () => {
   let extraError: DaffStateError;
 
   let extraReducer: ActionReducer<DaffCartStoreCreditReducersState>;
@@ -21,7 +21,7 @@ describe('@daffodil/cart-store-credit/state | daffCustomerProvideExtraReducers',
   beforeEach(() => {
     const initialState: DaffCartStoreCreditReducersState = {
       storeCredit: {
-        ...daffCustomerStoreCreditInitialState,
+        ...daffCartStoreCreditInitialState,
         daffErrors: [{
           code: 'code',
           message: 'already in state',
@@ -45,7 +45,7 @@ describe('@daffodil/cart-store-credit/state | daffCustomerProvideExtraReducers',
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffCustomerProvideExtraReducers(extraReducer),
+        ...daffCartStoreCreditProvideExtraReducers(extraReducer),
       ],
     });
 

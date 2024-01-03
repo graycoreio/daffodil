@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import {
-  daffCustomerStoreCreditInitialState as initialState,
+  daffCartStoreCreditInitialState as initialState,
   DaffCartStoreCreditReducerState,
   DaffCartStoreCreditApply,
   DaffCartStoreCreditApplyFailure,
@@ -17,9 +17,9 @@ import {
   DaffStateError,
 } from '@daffodil/core/state';
 
-import { daffCustomerStoreCreditReducer as reducer } from './reducer';
+import { daffCartStoreCreditReducer as reducer } from './reducer';
 
-describe('@daffodil/cart-store-credit/state | daffCustomerStoreCreditReducer', () => {
+describe('@daffodil/cart-store-credit/state | daffCartStoreCreditReducer', () => {
   let storeCreditFactory: DaffCartWithStoreCreditFactory;
   let mockStoreCredit: DaffCartWithStoreCredit;
 

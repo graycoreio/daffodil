@@ -19,7 +19,7 @@ export type DaffCartStoreCreditSelectors = DaffOperationStateSelectors<DaffCartS
 /**
  * Creates a group of selectors for {@link DaffCartStoreCreditReducerState} that use the passed state selector as the basis.
  */
-const daffCustomerStoreCreditCreateSelectors = (): DaffCartStoreCreditSelectors => {
+const daffCartStoreCreditCreateSelectors = (): DaffCartStoreCreditSelectors => {
   const { selectCustomerStoreCreditFeatureState } = getDaffCartStoreCreditReducersStateSelector();
   const selectCustomerStoreCreditState = createSelector(
     selectCustomerStoreCreditFeatureState,
@@ -29,9 +29,9 @@ const daffCustomerStoreCreditCreateSelectors = (): DaffCartStoreCreditSelectors 
   return daffOperationStateSelectorFactory(selectCustomerStoreCreditState);
 };
 
-export const daffCustomerStoreCreditGetSelectors = (() => {
+export const daffCartStoreCreditGetSelectors = (() => {
   let cache;
   return (): DaffCartStoreCreditSelectors =>
-    cache = cache || daffCustomerStoreCreditCreateSelectors();
+    cache = cache || daffCartStoreCreditCreateSelectors();
 })();
 

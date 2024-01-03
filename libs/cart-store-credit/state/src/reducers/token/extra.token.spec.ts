@@ -4,11 +4,11 @@ import { ActionReducer } from '@ngrx/store';
 import { DaffCartStoreCreditReducersState } from '@daffodil/cart-store-credit/state';
 
 import {
-  daffCustomerProvideExtraReducers,
+  daffCartStoreCreditProvideExtraReducers,
   DAFF_CART_STORE_CREDIT_EXTRA_REDUCERS,
 } from './extra.token';
 
-describe('@daffodil/cart-store-credit/state | daffCustomerProvideExtraReducers', () => {
+describe('@daffodil/cart-store-credit/state | daffCartStoreCreditProvideExtraReducers', () => {
   let reducers: ActionReducer<DaffCartStoreCreditReducersState>[];
   let result: ActionReducer<DaffCartStoreCreditReducersState>[];
 
@@ -20,7 +20,7 @@ describe('@daffodil/cart-store-credit/state | daffCustomerProvideExtraReducers',
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffCustomerProvideExtraReducers(...reducers),
+        ...daffCartStoreCreditProvideExtraReducers(...reducers),
       ],
     });
 
