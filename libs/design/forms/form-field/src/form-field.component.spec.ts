@@ -12,10 +12,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import {
-  DaffInputModule,
-  DaffErrorMessageComponent,
-} from '@daffodil/design';
+import { DaffInputModule } from '@daffodil/design';
 
 import { DaffFormFieldControl } from './control/form-field-control';
 import { DaffFormFieldComponent } from './form-field.component';
@@ -48,7 +45,6 @@ describe('DaffFormFieldComponent | Usage', () => {
       declarations: [
         WrapperComponent,
         DaffFormFieldComponent,
-        DaffErrorMessageComponent,
       ],
     })
       .compileComponents();
@@ -139,7 +135,6 @@ describe('DaffFormFieldComponent | Usage Without Control', () => {
       declarations: [
         WrapperWithoutControlComponent,
         DaffFormFieldComponent,
-        DaffErrorMessageComponent,
       ],
     })
       .compileComponents();
