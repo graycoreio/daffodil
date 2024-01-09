@@ -3,6 +3,7 @@
 
 .daff-article {
 	display: block;
+	overflow: hidden;
 
 	@include stopsArticleCascade(a) {
 		font-weight: 600;
@@ -15,6 +16,7 @@
 
 	@include stopsArticleCascade(h1, h2, h3, h4, h5, h6) {
 		margin-bottom: 1.5rem;
+		word-wrap: break-word;
 	}
 
 	@include stopsArticleCascade(h2, h3, h4, h5, h6) {
