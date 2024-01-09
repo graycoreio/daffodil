@@ -7,8 +7,8 @@ import { DaffLogoModule } from '@daffodil/branding';
 import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
-import { DaffioHeaderContainer } from './header.component';
-import { DaffioHeaderComponentModule } from '../components/header.module';
+import { DaffioMarketingHeaderContainer } from './marketing-header.component';
+import { DaffioHeaderComponentModule } from '../../components/header.module';
 
 @NgModule({
   imports: [
@@ -23,10 +23,10 @@ import { DaffioHeaderComponentModule } from '../components/header.module';
     FontAwesomeModule,
   ],
   declarations: [
-    DaffioHeaderContainer,
+    DaffioMarketingHeaderContainer,
   ],
   exports: [
-    DaffioHeaderContainer,
+    DaffioMarketingHeaderContainer,
   ],
 })
-export class DaffioHeaderModule { }
+export class DaffioMarketingHeaderContainerModule { }

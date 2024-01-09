@@ -4,17 +4,48 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { DaffRouteWithNamedViews } from '@daffodil/router';
+
+import { DaffioDocsHeaderContainer } from './core/header/containers/docs-header/docs-header.component';
+import { DaffioMarketingHeaderContainer } from './core/header/containers/marketing-header/marketing-header.component';
+import { DaffioDocsSidebarComponent } from './core/sidebar/components/docs-sidebar/docs-sidebar.component';
+import { DaffioMarketingSidebarComponent } from './core/sidebar/components/marketing-sidebar/marketing-sidebar.component';
 import { TemplateComponent } from './core/template/template.component';
+import { DaffioRouterNamedViewsEnum } from './named-views/models/named-views.enum';
 
 export const appRoutes: Routes = [
   {
-    path: '', component: TemplateComponent, children: [
-      { path: '', pathMatch: 'full', loadChildren: () => import('./content/home/home.module').then(m => m.DaffioHomeModule) },
-      { path: 'why-pwa', loadChildren: () => import('./content/why-pwa/why-pwa.module').then(m => m.DaffioWhyPwaModule) },
-      { path: 'support', loadChildren: () => import('./content/support/support.module').then(m => m.DaffioSupportModule) },
-      { path: 'api', loadChildren: () => import('./api/api.module').then(m => m.DaffioApiModule) },
-      { path: 'guides', loadChildren: () => import('./guides/guides.module').then(m => m.DaffioGuidesModule) },
-      { path: '404', loadChildren: () => import('./content/not-found/not-found.module').then(m => m.DaffioNotFoundModule) },
+    path: '', component: TemplateComponent,
+    children: [
+      <DaffRouteWithNamedViews>{
+        path: '',
+        children: [
+          { path: '', pathMatch: 'full', loadChildren: () => import('./content/home/home.module').then(m => m.DaffioHomeModule) },
+          { path: 'why-pwa', loadChildren: () => import('./content/why-pwa/why-pwa.module').then(m => m.DaffioWhyPwaModule) },
+          { path: 'support', loadChildren: () => import('./content/support/support.module').then(m => m.DaffioSupportModule) },
+          { path: '404', loadChildren: () => import('./content/not-found/not-found.module').then(m => m.DaffioNotFoundModule) },
+        ],
+        data: {
+          daffNamedViews: {
+            [DaffioRouterNamedViewsEnum.NAV]: DaffioMarketingHeaderContainer,
+            [DaffioRouterNamedViewsEnum.SIDEBAR]: DaffioMarketingSidebarComponent,
+          },
+        },
+      },
+
+      <DaffRouteWithNamedViews>{
+        path: '',
+        children: [
+          { path: 'api', loadChildren: () => import('./api/api.module').then(m => m.DaffioApiModule) },
+          { path: 'guides', loadChildren: () => import('./guides/guides.module').then(m => m.DaffioGuidesModule) },
+        ],
+        data: {
+          daffNamedViews: {
+            [DaffioRouterNamedViewsEnum.NAV]: DaffioDocsHeaderContainer,
+            [DaffioRouterNamedViewsEnum.SIDEBAR]: DaffioDocsSidebarComponent,
+          },
+        },
+      },
     ],
   },
   {

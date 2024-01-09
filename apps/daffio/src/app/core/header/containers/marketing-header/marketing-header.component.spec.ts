@@ -15,17 +15,17 @@ import {
   Store,
 } from '@ngrx/store';
 
-import { DaffioHeaderContainer } from './header.component';
-import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
-import * as fromSidebar from '../../sidebar/reducers/index';
+import { DaffioMarketingHeaderContainer } from './marketing-header.component';
+import { ToggleSidebar } from '../../../../core/sidebar/actions/sidebar.actions';
+import * as fromSidebar from '../../../../core/sidebar/reducers/index';
 
-@Component({ template: '<daffio-header-container></daffio-header-container>' })
+@Component({ template: '<daffio-marketing-header-container></daffio-marketing-header-container>' })
 class WrapperComponent {}
 
-describe('DaffioHeaderContainer', () => {
+describe('DaffioMarketingHeaderContainer', () => {
   let component: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let daffioHeaderContainer: DaffioHeaderContainer;
+  let daffioMarketingHeaderContainer: DaffioMarketingHeaderContainer;
 
   let store: Store<fromSidebar.State>;
 
@@ -38,7 +38,7 @@ describe('DaffioHeaderContainer', () => {
       ],
       declarations: [
         WrapperComponent,
-        DaffioHeaderContainer,
+        DaffioMarketingHeaderContainer,
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
@@ -54,7 +54,7 @@ describe('DaffioHeaderContainer', () => {
     spyOn(store, 'dispatch');
     fixture.detectChanges();
 
-    daffioHeaderContainer = fixture.debugElement.query(By.css('daffio-header-container')).componentInstance;
+    daffioMarketingHeaderContainer = fixture.debugElement.query(By.css('daffio-marketing-header-container')).componentInstance;
   });
 
   it('should create', () => {

@@ -1,6 +1,9 @@
-.daffio-sidebar {
-	align-self: flex-start;
-	position: sticky;
-	top: 70px;
-	height: calc(100vh - 70px);
+.daffio-sidebar-viewport {
+	&__get-started {
+		display: block;
+		font-weight: 500;
+		padding: 16px;
+		text-align: center;
+		text-decoration: none;
+	}
 }

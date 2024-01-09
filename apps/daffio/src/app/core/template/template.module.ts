@@ -3,18 +3,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 
+import { DaffRouterNamedViewOutletModule } from '@daffodil/router';
+
 import { TemplateComponent } from './template.component';
 import { DaffioFooterModule } from '../footer/footer.module';
-import { DaffioHeaderModule } from '../header/containers/header.module';
 import { DaffioSidebarModule } from '../sidebar/sidebar.module';
 
 @NgModule({
   imports: [
     RouterModule,
     CommonModule,
-    DaffioHeaderModule,
     DaffioSidebarModule,
     DaffioFooterModule,
+    DaffRouterNamedViewOutletModule,
   ],
   declarations: [
     TemplateComponent,

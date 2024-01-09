@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { DaffioHomeRoutingModule } from './home-routing.module';
 import { DaffioHomeViewModule } from './view/home-view.module';
+import { DaffioMarketingHeaderContainerModule } from '../../core/header/containers/marketing-header/marketing-header.module';
 import { TemplateModule } from '../../core/template/template.module';
 import { IphoneModule } from '../../design/device/iphone/iphone.module';
 
@@ -19,6 +20,7 @@ import { IphoneModule } from '../../design/device/iphone/iphone.module';
 
     DaffioHomeRoutingModule,
     DaffioHomeViewModule,
+    DaffioMarketingHeaderContainerModule,
   ],
 })
 export class DaffioHomeModule { }

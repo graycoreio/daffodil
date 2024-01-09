@@ -4,6 +4,7 @@
 @use '../app/docs/components/table-of-contents/table-of-contents-theme' as toc;
 @use '../app/api/components/api-list/api-list-theme' as api-list;
 @use '../app/newsletter/newsletter-theme' as newsletter;
+@use '../app/core/sidebar/containers/sidebar-viewport/sidebar-viewport-theme' as sidebar;
 
 @mixin component-themes($theme) {
 	@include simple-footer.daffio-simple-footer-theme($theme);
@@ -12,4 +13,5 @@
 	@include toc.daffio-table-of-contents-theme($theme);
 	@include api-list.daffio-api-list-theme($theme);
 	@include newsletter.daffio-newsletter-theme($theme);
+	@include sidebar.daffio-sidebar-viewport-theme($theme);
 }

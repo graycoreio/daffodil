@@ -5,25 +5,23 @@ import {
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 
-import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
-
+import { ToggleSidebar } from '../../../../core/sidebar/actions/sidebar.actions';
 
 @Component({
-  selector: 'daffio-header-container',
-  templateUrl: './header.component.html',
+  selector: 'daffio-docs-header-container',
+  templateUrl: './docs-header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffioHeaderContainer {
+export class DaffioDocsHeaderContainer {
   faBars = faBars;
 
   links: any[] = [
-    { path: '/api', title: 'Docs' },
-    { path: '/why-pwa', title: 'Why PWA' },
+    { path: '/api', title: 'API Index' },
   ];
 
   constructor(private store: Store<any>) { }
 
-  openSidebar() {
+  openDocsSidebar() {
     this.store.dispatch(new ToggleSidebar());
   }
 }
