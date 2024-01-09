@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffRouterNamedViewOutletDirective } from './outlet.directive';
-import { DaffRouteWithNamedViews } from '../../../../named-views/models/route.type';
+import { DaffRouteWithNamedViews } from '../models/route.type';
 
 @Component({
   template: `
