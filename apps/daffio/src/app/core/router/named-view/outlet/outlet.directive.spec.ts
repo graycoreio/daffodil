@@ -100,7 +100,7 @@ describe('DaffRouterNamedViewOutletDirective', () => {
   describe('when the view is set to a on a page without the a named view specified', () => {
     beforeEach(() => {
       data = {
-        namedViews: {
+        daffNamedViews: {
           b: BComponent,
         },
       };
@@ -117,7 +117,7 @@ describe('DaffRouterNamedViewOutletDirective', () => {
   describe('when the view is set to a on a page with the a named view specified', () => {
     beforeEach(() => {
       data = {
-        namedViews: {
+        daffNamedViews: {
           a: AComponent,
           b: BComponent,
         },
@@ -134,7 +134,7 @@ describe('DaffRouterNamedViewOutletDirective', () => {
     describe('and when the data changes to a page with the a named view specified to a different component', () => {
       beforeEach(() => {
         data = {
-          namedViews: {
+          daffNamedViews: {
             a: BComponent,
             b: BComponent,
           },
@@ -151,7 +151,7 @@ describe('DaffRouterNamedViewOutletDirective', () => {
     describe('and when the data changes to a page with the a named view unspecified', () => {
       beforeEach(() => {
         data = {
-          namedViews: {},
+          daffNamedViews: {},
         };
         url.next('url');
         fixture.detectChanges();
@@ -165,7 +165,7 @@ describe('DaffRouterNamedViewOutletDirective', () => {
     describe('and when the view changes to an unspecified named view ', () => {
       beforeEach(() => {
         data = {
-          namedViews: {},
+          daffNamedViews: {},
         };
         url.next('url');
         wrapper.view = 'b';
@@ -180,7 +180,7 @@ describe('DaffRouterNamedViewOutletDirective', () => {
     describe('and when the data changes to b', () => {
       beforeEach(() => {
         data = {
-          namedViews: {
+          daffNamedViews: {
             a: AComponent,
             b: BComponent,
           },

@@ -21,7 +21,7 @@ export const appRoutes: Routes = [
       { path: '404', loadChildren: () => import('./content/not-found/not-found.module').then(m => m.DaffioNotFoundModule) },
     ],
     data: {
-      namedViews: {
+      daffNamedViews: {
         [DaffioRouterNamedViewsEnum.NAV]: DaffioMarketingHeaderContainer,
       },
     },

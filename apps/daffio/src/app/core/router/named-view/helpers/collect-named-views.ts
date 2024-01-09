@@ -11,10 +11,10 @@ import {
 export const daffRouterNamedViewsCollect = (route: DaffActivatedRouteSnapshotWithNamedViews): DaffRouterNamedViews => {
   const ary = collect(route, (r) => r.children);
   const ret = ary.reduce(
-    (acc, r) => r.data.namedViews
+    (acc, r) => r.data.daffNamedViews
       ? {
         ...acc,
-        ...r.data.namedViews,
+        ...r.data.daffNamedViews,
       }
       : acc,
     <DaffRouterNamedViews>{},

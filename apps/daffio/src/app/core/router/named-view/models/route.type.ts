@@ -7,6 +7,6 @@ import { DaffRouterNamedViews } from './named-views.type';
  */
 export interface DaffRouteWithNamedViews extends Route {
   data?: {
-    namedViews?: DaffRouterNamedViews;
+    daffNamedViews?: DaffRouterNamedViews;
   } & Route['data'];
 }

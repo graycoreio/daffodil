@@ -14,7 +14,7 @@ describe('daffRouterNamedViewsCollect', () => {
   beforeEach(() => {
     route = <DaffActivatedRouteSnapshotWithNamedViews><unknown>{
       data: {
-        namedViews: {
+        daffNamedViews: {
           root: TestClass,
           overwrite: TestClass,
         },
@@ -22,14 +22,14 @@ describe('daffRouterNamedViewsCollect', () => {
       children: [
         <DaffActivatedRouteSnapshotWithNamedViews><unknown>{
           data: {
-            namedViews: {
+            daffNamedViews: {
               '00': TestClass,
             },
           },
           children: [
             <DaffActivatedRouteSnapshotWithNamedViews><unknown>{
               data: {
-                namedViews: {
+                daffNamedViews: {
                   10: TestClass,
                 },
               },
@@ -37,7 +37,7 @@ describe('daffRouterNamedViewsCollect', () => {
             },
             <DaffActivatedRouteSnapshotWithNamedViews><unknown>{
               data: {
-                namedViews: {
+                daffNamedViews: {
                   11: TestClass,
                   overwrite: TestClass1,
                 },
@@ -45,7 +45,7 @@ describe('daffRouterNamedViewsCollect', () => {
               children: [
                 <DaffActivatedRouteSnapshotWithNamedViews><unknown>{
                   data: {
-                    namedViews: {
+                    daffNamedViews: {
                       20: TestClass,
                     },
                   },
@@ -57,7 +57,7 @@ describe('daffRouterNamedViewsCollect', () => {
         },
         <DaffActivatedRouteSnapshotWithNamedViews><unknown>{
           data: {
-            namedViews: {
+            daffNamedViews: {
               '01': TestClass,
             },
           },

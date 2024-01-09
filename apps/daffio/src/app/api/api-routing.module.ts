@@ -21,7 +21,7 @@ export const apiRoutes: Routes = [
     },
     data: {
       sidebarMode: 'side-fixed',
-      namedViews: {
+      daffNamedViews: {
         [DaffioRouterNamedViewsEnum.SIDEBAR]: DaffioDocsSidebarContainer,
         // TODO: add docs nav
         [DaffioRouterNamedViewsEnum.NAV]: undefined,
