@@ -6,7 +6,7 @@ import {
 
 import { DaffioDocsHeaderContainer } from './core/header/containers/docs-header/docs-header.component';
 import { DaffioMarketingHeaderContainer } from './core/header/containers/marketing-header/marketing-header.component';
-import { DaffRouteWithNamedViews } from './core/router/named-view/models/route.type';
+import { DaffRouteWithNamedViews } from '@daffodil/router';
 import { DaffioDocsSidebarComponent } from './core/sidebar/components/docs-sidebar/docs-sidebar.component';
 import { DaffioMarketingSidebarComponent } from './core/sidebar/components/marketing-sidebar/marketing-sidebar.component';
 import { TemplateComponent } from './core/template/template.component';

@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { TemplateComponent } from './template.component';
 import { DaffioFooterModule } from '../footer/footer.module';
-import { DaffRouterNamedViewOutletModule } from '../router/named-view/public_api';
+import { DaffRouterNamedViewOutletModule } from '@daffodil/router';
 import { DaffioSidebarModule } from '../sidebar/sidebar.module';
 
 @NgModule({
