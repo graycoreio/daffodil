@@ -1,12 +1,12 @@
 import { Route } from '@angular/router';
 
-import { DaffioRouterNamedViews } from './named-views.type';
+import { DaffRouterNamedViews } from './named-views.type';
 
 /**
  * A route that contains named views.
  */
-export interface RouteWithNamedViews extends Route {
+export interface DaffRouteWithNamedViews extends Route {
   data?: {
-    namedViews?: DaffioRouterNamedViews;
+    namedViews?: DaffRouterNamedViews;
   } & Route['data'];
 }

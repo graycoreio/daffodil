@@ -11,7 +11,6 @@ import {
   ActivatedRoute,
   NavigationEnd,
   Router,
-  RouterEvent,
 } from '@angular/router';
 import {
   BehaviorSubject,
@@ -23,35 +22,36 @@ import {
   map,
   merge,
   takeUntil,
-  tap,
 } from 'rxjs';
 
-import { daffioRouterNamedViewsCollect } from '../helpers/collect-named-views';
-import { DaffioRouterNamedViews } from '../models/named-views.type';
+import { routerNamedViewsCollect } from '../helpers/collect-named-views';
+import { DaffRouterNamedViews } from '../models/named-views.type';
 
+// TODO: move to @daffodil/router
 /**
  * Renders a named view of the current route.
  * The named view should be defined in the route configuration
- * according to the {@link RouteWithNamedViews} type.
+ * according to the {@link DaffRouteWithNamedViews} type.
  */
 @Directive({
-  selector: '[daffioRouterNamedViewOutlet]',
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: '[daffRouterNamedViewOutlet]',
 })
-export class DaffioRouterNamedViewOutletDirective implements OnInit, OnChanges, OnDestroy {
+export class DaffRouterNamedViewOutletDirective implements OnInit, OnChanges, OnDestroy {
   private _destroyed = new Subject<boolean>();
   /**
-   * The outlet, mirrored from `daffioRouterNamedViewOutlet`.
+   * The outlet, mirrored from `daffRouterNamedViewOutlet`.
    * Its much simpler to have a single value that we can observe
    * to decide when to render instead of trying to render in response
    * to the synchronous `ngOnChanges` or the async `component$`.
    */
   private outlet$ = new BehaviorSubject<string>('');
-  private namedViews$: Observable<DaffioRouterNamedViews>;
+  private namedViews$: Observable<DaffRouterNamedViews>;
 
   /**
    * The router named view to attempt to render.
    */
-  @Input() daffioRouterNamedViewOutlet: string;
+  @Input() daffRouterNamedViewOutlet: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -64,8 +64,8 @@ export class DaffioRouterNamedViewOutletDirective implements OnInit, OnChanges, 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.daffioRouterNamedViewOutlet) {
-      this.outlet$.next(changes.daffioRouterNamedViewOutlet.currentValue);
+    if (changes.daffRouterNamedViewOutlet) {
+      this.outlet$.next(changes.daffRouterNamedViewOutlet.currentValue);
     }
   }
 
@@ -88,7 +88,7 @@ export class DaffioRouterNamedViewOutletDirective implements OnInit, OnChanges, 
       this.route.url,
     ).pipe(
       map(() => this.route.snapshot),
-      map(daffioRouterNamedViewsCollect),
+      map(routerNamedViewsCollect),
     );
     combineLatest([
       this.namedViews$,

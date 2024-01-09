@@ -1,27 +1,31 @@
-import { daffioRouterNamedViewsCollect } from './collect-named-views';
-import { ActivatedRouteSnapshotWithNamedViews } from '../models/activated-route.type';
+import { routerNamedViewsCollect } from './collect-named-views';
+import { DaffActivatedRouteSnapshotWithNamedViews } from '../models/activated-route-snapshot.type';
+import { DaffRouterNamedViews } from '../models/named-views.type';
 
 class TestClass {}
+class TestClass1 {}
 
-describe('daffioRouterNamedViewsCollect', () => {
-  let route: ActivatedRouteSnapshotWithNamedViews;
+describe('routerNamedViewsCollect', () => {
+  let route: DaffActivatedRouteSnapshotWithNamedViews;
+  let result: DaffRouterNamedViews;
 
   beforeEach(() => {
-    route = <ActivatedRouteSnapshotWithNamedViews><unknown>{
+    route = <DaffActivatedRouteSnapshotWithNamedViews><unknown>{
       data: {
         namedViews: {
           root: TestClass,
+          overwrite: TestClass,
         },
       },
       children: [
-        <ActivatedRouteSnapshotWithNamedViews><unknown>{
+        <DaffActivatedRouteSnapshotWithNamedViews><unknown>{
           data: {
             namedViews: {
               '00': TestClass,
             },
           },
           children: [
-            <ActivatedRouteSnapshotWithNamedViews><unknown>{
+            <DaffActivatedRouteSnapshotWithNamedViews><unknown>{
               data: {
                 namedViews: {
                   10: TestClass,
@@ -29,14 +33,15 @@ describe('daffioRouterNamedViewsCollect', () => {
               },
               children: [],
             },
-            <ActivatedRouteSnapshotWithNamedViews><unknown>{
+            <DaffActivatedRouteSnapshotWithNamedViews><unknown>{
               data: {
                 namedViews: {
                   11: TestClass,
+                  overwrite: TestClass1,
                 },
               },
               children: [
-                <ActivatedRouteSnapshotWithNamedViews><unknown>{
+                <DaffActivatedRouteSnapshotWithNamedViews><unknown>{
                   data: {
                     namedViews: {
                       20: TestClass,
@@ -48,7 +53,7 @@ describe('daffioRouterNamedViewsCollect', () => {
             },
           ],
         },
-        <ActivatedRouteSnapshotWithNamedViews><unknown>{
+        <DaffActivatedRouteSnapshotWithNamedViews><unknown>{
           data: {
             namedViews: {
               '01': TestClass,
@@ -58,16 +63,21 @@ describe('daffioRouterNamedViewsCollect', () => {
         },
       ],
     };
+
+    result = routerNamedViewsCollect(route);
   });
 
   it('should collect all the named views and combine them into a single dict', () => {
-    const result = daffioRouterNamedViewsCollect(route);
-
     expect(result.root).toBeDefined();
     expect(result['00']).toBeDefined();
     expect(result['01']).toBeDefined();
     expect(result[10]).toBeDefined();
     expect(result[11]).toBeDefined();
     expect(result[20]).toBeDefined();
+    expect(result.overwrite).toBeDefined();
+  });
+
+  it('should give precedence to more deeply nested routes when there is a collision', () => {
+    expect(result.overwrite).toEqual(TestClass1);
   });
 });

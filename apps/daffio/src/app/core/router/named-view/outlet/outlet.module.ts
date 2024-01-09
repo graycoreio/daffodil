@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DaffioRouterNamedViewOutletDirective } from './outlet.directive';
+import { DaffRouterNamedViewOutletDirective } from './outlet.directive';
 
 @NgModule({
   imports: [
@@ -10,10 +10,10 @@ import { DaffioRouterNamedViewOutletDirective } from './outlet.directive';
     RouterModule,
   ],
   declarations: [
-    DaffioRouterNamedViewOutletDirective,
+    DaffRouterNamedViewOutletDirective,
   ],
   exports: [
-    DaffioRouterNamedViewOutletDirective,
+    DaffRouterNamedViewOutletDirective,
   ],
 })
-export class DaffioRouterNamedViewOutletModule {}
+export class DaffRouterNamedViewOutletModule {}

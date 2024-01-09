@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { TemplateComponent } from './template.component';
 import { DaffioFooterModule } from '../footer/footer.module';
-import { DaffioRouterNamedViewOutletModule } from '../router/named-view/outlet/outlet.module';
+import { DaffRouterNamedViewOutletModule } from '../router/named-view/outlet/outlet.module';
 import { DaffioSidebarModule } from '../sidebar/sidebar.module';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { DaffioSidebarModule } from '../sidebar/sidebar.module';
     CommonModule,
     DaffioSidebarModule,
     DaffioFooterModule,
-    DaffioRouterNamedViewOutletModule,
+    DaffRouterNamedViewOutletModule,
   ],
   declarations: [
     TemplateComponent,

@@ -6,11 +6,11 @@ import {
 
 import { DaffioHomeViewComponent } from './view/home-view.component';
 import { DaffioMarketingHeaderContainer } from '../../core/header/containers/marketing-header/marketing-header.component';
-import { DaffioRouterNamedViewsEnum } from '../../core/router/named-view/models/named-views.enum';
-import { RouteWithNamedViews } from '../../core/router/named-view/models/route.type';
+import { DaffRouteWithNamedViews } from '../../core/router/named-view/models/route.type';
+import { DaffioRouterNamedViewsEnum } from '../../named-views/models/named-views.enum';
 
 const homepage: Routes = [
-  <RouteWithNamedViews>{
+  <DaffRouteWithNamedViews>{
     path: '',
     pathMatch: 'full',
     component: DaffioHomeViewComponent,

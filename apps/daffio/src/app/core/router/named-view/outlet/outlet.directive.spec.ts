@@ -7,12 +7,12 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffioRouterNamedViewOutletDirective } from './outlet.directive';
-import { RouteWithNamedViews } from '../models/route.type';
+import { DaffRouterNamedViewOutletDirective } from './outlet.directive';
+import { DaffRouteWithNamedViews } from '../../../../named-views/models/route.type';
 
 @Component({
   template: `
-    <ng-container *ngIf="view" [daffioRouterNamedViewOutlet]="view"></ng-container>
+    <ng-container *ngIf="view" [daffRouterNamedViewOutlet]="view"></ng-container>
   `,
 })
 class WrapperComponent {
@@ -29,11 +29,11 @@ class AComponent {}
 })
 class BComponent {}
 
-describe('DaffioRouterNamedViewOutletDirective', () => {
+describe('DaffRouterNamedViewOutletDirective', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let route: ActivatedRoute;
-  let data: RouteWithNamedViews['data'];
+  let data: DaffRouteWithNamedViews['data'];
   let url: BehaviorSubject<any>;
 
   beforeEach(waitForAsync(() => {
@@ -55,7 +55,7 @@ describe('DaffioRouterNamedViewOutletDirective', () => {
         WrapperComponent,
         AComponent,
         BComponent,
-        DaffioRouterNamedViewOutletDirective,
+        DaffRouterNamedViewOutletDirective,
       ],
       providers: [
         {
