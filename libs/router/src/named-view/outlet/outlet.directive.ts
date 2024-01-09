@@ -27,7 +27,6 @@ import {
 import { daffRouterNamedViewsCollect } from '../helpers/collect-named-views';
 import { DaffRouterNamedViews } from '../models/public_api';
 
-// TODO: move to @daffodil/router
 /**
  * Renders a named view of the current route.
  * The named view should be defined in the route configuration
