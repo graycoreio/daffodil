@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffSidebarModule } from '@daffodil/design/sidebar';
@@ -14,9 +15,12 @@ import { DaffRouterNamedViewOutletModule } from '../router/named-view/public_api
   imports: [
     CommonModule,
     RouterModule,
-    DaffioSidebarStateModule,
+    FontAwesomeModule,
+
     DaffSidebarModule,
     DaffButtonModule,
+
+    DaffioSidebarStateModule,
     DaffioGuidesNavModule,
     DaffRouterNamedViewOutletModule,
   ],

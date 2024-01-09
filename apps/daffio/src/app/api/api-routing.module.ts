@@ -8,9 +8,7 @@ import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.
 import { DaffioApiPageComponent } from './pages/api-page/api-page.component';
 import { DaffioApiListResolver } from './resolvers/api-list-resolver.service';
 import { DaffRouteWithNamedViews } from '../core/router/named-view/models/route.type';
-import { DaffioDocsSidebarContainer } from '../docs/containers/sidebar/sidebar.component';
 import { DocsResolver } from '../docs/resolvers/docs-resolver.service';
-import { DaffioRouterNamedViewsEnum } from '../named-views/models/named-views.enum';
 
 export const apiRoutes: Routes = [
   <DaffRouteWithNamedViews>{
@@ -19,21 +17,12 @@ export const apiRoutes: Routes = [
     resolve: {
       reference: DaffioApiListResolver,
     },
-    data: {
-      sidebarMode: 'side-fixed',
-      daffNamedViews: {
-        [DaffioRouterNamedViewsEnum.SIDEBAR]: DaffioDocsSidebarContainer,
-      },
-    },
   },
   {
     path: '**',
     component: DaffioApiPageComponent,
     resolve: {
       doc: DocsResolver,
-    },
-    data: {
-      sidebarMode: 'side-fixed',
     },
   },
 ];

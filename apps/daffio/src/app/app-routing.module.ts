@@ -7,6 +7,8 @@ import {
 import { DaffioDocsHeaderContainer } from './core/header/containers/docs-header/docs-header.component';
 import { DaffioMarketingHeaderContainer } from './core/header/containers/marketing-header/marketing-header.component';
 import { DaffRouteWithNamedViews } from './core/router/named-view/models/route.type';
+import { DaffioDocsSidebarComponent } from './core/sidebar/components/docs-sidebar/docs-sidebar.component';
+import { DaffioMarketingSidebarComponent } from './core/sidebar/components/marketing-sidebar/marketing-sidebar.component';
 import { TemplateComponent } from './core/template/template.component';
 import { DaffioRouterNamedViewsEnum } from './named-views/models/named-views.enum';
 
@@ -25,6 +27,7 @@ export const appRoutes: Routes = [
         data: {
           daffNamedViews: {
             [DaffioRouterNamedViewsEnum.NAV]: DaffioMarketingHeaderContainer,
+            [DaffioRouterNamedViewsEnum.SIDEBAR]: DaffioMarketingSidebarComponent,
           },
         },
       },
@@ -38,6 +41,7 @@ export const appRoutes: Routes = [
         data: {
           daffNamedViews: {
             [DaffioRouterNamedViewsEnum.NAV]: DaffioDocsHeaderContainer,
+            [DaffioRouterNamedViewsEnum.SIDEBAR]: DaffioDocsSidebarComponent,
           },
         },
       },

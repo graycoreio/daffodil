@@ -3,6 +3,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import {
   Store,
   select,
@@ -25,9 +26,11 @@ import * as fromDaffioSidebar from '../../reducers/index';
 @Component({
   selector: 'daffio-sidebar-viewport-container',
   templateUrl: './sidebar-viewport.component.html',
+  styleUrls: ['./sidebar-viewport.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioSidebarViewportContainer implements OnInit {
+  faTimes = faTimes;
   readonly sidebarNamedView = DaffioRouterNamedViewsEnum.SIDEBAR;
 
   showSidebar$: Observable<boolean>;

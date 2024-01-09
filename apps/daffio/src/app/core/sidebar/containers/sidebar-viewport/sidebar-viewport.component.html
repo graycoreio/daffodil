@@ -1,6 +1,14 @@
 <daff-sidebar-viewport (backdropClicked)="close()">
   <daff-sidebar class="daffio-sidebar" [mode]="mode$ | async" [open]="showSidebar$ | async" (escapePressed)="close()">
+    <daff-sidebar-header>
+      <button daff-icon-button color="theme-contrast" daffSidebarHeaderAction (click)="close()">
+        <fa-icon [icon]="faTimes"></fa-icon>
+      </button>
+    </daff-sidebar-header>
     <ng-container [daffRouterNamedViewOutlet]="sidebarNamedView"></ng-container>
+    <daff-sidebar-footer>
+      <a href="https://github.com/graycoreio/daffodil" rel="noopener noreferrer" target="_blank" class="daffio-sidebar-viewport__get-started">Get Started</a>
+    </daff-sidebar-footer>
   </daff-sidebar>
   <ng-container daff-sidebar-viewport-nav>
     <ng-content select="[daff-sidebar-viewport-nav]"></ng-content>
