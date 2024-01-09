@@ -1,12 +1,14 @@
 import { collect } from '@daffodil/core';
 
-import { DaffActivatedRouteSnapshotWithNamedViews } from '../models/activated-route-snapshot.type';
-import { DaffRouterNamedViews } from '../models/named-views.type';
+import {
+  DaffActivatedRouteSnapshotWithNamedViews,
+  DaffRouterNamedViews,
+} from '../models/public_api';
 
 /**
  * Collects all named views defined in the entire tree of routes.
  */
-export const routerNamedViewsCollect = (route: DaffActivatedRouteSnapshotWithNamedViews): DaffRouterNamedViews => {
+export const daffRouterNamedViewsCollect = (route: DaffActivatedRouteSnapshotWithNamedViews): DaffRouterNamedViews => {
   const ary = collect(route, (r) => r.children);
   const ret = ary.reduce(
     (acc, r) => r.data.namedViews

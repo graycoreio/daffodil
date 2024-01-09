@@ -23,6 +23,8 @@ export const apiRoutes: Routes = [
       sidebarMode: 'side-fixed',
       namedViews: {
         [DaffioRouterNamedViewsEnum.SIDEBAR]: DaffioDocsSidebarContainer,
+        // TODO: add docs nav
+        [DaffioRouterNamedViewsEnum.NAV]: undefined,
       },
     },
   },

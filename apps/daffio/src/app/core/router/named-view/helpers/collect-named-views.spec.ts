@@ -1,11 +1,13 @@
-import { routerNamedViewsCollect } from './collect-named-views';
-import { DaffActivatedRouteSnapshotWithNamedViews } from '../models/activated-route-snapshot.type';
-import { DaffRouterNamedViews } from '../models/named-views.type';
+import { daffRouterNamedViewsCollect } from './collect-named-views';
+import {
+  DaffActivatedRouteSnapshotWithNamedViews,
+  DaffRouterNamedViews,
+} from '../models/public_api';
 
 class TestClass {}
 class TestClass1 {}
 
-describe('routerNamedViewsCollect', () => {
+describe('daffRouterNamedViewsCollect', () => {
   let route: DaffActivatedRouteSnapshotWithNamedViews;
   let result: DaffRouterNamedViews;
 
@@ -64,7 +66,7 @@ describe('routerNamedViewsCollect', () => {
       ],
     };
 
-    result = routerNamedViewsCollect(route);
+    result = daffRouterNamedViewsCollect(route);
   });
 
   it('should collect all the named views and combine them into a single dict', () => {

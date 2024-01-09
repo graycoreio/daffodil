@@ -24,8 +24,8 @@ import {
   takeUntil,
 } from 'rxjs';
 
-import { routerNamedViewsCollect } from '../helpers/collect-named-views';
-import { DaffRouterNamedViews } from '../models/named-views.type';
+import { daffRouterNamedViewsCollect } from '../helpers/collect-named-views';
+import { DaffRouterNamedViews } from '../models/public_api';
 
 // TODO: move to @daffodil/router
 /**
@@ -88,7 +88,7 @@ export class DaffRouterNamedViewOutletDirective implements OnInit, OnChanges, On
       this.route.url,
     ).pipe(
       map(() => this.route.snapshot),
-      map(routerNamedViewsCollect),
+      map(daffRouterNamedViewsCollect),
     );
     combineLatest([
       this.namedViews$,
