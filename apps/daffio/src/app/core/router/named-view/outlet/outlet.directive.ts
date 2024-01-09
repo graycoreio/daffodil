@@ -41,12 +41,10 @@ export class DaffRouterNamedViewOutletDirective implements OnInit, OnChanges, On
   private _destroyed = new Subject<boolean>();
   /**
    * The outlet, mirrored from `daffRouterNamedViewOutlet`.
-   * Its much simpler to have a single value that we can observe
-   * to decide when to render instead of trying to render in response
-   * to the synchronous `ngOnChanges` or the async `component$`.
+   * Its much simpler to have a single value that we can observe.
    */
-  private outlet$ = new BehaviorSubject<string>('');
-  private namedViews$: Observable<DaffRouterNamedViews>;
+  private _outlet$ = new BehaviorSubject<string>('');
+  private _namedViews$: Observable<DaffRouterNamedViews>;
 
   /**
    * The router named view to attempt to render.
@@ -65,7 +63,7 @@ export class DaffRouterNamedViewOutletDirective implements OnInit, OnChanges, On
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.daffRouterNamedViewOutlet) {
-      this.outlet$.next(changes.daffRouterNamedViewOutlet.currentValue);
+      this._outlet$.next(changes.daffRouterNamedViewOutlet.currentValue);
     }
   }
 
@@ -77,11 +75,11 @@ export class DaffRouterNamedViewOutletDirective implements OnInit, OnChanges, On
      * and pull named views from nested data in the snapshot.
      *
      * On first page load, this directive will likely not be instantiated
-     * in time to catch router events.
+     * in time to catch router events so route.url emits for this case.
      * On subsequent route changes, `route.url` will not change (why????)
      * so we use router events instead.
      */
-    this.namedViews$ = merge(
+    this._namedViews$ = merge(
       this.router.events.pipe(
         filter((e) => e instanceof NavigationEnd),
       ),
@@ -91,8 +89,8 @@ export class DaffRouterNamedViewOutletDirective implements OnInit, OnChanges, On
       map(daffRouterNamedViewsCollect),
     );
     combineLatest([
-      this.namedViews$,
-      this.outlet$,
+      this._namedViews$,
+      this._outlet$,
     ]).pipe(
       map(([namedViews, outlet]) => namedViews?.[outlet]),
       distinctUntilChanged(),
@@ -100,7 +98,8 @@ export class DaffRouterNamedViewOutletDirective implements OnInit, OnChanges, On
     ).subscribe((component) => {
       this.viewRef.clear();
       if (component) {
-        this.viewRef.createComponent(component);
+        const ref = this.viewRef.createComponent(component);
+        ref.changeDetectorRef.markForCheck();
       }
     });
   }
