@@ -1,6 +1,6 @@
 <daff-sidebar-viewport (backdropClicked)="close()">
   <daff-sidebar class="daffio-sidebar" [mode]="mode$ | async" [open]="showSidebar$ | async" (escapePressed)="close()">
-    <ng-container daffioRouterNamedViewOutlet="sidebar"></ng-container>
+    <ng-container [daffioRouterNamedViewOutlet]="sidebarNamedView"></ng-container>
   </daff-sidebar>
   <ng-container daff-sidebar-viewport-nav>
     <ng-content select="[daff-sidebar-viewport-nav]"></ng-content>

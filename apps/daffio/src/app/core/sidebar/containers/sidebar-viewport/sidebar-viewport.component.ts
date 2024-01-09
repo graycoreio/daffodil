@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 import { DaffSidebarMode } from '@daffodil/design/sidebar';
 
 import { DaffioGuideList } from '../../../../docs/models/guide-list';
+import { DaffioRouterNamedViewsEnum } from '../../../router/named-view/models/named-views.enum';
 import {
   CloseSidebar,
   OpenSidebar,
@@ -26,7 +27,8 @@ import * as fromDaffioSidebar from '../../reducers/index';
   templateUrl: './sidebar-viewport.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffioSidebarViewportContainer implements OnInit{
+export class DaffioSidebarViewportContainer implements OnInit {
+  readonly sidebarNamedView = DaffioRouterNamedViewsEnum.SIDEBAR;
 
   showSidebar$: Observable<boolean>;
   sidebarContents$: Observable<DaffioGuideList>;
