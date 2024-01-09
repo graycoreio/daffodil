@@ -1,0 +1,34 @@
+{
+  "name": "@daffodil/router",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/router"]
+      }
+    }
+  },
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Adds features and provides utils for the Angular router.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "scripts": {
+    "build": "ng build router --configuration production",
+    "lint": "cd ../.. && ng lint router",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test router --watch=false --browsers=ChromeHeadless",
+    "publish": "cd ../../dist/router && npm publish --access=public"
+  },
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@angular/router": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  }
+}
