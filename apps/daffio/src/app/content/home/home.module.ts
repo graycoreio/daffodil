@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { DaffioHomeHeaderModule } from './containers/header/header.module';
 import { DaffioHomeRoutingModule } from './home-routing.module';
 import { DaffioHomeViewModule } from './view/home-view.module';
 import { TemplateModule } from '../../core/template/template.module';
@@ -19,6 +20,7 @@ import { IphoneModule } from '../../design/device/iphone/iphone.module';
 
     DaffioHomeRoutingModule,
     DaffioHomeViewModule,
+    DaffioHomeHeaderModule,
   ],
 })
 export class DaffioHomeModule { }

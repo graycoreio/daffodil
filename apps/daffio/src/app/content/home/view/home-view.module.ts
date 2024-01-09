@@ -6,6 +6,7 @@ import { DaffioHomeViewComponent } from './home-view.component';
 import { DaffioHomeCalloutPlatformsComponentModule } from '../components/home-callout-platforms/home-callout-platforms.module';
 import { DaffioHomeCalloutPwaComponentModule } from '../components/home-callout-pwa/home-callout-pwa.module';
 import { DaffioHomeHeroComponentModule } from '../components/home-hero/home-hero.module';
+import { DaffioHomeHeaderModule } from '../containers/header/header.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { DaffioHomeHeroComponentModule } from '../components/home-hero/home-hero
     DaffioHomeHeroComponentModule,
     DaffioHomeCalloutPwaComponentModule,
     DaffioHomeCalloutPlatformsComponentModule,
+    DaffioHomeHeaderModule,
   ],
   declarations: [
     DaffioHomeViewComponent,

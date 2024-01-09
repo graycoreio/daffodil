@@ -5,16 +5,16 @@ import { RouterModule } from '@angular/router';
 
 import { TemplateComponent } from './template.component';
 import { DaffioFooterModule } from '../footer/footer.module';
-import { DaffioHeaderModule } from '../header/containers/header.module';
+import { DaffioRouterNamedViewOutletModule } from '../router/named-view/outlet/outlet.module';
 import { DaffioSidebarModule } from '../sidebar/sidebar.module';
 
 @NgModule({
   imports: [
     RouterModule,
     CommonModule,
-    DaffioHeaderModule,
     DaffioSidebarModule,
     DaffioFooterModule,
+    DaffioRouterNamedViewOutletModule,
   ],
   declarations: [
     TemplateComponent,

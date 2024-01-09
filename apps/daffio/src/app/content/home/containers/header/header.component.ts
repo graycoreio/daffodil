@@ -5,7 +5,7 @@ import {
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 
-import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
+import { ToggleSidebar } from '../../../../core/sidebar/actions/sidebar.actions';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffioHeaderContainer {
+export class DaffioHomeHeaderContainer {
   faBars = faBars;
 
   links: any[] = [

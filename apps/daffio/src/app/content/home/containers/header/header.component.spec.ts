@@ -15,17 +15,17 @@ import {
   Store,
 } from '@ngrx/store';
 
-import { DaffioHeaderContainer } from './header.component';
-import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
-import * as fromSidebar from '../../sidebar/reducers/index';
+import { DaffioHomeHeaderContainer } from './header.component';
+import { ToggleSidebar } from '../../../../core/sidebar/actions/sidebar.actions';
+import * as fromSidebar from '../../../../core/sidebar/reducers/index';
 
 @Component({ template: '<daffio-header-container></daffio-header-container>' })
 class WrapperComponent {}
 
-describe('DaffioHeaderContainer', () => {
+describe('DaffioHomeHeaderContainer', () => {
   let component: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let daffioHeaderContainer: DaffioHeaderContainer;
+  let daffioHeaderContainer: DaffioHomeHeaderContainer;
 
   let store: Store<fromSidebar.State>;
 
@@ -38,7 +38,7 @@ describe('DaffioHeaderContainer', () => {
       ],
       declarations: [
         WrapperComponent,
-        DaffioHeaderContainer,
+        DaffioHomeHeaderContainer,
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
