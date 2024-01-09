@@ -1,8 +1,6 @@
 <daff-sidebar-viewport (backdropClicked)="close()">
   <daff-sidebar class="daffio-sidebar" [mode]="mode$ | async" [open]="showSidebar$ | async" (escapePressed)="close()">
-    <button type="button" daff-button class="daffio-sidebar__button">Get Started</button>
-		<daffio-guides-nav [guideList]="sidebarContents$ | async"></daffio-guides-nav>
-    <a routerLink="/api">API Index</a>
+    <ng-container daffioRouterNamedViewOutlet="sidebar"></ng-container>
   </daff-sidebar>
   <ng-container daff-sidebar-viewport-nav>
     <ng-content select="[daff-sidebar-viewport-nav]"></ng-content>

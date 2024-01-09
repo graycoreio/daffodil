@@ -8,6 +8,7 @@ import { DaffSidebarModule } from '@daffodil/design/sidebar';
 import { DaffioSidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 import { DaffioSidebarStateModule } from './sidebar.state.module';
 import { DaffioGuidesNavModule } from '../../guides/components/guides-nav/guides-nav.module';
+import { DaffioRouterNamedViewOutletModule } from '../router/named-view/outlet/outlet.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { DaffioGuidesNavModule } from '../../guides/components/guides-nav/guides
     DaffSidebarModule,
     DaffButtonModule,
     DaffioGuidesNavModule,
+    DaffioRouterNamedViewOutletModule,
   ],
   declarations: [
     DaffioSidebarViewportContainer,

@@ -15,7 +15,7 @@ import { DaffioGuideList } from '../models/guide-list';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffioDocsService<T extends DaffioDoc, V extends DaffioGuideList> implements DaffioDocsServiceInterface<DaffioDoc, DaffioGuideList> {
+export class DaffioDocsService<T extends DaffioDoc = DaffioDoc, V extends DaffioGuideList = DaffioGuideList> implements DaffioDocsServiceInterface<T, V> {
 
   constructor(
     private http: HttpClient,
@@ -26,7 +26,7 @@ export class DaffioDocsService<T extends DaffioDoc, V extends DaffioGuideList> i
     return this.http.get<T>(this.docsPath + crossOsFilename(path) + '.json');
   }
 
-  getGuideList(): Observable<DaffioGuideList> {
+  getGuideList(): Observable<V> {
     return this.http.get<V>(this.docsPath + 'guides/guide-list.json');
   }
 }

@@ -7,10 +7,12 @@ import {
 import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.component';
 import { DaffioApiPageComponent } from './pages/api-page/api-page.component';
 import { DaffioApiListResolver } from './resolvers/api-list-resolver.service';
+import { RouteWithNamedViews } from '../core/router/named-view/models/route.type';
+import { DaffioDocsSidebarContainer } from '../docs/containers/sidebar/sidebar.component';
 import { DocsResolver } from '../docs/resolvers/docs-resolver.service';
 
 export const apiRoutes: Routes = [
-  {
+  <RouteWithNamedViews>{
     path: '',
     component: DaffioApiListPageComponent,
     resolve: {
@@ -18,6 +20,9 @@ export const apiRoutes: Routes = [
     },
     data: {
       sidebarMode: 'side-fixed',
+      namedViews: {
+        sidebar: DaffioDocsSidebarContainer,
+      },
     },
   },
   {

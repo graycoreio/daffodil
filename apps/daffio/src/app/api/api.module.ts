@@ -9,6 +9,7 @@ import { DaffioApiListModule } from './components/api-list/api-list.module';
 import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.component';
 import { DaffioApiPageComponent } from './pages/api-page/api-page.component';
 import { DaffioDocViewerModule } from '../docs/components/doc-viewer/doc-viewer.module';
+import { DaffioDocsSidebarModule } from '../docs/containers/sidebar/sidebar.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { DaffioDocViewerModule } from '../docs/components/doc-viewer/doc-viewer.
     DaffioDocsApiRoutingModule,
     DaffioApiListModule,
     DaffioDocViewerModule,
+    DaffioDocsSidebarModule,
 
     DaffContainerModule,
   ],
