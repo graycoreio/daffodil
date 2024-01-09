@@ -4,6 +4,7 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { DaffioDocsHeaderContainer } from './core/header/containers/docs-header/docs-header.component';
 import { DaffioMarketingHeaderContainer } from './core/header/containers/marketing-header/marketing-header.component';
 import { DaffRouteWithNamedViews } from './core/router/named-view/models/route.type';
 import { TemplateComponent } from './core/template/template.component';
@@ -36,8 +37,7 @@ export const appRoutes: Routes = [
         ],
         data: {
           daffNamedViews: {
-            // TODO: add docs nav
-            [DaffioRouterNamedViewsEnum.NAV]: null,
+            [DaffioRouterNamedViewsEnum.NAV]: DaffioDocsHeaderContainer,
           },
         },
       },

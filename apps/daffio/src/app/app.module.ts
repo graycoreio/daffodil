@@ -15,6 +15,7 @@ import { DAFF_THEME_INITIALIZER } from '@daffodil/design';
 
 import { AppRoutingModule } from './app-routing.module';
 import { DaffioAppComponent } from './app.component';
+import { DaffioDocsHeaderContainerModule } from './core/header/containers/docs-header/docs-header.module';
 import { DaffioMarketingHeaderContainerModule } from './core/header/containers/marketing-header/marketing-header.module';
 import { TemplateModule } from './core/template/template.module';
 import { environment } from '../environments/environment';
@@ -30,6 +31,7 @@ import { environment } from '../environments/environment';
 
     AppRoutingModule,
     DaffioMarketingHeaderContainerModule,
+    DaffioDocsHeaderContainerModule,
 
     //Make sure this loads after Router and Store
     StoreRouterConnectingModule.forRoot({ serializer: FullRouterStateSerializer,
