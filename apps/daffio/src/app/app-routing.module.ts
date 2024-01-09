@@ -4,9 +4,10 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { DaffRouteWithNamedViews } from '@daffodil/router';
+
 import { DaffioDocsHeaderContainer } from './core/header/containers/docs-header/docs-header.component';
 import { DaffioMarketingHeaderContainer } from './core/header/containers/marketing-header/marketing-header.component';
-import { DaffRouteWithNamedViews } from '@daffodil/router';
 import { DaffioDocsSidebarComponent } from './core/sidebar/components/docs-sidebar/docs-sidebar.component';
 import { DaffioMarketingSidebarComponent } from './core/sidebar/components/marketing-sidebar/marketing-sidebar.component';
 import { TemplateComponent } from './core/template/template.component';
