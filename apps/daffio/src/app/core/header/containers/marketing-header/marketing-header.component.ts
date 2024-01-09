@@ -7,13 +7,12 @@ import { Store } from '@ngrx/store';
 
 import { ToggleSidebar } from '../../../../core/sidebar/actions/sidebar.actions';
 
-
 @Component({
-  selector: 'daffio-header-container',
-  templateUrl: './header.component.html',
+  selector: 'daffio-marketing-header-container',
+  templateUrl: './marketing-header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffioHomeHeaderContainer {
+export class DaffioMarketingHeaderContainer {
   faBars = faBars;
 
   links: any[] = [
