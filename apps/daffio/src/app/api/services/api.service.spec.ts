@@ -1,30 +1,29 @@
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { DaffioApiService } from './api.service';
+import {
+  DaffioAssetFetchServiceInterface,
+  DaffioAssetFetchService,
+} from '../../core/assets/fetch/service.interface';
 
 describe('DaffioApiService', () => {
-  let httpTestingController: HttpTestingController;
+  let fetchAssetServiceSpy: jasmine.SpyObj<DaffioAssetFetchServiceInterface>;
   let service: DaffioApiService;
 
   beforeEach(() => {
+    fetchAssetServiceSpy = jasmine.createSpyObj('DaffioAssetFetchService', ['fetch']);
+
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
-        DaffioApiService,
+        {
+          provide: DaffioAssetFetchService,
+          useValue: fetchAssetServiceSpy,
+        },
       ],
     });
 
-    httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(DaffioApiService);
-  });
-
-  afterEach(() => {
-    // After every test, assert that there are no more pending requests.
-    httpTestingController.verify();
   });
 
   it('should be created', () => {
@@ -33,15 +32,14 @@ describe('DaffioApiService', () => {
 
   describe('getApiList', () => {
 
-    it('should make a get request', () => {
+    it('should make a get request', (done) => {
+      fetchAssetServiceSpy.fetch.and.returnValue(of([]));
+
       service.list().subscribe((docsList) => {
         expect(docsList).toEqual([]);
+        expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/api/api-list.json');
+        done();
       });
-      const req = httpTestingController.expectOne('/assets/daffio/docs/api/api-list.json');
-
-      expect(req.request.method).toEqual('GET');
-
-      req.flush([]);
     });
   });
 });
