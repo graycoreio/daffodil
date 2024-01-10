@@ -3,7 +3,7 @@
 :host {
 	// fixes a bug where certain elements show in front of backdrop for a second.
 	display: flex;
-	overflow: hidden;
+	min-height: 100dvh;
 	position: relative;
 	width: 100%;
 	z-index: variables.$daff-sidebar-viewport-z-index;
@@ -16,7 +16,6 @@
 		flex: 0 1 auto;
 		width: 100%;
 		z-index: variables.$daff-sidebar-content-z-index;
-		overflow-y: auto;
 		height: 100%;
 	}
 
@@ -48,6 +47,7 @@
 
 :host-context(daff-sidebar-viewport daff-sidebar-viewport) {
 	transform: translateX(0px);
+	min-height: auto;
 
 	.daff-sidebar-viewport__inner {
 		padding-left: 0px !important;

@@ -153,6 +153,13 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
     const nextShift = sidebarViewportContentShift(this.sidebars) + 'px';
     if (this._shift !== nextShift) {
       this._shift = nextShift;
+      if(nextShift !== '0px') {
+        this._elementRef.nativeElement.style.overflow = 'hidden';
+      } else {
+        setTimeout(() => {
+          this._elementRef.nativeElement.style.overflow = null;
+        }, 200);
+      }
       this.updateAnimationState();
       this.cdRef.markForCheck();
     }
