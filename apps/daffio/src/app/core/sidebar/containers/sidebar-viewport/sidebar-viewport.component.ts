@@ -31,7 +31,7 @@ import * as fromDaffioSidebar from '../../reducers/index';
 })
 export class DaffioSidebarViewportContainer implements OnInit {
   faTimes = faTimes;
-  readonly sidebarNamedView = DaffioRouterNamedViewsEnum.SIDEBAR;
+  readonly navNamedView = DaffioRouterNamedViewsEnum.NAV;
 
   showSidebar$: Observable<boolean>;
   sidebarContents$: Observable<DaffioGuideList>;

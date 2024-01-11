@@ -97,7 +97,7 @@ export class DaffRouterNamedViewOutletDirective implements OnInit, OnChanges, On
     ).subscribe((component) => {
       this.viewRef.clear();
       if (component) {
-        const ref = this.viewRef.createComponent(component);
+        const ref = this.viewRef.createComponent(component, { injector: this.viewRef.injector });
         ref.changeDetectorRef.markForCheck();
       }
     });
