@@ -1,4 +1,4 @@
-<ng-content select="daff-sidebar"></ng-content>
+<ng-content select="daff-sidebar:not([side=right])"></ng-content>
 
 <daff-backdrop
   [@transformContent]="_animationState"
@@ -16,3 +16,5 @@
     <ng-content></ng-content>
   </div>
 </div>
+
+<ng-content select="daff-sidebar[side=right]"></ng-content>
