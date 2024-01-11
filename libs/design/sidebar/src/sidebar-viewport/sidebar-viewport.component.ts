@@ -13,9 +13,13 @@ import {
   Inject,
   SkipSelf,
   Optional,
+  ViewChild,
+  ViewContainerRef,
+  ContentChild,
 } from '@angular/core';
 
 import { hasParentViewport } from './helper/has-parent-viewport';
+import { DaffSidebarViewportNavDirective } from './nav/nav.directive';
 import {
   DaffNavPlacement,
   DaffNavPlacementEnum,
@@ -134,6 +138,8 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
    */
   public _navPadRight = 0;
 
+  private _navHeight = 0;
+
   /**
    * Whether or not the backdrop is interactable
    */
@@ -143,6 +149,11 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
    * The animation state
    */
   _animationState: DaffSidebarViewportAnimationStateWithParams = { value: DaffSidebarAnimationStates.CLOSED, params: { shift: '0px' }};
+
+  /**
+   * @docs-private
+   */
+  @ContentChild(DaffSidebarViewportNavDirective, { static: false, descendants: true }) nav: DaffSidebarViewportNavDirective;
 
   /**
    * Event fired when the backdrop is clicked. This is often used to close the sidebar.
@@ -162,6 +173,12 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
       }
       this.updateAnimationState();
       this.cdRef.markForCheck();
+    }
+
+    const nextNavHeight = this.nav?.height;
+    if( nextNavHeight !== this._navHeight ) {
+      this._navHeight = nextNavHeight;
+      this._elementRef.nativeElement.style.setProperty('--daff-sidebar-side-fixed-top-shift', nextNavHeight + 'px');
     }
 
     const nextBackdropInteractable = sidebarViewportBackdropInteractable(this.sidebars);

@@ -11,5 +11,4 @@ import { DaffioRouterNamedViewsEnum } from '../../named-views/models/named-views
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TemplateComponent {
-  readonly navNamedView = DaffioRouterNamedViewsEnum.NAV;
 }

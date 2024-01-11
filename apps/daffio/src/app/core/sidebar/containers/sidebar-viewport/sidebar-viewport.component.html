@@ -10,8 +10,8 @@
       <a href="https://github.com/graycoreio/daffodil" rel="noopener noreferrer" target="_blank" class="daffio-sidebar-viewport__get-started">Get Started</a>
     </daff-sidebar-footer>
   </daff-sidebar>
-  <ng-container daff-sidebar-viewport-nav>
-    <ng-content select="[daff-sidebar-viewport-nav]"></ng-content>
+  <ng-container ngProjectAs="[daff-sidebar-viewport-nav]">
+    <ng-container [daffRouterNamedViewOutlet]="navNamedView"></ng-container>
   </ng-container>
   <ng-content></ng-content>
 </daff-sidebar-viewport>

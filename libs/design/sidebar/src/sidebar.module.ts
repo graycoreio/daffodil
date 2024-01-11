@@ -9,6 +9,7 @@ import { DaffSidebarFooterComponent } from './sidebar-footer/sidebar-footer.comp
 import { DaffSidebarHeaderActionDirective } from './sidebar-header/sidebar-header-action/sidebar-header-action.directive';
 import { DaffSidebarHeaderTitleDirective } from './sidebar-header/sidebar-header-title/sidebar-header-title.directive';
 import { DaffSidebarHeaderComponent } from './sidebar-header/sidebar-header.component';
+import { DaffSidebarViewportNavDirective } from './sidebar-viewport/nav/nav.directive';
 import { DaffSidebarViewportComponent } from './sidebar-viewport/sidebar-viewport.component';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { DaffSidebarViewportComponent } from './sidebar-viewport/sidebar-viewpor
     DaffSidebarFooterComponent,
     DaffSidebarHeaderTitleDirective,
     DaffSidebarHeaderActionDirective,
+    DaffSidebarViewportNavDirective,
   ],
   exports: [
     DaffSidebarComponent,
@@ -32,6 +34,7 @@ import { DaffSidebarViewportComponent } from './sidebar-viewport/sidebar-viewpor
     DaffSidebarFooterComponent,
     DaffSidebarHeaderTitleDirective,
     DaffSidebarHeaderActionDirective,
+    DaffSidebarViewportNavDirective,
   ],
 })
 export class DaffSidebarModule { }
