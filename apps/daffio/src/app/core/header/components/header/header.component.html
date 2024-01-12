@@ -1,21 +1,21 @@
 <nav daff-navbar color="theme" class="daffio-header__navbar">
-  <daff-container size="md">
+  <div class="daffio-header__left">
     <div class="daffio-header__logo">
       <ng-content select="[daffio-logo]"></ng-content>
     </div>
-    <div class="daffio-header__menu-container">
-      <div class="daffio-header__menu">
-        <div class="daffio-header__theme-toggle">
-          <ng-content select="[theme-toggle]"></ng-content>
-        </div>
-        <ng-content select="[daffioHeaderItem]"></ng-content>
-        <div class="daffio-header__button">
-          <ng-content select="[quickstart-button]"></ng-content>
-        </div>
-      </div>
-      <div class="daffio-header__bars">
-        <ng-content select="[sidebar-button]"></ng-content>
-      </div>
+    <div class="daffio-header__menu">
+      <ng-content select="[daffioHeaderItem]"></ng-content>
     </div>
-  </daff-container>
+  </div>
+  <div class="daffio-header__right">
+    <div class="daffio-header__theme-toggle">
+      <ng-content select="[theme-toggle]"></ng-content>
+    </div>
+    <div class="daffio-header__button">
+      <ng-content select="[quickstart-button]"></ng-content>
+    </div>
+    <div class="daffio-header__bars">
+      <ng-content select="[sidebar-button]"></ng-content>
+    </div>
+  </div>
 </nav>
