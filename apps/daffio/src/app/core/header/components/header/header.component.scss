@@ -10,7 +10,7 @@
       display: none;
       color: currentColor;
       font-size: daff.$normal-font-size;
-      padding: 0.75rem 1.25rem;
+      padding: 0.25rem 1rem;
       text-decoration: none;
 
       @include daff.breakpoint(tablet) {
@@ -24,26 +24,24 @@
   &__navbar {
     justify-content: space-between;
     padding: 0 24px;
+  }
 
-    @include daff.breakpoint(mobile) {
-      padding: 0 48px;
-    }
-  
-    @include daff.breakpoint(small-laptop) {
-      padding: 0;
-    }  
+  &__left,
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__left {
+    gap: 32px;
   }
 
   &__theme-toggle {
     margin-right: 0.25rem;
 
     @include daff.breakpoint(tablet) {
-      margin-right: 1rem;
+      margin-right: 0;
     }
-  }
-
-  &__menu-container {
-    display: flex;
   }
 
   &__menu {
@@ -53,6 +51,7 @@
     @include daff.breakpoint(tablet) {
       display: flex;
       align-items: center;
+      gap: 16px;
     }
   }
 

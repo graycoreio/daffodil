@@ -3,9 +3,7 @@ import {
   TestBed,
   waitForAsync,
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
-import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffNavbarModule } from '@daffodil/design/navbar';
 
 import { DaffioHeaderComponent } from './header.component';
@@ -17,7 +15,6 @@ describe('DaffioHeaderComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffContainerModule,
         DaffNavbarModule,
       ],
       declarations: [
@@ -35,13 +32,5 @@ describe('DaffioHeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('on <daff-container>', () => {
-    it('should set size="md"', () => {
-      const container = fixture.debugElement.query(By.css('daff-container'));
-
-      expect(container.componentInstance.size).toEqual('md');
-    });
   });
 });

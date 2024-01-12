@@ -10,6 +10,7 @@ import { ToggleSidebar } from '../../../../core/sidebar/actions/sidebar.actions'
 @Component({
   selector: 'daffio-docs-header-container',
   templateUrl: './docs-header.component.html',
+  styleUrls: ['./docs-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioDocsHeaderContainer {
