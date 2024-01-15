@@ -1,3 +1,4 @@
+import { AnimationEvent } from '@angular/animations';
 import {
   Component,
   Output,
@@ -87,6 +88,18 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
     return this.navPlacement === DaffNavPlacementEnum.BESIDE;
   }
 
+  onContentAnimationStart(e: AnimationEvent) {
+    if(e.toState === 'open') {
+      this._elementRef.nativeElement.style.overflow = 'hidden';
+    }
+  }
+
+  onContentAnimationDone(e: AnimationEvent) {
+    if(e.toState === 'closed') {
+      this._elementRef.nativeElement.style.overflow = null;
+    }
+  }
+
   /**
    * The placement of the nav in relation to the sidebar. The default is set to `top`.
    * Note that this is really only available when there is a `side-fixed` sidebar.
@@ -153,13 +166,7 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
     const nextShift = sidebarViewportContentShift(this.sidebars) + 'px';
     if (this._shift !== nextShift) {
       this._shift = nextShift;
-      if(nextShift !== '0px') {
-        this._elementRef.nativeElement.style.overflow = 'hidden';
-      } else {
-        setTimeout(() => {
-          this._elementRef.nativeElement.style.overflow = null;
-        }, 200);
-      }
+
       this.updateAnimationState();
       this.cdRef.markForCheck();
     }
