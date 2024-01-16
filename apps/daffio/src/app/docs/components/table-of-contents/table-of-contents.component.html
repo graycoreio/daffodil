@@ -1,5 +1,3 @@
 <aside class="daffio-docs-table-of-contents">
-	<div *ngFor="let entry of tableOfContents" class="daffio-docs-table-of-contents__item">
-		<a class="daffio-docs-table-of-contents__item--level-{{entry.lvl}}" routerLink="./" [fragment]="entry.slug">{{ entry.content }}</a>
-	</div>
+	<a *ngFor="let entry of tableOfContents"class="daffio-docs-table-of-contents__item daffio-docs-table-of-contents__item--level-{{entry.lvl}}" routerLink="./" [fragment]="entry.slug">{{ entry.content }}</a>
 </aside>
