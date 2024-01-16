@@ -3,9 +3,9 @@
 :host {
 	display: block;
 	font-size: daff.$small-font-size;
-	padding: 48px 24px;
+	padding: 24px;
 
-	@include daff.breakpoint(tablet) {
+	@include daff.breakpoint(big-tablet) {
 		padding: 64px 48px;
 	}
 
@@ -25,16 +25,8 @@
 			'social';
 		grid-gap: 16px;
 
-		@include daff.breakpoint(tablet) {
-			grid-template-columns: 1fr 1fr;
-			grid-template-areas:
-				'logo  logo'
-				'menu  social';
-			grid-gap: 24px;
-		}
-
 		@include daff.breakpoint(big-tablet) {
-			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-columns: 2fr 1fr 2fr;
 			grid-template-areas: 'menu logo social';
 			grid-gap: 48px;
 		}
@@ -43,9 +35,12 @@
 	&__menu {
 		grid-area: menu;
 		display: flex;
+		flex-wrap: wrap;
+		gap: 8px 16px;
 		justify-content: center;
 
 		@include daff.breakpoint(big-tablet) {
+			gap: 24px;
 			justify-content: flex-start;
 		}
 	}
@@ -61,9 +56,11 @@
 	&__social {
 		grid-area: social;
 		display: flex;
+		gap: 8px 16px;
 		justify-content: center;
 
 		@include daff.breakpoint(big-tablet) {
+			gap: 24px;
 			justify-content: flex-end;
 		}
 	}
@@ -71,17 +68,11 @@
 	&__link {
 		@include daff.embolden();
 		@include daff.uppercase();
-		padding-right: 32px;
 		text-decoration: none;
-
-		&:last-child {
-			padding-right: 0;
-		}
 	}
 
 	&__social-icon {
 		vertical-align: middle;
-
 		margin-right: 8px;
 	}
 
