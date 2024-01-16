@@ -8,6 +8,7 @@ import {
   DomSanitizer,
   SafeHtml,
 } from '@angular/platform-browser';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffioDoc } from '../../models/doc';
 
@@ -18,6 +19,7 @@ import { DaffioDoc } from '../../models/doc';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioDocViewerComponent implements OnChanges {
+  faBars = faBars;
 
   constructor(private sanitizer: DomSanitizer) {}
 

@@ -2,35 +2,58 @@
 
 :host {
 	display: block;
+	max-width: 1340px;
+	margin: 0 auto;
 }
 
 .daffio-doc-viewer {
 	&__grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-areas:
-			'content';
-		padding: 48px;
-		
-		@include daff.breakpoint(big-tablet) {
-			grid-template-columns: minmax(0px, 960px) 240px;
-			grid-template-areas:
-				'content table-of-contents';
+		padding: 24px;
+
+		@include daff.breakpoint(small-laptop) {
+			display: flex;
+			justify-content: space-between;
+			gap: 64px;
 			padding: 48px;
-			grid-gap: 48px;
+		}
+	
+		@include daff.breakpoint(desktop) {
+			padding: 48px 0;
 		}
 	}
 
 	&__content {
-		grid-area: content;
+		flex-grow: 1;
 	}
 
 	&__table-of-contents {
 		display: none;
 		
-		@include daff.breakpoint(big-tablet) {
+		@include daff.breakpoint(small-laptop) {
 			display: block;
-			grid-area: table-of-contents;
+			max-width: 240px;
+			width: 100%;
+		}
+	}
+
+	&__packages-button {
+		@include daff.clickable();
+		display: flex;
+		gap: 8px;
+		align-items: center;
+		justify-content: center;
+		background: white;
+		border: 0;
+		border-top: 1px solid rgb(var(--daff-theme-contrast-rgb), 0.1);
+		border-bottom: 1px solid rgb(var(--daff-theme-contrast-rgb), 0.1);
+		overflow: auto;
+		padding: 16px 24px;
+		position: sticky;
+		top: var(--daff-sidebar-side-fixed-top-shift);
+		width: 100%;
+
+		@include daff.breakpoint(big-tablet) {
+			display: none;
 		}
 	}
 }

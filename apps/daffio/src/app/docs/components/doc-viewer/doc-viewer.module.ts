@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffArticleModule } from '@daffodil/design/article';
+import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffSidebarModule } from '@daffodil/design/sidebar';
 
 import { DaffioDocViewerComponent } from './doc-viewer.component';
 import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
@@ -16,7 +20,11 @@ import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-c
   imports: [
     CommonModule,
     DaffArticleModule,
+    DaffContainerModule,
     DaffioDocsTableOfContentsModule,
+    DaffSidebarModule,
+    DaffButtonModule,
+    FontAwesomeModule,
   ],
 })
 export class DaffioDocViewerModule { }
