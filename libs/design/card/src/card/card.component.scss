@@ -48,6 +48,12 @@ $card-inner-border-radius: calc(#{$card-border-radius} - 1px);
 		}
 	}
 
+	&__body {
+		padding: 1.5rem;
+		position: relative;
+		z-index: 2;
+	}
+
 	&__icon {
 		display: block;
 		margin: 0 0 0.5rem;
@@ -60,21 +66,13 @@ $card-inner-border-radius: calc(#{$card-border-radius} - 1px);
 	}
 
 	&__title {
-		@include t.embolden;
-		font-size: 1.375rem;
+		font-size: 1.25rem;
+		font-weight: 600;
 		line-height: 1.5rem;
-		margin: 0 0 1rem;
-
-		@include layout.breakpoint(mobile) {
-			font-size: 1.5rem;
-			line-height: 1.75rem;
-		}
 	}
 
-	&__body {
-		padding: 1.5rem;
-		position: relative;
-		z-index: 2;
+	&__title + &__content {
+		margin: 1rem 0 0;
 	}
 
 	&__content {
