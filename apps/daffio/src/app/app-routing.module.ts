@@ -8,8 +8,10 @@ import { DaffRouteWithNamedViews } from '@daffodil/router';
 
 import { DaffioDocsHeaderContainer } from './core/header/containers/docs-header/docs-header.component';
 import { DaffioMarketingHeaderContainer } from './core/header/containers/marketing-header/marketing-header.component';
-import { DaffioDocsSidebarComponent } from './core/sidebar/components/docs-sidebar/docs-sidebar.component';
-import { DaffioMarketingSidebarComponent } from './core/sidebar/components/marketing-sidebar/marketing-sidebar.component';
+import { DaffioDocsSidebarContentComponent } from './core/sidebar/components/docs-sidebar-content/docs-sidebar-content.component';
+import { DaffioMarketingSidebarContentComponent } from './core/sidebar/components/marketing-sidebar-content/marketing-sidebar-content.component';
+import { DaffioSidebarFooterComponent } from './core/sidebar/components/sidebar-footer/sidebar-footer.component';
+import { DaffioSidebarHeaderComponent } from './core/sidebar/components/sidebar-header/sidebar-header.component';
 import { TemplateComponent } from './core/template/template.component';
 import { DaffioRouterNamedViewsEnum } from './named-views/models/named-views.enum';
 
@@ -28,7 +30,9 @@ export const appRoutes: Routes = [
         data: {
           daffNamedViews: {
             [DaffioRouterNamedViewsEnum.NAV]: DaffioMarketingHeaderContainer,
-            [DaffioRouterNamedViewsEnum.SIDEBAR]: DaffioMarketingSidebarComponent,
+            [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: DaffioSidebarHeaderComponent,
+            [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioMarketingSidebarContentComponent,
+            [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: DaffioSidebarFooterComponent,
           },
         },
       },
@@ -42,7 +46,9 @@ export const appRoutes: Routes = [
         data: {
           daffNamedViews: {
             [DaffioRouterNamedViewsEnum.NAV]: DaffioDocsHeaderContainer,
-            [DaffioRouterNamedViewsEnum.SIDEBAR]: DaffioDocsSidebarComponent,
+            [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: DaffioSidebarHeaderComponent,
+            [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioDocsSidebarContentComponent,
+            [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: DaffioSidebarFooterComponent,
           },
         },
       },

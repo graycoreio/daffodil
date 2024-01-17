@@ -31,7 +31,7 @@ export class DaffioSidebarRoutingModeEffects {
 
   changeModeWhenVisitingConfiguredRoute$ = createEffect(() => (): Observable<Action> => combineLatest(
     this.actions$.pipe<RouterNavigatedAction>(ofType(ROUTER_NAVIGATED)),
-    this.breakpointsObserver.observe(DaffBreakpoints.TABLET),
+    this.breakpointsObserver.observe(DaffBreakpoints.BIG_TABLET),
   ).pipe(
     map(([action, state]) => {
       const mode = computeDeepestSidebarMode(action.payload.routerState.root);

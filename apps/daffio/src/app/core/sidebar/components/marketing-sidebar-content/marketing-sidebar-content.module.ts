@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { DaffListModule } from '@daffodil/design/list';
 
-import { DaffioDocsSidebarComponent } from './docs-sidebar.component';
+import { DaffioMarketingSidebarContentComponent } from './marketing-sidebar-content.component';
 
 @NgModule({
   imports: [
@@ -14,10 +14,10 @@ import { DaffioDocsSidebarComponent } from './docs-sidebar.component';
     DaffListModule,
   ],
   declarations: [
-    DaffioDocsSidebarComponent,
+    DaffioMarketingSidebarContentComponent,
   ],
   exports: [
-    DaffioDocsSidebarComponent,
+    DaffioMarketingSidebarContentComponent,
   ],
 })
-export class DaffioDocsSidebarComponentModule { }
+export class DaffioMarketingSidebarContentComponentModule { }

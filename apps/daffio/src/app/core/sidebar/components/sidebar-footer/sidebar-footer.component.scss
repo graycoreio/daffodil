@@ -1,0 +1,10 @@
+@use 'utilities' as daff;
+
+.daffio-sidebar-footer {
+	@include daff.clickable();
+	display: block;
+	font-weight: 500;
+	padding: 16px;
+	text-align: center;
+	text-decoration: none;
+}
