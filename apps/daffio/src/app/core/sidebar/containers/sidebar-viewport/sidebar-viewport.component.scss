@@ -1,9 +1,5 @@
-.daffio-sidebar-viewport {
-	&__get-started {
-		display: block;
-		font-weight: 500;
-		padding: 16px;
-		text-align: center;
-		text-decoration: none;
-	}
+.daffio-sidebar {
+	max-width: 290px;
+	width: 100%;
+	border-right: 1px solid rgb(var(--daff-theme-contrast-rgb), 0.1);
 }

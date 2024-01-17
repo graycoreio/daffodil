@@ -14,10 +14,14 @@ export enum SidebarActionTypes {
 
 export class ToggleSidebar implements Action {
   readonly type = SidebarActionTypes.ToggleSidebarAction;
+
+  constructor(public payload?: string ){}
 }
 
 export class OpenSidebar implements Action {
   readonly type = SidebarActionTypes.OpenSidebarAction;
+
+  constructor(public payload?: string){}
 }
 
 export class CloseSidebar implements Action {
@@ -33,7 +37,7 @@ export class SetSidebarVisibility implements Action {
 export class SetSidebarState implements Action {
   readonly type = SidebarActionTypes.SetSidebarStateAction;
 
-  constructor(public payload: { mode?: DaffSidebarMode; open?: boolean }){}
+  constructor(public payload: { mode?: DaffSidebarMode; open?: boolean; kind?: string }){}
 }
 
 export class SetSidebarMode implements Action {

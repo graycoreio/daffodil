@@ -4,12 +4,12 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'daffio-docs-sidebar',
-  templateUrl: './docs-sidebar.component.html',
-  styleUrls: ['./docs-sidebar.component.scss'],
+  selector: 'daffio-docs-sidebar-content',
+  templateUrl: './docs-sidebar-content.component.html',
+  styleUrls: ['./docs-sidebar-content.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffioDocsSidebarComponent {
+export class DaffioDocsSidebarContentComponent {
   links: any[] = [
     { path: '/api', title: 'API Index' },
   ];
