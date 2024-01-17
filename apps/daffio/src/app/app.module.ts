@@ -20,6 +20,7 @@ import { DaffioMarketingHeaderContainerModule } from './core/header/containers/m
 import { DaffioDocsSidebarComponentModule } from './core/sidebar/components/docs-sidebar/docs-sidebar.module';
 import { DaffioMarketingSidebarComponentModule } from './core/sidebar/components/marketing-sidebar/marketing-sidebar.module';
 import { TemplateModule } from './core/template/template.module';
+import { DaffioDocsPackagesSidebarComponentModule } from './guides/components/packages-sidebar/packages-sidebar.module';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -36,6 +37,7 @@ import { environment } from '../environments/environment';
     DaffioDocsHeaderContainerModule,
     DaffioMarketingSidebarComponentModule,
     DaffioDocsSidebarComponentModule,
+    DaffioDocsPackagesSidebarComponentModule,
 
     //Make sure this loads after Router and Store
     StoreRouterConnectingModule.forRoot({ serializer: FullRouterStateSerializer,

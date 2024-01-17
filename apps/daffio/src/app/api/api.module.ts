@@ -10,7 +10,7 @@ import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.
 import { DaffioApiPageComponent } from './pages/api-page/api-page.component';
 import { DaffioDocsSidebarComponentModule } from '../core/sidebar/components/docs-sidebar/docs-sidebar.module';
 import { DaffioDocViewerModule } from '../docs/components/doc-viewer/doc-viewer.module';
-import { DaffioDocsSidebarModule } from '../docs/containers/sidebar/sidebar.module';
+import { DaffioDocsPackagesSidebarComponentModule } from '../guides/components/packages-sidebar/packages-sidebar.module';
 
 @NgModule({
   imports: [
@@ -20,6 +20,7 @@ import { DaffioDocsSidebarModule } from '../docs/containers/sidebar/sidebar.modu
     DaffioApiListModule,
     DaffioDocViewerModule,
     DaffioDocsSidebarComponentModule,
+    DaffioDocsPackagesSidebarComponentModule,
 
     DaffContainerModule,
   ],
