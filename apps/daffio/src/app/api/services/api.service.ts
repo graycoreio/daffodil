@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import {
   Inject,
   Injectable,
@@ -6,6 +5,10 @@ import {
 import { Observable } from 'rxjs';
 
 import { DaffioApiServiceInterface } from './api-service.interface';
+import {
+  DaffioAssetFetchService,
+  DaffioAssetFetchServiceInterface,
+} from '../../core/assets/fetch/service.interface';
 import { DAFFIO_DOCS_PATH_TOKEN } from '../../docs/services/docs-path.token';
 import { DaffioApiReference } from '../models/api-reference';
 
@@ -13,11 +16,11 @@ import { DaffioApiReference } from '../models/api-reference';
 export class DaffioApiService implements DaffioApiServiceInterface {
 
   constructor(
-    private http: HttpClient,
+    @Inject(DaffioAssetFetchService) private fetchAsset: DaffioAssetFetchServiceInterface,
     @Inject(DAFFIO_DOCS_PATH_TOKEN) private docsPath: string,
   ) {}
 
   list(): Observable<DaffioApiReference[]> {
-    return this.http.get<DaffioApiReference[]>(this.docsPath + 'api/api-list.json');
+    return this.fetchAsset.fetch<DaffioApiReference[]>(`${this.docsPath}api/api-list.json`);
   }
 }

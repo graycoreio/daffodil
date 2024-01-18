@@ -1,10 +1,11 @@
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { DaffioDocsService } from './docs.service';
+import {
+  DaffioAssetFetchService,
+  DaffioAssetFetchServiceInterface,
+} from '../../core/assets/fetch/service.interface';
 import { DaffioDoc } from '../models/doc';
 import { DaffioGuideList } from '../models/guide-list';
 import { DaffioDocsFactory } from '../testing/factories/docs.factory';
@@ -12,47 +13,48 @@ import { mockGuides } from '../testing/factories/guide-list.factory';
 
 describe('DaffioDocsService', () => {
   let service: DaffioDocsService<DaffioDoc, DaffioGuideList>;
-  let httpTestingController: HttpTestingController;
-  const doc = new DaffioDocsFactory().create();
+  let fetchAssetServiceSpy: jasmine.SpyObj<DaffioAssetFetchServiceInterface>;
+  let doc: DaffioDoc;
   const mockGuideList = mockGuides;
 
   beforeEach(() => {
+    fetchAssetServiceSpy = jasmine.createSpyObj('DaffioAssetFetchService', ['fetch']);
+
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      providers: [
+        {
+          provide: DaffioAssetFetchService,
+          useValue: fetchAssetServiceSpy,
+        },
+      ],
     });
 
-    httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(DaffioDocsService);
-  });
 
-  afterEach(() => {
-    // After every test, assert that there are no more pending requests.
-    httpTestingController.verify();
+    doc = TestBed.inject(DaffioDocsFactory).create();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should be able to retrieve a doc', () => {
+  it('should be able to retrieve a doc', (done) => {
+    fetchAssetServiceSpy.fetch.and.returnValue(of(doc));
+
     service.get('my/path').subscribe((apiDoc) => {
       expect(apiDoc).toEqual(doc);
+      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/my/path.json');
+      done();
     });
-    const req = httpTestingController.expectOne('/assets/daffio/docs/my/path.json');
-
-    expect(req.request.method).toEqual('GET');
-
-    req.flush(doc);
   });
 
-  it('should be able to retrieve a guide list', () => {
+  it('should be able to retrieve a guide list', (done) => {
+    fetchAssetServiceSpy.fetch.and.returnValue(of(mockGuideList));
+
     service.getGuideList().subscribe((guides) => {
       expect(guides).toEqual(mockGuideList);
+      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/guides/guide-list.json');
+      done();
     });
-    const req = httpTestingController.expectOne('/assets/daffio/docs/guides/guide-list.json');
-
-    expect(req.request.method).toEqual('GET');
-
-    req.flush(mockGuideList);
   });
 });
