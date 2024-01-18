@@ -14,4 +14,4 @@ export * from './article-encapsulated/public_api';
 export * from './theming/public_api';
 export * from './lazy/public_api';
 export * from './focus/public_api';
-export * from './sizeable/public_api';
+export * from './sizable/public_api';

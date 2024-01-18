@@ -4,7 +4,7 @@ import {
   Renderer2,
 } from '@angular/core';
 
-import { DaffSizeAllType } from './sizeable';
+import { DaffSizeAllType } from './sizable';
 import { Constructor } from '../constructor/constructor';
 
 export interface HasElementRef {

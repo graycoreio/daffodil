@@ -3,12 +3,12 @@
  * In order to be sizable, a component class must implement this property.
  */
 
-export interface DaffSizeable<T extends DaffSizeAllType> {
+export interface DaffSizable<T extends DaffSizeAllType> {
   size: T;
 }
 
 /**
- * The possible types that can be passed to a component that implements DaffSizeable
+ * The possible types that can be passed to a component that implements DaffSizable
  */
 
 export type DaffSizeXSmallType = 'xs';
@@ -19,7 +19,7 @@ export type DaffSizeXLargeType = 'xl';
 
 export type DaffSizeAllType = DaffSizeXSmallType | DaffSizeSmallType | DaffSizeMediumType | DaffSizeLargeType | DaffSizeXLargeType;
 
-export enum DaffSizeableEnum {
+export enum DaffSizableEnum {
   XSmall = 'xs',
   Small = 'sm',
   Medium = 'md',

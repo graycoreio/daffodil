@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 import {
-  DaffSizeable,
+  DaffSizable,
   DaffSizeAllType,
   daffSizeMixin,
 } from '@daffodil/design';
@@ -34,7 +34,7 @@ const _daffContainerBase = daffSizeMixin(DaffContainerBase);
   inputs: ['size'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffContainerComponent extends _daffContainerBase implements DaffSizeable<DaffSizeAllType> {
+export class DaffContainerComponent extends _daffContainerBase implements DaffSizable<DaffSizeAllType> {
 
   /**
    * @docs-private
