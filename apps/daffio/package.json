@@ -25,7 +25,7 @@
     "lint": "cd ../.. && ng lint daffio",
     "lint:fix": "npm run lint -- --fix",
     "dev:ssr": "ng run daffio:serve-ssr",
-    "serve:ssr": "DAFFIO_DOCS_PATH=../../dist/apps/daffio/browser/assets/daffio/docs/ node ../../dist/apps/daffio/server/main.js"
+    "serve:ssr": "node ../../dist/apps/daffio/server/main.js"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "description": "A documentation site for the daffodil project",
