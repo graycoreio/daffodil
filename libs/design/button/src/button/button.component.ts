@@ -17,7 +17,7 @@ import {
   DaffSuffixable,
   daffPrefixableMixin,
   daffSuffixableMixin,
-  DaffSizeable,
+  DaffSizable,
   DaffSizeSmallType,
   DaffSizeMediumType,
   DaffSizeLargeType,
@@ -51,7 +51,7 @@ const _daffButtonBase = daffArticleEncapsulatedMixin(daffPrefixableMixin(daffSuf
 export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-flat-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
 
 /**
- * The DaffSizeable types that the DaffButtonComponent can implement
+ * The DaffSizable types that the DaffButtonComponent can implement
  */
 export type DaffButtonSize = DaffSizeSmallType | DaffSizeMediumType | DaffSizeLargeType;
 
@@ -92,7 +92,7 @@ enum DaffButtonTypeEnum {
 })
 export class DaffButtonComponent
   extends _daffButtonBase
-  implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffSizeable<DaffButtonSize>, DaffStatusable {
+  implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffSizable<DaffButtonSize>, DaffStatusable {
 
   private buttonType: DaffButtonType;
 

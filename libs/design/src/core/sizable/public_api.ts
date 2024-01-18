@@ -1,11 +1,11 @@
 export {
-  DaffSizeable,
+  DaffSizable,
   DaffSizeAllType,
-  DaffSizeableEnum,
+  DaffSizableEnum,
   DaffSizeXSmallType,
   DaffSizeSmallType,
   DaffSizeMediumType,
   DaffSizeLargeType,
   DaffSizeXLargeType,
-} from './sizeable';
-export { daffSizeMixin } from './sizeable-mixin';
+} from './sizable';
+export { daffSizeMixin } from './sizable-mixin';
