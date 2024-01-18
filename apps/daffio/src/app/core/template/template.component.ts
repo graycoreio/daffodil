@@ -12,4 +12,5 @@ import { DaffioRouterNamedViewsEnum } from '../../named-views/models/named-views
 })
 export class TemplateComponent {
   readonly navNamedView = DaffioRouterNamedViewsEnum.NAV;
+  readonly footerNamedView = DaffioRouterNamedViewsEnum.FOOTER;
 }

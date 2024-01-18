@@ -1,0 +1,82 @@
+@use 'utilities' as daff;
+
+:host {
+	display: block;
+	font-size: daff.$small-font-size;
+	padding: 24px;
+
+	@include daff.breakpoint(big-tablet) {
+		padding: 64px 48px;
+	}
+
+	@include daff.breakpoint(small-laptop) {
+		padding: 64px 0;
+	}
+}
+
+.daffio-footer {
+	&__grid {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		gap: 16px;
+
+		@include daff.breakpoint(big-tablet) {
+			flex-direction: row;
+			gap: 48px;
+		}
+	}
+
+	&__menu {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px 16px;
+		justify-content: center;
+		order: 2;
+
+		@include daff.breakpoint(big-tablet) {
+			gap: 24px;
+			justify-content: flex-start;
+			order: 1;
+		}
+	}
+
+	&__logo {
+		display: flex;
+		justify-content: center;
+		width: 48px;
+		margin: 0 auto;
+		order: 1;
+
+		@include daff.breakpoint(big-tablet) {
+			order: 2;
+		}
+	}
+
+	&__social {
+		display: flex;
+		gap: 8px 16px;
+		justify-content: center;
+		order: 3;
+
+		@include daff.breakpoint(big-tablet) {
+			gap: 24px;
+			justify-content: flex-end;
+		}
+	}
+
+	&__link {
+		@include daff.embolden();
+		@include daff.uppercase();
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		text-decoration: none;
+	}
+
+	&__copyright {
+		display: block;
+		text-align: center;
+		margin-top: 32px;
+	}
+}

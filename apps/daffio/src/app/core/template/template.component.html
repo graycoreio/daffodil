@@ -1,6 +1,5 @@
 <daffio-sidebar-viewport-container>
   <ng-container [daffRouterNamedViewOutlet]="navNamedView" daff-sidebar-viewport-nav></ng-container>
   <router-outlet></router-outlet>
-  <daffio-sub-footer></daffio-sub-footer>
-  <daffio-simple-footer></daffio-simple-footer>
+  <ng-container [daffRouterNamedViewOutlet]="footerNamedView"></ng-container>
 </daffio-sidebar-viewport-container>
