@@ -32,7 +32,7 @@ jobs:
     - uses: graycoreio/github-actions/angular-universal-vercel-wflw-run@main
       id: vercel
       with:
-        artifact: daffio-16.x
+        artifact: daffio-18.x
         artifact-zip-name: daffio.zip
         vercel-token: ${{ secrets.VERCEL_TOKEN }}
         vercel-org: ${{ secrets.VERCEL_ORG }}

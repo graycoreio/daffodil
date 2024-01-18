@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:18
 
 LABEL name="Angular dev environment" \
       description="This image can be used to create a dev environment for building Angular apps." \
