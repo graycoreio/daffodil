@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ServerModule } from '@angular/platform-server';
 
+import { environment } from '../environments/environment';
 import { DaffioAppComponent } from './app.component';
 import { AppModule } from './app.module';
 import { DaffioAssetFetchServerService } from './core/assets/fetch/server.service';
@@ -16,7 +17,7 @@ import { DAFFIO_DOCS_PATH_TOKEN } from './docs/services/docs-path.token';
   providers: [
     {
       provide: DAFFIO_DOCS_PATH_TOKEN,
-      useValue: process.env.DAFFIO_DOCS_PATH || '',
+      useValue: environment.docsPath,
     },
     {
       provide: DaffioAssetFetchService,
