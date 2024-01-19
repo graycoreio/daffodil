@@ -8,24 +8,17 @@ import {
   OnDestroy,
 } from '@angular/core';
 import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-} from '@angular/router';
-import {
   BehaviorSubject,
   Observable,
   Subject,
   combineLatest,
   distinctUntilChanged,
-  filter,
   map,
-  merge,
   takeUntil,
 } from 'rxjs';
 
-import { daffRouterNamedViewsCollect } from '../helpers/collect-named-views';
 import { DaffRouterNamedViews } from '../models/public_api';
+import { DaffRouterNamedViewService } from '../service/named-view.service';
 
 /**
  * Renders a named view of the current route.
@@ -51,8 +44,7 @@ export class DaffRouterNamedViewOutletDirective implements OnInit, OnChanges, On
   @Input() daffRouterNamedViewOutlet!: string;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
+    private namedViewService: DaffRouterNamedViewService,
     private viewRef: ViewContainerRef,
   ) {}
 
@@ -67,26 +59,8 @@ export class DaffRouterNamedViewOutletDirective implements OnInit, OnChanges, On
   }
 
   ngOnInit(): void {
-    /**
-     * Because data won't reemit for route changes and
-     * the top-level data probably won't have named views
-     * anyway, use `url` and router events to listen for route changes
-     * and pull named views from nested data in the snapshot.
-     *
-     * On first page load, this directive will likely not be instantiated
-     * in time to catch router events so route.url emits for this case.
-     * On subsequent route changes, `route.url` will not change (why????)
-     * so we use router events instead.
-     */
-    this._namedViews$ = merge(
-      this.router.events.pipe(
-        filter((e) => e instanceof NavigationEnd),
-      ),
-      this.route.url,
-    ).pipe(
-      map(() => this.route.snapshot),
-      map(daffRouterNamedViewsCollect),
-    );
+    this._namedViews$ = this.namedViewService.namedViews$;
+
     combineLatest([
       this._namedViews$,
       this._outlet$,

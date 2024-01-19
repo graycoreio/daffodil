@@ -1,0 +1,17 @@
+@use 'sass:map';
+@use 'theme' as daff-theme;
+
+@mixin daffio-sidebar-footer-theme($theme) {
+	$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
+	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-theme.daff-map-deep-get($theme, 'core.base-contrast');
+	$primary: map.get($theme, primary);
+
+	.daffio-sidebar-footer {
+		background: daff-theme.daff-illuminate($base, $gray, 2);
+
+		&:hover {
+			background: daff-theme.daff-illuminate($base, $gray, 3);
+		}
+	}
+}
