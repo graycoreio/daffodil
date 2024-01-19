@@ -19,7 +19,16 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/router": [
+        "libs/router/src"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
