@@ -19,7 +19,6 @@ $base-contrast: daff-theme.daff-map-deep-get(daff-theme.$theme, 'core.base-contr
 	font-size: 0.625rem;
 	box-sizing: border-box;
 	text-transform: uppercase;
-	transition: background-color 300ms;
 
 	&.class {
 		@include type-theming(daff-theme.daff-color($primary));

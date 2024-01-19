@@ -26,7 +26,7 @@
 				outline: none;
 			}
 
-			&:hover {
+			&:after {
 				background: daff-theme.daff-illuminate($base, $gray, 2);
 			}
 		}
