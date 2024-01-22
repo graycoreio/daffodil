@@ -1,16 +1,16 @@
 @use 'theme' as daff-theme;
 
 @mixin daffio-table-of-contents-theme($theme) {
-	$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
+	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
 	$base: daff-theme.daff-map-deep-get($theme, "core.base");
 	$base-contrast: daff-theme.daff-map-deep-get($theme, "core.base-contrast");
 
 	.daffio-table-of-contents {
 		&__item {
-			color: daff-theme.daff-illuminate($base-contrast, $gray, 4);
+			color: daff-theme.daff-illuminate($base-contrast, $neutral, 4);
 
 			&:first-of-type {
-				border-bottom: 1px solid daff-theme.daff-illuminate($base, $gray, 3);
+				border-bottom: 1px solid daff-theme.daff-illuminate($base, $neutral, 3);
 			}
 		}
 	}

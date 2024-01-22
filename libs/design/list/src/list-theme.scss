@@ -3,7 +3,7 @@
 @use '../../scss/theming';
 
 @mixin daff-list-theme($theme) {
-	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 	$base: core.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 
@@ -15,7 +15,7 @@
 				}
 
 				*:nth-child(n + 2) { /* stylelint-disable-line scss/selector-nest-combinators */
-					color: theming.daff-illuminate($base-contrast, $gray, 3);
+					color: theming.daff-illuminate($base-contrast, $neutral, 3);
 				}
 			}
 		}
@@ -25,7 +25,7 @@
 		&--navigation {
 			a {
 				&:hover {
-					color: theming.daff-color($gray, 80);
+					color: theming.daff-color($neutral, 80);
 				}
 			}
 		}
@@ -34,7 +34,7 @@
 		&--navigation {
 			.daff-list-item {
 				&:hover {
-					background-color: theming.daff-illuminate($base, $gray, 1);
+					background-color: theming.daff-illuminate($base, $neutral, 1);
 				}
 			}
 		}
@@ -48,7 +48,7 @@
 					}
 
 					*:nth-child(n + 2) { /* stylelint-disable-line scss/selector-nest-combinators */
-						color: theming.daff-illuminate($base-contrast, $gray, 3);
+						color: theming.daff-illuminate($base-contrast, $neutral, 3);
 					}
 				}
 			}
@@ -63,7 +63,7 @@
 
 			&:hover {
 				&:after {
-					background-color: theming.daff-illuminate($base, $gray, 1);
+					background-color: theming.daff-illuminate($base, $neutral, 1);
 				}
 			}
 		}

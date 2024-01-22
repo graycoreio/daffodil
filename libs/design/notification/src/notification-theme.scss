@@ -6,16 +6,16 @@
 	$primary: map.get($theme, primary);
 	$secondary: map.get($theme, secondary);
 	$tertiary: map.get($theme, tertiary);
-	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 	$base: core.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 	$white: core.daff-map-deep-get($theme, 'core.white');
 	$black: core.daff-map-deep-get($theme, 'core.black');
 
 	.daff-notification {
-		background: theming.daff-illuminate($base, $gray, 1);
-		border: 1px solid theming.daff-illuminate($base, $gray, 2);
-		color: theming.daff-text-contrast(theming.daff-illuminate($base, $gray, 1));
+		background: theming.daff-illuminate($base, $neutral, 1);
+		border: 1px solid theming.daff-illuminate($base, $neutral, 2);
+		color: theming.daff-text-contrast(theming.daff-illuminate($base, $neutral, 1));
 
 		&.daff-success {
 			background: theming.daff-color(theming.$daff-green, 10);

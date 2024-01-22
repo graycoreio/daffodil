@@ -13,12 +13,12 @@
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 	$white: core.daff-map-deep-get($theme, 'core.white');
 	$black: core.daff-map-deep-get($theme, 'core.black');
-	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 
 	.daff-card {
 		$root: &;
 		@include basic.daff-basic-card-theme-variant(
-			theming.daff-illuminate($base, $gray, 1)
+			theming.daff-illuminate($base, $neutral, 1)
 		);
 
 		&.daff-primary {
@@ -63,7 +63,7 @@
 
 	.daff-stroked-card {
 		@include stroked.daff-stroked-card-theme-variant(
-			theming.daff-illuminate($base, $gray, 2)
+			theming.daff-illuminate($base, $neutral, 2)
 		);
 
 		&.daff-primary {
@@ -86,25 +86,25 @@
 
 		&.daff-theme {
 			@include stroked.daff-stroked-card-theme-variant(
-				theming.daff-illuminate($base, $gray, 2)
+				theming.daff-illuminate($base, $neutral, 2)
 			);
 		}
 
 		&.daff-theme-contrast {
 			@include stroked.daff-stroked-card-theme-variant(
-				theming.daff-illuminate($base-contrast, $gray, 2)
+				theming.daff-illuminate($base-contrast, $neutral, 2)
 			);
 		}
 
 		&.daff-black {
 			@include stroked.daff-stroked-card-theme-variant(
-				theming.daff-color($gray, 90)
+				theming.daff-color($neutral, 90)
 			);
 		}
 
 		&.daff-white {
 			@include stroked.daff-stroked-card-theme-variant(
-				theming.daff-color($gray, 20)
+				theming.daff-color($neutral, 20)
 			);
 		}
 	}
@@ -112,7 +112,7 @@
 	a {
 		&.daff-card {
 			@include linkable.daff-linkable-card-theme-variant(
-				theming.daff-illuminate($base, $gray, 2)
+				theming.daff-illuminate($base, $neutral, 2)
 			);
 
 			&.daff-primary {
@@ -135,25 +135,25 @@
 
 			&.daff-theme {
 				@include linkable.daff-linkable-card-theme-variant(
-					theming.daff-illuminate($base, $gray, 1)
+					theming.daff-illuminate($base, $neutral, 1)
 				);
 			}
 
 			&.daff-theme-contrast {
 				@include linkable.daff-linkable-card-theme-variant(
-					theming.daff-illuminate($base-contrast, $gray, 1)
+					theming.daff-illuminate($base-contrast, $neutral, 1)
 				);
 			}
 
 			&.daff-black {
 				@include linkable.daff-linkable-card-theme-variant(
-					theming.daff-color($gray, 100)
+					theming.daff-color($neutral, 100)
 				);
 			}
 
 			&.daff-white {
 				@include linkable.daff-linkable-card-theme-variant(
-					theming.daff-color($gray, 10)
+					theming.daff-color($neutral, 10)
 				);
 			}
 		}

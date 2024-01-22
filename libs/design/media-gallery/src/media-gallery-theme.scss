@@ -3,7 +3,7 @@
 @use '../../scss/core';
 
 @mixin daff-media-gallery-theme($theme) {
-	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 
 	.daff-media-gallery {
 		$root: &;
@@ -12,7 +12,7 @@
 			border: 1px solid transparent;
 
 			&--selected {
-				border: 1px solid theming.daff-color($gray);
+				border: 1px solid theming.daff-color($neutral);
 			}
 		}
 

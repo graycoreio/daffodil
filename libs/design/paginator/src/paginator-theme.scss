@@ -23,7 +23,7 @@
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 	$white: core.daff-map-deep-get($theme, 'core.white');
 	$black: core.daff-map-deep-get($theme, 'core.black');
-	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 	$font-color: core.daff-map-deep-get($theme, 'core.font-color');
 
 	.daff-paginator {
@@ -37,10 +37,10 @@
 
 			&:hover,
 			&.selected {
-				color: daff-text-contrast(theming.daff-illuminate($base, $gray, 2));
+				color: daff-text-contrast(theming.daff-illuminate($base, $neutral, 2));
 
 				&:after {
-					background: theming.daff-illuminate($base, $gray, 2);
+					background: theming.daff-illuminate($base, $neutral, 2);
 				}
 			}
 		}

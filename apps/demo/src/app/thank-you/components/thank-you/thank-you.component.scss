@@ -7,7 +7,7 @@
 
 	@include breakpoint(big-tablet) {
 		padding: 50px 0;
-		border-top: 1px solid daff-color($daff-gray, 20);
+		border-top: 1px solid daff-color($daff-neutral, 20);
 	}
 
 	&__title {

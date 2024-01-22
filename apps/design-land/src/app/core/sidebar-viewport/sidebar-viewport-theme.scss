@@ -2,21 +2,21 @@
 @use 'theme' as daff-theme;
 
 @mixin sidebar-viewport-theme($theme) {
-	$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
+	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
 	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: daff-theme.daff-map-deep-get($theme, 'core.base-contrast');
 	$primary: map.get($theme, primary);
 
 	.design-land-sidebar-viewport {
 		&__sidebar {
-			border-right: 1px solid daff-theme.daff-illuminate($base, $gray, 2);
+			border-right: 1px solid daff-theme.daff-illuminate($base, $neutral, 2);
 		}
 
 		&__get-started-button {
-			background: daff-theme.daff-illuminate($base, $gray, 1);
+			background: daff-theme.daff-illuminate($base, $neutral, 1);
 
 			&:hover {
-				background: daff-theme.daff-illuminate($base, $gray, 2);
+				background: daff-theme.daff-illuminate($base, $neutral, 2);
 			}
 		}
 

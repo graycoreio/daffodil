@@ -3,12 +3,12 @@
 @use '../../../../scss/theming';
 
 @mixin daff-native-select-theme($theme) {
-	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 	$black: core.daff-map-deep-get($theme, 'core.black');
 
 	.daff-native-select {
-		color: theming.daff-illuminate($base-contrast, $gray, 4);
+		color: theming.daff-illuminate($base-contrast, $neutral, 4);
 
 		// removes dotted border on in FF
 		&:-moz-focusring {

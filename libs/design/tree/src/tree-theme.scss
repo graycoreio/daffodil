@@ -10,16 +10,16 @@
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 	$white: core.daff-map-deep-get($theme, 'core.white');
 	$black: core.daff-map-deep-get($theme, 'core.black');
-	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 
 	.daff-tree-item {
 		$root: &;
 
 		background-color: $base;
-		color: theming.daff-illuminate($base-contrast, $gray, 2);
+		color: theming.daff-illuminate($base-contrast, $neutral, 2);
 
 		&:hover {
-			background-color: theming.daff-illuminate($base, $gray, 2);
+			background-color: theming.daff-illuminate($base, $neutral, 2);
 		}
 
 		&:after {
@@ -27,7 +27,7 @@
 		}
 
 		&.selected {
-			background-color: theming.daff-illuminate($base, $gray, 2);
+			background-color: theming.daff-illuminate($base, $neutral, 2);
 			color: $base-contrast;
 
 			&:before {

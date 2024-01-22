@@ -11,7 +11,7 @@
 	$primary: map.get($theme, primary);
 	$secondary: map.get($theme, secondary);
 	$tertiary: map.get($theme, tertiary);
-	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 	$white: core.daff-map-deep-get($theme, 'core.white');
 	$black: core.daff-map-deep-get($theme, 'core.black');
 
@@ -28,7 +28,7 @@
 	--daff-theme-danger: #{theming.daff-color(theming.$daff-red, 60)};
 	--daff-theme-white: #{$white};
 	--daff-theme-black: #{$black};
-	--daff-theme-gray: #{theming.daff-color($gray)};
+	--daff-theme-gray: #{theming.daff-color($neutral)};
 	--daff-base-background: #{$base};
 	--daff-base-text: #{theming.daff-text-contrast($base)};
 }
