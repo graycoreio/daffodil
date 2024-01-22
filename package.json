@@ -71,7 +71,7 @@
     "@types/gulp": "^4.0.17",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.8",
-    "@types/node": "^16.18.68",
+    "@types/node": "^18.19.8",
     "@types/rimraf": "^2.0.5",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
