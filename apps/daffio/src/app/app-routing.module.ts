@@ -6,6 +6,8 @@ import {
 
 import { DaffRouteWithNamedViews } from '@daffodil/router';
 
+import { DaffioMarketingFooterComponent } from './core/footer/marketing-footer/marketing-footer.component';
+import { DaffioSimpleFooterComponent } from './core/footer/simple-footer/simple-footer.component';
 import { DaffioDocsHeaderContainer } from './core/header/containers/docs-header/docs-header.component';
 import { DaffioMarketingHeaderContainer } from './core/header/containers/marketing-header/marketing-header.component';
 import { DaffioDocsSidebarContentComponent } from './core/sidebar/components/docs-sidebar-content/docs-sidebar-content.component';
@@ -33,6 +35,7 @@ export const appRoutes: Routes = [
             [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: DaffioSidebarHeaderComponent,
             [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioMarketingSidebarContentComponent,
             [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: DaffioSidebarFooterComponent,
+            [DaffioRouterNamedViewsEnum.FOOTER]: DaffioMarketingFooterComponent,
           },
         },
       },
@@ -49,6 +52,7 @@ export const appRoutes: Routes = [
             [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: DaffioSidebarHeaderComponent,
             [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioDocsSidebarContentComponent,
             [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: DaffioSidebarFooterComponent,
+            [DaffioRouterNamedViewsEnum.FOOTER]: DaffioSimpleFooterComponent,
           },
         },
       },

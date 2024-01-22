@@ -6,30 +6,20 @@
 	padding: 24px;
 
 	@include daff.breakpoint(big-tablet) {
-		padding: 64px 48px;
+		padding: 48px;
 	}
 
 	@include daff.breakpoint(small-laptop) {
-		padding: 64px 0;
+		padding: 48px 0;
 	}
 }
 
 .daffio-simple-footer {
 	&__grid {
-		display: grid;
+		display: flex;
 		align-items: center;
-		grid-template-columns: 1fr;
-		grid-template-areas:
-			'logo'
-			'menu'
-			'social';
-		grid-gap: 16px;
-
-		@include daff.breakpoint(big-tablet) {
-			grid-template-columns: 2fr 1fr 2fr;
-			grid-template-areas: 'menu logo social';
-			grid-gap: 48px;
-		}
+		justify-content: center;
+		gap: 32px;
 	}
 
 	&__menu {
@@ -37,43 +27,23 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 8px 16px;
-		justify-content: center;
 
 		@include daff.breakpoint(big-tablet) {
-			gap: 24px;
-			justify-content: flex-start;
+			gap: 32px;
 		}
 	}
 
 	&__logo {
-		grid-area: logo;
 		display: flex;
-		justify-content: center;
-		width: 48px;
-		margin: 0 auto;
-	}
-
-	&__social {
-		grid-area: social;
-		display: flex;
-		gap: 8px 16px;
-		justify-content: center;
-
-		@include daff.breakpoint(big-tablet) {
-			gap: 24px;
-			justify-content: flex-end;
-		}
+		width: 32px;
 	}
 
 	&__link {
-		@include daff.embolden();
-		@include daff.uppercase();
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-weight: 500;
 		text-decoration: none;
-	}
-
-	&__social-icon {
-		vertical-align: middle;
-		margin-right: 8px;
 	}
 
 	&__copyright {

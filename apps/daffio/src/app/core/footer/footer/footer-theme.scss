@@ -1,18 +1,21 @@
 @use 'theme' as daff-theme;
+@use 'sass:map';
 
-@mixin daffio-simple-footer-theme($theme) {
+@mixin daffio-footer-theme($theme) {
 	$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
 	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: daff-theme.daff-map-deep-get($theme, 'core.base-contrast');
+	$secondary: map.get($theme, secondary);
 
-	.daffio-simple-footer {
+	.daffio-footer {
 		border-top: 1px solid daff-theme.daff-illuminate($base, $gray, 2);
 
 		&__copyright {
-			color: daff-theme.daff-illuminate($base-contrast, $gray, 4);
+			color: daff-theme.daff-illuminate($base-contrast, $gray, 3);
 		}
 
-		&__link {
+		&__link,
+		&__social-link {
 			color: daff-theme.daff-text-contrast($base);
 			transition: color 0.3s;
 

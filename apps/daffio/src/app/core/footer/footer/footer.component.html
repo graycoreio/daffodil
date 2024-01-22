@@ -1,0 +1,17 @@
+<daff-container size="md">
+  <div class="daffio-footer__grid">
+    <div class="daffio-footer__menu">
+      <a routerLink="{{ link.path }}" *ngFor="let link of links" class="daffio-footer__link">{{ link.title }}</a>
+      <a class="daffio-footer__link" href="https://github.com/sponsors/graycoreio" target="_blank" rel="noopener noreferrer">Sponsor</a>
+    </div>
+    <a class="daffio-footer__logo" routerLink="/">
+      <daff-branding-logo type="icon"></daff-branding-logo>
+    </a>
+    <div class="daffio-footer__social">
+      <a *ngFor="let socialLink of socialLinks" [href]="socialLink.link" target="_blank" rel="noopener noreferrer" class="daffio-footer__link">
+        <fa-icon [icon]="socialLink.icon" attr.aria-label="{{socialLink.title}} Logo"></fa-icon> <span>{{socialLink.title}}</span>
+      </a>
+    </div>
+  </div>
+  <daff-branding-copyright class="daffio-footer__copyright"></daff-branding-copyright>
+</daff-container>
