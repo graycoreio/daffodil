@@ -63,7 +63,9 @@ export const appRoutes: Routes = [
         data: {
           daffNamedViews: {
             [DaffioRouterNamedViewsEnum.NAV]: DaffioDocsHeaderContainer,
+            [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: DaffioSidebarHeaderComponent,
             [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioDocsPackagesSidebarComponent,
+            [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: DaffioSidebarFooterComponent,
           },
         },
       },
