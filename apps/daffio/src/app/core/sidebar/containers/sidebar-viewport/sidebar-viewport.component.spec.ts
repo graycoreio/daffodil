@@ -1,4 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Component } from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
@@ -8,21 +9,30 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
-  Store,
-  StoreModule,
-  combineReducers,
-} from '@ngrx/store';
+  MockStore,
+  provideMockStore,
+} from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
+import { BehaviorSubject } from 'rxjs';
 
 import {
   DaffSidebarModule,
   DaffSidebarViewportComponent,
   DaffSidebarComponent,
+  DaffSidebarModeEnum,
 } from '@daffodil/design/sidebar';
+import {
+  DaffRouterNamedViewService,
+  DaffRouterNamedViews,
+} from '@daffodil/router';
 
 import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
+import { DaffioRouterNamedViewsEnum } from '../../../../named-views/models/named-views.enum';
 import { CloseSidebar } from '../../actions/sidebar.actions';
 import * as fromSidebar from '../../reducers/index';
+
+@Component({ template: '' })
+class TestComponent {}
 
 describe('DaffioSidebarViewportContainer', () => {
   let component: DaffioSidebarViewportContainer;
@@ -31,14 +41,16 @@ describe('DaffioSidebarViewportContainer', () => {
   let daffSidebarViewport: DaffSidebarViewportComponent;
   let daffSidebar: DaffSidebarComponent;
 
-  let store: Store<fromSidebar.State>;
+  let store: MockStore;
+  let namedViewServiceSpy: jasmine.SpyObj<DaffRouterNamedViewService>;
+  let namedViews: BehaviorSubject<DaffRouterNamedViews>;
 
   beforeEach(waitForAsync(() => {
+    namedViews = new BehaviorSubject({});
+    namedViewServiceSpy = jasmine.createSpyObj('DaffRouterNamedViewService', {}, { namedViews$: namedViews });
+
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({
-          daffioSidebar: combineReducers(fromSidebar.reducers),
-        }),
         RouterTestingModule,
         NoopAnimationsModule,
         DaffSidebarModule,
@@ -46,6 +58,14 @@ describe('DaffioSidebarViewportContainer', () => {
       ],
       declarations: [
         DaffioSidebarViewportContainer,
+        TestComponent,
+      ],
+      providers: [
+        {
+          provide: DaffRouterNamedViewService,
+          useValue: namedViewServiceSpy,
+        },
+        provideMockStore(),
       ],
     })
       .compileComponents();
@@ -54,20 +74,23 @@ describe('DaffioSidebarViewportContainer', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DaffioSidebarViewportContainer);
     component = fixture.componentInstance;
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
     spyOn(store, 'dispatch');
+    store.overrideSelector(fromSidebar.selectShowSidebar, false);
+    store.overrideSelector(fromSidebar.selectSidebarMode, DaffSidebarModeEnum.Side);
+    store.setState({});
 
     fixture.detectChanges();
     daffSidebar = fixture.debugElement.query(By.css('daff-sidebar')).componentInstance;
     daffSidebarViewport = fixture.debugElement.query(By.css('daff-sidebar-viewport')).componentInstance;
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  afterEach(() => {
+    store.resetSelectors();
   });
 
-  it('should set the `daff-sidebar` mode to the default initialState (push)', () => {
-    expect(daffSidebar.mode).toEqual('under');
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   describe('when the `daff-sidebar-viewport` emits `backdropClicked`', () => {
@@ -104,6 +127,98 @@ describe('DaffioSidebarViewportContainer', () => {
 
         expect(store.dispatch).toHaveBeenCalledWith(new CloseSidebar());
       });
+    });
+  });
+
+  describe('when there is a named view for the sidebar header', () => {
+    beforeEach(() => {
+      namedViews.next({
+        [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: TestComponent,
+      });
+      fixture.detectChanges();
+    });
+
+    it('should render the sidebar header', () => {
+      const sidebarHeader = fixture.debugElement.query(By.css('daff-sidebar-header'));
+      expect(sidebarHeader).toBeTruthy();
+    });
+  });
+
+  describe('when there is not a named view for the sidebar header', () => {
+    beforeEach(() => {
+      namedViews.next({});
+      fixture.detectChanges();
+    });
+
+    it('should not render the sidebar header', () => {
+      const sidebarHeader = fixture.debugElement.query(By.css('daff-sidebar-header'));
+      expect(sidebarHeader).toBeFalsy();
+    });
+  });
+
+  describe('when there is a named view for the sidebar footer', () => {
+    beforeEach(() => {
+      namedViews.next({
+        [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: TestComponent,
+      });
+      fixture.detectChanges();
+    });
+
+    it('should render the sidebar footer', () => {
+      const sidebarFooter = fixture.debugElement.query(By.css('daff-sidebar-footer'));
+      expect(sidebarFooter).toBeTruthy();
+    });
+  });
+
+  describe('when there is not a named view for the sidebar footer', () => {
+    beforeEach(() => {
+      namedViews.next({});
+      fixture.detectChanges();
+    });
+
+    it('should not render the sidebar footer', () => {
+      const sidebarFooter = fixture.debugElement.query(By.css('daff-sidebar-footer'));
+      expect(sidebarFooter).toBeFalsy();
+    });
+  });
+
+  describe('when the sidebar mode is side-fixed', () => {
+    beforeEach(() => {
+      store.overrideSelector(fromSidebar.selectSidebarMode, DaffSidebarModeEnum.SideFixed);
+      store.setState({});
+      fixture.detectChanges();
+    });
+
+    it('should not render the sidebar header', () => {
+      const sidebarHeader = fixture.debugElement.query(By.css('daff-sidebar-header'));
+      expect(sidebarHeader).toBeFalsy();
+    });
+
+    it('should not render the sidebar footer', () => {
+      const sidebarFooter = fixture.debugElement.query(By.css('daff-sidebar-footer'));
+      expect(sidebarFooter).toBeFalsy();
+    });
+  });
+
+  describe('when the sidebar mode is not side-fixed and there are named views for the header and footer', () => {
+    beforeEach(() => {
+      store.overrideSelector(fromSidebar.selectSidebarMode, DaffSidebarModeEnum.Side);
+      store.setState({});
+      namedViews.next({
+        [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: TestComponent,
+        [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: TestComponent,
+      });
+      fixture.detectChanges();
+    });
+
+    it('should render the sidebar header', () => {
+      const sidebarHeader = fixture.debugElement.query(By.css('daff-sidebar-header'));
+      expect(sidebarHeader).toBeTruthy();
+    });
+
+    it('should render the sidebar footer', () => {
+      const sidebarFooter = fixture.debugElement.query(By.css('daff-sidebar-footer'));
+      expect(sidebarFooter).toBeTruthy();
     });
   });
 });
