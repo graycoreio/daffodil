@@ -2,17 +2,17 @@
 @use 'theme' as daff-theme;
 
 @mixin daffio-sidebar-viewport-theme($theme) {
-	$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
+	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
 	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: daff-theme.daff-map-deep-get($theme, 'core.base-contrast');
 	$primary: map.get($theme, primary);
 
 	.daffio-sidebar-viewport {
 		&__get-started {
-			background: daff-theme.daff-illuminate($base, $gray, 2);
+			background: daff-theme.daff-illuminate($base, $neutral, 2);
 
 			&:hover {
-				background: daff-theme.daff-illuminate($base, $gray, 3);
+				background: daff-theme.daff-illuminate($base, $neutral, 3);
 			}
 		}
 	}

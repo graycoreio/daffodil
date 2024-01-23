@@ -1,13 +1,13 @@
 @use 'theme' as daff-theme;
 
 @mixin daffio-newsletter-theme($theme) {
-	$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
+	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
 	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: daff-theme.daff-map-deep-get($theme, 'core.base-contrast');
 
 	.newsletter {
 		&__input {
-			border-color: daff-theme.daff-color($gray, 30);
+			border-color: daff-theme.daff-color($neutral, 30);
 		}
 	}
 }

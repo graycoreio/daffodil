@@ -2,16 +2,16 @@
 @use 'sass:map';
 
 @mixin daffio-footer-theme($theme) {
-	$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
+	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
 	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: daff-theme.daff-map-deep-get($theme, 'core.base-contrast');
 	$secondary: map.get($theme, secondary);
 
 	.daffio-footer {
-		border-top: 1px solid daff-theme.daff-illuminate($base, $gray, 2);
+		border-top: 1px solid daff-theme.daff-illuminate($base, $neutral, 2);
 
 		&__copyright {
-			color: daff-theme.daff-illuminate($base-contrast, $gray, 3);
+			color: daff-theme.daff-illuminate($base-contrast, $neutral, 3);
 		}
 
 		&__link,
@@ -20,7 +20,7 @@
 			transition: color 0.3s;
 
 			&:hover {
-				color: daff-theme.daff-illuminate($base-contrast, $gray, 3);
+				color: daff-theme.daff-illuminate($base-contrast, $neutral, 3);
 			}
 		}
 	}

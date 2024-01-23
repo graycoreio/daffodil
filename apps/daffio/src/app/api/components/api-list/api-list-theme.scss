@@ -1,7 +1,7 @@
 @use 'theme' as daff-theme;
 
 @mixin daffio-api-list-theme($theme) {
-	$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
+	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
 	$base: daff-theme.daff-map-deep-get($theme, "core.base");
 	$base-contrast: daff-theme.daff-map-deep-get($theme, "core.base-contrast");
 
@@ -16,7 +16,7 @@
 			}
 
 			&:hover {
-				color: daff-theme.daff-illuminate($base-contrast, $gray, 3);
+				color: daff-theme.daff-illuminate($base-contrast, $neutral, 3);
 			}
 		}
 
@@ -27,7 +27,7 @@
 			}
 
 			&:after {
-				background: daff-theme.daff-illuminate($base, $gray, 2);
+				background: daff-theme.daff-illuminate($base, $neutral, 2);
 			}
 		}
 	}

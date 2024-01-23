@@ -3,11 +3,11 @@
 
 
 @mixin code-preview-theme($theme) {
-	$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
+	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
 	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
 	$primary: map.get(daff-theme.$theme, primary);
 	$font-color: daff-theme.daff-map-deep-get($theme, 'core.font-color');
-	$border: 1px solid daff-theme.daff-illuminate($base, $gray, 2);
+	$border: 1px solid daff-theme.daff-illuminate($base, $neutral, 2);
 
 	.design-land-code-preview {
 		&__content {

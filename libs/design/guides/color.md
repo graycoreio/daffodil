@@ -28,5 +28,5 @@ Normal text must have a contrast ratio of at least 4.5:1 to pass AA guidelines a
 #### Large Text
 Large text must have a contrast ratio of at least 3:1 to pass AA guidelines and 4.5:1 to pass AAA guidelines. This is accurate only if your font is **at least 18.66px with bold weight or 24px.**
 
-The `10-50` steps all meet a 4:5:1 contrast ratio or higher against `$daff-gray, 110 (#070707)` or darker, while the `60-100` steps all meet a 4:5:1 contrast ratio against `$daff-gray, 10 (#fafafa)`.
+The `10-50` steps all meet a 4:5:1 contrast ratio or higher against `$daff-neutral, 110 (#070707)` or darker, while the `60-100` steps all meet a 4:5:1 contrast ratio against `$daff-neutral, 10 (#fafafa)`.
 

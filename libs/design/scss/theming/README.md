@@ -54,7 +54,7 @@ $theme-dark: daff-theme.daff-configure-theme($primary-dark, $secondary-dark, $te
 
 $black: daff-theme.daff-map-deep-get($theme, 'core.black');
 $white: daff-theme.daff-map-deep-get($theme, 'core.white');
-$gray: daff-theme.daff-map-deep-get($theme, 'core.gray');
+$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
 ```
 
 ### Setting up the styles file with `@daffodil/design`'s theme

@@ -11,14 +11,14 @@
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 	$white: core.daff-map-deep-get($theme, 'core.white');
 	$black: core.daff-map-deep-get($theme, 'core.black');
-	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 
-	$text-color: theming.daff-illuminate($base-contrast, $gray, 2);
-	$table-border-color: theming.daff-illuminate($base, $gray, 2);
+	$text-color: theming.daff-illuminate($base-contrast, $neutral, 2);
+	$table-border-color: theming.daff-illuminate($base, $neutral, 2);
 
 	.daff-article {
 		&__meta {
-			color: theming.daff-illuminate($base-contrast, $gray, 3);
+			color: theming.daff-illuminate($base-contrast, $neutral, 3);
 		}
 
 		@include stopsArticleCascade(a) {
@@ -34,8 +34,8 @@
 		}
 
 		pre {
-			background: theming.daff-illuminate($base, $gray, 1);
-			border: 1px solid theming.daff-illuminate($base, $gray, 2);
+			background: theming.daff-illuminate($base, $neutral, 1);
+			border: 1px solid theming.daff-illuminate($base, $neutral, 2);
 			color: $base-contrast;
 
 			code {
@@ -45,12 +45,12 @@
 		}
 
 		code {
-			background: rgba(theming.daff-illuminate($base, $gray, 2), 0.5);
+			background: rgba(theming.daff-illuminate($base, $neutral, 2), 0.5);
 			color: $base-contrast;
 		}
 
 		hr {
-			background: theming.daff-illuminate($base, $gray, 2);
+			background: theming.daff-illuminate($base, $neutral, 2);
 		}
 
 		blockquote {
@@ -66,7 +66,7 @@
 
 		table {
 			th {
-				background: theming.daff-illuminate($base, $gray, 1);
+				background: theming.daff-illuminate($base, $neutral, 1);
 				border: 1px solid $table-border-color;
 			}
 

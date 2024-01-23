@@ -50,7 +50,7 @@
 	}
 
 	&__brand {
-		color: daff-color($daff-gray, 80);
+		color: daff-color($daff-neutral, 80);
 		font-size: $medium-font-size;
 		font-weight: normal;
 	}
@@ -84,7 +84,7 @@
 	}
 
 	&__accordion {
-		border-top: 1px solid daff-color($daff-gray, 20);
+		border-top: 1px solid daff-color($daff-neutral, 20);
 		margin: 50px 0 0;
 
 		a {

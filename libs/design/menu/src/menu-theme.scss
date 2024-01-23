@@ -4,7 +4,7 @@
 @mixin daff-menu-theme($theme) {
 	$white: core.daff-map-deep-get($theme, 'core.white');
 	$black: core.daff-map-deep-get($theme, 'core.black');
-	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 	$base: core.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 
@@ -19,7 +19,7 @@
 
 		&:hover,
 		&:focus {
-			background: theming.daff-illuminate($base, $gray, 1);
+			background: theming.daff-illuminate($base, $neutral, 1);
 		}
 	}
 }
