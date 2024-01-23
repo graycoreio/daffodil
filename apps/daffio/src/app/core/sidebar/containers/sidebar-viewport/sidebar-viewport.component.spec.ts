@@ -21,11 +21,7 @@ import {
 } from '@daffodil/design/sidebar';
 
 import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
-import {
-  OpenSidebar,
-  CloseSidebar,
-  SetSidebarState,
-} from '../../actions/sidebar.actions';
+import { CloseSidebar } from '../../actions/sidebar.actions';
 import * as fromSidebar from '../../reducers/index';
 
 describe('DaffioSidebarViewportContainer', () => {
@@ -107,22 +103,6 @@ describe('DaffioSidebarViewportContainer', () => {
         component.close();
 
         expect(store.dispatch).toHaveBeenCalledWith(new CloseSidebar());
-      });
-    });
-
-    describe('open', () => {
-      it('should call store.dispatch with a OpenSidebar action', () => {
-        component.open();
-
-        expect(store.dispatch).toHaveBeenCalledWith(new OpenSidebar());
-      });
-    });
-
-    describe('setVisibility', () => {
-      it('should call store.dispatch with a SetSidebarAction action', () => {
-        component.setVisibility(true);
-
-        expect(store.dispatch).toHaveBeenCalledWith(new SetSidebarState({ open: true }));
       });
     });
   });
