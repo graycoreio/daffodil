@@ -15,6 +15,7 @@ import { DaffioMarketingSidebarContentComponent } from './core/sidebar/component
 import { DaffioSidebarFooterComponent } from './core/sidebar/components/sidebar-footer/sidebar-footer.component';
 import { DaffioSidebarHeaderComponent } from './core/sidebar/components/sidebar-header/sidebar-header.component';
 import { TemplateComponent } from './core/template/template.component';
+import { DaffioDocsPackagesSidebarComponent } from './guides/components/packages-sidebar/packages-sidebar.component';
 import { DaffioRouterNamedViewsEnum } from './named-views/models/named-views.enum';
 
 export const appRoutes: Routes = [
@@ -39,12 +40,10 @@ export const appRoutes: Routes = [
           },
         },
       },
-
       <DaffRouteWithNamedViews>{
         path: '',
         children: [
           { path: 'api', loadChildren: () => import('./api/api.module').then(m => m.DaffioApiModule) },
-          { path: 'guides', loadChildren: () => import('./guides/guides.module').then(m => m.DaffioGuidesModule) },
         ],
         data: {
           daffNamedViews: {
@@ -53,6 +52,18 @@ export const appRoutes: Routes = [
             [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioDocsSidebarContentComponent,
             [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: DaffioSidebarFooterComponent,
             [DaffioRouterNamedViewsEnum.FOOTER]: DaffioSimpleFooterComponent,
+          },
+        },
+      },
+      <DaffRouteWithNamedViews>{
+        path: '',
+        children: [
+          { path: 'guides', loadChildren: () => import('./guides/guides.module').then(m => m.DaffioGuidesModule) },
+        ],
+        data: {
+          daffNamedViews: {
+            [DaffioRouterNamedViewsEnum.NAV]: DaffioDocsHeaderContainer,
+            [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioDocsPackagesSidebarComponent,
           },
         },
       },

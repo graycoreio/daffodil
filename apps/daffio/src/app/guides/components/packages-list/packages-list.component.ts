@@ -21,11 +21,11 @@ const visit = (guide: DaffioGuideList): DaffTreeData<unknown> => ({
 });
 
 @Component({
-  selector: 'daffio-guides-nav',
-  templateUrl: './guides-nav.component.html',
+  selector: 'daffio-docs-packages-list',
+  templateUrl: './packages-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffioGuidesNavComponent {
+export class DaffioDocsPackagesListComponent {
 
   _guideList: DaffioGuideList;
   /**

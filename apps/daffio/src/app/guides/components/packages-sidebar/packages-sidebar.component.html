@@ -1,0 +1,6 @@
+<ng-container *ngrxLet="sidebarKind$; let sidebarKind">
+	<daffio-docs-packages-list-container *ngIf="sidebarKind === 'content'"></daffio-docs-packages-list-container>
+
+	<daffio-docs-sidebar-content *ngIf="!sidebarKind"></daffio-docs-sidebar-content>
+</ng-container>
+

@@ -40,6 +40,11 @@ export const selectShowSidebar: MemoizedSelector<Record<string, any>, boolean> =
   fromDaffioSidebar.getShowSidebar,
 );
 
+export const selectSidebarKind: MemoizedSelector<Record<string, any>, string> = createSelector(
+  daffioSidebarStateSelector,
+  fromDaffioSidebar.getKind,
+);
+
 export const selectSidebarMode: MemoizedSelector<Record<string, any>, DaffSidebarMode> = createSelector(
   daffioSidebarStateSelector,
   fromDaffioSidebar.getMode,
