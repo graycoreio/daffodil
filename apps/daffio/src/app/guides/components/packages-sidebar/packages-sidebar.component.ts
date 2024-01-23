@@ -17,6 +17,8 @@ import { DaffBreakpoints } from '@daffodil/design';
 
 import { selectSidebarKind } from '../../../core/sidebar/reducers';
 
+export const DAFFIO_DOCS_PACKAGES_CONTENT_SIDEBAR_KIND = 'content';
+
 @Component({
   selector: 'daffio-docs-packages-sidebar',
   templateUrl: './packages-sidebar.component.html',
@@ -24,6 +26,8 @@ import { selectSidebarKind } from '../../../core/sidebar/reducers';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioDocsPackagesSidebarComponent implements OnInit {
+  contentSidebarKind = DAFFIO_DOCS_PACKAGES_CONTENT_SIDEBAR_KIND;
+
   constructor(
     private store: Store,
     private breakpointObserver: BreakpointObserver,

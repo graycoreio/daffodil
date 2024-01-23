@@ -12,6 +12,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 
 import { ToggleSidebar } from '../../../core/sidebar/actions/sidebar.actions';
+import { DAFFIO_DOCS_PACKAGES_CONTENT_SIDEBAR_KIND } from '../../../guides/components/packages-sidebar/packages-sidebar.component';
 import { DaffioDoc } from '../../models/doc';
 
 @Component({
@@ -38,6 +39,6 @@ export class DaffioDocViewerComponent implements OnChanges {
   }
 
   open() {
-    this.store.dispatch(new ToggleSidebar('content'));
+    this.store.dispatch(new ToggleSidebar(DAFFIO_DOCS_PACKAGES_CONTENT_SIDEBAR_KIND));
   }
 }

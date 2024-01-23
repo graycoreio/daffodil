@@ -17,7 +17,12 @@ import {
 } from '@ngrx/store/testing';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffioDocsPackagesSidebarComponent } from './packages-sidebar.component';
+import { DaffBreakpoints } from '@daffodil/design';
+
+import {
+  DAFFIO_DOCS_PACKAGES_CONTENT_SIDEBAR_KIND,
+  DaffioDocsPackagesSidebarComponent,
+} from './packages-sidebar.component';
 import { DaffioDocsSidebarContentComponentModule } from '../../../core/sidebar/components/docs-sidebar-content/docs-sidebar-content.module';
 import { selectSidebarKind } from '../../../core/sidebar/reducers';
 import { DaffioDocsPackagesListContainerModule } from '../../containers/packages-list/packages-list.module';
@@ -57,12 +62,16 @@ describe('DaffioDocsPackagesSidebarComponent', () => {
   beforeEach(() => {
     store = TestBed.inject(MockStore);
     breakpointState = new BehaviorSubject({ matches: false, breakpoints: {}});
-    breakpointSpy.observe.and.returnValue(breakpointState);
+    breakpointSpy.observe.withArgs(DaffBreakpoints.BIG_TABLET).and.returnValue(breakpointState);
 
     fixture = TestBed.createComponent(DaffioDocsPackagesSidebarComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    store.resetSelectors();
   });
 
   it('should create', () => {
@@ -92,7 +101,7 @@ describe('DaffioDocsPackagesSidebarComponent', () => {
 
     describe('and when the sidebar kind is content', () => {
       beforeEach(() => {
-        store.overrideSelector(selectSidebarKind, 'content');
+        store.overrideSelector(selectSidebarKind, DAFFIO_DOCS_PACKAGES_CONTENT_SIDEBAR_KIND);
         store.setState({});
         fixture.detectChanges();
       });
@@ -126,7 +135,7 @@ describe('DaffioDocsPackagesSidebarComponent', () => {
 
     describe('and when the sidebar kind is content', () => {
       beforeEach(() => {
-        store.overrideSelector(selectSidebarKind, 'content');
+        store.overrideSelector(selectSidebarKind, DAFFIO_DOCS_PACKAGES_CONTENT_SIDEBAR_KIND);
         store.setState({});
         fixture.detectChanges();
       });
