@@ -29,10 +29,10 @@ export class DaffioSidebarRoutingModeEffects {
     private breakpointsObserver: BreakpointObserver,
   ) { }
 
-  changeModeWhenVisitingConfiguredRoute$ = createEffect(() => (): Observable<Action> => combineLatest(
+  changeModeWhenVisitingConfiguredRoute$ = createEffect(() => (): Observable<Action> => combineLatest([
     this.actions$.pipe<RouterNavigatedAction>(ofType(ROUTER_NAVIGATED)),
     this.breakpointsObserver.observe(DaffBreakpoints.BIG_TABLET),
-  ).pipe(
+  ]).pipe(
     map(([action, state]) => {
       const mode = computeDeepestSidebarMode(action.payload.routerState.root);
       if(state.matches && mode){

@@ -6,6 +6,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { DaffArticleModule } from '@daffodil/design/article';
 
@@ -36,6 +37,9 @@ describe('DaffioDocViewerComponent', () => {
       declarations: [
         WrapperComponent,
         DaffioDocViewerComponent,
+      ],
+      providers: [
+        provideMockStore(),
       ],
     })
       .compileComponents();

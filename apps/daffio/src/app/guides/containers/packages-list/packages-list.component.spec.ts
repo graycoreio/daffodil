@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import {
   waitForAsync,
   ComponentFixture,
@@ -20,6 +21,7 @@ describe('DaffioDocsPackagesListContainer', () => {
       imports: [
         RouterTestingModule,
         NoopAnimationsModule,
+        HttpClientTestingModule,
       ],
     })
       .compileComponents();
