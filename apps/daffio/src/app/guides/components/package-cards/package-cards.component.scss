@@ -4,10 +4,11 @@
 	display: grid;
 	align-items: flex-start;
 	grid-template-columns: 1fr;
-	gap: 16px;
+	gap: 8px;
 
 	@include daff.breakpoint(tablet) {
 		grid-template-columns: repeat(2, 1fr);
+		gap: 16px;
 	}
 
 	@include daff.breakpoint(big-tablet) {
