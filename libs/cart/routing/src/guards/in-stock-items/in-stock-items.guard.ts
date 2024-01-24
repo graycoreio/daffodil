@@ -2,14 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  CanActivateChild,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import {
   tap,
@@ -31,7 +24,7 @@ import { DaffCartInStockItemsGuardRedirectUrl } from './in-stock-items-guard-red
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCartInStockItemsGuard implements CanActivate, CanActivateChild {
+export class DaffCartInStockItemsGuard  {
   constructor(
     private facade: DaffCartFacade,
     private router: Router,

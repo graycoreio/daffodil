@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  Resolve,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import {
   Observable,
   EMPTY,
@@ -18,7 +15,7 @@ import { DaffioApiService } from '../services/api.service';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffioApiListResolver implements Resolve<DaffioApiReference> {
+export class DaffioApiListResolver  {
 
   constructor(private apiService: DaffioApiService, private router: Router) { }
 

@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  Resolve,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import {
   Store,
   ActionsSubject,
@@ -27,7 +24,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class CartResolver implements Resolve<Observable<Action>> {
+export class CartResolver  {
   constructor(
     private store: Store<DaffCartStateRootSlice>,
     private dispatcher: ActionsSubject,

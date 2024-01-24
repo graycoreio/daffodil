@@ -4,11 +4,7 @@ import {
   Injectable,
   PLATFORM_ID,
 } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  Resolve,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { ofType } from '@ngrx/effects';
 import {
   ActionsSubject,
@@ -39,7 +35,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffProductPageUrlResolver implements Resolve<Observable<boolean>> {
+export class DaffProductPageUrlResolver  {
   constructor(
     @Inject(PLATFORM_ID) private platformId: string,
     private store: Store<DaffProductStateRootSlice>,

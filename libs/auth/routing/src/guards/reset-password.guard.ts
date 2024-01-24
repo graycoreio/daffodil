@@ -2,10 +2,7 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-} from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import {
   Observable,
   of,
@@ -24,7 +21,7 @@ import {
 @Injectable({
   providedIn: 'any',
 })
-export class DaffAuthResetPasswordGuard implements CanActivate {
+export class DaffAuthResetPasswordGuard  {
   constructor(
     private facade: DaffAuthFacade,
     @Inject(DAFF_AUTH_ROUTING_CONFIG) private config: DaffAuthRoutingConfig,

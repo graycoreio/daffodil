@@ -2,10 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import {
-  CanActivate,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import {
   Observable,
   of,
@@ -23,7 +20,7 @@ import { DaffCartOrderResultGuardRedirectUrl } from './order-result-guard-redire
 @Injectable({
   providedIn: 'root',
 })
-export class DaffOrderResultGuard implements CanActivate {
+export class DaffOrderResultGuard  {
   constructor(
     private facade: DaffCartFacade,
     private router: Router,

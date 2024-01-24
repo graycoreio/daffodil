@@ -2,10 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import {
-  CanActivate,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {
   tap,
@@ -25,7 +22,7 @@ import { DaffCartPaymentMethodGuardRedirectUrl } from './payment-method-guard-re
 @Injectable({
   providedIn: 'root',
 })
-export class DaffPaymentMethodGuard implements CanActivate {
+export class DaffPaymentMethodGuard  {
   constructor(
     private facade: DaffCartFacade,
     private router: Router,

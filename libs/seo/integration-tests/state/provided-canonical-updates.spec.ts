@@ -8,14 +8,7 @@ import {
   fakeAsync,
   tick,
 } from '@angular/core/testing';
-import {
-  Resolve,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  RouterModule,
-  Router,
-  CanActivate,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, RouterModule, Router } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import {
@@ -53,7 +46,7 @@ class ActionFromFeature2 implements Action {
 @Injectable({
   providedIn: 'root',
 })
-export class ResolverFromFeature1 implements Resolve<Observable<boolean>> {
+export class ResolverFromFeature1  {
   constructor(
     private store: Store<any>,
   ) { }
@@ -70,7 +63,7 @@ export class ResolverFromFeature1 implements Resolve<Observable<boolean>> {
 @Injectable({
   providedIn: 'root',
 })
-export class ResolverFromFeature2 implements Resolve<Observable<boolean>> {
+export class ResolverFromFeature2  {
   constructor(
     private store: Store<any>,
   ) { }
@@ -87,7 +80,7 @@ export class ResolverFromFeature2 implements Resolve<Observable<boolean>> {
 @Injectable({
   providedIn: 'root',
 })
-export class FailGuard implements CanActivate {
+export class FailGuard  {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return of(false);
   }

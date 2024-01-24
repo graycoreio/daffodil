@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  Resolve,
-} from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { DaffProductPageIdResolver } from '../product-page-id/product-page-id.resolver';
@@ -17,7 +14,7 @@ import { DaffProductPageIdResolver } from '../product-page-id/product-page-id.re
 @Injectable({
   providedIn: 'root',
 })
-export class DaffProductPageResolver implements Resolve<Observable<boolean>> {
+export class DaffProductPageResolver  {
   constructor(
     private productPageIdResolver: DaffProductPageIdResolver,
   ) { }

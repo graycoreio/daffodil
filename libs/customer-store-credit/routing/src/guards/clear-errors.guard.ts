@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  CanDeactivate,
-  UrlTree,
-} from '@angular/router';
+import { UrlTree } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -12,7 +9,7 @@ import { DaffCustomerStoreCreditClearErrors } from '@daffodil/customer-store-cre
  * A guard that will clear customer state errors before allowing route deactivation.
  */
 @Injectable({ providedIn: 'root' })
-export class DaffCustomerStoreCreditClearErrorsGuard implements CanDeactivate<unknown> {
+export class DaffCustomerStoreCreditClearErrorsGuard  {
   constructor(private store: Store<any>) {}
 
   canDeactivate(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {

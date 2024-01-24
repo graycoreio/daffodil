@@ -2,10 +2,7 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
-import {
-  CanActivate,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import {
   Observable,
@@ -36,7 +33,7 @@ import { DaffAuthMemberOnlyGuardRedirectUrl } from './member-only-guard-redirect
 @Injectable({
   providedIn: 'any',
 })
-export class MemberOnlyGuard implements CanActivate {
+export class MemberOnlyGuard  {
   constructor(
     private tokenCheck: DaffAuthDriverTokenCheck,
     private storage: DaffAuthStorageService,

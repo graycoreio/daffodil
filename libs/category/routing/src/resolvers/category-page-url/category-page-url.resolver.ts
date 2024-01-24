@@ -4,11 +4,7 @@ import {
   Injectable,
   PLATFORM_ID,
 } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  Resolve,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { ofType } from '@ngrx/effects';
 import {
   ActionsSubject,
@@ -38,7 +34,7 @@ import { DaffCategoryRoutingUrlRequestBuilder } from '../../services/public_api'
  * Assumes that the URL to be resolved is the primary outlet.
  */
 @Injectable()
-export class DaffCategoryPageUrlResolver implements Resolve<Observable<boolean>> {
+export class DaffCategoryPageUrlResolver  {
   constructor(
     @Inject(PLATFORM_ID) private platformId: string,
     private store: Store<DaffCategoryReducersState>,

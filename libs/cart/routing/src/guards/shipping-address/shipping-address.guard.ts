@@ -2,10 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import {
-  CanActivate,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {
   tap,
@@ -25,7 +22,7 @@ import { DaffCartShippingAddressGuardRedirectUrl } from './shipping-address-guar
 @Injectable({
   providedIn: 'root',
 })
-export class DaffShippingAddressGuard implements CanActivate {
+export class DaffShippingAddressGuard  {
   constructor(
     private facade: DaffCartFacade,
     private router: Router,

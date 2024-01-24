@@ -2,10 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import {
-  Resolve,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import {
   Store,
   ActionsSubject,
@@ -34,7 +31,7 @@ import { DaffCartResolverRedirectUrl } from './tokens/cart-resolver-redirect.tok
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCartResolver implements Resolve<Observable<DaffCart>> {
+export class DaffCartResolver  {
   constructor(
     private store: Store<DaffCartStateRootSlice>,
     private dispatcher: ActionsSubject,

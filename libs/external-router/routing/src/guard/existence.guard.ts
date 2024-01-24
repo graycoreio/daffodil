@@ -4,13 +4,7 @@ import {
   Inject,
   PLATFORM_ID,
 } from '@angular/core';
-import {
-  CanActivate,
-  ActivatedRouteSnapshot,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import {
   Observable,
   of,
@@ -47,7 +41,7 @@ import { processRedirects } from '../processors/process-redirect';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffExternalRouterExistenceGuard implements CanActivate {
+export class DaffExternalRouterExistenceGuard  {
   constructor(
     @Inject(DaffExternalRouterDriver)
     private driver: DaffExternalRouterDriverInterface,

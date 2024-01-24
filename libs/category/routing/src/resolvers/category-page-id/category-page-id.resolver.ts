@@ -4,10 +4,7 @@ import {
   Injectable,
   PLATFORM_ID,
 } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  Resolve,
-} from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { ofType } from '@ngrx/effects';
 import {
   ActionsSubject,
@@ -37,7 +34,7 @@ import { DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER } from '../../injection-tokens/re
  * of the form `some/url/{id}` where `{id}` is the category id.
  */
 @Injectable()
-export class DaffCategoryPageIdResolver implements Resolve<Observable<boolean>> {
+export class DaffCategoryPageIdResolver  {
   constructor(
     @Inject(PLATFORM_ID) private platformId: string,
     @Inject(DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER) private requestBuilder: DaffCategoryRoutingRequestBuilder,

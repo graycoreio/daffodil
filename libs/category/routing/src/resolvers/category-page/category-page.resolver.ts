@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  Resolve,
-} from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { DaffCategoryPageIdResolver } from '../category-page-id/category-page-id.resolver';
@@ -15,7 +12,7 @@ import { DaffCategoryPageIdResolver } from '../category-page-id/category-page-id
  * @see DaffCategoryPageIdResolver
  */
 @Injectable()
-export class DaffCategoryPageResolver implements Resolve<Observable<boolean>> {
+export class DaffCategoryPageResolver  {
   constructor(
     private categoryPageIdResolver: DaffCategoryPageIdResolver,
   ) { }

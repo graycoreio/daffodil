@@ -2,10 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import {
-  Resolve,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {
   filter,
@@ -30,7 +27,7 @@ import { DaffEmptyCartResolverRedirectUrl } from './tokens/empty-cart-resolver-r
 @Injectable({
   providedIn: 'root',
 })
-export class DaffEmptyCartResolver implements Resolve<Observable<DaffCart>> {
+export class DaffEmptyCartResolver  {
   constructor(
     private cartResolver: DaffCartResolver,
     private router: Router,

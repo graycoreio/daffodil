@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  Resolve,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import {
   ActionsSubject,
   Action,
@@ -25,7 +22,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class EmptyCartResolver implements Resolve<Observable<Action>> {
+export class EmptyCartResolver  {
   constructor(
     private router: Router,
     private cartResolver: CartResolver,

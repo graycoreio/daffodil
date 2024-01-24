@@ -2,11 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import {
-  CanActivate,
-  Router,
-  UrlTree,
-} from '@angular/router';
+import { Router, UrlTree } from '@angular/router';
 import {
   Observable,
   iif,
@@ -60,7 +56,7 @@ const canActivate = (resolved: DaffCartResolveState): boolean => {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffResolveCartGuard implements CanActivate {
+export class DaffResolveCartGuard  {
   constructor(
     private facade: DaffCartFacade,
     private router: Router,

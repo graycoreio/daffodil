@@ -2,12 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  UrlTree,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Router, UrlTree } from '@angular/router';
 import { Store } from '@ngrx/store';
 import {
   Observable,
@@ -33,7 +28,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffPaypalExpressApplyPaymentGuard implements CanActivate {
+export class DaffPaypalExpressApplyPaymentGuard  {
   constructor(
     private store: Store<DaffPaypalStateRootSlice>,
     @Inject(DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG) private config: DaffPaypalExpressDriverConfig,

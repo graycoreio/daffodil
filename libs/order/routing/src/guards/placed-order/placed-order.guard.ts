@@ -2,10 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import {
-  CanActivate,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -20,7 +17,7 @@ import { DaffPlacedOrderGuardRedirectUrl } from './placed-order-guard-redirect.t
 @Injectable({
   providedIn: 'root',
 })
-export class DaffPlacedOrderGuard implements CanActivate {
+export class DaffPlacedOrderGuard  {
   constructor(
     private facade: DaffOrderFacade,
     private router: Router,

@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  Resolve,
-  Router,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import {
   Observable,
   EMPTY,
@@ -23,7 +18,7 @@ import { DaffioDocsService } from '../services/docs.service';
 @Injectable({
   providedIn: 'root',
 })
-export class DocsResolver<T extends DaffioDoc, V extends DaffioGuideList> implements Resolve<T> {
+export class DocsResolver<T extends DaffioDoc, V extends DaffioGuideList>  {
 
   constructor(private docService: DaffioDocsService<T, V>, private router: Router) { }
 

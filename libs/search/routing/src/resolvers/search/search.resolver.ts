@@ -4,11 +4,7 @@ import {
   Injectable,
   PLATFORM_ID,
 } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  Resolve,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { ofType } from '@ngrx/effects';
 import {
   ActionsSubject,
@@ -39,7 +35,7 @@ const getQuery = (route: ActivatedRouteSnapshot): string => route.queryParams.q 
  * of the form `some/url/{id}` where `{id}` is the search id.
  */
 @Injectable()
-export class DaffSearchPageResolver implements Resolve<Observable<boolean>> {
+export class DaffSearchPageResolver  {
   constructor(
     @Inject(PLATFORM_ID) private platformId: string,
     private store: Store<DaffSearchStateRootSlice>,

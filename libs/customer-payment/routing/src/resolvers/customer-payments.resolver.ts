@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve } from '@angular/router';
+
 import {
   Observable,
   of,
@@ -16,7 +16,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCustomerPaymentResolver implements Resolve<Observable<boolean>> {
+export class DaffCustomerPaymentResolver  {
   constructor(
     private facade: DaffCustomerPaymentPageFacade,
   ) {}
