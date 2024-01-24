@@ -8,11 +8,15 @@ import {
   select,
 } from '@ngrx/store';
 import {
+  combineLatest,
   map,
   Observable,
 } from 'rxjs';
 
-import { DaffSidebarMode } from '@daffodil/design/sidebar';
+import {
+  DaffSidebarMode,
+  DaffSidebarModeEnum,
+} from '@daffodil/design/sidebar';
 import { DaffRouterNamedViewService } from '@daffodil/router';
 
 import { DaffioRouterNamedViewsEnum } from '../../../../named-views/models/named-views.enum';
@@ -38,13 +42,24 @@ export class DaffioSidebarViewportContainer implements OnInit {
   ngOnInit() {
     this.showSidebar$ = this.store.pipe(select(fromDaffioSidebar.selectShowSidebar));
     this.mode$ = this.store.pipe(select(fromDaffioSidebar.selectSidebarMode));
-    this.showSidebarHeader$ = this.namedViewService.namedViews$.pipe(map((namedViews) => !!namedViews[this.sidebarHeaderNamedView]));
-    this.showSidebarFooter$ = this.namedViewService.namedViews$.pipe(map((namedViews) => !!namedViews[this.sidebarFooterNamedView]));
+    this.showSidebarHeader$ = combineLatest([
+      this.namedViewService.namedViews$,
+      this.mode$,
+    ]).pipe(
+      map(([namedViews, mode]) => !!namedViews[this.sidebarHeaderNamedView] && mode !== DaffSidebarModeEnum.SideFixed),
+    );
+    this.showSidebarFooter$ = combineLatest([
+      this.namedViewService.namedViews$,
+      this.mode$,
+    ]).pipe(
+      map(([namedViews, mode]) => !!namedViews[this.sidebarFooterNamedView] && mode !== DaffSidebarModeEnum.SideFixed),
+    );
   }
 
   constructor(
     private store: Store<fromDaffioSidebar.State>,
-    private namedViewService: DaffRouterNamedViewService) { }
+    private namedViewService: DaffRouterNamedViewService,
+  ) { }
 
   close() {
     this.store.dispatch(new CloseSidebar());

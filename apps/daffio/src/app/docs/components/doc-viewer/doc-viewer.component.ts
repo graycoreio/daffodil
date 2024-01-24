@@ -9,7 +9,10 @@ import {
   SafeHtml,
 } from '@angular/platform-browser';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
 
+import { ToggleSidebar } from '../../../core/sidebar/actions/sidebar.actions';
+import { DAFFIO_DOCS_CONTENT_SIDEBAR_KIND } from '../../../core/sidebar/containers/docs-sidebar/docs-sidebar.component';
 import { DaffioDoc } from '../../models/doc';
 
 @Component({
@@ -21,7 +24,7 @@ import { DaffioDoc } from '../../models/doc';
 export class DaffioDocViewerComponent implements OnChanges {
   faBars = faBars;
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer, private store: Store<any>) {}
 
   /**
    * The doc to render
@@ -33,5 +36,9 @@ export class DaffioDocViewerComponent implements OnChanges {
   ngOnChanges() {
 	  //It is necessary to bypass the default angular sanitization to keep id tags in the injected html. These id tags are used for fragment routing.
 	  this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.doc.contents);
+  }
+
+  open() {
+    this.store.dispatch(new ToggleSidebar(DAFFIO_DOCS_CONTENT_SIDEBAR_KIND));
   }
 }

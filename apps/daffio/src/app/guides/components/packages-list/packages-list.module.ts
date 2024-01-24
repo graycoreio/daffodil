@@ -4,14 +4,14 @@ import { RouterModule } from '@angular/router';
 
 import { DaffTreeModule } from '@daffodil/design/tree';
 
-import { DaffioGuidesNavComponent } from './guides-nav.component';
+import { DaffioDocsPackagesListComponent } from './packages-list.component';
 
 @NgModule({
   declarations: [
-    DaffioGuidesNavComponent,
+    DaffioDocsPackagesListComponent,
   ],
   exports: [
-    DaffioGuidesNavComponent,
+    DaffioDocsPackagesListComponent,
   ],
   imports: [
     CommonModule,
@@ -19,4 +19,4 @@ import { DaffioGuidesNavComponent } from './guides-nav.component';
     DaffTreeModule,
   ],
 })
-export class DaffioGuidesNavModule { }
+export class DaffioDocsPackagesListComponentModule { }
