@@ -1044,12 +1044,12 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/apps/design-land",
             "index": "apps/design-land/src/index.html",
-            "main": "apps/design-land/src/main.ts",
-            "polyfills": "apps/design-land/src/polyfills.ts",
+            "browser": "apps/design-land/src/main.ts",
+            "polyfills": ["apps/design-land/src/polyfills.ts"],
             "tsConfig": "apps/design-land/tsconfig.app.json",
             "assets": [
               "apps/design-land/src/favicon.ico",
@@ -1071,9 +1071,7 @@
             },
             "scripts": [],
             "aot": false,
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true
@@ -1092,8 +1090,6 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
