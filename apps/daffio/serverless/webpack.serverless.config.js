@@ -23,5 +23,5 @@ module.exports = {
     __dirname: false,
   },
   // this makes sure we include node_modules and other 3rd party libraries
-  externals: [/(node_modules|main\..*\.js)/]
+  externals: [/(node_modules|main\..*\.js|.*\.txt|.*\.map)/]
 }

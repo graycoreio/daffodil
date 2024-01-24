@@ -1,5 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import {
+  APP_ID,
+  NgModule,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -29,7 +32,7 @@ import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     BrowserAnimationsModule,
 
     StoreModule.forRoot({}),
@@ -57,7 +60,7 @@ import { environment } from '../environments/environment';
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
-      connectInZone: true
+      connectInZone: true,
     }),
     TemplateModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
@@ -70,6 +73,10 @@ import { environment } from '../environments/environment';
   ],
   providers: [
     DAFF_THEME_INITIALIZER,
+    {
+      provide: APP_ID,
+      useValue: 'serverApp',
+    },
   ],
 })
 export class AppModule {}
