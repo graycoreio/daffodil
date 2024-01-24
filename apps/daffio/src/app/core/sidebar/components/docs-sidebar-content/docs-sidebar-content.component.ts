@@ -11,6 +11,7 @@ import {
 })
 export class DaffioDocsSidebarContentComponent {
   links: any[] = [
+    { path: '/guides', title: 'Packages' },
     { path: '/api', title: 'API Index' },
   ];
 }

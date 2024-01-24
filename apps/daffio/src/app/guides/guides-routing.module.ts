@@ -5,9 +5,15 @@ import {
 } from '@angular/router';
 
 import { DaffioGuidesPageComponent } from './pages/guides-page.component';
+import { DaffioPackagesOverviewPageComponent } from './pages/packages-overview/packages-overview.component';
 import { DocsResolver } from '../docs/resolvers/docs-resolver.service';
 
 export const docsRoutes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: DaffioPackagesOverviewPageComponent,
+  },
   {
     path: '**',
     component: DaffioGuidesPageComponent,

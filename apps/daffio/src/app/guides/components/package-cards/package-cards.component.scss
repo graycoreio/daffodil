@@ -1,0 +1,20 @@
+@use 'utilities' as daff;
+
+:host {
+	display: grid;
+	align-items: flex-start;
+	grid-template-columns: 1fr;
+	gap: 16px;
+
+	@include daff.breakpoint(tablet) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include daff.breakpoint(big-tablet) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	@include daff.breakpoint(small-laptop) {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
