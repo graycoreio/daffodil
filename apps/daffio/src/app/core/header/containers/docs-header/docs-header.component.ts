@@ -17,6 +17,7 @@ export class DaffioDocsHeaderContainer {
   faBars = faBars;
 
   links: any[] = [
+    { path: '/guides', title: 'Packages' },
     { path: '/api', title: 'API Index' },
   ];
 
