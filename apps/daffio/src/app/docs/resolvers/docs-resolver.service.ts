@@ -13,7 +13,10 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-import { daffUriTruncateQueryFragment } from '@daffodil/core/routing';
+import {
+  daffUriTruncateLeadingSlash,
+  daffUriTruncateQueryFragment,
+} from '@daffodil/core/routing';
 
 import { DaffioDoc } from '../models/doc';
 import { DaffioGuideList } from '../models/guide-list';
@@ -29,7 +32,7 @@ export class DocsResolver<T extends DaffioDoc, V extends DaffioGuideList>  {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<T> {
     return this.docService
     //remove any route fragment and initial slash from the route.
-      .get(daffUriTruncateQueryFragment(state.url))
+      .get(daffUriTruncateLeadingSlash(daffUriTruncateQueryFragment(state.url)))
       .pipe(
         take(1),
         catchError(() => {
