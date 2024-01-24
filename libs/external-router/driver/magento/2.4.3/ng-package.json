@@ -1,7 +1,5 @@
 {
-  "$schema": "../../../../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../../dist/external-router/driver/magento/2.4.3",
-  "deleteDestPath": false,
+  "$schema": "../../../../../node_modules/ng-packagr/ng-entrypoint.schema.json",
   "lib": {
     "entryFile": "src/index.ts"
   }
