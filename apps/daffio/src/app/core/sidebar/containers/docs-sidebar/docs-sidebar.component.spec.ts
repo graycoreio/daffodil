@@ -15,21 +15,21 @@ import {
   MockStore,
   provideMockStore,
 } from '@ngrx/store/testing';
+import { DaffioDocsPackagesListContainerModule } from 'apps/daffio/src/app/guides/containers/packages-list/packages-list.module';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffBreakpoints } from '@daffodil/design';
 
 import {
-  DAFFIO_DOCS_PACKAGES_CONTENT_SIDEBAR_KIND,
-  DaffioDocsPackagesSidebarComponent,
-} from './packages-sidebar.component';
-import { DaffioDocsSidebarContentComponentModule } from '../../../core/sidebar/components/docs-sidebar-content/docs-sidebar-content.module';
-import { selectSidebarKind } from '../../../core/sidebar/reducers';
-import { DaffioDocsPackagesListContainerModule } from '../../containers/packages-list/packages-list.module';
+  DAFFIO_DOCS_CONTENT_SIDEBAR_KIND,
+  DaffioDocsSidebarContainer,
+} from './docs-sidebar.component';
+import { DaffioDocsSidebarContentComponentModule } from '../../components/docs-sidebar-content/docs-sidebar-content.module';
+import { selectSidebarKind } from '../../reducers';
 
-describe('DaffioDocsPackagesSidebarComponent', () => {
-  let component: DaffioDocsPackagesSidebarComponent;
-  let fixture: ComponentFixture<DaffioDocsPackagesSidebarComponent>;
+describe('DaffioDocsSidebarContainer', () => {
+  let component: DaffioDocsSidebarContainer;
+  let fixture: ComponentFixture<DaffioDocsSidebarContainer>;
   let store: MockStore;
   let breakpointSpy: jasmine.SpyObj<BreakpointObserver>;
   let breakpointState: BehaviorSubject<BreakpointState>;
@@ -46,7 +46,7 @@ describe('DaffioDocsPackagesSidebarComponent', () => {
         DaffioDocsSidebarContentComponentModule,
       ],
       declarations: [
-        DaffioDocsPackagesSidebarComponent,
+        DaffioDocsSidebarContainer,
       ],
       providers: [
         provideMockStore(),
@@ -64,7 +64,7 @@ describe('DaffioDocsPackagesSidebarComponent', () => {
     breakpointState = new BehaviorSubject({ matches: false, breakpoints: {}});
     breakpointSpy.observe.withArgs(DaffBreakpoints.BIG_TABLET).and.returnValue(breakpointState);
 
-    fixture = TestBed.createComponent(DaffioDocsPackagesSidebarComponent);
+    fixture = TestBed.createComponent(DaffioDocsSidebarContainer);
     component = fixture.componentInstance;
 
     fixture.detectChanges();
@@ -101,7 +101,7 @@ describe('DaffioDocsPackagesSidebarComponent', () => {
 
     describe('and when the sidebar kind is content', () => {
       beforeEach(() => {
-        store.overrideSelector(selectSidebarKind, DAFFIO_DOCS_PACKAGES_CONTENT_SIDEBAR_KIND);
+        store.overrideSelector(selectSidebarKind, DAFFIO_DOCS_CONTENT_SIDEBAR_KIND);
         store.setState({});
         fixture.detectChanges();
       });
@@ -135,7 +135,7 @@ describe('DaffioDocsPackagesSidebarComponent', () => {
 
     describe('and when the sidebar kind is content', () => {
       beforeEach(() => {
-        store.overrideSelector(selectSidebarKind, DAFFIO_DOCS_PACKAGES_CONTENT_SIDEBAR_KIND);
+        store.overrideSelector(selectSidebarKind, DAFFIO_DOCS_CONTENT_SIDEBAR_KIND);
         store.setState({});
         fixture.detectChanges();
       });

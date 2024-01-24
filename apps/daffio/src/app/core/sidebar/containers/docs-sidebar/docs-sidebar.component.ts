@@ -15,18 +15,21 @@ import {
 
 import { DaffBreakpoints } from '@daffodil/design';
 
-import { selectSidebarKind } from '../../../core/sidebar/reducers';
+import { selectSidebarKind } from '../../reducers';
 
-export const DAFFIO_DOCS_PACKAGES_CONTENT_SIDEBAR_KIND = 'content';
+export const DAFFIO_DOCS_CONTENT_SIDEBAR_KIND = 'content';
 
+/**
+ * @private
+ * This component stores all of the sidebars within daff.io/docs
+ */
 @Component({
-  selector: 'daffio-docs-packages-sidebar',
-  templateUrl: './packages-sidebar.component.html',
-  styleUrls: ['./packages-sidebar.component.scss'],
+  selector: 'daffio-docs-sidebar-container',
+  templateUrl: './docs-sidebar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffioDocsPackagesSidebarComponent implements OnInit {
-  contentSidebarKind = DAFFIO_DOCS_PACKAGES_CONTENT_SIDEBAR_KIND;
+export class DaffioDocsSidebarContainer implements OnInit {
+  contentSidebarKind = DAFFIO_DOCS_CONTENT_SIDEBAR_KIND;
 
   constructor(
     private store: Store,

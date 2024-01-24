@@ -1,8 +1,6 @@
 <ng-container *ngrxLet="sidebarKind$; let sidebarKind">
   <ng-container *ngrxLet="isBigTablet$; let isBigTablet">
     <daffio-docs-packages-list-container *ngIf="isBigTablet || sidebarKind === contentSidebarKind"></daffio-docs-packages-list-container>
-
     <daffio-docs-sidebar-content *ngIf="!isBigTablet && !sidebarKind"></daffio-docs-sidebar-content>
   </ng-container>
 </ng-container>
-

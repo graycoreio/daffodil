@@ -14,8 +14,8 @@ import { DaffioDocsSidebarContentComponent } from './core/sidebar/components/doc
 import { DaffioMarketingSidebarContentComponent } from './core/sidebar/components/marketing-sidebar-content/marketing-sidebar-content.component';
 import { DaffioSidebarFooterComponent } from './core/sidebar/components/sidebar-footer/sidebar-footer.component';
 import { DaffioSidebarHeaderComponent } from './core/sidebar/components/sidebar-header/sidebar-header.component';
+import { DaffioDocsSidebarContainer } from './core/sidebar/containers/docs-sidebar/docs-sidebar.component';
 import { TemplateComponent } from './core/template/template.component';
-import { DaffioDocsPackagesSidebarComponent } from './guides/components/packages-sidebar/packages-sidebar.component';
 import { DaffioRouterNamedViewsEnum } from './named-views/models/named-views.enum';
 
 export const appRoutes: Routes = [
@@ -64,7 +64,7 @@ export const appRoutes: Routes = [
           daffNamedViews: {
             [DaffioRouterNamedViewsEnum.NAV]: DaffioDocsHeaderContainer,
             [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: DaffioSidebarHeaderComponent,
-            [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioDocsPackagesSidebarComponent,
+            [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioDocsSidebarContainer,
             [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: DaffioSidebarFooterComponent,
           },
         },
