@@ -10,17 +10,17 @@
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 	$white: core.daff-map-deep-get($theme, 'core.white');
 	$black: core.daff-map-deep-get($theme, 'core.black');
-	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 
 	.daff-progress-bar {
 		$root: '.daff-progress-bar';
 
 		#{$root}__label {
-			color: theming.daff-illuminate($base-contrast, $gray, 2);
+			color: theming.daff-illuminate($base-contrast, $neutral, 2);
 		}
 
 		#{$root}__track {
-			background: theming.daff-illuminate($base, $gray, 2);
+			background: theming.daff-illuminate($base, $neutral, 2);
 		}
 
 		&.daff-primary {
