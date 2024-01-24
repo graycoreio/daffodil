@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { MagentoOrderPayment } from '@daffodil/order/driver/magento/2-4-1';
 
 export class MockOrderPayment implements MagentoOrderPayment {
-  __typename: 'OrderPaymentMethod' = 'OrderPaymentMethod';
+  __typename = <const>'OrderPaymentMethod';
   name = 'card';
   type = 'visa';
   additional_data = [];

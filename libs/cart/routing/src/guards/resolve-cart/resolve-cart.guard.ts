@@ -2,7 +2,10 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import { Router, UrlTree } from '@angular/router';
+import {
+  Router,
+  UrlTree,
+} from '@angular/router';
 import {
   Observable,
   iif,

@@ -10,8 +10,8 @@ module.exports = {
       ],
       parserOptions: {
         project: [
-          'libs/customer/tsconfig.lib.json',
-          'libs/customer/tsconfig.spec.json'
+          'libs/customer-store-credit/tsconfig.lib.json',
+          'libs/customer-store-credit/tsconfig.spec.json'
         ],
         createDefaultProgram: true
       },

@@ -13,8 +13,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix",
+    "lint": "eslint",
+    "lint:fix": "npm run lint -- --fix",
     "test": "ts-node --project tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
   },
   "nx": {

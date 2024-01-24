@@ -10,7 +10,7 @@ import {
 import { MagentoProductReviewRatingFactory } from './product-review-rating.factory';
 
 export class MockMagentoProductReview implements MagentoProductReview {
-  __typename: 'ProductReview' = 'ProductReview';
+  __typename = <const>'ProductReview';
   summary = faker.random.words(5);
   text = faker.random.words(15);
   average_rating = faker.datatype.number({ min: 0, max: 100 });

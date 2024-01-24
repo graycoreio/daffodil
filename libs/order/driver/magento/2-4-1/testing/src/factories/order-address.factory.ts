@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { MagentoOrderAddress } from '@daffodil/order/driver/magento/2-4-1';
 
 export class MockOrderAddress implements MagentoOrderAddress {
-  __typename: 'OrderAddress' = 'OrderAddress';
+  __typename = <const>'OrderAddress';
   street = [faker.address.streetName()];
   city = faker.address.city();
   region_id = faker.unique(faker.datatype.number);

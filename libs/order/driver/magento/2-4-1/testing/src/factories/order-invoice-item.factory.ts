@@ -7,7 +7,7 @@ import { MagentoOrderInvoiceItem } from '@daffodil/order/driver/magento/2-4-1';
 import { MagentoOrderItemFactory } from './order-item.factory';
 
 export class MockOrderInvoiceItem implements MagentoOrderInvoiceItem {
-  __typename: 'InvoiceItem' = 'InvoiceItem';
+  __typename = <const>'InvoiceItem';
   order_item = this.itemFactory.create();
   quantity_invoiced = faker.datatype.number({ min: 1, max: 100 });
 

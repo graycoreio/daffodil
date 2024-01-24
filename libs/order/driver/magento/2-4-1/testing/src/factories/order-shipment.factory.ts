@@ -12,7 +12,7 @@ import { MagentoOrderShipmentItemFactory } from './order-shipment-item.factory';
 import { MagentoOrderShipmentTrackingFactory } from './order-shipment-tracking.factory';
 
 export class MockOrderShipment implements MagentoOrderShipment {
-  __typename: 'OrderShipment' = 'OrderShipment';
+  __typename = <const>'OrderShipment';
   tracking = this.createTracking();
   items = this.createItems();
 

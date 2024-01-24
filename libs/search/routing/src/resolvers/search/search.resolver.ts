@@ -4,7 +4,10 @@ import {
   Injectable,
   PLATFORM_ID,
 } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { ofType } from '@ngrx/effects';
 import {
   ActionsSubject,

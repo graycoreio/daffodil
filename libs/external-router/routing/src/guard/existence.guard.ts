@@ -4,7 +4,12 @@ import {
   Inject,
   PLATFORM_ID,
 } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 import {
   Observable,
   of,

@@ -10,8 +10,8 @@ module.exports = {
       ],
       parserOptions: {
         project: [
-          'libs/analytics/tsconfig.lib.json',
-          'libs/analytics/tsconfig.spec.json'
+          'libs/analytics-provider-data-layer/tsconfig.lib.json',
+          'libs/analytics-provider-data-layer/tsconfig.spec.json'
         ],
         createDefaultProgram: true
       },

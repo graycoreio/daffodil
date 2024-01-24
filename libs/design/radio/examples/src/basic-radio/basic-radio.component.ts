@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
 } from '@angular/core';
 import {
   UntypedFormGroup,
@@ -14,14 +13,10 @@ import {
   templateUrl: './basic-radio.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BasicRadioComponent implements OnInit {
-
+export class BasicRadioComponent {
   radioGroup = new UntypedFormGroup({
     race: new UntypedFormControl('Zerg'),
   });
-  constructor() {
-  }
 
-  ngOnInit() {
-  }
+  constructor() {}
 }

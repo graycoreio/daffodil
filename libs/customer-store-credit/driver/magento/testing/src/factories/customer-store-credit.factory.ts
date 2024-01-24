@@ -6,7 +6,7 @@ import { MagentoCustomerStoreCredit } from '@daffodil/customer-store-credit/driv
 import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 
 export class MockMagentoCustomerStoreCredit implements MagentoCustomerStoreCredit {
-  __typename: 'CustomerStoreCredit' = 'CustomerStoreCredit';
+  __typename = <const>'CustomerStoreCredit';
   current_balance = this.moneyFactory.create();
   enabled = faker.datatype.boolean();
 

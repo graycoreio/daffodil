@@ -8,7 +8,7 @@ import { MagentoOrderInvoiceItemFactory } from './order-invoice-item.factory';
 import { MagentoOrderTotalFactory } from './order-total.factory';
 
 export class MockOrderInvoice implements MagentoOrderInvoice {
-  __typename: 'Invoice' = 'Invoice';
+  __typename = <const>'Invoice';
   items = this.itemFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
   total = this.totalFactory.create({
     __typename: 'InvoiceTotal',

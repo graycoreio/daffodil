@@ -54,5 +54,6 @@ export const enum DaffState {
    * @deprecated
    * Use DaffState.Stable instead.
    */
+  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   Complete = 'Stable'
 }

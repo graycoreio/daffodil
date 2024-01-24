@@ -13,7 +13,7 @@ import { MagentoOrderShipmentFactory } from './order-shipment.factory';
 import { MagentoOrderTotalFactory } from './order-total.factory';
 
 export class MockOrder implements MagentoOrder {
-  __typename: 'GraycoreGuestOrder' = 'GraycoreGuestOrder';
+  __typename = <const>'GraycoreGuestOrder';
   id = faker.datatype.uuid();
   number = faker.datatype.uuid();
   email = faker.internet.email();

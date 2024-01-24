@@ -46,7 +46,7 @@ describe('ProductGridComponent', () => {
 
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    wrapper.productsValue = new Array(productFactory.create(), productFactory.create());
+    wrapper.productsValue = [productFactory.create(), productFactory.create()];
 
     fixture.detectChanges();
 

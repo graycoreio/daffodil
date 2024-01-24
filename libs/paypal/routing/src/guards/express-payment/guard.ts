@@ -2,7 +2,11 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  UrlTree,
+} from '@angular/router';
 import { Store } from '@ngrx/store';
 import {
   Observable,

@@ -9,7 +9,7 @@ import {
 } from '@daffodil/customer-payment-authorizenet/driver/magento';
 
 export class MockMagentoTokenBaseCard implements MagentoTokenBaseCard {
-  __typename: 'TokenBaseCard' = 'TokenBaseCard';
+  __typename = <const>'TokenBaseCard';
   hash = faker.datatype.uuid();
   address = this.addressFactory.create();
   customer_email = faker.internet.email();

@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { MagentoProductReviewRating } from '@daffodil/reviews/driver/magento';
 
 export class MockMagentoProductReviewRating implements MagentoProductReviewRating {
-  __typename: 'ProductReviewRating' = 'ProductReviewRating';
+  __typename = <const>'ProductReviewRating';
   name = faker.random.word();
   value = String(faker.datatype.number({ min: 0, max: 100 }));
 }

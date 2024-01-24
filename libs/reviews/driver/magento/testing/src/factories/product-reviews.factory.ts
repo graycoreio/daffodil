@@ -12,7 +12,7 @@ import {
 import { MagentoProductReviewFactory } from './product-review.factory';
 
 export class MockMagentoProductReviews implements MagentoProductReviews {
-  __typename: 'ProductReviews' = 'ProductReviews';
+  __typename = <const>'ProductReviews';
   items = this.createReviews();
   page_info = this.createPageInfo();
 

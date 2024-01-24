@@ -10,7 +10,7 @@ import {
 import { MagentoCustomerAddressFactory } from './address.factory';
 
 class MockMagentoCustomer implements MagentoCustomer {
-  __typename: 'Customer' = 'Customer';
+  __typename = <const>'Customer';
   email = faker.internet.email();
   firstname = faker.name.firstName();
   lastname = faker.name.lastName();

@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { MagentoProductSortFields } from '@daffodil/product/driver/magento';
 
 class MockMagentoProductSortFields implements MagentoProductSortFields {
-  __typename: 'SortFields' = 'SortFields';
+  __typename = <const>'SortFields';
   default = 'position';
   options = [
     {

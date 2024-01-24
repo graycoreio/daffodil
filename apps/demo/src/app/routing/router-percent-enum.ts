@@ -8,6 +8,8 @@ export enum RouterPercentEnum {
   ResolveStart = 70,
   ResolveEnd = 80,
   NavigationEnd = 100,
+  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   NavigationCancel = 100,
+  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   NavigationError = 100
 }

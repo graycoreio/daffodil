@@ -10,5 +10,5 @@
  * @returns number
  */
 export const range = (start: number, end: number): Array<number> =>
-  Array.apply(null, Array(end - start + 1)).map((val, index) => index + start);
+  Array(end - start + 1).fill(0).map((val, index) => index + start);
 

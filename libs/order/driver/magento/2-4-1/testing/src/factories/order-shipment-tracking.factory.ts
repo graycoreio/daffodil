@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { MagentoOrderShipmentTracking } from '@daffodil/order/driver/magento/2-4-1';
 
 export class MockOrderShipmentTracking implements MagentoOrderShipmentTracking {
-  __typename: 'ShipmentTracking' = 'ShipmentTracking';
+  __typename = <const>'ShipmentTracking';
   number = faker.random.alphaNumeric(16);
   carrier = faker.random.word();
   title = faker.random.word();

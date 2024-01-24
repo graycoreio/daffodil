@@ -37,7 +37,7 @@ export function daffBestSellersReducer<T extends DaffProduct>(state = initialSta
 }
 
 function getIds<T extends DaffProduct>(products: T[]): T['id'][] {
-  const ids: T['id'][] = new Array();
+  const ids: T['id'][] = [];
 
   products.forEach(product => {
     ids.push(product.id);

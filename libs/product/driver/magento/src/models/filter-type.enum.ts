@@ -1,5 +1,5 @@
 export enum MagentoProductFilterType {
   Equal = 'FilterEqualTypeInput',
-  Match = 'FilterEqualTypeInput',
+  Match = 'FilterMatchTypeInput',
   Range = 'FilterRangeTypeInput'
 }

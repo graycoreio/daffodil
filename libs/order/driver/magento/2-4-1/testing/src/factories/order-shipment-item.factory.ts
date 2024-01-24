@@ -7,7 +7,7 @@ import { MagentoOrderShipmentItem } from '@daffodil/order/driver/magento/2-4-1';
 import { MagentoOrderItemFactory } from './order-item.factory';
 
 export class MockOrderShipmentItem implements MagentoOrderShipmentItem {
-  __typename: 'ShipmentItem' = 'ShipmentItem';
+  __typename = <const>'ShipmentItem';
   order_item = this.itemFactory.create();
   quantity_shipped = faker.datatype.number({ min: 1, max: 100 });
 

@@ -8,7 +8,12 @@ import {
   fakeAsync,
   tick,
 } from '@angular/core/testing';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, RouterModule, Router } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  RouterModule,
+  Router,
+} from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import {

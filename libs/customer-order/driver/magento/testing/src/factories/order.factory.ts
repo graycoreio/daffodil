@@ -15,7 +15,7 @@ import {
 
 export class MockMagentoCustomerOrder implements MagentoCustomerOrder {
   protected _numberOfSuborders = faker.datatype.number({ min: 1, max: 3 });
-  __typename: 'CustomerOrder' = 'CustomerOrder';
+  __typename = <const>'CustomerOrder';
   id = faker.datatype.uuid();
   order_date = faker.date.past().toString();
   status = faker.random.word();
