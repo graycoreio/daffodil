@@ -808,12 +808,18 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/apps/daffio/browser",
+            "outputPath": "dist/apps/daffio",
             "index": "apps/daffio/src/index.html",
-            "main": "apps/daffio/src/main.ts",
-            "polyfills": "apps/daffio/src/polyfills.ts",
+            "browser": "apps/daffio/src/main.ts",
+            "server": "apps/daffio/src/main.server.ts",
+            "ssr": {
+              "entry": "apps/daffio/server/server.ts"
+            },
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "apps/daffio/tsconfig.app.json",
             "assets": [
               "apps/daffio/src/favicon.ico",
@@ -842,9 +848,7 @@
             },
             "scripts": [],
             "aot": false,
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true
@@ -869,9 +873,7 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "serviceWorker": true
+              "serviceWorker": "apps/daffio/ngsw-config.json"
             }
           },
           "defaultConfiguration": ""
@@ -936,35 +938,6 @@
             ]
           }
         },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/apps/daffio/server",
-            "main": "apps/daffio/server/server.ts",
-            "tsConfig": "apps/daffio/tsconfig.server.json",
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "apps/daffio/src/scss",
-                "dist/design/scss",
-                "dist/branding/src/scss"
-              ]
-            },
-            "sourceMap": true,
-            "optimization": false,
-            "buildOptimizer": false
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/daffio/src/environments/environment.ts",
-                  "with": "apps/daffio/src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          },
-          "defaultConfiguration": ""
-        },
         "serve-ssr": {
           "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
@@ -976,19 +949,6 @@
               "browserTarget": "daffio:build:production",
               "serverTarget": "daffio:server:production"
             }
-          }
-        },
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "browserTarget": "daffio:build:production",
-            "serverTarget": "daffio:server:production",
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {}
           }
         }
       }

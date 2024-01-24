@@ -15,9 +15,8 @@
     }
   },
   "scripts": {
-    "build": "npm run build:client && npm run build:server && npm run build:serverless",
-    "build:client": "ng build daffio --configuration production",
-    "build:server": "ng run daffio:server:production",
+    "build": "npm run build:app && npm run build:serverless",
+    "build:app": "ng build daffio --configuration production",
     "build:serverless": "npm run build:serverless:compile && npm run build:serverless:vercel",
     "build:serverless:compile": "webpack-cli --config serverless/webpack.serverless.config.js",
     "build:serverless:vercel": "shx cp -r ./serverless/vercel/. ../../dist/apps/daffio/",
@@ -25,7 +24,7 @@
     "lint": "cd ../.. && ng lint daffio",
     "lint:fix": "npm run lint -- --fix",
     "dev:ssr": "ng run daffio:serve-ssr",
-    "serve:ssr": "node ../../dist/apps/daffio/server/main.js"
+    "serve:ssr": "node ../../dist/apps/daffio/server/server.mjs"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "description": "A documentation site for the daffodil project",
