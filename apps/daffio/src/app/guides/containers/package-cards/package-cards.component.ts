@@ -6,6 +6,7 @@ import {
 import {
   map,
   Observable,
+  tap,
 } from 'rxjs';
 
 import { DaffioDoc } from '../../../docs/models/doc';
@@ -30,10 +31,9 @@ export class DaffioDocsPackageCardsContainer implements OnInit {
     this.packagesList$ = this.docService.getGuideList().pipe(
       map((guidesTree) => guidesTree.children.map((p) => ({
         title: p.title,
-        path: '/' + p.path,
+        path: `/${p.path || p.children?.[0].path}`,
         description: '',
-      })),
-      ),
+      }))),
     );
   }
 }
