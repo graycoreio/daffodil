@@ -163,21 +163,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo:build",
             "allowedHosts": [
               ".githubpreview.dev"
-            ]
+            ],
+            "buildTarget": "demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "demo:build:production"
+              "buildTarget": "demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "demo:build"
+            "buildTarget": "demo:build"
           }
         },
         "test": {
@@ -284,7 +284,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo-dev:build"
+            "buildTarget": "demo-dev:build"
           }
         }
       }
@@ -879,21 +879,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "daffio:build",
             "allowedHosts": [
               ".githubpreview.dev"
-            ]
+            ],
+            "buildTarget": "daffio:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "daffio:build:production"
+              "buildTarget": "daffio:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "daffio:build"
+            "buildTarget": "daffio:build"
           }
         },
         "test": {
@@ -966,7 +966,7 @@
           "defaultConfiguration": ""
         },
         "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
             "browserTarget": "daffio:build",
             "serverTarget": "daffio:server"
@@ -979,7 +979,7 @@
           }
         },
         "prerender": {
-          "builder": "@nguniversal/builders:prerender",
+          "builder": "@angular-devkit/build-angular:prerender",
           "options": {
             "browserTarget": "daffio:build:production",
             "serverTarget": "daffio:server:production",
@@ -1071,7 +1071,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "daffio-dev:build"
+            "buildTarget": "daffio-dev:build"
           }
         }
       }
@@ -1152,21 +1152,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "design-land:build",
             "allowedHosts": [
               ".githubpreview.dev"
-            ]
+            ],
+            "buildTarget": "design-land:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "design-land:build:production"
+              "buildTarget": "design-land:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "design-land:build"
+            "buildTarget": "design-land:build"
           }
         },
         "test": {
