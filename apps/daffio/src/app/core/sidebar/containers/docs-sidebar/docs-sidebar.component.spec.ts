@@ -10,7 +10,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { LetModule } from '@ngrx/component';
+import { LetDirective } from '@ngrx/component';
 import {
   MockStore,
   provideMockStore,
@@ -39,7 +39,7 @@ describe('DaffioDocsSidebarContainer', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        LetModule,
+        LetDirective,
         RouterTestingModule,
         HttpClientTestingModule,
         DaffioDocsPackagesListContainerModule,
