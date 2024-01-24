@@ -63,6 +63,7 @@ describe('DaffioDocsSidebarContainer', () => {
     store = TestBed.inject(MockStore);
     breakpointState = new BehaviorSubject({ matches: false, breakpoints: {}});
     breakpointSpy.observe.withArgs(DaffBreakpoints.BIG_TABLET).and.returnValue(breakpointState);
+    store.overrideSelector(selectSidebarKind, undefined);
 
     fixture = TestBed.createComponent(DaffioDocsSidebarContainer);
     component = fixture.componentInstance;
