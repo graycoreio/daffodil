@@ -51,7 +51,7 @@
     "zone.js": "^0.14.2"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "^0.1700.0",
+    "@angular-devkit/architect": "^0.1701.0",
     "@angular-devkit/build-angular": "^17.0.0",
     "@angular-devkit/core": "^17.0.0",
     "@angular-devkit/schematics": "^17.0.0",
@@ -71,7 +71,7 @@
     "@types/gulp": "^4.0.17",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.8",
-    "@types/node": "^18.19.8",
+    "@types/node": "18.19.8",
     "@types/rimraf": "^2.0.5",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
