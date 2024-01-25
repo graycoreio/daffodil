@@ -2,6 +2,105 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.67.0](https://github.com/graycoreio/daffodil/compare/v0.66.1...v0.67.0) (2024-01-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Angular has been upgraded to v17
+* Angular has been upgraded to v16
+* **design, daffio:** update `daff-gray` palette name to `daff-neutral` ([#2736](https://github.com/graycoreio/daffodil/issues/2736))
+* upgrade node to v18 ([#2732](https://github.com/graycoreio/daffodil/issues/2732))
+* **design:** The `DaffSizeable` interface has been renamed to `DaffSizable`
+* **customer-store-credit:** `daffCustomerProvideExtraReducers` -> `daffCustomerStoreCreditProvideExtraReducers`
+* **cart-store-credit:** `daffCustomerStoreCredit` -> `daffCartStoreCredit`
+* **design:** `DaffPaginatorModule` has moved to its own package. Update imports to `@daffodil/design/paginator`
+* **design:** `DaffNavbarModule` has moved to its own package. Update imports to `@daffodil/design/navbar`
+* **design:** `DaffModalModule` has moved to its own package. Update imports to `@daffodil/design/modal`
+* **design:** `DaffMenuModule` has moved to its own package. Update imports to `@daffodil/design/menu`
+* **design:** `DaffMediaGalleryModule` has moved to its own package. Update imports to `@daffodil/design/media-gallery`
+* **list:** `DaffListModule` has moved to its own package. Update imports to `@daffodil/design/list`
+* **design:** `DaffLinkSetModule` has moved to its own package. Update imports to `@daffodil/design/link-set`
+* **design:** `DaffHeroModule` has moved to its own package. Update imports to `@daffodil/design/hero`
+* **design:** `DaffCardModule` has moved to its own package. Update imports to `@daffodil/design/card`
+* **design:** `DaffSidebarModule` has moved to its own package. Update imports to `@daffodil/design/sidebar`
+* **design:** `DaffCalloutModule` has moved to its own package. Update imports to `@daffodil/design/callout`
+* **design:** `DaffLoadingIconModule` has moved to its own package. Update imports to `@daffodil/design/loading-icon`
+* **design:** `DaffAccordionModule` has moved to its own package. Update imports to `@daffodil/design/accordion`
+* **design:** `DaffImageModule` has moved to its own package. Update imports to `@daffodil/design/image`
+* **design:** `DaffContainerModule` has moved to its own package. Update imports to `@daffodil/design/container`
+* **design:** `DaffButtonModule` has moved to its own package. Update imports to `@daffodil/design/button`
+* **design:** Article component has moved to its own package. Update imports to @daffodil/design/article
+
+### Features
+
+* **cart-store-credit:** fix copy/paste errors ([#2705](https://github.com/graycoreio/daffodil/issues/2705)) ([20921d4](https://github.com/graycoreio/daffodil/commit/20921d40678ab8e919157953a8a0ed059cb43500))
+* **daffio:** add packages overview page ([#2721](https://github.com/graycoreio/daffodil/issues/2721)) ([10c1b79](https://github.com/graycoreio/daffodil/commit/10c1b7990135a1e8434e2edc4b2d9224dd2a4091))
+* **daffio:** clean up doc viewer UI ([#2722](https://github.com/graycoreio/daffodil/issues/2722)) ([3966654](https://github.com/graycoreio/daffodil/commit/39666547e0669767785d2ab333b115ca8e77cb8b))
+* **daffio:** clean up docs and marketing header styles ([#2715](https://github.com/graycoreio/daffodil/issues/2715)) ([9792701](https://github.com/graycoreio/daffodil/commit/9792701488a1c104878364e83b19601608a95839))
+* **daffio:** clean up footer styles ([#2723](https://github.com/graycoreio/daffodil/issues/2723)) ([2f550fc](https://github.com/graycoreio/daffodil/commit/2f550fc8c11fe3b7990be4ad80763d35afbbf968))
+* **daffio:** create packages sidebar ([#2725](https://github.com/graycoreio/daffodil/issues/2725)) ([e96e4cf](https://github.com/graycoreio/daffodil/commit/e96e4cf550f9a46894262c7b03f7477da144fa38))
+* **daffio:** create separate footer for docs and add footer to named views enum ([#2733](https://github.com/graycoreio/daffodil/issues/2733)) ([cfc2802](https://github.com/graycoreio/daffodil/commit/cfc28022349ceaacf2caa7ef4804ed344a0bfab0))
+* **daffio:** dynamic nav and sidebar content ([#2686](https://github.com/graycoreio/daffodil/issues/2686)) ([4fe945c](https://github.com/graycoreio/daffodil/commit/4fe945c9f84f29b87e2d21b5cdbfdb224fdf8cbf))
+* **daffio:** revert to module bootstrap in server ([#2728](https://github.com/graycoreio/daffodil/issues/2728)) ([9b07f7d](https://github.com/graycoreio/daffodil/commit/9b07f7d8e640a8010878e52c5a482ea71c190a7a))
+* **daffio:** update api list item background color to animate via opacity ([#2734](https://github.com/graycoreio/daffodil/issues/2734)) ([faacca5](https://github.com/graycoreio/daffodil/commit/faacca5ff2c63d2e968250722030e5224f58968b))
+* **daffio:** update named views to specify sidebar header, content, and footer separately, and update usages ([#2724](https://github.com/graycoreio/daffodil/issues/2724)) ([891a730](https://github.com/graycoreio/daffodil/commit/891a730597185cfc76ef179676c7f2b2f1a59d97))
+* **design:** add DaffSizeable to design core's public api ([#2653](https://github.com/graycoreio/daffodil/issues/2653)) ([776faa3](https://github.com/graycoreio/daffodil/commit/776faa3806030c648b56ca971799e9277dc4fbae))
+* **design:** add word wrap style to article headings ([#2709](https://github.com/graycoreio/daffodil/issues/2709)) ([5acb15c](https://github.com/graycoreio/daffodil/commit/5acb15c047d310258278c6cb05b229df3ac5f874))
+* **design:** clean up card styles ([#2720](https://github.com/graycoreio/daffodil/issues/2720)) ([8399a1b](https://github.com/graycoreio/daffodil/commit/8399a1b8c8cc58ef189492800fb041e8e62d14d2))
+* **design:** expose all functions and types of DaffTextAlignable to the public api ([#2650](https://github.com/graycoreio/daffodil/issues/2650)) ([958dfa7](https://github.com/graycoreio/daffodil/commit/958dfa78303a674694eb2eb4c4f12c6a07ca93cf))
+* **design:** improve sidebar component ([#2569](https://github.com/graycoreio/daffodil/issues/2569)) ([b2f1e3e](https://github.com/graycoreio/daffodil/commit/b2f1e3ecdf93dd06e18696fd7da46b63c679178e))
+* **design:** rename DaffSizeable interface to DaffSizable ([#2730](https://github.com/graycoreio/daffodil/issues/2730)) ([ab3b70a](https://github.com/graycoreio/daffodil/commit/ab3b70a9313d47a2bc26919bfd26f9aaefed9e51))
+* **design:** set sidebar header action's position to absolute ([#2702](https://github.com/graycoreio/daffodil/issues/2702)) ([8eb5c67](https://github.com/graycoreio/daffodil/commit/8eb5c6795d571ae0699883d3dacc35f963fac7b5))
+* **design:** shard accordion component ([#2664](https://github.com/graycoreio/daffodil/issues/2664)) ([f5836a1](https://github.com/graycoreio/daffodil/commit/f5836a10002963c642ed4b7fba836ec016759b8b))
+* **design:** shard article component ([#2652](https://github.com/graycoreio/daffodil/issues/2652)) ([6347315](https://github.com/graycoreio/daffodil/commit/6347315fa4fae1554c3216c4330a9f6dea77f6e0))
+* **design:** shard button component ([#2654](https://github.com/graycoreio/daffodil/issues/2654)) ([eba3142](https://github.com/graycoreio/daffodil/commit/eba3142fff5b0cfc5e1a8f13673a12d9c8806632))
+* **design:** shard callout component ([#2669](https://github.com/graycoreio/daffodil/issues/2669)) ([e332b7c](https://github.com/graycoreio/daffodil/commit/e332b7c12e33cf1a13699397710690e21669fb25))
+* **design:** shard card component ([#2674](https://github.com/graycoreio/daffodil/issues/2674)) ([142e1c1](https://github.com/graycoreio/daffodil/commit/142e1c150a81fe1a56149021a6b06bdebf2949b8))
+* **design:** shard container component ([#2655](https://github.com/graycoreio/daffodil/issues/2655)) ([ce5a331](https://github.com/graycoreio/daffodil/commit/ce5a331c1701c7f4057d50c0ae472e7a189c740a))
+* **design:** shard hero component ([#2675](https://github.com/graycoreio/daffodil/issues/2675)) ([bfd8cc5](https://github.com/graycoreio/daffodil/commit/bfd8cc586816011bee3e345cf07fcc17a2574750))
+* **design:** shard image component ([#2656](https://github.com/graycoreio/daffodil/issues/2656)) ([c8e376b](https://github.com/graycoreio/daffodil/commit/c8e376b3df9a299d11bced25add38f5521958542))
+* **design:** shard link set component ([#2677](https://github.com/graycoreio/daffodil/issues/2677)) ([43edf2d](https://github.com/graycoreio/daffodil/commit/43edf2d1739393a46d5ffc2fc7a7b9ae247ad08c))
+* **design:** shard loading icon component ([#2668](https://github.com/graycoreio/daffodil/issues/2668)) ([7434000](https://github.com/graycoreio/daffodil/commit/743400079ea6f95a2cd9923a3991aac4f667e874))
+* **design:** shard media gallery component ([#2679](https://github.com/graycoreio/daffodil/issues/2679)) ([bf1a0f6](https://github.com/graycoreio/daffodil/commit/bf1a0f67afaddbc96deadccacbd310e477f5219d))
+* **design:** shard menu component ([#2698](https://github.com/graycoreio/daffodil/issues/2698)) ([ab2836b](https://github.com/graycoreio/daffodil/commit/ab2836b1b2c72189b74285d38455b9f237b0b9dd))
+* **design:** shard modal component ([#2699](https://github.com/graycoreio/daffodil/issues/2699)) ([8b355a1](https://github.com/graycoreio/daffodil/commit/8b355a1d2a01ceb2041e6b4c69c4b247dff3e8d6))
+* **design:** shard navbar component ([#2700](https://github.com/graycoreio/daffodil/issues/2700)) ([de9ae3e](https://github.com/graycoreio/daffodil/commit/de9ae3ee548e0fa8eba746a48e6910beb24428f5))
+* **design:** shard paginator component ([#2701](https://github.com/graycoreio/daffodil/issues/2701)) ([b5338a0](https://github.com/graycoreio/daffodil/commit/b5338a0d3cf1cb33a3cc8c5219673f7925a75387))
+* **design:** shard sidebar component ([#2670](https://github.com/graycoreio/daffodil/issues/2670)) ([88e31ed](https://github.com/graycoreio/daffodil/commit/88e31ed3fe91721c52f06c241508ef31ae6fcba6))
+* **design:** update sidebar overflow styles so elements within the viewport content can be positioned sticky ([043b527](https://github.com/graycoreio/daffodil/commit/043b52745ae90ec108a839510c20252bf6d3deda))
+* **design:** update sidebar viewport overflow style to change on animation start and done ([#2718](https://github.com/graycoreio/daffodil/issues/2718)) ([2ec65c2](https://github.com/graycoreio/daffodil/commit/2ec65c2b1d2cc2e5549b0dacd54967e74c2283a0))
+* **eslint-config:** restore legacy lint rules ([#2728](https://github.com/graycoreio/daffodil/issues/2728)) ([97e9203](https://github.com/graycoreio/daffodil/commit/97e92039627e9bd4eba7ea418e5d3682f0afc2e9))
+* **list:** shard list component ([#2678](https://github.com/graycoreio/daffodil/issues/2678)) ([6d96924](https://github.com/graycoreio/daffodil/commit/6d96924e224bbc1f181b23bc2310c3701d5c0922))
+* **router:** add `@daffodil/router` ([#2708](https://github.com/graycoreio/daffodil/issues/2708)) ([2b61dd8](https://github.com/graycoreio/daffodil/commit/2b61dd8dc62ad56db4bf012ef8ebcac41c5b7775))
+* upgrade Angular to v17 ([#2728](https://github.com/graycoreio/daffodil/issues/2728)) ([afe4936](https://github.com/graycoreio/daffodil/commit/afe49361b79f1dfde859a87f7e60b7b20b28fee3))
+* upgrade to Angular 16 ([#2728](https://github.com/graycoreio/daffodil/issues/2728)) ([e607f8f](https://github.com/graycoreio/daffodil/commit/e607f8f4964477875cf936c8166aca7181f41b3f))
+
+
+### Bug Fixes
+
+* **all:** ng packagr secondary entry points config ([#2728](https://github.com/graycoreio/daffodil/issues/2728)) ([5dc1c85](https://github.com/graycoreio/daffodil/commit/5dc1c858dd31a917357394f41ee86d71a4cba102))
+* **cart:** set item state meta reducer mutates action ([#2666](https://github.com/graycoreio/daffodil/issues/2666)) ([0aa35b0](https://github.com/graycoreio/daffodil/commit/0aa35b0a7c86851b592e9d4a6c6d09d19107d5d6))
+* **customer-store-credit:** `daffCustomerProvideExtraReducers` -&gt; `daffCustomerStoreCreditProvideExtraReducers` ([#2706](https://github.com/graycoreio/daffodil/issues/2706)) ([dc52f66](https://github.com/graycoreio/daffodil/commit/dc52f6628d4f3a6fa24368b36c54348d74fa2e1f))
+* **daffio:** `/api` soft 404s on SSR ([#2712](https://github.com/graycoreio/daffodil/issues/2712)) ([f58c266](https://github.com/graycoreio/daffodil/commit/f58c266ac30a2673aa647a4c402d1f11ae162f14))
+* **daffio:** add default export to `main.server.ts` ([#2728](https://github.com/graycoreio/daffodil/issues/2728)) ([1e2174f](https://github.com/graycoreio/daffodil/commit/1e2174f825bdaf154ee3de1ae7fbe4a9a3dd19de))
+* **daffio:** api paths have leading slash ([#2728](https://github.com/graycoreio/daffodil/issues/2728)) ([312a91b](https://github.com/graycoreio/daffodil/commit/312a91bd9355d5b90cb0b2ac8a2028b17941126c))
+* **daffio:** remove extraneous api call to guides list. ([#2735](https://github.com/graycoreio/daffodil/issues/2735)) ([4b5acdd](https://github.com/graycoreio/daffodil/commit/4b5acdd66fd60281d12eb23a92f6020cc4edd12a))
+* **daffio:** replace `LetModule` imports with `LetDirective` ([#2728](https://github.com/graycoreio/daffodil/issues/2728)) ([8ba65b3](https://github.com/graycoreio/daffodil/commit/8ba65b36a85ffb24aa2e775d2936ccbc26273120))
+* **daffio:** use process.cwd for docs path on server ([57b30fc](https://github.com/graycoreio/daffodil/commit/57b30fc157b070a2632427bcd9e0ec8fc374f787))
+* **daffio:** wrong asset path on prod ([#2731](https://github.com/graycoreio/daffodil/issues/2731)) ([def9f5a](https://github.com/graycoreio/daffodil/commit/def9f5ad0ffe9aa684254a943e3f893a1254184d))
+* **design:** fix sidebar positions in viewport template ([#2713](https://github.com/graycoreio/daffodil/issues/2713)) ([80ef6ef](https://github.com/graycoreio/daffodil/commit/80ef6efea874b6764d464baff33ef9fc60ccdc2f))
+
+
+### Miscellaneous Chores
+
+* upgrade node to v18 ([#2732](https://github.com/graycoreio/daffodil/issues/2732)) ([4d7498f](https://github.com/graycoreio/daffodil/commit/4d7498f1fa9597688759d466fdfe863dff62a620))
+
+
+### Code Refactoring
+
+* **design, daffio:** update `daff-gray` palette name to `daff-neutral` ([#2736](https://github.com/graycoreio/daffodil/issues/2736)) ([b219d31](https://github.com/graycoreio/daffodil/commit/b219d314540c5afeab4a4386783a9276eea4d123))
+
 ## [0.66.1](https://github.com/graycoreio/daffodil/compare/v0.66.0...v0.66.1) (2023-12-12)
 
 
