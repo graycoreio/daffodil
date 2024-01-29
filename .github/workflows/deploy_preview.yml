@@ -37,3 +37,4 @@ jobs:
         vercel-token: ${{ secrets.VERCEL_TOKEN }}
         vercel-org: ${{ secrets.VERCEL_ORG }}
         vercel-project-id: ${{ secrets.VERCEL_DAFFIO_NEXT_PROJECT_ID }}
+        ng-version: '17'
