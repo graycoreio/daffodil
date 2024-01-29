@@ -30,7 +30,7 @@ export const guideDocPackage = new Package('daffodil-guides', [daffodilBasePacka
     convertToJson.docTypes = convertToJson.docTypes.concat(['guide']);
   })
   .config((computePathsProcessor) => {
-    const DOCS_SEGMENT = 'guides';
+    const DOCS_SEGMENT = 'packages';
     computePathsProcessor.pathTemplates.push({
       docTypes: ['guide'],
       getPath: (doc)  =>{

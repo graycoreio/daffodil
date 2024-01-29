@@ -11,7 +11,7 @@ export interface GenerateGuideListConfiguration {
 };
 
 export const DefaultGenerateGuideListConfiguration: GenerateGuideListConfiguration = {
-  outputFolder: 'guides',
+  outputFolder: 'packages',
 };
 
 export const transformGuideDoc = (doc: Document): TransformedDocument => ({

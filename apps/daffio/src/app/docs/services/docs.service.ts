@@ -30,6 +30,6 @@ export class DaffioDocsService<T extends DaffioDoc = DaffioDoc, V extends Daffio
   }
 
   getGuideList(): Observable<V> {
-    return this.fetchAsset.fetch<V>(`${this.docsPath}guides/guide-list.json`);
+    return this.fetchAsset.fetch<V>(`${this.docsPath}packages/guide-list.json`);
   }
 }
