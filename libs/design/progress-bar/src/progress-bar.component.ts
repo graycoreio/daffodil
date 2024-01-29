@@ -122,7 +122,7 @@ export class DaffProgressBarComponent extends _daffProgressBarBase implements Da
    * @param event: AnimationEvent
    */
   onAnimationComplete(event: AnimationEvent): void {
-    // @ts-ignore: @angular/animations typing error on event.toState as string
+    // @ts-expect-error: @angular/animations typing error on event.toState as string
     // See: https://github.com/angular/angular/issues/26507
     if(event.toState === '100' || event.toState === 100) {
       this.finished.emit();
