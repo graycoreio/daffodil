@@ -1,8 +1,7 @@
 {
-  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/design/toast",
+  "$schema": "../../../node_modules/ng-packagr/ng-entrypoint.schema.json",
   "lib": {
-    "entryFile": "src/public_api.ts",
-    "styleIncludePaths": ["../scss"]
+    "entryFile": "src/index.ts",
+    "styleIncludePaths": ["../src/scss"]
   }
 }
