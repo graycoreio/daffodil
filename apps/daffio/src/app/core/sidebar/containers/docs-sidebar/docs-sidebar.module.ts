@@ -4,8 +4,8 @@ import { RouterModule } from '@angular/router';
 import { LetDirective } from '@ngrx/component';
 
 import { DaffioDocsSidebarContainer } from './docs-sidebar.component';
-import { DaffioDocsSidebarContentComponentModule } from '../../components/docs-sidebar-content/docs-sidebar-content.module';
 import { DaffioDocsPackagesListContainerModule } from '../../../../packages/containers/packages-list/packages-list.module';
+import { DaffioDocsSidebarContentComponentModule } from '../../components/docs-sidebar-content/docs-sidebar-content.module';
 
 @NgModule({
   imports: [

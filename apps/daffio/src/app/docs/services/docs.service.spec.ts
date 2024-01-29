@@ -53,7 +53,7 @@ describe('DaffioDocsService', () => {
 
     service.getGuideList().subscribe((guides) => {
       expect(guides).toEqual(mockGuideList);
-      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/guides/guide-list.json');
+      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/packages/guide-list.json');
       done();
     });
   });

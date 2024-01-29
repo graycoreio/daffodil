@@ -15,7 +15,6 @@ import {
   MockStore,
   provideMockStore,
 } from '@ngrx/store/testing';
-import { DaffioDocsPackagesListContainerModule } from '../../../../packages/containers/packages-list/packages-list.module';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffBreakpoints } from '@daffodil/design';
@@ -24,6 +23,7 @@ import {
   DAFFIO_DOCS_CONTENT_SIDEBAR_KIND,
   DaffioDocsSidebarContainer,
 } from './docs-sidebar.component';
+import { DaffioDocsPackagesListContainerModule } from '../../../../packages/containers/packages-list/packages-list.module';
 import { DaffioDocsSidebarContentComponentModule } from '../../components/docs-sidebar-content/docs-sidebar-content.module';
 import { selectSidebarKind } from '../../reducers';
 
