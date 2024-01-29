@@ -6,10 +6,10 @@ import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffHeroModule } from '@daffodil/design/hero';
 
 import { DaffioDocsPackageCardsContainerModule } from './containers/package-cards/package-cards.module';
-import { DaffioGuidesRoutingModule } from './guides-routing.module';
-import { DaffioGuidesPageComponent } from './pages/guides-page.component';
+import { DaffioPackagesRoutingModule } from './packages-routing.module';
 import { DaffioPackagesOverviewPageComponent } from './pages/packages-overview/packages-overview.component';
 import { DaffioDocViewerModule } from '../docs/components/doc-viewer/doc-viewer.module';
+import { DaffioPackagePageComponent } from './pages/package-page/package-page.component';
 
 @NgModule({
   imports: [
@@ -17,18 +17,18 @@ import { DaffioDocViewerModule } from '../docs/components/doc-viewer/doc-viewer.
     RouterModule,
 
     DaffioDocViewerModule,
-    DaffioGuidesRoutingModule,
+    DaffioPackagesRoutingModule,
     DaffContainerModule,
     DaffHeroModule,
     DaffioDocsPackageCardsContainerModule,
   ],
   declarations: [
-    DaffioGuidesPageComponent,
+    DaffioPackagePageComponent,
     DaffioPackagesOverviewPageComponent,
   ],
   exports: [
-    DaffioGuidesPageComponent,
+    DaffioPackagePageComponent,
     DaffioPackagesOverviewPageComponent,
   ],
 })
-export class DaffioGuidesModule {}
+export class DaffioPackagesModule {}

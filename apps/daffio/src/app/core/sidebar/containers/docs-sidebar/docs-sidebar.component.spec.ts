@@ -15,7 +15,7 @@ import {
   MockStore,
   provideMockStore,
 } from '@ngrx/store/testing';
-import { DaffioDocsPackagesListContainerModule } from 'apps/daffio/src/app/guides/containers/packages-list/packages-list.module';
+import { DaffioDocsPackagesListContainerModule } from '../../../../packages/containers/packages-list/packages-list.module';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffBreakpoints } from '@daffodil/design';
