@@ -66,6 +66,21 @@ function run(): void {
   });
 }
 
-run();
+/**
+ * Determine whether or not the file is the main file run via
+ * `node path/to/server.js`
+ *
+ * If it is, likely you're running npm run serve:ssr and you want
+ * to run the server locally.
+ *
+ * If it isn't, you're probably importing the module to use in a severless
+ * environment and that command controls running the server.
+ */
+const isMainModule = import.meta.url === `file://${process.argv[1]}`;
+
+if (isMainModule) {
+  run();
+}
+
 
 export * from '../src/main.server';

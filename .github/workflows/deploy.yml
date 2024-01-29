@@ -42,6 +42,7 @@ jobs:
           vercel_token: ${{ secrets.VERCEL_TOKEN }}
           vercel_org: ${{ secrets.VERCEL_ORG }}
           vercel_project_id: ${{ secrets.VERCEL_NEXT_PROJECT_ID }}
+          ng_version: '17'
     
   production:
     name: 'Production'
@@ -66,3 +67,4 @@ jobs:
           vercel_token: ${{ secrets.VERCEL_TOKEN }}
           vercel_org: ${{ secrets.VERCEL_ORG }}
           vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
+          ng_version: '17'
