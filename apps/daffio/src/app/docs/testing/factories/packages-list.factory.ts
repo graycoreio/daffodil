@@ -1,6 +1,6 @@
-import { DaffioGuideList } from '../../models/guide-list';
+import { DaffioPackagesList } from '../../models/packages-list';
 
-export const mockGuides: DaffioGuideList = {
+export const mockPackages: DaffioPackagesList = {
   id: '',
   title: '',
   children: [

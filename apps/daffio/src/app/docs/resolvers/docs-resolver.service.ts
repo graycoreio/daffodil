@@ -19,13 +19,13 @@ import {
 } from '@daffodil/core/routing';
 
 import { DaffioDoc } from '../models/doc';
-import { DaffioGuideList } from '../models/guide-list';
+import { DaffioPackagesList } from '../models/packages-list';
 import { DaffioDocsService } from '../services/docs.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DocsResolver<T extends DaffioDoc, V extends DaffioGuideList>  {
+export class DocsResolver<T extends DaffioDoc, V extends DaffioPackagesList>  {
 
   constructor(private docService: DaffioDocsService<T, V>, private router: Router) { }
 

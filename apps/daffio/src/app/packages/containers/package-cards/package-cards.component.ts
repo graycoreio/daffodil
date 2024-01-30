@@ -10,7 +10,7 @@ import {
 } from 'rxjs';
 
 import { DaffioDoc } from '../../../docs/models/doc';
-import { DaffioGuideList } from '../../../docs/models/guide-list';
+import { DaffioPackagesList } from '../../../docs/models/packages-list';
 import { DaffioDocsService } from '../../../docs/services/docs.service';
 import { DaffioPackage } from '../../components/package-cards/package-cards.component';
 
@@ -24,7 +24,7 @@ export class DaffioDocsPackageCardsContainer implements OnInit {
   packagesList$: Observable<DaffioPackage[]>;
 
   constructor(
-    private docService: DaffioDocsService<DaffioDoc, DaffioGuideList>,
+    private docService: DaffioDocsService<DaffioDoc, DaffioPackagesList>,
   ) {}
 
   ngOnInit() {

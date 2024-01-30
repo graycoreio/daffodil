@@ -6,7 +6,7 @@ import {
 import { Observable } from 'rxjs';
 
 import { DaffioDoc } from '../../../docs/models/doc';
-import { DaffioGuideList } from '../../../docs/models/guide-list';
+import { DaffioPackagesList } from '../../../docs/models/packages-list';
 import { DaffioDocsService } from '../../../docs/services/docs.service';
 
 @Component({
@@ -16,10 +16,10 @@ import { DaffioDocsService } from '../../../docs/services/docs.service';
 })
 export class DaffioDocsPackagesListContainer implements OnInit {
 
-  packagesList$: Observable<DaffioGuideList>;
+  packagesList$: Observable<DaffioPackagesList>;
 
   constructor(
-    private docService: DaffioDocsService<DaffioDoc, DaffioGuideList>,
+    private docService: DaffioDocsService<DaffioDoc, DaffioPackagesList>,
   ) {}
 
   ngOnInit() {

@@ -10,9 +10,9 @@ import {
   daffTransformTreeInPlace,
 } from '@daffodil/design/tree';
 
-import { DaffioGuideList } from '../../../docs/models/guide-list';
+import { DaffioPackagesList } from '../../../docs/models/packages-list';
 
-const visit = (guide: DaffioGuideList): DaffTreeData<unknown> => ({
+const visit = (guide: DaffioPackagesList): DaffTreeData<unknown> => ({
   id: guide.id,
   title: guide.title,
   url: guide.path,
@@ -27,19 +27,19 @@ const visit = (guide: DaffioGuideList): DaffTreeData<unknown> => ({
 })
 export class DaffioDocsPackagesListComponent {
 
-  _guideList: DaffioGuideList;
+  _packagesList: DaffioPackagesList;
   /**
    * The guide list to render
    */
   @Input()
-  get guideList(): DaffioGuideList {
-    return this._guideList;
+  get packagesList(): DaffioPackagesList {
+    return this._packagesList;
   };
-  set guideList(val: DaffioGuideList) {
-    if(this._guideList !== val) {
+  set packagesList(val: DaffioPackagesList) {
+    if(this._packagesList !== val) {
       this._tree = daffTransformTreeInPlace(val, visit, 'children');
     }
-    this._guideList = val;
+    this._packagesList = val;
   }
 
   _tree: DaffTreeData<unknown>;
