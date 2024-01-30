@@ -9,7 +9,7 @@ import { DaffRouterNamedViewOutletModule } from '@daffodil/router';
 
 import { DaffioSidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 import { DaffioSidebarStateModule } from './sidebar.state.module';
-import { DaffioDocsPackagesListContainerModule } from '../../guides/containers/packages-list/packages-list.module';
+import { DaffioDocsPackagesListContainerModule } from '../../packages/containers/packages-list/packages-list.module';
 
 @NgModule({
   imports: [

@@ -18,7 +18,7 @@ export class DaffioMarketingHeaderContainer {
 
   links: any[] = [
     { path: '/why-pwa', title: 'Why PWA' },
-    { path: '/api', title: 'Docs' },
+    { path: '/packages', title: 'Docs' },
   ];
 
   constructor(private store: Store<any>) { }

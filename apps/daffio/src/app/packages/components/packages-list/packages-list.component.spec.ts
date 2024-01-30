@@ -49,7 +49,7 @@ describe('DaffioDocsPackagesListComponent', () => {
       ],
     };
 
-    component.guideList = {
+    component.packagesList = {
       id: 'root',
       title: 'root',
       children: [

@@ -4,7 +4,7 @@ import {
   RouterModule,
 } from '@angular/router';
 
-import { DaffioGuidesPageComponent } from './pages/guides-page.component';
+import { DaffioPackagePageComponent } from './pages/package-page/package-page.component';
 import { DaffioPackagesOverviewPageComponent } from './pages/packages-overview/packages-overview.component';
 import { DocsResolver } from '../docs/resolvers/docs-resolver.service';
 
@@ -16,7 +16,7 @@ export const docsRoutes: Routes = [
   },
   {
     path: '**',
-    component: DaffioGuidesPageComponent,
+    component: DaffioPackagePageComponent,
     resolve: {
       doc: DocsResolver,
     },
@@ -34,4 +34,4 @@ export const docsRoutes: Routes = [
     RouterModule,
   ],
 })
-export class DaffioGuidesRoutingModule { }
+export class DaffioPackagesRoutingModule { }

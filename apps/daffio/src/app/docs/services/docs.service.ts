@@ -13,12 +13,12 @@ import {
   DaffioAssetFetchServiceInterface,
 } from '../../core/assets/fetch/service.interface';
 import { DaffioDoc } from '../models/doc';
-import { DaffioGuideList } from '../models/guide-list';
+import { DaffioPackagesList } from '../models/packages-list';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DaffioDocsService<T extends DaffioDoc = DaffioDoc, V extends DaffioGuideList = DaffioGuideList> implements DaffioDocsServiceInterface<T, V> {
+export class DaffioDocsService<T extends DaffioDoc = DaffioDoc, V extends DaffioPackagesList = DaffioPackagesList> implements DaffioDocsServiceInterface<T, V> {
 
   constructor(
     @Inject(DaffioAssetFetchService) private fetchAsset: DaffioAssetFetchServiceInterface,
@@ -30,6 +30,6 @@ export class DaffioDocsService<T extends DaffioDoc = DaffioDoc, V extends Daffio
   }
 
   getGuideList(): Observable<V> {
-    return this.fetchAsset.fetch<V>(`${this.docsPath}guides/guide-list.json`);
+    return this.fetchAsset.fetch<V>(`${this.docsPath}packages/guide-list.json`);
   }
 }

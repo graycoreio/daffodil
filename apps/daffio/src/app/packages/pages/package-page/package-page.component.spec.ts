@@ -13,18 +13,18 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffioGuidesPageComponent } from './guides-page.component';
-import { DaffioDoc } from '../../docs/models/doc';
-import { DaffioDocsFactory } from '../../docs/testing/factories/docs.factory';
+import { DaffioPackagePageComponent } from './package-page.component';
+import { DaffioDoc } from '../../../docs/models/doc';
+import { DaffioDocsFactory } from '../../../docs/testing/factories/docs.factory';
 
 @Component({ selector: 'daffio-doc-viewer', template: '' })
 class MockDaffioDocViewerComponent {
   @Input() doc: DaffioDoc;
 }
 
-describe('DaffioGuidesPageComponent', () => {
-  let component: DaffioGuidesPageComponent;
-  let fixture: ComponentFixture<DaffioGuidesPageComponent>;
+describe('DaffioPackagePageComponent', () => {
+  let component: DaffioPackagePageComponent;
+  let fixture: ComponentFixture<DaffioPackagePageComponent>;
   const doc: DaffioDoc = new DaffioDocsFactory().create();
   const stubActivatedRoute = {
     data: new BehaviorSubject({}),
@@ -33,7 +33,7 @@ describe('DaffioGuidesPageComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffioGuidesPageComponent,
+        DaffioPackagePageComponent,
         MockDaffioDocViewerComponent,
       ],
       imports: [
@@ -47,7 +47,7 @@ describe('DaffioGuidesPageComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioGuidesPageComponent);
+    fixture = TestBed.createComponent(DaffioPackagePageComponent);
     component = fixture.componentInstance;
     stubActivatedRoute.data.next({ doc });
     fixture.detectChanges();
@@ -59,7 +59,7 @@ describe('DaffioGuidesPageComponent', () => {
 
   it('should initialize `doc$` to the resolved doc from the activated route', () => {
     const expected = cold('a', { a: doc });
-    expect(component.guideDoc$).toBeObservable(expected);
+    expect(component.packageDoc$).toBeObservable(expected);
   });
 
   it('should pass the down the observed doc to the `daffio-doc-viewer`', () => {

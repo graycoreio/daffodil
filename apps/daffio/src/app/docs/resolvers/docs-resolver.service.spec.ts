@@ -13,18 +13,18 @@ import {
 
 import { DocsResolver } from './docs-resolver.service';
 import { DaffioDoc } from '../models/doc';
-import { DaffioGuideList } from '../models/guide-list';
+import { DaffioPackagesList } from '../models/packages-list';
 import { DaffioDocsServiceInterface } from '../services/docs-service.interface';
 import { DaffioDocsService } from '../services/docs.service';
 import { DaffioDocsFactory } from '../testing/factories/docs.factory';
 
 describe('DocsResolver', () => {
-  let resolver: DocsResolver<DaffioDoc, DaffioGuideList>;
-  let docsService: DaffioDocsService<DaffioDoc, DaffioGuideList>;
+  let resolver: DocsResolver<DaffioDoc, DaffioPackagesList>;
+  let docsService: DaffioDocsService<DaffioDoc, DaffioPackagesList>;
   let router: Router;
 
   const doc = new DaffioDocsFactory().create();
-  const stubDocService: DaffioDocsServiceInterface<DaffioDoc, DaffioGuideList> = {
+  const stubDocService: DaffioDocsServiceInterface<DaffioDoc, DaffioPackagesList> = {
     get: (path: string): Observable<DaffioDoc> => of(doc),
     getGuideList: () => of(),
   };

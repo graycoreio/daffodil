@@ -58,7 +58,7 @@ export const appRoutes: Routes = [
       <DaffRouteWithNamedViews>{
         path: '',
         children: [
-          { path: 'guides', loadChildren: () => import('./guides/guides.module').then(m => m.DaffioGuidesModule) },
+          { path: 'packages', loadChildren: () => import('./packages/packages.module').then(m => m.DaffioPackagesModule) },
         ],
         data: {
           daffNamedViews: {
