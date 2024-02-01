@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.68.0](https://github.com/graycoreio/daffodil/compare/v0.67.0...v0.68.0) (2024-02-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **daffio:** use ng17 version of vercel build ([#2739](https://github.com/graycoreio/daffodil/issues/2739))
+
+### Features
+
+* **daffio:** update `/guides` path to `/packages` ([#2738](https://github.com/graycoreio/daffodil/issues/2738)) ([18565d2](https://github.com/graycoreio/daffodil/commit/18565d2475e8f2abf12d91e729fcee7c8b88e265))
+
+
+### Build System
+
+* **daffio:** use ng17 version of vercel build ([#2739](https://github.com/graycoreio/daffodil/issues/2739)) ([5097583](https://github.com/graycoreio/daffodil/commit/5097583c722a500e166b37c0fdc28f0ce929414d))
+
 ## [0.67.0](https://github.com/graycoreio/daffodil/compare/v0.66.1...v0.67.0) (2024-01-25)
 
 
