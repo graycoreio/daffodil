@@ -1,45 +1,52 @@
-# Analytics Actions Mapping
+# @daffodil/analytics
 
-## VIEW_ITEM_LIST
+## Overview
 
-- DaffCategoryLoadSuccess
-- DaffCategoryPageLoadSuccess
-- DaffProductPageLoadSuccess (upsell/related)
+The Daffodil Analytics Module is a lightweight Angular package that helps integrate analytics providers into your Angular applications, supporting multiple analytics services. It simplifies event tracking and provides configuration options, such as defining analyzable actions. Notably, this module focuses on handling state-related events and operates specifically on [`Actions`](https://ngrx.io/api/store/Action) from [`@ngrx/store`](https://ngrx.io/guide/store), rather than browser events. Additionally, the package includes testing utilities tailored for analytics event tracking in Angular applications.
 
-## VIEW_ITEM
+## Features
+- ["Opt-in" action tracking](./docs/configuration.md#configuring-analyzeableactions)
 
-- DaffProductPageLoadSuccess
+## Usage
 
-## ADD_TO_CART
+In this example, `MyAnalyticsService` implements the `DaffAnalyticsTrackerClass` interface, providing a track method. Inside the track method, you can define your custom logic for tracking analytics events based on the provided action. The service returns an observable, indicating the success of the tracking operation. Replace the logic inside the track method with your actual analytics tracking implementation.
 
-- DaffAddToCartSuccess
+### Define a tracking service
 
-## REMOVE_FROM_CART
+```ts
+import { Injectable } from '@angular/core';
+import { DaffAnalyticsTrackerClass } from '@daffodil/analytics';
+import { Action } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
 
-- DaffRemoveFromCartSuccess
+@Injectable({
+  providedIn: 'root',
+})
+export class MyAnalyticsService implements DaffAnalyticsTrackerClass {
 
-## VIEW_CART
+  track(action: Action): Observable<unknown> {
+    // Your custom logic for tracking analytics events based on the provided action
+    // Return an observable, for example, indicating whether the tracking was successful
+    return of(true);
+  }
+}
+```
 
-- RouterAction
+### Import DaffAnalyticsModule in Your Application
 
-## BEGIN_CHECKOUTS
+```ts
+import { DaffAnalyticsModule } from '@daffodil/analytics';
 
-- RouterAction
+// Import your custom analytics service(s)
+import { MyAnalyticsService } from './path/to/my-analytics.service';
 
-## ADD_SHIPPING_INFO
-
-- DaffApplyShippingMethodSuccess
-
-## ADD_PAYMENT_INFO
-
-- DaffApplyPaymentMethodSuccessAction
-
-## PURCHASE
-
-- DaffPlaceOrderSuccessMessage
-
-## PAGEVIEW
-
-- DaffProductPageLoadSuccess
-- DaffCategoryPageLoadSuccess
-
+@NgModule({
+  imports: [
+    // Initialize Daffodil Analytics Module with custom analytics service(s)
+    DaffAnalyticsModule.forRoot([MyAnalyticsService]),
+    // ... other modules
+  ],
+  // ... other module metadata
+})
+export class YourAppModule { }
+```

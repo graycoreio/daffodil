@@ -32,9 +32,8 @@ export class DaffAnalyticsEffects {
   ) {}
 
   /**
-   * Tracks events in external services. Importantly, this allows for there to be multiple analytics services
-   * in the event multiple are in use, or, more importantly, in the event
-   * there needs to be a transition from one service to another (Universal Analytics to GA4 for example).
+   * Tracks events in external services. Importantly, this allows for there to 
+   * be multiple analytics services that subscribe to the same event.
    */
   trackAnalyticsEvent$ = createEffect(() => this.actions$.pipe(
     ofType(...this.config.analyzableActions),
