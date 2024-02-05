@@ -1,5 +1,5 @@
 /**
- * A generalized event that happens to collide nicely with the Action interface 
+ * A generalized event that happens to collide nicely with the Action interface
  * of packages like Redux and @ngrx/store.
  */
 export interface DaffAnalyticsEvent {

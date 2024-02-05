@@ -32,7 +32,7 @@ export class DaffAnalyticsEffects {
   ) {}
 
   /**
-   * Tracks events in external services. Importantly, this allows for there to 
+   * Tracks events in external services. Importantly, this allows for there to
    * be multiple analytics services that subscribe to the same event.
    */
   trackAnalyticsEvent$ = createEffect(() => this.actions$.pipe(
