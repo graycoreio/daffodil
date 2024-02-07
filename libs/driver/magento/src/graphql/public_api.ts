@@ -2,3 +2,4 @@ export { DaffMagentoApolloCacheableOperationsLinkGenerator } from './cacheable-o
 export * from './cacheable-operations/cacheable-operations-token';
 export * from './type-policies';
 export * from './cache.service';
+export * from './cache-header/cache-header-apollo-link';
