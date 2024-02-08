@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCartItem } from '@daffodil/cart';
+import { DaffProduct } from '@daffodil/product';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffCartItemFactory } from './cart-item.factory';
 
-describe('Cart | Testing | Factories | CartItemFactory', () => {
-
+describe('@daffodil/cart/testing | DaffCartItemFactory', () => {
   let cartItemFactory: DaffCartItemFactory;
+  let productFactory: DaffProductFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -14,6 +16,7 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
     });
 
     cartItemFactory = TestBed.inject(DaffCartItemFactory);
+    productFactory = TestBed.inject(DaffProductFactory);
   });
 
   it('should be created', () => {
@@ -21,7 +24,6 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
   });
 
   describe('create', () => {
-
     let result: DaffCartItem;
 
     beforeEach(() => {
@@ -46,6 +48,25 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
 
     it('should set the sum of discounts to be less than or equal to price', () => {
       expect(result.discounts.reduce((acc, discount) => acc + discount.amount, 0)).toBeLessThanOrEqual(result.price);
+    });
+  });
+
+  describe('fromProduct', () => {
+    let result: DaffCartItem;
+    let product: DaffProduct;
+
+    beforeEach(() => {
+      product = productFactory.create();
+      result = cartItemFactory.fromProduct(product);
+    });
+
+    it('should return a CartItem with fields seeded from a product', () => {
+      expect(result.product_id).toEqual(product.id);
+      expect(result.name).toEqual(product.name);
+      expect(result.url).toEqual(product.url);
+      expect(result.image).toEqual(product.images[0]);
+      expect(result.sku).toEqual(product.id);
+      expect(result.in_stock).toEqual(product.in_stock);
     });
   });
 });
