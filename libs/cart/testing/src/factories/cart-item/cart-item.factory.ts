@@ -7,7 +7,10 @@ import {
   DaffCartItemDiscount,
 } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { DaffProductImage } from '@daffodil/product';
+import {
+  DaffProduct,
+  DaffProductImage,
+} from '@daffodil/product';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 
 export class DaffMockCartItem implements DaffCartItem {
@@ -39,8 +42,18 @@ export class DaffMockCartItem implements DaffCartItem {
   providedIn: 'root',
 })
 export class DaffCartItemFactory extends DaffModelFactory<DaffCartItem> {
-
-  constructor(){
+  constructor() {
     super(DaffMockCartItem);
+  }
+
+  fromProduct(product: DaffProduct): DaffCartItem {
+    return this.create({
+      product_id: product.id,
+      name: product.name,
+      url: product.url,
+      image: product.images[0],
+      sku: product.id,
+      in_stock: product.in_stock,
+    });
   }
 }

@@ -88,9 +88,8 @@ export class DaffInMemoryBackendCartItemsService implements DaffInMemoryDataServ
 
   private transformItemInput(itemInput: DaffCartItemInput) {
     return {
-      ...this.cartItemFactory.create(),
+      ...this.cartItemFactory.fromProduct(this.productBackend.products.find((product) => product.id === itemInput.productId)),
       ...itemInput,
-      product_id: itemInput.productId,
     };
   }
 
