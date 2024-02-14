@@ -13,22 +13,30 @@ import {
   DaffCartPlaceOrderSuccess,
 } from '@daffodil/cart/state';
 import { DaffCheckoutStateRootSlice } from '@daffodil/checkout/state';
-import { DaffOrder } from '@daffodil/order';
+import {
+  DaffOrder,
+  DaffOrderCollection,
+} from '@daffodil/order';
 import {
   DaffOrderListSuccess,
   daffOrderReducers,
   DAFF_ORDER_STORE_FEATURE_KEY,
 } from '@daffodil/order/state';
-import { DaffOrderFactory } from '@daffodil/order/testing';
+import {
+  DaffOrderCollectionFactory,
+  DaffOrderFactory,
+} from '@daffodil/order/testing';
 
 import { getCheckoutPlacedOrderSelectors } from './placed-order.selector';
 
-describe('Order | Selector | Order', () => {
+describe('@daffodil/checkout/state | getCheckoutPlacedOrderSelectors', () => {
   let store: Store<DaffCheckoutStateRootSlice>;
 
   let orderFactory: DaffOrderFactory;
+  let orderCollectionFactory: DaffOrderCollectionFactory;
 
   let mockOrder: DaffOrder;
+  let mockOrderCollection: DaffOrderCollection;
 
   const {
     selectPlacedOrder,
@@ -47,10 +55,12 @@ describe('Order | Selector | Order', () => {
 
     store = TestBed.inject(Store);
     orderFactory = TestBed.inject(DaffOrderFactory);
+    orderCollectionFactory = TestBed.inject(DaffOrderCollectionFactory);
 
-    mockOrder = orderFactory.create();
+    mockOrderCollection = orderCollectionFactory.create();
+    mockOrder = mockOrderCollection.data[mockOrderCollection.metadata.ids[0]];
 
-    store.dispatch(new DaffOrderListSuccess([mockOrder]));
+    store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
   });
 
   describe('selectPlacedOrder', () => {
@@ -64,7 +74,7 @@ describe('Order | Selector | Order', () => {
     describe('when an order has been placed and loaded', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartPlaceOrderSuccess({ orderId: mockOrder.id, cartId: 'cartId' }));
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select the most recently placed order', () => {
@@ -87,7 +97,7 @@ describe('Order | Selector | Order', () => {
     describe('when an order has been placed and loaded', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartPlaceOrderSuccess({ orderId: mockOrder.id, cartId: 'cartId' }));
-        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
       });
 
       it('should select if the most recently placed order exists', () => {

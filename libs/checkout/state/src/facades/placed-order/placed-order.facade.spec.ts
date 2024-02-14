@@ -22,7 +22,7 @@ import { DaffOrderFactory } from '@daffodil/order/testing';
 
 import { DaffCheckoutPlacedOrderFacade } from './placed-order.facade';
 
-describe('DaffCheckoutPlacedOrderFacade', () => {
+describe('@daffodil/checkout/state | DaffCheckoutPlacedOrderFacade', () => {
   let store: Store<DaffCheckoutStateRootSlice>;
   let facade: DaffCheckoutPlacedOrderFacade;
   let orderFactory: DaffOrderFactory;
