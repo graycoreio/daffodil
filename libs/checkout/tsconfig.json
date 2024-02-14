@@ -9,6 +9,12 @@
       "@daffodil/checkout": [
         "libs/checkout/src"
       ],
+      "@daffodil/checkout/state": [
+        "libs/checkout/state/src"
+      ],
+      "@daffodil/checkout/state/testing": [
+        "libs/checkout/state/testing/src"
+      ],
       "@daffodil/checkout/testing": [
         "libs/checkout/testing/src"
       ],
