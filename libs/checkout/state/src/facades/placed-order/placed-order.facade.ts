@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 
 import { DaffOrder } from '@daffodil/order';
 
+import { DaffCheckoutPlacedOrderFacadeInterface } from './placed-order-facade.interface';
 import { DaffCheckoutStateRootSlice } from '../../reducers/public_api';
 import { getDaffCheckoutSelectors } from '../../selectors/public_api';
-import { DaffCheckoutPlacedOrderFacadeInterface } from './placed-order-facade.interface';
 
 /**
  * @inheritdoc
