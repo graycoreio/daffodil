@@ -4,12 +4,12 @@ import { DaffStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
 
 export enum DaffGeographyActionTypes {
-  CountryLoadAction = '[DaffGeography] Country Load Action',
-  CountryLoadSuccessAction = '[DaffGeography] Country Load Success Action',
-  CountryLoadFailureAction = '[DaffGeography] Country Load Failure Action',
-  CountryListAction = '[DaffGeography] Country List Action',
-  CountryListSuccessAction = '[DaffGeography] Country List Success Action',
-  CountryListFailureAction = '[DaffGeography] Country List Failure Action',
+  CountryLoadAction = '[@daffodil/geography] Country Load Action',
+  CountryLoadSuccessAction = '[@daffodil/geography] Country Load Success Action',
+  CountryLoadFailureAction = '[@daffodil/geography] Country Load Failure Action',
+  CountryListAction = '[@daffodil/geography] Country List Action',
+  CountryListSuccessAction = '[@daffodil/geography] Country List Success Action',
+  CountryListFailureAction = '[@daffodil/geography] Country List Failure Action',
 }
 
 export class DaffCountryLoad<T extends DaffCountry> implements Action {

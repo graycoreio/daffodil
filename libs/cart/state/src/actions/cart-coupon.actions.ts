@@ -15,19 +15,19 @@ import { DaffCartRetrievalAction } from '../cart-retrieval/public_api';
  * An enum for the cart coupon action types.
  */
 export enum DaffCartCouponActionTypes {
-  CartCouponApplyAction = '[DaffCart] Cart Coupon Apply Action',
-  CartCouponApplySuccessAction = '[DaffCart] Cart Coupon Apply Success Action',
-  CartCouponApplyFailureAction = '[DaffCart] Cart Coupon Apply Failure Action',
-  CartCouponListAction = '[DaffCart] Cart Coupon List Action',
-  CartCouponListSuccessAction = '[DaffCart] Cart Coupon List Success Action',
-  CartCouponListFailureAction = '[DaffCart] Cart Coupon List Failure Action',
-  CartCouponRemoveAction = '[DaffCart] Cart Coupon Remove Action',
-  CartCouponRemoveSuccessAction = '[DaffCart] Cart Coupon Remove Success Action',
-  CartCouponRemoveFailureAction = '[DaffCart] Cart Coupon Remove Failure Action',
-  CartCouponRemoveAllAction = '[DaffCart] Cart Coupon Remove All Action',
-  CartCouponRemoveAllSuccessAction = '[DaffCart] Cart Coupon Remove All Success Action',
-  CartCouponRemoveAllFailureAction = '[DaffCart] Cart Coupon Remove All Failure Action',
-  CartCouponClearErrorsAction = '[DaffCart] Cart Coupon Clear Errors Action'
+  CartCouponApplyAction = '[@daffodil/cart] Cart Coupon Apply Action',
+  CartCouponApplySuccessAction = '[@daffodil/cart] Cart Coupon Apply Success Action',
+  CartCouponApplyFailureAction = '[@daffodil/cart] Cart Coupon Apply Failure Action',
+  CartCouponListAction = '[@daffodil/cart] Cart Coupon List Action',
+  CartCouponListSuccessAction = '[@daffodil/cart] Cart Coupon List Success Action',
+  CartCouponListFailureAction = '[@daffodil/cart] Cart Coupon List Failure Action',
+  CartCouponRemoveAction = '[@daffodil/cart] Cart Coupon Remove Action',
+  CartCouponRemoveSuccessAction = '[@daffodil/cart] Cart Coupon Remove Success Action',
+  CartCouponRemoveFailureAction = '[@daffodil/cart] Cart Coupon Remove Failure Action',
+  CartCouponRemoveAllAction = '[@daffodil/cart] Cart Coupon Remove All Action',
+  CartCouponRemoveAllSuccessAction = '[@daffodil/cart] Cart Coupon Remove All Success Action',
+  CartCouponRemoveAllFailureAction = '[@daffodil/cart] Cart Coupon Remove All Failure Action',
+  CartCouponClearErrorsAction = '[@daffodil/cart] Cart Coupon Clear Errors Action'
 }
 
 /**

@@ -13,9 +13,9 @@ import {
  * An enum for the cart order action types.
  */
 export enum DaffCartOrderActionTypes {
-  CartPlaceOrderAction = '[DaffCart] Cart Place Order Action',
-  CartPlaceOrderSuccessAction = '[DaffCart] Cart Place Order Success Action',
-  CartPlaceOrderFailureAction = '[DaffCart] Cart Place Order Failure Action'
+  CartPlaceOrderAction = '[@daffodil/cart] Cart Place Order Action',
+  CartPlaceOrderSuccessAction = '[@daffodil/cart] Cart Place Order Success Action',
+  CartPlaceOrderFailureAction = '[@daffodil/cart] Cart Place Order Failure Action'
 }
 
 /**

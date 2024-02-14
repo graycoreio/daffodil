@@ -9,12 +9,12 @@ import {
 } from '@daffodil/order';
 
 export enum DaffOrderActionTypes {
-  OrderLoadAction = '[Order] Order Load Action',
-  OrderLoadSuccessAction = '[Order] Order Load Success Action',
-  OrderLoadFailureAction = '[Order] Order Load Failure Action',
-  OrderListAction = '[Order] Order List Action',
-  OrderListSuccessAction = '[Order] Order List Success Action',
-  OrderListFailureAction = '[Order] Order List Failure Action'
+  OrderLoadAction = '[@daffodil/order] Order Load Action',
+  OrderLoadSuccessAction = '[@daffodil/order] Order Load Success Action',
+  OrderLoadFailureAction = '[@daffodil/order] Order Load Failure Action',
+  OrderListAction = '[@daffodil/order] Order List Action',
+  OrderListSuccessAction = '[@daffodil/order] Order List Success Action',
+  OrderListFailureAction = '[@daffodil/order] Order List Failure Action'
 }
 
 /**

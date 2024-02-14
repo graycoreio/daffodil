@@ -13,9 +13,9 @@ import { DaffProduct } from '@daffodil/product';
  * The possible types of category actions.
  */
 export enum DaffCategoryActionTypes {
-  CategoryLoadAction = '[Daff-Category] Category Load Action',
-  CategoryLoadSuccessAction = '[Daff-Category] Category Load Success Action',
-  CategoryLoadFailureAction = '[Daff-Category] Category Load Failure Action'
+  CategoryLoadAction = '[@daffodil/category] Category Load Action',
+  CategoryLoadSuccessAction = '[@daffodil/category] Category Load Success Action',
+  CategoryLoadFailureAction = '[@daffodil/category] Category Load Failure Action'
 }
 
 /**

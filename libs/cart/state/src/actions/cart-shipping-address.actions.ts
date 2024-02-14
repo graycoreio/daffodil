@@ -15,12 +15,12 @@ import { DaffCartRetrievalAction } from '../cart-retrieval/public_api';
  * An enum for the cart shipping address action types.
  */
 export enum DaffCartShippingAddressActionTypes {
-  CartShippingAddressLoadAction = '[DaffCart] Shipping Address Load Action',
-  CartShippingAddressLoadSuccessAction = '[DaffCart] Shipping Address Load Success Action',
-  CartShippingAddressLoadFailureAction = '[DaffCart] Shipping Address Load Failure Action',
-  CartShippingAddressUpdateAction = '[DaffCart] Shipping Address Update Action',
-  CartShippingAddressUpdateSuccessAction = '[DaffCart] Shipping Address Update Success Action',
-  CartShippingAddressUpdateFailureAction = '[DaffCart] Shipping Address Update Failure Action',
+  CartShippingAddressLoadAction = '[@daffodil/cart] Shipping Address Load Action',
+  CartShippingAddressLoadSuccessAction = '[@daffodil/cart] Shipping Address Load Success Action',
+  CartShippingAddressLoadFailureAction = '[@daffodil/cart] Shipping Address Load Failure Action',
+  CartShippingAddressUpdateAction = '[@daffodil/cart] Shipping Address Update Action',
+  CartShippingAddressUpdateSuccessAction = '[@daffodil/cart] Shipping Address Update Success Action',
+  CartShippingAddressUpdateFailureAction = '[@daffodil/cart] Shipping Address Update Failure Action',
 }
 
 /**

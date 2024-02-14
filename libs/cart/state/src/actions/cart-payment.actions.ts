@@ -16,19 +16,19 @@ import { DaffCartRetrievalAction } from '../cart-retrieval/public_api';
  * An enum for the cart payment action types.
  */
 export enum DaffCartPaymentActionTypes {
-  CartPaymentLoadAction = '[DaffCart] Payment Load Action',
-  CartPaymentLoadSuccessAction = '[DaffCart] Payment Load Success Action',
-  CartPaymentLoadFailureAction = '[DaffCart] Payment Load Failure Action',
-  CartPaymentUpdateAction = '[DaffCart] Payment Update Action',
-  CartPaymentUpdateSuccessAction = '[DaffCart] Payment Update Success Action',
-  CartPaymentUpdateFailureAction = '[DaffCart] Payment Update Failure Action',
-  CartPaymentUpdateWithBillingAction = '[DaffCart] Payment Update With Billing Action',
-  CartPaymentUpdateWithBillingSuccessAction = '[DaffCart] Payment Update With Billing Success Action',
-  CartPaymentUpdateWithBillingFailureAction = '[DaffCart] Payment Update With Billing Failure Action',
-  CartPaymentRemoveAction = '[DaffCart] Payment Remove Action',
-  CartPaymentRemoveSuccessAction = '[DaffCart] Payment Remove Success Action',
-  CartPaymentRemoveFailureAction = '[DaffCart] Payment Remove Failure Action',
-  CartPaymentMethodAddAction = '[DaffCart] Payment Method Add Action'
+  CartPaymentLoadAction = '[@daffodil/cart] Payment Load Action',
+  CartPaymentLoadSuccessAction = '[@daffodil/cart] Payment Load Success Action',
+  CartPaymentLoadFailureAction = '[@daffodil/cart] Payment Load Failure Action',
+  CartPaymentUpdateAction = '[@daffodil/cart] Payment Update Action',
+  CartPaymentUpdateSuccessAction = '[@daffodil/cart] Payment Update Success Action',
+  CartPaymentUpdateFailureAction = '[@daffodil/cart] Payment Update Failure Action',
+  CartPaymentUpdateWithBillingAction = '[@daffodil/cart] Payment Update With Billing Action',
+  CartPaymentUpdateWithBillingSuccessAction = '[@daffodil/cart] Payment Update With Billing Success Action',
+  CartPaymentUpdateWithBillingFailureAction = '[@daffodil/cart] Payment Update With Billing Failure Action',
+  CartPaymentRemoveAction = '[@daffodil/cart] Payment Remove Action',
+  CartPaymentRemoveSuccessAction = '[@daffodil/cart] Payment Remove Success Action',
+  CartPaymentRemoveFailureAction = '[@daffodil/cart] Payment Remove Failure Action',
+  CartPaymentMethodAddAction = '[@daffodil/cart] Payment Method Add Action'
 }
 
 /**

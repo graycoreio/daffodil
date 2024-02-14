@@ -10,9 +10,9 @@ import {
  * An enum for the cart payment methods action types.
  */
 export enum DaffCartPaymentMethodsActionTypes {
-  CartPaymentMethodsLoadAction = '[DaffCart] Payment Methods Load Action',
-  CartPaymentMethodsLoadSuccessAction = '[DaffCart] Payment Methods Load Success Action',
-  CartPaymentMethodsLoadFailureAction = '[DaffCart] Payment Methods Load Failure Action',
+  CartPaymentMethodsLoadAction = '[@daffodil/cart] Payment Methods Load Action',
+  CartPaymentMethodsLoadSuccessAction = '[@daffodil/cart] Payment Methods Load Success Action',
+  CartPaymentMethodsLoadFailureAction = '[@daffodil/cart] Payment Methods Load Failure Action',
 }
 
 /**

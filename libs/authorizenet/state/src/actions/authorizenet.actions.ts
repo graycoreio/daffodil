@@ -11,13 +11,13 @@ import { DaffPersonalAddress } from '@daffodil/geography';
 import { DaffPaymentGenerateToken } from '@daffodil/payment/state';
 
 export enum DaffAuthorizeNetActionTypes {
-  UpdatePaymentAction = '[Daff-Authorize-Net] Update Payment',
-  UpdatePaymentSuccessAction = '[Daff-Authorize-Net] Update Payment Success',
-  UpdatePaymentFailureAction = '[Daff-Authorize-Net] Update Payment Failure',
+  UpdatePaymentAction = '[@daffodil/authorizenet] Update Payment',
+  UpdatePaymentSuccessAction = '[@daffodil/authorizenet] Update Payment Success',
+  UpdatePaymentFailureAction = '[@daffodil/authorizenet] Update Payment Failure',
   ApplyPaymentAction = '[@daffodil/authorizenet] Apply Payment',
-  LoadAcceptJsAction = '[Daff-Authorize-Net] Load Accept Js',
-  LoadAcceptJsSuccessAction = '[Daff-Authorize-Net] Load Accept Js Success',
-  LoadAcceptJsFailureAction = '[Daff-Authorize-Net] Load Accept Js Failure'
+  LoadAcceptJsAction = '[@daffodil/authorizenet] Load Accept Js',
+  LoadAcceptJsSuccessAction = '[@daffodil/authorizenet] Load Accept Js Success',
+  LoadAcceptJsFailureAction = '[@daffodil/authorizenet] Load Accept Js Failure'
 }
 
 /**
