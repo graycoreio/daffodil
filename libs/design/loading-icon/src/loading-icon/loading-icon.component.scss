@@ -18,15 +18,23 @@ $angle: 270 - $max-percentage-fill * 360;
 	width: 100%;
 }
 
-circle {
-	animation: rotation linear, circle-animation linear;
-	animation-duration: 1000ms;
-	animation-iteration-count: infinite;
-	fill: transparent;
-	stroke-dasharray: $max-stroke-length 400;
-	stroke-linecap: round;
-	stroke-width: 5px;
-	transform-origin: center;
+.daff-loading-icon {
+	&__loader {
+		animation: rotation linear, circle-animation linear;
+		animation-duration: 1000ms;
+		animation-iteration-count: infinite;
+		fill: transparent;
+		stroke-dasharray: $max-stroke-length 400;
+		stroke-linecap: round;
+		stroke-width: 5px;
+		transform-origin: center;
+	}
+
+	&__bg {
+		fill: transparent;
+		stroke-linecap: round;
+		stroke-width: 5px;
+	}
 }
 
 @keyframes circle-animation {
@@ -53,30 +61,9 @@ circle {
 
 @keyframes rotation {
 	0% {
-		transform: rotate(-90deg);
-	}
-
-	50% {
-		transform: rotate(0deg);
-	}
-
-	50.1% { /* stylelint-disable-line scss/selector-nest-combinators */
-		transform: rotate(0deg);
-	}
-
-	75% {
-		transform: rotate(90deg);
-	}
-
-	75.5% { /* stylelint-disable-line scss/selector-nest-combinators */
-		transform: rotate(90deg);
-	}
-
-	99% {
-		transform: rotate(#{$angle}deg);
-	}
-
-	100% {
-		transform: rotate(#{$angle}deg);
-	}
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

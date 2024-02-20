@@ -12,48 +12,64 @@
 	$black: core.daff-map-deep-get($theme, 'core.black');
 
 	.daff-loading-icon {
-		circle {
+		&__loader {
 			stroke: currentColor;
 		}
 
+		&__bg {
+			stroke: rgba($black, 0.08);
+		}
+
 		&.daff-primary {
-			circle {
+			.daff-loading-icon__loader {
 				stroke: theming.daff-color($primary);
+			}
+
+			.daff-loading-icon__bg {
+				stroke: rgba(theming.daff-color($primary), 0.08);
 			}
 		}
 
 		&.daff-secondary {
-			circle {
+			.daff-loading-icon__loader {
 				stroke: theming.daff-color($secondary);
+			}
+
+			.daff-loading-icon__bg {
+				stroke: rgba(theming.daff-color($secondary), 0.08);
 			}
 		}
 
 		&.daff-tertiary {
-			circle {
+			.daff-loading-icon__loader {
 				stroke: theming.daff-color($tertiary);
+			}
+
+			.daff-loading-icon__bg {
+				stroke: rgba(theming.daff-color($tertiary), 0.08);
 			}
 		}
 
 		&.daff-theme {
-			circle {
+			.daff-loading-icon__loader {
 				stroke: $base;
 			}
 		}
 
 		&.daff-theme-contrast {
-			circle {
+			.daff-loading-icon__loader {
 				stroke: $base-contrast;
 			}
 		}
 
 		&.daff-black {
-			circle {
+			.daff-loading-icon__loader {
 				stroke: $black;
 			}
 		}
 
 		&.daff-white {
-			circle {
+			.daff-loading-icon__loader {
 				stroke: $white;
 			}
 		}
