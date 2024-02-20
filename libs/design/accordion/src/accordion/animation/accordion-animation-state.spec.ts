@@ -1,6 +1,6 @@
 import { getAnimationState } from './accordion-animation-state';
 
-describe('accordionAnimationState Calculation', () => {
+describe('@daffodil/design/accordion | accordionAnimationState Calculation', () => {
 
   it('should return `open` if it is open', () => {
     expect(getAnimationState(true)).toEqual('open');

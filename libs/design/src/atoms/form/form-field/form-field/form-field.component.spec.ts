@@ -18,7 +18,6 @@ import { DaffInputModule } from '../../input/public_api';
 import { DaffFormFieldControl } from '../form-field-control';
 import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
 
-
 @Component({ template: `
   <daff-form-field [formSubmitted]="formSubmittedValue">
     <input daff-input [formControl]="formControl">
@@ -29,7 +28,7 @@ class WrapperComponent {
   formControl = new UntypedFormControl('', Validators.required);
 }
 
-describe('DaffFormFieldComponent | Usage', () => {
+describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
   let wrapper: WrapperComponent;
   let component: DaffFormFieldComponent;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -126,7 +125,7 @@ describe('DaffFormFieldComponent | Usage', () => {
 class WrapperWithoutControlComponent {
   formSubmittedValue: boolean;
 }
-describe('DaffFormFieldComponent | Usage Without Control', () => {
+describe('@daffodil/design | DaffFormFieldComponent | Usage Without Control', () => {
   let fixture: ComponentFixture<WrapperWithoutControlComponent>;
 
   beforeEach(waitForAsync(() => {

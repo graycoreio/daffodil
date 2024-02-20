@@ -18,7 +18,7 @@ import { DaffCalloutTitleDirective } from './callout-title.directive';
 })
 class WrapperComponent {}
 
-describe('DaffCalloutTitleDirective', () => {
+describe('@daffodil/design/callout | DaffCalloutTitleDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

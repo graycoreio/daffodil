@@ -31,7 +31,7 @@ class PrefixableComponent extends _prefixableComponentBase {
 class WrapperComponent {}
 
 
-describe('daffPrefixableMixin', () => {
+describe('@daffodil/design | daffPrefixableMixin', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapper: WrapperComponent;
   let prefixableComponent: PrefixableComponent;

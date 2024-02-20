@@ -24,7 +24,7 @@ class WrapperComponent {
   mode: DaffListMode;
 }
 
-describe('DaffListComponent', () => {
+describe('@daffodil/design/list | DaffListComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffListComponent;
   let de: DebugElement;

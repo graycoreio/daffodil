@@ -10,7 +10,7 @@ import { DaffThemeStorageService } from './storage/theme-storage.service';
 import { DaffThemingService } from './theming.service';
 import { DaffTheme } from '../types/theme';
 
-describe('DaffThemingService', () => {
+describe('@daffodil/design | DaffThemingService', () => {
   let testScheduler: TestScheduler;
 
   const constructThemingService = (

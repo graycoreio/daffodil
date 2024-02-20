@@ -20,7 +20,7 @@ import { DaffMenuItemComponent } from './menu-item.component';
 
 class WrapperComponent {}
 
-describe('DaffMenuItemComponent', () => {
+describe('@daffodil/design/menu | DaffMenuItemComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapper: WrapperComponent;
   let de: DebugElement;

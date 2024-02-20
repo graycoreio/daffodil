@@ -19,7 +19,7 @@ import { DaffListItemComponent } from './list-item.component';
 })
 class WrapperComponent {}
 
-describe('DaffListItemComponent', () => {
+describe('@daffodil/design/list | DaffListItemComponent', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

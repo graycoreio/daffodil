@@ -16,7 +16,7 @@ class TestingClass {
   };
 }
 
-describe('daffSizeMixin', () => {
+describe('@daffodil/design | daffSizeMixin', () => {
   let instance;
   let classWithSize;
 

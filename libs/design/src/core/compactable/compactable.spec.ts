@@ -19,7 +19,7 @@ class TestingClass implements HasElementRef {
   };
 }
 
-describe('daffCompactableMixin', () => {
+describe('@daffodil/design | daffCompactableMixin', () => {
   let instance;
   let classWithSkeleton;
 

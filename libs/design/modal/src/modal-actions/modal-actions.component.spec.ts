@@ -6,7 +6,7 @@ import {
 
 import { DaffModalActionsComponent } from './modal-actions.component';
 
-describe('DaffModalActionsComponent', () => {
+describe('@daffodil/design/modal | DaffModalActionsComponent', () => {
   let component: DaffModalActionsComponent;
   let fixture: ComponentFixture<DaffModalActionsComponent>;
 

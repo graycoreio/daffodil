@@ -2,7 +2,7 @@ import { UntypedFormControl } from '@angular/forms';
 
 import { DaffErrorStateMatcher } from './error-state-matcher';
 
-describe('DaffErrorStateMatcher', () => {
+describe('@daffodil/design | DaffErrorStateMatcher', () => {
   const component: DaffErrorStateMatcher  = new DaffErrorStateMatcher();
 
   describe('isErrorState', () => {

@@ -7,18 +7,11 @@ import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import {
-  ReactiveFormsModule,
-  FormGroup,
-  FormControl,
-  FormArray,
-} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { DaffCheckboxComponent } from './checkbox.component';
 import { DaffCheckboxModule } from './checkbox.module';
-
-
 
 @Component({
   template: `
@@ -39,7 +32,7 @@ class CheckboxWrapperComponent { }
 })
 class CheckboxEmbeddedComponent {}
 
-describe('DaffCheckboxComponent', () => {
+describe('@daffodil/design | DaffCheckboxComponent', () => {
   let checkboxWrapper: CheckboxWrapperComponent;
   let checkboxEmbedded: CheckboxEmbeddedComponent;
 

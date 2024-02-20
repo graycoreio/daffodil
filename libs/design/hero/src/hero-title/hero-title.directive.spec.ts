@@ -18,7 +18,7 @@ import { DaffHeroTitleDirective } from './hero-title.directive';
 })
 class WrapperComponent {}
 
-describe('DaffHeroTitleDirective', () => {
+describe('@daffodil/design/hero | DaffHeroTitleDirective', () => {
   let wrapper: WrapperComponent;
   let heroTitle: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

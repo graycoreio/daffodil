@@ -18,7 +18,7 @@ import { DaffSidebarHeaderTitleDirective } from './sidebar-header-title.directiv
 })
 class WrapperComponent {}
 
-describe('DaffSidebarHeaderTitleDirective', () => {
+describe('@daffodil/design/sidebar | DaffSidebarHeaderTitleDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

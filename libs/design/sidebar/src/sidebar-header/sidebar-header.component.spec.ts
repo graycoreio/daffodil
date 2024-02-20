@@ -16,7 +16,7 @@ import { DaffSidebarHeaderComponent } from './sidebar-header.component';
 ` })
 class WrapperComponent {}
 
-describe('DaffSidebarHeaderComponent', () => {
+describe('@daffodil/design/sidebar | DaffSidebarHeaderComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffSidebarHeaderComponent;

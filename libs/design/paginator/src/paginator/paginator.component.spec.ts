@@ -43,7 +43,7 @@ class WrapperComponent {
   queryParamValue = '';
 }
 
-describe('DaffPaginatorComponent', () => {
+describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;

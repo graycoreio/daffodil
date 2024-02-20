@@ -12,7 +12,7 @@ import { DaffSidebarViewportComponent } from './../sidebar-viewport.component';
 import { DaffSidebarAnimationStates } from '../../animation/sidebar-animation';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
-describe('DaffSidebarViewportComponent | Defaults', () => {
+describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Defaults', () => {
   let fixture: ComponentFixture<DaffSidebarViewportComponent>;
   let component: DaffSidebarViewportComponent;
 

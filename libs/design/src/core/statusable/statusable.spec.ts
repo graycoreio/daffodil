@@ -16,7 +16,7 @@ class TestingClass {
   };
 }
 
-describe('daffStatusMixin', () => {
+describe('@daffodil/design | daffStatusMixin', () => {
   let instance;
   let classWithStatus;
 

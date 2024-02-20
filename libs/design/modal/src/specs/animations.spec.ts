@@ -21,7 +21,7 @@ class WrapperComponent {
   open = true;
 }
 
-describe('DaffModalComponent', () => {
+describe('@daffodil/design/modal | DaffModalComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let modal: DaffModalComponent;

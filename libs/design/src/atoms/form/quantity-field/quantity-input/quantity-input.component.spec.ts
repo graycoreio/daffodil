@@ -38,7 +38,7 @@ class WrapperComponent {
   maxValue = 50;
 }
 
-describe('DaffQuantityInputComponent', () => {
+describe('@daffodil/design | DaffQuantityInputComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffQuantityInputComponent;
   let fixture: ComponentFixture<WrapperComponent>;

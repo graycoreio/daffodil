@@ -7,7 +7,7 @@ import { TestScheduler } from 'rxjs/testing';
 
 import { DaffOsThemeService } from './ostheme.service';
 
-describe('DaffOsThemeService', () => {
+describe('@daffodil/design | DaffOsThemeService', () => {
   let service: DaffOsThemeService;
   let testScheduler: TestScheduler;
 

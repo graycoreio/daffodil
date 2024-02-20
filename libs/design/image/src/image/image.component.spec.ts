@@ -23,7 +23,7 @@ class WrapperComponent {
   skeleton = false;
 }
 
-describe('DaffImageComponent', () => {
+describe('@daffodil/design/image | DaffImageComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffImageComponent;
   let de: DebugElement;

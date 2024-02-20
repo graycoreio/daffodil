@@ -25,7 +25,7 @@ class WrapperComponent {
   backdropFunction = () => {};
 }
 
-describe('DaffBackdropComponent | Usage', () => {
+describe('@daffodil/design | DaffBackdropComponent | Usage', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let backdrop: DaffBackdropComponent;
@@ -99,7 +99,7 @@ describe('DaffBackdropComponent | Usage', () => {
 });
 
 
-describe('DaffBackdropComponent | Defaults', () => {
+describe('@daffodil/design | DaffBackdropComponent | Defaults', () => {
   let fixture: ComponentFixture<DaffBackdropComponent>;
   let component: DaffBackdropComponent;
 

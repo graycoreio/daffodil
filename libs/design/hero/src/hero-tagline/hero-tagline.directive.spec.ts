@@ -18,7 +18,7 @@ import { DaffHeroTaglineDirective } from './hero-tagline.directive';
 })
 class WrapperComponent {}
 
-describe('DaffHeroTaglineDirective', () => {
+describe('@daffodil/design/hero | DaffHeroTaglineDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

@@ -25,79 +25,7 @@ class WrapperComponent {
   orientation: DaffCardOrientation;
 }
 
-describe('DaffCardComponent | Usage', () => {
-  let fixture: ComponentFixture<WrapperComponent>;
-  let de: DebugElement;
-  let wrapper: WrapperComponent;
-  let component: DaffCardComponent;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        DaffCardComponent,
-        WrapperComponent,
-      ],
-    })
-      .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(WrapperComponent);
-    wrapper = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css('daff-card'));
-    component = de.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(wrapper).toBeTruthy();
-  });
-
-  describe('setting the color', () => {
-    it('should add the class of the defined color to the host element', () => {
-      wrapper.color = 'primary';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
-    });
-  });
-
-  it('should take orientation as an input', () => {
-    wrapper.orientation = 'vertical';
-    fixture.detectChanges();
-
-    expect(component.orientation).toEqual('vertical');
-  });
-
-  describe('setting the orientation', () => {
-    it('should add the class of the defined orientation to the host element', () => {
-      wrapper.orientation = 'vertical';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-card--vertical')).toEqual(true);
-    });
-
-    describe('when orientation="vertical"', () => {
-      it('should add a class of "daff-card--vertical" to the host element', () => {
-        wrapper.orientation = 'vertical';
-        fixture.detectChanges();
-
-        expect(de.nativeElement.classList.contains('daff-card--vertical')).toBeTruthy();
-      });
-    });
-
-    describe('when orientation="horizontal"', () => {
-      it('should add a class of "daff-card--horizontal" to the host element', () => {
-        wrapper.orientation = 'horizontal';
-        fixture.detectChanges();
-
-        expect(de.nativeElement.classList.contains('daff-card--horizontal')).toBeTruthy();
-      });
-    });
-  });
-});
-
-describe('DaffCardComponent | Defaults', () => {
+describe('@daffodil/design/card | DaffCardComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;
@@ -133,15 +61,54 @@ describe('DaffCardComponent | Defaults', () => {
     });
   });
 
+  describe('using the color property of a card', () => {
+    it('should not set a default color', () => {
+      expect(component.color).toBeFalsy();
+    });
+
+    it('should add the class of the defined color to the host element', () => {
+      wrapper.color = 'primary';
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
+    });
+  });
+
+  it('should take orientation as an input', () => {
+    wrapper.orientation = 'vertical';
+    fixture.detectChanges();
+
+    expect(component.orientation).toEqual('vertical');
+  });
+
   describe('using the orientation property of a card', () => {
     it('should set the default orientation to vertical', () => {
       expect(component.orientation).toEqual('vertical');
     });
-  });
 
-  describe('using the color property of a card', () => {
-    it('should not set a default color', () => {
-      expect(component.color).toBeFalsy();
+    it('should add the class of the defined orientation to the host element', () => {
+      wrapper.orientation = 'vertical';
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-card--vertical')).toEqual(true);
+    });
+
+    describe('when orientation="vertical"', () => {
+      it('should add a class of "daff-card--vertical" to the host element', () => {
+        wrapper.orientation = 'vertical';
+        fixture.detectChanges();
+
+        expect(de.nativeElement.classList.contains('daff-card--vertical')).toBeTruthy();
+      });
+    });
+
+    describe('when orientation="horizontal"', () => {
+      it('should add a class of "daff-card--horizontal" to the host element', () => {
+        wrapper.orientation = 'horizontal';
+        fixture.detectChanges();
+
+        expect(de.nativeElement.classList.contains('daff-card--horizontal')).toBeTruthy();
+      });
     });
   });
 });

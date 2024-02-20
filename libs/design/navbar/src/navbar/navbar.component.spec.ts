@@ -19,7 +19,7 @@ class WrapperComponent {
   raised = false;
 }
 
-describe('DaffNavbarComponent', () => {
+describe('@daffodil/design/navbar | DaffNavbarComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;

@@ -1,7 +1,7 @@
 import { daffComputeThemeSetting } from './computer';
 import { DaffTheme } from '../types/theme';
 
-describe('daffComputeThemeSetting', () => {
+describe('@daffodil/design | daffComputeThemeSetting', () => {
   it('should return dark if there are no OS or storage preferences', () => {
     expect(daffComputeThemeSetting()).toEqual(DaffTheme.Dark);
   });

@@ -43,7 +43,7 @@ export class DaffMockThumbnail1Component {}
 })
 export class DaffMockThumbnail2Component {}
 
-describe('DaffMediaRendererComponent', () => {
+describe('@daffodil/design/media-gallery | DaffMediaRendererComponent', () => {
   let component: DaffMediaRendererComponent;
   let fixture: ComponentFixture<DaffMediaRendererComponent>;
   let registry: DaffMediaGalleryRegistry;

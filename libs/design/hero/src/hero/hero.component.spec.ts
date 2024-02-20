@@ -31,7 +31,7 @@ class WrapperComponent {
   compact = false;
 }
 
-describe('DaffHeroComponent', () => {
+describe('@daffodil/design/hero | DaffHeroComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffHeroComponent;
   let de: DebugElement;

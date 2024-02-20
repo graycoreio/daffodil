@@ -27,7 +27,7 @@ class WrapperComponent {
 })
 class MockMediaRendererComponent {}
 
-describe('DaffThumbnailDirective', () => {
+describe('@daffodil/design/media-gallery | DaffThumbnailDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let directive: DaffThumbnailDirective;

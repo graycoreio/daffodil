@@ -18,7 +18,7 @@ import { DaffListSubheaderDirective } from './list-subheader.directive';
 })
 class WrapperComponent {}
 
-describe('DaffListSubheaderDirective', () => {
+describe('@daffodil/design/list | DaffListSubheaderDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

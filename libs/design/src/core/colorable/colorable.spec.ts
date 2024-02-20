@@ -21,7 +21,7 @@ class TestingClass {
  * Some of these tests are inspired by the @angular/material
  * color common-behavior, as it is a really clean implementation.
  */
-describe('daffColorMixin', () => {
+describe('@daffodil/design | daffColorMixin', () => {
   let instance;
   let classWithColor;
 

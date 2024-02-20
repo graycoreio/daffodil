@@ -33,7 +33,7 @@ class WrapperComponent {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }
 
-describe('DaffModalService', () => {
+describe('@daffodil/design/modal | DaffModalService', () => {
   let service: DaffModalService;
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;

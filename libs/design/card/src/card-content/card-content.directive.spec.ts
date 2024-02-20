@@ -17,7 +17,7 @@ import { DaffCardContentDirective } from './card-content.directive';
 
 class WrapperComponent {}
 
-describe('DaffCardContentDirective', () => {
+describe('@daffodil/design/card | DaffCardContentDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

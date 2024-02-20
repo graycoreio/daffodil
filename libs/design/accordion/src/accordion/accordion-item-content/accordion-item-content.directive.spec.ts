@@ -18,7 +18,7 @@ import { DaffAccordionItemContentDirective } from './accordion-item-content.dire
 })
 class WrapperComponent {}
 
-describe('DaffAccordionItemContentDirective', () => {
+describe('@daffodil/design/accordion | DaffAccordionItemContentDirective', () => {
   let accordionItemContent: DaffAccordionItemContentDirective;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

@@ -48,7 +48,7 @@ class WrapperComponent {
   tabindex = 0;
 }
 
-describe('DaffButtonComponent', () => {
+describe('@daffodil/design/button | DaffButtonComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapper: WrapperComponent;
   let de: DebugElement;

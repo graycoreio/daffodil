@@ -20,7 +20,7 @@ class WrapperComponent {
   size: DaffSizeAllType;
 }
 
-describe('DaffContainerComponent', () => {
+describe('@daffodil/design/container | DaffContainerComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffContainerComponent;
   let de: DebugElement;

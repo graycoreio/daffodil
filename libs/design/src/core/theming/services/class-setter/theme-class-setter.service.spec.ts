@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { DaffThemeClassSetterService } from './theme-class-setter.service';
 import { DaffThemingService } from '../theming.service';
 
-describe('DaffThemeClassSetterService', () => {
+describe('@daffodil/design | DaffThemeClassSetterService', () => {
   let service: DaffThemeClassSetterService;
   let doc: Document;
   let themeService: DaffThemingService;

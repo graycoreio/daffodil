@@ -19,7 +19,7 @@ class TestingClass implements HasElementRef {
   };
 }
 
-describe('daffManageContainerLayoutMixin', () => {
+describe('@daffodil/design | daffManageContainerLayoutMixin', () => {
   let instance;
   let manageContainerLayoutClass;
 

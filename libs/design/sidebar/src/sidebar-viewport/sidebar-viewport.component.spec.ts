@@ -40,7 +40,7 @@ class WrapperComponent {
   navPlacement: DaffNavPlacement = 'above';
 }
 
-describe('DaffSidebarViewportComponent | Usage', () => {
+describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Usage', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffSidebarViewportComponent;

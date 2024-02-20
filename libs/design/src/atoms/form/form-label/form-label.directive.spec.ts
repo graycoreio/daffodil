@@ -17,7 +17,7 @@ import { DaffFormLabelDirective } from './form-label.directive';
 
 class WrapperComponent {}
 
-describe('DaffFormLabelDirective', () => {
+describe('@daffodil/design | DaffFormLabelDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

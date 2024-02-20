@@ -18,7 +18,7 @@ import { DaffAccordionItemTitleDirective } from './accordion-item-title.directiv
 })
 class WrapperComponent {}
 
-describe('DaffAccordionItemTitleDirective', () => {
+describe('@daffodil/design/accordion | DaffAccordionItemTitleDirective', () => {
   let accordionItemTitle: DaffAccordionItemTitleDirective;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
