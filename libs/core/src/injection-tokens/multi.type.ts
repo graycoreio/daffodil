@@ -9,6 +9,7 @@ import {
 export interface DaffMultiInjectionToken<T = unknown> {
   /**
    * The injection token.
+   * Its default value is an empty array.
    */
   token: InjectionToken<Array<T>>;
 
