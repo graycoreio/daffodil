@@ -26,7 +26,7 @@ export const createMultiInjectionToken = <T = unknown>(
       ...options,
     },
   );
-  const provider = (...values: Array<T>) => values.map((value) => ({
+  const provider = <R extends T = T>(...values: Array<R>) => values.map((value) => ({
     provide: token,
     useValue: value,
     multi: true,

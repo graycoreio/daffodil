@@ -29,7 +29,7 @@ export const createServicesInjectionToken = <T = unknown>(
       ...options,
     },
   );
-  const provider = (...classes: Array<Type<T>>) => classes.map((klass) => ({
+  const provider = <R extends T = T>(...classes: Array<Type<R>>) => classes.map((klass) => ({
     provide: token,
     useExisting: klass,
     multi: true,

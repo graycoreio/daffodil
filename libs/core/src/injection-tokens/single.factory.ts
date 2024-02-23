@@ -9,7 +9,7 @@ import { DaffSingleInjectionToken } from './single.type';
  */
 export const createSingleInjectionToken = <T = unknown>(...args: ConstructorParameters<typeof InjectionToken<T>>): DaffSingleInjectionToken<T> => {
   const token = new InjectionToken<T>(...args);
-  const provider = (value: T) => ({
+  const provider = <R extends T = T>(value: R) => ({
     provide: token,
     useValue: value,
   });

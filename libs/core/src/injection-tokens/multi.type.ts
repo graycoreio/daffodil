@@ -16,5 +16,5 @@ export interface DaffMultiInjectionToken<T = unknown> {
   /**
    * A helper function to provide values to the token.
    */
-  provider: (...values: Array<T>) => Array<ValueProvider>;
+  provider: <R extends T = T>(...values: Array<R>) => Array<ValueProvider>;
 }

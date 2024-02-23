@@ -18,5 +18,5 @@ export interface DaffConfigInjectionToken<T = unknown> {
    * It will shallow merge the passed config with the default config
    * with the passed config keys taking precedence.
    */
-  provider: (config: Partial<T>) => ValueProvider;
+  provider: <R extends T = T>(config: Partial<R>) => ValueProvider;
 }

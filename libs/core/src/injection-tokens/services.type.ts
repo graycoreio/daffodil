@@ -17,5 +17,5 @@ export interface DaffServicesInjectionToken<T = unknown> {
   /**
    * A helper function to provide service classes to the token.
    */
-  provider: (...classes: Array<Type<T>>) => Array<ExistingProvider>;
+  provider: <R extends T = T>(...classes: Array<Type<R>>) => Array<ExistingProvider>;
 }

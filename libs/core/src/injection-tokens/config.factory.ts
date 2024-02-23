@@ -23,7 +23,7 @@ export const createConfigInjectionToken = <T = unknown>(
       ...options,
     },
   );
-  const provider = (config: Partial<T>) => ({
+  const provider = <R extends T = T>(config: Partial<R>) => ({
     provide: token,
     useValue: {
       ...defaultConfig,

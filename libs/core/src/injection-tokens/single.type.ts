@@ -15,5 +15,5 @@ export interface DaffSingleInjectionToken<T = unknown> {
   /**
    * A helper function to provide a value to the token.
    */
-  provider: (value: T) => ValueProvider;
+  provider: <R extends T = T>(value: R) => ValueProvider;
 }
