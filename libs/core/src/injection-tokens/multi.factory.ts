@@ -1,7 +1,13 @@
 import { InjectionToken } from '@angular/core';
 
 import { DaffMultiInjectionToken } from './multi.type';
+import {
+  TokenDesc,
+  TokenOptions,
+} from './token-constuctor-params.type';
 
+// having a single instance of the default factory
+// will hopefully reduce memory footprint
 const defaultFactory = () => [];
 
 /**
@@ -9,12 +15,15 @@ const defaultFactory = () => [];
  *
  * See {@link DaffMultiInjectionToken}.
  */
-export const createMultiInjectionToken = <T = unknown>(...args: ConstructorParameters<typeof InjectionToken<Array<T>>>): DaffMultiInjectionToken<T> => {
+export const createMultiInjectionToken = <T = unknown>(
+  desc: TokenDesc<Array<T>>,
+  options?: Partial<TokenOptions<Array<T>>>,
+): DaffMultiInjectionToken<T> => {
   const token = new InjectionToken<Array<T>>(
-    args[0],
+    desc,
     {
       factory: defaultFactory,
-      ...args[1],
+      ...options,
     },
   );
   const provider = (...values: Array<T>) => values.map((value) => ({
