@@ -24,7 +24,7 @@ class WrapperComponent {
   initiallyActiveValue: boolean;
 }
 
-describe('DaffAccordionItemComponent', () => {
+describe('@daffodil/design/accordion | DaffAccordionItemComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapper: WrapperComponent;
   let accordionHeader: DebugElement;

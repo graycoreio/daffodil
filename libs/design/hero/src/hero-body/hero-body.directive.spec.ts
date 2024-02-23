@@ -16,7 +16,7 @@ import { DaffHeroBodyDirective } from './hero-body.directive';
 })
 class WrapperComponent {}
 
-describe('DaffHeroBodyDirective', () => {
+describe('@daffodil/design/hero | DaffHeroBodyDirective', () => {
   let wrapper: WrapperComponent;
   let heroBody: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

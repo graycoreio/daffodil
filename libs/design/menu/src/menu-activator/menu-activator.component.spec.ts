@@ -20,7 +20,7 @@ import { provideTestMenuService } from '../testing/dummy-service';
 ` })
 class WrapperComponent {}
 
-describe('DaffMenuActivatorDirective', () => {
+describe('@daffodil/design/menu | DaffMenuActivatorDirective', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let component: DaffMenuActivatorDirective;

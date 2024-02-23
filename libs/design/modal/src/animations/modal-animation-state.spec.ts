@@ -1,6 +1,6 @@
 import { getAnimationState } from './modal-animation-state';
 
-describe('DaffModal | Animation state calculation', () => {
+describe('@daffodil/design/modal | DaffModal | Animation state calculation', () => {
   it('should return `open` when passed true', () => {
     expect(getAnimationState(true)).toEqual('open');
   });

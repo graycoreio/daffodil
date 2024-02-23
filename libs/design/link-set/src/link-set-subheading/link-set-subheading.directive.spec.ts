@@ -17,7 +17,7 @@ import { DaffLinkSetSubheadingDirective } from './link-set-subheading.directive'
 
 class WrapperComponent {}
 
-describe('DaffLinkSetSubheadingDirective', () => {
+describe('@daffodil/design/link-set | DaffLinkSetSubheadingDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

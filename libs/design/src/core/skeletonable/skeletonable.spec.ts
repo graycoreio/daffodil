@@ -16,7 +16,7 @@ class TestingClass {
   };
 }
 
-describe('daffSkeletonableMixin', () => {
+describe('@daffodil/design | daffSkeletonableMixin', () => {
   let instance;
   let classWithSkeleton;
 

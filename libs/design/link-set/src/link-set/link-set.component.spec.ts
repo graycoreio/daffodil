@@ -17,7 +17,7 @@ import { DaffLinkSetComponent } from './link-set.component';
 
 class WrapperComponent {}
 
-describe('DaffLinkSetComponent', () => {
+describe('@daffodil/design/link-set | DaffLinkSetComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;

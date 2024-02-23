@@ -18,7 +18,7 @@ import { DaffCalloutBodyDirective } from './callout-body.directive';
 })
 class WrapperComponent {}
 
-describe('DaffCalloutBodyDirective', () => {
+describe('@daffodil/design/callout | DaffCalloutBodyDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

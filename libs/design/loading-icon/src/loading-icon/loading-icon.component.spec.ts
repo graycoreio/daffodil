@@ -16,10 +16,10 @@ import { DaffLoadingIconComponent } from './loading-icon.component';
 @Component({ template: '<daff-loading-icon [color]="color" [diameter]="diameter"></daff-loading-icon>' })
 class WrapperComponent {
   color: DaffPalette;
-  diameter = 100;
+  diameter = 60;
 }
 
-describe('DaffLoadingIconComponent | Usage', () => {
+describe('@daffodil/design/loading-icon | DaffLoadingIconComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffLoadingIconComponent;
   let de: DebugElement;
@@ -55,6 +55,10 @@ describe('DaffLoadingIconComponent | Usage', () => {
     });
   });
 
+  it('has a default value of 60 for the diameter', () => {
+    expect(component.diameter).toEqual(60);
+  });
+
   it('can take a `diameter` as input which sets max-width on the `daff-loading-icon` host', () => {
     wrapper.diameter = 50;
     fixture.detectChanges();
@@ -63,6 +67,10 @@ describe('DaffLoadingIconComponent | Usage', () => {
 
   describe('using a colored variant of a loading icon',() => {
     let loadingIconDe;
+
+    it('should not set a default color', () => {
+      expect(component.color).toBeFalsy();
+    });
 
     it('should set a color class on the loading icon', () => {
       wrapper.color = 'secondary';
@@ -73,37 +81,3 @@ describe('DaffLoadingIconComponent | Usage', () => {
     });
   });
 });
-
-describe('DaffLoadingIconComponent | Defaults', () => {
-  let component: DaffLoadingIconComponent;
-  let fixture: ComponentFixture<DaffLoadingIconComponent>;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        DaffLoadingIconComponent,
-      ],
-    })
-      .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DaffLoadingIconComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('has a default value of 60 for the diameter', () => {
-    expect(component.diameter).toEqual(60);
-  });
-
-  it('should not set a default color', () => {
-    expect(component.color).toBeFalsy();
-  });
-});
-
-

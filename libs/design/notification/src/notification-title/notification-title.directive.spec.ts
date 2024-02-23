@@ -18,7 +18,7 @@ import { DaffNotificationTitleDirective } from './notification-title.directive';
 })
 class WrapperComponent {}
 
-describe('DaffNotificationTitleDirective', () => {
+describe('@daffodil/design/notification | DaffNotificationTitleDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

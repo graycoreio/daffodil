@@ -16,7 +16,7 @@ import { DaffSidebarFooterComponent } from './sidebar-footer.component';
 ` })
 class WrapperComponent {}
 
-describe('DaffSidebarFooterComponent', () => {
+describe('@daffodil/design/sidebar | DaffSidebarFooterComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let sidebarFooter: DaffSidebarFooterComponent;

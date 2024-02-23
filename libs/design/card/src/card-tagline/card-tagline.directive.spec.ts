@@ -17,7 +17,7 @@ import { DaffCardTaglineDirective } from './card-tagline.directive';
 
 class WrapperComponent {}
 
-describe('DaffCardTaglineDirective', () => {
+describe('@daffodil/design/card | DaffCardTaglineDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

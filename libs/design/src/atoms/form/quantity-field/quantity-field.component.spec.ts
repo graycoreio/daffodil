@@ -34,7 +34,7 @@ class WrapperComponent {
   formControl = new UntypedFormControl(1);
 }
 
-describe('DaffQuantityFieldComponent', () => {
+describe('@daffodil/design | DaffQuantityFieldComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffQuantityFieldComponent;
   let fixture: ComponentFixture<WrapperComponent>;

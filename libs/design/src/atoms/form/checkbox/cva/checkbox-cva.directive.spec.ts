@@ -22,7 +22,7 @@ class CheckboxWrapperComponent {
   checkbox = new UntypedFormControl();
 }
 
-describe('DaffCheckboxControlValueAccessorDirective', () => {
+describe('@daffodil/design | DaffCheckboxControlValueAccessorDirective', () => {
 
   describe('with the directive', () => {
     let CheckboxWrapper: CheckboxWrapperComponent;

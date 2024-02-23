@@ -34,7 +34,7 @@ class WrapperComponent {
   closeNotificationFunction = () => {};
 }
 
-describe('DaffNotificationComponent', () => {
+describe('@daffodil/design/notification | DaffNotificationComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;

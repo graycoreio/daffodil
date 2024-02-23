@@ -17,7 +17,7 @@ import { DaffModalHeaderComponent } from './modal-header.component';
 
 class WrapperComponent {}
 
-describe('DaffModalHeaderComponent', () => {
+describe('@daffodil/design/modal | DaffModalHeaderComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;

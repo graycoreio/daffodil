@@ -38,7 +38,7 @@ class DaffMemoryStorageService implements DaffPersistenceService {
   }
 }
 
-describe('DaffThemeStorageService', () => {
+describe('@daffodil/design | DaffThemeStorageService', () => {
   let service: DaffThemeStorageService;
   let testScheduler: TestScheduler;
 

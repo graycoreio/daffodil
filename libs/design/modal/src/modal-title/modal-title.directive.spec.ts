@@ -18,7 +18,7 @@ import { DaffModalTitleDirective } from './modal-title.directive';
 })
 class WrapperComponent {}
 
-describe('DaffModalTitleDirective', () => {
+describe('@daffodil/design/modal | DaffModalTitleDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

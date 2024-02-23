@@ -18,7 +18,7 @@ import { DaffCalloutIconDirective } from './callout-icon.directive';
 })
 class WrapperComponent {}
 
-describe('DaffCalloutIconDirective', () => {
+describe('@daffodil/design/callout | DaffCalloutIconDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

@@ -6,7 +6,7 @@ import {
 
 import { DaffModalContentComponent } from './modal-content.component';
 
-describe('DaffModalContentComponent', () => {
+describe('@daffodil/design/modal | DaffModalContentComponent', () => {
   let component: DaffModalContentComponent;
   let fixture: ComponentFixture<DaffModalContentComponent>;
 

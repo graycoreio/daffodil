@@ -22,7 +22,7 @@ export class ChangeDetectorRefMock implements Partial<ChangeDetectorRef> {
   markForCheck() {}
 }
 
-describe('DaffMediaGalleryRegistry', () => {
+describe('@daffodil/design/media-gallery | DaffMediaGalleryRegistry', () => {
   let registry: DaffMediaGalleryRegistry;
   let cd: ChangeDetectorRef;
   const mockGalleryAlreadyAdded: DaffMediaGalleryRegistration = {

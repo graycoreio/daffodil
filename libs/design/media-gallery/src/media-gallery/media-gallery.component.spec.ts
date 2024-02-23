@@ -30,7 +30,7 @@ class WrapperComponent {
 })
 class MockMediaRendererComponent {}
 
-describe('DaffMediaGalleryComponent', () => {
+describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;

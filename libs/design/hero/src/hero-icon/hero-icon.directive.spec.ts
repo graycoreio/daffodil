@@ -16,7 +16,7 @@ import { DaffHeroIconDirective } from './hero-icon.directive';
 })
 class WrapperComponent {}
 
-describe('DaffHeroIconDirective', () => {
+describe('@daffodil/design/hero | DaffHeroIconDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

@@ -18,7 +18,7 @@ import { DaffSidebarHeaderActionDirective } from './sidebar-header-action.direct
 })
 class WrapperComponent {}
 
-describe('DaffSidebarHeaderActionDirective', () => {
+describe('@daffodil/design/sidebar | DaffSidebarHeaderActionDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

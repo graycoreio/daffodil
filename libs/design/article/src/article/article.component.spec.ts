@@ -17,7 +17,7 @@ import { DaffArticleComponent } from './article.component';
 
 class WrapperComponent {}
 
-describe('DaffArticleComponent', () => {
+describe('@daffodil/design/article | DaffArticleComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;

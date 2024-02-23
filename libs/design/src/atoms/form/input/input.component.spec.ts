@@ -19,7 +19,7 @@ class WrapperComponent {
   formSubmittedValue: boolean;
 }
 
-describe('DaffInputComponent', () => {
+describe('@daffodil/design | DaffInputComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let stubFormControl;

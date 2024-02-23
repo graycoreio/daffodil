@@ -18,7 +18,7 @@ import { DaffCalloutTaglineDirective } from './callout-tagline.directive';
 })
 class WrapperComponent {}
 
-describe('DaffCalloutTaglineDirective', () => {
+describe('@daffodil/design/callout | DaffCalloutTaglineDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

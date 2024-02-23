@@ -21,7 +21,7 @@ import { provideTestMenuService } from '../testing/dummy-service';
 ` })
 class WrapperComponent {}
 
-describe('DaffMenuComponent', () => {
+describe('@daffodil/design/menu | DaffMenuComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffMenuComponent;

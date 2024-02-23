@@ -27,7 +27,7 @@ class WrapperComponent {
   onComplete(): void {};
 }
 
-describe('DaffProgressIndicatorComponent', () => {
+describe('@daffodil/design | DaffProgressIndicatorComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;

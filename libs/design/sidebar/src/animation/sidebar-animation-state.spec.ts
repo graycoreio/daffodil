@@ -2,7 +2,7 @@ import { DaffSidebarAnimationStates } from './sidebar-animation';
 import { getAnimationState } from './sidebar-animation-state';
 import { DaffSidebarModeEnum } from '../helper/sidebar-mode';
 
-describe('SidebarAnimationState Calculation', () => {
+describe('@daffodil/design/sidebar | SidebarAnimationState Calculation', () => {
   it('should return `none` if the sidebar mode is `side`', () => {
     expect(getAnimationState(false, DaffSidebarModeEnum.Side)).toEqual(DaffSidebarAnimationStates.NONE);
     expect(getAnimationState(true, DaffSidebarModeEnum.Side)).toEqual(DaffSidebarAnimationStates.NONE);

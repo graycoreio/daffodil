@@ -12,7 +12,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffSidebarComponent } from './sidebar.component';
 
-describe('DaffSidebarComponent', () => {
+describe('@daffodil/design/sidebar | DaffSidebarComponent', () => {
   let component: DaffSidebarComponent;
   let fixture: ComponentFixture<DaffSidebarComponent>;
 

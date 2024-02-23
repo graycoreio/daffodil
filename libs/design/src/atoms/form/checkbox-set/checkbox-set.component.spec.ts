@@ -44,9 +44,7 @@ class CheckboxEmbeddedComponent implements OnInit {
   }
 }
 
-describe('DaffCheckboxSetComponent', () => {
-
-
+describe('@daffodil/design | DaffCheckboxSetComponent', () => {
   let embeddedComponent: DaffCheckboxSetComponent;
   let embeddedFixture: ComponentFixture<CheckboxEmbeddedComponent>;
 

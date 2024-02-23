@@ -30,7 +30,7 @@ class WrapperComponent {
   formControlValue: UntypedFormControl;
 }
 
-describe('DaffNativeSelectComponent', () => {
+describe('@daffodil/design | DaffNativeSelectComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let stubFormControl;

@@ -17,7 +17,7 @@ import { DaffFocusStackService } from './stack.service';
 })
 export class FakeComponent {}
 
-describe('DaffFocusStackService', () => {
+describe('@daffodil/design | DaffFocusStackService', () => {
   let stack: DaffFocusStackService;
   let wrapper: ComponentFixture<FakeComponent>;
 

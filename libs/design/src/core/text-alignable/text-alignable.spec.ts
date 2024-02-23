@@ -16,7 +16,7 @@ class TestingClass {
   };
 }
 
-describe('daffTextAlignmentMixin', () => {
+describe('@daffodil/design | daffTextAlignmentMixin', () => {
   let instance;
   let classWithTextAlignment;
 

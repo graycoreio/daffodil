@@ -34,7 +34,7 @@ class WrapperComponent {
   compact = false;
 }
 
-describe('DaffCalloutComponent', () => {
+describe('@daffodil/design/callout | DaffCalloutComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffCalloutComponent;
   let fixture: ComponentFixture<WrapperComponent>;
