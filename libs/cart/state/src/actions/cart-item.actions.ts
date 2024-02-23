@@ -16,25 +16,25 @@ import { DaffStatefulCartItem } from '../models/public_api';
  * An enum for the cart item action types.
  */
 export enum DaffCartItemActionTypes {
-  CartItemListAction = '[DaffCart] Cart Items List Action',
-  CartItemListSuccessAction = '[DaffCart] Cart Items List Success Action',
-  CartItemListFailureAction = '[DaffCart] Cart Items List Failure Action',
-  CartItemLoadAction = '[DaffCart] Cart Item Load Action',
-  CartItemLoadSuccessAction = '[DaffCart] Cart Item Load Success Action',
-  CartItemLoadFailureAction = '[DaffCart] Cart Item Load Failure Action',
-  CartItemUpdateAction = '[DaffCart] Cart Item Update Action',
-  CartItemUpdateSuccessAction = '[DaffCart] Cart Item Update Success Action',
-  CartItemUpdateFailureAction = '[DaffCart] Cart Item Update Failure Action',
-  CartItemAddAction = '[DaffCart] Cart Item Add Action',
-  CartItemAddSuccessAction = '[DaffCart] Cart Item Add Success Action',
-  CartItemAddFailureAction = '[DaffCart] Cart Item Add Failure Action',
-  CartItemDeleteAction = '[DaffCart] Cart Item Remove Action',
-  CartItemDeleteSuccessAction = '[DaffCart] Cart Item Remove Success Action',
-  CartItemDeleteFailureAction = '[DaffCart] Cart Item Remove Failure Action',
-  CartItemDeleteOutOfStockAction = '[DaffCart] Cart Item Delete Out Of Stock Action',
-  CartItemDeleteOutOfStockSuccessAction = '[DaffCart] Cart Item Delete Out Of Stock Success Action',
-  CartItemDeleteOutOfStockFailureAction = '[DaffCart] Cart Item Delete Out Of Stock Failure Action',
-  CartItemStateResetAction = '[DaffCart] Cart Item State Reset Action'
+  CartItemListAction = '[@daffodil/cart] Cart Items List Action',
+  CartItemListSuccessAction = '[@daffodil/cart] Cart Items List Success Action',
+  CartItemListFailureAction = '[@daffodil/cart] Cart Items List Failure Action',
+  CartItemLoadAction = '[@daffodil/cart] Cart Item Load Action',
+  CartItemLoadSuccessAction = '[@daffodil/cart] Cart Item Load Success Action',
+  CartItemLoadFailureAction = '[@daffodil/cart] Cart Item Load Failure Action',
+  CartItemUpdateAction = '[@daffodil/cart] Cart Item Update Action',
+  CartItemUpdateSuccessAction = '[@daffodil/cart] Cart Item Update Success Action',
+  CartItemUpdateFailureAction = '[@daffodil/cart] Cart Item Update Failure Action',
+  CartItemAddAction = '[@daffodil/cart] Cart Item Add Action',
+  CartItemAddSuccessAction = '[@daffodil/cart] Cart Item Add Success Action',
+  CartItemAddFailureAction = '[@daffodil/cart] Cart Item Add Failure Action',
+  CartItemDeleteAction = '[@daffodil/cart] Cart Item Remove Action',
+  CartItemDeleteSuccessAction = '[@daffodil/cart] Cart Item Remove Success Action',
+  CartItemDeleteFailureAction = '[@daffodil/cart] Cart Item Remove Failure Action',
+  CartItemDeleteOutOfStockAction = '[@daffodil/cart] Cart Item Delete Out Of Stock Action',
+  CartItemDeleteOutOfStockSuccessAction = '[@daffodil/cart] Cart Item Delete Out Of Stock Success Action',
+  CartItemDeleteOutOfStockFailureAction = '[@daffodil/cart] Cart Item Delete Out Of Stock Failure Action',
+  CartItemStateResetAction = '[@daffodil/cart] Cart Item State Reset Action'
 }
 
 /**

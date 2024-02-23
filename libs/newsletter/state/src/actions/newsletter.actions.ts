@@ -4,12 +4,12 @@ import { DaffStateError } from '@daffodil/core/state';
 import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 
 export enum DaffNewsletterActionTypes {
-  NewsletterSubscribeAction = '[Daff-Newsletter] Newsletter Subscribe Action',
-  NewsletterCancelAction = '[Daff-Newsletter] Newsletter Cancel Action',
-  NewsletterSuccessSubscribeAction = '[Daff-Newsletter] Succeeded on Newsletter Subscribe Action',
-  NewsletterFailedSubscribeAction = '[Daff-Newsletter] Failed on Newsletter Subscribe Action',
-  NewsletterRetry = '[Daff-Newsletter] Retrying submission',
-  NewsletterReset = '[Daff-Newsletter] Reset Newsletter'
+  NewsletterSubscribeAction = '[@daffodil/newsletter] Newsletter Subscribe Action',
+  NewsletterCancelAction = '[@daffodil/newsletter] Newsletter Cancel Action',
+  NewsletterSuccessSubscribeAction = '[@daffodil/newsletter] Succeeded on Newsletter Subscribe Action',
+  NewsletterFailedSubscribeAction = '[@daffodil/newsletter] Failed on Newsletter Subscribe Action',
+  NewsletterRetry = '[@daffodil/newsletter] Retrying submission',
+  NewsletterReset = '[@daffodil/newsletter] Reset Newsletter'
 }
 
 export class DaffNewsletterSubscribe<T extends DaffNewsletterSubmission> implements Action {

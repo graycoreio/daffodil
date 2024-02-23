@@ -8,11 +8,11 @@ import { DaffProductDriverResponse } from '@daffodil/product/driver';
  * Action types for Product Page Actions.
  */
 export enum DaffProductPageActionTypes {
-  ProductPageLoadByUrlAction = '[Product Page] Load By URL Action',
-  ProductPageLoadAction = '[Product Page] Load Action',
-  ProductPageLoadSuccessAction = '[Product Page] Load Success Action',
-  ProductPageLoadFailureAction = '[Product Page] Load Failure Action',
-  UpdateQtyAction = '[Product Page] Update Qty Action'
+  ProductPageLoadByUrlAction = '[@daffodil/product] Product Page Load By URL Action',
+  ProductPageLoadAction = '[@daffodil/product] Product Page Load Action',
+  ProductPageLoadSuccessAction = '[@daffodil/product] Product Page Load Success Action',
+  ProductPageLoadFailureAction = '[@daffodil/product] Product Page Load Failure Action',
+  UpdateQtyAction = '[@daffodil/product] Product Page Update Qty Action'
 }
 
 /**

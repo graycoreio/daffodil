@@ -3,12 +3,12 @@ import { Action } from '@ngrx/store';
 import { DaffStateError } from '@daffodil/core/state';
 
 export enum DaffContactActionTypes {
-  ContactSubmitAction = '[Daff-Contact] Contact Submit Action',
-  ContactCancelAction = '[Daff-Contact] Contact Cancel Action',
-  ContactSuccessSubmitAction = '[Daff-Contact] Contact Success Submit Action',
-  ContactFailedSubmitAction = '[Daff-Contact] Contact Failed Submit Action',
-  ContactRetryAction = '[Daff-Contact] Contact Retry Action',
-  ContactResetAction = '[Daff-Contact] Contact Reset Action',
+  ContactSubmitAction = '[@daffodil/contact] Contact Submit Action',
+  ContactCancelAction = '[@daffodil/contact] Contact Cancel Action',
+  ContactSuccessSubmitAction = '[@daffodil/contact] Contact Success Submit Action',
+  ContactFailedSubmitAction = '[@daffodil/contact] Contact Failed Submit Action',
+  ContactRetryAction = '[@daffodil/contact] Contact Retry Action',
+  ContactResetAction = '[@daffodil/contact] Contact Reset Action',
 }
 
 export class DaffContactSubmit<T> implements Action {

@@ -15,9 +15,9 @@ import { DaffCartRetrievalAction } from '../cart-retrieval/public_api';
  * An enum for the cart address action types.
  */
 export enum DaffCartAddressActionTypes {
-  CartAddressUpdateAction = '[DaffCart] Cart Address Update Action',
-  CartAddressUpdateSuccessAction = '[DaffCart] Cart Address Update Success Action',
-  CartAddressUpdateFailureAction = '[DaffCart] Cart Address Update Failure Action',
+  CartAddressUpdateAction = '[@daffodil/cart] Cart Address Update Action',
+  CartAddressUpdateSuccessAction = '[@daffodil/cart] Cart Address Update Success Action',
+  CartAddressUpdateFailureAction = '[@daffodil/cart] Cart Address Update Failure Action',
 }
 
 /**

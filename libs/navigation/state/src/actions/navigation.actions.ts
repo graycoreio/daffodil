@@ -4,9 +4,9 @@ import { DaffStateError } from '@daffodil/core/state';
 import { DaffGenericNavigationTree } from '@daffodil/navigation';
 
 export enum DaffNavigationActionTypes {
-  NavigationLoadAction = '[Daff-Navigation] Navigation Load Action',
-  NavigationLoadSuccessAction = '[Daff-Navigation] Navigation Load Success Action',
-  NavigationLoadFailureAction = '[Daff-Navigation] Navigation Load Failure Action'
+  NavigationLoadAction = '[@daffodil/navigation] Navigation Load Action',
+  NavigationLoadSuccessAction = '[@daffodil/navigation] Navigation Load Success Action',
+  NavigationLoadFailureAction = '[@daffodil/navigation] Navigation Load Failure Action'
 }
 
 export class DaffNavigationLoad implements Action {

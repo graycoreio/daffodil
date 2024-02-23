@@ -7,10 +7,10 @@ import { DaffProduct } from '@daffodil/product';
  * Action types for Product Grid Actions.
  */
 export enum DaffProductGridActionTypes {
-  ProductGridLoadAction = '[ProductGrid] Load Action',
-  ProductGridLoadSuccessAction = '[ProductGrid] Load Success Action',
-  ProductGridLoadFailureAction = '[ProductGrid] Load Failure Action',
-  ProductGridResetAction = '[ProductGrid] Reset Action'
+  ProductGridLoadAction = '[@daffodil/product] ProductGrid Load Action',
+  ProductGridLoadSuccessAction = '[@daffodil/product] ProductGrid Load Success Action',
+  ProductGridLoadFailureAction = '[@daffodil/product] ProductGrid Load Failure Action',
+  ProductGridResetAction = '[@daffodil/product] ProductGrid Reset Action'
 }
 
 /**

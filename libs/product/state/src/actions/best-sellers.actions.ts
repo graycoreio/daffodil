@@ -7,10 +7,10 @@ import { DaffProduct } from '@daffodil/product';
  * Action types for Best Seller Actions.
  */
 export enum DaffBestSellersActionTypes {
-  BestSellersLoadAction = '[BestSellers] Load Action',
-  BestSellersLoadSuccessAction = '[BestSellers] Load Success Action',
-  BestSellersLoadFailureAction = '[BestSellers] Load Failure Action',
-  BestSellersResetAction = '[BestSellers] Reset Action'
+  BestSellersLoadAction = '[@daffodil/product] BestSellers Load Action',
+  BestSellersLoadSuccessAction = '[@daffodil/product] BestSellers Load Success Action',
+  BestSellersLoadFailureAction = '[@daffodil/product] BestSellers Load Failure Action',
+  BestSellersResetAction = '[@daffodil/product] BestSellers Reset Action'
 }
 
 /**

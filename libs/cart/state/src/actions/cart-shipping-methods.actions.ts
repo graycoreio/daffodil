@@ -10,9 +10,9 @@ import {
  * An enum for the cart shipping methods action types.
  */
 export enum DaffCartShippingMethodsActionTypes {
-  CartShippingMethodsLoadAction = '[DaffCart] Shipping Methods Load Action',
-  CartShippingMethodsLoadSuccessAction = '[DaffCart] Shipping Methods Load Success Action',
-  CartShippingMethodsLoadFailureAction = '[DaffCart] Shipping Methods Load Failure Action',
+  CartShippingMethodsLoadAction = '[@daffodil/cart] Shipping Methods Load Action',
+  CartShippingMethodsLoadSuccessAction = '[@daffodil/cart] Shipping Methods Load Success Action',
+  CartShippingMethodsLoadFailureAction = '[@daffodil/cart] Shipping Methods Load Failure Action',
 }
 
 /**

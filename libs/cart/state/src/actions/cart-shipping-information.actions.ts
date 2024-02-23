@@ -15,15 +15,15 @@ import { DaffCartRetrievalAction } from '../cart-retrieval/public_api';
  * An enum for the cart shipping information action types.
  */
 export enum DaffCartShippingInformationActionTypes {
-  CartShippingInformationLoadAction = '[DaffCart] Shipping Information Load Action',
-  CartShippingInformationLoadSuccessAction = '[DaffCart] Shipping Information Load Success Action',
-  CartShippingInformationLoadFailureAction = '[DaffCart] Shipping Information Load Failure Action',
-  CartShippingInformationUpdateAction = '[DaffCart] Shipping Information Update Action',
-  CartShippingInformationUpdateSuccessAction = '[DaffCart] Shipping Information Update Success Action',
-  CartShippingInformationUpdateFailureAction = '[DaffCart] Shipping Information Update Failure Action',
-  CartShippingInformationDeleteAction = '[DaffCart] Shipping Information Remove Action',
-  CartShippingInformationDeleteSuccessAction = '[DaffCart] Shipping Information Remove Success Action',
-  CartShippingInformationDeleteFailureAction = '[DaffCart] Shipping Information Remove Failure Action',
+  CartShippingInformationLoadAction = '[@daffodil/cart] Shipping Information Load Action',
+  CartShippingInformationLoadSuccessAction = '[@daffodil/cart] Shipping Information Load Success Action',
+  CartShippingInformationLoadFailureAction = '[@daffodil/cart] Shipping Information Load Failure Action',
+  CartShippingInformationUpdateAction = '[@daffodil/cart] Shipping Information Update Action',
+  CartShippingInformationUpdateSuccessAction = '[@daffodil/cart] Shipping Information Update Success Action',
+  CartShippingInformationUpdateFailureAction = '[@daffodil/cart] Shipping Information Update Failure Action',
+  CartShippingInformationDeleteAction = '[@daffodil/cart] Shipping Information Remove Action',
+  CartShippingInformationDeleteSuccessAction = '[@daffodil/cart] Shipping Information Remove Success Action',
+  CartShippingInformationDeleteFailureAction = '[@daffodil/cart] Shipping Information Remove Failure Action',
 }
 
 /**

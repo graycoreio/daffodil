@@ -8,9 +8,9 @@ import { DaffProductDriverResponse } from '@daffodil/product/driver';
  * Action types for Product Actions.
  */
 export enum DaffProductActionTypes {
-  ProductLoadAction = '[Product] Load Action',
-  ProductLoadSuccessAction = '[Product] Load Success Action',
-  ProductLoadFailureAction = '[Product] Load Failure Action',
+  ProductLoadAction = '[@daffodil/product] Product Load Action',
+  ProductLoadSuccessAction = '[@daffodil/product] Product Load Success Action',
+  ProductLoadFailureAction = '[@daffodil/product] Product Load Failure Action',
 }
 
 /**
