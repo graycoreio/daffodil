@@ -1,4 +1,5 @@
 @use '../../../scss/typography' as t;
+@use '../../../scss/layout';
 @use 'stops-article-cascade' as *;
 
 .daff-article {
@@ -17,6 +18,12 @@
 	@include stopsArticleCascade(h1, h2, h3, h4, h5, h6) {
 		margin-bottom: 1.5rem;
 		word-wrap: break-word;
+
+		code {
+			font-size: 0.875em;
+			font-weight: 600;
+			line-height: 0.875em;
+		}
 	}
 
 	@include stopsArticleCascade(h2, h3, h4, h5, h6) {
@@ -60,22 +67,19 @@
 		@include t.embolden;
 	}
 
-	@include stopsArticleCascade(pre) {
+	pre {
+		display: block;
+		border-radius: 0.25em;
+		font-size: t.$small-font-size;
+		line-height: 1.5rem;
 		margin: 1.5rem 0;
+		padding: 1.5rem;
+		overflow: auto;
+		white-space: pre-wrap;
 
 		&:last-child {
 			margin-bottom: 0;
 		}
-	}
-
-	pre {
-		display: block;
-		border-radius: 4px;
-		font-size: t.$small-font-size;
-		line-height: 1.5rem;
-		padding: 1.5rem;
-		overflow: auto;
-		white-space: pre-wrap;
 
 		code {
 			display: block;
@@ -84,11 +88,10 @@
 	}
 
 	code {
-		display: inline-block;
-		border-radius: 4px;
+		border-radius: 0.25em;
 		font-size: t.$small-font-size;
 		line-height: 1rem;
-		padding: 0.25rem;
+		padding: 0.25em;
 	}
 
 	&__title {
@@ -118,7 +121,7 @@
 	}
 
 	blockquote {
-		border-radius: 4px;
+		border-radius: 0.25em;
 		margin: 1.5rem 0;
 		padding: 1rem 1.5rem;
 

@@ -6,24 +6,12 @@ import {
   ChangeDetectionStrategy,
   OnChanges,
   HostBinding,
-  Renderer2,
 } from '@angular/core';
-
-import { daffArticleEncapsulatedMixin } from '@daffodil/design';
 
 import {
   DesignLandCodeExample,
   DesignLandCodeExampleFile,
 } from '../model/code-example';
-
-/**
- * An _elementRef and an instance of renderer2 are needed for the code preview mixins
- */
-class CodePreviewBase {
-  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
-}
-
-const _codePreviewBase = daffArticleEncapsulatedMixin((CodePreviewBase));
 
 @Component({
   selector: 'design-land-code-preview',
@@ -31,7 +19,7 @@ const _codePreviewBase = daffArticleEncapsulatedMixin((CodePreviewBase));
   styleUrls: ['./code-preview.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CodePreviewComponent extends _codePreviewBase implements OnChanges {
+export class CodePreviewComponent implements OnChanges {
   @HostBinding('class.design-land-code-preview') class = true;
 
   /**
@@ -61,9 +49,5 @@ export class CodePreviewComponent extends _codePreviewBase implements OnChanges 
       this.content.nativeElement.appendChild(document.createElement(this.example.element));
       this.exampleFile = this.example.files[0];
     }
-  }
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    super(elementRef, renderer);
   }
 }
