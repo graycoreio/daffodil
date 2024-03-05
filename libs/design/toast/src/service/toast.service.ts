@@ -17,9 +17,11 @@ import {
   EMPTY,
   interval,
   merge,
+  of,
   Subscription,
 } from 'rxjs';
 import {
+  delay,
   filter,
   map,
   take,
@@ -56,9 +58,9 @@ export class DaffToastService implements OnDestroy {
 
   private _toasts: DaffToast[] = [];
 
-  private _overlayRef: OverlayRef | undefined;
+  private _overlayRef?: OverlayRef;
 
-  private _template: ComponentRef<DaffToastTemplateComponent> | undefined;
+  private _template?: ComponentRef<DaffToastTemplateComponent>;
 
   constructor(
     private overlay: Overlay,
@@ -87,7 +89,7 @@ export class DaffToastService implements OnDestroy {
   }
 
   private _createOverlayRef(): OverlayRef {
-  	  return this.overlay.create({
+    return this.overlay.create({
 	    hasBackdrop: false,
 	    scrollStrategy: this.overlay.scrollStrategies.noop(),
       positionStrategy: createPositionStrategy(this.toastPosition.config),
@@ -120,7 +122,7 @@ export class DaffToastService implements OnDestroy {
         dismissEvent.emit();
       },
       dismissalStream: merge(
-        config.duration ? interval(config.duration): EMPTY,
+        config.duration ? of(undefined).pipe(delay(config.duration)) : EMPTY,
         dismissEvent,
       ).pipe(
         take(1),
