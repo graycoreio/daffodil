@@ -10,6 +10,7 @@ import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffLinkSetModule } from '@daffodil/design/link-set';
 import { DaffNavbarModule } from '@daffodil/design/navbar';
 import { DaffSidebarModule } from '@daffodil/design/sidebar';
+import { DaffToastModule } from '@daffodil/design/toast';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
 import { DesignLandAppRoutingModule } from './app-routing.module';
@@ -32,6 +33,7 @@ import { DesignLandTemplateModule } from './core/template/template.module';
     FontAwesomeModule,
     DesignLandNavModule,
     DesignLandTemplateModule,
+    DaffToastModule,
   ],
   declarations: [
     DesignLandAppComponent,

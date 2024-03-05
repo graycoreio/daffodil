@@ -1,0 +1,63 @@
+@use 'sass:map';
+@use '../../scss/core';
+@use '../../scss/theming';
+
+@mixin daff-toast-theme($theme) {
+	$primary: map.get($theme, primary);
+	$secondary: map.get($theme, secondary);
+	$tertiary: map.get($theme, tertiary);
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$white: core.daff-map-deep-get($theme, 'core.white');
+	$black: core.daff-map-deep-get($theme, 'core.black');
+
+	.daff-toast {
+		background: theming.daff-illuminate($base, $neutral, 1);
+		box-shadow: 0 -16px 24px -4px rgba($black, 0.04), 0 8px 24px -4px rgba($black, 0.10);
+		color: theming.daff-text-contrast($base);
+
+		&:before {
+			background: theming.daff-illuminate($base, $neutral, 4);
+		}
+
+		&.daff-success {
+			background: theming.daff-color(theming.$daff-green, 10);
+			color: $black;
+
+			.daff-prefix {
+				color: theming.daff-color(theming.$daff-green, 60);
+			}
+			
+			&:before {
+				background: theming.daff-color(theming.$daff-green, 60);
+			}
+		}
+
+		&.daff-warn {
+			background: theming.daff-color(theming.$daff-bronze, 10);
+			color: $black;
+
+			.daff-prefix {
+				color: theming.daff-color(theming.$daff-bronze, 60);
+			}
+
+			&:before {
+				background: theming.daff-color(theming.$daff-bronze, 60);
+			}
+		}
+
+		&.daff-error {
+			background: theming.daff-color(theming.$daff-red, 10);
+			color: $black;
+
+			.daff-prefix {
+				color: theming.daff-color(theming.$daff-red, 60);
+			}
+
+			&:before {
+				background: theming.daff-color(theming.$daff-red, 60);
+			}
+		}
+	}
+}

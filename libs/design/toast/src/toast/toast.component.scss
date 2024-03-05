@@ -1,0 +1,82 @@
+@use '../../../scss/interactions';
+@use '../../../scss/layout';
+
+.daff-toast {
+	$root: &;
+	display: flex;
+	border-radius: 0.25rem;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	position: relative;
+	min-width: 15rem;
+	max-width: 90vw;
+
+	@include layout.breakpoint(mobile) {
+		max-width: 22rem;
+	}
+
+	// the div selectors are to add margin to toast if focus trapping is involved
+	+ div + .daff-toast,
+	+ div + div + .daff-toast,
+	+ .daff-toast {
+		margin-top: 0.75rem;
+	}
+
+	&:before {
+		content: '';
+		border-radius: 0.25rem 0 0 0.25rem;
+		position: absolute;
+		height: 100%;
+		left: 0;
+		top: 0;
+		width: 0.25rem;
+	}
+
+	.daff-prefix {
+		padding: 1rem 0 1rem 1rem;
+	}
+
+	&__close-button {
+		@include interactions.clickable();
+		appearance: none;
+		background: none;
+		border: none;
+		color: currentColor;
+		margin: 0;
+		min-height: 3rem;
+		height: 3rem;
+		min-width: 3rem;
+		width: 3rem;
+	}
+
+	&__details {
+		display: block;
+		font-size: 1rem;
+		line-height: 1.5rem;
+		width: 100%;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+    gap: 0.25rem;
+		padding: 1rem;
+	}
+
+	&__title {
+		font-weight: 600;
+	}
+
+	&__message {
+		font-weight: normal;
+		line-height: 1.25rem;
+	}
+
+	&__actions {
+    display: flex;
+		align-items: center;
+    gap: 0.5rem;
+		min-height: 3rem;
+		padding: 0 1rem 1rem;
+	}
+}
