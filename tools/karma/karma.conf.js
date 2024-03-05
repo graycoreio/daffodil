@@ -29,7 +29,16 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false
+    customLaunchers: {
+      ChromeHeadlessDebug: {
+        base: 'ChromeHeadless',
+        flags: ['--remote-debugging-port=9222']
+      }
+    },
+    browserDisconnectTolerance: 3,
+    browserDisconnectTimeout : 210000,
+    browserNoActivityTimeout : 210000,
+    singleRun: false,
   });
 
   return config;
