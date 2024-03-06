@@ -15,7 +15,7 @@ Supported colors: `primary | secondary | tertiary | black | white | theme | them
 <design-land-example-viewer-container example="navbar-theming"></design-land-example-viewer-container>
 
 ## Contained Navbar
-A navbar can be contained to a specific width by using `<daff-container>`. [View Container Documentation](/libs/design/src/atoms/container/README.md) The layout styles for the navbar will be passed down to the container by utilizing the `daffManageContainerLayoutMixin`.
+A navbar can be contained to a specific width by using the [Container](/libs/design/src/atoms/container/README.md) component. The layout styles set on the navbar will automatically be passed down to the container.
 
 <design-land-example-viewer-container example="contained-navbar"></design-land-example-viewer-container>
 
