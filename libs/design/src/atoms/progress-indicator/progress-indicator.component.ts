@@ -27,7 +27,8 @@ class DaffProgressIndicatorBase{
 const _daffProgressIndicatorBase = daffColorMixin(DaffProgressIndicatorBase, 'primary');
 
 /**
- * @inheritdoc
+ * @deprecated in v1.0.0
+ * Use `DaffProgressBarComponent` instead.
  */
 @Component({
   selector: 'daff-progress-indicator',

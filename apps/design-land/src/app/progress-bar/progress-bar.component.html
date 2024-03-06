@@ -1,0 +1,26 @@
+<daff-article>
+	<h1 daffArticleTitle>Progress Bar</h1>
+	<div daffArticleLead>A progress bar provides visual feedback about the duration or progress of a task or operation.</div>
+
+	<h2>Types</h2>
+	<p>There are two types of progress bars: <code>determinate</code> and <code>indeterminate</code>. They are <code>determinate</code> by default.</p>
+
+	<h3>Determinate</h3>
+	<p>Determinate progress bars should be used when the loading percentage of a task or operation is known.</p>
+	<design-land-example-viewer-container example="progress-bar-default"></design-land-example-viewer-container>
+	
+	<h3>Indeterminate</h3>
+	<p>Indeterminate progress bars should be used when the loading percentage of a task or operation is unknown or cannot be calculated.</p>
+	<design-land-example-viewer-container example="progress-bar-indeterminate"></design-land-example-viewer-container>
+
+	<h2>Theming</h2>
+	<p> The progress bar color is defined by using the <code>color</code> property. By default, the color is set to <code>primary</code>. This can be changed to one of the supported colors.</p>
+	<p>Supported colors: <code>primary | secondary | tertiary | theme | theme-contrast | white | black</code></p>
+
+	<blockquote><code>theme</code>, <code>theme-contrast</code>, <code>white</code>, and <code>black</code> should be used with caution to ensure that there is sufficient contrast.</blockquote>
+
+	<design-land-example-viewer-container example="progress-bar-themes"></design-land-example-viewer-container>
+
+	<h2>Accessibility</h2>
+	The progress bar component works with the ARIA <code>role="progressbar"</code> to provide an accessible experience. A label should always be provided by using <code>label[daffFormLabel]</code>, <code>aria-label</code>, or <code>aria-labelledby</code>.
+</daff-article>
