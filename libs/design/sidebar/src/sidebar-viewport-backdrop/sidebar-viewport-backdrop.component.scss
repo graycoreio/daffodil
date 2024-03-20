@@ -1,28 +1,27 @@
-@use 'interactions';
+@use '../../../scss/interactions';
+@use '../helper/variables';
 
 $bg-color: rgba(0, 0, 0, 0.3);
 $highlight-color: rgba(0, 0, 0, 0);
 
 :host {
 	display: block;
+	background: $bg-color;
 	-webkit-tap-highlight-color: $highlight-color;
+	position: absolute;
+	pointer-events: auto;
+	height: 100%;
+	width: 100%;
 	visibility: hidden;
-	pointer-events: none;
+	z-index: variables.$daff-sidebar-backdrop-z-index;
 
 	&.interactable {
 		visibility: visible;
 		pointer-events: all;
 		@include interactions.clickable;
 	}
-}
 
-.daff-backdrop {
-	background: $bg-color;
-	height: 100%;
-	width: 100%;
-	
-
-	&--transparent {
+	&.transparent {
 		background: none;
 	}
 
@@ -32,9 +31,7 @@ $highlight-color: rgba(0, 0, 0, 0);
 		outline: 0;
 	}
 
-	
-
-	&--fullscreen {
+	&.fullscreen {
 		position: absolute;
 	}
 }

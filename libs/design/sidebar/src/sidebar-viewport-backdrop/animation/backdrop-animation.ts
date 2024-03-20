@@ -11,7 +11,7 @@ const animationDuration = '350ms';
 const backdropTransitionOut = 'cubic-bezier(0.4, 0.0, 1, 1)';
 const backdropTransitionIn = 'cubic-bezier(0.0, 0.0, 0.2, 1)';
 
-export const daffBackdropAnimations: {
+export const daffSidebarViewportBackdropAnimations: {
   readonly fadeBackdrop: AnimationTriggerMetadata;
 } = {
   fadeBackdrop: trigger('fadeBackdrop', [

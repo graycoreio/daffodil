@@ -35,14 +35,6 @@
 			}
 		}
 	}
-
-	&__backdrop {
-		height: 100%;
-		position: absolute;
-		width: 100%;
-		pointer-events: auto;
-		z-index: variables.$daff-sidebar-backdrop-z-index;
-	}
 }
 
 :host-context(daff-sidebar-viewport daff-sidebar-viewport) {

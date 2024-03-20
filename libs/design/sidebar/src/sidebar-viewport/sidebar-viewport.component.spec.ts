@@ -12,14 +12,10 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import {
-  DaffBackdropComponent,
-  DaffBackdropModule,
-} from '@daffodil/design';
-
 import { DaffNavPlacement } from './nav-placement';
 import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
+import { DaffSidebarViewportBackdropComponent } from '../sidebar-viewport-backdrop/sidebar-viewport-backdrop.component';
 
 @Component({ template: `
   <div class="sidebar-content-wrapper">
@@ -44,14 +40,13 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Usage', () =
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffSidebarViewportComponent;
-  let backdrop: DaffBackdropComponent;
+  let backdrop: DaffSidebarViewportBackdropComponent;
   let de: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        DaffBackdropModule,
       ],
       declarations: [
         WrapperComponent,
@@ -100,10 +95,10 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Usage', () =
     });
   });
 
-  describe('when <backdrop> emits backdropClicked', () => {
+  describe('when <daff-sidebar-viewport-backdrop> emits backdropClicked', () => {
     beforeEach(() => {
       fixture.detectChanges();
-      backdrop = fixture.debugElement.query(By.css('daff-backdrop')).componentInstance;
+      backdrop = fixture.debugElement.query(By.css('daff-sidebar-viewport-backdrop')).componentInstance;
       spyOn(component.backdropClicked, 'emit');
 
       backdrop.backdropClicked.emit();
@@ -132,7 +127,6 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Usage', () =
         imports: [
           CommonModule,
           NoopAnimationsModule,
-          DaffBackdropModule,
         ],
         declarations: [
           DaffSidebarComponent,
