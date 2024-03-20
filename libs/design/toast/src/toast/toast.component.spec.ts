@@ -14,9 +14,9 @@ import {
   DaffStatus,
   DaffStatusEnum,
 } from '@daffodil/design';
-import { DaffToast } from '@daffodil/design/toast';
 
 import { DaffToastComponent } from './toast.component';
+import { DaffToast } from '../interfaces/toast';
 
 @Component ({
   template: `

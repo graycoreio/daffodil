@@ -14,10 +14,10 @@ import {
   DaffPrefixSuffixModule,
 } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
-import { DaffToast } from '@daffodil/design/toast';
 
 import { DaffToastPositionService } from './position.service';
 import { DaffToastService } from './toast.service';
+import { DaffToast } from '../interfaces/toast';
 import { DaffToastTemplateComponent } from '../toast/toast-template.component';
 import { DaffToastComponent } from '../toast/toast.component';
 import { DaffToastActionsDirective } from '../toast-actions/toast-actions.directive';
