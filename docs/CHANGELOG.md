@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.68.1](https://github.com/graycoreio/daffodil/compare/v0.68.0...v0.68.1) (2024-03-20)
+
+
+### Features
+
+* **all:** include package names in action types ([#2749](https://github.com/graycoreio/daffodil/issues/2749)) ([fe28294](https://github.com/graycoreio/daffodil/commit/fe28294f8f9110b46e9a05799b51d780aedf44ff))
+* **cart:** use product data to seed added cart item ([#2745](https://github.com/graycoreio/daffodil/issues/2745)) ([65aa9bc](https://github.com/graycoreio/daffodil/commit/65aa9bc11441bde417329fa591a42cbb736e9066))
+* **checkout,order:** move placed order facade and selector to checkout ([#2750](https://github.com/graycoreio/daffodil/issues/2750)) ([de45407](https://github.com/graycoreio/daffodil/commit/de45407d31beb53801bc0431fc1d1e1f156a0ef8))
+* **core:** add injection token factories ([#2687](https://github.com/graycoreio/daffodil/issues/2687)) ([8531484](https://github.com/graycoreio/daffodil/commit/8531484dc379eec457e722f908c132f097d42865))
+* **design:** add code block style to article headings ([#2766](https://github.com/graycoreio/daffodil/issues/2766)) ([377c983](https://github.com/graycoreio/daffodil/commit/377c983f0a7dac4718b16d85d8ab7479b39bca9a))
+* **design:** add toast component ([#2499](https://github.com/graycoreio/daffodil/issues/2499)) ([3d960ef](https://github.com/graycoreio/daffodil/commit/3d960ef62431862714708297119d2ec75c83b637))
+* **design:** update loading icon animation and style ([#2759](https://github.com/graycoreio/daffodil/issues/2759)) ([9159554](https://github.com/graycoreio/daffodil/commit/9159554b23d802f53fb0193de1855d4167ba6e3e))
+* **design:** update toast docs and import paths in specs ([#2770](https://github.com/graycoreio/daffodil/issues/2770)) ([9b7cbeb](https://github.com/graycoreio/daffodil/commit/9b7cbeb5dd76df3496c12513fc7df3fb7ed081f3))
+* **driver:** store and set Magento cache ID header ([#2743](https://github.com/graycoreio/daffodil/issues/2743)) ([d9f1704](https://github.com/graycoreio/daffodil/commit/d9f1704d572ec8aaab6220504bd8b2dfa5891386))
+
 ## [0.68.0](https://github.com/graycoreio/daffodil/compare/v0.67.0...v0.68.0) (2024-02-01)
 
 
