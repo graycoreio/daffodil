@@ -26,6 +26,7 @@ import { QUANTITY_FIELD_EXAMPLES } from '@daffodil/design/quantity-field/example
 import { RADIO_EXAMPLES } from '@daffodil/design/radio/examples';
 import { SIDEBAR_EXAMPLES } from '@daffodil/design/sidebar/examples';
 import { TOAST_EXAMPLES } from '@daffodil/design/toast/examples';
+import { TREE_EXAMPLES } from '@daffodil/design/tree/examples';
 
 import { createCustomElementFromExample } from './core/elements/create-element-from-example';
 
@@ -62,6 +63,7 @@ export class DesignLandAppComponent {
       ...INPUT_EXAMPLES,
       ...SIDEBAR_EXAMPLES,
       ...TOAST_EXAMPLES,
+      ...TREE_EXAMPLES,
     ].map((componentExample) => createCustomElementFromExample(componentExample, injector))
       .map((customElement) => {
         // Register the custom element with the browser.
