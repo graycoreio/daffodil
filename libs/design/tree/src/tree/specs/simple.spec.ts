@@ -45,12 +45,12 @@ describe('@daffodil/design/tree - DaffTreeComponent | Simple', () => {
   });
 
   it('should render nothing', () => {
-    expect(fixture.debugElement.nativeElement.innerHTML).toContain(`<ul daff-tree="" class="daff-tree"`);
+    expect(fixture.debugElement.nativeElement.innerHTML).toContain(`<ul daff-tree="" class="daff-ae daff-tree"`);
   });
 
   it('should render nothing when data is provided with no templates', () => {
     wrapper.data = { title: '', url: '', id: '', items: [], data: {}};
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.innerHTML).toContain(`<ul daff-tree="" class="daff-tree"`);
+    expect(fixture.debugElement.nativeElement.innerHTML).toContain(`<ul daff-tree="" class="daff-ae daff-tree"`);
   });
 });
