@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.68.2](https://github.com/graycoreio/daffodil/compare/v0.68.1...v0.68.2) (2024-03-26)
+
+
+### Features
+
+* **design:** implement article encapsulated mixin in DaffTreeComponent and add docs to design-land ([#2771](https://github.com/graycoreio/daffodil/issues/2771)) ([baa150e](https://github.com/graycoreio/daffodil/commit/baa150ecf921bccf8c3c6acd8b3ac734e62a4cd5))
+
 ## [0.68.1](https://github.com/graycoreio/daffodil/compare/v0.68.0...v0.68.1) (2024-03-20)
 
 
