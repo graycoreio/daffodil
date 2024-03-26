@@ -69,8 +69,8 @@
     "./scss/daff-typography": {
       "sass": "./scss/daff-typography.scss"
     },
-    "./scss/typography/classes": {
-      "sass": "./scss/typography/_classes.scss"
+    "./scss/typography": {
+      "sass": "./scss/typography/_index.scss"
     }
   }
 }
