@@ -41,6 +41,7 @@ export const appRoutes: Routes = [
       { path: 'sidebar', loadChildren: () => import('./sidebar/sidebar.module').then(m => m.DesignLandSidebarModule) },
       { path: 'radio', loadChildren: () => import('./radio/radio.module').then(m => m.DesignLandRadioModule) },
       { path: 'toast', loadChildren: () => import('./toast/toast.module').then(m => m.DesignLandToastModule) },
+      { path: 'tree', loadChildren: () => import('./tree/tree.module').then(m => m.DesignLandTreeModule) },
       { path: 'typography', loadChildren: () => import('./typography/typography.module').then(m => m.DesignLandTypographyModule) },
       { path: 'variables', loadChildren: () => import('./foundations/variables/variables.module').then(m => m.DesignLandVariablesModule) },
     ],

@@ -1,14 +1,17 @@
-import { Location } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
+  ElementRef,
   HostBinding,
   Input,
   OnInit,
+  Renderer2,
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
+
+import { daffArticleEncapsulatedMixin } from '@daffodil/design';
 
 import { DaffTreeNotifierService } from './tree-notifier.service';
 import { DaffTreeData } from '../interfaces/tree-data';
@@ -18,6 +21,15 @@ import {
   flattenTree,
 } from '../utils/flatten-tree';
 import { hydrateTree } from '../utils/hydrate-tree';
+
+/**
+ * An _elementRef and an instance of renderer2 are needed for the list mixins
+ */
+class DaffTreeBase {
+  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
+}
+
+const _daffTreeBase = daffArticleEncapsulatedMixin((DaffTreeBase));
 
 /**
  * The `DaffTreeComponent` allows you to render tree structures as interactable ui.
@@ -50,7 +62,7 @@ import { hydrateTree } from '../utils/hydrate-tree';
     DaffTreeNotifierService,
   ],
 })
-export class DaffTreeComponent implements OnInit {
+export class DaffTreeComponent extends _daffTreeBase implements OnInit {
 
   /**
    * The css class of the daff-tree.
@@ -111,7 +123,11 @@ export class DaffTreeComponent implements OnInit {
 
   constructor(
     private notifier: DaffTreeNotifierService,
-  ) {}
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+  ) {
+    super(elementRef, renderer);
+  }
 
   /**
    * The track-by function used to reduce tree-item re-renders

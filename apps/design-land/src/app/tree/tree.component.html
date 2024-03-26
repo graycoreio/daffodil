@@ -1,0 +1,23 @@
+<h1 daffArticleTitle>Tree</h1>
+<p daffArticleLead>Trees are used to visualize hierarchial information. They are often used to display navigational structures like nested lists of links.</p>
+
+<h2>Overview</h2>
+<p>The <code>DaffTreeComponent</code> renders a tree structure. Typically, this is a structure of <code>&lt;a&gt;</code> and <code>&lt;button&gt;</code> elements that allow users to either navigate to a page, or explore the tree to find an item inside the tree that they want to navigate to.</p>
+
+<p>Instead of defining a recursive tree structure of components, which is often prohibitively slow when rendering large trees, the <code>DaffTreeComponent</code> renders a flattened tree, using padding to indicate the nesting level of the tree elements.</p>
+
+<p>Generally, tree usage consists of taking existing tree data, converting it to the <code>DaffTreeData</code> format, setting the <code>tree</code> input on the <code>DaffTreeComponent</code>, and providing templates for the cases where the tree element has children or not.</p>
+
+<h2>Features</h2>
+<p>The <code>DaffTreeComponent</code> controls the rendering of the structure of the tree and provides template slots so that you can control the ultimate UI rendered for each node.</p>
+
+<p>Currently, we support two kind of templates: <code>daffTreeItemWithChildrenTpl</code> and <code>daffTreeItemTpl</code>. These templates allow you to control the content of each tree node. In the case of <code>daffTreeItemWithChildrenTpl</code>, a <code>click</code> handler will be automatically applied (along with an icon indicating the expanded state) to the template to allow users to automatically open and close the node.</p>
+
+<h2>Usage</h2>
+
+<h3>Basic Tree</h3>
+<design-land-example-viewer-container example="basic-tree">
+</design-land-example-viewer-container>
+
+<h2>Accessibility</h2>
+<p>The <code>DaffTreeComponent</code> follows the specification for a <a href="https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/" target="_blank">disclosure navigation menu</a> instead of a <a href="https://www.w3.org/WAI/ARIA/apg/patterns/treeview/" target="_blank">tree view</a>.</p>

@@ -1,5 +1,4 @@
 # Tree
-
 Trees are used to visualize hierarchial information. They are often used to display navigational structures like nested lists of links.
 
 ## Overview
@@ -11,10 +10,9 @@ Instead of defining a recursive tree structure of components, which is often pro
 Generally, tree usage consists of taking existing tree data, converting it to the `DaffTreeData` format, setting the `tree` input on the `DaffTreeComponent`, and providing templates for the cases where the tree element has children or not.
 
 ## Features
-
 The `DaffTreeComponent` controls the rendering of the structure of the tree and provides template slots so that you can control the ultimate UI rendered for each node.
 
-Currently, we support two kind of templates `daffTreeItemWithChildrenTpl` and `daffTreeItemTpl`. These templates allow you to control the content of each tree node. In the case of `daffTreeItemWithChildrenTpl` a `click` handler will be automatically applied (along with an icon indicating the expanded state) to the template to allow users to automatically open and close the node.
+Currently, we support two kind of templates: `daffTreeItemWithChildrenTpl` and `daffTreeItemTpl`. These templates allow you to control the content of each tree node. In the case of `daffTreeItemWithChildrenTpl`, a `click` handler will be automatically applied (along with an icon indicating the expanded state) to the template to allow users to automatically open and close the node.
 
 ```html
 <ng-template #daffTreeItemWithChildrenTpl let-node>

@@ -249,6 +249,13 @@
           "id": "toast",
           "items": [],
           "data": {}
+        },
+        {
+          "title": "Tree",
+          "url": "tree",
+          "id": "tree",
+          "items": [],
+          "data": {}
         }
       ],
       "data": {}
