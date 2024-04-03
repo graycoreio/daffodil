@@ -6,8 +6,6 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffBackdropModule } from '@daffodil/design';
-
 import { DaffSidebarViewportComponent } from './../sidebar-viewport.component';
 import { DaffSidebarAnimationStates } from '../../animation/sidebar-animation';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
@@ -20,7 +18,6 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Defaults', (
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        DaffBackdropModule,
         A11yModule,
       ],
       declarations: [

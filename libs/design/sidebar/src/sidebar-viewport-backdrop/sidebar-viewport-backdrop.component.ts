@@ -7,29 +7,29 @@ import {
   ChangeDetectionStrategy,
   HostListener,
   HostBinding,
-  ElementRef,
   OnInit,
 } from '@angular/core';
 
-import { daffBackdropAnimations } from '../animation/backdrop-animation';
-import { getAnimationState } from '../animation/backdrop-animation-state';
+import { daffSidebarViewportBackdropAnimations } from './animation/backdrop-animation';
+import { getAnimationState } from './animation/backdrop-animation-state';
 
 @Component({
-  selector: 'daff-backdrop',
-  templateUrl: './backdrop.component.html',
-  styleUrls: ['./backdrop.component.scss'],
+  selector: 'daff-sidebar-viewport-backdrop',
+  template: '<ng-content></ng-content>',
+  styleUrls: ['./sidebar-viewport-backdrop.component.scss'],
   animations: [
-    daffBackdropAnimations.fadeBackdrop,
+    daffSidebarViewportBackdropAnimations.fadeBackdrop,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffBackdropComponent implements OnInit {
+export class DaffSidebarViewportBackdropComponent implements OnInit {
+
+  @HostBinding('class.interactable') interactableClass = true;
 
   /**
    * Determines whether or not the backdrop is transparent.
    */
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
-  @Input() transparent: boolean = false;
+  @Input() @HostBinding('class.transparent') transparent = false;
 
   /**
    * Determines whether or not the backdrop is interactable.
@@ -40,15 +40,12 @@ export class DaffBackdropComponent implements OnInit {
    * Boolean property that determines whether or not the
    * backdrop should fill up its containing window.
    */
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
-  @Input() fullscreen: boolean = false;
+  @Input() @HostBinding('class.fullscreen') fullscreen = false;
 
   /**
    * Output event triggered when the backdrop is clicked.
    */
   @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
-
-  @HostBinding('class.interactable') interactableClass = true;
 
   ngOnInit(): void {
     this.interactableClass = this.interactable;
