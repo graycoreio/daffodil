@@ -14,9 +14,10 @@ import {
   DaffSeoMetaDefinition,
 } from '@daffodil/seo';
 
+
 import { DaffSeoPageHookRouterEffects } from './page-hook.effects';
-import { DAFF_SEO_META_ROUTER_UPDATES } from '../../injection-tokens/meta/router/updates.token';
-import { DaffSeoUpdateEventPair } from '../../models/update-event-pair.interface';
+import { DAFF_SEO_META_ROUTER_UPDATES } from '../meta/updates.token';
+import { DaffSeoUpdateEventPair } from '../model/update-event-pair.interface';
 
 /**
  * Page hook effects for the page meta tags.

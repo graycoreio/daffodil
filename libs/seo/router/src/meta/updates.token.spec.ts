@@ -4,15 +4,18 @@ import {
   NavigationEnd,
 } from '@angular/router';
 
-import {
-  daffProvideCanonicalUrlRouterUpdates,
-  DAFF_SEO_CANONICAL_URL_ROUTER_UPDATES,
-} from './updates.token';
-import { DaffSeoUpdateEventPair } from '../../../models/update-event-pair.interface';
+import { DaffSeoMetaDefinition } from '@daffodil/seo';
 
-describe('daffProvideCanonicalUrlUpdates', () => {
-  let updates: DaffSeoUpdateEventPair<Event, string>[];
-  let result: DaffSeoUpdateEventPair<Event, string>[];
+import {
+  daffProvideMetaRouterUpdates,
+  DAFF_SEO_META_ROUTER_UPDATES,
+} from './updates.token';
+import { DaffSeoUpdateEventPair } from '../model/update-event-pair.interface';
+
+
+describe('daffProvideMetaUpdates', () => {
+  let updates: DaffSeoUpdateEventPair<Event, DaffSeoMetaDefinition>[];
+  let result: DaffSeoUpdateEventPair<Event, DaffSeoMetaDefinition>[];
 
   beforeEach(() => {
     updates = [
@@ -24,11 +27,11 @@ describe('daffProvideCanonicalUrlUpdates', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideCanonicalUrlRouterUpdates(...updates),
+        ...daffProvideMetaRouterUpdates(...updates),
       ],
     });
 
-    result = TestBed.inject(DAFF_SEO_CANONICAL_URL_ROUTER_UPDATES);
+    result = TestBed.inject(DAFF_SEO_META_ROUTER_UPDATES);
   });
 
   it('should provide the updates to the token', () => {

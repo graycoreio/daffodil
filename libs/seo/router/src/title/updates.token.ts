@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { Event } from '@angular/router';
 
-import { DaffSeoUpdateEventPair } from '../../../models/update-event-pair.interface';
+import { DaffSeoUpdateEventPair } from '../model/update-event-pair.interface';
 
 /**
  * A multi-provider injection token for providing canonical URL update logic.

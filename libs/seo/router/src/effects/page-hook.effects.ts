@@ -7,7 +7,6 @@ import {
   Event,
   ActivatedRoute,
 } from '@angular/router';
-import { createEffect } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import {
   map,
@@ -18,7 +17,7 @@ import {
 
 import { DaffSeoRestoreableServiceInterface } from '@daffodil/seo';
 
-import { DaffSeoUpdateEventPair } from '../../models/update-event-pair.interface';
+import { DaffSeoUpdateEventPair } from '../model/update-event-pair.interface';
 
 export const shouldHandleEvent = <T extends DaffSeoUpdateEventPair>(routingEvent: Event, operators: T[]): boolean =>
   !!operators.find((trackableEvents) => routingEvent instanceof trackableEvents.event);
@@ -45,24 +44,19 @@ export abstract class DaffSeoPageHookRouterEffects<
    *
    * @docs-private
    */
-  getData$ = createEffect(
-    () => this.router.events.pipe(
-      filter((e) => shouldHandleEvent(e, this.updates)),
-      map(event => this.updates.filter(update =>
-        event instanceof update.event,
-      ).map(({ getData }) =>
-        getData(event, this.activatedRoute),
-      )),
-      tap((data: V[]) => data.forEach(datum => {
-        if (datum) {
-          this.service.upsert(datum);
-        };
-      })),
-      switchMap(() => EMPTY),
-    ),
-    {
-      dispatch: false,
-    },
+  getData$ = () => this.router.events.pipe(
+    filter((e) => shouldHandleEvent(e, this.updates)),
+    map(event => this.updates.filter(update =>
+      event instanceof update.event,
+    ).map(({ getData }) =>
+      getData(event, this.activatedRoute),
+    )),
+    tap((data: V[]) => data.forEach(datum => {
+      if (datum) {
+        this.service.upsert(datum);
+      };
+    })),
+    switchMap(() => EMPTY),
   );
 
   /**
@@ -70,15 +64,10 @@ export abstract class DaffSeoPageHookRouterEffects<
    *
    * @docs-private
    */
-  remove$ = createEffect(
-    () => this.router.events.pipe(
-      filter((e) => e instanceof NavigationStart),
-      tap(() => this.service.clear()),
-      switchMap(() => EMPTY),
-    ),
-    {
-      dispatch: false,
-    },
+  remove$ = () => this.router.events.pipe(
+    filter((e) => e instanceof NavigationStart),
+    tap(() => this.service.clear()),
+    switchMap(() => EMPTY),
   );
 
   /**
@@ -86,15 +75,10 @@ export abstract class DaffSeoPageHookRouterEffects<
    *
    * @docs-private
    */
-  restore$ = createEffect(
-    () => this.router.events.pipe(
-      filter((e) => e instanceof NavigationCancel || e instanceof NavigationError),
-      tap(() => this.service.restore()),
-      switchMap(() => EMPTY),
-    ),
-    {
-      dispatch: false,
-    },
+  restore$ = () => this.router.events.pipe(
+    filter((e) => e instanceof NavigationCancel || e instanceof NavigationError),
+    tap(() => this.service.restore()),
+    switchMap(() => EMPTY),
   );
 
   /**
@@ -102,14 +86,9 @@ export abstract class DaffSeoPageHookRouterEffects<
    *
    * @docs-private
    */
-  emptyRestoreCache$ = createEffect(
-    () => this.router.events.pipe(
-      filter((e) => e instanceof NavigationEnd),
-      tap(() => this.service.emptyRestoreCache()),
-      switchMap(() => EMPTY),
-    ),
-    {
-      dispatch: false,
-    },
+  emptyRestoreCache$ = () => this.router.events.pipe(
+    filter((e) => e instanceof NavigationEnd),
+    tap(() => this.service.emptyRestoreCache()),
+    switchMap(() => EMPTY),
   );
 }
