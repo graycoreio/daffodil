@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
 
 import {
   DaffNavigationBreadcrumb,
@@ -10,28 +13,38 @@ import {
   CategoryNode,
   MagentoBreadcrumb,
 } from '../models/category-node';
+import {
+  MagentoNavigationTreeTransform,
+  MAGENTO_NAVIGATION_TREE_TRANSFORMS,
+} from '../transforms/public_api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DaffMagentoNavigationTransformerService implements DaffNavigationTransformerInterface<DaffNavigationTree> {
+  constructor(
+    @Inject(MAGENTO_NAVIGATION_TREE_TRANSFORMS) private extraTransforms: Array<MagentoNavigationTreeTransform>,
+  ) {}
 
   transform(node: CategoryNode): DaffNavigationTree {
     const id = node.uid;
-    return {
-      id,
-      url: `/${node.url_path}${node.url_suffix}`,
-      name: node.name,
-      total_products: node.product_count,
-      children_count: node.children_count,
-      breadcrumbs: node.breadcrumbs
-        ?.map(breadcrumb => this.transformBreadcrumb(breadcrumb, node))
-        .sort((a, b) => a.level - b.level) ||
-      [],
-      children: node.children?.filter(child => child.include_in_menu)
-        .sort((a, b) => a.position - b.position)
-        .map(child => this.transform(child)) || [],
-    };
+    return this.extraTransforms.reduce(
+      (daffTree, transform) => transform(daffTree, node),
+      {
+        id,
+        url: `/${node.url_path}${node.url_suffix}`,
+        name: node.name,
+        total_products: node.product_count,
+        children_count: node.children_count,
+        breadcrumbs: node.breadcrumbs
+          ?.map(breadcrumb => this.transformBreadcrumb(breadcrumb, node))
+          .sort((a, b) => a.level - b.level) ||
+        [],
+        children: node.children?.filter(child => child.include_in_menu)
+          .sort((a, b) => a.position - b.position)
+          .map(child => this.transform(child)) || [],
+      },
+    );
   }
 
   private transformBreadcrumb(breadcrumb: MagentoBreadcrumb, category: CategoryNode): DaffNavigationBreadcrumb {
