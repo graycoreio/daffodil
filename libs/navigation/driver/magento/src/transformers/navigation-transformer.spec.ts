@@ -1,11 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffNavigationTree } from '@daffodil/navigation';
-import { CategoryNode } from '@daffodil/navigation/driver/magento';
+import {
+  CategoryNode,
+  magentoProvideNavigationTreeTransforms,
+} from '@daffodil/navigation/driver/magento';
 
 import { DaffMagentoNavigationTransformerService } from './navigation-transformer';
 
-describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTransformerService', () => {
+describe('@daffodil/navigation/driver/magento | DaffMagentoNavigationTransformerService', () => {
   let service: DaffMagentoNavigationTransformerService;
   let categoryNode: CategoryNode;
   let expectedNavigation: DaffNavigationTree;
@@ -14,6 +17,10 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
     TestBed.configureTestingModule({
       providers: [
         DaffMagentoNavigationTransformerService,
+        magentoProvideNavigationTreeTransforms((daffTree, magentoTree) => ({
+          ...daffTree,
+          id: 'injectedTransformId',
+        })),
       ],
     });
     service = TestBed.inject(DaffMagentoNavigationTransformerService);
@@ -82,7 +89,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
     };
 
     expectedNavigation = {
-      id: '1',
+      id: 'injectedTransformId',
       url: '/1.html',
       name: 'Root Category',
       total_products: 10,
