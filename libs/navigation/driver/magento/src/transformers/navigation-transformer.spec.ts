@@ -19,7 +19,7 @@ describe('@daffodil/navigation/driver/magento | DaffMagentoNavigationTransformer
         DaffMagentoNavigationTransformerService,
         magentoProvideNavigationTreeTransforms((daffTree, magentoTree) => ({
           ...daffTree,
-          id: 'injectedTransformId',
+          id: magentoTree.name === 'Root Category' ? 'injectedTransformId' : daffTree.id,
         })),
       ],
     });
