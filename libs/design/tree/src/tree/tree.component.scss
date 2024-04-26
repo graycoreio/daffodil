@@ -10,10 +10,10 @@
   padding: 0;
   list-style: none;
   --tree-padding: 16px;
-}
 
-.hidden {
-  display: none;
+  li.hidden {
+    display: none;
+  }
 }
 
 .daff-tree-item {
