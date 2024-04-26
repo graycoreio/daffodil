@@ -66,7 +66,7 @@ describe('DaffioDocsPackagesListComponent', () => {
 
   it('should render an anchor tag when the guide child has no children', () => {
     const anchorTags = fixture.debugElement.queryAll(By.css('a'));
-    expect(anchorTags.length).toEqual(1);
+    expect(anchorTags.length).toEqual(2);
     const buttons = fixture.debugElement.queryAll(By.css('button'));
     expect(buttons.length).toEqual(1);
     console.log(fixture.debugElement.nativeElement.innerHTML);
