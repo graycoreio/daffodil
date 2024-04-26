@@ -3,7 +3,6 @@ import { DaffTreeData } from '../interfaces/tree-data';
 
 /**
  * Transform a tree-like structure into a {@link DaffTreeData}.
- * Traverses the tree pre-order, left to right.
  *
  * @param tree - The data structure representing tree-like data.
  * @param transformFn - A user-supplied function that will transform the user
