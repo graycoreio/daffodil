@@ -5,3 +5,4 @@ export { DaffTreeData } from './interfaces/tree-data';
 export { DaffTreeUi } from './interfaces/tree-ui';
 export { daffTransformTreeInPlace } from './utils/transform-in-place';
 export { daffTransformTree } from './utils/transform';
+export { DaffTreeRenderMode } from './interfaces/tree-mode';

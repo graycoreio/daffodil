@@ -5,8 +5,10 @@ import {
   ElementRef,
   HostBinding,
   Input,
+  OnChanges,
   OnInit,
   Renderer2,
+  SimpleChanges,
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
@@ -15,6 +17,7 @@ import { daffArticleEncapsulatedMixin } from '@daffodil/design';
 
 import { DaffTreeNotifierService } from './tree-notifier.service';
 import { DaffTreeData } from '../interfaces/tree-data';
+import { DaffTreeRenderMode } from '../interfaces/tree-mode';
 import { DaffTreeUi } from '../interfaces/tree-ui';
 import {
   DaffTreeFlatNode,
@@ -62,7 +65,7 @@ const _daffTreeBase = daffArticleEncapsulatedMixin((DaffTreeBase));
     DaffTreeNotifierService,
   ],
 })
-export class DaffTreeComponent extends _daffTreeBase implements OnInit {
+export class DaffTreeComponent extends _daffTreeBase implements OnInit, OnChanges {
 
   /**
    * The css class of the daff-tree.
@@ -72,9 +75,20 @@ export class DaffTreeComponent extends _daffTreeBase implements OnInit {
   @HostBinding('class.daff-tree') class = true;
 
   /**
+   * The rendering mode for nodes in the tree.
+   *
+   * Default value is 'in-dom', which means nodes are present in the DOM.
+   *
+   * Generally, `not-in-dom` is faster as there are less DOM elements to render,
+   * but there may be use-cases (like SEO) where having the tree in the DOM
+   * is relevant.
+   */
+  @Input() renderMode: DaffTreeRenderMode;
+
+  /**
    * The internal tree element.
    */
-  private tree: DaffTreeUi<unknown> = undefined;
+  private _tree: DaffTreeUi<unknown> = undefined;
 
   /**
    * The flattened tree data. You can iterate through this if you want to inspect
@@ -83,28 +97,9 @@ export class DaffTreeComponent extends _daffTreeBase implements OnInit {
   public flatTree: DaffTreeFlatNode[] = [];
 
   /**
-   * @docs-private
-   */
-  private _dataTree: DaffTreeData<unknown> = undefined;
-
-  /**
    * The tree data you would like to render.
    */
-  @Input('tree')
-  get dataTree() {
-    return this._dataTree;
-  }
-  set dataTree(dataTree: DaffTreeData<unknown>){
-    if(!dataTree) {
-      this._dataTree = undefined;
-      this.tree = undefined;
-      this.flatTree = [];
-      return;
-    }
-    this._dataTree = dataTree;
-    this.tree = hydrateTree(this.dataTree);
-    this.flatTree = flattenTree(this.tree);
-  };
+  @Input() tree: DaffTreeData<unknown>;
 
   /**
    * The template used to render tree-nodes that themselves have children.
@@ -129,6 +124,21 @@ export class DaffTreeComponent extends _daffTreeBase implements OnInit {
     super(elementRef, renderer);
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if(!changes.tree.currentValue) {
+      this._tree = undefined;
+      this.flatTree = [];
+      return;
+    }
+
+    if(changes.renderMode && !changes.tree) {
+      this.flatTree = flattenTree(this._tree, changes.renderMode.currentValue === 'not-in-dom');
+    } else if(changes.renderMode || changes.tree) {
+      this._tree = hydrateTree(changes.tree?.currentValue ?? this.tree);
+      this.flatTree = flattenTree(this._tree, (changes.renderMode?.currentValue ?? this.renderMode) === 'not-in-dom');
+    }
+  }
+
   /**
    * The track-by function used to reduce tree-item re-renders
    */
@@ -141,7 +151,7 @@ export class DaffTreeComponent extends _daffTreeBase implements OnInit {
    */
   ngOnInit(): void {
     this.notifier.notice$.subscribe(() => {
-      this.flatTree = flattenTree(this.tree);
+      this.flatTree = flattenTree(this._tree, this.renderMode === 'not-in-dom');
     });
   }
 }

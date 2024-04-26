@@ -1,14 +1,20 @@
 import { flattenTree } from './flatten-tree';
 import { hydrateTree } from './hydrate-tree';
-import { traverse } from './traverse-tree';
 import { DaffTreeUi } from '../interfaces/tree-ui';
 
 describe('@daffodil/design/tree - flattenTree', () => {
-  it('should flatten a root into an empty array', () => {
+  it('should flatten a root into an empty array ', () => {
     const data = { title: '', url: '', id: '', items: [], data: {}};
     const flat =  [];
 
     expect(flattenTree(hydrateTree(data))).toEqual(flat);
+  });
+
+  it('should flatten a root into an empty array when removeNodes is true', () => {
+    const data = { title: '', url: '', id: '', items: [], data: {}};
+    const flat =  [];
+
+    expect(flattenTree(hydrateTree(data), true)).toEqual(flat);
   });
 
   it('should flatten a data tree into a tree with an open first layer and closed lower layers', () => {
@@ -24,7 +30,14 @@ describe('@daffodil/design/tree - flattenTree', () => {
     const flat =  flattenTree(hydrateTree(data));
 
     expect(flat[0].title).toEqual('Child A');
-    expect(flat[1].title).toEqual('Child B');
+    expect(flat[0].visible).toEqual(true);
+    expect(flat[1].title).toEqual('Child Aa');
+    expect(flat[1].visible).toEqual(false);
+
+    const flatRemoved =  flattenTree(hydrateTree(data), true);
+
+    expect(flatRemoved[0].title).toEqual('Child A');
+    expect(flatRemoved[1].title).toEqual('Child B');
   });
 
   it('should flatten an open ui tree', () => {
@@ -84,13 +97,24 @@ describe('@daffodil/design/tree - flattenTree', () => {
     childB.items = [childBb];
     childBb.parent = childB;
 
-
     const flat = flattenTree(root);
 
     expect(flat[0].title).toEqual('Child A');
+    expect(flat[0].visible).toEqual(true);
     expect(flat[1].title).toEqual('Child Aa');
+    expect(flat[1].visible).toEqual(true);
     expect(flat[2].title).toEqual('Child B');
+    expect(flat[2].visible).toEqual(true);
     expect(flat[3].title).toEqual('Child Bb');
+    expect(flat[3].visible).toEqual(true);
+
+
+    const flatRemoved = flattenTree(root, true);
+
+    expect(flatRemoved[0].title).toEqual('Child A');
+    expect(flatRemoved[1].title).toEqual('Child Aa');
+    expect(flatRemoved[2].title).toEqual('Child B');
+    expect(flatRemoved[3].title).toEqual('Child Bb');
   });
 
   it('should clip closed branches', () => {
@@ -151,11 +175,22 @@ describe('@daffodil/design/tree - flattenTree', () => {
     childBb.parent = childB;
 
 
+    const flatRemoved = flattenTree(root, true);
+
+    expect(flatRemoved[0].title).toEqual('Child A');
+    expect(flatRemoved[1].title).toEqual('Child B');
+    expect(flatRemoved[2].title).toEqual('Child Bb');
+
     const flat = flattenTree(root);
 
     expect(flat[0].title).toEqual('Child A');
-    expect(flat[1].title).toEqual('Child B');
-    expect(flat[2].title).toEqual('Child Bb');
+    expect(flat[0].visible).toEqual(true);
+    expect(flat[1].title).toEqual('Child Aa');
+    expect(flat[1].visible).toEqual(false);
+    expect(flat[2].title).toEqual('Child B');
+    expect(flat[2].visible).toEqual(true);
+    expect(flat[3].title).toEqual('Child Bb');
+    expect(flat[3].visible).toEqual(true);
   });
 
   it('should handle deep trees correctly', () => {
@@ -217,7 +252,7 @@ describe('@daffodil/design/tree - flattenTree', () => {
     childAaAa.parent = childAaA;
 
 
-    const flat = flattenTree(root);
+    const flat = flattenTree(root, true);
 
     expect(flat[0].title).toEqual('Child A');
     expect(flat[1].title).toEqual('Child Aa');

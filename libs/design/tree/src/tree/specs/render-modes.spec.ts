@@ -10,12 +10,13 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffTreeData } from '../../interfaces/tree-data';
+import { DaffTreeRenderMode } from '../../interfaces/tree-mode';
 import { DaffTreeModule } from '../../tree.module';
 import { DaffTreeComponent } from '../tree.component';
 
 @Component({
   template: `
-    <ul daff-tree [tree]="data">
+    <ul daff-tree [tree]="data" [renderMode]="renderMode">
       <ng-template #daffTreeItemWithChildrenTpl let-node>
           <button daffTreeItem [node]="node">{{ node.title }} </button>
       </ng-template>
@@ -28,10 +29,11 @@ import { DaffTreeComponent } from '../tree.component';
 })
 class WrapperComponent {
   @Input() data: DaffTreeData<any>;
+  @Input() renderMode: DaffTreeRenderMode;
 }
 
 
-describe('@daffodil/design/tree - DaffTreeComponent | withTemplate', () => {
+describe('@daffodil/design/tree - DaffTreeComponent | renderModes', () => {
   let wrapper: WrapperComponent;
   let component: DaffTreeComponent;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -55,24 +57,26 @@ describe('@daffodil/design/tree - DaffTreeComponent | withTemplate', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should render something when data and templates are provided', () => {
+  it('should render two nodes when renderMode is `not-in-dom`', () => {
     wrapper.data = { title: 'Root', url: '', id: '', items: [
       { title: 'Child A', url: '', id: '', items: [
         { title: 'Child Aa', url: '', id: '', items: [], data: {}},
       ], data: {}},
       { title: 'Child B', url: '', id: '', items: [], data: {}},
     ], data: {}};
+    wrapper.renderMode = 'not-in-dom';
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('li')).componentInstance instanceof DaffTreeComponent).toBeTrue();
+    expect(fixture.debugElement.queryAll(By.css('li')).length).toEqual(2);
   });
 
-  it('should render the same number of items as there are tree branches', () => {
+  it('should render three nodes when renderMode is `in-dom`', () => {
     wrapper.data = { title: 'Root', url: '', id: '', items: [
       { title: 'Child A', url: '', id: '', items: [
         { title: 'Child Aa', url: '', id: '', items: [], data: {}},
       ], data: {}},
       { title: 'Child B', url: '', id: '', items: [], data: {}},
     ], data: {}};
+    wrapper.renderMode = 'in-dom';
     fixture.detectChanges();
     expect(fixture.debugElement.queryAll(By.css('li')).length).toEqual(3);
   });

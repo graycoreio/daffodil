@@ -12,6 +12,10 @@
   --tree-padding: 16px;
 }
 
+.hidden {
+  display: none;
+}
+
 .daff-tree-item {
   @include interactions.clickable();
   @include t.single-line-ellipsis();
