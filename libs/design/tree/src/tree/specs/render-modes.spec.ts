@@ -10,7 +10,7 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffTreeData } from '../../interfaces/tree-data';
-import { DaffTreeRenderMode } from '../../interfaces/tree-mode';
+import { DaffTreeRenderMode } from '../../interfaces/tree-render-mode';
 import { DaffTreeModule } from '../../tree.module';
 import { DaffTreeComponent } from '../tree.component';
 

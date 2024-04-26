@@ -17,7 +17,7 @@ import { daffArticleEncapsulatedMixin } from '@daffodil/design';
 
 import { DaffTreeNotifierService } from './tree-notifier.service';
 import { DaffTreeData } from '../interfaces/tree-data';
-import { DaffTreeRenderMode } from '../interfaces/tree-mode';
+import { DaffTreeRenderMode } from '../interfaces/tree-render-mode';
 import { DaffTreeUi } from '../interfaces/tree-ui';
 import {
   DaffTreeFlatNode,
