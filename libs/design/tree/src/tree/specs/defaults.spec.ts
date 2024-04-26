@@ -30,6 +30,6 @@ describe('@daffodil/design/tree - DaffTreeComponent | Defaults', () => {
 
   it('should have sane defaults', () => {
     expect(component.flatTree).toEqual([]);
-    expect(component.dataTree).toEqual(undefined);
+    expect(component.tree).toEqual(undefined);
   });
 });
