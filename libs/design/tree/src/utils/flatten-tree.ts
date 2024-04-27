@@ -11,6 +11,7 @@ export interface DaffTreeFlatNode {
   level: number;
   hasChildren: boolean;
   data: unknown;
+  visible: boolean;
   _treeRef: DaffTreeUi<unknown>;
 }
 
@@ -18,15 +19,16 @@ export interface DaffTreeFlatNode {
  * Flatten a DaffTreeUi<unknown> into an array, removing elements from the array
  * below nodes in the tree that are not open.
  */
-export const flattenTree = (daffUiTree: DaffTreeUi<unknown>): DaffTreeFlatNode[] =>  {
+export const flattenTree = (daffUiTree: DaffTreeUi<unknown>, removeNodes: boolean = false): DaffTreeFlatNode[] =>  {
   const tree: DaffTreeFlatNode[] = [];
+  if(!daffUiTree) {
+    return [];
+  }
 
   let items = [
     {
       ...daffUiTree,
-      title: 'Root',
       level: 0,
-      url: '/',
       data: undefined,
       open: true,
       _treeRef: daffUiTree,
@@ -40,24 +42,34 @@ export const flattenTree = (daffUiTree: DaffTreeUi<unknown>): DaffTreeFlatNode[]
       break;
     }
 
-    if(el.open) {
-      items = [
-        ...items,
-        ...el.items.map((i) => ({
-          ...i,
-          level:
-          el.level + 1,
-          _treeRef: i,
-        })).reverse(),
-      ];
-    }
+    items = [
+      ...items,
+      ...el.items.map((i) => ({
+        ...i,
+        level:
+        el.level + 1,
+        _treeRef: i,
+      })).reverse(),
+    ];
 
-    if(el._treeRef.parent?.open) {
+    if(!removeNodes && el._treeRef.parent) {
       tree.push({
         id: el.id,
         title: el.title,
         level: el.level,
         url : el.url,
+        visible: el._treeRef.parent?.open,
+        hasChildren: el.items.length > 0,
+        data: undefined,
+        _treeRef: el._treeRef,
+      });
+    } else if(removeNodes && el._treeRef.parent?.open) {
+      tree.push({
+        id: el.id,
+        title: el.title,
+        level: el.level,
+        url : el.url,
+        visible: el._treeRef.parent?.open,
         hasChildren: el.items.length > 0,
         data: undefined,
         _treeRef: el._treeRef,
