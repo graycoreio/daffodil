@@ -14,22 +14,23 @@ import { DaffTreeData } from '../interfaces/tree-data';
 export const daffTransformTree = <
   // eslint-disable-next-line @typescript-eslint/ban-types
   T extends Record<any,any>,
+  V
 >(
   tree: T,
-  transformFn: (type: T) => DaffTreeData<unknown>,
+  transformFn: (type: T) => DaffTreeData<V>,
   key: RecursiveTreeKeyOfType<T>,
-): DaffTreeData<unknown> => {
+): DaffTreeData<V> => {
 
-  const transformedTree: DaffTreeData<unknown> = transformFn(tree);
+  const transformedTree: DaffTreeData<V> = transformFn(tree);
 
-  const queue: { node: T; parent: DaffTreeData<unknown> }[] = [{ node: tree, parent: transformedTree }];
+  const queue: { node: T; parent: DaffTreeData<V> }[] = [{ node: tree, parent: transformedTree }];
 
   while (queue.length > 0) {
     const { node, parent } = queue.shift();
 
     const childItems = node[key];
     for (const child of <T[]>childItems) {
-      const transformedChild: DaffTreeData<unknown> = transformFn(child);
+      const transformedChild: DaffTreeData<V> = transformFn(child);
       parent.items.push(transformedChild);
       queue.push({ node: child, parent: transformedChild });
     }
