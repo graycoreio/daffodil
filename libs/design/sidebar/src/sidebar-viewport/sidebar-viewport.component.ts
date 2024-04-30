@@ -14,6 +14,7 @@ import {
   Inject,
   SkipSelf,
   Optional,
+  OnDestroy,
 } from '@angular/core';
 
 import { hasParentViewport } from './helper/has-parent-viewport';
@@ -74,7 +75,7 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
     { provide: DAFF_SIDEBAR_SCROLL_TOKEN, useFactory: daffSidebarViewportScrollFactory },
   ],
 })
-export class DaffSidebarViewportComponent implements AfterContentChecked {
+export class DaffSidebarViewportComponent implements AfterContentChecked, OnDestroy {
   @HostBinding('class.daff-sidebar-viewport') hostClass = true;
 
   @HostBinding('class') get classes() {
@@ -205,6 +206,14 @@ export class DaffSidebarViewportComponent implements AfterContentChecked {
       this._navPadRight = this.isNavOnSide ? this._contentPadRight : null;
       this.updateAnimationState();
       this.cdRef.markForCheck();
+    }
+  }
+
+  ngOnDestroy() {
+    if(!this.parentViewport && !hasParentViewport(this._elementRef.nativeElement)) {
+      this.bodyScroll.enable();
+    } else {
+      this.scroll.enable();
     }
   }
 
