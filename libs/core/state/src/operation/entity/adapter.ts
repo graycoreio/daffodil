@@ -17,7 +17,7 @@ import { DaffState } from '../../states/public_api';
 /**
  * An entity state adapter that takes care of managing contextual operation and error state for entities.
  */
-export interface DaffOperationEntityStateAdapter<T extends DaffIdentifiable = DaffIdentifiable> {
+export interface DaffOperationEntityStateAdapterInterface<T extends DaffIdentifiable = DaffIdentifiable> {
   /**
    * Stores a list of entities in state and resets them all to stable.
    */
@@ -72,85 +72,126 @@ export interface DaffOperationEntityStateAdapter<T extends DaffIdentifiable = Da
   getSelectors<TRootState>(selectState: (state: TRootState) => DaffOperationEntityState<T>): DaffOperationEntityStateSelectors<TRootState, T>;
 }
 
-export function daffCreateOperationEntityStateAdapter<T extends DaffIdentifiable = DaffIdentifiable>(adapter: EntityAdapter<DaffOperationEntity<T>> = createEntityAdapter<DaffOperationEntity<T>>()): DaffOperationEntityStateAdapter<T> {
-  return {
-    list: (entities, state) => adapter.setAll(
+/**
+ * @inheritdoc
+ */
+export class DaffOperationEntityStateAdapter<T extends DaffIdentifiable = DaffIdentifiable> implements DaffOperationEntityStateAdapterInterface<T> {
+  constructor(
+    protected adapter: EntityAdapter<DaffOperationEntity<T>> = createEntityAdapter<DaffOperationEntity<T>>(),
+  ) {}
+
+  list<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entities: T[], state: S): S {
+    return this.adapter.setAll(
       entities.map<DaffOperationEntity<T>>(entity => ({
-        ...entity,
         daffState: DaffState.Stable,
+        ...entity,
         daffErrors: [],
         daffTemp: false,
       })),
       state,
-    ),
-    preload: (key, state) =>
-      adapter.upsertOne(<DaffOperationEntity<T>>{
+    );
+  }
+
+  preload<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(id: string, state: S): S {
+    return this.adapter.upsertOne(<DaffOperationEntity<T>>{
       // TODO: allow for non identifiable entities?
-        id: key,
-        daffState: DaffState.Resolving,
-        daffErrors: [],
-        daffTemp: !state.entities[key],
-      }, state),
-    load: (entity, state) =>
-      adapter.upsertOne({
+      id,
+      daffState: DaffState.Resolving,
+      daffErrors: [],
+      daffTemp: !state.entities[id],
+    }, state);
+  }
+
+  load<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entity: T, state: S): S {
+    return this.adapter.upsertOne({
+      daffState: DaffState.Stable,
+      ...entity,
+      daffErrors: [],
+      daffTemp: false,
+    }, state);
+  }
+
+  preadd<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entity: T, state: S, placeholderId?: string): S {
+    return placeholderId
+      ? this.adapter.upsertOne({
         ...entity,
-        daffState: DaffState.Stable,
+        // TODO: allow for non identifiable entities?
+        id: placeholderId,
+        daffState: DaffState.Adding,
         daffErrors: [],
-        daffTemp: false,
-      }, state),
-    preadd: (entity, state, placeholderId) =>
-      placeholderId
-        ? adapter.upsertOne({
-          ...entity,
-          // TODO: allow for non identifiable entities?
-          id: placeholderId,
-          daffState: DaffState.Adding,
-          daffErrors: [],
-          daffTemp: true,
-        }, state)
-        : state,
-    add: (entity, state, placeholderId) =>
-      adapter.upsertOne({
-        ...entity,
+        daffTemp: true,
+      }, state)
+      : state;
+  }
+
+  add<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entity: T, state: S, placeholderId?: string): S {
+    return this.adapter.upsertOne(
+      {
         daffState: DaffState.Added,
+        ...entity,
         daffErrors: [],
         daffTemp: false,
-      }, placeholderId ? adapter.removeOne(placeholderId, state) : state),
-    preupdate: (entity, state) =>
-      adapter.upsertOne({
-        ...state.entities[entity.id],
-        daffState: DaffState.Mutating,
+      },
+      placeholderId ? this.adapter.removeOne(placeholderId, state) : state,
+    );
+  }
+
+  preupdate<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entity: Partial<T> & DaffIdentifiable, state: S): S {
+    return this.adapter.upsertOne({
+      ...state.entities[entity.id],
+      daffState: DaffState.Mutating,
+      daffErrors: [],
+    }, state);
+  }
+
+  update<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entity: Partial<T> & DaffIdentifiable, state: S): S {
+    return this.adapter.updateOne({
+      id: entity.id,
+      changes: <Partial<DaffOperationEntity<T>>>{
+        daffState: DaffState.Mutated,
+        ...entity,
         daffErrors: [],
-      }, state),
-    update: (entity, state) =>
-      adapter.updateOne({
-        id: entity.id,
-        changes: <Partial<DaffOperationEntity<T>>>{
-          ...entity,
-          daffState: DaffState.Mutated,
-          daffErrors: [],
-          daffTemp: false,
-        },
-      }, state),
-    preremove: (key, state) =>
-      adapter.upsertOne({
-        ...state.entities[key],
-        daffErrors: [],
-        daffState: DaffState.Deleting,
-      }, state),
-    remove: adapter.removeOne,
-    operationFailed: (key, errors, state) =>
-      adapter.upsertOne({
-        ...state.entities[key],
-        daffState: DaffState.Stable,
-        daffErrors: errors,
-      }, state),
-    resetState: (key, state) =>
-      adapter.upsertOne({
-        ...state.entities[key],
-        daffState: DaffState.Stable,
-      }, state),
-    getInitialState: adapter.getInitialState,
-    getSelectors: <TRootState>(selectState) => daffOperationEntityStateSelectorFactory<TRootState, T>(adapter.getSelectors(selectState)),
-  };
+        daffTemp: false,
+      },
+    }, state);
+  }
+
+  preremove<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(key: string, state: S): S {
+    return this.adapter.upsertOne({
+      ...state.entities[key],
+      daffErrors: [],
+      daffState: DaffState.Deleting,
+    }, state);
+  }
+
+  remove<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(key: string, state: S): S {
+    return this.adapter.removeOne(key, state);
+  }
+
+  operationFailed<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(key: string, errors: DaffStateError[], state: S): S {
+    return this.adapter.upsertOne({
+      ...state.entities[key],
+      daffState: DaffState.Error,
+      daffErrors: errors,
+    }, state);
+  }
+
+  resetState<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(key: string, state: S): S {
+    return this.adapter.upsertOne({
+      ...state.entities[key],
+      daffState: DaffState.Stable,
+    }, state);
+  }
+
+  getInitialState<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(state?: S): S {
+    return this.adapter.getInitialState(state);
+  }
+
+  getSelectors<TRootState>(selectState: (state: TRootState) => DaffOperationEntityState<T>): DaffOperationEntityStateSelectors<TRootState, T> {
+    return daffOperationEntityStateSelectorFactory<TRootState, T>(this.adapter.getSelectors(selectState));
+  }
+}
+
+export function daffCreateOperationEntityStateAdapter<T extends DaffIdentifiable = DaffIdentifiable>(adapter: EntityAdapter<DaffOperationEntity<T>> = createEntityAdapter<DaffOperationEntity<T>>()): DaffOperationEntityStateAdapter<T> {
+  return new DaffOperationEntityStateAdapter(adapter);
 }
