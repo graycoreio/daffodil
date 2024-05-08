@@ -8,4 +8,10 @@ export interface MagentoNavigationDriverConfig {
    * Defaults to 3.
    */
   navigationTreeQueryDepth: number;
+
+  /**
+   * The UID of the root category.
+   * While this is optional, setting it will prevent an extra driver call during `getTree`.
+   */
+  rootCategoryId?: string;
 }

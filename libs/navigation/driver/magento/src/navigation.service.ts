@@ -3,8 +3,14 @@ import {
   Inject,
 } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {
+  Observable,
+  of,
+} from 'rxjs';
+import {
+  map,
+  switchMap,
+} from 'rxjs/operators';
 
 import { DaffNavigationTree } from '@daffodil/navigation';
 import {
@@ -19,6 +25,7 @@ import {
 } from './config/public_api';
 import { GetCategoryTreeResponse } from './models/get-category-tree-response';
 import { daffMagentoGetCategoryTree } from './queries/get-category-tree';
+import { magentoNavigationGetRootCategoryIdQuery } from './queries/get-root-category-id/public_api';
 
 /**
  * @inheritdoc
@@ -33,6 +40,20 @@ export class DaffMagentoNavigationService implements DaffNavigationServiceInterf
     @Inject(DaffNavigationTransformer) private transformer: DaffNavigationTransformerInterface<DaffNavigationTree>,
     @Inject(MAGENTO_NAVIGATION_DRIVER_CONFIG) private config: MagentoNavigationDriverConfig,
   ) {}
+
+  getTree(): Observable<DaffNavigationTree> {
+    const rootCategoryId = this.config.rootCategoryId
+      ? of(this.config.rootCategoryId)
+      : this.apollo.query({
+        query: magentoNavigationGetRootCategoryIdQuery,
+      }).pipe(
+        map(({ data }) => data.storeConfig.root_category_uid),
+      );
+
+    return rootCategoryId.pipe(
+      switchMap((id) => this.get(id)),
+    );
+  }
 
   get(categoryId: string): Observable<DaffNavigationTree> {
     return this.apollo.query<GetCategoryTreeResponse>({
