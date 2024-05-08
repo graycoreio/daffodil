@@ -11,8 +11,8 @@ import { schema } from '@daffodil/driver/magento';
 import { DaffNavigationTransformer } from '@daffodil/navigation/driver';
 import {
   DaffMagentoNavigationTransformerService,
-  MAGENTO_NAVIGATION_TREE_QUERY_DEPTH,
   daffMagentoGetCategoryTree,
+  provideMagentoNavigationDriverConfig,
 } from '@daffodil/navigation/driver/magento';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
@@ -34,10 +34,9 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
       providers: [
         DaffMagentoNavigationService,
         { provide: DaffNavigationTransformer, useExisting: DaffMagentoNavigationTransformerService },
-        {
-          provide: MAGENTO_NAVIGATION_TREE_QUERY_DEPTH,
-          useValue: queryDepth,
-        },
+        provideMagentoNavigationDriverConfig({
+          navigationTreeQueryDepth: queryDepth,
+        }),
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
