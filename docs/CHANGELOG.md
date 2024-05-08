@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.69.0](https://github.com/graycoreio/daffodil/compare/v0.68.1...v0.69.0) (2024-04-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **design:** Previously, the now-named renderMode "not-in-dom" was the default. This is no longer the case. If one was rendering immensely large trees and you now notice a significant slow-down, you can change the renderMode like:
+* **design:** `DaffBackdropModule` code has been moved into `DaffSidebarModule`. It can no longer be used as a standalone component in `@daffodil/design`
+
+### Features
+
+* **core:** add subpackage for external scripts ([#2773](https://github.com/graycoreio/daffodil/issues/2773)) ([53b0d65](https://github.com/graycoreio/daffodil/commit/53b0d653c9a51bf89f6a015825e14f0bcaf76d6c))
+* **design:** add immutable tree transform ([#2776](https://github.com/graycoreio/daffodil/issues/2776)) ([d2ce4fd](https://github.com/graycoreio/daffodil/commit/d2ce4fdb0903eac79c3296988190c81d57cf8ee5))
+* **design:** add tree renderMode ([#2777](https://github.com/graycoreio/daffodil/issues/2777)) ([2d8ec58](https://github.com/graycoreio/daffodil/commit/2d8ec588a3b9e7d989e9d7c987f5b4555ec34baf))
+* **design:** implement article encapsulated mixin in DaffTreeComponent and add docs to design-land ([#2771](https://github.com/graycoreio/daffodil/issues/2771)) ([baa150e](https://github.com/graycoreio/daffodil/commit/baa150ecf921bccf8c3c6acd8b3ac734e62a4cd5))
+* **design:** move `DaffBackdropModule` into `DaffSidebarModule` ([#2673](https://github.com/graycoreio/daffodil/issues/2673)) ([01db447](https://github.com/graycoreio/daffodil/commit/01db447676b3b8d1f9453e6c410499db8d2fcaf7))
+* **navigation:** add injectable transforms to magento driver ([#2774](https://github.com/graycoreio/daffodil/issues/2774)) ([60bd6db](https://github.com/graycoreio/daffodil/commit/60bd6db01eb96b3773f73929784e0dc968efd246))
+
+
+### Bug Fixes
+
+* **design:** remove overflow style on destroy of sidebar-viewport ([#2779](https://github.com/graycoreio/daffodil/issues/2779)) ([cadc240](https://github.com/graycoreio/daffodil/commit/cadc24073d17e64d0d19556fafc0d80dba9da084))
+
 ## [0.68.1](https://github.com/graycoreio/daffodil/compare/v0.68.0...v0.68.1) (2024-03-20)
 
 
