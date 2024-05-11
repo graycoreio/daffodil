@@ -94,8 +94,8 @@ describe('@daffodil/core/state | daffOperationFailed', () => {
     result = daffOperationFailed([error], state);
   });
 
-  it('should set loading to stable', () => {
-    expect(result.daffState).toEqual(DaffState.Stable);
+  it('should set loading to error', () => {
+    expect(result.daffState).toEqual(DaffState.Error);
   });
 
   it('should add the error', () => {

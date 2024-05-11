@@ -32,9 +32,15 @@ export function daffAuthReducer(
       };
 
     case DaffAuthActionTypes.AuthCheckFailureAction:
-    case DaffAuthActionTypes.AuthGuardLogoutAction:
       return {
         ...daffOperationFailed([action.errorMessage], state),
+        loggedIn: false,
+      };
+
+    case DaffAuthActionTypes.AuthGuardLogoutAction:
+      return {
+        ...daffCompleteOperation(state),
+        daffErrors: [action.errorMessage],
         loggedIn: false,
       };
 

@@ -93,8 +93,8 @@ describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
       result = reducer(state, authResetPasswordFailure);
     });
 
-    it('sets loading to stable', () => {
-      expect(result.daffState).toEqual(DaffState.Stable);
+    it('sets loading to error', () => {
+      expect(result.daffState).toEqual(DaffState.Error);
     });
 
     it('adds an error to state.daffErrors', () => {
@@ -146,8 +146,8 @@ describe('@daffodil/auth/state | daffAuthResetPasswordReducer', () => {
       result = reducer(state, authSendResetEmailFailure);
     });
 
-    it('sets loading to stable', () => {
-      expect(result.daffState).toEqual(DaffState.Stable);
+    it('sets loading to error', () => {
+      expect(result.daffState).toEqual(DaffState.Error);
     });
 
     it('adds an error to state.daffErrors', () => {

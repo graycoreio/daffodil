@@ -462,8 +462,8 @@ describe('@daffodil/category/state | daffCategoryReducer', () => {
       expect(result.daffErrors).toEqual([error]);
     });
 
-    it('sets daffState to stable', () => {
-      expect(result.daffState).toEqual(DaffState.Stable);
+    it('sets daffState to error', () => {
+      expect(result.daffState).toEqual(DaffState.Error);
     });
   });
 });
