@@ -21,4 +21,4 @@
  *
  * ```
  */
-export type Constructable<T> = new(...args: any[]) => T;
+export type Constructable<T, Args extends Array<unknown> = Array<unknown>> = new(...args: Args) => T;
