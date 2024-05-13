@@ -15,9 +15,13 @@ import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
   providedIn: 'root',
 })
 export class DaffTestingNavigationService implements DaffNavigationServiceInterface<DaffNavigationTree> {
-
   constructor(
-    private navigationTreeFactory: DaffNavigationTreeFactory) {}
+    private navigationTreeFactory: DaffNavigationTreeFactory,
+  ) {}
+
+  getTree(): Observable<DaffNavigationTree> {
+    return of(this.navigationTreeFactory.create());
+  }
 
   get(navigationTreeId: string): Observable<DaffNavigationTree> {
     return of(this.navigationTreeFactory.create());

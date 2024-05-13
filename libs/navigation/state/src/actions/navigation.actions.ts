@@ -12,7 +12,7 @@ export enum DaffNavigationActionTypes {
 export class DaffNavigationLoad implements Action {
   readonly type = DaffNavigationActionTypes.NavigationLoadAction;
 
-  constructor(public payload: string) { }
+  constructor(public payload?: string) { }
 }
 
 export class DaffNavigationLoadSuccess<T extends DaffGenericNavigationTree<T>> implements Action {
