@@ -1234,10 +1234,7 @@ describe('DaffCartFacade', () => {
     it('should be the cart shipping information upon a successful cart shipping information load', () => {
       const cart = cartFactory.create();
       const expected = cold('a', {
-        a: {
-          ...cart.shipping_information,
-          address_id: null,
-        },
+        a: cart.shipping_information,
       });
       facade.dispatch(new DaffCartShippingInformationLoadSuccess(cart.shipping_information));
       expect(facade.shippingInformation$).toBeObservable(expected);
