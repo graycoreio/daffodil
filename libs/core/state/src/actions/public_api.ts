@@ -1,1 +1,1 @@
-export *from './failure.type';
+export * from './failure.type';
