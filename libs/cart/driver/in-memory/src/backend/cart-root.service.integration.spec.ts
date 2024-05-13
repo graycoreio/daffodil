@@ -12,7 +12,6 @@ import {
   DaffCartAddress,
   DaffCartPaymentMethod,
   DaffCartShippingRate,
-  DaffCartShippingInformation,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
@@ -43,7 +42,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
   let mockBillingAddress: DaffCartAddress;
   let mockPayment: DaffCartPaymentMethod;
   let mockShippingMethod: DaffCartShippingRate;
-  let mockShippingInformation: DaffCartShippingInformation;
+  let mockShippingInformation: DaffCartShippingRate;
   let cartId: DaffCart['id'];
   let itemId: DaffCartItem['id'];
 
@@ -72,10 +71,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     mockBillingAddress = cartAddressFactory.create();
     mockPayment = cartPaymentFactory.create();
     mockShippingMethod = cartShippingMethodFactory.create();
-    mockShippingInformation = {
-      ...cartShippingMethodFactory.create(),
-      address_id: null,
-    };
+    mockShippingInformation = cartShippingMethodFactory.create();
     cartId = mockCart.id;
     itemId = mockCartItem.id;
     mockCart.items.push(mockCartItem);
@@ -521,13 +517,10 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
   describe('processing an update shipping information request', () => {
     let result;
-    let newShippingInformation: DaffCartShippingInformation;
+    let newShippingInformation: DaffCartShippingRate;
 
     beforeEach(done => {
-      newShippingInformation = {
-        ...cartShippingMethodFactory.create(),
-        address_id: null,
-      };
+      newShippingInformation = cartShippingMethodFactory.create();
 
       httpClient.put<any>(`/api/cart-shipping-information/${cartId}/`, newShippingInformation).subscribe(res => {
         result = res;

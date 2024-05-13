@@ -12,7 +12,6 @@ import {
   transformMagentoCartItem,
 } from './cart-item/cart-item-transformer';
 import { DaffMagentoCartPaymentTransformer } from './cart-payment.service';
-import { DaffMagentoCartShippingInformationTransformer } from './cart-shipping-information.service';
 import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.service';
 import { transformCartTotals } from './cart-totals-transformer';
 import { DaffMagentoShippingAddressTransformer } from './shipping-address.service';
@@ -37,7 +36,6 @@ export class DaffMagentoCartTransformer<T extends MagentoCart = MagentoCart, V e
     private shippingAddressTransformer: DaffMagentoShippingAddressTransformer,
     private billingAddressTransformer: DaffMagentoBillingAddressTransformer,
     private paymentTransformer: DaffMagentoCartPaymentTransformer,
-    private shippingInformationTransformer: DaffMagentoCartShippingInformationTransformer,
     private shippingRateTransformer: DaffMagentoCartShippingRateTransformer,
     @Inject(DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS) private cartItemTransforms: DaffCartMagentoCartItemTransform[],
     @Inject(DAFF_CART_MAGENTO_CART_TRANSFORMS) private cartTransforms: DaffCartMagentoCartTransform<T, V>[],
@@ -99,7 +97,7 @@ export class DaffMagentoCartTransformer<T extends MagentoCart = MagentoCart, V e
   private transformShippingInformation(cart: T): {shipping_information: V['shipping_information']} {
     return {
       shipping_information: cart.shipping_addresses[0]
-        ? this.shippingInformationTransformer.transform(cart.shipping_addresses[0].selected_shipping_method)
+        ? this.shippingRateTransformer.transform(cart.shipping_addresses[0].selected_shipping_method)
         : null,
     };
   }

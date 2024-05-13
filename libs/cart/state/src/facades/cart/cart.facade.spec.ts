@@ -1628,10 +1628,7 @@ describe('DaffCartFacade', () => {
     describe('when all the shipping method is present', () => {
       beforeEach(() => {
         const cart: DaffCart = cartFactory.create({
-          shipping_information: {
-            address_id: 'id',
-            ...shippingMethodFactory.create(),
-          },
+          shipping_information: shippingMethodFactory.create(),
         });
         facade.dispatch(new DaffCartLoadSuccess(cart));
       });
@@ -1677,10 +1674,7 @@ describe('DaffCartFacade', () => {
           shipping_address: cartAddressFactory.create(),
           billing_address: cartAddressFactory.create(),
           payment: paymentFactory.create(),
-          shipping_information: {
-            address_id: 'id',
-            ...shippingMethodFactory.create(),
-          },
+          shipping_information: shippingMethodFactory.create(),
         });
         facade.dispatch(new DaffCartLoadSuccess(cart));
       });

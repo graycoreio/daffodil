@@ -16,9 +16,9 @@ const addError = initializeErrorAdder(DaffCartOperationType.ShippingInformation)
 const resetErrors = initializeErrorResetter(DaffCartOperationType.ShippingInformation);
 const setLoading = initializeLoadingSetter(DaffCartOperationType.ShippingInformation);
 
-export function cartShippingInformationReducer<T extends DaffCart>(
+export function cartShippingInformationReducer<T extends DaffCart = DaffCart>(
   state = daffCartReducerInitialState,
-  action: ActionTypes,
+  action: ActionTypes<T>,
 ): DaffCartReducerState<T> {
   switch (action.type) {
     case DaffCartShippingInformationActionTypes.CartShippingInformationLoadAction:
@@ -40,8 +40,7 @@ export function cartShippingInformationReducer<T extends DaffCart>(
         ...resetErrors(state.errors),
         cart: {
           ...state.cart,
-          // TODO: remove workaround
-          shipping_information: { ...action.payload, address_id: null },
+          shipping_information: action.payload,
         },
         ...setLoading(state.loading, DaffState.Complete),
       };

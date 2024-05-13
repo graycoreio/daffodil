@@ -11,7 +11,7 @@ import {
 
 import {
   DaffCart,
-  DaffCartShippingInformation,
+  DaffCartShippingRate,
   DaffCartStorageService,
 } from '@daffodil/cart';
 import {
@@ -40,10 +40,10 @@ import { DaffCartShippingInformationEffects } from './cart-shipping-information.
 
 describe('@daffodil/cart/state | DaffCartShippingInformationEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffCartShippingInformationEffects<DaffCartShippingInformation, DaffCart>;
+  let effects: DaffCartShippingInformationEffects;
 
   let mockCart: DaffCart;
-  let mockCartShippingInformation: DaffCartShippingInformation;
+  let mockCartShippingInformation: DaffCartShippingRate;
 
   let cartFactory: DaffCartFactory;
   let cartShippingRateFactory: DaffCartShippingRateFactory;
@@ -76,10 +76,7 @@ describe('@daffodil/cart/state | DaffCartShippingInformationEffects', () => {
     cartShippingRateFactory = TestBed.inject(DaffCartShippingRateFactory);
 
     mockCart = cartFactory.create();
-    mockCartShippingInformation = {
-      ...cartShippingRateFactory.create(),
-      address_id: null,
-    };
+    mockCartShippingInformation = cartShippingRateFactory.create();
 
     driverGetSpy = spyOn(daffShippingInformationDriver, 'get');
     driverUpdateSpy = spyOn(daffShippingInformationDriver, 'update');

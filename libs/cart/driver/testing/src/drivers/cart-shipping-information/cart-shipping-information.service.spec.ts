@@ -4,7 +4,6 @@ import { cold } from 'jasmine-marbles';
 import {
   DaffCart,
   DaffCartShippingRate,
-  DaffCartShippingInformation,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
@@ -19,7 +18,7 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
   let cartShippingRateFactory: DaffCartShippingRateFactory;
 
   let mockCart: DaffCart;
-  let mockCartShippingInfo: DaffCartShippingInformation;
+  let mockCartShippingInfo: DaffCartShippingRate;
   let cartId;
 
   beforeEach(() => {
@@ -35,10 +34,7 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
     cartShippingRateFactory = TestBed.inject(DaffCartShippingRateFactory);
 
     mockCart = cartFactory.create();
-    mockCartShippingInfo = {
-      ...cartShippingRateFactory.create(),
-      address_id: null,
-    };
+    mockCartShippingInfo = cartShippingRateFactory.create();
     mockCart.shipping_information = mockCartShippingInfo;
     cartId = mockCart.id;
   });
