@@ -28,19 +28,31 @@ export const enum DaffState {
   Added = 'Added',
 
   /**
-   * The 'Mutating' state describes when an object that currently exists in state
+   * The 'Updating' state describes when an object that currently exists in state
    * is being changed in some way.
    *
    * Disambiguation: This has nothing to do with immutability.
    */
-  Mutating = 'Mutating',
+  Updating = 'Updating',
 
   /**
    * The 'Mutated' state describes when an object has recently been modified in
    * state. This state is typically associated with a subsequent decay into a
    * 'Stable' state.
    */
-  Mutated = 'Mutated',
+  Updated = 'Updated',
+
+  /**
+   * @deprecated in favor of {@link DaffState.Updating}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
+  Mutating = 'Updating',
+
+  /**
+   * @deprecated in favor of {@link DaffState.Updated}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
+  Mutated = 'Updated',
 
   /**
    * The "Deleting" state occurs when an object is in the process of being
