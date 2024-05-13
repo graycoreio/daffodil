@@ -15,7 +15,7 @@ import { DaffOperationEntity } from './type';
 export interface DaffOperationEntityStateSelectors<
   TRootState,
   T extends DaffIdentifiable = DaffIdentifiable
-> {
+> extends EntitySelectors<DaffOperationEntity<T>, TRootState> {
   /**
    * Selects an entity by ID.
    */
@@ -56,6 +56,7 @@ export function daffOperationEntityStateSelectorFactory<
   );
 
   return {
+    ...entitySelectors,
     selectEntity,
     selectOptimisticList,
   };
