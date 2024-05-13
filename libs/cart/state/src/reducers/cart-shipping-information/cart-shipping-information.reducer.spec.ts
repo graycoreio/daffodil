@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCart,
-  DaffCartShippingInformation,
+  DaffCartShippingRate,
 } from '@daffodil/cart';
 import {
   DaffCartShippingInformationLoad,
@@ -33,17 +33,14 @@ describe('@daffodil/cart/state | cartShippingInformationReducer', () => {
   let cartFactory: DaffCartFactory;
   let cartShippingInformationFactory: DaffCartShippingRateFactory;
   let cart: DaffCart;
-  let mockCartShippingInformation: DaffCartShippingInformation;
+  let mockCartShippingInformation: DaffCartShippingRate;
 
   beforeEach(() => {
     cartFactory = TestBed.inject(DaffCartFactory);
     cartShippingInformationFactory = new DaffCartShippingRateFactory();
 
     cart = cartFactory.create();
-    mockCartShippingInformation = {
-      ...cartShippingInformationFactory.create(),
-      address_id: null,
-    };
+    mockCartShippingInformation = cartShippingInformationFactory.create();
   });
 
   describe('when an unknown action is triggered', () => {

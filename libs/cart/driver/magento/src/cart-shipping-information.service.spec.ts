@@ -11,7 +11,7 @@ import { catchError } from 'rxjs';
 
 import {
   DaffCart,
-  DaffCartShippingInformation,
+  DaffCartShippingRate,
 } from '@daffodil/cart';
 import {
   MagentoCartShippingMethod,
@@ -64,7 +64,7 @@ describe('@daffodil/cart/driver/magento | CartShippingInformationService', () =>
   let mockMagentoCart: MagentoCart;
   let mockMagentoShippingAddress: MagentoShippingAddress;
   let mockMagentoShippingMethod: MagentoCartSelectedShippingMethod;
-  let mockDaffCartShippingInformation: DaffCartShippingInformation;
+  let mockDaffCartShippingInformation: DaffCartShippingRate;
   let mockSetSelectedShippingMethodResponse: MagentoSetSelectedShippingMethodResponse;
   let mockGetSelectedShippingMethodResponse: MagentoGetSelectedShippingMethodResponse;
   let mockListCartShippingMethodsResponse: MagentoListShippingMethodsResponse;
@@ -117,10 +117,7 @@ describe('@daffodil/cart/driver/magento | CartShippingInformationService', () =>
       __typename: 'SelectedShippingMethod',
       ...magentoShippingMethodFactory.create(),
     };
-    mockDaffCartShippingInformation = {
-      ...daffCartShippingRateFactory.create(),
-      address_id: null,
-    };
+    mockDaffCartShippingInformation = daffCartShippingRateFactory.create();
     mockMagentoShippingAddress = magentoShippingAddressFactory.create();
 
     cartId = mockDaffCart.id;

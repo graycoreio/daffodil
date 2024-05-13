@@ -4,7 +4,6 @@ import { DaffCartAddress } from './cart-address';
 import { DaffCartCoupon } from './cart-coupon';
 import { DaffCartItem } from './cart-item';
 import { DaffCartPaymentMethod } from './cart-payment';
-import { DaffCartShippingInformation } from './cart-shipping-info';
 import { DaffCartShippingRate } from './cart-shipping-rate';
 import { DaffCartTotal } from './cart-total';
 
@@ -49,7 +48,7 @@ export interface DaffCart extends DaffIdentifiable {
   /**
    * The selected shipping method.
    */
-  shipping_information: DaffCartShippingInformation | null;
+  shipping_information: DaffCartShippingRate | null;
   /**
    * A list of available shipping methods.
    */

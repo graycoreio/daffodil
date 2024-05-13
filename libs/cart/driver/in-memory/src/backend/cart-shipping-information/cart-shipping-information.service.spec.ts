@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCart,
-  DaffCartShippingInformation,
+  DaffCartShippingRate,
 } from '@daffodil/cart';
 import { DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK } from '@daffodil/cart/driver/in-memory';
 import {
@@ -19,7 +19,7 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
   let cartShippingInformationFactory: DaffCartShippingRateFactory;
 
   let mockCart: DaffCart;
-  let mockCartShippingInformation: DaffCartShippingInformation;
+  let mockCartShippingInformation: DaffCartShippingRate;
   let cartId;
   let reqInfoStub;
   let baseUrl;
@@ -46,10 +46,7 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
     cartShippingInformationFactory = TestBed.inject(DaffCartShippingRateFactory);
 
     mockCart = cartFactory.create();
-    mockCartShippingInformation = {
-      ...cartShippingInformationFactory.create(),
-      address_id: null,
-    };
+    mockCartShippingInformation = cartShippingInformationFactory.create();
     extraAttributes = {
       extraField: 'extraField',
     };
@@ -93,13 +90,10 @@ describe('DaffInMemoryBackendCartShippingInformationService', () => {
 
   describe('processing an update shipping information request', () => {
     let result;
-    let newShippingInformation: DaffCartShippingInformation;
+    let newShippingInformation: DaffCartShippingRate;
 
     beforeEach(() => {
-      newShippingInformation = {
-        ...cartShippingInformationFactory.create(),
-        address_id: null,
-      };
+      newShippingInformation = cartShippingInformationFactory.create();
       reqInfoStub.url = cartUrl;
       reqInfoStub.req.body = newShippingInformation;
       result = service.put(reqInfoStub);

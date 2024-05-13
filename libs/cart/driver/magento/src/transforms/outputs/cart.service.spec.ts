@@ -11,7 +11,6 @@ import {
   MagentoCartItem,
   MagentoCartPaymentMethod,
   DaffMagentoCartPaymentTransformer,
-  DaffMagentoCartShippingInformationTransformer,
   DaffMagentoCartAddressTransformer,
   DaffMagentoCartShippingRateTransformer,
   DaffMagentoShippingAddressTransformer,
@@ -51,11 +50,10 @@ describe('@daffodil/cart/driver/magento | MagentoCart', () => {
   let transform: DaffCartMagentoCartItemTransform;
   let transformName: string;
 
-  let cartAddressTransformerSpy;
-  let shippingAddressTransformerSpy;
-  let cartPaymentTransformerSpy;
-  let cartShippingInformationTransformerSpy;
-  let cartShippingRateTransformerSpy;
+  let cartAddressTransformerSpy: jasmine.SpyObj<DaffMagentoCartAddressTransformer>;
+  let shippingAddressTransformerSpy: jasmine.SpyObj<DaffMagentoShippingAddressTransformer>;
+  let cartPaymentTransformerSpy: jasmine.SpyObj<DaffMagentoCartPaymentTransformer>;
+  let cartShippingRateTransformerSpy: jasmine.SpyObj<DaffMagentoCartShippingRateTransformer>;
 
   beforeEach(() => {
     transformName = 'transform name';
@@ -63,29 +61,29 @@ describe('@daffodil/cart/driver/magento | MagentoCart', () => {
       ...daffItem,
       name: transformName,
     });
+    cartAddressTransformerSpy = jasmine.createSpyObj('DaffMagentoCartPaymentTransformer', ['transform']);
+    shippingAddressTransformerSpy = jasmine.createSpyObj('DaffMagentoCartAddressTransformer', ['transform']);
+    cartPaymentTransformerSpy = jasmine.createSpyObj('DaffMagentoCartShippingRateTransformer', ['transform']);
+    cartShippingRateTransformerSpy = jasmine.createSpyObj('DaffMagentoShippingAddressTransformer', ['transform']);
 
     TestBed.configureTestingModule({
       providers: [
         DaffMagentoCartTransformer,
         {
           provide: DaffMagentoCartPaymentTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartPaymentTransformer', ['transform']),
-        },
-        {
-          provide: DaffMagentoCartShippingInformationTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartShippingInformationTransformer', ['transform']),
+          useValue: cartPaymentTransformerSpy,
         },
         {
           provide: DaffMagentoCartAddressTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartAddressTransformer', ['transform']),
+          useValue: cartAddressTransformerSpy,
         },
         {
           provide: DaffMagentoCartShippingRateTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartShippingRateTransformer', ['transform']),
+          useValue: cartShippingRateTransformerSpy,
         },
         {
           provide: DaffMagentoShippingAddressTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoShippingAddressTransformer', ['transform']),
+          useValue: shippingAddressTransformerSpy,
         },
         ...daffProvideCartMagentoCartItemTransforms(transform),
       ],
@@ -99,12 +97,6 @@ describe('@daffodil/cart/driver/magento | MagentoCart', () => {
     magentoCartAddressFactory = TestBed.inject(MagentoCartAddressFactory);
     magentoCartItemFactory = TestBed.inject(MagentoCartItemFactory);
     magentoShippingMethodFactory = TestBed.inject(MagentoCartShippingMethodFactory);
-
-    cartAddressTransformerSpy = TestBed.inject(DaffMagentoCartAddressTransformer);
-    cartShippingInformationTransformerSpy = TestBed.inject(DaffMagentoCartShippingInformationTransformer);
-    shippingAddressTransformerSpy = TestBed.inject(DaffMagentoShippingAddressTransformer);
-    cartPaymentTransformerSpy = TestBed.inject(DaffMagentoCartPaymentTransformer);
-    cartShippingRateTransformerSpy = TestBed.inject(DaffMagentoCartShippingRateTransformer);
 
     mockDaffCart = daffCartFactory.create();
     mockMagentoCart = magentoCartFactory.create({
@@ -138,7 +130,6 @@ describe('@daffodil/cart/driver/magento | MagentoCart', () => {
 
     cartAddressTransformerSpy.transform.withArgs(mockBillingAddress).and.returnValue(mockDaffCart.billing_address);
     shippingAddressTransformerSpy.transform.and.returnValue(mockDaffCart.shipping_address);
-    cartShippingInformationTransformerSpy.transform.withArgs(mockShippingMethod).and.returnValue(mockDaffCart.shipping_information);
     cartShippingRateTransformerSpy.transform.withArgs(mockShippingMethod).and.returnValue(mockDaffCart.shipping_information);
     cartPaymentTransformerSpy.transform.withArgs(mockPaymentMethod).and.returnValue(mockDaffCart.payment);
   });
@@ -192,7 +183,7 @@ describe('@daffodil/cart/driver/magento | MagentoCart', () => {
       });
 
       it('should call the shipping information transformer with the shipping method', () => {
-        expect(cartShippingInformationTransformerSpy.transform).toHaveBeenCalledWith(mockShippingMethod);
+        expect(cartShippingRateTransformerSpy.transform).toHaveBeenCalledWith(mockShippingMethod);
       });
 
       it('should call the shipping rate transformer with each of the available shipping methods', () => {
@@ -262,10 +253,6 @@ describe('@daffodil/cart/driver/magento | MagentoCart', () => {
 
       it('should set available_shipping_methods to an empty array', () => {
         expect(transformedCart.available_shipping_methods).toEqual([]);
-      });
-
-      it('should not call the shipping rate transformer', () => {
-        expect(cartShippingRateTransformerSpy.transform).not.toHaveBeenCalled();
       });
     });
 

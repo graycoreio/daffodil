@@ -186,7 +186,6 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
       billing_address: cartAddressFactory.create(),
       payment: paymentFactory.create(),
     });
-    cart.shipping_information.address_id = String(cart.shipping_address.id);
     loading = {
       [DaffCartOperationType.Cart]: DaffState.Complete,
       [DaffCartOperationType.Item]: DaffState.Complete,

@@ -9,7 +9,7 @@ import {
 
 import {
   DaffCart,
-  DaffCartShippingInformation,
+  DaffCartShippingRate,
 } from '@daffodil/cart';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
@@ -57,7 +57,7 @@ export class DaffInMemoryBackendCartShippingInformationService implements DaffIn
     return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id);
   }
 
-  private getShippingInformation(reqInfo): DaffCartShippingInformation {
+  private getShippingInformation(reqInfo): DaffCartShippingRate {
     return this.getCart(reqInfo).shipping_information;
   }
 

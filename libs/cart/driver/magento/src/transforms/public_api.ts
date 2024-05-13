@@ -4,7 +4,6 @@ export { DaffMagentoShippingAddressTransformer } from './outputs/shipping-addres
 export { DaffMagentoCartAddressTransformer } from './outputs/cart-address.service';
 export { DaffMagentoCartPaymentTransformer } from './outputs/cart-payment.service';
 export { DaffMagentoCartShippingRateTransformer } from './outputs/cart-shipping-rate.service';
-export { DaffMagentoCartShippingInformationTransformer } from './outputs/cart-shipping-information.service';
 
 export { DaffMagentoCartAddressInputTransformer } from './inputs/cart-address.service';
 export { DaffMagentoShippingAddressInputTransformer } from './inputs/shipping-address.service';

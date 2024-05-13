@@ -1234,10 +1234,7 @@ describe('DaffCartFacade', () => {
     it('should be the cart shipping information upon a successful cart shipping information load', () => {
       const cart = cartFactory.create();
       const expected = cold('a', {
-        a: {
-          ...cart.shipping_information,
-          address_id: null,
-        },
+        a: cart.shipping_information,
       });
       facade.dispatch(new DaffCartShippingInformationLoadSuccess(cart.shipping_information));
       expect(facade.shippingInformation$).toBeObservable(expected);
@@ -1628,10 +1625,7 @@ describe('DaffCartFacade', () => {
     describe('when all the shipping method is present', () => {
       beforeEach(() => {
         const cart: DaffCart = cartFactory.create({
-          shipping_information: {
-            address_id: 'id',
-            ...shippingMethodFactory.create(),
-          },
+          shipping_information: shippingMethodFactory.create(),
         });
         facade.dispatch(new DaffCartLoadSuccess(cart));
       });
@@ -1677,10 +1671,7 @@ describe('DaffCartFacade', () => {
           shipping_address: cartAddressFactory.create(),
           billing_address: cartAddressFactory.create(),
           payment: paymentFactory.create(),
-          shipping_information: {
-            address_id: 'id',
-            ...shippingMethodFactory.create(),
-          },
+          shipping_information: shippingMethodFactory.create(),
         });
         facade.dispatch(new DaffCartLoadSuccess(cart));
       });
