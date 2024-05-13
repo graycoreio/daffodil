@@ -11,16 +11,13 @@ import {
 } from '@daffodil/navigation/driver';
 
 import {
-  MagentoNavigationDriverConfiguration,
-  MAGENTO_NAVIGATION_TREE_QUERY_DEPTH,
-} from './interfaces/navigation-config.interface';
+  MagentoNavigationDriverConfig,
+  MAGENTO_NAVIGATION_DRIVER_CONFIG_DEFAULT,
+  MAGENTO_NAVIGATION_DRIVER_CONFIG,
+} from './config/public_api';
 import { DaffMagentoNavigationService } from './navigation.service';
 import { DAFF_MAGENTO_GET_CATEGORY_TREE_QUERY_NAME } from './queries/get-category-tree';
 import { DaffMagentoNavigationTransformerService } from './transformers/navigation-transformer';
-
-export const MAGENTO_NAVIGATION_DEFAULT_CONFIGURATION: MagentoNavigationDriverConfiguration = {
-  navigationTreeQueryDepth: 3,
-};
 
 @NgModule({
   imports: [
@@ -28,7 +25,7 @@ export const MAGENTO_NAVIGATION_DEFAULT_CONFIGURATION: MagentoNavigationDriverCo
   ],
 })
 export class DaffNavigationMagentoDriverModule {
-  static forRoot(config: MagentoNavigationDriverConfiguration = MAGENTO_NAVIGATION_DEFAULT_CONFIGURATION): ModuleWithProviders<DaffNavigationMagentoDriverModule> {
+  static forRoot(config: MagentoNavigationDriverConfig = MAGENTO_NAVIGATION_DRIVER_CONFIG_DEFAULT): ModuleWithProviders<DaffNavigationMagentoDriverModule> {
     return {
       ngModule: DaffNavigationMagentoDriverModule,
       providers: [
@@ -41,8 +38,11 @@ export class DaffNavigationMagentoDriverModule {
           useExisting: DaffMagentoNavigationTransformerService,
         },
         {
-          provide: MAGENTO_NAVIGATION_TREE_QUERY_DEPTH,
-          useValue: config.navigationTreeQueryDepth,
+          provide: MAGENTO_NAVIGATION_DRIVER_CONFIG,
+          useValue: {
+            ...MAGENTO_NAVIGATION_DRIVER_CONFIG_DEFAULT,
+            ...config,
+          },
         },
         {
           provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,

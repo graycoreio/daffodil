@@ -13,7 +13,10 @@ import {
   DaffNavigationTransformerInterface,
 } from '@daffodil/navigation/driver';
 
-import { MAGENTO_NAVIGATION_TREE_QUERY_DEPTH } from './interfaces/navigation-config.interface';
+import {
+  MAGENTO_NAVIGATION_DRIVER_CONFIG,
+  MagentoNavigationDriverConfig,
+} from './config/public_api';
 import { GetCategoryTreeResponse } from './models/get-category-tree-response';
 import { daffMagentoGetCategoryTree } from './queries/get-category-tree';
 
@@ -28,12 +31,12 @@ export class DaffMagentoNavigationService implements DaffNavigationServiceInterf
   constructor(
     private apollo: Apollo,
     @Inject(DaffNavigationTransformer) private transformer: DaffNavigationTransformerInterface<DaffNavigationTree>,
-    @Inject(MAGENTO_NAVIGATION_TREE_QUERY_DEPTH) private categoryTreeQueryDepth: number,
+    @Inject(MAGENTO_NAVIGATION_DRIVER_CONFIG) private config: MagentoNavigationDriverConfig,
   ) {}
 
   get(categoryId: string): Observable<DaffNavigationTree> {
     return this.apollo.query<GetCategoryTreeResponse>({
-      query: daffMagentoGetCategoryTree(this.categoryTreeQueryDepth),
+      query: daffMagentoGetCategoryTree(this.config.navigationTreeQueryDepth),
       variables: {
         filters: { category_uid: { eq: categoryId }},
       },
