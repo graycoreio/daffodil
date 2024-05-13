@@ -55,5 +55,10 @@ export const enum DaffState {
    * Use DaffState.Stable instead.
    */
   // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
-  Complete = 'Stable'
+  Complete = 'Stable',
+
+  /**
+   * Indicates that the most recent operation specififc to this entity has failed.
+   */
+  Error = 'Error'
 }
