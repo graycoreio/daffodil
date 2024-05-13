@@ -1,3 +1,3 @@
 import { InjectionToken } from '@angular/core';
 
-export const DaffCartPaymentMethodGuardRedirectUrl = new InjectionToken<string>('DaffCartPaymentMethodGuardRedirectUrl');
+export const DaffCartPaymentMethodGuardRedirectUrl = new InjectionToken<string>('DaffCartPaymentMethodGuardRedirectUrl', { factory: () => '/' });

@@ -1,3 +1,3 @@
 import { InjectionToken } from '@angular/core';
 
-export const DaffEmptyCartResolverRedirectUrl = new InjectionToken<string>('DaffEmptyCartResolverRedirectUrl');
+export const DaffEmptyCartResolverRedirectUrl = new InjectionToken<string>('DaffEmptyCartResolverRedirectUrl', { factory: () => '/' });
