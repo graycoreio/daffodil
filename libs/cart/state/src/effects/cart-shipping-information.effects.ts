@@ -39,9 +39,9 @@ import { DAFF_CART_ERROR_MATCHER } from '../injection-tokens/public_api';
 @Injectable()
 export class DaffCartShippingInformationEffects<T extends DaffCart = DaffCart> {
   constructor(
-    private actions$: Actions<DaffCartShippingInformationActions<T>>,
+    private actions$: Actions<DaffCartShippingInformationActions<T['shipping_information']>>,
     @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
-    @Inject(DaffCartShippingInformationDriver) private driver: DaffCartShippingInformationServiceInterface<T>,
+    @Inject(DaffCartShippingInformationDriver) private driver: DaffCartShippingInformationServiceInterface<T['shipping_information']>,
     private storage: DaffCartStorageService,
   ) {}
 
