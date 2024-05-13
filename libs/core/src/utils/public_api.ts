@@ -12,3 +12,4 @@ export { shallowCompare } from './shallow-compare';
 export { shuffle } from './shuffle';
 export { unique } from './unique';
 export * from './long-arithmetic';
+export * from './identity';
