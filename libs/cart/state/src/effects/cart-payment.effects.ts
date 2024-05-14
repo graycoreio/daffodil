@@ -11,13 +11,10 @@ import { of } from 'rxjs';
 import {
   switchMap,
   map,
-  catchError,
 } from 'rxjs/operators';
 
 import {
-  DaffCartPaymentMethod,
   DaffCart,
-  DaffCartAddress,
   DaffCartStorageService,
 } from '@daffodil/cart';
 import {
@@ -29,40 +26,33 @@ import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
   DaffCartPaymentActionTypes,
-  DaffCartPaymentLoad,
   DaffCartPaymentLoadSuccess,
   DaffCartPaymentLoadFailure,
-  DaffCartPaymentRemove,
   DaffCartPaymentRemoveSuccess,
   DaffCartPaymentRemoveFailure,
-  DaffCartPaymentUpdate,
   DaffCartPaymentUpdateSuccess,
   DaffCartPaymentUpdateFailure,
-  DaffCartPaymentUpdateWithBilling,
   DaffCartPaymentUpdateWithBillingSuccess,
   DaffCartPaymentUpdateWithBillingFailure,
+  DaffCartPaymentActions,
 } from '../actions/public_api';
 import { DAFF_CART_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
-export class DaffCartPaymentEffects<
-  T extends DaffCartPaymentMethod = DaffCartPaymentMethod,
-  V extends DaffCart = DaffCart,
-  R extends DaffCartAddress = DaffCartAddress,
-> {
+export class DaffCartPaymentEffects<T extends DaffCart = DaffCart> {
   constructor(
-    private actions$: Actions,
+    private actions$: Actions<DaffCartPaymentActions<T>>,
     @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
-    @Inject(DaffCartPaymentDriver) private driver: DaffCartPaymentServiceInterface<T, V, R>,
+    @Inject(DaffCartPaymentDriver) private driver: DaffCartPaymentServiceInterface<T>,
     private storage: DaffCartStorageService,
   ) {}
 
 
   get$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartPaymentActionTypes.CartPaymentLoadAction),
-    switchMap((action: DaffCartPaymentLoad) =>
+    switchMap((action) =>
       this.driver.get(this.storage.getCartId()).pipe(
-        map((resp: T) => new DaffCartPaymentLoadSuccess(resp)),
+        map((resp) => new DaffCartPaymentLoadSuccess(resp)),
         catchAndArrayifyErrors(error => of(new DaffCartPaymentLoadFailure(error.map(this.errorMatcher)))),
       ),
     ),
@@ -71,9 +61,9 @@ export class DaffCartPaymentEffects<
 
   update$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartPaymentActionTypes.CartPaymentUpdateAction),
-    switchMap((action: DaffCartPaymentUpdate<T>) =>
+    switchMap((action) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
-        map((resp: V) => new DaffCartPaymentUpdateSuccess(resp)),
+        map((resp) => new DaffCartPaymentUpdateSuccess(resp)),
         catchAndArrayifyErrors(error => of(new DaffCartPaymentUpdateFailure(error.map(this.errorMatcher)))),
       ),
     ),
@@ -82,8 +72,8 @@ export class DaffCartPaymentEffects<
 
   updateWithBilling$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingAction),
-    switchMap((action: DaffCartPaymentUpdateWithBilling<T, R>) =>
-      this.driver.updateWithBilling(this.storage.getCartId(), action.payment, action.address).pipe(
+    switchMap((action) =>
+      this.driver.update(this.storage.getCartId(), action.payment, action.address).pipe(
         map(resp => new DaffCartPaymentUpdateWithBillingSuccess(resp)),
         catchAndArrayifyErrors(error => of(new DaffCartPaymentUpdateWithBillingFailure(error.map(this.errorMatcher)))),
       ),
@@ -93,7 +83,7 @@ export class DaffCartPaymentEffects<
 
   remove$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartPaymentActionTypes.CartPaymentRemoveAction),
-    switchMap((action: DaffCartPaymentRemove) =>
+    switchMap((action) =>
       this.driver.remove(this.storage.getCartId()).pipe(
         map(() => new DaffCartPaymentRemoveSuccess()),
         catchAndArrayifyErrors(error => of(new DaffCartPaymentRemoveFailure(error.map(this.errorMatcher)))),

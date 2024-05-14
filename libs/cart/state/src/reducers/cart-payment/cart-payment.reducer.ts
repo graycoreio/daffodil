@@ -17,9 +17,9 @@ const addError = initializeErrorAdder(DaffCartOperationType.Payment);
 const resetErrors = initializeErrorResetter(DaffCartOperationType.Payment);
 const setLoading = initializeLoadingSetter(DaffCartOperationType.Payment);
 
-export function cartPaymentReducer<T extends DaffCart>(
+export function cartPaymentReducer<T extends DaffCart = DaffCart>(
   state = daffCartReducerInitialState,
-  action: ActionTypes,
+  action: ActionTypes<T>,
 ): DaffCartReducerState<T> {
   switch (action.type) {
     case DaffCartPaymentActionTypes.CartPaymentLoadAction:

@@ -8,7 +8,6 @@ import { StoreConfig } from '@ngrx/store';
 import { DaffCart } from '@daffodil/cart';
 
 import { DAFF_CART_META_REDUCERS } from './meta.token';
-import { daffCartSetItemStateMetaReducer } from '../cart-item-entities/set-state.meta-reducer';
 import { DaffCartReducersState } from '../cart-reducers-state.interface';
 
 /**
@@ -21,10 +20,7 @@ export const DAFF_CART_STORE_CONFIG = new InjectionToken<StoreConfig<DaffCartRed
   {
     providedIn: 'any',
     factory: () => ({
-      metaReducers: [
-        daffCartSetItemStateMetaReducer,
-        ...inject(DAFF_CART_META_REDUCERS),
-      ],
+      metaReducers: inject(DAFF_CART_META_REDUCERS),
     }),
   },
 );

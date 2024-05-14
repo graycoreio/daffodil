@@ -10,34 +10,30 @@ import {
 /**
  * The interface responsible for managing the selected payment method of a cart.
  */
-export interface DaffCartPaymentServiceInterface<
-  T extends DaffCartPaymentMethod = DaffCartPaymentMethod,
-  V extends DaffCart = DaffCart,
-  R extends DaffCartAddress = DaffCartAddress
-> {
+export interface DaffCartPaymentServiceInterface<T extends DaffCart = DaffCart> {
   /**
    * Get the currently applied payment method of a cart.
    */
-  get(cartId: V['id']): Observable<T>;
+  get(cartId: T['id']): Observable<T['payment']>;
 
   /**
    * Update the payment method applied to a cart.
    *
    * If a billing address is provided, the driver will update that simultaneously.
    */
-  update(cartId: V['id'], payment: Partial<T>, billingAddress?: Partial<R>): Observable<Partial<V>>;
+  update(cartId: T['id'], payment: Partial<T['payment']>, billingAddress?: Partial<T['billing_address']>): Observable<Partial<T>>;
 
   /**
    * Update the billing address and payment method applied to a cart.
    *
    * @deprecated use `update` with the `billingAddress` parameter instead.
    */
-  updateWithBilling(cartId: V['id'], payment: Partial<T>, address: Partial<R>): Observable<Partial<V>>;
+  updateWithBilling(cartId: T['id'], payment: Partial<T['payment']>, address: Partial<T['billing_address']>): Observable<Partial<T>>;
 
   /**
    * Remove the payment method applied to a cart.
    */
-  remove(cartId: V['id']): Observable<void>;
+  remove(cartId: T['id']): Observable<void>;
 }
 
 export const DaffCartPaymentDriver = new InjectionToken<

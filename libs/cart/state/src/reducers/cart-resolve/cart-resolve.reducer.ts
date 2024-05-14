@@ -8,7 +8,7 @@ import { DaffCartReducerState } from '../cart-state.interface';
 
 export function cartResolveReducer<T extends DaffCart = DaffCart>(
   state = daffCartReducerInitialState,
-  action: ActionTypes,
+  action: ActionTypes<T>,
 ): DaffCartReducerState<T> {
   switch (action.type) {
     case DaffCartActionTypes.ResolveCartAction:

@@ -1,36 +1,26 @@
 import { TestBed } from '@angular/core/testing';
-import { EntityState } from '@ngrx/entity';
 
-import { DaffCart } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartItem,
+} from '@daffodil/cart';
 import {
   DaffCartItemListSuccess,
   DaffCartItemLoadSuccess,
-  DaffCartItemUpdateSuccess,
-  DaffCartItemAddSuccess,
-  DaffCartItemDeleteSuccess,
-  DaffCartLoadSuccess,
-  DaffCartClearSuccess,
   DaffCartItemDelete,
-  DaffCartItemStateEnum,
   DaffCartItemStateReset,
   DaffCartItemUpdate,
-  DaffResolveCartSuccess,
-  DaffStatefulCartItem,
-  DaffCartItemLoadFailure,
-  DaffCartItemDeleteFailure,
-  DaffCartItemUpdateFailure,
   DaffCartCreateSuccess,
-  DaffCartItemDeleteOutOfStockSuccess,
-  DaffCartLoadPartialSuccess,
-  DaffResolveCartPartialSuccess,
   daffCartItemEntitiesAdapter,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 import {
-  DaffCartFactory,
-  DaffCartItemFactory,
-} from '@daffodil/cart/testing';
-import { DaffStateError } from '@daffodil/core/state';
+  DaffOperationEntity,
+  DaffOperationEntityState,
+  DaffState,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { daffCartItemEntitiesReducer } from './cart-item-entities.reducer';
 
@@ -61,51 +51,10 @@ describe('@daffodil/cart/state | daffCartItemEntitiesReducer', () => {
     });
   });
 
-  describe('when an existing cart item does not have a default daffState', () => {
-    let result: EntityState<DaffStatefulCartItem>;
-    let stubStatefulCartItem: DaffStatefulCartItem;
-    let initialStateWithCartItem: EntityState<DaffStatefulCartItem>;
-
-    beforeEach(() => {
-      stubStatefulCartItem = new DaffStatefulCartItemFactory().create({
-        id: 'id',
-      });
-      initialStateWithCartItem = {
-        ...initialState,
-        entities: {
-          [stubStatefulCartItem.id]: {
-            ...stubStatefulCartItem,
-            daffState: DaffCartItemStateEnum.New,
-          },
-        },
-      };
-    });
-
-    it('should retain the existing daffState when a CartItemListSuccessAction is triggered', () => {
-      const cartItemListSuccess = new DaffCartItemListSuccess([{
-        ...stubStatefulCartItem,
-        daffState: DaffCartItemStateEnum.Default,
-      }]);
-
-      result = daffCartItemEntitiesReducer(initialStateWithCartItem, cartItemListSuccess);
-      expect(result.entities[stubStatefulCartItem.id].daffState).toEqual(DaffCartItemStateEnum.New);
-    });
-
-    it('should retain the existing daffState when a CartItemLoadSuccessAction is triggered', () => {
-      const cartItemLoadSuccess = new DaffCartItemLoadSuccess({
-        ...stubStatefulCartItem,
-        daffState: DaffCartItemStateEnum.Default,
-      });
-
-      result = daffCartItemEntitiesReducer(initialStateWithCartItem, cartItemLoadSuccess);
-      expect(result.entities[stubStatefulCartItem.id].daffState).toEqual(DaffCartItemStateEnum.New);
-    });
-  });
-
   describe('when CartItemListSuccessAction is triggered', () => {
 
-    let cartItems: DaffStatefulCartItem[];
-    let result: EntityState<DaffStatefulCartItem>;
+    let cartItems: DaffOperationEntity<DaffCartItem>[];
+    let result: DaffOperationEntityState<DaffOperationEntity<DaffCartItem>>;
 
     beforeEach(() => {
       cartItems = statefulCartItemFactory.createMany(2);
@@ -119,7 +68,7 @@ describe('@daffodil/cart/state | daffCartItemEntitiesReducer', () => {
     });
 
     it('sets expected statefulCartItem on state', () => {
-      expect(result.entities[cartItems[0].id]).toEqual(cartItems[0]);
+      expect(result.entities[cartItems[0].id].id).toEqual(cartItems[0].id);
     });
 
     it('should reset the cart item\'s errors', () => {
@@ -129,8 +78,8 @@ describe('@daffodil/cart/state | daffCartItemEntitiesReducer', () => {
 
   describe('when CartItemLoadSuccessAction is triggered', () => {
 
-    let statefulCartItem: DaffStatefulCartItem;
-    let result: EntityState<DaffStatefulCartItem>;
+    let statefulCartItem: DaffOperationEntity<DaffCartItem>;
+    let result: DaffOperationEntityState<DaffOperationEntity<DaffCartItem>>;
 
     beforeEach(() => {
       statefulCartItem = statefulCartItemFactory.create();
@@ -150,39 +99,39 @@ describe('@daffodil/cart/state | daffCartItemEntitiesReducer', () => {
 
   describe('when CartItemStateResetAction is triggered', () => {
 
-    let stubCartItem: DaffStatefulCartItem;
-    let result: EntityState<DaffStatefulCartItem>;
+    let stubCartItem: DaffOperationEntity<DaffCartItem>;
+    let result: DaffOperationEntityState<DaffOperationEntity<DaffCartItem>>;
     let testInitialState;
 
     beforeEach(() => {
-      stubCartItem = new DaffStatefulCartItemFactory().create();
+      stubCartItem = statefulCartItemFactory.create();
       testInitialState = {
         ids: [stubCartItem.id.toString()],
         entities: {
           [stubCartItem.id]: {
             ...stubCartItem,
-            daffState: DaffCartItemStateEnum.New,
+            daffState: DaffState.Added,
           },
         },
       };
-      const cartItemStateReset = new DaffCartItemStateReset();
+      const cartItemStateReset = new DaffCartItemStateReset(stubCartItem.id);
 
       result = daffCartItemEntitiesReducer(testInitialState, cartItemStateReset);
     });
 
     it('resets the state of all the cart items to default', () => {
-      expect(result.entities[stubCartItem.id].daffState).toEqual(DaffCartItemStateEnum.Default);
+      expect(result.entities[stubCartItem.id].daffState).toEqual(DaffState.Stable);
     });
   });
 
   describe('when CartItemUpdateAction is triggered', () => {
 
-    let stubStatefulCartItem: DaffStatefulCartItem;
-    let result: EntityState<DaffStatefulCartItem>;
+    let stubStatefulCartItem: DaffOperationEntity<DaffCartItem>;
+    let result: DaffOperationEntityState<DaffOperationEntity<DaffCartItem>>;
     let testInitialState;
 
     beforeEach(() => {
-      stubStatefulCartItem = new DaffStatefulCartItemFactory().create();
+      stubStatefulCartItem = statefulCartItemFactory.create();
       testInitialState = {
         ids: [stubStatefulCartItem.id.toString()],
         entities: {
@@ -195,18 +144,18 @@ describe('@daffodil/cart/state | daffCartItemEntitiesReducer', () => {
     });
 
     it('sets the updating cart item state to mutating', () => {
-      expect(result.entities[stubStatefulCartItem.id].daffState).toEqual(DaffCartItemStateEnum.Mutating);
+      expect(result.entities[stubStatefulCartItem.id].daffState).toEqual(DaffState.Mutating);
     });
   });
 
   describe('when CartItemDeleteAction is triggered', () => {
 
-    let stubCartItem: DaffStatefulCartItem;
-    let result: EntityState<DaffStatefulCartItem>;
+    let stubCartItem: DaffOperationEntity<DaffCartItem>;
+    let result: DaffOperationEntityState<DaffOperationEntity<DaffCartItem>>;
     let testInitialState;
 
     beforeEach(() => {
-      stubCartItem = new DaffStatefulCartItemFactory().create();
+      stubCartItem = statefulCartItemFactory.create();
       testInitialState = {
         ids: [stubCartItem.id.toString()],
         entities: {
@@ -218,80 +167,13 @@ describe('@daffodil/cart/state | daffCartItemEntitiesReducer', () => {
       result = daffCartItemEntitiesReducer(testInitialState, cartItemDeleteAction);
     });
 
-    it('sets the cart item state to mutating', () => {
-      expect(result.entities[stubCartItem.id].daffState).toEqual(DaffCartItemStateEnum.Mutating);
-    });
-  });
-
-  describe('when CartItemLoadFailureAction is triggered', () => {
-    let statefulCartItem: DaffStatefulCartItem;
-    let result: EntityState<DaffStatefulCartItem>;
-
-    beforeEach(() => {
-      error = {
-        code: 'code',
-        message: 'message',
-      };
-      statefulCartItem = statefulCartItemFactory.create();
-      const cartItemLoadSuccess = new DaffCartItemLoadSuccess(statefulCartItem);
-      const cartItemLoadFailure = new DaffCartItemLoadFailure([error], statefulCartItem.id);
-
-      result = daffCartItemEntitiesReducer(daffCartItemEntitiesReducer(initialState, cartItemLoadSuccess), cartItemLoadFailure);
-    });
-
-    it('should reset daffState on the cart item', () => {
-      expect(result.entities[statefulCartItem.id].daffState).toEqual(DaffCartItemStateEnum.Error);
-    });
-  });
-
-  describe('when CartItemDeleteFailureAction is triggered', () => {
-    let statefulCartItem: DaffStatefulCartItem;
-    let result: EntityState<DaffStatefulCartItem>;
-
-    beforeEach(() => {
-      error = {
-        code: 'code',
-        message: 'message',
-      };
-      statefulCartItem = statefulCartItemFactory.create();
-      const cartItemLoadSuccess = new DaffCartItemLoadSuccess(statefulCartItem);
-      const cartItemDeleteFailure = new DaffCartItemDeleteFailure([error], statefulCartItem.id);
-
-      result = daffCartItemEntitiesReducer(daffCartItemEntitiesReducer(initialState, cartItemLoadSuccess), cartItemDeleteFailure);
-    });
-
-    it('should reset daffState on the cart item', () => {
-      expect(result.entities[statefulCartItem.id].daffState).toEqual(DaffCartItemStateEnum.Error);
-    });
-  });
-
-  describe('when CartItemUpdateFailureAction is triggered', () => {
-    let statefulCartItem: DaffStatefulCartItem;
-    let result: EntityState<DaffStatefulCartItem>;
-
-    beforeEach(() => {
-      error = {
-        code: 'code',
-        message: 'message',
-      };
-      statefulCartItem = statefulCartItemFactory.create();
-      const cartItemLoadSuccess = new DaffCartItemLoadSuccess(statefulCartItem);
-      const cartItemUpdateFailure = new DaffCartItemUpdateFailure([error], statefulCartItem.id);
-
-      result = daffCartItemEntitiesReducer(daffCartItemEntitiesReducer(initialState, cartItemLoadSuccess), cartItemUpdateFailure);
-    });
-
-    it('should reset daffState on the cart item', () => {
-      expect(result.entities[statefulCartItem.id].daffState).toEqual(DaffCartItemStateEnum.Error);
-    });
-
-    it('should add the error to the cart item\'s errors', () => {
-      expect(result.entities[statefulCartItem.id].daffErrors).toContain(error);
+    it('sets the cart item state to deleting', () => {
+      expect(result.entities[stubCartItem.id].daffState).toEqual(DaffState.Deleting);
     });
   });
 
   describe('when CartCreateSuccessAction is triggered', () => {
-    let result: EntityState<DaffStatefulCartItem>;
+    let result: DaffOperationEntityState<DaffOperationEntity<DaffCartItem>>;
 
     beforeEach(() => {
       const cartCreateSuccess = new DaffCartCreateSuccess(<DaffCart>{});

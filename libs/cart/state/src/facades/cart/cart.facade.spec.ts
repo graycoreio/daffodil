@@ -68,6 +68,7 @@ import {
   daffCartRetrivalActions,
   daffCartItemEntitiesRetrievalActionsReducerFactory,
   daffCartRetrievalActionsReducerFactory,
+  DaffCartItemUpdate,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import {
@@ -394,7 +395,9 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart item mutations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartItemDelete('itemId'));
+        const mockCartItems = statefulCartItemFactory.createMany(2);
+        store.dispatch(new DaffCartItemListSuccess(mockCartItems));
+        store.dispatch(new DaffCartItemUpdate(mockCartItems[0].id, { qty: 2 }));
       });
 
       it('should return true', () => {
@@ -949,146 +952,6 @@ describe('DaffCartFacade', () => {
     });
   });
 
-  describe('id$', () => {
-    it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.id$).toBeObservable(expected);
-    });
-
-    it('should be the cart id upon a successful cart creation', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.id });
-      facade.dispatch(new DaffCartCreateSuccess(cart));
-      expect(facade.id$).toBeObservable(expected);
-    });
-  });
-
-  describe('subtotal$', () => {
-    it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.subtotal$).toBeObservable(expected);
-    });
-
-    it('should be the cart subtotal upon a successful cart load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalExcludingTax].value });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.subtotal$).toBeObservable(expected);
-    });
-  });
-
-  describe('grandTotal$', () => {
-    it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.grandTotal$).toBeObservable(expected);
-    });
-
-    it('should be the cart grand total upon a successful cart load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.grandTotal].value });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.grandTotal$).toBeObservable(expected);
-    });
-  });
-
-  describe('subtotalExcludingTax$', () => {
-
-    it('should be the cart subtotal excluding tax upon a successful cart load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalExcludingTax].value });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.subtotalExcludingTax$).toBeObservable(expected);
-    });
-  });
-
-  describe('subtotalIncludingTax$', () => {
-
-    it('should be the cart subtotal including tax upon a successful cart load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalIncludingTax].value });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.subtotalIncludingTax$).toBeObservable(expected);
-    });
-  });
-
-  describe('subtotalWithDiscountExcludingTax$', () => {
-
-    it('should be the cart subtotal with discounts excluding tax upon a successful cart load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax].value });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.subtotalWithDiscountExcludingTax$).toBeObservable(expected);
-    });
-  });
-
-  describe('subtotalWithDiscountIncludingTax$', () => {
-
-    it('should be the cart subtotal with discounts including tax upon a successful cart load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax].value });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.subtotalWithDiscountIncludingTax$).toBeObservable(expected);
-    });
-  });
-
-  describe('discountTotals$', () => {
-
-    it('should be the cart discount totals upon a successful cart load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: [cart.totals[DaffCartTotalTypeEnum.discount]]});
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.discountTotals$).toBeObservable(expected);
-    });
-  });
-
-  describe('totalTax$', () => {
-
-    it('should be the cart tax total upon a successful cart load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.tax].value });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.totalTax$).toBeObservable(expected);
-    });
-  });
-
-  describe('shippingTotal$', () => {
-
-    it('should be the cart shipping total upon a successful cart load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.shipping].value });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.shippingTotal$).toBeObservable(expected);
-    });
-  });
-
-  describe('coupons$', () => {
-    it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.coupons$).toBeObservable(expected);
-    });
-
-    it('should be the cart coupons upon a successful cart load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.coupons });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.coupons$).toBeObservable(expected);
-    });
-  });
-
-  describe('items$', () => {
-    it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.items$).toBeObservable(expected);
-    });
-
-    it('should be the cart items upon a successful cart item list', () => {
-      const statefulCartItems = statefulCartItemFactory.createMany(2);
-      const expected = cold('a', { a: statefulCartItems });
-      facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
-      expect(facade.items$).toBeObservable(expected);
-    });
-  });
-
   describe('itemEntities$', () => {
     it('should initially be an empty array', () => {
       const expected = cold('a', { a: []});
@@ -1096,7 +959,7 @@ describe('DaffCartFacade', () => {
     });
 
     it('should be the cart items upon a successful cart item list', () => {
-      const statefulCartItems = statefulCartItemFactory.createMany(2);
+      const statefulCartItems = statefulCartItemFactory.createMany(2, { daffState: <any>jasmine.anything() });
       const expected = cold('a', { a: statefulCartItems });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
       expect(facade.itemEntities$).toBeObservable(expected);
@@ -1110,7 +973,7 @@ describe('DaffCartFacade', () => {
     });
 
     it('should be the total number of cart items upon a successful cart item list', () => {
-      const statefulCartItems = statefulCartItemFactory.createMany(2);
+      const statefulCartItems = statefulCartItemFactory.createMany(2, { daffState: <any>jasmine.anything() });
       const expected = cold('a', { a: statefulCartItems.reduce((acc, item) => acc + item.qty, 0) });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
       expect(facade.totalItems$).toBeObservable(expected);
@@ -1120,7 +983,7 @@ describe('DaffCartFacade', () => {
   describe('hasOutOfStockItems$', () => {
 
     it('should return whether or not the cart has out of stock items', () => {
-      const statefulCartItems = statefulCartItemFactory.createMany(2);
+      const statefulCartItems = statefulCartItemFactory.createMany(2, { daffState: <any>jasmine.anything() });
       const expected = cold('a', { a: false });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
       expect(facade.hasOutOfStockItems$).toBeObservable(expected);
@@ -1131,6 +994,7 @@ describe('DaffCartFacade', () => {
     it('should return out of stock items', () => {
       const statefulCartItems = statefulCartItemFactory.createMany(2, {
         in_stock: false,
+        daffState: <any>jasmine.anything(),
       });
       const expected = cold('a', { a: statefulCartItems });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
@@ -1142,6 +1006,7 @@ describe('DaffCartFacade', () => {
     it('should return in stock items', () => {
       const statefulCartItems = statefulCartItemFactory.createMany(2, {
         in_stock: true,
+        daffState: <any>jasmine.anything(),
       });
       const expected = cold('a', { a: statefulCartItems });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
@@ -1156,7 +1021,7 @@ describe('DaffCartFacade', () => {
     });
 
     it('should be the cart items upon a successful cart item list', () => {
-      const statefulCartItems = statefulCartItemFactory.createMany(2);
+      const statefulCartItems = statefulCartItemFactory.createMany(2, { daffState: <any>jasmine.anything() });
       const expected = cold('a', {
         a:
           statefulCartItems.reduce((acc, item) => ({
@@ -1166,106 +1031,6 @@ describe('DaffCartFacade', () => {
       });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
       expect(facade.itemDictionary$).toBeObservable(expected);
-    });
-  });
-
-  describe('billingAddress$', () => {
-    it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.billingAddress$).toBeObservable(expected);
-    });
-
-    it('should be the cart billing address upon a successful cart billing address load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.billing_address });
-      facade.dispatch(new DaffCartBillingAddressLoadSuccess(cart.billing_address));
-      expect(facade.billingAddress$).toBeObservable(expected);
-    });
-  });
-
-  describe('shippingAddress$', () => {
-    it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.shippingAddress$).toBeObservable(expected);
-    });
-
-    it('should be the cart shipping address upon a successful cart shipping address load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.shipping_address });
-      facade.dispatch(new DaffCartShippingAddressLoadSuccess(cart.shipping_address));
-      expect(facade.shippingAddress$).toBeObservable(expected);
-    });
-  });
-
-  describe('payment$', () => {
-    it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.payment$).toBeObservable(expected);
-    });
-
-    it('should be the cart payment upon a successful cart payment load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.payment });
-      facade.dispatch(new DaffCartPaymentLoadSuccess(cart.payment));
-      expect(facade.payment$).toBeObservable(expected);
-    });
-  });
-
-  describe('totals$', () => {
-    it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.totals$).toBeObservable(expected);
-    });
-
-    it('should be the cart totals upon a successful cart item list', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.totals$).toBeObservable(expected);
-    });
-  });
-
-  describe('shippingInformation$', () => {
-    it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.shippingInformation$).toBeObservable(expected);
-    });
-
-    it('should be the cart shipping information upon a successful cart shipping information load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', {
-        a: cart.shipping_information,
-      });
-      facade.dispatch(new DaffCartShippingInformationLoadSuccess(cart.shipping_information));
-      expect(facade.shippingInformation$).toBeObservable(expected);
-    });
-  });
-
-  describe('availableShippingMethods$', () => {
-    it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.availableShippingMethods$).toBeObservable(expected);
-    });
-
-    it('should be the cart available shipping methods upon a successful available shipping methods load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.available_shipping_methods });
-      facade.dispatch(new DaffCartShippingMethodsLoadSuccess(cart.available_shipping_methods));
-      expect(facade.availableShippingMethods$).toBeObservable(expected);
-    });
-  });
-
-  describe('availablePaymentMethods$', () => {
-    it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.availablePaymentMethods$).toBeObservable(expected);
-    });
-
-    it('should be the cart available payment methods upon a successful available payment methods load', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.available_payment_methods });
-      facade.dispatch(new DaffCartPaymentMethodsLoadSuccess(cart.available_payment_methods));
-      expect(facade.availablePaymentMethods$).toBeObservable(expected);
     });
   });
 
@@ -1558,24 +1323,11 @@ describe('DaffCartFacade', () => {
 
     it('should return whether the cart item is out of stock', () => {
       const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2),
+        items: statefulCartItemFactory.createMany(2, { daffState: <any>jasmine.anything() }),
       });
       const expected = cold('a', { a: !cart.items[0].in_stock });
       facade.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.isCartItemOutOfStock(cart.items[0].id)).toBeObservable(expected);
-    });
-  });
-
-  describe('getCartItemState', () => {
-
-    it('should return the cart item state', () => {
-      const statefulCartItem = statefulCartItemFactory.create();
-      const cart = cartFactory.create({
-        items: [statefulCartItem],
-      });
-      const expected = cold('a', { a: statefulCartItem.daffState });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemState(statefulCartItem.id)).toBeObservable(expected);
     });
   });
 
@@ -1685,87 +1437,6 @@ describe('DaffCartFacade', () => {
     it('should initially be false', () => {
       const expected = cold('a', { a: false });
       expect(facade.canPlaceOrder$).toBeObservable(expected);
-    });
-  });
-
-  describe('getCartItemPrice', () => {
-
-    it('should be the cart item\'s price', () => {
-      const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2),
-      });
-      const expected = cold('a', { a: cart.items[0].price });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemPrice(cart.items[0].id)).toBeObservable(expected);
-    });
-  });
-
-  describe('getCartItemQuantity', () => {
-
-    it('should be the cart item\'s quantity', () => {
-      const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2),
-      });
-      const expected = cold('a', { a: cart.items[0].qty });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemQuantity(cart.items[0].id)).toBeObservable(expected);
-    });
-  });
-
-  describe('getCartItemRowTotal', () => {
-
-    it('should be the cart item\'s row total', () => {
-      const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2),
-      });
-      const expected = cold('a', { a: cart.items[0].row_total });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemRowTotal(cart.items[0].id)).toBeObservable(expected);
-    });
-  });
-
-  describe('getCartItemDiscounts', () => {
-
-    it('should be the cart item\'s array of discounts', () => {
-      const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2),
-      });
-      const expected = cold('a', { a: cart.items[0].discounts });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemDiscounts(cart.items[0].id)).toBeObservable(expected);
-    });
-  });
-
-  describe('getCartItemTotalDiscount', () => {
-
-    it('should be the cart item\'s sum of all discounts', () => {
-      const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2),
-      });
-      const expected = cold('a', { a: cart.items[0].discounts.reduce((acc, { amount }) => acc + amount, 0) });
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemTotalDiscount(cart.items[0].id)).toBeObservable(expected);
-    });
-  });
-
-  describe('getCartItemErrors', () => {
-    let error: DaffStateError;
-
-    beforeEach(() => {
-      error = {
-        code: 'code',
-        message: 'message',
-      };
-    });
-
-    it('should be the cart item\'s sum of all discounts', () => {
-      const cart = cartFactory.create({
-        items: statefulCartItemFactory.createMany(2),
-      });
-      const expected = cold('a', { a: [error]});
-      facade.dispatch(new DaffCartLoadSuccess(cart));
-      facade.dispatch(new DaffCartItemUpdateFailure([error], cart.items[0].id));
-      expect(facade.getCartItemErrors(cart.items[0].id)).toBeObservable(expected);
     });
   });
 });

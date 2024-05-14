@@ -5,23 +5,22 @@ import { BehaviorSubject } from 'rxjs';
 
 import {
   DaffCart,
-  DaffCartTotal,
   DaffCartItem,
   DaffCartOrderResult,
   DaffConfigurableCartItemAttribute,
   DaffCompositeCartItemOption,
-  DaffCartItemDiscount,
 } from '@daffodil/cart';
 import {
   DaffCartFacadeInterface,
   DaffCartErrors,
   DaffCartOperationType,
   DaffCartLoading,
-  DaffCartItemStateEnum,
-  DaffStatefulCartItem,
   DaffCartResolveState,
 } from '@daffodil/cart/state';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffOperationEntity,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 @Injectable({ providedIn: 'root' })
 export class MockDaffCartFacade implements DaffCartFacadeInterface {
@@ -71,31 +70,12 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   paymentMethodsErrors$: BehaviorSubject<DaffCartErrors[DaffCartOperationType.PaymentMethods]> = new BehaviorSubject([]);
   couponErrors$: BehaviorSubject<DaffCartErrors[DaffCartOperationType.Coupon]> = new BehaviorSubject([]);
 
-  id$: BehaviorSubject<DaffCart['id']> = new BehaviorSubject(null);
-  subtotal$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
-  grandTotal$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
-  subtotalExcludingTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
-  subtotalIncludingTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
-  subtotalWithDiscountExcludingTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
-  subtotalWithDiscountIncludingTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
-  discountTotals$: BehaviorSubject<DaffCartTotal[]> = new BehaviorSubject([]);
-  totalTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
-  shippingTotal$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
-  coupons$: BehaviorSubject<DaffCart['coupons']> = new BehaviorSubject([]);
-  items$: BehaviorSubject<DaffCart['items']> = new BehaviorSubject([]);
-  itemEntities$: BehaviorSubject<DaffStatefulCartItem[]> = new BehaviorSubject([]);
+  itemEntities$: BehaviorSubject<DaffOperationEntity<DaffCartItem>[]> = new BehaviorSubject([]);
   totalItems$: BehaviorSubject<number> = new BehaviorSubject(null);
   hasOutOfStockItems$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  outOfStockItems$: BehaviorSubject<DaffStatefulCartItem[]> = new BehaviorSubject([]);
-  inStockItems$: BehaviorSubject<DaffStatefulCartItem[]> = new BehaviorSubject([]);
-  itemDictionary$: BehaviorSubject<Dictionary<DaffStatefulCartItem>> = new BehaviorSubject({});
-  billingAddress$: BehaviorSubject<DaffCart['billing_address']> = new BehaviorSubject(null);
-  shippingAddress$: BehaviorSubject<DaffCart['shipping_address']> = new BehaviorSubject(null);
-  payment$: BehaviorSubject<DaffCart['payment']> = new BehaviorSubject(null);
-  totals$: BehaviorSubject<DaffCart['totals']> = new BehaviorSubject(null);
-  shippingInformation$: BehaviorSubject<DaffCart['shipping_information']> = new BehaviorSubject(null);
-  availableShippingMethods$: BehaviorSubject<DaffCart['available_shipping_methods']> = new BehaviorSubject([]);
-  availablePaymentMethods$: BehaviorSubject<DaffCart['available_payment_methods']> = new BehaviorSubject([]);
+  outOfStockItems$: BehaviorSubject<DaffOperationEntity<DaffCartItem>[]> = new BehaviorSubject([]);
+  inStockItems$: BehaviorSubject<DaffOperationEntity<DaffCartItem>[]> = new BehaviorSubject([]);
+  itemDictionary$: BehaviorSubject<Dictionary<DaffOperationEntity<DaffCartItem>>> = new BehaviorSubject({});
   paymentId$: BehaviorSubject<any> = new BehaviorSubject(null);
 
   isCartEmpty$: BehaviorSubject<boolean> = new BehaviorSubject(true);
@@ -118,18 +98,6 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   orderResultCartId$ = new BehaviorSubject<DaffCartOrderResult['cartId']>(null);
   hasOrderResult$ = new BehaviorSubject<boolean>(false);
 
-  getCartItemPrice(itemId: DaffCartItem['id']): BehaviorSubject<number> {
-	  return new BehaviorSubject(0);
-  }
-
-  getCartItemQuantity(itemId: DaffCartItem['id']): BehaviorSubject<number> {
-	  return new BehaviorSubject(0);
-  }
-
-  getCartItemRowTotal(itemId: DaffCartItem['id']): BehaviorSubject<number> {
-	  return new BehaviorSubject(0);
-  }
-
   getConfiguredCartItemAttributes(itemId: DaffCartItem['id']): BehaviorSubject<DaffConfigurableCartItemAttribute[]> {
 	  return new BehaviorSubject([]);
   }
@@ -140,22 +108,6 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
 
   isCartItemOutOfStock(itemId: DaffCartItem['id']): BehaviorSubject<boolean> {
 	  return new BehaviorSubject(false);
-  }
-
-  getCartItemState(itemId: DaffCartItem['id']): BehaviorSubject<DaffCartItemStateEnum> {
-	  return new BehaviorSubject(DaffCartItemStateEnum.Default);
-  }
-
-  getCartItemDiscounts(itemId: DaffCartItem['id']): BehaviorSubject<DaffCartItemDiscount[]> {
-	  return new BehaviorSubject([]);
-  }
-
-  getCartItemTotalDiscount(itemId: DaffCartItem['id']): BehaviorSubject<number> {
-	  return new BehaviorSubject(0);
-  }
-
-  getCartItemErrors(itemId: DaffCartItem['id']): BehaviorSubject<DaffStateError[]> {
-	  return new BehaviorSubject([]);
   }
 
   dispatch(action: Action) {};

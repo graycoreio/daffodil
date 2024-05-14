@@ -56,7 +56,7 @@ export class DaffCartPaymentProcessorEffects<
     @Inject(DAFF_PAYMENT_PROCESSOR_COLLECTION) private processors: DaffPaymentProcessorCollection,
     @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     @Inject(DAFF_PAYMENT_ERROR_MATCHER) private paymentErrorMatcher: ErrorTransformer,
-    @Inject(DaffCartPaymentDriver) private driver: DaffCartPaymentServiceInterface<T, V, R>,
+    @Inject(DaffCartPaymentDriver) private driver: DaffCartPaymentServiceInterface<V>,
     private storage: DaffCartStorageService,
     private injector: Injector,
   ) {}

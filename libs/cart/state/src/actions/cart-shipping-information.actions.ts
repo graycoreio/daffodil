@@ -81,10 +81,10 @@ export class DaffCartShippingInformationUpdateFailure implements DaffFailureActi
 /**
  * Triggers the deletion of the cart's shipping information.
  */
-export class DaffCartShippingInformationDelete<T extends DaffCartShippingRate = DaffCartShippingRate> implements Action {
+export class DaffCartShippingInformationDelete implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationDeleteAction;
 
-  constructor(public id?: T['id']) {}
+  constructor(public id?: DaffCartShippingRate['id']) {}
 }
 
 export class DaffCartShippingInformationDeleteSuccess<T extends DaffCart = DaffCart> implements DaffCartRetrievalAction<T> {
@@ -102,16 +102,13 @@ export class DaffCartShippingInformationDeleteFailure implements DaffFailureActi
 /**
  * A union of all the cart shipping information action classes.
  */
-export type DaffCartShippingInformationActions<
-  T extends DaffCartShippingRate = DaffCartShippingRate,
-  V extends DaffCart = DaffCart
-> =
+export type DaffCartShippingInformationActions<T extends DaffCart = DaffCart> =
   | DaffCartShippingInformationLoad
-  | DaffCartShippingInformationLoadSuccess<T>
+  | DaffCartShippingInformationLoadSuccess<T['shipping_information']>
   | DaffCartShippingInformationLoadFailure
-  | DaffCartShippingInformationUpdate<T>
-  | DaffCartShippingInformationUpdateSuccess<V>
+  | DaffCartShippingInformationUpdate<T['shipping_information']>
+  | DaffCartShippingInformationUpdateSuccess<T>
   | DaffCartShippingInformationUpdateFailure
-  | DaffCartShippingInformationDelete<T>
-  | DaffCartShippingInformationDeleteSuccess<V>
+  | DaffCartShippingInformationDelete
+  | DaffCartShippingInformationDeleteSuccess<T>
   | DaffCartShippingInformationDeleteFailure;

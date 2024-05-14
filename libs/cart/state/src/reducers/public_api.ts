@@ -18,7 +18,7 @@ export { DaffCartOrderReducerState } from './cart-order/cart-order-state.interfa
 export { daffCartOrderInitialState } from './cart-order/cart-order-initial-state';
 
 export { DAFF_CART_STORE_FEATURE_KEY } from './cart-store-feature-key';
-export { daffCartItemEntitiesAdapter } from './cart-item-entities/cart-item-entities-reducer-adapter';
+export { daffCartItemEntitiesAdapter } from './cart-item-entities/adapter';
 export { daffCartItemEntitiesRetrievalActionsReducerFactory } from './cart-item-entities/retrieval-actions.reducer';
 export { daffCartRetrievalActionsReducerFactory } from './cart/retrieval-actions.reducer';
 

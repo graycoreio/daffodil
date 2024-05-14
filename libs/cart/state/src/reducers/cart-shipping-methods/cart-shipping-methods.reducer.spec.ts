@@ -31,7 +31,7 @@ describe('@daffodil/cart/state | cartShippingMethodsReducer', () => {
 
   beforeEach(() => {
     cartFactory = TestBed.inject(DaffCartFactory);
-    cartShippingRateFactory = TestBed.inject<DaffCartShippingRateFactory>(DaffCartShippingRateFactory);
+    cartShippingRateFactory = TestBed.inject(DaffCartShippingRateFactory);
 
     cart = cartFactory.create();
     mockCartShippingRate = cartShippingRateFactory.create();

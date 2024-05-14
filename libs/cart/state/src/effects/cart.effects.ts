@@ -54,7 +54,7 @@ import {
 import { DAFF_CART_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
-export class DaffCartEffects<T extends DaffCart> {
+export class DaffCartEffects<T extends DaffCart = DaffCart> {
   constructor(
     private actions$: Actions,
     @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,

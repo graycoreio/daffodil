@@ -96,8 +96,8 @@ describe('Cart', () => {
 
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    daffCartFacade.items$ = new BehaviorSubject(cart.items);
-    daffCartFacade.isCartEmpty$ = new BehaviorSubject(true);
+    daffCartFacade.cart$.next(cart);
+    daffCartFacade.isCartEmpty$.next(true);
     wrapper.cartValue = cart;
     component = fixture.debugElement.query(By.css('demo-cart')).componentInstance;
 

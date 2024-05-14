@@ -12,7 +12,6 @@ import { DaffLoadingState } from '@daffodil/core/state';
 
 import { daffCartOrderInitialState } from './cart-order-initial-state';
 import { DaffCartOrderReducerState } from './cart-order-state.interface';
-import { DaffStatefulCartItem } from '../..';
 import {
   DaffCartActionTypes,
   DaffCartAddressActionTypes,
@@ -30,12 +29,7 @@ export function daffCartOrderReducer<T extends DaffCartOrderResult = DaffCartOrd
   state = daffCartOrderInitialState,
   action: ActionTypes<
   DaffCart,
-  DaffStatefulCartItem,
   DaffCartItemInput,
-  DaffCartAddress,
-  DaffCartShippingRate,
-  DaffCartPaymentMethod,
-  DaffCartCoupon,
   T
   >,
 ): DaffCartOrderReducerState<T> {

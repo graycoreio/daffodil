@@ -50,10 +50,7 @@ export class DaffCartAddressUpdateFailure implements DaffFailureAction {
 /**
  * A union of all the cart address action classes.
  */
-export type DaffCartAddressActions<
-  T extends DaffCartAddress = DaffCartAddress,
-  V extends DaffCart = DaffCart
-> =
-  | DaffCartAddressUpdate<T>
-  | DaffCartAddressUpdateSuccess<V>
+export type DaffCartAddressActions<T extends DaffCart = DaffCart> =
+  | DaffCartAddressUpdate<T['shipping_address'] | T['billing_address']>
+  | DaffCartAddressUpdateSuccess<T>
   | DaffCartAddressUpdateFailure;

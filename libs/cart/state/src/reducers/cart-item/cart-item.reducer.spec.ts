@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCart,
+  DaffCartItem,
   DaffCartItemInputType,
 } from '@daffodil/cart';
 import { DaffCartDriverErrorCodes } from '@daffodil/cart/driver';
@@ -22,7 +23,6 @@ import {
   DaffCartItemListSuccess,
   DaffCartItemListFailure,
   daffCartReducerInitialState,
-  DaffStatefulCartItem,
   DaffCartItemUpdate,
   DaffCartItemDelete,
   DaffCartItemDeleteOutOfStockSuccess,
@@ -34,6 +34,7 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 import {
   DaffStateError,
   DaffState,
+  DaffOperationEntity,
 } from '@daffodil/core/state';
 
 import { cartItemReducer } from './cart-item.reducer';
@@ -43,7 +44,7 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
   let statefulCartItemFactory: DaffStatefulCartItemFactory;
 
   let cart: DaffCart;
-  let cartItem: DaffStatefulCartItem;
+  let cartItem: DaffOperationEntity<DaffCartItem>;
 
   let result: DaffCartReducerState;
 
@@ -314,7 +315,7 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
-      const cartItemAddActionSuccess = new DaffCartItemAddSuccess(cart);
+      const cartItemAddActionSuccess = new DaffCartItemAddSuccess(cart, cartItem.id);
       state = {
         ...daffCartReducerInitialState,
         loading: {
@@ -386,7 +387,7 @@ describe('@daffodil/cart/state | cartItemReducer', () => {
 
   describe('when CartItemLoadSuccessAction is triggered', () => {
     let state: DaffCartReducerState<DaffCart>;
-    let newCartItem: DaffStatefulCartItem;
+    let newCartItem: DaffOperationEntity<DaffCartItem>;
 
     beforeEach(() => {
       newCartItem = {

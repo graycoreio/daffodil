@@ -19,9 +19,9 @@ const addError = initializeErrorAdder(DaffCartOperationType.BillingAddress);
 const resetErrors = initializeErrorResetter(DaffCartOperationType.BillingAddress);
 const setLoading = initializeLoadingSetter(DaffCartOperationType.BillingAddress);
 
-export function cartBillingAddressReducer<T extends DaffCart>(
+export function cartBillingAddressReducer<T extends DaffCart = DaffCart>(
   state = daffCartReducerInitialState,
-  action: ActionTypes,
+  action: ActionTypes<T>,
 ): DaffCartReducerState<T> {
   switch (action.type) {
     case DaffCartBillingAddressActionTypes.CartBillingAddressLoadAction:

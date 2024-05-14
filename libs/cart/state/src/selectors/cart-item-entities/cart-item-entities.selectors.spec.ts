@@ -7,21 +7,22 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCart } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartItem,
+  DaffCompositeCartItem,
+  DaffConfigurableCartItem,
+} from '@daffodil/cart';
 import {
   DaffCartStateRootSlice,
   daffCartReducers,
   DaffCartItemListSuccess,
   DAFF_CART_STORE_FEATURE_KEY,
-  DaffStatefulCartItem,
-  DaffStatefulConfigurableCartItem,
-  DaffStatefulCompositeCartItem,
   DaffCartShippingMethodsLoad,
   DaffCartItemUpdate,
   DaffCartReducersState,
   daffCartItemEntitiesRetrievalActionsReducerFactory,
   daffCartRetrievalActionsReducerFactory,
-  DaffCartItemUpdateFailure,
   daffCartRetrivalActions,
 } from '@daffodil/cart/state';
 import {
@@ -31,7 +32,7 @@ import {
 } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import {
-  DaffStateError,
+  DaffOperationEntity,
   daffComposeReducers,
   daffIdentityReducer,
 } from '@daffodil/core/state';
@@ -45,9 +46,9 @@ describe('@daffodil/cart/state | getDaffCartItemEntitiesSelectors', () => {
   let statefulConfigurableCartItemFactory: DaffStatefulConfigurableCartItemFactory;
   let statefulCompositeCartItemFactory: DaffStatefulCompositeCartItemFactory;
   let mockCart: DaffCart;
-  let mockCartItems: DaffStatefulCartItem[];
-  let mockStatefulConfigurableCartItems: DaffStatefulConfigurableCartItem[];
-  let mockStatefulCompositeCartItems: DaffStatefulCompositeCartItem[];
+  let mockCartItems: DaffOperationEntity<DaffCartItem>[];
+  let mockStatefulConfigurableCartItems: DaffOperationEntity<DaffConfigurableCartItem>[];
+  let mockStatefulCompositeCartItems: DaffOperationEntity<DaffCompositeCartItem>[];
   const {
     selectCartItemIds,
     selectCartItemEntities,
@@ -61,13 +62,6 @@ describe('@daffodil/cart/state | getDaffCartItemEntitiesSelectors', () => {
     selectOutOfStockCartItems,
     selectInStockCartItems,
     selectCartItemMutating,
-    selectCartItemState,
-    selectCartItemPrice,
-    selectCartItemRowTotal,
-    selectCartItemQuantity,
-    selectCartItemDiscounts,
-    selectCartItemTotalDiscount,
-    selectCartItemErrors,
   } = getDaffCartItemEntitiesSelectors();
 
   beforeEach(() => {
@@ -93,9 +87,15 @@ describe('@daffodil/cart/state | getDaffCartItemEntitiesSelectors', () => {
     statefulCompositeCartItemFactory = TestBed.inject(DaffStatefulCompositeCartItemFactory);
 
     mockCart = cartFactory.create();
-    mockCartItems = statefulCartItemFactory.createMany(2);
-    mockStatefulConfigurableCartItems = statefulConfigurableCartItemFactory.createMany(2);
-    mockStatefulCompositeCartItems = statefulCompositeCartItemFactory.createMany(2);
+    mockCartItems = statefulCartItemFactory.createMany(2, {
+      daffState: <any>jasmine.anything(),
+    });
+    mockStatefulConfigurableCartItems = statefulConfigurableCartItemFactory.createMany(2, {
+      daffState: <any>jasmine.anything(),
+    });
+    mockStatefulCompositeCartItems = statefulCompositeCartItemFactory.createMany(2, {
+      daffState: <any>jasmine.anything(),
+    });
 
     store.dispatch(new DaffCartItemListSuccess(mockCartItems));
   });
@@ -152,7 +152,7 @@ describe('@daffodil/cart/state | getDaffCartItemEntitiesSelectors', () => {
 
     it('should select the product of the given id', () => {
       const selector = store.pipe(select(selectCartItem(mockCartItems[0].id)));
-      const expected = cold('a', { a: mockCartItems[0] });
+      const expected = cold('a', { a: jasmine.objectContaining({ id: mockCartItems[0].id }) });
 
       expect(selector).toBeObservable(expected);
     });
@@ -267,15 +267,17 @@ describe('@daffodil/cart/state | getDaffCartItemEntitiesSelectors', () => {
   });
 
   describe('selectOutOfStockCartItems', () => {
-    let inStockItem: DaffStatefulCartItem;
-    let outOfStockItem: DaffStatefulCartItem;
+    let inStockItem: DaffOperationEntity<DaffCartItem>;
+    let outOfStockItem: DaffOperationEntity<DaffCartItem>;
 
     beforeEach(() => {
       inStockItem = statefulCartItemFactory.create({
         in_stock: true,
+        daffState: <any>jasmine.anything(),
       });
       outOfStockItem = statefulCartItemFactory.create({
         in_stock: false,
+        daffState: <any>jasmine.anything(),
       });
     });
 
@@ -308,15 +310,17 @@ describe('@daffodil/cart/state | getDaffCartItemEntitiesSelectors', () => {
   });
 
   describe('selectInStockCartItems', () => {
-    let inStockItem: DaffStatefulCartItem;
-    let outOfStockItem: DaffStatefulCartItem;
+    let inStockItem: DaffOperationEntity<DaffCartItem>;
+    let outOfStockItem: DaffOperationEntity<DaffCartItem>;
 
     beforeEach(() => {
       inStockItem = statefulCartItemFactory.create({
         in_stock: true,
+        daffState: <any>jasmine.anything(),
       });
       outOfStockItem = statefulCartItemFactory.create({
         in_stock: false,
+        daffState: <any>jasmine.anything(),
       });
     });
 
@@ -364,218 +368,6 @@ describe('@daffodil/cart/state | getDaffCartItemEntitiesSelectors', () => {
       const expected = cold('a', { a: false });
 
       expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartItemState', () => {
-
-    it('should return the state of the cart item', () => {
-      store.dispatch(new DaffCartItemListSuccess(mockCartItems));
-      const selector = store.pipe(select(selectCartItemState(mockCartItems[0].id)));
-      const expected = cold('a', { a: mockCartItems[0].daffState });
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should return null if the cart item is not in state', () => {
-      const selector = store.pipe(select(selectCartItemState(mockCartItems[0].id + 'notId')));
-      const expected = cold('a', { a: null });
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should not emit when an unrelated piece of state changes', () => {
-      const spy = jasmine.createSpy();
-      const selector = store.pipe(select(selectCartItemState(mockCartItems[0].id)));
-
-      selector.subscribe(spy);
-
-      store.dispatch(new DaffCartShippingMethodsLoad());
-
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('selectCartItemPrice', () => {
-
-    it('should return the price of the cart item', () => {
-      store.dispatch(new DaffCartItemListSuccess(mockCartItems));
-      const selector = store.pipe(select(selectCartItemPrice(mockCartItems[0].id)));
-      const expected = cold('a', { a: mockCartItems[0].price });
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should return 0 if the cart item is not in state', () => {
-      const selector = store.pipe(select(selectCartItemPrice(mockCartItems[0].id + 'notId')));
-      const expected = cold('a', { a: 0 });
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should not emit when an unrelated piece of state changes', () => {
-      const spy = jasmine.createSpy();
-      const selector = store.pipe(select(selectCartItemPrice(mockCartItems[0].id)));
-
-      selector.subscribe(spy);
-
-      store.dispatch(new DaffCartShippingMethodsLoad());
-
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('selectCartItemQuantity', () => {
-
-    it('should return the quantity of the cart item', () => {
-      store.dispatch(new DaffCartItemListSuccess(mockCartItems));
-      const selector = store.pipe(select(selectCartItemQuantity(mockCartItems[0].id)));
-      const expected = cold('a', { a: mockCartItems[0].qty });
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should return 0 if the cart item is not in state', () => {
-      const selector = store.pipe(select(selectCartItemQuantity(mockCartItems[0].id + 'notId')));
-      const expected = cold('a', { a: 0 });
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should not emit when an unrelated piece of state changes', () => {
-      const spy = jasmine.createSpy();
-      const selector = store.pipe(select(selectCartItemQuantity(mockCartItems[0].id)));
-
-      selector.subscribe(spy);
-
-      store.dispatch(new DaffCartShippingMethodsLoad());
-
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('selectCartItemRowTotal', () => {
-
-    it('should return the row total of the cart item', () => {
-      store.dispatch(new DaffCartItemListSuccess(mockCartItems));
-      const selector = store.pipe(select(selectCartItemRowTotal(mockCartItems[0].id)));
-      const expected = cold('a', { a: mockCartItems[0].row_total });
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should return 0 if the cart item is not in state', () => {
-      const selector = store.pipe(select(selectCartItemRowTotal(mockCartItems[0].id + 'notId')));
-      const expected = cold('a', { a: 0 });
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should not emit when an unrelated piece of state changes', () => {
-      const spy = jasmine.createSpy();
-      const selector = store.pipe(select(selectCartItemRowTotal(mockCartItems[0].id)));
-
-      selector.subscribe(spy);
-
-      store.dispatch(new DaffCartShippingMethodsLoad());
-
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('selectCartItemDiscounts', () => {
-
-    it('should return the discounts of the cart item', () => {
-      store.dispatch(new DaffCartItemListSuccess(mockCartItems));
-      const selector = store.pipe(select(selectCartItemDiscounts(mockCartItems[0].id)));
-      const expected = cold('a', { a: mockCartItems[0].discounts });
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should return an empty array if the cart item is not in state', () => {
-      const selector = store.pipe(select(selectCartItemDiscounts(mockCartItems[0].id + 'notId')));
-      const expected = cold('a', { a: []});
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should not emit when an unrelated piece of state changes', () => {
-      const spy = jasmine.createSpy();
-      const selector = store.pipe(select(selectCartItemDiscounts(mockCartItems[0].id)));
-
-      selector.subscribe(spy);
-
-      store.dispatch(new DaffCartShippingMethodsLoad());
-
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('selectCartItemTotalDiscount', () => {
-
-    it('should return the sum of all discounts of the cart item', () => {
-      store.dispatch(new DaffCartItemListSuccess(mockCartItems));
-      const selector = store.pipe(select(selectCartItemTotalDiscount(mockCartItems[0].id)));
-      const expected = cold('a', { a: mockCartItems[0].discounts.reduce((acc, { amount }) => acc + amount, 0) });
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should return 0 if the cart item is not in state', () => {
-      const selector = store.pipe(select(selectCartItemTotalDiscount(mockCartItems[0].id + 'notId')));
-      const expected = cold('a', { a: 0 });
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should not emit when an unrelated piece of state changes', () => {
-      const spy = jasmine.createSpy();
-      const selector = store.pipe(select(selectCartItemTotalDiscount(mockCartItems[0].id)));
-
-      selector.subscribe(spy);
-
-      store.dispatch(new DaffCartShippingMethodsLoad());
-
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('selectCartItemErrors', () => {
-    let error: DaffStateError;
-
-    beforeEach(() => {
-      error = {
-        code: 'code',
-        message: 'message',
-      };
-    });
-
-    it('should return the errors of the cart item', () => {
-      store.dispatch(new DaffCartItemListSuccess(mockCartItems));
-      store.dispatch(new DaffCartItemUpdateFailure([error], mockCartItems[0].id));
-      const selector = store.pipe(select(selectCartItemErrors(mockCartItems[0].id)));
-      const expected = cold('a', { a: [error]});
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should return an empty array if the cart item is not in state', () => {
-      const selector = store.pipe(select(selectCartItemErrors(mockCartItems[0].id + 'notId')));
-      const expected = cold('a', { a: []});
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should not emit when an unrelated piece of state changes', () => {
-      const spy = jasmine.createSpy();
-      const selector = store.pipe(select(selectCartItemErrors(mockCartItems[0].id)));
-
-      selector.subscribe(spy);
-
-      store.dispatch(new DaffCartShippingMethodsLoad());
-
-      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 });

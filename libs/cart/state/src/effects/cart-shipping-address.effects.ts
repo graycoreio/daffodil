@@ -11,11 +11,9 @@ import { of } from 'rxjs';
 import {
   switchMap,
   map,
-  catchError,
 } from 'rxjs/operators';
 
 import {
-  DaffCartAddress,
   DaffCart,
   DaffCartStorageService,
 } from '@daffodil/cart';
@@ -28,30 +26,29 @@ import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
   DaffCartShippingAddressActionTypes,
-  DaffCartShippingAddressLoad,
   DaffCartShippingAddressLoadSuccess,
   DaffCartShippingAddressLoadFailure,
-  DaffCartShippingAddressUpdate,
   DaffCartShippingAddressUpdateSuccess,
   DaffCartShippingAddressUpdateFailure,
+  DaffCartShippingAddressActions,
 } from '../actions/public_api';
 import { DAFF_CART_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
-export class DaffCartShippingAddressEffects<T extends DaffCartAddress, V extends DaffCart> {
+export class DaffCartShippingAddressEffects<T extends DaffCart = DaffCart> {
   constructor(
-    private actions$: Actions,
+    private actions$: Actions<DaffCartShippingAddressActions<T>>,
     @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
-    @Inject(DaffCartShippingAddressDriver) private driver: DaffCartShippingAddressServiceInterface<T, V>,
+    @Inject(DaffCartShippingAddressDriver) private driver: DaffCartShippingAddressServiceInterface<T>,
     private storage: DaffCartStorageService,
   ) {}
 
 
   get$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartShippingAddressActionTypes.CartShippingAddressLoadAction),
-    switchMap((action: DaffCartShippingAddressLoad) =>
+    switchMap((action) =>
       this.driver.get(this.storage.getCartId()).pipe(
-        map((resp: T) => new DaffCartShippingAddressLoadSuccess(resp)),
+        map((resp) => new DaffCartShippingAddressLoadSuccess(resp)),
         catchAndArrayifyErrors(error => of(new DaffCartShippingAddressLoadFailure(error.map(this.errorMatcher)))),
       ),
     ),
@@ -60,9 +57,9 @@ export class DaffCartShippingAddressEffects<T extends DaffCartAddress, V extends
 
   update$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartShippingAddressActionTypes.CartShippingAddressUpdateAction),
-    switchMap((action: DaffCartShippingAddressUpdate<T>) =>
+    switchMap((action) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
-        map((resp: V) => new DaffCartShippingAddressUpdateSuccess(resp)),
+        map((resp) => new DaffCartShippingAddressUpdateSuccess(resp)),
         catchAndArrayifyErrors(error => of(new DaffCartShippingAddressUpdateFailure(error.map(this.errorMatcher)))),
       ),
     ),

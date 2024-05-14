@@ -1,25 +1,17 @@
 import {
-  Dictionary,
-  EntityState,
-} from '@ngrx/entity';
-
-import {
   DaffCartItemInput,
   DaffCart,
+  daffCartItemInputToItemTransform,
 } from '@daffodil/cart';
+import { DaffOperationEntityState } from '@daffodil/core/state';
 
-import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
+import { daffCartItemEntitiesAdapter } from './adapter';
 import {
   DaffCartItemActionTypes,
   DaffCartActionTypes,
   DaffCartActions,
   DaffCartItemActions,
-  DaffCartOrderActionTypes,
 } from '../../actions/public_api';
-import {
-  DaffCartItemStateEnum,
-  DaffStatefulCartItem,
-} from '../../models/stateful-cart-item';
 
 /**
  * Reducer function that catches actions and changes/overwrites product entities state.
@@ -29,60 +21,59 @@ import {
  * @returns CartItem entities state
  */
 export function daffCartItemEntitiesReducer<
-  T extends DaffStatefulCartItem = DaffStatefulCartItem,
+  T extends DaffCart = DaffCart,
   U extends DaffCartItemInput = DaffCartItemInput,
-  V extends DaffCart = DaffCart,
 >(
-  state = daffCartItemEntitiesAdapter<T>().getInitialState(),
-  action: DaffCartItemActions<T, U, V> | DaffCartActions<V>): EntityState<T> {
-  const adapter = daffCartItemEntitiesAdapter<T>();
+  state = daffCartItemEntitiesAdapter<T['items'][number]>().getInitialState(),
+  action: DaffCartItemActions<T, U> | DaffCartActions<T>,
+): DaffOperationEntityState<T['items'][number]> {
+  const adapter = daffCartItemEntitiesAdapter<T['items'][number]>();
   switch (action.type) {
     case DaffCartItemActionTypes.CartItemListSuccessAction:
-      return adapter.setAll(action.payload.map(item => ({
-        ...item,
-        daffState: getDaffState(state.entities[item.id]) || DaffCartItemStateEnum.Default,
-        daffErrors: [],
-      })), state);
+      return adapter.list(action.payload, state);
 
     case DaffCartItemActionTypes.CartItemLoadSuccessAction:
-      return adapter.upsertOne({
-        ...action.payload,
-        daffState: getDaffState(state.entities[action.payload.id]) || DaffCartItemStateEnum.Default,
-        daffErrors: [],
-      }, state);
+      return adapter.load(action.payload, state);
 
     case DaffCartItemActionTypes.CartItemDeleteFailureAction:
     case DaffCartItemActionTypes.CartItemLoadFailureAction:
     case DaffCartItemActionTypes.CartItemUpdateFailureAction:
-      return adapter.upsertOne({
-        ...state.entities[action.itemId],
-        daffState: DaffCartItemStateEnum.Error,
-        daffErrors: state.entities[action.itemId]?.daffErrors?.concat(action.payload) || action.payload,
-      }, state);
+      return adapter.operationFailed(
+        action.itemId,
+        action.payload,
+        state,
+      );
+
+    case DaffCartItemActionTypes.CartItemAddFailureAction:
+      return adapter.operationFailed(
+        action.placeholderId,
+        action.payload,
+        state,
+      );
 
     case DaffCartItemActionTypes.CartItemStateResetAction:
-      return adapter.setAll(Object.keys(state.entities).map(key => ({
-        ...state.entities[key],
-        daffState: DaffCartItemStateEnum.Default,
-      })), state);
+      return adapter.resetState(action.itemId, state);
 
     case DaffCartItemActionTypes.CartItemUpdateAction:
-    case DaffCartItemActionTypes.CartItemDeleteAction:
-      return adapter.upsertOne({
-        ...state.entities[action.itemId],
-        daffState: DaffCartItemStateEnum.Mutating,
+      return adapter.preupdate({
+        ...action.changes,
+        id: action.itemId,
       }, state);
 
+    case DaffCartItemActionTypes.CartItemDeleteAction:
+      return adapter.preremove(action.itemId, state);
+
+    case DaffCartItemActionTypes.CartItemAddAction:
+      return adapter.preadd(
+        daffCartItemInputToItemTransform(action.input),
+        state,
+        action.placeholderId,
+      );
+
     case DaffCartActionTypes.CartCreateSuccessAction:
-      return adapter.removeAll(state);
+      return adapter.list([], state);
 
     default:
       return state;
   }
 }
-
-function getDaffState<T extends DaffStatefulCartItem>(item: T): DaffCartItemStateEnum {
-  return item?.daffState;
-}
-
-

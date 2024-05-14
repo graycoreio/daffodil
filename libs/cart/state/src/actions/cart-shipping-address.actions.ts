@@ -1,9 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import {
-  DaffCartAddress,
-  DaffCart,
-} from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import {
   DaffFailureAction,
   DaffStateError,
@@ -33,10 +30,10 @@ export class DaffCartShippingAddressLoad implements Action {
 /**
  * Indicates the successful load of the cart's shipping address.
  */
-export class DaffCartShippingAddressLoadSuccess<T extends DaffCartAddress = DaffCartAddress> implements Action {
+export class DaffCartShippingAddressLoadSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartShippingAddressActionTypes.CartShippingAddressLoadSuccessAction;
 
-  constructor(public payload: T) {}
+  constructor(public payload: T['shipping_address']) {}
 }
 
 /**
@@ -51,10 +48,10 @@ export class DaffCartShippingAddressLoadFailure implements DaffFailureAction {
 /**
  * Triggers the update of the cart's shipping address.
  */
-export class DaffCartShippingAddressUpdate<T extends DaffCartAddress = DaffCartAddress> implements Action {
+export class DaffCartShippingAddressUpdate<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartShippingAddressActionTypes.CartShippingAddressUpdateAction;
 
-  constructor(public payload: Partial<T>) {}
+  constructor(public payload: Partial<T['shipping_address']>) {}
 }
 
 /**
@@ -78,13 +75,10 @@ export class DaffCartShippingAddressUpdateFailure implements DaffFailureAction {
 /**
  * A union of all the cart shipping address action classes.
  */
-export type DaffCartShippingAddressActions<
-  T extends DaffCartAddress = DaffCartAddress,
-  V extends DaffCart = DaffCart
-> =
+export type DaffCartShippingAddressActions<T extends DaffCart = DaffCart> =
   | DaffCartShippingAddressLoad
   | DaffCartShippingAddressLoadSuccess<T>
   | DaffCartShippingAddressLoadFailure
   | DaffCartShippingAddressUpdate<T>
-  | DaffCartShippingAddressUpdateSuccess<V>
+  | DaffCartShippingAddressUpdateSuccess<T>
   | DaffCartShippingAddressUpdateFailure;
