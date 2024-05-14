@@ -124,8 +124,8 @@ describe('@daffodil/customer-payment/state | daffCustomerPaymentReducer', () => 
       expect(result.daffErrors.length).toEqual(1);
     });
 
-    it('sets loading to stable', () => {
-      expect(result.daffState).toEqual(DaffState.Stable);
+    it('sets loading to error', () => {
+      expect(result.daffState).toEqual(DaffState.Error);
     });
   });
 
@@ -201,8 +201,8 @@ describe('@daffodil/customer-payment/state | daffCustomerPaymentReducer', () => 
       expect(result.daffErrors.length).toEqual(1);
     });
 
-    it('sets loading to stable', () => {
-      expect(result.daffState).toEqual(DaffState.Stable);
+    it('sets loading to error', () => {
+      expect(result.daffState).toEqual(DaffState.Error);
     });
   });
 
@@ -422,8 +422,8 @@ describe('@daffodil/customer-payment/state | daffCustomerPaymentReducer', () => 
       expect(result.daffErrors.length).toEqual(1);
     });
 
-    it('sets loading to stable', () => {
-      expect(result.daffState).toEqual(DaffState.Stable);
+    it('sets loading to error', () => {
+      expect(result.daffState).toEqual(DaffState.Error);
     });
   });
 });

@@ -41,7 +41,7 @@ export function daffCompleteOperation <T extends DaffOperationState = DaffOperat
 export function daffOperationFailed <T extends DaffOperationState = DaffOperationState>(errors: T['daffErrors'], state: T): T {
   return {
     ...state,
-    daffState: DaffState.Stable,
+    daffState: DaffState.Error,
     daffErrors: errors,
   };
 };

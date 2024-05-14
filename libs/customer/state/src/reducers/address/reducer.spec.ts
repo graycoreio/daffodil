@@ -122,8 +122,8 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       expect(result.daffErrors.length).toEqual(1);
     });
 
-    it('sets loading to stable', () => {
-      expect(result.daffState).toEqual(DaffState.Stable);
+    it('sets loading to error', () => {
+      expect(result.daffState).toEqual(DaffState.Error);
     });
   });
 
@@ -199,8 +199,8 @@ describe('@daffodil/customer/state | daffCustomerAddressReducer', () => {
       expect(result.daffErrors.length).toEqual(1);
     });
 
-    it('sets loading to stable', () => {
-      expect(result.daffState).toEqual(DaffState.Stable);
+    it('sets loading to error', () => {
+      expect(result.daffState).toEqual(DaffState.Error);
     });
   });
 

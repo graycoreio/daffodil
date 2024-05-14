@@ -111,8 +111,8 @@ describe('@daffodil/customer-store-credit/state | daffCustomerStoreCreditReducer
       expect(result.daffErrors.length).toEqual(1);
     });
 
-    it('sets loading to stable', () => {
-      expect(result.daffState).toEqual(DaffState.Stable);
+    it('sets loading to error', () => {
+      expect(result.daffState).toEqual(DaffState.Error);
     });
   });
 });

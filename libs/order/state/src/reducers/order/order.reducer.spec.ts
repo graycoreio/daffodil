@@ -112,8 +112,8 @@ describe('@daffodil/order/state | daffOrderReducer', () => {
       expect(result.daffErrors).toEqual([mockError]);
     });
 
-    it('sets loading to false', () => {
-      expect(result.daffState).toEqual(DaffState.Stable);
+    it('sets loading to error', () => {
+      expect(result.daffState).toEqual(DaffState.Error);
     });
   });
 
@@ -184,8 +184,8 @@ describe('@daffodil/order/state | daffOrderReducer', () => {
       expect(result.daffErrors).toEqual([mockError]);
     });
 
-    it('sets loading to false', () => {
-      expect(result.daffState).toEqual(DaffState.Stable);
+    it('sets loading to error', () => {
+      expect(result.daffState).toEqual(DaffState.Error);
     });
   });
 });
