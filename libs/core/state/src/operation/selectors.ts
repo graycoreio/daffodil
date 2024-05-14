@@ -5,7 +5,11 @@ import {
 } from '@ngrx/store';
 
 import { DaffOperationState } from './state';
-import { DaffState } from '../states/public_api';
+import {
+  DaffState,
+  daffStateIsLoading,
+  daffStateIsMutating,
+} from '../states/public_api';
 
 /**
  * Selectors for an operation state.
@@ -58,7 +62,7 @@ export function daffOperationStateSelectorFactory <
   );
   const selectLoading = createSelector(
     selectLoadingState,
-    loadingState => loadingState !== DaffState.Stable,
+    loadingState => daffStateIsLoading(loadingState),
   );
   const selectResolving = createSelector(
     selectLoadingState,
@@ -66,7 +70,7 @@ export function daffOperationStateSelectorFactory <
   );
   const selectMutating = createSelector(
     selectLoadingState,
-    loadingState => loadingState === DaffState.Mutating,
+    loadingState => daffStateIsMutating(loadingState),
   );
   const selectErrors = createSelector(
     selectState,
