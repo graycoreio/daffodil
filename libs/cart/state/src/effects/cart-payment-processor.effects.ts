@@ -47,6 +47,13 @@ import {
 } from '../actions/public_api';
 import { DAFF_CART_ERROR_MATCHER } from '../injection-tokens/public_api';
 
+/**
+ * Performs a payment update on the current cart.
+ *
+ * @param payload The generate token request.
+ * @param deps DI deps.
+ * @param cbs Return the actions and/or perform custom behavior in response to each particular case.
+ */
 export function daffCartPaymentProcessorUpdate<
   Cart extends DaffCart = DaffCart,
   Request extends DaffPaymentRequest = DaffPaymentRequest,
