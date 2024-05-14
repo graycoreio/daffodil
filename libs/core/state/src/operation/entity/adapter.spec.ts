@@ -190,8 +190,8 @@ describe('@daffodil/core/state | daffCreateOperationEntityStateAdapter', () => {
       result = adapter.operationFailed(entity.id, errors, adapter.list(entities, state));
     });
 
-    it('should reset the entity state', () => {
-      expect(result.entities[entity.id].daffState).toEqual(DaffState.Stable);
+    it('should indicate that the entity is in an error state', () => {
+      expect(result.entities[entity.id].daffState).toEqual(DaffState.Error);
     });
 
     it('should should store the errors on the entity', () => {
