@@ -9,34 +9,36 @@ import {
   ofType,
 } from '@ngrx/effects';
 import {
+  Observable,
+  combineLatest,
   defer,
   of,
 } from 'rxjs';
-import {
-  switchMap,
-  map,
-  catchError,
-} from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
+import { DaffCart } from '@daffodil/cart';
 import {
-  DaffCartPaymentMethod,
-  DaffCart,
-  DaffCartAddress,
-  DaffCartStorageService,
-} from '@daffodil/cart';
-import {
+  DaffCartDriverResolveService,
   DaffCartPaymentDriver,
   DaffCartPaymentServiceInterface,
 } from '@daffodil/cart/driver';
-import { catchAndArrayifyErrors } from '@daffodil/core';
+import {
+  DaffError,
+  catchAndArrayifyErrors,
+} from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import { DaffPaymentResponse } from '@daffodil/payment';
+import {
+  DaffPaymentRequest,
+  DaffPaymentResponse,
+} from '@daffodil/payment';
+import { DaffPaymentDriverInterface } from '@daffodil/payment/driver';
 import {
   DAFF_PAYMENT_PROCESSOR_COLLECTION,
   DaffPaymentProcessorCollection,
   DaffPaymentGenerateToken,
   DaffPaymentGenerateTokenFailure,
   DAFF_PAYMENT_ERROR_MATCHER,
+  DaffPaymentGenerateTokenPayload,
 } from '@daffodil/payment/state';
 
 import {
@@ -45,19 +47,58 @@ import {
 } from '../actions/public_api';
 import { DAFF_CART_ERROR_MATCHER } from '../injection-tokens/public_api';
 
+export function daffCartPaymentProcessorUpdate<
+  Cart extends DaffCart = DaffCart,
+  Request extends DaffPaymentRequest = DaffPaymentRequest,
+  Response extends DaffPaymentResponse = DaffPaymentResponse,
+  Success = unknown,
+  PaymentFailure = unknown,
+  UpdateFailure = unknown
+>(
+  payload: DaffPaymentGenerateTokenPayload<Request>,
+  deps: {
+    cartDriver: DaffCartPaymentServiceInterface<Cart>;
+    paymentDriver: DaffPaymentDriverInterface<Response>;
+    cartResolver: DaffCartDriverResolveService;
+  },
+  cbs: {
+    success: (resp: Cart) => Observable<Success>;
+    paymentFailure: (errors: Array<DaffError>) => Observable<PaymentFailure>;
+    updateFailure: (errors: Array<DaffError>) => Observable<UpdateFailure>;
+  },
+) {
+  return defer(() =>
+    combineLatest([
+      deps.paymentDriver.generateToken(payload.request),
+      deps.cartResolver.getCartIdOrFail(),
+    ]).pipe(
+      switchMap(([response, cartId]) =>
+        deps.cartDriver.update(
+          cartId,
+          {
+            method: response.method,
+            payment_info: response.data,
+          },
+        <Cart['billing_address']>payload.address,
+        ).pipe(
+          switchMap(cbs.success),
+          catchAndArrayifyErrors(cbs.updateFailure),
+        ),
+      ),
+      catchAndArrayifyErrors(cbs.paymentFailure),
+    ),
+  );
+}
+
 @Injectable()
-export class DaffCartPaymentProcessorEffects<
-  T extends DaffCartPaymentMethod = DaffCartPaymentMethod,
-  V extends DaffCart = DaffCart,
-  R extends DaffCartAddress = DaffCartAddress,
-> {
+export class DaffCartPaymentProcessorEffects<T extends DaffCart = DaffCart> {
   constructor(
     private actions$: Actions,
     @Inject(DAFF_PAYMENT_PROCESSOR_COLLECTION) private processors: DaffPaymentProcessorCollection,
     @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
     @Inject(DAFF_PAYMENT_ERROR_MATCHER) private paymentErrorMatcher: ErrorTransformer,
-    @Inject(DaffCartPaymentDriver) private driver: DaffCartPaymentServiceInterface<V>,
-    private storage: DaffCartStorageService,
+    @Inject(DaffCartPaymentDriver) private driver: DaffCartPaymentServiceInterface<T>,
+    private cartResolver: DaffCartDriverResolveService<T>,
     private injector: Injector,
   ) {}
 
@@ -68,20 +109,18 @@ export class DaffCartPaymentProcessorEffects<
     switchMap((action: DaffPaymentGenerateToken) =>
       // create a new inner observable to prevent the effects obs
       // from completing on outer catch error
-      defer(() =>
-        this.injector.get(this.processors[action.request.kind].driver).generateToken(action.request).pipe(
-          map(e => [e, action]),
-          switchMap(([response, act]: [DaffPaymentResponse<any>, DaffPaymentGenerateToken]) =>
-            this.driver.update(this.storage.getCartId(), <T>{
-              method: response.method,
-              payment_info: response.data,
-            }, <R>act.address).pipe(
-              map((resp: V) => new DaffCartPaymentUpdateSuccess(resp)),
-              catchAndArrayifyErrors(error => of(new DaffCartPaymentUpdateFailure(error.map(this.errorMatcher)))),
-            ),
-          ),
-          catchAndArrayifyErrors(error => of(new DaffPaymentGenerateTokenFailure(this.paymentErrorMatcher(error[0])))),
-        ),
+      daffCartPaymentProcessorUpdate(
+        action,
+        {
+          paymentDriver: this.injector.get(this.processors[action.request.kind].driver),
+          cartDriver: this.driver,
+          cartResolver: this.cartResolver,
+        },
+        {
+          success: (resp) => of(new DaffCartPaymentUpdateSuccess(resp)),
+          paymentFailure: (errors) => of(new DaffPaymentGenerateTokenFailure(this.paymentErrorMatcher(errors[0]))),
+          updateFailure: (errors) => of(new DaffCartPaymentUpdateFailure(errors.map(this.errorMatcher))),
+        },
       ),
     ),
   ));
