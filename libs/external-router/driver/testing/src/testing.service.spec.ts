@@ -15,7 +15,7 @@ describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDr
     TestBed.configureTestingModule({
       imports: [DaffExternalRouterDriverTestingModule.forRoot(configuration)],
     });
-    service = TestBed.inject<DaffExternalRouterTestingDriver>(DaffExternalRouterTestingDriver);
+    service = TestBed.inject(DaffExternalRouterTestingDriver);
 
     scheduler = new TestScheduler((actual, expected) => {
       expect(actual).toEqual(expected);

@@ -56,7 +56,7 @@ describe('@daffodil/design/modal | DaffModalService', () => {
     }).compileComponents();
 
     modalService = TestBed.inject(DaffModalService);
-    overlayContainer = TestBed.inject<OverlayContainer>(OverlayContainer);
+    overlayContainer = TestBed.inject(OverlayContainer);
     overlayContainerElement = overlayContainer.getContainerElement();
     fixture = TestBed.createComponent(WrapperComponent);
     fixture.detectChanges();

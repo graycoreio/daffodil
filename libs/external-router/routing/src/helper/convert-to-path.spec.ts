@@ -15,7 +15,7 @@ describe('@daffodil/external-router | daffConvertToPath', () => {
       imports: [RouterTestingModule],
     });
 
-    router = TestBed.inject<Router>(Router);
+    router = TestBed.inject(Router);
   });
 
   it('convert a segments array to a path', () => {

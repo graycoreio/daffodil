@@ -49,7 +49,7 @@ describe('@daffodil/design/modal | DaffModalService', () => {
 
   beforeEach(() => {
     service = TestBed.inject(DaffModalService);
-    overlayContainer = TestBed.inject<OverlayContainer>(OverlayContainer);
+    overlayContainer = TestBed.inject(OverlayContainer);
     overlayContainerElement = overlayContainer.getContainerElement();
     fixture = TestBed.createComponent(WrapperComponent);
     fixture.detectChanges();

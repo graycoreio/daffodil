@@ -20,7 +20,7 @@ describe('@daffodil/external-router/driver/in-memory | DaffExternalRouterInMemor
     TestBed.configureTestingModule({
       imports: [DaffExternalRouterDriverInMemoryModule.forRoot(configuration)],
     });
-    service = TestBed.inject<DaffExternalRouterInMemoryDriver>(DaffExternalRouterInMemoryDriver);
+    service = TestBed.inject(DaffExternalRouterInMemoryDriver);
 
     scheduler = new TestScheduler((actual, expected) => {
       expect(actual).toEqual(expected);

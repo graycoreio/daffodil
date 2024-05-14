@@ -51,8 +51,8 @@ describe('@daffodil/external-router/routing | DaffExternalRouterExistenceGuard',
         ]),
       ],
     });
-    router = TestBed.inject<Router>(Router);
-    guard = TestBed.inject<DaffExternalRouterExistenceGuard>(DaffExternalRouterExistenceGuard);
+    router = TestBed.inject(Router);
+    guard = TestBed.inject(DaffExternalRouterExistenceGuard);
     driver = TestBed.inject(DaffExternalRouterDriver);
 
   });

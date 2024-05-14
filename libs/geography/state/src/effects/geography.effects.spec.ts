@@ -55,7 +55,7 @@ describe('Daffodil | Geography | GeographyEffects', () => {
 
     effects = TestBed.inject<DaffGeographyEffects<DaffCountry>>(DaffGeographyEffects);
     daffDriver = TestBed.inject(DaffGeographyDriver);
-    countryFactory = TestBed.inject<DaffCountryFactory>(DaffCountryFactory);
+    countryFactory = TestBed.inject(DaffCountryFactory);
 
     mockCountry = countryFactory.create();
     countryId = mockCountry.id;
