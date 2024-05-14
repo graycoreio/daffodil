@@ -62,7 +62,7 @@ describe('@daffodil/customer/state | DaffCustomerEffects', () => {
 
     effects = TestBed.inject<DaffCustomerEffects<DaffCustomer>>(DaffCustomerEffects);
     daffDriver = TestBed.inject<DaffCustomerDriverInterface>(DaffCustomerDriver);
-    customerFactory = TestBed.inject<DaffCustomerFactory>(DaffCustomerFactory);
+    customerFactory = TestBed.inject(DaffCustomerFactory);
 
     mockCustomer = customerFactory.create();
 

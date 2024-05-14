@@ -13,7 +13,7 @@ describe('@daffodil/external-router | daffTransformResolvedRouteToRoute', () => 
       imports: [RouterTestingModule],
     });
 
-    router = TestBed.inject<Router>(Router);
+    router = TestBed.inject(Router);
   });
 
   it('transforms a DaffExternallyResolvableUrl into an Angular route.', () => {

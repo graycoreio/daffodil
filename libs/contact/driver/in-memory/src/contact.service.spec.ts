@@ -22,7 +22,7 @@ describe('The DaffInMemoryContactService', () => {
       ],
     });
     httpMock = TestBed.inject(HttpTestingController);
-    contactService = TestBed.inject<DaffInMemoryContactService>(DaffInMemoryContactService);
+    contactService = TestBed.inject(DaffInMemoryContactService);
   });
 
   afterEach(() => {

@@ -24,7 +24,7 @@ describe('Driver | InMemory | Newsletter | NewsletterService', () => {
       ],
     });
     httpMock = TestBed.inject(HttpTestingController);
-    newsletterService = TestBed.inject<DaffInMemoryNewsletterService>(DaffInMemoryNewsletterService);
+    newsletterService = TestBed.inject(DaffInMemoryNewsletterService);
   });
 
   afterEach(() => {
