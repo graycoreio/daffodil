@@ -38,6 +38,7 @@
 @use '../notification/src/notification-theme' as notification;
 @use '../paginator/src/paginator-theme' as paginator;
 @use '../sidebar/src/sidebar-theme' as sidebar;
+@use '../progress-bar/src/progress-bar-theme' as progress-bar;
 @use '../scss/state/skeleton/mixins' as skeleton;
 @use '../tree/src/tree-theme' as tree;
 @use '../toast/src/toast-theme' as toast;
@@ -66,6 +67,7 @@
 	@include native-select.daff-native-select-theme($theme);
 	@include loading-icon.daff-loading-icon-theme($theme);
 	@include progress-indicator.daff-progress-indicator-theme($theme);
+	@include progress-bar.daff-progress-bar-theme($theme);
 
 	// Molecules
 	@include accordion.daff-accordion-theme($theme);

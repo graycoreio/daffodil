@@ -22,6 +22,7 @@ import { MODAL_EXAMPLES } from '@daffodil/design/modal/examples';
 import { NAVBAR_EXAMPLES } from '@daffodil/design/navbar/examples';
 import { NOTIFICATION_EXAMPLES } from '@daffodil/design/notification/examples';
 import { PAGINATOR_EXAMPLES } from '@daffodil/design/paginator/examples';
+import { PROGRESS_BAR_EXAMPLES } from '@daffodil/design/progress-bar/examples';
 import { QUANTITY_FIELD_EXAMPLES } from '@daffodil/design/quantity-field/examples';
 import { RADIO_EXAMPLES } from '@daffodil/design/radio/examples';
 import { SIDEBAR_EXAMPLES } from '@daffodil/design/sidebar/examples';
@@ -59,6 +60,7 @@ export class DesignLandAppComponent {
       ...QUANTITY_FIELD_EXAMPLES,
       ...LIST_EXAMPLES,
       ...PAGINATOR_EXAMPLES,
+      ...PROGRESS_BAR_EXAMPLES,
       ...IMAGE_EXAMPLES,
       ...INPUT_EXAMPLES,
       ...SIDEBAR_EXAMPLES,
