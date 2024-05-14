@@ -19,26 +19,23 @@ import {
   DaffCartOrderMemoizedSelectors,
   getCartOrderSelectors,
 } from './cart-order/cart-order.selector';
-import { DaffStatefulCartItem } from '../models/stateful-cart-item';
 
 export interface DaffCartMemoizedSelectors<
   T extends DaffCart = DaffCart,
   V extends DaffCartOrderResult = DaffCartOrderResult,
-  U extends DaffStatefulCartItem = DaffStatefulCartItem
 > extends DaffCartFeatureMemoizedSelectors<T, V>,
-  DaffCartOrderMemoizedSelectors<T, V, U>,
+  DaffCartOrderMemoizedSelectors<T, V>,
   DaffCartStateMemoizedSelectors<T>,
-  DaffCartItemEntitiesMemoizedSelectors<T, V, U> {}
+  DaffCartItemEntitiesMemoizedSelectors<T, V> {}
 
 const createCartSelectors = <
   T extends DaffCart = DaffCart,
   V extends DaffCartOrderResult = DaffCartOrderResult,
-  U extends DaffStatefulCartItem = DaffStatefulCartItem
->(): DaffCartMemoizedSelectors<T, V, U> => ({
-  ...getDaffCartFeatureSelector<T, V, U>(),
-  ...getCartOrderSelectors<T, V, U>(),
-  ...getCartSelectors<T, V, U>(),
-  ...getDaffCartItemEntitiesSelectors<T, V, U>(),
+>(): DaffCartMemoizedSelectors<T, V> => ({
+  ...getDaffCartFeatureSelector<T, V>(),
+  ...getCartOrderSelectors<T, V>(),
+  ...getCartSelectors<T, V>(),
+  ...getDaffCartItemEntitiesSelectors<T, V>(),
 });
 
 export const getDaffCartSelectors = (() => {
@@ -46,8 +43,7 @@ export const getDaffCartSelectors = (() => {
   return <
     T extends DaffCart = DaffCart,
     V extends DaffCartOrderResult = DaffCartOrderResult,
-    U extends DaffStatefulCartItem = DaffStatefulCartItem
-  >(): DaffCartMemoizedSelectors<T, V, U> => cache = cache
+  >(): DaffCartMemoizedSelectors<T, V> => cache = cache
     ? cache
-    : createCartSelectors<T, V, U>();
+    : createCartSelectors<T, V>();
 })();

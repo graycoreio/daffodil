@@ -1,21 +1,23 @@
 
 import { TestBed } from '@angular/core/testing';
-import { EntityState } from '@ngrx/entity';
 import {
   Action,
   ActionReducer,
 } from '@ngrx/store';
 
+import { DaffCartItem } from '@daffodil/cart';
 import {
-  DaffCartItemStateEnum,
   DaffCartRetrievalAction,
-  DaffStatefulCart,
-  DaffStatefulCartItem,
   daffCartItemEntitiesAdapter,
+  DaffStatefulCart,
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  DaffOperationEntity,
+  DaffOperationEntityState,
+  DaffStateError,
+} from '@daffodil/core/state';
 
 import { daffCartItemEntitiesRetrievalActionsReducerFactory } from './retrieval-actions.reducer';
 
@@ -35,9 +37,9 @@ describe('@daffodil/cart/state | daffCartItemEntitiesRetrievalActionsReducerFact
 
   let error: DaffStateError;
   let cart: DaffStatefulCart;
-  let reducer: ActionReducer<EntityState<DaffStatefulCartItem>>;
-  let result: EntityState<DaffStatefulCartItem>;
-  let initialState: EntityState<DaffStatefulCartItem>;
+  let reducer: ActionReducer<DaffOperationEntityState<DaffOperationEntity<DaffCartItem>>>;
+  let result: DaffOperationEntityState<DaffOperationEntity<DaffCartItem>>;
+  let initialState: DaffOperationEntityState<DaffOperationEntity<DaffCartItem>>;
 
   beforeEach(() => {
     initialState = daffCartItemEntitiesAdapter().getInitialState();
@@ -76,57 +78,7 @@ describe('@daffodil/cart/state | daffCartItemEntitiesRetrievalActionsReducerFact
 
     it('should store the cart items', () => {
       cart.items.forEach((item) => {
-        expect(result.entities[item.id]).toEqual(item);
-      });
-    });
-
-    describe('and when an incoming cart item has an existing daffState', () => {
-      beforeEach(() => {
-        cart.items[0].daffState = DaffCartItemStateEnum.New;
-        result = reducer(initialState, new DirectAction(cart));
-      });
-
-      it('should retain the existing daffState', () => {
-        expect(result.entities[cart.items[0].id].daffState).toEqual(cart.items[0].daffState);
-      });
-    });
-
-    describe('and when an incoming cart item does not have an existing daffState', () => {
-      beforeEach(() => {
-        cart.items[0].daffState = undefined;
-        result = reducer(initialState, new DirectAction(cart));
-      });
-
-      describe('and the item in state has an existing daffState', () => {
-        let state: EntityState<DaffStatefulCartItem>;
-
-        beforeEach(() => {
-          state = daffCartItemEntitiesAdapter().addOne({
-            ...cart.items[0],
-            daffState: DaffCartItemStateEnum.New,
-          }, initialState);
-          result = reducer(state, new DirectAction(cart));
-        });
-
-        it('should retain the existing daffState in entity state', () => {
-          expect(result.entities[cart.items[0].id].daffState).toEqual(state.entities[cart.items[0].id].daffState);
-        });
-      });
-
-      describe('and the item in state does not have an existing daffState', () => {
-        let state: EntityState<DaffStatefulCartItem>;
-
-        beforeEach(() => {
-          state = daffCartItemEntitiesAdapter().addOne({
-            ...cart.items[0],
-            daffState: undefined,
-          }, initialState);
-          result = reducer(state, new DirectAction(cart));
-        });
-
-        it('should initialize the daffState field', () => {
-          expect(result.entities[cart.items[0].id].daffState).toEqual(DaffCartItemStateEnum.Default);
-        });
+        expect(result.entities[item.id].id).toEqual(item.id);
       });
     });
   });
@@ -138,57 +90,7 @@ describe('@daffodil/cart/state | daffCartItemEntitiesRetrievalActionsReducerFact
 
     it('should store the cart items', () => {
       cart.items.forEach((item) => {
-        expect(result.entities[item.id]).toEqual(item);
-      });
-    });
-
-    describe('when an incoming cart item has an existing daffState', () => {
-      beforeEach(() => {
-        cart.items[0].daffState = DaffCartItemStateEnum.New;
-        result = reducer(initialState, new TransformAction(cart));
-      });
-
-      it('should retain the existing daffState', () => {
-        expect(result.entities[cart.items[0].id].daffState).toEqual(cart.items[0].daffState);
-      });
-    });
-
-    describe('when an incoming cart item does not have an existing daffState', () => {
-      beforeEach(() => {
-        cart.items[0].daffState = undefined;
-        result = reducer(initialState, new TransformAction(cart));
-      });
-
-      describe('and the item in state has an existing daffState', () => {
-        let state: EntityState<DaffStatefulCartItem>;
-
-        beforeEach(() => {
-          state = daffCartItemEntitiesAdapter().addOne({
-            ...cart.items[0],
-            daffState: DaffCartItemStateEnum.New,
-          }, initialState);
-          result = reducer(state, new TransformAction(cart));
-        });
-
-        it('should retain the existing daffState in entity state', () => {
-          expect(result.entities[cart.items[0].id].daffState).toEqual(state.entities[cart.items[0].id].daffState);
-        });
-      });
-
-      describe('and the item in state does not have an existing daffState', () => {
-        let state: EntityState<DaffStatefulCartItem>;
-
-        beforeEach(() => {
-          state = daffCartItemEntitiesAdapter().addOne({
-            ...cart.items[0],
-            daffState: undefined,
-          }, initialState);
-          result = reducer(state, new TransformAction(cart));
-        });
-
-        it('should initialize the daffState field', () => {
-          expect(result.entities[cart.items[0].id].daffState).toEqual(DaffCartItemStateEnum.Default);
-        });
+        expect(result.entities[item.id].id).toEqual(item.id);
       });
     });
   });

@@ -8,7 +8,6 @@ import {
   DaffCartOrderResult,
 } from '@daffodil/cart';
 
-import { DaffStatefulCartItem } from '../models/stateful-cart-item';
 import {
   DaffCartStateRootSlice,
   DaffCartReducersState,
@@ -18,9 +17,8 @@ import {
 export interface DaffCartFeatureMemoizedSelectors<
   T extends DaffCart = DaffCart,
   V extends DaffCartOrderResult = DaffCartOrderResult,
-  U extends DaffStatefulCartItem = DaffStatefulCartItem
 > {
-  selectCartFeatureState: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartReducersState<T, V, U>>;
+  selectCartFeatureState: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffCartReducersState<T, V>>;
 }
 
 export const getDaffCartFeatureSelector = (() => {
@@ -28,11 +26,10 @@ export const getDaffCartFeatureSelector = (() => {
   return <
     T extends DaffCart = DaffCart,
     V extends DaffCartOrderResult = DaffCartOrderResult,
-    U extends DaffStatefulCartItem = DaffStatefulCartItem
-  >(): DaffCartFeatureMemoizedSelectors<T, V, U> => cache = cache
+  >(): DaffCartFeatureMemoizedSelectors<T, V> => cache = cache
     ? cache
     : {
       selectCartFeatureState:
-        createFeatureSelector<DaffCartStateRootSlice<T, V, U>, DaffCartReducersState<T, V, U>>(DAFF_CART_STORE_FEATURE_KEY),
+        createFeatureSelector<DaffCartStateRootSlice<T, V>, DaffCartReducersState<T, V>>(DAFF_CART_STORE_FEATURE_KEY),
     };
 })();

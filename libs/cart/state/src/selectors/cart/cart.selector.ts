@@ -16,9 +16,7 @@ import {
 } from '@daffodil/core/state';
 import { daffComparePersonalAddresses } from '@daffodil/geography';
 
-import { DaffStatefulCartItem } from '../../models/stateful-cart-item';
 import { DaffCartResolveState } from '../../reducers/cart-resolve/cart-resolve-state.enum';
-import { DaffCartItemLoadingState } from '../../reducers/loading/cart-loading.type';
 import {
   DaffCartReducerState,
   DaffCartReducersState,
@@ -31,216 +29,194 @@ import { getDaffCartItemEntitiesSelectors } from '../cart-item-entities/cart-ite
 export interface DaffCartStateMemoizedSelectors<
   T extends DaffCart = DaffCart,
   V extends DaffCartOrderResult = DaffCartOrderResult,
-  U extends DaffStatefulCartItem = DaffStatefulCartItem
 > {
-  selectCartState: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartReducerState<T>>;
-  selectCartValue: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, T>;
+  selectCartState: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffCartReducerState<T>>;
+  selectCartValue: MemoizedSelector<DaffCartStateRootSlice<T, V>, T>;
 
-  selectCartResolved: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartResolveState>;
+  selectCartResolved: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffCartResolveState>;
 
   /**
    * The object that holds all the loading states for cart operations.
    */
-  selectCartLoadingObject: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartReducerState<T>['loading']>;
+  selectCartLoadingObject: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffCartReducerState<T>['loading']>;
   /**
    * Selects whether there is any cart operation in progress.
    * This includes operations specifically for cart subfields.
    */
-  selectCartFeatureLoading: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectCartFeatureLoading: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is any cart resolve operation in progress.
    * This includes operations for cart subfields.
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */
-  selectCartFeatureResolving: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectCartFeatureResolving: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is any cart mutate operation in progress.
    * This includes operations for cart subfields.
    * This pertains only to requests that mutate data such as "update".
    */
-  selectCartFeatureMutating: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectCartFeatureMutating: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart operation in progress.
    * This does not include operations specifically for cart subfields.
    */
-  selectCartLoading: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectCartLoading: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart resolve operation in progress.
    * This does not include operations specifically for cart subfields.
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */
-  selectCartResolving: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectCartResolving: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart mutate operation in progress.
    * This does not include operations specifically for cart subfields.
    * This pertains only to requests that mutate data such as "update".
    */
-  selectCartMutating: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectCartMutating: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart billing address operation in progress.
    */
-  selectBillingAddressLoading: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectBillingAddressLoading: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart billing address resolve operation in progress.
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */
-  selectBillingAddressResolving: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectBillingAddressResolving: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart billing address mutate operation in progress.
    * This pertains only to requests that mutate data such as "update".
    */
-  selectBillingAddressMutating: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectBillingAddressMutating: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart shipping address operation in progress.
    */
-  selectShippingAddressLoading: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectShippingAddressLoading: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart shipping address resolve operation in progress.
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */
-  selectShippingAddressResolving: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectShippingAddressResolving: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart shipping address mutate operation in progress.
    * This pertains only to requests that mutate data such as "update".
    */
-  selectShippingAddressMutating: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectShippingAddressMutating: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart shipping information operation in progress.
    */
-  selectShippingInformationLoading: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectShippingInformationLoading: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart shipping information resolve operation in progress.
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */
-  selectShippingInformationResolving: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectShippingInformationResolving: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart shipping information mutate operation in progress.
    * This pertains only to requests that mutate data such as "update".
    */
-  selectShippingInformationMutating: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectShippingInformationMutating: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart shipping methods operation in progress.
    */
-  selectShippingMethodsLoading: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectShippingMethodsLoading: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart shipping methods resolve operation in progress.
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */
-  selectShippingMethodsResolving: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectShippingMethodsResolving: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart payment operation in progress.
    */
-  selectPaymentLoading: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectPaymentLoading: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart payment resolve operation in progress.
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */
-  selectPaymentResolving: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectPaymentResolving: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart payment mutate operation in progress.
    * This pertains only to requests that mutate data such as "update".
    */
-  selectPaymentMutating: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectPaymentMutating: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart payment methods operation in progress.
    */
-  selectPaymentMethodsLoading: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectPaymentMethodsLoading: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart payment methods resolve operation in progress.
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */
-  selectPaymentMethodsResolving: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectPaymentMethodsResolving: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart coupon operation in progress.
    */
-  selectCouponLoading: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectCouponLoading: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart coupon resolve operation in progress.
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */
-  selectCouponResolving: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectCouponResolving: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart coupon mutate operation in progress.
    * This pertains only to requests that mutate data such as "update".
    */
-  selectCouponMutating: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectCouponMutating: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart item operation in progress.
    */
-  selectItemLoading: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectItemLoading: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart item add operation in progress.
    */
-  selectItemAdding: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectItemAdding: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether there is a cart item resolve operation in progress.
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */
-  selectItemResolving: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectItemResolving: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
 
-  selectCartErrorsObject: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartReducerState<T>['errors']>;
-  selectCartErrors: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffStateError[]>;
-  selectBillingAddressErrors: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffStateError[]>;
-  selectShippingAddressErrors: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffStateError[]>;
-  selectShippingInformationErrors: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffStateError[]>;
-  selectShippingMethodsErrors: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffStateError[]>;
-  selectPaymentErrors: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffStateError[]>;
-  selectPaymentMethodsErrors: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffStateError[]>;
-  selectCouponErrors: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffStateError[]>;
-  selectItemErrors: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffStateError[]>;
-
-  selectCartId: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, T['id']>;
-  selectCartSubtotal: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartTotal['value']>;
-  selectCartGrandTotal: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartTotal['value']>;
-  selectCartSubtotalExcludingTax: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartTotal['value']>;
-  selectCartSubtotalIncludingTax: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartTotal['value']>;
-  selectCartSubtotalWithDiscountExcludingTax: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartTotal['value']>;
-  selectCartSubtotalWithDiscountIncludingTax: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartTotal['value']>;
-  selectCartTotalTax: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartTotal['value']>;
   /**
-   * Selects the DaffCartTotals for cart discounts. These are discounts associated with coupon codes.
-   * @deprecated use {@link DaffCart#discounts} instead.
+   * Selects whether there is a cart item mutate operation in progress.
+   * This pertains only to requests that mutate existing data such as update.
+   * This does not apply to add requests. see {@link selectItemAdding} for that.
    */
-  selectCartDiscountTotals: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartTotal[]>;
-  selectCartShippingTotal: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartTotal['value']>;
-  selectCartCoupons: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, T['coupons']>;
-  /**
-   * @deprecated use getDaffCartItemEntitiesSelectors().selectAllCartItems instead.
-   */
-  selectCartItems: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, T['items']>;
-  selectCartHasOutOfStockItems: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
-  selectCartBillingAddress: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, T['billing_address']>;
-  selectCartShippingAddress: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, T['shipping_address']>;
-  selectCartPayment: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, T['payment']>;
-  selectCartTotals: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, T['totals']>;
-  selectCartShippingInformation: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, T['shipping_information']>;
-  selectCartAvailableShippingMethods: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, T['available_shipping_methods']>;
-  selectCartAvailablePaymentMethods: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, T['available_payment_methods']>;
+  selectItemMutating: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
 
-  selectIsCartEmpty: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectCartErrorsObject: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffCartReducerState<T>['errors']>;
+  selectCartErrors: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffStateError[]>;
+  selectBillingAddressErrors: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffStateError[]>;
+  selectShippingAddressErrors: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffStateError[]>;
+  selectShippingInformationErrors: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffStateError[]>;
+  selectShippingMethodsErrors: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffStateError[]>;
+  selectPaymentErrors: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffStateError[]>;
+  selectPaymentMethodsErrors: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffStateError[]>;
+  selectCouponErrors: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffStateError[]>;
+  selectItemErrors: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffStateError[]>;
+
+  selectCartHasOutOfStockItems: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
+  selectIsCartEmpty: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects whether the cart's shipping address equals the billing address.
    * Returns false if either address is null or undefined.
    */
-  selectIsBillingSameAsShipping: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectIsBillingSameAsShipping: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
 
-  selectHasBillingAddress: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
-  selectHasShippingAddress: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
-  selectHasShippingMethod: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
-  selectHasPaymentMethod: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
-  selectCanPlaceOrder: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean, DefaultProjectorFn<boolean>>;
+  selectHasBillingAddress: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
+  selectHasShippingAddress: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
+  selectHasShippingMethod: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
+  selectHasPaymentMethod: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
+  selectCanPlaceOrder: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean, DefaultProjectorFn<boolean>>;
 }
 
 const createCartSelectors = <
   T extends DaffCart = DaffCart,
   V extends DaffCartOrderResult = DaffCartOrderResult,
-  U extends DaffStatefulCartItem = DaffStatefulCartItem
->(): DaffCartStateMemoizedSelectors<T, V, U> => {
-  const selectCartFeatureState = getDaffCartFeatureSelector<T, V, U>().selectCartFeatureState;
-  const { selectCartItemMutating } = getDaffCartItemEntitiesSelectors<T, V, U>();
+>(): DaffCartStateMemoizedSelectors<T, V> => {
+  const selectCartFeatureState = getDaffCartFeatureSelector<T, V>().selectCartFeatureState;
+  const { selectCartItemMutating } = getDaffCartItemEntitiesSelectors<T, V>();
   const selectCartState = createSelector(
     selectCartFeatureState,
-    (state: DaffCartReducersState<T, V, U>) => state.cart,
+    (state: DaffCartReducersState<T, V>) => state.cart,
   );
   const selectCartValue = createSelector(
     selectCartState,
@@ -344,6 +320,10 @@ const createCartSelectors = <
     selectCartLoadingObject,
     loadingObject => loadingObject[DaffCartOperationType.Item] === DaffState.Resolving,
   );
+  const selectItemMutating = createSelector(
+    selectCartLoadingObject,
+    loadingObject => loadingObject[DaffCartOperationType.Item] === DaffState.Mutating,
+  );
   const selectCouponLoading = createSelector(
     selectCartLoadingObject,
     loadingObject => loadingObject[DaffCartOperationType.Coupon] !== DaffState.Complete,
@@ -390,8 +370,7 @@ const createCartSelectors = <
   );
   const selectCartFeatureMutating = createSelector(
     selectCartLoadingObject,
-    selectCartItemMutating,
-    (loadingObject, cartItemMutating) => [
+    (loadingObject) => [
       selectCartMutating,
       selectBillingAddressMutating,
       selectShippingAddressMutating,
@@ -399,9 +378,10 @@ const createCartSelectors = <
       selectPaymentMutating,
       selectCouponMutating,
       selectItemAdding,
+      selectItemMutating,
     ].map(selector =>
       selector.projector(loadingObject),
-    ).reduce((acc, mutating) => acc || mutating, false) || cartItemMutating,
+    ).reduce((acc, mutating) => acc || mutating, false),
   );
 
   const selectCartErrorsObject = createSelector(
@@ -445,84 +425,6 @@ const createCartSelectors = <
     (state: DaffCartReducerState<T>['errors']) => state[DaffCartOperationType.Coupon],
   );
 
-  const selectCartId = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => state.id,
-  );
-  /**
-   * @deprecated use selectCartSubtotalExcludingTax selector instead.
-   */
-  const selectCartSubtotal = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => {
-      const subtotalObject = state.totals[DaffCartTotalTypeEnum.subtotalExcludingTax];
-      return subtotalObject ? subtotalObject.value : null;
-    },
-  );
-  const selectCartGrandTotal = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => {
-      const grandTotalObject = state.totals[DaffCartTotalTypeEnum.grandTotal];
-      return grandTotalObject ? grandTotalObject.value : null;
-    },
-  );
-  const selectCartSubtotalExcludingTax = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => {
-      const subtotalExcludingTaxObject = state.totals[DaffCartTotalTypeEnum.subtotalExcludingTax];
-      return subtotalExcludingTaxObject ? subtotalExcludingTaxObject.value : null;
-    },
-  );
-  const selectCartSubtotalIncludingTax = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => {
-      const subtotalIncludingTaxObject = state.totals[DaffCartTotalTypeEnum.subtotalIncludingTax];
-      return subtotalIncludingTaxObject ? subtotalIncludingTaxObject.value : null;
-    },
-  );
-  const selectCartSubtotalWithDiscountExcludingTax = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => {
-      const subtotalWithDiscountExcludingTaxObject = state.totals[DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax];
-      return subtotalWithDiscountExcludingTaxObject ? subtotalWithDiscountExcludingTaxObject.value : null;
-    },
-  );
-  const selectCartSubtotalWithDiscountIncludingTax = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => {
-      const subtotalWithDiscountIncludingTaxObject = state.totals[DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax];
-      return subtotalWithDiscountIncludingTaxObject ? subtotalWithDiscountIncludingTaxObject.value : null;
-    },
-  );
-  const selectCartTotalTax = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => {
-      const taxObject = state.totals[DaffCartTotalTypeEnum.tax];
-      return taxObject ? taxObject.value : null;
-    },
-  );
-  const selectCartDiscountTotals = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => {
-      const discount = state.totals[DaffCartTotalTypeEnum.discount];
-      return discount ? [discount] : [];
-    },
-  );
-  const selectCartShippingTotal = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => {
-      const shippingTotalObject = state.totals[DaffCartTotalTypeEnum.shipping];
-      return shippingTotalObject ? shippingTotalObject.value : null;
-    },
-  );
-  const selectCartCoupons = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => state.coupons,
-  );
-  const selectCartItems = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => state.items,
-  );
   const selectCartHasOutOfStockItems = createSelector(
     selectCartValue,
     (state: DaffCartReducerState<T>['cart']) => state.items.reduce((acc, item) => (acc || !item.in_stock), false),
@@ -539,21 +441,9 @@ const createCartSelectors = <
     selectCartValue,
     (state: DaffCartReducerState<T>['cart']) => state.payment,
   );
-  const selectCartTotals = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => state.totals,
-  );
   const selectCartShippingInformation = createSelector(
     selectCartValue,
     (state: DaffCartReducerState<T>['cart']) => state.shipping_information,
-  );
-  const selectCartAvailableShippingMethods = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => state.available_shipping_methods,
-  );
-  const selectCartAvailablePaymentMethods = createSelector(
-    selectCartValue,
-    (state: DaffCartReducerState<T>['cart']) => state.available_payment_methods,
   );
 
   const selectIsCartEmpty = createSelector(
@@ -643,6 +533,7 @@ const createCartSelectors = <
     selectItemLoading,
     selectItemAdding,
     selectItemResolving,
+    selectItemMutating,
 
     selectCartErrorsObject,
     selectCartErrors,
@@ -655,26 +546,7 @@ const createCartSelectors = <
     selectItemErrors,
     selectCouponErrors,
 
-    selectCartId,
-    selectCartSubtotal,
-    selectCartGrandTotal,
-    selectCartSubtotalExcludingTax,
-    selectCartSubtotalIncludingTax,
-    selectCartSubtotalWithDiscountExcludingTax,
-    selectCartSubtotalWithDiscountIncludingTax,
-    selectCartDiscountTotals,
-    selectCartTotalTax,
-    selectCartShippingTotal,
-    selectCartCoupons,
-    selectCartItems,
     selectCartHasOutOfStockItems,
-    selectCartBillingAddress,
-    selectCartShippingAddress,
-    selectCartPayment,
-    selectCartTotals,
-    selectCartShippingInformation,
-    selectCartAvailableShippingMethods,
-    selectCartAvailablePaymentMethods,
 
     selectIsCartEmpty,
     selectIsBillingSameAsShipping,
@@ -692,8 +564,7 @@ export const getCartSelectors = (() => {
   return <
     T extends DaffCart = DaffCart,
     V extends DaffCartOrderResult = DaffCartOrderResult,
-    U extends DaffStatefulCartItem = DaffStatefulCartItem
   >(): DaffCartStateMemoizedSelectors<T> => cache = cache
     ? cache
-    : createCartSelectors<T, V, U>();
+    : createCartSelectors<T, V>();
 })();

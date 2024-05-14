@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffStatefulCompositeCartItem } from '@daffodil/cart/state';
+import { DaffCompositeCartItem } from '@daffodil/cart';
+import { DaffOperationEntity } from '@daffodil/core/state';
 
 import { DaffStatefulCompositeCartItemFactory } from './stateful-composite-cart-item.factory';
 
@@ -22,7 +23,7 @@ describe('Cart | State | Testing | Factories | StatefulCompositeCartItemFactory'
 
   describe('create', () => {
 
-    let result: DaffStatefulCompositeCartItem;
+    let result: DaffOperationEntity<DaffCompositeCartItem>;
 
     beforeEach(() => {
       result = statefulCompositeCartItemFactory.create();

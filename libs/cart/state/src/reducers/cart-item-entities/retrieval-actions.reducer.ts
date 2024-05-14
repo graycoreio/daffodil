@@ -1,38 +1,28 @@
-import { EntityState } from '@ngrx/entity';
 import { Action } from '@ngrx/store';
 
 import { DaffCart } from '@daffodil/cart';
+import { DaffOperationEntityState } from '@daffodil/core/state';
 
-import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
+import { daffCartItemEntitiesAdapter } from './adapter';
 import {
   DaffCartRetrievalActionInjection,
   daffCartRetrievalGetResponse,
 } from '../../cart-retrieval/public_api';
-import {
-  DaffCartItemStateEnum,
-  DaffStatefulCartItem,
-} from '../../models/stateful-cart-item';
 
 /**
  * Reducer function factory that updates cart item entities according to a list of passed cart retrieval actions.
  * See {@link DaffCartRetrievalActionInjection}.
  */
-export function daffCartItemEntitiesRetrievalActionsReducerFactory<
-  T extends DaffStatefulCartItem = DaffStatefulCartItem,
-  V extends DaffCart = DaffCart,
->(retrievalActions: DaffCartRetrievalActionInjection[]) {
+export function daffCartItemEntitiesRetrievalActionsReducerFactory<T extends DaffCart = DaffCart>(retrievalActions: DaffCartRetrievalActionInjection[]) {
   return (
-    state = daffCartItemEntitiesAdapter<T>().getInitialState(),
+    state = daffCartItemEntitiesAdapter<T['items'][number]>().getInitialState(),
     action: Action,
-  ): EntityState<T> => {
-    const adapter = daffCartItemEntitiesAdapter<T>();
-    const cart = daffCartRetrievalGetResponse<V>(action, retrievalActions);
+  ): DaffOperationEntityState<T['items'][number]> => {
+    const adapter = daffCartItemEntitiesAdapter<T['items'][number]>();
+    const cart = daffCartRetrievalGetResponse<T>(action, retrievalActions);
 
     return cart?.items
-      ? adapter.setAll(cart.items.map((item: T) => ({
-        ...item,
-        daffState: item.daffState || state.entities[item.id]?.daffState || DaffCartItemStateEnum.Default,
-      })), state)
+      ? adapter.list(cart.items, state)
       : state;
   };
 }

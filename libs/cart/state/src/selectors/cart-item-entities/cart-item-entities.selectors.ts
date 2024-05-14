@@ -1,4 +1,3 @@
-import { EntityState } from '@ngrx/entity';
 import {
   createSelector,
   MemoizedSelector,
@@ -11,19 +10,20 @@ import {
   DaffCart,
   DaffCartOrderResult,
   DaffCartItemInputType,
-  DaffConfigurableCartItem,
   DaffCompositeCartItem,
-  DaffCartItem,
   DaffCartItemDiscount,
+  DaffConfigurableCartItem,
 } from '@daffodil/cart';
 import { daffAdd } from '@daffodil/core';
-import { DaffStateError } from '@daffodil/core/state';
-
 import {
-  DaffCartItemStateEnum,
-  DaffStatefulCartItem,
-} from '../../models/stateful-cart-item';
-import { daffCartItemEntitiesAdapter } from '../../reducers/cart-item-entities/cart-item-entities-reducer-adapter';
+  DaffOperationEntity,
+  DaffOperationEntityState,
+  DaffState,
+  DaffStateError,
+  daffOperationStateSelectorFactory,
+} from '@daffodil/core/state';
+
+import { daffCartItemEntitiesAdapter } from '../../reducers/cart-item-entities/adapter';
 import {
   DaffCartStateRootSlice,
   DaffCartReducersState,
@@ -33,78 +33,52 @@ import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 export interface DaffCartItemEntitiesMemoizedSelectors<
   T extends DaffCart = DaffCart,
   V extends DaffCartOrderResult = DaffCartOrderResult,
-  U extends DaffStatefulCartItem = DaffStatefulCartItem
 > {
-  selectCartItemEntitiesState: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, EntityState<U>>;
-  selectCartItemIds: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, EntityState<U>['ids']>;
-  selectCartItemEntities: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, EntityState<U>['entities']>;
-  selectAllCartItems: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, U[]>;
-  selectCartItemTotal: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, number>;
-  selectCartItem: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, U>;
-  selectTotalNumberOfCartItems: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, number>;
-  selectCartItemConfiguredAttributes: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffConfigurableCartItemAttribute[]>;
-  selectCartItemCompositeOptions: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCompositeCartItemOption[]>;
-  selectIsCartItemOutOfStock: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
+  selectCartItemEntitiesState: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffOperationEntityState<T['items'][number]>>;
+  selectCartItemIds: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffOperationEntityState<T['items'][number]>['ids']>;
+  selectCartItemEntities: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffOperationEntityState<T['items'][number]>['entities']>;
+  selectAllCartItems: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffOperationEntity<T['items'][number]>[]>;
+  selectCartItemTotal: MemoizedSelector<DaffCartStateRootSlice<T, V>, number>;
+  selectCartItem: (id: T['items'][number]['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffOperationEntity<T['items'][number]>>;
+  selectTotalNumberOfCartItems: MemoizedSelector<DaffCartStateRootSlice<T, V>, number>;
+  selectCartItemConfiguredAttributes: (id: T['items'][number]['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffConfigurableCartItemAttribute[]>;
+  selectCartItemCompositeOptions: (id: T['items'][number]['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffCompositeCartItemOption[]>;
+  selectIsCartItemOutOfStock: (id: T['items'][number]['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
   /**
    * Selects all cart items that are out of stock.
    */
-  selectOutOfStockCartItems: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, U[]>;
+  selectOutOfStockCartItems: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffOperationEntity<T['items'][number]>[]>;
   /**
    * Selects all cart items that are in stock.
    */
-  selectInStockCartItems: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, U[]>;
-  selectCartItemMutating: MemoizedSelector<DaffCartStateRootSlice<T, V, U>, boolean>;
-  selectCartItemState: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartItemStateEnum>;
-  /**
-   * Selects the specified item's price.
-   * Zero by default.
-   * This includes any discounts and sales that apply to the product or category.
-   * This excludes cart discounts.
-   */
-  selectCartItemPrice: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, number>;
-  /**
-   * Selects the specified item's quantity.
-   * Zero by default.
-   */
-  selectCartItemQuantity: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, number>;
-  /**
-   * Selects the specified item's row total.
-   * Zero by default.
-   * This includes any discounts and sales that apply to the product or category.
-   * This excludes cart discounts.
-   */
-  selectCartItemRowTotal: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, number>;
-  /**
-   * Selects the specified item's array of cart (not product) discounts for the entire row.
-   */
-  selectCartItemDiscounts: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffCartItemDiscount[]>;
-  /**
-   * Selects the specified item's sum of all cart (not product) discounts for the entire row.
-   * Zero by default.
-   */
-  selectCartItemTotalDiscount: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, number>;
-  /**
-   * Selects the specified item's errors.
-   */
-  selectCartItemErrors: (id: U['id']) => MemoizedSelector<DaffCartStateRootSlice<T, V, U>, DaffStateError[]>;
+  selectInStockCartItems: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffOperationEntity<T['items'][number]>[]>;
+  selectCartItemMutating: MemoizedSelector<DaffCartStateRootSlice<T, V>, boolean>;
 }
 
 const createCartItemEntitiesSelectors = <
   T extends DaffCart = DaffCart,
   V extends DaffCartOrderResult = DaffCartOrderResult,
-  U extends DaffStatefulCartItem = DaffStatefulCartItem
->(): DaffCartItemEntitiesMemoizedSelectors<T, V, U> => {
+  Configurable extends DaffConfigurableCartItem = DaffConfigurableCartItem,
+  Composite extends DaffCompositeCartItem = DaffCompositeCartItem,
+>(): DaffCartItemEntitiesMemoizedSelectors<T, V> => {
   const {
     selectCartFeatureState,
-  } = getDaffCartFeatureSelector<T, V, U>();
-  const adapterSelectors = daffCartItemEntitiesAdapter<U>().getSelectors();
+  } = getDaffCartFeatureSelector<T, V>();
   /**
    * CartItem Entities State
    */
   const selectCartItemEntitiesState = createSelector(
     selectCartFeatureState,
-    (state: DaffCartReducersState<T, V, U>) => state.cartItems,
+    (state: DaffCartReducersState<T, V>) => state.cartItems,
   );
+
+  const {
+    selectOptimisticList: selectAllCartItems,
+    selectEntity: selectCartItem,
+    selectIds,
+    selectEntities,
+    selectTotal,
+  } = daffCartItemEntitiesAdapter<T['items'][number]>().getSelectors(selectCartItemEntitiesState);
 
   /**
    * Adapters created with @ngrx/entity generate
@@ -118,38 +92,25 @@ const createCartItemEntitiesSelectors = <
    * Selector for product IDs.
    */
   const selectCartItemIds = createSelector(
-    selectCartItemEntitiesState,
-    adapterSelectors.selectIds,
+    (s) => s,
+    selectIds,
   );
 
   /**
    * Selector for all product entities (see ngrx/entity).
    */
   const selectCartItemEntities = createSelector(
-    selectCartItemEntitiesState,
-    adapterSelectors.selectEntities,
-  );
-
-  /**
-   * Selector for all products on state.
-   */
-  const selectAllCartItems = createSelector(
-    selectCartItemEntitiesState,
-    adapterSelectors.selectAll,
+    (s) => s,
+    selectEntities,
   );
 
   /**
    * Selector for the total number of products.
    */
   const selectCartItemTotal = createSelector(
-    selectCartItemEntitiesState,
-    adapterSelectors.selectTotal,
+    (s) => s,
+    selectTotal,
   );
-
-  const selectCartItem = defaultMemoize((itemId: U['id']) => createSelector(
-    selectCartItemEntities,
-    cartItems => cartItems[itemId],
-  )).memoized;
 
   /**
    * Selector for the total number of cart items that takes into account the qty on each cart item.
@@ -159,31 +120,31 @@ const createCartItemEntitiesSelectors = <
     (cartItems) => cartItems.reduce((acc, cartItem) => acc + cartItem.qty, 0),
   );
 
-  const selectCartItemConfiguredAttributes = defaultMemoize((itemId: U['id']) => createSelector(
+  const selectCartItemConfiguredAttributes = defaultMemoize((itemId: T['items'][number]['id']) => createSelector(
     selectCartItem(itemId),
-    (cartItem: DaffConfigurableCartItem) => {
-      if(cartItem.type !== DaffCartItemInputType.Configurable) {
+    (cartItem) => {
+      if (cartItem.type !== DaffCartItemInputType.Configurable) {
         return null;
       }
 
-      return cartItem.attributes;
+      return (<DaffOperationEntity<Configurable>>cartItem).attributes;
     },
   )).memoized;
 
-  const selectCartItemCompositeOptions = defaultMemoize((itemId: U['id']) => createSelector(
+  const selectCartItemCompositeOptions = defaultMemoize((itemId: T['items'][number]['id']) => createSelector(
     selectCartItem(itemId),
-    (cartItem: DaffCompositeCartItem) => {
-      if(cartItem.type !== DaffCartItemInputType.Composite) {
+    (cartItem) => {
+      if (cartItem.type !== DaffCartItemInputType.Composite) {
         return null;
       }
 
-      return cartItem.options;
+      return (<DaffOperationEntity<Composite>>cartItem).options;
     },
   )).memoized;
 
-  const selectIsCartItemOutOfStock = defaultMemoize((itemId: U['id']) => createSelector(
+  const selectIsCartItemOutOfStock = defaultMemoize((itemId: T['items'][number]['id']) => createSelector(
     selectCartItem(itemId),
-    (cartItem: U) => cartItem ? !cartItem.in_stock : null,
+    (cartItem) => cartItem ? !cartItem.in_stock : null,
   )).memoized;
 
   const selectOutOfStockCartItems = createSelector(
@@ -198,44 +159,9 @@ const createCartItemEntitiesSelectors = <
 
   const selectCartItemMutating = createSelector(
     selectAllCartItems,
-    (cartItems: U[]) => cartItems?.reduce((acc, item) =>
-      acc || item.daffState === DaffCartItemStateEnum.Mutating, false),
+    (cartItems) => cartItems?.reduce((acc, item) =>
+      acc || item.daffState === DaffState.Mutating, false),
   );
-
-  const selectCartItemState = defaultMemoize((itemId: U['id']) => createSelector(
-    selectCartItem(itemId),
-    (cartItem: U) => cartItem?.daffState || null,
-  )).memoized;
-
-  const selectCartItemQuantity = defaultMemoize((itemId: U['id']) => createSelector(
-    selectCartItem(itemId),
-    (cartItem: U) => cartItem?.qty || 0,
-  )).memoized;
-
-  const selectCartItemRowTotal = defaultMemoize((itemId: U['id']) => createSelector(
-    selectCartItem(itemId),
-    (cartItem: U) => cartItem?.row_total || 0,
-  )).memoized;
-
-  const selectCartItemPrice = defaultMemoize((itemId: U['id']) => createSelector(
-    selectCartItem(itemId),
-    (cartItem: U) => cartItem?.price || 0,
-  )).memoized;
-
-  const selectCartItemDiscounts = defaultMemoize((itemId: U['id']) => createSelector(
-    selectCartItem(itemId),
-    (cartItem: U) => cartItem?.discounts || [],
-  )).memoized;
-
-  const selectCartItemTotalDiscount = defaultMemoize((itemId: U['id']) => createSelector(
-    selectCartItemDiscounts(itemId),
-    (discounts: U['discounts']) => discounts?.reduce((acc, { amount }) => daffAdd(acc, amount), 0) || 0,
-  )).memoized;
-
-  const selectCartItemErrors = defaultMemoize((itemId: U['id']) => createSelector(
-    selectCartItem(itemId),
-    (cartItem: U) => cartItem?.daffErrors || [],
-  )).memoized;
 
   return {
     selectCartItemEntitiesState,
@@ -251,13 +177,6 @@ const createCartItemEntitiesSelectors = <
     selectInStockCartItems,
     selectOutOfStockCartItems,
     selectCartItemMutating,
-    selectCartItemState,
-    selectCartItemPrice,
-    selectCartItemRowTotal,
-    selectCartItemQuantity,
-    selectCartItemDiscounts,
-    selectCartItemTotalDiscount,
-    selectCartItemErrors,
   };
 };
 
@@ -266,8 +185,7 @@ export const getDaffCartItemEntitiesSelectors = (() => {
   return <
     T extends DaffCart = DaffCart,
     V extends DaffCartOrderResult = DaffCartOrderResult,
-    U extends DaffStatefulCartItem = DaffStatefulCartItem
-  >(): DaffCartItemEntitiesMemoizedSelectors<T, V, U> => cache = cache
+  >(): DaffCartItemEntitiesMemoizedSelectors<T, V> => cache = cache
     ? cache
-    : createCartItemEntitiesSelectors<T, V, U>();
+    : createCartItemEntitiesSelectors<T, V>();
 })();

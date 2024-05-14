@@ -121,26 +121,7 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     selectPaymentMethodsErrors,
     selectCouponErrors,
 
-    selectCartId,
-    selectCartSubtotal,
-    selectCartGrandTotal,
-    selectCartSubtotalExcludingTax,
-    selectCartSubtotalIncludingTax,
-    selectCartSubtotalWithDiscountExcludingTax,
-    selectCartSubtotalWithDiscountIncludingTax,
-    selectCartTotalTax,
-    selectCartDiscountTotals,
-    selectCartShippingTotal,
-    selectCartCoupons,
-    selectCartItems,
     selectCartHasOutOfStockItems,
-    selectCartBillingAddress,
-    selectCartShippingAddress,
-    selectCartPayment,
-    selectCartTotals,
-    selectCartShippingInformation,
-    selectCartAvailableShippingMethods,
-    selectCartAvailablePaymentMethods,
 
     selectIsCartEmpty,
     selectIsBillingSameAsShipping,
@@ -1336,114 +1317,6 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     });
   });
 
-  describe('selectCartId', () => {
-    it('returns cart ID', () => {
-      const selector = store.pipe(select(selectCartId));
-      const expected = cold('a', { a: cart.id });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartSubtotal', () => {
-    it('returns cart subtotal', () => {
-      const selector = store.pipe(select(selectCartSubtotal));
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalExcludingTax].value });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartGrandTotal', () => {
-    it('returns cart grand total', () => {
-      const selector = store.pipe(select(selectCartGrandTotal));
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.grandTotal].value });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartSubtotalExcludingTax', () => {
-    it('returns cart subtotal excluding tax', () => {
-      const selector = store.pipe(select(selectCartSubtotalExcludingTax));
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalExcludingTax].value });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartSubtotalIncludingTax', () => {
-    it('returns cart subtotal including tax', () => {
-      const selector = store.pipe(select(selectCartSubtotalIncludingTax));
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalIncludingTax].value });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartSubtotalWithDiscountExcludingTax', () => {
-    it('returns cart subtotal with discount excluding tax', () => {
-      const selector = store.pipe(select(selectCartSubtotalWithDiscountExcludingTax));
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax].value });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartSubtotalWithDiscountIncludingTax', () => {
-    it('returns cart subtotal with discount including tax', () => {
-      const selector = store.pipe(select(selectCartSubtotalWithDiscountIncludingTax));
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax].value });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartTotalTax', () => {
-    it('returns cart total tax', () => {
-      const selector = store.pipe(select(selectCartTotalTax));
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.tax].value });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartDiscountTotals', () => {
-    it('returns cart discount totals', () => {
-      const selector = store.pipe(select(selectCartDiscountTotals));
-      const expected = cold('a', { a: [cart.totals[DaffCartTotalTypeEnum.discount]]});
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartShippingTotal', () => {
-    it('returns cart shipping total', () => {
-      const selector = store.pipe(select(selectCartShippingTotal));
-      const expected = cold('a', { a: cart.totals[DaffCartTotalTypeEnum.shipping].value });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartCoupons', () => {
-    it('returns cart coupons', () => {
-      const selector = store.pipe(select(selectCartCoupons));
-      const expected = cold('a', { a: cart.coupons });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartItems', () => {
-    it('returns cart items', () => {
-      const selector = store.pipe(select(selectCartItems));
-      const expected = cold('a', { a: cart.items });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
   describe('selectCartHasOutOfStockItems', () => {
     it('should return true when at least one cart item is out of stock', () => {
       store.dispatch(new DaffCartLoadSuccess({
@@ -1462,69 +1335,6 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     it('should return false when no items are out of stock', () => {
       const selector = store.pipe(select(selectCartHasOutOfStockItems));
       const expected = cold('a', { a: false });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartBillingAddress', () => {
-    it('returns cart billing address', () => {
-      const selector = store.pipe(select(selectCartBillingAddress));
-      const expected = cold('a', { a: cart.billing_address });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartShippingAddress', () => {
-    it('returns cart shipping address', () => {
-      const selector = store.pipe(select(selectCartShippingAddress));
-      const expected = cold('a', { a: cart.shipping_address });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartPayment', () => {
-    it('returns cart payment', () => {
-      const selector = store.pipe(select(selectCartPayment));
-      const expected = cold('a', { a: cart.payment });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartTotals', () => {
-    it('returns cart totals', () => {
-      const selector = store.pipe(select(selectCartTotals));
-      const expected = cold('a', { a: cart.totals });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartShippingInformation', () => {
-    it('returns cart shipping information', () => {
-      const selector = store.pipe(select(selectCartShippingInformation));
-      const expected = cold('a', { a: cart.shipping_information });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartAvailableShippingMethods', () => {
-    it('returns cart available shipping methods', () => {
-      const selector = store.pipe(select(selectCartAvailableShippingMethods));
-      const expected = cold('a', { a: cart.available_shipping_methods });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartAvailablePaymentMethods', () => {
-    it('returns cart available payment methods', () => {
-      const selector = store.pipe(select(selectCartAvailablePaymentMethods));
-      const expected = cold('a', { a: cart.available_payment_methods });
 
       expect(selector).toBeObservable(expected);
     });
