@@ -21,10 +21,11 @@ export enum DaffPaymentActionTypes {
  *
  * @param query The payment query.
  */
-export interface DaffPaymentGenerateToken<T extends DaffPaymentRequest = DaffPaymentRequest> extends Action {
+export interface DaffPaymentGenerateTokenPayload<T extends DaffPaymentRequest = DaffPaymentRequest> {
   readonly request: T;
   readonly address?: DaffPersonalAddress | DaffIdentifiable;
 }
+export interface DaffPaymentGenerateToken<T extends DaffPaymentRequest = DaffPaymentRequest> extends DaffPaymentGenerateTokenPayload<T>, Action {}
 
 /**
  * Indicates a successful generation of a payment token.
