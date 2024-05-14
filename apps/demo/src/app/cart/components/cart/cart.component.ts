@@ -26,8 +26,8 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.itemCount$ = this.facade.items$.pipe(
-      map(items => items.length),
+    this.itemCount$ = this.facade.cart$.pipe(
+      map((cart) => cart?.items.length),
     );
     this.isCartEmpty$ = this.facade.isCartEmpty$;
   }
