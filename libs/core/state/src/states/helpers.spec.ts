@@ -1,9 +1,6 @@
 import { DaffState } from '@daffodil/core/state';
 
-import {
-  daffOperationEntityCreateFakeId,
-  daffStateIsLoading,
-} from './helpers';
+import { daffStateIsLoading } from './helpers';
 
 describe('@daffodil/core/state | daffStateIsLoading', () => {
   let result: boolean;
@@ -76,25 +73,5 @@ describe('@daffodil/core/state | daffStateIsLoading', () => {
     it('should be true', () => {
       expect(result).toBeTrue();
     });
-  });
-});
-
-describe('@daffodil/core/state | daffOperationEntityCreateFakeId', () => {
-  let result: string;
-
-  beforeEach(() => {
-    result = daffOperationEntityCreateFakeId('test');
-  });
-
-  it('should return a string containing a greek lowercase sigma', () => {
-    expect(result).toContain('ε');
-  });
-
-  it('should return a string containing the passed key', () => {
-    expect(result).toContain('test');
-  });
-
-  it('should return distinct strings when called in quick succession', () => {
-    expect(result).not.toEqual(daffOperationEntityCreateFakeId());
   });
 });
