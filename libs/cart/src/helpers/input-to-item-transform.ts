@@ -3,6 +3,9 @@ import {
   DaffCartItemInput,
 } from '../models/public_api';
 
+/**
+ * Creates a stub cart item from the cart item input.
+ */
 export const daffCartItemInputToItemTransform = (input: DaffCartItemInput): DaffCartItem => ({
   type: input.type,
   product_id: input.productId,
