@@ -17,9 +17,9 @@ const addError = initializeErrorAdder(DaffCartOperationType.Coupon);
 const resetErrors = initializeErrorResetter(DaffCartOperationType.Coupon);
 const setLoading = initializeLoadingSetter(DaffCartOperationType.Coupon);
 
-export function cartCouponReducer<T extends DaffCart>(
+export function cartCouponReducer<T extends DaffCart = DaffCart>(
   state = daffCartReducerInitialState,
-  action: ActionTypes,
+  action: ActionTypes<T>,
 ): DaffCartReducerState<T> {
   switch (action.type) {
     case DaffCartCouponActionTypes.CartCouponListAction:

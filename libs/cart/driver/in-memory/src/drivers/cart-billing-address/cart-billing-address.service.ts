@@ -14,7 +14,7 @@ import { DaffCartBillingAddressServiceInterface } from '@daffodil/cart/driver';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryCartBillingAddressService implements DaffCartBillingAddressServiceInterface<DaffCartAddress, DaffCart> {
+export class DaffInMemoryCartBillingAddressService implements DaffCartBillingAddressServiceInterface {
   /**
    * The URL with which the driver makes calls to the backend.
    */

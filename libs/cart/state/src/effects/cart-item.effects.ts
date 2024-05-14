@@ -68,14 +68,13 @@ import { getDaffCartSelectors } from '../selectors/public_api';
 
 @Injectable()
 export class DaffCartItemEffects<
-  T extends DaffStatefulCartItem,
-  U extends DaffCartItemInput,
-  V extends DaffCart,
+  T extends DaffCart = DaffCart,
+  U extends DaffCartItemInput = DaffCartItemInput,
 > {
   constructor(
-    private actions$: Actions<DaffCartItemActions<T, U, V>>,
+    private actions$: Actions<DaffCartItemActions<T, U>>,
     @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
-    @Inject(DaffCartItemDriver) private driver: DaffCartItemServiceInterface<T, U, V>,
+    @Inject(DaffCartItemDriver) private driver: DaffCartItemServiceInterface<T, U>,
     private storage: DaffCartStorageService,
     @Inject(DaffCartItemStateDebounceTime) private cartItemStateDebounceTime: number,
     private store: Store,
@@ -85,20 +84,19 @@ export class DaffCartItemEffects<
 
   list$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartItemActionTypes.CartItemListAction),
-    switchMap((action: DaffCartItemList) =>
+    switchMap((action) =>
       this.driver.list(this.storage.getCartId()).pipe(
-        map((resp: T[]) => new DaffCartItemListSuccess(resp)),
+        map((resp) => new DaffCartItemListSuccess(resp)),
         catchAndArrayifyErrors(error => of(new DaffCartItemListFailure(error.map(this.errorMatcher)))),
       ),
     ),
   ));
 
-
   get$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartItemActionTypes.CartItemLoadAction),
-    switchMap((action: DaffCartItemLoad<T>) =>
+    switchMap((action) =>
       this.driver.get(this.storage.getCartId(), action.itemId).pipe(
-        map((resp: T) => new DaffCartItemLoadSuccess(resp)),
+        map((resp) => new DaffCartItemLoadSuccess(resp)),
         catchAndArrayifyErrors(error => of(new DaffCartItemLoadFailure(error.map(this.errorMatcher), action.itemId))),
       ),
     ),
@@ -136,13 +134,13 @@ export class DaffCartItemEffects<
 
   update$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartItemActionTypes.CartItemUpdateAction),
-    mergeMap((action: DaffCartItemUpdate<T>) =>
+    mergeMap((action) =>
       this.driver.update(
         this.storage.getCartId(),
         action.itemId,
         action.changes,
       ).pipe(
-        map((resp: V) => new DaffCartItemUpdateSuccess(resp, action.itemId)),
+        map((resp) => new DaffCartItemUpdateSuccess(resp, action.itemId)),
         catchAndArrayifyErrors(error => of(new DaffCartItemUpdateFailure(error.map(this.errorMatcher), action.itemId))),
       ),
     ),
@@ -165,17 +163,15 @@ export class DaffCartItemEffects<
     map(() => new DaffCartItemStateReset()),
   ));
 
-
   delete$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartItemActionTypes.CartItemDeleteAction),
-    mergeMap((action: DaffCartItemDelete<T>) =>
+    mergeMap((action) =>
       this.driver.delete(this.storage.getCartId(), action.itemId).pipe(
         map((resp) => new DaffCartItemDeleteSuccess(resp)),
         catchAndArrayifyErrors(error => of(new DaffCartItemDeleteFailure(error.map(this.errorMatcher), action.itemId))),
       ),
     ),
   ));
-
 
   removeOutOfStock$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartItemActionTypes.CartItemDeleteOutOfStockAction),

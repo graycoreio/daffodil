@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 
 import {
   DaffCart,
-  DaffCartPaymentMethod,
   DaffCartOrderResult,
 } from '@daffodil/cart';
 
@@ -12,13 +11,12 @@ import {
  */
 export interface DaffCartOrderServiceInterface<
   T extends DaffCart = DaffCart,
-  V extends DaffCartPaymentMethod = DaffCartPaymentMethod,
   R extends DaffCartOrderResult = DaffCartOrderResult
 > {
   /**
    * Place an order and return the order ID.
    */
-  placeOrder(id: T['id'], payment?: V): Observable<R>;
+  placeOrder(id: T['id'], payment?: T['payment']): Observable<R>;
 }
 
 export const DaffCartOrderDriver = new InjectionToken<DaffCartOrderServiceInterface>(

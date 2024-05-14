@@ -15,11 +15,7 @@ import { DaffCartItemServiceInterface } from '@daffodil/cart/driver';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryCartItemService implements DaffCartItemServiceInterface<
-DaffCartItem,
-DaffCartItemInput,
-DaffCart
-> {
+export class DaffInMemoryCartItemService implements DaffCartItemServiceInterface {
   /**
    * The URL with which the driver makes calls to the backend.
    */

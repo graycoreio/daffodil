@@ -73,7 +73,7 @@ import { DaffCartItemEffects } from './cart-item.effects';
 
 describe('@daffodil/cart/state | DaffCartItemEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffCartItemEffects<DaffStatefulCartItem, DaffCartItemInput, DaffCart>;
+  let effects: DaffCartItemEffects;
   let store: Store;
 
   let mockCart: DaffCart;
@@ -125,11 +125,7 @@ describe('@daffodil/cart/state | DaffCartItemEffects', () => {
       ],
     });
 
-    effects = TestBed.inject<DaffCartItemEffects<
-    DaffStatefulCartItem,
-    DaffCartItemInput,
-    DaffCart
-    >>(DaffCartItemEffects);
+    effects = TestBed.inject(DaffCartItemEffects);
     store = TestBed.inject(Store);
 
     daffCartItemDriver = TestBed.inject(DaffCartItemDriver);

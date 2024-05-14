@@ -41,10 +41,10 @@ export class DaffCartPaymentLoad implements Action {
 /**
  * Indicates the successful load of the cart's selected payment method.
  */
-export class DaffCartPaymentLoadSuccess<T extends DaffCartPaymentMethod = DaffCartPaymentMethod> implements Action {
+export class DaffCartPaymentLoadSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentLoadSuccessAction;
 
-  constructor(public payload: T) {}
+  constructor(public payload: T['payment']) {}
 }
 
 /**
@@ -59,10 +59,10 @@ export class DaffCartPaymentLoadFailure implements DaffFailureAction {
 /**
  * Triggers the update of the cart's selected payment method.
  */
-export class DaffCartPaymentUpdate<T extends DaffCartPaymentMethod = DaffCartPaymentMethod> implements Action {
+export class DaffCartPaymentUpdate<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentUpdateAction;
 
-  constructor(public payload: Partial<T>) {}
+  constructor(public payload: Partial<T['payment']>) {}
 }
 
 /**
@@ -89,13 +89,10 @@ export class DaffCartPaymentUpdateFailure implements DaffFailureAction {
  * @param payment The payment method.
  * @param address The billing address.
  */
-export class DaffCartPaymentUpdateWithBilling<
-  T extends DaffCartPaymentMethod = DaffCartPaymentMethod,
-  R extends DaffCartAddress = DaffCartAddress
-> implements Action {
+export class DaffCartPaymentUpdateWithBilling<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingAction;
 
-  constructor(public payment: Partial<T>, public address: Partial<R>) {}
+  constructor(public payment: Partial<T['payment']>, public address: Partial<T['billing_address']>) {}
 }
 
 /**
@@ -149,28 +146,24 @@ export class DaffCartPaymentRemoveFailure implements DaffFailureAction {
  *
  * todo: remove when possible.
  */
-export class DaffCartPaymentMethodAdd<T extends DaffCartPaymentMethod = DaffCartPaymentMethod> implements Action {
+export class DaffCartPaymentMethodAdd<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentMethodAddAction;
 
-  constructor(public payload: T) {}
+  constructor(public payload: T['payment']) {}
 }
 
 /**
  * A union of all the cart payment action classes.
  */
-export type DaffCartPaymentActions<
-  T extends DaffCartPaymentMethod = DaffCartPaymentMethod,
-  V extends DaffCart = DaffCart,
-  R extends DaffCartAddress = DaffCartAddress,
-> =
+export type DaffCartPaymentActions<T extends DaffCart = DaffCart> =
   | DaffCartPaymentLoad
   | DaffCartPaymentLoadSuccess<T>
   | DaffCartPaymentLoadFailure
   | DaffCartPaymentUpdate<T>
-  | DaffCartPaymentUpdateSuccess<V>
+  | DaffCartPaymentUpdateSuccess<T>
   | DaffCartPaymentUpdateFailure
-  | DaffCartPaymentUpdateWithBilling<T, R>
-  | DaffCartPaymentUpdateWithBillingSuccess<V>
+  | DaffCartPaymentUpdateWithBilling<T>
+  | DaffCartPaymentUpdateWithBillingSuccess<T>
   | DaffCartPaymentUpdateWithBillingFailure
   | DaffCartPaymentRemove
   | DaffCartPaymentRemoveSuccess

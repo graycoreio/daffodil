@@ -60,7 +60,6 @@ describe('@daffodil/cart/state | DaffCartPaymentEffects', () => {
 
   let driverGetSpy: jasmine.Spy<DaffCartPaymentServiceInterface['get']>;
   let driverUpdateSpy: jasmine.Spy<DaffCartPaymentServiceInterface['update']>;
-  let driverUpdateWithBillingSpy: jasmine.Spy<DaffCartPaymentServiceInterface['updateWithBilling']>;
   let driverRemoveSpy: jasmine.Spy<DaffCartPaymentServiceInterface['remove']>;
   let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
 
@@ -90,7 +89,6 @@ describe('@daffodil/cart/state | DaffCartPaymentEffects', () => {
 
     driverGetSpy = spyOn(daffPaymentDriver, 'get');
     driverUpdateSpy = spyOn(daffPaymentDriver, 'update');
-    driverUpdateWithBillingSpy = spyOn(daffPaymentDriver, 'updateWithBilling');
     driverRemoveSpy = spyOn(daffPaymentDriver, 'remove');
     getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
     getCartIdSpy.and.returnValue(mockCart.id);
@@ -184,7 +182,7 @@ describe('@daffodil/cart/state | DaffCartPaymentEffects', () => {
 
     describe('and the call to CartPaymentService is successful', () => {
       beforeEach(() => {
-        driverUpdateWithBillingSpy.and.returnValue(of(mockCart));
+        driverUpdateSpy.and.returnValue(of(mockCart));
         const cartPaymentUpdateSuccessAction = new DaffCartPaymentUpdateWithBillingSuccess(mockCart);
         actions$ = hot('--a', { a: cartPaymentUpdateAction });
         expected = cold('--b', { b: cartPaymentUpdateSuccessAction });
@@ -199,7 +197,7 @@ describe('@daffodil/cart/state | DaffCartPaymentEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart payment and billing address' };
         const response = cold('#', {}, error);
-        driverUpdateWithBillingSpy.and.returnValue(response);
+        driverUpdateSpy.and.returnValue(response);
         const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateWithBillingFailure([error]);
         actions$ = hot('--a', { a: cartPaymentUpdateAction });
         expected = cold('--b', { b: cartPaymentUpdateFailureAction });

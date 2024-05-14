@@ -1,9 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import {
-  DaffCartAddress,
-  DaffCart,
-} from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import {
   DaffFailureAction,
   DaffStateError,
@@ -33,10 +30,10 @@ export class DaffCartBillingAddressLoad implements Action {
 /**
  * Indicates the successful load of the cart's billing address.
  */
-export class DaffCartBillingAddressLoadSuccess<T extends DaffCartAddress> implements Action {
+export class DaffCartBillingAddressLoadSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartBillingAddressActionTypes.CartBillingAddressLoadSuccessAction;
 
-  constructor(public payload: T) {}
+  constructor(public payload: T['billing_address']) {}
 }
 
 /**
@@ -51,10 +48,10 @@ export class DaffCartBillingAddressLoadFailure implements DaffFailureAction {
 /**
  * Triggers the update of the cart's billing address.
  */
-export class DaffCartBillingAddressUpdate<T extends DaffCartAddress = DaffCartAddress> implements Action {
+export class DaffCartBillingAddressUpdate<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartBillingAddressActionTypes.CartBillingAddressUpdateAction;
 
-  constructor(public payload: Partial<T>) {}
+  constructor(public payload: Partial<T['billing_address']>) {}
 }
 
 /**
@@ -79,12 +76,11 @@ export class DaffCartBillingAddressUpdateFailure implements DaffFailureAction {
  * A union of all the cart billing address action classes.
  */
 export type DaffCartBillingAddressActions<
-  T extends DaffCartAddress = DaffCartAddress,
-  V extends DaffCart = DaffCart
+  T extends DaffCart = DaffCart,
 > =
   | DaffCartBillingAddressLoad
   | DaffCartBillingAddressLoadSuccess<T>
   | DaffCartBillingAddressLoadFailure
   | DaffCartBillingAddressUpdate<T>
-  | DaffCartBillingAddressUpdateSuccess<V>
+  | DaffCartBillingAddressUpdateSuccess<T>
   | DaffCartBillingAddressUpdateFailure;

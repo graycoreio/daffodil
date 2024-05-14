@@ -37,7 +37,7 @@ import { DaffCartShippingAddressEffects } from './cart-shipping-address.effects'
 
 describe('@daffodil/cart/state | DaffCartShippingAddressEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffCartShippingAddressEffects<DaffCartAddress, DaffCart>;
+  let effects: DaffCartShippingAddressEffects;
 
   let mockCart: DaffCart;
   let mockCartShippingAddress: DaffCartAddress;

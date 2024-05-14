@@ -37,7 +37,7 @@ import { DaffCartBillingAddressEffects } from './cart-billing-address.effects';
 
 describe('@daffodil/cart/state | DaffCartBillingAddressEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffCartBillingAddressEffects<DaffCartAddress, DaffCart>;
+  let effects: DaffCartBillingAddressEffects;
 
   let mockCart: DaffCart;
   let mockCartBillingAddress: DaffCartAddress;
@@ -63,13 +63,13 @@ describe('@daffodil/cart/state | DaffCartBillingAddressEffects', () => {
       ],
     });
 
-    effects = TestBed.inject<DaffCartBillingAddressEffects<DaffCartAddress, DaffCart>>(DaffCartBillingAddressEffects);
+    effects = TestBed.inject(DaffCartBillingAddressEffects);
 
     daffBillingAddressDriver = TestBed.inject(DaffCartBillingAddressDriver);
     daffCartStorageService = TestBed.inject(DaffCartStorageService);
 
-    cartFactory = TestBed.inject<DaffCartFactory>(DaffCartFactory);
-    cartAddressFactory = TestBed.inject<DaffCartAddressFactory>(DaffCartAddressFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartAddressFactory = TestBed.inject(DaffCartAddressFactory);
 
     mockCart = cartFactory.create();
     mockCartBillingAddress = cartAddressFactory.create();

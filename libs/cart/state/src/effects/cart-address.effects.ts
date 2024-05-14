@@ -14,11 +14,9 @@ import {
 import {
   switchMap,
   map,
-  catchError,
 } from 'rxjs/operators';
 
 import {
-  DaffCartAddress,
   DaffCart,
   DaffCartStorageService,
 } from '@daffodil/cart';
@@ -28,33 +26,32 @@ import {
 } from '@daffodil/cart/driver';
 import {
   DAFF_STORAGE_SERVICE_ERROR_CODE,
-  DaffStorageServiceError,
   catchAndArrayifyErrors,
 } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
   DaffCartAddressActionTypes,
-  DaffCartAddressUpdate,
   DaffCartAddressUpdateSuccess,
   DaffCartAddressUpdateFailure,
   DaffCartStorageFailure,
+  DaffCartAddressActions,
 } from '../actions/public_api';
 import { DAFF_CART_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
-export class DaffCartAddressEffects<T extends DaffCartAddress, V extends DaffCart> {
+export class DaffCartAddressEffects<T extends DaffCart = DaffCart> {
   constructor(
-    private actions$: Actions,
+    private actions$: Actions<DaffCartAddressActions>,
     @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
-    @Inject(DaffCartAddressDriver) private driver: DaffCartAddressServiceInterface<T, V>,
+    @Inject(DaffCartAddressDriver) private driver: DaffCartAddressServiceInterface<T>,
     private storage: DaffCartStorageService,
   ) {}
 
 
   update$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartAddressActionTypes.CartAddressUpdateAction),
-    switchMap((action: DaffCartAddressUpdate<T>) => defer(() => of(this.storage.getCartId())).pipe(
+    switchMap((action) => defer(() => of(this.storage.getCartId())).pipe(
       switchMap(cartId => this.driver.update(cartId, action.payload)),
       map((resp) => new DaffCartAddressUpdateSuccess(resp)),
       catchAndArrayifyErrors(error => of(error.find((err) => err.code === DAFF_STORAGE_SERVICE_ERROR_CODE)

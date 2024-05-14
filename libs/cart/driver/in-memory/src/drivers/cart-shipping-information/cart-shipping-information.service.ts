@@ -14,10 +14,7 @@ import { DaffCartShippingInformationServiceInterface } from '@daffodil/cart/driv
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryCartShippingInformationService implements DaffCartShippingInformationServiceInterface<
-DaffCartShippingRate,
-DaffCart
-> {
+export class DaffInMemoryCartShippingInformationService implements DaffCartShippingInformationServiceInterface {
   /**
    * The URL with which the driver makes calls to the backend.
    */

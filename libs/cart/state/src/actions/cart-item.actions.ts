@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 
 import {
   DaffCart,
+  DaffCartItem,
   DaffCartItemInput,
 } from '@daffodil/cart';
 import {
@@ -10,7 +11,6 @@ import {
 } from '@daffodil/core/state';
 
 import { DaffCartRetrievalAction } from '../cart-retrieval/public_api';
-import { DaffStatefulCartItem } from '../models/public_api';
 
 /**
  * An enum for the cart item action types.
@@ -47,7 +47,7 @@ export class DaffCartItemList implements Action {
 /**
  * Indicates the successful load of the cart's items.
  */
-export class DaffCartItemListSuccess<T extends DaffStatefulCartItem = DaffStatefulCartItem> implements Action {
+export class DaffCartItemListSuccess<T extends DaffCartItem = DaffCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemListSuccessAction;
 
   constructor(public payload: T[]) {}
@@ -65,7 +65,7 @@ export class DaffCartItemListFailure implements DaffFailureAction {
 /**
  * Triggers the load of a specific cart item.
  */
-export class DaffCartItemLoad<T extends DaffStatefulCartItem = DaffStatefulCartItem> implements Action {
+export class DaffCartItemLoad<T extends DaffCartItem = DaffCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemLoadAction;
 
   constructor(public itemId: T['id']) {}
@@ -74,7 +74,7 @@ export class DaffCartItemLoad<T extends DaffStatefulCartItem = DaffStatefulCartI
 /**
  * Indicates the successful load of a specific cart item.
  */
-export class DaffCartItemLoadSuccess<T extends DaffStatefulCartItem = DaffStatefulCartItem> implements Action {
+export class DaffCartItemLoadSuccess<T extends DaffCartItem = DaffCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemLoadSuccessAction;
 
   constructor(public payload: T) {}
@@ -83,16 +83,16 @@ export class DaffCartItemLoadSuccess<T extends DaffStatefulCartItem = DaffStatef
 /**
  * Indicates the failed load of a specific cart item.
  */
-export class DaffCartItemLoadFailure<T extends DaffStatefulCartItem = DaffStatefulCartItem> implements Action {
+export class DaffCartItemLoadFailure implements Action {
   readonly type = DaffCartItemActionTypes.CartItemLoadFailureAction;
 
-  constructor(public payload: DaffStateError[], public itemId: T['id']) {}
+  constructor(public payload: DaffStateError[], public itemId: DaffCartItem['id']) {}
 }
 
 /**
  * Triggers the update of a specific cart item.
  */
-export class DaffCartItemUpdate<T extends DaffStatefulCartItem = DaffStatefulCartItem> implements Action {
+export class DaffCartItemUpdate<T extends DaffCartItem = DaffCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemUpdateAction;
 
   constructor(public itemId: T['id'], public changes: Partial<T>) {}
@@ -101,22 +101,19 @@ export class DaffCartItemUpdate<T extends DaffStatefulCartItem = DaffStatefulCar
 /**
  * Indicates the successful update of a specific cart item.
  */
-export class DaffCartItemUpdateSuccess<
-  T extends DaffCart = DaffCart,
-  V extends DaffStatefulCartItem = DaffStatefulCartItem
-> implements Action {
+export class DaffCartItemUpdateSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemUpdateSuccessAction;
 
-  constructor(public payload: Partial<T>, public itemId: V['id']) {}
+  constructor(public payload: Partial<T>, public itemId: T['items'][number]['id']) {}
 }
 
 /**
  * Indicates the failed update of a specific cart item.
  */
-export class DaffCartItemUpdateFailure<T extends DaffStatefulCartItem = DaffStatefulCartItem> implements Action {
+export class DaffCartItemUpdateFailure implements Action {
   readonly type = DaffCartItemActionTypes.CartItemUpdateFailureAction;
 
-  constructor(public payload: DaffStateError[], public itemId: T['id']) {}
+  constructor(public payload: DaffStateError[], public itemId: DaffCartItem['id']) {}
 }
 
 /**
@@ -125,7 +122,7 @@ export class DaffCartItemUpdateFailure<T extends DaffStatefulCartItem = DaffStat
 export class DaffCartItemAdd<T extends DaffCartItemInput = DaffCartItemInput> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemAddAction;
 
-  constructor(public input: T) {}
+  constructor(public input: T, public placeholderId?: string) {}
 }
 
 /**
@@ -134,7 +131,7 @@ export class DaffCartItemAdd<T extends DaffCartItemInput = DaffCartItemInput> im
 export class DaffCartItemAddSuccess<T extends DaffCart = DaffCart> implements DaffCartRetrievalAction<T> {
   readonly type = DaffCartItemActionTypes.CartItemAddSuccessAction;
 
-  constructor(public payload: Partial<T>) {}
+  constructor(public payload: Partial<T>, public itemId: DaffCartItem['id']) {}
 }
 
 /**
@@ -143,13 +140,13 @@ export class DaffCartItemAddSuccess<T extends DaffCart = DaffCart> implements Da
 export class DaffCartItemAddFailure implements DaffFailureAction {
   readonly type = DaffCartItemActionTypes.CartItemAddFailureAction;
 
-  constructor(public payload: DaffStateError[]) {}
+  constructor(public payload: DaffStateError[], public placeholderId?: string) {}
 }
 
 /**
  * Triggers the deletion of a specific cart item.
  */
-export class DaffCartItemDelete<T extends DaffStatefulCartItem = DaffStatefulCartItem> implements Action {
+export class DaffCartItemDelete<T extends DaffCartItem = DaffCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemDeleteAction;
 
   constructor(public itemId: T['id']) {}
@@ -167,10 +164,10 @@ export class DaffCartItemDeleteSuccess<T extends DaffCart = DaffCart> implements
 /**
  * Indicates the failed deletion of a specific cart item.
  */
-export class DaffCartItemDeleteFailure<T extends DaffStatefulCartItem = DaffStatefulCartItem> implements Action {
+export class DaffCartItemDeleteFailure implements Action {
   readonly type = DaffCartItemActionTypes.CartItemDeleteFailureAction;
 
-  constructor(public payload: DaffStateError[], public itemId: T['id']) {}
+  constructor(public payload: DaffStateError[], public itemId: DaffCartItem['id']) {}
 }
 
 /**
@@ -203,32 +200,33 @@ export class DaffCartItemDeleteOutOfStockFailure implements DaffFailureAction {
  */
 export class DaffCartItemStateReset implements Action {
   readonly type = DaffCartItemActionTypes.CartItemStateResetAction;
+
+  constructor(public itemId: DaffCartItem['id']) {}
 }
 
 /**
  * A union of all the cart item action classes.
  */
 export type DaffCartItemActions<
-  T extends DaffStatefulCartItem = DaffStatefulCartItem,
+  T extends DaffCart = DaffCart,
   U extends DaffCartItemInput = DaffCartItemInput,
-  V extends DaffCart = DaffCart
 > =
   | DaffCartItemList
-  | DaffCartItemListSuccess<T>
+  | DaffCartItemListSuccess<T['items'][number]>
   | DaffCartItemListFailure
-  | DaffCartItemLoad<T>
-  | DaffCartItemLoadSuccess<T>
-  | DaffCartItemLoadFailure<T>
-  | DaffCartItemUpdate<T>
-  | DaffCartItemUpdateSuccess<V, T>
-  | DaffCartItemUpdateFailure<T>
+  | DaffCartItemLoad<T['items'][number]>
+  | DaffCartItemLoadSuccess<T['items'][number]>
+  | DaffCartItemLoadFailure
+  | DaffCartItemUpdate<T['items'][number]>
+  | DaffCartItemUpdateSuccess<T>
+  | DaffCartItemUpdateFailure
   | DaffCartItemAdd<U>
-  | DaffCartItemAddSuccess<V>
+  | DaffCartItemAddSuccess<T>
   | DaffCartItemAddFailure
-  | DaffCartItemDelete<T>
-  | DaffCartItemDeleteSuccess<V>
-  | DaffCartItemDeleteFailure<T>
+  | DaffCartItemDelete<T['items'][number]>
+  | DaffCartItemDeleteSuccess<T>
+  | DaffCartItemDeleteFailure
   | DaffCartItemDeleteOutOfStock
-  | DaffCartItemDeleteOutOfStockSuccess<V>
+  | DaffCartItemDeleteOutOfStockSuccess<T>
   | DaffCartItemDeleteOutOfStockFailure
   | DaffCartItemStateReset;

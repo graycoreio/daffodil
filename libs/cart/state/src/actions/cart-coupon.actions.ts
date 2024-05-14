@@ -144,17 +144,14 @@ export class DaffCartCouponClearErrors implements Action {
 /**
  * A union of all the cart coupon action classes.
  */
-export type DaffCartCouponActions<
-  T extends DaffCart = DaffCart,
-  V extends DaffCartCoupon = DaffCartCoupon
-> =
-  | DaffCartCouponApply<V>
+export type DaffCartCouponActions<T extends DaffCart = DaffCart> =
+  | DaffCartCouponApply<T['coupons'][number]>
   | DaffCartCouponApplySuccess<T>
   | DaffCartCouponApplyFailure
   | DaffCartCouponList
-  | DaffCartCouponListSuccess<V>
+  | DaffCartCouponListSuccess<T['coupons'][number]>
   | DaffCartCouponListFailure
-  | DaffCartCouponRemove<V>
+  | DaffCartCouponRemove<T['coupons'][number]>
   | DaffCartCouponRemoveSuccess<T>
   | DaffCartCouponRemoveFailure
   | DaffCartCouponRemoveAll

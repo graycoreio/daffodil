@@ -3,6 +3,7 @@ import { Action } from '@ngrx/store';
 import {
   DaffCartPaymentMethod,
   DaffCartOrderResult,
+  DaffCart,
 } from '@daffodil/cart';
 import {
   DaffFailureAction,
@@ -50,8 +51,8 @@ export class DaffCartPlaceOrderFailure implements DaffFailureAction {
  */
 export type DaffCartOrderActions<
   T extends DaffCartOrderResult = DaffCartOrderResult,
-  V extends DaffCartPaymentMethod = DaffCartPaymentMethod
+  V extends DaffCart = DaffCart
 > =
-  | DaffCartPlaceOrder<V>
+  | DaffCartPlaceOrder<V['payment']>
   | DaffCartPlaceOrderSuccess<T>
   | DaffCartPlaceOrderFailure;

@@ -9,7 +9,6 @@ import {
   DaffCartOrderResult,
 } from '@daffodil/cart';
 
-import { DaffStatefulCartItem } from '../../models/public_api';
 import { DaffCartReducersState } from '../cart-reducers-state.interface';
 
 /**
@@ -37,9 +36,8 @@ export const DAFF_CART_EXTRA_REDUCERS = new InjectionToken<ActionReducer<DaffCar
 export function daffCartProvideExtraReducers<
   T extends DaffCart = DaffCart,
   V extends DaffCartOrderResult = DaffCartOrderResult,
-  U extends DaffStatefulCartItem = DaffStatefulCartItem
 >(
-  ...reducers: ActionReducer<DaffCartReducersState<T, V, U>>[]
+  ...reducers: ActionReducer<DaffCartReducersState<T, V>>[]
 ): Provider[] {
   return reducers.map(reducer => ({
     provide: DAFF_CART_EXTRA_REDUCERS,
