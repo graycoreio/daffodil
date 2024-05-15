@@ -1,5 +1,8 @@
 name: Daffodil Lint
 
+env:
+  NX_REJECT_UNKNOWN_LOCAL_CACHE: 0
+
 on:
   push:
     paths:
@@ -56,4 +59,4 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - run:  npx nx affected --target=lint
+      - run: npx nx affected --target=lint
