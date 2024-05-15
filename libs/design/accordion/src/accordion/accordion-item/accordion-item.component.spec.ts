@@ -15,13 +15,13 @@ import { DaffAccordionItemComponent } from './accordion-item.component';
 
 
 @Component({ template: `
-<daff-accordion-item [initiallyActive]="initiallyActiveValue">
+<daff-accordion-item [initiallyExpanded]="initiallyExpandedValue">
   <h3 daffAccordionItemTitle>Size and Fit</h3>
   <div daffAccordionItemContent>no content</div>
 </daff-accordion-item>
 ` })
 class WrapperComponent {
-  initiallyActiveValue: boolean;
+  initiallyExpandedValue: boolean;
 }
 
 describe('@daffodil/design/accordion | DaffAccordionItemComponent', () => {
@@ -66,26 +66,26 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent', () => {
     expect(daffAccordionItem._animationState).toEqual('void');
   });
 
-  it('should be able to accept an initiallyActive input', () => {
-    wrapper.initiallyActiveValue = false;
+  it('should be able to accept an initiallyExpanded input', () => {
+    wrapper.initiallyExpandedValue = false;
 
     fixture.detectChanges();
 
-    expect(daffAccordionItem.initiallyActive).toEqual(false);
+    expect(daffAccordionItem.initiallyExpanded).toEqual(false);
 
-    wrapper.initiallyActiveValue = true;
+    wrapper.initiallyExpandedValue = true;
 
     fixture.detectChanges();
 
-    expect(daffAccordionItem.initiallyActive).toEqual(true);
+    expect(daffAccordionItem.initiallyExpanded).toEqual(true);
   });
 
   describe('ngOnInit', () => {
 
-    describe('when initiallyActive is true', () => {
+    describe('when initiallyExpanded is true', () => {
 
       beforeEach(() => {
-        wrapper.initiallyActiveValue = true;
+        wrapper.initiallyExpandedValue = true;
         fixture.detectChanges();
       });
 
@@ -95,10 +95,10 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent', () => {
       });
     });
 
-    describe('when initiallyActive is not set', () => {
+    describe('when initiallyExpanded is not set', () => {
 
       beforeEach(() => {
-        wrapper.initiallyActiveValue = undefined;
+        wrapper.initiallyExpandedValue = undefined;
         fixture.detectChanges();
       });
 
