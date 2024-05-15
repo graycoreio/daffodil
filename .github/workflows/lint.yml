@@ -56,4 +56,4 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - run:  npx nx affected --target=lint
+      - run: NX_REJECT_UNKNOWN_LOCAL_CACHE=0 npx nx affected --target=lint
