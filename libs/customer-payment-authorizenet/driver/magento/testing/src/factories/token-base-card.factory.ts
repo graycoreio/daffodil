@@ -23,7 +23,7 @@ export class MockMagentoTokenBaseCard implements MagentoTokenBaseCard {
   label = faker.random.word();
   additional = {
     cc_type: faker.helpers.arrayElement(Object.values(MagentoTokenBaseCardTypeCode)),
-    cc_owner: faker.person.fullName(),
+    cc_owner: faker.name.fullName(),
     cc_last4: faker.finance.creditCardNumber().slice(4),
     cc_exp_year: faker.date.future().getMonth().toString(),
     cc_exp_month: faker.date.future().getFullYear().toString(),
