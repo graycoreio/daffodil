@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.70.0](https://github.com/graycoreio/daffodil/compare/v0.69.0...v0.70.0) (2024-05-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** use operation entity state for item entities ([#2794](https://github.com/graycoreio/daffodil/issues/2794))
+* **cart,cart-store-credit:** `DaffCartShippingInformation` has been removed. Use `DaffCartShippingRate` instead
+* **navigation:** `MagentoNavigationDriverConfiguration` -> `MagentoNavigationDriverConfig`
+
+### Features
+
+* **all:** simplify and remove redundant generics ([#2791](https://github.com/graycoreio/daffodil/issues/2791)) ([40eee41](https://github.com/graycoreio/daffodil/commit/40eee41b9e00490ebc3143954b630802f975682b))
+* **cart,cart-store-credit:** remove `DaffCartShippingInformation` ([#2788](https://github.com/graycoreio/daffodil/issues/2788)) ([b4cc19b](https://github.com/graycoreio/daffodil/commit/b4cc19b0dab07b47f7f0b61cbe48e39fa650b9a7))
+* **cart,order:** set redirect token default value ([#2780](https://github.com/graycoreio/daffodil/issues/2780)) ([207a75c](https://github.com/graycoreio/daffodil/commit/207a75c92856ab60ca38fe52bef1e0a1a399c447))
+* **cart:** add `daffCartGetItemTotalDiscount` ([#2797](https://github.com/graycoreio/daffodil/issues/2797)) ([0c1edcc](https://github.com/graycoreio/daffodil/commit/0c1edccd47d84fa4e19ffc2183d9607b13681690))
+* **cart:** extract cart payment processor effect to reusable function ([#2790](https://github.com/graycoreio/daffodil/issues/2790)) ([0e654a2](https://github.com/graycoreio/daffodil/commit/0e654a2b4f8f199137a88ccd73c62d4a2452d31a))
+* **cart:** use operation entity state for item entities ([#2794](https://github.com/graycoreio/daffodil/issues/2794)) ([b2c1e90](https://github.com/graycoreio/daffodil/commit/b2c1e90611a57b85736d675e30007561fee5078d))
+* **core:** add `DaffFailable` ([#2786](https://github.com/graycoreio/daffodil/issues/2786)) ([4839705](https://github.com/graycoreio/daffodil/commit/4839705a20de19dce075df0c711e8f1dfe104573))
+* **core:** add `identity` function ([#2785](https://github.com/graycoreio/daffodil/issues/2785)) ([5c6aa86](https://github.com/graycoreio/daffodil/commit/5c6aa86bbde6f5ba101de877b34aedc7390bf257))
+* **core:** add error to `DaffState` ([#2781](https://github.com/graycoreio/daffodil/issues/2781)) ([bb715eb](https://github.com/graycoreio/daffodil/commit/bb715eb3b99db96feed84de7965be2c6cc7a83db))
+* **core:** add type for `Constructable` args ([#2783](https://github.com/graycoreio/daffodil/issues/2783)) ([ba11f43](https://github.com/graycoreio/daffodil/commit/ba11f43ea0d03a4e1a080672cfeb41302627c58a))
+* **core:** include ngrx entity selectors in operation entity selectors ([#2782](https://github.com/graycoreio/daffodil/issues/2782)) ([3fe7c8c](https://github.com/graycoreio/daffodil/commit/3fe7c8c1775dfe799e097c2109a7c0974397af2e))
+* **core:** make operation entity adapter extensible ([#2795](https://github.com/graycoreio/daffodil/issues/2795)) ([589a06c](https://github.com/graycoreio/daffodil/commit/589a06c4a5f713dd14b9e1e66e23c739a5bc0dc5))
+* **core:** replace mutating with updating ([#2787](https://github.com/graycoreio/daffodil/issues/2787)) ([cc8a00d](https://github.com/graycoreio/daffodil/commit/cc8a00d777f088e702fa3359aeacaa1b7f34329c))
+* **core:** set state to error for operation failure ([#2796](https://github.com/graycoreio/daffodil/issues/2796)) ([dc08afa](https://github.com/graycoreio/daffodil/commit/dc08afacf4249888b7cd98f7c9d340b46b0b4909))
+* **design:** rename &lt;daff-progress-indicator&gt; to <daff-progress-bar> ([#2510](https://github.com/graycoreio/daffodil/issues/2510)) ([bbc3904](https://github.com/graycoreio/daffodil/commit/bbc390414e4d29c6853a67cb35c4405649b7346a))
+* **navigation:** add `getTree` method ([#2793](https://github.com/graycoreio/daffodil/issues/2793)) ([e300d70](https://github.com/graycoreio/daffodil/commit/e300d70d46c46a8a4417ab8a8a4661a29878e331))
+* **navigation:** standardize magento driver config ([#2784](https://github.com/graycoreio/daffodil/issues/2784)) ([0f20924](https://github.com/graycoreio/daffodil/commit/0f20924324c2c293b467525f76ab384dda6536c3))
+* **router:** add service for observing route data ([#2778](https://github.com/graycoreio/daffodil/issues/2778)) ([77d991f](https://github.com/graycoreio/daffodil/commit/77d991f033546c4214babab92b7e41fb83e06fde))
+
+
+### Bug Fixes
+
+* **cart:** item states get added for a cart retrieval actions ([#2799](https://github.com/graycoreio/daffodil/issues/2799)) ([2a8c77f](https://github.com/graycoreio/daffodil/commit/2a8c77f50c21509b43f00c6791f78c85cacc8de3))
+* **core:** `selectLoading` returns `true` for not loading state ([#2798](https://github.com/graycoreio/daffodil/issues/2798)) ([c7f164e](https://github.com/graycoreio/daffodil/commit/c7f164ee0f28d58cfa35a7bee7e75e5419f179d5))
+* **product:** get all products fails in magento driver ([#2789](https://github.com/graycoreio/daffodil/issues/2789)) ([bdc59f0](https://github.com/graycoreio/daffodil/commit/bdc59f0a6c47955b3a3f61064afb6ad924449217))
+
 ## [0.69.0](https://github.com/graycoreio/daffodil/compare/v0.68.1...v0.69.0) (2024-04-30)
 
 
