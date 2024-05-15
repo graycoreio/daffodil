@@ -15,7 +15,7 @@ export class MockDaffCustomerPayment extends MockPaymentResponse implements Daff
   default = faker.datatype.boolean();
   nickname = faker.random.word();
   createdAt = faker.date.recent().toISOString();
-  owner = faker.name.findName();
+  owner = faker.person.fullName();
 
   constructor(
     private addressFactory: DaffCustomerAddressFactory,

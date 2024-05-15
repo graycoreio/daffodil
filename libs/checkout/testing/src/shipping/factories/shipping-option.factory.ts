@@ -7,7 +7,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockShippingOption implements ShippingOption {
   id = faker.datatype.uuid();
-  text = faker.company.companyName() + ' ' + faker.commerce.productAdjective() + ' Shipping';
+  text = faker.company.name() + ' ' + faker.commerce.productAdjective() + ' Shipping';
 }
 
 @Injectable({

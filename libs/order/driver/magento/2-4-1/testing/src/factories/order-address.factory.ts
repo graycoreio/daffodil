@@ -6,9 +6,9 @@ import { MagentoOrderAddress } from '@daffodil/order/driver/magento/2-4-1';
 
 export class MockOrderAddress implements MagentoOrderAddress {
   __typename = <const>'OrderAddress';
-  street = [faker.address.streetName()];
+  street = [faker.address.street()];
   city = faker.address.city();
-  region_id = faker.unique(faker.datatype.number);
+  region_id = faker.helpers.unique(faker.datatype.number);
   region_code = faker.address.stateAbbr();
   postcode = faker.address.zipCode();
   country = faker.address.countryCode();
@@ -18,9 +18,9 @@ export class MockOrderAddress implements MagentoOrderAddress {
   firstname = faker.name.firstName();
   middlename = faker.name.firstName();
   lastname = faker.name.lastName();
-  telephone = faker.phone.phoneNumber();
-  fax = faker.phone.phoneNumber();
-  company = faker.company.companyName();
+  telephone = faker.phone.number();
+  fax = faker.phone.number();
+  company = faker.company.name();
 }
 
 @Injectable({
