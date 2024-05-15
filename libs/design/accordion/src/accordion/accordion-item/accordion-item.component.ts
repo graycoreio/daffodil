@@ -14,6 +14,8 @@ import {
 import { daffAccordionAnimations } from '../animation/accordion-animation';
 import { getAnimationState } from '../animation/accordion-animation-state';
 
+let daffAccordionItemId = 0;
+
 @Component({
   selector: 'daff-accordion-item',
   templateUrl: './accordion-item.component.html',
@@ -39,7 +41,20 @@ export class DaffAccordionItemComponent implements OnInit {
    */
   @HostBinding('class.daff-accordion-item') class = true;
 
+  @HostBinding('class.open') get openClass() {
+    return this._open;
+  }
+
+  _daffAccordionItemId = 'daff-accordion-item' + '-' + ++daffAccordionItemId;
+
+  @Input() id: string = this._daffAccordionItemId;
+
+  /** @deprecated in v1.0.0 in favor of `initiallyExpanded` */
   @Input() initiallyActive: boolean;
+
+  /** Whether or not the item is initiallyExpanded by default. */
+  @Input() initiallyExpanded = false;
+
   /**
    * @docs-private
    */
@@ -54,6 +69,7 @@ export class DaffAccordionItemComponent implements OnInit {
    */
   ngOnInit() {
     this._open = this.initiallyActive ? this.initiallyActive : this._open;
+    this._open = this.initiallyExpanded ? this.initiallyExpanded : this._open;
     this._animationState = getAnimationState(this._open);
   }
 

@@ -1,40 +1,65 @@
-@use '../../../../scss/typography' as t;
 @use '../../../../scss/interactions';
 @use '../../../../scss/layout';
 
 .daff-accordion-item {
+	$root: &;
 	display: block;
-	padding: 15px 0;
-	width: 100%;
-
-	@include layout.breakpoint(tablet) {
-		padding: 30px 0;
-	}
 
 	&__header {
 		@include interactions.clickable;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		width: 100%;
+		gap: 8px;
+		background: none;
+		border: none;
+		inline-size: 100%;
+		margin: 0;
+		padding: 16px;
+		position: relative;
 
-		.daff-suffix {
-			margin: 0 10px;
+		&::after {
+      content: '';
+      position: absolute;
+      top: 48%;
+      right: 2px;
+      display: inline-block;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      width: 8px;
+      height: 8px;
+      transform: translateY(-50%) rotate(45deg);
+      transition: transform 150ms;
+    }
+	}
+
+	&.open {
+		#{$root}__header {
+			&:after {
+				top: 56%;
+				transform: translateY(-50%) rotate(225deg);
+			}
 		}
 	}
 
 	&__title {
-		@include t.embolden;
-		@include t.uppercase;
 		font-size: 1rem;
+		font-weight: 500;
+		inline-size: 100%;
 		margin: 0;
+		padding: 0 32px 0 0;
+		text-align: start;
 	}
 
 	&__content {
-		padding-top: 15px;
+		padding: 0 16px 16px;
 
-		@include layout.breakpoint(tablet) {
-			padding-top: 30px;
+		> p {
+			margin: 0 0 16px;
+
+			&:last-child {
+				margin: 0;
+			}
 		}
 	}
 }

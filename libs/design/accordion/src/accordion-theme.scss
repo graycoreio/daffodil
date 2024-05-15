@@ -7,6 +7,16 @@
 	$base: core.daff-map-deep-get($theme, 'core.base');
 
 	.daff-accordion-item {
-		border-bottom: 1px solid theming.daff-illuminate($base, $neutral, 2);
+		border-top: 1px solid theming.daff-illuminate($base, $neutral, 2);
+
+		&:last-child {
+			border-bottom: 1px solid theming.daff-illuminate($base, $neutral, 2);
+		}
+		
+		&__header {
+			&:after {
+				border-color: currentColor;
+			}
+		}
 	}
 }

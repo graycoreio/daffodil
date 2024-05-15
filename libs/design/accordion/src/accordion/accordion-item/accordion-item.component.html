@@ -1,12 +1,11 @@
-<div class="daff-accordion-item__header" (click)="toggleActive()">
+<button type="button" class="daff-accordion-item__header"
+  (click)="toggleActive()"
+  [attr.aria-expanded]="_open === true"
+  [attr.aria-controls]="id">
   <ng-content select="[daffAccordionItemTitle]"></ng-content>
-  <span [hidden]="_open" daffSuffix>
-    <fa-icon [icon]="faChevronDown"></fa-icon>
-  </span>
-  <span [hidden]="!_open" daffSuffix>
-    <fa-icon [icon]="faChevronUp"></fa-icon>
-  </span>
-</div>
-<div [@openAccordion]="_animationState">
-  <ng-content></ng-content>
+</button>
+<div [@openAccordion]="_animationState" [id]="id">
+  <div class="daff-accordion-item__content">
+    <ng-content></ng-content>
+  </div>
 </div>

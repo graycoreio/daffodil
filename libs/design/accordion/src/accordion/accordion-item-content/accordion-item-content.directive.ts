@@ -3,6 +3,9 @@ import {
   HostBinding,
 } from '@angular/core';
 
+/**
+ * @deprecated in v1.0.0
+ */
 @Directive({
   selector: '[daffAccordionItemContent]',
 })

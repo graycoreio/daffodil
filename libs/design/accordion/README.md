@@ -1,21 +1,18 @@
-# Accordion Component
+# Accordion
+An accordion is a group of vertically stacked headings used to toggle the visibility of a section of content.
 
-The accordion component is a useful component when you're trying to display chunks of content in a compact fashion.
+## Overview
+Accordions are made up of `<daff-accordion-item>`s that can be expanded or collapsed to display large amounts of information. Accordions are helpful to shorten pages and reduce scrolling by hiding content that's not crucial to display at all times.
 
-The accordion consists of a global `<daff-accordion>` parent with children `<daff-accordion-item>`s.
+## Supported Content Types
+An accordion item can include a `[daffAccordionItemTitle]`, which provides a high level overview of the content. Any other content within an accordion item will be displayed as the primary content.
+
+By default, the accordion item includes a toggle icon at the end of the header to indicate if it's expanded or collapsed.
+
+### Setting an item to be expanded by default 
+An item content can be visibile on render by setting the `initiallyExpanded` property to `true` on `daff-accordion-item`.
 
 ## Usage
 
-```
-<daff-accordion>
-    <daff-accordion-item initiallyActive="true">
-        <h3 daffAccordionItemTitle>Details</h3>
-        <div daffAccordionItemContent>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo 
-            lacus ut sapien consectetur, et ultricies leo rutrum. Integer iaculis ultrices nunc, 
-            et maximus quam efficitur sed. Maecenas iaculis nisl neque, maximus sagittis libero sagittis eget.
-            <a>Learn More.</a>
-        </div>
-    </daff-accordion-item>
-</daff-accordion>
-```
+### Basic Accordion
+<design-land-example-viewer-container example="basic-accordion"></design-land-example-viewer-container>
