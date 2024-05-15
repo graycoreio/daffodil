@@ -18,8 +18,12 @@ const _daffAccordionBase = daffArticleEncapsulatedMixin((DaffAccordionBase));
 
 @Component({
   selector: 'daff-accordion',
-  templateUrl: './accordion.component.html',
-  styleUrls: ['./accordion.component.scss'],
+  template: '<ng-content></ng-content>',
+  styles: [`
+    :host {
+      display: block;
+    }
+  `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
