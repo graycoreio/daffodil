@@ -1,69 +1,29 @@
-# List Component
-
-The `<daff-list>` component can be used to display a series of line items.
+# List
+List is a flexible component that can be used to display a series of content. It can be modified to support a range of content types.
 
 ## Basic List
+A `<daff-list>` consists of multiple `<daff-list-item>`s.
 
-- Consists of multiple `<daff-list-item>`s
+<design-land-example-viewer-container example="basic-list"></design-land-example-viewer-container>
 
-### Usage
+## Nvigation List
+Use `<daff-nav-list>` for navigation lists. `<daff-list-item>` should be directly added to an anchor tag.
 
-```
-<daff-list>
-  <h3 daffListSubheader>Lorem Ipsum</h3>
-  <daff-list-item>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</daff-list-item>
-  <daff-list-item>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</daff-list-item>
-  <daff-list-item>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</daff-list-item>
-</daff-list>
-```
+<design-land-example-viewer-container example="nav-list"></design-land-example-viewer-container>
 
-## Link List (Deprecated)
+## Multi-line List
+For lists that have multiple lines per item, wrap each line appropriately with a heading or paragraph tag.
 
-- `type="link"` is used for navigation lists
+<design-land-example-viewer-container example="multiline-list"></design-land-example-viewer-container>
 
-### Usage
+## List with Icons
+To add an icon to a list item, use the `daffPrefix` or `daffSuffix` attributes for the appropriate placements.
 
-```
-<daff-list type="link">
-  <h3 daffListSubheader>List Subheader</h3>
-  <daff-list-item><a href="#">List Item</a></daff-list-item>
-  <daff-list-item><a href="#">List Item</a></daff-list-item>
-  <daff-list-item><a href="#">List Item</a></daff-list-item>
-  <daff-list-item><a href="#">List Item</a></daff-list-item>
-  <daff-list-item><a href="#">List Item</a></daff-list-item>
-</daff-list>
-```
+<design-land-example-viewer-container example="icon-list"></design-land-example-viewer-container>
 
-## Multi-line List (Deprecated)
+## Deprecation Notice
+The `mode` property will be deprecated in v1.0.0.
 
-- `type="multi-line"` allows you to have multiple lines per `daff-list-item`.
-
-### Usage
-
-```
-<daff-list type="multi-line">
-  <daff-list-item>
-    <h4>Lorem ipsum</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
-  </daff-list-item>
-  <daff-list-item>
-    <h4>Lorem ipsum</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
-  </daff-list-item>
-  <daff-list-item>
-    <h4>Lorem ipsum</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
-  </daff-list-item>
-</daff-list>
-```
-
-### Usage
-
-```
-<daff-list>
-  <daff-list-item>
-    <i class="fab fa-twitter" daffListItemIcon></i>
-    <h4>Lorem ipsum</h4>
-  </daff-list-item>
-</daff-list>
-```
+- `mode="navigation"` is replaced with `<daff-nav-list>`.
+- `mode="link"` is replaced with `<daff-nav-list>`.
+- `mode="multiline"` is completely deprecated. Multi-line lists will be a natural result of adding multiple lines to a `<daff-list-item>`.
