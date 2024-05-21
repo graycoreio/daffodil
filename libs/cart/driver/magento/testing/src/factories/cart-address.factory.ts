@@ -6,10 +6,10 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockMagentoCartAddress implements MagentoCartAddress {
   __typename = 'BillingCartAddress';
-  customer_address_id = faker.unique(faker.datatype.number);
+  customer_address_id = faker.helpers.unique(faker.datatype.number);
   region = {
     __typename: 'CartAddressRegion',
-    region_id: faker.unique(faker.datatype.number),
+    region_id: faker.helpers.unique(faker.datatype.number),
     code: faker.address.stateAbbr(),
   };
   country = {
@@ -18,8 +18,8 @@ export class MockMagentoCartAddress implements MagentoCartAddress {
     label: faker.address.country(),
   };
   street = [faker.address.streetAddress()];
-  company = faker.company.companyName();
-  telephone = faker.phone.phoneNumber();
+  company = faker.company.name();
+  telephone = faker.phone.number();
   postcode = faker.address.zipCode();
   city = faker.address.city();
   firstname = faker.name.firstName();

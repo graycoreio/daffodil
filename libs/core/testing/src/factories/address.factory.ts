@@ -12,12 +12,12 @@ import { DaffModelFactory } from './factory';
 export class MockDaffAddress implements DaffAddress {
   firstname = faker.name.firstName();
   lastname = faker.name.lastName();
-  street = faker.address.streetName();
+  street = faker.address.street();
   city = faker.address.city();
   state = faker.address.stateAbbr();
   email = faker.internet.email();
   postcode = faker.address.zipCode();
-  telephone = faker.phone.phoneNumber();
+  telephone = faker.phone.number();
 }
 
 /**

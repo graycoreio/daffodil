@@ -6,16 +6,16 @@ import { MagentoCustomerAddress } from '@daffodil/customer/driver/magento';
 
 export class MockMagentoCustomerAddress implements MagentoCustomerAddress {
   __typename = 'CustomerAddress';
-  id = faker.unique(faker.datatype.number);
+  id = faker.helpers.unique(faker.datatype.number);
   region = {
     __typename: 'CustomerAddressRegion',
     region_code: faker.address.stateAbbr(),
-    region_id: faker.unique(faker.datatype.number),
+    region_id: faker.helpers.unique(faker.datatype.number),
   };
   country_code = faker.address.countryCode();
   street = [faker.address.streetAddress()];
-  company = faker.company.companyName();
-  telephone = faker.phone.phoneNumber();
+  company = faker.company.name();
+  telephone = faker.phone.number();
   postcode = faker.address.zipCode();
   city = faker.address.city();
   firstname = faker.name.firstName();

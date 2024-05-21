@@ -13,7 +13,7 @@ export class MockDaffPersonalAddress extends MockDaffAddress implements DaffPers
   middlename = faker.name.firstName();
   lastname = faker.name.lastName();
   email = faker.internet.email();
-  telephone = faker.phone.phoneNumber();
+  telephone = faker.phone.number();
 }
 
 @Injectable({

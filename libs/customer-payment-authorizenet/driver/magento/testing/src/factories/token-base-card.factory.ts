@@ -13,7 +13,7 @@ export class MockMagentoTokenBaseCard implements MagentoTokenBaseCard {
   hash = faker.datatype.uuid();
   address = this.addressFactory.create();
   customer_email = faker.internet.email();
-  customer_id = faker.unique(faker.datatype.number);
+  customer_id = faker.helpers.unique(faker.datatype.number);
   method = faker.random.word();
   active = faker.datatype.boolean();
   created_at = faker.date.past().toString();
@@ -23,7 +23,7 @@ export class MockMagentoTokenBaseCard implements MagentoTokenBaseCard {
   label = faker.random.word();
   additional = {
     cc_type: faker.helpers.arrayElement(Object.values(MagentoTokenBaseCardTypeCode)),
-    cc_owner: faker.name.findName(),
+    cc_owner: faker.name.fullName(),
     cc_last4: faker.finance.creditCardNumber().slice(4),
     cc_exp_year: faker.date.future().getMonth().toString(),
     cc_exp_month: faker.date.future().getFullYear().toString(),

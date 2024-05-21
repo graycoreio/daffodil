@@ -6,7 +6,7 @@ import { DaffAddress } from '@daffodil/geography';
 
 
 export class MockDaffAddress implements DaffAddress {
-  street = faker.address.streetName();
+  street = faker.address.street();
   street2 = faker.address.secondaryAddress();
   city = faker.address.city();
   region = faker.datatype.uuid();
