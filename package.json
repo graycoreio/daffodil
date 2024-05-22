@@ -72,7 +72,6 @@
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.8",
     "@types/node": "18.19.8",
-    "@types/rimraf": "^2.0.5",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "dgeni": "^0.4.14",
