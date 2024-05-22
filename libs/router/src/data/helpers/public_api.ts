@@ -1,1 +1,1 @@
-export { daffRouterNamedViewsCollect } from './collect-data';
+export { daffRouterDataCollect } from './collect-data';
