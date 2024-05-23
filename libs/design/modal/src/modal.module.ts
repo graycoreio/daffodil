@@ -8,6 +8,7 @@ import { DaffModalActionsComponent } from './modal-actions/modal-actions.compone
 import { DaffModalContentComponent } from './modal-content/modal-content.component';
 import { DaffModalHeaderComponent } from './modal-header/modal-header.component';
 import { DaffModalTitleDirective } from './modal-title/modal-title.directive';
+import { DaffModalService } from './service/modal.service';
 
 @NgModule({
   imports: [
@@ -27,6 +28,9 @@ import { DaffModalTitleDirective } from './modal-title/modal-title.directive';
     DaffModalTitleDirective,
     DaffModalContentComponent,
     DaffModalActionsComponent,
+  ],
+  providers: [
+    DaffModalService,
   ],
 })
 export class DaffModalModule { }
