@@ -11,11 +11,13 @@ import {
 import { DaffRestoreableTitleService } from '@daffodil/seo';
 
 import { DaffSeoPageHookRouterEffects } from './page-hook.effects';
-import { DAFF_SEO_TITLE_ROUTER_UPDATES } from '../../injection-tokens/title/router/updates.token';
-import { DaffSeoUpdateEventPair } from '../../models/update-event-pair.interface';
+import { DaffSeoUpdateEventPair } from '../model/update-event-pair.interface';
+import { DAFF_SEO_TITLE_ROUTER_UPDATES } from '../title/updates.token';
 
 /**
  * Page hook effects for the page title.
+ *
+ * @deprecated since Angular 14. See https://angular.io/api/router/TitleStrategy
  */
 @Injectable()
 export class DaffSeoNativeTitleEffects extends DaffSeoPageHookRouterEffects<
