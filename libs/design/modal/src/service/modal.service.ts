@@ -9,18 +9,16 @@ import {
   Injectable,
   Type,
   ComponentRef,
+  Injector,
 } from '@angular/core';
 
 import { DaffModal } from '../modal/modal';
 import { DaffModalConfiguration } from '../modal/modal-config';
 import { DaffModalComponent } from '../modal/modal.component';
-import { DaffModalModule } from '../modal.module';
 
-@Injectable({
-  providedIn: DaffModalModule,
-})
+@Injectable()
 export class DaffModalService {
-  private _modals: DaffModal[] = [];
+  private _modals: Map<DaffModalComponent, DaffModal> = new Map();
 
   constructor(private overlay: Overlay) {}
 
@@ -29,7 +27,16 @@ export class DaffModalService {
   private _attachModal(
 	  overlayRef: OverlayRef,
   ): ComponentRef<DaffModalComponent> {
-	  const modal = overlayRef.attach(new ComponentPortal(DaffModalComponent));
+	  const modal = overlayRef.attach(
+      new ComponentPortal(
+        DaffModalComponent,
+        undefined,
+        Injector.create({ providers: [{
+          provide: DaffModalService,
+          useValue: this,
+        }]}),
+      ),
+    );
 	  modal.instance.open = true;
 	  return modal;
   }
@@ -51,22 +58,21 @@ export class DaffModalService {
   }
 
   private _removeModal(modal: DaffModal) {
-	  const index = this._modals.indexOf(modal);
-	  if (index === -1) {
-	    throw new Error(
+    if (!this._modals.has(modal.modal.instance)) {
+      throw new Error(
 	      'The Modal that you are trying to remove does not exist.',
 	    );
-	  }
+    }
+
+	  this._modals.delete(modal.modal.instance);
 
 	  modal.overlay.dispose();
-
-	  this._modals = this._modals.filter(m => m !== modal);
   }
 
   open(
 	  component: Type<any>,
 	  configuration?: Partial<DaffModalConfiguration>,
-  ): DaffModal {
+  ): DaffModalComponent {
 	  const config = { ...this.defaultConfiguration, ...configuration };
 	  const _ref = this._createOverlayRef();
 	  const _modal = this._attachModal(_ref);
@@ -77,22 +83,24 @@ export class DaffModalService {
 	    overlay: _ref,
 	  };
 
-	  this._modals.push(modal);
+	  this._modals.set(modal.modal.instance, modal);
 
 	  _ref
 	    .backdropClick()
 	    .subscribe(() =>
 	      config.onBackdropClicked
 	        ? config.onBackdropClicked()
-	        : this.close(modal),
+	        : this.close(modal.modal.instance),
 	    );
-	  return modal;
+	  return modal.modal.instance;
   }
 
-  close(modal: DaffModal): void {
-	  modal.modal.instance.open = false;
+  close(component: DaffModalComponent): void {
+	  component.open = false;
+    const modal = this._modals.get(component);
+
 	  modal.overlay.detachBackdrop();
-	  modal.modal.instance.closedAnimationCompleted.subscribe(
+	  component.closedAnimationCompleted.subscribe(
 	    (e: AnimationEvent) => this._removeModal(modal),
 	  );
   }

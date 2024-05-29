@@ -3,7 +3,10 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffModalService } from '@daffodil/design/modal';
+import {
+  DaffModalComponent,
+  DaffModalService,
+} from '@daffodil/design/modal';
 
 import { BasicModalContentComponent } from './modal-content.component';
 
@@ -14,7 +17,7 @@ import { BasicModalContentComponent } from './modal-content.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasicModalComponent {
-  modal: any;
+  modal: DaffModalComponent;
 
   constructor(private modalService: DaffModalService) {}
 

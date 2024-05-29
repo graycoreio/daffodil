@@ -13,7 +13,7 @@ import {
 import { DaffCartActionTypes } from '@daffodil/cart/state';
 import {
   DaffModalService,
-  DaffModal,
+  DaffModalComponent,
 } from '@daffodil/design/modal';
 
 import {
@@ -25,7 +25,7 @@ import { AddToCartNotificationComponent } from '../components/add-to-cart-notifi
 
 @Injectable()
 export class AddToCartNotificationEffects {
-  private notification: DaffModal;
+  private notification: DaffModalComponent;
 
   constructor(
     private actions$: Actions,

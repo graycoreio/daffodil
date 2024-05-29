@@ -18,12 +18,14 @@ import {
   ElementRef,
   AfterContentInit,
   AfterViewInit,
+  Self,
 } from '@angular/core';
 
 import { daffFocusableElementsSelector } from '@daffodil/design';
 
 import { daffFadeAnimations } from '../animations/modal-animation';
 import { getAnimationState } from '../animations/modal-animation-state';
+import { DaffModalService } from '../service/modal.service';
 
 @Component({
   selector: 'daff-modal',
@@ -61,13 +63,17 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit {
   >();
 
   /**
-   * Event fired when the backdrop is clicked. This is often used to close the modal.
+   * @docs-private
    */
-  hide: EventEmitter<void> = new EventEmitter<void>();
+  @HostListener('keydown.escape')
+  onEscape() {
+    this.modalService.close(this);
+  }
 
   private _focusTrap: ConfigurableFocusTrap;
 
   constructor(
+    private modalService: DaffModalService,
     private _focusTrapFactory: ConfigurableFocusTrapFactory,
     private _elementRef: ElementRef<HTMLElement>,
   ) {

@@ -16,6 +16,7 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffModalComponent } from '../modal/modal.component';
+import { DaffModalService } from '../service/modal.service';
 
 @Component({ template: `<daff-modal></daff-modal>` })
 class WrapperComponent {}
@@ -44,6 +45,9 @@ describe('@daffodil/design/modal | DaffModalComponent', () => {
       declarations: [
         WrapperComponent,
         DaffModalComponent,
+      ],
+      providers: [
+        DaffModalService,
       ],
     })
       .compileComponents();
