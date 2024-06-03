@@ -7,12 +7,12 @@ import {
   DaffioAssetFetchServiceInterface,
 } from '../../core/assets/fetch/service.interface';
 import { DaffioDoc } from '../models/doc';
-import { DaffioPackagesList } from '../models/packages-list';
+import { DaffioDocList } from '../models/packages-list';
 import { DaffioDocsFactory } from '../testing/factories/docs.factory';
 import { mockPackages } from '../testing/factories/packages-list.factory';
 
 describe('DaffioDocsService', () => {
-  let service: DaffioDocsService<DaffioDoc, DaffioPackagesList>;
+  let service: DaffioDocsService<DaffioDoc, DaffioDocList>;
   let fetchAssetServiceSpy: jasmine.SpyObj<DaffioAssetFetchServiceInterface>;
   let doc: DaffioDoc;
   const mockGuideList = mockPackages;
@@ -51,7 +51,7 @@ describe('DaffioDocsService', () => {
   it('should be able to retrieve a guide list', (done) => {
     fetchAssetServiceSpy.fetch.and.returnValue(of(mockGuideList));
 
-    service.getGuideList().subscribe((guides) => {
+    service.getPackageList().subscribe((guides) => {
       expect(guides).toEqual(mockGuideList);
       expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/packages/guide-list.json');
       done();

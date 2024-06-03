@@ -9,7 +9,6 @@ import { DaffRouterNamedViewOutletModule } from '@daffodil/router';
 
 import { DaffioSidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 import { DaffioSidebarStateModule } from './sidebar.state.module';
-import { DaffioDocsPackagesListContainerModule } from '../../packages/containers/packages-list/packages-list.module';
 
 @NgModule({
   imports: [
@@ -21,7 +20,6 @@ import { DaffioDocsPackagesListContainerModule } from '../../packages/containers
     DaffButtonModule,
 
     DaffioSidebarStateModule,
-    DaffioDocsPackagesListContainerModule,
     DaffRouterNamedViewOutletModule,
   ],
   declarations: [
