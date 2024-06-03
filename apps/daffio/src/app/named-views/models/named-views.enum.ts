@@ -3,5 +3,6 @@ export enum DaffioRouterNamedViewsEnum {
   SIDEBARCONTENT = 'sidebar-content',
   SIDEBARFOOTER = 'sidebar-footer',
   NAV = 'nav',
-  FOOTER = 'footer'
+  FOOTER = 'footer',
+  DOCS_SIDEBAR = 'docs-sidebar'
 }

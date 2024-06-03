@@ -7,20 +7,23 @@ import {
 import { DaffRouteWithNamedViews } from '@daffodil/router';
 
 import { DaffioMarketingFooterComponent } from './core/footer/marketing-footer/marketing-footer.component';
-import { DaffioSimpleFooterComponent } from './core/footer/simple-footer/simple-footer.component';
-import { DaffioDocsHeaderContainer } from './core/header/containers/docs-header/docs-header.component';
 import { DaffioMarketingHeaderContainer } from './core/header/containers/marketing-header/marketing-header.component';
-import { DaffioDocsSidebarContentComponent } from './core/sidebar/components/docs-sidebar-content/docs-sidebar-content.component';
 import { DaffioMarketingSidebarContentComponent } from './core/sidebar/components/marketing-sidebar-content/marketing-sidebar-content.component';
 import { DaffioSidebarFooterComponent } from './core/sidebar/components/sidebar-footer/sidebar-footer.component';
 import { DaffioSidebarHeaderComponent } from './core/sidebar/components/sidebar-header/sidebar-header.component';
-import { DaffioDocsSidebarContainer } from './core/sidebar/containers/docs-sidebar/docs-sidebar.component';
 import { TemplateComponent } from './core/template/template.component';
 import { DaffioRouterNamedViewsEnum } from './named-views/models/named-views.enum';
 
 export const appRoutes: Routes = [
   {
-    path: '', component: TemplateComponent,
+    path: '',
+    component: TemplateComponent,
+    data: {
+      daffNamedViews: {
+        [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: DaffioSidebarHeaderComponent,
+        [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: DaffioSidebarFooterComponent,
+      },
+    },
     children: [
       <DaffRouteWithNamedViews>{
         path: '',
@@ -33,41 +36,16 @@ export const appRoutes: Routes = [
         data: {
           daffNamedViews: {
             [DaffioRouterNamedViewsEnum.NAV]: DaffioMarketingHeaderContainer,
-            [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: DaffioSidebarHeaderComponent,
             [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioMarketingSidebarContentComponent,
-            [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: DaffioSidebarFooterComponent,
             [DaffioRouterNamedViewsEnum.FOOTER]: DaffioMarketingFooterComponent,
           },
         },
       },
-      <DaffRouteWithNamedViews>{
+      {
         path: '',
         children: [
-          { path: 'api', loadChildren: () => import('./api/api.module').then(m => m.DaffioApiModule) },
+          { path: 'docs', loadChildren: () => import('./docs/docs.module').then(m => m.DaffioDocssModule) },
         ],
-        data: {
-          daffNamedViews: {
-            [DaffioRouterNamedViewsEnum.NAV]: DaffioDocsHeaderContainer,
-            [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: DaffioSidebarHeaderComponent,
-            [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioDocsSidebarContentComponent,
-            [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: DaffioSidebarFooterComponent,
-            [DaffioRouterNamedViewsEnum.FOOTER]: DaffioSimpleFooterComponent,
-          },
-        },
-      },
-      <DaffRouteWithNamedViews>{
-        path: '',
-        children: [
-          { path: 'packages', loadChildren: () => import('./packages/packages.module').then(m => m.DaffioPackagesModule) },
-        ],
-        data: {
-          daffNamedViews: {
-            [DaffioRouterNamedViewsEnum.NAV]: DaffioDocsHeaderContainer,
-            [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: DaffioSidebarHeaderComponent,
-            [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioDocsSidebarContainer,
-            [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: DaffioSidebarFooterComponent,
-          },
-        },
       },
     ],
   },

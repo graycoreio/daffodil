@@ -6,6 +6,8 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { Package } from 'dgeni';
+import * as basePackage from 'dgeni-packages/base';
+import * as nunjucksPackage from 'dgeni-packages/nunjucks';
 import * as path from 'path';
 
 import { ConvertToJsonProcessor } from '../../processors/convertToJson';
@@ -14,9 +16,6 @@ import {
   DOCS_OUTPUT_PATH,
   TEMPLATES_PATH,
 } from '../config';
-
-const basePackage = require('dgeni-packages/base');
-const nunjucksPackage = require('dgeni-packages/nunjucks');
 
 export const daffodilBasePackage = new Package('daffodil-base', [
   basePackage,

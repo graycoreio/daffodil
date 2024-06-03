@@ -52,7 +52,7 @@ function getExportInfo(exportDoc) {
   return {
     id: exportDoc.id,
     title: exportDoc.name,
-    path: '/' + exportDoc.path,
+    path: `/docs/${exportDoc.path}`,
     docType: getDocType(exportDoc),
     docTypeShorthand: exportDoc.docType.charAt(0),
   };

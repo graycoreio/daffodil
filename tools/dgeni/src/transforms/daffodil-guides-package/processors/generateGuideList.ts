@@ -17,7 +17,7 @@ export const DefaultGenerateGuideListConfiguration: GenerateGuideListConfigurati
 export const transformGuideDoc = (doc: Document): TransformedDocument => ({
   id: doc.id,
   title: doc.title,
-  path: doc.path,
+  path: `docs/${doc.path}`,
   tableOfContents: doc.tableOfContents,
 });
 

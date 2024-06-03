@@ -22,7 +22,7 @@ export class DaffioFooterComponent {
 
   links: any[] = [
     { path: '/why-pwa', title: 'Why PWA' },
-    { path: '/packages', title: 'Docs' },
+    { path: '/docs', title: 'Docs' },
     { path: '/support', title: 'Support' },
   ];
 

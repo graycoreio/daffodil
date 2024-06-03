@@ -1,11 +1,11 @@
 /**
  * A list of references for API documents.
  */
-export interface DaffioDocList<T extends DaffioDocList<T>> {
+export interface DaffioGenericDocList<T extends DaffioGenericDocList<T>> {
   id: string;
   title: string;
-  path: string;
-  items?: T[];
+  path?: string;
+  children: T[];
 }
 
-
+export type DaffioDocList = DaffioGenericDocList<DaffioDocList>;

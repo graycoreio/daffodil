@@ -1,0 +1,16 @@
+@use 'utilities' as daff;
+
+.daffio-packages-overview {
+	&__card-grid {
+		display: block;
+		padding: 0 24px;
+
+		@include daff.breakpoint(tablet) {
+			padding: 48px;
+		}
+
+		@include daff.breakpoint(small-laptop) {
+			padding: 48px 0;
+		}
+	}
+}

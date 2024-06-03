@@ -12,6 +12,6 @@ import {
 export class DaffioMarketingSidebarContentComponent {
   links: any[] = [
     { path: '/why-pwa', title: 'Why PWA' },
-    { path: '/packages', title: 'Docs' },
+    { path: '/docs', title: 'Docs' },
   ];
 }
