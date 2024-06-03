@@ -13,7 +13,7 @@ import {
 
 import { DocsResolver } from './docs-resolver.service';
 import { DaffioDoc } from '../models/doc';
-import { DaffioDocList } from '../models/packages-list';
+import { DaffioDocList } from '../models/doc-list';
 import { DaffioDocsServiceInterface } from '../services/docs-service.interface';
 import { DaffioDocsService } from '../services/docs.service';
 import { DaffioDocsFactory } from '../testing/factories/docs.factory';

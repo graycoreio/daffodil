@@ -26,12 +26,11 @@ import { DaffioDocViewerModule } from '../../components/doc-viewer/doc-viewer.mo
   ],
 })
 export class DaffioDocsPageComponent implements OnInit {
-
-  docsDoc$: Observable<DaffioDoc>;
+  doc$: Observable<DaffioDoc>;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.docsDoc$ = this.route.data.pipe(map((data: { doc: DaffioDoc }) => data.doc));
+    this.doc$ = this.route.data.pipe(map((data: { doc: DaffioDoc }) => data.doc));
   }
 }

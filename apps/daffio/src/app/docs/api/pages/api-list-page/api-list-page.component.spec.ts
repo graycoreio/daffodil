@@ -43,6 +43,7 @@ describe('DaffioApiListPageComponent', () => {
       path: 'path1',
       docType: 'docType1',
       docTypeShorthand: 'dt',
+      children: [],
     },
     {
       id: 'name2Module',
@@ -50,6 +51,7 @@ describe('DaffioApiListPageComponent', () => {
       path: 'path2',
       docType: 'docType2',
       docTypeShorthand: 'dt',
+      children: [],
     },
   ];
 

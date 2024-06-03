@@ -10,6 +10,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
 
@@ -33,14 +34,15 @@ describe('DaffioDocsPageComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffioDocsPageComponent,
         MockDaffioDocViewerComponent,
       ],
       imports: [
+        DaffioDocsPageComponent,
         RouterTestingModule,
       ],
       providers: [
         { provide: ActivatedRoute, useValue: stubActivatedRoute },
+        provideMockStore(),
       ],
     })
       .compileComponents();
@@ -59,7 +61,7 @@ describe('DaffioDocsPageComponent', () => {
 
   it('should initialize `doc$` to the resolved doc from the activated route', () => {
     const expected = cold('a', { a: doc });
-    expect(component.docsDoc$).toBeObservable(expected);
+    expect(component.doc$).toBeObservable(expected);
   });
 
   it('should pass the down the observed doc to the `daffio-doc-viewer`', () => {

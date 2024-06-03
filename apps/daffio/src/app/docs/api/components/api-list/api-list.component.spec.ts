@@ -21,6 +21,7 @@ class WrapperComponent {
       path: 'path1',
       docType: 'docType1',
       docTypeShorthand: 'doc',
+      children: [],
     },
     {
       id: 'name2',
@@ -28,6 +29,7 @@ class WrapperComponent {
       path: 'path2',
       docType: 'docType2',
       docTypeShorthand: 'doc',
+      children: [],
     },
   ];
 }

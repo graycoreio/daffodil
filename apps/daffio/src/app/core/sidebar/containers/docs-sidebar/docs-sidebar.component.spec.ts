@@ -3,6 +3,7 @@ import {
   BreakpointState,
 } from '@angular/cdk/layout';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Component } from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
@@ -18,14 +19,21 @@ import {
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffBreakpoints } from '@daffodil/design';
+import {
+  DaffRouterNamedViewService,
+  DaffRouterNamedViews,
+} from '@daffodil/router';
 
 import {
   DAFFIO_DOCS_CONTENT_SIDEBAR_KIND,
   DaffioDocsSidebarContainer,
 } from './docs-sidebar.component';
-import { DaffioDocsPackagesListContainerModule } from '../../../../packages/containers/packages-list/packages-list.module';
+import { DaffioRouterNamedViewsEnum } from '../../../../named-views/models/named-views.enum';
 import { DaffioDocsSidebarContentComponentModule } from '../../components/docs-sidebar-content/docs-sidebar-content.module';
 import { selectSidebarKind } from '../../reducers';
+
+@Component({ template: '', standalone: true })
+class TestComponent {}
 
 describe('DaffioDocsSidebarContainer', () => {
   let component: DaffioDocsSidebarContainer;
@@ -34,7 +42,12 @@ describe('DaffioDocsSidebarContainer', () => {
   let breakpointSpy: jasmine.SpyObj<BreakpointObserver>;
   let breakpointState: BehaviorSubject<BreakpointState>;
 
+  let namedViewServiceSpy: jasmine.SpyObj<DaffRouterNamedViewService>;
+  let namedViews: BehaviorSubject<DaffRouterNamedViews>;
+
   beforeEach(waitForAsync(() => {
+    namedViews = new BehaviorSubject({});
+    namedViewServiceSpy = jasmine.createSpyObj('DaffRouterNamedViewService', {}, { namedViews$: namedViews });
     breakpointSpy = jasmine.createSpyObj('BreakpointObserver', ['observe']);
 
     TestBed.configureTestingModule({
@@ -42,10 +55,7 @@ describe('DaffioDocsSidebarContainer', () => {
         LetDirective,
         RouterTestingModule,
         HttpClientTestingModule,
-        DaffioDocsPackagesListContainerModule,
         DaffioDocsSidebarContentComponentModule,
-      ],
-      declarations: [
         DaffioDocsSidebarContainer,
       ],
       providers: [
@@ -53,6 +63,10 @@ describe('DaffioDocsSidebarContainer', () => {
         {
           provide: BreakpointObserver,
           useValue: breakpointSpy,
+        },
+        {
+          provide: DaffRouterNamedViewService,
+          useValue: namedViewServiceSpy,
         },
       ],
     })
@@ -92,11 +106,14 @@ describe('DaffioDocsSidebarContainer', () => {
       beforeEach(() => {
         store.overrideSelector(selectSidebarKind, undefined);
         store.setState({});
+        namedViews.next({
+          [DaffioRouterNamedViewsEnum.DOCS_SIDEBAR]: TestComponent,
+        });
         fixture.detectChanges();
       });
 
-      it('should render <daffio-docs-packages-list-container>', () => {
-        expect(fixture.debugElement.query(By.css('daffio-docs-packages-list-container'))).toBeTruthy();
+      it('should render the docs sidebar content', () => {
+        expect(fixture.debugElement.query(By.directive(TestComponent))).toBeTruthy();
       });
     });
 
@@ -104,11 +121,14 @@ describe('DaffioDocsSidebarContainer', () => {
       beforeEach(() => {
         store.overrideSelector(selectSidebarKind, DAFFIO_DOCS_CONTENT_SIDEBAR_KIND);
         store.setState({});
+        namedViews.next({
+          [DaffioRouterNamedViewsEnum.DOCS_SIDEBAR]: TestComponent,
+        });
         fixture.detectChanges();
       });
 
-      it('should render <daffio-docs-packages-list-container>', () => {
-        expect(fixture.debugElement.query(By.css('daffio-docs-packages-list-container'))).toBeTruthy();
+      it('should render the docs sidebar content', () => {
+        expect(fixture.debugElement.query(By.directive(TestComponent))).toBeTruthy();
       });
     });
   });
@@ -138,11 +158,14 @@ describe('DaffioDocsSidebarContainer', () => {
       beforeEach(() => {
         store.overrideSelector(selectSidebarKind, DAFFIO_DOCS_CONTENT_SIDEBAR_KIND);
         store.setState({});
+        namedViews.next({
+          [DaffioRouterNamedViewsEnum.DOCS_SIDEBAR]: TestComponent,
+        });
         fixture.detectChanges();
       });
 
-      it('should render <daffio-docs-packages-list-container>', () => {
-        expect(fixture.debugElement.query(By.css('daffio-docs-packages-list-container'))).toBeTruthy();
+      it('should render the docs sidebar content', () => {
+        expect(fixture.debugElement.query(By.directive(TestComponent))).toBeTruthy();
       });
     });
   });

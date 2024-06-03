@@ -7,7 +7,7 @@ import {
   DaffioAssetFetchServiceInterface,
 } from '../../core/assets/fetch/service.interface';
 import { DaffioDoc } from '../models/doc';
-import { DaffioDocList } from '../models/packages-list';
+import { DaffioDocList } from '../models/doc-list';
 import { DaffioDocsFactory } from '../testing/factories/docs.factory';
 import { mockPackages } from '../testing/factories/packages-list.factory';
 
@@ -41,7 +41,7 @@ describe('DaffioDocsService', () => {
   it('should be able to retrieve a doc', (done) => {
     fetchAssetServiceSpy.fetch.and.returnValue(of(doc));
 
-    service.get('my/path').subscribe((apiDoc) => {
+    service.get('docs/my/path').subscribe((apiDoc) => {
       expect(apiDoc).toEqual(doc);
       expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/my/path.json');
       done();

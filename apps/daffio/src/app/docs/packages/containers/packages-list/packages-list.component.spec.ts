@@ -15,10 +15,8 @@ describe('DaffioDocsPackagesListContainer', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffioDocsPackagesListContainer,
-      ],
       imports: [
+        DaffioDocsPackagesListContainer,
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,

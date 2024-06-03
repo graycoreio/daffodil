@@ -17,10 +17,8 @@ describe('DaffioDocsListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffioDocsListComponent,
-      ],
       imports: [
+        DaffioDocsListComponent,
         RouterTestingModule,
         NoopAnimationsModule,
         DaffTreeModule,
@@ -52,7 +50,7 @@ describe('DaffioDocsListComponent', () => {
     component.list = {
       id: 'root',
       title: 'root',
-      items: [
+      children: [
         guideWithoutChildren,
         guideWithChildren,
       ],
