@@ -14,6 +14,8 @@ import { DaffioSidebarHeaderComponent } from './core/sidebar/components/sidebar-
 import { TemplateComponent } from './core/template/template.component';
 import { DaffioRouterNamedViewsEnum } from './named-views/models/named-views.enum';
 
+
+
 export const appRoutes: Routes = [
   {
     path: '',
@@ -46,6 +48,16 @@ export const appRoutes: Routes = [
         children: [
           { path: 'docs', loadChildren: () => import('./docs/docs.module').then(m => m.DaffioDocsModule) },
         ],
+      },
+      {
+        path: 'packages/*',
+        // TODO: use dynamic redirect once we're on ng18
+        redirectTo: 'docs/packages/*',
+      },
+      {
+        path: 'api/*',
+        // TODO: use dynamic redirect once we're on ng18
+        redirectTo: 'docs/api/*',
       },
     ],
   },
