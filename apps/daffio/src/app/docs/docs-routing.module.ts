@@ -6,6 +6,7 @@ import {
 
 import { DaffRouteWithNamedViews } from '@daffodil/router';
 
+import { DAFFIO_DOCS_GUIDE_DEFAULT } from './guides/guides-routing.module';
 import { DaffioDocsHeaderContainer } from '../core/header/containers/docs-header/docs-header.component';
 import { DaffioDocsSidebarContainer } from '../core/sidebar/containers/docs-sidebar/docs-sidebar.component';
 import { DaffioRouterNamedViewsEnum } from '../named-views/models/named-views.enum';
@@ -35,7 +36,7 @@ export const docsRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'guides/getting-started/introduction',
+        redirectTo: `guides/${DAFFIO_DOCS_GUIDE_DEFAULT}`,
       },
     ],
   },

@@ -11,6 +11,8 @@ import { DaffioRouterNamedViewsEnum } from '../../named-views/models/named-views
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
 
+export const DAFFIO_DOCS_GUIDE_DEFAULT = 'introduction/about';
+
 export const docsRoutes: Routes = [
   <DaffRouteWithNamedViews>{
     path: '',
@@ -23,7 +25,7 @@ export const docsRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'getting-started/introduction',
+        redirectTo: DAFFIO_DOCS_GUIDE_DEFAULT,
       },
       {
         path: '**',

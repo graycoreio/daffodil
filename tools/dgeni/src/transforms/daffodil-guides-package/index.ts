@@ -69,16 +69,37 @@ export const packageDocsPackage = new Package('daffodil-package-docs', [base])
 export const guideDocsPackage = new Package('daffodil-guide-docs', [base])
   .processor(new GenerateGuideListProcessor({ outputFolder: 'guides' }))
   .config((readFilesProcessor) => {
-    readFilesProcessor.basePath = DOCS_SOURCE_PATH;
+    readFilesProcessor.basePath = `${DOCS_SOURCE_PATH}/guides`;
     readFilesProcessor.sourceFiles = [
       { include: [
-        // `${excludedDocsRegex}/**/*.md`,
-        `${excludedDocsRegex}/*.md`,
+        '**/*.md',
       ]},
     ];
   })
   .config((computePathsProcessor) => {
     const DOCS_SEGMENT = 'guides';
+    computePathsProcessor.pathTemplates.push({
+      docTypes: ['guide'],
+      getPath: (doc)  =>{
+        doc.moduleFolder = `${DOCS_SEGMENT}/${doc.id.replace(/\/docs/, '')}`;
+        return doc.moduleFolder;
+      },
+      outputPathTemplate: '${moduleFolder}.json',
+    });
+  });
+
+export const explanationDocsPackage = new Package('daffodil-explanation-docs', [base])
+  .processor(new GenerateGuideListProcessor({ outputFolder: 'explanations' }))
+  .config((readFilesProcessor) => {
+    readFilesProcessor.basePath = `${DOCS_SOURCE_PATH}/explanations`;
+    readFilesProcessor.sourceFiles = [
+      { include: [
+        '**/*.md',
+      ]},
+    ];
+  })
+  .config((computePathsProcessor) => {
+    const DOCS_SEGMENT = 'explanations';
     computePathsProcessor.pathTemplates.push({
       docTypes: ['guide'],
       getPath: (doc)  =>{
