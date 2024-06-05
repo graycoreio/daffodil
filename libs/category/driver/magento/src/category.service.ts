@@ -35,6 +35,7 @@ import {
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
 } from '@daffodil/product/driver/magento';
 
+import { MAGENTO_CATEGORY_EXTRA_FRAGMENTS } from './fragments/public_api';
 import {
   MAGENTO_CATEGORY_CONFIG_TOKEN,
   DaffCategoryMagentoDriverConfig,
@@ -81,6 +82,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private productConfig: DaffProductMagentoDriverConfig,
     @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS) private extraProductFragments: DocumentNode[],
     @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS) private extraProductPreviewFragments: DocumentNode[],
+    @Inject(MAGENTO_CATEGORY_EXTRA_FRAGMENTS) private extraCategoryFragments: DocumentNode[],
   ) {}
 
   get(categoryRequest: DaffCategoryIdRequest): Observable<DaffGetCategoryResponse> {
@@ -89,7 +91,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         query: MagentoProductGetFilterTypes,
       }),
       this.apollo.query<MagentoGetCategoryAndProductsResponse>({
-        query: MagentoGetCategoryAndProductsQuery([
+        query: MagentoGetCategoryAndProductsQuery(this.extraCategoryFragments, [
           ...this.extraProductFragments,
           ...this.extraProductPreviewFragments,
         ]),
@@ -123,7 +125,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         category,
         filterTypes,
       ]) => this.apollo.query<MagentoGetCategoryAndProductsResponse>({
-        query: MagentoGetCategoryAndProductsQuery([
+        query: MagentoGetCategoryAndProductsQuery(this.extraCategoryFragments, [
           ...this.extraProductFragments,
           ...this.extraProductPreviewFragments,
         ]),
