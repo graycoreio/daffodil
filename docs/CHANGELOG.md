@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.71.0](https://github.com/graycoreio/daffodil/compare/v0.70.0...v0.71.0) (2024-06-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **design:** Previously, the `DaffModalService` required a `DaffModal` as an arg to `close` (the return type of `open`). This API was probably larger than it should have been, so I trimmed it down. Most consumers won't notice a return type change, but if you do, we can reconsider this change.
+
+### Features
+
+* **category:** add injectable fragments and transform support to magento driver ([#2828](https://github.com/graycoreio/daffodil/issues/2828)) ([0968515](https://github.com/graycoreio/daffodil/commit/096851528aa3b5cb056d129e69a07eecbba73181))
+* **core:** add `observe` util ([#2808](https://github.com/graycoreio/daffodil/issues/2808)) ([1874709](https://github.com/graycoreio/daffodil/commit/187470977cfef9791e667b00d1a7ccff140f635e))
+* **daffio,dgeni:** docsgen guides and move under `docs` namespace ([#2824](https://github.com/graycoreio/daffodil/issues/2824)) ([47b7345](https://github.com/graycoreio/daffodil/commit/47b7345f09239dfee8e78b65499686602342a736))
+* **design:** allow modal to be closed with ESC key ([#2812](https://github.com/graycoreio/daffodil/issues/2812)) ([e121d40](https://github.com/graycoreio/daffodil/commit/e121d4006b6f1ac709e45a75d39722be453faa0d))
+* **design:** clean up accordion component and update docs ([#2800](https://github.com/graycoreio/daffodil/issues/2800)) ([66e9639](https://github.com/graycoreio/daffodil/commit/66e96397e97f285ece8fb3dec14e075f2e071548))
+* **router:** add `daffRouterComposeGuards` ([#2809](https://github.com/graycoreio/daffodil/issues/2809)) ([075859b](https://github.com/graycoreio/daffodil/commit/075859bbf5f50eb4a95227a1292d8392f187f4ea))
+
 ## [0.70.0](https://github.com/graycoreio/daffodil/compare/v0.69.0...v0.70.0) (2024-05-15)
 
 
