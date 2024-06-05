@@ -16,11 +16,12 @@ import { magentoCategoryTreeFragment } from './fragments/public_api';
 
 export const DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME = 'MagentoGetCategoryAndProducts';
 
-export const MagentoGetCategoryAndProductsQuery = (extraProductFragments: DocumentNode[] = []) => gql`
+export const MagentoGetCategoryAndProductsQuery = (extraCategoryFragments: DocumentNode[] = [], extraProductFragments: DocumentNode[] = []) => gql`
 query ${DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME}($categoryFilters: CategoryFilterInput, $productFilter: ProductAttributeFilterInput!, $search: String, $pageSize: Int, $currentPage: Int, $sort: ProductAttributeSortInput)
 {
   categoryList(filters: $categoryFilters) {
 		...categoryTree
+    ${daffBuildFragmentNameSpread(...extraCategoryFragments)}
 	}
 	products(filter: $productFilter, search: $search, pageSize: $pageSize, currentPage: $currentPage, sort: $sort)
 	{
@@ -45,5 +46,6 @@ ${magentoProductFragment}
 ${magentoSearchResultPageInfoFragment}
 ${magentoProductSortFieldsFragment}
 ${magentoProductAggregationsFragment}
+${daffBuildFragmentDefinition(...extraCategoryFragments)}
 ${daffBuildFragmentDefinition(...extraProductFragments)}
 `;
