@@ -21,4 +21,4 @@ import { DaffioDocsPageComponent } from './pages/docs-page/docs-page.component';
     DaffioDocsPageComponent,
   ],
 })
-export class DaffioDocssModule {}
+export class DaffioDocsModule {}

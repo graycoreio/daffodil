@@ -44,7 +44,7 @@ export const appRoutes: Routes = [
       {
         path: '',
         children: [
-          { path: 'docs', loadChildren: () => import('./docs/docs.module').then(m => m.DaffioDocssModule) },
+          { path: 'docs', loadChildren: () => import('./docs/docs.module').then(m => m.DaffioDocsModule) },
         ],
       },
     ],
