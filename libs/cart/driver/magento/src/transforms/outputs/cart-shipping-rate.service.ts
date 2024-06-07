@@ -23,9 +23,9 @@ export class DaffMagentoCartShippingRateTransformer {
       price: shippingMethod.amount.value,
       method_code: shippingMethod.method_code,
       method_title: shippingMethod.method_title,
+      id: shippingMethod.method_code,
 
       // TODO: implement
-      id: null,
       method_description: null,
     } : null;
   }
