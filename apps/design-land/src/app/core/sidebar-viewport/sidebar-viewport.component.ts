@@ -30,9 +30,16 @@ export class DesignLandSidebarViewportComponent {
   public open = false;
 
   constructor(private breakpoint: BreakpointObserver) {
-    this.open = this.breakpoint.isMatched(DaffBreakpoints.BIG_TABLET);
     this.mode$ = this.breakpoint.observe(DaffBreakpoints.BIG_TABLET).pipe(
-      map((match) => match.matches ? DaffSidebarModeEnum.SideFixed : DaffSidebarModeEnum.Under),
+      map((match) => {
+        if (match.matches) {
+          this.open = true;
+          return DaffSidebarModeEnum.SideFixed;
+				 } else {
+          this.open = false;
+          return DaffSidebarModeEnum.Over;
+        }
+      }),
     );
   }
 
