@@ -1,4 +1,15 @@
 :host {
 	display: block;
-	overflow: hidden;
+}
+
+.button {
+	position: sticky;
+	bottom: 0;
+	width: 100%;
+	appearance: none;
+	background: black;
+	color: white;
+	padding: 24px;
+	border: 0;
+	z-index: 3;
 }
