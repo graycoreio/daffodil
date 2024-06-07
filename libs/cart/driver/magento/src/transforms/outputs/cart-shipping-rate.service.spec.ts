@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffCartShippingRate } from '@daffodil/cart';
+import { MagentoCartShippingMethod } from '@daffodil/cart/driver/magento';
 import { MagentoCartShippingMethodFactory } from '@daffodil/cart/driver/magento/testing';
 
 import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.service';
@@ -9,7 +11,7 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoCartShippingRate'
 
   let magentoShippingMethodFactory: MagentoCartShippingMethodFactory;
 
-  let mockMagentoShippingMethod;
+  let mockMagentoShippingMethod: MagentoCartShippingMethod;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -30,7 +32,7 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoCartShippingRate'
   });
 
   describe('transform | transforming a cart shipping rate', () => {
-    let transformedCartShippingRate;
+    let transformedCartShippingRate: DaffCartShippingRate;
     let carrier;
     let price;
 
@@ -47,6 +49,7 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoCartShippingRate'
     it('should return an object with the correct values', () => {
       expect(transformedCartShippingRate.carrier).toEqual(carrier);
       expect(transformedCartShippingRate.price).toEqual(price);
+      expect(transformedCartShippingRate.id).toEqual(mockMagentoShippingMethod.method_code);
     });
 
     describe('when the argument is null', () => {
