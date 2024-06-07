@@ -73,14 +73,14 @@ ng test appName
 You can read more about each library and it's build/testing process in the readme of the relevant library or app.
 
 ### Apps
-* [daff.io](../apps/daffio/README.md)
-* [demo](../apps/daffio/README.md)
-* [design-land](../apps/design-land/README.md)
+* [daff.io](../../apps/daffio/README.md)
+* [demo](../../apps/daffio/README.md)
+* [design-land](../../apps/design-land/README.md)
 
 ### Libraries
-* [core](../libs/core/README.md)
-* [checkout](../libs/checkout/README.md)
-* [cart](../libs/cart/README.md)
-* [drivers](../libs/drivers/README.md)
-* [design](../libs/design/README.md)
-* [product](../libs/product/README.md)
+* [core](../../libs/core/README.md)
+* [checkout](../../libs/checkout/README.md)
+* [cart](../../libs/cart/README.md)
+* [drivers](../../libs/drivers/README.md)
+* [design](../../libs/design/README.md)
+* [product](../../libs/product/README.md)
