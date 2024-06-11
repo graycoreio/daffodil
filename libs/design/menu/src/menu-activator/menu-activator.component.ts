@@ -21,7 +21,6 @@ import { DaffMenuService } from '../services/menu.service';
 })
 export class DaffMenuActivatorDirective implements OnDestroy {
 
-
   private _destroyed$ = new Subject<boolean>();
   private _open: boolean;
 
