@@ -9,6 +9,9 @@
       "@daffodil/authorizenet": [
         "libs/authorizenet/src"
       ],
+      "@daffodil/authorizenet/testing": [
+        "libs/authorizenet/testing/src"
+      ],
       "@daffodil/authorizenet/state": [
         "libs/authorizenet/state/src"
       ],
