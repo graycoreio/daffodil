@@ -69,7 +69,7 @@ export class DaffNotificationComponent
   }
 
   /** Whether or not a notification is closable */
-  @Input() @HostBinding('class.dismissable') dismissable = false;
+  @Input() @HostBinding('class.dismissible') dismissible = false;
 
   @Output() closeNotification: EventEmitter<void> = new EventEmitter();
 
