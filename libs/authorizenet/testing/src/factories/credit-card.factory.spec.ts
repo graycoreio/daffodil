@@ -4,7 +4,7 @@ import { DaffAuthorizeNetCreditCard } from '@daffodil/authorizenet';
 
 import { DaffAuthorizeNetCreditCardFactory } from './credit-card.factory';
 
-describe('@daffodil/payment/testing | DaffAuthorizeNetCreditCardFactory', () => {
+describe('@daffodil/authorizenet/testing | DaffAuthorizeNetCreditCardFactory', () => {
   let factory: DaffAuthorizeNetCreditCardFactory;
 
   beforeEach(() => {
