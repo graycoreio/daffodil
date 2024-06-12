@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffPaymentResponse } from '@daffodil/payment';
+import { DaffAuthorizeNetCreditCard } from '@daffodil/authorizenet';
 
-import { DaffPaymentResponseFactory } from './payment-response.factory';
+import { DaffAuthorizeNetCreditCardFactory } from './credit-card.factory';
 
-describe('@daffodil/payment/testing | DaffPaymentResponseFactory', () => {
-  let paymentResponseFactory: DaffPaymentResponseFactory;
+describe('@daffodil/payment/testing | DaffAuthorizeNetCreditCardFactory', () => {
+  let paymentResponseFactory: DaffAuthorizeNetCreditCardFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffPaymentResponseFactory],
+      providers: [DaffAuthorizeNetCreditCardFactory],
     });
 
-    paymentResponseFactory = TestBed.inject(DaffPaymentResponseFactory);
+    paymentResponseFactory = TestBed.inject(DaffAuthorizeNetCreditCardFactory);
   });
 
   it('should be created', () => {
@@ -20,7 +20,7 @@ describe('@daffodil/payment/testing | DaffPaymentResponseFactory', () => {
   });
 
   describe('create', () => {
-    let result: DaffPaymentResponse;
+    let result: DaffAuthorizeNetCreditCard;
 
     beforeEach(() => {
       result = paymentResponseFactory.create();
@@ -31,7 +31,10 @@ describe('@daffodil/payment/testing | DaffPaymentResponseFactory', () => {
     });
 
     it('should define all the required fields', () => {
-      expect(result.method).toBeDefined();
+      expect(result.cardnumber).toBeDefined();
+      expect(result.month).toBeDefined();
+      expect(result.year).toBeDefined();
+      expect(result.securitycode).toBeDefined();
     });
   });
 });
