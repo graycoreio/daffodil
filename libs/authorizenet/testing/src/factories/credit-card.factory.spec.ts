@@ -5,25 +5,25 @@ import { DaffAuthorizeNetCreditCard } from '@daffodil/authorizenet';
 import { DaffAuthorizeNetCreditCardFactory } from './credit-card.factory';
 
 describe('@daffodil/payment/testing | DaffAuthorizeNetCreditCardFactory', () => {
-  let paymentResponseFactory: DaffAuthorizeNetCreditCardFactory;
+  let factory: DaffAuthorizeNetCreditCardFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [DaffAuthorizeNetCreditCardFactory],
     });
 
-    paymentResponseFactory = TestBed.inject(DaffAuthorizeNetCreditCardFactory);
+    factory = TestBed.inject(DaffAuthorizeNetCreditCardFactory);
   });
 
   it('should be created', () => {
-    expect(paymentResponseFactory).toBeTruthy();
+    expect(factory).toBeTruthy();
   });
 
   describe('create', () => {
     let result: DaffAuthorizeNetCreditCard;
 
     beforeEach(() => {
-      result = paymentResponseFactory.create();
+      result = factory.create();
     });
 
     it('should return', () => {
