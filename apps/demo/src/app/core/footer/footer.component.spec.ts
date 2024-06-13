@@ -7,7 +7,6 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { DaffButtonSetModule } from '@daffodil/design';
 import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffListModule } from '@daffodil/design/list';
 
@@ -26,7 +25,6 @@ describe('FooterComponent', () => {
         RouterTestingModule,
         DaffContainerModule,
         DaffListModule,
-        DaffButtonSetModule,
         FontAwesomeModule,
       ],
     })
