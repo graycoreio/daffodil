@@ -55,6 +55,8 @@ export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFor
    */
   @Input() selectMax = 10;
 
+  @Input() id = '';
+
   get focused(): boolean {
     return !!(this.input?.focused || this.select?.focused);
   }
