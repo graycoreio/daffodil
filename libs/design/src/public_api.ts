@@ -18,7 +18,6 @@ export * from './atoms/form/form-label/public_api';
 export * from './molecules/image-gallery/public_api';
 export * from './molecules/image-list/public_api';
 export * from './molecules/qty-dropdown/public_api';
-export * from './molecules/feature/public_api';
 
 // Core
 export * from './core/public_api';

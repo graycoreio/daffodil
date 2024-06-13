@@ -20,7 +20,6 @@ export const appRoutes: Routes = [
       { path: 'checkbox', loadChildren: () => import('./checkbox/checkbox.module').then(m => m.DesignLandCheckboxModule) },
       { path: 'color', loadChildren: () => import('./foundations/color/color.module').then(m => m.DesignLandColorModule) },
       { path: 'container', loadChildren: () => import('./container/container.module').then(m => m.DesignLandContainerModule) },
-      { path: 'feature', loadChildren: () => import('./feature/feature.module').then(m => m.DesignLandFeatureModule) },
       { path: 'form', loadChildren: () => import('./form/form.module').then(m => m.DesignLandFormModule) },
       { path: 'hero', loadChildren: () => import('./hero/hero.module').then(m => m.DesignLandHeroModule) },
       { path: 'link-set', loadChildren: () => import('./link-set/link-set.module').then(m => m.DesignLandLinkSetModule) },
