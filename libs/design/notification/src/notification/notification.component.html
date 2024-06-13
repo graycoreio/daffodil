@@ -8,6 +8,6 @@
   </div>
   <ng-content select="[daffNotificationActions]"></ng-content>
 </div>
-<button class="daff-notification__close-icon" *ngIf="dismissable" (click)="onCloseNotification($event)">
+<button class="daff-notification__close-icon" *ngIf="dismissible" (click)="onCloseNotification($event)">
   <fa-icon [icon]="faTimes" [fixedWidth]="true"></fa-icon>
 </button>

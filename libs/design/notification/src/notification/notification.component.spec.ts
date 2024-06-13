@@ -21,7 +21,7 @@ import {
     <daff-notification
       [status]="status"
       [orientation]="orientation"
-      [dismissable]="dismissable"
+      [dismissible]="dismissible"
       (closeNotification)="closeNotificationFunction()">
     </daff-notification>
   `,
@@ -30,7 +30,7 @@ import {
 class WrapperComponent {
   status: DaffStatus;
   orientation: DaffNotificationOrientation = 'vertical';
-  dismissable = false;
+  dismissible = false;
   closeNotificationFunction = () => {};
 }
 
@@ -70,19 +70,19 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
     });
   });
 
-  describe('the dismissable property', () => {
-    it('should take dismissable as an input', () => {
-      expect(component.dismissable).toEqual(wrapper.dismissable);
+  describe('the dismissible property', () => {
+    it('should take dismissible as an input', () => {
+      expect(component.dismissible).toEqual(wrapper.dismissible);
     });
 
-    describe('when dismissable is set to true', () => {
+    describe('when dismissible is set to true', () => {
       beforeEach(() => {
-        wrapper.dismissable = true;
+        wrapper.dismissible = true;
         fixture.detectChanges();
       });
 
-      it('should add a class of "dismissable" to the host element', () => {
-        expect(de.classes['dismissable']).toBeTrue();
+      it('should add a class of "dismissible" to the host element', () => {
+        expect(de.classes['dismissible']).toBeTrue();
       });
 
       it('should show the close icon button', () => {
@@ -142,7 +142,7 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
 
   describe('when the close icon button is clicked', () => {
     it('should emit closeNotification', () => {
-      wrapper.dismissable = true;
+      wrapper.dismissible = true;
       fixture.detectChanges();
 
       spyOn(component.closeNotification, 'emit');

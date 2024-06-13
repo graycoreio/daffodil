@@ -5,11 +5,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffNotificationModule } from '@daffodil/design/notification';
 
-import { DismissableNotificationComponent } from './dismissable-notification.component';
+import { DismissibleNotificationComponent } from './dismissible-notification.component';
 
 @NgModule({
   declarations: [
-    DismissableNotificationComponent,
+    DismissibleNotificationComponent,
   ],
   imports: [
     CommonModule,
@@ -18,7 +18,7 @@ import { DismissableNotificationComponent } from './dismissable-notification.com
     DaffButtonModule,
   ],
   exports: [
-    DismissableNotificationComponent,
+    DismissibleNotificationComponent,
   ],
 })
-export class DismissableNotificationModule { }
+export class DismissibleNotificationModule { }

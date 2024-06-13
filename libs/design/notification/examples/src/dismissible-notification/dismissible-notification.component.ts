@@ -6,8 +6,8 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'dismissable-notification',
-  templateUrl: './dismissable-notification.component.html',
+  selector: 'dismissible-notification',
+  templateUrl: './dismissible-notification.component.html',
   styles: [`
     :host {
       display: flex;
@@ -16,6 +16,6 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DismissableNotificationComponent {
+export class DismissibleNotificationComponent {
   faInfoCircle = faInfoCircle;
 }
