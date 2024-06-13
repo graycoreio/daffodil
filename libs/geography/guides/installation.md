@@ -1,6 +1,6 @@
 # Installation
 
-## Installing with `npm`
+## Installing with npm
 
 To install the `@daffodil/geography` library and its dependencies, use the following command in your terminal.
 
@@ -8,7 +8,7 @@ To install the `@daffodil/geography` library and its dependencies, use the follo
 npm install @daffodil/geography @daffodil/core
 ```
 
-## Installing with `yarn`
+## Installing with yarn
 
 To install the `@daffodil/geography` library and its dependencies, use the following command in your terminal.
 
