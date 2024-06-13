@@ -44,7 +44,6 @@ Refer to the [Upgrade Guide](./guides/upgrading.md).
 * [Accordion](./src/molecules/accordion/README.md)
 * [Article](./src/molecules/article/README.md)
 * [Backdrop](./src/molecules/backdrop/README.md)
-* [Button Set](./src/molecules/button-set/README.md)
 * [Callout](./src/molecules/callout/README.md)
 * [Card](./src/molecules/card/README.md)
 * [Feature](./src/molecules/feature/README.md)

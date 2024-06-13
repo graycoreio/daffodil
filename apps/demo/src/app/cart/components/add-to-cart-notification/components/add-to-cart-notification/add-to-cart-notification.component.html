@@ -10,7 +10,7 @@
   </div>
   <demo-product-added *ngIf="(loading$ | async) === false" class="demo-add-to-cart-notification__product-added"
     [product]="product$ | async" [qty]="productQty$ | async"></demo-product-added>
-  <div *ngIf="(loading$ | async) === false" daff-button-set class="demo-add-to-cart-notification__button-set">
+  <div *ngIf="(loading$ | async) === false" class="demo-add-to-cart-notification__button-set">
     <button type="button" daff-stroked-button demoViewCart>
       View Cart ({{(cartItemCount$ | async)}})
     </button>

@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { DaffButtonSetModule } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 
@@ -18,7 +17,6 @@ import { ProductAddedModule } from '../product-added/product-added.module';
     ProceedToCheckoutModule,
     ProductAddedModule,
     DaffLoadingIconModule,
-    DaffButtonSetModule,
     DaffButtonModule,
     FontAwesomeModule,
   ],
