@@ -1,8 +1,13 @@
 <daff-quantity-select
   *ngIf="showSelectField"
-  [min]="min" [max]="_maxFloor" [extendable]="max > selectMax">
+  [min]="min"
+  [max]="_maxFloor"
+  [extendable]="max > selectMax"
+  [id]="id">
 </daff-quantity-select>
 <daff-quantity-input
   *ngIf="showInputField"
-  [min]="min" [max]="max">
+  [min]="min"
+  [max]="max"
+  [id]="id">
 </daff-quantity-input>
