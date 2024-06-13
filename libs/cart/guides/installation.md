@@ -1,6 +1,6 @@
 # Installation
 
-## Installing with `npm`
+## Installing with npm
 
 To install the cart library and its dependencies, use the following command in the terminal.
 
@@ -8,7 +8,7 @@ To install the cart library and its dependencies, use the following command in t
 npm install @daffodil/cart @daffodil/core @ngrx/store @ngrx/effects --save
 ```
 
-## Installing with `yarn`
+## Installing with yarn
 
 To install the cart library and its dependencies, use the following command in the terminal.
 
