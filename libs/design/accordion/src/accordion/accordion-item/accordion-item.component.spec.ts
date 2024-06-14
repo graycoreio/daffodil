@@ -17,7 +17,7 @@ import { DaffAccordionItemComponent } from './accordion-item.component';
 @Component({ template: `
 <daff-accordion-item [initiallyExpanded]="initiallyExpandedValue">
   <h3 daffAccordionItemTitle>Size and Fit</h3>
-  <div daffAccordionItemContent>no content</div>
+  <div>no content</div>
 </daff-accordion-item>
 ` })
 class WrapperComponent {

@@ -1,7 +1,7 @@
 <daff-container size="md">
 	<div class="demo-checkout" *ngIf="(loading$ | async) === false">
 		<daff-accordion class="demo-checkout__mobile-cart">
-			<daff-accordion-item [initiallyActive]="false">
+			<daff-accordion-item [initiallyExpanded]="false">
 				<h3 daffAccordionItemTitle>Cart Summary ({{(cart$ | async) ? (cart$ | async).items.length : 0}})</h3>
 				<demo-cart-summary-wrapper [cart]="cart$ | async" [loading]="loading$ | async"></demo-cart-summary-wrapper>
 			</daff-accordion-item>
