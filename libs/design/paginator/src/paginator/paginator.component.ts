@@ -25,18 +25,6 @@ import {
   DaffPaginatorPageOutOfRangeErrorMessage,
 } from '../utils/paginator-errors';
 
-/**
- * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
- */
-class DaffPaginatorBase {
-  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
-}
-
-/**
- * @deprecated in v1.0.0
- */
-const _daffPaginatorBase = daffColorMixin(DaffPaginatorBase);
-
 const visiblePageRange = 2;
 
 /**
@@ -46,12 +34,9 @@ const visiblePageRange = 2;
   selector: 'daff-paginator',
   styleUrls: ['./paginator.component.scss'],
   templateUrl: './paginator.component.html',
-  //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChanges, DaffColorable {
+export class DaffPaginatorComponent implements OnChanges {
 
   /**
    * @docs-private
@@ -76,8 +61,7 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
    */
   _paginatorId: string;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-	  super(elementRef, renderer);
+  constructor(private elementRef: ElementRef) {
 	  const ariaLabel = elementRef.nativeElement.attributes['aria-label'];
 	  this._paginatorId = ariaLabel ? ariaLabel.nodeValue : null;
   }

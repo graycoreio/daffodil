@@ -2,19 +2,6 @@
 @use '../../scss/core';
 @use '../../scss/theming';
 
-@mixin daff-paginator-theme-variant($active-color) {
-	color: currentColor;
-
-	&:hover,
-	&.selected { /* stylelint-disable-line selector-class-pattern */
-		color: theming.daff-text-contrast($active-color);
-
-		&:after {
-			background: $active-color;
-		}
-	}
-}
-
 @mixin daff-paginator-theme($theme) {
 	$primary: map.get($theme, primary);
 	$secondary: map.get($theme, secondary);
@@ -42,48 +29,6 @@
 				&:after {
 					background: theming.daff-illuminate($base, $neutral, 2);
 				}
-			}
-		}
-
-		&.daff-primary {
-			.daff-paginator__page-link {
-				@include daff-paginator-theme-variant(theming.daff-color($primary));
-			}
-		}
-
-		&.daff-secondary {
-			.daff-paginator__page-link {
-				@include daff-paginator-theme-variant(theming.daff-color($secondary));
-			}
-		}
-
-		&.daff-tertiary {
-			.daff-paginator__page-link {
-				@include daff-paginator-theme-variant(theming.daff-color($tertiary));
-			}
-		}
-
-		&.daff-theme {
-			.daff-paginator__page-link {
-				@include daff-paginator-theme-variant($base);
-			}
-		}
-
-		&.daff-theme-contrast {
-			.daff-paginator__page-link {
-				@include daff-paginator-theme-variant($base-contrast);
-			}
-		}
-
-		&.daff-black {
-			.daff-paginator__page-link {
-				@include daff-paginator-theme-variant($black);
-			}
-		}
-
-		&.daff-white {
-			.daff-paginator__page-link {
-				@include daff-paginator-theme-variant($white);
 			}
 		}
 	}
