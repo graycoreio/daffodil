@@ -1,5 +1,6 @@
-@import 'utilities';
+@use 'utilities' as *;
 @import 'theme';
+@use '../../../../scss/mixins/dividers' as *;
 
 :host {
 	display: grid;

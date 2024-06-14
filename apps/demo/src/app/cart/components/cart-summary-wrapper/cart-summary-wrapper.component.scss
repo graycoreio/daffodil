@@ -1,5 +1,6 @@
-@import 'utilities';
+@use 'utilities';
 @import 'theme';
+@use '../../../../scss/mixins/dividers' as *;
 
 .demo-cart-summary-wrapper {
 	display: grid;

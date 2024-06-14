@@ -1,9 +1,10 @@
-@import 'utilities';
+@use 'utilities';
 @import 'theme';
+@use '../../../../../scss/mixins/dividers' as *;
 
 .demo-header {
 	padding: 0;
-	@include section-divider;
+	@include section-divider();
 
 	&__menu {
 		border-right: 1px solid daff-color($daff-neutral, 20);
