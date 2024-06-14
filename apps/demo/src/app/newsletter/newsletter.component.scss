@@ -1,5 +1,5 @@
 @use 'demo-theme';
-@use 'utilities';
+@use 'utilities' as *;
 
 :host {
 	display: block;

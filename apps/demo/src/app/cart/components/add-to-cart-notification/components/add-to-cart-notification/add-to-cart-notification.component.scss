@@ -1,5 +1,5 @@
 @use 'demo-theme';
-@use 'utilities';
+@use 'utilities' as *;
 
 .demo-add-to-cart-notification {
 	background-color: demo-theme.$white;
