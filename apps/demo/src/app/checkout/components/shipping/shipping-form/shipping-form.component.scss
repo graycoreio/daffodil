@@ -5,9 +5,9 @@
 	flex-direction: column;
 
 	&__title {
-		margin-bottom: 15px;
 		@include embolden();
-		@include uppercase();
+		margin-bottom: 15px;
+		text-transform: uppercase;
 	}
 
 	&__button {

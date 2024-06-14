@@ -11,7 +11,7 @@
 
 	&__brand {
 		@include embolden();
-		@include uppercase();
+		text-transform: uppercase;
 	}
 
 	&__brand, &__name, &__price {

@@ -2,11 +2,11 @@
 
 .demo-best-sellers {
 	&__title {
-		font-size: $medium-font-size;
-		text-align: center;
-		@include uppercase();
 		@include embolden();
+		font-size: $medium-font-size;
 		margin-bottom: 30px;
+		text-align: center;
+		text-transform: uppercase;
 	}
 
 	&__loading-icon {

@@ -8,9 +8,9 @@
 	}
 
 	&__text {
+		@include embolden();
 		margin-bottom: 50px;
 		text-align: center;
-		@include embolden();
-		@include uppercase();
+		text-transform: uppercase;
 	}
 }

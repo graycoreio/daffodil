@@ -12,7 +12,7 @@
 
 	&__title {
 		@include embolden();
-		@include uppercase();
+		text-transform: uppercase;
 	}
 
 	&__body {

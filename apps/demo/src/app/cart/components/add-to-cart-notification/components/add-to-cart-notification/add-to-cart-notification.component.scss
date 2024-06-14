@@ -12,9 +12,9 @@
 	}
 
 	&__header {
-		margin-bottom: 25px;
 		@include embolden();
-		@include uppercase();
+		margin-bottom: 25px;
+		text-transform: uppercase;
 	}
 
 	&__check-icon {

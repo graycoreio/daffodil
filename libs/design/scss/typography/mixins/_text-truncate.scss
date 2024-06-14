@@ -7,13 +7,8 @@
 // ```scss
 // @use '@daffodil/design/scss/typography;'
 //
-// @include typography.text-truncate;
+// @include typography.text-truncate();
 // ```
-
-// @deprecated in v1.0 in favor of text-truncate
-@mixin single-line-ellipsis() {
-	@include text-truncate();
-}
 
 @mixin text-truncate() {
 	display: block;

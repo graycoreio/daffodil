@@ -11,9 +11,9 @@
 	}
 
 	&__title {
-		display: none;
 		@include embolden();
-		@include uppercase();
+		display: none;
+		text-transform: uppercase;
 
 		@include breakpoint(big-tablet) {
 			display: block;

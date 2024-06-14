@@ -33,10 +33,10 @@
 
 	&__title {
 		@include embolden();
-		@include uppercase();
 		font-size: 1.5rem;
 		margin: 0;
 		padding-bottom: 15px;
+		text-transform: uppercase;
 	}
 
 	&__right {
