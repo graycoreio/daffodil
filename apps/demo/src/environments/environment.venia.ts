@@ -10,11 +10,6 @@ export const environment: EnvironmentConfiguration = {
   production: true,
   driver: {
     variant: DemoDriverVariantEnum.MAGENTO,
-    domain: 'https://magento2.test',
-    anetConfig: {
-      // TODO: add these
-      clientKey: '',
-      apiLoginID: '',
-    },
+    domain: 'https://venia.magento.com',
   },
 };

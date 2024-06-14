@@ -100,12 +100,14 @@
           }
         },
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/apps/demo",
             "index": "apps/demo/src/index.html",
-            "main": "apps/demo/src/main.ts",
-            "polyfills": "apps/demo/src/polyfills.ts",
+            "browser": "apps/demo/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "apps/demo/tsconfig.app.json",
             "assets": [
               "apps/demo/src/assets",
@@ -127,9 +129,7 @@
             },
             "scripts": [],
             "aot": false,
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true
@@ -148,12 +148,26 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "fileReplacements": [
                 {
                   "replace": "apps/demo/src/environments/environment.ts",
                   "with": "apps/demo/src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "magento": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/demo/src/environments/environment.ts",
+                  "with": "apps/demo/src/environments/environment.magento.ts"
+                }
+              ]
+            },
+            "venia": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/demo/src/environments/environment.ts",
+                  "with": "apps/demo/src/environments/environment.venia.ts"
                 }
               ]
             }
@@ -171,6 +185,12 @@
           "configurations": {
             "production": {
               "buildTarget": "demo:build:production"
+            },
+            "magento": {
+              "buildTarget": "demo:build:magento"
+            },
+            "venia": {
+              "buildTarget": "demo:build:venia"
             }
           }
         },
