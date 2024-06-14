@@ -46,7 +46,6 @@ Refer to the [Upgrade Guide](./guides/upgrading.md).
 * [Callout](./src/molecules/callout/README.md)
 * [Card](./src/molecules/card/README.md)
 * [Hero](./src/molecules/hero/README.md)
-* [Image Gallery](./src/molecules/image-gallery/README.md)
 * [Image List](./src/molecules/image-list/README.md)
 * [Link Set](./src/molecules/link-set/README.md)
 * [List](./src/molecules/list/README.md)

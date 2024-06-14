@@ -167,13 +167,6 @@
           "data": {}
         },
         {
-          "title": "Image Gallery",
-          "url": "image-gallery",
-          "id": "image-gallery",
-          "items": [],
-          "data": {}
-        },
-        {
           "title": "Link Set",
           "url": "link-set",
           "id": "link-set",

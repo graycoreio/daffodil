@@ -1,9 +1,0 @@
-<h1>Daff Image Gallery</h1>
-<p>The Image Gallery component is deprecated</p>
-<daff-image-gallery class="gallery">
-    <daff-gallery-image *ngFor="let image of images" [selected]="image.url === selectedImage">
-
-        <img alt="{{image.label}}" src="{{image.url}}" (click)="selectedImage = image">
-    </daff-gallery-image>
-    <img daff-active-image src="{{selectedImage.url}}" alt = "{{selectedImage.label}}">
-</daff-image-gallery>

@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffImageGalleryModule } from '@daffodil/design';
+import { DaffImageModule } from '@daffodil/design/image';
+import { DaffMediaGalleryModule } from '@daffodil/design/media-gallery';
 
 import { ImageGalleryComponent } from './components/image-gallery.component';
 import { DemoImageGalleryStateModule } from './image-gallery.state.module';
@@ -10,7 +11,8 @@ import { DemoImageGalleryStateModule } from './image-gallery.state.module';
   imports: [
     CommonModule,
     DemoImageGalleryStateModule,
-    DaffImageGalleryModule,
+    DaffMediaGalleryModule,
+    DaffImageModule,
   ],
   declarations: [
     ImageGalleryComponent,

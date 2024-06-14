@@ -10,6 +10,8 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { daffThumbnailCompatToken } from '@daffodil/design/media-gallery';
+
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
 import * as fromDemoImageGallery from '../reducers/index';
 
@@ -17,11 +19,16 @@ import * as fromDemoImageGallery from '../reducers/index';
   selector: 'demo-image-gallery-container',
   templateUrl: './image-gallery.component.html',
   encapsulation: ViewEncapsulation.None,
+  providers: [
+    {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      provide: daffThumbnailCompatToken, useFactory: () => ImageGalleryComponent,
+    },
+  ],
 })
 export class ImageGalleryComponent implements OnInit {
 
   @Input() images;
-  selectedImage$: Observable<string>;
 
   constructor(
     private store: Store<fromDemoImageGallery.State>,
@@ -29,7 +36,6 @@ export class ImageGalleryComponent implements OnInit {
 
   ngOnInit() {
     this.select(this.images[0].url);
-    this.selectedImage$ = this.store.pipe(select(fromDemoImageGallery.selectSelectedImage));
   }
 
   select(image: string) {
