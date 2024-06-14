@@ -2,24 +2,12 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input,
   HostBinding,
   ElementRef,
   Renderer2,
 } from '@angular/core';
 
 import { daffArticleEncapsulatedMixin } from '@daffodil/design';
-
-/**
- * @deprecated
- * DaffListMode will be completely deprecated in v1.0.0
- * */
-export type DaffListMode = 'multi-line' | 'link' | 'navigation' | undefined;
-export enum DaffListModeEnum {
-  Multiline = 'multi-line',
-  Link = 'link',
-  Navigation = 'navigation'
-}
 
 export type DaffListType = 'daff-list' | 'daff-nav-list';
 
@@ -49,39 +37,10 @@ const _daffListBase = daffArticleEncapsulatedMixin((DaffListBase));
 
 export class DaffListComponent extends _daffListBase {
   /**
-   * @deprecated
-   * */
-  @Input() mode: DaffListMode;
-
-  /**
    * @docs-private
    */
   @HostBinding('class.daff-list') get list() {
     return this.listType === DaffListTypeEnum.Default;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated
-   * */
-  @HostBinding('class.daff-list--multi-line') get multiline() {
-    return this.mode === DaffListModeEnum.Multiline;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated
-   * */
-  @HostBinding('class.daff-list--link') get link() {
-    return this.mode === DaffListModeEnum.Link;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated
-   * */
-  @HostBinding('class.daff-list--navigation') get navigation() {
-    return this.mode === DaffListModeEnum.Navigation;
   }
 
   /**
