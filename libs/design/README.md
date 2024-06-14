@@ -38,7 +38,6 @@ Refer to the [Upgrade Guide](./guides/upgrading.md).
   * [Quantity Field](./src/atoms/form/quantity-field/README.md)
 * [Image](./src/atoms/image/README.md)
 * [Loading Icon](./src/atoms/loading-icon/README.md)
-* [Progress Indicator](./src/atoms/progress-indicator/README.md)
 
 ### Molecules
 * [Accordion](./src/molecules/accordion/README.md)

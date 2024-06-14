@@ -6,8 +6,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { DaffProgressIndicatorModule } from '@daffodil/design';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemoCartRootModule } from './cart/cart-root.module';
@@ -49,7 +47,6 @@ import { environment } from '../environments/environment';
     ThankYouModule,
     TemplateModule,
     NotFoundModule,
-    DaffProgressIndicatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

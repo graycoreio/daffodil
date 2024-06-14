@@ -88,13 +88,6 @@
           "data": {}
         },
         {
-          "title": "Progress Indicator (Deprecated)",
-          "url": "progress-indicator",
-          "id": "progress-indicator",
-          "items": [],
-          "data": {}
-        },
-        {
           "title": "Radio",
           "url": "radio",
           "id": "radio",
