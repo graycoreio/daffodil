@@ -1,151 +1,78 @@
-import {
-  Component,
-  Input,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DemoGeographyAddressSummaryComponent } from 'apps/demo/src/app/geography/components/address-summary/address-summary.component';
 
-import { DaffAddress } from '@daffodil/core';
-import { DaffAddressFactory } from '@daffodil/core/testing';
+import { DaffCartAddress } from '@daffodil/cart';
+import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 
-import { BillingSummaryComponent } from './billing-summary.component';
+import { DemoCheckoutBillingAddressSummaryComponent } from './billing-summary.component';
 
-const daffodilAddressFactory = new DaffAddressFactory();
-const stubBillingAddress = daffodilAddressFactory.create();
-const stubBillingAddressIsShippingAddress = false;
-
-@Component({ template: '<demo-billing-summary [billingAddress]="billingAddressValue" [billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue"></demo-billing-summary>' })
+@Component({
+  template: `
+    <demo-checkout-billing-summary
+      [billingAddress]="billingAddressValue"
+      (edit)="editBillingInfoFunction()"
+    ></demo-checkout-billing-summary>
+  `,
+  standalone: true,
+  imports: [
+    DemoCheckoutBillingAddressSummaryComponent,
+  ],
+})
 class WrapperComponent {
-  billingAddressValue: DaffAddress = stubBillingAddress;
-  billingAddressIsShippingAddressValue: boolean = stubBillingAddressIsShippingAddress;
+  billingAddressValue: DaffCartAddress;
+  editBillingInfoFunction;
 }
 
-@Component({ selector: 'demo-address-summary', template: '' })
-class MockAddressSummaryComponent {
-  @Input() address: DaffAddress;
-}
-
-describe('BillingSummaryComponent', () => {
+describe('DemoCheckoutBillingAddressSummaryComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let billingSummary: BillingSummaryComponent;
-  let addressSummary: MockAddressSummaryComponent;
-  let addressSummaryElement;
-  let billingAddressIsShippingAddress;
+  let component: DemoCheckoutBillingAddressSummaryComponent;
+  let addressFactory: DaffCartAddressFactory;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         WrapperComponent,
-        BillingSummaryComponent,
-        MockAddressSummaryComponent,
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
+    addressFactory = TestBed.inject(DaffCartAddressFactory);
+
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
+    wrapper.billingAddressValue = addressFactory.create();
+    wrapper.editBillingInfoFunction = jasmine.createSpy();
     fixture.detectChanges();
 
-    billingSummary = fixture.debugElement.query(By.css('demo-billing-summary')).componentInstance;
-    addressSummary = fixture.debugElement.query(By.css('demo-address-summary')).componentInstance;
+    component = fixture.debugElement.query(By.css('demo-checkout-billing-summary')).componentInstance;
   });
 
   it('should create', () => {
-    expect(billingSummary).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  it('should be able to take billingAddress as input', () => {
-    expect(billingSummary.billingAddress).toEqual(stubBillingAddress);
+  it('should be able to take billingAddress', () => {
+    expect(component.billingAddress).toEqual(wrapper.billingAddressValue);
   });
 
-  it('should be able to take billingAddressIsShippingAddress as input', () => {
-    expect(billingSummary.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
-  });
+  describe('on <demo-geography-address-summary>', () => {
+    let summaryComponent: DemoGeographyAddressSummaryComponent;
 
-  describe('on <address-summary>', () => {
+    beforeEach(() => {
+      summaryComponent = fixture.debugElement.query(By.directive(DemoGeographyAddressSummaryComponent)).componentInstance;
+    });
 
     it('should set address', () => {
-      expect(addressSummary.address).toEqual(stubBillingAddress);
-    });
-  });
-
-  describe('when billingAddress is null', () => {
-
-    beforeEach(() => {
-      billingSummary.billingAddress = null;
-      fixture.detectChanges();
-    });
-
-    it('should not render demo-address-summary', () => {
-      addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
-
-      expect(addressSummaryElement).toBeNull();
-    });
-  });
-
-  describe('when billingAddress is defined', () => {
-
-    beforeEach(() => {
-      billingSummary.billingAddress = stubBillingAddress;
-    });
-
-    describe('and billingAddressIsShippingAddress is false', () => {
-
-      it('should render demo-address-summary', () => {
-        billingSummary.billingAddressIsShippingAddress = false;
-        fixture.detectChanges();
-
-        addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
-
-        expect(addressSummaryElement).not.toBeNull();
-      });
-    });
-
-    describe('and billingAddressIsShippingAddress is true', () => {
-
-      it('should not render demo-address-summary', () => {
-        billingSummary.billingAddressIsShippingAddress = true;
-        fixture.detectChanges();
-
-        addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
-
-        expect(addressSummaryElement).toBeNull();
-      });
-    });
-  });
-
-  describe('when billingAddressIsShippingAddress is true', () => {
-
-    beforeEach(() => {
-      billingSummary.billingAddressIsShippingAddress = true;
-      fixture.detectChanges();
-    });
-
-    it('should render note', () => {
-      billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.demo-billing-summary__note'));
-
-      expect(billingAddressIsShippingAddress).not.toBeNull();
-    });
-  });
-
-  describe('when billingAddressIsShippingAddress is false', () => {
-
-    beforeEach(() => {
-      billingSummary.billingAddressIsShippingAddress = false;
-      fixture.detectChanges();
-    });
-
-    it('should not render note', () => {
-      billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.demo-billing-summary__note'));
-
-      expect(billingAddressIsShippingAddress).toBeNull();
+      expect(summaryComponent.address).toEqual(component.billingAddress);
     });
   });
 });

@@ -9,7 +9,6 @@ import { Apollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
-import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
 import { DaffProductShopifyDriverModule } from '@daffodil/product/driver/shopify';
 
@@ -23,7 +22,6 @@ const cache = new InMemoryCache();
     //Shopify
     DaffProductShopifyDriverModule.forRoot(),
     DaffCartInMemoryDriverModule.forRoot(),
-    DaffCheckoutInMemoryDriverModule.forRoot(),
     DaffNewsletterInMemoryDriverModule.forRoot(),
   ],
 })

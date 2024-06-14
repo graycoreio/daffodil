@@ -1,338 +1,258 @@
-import {
-  Component,
-  Input,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-  UntypedFormGroup,
-  UntypedFormBuilder,
-} from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import {
-  StoreModule,
-  combineReducers,
-  Store,
-} from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { DemoGeographyAddressSummaryComponent } from 'apps/demo/src/app/geography/components/address-summary/address-summary.component';
 
-import { PaymentInfo } from '@daffodil/checkout';
-import { DaffAddress } from '@daffodil/core';
+import { DaffCartAddress } from '@daffodil/cart';
+import { DaffCartAddressFactory } from '@daffodil/cart/testing';
+import { DaffGeographyTestingDriverModule } from '@daffodil/geography/driver/testing';
 
-import { PaymentFormComponent } from './payment-form.component';
+import { DemoCheckoutPaymentFormComponent } from './payment-form.component';
 import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';
-import * as fromDemoCheckout from '../../../reducers';
-import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
+import { DemoCheckoutAddressFormComponent } from '../../forms/address/components/address-form/address-form.component';
+import { DemoCheckoutAddressFormFactory } from '../../forms/address/factories/address-form.factory';
+import { DemoCheckoutBillingFormGroup } from '../models/payment-form.type';
 import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-info-form.factory';
 
 @Component({
   template: `
-    <demo-payment-form
+    <demo-checkout-payment-form
       [paymentInfo]="paymentInfoValue"
       [billingAddress]="billingAddressValue"
+      [shippingAddress]="shippingAddressValue"
       [billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue"
-      (updatePaymentInfo)="updatePaymentInfoFunction($event)"
-      (updateBillingAddress)="updatePaymentInfoFunction($event)"
-      (toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction($event)"></demo-payment-form>
+      (submitted)="submittedFunction($event)"
+    ></demo-checkout-payment-form>
   `,
+  standalone: true,
+  imports: [
+    DemoCheckoutPaymentFormComponent,
+  ],
 })
 class WrapperComponent {
-  paymentInfoValue: PaymentInfo;
-  billingAddressValue: DaffAddress;
+  paymentInfoValue: any;
+  billingAddressValue: DaffCartAddress;
+  shippingAddressValue: DaffCartAddress;
   billingAddressIsShippingAddressValue: boolean;
-  updatePaymentInfoFunction = e => {};
-  updateBillingAddressFunction = () => {};
-  toggleBillingAddressIsShippingAddressFunction = () => {};
+  submittedFunction;
 }
 
-@Component({ selector: 'demo-address-form', template: '' })
-class MockAddressFormComponent {
-  @Input() formGroup: UntypedFormGroup;
-  @Input() submitted: boolean;
-}
-
-@Component({ selector: 'demo-payment-info-form', template: '' })
-class MockPaymentInfoFormComponent {
-  @Input() formGroup: UntypedFormGroup;
-  @Input() submitted: boolean;
-}
-
-describe('PaymentFormComponent', () => {
+describe('DemoCheckoutPaymentFormComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let stubPaymentInfo;
   let stubBillingAddress;
   let stubBillingAddressIsShippingAddress;
-  let store;
-  let paymentFormComponent: PaymentFormComponent;
-  let addressFormComponent: MockAddressFormComponent;
-  let paymentInfoFormComponent: MockPaymentInfoFormComponent;
-  let addressFormFactory: AddressFormFactory;
+  let component: DemoCheckoutPaymentFormComponent;
+  let addressFormFactory: DemoCheckoutAddressFormFactory;
   let paymentInfoFormFactory: PaymentInfoFormFactory;
+  let addressFactory: DaffCartAddressFactory;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        StoreModule.forRoot({
-          shippings: combineReducers(fromDemoCheckout.reducers),
-        }),
-      ],
-      declarations: [
+        StoreModule.forRoot(),
+        EffectsModule.forRoot(),
+        DaffGeographyTestingDriverModule.forRoot(),
         WrapperComponent,
-        MockAddressFormComponent,
-        MockPaymentInfoFormComponent,
-        PaymentFormComponent,
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    store = TestBed.inject(Store);
-    addressFormFactory = TestBed.inject(AddressFormFactory);
+    addressFormFactory = TestBed.inject(DemoCheckoutAddressFormFactory);
     paymentInfoFormFactory = TestBed.inject(PaymentInfoFormFactory);
+    addressFactory = TestBed.inject(DaffCartAddressFactory);
 
     stubPaymentInfo = null;
     stubBillingAddress = null;
     stubBillingAddressIsShippingAddress = false;
 
-    spyOn(store, 'dispatch');
-
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     wrapper.paymentInfoValue = stubPaymentInfo;
     wrapper.billingAddressValue = stubBillingAddress;
+    wrapper.shippingAddressValue = addressFactory.create();
     wrapper.billingAddressIsShippingAddressValue = stubBillingAddressIsShippingAddress;
+    wrapper.submittedFunction = jasmine.createSpy();
 
     fixture.detectChanges();
 
-    paymentFormComponent = fixture.debugElement.query(By.css('demo-payment-form')).componentInstance;
-    addressFormComponent = fixture.debugElement.query(By.css('demo-address-form')).componentInstance;
-    paymentInfoFormComponent = fixture.debugElement.query(By.css('demo-payment-info-form')).componentInstance;
-    spyOn(paymentFormComponent.updatePaymentInfo, 'emit').and.callThrough();
-    spyOn(paymentFormComponent.updateBillingAddress, 'emit').and.callThrough();
+    component = fixture.debugElement.query(By.css('demo-checkout-payment-form')).componentInstance;
   });
 
   it('should create', () => {
-    expect(paymentFormComponent).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
   it('should be able to take paymentInfo as input', () => {
-    expect(paymentFormComponent.paymentInfo).toEqual(stubPaymentInfo);
+    expect(component.paymentInfo).toEqual(stubPaymentInfo);
   });
 
   it('should be able to take billingAddress as input', () => {
-    expect(paymentFormComponent.billingAddress).toEqual(stubBillingAddress);
+    expect(component.billingAddress).toEqual(stubBillingAddress);
   });
 
   it('should be able to take billingAddressIsShippingAddress', () => {
-    expect(paymentFormComponent.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
+    expect(component.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
   });
 
-  describe('on <demo-address-form>', () => {
-
-    it('should set formGroup', () => {
-      expect(addressFormComponent.formGroup).toEqual(paymentFormComponent.form.controls.address);
-    });
-
-    it('should set formSubmitted', () => {
-      expect(addressFormComponent.submitted).toEqual(paymentFormComponent.form.valid);
-    });
+  it('should init bsas to the input', () => {
+    expect(component.form.value.bsas).toEqual(wrapper.billingAddressIsShippingAddressValue);
   });
 
-  describe('on <demo-payment-info-form>', () => {
-
-    it('should set formGroup', () => {
-      expect(paymentInfoFormComponent.formGroup).toEqual(paymentFormComponent.form.controls.paymentInfo);
-    });
-
-    it('should set formSubmitted', () => {
-      expect(paymentInfoFormComponent.submitted).toEqual(false);
-    });
-  });
-
-  describe('when checkbox is clicked', () => {
-
-    it('should emit toggleBillingAddressIsShippingAddress', () => {
-      spyOn(paymentFormComponent.toggleBillingAddressIsShippingAddress, 'emit');
-      fixture.debugElement.query(By.css('#sameAsShipping')).nativeElement.click();
-
-      expect(paymentFormComponent.toggleBillingAddressIsShippingAddress.emit).toHaveBeenCalled();
-    });
-  });
-
-  describe('when billingAddressIsShippingAddress is true', () => {
-
+  describe('when bsas is false', () => {
     beforeEach(() => {
-      paymentFormComponent.billingAddressIsShippingAddress = true;
+      component.form.patchValue({ bsas: false });
       fixture.detectChanges();
     });
 
-    it('should not render firstname input', () => {
-      const firstnameElement = fixture.debugElement.query(By.css('.demo-payment-form__first-name'));
+    it('should render the address form', () => {
+      expect(fixture.debugElement.query(By.directive(DemoCheckoutAddressFormComponent))).toBeTruthy();
+    });
 
-      expect(firstnameElement).toBeNull();
+    it('should not render the address summary form', () => {
+      expect(fixture.debugElement.query(By.directive(DemoGeographyAddressSummaryComponent))).toBeFalsy();
+    });
+
+    describe('on <demo-checkout-address-form>', () => {
+      let addressFormComponent: DemoCheckoutAddressFormComponent;
+
+      beforeEach(() => {
+        addressFormComponent = fixture.debugElement.query(By.directive(DemoCheckoutAddressFormComponent)).componentInstance;
+      });
+
+      it('should set formGroup', () => {
+        expect(addressFormComponent.formGroup).toEqual(component.form.controls.address);
+      });
+    });
+  });
+
+  describe('when bsas is true', () => {
+    beforeEach(() => {
+      component.form.patchValue({ bsas: true });
+      fixture.detectChanges();
+    });
+
+    it('should not render the address form', () => {
+      expect(fixture.debugElement.query(By.directive(DemoCheckoutAddressFormComponent))).toBeFalsy();
+    });
+
+    it('should render the address summary form', () => {
+      expect(fixture.debugElement.query(By.directive(DemoGeographyAddressSummaryComponent))).toBeTruthy();
+    });
+
+    describe('on <demo-geography-address-summary>', () => {
+      let addressSummaryComponent: DemoGeographyAddressSummaryComponent;
+
+      beforeEach(() => {
+        addressSummaryComponent = fixture.debugElement.query(By.directive(DemoGeographyAddressSummaryComponent)).componentInstance;
+      });
+
+      it('should set address', () => {
+        expect(addressSummaryComponent.address).toEqual(component.shippingAddress);
+      });
     });
   });
 
   describe('when submit button is clicked', () => {
-
-    it('should call onSubmit', () => {
-      spyOn(paymentFormComponent, 'onSubmit');
-      fixture.debugElement.query(By.css('button')).nativeElement.click();
-
-      expect(paymentFormComponent.onSubmit).toHaveBeenCalled();
-    });
-  });
-
-  describe('onSubmit', () => {
-
-    describe('when form is invalid', () => {
+    describe('and billingAddressIsShippingAddress is false', () => {
 
       beforeEach(() => {
-        const formBuilder = new UntypedFormBuilder();
-        paymentFormComponent.form.patchValue({
-          address: null,
-          paymentInfo: null,
+        component.billingAddressIsShippingAddress = false;
+        fixture.debugElement.query(By.css('button')).nativeElement.click();
+        fixture.detectChanges();
+
+        component.onSubmit();
+      });
+
+      it('should not emit submitted', () => {
+        expect(wrapper.submittedFunction).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('and billingAddressIsShippingAddress is true', () => {
+
+      beforeEach(() => {
+        component.form.patchValue({ bsas: true });
+      });
+
+      describe('and paymentInfoForm is invalid', () => {
+
+        beforeEach(() => {
+          component.form.patchValue({ paymentInfo: null });
+          fixture.debugElement.query(By.css('button')).nativeElement.click();
+          fixture.detectChanges();
+        });
+
+        it('should not emit submitted', () => {
+          expect(wrapper.submittedFunction).not.toHaveBeenCalled();
         });
       });
 
-      describe('and billingAddressIsShippingAddress is false', () => {
+      describe('and paymentInfoForm is valid', () => {
+
+        const expectedPaymentInfo = {
+          cardnumber: '2',
+          month: '2',
+          year: '2',
+          securitycode: '2',
+        };
 
         beforeEach(() => {
-          paymentFormComponent.billingAddressIsShippingAddress = false;
+          component.form.controls.paymentInfo.setValue(expectedPaymentInfo);
+          fixture.debugElement.query(By.css('button')).nativeElement.click();
           fixture.detectChanges();
 
-          paymentFormComponent.onSubmit();
+          component.onSubmit();
         });
 
-        it('should not emit updatePaymentInfo', () => {
-          expect(paymentFormComponent.updatePaymentInfo.emit).not.toHaveBeenCalled();
-        });
-
-        it('should not emit updateBillingAddress', () => {
-          expect(paymentFormComponent.updateBillingAddress.emit).not.toHaveBeenCalled();
-        });
-
-        it('should not call store.dispatch', () => {
-          expect(store.dispatch).not.toHaveBeenCalled();
-        });
-      });
-
-      describe('and billingAddressIsShippingAddress is true', () => {
-
-        beforeEach(() => {
-          paymentFormComponent.billingAddressIsShippingAddress = true;
-        });
-
-        describe('and paymentInfoForm is invalid', () => {
-
-          beforeEach(() => {
-            paymentFormComponent.form.controls.paymentInfo.value.name = null;
-            fixture.detectChanges();
-          });
-
-          it('should not emit updatePaymentInfo', () => {
-            expect(paymentFormComponent.updatePaymentInfo.emit).not.toHaveBeenCalled();
-          });
-
-          it('should not emit updateBillingAddress', () => {
-            expect(paymentFormComponent.updateBillingAddress.emit).not.toHaveBeenCalled();
-          });
-
-          it('should not call store.dispatch', () => {
-            expect(store.dispatch).not.toHaveBeenCalled();
-          });
-        });
-
-        describe('and paymentInfoForm is valid', () => {
-
-          const expectedPaymentInfo = {
-            name: 'valid',
-            cardnumber: '2',
-            month: '2',
-            year: '2',
-            securitycode: '2',
-          };
-
-          beforeEach(() => {
-            paymentFormComponent.form.controls.paymentInfo.setValue(expectedPaymentInfo);
-            fixture.detectChanges();
-
-            paymentFormComponent.onSubmit();
-          });
-
-          it('should emit updatePaymentInfo', () => {
-            expect(paymentFormComponent.updatePaymentInfo.emit).toHaveBeenCalledWith(expectedPaymentInfo);
-          });
-
-          it('should not emit updateBillingAddress', () => {
-            expect(paymentFormComponent.updateBillingAddress.emit).not.toHaveBeenCalled();
-          });
-
-          it('should call store.dispatch with an EnablePlaceOrderButton action', () => {
-            expect(store.dispatch).toHaveBeenCalledWith(new EnablePlaceOrderButton());
-          });
+        it('should emit submitted', () => {
+          expect(wrapper.submittedFunction).toHaveBeenCalledWith(jasmine.objectContaining({
+            address: wrapper.shippingAddressValue,
+            paymentInfo: expectedPaymentInfo,
+          }));
         });
       });
     });
 
-    describe('when form is valid', () => {
+    describe('and the form is valid', () => {
+      let expectedPaymentInfo: DemoCheckoutBillingFormGroup['value'];
 
       beforeEach(() => {
-        paymentFormComponent.form.patchValue({
+        expectedPaymentInfo = {
           address: {
             firstname: 'valid',
             lastname: 'valid',
             street: 'valid',
             city: 'valid',
-            state: 'California',
+            region: 'California',
             country: 'US',
             postcode: 'valid',
             telephone: 'valid',
           },
           paymentInfo: {
-            name: 'valid',
             cardnumber: 'valid',
             month: '01',
             year: 'valid',
             securitycode: 'valid',
           },
-        });
+        };
+        component.form.patchValue(expectedPaymentInfo);
+        fixture.debugElement.query(By.css('button')).nativeElement.click();
         fixture.detectChanges();
       });
 
-      it('should emit updatePaymentInfo', () => {
-        paymentFormComponent.onSubmit();
-        expect(paymentFormComponent.updatePaymentInfo.emit).toHaveBeenCalledWith(paymentFormComponent.form.value.paymentInfo);
+      it('should emit submitted', () => {
+        expect(wrapper.submittedFunction).toHaveBeenCalledWith(jasmine.objectContaining(expectedPaymentInfo));
       });
-
-      it('should emit updateBillingAddress with expected object', () => {
-        paymentFormComponent.onSubmit();
-        expect(paymentFormComponent.updateBillingAddress.emit).toHaveBeenCalledWith(paymentFormComponent.form.value.address);
-      });
-
-      it('should call store.dispatch with an EnablePlaceOrderButton action', () => {
-        paymentFormComponent.onSubmit();
-        expect(store.dispatch).toHaveBeenCalledWith(new EnablePlaceOrderButton());
-      });
-    });
-  });
-
-  describe('when updatePaymentInfo is emitted', () => {
-
-    it('should call the function passed by the host element', () => {
-      const emittedValue = 'emittedValue';
-      spyOn(wrapper, 'updatePaymentInfoFunction');
-      paymentFormComponent.updatePaymentInfo.emit(emittedValue);
-
-      expect(wrapper.updatePaymentInfoFunction).toHaveBeenCalledWith(emittedValue);
     });
   });
 });

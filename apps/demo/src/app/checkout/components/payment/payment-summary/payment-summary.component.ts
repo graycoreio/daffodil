@@ -5,19 +5,18 @@ import {
   EventEmitter,
 } from '@angular/core';
 
-import { PaymentInfo } from '@daffodil/checkout';
+import { DaffAuthorizeNetCreditCard } from '@daffodil/authorizenet';
 
 @Component({
-  selector: 'demo-payment-summary',
+  selector: 'demo-checkout-payment-summary',
   templateUrl: './payment-summary.component.html',
   styleUrls: ['./payment-summary.component.scss'],
+  standalone: true,
 })
-export class PaymentSummaryComponent {
+export class DemoCheckoutPaymentSummaryComponent {
+  @Input() paymentInfo: DaffAuthorizeNetCreditCard;
 
-  @Input() paymentInfo: PaymentInfo;
-  @Output() editPaymentInfo: EventEmitter<any> = new EventEmitter();
-
-  constructor() { }
+  @Output() editPaymentInfo = new EventEmitter<void>();
 
   onEdit() {
     this.editPaymentInfo.emit();

@@ -1,21 +1,27 @@
-<daff-container size="md">
-  <div order-container #OrderContainer="OrderContainer">
-    <div class="demo-thank-you-view" *ngIf="(OrderContainer.loading$ | async) === false">
-      <daff-accordion class="demo-thank-you-view__mobile-cart">
-        <daff-accordion-item [initiallyExpanded]="false">
-          <h3 daffAccordionItemTitle>Cart Summary ({{(OrderContainer.order$ | async).items.length}})</h3>
-          <demo-cart-summary-wrapper [cart]="OrderContainer.order$ | async" [loading]="OrderContainer.loading$ | async"></demo-cart-summary-wrapper>
-        </daff-accordion-item>
-      </daff-accordion>
+<ng-container *ngrxLet="{
+  loading: loading$,
+  order: order$,
+} as vm">
+  <daff-container size="md">
+    @if (vm.loading) {
+      <daff-loading-icon></daff-loading-icon>
+    } @else {
+      <div class="demo-thank-you-view">
+        <daff-accordion class="demo-thank-you-view__mobile-cart">
+          <daff-accordion-item [initiallyExpanded]="false">
+            <h3 daffAccordionItemTitle>Cart Summary ({{vm.order?.items.length}})</h3>
+            <!-- <demo-cart-summary-wrapper [cart]="vm.order" [loading]="vm.loading"></demo-cart-summary-wrapper> -->
+          </daff-accordion-item>
+        </daff-accordion>
 
-      <demo-thank-you></demo-thank-you>
+        <!-- <demo-thank-you></demo-thank-you> -->
 
-      <div class="demo-thank-you-view__cart">
-        <div class="demo-thank-you-view__desktop-cart">
-          <demo-cart-summary-wrapper [cartTitle]="'CART SUMMARY'" [cart]="OrderContainer.order$ | async" [loading]="OrderContainer.loading$ | async"></demo-cart-summary-wrapper>
+        <div class="demo-thank-you-view__cart">
+          <div class="demo-thank-you-view__desktop-cart">
+            <!-- <demo-cart-summary-wrapper [cartTitle]="'CART SUMMARY'" [cart]="vm.order" [loading]="vm.loading"></demo-cart-summary-wrapper> -->
+          </div>
         </div>
       </div>
-    </div>
-    <daff-loading-icon *ngIf="(OrderContainer.loading$ | async)"></daff-loading-icon>
-  </div>
-</daff-container>
+    }
+  </daff-container>
+</ng-container>

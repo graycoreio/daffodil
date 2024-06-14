@@ -1,30 +1,24 @@
 import { NgModule } from '@angular/core';
 import {
-  InMemoryCache,
-  ApolloLink,
-} from '@apollo/client/core';
-import { onError } from '@apollo/client/link/error';
-import {
-  Apollo,
+  APOLLO_OPTIONS,
   ApolloModule,
 } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 
 import { DaffAuthMagentoDriverModule } from '@daffodil/auth/driver/magento';
+import { DaffMagentoAuthorizeNetDriverModule } from '@daffodil/authorizenet/driver/magento';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';
 import { DaffCategoryMagentoDriverModule } from '@daffodil/category/driver/magento';
-import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffMagentoApolloCacheableOperationsLinkGenerator } from '@daffodil/driver/magento';
+import { DaffExternalRouterDriverMagentoModule } from '@daffodil/external-router/driver/magento/2.4.3';
 import { DaffGeographyMagentoDriverModule } from '@daffodil/geography/driver/magento';
 import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation/driver/magento';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
 import { DaffProductMagentoDriverModule } from '@daffodil/product/driver/magento';
 
-import possibleTypes from './fragmentTypes.json';
+import { demoMagentoApolloOptions } from './apollo-options.factory';
 import { environment } from '../../../environments/environment';
 import { MagentoEnvironmentDriverConfiguration } from '../../../environments/environment.interface';
-
-const cache = new InMemoryCache({ possibleTypes: possibleTypes.possibleTypes });
 
 @NgModule({
   imports: [
@@ -34,43 +28,23 @@ const cache = new InMemoryCache({ possibleTypes: possibleTypes.possibleTypes });
       baseMediaUrl: 'https://magento2.test/media/',
     }),
     DaffCartMagentoDriverModule.forRoot(),
-    DaffCheckoutInMemoryDriverModule.forRoot(),
     DaffNavigationMagentoDriverModule.forRoot(),
     DaffNewsletterInMemoryDriverModule.forRoot(),
     DaffGeographyMagentoDriverModule.forRoot(),
     DaffCategoryMagentoDriverModule.forRoot(),
+    DaffExternalRouterDriverMagentoModule.forRoot(),
+    DaffMagentoAuthorizeNetDriverModule.forRoot((<MagentoEnvironmentDriverConfiguration>environment.driver).anetConfig),
     ApolloModule,
   ],
+  providers: [
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: demoMagentoApolloOptions,
+      deps: [
+        HttpLink,
+        DaffMagentoApolloCacheableOperationsLinkGenerator,
+      ],
+    },
+  ],
 })
-export class DemoMagentoDriverModule {
-  // Magento
-  constructor(
-    apollo: Apollo,
-    httpLink: HttpLink,
-    private magentoLinkGenerator: DaffMagentoApolloCacheableOperationsLinkGenerator,
-  ) {
-
-    apollo.create({
-      link: ApolloLink.from([
-        onError(({ graphQLErrors, networkError }) => {
-          if (graphQLErrors) {
-            graphQLErrors.map(({ message, locations, path }) =>
-              console.log(
-                `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-              ),
-            );
-          }
-          if (networkError) {
-            console.log(`[Network error]: ${networkError}`);
-          }
-        }),
-        this.magentoLinkGenerator.getLink(),
-        httpLink.create({
-          uri: (<MagentoEnvironmentDriverConfiguration>environment.driver).domain + '/graphql',
-          withCredentials: false,
-        }),
-      ]),
-      cache,
-    });
-  }
-}
+export class DemoMagentoDriverModule {}

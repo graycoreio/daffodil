@@ -12,4 +12,4 @@ import { MockDaffCheckoutPlacedOrderFacade } from './mock-placed-order-facade';
     { provide: DaffCheckoutPlacedOrderFacade, useExisting: MockDaffCheckoutPlacedOrderFacade },
   ],
 })
-export class DaffCheckoutTestingModule {}
+export class DaffCheckoutStateTestingModule {}

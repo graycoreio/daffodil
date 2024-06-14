@@ -1,229 +1,130 @@
-import {
-  Component,
-  Input,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-  UntypedFormGroup,
-  UntypedFormBuilder,
-} from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
-import { DaffAddress } from '@daffodil/core';
+import { DaffCartShippingRate } from '@daffodil/cart';
+import { DaffCartShippingRateFactory } from '@daffodil/cart/testing';
+import { DaffGeographyTestingDriverModule } from '@daffodil/geography/driver/testing';
+import { DaffGeographyStateTestingModule } from '@daffodil/geography/state/testing';
 
-import { ShippingFormComponent } from './shipping-form.component';
-import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
-import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
+import { DemoCheckoutShippingFormComponent } from './shipping-form.component';
+import { DemoCheckoutShippingOptionsComponent } from '../shipping-options/components/shipping-options/shipping-options.component';
 
 @Component({
   template: `
-    <demo-shipping-form
-      [shippingAddress]="shippingAddressValue"
-      [editMode]="editModeValue"
-      (submitted)="submittedFunction($event)"></demo-shipping-form>
+    <demo-checkout-shipping-form
+      [selectedOption]="selectedOptionValue"
+      [options]="optionsValue"
+      (submitted)="submittedFunction($event)"></demo-checkout-shipping-form>
   `,
-
+  standalone: true,
+  imports: [
+    DemoCheckoutShippingFormComponent,
+  ],
 })
 class WrapperComponent {
-  shippingAddressValue: DaffAddress;
-  editModeValue: boolean;
-  submittedFunction(e) {};
+  selectedOptionValue: DaffCartShippingRate;
+  optionsValue: Array<DaffCartShippingRate>;
+  submittedFunction;
 }
 
-@Component({ selector: 'demo-address-form', template: '' })
-class MockAddressFormComponent {
-  @Input() formGroup: UntypedFormGroup;
-  @Input() submitted: boolean;
-}
-
-@Component({ selector: 'demo-shipping-options', template: '' })
-class MockShippingOptionsComponent {
-  @Input() formGroup: UntypedFormGroup;
-  @Input() submitted: boolean;
-}
-
-describe('ShippingFormComponent', () => {
+describe('DemoCheckoutShippingFormComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let shippingFormComponent: ShippingFormComponent;
-  let addressFormComponent: MockAddressFormComponent;
-  let shippingOptionsComponent: MockShippingOptionsComponent;
-  const addressFormFactorySpy = jasmine.createSpyObj('AddressFormFactory', ['create']);
-  let stubAddressFormGroup: UntypedFormGroup;
-  let shippingOptionFormService: ShippingOptionFormService;
-  let stubShippingAddress;
+  let shippingFormComponent: DemoCheckoutShippingFormComponent;
+  let shippingFactory: DaffCartShippingRateFactory;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        FormsModule,
-        ReactiveFormsModule,
-      ],
-      declarations: [
         WrapperComponent,
-        ShippingFormComponent,
-        MockAddressFormComponent,
-        MockShippingOptionsComponent,
-      ],
-      providers: [
-        { provide: AddressFormFactory, useValue: addressFormFactorySpy },
-        ShippingOptionFormService,
+        DaffGeographyStateTestingModule,
+        StoreModule.forRoot(),
+        EffectsModule.forRoot(),
+        DaffGeographyTestingDriverModule.forRoot(),
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WrapperComponent);
-    shippingOptionFormService = TestBed.inject(ShippingOptionFormService);
-    stubShippingAddress = {
-      firstname: '',
-      lastname: '',
-      street: '',
-      city: '',
-      state: '',
-      postcode: '',
-      telephone: '',
-    };
-    wrapper = fixture.componentInstance;
-    wrapper.editModeValue = false;
-    wrapper.shippingAddressValue = stubShippingAddress;
+    shippingFactory = TestBed.inject(DaffCartShippingRateFactory);
 
-    stubAddressFormGroup = TestBed.inject(AddressFormFactory).create(stubShippingAddress);
-    addressFormFactorySpy.create.and.returnValue(stubAddressFormGroup);
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
+    wrapper.submittedFunction = jasmine.createSpy();
+    wrapper.optionsValue = shippingFactory.createMany(3);
+    wrapper.selectedOptionValue = wrapper.optionsValue[0];
 
     fixture.detectChanges();
 
-    shippingFormComponent = fixture.debugElement.query(By.css('demo-shipping-form')).componentInstance;
-    addressFormComponent = fixture.debugElement.query(By.css('demo-address-form')).componentInstance;
-    shippingOptionsComponent = fixture.debugElement.query(By.css('demo-shipping-options')).componentInstance;
+    shippingFormComponent = fixture.debugElement.query(By.css('demo-checkout-shipping-form')).componentInstance;
   });
 
   it('should create', () => {
     expect(shippingFormComponent).toBeTruthy();
   });
 
-  it('should be able to take shippingAddress as input', () => {
-    expect(shippingFormComponent.shippingAddress).toEqual(wrapper.shippingAddressValue);
+  it('should be able to take options as input', () => {
+    expect(shippingFormComponent.options).toEqual(wrapper.optionsValue);
   });
 
-  it('should be able to take editMode as input', () => {
-    expect(shippingFormComponent.editMode).toEqual(wrapper.editModeValue);
+  it('should be able to take selectedOption as input', () => {
+    expect(shippingFormComponent.selectedOption).toEqual(wrapper.selectedOptionValue);
   });
 
-  describe('on <demo-address-form>', () => {
-
-    it('should set formGroup', () => {
-      expect(<UntypedFormGroup> addressFormComponent.formGroup).toEqual(<UntypedFormGroup> shippingFormComponent.form.controls['address']);
-    });
-
-    it('should set formSubmitted', () => {
-      expect(addressFormComponent.submitted).toEqual(shippingFormComponent.form.valid);
-    });
+  it('should init the form value to the selected option', () => {
+    expect(shippingFormComponent.form.value.id).toEqual(wrapper.selectedOptionValue.id);
   });
 
-  describe('on <demo-shipping-options>', () => {
-
-    it('should set formGroup', () => {
-      expect(<UntypedFormGroup> shippingOptionsComponent.formGroup).toEqual(<UntypedFormGroup> shippingFormComponent.form.controls.shippingOption);
-    });
-
-    it('should set submitted', () => {
-      expect(shippingOptionsComponent.submitted).toEqual(shippingFormComponent.form.valid);
-    });
-  });
-
-  describe('ngOnInit', () => {
+  describe('on <demo-checkout-shipping-options>', () => {
+    let shippingOptionsComponent: DemoCheckoutShippingOptionsComponent;
 
     beforeEach(() => {
-      shippingFormComponent.ngOnInit();
+      shippingOptionsComponent = fixture.debugElement.query(By.directive(DemoCheckoutShippingOptionsComponent)).componentInstance;
     });
 
-    it('should call addressFormFactory.create with shippingAddress', () => {
-      expect(addressFormFactorySpy.create).toHaveBeenCalledWith(stubShippingAddress);
+    it('should set formGroup', () => {
+      expect(shippingOptionsComponent.group).toEqual(shippingFormComponent.form);
     });
 
-    it('sets form.value.shippingOption to shippingOptionFormService.getShippingOptionFormGroup()', () => {
-      expect(shippingFormComponent.form.value.shippingOption).toEqual(shippingOptionFormService.getShippingOptionFormGroup().value);
+    it('should set options', () => {
+      expect(shippingOptionsComponent.options).toEqual(shippingFormComponent.options);
     });
   });
 
-  describe('onSubmit', () => {
-
+  describe('when the submit button is clicked', () => {
     describe('when form is valid', () => {
+      let option: DaffCartShippingRate;
 
       beforeEach(() => {
-        const formBuilder = new UntypedFormBuilder();
-        shippingFormComponent.form = formBuilder.group({
-          address: formBuilder.group({}),
-          shippingOption: formBuilder.group({ id: 'id' }),
-        });
+        option = wrapper.optionsValue[1];
+        shippingFormComponent.form.setValue({ id: option.id });
+        fixture.debugElement.query(By.css('.demo-checkout-shipping-form__button')).nativeElement.click();
         fixture.detectChanges();
-
-        spyOn(shippingFormComponent.submitted, 'emit');
-
-        shippingFormComponent.onSubmit(shippingFormComponent.form);
       });
 
-      it('should call submitted.emit', () => {
-        expect(shippingFormComponent.submitted.emit).toHaveBeenCalledWith(shippingFormComponent.form.value);
+      it('should emit submitted with the option', () => {
+        expect(wrapper.submittedFunction).toHaveBeenCalledWith(option);
       });
     });
 
     describe('when form is invalid', () => {
+      beforeEach(() => {
+        shippingFormComponent.form.setValue({ id: null });
+        fixture.debugElement.query(By.css('.demo-checkout-shipping-form__button')).nativeElement.click();
+        fixture.detectChanges();
+      });
 
       it('should not call submitted.emit', () => {
-        spyOn(shippingFormComponent.submitted, 'emit');
-
-        shippingFormComponent.onSubmit(shippingFormComponent.form);
-
-        expect(shippingFormComponent.submitted.emit).not.toHaveBeenCalled();
+        expect(wrapper.submittedFunction).not.toHaveBeenCalled();
       });
-    });
-  });
-
-  describe('when submitted event is emitted', () => {
-
-    let emittedValue;
-
-    beforeEach(() => {
-      emittedValue = 'emittedValue';
-      spyOn(wrapper, 'submittedFunction');
-
-      shippingFormComponent.submitted.emit(emittedValue);
-    });
-
-    it('should call the function passed in by the host component', () => {
-      expect(wrapper.submittedFunction).toHaveBeenCalledWith(emittedValue);
-    });
-  });
-
-  describe('when editMode is false', () => {
-
-    it('should set button text to Continue to Payment', () => {
-      const buttonText = fixture.debugElement.query(By.css('button')).nativeElement.innerHTML;
-      expect(buttonText).toEqual('Continue to Payment');
-    });
-  });
-
-  describe('when editMode is true', () => {
-
-    let buttonText;
-
-    beforeEach(() => {
-      shippingFormComponent.editMode = true;
-      fixture.detectChanges();
-      buttonText = fixture.debugElement.query(By.css('button')).nativeElement.innerHTML;
-    });
-
-    it('should set button text to Save', () => {
-      expect(buttonText).toEqual('Save');
     });
   });
 });

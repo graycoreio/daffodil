@@ -5,37 +5,17 @@ import {
   Input,
 } from '@angular/core';
 
-import { ShippingOption } from '@daffodil/checkout';
-import { DaffAddress } from '@daffodil/core';
-
-import { ShippingOptionsService } from '../shipping-options/components/services/shipping-options.service';
+import { DaffCartShippingRate } from '@daffodil/cart';
 
 @Component({
-  selector: 'demo-shipping-summary',
+  selector: 'demo-checkout-shipping-summary',
   templateUrl: './shipping-summary.component.html',
   styleUrls: ['./shipping-summary.component.scss'],
+  standalone: true,
 })
-export class ShippingSummaryComponent {
-
-  @Input() shippingAddress: DaffAddress;
-  @Input() selectedShippingOptionId: string;
-  @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
-
-  shippingOptions: ShippingOption[];
-
-  constructor(
-    private shippingOptionsService: ShippingOptionsService,
-  ) {
-    this.shippingOptions = shippingOptionsService.getShippingOptions();
-  }
-
-  getSelectedShippingOption() {
-    for(const option of this.shippingOptions) {
-      if(option.id === this.selectedShippingOptionId) {
-        return option.text;
-      }
-    }
-  }
+export class DemoCheckoutShippingSummaryComponent {
+  @Input() selectedShippingOption: DaffCartShippingRate;
+  @Output() editShippingInfo = new EventEmitter<void>();
 
   onEdit() {
     this.editShippingInfo.emit();

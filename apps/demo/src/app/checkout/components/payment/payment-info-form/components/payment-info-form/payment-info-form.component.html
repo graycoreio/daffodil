@@ -1,41 +1,36 @@
 <div class="demo-payment-info-form">
-  <daff-form-field class="demo-payment-info-form__name">
-    <input daff-input type="text" class="demo-payment-info-form__name"
-      placeholder="Cardholder's Name"
-      name="name"
-      [formControl]="formGroup.controls['name']"
-      [formSubmitted]="submitted"/>
-  </daff-form-field>
   <daff-form-field class="demo-payment-info-form__card-number">
     <input daff-input type="text" class="demo-payment-info-form__card-number"
       placeholder="Card Number"
       name="cardnumber"
-      [formControl]="formGroup.controls['cardnumber']"
-      [formSubmitted]="submitted"/>
+      [formControl]="formGroup.controls.cardnumber"
+    />
   </daff-form-field>
   <daff-form-field class="demo-payment-info-form__month">
     <select daff-native-select
       name="month"
-      [formControl]="formGroup.controls['month']"
-      [formSubmitted]="submitted">
+      [formControl]="formGroup.controls.month"
+    >
+      <option [value]="''">Month</option>
       <option *ngFor="let month of monthSelectValues" [value]="month.value">{{month.label}}</option>
     </select>
-    <daff-error-message *ngIf="formGroup.controls['month'].errors && (formGroup.controls['month'].touched || submitted)">This field is required.</daff-error-message>
+    <daff-error-message *ngIf="formGroup.controls.month.errors && formGroup.controls.month.touched">This field is required.</daff-error-message>
   </daff-form-field>
   <daff-form-field class="demo-payment-info-form__year">
     <select daff-native-select
       name="year"
-      [formControl]="formGroup.controls['year']"
-      [formSubmitted]="submitted">
+      [formControl]="formGroup.controls.year"
+    >
+      <option [value]="''">Year</option>
       <option *ngFor="let year of yearSelectValues" [value]="year.value">{{year.label}}</option>
     </select>
-    <daff-error-message *ngIf="formGroup.controls['year'].errors && (formGroup.controls['year'].touched || submitted)">This field is required.</daff-error-message>
+    <daff-error-message *ngIf="formGroup.controls.year.errors && formGroup.controls.year.touched">This field is required.</daff-error-message>
   </daff-form-field>
   <daff-form-field class="demo-payment-info-form__security-code">
     <input daff-input type="text" class="demo-payment-info-form__security-code"
       placeholder="Security Code (XXX)"
       name="securitycode"
-      [formControl]="formGroup.controls['securitycode']"
-      [formSubmitted]="submitted"/>
+      [formControl]="formGroup.controls.securitycode"
+    />
   </daff-form-field>
 </div>

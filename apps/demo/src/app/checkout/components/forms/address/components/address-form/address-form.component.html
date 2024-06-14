@@ -1,0 +1,73 @@
+<div class="demo-checkout-address-form">
+  <daff-form-field class="demo-checkout-address-form__first-name">
+    <input daff-input type="text"
+      placeholder="First Name"
+      name="firstname"
+      [formControl]="formGroup.controls.firstname"
+    />
+    <daff-error-message *ngIf="formGroup.controls.firstname.errors && formGroup.controls.firstname.touched">This field is required.</daff-error-message>
+  </daff-form-field>
+  <daff-form-field class="demo-checkout-address-form__last-name">
+    <input daff-input type="text"
+      placeholder="Last Name"
+      name="lastname"
+      [formControl]="formGroup.controls.lastname"
+    />
+    <daff-error-message *ngIf="formGroup.controls.lastname.errors && formGroup.controls.lastname.touched">This field is required.</daff-error-message>
+  </daff-form-field>
+  <daff-form-field class="demo-checkout-address-form__street">
+    <input daff-input type="text"
+      placeholder="Street Address*"
+      name="street"
+      [formControl]="formGroup.controls.street"
+    />
+      <daff-error-message *ngIf="formGroup.controls.street.errors && formGroup.controls.street.touched">This field is required.</daff-error-message>
+  </daff-form-field>
+  <daff-form-field class="demo-checkout-address-form__city">
+    <input daff-input type="text"
+      placeholder="City"
+      name="city"
+      [formControl]="formGroup.controls.city"
+    />
+    <daff-error-message *ngIf="formGroup.controls.city.errors && formGroup.controls.city.touched">This field is required.</daff-error-message>
+  </daff-form-field>
+  <daff-form-field class="demo-checkout-address-form__country">
+    <select daff-native-select
+      name="country"
+      [formControl]="formGroup.controls.country"
+    >
+      <option [value]="''">Country</option>
+      @for (country of countrySelectValues$ | async; track $index) {
+        <option [value]="country.id">{{country.name}}</option>
+      }
+    </select>
+    <daff-error-message *ngIf="formGroup.controls.region.errors && formGroup.controls.region.touched">This field is required.</daff-error-message>
+  </daff-form-field>
+  <daff-form-field class="demo-checkout-address-form__state">
+    <select daff-native-select
+      name="state"
+      [formControl]="formGroup.controls.region"
+    >
+      <option [value]="''">State</option>
+      @for (state of stateSelectValues$ | async; track $index) {
+        <option [value]="state.id">{{state.name}}</option>
+      }
+    </select>
+    <daff-error-message *ngIf="formGroup.controls.region.errors && formGroup.controls.region.touched">This field is required.</daff-error-message>
+  </daff-form-field>
+  <daff-form-field class="demo-checkout-address-form__postcode">
+    <input daff-input type="text"
+      placeholder="Zip Code"
+      name="postcode"
+      [formControl]="formGroup.controls.postcode"
+    />
+    <daff-error-message *ngIf="formGroup.controls.postcode.errors && formGroup.controls.postcode.touched">This field is required.</daff-error-message>
+    </daff-form-field>
+  <daff-form-field class="demo-checkout-address-form__telephone">
+    <input daff-input type="text"
+      placeholder="Phone Number"
+      name="telephone"
+      [formControl]="formGroup.controls.telephone"
+    />
+  </daff-form-field>
+</div>

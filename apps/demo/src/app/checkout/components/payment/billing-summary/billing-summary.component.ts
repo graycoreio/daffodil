@@ -3,15 +3,21 @@ import {
   Input,
 } from '@angular/core';
 
-import { DaffAddress } from '@daffodil/core';
+import { DaffCartAddress } from '@daffodil/cart';
+
+import { DemoGeographyAddressSummaryComponent } from '../../../../geography/components/address-summary/address-summary.component';
+
 
 @Component({
-  selector: 'demo-billing-summary',
+  selector: 'demo-checkout-billing-summary',
   templateUrl: './billing-summary.component.html',
   styleUrls: ['./billing-summary.component.scss'],
+  standalone: true,
+  imports: [
+    DemoGeographyAddressSummaryComponent,
+  ],
 })
-export class BillingSummaryComponent {
-
-  @Input() billingAddress: DaffAddress;
+export class DemoCheckoutBillingAddressSummaryComponent {
+  @Input() billingAddress: DaffCartAddress;
   @Input() billingAddressIsShippingAddress: boolean;
 }

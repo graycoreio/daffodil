@@ -1,17 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  UntypedFormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { DaffPaymentFactory } from '@daffodil/checkout/testing';
+import { DaffAuthorizeNetCreditCardFactory } from '@daffodil/authorizenet/testing';
 
 import { PaymentInfoFormFactory } from './payment-info-form.factory';
+import { PaymentInfoFormGroup } from '../models/payment-form.type';
 
-describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | PaymentInfoFormFactory', () => {
+describe('@daffodil/demo | PaymentInfoFormFactory', () => {
 
-  let paymentInfoFormFactory;
-  let paymentFactory: DaffPaymentFactory;
+  let formFactory: PaymentInfoFormFactory;
+  let paymentFactory: DaffAuthorizeNetCreditCardFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,17 +19,17 @@ describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | Pay
       providers: [PaymentInfoFormFactory],
     });
 
-    paymentInfoFormFactory = TestBed.inject(PaymentInfoFormFactory);
-    paymentFactory = TestBed.inject(DaffPaymentFactory);
+    formFactory = TestBed.inject(PaymentInfoFormFactory);
+    paymentFactory = TestBed.inject(DaffAuthorizeNetCreditCardFactory);
   });
 
   it('should be created', () => {
-    expect(paymentInfoFormFactory).toBeTruthy();
+    expect(formFactory).toBeTruthy();
   });
 
   describe('create', () => {
 
-    let result: UntypedFormGroup;
+    let result: PaymentInfoFormGroup;
     let paymentInfo;
 
     describe('when paymentInfo is null', () => {
@@ -39,11 +37,10 @@ describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | Pay
       beforeEach(() => {
         paymentInfo = null;
 
-        result = paymentInfoFormFactory.create(paymentInfo);
+        result = formFactory.create(paymentInfo);
       });
 
       it('should return the default FormGroup', () => {
-        expect(result.value.name).toEqual('');
         expect(result.value.cardnumber).toEqual('');
         expect(result.value.month).toEqual('');
         expect(result.value.year).toEqual('');
@@ -56,7 +53,7 @@ describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | Pay
       beforeEach(() => {
         paymentInfo = paymentFactory.create();
 
-        result = paymentInfoFormFactory.create(paymentInfo);
+        result = formFactory.create(paymentInfo);
       });
 
       it('should return a FormGroup with the paymentInfo values', () => {

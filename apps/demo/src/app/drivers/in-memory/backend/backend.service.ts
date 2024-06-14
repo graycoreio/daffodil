@@ -10,11 +10,10 @@ import { DaffInMemoryBackendAuthService } from '@daffodil/auth/driver/in-memory'
 import { DaffCart } from '@daffodil/cart';
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
 import { DaffInMemoryBackendCategoryService } from '@daffodil/category/driver/in-memory';
-import { DaffOrder } from '@daffodil/checkout';
-import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
 import { DaffInMemoryBackendGeographyService } from '@daffodil/geography/driver/in-memory';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/driver/in-memory';
+import { DaffOrder } from '@daffodil/order';
 import { DaffProduct } from '@daffodil/product';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 
@@ -25,7 +24,6 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
   constructor(
     private productTestingService: DaffInMemoryBackendProductService,
     private cartTestingService: DaffInMemoryBackendCartRootService,
-    private checkoutTestingService: DaffInMemoryBackendCheckoutService,
     private navigationTestingService: DaffInMemoryBackendNavigationService,
     private authTestingService: DaffInMemoryBackendAuthService,
     private geographyTestingService: DaffInMemoryBackendGeographyService,
@@ -40,8 +38,6 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
     const collectionName = reqInfo.collectionName;
     if (DaffInMemoryBackendCartRootService.COLLECTION_NAMES.indexOf(collectionName) > -1) {
       return this.cartTestingService.post(reqInfo);
-    } else if (collectionName === 'checkout') {
-      return this.checkoutTestingService.post(reqInfo);
     } else if (collectionName === 'auth') {
       return this.authTestingService.post(reqInfo);
     }
@@ -82,7 +78,6 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
     return {
       ...this.productTestingService.createDb(),
       ...this.cartTestingService.createDb(reqInfo),
-      ...this.checkoutTestingService.createDb(),
       ...this.navigationTestingService.createDb(),
     };
   }

@@ -1,0 +1,7 @@
+<form class="demo-checkout-shipping-address-form" [formGroup]="form" #ngForm="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="demo-checkout-shipping-address-form__title">
+    Shipping Address
+  </div>
+  <demo-checkout-address-form class="demo-checkout-shipping-address-form__address" [formGroup]="form"></demo-checkout-address-form>
+  <button type="submit" daff-button color="black" class="demo-checkout-shipping-address-form__button">Save and Continue</button>
+</form>

@@ -1,7 +1,5 @@
-<div class="demo-shipping-summary">
-  <div class="demo-shipping-summary__title">Shipping Details</div>
-  <demo-address-summary class="demo-shipping-summary__address" [address]="shippingAddress"></demo-address-summary>
-  <div class="demo-shipping-summary__subtitle">Shipping Option</div>
-  <div class="demo-shipping-summary__demo-shipping-option">{{getSelectedShippingOption()}}</div>
-  <a class="demo-shipping-summary__edit" (click)="onEdit()">Edit</a>
+<div class="demo-checkout-shipping-summary">
+  <div class="demo-checkout-shipping-summary__title">Shipping Details</div>
+  <div class="demo-checkout-shipping-summary__demo-shipping-option">{{selectedShippingOption.method_title}}</div>
+  <a class="demo-checkout-shipping-summary__edit" (click)="onEdit()">Edit</a>
 </div>
