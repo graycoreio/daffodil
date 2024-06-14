@@ -13,9 +13,6 @@ export * from './atoms/form/quantity-field/public_api';
 export * from './atoms/form/radio/public_api';
 export * from './atoms/form/form-label/public_api';
 
-// Molecules
-export * from './molecules/qty-dropdown/public_api';
-
 // Core
 export * from './core/public_api';
 
