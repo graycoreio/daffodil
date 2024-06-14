@@ -46,9 +46,3 @@ Heros are flexible enough to support grids within them.
 
 ### Hero with Two Columns
 <design-land-example-viewer-container example="hero-with-grid"></design-land-example-viewer-container>
-
-## Size
-The `size` property will be deprecated in v1.0.0. `compact` will be replaced by the `DaffCompactable` interface.
-
-## Layout
-The `layout` property will be deprecated in v1.0.0

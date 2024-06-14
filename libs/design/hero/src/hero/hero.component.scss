@@ -65,29 +65,6 @@
 		}
 	}
 
-	// centered will be deprecated in v1.0.0
-	&--centered {
-		#{$root}__title {
-			margin: 0 auto;
-			text-align: center;
-		}
-
-		#{$root}__subtitle {
-			margin: 24px auto 0;
-			text-align: center;
-		}
-	}
-
-	// small and compact will be deprecated in v1.0.0
-	&--small,
-	&--compact {
-		padding: 50px 25px;
-
-		@include layout.breakpoint(mobile) {
-			padding: 50px;
-		}
-	}
-
 	&.daff-compact {
 		padding: 48px 24px;
 

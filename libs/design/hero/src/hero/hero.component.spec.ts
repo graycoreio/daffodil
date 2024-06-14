@@ -14,18 +14,12 @@ import {
   DaffTextAlignment,
 } from '@daffodil/design';
 
-import {
-  DaffHeroComponent,
-  DaffHeroLayout,
-  DaffHeroSize,
-} from './hero.component';
+import { DaffHeroComponent } from './hero.component';
 
 @Component({
-  template: `<daff-hero [layout]="layout" [size]="size" [color]="color" [textAlignment]="textAlignment" [compact]="compact"></daff-hero>`,
+  template: `<daff-hero [color]="color" [textAlignment]="textAlignment" [compact]="compact"></daff-hero>`,
 })
 class WrapperComponent {
-  layout: DaffHeroLayout;
-  size: DaffHeroSize;
   color: DaffPalette;
   textAlignment: DaffTextAlignment;
   compact = false;
@@ -62,45 +56,6 @@ describe('@daffodil/design/hero | DaffHeroComponent', () => {
   describe('<daff-hero>', () => {
     it('should add a class of "daff-hero" to the host element', () => {
       expect(de.nativeElement.classList.contains('daff-hero')).toBeTruthy();
-    });
-  });
-
-  describe('setting the layout', () => {
-    it('should not set a default layout', () => {
-      expect(component.layout).toBeFalsy();
-      expect(de.nativeElement.classList.contains('daff-hero--centered')).toBeFalsy();
-    });
-
-    describe('when layout="centered"', () => {
-      it('should add a class of "daff-hero--centered" to the host element', () => {
-        wrapper.layout = 'centered';
-        fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-hero--centered')).toBeTruthy();
-      });
-    });
-  });
-
-  describe('setting the size', () => {
-    it('should not set a default size', () => {
-      expect(component.layout).toBeFalsy();
-      expect(de.nativeElement.classList.contains('daff-hero--small')).toBeFalsy();
-      expect(de.nativeElement.classList.contains('daff-hero--compact')).toBeFalsy();
-    });
-
-    describe('when size="small"', () => {
-      it('should add a class of "daff-hero--compact" to the host element', () => {
-        wrapper.size = 'small';
-        fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-hero--compact')).toBeTruthy();
-      });
-    });
-
-    describe('when size="compact"', () => {
-      it('should add a class of "daff-hero--compact" to the host element', () => {
-        wrapper.size = 'compact';
-        fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-hero--compact')).toBeTruthy();
-      });
     });
   });
 
