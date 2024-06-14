@@ -29,7 +29,6 @@ import * as fromDemoImageGallery from '../reducers/index';
 export class ImageGalleryComponent implements OnInit {
 
   @Input() images;
-  selectedImage$: Observable<string>;
 
   constructor(
     private store: Store<fromDemoImageGallery.State>,
@@ -37,7 +36,6 @@ export class ImageGalleryComponent implements OnInit {
 
   ngOnInit() {
     this.select(this.images[0].url);
-    this.selectedImage$ = this.store.pipe(select(fromDemoImageGallery.selectSelectedImage));
   }
 
   select(image: string) {
