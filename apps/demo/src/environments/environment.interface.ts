@@ -2,6 +2,8 @@
 // `ng build --configuration production` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { DaffAuthorizeNetConfig } from '@daffodil/authorizenet/driver';
+
 export const DemoDriverVariantEnum = {
   IN_MEMORY: 0,
   MAGENTO: 1,
@@ -15,6 +17,7 @@ export interface InMemoryEnviromentDriverConfiguration {
 export interface MagentoEnvironmentDriverConfiguration {
   variant: typeof DemoDriverVariantEnum.MAGENTO;
   domain: string;
+  anetConfig: DaffAuthorizeNetConfig;
 }
 
 export interface ShopifyEnviromentDriverConfiguration {
