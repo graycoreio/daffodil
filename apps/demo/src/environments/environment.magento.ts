@@ -13,8 +13,8 @@ export const environment: EnvironmentConfiguration = {
     domain: 'https://magento2.test',
     anetConfig: {
       // TODO: add these
-      clientKey: '',
-      apiLoginID: '',
+      clientKey: 'test',
+      apiLoginID: 'test',
     },
   },
 };
