@@ -11,12 +11,11 @@ import {
 } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
-import { DaffImageGalleryModule } from '@daffodil/design';
+import { DaffMediaGalleryModule } from '@daffodil/design/media-gallery';
 
 import { ImageGalleryComponent } from './image-gallery.component';
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
 import * as fromDemoImageGallery from '../reducers';
-
 
 const stubImages = [
   { url: '/assets/mh01-black_main.jpg', label: 'testlabel' },
@@ -39,7 +38,7 @@ describe('ImageGalleryComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffImageGalleryModule,
+        DaffMediaGalleryModule,
       ],
       declarations: [
         WrapperComponent,
@@ -62,7 +61,7 @@ describe('ImageGalleryComponent', () => {
     fixture.detectChanges();
 
     imageGalleryContainer = fixture.debugElement.query(By.css('demo-image-gallery-container')).componentInstance;
-    daffGalleryImages = fixture.debugElement.queryAll(By.css('daff-gallery-image'));
+    daffGalleryImages = fixture.debugElement.queryAll(By.css('daff-media-gallery'));
   });
 
   afterAll(() => store.resetSelectors());
@@ -75,18 +74,18 @@ describe('ImageGalleryComponent', () => {
     expect(imageGalleryContainer.images).toEqual(stubImages);
   });
 
-  it('should render a daff-gallery-image for every image in images', () => {
+  it('should render a daff-media-gallery for every image in images', () => {
     expect(daffGalleryImages.length).toEqual(stubImages.length);
   });
 
-  describe('on daff-gallery-image', () => {
-    describe('when daff-gallery-image is the selectedImage', () => {
+  describe('on daff-media-gallery', () => {
+    describe('when daff-media-gallery is the selectedImage', () => {
       it('should set selected to true', () => {
         expect(daffGalleryImages[activeImageIndex].componentInstance.selected).toBeTruthy();
       });
     });
 
-    describe('when daff-gallery-image is not the selectedImage', () => {
+    describe('when daff-media-gallery is not the selectedImage', () => {
       it('should set selected to false', () => {
         expect(daffGalleryImages[1].componentInstance.selected).toBeFalsy();
       });
