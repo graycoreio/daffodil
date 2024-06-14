@@ -71,10 +71,6 @@ export class DaffSidebarViewportBackdropComponent implements OnInit {
 	  }
   }
 
-  /**
-   * @deprecated
-   * Backdrop event that triggers when the backdrop element is clicked.
-   */
   @HostListener('click')
   onBackdropClicked(): void {
 	  this.backdropClicked.emit();
