@@ -19,40 +19,6 @@
 				}
 			}
 		}
-
-		// link and navigation deprecated in v1.0.0
-		&--link,
-		&--navigation {
-			a {
-				&:hover {
-					color: theming.daff-color($neutral, 80);
-				}
-			}
-		}
-
-		// deprecated in v1.0.0
-		&--navigation {
-			.daff-list-item {
-				&:hover {
-					background-color: theming.daff-illuminate($base, $neutral, 1);
-				}
-			}
-		}
-
-		// deprecated in v1.0.0
-		&--multi-line {
-			.daff-list-item {
-				&__content {
-					*:nth-child(1) { /* stylelint-disable-line scss/selector-nest-combinators */
-						color: $base-contrast;
-					}
-
-					*:nth-child(n + 2) { /* stylelint-disable-line scss/selector-nest-combinators */
-						color: theming.daff-illuminate($base-contrast, $neutral, 3);
-					}
-				}
-			}
-		}
 	}
 
 	.daff-nav-list {

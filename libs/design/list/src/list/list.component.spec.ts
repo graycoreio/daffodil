@@ -9,10 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import {
-  DaffListComponent,
-  DaffListMode,
-} from './list.component';
+import { DaffListComponent } from './list.component';
 
 @Component({
   template: `
@@ -20,9 +17,7 @@ import {
     <daff-nav-list></daff-nav-list>
   `,
 })
-class WrapperComponent {
-  mode: DaffListMode;
-}
+class WrapperComponent {}
 
 describe('@daffodil/design/list | DaffListComponent', () => {
   let wrapper: WrapperComponent;
@@ -76,37 +71,6 @@ describe('@daffodil/design/list | DaffListComponent', () => {
 
     it('should have a role of navigation', () => {
       expect(navList.role).toBe('navigation');
-    });
-  });
-
-  describe('setting the mode', () => {
-    it('should not set a default mode', () => {
-      expect(component.mode).toBeFalsy();
-      expect(de.nativeElement.classList.contains('daff-list--multi-line')).toBeFalsy();
-    });
-
-    describe('when mode="multi-line"', () => {
-      it('should add a class of "daff-list--multi-line" to the host element', () => {
-        wrapper.mode = 'multi-line';
-        fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-list--multi-line')).toBeTruthy();
-      });
-    });
-
-    describe('when mode="link"', () => {
-      it('should add a class of "daff-list--link" to the host element', () => {
-        wrapper.mode = 'link';
-        fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-list--link')).toBeTruthy();
-      });
-    });
-
-    describe('when mode="navigation"', () => {
-      it('should add a class of "daff-list--navigation" to the host element', () => {
-        wrapper.mode = 'navigation';
-        fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-list--navigation')).toBeTruthy();
-      });
     });
   });
 });

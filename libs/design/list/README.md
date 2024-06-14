@@ -20,10 +20,3 @@ For lists that have multiple lines per item, wrap each line appropriately with a
 To add an icon to a list item, use the `daffPrefix` or `daffSuffix` attributes for the appropriate placements.
 
 <design-land-example-viewer-container example="icon-list"></design-land-example-viewer-container>
-
-## Deprecation Notice
-The `mode` property will be deprecated in v1.0.0.
-
-- `mode="navigation"` is replaced with `<daff-nav-list>`.
-- `mode="link"` is replaced with `<daff-nav-list>`.
-- `mode="multiline"` is completely deprecated. Multi-line lists will be a natural result of adding multiple lines to a `<daff-list-item>`.
