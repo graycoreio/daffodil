@@ -4,27 +4,26 @@ import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffCartItem } from '@daffodil/cart';
-import {
-  DaffCartItemDelete,
-  DaffCartItemUpdate,
-} from '@daffodil/cart/state';
+import { DaffCartItemDelete } from '@daffodil/cart/state';
 import {
   DaffCartStateTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
 import {
-  DaffQtyDropdownModule,
-  DaffQtyDropdownComponent,
+  DaffQuantityFieldComponent,
+  DaffQuantityFieldModule,
 } from '@daffodil/design';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 
 import { CartItemComponent } from './cart-item.component';
+
 
 @Component({ template: '<demo-cart-item [item]="cartItemValue"></demo-cart-item>' })
 class WrapperComponent {
@@ -35,7 +34,7 @@ describe('CartItemComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let cartItemComponent;
-  let qtyDropdownComponent: DaffQtyDropdownComponent;
+  let quantityFieldComponent: DaffQuantityFieldComponent;
   let router: Router;
   let cartItemFactory: DaffCartItemFactory;
   let productImageFactory: DaffProductImageFactory;
@@ -46,8 +45,9 @@ describe('CartItemComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffQtyDropdownModule,
+        DaffQuantityFieldModule,
         DaffCartStateTestingModule,
+        ReactiveFormsModule,
       ],
       declarations: [
         CartItemComponent,
@@ -70,7 +70,7 @@ describe('CartItemComponent', () => {
 
     wrapper.cartItemValue = mockCartItem;
     cartItemComponent = fixture.debugElement.query(By.css('demo-cart-item'));
-    qtyDropdownComponent = fixture.debugElement.query(By.css('daff-qty-dropdown')).componentInstance;
+    quantityFieldComponent = fixture.debugElement.query(By.css('daff-quantity-field')).componentInstance;
 
     fixture.detectChanges();
   });
@@ -83,19 +83,8 @@ describe('CartItemComponent', () => {
     expect(cartItemComponent.componentInstance.item).toEqual(mockCartItem);
   });
 
-  it('renders a <daff-qty-dropdown>', () => {
-    expect(qtyDropdownComponent).not.toBeNull();
-  });
-
-  describe('on <daff-qty-dropdown>', () => {
-
-    it('sets qty', () => {
-      expect(qtyDropdownComponent.qty).toEqual(mockCartItem.qty);
-    });
-
-    it('sets id', () => {
-      expect(qtyDropdownComponent.id).toEqual(mockCartItem.item_id);
-    });
+  it('renders a <daff-quantity-field>', () => {
+    expect(quantityFieldComponent).not.toBeNull();
   });
 
   describe('redirectToProduct', () => {
@@ -124,16 +113,6 @@ describe('CartItemComponent', () => {
       fixture.debugElement.query(By.css('.demo-cart-item__name')).nativeElement.click();
 
       expect(cartItemComponent.componentInstance.redirectToProduct).toHaveBeenCalled();
-    });
-  });
-
-  describe('when the user changes the quantity of the item', () => {
-
-    it('should notify state of the quantity change', () => {
-      const newQuantity = 3;
-      qtyDropdownComponent.qtyChanged.emit(newQuantity);
-
-      expect(facade.dispatch).toHaveBeenCalledWith(new DaffCartItemUpdate(mockCartItem.item_id, { qty: newQuantity }));
     });
   });
 

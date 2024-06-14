@@ -223,13 +223,6 @@
           "data": {}
         },
         {
-          "title": "Quantity Dropdown",
-          "url": "qty-dropdown",
-          "id": "qty-dropdown",
-          "items": [],
-          "data": {}
-        },
-        {
           "title": "Sidebar",
           "url": "sidebar",
           "id": "sidebar",

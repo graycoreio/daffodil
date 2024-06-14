@@ -11,7 +11,13 @@
     <div class="demo-product__details">
       <div class="demo-product__qty">
         <span>Quantity</span>
-        <daff-qty-dropdown id="{{product.id}}" [qty]="qty" (qtyChanged)="onUpdateQty($event)"></daff-qty-dropdown>
+        <daff-form-field>
+          <daff-quantity-field
+            [formControl]="quantity"
+            name="quantity"
+            [id]="quantityId">
+          </daff-quantity-field>
+        </daff-form-field>
       </div>
       <div class="demo-product__button">
         <ng-content></ng-content>
