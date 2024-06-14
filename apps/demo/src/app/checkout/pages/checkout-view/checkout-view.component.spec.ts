@@ -350,7 +350,7 @@ describe('CheckoutViewComponent', () => {
   describe('on <daff-accordion-item>', () => {
 
     it('should set initiallyAction to false', () => {
-      expect(accordionItem.initiallyActive).toBeFalsy();
+      expect(accordionItem.initiallyExpanded).toBeFalsy();
     });
 
     describe('when cart is null', () => {

@@ -49,9 +49,6 @@ export class DaffAccordionItemComponent implements OnInit {
 
   @Input() id: string = this._daffAccordionItemId;
 
-  /** @deprecated in v1.0.0 in favor of `initiallyExpanded` */
-  @Input() initiallyActive: boolean;
-
   /** Whether or not the item is initiallyExpanded by default. */
   @Input() initiallyExpanded = false;
 
@@ -68,7 +65,6 @@ export class DaffAccordionItemComponent implements OnInit {
    * @docs-private
    */
   ngOnInit() {
-    this._open = this.initiallyActive ? this.initiallyActive : this._open;
     this._open = this.initiallyExpanded ? this.initiallyExpanded : this._open;
     this._animationState = getAnimationState(this._open);
   }

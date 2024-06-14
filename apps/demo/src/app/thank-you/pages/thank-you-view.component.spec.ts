@@ -138,7 +138,7 @@ describe('ThankYouViewComponent', () => {
   describe('on <daff-accordion-item>', () => {
 
     it('should set initiallyAction to false', () => {
-      expect(accordionItem.initiallyActive).toBeFalsy();
+      expect(accordionItem.initiallyExpanded).toBeFalsy();
     });
 
     it('should show the number of cart items in the accordion title', () => {
