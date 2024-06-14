@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import {
   DaffFormFieldModule,
@@ -11,6 +12,7 @@ import { CartItemComponent } from './cart-item.component';
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     DaffFormFieldModule,
     DaffQuantityFieldModule,
   ],
