@@ -14,22 +14,16 @@ import {
   DaffTextAlignment,
 } from '@daffodil/design';
 
-import {
-  DaffCalloutComponent,
-  DaffCalloutLayout,
-  DaffCalloutSize,
-} from './callout.component';
+import { DaffCalloutComponent } from './callout.component';
 
 @Component ({
   template: `
-    <daff-callout [color]="color" [layout]="layout" [size]="size" [textAlignment]="textAlignment" [compact]="compact"></daff-callout>
+    <daff-callout [color]="color" [textAlignment]="textAlignment" [compact]="compact"></daff-callout>
   `,
 })
 
 class WrapperComponent {
   color: DaffPalette;
-  layout: DaffCalloutLayout;
-  size: DaffCalloutSize;
   textAlignment: DaffTextAlignment;
   compact = false;
 }
@@ -78,36 +72,6 @@ describe('@daffodil/design/callout | DaffCalloutComponent', () => {
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
-    });
-  });
-
-  describe('setting the layout', () => {
-    describe('when layout="centered"', () => {
-      it('should add a class of "daff-callout--centered" to the host element', () => {
-        wrapper.layout = 'centered';
-        fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-callout--centered')).toBeTruthy();
-      });
-    });
-
-    it('should not set a default layout', () => {
-      expect(component.layout).toBeFalsy();
-      expect(de.nativeElement.classList.contains('daff-callout--centered')).toBeFalsy();
-    });
-  });
-
-  describe('setting the size', () => {
-    describe('when size="compact"', () => {
-      it('should add a class of "daff-callout--compact" to the host element', () => {
-        wrapper.size = 'compact';
-        fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-callout--compact')).toBeTruthy();
-      });
-    });
-
-    it('should not set a default size', () => {
-      expect(component.size).toBeFalsy();
-      expect(de.nativeElement.classList.contains('daff-callout--compact')).toBeFalsy();
     });
   });
 

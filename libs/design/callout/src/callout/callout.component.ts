@@ -20,22 +20,6 @@ import {
 } from '@daffodil/design';
 
 /**
- * @deprecated See {@link DaffTextAlignable}
- */
-export type DaffCalloutLayout = 'centered' | undefined;
-export enum DaffCalloutLayoutEnum {
-  Centered = 'centered'
-}
-
-/**
- * @deprecated See {@link DaffCompactable}
- */
-export type DaffCalloutSize = 'compact' | undefined;
-export enum DaffCalloutSizeEnum {
-  Compact = 'compact'
-}
-
-/**
  * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
  */
 class DaffCalloutBase {
@@ -58,16 +42,6 @@ const _daffCalloutBase = daffArticleEncapsulatedMixin(daffManageContainerLayoutM
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffCalloutComponent extends _daffCalloutBase implements DaffColorable, DaffTextAlignable, DaffCompactable {
-  /**
-   * @deprecated See {@link DaffTextAlignable}
-   */
-  @Input() layout: DaffCalloutLayout;
-
-  /**
-   * @deprecated See {@link DaffCompactable}
-   */
-  @Input() size: DaffCalloutSize;
-
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     super(elementRef, renderer);
   }
@@ -76,18 +50,4 @@ export class DaffCalloutComponent extends _daffCalloutBase implements DaffColora
    * @docs-private
    */
   @HostBinding('class.daff-callout') class = true;
-
-  /**
-   * @deprecated See {@link DaffTextAlignable}
-   */
-  @HostBinding('class.daff-callout--centered') get centered() {
-	  return this.layout === DaffCalloutLayoutEnum.Centered;
-  }
-
-  /**
-   * @deprecated See {@link DaffCompactable}
-   */
-  @HostBinding('class.daff-callout--compact') get compactClass() {
-	  return this.size === DaffCalloutSizeEnum.Compact;
-  }
 }
