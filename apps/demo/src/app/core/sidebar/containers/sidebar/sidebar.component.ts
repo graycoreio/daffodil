@@ -60,7 +60,7 @@ export class SidebarContainer implements OnInit {
     this.tree$ = this.navigationFacade.tree$;
     this.treeLoading$ = this.navigationFacade.loading$;
     this.treeErrors$ = this.navigationFacade.errors$;
-    this.navigationFacade.dispatch(new DaffNavigationLoad('2'));
+    this.navigationFacade.dispatch(new DaffNavigationLoad());
   }
 
   onClose() {

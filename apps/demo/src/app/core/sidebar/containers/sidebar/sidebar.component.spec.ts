@@ -89,7 +89,7 @@ describe('SidebarContainer', () => {
     it('should dispatch a DaffNavigationTreeLoad', () => {
       spyOn(navFacade, 'dispatch');
       component.ngOnInit();
-      expect(navFacade.dispatch).toHaveBeenCalledWith(new DaffNavigationLoad('2'));
+      expect(navFacade.dispatch).toHaveBeenCalledWith(new DaffNavigationLoad());
     });
   });
 
