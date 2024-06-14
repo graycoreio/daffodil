@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  ViewEncapsulation,
-} from '@angular/core';
+import { DebugElement } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -12,357 +6,361 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  provideMockStore,
-  MockStore,
-} from '@ngrx/store/testing';
-import {
-  Observable,
-  of,
-  BehaviorSubject,
-} from 'rxjs';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { BehaviorSubject } from 'rxjs';
 
-import { DaffCart } from '@daffodil/cart';
+import { DAFF_AUTHORIZENET_PAYMENT_KIND } from '@daffodil/authorizenet';
+import { DaffAuthorizeNetCreditCardFactory } from '@daffodil/authorizenet/testing';
+import {
+  DaffCart,
+  DaffCartPaymentMethod,
+  DaffCartShippingRate,
+} from '@daffodil/cart';
 import {
   DaffCartStateTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import {
+  DaffCartAddressFactory,
   DaffCartFactory,
   DaffCartItemFactory,
+  DaffCartPaymentFactory,
+  DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
+import { DaffAccordionItemComponent } from '@daffodil/design/accordion';
+import { DaffPersonalAddress } from '@daffodil/geography';
+import { DaffGeographyTestingDriverModule } from '@daffodil/geography/driver/testing';
+
+import { DemoCheckoutViewComponent } from './checkout-view.component';
+import { CartSummaryWrapperComponent } from '../../../cart/components/cart-summary-wrapper/cart-summary-wrapper.component';
 import {
-  ShippingContainer,
-  PaymentInfo,
-} from '@daffodil/checkout';
-import { DaffPaymentFactory } from '@daffodil/checkout/testing';
-import { DaffAddress } from '@daffodil/core';
-import { DaffAddressFactory } from '@daffodil/core/testing';
+  DemoCompleteAddressStep,
+  DemoCompleteBillingStep,
+  DemoCompleteShippingStep,
+} from '../../actions/checkout-step.actions';
+import { DemoCheckoutAddressForm } from '../../components/forms/address/models/address-form.type';
+import { DemoCheckoutBillingAddressSummaryComponent } from '../../components/payment/billing-summary/billing-summary.component';
+import { DemoCheckoutBillingFormGroup } from '../../components/payment/models/payment-form.type';
+import { DemoCheckoutPaymentFormComponent } from '../../components/payment/payment-form/payment-form.component';
+import { demoCheckoutPaymentInfoRequestDataTransform } from '../../components/payment/payment-info-form/transforms/request-data';
+import { DemoCheckoutPaymentSummaryComponent } from '../../components/payment/payment-summary/payment-summary.component';
+import { DemoCheckoutShippingFormComponent } from '../../components/shipping/shipping-form/shipping-form.component';
+import { DemoCheckoutShippingSummaryComponent } from '../../components/shipping/shipping-summary/shipping-summary.component';
+import { DemoCheckoutShippingAddressFormComponent } from '../../components/shipping-address/form/shipping-address-form.component';
+import { DemoCheckoutShippingAddressSummaryComponent } from '../../components/shipping-address/summary/shipping-address-summary.component';
 import {
-  DaffAccordionModule,
-  DaffAccordionItemComponent,
-} from '@daffodil/design/accordion';
-import { DaffContainerModule } from '@daffodil/design/container';
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
+  DemoCheckoutStep,
+  DemoCheckoutStepService,
+} from '../../step/public_api';
 
-import { CheckoutViewComponent } from './checkout-view.component';
-import { ShowPaymentView } from '../../actions/payment.actions';
-import * as fromDemoCheckout from '../../reducers/index';
-
-let stubShippingAddress;
-let stubPaymentInfo: PaymentInfo;
-let stubBillingAddress: DaffAddress;
-const stubIsShippingAddressValid = true;
-const stubSelectedShippingOptionIndex = 0;
-const stubShowPaymentView = true;
-const stubShowReviewView = true;
-const stubBillingAddressIsShippingAddress = false;
-
-@Component({ selector: 'demo-shipping', template: '' })
-class MockShippingComponent {
-  @Input() isShippingAddressValid: boolean;
-  @Input() shippingAddress: DaffAddress;
-  @Input() selectedShippingOptionId: number;
-  @Input() showPaymentView: boolean;
-  @Output() updateShippingAddress: EventEmitter<any> = new EventEmitter();
-  @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
-}
-
-@Component({ selector: 'demo-payment', template: '' })
-class MockPaymentComponent {
-  @Input() paymentInfo: PaymentInfo;
-  @Input() billingAddress: DaffAddress;
-  @Input() billingAddressIsShippingAddress: boolean;
-  @Output() updatePaymentInfo: EventEmitter<any> = new EventEmitter();
-  @Output() updateBillingAddress: EventEmitter<any> = new EventEmitter();
-  @Output() toggleBillingAddressIsShippingAddress: EventEmitter<any> = new EventEmitter();
-}
-
-@Component({ selector: 'demo-cart-summary-wrapper', template: '<ng-content>', encapsulation: ViewEncapsulation.None })
-class MockCartSummaryWrapperComponent {
-  @Input() cart: DaffCart;
-  @Input() loading: boolean;
-  @Input() cartTitle: string;
-}
-
-@Component({ selector: 'demo-place-order', template: '' })
-class MockPlaceOrderComponent {
-  @Input() cart: DaffCart;
-}
-
-// eslint-disable-next-line @angular-eslint/component-selector
-@Component({ selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer' })
-class MockShippingContainer {
-  isShippingAddressValid$: Observable<boolean> = of(stubIsShippingAddressValid);
-  shippingAddress$: Observable<DaffAddress> = of(stubShippingAddress);
-  selectedShippingOptionId$: Observable<number> = of(stubSelectedShippingOptionIndex);
-  updateShippingAddress = () => {};
-  selectShippingOption = () => {};
-}
-
-// eslint-disable-next-line @angular-eslint/component-selector
-@Component({ selector: '[billing-container]', template: '<ng-content></ng-content>', exportAs: 'BillingContainer' })
-class MockBillingContainer {
-  paymentInfo$: Observable<PaymentInfo> = of(stubPaymentInfo);
-  billingAddress$: Observable<DaffAddress> = of(stubBillingAddress);
-  billingAddressIsShippingAddress$: Observable<boolean> = of(stubBillingAddressIsShippingAddress);
-  updatePaymentInfo = (e) => {};
-  updateBillingAddress = (e) => {};
-  toggleBillingAddressIsShippingAddress = () => {};
-}
-
-describe('CheckoutViewComponent', () => {
-  let component: CheckoutViewComponent;
-  let fixture: ComponentFixture<CheckoutViewComponent>;
-  let shipping: MockShippingComponent;
-  let payment: MockPaymentComponent;
-  let cartSummaryWrappers;
-  let shippingContainer: ShippingContainer;
-  let billingContainer: MockBillingContainer;
+describe('DemoCheckoutViewComponent', () => {
+  let component: DemoCheckoutViewComponent;
+  let fixture: ComponentFixture<DemoCheckoutViewComponent>;
   let accordionItem: DaffAccordionItemComponent;
-  let placeOrders;
-  let store: MockStore<any>;
-  let addressFactory: DaffAddressFactory;
-  let paymentFactory: DaffPaymentFactory;
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
+  let addressFactory: DaffCartAddressFactory;
+  let creditCardFactory: DaffAuthorizeNetCreditCardFactory;
+  let shippingMethodFactory: DaffCartShippingRateFactory;
+  let paymentFactory: DaffCartPaymentFactory;
 
   let stubCart: DaffCart;
   let cartFacade: MockDaffCartFacade;
+  let currentStep$: BehaviorSubject<DemoCheckoutStep>;
+  let stepCompletion$: BehaviorSubject<Record<DemoCheckoutStep, boolean>>;
 
   beforeEach(waitForAsync(() => {
+    currentStep$ = new BehaviorSubject<DemoCheckoutStep>(DemoCheckoutStep.ADDRESS);
+    stepCompletion$ = new BehaviorSubject<Record<DemoCheckoutStep, boolean>>({
+      [DemoCheckoutStep.ADDRESS]: false,
+      [DemoCheckoutStep.SHIPPING]: false,
+      [DemoCheckoutStep.BILLING]: false,
+      [DemoCheckoutStep.REVIEW]: false,
+    });
+
     TestBed.configureTestingModule({
       imports: [
-        DaffAccordionModule,
         NoopAnimationsModule,
-        DaffContainerModule,
-        DaffLoadingIconModule,
         DaffCartStateTestingModule,
-      ],
-      declarations: [
-        CheckoutViewComponent,
-        MockShippingComponent,
-        MockShippingContainer,
-        MockCartSummaryWrapperComponent,
-        MockPaymentComponent,
-        MockPlaceOrderComponent,
-        MockBillingContainer,
+        DaffGeographyTestingDriverModule.forRoot(),
+        DemoCheckoutViewComponent,
+        StoreModule.forRoot(),
+        EffectsModule.forRoot(),
       ],
       providers: [
-        provideMockStore({}),
+        {
+          provide: DemoCheckoutStepService,
+          useValue: jasmine.createSpyObj(
+            'DemoCheckoutStepService',
+            [],
+            {
+              currentStep$,
+              stepCompletion$,
+            },
+          ),
+        },
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    store = TestBed.inject(MockStore);
     cartFacade = TestBed.inject(MockDaffCartFacade);
-    addressFactory = TestBed.inject(DaffAddressFactory);
-    paymentFactory = TestBed.inject(DaffPaymentFactory);
+    addressFactory = TestBed.inject(DaffCartAddressFactory);
+    creditCardFactory = TestBed.inject(DaffAuthorizeNetCreditCardFactory);
     cartFactory = TestBed.inject(DaffCartFactory);
     cartItemFactory = TestBed.inject(DaffCartItemFactory);
+    shippingMethodFactory = TestBed.inject(DaffCartShippingRateFactory);
+    paymentFactory = TestBed.inject(DaffCartPaymentFactory);
 
-    stubShippingAddress = addressFactory.create();
-    stubBillingAddress = addressFactory.create();
-    stubPaymentInfo = paymentFactory.create();
-    stubCart = cartFactory.create();
-    cartFacade.cart$ = new BehaviorSubject(stubCart);
-    cartFacade.loading$ = new BehaviorSubject(false);
+    spyOn(cartFacade, 'dispatch');
+    stubCart = cartFactory.create({
+      shipping_address: addressFactory.create(),
+      billing_address: addressFactory.create(),
+      payment: paymentFactory.create({
+        payment_info: creditCardFactory.create(),
+      }),
+    });
+    cartFacade.cart$.next(stubCart);
+    cartFacade.loading$.next(false);
 
-    store.overrideSelector(fromDemoCheckout.selectShowPaymentView, stubShowPaymentView);
-    store.overrideSelector(fromDemoCheckout.selectShowReviewView, stubShowReviewView);
-    spyOn(store, 'dispatch');
-
-    fixture = TestBed.createComponent(CheckoutViewComponent);
+    fixture = TestBed.createComponent(DemoCheckoutViewComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();
-
-    shipping = fixture.debugElement.query(By.css('demo-shipping')).componentInstance;
-    payment = fixture.debugElement.query(By.css('demo-payment')).componentInstance;
-    cartSummaryWrappers = fixture.debugElement.queryAll(By.css('demo-cart-summary-wrapper'));
-    shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
-    billingContainer = fixture.debugElement.query(By.css('[billing-container]')).componentInstance;
-    accordionItem = fixture.debugElement.query(By.css('daff-accordion-item')).componentInstance;
-    placeOrders = fixture.debugElement.queryAll(By.css('demo-place-order'));
-
-    fixture.detectChanges();
-  });
-
-  afterAll(() => {
-    store.resetSelectors();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render two place-order buttons', () => {
-    expect(placeOrders.length).toEqual(2);
-  });
+  describe('when the current step is address', () => {
+    let form: DebugElement;
 
-  describe('on <demo-shipping>', () => {
+    beforeEach(() => {
+      currentStep$.next(DemoCheckoutStep.ADDRESS);
+      fixture.detectChanges();
 
-    it('should set isShippingAddressValid', () => {
-      expect(shipping.isShippingAddressValid).toEqual(stubIsShippingAddressValid);
+      form = fixture.debugElement.query(By.directive(DemoCheckoutShippingAddressFormComponent));
     });
 
-    it('should set shippingAddress', () => {
-      expect(shipping.shippingAddress).toEqual(stubShippingAddress);
+    it('should render the shipping address form', () => {
+      expect(form).toBeTruthy();
     });
 
-    it('should set selectedShippingOptionId', () => {
-      expect(shipping.selectedShippingOptionId).toEqual(stubSelectedShippingOptionIndex);
-    });
+    describe('and when the form is submitted', () => {
+      let formComp: DemoCheckoutShippingAddressFormComponent;
+      let formValue: DemoCheckoutAddressForm;
 
-    it('should set showPaymentView', () => {
-      expect(shipping.showPaymentView).toEqual(stubShowPaymentView);
-    });
-  });
-
-  describe('when <demo-shipping> emits', () => {
-
-    describe('updateShippingAddress', () => {
-
-      it('should call function passed by ShippingContainer', () => {
-        spyOn(shippingContainer, 'updateShippingAddress');
-
-        shipping.updateShippingAddress.emit(stubShippingAddress);
-
-        expect(shippingContainer.updateShippingAddress).toHaveBeenCalledWith(stubShippingAddress);
+      beforeEach(() => {
+        formValue = {
+          firstname: 'firstname',
+          lastname: 'lastname',
+          street: 'street',
+          city: 'city',
+          country: 'country',
+          region: 'region',
+          postcode: 'postcode',
+          telephone: 'telephone',
+        };
+        formComp = form.componentInstance;
+        formComp.submitted.emit(formValue);
+        fixture.detectChanges();
       });
 
-      it('should dispatch a ShowPaymentView action', () => {
-        shipping.updateShippingAddress.emit(stubShippingAddress);
-
-        expect(store.dispatch).toHaveBeenCalledWith(new ShowPaymentView());
-      });
-    });
-
-    describe('selectShippingOption', () => {
-
-      it('should call function passed by ShippingContainer', () => {
-        spyOn(shippingContainer, 'selectShippingOption');
-
-        shipping.selectShippingOption.emit(String(stubSelectedShippingOptionIndex));
-
-        expect(shippingContainer.selectShippingOption).toHaveBeenCalledWith(String(stubSelectedShippingOptionIndex));
+      it('should trigger address step complete', () => {
+        expect(cartFacade.dispatch).toHaveBeenCalledWith(new DemoCompleteAddressStep({
+          ...formValue,
+          address_type: 'shipping',
+          id: null,
+        }));
       });
     });
   });
 
-  describe('on <demo-payment>', () => {
-
-    it('should set paymentInfo', () => {
-      expect(payment.paymentInfo).toEqual(stubPaymentInfo);
+  describe('when the address step has been completed', () => {
+    beforeEach(() => {
+      stepCompletion$.next({
+        [DemoCheckoutStep.ADDRESS]: true,
+        [DemoCheckoutStep.SHIPPING]: false,
+        [DemoCheckoutStep.BILLING]: false,
+        [DemoCheckoutStep.REVIEW]: false,
+      });
+      fixture.detectChanges();
     });
 
-    it('should set billingAddress', () => {
-      expect(payment.billingAddress).toEqual(stubBillingAddress);
-    });
-
-    it('should set billingAddressIsShippingAddress', () => {
-      expect(payment.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
+    it('should render the shipping address summary', () => {
+      expect(fixture.debugElement.query(By.directive(DemoCheckoutShippingAddressSummaryComponent))).toBeTruthy();
     });
   });
 
-  describe('when payment emits', () => {
+  describe('when the current step is shipping', () => {
+    let form: DebugElement;
 
-    describe('updatePaymentInfo', () => {
+    beforeEach(() => {
+      currentStep$.next(DemoCheckoutStep.SHIPPING);
+      fixture.detectChanges();
 
-      it('should call BillingContainer.updatePaymentInfo', () => {
-        spyOn(billingContainer, 'updatePaymentInfo');
-
-        payment.updatePaymentInfo.emit(stubPaymentInfo);
-
-        expect(billingContainer.updatePaymentInfo).toHaveBeenCalledWith(stubPaymentInfo);
-      });
+      form = fixture.debugElement.query(By.directive(DemoCheckoutShippingFormComponent));
     });
 
-    describe('updateBillingAddress', () => {
-
-      it('should call BillingContainer.updateBillingAddress', () => {
-        spyOn(billingContainer, 'updateBillingAddress');
-
-        payment.updateBillingAddress.emit(stubBillingAddress);
-
-        expect(billingContainer.updateBillingAddress).toHaveBeenCalledWith(stubBillingAddress);
-      });
+    it('should render the shipping form', () => {
+      expect(form).toBeTruthy();
     });
 
-    describe('toggleBillingAddressIsShippingAddress', () => {
+    describe('and when the form is submitted', () => {
+      let formComp: DemoCheckoutShippingFormComponent;
+      let formValue: DaffCartShippingRate;
 
-      it('should call BillingContainer.toggleBillingAddressIsShippingAddress', () => {
-        spyOn(billingContainer, 'toggleBillingAddressIsShippingAddress');
+      beforeEach(() => {
+        formValue = shippingMethodFactory.create();
+        formComp = form.componentInstance;
+        formComp.submitted.emit(formValue);
+        fixture.detectChanges();
+      });
 
-        payment.toggleBillingAddressIsShippingAddress.emit();
-
-        expect(billingContainer.toggleBillingAddressIsShippingAddress).toHaveBeenCalled();
+      it('should trigger shipping step complete', () => {
+        expect(cartFacade.dispatch).toHaveBeenCalledWith(new DemoCompleteShippingStep(formValue));
       });
     });
   });
 
-  describe('on first <demo-cart-summary-wrapper>', () => {
+  describe('when the shipping step has been completed', () => {
+    beforeEach(() => {
+      stepCompletion$.next({
+        [DemoCheckoutStep.ADDRESS]: true,
+        [DemoCheckoutStep.SHIPPING]: true,
+        [DemoCheckoutStep.BILLING]: false,
+        [DemoCheckoutStep.REVIEW]: false,
+      });
+      fixture.detectChanges();
+    });
+
+    it('should render the shipping summary', () => {
+      expect(fixture.debugElement.query(By.directive(DemoCheckoutShippingSummaryComponent))).toBeTruthy();
+    });
+  });
+
+  describe('when the current step is billing', () => {
+    let form: DebugElement;
+
+    beforeEach(() => {
+      currentStep$.next(DemoCheckoutStep.BILLING);
+      fixture.detectChanges();
+
+      form = fixture.debugElement.query(By.directive(DemoCheckoutPaymentFormComponent));
+    });
+
+    it('should render the payment form', () => {
+      expect(form).toBeTruthy();
+    });
+
+    describe('and when the form is submitted', () => {
+      let formComp: DemoCheckoutPaymentFormComponent;
+      let formValue: DemoCheckoutBillingFormGroup['value'];
+
+      beforeEach(() => {
+        formValue = {
+          paymentInfo: {
+            cardnumber: 'cardnumber',
+            month: 'month',
+            year: 'year',
+            securitycode: 'securitycode',
+          },
+          address: {
+            firstname: 'firstname',
+            lastname: 'lastname',
+            street: 'street',
+            city: 'city',
+            country: 'country',
+            region: 'region',
+            postcode: 'postcode',
+            telephone: 'telephone',
+          },
+          bsas: false,
+        };
+        formComp = form.componentInstance;
+        formComp.submitted.emit(formValue);
+        fixture.detectChanges();
+      });
+
+      it('should trigger billing step complete', () => {
+        expect(cartFacade.dispatch).toHaveBeenCalledWith(new DemoCompleteBillingStep({
+          kind: DAFF_AUTHORIZENET_PAYMENT_KIND,
+          data: demoCheckoutPaymentInfoRequestDataTransform(formValue.paymentInfo),
+        }, <DaffPersonalAddress>formValue.address));
+      });
+    });
+  });
+
+  describe('when the billing step has been completed', () => {
+    beforeEach(() => {
+      stepCompletion$.next({
+        [DemoCheckoutStep.ADDRESS]: true,
+        [DemoCheckoutStep.SHIPPING]: true,
+        [DemoCheckoutStep.BILLING]: true,
+        [DemoCheckoutStep.REVIEW]: false,
+      });
+      fixture.detectChanges();
+    });
+
+    it('should render the billing address summary', () => {
+      expect(fixture.debugElement.query(By.directive(DemoCheckoutBillingAddressSummaryComponent))).toBeTruthy();
+    });
+
+    it('should render the payment summary', () => {
+      expect(fixture.debugElement.query(By.directive(DemoCheckoutPaymentSummaryComponent))).toBeTruthy();
+    });
+  });
+
+  describe('on mobile <demo-cart-summary-wrapper>', () => {
+    let cartSummaryWrapper: CartSummaryWrapperComponent;
+
+    beforeEach(() => {
+      cartSummaryWrapper = fixture.debugElement.query(By.css('.demo-checkout__mobile-cart demo-cart-summary-wrapper')).componentInstance;
+    });
+
     it('should set cart', () => {
-      expect(cartSummaryWrappers[0].componentInstance.cart).toEqual(stubCart);
+      expect(cartSummaryWrapper.cart).toEqual(stubCart);
     });
 
     it('should set loading', () => {
-      expect(cartSummaryWrappers[0].componentInstance.loading).toEqual(false);
+      expect(cartSummaryWrapper.loading).toEqual(false);
     });
 
     it('should not set cartTitle', () => {
-      expect(cartSummaryWrappers[0].componentInstance.cartTitle).toBeUndefined();
+      expect(cartSummaryWrapper.cartTitle).toBeUndefined();
     });
   });
 
-  describe('on second <demo-cart-summary-wrapper>', () => {
+  describe('on desktop <demo-cart-summary-wrapper>', () => {
+    let cartSummaryWrapper: CartSummaryWrapperComponent;
+
+    beforeEach(() => {
+      cartSummaryWrapper = fixture.debugElement.query(By.css('.demo-checkout__desktop-cart demo-cart-summary-wrapper')).componentInstance;
+    });
 
     it('should set cart', () => {
-      expect(cartSummaryWrappers[1].componentInstance.cart).toEqual(stubCart);
+      expect(cartSummaryWrapper.cart).toEqual(stubCart);
     });
 
     it('should set loading', () => {
-      expect(cartSummaryWrappers[1].componentInstance.loading).toEqual(false);
-    });
-
-    it('should set cartTitle to REVIEW ORDER', () => {
-      expect(cartSummaryWrappers[1].componentInstance.cartTitle).toEqual('REVIEW ORDER');
-    });
-  });
-
-  describe('on third <demo-cart-summary-wrapper>', () => {
-
-    it('should set cart', () => {
-      expect(cartSummaryWrappers[2].componentInstance.cart).toEqual(stubCart);
-    });
-
-    it('should set loading', () => {
-      expect(cartSummaryWrappers[2].componentInstance.loading).toEqual(false);
+      expect(cartSummaryWrapper.loading).toEqual(false);
     });
 
     it('should set cartTitle to CART SUMMARY', () => {
-      expect(cartSummaryWrappers[2].componentInstance.cartTitle).toEqual('CART SUMMARY');
+      expect(cartSummaryWrapper.cartTitle).toEqual('CART SUMMARY');
     });
   });
 
   describe('on <daff-accordion-item>', () => {
+    beforeEach(() => {
+      accordionItem = fixture.debugElement.query(By.directive(DaffAccordionItemComponent)).componentInstance;
+    });
 
     it('should set initiallyAction to false', () => {
       expect(accordionItem.initiallyExpanded).toBeFalsy();
-    });
-
-    describe('when cart is null', () => {
-      beforeEach(() => {
-        cartFacade.cart$.next(null);
-
-        fixture.detectChanges();
-      });
-
-      it('should show zero cart items in the accordion title', () => {
-        expect(fixture.debugElement.query(By.css('[daffAccordionItemTitle]')).nativeElement.innerHTML).toEqual('Cart Summary (0)');
-      });
     });
 
     describe('when cart is not null', () => {
@@ -380,63 +378,6 @@ describe('CheckoutViewComponent', () => {
       it('should show the number of cart items in the accordion title', () => {
         expect(fixture.debugElement.query(By.css('[daffAccordionItemTitle]')).nativeElement.innerHTML).toEqual('Cart Summary (1)');
       });
-    });
-  });
-
-  describe('ngOnInit', () => {
-
-    it('should initialize showPaymentView$', () => {
-      component.showPaymentView$.subscribe((showPaymentView) => {
-        expect(showPaymentView).toEqual(stubShowPaymentView);
-      });
-    });
-
-    it('should initialize showReviewView$', () => {
-      component.showReviewView$.subscribe((showReviewView) => {
-        expect(showReviewView).toEqual(stubShowReviewView);
-      });
-    });
-  });
-
-  describe('when showPaymentView$ is false', () => {
-
-    it('should not render .demo-checkout__payment', () => {
-
-      component.showPaymentView$ = of(false);
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('.demo-checkout__payment'))).toBeNull();
-    });
-  });
-
-  describe('when showPaymentView$ is true', () => {
-
-    it('should render .demo-checkout__payment', () => {
-      component.showPaymentView$ = of(true);
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('.demo-checkout__payment'))).not.toBeNull();
-    });
-  });
-
-  describe('when showReviewView$ is false', () => {
-
-    it('should not render .demo-checkout__review', () => {
-
-      component.showReviewView$ = of(false);
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('.demo-checkout__review'))).toBeNull();
-    });
-  });
-
-  describe('when showReviewView$ is true', () => {
-
-    it('should render .demo-checkout__review', () => {
-      component.showReviewView$ = of(true);
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('.demo-checkout__review'))).not.toBeNull();
     });
   });
 

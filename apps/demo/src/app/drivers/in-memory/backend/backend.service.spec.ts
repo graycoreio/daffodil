@@ -2,7 +2,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
-import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
 import { DaffInMemoryBackendGeographyService } from '@daffodil/geography/driver/in-memory';
 import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/driver/in-memory';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
@@ -22,7 +21,6 @@ describe('@daffodil/demo | DemoInMemoryBackendService', () => {
       providers: [
         DaffInMemoryBackendCartRootService,
         DaffInMemoryBackendProductService,
-        DaffInMemoryBackendCheckoutService,
         DaffInMemoryBackendNavigationService,
         DaffInMemoryBackendGeographyService,
         DemoInMemoryBackendService,
@@ -270,7 +268,6 @@ describe('@daffodil/demo | DemoInMemoryBackendService', () => {
         productReturn,
       );
       spyOn(service['cartTestingService'], 'createDb').and.returnValue(cartReturn);
-      spyOn(service['checkoutTestingService'], 'createDb').and.returnValue(orderReturn);
       spyOn(service['navigationTestingService'], 'createDb').and.returnValue(navigationReturn);
 
       result = service.createDb(null);
@@ -282,10 +279,6 @@ describe('@daffodil/demo | DemoInMemoryBackendService', () => {
 
     it('should call cartTestingService.createDb', () => {
       expect(service['cartTestingService'].createDb).toHaveBeenCalled();
-    });
-
-    it('should call checkoutTestingService.createDb', () => {
-      expect(service['checkoutTestingService'].createDb).toHaveBeenCalled();
     });
 
     it('should call navigationTestingService.createDb', () => {

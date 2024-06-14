@@ -8,7 +8,6 @@ import { DaffAuthInMemoryDriverModule } from '@daffodil/auth/driver/in-memory';
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
 import { DaffCategoryInMemoryDriverModule } from '@daffodil/category/driver/in-memory';
 import { DaffInMemoryBackendCategoryService } from '@daffodil/category/driver/in-memory';
-import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffExternalRouterDriverInMemoryModule } from '@daffodil/external-router/driver/in-memory';
 import { DaffGeographyInMemoryDriverModule } from '@daffodil/geography/driver/in-memory';
 import {
@@ -32,7 +31,6 @@ import { DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG } from './external-router.
     DaffCompositeProductInMemoryDriverModule.forRoot(),
     DaffConfigurableProductInMemoryDriverModule.forRoot(),
     DaffCartInMemoryDriverModule.forRoot(),
-    DaffCheckoutInMemoryDriverModule.forRoot(),
     DaffNavigationInMemoryDriverModule.forRoot(),
     DaffNewsletterInMemoryDriverModule.forRoot(),
     DaffGeographyInMemoryDriverModule.forRoot(),

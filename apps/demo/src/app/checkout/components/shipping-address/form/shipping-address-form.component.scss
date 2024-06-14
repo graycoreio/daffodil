@@ -1,0 +1,20 @@
+@import 'utilities';
+
+.demo-checkout-shipping-address-form {
+	display: flex;
+	flex-direction: column;
+
+	&__title {
+		margin-bottom: 15px;
+		@include embolden();
+		@include uppercase();
+	}
+
+	&__button {
+		width: 100%;
+
+		@include breakpoint(mobile) {
+			width: 50%;
+		}
+	}
+}

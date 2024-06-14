@@ -1,7 +1,16 @@
+
+import { CommonModule } from '@angular/common';
 import {
   Component,
   Input,
 } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import {
+  DaffInputModule,
+  DaffNativeSelectModule,
+  DaffFormFieldModule,
+} from '@daffodil/design';
 
 import { PaymentInfoFormGroup } from '../../models/payment-form.type';
 
@@ -15,20 +24,25 @@ interface YearOption {
   value: any;
 };
 
+const currentYear = new Date().getFullYear();
+
 @Component({
   selector: 'demo-payment-info-form',
   templateUrl: './payment-info-form.component.html',
   styleUrls: ['./payment-info-form.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    DaffInputModule,
+    DaffNativeSelectModule,
+    DaffFormFieldModule,
+  ],
 })
-export class PaymentInfoFormComponent {
-
+export class DemoCheckoutPaymentInfoFormComponent {
   @Input() formGroup: PaymentInfoFormGroup;
-  @Input() submitted: boolean;
-
-  constructor() { }
 
   monthSelectValues: MonthOption[] = [
-    { label:'Month', value: '' },
     { label: '01', value: '01' },
     { label: '02', value: '02' },
     { label: '03', value: '03' },
@@ -43,10 +57,8 @@ export class PaymentInfoFormComponent {
     { label: '12', value: '12' },
   ];
 
-  yearSelectValues: YearOption[] = [
-    { label: 'Year', value: '' },
-    { label: '2021', value: '2021' },
-    { label: '2022', value: '2022' },
-    { label: '2023', value: '2023' },
-  ];
+  yearSelectValues: YearOption[] = Array(18).fill(null).map((_, i) => {
+    const year = (currentYear + i).toString();
+    return { label: year, value: year };
+  });
 }

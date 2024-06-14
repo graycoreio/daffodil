@@ -1,8 +1,5 @@
-<form class="demo-shipping-form" [formGroup]="form" #ngForm="ngForm" (ngSubmit)="onSubmit(form)">
-  <div class="demo-shipping-form__title">
-    Shipping Details
+  <div class="demo-checkout-shipping-form__title">
+    Shipping Method
   </div>
-  <demo-address-form class="demo-shipping-form__address" [formGroup]="form.controls.address" [submitted]="ngForm.submitted"></demo-address-form>
-  <demo-shipping-options class="demo-shipping-form__options" [formGroup]="form.controls.shippingOption" [submitted]="ngForm.submitted"></demo-shipping-options>
-  <button type="submit" daff-button color="black" class="demo-shipping-form__button">{{isEditMode() ? 'Save' : 'Continue to Payment'}}</button>
-</form>
+  <demo-checkout-shipping-options class="demo-checkout-shipping-form__options" [options]="options" [group]="form"></demo-checkout-shipping-options>
+  <button type="submit" daff-button color="black" class="demo-checkout-shipping-form__button" (click)="onSubmit()">Save and Continue to Payment</button>

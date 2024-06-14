@@ -8,14 +8,9 @@
 	@include breakpoint(big-tablet) {
 		grid-template-columns: 1fr 1fr;
 		grid-template-areas:
-			'         name          name'
 			'  card-number   card-number'
 			'        month          year'
 			'security-code security-code';
-
-		&__name {
-			grid-area: name;
-		}
 
 		&__card-number {
 			grid-area: card-number;

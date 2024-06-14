@@ -6,49 +6,50 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { PaymentInfo } from '@daffodil/checkout';
+import { DaffAuthorizeNetCreditCard } from '@daffodil/authorizenet';
+import { DaffAuthorizeNetCreditCardFactory } from '@daffodil/authorizenet/testing';
 
-import { PaymentSummaryComponent } from './payment-summary.component';
-
-const stubPaymentInfo: PaymentInfo = {
-  name: 'test',
-  cardnumber: 123,
-  month: 123,
-  year: 123,
-  securitycode: 123,
-};
-
+import { DemoCheckoutPaymentSummaryComponent } from './payment-summary.component';
 @Component({
-  template: '<demo-payment-summary ' +
-              '[paymentInfo]="paymentInfoValue" '+
-              '(editPaymentInfo)="editPaymentInfoFunction()"></demo-payment-summary>',
+  template: `
+  <demo-checkout-payment-summary
+    [paymentInfo]="paymentInfoValue"
+    (editPaymentInfo)="editPaymentInfoFunction()"
+  ></demo-checkout-payment-summary>`,
+  standalone: true,
+  imports: [
+    DemoCheckoutPaymentSummaryComponent,
+  ],
 })
 class WrapperComponent {
-  paymentInfoValue: PaymentInfo = stubPaymentInfo;
-  editPaymentInfoFunction() {};
+  paymentInfoValue: DaffAuthorizeNetCreditCard;
+  editPaymentInfoFunction;
 }
 
-describe('PaymentSummaryComponent', () => {
+describe('DemoCheckoutPaymentSummaryComponent', () => {
+  let creditCardFactory: DaffAuthorizeNetCreditCardFactory;
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let paymentSummaryComponent: PaymentSummaryComponent;
+  let paymentSummaryComponent: DemoCheckoutPaymentSummaryComponent;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         WrapperComponent,
-        PaymentSummaryComponent,
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
+    creditCardFactory = TestBed.inject(DaffAuthorizeNetCreditCardFactory);
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
+    wrapper.editPaymentInfoFunction = jasmine.createSpy();
+    wrapper.paymentInfoValue = creditCardFactory.create();
     fixture.detectChanges();
 
-    paymentSummaryComponent = fixture.debugElement.query(By.css('demo-payment-summary')).componentInstance;
+    paymentSummaryComponent = fixture.debugElement.query(By.css('demo-checkout-payment-summary')).componentInstance;
   });
 
   it('should create', () => {
@@ -56,39 +57,17 @@ describe('PaymentSummaryComponent', () => {
   });
 
   it('should be able to take paymentInfo', () => {
-    expect(paymentSummaryComponent.paymentInfo).toEqual(stubPaymentInfo);
+    expect(paymentSummaryComponent.paymentInfo).toEqual(wrapper.paymentInfoValue);
   });
 
   describe('when edit anchor tag is clicked', () => {
+    beforeEach(() => {
+      fixture.debugElement.query(By.css('a')).nativeElement.click();
+      fixture.detectChanges();
+    });
 
     it('should call onEdit', () => {
-      spyOn(paymentSummaryComponent, 'onEdit');
-
-      fixture.debugElement.query(By.css('a')).nativeElement.click();
-
-      expect(paymentSummaryComponent.onEdit).toHaveBeenCalled();
-    });
-  });
-
-  describe('onEdit', () => {
-
-    it('should call editPaymentInfo.emit', () => {
-      spyOn(paymentSummaryComponent.editPaymentInfo, 'emit');
-
-      paymentSummaryComponent.onEdit();
-
-      expect(paymentSummaryComponent.editPaymentInfo.emit).toHaveBeenCalled();
-    });
-  });
-
-  describe('when editPaymentInfo is emitted', () => {
-
-    it('should call editPaymentInfoFunction', () => {
-      spyOn(wrapper, 'editPaymentInfoFunction');
-
-      paymentSummaryComponent.editPaymentInfo.emit();
-
-      expect(wrapper.editPaymentInfoFunction).toHaveBeenCalled();
+      expect(wrapper.editPaymentInfoFunction).toHaveBeenCalledWith();
     });
   });
 });

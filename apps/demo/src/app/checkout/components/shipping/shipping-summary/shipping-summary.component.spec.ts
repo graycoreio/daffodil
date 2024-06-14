@@ -1,7 +1,4 @@
-import {
-  Component,
-  Input,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -9,65 +6,52 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffAddress } from '@daffodil/core';
-import { DaffAddressFactory } from '@daffodil/core/testing';
+import { DaffCartShippingRate } from '@daffodil/cart';
+import { DaffCartShippingRateFactory } from '@daffodil/cart/testing';
 
-import { ShippingSummaryComponent } from './shipping-summary.component';
-import { ShippingOptionsFactory } from '../shipping-options/components/factories/shipping-options.factory';
-import { ShippingOptionsService } from '../shipping-options/components/services/shipping-options.service';
-
-const daffodilAddressFactory = new DaffAddressFactory();
-const stubDaffodilAddress = daffodilAddressFactory.create();
+import { DemoCheckoutShippingSummaryComponent } from './shipping-summary.component';
 
 @Component({
   template: `
-    <demo-shipping-summary
-      [selectedShippingOptionId]="selectedShippingOptionIdValue"
-      [shippingAddress]="shippingAddressValue"
-      (editShippingInfo)="editShippingInfoFunction()"></demo-shipping-summary>
+    <demo-checkout-shipping-summary
+      [selectedShippingOption]="shippingValue"
+      (editShippingInfo)="editShippingInfoFunction()"></demo-checkout-shipping-summary>
   `,
+  standalone: true,
+  imports: [
+    DemoCheckoutShippingSummaryComponent,
+  ],
 })
 class WrapperComponent {
-  shippingAddressValue: DaffAddress = stubDaffodilAddress;
-  selectedShippingOptionIdValue = '0';
-  editShippingInfoFunction() {};
+  shippingValue: DaffCartShippingRate;
+  editShippingInfoFunction;
 }
 
-@Component({ selector: 'demo-address-summary', template: '' })
-class MockAddressSummaryComponent {
-  @Input() address: DaffAddress;
-}
-
-describe('ShippingSummaryComponent', () => {
+describe('DemoCheckoutShippingSummaryComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let shippingSummaryComponent: ShippingSummaryComponent;
-  let addressSummaryComponent: MockAddressSummaryComponent;
-  let shippingOptionsService: ShippingOptionsService;
+  let shippingSummaryComponent: DemoCheckoutShippingSummaryComponent;
+  let shippingFactory: DaffCartShippingRateFactory;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         WrapperComponent,
-        ShippingSummaryComponent,
-        MockAddressSummaryComponent,
-      ],
-      providers: [
-        ShippingOptionsService,
-        ShippingOptionsFactory,
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
+    shippingFactory = TestBed.inject(DaffCartShippingRateFactory);
+
     fixture = TestBed.createComponent(WrapperComponent);
-    shippingOptionsService = TestBed.inject(ShippingOptionsService);
     wrapper = fixture.componentInstance;
+    wrapper.shippingValue = shippingFactory.create();
+    wrapper.editShippingInfoFunction = jasmine.createSpy();
     fixture.detectChanges();
 
-    shippingSummaryComponent = fixture.debugElement.query(By.css('demo-shipping-summary')).componentInstance;
-    addressSummaryComponent = fixture.debugElement.query(By.css('demo-address-summary')).componentInstance;
+    shippingSummaryComponent = fixture.debugElement.query(By.directive(DemoCheckoutShippingSummaryComponent)).componentInstance;
   });
 
   it('should create', () => {
@@ -75,54 +59,16 @@ describe('ShippingSummaryComponent', () => {
   });
 
   it('should be able to take shippingAddress', () => {
-    expect(shippingSummaryComponent.shippingAddress).toEqual(stubDaffodilAddress);
-  });
-
-  it('should be able to take selectedShippingOptionId', () => {
-    expect(shippingSummaryComponent.selectedShippingOptionId).toEqual(wrapper.selectedShippingOptionIdValue);
-  });
-
-  it('should set shippingOptions', () => {
-    expect(shippingSummaryComponent.shippingOptions).toEqual(shippingOptionsService.getShippingOptions());
-  });
-
-  describe('on <demo-address-summary>', () => {
-
-    it('should set address', () => {
-      expect(addressSummaryComponent.address).toEqual(stubDaffodilAddress);
-    });
+    expect(shippingSummaryComponent.selectedShippingOption).toEqual(wrapper.shippingValue);
   });
 
   describe('when edit anchor tag is clicked', () => {
+    beforeEach(() => {
+      fixture.debugElement.query(By.css('a')).nativeElement.click();
+    });
 
     it('should call onEdit', () => {
-      spyOn(shippingSummaryComponent, 'onEdit');
-
-      fixture.debugElement.query(By.css('a')).nativeElement.click();
-
-      expect(shippingSummaryComponent.onEdit).toHaveBeenCalled();
-    });
-  });
-
-  describe('onEdit', () => {
-
-    it('should call editShippingInfo.emit', () => {
-      spyOn(shippingSummaryComponent.editShippingInfo, 'emit');
-
-      shippingSummaryComponent.onEdit();
-
-      expect(shippingSummaryComponent.editShippingInfo.emit).toHaveBeenCalled();
-    });
-  });
-
-  describe('when editShippingInfo is emitted', () => {
-
-    it('should call editShippingInfoFunction', () => {
-      spyOn(wrapper, 'editShippingInfoFunction');
-
-      shippingSummaryComponent.editShippingInfo.emit();
-
-      expect(wrapper.editShippingInfoFunction).toHaveBeenCalled();
+      expect(wrapper.editShippingInfoFunction).toHaveBeenCalledWith();
     });
   });
 });
