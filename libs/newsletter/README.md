@@ -4,7 +4,7 @@ The `@daffodil/newsletter` library allows you to quickly scaffold a "newsletter"
 
 ## Getting Started
 
-This overview assumes that you have already set up an Angular project and have gone through the [Newsletter installation guide](./installation.md). If you have not, we recommend you do that first.
+This overview assumes that you have already set up an Angular project and have gone through the [Newsletter installation guide](/libs/newsletter/guides/installation.md). If you have not, we recommend you do that first.
 
 ## Setting up your AppModule
 
@@ -48,7 +48,7 @@ export interface DaffNewsletterSubmission {
 }
 ```
 
-The `DaffNewsletterSubmission` is the default object and only contains a value of `email`. To learn how to customize your submission, read the [customizing submission data guide](./advanced/customizing-submission-data.md).
+The `DaffNewsletterSubmission` is the default object and only contains a value of `email`. To learn how to customize your submission, read the [customizing submission data guide](/libs/newsletter/guides/advanced/customizing-submission-data.md).
 
 ## Using the facade
 

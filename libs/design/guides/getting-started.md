@@ -1,5 +1,5 @@
 # Introduction
-Get started with `@daffodil/design`, an Angular component library built for ecommerce with accessibility in-mind. With these first steps, we warmly welcome you to a library that will help you build elegant and accessible user interfaces without having to do everything by hand. 
+Get started with `@daffodil/design`, an Angular component library built for ecommerce with accessibility in-mind. With these first steps, we warmly welcome you to a library that will help you build elegant and accessible user interfaces without having to do everything by hand.
 
 ## First Steps
 This tutorial is designed to touch upon the very basics of the `@daffodil/design` library. First things first, you will need to [create a new Angular project](https://angular.io/cli) and [install the library](#installation). By the end of this tutorial, you will have created a basic Angular app that renders a simple `DaffHeroComponent` with a title and subtitle.
@@ -55,7 +55,7 @@ There is a minimal required global style for `@daffodil/design` to operate effec
 @forward '@daffodil/design/scss/global';
 ```
 
-> For more information on our approach to these kinds of styles, see the ["Global Styles" guide.](./global-styles.md)
+> For more information on our approach to these kinds of styles, see the ["Global Styles" guide.](/libs/design/guides/global-styles.md)
 
 ### Add a Theme
 `@daffodil/design` is a themable component library. The components in the design library can be configured with customized colors in addition to a dark AND light mode for those same colors.

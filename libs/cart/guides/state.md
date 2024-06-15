@@ -135,11 +135,9 @@ This tutorial will walk you through Daffodil's Cart Resolution process which is 
 
 ### Supported Scenarios
 
-At the moment, the following scenarios are handled by the `DaffResolvedCartGuard` **for guest users only**.
+At the moment, the following scenarios are handled by the `DaffResolvedCartGuard`.
 
-> Note that currently, carts for authenticated users are not supported.
-
-[//]: # "TODO(griest024): remove note when authenticated carts are supported."
+> For customer cart support, use the [`@daffodil/cart-customer`](/libs/cart-customer/README.md) package.
 
 - Generating a new cart when a user visits the application for the very first time.
 - Retrieving a previously existing cart for a user upon page reload.
@@ -149,7 +147,7 @@ At the moment, the following scenarios are handled by the `DaffResolvedCartGuard
 
 ### Usage
 
-Assuming that you're already using the `DaffCartStateModule` and have previously selected a [driver](../../drivers.md) for `@daffodil/cart`, you can simply add the guard to your route's `canActivate` and the guard will handle the rest.
+Assuming that you're already using the `DaffCartStateModule` and have previously selected a [driver](/libs/cart/guides/drivers.md) for `@daffodil/cart`, you can simply add the guard to your route's `canActivate` and the guard will handle the rest.
 
 ```typescript
 import { Routes, RouterModule } from '@angular/router';
@@ -179,7 +177,7 @@ Upon adding the code, load up the route and take a look at the Network Requests 
 
 ### Configuration
 
-You can configure the route to which the `DaffResolvedCartGuard` navigates when an error occurs during resolution. See the [configuration guide](./configuration.md) and the `resolution` key of `DaffCartStateConfiguration` for more information.
+You can configure the route to which the `DaffResolvedCartGuard` navigates when an error occurs during resolution. See the [configuration guide](/libs/cart/guides/configuration.md) and the `resolution` key of `DaffCartStateConfiguration` for more information.
 
 ### Gotchas
 

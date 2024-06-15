@@ -2,9 +2,9 @@
 
 ## Interacting with Platforms
 
-Interacting with platforms through the Daffodil facade is the recommended method. See [using the facade](./state.md#using-the-facade).
+Interacting with platforms through the Daffodil facade is the recommended method. See [using the facade](/libs/cart/guides/state.md#using-the-facade).
 
-It is possible to interact with platforms by directly calling the drivers. While this requires more work to integrate into components, it offers greater flexibility. See [the drivers guide](./drivers.md) for more information.
+It is possible to interact with platforms by directly calling the drivers. While this requires more work to integrate into components, it offers greater flexibility. See [the drivers guide](/libs/cart/guides/drivers.md) for more information.
 
 ## Using Routing Guards
 
