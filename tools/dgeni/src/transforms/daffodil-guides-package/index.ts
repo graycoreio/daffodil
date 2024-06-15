@@ -11,7 +11,11 @@ import {
 import { daffodilBasePackage } from '../daffodil-base-package';
 
 //List of packages to be left out of Guide generation
-const excludedPackages = <const>['branding', 'docs-utils'];
+const excludedPackages = <const>[
+  'branding',
+  'docs-utils',
+  'theme-switch',
+];
 const excludedPackagesRegex = '!(' + excludedPackages.join('|') + ')';
 const excludedDocs = <const>['internal'];
 const excludedDocsRegex = '!(' + excludedDocs.join('|') + ')';
