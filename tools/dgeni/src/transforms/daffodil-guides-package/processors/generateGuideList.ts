@@ -32,12 +32,19 @@ export class GenerateGuideListProcessor implements Processor {
   }
 
   $process(docs: Document[]): Document[] {
+    // hardcode design path
+    const designDoc = docs.find((d) => d?.id === 'design');
+    if (designDoc) {
+      designDoc.path = 'design';
+    }
+    const docsWithoutDesignChildren = docs.filter((d) => !d.id?.startsWith('design/'));
+
     docs.push({
       docType: 'navigation-list',
       template: 'guide-list.template.json',
       path: this.config.outputFolder + '/guide-list.json',
       outputPath: this.config.outputFolder + '/guide-list.json',
-      data: generateNavigationTrieFromDocuments(docs.map(transformGuideDoc)),
+      data: generateNavigationTrieFromDocuments(docsWithoutDesignChildren.map(transformGuideDoc)),
     });
 
     return docs;
