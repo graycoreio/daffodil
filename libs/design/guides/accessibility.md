@@ -8,5 +8,5 @@ Accessible design is imperative to letting people of all abilities navigate and 
 
 Outlined below are core accessibility concepts that are encoded, either by hand or strictly enforced code, into the codebase. Further discussions of accessibility are also included in various other guides as appropriate.
 
-* [Color](./color#accessibility.md)
-* [Keyboard Navigation](./accessibility/keyboard-navigation.md)
+* [Color](/libs/design/guides/color.md#accessibility)
+* [Keyboard Navigation](/libs/design/guides/accessibility/keyboard-navigation.md)

@@ -19,6 +19,44 @@ hljs.registerLanguage('bash', bash);
 hljs.registerLanguage('graphql', graphql);
 hljs.registerLanguage('gql', graphql);
 
+enum DocKind {
+  GUIDE = 'GUIDE',
+  EXPLANATION = 'EXPLANATION',
+  PACKAGE = 'PACKAGE',
+  API = 'API',
+}
+const DOC_KIND_REGEX = {
+  [DocKind.GUIDE]: /\/docs\/guides\/(?<path>.+)\.md/,
+  [DocKind.EXPLANATION]: /\/docs\/explanations\/(?<path>.+)\.md/,
+  [DocKind.PACKAGE]: /\/libs\/(?<package>.+)\/guides\/(?<path>.+)\.md/,
+  [DocKind.API]: /\/libs\/(?<package>.+)\/(?<path>.+)\.ts/,
+};
+const getLinkUrl = (path: string): string => {
+  const kind = (<Array<keyof typeof DOC_KIND_REGEX>>Object.keys(DOC_KIND_REGEX)).find((k) => DOC_KIND_REGEX[k].test(path));
+  const match = DOC_KIND_REGEX[kind]?.exec(path);
+
+  if (!match) {
+    return path;
+  }
+
+  switch (kind) {
+    case DocKind.GUIDE:
+      return `/docs/guides/${match.groups.path}`;
+
+    case DocKind.EXPLANATION:
+      return `/docs/explanations/${match.groups.path}`;
+
+    case DocKind.PACKAGE:
+      return `/docs/packages/${match.groups.package}/${match.groups.path}`;
+
+    case DocKind.API:
+      return `/docs/api/${match.groups.package}/${match.groups.path}`;
+
+    default:
+      return path;
+  }
+};
+
 // marked.use(markedMermaid);
 marked.use(
   markedHighlight({
@@ -29,6 +67,14 @@ marked.use(
     },
   }),
 );
+
+marked.use({
+  walkTokens: (token) => {
+    if (token.type === 'link') {
+      token.href = getLinkUrl(token.href);
+    }
+  },
+});
 
 export class MarkdownCodeProcessor implements Processor {
   name = 'markdown';

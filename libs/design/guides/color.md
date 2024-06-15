@@ -13,7 +13,7 @@ We have encoded many of the WCAG requirements into our SASS mixins and functions
 To verify contrast ratios, we recommend using this [contrast ratio calculator](https://contrast-ratio.com/).
 
 ### Daffodil Guarantees
-As a result of our [accessibility considerations](./accessibility#color-and-contrast), we've ensured that the following are **guaranteed** and **strictly enforced (via development time errors)** in the `@daffodil/design` codebase:
+As a result of our [accessibility considerations](/libs/design/guides/accessibility.md#color-and-contrast), we've ensured that the following are **guaranteed** and **strictly enforced (via development time errors)** in the `@daffodil/design` codebase:
 
 * Palette steps "70" (e.g. 80 - 10) apart guarantee at least a 7:1 ratio.
 * Palette steps "60" (e.g. 70 - 10) apart guarantee at least a 4.5:1 ratio.

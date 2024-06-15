@@ -18,4 +18,4 @@ yarn add @daffodil/cart @daffodil/core @ngrx/store @ngrx/effects
 
 ## Post-Install
 
-Refer to [the getting started guide](./getting-started.md) for next steps.
+Refer to [the getting started guide](/libs/cart/guides/getting-started.md) for next steps.
