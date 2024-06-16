@@ -51,7 +51,7 @@ const base = new Package('daffodil-guides-base', [daffodilBasePackage])
   });
 
 export const packageDocsPackage = new Package('daffodil-package-docs', [base])
-  .processor(new GenerateGuideListProcessor())
+  .processor(new GenerateGuideListProcessor({ outputFolder: 'packages' }))
   .config((readFilesProcessor) => {
     readFilesProcessor.basePath = API_SOURCE_PATH;
     readFilesProcessor.sourceFiles = [

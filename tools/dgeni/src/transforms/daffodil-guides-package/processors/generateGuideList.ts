@@ -5,13 +5,8 @@ import {
 
 import { generateNavigationTrieFromDocuments } from '../helpers/navigation-trie';
 
-
 export interface GenerateGuideListConfiguration {
   outputFolder: string;
-};
-
-export const DefaultGenerateGuideListConfiguration: GenerateGuideListConfiguration = {
-  outputFolder: 'packages',
 };
 
 export const transformGuideDoc = (doc: Document): TransformedDocument => ({
@@ -25,11 +20,8 @@ export class GenerateGuideListProcessor implements Processor {
   name = 'generateGuideList';
   $runAfter = ['docs-processed'];
   $runBefore = ['rendering-docs'];
-  config: GenerateGuideListConfiguration;
 
-  constructor(config?: GenerateGuideListConfiguration) {
-    this.config = { ...DefaultGenerateGuideListConfiguration, ...config };
-  }
+  constructor(private config: GenerateGuideListConfiguration) {}
 
   $process(docs: Document[]): Document[] {
     // hardcode design path
@@ -42,8 +34,8 @@ export class GenerateGuideListProcessor implements Processor {
     docs.push({
       docType: 'navigation-list',
       template: 'guide-list.template.json',
-      path: this.config.outputFolder + '/guide-list.json',
-      outputPath: this.config.outputFolder + '/guide-list.json',
+      path: this.config.outputFolder + '/index.json',
+      outputPath: this.config.outputFolder + '/index.json',
       data: generateNavigationTrieFromDocuments(docsWithoutDesignChildren.map(transformGuideDoc)),
     });
 
