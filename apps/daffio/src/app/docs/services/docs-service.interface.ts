@@ -1,9 +1,11 @@
 import { Observable } from 'rxjs';
 
-import { DaffioDoc } from '../models/doc';
-import { DaffioDocList } from '../models/doc-list';
+import { DaffDocsNavList } from '@daffodil/docs-utils';
 
-export interface DaffioDocsServiceInterface<T extends DaffioDoc = DaffioDoc, V extends DaffioDocList = DaffioDocList> {
+import { DaffioDoc } from '../models/doc';
+
+export interface DaffioDocsServiceInterface<T extends DaffioDoc = DaffioDoc> {
   get(path: string): Observable<T>;
-  getPackageList(): Observable<V>;
+  getPackageList(): Observable<DaffDocsNavList>;
+  getGuidesList(): Observable<DaffDocsNavList>;
 }

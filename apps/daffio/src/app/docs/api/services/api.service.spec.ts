@@ -37,7 +37,7 @@ describe('DaffioApiService', () => {
 
       service.list().subscribe((docsList) => {
         expect(docsList).toEqual([]);
-        expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/api/api-list.json');
+        expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/api/index.json');
         done();
       });
     });

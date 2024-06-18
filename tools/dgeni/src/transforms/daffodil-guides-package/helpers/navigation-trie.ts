@@ -1,3 +1,5 @@
+import { DaffDocsNavList } from '@daffodil/docs-utils';
+
 import { capitalize } from './capitalize';
 import { sortedArrayInsert } from './sorted-array-insert';
 
@@ -5,7 +7,6 @@ export interface NavigationDocument {
   id: string;
   title: string;
   path: string;
-  tableOfContents: string;
 }
 
 /**
@@ -14,27 +15,12 @@ export interface NavigationDocument {
  * separated by the `/` character.
  */
 export class NavigationTrie {
-  id = '';
-  path?: string;
-  title = '';
-  tableOfContents = '';
-  children: NavigationTrie[] = [];
-
   constructor(
-    key: string = '',
-    title: string = '',
-    path: string = '',
-  	tableOfContents: string = '',
-	  children: NavigationTrie[] = [],
-  ) {
-    this.id = key;
-    this.title = title;
-    this.tableOfContents = '';
-    if (path) {
-      this.path = path;
-    }
-    this.children = children;
-  }
+    public id: string = '',
+    public title: string = '',
+    public path?: string,
+	  public children?: NavigationTrie[],
+  ) {}
 
   /**
    * Note that this is implemented recursively, so for a large number
@@ -68,7 +54,7 @@ export class NavigationTrie {
    *
    * This is slightly different than a typical trie append
    * as we assume a the element is a word node if
-   * its children is an empty array.
+   * its children is an empty array or missing.
    *
    * @param path
    * @param doc
@@ -78,15 +64,7 @@ export class NavigationTrie {
 
     //If no child exists, simply append the word
     if (!child) {
-      this.appendChild(new NavigationTrie(path, doc.title, doc.path, ''));
-      return;
-    }
-
-    //If a child already exists, but that child isn't a word.
-    if (child.children.length !== 0) {
-      child.title = doc.title;
-      child.tableOfContents = doc.tableOfContents;
-      child.appendChild(new NavigationTrie('', 'Overview', doc.path, ''));
+      this.appendChild(new NavigationTrie(path, doc.title, doc.path));
       return;
     }
 
@@ -115,10 +93,10 @@ export class NavigationTrie {
     if (!child) {
       child = new NavigationTrie(path, capitalize(path), '');
       this.appendChild(child);
-    } else if (child && child.children.length === 0) {
+    } else if (!child.children || child.children?.length === 0) {
       //If there is a child, and it is a 'word' node, transform that
       //node into a true word node.
-      const node = new NavigationTrie('', 'Overview', child.path, '');
+      const node = new NavigationTrie('', 'Overview', child.path);
       delete (child.path);
       child.appendChild(node);
     }
@@ -131,6 +109,9 @@ export class NavigationTrie {
    * @param element
    */
   appendChild(element: NavigationTrie) {
+    if (!this.children) {
+      this.children = [];
+    }
     sortedArrayInsert(element, this.children, (a, b) => {
       if (a.id > b.id) {
         return 1;
@@ -151,14 +132,14 @@ export class NavigationTrie {
    * @param path
    */
   getExistingChild(path: string): NavigationTrie | undefined {
-    return this.children.find((child) => child.id === path);
+    return this.children?.find((child) => child.id === path);
   }
 }
 
 /**
  * @param items
  */
-export const generateNavigationTrieFromDocuments = (items: NavigationDocument[] = []) => {
+export const generateNavigationTrieFromDocuments = (items: NavigationDocument[] = []): DaffDocsNavList => {
   const tree = new NavigationTrie();
   for (const doc of items) {
     tree.insert(doc.id, doc);

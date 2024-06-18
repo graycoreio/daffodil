@@ -9,11 +9,10 @@ export interface GenerateGuideListConfiguration {
   outputFolder: string;
 };
 
-export const transformGuideDoc = (doc: Document): TransformedDocument => ({
+export const transformGuideDoc = (doc: Document) => ({
   id: doc.id,
   title: doc.title,
   path: `docs/${doc.path}`,
-  tableOfContents: doc.tableOfContents,
 });
 
 export class GenerateGuideListProcessor implements Processor {
@@ -43,10 +42,4 @@ export class GenerateGuideListProcessor implements Processor {
   }
 }
 
-export interface TransformedDocument {
-  id: string;
-  title: string;
-  path: string;
-  tableOfContents: string;
-}
 

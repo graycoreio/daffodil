@@ -7,12 +7,11 @@ import {
   DaffioAssetFetchServiceInterface,
 } from '../../core/assets/fetch/service.interface';
 import { DaffioDoc } from '../models/doc';
-import { DaffioDocList } from '../models/doc-list';
 import { DaffioDocsFactory } from '../testing/factories/docs.factory';
 import { mockPackages } from '../testing/factories/packages-list.factory';
 
 describe('DaffioDocsService', () => {
-  let service: DaffioDocsService<DaffioDoc, DaffioDocList>;
+  let service: DaffioDocsService;
   let fetchAssetServiceSpy: jasmine.SpyObj<DaffioAssetFetchServiceInterface>;
   let doc: DaffioDoc;
   const mockGuideList = mockPackages;

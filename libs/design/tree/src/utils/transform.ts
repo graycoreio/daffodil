@@ -28,7 +28,7 @@ export const daffTransformTree = <
   while (queue.length > 0) {
     const { node, parent } = queue.shift();
 
-    const childItems = node[key];
+    const childItems = node[key] || [];
     for (const child of <T[]>childItems) {
       const transformedChild: DaffTreeData<V> = transformFn(child);
       parent.items.push(transformedChild);

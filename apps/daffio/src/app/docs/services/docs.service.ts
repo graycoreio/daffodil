@@ -4,7 +4,10 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { crossOsFilename } from '@daffodil/docs-utils';
+import {
+  crossOsFilename,
+  DaffDocsNavList,
+} from '@daffodil/docs-utils';
 
 import { DAFFIO_DOCS_PATH_TOKEN } from './docs-path.token';
 import { DaffioDocsServiceInterface } from './docs-service.interface';
@@ -13,12 +16,11 @@ import {
   DaffioAssetFetchServiceInterface,
 } from '../../core/assets/fetch/service.interface';
 import { DaffioDoc } from '../models/doc';
-import { DaffioDocList } from '../models/doc-list';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DaffioDocsService<T extends DaffioDoc = DaffioDoc, V extends DaffioDocList = DaffioDocList> implements DaffioDocsServiceInterface<T, V> {
+export class DaffioDocsService<T extends DaffioDoc = DaffioDoc> implements DaffioDocsServiceInterface<T> {
 
   constructor(
     @Inject(DaffioAssetFetchService) private fetchAsset: DaffioAssetFetchServiceInterface,
@@ -29,11 +31,11 @@ export class DaffioDocsService<T extends DaffioDoc = DaffioDoc, V extends Daffio
     return this.fetchAsset.fetch<T>(`${this.docsPath}${crossOsFilename(path)}.json`);
   }
 
-  getPackageList(): Observable<V> {
-    return this.fetchAsset.fetch<V>(`${this.docsPath}docs/packages/index.json`);
+  getPackageList(): Observable<DaffDocsNavList> {
+    return this.fetchAsset.fetch<DaffDocsNavList>(`${this.docsPath}docs/packages/index.json`);
   }
 
-  getGuidesList(): Observable<V> {
-    return this.fetchAsset.fetch<V>(`${this.docsPath}docs/guides/index.json`);
+  getGuidesList(): Observable<DaffDocsNavList> {
+    return this.fetchAsset.fetch<DaffDocsNavList>(`${this.docsPath}docs/guides/index.json`);
   }
 }

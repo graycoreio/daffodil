@@ -6,9 +6,10 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { DaffDocsNavList } from '@daffodil/docs-utils';
+
 import { DaffioDocsListComponent } from '../../../components/docs-list/docs-list.component';
 import { DaffioDoc } from '../../../models/doc';
-import { DaffioDocList } from '../../../models/doc-list';
 import { DaffioDocsService } from '../../../services/docs.service';
 
 
@@ -23,10 +24,10 @@ import { DaffioDocsService } from '../../../services/docs.service';
   ],
 })
 export class DaffioDocsPackagesListContainer implements OnInit {
-  packagesList$: Observable<DaffioDocList>;
+  packagesList$: Observable<DaffDocsNavList>;
 
   constructor(
-    private docService: DaffioDocsService<DaffioDoc, DaffioDocList>,
+    private docService: DaffioDocsService<DaffioDoc>,
   ) {}
 
   ngOnInit() {

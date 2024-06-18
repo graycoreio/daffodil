@@ -25,8 +25,8 @@ export class GenerateApiListProcessor implements Processor {
 	  docs.push({
 	    docType: 'api-list-data',
 	    template: 'api-list.template.json',
-	    path: this.config.outputFolder + '/api-list.json',
-	    outputPath: this.config.outputFolder + '/api-list.json',
+	    path: this.config.outputFolder + '/index.json',
+	    outputPath: this.config.outputFolder + '/index.json',
 	    data: docs
 	      .filter(doc => doc.docType === 'package')
 	      .map(doc => getPackageInfo(doc)),
@@ -42,7 +42,7 @@ function getPackageInfo(packageDoc) {
     title: packageDoc.name,
     docType: 'package',
     docTypeShorthand: 'pk',
-    items: packageDoc.exports
+    children: packageDoc.exports
       .filter(doc => doc.docType !== 'package')
       .map(getExportInfo),
   };

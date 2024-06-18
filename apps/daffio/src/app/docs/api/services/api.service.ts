@@ -21,6 +21,6 @@ export class DaffioApiService implements DaffioApiServiceInterface {
   ) {}
 
   list(): Observable<DaffioApiReference[]> {
-    return this.fetchAsset.fetch<DaffioApiReference[]>(`${this.docsPath}docs/api/api-list.json`);
+    return this.fetchAsset.fetch<DaffioApiReference[]>(`${this.docsPath}docs/api/index.json`);
   }
 }
