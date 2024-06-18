@@ -33,14 +33,14 @@ export class NavigationTrie {
    * @param doc
    * @returns void
    */
-  insert(path: string = '', doc: NavigationDocument): void {
+  insert(id: string = '', doc: NavigationDocument): void {
     //If we've hit a word
-    if (path.indexOf('/') === -1) {
-      this.appendWord(path, doc);
+    if (id.indexOf('/') === -1) {
+      this.appendWord(id, doc);
       return;
     }
 
-    const keyArray = path.split('/');
+    const keyArray = id.split('/');
     const key = keyArray.shift();
     const newKey = keyArray.join('/');
 
@@ -59,12 +59,12 @@ export class NavigationTrie {
    * @param path
    * @param doc
    */
-  appendWord(path: string, doc: NavigationDocument) {
-    const child = this.getExistingChild(path);
+  appendWord(id: string, doc: NavigationDocument) {
+    const child = this.getExistingChild(id);
 
     //If no child exists, simply append the word
     if (!child) {
-      this.appendChild(new NavigationTrie(path, doc.title, doc.path));
+      this.appendChild(new NavigationTrie(id, doc.title, doc.path));
       return;
     }
 
@@ -87,11 +87,11 @@ export class NavigationTrie {
    *
    * @param key
    */
-  appendBranch(path: string): NavigationTrie {
-    let child = this.getExistingChild(path);
+  appendBranch(id: string): NavigationTrie {
+    let child = this.getExistingChild(id);
     // If there isn't a child, simply append the branch.
     if (!child) {
-      child = new NavigationTrie(path, capitalize(path), '');
+      child = new NavigationTrie(id, capitalize(id), '');
       this.appendChild(child);
     } else if (!child.children || child.children?.length === 0) {
       //If there is a child, and it is a 'word' node, transform that
@@ -129,10 +129,10 @@ export class NavigationTrie {
    * Determines whether or not a node has a particular child.
    * If it does, it returns it, otherwise it returns false.
    *
-   * @param path
+   * @param id
    */
-  getExistingChild(path: string): NavigationTrie | undefined {
-    return this.children?.find((child) => child.id === path);
+  getExistingChild(id: string): NavigationTrie | undefined {
+    return this.children?.find((child) => child.id === id);
   }
 }
 

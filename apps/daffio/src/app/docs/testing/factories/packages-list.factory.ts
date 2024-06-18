@@ -11,19 +11,19 @@ export const mockPackages: DaffDocsNavList = {
         {
           id: '',
           title: 'Overview',
-          children: [],
+          children: undefined,
           path: 'packages/cart',
         },
         {
           id: 'install',
           title: 'Installation',
-          children: [],
+          children: undefined,
           path: 'packages/cart/install',
         },
         {
           id: 'testing',
           title: 'Testing',
-          children: [],
+          children: undefined,
           path: 'packages/cart/testing',
         },
       ],
@@ -31,19 +31,19 @@ export const mockPackages: DaffDocsNavList = {
     {
       id: 'category',
       title: '@daffodil/category',
-      children: [],
+      children: undefined,
       path: 'packages/category',
     },
     {
       id: 'checkout',
       title: '@daffodil/checkout',
-      children: [],
+      children: undefined,
       path: 'packages/checkout',
     },
     {
       id: 'core',
       title: '@daffodil/core',
-      children: [],
+      children: undefined,
       path: 'packages/core',
     },
     {
@@ -53,7 +53,7 @@ export const mockPackages: DaffDocsNavList = {
         {
           id: '',
           title: 'Overview',
-          children: [],
+          children: undefined,
           path: 'packages/design',
         },
         {
@@ -63,7 +63,7 @@ export const mockPackages: DaffDocsNavList = {
             {
               id: 'installation',
               title: 'Daffodil Theming Installation Guide',
-              children: [],
+              children: undefined,
               path: 'packages/design/theming/installation',
             },
           ],
@@ -77,13 +77,13 @@ export const mockPackages: DaffDocsNavList = {
         {
           id: '',
           title: 'Overview',
-          children: [],
+          children: undefined,
           path: 'packages/product',
         },
         {
           id: 'in-memory-driver',
           title: 'Using the InMemory Driver',
-          children: [],
+          children: undefined,
           path: 'packages/product/in-memory-driver',
         },
       ],
