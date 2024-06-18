@@ -10,7 +10,7 @@ describe('NavigationTrie', () => {
   describe('transformation of a NavigationDocument[] into a NavigationTrie', () => {
     it('should work with one document', () => {
       const documents: NavigationDocument[] = [
-        { id: 'cart', title: 'Overview', path: 'cart', tableOfContents: '' },
+        { id: 'cart', title: 'Overview', path: 'cart' },
       ];
 
       const expected = {
@@ -25,9 +25,9 @@ describe('NavigationTrie', () => {
 
     it('should work with nested documents', () => {
       const documents: NavigationDocument[] = [
-        { id: 'cart', title: '@daffodil/cart', path: 'cart', tableOfContents: '' },
-        { id: 'cart/install', title: 'Installing @daffodil/cart', path: 'cart/install', tableOfContents: '' },
-        { id: 'cart/testing', title: 'Testing Cart', path: 'cart/testing', tableOfContents: '' },
+        { id: 'cart', title: '@daffodil/cart', path: 'cart' },
+        { id: 'cart/install', title: 'Installing @daffodil/cart', path: 'cart/install' },
+        { id: 'cart/testing', title: 'Testing Cart', path: 'cart/testing' },
       ];
 
       const expected = {
@@ -59,9 +59,9 @@ describe('NavigationTrie', () => {
       }
 
       const documents: TitledDoc[] = [
-        { id: 'cart', title: '@daffodil/cart', path: 'cart', tableOfContents: '' },
-        { id: 'cart/install', title: 'Installing @daffodil/cart', path: 'cart/install', tableOfContents: '' },
-        { id: 'cart/testing', title: 'Testing Cart', path: 'cart/testing', tableOfContents: '' },
+        { id: 'cart', title: '@daffodil/cart', path: 'cart' },
+        { id: 'cart/install', title: 'Installing @daffodil/cart', path: 'cart/install' },
+        { id: 'cart/testing', title: 'Testing Cart', path: 'cart/testing' },
       ];
 
       const expected = {
@@ -91,9 +91,9 @@ describe('NavigationTrie', () => {
       }
 
       const documents: TitledDoc[] = [
-        { id: 'cart/install', title: 'Installing @daffodil/cart', path: 'cart/install', tableOfContents: '' },
-        { id: 'cart', title: '@daffodil/cart', path: 'cart', tableOfContents: '' },
-        { id: 'cart/testing', title: 'Testing Cart', path: 'cart/testing', tableOfContents: '' },
+        { id: 'cart/install', title: 'Installing @daffodil/cart', path: 'cart/install' },
+        { id: 'cart', title: '@daffodil/cart', path: 'cart' },
+        { id: 'cart/testing', title: 'Testing Cart', path: 'cart/testing' },
       ];
 
       const expected = {
@@ -121,8 +121,8 @@ describe('NavigationTrie', () => {
   describe('working with documents without parent documents', () => {
     it('create a tree with no titles', () => {
       const documents: NavigationDocument[] = [
-        { id: 'cart/install', title: 'Installing @daffodil/cart', path: 'cart/install', tableOfContents: '' },
-        { id: 'cart/testing', title: 'Testing Cart', path: 'cart/testing', tableOfContents: '' },
+        { id: 'cart/install', title: 'Installing @daffodil/cart', path: 'cart/install' },
+        { id: 'cart/testing', title: 'Testing Cart', path: 'cart/testing' },
       ];
 
       const expected = {
@@ -148,8 +148,8 @@ describe('NavigationTrie', () => {
 
   it('should throw an exception if two documents with the same path are inserted', () => {
     const documents: NavigationDocument[] = [
-      { id: 'cart/testing', title: 'Installing @daffodil/cart', path: 'cart/testing', tableOfContents: '' },
-      { id: 'cart/testing', title: 'Testing Cart', path: 'cart/testing', tableOfContents: '' },
+      { id: 'cart/testing', title: 'Installing @daffodil/cart', path: 'cart/testing' },
+      { id: 'cart/testing', title: 'Testing Cart', path: 'cart/testing' },
     ];
 
     expect(() => generateNavigationTrieFromDocuments(documents))

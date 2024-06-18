@@ -5,11 +5,11 @@ interface DaffDocsNavListBase {
 
 export interface DaffDocsNavListLeaf extends DaffDocsNavListBase {
   path: string;
-  tableOfContents: string;
   children: never;
 }
 
 export interface DaffDocsNavListBranch<T extends DaffDocsNavList = DaffDocsNavList> extends DaffDocsNavListBase {
+  path: never;
   children: Array<T>;
 }
 
