@@ -73,7 +73,7 @@ export const apiDocs =  new Package('checkout', [
     });
     computePathsProcessor.pathTemplates.push({
       docTypes: EXPORT_DOC_TYPES,
-      pathTemplate: 'docs/${moduleDoc.moduleFolder}/${name}',
+      pathTemplate: '${moduleDoc.moduleFolder}/${name}',
       outputPathTemplate: '${moduleDoc.moduleFolder}/${safeName}.json',
     });
   })
