@@ -1,6 +1,11 @@
 import { gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 
+import {
+  daffBuildFragmentDefinition,
+  daffBuildFragmentNameSpread,
+} from '@daffodil/core/graphql';
+
 
 const CATEGORY_NODE_FRAGMENT_NAME = 'categoryNode';
 
@@ -9,7 +14,7 @@ const CATEGORY_NODE_FRAGMENT_NAME = 'categoryNode';
  *
  * @param depth The maximum depth to which category children should be added to the fragment.
  */
-export function getCategoryNodeFragment(depth: number = 3): DocumentNode {
+export function getCategoryNodeFragment(depth: number = 3, extraFragments: Array<DocumentNode> = []): DocumentNode {
   const fragmentBody = new Array(depth).fill(null).reduce(acc => `
     ...${CATEGORY_NODE_FRAGMENT_NAME}
     children_count
@@ -34,10 +39,12 @@ export function getCategoryNodeFragment(depth: number = 3): DocumentNode {
       }
       position
       product_count
+      ${daffBuildFragmentNameSpread(...extraFragments)}
     }
 
     fragment recursiveCategoryNode on CategoryTree {
       ${fragmentBody}
     }
+    ${daffBuildFragmentDefinition(...extraFragments)}
   `;
 }

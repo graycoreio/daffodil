@@ -3,6 +3,7 @@ import {
   Inject,
 } from '@angular/core';
 import { Apollo } from 'apollo-angular';
+import { DocumentNode } from 'graphql';
 import {
   Observable,
   of,
@@ -24,6 +25,7 @@ import {
   MagentoNavigationDriverConfig,
 } from './config/public_api';
 import { GetCategoryTreeResponse } from './models/get-category-tree-response';
+import { DAFF_NAVIGATION_MAGENTO_DRIVER_EXTRA_FRAGMENTS } from './queries/fragments/public_api';
 import { daffMagentoGetCategoryTree } from './queries/get-category-tree';
 import { magentoNavigationGetRootCategoryIdQuery } from './queries/get-root-category-id/public_api';
 
@@ -38,6 +40,7 @@ export class DaffMagentoNavigationService implements DaffNavigationServiceInterf
   constructor(
     private apollo: Apollo,
     @Inject(DaffNavigationTransformer) private transformer: DaffNavigationTransformerInterface<DaffNavigationTree>,
+    @Inject(DAFF_NAVIGATION_MAGENTO_DRIVER_EXTRA_FRAGMENTS) private extraFragments: Array<DocumentNode>,
     @Inject(MAGENTO_NAVIGATION_DRIVER_CONFIG) private config: MagentoNavigationDriverConfig,
   ) {}
 
@@ -57,7 +60,7 @@ export class DaffMagentoNavigationService implements DaffNavigationServiceInterf
 
   get(categoryId: string): Observable<DaffNavigationTree> {
     return this.apollo.query<GetCategoryTreeResponse>({
-      query: daffMagentoGetCategoryTree(this.config.navigationTreeQueryDepth),
+      query: daffMagentoGetCategoryTree(this.config.navigationTreeQueryDepth, this.extraFragments),
       variables: {
         filters: { category_uid: { eq: categoryId }},
       },
