@@ -1,4 +1,5 @@
 @use 'utilities' as *;
+@use 'demo-theme' as *;
 
 .demo-cart-item-count {
 	color: daff-color($daff-neutral, 80);

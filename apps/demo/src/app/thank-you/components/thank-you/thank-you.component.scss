@@ -1,6 +1,6 @@
 @use 'utilities' as *;
-@import 'theme';
 @use '../../../../scss/mixins/dividers' as *;
+@use 'demo-theme' as *;
 
 .demo-thank-you {
 	padding: 25px 0;
