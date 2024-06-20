@@ -5,7 +5,6 @@ export { ArticleOlComponent } from './article-ol/article-ol.component';
 export { ArticleUlComponent } from './article-ul/article-ul.component';
 export { ArticleMetaComponent } from './article-meta/article-meta.component';
 export { ArticleLinkComponent } from './article-link/article-link.component';
-export { ArticleLeadComponent } from './article-lead/article-lead.component';
 export { ArticleBlockquoteComponent } from './article-blockquote/article-blockquote.component';
 export { ArticleTableComponent } from './article-table/article-table.component';
 
