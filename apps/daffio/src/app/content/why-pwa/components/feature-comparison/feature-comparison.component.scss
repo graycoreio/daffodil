@@ -13,11 +13,11 @@
 
   &__header {
     @include comparison-cell();
+    @include daff.embolden();
     align-items: flex-start;
     font-size: 0.75rem;
     padding: 15px 5px;
-    @include daff.embolden();
-    @include daff.uppercase();
+    text-transform: uppercase;
   
     @include daff.breakpoint(tablet) {
       padding: 25px 5px;

@@ -1,5 +1,5 @@
 @use 'demo-theme';
-@import 'utilities';
+@use 'utilities' as *;
 
 .demo-cart-item {
 	display: grid;

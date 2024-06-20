@@ -1,5 +1,6 @@
-@import 'utilities';
-@import 'theme';
+@use 'utilities' as *;
+@use 'demo-theme' as *;
+@use '../../../../scss/mixins/dividers' as *;
 
 .demo-cart-sidebar {
 	&__summary {
@@ -11,9 +12,9 @@
 	}
 
 	&__title {
-		display: none;
 		@include embolden();
-		@include uppercase();
+		display: none;
+		text-transform: uppercase;
 
 		@include breakpoint(big-tablet) {
 			display: block;

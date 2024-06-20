@@ -2,7 +2,7 @@
 // If you do, you will increase the final size of the css
 // footprint for each import. Obviously, this is undesirable.
 
-@use 'daff-global';
+@use 'global';
 @use 'demo-theme';
 @use 'theme' as daff-theme;
 

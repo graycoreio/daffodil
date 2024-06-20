@@ -1,4 +1,4 @@
-@import 'utilities';
+@use 'utilities' as *;
 
 .demo-checkout-payment-form {
 	display: flex;
@@ -10,9 +10,9 @@
 	}
 
 	&__title {
-		margin-bottom: 15px;
 		@include embolden();
-		@include uppercase();
+		margin-bottom: 15px;
+		text-transform: uppercase;
 	}
 
 	&__subtitle {

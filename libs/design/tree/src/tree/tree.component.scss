@@ -18,7 +18,7 @@
 
 .daff-tree-item {
   @include interactions.clickable();
-  @include t.single-line-ellipsis();
+  @include t.text-truncate();
   display: block;
   position: relative;
   background: none;

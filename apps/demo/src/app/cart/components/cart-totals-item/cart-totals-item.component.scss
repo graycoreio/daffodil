@@ -1,4 +1,4 @@
-@import 'utilities';
+@use 'utilities' as *;
 
 :host {
 	display: block;
@@ -14,7 +14,7 @@
 	}
 
 	&.emphasize { /* stylelint-disable-line selector-class-pattern */
-		@include uppercase();
 		@include embolden();
+		text-transform: uppercase;
 	}
 }

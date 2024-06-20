@@ -67,11 +67,11 @@
 
 	&__link {
 		@include daff.embolden();
-		@include daff.uppercase();
 		display: flex;
 		align-items: center;
 		gap: 8px;
 		text-decoration: none;
+		text-transform: uppercase;
 	}
 
 	&__copyright {

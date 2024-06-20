@@ -1,4 +1,4 @@
-@import 'utilities';
+@use 'utilities' as *;
 
 .demo-not-found {
 	padding-top: 50px;
@@ -8,9 +8,9 @@
 	}
 
 	&__text {
+		@include embolden();
 		margin-bottom: 50px;
 		text-align: center;
-		@include embolden();
-		@include uppercase();
+		text-transform: uppercase;
 	}
 }

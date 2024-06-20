@@ -1,5 +1,6 @@
-@import 'utilities';
-@import 'theme';
+@use 'utilities' as *;
+@use '../../../../scss/mixins/dividers' as *;
+@use 'demo-theme' as *;
 
 .demo-thank-you {
 	padding: 25px 0;
@@ -12,7 +13,7 @@
 
 	&__title {
 		@include embolden();
-		@include uppercase();
+		text-transform: uppercase;
 	}
 
 	&__body {

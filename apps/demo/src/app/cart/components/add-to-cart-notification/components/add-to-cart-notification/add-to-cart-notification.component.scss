@@ -1,5 +1,5 @@
 @use 'demo-theme';
-@import 'utilities';
+@use 'utilities' as *;
 
 .demo-add-to-cart-notification {
 	background-color: demo-theme.$white;
@@ -12,9 +12,9 @@
 	}
 
 	&__header {
-		margin-bottom: 25px;
 		@include embolden();
-		@include uppercase();
+		margin-bottom: 25px;
+		text-transform: uppercase;
 	}
 
 	&__check-icon {

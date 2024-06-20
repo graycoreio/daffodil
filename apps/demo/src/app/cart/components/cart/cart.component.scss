@@ -1,5 +1,6 @@
-@import 'utilities';
-@import 'theme';
+@use 'utilities' as *;
+@use 'demo-theme' as *;
+@use '../../../../scss/mixins/dividers' as *;
 
 :host {
 	display: grid;
@@ -26,7 +27,7 @@
 
 	&__title {
 		@include embolden();
-		@include uppercase();
+		text-transform: uppercase;
 	}
 
 	&__item-count {

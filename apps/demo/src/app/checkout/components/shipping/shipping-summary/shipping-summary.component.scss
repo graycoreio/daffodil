@@ -1,4 +1,4 @@
-@import 'utilities';
+@use 'utilities' as *;
 
 .demo-checkout-shipping-summary {
 	font-size: $small-font-size;
@@ -21,10 +21,10 @@
 	}
 
 	&__title {
+		@include embolden();
 		font-size: 1rem;
 		margin-bottom: 15px;
-		@include embolden();
-		@include uppercase();
+		text-transform: uppercase;
 		grid-area: title;
 	}
 
