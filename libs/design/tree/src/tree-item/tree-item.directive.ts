@@ -101,10 +101,13 @@ export class DaffTreeItemDirective {
   set node(val: DaffTreeFlatNode) {
     this._node = val;
     this.id = 'tree-' + this._node.id;
-    this.ariaExpanded = this._node._treeRef.open ? 'true' : 'false';
     this.depth = this._node.level;
     this.classParent = this._node.hasChildren;
     this.openClass = this._node._treeRef.open;
+
+    if(this._node.hasChildren) {
+      this.ariaExpanded = this._node._treeRef.open ? 'true' : 'false';
+    }
   }
 
   /**
