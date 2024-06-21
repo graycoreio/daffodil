@@ -32,6 +32,17 @@
 
 	@include stopsArticleCascade(h1) {
 		@include t.headline-lg;
+
+		+ p {
+			@include t.body-md;
+			font-weight: 400;
+
+			code {
+				font-size: 1.25rem;
+				line-height: 1.5rem;
+				font-weight: 400;
+			}
+		}
 	}
 
 	@include stopsArticleCascade(h2) {
@@ -92,22 +103,6 @@
 		font-size: t.$small-font-size;
 		line-height: 1rem;
 		padding: 0.25em;
-	}
-
-	&__title {
-		@include t.headline-lg;
-	}
-
-	&__lead {
-		@include t.body-md;
-		font-weight: 400;
-		margin: 0;
-
-		code {
-			font-size: 1.25rem;
-			line-height: 1.5rem;
-			font-weight: 400;
-		}
 	}
 
 	&__meta {
