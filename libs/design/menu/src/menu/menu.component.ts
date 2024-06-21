@@ -9,7 +9,11 @@ import {
   Component,
   ElementRef,
   HostBinding,
+  Input,
   NgZone,
+  OnChanges,
+  OnInit,
+  Optional,
 } from '@angular/core';
 import {
   filter,
@@ -18,7 +22,10 @@ import {
 
 import { daffFocusableElementsSelector } from '@daffodil/design';
 
+import { DaffMenuActivatorDirective } from '../menu-activator/menu-activator.directive';
 import { DaffMenuService } from '../services/menu.service';
+
+let uniqueMenuId = 0;
 
 @Component({
   selector: 'daff-menu',
@@ -30,6 +37,17 @@ export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
   @HostBinding('class.daff-menu') class = true;
   @HostBinding('tabindex') tabindex = 0;
   @HostBinding('attr.role') role = 'menu';
+
+  private _id = null;
+
+  /**
+   * The id of a menu that can be set by the user. It must be unique.
+   */
+  @Input() id = null;
+
+  @HostBinding('attr.id') get uniqueId() {
+    return this.id || this._id;
+  }
 
   private _focusTrap: ConfigurableFocusTrap;
 
@@ -56,6 +74,10 @@ export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
           }),
         );
     });
+
+    uniqueMenuId++;
+
+    this._id = 'daff-menu-' + uniqueMenuId;
   }
 
   ngAfterContentInit() {
