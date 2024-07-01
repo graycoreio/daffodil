@@ -1,17 +1,47 @@
 <h1>Notification</h1>
-<p>Notifications provides a way to display and communicate information related user actions within a page's content.</p>
+<p>Notifications provides a way to display and communicate information related to user actions within a page's content.</p>
 
 <h2>Overview</h2>
 <p>Notifications are used to display short messages that provide context in close promixity to a piece of content. They're often used to provide feedback or to notify users about an action they performed within a page. Notifications should not be used to display app-level alerts. Instead, use the <a routerLink="/toast">Toast</a> component.</p>
 
-<h3>Default notification</h3>
+<h3>Default Notification</h3>
 <design-land-example-viewer-container example="default-notification"></design-land-example-viewer-container>
 
-<h3>Dismissible notification</h3>
-<design-land-example-viewer-container example="dismissible-notification"></design-land-example-viewer-container>
+<h2>Supported Content Types</h2>
 
-<h3>Notification Statuses</h3>
+<h3>Icon</h3>
+<p>An icon can be used to give a user a brief overview of what the nofication is about. It can be added before the title and subtitle by using the <code>daffPrefix</code> selector.</p>
+
+<h3>Title</h3>
+<p>Title gives a quick overview of what the notification is about. It can be added by using the <code>daffNotificationTitle</code> selector.</p>
+
+<h3>Subtitle</h3>
+<p>Subtitle provides additional details about the notification that should be limited to one or two sentences. It can be added by using the <code>daffNotificationSubtitle</code> selector.</p>
+
+<h3>Actions</h3>
+<p>Buttons can be included in notifications to resolve the notification or navigate them to a page with more information. It can be added by using the <code>daffNotificationActions</code> selector.</p>
+
+<h2>Properties</h2>
+
+<h3>Statuses</h3>
+<p>The status color of a notification can be updated by using the <code>status</code> property.</p>
+
+<p>Supported statuses: <code>warn | danger | success</code></p>
+
+<h4>Notification with statuses</h4>
 <design-land-example-viewer-container example="notification-status"></design-land-example-viewer-container>
 
-<h3>Notification Orientations</h3>
+<h3>Orientation</h3>
+<p>Orientation dictates how a notification's content is stacked — <code>vertical</code> or <code>horizontal</code>. Notifications are oriented vertically by default. The orientation of a notification can be defined or updated by using the <code>orientation</code> property.</p>
+
 <design-land-example-viewer-container example="notification-orientations"></design-land-example-viewer-container>
+
+<h3>Dismissing a notification</h3>
+<p>Notifications are not dismissible by default. They typically persist on the page until a user takes action that resolves the notification.</p>
+
+<p>The close button is hidden by default but can be visible by setting the <code>dismissible</code> property to <code>true</code>. It should remain hidden if a notification has critical information for a user to read or interact with.</p>
+
+<design-land-example-viewer-container example="dismissible-notification"></design-land-example-viewer-container>
+
+<h2>Accessibility</h2>
+<p>Notifications sets <code>aria-live</code> to <code>polite</code> by default. It does not interrupt a user's current activity and waits until they are idle to make the announcement.</p>
