@@ -2,7 +2,7 @@
 Loading icons are used as an indicator of an event in progress.
 
 ## Overview
-Loading icons are used to indicate to users that an event is ocurring and is still in progress. They should only be used for short loading processes. For events that can take a considerable amount of time, use the [Progress Bar](../progress-bar/README.md) component instead.
+Loading icons are used to indicate to users that an event is ocurring and is still in progress. They should only be used for short loading processes. For events that can take a considerable amount of time, use the [Progress Bar](/libs/design/progress-bar/README.md) component instead.
 
 ## Diameter
 The diameter of a loading icon can be defined by using the `diameter` property. By default, the diameter is set to `60`.

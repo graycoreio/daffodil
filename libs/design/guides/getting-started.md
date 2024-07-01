@@ -62,7 +62,7 @@ There is a minimal required global style for `@daffodil/design` to operate effec
 
 > Are you excited by themes? So are we.
 
-See the [Theming Docs](../scss/theming/README.md)
+See the [Theming Docs](/libs/design/scss/theming/README.md)
 
 ### Use a Component
 In the `AppModule` of your Angular app, import the `DaffHeroModule` into the `NgModule`'s `imports` array.
