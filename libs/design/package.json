@@ -60,8 +60,8 @@
     "./scss/utilities": {
       "sass": "./scss/utilities.scss"
     },
-    "./scss/typography/classes": {
-      "sass": "./scss/typography/_classes.scss"
+    "./scss/typography": {
+      "sass": "./scss/typography/_index.scss"
     }
   }
 }
