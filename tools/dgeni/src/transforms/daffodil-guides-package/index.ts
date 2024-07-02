@@ -17,8 +17,6 @@ const excludedPackages = <const>[
   'theme-switch',
 ];
 const excludedPackagesRegex = '!(' + excludedPackages.join('|') + ')';
-const excludedDocs = <const>['internal'];
-const excludedDocsRegex = '!(' + excludedDocs.join('|') + ')';
 
 const base = new Package('daffodil-guides-base', [daffodilBasePackage])
   .factory('guideFileReader', guideFileReaderFactory)
@@ -55,7 +53,7 @@ export const packageDocsPackage = new Package('daffodil-package-docs', [base])
   .config((readFilesProcessor) => {
     readFilesProcessor.basePath = API_SOURCE_PATH;
     readFilesProcessor.sourceFiles = [
-      { include: [excludedPackagesRegex + '/README.md', excludedPackagesRegex + '/guides/**/*.md']},
+      { include: [excludedPackagesRegex + '*/**/README.md', excludedPackagesRegex + '/guides/**/*.md']},
     ];
   })
   .config((computePathsProcessor) => {
