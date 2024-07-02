@@ -28,8 +28,8 @@ enum DocKind {
 const DOC_KIND_REGEX = {
   [DocKind.GUIDE]: /\/docs\/guides\/(?<path>.+)\.md/,
   [DocKind.EXPLANATION]: /\/docs\/explanations\/(?<path>.+)\.md/,
-  [DocKind.PACKAGE]: /\/libs\/(?<package>.+)\/guides\/(?<path>.+)\.md/,
-  [DocKind.API]: /\/libs\/(?<package>.+)\/(?<path>.+)\.ts/,
+  [DocKind.PACKAGE]: /\/libs\/(?<path>.+)\.md/,
+  [DocKind.API]: /\/libs\/(?<path>.+)\.ts/,
 };
 const getLinkUrl = (path: string): string => {
   const kind = (<Array<keyof typeof DOC_KIND_REGEX>>Object.keys(DOC_KIND_REGEX)).find((k) => DOC_KIND_REGEX[k].test(path));
@@ -47,10 +47,10 @@ const getLinkUrl = (path: string): string => {
       return `/docs/explanations/${match.groups.path}`;
 
     case DocKind.PACKAGE:
-      return `/docs/packages/${match.groups.package}/${match.groups.path}`;
+      return `/docs/packages/${match.groups.path}`.replace(/\/(?:readme|src)/gi, '');
 
     case DocKind.API:
-      return `/docs/api/${match.groups.package}/${match.groups.path}`;
+      return `/docs/api/${match.groups.path}`;
 
     default:
       return path;
