@@ -12,12 +12,12 @@ export function guideFileReaderFactory() {
   return {
     name: 'guideFileReader',
     defaultPattern: /\.md$/,
-    getDocs: (fileInfo) => [{
+    getDocs: (fileInfo) => fileInfo.content ? [{
       docType: 'guide',
       title: extractTitle(fileInfo),
       tableOfContents: toc(fileInfo.content),
       content: fileInfo.content,
-    }],
+    }] : [],
   };
 }
 
