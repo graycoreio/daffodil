@@ -15,11 +15,17 @@
       "@daffodil/customer-order/driver": [
         "libs/customer-order/driver/src"
       ],
-      "@daffodil/customer-order/driver/magento": [
-        "libs/customer-order/driver/magento/src"
+      "@daffodil/customer-order/driver/magento/2-4-5": [
+        "libs/customer-order/driver/magento/2-4-5/src"
       ],
-      "@daffodil/customer-order/driver/magento/testing": [
-        "libs/customer-order/driver/magento/testing/src"
+      "@daffodil/customer-order/driver/magento/2-4-5/testing": [
+        "libs/customer-order/driver/magento/2-4-5/testing/src"
+      ],
+      "@daffodil/customer-order/driver/magento/2-4-6": [
+        "libs/customer-order/driver/magento/2-4-6/src"
+      ],
+      "@daffodil/customer-order/driver/magento/2-4-6/testing": [
+        "libs/customer-order/driver/magento/2-4-6/testing/src"
       ],
     }
   }

@@ -1,4 +1,4 @@
-import { DaffMagentoCustomerOrderExtraTransform } from '@daffodil/customer-order/driver/magento';
+import { DaffMagentoCustomerOrderExtraTransform } from '@daffodil/customer-order/driver/magento/2-4-6';
 import { DAFF_CUSTOMER_STORE_CREDIT_ORDER_TOTAL_TYPE } from '@daffodil/customer-store-credit';
 import { DaffOrder } from '@daffodil/order';
 
