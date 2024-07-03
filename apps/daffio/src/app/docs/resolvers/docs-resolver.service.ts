@@ -36,7 +36,7 @@ export class DocsResolver<T extends DaffioDoc, V extends DaffioDocList = DaffioD
       .pipe(
         take(1),
         catchError(() => {
-          this.router.navigate(['/404']);
+          this.router.navigate(['/404'], { skipLocationChange: true });
           return EMPTY;
         }),
       );
