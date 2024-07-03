@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MockMagentoCustomerOrder } from '@daffodil/customer-order/driver/magento/testing';
+import { MockMagentoCustomerOrder } from '@daffodil/customer-order/driver/magento/2-4-6/testing';
 import { MagentoCustomerOrderWithStoreCredit } from '@daffodil/customer-store-credit/driver/magento';
 import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 import {
