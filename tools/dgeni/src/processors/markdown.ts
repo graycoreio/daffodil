@@ -47,7 +47,7 @@ const getLinkUrl = (path: string): string => {
       return `/docs/explanations/${match.groups.path}`;
 
     case DocKind.PACKAGE:
-      return `/docs/packages/${match.groups.path}`.replace(/\/(?:readme|src)/gi, '');
+      return `/docs/packages/${match.groups.path}`.replaceAll(/\/(?:readme|src|guides)/gi, '');
 
     case DocKind.API:
       return `/docs/api/${match.groups.path}`;
