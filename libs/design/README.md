@@ -2,10 +2,10 @@
 `@daffodil/design` is an Angular component library built to support ecommerce use-cases. The library provides turn-key support for various features like:
 
 * [Pre-Built Components](#components)
-* [Theming](/libs/design/guides/theming.md)
-* [Typography](/libs/design/guides/typography.md)
+* [Theming](/libs/design/scss/theming/README.md)
+* [Typography](/libs/design/scss/typography/README.md)
 * [Accessibility](/libs/design/guides/accessibility.md)
-* [Color](/libs/design/guides/accessibility/color.md)
+* [Color](/libs/design/guides/color.md)
 
 ## Packages
 | Package | Version | Stability |
@@ -23,8 +23,8 @@ Refer to the [Upgrade Guide](/libs/design/guides/upgrading.md).
 ## Components
 
 ### Atoms
-* [Button](/libs/design/src/atoms/button/README.md)
-* [Container](/libs/design/src/atoms/container/README.md)
+* [Button](/libs/design/button/README.md)
+* [Container](/libs/design//container/README.md)
 * [Form](/libs/design/src/atoms/form/README.md)
   * [Checkbox](/libs/design/src/atoms/form/checkbox/README.md)
   * [Checkbox Set](/libs/design/src/atoms/form/checkbox-set/README.md)
@@ -36,24 +36,22 @@ Refer to the [Upgrade Guide](/libs/design/guides/upgrading.md).
   * [Radio Set](/libs/design/src/atoms/form/radio-set/README.md)
   * [Select](/libs/design/src/atoms/form/select/README.md)
   * [Quantity Field](/libs/design/src/atoms/form/quantity-field/README.md)
-* [Image](/libs/design/src/atoms/image/README.md)
-* [Loading Icon](/libs/design/src/atoms/loading-icon/README.md)
+* [Image](/libs/design/image/README.md)
+* [Loading Icon](/libs/design/loading-icon/README.md)
 
 ### Molecules
-* [Accordion](/libs/design/src/molecules/accordion/README.md)
-* [Article](/libs/design/src/molecules/article/README.md)
-* [Backdrop](/libs/design/src/molecules/backdrop/README.md)
-* [Callout](/libs/design/src/molecules/callout/README.md)
-* [Card](/libs/design/src/molecules/card/README.md)
-* [Hero](/libs/design/src/molecules/hero/README.md)
-* [Image List](/libs/design/src/molecules/image-list/README.md)
-* [Link Set](/libs/design/src/molecules/link-set/README.md)
-* [List](/libs/design/src/molecules/list/README.md)
-* [Media Gallery](/libs/design/src/molecules/media-gallery/README.md)
-* [Modal](/libs/design/src/molecules/modal/README.md)
-* [Navbar](/libs/design/src/molecules/navbar/README.md)
-* [Paginator](/libs/design/src/molecules/paginator/README.md)
-* [Sidebar](/libs/design/src/molecules/sidebar/README.md)
+* [Accordion](/libs/design/accordion/README.md)
+* [Article](/libs/design/article/README.md)
+* [Callout](/libs/design/callout/README.md)
+* [Card](/libs/design/card/README.md)
+* [Hero](/libs/design/hero/README.md)
+* [Link Set](/libs/design/link-set/README.md)
+* [List](/libs/design/list/README.md)
+* [Media Gallery](/libs/design/media-gallery/README.md)
+* [Modal](/libs/design/modal/README.md)
+* [Navbar](/libs/design/navbar/README.md)
+* [Paginator](/libs/design/paginator/README.md)
+* [Sidebar](/libs/design/sidebar/README.md)
 
 ## Behind the Scenes
 * [The Team](https://github.com/graycoreio/daffodil/graphs/contributors)
