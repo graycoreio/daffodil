@@ -1,4 +1,4 @@
-# analytics-provider-data-layer
+# @daffodil/analytics-provider-data-layer
 
 This library was generated with [Nx](https://nx.dev).
 
