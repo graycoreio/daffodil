@@ -24,7 +24,7 @@ Refer to the [Upgrade Guide](/libs/design/guides/upgrading.md).
 
 ### Atoms
 * [Button](/libs/design/button/README.md)
-* [Container](/libs/design//container/README.md)
+* [Container](/libs/design/container/README.md)
 * [Form](/libs/design/src/atoms/form/README.md)
   * [Checkbox](/libs/design/src/atoms/form/checkbox/README.md)
   * [Checkbox Set](/libs/design/src/atoms/form/checkbox-set/README.md)
