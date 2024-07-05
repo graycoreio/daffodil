@@ -190,6 +190,16 @@ describe('@daffodil/core/state | daffCreateOperationEntityStateAdapter', () => {
       result = adapter.operationFailed(entity.id, errors, adapter.list(entities, state));
     });
 
+    describe('when the entity does not exist in state', () => {
+      beforeEach(() => {
+        result = adapter.operationFailed(`not ${entity.id}`, errors, adapter.list(entities, state));
+      });
+
+      it('should not touch state', () => {
+        expect(result.entities[`not ${entity.id}`]).toBeUndefined();
+      });
+    });
+
     it('should indicate that the entity is in an error state', () => {
       expect(result.entities[entity.id].daffState).toEqual(DaffState.Error);
     });

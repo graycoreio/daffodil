@@ -169,11 +169,11 @@ export class DaffOperationEntityStateAdapter<T extends DaffIdentifiable = DaffId
   }
 
   operationFailed<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(key: string, errors: DaffStateError[], state: S): S {
-    return this.adapter.upsertOne({
+    return state.entities[key] ? this.adapter.upsertOne({
       ...state.entities[key],
       daffState: DaffState.Error,
       daffErrors: errors,
-    }, state);
+    }, state) : state;
   }
 
   resetState<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(key: string, state: S): S {
