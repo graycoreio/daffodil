@@ -66,7 +66,7 @@ describe('DocsResolver', () => {
 
     it('should redirect to the 404 page', () => {
       resolver.resolve(null, <RouterStateSnapshot>{ url: 'my/path' }).subscribe();
-      expect(router.navigate).toHaveBeenCalledWith(['/404']);
+      expect(router.navigate).toHaveBeenCalledWith(['/404'], { skipLocationChange: true });
     });
   });
 });

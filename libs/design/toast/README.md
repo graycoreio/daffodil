@@ -2,7 +2,7 @@
 Toasts are small messages designed to mimic push notifications. They are used to provide users with application level information.
 
 ## Overview
-Toasts should be used to display temporary messages about actions or events that occured or in need of attention, with no relation to content on a page. For messaging that provide context in close promixity to a piece of content within a page, use the [Notification](../notification/README.md) component.
+Toasts should be used to display temporary messages about actions or events that occured or in need of attention, with no relation to content on a page. For messaging that provide context in close promixity to a piece of content within a page, use the [Notification](/libs/design/notification/README.md) component.
 
 ### Basic Toast
 <design-land-article-encapsulated>
@@ -53,7 +53,7 @@ The following configurations are available in the `DaffToastService`:
 | dismissible  | boolean | Allows a toast to be dismissible via a close button | true |
 | duration  | number | The duration in milliseconds that a toast is visible before it's dismissed | 5000 |
 
-The `actions` configurations are based on the properties of the `DaffButtonComponent` (view [Button Documentation](../src/atoms/button/README.md)) with the addition of `data` and `eventEmitter`.
+The `actions` configurations are based on the properties of the `DaffButtonComponent` (view [Button Documentation](/libs/design/button/README.md)) with the addition of `data` and `eventEmitter`.
 
 ### Dismissal
 A toast can be dismissed via a timed duration, a close button, or the `ESC` key.
