@@ -34,7 +34,7 @@ Refer to the [Upgrade Guide](/libs/design/guides/upgrading.md).
   * [Input](/libs/design/src/atoms/form/input/README.md)
   * [Radio](/libs/design/src/atoms/form/radio/README.md)
   * [Radio Set](/libs/design/src/atoms/form/radio-set/README.md)
-  * [Select](/libs/design/src/atoms/form/select/README.md)
+  * [Native Select](/libs/design/src/atoms/form/native-select/README.md)
   * [Quantity Field](/libs/design/src/atoms/form/quantity-field/README.md)
 * [Image](/libs/design/image/README.md)
 * [Loading Icon](/libs/design/loading-icon/README.md)
