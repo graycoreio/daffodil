@@ -17,8 +17,11 @@ import {
   DaffPrefixable,
   DaffPrefixDirective,
   DaffStatusable,
+  DaffStatusEnum,
   daffStatusMixin,
 } from '@daffodil/design';
+
+import { DaffNotificationActionsDirective } from '../notification-actions/notification-actions.directive';
 
 /**
  * An _elementRef is needed for the core mixins
@@ -37,8 +40,8 @@ enum DaffNotificationOrientationEnum {
 }
 
 /**
- * DaffNotificationComponent provides a way to display and
- * communicate information for user actions or system updates.
+ * DaffNotificationComponent provides a way to display and communicate
+ * information related to user actions within a page's content.
  */
 @Component({
   selector: 'daff-notification',
@@ -55,10 +58,17 @@ export class DaffNotificationComponent
   implements DaffPrefixable, DaffStatusable {
   faTimes = faTimes;
 
+  @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
+
+  @ContentChild(DaffNotificationActionsDirective) _actions: DaffNotificationActionsDirective;
+
   @HostBinding('class.daff-notification') class = true;
 
   @HostBinding('attr.tabindex') tabindex = '0';
-  @HostBinding('attr.aria-live') ariaLive = 'polite';
+
+  @HostBinding('attr.role') get role() {
+    return this._actions || this.status === DaffStatusEnum.Warn || this.status === DaffStatusEnum.Danger ? 'alert' : 'status';
+  };
 
   @HostBinding('class.vertical') get verticalOrientation() {
 	  return this.orientation === DaffNotificationOrientationEnum.Vertical;
@@ -70,8 +80,6 @@ export class DaffNotificationComponent
 
   /** Whether or not a notification is closable */
   @Input() @HostBinding('class.dismissible') dismissible = false;
-
-  @Output() closeNotification: EventEmitter<void> = new EventEmitter();
 
   private _orientation: DaffNotificationOrientation = DaffNotificationOrientationEnum.Vertical;
 
@@ -88,12 +96,14 @@ export class DaffNotificationComponent
     }
   };
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+  ) {
 	  super(elementRef, renderer);
   }
 
-  @ContentChild(DaffPrefixDirective)
-    _prefix: DaffPrefixDirective;
+  @Output() closeNotification: EventEmitter<void> = new EventEmitter();
 
   onCloseNotification(event: Event) {
     this.closeNotification.emit();

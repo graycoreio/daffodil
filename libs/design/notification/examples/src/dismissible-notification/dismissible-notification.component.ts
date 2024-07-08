@@ -18,4 +18,10 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 })
 export class DismissibleNotificationComponent {
   faInfoCircle = faInfoCircle;
+
+  hidden = false;
+
+  hideNotification() {
+    this.hidden = true;
+  }
 }

@@ -8,14 +8,15 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'default-notification',
   templateUrl: './default-notification.component.html',
-  styles: [`
-    :host {
-      display: flex;
-      justify-content: center;
-    }
-  `],
+  styleUrls: ['./default-notification.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DefaultNotificationComponent {
   faInfoCircle = faInfoCircle;
+
+  showNotification = false;
+
+  toggleNotification() {
+    this.showNotification = !this.showNotification;
+  }
 }

@@ -1,0 +1,14 @@
+<button daff-button (click)="toggleNotification()">
+	<ng-container *ngIf="showNotification">Show Notification</ng-container>
+	<ng-container *ngIf="!showNotification">Hide Notification</ng-container>
+</button>
+
+<daff-notification status="error" *ngIf="showNotification">
+	<fa-icon daffPrefix [icon]="faExclamationCircle"></fa-icon>
+	<div daffNotificationTitle>Title</div>
+	<div daffNotificationSubtitle>This is the subtitle with information</div>
+	<div daffNotificationActions>
+		<button daff-button size="sm" color="theme-contrast">Confirm</button>
+		<button daff-flat-button size="sm" color="theme-contrast">Cancel</button>
+	</div>
+</daff-notification>

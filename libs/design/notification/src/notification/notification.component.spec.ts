@@ -1,6 +1,9 @@
 import {
   Component,
+  ContentChild,
   DebugElement,
+  Input,
+  ViewChild,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +18,7 @@ import {
   DaffNotificationComponent,
   DaffNotificationOrientation,
 } from './notification.component';
+import { DaffNotificationActionsDirective } from '../notification-actions/notification-actions.directive';
 
 @Component ({
   template: `
@@ -75,6 +79,20 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
       expect(component.dismissible).toEqual(wrapper.dismissible);
     });
 
+    it('should set dismissible to false by default', () => {
+      expect(component.dismissible).toBeFalse();
+    });
+
+    describe('when dismissible is set to false', () => {
+      it('should not add a class of "dismissible" to the host element', () => {
+        expect(de.classes['dismissible']).toBeUndefined();
+      });
+
+      it('should not show the close icon button', () => {
+        expect(fixture.debugElement.query(By.css('.daff-notification__close-icon'))).toBeFalsy();
+      });
+    });
+
     describe('when dismissible is set to true', () => {
       beforeEach(() => {
         wrapper.dismissible = true;
@@ -91,12 +109,28 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
     });
   });
 
-  it('should set aria-live to polite', () => {
-    expect(de.attributes['aria-live']).toEqual('polite');
-  });
-
   it('should set the tabindex to 0', () => {
     expect(de.attributes['tabindex']).toEqual('0');
+  });
+
+  describe('setting the role', () => {
+    it('should set role to status', () => {
+      expect(component.role).toBe('status');
+    });
+
+    it('should set role to alert if status is warn', () => {
+      wrapper.status = 'warn';
+      fixture.detectChanges();
+
+      expect(component.role).toBe('alert');
+    });
+
+    it('should set role to alert if status is danger', () => {
+      wrapper.status = 'danger';
+      fixture.detectChanges();
+
+      expect(component.role).toBe('alert');
+    });
   });
 
   describe('using the status property of a notification', () => {
@@ -151,5 +185,45 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
 
       expect(component.closeNotification.emit).toHaveBeenCalledWith();
     });
+  });
+});
+
+@Component ({
+  template: `
+    <daff-notification>
+      <div daffNotificationActions></div>
+    </daff-notification>
+  `,
+})
+
+class ActionsWrapperComponent {}
+
+describe('@daffodil/design/notification | DaffNotificationComponent | With Actions', () => {
+  let fixture: ComponentFixture<ActionsWrapperComponent>;
+  let de: DebugElement;
+  let wrapper: ActionsWrapperComponent;
+  let component: DaffNotificationComponent;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        DaffNotificationComponent,
+        ActionsWrapperComponent,
+        DaffNotificationActionsDirective,
+      ],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ActionsWrapperComponent);
+    wrapper = fixture.componentInstance;
+    de = fixture.debugElement.query(By.css('daff-notification'));
+    component = de.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should set role to alert when there are actions', () => {
+    expect(component.role).toBe('alert');
   });
 });

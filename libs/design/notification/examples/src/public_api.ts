@@ -8,10 +8,13 @@ import { NotificationOrientationsComponent } from './notification-orientations/n
 import { NotificationOrientationsModule } from './notification-orientations/notification-orientations.module';
 import { NotificationStatusComponent } from './notification-status/notification-status.component';
 import { NotificationStatusModule } from './notification-status/notification-status.module';
+import { NotificationWithActionsComponent } from './notification-with-actions/notification-with-actions.component';
+import { NotificationWithActionsModule } from './notification-with-actions/notification-with-actions.module';
 
 export const NOTIFICATION_EXAMPLES: ComponentExample[] = [
   { component: DefaultNotificationComponent, module: DefaultNotificationModule },
   { component: NotificationStatusComponent, module: NotificationStatusModule },
   { component: NotificationOrientationsComponent, module: NotificationOrientationsModule },
   { component: DismissibleNotificationComponent, module: DismissibleNotificationModule },
+  { component: NotificationWithActionsComponent, module: NotificationWithActionsModule },
 ];

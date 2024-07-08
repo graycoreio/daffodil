@@ -1,5 +1,5 @@
 # Notifications
-Notifications provides a way to display and communicate information related to user actions within a page's content.
+Notifications provide a way to display and communicate information related to user actions within a page's content.
 
 ## Overview
 Notifications are used to display short messages that provide context in close promixity to a piece of content. They're often used to provide feedback or to notify users about an action they performed within a page. Notifications should not be used to display app-level alerts. Instead, use the [Toast](/libs/design/toast/README.md) component.
@@ -20,6 +20,8 @@ Subtitle provides additional details about the notification that should be limit
 
 ### Actions
 Buttons can be included in notifications to resolve the notification or navigate them to a page with more information. It can be added by using the `daffNotificationActions` selector.
+
+<design-land-example-viewer-container example="notification-with-actions"></design-land-example-viewer-container>d
 
 ## Properties
 
@@ -44,4 +46,4 @@ The close button is hidden by default but can be visible by setting the `dismiss
 <design-land-example-viewer-container example="dismissible-notification"></design-land-example-viewer-container>
 
 ## Accessibility
-Notifications sets `aria-live` to `polite` by default. It does not interrupt a user's current activity and waits until they are idle to make the announcement.
+Notifications with actions or with a `danger` or `warn` status have a `role="alert"` so that it can be announced by assistive technologies. All other notifications have a `role="status"`. Notifications have a `tabindex="0"` so users can discover them while tabbing through a page.
