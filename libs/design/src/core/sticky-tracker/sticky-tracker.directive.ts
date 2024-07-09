@@ -15,6 +15,8 @@ export const sumPx = (...px: string[]): string => (
 
 export const negativePx = (px: string) => parseFloat(px.replace(/px/, '')) * -1 + 'px';
 
+export const withinDeltaRange = (val: number, base: number, delta = 5) => val >= -1 * delta + base && val <= delta + base;
+
 @Directive({
   selector: '[daffStickyTracker]',
   standalone: true,
@@ -23,6 +25,8 @@ export class DaffStickyTrackerDirective implements OnDestroy, OnInit {
   observer: IntersectionObserver | undefined;
 
   private _nativeElement: HTMLElement;
+
+  private kind = undefined;
 
   private _marker: Element | null = null;
 
@@ -69,16 +73,15 @@ export class DaffStickyTrackerDirective implements OnDestroy, OnInit {
       return;
     }
 
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        this._nativeElement.classList.toggle(
-          'daff-sticky',
-          entry.intersectionRatio < 1,
-        );
-      });
-    });
+    if(style.bottom !== 'auto') {
+      this.kind = 'bottom';
+    }
 
-    if (style.bottom !== 'auto') {
+    if(style.top !== 'auto') {
+      this.kind = 'top';
+    }
+
+    if (this.kind === 'bottom') {
       this._marker = this._nativeElement.insertAdjacentElement(
         'afterend',
         this.createMarker({
@@ -87,7 +90,7 @@ export class DaffStickyTrackerDirective implements OnDestroy, OnInit {
       );
     }
 
-    if (style.top !== 'auto') {
+    if (this.kind === 'top') {
       this._marker = this._nativeElement.insertAdjacentElement(
         'beforebegin',
         this.createMarker({
@@ -99,6 +102,25 @@ export class DaffStickyTrackerDirective implements OnDestroy, OnInit {
     if (!this._marker) {
       throw new Error('DaffStickyTracker error');
     }
+
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (this.kind === 'bottom' && entry.boundingClientRect.y > 0) {
+          this._nativeElement.classList.toggle(
+            'daff-sticky',
+            entry.intersectionRatio < 1,
+          );
+        } else if (
+          this.kind === 'top' &&
+          entry.boundingClientRect.y < (entry.rootBounds?.bottom ?? 0)
+        ) {
+          this._nativeElement.classList.toggle(
+            'daff-sticky',
+            entry.intersectionRatio < 1,
+          );
+        }
+      });
+    });
     this.observer.observe(this._marker);
   }
 
