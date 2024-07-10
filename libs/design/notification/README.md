@@ -1,4 +1,4 @@
-# Notifications
+# Notification
 Notifications provide a way to display and communicate information related to user actions within a page's content.
 
 ## Overview
@@ -46,4 +46,4 @@ The close button is hidden by default but can be visible by setting the `dismiss
 <design-land-example-viewer-container example="dismissible-notification"></design-land-example-viewer-container>
 
 ## Accessibility
-Notifications with actions or with a `danger` or `warn` status have a `role="alert"` so that it can be announced by assistive technologies. All other notifications have a `role="status"`. Notifications have a `tabindex="0"` so users can discover them while tabbing through a page.
+Notifications with a `danger` or `warn` status have a `role="alert"` so that it can be announced by assistive technologies. See (live region roles)[https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#4._live_region_roles] for more information. All other notifications have a `role="status"`. Notifications have a `tabindex="0"` so users can discover them while tabbing through a page.

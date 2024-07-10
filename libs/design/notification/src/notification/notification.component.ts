@@ -66,8 +66,12 @@ export class DaffNotificationComponent
 
   @HostBinding('attr.tabindex') tabindex = '0';
 
+  /**
+   * Sets role to alert when `status="warn"` or `status="danger"`.
+   * Sets role to status on all other instances.
+   */
   @HostBinding('attr.role') get role() {
-    return this._actions || this.status === DaffStatusEnum.Warn || this.status === DaffStatusEnum.Danger ? 'alert' : 'status';
+    return this.status === DaffStatusEnum.Warn || this.status === DaffStatusEnum.Danger ? 'alert' : 'status';
   };
 
   @HostBinding('class.vertical') get verticalOrientation() {
@@ -103,6 +107,9 @@ export class DaffNotificationComponent
 	  super(elementRef, renderer);
   }
 
+  /**
+   * Output event triggered when the close icon is clicked.
+   */
   @Output() closeNotification: EventEmitter<void> = new EventEmitter();
 
   onCloseNotification(event: Event) {
