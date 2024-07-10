@@ -1,5 +1,5 @@
 <h1>Notification</h1>
-<p>Notifications provides a way to display and communicate information related to user actions within a page's content.</p>
+<p>Notifications provide a way to display and communicate information related to user actions within a page's content.</p>
 
 <h2>Overview</h2>
 <p>Notifications are used to display short messages that provide context in close promixity to a piece of content. They're often used to provide feedback or to notify users about an action they performed within a page. Notifications should not be used to display app-level alerts. Instead, use the <a routerLink="/toast">Toast</a> component.</p>
@@ -20,6 +20,8 @@
 
 <h3>Actions</h3>
 <p>Buttons can be included in notifications to resolve the notification or navigate them to a page with more information. It can be added by using the <code>daffNotificationActions</code> selector.</p>
+
+<design-land-example-viewer-container example="notification-with-actions"></design-land-example-viewer-container>
 
 <h2>Properties</h2>
 
@@ -44,4 +46,4 @@
 <design-land-example-viewer-container example="dismissible-notification"></design-land-example-viewer-container>
 
 <h2>Accessibility</h2>
-<p>Notifications sets <code>aria-live</code> to <code>polite</code> by default. It does not interrupt a user's current activity and waits until they are idle to make the announcement.</p>
+<p>Notifications with a <code>danger</code> or <code>warn</code> status have a <code>role="alert"</code> so that it can be announced by assistive technologies. All other notifications have a <code>role="status"</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#4._live_region_roles" target="_blank">live region roles</a> for more information. Notifications have a <code>tabindex="0"</code> so users can discover them while tabbing through a page.</p>
