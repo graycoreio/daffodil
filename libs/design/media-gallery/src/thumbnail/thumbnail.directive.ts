@@ -4,12 +4,11 @@ import {
   Type,
   HostBinding,
   HostListener,
-  Output,
-  EventEmitter,
-  ChangeDetectorRef,
   OnInit,
   OnDestroy,
 } from '@angular/core';
+
+import { DaffSelectableDirective } from '@daffodil/design';
 
 import { daffThumbnailCompatToken } from './thumbnail-compat.token';
 import { DaffThumbnailRegistration } from './thumbnail-registration.interface';
@@ -24,37 +23,38 @@ import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 @Directive({
   selector: '[daffThumbnail]',
   standalone: true,
+  hostDirectives: [{
+    directive: DaffSelectableDirective,
+    inputs: ['selected'],
+    outputs: ['becameSelected'],
+  }],
 })
 export class DaffThumbnailDirective implements OnInit, OnDestroy, DaffThumbnailRegistration {
-
-  /**
-   * Adds a class for styling a selected thumbnail
-   */
-  @HostBinding('class.daff-thumbnail--selected') get selectedClass() {
-    return this.selected;
-  };
-
   constructor(
     @Inject(daffThumbnailCompatToken) public component: Type<unknown>,
-    private cd: ChangeDetectorRef,
     private registry: DaffMediaGalleryRegistry,
     @Inject(DAFF_MEDIA_GALLERY_TOKEN) public gallery: DaffMediaGalleryRegistration,
+    private selectedDirective: DaffSelectableDirective,
   ) {}
+
+  public get selected() {
+    return this.selectedDirective.selected;
+  }
+
+  public select() {
+    this.selectedDirective.select();
+    return this;
+  }
+
+  public deselect() {
+    this.selectedDirective.deselect();
+    return this;
+  }
 
   /**
    * Adds a class for styling a thumbnail
    */
   @HostBinding('class.daff-thumbnail') class = true;
-
-  /**
-   * A prop for determining whether or not the media element is selected.
-   */
-  selected = false;
-
-  /**
-   * An event that fires after the media element becomes selected.
-   */
-  @Output() becameSelected: EventEmitter<void> = new EventEmitter<void>();
 
   /**
    * Adds a click event to trigger selection of the media element.
@@ -71,18 +71,5 @@ export class DaffThumbnailDirective implements OnInit, OnDestroy, DaffThumbnailR
 
   ngOnDestroy(): void {
     this.registry.remove(this);
-  }
-
-  select() {
-    this.selected = true;
-    this.becameSelected.emit();
-    this.cd.markForCheck();
-    return this;
-  }
-
-  deselect() {
-    this.selected = false;
-    this.cd.markForCheck();
-    return this;
   }
 }

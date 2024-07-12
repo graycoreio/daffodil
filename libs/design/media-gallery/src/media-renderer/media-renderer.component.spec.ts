@@ -10,6 +10,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffSelectableDirective } from '@daffodil/design';
 import { DaffArticleComponent } from '@daffodil/design/article';
 
 import { DaffMediaRendererComponent } from './media-renderer.component';
@@ -82,11 +83,11 @@ describe('@daffodil/design/media-gallery | DaffMediaRendererComponent', () => {
     fixture = TestBed.createComponent(DaffMediaRendererComponent);
     registry = TestBed.inject(DaffMediaGalleryRegistry);
 
-    mockThumbnail1 = new DaffThumbnailDirective(null, jasmine.createSpyObj('ChangeDetectorRef', ['markForCheck']), null, stubRegistration);
+    mockThumbnail1 = new DaffThumbnailDirective(null, null, stubRegistration, new DaffSelectableDirective(jasmine.createSpyObj('ChangeDetectorRef', ['markForCheck'])));
     mockThumbnail1.component = <Type<unknown>><unknown>(new DaffArticleComponent());
-    mockThumbnail2 = new DaffThumbnailDirective(null, jasmine.createSpyObj('ChangeDetectorRef', ['markForCheck']), null, stubRegistration);
-    mockThumbnail1.selected = true;
-    mockThumbnail2.selected = false;
+    mockThumbnail2 = new DaffThumbnailDirective(null, null, stubRegistration, new DaffSelectableDirective(jasmine.createSpyObj('ChangeDetectorRef', ['markForCheck'])));
+    mockThumbnail1.select();
+    mockThumbnail2.deselect();
     registry.galleries = {
       [stubRegistration.name]: new BehaviorSubject({
         gallery: stubRegistration,

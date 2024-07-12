@@ -84,7 +84,7 @@ describe('@daffodil/design/media-gallery | DaffThumbnailDirective', () => {
   });
 
   it('should add a "daff-thumbnail--selected" class when the thumbnail is selected', () => {
-    directive.selected = true;
+    directive.select();
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -115,7 +115,7 @@ describe('@daffodil/design/media-gallery | DaffThumbnailDirective', () => {
 
     beforeEach(() => {
       spyOn(wrapper, 'becameSelectedFunction');
-      directive.selected = false;
+      directive.select();
       result = directive.select();
     });
 
@@ -138,7 +138,7 @@ describe('@daffodil/design/media-gallery | DaffThumbnailDirective', () => {
 
     beforeEach(() => {
       spyOn(wrapper, 'becameSelectedFunction');
-      directive.selected = true;
+      directive.select();
       result = directive.deselect();
     });
 
