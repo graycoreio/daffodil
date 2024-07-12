@@ -16,3 +16,4 @@ export * from './lazy/public_api';
 export * from './focus/public_api';
 export * from './sizable/public_api';
 export * from './openable/public_api';
+export * from './selectable/public_api';
