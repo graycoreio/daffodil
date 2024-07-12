@@ -2,7 +2,15 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import {
+  UntypedFormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
+
+import {
+  DaffFormFieldModule,
+  DaffQuantityFieldModule,
+} from '@daffodil/design';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -10,6 +18,12 @@ import { UntypedFormControl } from '@angular/forms';
   templateUrl: './custom-range-quantity-field.component.html',
   styleUrls: ['./custom-range-quantity-field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    DaffFormFieldModule,
+    DaffQuantityFieldModule,
+    ReactiveFormsModule,
+  ],
 })
 export class CustomRangeQuantityFieldComponent {
   control = new UntypedFormControl(5);

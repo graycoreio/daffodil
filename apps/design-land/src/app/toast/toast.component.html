@@ -6,7 +6,7 @@
 
 <h3>Basic toast</h3>
 <design-land-article-encapsulated>
-	<design-land-example-viewer-container example="default-toast"></design-land-example-viewer-container>
+	<daff-docs-example-viewer-container example="default-toast"></daff-docs-example-viewer-container>
 </design-land-article-encapsulated>
 
 <h3>Configurations</h3>
@@ -15,7 +15,7 @@ Toasts can be configured by using the <code>DaffToastService</code>.
 The following is an example of a toast with a duration:
 
 <pre><code>constructor(private toastService: DaffToastService) &lcub;&rcub;
-	
+
 	open() &lcub;
 		this.toast = this.toastService.open(&lcub;
 			title: 'Update Complete',
@@ -29,7 +29,7 @@ The following is an example of a toast with a duration:
 The following is an example of a toast with actions:
 
 <pre><code>constructor(private toastService: DaffToastService) &lcub;&rcub;
-	
+
 open() &lcub;
 	this.toast = this.toastService.open(&lcub;
 		title: 'Update Available',
@@ -90,15 +90,15 @@ The <code>actions</code> configurations are based on the properties of the <code
 
 <h3>Dismissal</h3>
 <p>A toast can be dismissed via a timed duration, a close button, or the <code>ESC</code> key.
-	
+
 <h5>Timed duration</h5>
 <p>A toast with actions will persist until one of the actions have been interacted with, or is dismissed by the close button or the <code>ESC</code> key. Setting a duration should be avoided for toasts that have actions as users may need to interact with the actions.</p>
 
 <h4>Toast with custom duration</h4>
 <design-land-article-encapsulated>
-	<design-land-example-viewer-container example="toast-with-custom-duration"></design-land-example-viewer-container>
+	<daff-docs-example-viewer-container example="toast-with-custom-duration"></daff-docs-example-viewer-container>
 </design-land-article-encapsulated>
-	
+
 <p>By default, a toast without actions will be dismissed after <code>5000ms</code>. This can be updated by setting <code>duration</code> through the <code>DaffToastService</code>.</p>
 
 <h5>Close button</h5>
@@ -117,7 +117,7 @@ The <code>actions</code> configurations are based on the properties of the <code
 
 <h4>Toast with statuses</h4>
 <design-land-article-encapsulated>
-	<design-land-example-viewer-container example="toast-status"></design-land-example-viewer-container>
+	<daff-docs-example-viewer-container example="toast-status"></daff-docs-example-viewer-container>
 </design-land-article-encapsulated>
 
 <h3>Positions</h3>
@@ -160,7 +160,7 @@ The <code>actions</code> configurations are based on the properties of the <code
 
 <h4>Toast with configurable positions</h4>
 <design-land-article-encapsulated>
-	<design-land-example-viewer-container example="toast-positions"></design-land-example-viewer-container>
+	<daff-docs-example-viewer-container example="toast-positions"></daff-docs-example-viewer-container>
 </design-land-article-encapsulated>
 
 <h3>Accessibility</h3>

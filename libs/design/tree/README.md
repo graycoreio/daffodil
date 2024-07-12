@@ -28,8 +28,8 @@ Currently, we support two kind of templates: `daffTreeItemWithChildrenTpl` and `
 
 ### Basic Tree
 
-<design-land-example-viewer-container example="basic-tree">
-</design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="basic-tree">
+</daff-docs-example-viewer-container-ce>
 
 ## Accessibility
 

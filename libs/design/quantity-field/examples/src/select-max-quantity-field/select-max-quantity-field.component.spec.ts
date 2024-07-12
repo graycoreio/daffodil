@@ -12,7 +12,7 @@ describe('SelectMaxQuantityFieldComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectMaxQuantityFieldComponent ],
+      imports: [SelectMaxQuantityFieldComponent],
     })
       .compileComponents();
   }));

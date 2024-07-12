@@ -820,6 +820,93 @@
         }
       }
     },
+    "documentation": {
+      "root": "libs/documentation",
+      "sourceRoot": "libs/documentation",
+      "projectType": "library",
+      "prefix": "daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/documentation/tsconfig.lib.json",
+            "project": "libs/documentation/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/documentation/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/documentation/test.ts",
+            "codeCoverage": true,
+            "tsConfig": "libs/documentation/tsconfig.spec.json",
+            "karmaConfig": "libs/documentation/karma.conf.js",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/documentation/scss"
+              ]
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/documentation/**/*.ts",
+              "libs/documentation/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "docs-components": {
+      "root": "libs/docs-components",
+      "sourceRoot": "libs/docs-components",
+      "projectType": "library",
+      "prefix": "daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/docs-components/tsconfig.lib.json",
+            "project": "libs/docs-components/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/docs-components/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/docs-components/test.ts",
+            "codeCoverage": true,
+            "tsConfig": "libs/docs-components/tsconfig.spec.json",
+            "karmaConfig": "libs/docs-components/karma.conf.js",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/design/scss",
+                "libs/docs-components/scss"
+              ]
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/docs-components/**/*.ts",
+              "libs/docs-components/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "daffio": {
       "root": "apps/daffio/",
       "sourceRoot": "apps/daffio/src",

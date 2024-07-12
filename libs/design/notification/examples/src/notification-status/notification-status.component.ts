@@ -1,13 +1,22 @@
+import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import {
+  UntypedFormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   faCheck,
   faExclamation,
   faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
+
+import { DaffPrefixSuffixModule } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffNotificationModule } from '@daffodil/design/notification';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -15,6 +24,15 @@ import {
   templateUrl: './notification-status.component.html',
   styleUrls: ['./notification-status.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    DaffNotificationModule,
+    NgIf,
+    FaIconComponent,
+    DaffPrefixSuffixModule,
+    DaffButtonModule,
+    ReactiveFormsModule,
+  ],
 })
 export class NotificationStatusComponent {
   faInfoCircle = faInfoCircle;

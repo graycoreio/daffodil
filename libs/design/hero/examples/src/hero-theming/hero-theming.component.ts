@@ -2,10 +2,16 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import {
+  UntypedFormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffPalette } from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffHeroModule } from '@daffodil/design/hero';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -13,6 +19,13 @@ import { DaffPalette } from '@daffodil/design';
   templateUrl: './hero-theming.component.html',
   styleUrls: ['./hero-theming.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    DaffHeroModule,
+    FaIconComponent,
+    DaffButtonModule,
+    ReactiveFormsModule,
+  ],
 })
 export class HeroThemingComponent {
   faMobile = faMobile;

@@ -5,6 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 
+import { DaffButtonModule } from '@daffodil/design/button';
 import {
   DaffToast,
   DaffToastService,
@@ -16,6 +17,8 @@ import {
   templateUrl: './toast-with-custom-duration.component.html',
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [DaffButtonModule],
 })
 export class ToastWithCustomDurationComponent {
   private toast: DaffToast;

@@ -18,4 +18,4 @@ Supported sizes: `xs | sm | md | lg | xl`
 | Extra Large | 1920px    | xl     |
 
 ## Usage
-<design-land-example-viewer-container example="container-sizes"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="container-sizes"></daff-docs-example-viewer-container-ce>

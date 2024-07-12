@@ -27,22 +27,22 @@ The default background color of a hero is light gray, but it can be updated to o
 
 Supported colors: `primary | secondary | tertiary | black | white | theme | theme-contrast`
 
-<design-land-example-viewer-container example="hero-theming"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="hero-theming"></daff-docs-example-viewer-container-ce>
 
 ## Text Alignment
 Align hero-specific text with the `textAlignment` property. `textAlignment` will not cascade the alignment styles down to `[daffHeroBody]` or any additional components or elements that are placed inside of a hero. `textAlignment` is set to `left` by default.
 
 Supported alignments: `left | center | right`
 
-<design-land-example-viewer-container example="hero-text-alignment"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="hero-text-alignment"></daff-docs-example-viewer-container-ce>
 
 ## Compact Heroes
 Heroes are available in a `compact` mode, which decreases the overall padding of the hero container to suit UIs that require less negative space. To enable the mode, set the `compact` property on `<daff-hero>`.</p>
 
-<design-land-example-viewer-container example="compact-hero"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="compact-hero"></daff-docs-example-viewer-container-ce>
 
 ## Gridded Heroes
 Heros are flexible enough to support grids within them.
 
 ### Hero with Two Columns
-<design-land-example-viewer-container example="hero-with-grid"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="hero-with-grid"></daff-docs-example-viewer-container-ce>

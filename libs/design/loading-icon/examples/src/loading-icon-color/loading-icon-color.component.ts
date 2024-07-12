@@ -1,8 +1,14 @@
+import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import {
+  UntypedFormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
+
+import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -14,6 +20,12 @@ import { UntypedFormControl } from '@angular/forms';
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    DaffLoadingIconModule,
+    ReactiveFormsModule,
+    NgFor,
+  ],
 })
 export class LoadingIconColorComponent {
   colorControl: UntypedFormControl = new UntypedFormControl('primary');

@@ -5,13 +5,25 @@ import {
 import {
   UntypedFormControl,
   Validators,
+  ReactiveFormsModule,
 } from '@angular/forms';
+
+import {
+  DaffFormFieldModule,
+  DaffInputModule,
+} from '@daffodil/design';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'input-error',
   templateUrl: './input-error.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    DaffFormFieldModule,
+    DaffInputModule,
+    ReactiveFormsModule,
+  ],
 })
 export class InputErrorComponent {
   control: UntypedFormControl = new UntypedFormControl('test@example.com', [

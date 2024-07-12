@@ -7,7 +7,7 @@ There are three types of cards: default (filled), raised, and stroked. Cards can
 ## Basic Card
 The example below is a default, filled card that includes all of a card's pre-styled elements and a fixed width. Cards naturally do not have a fixed width, so they'll be 100% wide by default. The width is changeable with custom CSS
 
-<design-land-example-viewer-container example="basic-card"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="basic-card"></daff-docs-example-viewer-container-ce>
 
 ## Supported Content Types
 A card supports a wide variety of content and includes minimally pre-styled `image`, `icon`, `tagline`, `title`, `content`, and `actions` content containers.
@@ -35,26 +35,26 @@ Buttons can be added to a card by using the `daffCardActions` attribute. This co
 ### Orientation
 Orientation dictates how a card's content is stacked — `vertical` or `horizontal`. Cards are oriented vertically by default. The orientation of a card can be defined or updated by using the `orientation` property. Horizontal cards will stack vertically on smaller screens due to size constraints.
 
-<design-land-example-viewer-container example="card-orientation"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="card-orientation"></daff-docs-example-viewer-container-ce>
 
 ## Linkable Card
 Cards can be linkable by adding the component selector to the `<a>` tag. All card types are linkable.
 
-<design-land-example-viewer-container example="linkable-card"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="linkable-card"></daff-docs-example-viewer-container-ce>
 
 ## Raised Card
 A raised card adds elevation to the default card.
 
-<design-land-example-viewer-container example="raised-card"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="raised-card"></daff-docs-example-viewer-container-ce>
 
 ## Stroked Card
 A stroked card adds a border to the default card.
 
-<design-land-example-viewer-container example="stroked-card"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="stroked-card"></daff-docs-example-viewer-container-ce>
 
 ### Theming
 Cards will use the base color of your application to display the default background and/or border color. A card's colors can be defined by using the `color` property.
 
 Supported colors: `primary | secondary | tertiary | white | black | theme | theme-contrast`
 
-<design-land-example-viewer-container example="card-theming"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="card-theming"></daff-docs-example-viewer-container-ce>

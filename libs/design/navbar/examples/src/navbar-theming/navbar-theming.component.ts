@@ -1,8 +1,15 @@
+import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import {
+  UntypedFormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
+
+import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffNavbarModule } from '@daffodil/design/navbar';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -10,6 +17,13 @@ import { UntypedFormControl } from '@angular/forms';
   templateUrl: './navbar-theming.component.html',
   styleUrls: ['./navbar-theming.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    DaffNavbarModule,
+    DaffButtonModule,
+    ReactiveFormsModule,
+    NgFor,
+  ],
 })
 export class NavbarThemingComponent {
   colorControl: UntypedFormControl = new UntypedFormControl('');

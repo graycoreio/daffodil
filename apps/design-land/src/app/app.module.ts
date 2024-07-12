@@ -11,6 +11,10 @@ import { DaffLinkSetModule } from '@daffodil/design/link-set';
 import { DaffNavbarModule } from '@daffodil/design/navbar';
 import { DaffSidebarModule } from '@daffodil/design/sidebar';
 import { DaffToastModule } from '@daffodil/design/toast';
+import {
+  provideDaffDocsDesignExamples,
+  provideDaffDocsLocation,
+} from '@daffodil/docs-components';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
 import { DesignLandAppRoutingModule } from './app-routing.module';
@@ -43,6 +47,8 @@ import { DesignLandTemplateModule } from './core/template/template.module';
   ],
   providers: [
     DAFF_THEME_INITIALIZER,
+    provideDaffDocsDesignExamples(),
+    provideDaffDocsLocation('/assets/'),
   ],
 })
 export class AppModule { }

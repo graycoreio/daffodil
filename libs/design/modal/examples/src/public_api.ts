@@ -1,8 +1,11 @@
-import { ComponentExample } from '@daffodil/design';
+import { provideDaffDocsExampleComponents } from '@daffodil/documentation';
 
 import { BasicModalComponent } from './basic-modal/basic-modal.component';
-import { BasicModalModule } from './basic-modal/basic-modal.module';
 
-export const MODAL_EXAMPLES: ComponentExample[] = [
-  { component: BasicModalComponent, module: BasicModalModule },
+
+export const MODAL_EXAMPLES = [
+  BasicModalComponent,
 ];
+
+export const provideDaffDesignModalExamples = () =>
+  provideDaffDocsExampleComponents(...MODAL_EXAMPLES);
