@@ -22,6 +22,8 @@ import { filter } from 'rxjs/operators';
 import {
   daffFocusableElementsSelector,
   DaffFocusStackService,
+  DaffOpenable,
+  DaffOpenableDirective,
 } from '@daffodil/design';
 
 import { isOpening } from './is-opening';
@@ -44,12 +46,17 @@ import { DaffSidebarSide } from '../helper/sidebar-side';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  hostDirectives: [{
+    directive: DaffOpenableDirective,
+    inputs: ['open'],
+    outputs: ['toggled'],
+  }],
   animations: [
     daffSidebarAnimations.transformSidebar,
   ],
   standalone: true,
 })
-export class DaffSidebarComponent {
+export class DaffSidebarComponent implements DaffOpenable {
   /**
    * @docs-private
    *
@@ -68,7 +75,7 @@ export class DaffSidebarComponent {
    */
   @HostBinding('@transformSidebar') get transformSidebar() {
     return {
-      value: getAnimationState(this.open, this.mode),
+      value: getAnimationState(this.openDirective.open, this.mode),
       params: { width: getSidebarAnimationWidth(this.side, this.width) },
     };
   }
@@ -89,15 +96,14 @@ export class DaffSidebarComponent {
   @Input() mode: DaffSidebarMode = 'side';
 
   /**
-   * Whether or not the sidebar is open.
-   */
-  @Input() open = false;
-
-  /**
    * The width of the sidebar.
    */
   get width() {
     return this._elementRef.nativeElement.offsetWidth;
+  }
+
+  get open() {
+    return this.openDirective.open;
   }
 
   constructor(
@@ -105,9 +111,9 @@ export class DaffSidebarComponent {
     private _ngZone: NgZone,
     private _focusTrapFactory: ConfigurableFocusTrapFactory,
     private _focusStack: DaffFocusStackService,
+    private openDirective: DaffOpenableDirective,
     @Inject(DOCUMENT) private _doc: any,
   ) {
-
     /**
      * Listen to `keydown` events outside the zone so that change detection is not run every
      * time a key is pressed. Instead we re-enter the zone only if the `ESC` key is pressed.
@@ -169,5 +175,26 @@ export class DaffSidebarComponent {
     if (e.toState === 'closed' || e.toState === 'under-closed' || e.toState === 'side-fixed-closed') {
       this._elementRef.nativeElement.style.visibility = 'hidden';
     }
+  }
+
+  /**
+   * Reveal the contents of the sidebar
+   */
+  reveal() {
+    this.openDirective.reveal();
+  }
+
+  /**
+   * Hide the contents of the sidebar
+   */
+  hide() {
+    this.openDirective.hide();
+  }
+
+  /**
+   * Toggle the visibility of the sidebar
+   */
+  toggle() {
+    this.openDirective.toggle();
   }
 }

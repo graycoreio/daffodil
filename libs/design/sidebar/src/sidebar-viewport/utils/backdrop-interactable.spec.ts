@@ -5,6 +5,8 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { DaffOpenableDirective } from '@daffodil/design';
+
 import { sidebarViewportBackdropInteractable } from './backdrop-interactable';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
@@ -50,10 +52,15 @@ describe('@daffodil/design | sidebar-viewport | backdrop-interactable', () => {
     const leftSidebar = TestBed.createComponent(DaffSidebarComponent).componentInstance;
     leftSidebar.mode = 'side';
     leftSidebar.side = 'left';
-    const rightSidebar = TestBed.createComponent(DaffSidebarComponent).componentInstance;
+
+    const rightSidebarFixture = TestBed.createComponent(DaffSidebarComponent);
+
+    const rightSidebar = rightSidebarFixture.componentInstance;
+
+    rightSidebarFixture.debugElement.injector.get(DaffOpenableDirective).reveal();
+
     rightSidebar.mode = 'over';
     rightSidebar.side = 'right';
-    rightSidebar.open = true;
 
     const list = new QueryList<DaffSidebarComponent>();
     list.reset([
@@ -68,10 +75,14 @@ describe('@daffodil/design | sidebar-viewport | backdrop-interactable', () => {
     const leftSidebar = TestBed.createComponent(DaffSidebarComponent).componentInstance;
     leftSidebar.mode = 'side';
     leftSidebar.side = 'left';
-    const rightSidebar = TestBed.createComponent(DaffSidebarComponent).componentInstance;
+    const rightSidebarFixture = TestBed.createComponent(DaffSidebarComponent);
+
+    const rightSidebar = rightSidebarFixture.componentInstance;
+
+    rightSidebarFixture.debugElement.injector.get(DaffOpenableDirective).reveal();
+
     rightSidebar.mode = 'under';
     rightSidebar.side = 'right';
-    rightSidebar.open = true;
 
     const list = new QueryList<DaffSidebarComponent>();
     list.reset([
