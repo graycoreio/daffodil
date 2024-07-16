@@ -9,13 +9,15 @@
 // @daffodil/branding
 @use 'daff-branding-theme' as branding;
 
+@use 'docs-components-theme' as docs-components;
+
 .daff-theme-light {
 	@import 'highlight.js/scss/a11y-light.scss';
 
 	@include branding.daff-branding-theme(daff-theme.$theme);
 	@include daff-theme.daff-theme(daff-theme.$theme);
 	@include daffio-components.component-themes(daff-theme.$theme);
-
+	@include docs-components.daff-docs-components-themes(daff-theme.$theme);
 	background: var(--daff-base-background);
 	color: var(--daff-base-text);
 }
@@ -26,7 +28,7 @@
 	@include branding.daff-branding-theme(daff-theme.$theme-dark);
 	@include daff-theme.daff-theme(daff-theme.$theme-dark);
 	@include daffio-components.component-themes(daff-theme.$theme-dark);
-
+	@include docs-components.daff-docs-components-themes(daff-theme.$theme-dark);
 	background: var(--daff-base-background);
 	color: var(--daff-base-text);
 }

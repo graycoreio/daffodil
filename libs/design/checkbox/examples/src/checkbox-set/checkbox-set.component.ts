@@ -7,15 +7,26 @@ import {
 import {
   UntypedFormArray,
   UntypedFormControl,
+  ReactiveFormsModule,
 } from '@angular/forms';
 
-import { DaffCheckboxSetComponent } from '@daffodil/design';
+import {
+  DaffCheckboxSetComponent,
+  DaffCheckboxModule,
+} from '@daffodil/design';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'checkbox-set',
   templateUrl: './checkbox-set.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    DaffCheckboxModule,
+    ReactiveFormsModule,
+    DaffButtonModule,
+  ],
 })
 export class CheckboxSetComponent implements OnInit {
 

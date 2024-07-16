@@ -2,14 +2,20 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
-import { DaffTreeData } from '@daffodil/design/tree';
+import {
+  DaffTreeData,
+  DaffTreeModule,
+} from '@daffodil/design/tree';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'basic-tree',
   templateUrl: './basic-tree.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [DaffTreeModule, RouterLink],
 })
 export class BasicTreeComponent {
   tree: DaffTreeData<unknown> = {

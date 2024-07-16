@@ -7,7 +7,7 @@ Sidebars are often used for navigation, but it's built to be flexible and extens
 ### Basic sidebar
 The default setting for sidebar is `mode="side"` and `side="left"`.
 
-<design-land-example-viewer-container example="basic-sidebar"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="basic-sidebar"></daff-docs-example-viewer-container-ce>
 
 ### Implementing the main and sidebar content
 The main and sidebar content should be placed inside of the `<daff-sidebar-viewport>`. The sidebar content should be placed inside of the `<daff-sidebar>`.
@@ -80,16 +80,16 @@ By default, sidebar supports two methods of closing itself: clicking on the back
 | under      | Sidebar freezes in place and and the content slides above it, while also being covered by a backdrop |
 
 #### Over sidebar
-<design-land-example-viewer-container example="over-sidebar"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="over-sidebar"></daff-docs-example-viewer-container-ce>
 
 #### Under sidebar
-<design-land-example-viewer-container example="under-sidebar"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="under-sidebar"></daff-docs-example-viewer-container-ce>
 
 #### Two fixed sidebars on either side
-<design-land-example-viewer-container example="two-fixed-sidebars-either-side"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="two-fixed-sidebars-either-side"></daff-docs-example-viewer-container-ce>
 
 #### Fixed and over sidebar
-<design-land-example-viewer-container example="fixed-and-over-sidebar"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="fixed-and-over-sidebar"></daff-docs-example-viewer-container-ce>
 
 ### Sides
 `<daff-sidebar>` can be positioned on either side of a screen by using the `side` property. If `side` is not specificed, `left` is used by default.
@@ -121,10 +121,10 @@ body {
 
 ### Examples
 #### Over and under sidebars
-<design-land-example-viewer-container example="over-and-under-sidebars"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="over-and-under-sidebars"></daff-docs-example-viewer-container-ce>
 
 #### Side fixed sidebar
-<design-land-example-viewer-container example="side-fixed-sidebar"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="side-fixed-sidebar"></daff-docs-example-viewer-container-ce>
 
 ### Accessibility
 A meaningful `role` should be set on all sidebars depending on how they are used.

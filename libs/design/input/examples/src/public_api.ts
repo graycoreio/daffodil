@@ -1,1 +1,1 @@
-export { INPUT_EXAMPLES } from './examples';
+export * from './examples';

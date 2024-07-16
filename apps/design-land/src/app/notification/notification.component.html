@@ -5,7 +5,7 @@
 <p>Notifications are used to display short messages that provide context in close promixity to a piece of content. They're often used to provide feedback or to notify users about an action they performed within a page. Notifications should not be used to display app-level alerts. Instead, use the <a routerLink="/toast">Toast</a> component.</p>
 
 <h3>Default Notification</h3>
-<design-land-example-viewer-container example="default-notification"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container example="default-notification"></daff-docs-example-viewer-container>
 
 <h2>Supported Content Types</h2>
 
@@ -31,19 +31,19 @@
 <p>Supported statuses: <code>warn | danger | success</code></p>
 
 <h4>Notification with statuses</h4>
-<design-land-example-viewer-container example="notification-status"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container example="notification-status"></daff-docs-example-viewer-container>
 
 <h3>Orientation</h3>
 <p>Orientation dictates how a notification's content is stacked — <code>vertical</code> or <code>horizontal</code>. Notifications are oriented vertically by default. The orientation of a notification can be defined or updated by using the <code>orientation</code> property.</p>
 
-<design-land-example-viewer-container example="notification-orientations"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container example="notification-orientations"></daff-docs-example-viewer-container>
 
 <h3>Dismissing a notification</h3>
 <p>Notifications are not dismissible by default. They typically persist on the page until a user takes action that resolves the notification.</p>
 
 <p>The close button is hidden by default but can be visible by setting the <code>dismissible</code> property to <code>true</code>. It should remain hidden if a notification has critical information for a user to read or interact with.</p>
 
-<design-land-example-viewer-container example="dismissible-notification"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container example="dismissible-notification"></daff-docs-example-viewer-container>
 
 <h2>Accessibility</h2>
 <p>Notifications with a <code>danger</code> or <code>warn</code> status have a <code>role="alert"</code> so that it can be announced by assistive technologies. All other notifications have a <code>role="status"</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#4._live_region_roles" target="_blank">live region roles</a> for more information. Notifications have a <code>tabindex="0"</code> so users can discover them while tabbing through a page.</p>

@@ -3,6 +3,6 @@
   "dest": "../../dist/external-router",
   "deleteDestPath": false,
   "lib": {
-    "entryFile": "src/public_api.ts"
+    "entryFile": "src/index.ts"
   }
 }

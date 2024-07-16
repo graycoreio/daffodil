@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { DaffArticleModule } from '@daffodil/design/article';
+import { DaffDocsExampleViewerContainer } from '@daffodil/docs-components';
 
 import { DesignLandLoadingIconRoutingModule } from './loading-icon-routing.module';
 import { DesignLandLoadingIconComponent } from './loading-icon.component';
-import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { DesignLandExampleViewerModule } from '../core/code-preview/container/ex
   imports: [
     CommonModule,
     DaffArticleModule,
-    DesignLandExampleViewerModule,
+    DaffDocsExampleViewerContainer,
     DesignLandLoadingIconRoutingModule,
   ],
 })

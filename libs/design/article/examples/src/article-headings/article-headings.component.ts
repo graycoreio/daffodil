@@ -8,5 +8,6 @@ import {
   selector: 'article-headings',
   templateUrl: './article-headings.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class ArticleHeadingsComponent {}

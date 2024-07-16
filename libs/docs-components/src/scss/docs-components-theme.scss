@@ -1,0 +1,5 @@
+@use '../code-preview/component/code-preview-theme' as code-preview;
+
+@mixin daff-docs-components-themes($theme) {
+	@include code-preview.daff-docs-code-preview-theme($theme);
+}

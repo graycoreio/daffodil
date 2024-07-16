@@ -13,30 +13,30 @@ Native `<button>` or `<a>` elements are always used in order to provide an easy,
 - `daff-stroked-button` - Rectangular outlined button with no background color
 
 ### Basic Button
-<design-land-example-viewer-container example="basic-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="basic-button"></daff-docs-example-viewer-container-ce>
 
 ### Stroked Button
-<design-land-example-viewer-container example="stroked-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="stroked-button"></daff-docs-example-viewer-container-ce>
 
 > `black`, `white`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
 ### Raised Button
-<design-land-example-viewer-container example="raised-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="raised-button"></daff-docs-example-viewer-container-ce>
 
 ### Icon Button
-<design-land-example-viewer-container example="icon-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="icon-button"></daff-docs-example-viewer-container-ce>
 
 > `black`, `white`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
 ### Underline Button
-<design-land-example-viewer-container example="underline-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="underline-button"></daff-docs-example-viewer-container-ce>
 
 ## Sizes
 The size of a button can be changed by using the `size` property. The size of all the button variants will default to `md` if no size is defined. This can be changed to one of the supported sizes.
 
 Supported Sizes: `sm | md | lg`
 
-<design-land-example-viewer-container example="sizeable-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="sizeable-button"></daff-docs-example-viewer-container-ce>
 
 ## Theming
 The default color of a button is light gray, but it can be updated to one of the supported colors by using the `color` property.
@@ -50,7 +50,7 @@ Buttons with status indicators can be used to distinguish what type of action it
 
 Supported statuses: `warn | danger | success`
 
-<design-land-example-viewer-container example="statusable-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="statusable-button"></daff-docs-example-viewer-container-ce>
 
 ## Accessbility
 Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible experience by default. The `<button>` element should be used when a clickable action is performed within the same page. The `<a>` element should be used to navigate users to a new page or to a different target on the same page.

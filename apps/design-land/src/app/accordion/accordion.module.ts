@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { DaffArticleModule } from '@daffodil/design/article';
+import { DaffDocsExampleViewerContainer } from '@daffodil/docs-components';
 
 import { DesignLandAccordionRoutingModule } from './accordion-routing.module';
 import { DesignLandAccordionComponent } from './accordion.component';
-import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import { DesignLandExampleViewerModule } from '../core/code-preview/container/ex
     RouterModule,
 
     DesignLandAccordionRoutingModule,
-    DesignLandExampleViewerModule,
+    DaffDocsExampleViewerContainer,
     DaffArticleModule,
   ],
 })
