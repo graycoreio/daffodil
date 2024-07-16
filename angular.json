@@ -1021,7 +1021,8 @@
               "includePaths": [
                 "apps/daffio/src/scss",
                 "dist/design/scss",
-                "dist/branding/src/scss"
+                "dist/branding/src/scss",
+                "dist/docs-components/src/scss"
               ]
             },
             "scripts": [],
@@ -1176,7 +1177,7 @@
               "includePaths": [
                 "apps/design-land/src/scss",
                 "dist/design/scss",
-                "dist/docs-components"
+                "dist/docs-components/src/scss"
               ]
             },
             "scripts": [],
@@ -1246,7 +1247,8 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "apps/design-land/src/scss",
-                "dist/design/scss"
+                "dist/design/scss",
+                "dist/docs-components/src/scss"
               ]
             },
             "scripts": [],
