@@ -950,7 +950,8 @@
               "includePaths": [
                 "apps/daffio/src/scss",
                 "dist/design/scss",
-                "dist/branding/src/scss"
+                "dist/branding/src/scss",
+                "dist/docs-components/src/code-preview/component"
               ]
             },
             "scripts": [],
@@ -1173,7 +1174,8 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "apps/design-land/src/scss",
-                "dist/design/scss"
+                "dist/design/scss",
+                "dist/docs-components"
               ]
             },
             "scripts": [],

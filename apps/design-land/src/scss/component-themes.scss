@@ -1,5 +1,5 @@
 // stylelint-disable-next-line max-line-length
-@use '@daffodil/docs-components/src/code-preview/component/code-preview-theme.scss' as code-preview;
+@use '@daffodil/docs-components/code-preview-theme' as code-preview;
 @use '../app/typography/typography-theme' as typography;
 @use '../app/foundations/color/color-theme' as color;
 @use '../app/core/sidebar-viewport/sidebar-viewport-theme' as sidebar-viewport;

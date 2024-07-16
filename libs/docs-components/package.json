@@ -45,5 +45,10 @@
   "devDependencies": {
     "@daffodil/design": "0.0.0-PLACEHOLDER",
     "@daffodil/documentation": "0.0.0-PLACEHOLDER"
+  },
+  "exports": {
+    "./code-preview-theme": {
+      "sass": "./src/code-preview/component/code-preview-theme.scss"
+    }
   }
 }
