@@ -1,11 +1,8 @@
-// stylelint-disable-next-line max-line-length
-@use '@daffodil/docs-components/code-preview-theme' as code-preview;
 @use '../app/typography/typography-theme' as typography;
 @use '../app/foundations/color/color-theme' as color;
 @use '../app/core/sidebar-viewport/sidebar-viewport-theme' as sidebar-viewport;
 
 @mixin component-themes($theme) {
-	@include code-preview.code-preview-theme($theme);
 	@include typography.typography-theme($theme);
 	@include color.color-theme($theme);
 	@include sidebar-viewport.sidebar-viewport-theme($theme);

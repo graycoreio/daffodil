@@ -951,7 +951,7 @@
                 "apps/daffio/src/scss",
                 "dist/design/scss",
                 "dist/branding/src/scss",
-                "dist/docs-components/src/code-preview/component"
+                "dist/docs-components/src/scss"
               ]
             },
             "scripts": [],
@@ -1122,7 +1122,8 @@
               "includePaths": [
                 "apps/daffio/src/scss",
                 "libs/design/scss",
-                "libs/branding/src/scss"
+                "libs/branding/src/scss",
+                "dist/docs-components/src/scss"
               ]
             },
             "scripts": [],
