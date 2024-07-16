@@ -1,5 +1,7 @@
 @if (example) {
-  <div class="daff-docs-code-preview__content" *ngComponentOutlet="example.component"></div>
+  <div class="daff-docs-code-preview__content">
+    <ng-container *ngComponentOutlet="example.component"></ng-container>
+  </div>
   <div class="daff-docs-code-preview__tab-wrapper">
     @for (file of example.files; track file; let i = $index) {
       <button class="daff-docs-code-preview__tab" [class.selected]="exampleFile === file" (click)="selectFile(i)">{{ file.language }}</button>
