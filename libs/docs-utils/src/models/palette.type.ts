@@ -1,18 +1,12 @@
-export enum DaffDocsPaletteColorKind {
-  GROUP = 'GROUP',
-  SINGLE = 'SINGLE'
-}
+type HexColorValue = `#${string}`;
+type PaletteShade = `${number}`;
 
-export interface DaffDocsPaletteGroup {
-  kind: DaffDocsPaletteColorKind.GROUP;
-  shades: Record<string, string>;
-}
+/**
+ * A dictionary of the color shades '10', '20', etc. mapped to hex values.
+ */
+export type DaffDocsPaletteColor = Record<PaletteShade, HexColorValue>;
 
-export interface DaffDocsPaletteSingle {
-  kind: DaffDocsPaletteColorKind.SINGLE;
-  value: string;
-}
-
-export type DaffDocsPaletteColor = DaffDocsPaletteSingle | DaffDocsPaletteGroup;
-
+/**
+ * A dictionary of the color name mapped to the palette color shades.
+ */
 export type DaffDocsPalette = Record<string, DaffDocsPaletteColor>;

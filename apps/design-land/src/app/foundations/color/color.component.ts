@@ -7,10 +7,7 @@ import {
   Observable,
 } from 'rxjs';
 
-import {
-  DaffDocsPalette,
-  DaffDocsPaletteColorKind,
-} from '@daffodil/docs-utils';
+import { DaffDocsPalette } from '@daffodil/docs-utils';
 import { DaffDocsAssetService } from '@daffodil/documentation';
 
 @Component({
@@ -19,8 +16,6 @@ import { DaffDocsAssetService } from '@daffodil/documentation';
   styleUrls: ['./color.component.scss'],
 })
 export class DesignLandColorComponent implements OnInit {
-  readonly GROUP = DaffDocsPaletteColorKind.GROUP;
-
   palette$: Observable<DaffDocsPalette>;
 
   constructor(

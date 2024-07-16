@@ -21,7 +21,7 @@ export function scssFileReaderFactory() {
         docType: 'palette',
         id: 'base',
         title: 'Base Palette',
-        palettes: parsed.nodes.filter((node) => node.type === 'decl').map((decl: Declaration) => ({
+        palettes: parsed.nodes.filter((node) => node.type === 'decl' && node.value.startsWith('(')).map((decl: Declaration) => ({
           name: decl.prop,
           value: decl.value,
         })),
