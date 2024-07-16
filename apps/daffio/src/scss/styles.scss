@@ -18,7 +18,6 @@
 	@include daff-theme.daff-theme(daff-theme.$theme);
 	@include daffio-components.component-themes(daff-theme.$theme);
 	@include docs-components.daff-docs-components-themes(daff-theme.$theme);
-
 	background: var(--daff-base-background);
 	color: var(--daff-base-text);
 }
@@ -30,7 +29,6 @@
 	@include daff-theme.daff-theme(daff-theme.$theme-dark);
 	@include daffio-components.component-themes(daff-theme.$theme-dark);
 	@include docs-components.daff-docs-components-themes(daff-theme.$theme-dark);
-
 	background: var(--daff-base-background);
 	color: var(--daff-base-text);
 }
