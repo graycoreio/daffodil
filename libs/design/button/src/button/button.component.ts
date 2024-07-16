@@ -24,7 +24,7 @@ import {
   daffSizeMixin,
   DaffStatusable,
   daffStatusMixin,
-  daffArticleEncapsulatedMixin,
+  DaffArticleEncapsulatedDirective,
 } from '@daffodil/design';
 
 /**
@@ -46,7 +46,7 @@ class DaffButtonBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffButtonBase = daffArticleEncapsulatedMixin(daffPrefixableMixin(daffSuffixableMixin(daffColorMixin(daffStatusMixin(daffSizeMixin<DaffButtonSize>(DaffButtonBase, 'md'))))));
+const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin(daffColorMixin(daffStatusMixin(daffSizeMixin<DaffButtonSize>(DaffButtonBase, 'md')))));
 
 export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-flat-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
 
@@ -87,6 +87,9 @@ enum DaffButtonTypeEnum {
   //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['color', 'size', 'status'],
+  hostDirectives: [{
+    directive: DaffArticleEncapsulatedDirective,
+  }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

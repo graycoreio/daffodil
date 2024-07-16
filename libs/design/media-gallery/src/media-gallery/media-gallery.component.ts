@@ -12,7 +12,7 @@ import {
 import {
   daffSkeletonableMixin,
   DaffSkeletonable,
-  daffArticleEncapsulatedMixin,
+  DaffArticleEncapsulatedDirective,
 } from '@daffodil/design';
 
 import { DaffMediaGalleryRegistration } from '../helpers/media-gallery-registration.interface';
@@ -28,7 +28,7 @@ class DaffMediaGalleryBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffMediaGalleryBase = daffSkeletonableMixin(daffArticleEncapsulatedMixin((DaffMediaGalleryBase)));
+const _daffMediaGalleryBase = daffSkeletonableMixin((DaffMediaGalleryBase));
 
 @Component({
   selector: 'daff-media-gallery',
@@ -42,6 +42,9 @@ const _daffMediaGalleryBase = daffSkeletonableMixin(daffArticleEncapsulatedMixin
   // todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['skeleton'],
+  hostDirectives: [{
+    directive: DaffArticleEncapsulatedDirective,
+  }],
 })
 export class DaffMediaGalleryComponent extends _daffMediaGalleryBase implements DaffMediaGalleryRegistration, DaffSkeletonable, OnInit, OnDestroy {
   /**

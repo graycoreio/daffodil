@@ -1,1 +1,1 @@
-export { daffArticleEncapsulatedMixin } from './article-encapsulated-mixin';
+export { DaffArticleEncapsulatedDirective } from './article-encapsulated.directive';

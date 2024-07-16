@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 
 import {
-  daffArticleEncapsulatedMixin,
+  DaffArticleEncapsulatedDirective,
   DaffColorable,
   daffColorMixin,
 } from '@daffodil/design';
@@ -38,7 +38,7 @@ class DaffCardBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffCardBase = daffArticleEncapsulatedMixin(daffColorMixin(DaffCardBase));
+const _daffCardBase = daffColorMixin(DaffCardBase);
 
 /**
  * @inheritdoc
@@ -57,6 +57,9 @@ const _daffCardBase = daffArticleEncapsulatedMixin(daffColorMixin(DaffCardBase))
   //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['color'],
+  hostDirectives: [{
+    directive: DaffArticleEncapsulatedDirective,
+  }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
