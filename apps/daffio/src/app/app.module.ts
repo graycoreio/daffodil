@@ -27,6 +27,7 @@ import { DaffioMarketingSidebarContentComponentModule } from './core/sidebar/com
 import { DaffioSidebarFooterComponentModule } from './core/sidebar/components/sidebar-footer/sidebar-footer.module';
 import { DaffioSidebarHeaderComponentModule } from './core/sidebar/components/sidebar-header/sidebar-header.module';
 import { TemplateModule } from './core/template/template.module';
+import { provideBrowserDocsPath } from './docs/services/docs-path-browser';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -75,6 +76,7 @@ import { environment } from '../environments/environment';
       provide: APP_ID,
       useValue: 'serverApp',
     },
+    provideBrowserDocsPath(),
   ],
 })
 export class AppModule {}

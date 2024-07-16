@@ -9,23 +9,23 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 
 import { DaffArticleModule } from '@daffodil/design/article';
+import { DaffDoc } from '@daffodil/docs-utils';
+import { DaffDocsFactory } from '@daffodil/documentation/testing';
 
 import { DaffioDocViewerComponent } from './doc-viewer.component';
-import { DaffioDoc } from '../../models/doc';
-import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
 import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 
 @Component({
   template: `<daffio-doc-viewer [doc]="doc"></daffio-doc-viewer>`,
 })
 class WrapperComponent {
-  doc: DaffioDoc;
+  doc: DaffDoc;
 }
 
 describe('DaffioDocViewerComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapper: WrapperComponent;
-  const docFactory = new DaffioDocsFactory();
+  const docFactory = new DaffDocsFactory();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

@@ -4,6 +4,7 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { daffDocsResolve } from '@daffodil/documentation/routing';
 import { DaffRouteWithNamedViews } from '@daffodil/router';
 
 import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.component';
@@ -12,7 +13,6 @@ import { DaffioApiListResolver } from './resolvers/api-list-resolver.service';
 import { DaffioSimpleFooterComponent } from '../../core/footer/simple-footer/simple-footer.component';
 import { DaffioDocsSidebarContentComponent } from '../../core/sidebar/components/docs-sidebar-content/docs-sidebar-content.component';
 import { DaffioRouterNamedViewsEnum } from '../../named-views/models/named-views.enum';
-import { DocsResolver } from '../resolvers/docs-resolver.service';
 
 export const apiRoutes: Routes = [
   <DaffRouteWithNamedViews>{
@@ -35,7 +35,7 @@ export const apiRoutes: Routes = [
         path: '**',
         component: DaffioApiPageComponent,
         resolve: {
-          doc: DocsResolver,
+          doc: daffDocsResolve,
         },
       },
     ],

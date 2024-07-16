@@ -7,15 +7,15 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffLinkSetModule } from '@daffodil/design/link-set';
+import { DaffDoc } from '@daffodil/docs-utils';
+import { DaffDocsFactory } from '@daffodil/documentation/testing';
 
 import { DaffioDocsTableOfContentsComponent } from './table-of-contents.component';
-import { DaffioDoc } from '../../models/doc';
-import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
 
 describe('DaffioDocsTableOfContentsComponent', () => {
   let component: DaffioDocsTableOfContentsComponent;
   let fixture: ComponentFixture<DaffioDocsTableOfContentsComponent>;
-  let stubDaffioDoc: DaffioDoc;
+  let stubDaffioDoc: DaffDoc;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -31,7 +31,7 @@ describe('DaffioDocsTableOfContentsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DaffioDocsTableOfContentsComponent);
     component = fixture.componentInstance;
-    stubDaffioDoc = new DaffioDocsFactory().create();
+    stubDaffioDoc = new DaffDocsFactory().create();
     component.tableOfContents = stubDaffioDoc.tableOfContents.json;
     fixture.detectChanges();
   });

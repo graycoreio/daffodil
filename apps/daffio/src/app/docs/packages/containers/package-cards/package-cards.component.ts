@@ -8,12 +8,15 @@ import {
   Observable,
 } from 'rxjs';
 
-import { DaffioDoc } from '../../../models/doc';
-import { DaffioDocList } from '../../../models/doc-list';
-import { DaffioDocsService } from '../../../services/docs.service';
+import {
+  DaffDoc,
+  DaffDocsList,
+} from '@daffodil/docs-utils';
+import { DaffDocsAssetService } from '@daffodil/documentation';
+
 import { DaffioPackage } from '../../components/package-cards/package-cards.component';
 
-function getPath(doc: DaffioDocList): string {
+function getPath(doc: DaffDocsList): string {
   return doc.path || doc.children?.[0].path || '';
 }
 
@@ -27,7 +30,7 @@ export class DaffioDocsPackageCardsContainer implements OnInit {
   packagesList$: Observable<DaffioPackage[]>;
 
   constructor(
-    private docService: DaffioDocsService<DaffioDoc, DaffioDocList>,
+    private docService: DaffDocsAssetService<DaffDoc, DaffDocsList>,
   ) {}
 
   ngOnInit() {

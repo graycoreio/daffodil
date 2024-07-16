@@ -6,10 +6,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffDocsComponentExamples } from '@daffodil/documentation';
 
-import {
-  DaffDocsCodeExampleService,
-  provideDaffDocsLocation,
-} from './code-example.service';
+import { DaffDocsCodeExampleService } from './code-example.service';
 
 describe('@daffodil/docs-components | DaffDocsCodeExampleService', () => {
   let service: DaffDocsCodeExampleService;
@@ -22,7 +19,6 @@ describe('@daffodil/docs-components | DaffDocsCodeExampleService', () => {
       providers: [
         DaffDocsCodeExampleService,
         DaffDocsComponentExamples,
-        provideDaffDocsLocation('/assets/'),
       ],
     });
     service = TestBed.inject(DaffDocsCodeExampleService);
@@ -42,7 +38,7 @@ describe('@daffodil/docs-components | DaffDocsCodeExampleService', () => {
           component: undefined,
         }));
       });
-      const req = httpMock.expectOne('/assets/design-examples/test.json');
+      const req = httpMock.expectOne('/docs/design-examples/test.json');
       req.flush('test');
       httpMock.verify();
     });

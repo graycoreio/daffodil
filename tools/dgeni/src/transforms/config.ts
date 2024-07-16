@@ -8,6 +8,7 @@ export const DESIGN_LAND_PATH = resolve(PROJECT_ROOT, 'apps/design-land');
 export const DESIGN_PATH = resolve(PROJECT_ROOT, 'libs/design');
 export const TEMPLATES_PATH = resolve(DGENI_DIR, 'src/templates');
 export const API_TEMPLATES_PATH = resolve(TEMPLATES_PATH, 'api');
+export const PALETTE_TEMPLATES_PATH = resolve(TEMPLATES_PATH, 'palettes');
 export const SRC_PATH = resolve(DAFFIO_PATH, 'src');
 export const DIST_PATH = resolve(PROJECT_ROOT, 'dist');
 export const OUTPUT_PATH = resolve(DIST_PATH, '');
