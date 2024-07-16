@@ -1,6 +1,6 @@
 <button type="button" class="daff-accordion-item__header"
-  (click)="toggleActive()"
-  [attr.aria-expanded]="_open === true"
+  (click)="toggle()"
+  [attr.aria-expanded]="open"
   [attr.aria-controls]="id">
   <ng-content select="[daffAccordionItemTitle]"></ng-content>
 </button>
