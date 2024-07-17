@@ -1,17 +1,76 @@
 <h1>Modal</h1>
-<p>Modal is a dynamically rendered element that floats about the rest of a page's content. It can be especially useful for interstitials that require additional user feedback.</p>
+<p>Modal is a dynamically rendered element that floats above the rest of a page's content. It can be especially useful for interstitials that require additional user feedback.</p>
+
+<h2>Basic Modal</h2>
+<design-land-example-viewer-container example="basic-modal"></design-land-example-viewer-container>
 
 <h2>Supported Content Types</h2>
-<p>These components and directives help to structure the content in your modal.</p>
-<p>The <code>DaffModalComponent</code> optionally transcludes:</p>
-<ul>
-	<li><code>daff-modal-header</code>: component that places the <code>&lt;daffModalTitle&gt;</code> with styles to
-		handle the placement of an optional actionable icon.</li>
-	<li><code>daffModalTitle</code>: directive for modal title that can be applied to a heading element
-		(<code>&lt;h2&gt;</code>, &lt;h3&gt;, etc.)</li>
-	<li><code>daff-modal-content</code>: scrollable component to place the primary content in modal.</li>
-	<li><code>daff-modal-actions</code>: component to help place actionable components like buttons or links.</li>
-</ul>
+<p>A modal includes minimally pre-styled components and directives to help structure the content in your modal.</p>
 
-<h2>Usage</h2>
-<design-land-example-viewer-container example="basic-modal"></design-land-example-viewer-container>
+<h3>Header</h3>
+<p>Header can be added to a modal by using <code>&lt;daff-modal-header&gt;</code>. The header includes a title and an optional close button.</p>
+
+<h4>Title</h4>
+Title can be added to the header by using the <code>daffModalTitle</code> directive.
+
+<h4>Close Button</h4>
+<p>The close button is shown by default but can be hidden by setting the <code>dismissible</code> property to <code>false</code> on the header.</p>
+
+<h3>Content</h3>
+<p>Content can be added to a modal by using <code>&lt;daff-modal-content&gt;</code>. It should only be used once. It's a wrapper container that can be used to place all additional components and text content within a modal. The content container allows for a ton of control and customization because it's minimally pre-styled and serves as a wrapping and spacing container that is scrollable.</p>
+
+<h3>Actions</h3>
+<p>Buttons can be added to a modal by using <code>&lt;daff-modal-actions&gt;</code>. This container will always be positioned at the bottom of a modal. The horizontal alignment of the actions is set to <code>end</code>.</p>
+
+<h2>Configurations</h2>
+<p>A modal relies on the use of <code>entryComponents</code> of the particular Angular <code>&#64;NgModule</code>. To use the features of the modal:</p>
+
+<ol>
+	<li>Import the <code>DaffModalModule</code> as you would with any other <code>&#64;daffodil/design</code> component.</li>
+	<li>Add the component that you want rendered inside the modal to your <code>&#64;NgModule</code>'s <code>entryComponents</code>.</li>
+</ol>
+
+<pre><code>custom-modal.module.ts
+
+&#64;NgModule(&lcub;
+	declarations: &lbrack;
+		CustomModalComponent,
+	&rbrack;,
+	imports: &lbrack;
+		DaffModalModule,
+	&rbrack;,
+	entryComponents: &lbrack;
+		CustomModalComponent,
+	&rbrack;
+&rcub;)
+
+export class CustomModalModule &lcub;&rcub;</code></pre>
+
+<p>After you have imported the <code>DaffModalModule</code> into your component or module's imports, you can use the <code>DaffModalService</code> to open and close instances of the <code>DaffModalComponent</code>.</p>
+
+<pre><code>custom-modal.component.ts
+
+&#64;Component(&lcub;
+	templated: '&lt;button (click)="showModal()"&gt;&lt;button&gt;'
+&rcub;)
+
+export class CustomModalComponent &lcub;
+	constructor(private modalService: DaffModalService) &lcub;&rcub;
+
+	showModal() &lcub;
+		this.modalService.open(CustomModalComponent);
+	&rcub;
+&rcub;
+</code></pre>
+
+<blockquote>You will likely never render the <code>DaffModalComponent</code> directly like you would with other components due to its dynamic nature.</blockquote>
+
+<h2>Dismissing a Modal</h2>
+<p>A modal can be dismissed via the close button or the <code>ESC</code> key. The close button is shown by default but can be hidden by setting the <code>dismissible</code> property to <code>false</code> on <code>&lt;daff-modal-header&gt;</code>. Additionally, the <code>&lbrack;daffModalClose&rbrack;</code> directive can be added to a <code>&lt;button&gt;</code> HTML element.</p>
+
+<h2>Accessibility</h2>
+<p>Modal works with the ARIA <code>role="dialog"</code> and <code>aria-modal="true"</code> attributes to provide an accessible experience. <code>aria-labelledby</code> is assigned the <code>&lbrack;daffModalTitle&rbrack;</code> string. When a modal is opened, the first tabbable element within it will receive focus.</p>
+
+<h3>Keyboard Interactions</h3>
+<p>A modal can be closed by choosing one of the actions buttons, the close button in the header, or it can be dismissed by pressing the <code>ESC</code> key.</p>
+
