@@ -12,10 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffModalHeaderComponent } from './modal-header.component';
 
 @Component ({
-  template: `<daff-modal-header></daff-modal-header>`,
+  template: `<daff-modal-header [dismissible]="dismissible"></daff-modal-header>`,
 })
 
-class WrapperComponent {}
+class WrapperComponent {
+  dismissible = true;
+}
 
 describe('@daffodil/design/modal | DaffModalHeaderComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
@@ -50,6 +52,12 @@ describe('@daffodil/design/modal | DaffModalHeaderComponent', () => {
       expect(de.classes).toEqual(jasmine.objectContaining({
         'daff-modal-header': true,
       }));
+    });
+  });
+
+  describe('dismissible property', () => {
+    it('should be set to true by default', () => {
+      expect(component.dismissible).toBe(true);
     });
   });
 });

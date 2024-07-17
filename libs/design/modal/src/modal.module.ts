@@ -2,6 +2,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { DaffModalComponent } from './modal/modal.component';
 import { DaffModalActionsComponent } from './modal-actions/modal-actions.component';
@@ -16,6 +19,8 @@ import { DaffModalService } from './service/modal.service';
     CommonModule,
     PortalModule,
     OverlayModule,
+    DaffButtonModule,
+    FontAwesomeModule,
   ],
   exports: [
     DaffModalHeaderComponent,
