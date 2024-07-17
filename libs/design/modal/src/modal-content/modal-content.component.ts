@@ -1,6 +1,7 @@
 import {
   Component,
   ChangeDetectionStrategy,
+  HostBinding,
 } from '@angular/core';
 
 @Component({
@@ -9,4 +10,6 @@ import {
   styleUrls: ['./modal-content.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffModalContentComponent {}
+export class DaffModalContentComponent {
+  @HostBinding('class.daff-modal-content') class = true;
+}
