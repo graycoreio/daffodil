@@ -10,7 +10,6 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'daff-modal-header',
   templateUrl: './modal-header.component.html',
-  styleUrls: ['./modal-header.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

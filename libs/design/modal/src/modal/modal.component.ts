@@ -18,7 +18,7 @@ import {
   ElementRef,
   AfterContentInit,
   AfterViewInit,
-  Self,
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { daffFocusableElementsSelector } from '@daffodil/design';
@@ -33,6 +33,7 @@ import { DaffModalService } from '../service/modal.service';
   styleUrls: ['./modal.component.scss'],
   animations: [daffFadeAnimations.fade],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class DaffModalComponent implements AfterContentInit, AfterViewInit {
   /**
@@ -127,7 +128,16 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit {
    * Helper method to attach portable content to modal.
    */
   attachContent(portal: ComponentPortal<any>): any {
-	  this._portalOutlet.attachComponentPortal(portal);
+    const attachContent = this._portalOutlet.attachComponentPortal(portal);
+
+    // When a component is created to inject content into the modal, it can
+    // interfere with the display styles applied to the modal's header, content,
+    // and action sections. By setting `display: contents;` on the custom
+    // component, it is visually removed from the UI, allowing the content
+    // within it to inherit the modal's styles.
+    attachContent.location.nativeElement.style.display = 'contents';
+
+    return attachContent;
   }
 
   /** Animation hook that controls the entrance and exit animations of the modal. */
