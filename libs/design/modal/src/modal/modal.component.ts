@@ -39,6 +39,18 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit {
    * HostBinding to set the default modal class on the host element.
    */
   @HostBinding('class.daff-modal') modalClass = true;
+  private _ariaLabelledBy = null;
+
+  /**
+   * The aria-labelledby of modal. This will automatically be set to
+   * {@link DaffModalTitleDirective} when it is used.
+   *
+   */
+  @HostBinding('attr.aria-labelledby') get ariaLabelledBy() {
+    return this._ariaLabelledBy;
+  } set ariaLabelledBy(value: string) {
+    this._ariaLabelledBy = value;
+  }
 
   /**
    * Dictates whether or not a modal is open or closed.
