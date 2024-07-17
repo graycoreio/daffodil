@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 
 import { DaffModalComponent } from './modal/modal.component';
 import { DaffModalActionsComponent } from './modal-actions/modal-actions.component';
+import { DaffModalCloseDirective } from './modal-close/modal-close.directive';
 import { DaffModalContentComponent } from './modal-content/modal-content.component';
 import { DaffModalHeaderComponent } from './modal-header/modal-header.component';
 import { DaffModalTitleDirective } from './modal-title/modal-title.directive';
@@ -21,6 +22,7 @@ import { DaffModalService } from './service/modal.service';
     DaffModalTitleDirective,
     DaffModalContentComponent,
     DaffModalActionsComponent,
+    DaffModalCloseDirective,
   ],
   declarations: [
     DaffModalComponent,
@@ -28,6 +30,7 @@ import { DaffModalService } from './service/modal.service';
     DaffModalTitleDirective,
     DaffModalContentComponent,
     DaffModalActionsComponent,
+    DaffModalCloseDirective,
   ],
   providers: [
     DaffModalService,
