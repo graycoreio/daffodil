@@ -39,6 +39,17 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit {
    * HostBinding to set the default modal class on the host element.
    */
   @HostBinding('class.daff-modal') modalClass = true;
+
+  /**
+   * HostBinding to set the role to dialog.
+   */
+  @HostBinding('attr.role') role = 'dialog';
+
+  /**
+   * HostBinding to set aria-modal to true.
+   */
+  @HostBinding('attr.aria-modal') ariaModal = true;
+
   private _ariaLabelledBy = null;
 
   /**
