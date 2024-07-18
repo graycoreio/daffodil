@@ -1,0 +1,26 @@
+@use 'theme' as daff-theme;
+
+@mixin color-theme($theme) {
+	$white: daff-theme.daff-map-deep-get($theme, 'core.white');
+	$black: daff-theme.daff-map-deep-get($theme, 'core.black');
+
+	.daff-docs-color {
+		&__palette {
+			> * {
+				&:nth-child(n+6) {
+					color: daff-theme.$white;
+				}
+			}
+
+			&.brand-yellow {
+				> * {
+					color: daff-theme.$black;
+
+					&:last-child {
+						color: daff-theme.$white;
+					}
+				}
+			}
+		}
+	}
+}

@@ -23,6 +23,9 @@
       "@daffodil/core/routing": [
         "libs/core/routing/src"
       ],
+      "@daffodil/core/elements": [
+        "libs/core/elements/src"
+      ],
     }
   }
 }

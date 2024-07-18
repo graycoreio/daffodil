@@ -7,16 +7,16 @@ import {
 
 import { DaffCustomElements } from '@daffodil/core/elements';
 
-import { DaffDocsExampleViewerContainer } from './example-viewer.component';
+import { DaffDocsColorPalettesComponent } from './color.component';
 
-export const provideDaffDocsExampleViewerContainerCustomElement = (): FactoryProvider => ({
+export const provideDaffDocsColorPalettesComponentCustomElement = (): FactoryProvider => ({
   provide: ENVIRONMENT_INITIALIZER,
   useFactory: () => {
     const customElements = inject(DaffCustomElements);
     return () => {
       customElements.create(
-        `${reflectComponentType(DaffDocsExampleViewerContainer).selector}-ce`,
-        DaffDocsExampleViewerContainer,
+        `${reflectComponentType(DaffDocsColorPalettesComponent).selector}-ce`,
+        DaffDocsColorPalettesComponent,
       );
     };
   },

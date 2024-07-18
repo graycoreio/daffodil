@@ -4,7 +4,10 @@ import { RouterModule } from '@angular/router';
 
 import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffHeroModule } from '@daffodil/design/hero';
-import { provideDaffDocsDesignExamples } from '@daffodil/docs-components';
+import {
+  provideDaffDocsDesignExamples,
+  provideDaffDocsColorPalettesComponentCustomElement,
+} from '@daffodil/docs-components';
 
 import { DaffioDocViewerModule } from './components/doc-viewer/doc-viewer.module';
 import { DaffioDocsRoutingModule } from './docs-routing.module';
@@ -23,6 +26,7 @@ import { DaffioDocsPageComponent } from './pages/docs-page/docs-page.component';
   ],
   providers: [
     provideDaffDocsDesignExamples(),
+    provideDaffDocsColorPalettesComponentCustomElement(),
   ],
 })
 export class DaffioDocsModule {}

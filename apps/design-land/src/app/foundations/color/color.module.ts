@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { DaffArticleModule } from '@daffodil/design/article';
-import { DaffDocsPaletteShadeSortPipe } from '@daffodil/docs-components';
+import { DaffDocsColorPalettesComponent } from '@daffodil/docs-components';
 
 import { DesignLandColorRoutingModule } from './color-routing.module';
 import { DesignLandColorComponent } from './color.component';
@@ -15,7 +15,7 @@ import { DesignLandColorComponent } from './color.component';
   imports: [
     CommonModule,
     DesignLandColorRoutingModule,
-    DaffDocsPaletteShadeSortPipe,
+    DaffDocsColorPalettesComponent,
 
     DaffArticleModule,
   ],

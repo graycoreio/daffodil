@@ -1,0 +1,9 @@
+<div class="daff-docs-color__decorative-grid">
+  @for (color of palette$ | async | keyvalue; track color.key) {
+    <div class="daff-docs-color__palette brand-{{color.key.toLowerCase()}}">
+      @for (shade of color.value | keyvalue | paletteShadeSort; track $index) {
+        <div style="background-color: {{shade.value}};"><span class="daff-docs-color__hex">{{shade.key}}</span><span class="daff-docs-color__hue">{{shade.value}}</span></div>
+      }
+    </div>
+  }
+</div>
