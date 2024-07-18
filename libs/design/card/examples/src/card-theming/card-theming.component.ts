@@ -1,14 +1,8 @@
-import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import {
-  UntypedFormControl,
-  ReactiveFormsModule,
-} from '@angular/forms';
-
-import { DaffCardModule } from '@daffodil/design/card';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -20,12 +14,6 @@ import { DaffCardModule } from '@daffodil/design/card';
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffCardModule,
-    ReactiveFormsModule,
-    NgFor,
-  ],
 })
 export class CardThemingComponent {
   colorControl: UntypedFormControl = new UntypedFormControl('');

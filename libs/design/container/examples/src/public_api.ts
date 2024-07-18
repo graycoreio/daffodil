@@ -1,3 +1,3 @@
 export { ContainerSizesComponent } from './container-sizes/container-sizes.component';
-
-export * from './examples';
+export { ContainerSizesModule } from './container-sizes/container-sizes.module';
+export { CONTAINER_EXAMPLES } from './examples';

@@ -8,19 +8,21 @@
 @use './component-themes' as dl-components;
 
 .daff-theme-light {
-	@import 'highlight.js/scss/a11y-light.scss';
+  @import 'highlight.js/scss/a11y-light.scss';
 
-	@include daff-theme.daff-theme(daff-theme.$theme);
-	@include dl-components.component-themes(daff-theme.$theme);
-	background: var(--daff-base-background);
+  @include daff-theme.daff-theme(daff-theme.$theme);
+  @include dl-components.component-themes(daff-theme.$theme);
+
+  background: var(--daff-base-background);
 	color: var(--daff-base-text);
 }
 
 .daff-theme-dark {
-	@import 'highlight.js/scss/a11y-dark.scss';
+  @import 'highlight.js/scss/a11y-dark.scss';
 
-	@include daff-theme.daff-theme(daff-theme.$theme-dark);
-	@include dl-components.component-themes(daff-theme.$theme-dark);
-	background: var(--daff-base-background);
+  @include daff-theme.daff-theme(daff-theme.$theme-dark);
+  @include dl-components.component-themes(daff-theme.$theme-dark);
+
+  background: var(--daff-base-background);
 	color: var(--daff-base-text);
 }

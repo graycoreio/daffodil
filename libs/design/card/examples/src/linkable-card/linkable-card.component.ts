@@ -1,15 +1,8 @@
-import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import {
-  UntypedFormControl,
-  ReactiveFormsModule,
-} from '@angular/forms';
-
-import { DaffCardModule } from '@daffodil/design/card';
-import { DaffImageModule } from '@daffodil/design/image';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -17,13 +10,6 @@ import { DaffImageModule } from '@daffodil/design/image';
   templateUrl: './linkable-card.component.html',
   styleUrls: ['./linkable-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffCardModule,
-    DaffImageModule,
-    ReactiveFormsModule,
-    NgFor,
-  ],
 })
 export class LinkableCardComponent {
   basicColorControl: UntypedFormControl = new UntypedFormControl('');

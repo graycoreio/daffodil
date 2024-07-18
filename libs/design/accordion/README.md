@@ -9,10 +9,10 @@ An accordion item can include a `[daffAccordionItemTitle]`, which provides a hig
 
 By default, the accordion item includes a toggle icon at the end of the header to indicate if it's expanded or collapsed.
 
-### Setting an item to be expanded by default
+### Setting an item to be expanded by default 
 An item content can be visibile on render by setting the `initiallyExpanded` property to `true` on `daff-accordion-item`.
 
 ## Usage
 
 ### Basic Accordion
-<daff-docs-example-viewer-container-ce example="basic-accordion"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="basic-accordion"></design-land-example-viewer-container>

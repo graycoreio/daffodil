@@ -5,7 +5,7 @@ Menu is a small floating panel used to display a list of actions or navigational
 Menus only appear when a user interacts with a menu activator button. They should be used for secondary actions or options where users don't need immediate access to.
 
 ## Basic Menu
-<daff-docs-example-viewer-container-ce example="basic-menu"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="basic-menu"></design-land-example-viewer-container>
 
 ## Supported Content Types
 

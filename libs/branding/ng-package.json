@@ -3,7 +3,7 @@
   "dest": "../../dist/branding",
   "deleteDestPath": true,
   "lib": {
-    "entryFile": "src/index.ts"
+    "entryFile": "src/public_api.ts"
   },
   "assets": [
     "**/!(*.component)*.scss"

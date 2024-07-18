@@ -2,11 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
-
-import { DaffButtonModule } from '@daffodil/design/button';
-import { DaffNotificationModule } from '@daffodil/design/notification';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -21,12 +17,6 @@ import { DaffNotificationModule } from '@daffodil/design/notification';
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffNotificationModule,
-    FontAwesomeModule,
-    DaffButtonModule,
-  ],
 })
 export class NotificationWithActionsComponent {
   faExclamationCircle = faExclamationCircle;

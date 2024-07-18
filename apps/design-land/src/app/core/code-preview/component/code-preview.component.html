@@ -1,0 +1,7 @@
+<div #content class="design-land-code-preview__content"></div>
+<ng-container *ngIf="example">
+  <div class="design-land-code-preview__tab-wrapper">
+    <button class="design-land-code-preview__tab" [class.selected]="exampleFile === file" (click)="exampleFile = file" *ngFor="let file of example.files">{{ file.language }}</button>
+  </div>
+  <pre class="design-land-code-preview__code-block"><code [class]="'hljs' + ' ' +exampleFile.language" [innerHtml]="exampleFile.content"></code></pre>
+</ng-container>

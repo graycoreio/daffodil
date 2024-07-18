@@ -2,7 +2,6 @@ import { Package } from 'dgeni';
 
 import { GenerateGuideListProcessor } from './processors/generateGuideList';
 import { guideFileReaderFactory } from './reader/guide-file.reader';
-import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { MarkdownCodeProcessor } from '../../processors/markdown';
 import {
   API_SOURCE_PATH,
@@ -10,6 +9,14 @@ import {
   GUIDES_TEMPLATES_PATH,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
+
+//List of packages to be left out of Guide generation
+const excludedPackages = <const>[
+  'branding',
+  'docs-utils',
+  'theme-switch',
+];
+const excludedPackagesRegex = '!(' + excludedPackages.join('|') + ')';
 
 const base = new Package('daffodil-guides-base', [daffodilBasePackage])
   .factory('guideFileReader', guideFileReaderFactory)
@@ -46,7 +53,7 @@ export const packageDocsPackage = new Package('daffodil-package-docs', [base])
   .config((readFilesProcessor) => {
     readFilesProcessor.basePath = API_SOURCE_PATH;
     readFilesProcessor.sourceFiles = [
-      { include: [DAFF_DGENI_EXCLUDED_PACKAGES_REGEX + '*/**/README.md', DAFF_DGENI_EXCLUDED_PACKAGES_REGEX + '/guides/**/*.md']},
+      { include: [excludedPackagesRegex + '*/**/README.md', excludedPackagesRegex + '/guides/**/*.md']},
     ];
   })
   .config((computePathsProcessor) => {

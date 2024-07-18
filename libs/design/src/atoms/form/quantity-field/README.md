@@ -10,15 +10,15 @@ The default allowed range of numbers is 1 to 500. This can be changed by passing
 ## Usage
 
 ### Basic
-<daff-docs-example-viewer-container-ce example="basic-quantity-field"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="basic-quantity-field"></design-land-example-viewer-container>
 
 ### Disabled
-<daff-docs-example-viewer-container-ce example="disabled-quantity-field"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="disabled-quantity-field"></design-land-example-viewer-container>
 
 ### Custom Select Max Value (15)
 The maximum value at which the field will switch to using an input is configurable.
-<daff-docs-example-viewer-container-ce example="select-max-quantity-field"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="select-max-quantity-field"></design-land-example-viewer-container>
 
 ### Custom Range Limits (5 - 50)
 Custom range limits is the absolute minimum and maximum values can be specified.
-<daff-docs-example-viewer-container-ce example="custom-range-quantity-field"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="custom-range-quantity-field"></design-land-example-viewer-container>

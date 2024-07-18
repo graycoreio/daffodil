@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { DaffArticleModule } from '@daffodil/design/article';
-import { DaffDocsExampleViewerContainer } from '@daffodil/docs-components';
 
 import { DesignLandCalloutRoutingModule } from './callout-routing.module';
 import { DesignLandCalloutComponent } from './callout.component';
+import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { DesignLandCalloutComponent } from './callout.component';
     DesignLandCalloutRoutingModule,
 
     DaffArticleModule,
-    DaffDocsExampleViewerContainer,
+    DesignLandExampleViewerModule,
   ],
 })
 export class DesignLandCalloutModule {

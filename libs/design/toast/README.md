@@ -6,7 +6,7 @@ Toasts should be used to display temporary messages about actions or events that
 
 ### Basic Toast
 <design-land-article-encapsulated>
-	<daff-docs-example-viewer-container-ce example="default-toast"></daff-docs-example-viewer-container-ce>
+	<design-land-example-viewer-container example="default-toast"></design-land-example-viewer-container>
 </design-land-article-encapsulated>
 
 ### Configurations
@@ -16,7 +16,7 @@ The following is an example of a toast with a duration:
 
 ```ts
 constructor(private toastService: DaffToastService) {}
-
+	
 open() {
 	this.toast = this.toastService.open({
 		title: 'Update Complete',
@@ -64,7 +64,7 @@ A toast with actions will persist until one of the actions have been interacted 
 By default, a toast without actions will be dismissed after `5000ms`. This can be updated by setting `duration` through the `DaffToastService`.
 
 #### Toast with custom duration
-<daff-docs-example-viewer-container-ce example="toast-with-custom-duration"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="toast-with-custom-duration"></design-land-example-viewer-container>
 
 ##### Close button
 The close button is shown by default but can be hidden by setting `dismissible: false` through the `DaffToastService`.
@@ -81,7 +81,7 @@ The status color of a toast can be updated by using the `status` property.
 Supported statuses: `warn | danger | success`
 
 #### Toast with statuses
-<daff-docs-example-viewer-container-ce example="toast-status"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="toast-status"></design-land-example-viewer-container>
 
 ### Positions
 
@@ -107,7 +107,7 @@ providers: [
 The position of a toast on a mobile device will always be on the bottom center.
 
 #### Toast with configurable positions
-<daff-docs-example-viewer-container-ce example="toast-positions"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="toast-positions"></design-land-example-viewer-container>
 
 ### Accessibility
 By default, toasts use a `role="status"` to announce messages. It's the equivalent of `aria-live="polite"`, which does not interrupt a user's current activity and waits until they are idle to make the announcement. When a toast has actions, a `role="alertdialog"` is used. The toast will be focus trapped and focus immediately moves to the actions.

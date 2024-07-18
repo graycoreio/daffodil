@@ -1,5 +1,3 @@
-import { provideDaffDocsExampleComponents } from '@daffodil/documentation';
-
 import { ArticleBlockquoteComponent } from './article-blockquote/article-blockquote.component';
 import { ArticleCodeBlockComponent } from './article-code-block/article-code-block.component';
 import { ArticleCodeInlineComponent } from './article-code-inline/article-code-inline.component';
@@ -23,6 +21,3 @@ export const ARTICLE_EXAMPLES = [
   ArticleUlComponent,
   ArticleTableComponent,
 ];
-
-export const provideDaffDesignArticleExamples = () =>
-  provideDaffDocsExampleComponents(...ARTICLE_EXAMPLES);

@@ -25,7 +25,7 @@ Images should be given a meaningful description using the native `alt` attribute
 
 ## Usage
 ### Basic Image
-<daff-docs-example-viewer-container-ce example="load-image"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="load-image"></design-land-example-viewer-container>
 
 ### Image Load Output
-<daff-docs-example-viewer-container-ce example="load-image"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="load-image"></design-land-example-viewer-container>

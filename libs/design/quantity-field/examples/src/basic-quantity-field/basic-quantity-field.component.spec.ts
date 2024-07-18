@@ -12,7 +12,7 @@ describe('BasicQuantityFieldComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [BasicQuantityFieldComponent],
+      declarations: [ BasicQuantityFieldComponent ],
     })
       .compileComponents();
   }));

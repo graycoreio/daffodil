@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { DaffArticleModule } from '@daffodil/design/article';
 import { DaffPaginatorModule } from '@daffodil/design/paginator';
-import { DaffDocsExampleViewerContainer } from '@daffodil/docs-components';
 
 import { DesignLandPaginatorRoutingModule } from './paginator-routing.module';
 import { DesignLandPaginatorComponent } from './paginator.component';
 import { DesignLandArticleEncapsulatedModule } from '../core/article-encapsulated/article-encapsulated.module';
+import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { DesignLandArticleEncapsulatedModule } from '../core/article-encapsulate
 
     DesignLandPaginatorRoutingModule,
     DesignLandArticleEncapsulatedModule,
-    DaffDocsExampleViewerContainer,
+    DesignLandExampleViewerModule,
   ],
 })
 export class DesignLandPaginatorModule { }

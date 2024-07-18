@@ -3,7 +3,7 @@
   "dest": "../../dist/design",
   "deleteDestPath": true,
   "lib": {
-    "entryFile": "src/index.ts",
+    "entryFile": "src/public_api.ts",
     "styleIncludePaths": ["./scss"]
   },
   "assets": [

@@ -4,10 +4,10 @@ import { NgModule } from '@angular/core';
 import { DaffArticleModule } from '@daffodil/design/article';
 import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffMenuModule } from '@daffodil/design/menu';
-import { DaffDocsExampleViewerContainer } from '@daffodil/docs-components';
 
 import { DesignLandMenuRoutingModule } from './menu-routing-module';
 import { DesignLandMenuComponent } from './menu.component';
+import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { DesignLandMenuComponent } from './menu.component';
   imports: [
     CommonModule,
     DesignLandMenuRoutingModule,
-    DaffDocsExampleViewerContainer,
+    DesignLandExampleViewerModule,
 
     DaffArticleModule,
     DaffMenuModule,

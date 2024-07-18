@@ -4,11 +4,11 @@ import { RouterModule } from '@angular/router';
 
 import { DaffArticleModule } from '@daffodil/design/article';
 import { DaffTreeModule } from '@daffodil/design/tree';
-import { DaffDocsExampleViewerContainer } from '@daffodil/docs-components';
 
 import { DesignLandTreeRoutingModule } from './tree-routing-module';
 import { DesignLandTreeComponent } from './tree.component';
 import { DesignLandArticleEncapsulatedModule } from '../core/article-encapsulated/article-encapsulated.module';
+import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { DesignLandArticleEncapsulatedModule } from '../core/article-encapsulate
     CommonModule,
     RouterModule,
     DesignLandTreeRoutingModule,
-    DaffDocsExampleViewerContainer,
+    DesignLandExampleViewerModule,
     DesignLandArticleEncapsulatedModule,
 
     DaffArticleModule,

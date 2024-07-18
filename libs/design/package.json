@@ -48,8 +48,7 @@
     "@faker-js/faker": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
-    "@daffodil/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/documentation": "0.0.0-PLACEHOLDER"
+    "@daffodil/core": "0.0.0-PLACEHOLDER"
   },
   "exports": {
     "./scss/global": {

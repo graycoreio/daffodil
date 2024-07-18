@@ -12,7 +12,7 @@ describe('DisabledQuantityFieldComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [DisabledQuantityFieldComponent],
+      declarations: [ DisabledQuantityFieldComponent ],
     })
       .compileComponents();
   }));

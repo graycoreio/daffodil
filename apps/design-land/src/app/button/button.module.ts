@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { DaffArticleModule } from '@daffodil/design/article';
 import { DaffButtonModule } from '@daffodil/design/button';
-import { DaffDocsExampleViewerContainer } from '@daffodil/docs-components';
 
 import { DesignLandButtonRoutingModule } from './button-routing.module';
 import { DesignLandButtonComponent } from './button.component';
+import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { DesignLandButtonComponent } from './button.component';
     CommonModule,
 
     DesignLandButtonRoutingModule,
-    DaffDocsExampleViewerContainer,
+    DesignLandExampleViewerModule,
     DaffArticleModule,
     DaffButtonModule,
   ],

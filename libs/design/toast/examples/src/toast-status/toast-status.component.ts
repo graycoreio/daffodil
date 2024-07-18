@@ -2,17 +2,13 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import {
-  FormControl,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import {
   faCheck,
   faExclamation,
   faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffButtonModule } from '@daffodil/design/button';
 import {
   DaffToastData,
   DaffToastService,
@@ -38,8 +34,6 @@ const status: Record<string, DaffToastData> =  {
   templateUrl: './toast-status.component.html',
   styleUrls: ['./toast-status.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [DaffButtonModule, ReactiveFormsModule],
 })
 export class ToastStatusComponent {
   faInfoCircle = faInfoCircle;

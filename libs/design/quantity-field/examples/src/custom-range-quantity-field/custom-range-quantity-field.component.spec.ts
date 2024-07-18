@@ -12,7 +12,7 @@ describe('CustomRangeQuantityFieldComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [CustomRangeQuantityFieldComponent],
+      declarations: [ CustomRangeQuantityFieldComponent ],
     })
       .compileComponents();
   }));

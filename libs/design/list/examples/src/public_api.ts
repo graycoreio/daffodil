@@ -3,6 +3,6 @@ export { NavListComponent } from './nav-list/nav-list.component';
 export { IconListComponent } from './icon-list/icon-list.component';
 export { MultilineListComponent } from './multiline-list/multiline-list.component';
 
+export { ListExamplesModule } from './list-examples.module';
 
-
-export * from './examples';
+export { LIST_EXAMPLES } from './examples';

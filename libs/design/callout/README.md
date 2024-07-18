@@ -27,25 +27,25 @@ The default background color of a callout is light gray, but it can be updated t
 
 Supported colors: `primary | secondary | tertiary | black | white | theme | theme-contrast`
 
-<daff-docs-example-viewer-container-ce example="callout-theming"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="callout-theming"></design-land-example-viewer-container>
 
 ## Text Alignment
 Align callout-specific text with the `textAlignment` property. `textAlignment` will not cascade the alignment styles down to `[daffCalloutBody]` or any additional components or elements that is placed inside of a callout. `textAlignment` is set to `left` by default.
 
 Supported alignments: `left | center | right`
 
-<daff-docs-example-viewer-container-ce example="callout-text-alignment"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="callout-text-alignment"></design-land-example-viewer-container>
 
 ## Compact Callouts
 Callouts are available in a `compact` mode, which decreases the overall padding of the callout container to suit UIs that require less negative space. To enable the mode, set the `compact` property on `<daff-callout>`.
 
-<daff-docs-example-viewer-container-ce example="compact-callout"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="compact-callout"></design-land-example-viewer-container>
 
 ## Gridded Callouts
 Callouts are flexible enough to support grids within them.
 
 ### Callout with Two Columns
-<daff-docs-example-viewer-container-ce example="callout-with-grid"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="callout-with-grid"></design-land-example-viewer-container>
 
 ## Layout
 The `layout` property is deprecated and replaced by the [`textAlignment`](#text-alignment) property.

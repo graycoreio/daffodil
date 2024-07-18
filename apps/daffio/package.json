@@ -31,7 +31,6 @@
   "devDependencies": {
     "@daffodil/branding": "0.0.0-PLACEHOLDER",
     "@daffodil/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/docs-components": "0.0.0-PLACEHOLDER",
     "@daffodil/docs-utils": "0.0.0-PLACEHOLDER",
     "@daffodil/design": "0.0.0-PLACEHOLDER",
     "@daffodil/router": "0.0.0-PLACEHOLDER",

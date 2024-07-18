@@ -3,8 +3,6 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffProgressBarModule } from '@daffodil/design/progress-bar';
-
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'progress-bar-default',
@@ -16,7 +14,5 @@ import { DaffProgressBarModule } from '@daffodil/design/progress-bar';
       gap: 8px;
     }`],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [DaffProgressBarModule],
 })
 export class ProgressBarDefaultComponent {}

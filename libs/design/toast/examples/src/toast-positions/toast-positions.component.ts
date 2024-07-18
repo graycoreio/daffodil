@@ -3,18 +3,13 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import {
-  FormControl,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { combineLatest } from 'rxjs';
 
-import { DaffButtonModule } from '@daffodil/design/button';
 import {
   DaffToast,
   DaffToastService,
   DaffToastPositionService,
-  provideDaffToastOptions,
 } from '@daffodil/design/toast';
 
 @Component({
@@ -23,17 +18,6 @@ import {
   templateUrl: './toast-positions.component.html',
   styleUrls: ['./toast-positions.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ReactiveFormsModule, DaffButtonModule],
-  providers: [
-    provideDaffToastOptions({
-      position: {
-        vertical: 'top',
-        horizontal: 'right',
-      },
-      useParent: false,
-    }),
-  ],
 })
 export class ToastPositionsComponent implements OnInit {
   private toast: DaffToast;

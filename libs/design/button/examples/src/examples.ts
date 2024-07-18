@@ -1,5 +1,3 @@
-import { provideDaffDocsExampleComponents } from '@daffodil/documentation';
-
 import { BasicButtonComponent } from './basic-button/basic-button.component';
 import { FlatButtonComponent } from './flat-button/flat-button.component';
 import { IconButtonComponent } from './icon-button/icon-button.component';
@@ -8,7 +6,6 @@ import { SizeableButtonComponent } from './sizeable-button/sizeable-button.compo
 import { StatusableButtonComponent } from './statusable-button/statusable-button.component';
 import { StrokedButtonComponent } from './stroked-button/stroked-button.component';
 import { UnderlineButtonComponent } from './underline-button/underline-button.component';
-
 
 export const BUTTON_EXAMPLES = [
   BasicButtonComponent,
@@ -20,6 +17,3 @@ export const BUTTON_EXAMPLES = [
   UnderlineButtonComponent,
   FlatButtonComponent,
 ];
-
-export const provideDaffDesignButtonExamples = () =>
-  provideDaffDocsExampleComponents(...BUTTON_EXAMPLES);

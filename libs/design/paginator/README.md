@@ -8,4 +8,4 @@ An ellipsis is used to truncate pages when the number of pages exceed the maximu
 Use `aria-label` or `aria-labelledby` to give a meaningful label to `daff-paginator` that describes the content controlled by the paginator. If more than one paginator component is used on a page, each will need a unique `aria-label`.
 
 ## Usage
-<daff-docs-example-viewer-container-ce example="basic-paginator"></daff-docs-example-viewer-container-ce>
+<design-land-example-viewer-container example="basic-paginator"></design-land-example-viewer-container>
