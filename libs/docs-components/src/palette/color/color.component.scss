@@ -1,0 +1,60 @@
+@use 'utilities' as daff;
+
+.daff-docs-color {
+	&__grid {
+		display: grid;
+		grid-gap: 24px;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'primary'
+			'secondary'
+			'tertiary';
+
+		@include daff.breakpoint(tablet) {
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-areas:
+				'primary   secondary'
+				'tertiary  .';
+		}
+
+		@include daff.breakpoint(big-tablet) {
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-areas:
+				'primary secondary tertiary';
+		}
+	}
+
+	&__palette {
+		display: block;
+
+		> * {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0 16px;
+			height: 3rem;
+
+			&:first-child {
+				border-top-left-radius: 8px;
+				border-top-right-radius: 8px;
+			}
+
+			&:last-child {
+				border-bottom-left-radius: 8px;
+				border-bottom-right-radius: 8px;
+			}
+
+			&:nth-child(6) {
+				height: 4rem;
+			}
+		}
+
+		&__brand-yellow {
+			grid-area: brand-yellow;
+		}
+	}
+
+	&__hue {
+		text-transform: uppercase;
+	}
+}

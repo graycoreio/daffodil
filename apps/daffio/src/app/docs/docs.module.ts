@@ -6,7 +6,7 @@ import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffHeroModule } from '@daffodil/design/hero';
 import {
   provideDaffDocsDesignExamples,
-  provideDaffDocsLocation,
+  provideDaffDocsColorPalettesComponentCustomElement,
 } from '@daffodil/docs-components';
 
 import { DaffioDocViewerModule } from './components/doc-viewer/doc-viewer.module';
@@ -26,7 +26,7 @@ import { DaffioDocsPageComponent } from './pages/docs-page/docs-page.component';
   ],
   providers: [
     provideDaffDocsDesignExamples(),
-    provideDaffDocsLocation('/assets/daffio/docs/'),
+    provideDaffDocsColorPalettesComponentCustomElement(),
   ],
 })
 export class DaffioDocsModule {}

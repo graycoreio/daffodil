@@ -1,23 +1,26 @@
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { DaffioApiService } from './api.service';
 import {
-  DaffioAssetFetchServiceInterface,
-  DaffioAssetFetchService,
-} from '../../../core/assets/fetch/service.interface';
+  DaffDocsAssetFetchServiceInterface,
+  DaffDocsAssetFetchService,
+} from '@daffodil/documentation';
+
+import { DaffioApiService } from './api.service';
+import { provideBrowserDocsPath } from '../../services/docs-path-browser';
 
 describe('DaffioApiService', () => {
-  let fetchAssetServiceSpy: jasmine.SpyObj<DaffioAssetFetchServiceInterface>;
+  let fetchAssetServiceSpy: jasmine.SpyObj<DaffDocsAssetFetchServiceInterface>;
   let service: DaffioApiService;
 
   beforeEach(() => {
-    fetchAssetServiceSpy = jasmine.createSpyObj('DaffioAssetFetchService', ['fetch']);
+    fetchAssetServiceSpy = jasmine.createSpyObj('DaffDocsAssetFetchService', ['fetch']);
 
     TestBed.configureTestingModule({
       providers: [
+        provideBrowserDocsPath(),
         {
-          provide: DaffioAssetFetchService,
+          provide: DaffDocsAssetFetchService,
           useValue: fetchAssetServiceSpy,
         },
       ],

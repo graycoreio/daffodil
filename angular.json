@@ -1167,7 +1167,7 @@
               {
                 "glob": "**/*",
                 "input": "dist/docs/",
-                "output": "/assets/"
+                "output": "/assets/docs/"
               }
             ],
             "styles": [

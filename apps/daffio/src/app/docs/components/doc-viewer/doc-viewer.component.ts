@@ -11,9 +11,10 @@ import {
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 
+import { DaffDoc } from '@daffodil/docs-utils';
+
 import { ToggleSidebar } from '../../../core/sidebar/actions/sidebar.actions';
 import { DAFFIO_DOCS_CONTENT_SIDEBAR_KIND } from '../../../core/sidebar/containers/docs-sidebar/docs-sidebar.component';
-import { DaffioDoc } from '../../models/doc';
 
 @Component({
   selector: 'daffio-doc-viewer',
@@ -29,7 +30,7 @@ export class DaffioDocViewerComponent implements OnChanges {
   /**
    * The doc to render
    */
-  @Input() doc: DaffioDoc;
+  @Input() doc: DaffDoc;
 
   sanitizedContent: SafeHtml;
 

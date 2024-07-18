@@ -11,7 +11,8 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { DaffioDoc } from '../../../docs/models/doc';
+import { DaffDoc } from '@daffodil/docs-utils';
+
 import { DaffioDocViewerModule } from '../../components/doc-viewer/doc-viewer.module';
 
 @Component({
@@ -26,11 +27,11 @@ import { DaffioDocViewerModule } from '../../components/doc-viewer/doc-viewer.mo
   ],
 })
 export class DaffioDocsPageComponent implements OnInit {
-  doc$: Observable<DaffioDoc>;
+  doc$: Observable<DaffDoc>;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.doc$ = this.route.data.pipe(map((data: { doc: DaffioDoc }) => data.doc));
+    this.doc$ = this.route.data.pipe(map((data: { doc: DaffDoc }) => data.doc));
   }
 }

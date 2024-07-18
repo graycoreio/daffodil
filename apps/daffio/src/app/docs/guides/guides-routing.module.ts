@@ -4,12 +4,12 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { daffDocsResolve } from '@daffodil/documentation/routing';
 import { DaffRouteWithNamedViews } from '@daffodil/router';
 
 import { DaffioDocsGuidesListContainer } from './containers/guides-list/guides-list.component';
 import { DaffioRouterNamedViewsEnum } from '../../named-views/models/named-views.enum';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
-import { DocsResolver } from '../resolvers/docs-resolver.service';
 
 export const DAFFIO_DOCS_GUIDE_DEFAULT = 'introduction/about';
 
@@ -31,7 +31,7 @@ export const docsRoutes: Routes = [
         path: '**',
         component: DaffioDocsPageComponent,
         resolve: {
-          doc: DocsResolver,
+          doc: daffDocsResolve,
         },
         data: {
           sidebarMode: 'side-fixed',

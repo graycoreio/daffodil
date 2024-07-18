@@ -1,7 +1,8 @@
 import { Provider } from '@angular/core';
 import { join } from 'path';
 
-import { DAFFIO_DOCS_PATH_TOKEN } from './docs-path.token';
+import { DAFF_DOCS_ASSET_PATH_TOKEN } from '@daffodil/documentation';
+
 import { environment } from '../../../environments/environment';
 
 /**
@@ -14,7 +15,7 @@ const daffioDocsPathServerFactory = () => join(process.cwd(), environment.docsPa
  */
 export function provideServerDocsPath(): Provider {
   return {
-    provide: DAFFIO_DOCS_PATH_TOKEN,
+    provide: DAFF_DOCS_ASSET_PATH_TOKEN,
     useFactory: daffioDocsPathServerFactory,
   };
 };

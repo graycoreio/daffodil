@@ -4,13 +4,13 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { daffDocsResolve } from '@daffodil/documentation/routing';
 import { DaffRouteWithNamedViews } from '@daffodil/router';
 
 import { DaffioDocsPackagesListContainer } from './containers/packages-list/packages-list.component';
 import { DaffioPackagesOverviewPageComponent } from './pages/packages-overview/packages-overview.component';
 import { DaffioRouterNamedViewsEnum } from '../../named-views/models/named-views.enum';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
-import { DocsResolver } from '../resolvers/docs-resolver.service';
 
 export const docsRoutes: Routes = [
   <DaffRouteWithNamedViews>{
@@ -30,7 +30,7 @@ export const docsRoutes: Routes = [
         path: '**',
         component: DaffioDocsPageComponent,
         resolve: {
-          doc: DocsResolver,
+          doc: daffDocsResolve,
         },
         data: {
           sidebarMode: 'side-fixed',

@@ -4,20 +4,21 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffioApiServiceInterface } from './api-service.interface';
 import {
-  DaffioAssetFetchService,
-  DaffioAssetFetchServiceInterface,
-} from '../../../core/assets/fetch/service.interface';
-import { DAFFIO_DOCS_PATH_TOKEN } from '../../services/docs-path.token';
+  DaffDocsAssetFetchService,
+  DaffDocsAssetFetchServiceInterface,
+  DAFF_DOCS_ASSET_PATH_TOKEN,
+} from '@daffodil/documentation';
+
+import { DaffioApiServiceInterface } from './api-service.interface';
 import { DaffioApiReference } from '../models/api-reference';
 
 @Injectable({ providedIn: 'root' })
 export class DaffioApiService implements DaffioApiServiceInterface {
 
   constructor(
-    @Inject(DaffioAssetFetchService) private fetchAsset: DaffioAssetFetchServiceInterface,
-    @Inject(DAFFIO_DOCS_PATH_TOKEN) private docsPath: string,
+    @Inject(DaffDocsAssetFetchService) private fetchAsset: DaffDocsAssetFetchServiceInterface,
+    @Inject(DAFF_DOCS_ASSET_PATH_TOKEN) private docsPath: string,
   ) {}
 
   list(): Observable<DaffioApiReference[]> {
