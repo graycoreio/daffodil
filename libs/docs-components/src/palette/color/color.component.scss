@@ -24,30 +24,6 @@
 		}
 	}
 
-	&__decorative-grid {
-		display: grid;
-		grid-gap: 24px;
-		grid-template-columns: 1fr;
-		grid-template-areas:
-			'brand-yellow'
-			'bronze'
-			'red-palette'
-			'green-palette';
-
-		@include daff.breakpoint(tablet) {
-			grid-template-columns: repeat(2, 1fr);
-			grid-template-areas:
-				'brand-yellow  bronze'
-				'red-palette   green-palette';
-		}
-
-		@include daff.breakpoint(big-tablet) {
-			grid-template-columns: repeat(4, 1fr);
-			grid-template-areas:
-				'brand-yellow bronze red-palette green-palette';
-		}
-	}
-
 	&__palette {
 		display: block;
 
@@ -73,32 +49,8 @@
 			}
 		}
 
-		&.primary {
-			grid-area: primary;
-		}
-
-		&.secondary {
-			grid-area: secondary;
-		}
-
-		&.tertiary {
-			grid-area: tertiary;
-		}
-
-		&.brand-yellow {
+		&__brand-yellow {
 			grid-area: brand-yellow;
-		}
-
-		&.red {
-			grid-area: red-palette;
-		}
-
-		&.bronze {
-			grid-area: bronze;
-		}
-
-		&.green {
-			grid-area: green-palette;
 		}
 	}
 

@@ -3,9 +3,6 @@ import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { of } from 'rxjs';
-
-import { DaffDocsAssetService } from '@daffodil/documentation';
 
 import { DesignLandColorComponent } from './color.component';
 
@@ -17,14 +14,6 @@ describe('DesignLandColorComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DesignLandColorComponent,
-      ],
-      providers: [
-        {
-          provide: DaffDocsAssetService,
-          useValue: jasmine.createSpyObj('DaffDocsAssetService', {
-            get: of(),
-          }),
-        },
       ],
     })
       .compileComponents();
