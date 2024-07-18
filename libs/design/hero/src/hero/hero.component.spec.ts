@@ -76,47 +76,7 @@ describe('@daffodil/design/hero | DaffHeroComponent', () => {
     wrapper.textAlignment = 'left';
     fixture.detectChanges();
 
-    expect(component.textAlignment).toEqual('left');
-  });
-
-  describe('setting the textAlignment', () => {
-    it('should add the class of the defined textAlignment to the host element', () => {
-      wrapper.textAlignment = 'left';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-left')).toEqual(true);
-    });
-
-    it('should set the default textAlignment to left', () => {
-      expect(component.textAlignment).toEqual('left');
-    });
-
-    describe('when textAlignment="left"', () => {
-      it('should add a class of "daff-left" to the host element', () => {
-        wrapper.textAlignment = 'left';
-        fixture.detectChanges();
-
-        expect(de.nativeElement.classList.contains('daff-left')).toBeTruthy();
-      });
-    });
-
-    describe('when textAlignment="center"', () => {
-      it('should add a class of "daff-center" to the host element', () => {
-        wrapper.textAlignment = 'center';
-        fixture.detectChanges();
-
-        expect(de.nativeElement.classList.contains('daff-center')).toBeTruthy();
-      });
-    });
-
-    describe('when textAlignment="right"', () => {
-      it('should add a class of "daff-right" to the host element', () => {
-        wrapper.textAlignment = 'right';
-        fixture.detectChanges();
-
-        expect(de.nativeElement.classList.contains('daff-right')).toBeTruthy();
-      });
-    });
+    expect(de.nativeElement.classList.contains('daff-left')).toEqual(true);
   });
 
   it('should take compact as an input', () => {

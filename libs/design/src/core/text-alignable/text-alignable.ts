@@ -1,6 +1,5 @@
 /**
- * An interface for giving a component the ability to customize text alignment for component-specific UI.
- * In order to be text alignable, a component class must implement this property.
+ * Interface for giving a component the ability to customize text alignment for component-specific UI.
  */
 export interface DaffTextAlignable {
   textAlignment: DaffTextAlignment;
