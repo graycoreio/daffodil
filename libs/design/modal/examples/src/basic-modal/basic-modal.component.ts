@@ -18,6 +18,9 @@ import { BasicModalContentComponent } from './modal-content.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [DaffButtonModule],
+  providers: [
+    DaffModalService,
+  ],
 })
 export class BasicModalComponent {
   modal: DaffModalComponent;
