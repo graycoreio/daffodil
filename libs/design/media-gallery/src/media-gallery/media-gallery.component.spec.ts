@@ -78,8 +78,11 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
     expect(component.name).toEqual(stubName);
   });
 
-  it('should take a skeleton as input', () => {
-    expect(component.skeleton).toEqual(wrapper.skeleton);
+  it('should take skeleton as an input', () => {
+    wrapper.skeleton = true;
+    fixture.detectChanges();
+
+    expect(de.nativeElement.classList.contains('daff-skeleton')).toEqual(true);
   });
 
   it('should remove the gallery from the registry when the gallery is destroyed', () => {

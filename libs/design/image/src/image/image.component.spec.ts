@@ -82,8 +82,11 @@ describe('@daffodil/design/image | DaffImageComponent', () => {
     expect(component.height).toEqual(100);
   });
 
-  it('should be able to take `skeleton` as an input', () => {
-    expect(component.skeleton).toEqual(wrapper.skeleton);
+  it('should take skeleton as an input', () => {
+    wrapper.skeleton = true;
+    fixture.detectChanges();
+
+    expect(de.nativeElement.classList.contains('daff-skeleton')).toEqual(true);
   });
 
   it('should throw an error when src is invalid', () => {
