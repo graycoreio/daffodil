@@ -1,1 +1,1 @@
-export { daffManageContainerLayoutMixin } from './manage-container-layout-mixin';
+export { DaffManageContainerLayoutDirective } from './manage-container-layout.directive';
