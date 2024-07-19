@@ -126,12 +126,4 @@ describe('DemoCartViewComponent', () => {
       expect(loadingIcon).toBeNull();
     });
   });
-
-  describe('on <daff-container>', () => {
-    it('should set size="md"', () => {
-      const container = fixture.debugElement.query(By.css('daff-container'));
-
-      expect(container.componentInstance.size).toEqual('md');
-    });
-  });
 });

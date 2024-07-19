@@ -105,12 +105,4 @@ describe('ProductComponent', () => {
       expect(router.navigateByUrl).toHaveBeenCalledWith('/404');
     });
   });
-
-  describe('on <daff-container>', () => {
-    it('should set size="lg"', () => {
-      const container = fixture.debugElement.query(By.css('daff-container'));
-
-      expect(container.componentInstance.size).toEqual('lg');
-    });
-  });
 });

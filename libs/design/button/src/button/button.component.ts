@@ -17,15 +17,12 @@ import {
   DaffSuffixable,
   daffPrefixableMixin,
   daffSuffixableMixin,
-  DaffSizable,
-  DaffSizeSmallType,
-  DaffSizeMediumType,
-  DaffSizeLargeType,
-  daffSizeMixin,
   DaffStatusable,
   daffStatusMixin,
   DaffArticleEncapsulatedDirective,
 } from '@daffodil/design';
+
+import { DaffButtonSizableDirective } from './button-sizable.directive';
 
 /**
  * List of classes to add to DaffButtonComponent instances based on host attributes to style as different variants.
@@ -46,14 +43,9 @@ class DaffButtonBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin(daffColorMixin(daffStatusMixin(daffSizeMixin<DaffButtonSize>(DaffButtonBase, 'md')))));
+const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin(daffColorMixin(daffStatusMixin((DaffButtonBase)))));
 
 export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-flat-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
-
-/**
- * The DaffSizable types that the DaffButtonComponent can implement
- */
-export type DaffButtonSize = DaffSizeSmallType | DaffSizeMediumType | DaffSizeLargeType;
 
 enum DaffButtonTypeEnum {
   Default = 'daff-button',
@@ -86,20 +78,28 @@ enum DaffButtonTypeEnum {
   styleUrls: ['./button.component.scss'],
   //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'size', 'status'],
-  hostDirectives: [{
-    directive: DaffArticleEncapsulatedDirective,
-  }],
+  inputs: ['color', 'status'],
+  hostDirectives: [
+    { directive: DaffArticleEncapsulatedDirective },
+    {
+      directive: DaffButtonSizableDirective,
+      inputs: ['size'],
+    },
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffButtonComponent
   extends _daffButtonBase
-  implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffSizable<DaffButtonSize>, DaffStatusable {
+  implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffStatusable {
 
   private buttonType: DaffButtonType;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+    private size: DaffButtonSizableDirective,
+  ) {
     super(elementRef, renderer);
 
     for (const attr of BUTTON_HOST_ATTRIBUTES) {
@@ -107,6 +107,11 @@ export class DaffButtonComponent
         (<HTMLElement>elementRef.nativeElement).classList.add(attr);
       }
     }
+
+    /**
+     * Sets the default size of a button to medium.
+     */
+    this.size.defaultSize = 'md';
   }
 
   /**

@@ -67,14 +67,6 @@ describe('ProductGridViewComponent', () => {
     });
   });
 
-  describe('on <daff-container>', () => {
-    it('should set size="lg"', () => {
-      const container = fixture.debugElement.query(By.css('daff-container'));
-
-      expect(container.componentInstance.size).toEqual('lg');
-    });
-  });
-
   describe('when loading$ becomes false', () => {
 
     beforeEach(() => {

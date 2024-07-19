@@ -57,16 +57,16 @@ describe('@daffodil/design/container | DaffContainerComponent', () => {
   });
 
   describe('setting the size', () => {
+    it('should take size as an input', () => {
+      wrapper.size = 'md';
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-md')).toEqual(true);
+    });
+
     it('should not set a default size', () => {
       de = fixture.debugElement.query(By.css('daff-container'));
       expect(de.nativeElement.classList.toString()).toEqual('daff-container');
-    });
-
-    it('should add the size class on the host element for the defined size', () => {
-      wrapper.size = 'xs';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-xs')).toEqual(true);
     });
   });
 });

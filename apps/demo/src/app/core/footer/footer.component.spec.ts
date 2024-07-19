@@ -41,14 +41,6 @@ describe('FooterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('on <daff-container>', () => {
-    it('should set size="md"', () => {
-      const container = fixture.debugElement.query(By.css('daff-container'));
-
-      expect(container.componentInstance.size).toEqual('md');
-    });
-  });
-
   it('renders a <daff-list-item> for each leaf in the tree of links', () => {
     const listItems = fixture.debugElement.queryAll(By.css('daff-list-item'));
     const numberOfLinks = component.links.reduce((acc,linkset)=>acc+linkset.links.length,0);

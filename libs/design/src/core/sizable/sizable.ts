@@ -1,6 +1,5 @@
 /**
- * An interface for giving a component the ability to customize sizing for component-specific UI.
- * In order to be sizable, a component class must implement this property.
+ * Interfaces that gives a component the ability to customize sizing for component specific UI.
  */
 
 export interface DaffSizable<T extends DaffSizeAllType> {
@@ -17,6 +16,9 @@ export type DaffSizeMediumType = 'md';
 export type DaffSizeLargeType = 'lg';
 export type DaffSizeXLargeType = 'xl';
 
+/**
+ * The a type representing all available sizes.
+ */
 export type DaffSizeAllType = DaffSizeXSmallType | DaffSizeSmallType | DaffSizeMediumType | DaffSizeLargeType | DaffSizeXLargeType;
 
 export enum DaffSizableEnum {

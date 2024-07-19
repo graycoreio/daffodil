@@ -4,7 +4,6 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
 
 import { DaffContainerModule } from '@daffodil/design/container';
 import {
@@ -43,14 +42,6 @@ describe('NewsletterComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('on <daff-container>', () => {
-    it('should set size="md"', () => {
-      const container = fixture.debugElement.query(By.css('daff-container'));
-
-      expect(container.componentInstance.size).toEqual('md');
-    });
   });
 
   describe('when intialized', () => {

@@ -18,10 +18,8 @@ import {
   DaffLoadingIconComponent,
 } from '@daffodil/design/loading-icon';
 
-import {
-  DaffButtonComponent,
-  DaffButtonSize,
-} from './button.component';
+import { DaffButtonSize } from './button-sizable.directive';
+import { DaffButtonComponent } from './button.component';
 
 @Component({
   template: `
@@ -197,7 +195,7 @@ describe('@daffodil/design/button | DaffButtonComponent', () => {
   });
 
   describe('using the size property of a button', () => {
-    it('should add the class of the defined size to the host element', () => {
+    it('should take size as an input', () => {
       wrapper.size = 'md';
       fixture.detectChanges();
 

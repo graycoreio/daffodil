@@ -8,4 +8,4 @@ export {
   DaffSizeLargeType,
   DaffSizeXLargeType,
 } from './sizable';
-export { daffSizeMixin } from './sizable-mixin';
+export { DaffSizableDirective } from './sizable.directive';
