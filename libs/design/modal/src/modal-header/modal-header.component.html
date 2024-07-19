@@ -1,1 +1,9 @@
 <ng-content select="[daffModalTitle]"></ng-content>
+<ng-container *ngIf="dismissible">
+	<button daff-icon-button color="theme-contrast"
+		daffModalClose
+		class="daff-modal-header__dismiss-button"
+		aria-label="Close modal">
+			<fa-icon [icon]="faXmark" size="lg"></fa-icon>
+	</button>
+</ng-container>

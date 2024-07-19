@@ -1,12 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostBinding,
 } from '@angular/core';
 
 @Component({
   selector: 'daff-modal-actions',
   template: '<ng-content></ng-content>',
-  styleUrls: ['./modal-actions.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffModalActionsComponent { }
+export class DaffModalActionsComponent {
+  @HostBinding('class.daff-modal-actions') class = true;
+}

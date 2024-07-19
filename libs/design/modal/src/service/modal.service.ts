@@ -52,7 +52,8 @@ export class DaffModalService {
 	  return this.overlay.create({
 	    hasBackdrop: true,
 	    positionStrategy: new GlobalPositionStrategy()
-	      .centerHorizontally(),
+	      .centerHorizontally()
+        .centerVertically(),
 	    scrollStrategy: this.overlay.scrollStrategies.block(),
 	  });
   }
