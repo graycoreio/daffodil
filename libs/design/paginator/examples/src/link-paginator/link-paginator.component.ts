@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,11 +9,18 @@ import {
   map,
 } from 'rxjs';
 
+import { DaffPaginatorModule } from '@daffodil/design/paginator';
+
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'link-paginator',
   templateUrl: './link-paginator.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    DaffPaginatorModule,
+    AsyncPipe,
+  ],
 })
 export class LinkPaginatorComponent {
   numberOfPages = 15;
