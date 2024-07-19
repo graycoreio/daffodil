@@ -1,0 +1,31 @@
+@use 'sass:map';
+@use 'theme' as daff-theme;
+
+@mixin daff-docs-code-preview-theme($theme) {
+	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
+	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
+	$primary: map.get(daff-theme.$theme, primary);
+	$font-color: daff-theme.daff-map-deep-get($theme, 'core.font-color');
+	$border: 1px solid daff-theme.daff-illuminate($base, $neutral, 2);
+
+	.daff-docs-code-preview {
+		&__content {
+			border: $border;
+			border-bottom: 0;
+		}
+
+		&__tab-wrapper {
+			border-left: $border;
+			border-right: $border;
+		}
+
+		&__tab {
+			color: $font-color;
+
+			// stylelint-disable selector-class-pattern
+			&.selected {
+				border-bottom: 2px solid daff-theme.daff-color($primary);
+			}
+		}
+	}
+}
