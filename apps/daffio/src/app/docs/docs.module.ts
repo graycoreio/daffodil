@@ -4,6 +4,10 @@ import { RouterModule } from '@angular/router';
 
 import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffHeroModule } from '@daffodil/design/hero';
+import {
+  provideDaffDocsDesignExamples,
+  provideDaffDocsLocation,
+} from '@daffodil/docs-components';
 
 import { DaffioDocsRoutingModule } from './docs-routing.module';
 import { DaffioDocsIndexService } from './index/index.service';
@@ -23,6 +27,8 @@ import { DaffioActiveHeaderService } from '../core/dynamic-fragment/service';
   providers: [
     DaffioDocsIndexService,
     DaffioActiveHeaderService,
+    provideDaffDocsDesignExamples(),
+    provideDaffDocsLocation('/assets/daffio/docs/'),
   ],
 })
 export class DaffioDocsModule {}
