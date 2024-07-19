@@ -1,16 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { DaffDocsExampleViewerContainer } from '@daffodil/docs-components';
+
 import { DesignLandCheckboxRoutingModule } from './checkbox-routing.module';
 import { DesignLandCheckboxComponent } from './checkbox.component';
-import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 @NgModule({
   declarations: [
     DesignLandCheckboxComponent,
   ],
   imports: [
-    DesignLandExampleViewerModule,
+    DaffDocsExampleViewerContainer,
     DesignLandCheckboxRoutingModule,
     CommonModule,
   ],
