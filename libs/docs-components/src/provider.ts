@@ -1,11 +1,14 @@
 import { Provider } from '@angular/core';
 
-import { provideDaffDocsExampleViewerContainerCustomElement } from './container/custom-element.provider';
-import { provideDaffDocsLocation } from './service/docs-location.token';
+import {
+  provideDaffDocsLocation,
+  provideDaffDocsExampleViewerContainerCustomElement,
+} from './code-preview/public_api';
 import {
   DaffDocsComponentExample,
+  DaffDocsComponentExamples,
   provideDaffDocsExampleComponents,
-} from '../public_api';
+} from './examples/public_api';
 
 /**
  * Provide the documentation example feature.
@@ -14,7 +17,8 @@ import {
  * @returns
  */
 export const provideDaffDocsComponents = (docsLocation: string, components: DaffDocsComponentExample[] = []): Provider[] => [
+  provideDaffDocsExampleComponents(...components),
+  DaffDocsComponentExamples,
   provideDaffDocsLocation(docsLocation),
   provideDaffDocsExampleViewerContainerCustomElement(),
-  provideDaffDocsExampleComponents(...components),
 ];
