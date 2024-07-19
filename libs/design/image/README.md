@@ -4,7 +4,7 @@ Image utilizes the native HTML `<img>` element to display responsive images on a
 ## Overview
 `<daff-image>` is an opinionated version that encourages friendly end-user usage.
 
-<design-land-example-viewer-container example="load-image"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="load-image"></daff-docs-example-viewer-container-ce>
 
 ## Attributes
 The `src`, `width`, `height`, and `alt` attributes must be defined. An error will be thrown any of these attributes are missing.

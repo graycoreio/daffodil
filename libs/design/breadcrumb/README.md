@@ -14,7 +14,7 @@ Breadcrumbs are built using `[daff-breadcrumb]` and `[daffBreadCrumbItem]`.
 - **`[daff-breadcrumb]`**: a wrapper for grouping breadcrumb items.
 - **`[daffBreacrumbItem]`**: used to display each breadcrumb item.
 
-<design-land-example-viewer-container example="basic-breadcrumb"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="basic-breadcrumb"></daff-docs-example-viewer-container-ce>
 
 ## Usage
 ```ts

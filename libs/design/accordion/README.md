@@ -15,6 +15,8 @@ Accordions are built using `<daff-accordion>`, `<daff-accordion-item>`, and `[da
 
 Any additional content placed inside of an accordion item will be displayed as part of the collapsible content.
 
+<daff-docs-example-viewer-container-ce example="basic-accordion"></daff-docs-example-viewer-container-ce>
+
 ## Usage
 ```ts
 import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';

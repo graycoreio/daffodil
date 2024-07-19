@@ -5,7 +5,7 @@ Toasts are small messages designed to mimic push notifications. They are used to
 Toasts should be used to display temporary messages about actions or events that occured or in need of attention, with no relation to content on a page. For messaging that provide context in close promixity to a piece of content within a page, use the [Notification](/libs/design/notification/README.md) component.
 
 ## Basic toast
-<design-land-example-viewer-container example="default-toast"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="default-toast"></daff-docs-example-viewer-container-ce>
 
 ## Setting up the component
 `provideDaffToast()` must be added as a provider in your application's root component for global use or in a specific feature component for the toast functionality to work properly.
@@ -32,7 +32,7 @@ A toast with actions will persist until one of the actions have been interacted 
 
 > Actionable toasts should be persistent, but a duration is allowed to be set. If duration must be set, make sure it's long enough for users to engage with the actions.
 
-<design-land-example-viewer-container example="toast-with-custom-duration"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="toast-with-custom-duration"></daff-docs-example-viewer-container-ce>
 
 ### Close button
 The close button is hidden by default, and dismissible is ignored when there are actions in a toast. You can change the visibility of the close button via the `dismissible` property.
@@ -45,7 +45,7 @@ A maximum of three toasts can be shown at a time. Toasts are stacked vertically,
 ## Statuses
 You can set the status of a toast when opening it with `DaffToastService`, using values defined by `DaffStatus`.
 
-<design-land-example-viewer-container example="toast-status"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="toast-status"></daff-docs-example-viewer-container-ce>
 
 ## Accessibility
 By default, toasts use a `role="status"` to announce messages. It's the equivalent of `aria-live="polite"`, which does not interrupt a user's current activity and waits until they are idle to make the announcement.

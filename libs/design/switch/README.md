@@ -27,29 +27,29 @@ export class CustomComponent {}
 ### Basic Switch
 A basic switch can be toggled by setting the `checked` property to `true` or `false`. By default, this is set to `false`.
 
-<design-land-example-viewer-container example="basic-switch"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="basic-switch"></daff-docs-example-viewer-container-ce>
 
 ### Disabled Switch
 A switch with the `disabled` property will be non-interactive.
 
-<design-land-example-viewer-container example="disabled-switch"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="disabled-switch"></daff-docs-example-viewer-container-ce>
 
 ### Loading Switch
 A switch can display a loading state by setting `loading` to `true`. This will also disable the switch.
 
-<design-land-example-viewer-container example="loading-switch"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="loading-switch"></daff-docs-example-viewer-container-ce>
 
 ### Switch with Error
 An error message can be displayed by setting `error` to `true` and including a `daff-error-message` to show the message text.
 
-<design-land-example-viewer-container example="switch-error"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="switch-error"></daff-docs-example-viewer-container-ce>
 
 ### Changing Label Position
 The label position can be changed by setting the `labelPosition` property. The default position is `left`.
 
 Supported positions: `left | right | top | bottom`
 
-<design-land-example-viewer-container example="switch-label-positions"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="switch-label-positions"></daff-docs-example-viewer-container-ce>
 
 
 ## Accessibility

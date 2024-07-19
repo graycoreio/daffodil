@@ -46,19 +46,19 @@ export class CustomComponentModule { }
 ## Basic List
 A `<daff-list>` consists of multiple `<daff-list-item>`s.
 
-<design-land-example-viewer-container example="basic-list"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="basic-list"></daff-docs-example-viewer-container-ce>
 
 ## Navigation List
 Use `<daff-nav-list>` for navigation lists. `<daff-list-item>` should be directly added to an anchor tag.
 
-<design-land-example-viewer-container example="nav-list"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="nav-list"></daff-docs-example-viewer-container-ce>
 
 ## Multi-line List
 For lists that have multiple lines per item, wrap each line appropriately with a heading or paragraph tag.
 
-<design-land-example-viewer-container example="multiline-list"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="multiline-list"></daff-docs-example-viewer-container-ce>
 
 ## List with Icons
 To add an icon to a list item, use the `daffPrefix` or `daffSuffix` attributes for the appropriate placements.
 
-<design-land-example-viewer-container example="icon-list"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="icon-list"></daff-docs-example-viewer-container-ce>

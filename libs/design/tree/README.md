@@ -8,8 +8,8 @@ Instead of defining a recursive tree structure of components, which is often pro
 
 Generally, tree usage consists of taking existing tree data, converting it to the `DaffTreeData` format, setting the `tree` input on the `DaffTreeComponent`, and providing templates for the cases where the tree element has children or not.
 
-<design-land-example-viewer-container example="basic-tree">
-</design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="basic-tree">
+</daff-docs-example-viewer-container-ce>
 
 ## Usage
 

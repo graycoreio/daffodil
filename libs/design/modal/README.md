@@ -2,7 +2,7 @@
 Modal is a dynamically rendered element that floats above the rest of a page's content. It can be especially useful for interstitials that require additional user feedback.
 
 ## Basic Modal
-<design-land-example-viewer-container example="basic-modal"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="basic-modal"></daff-docs-example-viewer-container-ce>
 
 ## Usage
 

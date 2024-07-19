@@ -7,43 +7,43 @@ Article can be used on any content page that displays large blocks of text-drive
 ## Supported elements
 
 ### Headings
-<design-land-example-viewer-container example="article-headings"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="article-headings"></daff-docs-example-viewer-container-ce>
 
 ### Article Meta
 Meta is used if there is metadata information about your article (i.e. author name, date, etc). Meta is a custom directive of article and is not a native element selector. To use it, add `daffArticleMeta` to a paragraph (`<p>`).
 
-<design-land-example-viewer-container example="article-meta"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="article-meta"></daff-docs-example-viewer-container-ce>
 
 ### Link
 The link style in an article uses the default browser link style.
 
-<design-land-example-viewer-container example="article-link"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="article-link"></daff-docs-example-viewer-container-ce>
 
 ### Table
-<design-land-example-viewer-container example="article-table"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="article-table"></daff-docs-example-viewer-container-ce>
 
 ### Lists
 
 #### Unordered list
-<design-land-example-viewer-container example="article-ul"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="article-ul"></daff-docs-example-viewer-container-ce>
 
 #### Ordered list
-<design-land-example-viewer-container example="article-ol"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="article-ol"></daff-docs-example-viewer-container-ce>
 
 ### Code
 These are styles for inline and multiline blocks of code.
 
 #### Inline code
-<design-land-example-viewer-container example="article-code-inline"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="article-code-inline"></daff-docs-example-viewer-container-ce>
 
 #### Code blocks
-<design-land-example-viewer-container example="article-code-block"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="article-code-block"></daff-docs-example-viewer-container-ce>
 
 ### Horizontal rules
-<design-land-example-viewer-container example="article-hr"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="article-hr"></daff-docs-example-viewer-container-ce>
 
 ### Blockquote
-<design-land-example-viewer-container example="article-blockquote"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="article-blockquote"></daff-docs-example-viewer-container-ce>
 
 ## Encapsulation
 Articles also support other custom "non-native" components like [accordions](/libs/design/accordion/README.md), [media galleries](/libs/design/media-gallery/README.md), and [lists](/libs/design/list/README.md). Unlike typical HTML (`<p>`, `<ol>`, `<ul>`, etc) content, these components must be style encaspulated to prevent article styles bleeding down from the article into their content. Many Daffodil components support this out of the box. If you have a custom component that you would like to place inside an article, you can use the `DaffArticleEncapsulatedDirective` on your component to prevent article styles bleeding into your component.

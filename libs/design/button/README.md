@@ -16,23 +16,23 @@ Button supports five types that change its visual style.
 - `daff-stroked-button` - Rectangular outlined button with no background color
 
 ### Basic Button
-<design-land-example-viewer-container example="basic-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="basic-button"></daff-docs-example-viewer-container-ce>
 
 ### Flat Button
-<design-land-example-viewer-container example="flat-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="flat-button"></daff-docs-example-viewer-container-ce>
 
 ### Stroked button
-<design-land-example-viewer-container example="stroked-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="stroked-button"></daff-docs-example-viewer-container-ce>
 
 > `black`, `white`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
 ### Icon button
-<design-land-example-viewer-container example="icon-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="icon-button"></daff-docs-example-viewer-container-ce>
 
 > `black`, `white`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
 ### Underline button
-<design-land-example-viewer-container example="underline-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="underline-button"></daff-docs-example-viewer-container-ce>
 
 ### Raised button (deprecated)
 <design-land-example-viewer-container example="raised-button"></design-land-example-viewer-container>
@@ -82,7 +82,7 @@ export class CustomComponentModule { }
 ## Sizes
 Use the `size` property to specify a button size. Setting this property will change the height and padding of a button. The size of all variants will default to `md` if none is defined.
 
-<design-land-example-viewer-container example="sizeable-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="sizeable-button"></daff-docs-example-viewer-container-ce>
 
 ## Colors
 Use the `color` property to change the color of a button. The default color is light gray.
@@ -92,7 +92,7 @@ Use the `color` property to change the color of a button. The default color is l
 ## Status indicators
 Buttons with status indicators can be used to distinguish what type of action it performs and its importance compared to other buttons in the same context. Use the `status` property to change the status.
 
-<design-land-example-viewer-container example="statusable-button"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="statusable-button"></daff-docs-example-viewer-container-ce>
 
 ## Elevation
 Use the `elevated` property to add a shadow to buttons. Note that the `elevated` property is not supported for flat, icon, and underline buttons.

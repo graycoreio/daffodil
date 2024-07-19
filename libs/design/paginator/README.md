@@ -2,7 +2,7 @@
 Paginator is used to break up large amounts of content into multiple pages, enabling users to easily navigate between pages of content.
 
 ## Default Paginator
-<design-land-example-viewer-container example="basic-paginator"></design-land-example-viewer-container>
+<daff-docs-example-viewer-container-ce example="basic-paginator"></daff-docs-example-viewer-container-ce>
 
 ## Usage
 
