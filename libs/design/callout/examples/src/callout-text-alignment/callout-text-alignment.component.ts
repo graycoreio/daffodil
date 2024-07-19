@@ -1,9 +1,18 @@
+import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import {
+  UntypedFormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
+
+import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffCalloutModule } from '@daffodil/design/callout';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -11,6 +20,15 @@ import { faMobile } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './callout-text-alignment.component.html',
   styleUrls: ['./callout-text-alignment.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    DaffCalloutModule,
+    DaffContainerModule,
+    FaIconComponent,
+    DaffButtonModule,
+    ReactiveFormsModule,
+    NgFor,
+  ],
 })
 export class CalloutTextAlignmentComponent {
   faMobile = faMobile;
