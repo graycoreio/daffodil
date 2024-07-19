@@ -1,11 +1,5 @@
-<button daff-button (click)="toggleNotification()">Show Notification</button>
-
-<daff-notification *ngIf="showNotification" status="success">
+<daff-notification>
 	<fa-icon daffPrefix [icon]="faInfoCircle"></fa-icon>
 	<div daffNotificationTitle>Title</div>
 	<div daffNotificationSubtitle>This is the subtitle with information</div>
-	<div daffNotificationActions>
-		<button daff-button size="sm" color="theme-contrast">Confirm</button>
-		<button daff-flat-button size="sm" color="theme-contrast">Cancel</button>
-	</div>
 </daff-notification>
