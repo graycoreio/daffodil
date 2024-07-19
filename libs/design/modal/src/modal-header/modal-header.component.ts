@@ -7,8 +7,7 @@ import {
 
 @Component({
   selector: 'daff-modal-header',
-  template: '<ng-content></ng-content>',
-  styleUrls: ['./modal-header.component.scss'],
+  templateUrl: './modal-header.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

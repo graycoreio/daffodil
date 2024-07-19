@@ -41,6 +41,29 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit {
   @HostBinding('class.daff-modal') modalClass = true;
 
   /**
+   * Sets the role to dialog.
+   */
+  @HostBinding('attr.role') role = 'dialog';
+
+  /**
+   * Sets aria-modal to true.
+   */
+  @HostBinding('attr.aria-modal') ariaModal = true;
+
+  private _ariaLabelledBy = null;
+
+  /**
+   * The aria-labelledby for the modal. This is set by the id of
+   * {@link DaffModalTitleDirective} when it is used.
+   *
+   */
+  @HostBinding('attr.aria-labelledby') get ariaLabelledBy() {
+    return this._ariaLabelledBy;
+  } set ariaLabelledBy(value: string) {
+    this._ariaLabelledBy = value;
+  }
+
+  /**
    * Dictates whether or not a modal is open or closed.
    */
   @Input() open = false;

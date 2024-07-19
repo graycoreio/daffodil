@@ -51,4 +51,8 @@ describe('@daffodil/design/modal | DaffModalTitleDirective', () => {
       }));
     });
   });
+
+  it('should define its own id', () => {
+    expect(de.componentInstance.id).toEqual(de.componentInstance._uniqueRadioId);
+  });
 });

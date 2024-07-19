@@ -14,7 +14,7 @@ import { DaffModalComponent } from './modal.component';
 import { DaffModalService } from '../service/modal.service';
 
 @Component({ template: `
-  <div class="daff-modal-wrapper">
+  <div class="custom-modal-component">
     <daff-modal></daff-modal>
   </div>
 ` })
@@ -53,5 +53,13 @@ describe('@daffodil/design/modal | DaffModalComponent', () => {
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
+  });
+
+  it('should have a role of dialog on the host element', () => {
+    expect(modal.role).toBe('dialog');
+  });
+
+  it('should set aria-modal to true on the host element', () => {
+    expect(modalDe.attributes['aria-modal']).toEqual('true');
   });
 });
