@@ -5,6 +5,7 @@ import {
 
 import {
   DaffModalComponent,
+  DaffModalModule,
   DaffModalService,
 } from '@daffodil/design/modal';
 
