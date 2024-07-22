@@ -1,5 +1,6 @@
 import { Package } from 'dgeni';
 
+import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddInheritedDocsContentProcessor } from '../../processors/addInheritedDocsContent';
 import { AddLinkTagToDaffodilReferencesProcessor } from '../../processors/addLinkTagToDaffodilReferences';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
@@ -17,10 +18,6 @@ import { daffodilBasePackage } from '../daffodil-base-package';
 
 const linksPackage = require('dgeni-packages/links');
 const typescriptPackage = require('dgeni-packages/typescript');
-
-//List of packages to be left out of API generation
-const excludedPackages = ['branding', 'docs-utils'];
-const excludedPackagesRegex: string = '!(' + excludedPackages.join('|') + ')';
 
 export const apiDocs =  new Package('checkout', [
   daffodilBasePackage,
@@ -54,7 +51,7 @@ export const apiDocs =  new Package('checkout', [
 
     // Specify collections of source files that should contain the documentation to extract
     readTypeScriptModules.sourceFiles = [
-      excludedPackagesRegex + '/**/src/index.ts',
+      DAFF_DGENI_EXCLUDED_PACKAGES_REGEX + '/**/src/index.ts',
     ];
   })
   .config((computePathsProcessor, EXPORT_DOC_TYPES, generateApiList) => {
