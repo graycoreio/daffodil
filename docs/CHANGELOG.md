@@ -15,7 +15,6 @@
 * **design:** allow the whole typography subpackaged to be exported and allow font family variables to be assignable ([#2762](https://github.com/graycoreio/daffodil/issues/2762)) ([36dbfe8](https://github.com/graycoreio/daffodil/commit/36dbfe88ccd43da1bf76064607c1a07a8f034045))
 * **dgeni:** render headings with slugified IDs ([#2927](https://github.com/graycoreio/daffodil/issues/2927)) ([e6d1b35](https://github.com/graycoreio/daffodil/commit/e6d1b3524d765df997561a151d3f93ce5d802ab0))
 * **driver,customer-order:** add Magento 2.4.6 support ([#2896](https://github.com/graycoreio/daffodil/issues/2896)) ([265d54a](https://github.com/graycoreio/daffodil/commit/265d54a623aea3cf703c520b2e26f2d06253ea7f))
-* render design examples in daffio ([#2909](https://github.com/graycoreio/daffodil/issues/2909)) ([6bba42d](https://github.com/graycoreio/daffodil/commit/6bba42da22ebc71322e4bea00a8039310718e4e0))
 
 
 ### Bug Fixes
@@ -28,8 +27,8 @@
 
 ### ⚠ BREAKING CHANGES
 
-* **design:** 
-* **design:** 
+* **design:**
+* **design:**
 
 ### Features
 
