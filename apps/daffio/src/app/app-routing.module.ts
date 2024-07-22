@@ -73,6 +73,7 @@ export const appRoutes: Routes = [
       initialNavigation: 'enabledBlocking',
       scrollPositionRestoration: 'enabled',
       anchorScrolling: 'enabled',
+      scrollOffset: [0, 64],
       //this ensures that clicking on the same fragment route a second time will scroll to the associated id.
       onSameUrlNavigation: 'reload',
     }),
