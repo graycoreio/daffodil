@@ -5,7 +5,7 @@
     </ng-template>
 
     <ng-template #daffTreeItemTpl let-node>
-      <a [daffTreeItem]="activeRouterLinkConfiguration" [node]="node" [routerLink]="node.url">{{ node.title }}</a>
+      <a [daffTreeItem]="ROUTER_LINK_ACTIVE_CONFIG" [node]="node" [routerLink]="node.url">{{ node.title }}</a>
     </ng-template>
   </ul>
 }
