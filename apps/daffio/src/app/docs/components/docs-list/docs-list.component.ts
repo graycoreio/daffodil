@@ -56,7 +56,7 @@ export class DaffioDocsListComponent implements OnInit {
   }
 
   tree$: Observable<DaffTreeData<unknown>>;
-  activeRouterLinkConfiguration: RouterLinkActive['routerLinkActiveOptions'] = {
+  readonly activeRouterLinkConfiguration: RouterLinkActive['routerLinkActiveOptions'] = {
     exact: true,
   };
 
