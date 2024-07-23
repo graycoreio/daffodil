@@ -58,7 +58,7 @@ Additionally, the following basic "good faith" rules apply:
 Think first, if you're uncertain whether or not you will be able to access a system you should not be able to, please reach out first and we happily will work with you to safely test the vulnerability. 
 
 #### Do no harm
-No matter the scenario you are pentetration testing, **do not** damage or leave a system in a more vulnerable state than when you arrived. 
+No matter the scenario you are penetration testing, **do not** damage or leave a system in a more vulnerable state than when you arrived. 
 
 #### Do not attack users
 Don't attack a company that uses Daffodil and claim we told you to. We explicitly have not.
