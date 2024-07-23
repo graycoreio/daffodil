@@ -11,7 +11,6 @@ import xml from 'highlight.js/lib/languages/xml';
 import { slugify } from 'markdown-toc';
 import { marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
-import { escape } from 'node:querystring';
 
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('ts', typescript);
@@ -78,7 +77,7 @@ marked.use({
   },
   renderer: {
     heading: (text: string, level: number, raw: string) =>
-      `<h${level} id="${escape(slugify(raw))}">${text}</h${level}>`,
+      `<h${level} id="${slugify(raw)}">${text}</h${level}>`,
   },
 });
 
