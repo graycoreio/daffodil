@@ -29,8 +29,6 @@ const getType = (product: MagentoProductPreview): DaffProductTypeEnum => {
 
     case MagentoProductTypeEnum.ConfigurableProduct:
       return DaffProductTypeEnum.Configurable;
-
-    case MagentoProductTypeEnum.ConfigurableProduct:
     default:
       return DaffProductTypeEnum.Simple;
   }
