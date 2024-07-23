@@ -8,7 +8,7 @@ It is important to understand that Daffodil is a client-side framework, and thus
 
 ## Supported Versions
 
-Currently, as Daffodil is experimental and pre-release, any fixes for discovered vulnerabilities** will NOT** be backported into into prior releases. We will release an appropriate [semver release](https://semver.org/), depending on the impact of the change, as soon as possible.
+Currently, as Daffodil is experimental and pre-release, any fixes for discovered vulnerabilities **will NOT** be backported into into prior releases. We will release an appropriate [semver release](https://semver.org/), depending on the impact of the change, as soon as possible.
 
 ## Reporting a Vulnerability
 
