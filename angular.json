@@ -157,30 +157,6 @@
         }
       }
     },
-    "demo-e2e": {
-      "root": "apps/demo-e2e/",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "demo:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/demo-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "demo-dev": {
       "root": "apps/demo/",
       "sourceRoot": "apps/demo/src",
@@ -384,33 +360,6 @@
         }
       }
     },
-    "daffio-e2e": {
-      "root": "apps/daffio-e2e/",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "apps/daffio-e2e/protractor.conf.js",
-            "devServerTarget": "daffio:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "daffio:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "apps/daffio-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "daffio-dev": {
       "root": "apps/daffio/",
       "sourceRoot": "apps/daffio/src",
@@ -583,34 +532,6 @@
             "lintFilePatterns": [
               "apps/design-land/**/*.ts",
               "apps/design-land/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "design-land-e2e": {
-      "root": "apps/design-land-e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "apps/design-land-e2e/protractor.conf.js",
-            "devServerTarget": "design-land:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "design-land:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "apps/design-land-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
             ]
           }
         }
