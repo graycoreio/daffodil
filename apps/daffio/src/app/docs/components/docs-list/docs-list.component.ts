@@ -46,6 +46,7 @@ const visit = (guide: DaffioDocList): DaffTreeData<unknown> => ({
     AsyncPipe,
     RouterLink,
     DaffTreeModule,
+    RouterLinkActive,
   ],
 })
 export class DaffioDocsListComponent implements OnInit {
