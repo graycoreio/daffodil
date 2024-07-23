@@ -207,17 +207,15 @@ describe('@daffodil/design/button | DaffButtonComponent', () => {
     });
   });
 
-  describe('using the status property of a button', () => {
-    it('should not set a default status', () => {
-      expect(component.status).toBeFalsy();
-    });
+  it('should take status as an input', () => {
+    wrapper.status = 'warn';
+    fixture.detectChanges();
 
-    it('should add the class of the defined status to the host element', () => {
-      wrapper.status = 'warn';
-      fixture.detectChanges();
+    expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
+  });
 
-      expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
-    });
+  it('should not set a default status', () => {
+    expect(component.status).toBeFalsy();
   });
 
   describe('using the tabindex property of a button', () => {

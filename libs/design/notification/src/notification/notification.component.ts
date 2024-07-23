@@ -16,21 +16,11 @@ import {
   DaffArticleEncapsulatedDirective,
   DaffPrefixable,
   DaffPrefixDirective,
-  DaffStatusable,
+  DaffStatusableDirective,
   DaffStatusEnum,
-  daffStatusMixin,
 } from '@daffodil/design';
 
 import { DaffNotificationActionsDirective } from '../notification-actions/notification-actions.directive';
-
-/**
- * An _elementRef is needed for the core mixins
- */
-class DaffNotificationBase {
-  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
-}
-
-const _daffNotificationBase = daffStatusMixin(DaffNotificationBase);
 
 export type DaffNotificationOrientation = 'horizontal' | 'vertical';
 
@@ -47,18 +37,17 @@ enum DaffNotificationOrientationEnum {
   selector: 'daff-notification',
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
-  // todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['status'],
-  hostDirectives: [{
-    directive: DaffArticleEncapsulatedDirective,
-  }],
+  hostDirectives: [
+    { directive: DaffArticleEncapsulatedDirective },
+    {
+      directive: DaffStatusableDirective,
+      inputs: ['status'],
+    },
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffNotificationComponent
-  extends _daffNotificationBase
-  implements DaffPrefixable, DaffStatusable {
+export class DaffNotificationComponent implements DaffPrefixable {
   faTimes = faTimes;
 
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
@@ -74,7 +63,7 @@ export class DaffNotificationComponent
    * Sets role to status on all other instances.
    */
   @HostBinding('attr.role') get role() {
-    return this.status === DaffStatusEnum.Warn || this.status === DaffStatusEnum.Danger ? 'alert' : 'status';
+    return this.statusDirective.status === DaffStatusEnum.Warn || this.statusDirective.status === DaffStatusEnum.Danger ? 'alert' : 'status';
   };
 
   @HostBinding('class.vertical') get verticalOrientation() {
@@ -87,6 +76,8 @@ export class DaffNotificationComponent
 
   /** Whether or not a notification is closable */
   @Input() @HostBinding('class.dismissible') dismissible = false;
+
+  constructor(private statusDirective: DaffStatusableDirective) {}
 
   private _orientation: DaffNotificationOrientation = DaffNotificationOrientationEnum.Vertical;
 
@@ -102,13 +93,6 @@ export class DaffNotificationComponent
       this._orientation = value;
     }
   };
-
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
-  ) {
-	  super(elementRef, renderer);
-  }
 
   /**
    * Output event triggered when the close icon is clicked.

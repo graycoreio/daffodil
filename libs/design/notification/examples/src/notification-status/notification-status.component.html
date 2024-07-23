@@ -1,7 +1,7 @@
 <daff-notification [status]="statusControl.value">
 	<fa-icon *ngIf="statusControl.value === 'success'" daffPrefix [icon]="faCheck" [fixedWidth]="true"></fa-icon>
 	<fa-icon *ngIf="statusControl.value === 'warn'" daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
-	<fa-icon *ngIf="statusControl.value === 'error'" daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
+	<fa-icon *ngIf="statusControl.value === 'danger'" daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
 	<div daffNotificationTitle>Title</div>
 	<div daffNotificationSubtitle>This is the subtitle with information</div>
 </daff-notification>
@@ -9,5 +9,5 @@
 <select [formControl]="statusControl">
 	<option value="success">Success</option>
 	<option value="warn">Warn</option>
-	<option value="error">Error</option>
+	<option value="danger">Danger</option>
 </select>

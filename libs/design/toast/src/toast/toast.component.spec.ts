@@ -10,10 +10,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
-import {
-  DaffStatus,
-  DaffStatusEnum,
-} from '@daffodil/design';
+import { DaffStatus } from '@daffodil/design';
 
 import { DaffToastComponent } from './toast.component';
 import { DaffToast } from '../interfaces/toast';
@@ -73,17 +70,11 @@ describe('DaffToastComponent', () => {
     });
   });
 
-  describe('using the status property of a toast', () => {
-    it('should not set a default status', () => {
-      expect(component.status).toBeFalsy();
-    });
+  it('should take status as an input', () => {
+    wrapper.status = 'warn';
+    fixture.detectChanges();
 
-    it('should add the class of the defined status to the host element', () => {
-      wrapper.status = DaffStatusEnum.Warn;
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
-    });
+    expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
   });
 
   it('should have a role of status', () => {

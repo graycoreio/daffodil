@@ -5,7 +5,6 @@ import {
 import {
   Component,
   ElementRef,
-  Renderer2,
   HostBinding,
   ContentChild,
   ViewEncapsulation,
@@ -22,22 +21,12 @@ import {
   DaffFocusStackService,
   DaffPrefixable,
   DaffPrefixDirective,
-  DaffStatusable,
-  daffStatusMixin,
+  DaffStatusableDirective,
 } from '@daffodil/design';
 
 import { DaffToast } from '../interfaces/toast';
 import { daffToastChangesFocus } from '../service/changes-focus';
 import { DaffToastActionsDirective } from '../toast-actions/toast-actions.directive';
-
-/**
- * An _elementRef is needed for the core mixins
- */
-class DaffToastBase {
-  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
-}
-
-const _daffToastBase = daffStatusMixin(DaffToastBase);
 
 /**
  * DaffToastComponent provides a way to display and
@@ -47,18 +36,17 @@ const _daffToastBase = daffStatusMixin(DaffToastBase);
   selector: 'daff-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
-  // todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['status'],
-  hostDirectives: [{
-    directive: DaffArticleEncapsulatedDirective,
-  }],
+  hostDirectives: [
+    { directive: DaffArticleEncapsulatedDirective },
+    {
+      directive: DaffStatusableDirective,
+      inputs: ['status'],
+    },
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffToastComponent
-  extends _daffToastBase
-  implements DaffPrefixable, DaffStatusable, AfterContentInit, AfterViewInit, OnDestroy {
+export class DaffToastComponent implements DaffPrefixable, AfterContentInit, AfterViewInit, OnDestroy {
   /** @docs-private */
   @HostBinding('class.daff-toast') class = true;
 
@@ -84,12 +72,10 @@ export class DaffToastComponent
   private _focusTrap: ConfigurableFocusTrap;
 
   constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
+    private _elementRef: ElementRef,
     private _focusTrapFactory: ConfigurableFocusTrapFactory,
     private _focusStack: DaffFocusStackService,
   ) {
-	  super(elementRef, renderer);
   }
 
   ngAfterContentInit() {
