@@ -22,7 +22,7 @@ import { DaffHeroComponent } from './hero.component';
 class WrapperComponent {
   color: DaffPalette;
   textAlignment: DaffTextAlignment;
-  compact = false;
+  compact: boolean;
 }
 
 describe('@daffodil/design/hero | DaffHeroComponent', () => {
@@ -83,6 +83,6 @@ describe('@daffodil/design/hero | DaffHeroComponent', () => {
     wrapper.compact = true;
     fixture.detectChanges();
 
-    expect(component.compact).toEqual(true);
+    expect(de.nativeElement.classList.contains('daff-compact')).toEqual(true);
   });
 });
