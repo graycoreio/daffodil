@@ -25,6 +25,10 @@ import {
 
 import { DaffioDocList } from '../../models/doc-list';
 
+const DEFAULT_ROUTER_LINK_ACTIVE_CONFIG: RouterLinkActive['routerLinkActiveOptions'] = {
+  exact: true,
+};
+
 const visit = (guide: DaffioDocList): DaffTreeData<unknown> => ({
   id: guide.id,
   title: guide.title,
@@ -42,10 +46,13 @@ const visit = (guide: DaffioDocList): DaffTreeData<unknown> => ({
     AsyncPipe,
     RouterLink,
     DaffTreeModule,
+    RouterLinkActive,
   ],
 })
 export class DaffioDocsListComponent implements OnInit {
   private _list$ = new BehaviorSubject<DaffioDocList>(null);
+
+  readonly ROUTER_LINK_ACTIVE_CONFIG = DEFAULT_ROUTER_LINK_ACTIVE_CONFIG;
 
   /**
    * The guide list to render
@@ -56,9 +63,6 @@ export class DaffioDocsListComponent implements OnInit {
   }
 
   tree$: Observable<DaffTreeData<unknown>>;
-  activeRouterLinkConfiguration: RouterLinkActive['routerLinkActiveOptions'] = {
-    exact: true,
-  };
 
   ngOnInit(): void {
     this.tree$ = this._list$.pipe(
