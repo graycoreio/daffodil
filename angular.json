@@ -127,7 +127,10 @@
           "options": {
             "main": "apps/demo/src/test.ts",
             "codeCoverage": true,
-            "polyfills": "apps/demo/src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "apps/demo/tsconfig.spec.json",
             "karmaConfig": "apps/demo/karma.conf.js",
             "scripts": [],
@@ -168,7 +171,9 @@
             "outputPath": "dist/apps/demo",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
-            "polyfills": "apps/demo/src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "apps/demo/tsconfig.dev.json",
             "assets": [
               "apps/demo/src/assets",
@@ -310,7 +315,10 @@
           "options": {
             "main": "apps/daffio/src/test.ts",
             "codeCoverage": true,
-            "polyfills": "apps/daffio/src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "apps/daffio/tsconfig.spec.json",
             "karmaConfig": "apps/daffio/karma.conf.js",
             "styles": [
@@ -371,7 +379,9 @@
             "outputPath": "dist/apps/daffio/browser",
             "index": "apps/daffio/src/index.html",
             "main": "apps/daffio/src/main.ts",
-            "polyfills": "apps/daffio/src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "apps/daffio/tsconfig.dev.json",
             "assets": [
               "apps/daffio/src/assets",
@@ -429,7 +439,9 @@
             "outputPath": "dist/apps/design-land",
             "index": "apps/design-land/src/index.html",
             "browser": "apps/design-land/src/main.ts",
-            "polyfills": ["apps/design-land/src/polyfills.ts"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "apps/design-land/tsconfig.app.json",
             "assets": [
               "apps/design-land/src/favicon.ico",
@@ -510,7 +522,10 @@
           "options": {
             "main": "apps/design-land/src/test.ts",
             "codeCoverage": true,
-            "polyfills": "apps/design-land/src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "apps/design-land/tsconfig.spec.json",
             "karmaConfig": "apps/design-land/karma.conf.js",
             "stylePreprocessorOptions": {
