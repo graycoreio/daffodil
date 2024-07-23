@@ -8,7 +8,7 @@ import graphql from 'highlight.js/lib/languages/graphql';
 import scss from 'highlight.js/lib/languages/scss';
 import typescript from 'highlight.js/lib/languages/typescript';
 import xml from 'highlight.js/lib/languages/xml';
-import { slugify } from 'markdown-toc/lib/utils';
+import { slugify } from 'markdown-toc';
 import { marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 
@@ -77,7 +77,7 @@ marked.use({
   },
   renderer: {
     heading: (text: string, level: number, raw: string) =>
-      `<h${level} id="${slugify(text)}">${text}</h${level}>`,
+      `<h${level} id="${slugify(raw)}">${text}</h${level}>`,
   },
 });
 
