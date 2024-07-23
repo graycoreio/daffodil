@@ -52,6 +52,9 @@
             "scripts": []
           },
           "configurations": {
+            "libs": {
+              "tsConfig": "apps/demo/tsconfig.dev.json"
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -112,6 +115,9 @@
             "development": {
               "buildTarget": "demo:build:development"
             },
+            "dev-libs": {
+              "buildTarget": "demo:build:development,libs"
+            },
             "magento": {
               "buildTarget": "demo:build:magento"
             },
@@ -160,58 +166,6 @@
               "apps/demo/**/*.ts",
               "apps/demo/**/*.html"
             ]
-          }
-        }
-      }
-    },
-    "demo-dev": {
-      "root": "apps/demo/",
-      "sourceRoot": "apps/demo/src",
-      "projectType": "application",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/demo",
-            "index": "apps/demo/src/index.html",
-            "main": "apps/demo/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "apps/demo/tsconfig.dev.json",
-            "assets": [
-              "apps/demo/src/assets",
-              "apps/demo/src/favicon.ico",
-              {
-                "glob": "**/*",
-                "input": "libs/product/assets/",
-                "output": "/assets/"
-              }
-            ],
-            "styles": [
-              "apps/demo/src/scss/styles.scss"
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "apps/demo/src/scss",
-                "libs/design/scss"
-              ]
-            },
-            "scripts": [],
-            "aot": false,
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
-          },
-          "defaultConfiguration": ""
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "buildTarget": "demo-dev:build"
           }
         }
       }
