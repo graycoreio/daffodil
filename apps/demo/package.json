@@ -28,17 +28,24 @@
     "url": "https://github.com/graycoreio/daffodil"
   },
   "devDependencies": {
-    "@daffodil/builders": "0.0.0-PLACEHOLDER",
-    "@daffodil/authorizenet": "0.0.0-PLACEHOLDER",
     "@daffodil/auth": "0.0.0-PLACEHOLDER",
+    "@daffodil/authorizenet": "0.0.0-PLACEHOLDER",
+    "@daffodil/builders": "0.0.0-PLACEHOLDER",
     "@daffodil/cart": "0.0.0-PLACEHOLDER",
     "@daffodil/category": "0.0.0-PLACEHOLDER",
     "@daffodil/checkout": "0.0.0-PLACEHOLDER",
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@daffodil/design": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
     "@daffodil/external-router": "0.0.0-PLACEHOLDER",
-    "@daffodil/newsletter": "0.0.0-PLACEHOLDER",
+    "@daffodil/geography": "0.0.0-PLACEHOLDER",
     "@daffodil/navigation": "0.0.0-PLACEHOLDER",
-    "@daffodil/driver": "0.0.0-PLACEHOLDER"
+    "@daffodil/newsletter": "0.0.0-PLACEHOLDER",
+    "@daffodil/order": "0.0.0-PLACEHOLDER",
+    "@daffodil/payment": "0.0.0-PLACEHOLDER",
+    "@daffodil/product": "0.0.0-PLACEHOLDER",
+    "@daffodil/product-composite": "0.0.0-PLACEHOLDER",
+    "@daffodil/product-configurable": "0.0.0-PLACEHOLDER",
+    "@daffodil/router": "0.0.0-PLACEHOLDER"
   }
 }
