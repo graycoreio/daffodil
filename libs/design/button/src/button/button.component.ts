@@ -11,14 +11,13 @@ import {
 } from '@angular/core';
 
 import {
-  daffColorMixin,
-  DaffColorable,
   DaffPrefixable,
   DaffSuffixable,
   daffPrefixableMixin,
   daffSuffixableMixin,
   DaffArticleEncapsulatedDirective,
   DaffStatusableDirective,
+  DaffColorableDirective,
 } from '@daffodil/design';
 
 import { DaffButtonSizableDirective } from './button-sizable.directive';
@@ -42,7 +41,7 @@ class DaffButtonBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin(daffColorMixin((DaffButtonBase))));
+const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin((DaffButtonBase)));
 
 export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-flat-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
 
@@ -77,7 +76,6 @@ enum DaffButtonTypeEnum {
   styleUrls: ['./button.component.scss'],
   //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color'],
   hostDirectives: [
     { directive: DaffArticleEncapsulatedDirective },
     {
@@ -88,13 +86,17 @@ enum DaffButtonTypeEnum {
       directive: DaffStatusableDirective,
       inputs: ['status'],
     },
+    {
+      directive: DaffColorableDirective,
+      inputs: ['color'],
+    },
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffButtonComponent
   extends _daffButtonBase
-  implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable {
+  implements OnInit, DaffPrefixable, DaffSuffixable {
 
   private buttonType: DaffButtonType;
 

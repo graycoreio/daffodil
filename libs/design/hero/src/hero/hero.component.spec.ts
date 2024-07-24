@@ -59,17 +59,11 @@ describe('@daffodil/design/hero | DaffHeroComponent', () => {
     });
   });
 
-  describe('using a color variant of a hero', () => {
-    it('should set a color class on the hero', () => {
-      wrapper.color = 'primary';
-      fixture.detectChanges();
+  it('should take color as an input', () => {
+    wrapper.color = 'primary';
+    fixture.detectChanges();
 
-      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
-    });
-
-    it('should not set a default color', () => {
-      expect(component.color).toBeFalsy();
-    });
+    expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
   });
 
   it('should take textAlignment as an input', () => {
