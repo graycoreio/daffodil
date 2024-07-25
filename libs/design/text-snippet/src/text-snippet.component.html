@@ -1,0 +1,8 @@
+<div class="daff-text-snippet__content daff-text-snippet__html" #htmlEl [class.condensed]="condensed" [innerHtml]="html" *ngIf="html"></div>
+<div class="daff-text-snippet__content daff-text-snippet__ngcontent" #contentEl [class.condensed]="condensed" *ngIf="!html">
+  <ng-content></ng-content>
+</div>
+<button daff-underline-button color="theme-contrast" [attr.aria-expanded]="!condensed ? true : false" (click)="toggleSnippet()">
+  <ng-container *ngIf="condensed">Show More</ng-container>
+  <ng-container *ngIf="!condensed">Show Less</ng-container>
+</button>
