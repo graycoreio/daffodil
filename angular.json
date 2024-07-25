@@ -227,8 +227,14 @@
             "production": {
               "budgets": [
                 {
+                  "type": "initial",
+                  "maximumWarning": "1mb",
+                  "maximumError": "4.3mb"
+                },
+                {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ],
               "fileReplacements": [
@@ -237,30 +243,33 @@
                   "with": "apps/daffio/src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "serviceWorker": "apps/daffio/ngsw-config.json"
+              "serviceWorker": "apps/daffio/ngsw-config.json",
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            },
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "allowedHosts": [
               ".githubpreview.dev"
-            ],
-            "buildTarget": "daffio:build"
+            ]
           },
           "configurations": {
             "production": {
               "buildTarget": "daffio:build:production"
-            }
-          }
+            },
+            "development": {
+              "buildTarget": "daffio:build:development"
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
