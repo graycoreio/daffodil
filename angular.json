@@ -251,6 +251,8 @@
               "extractLicenses": false,
               "sourceMap": true
             },
+            "libs": {
+              "tsConfig": "apps/daffio/tsconfig.dev.json"
             }
           },
           "defaultConfiguration": "production"
@@ -268,6 +270,10 @@
             },
             "development": {
               "buildTarget": "daffio:build:development"
+            },
+            "dev-libs": {
+              "buildTarget": "daffio:build:development,libs"
+            }
           },
           "defaultConfiguration": "development"
         },
@@ -331,64 +337,6 @@
               "browserTarget": "daffio:build:production",
               "serverTarget": "daffio:server:production"
             }
-          }
-        }
-      }
-    },
-    "daffio-dev": {
-      "root": "apps/daffio/",
-      "sourceRoot": "apps/daffio/src",
-      "projectType": "application",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/daffio/browser",
-            "index": "apps/daffio/src/index.html",
-            "main": "apps/daffio/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "apps/daffio/tsconfig.dev.json",
-            "assets": [
-              "apps/daffio/src/assets",
-              "apps/daffio/src/favicon.ico",
-              {
-                "glob": "**/*",
-                "input": "libs/branding/src/assets/",
-                "output": "/assets/daff-branding/"
-              },
-              {
-                "glob": "**/*",
-                "input": "dist/docs",
-                "output": "/assets/daffio/docs"
-              }
-            ],
-            "styles": [
-              "apps/daffio/src/scss/styles.scss"
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "apps/daffio/src/scss",
-                "libs/design/scss",
-                "libs/branding/src/scss"
-              ]
-            },
-            "scripts": [],
-            "aot": false,
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
-          },
-          "defaultConfiguration": ""
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "buildTarget": "daffio-dev:build"
           }
         }
       }
