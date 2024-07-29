@@ -1,6 +1,6 @@
 # Getting Started
 ## Installation
-Daffodil packages are provided a-la carte, i.e. each package provides a particular feature and must be installed separately. The following example demonstrates how to install the product package with `npm`.
+Daffodil packages are provided a la carte. Each package provides a particular feature and must be installed separately. The following example demonstrates how to install the product package with `npm`.
 
 ```sh
 npm install --save @daffodil/product
