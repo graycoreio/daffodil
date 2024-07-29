@@ -6,7 +6,7 @@ import { Event } from '@angular/router';
 
 import { DaffSeoMetaDefinition } from '@daffodil/seo';
 
-import { DaffSeoUpdateEventPair } from '../../../models/update-event-pair.interface';
+import { DaffSeoUpdateEventPair } from '../model/update-event-pair.interface';
 
 /**
  * A multi-provider injection token for providing page meta update logic.

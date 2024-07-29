@@ -5,12 +5,13 @@ import {
 } from '@angular/router';
 
 import {
-  daffProvideTitleRouterUpdates,
-  DAFF_SEO_TITLE_ROUTER_UPDATES,
+  daffProvideCanonicalUrlRouterUpdates,
+  DAFF_SEO_CANONICAL_URL_ROUTER_UPDATES,
 } from './updates.token';
-import { DaffSeoUpdateEventPair } from '../../../models/update-event-pair.interface';
+import { DaffSeoUpdateEventPair } from '../model/update-event-pair.interface';
 
-describe('daffProvideTitleUpdates', () => {
+
+describe('daffProvideCanonicalUrlUpdates', () => {
   let updates: DaffSeoUpdateEventPair<Event, string>[];
   let result: DaffSeoUpdateEventPair<Event, string>[];
 
@@ -24,11 +25,11 @@ describe('daffProvideTitleUpdates', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideTitleRouterUpdates(...updates),
+        ...daffProvideCanonicalUrlRouterUpdates(...updates),
       ],
     });
 
-    result = TestBed.inject(DAFF_SEO_TITLE_ROUTER_UPDATES);
+    result = TestBed.inject(DAFF_SEO_CANONICAL_URL_ROUTER_UPDATES);
   });
 
   it('should provide the updates to the token', () => {

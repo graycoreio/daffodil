@@ -12,6 +12,9 @@
       "@daffodil/seo/state": [
         "libs/seo/state/src"
       ],
+      "@daffodil/seo/router": [
+        "libs/seo/router/src"
+      ],
     }
   }
 }
