@@ -216,12 +216,7 @@
                 "dist/branding/src/scss"
               ]
             },
-            "scripts": [],
-            "aot": false,
-            "extractLicenses": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
+            "scripts": []
           },
           "configurations": {
             "production": {
