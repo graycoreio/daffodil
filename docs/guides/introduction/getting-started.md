@@ -7,7 +7,7 @@ npm install --save @daffodil/product
 ```
 
 ## Usage
-The first step is to choose a driver that correspondes to the platform of choice. Daffodil provides lightweight in-memory API drivers to mock out a test platform for rapid frontend development.
+The first step is to choose a driver that corresponds to the platform of choice. Daffodil provides lightweight in-memory API drivers to mock out a test platform for rapid frontend development.
 <!--- TODO: add link to in-memory explanation --->
 Once a platform has been chosen, import the corresponding driver module:
 
