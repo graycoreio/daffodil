@@ -1,6 +1,6 @@
 # About Daffodil
 
-Daffodil is a client-side framework for building ecommerce stores. It presents a standard set of interfaces with which the frontend application can interact while offering a selection of drivers that communicate with the platform of choice.
+Daffodil is a client-side framework for building ecommerce stores. It presents a standard set of interfaces with which the frontend application can interact along with a selection of drivers that communicate with the platform of choice.
 
 ## Objectives
 Daffodil aims to:
