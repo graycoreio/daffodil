@@ -14,8 +14,7 @@ import {
   DaffCompactable,
   daffCompactableMixin,
   DaffManageContainerLayoutDirective,
-  DaffTextAlignable,
-  daffTextAlignmentMixin,
+  DaffTextAlignableDirective,
 } from '@daffodil/design';
 
 /**
@@ -25,7 +24,7 @@ class DaffCalloutBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffCalloutBase = daffColorMixin(daffCompactableMixin(daffTextAlignmentMixin(DaffCalloutBase, 'left')));
+const _daffCalloutBase = daffColorMixin(daffCompactableMixin(DaffCalloutBase));
 
 /**
  * @inheritdoc
@@ -37,16 +36,26 @@ const _daffCalloutBase = daffColorMixin(daffCompactableMixin(daffTextAlignmentMi
   encapsulation: ViewEncapsulation.None,
   //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'compact', 'textAlignment'],
+  inputs: ['color', 'compact'],
   hostDirectives: [
     { directive: DaffArticleEncapsulatedDirective },
     { directive: DaffManageContainerLayoutDirective },
+    {
+      directive: DaffTextAlignableDirective,
+      inputs: ['textAlignment'],
+    },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffCalloutComponent extends _daffCalloutBase implements DaffColorable, DaffTextAlignable, DaffCompactable {
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+export class DaffCalloutComponent extends _daffCalloutBase implements DaffColorable, DaffCompactable {
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+    private textAlignable: DaffTextAlignableDirective,
+  ) {
     super(elementRef, renderer);
+
+    this.textAlignable.textAlignment = 'left';
   }
 
   /**

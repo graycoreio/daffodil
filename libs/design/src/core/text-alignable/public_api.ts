@@ -3,4 +3,4 @@ export {
   DaffTextAlignment,
   DaffTextAlignmentEnum,
 } from './text-alignable';
-export { daffTextAlignmentMixin } from './text-alignable-mixin';
+export { DaffTextAlignableDirective } from './text-alignable.directive';
