@@ -9,8 +9,8 @@ import {
 
 import {
   DaffColorable,
+  DaffManageContainerLayoutDirective,
   daffColorMixin,
-  daffManageContainerLayoutMixin,
 } from '@daffodil/design';
 
 /**
@@ -20,7 +20,7 @@ class DaffNavbarBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffNavbarBase = daffManageContainerLayoutMixin(daffColorMixin(DaffNavbarBase));
+const _daffNavbarBase = daffColorMixin(DaffNavbarBase);
 
 /**
  * @inheritdoc
@@ -33,6 +33,9 @@ const _daffNavbarBase = daffManageContainerLayoutMixin(daffColorMixin(DaffNavbar
   //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['color'],
+  hostDirectives: [{
+    directive: DaffManageContainerLayoutDirective,
+  }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffNavbarComponent extends _daffNavbarBase implements DaffColorable {
