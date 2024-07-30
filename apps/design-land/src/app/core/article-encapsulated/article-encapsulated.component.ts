@@ -1,26 +1,13 @@
-import {
-  Component,
-  ElementRef,
-  Renderer2,
-} from '@angular/core';
+import { Component } from '@angular/core';
 
-import { daffArticleEncapsulatedMixin } from '@daffodil/design';
-
-/**
- * An _elementRef and an instance of renderer2 are needed for the link set mixins
- */
-class DesignLandArticleEncapsulatedBase {
-  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
-}
-
-const _designLandArticleEncapsulatedBase = daffArticleEncapsulatedMixin((DesignLandArticleEncapsulatedBase));
+import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
 @Component({
   selector: 'design-land-article-encapsulated',
   template: '<ng-content></ng-content>',
+  hostDirectives: [{
+    directive: DaffArticleEncapsulatedDirective,
+  }],
 })
-export class DesignLandArticleEncapsulatedComponent extends _designLandArticleEncapsulatedBase {
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    super(elementRef, renderer);
-  }
+export class DesignLandArticleEncapsulatedComponent {
 }

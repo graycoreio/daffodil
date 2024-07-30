@@ -18,7 +18,7 @@ import {
 } from '@angular/core';
 
 import {
-  daffArticleEncapsulatedMixin,
+  DaffArticleEncapsulatedDirective,
   DaffFocusStackService,
   DaffPrefixable,
   DaffPrefixDirective,
@@ -37,7 +37,7 @@ class DaffToastBase {
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffToastBase = daffArticleEncapsulatedMixin(daffStatusMixin(DaffToastBase));
+const _daffToastBase = daffStatusMixin(DaffToastBase);
 
 /**
  * DaffToastComponent provides a way to display and
@@ -50,6 +50,9 @@ const _daffToastBase = daffArticleEncapsulatedMixin(daffStatusMixin(DaffToastBas
   // todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['status'],
+  hostDirectives: [{
+    directive: DaffArticleEncapsulatedDirective,
+  }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

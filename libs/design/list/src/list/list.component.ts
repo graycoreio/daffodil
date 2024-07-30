@@ -4,10 +4,9 @@ import {
   ChangeDetectionStrategy,
   HostBinding,
   ElementRef,
-  Renderer2,
 } from '@angular/core';
 
-import { daffArticleEncapsulatedMixin } from '@daffodil/design';
+import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
 export type DaffListType = 'daff-list' | 'daff-nav-list';
 
@@ -16,26 +15,20 @@ enum DaffListTypeEnum {
   Nav = 'daff-nav-list'
 }
 
-/**
- * An _elementRef and an instance of renderer2 are needed for the list mixins
- */
-class DaffListBase {
-  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
-}
-
-const _daffListBase = daffArticleEncapsulatedMixin((DaffListBase));
-
 @Component({
   selector:
     'daff-list' + ',' +
     'daff-nav-list',
   template: '<ng-content></ng-content>',
   styleUrls: ['./list.component.scss'],
+  hostDirectives: [{
+    directive: DaffArticleEncapsulatedDirective,
+  }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class DaffListComponent extends _daffListBase {
+export class DaffListComponent {
   /**
    * @docs-private
    */
@@ -50,9 +43,7 @@ export class DaffListComponent extends _daffListBase {
     return this._getHostElement().localName;
   }
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    super(elementRef, renderer);
-  }
+  constructor(private elementRef: ElementRef) {}
 
   /**
    * @docs-private
