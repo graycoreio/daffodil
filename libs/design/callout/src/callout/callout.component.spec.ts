@@ -25,7 +25,7 @@ import { DaffCalloutComponent } from './callout.component';
 class WrapperComponent {
   color: DaffPalette;
   textAlignment: DaffTextAlignment;
-  compact = false;
+  compact: boolean;
 }
 
 describe('@daffodil/design/callout | DaffCalloutComponent', () => {
@@ -86,6 +86,6 @@ describe('@daffodil/design/callout | DaffCalloutComponent', () => {
     wrapper.compact = true;
     fixture.detectChanges();
 
-    expect(component.compact).toEqual(true);
+    expect(de.nativeElement.classList.contains('daff-compact')).toEqual(true);
   });
 });
