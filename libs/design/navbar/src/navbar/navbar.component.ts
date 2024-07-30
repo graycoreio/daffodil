@@ -1,26 +1,14 @@
 import {
   Component,
   Input,
-  ElementRef,
   HostBinding,
-  Renderer2,
   ChangeDetectionStrategy,
 } from '@angular/core';
 
 import {
-  DaffColorable,
+  DaffColorableDirective,
   DaffManageContainerLayoutDirective,
-  daffColorMixin,
 } from '@daffodil/design';
-
-/**
- * An _elementRef is needed for the Colorable mixin
- */
-class DaffNavbarBase {
-  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
-}
-
-const _daffNavbarBase = daffColorMixin(DaffNavbarBase);
 
 /**
  * @inheritdoc
@@ -30,15 +18,16 @@ const _daffNavbarBase = daffColorMixin(DaffNavbarBase);
   selector: 'nav[daff-navbar]',
   styleUrls: ['./navbar.component.scss'],
   template: '<ng-content></ng-content>',
-  //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color'],
-  hostDirectives: [{
-    directive: DaffManageContainerLayoutDirective,
-  }],
+  hostDirectives: [
+    { directive: DaffManageContainerLayoutDirective },
+    {
+      directive: DaffColorableDirective,
+      inputs: ['color'],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffNavbarComponent extends _daffNavbarBase implements DaffColorable {
+export class DaffNavbarComponent {
 
   @Input() raised = false;
 
@@ -53,8 +42,4 @@ export class DaffNavbarComponent extends _daffNavbarBase implements DaffColorabl
    * @docs-private
    */
   @HostBinding('class.daff-navbar') hostClass = true;
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    super(elementRef, renderer);
-  }
 }

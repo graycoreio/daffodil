@@ -65,19 +65,10 @@ describe('@daffodil/design/loading-icon | DaffLoadingIconComponent', () => {
     expect(de.nativeElement.style.maxWidth).toEqual('50px');
   });
 
-  describe('using a colored variant of a loading icon',() => {
-    let loadingIconDe;
+  it('should take color as an input', () => {
+    wrapper.color = 'primary';
+    fixture.detectChanges();
 
-    it('should not set a default color', () => {
-      expect(component.color).toBeFalsy();
-    });
-
-    it('should set a color class on the loading icon', () => {
-      wrapper.color = 'secondary';
-      fixture.detectChanges();
-
-      loadingIconDe = fixture.debugElement.query(By.css('daff-loading-icon'));
-      expect(loadingIconDe.nativeElement.classList.contains('daff-secondary')).toEqual(true);
-    });
+    expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
   });
 });

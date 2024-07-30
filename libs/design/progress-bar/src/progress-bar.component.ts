@@ -4,29 +4,15 @@ import {
   Component,
   Input,
   ChangeDetectionStrategy,
-  ElementRef,
   Output,
   EventEmitter,
-  Renderer2,
   HostBinding,
   ChangeDetectorRef,
 } from '@angular/core';
 
-import {
-  daffColorMixin,
-  DaffColorable,
-} from '@daffodil/design';
+import { DaffColorableDirective } from '@daffodil/design';
 
 import { daffProgressBarAnimation } from './animation/progress-bar-animation';
-
-/**
- * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
- */
-class DaffProgressBarBase{
-  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
-}
-
-const _daffProgressBarBase = daffColorMixin(DaffProgressBarBase, 'primary');
 
 export const clamp = (number: number, min: number, max: number) => Math.min(Math.max(number, min), max);
 
@@ -38,14 +24,17 @@ export const clamp = (number: number, min: number, max: number) => Math.min(Math
   templateUrl: './progress-bar.component.html',
   styleUrls: ['./progress-bar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color'],
+  hostDirectives: [
+    {
+      directive: DaffColorableDirective,
+      inputs: ['color'],
+    },
+  ],
   animations: [
     daffProgressBarAnimation.fill,
   ],
 })
-export class DaffProgressBarComponent extends _daffProgressBarBase implements DaffColorable {
+export class DaffProgressBarComponent {
 
   /**
    * @docs-private
@@ -75,10 +64,9 @@ export class DaffProgressBarComponent extends _daffProgressBarBase implements Da
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
+    private colorable: DaffColorableDirective,
   ) {
-    super(elementRef, renderer);
+    this.colorable.defaultColor = 'primary';
   }
 
   private _percentage = 0;

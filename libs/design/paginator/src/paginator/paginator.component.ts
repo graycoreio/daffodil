@@ -7,18 +7,12 @@ import {
   ElementRef,
   OnChanges,
   ChangeDetectionStrategy,
-  Renderer2,
 } from '@angular/core';
 import { Params } from '@angular/router';
 import {
   faChevronRight,
   faChevronLeft,
 } from '@fortawesome/free-solid-svg-icons';
-
-import {
-  daffColorMixin,
-  DaffColorable,
-} from '@daffodil/design';
 
 import {
   DaffPaginatorNumberOfPagesErrorMessage,

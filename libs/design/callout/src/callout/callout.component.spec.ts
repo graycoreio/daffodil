@@ -62,17 +62,11 @@ describe('@daffodil/design/callout | DaffCalloutComponent', () => {
     });
   });
 
-  describe('using a colored variant of a callout',() => {
-    it('should not set a default color', () => {
-      expect(component.color).toBeFalsy();
-    });
+  it('should take color as an input', () => {
+    wrapper.color = 'primary';
+    fixture.detectChanges();
 
-    it('should set a color class on the callout', () => {
-      wrapper.color = 'primary';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
-    });
+    expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
   });
 
   it('should take textAlignment as an input', () => {

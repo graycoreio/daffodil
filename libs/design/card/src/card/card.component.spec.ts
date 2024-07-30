@@ -61,17 +61,11 @@ describe('@daffodil/design/card | DaffCardComponent', () => {
     });
   });
 
-  describe('using the color property of a card', () => {
-    it('should not set a default color', () => {
-      expect(component.color).toBeFalsy();
-    });
+  it('should take color as an input', () => {
+    wrapper.color = 'primary';
+    fixture.detectChanges();
 
-    it('should add the class of the defined color to the host element', () => {
-      wrapper.color = 'primary';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
-    });
+    expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
   });
 
   it('should take orientation as an input', () => {

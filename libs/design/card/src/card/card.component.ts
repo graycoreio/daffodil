@@ -11,8 +11,7 @@ import {
 
 import {
   DaffArticleEncapsulatedDirective,
-  DaffColorable,
-  daffColorMixin,
+  DaffColorableDirective,
 } from '@daffodil/design';
 
 export type DaffCardType = null | 'daff-raised-card' | 'daff-stroked-card';
@@ -32,15 +31,6 @@ export enum DaffCardOrientationEnum {
 }
 
 /**
- * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
- */
-class DaffCardBase {
-  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
-}
-
-const _daffCardBase = daffColorMixin(DaffCardBase);
-
-/**
  * @inheritdoc
  */
 @Component({
@@ -54,16 +44,17 @@ const _daffCardBase = daffColorMixin(DaffCardBase);
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  //todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color'],
-  hostDirectives: [{
-    directive: DaffArticleEncapsulatedDirective,
-  }],
+  hostDirectives: [
+    { directive: DaffArticleEncapsulatedDirective },
+    {
+      directive: DaffColorableDirective,
+      inputs: ['color'],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class DaffCardComponent extends _daffCardBase implements OnInit, DaffColorable {
+export class DaffCardComponent implements OnInit {
   private _orientation: DaffCardOrientation = DaffCardOrientationEnum.Vertical;
 
   @Input()
@@ -101,8 +92,6 @@ export class DaffCardComponent extends _daffCardBase implements OnInit, DaffColo
   }
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    super(elementRef, renderer);
-
     this.cardType = this.initCardType();
   }
 
