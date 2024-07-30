@@ -3,4 +3,4 @@ export {
   DaffStatus,
   DaffStatusEnum,
 } from './statusable';
-export { daffStatusMixin } from './statusable-mixin';
+export { DaffStatusableDirective } from './statusable.directive';

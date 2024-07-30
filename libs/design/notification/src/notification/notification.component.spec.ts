@@ -1,9 +1,6 @@
 import {
   Component,
-  ContentChild,
   DebugElement,
-  Input,
-  ViewChild,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -18,7 +15,6 @@ import {
   DaffNotificationComponent,
   DaffNotificationOrientation,
 } from './notification.component';
-import { DaffNotificationActionsDirective } from '../notification-actions/notification-actions.directive';
 
 @Component ({
   template: `
@@ -133,17 +129,11 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
     });
   });
 
-  describe('using the status property of a notification', () => {
-    it('should not set a default status', () => {
-      expect(component.status).toBeFalsy();
-    });
+  it('should take status as an input', () => {
+    wrapper.status = 'warn';
+    fixture.detectChanges();
 
-    it('should add the class of the defined status to the host element', () => {
-      wrapper.status = 'warn';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
-    });
+    expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
   });
 
   describe('setting the orientation of a notification', () => {

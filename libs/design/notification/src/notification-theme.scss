@@ -37,7 +37,7 @@
 			}
 		}
 
-		&.daff-error {
+		&.daff-danger {
 			background: theming.daff-color(theming.$daff-red, 10);
 			border: 1px solid theming.daff-color(theming.$daff-red, 20);
 			color: theming.daff-text-contrast(theming.daff-color(theming.$daff-red, 10));
