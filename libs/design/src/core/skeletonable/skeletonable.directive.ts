@@ -12,7 +12,7 @@ import {
  * input property. When `skeleton` is `true`, the `daff-skeleton` CSS class
  * is applied, which should style the component to look like a loading placeholder.
  *
- * The styles for the`daff-skeleton` class should be defined component's 
+ * The styles for the`daff-skeleton` class should be defined component's
  * stylesheets to display the loading state as desired.
  */
 @Directive({
