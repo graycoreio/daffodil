@@ -1,2 +1,2 @@
 export { DaffSkeletonable } from './skeletonable';
-export { daffSkeletonableMixin } from './skeletonable-mixin';
+export { DaffSkeletonableDirective } from './skeletonable.directive';
