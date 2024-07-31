@@ -10,6 +10,7 @@ import {
   MockStore,
 } from '@ngrx/store/testing';
 
+import { DaffImageModule } from '@daffodil/design/image';
 import { DaffMediaGalleryModule } from '@daffodil/design/media-gallery';
 
 import { ImageGalleryComponent } from './image-gallery.component';
@@ -35,6 +36,7 @@ describe('ImageGalleryComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffMediaGalleryModule,
+        DaffImageModule,
       ],
       declarations: [
         WrapperComponent,

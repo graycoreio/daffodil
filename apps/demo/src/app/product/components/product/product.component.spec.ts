@@ -13,7 +13,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffQuantityFieldModule } from '@daffodil/design';
+import {
+  DaffFormFieldModule,
+  DaffQuantityFieldModule,
+} from '@daffodil/design';
 import { DaffAccordionModule } from '@daffodil/design/accordion';
 import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffProduct } from '@daffodil/product';
@@ -50,6 +53,7 @@ describe('ProductComponent', () => {
         DaffAccordionModule,
         DaffQuantityFieldModule,
         NoopAnimationsModule,
+        DaffFormFieldModule,
       ],
       declarations: [
         ProductComponent,
