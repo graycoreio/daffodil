@@ -12,6 +12,11 @@ import { slugify } from 'markdown-toc';
 import { marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 
+import {
+  DAFF_DOC_KIND_PATH_SEGMENT_MAP,
+  DaffDocKind,
+} from '@daffodil/docs-utils';
+
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('ts', typescript);
 hljs.registerLanguage('xml', xml);
@@ -20,17 +25,11 @@ hljs.registerLanguage('bash', bash);
 hljs.registerLanguage('graphql', graphql);
 hljs.registerLanguage('gql', graphql);
 
-enum DocKind {
-  GUIDE = 'GUIDE',
-  EXPLANATION = 'EXPLANATION',
-  PACKAGE = 'PACKAGE',
-  API = 'API',
-}
 const DOC_KIND_REGEX = {
-  [DocKind.GUIDE]: /\/docs\/guides\/(?<path>.+)\.md/,
-  [DocKind.EXPLANATION]: /\/docs\/explanations\/(?<path>.+)\.md/,
-  [DocKind.PACKAGE]: /\/libs\/(?<path>.+)\.md/,
-  [DocKind.API]: /\/libs\/(?<path>.+)\.ts/,
+  [DaffDocKind.GUIDE]: /\/docs\/guides\/(?<path>.+)\.md/,
+  [DaffDocKind.EXPLANATION]: /\/docs\/explanations\/(?<path>.+)\.md/,
+  [DaffDocKind.PACKAGE]: /\/libs\/(?<path>.+)\.md/,
+  [DaffDocKind.API]: /\/libs\/(?<path>.+)\.ts/,
 };
 const getLinkUrl = (path: string): string => {
   const kind = (<Array<keyof typeof DOC_KIND_REGEX>>Object.keys(DOC_KIND_REGEX)).find((k) => DOC_KIND_REGEX[k].test(path));
@@ -41,17 +40,13 @@ const getLinkUrl = (path: string): string => {
   }
 
   switch (kind) {
-    case DocKind.GUIDE:
-      return `/docs/guides/${match.groups.path}`;
+    case DaffDocKind.GUIDE:
+    case DaffDocKind.EXPLANATION:
+    case DaffDocKind.API:
+      return `/docs/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/${match.groups.path}`;
 
-    case DocKind.EXPLANATION:
-      return `/docs/explanations/${match.groups.path}`;
-
-    case DocKind.PACKAGE:
+    case DaffDocKind.PACKAGE:
       return `/docs/packages/${match.groups.path}`.replaceAll(/\/(?:readme|src|guides)/gi, '');
-
-    case DocKind.API:
-      return `/docs/api/${match.groups.path}`;
 
     default:
       return path;
