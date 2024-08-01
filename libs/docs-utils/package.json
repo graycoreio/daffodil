@@ -3,7 +3,9 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/docs-utils"]
+        "outputs": [
+          "{workspaceRoot}/dist/docs-utils"
+        ]
       }
     }
   },
@@ -14,7 +16,7 @@
     "build": "npm run clean && npm run build:bundle && npm run build:types && npm run build:copy-static",
     "build:types": "npx tsc --emitDeclarationOnly --declaration --project tsconfig.json",
     "build:bundle": "esbuild --outfile=../../dist/docs-utils/index.js --platform=node --bundle src/index.ts",
-    "build:copy-static":"shx cp package.json README.md ../../dist/docs-utils",
+    "build:copy-static": "shx cp package.json README.md ../../dist/docs-utils && shx cp -R ../../dist/docs-utils/src/* ../../dist/docs-utils",
     "clean": "rimraf ../../dist/docs-utils",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
