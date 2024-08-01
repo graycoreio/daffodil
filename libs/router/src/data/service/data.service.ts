@@ -17,12 +17,12 @@ import { daffRouterDataCollect } from '../helpers/collect-data';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffRouterDataService {
+export class DaffRouterDataService<T extends Route['data'] = Route['data']> {
   /**
    * A collection of all the route data defined in any part of the currently activated route's tree.
    * Child route's data takes precendence over parent data.
    */
-  public data$: Observable<Route['data']>;
+  public data$: Observable<T>;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +46,7 @@ export class DaffRouterDataService {
       this.route.url,
     ).pipe(
       map(() => this.route.snapshot),
-      map(daffRouterDataCollect),
+      map(daffRouterDataCollect<T>),
     );
   }
 }
