@@ -78,44 +78,68 @@ describe('@daffodil/search/routing | DaffSearchPageResolver', () => {
       spyOn(store, 'dispatch');
     }));
 
-    it('should dispatch a DaffSearchLoad action with the correct search query', () => {
-      searchResolver.resolve(<ActivatedRouteSnapshot><unknown>{
-        ...route.snapshot,
-        queryParams: {
-          query,
-        },
-      }).subscribe();
-      expect(store.dispatch).toHaveBeenCalledWith(
-        new DaffSearchLoad(query, options),
-      );
-    });
+    describe('when the query is defined', () => {
+      let snapshot: ActivatedRouteSnapshot;
 
-    it('should resolve when DaffSearchLoadSuccess is dispatched', done => {
-      searchResolver.resolve(route.snapshot).subscribe(value => {
-        expect(value).toEqual(true);
-        done();
+      beforeEach(() => {
+        snapshot = <ActivatedRouteSnapshot><unknown>{
+          ...route.snapshot,
+          queryParams: {
+            query,
+          },
+        };
       });
 
-      actions$.next(new DaffSearchLoadSuccess({
-        collection: {},
-        metadata: {},
-      }));
-    });
-
-    it('should resolve when DaffCartLoadFailure is dispatched', done => {
-      searchResolver.resolve(route.snapshot).subscribe(value => {
-        expect(value).toEqual(true);
-        done();
+      it('should dispatch a DaffSearchLoad action with the correct search query', () => {
+        searchResolver.resolve(snapshot).subscribe();
+        expect(store.dispatch).toHaveBeenCalledWith(
+          new DaffSearchLoad(query, options),
+        );
       });
 
-      actions$.next(new DaffSearchLoadFailure(null));
+      it('should resolve when DaffSearchLoadSuccess is dispatched', done => {
+        searchResolver.resolve(snapshot).subscribe(value => {
+          expect(value).toEqual(true);
+          done();
+        });
+
+        actions$.next(new DaffSearchLoadSuccess({
+          collection: {},
+          metadata: {},
+        }));
+      });
+
+      it('should resolve when DaffCartLoadFailure is dispatched', done => {
+        searchResolver.resolve(snapshot).subscribe(value => {
+          expect(value).toEqual(true);
+          done();
+        });
+
+        actions$.next(new DaffSearchLoadFailure(null));
+      });
+
+      it('should not resolve without a search load success or failure', () => {
+        searchResolver.resolve(snapshot).subscribe(() => {
+          fail();
+        });
+        expect(true).toBeTruthy();
+      });
     });
 
-    it('should not resolve without a search load success or failure', () => {
-      searchResolver.resolve(route.snapshot).subscribe(() => {
-        fail();
+    describe('when the query is not defined', () => {
+      it('should return true immediately', (done) => {
+        searchResolver.resolve(route.snapshot).subscribe((res) => {
+          expect(res).toBeTrue();
+          done();
+        });
       });
-      expect(true).toBeTruthy();
+
+      it('should not initiate a search', (done) => {
+        searchResolver.resolve(route.snapshot).subscribe((res) => {
+          expect(store.dispatch).not.toHaveBeenCalled();
+          done();
+        });
+      });
     });
   });
 

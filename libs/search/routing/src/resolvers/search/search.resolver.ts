@@ -50,15 +50,17 @@ export class DaffSearchPageResolver  {
     const query = getQuery(route);
     if (query) {
       this.store.dispatch(new DaffSearchLoad(query, this.builder(route)));
+
+      return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
+        ofType(
+          DaffSearchActionTypes.SearchLoadSuccessAction,
+          DaffSearchActionTypes.SearchLoadFailureAction,
+        ),
+        map(() => true),
+        take(1),
+      );
     }
 
-    return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
-      ofType(
-        DaffSearchActionTypes.SearchLoadSuccessAction,
-        DaffSearchActionTypes.SearchLoadFailureAction,
-      ),
-      map(() => true),
-      take(1),
-    );
+    return of(true);
   }
 }
