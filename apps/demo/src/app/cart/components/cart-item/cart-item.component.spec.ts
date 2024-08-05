@@ -17,6 +17,7 @@ import {
 } from '@daffodil/cart/state/testing';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
 import {
+  DaffFormFieldModule,
   DaffQuantityFieldComponent,
   DaffQuantityFieldModule,
 } from '@daffodil/design';
@@ -48,6 +49,7 @@ describe('CartItemComponent', () => {
         DaffQuantityFieldModule,
         DaffCartStateTestingModule,
         ReactiveFormsModule,
+        DaffFormFieldModule,
       ],
       declarations: [
         CartItemComponent,
