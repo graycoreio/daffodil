@@ -1,15 +1,25 @@
 import {
+  afterNextRender,
+  AfterRenderPhase,
+  AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChild,
+  ContentChildren,
+  DestroyRef,
   HostBinding,
+  Injector,
   Input,
   OnChanges,
   OnInit,
+  QueryList,
+  runInInjectionContext,
   SimpleChanges,
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
@@ -17,6 +27,7 @@ import { DaffTreeNotifierService } from './tree-notifier.service';
 import { DaffTreeData } from '../interfaces/tree-data';
 import { DaffTreeRenderMode } from '../interfaces/tree-render-mode';
 import { DaffTreeUi } from '../interfaces/tree-ui';
+import { DaffTreeItemDirective } from '../tree-item/tree-item.directive';
 import {
   DaffTreeFlatNode,
   flattenTree,
@@ -57,7 +68,7 @@ import { hydrateTree } from '../utils/hydrate-tree';
     directive: DaffArticleEncapsulatedDirective,
   }],
 })
-export class DaffTreeComponent implements OnInit, OnChanges {
+export class DaffTreeComponent implements OnInit, OnChanges, AfterViewInit {
 
   /**
    * The css class of the daff-tree.
@@ -108,7 +119,14 @@ export class DaffTreeComponent implements OnInit, OnChanges {
    */
   @ContentChild('daffTreeItemTpl', { static: true }) treeItemTemplate: TemplateRef<any>;
 
-  constructor(private notifier: DaffTreeNotifierService) {}
+  @ContentChildren(DaffTreeItemDirective) items!: QueryList<DaffTreeItemDirective>;
+
+  constructor(
+    private notifier: DaffTreeNotifierService,
+    private destroyRef: DestroyRef,
+    private injector: Injector,
+    private cd: ChangeDetectorRef,
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if(!changes.tree.currentValue) {
@@ -138,6 +156,20 @@ export class DaffTreeComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.notifier.notice$.subscribe(() => {
       this.flatTree = flattenTree(this._tree, this.renderMode === 'not-in-dom');
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.items.changes.pipe(
+      takeUntilDestroyed(this.destroyRef),
+    ).subscribe((items: QueryList<DaffTreeItemDirective>) => {
+      runInInjectionContext(this.injector, () => afterNextRender(() => {
+        const activeTreeItem = items.find((treeItem) => treeItem.selected);
+        if (activeTreeItem) {
+          activeTreeItem.openAncestors();
+          this.cd.markForCheck();
+        }
+      }, { phase: AfterRenderPhase.Read }));
     });
   }
 }

@@ -7,6 +7,7 @@ import {
   Input,
 } from '@angular/core';
 
+import { DaffTreeUi } from '../interfaces/tree-ui';
 import { DaffTreeNotifierService } from '../tree/tree-notifier.service';
 import { DaffTreeFlatNode } from '../utils/flatten-tree';
 
@@ -126,7 +127,7 @@ export class DaffTreeItemDirective {
    */
   @HostListener('keydown.escape')
   onEscape() {
-    this.toggleParent(this.node);
+    this.toggleParent();
   }
 
   /**
@@ -137,28 +138,44 @@ export class DaffTreeItemDirective {
     if(this.node.hasChildren) {
       this.toggleTree(this.node);
     }
+
+  /**
+   * Opens parent and parent of parent all the way to the root of the tree.
+   */
+  openAncestors() {
+    const openParent = (tree: DaffTreeUi<unknown>) => {
+      if (tree?.parent.parent === undefined) {
+        return;
+      }
+      tree.parent.open = true;
+      openParent(tree.parent);
+    };
+    openParent(this._node._treeRef);
+    (<Document>this.document).getElementById('tree-' + this.node._treeRef.parent.id).focus();
     this.treeNotifier.notify();
   }
 
   /**
    * Toggle the open state of the tree's parent.
    */
-  toggleParent(node: DaffTreeFlatNode) {
-    if(node._treeRef?.parent.parent === undefined) {
+  toggleParent() {
+    if(this.node._treeRef?.parent.parent === undefined) {
       return;
     }
-    node._treeRef.parent.open = !node._treeRef.parent.open;
-    (<Document>this.document).getElementById('tree-' + node._treeRef.parent.id).focus();
+    this.node._treeRef.parent.open = !this.node._treeRef.parent.open;
+    (<Document>this.document).getElementById('tree-' + this.node._treeRef.parent.id).focus();
+    this.treeNotifier.notify();
   }
 
   /**
    * Toggle the open state of this specific subtree tree.
    */
-  toggleTree(node: DaffTreeFlatNode) {
-    if(node._treeRef.open === false) {
-      node._treeRef.open = true;
+  toggleTree() {
+    if(this.node._treeRef.open === false) {
+      this.node._treeRef.open = true;
     } else {
-      node._treeRef.open = false;
+      this.node._treeRef.open = false;
     }
+    this.treeNotifier.notify();
   }
 }
