@@ -1,9 +1,7 @@
-import { DOCUMENT } from '@angular/common';
 import {
   Directive,
   HostBinding,
   HostListener,
-  Inject,
   Input,
 } from '@angular/core';
 
@@ -118,7 +116,6 @@ export class DaffTreeItemDirective {
   @Input() selected = false;
 
   constructor(
-    @Inject(DOCUMENT) private document: any,
     private treeNotifier: DaffTreeNotifierService,
   ) {}
 
@@ -152,7 +149,6 @@ export class DaffTreeItemDirective {
       openParent(tree.parent);
     };
     openParent(this._node._treeRef);
-    (<Document>this.document).getElementById('tree-' + this.node._treeRef.parent.id).focus();
     this.treeNotifier.notify();
   }
 
@@ -164,7 +160,6 @@ export class DaffTreeItemDirective {
       return;
     }
     this.node._treeRef.parent.open = !this.node._treeRef.parent.open;
-    (<Document>this.document).getElementById('tree-' + this.node._treeRef.parent.id).focus();
     this.treeNotifier.notify();
   }
 
