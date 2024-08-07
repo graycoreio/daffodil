@@ -5,6 +5,8 @@ import {
   Input,
 } from '@angular/core';
 
+import { collect } from '@daffodil/core';
+
 import { DaffTreeUi } from '../interfaces/tree-ui';
 import { DaffTreeNotifierService } from '../tree/tree-notifier.service';
 import { DaffTreeFlatNode } from '../utils/flatten-tree';
@@ -141,14 +143,7 @@ export class DaffTreeItemDirective {
    * Opens parent and parent of parent all the way to the root of the tree.
    */
   openAncestors() {
-    const openParent = (tree: DaffTreeUi<unknown>) => {
-      if (tree?.parent.parent === undefined) {
-        return;
-      }
-      tree.parent.open = true;
-      openParent(tree.parent);
-    };
-    openParent(this._node._treeRef);
+    collect(this._node._treeRef, (node) => [node.parent], this._node.level).forEach((node) => node.open = true);
     this.treeNotifier.notify();
   }
 
