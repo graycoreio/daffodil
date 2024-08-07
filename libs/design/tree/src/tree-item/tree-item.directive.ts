@@ -136,8 +136,9 @@ export class DaffTreeItemDirective {
   @HostListener('click')
   onClick() {
     if(this.node.hasChildren) {
-      this.toggleTree(this.node);
+      this.toggleTree();
     }
+  }
 
   /**
    * Opens parent and parent of parent all the way to the root of the tree.
