@@ -14,6 +14,7 @@ import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import { FilterOutPrivatePropertiesProcessor } from '../../processors/filterOutPrivateProperties';
 import { GenerateApiListProcessor } from '../../processors/generateApiList';
 import { MakeTypesHtmlCompatibleProcessor } from '../../processors/makeTypesHtmlCompatible';
+import { MarkdownCodeProcessor } from '../../processors/markdown';
 import { PackagesProcessor } from '../../processors/packages';
 import {
   API_SOURCE_PATH,
@@ -39,6 +40,7 @@ export const apiDocs = new Package('daffodil-api', [
   .processor(new AddLinkTagToDaffodilReferencesProcessor())
   .processor(new GenerateApiListProcessor())
   .processor(new PackagesProcessor())
+  .processor(new MarkdownCodeProcessor())
   .factory('API_DOC_TYPES_TO_RENDER', (EXPORT_DOC_TYPES) => EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe', 'package']))
   //Configure our package
   .config((readFilesProcessor, readTypeScriptModules, tsParser) => {
@@ -58,6 +60,10 @@ export const apiDocs = new Package('daffodil-api', [
     readTypeScriptModules.sourceFiles = [
       DAFF_DGENI_EXCLUDED_PACKAGES_REGEX + '/**/src/index.ts',
     ];
+  })
+  .config((markdown: MarkdownCodeProcessor, EXPORT_DOC_TYPES) => {
+    markdown.docTypes.push(...EXPORT_DOC_TYPES);
+    markdown.contentKey = 'description';
   })
   .config((computePathsProcessor, EXPORT_DOC_TYPES, generateApiList) => {
 

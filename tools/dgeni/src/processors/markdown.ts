@@ -81,13 +81,14 @@ export class MarkdownCodeProcessor implements Processor {
   $runAfter = ['paths-computed'];
   $runBefore = ['rendering-docs'];
   docTypes = [];
+  contentKey = 'content';
 
   constructor() {}
 
   $process(docs: Document[]) {
     return docs.map((doc) => {
       if(this.docTypes.includes(doc.docType)){
-        doc.content = marked.parse(doc.content);
+        doc[this.contentKey] = marked.parse(doc.content);
       };
       return doc;
     });
