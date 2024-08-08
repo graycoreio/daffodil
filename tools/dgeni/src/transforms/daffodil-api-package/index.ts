@@ -1,5 +1,10 @@
 import { Package } from 'dgeni';
 
+import {
+  DAFF_DOC_KIND_PATH_SEGMENT_MAP,
+  DaffDocKind,
+} from '@daffodil/docs-utils';
+
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddInheritedDocsContentProcessor } from '../../processors/addInheritedDocsContent';
 import { AddLinkTagToDaffodilReferencesProcessor } from '../../processors/addLinkTagToDaffodilReferences';
@@ -19,7 +24,7 @@ import { daffodilBasePackage } from '../daffodil-base-package';
 const linksPackage = require('dgeni-packages/links');
 const typescriptPackage = require('dgeni-packages/typescript');
 
-export const apiDocs =  new Package('checkout', [
+export const apiDocs = new Package('daffodil-api', [
   daffodilBasePackage,
   typescriptPackage,
   linksPackage,
@@ -56,7 +61,7 @@ export const apiDocs =  new Package('checkout', [
   })
   .config((computePathsProcessor, EXPORT_DOC_TYPES, generateApiList) => {
 
-    const API_SEGMENT = 'api';
+    const API_SEGMENT = DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.API];
 
     generateApiList.outputFolder = API_SEGMENT;
 
@@ -70,7 +75,7 @@ export const apiDocs =  new Package('checkout', [
     });
     computePathsProcessor.pathTemplates.push({
       docTypes: EXPORT_DOC_TYPES,
-      pathTemplate: '${moduleDoc.moduleFolder}/${name}',
+      pathTemplate: 'docs/${moduleDoc.moduleFolder}/${name}',
       outputPathTemplate: '${moduleDoc.moduleFolder}/${safeName}.json',
     });
   })
