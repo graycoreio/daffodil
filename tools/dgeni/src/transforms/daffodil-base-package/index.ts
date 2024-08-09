@@ -13,8 +13,8 @@ import * as path from 'path';
 import { ConvertToJsonProcessor } from '../../processors/convertToJson';
 import {
   PROJECT_ROOT,
-  DOCS_OUTPUT_PATH,
   TEMPLATES_PATH,
+  OUTPUT_PATH,
 } from '../config';
 
 export const daffodilBasePackage = new Package('daffodil-base', [
@@ -33,9 +33,7 @@ export const daffodilBasePackage = new Package('daffodil-base', [
 
 // Where do we write the output files?
   .config((writeFilesProcessor) => {
-    // TODO: consider changing this to the parent so that the doc paths automatically include `docs/`
-    // we would avoid having to do things like https://github.com/graycoreio/daffodil/blob/db026e91c2e46b6ac895da86003f2f612800d917/tools/dgeni/src/transforms/daffodil-guides-package/processors/generateGuideList.ts#L15
-    writeFilesProcessor.outputFolder = DOCS_OUTPUT_PATH;
+    writeFilesProcessor.outputFolder = OUTPUT_PATH;
   })
 
 // Configure nunjucks rendering of docs via templates

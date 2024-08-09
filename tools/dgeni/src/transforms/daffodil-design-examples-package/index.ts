@@ -1,6 +1,8 @@
 import { Package } from 'dgeni';
 
 
+import { DAFF_DOCS_PATH } from '@daffodil/docs-utils';
+
 import { DesignExampleConvertToJsonProcessor } from './processors/convertToJson';
 import { DesignExampleDocumentCreatorProcessor } from './processors/designExampleDocumentCreator';
 import { DesignExampleFilterProcessor } from './processors/exampleFileCollator';
@@ -40,7 +42,7 @@ export const designExamplePackage = new Package('daffodil-design-examples', [daf
     computePathsProcessor.pathTemplates.push({
       docTypes: ['design-example'],
       getPath: (doc) => {
-        doc.moduleFolder = `${DOCS_SEGMENT}/${doc.id}`;
+        doc.moduleFolder = `${DAFF_DOCS_PATH}/${DOCS_SEGMENT}/${doc.id}`;
         return doc.moduleFolder;
       },
       outputPathTemplate: '${moduleFolder}.json',
