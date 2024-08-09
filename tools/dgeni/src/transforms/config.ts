@@ -11,7 +11,6 @@ export const API_TEMPLATES_PATH = resolve(TEMPLATES_PATH, 'api');
 export const SRC_PATH = resolve(DAFFIO_PATH, 'src');
 export const DIST_PATH = resolve(PROJECT_ROOT, 'dist');
 export const OUTPUT_PATH = resolve(DIST_PATH, '');
-export const DOCS_OUTPUT_PATH = resolve(OUTPUT_PATH, 'docs');
 export const API_SOURCE_PATH = resolve(PROJECT_ROOT, 'libs');
 export const DOCS_SOURCE_PATH = resolve(PROJECT_ROOT, 'docs');
 export const GUIDES_TEMPLATES_PATH = resolve(TEMPLATES_PATH, 'guides');

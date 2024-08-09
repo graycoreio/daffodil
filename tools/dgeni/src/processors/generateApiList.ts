@@ -3,14 +3,21 @@ import {
   Document,
 } from 'dgeni';
 
+import {
+  DAFF_DOC_KIND_PATH_SEGMENT_MAP,
+  DAFF_DOCS_PATH,
+  DaffDocKind,
+} from '@daffodil/docs-utils';
+
 export interface GenerateApiListConfiguration {
   outputFolder: string;
 }
 
 export const DefaultGenerateApiListConfiguration: GenerateApiListConfiguration = {
-  outputFolder: 'api',
+  outputFolder: `${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.API]}`,
 };
 
+// TODO: combine with generate guide list processor
 export class GenerateApiListProcessor implements Processor {
   name = 'generateApiList';
   $runAfter = ['docs-processed'];

@@ -2,6 +2,7 @@ import { Package } from 'dgeni';
 
 import {
   DAFF_DOC_KIND_PATH_SEGMENT_MAP,
+  DAFF_DOCS_PATH,
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
@@ -74,14 +75,14 @@ export const apiDocs = new Package('daffodil-api', [
     computePathsProcessor.pathTemplates.push({
       docTypes: ['package'],
       getPath: (doc) => {
-        doc.moduleFolder = `${API_SEGMENT}/${doc.id.replace(/\/src$/, '')}`;
+        doc.moduleFolder = `${DAFF_DOCS_PATH}/${API_SEGMENT}/${doc.id.replace(/\/src$/, '')}`;
         return doc.moduleFolder;
       },
       outputPathTemplate: '${moduleFolder}.json',
     });
     computePathsProcessor.pathTemplates.push({
       docTypes: EXPORT_DOC_TYPES,
-      pathTemplate: 'docs/${moduleDoc.moduleFolder}/${name}',
+      pathTemplate: '${moduleDoc.moduleFolder}/${name}',
       outputPathTemplate: '${moduleDoc.moduleFolder}/${safeName}.json',
     });
   })
