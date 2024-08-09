@@ -17,6 +17,8 @@ import {
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
+import { CollectLinkableSymbolsProcessor } from './collect-linkable-symbols';
+
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('ts', typescript);
 hljs.registerLanguage('xml', xml);
@@ -66,13 +68,22 @@ marked.use(
 
 marked.use({
   walkTokens: (token) => {
-    if (token.type === 'link') {
-      token.href = getLinkUrl(token.href);
+    switch (token.type) {
+      case 'link':
+        token.href = getLinkUrl(token.href);
+        break;
+
+      default:
+        break;
     }
   },
   renderer: {
     heading: (text: string, level: number, raw: string) =>
       `<h${level} id="${slugify(raw)}">${text}</h${level}>`,
+    codespan: (text: string): string | false => {
+      const path = CollectLinkableSymbolsProcessor.symbols.get(text);
+      return path ? `<a href="${path}"><code>${text}</code></a>` : false;
+    },
   },
 });
 

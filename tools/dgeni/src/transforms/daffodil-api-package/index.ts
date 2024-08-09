@@ -10,6 +10,10 @@ import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-pac
 import { AddInheritedDocsContentProcessor } from '../../processors/addInheritedDocsContent';
 import { AddLinkTagToDaffodilReferencesProcessor } from '../../processors/addLinkTagToDaffodilReferences';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
+import {
+  COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME,
+  CollectLinkableSymbolsProcessor,
+} from '../../processors/collect-linkable-symbols';
 import { CrossEnvSafeNameProcessor } from '../../processors/cross-env-safe-name';
 import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import { FilterOutPrivatePropertiesProcessor } from '../../processors/filterOutPrivateProperties';
@@ -26,7 +30,9 @@ import { daffodilBasePackage } from '../daffodil-base-package';
 const linksPackage = require('dgeni-packages/links');
 const typescriptPackage = require('dgeni-packages/typescript');
 
-export const apiDocs = new Package('daffodil-api', [
+const API_PACKAGE_NAME = 'daffodil-api';
+
+export const apiDocs = new Package(API_PACKAGE_NAME, [
   daffodilBasePackage,
   typescriptPackage,
   linksPackage,
@@ -42,6 +48,7 @@ export const apiDocs = new Package('daffodil-api', [
   .processor(new GenerateApiListProcessor())
   .processor(new PackagesProcessor())
   .processor(new MarkdownCodeProcessor())
+  .processor(COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME, (log, createDocMessage) => new CollectLinkableSymbolsProcessor(log, createDocMessage))
   .factory('API_DOC_TYPES_TO_RENDER', (EXPORT_DOC_TYPES) => EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe', 'package']))
   //Configure our package
   .config((readFilesProcessor, readTypeScriptModules, tsParser) => {
