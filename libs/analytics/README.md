@@ -9,7 +9,7 @@ The Daffodil Analytics Module is a lightweight Angular package that helps integr
 
 ## Usage
 
-In this example, `MyAnalyticsService` implements the [`DaffAnalyticsTrackerClass`](/libs/analytics/DaffAnalyticsTrackerClass.ts) interface, providing a track method. Inside the track method, you can define your custom logic for tracking analytics events based on the provided action. The service returns an observable, indicating the success of the tracking operation. Replace the logic inside the track method with your actual analytics tracking implementation.
+In this example, `MyAnalyticsService` implements the `DaffAnalyticsTrackerClass` interface, providing a track method. Inside the track method, you can define your custom logic for tracking analytics events based on the provided action. The service returns an observable, indicating the success of the tracking operation. Replace the logic inside the track method with your actual analytics tracking implementation.
 
 ### Define a tracking service
 

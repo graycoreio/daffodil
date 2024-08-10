@@ -6,13 +6,13 @@ The facade is an abstraction that provides all the functionality needed for stan
 
 ## Setting up `AppModule`
 
-To get started, import the `DaffCartModule` in `AppModule`. Next, import `StoreModule.forRoot({})`, which will be relevant later on when using the redux and state management features of the cart module.
+To get started, import the `DaffCartStateModule` in `AppModule`. Next, import `StoreModule.forRoot({})`, which will be relevant later on when using the redux and state management features of the cart module.
 
 ```typescript
 @ngModule({
   imports:[
     StoreModule.forRoot({}),
-    DaffCartModule
+    DaffCartStateModule
   ]
 })
 export class AppModule {}
@@ -20,7 +20,7 @@ export class AppModule {}
 
 ## Using the Facade
 
-The `DaffCartModule` provides a `DaffCartFacade` that wraps the complexities of the state library into one place. This facade will handle updating the user's cart and can also be used to build UI with behaviors common to a cart.
+The `DaffCartStateModule` provides a `DaffCartFacade` that wraps the complexities of the state library into one place. This facade will handle updating the user's cart and can also be used to build UI with behaviors common to a cart.
 
 To inject the facade inside a component, include an instance of `DaffCartFacade` in the component's constructor.
 
@@ -137,7 +137,7 @@ This tutorial will walk you through Daffodil's Cart Resolution process which is 
 
 At the moment, the following scenarios are handled by the `DaffResolvedCartGuard`.
 
-> For customer cart support, use the [`@daffodil/cart-customer`](/libs/cart-customer/README.md) package.
+> For customer cart support, use the [@daffodil/cart-customer](/libs/cart-customer/README.md) package.
 
 - Generating a new cart when a user visits the application for the very first time.
 - Retrieving a previously existing cart for a user upon page reload.
