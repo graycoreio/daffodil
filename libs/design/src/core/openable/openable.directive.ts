@@ -14,6 +14,7 @@ import { DaffOpenable } from './openable';
 })
 
 export class DaffOpenableDirective implements DaffOpenable {
+  /** Whether or not a component implementing the directive is open */
   @Input() @HostBinding('class.daff-open') open = false;
 
   @Output() toggled: EventEmitter<boolean> = new EventEmitter<boolean>();
