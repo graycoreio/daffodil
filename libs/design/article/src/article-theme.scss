@@ -17,20 +17,19 @@
 	$table-border-color: theming.daff-illuminate($base, $neutral, 2);
 
 	.daff-article {
+		color: $text-color;
+
 		&__meta {
 			color: theming.daff-illuminate($base-contrast, $neutral, 3);
 		}
 
 		@include stopsArticleCascade(a) {
 			color: theming.daff-color($primary);
-		}
 
-		@include stopsArticleCascade(h1, h2, h3, h4, h5, h6) {
-			color: $text-color;
-		}
-
-		@include stopsArticleCascade(p) {
-			color: $text-color;
+			code {
+				background: theming.daff-illuminate($base, $primary, 1);
+				color: theming.daff-illuminate($base-contrast, $primary, 4);
+			}
 		}
 
 		pre {
