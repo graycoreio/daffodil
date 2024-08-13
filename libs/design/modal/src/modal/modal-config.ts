@@ -4,4 +4,7 @@ export interface DaffModalConfiguration {
    * DaffModalComponent is interacted with.
    */
   onBackdropClicked?: () => void;
+
+  /** Sets the `aria-labelledby` property on the modal */
+  ariaLabelledBy?: string;
 }
