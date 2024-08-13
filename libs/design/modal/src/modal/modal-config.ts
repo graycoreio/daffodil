@@ -4,4 +4,6 @@ export interface DaffModalConfiguration {
    * DaffModalComponent is interacted with.
    */
   onBackdropClicked?: () => void;
+
+  ariaLabelledBy?: string;
 }

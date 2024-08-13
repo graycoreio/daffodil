@@ -23,6 +23,9 @@ export class BasicModalComponent {
   constructor(private modalService: DaffModalService) {}
 
   showModal() {
-    this.modal = this.modalService.open(BasicModalContentComponent);
+    this.modal = this.modalService.open(
+      BasicModalContentComponent,
+      { ariaLabelledBy: 'Modal Title' },
+    );
   }
 }

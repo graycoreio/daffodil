@@ -79,6 +79,10 @@ export class DaffModalService {
 	  const _modal = this._attachModal(_ref);
 	  const _attachedModal = this._attachModalContent(component, _modal);
 
+    if(configuration?.ariaLabelledBy) {
+      _modal.instance.ariaLabelledBy = configuration.ariaLabelledBy;
+    }
+
 	  const modal: DaffModal = {
 	    modal: _modal,
 	    overlay: _ref,

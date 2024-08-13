@@ -26,7 +26,20 @@ Buttons can be added to a modal by using `<daff-modal-actions>`. This container 
 A modal can be dismissed via the close button or the `ESC` key. The close button is shown by default but can be hidden by setting the `dismissible` property to `false` on `<daff-modal-header>`. Additionally, the `[daffModalClose]` directive can be added to a `<button>` HTML element.
 
 ## Accessibility
-Modal works with the ARIA `role="dialog"` and `aria-modal="true"` attributes to provide an accessible experience. `aria-labelledby` is assigned the `[daffModalTitle]` string. When a modal is opened, the first tabbable element within it will receive focus.
+Modal works with the ARIA `role="dialog"` and `aria-modal="true"` attributes to provide an accessible experience. The first tabbable element will receive focus when a modal is opened.
+
+`aria-labelledby` is assigned the `[daffModalTitle]` string when it's used. If there is no title, `aria-labelledby` should be set in the configurations through the `DaffModalService`.
+
+```ts
+constructor(private modalService: DaffModalService) {}
+
+showModal() {
+	this.modal = this.modalService.open(
+		BasicModalContentComponent,
+		{ ariaLabelledBy: 'Modal Title' },
+	);
+}
+```
 
 ### Keyboard Interactions
 A modal can be closed by choosing one of the actions buttons, the close button in the header, or it can be dismissed by pressing the `ESC` key.
