@@ -29,7 +29,7 @@
 	--daff-theme-white: #{$white};
 	--daff-theme-black: #{$black};
 	--daff-theme-gray: #{theming.daff-color($neutral)};
-	--daff-base-background: #{$base};
+	--daff-base-bg: #{$base};
 	--daff-base-text: #{theming.daff-text-contrast($base)};
 }
 

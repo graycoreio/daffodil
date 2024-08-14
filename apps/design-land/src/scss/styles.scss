@@ -13,7 +13,7 @@
   @include daff-theme.daff-theme(daff-theme.$theme);
   @include dl-components.component-themes(daff-theme.$theme);
 
-  background: var(--daff-base-background);
+  background: var(--daff-base-bg);
 	color: var(--daff-base-text);
 }
 
@@ -23,6 +23,6 @@
   @include daff-theme.daff-theme(daff-theme.$theme-dark);
   @include dl-components.component-themes(daff-theme.$theme-dark);
 
-  background: var(--daff-base-background);
+  background: var(--daff-base-bg);
 	color: var(--daff-base-text);
 }
