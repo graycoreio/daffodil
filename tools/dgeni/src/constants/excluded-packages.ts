@@ -3,6 +3,7 @@
  */
 export const DAFF_DGENI_EXCLUDED_PACKAGES = <const>[
   'branding',
+  'design',
   'documentation',
   'docs-components',
   'docs-utils',

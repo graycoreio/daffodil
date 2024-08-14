@@ -24,14 +24,13 @@ export class GenerateGuideListProcessor implements Processor {
     if (designDoc) {
       designDoc.path = 'design';
     }
-    const docsWithoutDesignChildren = docs.filter((d) => !d.id?.startsWith('design/'));
 
     docs.push({
       docType: 'navigation-list',
       template: 'guide-list.template.json',
       path: this.outputFolder + '/index.json',
       outputPath: this.outputFolder + '/index.json',
-      data: generateNavigationTrieFromDocuments(docsWithoutDesignChildren.map(transformGuideDoc)),
+      data: generateNavigationTrieFromDocuments(docs.map(transformGuideDoc)),
     });
 
     return docs;
