@@ -3,4 +3,5 @@ export enum DaffDocKind {
   EXPLANATION = 'EXPLANATION',
   PACKAGE = 'PACKAGE',
   API = 'API',
+  EXAMPLE = 'EXAMPLE',
 }
