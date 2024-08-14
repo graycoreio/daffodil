@@ -1,7 +1,12 @@
 import { Package } from 'dgeni';
 
 
-import { DAFF_DOCS_PATH } from '@daffodil/docs-utils';
+import {
+  DAFF_DOC_KIND_PATH_SEGMENT_MAP,
+  DAFF_DOCS_DESIGN_PATH,
+  DAFF_DOCS_PATH,
+  DaffDocKind,
+} from '@daffodil/docs-utils';
 
 import { DesignExampleConvertToJsonProcessor } from './processors/convertToJson';
 import { DesignExampleDocumentCreatorProcessor } from './processors/designExampleDocumentCreator';
@@ -15,8 +20,6 @@ import {
   TEMPLATES_PATH,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
-
-const typescriptPackage = require('dgeni-packages/typescript');
 
 export const designExamplePackage = new Package('daffodil-design-examples', [daffodilBasePackage])
   .factory('designExampleReader', designExampleReaderFactory)
@@ -38,11 +41,10 @@ export const designExamplePackage = new Package('daffodil-design-examples', [daf
     convertToJson.docTypes = convertToJson.docTypes.concat(['design-example']);
   })
   .config((computePathsProcessor) => {
-    const DOCS_SEGMENT = 'design-examples';
     computePathsProcessor.pathTemplates.push({
       docTypes: ['design-example'],
       getPath: (doc) => {
-        doc.moduleFolder = `${DAFF_DOCS_PATH}/${DOCS_SEGMENT}/${doc.id}`;
+        doc.moduleFolder = `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.EXAMPLE]}/${doc.id}`;
         return doc.moduleFolder;
       },
       outputPathTemplate: '${moduleFolder}.json',
