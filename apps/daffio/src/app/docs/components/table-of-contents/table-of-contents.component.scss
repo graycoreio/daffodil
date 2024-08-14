@@ -5,6 +5,9 @@
 }
 
 .daffio-docs-table-of-contents {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
 	max-height: 100vh;
 	overflow: auto;
 	position: sticky;
@@ -12,7 +15,6 @@
 
 	&__title {
 		@include daff.embolden();
-		margin: 0 0 24px;
 	}
 
 	&__links {

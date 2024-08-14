@@ -2,9 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DaffAccordionModule } from '@daffodil/design/accordion';
-import { DaffLinkSetModule } from '@daffodil/design/link-set';
-import { DaffListModule } from '@daffodil/design/list';
+import { DaffButtonModule } from '@daffodil/design/button';
 
 import { DaffioDocsTableOfContentsComponent } from './table-of-contents.component';
 
@@ -17,10 +15,8 @@ import { DaffioDocsTableOfContentsComponent } from './table-of-contents.componen
   ],
   imports: [
     CommonModule,
-    DaffLinkSetModule,
-    DaffListModule,
     RouterModule,
-    DaffAccordionModule,
+    DaffButtonModule,
   ],
 })
 export class DaffioDocsTableOfContentsModule { }
