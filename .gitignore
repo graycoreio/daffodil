@@ -40,6 +40,7 @@ apollo.config.js
 .angular
 .nx_cache
 .nx
+.env
 
 # e2e
 /e2e/*.js
