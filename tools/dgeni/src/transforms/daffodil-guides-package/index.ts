@@ -1,17 +1,19 @@
 import { Package } from 'dgeni';
 
 import {
-  DAFF_DOC_KIND_PATH_SEGMENT_MAP,
+  DAFF_DOCS_DESIGN_PATH,
   DAFF_DOCS_PATH,
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
-import { GenerateGuideListProcessor } from './processors/generateGuideList';
+import { outputPathsConfigurator } from './helpers/configurator/output';
+import { pathsConfigurator } from './helpers/configurator/path';
 import { guideFileReaderFactory } from './reader/guide-file.reader';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { MarkdownCodeProcessor } from '../../processors/markdown';
 import {
   API_SOURCE_PATH,
+  DESIGN_PATH,
   DOCS_SOURCE_PATH,
   GUIDES_TEMPLATES_PATH,
 } from '../config';
@@ -38,48 +40,61 @@ const base = new Package('daffodil-guides-base', [daffodilBasePackage])
       getId: (doc) => doc
         .fileInfo
         .relativePath
-        .replace(/\/src/, '')
-        .replace(/\/docs/, '')
-        .replace(/\/guides/, '')
-        .replace(/\/README/, '')
+        .replaceAll('src/', '')
+        .replaceAll('docs/', '')
+        .replaceAll('guides/', '')
+        .replaceAll('/README', '')
         .replace(/\.\w*$/, ''),
       getAliases: (doc) => [doc.id],
     });
   });
 
-const baseFactory = (kind: DaffDocKind) => new Package(`daffodil-${kind}-base`, [base])
-  .processor(new GenerateGuideListProcessor())
-  .config((generateGuideList: GenerateGuideListProcessor) => {
-    generateGuideList.outputFolder = `${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}`;
-  })
-  .config((computePathsProcessor) => {
-    computePathsProcessor.pathTemplates.push({
-      docTypes: ['guide'],
-      getPath: (doc) => {
-        doc.moduleFolder = `${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/${doc.id}`;
-        return `/${doc.moduleFolder}`;
-      },
-      outputPathTemplate: '${moduleFolder}.json',
-    });
-  });
-
-const globalDocFactory = (kind: DaffDocKind) => new Package(`daffodil-global-${kind}`, [baseFactory(kind)])
-  .config((readFilesProcessor) => {
-    readFilesProcessor.basePath = `${DOCS_SOURCE_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}`;
-    readFilesProcessor.sourceFiles = [
-      { include: [
-        '**/*.md',
-      ]},
-    ];
-  });
-
-export const packageDocsPackage = new Package('daffodil-package-docs', [baseFactory(DaffDocKind.PACKAGE)])
+// global
+export const packageDocsPackage = outputPathsConfigurator({
+  kind: DaffDocKind.PACKAGE,
+  outputPath: DAFF_DOCS_PATH,
+})(new Package('daffodil-package-docs', [base]))
   .config((readFilesProcessor) => {
     readFilesProcessor.basePath = API_SOURCE_PATH;
     readFilesProcessor.sourceFiles = [
-      { include: [DAFF_DGENI_EXCLUDED_PACKAGES_REGEX + '*/**/README.md', DAFF_DGENI_EXCLUDED_PACKAGES_REGEX + '/guides/**/*.md']},
+      { include: [`${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}*/**/README.md`, `${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/guides/**/*.md`]},
     ];
   });
 
-export const guideDocsPackage = new Package('daffodil-guide-docs', [globalDocFactory(DaffDocKind.GUIDE)]);
-export const explanationDocsPackage = new Package('daffodil-explanation-docs', [globalDocFactory(DaffDocKind.EXPLANATION)]);
+export const guideDocsPackage = pathsConfigurator({
+  kind: DaffDocKind.GUIDE,
+  outputPath: DAFF_DOCS_PATH,
+  inputPathBase: DOCS_SOURCE_PATH,
+})(new Package('daffodil-guide', [base]));
+
+export const explanationDocsPackage = pathsConfigurator({
+  kind: DaffDocKind.EXPLANATION,
+  outputPath: DAFF_DOCS_PATH,
+  inputPathBase: DOCS_SOURCE_PATH,
+})(new Package('daffodil-explanation', [base]));
+//
+
+// design
+export const designDocsPackage = outputPathsConfigurator({
+  kind: DaffDocKind.PACKAGE,
+  outputPath: `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`,
+})(new Package('design-packages', [base]))
+  .config((readFilesProcessor) => {
+    readFilesProcessor.basePath = DESIGN_PATH;
+    readFilesProcessor.sourceFiles = [
+      { include: ['**/README.md']},
+    ];
+  });
+
+export const designGuidesPackage = pathsConfigurator({
+  kind: DaffDocKind.GUIDE,
+  outputPath: `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`,
+  inputPathBase: DESIGN_PATH,
+})(new Package('design-guides', [base]));
+
+export const designExplanationsPackage = pathsConfigurator({
+  kind: DaffDocKind.EXPLANATION,
+  outputPath: `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`,
+  inputPathBase: DESIGN_PATH,
+})(new Package('design-explanations', [base]));
+//
