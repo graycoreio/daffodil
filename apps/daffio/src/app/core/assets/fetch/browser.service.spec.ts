@@ -31,7 +31,7 @@ describe('DaffioAssetFetchBrowserService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('getApiList', () => {
+  describe('fetch', () => {
     it('should make a get request', () => {
       service.fetch('path').subscribe((docsList) => {
         expect(docsList).toEqual([]);
@@ -43,4 +43,16 @@ describe('DaffioAssetFetchBrowserService', () => {
       req.flush([]);
     });
   });
+
+  it('should remove double slashes', () => {
+    service.fetch('path//path').subscribe((docsList) => {
+      expect(docsList).toEqual([]);
+    });
+    const req = httpTestingController.expectOne('path/path');
+
+    expect(req.request.method).toEqual('GET');
+
+    req.flush([]);
+  });
+});
 });
