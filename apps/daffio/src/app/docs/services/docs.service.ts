@@ -26,14 +26,14 @@ export class DaffioDocsService<T extends DaffioDoc = DaffioDoc, V extends Daffio
   ) {}
 
   get(path: string): Observable<T> {
-    return this.fetchAsset.fetch<T>(`${this.docsPath}${crossOsFilename(path)}.json`);
+    return this.fetchAsset.fetch<T>(`${this.docsPath}/${crossOsFilename(path)}.json`);
   }
 
   getPackageList(): Observable<V> {
-    return this.fetchAsset.fetch<V>(`${this.docsPath}docs/packages/index.json`);
+    return this.fetchAsset.fetch<V>(`${this.docsPath}/docs/packages/index.json`);
   }
 
   getGuidesList(): Observable<V> {
-    return this.fetchAsset.fetch<V>(`${this.docsPath}docs/guides/index.json`);
+    return this.fetchAsset.fetch<V>(`${this.docsPath}/docs/guides/index.json`);
   }
 }

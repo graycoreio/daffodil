@@ -11,6 +11,6 @@ export class DaffioAssetFetchBrowserService implements DaffioAssetFetchServiceIn
   ) {}
 
   fetch<T = unknown>(path: string): Observable<T> {
-    return this.http.get<T>(path);
+    return this.http.get<T>(path.replaceAll('//', '/'));
   }
 }

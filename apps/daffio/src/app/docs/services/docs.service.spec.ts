@@ -43,7 +43,7 @@ describe('DaffioDocsService', () => {
 
     service.get('docs/my/path').subscribe((apiDoc) => {
       expect(apiDoc).toEqual(doc);
-      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/my/path.json');
+      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio//docs/my/path.json');
       done();
     });
   });
@@ -53,7 +53,7 @@ describe('DaffioDocsService', () => {
 
     service.getPackageList().subscribe((guides) => {
       expect(guides).toEqual(mockGuideList);
-      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/packages/index.json');
+      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio//docs/packages/index.json');
       done();
     });
   });
