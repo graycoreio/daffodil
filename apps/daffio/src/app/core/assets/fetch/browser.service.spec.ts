@@ -55,4 +55,3 @@ describe('DaffioAssetFetchBrowserService', () => {
     req.flush([]);
   });
 });
-});
