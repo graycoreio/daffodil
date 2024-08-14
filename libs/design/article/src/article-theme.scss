@@ -55,11 +55,22 @@
 		blockquote {
 			background: rgba(theming.daff-color($primary), 0.1);
 			border-left: 4px solid theming.daff-illuminate($base, $primary, 5);
-			color: $base-contrast;
+			color: theming.daff-illuminate($base-contrast, $primary, 1);
 
 			code {
 				background: rgba(theming.daff-color($primary), 0.15);
 				color: $base-contrast;
+			}
+
+			@include stopsArticleCascade(a) {
+				color: theming.daff-illuminate($base, $primary, 7);
+			}
+
+			@include stopsArticleCascade(a) {
+				code {
+					background: rgba(theming.daff-color($primary), 0.15);
+					color: theming.daff-illuminate($base-contrast, $primary, 4);
+				}
 			}
 		}
 
