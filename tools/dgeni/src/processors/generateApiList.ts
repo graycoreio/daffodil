@@ -3,39 +3,31 @@ import {
   Document,
 } from 'dgeni';
 
-import {
-  DAFF_DOC_KIND_PATH_SEGMENT_MAP,
-  DAFF_DOCS_PATH,
-  DaffDocKind,
-} from '@daffodil/docs-utils';
-
-export interface GenerateApiListConfiguration {
-  outputFolder: string;
-}
-
-export const DefaultGenerateApiListConfiguration: GenerateApiListConfiguration = {
-  outputFolder: `${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.API]}`,
-};
-
 // TODO: combine with generate guide list processor
 export class GenerateApiListProcessor implements Processor {
   name = 'generateApiList';
   $runAfter = ['docs-processed'];
   $runBefore = ['rendering-docs'];
-  config: GenerateApiListConfiguration;
-
-  constructor(config?: GenerateApiListConfiguration) {
-	  this.config = { ...DefaultGenerateApiListConfiguration, ...config };
-  }
+  outputFolder: string;
 
   $process(docs: Document[]): Document[] {
 	  docs.push({
 	    docType: 'api-list-data',
 	    template: 'api-list.template.json',
-	    path: this.config.outputFolder + '/api-list.json',
-	    outputPath: this.config.outputFolder + '/api-list.json',
+	    path: this.outputFolder + '/api-list.json',
+	    outputPath: this.outputFolder + '/api-list.json',
 	    data: docs
 	      .filter(doc => doc.docType === 'package')
+        // sort alphabetically
+        .sort((a, b) => {
+          if (a.name < b.name) {
+            return -1;
+          }
+          if (a.name > b.name) {
+            return 1;
+          }
+          return 0;
+        })
 	      .map(doc => getPackageInfo(doc)),
 	  });
 

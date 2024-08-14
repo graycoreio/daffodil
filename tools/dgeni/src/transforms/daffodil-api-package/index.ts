@@ -2,10 +2,13 @@ import { Package } from 'dgeni';
 
 import {
   DAFF_DOC_KIND_PATH_SEGMENT_MAP,
+  DAFF_DOCS_DESIGN_PATH,
   DAFF_DOCS_PATH,
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
+import { outputPathsConfigurator } from './configurator/output';
+import { RemoveDuplicatesProcessor } from './processors/remove-duplicates';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddInheritedDocsContentProcessor } from '../../processors/addInheritedDocsContent';
 import { AddLinkTagToDaffodilReferencesProcessor } from '../../processors/addLinkTagToDaffodilReferences';
@@ -24,6 +27,7 @@ import { PackagesProcessor } from '../../processors/packages';
 import {
   API_SOURCE_PATH,
   API_TEMPLATES_PATH,
+  DESIGN_PATH,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
 
@@ -32,7 +36,7 @@ const typescriptPackage = require('dgeni-packages/typescript');
 
 const API_PACKAGE_NAME = 'daffodil-api';
 
-export const apiDocs = new Package(API_PACKAGE_NAME, [
+export const apiDocsBase = new Package('api-base', [
   daffodilBasePackage,
   typescriptPackage,
   linksPackage,
@@ -45,7 +49,6 @@ export const apiDocs = new Package(API_PACKAGE_NAME, [
   .processor(new FilterOutPrivatePropertiesProcessor())
   .processor(new AddInheritedDocsContentProcessor())
   .processor(new AddLinkTagToDaffodilReferencesProcessor())
-  .processor(new GenerateApiListProcessor())
   .processor(new PackagesProcessor())
   .processor(new MarkdownCodeProcessor())
   .processor(COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME, (log, createDocMessage) => new CollectLinkableSymbolsProcessor(log, createDocMessage))
@@ -63,30 +66,12 @@ export const apiDocs = new Package(API_PACKAGE_NAME, [
     // Specify the base path used when resolving relative paths to source and output files
     readTypeScriptModules.basePath = API_SOURCE_PATH;
     readTypeScriptModules.hidePrivateMembers = true;
-
-    // Specify collections of source files that should contain the documentation to extract
-    readTypeScriptModules.sourceFiles = [
-      DAFF_DGENI_EXCLUDED_PACKAGES_REGEX + '/**/src/index.ts',
-    ];
   })
   .config((markdown: MarkdownCodeProcessor, EXPORT_DOC_TYPES) => {
     markdown.docTypes.push(...EXPORT_DOC_TYPES);
     markdown.contentKey = 'description';
   })
-  .config((computePathsProcessor, EXPORT_DOC_TYPES, generateApiList) => {
-
-    const API_SEGMENT = DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.API];
-
-    generateApiList.outputFolder = API_SEGMENT;
-
-    computePathsProcessor.pathTemplates.push({
-      docTypes: ['package'],
-      getPath: (doc) => {
-        doc.moduleFolder = `${DAFF_DOCS_PATH}/${API_SEGMENT}/${doc.id.replace(/\/src$/, '')}`;
-        return doc.moduleFolder;
-      },
-      outputPathTemplate: '${moduleFolder}.json',
-    });
+  .config((computePathsProcessor, EXPORT_DOC_TYPES) => {
     computePathsProcessor.pathTemplates.push({
       docTypes: EXPORT_DOC_TYPES,
       pathTemplate: '${moduleDoc.moduleFolder}/${name}',
@@ -105,4 +90,39 @@ export const apiDocs = new Package(API_PACKAGE_NAME, [
   .config((templateFinder) => {
     // Where to find the templates for the API doc rendering
     templateFinder.templateFolders.unshift(API_TEMPLATES_PATH);
+  });
+
+export const apiDocs = outputPathsConfigurator({
+  kind: DaffDocKind.API,
+  outputPath: DAFF_DOCS_PATH,
+})(new Package(API_PACKAGE_NAME, [apiDocsBase]))
+  .config((readTypeScriptModules) => {
+    // Specify collections of source files that should contain the documentation to extract
+    readTypeScriptModules.sourceFiles = [
+      `${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/**/src/index.ts`,
+    ];
+  });
+
+export const designApiPackage = outputPathsConfigurator({
+  kind: DaffDocKind.API,
+  outputPath: `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`,
+})(new Package('design-api-docs', [apiDocs]))
+  .processor(new RemoveDuplicatesProcessor())
+  .config((readTypeScriptModules) => {
+    readTypeScriptModules.basePath = DESIGN_PATH;
+    readTypeScriptModules.sourceFiles = [
+      // TS will walk entire dep tree to find file paths
+      // since these two packages are loaded by other packages before
+      // their entry here, TS will incorrectly map the path as absolute
+      // including them first ensures that they are treated as relative paths
+      // this will unfortunately create duplicate docs so they must be removed
+      'loading-icon/src/index.ts',
+      'media-gallery/src/index.ts',
+      //
+      '*/src/index.ts',
+      'src/index.ts',
+    ];
+  })
+  .config((packages: PackagesProcessor) => {
+    packages.nameComputer = (id: string) => `@daffodil/${id === 'design' ? '' : 'design/'}${id}`;
   });
