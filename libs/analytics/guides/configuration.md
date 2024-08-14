@@ -1,17 +1,18 @@
 # Configuration
+You can configure the way that the module works by providing configuration to the `DaffAnalyticsModule`. 
 
-You can configure the way that the `@daffodil/analytics` works by providing configuration to the `DaffAnalyticsModule`. 
-
-## Configuring analyzeableActions
-
-By default, @daffodil/analytics doesn't track any events to encourage explicit tracking. For instance, you might want to exclude tracking the event for converting payment card data into a token or "login" actions to avoid logging sensitive information.
+## Configuring `analyzeableActions`
+By default, the analytics module doesn't track any events to encourage explicit tracking. For instance, you might want to exclude tracking the event for converting payment card data into a token or "login" actions to avoid logging sensitive information.
 
 ```ts
 import { DaffAnalyticsModule } from '@daffodil/analytics';
 
 @NgModule({
   imports: [
-    DaffAnalyticsModule.forRoot([], { analyzeableActions: ['ActionA', 'ActionB']}),
+    DaffAnalyticsModule.forRoot(
+      [],
+      { analyzeableActions: ['ActionA', 'ActionB'] }
+    ),
   ],
 })
 export class YourAppModule { }
