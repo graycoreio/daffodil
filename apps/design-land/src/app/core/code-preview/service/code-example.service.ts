@@ -36,7 +36,7 @@ export interface DgeniDesignExampleDoc {
   providedIn: 'root',
 })
 export class CodeExampleService {
-  private docsLocation = '/assets/design-examples/';
+  private docsLocation = '/assets/design/examples/';
   constructor(private httpClient: HttpClient) { }
 
   /**

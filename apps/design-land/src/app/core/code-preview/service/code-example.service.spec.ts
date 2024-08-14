@@ -35,7 +35,7 @@ describe('CodeExampleService', () => {
           element: 'undefined-example',
         }));
       });
-      const req = httpMock.expectOne('/assets/design-examples/test.json');
+      const req = httpMock.expectOne('/assets/design/examples/test.json');
       req.flush('test');
       httpMock.verify();
     });
