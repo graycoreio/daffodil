@@ -1,14 +1,12 @@
 # Extension
+The cart module provides a number of extension mechanisms so that it can be customized to fit specific needs.
 
-`@daffodil/cart` provides a number of extension mechanisms so that it can be customized to fit specific needs.
-
-## Custom Drivers
-
+## Custom drivers
 If the packaged Daffodil drivers don't satisfy the required use cases, they can be overriden by providing custom drivers. Create a service that implements the interface corresponding to the driver in question.
 
 If custom behavior is not needed for all driver methods, unimplemented methods can be delegated to the original driver. The following example demonstrates overriding the `create` method of the `DaffCartDriver` while using Magento.
 
-```typescript
+```ts
 import {
   DaffCartDriver,
   DaffMagentoCartService
@@ -51,11 +49,10 @@ export class CustomMagentoCartService implements DaffCartServiceInterface {
 class AppModule {}
 ```
 
-## Generic Models
-
+## Generic models
 All Daffodil layers can operate on generic extensions of vanilla Daffodil models. Custom models can therefore be used while retaining type safety. The following example illustrates customizing the cart model with the cart facade.
 
-```typescript
+```ts
 import {
   DaffCartFacade,
   DaffCart
@@ -78,22 +75,21 @@ class CartComponent implements OnInit {
 }
 ```
 
-## Extensible GraphQL Fragments
-
+## Extensible GraphQL fragments
 Arbitrary additional fields can be requested on the cart object. Inject a GraphQL document node containing fragments on the platform's cart type to define extra fields.
 
 Only drivers that use GraphQL support extensible fragments because fragments are specific to GraphQL. The following cart drivers support extensible fragments:
+
 - Magento
 
 ### Magento
-
 Provide the `DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS` to query additional fields on a Magento cart query. This applies to all of the driver calls that return a `DaffCart`, which is most of them.
 
 The additional fields are present on the untyped `extra_attributes` field.
 
 The following example demonstrates providing a GraphQL document using the `graphql-tag` library.
 
-```typescript
+```ts
 import gql from 'graphql-tag';
 import {
   DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,

@@ -1,11 +1,7 @@
 # State
+The cart module provides a fully featured state library to streamline the management of an application's state as well as driver interaction. The facade is an abstraction that provides all the functionality needed for standard use. It is the recommended way to interact with the Daffodil state layer.
 
-`@daffodil/cart` provides a fully featured state library to streamline the management of an application's state as well as driver interaction.
-
-The facade is an abstraction that provides all the functionality needed for standard use. It is the recommended way to interact with the Daffodil state layer.
-
-## Setting up `AppModule`
-
+## Setting up the root module
 To get started, import the `DaffCartStateModule` in `AppModule`. Next, import `StoreModule.forRoot({})`, which will be relevant later on when using the redux and state management features of the cart module.
 
 ```typescript
@@ -18,13 +14,12 @@ To get started, import the `DaffCartStateModule` in `AppModule`. Next, import `S
 export class AppModule {}
 ```
 
-## Using the Facade
-
+## Using the facade
 The `DaffCartStateModule` provides a `DaffCartFacade` that wraps the complexities of the state library into one place. This facade will handle updating the user's cart and can also be used to build UI with behaviors common to a cart.
 
 To inject the facade inside a component, include an instance of `DaffCartFacade` in the component's constructor.
 
-```typescript
+```ts
 @Component({})
 export class CartComponent {
   constructor(public cartFacade: DaffCartFacade) {}
@@ -33,13 +28,19 @@ export class CartComponent {
 
 Once the `DaffCartFacade` has been set up in the component, it can now be used to manage a user's cart. To perform operations on the cart, pass actions to the `DaffCartFacade#dispatch` method. When carts are created using the `DaffCartCreate` action, Daffodil will save the cart ID in local storage and automatically pass it to the driver layer for future operations. Various cart properties and a list of errors are available on the cart facade as observable streams.
 
-> Note that the storage mechanism can be configured. See [the storage guide](../../core/guides/advanced/storage.md#environment-specific-storage-services) for more details.
+> Note: The storage mechanism can be configured. See the [storage guide](../../core/guides/advanced/storage.md#environment-specific-storage-services) for more details.
 
-Additionally, the Daffodil cart facade provides three different loading states for each section of the cart. `mutating$` tracks when an update to a cart property is occurring. `resolving$` tracks when new data is being fetched but no updates are taking place. `loading$` emits `true` when either `mutating$` or `resolving$` is `true`. There is also overall `featureLoading$`, `featureMutating$`, and `featureResolving$` streams to track loading for any section of the cart. These can be used to enhance the application's UI.
+Additionally, the Daffodil cart facade provides three different loading states for each section of the cart:
+
+- `mutating$` tracks when an update to a cart property is occurring.
+- `resolving$` tracks when new data is being fetched but no updates are taking place.
+- `loading$` emits `true` when either `mutating$` or `resolving$` is `true`.
+
+There is also overall `featureLoading$`, `featureMutating$`, and `featureResolving$` streams to track loading for any section of the cart. These can be used to enhance the application's UI.
 
 The following example illustrates a component used to display and manage a cart's items.
 
-```typescript
+```ts
 import {
   DaffCartItemAdd,
   DaffCartItemList,
@@ -78,15 +79,14 @@ export class CartItemComponent implements OnInit {
 
 > In this example, three observable streams are assigned from `cartFacade`. Then when `addSimpleItem` is called, the `cartFacade`'s  `dispatch` function is called with the appropriately formed input. The input data is then sent off to the backend and the three observable streams are updated when a response is received.
 
-## Accessing State with Selectors
-
+## Accessing state with selectors
 Accessing state with the facade is recommended but for greater flexibility the redux store's state can be directly accessed with Daffodil's selectors.
 
 To properly maintain memoization of selectors that are compatible with generic models, Daffodil selectors are hidden behind an exported getter function. This function returns an object that contains the selectors.
 
 The following example also showcases a component used to display and manage a cart's items but without using the facade.
 
-```typescript
+```ts
 import {
   DaffCartItemAdd,
   DaffCartItemList,
@@ -129,12 +129,10 @@ export class CartItemComponent implements OnInit {
 }
 ```
 
-## Cart Resolution
+## Cart resolution
+This tutorial will walk you through the cart resolution process, which is responsible for resolving a user's cart upon application initialization. This behavior is chiefly managed by the `DaffResolvedCartGuard`.
 
-This tutorial will walk you through Daffodil's Cart Resolution process which is responsible for resolving a user's cart upon application initialization. This behavior is chiefly managed by the `DaffResolvedCartGuard`.
-
-### Supported Scenarios
-
+### Supported scenarios
 At the moment, the following scenarios are handled by the `DaffResolvedCartGuard`.
 
 > For customer cart support, use the [@daffodil/cart-customer](/libs/cart-customer/README.md) package.
@@ -146,10 +144,9 @@ At the moment, the following scenarios are handled by the `DaffResolvedCartGuard
 - Upon a resolution failure, bailing out and navigating somewhere outside the scope of a cart resolution (e.g. your Ecommerce Service's API is down).
 
 ### Usage
-
 Assuming that you're already using the `DaffCartStateModule` and have previously selected a [driver](/libs/cart/guides/drivers.md) for `@daffodil/cart`, you can simply add the guard to your route's `canActivate` and the guard will handle the rest.
 
-```typescript
+```ts
 import { Routes, RouterModule } from '@angular/router';
 import { HelloComponent } from './hello.component';
 import { DaffResolvedCartGuard } from '@daffodil/cart/state';
@@ -176,12 +173,11 @@ export class AppModule {}
 Upon adding the code, load up the route and take a look at the Network Requests in your browser. You should see at least one request to your ecommerce systems's cart endpoint that attempts resolution.
 
 ### Configuration
-
 You can configure the route to which the `DaffResolvedCartGuard` navigates when an error occurs during resolution. See the [configuration guide](/libs/cart/guides/configuration.md) and the `resolution` key of `DaffCartStateConfiguration` for more information.
 
 ### Gotchas
 
-#### Guard Ordering
+#### Guard ordering
 The guard's return is observable, and as such, when paired with other guards it won't necessarily complete in the order you expect, be sure to be careful about your guard ordering.
 
 For example, Angular provides no guarantee that either of these guards runs before the other.
@@ -209,10 +205,9 @@ If you need the guarantee, you can nest the guards.
 ```
 
 ## Configuration
-
 The `@daffodil/cart/state` package exposes a `forRoot` method on the `DaffCartStateModule` that allows you to pass in a configuration object to configure the behavior of the package.
 
-You can import is like so
+You can import it like so:
 
 ```ts
 import { Routes, RouterModule } from '@angular/router';
@@ -240,16 +235,13 @@ export class AppModule {}
 
 The only argument to `forRoot` is the configuration object. For more information, see `DaffCartStateConfiguration`.
 
-## Dependency Injectable Reducers
-
+## Dependency injectable reducers
 `@daffodil/cart/state` provides mechanisms for consuming applications and libraries to modify state reduction behavior. Injected reducers run after the Daffodil reducers and should take care to not violate the `DaffCartReducersState` interface.
 
 ### Purpose
-
 `@daffodil/cart/state` consumers may wish to modify the state for the `daffCart` feature in a way not explicitly provided by `@daffodil/cart/state`. A common example is adding payment info to the cart payment object in response to non-`@daffodil/cart/state` actions.
 
 ### Usage
-
 The following example demonstrates modifying the cart's payment info in response to a user-defined action.
 
 ```ts
