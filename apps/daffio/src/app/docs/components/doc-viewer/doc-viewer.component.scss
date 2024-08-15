@@ -16,7 +16,7 @@
 			gap: 64px;
 			padding: 48px;
 		}
-	
+
 		@include daff.breakpoint(desktop) {
 			padding: 48px 0;
 		}
@@ -28,7 +28,7 @@
 
 	&__table-of-contents {
 		display: none;
-		
+
 		@include daff.breakpoint(small-laptop) {
 			display: block;
 			max-width: 240px;
@@ -36,7 +36,7 @@
 		}
 	}
 
-	&__packages-button {
+	&__menu-button {
 		@include daff.clickable();
 		display: flex;
 		gap: 8px;
