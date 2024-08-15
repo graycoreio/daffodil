@@ -19,13 +19,13 @@ export class DaffioApiListPageComponent implements OnInit {
   /**
    * A list of references for API documents.
    */
-  apiList$: Observable<DaffioApiReference[]>;
+  apiList$: Observable<DaffioApiReference>;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.apiList$ = this.route.data.pipe(
-      map((data: { reference: DaffioApiReference[] }) => data.reference),
+      map((data: { reference: DaffioApiReference }) => data.reference),
     );
   }
 }

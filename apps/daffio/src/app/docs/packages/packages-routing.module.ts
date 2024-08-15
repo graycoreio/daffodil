@@ -4,20 +4,22 @@ import {
   RouterModule,
 } from '@angular/router';
 
-import { DaffRouteWithNamedViews } from '@daffodil/router';
+import { DaffDocKind } from '@daffodil/docs-utils';
 
-import { DaffioDocsPackagesListContainer } from './containers/packages-list/packages-list.component';
 import { DaffioPackagesOverviewPageComponent } from './pages/packages-overview/packages-overview.component';
+import { DaffioRoute } from '../../core/router/route.type';
 import { DaffioRouterNamedViewsEnum } from '../../named-views/models/named-views.enum';
+import { DaffioDocsListContainer } from '../containers/docs-list/docs-list.component';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
 
-export const docsRoutes: Routes = [
-  <DaffRouteWithNamedViews>{
+export const packagesRoutes: Routes = [
+  <DaffioRoute>{
     path: '',
     data: {
+      docKind: DaffDocKind.PACKAGE,
       daffNamedViews: {
-        [DaffioRouterNamedViewsEnum.DOCS_SIDEBAR]: DaffioDocsPackagesListContainer,
+        [DaffioRouterNamedViewsEnum.DOCS_SIDEBAR]: DaffioDocsListContainer,
       },
     },
     children: [
@@ -42,7 +44,7 @@ export const docsRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(docsRoutes),
+    RouterModule.forChild(packagesRoutes),
   ],
   exports: [
     RouterModule,

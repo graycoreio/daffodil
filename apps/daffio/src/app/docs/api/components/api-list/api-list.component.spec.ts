@@ -14,24 +14,30 @@ import { DaffioApiReference } from '../../models/api-reference';
 
 @Component({ template: '<daffio-api-list [apiList]="apiListValue"></daffio-api-list>' })
 class WrapperComponent {
-  apiListValue: DaffioApiReference[] = [
-    {
-      id: 'name1',
-      title: 'title1',
-      path: 'path1',
-      docType: 'docType1',
-      docTypeShorthand: 'doc',
-      children: [],
-    },
-    {
-      id: 'name2',
-      title: 'title2',
-      path: 'path2',
-      docType: 'docType2',
-      docTypeShorthand: 'doc',
-      children: [],
-    },
-  ];
+  apiListValue: DaffioApiReference = {
+    id: 'id',
+    title: 'title',
+    docType: '',
+    docTypeShorthand: '',
+    children: [
+      {
+        id: 'name1Component',
+        title: 'title1Component',
+        path: 'path1',
+        docType: 'docType1',
+        docTypeShorthand: 'dt',
+        children: [],
+      },
+      {
+        id: 'name2Module',
+        title: 'title2Module',
+        path: 'path2',
+        docType: 'docType2',
+        docTypeShorthand: 'dt',
+        children: [],
+      },
+    ],
+  };
 }
 
 describe('DaffioApiListComponent', () => {
@@ -73,13 +79,13 @@ describe('DaffioApiListComponent', () => {
 
   it('should render a link for every doc in apiList', () => {
 
-    expect(links.length).toEqual(component.apiList.length);
+    expect(links.length).toEqual(component.apiList.children.length);
   });
 
   describe('on link', () => {
 
     it('should set routerLink', () => {
-      expect(links[0].attributes['ng-reflect-router-link']).toEqual(component.apiList[0].path);
+      expect(links[0].attributes['ng-reflect-router-link']).toEqual(component.apiList.children[0].path);
     });
   });
 });

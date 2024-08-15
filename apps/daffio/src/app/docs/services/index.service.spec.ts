@@ -1,18 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { DaffioDocsService } from './docs.service';
+import { DaffDocKind } from '@daffodil/docs-utils';
+
+import { DaffioDocsIndexService } from './index.service';
 import {
   DaffioAssetFetchService,
   DaffioAssetFetchServiceInterface,
 } from '../../core/assets/fetch/service.interface';
 import { DaffioDoc } from '../models/doc';
-import { DaffioDocList } from '../models/doc-list';
 import { DaffioDocsFactory } from '../testing/factories/docs.factory';
 import { mockPackages } from '../testing/factories/packages-list.factory';
 
-describe('DaffioDocsService', () => {
-  let service: DaffioDocsService;
+describe('DaffioDocsIndexService', () => {
+  let service: DaffioDocsIndexService;
   let fetchAssetServiceSpy: jasmine.SpyObj<DaffioAssetFetchServiceInterface>;
   let doc: DaffioDoc;
   const mockGuideList = mockPackages;
@@ -22,6 +23,7 @@ describe('DaffioDocsService', () => {
 
     TestBed.configureTestingModule({
       providers: [
+        DaffioDocsIndexService,
         {
           provide: DaffioAssetFetchService,
           useValue: fetchAssetServiceSpy,
@@ -29,7 +31,7 @@ describe('DaffioDocsService', () => {
       ],
     });
 
-    service = TestBed.inject(DaffioDocsService);
+    service = TestBed.inject(DaffioDocsIndexService);
 
     doc = TestBed.inject(DaffioDocsFactory).create();
   });
@@ -38,12 +40,12 @@ describe('DaffioDocsService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should be able to retrieve a doc', (done) => {
-    fetchAssetServiceSpy.fetch.and.returnValue(of(doc));
+  it('should be able to retrieve a list', (done) => {
+    fetchAssetServiceSpy.fetch.and.returnValue(of(mockGuideList));
 
-    service.get('docs/my/path').subscribe((apiDoc) => {
-      expect(apiDoc).toEqual(doc);
-      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio//docs/my/path.json');
+    service.getList(DaffDocKind.PACKAGE).subscribe((guides) => {
+      expect(guides).toEqual(mockGuideList);
+      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio//docs/packages/index.json');
       done();
     });
   });

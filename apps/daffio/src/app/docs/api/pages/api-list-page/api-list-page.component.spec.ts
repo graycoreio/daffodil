@@ -36,24 +36,30 @@ describe('DaffioApiListPageComponent', () => {
   let fixture: ComponentFixture<DaffioApiListPageComponent>;
   let activatedRoute: ActivatedRouteStub;
 
-  const stubDocsList = [
-    {
-      id: 'name1Component',
-      title: 'title1Component',
-      path: 'path1',
-      docType: 'docType1',
-      docTypeShorthand: 'dt',
-      children: [],
-    },
-    {
-      id: 'name2Module',
-      title: 'title2Module',
-      path: 'path2',
-      docType: 'docType2',
-      docTypeShorthand: 'dt',
-      children: [],
-    },
-  ];
+  const stubDocsList: DaffioApiReference = {
+    id: 'id',
+    title: 'title',
+    docType: '',
+    docTypeShorthand: '',
+    children: [
+      {
+        id: 'name1Component',
+        title: 'title1Component',
+        path: 'path1',
+        docType: 'docType1',
+        docTypeShorthand: 'dt',
+        children: [],
+      },
+      {
+        id: 'name2Module',
+        title: 'title2Module',
+        path: 'path2',
+        docType: 'docType2',
+        docTypeShorthand: 'dt',
+        children: [],
+      },
+    ],
+  };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

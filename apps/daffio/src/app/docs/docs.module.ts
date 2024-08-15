@@ -8,6 +8,7 @@ import { DaffHeroModule } from '@daffodil/design/hero';
 import { DaffioDocViewerModule } from './components/doc-viewer/doc-viewer.module';
 import { DaffioDocsRoutingModule } from './docs-routing.module';
 import { DaffioDocsPageComponent } from './pages/docs-page/docs-page.component';
+import { DaffioDocsIndexService } from './services/index.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,9 @@ import { DaffioDocsPageComponent } from './pages/docs-page/docs-page.component';
     DaffContainerModule,
     DaffHeroModule,
     DaffioDocsPageComponent,
+  ],
+  providers: [
+    DaffioDocsIndexService,
   ],
 })
 export class DaffioDocsModule {}

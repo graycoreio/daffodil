@@ -4,27 +4,27 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { crossOsFilename } from '@daffodil/docs-utils';
+import {
+  DAFF_DOC_KIND_PATH_SEGMENT_MAP,
+  DaffDocKind,
+} from '@daffodil/docs-utils';
 
 import { DAFFIO_DOCS_PATH_TOKEN } from './docs-path.token';
-import { DaffioDocsServiceInterface } from './docs-service.interface';
 import {
   DaffioAssetFetchService,
   DaffioAssetFetchServiceInterface,
 } from '../../core/assets/fetch/service.interface';
-import { DaffioDoc } from '../models/doc';
+import { DaffioDocList } from '../models/doc-list';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class DaffioDocsService<T extends DaffioDoc = DaffioDoc> implements DaffioDocsServiceInterface<T> {
+@Injectable()
+export class DaffioDocsIndexService<T extends DaffioDocList = DaffioDocList> {
 
   constructor(
     @Inject(DaffioAssetFetchService) private fetchAsset: DaffioAssetFetchServiceInterface,
     @Inject(DAFFIO_DOCS_PATH_TOKEN) private docsPath: string,
   ) {}
 
-  get(path: string): Observable<T> {
-    return this.fetchAsset.fetch<T>(`${this.docsPath}/${crossOsFilename(path)}.json`);
+  getList(kind: DaffDocKind): Observable<T> {
+    return this.fetchAsset.fetch<T>(`${this.docsPath}/docs/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/index.json`);
   }
 }

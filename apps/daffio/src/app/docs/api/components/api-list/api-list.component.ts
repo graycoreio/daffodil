@@ -19,5 +19,5 @@ export class DaffioApiListComponent {
   /**
    * A list of references for API documents.
    */
-  @Input() apiList: DaffioApiReference[] = [];
+  @Input() apiList: DaffioApiReference;
 }

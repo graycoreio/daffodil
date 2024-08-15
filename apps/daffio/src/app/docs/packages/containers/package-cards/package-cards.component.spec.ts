@@ -7,8 +7,10 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 
 import { DaffioDocsPackageCardsContainer } from './package-cards.component';
+import { DaffioDocsIndexService } from '../../../services/index.service';
 
 describe('DaffioDocsPackageCardsContainer', () => {
   let component: DaffioDocsPackageCardsContainer;
@@ -23,6 +25,12 @@ describe('DaffioDocsPackageCardsContainer', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,
+      ],
+      providers: [
+        {
+          provide: DaffioDocsIndexService,
+          useValue: jasmine.createSpyObj('DaffioDocsIndexService', { getList: of() }),
+        },
       ],
     })
       .compileComponents();

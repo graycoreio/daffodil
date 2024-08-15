@@ -7,16 +7,16 @@ import {
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffioDocsGuidesListContainer } from './guides-list.component';
+import { DaffioDocsListContainer } from './docs-list.component';
 
-describe('DaffioDocsGuidesListContainer', () => {
-  let component: DaffioDocsGuidesListContainer;
-  let fixture: ComponentFixture<DaffioDocsGuidesListContainer>;
+describe('DaffioDocsListContainer', () => {
+  let component: DaffioDocsListContainer;
+  let fixture: ComponentFixture<DaffioDocsListContainer>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffioDocsGuidesListContainer,
+        DaffioDocsListContainer,
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,
@@ -26,7 +26,7 @@ describe('DaffioDocsGuidesListContainer', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioDocsGuidesListContainer);
+    fixture = TestBed.createComponent(DaffioDocsListContainer);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

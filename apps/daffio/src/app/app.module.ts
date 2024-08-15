@@ -15,6 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { DAFF_THEME_INITIALIZER } from '@daffodil/design';
+import { provideDaffRouterActivatedRoute } from '@daffodil/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { DaffioAppComponent } from './app.component';
@@ -35,7 +36,7 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
 
     StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot(),
     HttpClientModule,
 
     AppRoutingModule,
@@ -75,6 +76,7 @@ import { environment } from '../environments/environment';
       provide: APP_ID,
       useValue: 'serverApp',
     },
+    provideDaffRouterActivatedRoute(),
   ],
 })
 export class AppModule {}

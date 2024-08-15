@@ -8,9 +8,10 @@ import {
   Observable,
 } from 'rxjs';
 
-import { DaffioDoc } from '../../../models/doc';
+import { DaffDocKind } from '@daffodil/docs-utils';
+
 import { DaffioDocList } from '../../../models/doc-list';
-import { DaffioDocsService } from '../../../services/docs.service';
+import { DaffioDocsIndexService } from '../../../services/index.service';
 import { DaffioPackage } from '../../components/package-cards/package-cards.component';
 
 function getPath(doc: DaffioDocList): string {
@@ -27,11 +28,11 @@ export class DaffioDocsPackageCardsContainer implements OnInit {
   packagesList$: Observable<DaffioPackage[]>;
 
   constructor(
-    private docService: DaffioDocsService<DaffioDoc, DaffioDocList>,
+    private docService: DaffioDocsIndexService,
   ) {}
 
   ngOnInit() {
-    this.packagesList$ = this.docService.getPackageList().pipe(
+    this.packagesList$ = this.docService.getList(DaffDocKind.PACKAGE).pipe(
       map((guidesTree) => guidesTree.children.map((p) => ({
         title: p.title,
         path: `/${getPath(p)}`,

@@ -1,9 +1,9 @@
-<div *ngFor="let doc of apiList" class="daffio-api-list__package">
+<div *ngFor="let doc of apiList.children" class="daffio-api-list__package">
   <h2 class="daffio-api-list__package-name">
     <a [routerLink]="doc.path">{{ doc.title }}</a>
   </h2>
   <div class="daffio-api-list__list">
-    <a *ngFor="let childDoc of doc.items" [routerLink]="childDoc.path" class="daffio-api-list__item" >
+    <a *ngFor="let childDoc of doc.children" [routerLink]="childDoc.path" class="daffio-api-list__item" >
       <div class="daffio-api-list__item-name">{{ childDoc.title }}</div>
       <label class="daffio-api-list__item-label {{ childDoc.docType }}">{{ childDoc.docType }}</label>
     </a>

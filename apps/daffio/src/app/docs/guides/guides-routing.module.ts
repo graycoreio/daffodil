@@ -4,21 +4,23 @@ import {
   RouterModule,
 } from '@angular/router';
 
-import { DaffRouteWithNamedViews } from '@daffodil/router';
+import { DaffDocKind } from '@daffodil/docs-utils';
 
-import { DaffioDocsGuidesListContainer } from './containers/guides-list/guides-list.component';
+import { DaffioRoute } from '../../core/router/route.type';
 import { DaffioRouterNamedViewsEnum } from '../../named-views/models/named-views.enum';
+import { DaffioDocsListContainer } from '../containers/docs-list/docs-list.component';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
 
 export const DAFFIO_DOCS_GUIDE_DEFAULT = 'introduction/about';
 
-export const docsRoutes: Routes = [
-  <DaffRouteWithNamedViews>{
+export const guidesRoutes: Routes = [
+  <DaffioRoute>{
     path: '',
     data: {
+      docKind: DaffDocKind.GUIDE,
       daffNamedViews: {
-        [DaffioRouterNamedViewsEnum.DOCS_SIDEBAR]: DaffioDocsGuidesListContainer,
+        [DaffioRouterNamedViewsEnum.DOCS_SIDEBAR]: DaffioDocsListContainer,
       },
     },
     children: [
@@ -43,7 +45,7 @@ export const docsRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(docsRoutes),
+    RouterModule.forChild(guidesRoutes),
   ],
   exports: [
     RouterModule,
