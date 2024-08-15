@@ -1,13 +1,12 @@
 import { Package } from 'dgeni';
 
 import {
-  DAFF_DOC_KIND_PATH_SEGMENT_MAP,
   DAFF_DOCS_DESIGN_PATH,
   DAFF_DOCS_PATH,
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
-import { outputPathsConfigurator } from './configurator/output';
+import { transformApiNavList } from './helpers/generateApiList';
 import { RemoveDuplicatesProcessor } from './processors/remove-duplicates';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddInheritedDocsContentProcessor } from '../../processors/addInheritedDocsContent';
@@ -20,10 +19,11 @@ import {
 import { CrossEnvSafeNameProcessor } from '../../processors/cross-env-safe-name';
 import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import { FilterOutPrivatePropertiesProcessor } from '../../processors/filterOutPrivateProperties';
-import { GenerateApiListProcessor } from '../../processors/generateApiList';
+import { GenerateNavListProcessor } from '../../processors/generateNavList';
 import { MakeTypesHtmlCompatibleProcessor } from '../../processors/makeTypesHtmlCompatible';
 import { MarkdownCodeProcessor } from '../../processors/markdown';
 import { PackagesProcessor } from '../../processors/packages';
+import { outputPathsConfigurator } from '../../utils/configurator/output';
 import {
   API_SOURCE_PATH,
   API_TEMPLATES_PATH,
@@ -90,11 +90,15 @@ export const apiDocsBase = new Package('api-base', [
   .config((templateFinder) => {
     // Where to find the templates for the API doc rendering
     templateFinder.templateFolders.unshift(API_TEMPLATES_PATH);
+  })
+  .config((generateNavList: GenerateNavListProcessor) => {
+    generateNavList.transform = transformApiNavList;
   });
 
 export const apiDocs = outputPathsConfigurator({
   kind: DaffDocKind.API,
   outputPath: DAFF_DOCS_PATH,
+  docTypes: ['package'],
 })(new Package(API_PACKAGE_NAME, [apiDocsBase]))
   .config((readTypeScriptModules) => {
     // Specify collections of source files that should contain the documentation to extract
@@ -106,6 +110,7 @@ export const apiDocs = outputPathsConfigurator({
 export const designApiPackage = outputPathsConfigurator({
   kind: DaffDocKind.API,
   outputPath: `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`,
+  docTypes: ['package'],
 })(new Package('design-api-docs', [apiDocs]))
   .processor(new RemoveDuplicatesProcessor())
   .config((readTypeScriptModules) => {

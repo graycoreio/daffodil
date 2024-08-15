@@ -1,5 +1,5 @@
 import { Package } from 'dgeni';
-import { Configurator } from 'tools/dgeni/src/utils/configurator.type';
+import { Configurator } from 'tools/dgeni/src/utils/configurator/type';
 
 import {
   DaffDocKind,

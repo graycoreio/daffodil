@@ -8,7 +8,7 @@ import {
   OutputPathsConfig,
   outputPathsConfigurator,
 } from './output';
-import { Configurator } from '../../../../utils/configurator.type';
+import { Configurator } from './type';
 
 export type PathsConfig = InputPathsConfig & OutputPathsConfig;
 

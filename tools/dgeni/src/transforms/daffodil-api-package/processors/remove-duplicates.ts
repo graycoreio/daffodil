@@ -9,7 +9,7 @@ import {
 export class RemoveDuplicatesProcessor implements Processor {
   name = 'removeDuplicates';
   $runAfter = ['readTypeScriptModules'];
-  $runBefore = ['generateApiList', 'parsing-tags'];
+  $runBefore = ['generateNavList', 'parsing-tags'];
 
   $process(docs: Array<Document>): Array<Document> {
     const set = new Set();
