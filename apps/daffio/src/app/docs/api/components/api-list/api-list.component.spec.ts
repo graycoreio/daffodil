@@ -1,16 +1,21 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
   waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioApiListComponent } from './api-list.component';
 import { DaffioApiReference } from '../../models/api-reference';
+import { DaffioApiListChildrenComponent } from '../api-list-children/api-list-children.component';
 
 @Component({ template: '<daffio-api-list [apiList]="apiListValue"></daffio-api-list>' })
 class WrapperComponent {
@@ -26,7 +31,16 @@ class WrapperComponent {
         path: 'path1',
         docType: 'docType1',
         docTypeShorthand: 'dt',
-        children: [],
+        children: [
+          {
+            id: 'name1ComponentChild',
+            title: 'title1ComponentChild',
+            path: 'path1/child',
+            docType: 'docType1',
+            docTypeShorthand: 'dt',
+            children: [],
+          },
+        ],
       },
       {
         id: 'name2Module',
@@ -44,13 +58,14 @@ describe('DaffioApiListComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffioApiListComponent;
-  let links;
+  let links: Array<DebugElement>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
         DaffContainerModule,
+        DaffioApiListChildrenComponent,
       ],
       declarations: [
         WrapperComponent,
@@ -66,7 +81,7 @@ describe('DaffioApiListComponent', () => {
     fixture.detectChanges();
 
     component = fixture.debugElement.query(By.css('daffio-api-list')).componentInstance;
-    links = fixture.debugElement.queryAll(By.css('a'));
+    links = fixture.debugElement.queryAll(By.css('.daffio-api-list__package-name')).map((de) => de.query(By.directive(RouterLink)));
   });
 
   it('should create', () => {
@@ -78,14 +93,14 @@ describe('DaffioApiListComponent', () => {
   });
 
   it('should render a link for every doc in apiList', () => {
-
-    expect(links.length).toEqual(component.apiList.children.length);
+    expect(links.length).toEqual(wrapper.apiListValue.children.length);
   });
 
   describe('on link', () => {
-
     it('should set routerLink', () => {
-      expect(links[0].attributes['ng-reflect-router-link']).toEqual(component.apiList.children[0].path);
+      wrapper.apiListValue.children.forEach((doc, i) => {
+        expect(links[i].attributes['ng-reflect-router-link']).toEqual(<any>doc.path);
+      });
     });
   });
 });

@@ -1,8 +1,6 @@
 @use '../../../../../scss/type-descriptors/mixins' as type-mixin;
 @use 'utilities' as daff;
 
-$api-list-item-border-radius: 4px;
-
 :host {
 	display: flex;
 	flex-direction: column;
@@ -41,64 +39,5 @@ $api-list-item-border-radius: 4px;
 				display: inline-block;
 			}
 		}
-	}
-
-	&__list {
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-gap: 8px 24px;
-
-		@include daff.breakpoint(tablet) {
-			grid-template-columns: repeat(2, 1fr);
-		}
-
-		@include daff.breakpoint(small-laptop) {
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	&__item {
-		display: flex;
-		align-items: center;
-		border-radius: $api-list-item-border-radius;
-		justify-content: space-between;
-		overflow: hidden;
-		padding: 8px;
-		position: relative;
-
-		&::after {
-			content: '';
-			border-radius: $api-list-item-border-radius;
-			position: absolute;
-			left: 0;
-			top: 0;
-			height: 100%;
-			width: 100%;
-			opacity: 0;
-			transition: opacity 300ms;
-			z-index: 1;
-		}
-
-		&:hover {
-			&::after {
-				opacity: 1;
-			}
-		}
-	}
-
-	&__item-name {
-		@include daff.text-truncate();
-	}
-
-	&__item-label {
-		@include type-mixin.type-label();
-		height: 1.5rem;
-		padding: 4px;
-		margin-left: 16px;
-	}
-
-	&__item-name,
-	&__item-label {
-		z-index: 2;
 	}
 }

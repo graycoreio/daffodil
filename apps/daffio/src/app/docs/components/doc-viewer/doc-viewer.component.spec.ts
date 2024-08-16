@@ -11,6 +11,8 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { DaffArticleModule } from '@daffodil/design/article';
 
 import { DaffioDocViewerComponent } from './doc-viewer.component';
+import { DaffioApiListChildrenComponent } from '../../api/components/api-list-children/api-list-children.component';
+import { DaffioApiReference } from '../../api/models/api-reference';
 import { DaffioDoc } from '../../models/doc';
 import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
 import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
@@ -19,7 +21,7 @@ import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-c
   template: `<daffio-doc-viewer [doc]="doc"></daffio-doc-viewer>`,
 })
 class WrapperComponent {
-  doc: DaffioDoc;
+  doc: DaffioDoc | DaffioApiReference;
 }
 
 describe('DaffioDocViewerComponent', () => {
@@ -33,6 +35,7 @@ describe('DaffioDocViewerComponent', () => {
         RouterTestingModule,
         DaffArticleModule,
         DaffioDocsTableOfContentsModule,
+        DaffioApiListChildrenComponent,
       ],
       declarations: [
         WrapperComponent,
@@ -54,6 +57,38 @@ describe('DaffioDocViewerComponent', () => {
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
+  });
+
+  describe('when the doc is an API package doc', () => {
+    beforeEach(() => {
+      wrapper.doc = {
+        id: 'name1Component',
+        title: 'title1Component',
+        path: 'path1',
+        docType: 'package',
+        docTypeShorthand: 'pk',
+        children: [
+          {
+            id: 'name1ComponentChild',
+            title: 'title1ComponentChild',
+            path: 'path1/child',
+            docType: 'docType1',
+            docTypeShorthand: 'dt',
+            children: [],
+          },
+        ],
+      };
+      fixture.detectChanges();
+    });
+
+    it('should render the package name', () => {
+      expect(fixture.debugElement.query(By.css('.daffio-doc-viewer__content h1')).nativeElement.innerText).toEqual(wrapper.doc.title);
+    });
+
+    it('should render the package doc children', () => {
+      const apiChildren: DaffioApiListChildrenComponent = fixture.debugElement.query(By.directive(DaffioApiListChildrenComponent)).componentInstance;
+      expect(apiChildren.children).toEqual((<DaffioApiReference>wrapper.doc).children);
+    });
   });
 
   it('should render the contents of the doc as innerhtml', () => {
