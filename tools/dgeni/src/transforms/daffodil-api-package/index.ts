@@ -7,6 +7,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { transformApiNavList } from './helpers/generateApiList';
+import { AddPackageExportsProcessor } from './processors/add-package-exports';
 import { RemoveDuplicatesProcessor } from './processors/remove-duplicates';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddInheritedDocsContentProcessor } from '../../processors/addInheritedDocsContent';
@@ -50,9 +51,10 @@ export const apiDocsBase = new Package('api-base', [
   .processor(new AddInheritedDocsContentProcessor())
   .processor(new AddLinkTagToDaffodilReferencesProcessor())
   .processor(new PackagesProcessor())
+  .processor(new AddPackageExportsProcessor())
   .processor(new MarkdownCodeProcessor())
   .processor(COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME, (log, createDocMessage) => new CollectLinkableSymbolsProcessor(log, createDocMessage))
-  .factory('API_DOC_TYPES_TO_RENDER', (EXPORT_DOC_TYPES) => EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe', 'package']))
+  .factory('API_DOC_TYPES_TO_RENDER', (EXPORT_DOC_TYPES) => EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe']))
   //Configure our package
   .config((readFilesProcessor, readTypeScriptModules, tsParser) => {
 
