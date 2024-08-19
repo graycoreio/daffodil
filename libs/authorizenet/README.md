@@ -14,12 +14,13 @@ Install with yarn:
 yarn add @daffodil/authorizenet
 ```
 
-## Usage
+## Getting started
 `@daffodil/authorizenet` does most of the setup for you. All you need to do is:
 
-1. Import the `DaffAuthorizeNetStateModule` into your application.
+1. Import the `DaffAuthorizeNetStateModule` into the root component of your application.
 2. Provide your own `DaffAuthorizeNetDriver` or use the default one by importing `DaffAuthorizeNetDriverModule.forRoot()`.
 
+## Usage
 To configure your Authorize.net authentication details:
 
 1. Provide a `DaffAuthorizeNetConfig` through the `DaffAuthorizeNetConfigToken` injection token.
