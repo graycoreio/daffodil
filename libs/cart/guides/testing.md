@@ -1,5 +1,5 @@
 # Testing
-The cart module provides a testing package accessible at `@daffodil/cart/testing`. This package provides model factories, facade mocks, and driver mocks to facilitate unit testing.
+`@daffodil/cart` provides a testing package accessible at `@daffodil/cart/testing`. This package provides model factories, facade mocks, and driver mocks to facilitate unit testing.
 
 ## Example
 The following example demonstrates how to unit test a component using Daffodil model factories and the mock facade with the Jasmine testing framework and the `jasmine-marbles` library.
