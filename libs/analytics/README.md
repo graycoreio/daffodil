@@ -1,8 +1,8 @@
 # @daffodil/analytics
-The Daffodil Analytics Module is a lightweight Angular package that helps integrate analytics providers into your Angular applications, supporting multiple analytics services.
+`@daffodil/analytics` is a lightweight Angular package that helps integrate analytics providers into your Angular applications, supporting multiple analytics services.
 
 ## Overview
-It simplifies event tracking and provides configuration options, such as defining analyzable actions. Notably, this module focuses on handling state-related events and operates specifically on [`Actions`](https://ngrx.io/api/store/Action) from [`@ngrx/store`](https://ngrx.io/guide/store), rather than browser events. Additionally, the package includes testing utilities tailored for analytics event tracking in Angular applications.
+It simplifies event tracking and provides configuration options, such as defining analyzable actions. Notably, `@daffodil/analytics` focuses on handling state-related events and operates specifically on [`Actions`](https://ngrx.io/api/store/Action) from [`@ngrx/store`](https://ngrx.io/guide/store), rather than browser events. Additionally, the package includes testing utilities tailored for analytics event tracking in Angular applications.
 
 ## Features
 - ["Opt-in" action tracking](/libs/analytics/guides/configuration.md#configuring-analyzeableactions)
@@ -23,14 +23,14 @@ import { Observable, of } from 'rxjs';
 export class MyAnalyticsService implements DaffAnalyticsTrackerClass {
 
   track(action: Action): Observable<unknown> {
-    // Your custom logic for tracking analytics events based on the provided action
-    // Return an observable, for example, indicating whether the tracking was successful
+    // Your custom logic for tracking analytics events based on the provided action.
+    // Return an observable, for example, indicating whether the tracking was successful.
     return of(true);
   }
 }
 ```
 
-### Import the module in your application
+### Set up the root component
 ```ts
 import { DaffAnalyticsModule } from '@daffodil/analytics';
 
