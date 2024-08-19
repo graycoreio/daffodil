@@ -15,14 +15,14 @@ npm install @daffodil/contact @daffodil/core @ngrx/store @ngrx/effects --save
 Install with yarn:
 
 ```bash
-yarn add @daffodil/contact
+yarn add @daffodil/contact @daffodil/core @ngrx/store @ngrx/effects
 ```
 
 > After installing, an ecommerce platform driver needs to be set up. We highly recommend installing the [in-memory web api](./guides/drivers.md) for fast, out-of-the-box development.
 
 ## Getting started
 
-### Setting up the root component
+### Set up the root component
 1. Import the `DaffContactModule` in your root component. 
 2. Import `StoreModule.forRoot({})`. This will be relevant later on when utilizing the redux and state management features of `@daffodil/contact`.
 
@@ -30,7 +30,7 @@ yarn add @daffodil/contact
 @ngModule({
   imports:[
     StoreModule.forRoot({}),
-    DaffContactModule
+    DaffContactModule,
   ]
 })
 ```
