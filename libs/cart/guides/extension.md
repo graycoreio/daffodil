@@ -1,5 +1,5 @@
 # Extension
-The cart module provides a number of extension mechanisms so that it can be customized to fit specific needs.
+`@daffodil/cart` provides a number of extension mechanisms so that it can be customized to fit specific needs.
 
 ## Custom drivers
 If the packaged Daffodil drivers don't satisfy the required use cases, they can be overriden by providing custom drivers. Create a service that implements the interface corresponding to the driver in question.
@@ -15,6 +15,7 @@ import {
 @Injectable({
   providedIn: 'root'
 })
+
 export class CustomMagentoCartService implements DaffCartServiceInterface {
   constructor(
     private cartDriver: DaffMagentoCartService,

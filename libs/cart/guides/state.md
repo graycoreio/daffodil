@@ -1,8 +1,9 @@
 # State
-The cart module provides a fully featured state library to streamline the management of an application's state as well as driver interaction. The facade is an abstraction that provides all the functionality needed for standard use. It is the recommended way to interact with the Daffodil state layer.
+`@daffodil/cart` provides a fully featured state library to streamline the management of an application's state as well as driver interaction. The facade is an abstraction that provides all the functionality needed for standard use. It is the recommended way to interact with the Daffodil state layer.
 
-## Setting up the root module
-To get started, import the `DaffCartStateModule` in `AppModule`. Next, import `StoreModule.forRoot({})`, which will be relevant later on when using the redux and state management features of the cart module.
+## Set up the root component
+1. Import the `DaffCartStateModule`
+2. Import `StoreModule.forRoot({})`, which will be relevant later on when using the redux and state management features `@daffodil/cart`.
 
 ```typescript
 @ngModule({
@@ -205,7 +206,7 @@ If you need the guarantee, you can nest the guards.
 ```
 
 ## Configuration
-The `@daffodil/cart/state` package exposes a `forRoot` method on the `DaffCartStateModule` that allows you to pass in a configuration object to configure the behavior of the package.
+`@daffodil/cart/state` exposes a `forRoot` method on the `DaffCartStateModule` that allows you to pass in a configuration object to configure the behavior of the package.
 
 You can import it like so:
 
