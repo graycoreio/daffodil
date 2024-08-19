@@ -1,32 +1,20 @@
 # Storage
-
 Daffodil abstracts the storage layer behind the `DaffPersistenceService` interface. A number of different services implement this interface and suit different use cases.
 
 ## Services
 <!-- TODO: clarify use cases -->
+| Service                    | Usage                                                                                                                                      |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `DaffLocalStorageService`  | Uses `localStorage` to implement persistence. It's appropriate for browser environments.                                                   |
+| `DaffMemoryStorageService` | Stores items in-memory. It's appropriate for testing environments or when true persistence is not desired.                                 |
+| `DaffErrorStorageService`  | Always throws an error when it's invoked. It's appropriate for server environments such as SSR where storage mechanisms are not available. |
+| `DaffNoopStorageService`   | Never performs any actions and always returns `undefined`.                                                                                 |
 
-### `DaffLocalStorageService`
-
-The `DaffLocalStorageService` uses `localStorage` to implement persistence. It is appropriate for browser environments.
-
-### `DaffMemoryStorageService`
-
-The `DaffMemoryStorageService` stores items in-memory. It is appropriate for testing environments or when true persistence is not desired.
-
-### `DaffErrorStorageService`
-
-The `DaffErrorStorageService` always throws an error when it is invoked. It is appropriate for server environments such as SSR where storage mechanisms are not available.
-
-### `DaffNoopStorageService`
-
-The `DaffNoopStorageService` never performs any actions and always returns `undefined`.
-
-## Environment-Specific Storage Services
-
-The storage service used can be configured by providing for the `DaffPersistenceServiceToken` injection token. The following example demonstrates how to provide appropriate services based on the current environment.
+## Environment specific storage services
+The storage service used can be configured by providing the `DaffPersistenceServiceToken` injection token. The following example demonstrates how to provide appropriate services based on the current environment.
 
 <!-- TODO: find a better example -->
-```typescript
+```ts
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import {
