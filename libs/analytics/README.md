@@ -5,17 +5,17 @@
 It simplifies event tracking and provides configuration options, such as defining analyzable actions. Notably, `@daffodil/analytics` focuses on handling state-related events and operates specifically on [`Actions`](https://ngrx.io/api/store/Action) from [`@ngrx/store`](https://ngrx.io/guide/store), rather than browser events. Additionally, it includes testing utilities tailored for analytics event tracking in Angular applications.
 
 ## Installation
-To install `@daffodil/analytics` and its required dependencies, use the following commands in the terminal.
+To install `@daffodil/analytics`, use the following commands in your terminal.
 
 Install with npm:
 ```bash
-npm install @daffodil/auth @angular/common @angular/core @ngrx/store @ngrx/effects rxjs --save
+npm install @daffodil/auth --save
 ```
 
 Install with yarn:
 
 ```bash
-yarn add @daffodil/auth @angular/common @angular/core @ngrx/store @ngrx/effects rxjs
+yarn add @daffodil/auth
 ```
 
 ## Features

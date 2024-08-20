@@ -6,7 +6,7 @@ To install `@daffodil/authorizenet`, use the following commands in the terminal.
 
 Install with npm:
 ```
-npm install @daffodil/authorizenet
+npm install @daffodil/authorizenet --save
 ```
 
 Install with yarn:

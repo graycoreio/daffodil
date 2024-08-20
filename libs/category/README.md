@@ -9,7 +9,7 @@ To install `@daffodil/category`, use the following commands in the terminal.
 
 Install with npm:
 ```bash
-npm install @daffodil/category
+npm install @daffodil/category --save
 ```
 
 Install with yarn:
