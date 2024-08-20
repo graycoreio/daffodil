@@ -1,8 +1,23 @@
 # @daffodil/external-router
+`@daffodil/external-router` extends `@angular/router` and allows you to render routes defined in external systems like Wordpress, Magento, Contentful, etc, as if you had defined the routes statically in your Angular `Routes`.
 
-## Purpose
-This package extends `@angular/router` and allows you to render routes defined in external systems like Wordpress, Magento, Contentful, etc, as if you had defined the routes statically in your Angular `Routes`. This is useful when you are trying to generate "user-friendly" routes in external applications and want to resolve them by their "user-friendly" uri, e.g. `sweatshirts` instead of something like `category/6` or `category/sweatshirts`.
+## Overview
+It's useful when you are trying to generate "user-friendly" routes in external applications and want to resolve them by their "user-friendly" uri, like `sweatshirts`, instead of paths such as `category/6` or `category/sweatshirts`.
 
+## Installation
+To install `@daffodil/external-router` and its dependencies, use the following commands in the terminal.
+
+Install with npm:
+```bash
+npm install @daffodil/external-router @daffodil/core --save
+```
+
+Install with yarn:
+```bash
+yarn add @daffodil/external-router @daffodil/core
+```
+
+## Usage
 As an example scenario, you could:
 
 1. Define a page with a "user-friendly" url, e.g. `sweatshirts` in an external service like Magento
