@@ -1,10 +1,8 @@
 # Drivers
 `@daffodil/cart` can interface with supported platforms through drivers. Choose the driver that corresponds to the platform of choice and follow the linked guide to set it up.
 
-## Supported drivers
-
-### In-memory web API
-The in-memory driver is for rapid development without the need to set up a magento/shopify/etc backend. It will mock out the management of a cart and operate like a functional backend. It is intended for development and testing purposes and not meant to be used in production.
+## In-memory web API
+The in-memory driver is for rapid development without the need to set up a platform-specific backend. It will mock out the management of a cart and operate like a functional backend. It is intended for development and testing purposes and not meant to be used in production.
 
 To set up in the root component:
 1. Import the `DaffCartInMemoryDriverModule` from `@daffodil/cart/testing`
@@ -28,7 +26,7 @@ Now this `DaffCart` implementation will have access to the in-memory driver to u
 
 > Note: It is important to only have one `daffodil/cart` driver set up at a time in the root component. To set up a driver configuration to make switching between different backend drivers simple, follow the [advanced setup guide](). <!-- TODO: add multiple drivers guide -->
 
-### Magento
+## Magento
 The Magento driver communicates with the Magento backend through the GraphQL API.
 
 To set up in the root component:
@@ -53,7 +51,7 @@ This `DaffCart` implementation will now be able to interact with Magento.
 
 > Note: It is important to only have one `@daffodil/cart` driver set up in the root component at a time. To set up a driver configuration to make switching between different backend drivers simple, follow the [advanced setup guide](). <!-- TODO: add multiple drivers guide -->
 
-#### Fragment introspection
+### Fragment introspection
 You should set up fragment introspection with the Magento backend. Refer to the [fragment introspection guide](../../../../tools/builders/guides/fragment-introspection.md) for more information.
 
 ## Usage

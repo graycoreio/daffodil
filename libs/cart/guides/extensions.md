@@ -1,4 +1,4 @@
-# Extension
+# Extensions
 `@daffodil/cart` provides a number of extension mechanisms so that it can be customized to fit specific needs.
 
 ## Custom drivers

@@ -1,11 +1,14 @@
 # State
-`@daffodil/cart` provides a fully featured state library to streamline the management of an application's state as well as driver interaction. The facade is an abstraction that provides all the functionality needed for standard use. It is the recommended way to interact with the Daffodil state layer.
+`@daffodil/cart` provides a fully featured state library to streamline the management of an application's state as well as driver interaction.
+
+## Overview
+The facade is an abstraction that provides all the functionality needed for standard use. It's the recommended way to interact with the Daffodil state layer.
 
 ## Set up the root component
-1. Import the `DaffCartStateModule`
-2. Import `StoreModule.forRoot({})`, which will be relevant later on when using the redux and state management features `@daffodil/cart`.
+1. Import the `DaffCartStateModule` in the root component.
+2. Import `StoreModule.forRoot({})`. This will be relevant later on when using the redux and state management features of `@daffodil/cart`.
 
-```typescript
+```ts
 @ngModule({
   imports:[
     StoreModule.forRoot({}),
@@ -33,9 +36,11 @@ Once the `DaffCartFacade` has been set up in the component, it can now be used t
 
 Additionally, the Daffodil cart facade provides three different loading states for each section of the cart:
 
-- `mutating$` tracks when an update to a cart property is occurring.
-- `resolving$` tracks when new data is being fetched but no updates are taking place.
-- `loading$` emits `true` when either `mutating$` or `resolving$` is `true`.
+| State | Description                                                                  |
+| ------------ | --------------------------------------------------------------------- |
+| `mutating$`  | Tracks when an update to a cart property is occurring                 |
+| `resolving$` | Tracks when new data is being fetched but no updates are taking place |
+| `loading$`   | Emits `true` when either `mutating$` or `resolving$` is `true`        |
 
 There is also overall `featureLoading$`, `featureMutating$`, and `featureResolving$` streams to track loading for any section of the cart. These can be used to enhance the application's UI.
 
@@ -136,7 +141,7 @@ This tutorial will walk you through the cart resolution process, which is respon
 ### Supported scenarios
 At the moment, the following scenarios are handled by the `DaffResolvedCartGuard`.
 
-> For customer cart support, use the [@daffodil/cart-customer](/libs/cart-customer/README.md) package.
+> For customer cart support, use [@daffodil/cart-customer](/libs/cart-customer/README.md).
 
 - Generating a new cart when a user visits the application for the very first time.
 - Retrieving a previously existing cart for a user upon page reload.
