@@ -1,7 +1,7 @@
 # Configuration
+You can configure the way that `@daffodil/external-router` works by providing configurations to the `DaffExternalRouterModule`. 
 
-The External Router exposes configuration via a configuration object passed to the `forRoot` of the `DaffExternalRouterModule`.
-
+## Usage
 An array of `DaffTypeRoutePair`s can be passed as the second argument to `forRoot`. They can also be provided through DI using the `daffProvideRouteResolvableByType` function.
 
 ```ts
@@ -24,10 +24,10 @@ An array of `DaffTypeRoutePair`s can be passed as the second argument to `forRoo
 class AppModule {}
 ```
 
-## Configuration Options
+### Configuration options
 
-For further information beyond the documentation here, see `DaffExternalRouterConfiguration`.
-
-| Setting              | Purpose                                                       | Default Value |
+| Property             | Purpose                                                       | Default Value |
 | -------------------- | ------------------------------------------------------------- | ------------- |
 | failedResolutionPath | The path to redirect to when external route resolution fails. | '/'           |
+
+For more information, see `DaffExternalRouterConfiguration`.
