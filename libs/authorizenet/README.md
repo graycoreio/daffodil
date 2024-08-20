@@ -2,16 +2,16 @@
 `@daffodil/authorizenet` manages the acceptJs calls, state, selectors, and models for making a payment token request to Authorize.net.
 
 ## Installation
-To install `@daffodil/authorizenet`, use the following commands in the terminal.
+To install `@daffodil/authorizenet` and its required dependencies, use the following commands in the terminal.
 
 Install with npm:
 ```
-npm install @daffodil/authorizenet
+npm install @daffodil/authorizenet @daffodil/core @daffodil/cart @angular/common @angular/core @ngrx/effects @ngrx/entity @ngrx/store rxjs --save
 ```
 
 Install with yarn:
 ```
-yarn add @daffodil/authorizenet
+yarn add @daffodil/authorizenet @daffodil/core @daffodil/cart @angular/common @angular/core @ngrx/effects @ngrx/entity @ngrx/store rxjs
 ```
 
 ## Getting started
