@@ -9,6 +9,11 @@ import {
 
 import { DaffSidebarRegistration } from './registration.type';
 
+/**
+ * A service that stores the open state and ID of the currently opened sidebar.
+ *
+ * A default sidebar ID can be passed to the constructor that will be the initial value of `$id`.
+ */
 export abstract class DaffSidebarService {
   protected _id$: BehaviorSubject<DaffSidebarRegistration['id']>;
   protected _open = signal(false);
@@ -27,6 +32,11 @@ export abstract class DaffSidebarService {
     this.id$ = this._id$.asObservable();
   }
 
+  /**
+   * Opens the specified sidebar.
+   *
+   * @param id The optional sidebar ID. If omitted the most recently passed opened sidebar ID will persist (or the default if none was passed).
+   */
   open(id?: DaffSidebarRegistration['id']) {
     if (id) {
       this._id$.next(id);
@@ -34,6 +44,9 @@ export abstract class DaffSidebarService {
     this._open.set(true);
   };
 
+  /**
+   * Closes the sidebar. Does not clear the ID.
+   */
   close() {
     this._open.set(false);
   }
