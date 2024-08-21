@@ -1,4 +1,6 @@
 export { DaffSidebarModule } from './sidebar.module';
+export * from './service/registration.type';
+export * from './service/sidebar.service';
 export * from './sidebar-viewport/sidebar-viewport.component';
 export * from './sidebar/sidebar.component';
 export * from './sidebar-header/sidebar-header.component';
