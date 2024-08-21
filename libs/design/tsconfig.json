@@ -1,0 +1,98 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/design": [
+        "libs/design/src"
+      ],
+      "@daffodil/design/accordion": [
+        "libs/design/accordion/src"
+      ],
+      "@daffodil/design/article": [
+        "libs/design/article/src"
+      ],
+      "@daffodil/design/assets": [
+        "libs/design/assets/src"
+      ],
+      "@daffodil/design/button": [
+        "libs/design/button/src"
+      ],
+      "@daffodil/design/callout": [
+        "libs/design/callout/src"
+      ],
+      "@daffodil/design/card": [
+        "libs/design/card/src"
+      ],
+      "@daffodil/design/checkbox": [
+        "libs/design/checkbox/src"
+      ],
+      "@daffodil/design/container": [
+        "libs/design/container/src"
+      ],
+      "@daffodil/design/guides": [
+        "libs/design/guides/src"
+      ],
+      "@daffodil/design/hero": [
+        "libs/design/hero/src"
+      ],
+      "@daffodil/design/image": [
+        "libs/design/image/src"
+      ],
+      "@daffodil/design/input": [
+        "libs/design/input/src"
+      ],
+      "@daffodil/design/link": [
+        "libs/design/link/src"
+      ],
+      "@daffodil/design/list": [
+        "libs/design/list/src"
+      ],
+      "@daffodil/design/loading": [
+        "libs/design/loading/src"
+      ],
+      "@daffodil/design/media": [
+        "libs/design/media/src"
+      ],
+      "@daffodil/design/menu": [
+        "libs/design/menu/src"
+      ],
+      "@daffodil/design/modal": [
+        "libs/design/modal/src"
+      ],
+      "@daffodil/design/navbar": [
+        "libs/design/navbar/src"
+      ],
+      "@daffodil/design/notification": [
+        "libs/design/notification/src"
+      ],
+      "@daffodil/design/paginator": [
+        "libs/design/paginator/src"
+      ],
+      "@daffodil/design/progress": [
+        "libs/design/progress/src"
+      ],
+      "@daffodil/design/quantity": [
+        "libs/design/quantity/src"
+      ],
+      "@daffodil/design/radio": [
+        "libs/design/radio/src"
+      ],
+      "@daffodil/design/scss": [
+        "libs/design/scss/src"
+      ],
+      "@daffodil/design/sidebar": [
+        "libs/design/sidebar/src"
+      ],
+      "@daffodil/design/toast": [
+        "libs/design/toast/src"
+      ],
+      "@daffodil/design/tree": [
+        "libs/design/tree/src"
+      ],
+    }
+  }
+}
