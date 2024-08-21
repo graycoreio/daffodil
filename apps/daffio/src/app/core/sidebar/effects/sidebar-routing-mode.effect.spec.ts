@@ -22,11 +22,7 @@ import {
 import { Observable } from 'rxjs';
 
 import { DaffioSidebarRoutingModeEffects } from './sidebar-routing-mode.effects';
-import {
-  ResetMode,
-  SetSidebarMode,
-  SetSidebarState,
-} from '../actions/sidebar.actions';
+import { SetSidebarState } from 'apps/demo/src/app/core/sidebar/actions/sidebar.actions';
 
 const configureStubNavigationAction = (snapshot: any): RouterNavigatedAction => ({
   type: ROUTER_NAVIGATED,
@@ -59,6 +55,7 @@ describe('Daffio | DaffioSidebarRoutingModeEffects', () => {
     });
 
     breakpointObserver = TestBed.inject(BreakpointObserver);
+    effects = TestBed.inject(DaffioSidebarRoutingModeEffects);
   });
 
   describe('when a ROUTER_NAVIGATED occurs to a route with a `sidebarMode` in its tree', () => {
@@ -77,9 +74,7 @@ describe('Daffio | DaffioSidebarRoutingModeEffects', () => {
         actions$ = hot( '--a', { a: action });
         spyOn(breakpointObserver, 'observe').and.returnValue(hot( '--a', { a: state }));
 
-        effects = new DaffioSidebarRoutingModeEffects(actions$, breakpointObserver);
-
-        expect(effects.changeModeWhenVisitingConfiguredRoute$()).toBeObservable(expected);
+        expect(effects.openOrCloseSidebar$).toBeObservable(expected);
       });
     });
 
@@ -92,9 +87,7 @@ describe('Daffio | DaffioSidebarRoutingModeEffects', () => {
         actions$ = hot( '--a', { a: action });
         spyOn(breakpointObserver, 'observe').and.returnValue(hot( '--a', { a: state }));
 
-        effects = new DaffioSidebarRoutingModeEffects(actions$, breakpointObserver);
-
-        expect(effects.changeModeWhenVisitingConfiguredRoute$()).toBeObservable(expected);
+        expect(effects.openOrCloseSidebar$).toBeObservable(expected);
       });
     });
   });
@@ -109,9 +102,7 @@ describe('Daffio | DaffioSidebarRoutingModeEffects', () => {
       actions$ = hot( '--a', { a: action });
       spyOn(breakpointObserver, 'observe').and.returnValue(hot( '--a', { a: state }));
 
-      effects = new DaffioSidebarRoutingModeEffects(actions$, breakpointObserver);
-
-      expect(effects.changeModeWhenVisitingConfiguredRoute$()).toBeObservable(expected);
+      expect(effects.openOrCloseSidebar$).toBeObservable(expected);
     });
   });
 });

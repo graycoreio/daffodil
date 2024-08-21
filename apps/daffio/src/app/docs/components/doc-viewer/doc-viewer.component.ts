@@ -9,10 +9,9 @@ import {
   SafeHtml,
 } from '@angular/platform-browser';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { Store } from '@ngrx/store';
 
-import { ToggleSidebar } from '../../../core/sidebar/actions/sidebar.actions';
-import { DAFFIO_DOCS_CONTENT_SIDEBAR_KIND } from '../../../core/sidebar/containers/docs-sidebar/docs-sidebar.component';
+import { DaffioSidebarService } from '../../../core/sidebar/services/sidebar.service';
+import { DAFFIO_DOCS_LIST_SIDEBAR_ID } from '../../containers/docs-list/sidebar.provider';
 import { DaffioDoc } from '../../models/doc';
 
 @Component({
@@ -24,7 +23,10 @@ import { DaffioDoc } from '../../models/doc';
 export class DaffioDocViewerComponent implements OnChanges {
   faBars = faBars;
 
-  constructor(private sanitizer: DomSanitizer, private store: Store<any>) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    private sidebarService: DaffioSidebarService,
+  ) {}
 
   /**
    * The doc to render
@@ -39,6 +41,6 @@ export class DaffioDocViewerComponent implements OnChanges {
   }
 
   open() {
-    this.store.dispatch(new ToggleSidebar(DAFFIO_DOCS_CONTENT_SIDEBAR_KIND));
+    this.sidebarService.open(DAFFIO_DOCS_LIST_SIDEBAR_ID);
   }
 }

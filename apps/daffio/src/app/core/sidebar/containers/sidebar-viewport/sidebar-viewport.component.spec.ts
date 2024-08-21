@@ -27,9 +27,8 @@ import {
 } from '@daffodil/router';
 
 import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
-import { DaffioRouterNamedViewsEnum } from '../../../../named-views/models/named-views.enum';
-import { CloseSidebar } from '../../actions/sidebar.actions';
-import * as fromSidebar from '../../reducers/index';
+import { CloseSidebar } from 'apps/demo/src/app/core/sidebar/actions/sidebar.actions';
+import { DaffioRouterNamedViewsEnum } from '../../../router/named-views/models/named-views.enum';
 
 @Component({ template: '' })
 class TestComponent {}
@@ -100,15 +99,6 @@ describe('DaffioSidebarViewportContainer', () => {
       daffSidebarViewport.backdropClicked.emit();
 
       expect(component.close).toHaveBeenCalledWith();
-    });
-  });
-
-  describe('ngOnInit', () => {
-    it('should initialize showSidebar$ to a false observable', () => {
-      component.ngOnInit();
-
-      const expected = cold('(a)', { a: false });
-      expect(component.showSidebar$).toBeObservable(expected);
     });
   });
 

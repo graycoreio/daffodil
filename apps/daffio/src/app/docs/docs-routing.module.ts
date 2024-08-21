@@ -4,10 +4,10 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
 import { DAFFIO_DOCS_GUIDE_DEFAULT } from './guides/guides-routing.module';
+import { DAFF_NAV_SIDEBAR_REGISTRATION } from '../core/nav/sidebar.provider';
 import { DaffioRoute } from '../core/router/route.type';
-import { DaffioDocsSidebarContainer } from '../core/sidebar/containers/docs-sidebar/docs-sidebar.component';
-import { DaffioRouterNamedViewsEnum } from '../named-views/models/named-views.enum';
 
 export const docsRoutes: Routes = [
   <DaffioRoute>{
@@ -18,8 +18,9 @@ export const docsRoutes: Routes = [
         { url: '/docs/packages', title: 'Packages' },
         { url: '/docs/api', title: 'API Index' },
       ],
-      daffNamedViews: {
-        [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioDocsSidebarContainer,
+      daffioSidebars: {
+        [DAFF_NAV_SIDEBAR_REGISTRATION.id]: DAFF_NAV_SIDEBAR_REGISTRATION,
+        [DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION.id]: DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION,
       },
     },
     children: [

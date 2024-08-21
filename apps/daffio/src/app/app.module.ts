@@ -21,8 +21,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { DaffioAppComponent } from './app.component';
 import { DaffioMarketingFooterComponentModule } from './core/footer/marketing-footer/marketing-footer.module';
 import { DaffioSimpleFooterComponentModule } from './core/footer/simple-footer/simple-footer.module';
-import { DaffioDocsSidebarContentComponentModule } from './core/sidebar/components/docs-sidebar-content/docs-sidebar-content.module';
-import { DaffioMarketingSidebarContentComponentModule } from './core/sidebar/components/marketing-sidebar-content/marketing-sidebar-content.module';
 import { DaffioSidebarFooterComponentModule } from './core/sidebar/components/sidebar-footer/sidebar-footer.module';
 import { DaffioSidebarHeaderComponentModule } from './core/sidebar/components/sidebar-header/sidebar-header.module';
 import { TemplateModule } from './core/template/template.module';
@@ -38,8 +36,6 @@ import { environment } from '../environments/environment';
     HttpClientModule,
 
     AppRoutingModule,
-    DaffioMarketingSidebarContentComponentModule,
-    DaffioDocsSidebarContentComponentModule,
     DaffioSidebarHeaderComponentModule,
     DaffioSidebarFooterComponentModule,
     DaffioSimpleFooterComponentModule,

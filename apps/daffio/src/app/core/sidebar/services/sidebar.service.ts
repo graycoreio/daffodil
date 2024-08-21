@@ -20,7 +20,7 @@ import {
 } from '@daffodil/design/sidebar';
 import { DaffRouterDataService } from '@daffodil/router';
 
-import { DAFFIO_NAV_LINKS_SIDEBAR_ID } from '../../nav/sidebar.provider';
+import { DAFFIO_NAV_SIDEBAR_ID } from '../../nav/header/sidebar-id';
 import { DaffioRoute } from '../../router/route.type';
 
 // TODO: add test
@@ -58,6 +58,6 @@ export class DaffioSidebarService extends DaffSidebarService {
     @Inject(SERVER_SAFE_BREAKPOINT_OBSERVER) private breakpointObserver: BreakpointObserver,
     private routerData: DaffRouterDataService<DaffioRoute['data']>,
   ) {
-    super(DAFFIO_NAV_LINKS_SIDEBAR_ID);
+    super(DAFFIO_NAV_SIDEBAR_ID);
   }
 }

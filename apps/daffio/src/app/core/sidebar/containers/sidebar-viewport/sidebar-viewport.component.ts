@@ -2,11 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
+  Signal,
 } from '@angular/core';
-import {
-  Store,
-  select,
-} from '@ngrx/store';
 import {
   combineLatest,
   map,
@@ -14,14 +11,12 @@ import {
 } from 'rxjs';
 
 import {
-  DaffSidebarMode,
+  daffSidebarIsFloatingMode,
   DaffSidebarModeEnum,
+  DaffSidebarRegistration,
 } from '@daffodil/design/sidebar';
-import { DaffRouterNamedViewService } from '@daffodil/router';
 
-import { DaffioRouterNamedViewsEnum } from '../../../../named-views/models/named-views.enum';
-import { CloseSidebar } from '../../actions/sidebar.actions';
-import * as fromDaffioSidebar from '../../reducers/index';
+import { DaffioSidebarService } from '../../services/sidebar.service';
 
 @Component({
   selector: 'daffio-sidebar-viewport-container',
@@ -30,38 +25,35 @@ import * as fromDaffioSidebar from '../../reducers/index';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioSidebarViewportContainer implements OnInit {
-  readonly sidebarHeaderNamedView = DaffioRouterNamedViewsEnum.SIDEBARHEADER;
-  readonly sidebarContentNamedView = DaffioRouterNamedViewsEnum.SIDEBARCONTENT;
-  readonly sidebarFooterNamedView = DaffioRouterNamedViewsEnum.SIDEBARFOOTER;
-
-  showSidebar$: Observable<boolean>;
-  mode$: Observable<DaffSidebarMode>;
+  showSidebar: Signal<boolean>;
+  mode$: Observable<DaffSidebarModeEnum>;
   showSidebarHeader$: Observable<boolean>;
   showSidebarFooter$: Observable<boolean>;
+  component$: Observable<DaffSidebarRegistration>;
 
   ngOnInit() {
-    this.showSidebar$ = this.store.pipe(select(fromDaffioSidebar.selectShowSidebar));
-    this.mode$ = this.store.pipe(select(fromDaffioSidebar.selectSidebarMode));
+    this.component$ = this.sidebarService.activeRegistration$;
+    this.showSidebar = this.sidebarService.isOpen;
+    this.mode$ = this.sidebarService.mode$;
     this.showSidebarHeader$ = combineLatest([
-      this.namedViewService.namedViews$,
+      this.component$,
       this.mode$,
     ]).pipe(
-      map(([namedViews, mode]) => !!namedViews[this.sidebarHeaderNamedView] && mode !== DaffSidebarModeEnum.SideFixed),
+      map(([component, mode]) => component?.header && daffSidebarIsFloatingMode(mode)),
     );
     this.showSidebarFooter$ = combineLatest([
-      this.namedViewService.namedViews$,
+      this.component$,
       this.mode$,
     ]).pipe(
-      map(([namedViews, mode]) => !!namedViews[this.sidebarFooterNamedView] && mode !== DaffSidebarModeEnum.SideFixed),
+      map(([component, mode]) => component?.footer && daffSidebarIsFloatingMode(mode)),
     );
   }
 
   constructor(
-    private store: Store<fromDaffioSidebar.State>,
-    private namedViewService: DaffRouterNamedViewService,
+    private sidebarService: DaffioSidebarService,
   ) { }
 
   close() {
-    this.store.dispatch(new CloseSidebar());
+    this.sidebarService.close();
   }
 }

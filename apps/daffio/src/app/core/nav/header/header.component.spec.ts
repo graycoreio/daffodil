@@ -9,15 +9,13 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   StoreModule,
   Store,
 } from '@ngrx/store';
 
 import { DaffioNavHeaderContainer } from './header.component';
-import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
-import * as fromSidebar from '../../sidebar/reducers/index';
+import { ToggleSidebar } from 'apps/demo/src/app/core/sidebar/actions/sidebar.actions';
 
 @Component({
   template: '<daffio-nav-header-container></daffio-nav-header-container>',
@@ -32,8 +30,6 @@ describe('DaffioNavHeaderContainer', () => {
   let component: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let daffioHeaderContainer: DaffioNavHeaderContainer;
-
-  let store: Store<fromSidebar.State>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -52,8 +48,6 @@ describe('DaffioNavHeaderContainer', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     component = fixture.componentInstance;
-    store = TestBed.inject(Store);
-    spyOn(store, 'dispatch');
     fixture.detectChanges();
 
     daffioHeaderContainer = fixture.debugElement.query(By.css('daffio-nav-header-container')).componentInstance;
