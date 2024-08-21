@@ -16,3 +16,5 @@ export {
   DaffSidebarSide,
   DaffSidebarSideEnum,
 } from './helper/sidebar-side';
+export * from './helper/is-docked-mode';
+export * from './helper/is-floating-mode';
