@@ -67,6 +67,5 @@ describe('DaffioDocsListComponent', () => {
     expect(anchorTags.length).toEqual(2);
     const buttons = fixture.debugElement.queryAll(By.css('button'));
     expect(buttons.length).toEqual(1);
-    console.log(fixture.debugElement.nativeElement.innerHTML);
   });
 });
