@@ -1,6 +1,0 @@
-@for (childDoc of children; track childDoc.id) {
-  <a [routerLink]="childDoc.path" class="daffio-api-list-children__item" >
-    <div class="daffio-api-list-children__item-name">{{ childDoc.title }}</div>
-    <label class="daffio-api-list-children__item-label {{ childDoc.docType }}">{{ childDoc.docType }}</label>
-  </a>
-}

@@ -9,17 +9,17 @@ import { RouterLink } from '@angular/router';
 import { DaffioApiReference } from '../../models/api-reference';
 
 @Component({
-  selector: 'daffio-api-list-children',
-  templateUrl: './api-list-children.component.html',
-  styleUrls: ['./api-list-children.component.scss'],
+  selector: 'daffio-api-list-section',
+  templateUrl: './api-list-section.component.html',
+  styleUrls: ['./api-list-section.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
     RouterLink,
   ],
 })
-export class DaffioApiListChildrenComponent {
-  @HostBinding('class.daffio-api-list-children') class = true;
+export class DaffioApiListSectionComponent {
+  @HostBinding('class.daffio-api-list-section') class = true;
 
   /**
    * A list of references for API documents.

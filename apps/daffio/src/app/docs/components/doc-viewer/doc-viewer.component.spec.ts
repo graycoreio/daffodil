@@ -11,7 +11,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { DaffArticleModule } from '@daffodil/design/article';
 
 import { DaffioDocViewerComponent } from './doc-viewer.component';
-import { DaffioApiListChildrenComponent } from '../../api/components/api-list-children/api-list-children.component';
+import { DaffioApiListSectionComponent } from '../../api/components/api-list-section/api-list-section.component';
 import { DaffioApiReference } from '../../api/models/api-reference';
 import { DaffioDoc } from '../../models/doc';
 import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
@@ -35,7 +35,7 @@ describe('DaffioDocViewerComponent', () => {
         RouterTestingModule,
         DaffArticleModule,
         DaffioDocsTableOfContentsModule,
-        DaffioApiListChildrenComponent,
+        DaffioApiListSectionComponent,
       ],
       declarations: [
         WrapperComponent,
@@ -86,7 +86,7 @@ describe('DaffioDocViewerComponent', () => {
     });
 
     it('should render the package doc children', () => {
-      const apiChildren: DaffioApiListChildrenComponent = fixture.debugElement.query(By.directive(DaffioApiListChildrenComponent)).componentInstance;
+      const apiChildren: DaffioApiListSectionComponent = fixture.debugElement.query(By.directive(DaffioApiListSectionComponent)).componentInstance;
       expect(apiChildren.children).toEqual((<DaffioApiReference>wrapper.doc).children);
     });
   });

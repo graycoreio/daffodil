@@ -15,7 +15,7 @@ import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioApiListComponent } from './api-list.component';
 import { DaffioApiReference } from '../../models/api-reference';
-import { DaffioApiListChildrenComponent } from '../api-list-children/api-list-children.component';
+import { DaffioApiListSectionComponent } from '../api-list-section/api-list-section.component';
 
 @Component({ template: '<daffio-api-list [apiList]="apiListValue"></daffio-api-list>' })
 class WrapperComponent {
@@ -65,7 +65,7 @@ describe('DaffioApiListComponent', () => {
       imports: [
         RouterTestingModule,
         DaffContainerModule,
-        DaffioApiListChildrenComponent,
+        DaffioApiListSectionComponent,
       ],
       declarations: [
         WrapperComponent,

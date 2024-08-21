@@ -1,7 +1,7 @@
 @use '../../../../../scss/type-descriptors/mixins' as type-mixin;
 @use 'utilities' as daff;
 
-$api-list-children-item-border-radius: 4px;
+$api-list-section-item-border-radius: 4px;
 
 :host {
   display: grid;
@@ -21,11 +21,12 @@ $api-list-children-item-border-radius: 4px;
 	}
 }
 
-.daffio-api-list-children {
+.daffio-api-list-section {
 	&__item {
 		display: flex;
 		align-items: center;
-		border-radius: $api-list-children-item-border-radius;
+		border-radius: $api-list-section-item-border-radius;
+		font-weight: normal;
 		justify-content: space-between;
 		overflow: hidden;
 		padding: 8px;
@@ -33,7 +34,7 @@ $api-list-children-item-border-radius: 4px;
 
 		&::after {
 			content: '';
-			border-radius: $api-list-children-item-border-radius;
+			border-radius: $api-list-section-item-border-radius;
 			position: absolute;
 			left: 0;
 			top: 0;

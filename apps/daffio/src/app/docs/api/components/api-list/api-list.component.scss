@@ -4,6 +4,7 @@
 :host {
 	display: flex;
 	flex-direction: column;
+	gap: 48px;
 
 	a {
 		text-decoration: none;
@@ -14,18 +15,13 @@
 	&__package {
 		display: flex;
 		flex-direction: column;
-		margin: 0 0 48px;
-
-		&:last-child {
-			margin: 0;
-		}
+		gap: 24px;
 	}
 
 	&__package-name {
 		font-size: 1.125rem;
 		font-weight: 600;
 		line-height: 1.375rem;
-		margin: 0 0 24px;
 
 		@include daff.breakpoint(mobile) {
 			font-size: 1.25rem;

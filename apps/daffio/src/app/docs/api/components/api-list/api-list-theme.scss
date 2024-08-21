@@ -19,16 +19,5 @@
 				color: daff-theme.daff-illuminate($base-contrast, $neutral, 3);
 			}
 		}
-
-		&__item {
-			&:focus {
-				box-shadow: 0 0 0 4px rgba($base-contrast, 0.1);
-				outline: none;
-			}
-
-			&:after {
-				background: daff-theme.daff-illuminate($base, $neutral, 2);
-			}
-		}
 	}
 }

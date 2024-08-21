@@ -7,16 +7,16 @@ import {
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffioApiListChildrenComponent } from './api-list-children.component';
+import { DaffioApiListSectionComponent } from './api-list-section.component';
 import { DaffioApiReference } from '../../models/api-reference';
 
 @Component({
   template: `
-    <daffio-api-list-children [children]="apiListValue"></daffio-api-list-children>
+    <daffio-api-list-section [children]="apiListValue"></daffio-api-list-section>
   `,
   standalone: true,
   imports: [
-    DaffioApiListChildrenComponent,
+    DaffioApiListSectionComponent,
   ],
 })
 class WrapperComponent {
@@ -40,10 +40,10 @@ class WrapperComponent {
   ];
 }
 
-describe('DaffioApiListChildrenComponent', () => {
+describe('DaffioApiListSectionComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let component: DaffioApiListChildrenComponent;
+  let component: DaffioApiListSectionComponent;
   let links;
 
   beforeEach(waitForAsync(() => {
@@ -61,7 +61,7 @@ describe('DaffioApiListChildrenComponent', () => {
     wrapper = fixture.componentInstance;
     fixture.detectChanges();
 
-    component = fixture.debugElement.query(By.css('daffio-api-list-children')).componentInstance;
+    component = fixture.debugElement.query(By.css('daffio-api-list-section')).componentInstance;
     links = fixture.debugElement.queryAll(By.css('a'));
   });
 
