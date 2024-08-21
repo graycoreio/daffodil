@@ -5,11 +5,11 @@
 Right now, `@daffodil/navigation` currently supports both a Magento driver and an in-memory driver (only outputs a shallow trees) for local development.
 
 ## Installation
-To install `@daffodil/navigation`, use the following commands in the terminal.
+To install `@daffodil/navigation`, use the following commands in your terminal.
 
 Install with npm:
 ```bash
-npm install @daffodil/navigation
+npm install @daffodil/navigation --save
 ```
 
 Install with yarn:

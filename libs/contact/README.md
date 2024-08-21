@@ -5,17 +5,17 @@
 It supports drivers for a variety of ecommerce platforms, simplifying the process of integrating your UI with your platform's contact features. <!-- talk about supported platforms -->
 
 ## Installation
-To install `@daffodil/contact` and its dependencies, use the following commands in the terminal.
+To install `@daffodil/contact`, use the following commands in your terminal.
 
 Install with npm:
 ```bash
-npm install @daffodil/contact @daffodil/core @ngrx/store @ngrx/effects --save
+npm install @daffodil/contact --save
 ```
 
 Install with yarn:
 
 ```bash
-yarn add @daffodil/contact @daffodil/core @ngrx/store @ngrx/effects
+yarn add @daffodil/contact
 ```
 
 > After installing, an ecommerce platform driver needs to be set up. We highly recommend installing the [in-memory web api](./guides/drivers.md) for fast, out-of-the-box development.

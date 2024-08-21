@@ -5,16 +5,16 @@
 It's useful when you are trying to generate "user-friendly" routes in external applications and want to resolve them by their "user-friendly" uri, like `sweatshirts`, instead of paths such as `category/6` or `category/sweatshirts`.
 
 ## Installation
-To install `@daffodil/external-router` and its dependencies, use the following commands in the terminal.
+To install `@daffodil/external-router`, use the following commands in your terminal.
 
 Install with npm:
 ```bash
-npm install @daffodil/external-router @daffodil/core --save
+npm install @daffodil/external-router --save
 ```
 
 Install with yarn:
 ```bash
-yarn add @daffodil/external-router @daffodil/core
+yarn add @daffodil/external-router
 ```
 
 ## Usage
