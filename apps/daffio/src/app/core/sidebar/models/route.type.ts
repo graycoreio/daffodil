@@ -6,7 +6,7 @@ import {
 } from '@daffodil/design/sidebar';
 
 export interface DaffioRouteWithSidebars extends Route {
-  data: Route['data'] & {
+  data?: Route['data'] & {
     /**
      * A collection of sidebars available on the current page.
      */
