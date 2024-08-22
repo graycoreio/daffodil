@@ -4,10 +4,9 @@ import {
   RouterModule,
 } from '@angular/router';
 
-import { DaffRouteWithNamedViews } from '@daffodil/router';
-
 import { DaffioMarketingFooterComponent } from './core/footer/marketing-footer/marketing-footer.component';
-import { DaffioMarketingHeaderContainer } from './core/header/containers/marketing-header/marketing-header.component';
+import { DaffioNavHeaderContainer } from './core/nav/header/header.component';
+import { DaffioRoute } from './core/router/route.type';
 import { DaffioMarketingSidebarContentComponent } from './core/sidebar/components/marketing-sidebar-content/marketing-sidebar-content.component';
 import { DaffioSidebarFooterComponent } from './core/sidebar/components/sidebar-footer/sidebar-footer.component';
 import { DaffioSidebarHeaderComponent } from './core/sidebar/components/sidebar-header/sidebar-header.component';
@@ -17,17 +16,23 @@ import { DaffioRouterNamedViewsEnum } from './named-views/models/named-views.enu
 
 
 export const appRoutes: Routes = [
-  {
+  <DaffioRoute>{
     path: '',
     component: TemplateComponent,
     data: {
       daffNamedViews: {
+        [DaffioRouterNamedViewsEnum.NAV]: DaffioNavHeaderContainer,
         [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: DaffioSidebarHeaderComponent,
         [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: DaffioSidebarFooterComponent,
       },
+      daffioNavLinks: [
+        { url: '/why-pwa', title: 'Why PWA' },
+        { url: '/docs', title: 'Docs' },
+        { url: 'https://github.com/sponsors/graycoreio', title: 'Sponsor', external: true },
+      ],
     },
     children: [
-      <DaffRouteWithNamedViews>{
+      <DaffioRoute>{
         path: '',
         children: [
           { path: '', pathMatch: 'full', loadChildren: () => import('./content/home/home.module').then(m => m.DaffioHomeModule) },
@@ -37,7 +42,6 @@ export const appRoutes: Routes = [
         ],
         data: {
           daffNamedViews: {
-            [DaffioRouterNamedViewsEnum.NAV]: DaffioMarketingHeaderContainer,
             [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioMarketingSidebarContentComponent,
             [DaffioRouterNamedViewsEnum.FOOTER]: DaffioMarketingFooterComponent,
           },

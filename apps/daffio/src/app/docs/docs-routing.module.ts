@@ -4,19 +4,21 @@ import {
   RouterModule,
 } from '@angular/router';
 
-import { DaffRouteWithNamedViews } from '@daffodil/router';
-
 import { DAFFIO_DOCS_GUIDE_DEFAULT } from './guides/guides-routing.module';
-import { DaffioDocsHeaderContainer } from '../core/header/containers/docs-header/docs-header.component';
+import { DaffioRoute } from '../core/router/route.type';
 import { DaffioDocsSidebarContainer } from '../core/sidebar/containers/docs-sidebar/docs-sidebar.component';
 import { DaffioRouterNamedViewsEnum } from '../named-views/models/named-views.enum';
 
 export const docsRoutes: Routes = [
-  <DaffRouteWithNamedViews>{
+  <DaffioRoute>{
     path: '',
     data: {
+      daffioNavLinks: [
+        { url: '/docs/guides', title: 'Guides' },
+        { url: '/docs/packages', title: 'Packages' },
+        { url: '/docs/api', title: 'API Reference' },
+      ],
       daffNamedViews: {
-        [DaffioRouterNamedViewsEnum.NAV]: DaffioDocsHeaderContainer,
         [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioDocsSidebarContainer,
       },
     },

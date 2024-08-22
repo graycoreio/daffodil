@@ -15,17 +15,23 @@ import {
   Store,
 } from '@ngrx/store';
 
-import { DaffioMarketingHeaderContainer } from './marketing-header.component';
-import { ToggleSidebar } from '../../../../core/sidebar/actions/sidebar.actions';
-import * as fromSidebar from '../../../../core/sidebar/reducers/index';
+import { DaffioNavHeaderContainer } from './header.component';
+import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
+import * as fromSidebar from '../../sidebar/reducers/index';
 
-@Component({ template: '<daffio-marketing-header-container></daffio-marketing-header-container>' })
+@Component({
+  template: '<daffio-nav-header-container></daffio-nav-header-container>',
+  standalone: true,
+  imports: [
+    DaffioNavHeaderContainer,
+  ],
+})
 class WrapperComponent {}
 
-describe('DaffioMarketingHeaderContainer', () => {
+describe('DaffioNavHeaderContainer', () => {
   let component: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let daffioMarketingHeaderContainer: DaffioMarketingHeaderContainer;
+  let daffioHeaderContainer: DaffioNavHeaderContainer;
 
   let store: Store<fromSidebar.State>;
 
@@ -34,11 +40,7 @@ describe('DaffioMarketingHeaderContainer', () => {
       imports: [
         StoreModule.forRoot({}),
         RouterTestingModule,
-        FontAwesomeModule,
-      ],
-      declarations: [
         WrapperComponent,
-        DaffioMarketingHeaderContainer,
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
@@ -54,7 +56,7 @@ describe('DaffioMarketingHeaderContainer', () => {
     spyOn(store, 'dispatch');
     fixture.detectChanges();
 
-    daffioMarketingHeaderContainer = fixture.debugElement.query(By.css('daffio-marketing-header-container')).componentInstance;
+    daffioHeaderContainer = fixture.debugElement.query(By.css('daffio-nav-header-container')).componentInstance;
   });
 
   it('should create', () => {
