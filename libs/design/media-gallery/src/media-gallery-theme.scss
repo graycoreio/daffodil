@@ -11,14 +11,14 @@
 		.daff-thumbnail {
 			border: 1px solid transparent;
 
-			&--selected {
+			&.daff-selected {
 				border: 1px solid theming.daff-color($neutral);
 			}
 		}
 
 		&.daff-skeleton {
 			.daff-thumbnail {
-				&--selected {
+				&.daff-selected {
 					border: none;
 				}
 			}
