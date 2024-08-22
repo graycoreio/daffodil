@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { DaffioHomeViewComponent } from './home-view.component';
-import { DaffioMarketingHeaderContainerModule } from '../../../core/header/containers/marketing-header/marketing-header.module';
 import { DaffioHomeCalloutPlatformsComponentModule } from '../components/home-callout-platforms/home-callout-platforms.module';
 import { DaffioHomeCalloutPwaComponentModule } from '../components/home-callout-pwa/home-callout-pwa.module';
 import { DaffioHomeHeroComponentModule } from '../components/home-hero/home-hero.module';
@@ -16,7 +15,6 @@ import { DaffioHomeHeroComponentModule } from '../components/home-hero/home-hero
     DaffioHomeHeroComponentModule,
     DaffioHomeCalloutPwaComponentModule,
     DaffioHomeCalloutPlatformsComponentModule,
-    DaffioMarketingHeaderContainerModule,
   ],
   declarations: [
     DaffioHomeViewComponent,
