@@ -3,10 +3,17 @@
 	<div>Menu</div>
 </button>
 <div class="daffio-doc-viewer__grid">
-	<daff-article
-		class="daffio-doc-viewer__content"
-		[innerHtml]="sanitizedContent">
-	</daff-article>
+  @if (isApiPackage) {
+    <div class="daffio-doc-viewer__content">
+      <h1 class="daffio-doc-viewer__title">{{doc.title}}</h1>
+	    <daffio-api-list-section [children]="doc.children"></daffio-api-list-section>
+    </div>
+  } @else {
+    <daff-article
+      class="daffio-doc-viewer__content"
+      [innerHtml]="getInnerHtml(doc)">
+    </daff-article>
+  }
 	<daffio-docs-table-of-contents
 		*ngIf="doc.tableOfContents"
 		class="daffio-doc-viewer__table-of-contents"

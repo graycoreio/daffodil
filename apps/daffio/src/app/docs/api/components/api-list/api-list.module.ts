@@ -2,14 +2,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DaffContainerModule } from '@daffodil/design/container';
-
 import { DaffioApiListComponent } from './api-list.component';
+import { DaffioApiListSectionComponent } from '../api-list-section/api-list-section.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    DaffContainerModule,
+    DaffioApiListSectionComponent,
     RouterModule,
   ],
   declarations: [

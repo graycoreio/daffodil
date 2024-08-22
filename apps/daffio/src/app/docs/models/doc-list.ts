@@ -5,6 +5,7 @@ export interface DaffioGenericDocList<T extends DaffioGenericDocList<T>> {
   id: string;
   title: string;
   path?: string;
+  tableOfContents?: string;
   children: T[];
 }
 

@@ -4,6 +4,7 @@
 @use '../app/core/footer/sub-footer/sub-footer-theme' as sub-footer;
 @use '../app/docs/components/table-of-contents/table-of-contents-theme' as toc;
 @use '../app/docs/api/components/api-list/api-list-theme' as api-list;
+@use '../app/docs/api/components/api-list-section/api-list-section-theme' as api-list-section;
 @use '../app/newsletter/newsletter-theme' as newsletter;
 @use '../app/core/sidebar/components/sidebar-footer/sidebar-footer-theme' as sidebar-footer;
 
@@ -14,6 +15,7 @@
 	@include feature-comparison.daffio-feature-comparison-theme($theme);
 	@include toc.daffio-table-of-contents-theme($theme);
 	@include api-list.daffio-api-list-theme($theme);
+	@include api-list-section.daffio-api-list-section-theme($theme);
 	@include newsletter.daffio-newsletter-theme($theme);
 	@include sidebar-footer.daffio-sidebar-footer-theme($theme);
 }

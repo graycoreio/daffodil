@@ -32,7 +32,7 @@ export const transformApiNavList: GenerateNavListProcessor['transform'] = (docs:
     .map(doc => getPackageInfo(doc)),
 });
 
-function getPackageInfo(packageDoc): DaffDocsApiNavigationList {
+export function getPackageInfo(packageDoc): DaffDocsApiNavigationList {
   return {
     ...getExportInfo(packageDoc),
     title: packageDoc.name,
@@ -48,7 +48,7 @@ function getExportInfo(exportDoc): DaffDocsApiNavigationList {
   return {
     id: exportDoc.id,
     title: exportDoc.name,
-    path: `/${exportDoc.path}`,
+    path: `${exportDoc.path[0] === '/' ? '' : '/'}${exportDoc.path}`,
     docType: getDocType(exportDoc),
     docTypeShorthand: exportDoc.docType.charAt(0),
     children: [],
