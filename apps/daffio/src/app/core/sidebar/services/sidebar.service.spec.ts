@@ -13,9 +13,8 @@ import {
 import { DaffRouterDataService } from '@daffodil/router';
 
 import { DaffioSidebarService } from './sidebar.service';
-import { DAFFIO_NAV_LINKS_SIDEBAR_ID } from '../../nav/sidebar.provider';
+import { DAFFIO_NAV_SIDEBAR_ID } from '../../nav/header/sidebar-id';
 import { DaffioRoute } from '../../router/route.type';
-
 
 describe('DaffioSidebarService', () => {
   let service: DaffioSidebarService;
@@ -80,11 +79,11 @@ describe('DaffioSidebarService', () => {
 
     beforeEach(() => {
       testRegistration = {
-        id: DAFFIO_NAV_LINKS_SIDEBAR_ID,
+        id: DAFFIO_NAV_SIDEBAR_ID,
       };
       dataSpy.next({
         daffioSidebars: {
-          [DAFFIO_NAV_LINKS_SIDEBAR_ID]: testRegistration,
+          [DAFFIO_NAV_SIDEBAR_ID]: testRegistration,
         },
       });
     });

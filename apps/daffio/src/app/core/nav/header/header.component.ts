@@ -10,7 +10,6 @@ import {
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { Store } from '@ngrx/store';
 import {
   Observable,
   map,
@@ -21,9 +20,10 @@ import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffRouterDataService } from '@daffodil/router';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
+import { DAFFIO_NAV_SIDEBAR_ID } from './sidebar-id';
 import { DaffioHeaderComponentModule } from '../../header/components/header.module';
-import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
-import { DaffioRouteWithNavLinks } from '../link/route.type';
+import { DaffioRoute } from '../../router/route.type';
+import { DaffioSidebarService } from '../../sidebar/services/sidebar.service';
 import { DaffioNavLink } from '../link/type';
 
 @Component({
@@ -49,9 +49,8 @@ export class DaffioNavHeaderContainer implements OnInit {
   links$: Observable<Array<DaffioNavLink>>;
 
   constructor(
-    private routerData: DaffRouterDataService<DaffioRouteWithNavLinks['data']>,
-    // TODO: don't keep me in rebase
-    private store: Store,
+    private routerData: DaffRouterDataService<DaffioRoute['data']>,
+    private sidebarService: DaffioSidebarService,
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +60,6 @@ export class DaffioNavHeaderContainer implements OnInit {
   }
 
   openSidebar() {
-    this.store.dispatch(new ToggleSidebar());
+    this.sidebarService.open(DAFFIO_NAV_SIDEBAR_ID);
   }
 }

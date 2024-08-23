@@ -1,12 +1,14 @@
 <daff-sidebar-viewport (backdropClicked)="close()">
-  <daff-sidebar class="daffio-sidebar" [mode]="mode$ | async" [open]="showSidebar$ | async" (escapePressed)="close()">
-    <daff-sidebar-header *ngIf="showSidebarHeader$ | async">
-      <ng-container [daffRouterNamedViewOutlet]="sidebarHeaderNamedView"></ng-container>
-    </daff-sidebar-header>
-    <ng-container [daffRouterNamedViewOutlet]="sidebarContentNamedView"></ng-container>
-    <daff-sidebar-footer *ngIf="showSidebarFooter$ | async">
-      <ng-container [daffRouterNamedViewOutlet]="sidebarFooterNamedView"></ng-container>
-    </daff-sidebar-footer>
+  <daff-sidebar class="daffio-sidebar" [mode]="mode$ | async" [open]="showSidebar()" (escapePressed)="close()">
+    @if (showSidebarHeader$ | async) {
+      <ng-container [ngComponentOutlet]="(component$ | async)?.header" ngProjectAs="daff-sidebar-header"></ng-container>
+    }
+    @if ((component$ | async)?.body; as body) {
+      <ng-container [ngComponentOutlet]="body"></ng-container>
+    }
+    @if (showSidebarFooter$ | async) {
+      <ng-container [ngComponentOutlet]="(component$ | async)?.footer" ngProjectAs="daff-sidebar-footer"></ng-container>
+    }
   </daff-sidebar>
   <ng-container daff-sidebar-viewport-nav>
     <ng-content select="[daff-sidebar-viewport-nav]"></ng-content>

@@ -6,14 +6,10 @@ import {
 
 import { DaffioMarketingFooterComponent } from './core/footer/marketing-footer/marketing-footer.component';
 import { DaffioNavHeaderContainer } from './core/nav/header/header.component';
+import { DAFF_NAV_SIDEBAR_REGISTRATION } from './core/nav/sidebar.provider';
+import { DaffioRouterNamedViewsEnum } from './core/router/named-views/models/named-views.enum';
 import { DaffioRoute } from './core/router/route.type';
-import { DaffioMarketingSidebarContentComponent } from './core/sidebar/components/marketing-sidebar-content/marketing-sidebar-content.component';
-import { DaffioSidebarFooterComponent } from './core/sidebar/components/sidebar-footer/sidebar-footer.component';
-import { DaffioSidebarHeaderComponent } from './core/sidebar/components/sidebar-header/sidebar-header.component';
 import { TemplateComponent } from './core/template/template.component';
-import { DaffioRouterNamedViewsEnum } from './named-views/models/named-views.enum';
-
-
 
 export const appRoutes: Routes = [
   <DaffioRoute>{
@@ -22,8 +18,9 @@ export const appRoutes: Routes = [
     data: {
       daffNamedViews: {
         [DaffioRouterNamedViewsEnum.NAV]: DaffioNavHeaderContainer,
-        [DaffioRouterNamedViewsEnum.SIDEBARHEADER]: DaffioSidebarHeaderComponent,
-        [DaffioRouterNamedViewsEnum.SIDEBARFOOTER]: DaffioSidebarFooterComponent,
+      },
+      daffioSidebars: {
+        [DAFF_NAV_SIDEBAR_REGISTRATION.id]: DAFF_NAV_SIDEBAR_REGISTRATION,
       },
       daffioNavLinks: [
         { url: '/why-pwa', title: 'Why PWA' },
@@ -42,16 +39,13 @@ export const appRoutes: Routes = [
         ],
         data: {
           daffNamedViews: {
-            [DaffioRouterNamedViewsEnum.SIDEBARCONTENT]: DaffioMarketingSidebarContentComponent,
             [DaffioRouterNamedViewsEnum.FOOTER]: DaffioMarketingFooterComponent,
           },
         },
       },
       {
-        path: '',
-        children: [
-          { path: 'docs', loadChildren: () => import('./docs/docs.module').then(m => m.DaffioDocsModule) },
-        ],
+        path: 'docs',
+        loadChildren: () => import('./docs/docs.module').then(m => m.DaffioDocsModule),
       },
       {
         path: 'packages/*',

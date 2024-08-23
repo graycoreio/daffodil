@@ -28,7 +28,7 @@ import { DaffioNavLink } from '../link/type';
     RouterLink,
   ],
 })
-export class DaffioNavLinksSidebarBodyComponent implements OnInit {
+export class DaffioNavSidebarBodyComponent implements OnInit {
   links$: Observable<Array<DaffioNavLink>>;
 
   constructor(
