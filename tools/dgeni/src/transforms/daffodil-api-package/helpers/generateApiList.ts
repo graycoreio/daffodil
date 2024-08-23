@@ -11,6 +11,25 @@ interface DaffDocsApiNavigationList {
   children: Array<DaffDocsApiNavigationList>;
 }
 
+const comparePackage = (aDoc: {name: string}, bDoc: {name: string}): -1 | 0 | 1 => {
+  const a = aDoc.name.split('/');
+  const b = bDoc.name.split('/');
+  // equalize array sizes with value that will always be sorted first
+  const size = Math.max(a.length, b.length);
+  const aSegs = a.concat(Array(size - a.length).fill(''));
+  const bSegs = b.concat(Array(size - b.length).fill(''));
+  return aSegs.reduce((acc, segment, i) =>
+    acc !== 0
+      ? acc
+      : segment < bSegs[i]
+        ? -1
+        : segment > bSegs[i]
+          ? 1
+          : 0,
+    <-1 | 0 | 1>0,
+  );
+};
+
 export const transformApiNavList: GenerateNavListProcessor['transform'] = (docs: Array<Document>): DaffDocsApiNavigationList => ({
   id: '',
   title: '',
@@ -19,16 +38,8 @@ export const transformApiNavList: GenerateNavListProcessor['transform'] = (docs:
   docTypeShorthand: '',
   children: docs
     .filter(doc => doc.docType === 'package')
-  // sort alphabetically
-    .sort((a, b) => {
-      if (a.name < b.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
-      return 0;
-    })
+    // sort alphabetically
+    .sort(comparePackage)
     .map(doc => getPackageInfo(doc)),
 });
 
