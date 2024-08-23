@@ -2,6 +2,9 @@ import {
   Processor,
   Document,
 } from 'dgeni';
+import * as path from 'path';
+
+import { API_SOURCE_PATH } from '../transforms/config';
 
 export class PackagesProcessor implements Processor {
   name = 'packages';
@@ -17,6 +20,10 @@ export class PackagesProcessor implements Processor {
           .replace('/src', '')
           .replace(/^.*libs\//, '');
         doc.docType = 'package';
+        try {
+          const packageJson = require(path.resolve(API_SOURCE_PATH, doc.id, 'package.json'));
+          doc.description = packageJson.description;
+        } catch {}
         // The name is actually the full id
         doc.name = this.nameComputer(doc.id);
       }
