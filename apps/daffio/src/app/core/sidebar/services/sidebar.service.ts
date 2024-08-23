@@ -23,11 +23,18 @@ import { DaffRouterDataService } from '@daffodil/router';
 import { DAFFIO_NAV_LINKS_SIDEBAR_ID } from '../../nav/sidebar.provider';
 import { DaffioRoute } from '../../router/route.type';
 
-// TODO: add test
+/**
+ * A sidebar service that handles the mode logic and pulling the active registration from {@link DaffioRouteWithSidebars#data#daffioSidebars}.
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class DaffioSidebarService extends DaffSidebarService {
+  /**
+   * The sidebar mode.
+   * In big tablet, it will use the sidebar mode from {@link DaffioRouteWithSidebars#data#sidebarMode}, if defined, side-fixed otherwise.
+   * In a viewport smaller than big tablet it will be under.
+   */
   readonly mode$ = combineLatest([
     this.routerData.data$,
     this.breakpointObserver.observe(DaffBreakpoints.BIG_TABLET).pipe(
@@ -42,6 +49,10 @@ export class DaffioSidebarService extends DaffSidebarService {
     ),
     distinctUntilChanged(),
   );
+
+  /**
+   * The sidebar registration currently activated by `open` or {@link DAFFIO_NAV_LINKS_SIDEBAR_ID}.
+   */
   readonly activeRegistration$ = combineLatest([
     this.id$.pipe(
       filter((id) => !!id),
