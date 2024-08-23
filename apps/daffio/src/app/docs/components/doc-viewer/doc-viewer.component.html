@@ -6,6 +6,7 @@
   @if (isApiPackage) {
     <div class="daffio-doc-viewer__content">
       <h1 class="daffio-doc-viewer__title">{{doc.title}}</h1>
+      <p>{{doc.description}}</p>
 	    <daffio-api-list-section [children]="doc.children"></daffio-api-list-section>
     </div>
   } @else {
