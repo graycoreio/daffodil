@@ -12,7 +12,7 @@ import { By } from '@angular/platform-browser';
 import { DaffBreadcrumbItemDirective } from './breadcrumb-item.directive';
 
 @Component({
-  template: `<div daffBreadcrumbItem [active]="active">Breadcrumb Item</div>`,
+  template: `<li daffBreadcrumbItem [active]="active">Breadcrumb Item</li>`,
   standalone: true,
   imports: [
     DaffBreadcrumbItemDirective,
@@ -49,7 +49,7 @@ describe('DaffBreadcrumbItemDirective', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('[daffBreadcrumbItem]', () => {
+  describe('li[daffBreadcrumbItem]', () => {
     it('should add a class of "daff-breadcrumb__item" to the host element', () => {
       expect(de.classes).toEqual(jasmine.objectContaining({
         'daff-breadcrumb__item': true,

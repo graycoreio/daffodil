@@ -6,6 +6,7 @@ import {
 
 import { ACCORDION_EXAMPLES } from '@daffodil/design/accordion/examples';
 import { ARTICLE_EXAMPLES } from '@daffodil/design/article/examples';
+import { BREADCRUMB_EXAMPLES } from '@daffodil/design/breadcrumb/examples';
 import { BUTTON_EXAMPLES } from '@daffodil/design/button/examples';
 import { CALLOUT_EXAMPLES } from '@daffodil/design/callout/examples';
 import { CARD_EXAMPLES } from '@daffodil/design/card/examples';
@@ -44,6 +45,7 @@ export class DesignLandAppComponent {
     [
       ...ARTICLE_EXAMPLES,
       ...ACCORDION_EXAMPLES,
+      ...BREADCRUMB_EXAMPLES,
       ...BUTTON_EXAMPLES,
       ...RADIO_EXAMPLES,
       ...CARD_EXAMPLES,

@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[daffBreadcrumbItem]',
+  selector: 'li[daffBreadcrumbItem]',
   standalone: true,
 })
 export class DaffBreadcrumbItemDirective {
