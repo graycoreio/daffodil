@@ -7,13 +7,22 @@
 
 	.daffio-api-list-section {
 		&__item {
+			color: $base-contrast;
+
 			&:focus {
 				box-shadow: 0 0 0 4px rgba($base-contrast, 0.1);
 				outline: none;
 			}
 
-			&:after {
+			&::after {
 				background: daff-theme.daff-illuminate($base, $neutral, 2);
+				opacity: 0;
+			}
+
+			&:hover {
+				&::after {
+					opacity: 1;
+				}
 			}
 		}
 	}

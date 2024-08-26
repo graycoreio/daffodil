@@ -6,6 +6,7 @@ interface DaffDocsApiNavigationList {
   id: string;
   title: string;
   path: string;
+  description?: string;
   docType: string;
   docTypeShorthand: string;
   children: Array<DaffDocsApiNavigationList>;
@@ -47,6 +48,7 @@ export function getPackageInfo(packageDoc): DaffDocsApiNavigationList {
   return {
     ...getExportInfo(packageDoc),
     title: packageDoc.name,
+    description: packageDoc.description,
     docType: 'package',
     docTypeShorthand: 'pk',
     children: packageDoc.exports
