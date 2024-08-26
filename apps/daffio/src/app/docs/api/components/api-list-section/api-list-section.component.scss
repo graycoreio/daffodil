@@ -25,6 +25,7 @@ $api-list-section-item-border-radius: 4px;
 	&__item {
 		display: flex;
 		align-items: center;
+		gap: 16px;
 		border-radius: $api-list-section-item-border-radius;
 		font-weight: normal;
 		justify-content: space-between;
@@ -40,15 +41,12 @@ $api-list-section-item-border-radius: 4px;
 			top: 0;
 			height: 100%;
 			width: 100%;
-			opacity: 0;
 			transition: opacity 300ms;
 			z-index: 1;
 		}
 
 		&:hover {
-			&::after {
-				opacity: 1;
-			}
+			text-decoration: none;
 		}
 	}
 
@@ -58,9 +56,8 @@ $api-list-section-item-border-radius: 4px;
 
 	&__item-label {
 		@include type-mixin.type-label();
-		height: 1.5rem;
+		flex: 0 0 auto;
 		padding: 4px;
-		margin-left: 16px;
 	}
 
 	&__item-name,
