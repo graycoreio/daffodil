@@ -15,6 +15,4 @@ import { DAFF_BREADCRUMB_COMPONENTS } from '@daffodil/design/breadcrumb';
     DAFF_BREADCRUMB_COMPONENTS,
   ],
 })
-export class BasicBreadcrumbComponent {
-
-}
+export class BasicBreadcrumbComponent {}
