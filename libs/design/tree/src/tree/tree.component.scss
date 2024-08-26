@@ -9,7 +9,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  --tree-padding: 16px;
+  --tree-padding: 1rem;
 
   li.hidden {
     display: none;
@@ -23,7 +23,7 @@
   position: relative;
   background: none;
   border: 0;
-  padding: 8px 16px 8px 0;
+  padding: 0.5rem 1rem 0.5rem 0;
   line-height: 1.5rem;
   font-weight: 400;
   text-align: left;
@@ -37,7 +37,7 @@
     top: 0;
     bottom: 0;
     left: 0;
-    width: 4px;
+    width: 0.25rem;
   }
 
   &:focus,
@@ -49,19 +49,20 @@
     font-weight: 600;
   }
 
-  &__parent {
+  &.parent {
     position: relative;
+    padding-right: 2.5rem;
 
     &::after {
       content: '';
       position: absolute;
       top: 48%;
-      right: 16px;
+      right: 1rem;
       display: inline-block;
       border-right: 2px solid currentColor;
       border-bottom: 2px solid currentColor;
-      width: 8px;
-      height: 8px;
+      width: 0.5rem;
+      height: 0.5rem;
       transform: translateY(-50%) rotate(45deg);
       transition: transform 150ms;
     }

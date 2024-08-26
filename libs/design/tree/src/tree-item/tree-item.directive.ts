@@ -48,7 +48,7 @@ export class DaffTreeItemDirective {
    *
    * @docs-private
    */
-  @HostBinding('class.daff-tree-item__parent') classParent = false;
+  @HostBinding('class.parent') classParent = false;
 
   /**
    * The html `id` of the tree item. This is derived from the {@link DaffTreeData}.
