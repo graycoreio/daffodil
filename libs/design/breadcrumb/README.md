@@ -30,7 +30,7 @@ To use breadcrumb in a module, import `DaffBreadcrumbModule` into your custom mo
 ```ts
 import { NgModule } from '@angular/core';
 
-import { DaffBreadcrumbModule } from './breadcrumb/breadcrumb.component';
+import { DaffBreadcrumbModule } from '@daffodil/design/breadcrumb';
 
 @NgModule({
 	declarations: [
