@@ -10,6 +10,7 @@ import { transformApiNavList } from './helpers/generateApiList';
 import { AddPackageExportsProcessor } from './processors/add-package-exports';
 import { RemoveDuplicatesProcessor } from './processors/remove-duplicates';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
+import { AddKindProcessor } from '../../processors/add-kind';
 import { AddInheritedDocsContentProcessor } from '../../processors/addInheritedDocsContent';
 import { AddLinkTagToDaffodilReferencesProcessor } from '../../processors/addLinkTagToDaffodilReferences';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
@@ -69,8 +70,9 @@ export const apiDocsBase = new Package('api-base', [
     readTypeScriptModules.basePath = API_SOURCE_PATH;
     readTypeScriptModules.hidePrivateMembers = true;
   })
-  .config((markdown: MarkdownCodeProcessor, EXPORT_DOC_TYPES) => {
+  .config((markdown: MarkdownCodeProcessor, EXPORT_DOC_TYPES, addKind: AddKindProcessor) => {
     markdown.docTypes.push(...EXPORT_DOC_TYPES);
+    addKind.docTypes.push(...EXPORT_DOC_TYPES);
     markdown.contentKey = 'description';
   })
   .config((computePathsProcessor, EXPORT_DOC_TYPES) => {
