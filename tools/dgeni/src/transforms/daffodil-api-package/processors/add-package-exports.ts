@@ -9,7 +9,7 @@ import { getPackageInfo } from '../helpers/generateApiList';
  * Adds exports info to API packages.
  */
 export class AddPackageExportsProcessor implements Processor {
-  readonly name = 'removeDuplicates';
+  readonly name = 'addPackageExports';
   readonly $runAfter = ['docs-processed'];
   readonly $runBefore = ['rendering-docs'];
 
