@@ -12,10 +12,7 @@ import { slugify } from 'markdown-toc';
 import { marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 
-import {
-  DAFF_DOC_KIND_PATH_SEGMENT_MAP,
-  DaffDocKind,
-} from '@daffodil/docs-utils';
+import { daffDocsGetLinkUrl } from '@daffodil/docs-utils';
 
 import { CollectLinkableSymbolsProcessor } from './collect-linkable-symbols';
 
@@ -26,34 +23,6 @@ hljs.registerLanguage('scss', scss);
 hljs.registerLanguage('bash', bash);
 hljs.registerLanguage('graphql', graphql);
 hljs.registerLanguage('gql', graphql);
-
-const DOC_KIND_REGEX = {
-  [DaffDocKind.GUIDE]: /\/docs\/guides\/(?<path>.+)\.md/,
-  [DaffDocKind.EXPLANATION]: /\/docs\/explanations\/(?<path>.+)\.md/,
-  [DaffDocKind.PACKAGE]: /\/libs\/(?<path>.+)\.md/,
-  [DaffDocKind.API]: /\/libs\/(?<path>.+)\.ts/,
-};
-const getLinkUrl = (path: string): string => {
-  const kind = (<Array<keyof typeof DOC_KIND_REGEX>>Object.keys(DOC_KIND_REGEX)).find((k) => DOC_KIND_REGEX[k].test(path));
-  const match = DOC_KIND_REGEX[kind]?.exec(path);
-
-  if (!match) {
-    return path;
-  }
-
-  switch (kind) {
-    case DaffDocKind.GUIDE:
-    case DaffDocKind.EXPLANATION:
-    case DaffDocKind.API:
-      return `/docs/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/${match.groups.path}`;
-
-    case DaffDocKind.PACKAGE:
-      return `/docs/packages/${match.groups.path}`.replaceAll(/\/(?:readme|src|guides)/gi, '');
-
-    default:
-      return path;
-  }
-};
 
 // marked.use(markedMermaid);
 marked.use(
@@ -70,7 +39,7 @@ marked.use({
   walkTokens: (token) => {
     switch (token.type) {
       case 'link':
-        token.href = getLinkUrl(token.href);
+        token.href = daffDocsGetLinkUrl(token.href);
         break;
 
       default:
