@@ -3,17 +3,13 @@ import {
   Document,
 } from 'dgeni';
 
-export class DesignExampleConvertToJsonProcessor implements Processor {
-  name = 'convertToJson';
-  $runBefore = ['writeFilesProcessor'];
-  docTypes = [];
+import { ConvertToJsonProcessor } from '../../../processors/convertToJson';
 
-  constructor(public log, public createDocMessage) {}
-
+export class DesignExampleConvertToJsonProcessor extends ConvertToJsonProcessor implements Processor {
   $process(docs: Document[]) {
     const docTypes = this.docTypes;
     docs.forEach((doc) => {
-      if (docTypes.indexOf(doc.docType) !== -1) {
+      if (docTypes.includes(doc.docType)) {
         doc.renderedContent = JSON.stringify({
           id: doc.id,
           docType: doc.docType,

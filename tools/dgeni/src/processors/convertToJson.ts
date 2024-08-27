@@ -7,13 +7,18 @@ export class ConvertToJsonProcessor implements Processor {
   name = 'convertToJson';
   $runBefore = ['writeFilesProcessor'];
   docTypes = [];
+  /**
+   * Extra doc fields to be copied into the written JSON document.
+   * Take care that these fields are serializable.
+   */
+  extraFields = [];
 
   constructor(public log, public createDocMessage) {}
 
   $process(docs: Document[]) {
     const docTypes = this.docTypes;
     docs.forEach((doc) => {
-      if (docTypes.indexOf(doc.docType) !== -1) {
+      if (docTypes.includes(doc.docType)) {
         const contents = doc.renderedContent || '';
 
         let title = doc.title;
@@ -34,7 +39,16 @@ export class ConvertToJsonProcessor implements Processor {
           this.log.warn(this.createDocMessage('Title property expected', doc));
         }
 
-        doc.renderedContent = JSON.stringify({ id: doc.path, title, contents, tableOfContents }, null, 2);
+        doc.renderedContent = JSON.stringify({
+          ...this.extraFields.reduce((acc, field) => {
+            acc[field] = doc[field];
+            return acc;
+          }, {}),
+          id: doc.path,
+          title,
+          contents,
+          tableOfContents,
+        }, null, 2);
       }
     });
   }
