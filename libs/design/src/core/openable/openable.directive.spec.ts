@@ -68,6 +68,7 @@ describe('@daffodil/design | DaffOpenableDirective', () => {
     expect(de.classes['daff-open']).toBeUndefined();
   });
 
+
   it('should emit true on toggled when reveal is called', () => {
     spyOn(wrapper, 'toggledFunction');
     directive.reveal();

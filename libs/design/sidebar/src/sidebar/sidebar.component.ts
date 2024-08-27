@@ -114,6 +114,8 @@ export class DaffSidebarComponent implements DaffOpenable {
     private openDirective: DaffOpenableDirective,
     @Inject(DOCUMENT) private _doc: any,
   ) {
+    this.openDirective.stateless = true;
+
     /**
      * Listen to `keydown` events outside the zone so that change detection is not run every
      * time a key is pressed. Instead we re-enter the zone only if the `ESC` key is pressed.
