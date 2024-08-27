@@ -12,6 +12,7 @@ import * as path from 'path';
 
 import { AddKindProcessor } from '../../processors/add-kind';
 import { ConvertToJsonProcessor } from '../../processors/convertToJson';
+import { IdSanitizer } from '../../services/id-sanitizer';
 import {
   PROJECT_ROOT,
   TEMPLATES_PATH,
@@ -23,6 +24,7 @@ export const daffodilBasePackage = new Package('daffodil-base', [
   nunjucksPackage,
 ])
   .processor(new AddKindProcessor())
+  .factory('idSanitizer', () => new IdSanitizer())
   .processor('convertToJson', (log, createDocMessage) => new ConvertToJsonProcessor(log, createDocMessage))
   .factory('packageInfo', () => require(path.resolve(PROJECT_ROOT, 'package.json')))
 
