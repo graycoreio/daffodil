@@ -13,6 +13,7 @@ import { DesignExampleDocumentCreatorProcessor } from './processors/designExampl
 import { DesignExampleFilterProcessor } from './processors/exampleFileCollator';
 import { DesignExampleHighlightCodeProcessor } from './processors/highlightCode';
 import { designExampleReaderFactory } from './reader/example.reader';
+import { AddKindProcessor } from '../../processors/add-kind';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import {
@@ -20,6 +21,8 @@ import {
   TEMPLATES_PATH,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
+
+const docTypes = ['design-example'];
 
 export const designExamplePackage = new Package('daffodil-design-examples', [daffodilBasePackage])
   .factory('designExampleReader', designExampleReaderFactory)
@@ -37,12 +40,13 @@ export const designExamplePackage = new Package('daffodil-design-examples', [daf
       { include: ['**/examples/src/*/*.*']},
     ];
   })
-  .config((convertToJson) => {
-    convertToJson.docTypes = convertToJson.docTypes.concat(['design-example']);
+  .config((convertToJson, addKind: AddKindProcessor) => {
+    convertToJson.docTypes.push(...docTypes);
+    addKind.docTypes.push(...docTypes);
   })
   .config((computePathsProcessor) => {
     computePathsProcessor.pathTemplates.push({
-      docTypes: ['design-example'],
+      docTypes,
       getPath: (doc) => {
         doc.moduleFolder = `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.EXAMPLE]}/${doc.id}`;
         return doc.moduleFolder;
@@ -56,7 +60,7 @@ export const designExamplePackage = new Package('daffodil-design-examples', [daf
   })
   .config((computeIdsProcessor) => {
     computeIdsProcessor.idTemplates.push({
-      docTypes: ['design-example'],
+      docTypes,
       getId: (doc) => doc.id,
       getAliases: (doc) =>[doc.id],
     });
