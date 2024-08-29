@@ -18,3 +18,4 @@ export * from './filters/public_api';
 export * from './injection-tokens/public_api';
 
 export { DaffOrderable } from './orderable/orderable';
+export { MaybeAsync } from './async/maybe.type';
