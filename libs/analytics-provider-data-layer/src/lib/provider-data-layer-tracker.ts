@@ -2,21 +2,23 @@ import {
   FactoryProvider,
   inject,
 } from '@angular/core';
-import { of } from 'rxjs';
+import { map } from 'rxjs';
 
 import {
   DaffAnalyticsEvent,
   DaffAnalyticsServices,
 } from '@daffodil/analytics';
+import {
+  MaybeAsync,
+  observe,
+} from '@daffodil/core';
 
 import { DataLayerItem } from './data-layer';
 import { DaffAnalyticsDataLayer } from './data-layer.service';
 
-
-
 export type DataLayerTracker<T extends DaffAnalyticsEvent> = (
   action: T
-) => DataLayerItem;
+) => MaybeAsync<DataLayerItem>;
 
 export function provideDataLayerTracker<T extends DaffAnalyticsEvent>(
   tracker: DataLayerTracker<T>,
@@ -25,7 +27,9 @@ export function provideDataLayerTracker<T extends DaffAnalyticsEvent>(
     provide: DaffAnalyticsServices,
     useFactory: () => {
       const dataLayer = inject(DaffAnalyticsDataLayer);
-      return (action: T) => of(dataLayer.push(tracker(action)));
+      return (action: T) => observe(tracker(action)).pipe(
+        map((data) => dataLayer.push(data)),
+      );
     },
     multi: true,
   };
