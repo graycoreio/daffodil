@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffioRouterNamedViewsEnum } from '../../named-views/models/named-views.enum';
+import { DaffioRouterNamedViewsEnum } from '../router/named-views/models/named-views.enum';
 
 @Component({
   templateUrl: './template.component.html',

@@ -3,10 +3,8 @@ import {
   Component,
 } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { Store } from '@ngrx/store';
 
-import { CloseSidebar } from '../../actions/sidebar.actions';
-import * as fromDaffioSidebar from '../../reducers/index';
+import { DaffioSidebarService } from '../../services/sidebar.service';
 
 @Component({
   selector: 'daffio-sidebar-header',
@@ -16,9 +14,11 @@ import * as fromDaffioSidebar from '../../reducers/index';
 export class DaffioSidebarHeaderComponent {
   faTimes = faTimes;
 
-  constructor(private store: Store<fromDaffioSidebar.State>){}
+  constructor(
+    private sidebarService: DaffioSidebarService,
+  ) {}
 
   close() {
-    this.store.dispatch(new CloseSidebar());
+    this.sidebarService.close();
   }
 }

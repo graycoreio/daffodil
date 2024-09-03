@@ -4,12 +4,12 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { DaffSidebarModeEnum } from '@daffodil/design/sidebar';
 import { DaffDocKind } from '@daffodil/docs-utils';
 
 import { DaffioPackagesOverviewPageComponent } from './pages/packages-overview/packages-overview.component';
 import { DaffioRoute } from '../../core/router/route.type';
-import { DaffioRouterNamedViewsEnum } from '../../named-views/models/named-views.enum';
-import { DaffioDocsListContainer } from '../containers/docs-list/docs-list.component';
+import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from '../containers/docs-list/sidebar.provider';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
 
@@ -18,9 +18,6 @@ export const packagesRoutes: Routes = [
     path: '',
     data: {
       docKind: DaffDocKind.PACKAGE,
-      daffNamedViews: {
-        [DaffioRouterNamedViewsEnum.DOCS_SIDEBAR]: DaffioDocsListContainer,
-      },
     },
     children: [
       {
@@ -28,14 +25,15 @@ export const packagesRoutes: Routes = [
         pathMatch: 'full',
         component: DaffioPackagesOverviewPageComponent,
       },
-      {
+      <DaffioRoute>{
         path: '**',
         component: DaffioDocsPageComponent,
         resolve: {
           doc: DocsResolver,
         },
         data: {
-          sidebarMode: 'side-fixed',
+          daffioDockedSidebar: DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION.id,
+          sidebarMode: DaffSidebarModeEnum.SideFixed,
         },
       },
     ],
