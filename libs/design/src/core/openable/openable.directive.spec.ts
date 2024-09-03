@@ -15,7 +15,7 @@ import { DaffOpenableDirective } from './openable.directive';
   template: `
 		<div daffOpenable
 			(toggled)="toggledFunction($event)"
-			[open]="open">
+      [open]="open">
 		</div>`,
 })
 
@@ -24,7 +24,7 @@ class WrapperComponent {
   open: boolean;
 }
 
-describe('@daffodil/design | DaffOpenableDirective', () => {
+describe('@daffodil/design | DaffOpenableDirective | Default as Stateless', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

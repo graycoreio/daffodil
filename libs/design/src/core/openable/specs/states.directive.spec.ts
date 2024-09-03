@@ -1,7 +1,4 @@
-import {
-  Component,
-  DebugElement,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -9,7 +6,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffOpenableDirective } from './openable.directive';
+import { DaffOpenableDirective } from '../openable.directive';
 
 @Component({
   template: `
@@ -26,7 +23,9 @@ import { DaffOpenableDirective } from './openable.directive';
 })
 
 class StatefulComponent {
-  constructor(public openDirective: DaffOpenableDirective) {}
+  constructor(public openDirective: DaffOpenableDirective) {
+    this.openDirective.stateless = false;
+  }
 
   reveal() {
     this.openDirective.reveal();
@@ -49,9 +48,7 @@ class StatefulComponent {
 })
 
 class StatelessComponent {
-  constructor(public openDirective: DaffOpenableDirective) {
-    this.openDirective.stateless = true;
-  }
+  constructor(public openDirective: DaffOpenableDirective) {}
 
   reveal() {
     this.openDirective.reveal();
