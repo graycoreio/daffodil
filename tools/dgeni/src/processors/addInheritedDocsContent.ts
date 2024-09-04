@@ -19,17 +19,21 @@ export class AddInheritedDocsContentProcessor implements Processor {
 	      return doc;
 	    }
 
-	    doc.implementsClauses.map(i => {
+      doc.content = doc.content.replaceAll('@inheritdoc', '');
+
+	    [...doc.implementsClauses, ...doc.extendsClauses].map(i => {
 	      if(!i.doc) {
 	        return i;
 	      }
 	      i.doc.members.map(member => {
 	        const matchedMember = doc.members.find(m => m.name === member.name);
 	        if(matchedMember) {
-	          matchedMember.description = matchedMember.description ?
-	            `${member.description} ${matchedMember.description}`:
-	            member.description;
-	        }
+	          matchedMember.description = matchedMember.description
+              ? `${member.description} ${matchedMember.description}`
+              : member.description;
+	        } else if (doc.docType === 'interface' || doc.docType === 'type') {
+            doc.members.push(member);
+          }
 	      });
 	    });
 
