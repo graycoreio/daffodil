@@ -4,24 +4,24 @@
 
 import { DaffAuthorizeNetConfig } from '@daffodil/authorizenet/driver';
 
-export const DemoDriverVariantEnum = {
-  IN_MEMORY: 0,
-  MAGENTO: 1,
-  SHOPIFY: 2,
+export enum DemoDriverVariantEnum {
+  IN_MEMORY = 'IN_MEMORY',
+  MAGENTO = 'MAGENTO',
+  SHOPIFY = 'SHOPIFY',
 };
 
 export interface InMemoryEnviromentDriverConfiguration {
-  variant: typeof DemoDriverVariantEnum.IN_MEMORY;
+  variant: DemoDriverVariantEnum.IN_MEMORY;
 }
 
 export interface MagentoEnvironmentDriverConfiguration {
-  variant: typeof DemoDriverVariantEnum.MAGENTO;
+  variant: DemoDriverVariantEnum.MAGENTO;
   domain: string;
   anetConfig: DaffAuthorizeNetConfig;
 }
 
 export interface ShopifyEnviromentDriverConfiguration {
-  variant: typeof DemoDriverVariantEnum.SHOPIFY;
+  variant: DemoDriverVariantEnum.SHOPIFY;
   domain: string;
   publicAccessToken: string;
 }

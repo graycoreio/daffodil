@@ -12,8 +12,8 @@ import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
 import { DaffProductShopifyDriverModule } from '@daffodil/product/driver/shopify';
 
-import { environment } from '../../../environments/environment';
-import { ShopifyEnviromentDriverConfiguration } from '../../../environments/environment.interface';
+import { environment } from '../../environments/environment';
+import { ShopifyEnviromentDriverConfiguration } from '../../environments/environment.interface';
 
 const cache = new InMemoryCache();
 
@@ -25,7 +25,7 @@ const cache = new InMemoryCache();
     DaffNewsletterInMemoryDriverModule.forRoot(),
   ],
 })
-export class DemoShopifyDriverModule {
+export class DemoDriverModule {
   driver: ShopifyEnviromentDriverConfiguration = (<ShopifyEnviromentDriverConfiguration>environment.driver);
 
   // Shopify

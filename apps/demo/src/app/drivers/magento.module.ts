@@ -16,9 +16,9 @@ import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation/driver/m
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
 import { DaffProductMagentoDriverModule } from '@daffodil/product/driver/magento';
 
-import { demoMagentoApolloOptions } from './apollo-options.factory';
-import { environment } from '../../../environments/environment';
-import { MagentoEnvironmentDriverConfiguration } from '../../../environments/environment.interface';
+import { demoMagentoApolloOptions } from './magento/apollo-options.factory';
+import { environment } from '../../environments/environment';
+import { MagentoEnvironmentDriverConfiguration } from '../../environments/environment.interface';
 
 @NgModule({
   imports: [
@@ -47,4 +47,4 @@ import { MagentoEnvironmentDriverConfiguration } from '../../../environments/env
     },
   ],
 })
-export class DemoMagentoDriverModule {}
+export class DemoDriverModule {}
