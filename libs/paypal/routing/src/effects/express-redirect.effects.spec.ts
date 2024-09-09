@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {

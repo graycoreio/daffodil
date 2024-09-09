@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { TestBed } from '@angular/core/testing';
 
 import { DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION } from '@daffodil/authorizenet';
