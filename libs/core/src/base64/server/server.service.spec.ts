@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import {
   ɵPLATFORM_SERVER_ID,
   ɵPLATFORM_BROWSER_ID,

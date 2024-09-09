@@ -324,5 +324,12 @@ module.exports = {
     'jasmine/no-suite-dupes': ['warn', 'branch'],
     'jasmine/no-spec-dupes': ['warn', 'branch'],
     'jasmine/new-line-before-expect': 'off',
+    "no-restricted-globals": [
+      "error",
+      {
+        "name": "window",
+        "message": "Inject `DOCUMENT` from `@angular/common` and access `window` via `document.defaultView`."
+      },
+    ]
   }
 }

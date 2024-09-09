@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { DOCUMENT } from '@angular/common';
 import {
   Injectable,
