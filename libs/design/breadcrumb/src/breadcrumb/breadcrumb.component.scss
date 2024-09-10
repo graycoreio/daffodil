@@ -1,0 +1,50 @@
+@use '../../../scss/typography' as t;
+@use '../../../scss/state';
+
+.daff-breadcrumb {
+	$root: &;
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	&__item {
+		font-size: 1rem;
+
+		a {
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		&.active {
+			font-weight: 500;
+		}
+
+		&:not(:last-child) {
+			&::after {
+				content: '/';
+				color: currentColor;
+				font-weight: normal;
+				margin: 0 0.5rem;
+			}
+		}
+	}
+
+	&.daff-skeleton {
+		@include state.skeleton-screen(100%, 24px);
+		max-width: 290px;
+		width: 100%;
+
+		#{$root}__item {
+			visibility: hidden;
+
+			&::before {
+				content: unset;
+			}
+		}
+	}
+}

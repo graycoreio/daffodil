@@ -18,6 +18,7 @@
 
 // @daffodil/design components
 @use './theming/theme-css-variables' as variables;
+@use '../breadcrumb/src/breadcrumb-theme' as breadcrumb;
 @use '../button/src/button-theme' as button;
 @use '../article/src/article-theme' as article;
 @use '../src/atoms/form/error-message/error-message-theme' as error-message;
@@ -60,6 +61,7 @@
 
 	// Atoms
 	@include button.daff-button-theme($theme);
+	@include breadcrumb.daff-breadcrumb-theme($theme);
 	@include error-message.daff-error-message-theme($theme);
 	@include form-field.daff-form-field-theme($theme);
 	@include input.daff-input-theme($theme);
