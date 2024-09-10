@@ -23,7 +23,7 @@ class WrapperComponent {
   skeleton: boolean;
 }
 
-describe('@daffodil/design/image | DaffBreadcrumbComponent', () => {
+describe('@daffodil/design/breadcrumb | DaffBreadcrumbComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffBreadcrumbComponent;
   let de: DebugElement;

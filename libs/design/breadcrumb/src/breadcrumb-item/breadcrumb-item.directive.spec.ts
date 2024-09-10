@@ -22,7 +22,7 @@ class WrapperComponent {
   active = false;
 }
 
-describe('DaffBreadcrumbItemDirective', () => {
+describe('@daffodil/design/breadcrumb | DaffBreadcrumbItemDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
