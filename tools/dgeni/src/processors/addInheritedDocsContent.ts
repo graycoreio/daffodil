@@ -3,13 +3,13 @@ import {
   Document,
 } from 'dgeni';
 
-interface DocumentWithParents extends Document {
-  parents: Array<Document>;
+interface DocumentWithAncestors extends Document {
+  ancestors: Array<Document>;
 }
 
-const guardDocumentWithParents = (doc: Document | DocumentWithParents): doc is DocumentWithParents => {
-  if (!('parents' in doc)) {
-    doc.parents = [];
+const guardDocumentWithAncestors = (doc: Document | DocumentWithAncestors): doc is DocumentWithAncestors => {
+  if (!('ancestors' in doc)) {
+    doc.ancestors = [];
   }
 
   return true;
@@ -57,7 +57,7 @@ export class AddInheritedDocsContentProcessor implements Processor {
 
         case 'type':
         case 'interface':
-          if (guardDocumentWithParents(doc)) {
+          if (guardDocumentWithAncestors(doc)) {
             doc.extendsClauses.map(i => {
               if (!i.doc) {
                 return i;
@@ -70,7 +70,7 @@ export class AddInheritedDocsContentProcessor implements Processor {
                     : member.description;
                 } else {
                   if (i.doc) {
-                    doc.parents = getAncestors(doc);
+                    doc.ancestors = getAncestors(doc);
                   }
                 }
               });

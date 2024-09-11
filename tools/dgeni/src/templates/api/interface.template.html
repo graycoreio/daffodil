@@ -26,10 +26,10 @@
 </table>
 {% endif %}
 
-{% if doc.parents.length > 0 -%}
+{% if doc.ancestors.length > 0 -%}
   <h2>Inherited Properties</h2>
-  {%- for parent in doc.parents -%}
-    <h3><code><a href="{$ parent.path $}">{$ parent.name $}</a></code></h3>
+  {%- for ancestor in doc.ancestors -%}
+    <h3><code><a href="{$ ancestor.path $}">{$ ancestor.name $}</a></code></h3>
     <table>
       <thead>
         <tr>
@@ -38,7 +38,7 @@
           <th>Description</th>
         </tr>
       </thead>
-      {%- for m in parent.members -%}
+      {%- for m in ancestor.members -%}
         {$ member(m) $}
       {%- endfor -%}
     </table>
