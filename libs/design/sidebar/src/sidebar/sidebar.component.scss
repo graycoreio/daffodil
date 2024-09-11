@@ -1,4 +1,5 @@
 @use '../helper/variables';
+@use '../../../scss/layout';
 
 :host {
 	display: flex;
@@ -8,6 +9,7 @@
 	overflow-y: auto;
 
 	&.side-fixed {
+		display: none;
 		position: fixed;
 		bottom: 0;
 		z-index: variables.$daff-sidebar-sidebar-side-fixed-z-index;
@@ -20,6 +22,10 @@
 
 		&.right {
 			right: 0;
+		}
+
+		@include layout.breakpoint(big-tablet) {
+			display: block;
 		}
 	}
 

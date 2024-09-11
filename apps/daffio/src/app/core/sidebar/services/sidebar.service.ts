@@ -8,6 +8,7 @@ import {
   distinctUntilChanged,
   filter,
   map,
+  startWith,
 } from 'rxjs';
 
 import {
@@ -38,6 +39,7 @@ export class DaffioSidebarService extends DaffSidebarService {
   readonly mode$ = combineLatest([
     this.routerData.data$,
     this.breakpointObserver.observe(DaffBreakpoints.BIG_TABLET).pipe(
+      startWith({ matches: true }),
       map((result) => result?.matches),
     ),
   ]).pipe(
