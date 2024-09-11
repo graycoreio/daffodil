@@ -1,17 +1,17 @@
-{% if member.decorators[0].name === 'Input' %}
 <tbody>
-	<tr>
-		<td>@Input() {$ member.name $}</td>
-		<td>{$ member.type $}</td>
-		<td>{$ member.description $}</td>
-		{% elif member.decorators[0].name === 'Output' %}
-		<td>@Output() {$ member.name $}</td>
-		<td>{$ member.type $}</td>
-		<td>{$ member.description $}</td>
-		{% else %}
-		<td>{$ member.name $}</td>
-		<td>{$ member.type $}</td>
-		<td>{$ member.description $}</td>
+  <tr>
+    {% if member.decorators[0].name === 'Input' %}
+      <td>@Input() {$ member.name $}</td>
+      <td>{$ member.type $}</td>
+      <td>{$ member.description $}</td>
+    {% elif member.decorators[0].name === 'Output' %}
+      <td>@Output() {$ member.name $}</td>
+      <td>{$ member.type $}</td>
+      <td>{$ member.description $}</td>
+    {% else %}
+      <td>{$ member.name $}</td>
+      <td>{$ member.type $}</td>
+      <td>{$ member.description $}</td>
+    {% endif %}
 	</tr>
 </tbody>
-{% endif %}

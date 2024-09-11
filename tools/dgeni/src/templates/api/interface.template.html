@@ -10,7 +10,8 @@
 <span class="selectors__name"><code>{$ doc.decorators[0].argumentInfo[0].selector $}</code></span>
 {% endif %}
 
-<h2>Properties</h2>
+{% if doc.members.length > 0 %}
+<h2>Own Properties</h2>
 <table>
   <thead>
     <tr>
@@ -19,8 +20,28 @@
       <th>Description</th>
     </tr>
   </thead>
-  {%- for i in range(0, doc.members.length) %}
-    {$ member(doc.members[i]) $}
+  {%- for m in doc.members %}
+    {$ member(m) $}
   {% endfor -%}
 </table>
+{% endif %}
+
+{% if doc.parents.length > 0 -%}
+  <h2>Inherited Properties</h2>
+  {%- for parent in doc.parents -%}
+    <h3><code><a href="{$ parent.path $}">{$ parent.name $}</a></code></h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      {%- for m in parent.members -%}
+        {$ member(m) $}
+      {%- endfor -%}
+    </table>
+  {%- endfor -%}
+{% endif %}
 {% endblock %}

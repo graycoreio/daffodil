@@ -3,6 +3,23 @@ import {
   Document,
 } from 'dgeni';
 
+interface DocumentWithParents extends Document {
+  parents: Array<Document>;
+}
+
+const guardDocumentWithParents = (doc: Document | DocumentWithParents): doc is DocumentWithParents => {
+  if (!('parents' in doc)) {
+    doc.parents = [];
+  }
+
+  return true;
+};
+
+const getAncestors = (doc: Document): Array<Document> =>
+  doc.extendsClauses.length > 0
+    ? doc.extendsClauses.flatMap((parent) => parent.doc ? [parent.doc, ...getAncestors(parent.doc)] : [])
+    : [];
+
 /**
  * Inherit docs content from parent interfaces.
  *
@@ -21,21 +38,49 @@ export class AddInheritedDocsContentProcessor implements Processor {
 
       doc.content = doc.content.replaceAll('@inheritdoc', '');
 
-	    [...doc.implementsClauses, ...doc.extendsClauses].map(i => {
-	      if(!i.doc) {
-	        return i;
-	      }
-	      i.doc.members.map(member => {
-	        const matchedMember = doc.members.find(m => m.name === member.name);
-	        if(matchedMember) {
-	          matchedMember.description = matchedMember.description
-              ? `${member.description} ${matchedMember.description}`
-              : member.description;
-	        } else if (doc.docType === 'interface' || doc.docType === 'type') {
-            doc.members.push(member);
+      switch (doc.docType) {
+        case 'class':
+          doc.implementsClauses.map(i => {
+            if (!i.doc) {
+              return i;
+            }
+            i.doc.members.map(member => {
+              const matchedMember = doc.members.find(m => m.name === member.name);
+              if (matchedMember) {
+                matchedMember.description = matchedMember.description
+                  ? `${member.description} ${matchedMember.description}`
+                  : member.description;
+              }
+            });
+          });
+          break;
+
+        case 'type':
+        case 'interface':
+          if (guardDocumentWithParents(doc)) {
+            doc.extendsClauses.map(i => {
+              if (!i.doc) {
+                return i;
+              }
+              i.doc.members.map(member => {
+                const matchedMember = doc.members.find(m => m.name === member.name);
+                if (matchedMember) {
+                  matchedMember.description = matchedMember.description
+                    ? `${member.description} ${matchedMember.description}`
+                    : member.description;
+                } else {
+                  if (i.doc) {
+                    doc.parents = getAncestors(doc);
+                  }
+                }
+              });
+            });
           }
-	      });
-	    });
+          break;
+
+        default:
+          break;
+      }
 
 	    return doc;
 	  });

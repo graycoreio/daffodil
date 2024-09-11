@@ -10,6 +10,7 @@
 <span class="selectors__name"><code>{$ doc.decorators[0].argumentInfo[0].selector $}</code></span>
 {% endif %}
 
+{% if doc.members.length > 0 %}
 <h2>Properties</h2>
 <table>
   <thead>
@@ -23,4 +24,5 @@
     {$ member(doc.members[i]) $}
   {% endfor -%}
 </table>
+{% endif %}
 {% endblock %}
