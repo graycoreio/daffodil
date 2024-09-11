@@ -8,9 +8,10 @@ describe('AddInheritedDocsContentProcessor', () => {
     stubInterfaceMemberDescription = 'some member description';
   });
 
-  it('should copy member descriptions from inherited docs', () => {
+  it('should copy member descriptions from inherited docs for class docs', () => {
     const docs = [
       {
+        docType: 'class',
         tags: {
           tags: [{
             tagName: 'inheritdoc',

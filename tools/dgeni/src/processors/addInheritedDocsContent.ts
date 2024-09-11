@@ -36,7 +36,7 @@ export class AddInheritedDocsContentProcessor implements Processor {
 	      return doc;
 	    }
 
-      doc.content = doc.content.replaceAll('@inheritdoc', '');
+      doc.content = doc.content?.replaceAll('@inheritdoc', '');
 
       switch (doc.docType) {
         case 'class':
