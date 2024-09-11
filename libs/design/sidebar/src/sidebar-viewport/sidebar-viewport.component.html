@@ -7,9 +7,7 @@
 </daff-sidebar-viewport-backdrop>
 
 <div class="daff-sidebar-viewport__nav"
-  [@transformContent]="_animationState"
-  [style.padding-left.px]="_navPadLeft"
-  [style.padding-right.px]="_navPadRight">
+  [@transformContent]="_animationState">
     <ng-content select="[daff-sidebar-viewport-nav]"></ng-content>
 </div>
 
@@ -17,9 +15,7 @@
   [@transformContent]="_animationState"
   (@transformContent.start)="onContentAnimationStart($event)"
   (@transformContent.done)="onContentAnimationDone($event)">
-  <div class="daff-sidebar-viewport__inner"
-    [style.padding-left.px]="_contentPadLeft"
-    [style.padding-right.px]="_contentPadRight">
+  <div class="daff-sidebar-viewport__inner">
       <ng-content></ng-content>
   </div>
 </div>
