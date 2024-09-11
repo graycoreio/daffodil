@@ -10,7 +10,7 @@ import { getPackageInfo } from '../helpers/generateApiList';
  */
 export class AddPackageExportsProcessor implements Processor {
   readonly name = 'addPackageExports';
-  readonly $runAfter = ['docs-processed'];
+  readonly $runAfter = ['docs-processed', 'addSubpackageExports'];
   readonly $runBefore = ['rendering-docs'];
 
   docTypes = ['package'];
