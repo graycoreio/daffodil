@@ -9,14 +9,22 @@
 	width: 100%;
 	z-index: variables.$daff-sidebar-viewport-z-index;
 
-	--daff-sidebar-left-width: 240px;
-	--daff-sidebar-right-width: 240px;
-
 	&.pad-left {
 		.daff-sidebar-viewport__inner {
 			padding-left: 0;
+
 			@include layout.breakpoint(big-tablet) {
 				padding-left: var(--daff-sidebar-left-width);
+			}
+		}
+		
+		+ &.beside {
+			.daff-sidebar-viewport__nav {
+				padding-left: 0;
+	
+				@include layout.breakpoint(big-tablet) {
+					padding-left: var(--daff-sidebar-left-width);
+				}
 			}
 		}
 	}
@@ -24,8 +32,19 @@
 	&.pad-right {
 		.daff-sidebar-viewport__inner {
 			padding-right: 0;
+
 			@include layout.breakpoint(big-tablet) {
 				padding-right: var(--daff-sidebar-right-width);
+			}
+		}
+
+		+ &.beside {
+			.daff-sidebar-viewport__nav {
+				padding-right: 0;
+	
+				@include layout.breakpoint(big-tablet) {
+					padding-right: var(--daff-sidebar-right-width);
+				}
 			}
 		}
 	}

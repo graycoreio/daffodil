@@ -4,12 +4,21 @@
 :host {
 	display: flex;
 	flex-direction: column;
-	width: 240px;
 	flex-shrink: 0;
 	overflow-y: auto;
+	width: 240px;
+
+	&.left {
+		width: var(--daff-sidebar-left-width);
+	}
+
+	&.right {
+		width: var(--daff-sidebar-right-width);
+	}
+	
 
 	&.side-fixed {
-		visibility: hidden;
+		display: none;
 		position: fixed;
 		bottom: 0;
 		z-index: variables.$daff-sidebar-sidebar-side-fixed-z-index;
@@ -25,7 +34,7 @@
 		}
 
 		@include layout.breakpoint(big-tablet) {
-			visibility: visible;
+			display: flex;
 		}
 	}
 

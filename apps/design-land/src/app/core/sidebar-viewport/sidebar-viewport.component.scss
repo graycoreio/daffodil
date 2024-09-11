@@ -2,6 +2,8 @@
 
 :host {
   --daff-sidebar-side-fixed-top-shift: 64px;
+  --daff-sidebar-left-width: 288px;
+	--daff-sidebar-right-width: 288px;
 }
 
 .design-land-sidebar-viewport {
@@ -15,10 +17,6 @@
     @include daff.breakpoint(mobile) {
       padding: 48px;
     }
-  }
-
-  &__sidebar {
-    width: 288px;
   }
 
   &__get-started-button {

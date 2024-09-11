@@ -102,11 +102,28 @@ By default, sidebar supports two methods of closing itself: clicking on the back
 ### Custom styles
 
 #### Setting a sidebar's width
-The default size of a sidebar is `240px`. The width can be changed by setting it via CSS:
+The default size of a sidebar is `240px`. The `--daff-sidebar-left-width` and `--daff-sidebar-right-width` variables can be used to change the width of a left or right sidebar. These variables need to be defined on `<daff-sidebar-viewport>` or on the shadow DOM.
+
+`custom-sidebar-viewport.html`
+```html
+<daff-sidebar-viewport>
+	<daff-sidebar></daff-sidebar>
+</daff-sidebar-viewport>
+```
 
 ```scss
-daff-sidebar {
-	width: 240px;
+:host {
+	--daff-sidebar-left-width: 288px;
+	--daff-sidebar-right-width: 288px;
+}
+```
+
+or:
+
+```scss
+daff-sidebar-viewport {
+	--daff-sidebar-left-width: 288px;
+	--daff-sidebar-right-width: 288px;
 }
 ```
 
