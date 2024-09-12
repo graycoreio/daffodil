@@ -1,6 +1,5 @@
 import { Document } from 'dgeni';
 
-import { DocumentWithFilePath } from '../../../utils/document-with-file-path.type';
 import { FilterableProcessor } from '../../../utils/filterable-processor.type';
 import { isSubpackage } from '../../../utils/package-path';
 
@@ -14,7 +13,7 @@ export class AddSubpackageExportsProcessor implements FilterableProcessor {
 
   docTypes = ['package'];
 
-  $process(docs: Array<DocumentWithFilePath>): Array<Document> {
+  $process(docs: Array<Document>): Array<Document> {
     return docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
         const subPackages = docs.filter((d) =>
