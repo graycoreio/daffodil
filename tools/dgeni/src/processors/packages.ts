@@ -30,10 +30,8 @@ export class PackagesProcessor implements Processor {
         } catch {}
         // The name is actually the full id
         doc.name = this.nameComputer(doc.id);
-        // the relative path looks like <package>/src/index.ts
-        // so for a root package, it will have 3 segments
-        // normalize the depth by subtracting 3
-        doc.depth = doc.fileInfo.projectRelativePath.split('/').length - 3;
+        // root packages should have depth of 0
+        doc.depth = doc.id.split('/').length - 1;
       }
       return doc;
     });
