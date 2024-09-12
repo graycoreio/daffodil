@@ -5,19 +5,19 @@
 talk about supported platforms -->
 
 ## Installation
-To install `@daffodil/newsletter` and its dependencies, use the following commands in the terminal.
+To install `@daffodil/newsletter`, use the following commands in the terminal.
 
 Install with npm:
 ```
-npm install @daffodil/newsletter @daffodil/core @ngrx/store @ngrx/effects --save
+npm install @daffodil/newsletter --save
 ```
 
 Install with yarn:
 ```
-yarn add @daffodil/newsletter @daffodil/core @ngrx/store @ngrx/effects
+yarn add @daffodil/newsletter
 ```
 
-> After installing, an ecommerce platform driver needs to be set up. We highly recommend installing the [in-memory web api](./guides/drivers.md) for fast, out-of-the-box development.
+> After installing, a platform driver needs to be set up. We highly recommend installing the [in-memory web api](./guides/drivers.md) for getting started quickly.
 
 ## Getting started
 1. Import the `StoreModule` and the `DaffNewsletterModule` in the root component of your application.
