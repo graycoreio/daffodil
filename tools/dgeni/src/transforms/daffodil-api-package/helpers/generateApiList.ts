@@ -1,6 +1,5 @@
-import { Document } from 'dgeni';
-
 import { GenerateNavListProcessor } from '../../../processors/generateNavList';
+import { DocumentWithDepth } from '../../../processors/packages';
 
 interface DaffDocsApiNavigationList {
   id: string;
@@ -31,14 +30,14 @@ const comparePackage = (aDoc: {name: string}, bDoc: {name: string}): -1 | 0 | 1 
   );
 };
 
-export const transformApiNavList: GenerateNavListProcessor['transform'] = (docs: Array<Document>): DaffDocsApiNavigationList => ({
+export const transformApiNavList: GenerateNavListProcessor['transform'] = (docs: Array<DocumentWithDepth>): DaffDocsApiNavigationList => ({
   id: '',
   title: '',
   path: '',
   docType: '',
   docTypeShorthand: '',
   children: docs
-    .filter(doc => doc.docType === 'package')
+    .filter(doc => doc.docType === 'package' && doc.depth === 0)
     // sort alphabetically
     .sort(comparePackage)
     .map(doc => getPackageInfo(doc)),
@@ -52,7 +51,6 @@ export function getPackageInfo(packageDoc): DaffDocsApiNavigationList {
     docType: 'package',
     docTypeShorthand: 'pk',
     children: packageDoc.exports
-      .filter(doc => doc.docType !== 'package')
       .map(getExportInfo),
   };
 }
@@ -64,7 +62,10 @@ function getExportInfo(exportDoc): DaffDocsApiNavigationList {
     path: `${exportDoc.path[0] === '/' ? '' : '/'}${exportDoc.path}`,
     docType: getDocType(exportDoc),
     docTypeShorthand: exportDoc.docType.charAt(0),
-    children: [],
+    children: exportDoc.docType === 'package'
+      ? exportDoc.exports
+        .map(getExportInfo)
+      : [],
   };
 }
 

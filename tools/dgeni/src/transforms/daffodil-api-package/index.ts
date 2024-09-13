@@ -8,6 +8,7 @@ import {
 
 import { transformApiNavList } from './helpers/generateApiList';
 import { AddPackageExportsProcessor } from './processors/add-package-exports';
+import { AddSubpackageExportsProcessor } from './processors/add-subpackage-exports';
 import { RemoveDuplicatesProcessor } from './processors/remove-duplicates';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddKindProcessor } from '../../processors/add-kind';
@@ -44,7 +45,6 @@ export const apiDocsBase = new Package('api-base', [
   linksPackage,
 ])
   .processor(new CrossEnvSafeNameProcessor())
-  //Register Processors for this package
   .processor(new FilterContainedDocsProcessor())
   .processor(new CleanSelectorsProcessor())
   .processor(new MakeTypesHtmlCompatibleProcessor())
@@ -53,10 +53,10 @@ export const apiDocsBase = new Package('api-base', [
   .processor(new AddLinkTagToDaffodilReferencesProcessor())
   .processor(new PackagesProcessor())
   .processor(new AddPackageExportsProcessor())
+  .processor(new AddSubpackageExportsProcessor())
   .processor(new MarkdownCodeProcessor())
   .processor(COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME, (log, createDocMessage) => new CollectLinkableSymbolsProcessor(log, createDocMessage))
   .factory('API_DOC_TYPES_TO_RENDER', (EXPORT_DOC_TYPES) => EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe']))
-  //Configure our package
   .config((readFilesProcessor, readTypeScriptModules, tsParser) => {
 
     // Tell TypeScript how to load modules that start with `@daffodil`
