@@ -14,14 +14,57 @@ import {
 } from './sizable';
 
 /**
- * The `DaffSizableDirective` allows for dynamic sizing of a component by setting
+ * `DaffSizableDirective` allows for dynamic sizing of a component by setting
  * CSS classes based on the specified size.
  *
- * ## Example
+ * ## Usage
+ *
+ * ### Implementing it as an attribute directive
  *
  * ```html
- * <div daffSizable [size]="componentSize">Sized content</div>
+ * <div daffSizable [size]="small">Sized content</div>
  * ```
+ * In this example, the `daff-small` class is applied to the `div` element, allowing you to
+ * use the class to style the `div`.
+ *
+ * ### Implementing it as an Angular host directive
+ *
+ * ```ts
+ * @Component({
+ *  standalone: true,
+ *  selector: 'custom-component',
+ *  template: 'custom-component.html',
+ *  hostDirectives: [
+ *    {
+ *      directive: DaffSizableDirective,
+ *      inputs: ['size'],
+ *    },
+ *  ],
+ * })
+ * export class CustomComponent { }
+ * ```
+ *
+ * ```scss
+ * .custom-component {
+ *  &.daff-sm {
+ *    width: 24px;
+ *  }
+ *
+ *  &.daff-md {
+ *    width: 32px;
+ *  }
+ * }
+ * ```
+ *
+ * ## Styles
+ *
+ * The directive applies the following CSS classes based on the size:
+ *
+ * - `daff-xs`: Applied when the size is `xs`.
+ * - `daff-sm`: Applied when the size is `sm`.
+ * - `daff-md`: Applied when the size is `md`.
+ * - `daff-lg`: Applied when the size is `lg`.
+ * - `daff-xl`: Applied when the size is `xl`.
  */
 @Directive({
   selector: '[daffSizable]',

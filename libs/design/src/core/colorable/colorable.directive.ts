@@ -22,16 +22,43 @@ const validateColor = (color: string) => {
 };
 
 /**
- * The `DaffColorableDirective` allows a component to conditionally apply color-specific
+ * `DaffColorableDirective` allows a component to conditionally apply color-specific
  * styles by setting CSS classes based on the specified color. This directive is useful
  * for applying different color palettes to a component in an Angular application.
  *
  * ## Usage
  *
- * ## Example
+ * ### Implementing it as an attribute directive
  *
  * ```html
  * <div daffColorable [color]="componentColor">Colored content</div>
+ * ```
+ *
+ * ### Implementing it as an Angular host directive
+ *
+ * ```ts
+ * @Component({
+ *  standalone: true,
+ *  selector: 'custom-component',
+ *  template: 'custom-component.html',
+ *  hostDirectives: [
+ *    {
+ *      directive: DaffColorableDirective,
+ *      inputs: ['color'],
+ *    },
+ *  ],
+ * })
+ * export class CustomComponent { }
+ * ```
+ *
+ * ```scss
+ * .custom-component {
+ *
+ *  &.daff-primary {
+ *    background: daff-color($primary, 10);
+ *    color: daff-color($primary, 90);
+ *  }
+ * }
  * ```
  *
  * ## Styles
