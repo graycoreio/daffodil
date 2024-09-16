@@ -1,3 +1,5 @@
+import { collect } from '@daffodil/core';
+
 import { DaffTreeUi } from '../interfaces/tree-ui';
 
 /**
@@ -52,13 +54,20 @@ export const flattenTree = (daffUiTree: DaffTreeUi<unknown>, removeNodes: boolea
       })).reverse(),
     ];
 
+    const hasClosedAncestor = el._treeRef.parent
+      ? collect(el._treeRef.parent, (node) => node.parent ? [node.parent] : [], el.level).reduce(
+        (acc, parent) => acc || !parent.open,
+        false,
+      )
+      : false;
+
     if(!removeNodes && el._treeRef.parent) {
       tree.push({
         id: el.id,
         title: el.title,
         level: el.level,
         url : el.url,
-        visible: el._treeRef.parent?.open,
+        visible: !hasClosedAncestor,
         hasChildren: el.items.length > 0,
         data: undefined,
         _treeRef: el._treeRef,
@@ -69,7 +78,7 @@ export const flattenTree = (daffUiTree: DaffTreeUi<unknown>, removeNodes: boolea
         title: el.title,
         level: el.level,
         url : el.url,
-        visible: el._treeRef.parent?.open,
+        visible: !hasClosedAncestor,
         hasChildren: el.items.length > 0,
         data: undefined,
         _treeRef: el._treeRef,
