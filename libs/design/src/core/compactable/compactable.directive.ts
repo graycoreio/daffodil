@@ -5,11 +5,13 @@ import {
 } from '@angular/core';
 
 /**
- * The `DaffCompactableDirective` allows a component to conditionally apply a compact
+ * `DaffCompactableDirective` allows a component to conditionally apply a compact
  * style by toggling a CSS class. This is useful for creating components that can
  * switch between regular and compact styles based on the `compact` property.
  *
- * ## Example
+ * ## Usage
+ *
+ * ### Implementing it as an attribute directive
  *
  * ```html
  * <div daffCompactable [compact]="isCompact">Content goes here</div>
@@ -17,6 +19,33 @@ import {
  *
  * In this example, the `daff-compact` class is applied to the `div` element when
  * `isCompact` is `true`, making the `div` display its compact state.
+ *
+ * ### Implementing it as an Angular host directive
+ *
+ * ```ts
+ * @Component({
+ *  standalone: true,
+ *  selector: 'custom-component',
+ *  template: 'custom-component.html',
+ *  hostDirectives: [
+ *    {
+ *      directive: DaffCompactableDirective,
+ *      inputs: ['compact'],
+ *    },
+ *  ],
+ * })
+ * export class CustomComponent { }
+ * ```
+ *
+ * ```scss
+ * .custom-component {
+ *  padding: 8px 16px;
+ *
+ *  &.daff-compact {
+ *    padding: 4px 8px;
+ *  }
+ * }
+ * ```
  *
  * ## Styles
  *

@@ -11,23 +11,50 @@ import {
 } from './statusable';
 
 /**
- * The `DaffStatusableDirective` allows a component to conditionally apply status-specific
+ * `DaffStatusableDirective` allows a component to conditionally apply status-specific
  * styles by setting CSS classes based on the specified status. This directive is useful
- * for indicating different statuses such as warnings, errors, or success states.
+ * for indicating different statuses such as warning, danger, or success states.
  *
- * ## Example
+ * ## Usage
+ *
+ * ### Implementing it as an attribute directive
  *
  * ```html
  * <div daffStatusable [status]="componentStatus">Status content</div>
  * ```
  *
+ * ### Implementing it as an Angular host directive
+ *
+ * ```ts
+ * @Component({
+ *  standalone: true,
+ *  selector: 'custom-component',
+ *  template: 'custom-component.html',
+ *  hostDirectives: [
+ *    {
+ *      directive: DaffStatusableDirective,
+ *      inputs: ['status'],
+ *    },
+ *  ],
+ * })
+ * export class CustomComponent { }
+ *
+ * ```scss
+ * .custom-component {
+ *
+ *  &.daff-danger {
+ *    background: daff-color($red, 10);
+ *    color: daff-color($red, 90);
+ *  }
+ * }
+ * ```
  * ## Styles
  *
  * The directive applies the following CSS classes based on the status:
  *
- * - `daff-warn`: Applied when the status is `Warn`.
- * - `daff-danger`: Applied when the status is `Danger`.
- * - `daff-success`: Applied when the status is `Success`.
+ * - `daff-warn`: Applied when the status is `warn`.
+ * - `daff-danger`: Applied when the status is `danger`.
+ * - `daff-success`: Applied when the status is `success`.
  */
 @Directive({
   selector: '[daffStatusable]',
