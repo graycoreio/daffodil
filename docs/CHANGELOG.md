@@ -1,5 +1,70 @@
 # Changelog
 
+## [0.76.0](https://github.com/graycoreio/daffodil/compare/v0.75.0...v0.76.0) (2024-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **analytics-provider-data-layer,core:** `DataLayerTracker` return type is now `MaybeAsync`
+* **dgeni:** design examples have moved from `/docs/design-examples` to `/docs/design/examples` ([#2968](https://github.com/graycoreio/daffodil/issues/2968))
+* **design:** `--daff-base-background` has been renamed to `--daff-base-bg` in favor of shortened variable names.
+
+### Features
+
+* **analytics-provider-data-layer,core:** support async data layer trackers ([#3045](https://github.com/graycoreio/daffodil/issues/3045)) ([3e1c93f](https://github.com/graycoreio/daffodil/commit/3e1c93fe7a8e574a4910d300485dd4063f7b2b69))
+* **daffio:** add `DaffioRoute` type ([#2984](https://github.com/graycoreio/daffodil/issues/2984)) ([86b0973](https://github.com/graycoreio/daffodil/commit/86b097332239d2f725a0d3e98fd6f908f2c13ddc))
+* **daffio:** add `DaffioRouteWithSidebars` ([#3025](https://github.com/graycoreio/daffodil/issues/3025)) ([2960d51](https://github.com/graycoreio/daffodil/commit/2960d51af827b6ea15dd2ecd235834852896b8ad))
+* **daffio:** add sidebar registrations ([#3026](https://github.com/graycoreio/daffodil/issues/3026)) ([7c34f2d](https://github.com/graycoreio/daffodil/commit/7c34f2d39ccacde04759f88fb386afd9c7ecf5cf))
+* **daffio:** add sidebar service ([#3029](https://github.com/graycoreio/daffodil/issues/3029)) ([8273ef1](https://github.com/graycoreio/daffodil/commit/8273ef1dc9aed7340cd645d4fe6da691bed5db6d))
+* **daffio:** consolidate docs list rendering ([#2989](https://github.com/graycoreio/daffodil/issues/2989)) ([4f2c4e6](https://github.com/graycoreio/daffodil/commit/4f2c4e626fb3893f796ae066042fc202494db88b))
+* **daffio:** implement service-based sidebar ([#3030](https://github.com/graycoreio/daffodil/issues/3030)) ([5504966](https://github.com/graycoreio/daffodil/commit/55049662698b6f56d482b1badfb8a5d1ea526c44))
+* **daffio:** render nav links from route data ([#3013](https://github.com/graycoreio/daffodil/issues/3013)) ([d2567fa](https://github.com/graycoreio/daffodil/commit/d2567fa0fa7191bb0e2f2bb43556328208d665e4))
+* **design:** add extra right padding to parent tree items ([#3033](https://github.com/graycoreio/daffodil/issues/3033)) ([9d8d83c](https://github.com/graycoreio/daffodil/commit/9d8d83c728a90046ee75bfd7979676e635bd0aa2))
+* **design:** add sidebar mode helpers ([#3015](https://github.com/graycoreio/daffodil/issues/3015)) ([43c762a](https://github.com/graycoreio/daffodil/commit/43c762a70bb7ec78ced405044a3a476970d7519b))
+* **design:** add sidebar service ([#3014](https://github.com/graycoreio/daffodil/issues/3014)) ([35eda07](https://github.com/graycoreio/daffodil/commit/35eda07fc66fb7acdaf99de4014478be5f1f32bf))
+* **design:** allow `aria-labelledby` to be set by the `DaffModalService` ([#2967](https://github.com/graycoreio/daffodil/issues/2967)) ([e381532](https://github.com/graycoreio/daffodil/commit/e381532e9302e636f7c4e70976bf073f8a005f7f))
+* **design:** clean up link code styles within blockquote in DaffArticleComponent ([#2972](https://github.com/graycoreio/daffodil/issues/2972)) ([9302ee2](https://github.com/graycoreio/daffodil/commit/9302ee271ca1fb48e82f6ff97f48c12220a60f2c))
+* **design:** create `DaffBreadcrumbComponent` ([#3028](https://github.com/graycoreio/daffodil/issues/3028)) ([aa5ec26](https://github.com/graycoreio/daffodil/commit/aa5ec2631066ccafc302fb7e32d311cd20cc46b6))
+* **design:** rename base background token name ([#2969](https://github.com/graycoreio/daffodil/issues/2969)) ([4d91fb5](https://github.com/graycoreio/daffodil/commit/4d91fb5b9671e922790cc9c5b2ad1795e35050a3))
+* **design:** update article code styles ([#2966](https://github.com/graycoreio/daffodil/issues/2966)) ([ab4aacc](https://github.com/graycoreio/daffodil/commit/ab4aacc352dd54d2a9288ada24c992ee90d35682))
+* **design:** update doc viewer menu button colors ([#3023](https://github.com/graycoreio/daffodil/issues/3023)) ([de8b71b](https://github.com/graycoreio/daffodil/commit/de8b71b0c220a6d1174af699932a829ac8e4fed8))
+* **dgeni,daffio:** render API package descriptions ([#3031](https://github.com/graycoreio/daffodil/issues/3031)) ([76cb889](https://github.com/graycoreio/daffodil/commit/76cb889ad132a7f9ea764cd787e013007b0a3a0e))
+* **dgeni,daffio:** render package API doc exports ([#2991](https://github.com/graycoreio/daffodil/issues/2991)) ([c3131d8](https://github.com/graycoreio/daffodil/commit/c3131d87ef846ff02fc087f7c0f7d5d9eebde887))
+* **dgeni,docs-utils:** centralize docs path segment ([#2962](https://github.com/graycoreio/daffodil/issues/2962)) ([5554fd0](https://github.com/graycoreio/daffodil/commit/5554fd0302c2317de1993236969c08a50a35b593))
+* **dgeni:** add configable name computer to packages processor ([#2968](https://github.com/graycoreio/daffodil/issues/2968)) ([f7f7923](https://github.com/graycoreio/daffodil/commit/f7f792343e6f2ff9a5f6df333c3b42bc22ee4844))
+* **dgeni:** add configurator type ([#2968](https://github.com/graycoreio/daffodil/issues/2968)) ([8bb271f](https://github.com/graycoreio/daffodil/commit/8bb271f7f6e945a201c25613a9cb6c82290ca1e6))
+* **dgeni:** add design API package ([#2968](https://github.com/graycoreio/daffodil/issues/2968)) ([eb16f86](https://github.com/graycoreio/daffodil/commit/eb16f867bf9ace8047d0f0651b093c6c9a08bb5b))
+* **dgeni:** add design guide packages ([#2968](https://github.com/graycoreio/daffodil/issues/2968)) ([af1ccb8](https://github.com/graycoreio/daffodil/commit/af1ccb8aa1de5667bdadfd38a4e32bd93ac5c47a))
+* **dgeni:** add doc kind to document ([#3037](https://github.com/graycoreio/daffodil/issues/3037)) ([3988924](https://github.com/graycoreio/daffodil/commit/398892495c20402c3135b0cf641f281378e3965f))
+* **dgeni:** add paths configurators ([#2968](https://github.com/graycoreio/daffodil/issues/2968)) ([fc81125](https://github.com/graycoreio/daffodil/commit/fc81125e51c208612cbedea57f1316641d363b92))
+* **dgeni:** add remove duplicates processor ([#2968](https://github.com/graycoreio/daffodil/issues/2968)) ([3a3df2a](https://github.com/graycoreio/daffodil/commit/3a3df2a2fb03127f0e352c0f26058f01a92d36fd))
+* **dgeni:** add support for extra fields in JSON ([#3038](https://github.com/graycoreio/daffodil/issues/3038)) ([d830f75](https://github.com/graycoreio/daffodil/commit/d830f7592f56230a5716c518452f6cf7f5da03ab))
+* **dgeni:** automatically generate API doc links for code span in markdown ([#2964](https://github.com/graycoreio/daffodil/issues/2964)) ([c3a1ad3](https://github.com/graycoreio/daffodil/commit/c3a1ad331fe8a0417f78a3528c520f1ba5135968))
+* **dgeni:** consolidate docs nav list generation ([#2989](https://github.com/graycoreio/daffodil/issues/2989)) ([b2f33c5](https://github.com/graycoreio/daffodil/commit/b2f33c570bd4053688e706b8a73a0ac22629bb9b))
+* **dgeni:** exclude design from base docsgen ([#2968](https://github.com/graycoreio/daffodil/issues/2968)) ([dec7dca](https://github.com/graycoreio/daffodil/commit/dec7dcad3ab01710d4d32a4351009811ce7414cd))
+* **dgeni:** move design examples under `design/` subpath ([887a515](https://github.com/graycoreio/daffodil/commit/887a515dfb6c3a71363f796287b53c2847c70e38))
+* **dgeni:** process API doc descriptions through markdown ([#2961](https://github.com/graycoreio/daffodil/issues/2961)) ([5ffbb6f](https://github.com/graycoreio/daffodil/commit/5ffbb6f6f2deb4eae14bb06c14221b969c4b7ee5))
+* **dgeni:** remove `atoms` and `molecules` from design doc IDs ([#3041](https://github.com/graycoreio/daffodil/issues/3041)) ([d6e9058](https://github.com/graycoreio/daffodil/commit/d6e90588f7dda9552841cd02b5e2641fc0040c76))
+* **dgeni:** render subpackages under root package ([#3063](https://github.com/graycoreio/daffodil/issues/3063)) ([ccf41f6](https://github.com/graycoreio/daffodil/commit/ccf41f6e313141154434ad71a65ee30c99afe448))
+* **dgeni:** run design packages ([#2968](https://github.com/graycoreio/daffodil/issues/2968)) ([9753072](https://github.com/graycoreio/daffodil/commit/975307283f3dd739032202db412fa43df4506fb0))
+* **docs-utils,dgeni:** extract docsgen pathing helpers ([#3039](https://github.com/graycoreio/daffodil/issues/3039)) ([525ce39](https://github.com/graycoreio/daffodil/commit/525ce39746c7b1ff47205f2d3f8afa2e09011eb0))
+* **docs-utils:** add design path ([#2968](https://github.com/graycoreio/daffodil/issues/2968)) ([995241a](https://github.com/graycoreio/daffodil/commit/995241ae6d561ff752b02cfbd082895de814fbca))
+* **docs-utils:** add example kind ([#2968](https://github.com/graycoreio/daffodil/issues/2968)) ([4cac3f9](https://github.com/graycoreio/daffodil/commit/4cac3f9627da86c2a0a6672b3e5992382512652b))
+* **eslint-config:** restrict `window` global access ([#3053](https://github.com/graycoreio/daffodil/issues/3053)) ([8b278ae](https://github.com/graycoreio/daffodil/commit/8b278ae04958d57fef32f61eebe0f9bedd2c64ba))
+* **router:** add activated route provider ([#2988](https://github.com/graycoreio/daffodil/issues/2988)) ([3b6103c](https://github.com/graycoreio/daffodil/commit/3b6103c32a313e6270aad25044c4a841520f1643))
+
+
+### Bug Fixes
+
+* **daffio:** trailing slash missing from docs path ([#2976](https://github.com/graycoreio/daffodil/issues/2976)) ([5392e37](https://github.com/graycoreio/daffodil/commit/5392e376929e351313e7180e757773eda717561b))
+* **daffio:** unable to resolve assets in dev server ([#2977](https://github.com/graycoreio/daffodil/issues/2977)) ([c061885](https://github.com/graycoreio/daffodil/commit/c0618851f17c5fb9d4bce6d7bdfef9dc597318d8))
+* **design-land:** wrong design examples path ([#2968](https://github.com/graycoreio/daffodil/issues/2968)) ([4858161](https://github.com/graycoreio/daffodil/commit/4858161d8542704ae4725a4f7c45de82280eac56))
+* **design:** sidebar appears expanded before animation completes ([#3024](https://github.com/graycoreio/daffodil/issues/3024)) ([5d58cd0](https://github.com/graycoreio/daffodil/commit/5d58cd0b6702fae42432aefb106f1ceeb11495fd))
+* **dgeni:** api list links include duplicate prefix ([#2960](https://github.com/graycoreio/daffodil/issues/2960)) ([1858e22](https://github.com/graycoreio/daffodil/commit/1858e22f7dc3650ee40ec6e5bb2113bb910c39b0))
+* **dgeni:** API packages are not grouped in nav list ([#2993](https://github.com/graycoreio/daffodil/issues/2993)) ([3e1fe98](https://github.com/graycoreio/daffodil/commit/3e1fe98ad7642cf0e9d7eb8f0a6e735d44c1a635))
+* **dgeni:** correctly prefix API doc link paths ([#2956](https://github.com/graycoreio/daffodil/issues/2956)) ([9e95dd3](https://github.com/graycoreio/daffodil/commit/9e95dd3d2113ef390916b2d24e236e40df9e0cd4))
+* **dgeni:** wrong package exports name ([#3036](https://github.com/graycoreio/daffodil/issues/3036)) ([1798c89](https://github.com/graycoreio/daffodil/commit/1798c89a2af384b54bca4e40a2c6b7658fea8f43))
+
 ## [0.75.0](https://github.com/graycoreio/daffodil/compare/v0.74.0...v0.75.0) (2024-08-07)
 
 
