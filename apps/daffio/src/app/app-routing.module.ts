@@ -4,12 +4,15 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { DAFF_DOCS_PATH } from '@daffodil/docs-utils';
+
 import { DaffioMarketingFooterComponent } from './core/footer/marketing-footer/marketing-footer.component';
 import { DaffioNavHeaderContainer } from './core/nav/header/header.component';
 import { DAFF_NAV_SIDEBAR_REGISTRATION } from './core/nav/sidebar.provider';
 import { DaffioRouterNamedViewsEnum } from './core/router/named-views/models/named-views.enum';
 import { DaffioRoute } from './core/router/route.type';
 import { TemplateComponent } from './core/template/template.component';
+import { daffioDocsRedirectMatcher } from './redirect/docs';
 
 export const appRoutes: Routes = [
   <DaffioRoute>{
@@ -44,18 +47,13 @@ export const appRoutes: Routes = [
         },
       },
       {
-        path: 'docs',
+        path: DAFF_DOCS_PATH,
         loadChildren: () => import('./docs/docs.module').then(m => m.DaffioDocsModule),
       },
       {
-        path: 'packages/*',
-        // TODO: use dynamic redirect once we're on ng18
-        redirectTo: 'docs/packages/*',
-      },
-      {
-        path: 'api/*',
-        // TODO: use dynamic redirect once we're on ng18
-        redirectTo: 'docs/api/*',
+        matcher: daffioDocsRedirectMatcher,
+        redirectTo: (activatedRoute) =>
+          `/${DAFF_DOCS_PATH}/${activatedRoute.url.join('/')}`,
       },
     ],
   },
