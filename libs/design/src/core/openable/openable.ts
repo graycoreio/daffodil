@@ -11,6 +11,6 @@ export interface DaffOpenable {
   /** Hide the component */
   hide: () => void;
 
-  /** Toggles the component from open to not open */
+  /** Toggles the component between open and not open */
   toggle: () => void;
 }
