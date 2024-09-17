@@ -2,7 +2,10 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import {
+  importProvidersFrom,
+  NgModule,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
@@ -37,8 +40,6 @@ import { environment } from '../environments/environment';
     BrowserModule,
     BrowserAnimationsModule,
 
-    DemoDriverModule,
-
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
 
@@ -72,7 +73,17 @@ import { environment } from '../environments/environment';
       },
     ),
     provideRouterStore(),
+    // network providers
     provideHttpClient(withInterceptorsFromDi()),
+    // this must be after http client! ^
+    // this is mostly relevant for the in memory backend
+    // it seems that the way Angular loads providers
+    // means that the full provider tree will be loaded before
+    // importing modules. therefore, the in memory web API
+    // will not be able override the HTTP client backend
+    // when imported as a module
+    importProvidersFrom(DemoDriverModule),
+    //
   ],
   bootstrap: [AppComponent],
 })

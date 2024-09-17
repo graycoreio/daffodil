@@ -21,25 +21,31 @@ import { DesignLandAppComponent } from './app.component';
 import { DesignLandNavModule } from './core/nav/nav.module';
 import { DesignLandTemplateModule } from './core/template/template.module';
 
-@NgModule({ declarations: [
-  DesignLandAppComponent,
-],
-bootstrap: [
-  DesignLandAppComponent,
-], imports: [BrowserModule,
-  BrowserAnimationsModule,
-  DesignLandAppRoutingModule,
-  DaffSidebarModule,
-  DaffLinkSetModule,
-  DaffArticleModule,
-  DaffThemeSwitchButtonModule,
-  DaffNavbarModule,
-  DaffButtonModule,
-  FontAwesomeModule,
-  DesignLandNavModule,
-  DesignLandTemplateModule,
-  DaffToastModule], providers: [
-  DAFF_THEME_INITIALIZER,
-  provideHttpClient(withInterceptorsFromDi()),
-] })
+@NgModule({
+  declarations: [
+    DesignLandAppComponent,
+  ],
+  bootstrap: [
+    DesignLandAppComponent,
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    DesignLandAppRoutingModule,
+    DaffSidebarModule,
+    DaffLinkSetModule,
+    DaffArticleModule,
+    DaffThemeSwitchButtonModule,
+    DaffNavbarModule,
+    DaffButtonModule,
+    FontAwesomeModule,
+    DesignLandNavModule,
+    DesignLandTemplateModule,
+    DaffToastModule,
+  ],
+  providers: [
+    DAFF_THEME_INITIALIZER,
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
+})
 export class AppModule { }
