@@ -8,6 +8,9 @@ const REDIRECTED_ROUTES = [
   'packages',
 ];
 
+/**
+ * Matches old docs routes. (packages and api)
+ */
 export const daffioDocsRedirectMatcher: UrlMatcher = (segments: Array<UrlSegment>) =>
   REDIRECTED_ROUTES.includes(segments[0].path)
     ? {
