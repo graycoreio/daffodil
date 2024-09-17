@@ -18,10 +18,10 @@ describe('@daffodil/core | filters | type | range | behaviors | apply', () => {
   let filterRequestRangeNumericFactory: DaffFilterRequestRangeNumericFactory;
 
   beforeEach(() => {
-		 TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({});
 
-		 filterRangeNumericFactory = TestBed.inject(DaffFilterRangeNumericFactory);
-		 filterRequestRangeNumericFactory = TestBed.inject(DaffFilterRequestRangeNumericFactory);
+    filterRangeNumericFactory = TestBed.inject(DaffFilterRangeNumericFactory);
+    filterRequestRangeNumericFactory = TestBed.inject(DaffFilterRequestRangeNumericFactory);
   });
 
   it('should apply the filter, when the currently applied filters are empty', () => {

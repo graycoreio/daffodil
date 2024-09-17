@@ -25,6 +25,6 @@ export class DesignLandExampleViewerContainer implements OnInit {
   constructor(private codeExamples: CodeExampleService){}
 
   ngOnInit(){
-	  this.selectedExample$ = this.codeExamples.get(this.example);
+    this.selectedExample$ = this.codeExamples.get(this.example);
   }
 }

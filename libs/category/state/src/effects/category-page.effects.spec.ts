@@ -130,7 +130,7 @@ describe('DaffCategoryPageEffects', () => {
     let categoryLoadAction;
 
     beforeEach(() => {
- 		  categoryLoadAction = new DaffCategoryPageLoad({ id: stubCategory.id, kind: DaffCategoryRequestKind.ID });
+      categoryLoadAction = new DaffCategoryPageLoad({ id: stubCategory.id, kind: DaffCategoryRequestKind.ID });
     });
 
     describe('when the call to CategoryService is successful', () => {

@@ -12,6 +12,6 @@ export class DaffProductNotFoundError extends DaffInheritableError implements Da
   public readonly code: string = DaffProductDriverErrorCodes.PRODUCT_NOT_FOUND;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

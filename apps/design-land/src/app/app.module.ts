@@ -1,4 +1,7 @@
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,24 +22,24 @@ import { DesignLandNavModule } from './core/nav/nav.module';
 import { DesignLandTemplateModule } from './core/template/template.module';
 
 @NgModule({ declarations: [
-        DesignLandAppComponent,
-    ],
-    bootstrap: [
-        DesignLandAppComponent,
-    ], imports: [BrowserModule,
-        BrowserAnimationsModule,
-        DesignLandAppRoutingModule,
-        DaffSidebarModule,
-        DaffLinkSetModule,
-        DaffArticleModule,
-        DaffThemeSwitchButtonModule,
-        DaffNavbarModule,
-        DaffButtonModule,
-        FontAwesomeModule,
-        DesignLandNavModule,
-        DesignLandTemplateModule,
-        DaffToastModule], providers: [
-        DAFF_THEME_INITIALIZER,
-        provideHttpClient(withInterceptorsFromDi()),
-    ] })
+  DesignLandAppComponent,
+],
+bootstrap: [
+  DesignLandAppComponent,
+], imports: [BrowserModule,
+  BrowserAnimationsModule,
+  DesignLandAppRoutingModule,
+  DaffSidebarModule,
+  DaffLinkSetModule,
+  DaffArticleModule,
+  DaffThemeSwitchButtonModule,
+  DaffNavbarModule,
+  DaffButtonModule,
+  FontAwesomeModule,
+  DesignLandNavModule,
+  DesignLandTemplateModule,
+  DaffToastModule], providers: [
+  DAFF_THEME_INITIALIZER,
+  provideHttpClient(withInterceptorsFromDi()),
+] })
 export class AppModule { }

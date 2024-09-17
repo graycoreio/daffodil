@@ -1,4 +1,4 @@
-const toc = require('markdown-toc');
+import toc from 'markdown-toc';
 
 export const extractTitle = (doc: any) => {
   const matchesArray = doc.content.match(/^\#(.*?)$/m);

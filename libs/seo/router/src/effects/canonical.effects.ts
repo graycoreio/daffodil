@@ -20,9 +20,9 @@ import { DaffSeoUpdateEventPair } from '../model/update-event-pair.interface';
  */
 @Injectable()
 export class DaffSeoNativeCanonicalUrlEffects extends DaffSeoPageHookRouterEffects<
-DaffRestoreableCanonicalService,
-DaffSeoUpdateEventPair<Event, string>,
-string
+  DaffRestoreableCanonicalService,
+  DaffSeoUpdateEventPair<Event, string>,
+  string
 > {
   constructor(
     router: Router,

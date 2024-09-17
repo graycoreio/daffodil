@@ -38,7 +38,7 @@ export class DaffCheckboxComponent {
 
   @Input()
   get checked() {
-	  return this._checked;
+    return this._checked;
   }
   set checked(value: boolean) {
     if (this._checked === value) {

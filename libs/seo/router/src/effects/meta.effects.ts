@@ -24,9 +24,9 @@ import { DaffSeoUpdateEventPair } from '../model/update-event-pair.interface';
  */
 @Injectable()
 export class DaffSeoNativeMetaEffects extends DaffSeoPageHookRouterEffects<
-DaffRestoreableMetaService,
-DaffSeoUpdateEventPair<Event, DaffSeoMetaDefinition>,
-MetaDefinition
+  DaffRestoreableMetaService,
+  DaffSeoUpdateEventPair<Event, DaffSeoMetaDefinition>,
+  MetaDefinition
 > {
 
   constructor(

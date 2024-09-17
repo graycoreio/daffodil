@@ -12,6 +12,6 @@ export class DaffDriverNetworkError extends DaffInheritableError implements Daff
   public readonly code: string = DAFF_DRIVER_NETWORK_ERROR_CODE;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

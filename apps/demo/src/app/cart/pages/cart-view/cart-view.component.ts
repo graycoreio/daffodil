@@ -19,7 +19,7 @@ export class DemoCartViewComponent implements OnInit {
   constructor(private cartFacade: DaffCartFacade) {}
 
   ngOnInit() {
-	  this.cart$ = this.cartFacade.cart$;
-	  this.loading$ = this.cartFacade.loading$;
+    this.cart$ = this.cartFacade.cart$;
+    this.loading$ = this.cartFacade.loading$;
   }
 }

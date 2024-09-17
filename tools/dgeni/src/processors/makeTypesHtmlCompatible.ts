@@ -12,17 +12,17 @@ export class MakeTypesHtmlCompatibleProcessor implements Processor {
   $runBefore = ['rendering-docs'];
 
   $process(docs: Document[]): Document[] {
-	  docs.map(doc => {
-	    if(!doc.members) {
-	      return doc;
-	    }
+    docs.map(doc => {
+      if(!doc.members) {
+        return doc;
+      }
 
-	    doc.members.map(member => {
-	      member.type = fixGenericTypes(member.type);
-	    });
-	  });
+      doc.members.map(member => {
+        member.type = fixGenericTypes(member.type);
+      });
+    });
 
-	  return docs;
+    return docs;
   }
 }
 

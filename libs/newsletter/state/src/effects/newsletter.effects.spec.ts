@@ -31,8 +31,8 @@ describe('NewsletterEffects', () => {
   let effects: DaffNewsletterEffects<DaffNewsletterSubmission, any>;
   const mockNewsletter = { email: 'test@test.com' };
   let daffNewsletterDriver: DaffNewsletterServiceInterface<
-  DaffNewsletterSubmission,
-  any
+    DaffNewsletterSubmission,
+    any
   >;
 
   beforeEach(() => {

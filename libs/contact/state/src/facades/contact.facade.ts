@@ -27,6 +27,6 @@ export class DaffContactFacade implements DaffContactFacadeInterface {
 
   constructor(private store: Store<DaffContactStateRootSlice>) { }
   dispatch(action: Action) {
-	  this.store.dispatch(action);
+    this.store.dispatch(action);
   }
 }

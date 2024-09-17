@@ -30,58 +30,58 @@ export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> 
   constructor(private store: Store<DaffProductStateRootSlice<T>>) {}
 
   getAllAttributes(id: T['id']): Observable<Dictionary<string[]>> {
-	  return this.store.pipe(select(this.configurableProductSelectors.selectAllConfigurableProductAttributes(id)));
+    return this.store.pipe(select(this.configurableProductSelectors.selectAllConfigurableProductAttributes(id)));
   }
 
   getAllVariants(id: T['id']): Observable<DaffConfigurableProductVariant[]> {
-	  return this.store.pipe(select(this.configurableProductSelectors.selectAllConfigurableProductVariants(id)));
+    return this.store.pipe(select(this.configurableProductSelectors.selectAllConfigurableProductVariants(id)));
   }
 
   getAppliedAttributes(id: T['id']): Observable<Dictionary<string>> {
-	  return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductAppliedAttributesAsDictionary(id)));
+    return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductAppliedAttributesAsDictionary(id)));
   }
 
   getMinimumPrice(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductMinimumPrice(id)));
+    return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductMinimumPrice(id)));
   }
 
   getMaximumPrice(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductMaximumPrice(id)));
+    return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductMaximumPrice(id)));
   }
 
   getMinimumDiscountedPrice(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductMinimumDiscountedPrice(id)));
+    return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductMinimumDiscountedPrice(id)));
   }
 
   getMaximumDiscountedPrice(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductMaximumDiscountedPrice(id)));
+    return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductMaximumDiscountedPrice(id)));
   }
 
   getMinimumPercentDiscount(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductMinimumPercentDiscount(id)));
+    return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductMinimumPercentDiscount(id)));
   }
 
   getMaximumPercentDiscount(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductMaximumPercentDiscount(id)));
+    return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductMaximumPercentDiscount(id)));
   }
 
   isPriceRanged(id: T['id']): Observable<boolean> {
-	  return this.store.pipe(select(this.configurableProductSelectors.isConfigurablePriceRanged(id)));
+    return this.store.pipe(select(this.configurableProductSelectors.isConfigurablePriceRanged(id)));
   }
 
   hasDiscount(id: T['id']): Observable<boolean> {
-	  return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductHasDiscount(id)));
+    return this.store.pipe(select(this.configurableProductSelectors.selectConfigurableProductHasDiscount(id)));
   }
 
   getSelectableAttributes(id: T['id']): Observable<Dictionary<string[]>> {
-	  return this.store.pipe(select(this.configurableProductSelectors.selectSelectableConfigurableProductAttributes(id)));
+    return this.store.pipe(select(this.configurableProductSelectors.selectSelectableConfigurableProductAttributes(id)));
   }
 
   getMatchingVariants(id: T['id']): Observable<DaffConfigurableProductVariant[]> {
-	  return this.store.pipe(select(this.configurableProductSelectors.selectMatchingConfigurableProductVariants(id)));
+    return this.store.pipe(select(this.configurableProductSelectors.selectMatchingConfigurableProductVariants(id)));
   }
 
   dispatch(action: Action) {
-	  this.store.dispatch(action);
+    this.store.dispatch(action);
   }
 }

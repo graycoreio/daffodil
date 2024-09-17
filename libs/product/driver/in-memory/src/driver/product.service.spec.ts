@@ -1,10 +1,10 @@
 import {
- provideHttpClient,
-withInterceptorsFromDi,
+  provideHttpClient,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
 import {
- HttpTestingController,
-provideHttpClientTesting,
+  HttpTestingController,
+  provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
@@ -20,13 +20,13 @@ describe('Driver | InMemory | Product | ProductService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [],
-    providers: [
+      imports: [],
+      providers: [
         DaffInMemoryProductService,
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ],
-});
+      ],
+    });
 
     httpMock = TestBed.inject(HttpTestingController);
     productService = TestBed.inject(DaffInMemoryProductService);

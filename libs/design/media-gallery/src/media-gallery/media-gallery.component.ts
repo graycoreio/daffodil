@@ -54,10 +54,10 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, 
   }
 
   ngOnInit() {
-	  this.registry.add(this);
+    this.registry.add(this);
   }
 
   ngOnDestroy() {
-	  this.registry.remove(this);
+    this.registry.remove(this);
   }
 }

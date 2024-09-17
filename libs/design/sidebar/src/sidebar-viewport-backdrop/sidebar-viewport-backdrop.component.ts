@@ -61,18 +61,18 @@ export class DaffSidebarViewportBackdropComponent implements OnInit {
 
   @HostListener('@fadeBackdrop.done', ['$event'])
   animationDone(e: AnimationEvent) {
-	  this.interactableClass = !(e.toState === ':leave' || e.toState === 'non-interactable');
+    this.interactableClass = !(e.toState === ':leave' || e.toState === 'non-interactable');
   }
 
   @HostListener('@fadeBackdrop.start', ['$event'])
   animationStart(e: AnimationEvent) {
-	  if(e.toState === ':enter' || e.toState === 'interactable'){
-	    this.interactableClass = true;
-	  }
+    if(e.toState === ':enter' || e.toState === 'interactable'){
+      this.interactableClass = true;
+    }
   }
 
   @HostListener('click')
   onBackdropClicked(): void {
-	  this.backdropClicked.emit();
+    this.backdropClicked.emit();
   }
 }

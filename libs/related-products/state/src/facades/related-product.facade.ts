@@ -24,10 +24,10 @@ export class DaffRelatedProductsFacade<T extends DaffProduct = DaffProduct> impl
   private readonly selectors = getDaffRelatedProductsSelectors<T>();
 
   constructor(private store: Store<DaffRelatedProductStateRootSlice<T>>) {
-	  this.relatedProducts$ = this.store.pipe(select(this.selectors.selectRelatedProducts));
+    this.relatedProducts$ = this.store.pipe(select(this.selectors.selectRelatedProducts));
   }
 
   dispatch(action: Action) {
-	  this.store.dispatch(action);
+    this.store.dispatch(action);
   }
 }

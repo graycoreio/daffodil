@@ -19,5 +19,6 @@ export const requireFolder = (dirname, folderPath) => {
   const absolutePath = resolve(dirname, folderPath);
   return readdirSync(absolutePath)
     .filter(p => !/[._]spec\.js$/.test(p))  // ignore spec files
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     .map(p => require(resolve(absolutePath, p)));
 };

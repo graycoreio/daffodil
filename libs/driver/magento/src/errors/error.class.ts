@@ -12,6 +12,6 @@ export class DaffDriverMagentoError extends DaffInheritableError implements Daff
   public readonly code: string = DAFF_DRIVER_MAGENTO_ERROR_CODE;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

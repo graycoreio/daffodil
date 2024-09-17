@@ -1,10 +1,16 @@
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 
 import { DaffInMemoryNewsletterService } from './newsletter.service';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
 describe('Driver | InMemory | Newsletter | NewsletterService', () => {
@@ -14,13 +20,13 @@ describe('Driver | InMemory | Newsletter | NewsletterService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [],
-    providers: [
+      imports: [],
+      providers: [
         DaffInMemoryNewsletterService,
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-});
+      ],
+    });
     httpMock = TestBed.inject(HttpTestingController);
     newsletterService = TestBed.inject(DaffInMemoryNewsletterService);
   });

@@ -21,9 +21,9 @@ export class DaffInheritableError extends Error {
   recoverable = false;
 
   constructor(message?: string) {
-	  super(message);
-	  const trueProto = new.target.prototype;
+    super(message);
+    const trueProto = new.target.prototype;
 
-	  Object.setPrototypeOf(this, trueProto);
+    Object.setPrototypeOf(this, trueProto);
   }
 }

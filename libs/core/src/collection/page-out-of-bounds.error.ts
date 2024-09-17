@@ -12,6 +12,6 @@ export class DaffCollectionPageOutOfBoundsError extends DaffInheritableError imp
   public readonly code: string = DAFF_COLLECTION_PAGE_OUT_OF_BOUNDS_ERROR_CODE;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

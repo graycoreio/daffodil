@@ -36,16 +36,16 @@ export class DaffProductPageFacade<T extends DaffProduct = DaffProduct> implemen
   private selectors = getDaffProductSelectors<T>();
 
   constructor(private store: Store<DaffProductStateRootSlice<T>>) {
-	  this.loadingState$ = this.store.pipe(select(this.selectors.selectLoadingState));
-	  this.loading$ = this.store.pipe(select(this.selectors.selectLoading));
-	  this.mutating$ = this.store.pipe(select(this.selectors.selectMutating));
-	  this.resolving$ = this.store.pipe(select(this.selectors.selectResolving));
-	  this.errors$ = this.store.pipe(select(this.selectors.selectErrors));
-	  this.hasErrors$ = this.store.pipe(select(this.selectors.selectHasErrors));
-	  this.product$ = this.store.pipe(select(this.selectors.selectCurrentProduct));
+    this.loadingState$ = this.store.pipe(select(this.selectors.selectLoadingState));
+    this.loading$ = this.store.pipe(select(this.selectors.selectLoading));
+    this.mutating$ = this.store.pipe(select(this.selectors.selectMutating));
+    this.resolving$ = this.store.pipe(select(this.selectors.selectResolving));
+    this.errors$ = this.store.pipe(select(this.selectors.selectErrors));
+    this.hasErrors$ = this.store.pipe(select(this.selectors.selectHasErrors));
+    this.product$ = this.store.pipe(select(this.selectors.selectCurrentProduct));
   }
 
   dispatch(action: Action) {
-	  this.store.dispatch(action);
+    this.store.dispatch(action);
   }
 }

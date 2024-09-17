@@ -19,5 +19,5 @@ export interface DaffCartBillingAddressServiceInterface<T extends DaffCart = Daf
 }
 
 export const DaffCartBillingAddressDriver = new InjectionToken<
-DaffCartBillingAddressServiceInterface
+  DaffCartBillingAddressServiceInterface
 >('DaffCartBillingAddressDriver');

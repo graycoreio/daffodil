@@ -58,10 +58,10 @@ export class DaffRadioComponent implements OnInit {
     return this._checked;
   }
   set checked(value: boolean) {
-	  if (this._checked !== value) {
-	    this._checked = value;
-	    this.selectionChange.emit(this.value);
-	  }
+    if (this._checked !== value) {
+      this._checked = value;
+      this.selectionChange.emit(this.value);
+    }
   }
   /**
    * The value of the radio

@@ -10,17 +10,17 @@ import {
 export class FilterContainedDocsProcessor implements Processor {
   name = 'filterContainedDocs';
   docTypes = [
-	  'member',
-	  'function-overload',
-	  'get-accessor-info',
-	  'set-accessor-info',
-	  'parameter',
+    'member',
+    'function-overload',
+    'get-accessor-info',
+    'set-accessor-info',
+    'parameter',
   ];
   $runBefore = ['docs-processed'];
 
   $process(docs: Document[]): Document[] {
-	  docs = docs.filter(doc => this.docTypes.indexOf(doc.docType) === -1);
+    docs = docs.filter(doc => this.docTypes.indexOf(doc.docType) === -1);
 
-	  return docs;
+    return docs;
   }
 }

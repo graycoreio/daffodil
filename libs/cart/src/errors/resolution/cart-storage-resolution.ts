@@ -15,6 +15,6 @@ export class DaffCartStorageResolutionError extends DaffInheritableError impleme
   public readonly code: string = DaffCartErrorCodes.CART_STORAGE_RESOLUTION;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

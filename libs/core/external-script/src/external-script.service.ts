@@ -57,7 +57,7 @@ export class DaffExternalScriptService implements DaffExternalScriptServiceInter
   private doc: Document;
 
   constructor(
-  @Inject(DOCUMENT) doc,
+    @Inject(DOCUMENT) doc,
   ) {
     this.doc = doc;
   }

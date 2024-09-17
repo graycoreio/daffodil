@@ -11,6 +11,6 @@ export class DaffExternalRouterClientError extends DaffInheritableError
   public readonly code: string = '4xx_CLIENT_ERROR';
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

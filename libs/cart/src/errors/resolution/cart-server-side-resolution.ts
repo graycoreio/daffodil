@@ -16,6 +16,6 @@ export class DaffCartServerSideResolutionError extends DaffInheritableError impl
   public readonly code: string = DaffCartErrorCodes.CART_SERVER_SIDE_RESOLUTION;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

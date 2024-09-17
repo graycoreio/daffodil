@@ -27,7 +27,7 @@ const defaultConfig: DaffExternalRouterDriverInMemoryConfig = {
  * @docs-private
  */
 export const DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG = new InjectionToken<
-DaffExternalRouterDriverInMemoryConfig
+  DaffExternalRouterDriverInMemoryConfig
 >('DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG', {
   providedIn: 'root',
   factory: () => defaultConfig,

@@ -44,25 +44,25 @@ export class DaffOsThemeService {
   private doc?: Document;
 
   constructor(@Inject(DOCUMENT) _doc: any) {
-	  this.doc = <Document>_doc;
+    this.doc = <Document>_doc;
 
-	  this.preference$ = this.doc.defaultView?.matchMedia
-	    ? fromEventPattern<MediaQueryListEvent>(
-	      addHandlerFactory(this.doc.defaultView),
-	     	removeHandlerFactory(this.doc.defaultView),
-	    )
-	      .pipe(
-	        startWith(this.doc.defaultView?.matchMedia(mediaQueryDarkPreference)),
-	        map((e: MediaQueryListEvent) => e.matches),
-	        map((prefersDark) => prefersDark ? DaffTheme.Dark : DaffTheme.Light),
-	      )
-	    : of(DaffTheme.None);
+    this.preference$ = this.doc.defaultView?.matchMedia
+      ? fromEventPattern<MediaQueryListEvent>(
+        addHandlerFactory(this.doc.defaultView),
+        removeHandlerFactory(this.doc.defaultView),
+      )
+        .pipe(
+          startWith(this.doc.defaultView?.matchMedia(mediaQueryDarkPreference)),
+          map((e: MediaQueryListEvent) => e.matches),
+          map((prefersDark) => prefersDark ? DaffTheme.Dark : DaffTheme.Light),
+        )
+      : of(DaffTheme.None);
   }
 
   /**
    * Get the operating system's theme preference.
    */
   public getThemePreference(): Observable<DaffTheme> {
-	  return this.preference$;
+    return this.preference$;
   }
 }

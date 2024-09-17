@@ -12,6 +12,6 @@ export class DaffInvalidEmailError extends DaffInheritableError implements DaffE
   public readonly code: string = DaffCartDriverErrorCodes.INVALID_EMAIL;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

@@ -1,4 +1,6 @@
 import { Package } from 'dgeni';
+import linksPackage from 'dgeni-packages/links';
+import typescriptPackage from 'dgeni-packages/typescript';
 
 import {
   DAFF_DOCS_DESIGN_PATH,
@@ -33,9 +35,6 @@ import {
   DESIGN_PATH,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
-
-const linksPackage = require('dgeni-packages/links');
-const typescriptPackage = require('dgeni-packages/typescript');
 
 const API_PACKAGE_NAME = 'daffodil-api';
 

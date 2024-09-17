@@ -29,7 +29,7 @@ export class DaffModalCloseDirective {
    */
   @HostListener('click')
   _onCloseModal(event: MouseEvent) {
-	  if(this.modal) {
+    if(this.modal) {
       this.modalService.close(this.modal);
     }
   }

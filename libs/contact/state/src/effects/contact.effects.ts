@@ -46,33 +46,33 @@ export class DaffContactEffects<T, V> {
   ) {}
 
   trySubmission$: Observable<Action> = createEffect(() =>
-	  this.actions$.pipe(
-	    ofType(
-	      DaffContactActionTypes.ContactSubmitAction,
-	      DaffContactActionTypes.ContactRetryAction,
-	      DaffContactActionTypes.ContactCancelAction,
-	    ),
-	    switchMap(
-	      (
-	        action:
+    this.actions$.pipe(
+      ofType(
+        DaffContactActionTypes.ContactSubmitAction,
+        DaffContactActionTypes.ContactRetryAction,
+        DaffContactActionTypes.ContactCancelAction,
+      ),
+      switchMap(
+        (
+          action:
           | DaffContactSubmit<T>
           | DaffContactRetry<T>
           | DaffContactCancel,
-	      ) => {
-	        if (action instanceof DaffContactCancel) {
-	          return EMPTY;
-	        } else {
-	          return this.submitContact(action.payload);
-	        }
-	      },
-	    ),
-	  ),
+        ) => {
+          if (action instanceof DaffContactCancel) {
+            return EMPTY;
+          } else {
+            return this.submitContact(action.payload);
+          }
+        },
+      ),
+    ),
   );
 
   private submitContact(contact: T): Observable<Action> {
-	  return this.driver.send(contact).pipe(
-	    map((resp: V) => new DaffContactSuccessSubmit()),
-	    catchError((error: DaffError) => of(new DaffContactFailedSubmit([this.errorMatcher(error)]))),
-	  );
+    return this.driver.send(contact).pipe(
+      map((resp: V) => new DaffContactSuccessSubmit()),
+      catchError((error: DaffError) => of(new DaffContactFailedSubmit([this.errorMatcher(error)]))),
+    );
   }
 }

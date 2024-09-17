@@ -12,6 +12,6 @@ export class DaffExternalRouterPermanentRedirectError extends DaffInheritableErr
   public readonly code: string = '302_PERMANENT_REDIRECT';
 
   constructor(public redirectUrl: string, message?: string) {
-	  super(message);
+    super(message);
   }
 }

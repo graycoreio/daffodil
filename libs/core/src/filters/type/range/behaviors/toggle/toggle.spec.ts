@@ -16,10 +16,10 @@ describe('@daffodil/core | filters | type | range | behaviors | toggle', () => {
   let filterToggleRequestRangeNumericFactory: DaffFilterToggleRequestRangeNumericFactory;
 
   beforeEach(() => {
-		 TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({});
 
-		 filterRangeNumericFactory = TestBed.inject(DaffFilterRangeNumericFactory);
-		 filterToggleRequestRangeNumericFactory = TestBed.inject(DaffFilterToggleRequestRangeNumericFactory);
+    filterRangeNumericFactory = TestBed.inject(DaffFilterRangeNumericFactory);
+    filterToggleRequestRangeNumericFactory = TestBed.inject(DaffFilterToggleRequestRangeNumericFactory);
   });
 
   it('should remove the request value from the filter when the request value is currently applied', () => {

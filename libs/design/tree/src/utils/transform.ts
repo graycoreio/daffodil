@@ -12,7 +12,7 @@ import { DaffTreeData } from '../interfaces/tree-data';
  *
  */
 export const daffTransformTree = <
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line @typescript-eslint/no-restricted-types
   T extends Record<any,any>,
   V
 >(

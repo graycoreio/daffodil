@@ -11,6 +11,6 @@ export class DaffFilterNotFound extends DaffInheritableError implements DaffErro
   public readonly code: string = DaffFilterErrorCodes.FILTER_NOT_FOUND;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

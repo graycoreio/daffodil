@@ -26,7 +26,7 @@ export const daffCartRoutingConfigurationDefault: DaffCartRoutingConfiguration =
  * `@daffodil/cart/state` package.
  */
 export const DAFF_CART_ROUTING_CONFIG = new InjectionToken<
-DaffCartRoutingConfiguration
+  DaffCartRoutingConfiguration
 >('DAFF_CART_ROUTING_CONFIG', {
   providedIn: 'root',
   factory: () => daffCartRoutingConfigurationDefault,

@@ -19,154 +19,154 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
   private discountVariant3 = faker.datatype.number({ min: 0, max: this.priceVariant3 - 1 });
   __typename = MagentoProductTypeEnum.ConfigurableProduct;
   configurable_options = [
-	  {
-	    attribute_code: 'color',
-	    label: 'Color',
-	    position: 0,
-	    values: [
-	      {
-	        label: 'Blue',
-	        value_index: 0,
-	      },
-	      {
-	        label: 'Yellow',
-	        value_index: 1,
-	      },
-	      {
-	        label: 'Red',
-	        value_index: 2,
-	      },
-	    ],
-	  },
+    {
+      attribute_code: 'color',
+      label: 'Color',
+      position: 0,
+      values: [
+        {
+          label: 'Blue',
+          value_index: 0,
+        },
+        {
+          label: 'Yellow',
+          value_index: 1,
+        },
+        {
+          label: 'Red',
+          value_index: 2,
+        },
+      ],
+    },
   ];
   variants = [
-	  {
-	    attributes: [
-	      {
-	        code: 'color',
-	        value_index: 0,
-	      },
-	    ],
-	    product: {
-	      __typename: MagentoProductTypeEnum.SimpleProduct,
-	      uid: faker.datatype.uuid(),
-	      url_key: faker.random.alphaNumeric(16),
-	      url_suffix: '.html',
-	      name: faker.random.word(),
-	      sku: faker.random.alphaNumeric(16),
-	      stock_status: MagentoProductStockStatusEnum.InStock,
-	      image: {
-	        __typename: 'ProductImage',
-	        label: faker.random.words(3),
-	        url: faker.image.imageUrl(),
-	      },
-	      thumbnail: {
-	        __typename: 'ProductImage',
-	        label: faker.random.words(3),
-	        url: faker.image.imageUrl(),
-	      },
-	      price_range: {
-	        __typename: 'PriceRange',
-	        maximum_price: {
-	          __typename: 'ProductPrice',
-	          regular_price: {
-	            __typename: 'Money',
-	            value: this.priceVariant1,
-	            currency: null,
-	          },
-	          discount: {
-	            __typename: 'ProductDiscount',
-	            amount_off: this.discountVariant1,
-	            percent_off: this.discountVariant1/this.priceVariant1,
-	          },
-	        },
-	      },
-	    },
-	  },
-	  {
-	    attributes: [
-	      {
-	        code: 'color',
-	        value_index: 1,
-	      },
-	    ],
-	    product: {
-	      __typename: MagentoProductTypeEnum.SimpleProduct,
-	      uid: faker.datatype.uuid(),
-	      url_key: faker.random.alphaNumeric(16),
-	      url_suffix: '.html',
-	      name: faker.random.word(),
-	      sku: faker.random.alphaNumeric(16),
-	      stock_status: MagentoProductStockStatusEnum.InStock,
-	      image: {
-	        __typename: 'ProductImage',
-	        label: faker.random.words(3),
-	        url: faker.image.imageUrl(),
-	      },
-	      thumbnail: {
-	        __typename: 'ProductImage',
-	        label: faker.random.words(3),
-	        url: faker.image.imageUrl(),
-	      },
-	      price_range: {
-	        __typename: 'PriceRange',
-	        maximum_price: {
-	          __typename: 'ProductPrice',
-	          regular_price: {
-	            __typename: 'Money',
-	            value: this.priceVariant2,
-	            currency: null,
-	          },
-	          discount: {
-	            amount_off: this.discountVariant2,
-	            percent_off: this.discountVariant2/this.priceVariant2,
-	          },
-	        },
-	      },
-	    },
-	  },
-	  {
-	    attributes: [
-	      {
-	        code: 'color',
-	        value_index: 2,
-	      },
-	    ],
-	    product: {
-	      __typename: MagentoProductTypeEnum.SimpleProduct,
-	      uid: faker.datatype.uuid(),
-	      url_key: faker.random.alphaNumeric(16),
-	      url_suffix: '.html',
-	      name: faker.random.word(),
-	      sku: faker.random.alphaNumeric(16),
-	      stock_status: MagentoProductStockStatusEnum.InStock,
-	      image: {
-	        __typename: 'ProductImage',
-	        label: faker.random.words(3),
-	        url: faker.image.imageUrl(),
-	      },
-	      thumbnail: {
-	        __typename: 'ProductImage',
-	        label: faker.random.words(3),
-	        url: faker.image.imageUrl(),
-	      },
-	      price_range: {
-	        __typename: 'PriceRange',
-	        maximum_price: {
-	          __typename: 'ProductPrice',
-	          regular_price: {
-	            __typename: 'Money',
-	            value: this.priceVariant3,
-	            currency: null,
-	          },
-	          discount: {
-	            amount_off: this.discountVariant3,
-	            percent_off: this.discountVariant3/this.priceVariant3,
-	          },
-	        },
-	      },
-	    },
-	  },
+    {
+      attributes: [
+        {
+          code: 'color',
+          value_index: 0,
+        },
+      ],
+      product: {
+        __typename: MagentoProductTypeEnum.SimpleProduct,
+        uid: faker.datatype.uuid(),
+        url_key: faker.random.alphaNumeric(16),
+        url_suffix: '.html',
+        name: faker.random.word(),
+        sku: faker.random.alphaNumeric(16),
+        stock_status: MagentoProductStockStatusEnum.InStock,
+        image: {
+          __typename: 'ProductImage',
+          label: faker.random.words(3),
+          url: faker.image.imageUrl(),
+        },
+        thumbnail: {
+          __typename: 'ProductImage',
+          label: faker.random.words(3),
+          url: faker.image.imageUrl(),
+        },
+        price_range: {
+          __typename: 'PriceRange',
+          maximum_price: {
+            __typename: 'ProductPrice',
+            regular_price: {
+              __typename: 'Money',
+              value: this.priceVariant1,
+              currency: null,
+            },
+            discount: {
+              __typename: 'ProductDiscount',
+              amount_off: this.discountVariant1,
+              percent_off: this.discountVariant1/this.priceVariant1,
+            },
+          },
+        },
+      },
+    },
+    {
+      attributes: [
+        {
+          code: 'color',
+          value_index: 1,
+        },
+      ],
+      product: {
+        __typename: MagentoProductTypeEnum.SimpleProduct,
+        uid: faker.datatype.uuid(),
+        url_key: faker.random.alphaNumeric(16),
+        url_suffix: '.html',
+        name: faker.random.word(),
+        sku: faker.random.alphaNumeric(16),
+        stock_status: MagentoProductStockStatusEnum.InStock,
+        image: {
+          __typename: 'ProductImage',
+          label: faker.random.words(3),
+          url: faker.image.imageUrl(),
+        },
+        thumbnail: {
+          __typename: 'ProductImage',
+          label: faker.random.words(3),
+          url: faker.image.imageUrl(),
+        },
+        price_range: {
+          __typename: 'PriceRange',
+          maximum_price: {
+            __typename: 'ProductPrice',
+            regular_price: {
+              __typename: 'Money',
+              value: this.priceVariant2,
+              currency: null,
+            },
+            discount: {
+              amount_off: this.discountVariant2,
+              percent_off: this.discountVariant2/this.priceVariant2,
+            },
+          },
+        },
+      },
+    },
+    {
+      attributes: [
+        {
+          code: 'color',
+          value_index: 2,
+        },
+      ],
+      product: {
+        __typename: MagentoProductTypeEnum.SimpleProduct,
+        uid: faker.datatype.uuid(),
+        url_key: faker.random.alphaNumeric(16),
+        url_suffix: '.html',
+        name: faker.random.word(),
+        sku: faker.random.alphaNumeric(16),
+        stock_status: MagentoProductStockStatusEnum.InStock,
+        image: {
+          __typename: 'ProductImage',
+          label: faker.random.words(3),
+          url: faker.image.imageUrl(),
+        },
+        thumbnail: {
+          __typename: 'ProductImage',
+          label: faker.random.words(3),
+          url: faker.image.imageUrl(),
+        },
+        price_range: {
+          __typename: 'PriceRange',
+          maximum_price: {
+            __typename: 'ProductPrice',
+            regular_price: {
+              __typename: 'Money',
+              value: this.priceVariant3,
+              currency: null,
+            },
+            discount: {
+              amount_off: this.discountVariant3,
+              percent_off: this.discountVariant3/this.priceVariant3,
+            },
+          },
+        },
+      },
+    },
   ];
 }
 

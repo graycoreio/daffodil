@@ -15,7 +15,7 @@ class TestError extends DaffInheritableError implements DaffError {
   public readonly code = 'test';
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }
 

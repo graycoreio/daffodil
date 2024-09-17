@@ -67,11 +67,11 @@ export class DaffNotificationComponent implements DaffPrefixable {
   };
 
   @HostBinding('class.vertical') get verticalOrientation() {
-	  return this.orientation === DaffNotificationOrientationEnum.Vertical;
+    return this.orientation === DaffNotificationOrientationEnum.Vertical;
   }
 
   @HostBinding('class.horizontal') get horizontalOrientation() {
-	  return this.orientation === DaffNotificationOrientationEnum.Horizontal;
+    return this.orientation === DaffNotificationOrientationEnum.Horizontal;
   }
 
   /** Whether or not a notification is closable */

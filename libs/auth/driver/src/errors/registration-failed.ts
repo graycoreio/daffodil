@@ -12,6 +12,6 @@ export class DaffRegistrationFailedError extends DaffInheritableError implements
   public readonly code: string = DaffAuthDriverErrorCodes.REGISTRATION_FAILED;
 
   constructor(public message: string) {
-	  super(message);
+    super(message);
   }
 }

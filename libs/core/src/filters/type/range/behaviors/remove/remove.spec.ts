@@ -18,10 +18,10 @@ describe('@daffodil/core | filters | type | range | behaviors | remove', () => {
   let filterRequestRangeNumericFactory: DaffFilterRequestRangeNumericFactory;
 
   beforeEach(() => {
-		 TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({});
 
-		 filterRangeNumericFactory = TestBed.inject(DaffFilterRangeNumericFactory);
-		 filterRequestRangeNumericFactory = TestBed.inject(DaffFilterRequestRangeNumericFactory);
+    filterRangeNumericFactory = TestBed.inject(DaffFilterRangeNumericFactory);
+    filterRequestRangeNumericFactory = TestBed.inject(DaffFilterRequestRangeNumericFactory);
   });
 
   it('should remove the filter, when the filter option is the same as the request value', () => {

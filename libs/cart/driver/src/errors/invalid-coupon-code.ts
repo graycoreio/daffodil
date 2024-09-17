@@ -14,6 +14,6 @@ export class DaffInvalidCouponCodeError extends DaffInheritableError implements 
   public readonly code: string = DaffCartDriverErrorCodes.INVALID_COUPON_CODE;
 
   constructor(message?: string, public coupon?: DaffCartCoupon['code']) {
-	  super(message);
+    super(message);
   }
 }

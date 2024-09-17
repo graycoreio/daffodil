@@ -23,8 +23,8 @@ export class MockProduct implements DaffProduct {
   price = this.stubPrice;
   in_stock = true;
   discount = {
-	  amount: this.stubDiscount,
-	  percent: Math.floor((this.stubDiscount/this.stubPrice) * 100),
+    amount: this.stubDiscount,
+    percent: Math.floor((this.stubDiscount/this.stubPrice) * 100),
   };
   images = this.imageFactory.createMany(faker.datatype.number({ min: 1, max: 10 }));
   thumbnail = this.imageFactory.create();

@@ -28,9 +28,9 @@ import { ActionTypes } from '../action-types.type';
 export function daffCartOrderReducer<T extends DaffCartOrderResult = DaffCartOrderResult>(
   state = daffCartOrderInitialState,
   action: ActionTypes<
-  DaffCart,
-  DaffCartItemInput,
-  T
+    DaffCart,
+    DaffCartItemInput,
+    T
   >,
 ): DaffCartOrderReducerState<T> {
   switch (action.type) {

@@ -99,7 +99,7 @@ export class DaffTreeComponent implements OnInit, OnChanges {
    * @docs-private
    */
   @ContentChild('daffTreeItemWithChildrenTpl', { static: true })
-    withChildrenTemplate: TemplateRef<any>;
+  withChildrenTemplate: TemplateRef<any>;
 
   /**
    * The template used to render tree-nodes that have no children.

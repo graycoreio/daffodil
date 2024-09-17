@@ -1,8 +1,14 @@
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { DaffioAssetFetchBrowserService } from './browser.service';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('DaffioAssetFetchBrowserService', () => {
   let httpTestingController: HttpTestingController;
@@ -10,13 +16,13 @@ describe('DaffioAssetFetchBrowserService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [],
-    providers: [
+      imports: [],
+      providers: [
         DaffioAssetFetchBrowserService,
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-});
+      ],
+    });
 
     httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(DaffioAssetFetchBrowserService);

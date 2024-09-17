@@ -17,7 +17,7 @@ export interface DaffExternalRouterDriverTestingConfig {
  * @docs-private
  */
 export const DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG = new InjectionToken<
-DaffExternalRouterDriverTestingConfig
+  DaffExternalRouterDriverTestingConfig
 >('DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG', {
   providedIn: 'root',
   factory: () => ({}),

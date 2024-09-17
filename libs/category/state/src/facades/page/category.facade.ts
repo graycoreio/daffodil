@@ -46,27 +46,27 @@ export class DaffCategoryFacade<
   isCategoryEmpty$: Observable<boolean>;
 
   getCategoryById(id: V['id']): Observable<V> {
-	  return this.store.pipe(select(this.categorySelectors.selectCategory(id)));
+    return this.store.pipe(select(this.categorySelectors.selectCategory(id)));
   }
 
   getProductsByCategory(categoryId: V['id']): Observable<W[]> {
-	  return this.store.pipe(select(this.categorySelectors.selectProductsByCategory(categoryId)));
+    return this.store.pipe(select(this.categorySelectors.selectProductsByCategory(categoryId)));
   }
 
   getTotalProductsByCategory(categoryId: V['id']): Observable<number> {
-	  return this.store.pipe(select(this.categorySelectors.selectTotalProductsByCategory(categoryId)));
+    return this.store.pipe(select(this.categorySelectors.selectTotalProductsByCategory(categoryId)));
   }
 
   constructor(private store: Store<DaffCategoryStateRootSlice<V, W>>) {
-	  this.category$ = this.store.pipe(select(this.categorySelectors.selectCurrentCategory));
-	  this.products$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageProducts));
-	  this.loadingState$ = this.store.pipe(select(this.categorySelectors.selectLoadingState));
-	  this.loading$ = this.store.pipe(select(this.categorySelectors.selectLoading));
-	  this.mutating$ = this.store.pipe(select(this.categorySelectors.selectMutating));
-	  this.resolving$ = this.store.pipe(select(this.categorySelectors.selectResolving));
-	  this.errors$ = this.store.pipe(select(this.categorySelectors.selectErrors));
-	  this.hasErrors$ = this.store.pipe(select(this.categorySelectors.selectHasErrors));
-	  this.isCategoryEmpty$ = this.store.pipe(select(this.categorySelectors.selectIsCategoryPageEmpty));
+    this.category$ = this.store.pipe(select(this.categorySelectors.selectCurrentCategory));
+    this.products$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageProducts));
+    this.loadingState$ = this.store.pipe(select(this.categorySelectors.selectLoadingState));
+    this.loading$ = this.store.pipe(select(this.categorySelectors.selectLoading));
+    this.mutating$ = this.store.pipe(select(this.categorySelectors.selectMutating));
+    this.resolving$ = this.store.pipe(select(this.categorySelectors.selectResolving));
+    this.errors$ = this.store.pipe(select(this.categorySelectors.selectErrors));
+    this.hasErrors$ = this.store.pipe(select(this.categorySelectors.selectHasErrors));
+    this.isCategoryEmpty$ = this.store.pipe(select(this.categorySelectors.selectIsCategoryPageEmpty));
   }
 
   /**
@@ -75,6 +75,6 @@ export class DaffCategoryFacade<
    * @param action action to dispatch.
    */
   dispatch(action: Action) {
-	  this.store.dispatch(action);
+    this.store.dispatch(action);
   }
 }

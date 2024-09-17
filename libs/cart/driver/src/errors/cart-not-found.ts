@@ -13,6 +13,6 @@ export class DaffCartNotFoundError extends DaffInheritableError implements DaffE
   public readonly code: string = DaffCartDriverErrorCodes.CART_NOT_FOUND;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

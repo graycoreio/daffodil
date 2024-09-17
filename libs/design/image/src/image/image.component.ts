@@ -41,7 +41,7 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
   providers: [
     {
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
-			 provide: daffThumbnailCompatToken, useExisting: DaffImageComponent,
+      provide: daffThumbnailCompatToken, useExisting: DaffImageComponent,
     },
   ],
   hostDirectives: [{
@@ -55,7 +55,7 @@ export class DaffImageComponent implements OnInit {
 
   @Input()
   get src(): string {
-	  return this._src;
+    return this._src;
   }
   set src(value: string) {
     this._src = value;
@@ -103,7 +103,7 @@ export class DaffImageComponent implements OnInit {
    * @docs-private
    */
   ngOnInit(): void {
-	  validateProperties(this, ['src', 'alt', 'width', 'height']);
+    validateProperties(this, ['src', 'alt', 'width', 'height']);
   }
 
   constructor(private sanitizer: DomSanitizer) {}
@@ -112,17 +112,17 @@ export class DaffImageComponent implements OnInit {
    * @docs-private
    */
   get _paddingTop(): any {
-	  if (!this.height || !this.width ) {
-	    return undefined;
-	  }
+    if (!this.height || !this.width ) {
+      return undefined;
+    }
 
-	  return this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)');
+    return this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)');
   }
 
   /**
    * @docs-private
    */
   @HostBinding('style.max-width') get maxWidth(): string {
-	  return this.width + 'px';
+    return this.width + 'px';
   }
 }

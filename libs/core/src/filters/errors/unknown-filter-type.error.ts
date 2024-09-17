@@ -12,6 +12,6 @@ export class DaffFilterUnknownType extends DaffInheritableError implements DaffE
   public readonly code: string = DaffFilterErrorCodes.UNKNOWN_FILTER_TYPE;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

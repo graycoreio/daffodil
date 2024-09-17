@@ -10,7 +10,7 @@ export const daffExternalRouterConfigurationDefault: DaffExternalRouterConfigura
  * `@daffodil/external-router` package.
  */
 export const DAFF_EXTERNAL_ROUTER_CONFIG = new InjectionToken<
-DaffExternalRouterConfiguration
+  DaffExternalRouterConfiguration
 >('DAFF_EXTERNAL_ROUTER_CONFIG', {
   providedIn: 'root',
   factory: () => daffExternalRouterConfigurationDefault,

@@ -12,16 +12,16 @@ export class FilterOutPrivatePropertiesProcessor implements Processor {
   $runBefore = ['rendering-docs'];
 
   $process(docs: Document[]): Document[] {
-	  return docs.map(doc => {
-	    if(!doc.members) {
-	      return doc;
-	    }
+    return docs.map(doc => {
+      if(!doc.members) {
+        return doc;
+      }
 
-	    return doc.members ? {
-	      ...doc,
-	      members: filterOutPrivateProperties(doc.members),
-	    } : doc;
-	  });
+      return doc.members ? {
+        ...doc,
+        members: filterOutPrivateProperties(doc.members),
+      } : doc;
+    });
   }
 }
 

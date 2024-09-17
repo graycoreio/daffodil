@@ -1,4 +1,11 @@
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -8,7 +15,6 @@ import {
   DaffNewsletterServiceInterface,
 } from '@daffodil/newsletter/driver';
 import { DaffNewsletterHubSpotDriverModule } from '@daffodil/newsletter/driver/hubspot';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('DaffNewsletterHubspotDriver', () => {
   let newsletterService: DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>;
@@ -16,13 +22,13 @@ describe('DaffNewsletterHubspotDriver', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule,
+      imports: [RouterTestingModule,
         DaffNewsletterHubSpotDriverModule.forRoot({
-            portalId: '123123',
-            guid: '123123',
+          portalId: '123123',
+          guid: '123123',
         })],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-});
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
+    });
 
     httpMock = TestBed.inject(HttpTestingController);
 

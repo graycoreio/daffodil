@@ -21,14 +21,14 @@ export abstract class DaffSearchProductFacade implements DaffSearchProductFacade
     private store: Store<DaffSearchProductStateRootSlice>,
     selectors: DaffSearchProductSelectors,
   ) {
-	  const {
+    const {
       selectProductResults,
-	  } = selectors;
+    } = selectors;
 
-	  this.productResults$ = this.store.pipe(select(selectProductResults));
+    this.productResults$ = this.store.pipe(select(selectProductResults));
   }
 
   dispatch(action: Action) {
-	  this.store.dispatch(action);
+    this.store.dispatch(action);
   }
 }

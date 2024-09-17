@@ -82,29 +82,29 @@ export class DaffToastService implements OnDestroy {
   }
 
   private _attachToastTemplate(
-	  overlayRef: OverlayRef,
+    overlayRef: OverlayRef,
   ): ComponentRef<DaffToastTemplateComponent> {
-	  const template = overlayRef.attach(new ComponentPortal(DaffToastTemplateComponent));
-	  return template;
+    const template = overlayRef.attach(new ComponentPortal(DaffToastTemplateComponent));
+    return template;
   }
 
   private _createOverlayRef(): OverlayRef {
     return this.overlay.create({
-	    hasBackdrop: false,
-	    scrollStrategy: this.overlay.scrollStrategies.noop(),
+      hasBackdrop: false,
+      scrollStrategy: this.overlay.scrollStrategies.noop(),
       positionStrategy: createPositionStrategy(this.toastPosition.config),
-	  });
+    });
   }
 
   open(
-	  toast: DaffToastData,
-	  configuration?: Partial<DaffToastConfiguration>,
+    toast: DaffToastData,
+    configuration?: Partial<DaffToastConfiguration>,
   ): DaffToast {
     if(this._parentToast && this.options.useParent) {
       return this._parentToast.open(toast, configuration);
     }
 
-	  const config: DaffToastConfiguration = {
+    const config: DaffToastConfiguration = {
       ...daffDefaultToastConfiguration,
       // sets the default duration to 5000ms if a toast does not have actions
       duration: toast.actions?.length > 0 ? undefined : 5000,
@@ -133,14 +133,14 @@ export class DaffToastService implements OnDestroy {
       this.close(_toastPlus);
     });
 
-	  this._toasts = [
+    this._toasts = [
       _toastPlus,
       ...this._toasts,
     ];
 
     this._template.instance.items = this._toasts;
 
-	  return _toastPlus;
+    return _toastPlus;
   }
 
   close(toast: DaffToast): void {
@@ -153,14 +153,14 @@ export class DaffToastService implements OnDestroy {
       this.focusStack.pop();
     }
 
-	  const index = this._toasts.indexOf(toast);
-	  if (index === -1) {
-	    throw new Error(
-	      'The Toast that you are trying to remove does not exist.',
-	    );
-	  }
+    const index = this._toasts.indexOf(toast);
+    if (index === -1) {
+      throw new Error(
+        'The Toast that you are trying to remove does not exist.',
+      );
+    }
 
-	  this._toasts = this._toasts.filter(m => m !== toast);
+    this._toasts = this._toasts.filter(m => m !== toast);
     this._template.instance.items = [...this._toasts];
 
     // This currently overrides the ":leave" animation as we currently

@@ -43,7 +43,7 @@ export class DaffMediaRendererComponent implements OnInit, OnDestroy {
    * The slot that the "component" is rendered into.
    */
   @ViewChild(TemplateRef, { static: true, read: ViewContainerRef })
-    slot: ViewContainerRef;
+  slot: ViewContainerRef;
 
   ngOnInit() {
     this.registry.galleries[this.gallery.name]

@@ -25,6 +25,7 @@ export class PackagesProcessor implements Processor {
           .replace(/^.*libs\//, '');
         doc.docType = 'package';
         try {
+          // eslint-disable-next-line @typescript-eslint/no-require-imports
           const packageJson = require(path.resolve(API_SOURCE_PATH, doc.id, 'package.json'));
           doc.description = packageJson.description;
         } catch {}

@@ -7,7 +7,7 @@ import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
  * The token for the `@daffodil/external-router` driver.
  */
 export const DaffExternalRouterDriver = new InjectionToken<
-DaffExternalRouterDriverInterface
+  DaffExternalRouterDriverInterface
 >('DaffExternalRouterDriver');
 
 /**

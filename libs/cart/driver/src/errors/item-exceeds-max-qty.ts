@@ -13,6 +13,6 @@ export class DaffCartItemExceedsMaxQtyError extends DaffInheritableError impleme
   public readonly code: string = DaffCartDriverErrorCodes.ITEM_EXCEEDS_MAX_QTY;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

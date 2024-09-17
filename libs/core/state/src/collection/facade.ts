@@ -44,17 +44,17 @@ export abstract class DaffCollectionFacade<
     protected store: Store<TState>,
     selectors: DaffCollectionMemoizedSelectors<TState, TMetadata>,
   ) {
-	  this.metadata$ = this.store.pipe(select(selectors.selectCollectionMetadata));
-	  this.request$ = this.store.pipe(select(selectors.selectCollectionRequest));
-	  this.count$ = this.store.pipe(select(selectors.selectCollectionCount));
-	  this.currentPage$ = this.store.pipe(select(selectors.selectCollectionCurrentPage));
-	  this.totalPages$ = this.store.pipe(select(selectors.selectCollectionTotalPages));
-	  this.pageSize$ = this.store.pipe(select(selectors.selectCollectionPageSize));
-	  this.sortOptions$ = this.store.pipe(select(selectors.selectCollectionSortOptions));
-	  this.appliedSortOption$ = this.store.pipe(select(selectors.selectCollectionAppliedSortOption));
-	  this.appliedSortDirection$ = this.store.pipe(select(selectors.selectCollectionAppliedSortDirection));
+    this.metadata$ = this.store.pipe(select(selectors.selectCollectionMetadata));
+    this.request$ = this.store.pipe(select(selectors.selectCollectionRequest));
+    this.count$ = this.store.pipe(select(selectors.selectCollectionCount));
+    this.currentPage$ = this.store.pipe(select(selectors.selectCollectionCurrentPage));
+    this.totalPages$ = this.store.pipe(select(selectors.selectCollectionTotalPages));
+    this.pageSize$ = this.store.pipe(select(selectors.selectCollectionPageSize));
+    this.sortOptions$ = this.store.pipe(select(selectors.selectCollectionSortOptions));
+    this.appliedSortOption$ = this.store.pipe(select(selectors.selectCollectionAppliedSortOption));
+    this.appliedSortDirection$ = this.store.pipe(select(selectors.selectCollectionAppliedSortDirection));
     this.filters$ = this.store.pipe(select(selectors.selectCollectionFilters));
-	  this.appliedFilters$ = this.store.pipe(select(selectors.selectCollectionAppliedFilters));
+    this.appliedFilters$ = this.store.pipe(select(selectors.selectCollectionAppliedFilters));
   }
 
   /**
@@ -63,6 +63,6 @@ export abstract class DaffCollectionFacade<
    * @param action action to dispatch.
    */
   dispatch(action: Action) {
-	  this.store.dispatch(action);
+    this.store.dispatch(action);
   }
 }

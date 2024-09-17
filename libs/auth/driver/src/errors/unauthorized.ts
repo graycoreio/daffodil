@@ -9,6 +9,6 @@ export class DaffUnauthorizedError extends DaffInheritableError implements DaffE
   public readonly code: string = DaffAuthDriverErrorCodes.UNAUTHORIZED;
 
   constructor(public message: string) {
-	  super(message);
+    super(message);
   }
 }

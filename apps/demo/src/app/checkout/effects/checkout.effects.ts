@@ -77,7 +77,7 @@ export class CheckoutEffects implements OnInitEffects {
   ) {}
 
   ngrxOnInitEffects(): Action {
-	  return new DaffLoadAcceptJs();
+    return new DaffLoadAcceptJs();
   }
 
   completeAddressStep$ = createEffect(() => this.actions$.pipe(

@@ -27,12 +27,12 @@ export class DaffProductPageReviewsFacade<T extends DaffProductReview = DaffProd
   private selectors = getDaffReviewsSelectors<T>();
 
   constructor(private store: Store<DaffReviewsStateRootSlice<T>>) {
-	  this.loading$ = this.store.pipe(select(this.selectors.selectProductPageReviewsLoading));
-	  this.errors$ = this.store.pipe(select(this.selectors.selectProductPageReviewsErrors));
-	  this.productReviews$ = this.store.pipe(select(this.selectors.selectProductPageReviews));
+    this.loading$ = this.store.pipe(select(this.selectors.selectProductPageReviewsLoading));
+    this.errors$ = this.store.pipe(select(this.selectors.selectProductPageReviewsErrors));
+    this.productReviews$ = this.store.pipe(select(this.selectors.selectProductPageReviews));
   }
 
   dispatch(action: Action) {
-	  this.store.dispatch(action);
+    this.store.dispatch(action);
   }
 }

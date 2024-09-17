@@ -6,9 +6,9 @@ import {
   DaffFilterType,
 } from '@daffodil/core';
 
+import { DaffModelFactory } from '../factory';
 import { DaffFilterEqualFactory } from './type/equal';
 import { DaffFilterRangeNumericFactory } from './type/range-numeric';
-import { DaffModelFactory } from '../factory';
 
 export class MockDaffFilter {
 

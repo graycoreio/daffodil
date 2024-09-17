@@ -45,5 +45,5 @@ export interface DaffCartItemServiceInterface<
 }
 
 export const DaffCartItemDriver = new InjectionToken<
-DaffCartItemServiceInterface
+  DaffCartItemServiceInterface
 >('DaffCartItemDriver');

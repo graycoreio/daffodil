@@ -3,9 +3,9 @@ import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffFilterToggleRequest } from '@daffodil/core';
 
+import { DaffModelFactory } from '../factory';
 import { DaffFilterToggleRequestEqualFactory } from './type/equal/toggle-request';
 import { DaffFilterToggleRequestRangeNumericFactory } from './type/range-numeric/toggle-request';
-import { DaffModelFactory } from '../factory';
 
 export class MockDaffFilterToggleRequest {
 

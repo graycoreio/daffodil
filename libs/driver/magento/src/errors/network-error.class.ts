@@ -17,6 +17,6 @@ export class DaffDriverMagentoNetworkError extends DaffInheritableError implemen
   public readonly code: string = DAFF_DRIVER_MAGENTO_NETWORK_ERROR_CODE;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

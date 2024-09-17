@@ -127,7 +127,7 @@ export class DaffCartFacade<
     private store: Store<DaffCartStateRootSlice<T, V>>,
     // typing this as `Record<string, any>` or `object` fails the build
     // because Angular explicitly types this as `Object`
-    // eslint-disable-next-line @typescript-eslint/ban-types
+    // eslint-disable-next-line @typescript-eslint/no-restricted-types
     @Inject(DaffCartPaymentMethodIdMap) private paymentMethodMap: object,
   ) {
     const {

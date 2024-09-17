@@ -60,8 +60,8 @@ export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
 
   ngAfterContentInit() {
     this._focusTrap = this._focusTrapFactory.create(
-	    this._elementRef.nativeElement,
-	  );
+      this._elementRef.nativeElement,
+    );
   }
 
   ngAfterViewInit() {

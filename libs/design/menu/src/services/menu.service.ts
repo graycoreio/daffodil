@@ -69,12 +69,12 @@ export class DaffMenuService {
 
   close() {
     this._destroyOverlay();
-	  this.$_open.next(false);
+    this.$_open.next(false);
     this._activator.element.nativeElement.focus();
   }
 
   open(activator: ViewContainerRef, component: DaffMenuSlot) {
-	  this._createOverlay(activator, component);
+    this._createOverlay(activator, component);
     this._activator = activator;
     this.$_open.next(true);
   }

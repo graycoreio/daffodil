@@ -19,5 +19,5 @@ export interface DaffCartShippingAddressServiceInterface<T extends DaffCart = Da
 }
 
 export const DaffCartShippingAddressDriver = new InjectionToken<
-DaffCartShippingAddressServiceInterface
+  DaffCartShippingAddressServiceInterface
 >('DaffCartShippingAddressDriver');

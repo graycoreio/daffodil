@@ -24,10 +24,10 @@ export class DaffProductReviewsFacade<T extends DaffProductReview = DaffProductR
   constructor(private store: Store<DaffReviewsStateRootSlice<T>>) {}
 
   getProductReview(id: T['id']): Observable<T> {
-	  return this.store.pipe(select(this.selectors.selectProductReview(id)));
+    return this.store.pipe(select(this.selectors.selectProductReview(id)));
   }
 
   dispatch(action: Action) {
-	  this.store.dispatch(action);
+    this.store.dispatch(action);
   }
 }

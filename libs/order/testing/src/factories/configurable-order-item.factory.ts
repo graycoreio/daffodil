@@ -12,14 +12,14 @@ import { MockOrderItem } from './order-item.factory';
 export class MockConfigurableOrderItem extends MockOrderItem implements DaffConfigurableOrderItem {
   type = DaffOrderItemType.Configurable;
   attributes = [
-	  {
-	    attribute_label: 'Color',
-	    value_label: 'Red',
-	  },
-	  {
-	    attribute_label: 'Size',
-	    value_label: 'M',
-	  },
+    {
+      attribute_label: 'Color',
+      value_label: 'Red',
+    },
+    {
+      attribute_label: 'Size',
+      value_label: 'M',
+    },
   ];
 }
 

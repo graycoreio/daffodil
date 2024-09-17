@@ -35,7 +35,7 @@ export class DesignLandSidebarViewportComponent {
         if (match.matches) {
           this.open = true;
           return DaffSidebarModeEnum.SideFixed;
-				 } else {
+        } else {
           this.open = false;
           return DaffSidebarModeEnum.Over;
         }

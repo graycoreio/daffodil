@@ -1,21 +1,27 @@
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { CodeExampleService } from './code-example.service';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('CodeExampleService', () => {
   let service: CodeExampleService;
   let httpMock: HttpTestingController;
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [],
-    providers: [
+      imports: [],
+      providers: [
         CodeExampleService,
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-});
+      ],
+    });
     service = TestBed.inject(CodeExampleService);
     httpMock = TestBed.inject(HttpTestingController);
 

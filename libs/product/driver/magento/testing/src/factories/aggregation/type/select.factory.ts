@@ -14,21 +14,21 @@ class MockMagentoAggregationSelect implements MagentoAggregation {
   count = faker.datatype.number();
   label = faker.random.word();
   options =  [
-	  {
-	    count: faker.datatype.number(),
-	    label: faker.random.word(),
-	    value: faker.datatype.uuid(),
-	  },
-	  {
-	    count: faker.datatype.number(),
-	    label: faker.random.word(),
-	    value: faker.datatype.uuid(),
-	  },
-	  {
-	    count: faker.datatype.number(),
-	    label: faker.random.word(),
-	    value: faker.datatype.uuid(),
-	  },
+    {
+      count: faker.datatype.number(),
+      label: faker.random.word(),
+      value: faker.datatype.uuid(),
+    },
+    {
+      count: faker.datatype.number(),
+      label: faker.random.word(),
+      value: faker.datatype.uuid(),
+    },
+    {
+      count: faker.datatype.number(),
+      label: faker.random.word(),
+      value: faker.datatype.uuid(),
+    },
   ];
 }
 

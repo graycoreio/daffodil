@@ -90,24 +90,24 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   orderResultLoading$ = new BehaviorSubject<boolean>(false);
   orderResultErrors$ = new BehaviorSubject<DaffStateError[]>([]);
   orderResult$ = new BehaviorSubject<DaffCartOrderResult>({
-	  id: null,
-	  orderId: null,
-	  cartId: null,
+    id: null,
+    orderId: null,
+    cartId: null,
   });
   orderResultId$ = new BehaviorSubject<DaffCartOrderResult['orderId']>(null);
   orderResultCartId$ = new BehaviorSubject<DaffCartOrderResult['cartId']>(null);
   hasOrderResult$ = new BehaviorSubject<boolean>(false);
 
   getConfiguredCartItemAttributes(itemId: DaffCartItem['id']): BehaviorSubject<DaffConfigurableCartItemAttribute[]> {
-	  return new BehaviorSubject([]);
+    return new BehaviorSubject([]);
   }
 
   getCompositeCartItemOptions(itemId: DaffCartItem['id']): BehaviorSubject<DaffCompositeCartItemOption[]> {
-	  return new BehaviorSubject([]);
+    return new BehaviorSubject([]);
   }
 
   isCartItemOutOfStock(itemId: DaffCartItem['id']): BehaviorSubject<boolean> {
-	  return new BehaviorSubject(false);
+    return new BehaviorSubject(false);
   }
 
   dispatch(action: Action) {};

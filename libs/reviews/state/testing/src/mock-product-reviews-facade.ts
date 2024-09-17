@@ -10,7 +10,7 @@ import { DaffProductReviewsFacadeInterface } from '@daffodil/reviews/state';
 @Injectable({ providedIn: 'root' })
 export class MockDaffProductReviewsFacade implements DaffProductReviewsFacadeInterface {
   getProductReview(id: DaffProductReview['id']): BehaviorSubject<DaffProductReview> {
-	  return new BehaviorSubject(null);
+    return new BehaviorSubject(null);
   }
 
   dispatch(action) {};

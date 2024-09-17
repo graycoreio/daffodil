@@ -12,6 +12,6 @@ export class DaffExternalRouterUnknownRouteTypeError extends DaffInheritableErro
   public readonly code: string = 'UNKNOWN_ROUTE_TYPE';
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

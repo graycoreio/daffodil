@@ -9,6 +9,6 @@ export class DaffAuthenticationFailedError extends DaffInheritableError implemen
   public readonly code: string = DaffAuthDriverErrorCodes.AUTHENTICATION_FAILED;
 
   constructor(public message: string) {
-	  super(message);
+    super(message);
   }
 }

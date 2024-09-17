@@ -95,7 +95,7 @@ export class DaffProgressBarComponent {
     return this._indeterminate;
   }
   set indeterminate(value: any) {
-	  this._indeterminate = coerceBooleanProperty(value);
+    this._indeterminate = coerceBooleanProperty(value);
   }
 
   /**

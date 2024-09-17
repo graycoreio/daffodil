@@ -37,6 +37,6 @@ export class DaffLoadingIconComponent {
    * @docs-private
    */
   @HostBinding('style.max-width') get maxWidth() {
-	  return this.diameter + 'px';
+    return this.diameter + 'px';
   }
 }

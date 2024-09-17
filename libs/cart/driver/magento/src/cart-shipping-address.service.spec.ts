@@ -143,7 +143,7 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartShippingAddressService'
       setGuestEmailOnCart: {
         __typename: 'Cart',
         cart: {
-				  __typename: 'Cart',
+          __typename: 'Cart',
           email,
         },
       },

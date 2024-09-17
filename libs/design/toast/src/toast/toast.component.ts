@@ -54,10 +54,10 @@ export class DaffToastComponent implements DaffPrefixable, AfterContentInit, Aft
   @HostBinding('attr.role') role = 'status';
 
   @ContentChild(DaffToastActionsDirective)
-    _actions: DaffToastActionsDirective;
+  _actions: DaffToastActionsDirective;
 
   @ContentChild(DaffPrefixDirective)
-    _prefix: DaffPrefixDirective;
+  _prefix: DaffPrefixDirective;
 
   @Input() toast: DaffToast;
 

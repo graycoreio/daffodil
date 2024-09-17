@@ -1,7 +1,7 @@
 import {
- HttpClient,
-provideHttpClient,
-withInterceptorsFromDi,
+  HttpClient,
+  provideHttpClient,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import {
@@ -32,9 +32,9 @@ describe('DaffAuthInMemoryBackend | Integration', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendAuthService)],
-    providers: [provideHttpClient(withInterceptorsFromDi())],
-});
+      imports: [HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendAuthService)],
+      providers: [provideHttpClient(withInterceptorsFromDi())],
+    });
 
     httpClient = TestBed.inject(HttpClient);
 

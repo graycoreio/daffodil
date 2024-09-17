@@ -26,6 +26,7 @@ export const daffodilBasePackage = new Package('daffodil-base', [
   .processor(new AddKindProcessor())
   .factory('idSanitizer', () => new IdSanitizer())
   .processor('convertToJson', (log, createDocMessage) => new ConvertToJsonProcessor(log, createDocMessage))
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   .factory('packageInfo', () => require(path.resolve(PROJECT_ROOT, 'package.json')))
 
 // Where do we get the source files?

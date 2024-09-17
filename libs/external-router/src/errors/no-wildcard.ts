@@ -12,6 +12,6 @@ export class DaffExternalRouterNoWildcardError extends DaffInheritableError
   public readonly code: string = 'NO_WILDCARD_ROUTE';
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

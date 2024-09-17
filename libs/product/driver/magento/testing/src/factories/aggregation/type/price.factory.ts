@@ -14,26 +14,26 @@ class MockMagentoAggregationPrice implements MagentoAggregation {
   count = faker.datatype.number();
   label = 'Price';
   options = [
-	  {
-	    value: '0-10',
-	    count: faker.datatype.number(),
-	    label: '0-10',
-	  },
-	  {
-	    value: '10-20',
-	    count: faker.datatype.number(),
-	    label: '10-20',
-	  },
-	  {
-	    value: '20-30',
-	    count: faker.datatype.number(),
-	    label: '20-30',
-	  },
-	  {
-	    value: '30-40',
-	    count: faker.datatype.number(),
-	    label: '30-40',
-	  },
+    {
+      value: '0-10',
+      count: faker.datatype.number(),
+      label: '0-10',
+    },
+    {
+      value: '10-20',
+      count: faker.datatype.number(),
+      label: '10-20',
+    },
+    {
+      value: '20-30',
+      count: faker.datatype.number(),
+      label: '20-30',
+    },
+    {
+      value: '30-40',
+      count: faker.datatype.number(),
+      label: '30-40',
+    },
   ];
 }
 

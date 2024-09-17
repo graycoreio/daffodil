@@ -37,5 +37,5 @@ export interface DaffCartPaymentServiceInterface<T extends DaffCart = DaffCart> 
 }
 
 export const DaffCartPaymentDriver = new InjectionToken<
-DaffCartPaymentServiceInterface
+  DaffCartPaymentServiceInterface
 >('DaffCartPaymentDriver');

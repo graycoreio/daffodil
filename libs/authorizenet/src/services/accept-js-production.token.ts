@@ -7,7 +7,7 @@ import { InjectionToken } from '@angular/core';
  * By default, we assume you're using the sandbox (false).
  */
 export const DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION = new InjectionToken<
-boolean
+  boolean
 >('DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION', {
   providedIn: 'root',
   factory: () => false,

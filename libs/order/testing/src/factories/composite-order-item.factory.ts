@@ -12,14 +12,14 @@ import { MockOrderItem } from './order-item.factory';
 export class MockCompositeOrderItem extends MockOrderItem implements DaffCompositeOrderItem {
   type = DaffOrderItemType.Composite;
   options = [
-	  {
-	    option_label: faker.random.word(),
-	    value_label: faker.random.word(),
-	  },
-	  {
-	    option_label: faker.random.word(),
-	    value_label: faker.random.word(),
-	  },
+    {
+      option_label: faker.random.word(),
+      value_label: faker.random.word(),
+    },
+    {
+      option_label: faker.random.word(),
+      value_label: faker.random.word(),
+    },
   ];
 }
 

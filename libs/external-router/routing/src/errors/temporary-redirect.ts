@@ -12,6 +12,6 @@ export class DaffExternalRouterTemporaryRedirectError extends DaffInheritableErr
   public readonly code: string = 'TEMPORARY_REDIRECT';
 
   constructor(public redirectUrl: string, message?: string) {
-	  super(message);
+    super(message);
   }
 }

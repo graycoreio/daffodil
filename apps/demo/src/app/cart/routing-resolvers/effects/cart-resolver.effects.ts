@@ -54,23 +54,23 @@ export class CartResolverEffects {
 
 
   onResolveCart$: Observable<Action> = createEffect(() => this.actions$.pipe(
-	  ofType(CartResolverActionTypes.ResolveCartAction),
-	  switchMap(() => this.facade.cart$.pipe(
-	    take(1),
-	    switchMap(cart => {
-	      if (cart) {
-	        return of(new ResolveCartSuccess(cart));
-	      } else {
-	        return this.getCartHandler();
-	      }
-	    }),
-	  )),
+    ofType(CartResolverActionTypes.ResolveCartAction),
+    switchMap(() => this.facade.cart$.pipe(
+      take(1),
+      switchMap(cart => {
+        if (cart) {
+          return of(new ResolveCartSuccess(cart));
+        } else {
+          return this.getCartHandler();
+        }
+      }),
+    )),
   ));
 
   private getCartHandler(): Observable<Action> {
-	  return this.driver.get(this.cartStorage.getCartId()).pipe(
-	    map(resp => new ResolveCartSuccess(resp.response)),
-	    catchError(error => of(new ResolveCartFailure(null))),
-	  );
+    return this.driver.get(this.cartStorage.getCartId()).pipe(
+      map(resp => new ResolveCartSuccess(resp.response)),
+      catchError(error => of(new ResolveCartFailure(null))),
+    );
   }
 }

@@ -1,3 +1,7 @@
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {
   ComponentFixture,
@@ -15,7 +19,6 @@ import {
 } from '@daffodil/design/sidebar';
 
 import { DesignLandSidebarViewportComponent } from './sidebar-viewport.component';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('DesignLandSidebarViewportComponent', () => {
   let component: DesignLandSidebarViewportComponent;
@@ -27,14 +30,14 @@ describe('DesignLandSidebarViewportComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         DesignLandSidebarViewportComponent,
-    ],
-    imports: [RouterTestingModule,
+      ],
+      imports: [RouterTestingModule,
         NoopAnimationsModule,
         DaffSidebarModule],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-})
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
+    })
       .compileComponents();
   }));
 

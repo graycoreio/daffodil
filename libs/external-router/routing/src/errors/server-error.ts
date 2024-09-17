@@ -11,6 +11,6 @@ export class DaffExternalRouterServerError extends DaffInheritableError
   public readonly code: string = '5xx_SERVER_ERROR';
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

@@ -25,5 +25,5 @@ export interface DaffCartShippingInformationServiceInterface<T extends DaffCart 
 }
 
 export const DaffCartShippingInformationDriver = new InjectionToken<
-DaffCartShippingInformationServiceInterface
+  DaffCartShippingInformationServiceInterface
 >('DaffCartShippingInformationDriver');

@@ -21,9 +21,9 @@ import { DAFF_SEO_TITLE_ROUTER_UPDATES } from '../title/updates.token';
  */
 @Injectable()
 export class DaffSeoNativeTitleEffects extends DaffSeoPageHookRouterEffects<
-DaffRestoreableTitleService,
-DaffSeoUpdateEventPair<Event, string>,
-string
+  DaffRestoreableTitleService,
+  DaffSeoUpdateEventPair<Event, string>,
+  string
 > {
   constructor(
     router: Router,

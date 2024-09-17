@@ -1,6 +1,6 @@
-import { extractTitle } from './guide-file.reader';
+import toc from 'markdown-toc';
 
-const toc = require('markdown-toc');
+import { extractTitle } from './guide-file.reader';
 
 describe('guideFileReader', () => {
 

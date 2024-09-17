@@ -85,14 +85,14 @@ export function daffMagentoTransformCouponDiscount(discount: MagentoDiscount): D
 export function daffMagentoTransformConfigurableOption(option: MagentoOrderItemOption): DaffConfigurableOrderItemAttribute {
   return {
     attribute_label: option.label,
-	  value_label: option.value,
+    value_label: option.value,
   };
 }
 
 export function daffMagentoTransformBundleOption(option: MagentoOrderBundleItemSelectedOption): DaffCompositeOrderItemOption {
   return {
     option_label: option.label,
-	  value_label: option.values && option.values[0] && option.values[0].product_name,
+    value_label: option.values && option.values[0] && option.values[0].product_name,
   };
 }
 

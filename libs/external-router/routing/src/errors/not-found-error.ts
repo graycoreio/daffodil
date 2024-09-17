@@ -10,6 +10,6 @@ export class DaffExternalRouterNotFoundError extends DaffExternalRouterClientErr
   public readonly code: string = '404_NOT_FOUND';
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

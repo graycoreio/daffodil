@@ -23,7 +23,7 @@ export class DaffOrderCollectionFacade<T extends DaffOrder = DaffOrder>
   extends DaffCollectionFacade<DaffOrderStateRootSlice<T>, DaffOrderCollection['metadata']>
   implements DaffCollectionFacadeInterface<DaffOrderCollection['metadata']> {
   constructor(store: Store<DaffOrderStateRootSlice<T>>) {
-	  super(
+    super(
       store,
       getDaffOrderCollectionSelectors(),
     );

@@ -61,31 +61,31 @@ export class DaffThemeStorageService {
     private storage: DaffPersistenceService,
     @Inject(DOCUMENT) _doc: any,
   ) {
-	  this.doc = <Document>_doc;
-	  this.theme$ = merge(
-	    this.storage$,
-	    this.doc.defaultView
-	      ? fromEvent<ThemeStorageEvent>(
+    this.doc = <Document>_doc;
+    this.theme$ = merge(
+      this.storage$,
+      this.doc.defaultView
+        ? fromEvent<ThemeStorageEvent>(
           <Window & typeof globalThis>this.doc.defaultView,
           'storage',
-	      ).pipe(
-	        startWith(
-	          storageEventBuilder(
-	            this.storage.getItem(THEME_STORAGE_KEY),
-	          ),
-	        ),
-	        catchError((e) => EMPTY),
-	      )
-	      : of(storageEventBuilder(
-	        this.storage.getItem(THEME_STORAGE_KEY),
-	      )),
-	  ).pipe(
-	    filter(
-	      (e: ThemeStorageEvent) => e.key === THEME_STORAGE_KEY,
-	    ),
-	    map((e) => coerceValue(e.newValue)),
-	    shareReplay(1),
-	  );
+        ).pipe(
+          startWith(
+            storageEventBuilder(
+              this.storage.getItem(THEME_STORAGE_KEY),
+            ),
+          ),
+          catchError((e) => EMPTY),
+        )
+        : of(storageEventBuilder(
+          this.storage.getItem(THEME_STORAGE_KEY),
+        )),
+    ).pipe(
+      filter(
+        (e: ThemeStorageEvent) => e.key === THEME_STORAGE_KEY,
+      ),
+      map((e) => coerceValue(e.newValue)),
+      shareReplay(1),
+    );
   }
 
   /**
@@ -93,24 +93,24 @@ export class DaffThemeStorageService {
    * fire storage events in the open tab on Webkit based browsers.
    */
   private progressStorageEvent(theme: DaffTheme) {
-	  this.storage$.next(storageEventBuilder(theme));
+    this.storage$.next(storageEventBuilder(theme));
   }
 
   getThemeAsObservable(): Observable<DaffTheme> {
-	  return this.theme$;
+    return this.theme$;
   }
 
   getTheme(): DaffTheme {
-	  return coerceValue(this.storage.getItem(THEME_STORAGE_KEY));
+    return coerceValue(this.storage.getItem(THEME_STORAGE_KEY));
   }
 
   setTheme(theme: DaffTheme): void {
-	  this.progressStorageEvent(theme);
-	  this.storage.setItem(THEME_STORAGE_KEY, theme);
+    this.progressStorageEvent(theme);
+    this.storage.setItem(THEME_STORAGE_KEY, theme);
   }
 
   removeThemeSetting(): void {
-	  this.progressStorageEvent(DaffTheme.None);
-	  this.storage.removeItem(THEME_STORAGE_KEY);
+    this.progressStorageEvent(DaffTheme.None);
+    this.storage.removeItem(THEME_STORAGE_KEY);
   }
 }

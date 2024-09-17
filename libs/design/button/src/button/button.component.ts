@@ -173,7 +173,7 @@ export class DaffButtonComponent
   }
 
   @HostBinding('class.daff-button--disabled') get disabledClass() {
-	  return this.disabled;
+    return this.disabled;
   }
 
   @Input() loading = false;
@@ -185,22 +185,22 @@ export class DaffButtonComponent
    * The disabled state of the button.
    */
   @Input() get disabled() {
-	  return this._disabled || this.loading;
+    return this._disabled || this.loading;
   }
   set disabled(value: any) {
-	  this._disabled = coerceBooleanProperty(value);
+    this._disabled = coerceBooleanProperty(value);
   }
 
   @HostBinding('attr.disabled') get disabledAttribute() {
-	  return this.disabled ? true : null;
+    return this.disabled ? true : null;
   }
 
   @HostBinding('attr.aria-disabled') get ariaDisabled() {
-	  return this.disabled ? true : null;
+    return this.disabled ? true : null;
   }
 
   @HostBinding('attr.tabindex') get disabledTabIndex() {
-	  return this.disabled ? -1 : this.tabindex;
+    return this.disabled ? -1 : this.tabindex;
   }
 
   private _getHostElement() {

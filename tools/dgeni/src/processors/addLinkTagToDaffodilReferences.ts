@@ -12,26 +12,26 @@ export class AddLinkTagToDaffodilReferencesProcessor implements Processor {
   $runBefore = ['rendering-docs'];
 
   $process(docs: Document[]): Document[] {
-	  const docDictionary = docs.reduce((acc, doc) => ({
-	    ...acc,
-	    [doc.name]: true,
-	  }), {});
+    const docDictionary = docs.reduce((acc, doc) => ({
+      ...acc,
+      [doc.name]: true,
+    }), {});
 
-	  return docs.map(doc => this.addLinksToDoc(doc, docDictionary));
+    return docs.map(doc => this.addLinksToDoc(doc, docDictionary));
   }
 
   addLinksToDoc(doc, docDictionary): Document {
-	  return {
-	    ...doc,
-	    typeParams: this.addLinks(doc.typeParams?.slice(1, doc.typeParams.length - 1), docDictionary),
-	    members: doc.members?.map(member => ({
-	      ...member,
-	      type: this.addLinks(member.type, docDictionary),
-	    })),
-	  };
+    return {
+      ...doc,
+      typeParams: this.addLinks(doc.typeParams?.slice(1, doc.typeParams.length - 1), docDictionary),
+      members: doc.members?.map(member => ({
+        ...member,
+        type: this.addLinks(member.type, docDictionary),
+      })),
+    };
   }
 
   addLinks(str: string, docDictionary): string {
-	  return str?.replace(/(\w*)/g, (match) => docDictionary[match] ? `{@link ${match}}` : match);
+    return str?.replace(/(\w*)/g, (match) => docDictionary[match] ? `{@link ${match}}` : match);
   }
 }

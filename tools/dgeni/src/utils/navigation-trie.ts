@@ -24,8 +24,8 @@ export class NavigationTrie {
     key: string = '',
     title: string = '',
     path: string = '',
-  	tableOfContents: string = '',
-	  children: NavigationTrie[] = [],
+    tableOfContents: string = '',
+    children: NavigationTrie[] = [],
   ) {
     this.id = key;
     this.title = title;

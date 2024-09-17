@@ -30,11 +30,11 @@ implements DaffExternalRouterDriverInterface {
   resolve(url: string): Observable<DaffExternallyResolvableUrl> {
     return this.apollo
       .query<MagentoUrlResolverResponse>({
-      query: MagentoResolveUrlv241,
-      variables: {
-        url: daffUriTruncateQueryFragment(url),
-      },
-    })
+        query: MagentoResolveUrlv241,
+        variables: {
+          url: daffUriTruncateQueryFragment(url),
+        },
+      })
       .pipe(map(response => transformResolutionToResolvableUrlv241(response.data.urlResolver)));
   }
 }

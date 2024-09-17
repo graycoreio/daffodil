@@ -24,10 +24,10 @@ export class DaffUpsellProductsFacade<T extends DaffProduct = DaffProduct> imple
   private readonly selectors = getDaffUpsellProductsSelectors<T>();
 
   constructor(private store: Store<DaffUpsellProductStateRootSlice<T>>) {
-	  this.upsellProducts$ = this.store.pipe(select(this.selectors.selectUpsellProducts));
+    this.upsellProducts$ = this.store.pipe(select(this.selectors.selectUpsellProducts));
   }
 
   dispatch(action: Action) {
-	  this.store.dispatch(action);
+    this.store.dispatch(action);
   }
 }

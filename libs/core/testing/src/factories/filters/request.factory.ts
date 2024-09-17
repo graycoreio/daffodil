@@ -3,9 +3,9 @@ import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffFilterRequest } from '@daffodil/core';
 
+import { DaffModelFactory } from '../factory';
 import { DaffFilterRequestEqualFactory } from './type/equal/request';
 import { DaffFilterRequestRangeNumericFactory } from './type/range-numeric/request';
-import { DaffModelFactory } from '../factory';
 
 /**
  * A factory for creating a {@link DaffFilterRequest}.

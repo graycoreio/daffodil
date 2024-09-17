@@ -13,9 +13,9 @@ describe('@daffodil/core | filters | type | range | behaviors | clear', () => {
   let filterRangeNumericFactory: DaffFilterRangeNumericFactory;
 
   beforeEach(() => {
-		 TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({});
 
-		 filterRangeNumericFactory = TestBed.inject(DaffFilterRangeNumericFactory);
+    filterRangeNumericFactory = TestBed.inject(DaffFilterRangeNumericFactory);
   });
 
   it('should remove any currently applied filter options.', () => {

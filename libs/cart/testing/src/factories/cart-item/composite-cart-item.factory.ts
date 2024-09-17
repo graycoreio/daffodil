@@ -14,18 +14,18 @@ export class DaffMockCompositeCartItem extends DaffMockCartItem implements DaffC
   private optionId2 = faker.datatype.number(1000).toString();
   type = DaffCartItemInputType.Composite;
   options = [
-	  {
-	    id: this.optionId1,
-	    option_id: this.optionId1,
-	    option_label: faker.random.word(),
-	    value_label: faker.random.word(),
-	  },
-	  {
-	    id: this.optionId2,
-	    option_id: this.optionId2,
-	    option_label: faker.random.word(),
-	    value_label: faker.random.word(),
-	  },
+    {
+      id: this.optionId1,
+      option_id: this.optionId1,
+      option_label: faker.random.word(),
+      value_label: faker.random.word(),
+    },
+    {
+      id: this.optionId2,
+      option_id: this.optionId2,
+      option_label: faker.random.word(),
+      value_label: faker.random.word(),
+    },
   ];
 }
 

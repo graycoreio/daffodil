@@ -14,6 +14,6 @@ export class DaffCartResolutionError extends DaffInheritableError implements Daf
   public readonly code: string = DaffCartErrorCodes.CART_RESOLUTION;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

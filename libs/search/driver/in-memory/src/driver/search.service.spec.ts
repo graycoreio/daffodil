@@ -1,10 +1,10 @@
 import {
- provideHttpClient,
-withInterceptorsFromDi,
+  provideHttpClient,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
 import {
- HttpTestingController,
-provideHttpClientTesting,
+  HttpTestingController,
+  provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Observable } from '@apollo/client/core';
@@ -27,13 +27,13 @@ describe('@daffodil/search/driver/in-memory | DaffInMemorySearchDriver', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [],
-    providers: [
+      imports: [],
+      providers: [
         DaffInMemorySearchDriver,
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ],
-});
+      ],
+    });
 
     httpMock = TestBed.inject(HttpTestingController);
     service = TestBed.inject(DaffInMemorySearchDriver);

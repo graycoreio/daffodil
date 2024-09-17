@@ -15,7 +15,7 @@ import {
  * Provides noop for the persistence service on the server.
  */
 export const DaffServerSafePersistenceServiceToken = new InjectionToken<
-DaffPersistenceService
+  DaffPersistenceService
 >('DaffServerSafePersistenceService', {
   providedIn: 'root',
   factory: () =>

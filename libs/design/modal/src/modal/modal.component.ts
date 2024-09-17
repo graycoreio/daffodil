@@ -83,7 +83,7 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit {
    * Event fired when the close animation is completed.
    */
   closedAnimationCompleted: EventEmitter<any> = new EventEmitter<
-  any
+    any
   >();
 
   /**
@@ -105,8 +105,8 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit {
 
   ngAfterContentInit() {
     this._focusTrap = this._focusTrapFactory.create(
-	    this._elementRef.nativeElement,
-	  );
+      this._elementRef.nativeElement,
+    );
   }
 
   ngAfterViewInit() {
@@ -142,7 +142,7 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit {
 
   /** Animation hook that controls the entrance and exit animations of the modal. */
   @HostBinding('@fade') get fadeState(): string {
-	  return getAnimationState(this.open);
+    return getAnimationState(this.open);
   }
 
   /**
@@ -153,9 +153,9 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit {
    */
   @HostListener('@fade.done', ['$event'])
   animationDone(e: AnimationEvent) {
-	  this.animationCompleted.emit(e);
-	  if (e.toState === 'closed') {
-	    this.closedAnimationCompleted.emit(e);
-	  }
+    this.animationCompleted.emit(e);
+    if (e.toState === 'closed') {
+      this.closedAnimationCompleted.emit(e);
+    }
   }
 }

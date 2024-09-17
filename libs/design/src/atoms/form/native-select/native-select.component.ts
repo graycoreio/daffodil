@@ -44,7 +44,7 @@ export class DaffNativeSelectComponent implements DaffFormFieldControl {
    * @docs-private
    */
   @HostListener('focus') focus() {
-	  this.focused = true;
+    this.focused = true;
   }
 
   /**

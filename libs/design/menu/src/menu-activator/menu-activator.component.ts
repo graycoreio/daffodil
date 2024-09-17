@@ -25,7 +25,7 @@ export class DaffMenuActivatorDirective implements OnDestroy {
   private _open: boolean;
 
   @HostBinding('class.open') get openClass() {
-	  return this._open;
+    return this._open;
   }
 
   @Input() daffMenuActivator: Type<unknown> | TemplateRef<unknown>;
@@ -38,9 +38,9 @@ export class DaffMenuActivatorDirective implements OnDestroy {
     this.service.open$.pipe(
       takeUntil(this._destroyed$),
     ).subscribe((val: boolean) => {
-	    this._open = val;
-	    this.cdRef.markForCheck();
-	  });
+      this._open = val;
+      this.cdRef.markForCheck();
+    });
   }
 
   ngOnDestroy(): void {
@@ -54,7 +54,7 @@ export class DaffMenuActivatorDirective implements OnDestroy {
 
   @HostListener('click', ['$event'])
   openMenu(event) {
-	  event.preventDefault();
-	  this.service.open(this.viewContainerRef, this.daffMenuActivator);
+    event.preventDefault();
+    this.service.open(this.viewContainerRef, this.daffMenuActivator);
   }
 }

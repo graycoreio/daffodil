@@ -25,12 +25,12 @@ export class DaffThemeClassSetterService {
   private doc?: Document;
 
   constructor(
-  @Inject(DOCUMENT) _doc: any,
+    @Inject(DOCUMENT) _doc: any,
     private rendererFactory: RendererFactory2,
     private themingService: DaffThemingService,
   ) {
-	  this.doc = <Document>_doc;
-	  this.renderer = this.rendererFactory.createRenderer(null, null);
+    this.doc = <Document>_doc;
+    this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
   /**
@@ -40,20 +40,20 @@ export class DaffThemeClassSetterService {
    * by the state of the application's theme.
    */
   beginThemeSync(): void {
-	  this.subscription = this.themingService.getTheme().subscribe((theme) => {
-	    // For simplicty, remove all previously applied themes.
-	    this.renderer.removeClass(this.doc.body, DAFF_THEME_LIGHT_CSS_CLASS);
-	    this.renderer.removeClass(this.doc.body, DAFF_THEME_DARK_CSS_CLASS);
-	    this.renderer.addClass(this.doc.body, theme === DaffTheme.Dark ? DAFF_THEME_DARK_CSS_CLASS : DAFF_THEME_LIGHT_CSS_CLASS);
-	  });
+    this.subscription = this.themingService.getTheme().subscribe((theme) => {
+      // For simplicty, remove all previously applied themes.
+      this.renderer.removeClass(this.doc.body, DAFF_THEME_LIGHT_CSS_CLASS);
+      this.renderer.removeClass(this.doc.body, DAFF_THEME_DARK_CSS_CLASS);
+      this.renderer.addClass(this.doc.body, theme === DaffTheme.Dark ? DAFF_THEME_DARK_CSS_CLASS : DAFF_THEME_LIGHT_CSS_CLASS);
+    });
   }
 
   /**
    * This unsubscribes from the bodyClass subscription that exists.
    */
   destroy(): void {
-	  this.subscription?.unsubscribe();
-	  this.renderer.removeClass(this.doc.body, DAFF_THEME_LIGHT_CSS_CLASS);
-	  this.renderer.removeClass(this.doc.body, DAFF_THEME_DARK_CSS_CLASS);
+    this.subscription?.unsubscribe();
+    this.renderer.removeClass(this.doc.body, DAFF_THEME_LIGHT_CSS_CLASS);
+    this.renderer.removeClass(this.doc.body, DAFF_THEME_DARK_CSS_CLASS);
   }
 }

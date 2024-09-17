@@ -15,6 +15,6 @@ export class DaffCartNotFoundOrCreatedResolutionError extends DaffInheritableErr
   public readonly code: string = DaffCartErrorCodes.CART_NOT_FOUND_OR_CREATED_RESOLUTION;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

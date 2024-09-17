@@ -43,34 +43,34 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
   hasPriceRange = productPriceRangeHasPriceRange;
 
   getRequiredItemPricesForConfiguration(id: T['id'], configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
-	  return this.store.pipe(select(this.compositeProductSelectors.selectCompositeProductRequiredItemPricesForConfiguration(id, configuration)));
+    return this.store.pipe(select(this.compositeProductSelectors.selectCompositeProductRequiredItemPricesForConfiguration(id, configuration)));
   }
 
   getOptionalItemPricesForConfiguration(id: T['id'], configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
-	  return this.store.pipe(select(this.compositeProductSelectors.selectCompositeProductOptionalItemPricesForConfiguration(id, configuration)));
+    return this.store.pipe(select(this.compositeProductSelectors.selectCompositeProductOptionalItemPricesForConfiguration(id, configuration)));
   }
 
   getPricesAsCurrentlyConfigured(id: T['id']): Observable<DaffPriceRange> {
-	  return this.store.pipe(select(this.compositeProductSelectors.selectCompositeProductPricesAsCurrentlyConfigured(id)));
+    return this.store.pipe(select(this.compositeProductSelectors.selectCompositeProductPricesAsCurrentlyConfigured(id)));
   }
 
   getAppliedOptions(id: T['id']): Observable<Dictionary<DaffCompositeProductItemOption>> {
-	  return this.store.pipe(select(this.compositeProductSelectors.selectCompositeProductAppliedOptions(id)));
+    return this.store.pipe(select(this.compositeProductSelectors.selectCompositeProductAppliedOptions(id)));
   }
 
   getDiscountAmount(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.compositeProductSelectors.selectCompositeProductDiscountAmount(id)));
+    return this.store.pipe(select(this.compositeProductSelectors.selectCompositeProductDiscountAmount(id)));
   }
 
   getDiscountPercent(id: T['id']): Observable<number> {
-	  return this.store.pipe(select(this.compositeProductSelectors.selectCompositeProductDiscountPercent(id)));
+    return this.store.pipe(select(this.compositeProductSelectors.selectCompositeProductDiscountPercent(id)));
   }
 
   isItemRequired(id: T['id'], item_id: DaffCompositeProductItem['id']) {
-	  return this.store.pipe(select(this.compositeProductSelectors.selectIsCompositeProductItemRequired(id, item_id)));
+    return this.store.pipe(select(this.compositeProductSelectors.selectIsCompositeProductItemRequired(id, item_id)));
   }
 
   dispatch(action: Action) {
-	  this.store.dispatch(action);
+    this.store.dispatch(action);
   }
 }

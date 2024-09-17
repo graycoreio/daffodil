@@ -12,6 +12,6 @@ export class DaffUnauthorizedForCartError extends DaffInheritableError implement
   public readonly code: string = DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

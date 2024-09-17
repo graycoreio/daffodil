@@ -56,8 +56,8 @@ export class DaffPaginatorComponent implements OnChanges {
   _paginatorId: string;
 
   constructor(private elementRef: ElementRef) {
-	  const ariaLabel = elementRef.nativeElement.attributes['aria-label'];
-	  this._paginatorId = ariaLabel ? ariaLabel.nodeValue : null;
+    const ariaLabel = elementRef.nativeElement.attributes['aria-label'];
+    this._paginatorId = ariaLabel ? ariaLabel.nodeValue : null;
   }
 
   /**

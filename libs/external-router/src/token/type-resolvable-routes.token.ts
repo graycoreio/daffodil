@@ -12,7 +12,7 @@ import { DaffTypeRoutePair } from '../model/type-route-pair';
  * A multi-token that allows you to register route "types" that correspond to routes.
  */
 export const DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE = new InjectionToken<
-DaffTypeRoutePair[]
+  DaffTypeRoutePair[]
 >('DAFF_EXTERNAL_ROUTER_RESOLVABLE_TYPE_ROUTES', {
   providedIn: 'root',
   factory: () => [],

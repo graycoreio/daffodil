@@ -1,7 +1,7 @@
 import {
- HttpClient,
-provideHttpClient,
-withInterceptorsFromDi,
+  HttpClient,
+  provideHttpClient,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -24,9 +24,9 @@ describe('@daffodil/order/driver/in-memory | DaffInMemoryBackendOrderService | I
 
   beforeEach(done => {
     TestBed.configureTestingModule({
-    imports: [HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendOrderService, { delay: 0 })],
-    providers: [provideHttpClient(withInterceptorsFromDi())],
-});
+      imports: [HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendOrderService, { delay: 0 })],
+      providers: [provideHttpClient(withInterceptorsFromDi())],
+    });
 
     httpClient = TestBed.inject(HttpClient);
 

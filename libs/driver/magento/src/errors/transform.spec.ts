@@ -14,7 +14,7 @@ class MockError extends DaffInheritableError implements DaffError {
   public readonly code: string = 'MOCK';
 
   constructor(public message: string) {
-	  super(message);
+    super(message);
   }
 }
 

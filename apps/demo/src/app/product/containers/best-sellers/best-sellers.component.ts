@@ -20,7 +20,7 @@ export class BestSellersComponent implements OnInit {
   loading$: Observable<boolean>;
 
   ngOnInit() {
-	  this.bestSellers$ = this.facade.bestSellers$;
-	  this.loading$ = this.facade.loading$;
+    this.bestSellers$ = this.facade.bestSellers$;
+    this.loading$ = this.facade.loading$;
   }
 }

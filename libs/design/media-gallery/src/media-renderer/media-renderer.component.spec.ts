@@ -25,7 +25,7 @@ import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
   providers: [
     {
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
-			 provide: daffThumbnailCompatToken, useExisting: DaffMockThumbnail1Component,
+      provide: daffThumbnailCompatToken, useExisting: DaffMockThumbnail1Component,
     },
   ],
 })
@@ -37,7 +37,7 @@ export class DaffMockThumbnail1Component {}
   providers: [
     {
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
-			 provide: daffThumbnailCompatToken, useExisting: DaffMockThumbnail2Component,
+      provide: daffThumbnailCompatToken, useExisting: DaffMockThumbnail2Component,
     },
   ],
 })

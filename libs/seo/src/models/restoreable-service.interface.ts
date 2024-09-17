@@ -20,7 +20,7 @@ export interface DaffSeoRestoreableServiceInterface<T, V = unknown> {
    * Adds the SEO info to the page.
    * Adds the info to the upsert cache.
    *
-   * @param {T} info
+   * @param info
    */
   upsert(info: T): void;
 

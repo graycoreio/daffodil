@@ -61,27 +61,27 @@ export class DaffThumbnailDirective implements OnInit, OnDestroy, DaffThumbnailR
    * @param event: MouseEvent
    */
   @HostListener('click', ['$event']) onClick($event: MouseEvent) {
-	  this.registry.select(this);
+    this.registry.select(this);
   }
 
   ngOnInit(): void {
-	  this.registry.add(this.gallery, this);
+    this.registry.add(this.gallery, this);
   }
 
   ngOnDestroy(): void {
-	  this.registry.remove(this);
+    this.registry.remove(this);
   }
 
   select() {
-	  this.selected = true;
-	  this.becameSelected.emit();
-	  this.cd.markForCheck();
-	  return this;
+    this.selected = true;
+    this.becameSelected.emit();
+    this.cd.markForCheck();
+    return this;
   }
 
   deselect() {
-	  this.selected = false;
-	  this.cd.markForCheck();
-	  return this;
+    this.selected = false;
+    this.cd.markForCheck();
+    return this;
   }
 }

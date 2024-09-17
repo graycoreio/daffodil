@@ -19,5 +19,5 @@ export interface DaffCartShippingMethodsServiceInterface<
 }
 
 export const DaffCartShippingMethodsDriver = new InjectionToken<
-DaffCartShippingMethodsServiceInterface
+  DaffCartShippingMethodsServiceInterface
 >('DaffCartShippingMethodsDriver');

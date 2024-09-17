@@ -1,8 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import {
- HttpClient,
-provideHttpClient,
-withInterceptorsFromDi,
+  HttpClient,
+  provideHttpClient,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
@@ -22,22 +22,22 @@ describe('DaffHubspotForms Factory Provider', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    providers: [
+      imports: [RouterTestingModule],
+      providers: [
         {
-            provide: DaffHubspotFormsService,
-            useFactory: daffHubspotFormsServiceFactory,
-            deps: [
-                HttpClient,
-                Router,
-                DOCUMENT,
-                Title,
-            ],
+          provide: DaffHubspotFormsService,
+          useFactory: daffHubspotFormsServiceFactory,
+          deps: [
+            HttpClient,
+            Router,
+            DOCUMENT,
+            Title,
+          ],
         },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ],
-});
+      ],
+    });
     hubspotService = TestBed.inject(DaffHubspotFormsService);
 
 

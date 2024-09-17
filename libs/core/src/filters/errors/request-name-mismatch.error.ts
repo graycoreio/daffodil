@@ -12,6 +12,6 @@ export class DaffFilterRequestNameMismatch extends DaffInheritableError implemen
   public readonly code: string = DaffFilterErrorCodes.FILTER_REQUEST_NAME_MISMATCH;
 
   constructor(message?: string) {
-	  super(message);
+    super(message);
   }
 }

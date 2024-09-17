@@ -91,22 +91,22 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
 
 
   updatePaymentSuccessSubstream$: Observable<any> = createEffect(() => this.actions$.pipe(
-	  substream(
-	    [DaffAuthorizeNetActionTypes.UpdatePaymentAction, DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction],
-	    DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction,
-	  ),
-	  map(() => new DaffAuthorizeNetUpdatePaymentSuccess()),
+    substream(
+      [DaffAuthorizeNetActionTypes.UpdatePaymentAction, DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction],
+      DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction,
+    ),
+    map(() => new DaffAuthorizeNetUpdatePaymentSuccess()),
   ));
 
 
   updatePaymentFailureSubstream$: Observable<any> = createEffect(() => this.actions$.pipe(
-	  substream(
-	    [DaffAuthorizeNetActionTypes.UpdatePaymentAction, DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction],
-	    DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction,
-	  ),
-	  map(([updatePaymentAction, updatePaymentFailureAction]: [DaffAuthorizeNetUpdatePayment, DaffCartPaymentUpdateWithBillingFailure]) =>
-	    new DaffAuthorizeNetUpdatePaymentFailure(this.errorMatcher(updatePaymentFailureAction.payload[0])),
-	  ),
+    substream(
+      [DaffAuthorizeNetActionTypes.UpdatePaymentAction, DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction],
+      DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction,
+    ),
+    map(([updatePaymentAction, updatePaymentFailureAction]: [DaffAuthorizeNetUpdatePayment, DaffCartPaymentUpdateWithBillingFailure]) =>
+      new DaffAuthorizeNetUpdatePaymentFailure(this.errorMatcher(updatePaymentFailureAction.payload[0])),
+    ),
   ));
 
 

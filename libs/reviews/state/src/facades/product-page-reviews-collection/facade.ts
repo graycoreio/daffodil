@@ -23,7 +23,7 @@ export class DaffProductPageReviewsCollectionFacade<T extends DaffProductReview 
   extends DaffCollectionFacade<DaffReviewsStateRootSlice<T>, DaffProductReviews['metadata']>
   implements DaffCollectionFacadeInterface<DaffProductReviews['metadata']> {
   constructor(store: Store<DaffReviewsStateRootSlice<T>>) {
-	  super(
+    super(
       store,
       getDaffProductReviewsCollectionSelectors(),
     );

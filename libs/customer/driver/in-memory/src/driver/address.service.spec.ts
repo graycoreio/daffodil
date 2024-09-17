@@ -1,10 +1,10 @@
 import {
- provideHttpClient,
-withInterceptorsFromDi,
+  provideHttpClient,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
 import {
- HttpTestingController,
-provideHttpClientTesting,
+  HttpTestingController,
+  provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs';
@@ -22,13 +22,13 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerAddressInMemoryDrive
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [],
-    providers: [
+      imports: [],
+      providers: [
         DaffCustomerAddressInMemoryDriver,
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ],
-});
+      ],
+    });
 
     httpMock = TestBed.inject(HttpTestingController);
     service = TestBed.inject(DaffCustomerAddressInMemoryDriver);

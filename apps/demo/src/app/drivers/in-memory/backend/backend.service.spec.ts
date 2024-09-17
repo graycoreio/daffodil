@@ -1,3 +1,7 @@
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
@@ -8,15 +12,14 @@ import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-m
 import { DaffProductTestingModule } from '@daffodil/product/testing';
 
 import { DemoInMemoryBackendService } from './backend.service';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('@daffodil/demo | DemoInMemoryBackendService', () => {
   let service: DemoInMemoryBackendService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [DaffProductTestingModule],
-    providers: [
+      imports: [DaffProductTestingModule],
+      providers: [
         DaffInMemoryBackendCartRootService,
         DaffInMemoryBackendProductService,
         DaffInMemoryBackendNavigationService,
@@ -24,8 +27,8 @@ describe('@daffodil/demo | DemoInMemoryBackendService', () => {
         DemoInMemoryBackendService,
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-});
+      ],
+    });
 
     service = TestBed.inject(DemoInMemoryBackendService);
   });
