@@ -147,6 +147,15 @@ describe('@daffodil/design/tree - flattenTree', () => {
       open: true,
       data: {},
     };
+    const childAa1 = {
+      title: 'Child Aa1',
+      url: '',
+      id: '',
+      items: [],
+      parent: undefined,
+      open: true,
+      data: {},
+    };
     const childB = {
       title: 'Child B',
       url: '',
@@ -171,6 +180,8 @@ describe('@daffodil/design/tree - flattenTree', () => {
     childB.parent = root;
     childA.items = [childAa];
     childAa.parent = childA;
+    childAa.items = [childAa1];
+    childAa1.parent = childAa;
     childB.items = [childBb];
     childBb.parent = childB;
 
@@ -178,8 +189,9 @@ describe('@daffodil/design/tree - flattenTree', () => {
     const flatRemoved = flattenTree(root, true);
 
     expect(flatRemoved[0].title).toEqual('Child A');
-    expect(flatRemoved[1].title).toEqual('Child B');
-    expect(flatRemoved[2].title).toEqual('Child Bb');
+    expect(flatRemoved[1].title).toEqual('Child Aa1');
+    expect(flatRemoved[2].title).toEqual('Child B');
+    expect(flatRemoved[3].title).toEqual('Child Bb');
 
     const flat = flattenTree(root);
 
@@ -187,10 +199,12 @@ describe('@daffodil/design/tree - flattenTree', () => {
     expect(flat[0].visible).toEqual(true);
     expect(flat[1].title).toEqual('Child Aa');
     expect(flat[1].visible).toEqual(false);
-    expect(flat[2].title).toEqual('Child B');
-    expect(flat[2].visible).toEqual(true);
-    expect(flat[3].title).toEqual('Child Bb');
+    expect(flat[2].title).toEqual('Child Aa1');
+    expect(flat[2].visible).toEqual(false);
+    expect(flat[3].title).toEqual('Child B');
     expect(flat[3].visible).toEqual(true);
+    expect(flat[4].title).toEqual('Child Bb');
+    expect(flat[4].visible).toEqual(true);
   });
 
   it('should handle deep trees correctly', () => {
