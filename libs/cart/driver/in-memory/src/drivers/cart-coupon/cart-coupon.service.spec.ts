@@ -1,6 +1,10 @@
 import {
-  HttpClientTestingModule,
-  HttpTestingController,
+ provideHttpClient,
+withInterceptorsFromDi,
+} from '@angular/common/http';
+import {
+ HttpTestingController,
+provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
@@ -27,13 +31,13 @@ describe('Driver | In Memory | Cart | CartCouponService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-      ],
-      providers: [
+    imports: [],
+    providers: [
         DaffInMemoryCartCouponService,
-      ],
-    });
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ],
+});
 
     httpMock = TestBed.inject(HttpTestingController);
     service = TestBed.inject(DaffInMemoryCartCouponService);

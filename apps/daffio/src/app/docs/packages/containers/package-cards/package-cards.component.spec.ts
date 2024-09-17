@@ -1,5 +1,5 @@
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {
   waitForAsync,
   ComponentFixture,
@@ -11,6 +11,7 @@ import { of } from 'rxjs';
 
 import { DaffioDocsPackageCardsContainer } from './package-cards.component';
 import { DaffioDocsIndexService } from '../../../services/index.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('DaffioDocsPackageCardsContainer', () => {
   let component: DaffioDocsPackageCardsContainer;
@@ -18,21 +19,20 @@ describe('DaffioDocsPackageCardsContainer', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+    declarations: [
         DaffioDocsPackageCardsContainer,
-      ],
-      imports: [
-        RouterTestingModule,
-        NoopAnimationsModule,
-        HttpClientTestingModule,
-      ],
-      providers: [
+    ],
+    imports: [RouterTestingModule,
+        NoopAnimationsModule],
+    providers: [
         {
-          provide: DaffioDocsIndexService,
-          useValue: jasmine.createSpyObj('DaffioDocsIndexService', { getList: of() }),
+            provide: DaffioDocsIndexService,
+            useValue: jasmine.createSpyObj('DaffioDocsIndexService', { getList: of() }),
         },
-      ],
-    })
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+})
       .compileComponents();
   }));
 

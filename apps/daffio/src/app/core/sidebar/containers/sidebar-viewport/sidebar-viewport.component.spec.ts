@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {
   Component,
   signal,
@@ -28,6 +28,7 @@ import {
 
 import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
 import { DaffioSidebarService } from '../../services/sidebar.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @Component({ template: '' })
 class TestComponent {}
@@ -59,24 +60,23 @@ describe('DaffioSidebarViewportContainer', () => {
     );
 
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        NoopAnimationsModule,
-        DaffSidebarModule,
-        HttpClientTestingModule,
-      ],
-      declarations: [
+    declarations: [
         DaffioSidebarViewportContainer,
         TestComponent,
-      ],
-      providers: [
+    ],
+    imports: [RouterTestingModule,
+        NoopAnimationsModule,
+        DaffSidebarModule],
+    providers: [
         {
-          provide: DaffioSidebarService,
-          useValue: sidebarServiceSpy,
+            provide: DaffioSidebarService,
+            useValue: sidebarServiceSpy,
         },
         provideMockStore(),
-      ],
-    })
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+})
       .compileComponents();
   }));
 

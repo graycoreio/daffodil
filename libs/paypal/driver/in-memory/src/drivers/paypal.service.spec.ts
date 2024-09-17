@@ -1,12 +1,10 @@
-import {
-  HttpTestingController,
-  HttpClientTestingModule,
-} from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { DaffPaypalExpressTokenResponseFactory } from '@daffodil/paypal/testing';
 
 import { DaffInMemoryPaypalService } from './paypal.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('@daffodil/paypal/driver/in-memory | DaffInMemoryPaypalService', () => {
   let paypalService;
@@ -15,13 +13,13 @@ describe('@daffodil/paypal/driver/in-memory | DaffInMemoryPaypalService', () => 
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-      ],
-      providers: [
+    imports: [],
+    providers: [
         DaffInMemoryPaypalService,
-      ],
-    });
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
 
     httpMock = TestBed.inject(HttpTestingController);
     paypalService = TestBed.inject(DaffInMemoryPaypalService);

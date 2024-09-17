@@ -4,7 +4,8 @@ module.exports = {
     'jasmine',
     "eslint-plugin-import",
     "eslint-plugin-jsdoc",
-    "eslint-plugin-prefer-arrow"
+    "eslint-plugin-prefer-arrow",
+    "@stylistic"
   ],
   extends: [
     "plugin:@typescript-eslint/recommended",
@@ -49,7 +50,7 @@ module.exports = {
     "@angular-eslint/use-pipe-transform-interface": "error",
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": "off",
-    "@typescript-eslint/ban-types": [
+    "@typescript-eslint/no-restricted-types": [
       "error",
       {
         "types": {
@@ -79,7 +80,12 @@ module.exports = {
     "@typescript-eslint/member-ordering": "error",
     "@typescript-eslint/naming-convention": "error",
     "@typescript-eslint/no-empty-function": "off",
-    "@typescript-eslint/no-empty-interface": "error",
+    "@typescript-eslint/no-empty-object-type": [
+      "error",
+      {
+        allowInterfaces: 'always'
+      }
+    ],
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-inferrable-types": [
       "error",
@@ -213,7 +219,7 @@ module.exports = {
         "named": "never"
       }
     ],
-    "@typescript-eslint/member-delimiter-style": [
+    "@stylistic/member-delimiter-style": [
       "error",
       {
         "multiline": {
@@ -226,14 +232,13 @@ module.exports = {
         }
       }
     ],
-    "quotes": "off",
-    "@typescript-eslint/quotes": [
+    "@stylistic/quotes": [
       "error",
       "single",
       { "allowTemplateLiterals": true }
     ],
-    "@typescript-eslint/semi": ["error", "always"],
-    "@typescript-eslint/type-annotation-spacing": "error",
+    "@stylistic/semi": ["error", "always"],
+    "@stylistic/type-annotation-spacing": "error",
 
     // custom
     '@typescript-eslint/no-unused-vars': 'off',
@@ -256,8 +261,7 @@ module.exports = {
     'import/no-unassigned-import': ['error'],
     'modules-newlines/import-declaration-newline': 'warn',
     'modules-newlines/export-declaration-newline': 'warn',
-    'indent': 'off',
-    '@typescript-eslint/indent': [
+    '@stylistic/indent': [
       'error',
       2,
       {

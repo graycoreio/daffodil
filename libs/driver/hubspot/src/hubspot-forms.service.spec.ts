@@ -1,11 +1,13 @@
 import { DOCUMENT } from '@angular/common';
 import {
-  HttpClient,
-  HttpRequest,
+ HttpClient,
+HttpRequest,
+provideHttpClient,
+withInterceptorsFromDi,
 } from '@angular/common/http';
 import {
-  HttpClientTestingModule,
-  HttpTestingController,
+ HttpTestingController,
+provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
@@ -28,11 +30,9 @@ describe('DaffHubspotFormsService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
-      ],
-    });
+    imports: [RouterTestingModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
+});
 
     httpMock = TestBed.inject(HttpTestingController);
     doc = TestBed.inject(DOCUMENT);

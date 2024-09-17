@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {
   APP_ID,
   NgModule,
@@ -26,49 +26,40 @@ import { DaffioSidebarHeaderComponentModule } from './core/sidebar/components/si
 import { TemplateModule } from './core/template/template.module';
 import { environment } from '../environments/environment';
 
-@NgModule({
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot(),
-    HttpClientModule,
-
-    AppRoutingModule,
-    DaffioSidebarHeaderComponentModule,
-    DaffioSidebarFooterComponentModule,
-    DaffioSimpleFooterComponentModule,
-    DaffioMarketingFooterComponentModule,
-
-    //Make sure this loads after Router and Store
-    StoreRouterConnectingModule.forRoot({ serializer: FullRouterStateSerializer,
-      /*
-        They stateKey defines the name of the state used by the router-store reducer.
-        This matches the key defined in the map of reducers
-      */
-      stateKey: 'router' }),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
-      connectInZone: true,
-    }),
-    TemplateModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-  ],
-  declarations: [
-    DaffioAppComponent,
-  ],
-  bootstrap: [
-    DaffioAppComponent,
-  ],
-  providers: [
-    DAFF_THEME_INITIALIZER,
-    {
-      provide: APP_ID,
-      useValue: 'serverApp',
-    },
-    provideDaffRouterActivatedRoute(),
-  ],
-})
+@NgModule({ declarations: [
+        DaffioAppComponent,
+    ],
+    bootstrap: [
+        DaffioAppComponent,
+    ], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot(),
+        AppRoutingModule,
+        DaffioSidebarHeaderComponentModule,
+        DaffioSidebarFooterComponentModule,
+        DaffioSimpleFooterComponentModule,
+        DaffioMarketingFooterComponentModule,
+        //Make sure this loads after Router and Store
+        StoreRouterConnectingModule.forRoot({ serializer: FullRouterStateSerializer,
+            /*
+              They stateKey defines the name of the state used by the router-store reducer.
+              This matches the key defined in the map of reducers
+            */
+            stateKey: 'router' }),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25, // Retains last 25 states
+            logOnly: environment.production, // Restrict extension to log-only mode
+            connectInZone: true,
+        }),
+        TemplateModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })], providers: [
+        DAFF_THEME_INITIALIZER,
+        {
+            provide: APP_ID,
+            useValue: 'serverApp',
+        },
+        provideDaffRouterActivatedRoute(),
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}

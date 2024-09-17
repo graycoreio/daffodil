@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {
   waitForAsync,
   ComponentFixture,
@@ -8,6 +8,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffioDocsListContainer } from './docs-list.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('DaffioDocsListContainer', () => {
   let component: DaffioDocsListContainer;
@@ -15,13 +16,11 @@ describe('DaffioDocsListContainer', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DaffioDocsListContainer,
+    imports: [DaffioDocsListContainer,
         RouterTestingModule,
-        NoopAnimationsModule,
-        HttpClientTestingModule,
-      ],
-    })
+        NoopAnimationsModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
       .compileComponents();
   }));
 

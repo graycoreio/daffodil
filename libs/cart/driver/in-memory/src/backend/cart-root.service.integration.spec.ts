@@ -1,6 +1,7 @@
 import {
-  HttpClientModule,
-  HttpClient,
+ HttpClient,
+provideHttpClient,
+withInterceptorsFromDi,
 } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -48,12 +49,10 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
   beforeEach(done => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendCartRootService, { delay: 0 }),
-        DaffProductTestingModule,
-      ],
-    });
+    imports: [HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendCartRootService, { delay: 0 }),
+        DaffProductTestingModule],
+    providers: [provideHttpClient(withInterceptorsFromDi())],
+});
 
     httpClient = TestBed.inject(HttpClient);
 

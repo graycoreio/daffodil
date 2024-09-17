@@ -1,6 +1,10 @@
 import {
-  HttpTestingController,
-  HttpClientTestingModule,
+ provideHttpClient,
+withInterceptorsFromDi,
+} from '@angular/common/http';
+import {
+ HttpTestingController,
+provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
@@ -30,13 +34,13 @@ describe('@daffodil/auth/driver/in-memory | LoginService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-      ],
-      providers: [
+    imports: [],
+    providers: [
         DaffInMemoryLoginService,
-      ],
-    });
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ],
+});
 
     httpMock = TestBed.inject(HttpTestingController);
     loginService = TestBed.inject(DaffInMemoryLoginService);

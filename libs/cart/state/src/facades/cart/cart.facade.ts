@@ -128,7 +128,7 @@ export class DaffCartFacade<
     // typing this as `Record<string, any>` or `object` fails the build
     // because Angular explicitly types this as `Object`
     // eslint-disable-next-line @typescript-eslint/ban-types
-    @Inject(DaffCartPaymentMethodIdMap) private paymentMethodMap: Object,
+    @Inject(DaffCartPaymentMethodIdMap) private paymentMethodMap: object,
   ) {
     const {
       selectCartValue,

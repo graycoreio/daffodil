@@ -7,6 +7,7 @@
     "@angular-eslint/eslint-plugin": "0.0.0-PLACEHOLDER",
     "@angular-eslint/eslint-plugin-template": "0.0.0-PLACEHOLDER",
     "@angular-eslint/template-parser": "0.0.0-PLACEHOLDER",
+    "@stylistic/eslint-plugin": "^2.7.2",
     "@typescript-eslint/eslint-plugin": "0.0.0-PLACEHOLDER",
     "@typescript-eslint/parser": "0.0.0-PLACEHOLDER",
     "eslint": "0.0.0-PLACEHOLDER",

@@ -1,6 +1,10 @@
 import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import {
   HttpTestingController,
-  HttpClientTestingModule,
+  provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
@@ -18,11 +22,11 @@ describe('@daffodil/category/driver/in-memory | DaffInMemoryCategoryService', ()
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-      ],
+      imports: [],
       providers: [
         DaffInMemoryCategoryService,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     });
 

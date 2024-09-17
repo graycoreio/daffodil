@@ -1,7 +1,4 @@
-import {
-  HttpTestingController,
-  HttpClientTestingModule,
-} from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 
@@ -9,6 +6,7 @@ import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import { DaffCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/testing';
 
 import { DaffCartStoreCreditInMemoryDriver } from './store-credit.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('@daffodil/cart-store-credit/driver/in-memory | DaffCartStoreCreditInMemoryDriver', () => {
   let service: DaffCartStoreCreditInMemoryDriver;
@@ -18,13 +16,13 @@ describe('@daffodil/cart-store-credit/driver/in-memory | DaffCartStoreCreditInMe
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-      ],
-      providers: [
+    imports: [],
+    providers: [
         DaffCartStoreCreditInMemoryDriver,
-      ],
-    });
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
 
     httpMock = TestBed.inject(HttpTestingController);
     service = TestBed.inject(DaffCartStoreCreditInMemoryDriver);

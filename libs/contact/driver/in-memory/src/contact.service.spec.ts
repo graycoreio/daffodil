@@ -1,12 +1,10 @@
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { DaffContactUnion } from '@daffodil/contact';
 
 import { DaffInMemoryContactService } from './contact.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('The DaffInMemoryContactService', () => {
   let contactService;
@@ -14,13 +12,13 @@ describe('The DaffInMemoryContactService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-      ],
-      providers: [
+    imports: [],
+    providers: [
         DaffInMemoryContactService,
-      ],
-    });
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
     httpMock = TestBed.inject(HttpTestingController);
     contactService = TestBed.inject(DaffInMemoryContactService);
   });

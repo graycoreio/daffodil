@@ -1,6 +1,10 @@
 import {
-  HttpTestingController,
-  HttpClientTestingModule,
+ provideHttpClient,
+withInterceptorsFromDi,
+} from '@angular/common/http';
+import {
+ HttpTestingController,
+provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
@@ -31,17 +35,17 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryRegisterService', () => 
     loginServiceSpy = jasmine.createSpyObj('DaffInMemoryLoginService', ['login']);
 
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-      ],
-      providers: [
+    imports: [],
+    providers: [
         DaffInMemoryRegisterService,
         {
-          provide: DaffInMemoryLoginService,
-          useValue: loginServiceSpy,
+            provide: DaffInMemoryLoginService,
+            useValue: loginServiceSpy,
         },
-      ],
-    });
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ],
+});
 
     httpMock = TestBed.inject(HttpTestingController);
     service = TestBed.inject(DaffInMemoryRegisterService);

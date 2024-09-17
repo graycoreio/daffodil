@@ -5,6 +5,7 @@
     "module": "ES2022",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
+    "esModuleInterop": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -22,7 +23,6 @@
         "dist/*"
       ]
     },
-    "allowSyntheticDefaultImports": true,
     "useDefineForClassFields": false
   },
   "exclude": [

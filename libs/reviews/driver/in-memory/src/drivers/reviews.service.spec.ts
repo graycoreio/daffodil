@@ -1,7 +1,4 @@
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -12,6 +9,7 @@ import { DaffProductReviewsNotFoundError } from '@daffodil/reviews/driver';
 import { DaffProductReviewsFactory } from '@daffodil/reviews/testing';
 
 import { DaffReviewsInMemoryService } from './reviews.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('@daffodil/reviews/driver/in-memory | DaffReviewsInMemoryService', () => {
   let service: DaffReviewsInMemoryService;
@@ -23,13 +21,13 @@ describe('@daffodil/reviews/driver/in-memory | DaffReviewsInMemoryService', () =
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-      ],
-      providers: [
+    imports: [],
+    providers: [
         DaffReviewsInMemoryService,
-      ],
-    });
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
 
     httpMock = TestBed.inject(HttpTestingController);
     reviewsFactory = TestBed.inject(DaffProductReviewsFactory);
