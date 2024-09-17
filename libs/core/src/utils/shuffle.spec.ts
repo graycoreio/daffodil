@@ -11,4 +11,16 @@ describe('Core | Utils | shuffle', () => {
     });
     expect(initialArray).not.toEqual(result);
   });
+
+  it('should return array containing the same single element if input contains one element', () => {
+    const initialArray = [1];
+    const result = shuffle(initialArray);
+    expect(initialArray).toEqual(result);
+  });
+
+  it('should return an empty array if input is an empty array', () => {
+    const initialArray = [];
+    const result = shuffle(initialArray);
+    expect(initialArray).toEqual(result);
+  });
 });
