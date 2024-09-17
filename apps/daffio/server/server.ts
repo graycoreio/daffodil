@@ -21,7 +21,7 @@ export function app(): express.Express {
   const distFolder = join(__dirname, '../browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html'))
     ? join(distFolder, 'index.original.html')
-    : join(distFolder, 'index.html');
+    : join(distFolder, 'index.csr.html');
 
   const commonEngine = new CommonEngine();
 
