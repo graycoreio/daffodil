@@ -9,16 +9,16 @@
 	width: 240px;
 
 	&.left {
-		width: var(--daff-sidebar-left-width);
+		width: var(--daff-sidebar-left-width, 240px);
 	}
 
 	&.right {
-		width: var(--daff-sidebar-right-width);
+		width: var(--daff-sidebar-right-width, 240px);
 	}
 	
 
 	&.side-fixed {
-		display: none;
+		visibility: hidden;
 		position: fixed;
 		bottom: 0;
 		z-index: variables.$daff-sidebar-sidebar-side-fixed-z-index;
@@ -34,7 +34,7 @@
 		}
 
 		@include layout.breakpoint(big-tablet) {
-			display: flex;
+			visibility: visible;
 		}
 	}
 

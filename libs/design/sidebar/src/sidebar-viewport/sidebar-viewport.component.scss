@@ -14,7 +14,7 @@
 			padding-left: 0;
 
 			@include layout.breakpoint(big-tablet) {
-				padding-left: var(--daff-sidebar-left-width);
+				padding-left: var(--daff-sidebar-left-width, 240px);
 			}
 		}
 		
@@ -23,7 +23,7 @@
 				padding-left: 0;
 	
 				@include layout.breakpoint(big-tablet) {
-					padding-left: var(--daff-sidebar-left-width);
+					padding-left: var(--daff-sidebar-left-width, 240px);
 				}
 			}
 		}
@@ -34,7 +34,7 @@
 			padding-right: 0;
 
 			@include layout.breakpoint(big-tablet) {
-				padding-right: var(--daff-sidebar-right-width);
+				padding-right: var(--daff-sidebar-right-width, 240px);
 			}
 		}
 
@@ -43,7 +43,7 @@
 				padding-right: 0;
 	
 				@include layout.breakpoint(big-tablet) {
-					padding-right: var(--daff-sidebar-right-width);
+					padding-right: var(--daff-sidebar-right-width, 240px);
 				}
 			}
 		}
