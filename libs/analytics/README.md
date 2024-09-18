@@ -9,13 +9,13 @@ To install `@daffodil/analytics`, use the following commands in your terminal.
 
 Install with npm:
 ```bash
-npm install @daffodil/auth --save
+npm install @daffodil/analytics --save
 ```
 
 Install with yarn:
 
 ```bash
-yarn add @daffodil/auth
+yarn add @daffodil/analytics
 ```
 
 ## Features
