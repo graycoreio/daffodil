@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.77.0](https://github.com/graycoreio/daffodil/compare/v0.76.0...v0.77.0) (2024-09-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **all:** Angular has been upgraded to v18
+
+### Features
+
+* **all:** upgrade Angular to v18 ([#3052](https://github.com/graycoreio/daffodil/issues/3052)) ([8c58188](https://github.com/graycoreio/daffodil/commit/8c581885605d19ad6642c0630e7feb2a1aee4eca))
+* **daffio:** redirect `api` and `packages` to new route ([#3076](https://github.com/graycoreio/daffodil/issues/3076)) ([3f1a93d](https://github.com/graycoreio/daffodil/commit/3f1a93db04dff1c9f1491a977664604759a6c596))
+* **design:** add deep tree example ([#3067](https://github.com/graycoreio/daffodil/issues/3067)) ([04e1f4f](https://github.com/graycoreio/daffodil/commit/04e1f4f72dc72ba220089d420d98671d663a6ea5))
+
+
+### Bug Fixes
+
+* **all:** in-memory not overriding http client ([#3052](https://github.com/graycoreio/daffodil/issues/3052)) ([57d215b](https://github.com/graycoreio/daffodil/commit/57d215bc911c914c0b9d949aba87c9c6ac9a024e))
+* **cart:** adjust Magento error handling for v2.4.6 removal of extensions ([#3088](https://github.com/graycoreio/daffodil/issues/3088)) ([0aba4a0](https://github.com/graycoreio/daffodil/commit/0aba4a085aef6ad43bcba50ac06ba14b2b0077a5))
+* **core:** allow shuffle to return first element in first index ([#3070](https://github.com/graycoreio/daffodil/issues/3070)) ([7d07b8a](https://github.com/graycoreio/daffodil/commit/7d07b8aa848b18b3bc691c8f7a296dc3b12b4d60))
+* **daffio:** index file cannot be found in SSR ([#3052](https://github.com/graycoreio/daffodil/issues/3052)) ([ef55e1d](https://github.com/graycoreio/daffodil/commit/ef55e1d94ededd7256627d287ab6d39b222976af))
+* **demo:** in-memory driver never gets loaded ([#3051](https://github.com/graycoreio/daffodil/issues/3051)) ([d4df739](https://github.com/graycoreio/daffodil/commit/d4df739f904b8de770e5e10bba77cc40b8cdf994))
+* **design:** tree item descendants are not hidden on ancestor collapse ([#3069](https://github.com/graycoreio/daffodil/issues/3069)) ([cb114f1](https://github.com/graycoreio/daffodil/commit/cb114f1c3219b20b33abd9de726d73a12ae7124d))
+* **driver:** allow undefined extensions key in Magento graphql responses ([#3087](https://github.com/graycoreio/daffodil/issues/3087)) ([64e9ce3](https://github.com/graycoreio/daffodil/commit/64e9ce380731d94d062600ea03ba51593a7e2f76))
+
 ## [0.76.0](https://github.com/graycoreio/daffodil/compare/v0.75.0...v0.76.0) (2024-09-16)
 
 
