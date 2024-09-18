@@ -8,8 +8,8 @@ import {
   DaffUnauthorizedForCartError,
 } from '@daffodil/cart/driver';
 
-import { transformCartMagentoError } from './transform';
 import { MagentoCartGraphQlErrorCode } from './codes';
+import { transformCartMagentoError } from './transform';
 
 describe('@daffodil/cart/driver/magento | transformCartMagentoError', () => {
   let apolloError: ApolloError;

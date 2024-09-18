@@ -24,7 +24,7 @@ export const DaffCartMagentoErrorMessageRegexMap = {
   [DaffCartDriverErrorCodes.ITEM_EXCEEDS_MAX_QTY]: /The requested qty exceeds the maximum qty allowed in shopping cart/,
   [DaffCartDriverErrorCodes.INVALID_EMAIL]: /Invalid email format/,
   [DaffCartDriverErrorCodes.CART_NOT_FOUND]: /Could not find a cart with ID/,
-  [DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART]: /The current customer isn\'t authorized/
+  [DaffCartDriverErrorCodes.UNAUTHORIZED_FOR_CART]: /The current customer isn\'t authorized/,
 };
 
 export const DaffCartMagentoUserErrorMap: DaffErrorCodeMap = {
