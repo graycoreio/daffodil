@@ -1,7 +1,16 @@
 # @daffodil/order
+`@daffodil/order` provides platform-agnostic drivers as well as useful models and functions for managing customer orders.
 
-The `@daffodil/order` library intends to provide:
+## Installation
+To install `@daffodil/order`, use the following commands in your terminal.
 
-1. Platform-agnostic drivers for working with customer orders.
-2. Useful models and functions for working with customer orders.
+Install with npm:
+```bash
+npm install @daffodil/order --save
+```
 
+Install with yarn:
+
+```bash
+yarn add @daffodil/order
+```
