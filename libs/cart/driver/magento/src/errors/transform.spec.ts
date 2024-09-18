@@ -11,7 +11,7 @@ import {
 import { transformCartMagentoError } from './transform';
 import { MagentoCartGraphQlErrorCode } from './codes';
 
-fdescribe('@daffodil/cart/driver/magento | transformCartMagentoError', () => {
+describe('@daffodil/cart/driver/magento | transformCartMagentoError', () => {
   let apolloError: ApolloError;
   let graphQlError: GraphQLError;
   let transformedError: Error;
