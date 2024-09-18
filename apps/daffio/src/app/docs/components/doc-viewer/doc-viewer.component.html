@@ -4,11 +4,7 @@
 </button>
 <div class="daffio-doc-viewer__grid">
   @if (isApiPackage) {
-    <daff-article class="daffio-doc-viewer__content">
-      <h1>{{doc.title}}</h1>
-      <p>{{doc.description}}</p>
-	    <daffio-api-list-section [children]="doc.children" class="daffio-doc-viewer__api-section"></daffio-api-list-section>
-    </daff-article>
+    <daffio-api-package [doc]="doc"></daffio-api-package>
   } @else {
     <daff-article
       class="daffio-doc-viewer__content"

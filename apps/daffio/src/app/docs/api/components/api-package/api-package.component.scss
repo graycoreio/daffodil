@@ -1,0 +1,39 @@
+@use '../../../../../scss/type-descriptors/mixins' as type-mixin;
+@use 'utilities' as daff;
+
+:host {
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+
+	a {
+		text-decoration: none;
+	}
+}
+
+.daffio-api-package {
+	&__package {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__package-name {
+		font-size: 1.125rem;
+		font-weight: 600;
+		line-height: 1.375rem;
+
+		@include daff.breakpoint(mobile) {
+			font-size: 1.25rem;
+			line-height: 1.75rem;
+		}
+
+		> * {
+			@include daff.text-truncate();
+
+			@include daff.breakpoint(mobile) {
+				display: inline-block;
+			}
+		}
+	}
+}

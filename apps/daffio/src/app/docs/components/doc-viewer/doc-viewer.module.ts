@@ -8,7 +8,7 @@ import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffSidebarModule } from '@daffodil/design/sidebar';
 
 import { DaffioDocViewerComponent } from './doc-viewer.component';
-import { DaffioApiListSectionComponent } from '../../api/components/api-list-section/api-list-section.component';
+import { DaffioApiPackageComponent } from '../../api/components/api-package/api-package.component';
 import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-c
     DaffArticleModule,
     DaffContainerModule,
     DaffioDocsTableOfContentsModule,
-    DaffioApiListSectionComponent,
+    DaffioApiPackageComponent,
     DaffSidebarModule,
     DaffButtonModule,
     FontAwesomeModule,
