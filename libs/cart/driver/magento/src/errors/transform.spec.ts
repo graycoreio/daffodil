@@ -2,10 +2,13 @@ import { ApolloError } from '@apollo/client/core';
 import { GraphQLError } from 'graphql';
 
 import {
+  DaffCartNotFoundError,
   DaffInvalidCouponCodeError,
   DaffProductOutOfStockError,
+  DaffUnauthorizedForCartError,
 } from '@daffodil/cart/driver';
 
+import { MagentoCartGraphQlErrorCode } from './codes';
 import { transformCartMagentoError } from './transform';
 
 describe('@daffodil/cart/driver/magento | transformCartMagentoError', () => {
@@ -13,41 +16,28 @@ describe('@daffodil/cart/driver/magento | transformCartMagentoError', () => {
   let graphQlError: GraphQLError;
   let transformedError: Error;
 
-  describe('when the GraphQL error is an invalid coupon code error', () => {
-    beforeEach(() => {
-      graphQlError = new GraphQLError('The coupon code isn\'t valid. Verify the code and try again.');
+  it('should transform error codes correctly', () => {
+    const errors = [
+      { message: 'The coupon code isn\'t valid. Verify the code and try again.', category: undefined, type: DaffInvalidCouponCodeError },
+      { message: 'There are no source items with the in stock status', category: undefined, type: DaffProductOutOfStockError },
+      { message: 'Could not find a cart with ID "asdasdasd"', category: MagentoCartGraphQlErrorCode.CART_NOT_FOUND, type: DaffCartNotFoundError },
+      { message: 'Could not find a cart with ID "asdasdasd"', category: undefined, type: DaffCartNotFoundError },
+      { message: 'Cart does not contain products', category: undefined, type: Error },
+      { message: 'The current customer isn\'t authorized', category: undefined, type: DaffUnauthorizedForCartError },
+    ];
+
+    errors.forEach((el) => {
+      graphQlError = new GraphQLError(el.message);
+      if(el.category) {
+        graphQlError.extensions.category = el.category;
+      }
       apolloError = new ApolloError({
         graphQLErrors: [graphQlError],
       });
-
       transformedError = transformCartMagentoError(apolloError);
-    });
 
-    it('should return a DaffInvalidCouponCodeError', () => {
-      expect(transformedError).toEqual(jasmine.any(DaffInvalidCouponCodeError));
-    });
-
-    it('should return an error containing the GraphQL error message', () => {
-      expect(transformedError.message).toContain(graphQlError.message);
-    });
-  });
-
-  describe('when the GraphQL error is a no source items with in stock status error', () => {
-    beforeEach(() => {
-      graphQlError = new GraphQLError('There are no source items with the in stock status');
-      apolloError = new ApolloError({
-        graphQLErrors: [graphQlError],
-      });
-
-      transformedError = transformCartMagentoError(apolloError);
-    });
-
-    it('should return a DaffProductOutOfStockError', () => {
-      expect(transformedError).toEqual(jasmine.any(DaffProductOutOfStockError));
-    });
-
-    it('should return an error containing the GraphQL error message', () => {
-      expect(transformedError.message).toContain(graphQlError.message);
+      expect(transformedError).toEqual(jasmine.any(el.type));
+      expect(transformedError.message).toContain(el.message);
     });
   });
 });
