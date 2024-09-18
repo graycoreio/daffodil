@@ -1,22 +1,40 @@
 # @daffodil/paypal
+`@daffodil/paypal` manages the graphQL calls, state, selectors, and models for making a payment token request to PayPal.
 
-Building and maintaining a model and code for an ecommerce store is complex and mentally taxing. `@daffodil/paypal`
-provides clear interfaces, models, factories, services, and redux state for the frontend of an ecommerce store so that you don't have to.
+## Overview
+Requests should be made through the `DaffGeneratePaypalExpressToken` action through the `DaffPaypalFacade`. Selection of the retrieved token and other pertinent fields (including navigation urls for PayPal) can also be done through the `DaffPaypalFacade`.
 
-The paypal module manages the graphQL calls, state, selectors, and models for making a payment token request to paypal. Requests should be made through the `DaffGeneratePaypalExpressToken` action through the `DaffPaypalFacade`. Selection of the retrieved token and other pertinent fields (including navigation urls for paypal) can also be done through the `DaffPaypalFacade`.
-
-Right now, the `@daffodil/paypal` package supports an in-memory for developing locally (but this will not enable an entire workflow of the paypal process, because this requires a configured sandbox url) and a magento driver.
+`@daffodil/paypal` currently supports both a Magento driver and an in-memory driver for local development, but this will not enable an entire workflow of the PayPal process because it requires a configured sandbox url.
 
 ## Installation
-```
-npm install @daffodil/paypal
+To install `@daffodil/paypal`, use the following commands in the terminal.
+
+Install with npm:
+```bash
+npm install @daffodil/paypal --save
 ```
 
-To use the `@daffodil/paypal` with an `in-memory-web-api`, import the `DaffPaypalInMemoryDriverModule.forRoot()` into your app.module. To use `@daffodil/paypal` with a magento backend, import the `DaffPaypalMagentoDriverModule.forRoot()` into your app.module. To set your paypal urls (the urls that are given to paypal to direct the customer back to your site), use the `DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG` injection token.
+Install with yarn:
 
-## Extension and customization
-If you feel like what our services return just won't cut it for your business needs, no problem! All of the reducers, effects, selectors, actions, and facades are 100% reusable with a customized model and service. If the `DaffPaypalExpressTokenResponse` doesn't have all of the necessary fields you require, you'll need to provide three things.
+```bash
+yarn add @daffodil/paypal
+```
+
+## Getting started
+
+### Using in-memory web API
+Import the `DaffPaypalInMemoryDriverModule.forRoot()` into your root component.
+
+### Using Magento backend
+1. Import the `DaffPaypalMagentoDriverModule.forRoot()` into your root component.
+2. Use the `DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG` injection token to set up your PayPal URLs (the URLs that are given to PayPal to direct the customer back to your site)
+
+## Extensions and customizations
+If you feel like what our services return just won't cut it for your business needs, no problem! All of the reducers, effects, selectors, actions, and facades are 100% reusable with a customized model and service.
+
+If the `DaffPaypalExpressTokenResponse` doesn't have all of the necessary fields you require, you'll need to provide three things:
 1. A custom service that implements the `DaffPaypalExpressServiceInterface`. This should be injected with the `DaffPaypalExpressDriver` injection token to override the default service.
 2. A custom service that implements the `DaffPaypalTransformerInterface`. This should be injected with the `DaffPaypalTransformer` injection token to override the default transformer.
 3. Define a model that extends the `DaffPaypalExpressTokenResponse` and/or the `DaffPaypalExpressTokenRequest`.
-These steps should allow you to make supported requests to paypal in whatever way you'd like, while still being compatible with the daffodil redux state, because all redux components are generically defined.
+
+These steps should allow you to make supported requests to PayPal in whatever way you'd like, while still being compatible with the Daffodil redux state, because all redux components are generically defined.
