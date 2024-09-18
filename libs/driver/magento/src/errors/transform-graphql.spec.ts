@@ -1,5 +1,3 @@
-import { ApolloError } from '@apollo/client/core';
-
 import {
   DaffError,
   DaffErrorCodeMap,
@@ -60,6 +58,12 @@ describe('@daffodil/driver/magento | daffMagentoTransformGraphQlError', () => {
   });
 
   it('should not crash if the extension is not defined', () => {
+    const { extensions, ...error } = unhandledGraphQlError;
+    expect(() => daffMagentoTransformGraphQlError(error, map)).not.toThrow();
+    expect(daffMagentoTransformGraphQlError(error, map)).toEqual(new DaffDriverMagentoError('An error we don\'t handle'));
+  });
+
+  it('should not crash if there are no extensions defined', () => {
     const error = { ...unhandledGraphQlError, extensions: {}};
     expect(() => daffMagentoTransformGraphQlError(error, map)).not.toThrow();
   });
