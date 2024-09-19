@@ -2,6 +2,21 @@
 	<fa-icon [icon]="faBars"></fa-icon>
 	<div>Menu</div>
 </button>
+@if (doc.breadcrumbs?.length > 0) {
+  <nav aria-label="Breadcrumb">
+    <ol daff-breadcrumb>
+      @for (breadcrumb of doc.breadcrumbs; track $index) {
+        <li daffBreadcrumbItem [active]="$last">
+          @if ($last) {
+            {{breadcrumb.label}}
+          } @else {
+            <a [routerLink]="breadcrumb.path">{{breadcrumb.label}}</a>
+          }
+        </li>
+      }
+    </ol>
+  </nav>
+}
 <div class="daffio-doc-viewer__grid">
   @if (isApiPackage) {
     <daffio-api-package [doc]="doc"></daffio-api-package>

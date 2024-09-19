@@ -1,3 +1,5 @@
+import { DaffBreadcrumb } from '@daffodil/docs-utils';
+
 import { DaffioGenericDocList } from '../../models/doc-list';
 
 /**
@@ -7,4 +9,5 @@ export interface DaffioApiReference extends DaffioGenericDocList<DaffioApiRefere
   docType: string;
   docTypeShorthand: string;
   description?: string;
+  breadcrumbs?: Array<DaffBreadcrumb>;
 }
