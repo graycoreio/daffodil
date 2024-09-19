@@ -103,7 +103,7 @@ export class BreadcrumbProcessor implements FilterableProcessor {
     // TODO: determine actual requirements for this feature
     switch (doc.kind) {
       case DaffDocKind.PACKAGE:
-        const parents = segments
+        const parents_ = segments
         // get all the dynamic segments not including the last (which is the current doc)
         // we only want to process dynamic parents here
           .slice(breadcrumbs.length + 1, segments.length - 1)
@@ -111,12 +111,12 @@ export class BreadcrumbProcessor implements FilterableProcessor {
           .flatMap((_, i, ids) => this.aliasMap.getDocs(ids.slice(0, i + 1).join('/')));
         breadcrumbs.push(
           // turn the parent docs into breadcrumbs
-          ...parents.map((parent, i) => ({
-            label: truncateLabel(parent.title, parents[i - 1]?.title),
+          ...parents_.map((parent, i) => ({
+            label: truncateLabel(parent.title, parents_[i - 1]?.title),
             path: parent.path,
           })),
           {
-            label: parents.length > 0 ? truncateLabel(doc.title, parents[parents.length - 1].title) : doc.title,
+            label: parents_.length > 0 ? truncateLabel(doc.title, parents_[parents_.length - 1].title) : doc.title,
             path: doc.path,
           },
         );
