@@ -82,6 +82,10 @@ export class BreadcrumbProcessor implements FilterableProcessor {
 
   docTypes = [];
 
+  constructor(
+    private aliasMap,
+  ) {}
+
   private getBreadcrumbs(doc: ParentedDocument & KindedDocument): Array<DaffBreadcrumb> {
     const segments = doc.path.split('/');
     const breadcrumbs = segments
@@ -95,18 +99,32 @@ export class BreadcrumbProcessor implements FilterableProcessor {
     // TODO: determine actual requirements for this feature
     switch (doc.kind) {
       case DaffDocKind.PACKAGE:
-      case DaffDocKind.API:
-        if (doc.parent) {
-          const parents = [...getParents(doc.parent), doc.parent];
-          breadcrumbs.push(...parents.map((parent, i) => {
+        breadcrumbs.push(...segments
+          .slice(breadcrumbs.length + 1, segments.length - 1)
+          .flatMap((idFragment, i, ids) => this.aliasMap.getDocs(ids.slice(0, i + 1).join('/')))
+          .map((parent, i, parents) => {
             const label = parent.name || parent.title;
             const parentLabel = parents[i - 1]?.name || parents[i - 1]?.title;
             return {
-              // trim label to only include extra info
+            // trim label to only include extra info
               label: label.replace(`${parentLabel}/`, ''),
               path: parent.path,
             };
-          }));
+          }),
+        );
+        break;
+
+      case DaffDocKind.API:
+        if (doc.parent) {
+          // build a list of parents to this doc and turn them into breadcrumbs
+          breadcrumbs.push(...[
+            ...getParents(doc.parent),
+            doc.parent,
+          ].map((parent, i, parents) => ({
+            // trim label to only include info that is not in the parent
+            label: parent.name.replace(`${parents[i - 1]?.name}/`, ''),
+            path: parent.path,
+          })));
         }
         break;
 
@@ -138,5 +156,5 @@ export class BreadcrumbProcessor implements FilterableProcessor {
 
 export const BREADCRUMB_PROCESSOR_PROVIDER = <const>[
   BREADCRUMB_PROCESSOR_NAME,
-  () => new BreadcrumbProcessor(),
+  (aliasMap) => new BreadcrumbProcessor(aliasMap),
 ];

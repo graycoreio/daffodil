@@ -82,7 +82,7 @@ export const apiDocsBase = new Package('api-base', [
   .config((markdown: MarkdownCodeProcessor, EXPORT_DOC_TYPES, addKind: AddKindProcessor, breadcrumb: BreadcrumbProcessor) => {
     markdown.docTypes.push(...EXPORT_DOC_TYPES);
     addKind.docTypes.push(...EXPORT_DOC_TYPES, 'package', 'module');
-    breadcrumb.docTypes.push(...EXPORT_DOC_TYPES);
+    breadcrumb.docTypes.push(...EXPORT_DOC_TYPES, 'package');
     markdown.contentKey = 'description';
 
     addKind.$runAfter.push('readTypeScriptModules');
