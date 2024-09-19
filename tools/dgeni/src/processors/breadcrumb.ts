@@ -73,6 +73,12 @@ const getParents = (doc: ParentedDocument): Array<ParentedDocument> =>
     ? [...getParents(doc.parent), doc.parent]
     : [];
 
+/**
+ * Truncates the label of a breadcrumb such that it will only be the info not contained in the parent.
+ */
+const truncateLabel = (label: string, parent: string): string =>
+  label.replace(`${parent}/`, '');
+
 export const BREADCRUMB_PROCESSOR_NAME = 'breadcrumb';
 
 export class BreadcrumbProcessor implements FilterableProcessor {
@@ -89,9 +95,7 @@ export class BreadcrumbProcessor implements FilterableProcessor {
   private getBreadcrumbs(doc: ParentedDocument & KindedDocument): Array<DaffBreadcrumb> {
     const segments = doc.path.split('/');
     const breadcrumbs = segments
-      .map((segment, i) =>
-        // add a leading slash to parent path if needed
-        getStaticBreadcrumb(segment, segments.slice(0, i).join('/')))
+      .map((segment, i) => getStaticBreadcrumb(segment, segments.slice(0, i).join('/')))
       .filter((b) => !!b);
 
     // once all static breadcrumbs are generated,
@@ -100,17 +104,16 @@ export class BreadcrumbProcessor implements FilterableProcessor {
     switch (doc.kind) {
       case DaffDocKind.PACKAGE:
         breadcrumbs.push(...segments
+          // get all the dynamic segments not including the last (which is the current doc)
+          // we only want to process dynamic parents here
           .slice(breadcrumbs.length + 1, segments.length - 1)
-          .flatMap((idFragment, i, ids) => this.aliasMap.getDocs(ids.slice(0, i + 1).join('/')))
-          .map((parent, i, parents) => {
-            const label = parent.name || parent.title;
-            const parentLabel = parents[i - 1]?.name || parents[i - 1]?.title;
-            return {
-            // trim label to only include extra info
-              label: label.replace(`${parentLabel}/`, ''),
-              path: parent.path,
-            };
-          }),
+          // look up parents based on an alias built from segments
+          .flatMap((_, i, ids) => this.aliasMap.getDocs(ids.slice(0, i + 1).join('/')))
+          // turn the parent docs into breadcrumbs
+          .map((parent, i, parents) => ({
+            label: truncateLabel(parent.title, parents[i - 1]?.title),
+            path: parent.path,
+          })),
         );
         break;
 
@@ -121,8 +124,7 @@ export class BreadcrumbProcessor implements FilterableProcessor {
             ...getParents(doc.parent),
             doc.parent,
           ].map((parent, i, parents) => ({
-            // trim label to only include info that is not in the parent
-            label: parent.name.replace(`${parents[i - 1]?.name}/`, ''),
+            label: truncateLabel(parent.name, parents[i - 1]?.name),
             path: parent.path,
           })));
         }
