@@ -12,13 +12,38 @@
 }
 
 .daffio-api-package {
-	&__package {
+	&__wrapper {
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
 	}
 
+	&__header {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
 	&__package-name {
+		@include daff.headline-lg;
+
+		> * {
+			@include daff.text-truncate();
+
+			@include daff.breakpoint(mobile) {
+				display: inline;
+			}
+		}
+	}
+
+	&__package-description {
+		@include daff.body-md;
+		font-weight: 400;
+		margin: 0;
+		padding: 0;
+	}
+
+	&__subpackage-name {
 		font-size: 1.125rem;
 		font-weight: 600;
 		line-height: 1.375rem;

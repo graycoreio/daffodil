@@ -32,7 +32,7 @@
 			@include daff.text-truncate();
 
 			@include daff.breakpoint(mobile) {
-				display: inline-block;
+				display: inline;
 			}
 		}
 	}
