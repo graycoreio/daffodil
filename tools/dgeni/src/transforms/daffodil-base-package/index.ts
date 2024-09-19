@@ -11,6 +11,7 @@ import * as nunjucksPackage from 'dgeni-packages/nunjucks';
 import * as path from 'path';
 
 import { AddKindProcessor } from '../../processors/add-kind';
+import { BreadcrumbProcessor } from '../../processors/breadcrumb';
 import { ConvertToJsonProcessor } from '../../processors/convertToJson';
 import { IdSanitizer } from '../../services/id-sanitizer';
 import {
@@ -25,6 +26,7 @@ export const daffodilBasePackage = new Package('daffodil-base', [
 ])
   .processor(new AddKindProcessor())
   .factory('idSanitizer', () => new IdSanitizer())
+  .processor('breadcrumb', (aliasMap) => new BreadcrumbProcessor(aliasMap))
   .processor('convertToJson', (log, createDocMessage) => new ConvertToJsonProcessor(log, createDocMessage))
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   .factory('packageInfo', () => require(path.resolve(PROJECT_ROOT, 'package.json')))
@@ -66,4 +68,8 @@ export const daffodilBasePackage = new Package('daffodil-base', [
 
     // helpers are made available to the nunjucks templates
     renderDocsProcessor.helpers.relativePath = (from, to) => path.relative(from, to);
+  })
+
+  .config((convertToJson: ConvertToJsonProcessor) => {
+    convertToJson.extraFields.push('breadcrumbs');
   });

@@ -33,6 +33,7 @@ export class PackagesProcessor implements Processor {
         doc.name = this.nameComputer(doc.id);
         // root packages should have depth of 0
         doc.depth = doc.id.split('/').length - 1;
+        doc.aliases?.push(doc.id);
       }
       return doc;
     });

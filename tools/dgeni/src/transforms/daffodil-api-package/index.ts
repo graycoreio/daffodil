@@ -16,6 +16,7 @@ import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-pac
 import { AddKindProcessor } from '../../processors/add-kind';
 import { AddInheritedDocsContentProcessor } from '../../processors/addInheritedDocsContent';
 import { AddLinkTagToDaffodilReferencesProcessor } from '../../processors/addLinkTagToDaffodilReferences';
+import { BreadcrumbProcessor } from '../../processors/breadcrumb';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 import {
   COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME,
@@ -69,9 +70,10 @@ export const apiDocsBase = new Package('api-base', [
     readTypeScriptModules.basePath = API_SOURCE_PATH;
     readTypeScriptModules.hidePrivateMembers = true;
   })
-  .config((markdown: MarkdownCodeProcessor, EXPORT_DOC_TYPES, addKind: AddKindProcessor) => {
+  .config((markdown: MarkdownCodeProcessor, EXPORT_DOC_TYPES, addKind: AddKindProcessor, breadcrumb: BreadcrumbProcessor) => {
     markdown.docTypes.push(...EXPORT_DOC_TYPES);
     addKind.docTypes.push(...EXPORT_DOC_TYPES);
+    breadcrumb.docTypes.push(...EXPORT_DOC_TYPES);
     markdown.contentKey = 'description';
   })
   .config((computePathsProcessor, EXPORT_DOC_TYPES) => {
