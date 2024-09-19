@@ -1,0 +1,23 @@
+@use 'theme' as daff-theme;
+
+@mixin daffio-api-package-theme($theme) {
+	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
+	$base: daff-theme.daff-map-deep-get($theme, "core.base");
+	$base-contrast: daff-theme.daff-map-deep-get($theme, "core.base-contrast");
+
+	.daffio-api-package {
+		&__subpackage-name {
+			> * {
+				&:focus {
+					border-radius: 4px;
+					box-shadow: 0 0 0 4px rgba($base-contrast, 0.1);
+					outline: none;
+				}
+			}
+
+			&:hover {
+				color: daff-theme.daff-illuminate($base-contrast, $neutral, 3);
+			}
+		}
+	}
+}

@@ -6,4 +6,5 @@ import { DaffioGenericDocList } from '../../models/doc-list';
 export interface DaffioApiReference extends DaffioGenericDocList<DaffioApiReference> {
   docType: string;
   docTypeShorthand: string;
+  description?: string;
 }

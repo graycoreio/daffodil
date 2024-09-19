@@ -11,7 +11,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { DaffArticleModule } from '@daffodil/design/article';
 
 import { DaffioDocViewerComponent } from './doc-viewer.component';
-import { DaffioApiListSectionComponent } from '../../api/components/api-list-section/api-list-section.component';
+import { DaffioApiPackageComponent } from '../../api/components/api-package/api-package.component';
 import { DaffioApiReference } from '../../api/models/api-reference';
 import { DaffioDoc } from '../../models/doc';
 import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
@@ -35,7 +35,7 @@ describe('DaffioDocViewerComponent', () => {
         RouterTestingModule,
         DaffArticleModule,
         DaffioDocsTableOfContentsModule,
-        DaffioApiListSectionComponent,
+        DaffioApiPackageComponent,
       ],
       declarations: [
         WrapperComponent,
@@ -81,13 +81,9 @@ describe('DaffioDocViewerComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should render the package name', () => {
-      expect(fixture.debugElement.query(By.css('.daffio-doc-viewer__content h1')).nativeElement.innerText).toEqual(wrapper.doc.title);
-    });
-
-    it('should render the package doc children', () => {
-      const apiChildren: DaffioApiListSectionComponent = fixture.debugElement.query(By.directive(DaffioApiListSectionComponent)).componentInstance;
-      expect(apiChildren.children).toEqual((<DaffioApiReference>wrapper.doc).children);
+    it('should render the package doc', () => {
+      const apiChildren: DaffioApiPackageComponent = fixture.debugElement.query(By.directive(DaffioApiPackageComponent)).componentInstance;
+      expect(apiChildren.doc).toEqual((<DaffioApiReference>wrapper.doc));
     });
   });
 
