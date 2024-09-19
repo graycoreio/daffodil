@@ -10,6 +10,7 @@ import { transformGuideDoc } from './helpers/generateGuideList';
 import { guideFileReaderFactory } from './reader/guide-file.reader';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddKindProcessor } from '../../processors/add-kind';
+import { BreadcrumbProcessor } from '../../processors/breadcrumb';
 import { GenerateNavListProcessor } from '../../processors/generateNavList';
 import { MarkdownCodeProcessor } from '../../processors/markdown';
 import { IdSanitizer } from '../../services/id-sanitizer';
@@ -29,9 +30,10 @@ const docTypes = ['guide'];
 const base = new Package('daffodil-guides-base', [daffodilBasePackage])
   .factory('guideFileReader', guideFileReaderFactory)
   .processor(new MarkdownCodeProcessor())
-  .config((markdown: MarkdownCodeProcessor, addKind: AddKindProcessor, convertToJson) => {
+  .config((markdown: MarkdownCodeProcessor, addKind: AddKindProcessor, convertToJson, breadcrumb: BreadcrumbProcessor) => {
     addKind.docTypes.push(...docTypes);
     markdown.docTypes.push(...docTypes);
+    breadcrumb.docTypes.push(...docTypes);
     convertToJson.docTypes = convertToJson.docTypes.concat(docTypes);
   })
   .config((readFilesProcessor, guideFileReader) => {

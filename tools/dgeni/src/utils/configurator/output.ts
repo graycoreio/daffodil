@@ -6,7 +6,10 @@ import {
 } from '@daffodil/docs-utils';
 
 import { Configurator } from './type';
-import { GenerateNavListProcessor } from '../../processors/generateNavList';
+import {
+  GENERATE_NAV_LIST_PROCESSOR_PROVIDER,
+  GenerateNavListProcessor,
+} from '../../processors/generateNavList';
 
 export interface OutputPathsConfig {
   kind: DaffDocKind;
@@ -15,7 +18,7 @@ export interface OutputPathsConfig {
 }
 
 export const outputPathsConfigurator: Configurator<OutputPathsConfig> = (config: OutputPathsConfig) => (pkg: Package) => pkg
-  .processor(new GenerateNavListProcessor())
+  .processor(...GENERATE_NAV_LIST_PROCESSOR_PROVIDER)
   .config((generateNavList: GenerateNavListProcessor) => {
     generateNavList.outputFolder = `${config.outputPath}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[config.kind]}`;
   })

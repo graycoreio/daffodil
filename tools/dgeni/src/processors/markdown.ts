@@ -56,8 +56,10 @@ marked.use({
   },
 });
 
+export const MARKDOWN_CODE_PROCESSOR_NAME = 'markdown';
+
 export class MarkdownCodeProcessor implements Processor {
-  name = 'markdown';
+  name = MARKDOWN_CODE_PROCESSOR_NAME;
   $runAfter = ['paths-computed'];
   $runBefore = ['rendering-docs'];
   docTypes = [];
@@ -74,3 +76,8 @@ export class MarkdownCodeProcessor implements Processor {
     });
   }
 };
+
+export const MARKDOWN_CODE_PROCESSOR_PROVIDER = <const>[
+  MARKDOWN_CODE_PROCESSOR_NAME,
+  () => new MarkdownCodeProcessor(),
+];

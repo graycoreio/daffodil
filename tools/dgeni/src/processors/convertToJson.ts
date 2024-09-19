@@ -3,8 +3,10 @@ import {
   Document,
 } from 'dgeni';
 
+export const CONVERT_TO_JSON_PROCESSOR_NAME = 'convertToJson';
+
 export class ConvertToJsonProcessor implements Processor {
-  name = 'convertToJson';
+  name = CONVERT_TO_JSON_PROCESSOR_NAME;
   $runBefore = ['writeFilesProcessor'];
   docTypes = [];
   /**
@@ -53,3 +55,8 @@ export class ConvertToJsonProcessor implements Processor {
     });
   }
 };
+
+export const CONVERT_TO_JSON_PROCESSOR_PROVIDER = <const>[
+  CONVERT_TO_JSON_PROCESSOR_NAME,
+  (log, createDocMessage) => new ConvertToJsonProcessor(log, createDocMessage),
+];

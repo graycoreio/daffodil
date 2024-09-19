@@ -10,8 +10,10 @@ export interface DocumentWithDepth extends Document {
   depth?: number;
 }
 
+export const PACKAGES_PROCESSOR_NAME = 'packages';
+
 export class PackagesProcessor implements Processor {
-  name = 'packages';
+  name = PACKAGES_PROCESSOR_NAME;
   $runBefore = ['computing-ids'];
   docTypes = [];
   nameComputer = (id: string): string => `@daffodil/${id}`;
@@ -33,8 +35,14 @@ export class PackagesProcessor implements Processor {
         doc.name = this.nameComputer(doc.id);
         // root packages should have depth of 0
         doc.depth = doc.id.split('/').length - 1;
+        doc.aliases?.push(doc.id);
       }
       return doc;
     });
   }
 };
+
+export const PACKAGES_PROCESSOR_PROVIDER = <const>[
+  PACKAGES_PROCESSOR_NAME,
+  () => new PackagesProcessor(),
+];

@@ -1,3 +1,5 @@
+import { DaffBreadcrumb } from '@daffodil/docs-utils';
+
 export interface DaffioDoc {
   id: string;
   title: string;
@@ -9,4 +11,5 @@ export interface DaffioDoc {
       slug: string;
     }[];
   };
+  breadcrumbs?: Array<DaffBreadcrumb>;
 }
