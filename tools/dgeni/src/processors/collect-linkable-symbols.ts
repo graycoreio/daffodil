@@ -16,7 +16,7 @@ export class CollectLinkableSymbolsProcessor implements Processor {
   }
 
   name = COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME;
-  $runAfter = ['paths-computed'];
+  $runAfter = ['paths-absolutified'];
   $runBefore = ['markdown'];
 
   constructor(private log, private createDocMessage) {}

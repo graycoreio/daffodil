@@ -9,8 +9,11 @@ import {
 } from '@daffodil/docs-utils';
 
 import { transformApiNavList } from './helpers/generateApiList';
-import { AddPackageExportsProcessor } from './processors/add-package-exports';
-import { AddSubpackageExportsProcessor } from './processors/add-subpackage-exports';
+import { ADD_PACKAGE_EXPORTS_PROCESSOR_PROVIDER } from './processors/add-package-exports';
+import {
+  ADD_SUBPACKAGE_EXPORTS_PROCESSOR_NAME,
+  ADD_SUBPACKAGE_EXPORTS_PROCESSOR_PROVIDER,
+} from './processors/add-subpackage-exports';
 import { RemoveDuplicatesProcessor } from './processors/remove-duplicates';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddKindProcessor } from '../../processors/add-kind';
@@ -27,8 +30,14 @@ import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import { FilterOutPrivatePropertiesProcessor } from '../../processors/filterOutPrivateProperties';
 import { GenerateNavListProcessor } from '../../processors/generateNavList';
 import { MakeTypesHtmlCompatibleProcessor } from '../../processors/makeTypesHtmlCompatible';
-import { MarkdownCodeProcessor } from '../../processors/markdown';
-import { PackagesProcessor } from '../../processors/packages';
+import {
+  MARKDOWN_CODE_PROCESSOR_PROVIDER,
+  MarkdownCodeProcessor,
+} from '../../processors/markdown';
+import {
+  PACKAGES_PROCESSOR_PROVIDER,
+  PackagesProcessor,
+} from '../../processors/packages';
 import { outputPathsConfigurator } from '../../utils/configurator/output';
 import {
   API_SOURCE_PATH,
@@ -51,10 +60,10 @@ export const apiDocsBase = new Package('api-base', [
   .processor(new FilterOutPrivatePropertiesProcessor())
   .processor(new AddInheritedDocsContentProcessor())
   .processor(new AddLinkTagToDaffodilReferencesProcessor())
-  .processor(new PackagesProcessor())
-  .processor(new AddPackageExportsProcessor())
-  .processor(new AddSubpackageExportsProcessor())
-  .processor(new MarkdownCodeProcessor())
+  .processor(...PACKAGES_PROCESSOR_PROVIDER)
+  .processor(...ADD_PACKAGE_EXPORTS_PROCESSOR_PROVIDER)
+  .processor(...ADD_SUBPACKAGE_EXPORTS_PROCESSOR_PROVIDER)
+  .processor(...MARKDOWN_CODE_PROCESSOR_PROVIDER)
   .processor(COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME, (log, createDocMessage) => new CollectLinkableSymbolsProcessor(log, createDocMessage))
   .factory('API_DOC_TYPES_TO_RENDER', (EXPORT_DOC_TYPES) => EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe']))
   .config((readFilesProcessor, readTypeScriptModules, tsParser) => {
@@ -72,9 +81,12 @@ export const apiDocsBase = new Package('api-base', [
   })
   .config((markdown: MarkdownCodeProcessor, EXPORT_DOC_TYPES, addKind: AddKindProcessor, breadcrumb: BreadcrumbProcessor) => {
     markdown.docTypes.push(...EXPORT_DOC_TYPES);
-    addKind.docTypes.push(...EXPORT_DOC_TYPES);
+    addKind.docTypes.push(...EXPORT_DOC_TYPES, 'package', 'module');
     breadcrumb.docTypes.push(...EXPORT_DOC_TYPES);
     markdown.contentKey = 'description';
+
+    addKind.$runAfter.push('readTypeScriptModules');
+    breadcrumb.$runAfter.push(ADD_SUBPACKAGE_EXPORTS_PROCESSOR_NAME);
   })
   .config((computePathsProcessor, EXPORT_DOC_TYPES) => {
     computePathsProcessor.pathTemplates.push({

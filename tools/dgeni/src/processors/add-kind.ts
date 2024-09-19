@@ -14,11 +14,13 @@ export interface KindedDocument extends Document {
   kind: DaffDocKind;
 }
 
+export const ADD_KIND_PROCESSOR_NAME = 'addKind';
+
 /**
  * Adds doc kind based on file path.
  */
 export class AddKindProcessor implements FilterableProcessor {
-  readonly name = 'addKind';
+  readonly name = ADD_KIND_PROCESSOR_NAME;
   readonly $runAfter = ['files-read'];
   readonly $runBefore = ['processing-docs'];
 
@@ -33,3 +35,8 @@ export class AddKindProcessor implements FilterableProcessor {
     });
   }
 }
+
+export const ADD_KIND_PROCESSOR_PROVIDER = <const>[
+  ADD_KIND_PROCESSOR_NAME,
+  () => new AddKindProcessor(),
+];

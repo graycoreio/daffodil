@@ -5,11 +5,13 @@ import {
 
 import { getPackageInfo } from '../helpers/generateApiList';
 
+export const ADD_PACKAGE_EXPORTS_PROCESSOR_NAME = 'addPackageExports';
+
 /**
  * Adds exports info to API packages.
  */
 export class AddPackageExportsProcessor implements Processor {
-  readonly name = 'addPackageExports';
+  readonly name = ADD_PACKAGE_EXPORTS_PROCESSOR_NAME;
   readonly $runAfter = ['docs-processed', 'addSubpackageExports'];
   readonly $runBefore = ['rendering-docs'];
 
@@ -24,3 +26,8 @@ export class AddPackageExportsProcessor implements Processor {
     });
   }
 }
+
+export const ADD_PACKAGE_EXPORTS_PROCESSOR_PROVIDER = <const>[
+  ADD_PACKAGE_EXPORTS_PROCESSOR_NAME,
+  () => new AddPackageExportsProcessor(),
+];

@@ -3,8 +3,10 @@ import {
   Document,
 } from 'dgeni';
 
+export const GENERATE_NAV_LIST_PROCESSOR_NAME = 'generateNavList';
+
 export class GenerateNavListProcessor implements Processor {
-  name = 'generateNavList';
+  name = GENERATE_NAV_LIST_PROCESSOR_NAME;
   $runAfter = ['docs-processed'];
   $runBefore = ['rendering-docs'];
   $validate = {
@@ -30,3 +32,8 @@ export class GenerateNavListProcessor implements Processor {
     return docs;
   }
 }
+
+export const GENERATE_NAV_LIST_PROCESSOR_PROVIDER = <const>[
+  GENERATE_NAV_LIST_PROCESSOR_NAME,
+  () => new GenerateNavListProcessor(),
+];

@@ -10,10 +10,14 @@ import * as basePackage from 'dgeni-packages/base';
 import * as nunjucksPackage from 'dgeni-packages/nunjucks';
 import * as path from 'path';
 
-import { AddKindProcessor } from '../../processors/add-kind';
-import { BreadcrumbProcessor } from '../../processors/breadcrumb';
-import { ConvertToJsonProcessor } from '../../processors/convertToJson';
-import { IdSanitizer } from '../../services/id-sanitizer';
+import { ABSOLUTIFY_PATHS_PROCESSOR_PROVIDER } from '../../processors/absolutify-paths';
+import { ADD_KIND_PROCESSOR_PROVIDER } from '../../processors/add-kind';
+import { BREADCRUMB_PROCESSOR_PROVIDER } from '../../processors/breadcrumb';
+import {
+  CONVERT_TO_JSON_PROCESSOR_PROVIDER,
+  ConvertToJsonProcessor,
+} from '../../processors/convertToJson';
+import { ID_SANITIZER_PROVIDER } from '../../services/id-sanitizer';
 import {
   PROJECT_ROOT,
   TEMPLATES_PATH,
@@ -24,10 +28,13 @@ export const daffodilBasePackage = new Package('daffodil-base', [
   basePackage,
   nunjucksPackage,
 ])
-  .processor(new AddKindProcessor())
-  .factory('idSanitizer', () => new IdSanitizer())
-  .processor('breadcrumb', (aliasMap) => new BreadcrumbProcessor(aliasMap))
-  .processor('convertToJson', (log, createDocMessage) => new ConvertToJsonProcessor(log, createDocMessage))
+  .processor({ name: 'absolutify-paths', $runAfter: ['paths-computed'], $process: (d) => d })
+  .processor(...ABSOLUTIFY_PATHS_PROCESSOR_PROVIDER)
+  .processor({ name: 'paths-absolutified', $runAfter: ['absolutify-paths'], $process: (d) => d })
+  .processor(...ADD_KIND_PROCESSOR_PROVIDER)
+  .factory(...ID_SANITIZER_PROVIDER)
+  .processor(...BREADCRUMB_PROCESSOR_PROVIDER)
+  .processor(...CONVERT_TO_JSON_PROCESSOR_PROVIDER)
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   .factory('packageInfo', () => require(path.resolve(PROJECT_ROOT, 'package.json')))
 

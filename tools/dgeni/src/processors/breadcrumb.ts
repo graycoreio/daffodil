@@ -9,6 +9,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { KindedDocument } from './add-kind';
+import { ParentedDocument } from '../transforms/daffodil-api-package/processors/add-subpackage-exports';
 import { FilterableProcessor } from '../utils/filterable-processor.type';
 
 const getStaticBreadcrumb = (segment: string, parent: string): DaffBreadcrumb => {
@@ -67,24 +68,27 @@ export interface BreadcrumbedDocument extends Document {
   breadcrumbs: Array<DaffBreadcrumb>;
 }
 
+const getParents = (doc: ParentedDocument): Array<ParentedDocument> =>
+  doc.parent
+    ? [...getParents(doc.parent), doc.parent]
+    : [];
+
+export const BREADCRUMB_PROCESSOR_NAME = 'breadcrumb';
+
 export class BreadcrumbProcessor implements FilterableProcessor {
-  readonly name = 'breadcrumb';
-  readonly $runAfter = ['paths-computed'];
+  readonly name = BREADCRUMB_PROCESSOR_NAME;
+  readonly $runAfter = ['paths-absolutified'];
   readonly $runBefore = ['rendering-docs'];
 
   docTypes = [];
 
-  constructor(
-    private aliasMap,
-  ) {}
-
-  private getBreadcrumbs(doc: KindedDocument): Array<DaffBreadcrumb> {
+  private getBreadcrumbs(doc: ParentedDocument & KindedDocument): Array<DaffBreadcrumb> {
     const segments = doc.path.split('/');
     const breadcrumbs = segments
       .map((segment, i) =>
         // add a leading slash to parent path if needed
-        getStaticBreadcrumb(segment, ['', ...segments.slice(0, i)].join('/')))
-      .filter((breadcrumb) => !!breadcrumb);
+        getStaticBreadcrumb(segment, segments.slice(0, i).join('/')))
+      .filter((b) => !!b);
 
     // once all static breadcrumbs are generated,
     // create dynamic breadcrumbs for doc kinds that need them
@@ -92,18 +96,17 @@ export class BreadcrumbProcessor implements FilterableProcessor {
     switch (doc.kind) {
       case DaffDocKind.PACKAGE:
       case DaffDocKind.API:
-        // check if the doc is nested under a containing package
-        if (segments.length - breadcrumbs.length > 1) {
-          // get containing package
-          const parentDoc = this.aliasMap.getDocs(segments[breadcrumbs.length])?.[0];
-          if (parentDoc) {
-            breadcrumbs.push({
-              label: parentDoc.name || parentDoc.title,
-              path: parentDoc.path,
-            });
-          } else {
-            console.log(doc.name || doc.title);
-          }
+        if (doc.parent) {
+          const parents = [...getParents(doc.parent), doc.parent];
+          breadcrumbs.push(...parents.map((parent, i) => {
+            const label = parent.name || parent.title;
+            const parentLabel = parents[i - 1]?.name || parents[i - 1]?.title;
+            return {
+              // trim label to only include extra info
+              label: label.replace(`${parentLabel}/`, ''),
+              path: parent.path,
+            };
+          }));
         }
         break;
 
@@ -123,7 +126,7 @@ export class BreadcrumbProcessor implements FilterableProcessor {
     ];
   }
 
-  $process(docs: Array<Document>): Array<BreadcrumbedDocument> {
+  $process(docs: Array<ParentedDocument & KindedDocument>): Array<BreadcrumbedDocument> {
     return docs.map(doc => ({
       ...doc,
       breadcrumbs: this.docTypes.includes(doc.docType)
@@ -132,3 +135,8 @@ export class BreadcrumbProcessor implements FilterableProcessor {
     }));
   }
 };
+
+export const BREADCRUMB_PROCESSOR_PROVIDER = <const>[
+  BREADCRUMB_PROCESSOR_NAME,
+  () => new BreadcrumbProcessor(),
+];

@@ -1,3 +1,5 @@
+export const ID_SANITIZER_NAME = 'idSanitizer';
+
 /**
  * Removes segments from IDs.
  */
@@ -14,3 +16,8 @@ export class IdSanitizer {
     }, id);
   }
 }
+
+export const ID_SANITIZER_PROVIDER = <const>[
+  ID_SANITIZER_NAME,
+  () => new IdSanitizer(),
+];

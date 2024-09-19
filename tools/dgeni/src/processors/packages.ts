@@ -10,8 +10,10 @@ export interface DocumentWithDepth extends Document {
   depth?: number;
 }
 
+export const PACKAGES_PROCESSOR_NAME = 'packages';
+
 export class PackagesProcessor implements Processor {
-  name = 'packages';
+  name = PACKAGES_PROCESSOR_NAME;
   $runBefore = ['computing-ids'];
   docTypes = [];
   nameComputer = (id: string): string => `@daffodil/${id}`;
@@ -39,3 +41,8 @@ export class PackagesProcessor implements Processor {
     });
   }
 };
+
+export const PACKAGES_PROCESSOR_PROVIDER = <const>[
+  PACKAGES_PROCESSOR_NAME,
+  () => new PackagesProcessor(),
+];
