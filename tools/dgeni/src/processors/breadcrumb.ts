@@ -106,9 +106,9 @@ export class BreadcrumbProcessor implements FilterableProcessor {
         const parents = segments
         // get all the dynamic segments not including the last (which is the current doc)
         // we only want to process dynamic parents here
-        .slice(breadcrumbs.length + 1, segments.length - 1)
+          .slice(breadcrumbs.length + 1, segments.length - 1)
         // look up parents based on an alias built from segments
-        .flatMap((_, i, ids) => this.aliasMap.getDocs(ids.slice(0, i + 1).join('/')))
+          .flatMap((_, i, ids) => this.aliasMap.getDocs(ids.slice(0, i + 1).join('/')));
         breadcrumbs.push(
           // turn the parent docs into breadcrumbs
           ...parents.map((parent, i) => ({
@@ -118,7 +118,7 @@ export class BreadcrumbProcessor implements FilterableProcessor {
           {
             label: parents.length > 0 ? truncateLabel(doc.title, parents[parents.length - 1].title) : doc.title,
             path: doc.path,
-          }
+          },
         );
         break;
 
@@ -128,7 +128,7 @@ export class BreadcrumbProcessor implements FilterableProcessor {
           const parents = [
             ...getParents(doc.parent),
             doc.parent,
-          ]
+          ];
           breadcrumbs.push(
             ...parents.map((parent, i) => ({
               label: truncateLabel(parent.name, parents[i - 1]?.name),
@@ -137,7 +137,7 @@ export class BreadcrumbProcessor implements FilterableProcessor {
             {
               label: parents.length > 0 ? truncateLabel(doc.name, parents[parents.length - 1].name) : doc.name,
               path: doc.path,
-            }
+            },
           );
         }
         break;
@@ -149,11 +149,11 @@ export class BreadcrumbProcessor implements FilterableProcessor {
         breadcrumbs.push({
           label: doc.name || doc.title,
           path: doc.path,
-        })
+        });
         break;
     }
 
-    return breadcrumbs
+    return breadcrumbs;
   }
 
   $process(docs: Array<ParentedDocument & KindedDocument>): Array<BreadcrumbedDocument> {
