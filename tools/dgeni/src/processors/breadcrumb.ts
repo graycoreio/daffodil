@@ -103,30 +103,42 @@ export class BreadcrumbProcessor implements FilterableProcessor {
     // TODO: determine actual requirements for this feature
     switch (doc.kind) {
       case DaffDocKind.PACKAGE:
-        breadcrumbs.push(...segments
-          // get all the dynamic segments not including the last (which is the current doc)
-          // we only want to process dynamic parents here
-          .slice(breadcrumbs.length + 1, segments.length - 1)
-          // look up parents based on an alias built from segments
-          .flatMap((_, i, ids) => this.aliasMap.getDocs(ids.slice(0, i + 1).join('/')))
+        const parents = segments
+        // get all the dynamic segments not including the last (which is the current doc)
+        // we only want to process dynamic parents here
+        .slice(breadcrumbs.length + 1, segments.length - 1)
+        // look up parents based on an alias built from segments
+        .flatMap((_, i, ids) => this.aliasMap.getDocs(ids.slice(0, i + 1).join('/')))
+        breadcrumbs.push(
           // turn the parent docs into breadcrumbs
-          .map((parent, i, parents) => ({
+          ...parents.map((parent, i) => ({
             label: truncateLabel(parent.title, parents[i - 1]?.title),
             path: parent.path,
           })),
+          {
+            label: parents.length > 0 ? truncateLabel(doc.title, parents[parents.length - 1].title) : doc.title,
+            path: doc.path,
+          }
         );
         break;
 
       case DaffDocKind.API:
         if (doc.parent) {
           // build a list of parents to this doc and turn them into breadcrumbs
-          breadcrumbs.push(...[
+          const parents = [
             ...getParents(doc.parent),
             doc.parent,
-          ].map((parent, i, parents) => ({
-            label: truncateLabel(parent.name, parents[i - 1]?.name),
-            path: parent.path,
-          })));
+          ]
+          breadcrumbs.push(
+            ...parents.map((parent, i) => ({
+              label: truncateLabel(parent.name, parents[i - 1]?.name),
+              path: parent.path,
+            })),
+            {
+              label: parents.length > 0 ? truncateLabel(doc.name, parents[parents.length - 1].name) : doc.name,
+              path: doc.path,
+            }
+          );
         }
         break;
 
@@ -134,16 +146,14 @@ export class BreadcrumbProcessor implements FilterableProcessor {
       case DaffDocKind.EXPLANATION:
       case DaffDocKind.EXAMPLE:
       default:
+        breadcrumbs.push({
+          label: doc.name || doc.title,
+          path: doc.path,
+        })
         break;
     }
 
-    return [
-      ...breadcrumbs,
-      {
-        label: doc.name || doc.title,
-        path: doc.path,
-      },
-    ];
+    return breadcrumbs
   }
 
   $process(docs: Array<ParentedDocument & KindedDocument>): Array<BreadcrumbedDocument> {
