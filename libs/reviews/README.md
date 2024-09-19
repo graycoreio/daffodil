@@ -1,10 +1,16 @@
 # @daffodil/reviews
-
-An optional package which adds the related products feature onto the `@daffodil/product` package.
-
+`@daffodil/reviews` is an optional package thats adds the related products feature on to `@daffodil/product`.
 
 ## Installation
+To install `@daffodil/reviews`, use the following commands in your terminal.
 
+Install with npm:
+```bash
+npm install @daffodil/reviews --save
 ```
-npm install @daffodil/reviews
+
+Install with yarn:
+
+```bash
+yarn add @daffodil/reviews
 ```
