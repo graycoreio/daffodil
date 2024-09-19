@@ -1,10 +1,16 @@
 # @daffodil/search-product-configurable
-
-An optional package which adds the configurable product feature onto the `@daffodil/search` package.
-
+`@daffodil/search-product-configurable` is an optional package thats adds the configurable product feature on to `@daffodil/search`.
 
 ## Installation
+To install `@daffodil/search-product-configurable`, use the following commands in your terminal.
 
+Install with npm:
+```bash
+npm install @daffodil/search-product-configurable --save
 ```
-npm install @daffodil/search-product-configurable
+
+Install with yarn:
+
+```bash
+yarn add @daffodil/search-product-configurable
 ```
