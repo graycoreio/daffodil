@@ -1,7 +1,18 @@
 # @daffodil/seo
+`@daffodil/seo` provides services for managing SEO data on a page, such as canonical URLs, tab titles, and meta tags.
 
-The `@daffodil/seo` library intends to provide services for managing SEO data on the current page, such as canonical URLs, tab titles, and meta tags.
+## Overview
+In addition to the services, `@daffodil/seo/state` includes effects that automatically manage adding and removing SEO data as users navigate through the app.
 
-In addition to the services, `@daffodil/seo/state` has effects that will automatically manage adding and removing SEO data as the user navigates around the app.
+## Installation
+To install `@daffodil/seo`, use the following commands in your terminal.
 
-[TODO]: # (Add reference to state guide)
+Install with npm:
+```
+npm install @daffodil/seo --save
+```
+
+Install with yarn:
+```
+yarn add @daffodil/seo
+```
