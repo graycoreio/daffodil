@@ -1,7 +1,9 @@
 # @daffodil/analytics-provider-data-layer
-
-This library was generated with [Nx](https://nx.dev).
+`@daffodil/analytics-provider-data-layer` was generated with [Nx](https://nx.dev).
 
 ## Running unit tests
+To execute unit tests, run:
 
-Run `nx test analytics-provider-data-layer` to execute the unit tests.
+```
+nx test analytics-provider-data-layer
+```
