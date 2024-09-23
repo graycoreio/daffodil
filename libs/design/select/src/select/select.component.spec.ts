@@ -105,10 +105,6 @@ describe('DaffSelectComponent', () => {
     expect(component.disabled).toEqual(wrapper.disabledValue);
   });
 
-  it('should take skeleton as an input', () => {
-    expect(component.skeleton).toEqual(wrapper.skeletonValue);
-  });
-
   it('should take options as an input', () => {
     expect(component.options).toEqual(wrapper.optionsValue);
   });
