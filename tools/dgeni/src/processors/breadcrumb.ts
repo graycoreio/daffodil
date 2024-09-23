@@ -156,13 +156,13 @@ export class BreadcrumbProcessor implements FilterableProcessor {
     return breadcrumbs;
   }
 
-  $process(docs: Array<ParentedDocument & KindedDocument>): Array<BreadcrumbedDocument> {
-    return docs.map(doc => ({
-      ...doc,
-      breadcrumbs: this.docTypes.includes(doc.docType)
+  $process(docs: Array<ParentedDocument & KindedDocument>): Array<ParentedDocument & KindedDocument & BreadcrumbedDocument> {
+    return docs.map(doc => {
+      doc.breadcrumbs = this.docTypes.includes(doc.docType)
         ? this.getBreadcrumbs(doc)
-        : [],
-    }));
+        : [];
+      return <ParentedDocument & KindedDocument & BreadcrumbedDocument>doc;
+    });
   }
 };
 
