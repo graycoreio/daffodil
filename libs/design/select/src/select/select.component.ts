@@ -13,7 +13,6 @@ import {
   ChangeDetectorRef,
   OnInit,
   ElementRef,
-  Renderer2,
   Inject,
   Optional,
   Self,
@@ -35,22 +34,12 @@ import {
   takeUntil,
 } from 'rxjs';
 
-import {
-  DaffSkeletonable,
-  daffSkeletonableMixin,
-} from '@daffodil/design';
+import { DaffSkeletonableDirective } from '@daffodil/design';
 
 import { daffSelectAnimations } from '../animation/select-animation';
 import { getAnimationState } from '../animation/select-animation-state';
 import { DaffSelectAnimationState } from '../animation/state.enum';
 import { DaffSelectOptionDirective } from '../option/option.directive';
-
-class _base {
-  constructor(
-    public _elementRef: ElementRef,
-    public _renderer: Renderer2,
-  ) {}
-}
 
 /**
  * DaffSelectComponent is a form control component that presents a list of selectable options,
@@ -66,11 +55,14 @@ class _base {
   animations: [
     daffSelectAnimations.openSelect,
   ],
-  // todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['skeleton'],
+  hostDirectives: [
+    {
+      directive: DaffSkeletonableDirective,
+      inputs: ['skeleton'],
+    },
+  ],
 })
-export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_base) implements OnInit, OnDestroy, DaffSkeletonable, ControlValueAccessor {
+export class DaffSelectComponent<T = unknown> implements OnInit, OnDestroy, ControlValueAccessor {
   faChevronDown = faChevronDown;
   faChevronUp = faChevronUp;
 
@@ -101,7 +93,7 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
   @ViewChild('optionsEl', { read: ElementRef<HTMLDivElement> }) optionsElement: ElementRef<HTMLDivElement>;
 
   @ContentChild(DaffSelectOptionDirective)
-    optionTemplate?: DaffSelectOptionDirective;
+  optionTemplate?: DaffSelectOptionDirective;
 
   get isOpen(): boolean {
     return this._open;
@@ -126,13 +118,10 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
 
   constructor(
     private cd: ChangeDetectorRef,
-    _elementRef: ElementRef,
-    _renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document,
     @Optional() @Self() public ngControl: NgControl,
     private overlay: Overlay,
   ) {
-    super(_elementRef, _renderer);
     this.document.addEventListener('keydown', (event) => {
       if (event.key === 'Tab' && this._open) {
         event.preventDefault();
@@ -179,7 +168,7 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
   }
 
   ngOnInit() {
-	  this._animationState = getAnimationState(this._open);
+    this._animationState = getAnimationState(this._open);
   }
 
   trackByIndex(index: number) {
@@ -288,7 +277,7 @@ export class DaffSelectComponent<T = unknown> extends daffSkeletonableMixin(_bas
     }
 
     this._animationState = getAnimationState(this._open);
-	  this.cd.markForCheck();
+    this.cd.markForCheck();
   }
 
   /**
