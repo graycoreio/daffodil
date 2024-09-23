@@ -1,4 +1,5 @@
 @use '../helper/variables';
+@use '../../../scss/layout';
 
 :host {
 	// fixes a bug where certain elements show in front of backdrop for a second.
@@ -7,6 +8,46 @@
 	position: relative;
 	width: 100%;
 	z-index: variables.$daff-sidebar-viewport-z-index;
+
+	&.pad-left {
+		.daff-sidebar-viewport__inner {
+			padding-left: 0;
+
+			@include layout.breakpoint(big-tablet) {
+				padding-left: var(--daff-sidebar-left-width, 240px);
+			}
+		}
+		
+		+ &.beside {
+			.daff-sidebar-viewport__nav {
+				padding-left: 0;
+	
+				@include layout.breakpoint(big-tablet) {
+					padding-left: var(--daff-sidebar-left-width, 240px);
+				}
+			}
+		}
+	}
+
+	&.pad-right {
+		.daff-sidebar-viewport__inner {
+			padding-right: 0;
+
+			@include layout.breakpoint(big-tablet) {
+				padding-right: var(--daff-sidebar-right-width, 240px);
+			}
+		}
+
+		+ &.beside {
+			.daff-sidebar-viewport__nav {
+				padding-right: 0;
+	
+				@include layout.breakpoint(big-tablet) {
+					padding-right: var(--daff-sidebar-right-width, 240px);
+				}
+			}
+		}
+	}
 }
 
 .daff-sidebar-viewport {

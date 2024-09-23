@@ -1,5 +1,8 @@
+:host {
+	--daff-sidebar-left-width: 288px;
+	--daff-sidebar-right-width: 288px;
+}
+
 .daffio-sidebar {
-	max-width: 290px;
-	width: 100%;
 	border-right: 1px solid rgb(var(--daff-theme-contrast-rgb), 0.1);
 }

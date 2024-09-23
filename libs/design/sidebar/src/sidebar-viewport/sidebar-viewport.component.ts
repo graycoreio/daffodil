@@ -28,7 +28,7 @@ import {
   daffSidebarViewportScrollFactory,
 } from './scroll-token/scroll.token';
 import { sidebarViewportBackdropInteractable } from './utils/backdrop-interactable';
-import { sidebarViewportContentPadding } from './utils/content-pad';
+import { isSidebarViewportContentPadded } from './utils/content-pad';
 import {
   isViewportContentShifted,
   sidebarViewportContentShift,
@@ -82,6 +82,8 @@ export class DaffSidebarViewportComponent implements AfterContentChecked, OnDest
     return {
       'daff-sidebar-viewport': true,
       [this.navPlacement]: true,
+      'pad-left': this._isPaddedLeft,
+      'pad-right': this._isPaddedRight,
     };
   };
 
@@ -128,25 +130,9 @@ export class DaffSidebarViewportComponent implements AfterContentChecked, OnDest
    */
   private _shift = '0px';
 
-  /**
-   * The left padding on the content when left side-fixed sidebars are open.
-   */
-  public _contentPadLeft = 0;
+  private _isPaddedLeft = false;
 
-  /**
-   * The left padding on the nav when left side-fixed sidebars are open.
-   */
-  public _navPadLeft = 0;
-
-  /**
-   * The right padding on the content when right side-fixed sidebars are open.
-   */
-  public _contentPadRight = 0;
-
-  /**
-   * The right padding on the content when right side-fixed sidebars are open.
-   */
-  public _navPadRight = 0;
+  private _isPaddedRight = false;
 
   /**
    * Whether or not the backdrop is interactable
@@ -171,7 +157,6 @@ export class DaffSidebarViewportComponent implements AfterContentChecked, OnDest
       this.updateAnimationState();
       this.cdRef.markForCheck();
     }
-
     const nextBackdropInteractable = sidebarViewportBackdropInteractable(this.sidebars);
     if (this._backdropInteractable !== nextBackdropInteractable) {
       this._backdropInteractable = nextBackdropInteractable;
@@ -192,21 +177,8 @@ export class DaffSidebarViewportComponent implements AfterContentChecked, OnDest
       }
     };
 
-    const nextLeftPadding = sidebarViewportContentPadding(this.sidebars, 'left');
-    if(this._contentPadLeft !== nextLeftPadding) {
-      this._contentPadLeft = nextLeftPadding;
-      this._navPadLeft = this.isNavOnSide ? this._contentPadLeft : null;
-      this.updateAnimationState();
-      this.cdRef.markForCheck();
-    }
-
-    const nextRightPadding = sidebarViewportContentPadding(this.sidebars, 'right');
-    if(this._contentPadRight !== nextRightPadding) {
-      this._contentPadRight = nextRightPadding;
-      this._navPadRight = this.isNavOnSide ? this._contentPadRight : null;
-      this.updateAnimationState();
-      this.cdRef.markForCheck();
-    }
+    this._isPaddedLeft = isSidebarViewportContentPadded(this.sidebars, 'left');
+    this._isPaddedRight = isSidebarViewportContentPadded(this.sidebars, 'right');
   }
 
   ngOnDestroy() {

@@ -1,13 +1,24 @@
 @use '../helper/variables';
+@use '../../../scss/layout';
 
 :host {
 	display: flex;
 	flex-direction: column;
-	width: 240px;
 	flex-shrink: 0;
 	overflow-y: auto;
+	width: 240px;
+
+	&.left {
+		width: var(--daff-sidebar-left-width, 240px);
+	}
+
+	&.right {
+		width: var(--daff-sidebar-right-width, 240px);
+	}
+	
 
 	&.side-fixed {
+		visibility: hidden;
 		position: fixed;
 		bottom: 0;
 		z-index: variables.$daff-sidebar-sidebar-side-fixed-z-index;
@@ -20,6 +31,10 @@
 
 		&.right {
 			right: 0;
+		}
+
+		@include layout.breakpoint(big-tablet) {
+			visibility: visible;
 		}
 	}
 

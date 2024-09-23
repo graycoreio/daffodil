@@ -44,34 +44,28 @@ describe('DaffioSidebarService', () => {
     service = TestBed.inject(DaffioSidebarService);
   });
 
-  describe('mode$', () => {
-    describe('in big tablet mode', () => {
-      beforeEach(() => {
-        breakpointSpy.next({ matches: true, breakpoints: {}});
-      });
-
-      it('should pull sidebar mode from router data', () => {
-        dataSpy.next({
-          sidebarMode: DaffSidebarModeEnum.Side,
-        });
-        expect(service.mode$).toBeObservable(cold('a', { a: DaffSidebarModeEnum.Side }));
-      });
-
-      it('should default to side-fixed', () => {
-        dataSpy.next({});
-        expect(service.mode$).toBeObservable(cold('a', { a: DaffSidebarModeEnum.SideFixed }));
-      });
+  describe('when the viewport is big tablet or bigger', () => {
+    beforeEach(() => {
+      breakpointSpy.next({ matches: true, breakpoints: {}});
     });
 
-    describe('in smaller than big tablet', () => {
-      beforeEach(() => {
-        breakpointSpy.next({ matches: false, breakpoints: {}});
+    it('should pull sidebar mode from router data', () => {
+      dataSpy.next({
+        sidebarMode: DaffSidebarModeEnum.Side,
       });
-
-      it('should be under', () => {
-        expect(service.mode$).toBeObservable(cold('a', { a: DaffSidebarModeEnum.Under }));
-      });
+      expect(service.mode$).toBeObservable(cold('a', { a: DaffSidebarModeEnum.Side }));
     });
+
+    it('should default the mode to side-fixed', () => {
+      dataSpy.next({});
+      expect(service.mode$).toBeObservable(cold('a', { a: DaffSidebarModeEnum.SideFixed }));
+    });
+  });
+
+  it('should have a mode of under when the viewport is smaller than big tablet', () => {
+    breakpointSpy.next({ matches: false, breakpoints: {}});
+
+    expect(service.mode$).toBeObservable(cold('(ab)', { a: DaffSidebarModeEnum.SideFixed, b: DaffSidebarModeEnum.Under }));
   });
 
   describe('activeRegistration$', () => {

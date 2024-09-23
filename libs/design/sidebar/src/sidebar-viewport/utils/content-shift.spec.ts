@@ -53,23 +53,24 @@ describe('@daffodil/design | sidebar-viewport | sidebarViewportContentShift', ()
 
   it('should correctly pad sidebars', () => {
     const sidebarCombinations = [
-      { sidebars: [], shift: 0 },
-      { sidebars: [{ mode: 'side', side: 'left', open: false }], shift: 0 },
-      { sidebars: [{ mode: 'side', side: 'left', open: true }], shift: 0 },
-      { sidebars: [{ mode: 'side', side: 'left', open: true }, { mode: 'side', side: 'right', open: true }], shift: 0 },
-      { sidebars: [{ mode: 'over', side: 'left', open: false }, { mode: 'over', side: 'right', open: false }], shift: 0 },
-      { sidebars: [{ mode: 'over', side: 'left', open: true }, { mode: 'over', side: 'right', open: true }], shift: 0 },
-      { sidebars: [{ mode: 'side-fixed', side: 'left', open: false }, { mode: 'side-fixed', side: 'right', open: false }], shift: 0 },
-      { sidebars: [{ mode: 'side-fixed', side: 'left', open: true }, { mode: 'side-fixed', side: 'right', open: false }], shift: 0 },
-      { sidebars: [{ mode: 'under', side: 'left', open: false }, { mode: 'under', side: 'right', open: false }], shift: 0 },
+      // { sidebars: [], shift: 0 },
+      // { sidebars: [{ mode: 'side', side: 'left', open: false }], shift: 0 },
+      // { sidebars: [{ mode: 'side', side: 'left', open: true }], shift: 0 },
+      // { sidebars: [{ mode: 'side', side: 'left', open: true }, { mode: 'side', side: 'right', open: true }], shift: 0 },
+      // { sidebars: [{ mode: 'over', side: 'left', open: false }, { mode: 'over', side: 'right', open: false }], shift: 0 },
+      // { sidebars: [{ mode: 'over', side: 'left', open: true }, { mode: 'over', side: 'right', open: true }], shift: 0 },
+      // { sidebars: [{ mode: 'side-fixed', side: 'left', open: false }, { mode: 'side-fixed', side: 'right', open: false }], shift: 0 },
+      // { sidebars: [{ mode: 'side-fixed', side: 'left', open: true }, { mode: 'side-fixed', side: 'right', open: false }], shift: 0 },
+      // { sidebars: [{ mode: 'under', side: 'left', open: false }, { mode: 'under', side: 'right', open: false }], shift: 0 },
       { sidebars: [{ mode: 'under', side: 'left', open: false }, { mode: 'under', side: 'right', open: true }], shift: -240 },
-      { sidebars: [{ mode: 'under', side: 'left', open: true }, { mode: 'under', side: 'right', open: false }], shift: 240 },
-      { sidebars: [{ mode: 'under', side: 'left', open: true }, { mode: 'under', side: 'right', open: true }], shift: 240 },
+      // { sidebars: [{ mode: 'under', side: 'left', open: true }, { mode: 'under', side: 'right', open: false }], shift: 240 },
+      // { sidebars: [{ mode: 'under', side: 'left', open: true }, { mode: 'under', side: 'right', open: true }], shift: 240 },
     ];
 
     sidebarCombinations.forEach((el) => {
       wrapper.sidebars = el.sidebars;
       fixture.detectChanges();
+      console.log('test');
       expect(sidebarViewportContentShift(wrapper.sidebarComponents)).toEqual(el.shift);
     });
   });

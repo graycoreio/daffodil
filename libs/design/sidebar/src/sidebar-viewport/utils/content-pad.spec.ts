@@ -12,7 +12,7 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { sidebarViewportContentPadding } from './content-pad';
+import { isSidebarViewportContentPadded } from './content-pad';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 @Component({
@@ -27,7 +27,7 @@ class IterableWrapperComponent{
 }
 
 
-describe('@daffodil/design | sidebar-viewport | sidebarViewportContentPadding', () => {
+describe('@daffodil/design | sidebar-viewport | isSidebarViewportContentPadded', () => {
   let fixture: ComponentFixture<IterableWrapperComponent>;
   let wrapper: IterableWrapperComponent;
 
@@ -52,26 +52,26 @@ describe('@daffodil/design | sidebar-viewport | sidebarViewportContentPadding', 
 
   it('should correctly pad sidebars', () => {
     const sidebarCombinations = [
-      { sidebars: [], left: 0, right: 0 },
-      { sidebars: [{ mode: 'side', side: 'left', open: false }], left: 0, right: 0 },
-      { sidebars: [{ mode: 'side', side: 'left', open: true }], left: 0, right: 0 },
-      { sidebars: [{ mode: 'side', side: 'left', open: true }, { mode: 'side', side: 'right', open: true }], left: 0, right: 0 },
-      { sidebars: [{ mode: 'over', side: 'left', open: false }, { mode: 'over', side: 'right', open: false }], left: 0, right: 0 },
-      { sidebars: [{ mode: 'over', side: 'left', open: true }, { mode: 'over', side: 'right', open: true }], left: 0, right: 0 },
-      { sidebars: [{ mode: 'under', side: 'left', open: false }, { mode: 'under', side: 'right', open: false }], left: 0, right: 0 },
-      { sidebars: [{ mode: 'under', side: 'left', open: true }, { mode: 'under', side: 'right', open: true }], left: 0, right: 0 },
-      { sidebars: [{ mode: 'side-fixed', side: 'left', open: false }, { mode: 'under', side: 'right', open: false }], left: 0, right: 0 },
-      { sidebars: [{ mode: 'side-fixed', side: 'left', open: true }, { mode: 'under', side: 'right', open: false }], left: 240, right: 0 },
-      { sidebars: [{ mode: 'under', side: 'left', open: false }, { mode: 'side-fixed', side: 'right', open: false }], left: 0, right: 0 },
-      { sidebars: [{ mode: 'under', side: 'left', open: false }, { mode: 'side-fixed', side: 'right', open: true }], left: 0, right: 240 },
-      { sidebars: [{ mode: 'side-fixed', side: 'left', open: true }, { mode: 'side-fixed', side: 'right', open: true }], left: 240, right: 240 },
+      { sidebars: [], left: false, right: false },
+      { sidebars: [{ mode: 'side', side: 'left', open: false }], left: false, right: false },
+      { sidebars: [{ mode: 'side', side: 'left', open: true }], left: false, right: false },
+      { sidebars: [{ mode: 'side', side: 'left', open: true }, { mode: 'side', side: 'right', open: true }], left: false, right: false },
+      { sidebars: [{ mode: 'over', side: 'left', open: false }, { mode: 'over', side: 'right', open: false }], left: false, right: false },
+      { sidebars: [{ mode: 'over', side: 'left', open: true }, { mode: 'over', side: 'right', open: true }], left: false, right: false },
+      { sidebars: [{ mode: 'under', side: 'left', open: false }, { mode: 'under', side: 'right', open: false }], left: false, right: false },
+      { sidebars: [{ mode: 'under', side: 'left', open: true }, { mode: 'under', side: 'right', open: true }], left: false, right: false },
+      { sidebars: [{ mode: 'side-fixed', side: 'left', open: false }, { mode: 'under', side: 'right', open: false }], left: false, right: false },
+      { sidebars: [{ mode: 'side-fixed', side: 'left', open: true }, { mode: 'under', side: 'right', open: false }], left: true, right: false },
+      { sidebars: [{ mode: 'under', side: 'left', open: false }, { mode: 'side-fixed', side: 'right', open: false }], left: false, right: false },
+      { sidebars: [{ mode: 'under', side: 'left', open: false }, { mode: 'side-fixed', side: 'right', open: true }], left: false, right: true },
+      { sidebars: [{ mode: 'side-fixed', side: 'left', open: true }, { mode: 'side-fixed', side: 'right', open: true }], left: true, right: true },
     ];
 
     sidebarCombinations.forEach((el) => {
       wrapper.sidebars = el.sidebars;
       fixture.detectChanges();
-      expect(sidebarViewportContentPadding(wrapper.sidebarComponents, 'left')).toEqual(el.left);
-      expect(sidebarViewportContentPadding(wrapper.sidebarComponents, 'right')).toEqual(el.right);
+      expect(isSidebarViewportContentPadded(wrapper.sidebarComponents, 'left')).toEqual(el.left);
+      expect(isSidebarViewportContentPadded(wrapper.sidebarComponents, 'right')).toEqual(el.right);
     });
   });
 });
