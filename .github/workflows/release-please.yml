@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - develop
-
+  pull_request:
+    branches:
+      - develop
 jobs:
   release-please:
     runs-on: ubuntu-latest
@@ -21,11 +23,11 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - uses: google-github-actions/release-please-action@v3
-        with:
-          token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
-          command: manifest
-          default-branch: develop
+      # - uses: google-github-actions/release-please-action@v3
+      #   with:
+      #     token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
+      #     command: manifest
+      #     default-branch: develop
 
       - name: Add Packages to README
         run: |
@@ -35,4 +37,3 @@ jobs:
           npx gulp addPackagesToReadme
           git add README.md
           git commit -m 'docs: autogenerate package table in README' || true
-          git push
