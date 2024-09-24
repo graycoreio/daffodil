@@ -12,6 +12,10 @@ jobs:
       matrix:
         node: [18.19.x]
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: release-please--branches--develop--components--daffodil
+
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: ${{ matrix.node }}
@@ -22,10 +26,6 @@ jobs:
           token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
           command: manifest
           default-branch: develop
-
-      - uses: actions/checkout@v4
-        with:
-          ref: release-please--branches--develop--components--daffodil
 
       - name: Add Packages to README
         run: |
