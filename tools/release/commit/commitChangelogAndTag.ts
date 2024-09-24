@@ -1,11 +1,13 @@
+import { series } from 'gulp';
+import git from 'simple-git/promise';
 import * as standardVersion from 'standard-version';
-import * as git from 'simple-git/promise';
+
 import { RELEASE_CONFIG } from '../config';
-import { series } from 'gulp'; 
+
 
 const stageAll = async (): Promise<void> => {
-    await git(RELEASE_CONFIG.PROJECT_PATH).add('.');
-}
+  await git(RELEASE_CONFIG.PROJECT_PATH).add('.');
+};
 
 const generateCommit = () => standardVersion({
   noVerify: true,
@@ -19,12 +21,12 @@ const generateCommit = () => standardVersion({
   packageFiles: [
     RELEASE_CONFIG.PROJECT_PATH + '/package.json',
   ],
-  bumpFiles: []
+  bumpFiles: [],
 }).catch(err => {
-    console.error(`standard-version failed with message: ${err.message}`)
+  console.error(`standard-version failed with message: ${err.message}`);
 });
 
 export const commitChangelogAndTag = series(
   stageAll,
-  generateCommit
-)
+  generateCommit,
+);

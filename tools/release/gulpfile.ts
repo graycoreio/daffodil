@@ -9,6 +9,7 @@ import { prepare } from './prepare/prepare';
 import { publish } from './publish/publish';
 import { leafVersion } from './version/leaf-version';
 import { version } from './version/version';
+export { addPackagesToReadme } from './packages/add-packages-to-readme';
 
 export const release = series(
   prepare,
