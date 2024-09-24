@@ -43,7 +43,7 @@ import {
 })
 export class DaffCalloutComponent {
   constructor(private textAlignable: DaffTextAlignableDirective) {
-    this.textAlignable.textAlignment = 'left';
+    this.textAlignable.defaultAlignment = 'left';
   }
 
   /**
