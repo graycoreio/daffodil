@@ -14,7 +14,8 @@
     "sharedGlobals": [
       "{workspaceRoot}/angular.json",
       "{workspaceRoot}/tsconfig.json",
-      "{workspaceRoot}/lerna.json"
+      "{workspaceRoot}/lerna.json",
+      "{workspaceRoot}/package-lock.json"
     ],
     "eslint": [
       "{workspaceRoot}/.eslintrc.js",
