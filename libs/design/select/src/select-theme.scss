@@ -5,16 +5,16 @@
 @mixin daff-select-theme($theme) {
 	$base: core.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
-	$gray: core.daff-map-deep-get($theme, 'core.gray');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 
-	$border-color: theming.daff-illuminate($base, $gray, 3);
+	$border-color: theming.daff-illuminate($base, $neutral, 3);
 
 	.daff-select {
 		$root: '.daff-select';
 
-		&#{$root}--disabled {
+		&.disabled {
 			#{$root}__field {
-				color: theming.daff-illuminate($base, $gray, 5);
+				color: theming.daff-illuminate($base, $neutral, 5);
 			}
 		}
 
@@ -22,6 +22,10 @@
 			background-color: $base;
 			border: 1px solid $border-color;
 			color: $base-contrast;
+
+			&:after {
+				border-color: currentColor;
+			}
 		}
 
 		&__option {
@@ -33,7 +37,7 @@
 
 			&:hover,
 			&.highlighted {
-				background-color: theming.daff-illuminate($base, $gray, 1);
+				background-color: theming.daff-illuminate($base, $neutral, 1);
 			}
 		}
 	}

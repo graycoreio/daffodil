@@ -2,7 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {
+  FormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
+
+import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
 
 import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';
 
@@ -11,6 +16,11 @@ import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';
   selector: 'skeleton-select',
   templateUrl: './skeleton-select.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    DAFF_SELECT_COMPONENTS,
+  ],
 })
 export class SkeletonSelectComponent {
   control = new FormControl();

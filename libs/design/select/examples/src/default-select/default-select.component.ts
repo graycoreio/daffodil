@@ -1,8 +1,14 @@
+import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {
+  FormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
+
+import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
 
 import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';
 
@@ -12,6 +18,12 @@ import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';
   templateUrl: './default-select.component.html',
   styleUrls: ['./default-select.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    NgIf,
+    DAFF_SELECT_COMPONENTS,
+  ],
 })
 export class DefaultSelectComponent {
   control = new FormControl();
