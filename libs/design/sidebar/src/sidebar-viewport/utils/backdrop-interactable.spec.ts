@@ -1,14 +1,29 @@
-import { QueryList } from '@angular/core';
+import {
+  Component,
+  Input,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import {
   TestBed,
   waitForAsync,
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffOpenableDirective } from '@daffodil/design';
-
 import { sidebarViewportBackdropInteractable } from './backdrop-interactable';
+import { DaffSidebarMode } from '../../helper/sidebar-mode';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
+
+@Component({
+  template: `
+    <daff-sidebar side="left" mode="side"></daff-sidebar>
+    <daff-sidebar side="right" [mode]="mode" [open]="true"></daff-sidebar>
+  `,
+})
+class WrapperComponent {
+  @Input() mode: DaffSidebarMode;
+  @ViewChildren(DaffSidebarComponent) sidebarComponents: QueryList<DaffSidebarComponent>;
+}
 
 describe('@daffodil/design | sidebar-viewport | backdrop-interactable', () => {
   beforeEach(waitForAsync(() => {
@@ -16,6 +31,7 @@ describe('@daffodil/design | sidebar-viewport | backdrop-interactable', () => {
       imports: [
         NoopAnimationsModule,
         DaffSidebarComponent,
+        WrapperComponent,
       ],
     }).compileComponents();
   }));
@@ -49,46 +65,20 @@ describe('@daffodil/design | sidebar-viewport | backdrop-interactable', () => {
   });
 
   it('should be interactable if there is at least one open "over" sidebar', () => {
-    const leftSidebar = TestBed.createComponent(DaffSidebarComponent).componentInstance;
-    leftSidebar.mode = 'side';
-    leftSidebar.side = 'left';
+    const fixture = TestBed.createComponent(WrapperComponent);
+    fixture.componentInstance.mode = 'over';
 
-    const rightSidebarFixture = TestBed.createComponent(DaffSidebarComponent);
+    fixture.detectChanges();
 
-    const rightSidebar = rightSidebarFixture.componentInstance;
-
-    rightSidebarFixture.debugElement.injector.get(DaffOpenableDirective).reveal();
-
-    rightSidebar.mode = 'over';
-    rightSidebar.side = 'right';
-
-    const list = new QueryList<DaffSidebarComponent>();
-    list.reset([
-      leftSidebar,
-      rightSidebar,
-    ]);
-    expect(sidebarViewportBackdropInteractable(list)).toEqual(true);
-
+    expect(sidebarViewportBackdropInteractable(fixture.componentInstance.sidebarComponents)).toEqual(true);
   });
 
   it('should be interactable if there is at least one open "under" sidebar', () => {
-    const leftSidebar = TestBed.createComponent(DaffSidebarComponent).componentInstance;
-    leftSidebar.mode = 'side';
-    leftSidebar.side = 'left';
-    const rightSidebarFixture = TestBed.createComponent(DaffSidebarComponent);
+    const fixture = TestBed.createComponent(WrapperComponent);
+    fixture.componentInstance.mode = 'under';
 
-    const rightSidebar = rightSidebarFixture.componentInstance;
+    fixture.detectChanges();
 
-    rightSidebarFixture.debugElement.injector.get(DaffOpenableDirective).reveal();
-
-    rightSidebar.mode = 'under';
-    rightSidebar.side = 'right';
-
-    const list = new QueryList<DaffSidebarComponent>();
-    list.reset([
-      leftSidebar,
-      rightSidebar,
-    ]);
-    expect(sidebarViewportBackdropInteractable(list)).toEqual(true);
+    expect(sidebarViewportBackdropInteractable(fixture.componentInstance.sidebarComponents)).toEqual(true);
   });
 });
