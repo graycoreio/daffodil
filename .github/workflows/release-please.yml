@@ -34,5 +34,5 @@ jobs:
           cd tools/release
           npx gulp addPackagesToReadme
           git add README.md
-          git commit -m 'docs: autogenerate package table in README'
+          git commit -m 'docs: autogenerate package table in README' || true
           git push
