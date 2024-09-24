@@ -1,5 +1,5 @@
 import { series } from 'gulp';
-import git from 'simple-git/promise';
+import git from 'simple-git';
 
 import { ARGS } from '../args/args';
 import { ARG as GIT_REMOTE_ARG } from '../args/git-remote';

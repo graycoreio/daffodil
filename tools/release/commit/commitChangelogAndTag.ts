@@ -1,5 +1,5 @@
 import { series } from 'gulp';
-import git from 'simple-git/promise';
+import git from 'simple-git';
 import * as standardVersion from 'standard-version';
 
 import { RELEASE_CONFIG } from '../config';

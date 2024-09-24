@@ -29,10 +29,12 @@ jobs:
 
       - name: Add Packages to README
         run: |
-          git config user.email "ci@github.com"
-          git config user.name "Github CI"
+          git fetch
+          git reset --hard release-please--branches--develop--components--daffodil
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           cd tools/release
           npx gulp addPackagesToReadme
-          git add README.md
+          git add ../../README.md
           git commit -m 'docs: autogenerate package table in README' || true
           git push
