@@ -1,9 +1,18 @@
 import {
   Overlay,
+  OverlayModule,
   OverlayRef,
 } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
-import { DOCUMENT } from '@angular/common';
+import {
+  PortalModule,
+  TemplatePortal,
+} from '@angular/cdk/portal';
+import {
+  DOCUMENT,
+  NgFor,
+  NgIf,
+  NgTemplateOutlet,
+} from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -25,16 +34,16 @@ import {
   NgControl,
 } from '@angular/forms';
 import {
-  faChevronDown,
-  faChevronUp,
-} from '@fortawesome/free-solid-svg-icons';
-import {
   Subject,
   delay,
   takeUntil,
 } from 'rxjs';
 
-import { DaffSkeletonableDirective } from '@daffodil/design';
+import {
+  DaffErrorMessageModule,
+  DaffFormLabelModule,
+  DaffSkeletonableDirective,
+} from '@daffodil/design';
 
 import { daffSelectAnimations } from '../animation/select-animation';
 import { getAnimationState } from '../animation/select-animation-state';
@@ -61,11 +70,18 @@ import { DaffSelectOptionDirective } from '../option/option.directive';
       inputs: ['skeleton'],
     },
   ],
+  standalone: true,
+  imports: [
+    NgIf,
+    NgFor,
+    NgTemplateOutlet,
+    OverlayModule,
+    PortalModule,
+    DaffErrorMessageModule,
+    DaffFormLabelModule,
+  ],
 })
 export class DaffSelectComponent<T = unknown> implements OnInit, OnDestroy, ControlValueAccessor {
-  faChevronDown = faChevronDown;
-  faChevronUp = faChevronUp;
-
   private _destroyed = new Subject<boolean>();
   private _overlay: OverlayRef;
   private _open = false;
@@ -80,11 +96,11 @@ export class DaffSelectComponent<T = unknown> implements OnInit, OnDestroy, Cont
 
   @HostBinding('class.daff-select') class = true;
 
-  @HostBinding('class.daff-select--open') get openClass() {
+  @HostBinding('class.open') get openClass() {
     return this._open;
   }
 
-  @HostBinding('class.daff-select--disabled') get disabledClass() {
+  @HostBinding('class.disabled') get disabledClass() {
     return this.disabled;
   }
 

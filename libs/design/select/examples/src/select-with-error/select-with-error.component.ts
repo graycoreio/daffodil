@@ -1,11 +1,15 @@
+import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
 import {
   FormControl,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+
+import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
 
 import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';
 
@@ -14,6 +18,12 @@ import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';
   selector: 'select-with-error',
   templateUrl: './select-with-error.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    NgIf,
+    ReactiveFormsModule,
+    DAFF_SELECT_COMPONENTS,
+  ],
 })
 export class SelectWithErrorComponent {
   control = new FormControl('', [Validators.required]);
