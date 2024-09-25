@@ -16,5 +16,6 @@ export interface DaffioRoute extends Route {
   & DaffioRouteWithSidebars['data']
   & {
     docKind?: DaffDocKind;
+    docPrefix?: string;
   };
 }

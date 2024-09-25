@@ -1,7 +1,6 @@
 import {
   Component,
   Input,
-  Injectable,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -9,19 +8,13 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { cold } from 'jasmine-marbles';
-import { BehaviorSubject } from 'rxjs';
+import { of } from 'rxjs';
 
 import { DaffioApiListPageComponent } from './api-list-page.component';
+import { DaffioDocsIndexService } from '../../../services/index.service';
 import { DaffioApiListComponent } from '../../components/api-list/api-list.component';
 import { DaffioApiReference } from '../../models/api-reference';
-
-@Injectable({ providedIn: 'root' })
-class ActivatedRouteStub {
-  data = new BehaviorSubject({});
-};
 
 @Component({
   template: '',
@@ -34,7 +27,7 @@ class MockDaffioApiListComponent {
 describe('DaffioApiListPageComponent', () => {
   let component: DaffioApiListPageComponent;
   let fixture: ComponentFixture<DaffioApiListPageComponent>;
-  let activatedRoute: ActivatedRouteStub;
+  let indexServiceSpy: jasmine.SpyObj<DaffioDocsIndexService>;
 
   const stubDocsList: DaffioApiReference = {
     id: 'id',
@@ -62,6 +55,8 @@ describe('DaffioApiListPageComponent', () => {
   };
 
   beforeEach(waitForAsync(() => {
+    indexServiceSpy = jasmine.createSpyObj('DaffioDocsIndexService', ['getList']);
+
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
@@ -71,16 +66,17 @@ describe('DaffioApiListPageComponent', () => {
         DaffioApiListPageComponent,
       ],
       providers: [
-        { provide: ActivatedRoute, useExisting: ActivatedRouteStub },
+        {
+          provide: DaffioDocsIndexService,
+          useValue: indexServiceSpy,
+        },
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    activatedRoute = TestBed.inject(ActivatedRouteStub);
-    activatedRoute.data.next({ reference: stubDocsList });
-
+    indexServiceSpy.getList.and.returnValue(of(stubDocsList));
     fixture = TestBed.createComponent(DaffioApiListPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -90,17 +86,10 @@ describe('DaffioApiListPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize apiList$ from a route resolver', () => {
-    const expected = cold('b', { b: stubDocsList });
-    expect(component.apiList$).toBeObservable(expected);
-  });
-
   describe('on <daffio-api-list>', () => {
     let apiListComponent: DaffioApiListComponent;
 
     beforeEach(() => {
-      activatedRoute.data.next({ reference: stubDocsList });
-      fixture.detectChanges();
       apiListComponent = fixture.debugElement.query(By.css('daffio-api-list')).componentInstance;
     });
 
