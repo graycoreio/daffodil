@@ -11,7 +11,7 @@ import { DaffioDocList } from '../../../models/doc-list';
 import { DaffioDocsDesignIndexService } from '../../services/index.service';
 
 @Component({
-  selector: 'daffio-docs-list-container',
+  selector: 'daffio-docs-design-list-container',
   templateUrl: './docs-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
