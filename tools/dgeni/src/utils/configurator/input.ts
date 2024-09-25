@@ -1,10 +1,11 @@
 import { Package } from 'dgeni';
-import { Configurator } from 'tools/dgeni/src/utils/configurator/type';
 
 import {
   DaffDocKind,
   DAFF_DOC_KIND_PATH_SEGMENT_MAP,
 } from '@daffodil/docs-utils';
+
+import { Configurator } from '../../utils/configurator/type';
 
 export interface InputPathsConfig {
   kind: DaffDocKind;

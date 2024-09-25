@@ -21,3 +21,18 @@ export function guideFileReaderFactory() {
   };
 }
 
+export function designGuideFileReaderFactory() {
+  return {
+    name: 'guideFileReader',
+    defaultPattern: /\.md$/,
+    getDocs: (fileInfo) => fileInfo.content
+      ? [{
+        // check if the doc is a package readme, ignore the root readme though
+        docType: fileInfo.relativePath.split('/').slice(1).includes('README.md') ? 'package-guide' : 'guide',
+        title: extractTitle(fileInfo),
+        tableOfContents: toc(fileInfo.content),
+        content: fileInfo.content,
+      }]
+      : [],
+  };
+}

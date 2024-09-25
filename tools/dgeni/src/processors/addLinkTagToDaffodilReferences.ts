@@ -3,8 +3,6 @@ import {
   Document,
 } from 'dgeni';
 
-import { CollectLinkableSymbolsProcessor } from './collect-linkable-symbols';
-
 /**
  * Adds a link tag ({@link }) around daffodil models, classes, etc.
  */
@@ -14,8 +12,6 @@ export class AddLinkTagToDaffodilReferencesProcessor implements Processor {
   $runBefore = ['rendering-docs'];
 
   $process(docs: Document[]): Document[] {
-    console.log(CollectLinkableSymbolsProcessor.symbols);
-
     const docDictionary = docs.reduce((acc, doc) => ({
       ...acc,
       [doc.name]: true,
