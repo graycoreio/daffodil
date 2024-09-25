@@ -32,6 +32,8 @@ jobs:
         run: |
           git fetch
           git reset --hard release-please--branches--develop--components--daffodil
+          git config user.name "GrayBot"
+          git config user.email "automation@graycore.io"
           cd tools/release
           npx gulp addPackagesToReadme
           git add ../../README.md
