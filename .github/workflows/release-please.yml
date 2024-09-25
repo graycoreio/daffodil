@@ -15,6 +15,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: release-please--branches--develop--components--daffodil
+          token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
 
       - uses: graycoreio/github-actions/setup-node@main
         with:
@@ -31,8 +32,6 @@ jobs:
         run: |
           git fetch
           git reset --hard release-please--branches--develop--components--daffodil
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           cd tools/release
           npx gulp addPackagesToReadme
           git add ../../README.md
