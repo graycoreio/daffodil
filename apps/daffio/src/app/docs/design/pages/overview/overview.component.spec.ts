@@ -4,23 +4,23 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 
-import { DaffioDocsDesignLandingPageComponent } from './landing.component';
+import { DaffioDocsDesignOverviewPageComponent } from './overview.component';
 
-describe('DaffioDocsDesignLandingPageComponent', () => {
-  let component: DaffioDocsDesignLandingPageComponent;
-  let fixture: ComponentFixture<DaffioDocsDesignLandingPageComponent>;
+describe('DaffioDocsDesignOverviewPageComponent', () => {
+  let component: DaffioDocsDesignOverviewPageComponent;
+  let fixture: ComponentFixture<DaffioDocsDesignOverviewPageComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffioDocsDesignLandingPageComponent,
+        DaffioDocsDesignOverviewPageComponent,
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioDocsDesignLandingPageComponent);
+    fixture = TestBed.createComponent(DaffioDocsDesignOverviewPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

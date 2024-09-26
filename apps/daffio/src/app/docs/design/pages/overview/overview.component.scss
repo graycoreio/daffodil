@@ -1,0 +1,25 @@
+@use 'utilities' as daff;
+
+:host {
+	display: block;
+	padding: 48px 24px;
+
+	@include daff.breakpoint(tablet) {
+		padding: 48px 96px;
+	}
+}
+
+.daffio-docs-design-overview {
+	&__title {
+		@include daff.headline-xl();
+		margin: 0 0 16px;
+		padding: 0;
+	}
+
+	&__subtitle {
+		@include daff.body-lg;
+		font-weight: 400;
+		margin: 0 0 32px;
+		padding: 0;
+	}
+}

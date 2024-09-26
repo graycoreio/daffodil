@@ -13,7 +13,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
-import { DaffioDocsDesignLandingPageComponent } from './pages/landing/landing.component';
+import { DaffioDocsDesignOverviewPageComponent } from './pages/overview/overview.component';
 import { DAFF_NAV_SIDEBAR_REGISTRATION } from '../../core/nav/sidebar.provider';
 import { DaffioRoute } from '../../core/router/route.type';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
@@ -41,7 +41,7 @@ export const docsDesignRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: DaffioDocsDesignLandingPageComponent,
+        component: DaffioDocsDesignOverviewPageComponent,
       },
       <DaffioRoute>{
         path: '**',
