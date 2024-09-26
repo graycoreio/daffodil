@@ -1,17 +1,27 @@
 import { Package } from 'dgeni';
 
 import {
+  DAFF_DOC_KIND_PATH_SEGMENT_MAP,
   DAFF_DOCS_DESIGN_PATH,
   DAFF_DOCS_PATH,
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
-import { transformGuideDoc } from './helpers/generateGuideList';
-import { guideFileReaderFactory } from './reader/guide-file.reader';
+import {
+  transformDesignGuideDoc,
+  transformGuideDoc,
+} from './helpers/generateGuideList';
+import {
+  designGuideFileReaderFactory,
+  guideFileReaderFactory,
+} from './reader/guide-file.reader';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddKindProcessor } from '../../processors/add-kind';
 import { BreadcrumbProcessor } from '../../processors/breadcrumb';
-import { GenerateNavListProcessor } from '../../processors/generateNavList';
+import {
+  GENERATE_NAV_LIST_PROCESSOR_PROVIDER,
+  GenerateNavListProcessor,
+} from '../../processors/generateNavList';
 import { MarkdownCodeProcessor } from '../../processors/markdown';
 import { IdSanitizer } from '../../services/id-sanitizer';
 import { outputPathsConfigurator } from '../../utils/configurator/output';
@@ -25,7 +35,7 @@ import {
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
 
-const docTypes = ['guide'];
+const docTypes = ['guide', 'package-guide'];
 
 const base = new Package('daffodil-guides-base', [daffodilBasePackage])
   .factory('guideFileReader', guideFileReaderFactory)
@@ -46,7 +56,7 @@ const base = new Package('daffodil-guides-base', [daffodilBasePackage])
   })
   .config((computeIdsProcessor, idSanitizer: IdSanitizer) => {
     computeIdsProcessor.idTemplates.push({
-      docTypes,
+      docTypes: ['guide'],
       getId: (doc) => idSanitizer.sanitize(doc.fileInfo.relativePath),
       getAliases: (doc) => [doc.id],
     });
@@ -97,25 +107,48 @@ const design = new Package('design-base', [base])
       'atoms/',
       'molecules/',
     );
-  });
-export const designDocsPackage = outputPathsConfigurator({
-  kind: DaffDocKind.PACKAGE,
-  outputPath: `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`,
-  docTypes,
-})(new Package('design-packages', [design]))
+  })
+  .factory('guideFileReader', designGuideFileReaderFactory);
+
+export const designDocsPackage = new Package('design-docs', [design])
+  .processor(...GENERATE_NAV_LIST_PROCESSOR_PROVIDER)
+  .config((generateNavList: GenerateNavListProcessor) => {
+    generateNavList.outputFolder = `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`;
+  })
+  .config((computePathsProcessor) => {
+    computePathsProcessor.pathTemplates.push({
+      docTypes,
+      getPath: (doc) => {
+        doc.moduleFolder = `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/${doc.id}`;
+        return doc.moduleFolder;
+      },
+      outputPathTemplate: '${moduleFolder}.json',
+    });
+  })
+  .config((computeIdsProcessor, idSanitizer: IdSanitizer) => {
+    computeIdsProcessor.idTemplates.push({
+      docTypes: ['package-guide'],
+      getId: (doc) => `components/${idSanitizer.sanitize(doc.fileInfo.relativePath)}`,
+      getAliases: (doc) => [doc.id],
+    });
+  })
   .config((readFilesProcessor) => {
     readFilesProcessor.basePath = DESIGN_PATH;
     readFilesProcessor.sourceFiles = [
-      { include: ['**/README.md']},
+      { include: ['**/*.md']},
     ];
+  })
+  .config((generateNavList: GenerateNavListProcessor) => {
+    generateNavList.transform = (docs) => generateNavigationTrieFromDocuments([
+      {
+        id: 'components',
+        title: 'Components',
+        path: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT]}`,
+        tableOfContents: '',
+      },
+      ...docs.map(transformDesignGuideDoc),
+    ]);
   });
-
-export const designGuidesPackage = pathsConfigurator({
-  kind: DaffDocKind.GUIDE,
-  outputPath: `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`,
-  inputPathBase: DESIGN_PATH,
-  docTypes,
-})(new Package('design-guides', [design]));
 
 export const designExplanationsPackage = pathsConfigurator({
   kind: DaffDocKind.EXPLANATION,

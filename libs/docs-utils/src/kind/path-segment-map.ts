@@ -6,4 +6,5 @@ export const DAFF_DOC_KIND_PATH_SEGMENT_MAP = <const>{
   [DaffDocKind.PACKAGE]: 'packages',
   [DaffDocKind.API]: 'api',
   [DaffDocKind.EXAMPLE]: 'examples',
+  [DaffDocKind.COMPONENT]: 'components',
 };

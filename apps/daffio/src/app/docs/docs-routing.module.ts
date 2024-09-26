@@ -4,8 +4,14 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import {
+  DAFF_DOC_KIND_PATH_SEGMENT_MAP,
+  DAFF_DOCS_DESIGN_PATH,
+  DAFF_DOCS_PATH,
+  DaffDocKind,
+} from '@daffodil/docs-utils';
+
 import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
-import { DAFFIO_DOCS_GUIDE_DEFAULT } from './guides/guides-routing.module';
 import { DaffioSimpleFooterComponent } from '../core/footer/simple-footer/simple-footer.component';
 import { DAFF_NAV_SIDEBAR_REGISTRATION } from '../core/nav/sidebar.provider';
 import { DaffioRouterNamedViewsEnum } from '../core/router/named-views/models/named-views.enum';
@@ -16,9 +22,10 @@ export const docsRoutes: Routes = [
     path: '',
     data: {
       daffioNavLinks: [
-        { url: '/docs/guides', title: 'Guides' },
-        { url: '/docs/packages', title: 'Packages' },
-        { url: '/docs/api', title: 'API Reference' },
+        { url: `/${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.GUIDE]}`, title: 'Guides' },
+        { url: `/${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.PACKAGE]}`, title: 'Packages' },
+        { url: `/${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.API]}`, title: 'API Reference' },
+        { url: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`, title: 'Design' },
       ],
       daffioSidebars: {
         [DAFF_NAV_SIDEBAR_REGISTRATION.id]: DAFF_NAV_SIDEBAR_REGISTRATION,
@@ -30,21 +37,25 @@ export const docsRoutes: Routes = [
     },
     children: [
       {
-        path: 'packages',
+        path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.PACKAGE],
         loadChildren: () => import('./packages/packages.module').then(m => m.DaffioPackagesModule),
       },
       {
-        path: 'guides',
+        path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.GUIDE],
         loadChildren: () => import('./guides/guides.module').then(m => m.DaffioGuidesModule),
       },
       {
-        path: 'api',
+        path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.API],
         loadChildren: () => import('./api/api.module').then(m => m.DaffioApiModule),
+      },
+      {
+        path: DAFF_DOCS_DESIGN_PATH,
+        loadChildren: () => import('./design/design.module').then(m => m.DaffioDocsDesignModule),
       },
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: `guides/${DAFFIO_DOCS_GUIDE_DEFAULT}`,
+        redirectTo: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.GUIDE],
       },
     ],
   },

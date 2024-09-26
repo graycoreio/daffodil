@@ -4,4 +4,5 @@ export enum DaffDocKind {
   PACKAGE = 'PACKAGE',
   API = 'API',
   EXAMPLE = 'EXAMPLE',
+  COMPONENT = 'COMPONENT',
 }

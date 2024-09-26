@@ -26,9 +26,6 @@ export const apiRoutes: Routes = [
       {
         path: '',
         component: DaffioApiListPageComponent,
-        resolve: {
-          reference: () => inject(DaffioDocsIndexService).getList(DaffDocKind.API),
-        },
       },
       {
         path: '**',

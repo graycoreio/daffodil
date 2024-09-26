@@ -32,7 +32,7 @@ export class DaffioDocsPackageCardsContainer implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.packagesList$ = this.docService.getList(DaffDocKind.PACKAGE).pipe(
+    this.packagesList$ = this.docService.getList().pipe(
       map((guidesTree) => guidesTree.children.map((p) => ({
         title: p.title,
         path: `/${getPath(p)}`,
