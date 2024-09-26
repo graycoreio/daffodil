@@ -217,5 +217,15 @@ describe('@daffodil/core/state | daffCreateOperationEntityStateAdapter', () => {
     it('should reset the entity state', () => {
       expect(result.entities[entity.id].daffState).toEqual(DaffState.Stable);
     });
+
+    describe('when the entity to reset does not exist in state', () => {
+      beforeEach(() => {
+        result = adapter.resetState(entity.id, state);
+      });
+
+      it('should not mutate state', () => {
+        expect(result).toEqual(state);
+      });
+    });
   });
 });

@@ -177,10 +177,10 @@ export class DaffOperationEntityStateAdapter<T extends DaffIdentifiable = DaffId
   }
 
   resetState<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(key: string, state: S): S {
-    return this.adapter.upsertOne({
+    return state.entities[key] ? this.adapter.upsertOne({
       ...state.entities[key],
       daffState: DaffState.Stable,
-    }, state);
+    }, state) : state;
   }
 
   getInitialState<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(state?: S): S {
