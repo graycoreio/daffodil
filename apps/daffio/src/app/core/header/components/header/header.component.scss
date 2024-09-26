@@ -8,7 +8,7 @@
     .daffio-header-item {
       display: none;
 
-      @include daff.breakpoint(tablet) {
+      @include daff.breakpoint(big-tablet) {
         display: block;
         color: currentColor;
         font-size: daff.$normal-font-size;
@@ -41,7 +41,7 @@
   &__theme-toggle {
     margin-right: 0.25rem;
 
-    @include daff.breakpoint(tablet) {
+    @include daff.breakpoint(big-tablet) {
       margin-right: 0;
     }
   }
@@ -50,7 +50,7 @@
     margin: 0;
     padding: 0;
 
-    @include daff.breakpoint(tablet) {
+    @include daff.breakpoint(big-tablet) {
       display: flex;
       align-items: center;
       gap: 16px;
@@ -60,7 +60,7 @@
   &__button {
     display: none;
 
-    @include daff.breakpoint(tablet) {
+    @include daff.breakpoint(big-tablet) {
       display: flex;
       margin-left: 1rem;
     }
@@ -78,7 +78,7 @@
     display: flex;
     margin-right: -0.8125rem;
 
-    @include daff.breakpoint(tablet) {
+    @include daff.breakpoint(big-tablet) {
       display: none;
     }
   }
