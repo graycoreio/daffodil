@@ -1,11 +1,15 @@
 import {
   Directive,
   HostBinding,
+  Input,
 } from '@angular/core';
 
 @Directive({
   selector: '[daffioHeaderItem]',
 })
 export class DaffioHeaderItemDirective {
-  @HostBinding('class.daffio-header__item') class = true;
+  @HostBinding('class.daffio-header-item') class = true;
+
+  /** Whether or not the header item is active */
+  @Input() @HostBinding('class.active') active = false;
 }

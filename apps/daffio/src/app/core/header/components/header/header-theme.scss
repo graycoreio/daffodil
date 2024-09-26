@@ -1,0 +1,12 @@
+@use 'sass:map';
+@use 'theme' as daff-theme;
+
+@mixin daffio-header-theme($theme) {
+	$primary: map.get($theme, primary);
+
+	.daffio-header-item {
+		&.active {
+			color: daff-theme.daff-color($primary);
+		}
+	}
+}

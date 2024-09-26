@@ -7,7 +7,10 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import {
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -35,6 +38,7 @@ import { DaffioNavLink } from '../link/type';
   imports: [
     DaffioHeaderComponentModule,
     RouterLink,
+    RouterLinkActive,
     DaffLogoModule,
     DaffThemeSwitchButtonModule,
     NgFor,
