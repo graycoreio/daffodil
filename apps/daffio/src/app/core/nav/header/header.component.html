@@ -8,13 +8,7 @@
       @if (link.external) {
         <a daffioHeaderItem [href]="link.url" target="_blank">{{link.title}}</a>
       } @else {
-        <a daffioHeaderItem
-          [routerLink]="link.url"
-          [active]="rla.isActive"
-          routerLinkActive
-          #rla="routerLinkActive">
-            {{ link.title }}
-        </a>
+        <a daffioHeaderItem [routerLink]="link.url" [active]="rla.isActive" routerLinkActive #rla="routerLinkActive">{{ link.title }}</a>
       }
     </ng-container>
   }
