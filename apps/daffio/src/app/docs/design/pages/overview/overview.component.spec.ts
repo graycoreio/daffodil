@@ -3,6 +3,7 @@ import {
   TestBed,
   waitForAsync,
 } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffioDocsDesignOverviewPageComponent } from './overview.component';
 
@@ -14,6 +15,7 @@ describe('DaffioDocsDesignOverviewPageComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffioDocsDesignOverviewPageComponent,
+        RouterTestingModule,
       ],
     })
       .compileComponents();
