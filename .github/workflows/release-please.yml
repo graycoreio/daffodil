@@ -12,6 +12,12 @@ jobs:
       matrix:
         node: [18.19.x]
     steps:
+      - uses: google-github-actions/release-please-action@v3
+        with:
+          token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
+          command: manifest
+          default-branch: develop
+          
       - uses: actions/checkout@v4
         with:
           ref: release-please--branches--develop--components--daffodil
@@ -22,16 +28,8 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - uses: google-github-actions/release-please-action@v3
-        with:
-          token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
-          command: manifest
-          default-branch: develop
-
       - name: Add Packages to README
         run: |
-          git fetch
-          git reset --hard release-please--branches--develop--components--daffodil
           git config user.name "GrayBot"
           git config user.email "automation@graycore.io"
           cd tools/release
