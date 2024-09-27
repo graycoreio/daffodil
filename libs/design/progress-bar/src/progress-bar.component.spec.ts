@@ -21,6 +21,10 @@ import { DaffProgressBarComponent } from './progress-bar.component';
   <daff-progress-bar [color]="color" [percentage]="percentage" (finished)="onAnimationComplete()">
   </daff-progress-bar>
   `,
+  standalone: true,
+  imports: [
+    DaffProgressBarComponent,
+  ],
 })
 class WrapperComponent {
   color: DaffPalette;
@@ -38,10 +42,7 @@ describe('DaffProgressBarComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-      ],
-      declarations: [
         WrapperComponent,
-        DaffProgressBarComponent,
       ],
     })
       .compileComponents();

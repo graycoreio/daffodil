@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffProgressBarModule } from '@daffodil/design/progress-bar';
+import { DAFF_PROGRESS_BAR_COMPONENTS } from '@daffodil/design/progress-bar';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -17,6 +17,8 @@ import { DaffProgressBarModule } from '@daffodil/design/progress-bar';
     }`],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffProgressBarModule],
+  imports: [
+    DAFF_PROGRESS_BAR_COMPONENTS,
+  ],
 })
 export class ProgressBarDefaultComponent {}

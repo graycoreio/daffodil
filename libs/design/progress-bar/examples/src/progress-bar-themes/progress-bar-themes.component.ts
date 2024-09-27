@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 
 import { DaffPalette } from '@daffodil/design';
-import { DaffProgressBarModule } from '@daffodil/design/progress-bar';
+import { DAFF_PROGRESS_BAR_COMPONENTS } from '@daffodil/design/progress-bar';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -23,7 +23,10 @@ import { DaffProgressBarModule } from '@daffodil/design/progress-bar';
     }`],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffProgressBarModule, ReactiveFormsModule],
+  imports: [
+    DAFF_PROGRESS_BAR_COMPONENTS,
+    ReactiveFormsModule,
+  ],
 })
 export class ProgressBarThemesComponent {
   color: DaffPalette = 'primary';

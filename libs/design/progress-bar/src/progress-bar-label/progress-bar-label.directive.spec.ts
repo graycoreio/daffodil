@@ -13,6 +13,10 @@ import { DaffProgressBarLabelDirective } from './progress-bar-label.directive';
 
 @Component({
   template: `<label daffProgressBarLabel>Label</label>`,
+  standalone: true,
+  imports: [
+    DaffProgressBarLabelDirective,
+  ],
 })
 
 class WrapperComponent {}
@@ -24,8 +28,7 @@ describe('DaffProgressBarLabelDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffProgressBarLabelDirective,
+      imports: [
         WrapperComponent,
       ],
     })
@@ -43,11 +46,9 @@ describe('DaffProgressBarLabelDirective', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('[daffProgressBarLabel]', () => {
-    it('should add a class of "daff-progress-bar__label" to the host element', () => {
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-progress-bar__label': true,
-      }));
-    });
+  it('should add a class of "daff-progress-bar__label" to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-progress-bar__label': true,
+    }));
   });
 });

@@ -1,5 +1,6 @@
 import { AnimationEvent } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { NgIf } from '@angular/common';
 import {
   Component,
   Input,
@@ -32,6 +33,10 @@ export const clamp = (number: number, min: number, max: number) => Math.min(Math
   ],
   animations: [
     daffProgressBarAnimation.fill,
+  ],
+  standalone: true,
+  imports: [
+    NgIf,
   ],
 })
 export class DaffProgressBarComponent {
