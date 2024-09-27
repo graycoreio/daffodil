@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffCardImage]',
+  standalone: true,
 })
 export class DaffCardImageDirective {
 

@@ -9,11 +9,12 @@ import { DaffCardImageDirective } from './card-image/card-image.directive';
 import { DaffCardTaglineDirective } from './card-tagline/card-tagline.directive';
 import { DaffCardTitleDirective } from './card-title/card-title.directive';
 
+/**
+ * @deprecated in favor of {@link DAFF_CARD_COMPONENTS}
+ */
 @NgModule({
   imports: [
     CommonModule,
-  ],
-  declarations: [
     DaffCardComponent,
     DaffCardIconDirective,
     DaffCardImageDirective,

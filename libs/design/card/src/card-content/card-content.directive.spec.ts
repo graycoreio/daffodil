@@ -13,6 +13,10 @@ import { DaffCardContentDirective } from './card-content.directive';
 
 @Component({
   template: `<div daffCardContent></div>`,
+  standalone: true,
+  imports: [
+    DaffCardContentDirective,
+  ],
 })
 
 class WrapperComponent {}
@@ -24,8 +28,7 @@ describe('@daffodil/design/card | DaffCardContentDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffCardContentDirective,
+      imports: [
         WrapperComponent,
       ],
     })

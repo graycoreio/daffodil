@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffCardActions]',
+  standalone: true,
 })
 export class DaffCardActionsDirective {
 

@@ -52,6 +52,7 @@ export enum DaffCardOrientationEnum {
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 
 export class DaffCardComponent implements OnInit {

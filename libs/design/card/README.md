@@ -9,6 +9,47 @@ The example below is a default, filled card that includes all of a card's pre-st
 
 <design-land-example-viewer-container example="basic-card"></design-land-example-viewer-container>
 
+## Usage
+
+### Within a standalone component
+To use card in a standalone component, import it directly into your custom component:
+
+```ts
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  standalone: true,
+  imports: [
+    DAFF_CARD_COMPONENTS,
+  ],
+})
+export class CustomComponent {}
+```
+
+### Within a module (deprecated)
+To use card in a module, import `DaffCardModule` into your custom module:
+
+```ts
+import { NgModule } from '@angular/core';
+
+import { DaffCardModule } from '@daffodil/design/card';
+
+@NgModule({
+	declarations: [
+    CustomComponent,
+  ],
+  exports: [
+    CustomComponent,
+  ],
+  imports: [
+    DaffCardModule,
+  ],
+})
+export class CustomComponentModule { }
+```
+
+> This method is deprecated. It's recommended to update all custom components to standalone.
+
 ## Supported Content Types
 A card supports a wide variety of content and includes minimally pre-styled `image`, `icon`, `tagline`, `title`, `content`, and `actions` content containers.
 

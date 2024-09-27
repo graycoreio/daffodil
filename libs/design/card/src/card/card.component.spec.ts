@@ -18,6 +18,10 @@ import {
 
 @Component ({
   template: `<daff-card [color]="color" [orientation]="orientation"></daff-card>`,
+  standalone: true,
+  imports: [
+    DaffCardComponent,
+  ],
 })
 
 class WrapperComponent {
@@ -33,8 +37,7 @@ describe('@daffodil/design/card | DaffCardComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffCardComponent,
+      imports: [
         WrapperComponent,
       ],
     })

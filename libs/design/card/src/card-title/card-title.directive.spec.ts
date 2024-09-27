@@ -13,6 +13,10 @@ import { DaffCardTitleDirective } from './card-title.directive';
 
 @Component({
   template: `<div daffCardTitle></div>`,
+  standalone: true,
+  imports: [
+    DaffCardTitleDirective,
+  ],
 })
 
 class WrapperComponent {}
@@ -24,8 +28,7 @@ describe('@daffodil/design/card | DaffCardTitleDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffCardTitleDirective,
+      imports: [
         WrapperComponent,
       ],
     })

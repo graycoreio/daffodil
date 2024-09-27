@@ -13,6 +13,10 @@ import { DaffCardTaglineDirective } from './card-tagline.directive';
 
 @Component({
   template: `<div daffCardTagline></div>`,
+  standalone: true,
+  imports: [
+    DaffCardTaglineDirective,
+  ],
 })
 
 class WrapperComponent {}
@@ -24,8 +28,7 @@ describe('@daffodil/design/card | DaffCardTaglineDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffCardTaglineDirective,
+      imports: [
         WrapperComponent,
       ],
     })

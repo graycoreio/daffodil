@@ -13,6 +13,10 @@ import { DaffCardImageDirective } from './card-image.directive';
 
 @Component({
   template: `<img src="/" daffCardImage />`,
+  standalone: true,
+  imports: [
+    DaffCardImageDirective,
+  ],
 })
 
 class WrapperComponent {}
@@ -24,8 +28,7 @@ describe('@daffodil/design/card | DaffCardImageDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffCardImageDirective,
+      imports: [
         WrapperComponent,
       ],
     })

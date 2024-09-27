@@ -13,6 +13,10 @@ import { DaffCardIconDirective } from './card-icon.directive';
 
 @Component({
   template: `<div daffCardIcon></div>`,
+  standalone: true,
+  imports: [
+    DaffCardIconDirective,
+  ],
 })
 
 class WrapperComponent {}
@@ -24,8 +28,7 @@ describe('@daffodil/design/card | DaffCardIconDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffCardIconDirective,
+      imports: [
         WrapperComponent,
       ],
     })

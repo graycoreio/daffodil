@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffCardTagline]',
+  standalone: true,
 })
 export class DaffCardTaglineDirective {
 

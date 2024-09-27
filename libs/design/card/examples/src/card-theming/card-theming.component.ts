@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { DaffCardModule } from '@daffodil/design/card';
+import { DAFF_CARD_COMPONENTS } from '@daffodil/design/card';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -22,7 +22,7 @@ import { DaffCardModule } from '@daffodil/design/card';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffCardModule,
+    DAFF_CARD_COMPONENTS,
     ReactiveFormsModule,
     NgFor,
   ],
