@@ -8,6 +8,7 @@ import {
  */
 @Directive({
   selector: '[daffLinkSetHeading]',
+  standalone: true,
 })
 export class DaffLinkSetHeadingDirective {
 

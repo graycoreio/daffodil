@@ -19,6 +19,7 @@ import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
   }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class DaffLinkSetComponent {
 

@@ -13,6 +13,10 @@ import { DaffLinkSetItemComponent } from './link-set-item.component';
 
 @Component ({
   template: `<a daff-link-set-item href="#"></a>`,
+  standalone: true,
+  imports: [
+    DaffLinkSetItemComponent,
+  ],
 })
 
 class WrapperComponent {}
@@ -24,8 +28,7 @@ describe('@daffodil/design/link-set | DaffLinkSetItemComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffLinkSetItemComponent,
+      imports: [
         WrapperComponent,
       ],
     })

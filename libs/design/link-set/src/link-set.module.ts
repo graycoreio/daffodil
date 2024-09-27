@@ -6,17 +6,18 @@ import { DaffLinkSetHeadingDirective } from './link-set-heading/link-set-heading
 import { DaffLinkSetItemComponent } from './link-set-item/link-set-item.component';
 import { DaffLinkSetSubheadingDirective } from './link-set-subheading/link-set-subheading.directive';
 
+/**
+ * @deprecated in favor of {@link DAFF_LINK_SET_COMPONENTS}
+ */
 @NgModule({
   imports: [
     CommonModule,
-  ],
-  exports: [
     DaffLinkSetComponent,
     DaffLinkSetHeadingDirective,
     DaffLinkSetSubheadingDirective,
     DaffLinkSetItemComponent,
   ],
-  declarations: [
+  exports: [
     DaffLinkSetComponent,
     DaffLinkSetHeadingDirective,
     DaffLinkSetSubheadingDirective,

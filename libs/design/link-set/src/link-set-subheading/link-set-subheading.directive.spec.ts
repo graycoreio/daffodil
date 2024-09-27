@@ -13,6 +13,10 @@ import { DaffLinkSetSubheadingDirective } from './link-set-subheading.directive'
 
 @Component({
   template: `<div daffLinkSetSubheading>Subheading</div>`,
+  standalone: true,
+  imports: [
+    DaffLinkSetSubheadingDirective,
+  ],
 })
 
 class WrapperComponent {}
@@ -24,8 +28,7 @@ describe('@daffodil/design/link-set | DaffLinkSetSubheadingDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffLinkSetSubheadingDirective,
+      imports: [
         WrapperComponent,
       ],
     })

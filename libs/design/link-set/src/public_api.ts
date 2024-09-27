@@ -5,3 +5,4 @@ export { DaffLinkSetModule } from './link-set.module';
 export { DaffLinkSetSubheadingDirective } from './link-set-subheading/link-set-subheading.directive';
 export { DaffLinkSetHeadingDirective } from './link-set-heading/link-set-heading.directive';
 export { DaffLinkSetItemComponent } from './link-set-item/link-set-item.component';
+export { DAFF_LINK_SET_COMPONENTS } from './link-set';

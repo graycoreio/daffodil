@@ -13,6 +13,10 @@ import { DaffLinkSetHeadingDirective } from './link-set-heading.directive';
 
 @Component({
   template: `<div daffLinkSetHeading>Heading</div>`,
+  standalone: true,
+  imports: [
+    DaffLinkSetHeadingDirective,
+  ],
 })
 
 class WrapperComponent {}
@@ -24,8 +28,7 @@ describe('@daffodil/design/link-set | DaffLinkSetHeadingDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffLinkSetHeadingDirective,
+      imports: [
         WrapperComponent,
       ],
     })
