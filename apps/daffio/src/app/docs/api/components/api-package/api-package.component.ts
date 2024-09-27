@@ -7,7 +7,7 @@ import {
 import { RouterLink } from '@angular/router';
 
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
-import { DaffArticleModule } from '@daffodil/design/article';
+import { DAFF_ARTICLE_COMPONENTS } from '@daffodil/design/article';
 
 import { DaffioApiPackageFilterPipe } from './not-packages.pipe';
 import { DaffioApiReference } from '../../models/api-reference';
@@ -25,7 +25,7 @@ import { DaffioApiListSectionComponent } from '../api-list-section/api-list-sect
   imports: [
     RouterLink,
     DaffioApiListSectionComponent,
-    DaffArticleModule,
+    DAFF_ARTICLE_COMPONENTS,
     DaffioApiPackageFilterPipe,
   ],
 })

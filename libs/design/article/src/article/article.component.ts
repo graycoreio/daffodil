@@ -14,6 +14,7 @@ import {
   styleUrls: ['./article.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class DaffArticleComponent {
 

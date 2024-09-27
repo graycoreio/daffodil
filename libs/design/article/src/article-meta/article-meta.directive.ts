@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffArticleMeta]',
+  standalone: true,
 })
 export class DaffArticleMetaDirective {
 

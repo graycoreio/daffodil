@@ -13,6 +13,10 @@ import { DaffArticleComponent } from './article.component';
 
 @Component ({
   template: `<daff-article></daff-article>`,
+  standalone: true,
+  imports: [
+    DaffArticleComponent,
+  ],
 })
 
 class WrapperComponent {}
@@ -25,8 +29,7 @@ describe('@daffodil/design/article | DaffArticleComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffArticleComponent,
+      imports: [
         WrapperComponent,
       ],
     })

@@ -47,4 +47,45 @@ These are styles for inline and multiline blocks of code.
 
 ## Encapsulation
 
-Articles also support other custom "non-native" components like [Accordions](../accordion/README.md), [Media Galleries](../media-gallery/README.md), and [Lists](../list/README.md). Unlike typical HTML (<p>, <ol>, <ul>, etc) content, these components must be style encaspulated to prevent article styles bleeding down from the article into their content. Many Daffodil components support this out of the box. If you have a custom component that you would like to place inside an article, you can use the `DaffArticleEncapsulatedDirective` on your component to prevent article styles bleeding into your component.
+Articles also support other custom "non-native" components like [accordions](../accordion/README.md), [media galleries](../media-gallery/README.md), and [lists](../list/README.md). Unlike typical HTML (<p>, <ol>, <ul>, etc) content, these components must be style encaspulated to prevent article styles bleeding down from the article into their content. Many Daffodil components support this out of the box. If you have a custom component that you would like to place inside an article, you can use the `DaffArticleEncapsulatedDirective` on your component to prevent article styles bleeding into your component.
+
+## Usage
+
+### Within a standalone component
+To use article in a standalone component, import it directly into your custom component:
+
+```ts
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  standalone: true,
+  imports: [
+    DAFF_ARTICLE_COMPONENTS,
+  ],
+})
+export class CustomComponent {}
+```
+
+### Within a module (deprecated)
+To use article in a module, import `DaffArticleModule` into your custom module:
+
+```ts
+import { NgModule } from '@angular/core';
+
+import { DaffArticleModule } from '@daffodil/design/article';
+
+@NgModule({
+	declarations: [
+    CustomComponent,
+  ],
+  exports: [
+    CustomComponent,
+  ],
+  imports: [
+    DaffArticleModule,
+  ],
+})
+export class CustomComponentModule { }
+```
+
+> This method is deprecated. It's recommended to update all custom components to standalone.
