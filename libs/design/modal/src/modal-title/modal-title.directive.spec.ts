@@ -15,6 +15,10 @@ import { DaffModalTitleDirective } from './modal-title.directive';
   template: `
     <h2 daffModalTitle>Lorem Ipsum</h2>
   `,
+  standalone: true,
+  imports: [
+    DaffModalTitleDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +29,7 @@ describe('@daffodil/design/modal | DaffModalTitleDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffModalTitleDirective,
+      imports: [
         WrapperComponent,
       ],
     })
@@ -44,12 +47,10 @@ describe('@daffodil/design/modal | DaffModalTitleDirective', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('[daffModalTitle]',() => {
-    it('should add a class of `daff-modal-title` to its host element', () => {
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-modal-title': true,
-      }));
-    });
+  it('should add a class of `daff-modal-title` to its host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-modal-title': true,
+    }));
   });
 
   it('should define its own id', () => {

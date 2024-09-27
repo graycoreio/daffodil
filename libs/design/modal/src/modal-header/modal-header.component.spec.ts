@@ -10,9 +10,17 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffModalHeaderComponent } from './modal-header.component';
+import { DaffModalService } from '../service/modal.service';
 
 @Component ({
   template: `<daff-modal-header [dismissible]="dismissible"></daff-modal-header>`,
+  standalone: true,
+  imports: [
+    DaffModalHeaderComponent,
+  ],
+  providers: [
+    DaffModalService,
+  ],
 })
 
 class WrapperComponent {
@@ -27,8 +35,7 @@ describe('@daffodil/design/modal | DaffModalHeaderComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffModalHeaderComponent,
+      imports: [
         WrapperComponent,
       ],
     })
@@ -58,6 +65,14 @@ describe('@daffodil/design/modal | DaffModalHeaderComponent', () => {
   describe('dismissible property', () => {
     it('should be set to true by default', () => {
       expect(component.dismissible).toBe(true);
+    });
+
+    it('should hide the close button if dismissible is false', () => {
+      wrapper.dismissible = false;
+      fixture.detectChanges();
+
+      expect(component.dismissible).toBe(false);
+      expect(fixture.debugElement.query(By.css('.daff-modal-header__dismiss-button'))).toBeFalsy();
     });
   });
 });

@@ -3,9 +3,11 @@ import {
   ConfigurableFocusTrap,
   ConfigurableFocusTrapFactory,
 } from '@angular/cdk/a11y';
+import { OverlayModule } from '@angular/cdk/overlay';
 import {
   CdkPortalOutlet,
   ComponentPortal,
+  PortalModule,
 } from '@angular/cdk/portal';
 import {
   Component,
@@ -41,6 +43,11 @@ import { DaffModalService } from '../service/modal.service';
   animations: [daffFadeAnimations.fade],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [
+    PortalModule,
+    OverlayModule,
+  ],
 })
 export class DaffModalComponent implements AfterContentInit, AfterViewInit, DaffOpenable {
   /**

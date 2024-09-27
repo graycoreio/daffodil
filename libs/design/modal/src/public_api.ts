@@ -7,3 +7,4 @@ export { DaffModalTitleDirective } from './modal-title/modal-title.directive';
 export { DaffModalContentComponent } from './modal-content/modal-content.component';
 export { DaffModalActionsComponent } from './modal-actions/modal-actions.component';
 export { DaffModalCloseDirective } from './modal-close/modal-close.directive';
+export { DAFF_MODAL_COMPONENTS } from './modal';

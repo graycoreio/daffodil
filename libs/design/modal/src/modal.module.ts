@@ -14,6 +14,9 @@ import { DaffModalHeaderComponent } from './modal-header/modal-header.component'
 import { DaffModalTitleDirective } from './modal-title/modal-title.directive';
 import { DaffModalService } from './service/modal.service';
 
+/**
+ * @deprecated in favor of {@link DAFF_MODAL_COMPONENTS}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -21,15 +24,15 @@ import { DaffModalService } from './service/modal.service';
     OverlayModule,
     DaffButtonModule,
     FontAwesomeModule,
-  ],
-  exports: [
+
+    DaffModalComponent,
     DaffModalHeaderComponent,
     DaffModalTitleDirective,
     DaffModalContentComponent,
     DaffModalActionsComponent,
     DaffModalCloseDirective,
   ],
-  declarations: [
+  exports: [
     DaffModalComponent,
     DaffModalHeaderComponent,
     DaffModalTitleDirective,

@@ -4,6 +4,47 @@ Modal is a dynamically rendered element that floats above the rest of a page's c
 ## Basic Modal
 <design-land-example-viewer-container example="basic-modal"></design-land-example-viewer-container>
 
+## Usage
+
+### Within a standalone component
+To use modal in a standalone component, import `DAFF_MODAL_COMPONENTS` directly into your custom component:
+
+```ts
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  standalone: true,
+  imports: [
+    DAFF_MODAL_COMPONENTS,
+  ],
+})
+export class CustomComponent {}
+```
+
+### Within a module (deprecated)
+To use modal in a module, import `DaffModalModule` into your custom module:
+
+```ts
+import { NgModule } from '@angular/core';
+
+import { DaffModalModule } from '@daffodil/design/modal';
+
+@NgModule({
+	declarations: [
+    CustomComponent,
+  ],
+  exports: [
+    CustomComponent,
+  ],
+  imports: [
+    DaffModalModule,
+  ],
+})
+export class CustomComponentModule { }
+```
+
+> This method is deprecated. It's recommended to update all custom components to standalone.
+
 ## Supported Content Types
 A modal includes minimally pre-styled components and directives to help structure the content in your modal.
 
