@@ -4,6 +4,47 @@ Hero is a top level container that is large and captivating. It should only be u
 ## Overview
 Heros are the first thing users see on a page and are designed to catch their attention. It's a flexible and extensible component that includes pre-styled content containers.
 
+## Usage
+
+### Within a standalone component
+To use hero in a standalone component, import it directly into your custom component:
+
+```ts
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  standalone: true,
+  imports: [
+    DAFF_HERO_COMPONENTS,
+  ],
+})
+export class CustomComponent {}
+```
+
+### Within a module (deprecated)
+To use hero in a module, import `DaffHeroModule` into your custom module:
+
+```ts
+import { NgModule } from '@angular/core';
+
+import { DaffHeroModule } from '@daffodil/design/hero';
+
+@NgModule({
+	declarations: [
+    CustomComponent,
+  ],
+  exports: [
+    CustomComponent,
+  ],
+  imports: [
+    DaffHeroModule,
+  ],
+})
+export class CustomComponentModule { }
+```
+
+> This method is deprecated. It's recommended to update all custom components to standalone.
+
 ## Supported Content Types
 A `daff-hero` supports transclusion of any content and includes stylized `icon`, `tagline`, `title`, `subtitle`, and `body` content containers.
 

@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffHeroBody]',
+  standalone: true,
 })
 
 export class DaffHeroBodyDirective {

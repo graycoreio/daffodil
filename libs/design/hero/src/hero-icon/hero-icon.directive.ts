@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffHeroIcon]',
+  standalone: true,
 })
 
 export class DaffHeroIconDirective {

@@ -13,6 +13,10 @@ import { DaffHeroIconDirective } from './hero-icon.directive';
 
 @Component({
   template: `<div daffHeroIcon>Hero Icon</div>`,
+  standalone: true,
+  imports: [
+    DaffHeroIconDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -23,8 +27,7 @@ describe('@daffodil/design/hero | DaffHeroIconDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffHeroIconDirective,
+      imports: [
         WrapperComponent,
       ],
     })

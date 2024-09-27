@@ -13,6 +13,10 @@ import { DaffHeroBodyDirective } from './hero-body.directive';
 
 @Component({
   template: `<h1 daffHeroBody>Hero Body</h1>`,
+  standalone: true,
+  imports: [
+    DaffHeroBodyDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -23,8 +27,7 @@ describe('@daffodil/design/hero | DaffHeroBodyDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffHeroBodyDirective,
+      imports: [
         WrapperComponent,
       ],
     })

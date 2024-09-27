@@ -15,14 +15,12 @@ import {
   DaffTextAlignableDirective,
 } from '@daffodil/design';
 
-/**
- * @inheritdoc
- */
 @Component({
   selector: 'daff-hero',
   template: '<ng-content></ng-content>',
   styleUrls: ['./hero.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [
     { directive: DaffArticleEncapsulatedDirective },
     { directive: DaffManageContainerLayoutDirective },
@@ -39,7 +37,7 @@ import {
       inputs: ['color'],
     },
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class DaffHeroComponent {
   constructor(private textAlignable: DaffTextAlignableDirective) {

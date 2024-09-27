@@ -8,11 +8,12 @@ import { DaffHeroSubtitleDirective } from './hero-subtitle/hero-subtitle.directi
 import { DaffHeroTaglineDirective } from './hero-tagline/hero-tagline.directive';
 import { DaffHeroTitleDirective } from './hero-title/hero-title.directive';
 
+/**
+ * @deprecated in favor of {@link DAFF_HERO_COMPONENTS}
+ * */
 @NgModule({
   imports: [
     CommonModule,
-  ],
-  declarations: [
     DaffHeroComponent,
     DaffHeroIconDirective,
     DaffHeroTaglineDirective,

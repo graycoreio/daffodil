@@ -2,11 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -16,8 +16,8 @@ import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffHeroModule,
     FaIconComponent,
+    DAFF_HERO_COMPONENTS,
     DAFF_BUTTON_COMPONENTS,
   ],
 })

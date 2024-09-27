@@ -15,6 +15,10 @@ import { DaffHeroTitleDirective } from './hero-title.directive';
   template: `
     <h1 daffHeroTitle>Lorem Ipsum</h1>
   `,
+  standalone: true,
+  imports: [
+    DaffHeroTitleDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +29,7 @@ describe('@daffodil/design/hero | DaffHeroTitleDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffHeroTitleDirective,
+      imports: [
         WrapperComponent,
       ],
     })

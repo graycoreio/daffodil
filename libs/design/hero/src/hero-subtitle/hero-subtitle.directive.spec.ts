@@ -15,6 +15,10 @@ import { DaffHeroSubtitleDirective } from './hero-subtitle.directive';
   template: `
     <h1 daffHeroSubtitle>Lorem Ipsum</h1>
   `,
+  standalone: true,
+  imports: [
+    DaffHeroSubtitleDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +29,7 @@ describe('@daffodil/design/hero | DaffHeroSubtitleDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffHeroSubtitleDirective,
+      imports: [
         WrapperComponent,
       ],
     })

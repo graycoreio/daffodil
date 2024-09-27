@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffHeroSubtitle]',
+  standalone: true,
 })
 
 export class DaffHeroSubtitleDirective {

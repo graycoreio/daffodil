@@ -11,7 +11,7 @@ import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffPalette } from '@daffodil/design';
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
-import { DaffHeroModule } from '@daffodil/design/hero';
+import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -21,7 +21,7 @@ import { DaffHeroModule } from '@daffodil/design/hero';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffHeroModule,
+    DAFF_HERO_COMPONENTS,
     FaIconComponent,
     DAFF_BUTTON_COMPONENTS,
     ReactiveFormsModule,

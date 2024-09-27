@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffHeroTagline]',
+  standalone: true,
 })
 
 export class DaffHeroTaglineDirective {

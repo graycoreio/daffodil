@@ -18,6 +18,10 @@ import { DaffHeroComponent } from './hero.component';
 
 @Component({
   template: `<daff-hero [color]="color" [textAlignment]="textAlignment" [compact]="compact"></daff-hero>`,
+  standalone: true,
+  imports: [
+    DaffHeroComponent,
+  ],
 })
 class WrapperComponent {
   color: DaffPalette;
@@ -33,8 +37,7 @@ describe('@daffodil/design/hero | DaffHeroComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
+      imports: [
         DaffHeroComponent,
       ],
     })
