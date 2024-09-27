@@ -7,6 +7,47 @@ Notifications are used to display short messages that provide context in close p
 ### Default Notification
 <design-land-example-viewer-container example="default-notification"></design-land-example-viewer-container>
 
+## Usage
+
+### Within a standalone component
+To use notification in a standalone component, import `DAFF_NOTIFICATION_COMPONENTS` directly into your custom component:
+
+```ts
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  standalone: true,
+  imports: [
+    DAFF_NOTIFICATION_COMPONENTS,
+  ],
+})
+export class CustomComponent {}
+```
+
+### Within a module (deprecated)
+To use notification in a module, import `DaffNotificationModule` into your custom module:
+
+```ts
+import { NgModule } from '@angular/core';
+
+import { DaffNotificationModule } from '@daffodil/design/notification';
+
+@NgModule({
+	declarations: [
+    CustomComponent,
+  ],
+  exports: [
+    CustomComponent,
+  ],
+  imports: [
+    DaffNotificationModule,
+  ],
+})
+export class CustomComponentModule { }
+```
+
+> This method is deprecated. It's recommended to update all custom components to standalone.
+
 ## Supported Content Types
 
 ### Icon

@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffNotificationMessage]',
+  standalone: true,
 })
 
 export class DaffNotificationMessageDirective {

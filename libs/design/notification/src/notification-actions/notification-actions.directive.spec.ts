@@ -15,6 +15,10 @@ import { DaffNotificationActionsDirective } from './notification-actions.directi
   template: `
     <h3 daffNotificationActions>Lorem Ipsum</h3>
   `,
+  standalone: true,
+  imports: [
+    DaffNotificationActionsDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +29,7 @@ describe('@daffodil/design/notification | DaffNotificationActionsDirective', () 
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffNotificationActionsDirective,
+      imports: [
         WrapperComponent,
       ],
     })

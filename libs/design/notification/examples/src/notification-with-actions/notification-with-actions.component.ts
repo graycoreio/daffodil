@@ -6,7 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
-import { DaffNotificationModule } from '@daffodil/design/notification';
+import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -23,7 +23,7 @@ import { DaffNotificationModule } from '@daffodil/design/notification';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffNotificationModule,
+    DAFF_NOTIFICATION_COMPONENTS,
     FontAwesomeModule,
     DAFF_BUTTON_COMPONENTS,
   ],

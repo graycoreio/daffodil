@@ -10,14 +10,14 @@ import { DaffNotificationMessageDirective } from './notification-message/notific
 import { DaffNotificationSubtitleDirective } from './notification-subtitle/notification-subtitle.directive';
 import { DaffNotificationTitleDirective } from './notification-title/notification-title.directive';
 
-
+/**
+ * @deprecated in favor of {@link DAFF_NOTIFICATION_COMPONENTS}
+ */
 @NgModule({
   imports: [
     CommonModule,
     DaffPrefixSuffixModule,
     FontAwesomeModule,
-  ],
-  declarations: [
     DaffNotificationComponent,
     DaffNotificationActionsDirective,
     DaffNotificationMessageDirective,

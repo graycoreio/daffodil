@@ -25,6 +25,10 @@ import {
       (closeNotification)="closeNotificationFunction()">
     </daff-notification>
   `,
+  standalone: true,
+  imports: [
+    DaffNotificationComponent,
+  ],
 })
 
 class WrapperComponent {
@@ -42,8 +46,7 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffNotificationComponent,
+      imports: [
         WrapperComponent,
       ],
     })

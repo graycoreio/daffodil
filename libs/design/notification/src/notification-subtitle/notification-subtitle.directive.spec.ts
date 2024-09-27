@@ -15,6 +15,10 @@ import { DaffNotificationSubtitleDirective } from './notification-subtitle.direc
   template: `
     <h3 daffNotificationSubtitle>Subtitle</h3>
   `,
+  standalone: true,
+  imports: [
+    DaffNotificationSubtitleDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +29,7 @@ describe('@daffodil/design/notification | DaffNotificationSubtitleDirective', ()
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffNotificationSubtitleDirective,
+      imports: [
         WrapperComponent,
       ],
     })

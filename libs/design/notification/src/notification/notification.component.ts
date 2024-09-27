@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import {
   Component,
   Input,
@@ -10,12 +11,14 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import {
   DaffArticleEncapsulatedDirective,
   DaffPrefixable,
   DaffPrefixDirective,
+  DaffPrefixSuffixModule,
   DaffStatusableDirective,
   DaffStatusEnum,
 } from '@daffodil/design';
@@ -46,6 +49,12 @@ enum DaffNotificationOrientationEnum {
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    NgIf,
+    FaIconComponent,
+    DaffPrefixSuffixModule,
+  ],
 })
 export class DaffNotificationComponent implements DaffPrefixable {
   faTimes = faTimes;
