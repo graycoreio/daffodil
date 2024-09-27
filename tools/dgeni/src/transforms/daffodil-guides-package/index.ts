@@ -27,6 +27,7 @@ import { IdSanitizer } from '../../services/id-sanitizer';
 import { outputPathsConfigurator } from '../../utils/configurator/output';
 import { pathsConfigurator } from '../../utils/configurator/path';
 import { generateNavigationTrieFromDocuments } from '../../utils/navigation-trie';
+import { sortTrie } from '../../utils/trie-sort';
 import {
   API_SOURCE_PATH,
   DESIGN_PATH,
@@ -139,15 +140,20 @@ export const designDocsPackage = new Package('design-docs', [design])
     ];
   })
   .config((generateNavList: GenerateNavListProcessor) => {
-    generateNavList.transform = (docs) => generateNavigationTrieFromDocuments([
+    generateNavList.transform = (docs) => sortTrie(
+      generateNavigationTrieFromDocuments([
+        {
+          id: 'components',
+          title: 'Components',
+          path: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT]}`,
+          tableOfContents: '',
+        },
+        ...docs.map(transformDesignGuideDoc),
+      ]),
       {
-        id: 'components',
-        title: 'Components',
-        path: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT]}`,
-        tableOfContents: '',
+        '': ['overview', 'whats-new', 'getting-started', 'foundations', 'components'],
       },
-      ...docs.map(transformDesignGuideDoc),
-    ]);
+    );
   });
 
 export const designExplanationsPackage = pathsConfigurator({
