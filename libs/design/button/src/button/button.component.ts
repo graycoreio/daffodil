@@ -21,6 +21,7 @@ import {
   DaffColorableDirective,
   DaffPrefixSuffixModule,
 } from '@daffodil/design';
+import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 import { DaffButtonSizableDirective } from './button-sizable.directive';
 
@@ -99,6 +100,7 @@ enum DaffButtonTypeEnum {
   imports: [
     NgIf,
     DaffPrefixSuffixModule,
+    DAFF_LOADING_ICON_COMPONENTS,
   ],
 })
 export class DaffButtonComponent

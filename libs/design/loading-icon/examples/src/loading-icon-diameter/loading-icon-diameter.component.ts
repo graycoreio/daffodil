@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
+import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -11,6 +11,8 @@ import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
   templateUrl: './loading-icon-diameter.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffLoadingIconModule],
+  imports: [
+    DAFF_LOADING_ICON_COMPONENTS,
+  ],
 })
 export class LoadingIconDiameterComponent { }

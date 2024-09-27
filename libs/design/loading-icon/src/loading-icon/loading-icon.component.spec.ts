@@ -13,7 +13,13 @@ import { DaffPalette } from '@daffodil/design';
 
 import { DaffLoadingIconComponent } from './loading-icon.component';
 
-@Component({ template: '<daff-loading-icon [color]="color" [diameter]="diameter"></daff-loading-icon>' })
+@Component({
+  template: '<daff-loading-icon [color]="color" [diameter]="diameter"></daff-loading-icon>',
+  standalone: true,
+  imports: [
+    DaffLoadingIconComponent,
+  ],
+})
 class WrapperComponent {
   color: DaffPalette;
   diameter = 60;
@@ -27,9 +33,8 @@ describe('@daffodil/design/loading-icon | DaffLoadingIconComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         WrapperComponent,
-        DaffLoadingIconComponent,
       ],
     })
       .compileComponents();

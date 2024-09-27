@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
+import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -22,7 +22,7 @@ import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffLoadingIconModule,
+    DAFF_LOADING_ICON_COMPONENTS,
     ReactiveFormsModule,
     NgFor,
   ],

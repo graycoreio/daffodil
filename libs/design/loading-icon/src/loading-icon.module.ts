@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { DaffLoadingIconComponent } from './loading-icon/loading-icon.component';
 
+/**
+ * @deprecated in favor of {@link DAFF_LOADING_ICON_COMPONENTS}
+ */
 @NgModule({
   imports: [
     CommonModule,
-  ],
-  declarations: [
     DaffLoadingIconComponent,
   ],
   exports: [
