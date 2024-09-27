@@ -15,6 +15,10 @@ import { DaffContainerComponent } from './container.component';
 
 @Component({
   template: `<daff-container [size]="size"></daff-container>`,
+  standalone: true,
+  imports: [
+    DaffContainerComponent,
+  ],
 })
 class WrapperComponent {
   size: DaffSizeAllType;
@@ -28,9 +32,8 @@ describe('@daffodil/design/container | DaffContainerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         WrapperComponent,
-        DaffContainerComponent,
       ],
     })
       .compileComponents();

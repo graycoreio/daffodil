@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { DaffContainerModule } from '@daffodil/design/container';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -17,7 +17,7 @@ import { DaffContainerModule } from '@daffodil/design/container';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffContainerModule,
+    DAFF_CONTAINER_COMPONENTS,
     ReactiveFormsModule,
     NgFor,
   ],

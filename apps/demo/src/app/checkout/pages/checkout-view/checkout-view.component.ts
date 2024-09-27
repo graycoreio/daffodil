@@ -18,7 +18,7 @@ import {
 } from '@daffodil/cart';
 import { DaffCartFacade } from '@daffodil/cart/state';
 import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
-import { DaffContainerModule } from '@daffodil/design/container';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffPersonalAddress } from '@daffodil/geography';
 
@@ -51,7 +51,7 @@ import {
   imports: [
     CommonModule,
     LetDirective,
-    DaffContainerModule,
+    DAFF_CONTAINER_COMPONENTS,
     DaffLoadingIconModule,
     DAFF_ACCORDION_COMPONENTS,
 

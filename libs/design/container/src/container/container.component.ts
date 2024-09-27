@@ -20,6 +20,7 @@ import { DaffSizableDirective } from '@daffodil/design';
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class DaffContainerComponent {
   /**

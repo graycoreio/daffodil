@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { DaffContainerComponent } from './container/container.component';
 
+/**
+ * @deprecated in favor of {@link DAFF_CONTAINER_COMPONENTS}
+ */
 @NgModule({
   imports: [
     CommonModule,
-  ],
-  declarations: [
     DaffContainerComponent,
   ],
   exports: [

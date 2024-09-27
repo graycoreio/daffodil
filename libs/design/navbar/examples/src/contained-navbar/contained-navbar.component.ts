@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
-import { DaffContainerModule } from '@daffodil/design/container';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 import { DaffNavbarModule } from '@daffodil/design/navbar';
 
 @Component({
@@ -16,7 +16,7 @@ import { DaffNavbarModule } from '@daffodil/design/navbar';
   standalone: true,
   imports: [
     DaffNavbarModule,
-    DaffContainerModule,
+    DAFF_CONTAINER_COMPONENTS,
     DAFF_BUTTON_COMPONENTS,
   ],
 })
