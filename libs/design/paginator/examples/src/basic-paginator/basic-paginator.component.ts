@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffPaginatorModule } from '@daffodil/design/paginator';
+import { DAFF_PAGINATOR_COMPONENTS } from '@daffodil/design/paginator';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -12,7 +12,7 @@ import { DaffPaginatorModule } from '@daffodil/design/paginator';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffPaginatorModule,
+    DAFF_PAGINATOR_COMPONENTS,
   ],
 })
 export class BasicPaginatorComponent {

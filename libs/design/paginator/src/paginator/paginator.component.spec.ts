@@ -11,7 +11,10 @@ import {
   tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import {
+  ActivatedRoute,
+  RouterModule,
+} from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffPaginatorComponent } from './paginator.component';
@@ -24,16 +27,21 @@ import {
 @Component({ template: '' })
 class TestComponent {}
 
-@Component({ template: `
-  <daff-paginator
-    aria-label="id"
-    [numberOfPages]="numberOfPagesValue"
-    [currentPage]="currentPageValue"
-    [linkMode]="linkModeValue"
-    [url]="urlValue"
-    [queryParam]="queryParamValue"
-  ></daff-paginator>
-` })
+@Component({
+  template: `
+    <daff-paginator
+      aria-label="id"
+      [numberOfPages]="numberOfPagesValue"
+      [currentPage]="currentPageValue"
+      [linkMode]="linkModeValue"
+      [url]="urlValue"
+      [queryParam]="queryParamValue">
+    </daff-paginator>`,
+  standalone: true,
+  imports: [
+    DaffPaginatorComponent,
+  ],
+})
 
 class WrapperComponent {
   numberOfPagesValue = 20;
@@ -55,8 +63,8 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffPaginatorModule,
-        RouterTestingModule.withRoutes([
+        WrapperComponent,
+        RouterModule.forRoot([
           {
             path: '',
             component: TestComponent,
@@ -66,9 +74,6 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
             component: TestComponent,
           },
         ]),
-      ],
-      declarations: [
-        WrapperComponent,
       ],
     })
       .compileComponents();

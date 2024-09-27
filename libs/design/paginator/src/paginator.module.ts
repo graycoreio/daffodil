@@ -5,13 +5,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffPaginatorComponent } from './paginator/paginator.component';
 
+/**
+ * @deprecated in favor of {@link DAFF_PAGINATOR_COMPONENTS}
+ */
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     FontAwesomeModule,
-  ],
-  declarations: [
     DaffPaginatorComponent,
   ],
   exports: [

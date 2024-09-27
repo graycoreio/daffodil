@@ -1,4 +1,8 @@
 import {
+  NgFor,
+  NgIf,
+} from '@angular/common';
+import {
   Component,
   Input,
   Output,
@@ -8,7 +12,11 @@ import {
   OnChanges,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { Params } from '@angular/router';
+import {
+  Params,
+  RouterModule,
+} from '@angular/router';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   faChevronRight,
   faChevronLeft,
@@ -21,14 +29,18 @@ import {
 
 const visiblePageRange = 2;
 
-/**
- * @inheritdoc
- */
 @Component({
   selector: 'daff-paginator',
   styleUrls: ['./paginator.component.scss'],
   templateUrl: './paginator.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    FaIconComponent,
+    RouterModule,
+    NgIf,
+    NgFor,
+  ],
 })
 export class DaffPaginatorComponent implements OnChanges {
 
