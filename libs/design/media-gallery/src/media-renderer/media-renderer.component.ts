@@ -25,6 +25,7 @@ import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
   selector: 'daff-media-renderer',
   template: '<ng-template></ng-template>',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class DaffMediaRendererComponent implements OnInit, OnDestroy {
 

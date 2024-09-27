@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
-import { DaffMediaGalleryModule } from '@daffodil/design/media-gallery';
+import { DAFF_MEDIA_GALLERY_COMPONENTS } from '@daffodil/design/media-gallery';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -13,7 +13,7 @@ import { DaffMediaGalleryModule } from '@daffodil/design/media-gallery';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffMediaGalleryModule,
+    DAFF_MEDIA_GALLERY_COMPONENTS,
     DAFF_IMAGE_COMPONENTS,
   ],
 })

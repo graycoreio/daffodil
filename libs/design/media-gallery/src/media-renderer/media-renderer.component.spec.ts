@@ -57,10 +57,12 @@ describe('@daffodil/design/media-gallery | DaffMediaRendererComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [
-        DaffMediaRendererComponent,
-        DaffArticleComponent,
         DaffMockThumbnail1Component,
         DaffMockThumbnail2Component,
+      ],
+      imports: [
+        DaffArticleComponent,
+        DaffMediaRendererComponent,
       ],
       providers: [
         {

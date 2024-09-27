@@ -23,6 +23,7 @@ import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
  */
 @Directive({
   selector: '[daffThumbnail]',
+  standalone: true,
 })
 export class DaffThumbnailDirective implements OnInit, OnDestroy, DaffThumbnailRegistration {
 

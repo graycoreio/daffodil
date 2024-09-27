@@ -15,9 +15,16 @@ import { daffThumbnailCompatToken } from '../thumbnail/thumbnail-compat.token';
 import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 
 @Component({
-  template: `<daff-media-gallery [name]="nameValue" [skeleton]="skeleton">
-		<div daffThumbnail></div>
-	</daff-media-gallery>`,
+  template: `
+    <daff-media-gallery [name]="nameValue" [skeleton]="skeleton">
+      <div daffThumbnail></div>
+    </daff-media-gallery>
+  `,
+  standalone: true,
+  imports: [
+    DaffMediaGalleryComponent,
+    DaffThumbnailDirective,
+  ],
 })
 class WrapperComponent {
   nameValue: string;
@@ -41,10 +48,10 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        WrapperComponent,
         MockMediaRendererComponent,
-        DaffMediaGalleryComponent,
-        DaffThumbnailDirective,
+      ],
+      imports: [
+        WrapperComponent,
       ],
       providers: [
         { provide: daffThumbnailCompatToken, useValue: DaffThumbnailDirective },
@@ -95,6 +102,11 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
 
 @Component({
   template: '<daff-media-gallery></daff-media-gallery>',
+  standalone: true,
+  imports: [
+    DaffMediaGalleryComponent,
+    DaffThumbnailDirective,
+  ],
 })
 class DefaultWrapperComponent {}
 
@@ -107,9 +119,9 @@ describe('DaffMediaGalleryComponent - default', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffMediaGalleryComponent,
         MockMediaRendererComponent,
-        DaffThumbnailDirective,
+      ],
+      imports: [
         DefaultWrapperComponent,
       ],
     }).compileComponents();

@@ -5,18 +5,19 @@ import { DaffMediaGalleryComponent } from './media-gallery/media-gallery.compone
 import { DaffMediaRendererComponent } from './media-renderer/media-renderer.component';
 import { DaffThumbnailDirective } from './thumbnail/thumbnail.directive';
 
+/**
+ * @deprecated in favor of {@link DAFF_MEDIA_GALLERY_COMPONENTS}
+ */
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
     DaffMediaGalleryComponent,
     DaffThumbnailDirective,
     DaffMediaRendererComponent,
   ],
-  imports: [
-    CommonModule,
-  ],
   exports: [
-    DaffThumbnailDirective,
     DaffMediaGalleryComponent,
+    DaffThumbnailDirective,
   ],
 })
 export class DaffMediaGalleryModule {}

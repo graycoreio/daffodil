@@ -1,6 +1,47 @@
 # Media Gallery
 `<daff-media-gallery>` is used to display a group of `[daffThumbnail]`s in a gallery format. Media galleries are useful to showcase multiple images related to a single product or topic.
 
+## Usage
+
+### Within a standalone component
+To use media gallery in a standalone component, import it directly into your custom component:
+
+```ts
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  standalone: true,
+  imports: [
+    DAFF_MEDIA_GALLERY_COMPONENTS,
+  ],
+})
+export class CustomComponent {}
+```
+
+### Within a module (deprecated)
+To use media gallery in a module, import `DaffMediaGalleryModule` into your custom module:
+
+```ts
+import { NgModule } from '@angular/core';
+
+import { DaffMediaGalleryModule } from '@daffodil/design/media-gallery';
+
+@NgModule({
+	declarations: [
+    CustomComponent,
+  ],
+  exports: [
+    CustomComponent,
+  ],
+  imports: [
+    DaffMediaGalleryModule,
+  ],
+})
+export class CustomComponentModule { }
+```
+
+> This method is deprecated. It's recommended to update all custom components to standalone.
+
 ## Thumbnail
 `[daffThumbnail]` should be used as a directive with `<daff-image>`. [View Image Documentation](/libs/design/src/atoms/image/README.md)
 

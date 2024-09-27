@@ -14,7 +14,9 @@ import {
 
 import { DaffMediaGalleryRegistration } from '../helpers/media-gallery-registration.interface';
 import { DAFF_MEDIA_GALLERY_TOKEN } from '../helpers/media-gallery-token';
+import { DaffMediaRendererComponent } from '../media-renderer/media-renderer.component';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
+import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 
 let uniqueGalleryId = 0;
 
@@ -27,15 +29,17 @@ let uniqueGalleryId = 0;
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     { provide: DAFF_MEDIA_GALLERY_TOKEN, useExisting: DaffMediaGalleryComponent },
   ],
-  // todo(damienwebdev): remove once decorators hit stage 3 - https://github.com/microsoft/TypeScript/issues/7342
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['skeleton'],
   hostDirectives: [
     { directive: DaffArticleEncapsulatedDirective },
     {
       directive: DaffSkeletonableDirective,
       inputs: ['skeleton'],
     },
+  ],
+  standalone: true,
+  imports: [
+    DaffMediaRendererComponent,
+    DaffThumbnailDirective,
   ],
 })
 export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, OnInit, OnDestroy {

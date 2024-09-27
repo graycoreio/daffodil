@@ -12,20 +12,30 @@ import { By } from '@angular/platform-browser';
 import { daffThumbnailCompatToken } from './thumbnail-compat.token';
 import { DaffThumbnailDirective } from './thumbnail.directive';
 import { DaffMediaGalleryComponent } from '../media-gallery/media-gallery.component';
+import { DaffMediaRendererComponent } from '../media-renderer/media-renderer.component';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
-
-@Component({
-  template: `<daff-media-gallery><div daffThumbnail (becameSelected)="becameSelectedFunction()"></div></daff-media-gallery>`,
-})
-class WrapperComponent {
-  becameSelectedFunction() {};
-}
 
 @Component({
   template: '',
   selector: 'daff-media-renderer',
+  standalone: true,
 })
 class MockMediaRendererComponent {}
+
+@Component({
+  template: `
+    <daff-media-gallery>
+      <div daffThumbnail (becameSelected)="becameSelectedFunction()"></div>
+    </daff-media-gallery>`,
+  standalone: true,
+  imports: [
+    DaffMediaGalleryComponent,
+    DaffThumbnailDirective,
+  ],
+})
+class WrapperComponent {
+  becameSelectedFunction() {};
+}
 
 describe('@daffodil/design/media-gallery | DaffThumbnailDirective', () => {
   let wrapper: WrapperComponent;
@@ -36,11 +46,9 @@ describe('@daffodil/design/media-gallery | DaffThumbnailDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffThumbnailDirective,
-        DaffMediaGalleryComponent,
-        WrapperComponent,
+      imports: [
         MockMediaRendererComponent,
+        WrapperComponent,
       ],
       providers: [
         {
@@ -49,6 +57,9 @@ describe('@daffodil/design/media-gallery | DaffThumbnailDirective', () => {
         },
         { provide: daffThumbnailCompatToken, useValue: DaffThumbnailDirective },
       ],
+    }).overrideComponent(DaffMediaGalleryComponent, {
+      add: { imports: [ MockMediaRendererComponent ]},
+      remove: { imports: [ DaffMediaRendererComponent ]},
     })
       .compileComponents();
   }));
