@@ -48,6 +48,7 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
     directive: DaffSkeletonableDirective,
     inputs: ['skeleton'],
   }],
+  standalone: true,
 })
 export class DaffImageComponent implements OnInit {
 

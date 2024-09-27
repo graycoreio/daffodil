@@ -23,8 +23,10 @@ describe('DaffImageComponent | Props Validation', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         DaffImageComponent,
+      ],
+      declarations: [
         WrapperComponent,
       ],
     })

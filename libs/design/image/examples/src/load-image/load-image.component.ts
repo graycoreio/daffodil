@@ -4,7 +4,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffImageModule } from '@daffodil/design/image';
+import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -12,7 +12,10 @@ import { DaffImageModule } from '@daffodil/design/image';
   templateUrl: './load-image.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffImageModule, NgIf],
+  imports: [
+    DAFF_IMAGE_COMPONENTS,
+    NgIf,
+  ],
 })
 export class LoadImageComponent {
   loaded = false;

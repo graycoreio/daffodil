@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { DaffImageComponent } from './image/image.component';
 
+/**
+ * @deprecated in favor of {@link DAFF_IMAGE_COMPONENTS}
+ * */
 @NgModule({
-  declarations: [
-    DaffImageComponent,
-  ],
   imports: [
     CommonModule,
+    DaffImageComponent,
   ],
   exports: [
     DaffImageComponent,

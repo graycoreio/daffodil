@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffImageModule } from '@daffodil/design/image';
+import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
 import { DaffMediaGalleryModule } from '@daffodil/design/media-gallery';
 
 @Component({
@@ -12,7 +12,7 @@ import { DaffMediaGalleryModule } from '@daffodil/design/media-gallery';
   templateUrl: './basic-media-gallery.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffMediaGalleryModule, DaffImageModule],
+  imports: [DaffMediaGalleryModule, DAFF_IMAGE_COMPONENTS],
 })
 export class BasicMediaGalleryComponent {
 

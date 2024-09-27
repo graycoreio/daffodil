@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffImageModule } from '@daffodil/design/image';
+import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -11,7 +11,9 @@ import { DaffImageModule } from '@daffodil/design/image';
   templateUrl: './basic-image.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffImageModule],
+  imports: [
+    DAFF_IMAGE_COMPONENTS,
+  ],
 })
 export class BasicImageComponent {
 
