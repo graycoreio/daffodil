@@ -9,13 +9,13 @@ import {
   EventEmitter,
   Inject,
   Injectable,
+  Injector,
   OnDestroy,
   Optional,
   SkipSelf,
 } from '@angular/core';
 import {
   EMPTY,
-  interval,
   merge,
   of,
   Subscription,
@@ -49,9 +49,8 @@ import {
   DaffToastConfiguration,
 } from '../toast/toast-config';
 import { DaffToastTemplateComponent } from '../toast/toast-template.component';
-import { DaffToastModule } from '../toast.module';
 
-@Injectable({ providedIn: DaffToastModule })
+@Injectable()
 export class DaffToastService implements OnDestroy {
 
   private _sub: Subscription;
@@ -69,6 +68,7 @@ export class DaffToastService implements OnDestroy {
     private mediaQuery: BreakpointObserver,
     private toastPosition: DaffToastPositionService,
     private focusStack: DaffFocusStackService,
+    private injector: Injector,
   ) {
     this._sub = this.mediaQuery.observe(DaffBreakpoints.MOBILE).pipe(
       filter(() => this._overlayRef !== undefined),
@@ -84,7 +84,7 @@ export class DaffToastService implements OnDestroy {
   private _attachToastTemplate(
     overlayRef: OverlayRef,
   ): ComponentRef<DaffToastTemplateComponent> {
-    const template = overlayRef.attach(new ComponentPortal(DaffToastTemplateComponent));
+    const template = overlayRef.attach(new ComponentPortal(DaffToastTemplateComponent, null, this.injector));
     return template;
   }
 

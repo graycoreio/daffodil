@@ -15,6 +15,10 @@ import { DaffToastActionsDirective } from './toast-actions.directive';
   template: `
     <div daffToastActions><button>Click me!</button></div>
   `,
+  standalone: true,
+  imports: [
+    DaffToastActionsDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +29,7 @@ describe('DaffToastActionsDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffToastActionsDirective,
+      imports: [
         WrapperComponent,
       ],
     })

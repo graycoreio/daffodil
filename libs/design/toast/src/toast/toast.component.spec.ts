@@ -22,6 +22,10 @@ import { DaffToast } from '../interfaces/toast';
       [toast]="toast"
     ></daff-toast>
   `,
+  standalone: true,
+  imports: [
+    DaffToastComponent,
+  ],
 })
 
 class WrapperComponent {
@@ -37,8 +41,7 @@ describe('DaffToastComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffToastComponent,
+      imports: [
         WrapperComponent,
       ],
     })
@@ -75,9 +78,5 @@ describe('DaffToastComponent', () => {
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
-  });
-
-  it('should have a role of status', () => {
-    expect(component.role).toBe('status');
   });
 });

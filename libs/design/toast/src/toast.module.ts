@@ -8,13 +8,14 @@ import { DaffPrefixSuffixModule } from '@daffodil/design';
 import { DaffButtonModule } from '@daffodil/design/button';
 
 import { DaffToastPositionService } from './service/position.service';
-import { DaffToastTemplateComponent } from './toast/toast-template.component';
 import { DaffToastComponent } from './toast/toast.component';
 import { DaffToastActionsDirective } from './toast-actions/toast-actions.directive';
 import { DaffToastMessageDirective } from './toast-message/toast-message.directive';
 import { DaffToastTitleDirective } from './toast-title/toast-title.directive';
 
-
+/**
+ * @deprecated in favor of {@link daffProvideToast}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -23,13 +24,10 @@ import { DaffToastTitleDirective } from './toast-title/toast-title.directive';
     FontAwesomeModule,
     PortalModule,
     OverlayModule,
-  ],
-  declarations: [
     DaffToastComponent,
     DaffToastActionsDirective,
     DaffToastTitleDirective,
     DaffToastMessageDirective,
-    DaffToastTemplateComponent,
   ],
   exports: [
     DaffToastComponent,
