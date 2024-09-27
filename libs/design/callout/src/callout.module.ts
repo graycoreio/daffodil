@@ -8,11 +8,10 @@ import { DaffCalloutSubtitleDirective } from './callout-subtitle/callout-subtitl
 import { DaffCalloutTaglineDirective } from './callout-tagline/callout-tagline.directive';
 import { DaffCalloutTitleDirective } from './callout-title/callout-title.directive';
 
+/** @deprecated in favor of {@link DAFF_CALLOUT_COMPONENTS} */
 @NgModule({
   imports: [
     CommonModule,
-  ],
-  declarations: [
     DaffCalloutComponent,
     DaffCalloutIconDirective,
     DaffCalloutTitleDirective,

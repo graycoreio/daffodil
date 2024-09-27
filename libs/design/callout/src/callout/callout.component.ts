@@ -40,6 +40,7 @@ import {
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class DaffCalloutComponent {
   constructor(private textAlignable: DaffTextAlignableDirective) {

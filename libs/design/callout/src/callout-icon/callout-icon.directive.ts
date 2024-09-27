@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffCalloutIcon]',
+  standalone: true,
 })
 
 export class DaffCalloutIconDirective {

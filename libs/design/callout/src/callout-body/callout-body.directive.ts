@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffCalloutBody]',
+  standalone: true,
 })
 
 export class DaffCalloutBodyDirective {

@@ -15,6 +15,10 @@ import { DaffCalloutBodyDirective } from './callout-body.directive';
   template: `
     <h3 daffCalloutBody>Lorem Ipsum</h3>
   `,
+  standalone: true,
+  imports: [
+    DaffCalloutBodyDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +29,7 @@ describe('@daffodil/design/callout | DaffCalloutBodyDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffCalloutBodyDirective,
+      imports: [
         WrapperComponent,
       ],
     })

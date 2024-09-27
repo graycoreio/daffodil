@@ -15,6 +15,10 @@ import { DaffCalloutIconDirective } from './callout-icon.directive';
   template: `
     <h3 daffCalloutIcon>Lorem Ipsum</h3>
   `,
+  standalone: true,
+  imports: [
+    DaffCalloutIconDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +29,7 @@ describe('@daffodil/design/callout | DaffCalloutIconDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffCalloutIconDirective,
+      imports: [
         WrapperComponent,
       ],
     })

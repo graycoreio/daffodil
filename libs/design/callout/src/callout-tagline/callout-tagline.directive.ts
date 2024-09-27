@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffCalloutTagline]',
+  standalone: true,
 })
 
 export class DaffCalloutTaglineDirective {

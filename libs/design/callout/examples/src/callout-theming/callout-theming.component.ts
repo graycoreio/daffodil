@@ -11,7 +11,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
-import { DaffCalloutModule } from '@daffodil/design/callout';
+import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -21,7 +21,7 @@ import { DaffCalloutModule } from '@daffodil/design/callout';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffCalloutModule,
+    DAFF_CALLOUT_COMPONENTS,
     FaIconComponent,
     DAFF_BUTTON_COMPONENTS,
     ReactiveFormsModule,

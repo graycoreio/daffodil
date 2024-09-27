@@ -1,4 +1,5 @@
 export { DaffCalloutModule } from './callout.module';
+export { DAFF_CALLOUT_COMPONENTS } from './callout';
 export * from './callout/callout.component';
 export * from './callout-icon/callout-icon.directive';
 export * from './callout-tagline/callout-tagline.directive';

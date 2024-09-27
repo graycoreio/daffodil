@@ -15,6 +15,10 @@ import { DaffCalloutTaglineDirective } from './callout-tagline.directive';
   template: `
     <h3 daffCalloutTagline>Lorem Ipsum</h3>
   `,
+  standalone: true,
+  imports: [
+    DaffCalloutTaglineDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +29,7 @@ describe('@daffodil/design/callout | DaffCalloutTaglineDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffCalloutTaglineDirective,
+      imports: [
         WrapperComponent,
       ],
     })

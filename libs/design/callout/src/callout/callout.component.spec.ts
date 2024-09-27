@@ -20,6 +20,10 @@ import { DaffCalloutComponent } from './callout.component';
   template: `
     <daff-callout [color]="color" [textAlignment]="textAlignment" [compact]="compact"></daff-callout>
   `,
+  standalone: true,
+  imports: [
+    DaffCalloutComponent,
+  ],
 })
 
 class WrapperComponent {
@@ -36,9 +40,8 @@ describe('@daffodil/design/callout | DaffCalloutComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         WrapperComponent,
-        DaffCalloutComponent,
       ],
     })
       .compileComponents();

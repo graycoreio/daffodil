@@ -4,6 +4,48 @@ Callout is a versatile component that can be used to easily highlight a piece of
 ## Overview
 Callouts can be used multiple times on a page. It's a flexible and extensible component that includes pre-styled content containers. It can be used alongside a product list to highlight a set of products, quickly lay out an accordion, showcase a set of features, etc.
 
+## Usage
+
+### Within a standalone component
+To use callout in a standalone component, import it directly into your custom component:
+
+```ts
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  standalone: true,
+  imports: [
+    DAFF_CALLOUT_COMPONENTS,
+  ],
+})
+export class CustomComponent {}
+```
+
+### Within a module (deprecated)
+To use callout in a module, import `DaffCalloutModule` into your custom module:
+
+```ts
+import { NgModule } from '@angular/core';
+
+import { DaffCalloutModule } from '@daffodil/design/callout';
+
+@NgModule({
+	declarations: [
+    CustomComponent,
+  ],
+  exports: [
+    CustomComponent,
+  ],
+  imports: [
+    DaffCalloutModule,
+  ],
+})
+export class CustomComponentModule { }
+```
+
+> This method is deprecated. It's recommended to update all custom components to standalone.
+
+
 ## Supported Content Types
 A `<daff-callout>` supports transclusion of any content and includes stylized `icon`, `tagline`, `title`, `subtitle`, and `body` content containers.
 

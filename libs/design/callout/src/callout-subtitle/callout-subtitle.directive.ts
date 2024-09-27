@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffCalloutSubtitle]',
+  standalone: true,
 })
 
 export class DaffCalloutSubtitleDirective {

@@ -15,6 +15,10 @@ import { DaffCalloutSubtitleDirective } from './callout-subtitle.directive';
   template: `
     <p daffCalloutSubtitle>Lorem Ipsum</p>
   `,
+  standalone: true,
+  imports: [
+    DaffCalloutSubtitleDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +29,7 @@ describe('@daffodil/design/callout | DaffCalloutSubtitleDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffCalloutSubtitleDirective,
+      imports: [
         WrapperComponent,
       ],
     })
