@@ -10,7 +10,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
-import { DaffSidebarModule } from '@daffodil/design/sidebar';
+import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -20,8 +20,7 @@ import { DaffSidebarModule } from '@daffodil/design/sidebar';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffSidebarModule,
-    DaffButtonModule,
+    DAFF_SIDEBAR_COMPONENTS,
     FaIconComponent,
     ReactiveFormsModule,
     DAFF_BUTTON_COMPONENTS,

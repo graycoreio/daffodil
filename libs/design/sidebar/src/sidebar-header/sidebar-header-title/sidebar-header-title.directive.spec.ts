@@ -12,9 +12,11 @@ import { By } from '@angular/platform-browser';
 import { DaffSidebarHeaderTitleDirective } from './sidebar-header-title.directive';
 
 @Component({
-  template: `
-    <h2 daffSidebarHeaderTitle>Title</h2>
-  `,
+  template: `<h2 daffSidebarHeaderTitle>Title</h2>`,
+  standalone: true,
+  imports: [
+    DaffSidebarHeaderTitleDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +27,7 @@ describe('@daffodil/design/sidebar | DaffSidebarHeaderTitleDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffSidebarHeaderTitleDirective,
+      imports: [
         WrapperComponent,
       ],
     })
@@ -44,11 +45,9 @@ describe('@daffodil/design/sidebar | DaffSidebarHeaderTitleDirective', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('[daffSidebarHeaderTitle]',() => {
-    it('should add a class of `daff-sidebar-header__title` to its host element', () => {
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-sidebar-header__title': true,
-      }));
-    });
+  it('should add a class of `daff-sidebar-header__title` to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-sidebar-header__title': true,
+    }));
   });
 });

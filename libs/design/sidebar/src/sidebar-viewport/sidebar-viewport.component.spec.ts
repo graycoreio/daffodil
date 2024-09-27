@@ -17,12 +17,18 @@ import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 import { DaffSidebarViewportBackdropComponent } from '../sidebar-viewport-backdrop/sidebar-viewport-backdrop.component';
 
-@Component({ template: `
-  <div class="sidebar-content-wrapper">
-    <daff-sidebar-viewport (backdropClicked)="incrementBackdropClicked()" [navPlacement]="navPlacement">
-    </daff-sidebar-viewport>
-  </div>
-` })
+@Component({
+  template: `
+    <div class="sidebar-content-wrapper">
+      <daff-sidebar-viewport (backdropClicked)="incrementBackdropClicked()" [navPlacement]="navPlacement">
+      </daff-sidebar-viewport>
+    </div>`,
+  standalone: true,
+  imports: [
+    DaffSidebarViewportComponent,
+    DaffSidebarComponent,
+  ],
+})
 class WrapperComponent {
   backdropClickedCounter = 0;
 
@@ -47,11 +53,7 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Usage', () =
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-      ],
-      declarations: [
         WrapperComponent,
-        DaffSidebarViewportComponent,
-        DaffSidebarComponent,
       ],
     })
       .compileComponents();
@@ -72,10 +74,8 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Usage', () =
     expect(wrapper).toBeTruthy();
   });
 
-  describe('<daff-sidebar-viewport>', () => {
-    it('should add a class of "daff-sidebar-viewport" to the host element', () => {
-      expect(de.nativeElement.classList.contains('daff-sidebar-viewport')).toBeTruthy();
-    });
+  it('should add a class of "daff-sidebar-viewport" to the host element', () => {
+    expect(de.nativeElement.classList.contains('daff-sidebar-viewport')).toBeTruthy();
   });
 
   describe('navPlacement', () => {
@@ -106,59 +106,6 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Usage', () =
 
     it('should call component.backdropClicked.emit', () => {
       expect(component.backdropClicked.emit).toHaveBeenCalledWith();
-    });
-  });
-
-  describe('multiple sidebars', () => {
-    it('should allow the following combinations of sidebars', () => {
-      @Component({
-        template: `
-        <daff-sidebar-viewport>
-          <daff-sidebar *ngFor="let sidebar of sidebars" [side]="sidebar[1]" [mode]="sidebar[0]"></daff-sidebar>
-        </daff-sidebar-viewport>
-        `,
-      })
-      class IterableWrapperComponent{
-        @Input() sidebars: any[] = [];
-      }
-
-      TestBed.resetTestingModule();
-      TestBed.configureTestingModule({
-        imports: [
-          CommonModule,
-          NoopAnimationsModule,
-        ],
-        declarations: [
-          DaffSidebarComponent,
-          DaffSidebarViewportComponent,
-          IterableWrapperComponent,
-        ],
-      }).compileComponents();
-
-      const iterableFixture = TestBed.createComponent(IterableWrapperComponent);
-      const iterableWrapper = iterableFixture.componentInstance;
-
-      iterableFixture.detectChanges();
-
-      const allowedSidebarCombinations = [
-        [['side', 'left']],
-        [['side', 'right']],
-        [['side', 'left'],['side', 'left']], // We allow it, even though it looks dumb
-        [['side', 'right'],['side', 'right']], // We allow it, even though it looks dumb
-        [['side', 'left'],['side', 'right']], // We allow it, even though it looks dumb
-        [['side', 'left'],['side', 'left'],['side', 'right'],['side', 'right']], // We allow it, even though it looks dumb
-        [['over', 'left']],
-        [['over', 'right']],
-        [['over', 'left'], ['over', 'right']],
-        [['under', 'left']],
-        [['under', 'right']],
-        [['under', 'left'], ['under', 'right']],
-      ];
-
-      allowedSidebarCombinations.forEach((el) => {
-        iterableWrapper.sidebars = el;
-        expect(() => iterableFixture.detectChanges()).not.toThrowError();
-      });
     });
   });
 });

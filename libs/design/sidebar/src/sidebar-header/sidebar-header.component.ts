@@ -11,6 +11,7 @@ import {
   styleUrls: ['./sidebar-header.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 
 })
 export class DaffSidebarHeaderComponent {

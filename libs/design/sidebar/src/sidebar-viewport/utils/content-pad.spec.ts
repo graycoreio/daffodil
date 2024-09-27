@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgFor } from '@angular/common';
 import {
   Component,
   Input,
@@ -19,13 +19,17 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
   template: `
     <daff-sidebar *ngFor="let sidebar of sidebars" [side]="sidebar.side" [mode]="sidebar.mode" [open]="sidebar.open"></daff-sidebar>
   `,
+  standalone: true,
+  imports: [
+    NgFor,
+    DaffSidebarComponent,
+  ],
 })
 class IterableWrapperComponent{
   @Input() sidebars: { side: any; mode: any; open: boolean }[] = [];
 
   @ViewChildren(DaffSidebarComponent) sidebarComponents: QueryList<DaffSidebarComponent>;
 }
-
 
 describe('@daffodil/design | sidebar-viewport | isSidebarViewportContentPadded', () => {
   let fixture: ComponentFixture<IterableWrapperComponent>;
@@ -35,10 +39,6 @@ describe('@daffodil/design | sidebar-viewport | isSidebarViewportContentPadded',
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        CommonModule,
-      ],
-      declarations: [
-        DaffSidebarComponent,
         IterableWrapperComponent,
       ],
     }).compileComponents();

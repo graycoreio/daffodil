@@ -47,6 +47,7 @@ import { DaffSidebarSide } from '../helper/sidebar-side';
   animations: [
     daffSidebarAnimations.transformSidebar,
   ],
+  standalone: true,
 })
 export class DaffSidebarComponent {
   /**

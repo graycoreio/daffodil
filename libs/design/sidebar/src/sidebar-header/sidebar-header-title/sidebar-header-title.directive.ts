@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffSidebarHeaderTitle]',
+  standalone: true,
 })
 export class DaffSidebarHeaderTitleDirective {
   /**

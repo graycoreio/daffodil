@@ -11,22 +11,24 @@ import { By } from '@angular/platform-browser';
 
 import { DaffSidebarFooterComponent } from './sidebar-footer.component';
 
-@Component({ template: `
-  <daff-sidebar-footer>Footer</daff-sidebar-footer>
-` })
+@Component({
+  template: `<daff-sidebar-footer>Footer</daff-sidebar-footer>`,
+  standalone: true,
+  imports: [
+    DaffSidebarFooterComponent,
+  ],
+})
 class WrapperComponent {}
 
 describe('@daffodil/design/sidebar | DaffSidebarFooterComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let sidebarFooter: DaffSidebarFooterComponent;
-  let sidebarFooterDe: DebugElement;
+  let de: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         WrapperComponent,
-        DaffSidebarFooterComponent,
       ],
     })
       .compileComponents();
@@ -36,12 +38,17 @@ describe('@daffodil/design/sidebar | DaffSidebarFooterComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
 
-    sidebarFooterDe = fixture.debugElement.query(By.css('daff-sidebar-footer'));
-    sidebarFooter = sidebarFooterDe.componentInstance;
+    de = fixture.debugElement.query(By.css('daff-sidebar-footer'));
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
+  });
+
+  it('should add a class of `daff-sidebar-footer` to its host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-sidebar-footer': true,
+    }));
   });
 });

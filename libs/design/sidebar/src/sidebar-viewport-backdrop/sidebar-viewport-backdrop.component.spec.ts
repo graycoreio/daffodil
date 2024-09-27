@@ -12,12 +12,18 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffSidebarViewportBackdropComponent } from './sidebar-viewport-backdrop.component';
 
-@Component({ template: `
-<daff-sidebar-viewport-backdrop
-  [fullscreen]="fullscreen"
-  [transparent]="transparent"
-  (backdropClicked)="backdropFunction()"></daff-sidebar-viewport-backdrop>
-` })
+@Component({
+  template: `
+    <daff-sidebar-viewport-backdrop
+      [fullscreen]="fullscreen"
+      [transparent]="transparent"
+      (backdropClicked)="backdropFunction()"></daff-sidebar-viewport-backdrop>
+    `,
+  standalone: true,
+  imports: [
+    DaffSidebarViewportBackdropComponent,
+  ],
+})
 class WrapperComponent {
   fullscreen = false;
   showValue = true;
@@ -35,10 +41,7 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportBackdropComponent | Usag
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-      ],
-      declarations: [
         WrapperComponent,
-        DaffSidebarViewportBackdropComponent,
       ],
     })
       .compileComponents();
@@ -116,8 +119,6 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportBackdropComponent | Defa
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-      ],
-      declarations: [
         DaffSidebarViewportBackdropComponent,
       ],
     })

@@ -21,6 +21,7 @@ import { getAnimationState } from './animation/backdrop-animation-state';
     daffSidebarViewportBackdropAnimations.fadeBackdrop,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class DaffSidebarViewportBackdropComponent implements OnInit {
 

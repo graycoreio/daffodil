@@ -43,6 +43,7 @@ import {
 } from '../animation/sidebar-viewport-animation-state';
 import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
+import { DaffSidebarViewportBackdropComponent } from '../sidebar-viewport-backdrop/sidebar-viewport-backdrop.component';
 
 /**
  * The DaffSidebarViewport is the "holder" of sidebars throughout an entire application.
@@ -72,7 +73,14 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
     daffSidebarAnimations.transformContent,
   ],
   providers: [
-    { provide: DAFF_SIDEBAR_SCROLL_TOKEN, useFactory: daffSidebarViewportScrollFactory },
+    {
+      provide: DAFF_SIDEBAR_SCROLL_TOKEN,
+      useFactory: daffSidebarViewportScrollFactory,
+    },
+  ],
+  standalone: true,
+  imports: [
+    DaffSidebarViewportBackdropComponent,
   ],
 })
 export class DaffSidebarViewportComponent implements AfterContentChecked, OnDestroy {

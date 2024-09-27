@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffSidebarHeaderAction]',
+  standalone: true,
 })
 export class DaffSidebarHeaderActionDirective {
   /**

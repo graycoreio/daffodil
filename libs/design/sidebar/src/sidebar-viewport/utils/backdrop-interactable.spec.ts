@@ -13,8 +13,6 @@ describe('@daffodil/design | sidebar-viewport | backdrop-interactable', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-      ],
-      declarations: [
         DaffSidebarComponent,
       ],
     }).compileComponents();

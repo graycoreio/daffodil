@@ -18,8 +18,8 @@ describe('@daffodil/design/sidebar | DaffSidebarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule],
-      declarations: [
+      imports: [
+        NoopAnimationsModule,
         DaffSidebarComponent,
       ],
     })
@@ -63,11 +63,17 @@ describe('@daffodil/design/sidebar | DaffSidebarComponent', () => {
   });
 });
 
-@Component({ template: `
-  <div class="host-element">
-    <daff-sidebar [mode]="mode" [side]="side"></daff-sidebar>
-  </div>
-` })
+@Component({
+  template: `
+    <div class="host-element">
+      <daff-sidebar [mode]="mode" [side]="side"></daff-sidebar>
+    </div>
+  `,
+  standalone: true,
+  imports: [
+    DaffSidebarComponent,
+  ],
+})
 class DefaultsWrapperComponent {
   side = 'left';
   mode = 'side';
@@ -81,10 +87,9 @@ describe('DaffSidebarComponent | Defaults', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule],
-      declarations: [
+      imports: [
+        NoopAnimationsModule,
         DefaultsWrapperComponent,
-        DaffSidebarComponent,
       ],
     })
       .compileComponents();
@@ -120,11 +125,17 @@ describe('DaffSidebarComponent | Defaults', () => {
   });
 });
 
-@Component({ template: `
-  <div class="host-element">
-    <daff-sidebar (escapePressed)="pressed()" [mode]="mode" [side]="side" [open]="open"></daff-sidebar>
-  </div>
-` })
+@Component({
+  template: `
+    <div class="host-element">
+      <daff-sidebar (escapePressed)="pressed()" [mode]="mode" [side]="side" [open]="open"></daff-sidebar>
+    </div>
+  `,
+  standalone: true,
+  imports: [
+    DaffSidebarComponent,
+  ],
+})
 class UsageWrapperComponent {
   open = false;
   side = 'left';
@@ -145,10 +156,9 @@ describe('DaffSidebarComponent | Usage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule],
-      declarations: [
+      imports: [
+        NoopAnimationsModule,
         UsageWrapperComponent,
-        DaffSidebarComponent,
       ],
     })
       .compileComponents();

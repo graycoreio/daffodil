@@ -9,6 +9,7 @@ import {
   template: '<ng-content></ng-content>',
   styleUrls: ['./sidebar-footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class DaffSidebarFooterComponent {
   @HostBinding('class.daff-sidebar-footer') class = true;

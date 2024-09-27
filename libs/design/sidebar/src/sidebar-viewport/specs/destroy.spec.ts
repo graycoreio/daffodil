@@ -13,10 +13,15 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 @Component({
   template: `
-	<daff-sidebar-viewport>
-		<daff-sidebar side="left" mode="over" [open]="true"></daff-sidebar>
-	</daff-sidebar-viewport>
-	`,
+    <daff-sidebar-viewport>
+      <daff-sidebar side="left" mode="over" [open]="true"></daff-sidebar>
+    </daff-sidebar-viewport>
+    `,
+  standalone: true,
+  imports: [
+    DaffSidebarViewportComponent,
+    DaffSidebarComponent,
+  ],
 })
 
 class WrapperOneComponent {}
@@ -30,10 +35,6 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | On Destroy',
       imports: [
         NoopAnimationsModule,
         A11yModule,
-      ],
-      declarations: [
-        DaffSidebarViewportComponent,
-        DaffSidebarComponent,
         WrapperOneComponent,
       ],
     })

@@ -11,9 +11,13 @@ import { By } from '@angular/platform-browser';
 
 import { DaffSidebarHeaderComponent } from './sidebar-header.component';
 
-@Component({ template: `
-  <daff-sidebar-header>Header</daff-sidebar-header>
-` })
+@Component({
+  template: `<daff-sidebar-header>Header</daff-sidebar-header>`,
+  standalone: true,
+  imports: [
+    DaffSidebarHeaderComponent,
+  ],
+})
 class WrapperComponent {}
 
 describe('@daffodil/design/sidebar | DaffSidebarHeaderComponent', () => {
@@ -24,9 +28,8 @@ describe('@daffodil/design/sidebar | DaffSidebarHeaderComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         WrapperComponent,
-        DaffSidebarHeaderComponent,
       ],
     })
       .compileComponents();

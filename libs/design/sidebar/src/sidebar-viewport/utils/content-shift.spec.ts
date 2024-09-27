@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgFor } from '@angular/common';
 import {
   Component,
   Input,
@@ -15,18 +15,21 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { sidebarViewportContentShift } from './content-shift';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
-
 @Component({
   template: `
     <daff-sidebar *ngFor="let sidebar of sidebars" [side]="sidebar.side" [mode]="sidebar.mode" [open]="sidebar.open"></daff-sidebar>
   `,
+  standalone: true,
+  imports: [
+    NgFor,
+    DaffSidebarComponent,
+  ],
 })
 class IterableWrapperComponent{
   @Input() sidebars: { side: any; mode: any; open: boolean }[] = [];
 
   @ViewChildren(DaffSidebarComponent) sidebarComponents: QueryList<DaffSidebarComponent>;
 }
-
 
 describe('@daffodil/design | sidebar-viewport | sidebarViewportContentShift', () => {
   let fixture: ComponentFixture<IterableWrapperComponent>;
@@ -36,10 +39,6 @@ describe('@daffodil/design | sidebar-viewport | sidebarViewportContentShift', ()
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        CommonModule,
-      ],
-      declarations: [
-        DaffSidebarComponent,
         IterableWrapperComponent,
       ],
     }).compileComponents();
@@ -51,7 +50,7 @@ describe('@daffodil/design | sidebar-viewport | sidebarViewportContentShift', ()
     fixture.detectChanges();
   });
 
-  it('should correctly pad sidebars', () => {
+  it('should correctly shift sidebars', () => {
     const sidebarCombinations = [
       { sidebars: [], shift: 0 },
       { sidebars: [{ mode: 'side', side: 'left', open: false }], shift: 0 },

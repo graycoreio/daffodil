@@ -19,8 +19,6 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Defaults', (
       imports: [
         NoopAnimationsModule,
         A11yModule,
-      ],
-      declarations: [
         DaffSidebarViewportComponent,
         DaffSidebarComponent,
       ],

@@ -12,9 +12,11 @@ import { By } from '@angular/platform-browser';
 import { DaffSidebarHeaderActionDirective } from './sidebar-header-action.directive';
 
 @Component({
-  template: `
-    <div daffSidebarHeaderAction>Action</div>
-  `,
+  template: `<div daffSidebarHeaderAction>Action</div>`,
+  standalone: true,
+  imports: [
+    DaffSidebarHeaderActionDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +27,7 @@ describe('@daffodil/design/sidebar | DaffSidebarHeaderActionDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffSidebarHeaderActionDirective,
+      imports: [
         WrapperComponent,
       ],
     })
@@ -44,11 +45,9 @@ describe('@daffodil/design/sidebar | DaffSidebarHeaderActionDirective', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('[daffSidebarHeaderAction]',() => {
-    it('should add a class of `daff-sidebar-header__action` to its host element', () => {
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-sidebar-header__action': true,
-      }));
-    });
+  it('should add a class of `daff-sidebar-header__action` to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-sidebar-header__action': true,
+    }));
   });
 });

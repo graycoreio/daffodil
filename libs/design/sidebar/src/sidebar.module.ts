@@ -10,12 +10,13 @@ import { DaffSidebarHeaderComponent } from './sidebar-header/sidebar-header.comp
 import { DaffSidebarViewportComponent } from './sidebar-viewport/sidebar-viewport.component';
 import { DaffSidebarViewportBackdropComponent } from './sidebar-viewport-backdrop/sidebar-viewport-backdrop.component';
 
+/**
+ * @deprecated in favor of {@link DAFF_SIDEBAR_COMPONENTS}
+ */
 @NgModule({
   imports: [
     CommonModule,
     A11yModule,
-  ],
-  declarations: [
     DaffSidebarComponent,
     DaffSidebarViewportComponent,
     DaffSidebarHeaderComponent,

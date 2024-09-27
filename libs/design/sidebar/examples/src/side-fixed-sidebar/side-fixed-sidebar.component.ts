@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
-import { DaffSidebarModule } from '@daffodil/design/sidebar';
+import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -13,6 +13,6 @@ import { DaffSidebarModule } from '@daffodil/design/sidebar';
   styleUrls: ['side-fixed-sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffSidebarModule, DAFF_NAVBAR_COMPONENTS],
+  imports: [DAFF_SIDEBAR_COMPONENTS, DAFF_NAVBAR_COMPONENTS],
 })
 export class SideFixedSidebarComponent {}

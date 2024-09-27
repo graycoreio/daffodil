@@ -18,3 +18,4 @@ export {
 } from './helper/sidebar-side';
 export * from './helper/is-docked-mode';
 export * from './helper/is-floating-mode';
+export { DAFF_SIDEBAR_COMPONENTS } from './sidebar';
