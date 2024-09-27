@@ -12,13 +12,18 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffMenuComponent } from './menu.component';
-import { DaffMenuModule } from '../menu.module';
+import { DaffMenuItemComponent } from '../menu-item/menu-item.component';
 import { DaffMenuService } from '../services/menu.service';
 import { provideTestMenuService } from '../testing/dummy-service';
 
-@Component({ template: `
-  <daff-menu></daff-menu>
-` })
+@Component({
+  template: `<daff-menu></daff-menu>`,
+  standalone: true,
+  imports: [
+    DaffMenuComponent,
+    DaffMenuItemComponent,
+  ],
+})
 class WrapperComponent {}
 
 describe('@daffodil/design/menu | DaffMenuComponent', () => {
@@ -31,9 +36,6 @@ describe('@daffodil/design/menu | DaffMenuComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        DaffMenuModule,
-      ],
-      declarations: [
         WrapperComponent,
       ],
       providers: [

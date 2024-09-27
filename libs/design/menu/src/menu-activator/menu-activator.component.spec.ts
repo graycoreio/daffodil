@@ -10,14 +10,21 @@ import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffMenuActivatorDirective } from './menu-activator.component';
-import { DaffMenuModule } from '../menu.module';
+import { DaffMenuComponent } from '../menu/menu.component';
 import { DaffMenuService } from '../services/menu.service';
 import { provideTestMenuService } from '../testing/dummy-service';
 
-@Component({ template: `
-  <button daffMenuActivator="menu"></button>
-  <daff-menu #menu></daff-menu>
-` })
+@Component({
+  template: `
+    <button daffMenuActivator="menu"></button>
+    <daff-menu #menu></daff-menu>
+  `,
+  standalone: true,
+  imports: [
+    DaffMenuComponent,
+    DaffMenuActivatorDirective,
+  ],
+})
 class WrapperComponent {}
 
 describe('@daffodil/design/menu | DaffMenuActivatorDirective', () => {
@@ -28,9 +35,6 @@ describe('@daffodil/design/menu | DaffMenuActivatorDirective', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffMenuModule,
-      ],
-      declarations: [
         WrapperComponent,
       ],
       providers: [

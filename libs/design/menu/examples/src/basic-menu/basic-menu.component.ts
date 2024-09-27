@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
-import { DaffMenuModule } from '@daffodil/design/menu';
+import { DAFF_MENU_COMPONENTS } from '@daffodil/design/menu';
 
 import { MenuContentComponent } from './menu-content/menu-content.component';
 
@@ -14,7 +14,10 @@ import { MenuContentComponent } from './menu-content/menu-content.component';
   templateUrl: './basic-menu.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DAFF_BUTTON_COMPONENTS, DaffMenuModule],
+  imports: [
+    DAFF_BUTTON_COMPONENTS,
+    DAFF_MENU_COMPONENTS,
+  ],
 })
 export class BasicMenuComponent {
   public menu = MenuContentComponent;

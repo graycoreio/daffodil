@@ -11,11 +11,15 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffMenuComponent } from '../menu/menu.component';
-import { DaffMenuModule } from '../menu.module';
+import { provideTestMenuService } from '../testing/dummy-service';
 
-@Component({ template: `
-  <daff-menu></daff-menu>
-` })
+@Component({
+  template: `<daff-menu></daff-menu>`,
+  standalone: true,
+  imports: [
+    DaffMenuComponent,
+  ],
+})
 class WrapperComponent {}
 
 describe('@daffodil/design/menu | DaffMenuComponent', () => {
@@ -28,10 +32,10 @@ describe('@daffodil/design/menu | DaffMenuComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        DaffMenuModule,
-      ],
-      declarations: [
         WrapperComponent,
+      ],
+      providers: [
+        provideTestMenuService(),
       ],
     })
       .compileComponents();

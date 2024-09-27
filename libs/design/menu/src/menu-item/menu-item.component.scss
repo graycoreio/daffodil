@@ -2,7 +2,9 @@
 
 :host {
 	@include interactions.clickable();
-	display: block;
+	display: flex;
+	align-items: center;
+	gap: 8px;
 	border: none;
 	border-radius: 4px;
 	margin: 0;
@@ -13,8 +15,6 @@
 
 .daff-menu-item {
 	&__content {
-		display: flex;
-		gap: 8px;
 		font-size: 1rem;
 		line-height: 1.25rem;
 		text-align: left;
