@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
 
 import {
   DaffTreeData,
-  DaffTreeModule,
+  DAFF_TREE_COMPONENTS,
 } from '@daffodil/design/tree';
 
 @Component({
@@ -15,7 +15,10 @@ import {
   templateUrl: './basic-tree.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffTreeModule, RouterLink],
+  imports: [
+    DAFF_TREE_COMPONENTS,
+    RouterLink,
+  ],
 })
 export class BasicTreeComponent {
   tree: DaffTreeData<unknown> = {

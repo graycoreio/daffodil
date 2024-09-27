@@ -1,4 +1,8 @@
 import {
+  NgFor,
+  NgTemplateOutlet,
+} from '@angular/common';
+import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
@@ -56,6 +60,11 @@ import { hydrateTree } from '../utils/hydrate-tree';
   hostDirectives: [{
     directive: DaffArticleEncapsulatedDirective,
   }],
+  standalone: true,
+  imports: [
+    NgFor,
+    NgTemplateOutlet,
+  ],
 })
 export class DaffTreeComponent implements OnInit, OnChanges {
 

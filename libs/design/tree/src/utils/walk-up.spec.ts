@@ -1,5 +1,5 @@
 import { walkUp } from './walk-up';
-import { DaffTreeUi } from '../public_api';
+import { DaffTreeUi } from '../interfaces/tree-ui';
 
 describe('@daffodil/design/tree - walkUp', () => {
   it('should walkup a tree, applying the visit function', () => {

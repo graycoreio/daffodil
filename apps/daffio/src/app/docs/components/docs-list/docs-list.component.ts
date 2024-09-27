@@ -19,7 +19,7 @@ import {
 
 import {
   DaffTreeData,
-  DaffTreeModule,
+  DAFF_TREE_COMPONENTS,
   daffTransformTree,
 } from '@daffodil/design/tree';
 
@@ -45,7 +45,7 @@ const visit = (guide: DaffioDocList): DaffTreeData<unknown> => ({
   imports: [
     AsyncPipe,
     RouterLink,
-    DaffTreeModule,
+    DAFF_TREE_COMPONENTS,
     RouterLinkActive,
   ],
 })

@@ -15,19 +15,22 @@ import { DaffTreeComponent } from '../tree.component';
   template: `
     <ul daff-tree [tree]="data"></ul>
   `,
+  standalone: true,
+  imports: [
+    DaffTreeComponent,
+  ],
 })
 class WrapperComponent {
   @Input() data: DaffTreeData<any>;
 }
 
-describe('@daffodil/design/tree - DaffTreeComponent | Simple', () => {
+describe('@daffodil/design/tree | DaffTreeComponent | Simple', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        DaffTreeComponent,
+      imports: [
         WrapperComponent,
       ],
     })

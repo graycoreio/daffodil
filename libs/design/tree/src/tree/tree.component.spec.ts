@@ -11,7 +11,7 @@ describe('@daffodil/design/tree - DaffTreeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         DaffTreeComponent,
       ],
     })

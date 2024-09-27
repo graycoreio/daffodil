@@ -1,17 +1,20 @@
+import { DebugElement } from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { DaffTreeComponent } from '../tree.component';
 
-describe('@daffodil/design/tree - DaffTreeComponent | Defaults', () => {
+describe('@daffodil/design/tree | DaffTreeComponent | Defaults', () => {
   let component: DaffTreeComponent;
   let fixture: ComponentFixture<DaffTreeComponent>;
+  let de: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         DaffTreeComponent,
       ],
     })
@@ -21,6 +24,7 @@ describe('@daffodil/design/tree - DaffTreeComponent | Defaults', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DaffTreeComponent);
     component = fixture.componentInstance;
+    de = fixture.debugElement.query(By.css('daff-tree'));
     fixture.detectChanges();
   });
 

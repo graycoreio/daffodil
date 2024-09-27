@@ -4,13 +4,14 @@ import { NgModule } from '@angular/core';
 import { DaffTreeComponent } from './tree/tree.component';
 import { DaffTreeItemDirective } from './tree-item/tree-item.directive';
 
+/**
+ * @deprecated in favor of {@link DAFF_TREE_COMPONENTS}
+ */
 @NgModule({
-  declarations: [
-    DaffTreeComponent,
-    DaffTreeItemDirective,
-  ],
   imports: [
     CommonModule,
+    DaffTreeComponent,
+    DaffTreeItemDirective,
   ],
   exports: [
     DaffTreeComponent,

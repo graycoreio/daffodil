@@ -9,6 +9,47 @@ Instead of defining a recursive tree structure of components, which is often pro
 
 Generally, tree usage consists of taking existing tree data, converting it to the `DaffTreeData` format, setting the `tree` input on the `DaffTreeComponent`, and providing templates for the cases where the tree element has children or not.
 
+## Usage
+
+### Within a standalone component
+To use sidebar in a standalone component, import `DAFF_TREE_COMPONENTS` directly into your custom component:
+
+```ts
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  standalone: true,
+  imports: [
+    DAFF_TREE_COMPONENTS,
+  ],
+})
+export class CustomComponent {}
+```
+
+### Within a module (deprecated)
+To use sidebar in a module, import `DaffTreeModule` into your custom module:
+
+```ts
+import { NgModule } from '@angular/core';
+
+import { DaffTreeModule } from '@daffodil/design/tree';
+
+@NgModule({
+	declarations: [
+    CustomComponent,
+  ],
+  exports: [
+    CustomComponent,
+  ],
+  imports: [
+    DaffTreeModule,
+  ],
+})
+export class CustomComponentModule { }
+```
+
+> This method is deprecated. It's recommended to update all custom components to standalone.
+
 ## Features
 The `DaffTreeComponent` controls the rendering of the structure of the tree and provides template slots so that you can control the ultimate UI rendered for each node.
 

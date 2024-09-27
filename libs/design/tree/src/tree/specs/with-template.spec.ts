@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   Input,
@@ -10,7 +9,6 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffTreeData } from '../../interfaces/tree-data';
-import { DaffTreeModule } from '../../tree.module';
 import { DaffTreeComponent } from '../tree.component';
 
 @Component({
@@ -25,6 +23,10 @@ import { DaffTreeComponent } from '../tree.component';
       </ng-template>
     </ul>
   `,
+  standalone: true,
+  imports: [
+    DaffTreeComponent,
+  ],
 })
 class WrapperComponent {
   @Input() data: DaffTreeData<any>;
@@ -38,8 +40,9 @@ describe('@daffodil/design/tree - DaffTreeComponent | withTemplate', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DaffTreeModule, CommonModule],
-      declarations: [WrapperComponent],
+      imports: [
+        WrapperComponent,
+      ],
     })
       .compileComponents();
   });

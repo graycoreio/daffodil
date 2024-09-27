@@ -33,6 +33,7 @@ import { DaffTreeFlatNode } from '../utils/flatten-tree';
  */
 @Directive({
   selector: '[daffTreeItem]',
+  standalone: true,
 })
 export class DaffTreeItemDirective {
 
