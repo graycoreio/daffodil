@@ -8,6 +8,7 @@
 @use '../app/docs/api/components/api-package/api-package-theme' as api-package;
 @use '../app/newsletter/newsletter-theme' as newsletter;
 @use '../app/core/sidebar/components/sidebar-footer/sidebar-footer-theme' as sidebar-footer;
+@use '../app/core/header/components/header/header-theme' as header;
 
 @mixin component-themes($theme) {
 	@include simple-footer.daffio-simple-footer-theme($theme);
@@ -20,4 +21,5 @@
 	@include api-package.daffio-api-package-theme($theme);
 	@include newsletter.daffio-newsletter-theme($theme);
 	@include sidebar-footer.daffio-sidebar-footer-theme($theme);
+	@include header.daffio-header-theme($theme);
 }
