@@ -5,7 +5,7 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DaffCalloutModule } from '@daffodil/design/callout';
 import { DaffContainerModule } from '@daffodil/design/container';
 
@@ -20,7 +20,7 @@ import { DaffContainerModule } from '@daffodil/design/container';
     DaffCalloutModule,
     DaffContainerModule,
     FaIconComponent,
-    DaffButtonModule,
+    DAFF_BUTTON_COMPONENTS,
   ],
 })
 export class CalloutWithGridComponent {

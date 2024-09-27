@@ -10,7 +10,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffPalette } from '@daffodil/design';
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DaffHeroModule } from '@daffodil/design/hero';
 
 @Component({
@@ -23,7 +23,7 @@ import { DaffHeroModule } from '@daffodil/design/hero';
   imports: [
     DaffHeroModule,
     FaIconComponent,
-    DaffButtonModule,
+    DAFF_BUTTON_COMPONENTS,
     ReactiveFormsModule,
   ],
 })

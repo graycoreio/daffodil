@@ -5,7 +5,7 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DaffNotificationModule } from '@daffodil/design/notification';
 
 @Component({
@@ -25,7 +25,7 @@ import { DaffNotificationModule } from '@daffodil/design/notification';
   imports: [
     DaffNotificationModule,
     FontAwesomeModule,
-    DaffButtonModule,
+    DAFF_BUTTON_COMPONENTS,
   ],
 })
 export class NotificationWithActionsComponent {

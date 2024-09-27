@@ -15,7 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffPrefixSuffixModule } from '@daffodil/design';
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DaffNotificationModule } from '@daffodil/design/notification';
 
 @Component({
@@ -30,8 +30,8 @@ import { DaffNotificationModule } from '@daffodil/design/notification';
     NgIf,
     FaIconComponent,
     DaffPrefixSuffixModule,
-    DaffButtonModule,
     ReactiveFormsModule,
+    DAFF_BUTTON_COMPONENTS,
   ],
 })
 export class NotificationStatusComponent {

@@ -6,9 +6,7 @@ import { FormControl } from '@angular/forms';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffPalette } from '@daffodil/design';
-import { DaffButtonModule } from '@daffodil/design/button';
-import { DaffHeroModule } from '@daffodil/design/hero';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -20,7 +18,7 @@ import { DaffHeroModule } from '@daffodil/design/hero';
   imports: [
     DaffHeroModule,
     FaIconComponent,
-    DaffButtonModule,
+    DAFF_BUTTON_COMPONENTS,
   ],
 })
 export class CompactHeroComponent {

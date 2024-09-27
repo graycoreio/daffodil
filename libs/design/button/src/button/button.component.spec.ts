@@ -13,10 +13,7 @@ import {
   DaffPalette,
   DaffStatus,
 } from '@daffodil/design';
-import {
-  DaffLoadingIconModule,
-  DaffLoadingIconComponent,
-} from '@daffodil/design/loading-icon';
+import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
 
 import { DaffButtonSize } from './button-sizable.directive';
 import { DaffButtonComponent } from './button.component';
@@ -36,6 +33,11 @@ import { DaffButtonComponent } from './button.component';
     <button daff-underline-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Underline Button</button>
     <button daff-flat-button [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex">Flat Button</button>
   `,
+  standalone: true,
+  imports: [
+    DaffButtonComponent,
+    DaffLoadingIconComponent,
+  ],
 })
 
 class WrapperComponent {
@@ -57,11 +59,9 @@ describe('@daffodil/design/button | DaffButtonComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffButtonComponent,
-        WrapperComponent,
       ],
       imports: [
-        DaffLoadingIconModule,
+        WrapperComponent,
       ],
     })
       .compileComponents();

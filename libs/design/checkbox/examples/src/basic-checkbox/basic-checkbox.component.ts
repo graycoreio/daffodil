@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 
 import { DaffCheckboxModule } from '@daffodil/design';
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -20,7 +20,7 @@ import { DaffButtonModule } from '@daffodil/design/button';
   imports: [
     DaffCheckboxModule,
     ReactiveFormsModule,
-    DaffButtonModule,
+    DAFF_BUTTON_COMPONENTS,
   ],
 })
 export class BasicCheckboxComponent implements OnInit {

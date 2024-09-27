@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DaffPersonalAddress } from '@daffodil/geography';
 
 import { DemoCheckoutAddressFormComponent } from '../../forms/address/components/address-form/address-form.component';
@@ -25,7 +25,7 @@ import {
   imports: [
     DemoCheckoutAddressFormComponent,
     ReactiveFormsModule,
-    DaffButtonModule,
+    DAFF_BUTTON_COMPONENTS,
   ],
 })
 export class DemoCheckoutShippingAddressFormComponent implements OnInit {

@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import {
   DaffModalComponent,
   DaffModalModule,
@@ -18,7 +18,10 @@ import { BasicModalContentComponent } from './modal-content.component';
   templateUrl: './basic-modal.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffButtonModule, DaffModalModule],
+  imports: [
+    DAFF_BUTTON_COMPONENTS,
+    DaffModalModule,
+  ],
 })
 export class BasicModalComponent {
   modal: DaffModalComponent;

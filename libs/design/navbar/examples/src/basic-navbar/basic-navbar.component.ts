@@ -2,9 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
 
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DaffNavbarModule } from '@daffodil/design/navbar';
 
 @Component({
@@ -14,6 +13,9 @@ import { DaffNavbarModule } from '@daffodil/design/navbar';
   styleUrls: ['./basic-navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffNavbarModule, DaffButtonModule],
+  imports: [
+    DaffNavbarModule,
+    DAFF_BUTTON_COMPONENTS,
+  ],
 })
 export class BasicNavbarComponent {}

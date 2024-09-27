@@ -5,7 +5,7 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -20,7 +20,10 @@ import { DaffButtonModule } from '@daffodil/design/button';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffButtonModule, FaIconComponent],
+  imports: [
+    DAFF_BUTTON_COMPONENTS,
+    FaIconComponent,
+  ],
 })
 export class IconButtonComponent {
   faPlus = faPlus;

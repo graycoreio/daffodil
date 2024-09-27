@@ -19,7 +19,7 @@ import {
 } from 'rxjs';
 
 import { DaffLogoModule } from '@daffodil/branding';
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DaffRouterDataService } from '@daffodil/router';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
@@ -42,7 +42,7 @@ import { DaffioNavLink } from '../link/type';
     DaffLogoModule,
     DaffThemeSwitchButtonModule,
     NgFor,
-    DaffButtonModule,
+    DAFF_BUTTON_COMPONENTS,
     FaIconComponent,
     AsyncPipe,
   ],

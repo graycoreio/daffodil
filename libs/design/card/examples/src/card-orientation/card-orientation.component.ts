@@ -10,7 +10,7 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faMapMarked } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DaffCardModule } from '@daffodil/design/card';
 import { DaffImageModule } from '@daffodil/design/image';
 
@@ -25,7 +25,7 @@ import { DaffImageModule } from '@daffodil/design/image';
     DaffCardModule,
     DaffImageModule,
     FaIconComponent,
-    DaffButtonModule,
+    DAFF_BUTTON_COMPONENTS,
     ReactiveFormsModule,
     NgFor,
   ],

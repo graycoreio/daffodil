@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DaffNavbarModule } from '@daffodil/design/navbar';
 
 @Component({
@@ -20,7 +20,7 @@ import { DaffNavbarModule } from '@daffodil/design/navbar';
   standalone: true,
   imports: [
     DaffNavbarModule,
-    DaffButtonModule,
+    DAFF_BUTTON_COMPONENTS,
     ReactiveFormsModule,
     NgFor,
   ],

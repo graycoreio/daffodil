@@ -12,7 +12,7 @@ import {
   faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import {
   DaffToastData,
   DaffToastService,
@@ -39,7 +39,10 @@ const status: Record<string, DaffToastData> =  {
   styleUrls: ['./toast-status.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffButtonModule, ReactiveFormsModule],
+  imports: [
+    DAFF_BUTTON_COMPONENTS,
+    ReactiveFormsModule,
+  ],
 })
 export class ToastStatusComponent {
   faInfoCircle = faInfoCircle;

@@ -1,4 +1,5 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { NgIf } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -18,6 +19,7 @@ import {
   DaffArticleEncapsulatedDirective,
   DaffStatusableDirective,
   DaffColorableDirective,
+  DaffPrefixSuffixModule,
 } from '@daffodil/design';
 
 import { DaffButtonSizableDirective } from './button-sizable.directive';
@@ -93,6 +95,11 @@ enum DaffButtonTypeEnum {
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    NgIf,
+    DaffPrefixSuffixModule,
+  ],
 })
 export class DaffButtonComponent
   extends _daffButtonBase

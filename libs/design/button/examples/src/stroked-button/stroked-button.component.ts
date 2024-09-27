@@ -8,8 +8,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffPrefixSuffixModule } from '@daffodil/design';
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -25,9 +24,8 @@ import { DaffButtonModule } from '@daffodil/design/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffButtonModule,
+    DAFF_BUTTON_COMPONENTS,
     FaIconComponent,
-    DaffPrefixSuffixModule,
   ],
 })
 export class StrokedButtonComponent {

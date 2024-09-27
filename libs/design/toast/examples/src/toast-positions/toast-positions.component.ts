@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { combineLatest } from 'rxjs';
 
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import {
   DaffToast,
   DaffToastService,
@@ -24,7 +24,10 @@ import {
   styleUrls: ['./toast-positions.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ReactiveFormsModule, DaffButtonModule],
+  imports: [
+    ReactiveFormsModule,
+    DAFF_BUTTON_COMPONENTS,
+  ],
   providers: [
     provideDaffToastOptions({
       position: {

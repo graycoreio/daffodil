@@ -9,8 +9,7 @@ import {
   faCheckCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffButtonModule } from '@daffodil/design/button';
-
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -19,7 +18,10 @@ import { DaffButtonModule } from '@daffodil/design/button';
   styleUrls: ['./statusable-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffButtonModule, FaIconComponent],
+  imports: [
+    DAFF_BUTTON_COMPONENTS,
+    FaIconComponent,
+  ],
 })
 export class StatusableButtonComponent {
   faExclamation = faExclamation;

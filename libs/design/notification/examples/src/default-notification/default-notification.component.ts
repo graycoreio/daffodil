@@ -7,7 +7,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffPrefixSuffixModule } from '@daffodil/design';
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DaffNotificationModule } from '@daffodil/design/notification';
 
 @Component({
@@ -21,7 +21,7 @@ import { DaffNotificationModule } from '@daffodil/design/notification';
     DaffNotificationModule,
     FaIconComponent,
     DaffPrefixSuffixModule,
-    DaffButtonModule,
+    DAFF_BUTTON_COMPONENTS,
     NgIf,
   ],
 })

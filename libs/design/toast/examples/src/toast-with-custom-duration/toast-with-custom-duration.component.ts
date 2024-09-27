@@ -1,11 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  OnInit,
 } from '@angular/core';
 
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import {
   DaffToast,
   DaffToastService,
@@ -18,7 +16,9 @@ import {
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffButtonModule],
+  imports: [
+    DAFF_BUTTON_COMPONENTS,
+  ],
 })
 export class ToastWithCustomDurationComponent {
   private toast: DaffToast;

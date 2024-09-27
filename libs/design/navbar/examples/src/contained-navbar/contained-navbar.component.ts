@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffNavbarModule } from '@daffodil/design/navbar';
 
@@ -17,7 +17,7 @@ import { DaffNavbarModule } from '@daffodil/design/navbar';
   imports: [
     DaffNavbarModule,
     DaffContainerModule,
-    DaffButtonModule,
+    DAFF_BUTTON_COMPONENTS,
   ],
 })
 export class ContainedNavbarComponent {}

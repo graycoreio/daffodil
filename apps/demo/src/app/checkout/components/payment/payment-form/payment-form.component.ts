@@ -18,7 +18,7 @@ import {
   DaffInputModule,
   DaffNativeSelectModule,
 } from '@daffodil/design';
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 import { DemoGeographyAddressSummaryComponent } from '../../../../geography/components/address-summary/address-summary.component';
 import { DemoCheckoutAddressFormComponent } from '../../forms/address/components/address-form/address-form.component';
@@ -38,7 +38,7 @@ import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-i
     DaffInputModule,
     DaffNativeSelectModule,
     DemoCheckoutPaymentInfoFormComponent,
-    DaffButtonModule,
+    DAFF_BUTTON_COMPONENTS,
     DaffCheckboxModule,
     DemoCheckoutAddressFormComponent,
     DemoGeographyAddressSummaryComponent,

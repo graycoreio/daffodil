@@ -31,6 +31,47 @@ Native `<button>` or `<a>` elements are always used in order to provide an easy,
 ### Underline Button
 <design-land-example-viewer-container example="underline-button"></design-land-example-viewer-container>
 
+## Usage
+
+### Within a standalone component
+To use button in a standalone component, import it directly into your custom component:
+
+```ts
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  standalone: true,
+  imports: [
+    DAFF_BUTTON_COMPONENTS,
+  ],
+})
+export class CustomComponent {}
+```
+
+### Within a module (deprecated)
+To use button in a module, import `DaffButtonModule` into your custom module:
+
+```ts
+import { NgModule } from '@angular/core';
+
+import { DaffButtonModule } from '@daffodil/design/button';
+
+@NgModule({
+	declarations: [
+    CustomComponent,
+  ],
+  exports: [
+    CustomComponent,
+  ],
+  imports: [
+    DaffButtonModule,
+  ],
+})
+export class CustomComponentModule { }
+```
+
+> This method is deprecated. It's recommended to update all custom components to standalone.
+
 ## Sizes
 The size of a button can be changed by using the `size` property. The size of all the button variants will default to `md` if no size is defined. This can be changed to one of the supported sizes.
 
