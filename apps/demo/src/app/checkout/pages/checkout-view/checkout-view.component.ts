@@ -17,7 +17,7 @@ import {
   DaffCartShippingRate,
 } from '@daffodil/cart';
 import { DaffCartFacade } from '@daffodil/cart/state';
-import { DaffAccordionModule } from '@daffodil/design/accordion';
+import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
 import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffPersonalAddress } from '@daffodil/geography';
@@ -53,7 +53,7 @@ import {
     LetDirective,
     DaffContainerModule,
     DaffLoadingIconModule,
-    DaffAccordionModule,
+    DAFF_ACCORDION_COMPONENTS,
 
     DemoCheckoutShippingAddressFormComponent,
     DemoCheckoutShippingAddressSummaryComponent,

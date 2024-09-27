@@ -13,13 +13,18 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffAccordionItemComponent } from './accordion-item.component';
 
-
-@Component({ template: `
-<daff-accordion-item [initiallyExpanded]="initiallyExpandedValue">
-  <h3 daffAccordionItemTitle>Size and Fit</h3>
-  <div>no content</div>
-</daff-accordion-item>
-` })
+@Component({
+  template: `
+    <daff-accordion-item [initiallyExpanded]="initiallyExpandedValue">
+      <h3 daffAccordionItemTitle>Size and Fit</h3>
+      <div>no content</div>
+    </daff-accordion-item>
+    `,
+  standalone: true,
+  imports: [
+    DaffAccordionItemComponent,
+  ],
+})
 class WrapperComponent {
   initiallyExpandedValue: boolean;
 }
@@ -35,10 +40,7 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent', () => {
       imports: [
         NoopAnimationsModule,
         FontAwesomeModule,
-      ],
-      declarations: [
         WrapperComponent,
-        DaffAccordionItemComponent,
       ],
     })
       .compileComponents();

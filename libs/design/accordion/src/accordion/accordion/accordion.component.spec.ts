@@ -12,7 +12,7 @@ describe('@daffodil/design/accordion | DaffAccordionComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         DaffAccordionComponent,
       ],
     })

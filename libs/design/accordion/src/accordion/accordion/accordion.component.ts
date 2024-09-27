@@ -17,6 +17,7 @@ import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
     directive: DaffArticleEncapsulatedDirective,
   }],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 
 export class DaffAccordionComponent {}

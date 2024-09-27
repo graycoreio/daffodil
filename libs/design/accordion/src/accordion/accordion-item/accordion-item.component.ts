@@ -25,6 +25,7 @@ let daffAccordionItemId = 0;
   animations: [
     daffAccordionAnimations.openAccordion,
   ],
+  standalone: true,
 })
 export class DaffAccordionItemComponent implements OnInit {
   /**

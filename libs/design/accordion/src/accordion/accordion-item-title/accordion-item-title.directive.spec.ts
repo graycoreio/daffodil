@@ -15,6 +15,10 @@ import { DaffAccordionItemTitleDirective } from './accordion-item-title.directiv
   template: `
     <div daffAccordionItemTitle>Title</div>
   `,
+  standalone: true,
+  imports: [
+    DaffAccordionItemTitleDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +29,7 @@ describe('@daffodil/design/accordion | DaffAccordionItemTitleDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffAccordionItemTitleDirective,
+      imports: [
         WrapperComponent,
       ],
     })

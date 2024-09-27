@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffAccordionItemTitle]',
+  standalone: true,
 })
 export class DaffAccordionItemTitleDirective {
 

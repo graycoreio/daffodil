@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 import { DaffCartFacade } from '@daffodil/cart/state';
 import { DaffCheckoutPlacedOrderFacade } from '@daffodil/checkout/state';
-import { DaffAccordionModule } from '@daffodil/design/accordion';
+import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
 import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffOrder } from '@daffodil/order';
@@ -27,7 +27,7 @@ import { ThankYouComponent } from '../components/thank-you/thank-you.component';
     ThankYouComponent,
     DaffContainerModule,
     CartSummaryWrapperModule,
-    DaffAccordionModule,
+    DAFF_ACCORDION_COMPONENTS,
     DaffLoadingIconModule,
   ],
 })
