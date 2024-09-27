@@ -26,6 +26,7 @@ enum DaffListTypeEnum {
   }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 
 export class DaffListComponent {

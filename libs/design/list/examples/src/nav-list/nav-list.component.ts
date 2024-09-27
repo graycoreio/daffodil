@@ -5,8 +5,7 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffPrefixSuffixModule } from '@daffodil/design';
-import { DaffListModule } from '@daffodil/design/list';
+import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -15,9 +14,8 @@ import { DaffListModule } from '@daffodil/design/list';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffListModule,
+    DAFF_LIST_COMPONENTS,
     FaIconComponent,
-    DaffPrefixSuffixModule,
   ],
 })
 export class NavListComponent {

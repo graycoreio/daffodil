@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffListModule } from '@daffodil/design/list';
+import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -11,6 +11,8 @@ import { DaffListModule } from '@daffodil/design/list';
   templateUrl: './multiline-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffListModule],
+  imports: [
+    DAFF_LIST_COMPONENTS,
+  ],
 })
 export class MultilineListComponent {}

@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -8,6 +9,7 @@ import {
 
 import {
   DaffPrefixDirective,
+  DaffPrefixSuffixModule,
   DaffSuffixDirective,
 } from '@daffodil/design';
 
@@ -17,6 +19,11 @@ import {
     'a[daff-list-item]',
   templateUrl: './list-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    NgIf,
+    DaffPrefixSuffixModule,
+  ],
 })
 
 export class DaffListItemComponent {

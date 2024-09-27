@@ -16,6 +16,10 @@ import { DaffListComponent } from './list.component';
     <daff-list [mode]="mode"></daff-list>
     <daff-nav-list></daff-nav-list>
   `,
+  standalone: true,
+  imports: [
+    DaffListComponent,
+  ],
 })
 class WrapperComponent {}
 
@@ -29,9 +33,8 @@ describe('@daffodil/design/list | DaffListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         WrapperComponent,
-        DaffListComponent,
       ],
     })
       .compileComponents();

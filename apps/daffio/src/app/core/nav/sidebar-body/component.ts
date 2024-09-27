@@ -10,7 +10,7 @@ import {
   Observable,
 } from 'rxjs';
 
-import { DaffListModule } from '@daffodil/design/list';
+import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
 import { DaffRouterDataService } from '@daffodil/router';
 
 import { DaffioRouteWithNavLinks } from '../link/route.type';
@@ -24,7 +24,7 @@ import { DaffioNavLink } from '../link/type';
   standalone: true,
   imports: [
     AsyncPipe,
-    DaffListModule,
+    DAFF_LIST_COMPONENTS,
     RouterLink,
   ],
 })
