@@ -13,7 +13,13 @@ import { DaffPalette } from '@daffodil/design';
 
 import { DaffNavbarComponent } from './navbar.component';
 
-@Component({ template: '<nav daff-navbar [color]="color" [raised]="raised"></ nav>' })
+@Component({
+  template: '<nav daff-navbar [color]="color" [raised]="raised"></ nav>',
+  standalone: true,
+  imports: [
+    DaffNavbarComponent,
+  ],
+})
 class WrapperComponent {
   color: DaffPalette;
   raised = false;
@@ -26,9 +32,8 @@ describe('@daffodil/design/navbar | DaffNavbarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         WrapperComponent,
-        DaffNavbarComponent,
       ],
     })
       .compileComponents();
@@ -45,10 +50,8 @@ describe('@daffodil/design/navbar | DaffNavbarComponent', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('<nav daff-navbar>', () => {
-    it('should add a class of "daff-navbar" to the host element', () => {
-      expect(de.nativeElement.classList.contains('daff-navbar')).toBeTruthy();
-    });
+  it('should add a class of "daff-navbar" to the host element', () => {
+    expect(de.nativeElement.classList.contains('daff-navbar')).toBeTruthy();
   });
 
   describe('using the color property of navbar', () => {

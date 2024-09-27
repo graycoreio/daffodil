@@ -10,9 +10,6 @@ import {
   DaffManageContainerLayoutDirective,
 } from '@daffodil/design';
 
-/**
- * @inheritdoc
- */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'nav[daff-navbar]',
@@ -26,6 +23,7 @@ import {
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class DaffNavbarComponent {
 

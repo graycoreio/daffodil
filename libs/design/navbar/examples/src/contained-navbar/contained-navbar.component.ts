@@ -5,7 +5,7 @@ import {
 
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
-import { DaffNavbarModule } from '@daffodil/design/navbar';
+import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -15,7 +15,7 @@ import { DaffNavbarModule } from '@daffodil/design/navbar';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffNavbarModule,
+    DAFF_NAVBAR_COMPONENTS,
     DAFF_CONTAINER_COMPONENTS,
     DAFF_BUTTON_COMPONENTS,
   ],

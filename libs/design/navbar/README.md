@@ -7,6 +7,47 @@ The navbar contains minimal layout styles, allowing the content within it to be 
 ## Basic Navbar
 <design-land-example-viewer-container example="basic-navbar"></design-land-example-viewer-container>
 
+## Usage
+
+### Within a standalone component
+To use navbar in a standalone component, import `DAFF_NAVBAR_COMPONENTS` directly into your custom component:
+
+```ts
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  standalone: true,
+  imports: [
+    DAFF_NAVBAR_COMPONENTS,
+  ],
+})
+export class CustomComponent {}
+```
+
+### Within a module (deprecated)
+To use navbar in a module, import `DaffNavbarModule` into your custom module:
+
+```ts
+import { NgModule } from '@angular/core';
+
+import { DaffNavbarModule } from '@daffodil/design/navbar';
+
+@NgModule({
+	declarations: [
+    CustomComponent,
+  ],
+  exports: [
+    CustomComponent,
+  ],
+  imports: [
+    DaffNavbarModule,
+  ],
+})
+export class CustomComponentModule { }
+```
+
+> This method is deprecated. It's recommended to update all custom components to standalone.
+
 ## Theming
 The default background color of a navbar is light gray, but it can be updated to one of the supported colors by using the `color` property.
 

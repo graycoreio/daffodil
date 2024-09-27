@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
-import { DaffNavbarModule } from '@daffodil/design/navbar';
+import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -19,7 +19,7 @@ import { DaffNavbarModule } from '@daffodil/design/navbar';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffNavbarModule,
+    DAFF_NAVBAR_COMPONENTS,
     DAFF_BUTTON_COMPONENTS,
     ReactiveFormsModule,
     NgFor,
