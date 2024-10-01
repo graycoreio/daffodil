@@ -1,4 +1,13 @@
 <div class="daff-tabs__tab-list" role="tablist">
-	<ng-content select="button[daff-tab]"></ng-content>
+	@for (label of _labels; track label) {
+		<button daff-tab [selected]="label.panelId === selectedTab" (click)="onClick(label.panelId)">
+			<ng-container *ngTemplateOutlet="label.templateRef"></ng-container>
+		</button>
+	}
 </div>
-<ng-content select="daff-tab-panel"></ng-content>
+
+@for (panel of _panels; track panel) {
+	@if(panel.id === selectedTab ) {
+		<ng-container *ngTemplateOutlet="panel.contentRef"></ng-container>
+	}
+}
