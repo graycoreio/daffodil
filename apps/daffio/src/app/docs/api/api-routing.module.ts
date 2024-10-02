@@ -1,7 +1,4 @@
-import {
-  inject,
-  NgModule,
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 import {
   Routes,
   RouterModule,
@@ -13,8 +10,8 @@ import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.
 import { DaffioApiPageComponent } from './pages/api-page/api-page.component';
 import { DaffioRoute } from '../../core/router/route.type';
 import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from '../containers/docs-list/sidebar.provider';
+import { daffioDocsIndexResolver } from '../index/resolver';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
-import { DaffioDocsIndexService } from '../services/index.service';
 
 export const apiRoutes: Routes = [
   <DaffioRoute>{
@@ -26,6 +23,9 @@ export const apiRoutes: Routes = [
       {
         path: '',
         component: DaffioApiListPageComponent,
+        resolve: {
+          index: daffioDocsIndexResolver,
+        },
       },
       {
         path: '**',

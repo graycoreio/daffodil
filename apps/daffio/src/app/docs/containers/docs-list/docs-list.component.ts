@@ -7,8 +7,8 @@ import {
 import { Observable } from 'rxjs';
 
 import { DaffioDocsListComponent } from '../../components/docs-list/docs-list.component';
+import { DaffioDocsIndexService } from '../../index/index.service';
 import { DaffioDocList } from '../../models/doc-list';
-import { DaffioDocsIndexService } from '../../services/index.service';
 
 @Component({
   selector: 'daffio-docs-list-container',
