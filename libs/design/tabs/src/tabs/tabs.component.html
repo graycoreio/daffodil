@@ -1,6 +1,6 @@
 <div class="daff-tabs__tab-list" role="tablist">
 	@for (label of _labels; track label) {
-		<button daff-tab-activator [selected]="label.panelId === selectedTab" (click)="onClick(label.panelId)">
+		<button daff-tab-activator [selected]="label.panelId === selectedTab" (click)="onClick(label.panelId)" [panelId]="label.panelId">
 			<ng-container *ngTemplateOutlet="label.templateRef"></ng-container>
 		</button>
 	}

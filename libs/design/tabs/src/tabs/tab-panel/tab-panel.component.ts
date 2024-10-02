@@ -6,6 +6,7 @@ import {
 
 import { DaffTabComponent } from '../tab/tab.component';
 
+let uniqueTabPanelId = 0;
 
 @Component({
   standalone: true,
@@ -18,7 +19,17 @@ export class DaffTabPanelComponent {
   @HostBinding('attr.role') role = 'tabpanel';
   @HostBinding('attr.aria-labelledby') ariaLabelledBy = '';
 
+  private _id = '';
+
+  @HostBinding('attr.id') get tabPanelId() {
+    return this._id;
+  }
+
   constructor(private tab: DaffTabComponent) {
     this.ariaLabelledBy = this.tab.id;
+
+    uniqueTabPanelId++;
+
+    this._id = 'daff-tab-panel-' + uniqueTabPanelId;
   }
 }

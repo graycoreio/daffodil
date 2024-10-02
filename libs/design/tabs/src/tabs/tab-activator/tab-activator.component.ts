@@ -6,6 +6,7 @@ import {
   ChangeDetectionStrategy,
   Input,
   Optional,
+  OnInit,
 } from '@angular/core';
 
 import {
@@ -32,7 +33,7 @@ let uniqueTabActivatorId = 0;
     DaffPrefixSuffixModule,
   ],
 })
-export class DaffTabActivatorComponent implements DaffPrefixable {
+export class DaffTabActivatorComponent implements DaffPrefixable, OnInit {
   @HostBinding('class.daff-tab') class = true;
   @HostBinding('attr.role') role = 'tab';
   @HostBinding('attr.aria-selected') get ariaSelected() {
@@ -46,6 +47,21 @@ export class DaffTabActivatorComponent implements DaffPrefixable {
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
 
   @Input() @HostBinding('class.selected') selected = false;
+
+  @HostBinding('attr.aria-controls') ariaControls = '';
+
+  /**
+   * The html `id` of a tab activator.
+   */
+  @HostBinding('attr.id') get tabActivatorId() {
+    return this._id;
+  }
+
+  @Input() panelId = '';
+
+  ngOnInit() {
+    this.ariaControls = this.panelId;
+  }
 
   private _id = '';
 

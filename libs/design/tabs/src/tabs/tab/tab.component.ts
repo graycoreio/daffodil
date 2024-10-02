@@ -22,7 +22,8 @@ let tabId = 1;
 export class DaffTabComponent {
   @HostBinding('attr.role') role = 'tab';
 
-  @HostBinding('attr.id') id = 'daff-tab-' + tabId;
+  id = 'daff-tab-' + tabId;
+  _panelId = 'daff-tab-panel-' + tabId;
 
   constructor() {
     tabId++;
