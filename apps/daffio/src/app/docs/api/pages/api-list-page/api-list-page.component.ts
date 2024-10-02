@@ -3,9 +3,13 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import {
+  map,
+  Observable,
+  tap,
+} from 'rxjs';
 
-import { DaffioDocsIndexService } from '../../../services/index.service';
 import { DaffioApiReference } from '../../models/api-reference';
 
 @Component({
@@ -21,10 +25,12 @@ export class DaffioApiListPageComponent implements OnInit {
   apiList$: Observable<DaffioApiReference>;
 
   constructor(
-    private index: DaffioDocsIndexService<DaffioApiReference>,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.apiList$ = this.index.getList();
+    this.apiList$ = this.route.data.pipe(
+      map((data) => data.index),
+    );
   }
 }

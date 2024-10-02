@@ -14,7 +14,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
 import { DaffioDocsPackageCardsContainer } from './package-cards.component';
-import { DaffioDocsIndexService } from '../../../services/index.service';
+import { DaffioDocsIndexService } from '../../../index/index.service';
 
 describe('DaffioDocsPackageCardsContainer', () => {
   let component: DaffioDocsPackageCardsContainer;

@@ -8,10 +8,8 @@ import {
   Observable,
 } from 'rxjs';
 
-import { DaffDocKind } from '@daffodil/docs-utils';
-
+import { DaffioDocsIndexService } from '../../../index/index.service';
 import { DaffioDocList } from '../../../models/doc-list';
-import { DaffioDocsIndexService } from '../../../services/index.service';
 import { DaffioPackage } from '../../components/package-cards/package-cards.component';
 
 function getPath(doc: DaffioDocList): string {

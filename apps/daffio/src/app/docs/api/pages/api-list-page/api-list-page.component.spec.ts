@@ -8,11 +8,12 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
+import { DaffioRoute } from 'apps/daffio/src/app/core/router/route.type';
+import { BehaviorSubject } from 'rxjs';
 
 import { DaffioApiListPageComponent } from './api-list-page.component';
-import { DaffioDocsIndexService } from '../../../services/index.service';
 import { DaffioApiListComponent } from '../../components/api-list/api-list.component';
 import { DaffioApiReference } from '../../models/api-reference';
 
@@ -27,7 +28,7 @@ class MockDaffioApiListComponent {
 describe('DaffioApiListPageComponent', () => {
   let component: DaffioApiListPageComponent;
   let fixture: ComponentFixture<DaffioApiListPageComponent>;
-  let indexServiceSpy: jasmine.SpyObj<DaffioDocsIndexService>;
+  let dataSpy: BehaviorSubject<DaffioRoute['data']>;
 
   const stubDocsList: DaffioApiReference = {
     id: 'id',
@@ -55,7 +56,7 @@ describe('DaffioApiListPageComponent', () => {
   };
 
   beforeEach(waitForAsync(() => {
-    indexServiceSpy = jasmine.createSpyObj('DaffioDocsIndexService', ['getList']);
+    dataSpy = new BehaviorSubject({});
 
     TestBed.configureTestingModule({
       imports: [
@@ -67,8 +68,8 @@ describe('DaffioApiListPageComponent', () => {
       ],
       providers: [
         {
-          provide: DaffioDocsIndexService,
-          useValue: indexServiceSpy,
+          provide: ActivatedRoute,
+          useValue: jasmine.createSpyObj('ActivatedRoute', [], { data: dataSpy }),
         },
       ],
     })
@@ -76,7 +77,9 @@ describe('DaffioApiListPageComponent', () => {
   }));
 
   beforeEach(() => {
-    indexServiceSpy.getList.and.returnValue(of(stubDocsList));
+    dataSpy.next({
+      index: stubDocsList,
+    });
     fixture = TestBed.createComponent(DaffioApiListPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

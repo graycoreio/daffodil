@@ -1,7 +1,9 @@
 <div class="daffio-api-package__wrapper">
   <div class="daffio-api-package__header">
     <h1 class="daffio-api-package__package-name">{{doc.title}}</h1>
-    <p *ngIf="doc.description" class="daffio-api-package__package-description">{{doc.description}}</p>
+    @if (doc.description) {
+      <p class="daffio-api-package__package-description">{{doc.description}}</p>
+    }
   </div>
   <daffio-api-list-section [children]="doc.children | apiPackageFilter:true" class="daffio-doc-viewer__api-section"></daffio-api-list-section>
 </div>
