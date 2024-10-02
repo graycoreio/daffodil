@@ -1,14 +1,10 @@
-import {
-  NgFor,
-  NgTemplateOutlet,
-} from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   HostBinding,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ContentChildren,
-  TemplateRef,
   QueryList,
   AfterContentInit,
   Input,
@@ -18,8 +14,8 @@ import {
 
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
-import { DaffTabPanelComponent } from '../public_api';
 import { DaffTabComponent } from './tab/tab.component';
+import { DaffTabActivatorComponent } from './tab-activator/tab-activator.component';
 import { DaffTabLabelDirective } from './tab-label/tab-label.directive';
 
 /**
@@ -34,7 +30,7 @@ import { DaffTabLabelDirective } from './tab-label/tab-label.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgTemplateOutlet,
-    DaffTabComponent,
+    DaffTabActivatorComponent,
   ],
   hostDirectives: [
     { directive: DaffArticleEncapsulatedDirective },
@@ -50,14 +46,14 @@ export class DaffTabsComponent implements AfterContentInit {
 
   @ContentChildren(DaffTabLabelDirective, { descendants: true }) _labels: QueryList<DaffTabLabelDirective>;
 
-  @ContentChildren(DaffTabPanelComponent) _panels: QueryList<DaffTabPanelComponent>;
+  @ContentChildren(DaffTabComponent) _tabs: QueryList<DaffTabComponent>;
 
   ngAfterContentInit() {
     console.log(this._labels);
-    console.log(this._panels);
+    console.log(this._tabs);
 
     if (!this.selectedTab) {
-      this.selectedTab = this._panels.first.id;
+      this.selectedTab = this._tabs.first.id;
     }
     console.log(this.selectedTab);
   }

@@ -4,7 +4,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { DaffTabPanelComponent } from '../tab-panel/tab-panel.component';
+import { DaffTabComponent } from '../tab/tab.component';
 
 @Directive({
   selector: '[daffTabLabel]',
@@ -12,7 +12,7 @@ import { DaffTabPanelComponent } from '../tab-panel/tab-panel.component';
 })
 export class DaffTabLabelDirective {
   constructor(
-    private tabPanel: DaffTabPanelComponent,
+    private tabPanel: DaffTabComponent,
     public templateRef: TemplateRef<any>,
   ) {
   }

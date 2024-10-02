@@ -1,26 +1,20 @@
 <daff-tabs>
-	<daff-tab-panel>
+	<daff-tab>
 		<ng-template daffTabLabel>
-			<fa-icon [icon]="faInfoCircle"></fa-icon> Tab 1
+			<fa-icon [icon]="faInfoCircle" daffPrefix></fa-icon> Tab 1
 		</ng-template>
-		Tab 1 Content
-	</daff-tab-panel>
-	<daff-tab-panel>
+		<daff-tab-panel>
+			Tab 1 Content
+		</daff-tab-panel>
+	</daff-tab>
+
+	<daff-tab>
 		<ng-template daffTabLabel>
-			Tab 2
+			<fa-icon [icon]="faInfoCircle" daffPrefix></fa-icon> Tab 2
 		</ng-template>
-		Tab 2 Content
-	</daff-tab-panel>
-	<daff-tab-panel>
-		<ng-template daffTabLabel>
-			Tab 3
-		</ng-template>
-		Tab 3 Content
-	</daff-tab-panel>
-	<daff-tab-panel>
-		<ng-template daffTabLabel>
-			Tab 4
-		</ng-template>
-		Tab 4 Content
-	</daff-tab-panel>
+		<daff-tab-panel>
+			Tab 2 Content
+		</daff-tab-panel>
+	</daff-tab>
+	
 </daff-tabs>
