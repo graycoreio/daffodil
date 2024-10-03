@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
-import { DAFF_MENU_COMPONENTS } from '@daffodil/design/menu';
+import { DaffMenuModule } from '@daffodil/design/menu';
 
 import { MenuContentComponent } from './menu-content/menu-content.component';
 
@@ -16,7 +16,7 @@ import { MenuContentComponent } from './menu-content/menu-content.component';
   standalone: true,
   imports: [
     DAFF_BUTTON_COMPONENTS,
-    DAFF_MENU_COMPONENTS,
+    DaffMenuModule,
   ],
 })
 export class BasicMenuComponent {
