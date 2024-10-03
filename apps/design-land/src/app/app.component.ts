@@ -27,6 +27,7 @@ import { PROGRESS_BAR_EXAMPLES } from '@daffodil/design/progress-bar/examples';
 import { QUANTITY_FIELD_EXAMPLES } from '@daffodil/design/quantity-field/examples';
 import { RADIO_EXAMPLES } from '@daffodil/design/radio/examples';
 import { SIDEBAR_EXAMPLES } from '@daffodil/design/sidebar/examples';
+import { SWITCH_EXAMPLES } from '@daffodil/design/switch/examples';
 import { TABS_EXAMPLES } from '@daffodil/design/tabs/examples';
 import { TOAST_EXAMPLES } from '@daffodil/design/toast/examples';
 import { TREE_EXAMPLES } from '@daffodil/design/tree/examples';
@@ -67,6 +68,7 @@ export class DesignLandAppComponent {
       ...IMAGE_EXAMPLES,
       ...INPUT_EXAMPLES,
       ...SIDEBAR_EXAMPLES,
+      ...SWITCH_EXAMPLES,
       ...TOAST_EXAMPLES,
       ...TREE_EXAMPLES,
       ...TABS_EXAMPLES,
