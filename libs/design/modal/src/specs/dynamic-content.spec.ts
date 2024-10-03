@@ -18,16 +18,25 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DaffModalComponent } from '../modal/modal.component';
 import { DaffModalService } from '../service/modal.service';
 
-@Component({ template: `<daff-modal></daff-modal>` })
-class WrapperComponent {}
-
-@Component({ template: `<p>It works!</p>` })
+@Component({
+  template: `<p>It works!</p>`,
+  standalone: true,
+})
 class DynamicComponent {}
 
-@NgModule({
-  declarations: [DynamicComponent],
+@Component({
+  template: `<daff-modal></daff-modal>`,
+  standalone: true,
+  imports: [
+    DaffModalComponent,
+    PortalModule,
+    DynamicComponent,
+  ],
+  providers: [
+    DaffModalService,
+  ],
 })
-class DynamicModule{}
+class WrapperComponent {}
 
 describe('@daffodil/design/modal | DaffModalComponent', () => {
   let wrapper: WrapperComponent;
@@ -39,15 +48,7 @@ describe('@daffodil/design/modal | DaffModalComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        PortalModule,
-        DynamicModule,
-      ],
-      declarations: [
         WrapperComponent,
-        DaffModalComponent,
-      ],
-      providers: [
-        DaffModalService,
       ],
     })
       .compileComponents();

@@ -3,8 +3,8 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffButtonModule } from '@daffodil/design/button';
-import { DaffModalModule } from '@daffodil/design/modal';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DAFF_MODAL_COMPONENTS } from '@daffodil/design/modal';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -12,7 +12,10 @@ import { DaffModalModule } from '@daffodil/design/modal';
   templateUrl: './modal-content.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffModalModule, DaffButtonModule],
+  imports: [
+    DAFF_MODAL_COMPONENTS,
+    DAFF_BUTTON_COMPONENTS,
+  ],
 })
 export class BasicModalContentComponent {
 

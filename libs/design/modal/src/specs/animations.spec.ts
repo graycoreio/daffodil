@@ -13,11 +13,20 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DaffModalComponent } from '../modal/modal.component';
 import { DaffModalService } from '../service/modal.service';
 
-@Component({ template: `
-  <div class="daff-modal-wrapper">
-    <daff-modal [open]="open"></daff-modal>
-  </div>
-` })
+@Component({
+  template: `
+    <div class="daff-modal-wrapper">
+      <daff-modal [open]="open"></daff-modal>
+    </div>
+  `,
+  standalone: true,
+  imports: [
+    DaffModalComponent,
+  ],
+  providers: [
+    DaffModalService,
+  ],
+})
 class WrapperComponent {
   open = true;
 }
@@ -32,13 +41,7 @@ describe('@daffodil/design/modal | DaffModalComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-      ],
-      declarations: [
         WrapperComponent,
-        DaffModalComponent,
-      ],
-      providers: [
-        DaffModalService,
       ],
     })
       .compileComponents();

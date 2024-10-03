@@ -4,8 +4,6 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { DaffModalModule } from '@daffodil/design/modal';
-
 import { DesignLandModalComponent } from './modal.component';
 
 describe('DesignLandModalComponent', () => {
@@ -14,9 +12,8 @@ describe('DesignLandModalComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DesignLandModalComponent ],
-      imports: [
-        DaffModalModule,
+      declarations: [
+        DesignLandModalComponent,
       ],
     })
       .compileComponents();

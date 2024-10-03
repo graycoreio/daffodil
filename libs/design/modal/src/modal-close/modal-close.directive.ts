@@ -16,6 +16,7 @@ import { DaffModalService } from '../service/modal.service';
  */
 @Directive({
   selector: 'button[daffModalClose]',
+  standalone: true,
 })
 
 export class DaffModalCloseDirective {

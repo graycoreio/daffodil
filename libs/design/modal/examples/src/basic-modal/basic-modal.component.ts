@@ -6,7 +6,7 @@ import {
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import {
   DaffModalComponent,
-  DaffModalModule,
+  DAFF_MODAL_COMPONENTS,
   DaffModalService,
 } from '@daffodil/design/modal';
 
@@ -20,7 +20,10 @@ import { BasicModalContentComponent } from './modal-content.component';
   standalone: true,
   imports: [
     DAFF_BUTTON_COMPONENTS,
-    DaffModalModule,
+    DAFF_MODAL_COMPONENTS,
+  ],
+  providers: [
+    DaffModalService,
   ],
 })
 export class BasicModalComponent {

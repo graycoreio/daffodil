@@ -1,7 +1,6 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
 import {
   Component,
-  NgModule,
   ViewContainerRef,
 } from '@angular/core';
 import {
@@ -13,7 +12,7 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffModalModule } from '../../modal.module';
+import { DaffModalComponent } from '../../modal/modal.component';
 import { DaffModalService } from '../modal.service';
 
 @Component({
@@ -21,6 +20,7 @@ import { DaffModalService } from '../modal.service';
   template: `
 		<p>It works!</p>
 	`,
+  standalone: true,
 })
 class DynamicComponent {}
 
@@ -29,15 +29,14 @@ class DynamicComponent {}
   template: `
 		<p>It works!</p>
 	`,
+  standalone: true,
 })
 class DynamicTwoComponent {}
 
-@NgModule({
-  declarations: [DynamicComponent, DynamicTwoComponent],
+@Component({
+  template: '',
+  standalone: true,
 })
-class DynamicModule {}
-
-@Component({ template: '' })
 class WrapperComponent {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }
@@ -51,8 +50,16 @@ describe('@daffodil/design/modal | DaffModalService', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicModule, DaffModalModule, NoopAnimationsModule],
-      declarations: [WrapperComponent],
+      imports: [
+        DynamicComponent,
+        DynamicTwoComponent,
+        DaffModalComponent,
+        NoopAnimationsModule,
+        WrapperComponent,
+      ],
+      providers: [
+        DaffModalService,
+      ],
     }).compileComponents();
 
     modalService = TestBed.inject(DaffModalService);

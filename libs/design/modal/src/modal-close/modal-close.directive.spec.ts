@@ -16,6 +16,13 @@ import { DaffModalService } from '../service/modal.service';
   template: `
     <button daffModalClose></button>
   `,
+  standalone: true,
+  imports: [
+    DaffModalCloseDirective,
+  ],
+  providers: [
+    DaffModalService,
+  ],
 })
 class WrapperComponent {}
 
@@ -26,12 +33,8 @@ describe('@daffodil/design/modal | DaffModalCloseDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffModalCloseDirective,
+      imports: [
         WrapperComponent,
-      ],
-      providers: [
-        DaffModalService,
       ],
     })
       .compileComponents();

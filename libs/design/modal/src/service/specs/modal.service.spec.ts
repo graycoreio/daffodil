@@ -13,22 +13,22 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffModalModule } from '../../modal.module';
+import { DaffModalComponent } from '../../modal/modal.component';
 import { DaffModalService } from '../modal.service';
 
 @Component({
   template: `
 		<p>It works!</p>
 	`,
+  standalone: true,
 })
 class DynamicComponent {}
 
-@NgModule({
-  declarations: [DynamicComponent],
-})
-class DynamicModule {}
 
-@Component({ template: '' })
+@Component({
+  template: '',
+  standalone: true,
+})
 class WrapperComponent {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }
@@ -42,8 +42,16 @@ describe('@daffodil/design/modal | DaffModalService', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicModule, DaffModalModule, NoopAnimationsModule],
-      declarations: [WrapperComponent],
+      imports: [
+        DynamicComponent,
+        DaffModalComponent,
+        NoopAnimationsModule,
+        WrapperComponent,
+
+      ],
+      providers: [
+        DaffModalService,
+      ],
     }).compileComponents();
   }));
 

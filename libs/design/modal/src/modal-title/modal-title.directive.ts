@@ -13,6 +13,7 @@ let modalTitleId = 0;
  */
 @Directive({
   selector: '[daffModalTitle]',
+  standalone: true,
 })
 
 export class DaffModalTitleDirective {
