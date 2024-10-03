@@ -11,6 +11,11 @@ import {
   faChevronUp,
 } from '@fortawesome/free-solid-svg-icons';
 
+import {
+  DaffOpenable,
+  DaffOpenableDirective,
+} from '@daffodil/design';
+
 import { daffAccordionAnimations } from '../animation/accordion-animation';
 import { getAnimationState } from '../animation/accordion-animation-state';
 
@@ -20,6 +25,11 @@ let daffAccordionItemId = 0;
   selector: 'daff-accordion-item',
   templateUrl: './accordion-item.component.html',
   styleUrls: ['./accordion-item.component.scss'],
+  hostDirectives: [{
+    directive: DaffOpenableDirective,
+    inputs: ['open'],
+    outputs: ['toggled'],
+  }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
@@ -27,7 +37,7 @@ let daffAccordionItemId = 0;
   ],
   standalone: true,
 })
-export class DaffAccordionItemComponent implements OnInit {
+export class DaffAccordionItemComponent implements OnInit, DaffOpenable {
   /**
    * @docs-private
    */
@@ -42,10 +52,6 @@ export class DaffAccordionItemComponent implements OnInit {
    */
   @HostBinding('class.daff-accordion-item') class = true;
 
-  @HostBinding('class.open') get openClass() {
-    return this._open;
-  }
-
   _daffAccordionItemId = 'daff-accordion-item' + '-' + ++daffAccordionItemId;
 
   @Input() id: string = this._daffAccordionItemId;
@@ -56,22 +62,43 @@ export class DaffAccordionItemComponent implements OnInit {
   /**
    * @docs-private
    */
-  _open = false;
-  /**
-   * @docs-private
-   */
   _animationState: string;
+
+  constructor(private openDirective: DaffOpenableDirective) {
+    this.openDirective.stateless = false;
+  }
 
   /**
    * @docs-private
    */
   ngOnInit() {
-    this._open = this.initiallyExpanded ? this.initiallyExpanded : this._open;
-    this._animationState = getAnimationState(this._open);
+    this.openDirective.open = this.initiallyExpanded ? this.initiallyExpanded : this.openDirective.open;
+    this._animationState = getAnimationState(this.openDirective.open);
   }
 
-  toggleActive() {
-    this._open = !this._open;
-    this._animationState = getAnimationState(this._open);
+  get open() {
+    return this.openDirective.open;
+  }
+
+  /**
+   * Reveals the contents of the accordion item
+   */
+  reveal() {
+    this.openDirective.reveal();
+  }
+
+  /**
+   * Hides the contents of the accordion item
+   */
+  hide() {
+    this.openDirective.hide();
+  }
+
+  /**
+   * Toggles the visibility of the contents of the accordion item
+   */
+  toggle() {
+    this.openDirective.toggle();
+    this._animationState = getAnimationState(this.openDirective.open);
   }
 }

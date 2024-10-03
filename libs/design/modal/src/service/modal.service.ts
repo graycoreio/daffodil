@@ -20,7 +20,7 @@ import { DaffModalComponent } from '../modal/modal.component';
 export class DaffModalService {
   private _modals: Map<DaffModalComponent, DaffModal> = new Map();
 
-  constructor(private overlay: Overlay) {}
+  constructor(private overlay: Overlay) { }
 
   private defaultConfiguration: DaffModalConfiguration = {};
 
@@ -31,13 +31,15 @@ export class DaffModalService {
       new ComponentPortal(
         DaffModalComponent,
         undefined,
-        Injector.create({ providers: [{
-          provide: DaffModalService,
-          useValue: this,
-        }]}),
+        Injector.create({
+          providers: [{
+            provide: DaffModalService,
+            useValue: this,
+          }],
+        }),
       ),
     );
-    modal.instance.open = true;
+    modal.instance.reveal();
     return modal;
   }
 
@@ -79,7 +81,7 @@ export class DaffModalService {
     const _modal = this._attachModal(_ref);
     const _attachedModal = this._attachModalContent(component, _modal);
 
-    if(configuration?.ariaLabelledBy) {
+    if (configuration?.ariaLabelledBy) {
       _modal.instance.ariaLabelledBy = configuration.ariaLabelledBy;
     }
 
@@ -101,7 +103,7 @@ export class DaffModalService {
   }
 
   close(component: DaffModalComponent): void {
-    component.open = false;
+    component.hide();
     const modal = this._modals.get(component);
 
     modal.overlay.detachBackdrop();

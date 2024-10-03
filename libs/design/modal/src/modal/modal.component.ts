@@ -10,7 +10,6 @@ import {
 import {
   Component,
   EventEmitter,
-  Input,
   HostBinding,
   ChangeDetectionStrategy,
   ViewChild,
@@ -21,6 +20,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
+import {
+  DaffOpenable,
+  DaffOpenableDirective,
+} from '@daffodil/design';
 import { daffFocusableElementsSelector } from '@daffodil/design';
 
 import { daffFadeAnimations } from '../animations/modal-animation';
@@ -31,11 +34,15 @@ import { DaffModalService } from '../service/modal.service';
   selector: 'daff-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
+  hostDirectives: [{
+    directive: DaffOpenableDirective,
+    outputs: ['toggled'],
+  }],
   animations: [daffFadeAnimations.fade],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class DaffModalComponent implements AfterContentInit, AfterViewInit {
+export class DaffModalComponent implements AfterContentInit, AfterViewInit, DaffOpenable {
   /**
    * Sets a class of .daff-modal to the host element.
    */
@@ -63,11 +70,6 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit {
   } set ariaLabelledBy(value: string) {
     this._ariaLabelledBy = value;
   }
-
-  /**
-   * Dictates whether or not a modal is open or closed.
-   */
-  @Input() open = false;
 
   /**
    * The CDK Portal outlet used to portal content into the modal.
@@ -99,28 +101,30 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit {
   constructor(
     private modalService: DaffModalService,
     private _focusTrapFactory: ConfigurableFocusTrapFactory,
-    private _elementRef: ElementRef<HTMLElement>,
+    private elementRef: ElementRef<HTMLElement>,
+    private openDirective: DaffOpenableDirective,
   ) {
+    this.openDirective.stateless = false;
   }
 
   ngAfterContentInit() {
     this._focusTrap = this._focusTrapFactory.create(
-      this._elementRef.nativeElement,
+      this.elementRef.nativeElement,
     );
   }
 
   ngAfterViewInit() {
-    const focusableChild = (<HTMLElement>this._elementRef.nativeElement.querySelector(
+    const focusableChild = (<HTMLElement>this.elementRef.nativeElement.querySelector(
       daffFocusableElementsSelector)
     );
 
-    if(focusableChild) {
+    if (focusableChild) {
       focusableChild.focus();
     } else {
       // There's a timing condition when computing HostBindings afterContentInit
       // so to allow the menu to be focused, we manually set the tabindex.
-      this._elementRef.nativeElement.tabIndex = 0;
-      (<HTMLElement>this._elementRef.nativeElement).focus();
+      this.elementRef.nativeElement.tabIndex = 0;
+      (<HTMLElement>this.elementRef.nativeElement).focus();
     }
   }
 
@@ -142,7 +146,7 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit {
 
   /** Animation hook that controls the entrance and exit animations of the modal. */
   @HostBinding('@fade') get fadeState(): string {
-    return getAnimationState(this.open);
+    return getAnimationState(this.openDirective.open);
   }
 
   /**
@@ -157,5 +161,30 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit {
     if (e.toState === 'closed') {
       this.closedAnimationCompleted.emit(e);
     }
+  }
+
+  get open() {
+    return this.openDirective.open;
+  }
+
+  /**
+   * Reveals the modal
+   */
+  reveal() {
+    this.openDirective.reveal();
+  }
+
+  /**
+   * Hides the modal
+   */
+  hide() {
+    this.openDirective.hide();
+  }
+
+  /**
+   * Toggles the visibility of the modal
+   */
+  toggle() {
+    this.openDirective.toggle();
   }
 }

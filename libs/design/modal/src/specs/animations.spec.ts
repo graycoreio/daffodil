@@ -53,14 +53,17 @@ describe('@daffodil/design/modal | DaffModalComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('the entrance and exit animations', () => {
-    it('should change animation states depending on whether or not the modal is open or closed', () => {
-      wrapper.open = true;
-      fixture.detectChanges();
-      expect(modal.fadeState).toBe('open');
-      wrapper.open = false;
-      fixture.detectChanges();
-      expect(modal.fadeState).toBe('closed');
-    });
+  it('should change the animation state to open if modal is open', () => {
+    modal.reveal();
+    fixture.detectChanges();
+
+    expect(modal.fadeState).toBe('open');
+  });
+
+  it('should change the animation state to closed if modal is closed', () => {
+    modal.hide();
+    fixture.detectChanges();
+
+    expect(modal.fadeState).toBe('closed');
   });
 });
