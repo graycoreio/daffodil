@@ -1,30 +1,22 @@
-import { NgIf } from '@angular/common';
 import {
-  Component,
   HostBinding,
-  ContentChild,
-  ChangeDetectionStrategy,
   Input,
   Optional,
   OnInit,
+  Directive,
 } from '@angular/core';
 
 import { DaffTabComponent } from '../tab/tab.component';
 
 let uniqueTabActivatorId = 0;
 
-// make into directive
-@Component({
+@Directive({
   standalone: true,
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '' +
     'button[daff-tab-activator]' + ',' +
     'a[daff-tab-activator]',
-  template: `<ng-content></ng-content>`,
-  styleUrl: './tab-activator.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffTabActivatorComponent implements OnInit {
+export class DaffTabActivatorDirective implements OnInit {
   @HostBinding('class.daff-tab-activator') class = true;
   @HostBinding('attr.role') role = 'tab';
   @HostBinding('attr.aria-selected') get ariaSelected() {

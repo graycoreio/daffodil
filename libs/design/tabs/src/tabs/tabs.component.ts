@@ -15,7 +15,7 @@ import {
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
 import { DaffTabComponent } from './tab/tab.component';
-import { DaffTabActivatorComponent } from './tab-activator/tab-activator.component';
+import { DaffTabActivatorDirective } from './tab-activator/tab-activator.directive';
 import { DaffTabLabelComponent } from './tab-label/tab-label.component';
 
 /**
@@ -30,7 +30,7 @@ import { DaffTabLabelComponent } from './tab-label/tab-label.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgTemplateOutlet,
-    DaffTabActivatorComponent,
+    DaffTabActivatorDirective,
   ],
   hostDirectives: [
     { directive: DaffArticleEncapsulatedDirective },

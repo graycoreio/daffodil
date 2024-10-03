@@ -12,7 +12,9 @@
 	$white: core.daff-map-deep-get($theme, 'core.white');
 	$black: core.daff-map-deep-get($theme, 'core.black');
 
-	.daff-tab {
+	.daff-tab-activator {
+		border-bottom: 2px solid theming.daff-illuminate($base, $neutral, 2);
+
 		&.selected {
 			border-bottom: 2px solid theming.daff-color($primary);
 		}
