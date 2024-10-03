@@ -18,6 +18,7 @@ import {
 
 import { daffFocusableElementsSelector } from '@daffodil/design';
 
+import { DaffMenuItemComponent } from '../menu-item/menu-item.component';
 import { DaffMenuService } from '../services/menu.service';
 
 @Component({
@@ -25,6 +26,10 @@ import { DaffMenuService } from '../services/menu.service';
   template: '<ng-content select="[daff-menu-item]"></ng-content>',
   styleUrls: ['./menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    DaffMenuItemComponent,
+  ],
 })
 export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
   @HostBinding('class.daff-menu') class = true;

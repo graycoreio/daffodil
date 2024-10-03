@@ -11,8 +11,6 @@ import { DaffMenuService } from './services/menu.service';
   imports: [
     CommonModule,
     OverlayModule,
-  ],
-  declarations: [
     DaffMenuActivatorDirective,
     DaffMenuComponent,
     DaffMenuItemComponent,

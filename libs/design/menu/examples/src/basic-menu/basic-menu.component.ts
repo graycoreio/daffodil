@@ -14,7 +14,10 @@ import { MenuContentComponent } from './menu-content/menu-content.component';
   templateUrl: './basic-menu.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DAFF_BUTTON_COMPONENTS, DaffMenuModule],
+  imports: [
+    DAFF_BUTTON_COMPONENTS,
+    DaffMenuModule,
+  ],
 })
 export class BasicMenuComponent {
   public menu = MenuContentComponent;

@@ -18,6 +18,7 @@ import { DaffMenuService } from '../services/menu.service';
 
 @Directive({
   selector: '[daffMenuActivator]',
+  standalone: true,
 })
 export class DaffMenuActivatorDirective implements OnDestroy {
 

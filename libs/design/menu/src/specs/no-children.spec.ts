@@ -1,4 +1,3 @@
-import { OverlayModule } from '@angular/cdk/overlay';
 import {
   Component,
   DebugElement,
@@ -12,14 +11,22 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffMenuComponent } from '../menu/menu.component';
-import { DaffMenuModule } from '../menu.module';
+import { DaffMenuItemComponent } from '../menu-item/menu-item.component';
+import { provideTestMenuService } from '../testing/dummy-service';
 
-@Component({ template: `
-  <daff-menu>
-    <a href="/test" daff-menu-item id="focused">Test</a>
-    <button daff-menu-item id="not-focused">Test 2</button>
-  </daff-menu>
-` })
+@Component({
+  template: `
+    <daff-menu>
+      <a href="/test" daff-menu-item id="focused">Test</a>
+      <button daff-menu-item id="not-focused">Test 2</button>
+    </daff-menu>
+  `,
+  standalone: true,
+  imports: [
+    DaffMenuComponent,
+    DaffMenuItemComponent,
+  ],
+})
 class WrapperComponent {}
 
 describe('@daffodil/design/menu | DaffMenuComponent', () => {
@@ -32,10 +39,10 @@ describe('@daffodil/design/menu | DaffMenuComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        DaffMenuModule,
-      ],
-      declarations: [
         WrapperComponent,
+      ],
+      providers: [
+        provideTestMenuService(),
       ],
     })
       .compileComponents();
@@ -55,8 +62,6 @@ describe('@daffodil/design/menu | DaffMenuComponent', () => {
   });
 
   it('should focus the first focusable child', () => {
-    expect(
-      document.activeElement === de.query(By.css('#focused')).nativeElement,
-    ).toEqual(true);
+    expect(document.activeElement === de.query(By.css('#focused')).nativeElement).toEqual(true);
   });
 });

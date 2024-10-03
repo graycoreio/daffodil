@@ -17,7 +17,10 @@ import { DaffMenuModule } from '@daffodil/design/menu';
   templateUrl: './menu-content.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffMenuModule, FaIconComponent],
+  imports: [
+    DaffMenuModule,
+    FaIconComponent,
+  ],
 })
 export class MenuContentComponent {
   faUser = faUser;

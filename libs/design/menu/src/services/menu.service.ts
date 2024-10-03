@@ -9,6 +9,7 @@ import {
 import {
   ElementRef,
   Injectable,
+  Injector,
   TemplateRef,
   Type,
   ViewContainerRef,
@@ -38,7 +39,10 @@ export class DaffMenuService {
   private $_open: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public open$: Observable<boolean> = this.$_open.asObservable();
 
-  constructor(protected overlay: Overlay) {}
+  constructor(
+    protected overlay: Overlay,
+    private injector: Injector,
+  ) {}
 
   protected async _createOverlay(activatorElement: ViewContainerRef, component: DaffMenuSlot) {
     if (!this._overlay) {
@@ -48,9 +52,9 @@ export class DaffMenuService {
       }
 
       if(component instanceof Type) {
-        this._overlay.attach(new ComponentPortal(<Type<unknown>>component));
+        this._overlay.attach(new ComponentPortal(<Type<unknown>>component, null, this.injector));
       } else if (component instanceof TemplateRef) {
-        this._overlay.attach(new TemplatePortal(component, activatorElement));
+        this._overlay.attach(new TemplatePortal(component, activatorElement, null, this.injector));
       }
 
       this._overlay.backdropClick().pipe(
