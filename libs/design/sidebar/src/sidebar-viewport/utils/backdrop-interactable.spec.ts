@@ -19,6 +19,10 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
     <daff-sidebar side="left" mode="side"></daff-sidebar>
     <daff-sidebar side="right" [mode]="mode" [open]="true"></daff-sidebar>
   `,
+  standalone: true,
+  imports: [
+    DaffSidebarComponent,
+  ],
 })
 class WrapperComponent {
   @Input() mode: DaffSidebarMode;
@@ -30,7 +34,6 @@ describe('@daffodil/design | sidebar-viewport | backdrop-interactable', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        DaffSidebarComponent,
         WrapperComponent,
       ],
     }).compileComponents();

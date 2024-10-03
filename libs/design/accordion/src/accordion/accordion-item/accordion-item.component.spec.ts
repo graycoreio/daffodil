@@ -22,8 +22,6 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', (
       imports: [
         NoopAnimationsModule,
         FontAwesomeModule,
-      ],
-      declarations: [
         DaffAccordionItemComponent,
       ],
     })
@@ -51,12 +49,18 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', (
 });
 
 
-@Component({ template: `
-<daff-accordion-item [initiallyExpanded]="initiallyExpandedValue" (toggled)="toggledFunction($event)">
-  <h3 daffAccordionItemTitle>Size and Fit</h3>
-  <div>no content</div>
-</daff-accordion-item>
-` })
+@Component({
+  template: `
+    <daff-accordion-item [initiallyExpanded]="initiallyExpandedValue" (toggled)="toggledFunction($event)">
+      <h3 daffAccordionItemTitle>Size and Fit</h3>
+      <div>no content</div>
+    </daff-accordion-item>
+    `,
+  standalone: true,
+  imports: [
+    DaffAccordionItemComponent,
+  ],
+})
 class WrapperComponent {
   initiallyExpandedValue: boolean;
   toggledFunction(val: boolean) {};
