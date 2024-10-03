@@ -9,32 +9,23 @@ import {
   OnInit,
 } from '@angular/core';
 
-import {
-  DaffPrefixable,
-  DaffPrefixDirective,
-  DaffPrefixSuffixModule,
-} from '@daffodil/design';
-
 import { DaffTabComponent } from '../tab/tab.component';
 
 let uniqueTabActivatorId = 0;
 
+// make into directive
 @Component({
   standalone: true,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '' +
     'button[daff-tab-activator]' + ',' +
     'a[daff-tab-activator]',
-  templateUrl: './tab-activator.component.html',
+  template: `<ng-content></ng-content>`,
   styleUrl: './tab-activator.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    NgIf,
-    DaffPrefixSuffixModule,
-  ],
 })
-export class DaffTabActivatorComponent implements DaffPrefixable, OnInit {
-  @HostBinding('class.daff-tab') class = true;
+export class DaffTabActivatorComponent implements OnInit {
+  @HostBinding('class.daff-tab-activator') class = true;
   @HostBinding('attr.role') role = 'tab';
   @HostBinding('attr.aria-selected') get ariaSelected() {
     return this.selected ? true :  false;
@@ -43,8 +34,6 @@ export class DaffTabActivatorComponent implements DaffPrefixable, OnInit {
   @HostBinding('attr.tabindex') get tabIndex() {
     return this.selected ? '0' :  '-1';
   }
-
-  @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
 
   @Input() @HostBinding('class.selected') selected = false;
 

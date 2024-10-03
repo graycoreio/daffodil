@@ -16,6 +16,7 @@ let uniqueTabPanelId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffTabPanelComponent {
+  @HostBinding('class.daff-tab-panel') class = true;
   @HostBinding('attr.role') role = 'tabpanel';
   @HostBinding('attr.aria-labelledby') ariaLabelledBy = '';
 

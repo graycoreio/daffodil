@@ -16,7 +16,6 @@ let tabId = 1;
         <ng-content></ng-content>
       </ng-template>
   `,
-  styleUrl: './tab.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffTabComponent {

@@ -21,4 +21,10 @@
 	&.selected {
 		font-weight: 500;
 	}
+
+	#{$root}__label {
+		.daff-prefix {
+			margin-right: 9px;
+		}
+	}
 }
