@@ -1,4 +1,12 @@
-<label class="switch">
-  <input type="checkbox" [checked]="on" (change)="on = !on; toggle.emit(on)" />    
-  <div></div>
+<label class="daff-switch">
+  <div class="daff-switch__text">
+    <ng-content></ng-content>
+  </div>
+  <div class="daff-switch__toggle" [class.checked]="checked">
+    <div class="daff-switch__activator"></div>
+    <input type="checkbox" role="switch" class="cdk-visually-hidden"
+      [checked]="checked"
+      (change)="toggle.emit(checked)"
+    />    
+  </div>
 </label>

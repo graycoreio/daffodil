@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  HostBinding,
   Input,
   Output,
 } from '@angular/core';
@@ -14,6 +15,6 @@ import {
   standalone: true,
 })
 export class DaffSwitchComponent {
-  @Input() on = false;
+  @Input() checked = false;
   @Output() toggle = new EventEmitter<boolean>();
 }

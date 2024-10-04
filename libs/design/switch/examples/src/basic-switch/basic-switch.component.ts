@@ -16,8 +16,8 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
   ],
 })
 export class BasicSwitchComponent {
-  on = false;
+  checked = false;
   changeSwitch() {
-    this.on = !this.on;
+    this.checked = !this.checked;
   }
 }
