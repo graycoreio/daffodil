@@ -15,8 +15,8 @@ import {
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
 import { DaffTabComponent } from './tab/tab.component';
-import { DaffTabActivatorDirective } from './tab-activator/tab-activator.directive';
-import { DaffTabLabelComponent } from './tab-label/tab-label.component';
+import { DaffTabActivatorComponent } from './tab-activator/tab-activator.component';
+import { DaffTabLabelDirective } from './tab-label/tab-label.component';
 
 /**
  * DaffTabsComponent provides a way ...
@@ -30,7 +30,7 @@ import { DaffTabLabelComponent } from './tab-label/tab-label.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgTemplateOutlet,
-    DaffTabActivatorDirective,
+    DaffTabActivatorComponent,
   ],
   hostDirectives: [
     { directive: DaffArticleEncapsulatedDirective },
@@ -44,7 +44,7 @@ export class DaffTabsComponent implements AfterContentInit {
 
   @HostBinding('class.daff-tabs') class = true;
 
-  @ContentChildren(DaffTabLabelComponent, { descendants: true }) _labels: QueryList<DaffTabLabelComponent>;
+  @ContentChildren(DaffTabLabelDirective, { descendants: true }) _labels: QueryList<DaffTabLabelDirective>;
 
   @ContentChildren(DaffTabComponent) _tabs: QueryList<DaffTabComponent>;
 
