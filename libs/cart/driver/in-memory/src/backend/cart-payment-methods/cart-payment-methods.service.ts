@@ -8,7 +8,7 @@ import {
   DaffCart,
   DaffCartPaymentMethod,
 } from '@daffodil/cart';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
+import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
 
 /**
  * @inheritdoc

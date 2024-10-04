@@ -5,7 +5,7 @@ import {
   STATUS,
 } from 'angular-in-memory-web-api';
 
-import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
+import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
 import { DaffCountry } from '@daffodil/geography';
 import {
   DaffCountryFactory,

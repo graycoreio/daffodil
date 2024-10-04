@@ -9,7 +9,7 @@ import {
   DaffCartShippingRate,
 } from '@daffodil/cart';
 import { DaffCartShippingRateFactory } from '@daffodil/cart/testing';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
+import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
 
 /**
  * @inheritdoc

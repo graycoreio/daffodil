@@ -11,7 +11,7 @@ import {
   DaffCart,
   DaffCartShippingRate,
 } from '@daffodil/cart';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
+import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 
 import { daffCartInMemoryComputeCartTotals } from '../../helpers/compute-cart-totals';

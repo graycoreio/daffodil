@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/driver": [
+        "libs/driver/src"
+      ],
+      "@daffodil/driver/hubspot": [
+        "libs/driver/hubspot/src"
+      ],
+      "@daffodil/driver/magento": [
+        "libs/driver/magento/src"
+      ],
+      "@daffodil/driver/magento/testing": [
+        "libs/driver/magento/testing/src"
+      ],
+      "@daffodil/driver/in-memory": [
+        "libs/driver/in-memory/src"
+      ],
+    }
+  }
+}
