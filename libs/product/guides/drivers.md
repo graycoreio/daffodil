@@ -81,3 +81,8 @@ The only other thing you need to do is to make the product images in `@daffodil/
   }
 }
 ```
+
+## Dynamic driver switching
+
+You can configure a dynamic switch driver, allowing you to switch between multiple product drivers on the same site. This enables users to visit a single website URL and access product data from different databases without needing to follow additional links, providing a unified access point while maintaining flexibility. A demo can be found
+[here](https://stackblitz.com/edit/stackblitz-starters-nwvydt?file=src%2Fmain.ts).
