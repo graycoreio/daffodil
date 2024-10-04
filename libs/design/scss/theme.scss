@@ -43,6 +43,7 @@
 @use '../notification/src/notification-theme' as notification;
 @use '../paginator/src/paginator-theme' as paginator;
 @use '../sidebar/src/sidebar-theme' as sidebar;
+@use '../switch/src/switch-theme' as switch;
 @use '../progress-bar/src/progress-bar-theme' as progress-bar;
 @use '../scss/state/skeleton/mixins' as skeleton;
 @use '../tabs/src/tabs-theme' as tabs;
@@ -94,6 +95,7 @@
 	@include notification.daff-notification-theme($theme);
 	@include paginator.daff-paginator-theme($theme);
 	@include sidebar.daff-sidebar-theme($theme);
+	@include switch.daff-switch-theme($theme);
 	@include tabs.daff-tabs-theme($theme);
 	@include tree.daff-tree-theme($theme);
 	@include toast.daff-toast-theme($theme);
