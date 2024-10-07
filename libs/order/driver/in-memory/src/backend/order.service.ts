@@ -10,7 +10,7 @@ import {
   daffIdentifiableArrayToDict,
   DaffSortDirectionEnum,
 } from '@daffodil/core';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
+import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
 import { DaffOrder } from '@daffodil/order';
 import { DaffOrderFactory } from '@daffodil/order/testing';
 

@@ -5,7 +5,7 @@ import {
 } from 'angular-in-memory-web-api';
 
 import { DaffCartOrderResult } from '@daffodil/cart';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
+import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
 
 /**
  * @inheritdoc

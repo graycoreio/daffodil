@@ -8,7 +8,7 @@ import {
 } from 'angular-in-memory-web-api';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
+import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
 
 import {
   DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,

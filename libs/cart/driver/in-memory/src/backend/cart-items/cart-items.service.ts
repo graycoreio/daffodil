@@ -13,7 +13,7 @@ import {
   DaffCartItemInput,
 } from '@daffodil/cart';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
+import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 
 import { daffCartInMemoryComputeCartItemPrices } from '../../helpers/compute-cart-item-prices';
