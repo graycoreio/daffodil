@@ -26,6 +26,9 @@
     "publish": "cd ../../dist/driver && npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
+  "optionalDependencies": {
+    "angular-in-memory-web-api": "0.0.0-PLACEHOLDER"
+  },
   "peerDependencies": {
     "@angular/common": "0.0.0-PLACEHOLDER",
     "@angular/core": "0.0.0-PLACEHOLDER",
