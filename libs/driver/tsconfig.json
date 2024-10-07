@@ -21,6 +21,7 @@
       "@daffodil/driver/in-memory": [
         "libs/driver/in-memory/src"
       ],
-    }
+    },
+    "resolveJsonModule": true
   }
 }
