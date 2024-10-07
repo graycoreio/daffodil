@@ -9,33 +9,35 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffTabComponent } from './tab/tab.component';
-import { DaffTabsComponent } from './tabs.component';
+import { DaffTabPanelComponent } from './tab-panel.component';
+import { DaffTabComponent } from '../tab/tab.component';
 
 @Component({
   template: `
-    <daff-tabs>
-      <daff-tab></daff-tab>
-    </daff-tabs>
-  `,
+		<daff-tab-panel></daff-tab-panel>
+	`,
   standalone: true,
   imports: [
-    DaffTabsComponent,
-    DaffTabComponent,
+    DaffTabPanelComponent,
   ],
 })
-class WrapperComponent {}
+class WrapperComponent {
+  selected: boolean;
+}
 
-describe('@daffodil/design/tabs | DaffTabsComponent', () => {
+describe('@daffodil/design/tabs | DaffTabPanelComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let component: DaffTabsComponent;
+  let component: DaffTabPanelComponent;
   let de: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         WrapperComponent,
+      ],
+      providers: [
+        DaffTabComponent,
       ],
     })
       .compileComponents();
@@ -45,7 +47,7 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
 
-    de = fixture.debugElement.query(By.css('daff-tabs'));
+    de = fixture.debugElement.query(By.css('daff-tab-panel'));
     component = de.componentInstance;
     fixture.detectChanges();
   });
@@ -54,9 +56,17 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should add a class of "daff-tabs" to the host element', () => {
+  it('should add a class of "daff-tab-panel" to the host element', () => {
     expect(de.classes).toEqual(jasmine.objectContaining({
-      'daff-tabs': true,
+      'daff-tab-panel': true,
     }));
+  });
+
+  it('should set the role to tabpanel', () => {
+    expect(component.role).toBe('tabpanel');
+  });
+
+  it('should set the tabindex to 0', () => {
+    expect(component.tabIndex).toBe('0');
   });
 });

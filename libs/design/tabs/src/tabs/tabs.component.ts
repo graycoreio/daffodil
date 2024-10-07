@@ -57,12 +57,12 @@ export class DaffTabsComponent implements AfterContentInit {
   }
 
   /**
-   * Sets the `aria-label` attribute on the tablist container
+   * Sets the `aria-label` attribute on the tablist element.
    */
   @Input() ariaLabel: string;
 
   /**
-   * Selects a tab and sets focus on the tab activator.
+   * Selects a tab and sets focus on the selected tab.
    */
   select(tabId: string) {
     this.tabChange.emit(tabId);
@@ -74,33 +74,36 @@ export class DaffTabsComponent implements AfterContentInit {
    * Navigates through the tabs based on the given offset.
    * Moves forward or backward in the tab array, wrapping around when necessary.
    */
-  navigateTabs(offset: number) {
+  private navigateTabs(offset: number) {
     const array = this._tabs.toArray();
-    const selectedIndex = array.findIndex(el => el.id === this.selectedTab);
-    const newIndex = (selectedIndex + offset + array.length) % array.length;
+    let selectedIndex = array.findIndex(el => el.id === this.selectedTab);
+    const startingIndex = selectedIndex;
+    let newIndex;
+
+    do {
+      newIndex = (selectedIndex + offset + array.length) % array.length;
+      selectedIndex = newIndex;
+    } while (array[newIndex].disabled && selectedIndex !== startingIndex); // Skip disabled tabs
 
     this.select(array[newIndex].id);
   }
 
   /**
-   * Selects the previous tab in the array.
-   * Wraps around to the last tab if the first tab is currently selected.
+   * Selects the previous tab and wraps around to the last tab if the first tab is currently selected.
    */
   previous() {
     this.navigateTabs(-1);
   }
 
   /**
-   * Selects the next tab in the array.
-   * Wraps around to the first tab if the last tab is currently selected.
+   * Selects the next tab and wraps around to the first tab if the last tab is currently selected.
    */
   next() {
     this.navigateTabs(1);
   }
 
   /**
-   * Selects the first tab in the array.
-   * Prevents the default event behavior if an event is passed.
+   * Selects the first tab.
    */
   selectFirst(event: KeyboardEvent | null) {
     event.preventDefault();
@@ -108,8 +111,7 @@ export class DaffTabsComponent implements AfterContentInit {
   }
 
   /**
-   * Selects the last tab in the array.
-   * Prevents the default event behavior if an event is passed.
+   * Selects the last tab.
    */
   selectLast(event: KeyboardEvent | null) {
     event.preventDefault();

@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   TemplateRef,
   ViewChild,
+  Input,
 } from '@angular/core';
 
 let tabId = 1;
@@ -22,7 +23,7 @@ let tabId = 1;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffTabComponent {
-  @HostBinding('attr.role') role = 'tab';
+  @Input() disabled = false;
 
   @ViewChild('content', { read: TemplateRef, static: true }) contentRef: TemplateRef<any>;
   @ViewChild('label', { read: TemplateRef, static: true }) labelRef: TemplateRef<any>;

@@ -8,6 +8,7 @@
 			[selected]="tab.id === selectedTab"
 			(click)="select(tab.id)"
 			[panelId]="tab.panelId"
+			[disabled]="tab.disabled"
 			[tabActivatorId]="tab.id"
 			(keydown.arrowright)="next()"
 			(keydown.arrowleft)="previous()">

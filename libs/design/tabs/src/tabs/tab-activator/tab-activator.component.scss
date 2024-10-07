@@ -12,5 +12,10 @@
 	height: 2.5rem;
 	margin: 0;
 	padding: 0.5rem 1.5rem;
+
+	&[disabled] {
+		cursor: not-allowed;
+		opacity: 0.6;
+	}
 }
 

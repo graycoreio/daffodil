@@ -1,16 +1,12 @@
-import { NgIf } from '@angular/common';
 import {
   HostBinding,
   Input,
-  Optional,
   OnInit,
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
   ElementRef,
 } from '@angular/core';
-
-import { DaffTabComponent } from '../tab/tab.component';
 
 @Component({
   standalone: true,
@@ -26,6 +22,8 @@ export class DaffTabActivatorComponent implements OnInit {
   @HostBinding('class.daff-tab-activator') class = true;
   @HostBinding('attr.role') role = 'tab';
 
+  @Input() @HostBinding('class.selected') selected = false;
+
   /** Sets aria-selected to true if the component is selected and false if it's not selected */
   @HostBinding('attr.aria-selected') get ariaSelected() {
     return this.selected ? true :  false;
@@ -40,9 +38,6 @@ export class DaffTabActivatorComponent implements OnInit {
 
   @HostBinding('attr.aria-controls') ariaControls = '';
 
-  @Input() @HostBinding('class.selected') selected = false;
-
-
   /**
    * The html `id` of the tab activator component
    */
@@ -52,7 +47,7 @@ export class DaffTabActivatorComponent implements OnInit {
 
   ngOnInit() {
     /**
-     * Sets the value of `panelID` to the `ariaControls` property
+     * Sets the value of `panelId` to the `ariaControls` property
      */
     this.ariaControls = this.panelId;
   }

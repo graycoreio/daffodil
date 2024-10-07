@@ -9,27 +9,25 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffTabComponent } from './tab/tab.component';
-import { DaffTabsComponent } from './tabs.component';
+import { DaffTabComponent } from './tab.component';
 
 @Component({
   template: `
-    <daff-tabs>
-      <daff-tab></daff-tab>
-    </daff-tabs>
-  `,
+		<daff-tab [disabled]="disabled"></daff-tab>
+	`,
   standalone: true,
   imports: [
-    DaffTabsComponent,
     DaffTabComponent,
   ],
 })
-class WrapperComponent {}
+class WrapperComponent {
+  disabled: boolean;
+}
 
-describe('@daffodil/design/tabs | DaffTabsComponent', () => {
+describe('@daffodil/design/tabs | DaffTabComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let component: DaffTabsComponent;
+  let component: DaffTabComponent;
   let de: DebugElement;
 
   beforeEach(waitForAsync(() => {
@@ -45,7 +43,7 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
 
-    de = fixture.debugElement.query(By.css('daff-tabs'));
+    de = fixture.debugElement.query(By.css('daff-tab'));
     component = de.componentInstance;
     fixture.detectChanges();
   });
@@ -54,9 +52,7 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should add a class of "daff-tabs" to the host element', () => {
-    expect(de.classes).toEqual(jasmine.objectContaining({
-      'daff-tabs': true,
-    }));
+  it('should take disabled as an input', () => {
+    expect(component.disabled).toEqual(wrapper.disabled);
   });
 });
