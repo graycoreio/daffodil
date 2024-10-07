@@ -16,7 +16,7 @@ import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
 import { DaffTabComponent } from './tab/tab.component';
 import { DaffTabActivatorComponent } from './tab-activator/tab-activator.component';
-import { DaffTabLabelDirective } from './tab-label/tab-label.component';
+import { DaffTabLabelComponent } from './tab-label/tab-label.component';
 
 /**
  * DaffTabsComponent provides a way ...
@@ -44,18 +44,14 @@ export class DaffTabsComponent implements AfterContentInit {
 
   @HostBinding('class.daff-tabs') class = true;
 
-  @ContentChildren(DaffTabLabelDirective, { descendants: true }) _labels: QueryList<DaffTabLabelDirective>;
+  @ContentChildren(DaffTabLabelComponent, { descendants: true }) _labels: QueryList<DaffTabLabelComponent>;
 
   @ContentChildren(DaffTabComponent) _tabs: QueryList<DaffTabComponent>;
 
   ngAfterContentInit() {
-    console.log(this._labels);
-    console.log(this._tabs);
-
     if (!this.selectedTab) {
       this.selectedTab = this._tabs.first.id;
     }
-    console.log(this.selectedTab);
   }
 
   onClick(panelId: string) {

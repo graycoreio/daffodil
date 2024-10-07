@@ -18,12 +18,9 @@ let uniqueTabActivatorId = 0;
   selector: '' +
     'button[daff-tab-activator]' + ',' +
     'a[daff-tab-activator]',
-  templateUrl: './tab-activator.component.html',
+  template: `<ng-content></ng-content>`,
   styleUrl: './tab-activator.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    NgIf,
-  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class DaffTabActivatorComponent implements OnInit {
@@ -48,10 +45,10 @@ export class DaffTabActivatorComponent implements OnInit {
     return this._id;
   }
 
-  @Input() panelId = '';
+  @Input() activatorId = '';
 
   ngOnInit() {
-    this.ariaControls = this.panelId;
+    this.ariaControls = this.activatorId;
   }
 
   private _id = '';

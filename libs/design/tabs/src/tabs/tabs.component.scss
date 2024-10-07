@@ -12,7 +12,7 @@
 
 	#{$root}__tab-list {
 		display: flex;
-		flex: 0 1 auto;
 		overflow-x: scroll;
+		scrollbar-width: thin;
 	}
 }

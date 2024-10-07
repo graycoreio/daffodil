@@ -19,6 +19,7 @@ export class DaffTabPanelComponent {
   @HostBinding('class.daff-tab-panel') class = true;
   @HostBinding('attr.role') role = 'tabpanel';
   @HostBinding('attr.aria-labelledby') ariaLabelledBy = '';
+  @HostBinding('attr.tabindex') tabIndex = '0';
 
   private _id = '';
 

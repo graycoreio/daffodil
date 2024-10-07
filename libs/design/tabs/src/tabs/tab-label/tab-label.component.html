@@ -1,0 +1,9 @@
+<ng-container *ngIf="_prefix">
+  <ng-content select="[daffPrefix]"></ng-content>
+</ng-container>
+<div class="daff-tab-label__content">
+  <ng-content></ng-content>
+</div>
+<ng-container *ngIf="_suffix">
+  <ng-content select="[daffSuffix]"></ng-content>
+</ng-container>
