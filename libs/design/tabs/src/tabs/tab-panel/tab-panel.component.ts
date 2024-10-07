@@ -28,6 +28,9 @@ export class DaffTabPanelComponent {
   }
 
   constructor(private tab: DaffTabComponent) {
+    /**
+     * Sets the value of `ariaLabelledBy` to the id of the tab component
+     */
     this.ariaLabelledBy = this.tab.id;
 
     uniqueTabPanelId++;

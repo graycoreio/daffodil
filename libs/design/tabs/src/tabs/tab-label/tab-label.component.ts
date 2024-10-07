@@ -13,8 +13,6 @@ import {
   DaffPrefixSuffixModule,
 } from '@daffodil/design';
 
-import { DaffTabComponent } from '../tab/tab.component';
-
 @Component({
   standalone: true,
   selector: 'daff-tab-label',
@@ -29,12 +27,4 @@ import { DaffTabComponent } from '../tab/tab.component';
 export class DaffTabLabelComponent implements DaffPrefixable, DaffSuffixable {
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
   @ContentChild(DaffSuffixDirective) _suffix: DaffSuffixDirective;
-
-  constructor(
-    private tab: DaffTabComponent,
-  ) {}
-
-  get tabLabelId() {
-    return this.tab.id;
-  }
 }

@@ -7,11 +7,10 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  ElementRef,
 } from '@angular/core';
 
 import { DaffTabComponent } from '../tab/tab.component';
-
-let uniqueTabActivatorId = 0;
 
 @Component({
   standalone: true,
@@ -26,43 +25,47 @@ let uniqueTabActivatorId = 0;
 export class DaffTabActivatorComponent implements OnInit {
   @HostBinding('class.daff-tab-activator') class = true;
   @HostBinding('attr.role') role = 'tab';
+
+  /** Sets aria-selected to true if the component is selected and false if it's not selected */
   @HostBinding('attr.aria-selected') get ariaSelected() {
     return this.selected ? true :  false;
   }
 
+  /**
+   * Sets tabindex to `0` if the component is selected and `-1` if it's not selected
+   */
   @HostBinding('attr.tabindex') get tabIndex() {
     return this.selected ? '0' :  '-1';
   }
 
-  @Input() @HostBinding('class.selected') selected = false;
-
   @HostBinding('attr.aria-controls') ariaControls = '';
 
-  /**
-   * The html `id` of a tab activator.
-   */
-  @HostBinding('attr.id') get tabActivatorId() {
-    return this._id;
-  }
+  @Input() @HostBinding('class.selected') selected = false;
 
-  @Input() activatorId = '';
+
+  /**
+   * The html `id` of the tab activator component
+   */
+  @Input() @HostBinding('attr.id') tabActivatorId = '';
+
+  @Input() panelId = '';
 
   ngOnInit() {
-    this.ariaControls = this.activatorId;
+    /**
+     * Sets the value of `panelID` to the `ariaControls` property
+     */
+    this.ariaControls = this.panelId;
   }
 
-  private _id = '';
+  constructor(
+    private el: ElementRef,
+  ) {
+  }
 
   /**
-   * The html `id` of a tab.
+   * Sets focus to the native element of the component
    */
-  @HostBinding('attr.id') get uniqueId() {
-    return this._id;
-  }
-
-  constructor(@Optional() private tab: DaffTabComponent) {
-    uniqueTabActivatorId++;
-
-    this._id = 'daff-tab-' + uniqueTabActivatorId;
+  focus() {
+    this.el.nativeElement.focus();
   }
 }

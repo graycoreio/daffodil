@@ -24,13 +24,13 @@ let tabId = 1;
 export class DaffTabComponent {
   @HostBinding('attr.role') role = 'tab';
 
+  @ViewChild('content', { read: TemplateRef, static: true }) contentRef: TemplateRef<any>;
+  @ViewChild('label', { read: TemplateRef, static: true }) labelRef: TemplateRef<any>;
+
   id = 'daff-tab-' + tabId;
   panelId = 'daff-tab-panel-' + tabId;
 
   constructor() {
     tabId++;
   }
-
-  @ViewChild('content', { read: TemplateRef, static: true }) contentRef: TemplateRef<any>;
-  @ViewChild('label', { read: TemplateRef, static: true }) labelRef: TemplateRef<any>;
 }
