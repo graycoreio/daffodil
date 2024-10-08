@@ -1,12 +1,8 @@
-import { DaffInMemoryDataServiceInterface } from './data-service.type';
+import { InMemoryDbService } from 'angular-in-memory-web-api';
+
+import { DaffInMemoryRouteableBackend } from './routeable.type';
 
 /**
  * An interface for defining in memory backends that use the angular in memory web api.
  */
-export interface DaffInMemoryBackendInterface extends DaffInMemoryDataServiceInterface {
-  /**
-   * The collection name of the backend service.
-   * Used for routing requests to the correct backend.
-   */
-  readonly collectionName: string;
-}
+export type DaffInMemoryBackendInterface = InMemoryDbService & DaffInMemoryRouteableBackend;

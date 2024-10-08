@@ -2,7 +2,7 @@ import { RequestInfo } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 
 /**
- * An interface for defining in memory services that use the angular in memory web api.
+ * An interface for defining in memory services that can handle CRUD requests.
  */
 export interface DaffInMemoryDataServiceInterface {
   /**
