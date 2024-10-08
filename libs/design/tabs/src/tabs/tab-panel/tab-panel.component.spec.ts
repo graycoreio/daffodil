@@ -30,17 +30,25 @@ describe('@daffodil/design/tabs | DaffTabPanelComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffTabPanelComponent;
   let de: DebugElement;
+  let mockTabComponent: jasmine.SpyObj<DaffTabComponent>;
 
   beforeEach(waitForAsync(() => {
+    mockTabComponent = jasmine.createSpyObj('DaffTabComponent', [], {
+      id: 'mock-tab-id',
+      panelId: 'mock-panel-id',
+    });
+
     TestBed.configureTestingModule({
       imports: [
         WrapperComponent,
       ],
       providers: [
-        DaffTabComponent,
+        {
+          provide: DaffTabComponent,
+          useValue: mockTabComponent,
+        },
       ],
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -68,5 +76,21 @@ describe('@daffodil/design/tabs | DaffTabPanelComponent', () => {
 
   it('should set the tabindex to 0', () => {
     expect(component.tabIndex).toBe('0');
+  });
+
+  it('should assign the `ariaLabelledBy` value to the `aria-labelledby` attribute', () => {
+    expect(de.attributes['aria-labelledby']).toBe(component.ariaLabelledBy);
+  });
+
+  it('should assign the `tabPanelId` value to the `id` attribute', () => {
+    expect(de.attributes['id']).toBe(component.tabPanelId);
+  });
+
+  it('should set ariaLabelledBy to the tab id', () => {
+    expect(component.ariaLabelledBy).toBe(mockTabComponent.id);
+  });
+
+  it('should set _id to the tab panelId', () => {
+    expect(component['_id']).toBe(mockTabComponent.panelId);
   });
 });

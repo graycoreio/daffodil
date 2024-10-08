@@ -13,8 +13,8 @@ import { DaffTabActivatorComponent } from './tab-activator.component';
 
 @Component({
   template: `
-		<button daff-tab-activator [selected]="selected">Tab Activator</button>
-		<a daff-tab-activator  [selected]="selected">Tab Activator</a>
+		<button daff-tab-activator [selected]="selected" [tabActivatorId]="tabActivatorId" [panelId]="panelId">Tab Activator</button>
+		<a daff-tab-activator [selected]="selected" [tabActivatorId]="tabActivatorId" [panelId]="panelId">Tab Activator</a>
 	`,
   standalone: true,
   imports: [
@@ -23,6 +23,8 @@ import { DaffTabActivatorComponent } from './tab-activator.component';
 })
 class WrapperComponent {
   selected: boolean;
+  tabActivatorId: string;
+  panelId: string;
 }
 
 describe('@daffodil/design/tabs | DaffTabActivatorComponent', () => {
@@ -67,6 +69,10 @@ describe('@daffodil/design/tabs | DaffTabActivatorComponent', () => {
     expect(component.selected).toEqual(wrapper.selected);
   });
 
+  it('should take panelId as an input', () => {
+    expect(component.panelId).toEqual(wrapper.panelId);
+  });
+
   describe('when selected is true', () => {
     beforeEach(() => {
       wrapper.selected = true;
@@ -95,5 +101,29 @@ describe('@daffodil/design/tabs | DaffTabActivatorComponent', () => {
     it('should set tabindex to -1', () => {
       expect(component.tabIndex).toBe('-1');
     });
+  });
+
+  it('should assign the value of panelId to ariaControls', () => {
+    component.ngOnInit();
+
+    expect(component.ariaControls).toBe(component.panelId);
+  });
+
+  describe('tabActivatorId', () => {
+    it('should take tabActivatorId as an input', () => {
+      expect(component.tabActivatorId).toEqual(wrapper.tabActivatorId);
+    });
+
+    it('should assign the `tabActivatorId` value to the `id` attribute', () => {
+      expect(de.attributes['id']).toBe(component.tabActivatorId);
+    });
+  });
+
+  it('should call the native element focus method', () => {
+    spyOn(de.nativeElement, 'focus');
+
+    component.focus();
+
+    expect(de.nativeElement.focus).toHaveBeenCalledWith();
   });
 });

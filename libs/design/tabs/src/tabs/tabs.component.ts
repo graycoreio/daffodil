@@ -11,6 +11,7 @@ import {
   Output,
   EventEmitter,
   ViewChildren,
+  ChangeDetectorRef,
 } from '@angular/core';
 
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
@@ -40,8 +41,16 @@ import { DaffTabLabelComponent } from './tab-label/tab-label.component';
 export class DaffTabsComponent implements AfterContentInit {
   @HostBinding('class.daff-tabs') class = true;
 
-  @Input() selectedTab: string;
+  //test
+  selectedTab: string;
 
+  //test
+  @Input() initiallySelected: string = null;
+
+  @HostBinding('attr.aria-label') externalAriaLabel = null;
+  @Input('aria-label') ariaLabel = '';
+
+  //test
   @Output() tabChange = new EventEmitter<string>();
 
   @ContentChildren(DaffTabLabelComponent, { descendants: true }) _labels: QueryList<DaffTabLabelComponent>;
@@ -50,24 +59,34 @@ export class DaffTabsComponent implements AfterContentInit {
 
   @ViewChildren(DaffTabActivatorComponent) _tabActivators: QueryList<DaffTabActivatorComponent>;
 
+  constructor(private cdRef: ChangeDetectorRef) {}
+
   ngAfterContentInit() {
+    if(this.initiallySelected) {
+      this.selectedTab = this.initiallySelected;
+    }
+
     if (!this.selectedTab) {
       this.selectedTab = this._tabs.first.id;
     }
   }
 
   /**
-   * Sets the `aria-label` attribute on the tablist element.
-   */
-  @Input() ariaLabel: string;
-
-  /**
    * Selects a tab and sets focus on the selected tab.
    */
   select(tabId: string) {
+    const tabActivator = this._tabActivators.find(el => el.tabActivatorId === tabId);
+
+    if (!tabActivator) {
+      console.warn(`The tab '${tabId}' was not able to be selected because it does not exist. Check the id on your <daff-tab>s.`);
+      return;
+    }
+
     this.tabChange.emit(tabId);
     this.selectedTab = tabId;
-    this._tabActivators.find(el => el.tabActivatorId === tabId).focus();
+    this.cdRef.markForCheck();
+
+    tabActivator.focus();
   }
 
   /**

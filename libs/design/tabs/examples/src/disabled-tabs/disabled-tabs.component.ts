@@ -9,8 +9,8 @@ import { DAFF_TABS_COMPONENTS } from '@daffodil/design/tabs';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'basic-tabs',
-  templateUrl: './basic-tabs.component.html',
+  selector: 'disabled-tabs',
+  templateUrl: './disabled-tabs.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -18,6 +18,6 @@ import { DAFF_TABS_COMPONENTS } from '@daffodil/design/tabs';
     FaIconComponent,
   ],
 })
-export class BasicTabsComponent {
+export class DisabledTabsComponent {
   faInfoCircle = faInfoCircle;
 }

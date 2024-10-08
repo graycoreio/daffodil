@@ -6,8 +6,6 @@ import {
 
 import { DaffTabComponent } from '../tab/tab.component';
 
-let uniqueTabPanelId = 0;
-
 @Component({
   standalone: true,
   selector: 'daff-tab-panel',
@@ -33,8 +31,6 @@ export class DaffTabPanelComponent {
      */
     this.ariaLabelledBy = this.tab.id;
 
-    uniqueTabPanelId++;
-
-    this._id = 'daff-tab-panel-' + uniqueTabPanelId;
+    this._id = this.tab.panelId;
   }
 }

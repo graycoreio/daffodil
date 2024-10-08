@@ -1,3 +1,13 @@
+<div class="custom-select-tabs__buttons">
+	<button daff-button size="sm" (click)="selectTabThree()">
+		Select Tab 3
+	</button>
+	
+	<button daff-button size="sm" (click)="selectTabFive()">
+		Select Tab 5
+	</button>
+</div>
+
 <daff-tabs aria-label="List of tabs">
 	<daff-tab>
 		<daff-tab-label>
@@ -19,7 +29,7 @@
 		</daff-tab-panel>
 	</daff-tab>
 
-	<daff-tab>
+	<daff-tab id="tab-3">
 		<daff-tab-label>
 			<fa-icon [icon]="faInfoCircle" daffPrefix></fa-icon>
 			Tab 3
@@ -40,7 +50,7 @@
 		</daff-tab-panel>
 	</daff-tab>
 
-	<daff-tab>
+	<daff-tab id="tab-5">
 		<daff-tab-label>
 			Tab 5
 			<fa-icon [icon]="faInfoCircle" daffSuffix></fa-icon>
@@ -49,4 +59,5 @@
 			Tab 5 Panel
 		</daff-tab-panel>
 	</daff-tab>
+	
 </daff-tabs>
