@@ -6,11 +6,14 @@ import {
   STATUS,
 } from 'angular-in-memory-web-api';
 
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductImageFactory,
   DaffProductExtensionFactory,
 } from '@daffodil/product/testing';
+
+import { DAFF_PRODUCT_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 
 /**
  * An in-memory service that stubs out the backend services for getting products.
@@ -22,7 +25,9 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendProductService implements InMemoryDbService {
+export class DaffInMemoryBackendProductService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_PRODUCT_IN_MEMORY_COLLECTION_NAME;
+
   protected _products: DaffProduct[] = [];
 
   /**
@@ -105,7 +110,7 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService {
    * @returns An http response object
    */
   get(reqInfo: any) {
-    if(reqInfo.id === 'best-sellers') {
+    if (reqInfo.id === 'best-sellers') {
       return reqInfo.utils.createResponse$(() => ({
         body: this._products.slice(0,4),
         status: STATUS.OK,
