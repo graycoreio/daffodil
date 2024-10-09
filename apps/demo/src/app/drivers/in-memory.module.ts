@@ -9,6 +9,7 @@ import { DaffAuthorizeNetInMemoryDriverModule } from '@daffodil/authorizenet/dri
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
 import { DaffCategoryInMemoryDriverModule } from '@daffodil/category/driver/in-memory';
 import { DaffInMemoryBackendCategoryService } from '@daffodil/category/driver/in-memory';
+import { DaffInMemoryDriverModule } from '@daffodil/driver/in-memory';
 import { DaffExternalRouterDriverInMemoryModule } from '@daffodil/external-router/driver/in-memory';
 import { DaffGeographyInMemoryDriverModule } from '@daffodil/geography/driver/in-memory';
 import {
@@ -20,12 +21,11 @@ import { DaffProductInMemoryDriverModule } from '@daffodil/product/driver/in-mem
 import { DaffCompositeProductInMemoryDriverModule } from '@daffodil/product-composite/driver/in-memory';
 import { DaffConfigurableProductInMemoryDriverModule } from '@daffodil/product-configurable/driver/in-memory';
 
-import { DemoInMemoryBackendService } from './in-memory/backend/backend.service';
 import { DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG } from './in-memory/external-router.config.token';
 
 @NgModule({
   imports: [
-    HttpClientInMemoryWebApiModule.forRoot(DemoInMemoryBackendService),
+    DaffInMemoryDriverModule.forRoot(),
     DaffAuthorizeNetInMemoryDriverModule.forRoot(),
     DaffAuthInMemoryDriverModule.forRoot(),
     DaffProductInMemoryDriverModule.forRoot(),
