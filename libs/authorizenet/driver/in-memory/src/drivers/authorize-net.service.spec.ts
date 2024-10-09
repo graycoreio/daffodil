@@ -7,13 +7,14 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import { DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
 
 import { DaffInMemoryAuthorizeNetService } from './authorize-net.service';
 
-describe('Driver | In Memory | AuthorizeNet | AuthorizeNetService', () => {
-  let authorizeNetService: DaffInMemoryAuthorizeNetService;
+describe('@daffodil/authorizenet/driver/in-memory | AuthorizeNetService', () => {
+  let service: DaffInMemoryAuthorizeNetService;
   let httpMock: HttpTestingController;
   const flushedResponse = {
     response: 'response',
@@ -24,13 +25,19 @@ describe('Driver | In Memory | AuthorizeNet | AuthorizeNetService', () => {
       imports: [],
       providers: [
         DaffInMemoryAuthorizeNetService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
-    authorizeNetService = TestBed.inject(DaffInMemoryAuthorizeNetService);
+    service = TestBed.inject(DaffInMemoryAuthorizeNetService);
   });
 
   afterEach(() => {
@@ -38,7 +45,7 @@ describe('Driver | In Memory | AuthorizeNet | AuthorizeNetService', () => {
   });
 
   it('should be created', () => {
-    expect(authorizeNetService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   describe('generateToken', () => {
@@ -60,12 +67,12 @@ describe('Driver | In Memory | AuthorizeNet | AuthorizeNetService', () => {
             securitycode: '123',
           },
         };
-        authorizeNetService.generateToken(paymentTokenRequest).subscribe(response => {
+        service.generateToken(paymentTokenRequest).subscribe(response => {
           expect(response).toEqual(flushedResponse);
           done();
         });
 
-        const req = httpMock.expectOne(`${authorizeNetService.url}/generateToken`);
+        const req = httpMock.expectOne(`${service['url']}/generateToken`);
 
         expect(req.request.method).toBe('POST');
         expect(req.request.body).toEqual(paymentTokenRequest);
