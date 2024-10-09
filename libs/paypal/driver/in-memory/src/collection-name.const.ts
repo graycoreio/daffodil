@@ -1,0 +1,1 @@
+export const DAFF_PAYPAL_IN_MEMORY_COLLECTION_NAME = 'paypal';
