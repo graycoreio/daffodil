@@ -9,6 +9,9 @@ import {
 
 import { DaffCustomerPayment } from '@daffodil/customer-payment';
 import { DaffCustomerPaymentFactory } from '@daffodil/customer-payment/testing';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
+
+import { DAFF_CUSTOMER_PAYMENT_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 
 /**
  * An in-memory service that handles customer payment HTTP requests.
@@ -16,7 +19,9 @@ import { DaffCustomerPaymentFactory } from '@daffodil/customer-payment/testing';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCustomerPaymentInMemoryBackendService implements InMemoryDbService {
+export class DaffCustomerPaymentInMemoryBackendService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_CUSTOMER_PAYMENT_IN_MEMORY_COLLECTION_NAME;
+
   payments: Record<DaffCustomerPayment['id'], DaffCustomerPayment> = {};
 
   constructor(
