@@ -18,6 +18,7 @@ import { DaffSearchDriverResponse } from '@daffodil/search/driver';
 import { DaffSearchResultFactory } from '@daffodil/search/testing';
 
 import { DaffInMemorySearchDriver } from './search.service';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 describe('@daffodil/search/driver/in-memory | DaffInMemorySearchDriver', () => {
   let service: DaffInMemorySearchDriver;
@@ -30,6 +31,12 @@ describe('@daffodil/search/driver/in-memory | DaffInMemorySearchDriver', () => {
       imports: [],
       providers: [
         DaffInMemorySearchDriver,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -60,7 +67,7 @@ describe('@daffodil/search/driver/in-memory | DaffInMemorySearchDriver', () => {
 
     beforeEach(() => {
       query = 'query';
-      url = `${service.url}?query=${query}`;
+      url = `${service['url']}?query=${query}`;
       result = service.search(query);
     });
 
@@ -84,7 +91,7 @@ describe('@daffodil/search/driver/in-memory | DaffInMemorySearchDriver', () => {
 
     beforeEach(() => {
       query = 'query';
-      url = `${service.url}?query=${query}`;
+      url = `${service['url']}?query=${query}`;
       result = service.incremental(query);
     });
 

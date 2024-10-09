@@ -18,8 +18,10 @@ import {
   switchMap,
 } from 'rxjs/operators';
 
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 import { DaffSearchDriverResponse } from '@daffodil/search/driver';
 
+import { DAFF_SEARCH_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 import { DAFF_SEARCH_IN_MEMORY_BACKENDS } from '../injection-tokens/backends.token';
 import { DaffSearchInMemoryChildBackend } from '../interfaces/public_api';
 
@@ -30,7 +32,9 @@ import { DaffSearchInMemoryChildBackend } from '../interfaces/public_api';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendSearchDriver implements InMemoryDbService {
+export class DaffInMemoryBackendSearchDriver implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_SEARCH_IN_MEMORY_COLLECTION_NAME;
+
   constructor(
     @Inject(DAFF_SEARCH_IN_MEMORY_BACKENDS) private backends: DaffSearchInMemoryChildBackend[],
   ) {}
