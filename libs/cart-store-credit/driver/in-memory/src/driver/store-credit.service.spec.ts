@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 
 import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
@@ -25,6 +26,12 @@ describe('@daffodil/cart-store-credit/driver/in-memory | DaffCartStoreCreditInMe
       imports: [],
       providers: [
         DaffCartStoreCreditInMemoryDriver,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -50,7 +57,7 @@ describe('@daffodil/cart-store-credit/driver/in-memory | DaffCartStoreCreditInMe
     let result: Observable<DaffCartWithStoreCredit>;
 
     beforeEach(() => {
-      url = service.url;
+      url = service['url'];
       result = service.apply(mockCartWithStoreCredit.id);
     });
 
@@ -72,7 +79,7 @@ describe('@daffodil/cart-store-credit/driver/in-memory | DaffCartStoreCreditInMe
     let result: Observable<DaffCartWithStoreCredit>;
 
     beforeEach(() => {
-      url = service.url;
+      url = service['url'];
       result = service.remove(mockCartWithStoreCredit.id);
     });
 

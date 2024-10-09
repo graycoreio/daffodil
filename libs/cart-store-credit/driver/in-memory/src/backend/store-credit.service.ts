@@ -10,8 +10,10 @@ import {
 import { DaffCartTotalTypeEnum } from '@daffodil/cart';
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
 import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
-import { DaffCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/testing';
 import { DaffCustomerStoreCreditInMemoryBackendService } from '@daffodil/customer-store-credit/driver/in-memory';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
+
+import { DAFF_CART_STORE_CREDIT_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 
 
 /**
@@ -20,7 +22,9 @@ import { DaffCustomerStoreCreditInMemoryBackendService } from '@daffodil/custome
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCartStoreCreditInMemoryBackendService implements InMemoryDbService {
+export class DaffCartStoreCreditInMemoryBackendService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_CART_STORE_CREDIT_IN_MEMORY_COLLECTION_NAME;
+
   constructor(
     private customerStoreCredit: DaffCustomerStoreCreditInMemoryBackendService,
     private cart: DaffInMemoryBackendCartRootService,
