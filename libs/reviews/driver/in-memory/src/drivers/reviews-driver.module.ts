@@ -4,9 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
+import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 import { DaffReviewsDriver } from '@daffodil/reviews/driver';
 
 import { DaffReviewsInMemoryService } from './reviews.service';
+import { DaffReviewsInMemoryBackendService } from '../backend/reviews.service';
 
 @NgModule({
   imports: [
@@ -22,6 +24,7 @@ export class DaffReviewsInMemoryDriverModule {
           provide: DaffReviewsDriver,
           useExisting: DaffReviewsInMemoryService,
         },
+        provideDaffInMemoryBackends(DaffReviewsInMemoryBackendService),
       ],
     };
   }

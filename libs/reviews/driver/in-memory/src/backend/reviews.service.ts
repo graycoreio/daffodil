@@ -5,9 +5,11 @@ import {
   STATUS,
 } from 'angular-in-memory-web-api';
 
-import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 import { DaffProductReviews } from '@daffodil/reviews';
 import { DaffProductReviewsFactory } from '@daffodil/reviews/testing';
+
+import { DAFF_REVIEWS_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 
 /**
  * An in-memory service that stubs out the backend services for getting reviews.
@@ -17,7 +19,9 @@ import { DaffProductReviewsFactory } from '@daffodil/reviews/testing';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffReviewsInMemoryBackendService implements InMemoryDbService, DaffInMemoryDataServiceInterface {
+export class DaffReviewsInMemoryBackendService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_REVIEWS_IN_MEMORY_COLLECTION_NAME;
+
   reviews: DaffProductReviews;
 
   constructor(
