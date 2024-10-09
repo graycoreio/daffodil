@@ -5,8 +5,10 @@ import {
 } from '@angular/core';
 
 import { DaffContactDriver } from '@daffodil/contact/driver';
+import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 
 import { DaffInMemoryContactService } from './contact.service';
+import { DaffInMemoryBackendContactService } from './in-memory-backend/contact-in-memory-backend.service';
 
 @NgModule({
   imports: [CommonModule],
@@ -20,6 +22,7 @@ export class DaffContactInMemoryDriverModule {
           provide: DaffContactDriver,
           useClass: DaffInMemoryContactService,
         },
+        provideDaffInMemoryBackends(DaffInMemoryBackendContactService),
       ],
     };
   }
