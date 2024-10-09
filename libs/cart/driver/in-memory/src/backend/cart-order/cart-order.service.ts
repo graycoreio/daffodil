@@ -5,7 +5,9 @@ import {
 } from 'angular-in-memory-web-api';
 
 import { DaffCartOrderResult } from '@daffodil/cart';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
+
+import { DAFF_CART_IN_MEMORY_CART_ORDER_COLLECTION_NAME } from '../../collection-names';
 
 /**
  * @inheritdoc
@@ -13,7 +15,9 @@ import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendCartOrderService implements DaffInMemoryDataServiceInterface {
+export class DaffInMemoryBackendCartOrderService implements DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_CART_IN_MEMORY_CART_ORDER_COLLECTION_NAME;
+
   post(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: this.placeOrder(reqInfo),

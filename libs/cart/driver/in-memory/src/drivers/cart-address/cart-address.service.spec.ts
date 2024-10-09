@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import {
   DaffCart,
@@ -19,8 +20,8 @@ import {
 
 import { DaffInMemoryCartAddressService } from './cart-address.service';
 
-describe('Driver | In Memory | Cart | CartAddressService', () => {
-  let cartBillingAddressService: DaffInMemoryCartAddressService;
+describe('@daffodil/cart/driver/in-memory | CartAddressService', () => {
+  let service: DaffInMemoryCartAddressService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
   let cartAddressFactory: DaffCartAddressFactory;
@@ -34,6 +35,12 @@ describe('Driver | In Memory | Cart | CartAddressService', () => {
       imports: [],
       providers: [
         DaffInMemoryCartAddressService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -42,7 +49,7 @@ describe('Driver | In Memory | Cart | CartAddressService', () => {
     httpMock = TestBed.inject(HttpTestingController);
     cartFactory = TestBed.inject(DaffCartFactory);
     cartAddressFactory = TestBed.inject(DaffCartAddressFactory);
-    cartBillingAddressService = TestBed.inject(DaffInMemoryCartAddressService);
+    service = TestBed.inject(DaffInMemoryCartAddressService);
 
     mockCart = cartFactory.create();
     mockCartAddress = cartAddressFactory.create();
@@ -56,7 +63,7 @@ describe('Driver | In Memory | Cart | CartAddressService', () => {
   });
 
   it('should be created', () => {
-    expect(cartBillingAddressService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   describe('update', () => {
@@ -69,11 +76,11 @@ describe('Driver | In Memory | Cart | CartAddressService', () => {
     });
 
     it('should send a put request', done => {
-      cartBillingAddressService.update(cartId, mockCartAddressUpdate).subscribe(cart => {
+      service.update(cartId, mockCartAddressUpdate).subscribe(cart => {
         done();
       });
 
-      const req = httpMock.expectOne(`${cartBillingAddressService.url}/${cartId}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}`);
 
       expect(req.request.method).toBe('PUT');
       expect(req.request.body).toEqual(mockCartAddressUpdate);

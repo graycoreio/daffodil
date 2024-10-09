@@ -17,6 +17,7 @@ import {
   DaffCartCouponDriver,
   DaffCartAddressDriver,
 } from '@daffodil/cart/driver';
+import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 
 import { DaffInMemoryCartService } from './cart/cart.service';
 import { DaffInMemoryCartAddressService } from './cart-address/cart-address.service';
@@ -29,6 +30,7 @@ import { DaffInMemoryCartPaymentMethodsService } from './cart-payment-methods/ca
 import { DaffInMemoryCartShippingAddressService } from './cart-shipping-address/cart-shipping-address.service';
 import { DaffInMemoryCartShippingInformationService } from './cart-shipping-information/cart-shipping-information.service';
 import { DaffInMemoryCartShippingMethodsService } from './cart-shipping-methods/cart-shipping-methods.service';
+import { DaffInMemoryBackendCartRootService } from '../backend/public_api';
 
 @NgModule({
   imports: [
@@ -84,6 +86,9 @@ export class DaffCartInMemoryDriverModule {
           provide: DaffCartCouponDriver,
           useExisting: DaffInMemoryCartCouponService,
         },
+        provideDaffInMemoryBackends(
+          DaffInMemoryBackendCartRootService,
+        ),
       ],
     };
   }

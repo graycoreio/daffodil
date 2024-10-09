@@ -8,8 +8,9 @@ import {
 } from 'angular-in-memory-web-api';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 
+import { DAFF_CART_IN_MEMORY_CART_ADDRESS_COLLECTION_NAME } from '../../collection-names';
 import {
   DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
   DaffCartInMemoryExtraAttributesHook,
@@ -21,7 +22,9 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendCartAddressService implements DaffInMemoryDataServiceInterface {
+export class DaffInMemoryBackendCartAddressService implements DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_CART_IN_MEMORY_CART_ADDRESS_COLLECTION_NAME;
+
   constructor(
     @Inject(DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK) private extraFieldsHook: DaffCartInMemoryExtraAttributesHook,
   ) {}

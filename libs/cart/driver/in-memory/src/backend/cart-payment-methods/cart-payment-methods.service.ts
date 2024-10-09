@@ -8,7 +8,9 @@ import {
   DaffCart,
   DaffCartPaymentMethod,
 } from '@daffodil/cart';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
+
+import { DAFF_CART_IN_MEMORY_CART_PAYMENT_METHODS_COLLECTION_NAME } from '../../collection-names';
 
 /**
  * @inheritdoc
@@ -16,7 +18,9 @@ import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendCartPaymentMethodsService implements DaffInMemoryDataServiceInterface {
+export class DaffInMemoryBackendCartPaymentMethodsService implements DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_CART_IN_MEMORY_CART_PAYMENT_METHODS_COLLECTION_NAME;
+
   get(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: this.listPaymentMethods(reqInfo),

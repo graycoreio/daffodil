@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import {
   DaffCart,
@@ -21,8 +22,8 @@ import {
 
 import { DaffInMemoryCartPaymentService } from './cart-payment.service';
 
-describe('Driver | In Memory | Cart | CartPaymentService', () => {
-  let cartPaymentService: DaffInMemoryCartPaymentService;
+describe('@daffodil/cart/driver/in-memory | CartPaymentService', () => {
+  let service: DaffInMemoryCartPaymentService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
   let cartPaymentFactory: DaffCartPaymentFactory;
@@ -38,13 +39,19 @@ describe('Driver | In Memory | Cart | CartPaymentService', () => {
       imports: [],
       providers: [
         DaffInMemoryCartPaymentService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
-    cartPaymentService = TestBed.inject(DaffInMemoryCartPaymentService);
+    service = TestBed.inject(DaffInMemoryCartPaymentService);
 
     cartFactory = TestBed.inject(DaffCartFactory);
     cartPaymentFactory = TestBed.inject(DaffCartPaymentFactory);
@@ -63,16 +70,16 @@ describe('Driver | In Memory | Cart | CartPaymentService', () => {
   });
 
   it('should be created', () => {
-    expect(cartPaymentService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   describe('get | getting a cart payment method', () => {
     it('should send a get request', done => {
-      cartPaymentService.get(cartId).subscribe(res => {
+      service.get(cartId).subscribe(res => {
         done();
       });
 
-      const req = httpMock.expectOne(`${cartPaymentService.url}/${cartId}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}`);
 
       expect(req.request.method).toBe('GET');
       req.flush(mockPayment);
@@ -85,11 +92,11 @@ describe('Driver | In Memory | Cart | CartPaymentService', () => {
     });
 
     it('should send a put request', done => {
-      cartPaymentService.update(cartId, mockPayment).subscribe(cart => {
+      service.update(cartId, mockPayment).subscribe(cart => {
         done();
       });
 
-      const req = httpMock.expectOne(`${cartPaymentService.url}/${cartId}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}`);
 
       expect(req.request.method).toBe('PUT');
       expect(req.request.body).toEqual({ payment: mockPayment });
@@ -107,11 +114,11 @@ describe('Driver | In Memory | Cart | CartPaymentService', () => {
     });
 
     it('should send a put request', done => {
-      cartPaymentService.updateWithBilling(cartId, mockPayment, mockCartAddress).subscribe(cart => {
+      service.updateWithBilling(cartId, mockPayment, mockCartAddress).subscribe(cart => {
         done();
       });
 
-      const req = httpMock.expectOne(`${cartPaymentService.url}/${cartId}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}`);
 
       expect(req.request.method).toBe('PUT');
       expect(req.request.body).toEqual({
@@ -128,9 +135,9 @@ describe('Driver | In Memory | Cart | CartPaymentService', () => {
 
   describe('remove | removing the payment method from the cart', () => {
     it('should send a delete request', () => {
-      cartPaymentService.remove(cartId).subscribe();
+      service.remove(cartId).subscribe();
 
-      const req = httpMock.expectOne(`${cartPaymentService.url}/${cartId}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}`);
 
       expect(req.request.method).toBe('DELETE');
     });

@@ -1,0 +1,11 @@
+export const DAFF_CART_IN_MEMORY_CART_COLLECTION_NAME = 'cart';
+export const DAFF_CART_IN_MEMORY_CART_ITEMS_COLLECTION_NAME = 'cart-items';
+export const DAFF_CART_IN_MEMORY_CART_ORDER_COLLECTION_NAME = 'cart-order';
+export const DAFF_CART_IN_MEMORY_CART_COUPON_COLLECTION_NAME = 'cart-coupon';
+export const DAFF_CART_IN_MEMORY_CART_ADDRESS_COLLECTION_NAME = 'cart-address';
+export const DAFF_CART_IN_MEMORY_CART_SHIPPING_ADDRESS_COLLECTION_NAME = 'cart-shipping-address';
+export const DAFF_CART_IN_MEMORY_CART_BILLING_ADDRESS_COLLECTION_NAME = 'cart-billing-address';
+export const DAFF_CART_IN_MEMORY_CART_PAYMENT_METHODS_COLLECTION_NAME = 'cart-payment-methods';
+export const DAFF_CART_IN_MEMORY_CART_SHIPPING_METHODS_COLLECTION_NAME = 'cart-shipping-methods';
+export const DAFF_CART_IN_MEMORY_CART_PAYMENT_COLLECTION_NAME = 'cart-payment';
+export const DAFF_CART_IN_MEMORY_CART_SHIPPING_COLLECTION_NAME = 'cart-shipping-information';
