@@ -5,9 +5,9 @@ import {
   DaffInMemoryDataServiceInterface,
 } from '@daffodil/driver/in-memory';
 
-import { DaffInMemoryBackendDelegate } from './delegate.service';
+import { DaffInMemoryBackendDelegate } from './delegate.class';
 
-describe('@daffodil/driver/in-memory', () => {
+describe('@daffodil/driver/in-memory | DaffInMemoryBackendDelegate', () => {
   let service: DaffInMemoryBackendDelegate;
   let backends: Array<jasmine.SpyObj<DaffInMemoryBackendInterface>>;
   let methods: Array<keyof DaffInMemoryDataServiceInterface>;
