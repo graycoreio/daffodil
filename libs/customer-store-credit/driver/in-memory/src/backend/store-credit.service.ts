@@ -9,6 +9,9 @@ import {
 
 import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
 import { DaffCustomerStoreCreditFactory } from '@daffodil/customer-store-credit/testing';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
+
+import { DAFF_CUSTOMER_STORE_CREDIT_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 
 /**
  * An in-memory service that handles customer store credit HTTP requests.
@@ -16,7 +19,9 @@ import { DaffCustomerStoreCreditFactory } from '@daffodil/customer-store-credit/
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCustomerStoreCreditInMemoryBackendService implements InMemoryDbService {
+export class DaffCustomerStoreCreditInMemoryBackendService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_CUSTOMER_STORE_CREDIT_IN_MEMORY_COLLECTION_NAME;
+
   storeCredit: DaffCustomerStoreCredit;
 
   constructor(
