@@ -4,9 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
+import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 import { DaffGeographyDriver } from '@daffodil/geography/driver';
 
 import { DaffInMemoryGeographyService } from './geography.service';
+import { DaffInMemoryBackendGeographyService } from '../backend/geography.service';
 
 @NgModule({
   imports: [
@@ -22,6 +24,7 @@ export class DaffGeographyInMemoryDriverModule {
           provide: DaffGeographyDriver,
           useExisting: DaffInMemoryGeographyService,
         },
+        provideDaffInMemoryBackends(DaffInMemoryBackendGeographyService),
       ],
     };
   }

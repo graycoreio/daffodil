@@ -1,0 +1,1 @@
+export const DAFF_GEOGRAPHY_IN_MEMORY_COLLECTION_NAME = 'countries';
