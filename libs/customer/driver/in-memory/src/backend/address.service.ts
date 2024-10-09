@@ -9,6 +9,9 @@ import {
 
 import { DaffCustomerAddress } from '@daffodil/customer';
 import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
+
+import { DAFF_CUSTOMER_ADDRESS_IN_MEMORY_COLLECTION_NAME } from '../collection-names/address.const';
 
 /**
  * An in-memory service that handles customer address HTTP requests.
@@ -16,7 +19,9 @@ import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCustomerAddressInMemoryBackendService implements InMemoryDbService {
+export class DaffCustomerAddressInMemoryBackendService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_CUSTOMER_ADDRESS_IN_MEMORY_COLLECTION_NAME;
+
   addresses: Record<DaffCustomerAddress['id'], DaffCustomerAddress> = {};
 
   constructor(

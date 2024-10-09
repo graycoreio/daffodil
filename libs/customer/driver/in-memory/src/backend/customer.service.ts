@@ -9,6 +9,9 @@ import {
 
 import { DaffCustomer } from '@daffodil/customer';
 import { DaffCustomerFactory } from '@daffodil/customer/testing';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
+
+import { DAFF_CUSTOMER_IN_MEMORY_COLLECTION_NAME } from '../collection-names/customer.const';
 
 /**
  * An in-memory service that delegates customer queries to child backends
@@ -17,7 +20,9 @@ import { DaffCustomerFactory } from '@daffodil/customer/testing';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCustomerInMemoryBackendService implements InMemoryDbService {
+export class DaffCustomerInMemoryBackendService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_CUSTOMER_IN_MEMORY_COLLECTION_NAME;
+
   customers: Record<DaffCustomer['id'], DaffCustomer> = {};
 
   constructor(

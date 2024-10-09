@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import {
   map,
   Observable,
@@ -8,6 +9,9 @@ import {
 import { DaffIdentifiable } from '@daffodil/core';
 import { DaffCustomerAddress } from '@daffodil/customer';
 import { DaffCustomerAddressDriverInterface } from '@daffodil/customer/driver';
+import { DaffInMemoryDriverBase } from '@daffodil/driver/in-memory';
+
+import { DAFF_CUSTOMER_ADDRESS_IN_MEMORY_COLLECTION_NAME } from '../collection-names/address.const';
 
 /**
  * The customer address in-memory driver to mock the customer address backend service.
@@ -17,15 +21,13 @@ import { DaffCustomerAddressDriverInterface } from '@daffodil/customer/driver';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCustomerAddressInMemoryDriver implements DaffCustomerAddressDriverInterface {
-  /**
-   * @docs-private
-   */
-  url = '/api/customer-address';
-
+export class DaffCustomerAddressInMemoryDriver extends DaffInMemoryDriverBase implements DaffCustomerAddressDriverInterface {
   constructor(
     private http: HttpClient,
-  ) {}
+    config: InMemoryBackendConfig,
+  ) {
+    super(config, DAFF_CUSTOMER_ADDRESS_IN_MEMORY_COLLECTION_NAME);
+  }
 
   list(): Observable<DaffCustomerAddress[]> {
     return this.http.get<DaffCustomerAddress[]>(this.url);

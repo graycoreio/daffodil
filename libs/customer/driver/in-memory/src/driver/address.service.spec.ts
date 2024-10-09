@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 
 import { DaffCustomerAddress } from '@daffodil/customer';
@@ -25,6 +26,12 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerAddressInMemoryDrive
       imports: [],
       providers: [
         DaffCustomerAddressInMemoryDriver,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -50,7 +57,7 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerAddressInMemoryDrive
     let result: Observable<DaffCustomerAddress[]>;
 
     beforeEach(() => {
-      url = service.url;
+      url = service['url'];
       result = service.list();
     });
 
@@ -72,7 +79,7 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerAddressInMemoryDrive
     let result: Observable<DaffCustomerAddress>;
 
     beforeEach(() => {
-      url = service.url;
+      url = service['url'];
       result = service.get(mockAddress.id);
     });
 
@@ -94,7 +101,7 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerAddressInMemoryDrive
     let result: Observable<DaffCustomerAddress[]>;
 
     beforeEach(() => {
-      url = `${service.url}/${mockAddress.id}`;
+      url = `${service['url']}/${mockAddress.id}`;
       result = service.update(mockAddress);
     });
 
@@ -116,7 +123,7 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerAddressInMemoryDrive
     let result: Observable<DaffCustomerAddress[]>;
 
     beforeEach(() => {
-      url = service.url;
+      url = service['url'];
       result = service.add(mockAddress);
     });
 
@@ -138,7 +145,7 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerAddressInMemoryDrive
     let result: Observable<DaffCustomerAddress[]>;
 
     beforeEach(() => {
-      url = `${service.url}/${mockAddress.id}`;
+      url = `${service['url']}/${mockAddress.id}`;
       result = service.delete(mockAddress.id);
     });
 

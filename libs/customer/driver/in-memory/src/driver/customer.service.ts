@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import {
   map,
   Observable,
@@ -7,6 +8,9 @@ import {
 
 import { DaffCustomer } from '@daffodil/customer';
 import { DaffCustomerDriverInterface } from '@daffodil/customer/driver';
+import { DaffInMemoryDriverBase } from '@daffodil/driver/in-memory';
+
+import { DAFF_CUSTOMER_IN_MEMORY_COLLECTION_NAME } from '../collection-names/customer.const';
 
 /**
  * The customer inmemory driver to mock the customer backend service.
@@ -16,15 +20,13 @@ import { DaffCustomerDriverInterface } from '@daffodil/customer/driver';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCustomerInMemoryDriver implements DaffCustomerDriverInterface {
-  /**
-   * @docs-private
-   */
-  url = '/api/customer';
-
+export class DaffCustomerInMemoryDriver extends DaffInMemoryDriverBase implements DaffCustomerDriverInterface {
   constructor(
     private http: HttpClient,
-  ) {}
+    config: InMemoryBackendConfig,
+  ) {
+    super(config, DAFF_CUSTOMER_IN_MEMORY_COLLECTION_NAME);
+  }
 
   changeEmail(email: string, password: string): Observable<DaffCustomer> {
     return this.http.put<DaffCustomer>(`${this.url}/email`, { email, password });
