@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import {
   DaffAuthToken,
@@ -37,6 +38,12 @@ describe('@daffodil/auth/driver/in-memory | LoginService', () => {
       imports: [],
       providers: [
         DaffInMemoryLoginService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
