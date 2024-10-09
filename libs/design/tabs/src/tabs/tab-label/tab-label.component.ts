@@ -13,6 +13,17 @@ import {
   DaffPrefixSuffixModule,
 } from '@daffodil/design';
 
+/**
+ * DaffTabLabelComponent is used to display the label of a tab panel. Labels may optionally contain a `daffPrefix` or `daffSuffix` to add icons or badges.
+ *
+ * ```html
+ * <daff-tab-label>
+ *  <div daffPrefix></div>
+ *  Label
+ *  <div daffSuffix></div
+ * </daff-tab-Label>
+ * ```
+ */
 @Component({
   standalone: true,
   selector: 'daff-tab-label',

@@ -19,18 +19,28 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class DaffTabActivatorComponent implements OnInit {
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-tab-activator') class = true;
+
+  /**
+   * Sets the `role` to tab.
+   */
   @HostBinding('attr.role') role = 'tab';
 
+  /** Whether or not a tab is selected */
   @Input() @HostBinding('class.selected') selected = false;
 
-  /** Sets aria-selected to true if the component is selected and false if it's not selected */
+  /**
+   * Sets `aria-selected` to true if the component is selected and false if it's not selected.
+   */
   @HostBinding('attr.aria-selected') get ariaSelected() {
     return this.selected ? true :  false;
   }
 
   /**
-   * Sets tabindex to `0` if the component is selected and `-1` if it's not selected
+   * Sets `tabindex` to `0` if the component is selected and `-1` if it's not selected.
    */
   @HostBinding('attr.tabindex') get tabIndex() {
     return this.selected ? '0' :  '-1';
@@ -39,7 +49,7 @@ export class DaffTabActivatorComponent implements OnInit {
   @HostBinding('attr.aria-controls') ariaControls = '';
 
   /**
-   * The html `id` of the tab activator component
+   * The html id of the tab activator component
    */
   @Input() @HostBinding('attr.id') tabActivatorId = '';
 

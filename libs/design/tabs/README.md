@@ -4,20 +4,6 @@ Tabs provide a way to navigate between panels that display related content.
 ## Overview
 Tabs allow for users to navigate between related content without having to leave the page. They can be used within components like modals or cards.
 
-### Examples
-
-### Basic tabs
-<design-land-example-viewer-container example="basic-tabs"></design-land-example-viewer-container>
-
-### Tabs with a disabled tab
-<design-land-example-viewer-container example="disabled-tabs"></design-land-example-viewer-container>
-
-###
-<design-land-example-viewer-container example="custom-select-tabs"></design-land-example-viewer-container>
-
-###
-<design-land-example-viewer-container example="initially-select-tab"></design-land-example-viewer-container>
-
 ## Accessbility
 Tabs follow the [ARIA Tabs design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/). Tabs compose of `tablist`, `tab`, and `tabpanel` elements,  each with its appropriate role and integrated keyboard interactions.
 

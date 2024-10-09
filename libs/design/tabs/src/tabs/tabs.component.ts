@@ -22,6 +22,30 @@ import { DaffTabLabelComponent } from './tab-label/tab-label.component';
 
 /**
  * Tabs provide a way to navigate between panels that display related content.
+ *
+ * ## Usage
+ * ```html
+ * <daff-tabs aria-label="List of tabs">
+ * 	<daff-tab>
+ * 		<daff-tab-label>
+ * 			<fa-icon [icon]="faInfoCircle" daffPrefix></fa-icon>
+ * 			Tab 1
+ * 		</daff-tab-label>
+ * 		<daff-tab-panel>
+ * 			Tab 1 Panel
+ * 		</daff-tab-panel>
+ * 	</daff-tab>
+ * 	<daff-tab>
+ * 		<daff-tab-label>
+ * 			Tab 2
+ * 			<fa-icon [icon]="faInfoCircle" daffSuffix></fa-icon>
+ * 		</daff-tab-label>
+ * 		<daff-tab-panel>
+ * 			Tab 2 Panel
+ * 		</daff-tab-panel>
+ * 	</daff-tab>
+ * </daff-tabs>
+ * ```
  */
 @Component({
   standalone: true,
@@ -38,29 +62,58 @@ import { DaffTabLabelComponent } from './tab-label/tab-label.component';
     { directive: DaffArticleEncapsulatedDirective },
   ],
 })
-export class DaffTabsComponent implements AfterContentInit {
-  @HostBinding('class.daff-tabs') class = true;
 
-  //test
+export class DaffTabsComponent implements AfterContentInit {
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.daff-tabs') private class = true;
+
+  /**
+   * The currently selected tab. This property is dynamically updated when a user selects a tab
+   */
   selectedTab: string;
 
-  //test
+  /**
+   * The tab that is initially selected on initial load. If it's not used, the first tab in the tablist will be selected by default.
+   */
   @Input() initiallySelected: string = null;
 
-  @HostBinding('attr.aria-label') externalAriaLabel = null;
+  /**
+   * @docs-private
+   */
+  @HostBinding('attr.aria-label') private externalAriaLabel = null;
+
+  /**
+   * aria-label for the tab.
+   */
   @Input('aria-label') ariaLabel = '';
 
-  //test
+  /**
+   * Event emitted when tab selection changes.
+   */
   @Output() tabChange = new EventEmitter<string>();
 
+  /**
+   * @docs-private
+   */
   @ContentChildren(DaffTabLabelComponent, { descendants: true }) _labels: QueryList<DaffTabLabelComponent>;
 
+  /**
+   * @docs-private
+   */
   @ContentChildren(DaffTabComponent) _tabs: QueryList<DaffTabComponent>;
 
+  /**
+   * @docs-private
+   */
   @ViewChildren(DaffTabActivatorComponent) _tabActivators: QueryList<DaffTabActivatorComponent>;
 
   constructor(private cdRef: ChangeDetectorRef) {}
 
+  /**
+   * @docs-private
+   */
   ngAfterContentInit() {
     if(this.initiallySelected) {
       this.selectedTab = this.initiallySelected;
