@@ -4,9 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
+import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 import { DaffNewsletterDriver } from '@daffodil/newsletter/driver';
 
 import { DaffInMemoryNewsletterService } from './newsletter.service';
+import { DaffInMemoryBackendNewsletterService } from '../backend/public_api';
 /**
  * Module for providing the DaffInMemoryNewsletterService driver to your application
  */
@@ -24,6 +26,7 @@ export class DaffNewsletterInMemoryDriverModule {
           provide: DaffNewsletterDriver,
           useExisting: DaffInMemoryNewsletterService,
         },
+        provideDaffInMemoryBackends(DaffInMemoryBackendNewsletterService),
       ],
     };
   }
