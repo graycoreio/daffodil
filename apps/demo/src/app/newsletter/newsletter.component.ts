@@ -42,17 +42,17 @@ export class NewsletterComponent implements OnInit {
 
   onNewsletterSubmit() {
     if (this.email.valid) {
-      this.newsletterFacade.dispatch(new DaffNewsletterSubscribe<DaffNewsletterSubmission>(this._makeSubmission(this.email.value)));
+      this.newsletterFacade.dispatch(new DaffNewsletterSubscribe(this._makeSubmission(this.email.value)));
     }
   }
   onNewsletterCancel() {
     this.newsletterFacade.dispatch(new DaffNewsletterCancel());
   }
   onNewsletterRetry() {
-    this.newsletterFacade.dispatch(new DaffNewsletterRetry<DaffNewsletterSubmission>(this._makeSubmission(this.email.value)));
+    this.newsletterFacade.dispatch(new DaffNewsletterRetry(this._makeSubmission(this.email.value)));
   }
 
   private _makeSubmission(email: string): DaffNewsletterSubmission {
-    return { email };
+    return email;
   }
 }
