@@ -20,6 +20,7 @@ import { DesignLandAppComponent } from './app.component';
 import { DesignLandNavModule } from './core/nav/nav.module';
 import { DesignLandTemplateModule } from './core/template/template.module';
 import { DesignLandSwitchModule } from './switch/switch.module';
+import { DesignLandSwitchModule } from './switch/switch.module';
 
 @NgModule({
   declarations: [
