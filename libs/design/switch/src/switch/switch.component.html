@@ -1,12 +1,23 @@
-<label class="daff-switch">
+<label class="daff-switch" 
+  [class.daff-switch--disabled]="disabled"
+  [class.daff-switch--position-left]="position === 'left'"
+  [class.daff-switch--position-right]="position === 'right'"
+  [class.daff-switch--position-top]="position === 'top'"
+  [class.daff-switch--position-bottom]="position === 'bottom'"
+>
   <div class="daff-switch__text">
     <ng-content></ng-content>
   </div>
   <div class="daff-switch__toggle" [class.checked]="checked">
-    <div class="daff-switch__activator"></div>
-    <input type="checkbox" role="switch" class="cdk-visually-hidden"
+    <div *ngIf="!loading" class="daff-switch__activator"></div>
+    <daff-loading-icon *ngIf="loading" [diameter]="24" class="daff-switch__activator"></daff-loading-icon>
+    <input 
+      type="checkbox" 
+      role="switch" 
+      class="cdk-visually-hidden"
+      [attr.disabled] = "disabled ? '' : null" 
       [checked]="checked"
-      (change)="toggle.emit(checked)"
+      (change)="onToggle()"
     />    
   </div>
 </label>

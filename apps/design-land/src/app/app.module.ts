@@ -20,6 +20,7 @@ import { DesignLandAppRoutingModule } from './app-routing.module';
 import { DesignLandAppComponent } from './app.component';
 import { DesignLandNavModule } from './core/nav/nav.module';
 import { DesignLandTemplateModule } from './core/template/template.module';
+import { DesignLandSwitchModule } from './switch/switch.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,8 @@ import { DesignLandTemplateModule } from './core/template/template.module';
     FontAwesomeModule,
     DesignLandNavModule,
     DesignLandTemplateModule,
+    DaffToastModule,
+    DesignLandSwitchModule,
   ],
   providers: [
     DAFF_THEME_INITIALIZER,
