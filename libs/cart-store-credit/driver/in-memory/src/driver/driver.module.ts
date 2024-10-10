@@ -5,8 +5,10 @@ import {
 } from '@angular/core';
 
 import { DaffCartStoreCreditDriver } from '@daffodil/cart-store-credit/driver';
+import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 
 import { DaffCartStoreCreditInMemoryDriver } from './store-credit.service';
+import { DaffCartStoreCreditInMemoryBackendService } from '../backend/store-credit.service';
 
 /**
  * Provides the {@link DaffCartStoreCreditInMemoryDriver} as the {@link DaffCartStoreCreditDriver}.
@@ -25,6 +27,7 @@ export class DaffCartStoreCreditInMemoryDriverModule {
           provide: DaffCartStoreCreditDriver,
           useExisting: DaffCartStoreCreditInMemoryDriver,
         },
+        provideDaffInMemoryBackends(DaffCartStoreCreditInMemoryBackendService),
       ],
     };
   }
