@@ -3,9 +3,13 @@ import {
   Injectable,
 } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { DaffContactUnion } from '@daffodil/contact';
-import { DaffContactServiceInterface } from '@daffodil/contact/driver';
+import {
+  DaffContactRequest,
+  DaffContactResponse,
+  DaffContactServiceInterface,
+} from '@daffodil/contact/driver';
 import { DaffHubspotFormsService } from '@daffodil/driver/hubspot';
 
 import { DAFF_CONTACT_HUBSPOT_FORMS_TOKEN } from './token/hubspot-forms.token';
@@ -13,12 +17,13 @@ import { DAFF_CONTACT_HUBSPOT_FORMS_TOKEN } from './token/hubspot-forms.token';
 /**
  * @inheritdoc
  */
-@Injectable()
-export class DaffContactHubspotService
-implements DaffContactServiceInterface<DaffContactUnion, any> {
+@Injectable({
+  providedIn: 'root',
+})
+export class DaffContactHubspotService implements DaffContactServiceInterface {
   constructor(@Inject(DAFF_CONTACT_HUBSPOT_FORMS_TOKEN) private hubspotService: DaffHubspotFormsService) {}
 
-  send(payload: DaffContactUnion): Observable<any> {
-    return this.hubspotService.submit(payload);
+  send(payload: DaffContactRequest): Observable<DaffContactResponse> {
+    return this.hubspotService.submit(payload).pipe(map((r) => ({ message: r.inlineMessage })));
   }
 }

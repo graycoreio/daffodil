@@ -1,7 +1,20 @@
 import { InjectionToken } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
-export const DaffContactDriver = new InjectionToken<DaffContactServiceInterface<any, any>>('DaffContactDriver');
-export interface DaffContactServiceInterface<T, V> {
-  send(payload: T): Observable<V>;
+import { DaffContactRequest } from '../model/contact-request';
+import { DaffContactResponse } from '../model/contact-response';
+
+/**
+ * The injection token that holds the reference to the DaffContactDriver.
+ */
+export const DaffContactDriver = new InjectionToken<DaffContactServiceInterface>('DaffContactDriver');
+
+/**
+ * The interface that a contact driver must implement.
+ */
+export interface DaffContactServiceInterface {
+  send(payload: DaffContactRequest): Observable<DaffContactResponse>;
 }
