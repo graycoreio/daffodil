@@ -1,0 +1,1 @@
+export const DAFF_SEARCH_IN_MEMORY_COLLECTION_NAME = 'search';
