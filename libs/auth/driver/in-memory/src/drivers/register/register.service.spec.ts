@@ -85,7 +85,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryRegisterService', () => 
     it('should send a post request', () => {
       service.register(mockRegistration).subscribe(auth => {});
 
-      const req = httpMock.expectOne(`${service['url']}register`);
+      const req = httpMock.expectOne(`${service['url']}/register`);
 
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockRegistration);
@@ -99,7 +99,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryRegisterService', () => 
         done();
       });
 
-      const req = httpMock.expectOne(`${service['url']}register`);
+      const req = httpMock.expectOne(`${service['url']}/register`);
 
       req.flush({});
     });
@@ -113,7 +113,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryRegisterService', () => 
     it('should send a post request', () => {
       service.registerOnly(mockRegistration).subscribe(auth => {});
 
-      const req = httpMock.expectOne(`${service['url']}register`);
+      const req = httpMock.expectOne(`${service['url']}/register`);
 
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockRegistration);

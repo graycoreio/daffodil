@@ -21,7 +21,7 @@ import {
 import { DaffInMemoryLoginService } from './login.service';
 
 describe('@daffodil/auth/driver/in-memory | LoginService', () => {
-  let loginService;
+  let service;
   let httpMock: HttpTestingController;
 
   let registrationFactory: DaffAccountRegistrationFactory;
@@ -50,7 +50,7 @@ describe('@daffodil/auth/driver/in-memory | LoginService', () => {
     });
 
     httpMock = TestBed.inject(HttpTestingController);
-    loginService = TestBed.inject(DaffInMemoryLoginService);
+    service = TestBed.inject(DaffInMemoryLoginService);
     registrationFactory = TestBed.inject(DaffAccountRegistrationFactory);
 
     mockRegistration = registrationFactory.create();
@@ -62,7 +62,7 @@ describe('@daffodil/auth/driver/in-memory | LoginService', () => {
   });
 
   it('should be created', () => {
-    expect(loginService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   describe('login | getting a token', () => {
@@ -71,12 +71,12 @@ describe('@daffodil/auth/driver/in-memory | LoginService', () => {
     });
 
     it('should send a post request and return an AuthToken', done => {
-      loginService.login({ email, password }).subscribe(auth => {
+      service.login({ email, password }).subscribe(auth => {
         expect(auth).toEqual(mockAuth);
         done();
       });
 
-      const req = httpMock.expectOne(`${loginService.url}login`);
+      const req = httpMock.expectOne(`${service.url}/login`);
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual({ email, password });
 
@@ -90,12 +90,12 @@ describe('@daffodil/auth/driver/in-memory | LoginService', () => {
     });
 
     it('should send a post request and return an empty Observable', done => {
-      loginService.logout().subscribe(resp => {
+      service.logout().subscribe(resp => {
         expect(resp).toBeUndefined();
         done();
       });
 
-      const req = httpMock.expectOne(`${loginService.url}logout`);
+      const req = httpMock.expectOne(`${service.url}/logout`);
       expect(req.request.method).toBe('POST');
 
       req.flush({ success: true });

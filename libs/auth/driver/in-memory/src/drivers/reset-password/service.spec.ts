@@ -85,7 +85,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', (
     it('should send a post request', () => {
       service.resetPassword(mockResetInfo).subscribe(auth => {});
 
-      const req = httpMock.expectOne(`${service['url']}resetPassword`);
+      const req = httpMock.expectOne(`${service['url']}/resetPassword`);
 
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockResetInfo);
@@ -99,7 +99,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', (
         done();
       });
 
-      const req = httpMock.expectOne(`${service['url']}resetPassword`);
+      const req = httpMock.expectOne(`${service['url']}/resetPassword`);
 
       req.flush({});
     });
@@ -113,7 +113,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', (
     it('should send a post request', () => {
       service.resetPasswordOnly(mockResetInfo).subscribe(auth => {});
 
-      const req = httpMock.expectOne(`${service['url']}resetPassword`);
+      const req = httpMock.expectOne(`${service['url']}/resetPassword`);
 
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockResetInfo);
@@ -126,7 +126,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', (
         done();
       });
 
-      const req = httpMock.expectOne(`${service['url']}resetPassword`);
+      const req = httpMock.expectOne(`${service['url']}/resetPassword`);
 
       req.flush({});
     });
@@ -140,7 +140,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', (
     it('should send a post request', () => {
       service.sendResetEmail(mockResetInfo.email).subscribe(auth => {});
 
-      const req = httpMock.expectOne(`${service['url']}sendResetEmail`);
+      const req = httpMock.expectOne(`${service['url']}/sendResetEmail`);
 
       expect(req.request.method).toBe('POST');
 
@@ -152,7 +152,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', (
         done();
       });
 
-      const req = httpMock.expectOne(`${service['url']}sendResetEmail`);
+      const req = httpMock.expectOne(`${service['url']}/sendResetEmail`);
 
       req.flush({});
     });

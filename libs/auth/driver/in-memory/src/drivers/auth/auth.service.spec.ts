@@ -59,7 +59,7 @@ describe('@daffodil/auth/driver/in-memory | AuthService', () => {
         done();
       });
 
-      const req = httpMock.expectOne(`${service['url']}check`);
+      const req = httpMock.expectOne(`${service['url']}/check`);
       expect(req.request.method).toBe('POST');
 
       req.flush({});
