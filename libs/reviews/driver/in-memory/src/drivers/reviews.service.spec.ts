@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -30,6 +31,12 @@ describe('@daffodil/reviews/driver/in-memory | DaffReviewsInMemoryService', () =
       imports: [],
       providers: [
         DaffReviewsInMemoryService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -58,7 +65,7 @@ describe('@daffodil/reviews/driver/in-memory | DaffReviewsInMemoryService', () =
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}/`);
+      const req = httpMock.expectOne(`${service['url']}/`);
 
       expect(req.request.method).toBe('GET');
       req.flush(mockReviews);

@@ -1,0 +1,1 @@
+export const DAFF_REVIEWS_IN_MEMORY_COLLECTION_NAME = 'reviews';
