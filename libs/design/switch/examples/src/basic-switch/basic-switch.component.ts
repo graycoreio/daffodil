@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,11 +14,18 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
   standalone: true,
   imports: [
     DAFF_SWITCH_COMPONENTS,
+    CommonModule,
   ],
+  styles: [`
+    :host {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  `],
 })
 export class BasicSwitchComponent {
   checked = false;
-  changeSwitch() {
-    this.checked = !this.checked;
-  }
+  disabled = false;
+  loading = true;
+  position = 'left';
 }

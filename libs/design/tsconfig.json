@@ -87,6 +87,9 @@
       "@daffodil/design/sidebar": [
         "libs/design/sidebar/src"
       ],
+      "@daffodil/design/switch": [
+        "libs/design/switch/src"
+      ],
       "@daffodil/design/text-snippet": [
         "libs/design/text-snippet/src"
       ],
