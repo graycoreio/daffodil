@@ -49,7 +49,7 @@ describe('@daffodil/demo | DemoInMemoryBackendService', () => {
           returnedValue,
         );
         reqInfo = {
-          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0],
+          collectionName: 'cart',
         };
 
         result = service.post(reqInfo);
@@ -160,7 +160,7 @@ describe('@daffodil/demo | DemoInMemoryBackendService', () => {
         returnedValue = 'returnedValue';
         spyOn(service['cartTestingService'], 'get').and.returnValue(returnedValue);
         reqInfo = {
-          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0],
+          collectionName: 'cart',
         };
 
         result = service.get(reqInfo);
@@ -195,7 +195,7 @@ describe('@daffodil/demo | DemoInMemoryBackendService', () => {
           returnedValue,
         );
         reqInfo = {
-          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0],
+          collectionName: 'cart',
         };
 
         result = service.put(reqInfo);
@@ -231,7 +231,7 @@ describe('@daffodil/demo | DemoInMemoryBackendService', () => {
           returnedValue,
         );
         reqInfo = {
-          collectionName: DaffInMemoryBackendCartRootService.COLLECTION_NAMES[0],
+          collectionName: 'cart',
         };
 
         result = service.delete(reqInfo);
