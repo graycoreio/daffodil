@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Observable } from '@apollo/client/core';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import {
   DaffSearchResult,
@@ -18,7 +19,6 @@ import { DaffSearchDriverResponse } from '@daffodil/search/driver';
 import { DaffSearchResultFactory } from '@daffodil/search/testing';
 
 import { DaffInMemorySearchDriver } from './search.service';
-import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 describe('@daffodil/search/driver/in-memory | DaffInMemorySearchDriver', () => {
   let service: DaffInMemorySearchDriver;
