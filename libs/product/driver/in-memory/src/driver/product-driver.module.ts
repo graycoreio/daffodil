@@ -4,6 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
+import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 import { DaffProductDriver } from '@daffodil/product/driver';
 import {
   DaffDefaultProductFactory,
@@ -12,6 +13,7 @@ import {
 } from '@daffodil/product/testing';
 
 import { DaffInMemoryProductService } from './product.service';
+import { DaffInMemoryBackendProductService } from '../backend/product.service';
 
 /**
  * Module for providing the DaffInMemoryProductService driver to your application.
@@ -32,6 +34,7 @@ export class DaffProductInMemoryDriverModule {
           useExisting: DaffInMemoryProductService,
         },
         daffProvideProductExtraFactoryTypes(DaffDefaultProductFactory),
+        provideDaffInMemoryBackends(DaffInMemoryBackendProductService),
       ],
     };
   }

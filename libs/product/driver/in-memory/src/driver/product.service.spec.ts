@@ -7,13 +7,14 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffInMemoryProductService } from './product.service';
 
-describe('Driver | InMemory | Product | ProductService', () => {
+describe('@daffodil/product/driver/in-memory | ProductService', () => {
   let productService;
   let httpMock: HttpTestingController;
   let productFactory: DaffProductFactory;
@@ -23,6 +24,12 @@ describe('Driver | InMemory | Product | ProductService', () => {
       imports: [],
       providers: [
         DaffInMemoryProductService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],

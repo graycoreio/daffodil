@@ -3,15 +3,18 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { DaffInMemoryDriverBase } from '@daffodil/driver/in-memory';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductDriverResponse,
   DaffProductServiceInterface,
 } from '@daffodil/product/driver';
 
+import { DAFF_PRODUCT_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 import { DAFF_PRODUCT_IN_MEMORY_PRODUCT_RESPONSE_TRANSFORM } from '../injection-tokens/public_api';
 import { DaffInMemoryProductResponseTransform } from '../interfaces/public_api';
 
@@ -24,16 +27,14 @@ import { DaffInMemoryProductResponseTransform } from '../interfaces/public_api';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryProductService implements DaffProductServiceInterface {
-  /**
-   * @docs-private
-   */
-  url = '/api/products';
-
+export class DaffInMemoryProductService extends DaffInMemoryDriverBase implements DaffProductServiceInterface {
   constructor(
     private http: HttpClient,
+    config: InMemoryBackendConfig,
     @Inject(DAFF_PRODUCT_IN_MEMORY_PRODUCT_RESPONSE_TRANSFORM) private transform: DaffInMemoryProductResponseTransform,
-  ) {}
+  ) {
+    super(config, DAFF_PRODUCT_IN_MEMORY_COLLECTION_NAME);
+  }
 
   getAll(): Observable<DaffProduct[]> {
     return this.http.get<DaffProduct[]>(this.url);
