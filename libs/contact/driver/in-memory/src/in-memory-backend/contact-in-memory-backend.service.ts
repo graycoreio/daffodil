@@ -7,11 +7,16 @@ import {
 import { of } from 'rxjs';
 
 import { DaffContactUnion } from '@daffodil/contact';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
+
+import { DAFF_CONTACT_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendContactService implements InMemoryDbService {
+export class DaffInMemoryBackendContactService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_CONTACT_IN_MEMORY_COLLECTION_NAME;
+
   forums: DaffContactUnion[] = [];
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
