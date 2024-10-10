@@ -13,7 +13,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import {
   DaffHubspotFormsService,
   daffHubspotFormsServiceFactory,
-} from '@daffodil/driver/hubspot';
+} from 'libs/driver/hubspot/src/public_api';
 
 
 

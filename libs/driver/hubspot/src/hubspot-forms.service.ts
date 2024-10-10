@@ -4,12 +4,15 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { DaffHubspotConfig } from './models/config';
+import { DaffHubspotFormsInterface } from './models/forms';
 import { DaffHubspotRequest } from './models/hubspot-request';
 import { HubspotResponse } from './models/hubspot-response';
 import { jsonBuilder } from './transformers/json-builder';
 
-export class DaffHubspotFormsService {
-
+/**
+ * Service for interacting with Hubspot Forms API.
+ */
+export class DaffHubspotFormsService implements DaffHubspotFormsInterface {
   constructor(
     private http: HttpClient,
     private document: Document,
