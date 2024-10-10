@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import {
   DaffOrder,
@@ -33,6 +34,12 @@ describe('@daffodil/order/driver/in-memory | DaffInMemoryOrderService', () => {
       imports: [],
       providers: [
         DaffInMemoryOrderService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -62,7 +69,7 @@ describe('@daffodil/order/driver/in-memory | DaffInMemoryOrderService', () => {
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}/${orderId}`);
+      const req = httpMock.expectOne(`${service['url']}/${orderId}`);
 
       expect(req.request.method).toBe('GET');
       req.flush(mockOrder);
@@ -76,7 +83,7 @@ describe('@daffodil/order/driver/in-memory | DaffInMemoryOrderService', () => {
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}/`);
+      const req = httpMock.expectOne(`${service['url']}/`);
 
       expect(req.request.method).toBe('POST');
       req.flush(mockOrderCollection);

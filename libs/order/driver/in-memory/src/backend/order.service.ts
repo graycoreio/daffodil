@@ -10,9 +10,11 @@ import {
   daffIdentifiableArrayToDict,
   DaffSortDirectionEnum,
 } from '@daffodil/core';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 import { DaffOrder } from '@daffodil/order';
 import { DaffOrderFactory } from '@daffodil/order/testing';
+
+import { DAFF_ORDER_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 
 const DEFAULT_PAGE_SIZE = 20;
 
@@ -24,7 +26,9 @@ const DEFAULT_PAGE_SIZE = 20;
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendOrderService implements InMemoryDbService, DaffInMemoryDataServiceInterface {
+export class DaffInMemoryBackendOrderService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_ORDER_IN_MEMORY_COLLECTION_NAME;
+
   orders: DaffOrder[];
 
   constructor(
