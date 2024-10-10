@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 
 import { DaffCustomer } from '@daffodil/customer';
@@ -25,6 +26,12 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerInMemoryDriver', () 
       imports: [],
       providers: [
         DaffCustomerInMemoryDriver,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -50,7 +57,7 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerInMemoryDriver', () 
     let result: Observable<DaffCustomer>;
 
     beforeEach(() => {
-      url = service.url;
+      url = service['url'];
       result = service.get();
     });
 
@@ -72,7 +79,7 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerInMemoryDriver', () 
     let result: Observable<DaffCustomer>;
 
     beforeEach(() => {
-      url = `${service.url}/customer`;
+      url = `${service['url']}/customer`;
       result = service.update(mockResponse);
     });
 
@@ -94,7 +101,7 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerInMemoryDriver', () 
     let result: Observable<DaffCustomer>;
 
     beforeEach(() => {
-      url = `${service.url}/email`;
+      url = `${service['url']}/email`;
       result = service.changeEmail('email', 'password');
     });
 
@@ -116,7 +123,7 @@ describe('@daffodil/customer/driver/in-memory | DaffCustomerInMemoryDriver', () 
     let result: Observable<void>;
 
     beforeEach(() => {
-      url = `${service.url}/password`;
+      url = `${service['url']}/password`;
       result = service.changePassword('old', 'new');
     });
 

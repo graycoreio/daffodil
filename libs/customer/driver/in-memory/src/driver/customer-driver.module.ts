@@ -8,9 +8,15 @@ import {
   DaffCustomerAddressDriver,
   DaffCustomerDriver,
 } from '@daffodil/customer/driver';
+import {
+  DaffInMemoryBackendInterface,
+  provideDaffInMemoryBackends,
+} from '@daffodil/driver/in-memory';
 
 import { DaffCustomerAddressInMemoryDriver } from './address.service';
 import { DaffCustomerInMemoryDriver } from './customer.service';
+import { DaffCustomerAddressInMemoryBackendService } from '../backend/address.service';
+import { DaffCustomerInMemoryBackendService } from '../backend/customer.service';
 
 /**
  * Provides the {@link DaffCustomerInMemoryDriver} as the {@link DaffCustomerDriver}.
@@ -28,10 +34,15 @@ export class DaffCustomerInMemoryDriverModule {
         {
           provide: DaffCustomerDriver,
           useExisting: DaffCustomerInMemoryDriver,
-        },{
+        },
+        {
           provide: DaffCustomerAddressDriver,
           useExisting: DaffCustomerAddressInMemoryDriver,
         },
+        provideDaffInMemoryBackends<DaffInMemoryBackendInterface>(
+          DaffCustomerInMemoryBackendService,
+          DaffCustomerAddressInMemoryBackendService,
+        ),
       ],
     };
   }
