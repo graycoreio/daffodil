@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 
 import {
@@ -8,6 +9,9 @@ import {
   DaffCartAddress,
 } from '@daffodil/cart';
 import { DaffCartPaymentServiceInterface } from '@daffodil/cart/driver';
+import { DaffInMemoryDriverBase } from '@daffodil/driver/in-memory';
+
+import { DAFF_CART_IN_MEMORY_CART_PAYMENT_COLLECTION_NAME } from '../../collection-names';
 
 /**
  * @inheritdoc
@@ -15,13 +19,13 @@ import { DaffCartPaymentServiceInterface } from '@daffodil/cart/driver';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryCartPaymentService implements DaffCartPaymentServiceInterface {
-  /**
-   * The URL with which the driver makes calls to the backend.
-   */
-  readonly url = '/api/cart-payment';
-
-  constructor(private http: HttpClient) {}
+export class DaffInMemoryCartPaymentService extends DaffInMemoryDriverBase implements DaffCartPaymentServiceInterface {
+  constructor(
+    private http: HttpClient,
+    config: InMemoryBackendConfig,
+  ) {
+    super(config, DAFF_CART_IN_MEMORY_CART_PAYMENT_COLLECTION_NAME);
+  }
 
   get(cartId: DaffCart['id']): Observable<DaffCartPaymentMethod> {
     return this.http.get<DaffCartPaymentMethod>(`${this.url}/${cartId}`);

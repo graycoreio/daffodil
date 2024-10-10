@@ -11,9 +11,10 @@ import {
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
 
+import { DAFF_CART_IN_MEMORY_CART_COLLECTION_NAME } from '../../collection-names';
 import { daffCartInMemoryComputeCartTotals } from '../../helpers/compute-cart-totals';
 import {
   DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
@@ -26,7 +27,9 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceInterface {
+export class DaffInMemoryBackendCartService implements DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_CART_IN_MEMORY_CART_COLLECTION_NAME;
+
   constructor(
     private cartFactory: DaffCartFactory,
     @Inject(DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK) private extraFieldsHook: DaffCartInMemoryExtraAttributesHook,

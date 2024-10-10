@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import {
   DaffCart,
@@ -19,7 +20,7 @@ import {
 
 import { DaffInMemoryCartCouponService } from './cart-coupon.service';
 
-describe('Driver | In Memory | Cart | CartCouponService', () => {
+describe('@daffodil/cart/driver/in-memory | CartCouponService', () => {
   let service: DaffInMemoryCartCouponService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
@@ -34,6 +35,12 @@ describe('Driver | In Memory | Cart | CartCouponService', () => {
       imports: [],
       providers: [
         DaffInMemoryCartCouponService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -66,7 +73,7 @@ describe('Driver | In Memory | Cart | CartCouponService', () => {
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}/${cartId}/`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}/`);
 
       expect(req.request.method).toBe('GET');
       req.flush(mockCart.coupons);
@@ -80,7 +87,7 @@ describe('Driver | In Memory | Cart | CartCouponService', () => {
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}/${cartId}/`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}/`);
 
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockCartCoupon);
@@ -96,7 +103,7 @@ describe('Driver | In Memory | Cart | CartCouponService', () => {
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}/${cartId}/${mockCartCoupon.code}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}/${mockCartCoupon.code}`);
 
       expect(req.request.method).toBe('DELETE');
 
@@ -113,7 +120,7 @@ describe('Driver | In Memory | Cart | CartCouponService', () => {
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}/${cartId}/`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}/`);
 
       expect(req.request.method).toBe('DELETE');
 

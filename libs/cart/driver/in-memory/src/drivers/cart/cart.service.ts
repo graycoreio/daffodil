@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import {
   Observable,
-  of,
   throwError,
 } from 'rxjs';
 import {
@@ -16,6 +16,9 @@ import {
   DaffCartNotFoundError,
 } from '@daffodil/cart/driver';
 import { DaffDriverResponse } from '@daffodil/driver';
+import { DaffInMemoryDriverBase } from '@daffodil/driver/in-memory';
+
+import { DAFF_CART_IN_MEMORY_CART_COLLECTION_NAME } from '../../collection-names';
 
 /**
  * @inheritdoc
@@ -23,13 +26,13 @@ import { DaffDriverResponse } from '@daffodil/driver';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryCartService implements DaffCartServiceInterface {
-  /**
-   * The URL with which the driver makes calls to the backend.
-   */
-  readonly url = '/api/cart';
-
-  constructor(private http: HttpClient) {}
+export class DaffInMemoryCartService extends DaffInMemoryDriverBase implements DaffCartServiceInterface {
+  constructor(
+    private http: HttpClient,
+    config: InMemoryBackendConfig,
+  ) {
+    super(config, DAFF_CART_IN_MEMORY_CART_COLLECTION_NAME);
+  }
 
   get(cartId: DaffCart['id']): Observable<DaffDriverResponse<DaffCart>> {
     return this.http.get<DaffCart>(`${this.url}/${cartId}`).pipe(

@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import {
   DaffCart,
@@ -19,8 +20,8 @@ import {
 
 import { DaffInMemoryCartShippingMethodsService } from './cart-shipping-methods.service';
 
-describe('Driver | In Memory | Cart | CartShippingMethodsService', () => {
-  let cartPaymentMethodsService: DaffInMemoryCartShippingMethodsService;
+describe('@daffodil/cart/driver/in-memory | CartShippingMethodsService', () => {
+  let service: DaffInMemoryCartShippingMethodsService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
   let shippingRateFactory: DaffCartShippingRateFactory;
@@ -34,13 +35,19 @@ describe('Driver | In Memory | Cart | CartShippingMethodsService', () => {
       imports: [],
       providers: [
         DaffInMemoryCartShippingMethodsService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
-    cartPaymentMethodsService = TestBed.inject(DaffInMemoryCartShippingMethodsService);
+    service = TestBed.inject(DaffInMemoryCartShippingMethodsService);
 
     cartFactory = TestBed.inject(DaffCartFactory);
     shippingRateFactory = TestBed.inject(DaffCartShippingRateFactory);
@@ -55,16 +62,16 @@ describe('Driver | In Memory | Cart | CartShippingMethodsService', () => {
   });
 
   it('should be created', () => {
-    expect(cartPaymentMethodsService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   describe('list | list a cart\'s payment methods', () => {
     it('should send a get request', done => {
-      cartPaymentMethodsService.list(cartId).subscribe(res => {
+      service.list(cartId).subscribe(res => {
         done();
       });
 
-      const req = httpMock.expectOne(`${cartPaymentMethodsService.url}/${cartId}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}`);
 
       expect(req.request.method).toBe('GET');
 

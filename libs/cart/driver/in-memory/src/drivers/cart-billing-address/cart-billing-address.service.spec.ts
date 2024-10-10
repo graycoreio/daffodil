@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import {
   DaffCart,
@@ -19,8 +20,8 @@ import {
 
 import { DaffInMemoryCartBillingAddressService } from './cart-billing-address.service';
 
-describe('Driver | In Memory | Cart | CartBillingAddressService', () => {
-  let cartBillingAddressService: DaffInMemoryCartBillingAddressService;
+describe('@daffodil/cart/driver/in-memory | CartBillingAddressService', () => {
+  let service: DaffInMemoryCartBillingAddressService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
   let cartAddressFactory: DaffCartAddressFactory;
@@ -34,6 +35,12 @@ describe('Driver | In Memory | Cart | CartBillingAddressService', () => {
       imports: [],
       providers: [
         DaffInMemoryCartBillingAddressService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -42,7 +49,7 @@ describe('Driver | In Memory | Cart | CartBillingAddressService', () => {
     httpMock = TestBed.inject(HttpTestingController);
     cartFactory = TestBed.inject(DaffCartFactory);
     cartAddressFactory = TestBed.inject(DaffCartAddressFactory);
-    cartBillingAddressService = TestBed.inject(DaffInMemoryCartBillingAddressService);
+    service = TestBed.inject(DaffInMemoryCartBillingAddressService);
 
     mockCart = cartFactory.create();
     mockCartAddress = cartAddressFactory.create();
@@ -55,16 +62,16 @@ describe('Driver | In Memory | Cart | CartBillingAddressService', () => {
   });
 
   it('should be created', () => {
-    expect(cartBillingAddressService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   describe('get | getting a cart billing address', () => {
     it('should send a get request', done => {
-      cartBillingAddressService.get(cartId).subscribe(res => {
+      service.get(cartId).subscribe(res => {
         done();
       });
 
-      const req = httpMock.expectOne(`${cartBillingAddressService.url}/${cartId}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}`);
 
       expect(req.request.method).toBe('GET');
       req.flush(mockCartAddress);
@@ -80,11 +87,11 @@ describe('Driver | In Memory | Cart | CartBillingAddressService', () => {
     });
 
     it('should send a put request', done => {
-      cartBillingAddressService.update(cartId, mockCartAddressUpdate).subscribe(cart => {
+      service.update(cartId, mockCartAddressUpdate).subscribe(cart => {
         done();
       });
 
-      const req = httpMock.expectOne(`${cartBillingAddressService.url}/${cartId}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}`);
 
       expect(req.request.method).toBe('PUT');
       expect(req.request.body).toEqual(mockCartAddressUpdate);

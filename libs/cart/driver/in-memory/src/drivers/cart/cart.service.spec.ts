@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -17,7 +18,7 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffInMemoryCartService } from './cart.service';
 
 describe('@daffodil/cart/driver/in-memory | DaffInMemoryCartService', () => {
-  let cartService: DaffInMemoryCartService;
+  let service: DaffInMemoryCartService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
 
@@ -29,6 +30,12 @@ describe('@daffodil/cart/driver/in-memory | DaffInMemoryCartService', () => {
       imports: [],
       providers: [
         DaffInMemoryCartService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -36,7 +43,7 @@ describe('@daffodil/cart/driver/in-memory | DaffInMemoryCartService', () => {
 
     httpMock = TestBed.inject(HttpTestingController);
     cartFactory = TestBed.inject(DaffCartFactory);
-    cartService = TestBed.inject(DaffInMemoryCartService);
+    service = TestBed.inject(DaffInMemoryCartService);
 
     mockCart = cartFactory.create();
     cartId = mockCart.id;
@@ -47,24 +54,24 @@ describe('@daffodil/cart/driver/in-memory | DaffInMemoryCartService', () => {
   });
 
   it('should be created', () => {
-    expect(cartService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   describe('get | getting a cart', () => {
     it('should send a get request and return the cart in the response', done => {
-      cartService.get(cartId).subscribe(({ response }) => {
+      service.get(cartId).subscribe(({ response }) => {
         expect(response).toEqual(mockCart);
         done();
       });
 
-      const req = httpMock.expectOne(`${cartService.url}/${cartId}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}`);
 
       expect(req.request.method).toBe('GET');
       req.flush(mockCart);
     });
 
     it('should throw a daffodil error when it receives an error', (done) => {
-      cartService.get(cartId).pipe(
+      service.get(cartId).pipe(
         catchError((error) => {
           expect(error).toEqual(new DaffCartNotFoundError(error.message));
           done();
@@ -72,7 +79,7 @@ describe('@daffodil/cart/driver/in-memory | DaffInMemoryCartService', () => {
         }),
       ).subscribe();
 
-      const req = httpMock.expectOne(`${cartService.url}/${cartId}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}`);
 
       expect(req.request.method).toBe('GET');
       req.error(new ErrorEvent('404'));
@@ -90,12 +97,12 @@ describe('@daffodil/cart/driver/in-memory | DaffInMemoryCartService', () => {
 
     describe('a successful addToCart request', () => {
       it('should send a post request to `api/cart/addToCart` and respond with a cart', done => {
-        cartService.addToCart(productId, qty).subscribe(cart => {
+        service.addToCart(productId, qty).subscribe(cart => {
           expect(cart).toEqual(mockCart);
           done();
         });
 
-        const req = httpMock.expectOne(`${cartService.url}/addToCart`);
+        const req = httpMock.expectOne(`${service['url']}/addToCart`);
 
         expect(req.request.method).toBe('POST');
         expect(req.request.body).toEqual({
@@ -110,12 +117,12 @@ describe('@daffodil/cart/driver/in-memory | DaffInMemoryCartService', () => {
 
   describe('clear | removing all items from the cart', () => {
     it('should send a post request and return the cart that has no items', done => {
-      cartService.clear(cartId).subscribe(result => {
+      service.clear(cartId).subscribe(result => {
         expect(result).toEqual(mockCart);
         done();
       });
 
-      const req = httpMock.expectOne(`${cartService.url}/${cartId}/clear`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}/clear`);
 
       expect(req.request.method).toBe('POST');
 
@@ -127,12 +134,12 @@ describe('@daffodil/cart/driver/in-memory | DaffInMemoryCartService', () => {
 
   describe('merge', () => {
     it('should send a post request and return the cart', done => {
-      cartService.merge(cartId).subscribe(result => {
+      service.merge(cartId).subscribe(result => {
         expect(result.response).toEqual(mockCart);
         done();
       });
 
-      const req = httpMock.expectOne(`${cartService.url}/${cartId}/merge`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}/merge`);
 
       expect(req.request.method).toBe('POST');
 
@@ -142,12 +149,12 @@ describe('@daffodil/cart/driver/in-memory | DaffInMemoryCartService', () => {
 
   describe('create | creating a cart', () => {
     it('should send a post request and return the cart', done => {
-      cartService.create().subscribe(result => {
+      service.create().subscribe(result => {
         expect(result).toEqual(jasmine.objectContaining({ id: cartId }));
         done();
       });
 
-      const req = httpMock.expectOne(`${cartService.url}`);
+      const req = httpMock.expectOne(`${service['url']}`);
 
       expect(req.request.method).toBe('POST');
 

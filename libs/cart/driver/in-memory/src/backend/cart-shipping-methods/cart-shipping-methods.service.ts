@@ -9,7 +9,9 @@ import {
   DaffCartShippingRate,
 } from '@daffodil/cart';
 import { DaffCartShippingRateFactory } from '@daffodil/cart/testing';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
+
+import { DAFF_CART_IN_MEMORY_CART_SHIPPING_METHODS_COLLECTION_NAME } from '../../collection-names';
 
 /**
  * @inheritdoc
@@ -17,7 +19,9 @@ import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendCartShippingMethodsService implements DaffInMemoryDataServiceInterface {
+export class DaffInMemoryBackendCartShippingMethodsService implements DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_CART_IN_MEMORY_CART_SHIPPING_METHODS_COLLECTION_NAME;
+
   constructor(
     private shippingMethodFactory: DaffCartShippingRateFactory,
   ) {}

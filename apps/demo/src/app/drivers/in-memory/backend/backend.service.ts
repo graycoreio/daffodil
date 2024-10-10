@@ -36,7 +36,7 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
 
   post(reqInfo: any) {
     const collectionName = reqInfo.collectionName;
-    if (DaffInMemoryBackendCartRootService.COLLECTION_NAMES.indexOf(collectionName) > -1) {
+    if (this.cartTestingService.canHandle(collectionName)) {
       return this.cartTestingService.post(reqInfo);
     } else if (collectionName === 'auth') {
       return this.authTestingService.post(reqInfo);
@@ -51,7 +51,7 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
       return this.productTestingService.get(reqInfo);
     } else if (collectionName === 'navigation') {
       return this.navigationTestingService.get(reqInfo);
-    } else if (DaffInMemoryBackendCartRootService.COLLECTION_NAMES.indexOf(collectionName) > -1) {
+    } else if (this.cartTestingService.canHandle(collectionName)) {
       return this.cartTestingService.get(reqInfo);
     } else if (collectionName === 'countries') {
       return this.geographyTestingService.get(reqInfo);
@@ -62,14 +62,14 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
 
   put(reqInfo: any) {
     const collectionName = reqInfo.collectionName;
-    if(DaffInMemoryBackendCartRootService.COLLECTION_NAMES.indexOf(collectionName) > -1) {
+    if(this.cartTestingService.canHandle(collectionName)) {
       return this.cartTestingService.put(reqInfo);
     }
   }
 
   delete(reqInfo: any) {
     const collectionName = reqInfo.collectionName;
-    if(DaffInMemoryBackendCartRootService.COLLECTION_NAMES.indexOf(collectionName) > -1) {
+    if(this.cartTestingService.canHandle(collectionName)) {
       return this.cartTestingService.delete(reqInfo);
     }
   }

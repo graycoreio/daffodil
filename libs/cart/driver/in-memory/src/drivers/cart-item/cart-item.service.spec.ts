@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import {
   DaffCart,
@@ -21,8 +22,8 @@ import {
 
 import { DaffInMemoryCartItemService } from './cart-item.service';
 
-describe('Driver | In Memory | Cart | CartItemService', () => {
-  let cartItemService: DaffInMemoryCartItemService;
+describe('@daffodil/cart/driver/in-memory | CartItemService', () => {
+  let service: DaffInMemoryCartItemService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
@@ -37,13 +38,19 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
       imports: [],
       providers: [
         DaffInMemoryCartItemService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
     });
 
     httpMock = TestBed.inject(HttpTestingController);
-    cartItemService = TestBed.inject(DaffInMemoryCartItemService);
+    service = TestBed.inject(DaffInMemoryCartItemService);
 
     cartFactory = TestBed.inject(DaffCartFactory);
     cartItemFactory = TestBed.inject(DaffCartItemFactory);
@@ -60,16 +67,16 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
   });
 
   it('should be created', () => {
-    expect(cartItemService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   describe('list | getting all the cart items', () => {
     it('should send a get request', done => {
-      cartItemService.list(cartId).subscribe(res => {
+      service.list(cartId).subscribe(res => {
         done();
       });
 
-      const req = httpMock.expectOne(`${cartItemService.url}/${cartId}/`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}/`);
 
       expect(req.request.method).toBe('GET');
       req.flush(mockCart.items);
@@ -78,11 +85,11 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
 
   describe('get | getting a cart item', () => {
     it('should send a get request with the item id', done => {
-      cartItemService.get(cartId, itemId).subscribe(res => {
+      service.get(cartId, itemId).subscribe(res => {
         done();
       });
 
-      const req = httpMock.expectOne(`${cartItemService.url}/${cartId}/${itemId}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}/${itemId}`);
 
       expect(req.request.method).toBe('GET');
       req.flush(mockCartItem);
@@ -107,11 +114,11 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
     });
 
     it('should send a post request', done => {
-      cartItemService.add(cartId, cartItemInput).subscribe(cart => {
+      service.add(cartId, cartItemInput).subscribe(cart => {
         done();
       });
 
-      const req = httpMock.expectOne(`${cartItemService.url}/${cartId}/`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}/`);
 
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(cartItemInput);
@@ -130,11 +137,11 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
     });
 
     it('should send a put request', done => {
-      cartItemService.update(cartId, itemId, newCartItem).subscribe(cart => {
+      service.update(cartId, itemId, newCartItem).subscribe(cart => {
         done();
       });
 
-      const req = httpMock.expectOne(`${cartItemService.url}/${cartId}/${itemId}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}/${itemId}`);
 
       expect(req.request.method).toBe('PUT');
       expect(req.request.body).toEqual(newCartItem);
@@ -145,11 +152,11 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
 
   describe('delete | removing an item from the cart', () => {
     it('should send a delete request', done => {
-      cartItemService.delete(cartId, itemId).subscribe(result => {
+      service.delete(cartId, itemId).subscribe(result => {
         done();
       });
 
-      const req = httpMock.expectOne(`${cartItemService.url}/${cartId}/${itemId}`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}/${itemId}`);
 
       expect(req.request.method).toBe('DELETE');
 

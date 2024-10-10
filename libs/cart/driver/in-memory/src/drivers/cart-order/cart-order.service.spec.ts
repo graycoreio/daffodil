@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import {
   DaffCart,
@@ -20,7 +21,7 @@ import {
 
 import { DaffInMemoryCartOrderService } from './cart-order.service';
 
-describe('Driver | In Memory | Cart | CartOrderService', () => {
+describe('@daffodil/cart/driver/in-memory | CartOrderService', () => {
   let service: DaffInMemoryCartOrderService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
@@ -36,6 +37,12 @@ describe('Driver | In Memory | Cart | CartOrderService', () => {
       imports: [],
       providers: [
         DaffInMemoryCartOrderService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -72,7 +79,7 @@ describe('Driver | In Memory | Cart | CartOrderService', () => {
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}/${cartId}/`);
+      const req = httpMock.expectOne(`${service['url']}/${cartId}/`);
 
       expect(req.request.method).toBe('POST');
       req.flush(mockCartOrderResult);

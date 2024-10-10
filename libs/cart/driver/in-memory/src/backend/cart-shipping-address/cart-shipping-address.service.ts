@@ -11,8 +11,9 @@ import {
   DaffCart,
   DaffCartAddress,
 } from '@daffodil/cart';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 
+import { DAFF_CART_IN_MEMORY_CART_SHIPPING_ADDRESS_COLLECTION_NAME } from '../../collection-names';
 import {
   DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
   DaffCartInMemoryExtraAttributesHook,
@@ -24,7 +25,9 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendCartShippingAddressService implements DaffInMemoryDataServiceInterface {
+export class DaffInMemoryBackendCartShippingAddressService implements DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_CART_IN_MEMORY_CART_SHIPPING_ADDRESS_COLLECTION_NAME;
+
   constructor(
     @Inject(DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK) private extraFieldsHook: DaffCartInMemoryExtraAttributesHook,
   ) {}

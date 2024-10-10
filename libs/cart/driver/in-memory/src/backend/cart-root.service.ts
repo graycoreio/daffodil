@@ -2,11 +2,17 @@ import { Injectable } from '@angular/core';
 import {
   InMemoryDbService,
   RequestInfo,
-  STATUS,
 } from 'angular-in-memory-web-api';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
+import {
+  DaffInMemoryBackendDelegate,
+  DaffInMemoryMultiRouteableBackend,
+} from '@daffodil/driver/in-memory';
 
 import { DaffInMemoryBackendCartService } from './cart/cart.service';
 import { DaffInMemoryBackendCartAddressService } from './cart-address/cart-address.service';
@@ -21,49 +27,74 @@ import { DaffInMemoryBackendCartShippingInformationService } from './cart-shippi
 import { DaffInMemoryBackendCartShippingMethodsService } from './cart-shipping-methods/cart-shipping-methods.service';
 
 /**
+ * The collections that the root service manages.
+ * Useful for a higher-level backend that delegates to this one based on collection name.
+ */
+const COLLECTION_NAMES = [
+  'cart',
+  'cart-items',
+  'cart-order',
+  'cart-coupon',
+  'cart-address',
+  'cart-shipping-address',
+  'cart-billing-address',
+  'cart-payment-methods',
+  'cart-shipping-methods',
+  'cart-payment',
+  'cart-shipping-information',
+];
+
+/**
  * The root cart in-memory backend.
  * Creates the database and delegates requests to child backends.
  */
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendCartRootService implements InMemoryDbService, DaffInMemoryDataServiceInterface {
-  /**
-   * The collections that the root service manages.
-   * Useful for a higher-level backend that delegates to this one based on collection name.
-   */
-  public static readonly COLLECTION_NAMES = [
-    'cart',
-    'cart-items',
-    'cart-order',
-    'cart-coupon',
-    'cart-address',
-    'cart-shipping-address',
-    'cart-billing-address',
-    'cart-payment-methods',
-    'cart-shipping-methods',
-    'cart-payment',
-    'cart-shipping-information',
-  ];
-
+export class DaffInMemoryBackendCartRootService extends DaffInMemoryBackendDelegate implements InMemoryDbService, DaffInMemoryMultiRouteableBackend {
   /**
    * The collection of carts in the backend.
    */
   public carts: DaffCart[] = [];
 
   constructor(
-    private cartService: DaffInMemoryBackendCartService,
-    private cartItemsService: DaffInMemoryBackendCartItemsService,
-    private cartOrderService: DaffInMemoryBackendCartOrderService,
-    private cartCouponService: DaffInMemoryBackendCartCouponService,
-    private cartAddressService: DaffInMemoryBackendCartAddressService,
-    private cartShippingAddressService: DaffInMemoryBackendCartShippingAddressService,
-    private cartBillingAddressService: DaffInMemoryBackendCartBillingAddressService,
-    private cartPaymentMethodsService: DaffInMemoryBackendCartPaymentMethodsService,
-    private cartShippingMethodsService: DaffInMemoryBackendCartShippingMethodsService,
-    private cartPaymentService: DaffInMemoryBackendCartPaymentService,
-    private cartShippingInformationService: DaffInMemoryBackendCartShippingInformationService,
-  ) {}
+    cartService: DaffInMemoryBackendCartService,
+    cartItemsService: DaffInMemoryBackendCartItemsService,
+    cartOrderService: DaffInMemoryBackendCartOrderService,
+    cartCouponService: DaffInMemoryBackendCartCouponService,
+    cartAddressService: DaffInMemoryBackendCartAddressService,
+    cartShippingAddressService: DaffInMemoryBackendCartShippingAddressService,
+    cartBillingAddressService: DaffInMemoryBackendCartBillingAddressService,
+    cartPaymentMethodsService: DaffInMemoryBackendCartPaymentMethodsService,
+    cartShippingMethodsService: DaffInMemoryBackendCartShippingMethodsService,
+    cartPaymentService: DaffInMemoryBackendCartPaymentService,
+    cartShippingInformationService: DaffInMemoryBackendCartShippingInformationService,
+  ) {
+    super([
+      cartService,
+      cartItemsService,
+      cartOrderService,
+      cartCouponService,
+      cartAddressService,
+      cartShippingAddressService,
+      cartBillingAddressService,
+      cartPaymentMethodsService,
+      cartShippingMethodsService,
+      cartPaymentService,
+      cartShippingInformationService,
+    ]);
+  }
+
+  protected override delegateRequest(reqInfo: RequestInfo, method): Observable<any> {
+    return super.delegateRequest({
+      ...reqInfo,
+      collection: this.carts,
+    }, method);
+  }
+
+  canHandle(collectionName: string): boolean {
+    return COLLECTION_NAMES.includes(collectionName);
+  }
 
   createDb(reqInfo: RequestInfo) {
     if (reqInfo) {
@@ -73,69 +104,8 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
       }
     }
 
-    return {
+    return of({
       cart: this.carts,
-    };
-  }
-
-  get(reqInfo: RequestInfo) {
-    return this.delegateRequest(reqInfo);
-  }
-
-  post(reqInfo: RequestInfo) {
-    return this.delegateRequest(reqInfo);
-  }
-
-  put(reqInfo: RequestInfo) {
-    return this.delegateRequest(reqInfo);
-  }
-
-  delete(reqInfo: RequestInfo) {
-    return this.delegateRequest(reqInfo);
-  }
-
-  private delegateRequest(reqInfo: RequestInfo) {
-    reqInfo.collection = this.carts;
-
-    switch (reqInfo.collectionName) {
-      case 'cart':
-        return this.cartService[reqInfo.method](reqInfo);
-
-      case 'cart-items':
-        return this.cartItemsService[reqInfo.method](reqInfo);
-
-      case 'cart-order':
-        return this.cartOrderService[reqInfo.method](reqInfo);
-
-      case 'cart-coupon':
-        return this.cartCouponService[reqInfo.method](reqInfo);
-
-      case 'cart-address':
-        return this.cartAddressService[reqInfo.method](reqInfo);
-
-      case 'cart-shipping-address':
-        return this.cartShippingAddressService[reqInfo.method](reqInfo);
-
-      case 'cart-billing-address':
-        return this.cartBillingAddressService[reqInfo.method](reqInfo);
-
-      case 'cart-payment-methods':
-        return this.cartPaymentMethodsService[reqInfo.method](reqInfo);
-
-      case 'cart-shipping-methods':
-        return this.cartShippingMethodsService[reqInfo.method](reqInfo);
-
-      case 'cart-payment':
-        return this.cartPaymentService[reqInfo.method](reqInfo);
-
-      case 'cart-shipping-information':
-        return this.cartShippingInformationService[reqInfo.method](reqInfo);
-
-      default:
-        return reqInfo.utils.createResponse$(() => ({
-          body: {},
-          status: STATUS.OK,
-        }));
-    }
+    });
   }
 }

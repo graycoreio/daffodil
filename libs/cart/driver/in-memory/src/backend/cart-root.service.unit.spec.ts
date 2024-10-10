@@ -162,15 +162,18 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
   });
 
   describe('after initialization', () => {
-    let result;
+    let result: ReturnType<DaffInMemoryBackendCartRootService['createDb']>;
 
     beforeEach(() => {
       service.carts = [];
       result = service.createDb(reqInfoStub);
     });
 
-    it('should have an empty array in DB', () => {
-      expect(result.cart).toEqual([]);
+    it('should have an empty array in DB', (done) => {
+      result.subscribe((res) => {
+        expect(res.cart).toEqual([]);
+        done();
+      });
     });
   });
 
