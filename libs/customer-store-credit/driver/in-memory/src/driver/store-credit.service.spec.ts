@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 
 import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
@@ -25,6 +26,12 @@ describe('@daffodil/customer-store-credit/driver/in-memory | DaffCustomerStoreCr
       imports: [],
       providers: [
         DaffCustomerStoreCreditInMemoryDriver,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -50,7 +57,7 @@ describe('@daffodil/customer-store-credit/driver/in-memory | DaffCustomerStoreCr
     let result: Observable<DaffCustomerStoreCredit>;
 
     beforeEach(() => {
-      url = service.url;
+      url = service['url'];
       result = service.get();
     });
 
