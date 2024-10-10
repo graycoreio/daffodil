@@ -1,0 +1,1 @@
+export const DAFF_CATEGORY_IN_MEMORY_COLLECTION_NAME = 'category';

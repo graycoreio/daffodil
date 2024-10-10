@@ -5,8 +5,10 @@ import {
 } from '@angular/core';
 
 import { DaffCategoryDriver } from '@daffodil/category/driver';
+import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 
 import { DaffInMemoryCategoryService } from './category.service';
+import { DaffInMemoryBackendCategoryService } from '../backend/category.service';
 
 /**
  * A module that provides the {@link DaffInMemoryCategoryService} for the {@link DaffCategoryDriver} token.
@@ -25,6 +27,7 @@ export class DaffCategoryInMemoryDriverModule {
           provide: DaffCategoryDriver,
           useExisting: DaffInMemoryCategoryService,
         },
+        provideDaffInMemoryBackends(DaffInMemoryBackendCategoryService),
       ],
     };
   }

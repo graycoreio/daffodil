@@ -17,8 +17,11 @@ import {
 } from '@daffodil/category/testing';
 import { collect } from '@daffodil/core';
 import { daffUriTruncateLeadingSlash } from '@daffodil/core/routing';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 import { DaffProduct } from '@daffodil/product';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-memory';
+
+import { DAFF_CATEGORY_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 
 /**
  * An in-memory service that mocks out the backend services for getting categories. See the angular in memory documentation for more details.
@@ -26,7 +29,9 @@ import { DaffInMemoryBackendProductService } from '@daffodil/product/driver/in-m
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
+export class DaffInMemoryBackendCategoryService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_CATEGORY_IN_MEMORY_COLLECTION_NAME;
+
   protected _root: DaffCategory;
   protected _categories: DaffCategory[] = [];
   protected _categoryPageMetadata: DaffCategoryPageMetadata;
