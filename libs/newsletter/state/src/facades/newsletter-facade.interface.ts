@@ -8,6 +8,6 @@ import {
 
 export interface DaffNewsletterFacadeInterface extends DaffStoreFacade<Action> {
   success$: Observable<boolean>;
-  error$: Observable<DaffStateError>;
+  error$: Observable<Array<DaffStateError>>;
   loading$: Observable<boolean>;
 }

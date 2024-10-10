@@ -1,42 +1,56 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  cold,
-  hot,
-} from 'jasmine-marbles';
+import { hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
+
+import { HubspotResponse } from '@daffodil/driver/hubspot';
+import { DaffHubspotResponseFactory } from '@daffodil/driver/hubspot/testing';
+import { DaffNewsletterSubmission } from '@daffodil/newsletter';
+import { DaffNewsletterHubSpotDriverModule } from '@daffodil/newsletter/driver/hubspot';
 
 import { DaffNewsletterHubspotService } from './newsletter.service';
 import { DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN } from './token/hubspot-forms.token';
 
-describe('DaffNewsletterHubspotService', () => {
-  let newsletterService;
+describe('newsletterHubspotService', () => {
+  let newsletterHubspotService: DaffNewsletterHubspotService;
+  const responseFactory: DaffHubspotResponseFactory = new DaffHubspotResponseFactory();
+
+  const sampleResponse: HubspotResponse = responseFactory.create();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffNewsletterHubSpotDriverModule.forRoot({
+          portalId: '123123',
+          guid: '123123',
+        }),
+      ],
       providers: [
         DaffNewsletterHubspotService,
         {
           provide: DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN,
           useValue: {
-            submit: (): Observable<any> => hot('--a', { a: { test: '123' }}),
+            submit: (): Observable<HubspotResponse> => hot('--a', { a: sampleResponse }),
           },
         },
       ],
     });
 
-    newsletterService = TestBed.inject(DaffNewsletterHubspotService);
+    newsletterHubspotService = TestBed.inject(DaffNewsletterHubspotService);
   });
 
-  it('should be created', () => {
-    expect(newsletterService).toBeTruthy();
+  it('should take a DaffNewsletterSubmission string convert a HubspotResponse to a DaffNewsletterResponse', () => {
+    const newsletterSubmission: DaffNewsletterSubmission = 'test@email.com';
+
+    newsletterHubspotService.send(newsletterSubmission).subscribe((resp) => {
+      expect(resp).toEqual({ message: sampleResponse.inlineMessage });
+    });
   });
 
-  describe('when sending', () => {
-    it('should return an observable of HubspotResponse', () => {
-      const payload = { email: 'email@email.edu' };
-      const expected = cold('--b', { b: { test: '123' }});
+  it('should take a DaffNewsletterSubmission convert a HubspotResponse to a DaffNewsletterResponse', () => {
+    const newsletterSubmission: DaffNewsletterSubmission = 'test@email.com';
 
-      expect(newsletterService.send(payload)).toBeObservable(expected);
+    newsletterHubspotService.send(newsletterSubmission).subscribe((resp) => {
+      expect(resp).toEqual({ message: sampleResponse.inlineMessage });
     });
   });
 });

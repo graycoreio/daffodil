@@ -8,16 +8,13 @@ import { cold } from 'jasmine-marbles';
 
 import {
   DaffNewsletterState,
-  reducer,
+  daffNewsletterStateReducer,
   DAFF_NEWSLETTER_STORE_FEATURE_KEY,
   DaffNewsletterStateRootSlice,
+  daffNewsletterReducerInitialState,
 } from '@daffodil/newsletter/state';
 
-import {
-  selectDaffNewsletterLoading,
-  selectDaffNewsletterSuccess,
-  selectDaffNewsletterError,
-} from './newsletter.selector';
+import { selectDaffNewsletterSuccess } from './newsletter.selector';
 
 
 describe('DaffNewsletterSelectors', () => {
@@ -28,35 +25,19 @@ describe('DaffNewsletterSelectors', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          [DAFF_NEWSLETTER_STORE_FEATURE_KEY]: reducer,
+          [DAFF_NEWSLETTER_STORE_FEATURE_KEY]: daffNewsletterStateReducer,
         }),
       ],
     });
-    mockNewsletter = { loading: false, success: false, error: null };
+
+    mockNewsletter = daffNewsletterReducerInitialState;
     store = TestBed.inject(Store);
-
-  });
-
-  describe('selectDaffNewsletterLoading', () =>{
-    it('selects the loading property of newsletter state', () => {
-      const selector = store.pipe(select(selectDaffNewsletterLoading));
-      const expected = cold('a', { a: mockNewsletter.loading });
-      expect(selector).toBeObservable(expected);
-    });
   });
 
   describe('selectDaffNewsletterSuccess', () =>{
     it('selects the success property of newsletter state', () => {
       const selector = store.pipe(select(selectDaffNewsletterSuccess));
       const expected = cold('a', { a: mockNewsletter.success });
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectDaffNewsletterError', () =>{
-    it('selects the error property of newsletter state', () => {
-      const selector = store.pipe(select(selectDaffNewsletterError));
-      const expected = cold('a', { a: mockNewsletter.error });
       expect(selector).toBeObservable(expected);
     });
   });

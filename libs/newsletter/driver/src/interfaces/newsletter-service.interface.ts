@@ -1,10 +1,26 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffNewsletterSubmission } from '@daffodil/newsletter';
+import {
+  DaffNewsletterSubmission,
+  DaffNewsletterResponse,
+} from '@daffodil/newsletter';
 
-export const DaffNewsletterDriver = new InjectionToken<DaffNewsletterServiceInterface<DaffNewsletterSubmission, unknown>>('DaffNewsletterDriver');
+/**
+ * The token for the newsletter driver.
+ */
+export const DaffNewsletterDriver: InjectionToken<DaffNewsletterServiceInterface> = new InjectionToken('DaffNewsletterDriver');
 
-export interface DaffNewsletterServiceInterface<T extends DaffNewsletterSubmission, V> {
-  send(email: T): Observable<V>;
+/**
+ * The interface responsible for sending newsletter submissions.
+ */
+export interface DaffNewsletterServiceInterface {
+  /**
+   * Sends a newsletter submission and returns a response.
+   *
+   * @param email The email to store for the newsletter subscription.
+   *
+   * @returns The response from the newsletter submission.
+   */
+  send(email: DaffNewsletterSubmission): Observable<DaffNewsletterResponse>;
 }

@@ -9,11 +9,11 @@ import { cold } from 'jasmine-marbles';
 import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 import {
   DaffNewsletterSubscribe,
-  DaffNewsletterFailedSubscribe,
-  DaffNewsletterSuccessSubscribe,
+  DaffNewsletterSubscribeFailure,
+  DaffNewsletterSubscribeSuccess,
   DaffNewsletterStateRootSlice,
   DAFF_NEWSLETTER_STORE_FEATURE_KEY,
-  reducer,
+  daffNewsletterStateReducer,
 } from '@daffodil/newsletter/state';
 
 import { DaffNewsletterFacade } from './newsletter.facade';
@@ -27,7 +27,7 @@ describe('DaffNewsletterFacade', () => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          [DAFF_NEWSLETTER_STORE_FEATURE_KEY]: reducer,
+          [DAFF_NEWSLETTER_STORE_FEATURE_KEY]: daffNewsletterStateReducer,
         }),
       ],
       providers: [
@@ -59,21 +59,21 @@ describe('DaffNewsletterFacade', () => {
 
     it('should return true after a successful subscription', () => {
       const expected = cold('a', { a: true });
-      store.dispatch(new DaffNewsletterSuccessSubscribe());
+      store.dispatch(new DaffNewsletterSubscribeSuccess());
       expect(facade.success$).toBeObservable(expected);
     });
   });
 
   describe('error$', () => {
-    it('should intially be null', () => {
-      const expected = cold('a', { a: null });
+    it('should intially be an empty array', () => {
+      const expected = cold('a', { a: []});
       expect(facade.error$).toBeObservable(expected);
     });
 
     it('should return an error message when it fails to subscribe', () => {
       const error = { code: 'code', message: 'Failed to subscribe to newsletter' };
-      const expected = cold('a', { a: error });
-      store.dispatch(new DaffNewsletterFailedSubscribe(error));
+      const expected = cold('a', { a: [error]});
+      store.dispatch(new DaffNewsletterSubscribeFailure([error]));
       expect(facade.error$).toBeObservable(expected);
     });
   });
@@ -86,7 +86,7 @@ describe('DaffNewsletterFacade', () => {
 
     it('it should be true if the newsletter is loading', () => {
       const expected = cold('a', { a: true });
-      const payload: DaffNewsletterSubmission = { email: 'yes@gmail.com' };
+      const payload: DaffNewsletterSubmission = 'yes@gmail.com';
       store.dispatch(new DaffNewsletterSubscribe(payload));
       expect(facade.loading$).toBeObservable(expected);
     });

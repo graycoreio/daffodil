@@ -9,7 +9,6 @@ import {
   of,
 } from 'rxjs';
 
-import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 import {
   DaffNewsletterServiceInterface,
   DaffNewsletterDriver,
@@ -17,8 +16,8 @@ import {
 import { DaffTestingNewsletterService } from '@daffodil/newsletter/driver/testing';
 import {
   DaffNewsletterSubscribe,
-  DaffNewsletterSuccessSubscribe,
-  DaffNewsletterFailedSubscribe,
+  DaffNewsletterSubscribeSuccess,
+  DaffNewsletterSubscribeFailure,
   DaffNewsletterRetry,
   DaffNewsletterCancel,
 } from '@daffodil/newsletter/state';
@@ -28,12 +27,9 @@ import { DaffNewsletterEffects } from './newsletter.effects';
 
 describe('NewsletterEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffNewsletterEffects<DaffNewsletterSubmission, any>;
-  const mockNewsletter = { email: 'test@test.com' };
-  let daffNewsletterDriver: DaffNewsletterServiceInterface<
-    DaffNewsletterSubmission,
-    any
-  >;
+  let effects: DaffNewsletterEffects;
+  const mockNewsletter = 'test@test.com';
+  let daffNewsletterDriver: DaffNewsletterServiceInterface;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -60,8 +56,8 @@ describe('NewsletterEffects', () => {
 
     describe('and the call to NewsletterService is successful', () => {
       it('it should dispatch a NewsletterSuccessSubscribe', () => {
-        const successAction = new DaffNewsletterSuccessSubscribe();
-        spyOn(daffNewsletterDriver, 'send').and.returnValue(of('mystring'));
+        const successAction = new DaffNewsletterSubscribeSuccess();
+        spyOn(daffNewsletterDriver, 'send').and.returnValue(of({ message: 'mystring' }));
 
         actions$ = hot('--a', { a: newsletterSubscribe });
         expected = cold('--b', { b: successAction });
@@ -74,7 +70,7 @@ describe('NewsletterEffects', () => {
         const error = { code: 'code', recoverable: false, message: 'Failed to subscribe to newsletter' };
         const response = cold('#', {}, error);
         spyOn(daffNewsletterDriver, 'send').and.returnValue(response);
-        const failedAction = new DaffNewsletterFailedSubscribe(error);
+        const failedAction = new DaffNewsletterSubscribeFailure([error]);
 
         actions$ = hot('--a', { a: newsletterSubscribe });
         expected = cold('--b', { b: failedAction });
@@ -83,14 +79,14 @@ describe('NewsletterEffects', () => {
     });
   });
 
-  describe('when NewsletterRetry is triggered', () => {
+  describe('when Retry is triggered', () => {
     let expected;
     const newsletterRetry = new DaffNewsletterRetry(mockNewsletter);
 
     describe('and the call to NewsletterService is successful', () => {
       it('it should dispatch a NewsletterSuccessSubscribe', () => {
-        const successAction = new DaffNewsletterSuccessSubscribe();
-        spyOn(daffNewsletterDriver, 'send').and.returnValue(of('mystring'));
+        const successAction = new DaffNewsletterSubscribeSuccess();
+        spyOn(daffNewsletterDriver, 'send').and.returnValue(of({ message: 'mystring' }));
 
         actions$ = hot('--a', { a: newsletterRetry });
         expected = cold('--b', { b: successAction });
@@ -103,7 +99,7 @@ describe('NewsletterEffects', () => {
         const error = { code: 'code', recoverable: false, message: 'Failed to subscribe to newsletter' };
         const response = cold('#', {}, error);
         spyOn(daffNewsletterDriver, 'send').and.returnValue(response);
-        const failedAction = new DaffNewsletterFailedSubscribe(error);
+        const failedAction = new DaffNewsletterSubscribeFailure([error]);
 
         actions$ = hot('--a', { a: newsletterRetry });
         expected = cold('--b', { b: failedAction });

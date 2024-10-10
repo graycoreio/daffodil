@@ -18,7 +18,7 @@ import {
 @Injectable({ providedIn: 'root' })
 export class DaffNewsletterFacade implements DaffNewsletterFacadeInterface {
   success$: Observable<boolean> = this.store.select(selectDaffNewsletterSuccess);
-  error$: Observable<DaffStateError> = this.store.select(selectDaffNewsletterError);
+  error$: Observable<Array<DaffStateError>> = this.store.select(selectDaffNewsletterError);
   loading$: Observable<boolean> = this.store.select(selectDaffNewsletterLoading);
 
   constructor(private store: Store<DaffNewsletterStateRootSlice>){
