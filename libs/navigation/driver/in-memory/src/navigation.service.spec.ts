@@ -56,7 +56,7 @@ describe('@daffodil/navigation/driver/in-memory | NavigationService', () => {
         expect(navigation).toEqual(mockNavigation);
       });
 
-      const req = httpMock.expectOne(`${navigationService.url}${mockNavigation.id}`);
+      const req = httpMock.expectOne(`${navigationService.url}/${mockNavigation.id}`);
       expect(req.request.method).toBe('GET');
 
       req.flush(mockNavigation);
