@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import { DaffPaypalExpressTokenResponseFactory } from '@daffodil/paypal/testing';
 
@@ -22,6 +23,12 @@ describe('@daffodil/paypal/driver/in-memory | DaffInMemoryPaypalService', () => 
       imports: [],
       providers: [
         DaffInMemoryPaypalService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
