@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { of } from 'rxjs';
 
 import {
@@ -41,6 +42,12 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryRegisterService', () => 
         {
           provide: DaffInMemoryLoginService,
           useValue: loginServiceSpy,
+        },
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
         },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -78,7 +85,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryRegisterService', () => 
     it('should send a post request', () => {
       service.register(mockRegistration).subscribe(auth => {});
 
-      const req = httpMock.expectOne(`${service.url}register`);
+      const req = httpMock.expectOne(`${service['url']}/register`);
 
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockRegistration);
@@ -92,7 +99,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryRegisterService', () => 
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}register`);
+      const req = httpMock.expectOne(`${service['url']}/register`);
 
       req.flush({});
     });
@@ -106,7 +113,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryRegisterService', () => 
     it('should send a post request', () => {
       service.registerOnly(mockRegistration).subscribe(auth => {});
 
-      const req = httpMock.expectOne(`${service.url}register`);
+      const req = httpMock.expectOne(`${service['url']}/register`);
 
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockRegistration);

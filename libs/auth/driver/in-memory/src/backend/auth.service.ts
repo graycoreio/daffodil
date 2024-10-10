@@ -5,6 +5,9 @@ import {
   STATUS,
 } from 'angular-in-memory-web-api';
 
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
+
+import { DAFF_AUTH_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 import { DaffInMemoryDbCustomer } from '../models/db-customer.type';
 
 /**
@@ -13,7 +16,9 @@ import { DaffInMemoryDbCustomer } from '../models/db-customer.type';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendAuthService implements InMemoryDbService {
+export class DaffInMemoryBackendAuthService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_AUTH_IN_MEMORY_COLLECTION_NAME;
+
   customers: Record<DaffInMemoryDbCustomer['email'], DaffInMemoryDbCustomer> = {};
 
   private generateToken(): string {

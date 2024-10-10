@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 import {
   map,
@@ -8,7 +9,9 @@ import {
 
 import { DaffAuthResetPasswordInfo } from '@daffodil/auth';
 import { DaffResetPasswordServiceInterface } from '@daffodil/auth/driver';
+import { DaffInMemoryDriverBase } from '@daffodil/driver/in-memory';
 
+import { DAFF_AUTH_IN_MEMORY_COLLECTION_NAME } from '../../collection-name.const';
 import { DaffInMemoryLoginService } from '../login/login.service';
 
 /**
@@ -17,13 +20,14 @@ import { DaffInMemoryLoginService } from '../login/login.service';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryResetPasswordService implements DaffResetPasswordServiceInterface {
-  url = '/api/auth/';
-
+export class DaffInMemoryResetPasswordService extends DaffInMemoryDriverBase implements DaffResetPasswordServiceInterface {
   constructor(
     private http: HttpClient,
     private loginService: DaffInMemoryLoginService,
-  ) {}
+    config: InMemoryBackendConfig,
+  ) {
+    super(config, DAFF_AUTH_IN_MEMORY_COLLECTION_NAME);
+  }
 
   resetPassword(info: DaffAuthResetPasswordInfo): Observable<string> {
     return this.resetPasswordOnly(info).pipe(
@@ -33,10 +37,10 @@ export class DaffInMemoryResetPasswordService implements DaffResetPasswordServic
   }
 
   resetPasswordOnly(info: DaffAuthResetPasswordInfo): Observable<void> {
-    return this.http.post<void>(`${this.url}resetPassword`, info);
+    return this.http.post<void>(`${this.url}/resetPassword`, info);
   }
 
   sendResetEmail(email: string): Observable<void> {
-    return this.http.post<void>(`${this.url}sendResetEmail`, { email });
+    return this.http.post<void>(`${this.url}/sendResetEmail`, { email });
   }
 }

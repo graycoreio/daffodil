@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { of } from 'rxjs';
 
 import {
@@ -41,6 +42,12 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', (
         {
           provide: DaffInMemoryLoginService,
           useValue: loginServiceSpy,
+        },
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
         },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -78,7 +85,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', (
     it('should send a post request', () => {
       service.resetPassword(mockResetInfo).subscribe(auth => {});
 
-      const req = httpMock.expectOne(`${service.url}resetPassword`);
+      const req = httpMock.expectOne(`${service['url']}/resetPassword`);
 
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockResetInfo);
@@ -92,7 +99,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', (
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}resetPassword`);
+      const req = httpMock.expectOne(`${service['url']}/resetPassword`);
 
       req.flush({});
     });
@@ -106,7 +113,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', (
     it('should send a post request', () => {
       service.resetPasswordOnly(mockResetInfo).subscribe(auth => {});
 
-      const req = httpMock.expectOne(`${service.url}resetPassword`);
+      const req = httpMock.expectOne(`${service['url']}/resetPassword`);
 
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockResetInfo);
@@ -119,7 +126,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', (
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}resetPassword`);
+      const req = httpMock.expectOne(`${service['url']}/resetPassword`);
 
       req.flush({});
     });
@@ -133,7 +140,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', (
     it('should send a post request', () => {
       service.sendResetEmail(mockResetInfo.email).subscribe(auth => {});
 
-      const req = httpMock.expectOne(`${service.url}sendResetEmail`);
+      const req = httpMock.expectOne(`${service['url']}/sendResetEmail`);
 
       expect(req.request.method).toBe('POST');
 
@@ -145,7 +152,7 @@ describe('@daffodil/auth/driver/in-memory | DaffInMemoryResetPasswordService', (
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}sendResetEmail`);
+      const req = httpMock.expectOne(`${service['url']}/sendResetEmail`);
 
       req.flush({});
     });
