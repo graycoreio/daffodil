@@ -1,8 +1,8 @@
-# Daffodil Theming
+# Theming
 Daffodil's theming capabilities enables you to customize `@daffodil/design` components to reflect your brand. A theme consists of custom color configurations that will work in dark and light themes.
 
 ## Custom Colors
-:stop: Before you begin, read the [accessibility guide on color in `@daffodil/design`](/libs/design/guides/color.md#accessibility).
+:stop: Before you begin, read the [accessibility guide on color in `@daffodil/design`](./color.md#accessibility).
 
 ## Themes
 Dark and light modes are supported in all `@daffodil/design` components. When a theme is not specified, Daffodil defaults to the `light` mode.
@@ -28,7 +28,7 @@ $daff-blue: (
 );
 ```
 
-### Define your own palettes
+### Defining your own palettes
 You can define your own palettes by creating a Sass map that matches the example from above. Your Sass maps must have hues from 10 to 100, with a step increment of 10.
 
 ### Setting up your custom theme file
