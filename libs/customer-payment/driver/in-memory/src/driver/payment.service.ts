@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import {
   map,
   Observable,
@@ -8,7 +9,10 @@ import {
 import { DaffIdentifiable } from '@daffodil/core';
 import { DaffCustomerPayment } from '@daffodil/customer-payment';
 import { DaffCustomerPaymentDriverInterface } from '@daffodil/customer-payment/driver';
+import { DaffInMemoryDriverBase } from '@daffodil/driver/in-memory';
 import { DaffPaymentRequest } from '@daffodil/payment';
+
+import { DAFF_CUSTOMER_PAYMENT_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 
 /**
  * The customer payment in-memory driver to mock the customer payment backend service.
@@ -18,15 +22,13 @@ import { DaffPaymentRequest } from '@daffodil/payment';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCustomerPaymentInMemoryDriver implements DaffCustomerPaymentDriverInterface {
-  /**
-   * @docs-private
-   */
-  url = '/api/customer-payment';
-
+export class DaffCustomerPaymentInMemoryDriver extends DaffInMemoryDriverBase implements DaffCustomerPaymentDriverInterface {
   constructor(
     private http: HttpClient,
-  ) {}
+    config: InMemoryBackendConfig,
+  ) {
+    super(config, DAFF_CUSTOMER_PAYMENT_IN_MEMORY_COLLECTION_NAME);
+  }
 
   list(): Observable<DaffCustomerPayment[]> {
     return this.http.get<DaffCustomerPayment[]>(this.url);

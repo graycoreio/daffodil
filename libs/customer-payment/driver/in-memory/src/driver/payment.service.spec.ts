@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 
 import { DaffCustomerPayment } from '@daffodil/customer-payment';
@@ -25,6 +26,12 @@ describe('@daffodil/customer-payment/driver/in-memory | DaffCustomerPaymentInMem
       imports: [],
       providers: [
         DaffCustomerPaymentInMemoryDriver,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -50,7 +57,7 @@ describe('@daffodil/customer-payment/driver/in-memory | DaffCustomerPaymentInMem
     let result: Observable<DaffCustomerPayment[]>;
 
     beforeEach(() => {
-      url = service.url;
+      url = service['url'];
       result = service.list();
     });
 
@@ -72,7 +79,7 @@ describe('@daffodil/customer-payment/driver/in-memory | DaffCustomerPaymentInMem
     let result: Observable<DaffCustomerPayment>;
 
     beforeEach(() => {
-      url = service.url;
+      url = service['url'];
       result = service.get(mockPayment.id);
     });
 
@@ -94,7 +101,7 @@ describe('@daffodil/customer-payment/driver/in-memory | DaffCustomerPaymentInMem
     let result: Observable<DaffCustomerPayment[]>;
 
     beforeEach(() => {
-      url = `${service.url}/${mockPayment.id}`;
+      url = `${service['url']}/${mockPayment.id}`;
       result = service.update(mockPayment);
     });
 
@@ -116,7 +123,7 @@ describe('@daffodil/customer-payment/driver/in-memory | DaffCustomerPaymentInMem
     let result: Observable<DaffCustomerPayment[]>;
 
     beforeEach(() => {
-      url = service.url;
+      url = service['url'];
       result = service.add({
         kind: 'kind',
       });
@@ -140,7 +147,7 @@ describe('@daffodil/customer-payment/driver/in-memory | DaffCustomerPaymentInMem
     let result: Observable<DaffCustomerPayment[]>;
 
     beforeEach(() => {
-      url = `${service.url}/${mockPayment.id}`;
+      url = `${service['url']}/${mockPayment.id}`;
       result = service.delete(mockPayment.id);
     });
 
