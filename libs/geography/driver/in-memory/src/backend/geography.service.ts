@@ -5,12 +5,14 @@ import {
   STATUS,
 } from 'angular-in-memory-web-api';
 
-import { DaffInMemoryDataServiceInterface } from '@daffodil/driver/in-memory';
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 import { DaffCountry } from '@daffodil/geography';
 import {
   DaffCountryFactory,
   DaffSubdivisionFactory,
 } from '@daffodil/geography/testing';
+
+import { DAFF_GEOGRAPHY_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 
 /**
  * An in-memory service that stubs out the backend services for getting countries.
@@ -20,7 +22,9 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendGeographyService implements InMemoryDbService, DaffInMemoryDataServiceInterface {
+export class DaffInMemoryBackendGeographyService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_GEOGRAPHY_IN_MEMORY_COLLECTION_NAME;
+
   countries: DaffCountry[];
 
   constructor(

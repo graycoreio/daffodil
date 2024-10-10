@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -16,7 +17,7 @@ import { DaffCountryFactory } from '@daffodil/geography/testing';
 
 import { DaffInMemoryGeographyService } from './geography.service';
 
-describe('Driver | In Memory | Geography | GeographyService', () => {
+describe('@daffodil/geography/driver/in-memory | GeographyService', () => {
   let service: DaffInMemoryGeographyService;
   let httpMock: HttpTestingController;
   let countryFactory: DaffCountryFactory;
@@ -29,6 +30,12 @@ describe('Driver | In Memory | Geography | GeographyService', () => {
       imports: [],
       providers: [
         DaffInMemoryGeographyService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -57,7 +64,7 @@ describe('Driver | In Memory | Geography | GeographyService', () => {
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}/${countryId}`);
+      const req = httpMock.expectOne(`${service['url']}/${countryId}`);
 
       expect(req.request.method).toBe('GET');
       req.flush(mockCountry);
@@ -72,7 +79,7 @@ describe('Driver | In Memory | Geography | GeographyService', () => {
         }),
       ).subscribe();
 
-      const req = httpMock.expectOne(`${service.url}/${countryId}`);
+      const req = httpMock.expectOne(`${service['url']}/${countryId}`);
 
       expect(req.request.method).toBe('GET');
       req.error(new ErrorEvent('404'));
@@ -86,7 +93,7 @@ describe('Driver | In Memory | Geography | GeographyService', () => {
         done();
       });
 
-      const req = httpMock.expectOne(`${service.url}/`);
+      const req = httpMock.expectOne(`${service['url']}/`);
 
       expect(req.request.method).toBe('GET');
       req.flush([mockCountry]);
