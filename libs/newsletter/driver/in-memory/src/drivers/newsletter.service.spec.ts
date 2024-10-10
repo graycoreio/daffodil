@@ -7,22 +7,27 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 
 import { DaffInMemoryNewsletterService } from './newsletter.service';
 
-
-describe('Driver | InMemory | Newsletter | NewsletterService', () => {
+describe('@daffodil/newsletter/driver/in-memory | NewsletterService', () => {
   let newsletterService: DaffInMemoryNewsletterService;
   let httpMock: HttpTestingController;
-
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
       providers: [
         DaffInMemoryNewsletterService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -46,7 +51,7 @@ describe('Driver | InMemory | Newsletter | NewsletterService', () => {
 
       newsletterService.send(newsletterSubmission).subscribe();
 
-      const req = httpMock.expectOne(`${newsletterService.url}`);
+      const req = httpMock.expectOne(`${newsletterService['url']}`);
       expect(req.request.method).toBe('POST');
     });
 
@@ -56,7 +61,7 @@ describe('Driver | InMemory | Newsletter | NewsletterService', () => {
       newsletterService.send(newsletterSubmission).subscribe();
 
 
-      const req = httpMock.expectOne(`${newsletterService.url}`);
+      const req = httpMock.expectOne(`${newsletterService['url']}`);
       expect(req.request.body).toBe(newsletterSubmission);
 
 
@@ -67,7 +72,7 @@ describe('Driver | InMemory | Newsletter | NewsletterService', () => {
 
       newsletterService.send(newsletterSubmission).subscribe();
 
-      const req = httpMock.expectOne(`${newsletterService.url}`);
+      const req = httpMock.expectOne(`${newsletterService['url']}`);
       expect(req.request.body).toBe(newsletterSubmission);
 
     });

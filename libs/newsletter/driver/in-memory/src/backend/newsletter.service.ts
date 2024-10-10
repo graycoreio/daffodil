@@ -5,12 +5,17 @@ import {
   ParsedRequestUrl,
 } from 'angular-in-memory-web-api';
 
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 import { DaffNewsletterUnion } from '@daffodil/newsletter';
+
+import { DAFF_NEWSLETTER_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendNewsletterService implements InMemoryDbService {
+export class DaffInMemoryBackendNewsletterService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_NEWSLETTER_IN_MEMORY_COLLECTION_NAME;
+
   newsletters: DaffNewsletterUnion[] = [];
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
