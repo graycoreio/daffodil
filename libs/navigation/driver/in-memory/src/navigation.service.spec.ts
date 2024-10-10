@@ -7,12 +7,13 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { DaffInMemoryNavigationService } from './navigation.service';
 
-describe('Driver | InMemory | Navigation | NavigationService', () => {
+describe('@daffodil/navigation/driver/in-memory | NavigationService', () => {
   let navigationService;
   let httpMock: HttpTestingController;
   let navigationTreeFactory: DaffNavigationTreeFactory;
@@ -22,6 +23,12 @@ describe('Driver | InMemory | Navigation | NavigationService', () => {
       imports: [],
       providers: [
         DaffInMemoryNavigationService,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -49,7 +56,7 @@ describe('Driver | InMemory | Navigation | NavigationService', () => {
         expect(navigation).toEqual(mockNavigation);
       });
 
-      const req = httpMock.expectOne(`${navigationService.url}${mockNavigation.id}`);
+      const req = httpMock.expectOne(`${navigationService.url}/${mockNavigation.id}`);
       expect(req.request.method).toBe('GET');
 
       req.flush(mockNavigation);

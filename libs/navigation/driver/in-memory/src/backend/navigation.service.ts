@@ -4,15 +4,16 @@ import {
   Optional,
 } from '@angular/core';
 import {
-  InMemoryDbService,
   RequestInfoUtilities,
   ParsedRequestUrl,
   STATUS,
 } from 'angular-in-memory-web-api';
 
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
+import { DAFF_NAVIGATION_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 import {
   DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER,
   DaffNavigationInMemorySeedDataProvider,
@@ -21,7 +22,9 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryBackendNavigationService implements InMemoryDbService {
+export class DaffInMemoryBackendNavigationService implements DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_NAVIGATION_IN_MEMORY_COLLECTION_NAME;
+
   private _navigationTree: DaffNavigationTree;
 
   get navigationTree(): DaffNavigationTree {
