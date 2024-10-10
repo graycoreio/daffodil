@@ -7,7 +7,10 @@ import {
   RequestInfo,
 } from 'angular-in-memory-web-api';
 
+import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 import { DaffPaymentResponseKindFactory } from '@daffodil/payment/testing';
+
+import { DAFF_PAYMENT_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 
 /**
  * An in-memory service that delegates payment queries to child backends
@@ -16,7 +19,9 @@ import { DaffPaymentResponseKindFactory } from '@daffodil/payment/testing';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffPaymentInMemoryBackendService implements InMemoryDbService {
+export class DaffPaymentInMemoryBackendService implements InMemoryDbService, DaffInMemorySingleRouteableBackend {
+  readonly collectionName = DAFF_PAYMENT_IN_MEMORY_COLLECTION_NAME;
+
   constructor(
     private factory: DaffPaymentResponseKindFactory,
   ) {}

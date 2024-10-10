@@ -7,6 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 
 import { DaffPaymentResponse } from '@daffodil/payment';
@@ -29,6 +30,12 @@ describe('@daffodil/payment/driver/in-memory | DaffPaymentInMemoryDriver', () =>
       imports: [],
       providers: [
         DaffPaymentInMemoryDriver,
+        {
+          provide: InMemoryBackendConfig,
+          useValue: {
+            apiBase: 'api',
+          },
+        },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -55,7 +62,7 @@ describe('@daffodil/payment/driver/in-memory | DaffPaymentInMemoryDriver', () =>
     let result: Observable<DaffPaymentResponse>;
 
     beforeEach(() => {
-      url = service.url;
+      url = service['url'];
       result = service.generateToken(paymentRequestFactory.create());
     });
 
