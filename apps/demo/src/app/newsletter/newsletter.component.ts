@@ -36,7 +36,7 @@ export class NewsletterComponent implements OnInit {
 
   ngOnInit() {
     this.hasError$ = this.error$.pipe(
-      map(error => !!error),
+      map(error => error.length > 0),
     );
   }
 
