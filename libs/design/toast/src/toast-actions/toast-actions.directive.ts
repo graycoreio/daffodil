@@ -5,6 +5,7 @@ import {
 
 @Directive({
   selector: '[daffToastActions]',
+  standalone: true,
 })
 
 export class DaffToastActionsDirective {

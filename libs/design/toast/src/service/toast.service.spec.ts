@@ -13,7 +13,6 @@ import {
   DaffFocusStackService,
   DaffPrefixSuffixModule,
 } from '@daffodil/design';
-import { DaffButtonModule } from '@daffodil/design/button';
 
 import { DaffToastPositionService } from './position.service';
 import { DaffToastService } from './toast.service';
@@ -32,21 +31,19 @@ describe('@daffodil/design/toast | DaffToastService', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffPrefixSuffixModule,
-        DaffButtonModule,
         FontAwesomeModule,
         PortalModule,
         OverlayModule,
         NoopAnimationsModule,
-      ],
-      providers: [
-        DaffToastPositionService,
-      ],
-      declarations: [
+
         DaffToastComponent,
         DaffToastActionsDirective,
         DaffToastTitleDirective,
         DaffToastMessageDirective,
         DaffToastTemplateComponent,
+      ],
+      providers: [
+        DaffToastPositionService,
       ],
     });
 
@@ -73,6 +70,7 @@ describe('@daffodil/design/toast | DaffToastService', () => {
       TestBed.inject(BreakpointObserver),
       TestBed.inject(DaffToastPositionService),
       TestBed.inject(DaffFocusStackService),
+      null,
     );
   });
 

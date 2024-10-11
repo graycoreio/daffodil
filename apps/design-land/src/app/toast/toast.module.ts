@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { DaffArticleModule } from '@daffodil/design/article';
-import { DaffToastModule } from '@daffodil/design/toast';
 
 import { DesignLandToastRoutingModule } from './toast-routing-module';
 import { DesignLandToastComponent } from './toast.component';
@@ -22,7 +21,6 @@ import { DesignLandExampleViewerModule } from '../core/code-preview/container/ex
     DesignLandArticleEncapsulatedModule,
 
     DaffArticleModule,
-    DaffToastModule,
   ],
 })
 export class DesignLandToastModule {}

@@ -19,8 +19,9 @@ import {
 } from '@daffodil/design/toast';
 
 const status: Record<string, DaffToastData> =  {
-  error: {
+  danger: {
     title: 'Server error',
+    message: 'There is a server error.',
   },
   success: {
     title: 'Update complete',
@@ -59,7 +60,7 @@ export class ToastStatusComponent {
       ...status[this.statusControl.value],
     },
     {
-      duration: this.statusControl.value === 'error' ? undefined : 5000,
+      duration: this.statusControl.value === 'danger' ? undefined : 5000,
     },
     );
   }

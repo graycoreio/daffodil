@@ -5,6 +5,15 @@ import {
   trigger,
 } from '@angular/animations';
 import {
+  NgFor,
+  NgIf,
+  NgSwitch,
+  NgSwitchCase,
+  NgSwitchDefault,
+  NgTemplateOutlet,
+  SlicePipe,
+} from '@angular/common';
+import {
   Input,
   ChangeDetectionStrategy,
   Component,
@@ -13,14 +22,21 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+
+import { DaffToastComponent } from './toast.component';
 import { DaffToast } from '../interfaces/toast';
 import {
   DaffToastOptions,
   DAFF_TOAST_OPTIONS,
 } from '../options/daff-toast-options';
 import { DaffToastPositionService } from '../service/position.service';
+import { DaffToastActionsDirective } from '../toast-actions/toast-actions.directive';
+import { DaffToastMessageDirective } from '../toast-message/toast-message.directive';
+import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,7 +47,7 @@ import { DaffToastPositionService } from '../service/position.service';
       [status]="item.status ?? null"
       (closeToast)="item.dismiss()"
       [@slideIn]="slideAnimation"
-      [attr.role]="item.actions ? 'alertdialog' : undefined"
+      [attr.role]="item.actions ? 'alertdialog' : 'status'"
       [attr.aria-labelledby]="item.actions ? item.title : undefined"
       [attr.aria-describedby]="item.actions ? item.message : undefined">
       <div daffToastTitle>{{ item.title }}</div>
@@ -108,6 +124,22 @@ import { DaffToastPositionService } from '../service/position.service';
         endY: '0',
       } }),
     ]),
+  ],
+  standalone: true,
+  imports: [
+    DAFF_BUTTON_COMPONENTS,
+    DaffToastComponent,
+    DaffToastActionsDirective,
+    DaffToastTitleDirective,
+    DaffToastMessageDirective,
+    FaIconComponent,
+    NgSwitch,
+    NgFor,
+    NgSwitchCase,
+    NgSwitchDefault,
+    NgIf,
+    SlicePipe,
+    NgTemplateOutlet,
   ],
 })
 export class DaffToastTemplateComponent {

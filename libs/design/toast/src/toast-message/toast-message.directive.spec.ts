@@ -15,6 +15,10 @@ import { DaffToastMessageDirective } from './toast-message.directive';
   template: `
     <div daffToastMessage>Message</div>
   `,
+  standalone: true,
+  imports: [
+    DaffToastMessageDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,8 +29,7 @@ describe('DaffToastMessageDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffToastMessageDirective,
+      imports: [
         WrapperComponent,
       ],
     })

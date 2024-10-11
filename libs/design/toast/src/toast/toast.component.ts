@@ -2,6 +2,7 @@ import {
   ConfigurableFocusTrap,
   ConfigurableFocusTrapFactory,
 } from '@angular/cdk/a11y';
+import { NgIf } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -45,13 +46,14 @@ import { DaffToastActionsDirective } from '../toast-actions/toast-actions.direct
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    NgIf,
+  ],
 })
 export class DaffToastComponent implements DaffPrefixable, AfterContentInit, AfterViewInit, OnDestroy {
   /** @docs-private */
   @HostBinding('class.daff-toast') class = true;
-
-  /** @docs-private */
-  @HostBinding('attr.role') role = 'status';
 
   @ContentChild(DaffToastActionsDirective)
   _actions: DaffToastActionsDirective;
