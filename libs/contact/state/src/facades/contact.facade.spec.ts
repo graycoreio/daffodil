@@ -6,10 +6,10 @@ import {
 import { cold } from 'jasmine-marbles';
 
 import {
-  reducer,
-  DaffContactSuccessSubmit,
+  daffContactStateReducer,
+  DaffContactSubmitSuccess,
   DaffContactSubmit,
-  DaffContactFailedSubmit,
+  DaffContactSubmitFailure,
   DaffContactStateRootSlice,
   DAFF_CONTACT_STORE_FEATURE_KEY,
 } from '@daffodil/contact/state';
@@ -24,7 +24,7 @@ describe('the DaffContactFacade', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          [DAFF_CONTACT_STORE_FEATURE_KEY]: reducer,
+          [DAFF_CONTACT_STORE_FEATURE_KEY]: daffContactStateReducer,
         }),
       ],
       providers: [DaffContactFacade],
@@ -54,7 +54,7 @@ describe('the DaffContactFacade', () => {
 
     it('should return true after a successful submission', () => {
       const expected = cold('a', { a: true });
-      store.dispatch(new DaffContactSuccessSubmit());
+      store.dispatch(new DaffContactSubmitSuccess());
       expect(facade.success$).toBeObservable(expected);
     });
   });
@@ -82,7 +82,7 @@ describe('the DaffContactFacade', () => {
     it('should return an error when it fails', () => {
       const error = [{ code: 'code', message: 'Failed to submit' }];
       const expected = cold('a', { a: error });
-      store.dispatch(new DaffContactFailedSubmit(error));
+      store.dispatch(new DaffContactSubmitFailure(error));
       expect(facade.error$).toBeObservable(expected);
     });
   });

@@ -8,7 +8,7 @@ import { DaffContactDriver } from '@daffodil/contact/driver';
 import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 
 import { DaffInMemoryContactService } from './contact.service';
-import { DaffInMemoryBackendContactService } from './in-memory-backend/contact-in-memory-backend.service';
+import { DaffInMemoryBackendContactService } from '../backend/contact.service';
 
 @NgModule({
   imports: [CommonModule],

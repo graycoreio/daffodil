@@ -36,23 +36,23 @@ export class NewsletterComponent implements OnInit {
 
   ngOnInit() {
     this.hasError$ = this.error$.pipe(
-      map(error => !!error),
+      map(error => error.length > 0),
     );
   }
 
   onNewsletterSubmit() {
     if (this.email.valid) {
-      this.newsletterFacade.dispatch(new DaffNewsletterSubscribe<DaffNewsletterSubmission>(this._makeSubmission(this.email.value)));
+      this.newsletterFacade.dispatch(new DaffNewsletterSubscribe(this._makeSubmission(this.email.value)));
     }
   }
   onNewsletterCancel() {
     this.newsletterFacade.dispatch(new DaffNewsletterCancel());
   }
   onNewsletterRetry() {
-    this.newsletterFacade.dispatch(new DaffNewsletterRetry<DaffNewsletterSubmission>(this._makeSubmission(this.email.value)));
+    this.newsletterFacade.dispatch(new DaffNewsletterRetry(this._makeSubmission(this.email.value)));
   }
 
   private _makeSubmission(email: string): DaffNewsletterSubmission {
-    return { email };
+    return email;
   }
 }

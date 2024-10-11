@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import {
-  of,
   Observable,
+  of,
 } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-import { DaffContactUnion } from '@daffodil/contact';
-import { DaffContactServiceInterface } from '@daffodil/contact/driver';
+import {
+  DaffContactRequest,
+  DaffContactResponse,
+  DaffContactServiceInterface,
+} from '@daffodil/contact/driver';
 
 /**
  * @inheritdoc
@@ -14,8 +17,8 @@ import { DaffContactServiceInterface } from '@daffodil/contact/driver';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffTestingContactService implements DaffContactServiceInterface<DaffContactUnion, any>{
-  send(payload: DaffContactUnion): Observable<any>{
-    return of('Success').pipe(delay(10));
+export class DaffTestingContactService implements DaffContactServiceInterface {
+  send(payload: DaffContactRequest): Observable<DaffContactResponse> {
+    return of({ message: 'success' }).pipe(delay(10));
   }
 }

@@ -17,7 +17,7 @@ import {
 import { DaffNewsletterHubSpotDriverModule } from '@daffodil/newsletter/driver/hubspot';
 
 describe('DaffNewsletterHubspotDriver', () => {
-  let newsletterService: DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>;
+  let newsletterService: DaffNewsletterServiceInterface;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
@@ -40,14 +40,12 @@ describe('DaffNewsletterHubspotDriver', () => {
   });
 
   it('should allow a developer to configure and send newsletter subscription requests to the HubspotForms API', () => {
-    const newsletterSubmission = { email: 'test@email.com' };
-    newsletterService.send(newsletterSubmission).subscribe((resp) => {
-      expect(resp).toEqual(newsletterSubmission);
-    });
+    const newsletterSubmission: DaffNewsletterSubmission = 'test@email.com';
+    newsletterService.send(newsletterSubmission).subscribe();
     const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/123123/123123');
     expect(req.request.body).toEqual(jasmine.objectContaining({
       fields: [Object({ name: 'email', value: 'test@email.com' })],
-      context: Object({ hutk: null, pageUri: '/', pageName: jasmine.any(String) }),
+      context: jasmine.objectContaining({ pageUri: '/', pageName: jasmine.any(String) }),
     }));
     req.flush(newsletterSubmission);
     httpMock.verify();

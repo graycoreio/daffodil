@@ -12,6 +12,9 @@
       "@daffodil/driver/hubspot": [
         "libs/driver/hubspot/src"
       ],
+      "@daffodil/driver/hubspot/testing": [
+        "libs/driver/hubspot/testing/src"
+      ],
       "@daffodil/driver/magento": [
         "libs/driver/magento/src"
       ],

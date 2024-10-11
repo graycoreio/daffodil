@@ -2,10 +2,9 @@ import {
   MemoizedSelector,
   createFeatureSelector,
   createSelector,
-  DefaultProjectorFn,
 } from '@ngrx/store';
 
-import { DaffStateError } from '@daffodil/core/state';
+import { daffOperationStateSelectorFactory } from '@daffodil/core/state';
 
 import { DAFF_CONTACT_STORE_FEATURE_KEY } from '../reducers/contact-store-feature-key';
 import {
@@ -16,15 +15,11 @@ import {
 export const selectContactFeatureState:
 MemoizedSelector<DaffContactStateRootSlice, DaffContactState> = createFeatureSelector<DaffContactState>(DAFF_CONTACT_STORE_FEATURE_KEY);
 
-export const selectDaffContactLoading = createSelector(
-  selectContactFeatureState, (state: DaffContactState) => state.loading,
-);
+export const {
+  selectLoading: selectDaffContactLoading,
+  selectErrors: selectDaffContactError,
+} = daffOperationStateSelectorFactory(selectContactFeatureState);
 
 export const selectDaffContactSuccess = createSelector(
   selectContactFeatureState, (state: DaffContactState) => state.success,
-);
-
-export const selectDaffContactError: MemoizedSelector<DaffContactStateRootSlice, DaffStateError[], DefaultProjectorFn<DaffStateError[]>>
-= createSelector(
-  selectContactFeatureState, (state: DaffContactState) => state.errors,
 );
