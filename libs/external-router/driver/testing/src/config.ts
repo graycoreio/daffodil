@@ -1,5 +1,4 @@
-import { InjectionToken } from '@angular/core';
-
+import { createConfigInjectionToken } from '@daffodil/core';
 import { DaffExternalRouteType } from '@daffodil/external-router';
 
 /**
@@ -11,14 +10,12 @@ export interface DaffExternalRouterDriverTestingConfig {
   [url: string]: DaffExternalRouteType;
 }
 
-/**
- * The token used by Daffodil to hold the driver's configuration.
- *
- * @docs-private
- */
-export const DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG = new InjectionToken<
-  DaffExternalRouterDriverTestingConfig
->('DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG', {
-  providedIn: 'root',
-  factory: () => ({}),
-});
+export const {
+  /**
+   * The token used by Daffodil to hold the driver's configuration.
+   *
+   * @docs-private
+   */
+  token: DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG,
+  provider: daffProvideExternalRouterDriverTestingConfig,
+} = createConfigInjectionToken<DaffExternalRouterDriverTestingConfig>(({}), 'DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG');

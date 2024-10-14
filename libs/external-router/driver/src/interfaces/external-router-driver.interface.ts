@@ -1,14 +1,15 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { createSingleInjectionToken } from '@daffodil/core';
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 
-/**
- * The token for the `@daffodil/external-router` driver.
- */
-export const DaffExternalRouterDriver = new InjectionToken<
-  DaffExternalRouterDriverInterface
->('DaffExternalRouterDriver');
+export const {
+  /**
+   * The token for the `@daffodil/external-router` driver.
+   */
+  token: DaffExternalRouterDriver,
+  provider: daffProvideExternalRouterDriver,
+} = createSingleInjectionToken<DaffExternalRouterDriverInterface>('DaffExternalRouterDriver');
 
 /**
  * The interface for a @daffodil/external-router driver.
