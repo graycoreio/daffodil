@@ -1,4 +1,4 @@
-import { InjectionToken } from '@angular/core';
+import { createConfigInjectionToken } from '@daffodil/core';
 
 /**
  * The default analytics configuration. We intentionally do not track
@@ -20,10 +20,14 @@ export interface DaffAnalyticsConfigInterface {
   analyzableActions: string[];
 }
 
-/**
- * Allows you to provide configuration to the `@daffodil/analytics` package.
- */
-export const DaffAnalyticsConfig = new InjectionToken<DaffAnalyticsConfigInterface>('DaffAnalyticsConfig', {
-  providedIn: 'root',
-  factory: () => defaultConfig,
-});
+export const {
+  /**
+   * Allows you to provide configuration to the `@daffodil/analytics` package.
+   */
+  token: DaffAnalyticsConfig,
+  provider: daffProvideAnalyticsConfig,
+} = createConfigInjectionToken(
+  defaultConfig,
+  'DaffAnalyticsConfig',
+  { providedIn: 'root' },
+);
