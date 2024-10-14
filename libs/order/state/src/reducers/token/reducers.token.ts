@@ -1,12 +1,10 @@
-import {
-  inject,
-  InjectionToken,
-} from '@angular/core';
+import { inject } from '@angular/core';
 import {
   ActionReducer,
   combineReducers,
 } from '@ngrx/store';
 
+import { createSingleInjectionToken } from '@daffodil/core';
 import { daffComposeReducers } from '@daffodil/core/state';
 // these unused imports are a workaround
 import { DaffOrder } from '@daffodil/order';
@@ -17,13 +15,16 @@ import { daffOrderEntitiesReducer } from '../order-entities/public_api';
 import { DaffOrderReducersState } from '../order-reducers.interface';
 import { daffOrdersCollectionReducer } from '../public_api';
 
-/**
- * An internal token to hold the Daffodil order reducers.
- * Includes the extra and standard reducers.
- *
- * @docs-private
- */
-export const DAFF_ORDER_REDUCERS = new InjectionToken<ActionReducer<DaffOrderReducersState>>(
+export const {
+  /**
+   * An internal token to hold the Daffodil order reducers.
+   * Includes the extra and standard reducers.
+   *
+   * @docs-private
+   */
+  token: DAFF_ORDER_REDUCERS,
+  provider: daffProvideOrderReducers,
+} = createSingleInjectionToken<ActionReducer<DaffOrderReducersState>>(
   ' DAFF_ORDER_REDUCERS',
   {
     providedIn: 'any',
