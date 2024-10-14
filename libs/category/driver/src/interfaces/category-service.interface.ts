@@ -1,4 +1,3 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import {
@@ -8,6 +7,7 @@ import {
   DaffCategoryIdRequest,
   DaffCategoryUrlRequest,
 } from '@daffodil/category';
+import { createSingleInjectionToken } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 
 /**
@@ -29,4 +29,7 @@ export interface DaffCategoryServiceInterface<
 
 //TODO(damienwebdev): This any generic is necessary until we ship Ivy packages, do not change it.
 //See: https://github.com/ng-packagr/ng-packagr/issues/1844
-export const DaffCategoryDriver = new InjectionToken<any>('DaffCategoryDriver');
+export const {
+  token: DaffCategoryDriver,
+  provider: daffProvideCategoryDriver,
+} = createSingleInjectionToken<any>('DaffCategoryDriver');

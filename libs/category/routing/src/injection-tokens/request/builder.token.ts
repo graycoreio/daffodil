@@ -1,18 +1,15 @@
-import {
-  inject,
-  InjectionToken,
-} from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { createSingleInjectionToken } from '@daffodil/core';
 
-import {
-  DaffCategoryRoutingRequestBuilder,
-  DAFF_CATEGORY_ROUTING_OPTIONS_BUILDERS,
-} from './builders.token';
+import { DaffCategoryRoutingRequestBuilder } from './builders.token';
 
-/**
- * An internal token to combine the {@link DAFF_CATEGORY_ROUTING_OPTIONS_BUILDERS} into a single builder.
- */
-export const DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER = new InjectionToken<DaffCategoryRoutingRequestBuilder>(
+
+export const {
+  /**
+   * An internal token to combine the {@link DAFF_CATEGORY_ROUTING_OPTIONS_BUILDERS} into a single builder.
+   */
+  token: DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER,
+  provider: daffProvideCategoryRoutingOptionsBuilder,
+} = createSingleInjectionToken<DaffCategoryRoutingRequestBuilder>(
   'DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER',
   {
     factory: () => () => ({}),
