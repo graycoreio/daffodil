@@ -5,8 +5,7 @@ import {
   DaffContentBlock,
   DaffContentBlockCollection,
 } from '@daffodil/content';
-
-export const DaffContentDriver = new InjectionToken<DaffContentServiceInterface>('DaffContentDriver');
+import { createSingletonInjectionToken } from '@daffodil/core';
 
 /**
  * Query content objects accessible by the logged-in user.
@@ -19,3 +18,8 @@ export interface DaffContentServiceInterface<
    */
   getBlocks(...blockIds: T['id'][]): Observable<DaffContentBlockCollection<T>>;
 }
+
+export const {
+  token: DaffContentDriver,
+  provider: provideDaffContentDriver,
+} = createSingletonInjectionToken<DaffContentServiceInterface>('DaffContentDriver');
