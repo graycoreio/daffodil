@@ -1,17 +1,20 @@
-import {
-  inject,
-  InjectionToken,
-} from '@angular/core';
+import { inject } from '@angular/core';
 
-import { daffArrayToDict } from '@daffodil/core';
+import {
+  createSingleInjectionToken,
+  daffArrayToDict,
+} from '@daffodil/core';
 
 import { DAFF_CUSTOMER_PAYMENT_REQUEST_TRANSFORMS } from './available-transforms.token';
 import { DaffCustomerPaymentRequestTransform } from '../models/public_api';
 
-/**
- * An internal token to combine the available payment transforms into a single collection.
- */
-export const DAFF_CUSTOMER_PAYMENT_REQUEST_TRANSFORM_COLLECTION = new InjectionToken<Record<DaffCustomerPaymentRequestTransform['kind'], DaffCustomerPaymentRequestTransform>>(
+export const {
+  /**
+   * An internal token to combine the available payment transforms into a single collection.
+   */
+  token: DAFF_CUSTOMER_PAYMENT_REQUEST_TRANSFORM_COLLECTION,
+  provider: daffProvideCustomerPaymentRequestTransformCollection,
+} = createSingleInjectionToken<Record<DaffCustomerPaymentRequestTransform['kind'], DaffCustomerPaymentRequestTransform>>(
   'DAFF_CUSTOMER_PAYMENT_REQUEST_TRANSFORM_COLLECTION',
   {
     factory: () => {

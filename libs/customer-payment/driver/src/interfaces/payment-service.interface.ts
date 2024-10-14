@@ -1,7 +1,9 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffIdentifiable } from '@daffodil/core';
+import {
+  DaffIdentifiable,
+  createSingleInjectionToken,
+} from '@daffodil/core';
 import { DaffCustomerAddress } from '@daffodil/customer';
 import {
   DaffCustomerPayment,
@@ -9,10 +11,13 @@ import {
 } from '@daffodil/customer-payment';
 import { DaffPersonalAddress } from '@daffodil/geography';
 
-/**
- * An injection token for the customer payment driver.
- */
-export const DaffCustomerPaymentDriver = new InjectionToken<DaffCustomerPaymentDriverInterface>('DaffCustomerPaymentDriver');
+export const {
+  /**
+   * An injection token for the customer payment driver.
+   */
+  token: DaffCustomerPaymentDriver,
+  provider: daffProvideCustomerPaymentDriver,
+} = createSingleInjectionToken<DaffCustomerPaymentDriverInterface>('DaffCustomerPaymentDriver');
 
 /**
  * The customer payment driver is responsible for loading customers.
