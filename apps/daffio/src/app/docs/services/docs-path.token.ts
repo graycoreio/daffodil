@@ -1,5 +1,6 @@
-import { InjectionToken } from '@angular/core';
+import { createSingleInjectionToken } from '@daffodil/core';
 
-export const DAFFIO_DOCS_PATH_TOKEN = new InjectionToken<string>('DAFFIO_DOCS_PATH_TOKEN', {
-  factory: () => '/assets/daffio/',
-});
+export const {
+  token: DAFFIO_DOCS_PATH_TOKEN,
+  provider: provideDaffioDocsPath,
+} = createSingleInjectionToken<string>('DAFFIO_DOCS_PATH_TOKEN', { factory: () => '/assets/daffio/' });
