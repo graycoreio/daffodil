@@ -29,7 +29,7 @@ export class DaffExternalRouterModule {
       ngModule: DaffExternalRouterModule,
       providers: [
         { provide: DAFF_EXTERNAL_ROUTER_CONFIG, useValue: { ...daffExternalRouterConfigurationDefault, ...config }},
-        ...daffProvideRoutesResolvableByType(routes),
+        ...daffProvideRoutesResolvableByType(...routes),
       ],
     };
   }
