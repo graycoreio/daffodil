@@ -1,12 +1,15 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
+import { createSingleInjectionToken } from '@daffodil/core';
 
 /**
  * An injection token for the cart store credit driver.
  */
-export const DaffCartStoreCreditDriver = new InjectionToken<DaffCartStoreCreditDriverInterface>('DaffCartStoreCreditDriver');
+export const {
+  token: DaffCartStoreCreditDriver,
+  provider: daffProvideCartStoreCreditDriver,
+} = createSingleInjectionToken<DaffCartStoreCreditDriverInterface>('DaffCartStoreCreditDriver');
 
 /**
  * The cart store credit driver is responsible for loading carts.
