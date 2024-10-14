@@ -25,7 +25,6 @@ export const createSingletonInjectionToken = <T = unknown>(
   const provider = <R extends T = T>(klass: Type<R>) => ({
     provide: token,
     useExisting: klass,
-    multi: true,
   });
 
   return {
