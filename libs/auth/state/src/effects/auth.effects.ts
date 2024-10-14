@@ -1,6 +1,7 @@
 import {
   Injectable,
   Inject,
+  NgZone,
 } from '@angular/core';
 import {
   Actions,
@@ -10,12 +11,12 @@ import {
 import {
   of,
   EMPTY,
+  Observable,
 } from 'rxjs';
 import {
   switchMap,
   catchError,
   map,
-  repeat,
   filter,
   tap,
 } from 'rxjs/operators';
@@ -68,6 +69,7 @@ export class DaffAuthEffects {
     @Inject(DAFF_AUTH_STATE_CONFIG) private config: DaffAuthStateConfig,
     @Inject(DAFF_DRIVER_HTTP_CLIENT_CACHE_SERVICE) private clientCache: DaffDriverHttpClientCacheServiceInterface,
     @Inject(DAFF_AUTH_UNAUTHENTICATED_HOOK) private unauthenticatedHook: DaffAuthUnauthenticatedHook,
+    private zone: NgZone,
   ) {}
 
   check$ = createEffect(() => this.actions$.pipe(
@@ -81,22 +83,35 @@ export class DaffAuthEffects {
   ));
 
   // this needs to be defined after `check$` or else the driver call won't be run
-  authCheckInterval$ = createEffect(() => of(new DaffAuthCheck()).pipe(
-    repeat({ delay: this.config.checkInterval }),
-    filter(() => !!this.storage.getAuthToken()),
-    catchError((error: Error) => {
-      switch (true) {
-        case error instanceof DaffServerSideStorageError:
-          return of(new DaffAuthServerSide(this.errorMatcher(error)));
+  authCheckInterval$ = createEffect(() =>
+    new Observable<DaffAuthCheck>((subscriber) => {
+      const intervalId = this.zone.runOutsideAngular(() =>
+        setInterval(() => {
+          subscriber.next(new DaffAuthCheck());
+        }, this.config.checkInterval),
+      );
 
-        case error instanceof DaffStorageServiceError:
-          return of(new DaffAuthStorageFailure(this.errorMatcher(error)));
+      subscriber.next(new DaffAuthCheck());
 
-        default:
-          return EMPTY;
-      }
-    }),
-  ));
+      return () => {
+        clearInterval(intervalId);
+      };
+    }).pipe(
+      filter(() => !!this.storage.getAuthToken()),
+      catchError((error: Error) => {
+        switch (true) {
+          case error instanceof DaffServerSideStorageError:
+            return of(new DaffAuthServerSide(this.errorMatcher(error)));
+
+          case error instanceof DaffStorageServiceError:
+            return of(new DaffAuthStorageFailure(this.errorMatcher(error)));
+
+          default:
+            return EMPTY;
+        }
+      }),
+    ),
+  );
 
   resetToUnauthenticated$ = createEffect(() => this.actions$.pipe(
     ofType(
