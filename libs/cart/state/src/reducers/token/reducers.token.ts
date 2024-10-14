@@ -1,7 +1,4 @@
-import {
-  inject,
-  InjectionToken,
-} from '@angular/core';
+import { inject } from '@angular/core';
 import {
   ActionReducer,
   combineReducers,
@@ -12,6 +9,7 @@ import {
   DaffCart,
   DaffCartOrderResult,
 } from '@daffodil/cart';
+import { createSingleInjectionToken } from '@daffodil/core';
 import {
   daffComposeReducers,
   daffIdentityReducer,
@@ -24,13 +22,16 @@ import { daffCartItemEntitiesRetrievalActionsReducerFactory } from '../cart-item
 import { daffCartReducers } from '../cart-reducers';
 import { DaffCartReducersState } from '../cart-reducers-state.interface';
 
-/**
- * An internal token to hold the Daffodil cart reducers.
- * Includes the extra and standard reducers.
- *
- * @docs-private
- */
-export const DAFF_CART_REDUCERS = new InjectionToken<ActionReducer<DaffCartReducersState>>(
+export const {
+  /**
+   * An internal token to hold the Daffodil cart reducers.
+   * Includes the extra and standard reducers.
+   *
+   * @docs-private
+   */
+  token: DAFF_CART_REDUCERS,
+  provider: daffProvideCartReducers,
+} = createSingleInjectionToken<ActionReducer<DaffCartReducersState>>(
   'DAFF_CART_REDUCERS',
   {
     factory: () => {

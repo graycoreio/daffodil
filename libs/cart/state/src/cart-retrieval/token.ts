@@ -1,21 +1,15 @@
-import {
-  InjectionToken,
-  ValueProvider,
-} from '@angular/core';
+import { createMultiInjectionToken } from '@daffodil/core';
 
 import { DaffCartRetrievalActionInjection } from './type';
 
-/**
- * A token to hold {@link DaffCartRetrievalActionInjection}s.
- */
-export const DAFF_CART_RETRIEVAL_ACTIONS = new InjectionToken<DaffCartRetrievalActionInjection[]>('DAFF_CART_RETRIEVAL_ACTIONS', { factory: () => []});
+export const {
+  /**
+   * A token to hold {@link DaffCartRetrievalActionInjection}s.
+   */
+  token: DAFF_CART_RETRIEVAL_ACTIONS,
 
-/**
- * A provider function for {@link DAFF_CART_RETRIEVAL_ACTIONS}.
- */
-export const daffCartProvideRetrievalActions = (...actions: DaffCartRetrievalActionInjection[]): ValueProvider[] =>
-  actions.map((action) => ({
-    provide: DAFF_CART_RETRIEVAL_ACTIONS,
-    useValue: action,
-    multi: true,
-  }));
+  /**
+   * A provider function for {@link DAFF_CART_RETRIEVAL_ACTIONS}.
+   */
+  provider: daffCartProvideRetrievalActions,
+} = createMultiInjectionToken<DaffCartRetrievalActionInjection>('DAFF_CART_RETRIEVAL_ACTIONS');

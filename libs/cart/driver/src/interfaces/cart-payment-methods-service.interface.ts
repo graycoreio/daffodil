@@ -1,10 +1,10 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import {
   DaffCartPaymentMethod,
   DaffCart,
 } from '@daffodil/cart';
+import { createSingleInjectionToken } from '@daffodil/core';
 
 /**
  * The interface responsible for retrieving the available payment methods of a cart.
@@ -16,6 +16,7 @@ export interface DaffCartPaymentMethodsServiceInterface<T extends DaffCartPaymen
   list(cartId: DaffCart['id']): Observable<T[]>;
 }
 
-export const DaffCartPaymentMethodsDriver = new InjectionToken<
-  DaffCartPaymentMethodsServiceInterface
->('DaffCartPaymentMethodsDriver');
+export const {
+  token: DaffCartPaymentMethodsDriver,
+  provider: daffProvideCartPaymentMethodsDriver,
+} = createSingleInjectionToken<DaffCartPaymentMethodsServiceInterface>('DaffCartPaymentMethodsDriver');

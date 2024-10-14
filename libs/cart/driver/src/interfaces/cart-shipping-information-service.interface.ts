@@ -1,7 +1,10 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCart } from '@daffodil/cart';
+import {
+  DaffCartShippingRate,
+  DaffCart,
+} from '@daffodil/cart';
+import { createSingleInjectionToken } from '@daffodil/core';
 
 /**
  * The interface responsible for mediating the interaction of the shipping
@@ -24,6 +27,7 @@ export interface DaffCartShippingInformationServiceInterface<T extends DaffCart 
   delete(cartId: T['id'], id?: T['shipping_information']['id']): Observable<Partial<T>>;
 }
 
-export const DaffCartShippingInformationDriver = new InjectionToken<
-  DaffCartShippingInformationServiceInterface
->('DaffCartShippingInformationDriver');
+export const {
+  token: DaffCartShippingInformationDriver,
+  provider: daffProvideCartShippingInformationDriver,
+} = createSingleInjectionToken<DaffCartShippingInformationServiceInterface>('DaffCartShippingInformationDriver');

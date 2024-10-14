@@ -1,4 +1,4 @@
-import { InjectionToken } from '@angular/core';
+import { createConfigInjectionToken } from '@daffodil/core';
 
 import {
   DaffCartRoutingResolutionConfiguration,
@@ -25,9 +25,7 @@ export const daffCartRoutingConfigurationDefault: DaffCartRoutingConfiguration =
  * The token holding the runtime configuration for the behavior of the
  * `@daffodil/cart/state` package.
  */
-export const DAFF_CART_ROUTING_CONFIG = new InjectionToken<
-  DaffCartRoutingConfiguration
->('DAFF_CART_ROUTING_CONFIG', {
-  providedIn: 'root',
-  factory: () => daffCartRoutingConfigurationDefault,
-});
+export const {
+  token: DAFF_CART_ROUTING_CONFIG,
+  provider: daffProvideCartRoutingConfig,
+} = createConfigInjectionToken<DaffCartRoutingConfiguration>(daffCartRoutingConfigurationDefault, 'DAFF_CART_ROUTING_CONFIG');

@@ -1,3 +1,6 @@
-import { InjectionToken } from '@angular/core';
+import { createSingleInjectionToken } from '@daffodil/core';
 
-export const DaffCartShippingAddressGuardRedirectUrl = new InjectionToken<string>('DaffCartShippingAddressGuardRedirectUrl', { factory: () => '/' });
+export const {
+  token: DaffCartShippingAddressGuardRedirectUrl,
+  provider: daffProvideCartShippingAddressGuardRedirectUrl,
+} = createSingleInjectionToken<string>('DaffCartShippingAddressGuardRedirectUrl', { factory: () => '/' });
