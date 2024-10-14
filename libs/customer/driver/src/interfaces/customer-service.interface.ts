@@ -1,12 +1,15 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { createSingleInjectionToken } from '@daffodil/core';
 import { DaffCustomer } from '@daffodil/customer';
 
-/**
- * An injection token for the customer driver.
- */
-export const DaffCustomerDriver = new InjectionToken<DaffCustomerDriverInterface>('DaffCustomerDriver');
+export const {
+  /**
+   * An injection token for the customer driver.
+   */
+  token: DaffCustomerDriver,
+  provider: daffProvideCustomerDriver,
+} = createSingleInjectionToken<DaffCustomerDriverInterface>('DaffCustomerDriver');
 
 /**
  * The customer driver is responsible for loading customers.
