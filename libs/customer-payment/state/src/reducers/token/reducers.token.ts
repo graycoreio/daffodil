@@ -1,12 +1,10 @@
-import {
-  inject,
-  InjectionToken,
-} from '@angular/core';
+import { inject } from '@angular/core';
 import {
   ActionReducer,
   combineReducers,
 } from '@ngrx/store';
 
+import { createSingleInjectionToken } from '@daffodil/core';
 import { daffComposeReducers } from '@daffodil/core/state';
 // these unused imports are a workaround
 import { DaffCustomerPayment } from '@daffodil/customer-payment';
@@ -16,13 +14,16 @@ import { daffCustomerPaymentReducer } from '../payment/public_api';
 import { daffCustomerPaymentEntitiesReducer } from '../payment-entities/public_api';
 import { DaffCustomerPaymentReducersState } from '../reducers.interface';
 
-/**
- * An internal token to hold the Daffodil customer reducers.
- * Includes the extra and standard reducers.
- *
- * @docs-private
- */
-export const DAFF_CUSTOMER_PAYMENT_REDUCERS = new InjectionToken<ActionReducer<DaffCustomerPaymentReducersState>>(
+export const {
+  /**
+   * An internal token to hold the Daffodil customer reducers.
+   * Includes the extra and standard reducers.
+   *
+   * @docs-private
+   */
+  token: DAFF_CUSTOMER_PAYMENT_REDUCERS,
+  provider: daffProvideCustomerPaymentReducers,
+} = createSingleInjectionToken<ActionReducer<DaffCustomerPaymentReducersState>>(
   'DAFF_CUSTOMER_PAYMENT_REDUCERS',
   {
     providedIn: 'any',
