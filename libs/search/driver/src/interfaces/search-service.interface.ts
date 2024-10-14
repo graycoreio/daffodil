@@ -1,6 +1,6 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { createSingleInjectionToken } from '@daffodil/core';
 import {
   DaffSearchResult,
   DaffSearchResultCollection,
@@ -8,10 +8,13 @@ import {
 
 import type { DaffSearchDriverResponse } from './response.interface';
 
-/**
- * An injection token for the search driver.
- */
-export const DaffSearchDriver = new InjectionToken<DaffSearchDriverInterface>('DaffSearchDriver');
+export const {
+  /**
+   * An injection token for the search driver.
+   */
+  token: DaffSearchDriver,
+  provider: daffProvideSearchDriver,
+} = createSingleInjectionToken<DaffSearchDriverInterface>('DaffSearchDriver');
 
 /**
  * The options for making a search.

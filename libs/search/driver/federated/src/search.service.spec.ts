@@ -66,7 +66,7 @@ describe('@daffodil/search/driver/federated | DaffSearchFederatedDriver', () => 
     TestBed.configureTestingModule({
       providers: [
         DaffSearchFederatedDriver,
-        ...daffProvideSearchFederatedDrivers(TestDriver1, TestDriver2),
+        ...daffProvideSearchFederatedDrivers<TestDriver1 | TestDriver2>(TestDriver1, TestDriver2),
       ],
     });
 
