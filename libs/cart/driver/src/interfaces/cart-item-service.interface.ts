@@ -1,4 +1,3 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import {
@@ -6,6 +5,7 @@ import {
   DaffCartItemInput,
   DaffCart,
 } from '@daffodil/cart';
+import { createSingleInjectionToken } from '@daffodil/core';
 
 /**
  * The interface responsible for managing the items of a cart.
@@ -44,6 +44,7 @@ export interface DaffCartItemServiceInterface<
   delete(cartId: T['id'], itemId: T['items'][number]['id']): Observable<Partial<T>>;
 }
 
-export const DaffCartItemDriver = new InjectionToken<
-  DaffCartItemServiceInterface
->('DaffCartItemDriver');
+export const {
+  token: DaffCartItemDriver,
+  provider: daffProvideCartItemDriver,
+} = createSingleInjectionToken<DaffCartItemServiceInterface>('DaffCartItemDriver');

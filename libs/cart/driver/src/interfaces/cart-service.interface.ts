@@ -1,7 +1,7 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
+import { createSingleInjectionToken } from '@daffodil/core';
 import { DaffDriverResponse } from '@daffodil/driver';
 
 /**
@@ -37,6 +37,7 @@ export interface DaffCartServiceInterface<T extends DaffCart = DaffCart> {
   merge(guestCart: T['id'], customerCart?: T['id']): Observable<DaffDriverResponse<T>>;
 }
 
-export const DaffCartDriver = new InjectionToken<DaffCartServiceInterface>(
-  'DaffCartDriver',
-);
+export const {
+  token: DaffCartDriver,
+  provider: daffProvideCartDriver,
+} = createSingleInjectionToken<DaffCartServiceInterface>('DaffCartDriver');

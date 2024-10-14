@@ -1,12 +1,15 @@
-import {
-  inject,
-  InjectionToken,
-} from '@angular/core';
+import { inject } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 
+import { createSingleInjectionToken } from '@daffodil/core';
 import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
-export const DAFF_MAGENTO_CART_MUTATION_QUEUE = new InjectionToken<DaffQueuedApollo>('DAFF_MAGENTO_CART_MUTATION_QUEUE', {
-  providedIn: 'root',
-  factory: () => new DaffQueuedApollo(inject(Apollo)),
-});
+export const {
+  token: DAFF_MAGENTO_CART_MUTATION_QUEUE,
+  provider: daffProvideCartMagentoMutationQueue,
+} = createSingleInjectionToken<DaffQueuedApollo>(
+  'DAFF_MAGENTO_CART_MUTATION_QUEUE', {
+    providedIn: 'root',
+    factory: () => new DaffQueuedApollo(inject(Apollo)),
+  },
+);

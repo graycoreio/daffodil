@@ -1,6 +1,9 @@
-import { InjectionToken } from '@angular/core';
+import { createSingleInjectionToken } from '@daffodil/core';
 
-/**
- * The path to which the user should be redirected if the cart has no items when {@link DaffCartItemsGuard} is invoked.
- */
-export const DaffCartItemsGuardRedirectUrl = new InjectionToken<string>('DaffCartItemsGuardRedirectUrl', { factory: () => '/' });
+export const {
+  /**
+   * The path to which the user should be redirected if the cart has no items when {@link DaffCartItemsGuard} is invoked.
+   */
+  token: DaffCartItemsGuardRedirectUrl,
+  provider: daffProvideCartItemsGuardRedirectUrl,
+} = createSingleInjectionToken<string>('DaffCartItemsGuardRedirectUrl', { factory: () => '/' });

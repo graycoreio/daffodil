@@ -1,10 +1,10 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import {
   DaffCart,
   DaffCartOrderResult,
 } from '@daffodil/cart';
+import { createSingleInjectionToken } from '@daffodil/core';
 
 /**
  * The interface responsible for placing an order for the customer's cart.
@@ -19,6 +19,7 @@ export interface DaffCartOrderServiceInterface<
   placeOrder(id: T['id'], payment?: T['payment']): Observable<R>;
 }
 
-export const DaffCartOrderDriver = new InjectionToken<DaffCartOrderServiceInterface>(
-  'DaffCartOrderDriver',
-);
+export const {
+  token: DaffCartOrderDriver,
+  provider: daffProvideCartOrderDriver,
+} = createSingleInjectionToken<DaffCartOrderServiceInterface>('DaffCartOrderDriver');
