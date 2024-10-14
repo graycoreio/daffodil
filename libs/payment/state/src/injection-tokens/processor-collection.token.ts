@@ -1,17 +1,20 @@
-import {
-  inject,
-  InjectionToken,
-} from '@angular/core';
+import { inject } from '@angular/core';
 
-import { daffArrayToDict } from '@daffodil/core';
+import {
+  createSingleInjectionToken,
+  daffArrayToDict,
+} from '@daffodil/core';
 
 import { DAFF_PAYMENT_AVAILABLE_PROCESSORS } from './available-processors.token';
 import { DaffPaymentProcessorCollection } from '../models/public_api';
 
-/**
- * An internal token to combine the available payment processors into a single collection.
- */
-export const DAFF_PAYMENT_PROCESSOR_COLLECTION = new InjectionToken<DaffPaymentProcessorCollection>(
+export const {
+  /**
+   * An internal token to combine the available payment processors into a single collection.
+   */
+  token: DAFF_PAYMENT_PROCESSOR_COLLECTION,
+  provider: daffProvidePaymentProcessorCollection,
+} = createSingleInjectionToken<DaffPaymentProcessorCollection>(
   'DAFF_PAYMENT_PROCESSOR_COLLECTION',
   {
     factory: () => {
