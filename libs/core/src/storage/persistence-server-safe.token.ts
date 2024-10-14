@@ -1,6 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
 import {
-  InjectionToken,
   inject,
   PLATFORM_ID,
 } from '@angular/core';
@@ -10,16 +9,21 @@ import {
   DaffPersistenceService,
   DaffPersistenceServiceToken,
 } from './persistence.interface';
+import { createSingleInjectionToken } from '../injection-tokens/public_api';
 
-/**
- * Provides noop for the persistence service on the server.
- */
-export const DaffServerSafePersistenceServiceToken = new InjectionToken<
-  DaffPersistenceService
->('DaffServerSafePersistenceService', {
-  providedIn: 'root',
-  factory: () =>
-    isPlatformBrowser(inject<string>(PLATFORM_ID))
-      ? inject<DaffPersistenceService>(DaffPersistenceServiceToken)
-      : inject<DaffPersistenceService>(DaffNoopStorageService),
-});
+export const {
+  /**
+   * Provides noop for the persistence service on the server.
+   */
+  token: DaffServerSafePersistenceServiceToken,
+  provider: daffProvideDaffServerSafePersistenceServiceToken,
+} = createSingleInjectionToken<DaffPersistenceService>(
+  'DaffServerSafePersistenceService',
+  {
+    providedIn: 'root',
+    factory: () =>
+      isPlatformBrowser(inject<string>(PLATFORM_ID))
+        ? inject<DaffPersistenceService>(DaffPersistenceServiceToken)
+        : inject<DaffPersistenceService>(DaffNoopStorageService),
+  },
+);
