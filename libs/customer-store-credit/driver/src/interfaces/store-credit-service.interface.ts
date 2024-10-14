@@ -1,12 +1,15 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { createSingleInjectionToken } from '@daffodil/core';
 import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
 
-/**
- * An injection token for the customer store credit driver.
- */
-export const DaffCustomerStoreCreditDriver = new InjectionToken<DaffCustomerStoreCreditDriverInterface>('DaffCustomerStoreCreditDriver');
+export const {
+  /**
+   * An injection token for the customer store credit driver.
+   */
+  token: DaffCustomerStoreCreditDriver,
+  provider: daffProvideCustomerStoreCreditDriver,
+} = createSingleInjectionToken<DaffCustomerStoreCreditDriverInterface>('DaffCustomerStoreCreditDriver');
 
 /**
  * The customer store credit driver is responsible for loading customers.
