@@ -1,14 +1,19 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCollectionRequest } from '@daffodil/core';
+import {
+  DaffCollectionRequest,
+  createSingleInjectionToken,
+} from '@daffodil/core';
 import {
   DaffOrder,
   DaffOrderCollection,
 } from '@daffodil/order';
 
-export const DaffOrderDriver = new InjectionToken<DaffOrderServiceInterface>('DaffOrderDriver');
+export const {
+  token: DaffOrderDriver,
+  provider: daffProvideOrderDriver,
+} = createSingleInjectionToken<DaffOrderServiceInterface>('DaffOrderDriver');
 
 /**
  * Query order objects accessible by the logged-in user.
