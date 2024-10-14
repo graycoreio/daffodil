@@ -1,9 +1,10 @@
 import { DOCUMENT } from '@angular/common';
 import {
   ElementRef,
-  InjectionToken,
   inject,
 } from '@angular/core';
+
+import { createSingleInjectionToken } from '@daffodil/core';
 
 /**
  * An interface that enables a user to enable or disable scrolling on sidebars.
@@ -15,25 +16,31 @@ export interface DaffSidebarScroll {
   disable(): void;
 }
 
-/**
- * An injection token that can be used within a sidebar to determine
- * what to do enabling and disabling scrolling. By default, the body
- * is the element where scrolling is controlled.
- */
-export const DAFF_SIDEBAR_SCROLL_TOKEN = new InjectionToken<DaffSidebarScroll>('DAFF_SIDEBAR_SCROLL_TOKEN', {
-  providedIn: 'root',
-  factory: () => {
-    const document = inject(DOCUMENT);
-    return {
-      enable: () => {
-        document.body.style.overflow = null;
-      },
-      disable: () => {
-        document.body.style.overflow = 'hidden';
-      },
-    };
+export const {
+  /**
+   * An injection token that can be used within a sidebar to determine
+   * what to do enabling and disabling scrolling. By default, the body
+   * is the element where scrolling is controlled.
+   */
+  token: DAFF_SIDEBAR_SCROLL_TOKEN,
+  provider: daffProvideSidebarScrollToken,
+} = createSingleInjectionToken<DaffSidebarScroll>(
+  'DAFF_SIDEBAR_SCROLL_TOKEN',
+  {
+    providedIn: 'root',
+    factory: () => {
+      const document = inject(DOCUMENT);
+      return {
+        enable: () => {
+          document.body.style.overflow = null;
+        },
+        disable: () => {
+          document.body.style.overflow = 'hidden';
+        },
+      };
+    },
   },
-});
+);
 
 
 /**

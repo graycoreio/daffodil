@@ -1,5 +1,8 @@
-import { InjectionToken } from '@angular/core';
+import { createSingleInjectionToken } from '@daffodil/core';
 
 import { DaffMediaGalleryRegistration } from './media-gallery-registration.interface';
 
-export const DAFF_MEDIA_GALLERY_TOKEN = new InjectionToken<DaffMediaGalleryRegistration>('DAFF_MEDIA_GALLERY_TOKEN');
+export const {
+  token: DAFF_MEDIA_GALLERY_TOKEN,
+  provider: daffProvideMediaGalleryToken,
+} = createSingleInjectionToken<DaffMediaGalleryRegistration>('DAFF_MEDIA_GALLERY_TOKEN');
