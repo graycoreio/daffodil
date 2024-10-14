@@ -1,8 +1,6 @@
-import {
-  InjectionToken,
-  inject,
-} from '@angular/core';
+import { inject } from '@angular/core';
 
+import { createSingleInjectionToken } from '@daffodil/core';
 // workaround https://github.com/graycoreio/daffodil/issues/1667
 import { DaffProduct } from '@daffodil/product';
 
@@ -11,10 +9,13 @@ import { DaffMagentoProductTransform } from '../../../interfaces/product-preview
 import { MagentoProduct } from '../../../models/magento-product';
 import { transformMagentoProductPreview } from '../../../transforms/product-preview';
 
-/**
- * An internal token to combine the Magento preview transform with the injected transforms.
- */
-export const DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM = new InjectionToken<DaffMagentoProductTransform>(
+export const {
+  /**
+   * An internal token to combine the Magento preview transform with the injected transforms.
+   */
+  token: DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM,
+  provider: daffProvideProductMagentoProductPreviewTransform,
+} = createSingleInjectionToken<DaffMagentoProductTransform>(
   'DAFF_PRODUCT_MAGENTO_PRODUCT_PREVIEW_TRANSFORM',
   {
     factory: () => {

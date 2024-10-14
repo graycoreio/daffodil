@@ -1,14 +1,17 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { createSingleInjectionToken } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffProductDriverResponse } from '../models/response.interface';
-/**
- * Injection token that serves as a placeholder for any service that implements the DaffProductServiceInterface.
- */
-export const DaffProductDriver =
-  new InjectionToken<DaffProductServiceInterface>('DaffProductDriver');
+
+export const {
+  /**
+   * Injection token that serves as a placeholder for any service that implements the DaffProductServiceInterface.
+   */
+  token: DaffProductDriver,
+  provider: daffProvideProductDriver,
+} = createSingleInjectionToken<DaffProductServiceInterface>('DaffProductDriver');
 
 
 /**

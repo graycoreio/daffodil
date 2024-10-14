@@ -1,24 +1,22 @@
-import {
-  InjectionToken,
-  Provider,
-} from '@angular/core';
+import { Provider } from '@angular/core';
 
+import { createMultiInjectionToken } from '@daffodil/core';
 // workaround https://github.com/graycoreio/daffodil/issues/1667
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffMagentoProductExtraTransform } from '../../../interfaces/product-preview-extra-transform.type';
 import { MagentoProduct } from '../../../models/public_api';
 
-/**
- * A multi-provider injection token for providing extra transform logic in the Product Magento driver.
- * It is run after the standard transforms for each product preview and passed both the current transformed Daffodil product and the Magento product.
- *
- * See {@link MagentoProduct} for more info.
- */
-export const DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS = new InjectionToken<DaffMagentoProductExtraTransform[]>(
-  'DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS',
-  { factory: () => []},
-);
+export const {
+  /**
+   * A multi-provider injection token for providing extra transform logic in the Product Magento driver.
+   * It is run after the standard transforms for each product preview and passed both the current transformed Daffodil product and the Magento product.
+   *
+   * See {@link MagentoProduct} for more info.
+   */
+  token: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS,
+  provider,
+} = createMultiInjectionToken<DaffMagentoProductExtraTransform>('DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS');
 
 /**
  * Provides extra product preview transforms for the Magento product driver.
@@ -34,9 +32,5 @@ export const DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS = new InjectionToken<
  * ```
  */
 export function daffProvideProductMagentoExtraProductTransforms<T extends MagentoProduct = MagentoProduct, V extends DaffProduct = DaffProduct>(...transforms: DaffMagentoProductExtraTransform<T, V>[]): Provider[] {
-  return transforms.map(transform => ({
-    provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS,
-    useValue: transform,
-    multi: true,
-  }));
+  return provider<DaffMagentoProductExtraTransform<T, V>>(...transforms);
 }
