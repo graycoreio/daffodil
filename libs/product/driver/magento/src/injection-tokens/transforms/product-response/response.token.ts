@@ -1,8 +1,6 @@
-import {
-  InjectionToken,
-  inject,
-} from '@angular/core';
+import { inject } from '@angular/core';
 
+import { createSingleInjectionToken } from '@daffodil/core';
 // workaround https://github.com/graycoreio/daffodil/issues/1667
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
@@ -12,10 +10,13 @@ import { DaffMagentoProductResponseTransform } from '../../../interfaces/public_
 import { MagentoProduct } from '../../../models/magento-product';
 import { DaffMagentoProductResponseTransformers } from '../../../transforms/public_api';
 
-/**
- * An internal token to combine the Magento response transform with the injected transforms.
- */
-export const DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM = new InjectionToken<DaffMagentoProductResponseTransform>(
+export const {
+  /**
+   * An internal token to combine the Magento response transform with the injected transforms.
+   */
+  token: DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM,
+  provider: daffProvideProductMagentoProductResponseTransform,
+} = createSingleInjectionToken<DaffMagentoProductResponseTransform>(
   'DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM',
   {
     factory: () => {

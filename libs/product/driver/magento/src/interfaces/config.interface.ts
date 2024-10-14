@@ -1,12 +1,18 @@
-import { InjectionToken } from '@angular/core';
+import { createConfigInjectionToken } from '@daffodil/core';
 
 import { MAGENTO_PRODUCT_CONFIG_DEFAULT } from '../config/default';
 
-/**
- * The token used to provide @daffodil/product/driver/magento config data.
- * Mandatory for the Magento driver.
- */
-export const MAGENTO_PRODUCT_CONFIG_TOKEN = new InjectionToken<DaffProductMagentoDriverConfig>('MAGENTO_PRODUCT_CONFIG_TOKEN', { factory: () => MAGENTO_PRODUCT_CONFIG_DEFAULT });
+export const {
+  /**
+   * The token used to provide @daffodil/product/driver/magento config data.
+   * Mandatory for the Magento driver.
+   */
+  token: MAGENTO_PRODUCT_CONFIG_TOKEN,
+  provider: daffProvideProductMagentoConfig,
+} = createConfigInjectionToken<DaffProductMagentoDriverConfig>(
+  MAGENTO_PRODUCT_CONFIG_DEFAULT,
+  'MAGENTO_PRODUCT_CONFIG_TOKEN',
+);
 
 /**
  * An interface for providing @daffodil/product/driver/magento with necessary config values.
