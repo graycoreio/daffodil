@@ -1,7 +1,7 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DaffAccountRegistration } from '@daffodil/auth';
+import { createSingleInjectionToken } from '@daffodil/core';
 
 export interface DaffRegisterServiceInterface<
   TRequest extends DaffAccountRegistration = DaffAccountRegistration,
@@ -23,4 +23,7 @@ export interface DaffRegisterServiceInterface<
   registerOnly(registration: TRequest): Observable<void>;
 }
 
-export const DaffRegisterDriver = new InjectionToken<DaffRegisterServiceInterface>('DaffRegisterDriver');
+export const {
+  token: DaffRegisterDriver,
+  provider: daffProvideRegisterDriver,
+} = createSingleInjectionToken<DaffRegisterServiceInterface>('DaffRegisterDriver');
