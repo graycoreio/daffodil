@@ -1,14 +1,19 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCollectionRequest } from '@daffodil/core';
+import {
+  DaffCollectionRequest,
+  createSingleInjectionToken,
+} from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductReview,
   DaffProductReviews,
 } from '@daffodil/reviews';
 
-export const DaffReviewsDriver = new InjectionToken<DaffProductReviewsServiceInterface>('DaffReviewsDriver');
+export const {
+  token: DaffReviewsDriver,
+  provider: daffProvideReviewsDriver,
+} = createSingleInjectionToken<DaffProductReviewsServiceInterface>('DaffReviewsDriver');
 
 export interface DaffProductReviewsServiceInterface<T extends DaffProductReview = DaffProductReview> {
   /**
