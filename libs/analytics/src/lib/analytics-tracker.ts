@@ -1,5 +1,6 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
+
+import { createMultiInjectionToken } from '@daffodil/core';
 
 import { DaffAnalyticsEvent } from './event/event';
 
@@ -39,9 +40,9 @@ export type DaffAnalyticsTrackerFunction = (event: DaffAnalyticsEvent) => Observ
  */
 export type DaffAnalyticsTracker = DaffAnalyticsTrackerFunction | DaffAnalyticsTrackerClass;
 
-/**
- * An injection token representing all of the different analytics trackers.
- */
-export const DaffAnalyticsServices = new InjectionToken<DaffAnalyticsTracker[]>('DaffAnalyticsServices', {
-  factory: () => [],
-});
+export const {
+  /**
+   * An injection token representing all of the different analytics trackers.
+   */
+  token: DaffAnalyticsServices,
+} = createMultiInjectionToken<DaffAnalyticsTracker>('DaffAnalyticsServices');
