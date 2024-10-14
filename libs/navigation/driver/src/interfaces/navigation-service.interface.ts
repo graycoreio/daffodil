@@ -1,6 +1,6 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { createSingleInjectionToken } from '@daffodil/core';
 import { DaffGenericNavigationTree } from '@daffodil/navigation';
 
 export interface DaffNavigationServiceInterface<T extends DaffGenericNavigationTree<T>> {
@@ -15,5 +15,7 @@ export interface DaffNavigationServiceInterface<T extends DaffGenericNavigationT
   getTree(): Observable<T>;
 }
 
-export const DaffNavigationDriver =
-  new InjectionToken<DaffNavigationServiceInterface<any>>('DaffNavigationDriver');
+export const {
+  token: DaffNavigationDriver,
+  provider: daffProvideNavigationDriver,
+} = createSingleInjectionToken<DaffNavigationServiceInterface<any>>('DaffNavigationDriver');
