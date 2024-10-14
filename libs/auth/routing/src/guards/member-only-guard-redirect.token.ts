@@ -1,3 +1,9 @@
-import { InjectionToken } from '@angular/core';
+import { createSingleInjectionToken } from '@daffodil/core';
 
-export const DaffAuthMemberOnlyGuardRedirectUrl = new InjectionToken<string>('DaffAuthMemberOnlyGuardRedirectUrl', { factory: () => '/' });
+export const {
+  token: DaffAuthMemberOnlyGuardRedirectUrl,
+  provider: daffProvideAuthMemberOnlyGuardRedirectUrl,
+} = createSingleInjectionToken<string>(
+  'DaffAuthMemberOnlyGuardRedirectUrl',
+  { factory: () => '/' },
+);

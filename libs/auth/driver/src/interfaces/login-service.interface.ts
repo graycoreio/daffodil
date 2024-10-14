@@ -1,10 +1,10 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import {
   DaffLoginInfo,
   DaffAuthToken,
 } from '@daffodil/auth';
+import { createSingleInjectionToken } from '@daffodil/core';
 
 export interface DaffLoginServiceInterface<
   TRequest extends DaffLoginInfo = DaffLoginInfo,
@@ -23,4 +23,7 @@ export interface DaffLoginServiceInterface<
   logout(): Observable<void>;
 }
 
-export const DaffLoginDriver = new InjectionToken<DaffLoginServiceInterface>('DaffLoginDriver');
+export const {
+  token: DaffLoginDriver,
+  provider: daffProvideLoginDriver,
+} = createSingleInjectionToken<DaffLoginServiceInterface>('DaffLoginDriver');
