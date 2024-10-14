@@ -1,5 +1,80 @@
 # Changelog
 
+## [0.78.0](https://github.com/graycoreio/daffodil/compare/v0.77.0...v0.78.0) (2024-10-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** `COLLECTION_NAMES` has been removed. Use `canHandle` to check backend routing capabilities
+* **core,driver:** `DaffInMemoryDataServiceInterface` is now exported from `@daffodil/driver/in-memory` and has been removed from `@daffodil/core/testing`
+
+### Features
+
+* **authorizenet:** support in-memory backend delegate ([#3178](https://github.com/graycoreio/daffodil/issues/3178)) ([1fa2825](https://github.com/graycoreio/daffodil/commit/1fa2825a7608f85d4487a44f2aeb62bd21aef092))
+* **auth:** support in-memory backend delegate ([#3181](https://github.com/graycoreio/daffodil/issues/3181)) ([1f775f6](https://github.com/graycoreio/daffodil/commit/1f775f669c5a79830d4682dfd9586660af19569e))
+* autogenerate package list in README ([#3109](https://github.com/graycoreio/daffodil/issues/3109)) ([7d7a2c8](https://github.com/graycoreio/daffodil/commit/7d7a2c857086acb61ed91abe0b3ba8f78b8316a3))
+* **cart-store-credit:** support in-memory backend delegate ([#3179](https://github.com/graycoreio/daffodil/issues/3179)) ([edbb83f](https://github.com/graycoreio/daffodil/commit/edbb83fae10dab37d08040f1e69d74a89b31cc51))
+* **cart:** support in-memory backend delegate ([#3180](https://github.com/graycoreio/daffodil/issues/3180)) ([a8360df](https://github.com/graycoreio/daffodil/commit/a8360dfc793cfd0e4a9c3f798b4b905c70ef1d21))
+* **category:** support in-memory backend delegate ([#3182](https://github.com/graycoreio/daffodil/issues/3182)) ([3cd0c1f](https://github.com/graycoreio/daffodil/commit/3cd0c1fe79f7fad828dc836617a8fe0c8ee3e034))
+* **contact:** support in-memory backend delegate ([#3183](https://github.com/graycoreio/daffodil/issues/3183)) ([06f29ef](https://github.com/graycoreio/daffodil/commit/06f29ef70ec1a722a24041879db63fd0abc09388))
+* **core,driver:** move `DaffInMemoryDataServiceInterface` to `@daffodil/driver/in-memory` ([#3145](https://github.com/graycoreio/daffodil/issues/3145)) ([87277c6](https://github.com/graycoreio/daffodil/commit/87277c6c49afb3ed4e56a29ad7dac04ed3dabd8d))
+* **customer-payment:** support in-memory backend delegate ([#3185](https://github.com/graycoreio/daffodil/issues/3185)) ([bc80e7e](https://github.com/graycoreio/daffodil/commit/bc80e7eaab07799b3c199188a03ba9c43911dacd))
+* **customer-store-credit:** support in-memory backend delegate ([#3186](https://github.com/graycoreio/daffodil/issues/3186)) ([2a49d59](https://github.com/graycoreio/daffodil/commit/2a49d5936e7e8cece9f396963e4a8ab4c289d1de))
+* **customer:** support in-memory backend delegate ([#3184](https://github.com/graycoreio/daffodil/issues/3184)) ([7be26e5](https://github.com/graycoreio/daffodil/commit/7be26e581e424739278ede988e2fd903fb8a5116))
+* **daffio:** add active router styles to nav header items ([#3127](https://github.com/graycoreio/daffodil/issues/3127)) ([c03a737](https://github.com/graycoreio/daffodil/commit/c03a737fc8f351d20ad5bc6879e20fcc5e8df7b7))
+* **daffio:** add design docs route ([#3113](https://github.com/graycoreio/daffodil/issues/3113)) ([a3bf15a](https://github.com/graycoreio/daffodil/commit/a3bf15a2e4090631a6554106b01c5bd10dd37417))
+* **daffio:** render subpackages on package page ([#3094](https://github.com/graycoreio/daffodil/issues/3094)) ([4427fe1](https://github.com/graycoreio/daffodil/commit/4427fe1802c3c7021d0c6a2597b4da19f904d337))
+* **demo:** migrate to new in-memory module ([#3197](https://github.com/graycoreio/daffodil/issues/3197)) ([e4c3725](https://github.com/graycoreio/daffodil/commit/e4c3725f7d1ba005195358541dd179cd1bab0bf8))
+* **design, daffio:** move sidebar content pad and nav pad code to css ([56628da](https://github.com/graycoreio/daffodil/commit/56628dafe536e337214c5cb53381c48a5e52fc87))
+* **design:** convert accordion component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([1e0a518](https://github.com/graycoreio/daffodil/commit/1e0a5182234b3f0c1caeb8c4db2ef601080b6ec4))
+* **design:** convert article component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([4c004c6](https://github.com/graycoreio/daffodil/commit/4c004c6de66a1a030fed10ecb5a9ad7f165bb3dd))
+* **design:** convert button component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([0205e92](https://github.com/graycoreio/daffodil/commit/0205e920a35743fa054ed5d1b36ca42b48d38870))
+* **design:** convert callout component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([1de68ab](https://github.com/graycoreio/daffodil/commit/1de68ab6110a548e05e6322d99a065fcbc3c4cec))
+* **design:** convert card component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([7f830b6](https://github.com/graycoreio/daffodil/commit/7f830b6b0ec944900c24522a0ad4a6855ec69d67))
+* **design:** convert container component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([994f8bb](https://github.com/graycoreio/daffodil/commit/994f8bbefca92b1e7e0e89cbb3fd1a1846ba4b6a))
+* **design:** convert hero to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([8fd50a6](https://github.com/graycoreio/daffodil/commit/8fd50a6fd01113130d4388d5c97be3b85906bfc8))
+* **design:** convert image to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([19ca741](https://github.com/graycoreio/daffodil/commit/19ca74182812dcf90267a22e761946dffe8d21dc))
+* **design:** convert link set component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([b54d941](https://github.com/graycoreio/daffodil/commit/b54d941e778d3e4b80e74735cd093569be69490e))
+* **design:** convert list component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([328a70a](https://github.com/graycoreio/daffodil/commit/328a70a7217c36299bf5950c3c886434a8bb3539))
+* **design:** convert media gallery component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([fd933cc](https://github.com/graycoreio/daffodil/commit/fd933ccac10e083b8c20dc22cf51bbfb045b6834))
+* **design:** convert menu component to standalone ([#3130](https://github.com/graycoreio/daffodil/issues/3130)) ([1a0d1f5](https://github.com/graycoreio/daffodil/commit/1a0d1f5da1b64c7ef1e4fd0a821e6bc41150e1d3))
+* **design:** convert modal component to standalone ([#3131](https://github.com/graycoreio/daffodil/issues/3131)) ([44112b7](https://github.com/graycoreio/daffodil/commit/44112b7faf996184968b07598c15878b05fdfb60))
+* **design:** convert navbar component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([dcf8f5c](https://github.com/graycoreio/daffodil/commit/dcf8f5cad4fe2e154b025da8e9ad75d34cd08bb0))
+* **design:** convert notification component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([7ca68fd](https://github.com/graycoreio/daffodil/commit/7ca68fd71fbd5f6d8ba0b013f003474b92203303))
+* **design:** convert paginator component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([8caa5e1](https://github.com/graycoreio/daffodil/commit/8caa5e17d5523832ed04ab357e3c9d6fd7a71d2f))
+* **design:** convert progress bar component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([0c1fc77](https://github.com/graycoreio/daffodil/commit/0c1fc77512780ab32620f861f40d3373851d8383))
+* **design:** convert sidebar component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([ce058dd](https://github.com/graycoreio/daffodil/commit/ce058dd5c1995647fea578336e72b2fb8df5bda1))
+* **design:** convert toast component to standalone ([#3132](https://github.com/graycoreio/daffodil/issues/3132)) ([8ccd628](https://github.com/graycoreio/daffodil/commit/8ccd62806fa4808266d5206a13419f6f735a8112))
+* **design:** convert tree component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([d5cad9a](https://github.com/graycoreio/daffodil/commit/d5cad9aff372260566db8b129da227b36a80c9ad))
+* **design:** create `DaffOpenableDirective` ([#2908](https://github.com/graycoreio/daffodil/issues/2908)) ([fa6f4db](https://github.com/graycoreio/daffodil/commit/fa6f4db0e9e69a82a28e7a75edf59b06c040c67f))
+* **desing:** convert loading icon component to standalone ([#3054](https://github.com/graycoreio/daffodil/issues/3054)) ([708a6fa](https://github.com/graycoreio/daffodil/commit/708a6fac159776af1060b8dc9c3e4f84c99c4d0f))
+* **dgeni:** hardcode design nav list sort order ([#3133](https://github.com/graycoreio/daffodil/issues/3133)) ([e893cb0](https://github.com/graycoreio/daffodil/commit/e893cb02b3c4b4abbbe086f7e1018c666f90947a))
+* **docs-utils,dgeni:** generate breadcrumbs from doc path ([#3047](https://github.com/graycoreio/daffodil/issues/3047)) ([0e0ca5b](https://github.com/graycoreio/daffodil/commit/0e0ca5b0540bc73943c5ee4af95cacfce38ca7f7))
+* **driver:** add backend delegate service ([#3146](https://github.com/graycoreio/daffodil/issues/3146)) ([8a616ee](https://github.com/graycoreio/daffodil/commit/8a616eea8f75d699d6b04a2be61618c3b79382c4))
+* **driver:** add base in-memory driver ([#3147](https://github.com/graycoreio/daffodil/issues/3147)) ([e520410](https://github.com/graycoreio/daffodil/commit/e5204104f9fde1676fbdfd4a26ccf5bd198e845c))
+* **driver:** add in-memory config ([#3175](https://github.com/graycoreio/daffodil/issues/3175)) ([b3a5a1a](https://github.com/graycoreio/daffodil/commit/b3a5a1a963411e036afe629cb179a9a3cee764ca))
+* **driver:** add in-memory module ([#3177](https://github.com/graycoreio/daffodil/issues/3177)) ([9feffdc](https://github.com/graycoreio/daffodil/commit/9feffdce359cbd4e8453d033ddcba9a123759306))
+* **driver:** separate in-memory root service and delegate ([#3174](https://github.com/graycoreio/daffodil/issues/3174)) ([b63c962](https://github.com/graycoreio/daffodil/commit/b63c962e15666771fe72613ea823e689b565af2c))
+* **geography:** support in-memory backend delegate ([#3187](https://github.com/graycoreio/daffodil/issues/3187)) ([ea9bafd](https://github.com/graycoreio/daffodil/commit/ea9bafd038535c5bd1422d9f82355f6fa7dafd8f))
+* **navigation:** support in-memory backend delegate ([#3188](https://github.com/graycoreio/daffodil/issues/3188)) ([6f1146e](https://github.com/graycoreio/daffodil/commit/6f1146e22cfaceb7977806a1814c9af92330cfd9))
+* **newsletter:** support in-memory backend delegate ([#3189](https://github.com/graycoreio/daffodil/issues/3189)) ([4def358](https://github.com/graycoreio/daffodil/commit/4def35852f81f2713a3285f662464f109a5bd6a9))
+* **order:** support in-memory backend delegate ([#3190](https://github.com/graycoreio/daffodil/issues/3190)) ([90a7798](https://github.com/graycoreio/daffodil/commit/90a7798ca8ae2404c7cfc9e3caa215bba10e352f))
+* **payment:** support in-memory backend delegate ([#3191](https://github.com/graycoreio/daffodil/issues/3191)) ([7a5a49b](https://github.com/graycoreio/daffodil/commit/7a5a49b776e4550e28831d256ae446e02ea6d8e6))
+* **paypal:** support in-memory backend delegate ([#3192](https://github.com/graycoreio/daffodil/issues/3192)) ([5e99edf](https://github.com/graycoreio/daffodil/commit/5e99edf370237d8495e089aa7a8b6c7e826caf4b))
+* **product:** support in-memory backend delegate ([#3193](https://github.com/graycoreio/daffodil/issues/3193)) ([0fa5e12](https://github.com/graycoreio/daffodil/commit/0fa5e12a9b4ba593fc7f738ff263dc4b36743a49))
+* **reviews:** support in-memory backend delegate ([#3194](https://github.com/graycoreio/daffodil/issues/3194)) ([1959c96](https://github.com/graycoreio/daffodil/commit/1959c96bda751e34dd40a6fe492eaf5a71938c18))
+* **search:** support in-memory backend delegate ([#3195](https://github.com/graycoreio/daffodil/issues/3195)) ([93f1ab6](https://github.com/graycoreio/daffodil/commit/93f1ab6ce3493395ff1c6f514ed787bc1ad6967f))
+
+
+### Bug Fixes
+
+* **auth:** auth check interval prevents app from becoming stable ([#3200](https://github.com/graycoreio/daffodil/issues/3200)) ([b4d0619](https://github.com/graycoreio/daffodil/commit/b4d0619e579f2a4a97ef7a1e47b349fb5446c4a4))
+* **core:** calling `resetState` when entity doesn't exist breaks state ([#3129](https://github.com/graycoreio/daffodil/issues/3129)) ([0d37f30](https://github.com/graycoreio/daffodil/commit/0d37f30e3afc8bae40cde662eb86129de0203534))
+* **daffio:** API nav list not initially available ([#3136](https://github.com/graycoreio/daffodil/issues/3136)) ([cef6b06](https://github.com/graycoreio/daffodil/commit/cef6b06279dcd51241022e9d93bd6eb3241364e1))
+* **daffio:** legacy `ServerModule` imported ([#3128](https://github.com/graycoreio/daffodil/issues/3128)) ([be67bae](https://github.com/graycoreio/daffodil/commit/be67baef976694a20e643808f20b928d17d63a78))
+* **design:** update the property used to set a default alignment on callout ([#3118](https://github.com/graycoreio/daffodil/issues/3118)) ([839afbd](https://github.com/graycoreio/daffodil/commit/839afbd415775be2665b58eb00737599f2bf5624))
+* **dgeni:** type alias symbols don't get link tag added ([#3110](https://github.com/graycoreio/daffodil/issues/3110)) ([5cb84f3](https://github.com/graycoreio/daffodil/commit/5cb84f30be13e750e072789d0aae9e75da49c37e))
+
 ## [0.77.0](https://github.com/graycoreio/daffodil/compare/v0.76.0...v0.77.0) (2024-09-18)
 
 
