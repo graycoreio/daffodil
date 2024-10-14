@@ -1,5 +1,7 @@
-import { InjectionToken } from '@angular/core';
-
+import { createSingleInjectionToken } from '@daffodil/core';
 import { DaffHubspotConfig } from '@daffodil/driver/hubspot';
 
-export const DaffNewsletterConfigToken = new InjectionToken<DaffHubspotConfig>('DaffNewsletterConfig');
+export const {
+  token: DaffNewsletterConfigToken,
+  provider: daffProvideNewsletterConfigToken,
+} = createSingleInjectionToken<DaffHubspotConfig>('DaffNewsletterConfig');
