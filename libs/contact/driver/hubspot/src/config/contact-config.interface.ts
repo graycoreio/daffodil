@@ -1,7 +1,7 @@
-import { InjectionToken } from '@angular/core';
-
+import { createSingleInjectionToken } from '@daffodil/core';
 import { DaffHubspotConfig } from '@daffodil/driver/hubspot';
 
-export const DaffContactConfigToken = new InjectionToken<DaffHubspotConfig>(
-  'DaffContactConfig',
-);
+export const {
+  token: DaffContactConfigToken,
+  provider: daffProvideContactConfigToken,
+} = createSingleInjectionToken<DaffHubspotConfig>('DaffContactConfig');
