@@ -14,7 +14,7 @@ import {
   DaffCompositeProduct,
   DaffCompositeProductItemOption,
 } from '@daffodil/product-composite';
-import { daffProductCompositeRoutingProvideConfig } from '@daffodil/product-composite/routing';
+import { daffProvideProductCompositeRoutingConfig } from '@daffodil/product-composite/routing';
 import {
   DaffCompositeProductStateTestingModule,
   MockDaffCompositeProductFacade,
@@ -39,7 +39,7 @@ describe('@daffodil/product-composite/routing | DaffProductCompositeRoutingShare
         DaffCompositeProductStateTestingModule,
       ],
       providers: [
-        daffProductCompositeRoutingProvideConfig({
+        daffProvideProductCompositeRoutingConfig({
           compositeSelectionQueryParam: 'queryParam',
         }),
       ],

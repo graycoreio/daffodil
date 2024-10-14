@@ -16,7 +16,7 @@ import { DaffCompositeProductApplyOption } from '@daffodil/product-composite/sta
 import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing';
 
 import { DaffProductCompositePageEffects } from './product-page.effects';
-import { daffProductCompositeRoutingProvideConfig } from '../config/public_api';
+import { daffProvideProductCompositeRoutingConfig } from '../config/public_api';
 import { DaffProductCompositeQueryParamService } from '../services/query-param.service';
 
 @Component({ template: '' })
@@ -39,7 +39,7 @@ describe('@daffodil/product-composite/routing | DaffProductCompositePageEffects'
       providers: [
         DaffProductCompositePageEffects,
         provideMockActions(() => actions$),
-        daffProductCompositeRoutingProvideConfig({
+        daffProvideProductCompositeRoutingConfig({
           compositeSelectionQueryParam: queryParam,
         }),
         {
