@@ -1,9 +1,12 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { createSingleInjectionToken } from '@daffodil/core';
 import { DaffCountry } from '@daffodil/geography';
 
-export const DaffGeographyDriver = new InjectionToken<DaffGeographyServiceInterface>('DaffGeographyDriver');
+export const {
+  token: DaffGeographyDriver,
+  provider: daffProvideGeographyDriver,
+} = createSingleInjectionToken<DaffGeographyServiceInterface>('DaffGeographyDriver');
 
 export interface DaffGeographyServiceInterface<T extends DaffCountry = DaffCountry> {
   /**
