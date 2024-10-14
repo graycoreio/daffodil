@@ -6,3 +6,5 @@ export * from './config.type';
 export * from './config.factory';
 export * from './services.type';
 export * from './services.factory';
+export * from './singleton.type';
+export * from './singleton.factory';
