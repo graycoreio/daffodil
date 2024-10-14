@@ -1,6 +1,9 @@
-import { InjectionToken } from '@angular/core';
+import { createSingleInjectionToken } from '@daffodil/core';
 
-export const DaffAuthorizeNetConfigToken = new InjectionToken<DaffAuthorizeNetConfig>('DaffAuthorizeNetConfigToken');
+export const {
+  token: DaffAuthorizeNetConfigToken,
+  provider: daffProvideAuthorizeNetConfigToken,
+} = createSingleInjectionToken<DaffAuthorizeNetConfig>('DaffAuthorizeNetConfigToken');
 
 /**
  * An interface for providing @daffodil/authorizenet with needed configurations specific to your authorizenet

@@ -1,16 +1,19 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import {
   DaffAuthorizenetPaymentRequest,
   DaffAuthorizenetPaymentResponse,
 } from '@daffodil/authorizenet';
+import { createSingleInjectionToken } from '@daffodil/core';
 import { DaffPaymentDriverInterface } from '@daffodil/payment/driver';
 
-/**
- * An injection token for the authorize.net payment driver.
- */
-export const DaffAuthorizeNetPaymentDriver = new InjectionToken<DaffAuthorizeNetPaymentDriverInterface>('DaffAuthorizeNetPaymentDriver');
+export const {
+  /**
+   * An injection token for the authorize.net payment driver.
+   */
+  token: DaffAuthorizeNetPaymentDriver,
+  provider: daffProvideAuthorizeNetPaymentDriver,
+} = createSingleInjectionToken<DaffAuthorizeNetPaymentDriverInterface>('DaffAuthorizeNetPaymentDriver');
 
 /**
  * @inheritdoc

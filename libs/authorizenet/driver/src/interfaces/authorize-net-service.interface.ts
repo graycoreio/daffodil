@@ -1,9 +1,12 @@
-import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
+import { createSingleInjectionToken } from '@daffodil/core';
 
-export const DaffAuthorizeNetDriver = new InjectionToken<DaffAuthorizeNetService>('DaffAuthorizeNetDriver');
+export const {
+  token: DaffAuthorizeNetDriver,
+  provider: daffProvideAuthorizeNetDriver,
+} = createSingleInjectionToken<DaffAuthorizeNetService>('DaffAuthorizeNetDriver');
 
 export interface DaffAuthorizeNetService<T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest> {
   generateToken(paymentTokenRequest: T): Observable<any>;
