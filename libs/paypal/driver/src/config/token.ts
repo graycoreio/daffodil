@@ -1,5 +1,8 @@
-import { InjectionToken } from '@angular/core';
+import { createSingleInjectionToken } from '@daffodil/core';
 
 import { DaffPaypalExpressDriverConfig } from './type';
 
-export const DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG = new InjectionToken<DaffPaypalExpressDriverConfig>('DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG');
+export const {
+  token: DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG,
+  provider: daffProvidePaypalExpressDriverConfig,
+} = createSingleInjectionToken<DaffPaypalExpressDriverConfig>('DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG');
