@@ -1,16 +1,19 @@
-import {
-  InjectionToken,
-  Provider,
-} from '@angular/core';
+import { Provider } from '@angular/core';
 import { Action } from '@ngrx/store';
+
+import { createMultiInjectionToken } from '@daffodil/core';
 
 import { DaffSeoMetaUpdate } from '../../models/public_api';
 
-/**
- * A multi-provider injection token for providing page meta update logic.
- * `getData` will run in response to, and invoked with, the action specified.
- */
-export const DAFF_SEO_META_UPDATES = new InjectionToken<DaffSeoMetaUpdate[]>('DAFF_SEO_META_UPDATES', { factory: () => []});
+
+const {
+  /**
+   * A multi-provider injection token for providing page meta update logic.
+   * `getData` will run in response to, and invoked with, the action specified.
+   */
+  token: DAFF_SEO_META_UPDATES,
+  provider,
+} = createMultiInjectionToken<DaffSeoMetaUpdate>('DAFF_SEO_META_UPDATES');
 
 /**
  * Provides page meta update logic.
@@ -26,9 +29,7 @@ export const DAFF_SEO_META_UPDATES = new InjectionToken<DaffSeoMetaUpdate[]>('DA
  * ```
  */
 export function daffProvideMetaUpdates<T extends Action = Action>(...values: DaffSeoMetaUpdate<T>[]): Provider[] {
-  return values.map(value => ({
-    provide: DAFF_SEO_META_UPDATES,
-    useValue: value,
-    multi: true,
-  }));
+  return provider(...values);
 }
+
+export { DAFF_SEO_META_UPDATES };
