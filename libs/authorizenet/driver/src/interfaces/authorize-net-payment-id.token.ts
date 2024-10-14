@@ -1,3 +1,6 @@
-import { InjectionToken } from '@angular/core';
+import { createSingleInjectionToken } from '@daffodil/core';
 
-export const DaffAuthorizeNetPaymentId = new InjectionToken<string>('DaffAuthorizeNetPaymentId');
+export const {
+  token: DaffAuthorizeNetPaymentId,
+  provider: daffProvideAuthorizeNetPaymentId,
+} = createSingleInjectionToken<string>('DaffAuthorizeNetPaymentId');
