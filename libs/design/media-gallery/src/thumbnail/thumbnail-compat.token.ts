@@ -1,6 +1,9 @@
-import { InjectionToken } from '@angular/core';
+import { createSingleInjectionToken } from '@daffodil/core';
 
-/**
- * A multi provider injection token that marks a component as renderable for the `DaffMediaRendererComponent`.
- */
-export const daffThumbnailCompatToken = new InjectionToken<unknown>('thumbnailCompatToken');
+export const {
+  /**
+   * A multi provider injection token that marks a component as renderable for the `DaffMediaRendererComponent`.
+   */
+  token: daffThumbnailCompatToken,
+  provider: daffProvidedaffThumbnailCompatToken,
+} = createSingleInjectionToken<unknown>('thumbnailCompatToken');
