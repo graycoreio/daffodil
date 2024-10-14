@@ -1,12 +1,18 @@
-import { InjectionToken } from '@angular/core';
+import { createConfigInjectionToken } from '@daffodil/core';
 
 import { SEARCH_FEDERATED_CONFIG_DEFAULT } from './default';
 
-/**
- * The token used to provide @daffodil/search/driver/federated config data.
- * Mandatory for the Magento driver.
- */
-export const SEARCH_FEDERATED_CONFIG_TOKEN = new InjectionToken<DaffSearchFederatedDriverConfig>('SEARCH_FEDERATED_CONFIG_TOKEN', { factory: () => SEARCH_FEDERATED_CONFIG_DEFAULT });
+export const {
+  /**
+   * The token used to provide @daffodil/search/driver/federated config data.
+   * Mandatory for the Magento driver.
+   */
+  token: SEARCH_FEDERATED_CONFIG_TOKEN,
+  provider: daffProvideAnalyticsConfig,
+} = createConfigInjectionToken<DaffSearchFederatedDriverConfig>(
+  SEARCH_FEDERATED_CONFIG_DEFAULT,
+  'SEARCH_FEDERATED_CONFIG_TOKEN',
+);
 
 /**
  * An interface for providing @daffodil/search/driver/federated with necessary config values.
