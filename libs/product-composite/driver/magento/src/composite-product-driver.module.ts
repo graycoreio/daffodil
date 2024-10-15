@@ -5,10 +5,10 @@ import {
 } from '@angular/core';
 
 import {
-  daffProvideProductMagentoExtraProductTransforms,
+  provideDaffProductMagentoExtraProductTransforms,
   MagentoProductTypeEnum,
-  daffProvideProductMagentoExtraProductFragments,
-  daffProvideProductMagentoExtraProductPreviewTransforms,
+  provideDaffProductMagentoExtraProductFragments,
+  provideDaffProductMagentoExtraProductPreviewTransforms,
 } from '@daffodil/product/driver/magento';
 
 import { magentoBundledProductFragment } from './fragments/bundled-product';
@@ -28,15 +28,15 @@ export class DaffCompositeProductMagentoDriverModule {
     return {
       ngModule: DaffCompositeProductMagentoDriverModule,
       providers: [
-        ...daffProvideProductMagentoExtraProductFragments(magentoBundledProductFragment),
-        ...daffProvideProductMagentoExtraProductTransforms<MagentoBundledProduct>(
+        ...provideDaffProductMagentoExtraProductFragments(magentoBundledProductFragment),
+        ...provideDaffProductMagentoExtraProductTransforms<MagentoBundledProduct>(
           (daffProduct, magentoProduct) =>
             magentoProduct.__typename === MagentoProductTypeEnum.BundledProduct
               ? transformMagentoBundledProduct(daffProduct, magentoProduct)
               : daffProduct,
         ),
         // stub out composite fields for a preview
-        ...daffProvideProductMagentoExtraProductPreviewTransforms<MagentoBundledProduct>(
+        ...provideDaffProductMagentoExtraProductPreviewTransforms<MagentoBundledProduct>(
           (daffProduct, magentoProduct) =>
             magentoProduct.__typename === MagentoProductTypeEnum.BundledProduct
               ? {

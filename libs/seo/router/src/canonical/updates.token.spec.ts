@@ -5,13 +5,13 @@ import {
 } from '@angular/router';
 
 import {
-  daffProvideCanonicalUrlRouterUpdates,
+  provideDaffCanonicalUrlRouterUpdates,
   DAFF_SEO_CANONICAL_URL_ROUTER_UPDATES,
 } from './updates.token';
 import { DaffSeoUpdateEventPair } from '../model/update-event-pair.interface';
 
 
-describe('daffProvideCanonicalUrlUpdates', () => {
+describe('provideDaffCanonicalUrlUpdates', () => {
   let updates: DaffSeoUpdateEventPair<Event, string>[];
   let result: DaffSeoUpdateEventPair<Event, string>[];
 
@@ -25,7 +25,7 @@ describe('daffProvideCanonicalUrlUpdates', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideCanonicalUrlRouterUpdates(...updates),
+        ...provideDaffCanonicalUrlRouterUpdates(...updates),
       ],
     });
 

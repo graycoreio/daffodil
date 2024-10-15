@@ -1,4 +1,4 @@
 export {
   DAFF_PAYMENT_RESPONSE_KIND_FACTORIES,
-  daffProvidePaymentResponseKindFactories,
+  provideDaffPaymentResponseKindFactories,
 } from './factories/kind.token';

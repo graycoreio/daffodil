@@ -15,7 +15,7 @@ import {
   DaffMagentoCartShippingRateTransformer,
   DaffMagentoShippingAddressTransformer,
   DaffCartMagentoCartItemTransform,
-  daffProvideCartMagentoCartItemTransforms,
+  provideDaffCartMagentoCartItemTransforms,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -85,7 +85,7 @@ describe('@daffodil/cart/driver/magento | MagentoCart', () => {
           provide: DaffMagentoShippingAddressTransformer,
           useValue: shippingAddressTransformerSpy,
         },
-        ...daffProvideCartMagentoCartItemTransforms(transform),
+        ...provideDaffCartMagentoCartItemTransforms(transform),
       ],
     });
 

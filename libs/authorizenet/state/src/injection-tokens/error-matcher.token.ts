@@ -7,7 +7,7 @@ import { daffTransformErrorToStateError } from '@daffodil/core/state';
  */
 export const {
   token: DAFF_AUTHORIZENET_ERROR_MATCHER,
-  provider: daffProvideAuthorizenetErrorMatcher,
+  provider: provideDaffAuthorizenetErrorMatcher,
 } = createSingleInjectionToken<typeof daffTransformErrorToStateError>(
   'DAFF_AUTHORIZENET_ERROR_MATCHER',
   { factory: () => daffTransformErrorToStateError },

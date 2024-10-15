@@ -3,12 +3,12 @@ import { TestBed } from '@angular/core/testing';
 import { DaffInMemoryProductResponseExtraTransform } from '@daffodil/product/driver/in-memory';
 
 import {
-  daffProvideProductInMemoryExtraProductResponseTransforms,
+  provideDaffProductInMemoryExtraProductResponseTransforms,
   DAFF_PRODUCT_IN_MEMORY_EXTRA_PRODUCT_RESPONSE_TRANSFORMS,
 } from './response-extra.token';
 
 
-describe('daffProvideProductInMemoryExtraProductResponseTransforms', () => {
+describe('provideDaffProductInMemoryExtraProductResponseTransforms', () => {
   let transforms: DaffInMemoryProductResponseExtraTransform[];
   let result: DaffInMemoryProductResponseExtraTransform[];
 
@@ -20,7 +20,7 @@ describe('daffProvideProductInMemoryExtraProductResponseTransforms', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideProductInMemoryExtraProductResponseTransforms(...transforms),
+        ...provideDaffProductInMemoryExtraProductResponseTransforms(...transforms),
       ],
     });
 

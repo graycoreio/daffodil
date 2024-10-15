@@ -19,11 +19,11 @@ export const {
    *
    * ```ts
    * providers: [
-   *   ...daffProvideProductInMemoryExtraProductResponseTransforms(
+   *   ...provideDaffProductInMemoryExtraProductResponseTransforms(
    *     myExtraProductTransform
    *   )
    * ]
    * ```
    */
-  provider: daffProvideProductInMemoryExtraProductResponseTransforms,
+  provider: provideDaffProductInMemoryExtraProductResponseTransforms,
 } = createMultiInjectionToken<DaffInMemoryProductResponseExtraTransform>('DAFF_PRODUCT_IN_MEMORY_EXTRA_PRODUCT_RESPONSE_TRANSFORMS');

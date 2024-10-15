@@ -17,7 +17,7 @@ export interface DaffPersistenceService {
 
 export const {
   token: DaffPersistenceServiceToken,
-  provider: daffProvidePersistenceService,
+  provider: provideDaffPersistenceService,
 } = createSingleInjectionToken<DaffPersistenceService>(
   'DaffPersistenceServiceToken',
   {

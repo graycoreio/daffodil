@@ -13,7 +13,7 @@ export const {
    * An internal token to combine the available payment transforms into a single collection.
    */
   token: DAFF_CUSTOMER_PAYMENT_REQUEST_TRANSFORM_COLLECTION,
-  provider: daffProvideCustomerPaymentRequestTransformCollection,
+  provider: provideDaffCustomerPaymentRequestTransformCollection,
 } = createSingleInjectionToken<Record<DaffCustomerPaymentRequestTransform['kind'], DaffCustomerPaymentRequestTransform>>(
   'DAFF_CUSTOMER_PAYMENT_REQUEST_TRANSFORM_COLLECTION',
   {

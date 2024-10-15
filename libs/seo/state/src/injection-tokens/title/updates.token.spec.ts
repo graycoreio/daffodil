@@ -3,11 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { DaffSeoTitleUpdate } from '@daffodil/seo/state';
 
 import {
-  daffProvideTitleUpdates,
+  provideDaffTitleUpdates,
   DAFF_SEO_TITLE_UPDATES,
 } from './updates.token';
 
-describe('daffProvideTitleUpdates', () => {
+describe('provideDaffTitleUpdates', () => {
   let updates: DaffSeoTitleUpdate[];
   let result: DaffSeoTitleUpdate[];
 
@@ -21,7 +21,7 @@ describe('daffProvideTitleUpdates', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideTitleUpdates(...updates),
+        ...provideDaffTitleUpdates(...updates),
       ],
     });
 

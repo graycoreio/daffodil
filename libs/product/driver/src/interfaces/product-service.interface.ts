@@ -10,7 +10,7 @@ export const {
    * Injection token that serves as a placeholder for any service that implements the DaffProductServiceInterface.
    */
   token: DaffProductDriver,
-  provider: daffProvideProductDriver,
+  provider: provideDaffProductDriver,
 } = createSingletonInjectionToken<DaffProductServiceInterface>('DaffProductDriver');
 
 

@@ -13,7 +13,7 @@ export const {
    * An internal token to combine the available payment processors into a single collection.
    */
   token: DAFF_PAYMENT_PROCESSOR_COLLECTION,
-  provider: daffProvidePaymentProcessorCollection,
+  provider: provideDaffPaymentProcessorCollection,
 } = createSingleInjectionToken<DaffPaymentProcessorCollection>(
   'DAFF_PAYMENT_PROCESSOR_COLLECTION',
   {

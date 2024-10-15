@@ -6,8 +6,8 @@ import {
 
 import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
 import {
-  daffProvideProductMagentoExtraProductPreviewFragments,
-  daffProvideProductMagentoExtraProductPreviewTransforms,
+  provideDaffProductMagentoExtraProductPreviewFragments,
+  provideDaffProductMagentoExtraProductPreviewTransforms,
 } from '@daffodil/product/driver/magento';
 import { DaffReviewsDriver } from '@daffodil/reviews/driver';
 
@@ -32,10 +32,10 @@ export class DaffReviewsMagentoDriverModule {
           provide: DaffReviewsDriver,
           useExisting: DaffReviewsMagentoService,
         },
-        ...daffProvideProductMagentoExtraProductPreviewFragments(
+        ...provideDaffProductMagentoExtraProductPreviewFragments(
           magentoReviewedProductFragment,
         ),
-        ...daffProvideProductMagentoExtraProductPreviewTransforms(
+        ...provideDaffProductMagentoExtraProductPreviewTransforms(
           magentoReviewedProductTransform,
         ),
         {

@@ -20,7 +20,7 @@ export const {
    *
    * ```ts
    * providers: [
-   *   ...daffProvideSearchRoutingOptionBuilders(
+   *   ...provideDaffSearchRoutingOptionBuilders(
    *     route => ({
    *       limit: route.queryParams.limit
    *     })
@@ -28,5 +28,5 @@ export const {
    * ]
    * ```
    */
-  provider: daffProvideSearchRoutingOptionBuilders,
+  provider: provideDaffSearchRoutingOptionBuilders,
 } = createMultiInjectionToken<DaffSearchRoutingOptionBuilder>('DAFF_SEARCH_ROUTING_OPTIONS_BUILDERS');

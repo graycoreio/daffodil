@@ -23,7 +23,7 @@ export const {
    * @docs-private
    */
   token: DAFF_ORDER_REDUCERS,
-  provider: daffProvideOrderReducers,
+  provider: provideDaffOrderReducers,
 } = createSingleInjectionToken<ActionReducer<DaffOrderReducersState>>(
   ' DAFF_ORDER_REDUCERS',
   {

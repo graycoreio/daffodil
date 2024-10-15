@@ -18,11 +18,11 @@ export const {
    *
    * ```ts
    * providers: [
-   *   ...daffProvideCartMagentoCartItemTransforms(
+   *   ...provideDaffCartMagentoCartItemTransforms(
    *     myCartItemTransform
    *   )
    * ]
    * ```
    */
-  provider: daffProvideCartMagentoCartItemTransforms,
+  provider: provideDaffCartMagentoCartItemTransforms,
 } = createMultiInjectionToken<DaffCartMagentoCartItemTransform>('DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS');

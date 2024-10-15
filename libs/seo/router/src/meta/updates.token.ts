@@ -21,13 +21,13 @@ export const DAFF_SEO_META_ROUTER_UPDATES = new InjectionToken<DaffSeoUpdateEven
  *
  * ```ts
  * providers: [
- *   ...daffProvideMetaUpdates(
+ *   ...provideDaffMetaUpdates(
  *     myMetaUpdate
  *   )
  * ]
  * ```
  */
-export function daffProvideMetaRouterUpdates<T extends Event = Event>(...values: DaffSeoUpdateEventPair<T, DaffSeoMetaDefinition>[]): Provider[] {
+export function provideDaffMetaRouterUpdates<T extends Event = Event>(...values: DaffSeoUpdateEventPair<T, DaffSeoMetaDefinition>[]): Provider[] {
   return values.map(value => ({
     provide: DAFF_SEO_META_ROUTER_UPDATES,
     useValue: value,

@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import {
-  daffProvideCartMagentoCartTransforms,
+  provideDaffCartMagentoCartTransforms,
   DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
 } from '@daffodil/cart/driver/magento';
 import { DaffCartStoreCreditDriver } from '@daffodil/cart-store-credit/driver';
@@ -33,7 +33,7 @@ export class DaffCartStoreCreditMagentoDriverModule {
           useValue: magentoCartStoreCreditFragment,
           multi: true,
         },
-        daffProvideCartMagentoCartTransforms(
+        provideDaffCartMagentoCartTransforms(
           magentoCartWithStoreCreditTransform,
         ),
       ],

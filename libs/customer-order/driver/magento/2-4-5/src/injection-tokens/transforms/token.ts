@@ -14,7 +14,7 @@ export const {
    * An internal token to combine the Magento preview transform with the injected transforms.
    */
   token: DAFF_CUSTOMER_ORDER_MAGENTO_ORDER_TRANSFORM,
-  provider: daffProvideCustomerOrderMagentoOrderTransform,
+  provider: provideDaffCustomerOrderMagentoOrderTransform,
 } = createSingleInjectionToken<DaffMagentoCustomerOrderTransform>(
   'DAFF_CUSTOMER_ORDER_MAGENTO_ORDER_TRANSFORM',
   {

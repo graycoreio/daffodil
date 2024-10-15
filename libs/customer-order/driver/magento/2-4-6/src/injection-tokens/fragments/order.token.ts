@@ -26,13 +26,13 @@ const {
  *
  * ```ts
  * providers: [
- *   ...daffProvideCustomerOrderMagentoExtraOrderFragments(
+ *   ...provideDaffCustomerOrderMagentoExtraOrderFragments(
  *     myExtraOrderFragment
  *   )
  * ]
  * ```
  */
-export function daffProvideCustomerOrderMagentoExtraOrderFragments(...fragments: DocumentNode[]): Provider[] {
+export function provideDaffCustomerOrderMagentoExtraOrderFragments(...fragments: DocumentNode[]): Provider[] {
   return provider(...fragments);
 }
 

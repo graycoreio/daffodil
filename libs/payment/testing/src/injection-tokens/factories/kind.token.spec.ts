@@ -10,7 +10,7 @@ import { DaffPaymentResponse } from '@daffodil/payment';
 import { MockPaymentResponse } from '@daffodil/payment/testing';
 
 import {
-  daffProvidePaymentResponseKindFactories,
+  provideDaffPaymentResponseKindFactories,
   DAFF_PAYMENT_RESPONSE_KIND_FACTORIES,
 } from './kind.token';
 
@@ -25,7 +25,7 @@ class TestPaymentResponseFactory extends DaffModelFactory<DaffPaymentResponse> {
   }
 }
 
-describe('@daffodil/payment/testing | daffProvidePaymentResponseKindFactories', () => {
+describe('@daffodil/payment/testing | provideDaffPaymentResponseKindFactories', () => {
   let factories: Type<DaffModelFactory<DaffPaymentResponse>>[];
   let result: DaffModelFactory<DaffPaymentResponse>[];
 
@@ -36,7 +36,7 @@ describe('@daffodil/payment/testing | daffProvidePaymentResponseKindFactories', 
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvidePaymentResponseKindFactories(...factories),
+        ...provideDaffPaymentResponseKindFactories(...factories),
       ],
     });
 

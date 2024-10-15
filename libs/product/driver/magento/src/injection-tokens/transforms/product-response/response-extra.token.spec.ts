@@ -3,12 +3,12 @@ import { TestBed } from '@angular/core/testing';
 import { DaffMagentoProductResponseExtraTransform } from '@daffodil/product/driver/magento';
 
 import {
-  daffProvideProductMagentoExtraProductResponseTransforms,
+  provideDaffProductMagentoExtraProductResponseTransforms,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS,
 } from './response-extra.token';
 
 
-describe('daffProvideProductMagentoExtraProductResponseTransforms', () => {
+describe('provideDaffProductMagentoExtraProductResponseTransforms', () => {
   let transforms: DaffMagentoProductResponseExtraTransform[];
   let result: DaffMagentoProductResponseExtraTransform[];
 
@@ -20,7 +20,7 @@ describe('daffProvideProductMagentoExtraProductResponseTransforms', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideProductMagentoExtraProductResponseTransforms(...transforms),
+        ...provideDaffProductMagentoExtraProductResponseTransforms(...transforms),
       ],
     });
 

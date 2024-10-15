@@ -1,8 +1,8 @@
 # Configuration
-You can configure the way that `@daffodil/external-router` works by providing configurations to the `DaffExternalRouterModule`. 
+You can configure the way that `@daffodil/external-router` works by providing configurations to the `DaffExternalRouterModule`.
 
 ## Usage
-An array of `DaffTypeRoutePair`s can be passed as the second argument to `forRoot`. They can also be provided through DI using the `daffProvideRouteResolvableByType` function.
+An array of `DaffTypeRoutePair`s can be passed as the second argument to `forRoot`. They can also be provided through DI using the `provideDaffRouteResolvableByType` function.
 
 ```ts
 @NgModule({

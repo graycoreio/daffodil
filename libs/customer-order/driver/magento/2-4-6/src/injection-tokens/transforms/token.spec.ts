@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffMagentoCustomerOrderExtraTransform,
   DaffMagentoCustomerOrderTransform,
-  daffProvideCustomerOrderMagentoExtraOrderTransforms,
+  provideDaffCustomerOrderMagentoExtraOrderTransforms,
   MagentoCustomerOrder,
 } from '@daffodil/customer-order/driver/magento/2-4-6';
 import { MagentoCustomerOrderFactory } from '@daffodil/customer-order/driver/magento/2-4-6/testing';
@@ -33,7 +33,7 @@ describe('@daffodil/customer-order/driver/magento/2-4-6 | DAFF_CUSTOMER_ORDER_MA
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideCustomerOrderMagentoExtraOrderTransforms(...transforms),
+        ...provideDaffCustomerOrderMagentoExtraOrderTransforms(...transforms),
       ],
     });
 

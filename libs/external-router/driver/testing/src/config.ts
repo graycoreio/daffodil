@@ -17,5 +17,5 @@ export const {
    * @docs-private
    */
   token: DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG,
-  provider: daffProvideExternalRouterDriverTestingConfig,
+  provider: provideDaffExternalRouterDriverTestingConfig,
 } = createConfigInjectionToken<DaffExternalRouterDriverTestingConfig>(({}), 'DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG');

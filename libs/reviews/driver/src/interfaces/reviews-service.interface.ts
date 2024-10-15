@@ -12,7 +12,7 @@ import {
 
 export const {
   token: DaffReviewsDriver,
-  provider: daffProvideReviewsDriver,
+  provider: provideDaffReviewsDriver,
 } = createSingleInjectionToken<DaffProductReviewsServiceInterface>('DaffReviewsDriver');
 
 export interface DaffProductReviewsServiceInterface<T extends DaffProductReview = DaffProductReview> {

@@ -3,11 +3,11 @@ import { gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 
 import {
-  daffProvideProductMagentoExtraProductFragments,
+  provideDaffProductMagentoExtraProductFragments,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
 } from './product.token';
 
-describe('@daffodil/product/driver/magento | daffProvideProductMagentoExtraProductFragments', () => {
+describe('@daffodil/product/driver/magento | provideDaffProductMagentoExtraProductFragments', () => {
   let fragments: DocumentNode[];
   let result: DocumentNode[];
 
@@ -27,7 +27,7 @@ describe('@daffodil/product/driver/magento | daffProvideProductMagentoExtraProdu
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideProductMagentoExtraProductFragments(...fragments),
+        ...provideDaffProductMagentoExtraProductFragments(...fragments),
       ],
     });
 

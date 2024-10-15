@@ -22,13 +22,13 @@ export const {
    *
    * ```ts
    * providers: [
-   *   ...daffProvidePaymentResponseKindFactories(
+   *   ...provideDaffPaymentResponseKindFactories(
    *     MyPaymentResponseFactory
    *   )
    * ]
    * ```
    */
-  provider: daffProvidePaymentResponseKindFactories,
+  provider: provideDaffPaymentResponseKindFactories,
 } = createServicesInjectionToken<DaffModelFactory<DaffPaymentResponse>>(
   'DAFF_PAYMENT_RESPONSE_KIND_FACTORIES',
   {

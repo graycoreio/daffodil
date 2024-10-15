@@ -30,7 +30,7 @@ export const {
    * @docs-private
    */
   token: DAFF_CART_REDUCERS,
-  provider: daffProvideCartReducers,
+  provider: provideDaffCartReducers,
 } = createSingleInjectionToken<ActionReducer<DaffCartReducersState>>(
   'DAFF_CART_REDUCERS',
   {

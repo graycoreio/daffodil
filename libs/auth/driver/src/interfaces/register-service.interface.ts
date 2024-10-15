@@ -25,5 +25,5 @@ export interface DaffRegisterServiceInterface<
 
 export const {
   token: DaffRegisterDriver,
-  provider: daffProvideRegisterDriver,
+  provider: provideDaffRegisterDriver,
 } = createSingletonInjectionToken<DaffRegisterServiceInterface>('DaffRegisterDriver');

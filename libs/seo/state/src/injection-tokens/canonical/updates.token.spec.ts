@@ -3,11 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { DaffSeoCanonicalUrlUpdate } from '@daffodil/seo/state';
 
 import {
-  daffProvideCanonicalUrlUpdates,
+  provideDaffCanonicalUrlUpdates,
   DAFF_SEO_CANONICAL_URL_UPDATES,
 } from './updates.token';
 
-describe('daffProvideCanonicalUrlUpdates', () => {
+describe('provideDaffCanonicalUrlUpdates', () => {
   let updates: DaffSeoCanonicalUrlUpdate[];
   let result: DaffSeoCanonicalUrlUpdate[];
 
@@ -21,7 +21,7 @@ describe('daffProvideCanonicalUrlUpdates', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideCanonicalUrlUpdates(...updates),
+        ...provideDaffCanonicalUrlUpdates(...updates),
       ],
     });
 

@@ -27,7 +27,7 @@ export const {
 /**
  * Provides the {@link DAFF_PRODUCT_COMPOSITE_ROUTING_CONFIG} token.
  */
-export function daffProvideProductCompositeRoutingConfig(config: Partial<DaffProductCompositeRoutingConfig>): FactoryProvider {
+export function provideDaffProductCompositeRoutingConfig(config: Partial<DaffProductCompositeRoutingConfig>): FactoryProvider {
   return {
     provide: DAFF_PRODUCT_COMPOSITE_ROUTING_CONFIG,
     useFactory: () => ({

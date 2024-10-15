@@ -17,9 +17,9 @@ export const {
    *
    * ```ts
    * providers: [
-   *   ...daffProvideSearchInMemoryBackends(MySearchFeatureBackend)
+   *   ...provideDaffSearchInMemoryBackends(MySearchFeatureBackend)
    * ]
    * ```
    */
-  provider: daffProvideSearchInMemoryBackends,
+  provider: provideDaffSearchInMemoryBackends,
 } = createServicesInjectionToken<DaffSearchInMemoryChildBackend>('DAFF_SEARCH_IN_MEMORY_BACKENDS');

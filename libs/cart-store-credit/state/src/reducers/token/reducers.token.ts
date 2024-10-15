@@ -21,7 +21,7 @@ export const {
    * @docs-private
    */
   token: DAFF_CART_STORE_CREDIT_REDUCERS,
-  provider: daffProvideCartStoreCreditReducers,
+  provider: provideDaffCartStoreCreditReducers,
 } = createSingleInjectionToken<ActionReducer<DaffCartStoreCreditReducersState>>(
   'DAFF_CART_STORE_CREDIT_REDUCERS',
   {

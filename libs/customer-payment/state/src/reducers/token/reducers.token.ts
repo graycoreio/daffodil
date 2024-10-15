@@ -22,7 +22,7 @@ export const {
    * @docs-private
    */
   token: DAFF_CUSTOMER_PAYMENT_REDUCERS,
-  provider: daffProvideCustomerPaymentReducers,
+  provider: provideDaffCustomerPaymentReducers,
 } = createSingleInjectionToken<ActionReducer<DaffCustomerPaymentReducersState>>(
   'DAFF_CUSTOMER_PAYMENT_REDUCERS',
   {

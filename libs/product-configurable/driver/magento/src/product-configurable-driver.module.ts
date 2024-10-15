@@ -5,9 +5,9 @@ import {
 } from '@angular/core';
 
 import {
-  daffProvideProductMagentoExtraProductFragments,
-  daffProvideProductMagentoExtraProductPreviewTransforms,
-  daffProvideProductMagentoExtraProductTransforms,
+  provideDaffProductMagentoExtraProductFragments,
+  provideDaffProductMagentoExtraProductPreviewTransforms,
+  provideDaffProductMagentoExtraProductTransforms,
   MagentoProductTypeEnum,
 } from '@daffodil/product/driver/magento';
 
@@ -28,15 +28,15 @@ export class DaffConfigurableProductMagentoDriverModule {
     return {
       ngModule: DaffConfigurableProductMagentoDriverModule,
       providers: [
-        ...daffProvideProductMagentoExtraProductFragments(magentoConfigurableProductFragment),
-        ...daffProvideProductMagentoExtraProductTransforms<MagentoConfigurableProduct>(
+        ...provideDaffProductMagentoExtraProductFragments(magentoConfigurableProductFragment),
+        ...provideDaffProductMagentoExtraProductTransforms<MagentoConfigurableProduct>(
           (daffProduct, magentoProduct) =>
             magentoProduct.__typename === MagentoProductTypeEnum.ConfigurableProduct
               ? transformMagentoConfigurableProduct(daffProduct, magentoProduct)
               : daffProduct,
         ),
         // stub out configurable fields for a preview
-        ...daffProvideProductMagentoExtraProductPreviewTransforms<MagentoConfigurableProduct>(
+        ...provideDaffProductMagentoExtraProductPreviewTransforms<MagentoConfigurableProduct>(
           (daffProduct, magentoProduct) =>
             magentoProduct.__typename === MagentoProductTypeEnum.ConfigurableProduct
               ? {

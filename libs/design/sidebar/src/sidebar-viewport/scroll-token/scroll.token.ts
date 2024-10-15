@@ -23,7 +23,7 @@ export const {
    * is the element where scrolling is controlled.
    */
   token: DAFF_SIDEBAR_SCROLL_TOKEN,
-  provider: daffProvideSidebarScrollToken,
+  provider: provideDaffSidebarScrollToken,
 } = createSingleInjectionToken<DaffSidebarScroll>(
   'DAFF_SIDEBAR_SCROLL_TOKEN',
   {

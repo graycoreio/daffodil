@@ -3,11 +3,11 @@ import { gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 
 import {
-  daffProvideCustomerOrderMagentoExtraOrderFragments,
+  provideDaffCustomerOrderMagentoExtraOrderFragments,
   DAFF_CUSTOMER_ORDER_MAGENTO_EXTRA_ORDER_FRAGMENTS,
 } from './order.token';
 
-describe('@daffodil/customer-order/driver/magento/2-4-6 | daffProvideCustomerOrderMagentoExtraOrderFragments', () => {
+describe('@daffodil/customer-order/driver/magento/2-4-6 | provideDaffCustomerOrderMagentoExtraOrderFragments', () => {
   let fragments: DocumentNode[];
   let result: DocumentNode[];
 
@@ -27,7 +27,7 @@ describe('@daffodil/customer-order/driver/magento/2-4-6 | daffProvideCustomerOrd
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideCustomerOrderMagentoExtraOrderFragments(...fragments),
+        ...provideDaffCustomerOrderMagentoExtraOrderFragments(...fragments),
       ],
     });
 

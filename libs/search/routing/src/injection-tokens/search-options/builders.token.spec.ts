@@ -3,12 +3,12 @@ import { TestBed } from '@angular/core/testing';
 import { DaffSearchRoutingOptionBuilder } from '@daffodil/search/routing';
 
 import {
-  daffProvideSearchRoutingOptionBuilders,
+  provideDaffSearchRoutingOptionBuilders,
   DAFF_SEARCH_ROUTING_OPTIONS_BUILDERS,
 } from './builders.token';
 
 
-describe('daffProvideSearchRoutingOptionBuilders', () => {
+describe('provideDaffSearchRoutingOptionBuilders', () => {
   let builders: DaffSearchRoutingOptionBuilder[];
   let result: DaffSearchRoutingOptionBuilder[];
 
@@ -20,7 +20,7 @@ describe('daffProvideSearchRoutingOptionBuilders', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideSearchRoutingOptionBuilders(...builders),
+        ...provideDaffSearchRoutingOptionBuilders(...builders),
       ],
     });
 

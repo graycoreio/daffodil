@@ -21,13 +21,13 @@ const {
  *
  * ```ts
  * providers: [
- *   ...daffProvideCanonicalUrlUpdates(
+ *   ...provideDaffCanonicalUrlUpdates(
  *     myCanonicalUrlUpdate
  *   )
  * ]
  * ```
  */
-export function daffProvideCanonicalUrlUpdates<T extends Action = Action>(...values: DaffSeoCanonicalUrlUpdate<T>[]): Provider[] {
+export function provideDaffCanonicalUrlUpdates<T extends Action = Action>(...values: DaffSeoCanonicalUrlUpdate<T>[]): Provider[] {
   return provider(...values);
 }
 

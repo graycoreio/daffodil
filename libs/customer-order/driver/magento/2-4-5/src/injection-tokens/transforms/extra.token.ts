@@ -21,11 +21,11 @@ export const {
    *
    * ```ts
    * providers: [
-   *   ...daffProvideCustomerOrderMagentoExtraOrderTransforms(
+   *   ...provideDaffCustomerOrderMagentoExtraOrderTransforms(
    *     myExtraOrderTransform
    *   )
    * ]
    * ```
    */
-  provider: daffProvideCustomerOrderMagentoExtraOrderTransforms,
+  provider: provideDaffCustomerOrderMagentoExtraOrderTransforms,
 } = createMultiInjectionToken<DaffMagentoCustomerOrderExtraTransform>('DAFF_CUSTOMER_ORDER_MAGENTO_EXTRA_ORDER_TRANSFORMS');

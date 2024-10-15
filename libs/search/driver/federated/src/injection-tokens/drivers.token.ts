@@ -17,9 +17,9 @@ export const {
    *
    * ```ts
    * providers: [
-   *   ...daffProvideSearchFederatedDrivers(MySearchDriver)
+   *   ...provideDaffSearchFederatedDrivers(MySearchDriver)
    * ]
    * ```
    */
-  provider: daffProvideSearchFederatedDrivers,
+  provider: provideDaffSearchFederatedDrivers,
 } = createServicesInjectionToken<DaffSearchDriverKindedInterface>('DAFF_SEARCH_FEDERATED_DRIVERS');

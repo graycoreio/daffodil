@@ -7,13 +7,13 @@ import {
 import { DaffSeoMetaDefinition } from '@daffodil/seo';
 
 import {
-  daffProvideMetaRouterUpdates,
+  provideDaffMetaRouterUpdates,
   DAFF_SEO_META_ROUTER_UPDATES,
 } from './updates.token';
 import { DaffSeoUpdateEventPair } from '../model/update-event-pair.interface';
 
 
-describe('daffProvideMetaUpdates', () => {
+describe('provideDaffMetaUpdates', () => {
   let updates: DaffSeoUpdateEventPair<Event, DaffSeoMetaDefinition>[];
   let result: DaffSeoUpdateEventPair<Event, DaffSeoMetaDefinition>[];
 
@@ -27,7 +27,7 @@ describe('daffProvideMetaUpdates', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideMetaRouterUpdates(...updates),
+        ...provideDaffMetaRouterUpdates(...updates),
       ],
     });
 

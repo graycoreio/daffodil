@@ -1,14 +1,14 @@
 export {
-  daffProvideTitleUpdates,
+  provideDaffTitleUpdates,
   DAFF_SEO_TITLE_UPDATES,
 } from './title/updates.token';
 
 export {
-  daffProvideMetaUpdates,
+  provideDaffMetaUpdates,
   DAFF_SEO_META_UPDATES,
 } from './meta/updates.token';
 
 export {
-  daffProvideCanonicalUrlUpdates,
+  provideDaffCanonicalUrlUpdates,
   DAFF_SEO_CANONICAL_URL_UPDATES,
 } from './canonical/updates.token';

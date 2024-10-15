@@ -3,12 +3,12 @@ import { TestBed } from '@angular/core/testing';
 import { DaffCategoryRoutingRequestBuilder } from '@daffodil/category/routing';
 
 import {
-  daffProvideCategoryRoutingRequestBuilders,
+  provideDaffCategoryRoutingRequestBuilders,
   DAFF_CATEGORY_ROUTING_OPTIONS_BUILDERS,
 } from './builders.token';
 
 
-describe('daffProvideCategoryRoutingRequestBuilders', () => {
+describe('provideDaffCategoryRoutingRequestBuilders', () => {
   let builders: DaffCategoryRoutingRequestBuilder[];
   let result: DaffCategoryRoutingRequestBuilder[];
 
@@ -20,7 +20,7 @@ describe('daffProvideCategoryRoutingRequestBuilders', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideCategoryRoutingRequestBuilders(...builders),
+        ...provideDaffCategoryRoutingRequestBuilders(...builders),
       ],
     });
 

@@ -25,12 +25,12 @@ export const {
  *
  * ```ts
  * providers: [
- *   ...daffProvideProductMagentoExtraProductPreviewTransforms(
+ *   ...provideDaffProductMagentoExtraProductPreviewTransforms(
  *     myExtraProductTransform
  *   )
  * ]
  * ```
  */
-export function daffProvideProductMagentoExtraProductPreviewTransforms<T extends MagentoProduct = MagentoProduct, V extends DaffProduct = DaffProduct>(...transforms: DaffMagentoProductExtraTransform<T, V>[]): Provider[] {
+export function provideDaffProductMagentoExtraProductPreviewTransforms<T extends MagentoProduct = MagentoProduct, V extends DaffProduct = DaffProduct>(...transforms: DaffMagentoProductExtraTransform<T, V>[]): Provider[] {
   return provider<DaffMagentoProductExtraTransform<T, V>>(...transforms);
 }

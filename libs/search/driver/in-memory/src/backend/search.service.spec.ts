@@ -15,7 +15,7 @@ import {
 } from '@daffodil/search';
 import {
   DaffSearchInMemoryChildBackend,
-  daffProvideSearchInMemoryBackends,
+  provideDaffSearchInMemoryBackends,
 } from '@daffodil/search/driver/in-memory';
 import {
   DaffSearchResultFactory,
@@ -71,7 +71,7 @@ describe('@daffodil/search/driver/in-memory | DaffInMemoryBackendSearchDriver', 
       ],
       providers: [
         DaffInMemoryBackendSearchDriver,
-        ...daffProvideSearchInMemoryBackends(TestBackend1, TestBackend2),
+        ...provideDaffSearchInMemoryBackends(TestBackend1, TestBackend2),
       ],
     });
 

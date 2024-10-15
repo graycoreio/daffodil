@@ -11,5 +11,5 @@ export const {
   /**
    * Provides {@link DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER}.
    */
-  provider: daffProvideNavigationInMemorySeedDataProvider,
+  provider: provideDaffNavigationInMemorySeedDataProvider,
 } = createSingleInjectionToken<DaffNavigationInMemorySeedDataProvider>('DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER');

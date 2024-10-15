@@ -8,14 +8,14 @@ Toasts should be used to display temporary messages about actions or events that
 <design-land-example-viewer-container example="default-toast"></design-land-example-viewer-container>
 
 ## Setting up the component
-`daffProviderToast()` should be added as a provider either in your application's root component for global use or in a specific feature component.
+`provideDaffToast()` should be added as a provider either in your application's root component for global use or in a specific feature component.
 
 ```ts
-import { daffProvideToast } from '@daffodil/design/toast';
+import { provideDaffToast } from '@daffodil/design/toast';
 
 @NgModule({
 	providers: [
-		daffProvideToast(),
+		provideDaffToast(),
 	]
 )}
 
@@ -48,7 +48,7 @@ export class CustomToastComponent {
 	private toast: DaffToast;
 
 	constructor(private toastService: DaffToastService) {}
-		
+
 	open() {
 		this.toast = this.toastService.open({
 			title: 'Update Complete',

@@ -1,5 +1,5 @@
 export {
   DAFF_CATEGORY_ROUTING_OPTIONS_BUILDERS,
-  daffProvideCategoryRoutingRequestBuilders,
+  provideDaffCategoryRoutingRequestBuilders,
   DaffCategoryRoutingRequestBuilder,
 } from './request/builders.token';

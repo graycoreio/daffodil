@@ -27,5 +27,5 @@ export const {
    * @docs-private
    */
   token: DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG,
-  provider: daffProvideExternalRouterDriverInMemoryConfig,
+  provider: provideDaffExternalRouterDriverInMemoryConfig,
 } = createConfigInjectionToken<DaffExternalRouterDriverInMemoryConfig>(defaultConfig, 'DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG');

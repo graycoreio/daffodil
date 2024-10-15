@@ -9,7 +9,7 @@ import {
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
-import { daffProvideCartMagentoCartTransforms } from '@daffodil/cart/driver/magento';
+import { provideDaffCartMagentoCartTransforms } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartWithStoreCredit,
   MagentoApplyStoreCreditResponse,
@@ -50,7 +50,7 @@ describe('@daffodil/cart-store-credit/driver/magento | DaffCartStoreCreditMagent
             possibleTypes: schema.possibleTypes,
           }),
         },
-        daffProvideCartMagentoCartTransforms(
+        provideDaffCartMagentoCartTransforms(
           magentoCartWithStoreCreditTransform,
         ),
       ],

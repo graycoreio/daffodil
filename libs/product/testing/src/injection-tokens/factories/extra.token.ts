@@ -20,13 +20,13 @@ export const {
    *
    * ```ts
    * providers: [
-   *   ...daffProvideProductExtraProductFactories(
+   *   ...provideDaffProductExtraProductFactories(
    *     MyProductFactory
    *   )
    * ]
    * ```
    */
-  provider: daffProvideProductExtraProductFactories,
+  provider: provideDaffProductExtraProductFactories,
 } = createServicesInjectionToken<DaffModelFactory<DaffProduct>>(
   'DAFF_PRODUCT_EXTRA_FACTORIES',
   { providedIn: 'root' },

@@ -7,5 +7,5 @@ export interface DaffNavigationTransformerInterface<T extends DaffGenericNavigat
 
 export const {
   token: DaffNavigationTransformer,
-  provider: daffProvideNavigationTransformer,
+  provider: provideDaffNavigationTransformer,
 } = createSingleInjectionToken<DaffNavigationTransformerInterface<any>>('DaffNavigationTransformer');

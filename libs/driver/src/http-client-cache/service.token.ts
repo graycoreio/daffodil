@@ -7,7 +7,7 @@ import { DaffDriverHttpClientCacheServiceInterface } from './service.type';
 
 export const {
   token: DAFF_DRIVER_HTTP_CLIENT_CACHE_SERVICE,
-  provider: daffProvideDriverHttpClientCacheService,
+  provider: provideDaffDriverHttpClientCacheService,
 } = createSingleInjectionToken<DaffDriverHttpClientCacheServiceInterface>(
   'DAFF_DRIVER_HTTP_CLIENT_CACHE_SERVICE',
   { factory: () => inject(DaffDriverHttpClientCacheNoopService) },

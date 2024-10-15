@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffSearchResult } from '@daffodil/search';
 import {
   MockSearchResult,
-  daffProvideSearchResultKindFactories,
+  provideDaffSearchResultKindFactories,
 } from '@daffodil/search/testing';
 
 import { DaffSearchResultKindFactory } from './kind.factory';
@@ -30,7 +30,7 @@ describe('@daffodil/search/testing | DaffSearchResultKindFactory', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffSearchResultKindFactory,
-        ...daffProvideSearchResultKindFactories(
+        ...provideDaffSearchResultKindFactories(
           TestSearchResultFactory,
         ),
       ],

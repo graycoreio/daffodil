@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
-import { daffProvideProductMagentoExtraProductPreviewTransforms } from '@daffodil/product/driver/magento';
+import { provideDaffProductMagentoExtraProductPreviewTransforms } from '@daffodil/product/driver/magento';
 import { MagentoCoreProductFactory } from '@daffodil/product/driver/magento/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffRelatedProduct } from '@daffodil/related-products';
@@ -28,7 +28,7 @@ describe('@daffodil/related-products/driver/magento | DaffMagentoRelatedProducts
 
     TestBed.configureTestingModule({
       providers: [
-        daffProvideProductMagentoExtraProductPreviewTransforms(
+        provideDaffProductMagentoExtraProductPreviewTransforms(
           previewTransformerSpy,
         ),
       ],
