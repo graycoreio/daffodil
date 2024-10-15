@@ -4,5 +4,5 @@ import { DaffPaypalExpressDriverConfig } from './type';
 
 export const {
   token: DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG,
-  provider: daffProvidePaypalExpressDriverConfig,
+  provider: provideDaffPaypalExpressDriverConfig,
 } = createSingleInjectionToken<DaffPaypalExpressDriverConfig>('DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG');

@@ -23,5 +23,5 @@ export interface DaffCartShippingAddressServiceInterface<T extends DaffCart = Da
 
 export const {
   token: DaffCartShippingAddressDriver,
-  provider: daffProvideCartShippingAddressDriver,
+  provider: provideDaffCartShippingAddressDriver,
 } = createSingletonInjectionToken<DaffCartShippingAddressServiceInterface>('DaffCartShippingAddressDriver');

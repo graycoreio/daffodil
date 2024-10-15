@@ -1,4 +1,4 @@
 export {
   DAFF_SEARCH_RESULT_KIND_FACTORIES,
-  daffProvideSearchResultKindFactories,
+  provideDaffSearchResultKindFactories,
 } from './factories/kind.token';

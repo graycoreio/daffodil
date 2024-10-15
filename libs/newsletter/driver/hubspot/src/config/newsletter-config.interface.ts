@@ -3,5 +3,5 @@ import { DaffHubspotConfig } from '@daffodil/driver/hubspot';
 
 export const {
   token: DaffNewsletterConfigToken,
-  provider: daffProvideNewsletterConfigToken,
+  provider: provideDaffNewsletterConfigToken,
 } = createSingleInjectionToken<DaffHubspotConfig>('DaffNewsletterConfig');

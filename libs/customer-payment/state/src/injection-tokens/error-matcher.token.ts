@@ -7,7 +7,7 @@ export const {
    * Can be used to further refine Daffodil errors into more specific app errors.
    */
   token: DAFF_CUSTOMER_PAYMENT_ERROR_MATCHER,
-  provider: daffProvideCustomerPaymentErrorMatcher,
+  provider: provideDaffCustomerPaymentErrorMatcher,
 } = createSingleInjectionToken<typeof daffTransformErrorToStateError>(
   'DAFF_CUSTOMER_PAYMENT_ERROR_MATCHER',
   { factory: () => daffTransformErrorToStateError },

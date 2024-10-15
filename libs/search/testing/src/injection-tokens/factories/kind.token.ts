@@ -22,13 +22,13 @@ export const {
    *
    * ```ts
    * providers: [
-   *   ...daffProvideSearchResultKindFactories(
+   *   ...provideDaffSearchResultKindFactories(
    *     MySearchResultFactory
    *   )
    * ]
    * ```
    */
-  provider: daffProvideSearchResultKindFactories,
+  provider: provideDaffSearchResultKindFactories,
 } = createServicesInjectionToken<DaffModelFactory<DaffSearchResult>>(
   'DAFF_SEARCH_RESULT_KIND_FACTORIES',
   { factory: () => [inject(DaffSearchResultFactory)], providedIn: 'root' },

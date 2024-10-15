@@ -20,11 +20,11 @@ export const {
    *
    * ```ts
    * providers: [
-   *   ...daffProvideProductMagentoExtraProductResponseTransforms(
+   *   ...provideDaffProductMagentoExtraProductResponseTransforms(
    *     myExtraProductTransform
    *   )
    * ]
    * ```
    */
-  provider: daffProvideProductMagentoExtraProductResponseTransforms,
+  provider: provideDaffProductMagentoExtraProductResponseTransforms,
 } = createMultiInjectionToken<DaffMagentoProductResponseExtraTransform>('DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS');

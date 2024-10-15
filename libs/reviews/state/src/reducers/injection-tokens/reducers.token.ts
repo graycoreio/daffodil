@@ -21,7 +21,7 @@ export const {
    * @docs-private
    */
   token: DAFF_REVIEWS_REDUCERS,
-  provider: daffProvideReviewsReducers,
+  provider: provideDaffReviewsReducers,
 } = createSingleInjectionToken<ActionReducer<DaffReviewsReducersState>>(
   'DAFF_REVIEWS_REDUCERS',
   {

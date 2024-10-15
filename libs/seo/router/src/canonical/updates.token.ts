@@ -19,13 +19,13 @@ export const DAFF_SEO_CANONICAL_URL_ROUTER_UPDATES = new InjectionToken<DaffSeoU
  *
  * ```ts
  * providers: [
- *   ...daffProvideCanonicalUrlUpdates(
+ *   ...provideDaffCanonicalUrlUpdates(
  *     myCanonicalUrlUpdate
  *   )
  * ]
  * ```
  */
-export function daffProvideCanonicalUrlRouterUpdates<T extends Event = Event>(...values:  DaffSeoUpdateEventPair<T, string>[]): Provider[] {
+export function provideDaffCanonicalUrlRouterUpdates<T extends Event = Event>(...values:  DaffSeoUpdateEventPair<T, string>[]): Provider[] {
   return values.map(value => ({
     provide: DAFF_SEO_CANONICAL_URL_ROUTER_UPDATES,
     useValue: value,

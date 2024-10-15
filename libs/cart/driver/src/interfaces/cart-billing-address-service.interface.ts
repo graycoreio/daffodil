@@ -23,5 +23,5 @@ export interface DaffCartBillingAddressServiceInterface<T extends DaffCart = Daf
 
 export const {
   token: DaffCartBillingAddressDriver,
-  provider: daffProvideCartBillingAddressDriver,
+  provider: provideDaffCartBillingAddressDriver,
 } = createSingletonInjectionToken<DaffCartBillingAddressServiceInterface>('DaffCartBillingAddressDriver');

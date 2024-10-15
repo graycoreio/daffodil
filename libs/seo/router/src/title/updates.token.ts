@@ -19,13 +19,13 @@ export const DAFF_SEO_TITLE_ROUTER_UPDATES = new InjectionToken<DaffSeoUpdateEve
  *
  * ```ts
  * providers: [
- *   ...daffProvideTitleUpdates(
+ *   ...provideDaffTitleUpdates(
  *     myTitleUpdate
  *   )
  * ]
  * ```
  */
-export function daffProvideTitleRouterUpdates<T extends Event = Event>(...values: DaffSeoUpdateEventPair<T, string>[]): Provider[] {
+export function provideDaffTitleRouterUpdates<T extends Event = Event>(...values: DaffSeoUpdateEventPair<T, string>[]): Provider[] {
   return values.map(value => ({
     provide: DAFF_SEO_TITLE_ROUTER_UPDATES,
     useValue: value,

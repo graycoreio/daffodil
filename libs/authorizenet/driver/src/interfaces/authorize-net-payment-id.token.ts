@@ -2,5 +2,5 @@ import { createSingleInjectionToken } from '@daffodil/core';
 
 export const {
   token: DaffAuthorizeNetPaymentId,
-  provider: daffProvideAuthorizeNetPaymentId,
+  provider: provideDaffAuthorizeNetPaymentId,
 } = createSingleInjectionToken<string>('DaffAuthorizeNetPaymentId');

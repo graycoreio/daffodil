@@ -22,7 +22,7 @@ export const {
    * @docs-private
    */
   token: DAFF_PRODUCT_CONFIGURABLE_REDUCERS,
-  provider: daffProvideProductConfigurableReducers,
+  provider: provideDaffProductConfigurableReducers,
 } = createSingleInjectionToken<ActionReducer<DaffConfigurableProductReducersState>>(
   'DAFF_PRODUCT_CONFIGURABLE_REDUCERS',
   {

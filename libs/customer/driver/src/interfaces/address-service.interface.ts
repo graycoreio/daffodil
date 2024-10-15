@@ -11,7 +11,7 @@ export const {
    * An injection token for the customer driver.
    */
   token: DaffCustomerAddressDriver,
-  provider: daffProvideCustomerAddressDriver,
+  provider: provideDaffCustomerAddressDriver,
 } = createSingleInjectionToken<DaffCustomerAddressDriverInterface>('DaffCustomerAddressDriver');
 
 /**

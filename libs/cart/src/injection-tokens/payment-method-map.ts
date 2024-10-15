@@ -9,7 +9,7 @@ export const {
    */
   // TODO: refactor to upper snake case
   token: DaffCartPaymentMethodIdMap,
-  provider: daffProvideCartPaymentMethodIdMap,
+  provider: provideDaffCartPaymentMethodIdMap,
 } = createSingleInjectionToken<{[key: string]: string}>(
   'DaffCartPaymentMethodIdMap',
   { factory: () => ({}) },

@@ -18,5 +18,5 @@ export interface DaffCartPaymentMethodsServiceInterface<T extends DaffCartPaymen
 
 export const {
   token: DaffCartPaymentMethodsDriver,
-  provider: daffProvideCartPaymentMethodsDriver,
+  provider: provideDaffCartPaymentMethodsDriver,
 } = createSingletonInjectionToken<DaffCartPaymentMethodsServiceInterface>('DaffCartPaymentMethodsDriver');

@@ -5,8 +5,8 @@ import {
 } from '@angular/core';
 
 import {
-  daffProvideCustomerOrderMagentoExtraOrderFragments,
-  daffProvideCustomerOrderMagentoExtraOrderTransforms,
+  provideDaffCustomerOrderMagentoExtraOrderFragments,
+  provideDaffCustomerOrderMagentoExtraOrderTransforms,
 } from '@daffodil/customer-order/driver/magento/2-4-6';
 import { DaffCustomerStoreCreditDriver } from '@daffodil/customer-store-credit/driver';
 
@@ -28,10 +28,10 @@ export class DaffCustomerStoreCreditMagentoDriverModule {
           provide: DaffCustomerStoreCreditDriver,
           useExisting: DaffCustomerStoreCreditMagentoService,
         },
-        daffProvideCustomerOrderMagentoExtraOrderFragments(
+        provideDaffCustomerOrderMagentoExtraOrderFragments(
           magentoCustomerOrderStoreCreditTotalFragment,
         ),
-        daffProvideCustomerOrderMagentoExtraOrderTransforms(
+        provideDaffCustomerOrderMagentoExtraOrderTransforms(
           magentoCustomerOrderWithStoreCreditTransform,
         ),
       ],

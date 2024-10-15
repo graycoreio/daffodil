@@ -25,13 +25,13 @@ const {
  *
  * ```ts
  * providers: [
- *   ...daffProvideCustomerOrderMagentoExtraOrderTransforms(
+ *   ...provideDaffCustomerOrderMagentoExtraOrderTransforms(
  *     myExtraOrderTransform
  *   )
  * ]
  * ```
  */
-export function daffProvideCustomerOrderMagentoExtraOrderTransforms<T extends MagentoCustomerOrder = MagentoCustomerOrder, V extends DaffOrder = DaffOrder>(...transforms: DaffMagentoCustomerOrderExtraTransform<T, V>[]): Provider[] {
+export function provideDaffCustomerOrderMagentoExtraOrderTransforms<T extends MagentoCustomerOrder = MagentoCustomerOrder, V extends DaffOrder = DaffOrder>(...transforms: DaffMagentoCustomerOrderExtraTransform<T, V>[]): Provider[] {
   return provider(...transforms);
 }
 

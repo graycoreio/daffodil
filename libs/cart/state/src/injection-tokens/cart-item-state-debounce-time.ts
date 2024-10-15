@@ -8,5 +8,5 @@ export const {
    * reset if a new item addition or mutation occurs. The default is 4000.
    */
   token: DaffCartItemStateDebounceTime,
-  provider: daffProvideCartItemStateDebounceTime,
+  provider: provideDaffCartItemStateDebounceTime,
 } = createSingleInjectionToken<number>('DaffCartItemStateDebounceTime');

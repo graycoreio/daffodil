@@ -5,7 +5,7 @@ import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 
 export const {
   token: DaffNewsletterDriver,
-  provider: daffProvideNewsletterDriver,
+  provider: provideDaffNewsletterDriver,
 } = createSingletonInjectionToken<DaffNewsletterServiceInterface<DaffNewsletterSubmission, unknown>>('DaffNewsletterDriver');
 
 export interface DaffNewsletterServiceInterface<T extends DaffNewsletterSubmission, V> {

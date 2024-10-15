@@ -12,7 +12,7 @@ import {
 
 export const {
   token: DaffOrderDriver,
-  provider: daffProvideOrderDriver,
+  provider: provideDaffOrderDriver,
 } = createSingleInjectionToken<DaffOrderServiceInterface>('DaffOrderDriver');
 
 /**

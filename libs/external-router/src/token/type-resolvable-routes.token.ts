@@ -13,7 +13,7 @@ export const {
   /**
    * A multi-provider used to connect an array of types to their respective routes.
    */
-  provider: daffProvideRoutesResolvableByType,
+  provider: provideDaffRoutesResolvableByType,
 } = createMultiInjectionToken<DaffTypeRoutePair>(
   'DAFF_EXTERNAL_ROUTER_RESOLVABLE_TYPE_ROUTES',
   {
@@ -24,7 +24,7 @@ export const {
 /**
  * A provider used to connect a type to a route to enable dynamic route resolution at runtime.
  */
-export function daffProvideRouteResolvableByType(typeRoutePair: DaffTypeRoutePair): Provider {
+export function provideDaffRouteResolvableByType(typeRoutePair: DaffTypeRoutePair): Provider {
   return {
     provide: DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE,
     multi: true,

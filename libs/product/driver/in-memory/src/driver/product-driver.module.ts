@@ -9,7 +9,7 @@ import { DaffProductDriver } from '@daffodil/product/driver';
 import {
   DaffDefaultProductFactory,
   DaffProductTestingModule,
-  daffProvideProductExtraFactoryTypes,
+  provideDaffProductExtraFactoryTypes,
 } from '@daffodil/product/testing';
 
 import { DaffInMemoryProductService } from './product.service';
@@ -33,7 +33,7 @@ export class DaffProductInMemoryDriverModule {
           provide: DaffProductDriver,
           useExisting: DaffInMemoryProductService,
         },
-        daffProvideProductExtraFactoryTypes(DaffDefaultProductFactory),
+        provideDaffProductExtraFactoryTypes(DaffDefaultProductFactory),
         provideDaffInMemoryBackends(DaffInMemoryBackendProductService),
       ],
     };

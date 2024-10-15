@@ -22,7 +22,7 @@ export const {
    *
    * ```ts
    * providers: [
-   *   ...daffProvideCategoryRoutingRequestBuilders(
+   *   ...provideDaffCategoryRoutingRequestBuilders(
    *     route => ({
    *       currentPage: route.queryParams.page
    *     })
@@ -30,5 +30,5 @@ export const {
    * ]
    * ```
    */
-  provider: daffProvideCategoryRoutingRequestBuilders,
+  provider: provideDaffCategoryRoutingRequestBuilders,
 } = createMultiInjectionToken<DaffCategoryRoutingRequestBuilder>('DAFF_CATEGORY_ROUTING_OPTIONS_BUILDERS');

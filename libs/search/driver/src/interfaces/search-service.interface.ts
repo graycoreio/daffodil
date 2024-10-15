@@ -13,7 +13,7 @@ export const {
    * An injection token for the search driver.
    */
   token: DaffSearchDriver,
-  provider: daffProvideSearchDriver,
+  provider: provideDaffSearchDriver,
 } = createSingletonInjectionToken<DaffSearchDriverInterface>('DaffSearchDriver');
 
 /**

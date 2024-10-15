@@ -23,11 +23,11 @@ export const {
    *
    * ```ts
    * providers: [
-   *   ...daffProvideProductMagentoExtraProductFragments(
+   *   ...provideDaffProductMagentoExtraProductFragments(
    *     myExtraProductFragment
    *   )
    * ]
    * ```
    */
-  provider: daffProvideProductMagentoExtraProductFragments,
+  provider: provideDaffProductMagentoExtraProductFragments,
 } = createMultiInjectionToken<DocumentNode>('DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS');

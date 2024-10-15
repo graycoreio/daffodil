@@ -14,7 +14,7 @@ import { DaffNewsletterConfigToken } from '../config/newsletter-config.interface
 
 export const {
   token: DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN,
-  provider: daffProvideNewsletterHubspotFormsToken,
+  provider: provideDaffNewsletterHubspotFormsToken,
 } = createSingleInjectionToken<DaffHubspotFormsService>(
   'DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN',
   {

@@ -7,7 +7,7 @@ export const {
    * Can be used to further refine Daffodil errors into more specific app errors.
    */
   token: DAFF_SEARCH_ERROR_MATCHER,
-  provider: daffProvideSearchErrorMatcher,
+  provider: provideDaffSearchErrorMatcher,
 } = createSingleInjectionToken<typeof daffTransformErrorToStateError>(
   'DAFF_SEARCH_ERROR_MATCHER',
   { factory: () => daffTransformErrorToStateError },

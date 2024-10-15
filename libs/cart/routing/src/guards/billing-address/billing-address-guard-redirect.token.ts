@@ -2,5 +2,5 @@ import { createSingleInjectionToken } from '@daffodil/core';
 
 export const {
   token: DaffCartBillingAddressGuardRedirectUrl,
-  provider: daffProvideCartBillingAddressGuardRedirectUrl,
+  provider: provideDaffCartBillingAddressGuardRedirectUrl,
 } = createSingleInjectionToken<string>('DaffCartBillingAddressGuardRedirectUrl', { factory: () => '/' });

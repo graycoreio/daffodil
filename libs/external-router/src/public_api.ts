@@ -9,7 +9,7 @@ export {
   DaffExternalRouterConfiguration,
 } from './config';
 
-export { daffProvideRouteResolvableByType } from './token/type-resolvable-routes.token';
+export { provideDaffRouteResolvableByType } from './token/type-resolvable-routes.token';
 
 export * from './model/public_api';
 

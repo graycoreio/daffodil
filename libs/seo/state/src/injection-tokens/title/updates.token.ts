@@ -21,13 +21,13 @@ const {
  *
  * ```ts
  * providers: [
- *   ...daffProvideTitleUpdates(
+ *   ...provideDaffTitleUpdates(
  *     myTitleUpdate
  *   )
  * ]
  * ```
  */
-export function daffProvideTitleUpdates<T extends Action = Action>(...values: DaffSeoTitleUpdate<T>[]): Provider[] {
+export function provideDaffTitleUpdates<T extends Action = Action>(...values: DaffSeoTitleUpdate<T>[]): Provider[] {
   return provider(...values);
 }
 
