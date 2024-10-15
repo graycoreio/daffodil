@@ -3,11 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { DaffMagentoProductExtraTransform } from '@daffodil/product/driver/magento';
 
 import {
-  daffProvideProductMagentoExtraProductTransforms,
+  provideDaffProductMagentoExtraProductTransforms,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS,
 } from './extra.token';
 
-describe('@daffodil/product/driver/magento | daffProvideProductMagentoExtraProductTransforms', () => {
+describe('@daffodil/product/driver/magento | provideDaffProductMagentoExtraProductTransforms', () => {
   let transforms: DaffMagentoProductExtraTransform[];
   let result: DaffMagentoProductExtraTransform[];
 
@@ -19,7 +19,7 @@ describe('@daffodil/product/driver/magento | daffProvideProductMagentoExtraProdu
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideProductMagentoExtraProductTransforms(...transforms),
+        ...provideDaffProductMagentoExtraProductTransforms(...transforms),
       ],
     });
 

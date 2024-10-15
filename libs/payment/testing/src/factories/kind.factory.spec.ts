@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffPaymentResponse } from '@daffodil/payment';
 import {
   MockPaymentResponse,
-  daffProvidePaymentResponseKindFactories,
+  provideDaffPaymentResponseKindFactories,
 } from '@daffodil/payment/testing';
 
 import { DaffPaymentResponseKindFactory } from './kind.factory';
@@ -30,7 +30,7 @@ describe('@daffodil/payment/testing | DaffPaymentResponseKindFactory', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffPaymentResponseKindFactory,
-        ...daffProvidePaymentResponseKindFactories(
+        ...provideDaffPaymentResponseKindFactories(
           TestPaymentResponseFactory,
         ),
       ],

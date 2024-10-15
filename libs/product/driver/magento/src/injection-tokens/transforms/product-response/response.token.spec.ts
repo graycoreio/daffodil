@@ -4,7 +4,7 @@ import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import {
   DaffMagentoProductResponseExtraTransform,
   DaffMagentoProductResponseTransform,
-  daffProvideProductMagentoExtraProductResponseTransforms,
+  provideDaffProductMagentoExtraProductResponseTransforms,
   MagentoProduct,
 } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
@@ -35,7 +35,7 @@ describe('DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideProductMagentoExtraProductResponseTransforms(...transforms),
+        ...provideDaffProductMagentoExtraProductResponseTransforms(...transforms),
       ],
     });
 

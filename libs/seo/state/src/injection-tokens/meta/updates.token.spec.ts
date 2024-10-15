@@ -3,11 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { DaffSeoMetaUpdate } from '@daffodil/seo/state';
 
 import {
-  daffProvideMetaUpdates,
+  provideDaffMetaUpdates,
   DAFF_SEO_META_UPDATES,
 } from './updates.token';
 
-describe('daffProvideMetaUpdates', () => {
+describe('provideDaffMetaUpdates', () => {
   let updates: DaffSeoMetaUpdate[];
   let result: DaffSeoMetaUpdate[];
 
@@ -21,7 +21,7 @@ describe('daffProvideMetaUpdates', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideMetaUpdates(...updates),
+        ...provideDaffMetaUpdates(...updates),
       ],
     });
 

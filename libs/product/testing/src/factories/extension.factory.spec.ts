@@ -7,7 +7,7 @@ import {
   DaffProductTypeEnum,
 } from '@daffodil/product';
 import {
-  daffProvideProductExtraProductFactories,
+  provideDaffProductExtraProductFactories,
   MockProduct,
   DaffProductKindFactory,
   DaffProductImageFactory,
@@ -60,7 +60,7 @@ describe('@daffodil/product/testing | DaffProductExtensionFactory', () => {
           provide: DaffProductKindFactory,
           useValue: productKindFactorySpy,
         },
-        ...daffProvideProductExtraProductFactories(
+        ...provideDaffProductExtraProductFactories(
           TestProductFactory,
         ),
         {

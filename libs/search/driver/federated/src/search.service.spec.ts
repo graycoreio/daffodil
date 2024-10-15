@@ -11,7 +11,7 @@ import {
   DaffSearchDriverKindedInterface,
   DaffSearchDriverResponse,
 } from '@daffodil/search/driver';
-import { daffProvideSearchFederatedDrivers } from '@daffodil/search/driver/federated';
+import { provideDaffSearchFederatedDrivers } from '@daffodil/search/driver/federated';
 
 import { DaffSearchFederatedDriver } from './search.service';
 
@@ -66,7 +66,7 @@ describe('@daffodil/search/driver/federated | DaffSearchFederatedDriver', () => 
     TestBed.configureTestingModule({
       providers: [
         DaffSearchFederatedDriver,
-        ...daffProvideSearchFederatedDrivers<TestDriver1 | TestDriver2>(TestDriver1, TestDriver2),
+        ...provideDaffSearchFederatedDrivers<TestDriver1 | TestDriver2>(TestDriver1, TestDriver2),
       ],
     });
 

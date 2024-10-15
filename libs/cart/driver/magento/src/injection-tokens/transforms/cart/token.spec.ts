@@ -3,11 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { DaffCartMagentoCartTransform } from '@daffodil/cart/driver/magento';
 
 import {
-  daffProvideCartMagentoCartTransforms,
+  provideDaffCartMagentoCartTransforms,
   DAFF_CART_MAGENTO_CART_TRANSFORMS,
 } from './token';
 
-describe('daffProvideCartMagentoCartTransforms', () => {
+describe('provideDaffCartMagentoCartTransforms', () => {
   let transforms: DaffCartMagentoCartTransform[];
   let result: DaffCartMagentoCartTransform[];
 
@@ -19,7 +19,7 @@ describe('daffProvideCartMagentoCartTransforms', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideCartMagentoCartTransforms(...transforms),
+        ...provideDaffCartMagentoCartTransforms(...transforms),
       ],
     });
 

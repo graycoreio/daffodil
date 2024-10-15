@@ -10,7 +10,7 @@ import { DaffSearchResult } from '@daffodil/search';
 import { MockSearchResult } from '@daffodil/search/testing';
 
 import {
-  daffProvideSearchResultKindFactories,
+  provideDaffSearchResultKindFactories,
   DAFF_SEARCH_RESULT_KIND_FACTORIES,
 } from './kind.token';
 
@@ -25,7 +25,7 @@ class TestSearchResultFactory extends DaffModelFactory<DaffSearchResult> {
   }
 }
 
-describe('@daffodil/search/testing | daffProvideSearchResultKindFactories', () => {
+describe('@daffodil/search/testing | provideDaffSearchResultKindFactories', () => {
   let factories: Type<DaffModelFactory<DaffSearchResult>>[];
   let result: DaffModelFactory<DaffSearchResult>[];
 
@@ -36,7 +36,7 @@ describe('@daffodil/search/testing | daffProvideSearchResultKindFactories', () =
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideSearchResultKindFactories(...factories),
+        ...provideDaffSearchResultKindFactories(...factories),
       ],
     });
 

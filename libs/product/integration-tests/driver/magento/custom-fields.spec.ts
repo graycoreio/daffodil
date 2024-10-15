@@ -15,11 +15,11 @@ import {
   DaffProductDriver,
 } from '@daffodil/product/driver';
 import {
-  daffProvideProductMagentoExtraProductFragments,
+  provideDaffProductMagentoExtraProductFragments,
   DaffProductMagentoDriverModule,
   DaffMagentoProductResponseExtraTransform,
   MagentoProduct,
-  daffProvideProductMagentoExtraProductResponseTransforms,
+  provideDaffProductMagentoExtraProductResponseTransforms,
   MagentoSimpleProduct,
   getProduct,
   DAFF_MAGENTO_GET_A_PRODUCT_QUERY_NAME,
@@ -65,8 +65,8 @@ describe('@daffodil/product | Querying and Transforming Custom Fields in Magento
         DaffProductMagentoDriverModule.forRoot(),
       ],
       providers: [
-        ...daffProvideProductMagentoExtraProductFragments(myProductFragment),
-        ...daffProvideProductMagentoExtraProductResponseTransforms(myProductTransformer),
+        ...provideDaffProductMagentoExtraProductFragments(myProductFragment),
+        ...provideDaffProductMagentoExtraProductResponseTransforms(myProductTransformer),
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({

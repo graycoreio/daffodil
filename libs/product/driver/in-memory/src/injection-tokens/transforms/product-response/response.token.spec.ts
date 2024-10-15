@@ -5,7 +5,7 @@ import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import {
   DaffInMemoryProductResponseExtraTransform,
   DaffInMemoryProductResponseTransform,
-  daffProvideProductInMemoryExtraProductResponseTransforms,
+  provideDaffProductInMemoryExtraProductResponseTransforms,
 } from '@daffodil/product/driver/in-memory';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -34,7 +34,7 @@ describe('DAFF_PRODUCT_IN_MEMORY_PRODUCT_RESPONSE_TRANSFORM', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideProductInMemoryExtraProductResponseTransforms(...transforms),
+        ...provideDaffProductInMemoryExtraProductResponseTransforms(...transforms),
       ],
     });
 

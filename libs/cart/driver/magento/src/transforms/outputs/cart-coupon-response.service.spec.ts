@@ -6,7 +6,7 @@ import {
   MagentoCart,
   MagentoCartCoupon,
   DaffCartMagentoCartItemTransform,
-  daffProvideCartMagentoCartItemTransforms,
+  provideDaffCartMagentoCartItemTransforms,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -42,7 +42,7 @@ describe('@daffodil/cart/driver/magento | CartCouponResponse', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffMagentoCartTransformer,
-        ...daffProvideCartMagentoCartItemTransforms(transform),
+        ...provideDaffCartMagentoCartItemTransforms(transform),
       ],
     });
 

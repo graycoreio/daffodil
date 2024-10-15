@@ -30,7 +30,7 @@ import { tap } from 'rxjs/operators';
 
 import {
   DaffSeoStateModule,
-  daffProvideCanonicalUrlUpdates,
+  provideDaffCanonicalUrlUpdates,
 } from '@daffodil/seo/state';
 
 class ActionFromFeature1 implements Action {
@@ -139,13 +139,13 @@ describe('@daffodil/seo/state | Providing Custom Behavior for Canonical URL Upda
         DaffSeoStateModule,
       ],
       providers: [
-        ...daffProvideCanonicalUrlUpdates<ActionFromFeature1>(
+        ...provideDaffCanonicalUrlUpdates<ActionFromFeature1>(
           {
             action: 'ActionFromFeature1',
             getData: (action: ActionFromFeature1) => `${action.url1}custom1`,
           },
         ),
-        ...daffProvideCanonicalUrlUpdates<ActionFromFeature2>(
+        ...provideDaffCanonicalUrlUpdates<ActionFromFeature2>(
           {
             action: 'ActionFromFeature2',
             getData: (action: ActionFromFeature2) => `${action.url2}custom2`,

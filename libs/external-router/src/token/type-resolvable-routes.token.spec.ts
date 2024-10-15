@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_TYPE,
-  daffProvideRouteResolvableByType,
+  provideDaffRouteResolvableByType,
 } from './type-resolvable-routes.token';
 import { DaffExternalRouterInsertionStrategy } from '../model/insertion-strategy.type';
 import { DaffTypeRoutePair } from '../model/type-route-pair';
@@ -19,7 +19,7 @@ describe('@daffodil/external-router | DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_
   it('allow you to provide a resolvable route type', () => {
     TestBed.configureTestingModule({
       providers: [
-        daffProvideRouteResolvableByType({
+        provideDaffRouteResolvableByType({
           type: 'some-type',
           route: {
             redirectTo: 'somewhere',
@@ -44,7 +44,7 @@ describe('@daffodil/external-router | DAFF_EXTERNAL_ROUTER_ROUTES_RESOLVABLE_BY_
 
     TestBed.configureTestingModule({
       providers: [
-        daffProvideRouteResolvableByType(
+        provideDaffRouteResolvableByType(
           {
             type: 'some-type',
             route: {

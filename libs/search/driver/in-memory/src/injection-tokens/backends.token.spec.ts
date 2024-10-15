@@ -11,7 +11,7 @@ import {
 import { DaffSearchInMemoryChildBackend } from '@daffodil/search/driver/in-memory';
 
 import {
-  daffProvideSearchInMemoryBackends,
+  provideDaffSearchInMemoryBackends,
   DAFF_SEARCH_IN_MEMORY_BACKENDS,
 } from './backends.token';
 
@@ -43,7 +43,7 @@ class TestBackend2 implements DaffSearchInMemoryChildBackend {
   }
 }
 
-describe('@daffodil/search/driver/in-memory | daffProvideSearchInMemoryBackends', () => {
+describe('@daffodil/search/driver/in-memory | provideDaffSearchInMemoryBackends', () => {
   let backends: Type<DaffSearchInMemoryChildBackend>[];
   let result: DaffSearchInMemoryChildBackend[];
 
@@ -55,7 +55,7 @@ describe('@daffodil/search/driver/in-memory | daffProvideSearchInMemoryBackends'
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideSearchInMemoryBackends(...backends),
+        ...provideDaffSearchInMemoryBackends(...backends),
       ],
     });
 

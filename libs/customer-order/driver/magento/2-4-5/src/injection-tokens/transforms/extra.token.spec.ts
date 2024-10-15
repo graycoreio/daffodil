@@ -3,11 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { DaffMagentoCustomerOrderExtraTransform } from '@daffodil/customer-order/driver/magento/2-4-5';
 
 import {
-  daffProvideCustomerOrderMagentoExtraOrderTransforms,
+  provideDaffCustomerOrderMagentoExtraOrderTransforms,
   DAFF_CUSTOMER_ORDER_MAGENTO_EXTRA_ORDER_TRANSFORMS,
 } from './extra.token';
 
-describe('@daffodil/customer-order/driver/magento/2-4-5 | daffProvideCustomerOrderMagentoExtraOrderTransforms', () => {
+describe('@daffodil/customer-order/driver/magento/2-4-5 | provideDaffCustomerOrderMagentoExtraOrderTransforms', () => {
   let transforms: DaffMagentoCustomerOrderExtraTransform[];
   let result: DaffMagentoCustomerOrderExtraTransform[];
 
@@ -19,7 +19,7 @@ describe('@daffodil/customer-order/driver/magento/2-4-5 | daffProvideCustomerOrd
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideCustomerOrderMagentoExtraOrderTransforms(...transforms),
+        ...provideDaffCustomerOrderMagentoExtraOrderTransforms(...transforms),
       ],
     });
 

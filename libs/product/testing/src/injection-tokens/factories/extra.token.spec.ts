@@ -10,7 +10,7 @@ import { DaffProduct } from '@daffodil/product';
 import { MockProduct } from '@daffodil/product/testing';
 
 import {
-  daffProvideProductExtraProductFactories,
+  provideDaffProductExtraProductFactories,
   DAFF_PRODUCT_EXTRA_FACTORIES,
 } from './extra.token';
 
@@ -25,7 +25,7 @@ class TestProductFactory extends DaffModelFactory<DaffProduct> {
   }
 }
 
-describe('daffProvideProductExtraProductFactories', () => {
+describe('provideDaffProductExtraProductFactories', () => {
   let factories: Type<DaffModelFactory<DaffProduct>>[];
   let result: DaffModelFactory<DaffProduct>[];
 
@@ -36,7 +36,7 @@ describe('daffProvideProductExtraProductFactories', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideProductExtraProductFactories(...factories),
+        ...provideDaffProductExtraProductFactories(...factories),
       ],
     });
 

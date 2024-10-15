@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 import { DaffSearchDriverKindedInterface } from '@daffodil/search/driver';
 
 import {
-  daffProvideSearchFederatedDrivers,
+  provideDaffSearchFederatedDrivers,
   DAFF_SEARCH_FEDERATED_DRIVERS,
 } from './drivers.token';
 
@@ -44,7 +44,7 @@ class TestDriver2 implements DaffSearchDriverKindedInterface {
   }
 }
 
-describe('@daffodil/search/driver/federated | daffProvideSearchFederatedDrivers', () => {
+describe('@daffodil/search/driver/federated | provideDaffSearchFederatedDrivers', () => {
   let drivers: Type<DaffSearchDriverKindedInterface>[];
   let result: DaffSearchDriverKindedInterface[];
 
@@ -56,7 +56,7 @@ describe('@daffodil/search/driver/federated | daffProvideSearchFederatedDrivers'
 
     TestBed.configureTestingModule({
       providers: [
-        ...daffProvideSearchFederatedDrivers(...drivers),
+        ...provideDaffSearchFederatedDrivers(...drivers),
       ],
     });
 

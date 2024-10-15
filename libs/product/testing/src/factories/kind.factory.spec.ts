@@ -6,7 +6,7 @@ import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductImageFactory,
   MockProduct,
-  daffProvideProductExtraFactoryTypes,
+  provideDaffProductExtraFactoryTypes,
 } from '@daffodil/product/testing';
 
 import { DaffProductKindFactory } from './kind.factory';
@@ -34,7 +34,7 @@ describe('@daffodil/product/testing | DaffProductKindFactory', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffProductKindFactory,
-        ...daffProvideProductExtraFactoryTypes(
+        ...provideDaffProductExtraFactoryTypes(
           TestProductFactory,
         ),
       ],

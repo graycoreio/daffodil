@@ -40,7 +40,7 @@ import {
   MagentoAddCartItemResponse,
   addCartItem,
   DaffCartMagentoCartItemTransform,
-  daffProvideCartMagentoCartItemTransforms,
+  provideDaffCartMagentoCartItemTransforms,
   MagentoCartUserInputErrorType,
   MagentoCartUserInputError,
 } from '@daffodil/cart/driver/magento';
@@ -109,7 +109,7 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
       ],
       providers: [
         DaffMagentoCartItemService,
-        ...daffProvideCartMagentoCartItemTransforms(transform),
+        ...provideDaffCartMagentoCartItemTransforms(transform),
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
