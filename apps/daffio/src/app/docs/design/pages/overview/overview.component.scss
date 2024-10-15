@@ -2,11 +2,6 @@
 
 :host {
 	display: block;
-	padding: 48px 24px;
-
-	@include daff.breakpoint(tablet) {
-		padding: 48px 96px;
-	}
 }
 
 .daffio-docs-design-overview {

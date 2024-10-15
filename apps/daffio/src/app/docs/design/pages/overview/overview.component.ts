@@ -4,8 +4,9 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { DaffButtonModule } from '@daffodil/design/button';
-import { DaffContainerModule } from '@daffodil/design/container';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
+import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
 
 @Component({
   selector: 'daffio-docs-design-overview',
@@ -14,8 +15,9 @@ import { DaffContainerModule } from '@daffodil/design/container';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffContainerModule,
-    DaffButtonModule,
+    DAFF_CONTAINER_COMPONENTS,
+    DAFF_BUTTON_COMPONENTS,
+    DAFF_HERO_COMPONENTS,
     RouterLink,
   ],
 })
