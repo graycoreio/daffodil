@@ -1,7 +1,7 @@
 export {
   DaffPaymentDriverInterface,
   DaffPaymentDriver,
-  provideDaffPaymentDriver
+  provideDaffPaymentDriver,
 } from './interfaces/payment-service.interface';
 
 export * from './errors/public_api';

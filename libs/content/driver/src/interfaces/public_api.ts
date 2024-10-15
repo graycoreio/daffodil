@@ -1,5 +1,5 @@
 export {
   DaffContentServiceInterface,
   DaffContentDriver,
-  provideDaffContentDriver
+  provideDaffContentDriver,
 } from './service.interface';

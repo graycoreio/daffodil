@@ -1,7 +1,7 @@
 export {
   DaffOrderServiceInterface,
   DaffOrderDriver,
-  provideDaffOrderDriver
+  provideDaffOrderDriver,
 } from './interfaces/order-service.interface';
 
 export * from './errors/public_api';

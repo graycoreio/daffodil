@@ -1,5 +1,5 @@
 export {
   DaffCategoryServiceInterface,
   DaffCategoryDriver,
-  provideDaffCategoryDriver
+  provideDaffCategoryDriver,
 } from './interfaces/category-service.interface';

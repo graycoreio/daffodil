@@ -1,12 +1,12 @@
 export {
   DaffCustomerDriverInterface,
   DaffCustomerDriver,
-  provideDaffCustomerDriver
+  provideDaffCustomerDriver,
 } from './interfaces/customer-service.interface';
 export {
   DaffCustomerAddressDriverInterface,
   DaffCustomerAddressDriver,
-  provideDaffCustomerAddressDriver
+  provideDaffCustomerAddressDriver,
 } from './interfaces/address-service.interface';
 
 export * from './errors/public_api';

@@ -1,7 +1,7 @@
 export {
   DaffNavigationServiceInterface,
   DaffNavigationDriver,
-  provideDaffNavigationDriver
+  provideDaffNavigationDriver,
 } from './navigation-service.interface';
 export {
   DaffNavigationTransformer,
