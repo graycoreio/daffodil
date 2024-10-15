@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffContactDriver } from '@daffodil/contact/driver';
+import { provideDaffContactDriver } from '@daffodil/contact/driver';
 
 import { DaffTestingContactService } from './contact.service';
 
@@ -16,10 +16,7 @@ export class DaffContactTestingDriverModule {
     return {
       ngModule: DaffContactTestingDriverModule,
       providers: [
-        {
-          provide: DaffContactDriver,
-          useClass: DaffTestingContactService,
-        },
+        provideDaffContactDriver(DaffTestingContactService),
       ],
     };
   }

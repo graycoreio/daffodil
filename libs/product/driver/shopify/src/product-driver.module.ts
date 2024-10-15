@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffProductDriver } from '@daffodil/product/driver';
+import { provideDaffProductDriver } from '@daffodil/product/driver';
 
 import { DaffShopifyProductService } from './product.service';
 
@@ -21,10 +21,7 @@ export class DaffProductShopifyDriverModule {
     return {
       ngModule: DaffProductShopifyDriverModule,
       providers: [
-        {
-          provide: DaffProductDriver,
-          useExisting: DaffShopifyProductService,
-        },
+        provideDaffProductDriver(DaffShopifyProductService),
       ],
     };
   }

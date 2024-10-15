@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffCustomerPaymentDriver } from '@daffodil/customer-payment/driver';
+import { provideDaffCustomerPaymentDriver } from '@daffodil/customer-payment/driver';
 import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 
 import { DaffCustomerPaymentInMemoryDriver } from './payment.service';
@@ -23,10 +23,7 @@ export class DaffCustomerPaymentInMemoryDriverModule {
     return {
       ngModule: DaffCustomerPaymentInMemoryDriverModule,
       providers: [
-        {
-          provide: DaffCustomerPaymentDriver,
-          useExisting: DaffCustomerPaymentInMemoryDriver,
-        },
+        provideDaffCustomerPaymentDriver(DaffCustomerPaymentInMemoryDriver),
         provideDaffInMemoryBackends(DaffCustomerPaymentInMemoryBackendService),
       ],
     };

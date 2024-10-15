@@ -4,7 +4,7 @@ import {
   NgModule,
 } from '@angular/core';
 
-import { DaffCategoryDriver } from '@daffodil/category/driver';
+import { provideDaffCategoryDriver } from '@daffodil/category/driver';
 import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
 import {
   provideDaffProductMagentoExtraProductPreviewFragments,
@@ -41,10 +41,7 @@ export class DaffCategoryMagentoDriverModule {
     return {
       ngModule: DaffCategoryMagentoDriverModule,
       providers: [
-        {
-          provide: DaffCategoryDriver,
-          useExisting: DaffMagentoCategoryService,
-        },
+        provideDaffCategoryDriver(DaffMagentoCategoryService),
         DaffMagentoCategoryPageConfigTransformerService,
         DaffMagentoCategoryResponseTransformService,
         DaffMagentoCategoryTransformerService,

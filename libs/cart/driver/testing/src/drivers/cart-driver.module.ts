@@ -5,17 +5,17 @@ import {
 } from '@angular/core';
 
 import {
-  DaffCartDriver,
-  DaffCartAddressDriver,
-  DaffCartBillingAddressDriver,
-  DaffCartShippingAddressDriver,
-  DaffCartCouponDriver,
-  DaffCartOrderDriver,
-  DaffCartPaymentDriver,
-  DaffCartShippingInformationDriver,
-  DaffCartShippingMethodsDriver,
-  DaffCartPaymentMethodsDriver,
-  DaffCartItemDriver,
+  provideDaffCartDriver,
+  provideDaffCartAddressDriver,
+  provideDaffCartBillingAddressDriver,
+  provideDaffCartShippingAddressDriver,
+  provideDaffCartCouponDriver,
+  provideDaffCartOrderDriver,
+  provideDaffCartPaymentDriver,
+  provideDaffCartShippingInformationDriver,
+  provideDaffCartShippingMethodsDriver,
+  provideDaffCartPaymentMethodsDriver,
+  provideDaffCartItemDriver,
 } from '@daffodil/cart/driver';
 
 import { DaffTestingCartService } from './cart/cart.service';
@@ -40,50 +40,17 @@ export class DaffTestingCartDriverModule {
     return {
       ngModule: DaffTestingCartDriverModule,
       providers: [
-        {
-          provide: DaffCartDriver,
-          useExisting: DaffTestingCartService,
-        },
-        {
-          provide: DaffCartItemDriver,
-          useExisting: DaffTestingCartItemService,
-        },
-        {
-          provide: DaffCartAddressDriver,
-          useExisting: DaffTestingCartAddressService,
-        },
-        {
-          provide: DaffCartBillingAddressDriver,
-          useExisting: DaffTestingCartBillingAddressService,
-        },
-        {
-          provide: DaffCartShippingAddressDriver,
-          useExisting: DaffTestingCartShippingAddressService,
-        },
-        {
-          provide: DaffCartCouponDriver,
-          useExisting: DaffTestingCartCouponService,
-        },
-        {
-          provide: DaffCartOrderDriver,
-          useExisting: DaffTestingCartOrderService,
-        },
-        {
-          provide: DaffCartPaymentDriver,
-          useExisting: DaffTestingCartPaymentService,
-        },
-        {
-          provide: DaffCartShippingInformationDriver,
-          useExisting: DaffTestingCartShippingInformationService,
-        },
-        {
-          provide: DaffCartShippingMethodsDriver,
-          useExisting: DaffTestingCartShippingMethodsService,
-        },
-        {
-          provide: DaffCartPaymentMethodsDriver,
-          useExisting: DaffTestingCartPaymentMethodsService,
-        },
+        provideDaffCartDriver(DaffTestingCartService),
+        provideDaffCartItemDriver(DaffTestingCartItemService),
+        provideDaffCartAddressDriver(DaffTestingCartAddressService),
+        provideDaffCartBillingAddressDriver(DaffTestingCartBillingAddressService),
+        provideDaffCartShippingAddressDriver(DaffTestingCartShippingAddressService),
+        provideDaffCartCouponDriver(DaffTestingCartCouponService),
+        provideDaffCartOrderDriver(DaffTestingCartOrderService),
+        provideDaffCartPaymentDriver(DaffTestingCartPaymentService),
+        provideDaffCartShippingInformationDriver(DaffTestingCartShippingInformationService),
+        provideDaffCartShippingMethodsDriver(DaffTestingCartShippingMethodsService),
+        provideDaffCartPaymentMethodsDriver(DaffTestingCartPaymentMethodsService),
       ],
     };
   }

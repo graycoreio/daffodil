@@ -5,8 +5,8 @@ import {
 } from '@angular/core';
 
 import {
-  DaffCustomerAddressDriver,
-  DaffCustomerDriver,
+  provideDaffCustomerAddressDriver,
+  provideDaffCustomerDriver,
 } from '@daffodil/customer/driver';
 import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
 
@@ -27,14 +27,8 @@ export class DaffCustomerMagentoDriverModule {
     return {
       ngModule: DaffCustomerMagentoDriverModule,
       providers: [
-        {
-          provide: DaffCustomerDriver,
-          useExisting: DaffCustomerMagentoService,
-        },
-        {
-          provide: DaffCustomerAddressDriver,
-          useExisting: DaffCustomerMagentoAddressService,
-        },
+        provideDaffCustomerDriver(DaffCustomerMagentoService),
+        provideDaffCustomerAddressDriver(DaffCustomerMagentoAddressService),
       ],
     };
   }

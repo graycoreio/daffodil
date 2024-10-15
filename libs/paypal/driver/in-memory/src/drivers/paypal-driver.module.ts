@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
-import { DaffPaypalExpressDriver } from '@daffodil/paypal/driver';
+import { provideDaffPaypalExpressDriver } from '@daffodil/paypal/driver';
 
 import { DaffInMemoryPaypalService } from './paypal.service';
 import { DaffInMemoryBackendPaypalService } from '../backend/public_api';
@@ -20,10 +20,7 @@ export class DaffPaypalInMemoryDriverModule {
     return {
       ngModule: DaffPaypalInMemoryDriverModule,
       providers: [
-        {
-          provide: DaffPaypalExpressDriver,
-          useExisting: DaffInMemoryPaypalService,
-        },
+        provideDaffPaypalExpressDriver(DaffInMemoryPaypalService),
         provideDaffInMemoryBackends(DaffInMemoryBackendPaypalService),
       ],
     };

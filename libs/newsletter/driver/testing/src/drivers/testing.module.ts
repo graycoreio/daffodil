@@ -3,7 +3,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffNewsletterDriver } from '@daffodil/newsletter/driver';
+import { provideDaffNewsletterDriver } from '@daffodil/newsletter/driver';
 
 import { DaffTestingNewsletterService } from './newsletter.service';
 
@@ -13,10 +13,7 @@ export class DaffNewsletterTestingDriverModule {
     return {
       ngModule: DaffNewsletterTestingDriverModule,
       providers: [
-        {
-          provide: DaffNewsletterDriver,
-          useClass: DaffTestingNewsletterService,
-        },
+        provideDaffNewsletterDriver(DaffTestingNewsletterService),
       ],
     };
   }

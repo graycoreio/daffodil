@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffSearchDriver } from '@daffodil/search/driver';
+import { provideDaffSearchDriver } from '@daffodil/search/driver';
 
 import { DaffTestingSearchDriver } from './search.service';
 
@@ -21,10 +21,7 @@ export class DaffSearchTestingDriverModule {
     return {
       ngModule: DaffSearchTestingDriverModule,
       providers: [
-        {
-          provide: DaffSearchDriver,
-          useExisting: DaffTestingSearchDriver,
-        },
+        provideDaffSearchDriver(DaffTestingSearchDriver),
       ],
     };
   }

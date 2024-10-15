@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
-import { DaffReviewsDriver } from '@daffodil/reviews/driver';
+import { provideDaffReviewsDriver } from '@daffodil/reviews/driver';
 
 import { DaffReviewsInMemoryService } from './reviews.service';
 import { DaffReviewsInMemoryBackendService } from '../backend/reviews.service';
@@ -20,10 +20,7 @@ export class DaffReviewsInMemoryDriverModule {
     return {
       ngModule: DaffReviewsInMemoryDriverModule,
       providers: [
-        {
-          provide: DaffReviewsDriver,
-          useExisting: DaffReviewsInMemoryService,
-        },
+        provideDaffReviewsDriver(DaffReviewsInMemoryService),
         provideDaffInMemoryBackends(DaffReviewsInMemoryBackendService),
       ],
     };

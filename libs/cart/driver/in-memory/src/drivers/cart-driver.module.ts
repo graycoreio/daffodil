@@ -5,17 +5,17 @@ import {
 } from '@angular/core';
 
 import {
-  DaffCartDriver,
-  DaffCartBillingAddressDriver,
-  DaffCartItemDriver,
-  DaffCartPaymentDriver,
-  DaffCartPaymentMethodsDriver,
-  DaffCartShippingAddressDriver,
-  DaffCartShippingInformationDriver,
-  DaffCartShippingMethodsDriver,
-  DaffCartOrderDriver,
-  DaffCartCouponDriver,
-  DaffCartAddressDriver,
+  provideDaffCartDriver,
+  provideDaffCartBillingAddressDriver,
+  provideDaffCartItemDriver,
+  provideDaffCartPaymentDriver,
+  provideDaffCartPaymentMethodsDriver,
+  provideDaffCartShippingAddressDriver,
+  provideDaffCartShippingInformationDriver,
+  provideDaffCartShippingMethodsDriver,
+  provideDaffCartOrderDriver,
+  provideDaffCartCouponDriver,
+  provideDaffCartAddressDriver,
 } from '@daffodil/cart/driver';
 import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 
@@ -42,50 +42,17 @@ export class DaffCartInMemoryDriverModule {
     return {
       ngModule: DaffCartInMemoryDriverModule,
       providers: [
-        {
-          provide: DaffCartDriver,
-          useExisting: DaffInMemoryCartService,
-        },
-        {
-          provide: DaffCartAddressDriver,
-          useExisting: DaffInMemoryCartAddressService,
-        },
-        {
-          provide: DaffCartBillingAddressDriver,
-          useExisting: DaffInMemoryCartBillingAddressService,
-        },
-        {
-          provide: DaffCartItemDriver,
-          useExisting: DaffInMemoryCartItemService,
-        },
-        {
-          provide: DaffCartPaymentDriver,
-          useExisting: DaffInMemoryCartPaymentService,
-        },
-        {
-          provide: DaffCartPaymentMethodsDriver,
-          useExisting: DaffInMemoryCartPaymentMethodsService,
-        },
-        {
-          provide: DaffCartShippingAddressDriver,
-          useExisting: DaffInMemoryCartShippingAddressService,
-        },
-        {
-          provide: DaffCartShippingInformationDriver,
-          useExisting: DaffInMemoryCartShippingInformationService,
-        },
-        {
-          provide: DaffCartShippingMethodsDriver,
-          useExisting: DaffInMemoryCartShippingMethodsService,
-        },
-        {
-          provide: DaffCartOrderDriver,
-          useExisting: DaffInMemoryCartOrderService,
-        },
-        {
-          provide: DaffCartCouponDriver,
-          useExisting: DaffInMemoryCartCouponService,
-        },
+        provideDaffCartDriver(DaffInMemoryCartService),
+        provideDaffCartAddressDriver(DaffInMemoryCartAddressService),
+        provideDaffCartBillingAddressDriver(DaffInMemoryCartBillingAddressService),
+        provideDaffCartItemDriver(DaffInMemoryCartItemService),
+        provideDaffCartPaymentDriver(DaffInMemoryCartPaymentService),
+        provideDaffCartPaymentMethodsDriver(DaffInMemoryCartPaymentMethodsService),
+        provideDaffCartShippingAddressDriver(DaffInMemoryCartShippingAddressService),
+        provideDaffCartShippingInformationDriver(DaffInMemoryCartShippingInformationService),
+        provideDaffCartShippingMethodsDriver(DaffInMemoryCartShippingMethodsService),
+        provideDaffCartOrderDriver(DaffInMemoryCartOrderService),
+        provideDaffCartCouponDriver(DaffInMemoryCartCouponService),
         provideDaffInMemoryBackends(
           DaffInMemoryBackendCartRootService,
         ),

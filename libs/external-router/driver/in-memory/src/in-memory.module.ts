@@ -6,7 +6,7 @@ import {
   inject,
 } from '@angular/core';
 
-import { DaffExternalRouterDriver } from '@daffodil/external-router/driver';
+import { provideDaffExternalRouterDriver } from '@daffodil/external-router/driver';
 
 import {
   DaffExternalRouterDriverInMemoryConfig,
@@ -29,10 +29,7 @@ export class DaffExternalRouterDriverInMemoryModule {
     return {
       ngModule: DaffExternalRouterDriverInMemoryModule,
       providers: [
-        {
-          provide: DaffExternalRouterDriver,
-          useExisting: DaffExternalRouterInMemoryDriver,
-        },
+        provideDaffExternalRouterDriver(DaffExternalRouterInMemoryDriver),
         {
           provide: DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG,
           // eslint-disable-next-line prefer-arrow/prefer-arrow-functions

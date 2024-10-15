@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
-import { DaffGeographyDriver } from '@daffodil/geography/driver';
+import { provideDaffGeographyDriver } from '@daffodil/geography/driver';
 
 import { DaffGeographyMagentoService } from './geography.service';
 import {
@@ -23,10 +23,7 @@ export class DaffGeographyMagentoDriverModule {
     return {
       ngModule: DaffGeographyMagentoDriverModule,
       providers: [
-        {
-          provide: DaffGeographyDriver,
-          useExisting: DaffGeographyMagentoService,
-        },
+        provideDaffGeographyDriver(DaffGeographyMagentoService),
         {
           provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
           useValue: MAGENTO_GET_COUNTRY_QUERY_NAME,

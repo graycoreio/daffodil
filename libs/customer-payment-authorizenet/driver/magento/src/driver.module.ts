@@ -5,8 +5,8 @@ import {
 } from '@angular/core';
 
 import { DaffAuthorizeNetPaymentDriver } from '@daffodil/authorizenet/driver';
-import { DaffCustomerPaymentDriver } from '@daffodil/customer-payment/driver';
-import { DaffCustomerPaymentAuthorizeNetPaymentDriver } from '@daffodil/customer-payment-authorizenet/driver';
+import { provideDaffCustomerPaymentDriver } from '@daffodil/customer-payment/driver';
+import { provideDaffCustomerPaymentAuthorizeNetPaymentDriver } from '@daffodil/customer-payment-authorizenet/driver';
 
 import { DaffCustomerPaymentAuthorizeNetMagentoService } from './customer-payment.service';
 import { DaffCustomerPaymentAuthorizeNetMagentoPaymentService } from './payment.service';
@@ -21,18 +21,13 @@ export class DaffCustomerPaymentAuthorizeNetMagentoDriverModule {
     return {
       ngModule: DaffCustomerPaymentAuthorizeNetMagentoDriverModule,
       providers: [
-        {
-          provide: DaffCustomerPaymentDriver,
-          useExisting: DaffCustomerPaymentAuthorizeNetMagentoService,
-        },
+        provideDaffCustomerPaymentDriver(DaffCustomerPaymentAuthorizeNetMagentoService),
+        // TODO: use provider function
         {
           provide: DaffAuthorizeNetPaymentDriver,
           useExisting: DaffCustomerPaymentAuthorizeNetMagentoPaymentService,
         },
-        {
-          provide: DaffCustomerPaymentAuthorizeNetPaymentDriver,
-          useExisting: DaffCustomerPaymentAuthorizeNetMagentoPaymentService,
-        },
+        provideDaffCustomerPaymentAuthorizeNetPaymentDriver(DaffCustomerPaymentAuthorizeNetMagentoPaymentService),
       ],
     };
   }

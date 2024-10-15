@@ -6,7 +6,7 @@ import {
 
 import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
 import {
-  DaffNavigationDriver,
+  provideDaffNavigationDriver,
   DaffNavigationTransformer,
 } from '@daffodil/navigation/driver';
 
@@ -29,10 +29,7 @@ export class DaffNavigationMagentoDriverModule {
     return {
       ngModule: DaffNavigationMagentoDriverModule,
       providers: [
-        {
-          provide: DaffNavigationDriver,
-          useExisting: DaffMagentoNavigationService,
-        },
+        provideDaffNavigationDriver(DaffMagentoNavigationService),
         {
           provide: DaffNavigationTransformer,
           useExisting: DaffMagentoNavigationTransformerService,

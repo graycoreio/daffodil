@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
-import { DaffExternalRouterDriver } from '@daffodil/external-router/driver';
+import { provideDaffExternalRouterDriver } from '@daffodil/external-router/driver';
 
 import { DAFF_MAGENTO_RESOLVE_URL_QUERY_NAME } from './graphql/queries/resolve-url-v2.4.1';
 import { DaffExternalRouterMagentoDriver } from './magento.service';
@@ -38,10 +38,7 @@ export class DaffExternalRouterDriverMagentoModule {
     return {
       ngModule: DaffExternalRouterDriverMagentoModule,
       providers: [
-        {
-          provide: DaffExternalRouterDriver,
-          useExisting: DaffExternalRouterMagentoDriver,
-        },
+        provideDaffExternalRouterDriver(DaffExternalRouterMagentoDriver),
         {
           provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
           useValue: DAFF_MAGENTO_RESOLVE_URL_QUERY_NAME,

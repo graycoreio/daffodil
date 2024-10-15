@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffContentDriver } from '@daffodil/content/driver';
+import { provideDaffContentDriver } from '@daffodil/content/driver';
 import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento';
 
 import { MAGENTO_CONTENT_GET_BLOCKS_QUERY_NAME } from './queries/public_api';
@@ -20,10 +20,7 @@ export class DaffContentMagentoDriverModule {
     return {
       ngModule: DaffContentMagentoDriverModule,
       providers: [
-        {
-          provide: DaffContentDriver,
-          useExisting: MagentoContentService,
-        },
+        provideDaffContentDriver(MagentoContentService),
         provideDaffMagentoCacheableOperation(MAGENTO_CONTENT_GET_BLOCKS_QUERY_NAME),
       ],
     };

@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
-import { DaffGeographyDriver } from '@daffodil/geography/driver';
+import { provideDaffGeographyDriver } from '@daffodil/geography/driver';
 
 import { DaffInMemoryGeographyService } from './geography.service';
 import { DaffInMemoryBackendGeographyService } from '../backend/geography.service';
@@ -20,10 +20,7 @@ export class DaffGeographyInMemoryDriverModule {
     return {
       ngModule: DaffGeographyInMemoryDriverModule,
       providers: [
-        {
-          provide: DaffGeographyDriver,
-          useExisting: DaffInMemoryGeographyService,
-        },
+        provideDaffGeographyDriver(DaffInMemoryGeographyService),
         provideDaffInMemoryBackends(DaffInMemoryBackendGeographyService),
       ],
     };

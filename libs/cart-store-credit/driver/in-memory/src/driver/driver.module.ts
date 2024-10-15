@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffCartStoreCreditDriver } from '@daffodil/cart-store-credit/driver';
+import { provideDaffCartStoreCreditDriver } from '@daffodil/cart-store-credit/driver';
 import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 
 import { DaffCartStoreCreditInMemoryDriver } from './store-credit.service';
@@ -23,10 +23,7 @@ export class DaffCartStoreCreditInMemoryDriverModule {
     return {
       ngModule: DaffCartStoreCreditInMemoryDriverModule,
       providers: [
-        {
-          provide: DaffCartStoreCreditDriver,
-          useExisting: DaffCartStoreCreditInMemoryDriver,
-        },
+        provideDaffCartStoreCreditDriver(DaffCartStoreCreditInMemoryDriver),
         provideDaffInMemoryBackends(DaffCartStoreCreditInMemoryBackendService),
       ],
     };

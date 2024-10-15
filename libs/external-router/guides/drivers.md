@@ -45,10 +45,7 @@ class MyCustomExternalRouterService
 
 @NgModule({
 	providers: [
-		{
-			provide: DaffExternalRouterDriver,
-			useExisting: MyCustomExternalRouterService,
-		},
+		provideDaffExternalRouterDriver(MyCustomExternalRouterService),
 	],
 })
 class AppModule {}

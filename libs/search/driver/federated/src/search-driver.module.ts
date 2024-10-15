@@ -4,7 +4,10 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffSearchDriver } from '@daffodil/search/driver';
+import {
+  DaffSearchDriver,
+  provideDaffSearchDriver,
+} from '@daffodil/search/driver';
 
 import {
   DaffSearchFederatedDriverConfig,
@@ -26,10 +29,7 @@ export class DaffSearchFederatedDriverModule {
     return {
       ngModule: DaffSearchFederatedDriverModule,
       providers: [
-        {
-          provide: DaffSearchDriver,
-          useExisting: DaffSearchFederatedDriver,
-        },
+        provideDaffSearchDriver(DaffSearchFederatedDriver),
         {
           provide: SEARCH_FEDERATED_CONFIG_TOKEN,
           useValue: {

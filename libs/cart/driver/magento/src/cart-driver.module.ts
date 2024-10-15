@@ -5,17 +5,17 @@ import {
 } from '@angular/core';
 
 import {
-  DaffCartDriver,
-  DaffCartItemDriver,
-  DaffCartAddressDriver,
-  DaffCartBillingAddressDriver,
-  DaffCartShippingAddressDriver,
-  DaffCartShippingMethodsDriver,
-  DaffCartShippingInformationDriver,
-  DaffCartPaymentDriver,
-  DaffCartPaymentMethodsDriver,
-  DaffCartOrderDriver,
-  DaffCartCouponDriver,
+  provideDaffCartDriver,
+  provideDaffCartItemDriver,
+  provideDaffCartAddressDriver,
+  provideDaffCartBillingAddressDriver,
+  provideDaffCartShippingAddressDriver,
+  provideDaffCartShippingMethodsDriver,
+  provideDaffCartShippingInformationDriver,
+  provideDaffCartPaymentDriver,
+  provideDaffCartPaymentMethodsDriver,
+  provideDaffCartOrderDriver,
+  provideDaffCartCouponDriver,
   daffCartDriverProvideFreePaymentMethod,
 } from '@daffodil/cart/driver';
 
@@ -54,50 +54,17 @@ export class DaffCartMagentoDriverModule {
     return {
       ngModule: DaffCartMagentoDriverModule,
       providers: [
-        {
-          provide: DaffCartDriver,
-          useExisting: DaffMagentoCartService,
-        },
-        {
-          provide: DaffCartItemDriver,
-          useExisting: DaffMagentoCartItemService,
-        },
-        {
-          provide: DaffCartAddressDriver,
-          useExisting: DaffMagentoCartAddressService,
-        },
-        {
-          provide: DaffCartBillingAddressDriver,
-          useExisting: DaffMagentoCartBillingAddressService,
-        },
-        {
-          provide: DaffCartShippingAddressDriver,
-          useExisting: DaffMagentoCartShippingAddressService,
-        },
-        {
-          provide: DaffCartShippingMethodsDriver,
-          useExisting: DaffMagentoCartShippingMethodsService,
-        },
-        {
-          provide: DaffCartShippingInformationDriver,
-          useExisting: DaffMagentoCartShippingInformationService,
-        },
-        {
-          provide: DaffCartPaymentDriver,
-          useExisting: DaffMagentoCartPaymentService,
-        },
-        {
-          provide: DaffCartPaymentMethodsDriver,
-          useExisting: DaffMagentoCartPaymentMethodsService,
-        },
-        {
-          provide: DaffCartOrderDriver,
-          useExisting: DaffMagentoCartOrderService,
-        },
-        {
-          provide: DaffCartCouponDriver,
-          useExisting: DaffMagentoCartCouponService,
-        },
+        provideDaffCartDriver(DaffMagentoCartService),
+        provideDaffCartItemDriver(DaffMagentoCartItemService),
+        provideDaffCartAddressDriver(DaffMagentoCartAddressService),
+        provideDaffCartBillingAddressDriver(DaffMagentoCartBillingAddressService),
+        provideDaffCartShippingAddressDriver(DaffMagentoCartShippingAddressService),
+        provideDaffCartShippingMethodsDriver(DaffMagentoCartShippingMethodsService),
+        provideDaffCartShippingInformationDriver(DaffMagentoCartShippingInformationService),
+        provideDaffCartPaymentDriver(DaffMagentoCartPaymentService),
+        provideDaffCartPaymentMethodsDriver(DaffMagentoCartPaymentMethodsService),
+        provideDaffCartOrderDriver(DaffMagentoCartOrderService),
+        provideDaffCartCouponDriver(DaffMagentoCartCouponService),
 
         // output transformers
         DaffMagentoBillingAddressTransformer,
