@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 import { DaffCustomer } from '@daffodil/customer';
 
 export const {
@@ -9,7 +9,7 @@ export const {
    */
   token: DaffCustomerDriver,
   provider: daffProvideCustomerDriver,
-} = createSingleInjectionToken<DaffCustomerDriverInterface>('DaffCustomerDriver');
+} = createSingletonInjectionToken<DaffCustomerDriverInterface>('DaffCustomerDriver');
 
 /**
  * The customer driver is responsible for loading customers.

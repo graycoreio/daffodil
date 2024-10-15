@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffProductDriverResponse } from '../models/response.interface';
@@ -11,7 +11,7 @@ export const {
    */
   token: DaffProductDriver,
   provider: daffProvideProductDriver,
-} = createSingleInjectionToken<DaffProductServiceInterface>('DaffProductDriver');
+} = createSingletonInjectionToken<DaffProductServiceInterface>('DaffProductDriver');
 
 
 /**

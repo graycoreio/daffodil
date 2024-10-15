@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 
 import { DaffAuthResetPasswordInfo } from '@daffodil/auth';
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 
 export interface DaffResetPasswordServiceInterface<
   T extends DaffAuthResetPasswordInfo = DaffAuthResetPasswordInfo,
@@ -26,4 +26,4 @@ export interface DaffResetPasswordServiceInterface<
 export const {
   token: DaffResetPasswordDriver,
   provider: daffProvideResetPasswordDriver,
-} = createSingleInjectionToken<DaffResetPasswordServiceInterface>('DaffResetPasswordDriver');
+} = createSingletonInjectionToken<DaffResetPasswordServiceInterface>('DaffResetPasswordDriver');

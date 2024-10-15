@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 import {
   DaffPaypalExpressTokenRequest,
   DaffPaypalExpressTokenResponse,
@@ -16,4 +16,4 @@ export interface DaffPaypalExpressServiceInterface<
 export const {
   token: DaffPaypalExpressDriver,
   provider: daffProvidePaypalExpressDriver,
-} = createSingleInjectionToken<DaffPaypalExpressServiceInterface>('DaffPaypalExpressDriver');
+} = createSingletonInjectionToken<DaffPaypalExpressServiceInterface>('DaffPaypalExpressDriver');

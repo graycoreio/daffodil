@@ -4,7 +4,7 @@ import {
   DaffCartShippingRate,
   DaffCart,
 } from '@daffodil/cart';
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 
 /**
  * The interface responsible for mediating the interaction of the shipping
@@ -30,4 +30,4 @@ export interface DaffCartShippingInformationServiceInterface<T extends DaffCart 
 export const {
   token: DaffCartShippingInformationDriver,
   provider: daffProvideCartShippingInformationDriver,
-} = createSingleInjectionToken<DaffCartShippingInformationServiceInterface>('DaffCartShippingInformationDriver');
+} = createSingletonInjectionToken<DaffCartShippingInformationServiceInterface>('DaffCartShippingInformationDriver');

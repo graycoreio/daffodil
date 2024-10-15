@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
 
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 import { DaffCountry } from '@daffodil/geography';
 
 export const {
   token: DaffGeographyDriver,
   provider: daffProvideGeographyDriver,
-} = createSingleInjectionToken<DaffGeographyServiceInterface>('DaffGeographyDriver');
+} = createSingletonInjectionToken<DaffGeographyServiceInterface>('DaffGeographyDriver');
 
 export interface DaffGeographyServiceInterface<T extends DaffCountry = DaffCountry> {
   /**

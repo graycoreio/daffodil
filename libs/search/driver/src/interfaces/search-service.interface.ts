@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 import {
   DaffSearchResult,
   DaffSearchResultCollection,
@@ -14,7 +14,7 @@ export const {
    */
   token: DaffSearchDriver,
   provider: daffProvideSearchDriver,
-} = createSingleInjectionToken<DaffSearchDriverInterface>('DaffSearchDriver');
+} = createSingletonInjectionToken<DaffSearchDriverInterface>('DaffSearchDriver');
 
 /**
  * The options for making a search.

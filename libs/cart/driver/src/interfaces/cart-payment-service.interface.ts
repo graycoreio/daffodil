@@ -5,7 +5,7 @@ import {
   DaffCart,
   DaffCartAddress,
 } from '@daffodil/cart';
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 
 /**
  * The interface responsible for managing the selected payment method of a cart.
@@ -39,4 +39,4 @@ export interface DaffCartPaymentServiceInterface<T extends DaffCart = DaffCart> 
 export const {
   token: DaffCartPaymentDriver,
   provider: daffProvideCartPaymentDriver,
-} = createSingleInjectionToken<DaffCartPaymentServiceInterface>('DaffCartPaymentDriver');
+} = createSingletonInjectionToken<DaffCartPaymentServiceInterface>('DaffCartPaymentDriver');

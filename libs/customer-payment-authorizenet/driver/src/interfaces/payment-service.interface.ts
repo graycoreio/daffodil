@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 import { DaffCustomerPaymentAuthorizeNetApplyRequest } from '@daffodil/customer-payment-authorizenet';
 import { DaffPaymentResponse } from '@daffodil/payment';
 import { DaffPaymentDriverInterface } from '@daffodil/payment/driver';
@@ -11,7 +11,7 @@ export const {
    */
   token: DaffCustomerPaymentAuthorizeNetPaymentDriver,
   provider: daffProvideCustomerPaymentAuthorizeNetPaymentDriver,
-} = createSingleInjectionToken<DaffCustomerPaymentAuthorizeNetPaymentDriverInterface>('DaffCustomerPaymentAuthorizeNetPaymentDriver');
+} = createSingletonInjectionToken<DaffCustomerPaymentAuthorizeNetPaymentDriverInterface>('DaffCustomerPaymentAuthorizeNetPaymentDriver');
 
 /**
  * @inheritdoc

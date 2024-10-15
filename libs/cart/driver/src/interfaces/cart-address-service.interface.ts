@@ -4,7 +4,7 @@ import {
   DaffCartAddress,
   DaffCart,
 } from '@daffodil/cart';
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 
 /**
  * The interface responsible for managing the address of a cart.
@@ -19,4 +19,4 @@ export interface DaffCartAddressServiceInterface<T extends DaffCart = DaffCart> 
 export const {
   token: DaffCartAddressDriver,
   provider: daffProvideCartAddressDriver,
-} = createSingleInjectionToken<DaffCartAddressServiceInterface>('DaffCartAddressDriver');
+} = createSingletonInjectionToken<DaffCartAddressServiceInterface>('DaffCartAddressDriver');

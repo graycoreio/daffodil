@@ -4,7 +4,7 @@ import {
   DaffCart,
   DaffCartCoupon,
 } from '@daffodil/cart';
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 
 /**
  * The interface responsible for applying a coupon to a cart.
@@ -34,4 +34,4 @@ export interface DaffCartCouponServiceInterface<T extends DaffCart = DaffCart> {
 export const {
   token: DaffCartCouponDriver,
   provider: daffProvideCartCouponDriver,
-} = createSingleInjectionToken<DaffCartCouponServiceInterface>('DaffCartCouponDriver');
+} = createSingletonInjectionToken<DaffCartCouponServiceInterface>('DaffCartCouponDriver');
