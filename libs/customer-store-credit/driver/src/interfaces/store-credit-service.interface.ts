@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
 
 export const {
@@ -9,7 +9,7 @@ export const {
    */
   token: DaffCustomerStoreCreditDriver,
   provider: daffProvideCustomerStoreCreditDriver,
-} = createSingleInjectionToken<DaffCustomerStoreCreditDriverInterface>('DaffCustomerStoreCreditDriver');
+} = createSingletonInjectionToken<DaffCustomerStoreCreditDriverInterface>('DaffCustomerStoreCreditDriver');
 
 /**
  * The customer store credit driver is responsible for loading customers.

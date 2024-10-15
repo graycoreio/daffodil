@@ -5,7 +5,7 @@ import {
   DaffCartItemInput,
   DaffCart,
 } from '@daffodil/cart';
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 
 /**
  * The interface responsible for managing the items of a cart.
@@ -47,4 +47,4 @@ export interface DaffCartItemServiceInterface<
 export const {
   token: DaffCartItemDriver,
   provider: daffProvideCartItemDriver,
-} = createSingleInjectionToken<DaffCartItemServiceInterface>('DaffCartItemDriver');
+} = createSingletonInjectionToken<DaffCartItemServiceInterface>('DaffCartItemDriver');

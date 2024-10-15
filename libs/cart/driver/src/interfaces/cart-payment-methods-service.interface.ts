@@ -4,7 +4,7 @@ import {
   DaffCartPaymentMethod,
   DaffCart,
 } from '@daffodil/cart';
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 
 /**
  * The interface responsible for retrieving the available payment methods of a cart.
@@ -19,4 +19,4 @@ export interface DaffCartPaymentMethodsServiceInterface<T extends DaffCartPaymen
 export const {
   token: DaffCartPaymentMethodsDriver,
   provider: daffProvideCartPaymentMethodsDriver,
-} = createSingleInjectionToken<DaffCartPaymentMethodsServiceInterface>('DaffCartPaymentMethodsDriver');
+} = createSingletonInjectionToken<DaffCartPaymentMethodsServiceInterface>('DaffCartPaymentMethodsDriver');

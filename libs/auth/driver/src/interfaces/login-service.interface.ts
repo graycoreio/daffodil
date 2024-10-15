@@ -4,7 +4,7 @@ import {
   DaffLoginInfo,
   DaffAuthToken,
 } from '@daffodil/auth';
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 
 export interface DaffLoginServiceInterface<
   TRequest extends DaffLoginInfo = DaffLoginInfo,
@@ -26,4 +26,4 @@ export interface DaffLoginServiceInterface<
 export const {
   token: DaffLoginDriver,
   provider: daffProvideLoginDriver,
-} = createSingleInjectionToken<DaffLoginServiceInterface>('DaffLoginDriver');
+} = createSingletonInjectionToken<DaffLoginServiceInterface>('DaffLoginDriver');

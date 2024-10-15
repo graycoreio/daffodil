@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 import {
   DaffPaymentRequest,
   DaffPaymentResponse,
@@ -12,7 +12,7 @@ export const {
    */
   token: DaffPaymentDriver,
   provider: daffProvidePaymentDriver,
-} = createSingleInjectionToken<DaffPaymentDriverInterface>('DaffPaymentDriver');
+} = createSingletonInjectionToken<DaffPaymentDriverInterface>('DaffPaymentDriver');
 
 /**
  * The payment driver is responsible for taking user payment input and generating a token for use with the platform.

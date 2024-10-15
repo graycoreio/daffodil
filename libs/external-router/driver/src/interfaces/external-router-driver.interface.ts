@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 
 export const {
@@ -9,7 +9,7 @@ export const {
    */
   token: DaffExternalRouterDriver,
   provider: daffProvideExternalRouterDriver,
-} = createSingleInjectionToken<DaffExternalRouterDriverInterface>('DaffExternalRouterDriver');
+} = createSingletonInjectionToken<DaffExternalRouterDriverInterface>('DaffExternalRouterDriver');
 
 /**
  * The interface for a @daffodil/external-router driver.

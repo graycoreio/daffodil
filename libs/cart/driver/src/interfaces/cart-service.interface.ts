@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 import { DaffDriverResponse } from '@daffodil/driver';
 
 /**
@@ -40,4 +40,4 @@ export interface DaffCartServiceInterface<T extends DaffCart = DaffCart> {
 export const {
   token: DaffCartDriver,
   provider: daffProvideCartDriver,
-} = createSingleInjectionToken<DaffCartServiceInterface>('DaffCartDriver');
+} = createSingletonInjectionToken<DaffCartServiceInterface>('DaffCartDriver');

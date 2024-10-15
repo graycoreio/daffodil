@@ -1,11 +1,11 @@
 import { Observable } from 'rxjs';
 
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 
 export const {
   token: DaffContactDriver,
   provider: daffProvideContactDriver,
-} = createSingleInjectionToken<DaffContactServiceInterface<any, any>>('DaffContactDriver');
+} = createSingletonInjectionToken<DaffContactServiceInterface<any, any>>('DaffContactDriver');
 export interface DaffContactServiceInterface<T, V> {
   send(payload: T): Observable<V>;
 }

@@ -4,7 +4,7 @@ import {
   DaffAuthorizenetPaymentRequest,
   DaffAuthorizenetPaymentResponse,
 } from '@daffodil/authorizenet';
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 import { DaffPaymentDriverInterface } from '@daffodil/payment/driver';
 
 export const {
@@ -13,7 +13,7 @@ export const {
    */
   token: DaffAuthorizeNetPaymentDriver,
   provider: daffProvideAuthorizeNetPaymentDriver,
-} = createSingleInjectionToken<DaffAuthorizeNetPaymentDriverInterface>('DaffAuthorizeNetPaymentDriver');
+} = createSingletonInjectionToken<DaffAuthorizeNetPaymentDriverInterface>('DaffAuthorizeNetPaymentDriver');
 
 /**
  * @inheritdoc

@@ -7,7 +7,7 @@ import {
   DaffCategoryIdRequest,
   DaffCategoryUrlRequest,
 } from '@daffodil/category';
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 
 /**
@@ -32,4 +32,4 @@ export interface DaffCategoryServiceInterface<
 export const {
   token: DaffCategoryDriver,
   provider: daffProvideCategoryDriver,
-} = createSingleInjectionToken<any>('DaffCategoryDriver');
+} = createSingletonInjectionToken<any>('DaffCategoryDriver');
