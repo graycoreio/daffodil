@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import {
   DaffCollectionRequest,
-  createSingleInjectionToken,
+  createSingletonInjectionToken,
 } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 import {
@@ -13,7 +13,7 @@ import {
 export const {
   token: DaffReviewsDriver,
   provider: provideDaffReviewsDriver,
-} = createSingleInjectionToken<DaffProductReviewsServiceInterface>('DaffReviewsDriver');
+} = createSingletonInjectionToken<DaffProductReviewsServiceInterface>('DaffReviewsDriver');
 
 export interface DaffProductReviewsServiceInterface<T extends DaffProductReview = DaffProductReview> {
   /**

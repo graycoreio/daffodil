@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import {
   DaffIdentifiable,
-  createSingleInjectionToken,
+  createSingletonInjectionToken,
 } from '@daffodil/core';
 import { DaffCustomerAddress } from '@daffodil/customer';
 import {
@@ -17,7 +17,7 @@ export const {
    */
   token: DaffCustomerPaymentDriver,
   provider: provideDaffCustomerPaymentDriver,
-} = createSingleInjectionToken<DaffCustomerPaymentDriverInterface>('DaffCustomerPaymentDriver');
+} = createSingletonInjectionToken<DaffCustomerPaymentDriverInterface>('DaffCustomerPaymentDriver');
 
 /**
  * The customer payment driver is responsible for loading customers.

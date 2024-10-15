@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { DaffCart } from '@daffodil/cart';
 import {
   DaffCollectionRequest,
-  createSingleInjectionToken,
+  createSingletonInjectionToken,
 } from '@daffodil/core';
 import {
   DaffOrder,
@@ -13,7 +13,7 @@ import {
 export const {
   token: DaffOrderDriver,
   provider: provideDaffOrderDriver,
-} = createSingleInjectionToken<DaffOrderServiceInterface>('DaffOrderDriver');
+} = createSingletonInjectionToken<DaffOrderServiceInterface>('DaffOrderDriver');
 
 /**
  * Query order objects accessible by the logged-in user.
