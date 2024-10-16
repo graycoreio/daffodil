@@ -27,6 +27,9 @@ export const {
    * A token which creates a base64 service appropriate for the current environment, i.e., browser vs. server.
    */
   token: DaffBase64ServiceToken,
+  /**
+   * Provider function for {@link DaffBase64ServiceToken}.
+   */
   provider: provideDaffBase64Service,
 } = createSingleInjectionToken<DaffBase64Service>(
   'DaffBase64ServiceToken',

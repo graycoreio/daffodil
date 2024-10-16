@@ -46,5 +46,8 @@ export interface DaffCartItemServiceInterface<
 
 export const {
   token: DaffCartItemDriver,
+  /**
+   * Provider function for {@link DaffCartItemDriver}.
+   */
   provider: provideDaffCartItemDriver,
 } = createSingletonInjectionToken<DaffCartItemServiceInterface>('DaffCartItemDriver');

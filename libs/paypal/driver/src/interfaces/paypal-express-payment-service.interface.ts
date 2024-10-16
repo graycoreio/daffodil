@@ -16,5 +16,8 @@ export interface DaffPaypalExpressPaymentServiceInterface<
 
 export const {
   token: DaffPaypalExpressPaymentDriver,
+  /**
+   * Provider function for {@link DaffPaypalExpressPaymentDriver}.
+   */
   provider: provideDaffPaypalExpressPaymentDriver,
 } = createSingletonInjectionToken<DaffPaypalExpressPaymentServiceInterface>('DaffPaypalExpressPaymentDriver');

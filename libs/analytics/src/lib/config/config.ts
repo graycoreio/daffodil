@@ -25,6 +25,9 @@ export const {
    * Allows you to provide configuration to the `@daffodil/analytics` package.
    */
   token: DaffAnalyticsConfig,
+  /**
+   * Provider function for {@link DaffAnalyticsConfig}.
+   */
   provider: provideDaffAnalyticsConfig,
 } = createConfigInjectionToken(
   defaultConfig,

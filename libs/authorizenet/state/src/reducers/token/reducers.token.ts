@@ -20,6 +20,9 @@ export const {
    * @docs-private
    */
   token: DAFF_AUTHORIZE_NET_REDUCERS,
+  /**
+   * Provider function for {@link DAFF_AUTHORIZE_NET_REDUCERS}.
+   */
   provider: provideDaffAuthorizeNetReducers,
 } = createSingleInjectionToken<ActionReducer<DaffAuthorizeNetReducersState>>(
   'DAFF_AUTHORIZE_NET_REDUCERS',

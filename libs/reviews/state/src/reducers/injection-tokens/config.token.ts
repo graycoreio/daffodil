@@ -15,6 +15,9 @@ export const {
    * @docs-private
    */
   token: DAFF_REVIEWS_STORE_CONFIG,
+  /**
+   * Provider function for {@link DAFF_REVIEWS_STORE_CONFIG}.
+   */
   provider: provideDaffReviewsStoreConfig,
 } = createSingleInjectionToken<StoreConfig<DaffReviewsReducersState>>(
   'DAFF_REVIEWS_STORE_CONFIG',

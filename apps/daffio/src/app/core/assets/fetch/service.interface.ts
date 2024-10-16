@@ -11,5 +11,8 @@ export interface DaffioAssetFetchServiceInterface {
 
 export const {
   token: DaffioAssetFetchService,
+  /**
+   * Provider function for {@link DaffioAssetFetchService}.
+   */
   provider: provideDaffioAssetFetchService,
 } = createSingletonInjectionToken<DaffioAssetFetchServiceInterface>('DaffioAssetFetchService', { factory: () => inject(DaffioAssetFetchBrowserService) });

@@ -8,6 +8,9 @@ export const {
    * By default, we assume you're using the sandbox (false).
    */
   token: DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION,
+  /**
+   * Provider function for {@link DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION}.
+   */
   provider: provideDaffAuthorizenetAcceptJsProduction,
 } = createSingleInjectionToken<boolean>(
   'DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION',

@@ -2,6 +2,9 @@ import { createSingleInjectionToken } from '@daffodil/core';
 
 export const {
   token: DaffAuthorizeNetConfigToken,
+  /**
+   * Provider function for {@link DaffAuthorizeNetConfigToken}.
+   */
   provider: provideDaffAuthorizeNetConfigToken,
 } = createSingleInjectionToken<DaffAuthorizeNetConfig>('DaffAuthorizeNetConfigToken');
 

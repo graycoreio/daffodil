@@ -22,6 +22,9 @@ export const {
    * @docs-private
    */
   token: DAFF_AUTH_REDUCERS,
+  /**
+   * Provider function for {@link DAFF_AUTH_REDUCERS}.
+   */
   provider: provideDaffAuthReducers,
 } = createSingleInjectionToken<ActionReducer<DaffAuthFeatureState>>(
   'DAFF_AUTH_REDUCERS',

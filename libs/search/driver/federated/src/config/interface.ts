@@ -8,6 +8,9 @@ export const {
    * Mandatory for the Magento driver.
    */
   token: DAFF_SEARCH_FEDERATED_CONFIG_TOKEN,
+  /**
+   * Provider function for {@link DAFF_SEARCH_FEDERATED_CONFIG_TOKEN}.
+   */
   provider: provideDaffSearchFederatedConfig,
 } = createConfigInjectionToken<DaffSearchFederatedDriverConfig>(
   DAFF_SEARCH_FEDERATED_CONFIG_DEFAULT,

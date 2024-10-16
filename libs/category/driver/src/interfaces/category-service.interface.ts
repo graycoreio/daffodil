@@ -31,5 +31,8 @@ export interface DaffCategoryServiceInterface<
 //See: https://github.com/ng-packagr/ng-packagr/issues/1844
 export const {
   token: DaffCategoryDriver,
+  /**
+   * Provider function for {@link DaffCategoryDriver}.
+   */
   provider: provideDaffCategoryDriver,
 } = createSingletonInjectionToken<any>('DaffCategoryDriver');

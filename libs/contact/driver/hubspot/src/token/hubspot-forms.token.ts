@@ -14,6 +14,9 @@ import { DaffContactConfigToken } from '../config/contact-config.interface';
 
 export const {
   token: DAFF_CONTACT_HUBSPOT_FORMS_TOKEN,
+  /**
+   * Provider function for {@link DAFF_CONTACT_HUBSPOT_FORMS_TOKEN}.
+   */
   provider: provideDaffContactHubspotFormsToken,
 } = createSingleInjectionToken<DaffHubspotFormsService>(
   'DAFF_CONTACT_HUBSPOT_FORMS_TOKEN',

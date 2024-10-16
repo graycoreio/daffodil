@@ -5,6 +5,9 @@ import { DaffCountry } from '@daffodil/geography';
 
 export const {
   token: DaffGeographyDriver,
+  /**
+   * Provider function for {@link DaffGeographyDriver}.
+   */
   provider: provideDaffGeographyDriver,
 } = createSingletonInjectionToken<DaffGeographyServiceInterface>('DaffGeographyDriver');
 

@@ -13,6 +13,9 @@ export const {
    * An injection token for the search driver.
    */
   token: DaffSearchDriver,
+  /**
+   * Provider function for {@link DaffSearchDriver}.
+   */
   provider: provideDaffSearchDriver,
 } = createSingletonInjectionToken<DaffSearchDriverInterface>('DaffSearchDriver');
 

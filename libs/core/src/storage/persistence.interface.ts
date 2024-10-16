@@ -17,6 +17,9 @@ export interface DaffPersistenceService {
 
 export const {
   token: DaffPersistenceServiceToken,
+  /**
+   * Provider function for {@link DaffPersistenceServiceToken}.
+   */
   provider: provideDaffPersistenceService,
 } = createSingleInjectionToken<DaffPersistenceService>(
   'DaffPersistenceServiceToken',

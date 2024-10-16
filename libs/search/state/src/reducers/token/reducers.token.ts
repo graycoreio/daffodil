@@ -21,6 +21,9 @@ export const {
    * @docs-private
    */
   token: DAFF_SEARCH_REDUCERS,
+  /**
+   * Provider function for {@link DAFF_SEARCH_REDUCERS}.
+   */
   provider: provideDaffSearchReducers,
 } = createSingleInjectionToken<ActionReducer<DaffSearchReducersState>>(
   'DAFF_SEARCH_REDUCERS',

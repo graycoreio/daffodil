@@ -16,5 +16,8 @@ export const {
    * to accommodate the extra complexity contributed by the provided fragments.
    */
   token: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
+  /**
+   * Provider function for {@link DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS}.
+   */
   provider: provideDaffCartMagentoExtraCartFragments,
 } = createMultiInjectionToken<DocumentNode>('DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS');

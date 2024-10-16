@@ -11,6 +11,9 @@ export const {
    * An injection token for the payment driver.
    */
   token: DaffPaymentDriver,
+  /**
+   * Provider function for {@link DaffPaymentDriver}.
+   */
   provider: provideDaffPaymentDriver,
 } = createSingletonInjectionToken<DaffPaymentDriverInterface>('DaffPaymentDriver');
 

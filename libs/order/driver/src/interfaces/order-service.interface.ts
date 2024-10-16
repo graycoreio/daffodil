@@ -12,6 +12,9 @@ import {
 
 export const {
   token: DaffOrderDriver,
+  /**
+   * Provider function for {@link DaffOrderDriver}.
+   */
   provider: provideDaffOrderDriver,
 } = createSingletonInjectionToken<DaffOrderServiceInterface>('DaffOrderDriver');
 

@@ -7,6 +7,9 @@ export const {
    * Can be used to further refine Daffodil errors into more specific app errors.
    */
   token: DAFF_CUSTOMER_PAYMENT_AUTHORIZENET_ERROR_MATCHER,
+  /**
+   * Provider function for {@link DAFF_CUSTOMER_PAYMENT_AUTHORIZENET_ERROR_MATCHER}.
+   */
   provider: provideDaffCustomerPaymentAuthorizenetErrorMatcher,
 } = createSingleInjectionToken<typeof daffTransformErrorToStateError>(
   'DAFF_CUSTOMER_PAYMENT_AUTHORIZENET_ERROR_MATCHER',

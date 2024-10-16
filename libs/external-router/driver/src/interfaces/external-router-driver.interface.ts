@@ -8,6 +8,9 @@ export const {
    * The token for the `@daffodil/external-router` driver.
    */
   token: DaffExternalRouterDriver,
+  /**
+   * Provider function for {@link DaffExternalRouterDriver}.
+   */
   provider: provideDaffExternalRouterDriver,
 } = createSingletonInjectionToken<DaffExternalRouterDriverInterface>('DaffExternalRouterDriver');
 

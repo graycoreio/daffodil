@@ -14,6 +14,9 @@ export const {
    * @docs-private
    */
   token: DAFF_AUTH_UNAUTHENTICATED_HOOK,
+  /**
+   * Provider function for {@link DAFF_AUTH_UNAUTHENTICATED_HOOK}.
+   */
   provider: provideDaffAuthUnauthenticatedHook,
 } = createSingleInjectionToken<DaffAuthUnauthenticatedHook>(
   'DAFF_AUTH_UNAUTHENTICATED_HOOK',

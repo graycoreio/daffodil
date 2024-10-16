@@ -8,6 +8,9 @@ import { createSingletonInjectionToken } from '@daffodil/core';
  */
 export const {
   token: DaffCartStoreCreditDriver,
+  /**
+   * Provider function for {@link DaffCartStoreCreditDriver}.
+   */
   provider: provideDaffCartStoreCreditDriver,
 } = createSingletonInjectionToken<DaffCartStoreCreditDriverInterface>('DaffCartStoreCreditDriver');
 
