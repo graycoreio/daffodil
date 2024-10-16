@@ -15,21 +15,21 @@ import {
  * See {@link DaffConfigInjectionToken}.
  */
 export const createConfigInjectionToken = <T = unknown>(
-  defaultConfig: T,
+  defaultConfig: T | InjectionToken<T>,
   desc: TokenDesc<T>,
   options?: Partial<TokenOptions<T>>,
 ): DaffConfigInjectionToken<T> => {
   const token = new InjectionToken<T>(
     desc,
     {
-      factory: () => defaultConfig,
+      factory: () => defaultConfig instanceof InjectionToken ? inject(defaultConfig) : defaultConfig,
       ...options,
     },
   );
   const provider = <R extends T = T>(config: Partial<R> | InjectionToken<Partial<R>>) => ({
     provide: token,
     useFactory: () => ({
-      ...defaultConfig,
+      ...(defaultConfig instanceof InjectionToken ? inject(defaultConfig) : defaultConfig),
       ...(config instanceof InjectionToken ? inject(config) : config),
     }),
   });

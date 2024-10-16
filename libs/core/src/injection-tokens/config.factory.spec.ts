@@ -36,14 +36,20 @@ describe('@daffodil/core | createConfigInjectionToken', () => {
 
   describe('when the provided value is an injection token', () => {
     let token: InjectionToken<Partial<Config>>;
+    let defaultToken: InjectionToken<Config>;
 
     beforeEach(() => {
       token = new InjectionToken('test');
+      defaultToken = new InjectionToken('default');
       TestBed.configureTestingModule({
         providers: [
           {
             provide: token,
             useValue: value,
+          },
+          {
+            provide: defaultToken,
+            useValue: defaultConfig,
           },
         ],
       });
