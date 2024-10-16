@@ -3,14 +3,13 @@ import {
   NgModule,
   ModuleWithProviders,
   InjectionToken,
-  inject,
 } from '@angular/core';
 
 import { provideDaffExternalRouterDriver } from '@daffodil/external-router/driver';
 
 import {
   DaffExternalRouterDriverInMemoryConfig,
-  DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG,
+  provideDaffExternalRouterDriverInMemoryConfig,
 } from './config';
 import { DaffExternalRouterInMemoryDriver } from './in-memory.service';
 
@@ -30,13 +29,7 @@ export class DaffExternalRouterDriverInMemoryModule {
       ngModule: DaffExternalRouterDriverInMemoryModule,
       providers: [
         provideDaffExternalRouterDriver(DaffExternalRouterInMemoryDriver),
-        {
-          provide: DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG,
-          // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
-          useFactory() {
-            return config instanceof InjectionToken ? inject(config) : config;
-          },
-        },
+        provideDaffExternalRouterDriverInMemoryConfig(config),
       ],
     };
   }

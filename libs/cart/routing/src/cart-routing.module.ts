@@ -5,8 +5,7 @@ import {
 
 import {
   DaffCartRoutingConfiguration,
-  DAFF_CART_ROUTING_CONFIG,
-  daffCartRoutingConfigurationDefault,
+  provideDaffCartRoutingConfig,
 } from './config/config';
 import {
   DaffCartBillingAddressGuardRedirectUrl,
@@ -40,13 +39,7 @@ export class DaffCartRoutingModule {
     return {
       ngModule: DaffCartRoutingModule,
       providers: [
-        {
-          provide: DAFF_CART_ROUTING_CONFIG,
-          useValue: {
-            ...daffCartRoutingConfigurationDefault,
-            ...config,
-          },
-        },
+        provideDaffCartRoutingConfig(config),
       ],
     };
   }

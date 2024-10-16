@@ -8,7 +8,7 @@ import { provideDaffExternalRouterDriver } from '@daffodil/external-router/drive
 
 import {
   DaffExternalRouterDriverTestingConfig,
-  DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG,
+  provideDaffExternalRouterDriverTestingConfig,
 } from './config';
 import { DaffExternalRouterTestingDriver } from './testing.service';
 
@@ -28,10 +28,7 @@ export class DaffExternalRouterDriverTestingModule {
       ngModule: DaffExternalRouterDriverTestingModule,
       providers: [
         provideDaffExternalRouterDriver(DaffExternalRouterTestingDriver),
-        {
-          provide: DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG,
-          useValue: config,
-        },
+        provideDaffExternalRouterDriverTestingConfig(config),
       ],
     };
   }

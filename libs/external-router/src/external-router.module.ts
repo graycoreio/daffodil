@@ -6,8 +6,7 @@ import {
 
 import {
   DaffExternalRouterConfiguration,
-  DAFF_EXTERNAL_ROUTER_CONFIG,
-  daffExternalRouterConfigurationDefault,
+  provideDaffExternalRouterConfig,
 } from './config';
 import { DaffTypeRoutePair } from './model/type-route-pair';
 import { provideDaffRoutesResolvableByType } from './token/type-resolvable-routes.token';
@@ -28,7 +27,7 @@ export class DaffExternalRouterModule {
     return {
       ngModule: DaffExternalRouterModule,
       providers: [
-        { provide: DAFF_EXTERNAL_ROUTER_CONFIG, useValue: { ...daffExternalRouterConfigurationDefault, ...config }},
+        provideDaffExternalRouterConfig(config),
         ...provideDaffRoutesResolvableByType(...routes),
       ],
     };

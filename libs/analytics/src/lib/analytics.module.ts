@@ -9,6 +9,7 @@ import {
   DaffAnalyticsConfig,
   DaffAnalyticsConfigInterface,
   defaultConfig,
+  provideDaffAnalyticsConfig,
 } from './config/config';
 import { DaffAnalyticsEffects } from './effects/analytics-effects';
 import { daffAnalyticsServiceProvider } from './provider';
@@ -28,7 +29,7 @@ export class DaffAnalyticsModule {
     return {
       ngModule: DaffAnalyticsModule,
       providers: [
-        { provide: DaffAnalyticsConfig, useValue: config },
+        provideDaffAnalyticsConfig(config),
         ...daffAnalyticsServiceProvider(services),
       ],
     };

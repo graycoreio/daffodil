@@ -6,7 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import {
   DaffSearchStateConfig,
-  DAFF_SEARCH_STATE_CONFIG,
+  provideDaffSearchStateConfig,
   DAFF_SEARCH_STATE_CONFIG_DEFAULT,
 } from './config/public_api';
 import { DaffSearchIncrementalEffects } from './effects/incremental.effects';
@@ -25,10 +25,7 @@ export class DaffSearchIncrementalStateModule {
     return {
       ngModule: DaffSearchIncrementalStateModule,
       providers: [
-        {
-          provide: DAFF_SEARCH_STATE_CONFIG,
-          useValue: config,
-        },
+        provideDaffSearchStateConfig(config),
       ],
     };
   }
