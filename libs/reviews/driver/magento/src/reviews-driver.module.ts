@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
+import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento';
 import {
   provideDaffProductMagentoExtraProductPreviewFragments,
   provideDaffProductMagentoExtraProductPreviewTransforms,
@@ -35,11 +35,7 @@ export class DaffReviewsMagentoDriverModule {
         ...provideDaffProductMagentoExtraProductPreviewTransforms(
           magentoReviewedProductTransform,
         ),
-        {
-          provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-          useValue: MAGENTO_REVIEWS_LIST_QUERY_NAME,
-          multi: true,
-        },
+        provideDaffMagentoCacheableOperation(MAGENTO_REVIEWS_LIST_QUERY_NAME),
       ],
     };
   }

@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
+import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/magento';
 import { provideDaffProductDriver } from '@daffodil/product/driver';
 
 import { MAGENTO_PRODUCT_CONFIG_DEFAULT } from './config/public_api';
@@ -32,21 +32,11 @@ export class DaffProductMagentoDriverModule {
       ngModule: DaffProductMagentoDriverModule,
       providers: [
         provideDaffProductDriver(DaffMagentoProductService),
-        {
-          provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-          useValue: DAFF_MAGENTO_GET_ALL_PRODUCTS_QUERY_NAME,
-          multi: true,
-        },
-        {
-          provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-          useValue: DAFF_MAGENTO_GET_A_PRODUCT_QUERY_NAME,
-          multi: true,
-        },
-        {
-          provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-          useValue: DAFF_MAGENTO_GET_A_PRODUCT_BY_URL_QUERY_NAME,
-          multi: true,
-        },
+        provideManyDaffMagentoCacheableOperations(
+          DAFF_MAGENTO_GET_ALL_PRODUCTS_QUERY_NAME,
+          DAFF_MAGENTO_GET_A_PRODUCT_QUERY_NAME,
+          DAFF_MAGENTO_GET_A_PRODUCT_BY_URL_QUERY_NAME,
+        ),
         provideMagentoProductConfig(config),
       ],
     };
