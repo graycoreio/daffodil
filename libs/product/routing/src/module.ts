@@ -1,15 +1,11 @@
 import {
-  inject,
   ModuleWithProviders,
   NgModule,
 } from '@angular/core';
 
-import { DaffBase64ServiceToken } from '@daffodil/core';
-
 import {
   DaffProductRoutingConfig,
-  daffProductRoutingConfigDefaultFactory,
-  DAFF_PRODUCT_ROUTING_CONFIG,
+  provideDaffProductRoutingConfig,
 } from './config/public_api';
 import {
   DaffProductGetCollectionRequestFromRoute,
@@ -27,13 +23,7 @@ export class DaffProductRoutingModule {
     return {
       ngModule: DaffProductRoutingModule,
       providers: [
-        {
-          provide: DAFF_PRODUCT_ROUTING_CONFIG,
-          useFactory: () => ({
-            ...daffProductRoutingConfigDefaultFactory(inject(DaffBase64ServiceToken)),
-            ...config || {},
-          }),
-        },
+        provideDaffProductRoutingConfig(config),
       ],
     };
   }

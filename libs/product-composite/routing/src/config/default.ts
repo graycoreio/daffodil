@@ -1,4 +1,12 @@
-import { DaffBase64Service } from '@daffodil/core';
+import {
+  InjectionToken,
+  inject,
+} from '@angular/core';
+
+import {
+  DaffBase64Service,
+  DaffBase64ServiceToken,
+} from '@daffodil/core';
 
 import { DaffProductCompositeRoutingConfig } from './interface';
 
@@ -9,3 +17,8 @@ export const daffProductCompositeRoutingConfigDefaultFactory = (base64: DaffBase
   compositeSelectionQueryParam: 'composite_selection',
   compositeSelectionQueryParamDecode: (queryParam: string) => JSON.parse(base64.decode(queryParam)),
 });
+
+export const DAFF_PRODUCT_COMPOSITE_ROUTING_CONFIG_DEFAULT = new InjectionToken<DaffProductCompositeRoutingConfig>(
+  'DAFF_PRODUCT_COMPOSITE_ROUTING_CONFIG_DEFAULT',
+  { factory: () => daffProductCompositeRoutingConfigDefaultFactory(inject(DaffBase64ServiceToken)) },
+);
