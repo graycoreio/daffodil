@@ -11,5 +11,8 @@ export const {
    * Fragment structure is platform-specific and this feature should be used with care.
    */
   token: DaffMagentoExtraOrderFragments,
+  /**
+   * Provider function for {@link DaffMagentoExtraOrderFragments}.
+   */
   provider: provideDaffOrderMagentoExtraFragments,
 } = createMultiInjectionToken<DocumentNode>('DaffMagentoExtraOrderFragments');

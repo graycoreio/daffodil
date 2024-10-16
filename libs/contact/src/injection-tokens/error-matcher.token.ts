@@ -7,6 +7,9 @@ export const {
    * Can be used to further refine Daffodil errors into more specific app errors.
    */
   token: DAFF_CONTACT_ERROR_MATCHER,
+  /**
+   * Provider function for {@link DAFF_CONTACT_ERROR_MATCHER}.
+   */
   provider: provideDaffContactErrorMatcher,
 } = createSingleInjectionToken<typeof daffTransformErrorToStateError>(
   'DAFF_CONTACT_ERROR_MATCHER',

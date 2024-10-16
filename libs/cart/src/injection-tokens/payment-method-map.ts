@@ -9,6 +9,9 @@ export const {
    */
   // TODO: refactor to upper snake case
   token: DaffCartPaymentMethodIdMap,
+  /**
+   * Provider function for {@link DaffCartPaymentMethodIdMap}.
+   */
   provider: provideDaffCartPaymentMethodIdMap,
 } = createSingleInjectionToken<{[key: string]: string}>(
   'DaffCartPaymentMethodIdMap',

@@ -10,6 +10,9 @@ export const {
    * An injection token for the customer authorize.net payment driver.
    */
   token: DaffCustomerPaymentAuthorizeNetPaymentDriver,
+  /**
+   * Provider function for {@link DaffCustomerPaymentAuthorizeNetPaymentDriver}.
+   */
   provider: provideDaffCustomerPaymentAuthorizeNetPaymentDriver,
 } = createSingletonInjectionToken<DaffCustomerPaymentAuthorizeNetPaymentDriverInterface>('DaffCustomerPaymentAuthorizeNetPaymentDriver');
 

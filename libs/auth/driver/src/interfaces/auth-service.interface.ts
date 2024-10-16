@@ -11,5 +11,8 @@ export interface DaffAuthServiceInterface {
 
 export const {
   token: DaffAuthDriver,
+  /**
+   * Provider function for {@link DaffAuthDriver}.
+   */
   provider: provideDaffAuthDriver,
 } = createSingletonInjectionToken<DaffAuthServiceInterface>('DaffAuthDriver');

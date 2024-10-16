@@ -25,6 +25,9 @@ export const {
    * and should be used with care.
    */
   token: DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
+  /**
+   * Provider function for {@link DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK}.
+   */
   provider: provideDaffCartInMemoryExtraAttributesHook,
 } = createSingleInjectionToken<DaffCartInMemoryExtraAttributesHook>(
   'DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK',

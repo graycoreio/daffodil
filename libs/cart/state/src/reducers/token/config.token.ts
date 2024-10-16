@@ -16,6 +16,9 @@ import { DaffCartReducersState } from '../cart-reducers-state.interface';
  */
 export const {
   token: DAFF_CART_STORE_CONFIG,
+  /**
+   * Provider function for {@link DAFF_CART_STORE_CONFIG}.
+   */
   provider: provideDaffCartStoreConfig,
 } = createSingleInjectionToken<StoreConfig<DaffCartReducersState>>(
   'DAFF_CART_STORE_CONFIG',

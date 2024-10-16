@@ -6,6 +6,9 @@ import { DaffQueuedApollo } from '@daffodil/core/graphql';
 
 export const {
   token: DAFF_MAGENTO_CART_MUTATION_QUEUE,
+  /**
+   * Provider function for {@link DAFF_MAGENTO_CART_MUTATION_QUEUE}.
+   */
   provider: provideDaffCartMagentoMutationQueue,
 } = createSingleInjectionToken<DaffQueuedApollo>(
   'DAFF_MAGENTO_CART_MUTATION_QUEUE', {

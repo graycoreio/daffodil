@@ -24,5 +24,8 @@ export const daffToastDefaultOptions: DaffToastOptions = {
 
 export const {
   token: DAFF_TOAST_OPTIONS,
+  /**
+   * Provider function for {@link DAFF_TOAST_OPTIONS}.
+   */
   provider: provideDaffToastOptions,
 } = createConfigInjectionToken<DaffToastOptions>(daffToastDefaultOptions, 'DAFF_TOAST_OPTIONS');

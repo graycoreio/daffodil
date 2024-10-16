@@ -17,6 +17,9 @@ export const {
    * An internal token to combine the Magento preview transform with the injected transforms.
    */
   token: DAFF_PRODUCT_MAGENTO_PRODUCT_TRANSFORM,
+  /**
+   * Provider function for {@link DAFF_PRODUCT_MAGENTO_PRODUCT_TRANSFORM}.
+   */
   provider: provideDaffProductMagentoProductTransform,
 } = createSingleInjectionToken<DaffMagentoProductTransform>(
   'DAFF_PRODUCT_MAGENTO_PRODUCT_TRANSFORM',

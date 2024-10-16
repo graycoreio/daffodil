@@ -13,6 +13,9 @@ export const {
    * An internal token to combine the In-Memory response transform with the injected transforms.
    */
   token: DAFF_PRODUCT_IN_MEMORY_PRODUCT_RESPONSE_TRANSFORM,
+  /**
+   * Provider function for {@link DAFF_PRODUCT_IN_MEMORY_PRODUCT_RESPONSE_TRANSFORM}.
+   */
   provider: provideDaffProductInMemoryProductResponseTransform,
 } = createSingleInjectionToken<DaffInMemoryProductResponseTransform>(
   'DAFF_PRODUCT_IN_MEMORY_PRODUCT_RESPONSE_TRANSFORM',

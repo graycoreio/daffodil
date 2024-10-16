@@ -5,6 +5,9 @@ import { createSingletonInjectionToken } from '@daffodil/core';
 
 export const {
   token: DaffAuthorizeNetDriver,
+  /**
+   * Provider function for {@link DaffAuthorizeNetDriver}.
+   */
   provider: provideDaffAuthorizeNetDriver,
 } = createSingletonInjectionToken<DaffAuthorizeNetService>('DaffAuthorizeNetDriver');
 

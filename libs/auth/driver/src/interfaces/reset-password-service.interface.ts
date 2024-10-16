@@ -25,5 +25,8 @@ export interface DaffResetPasswordServiceInterface<
 
 export const {
   token: DaffResetPasswordDriver,
+  /**
+   * Provider function for {@link DaffResetPasswordDriver}.
+   */
   provider: provideDaffResetPasswordDriver,
 } = createSingletonInjectionToken<DaffResetPasswordServiceInterface>('DaffResetPasswordDriver');

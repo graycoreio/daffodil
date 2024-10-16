@@ -20,5 +20,8 @@ export interface DaffCartShippingMethodsServiceInterface<
 
 export const {
   token: DaffCartShippingMethodsDriver,
+  /**
+   * Provider function for {@link DaffCartShippingMethodsDriver}.
+   */
   provider: provideDaffCartShippingMethodsDriver,
 } = createSingletonInjectionToken<DaffCartShippingMethodsServiceInterface>('DaffCartShippingMethodsDriver');

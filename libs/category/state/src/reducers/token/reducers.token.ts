@@ -21,6 +21,9 @@ export const {
    * @docs-private
    */
   token: DAFF_CATEGORY_REDUCERS,
+  /**
+   * Provider function for {@link DAFF_CATEGORY_REDUCERS}.
+   */
   provider: provideDaffCategoryReducers,
 } = createSingleInjectionToken<ActionReducer<DaffCategoryReducersState>>(
   'DAFF_CATEGORY_REDUCERS',

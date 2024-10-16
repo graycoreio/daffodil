@@ -11,6 +11,9 @@ export const {
    * `@daffodil/external-router` package.
    */
   token: DAFF_EXTERNAL_ROUTER_CONFIG,
+  /**
+   * Provider function for {@link DAFF_EXTERNAL_ROUTER_CONFIG}.
+   */
   provider: provideDaffExternalRouterConfig,
 } = createConfigInjectionToken<DaffExternalRouterConfiguration>(daffExternalRouterConfigurationDefault, 'DAFF_EXTERNAL_ROUTER_CONFIG');
 

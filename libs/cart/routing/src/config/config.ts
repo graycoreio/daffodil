@@ -27,5 +27,8 @@ export const daffCartRoutingConfigurationDefault: DaffCartRoutingConfiguration =
  */
 export const {
   token: DAFF_CART_ROUTING_CONFIG,
+  /**
+   * Provider function for {@link DAFF_CART_ROUTING_CONFIG}.
+   */
   provider: provideDaffCartRoutingConfig,
 } = createConfigInjectionToken<DaffCartRoutingConfiguration>(daffCartRoutingConfigurationDefault, 'DAFF_CART_ROUTING_CONFIG');

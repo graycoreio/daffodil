@@ -17,5 +17,8 @@ export interface DaffNavigationServiceInterface<T extends DaffGenericNavigationT
 
 export const {
   token: DaffNavigationDriver,
+  /**
+   * Provider function for {@link DaffNavigationDriver}.
+   */
   provider: provideDaffNavigationDriver,
 } = createSingletonInjectionToken<DaffNavigationServiceInterface<any>>('DaffNavigationDriver');

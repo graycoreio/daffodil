@@ -16,6 +16,9 @@ export const {
    * Provides noop for the persistence service on the server.
    */
   token: DaffServerSafePersistenceServiceToken,
+  /**
+   * Provider function for {@link DaffServerSafePersistenceServiceToken}.
+   */
   provider: provideDaffServerSafePersistenceServiceToken,
 } = createSingleInjectionToken<DaffPersistenceService>(
   'DaffServerSafePersistenceService',

@@ -8,6 +8,9 @@ export const {
    * An injection token for the customer store credit driver.
    */
   token: DaffCustomerStoreCreditDriver,
+  /**
+   * Provider function for {@link DaffCustomerStoreCreditDriver}.
+   */
   provider: provideDaffCustomerStoreCreditDriver,
 } = createSingletonInjectionToken<DaffCustomerStoreCreditDriverInterface>('DaffCustomerStoreCreditDriver');
 

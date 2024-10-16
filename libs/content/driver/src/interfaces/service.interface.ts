@@ -21,5 +21,8 @@ export interface DaffContentServiceInterface<
 
 export const {
   token: DaffContentDriver,
+  /**
+   * Provider function for {@link DaffContentDriver}.
+   */
   provider: provideDaffContentDriver,
 } = createSingletonInjectionToken<DaffContentServiceInterface>('DaffContentDriver');

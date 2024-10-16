@@ -7,6 +7,9 @@ import { daffTransformErrorToStateError } from '@daffodil/core/state';
  */
 export const {
   token: DAFF_GEOGRAPHY_ERROR_MATCHER,
+  /**
+   * Provider function for {@link DAFF_GEOGRAPHY_ERROR_MATCHER}.
+   */
   provider: provideDaffGeographyErrorMatcher,
 } = createSingleInjectionToken<typeof daffTransformErrorToStateError>(
   'DAFF_GEOGRAPHY_ERROR_MATCHER',
