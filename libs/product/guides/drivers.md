@@ -81,9 +81,3 @@ The only other thing you need to do is to make the product images in `@daffodil/
   }
 }
 ```
-
-## Dynamic driver switching
-
-Drivers act as bridges between an app and its backend, making it easier to integrate different services in an application. Instead of requiring developers to understand the specific details of each system, they can instead interact with them through a driver. This promotes flexibility in data management while providing a consistent way to communicate with each service.
-
-The demo [here](https://stackblitz.com/edit/stackblitz-starters-nwvydt?file=src%2Fmain.ts) showcases an application with dynamic driver switching, which allows product information from different drivers to become accessible from one URL.
