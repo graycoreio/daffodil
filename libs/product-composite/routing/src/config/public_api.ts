@@ -1,6 +1,3 @@
-export { daffProductCompositeRoutingConfigDefaultFactory } from './default';
+export * from './default';
 export { DaffProductCompositeRoutingConfig } from './interface';
-export {
-  DAFF_PRODUCT_COMPOSITE_ROUTING_CONFIG,
-  provideDaffProductCompositeRoutingConfig,
-} from './token';
+export * from './token';

@@ -1,4 +1,12 @@
-import { DaffBase64Service } from '@daffodil/core';
+import {
+  inject,
+  InjectionToken,
+} from '@angular/core';
+
+import {
+  DaffBase64Service,
+  DaffBase64ServiceToken,
+} from '@daffodil/core';
 
 import { DaffProductRoutingConfig } from './interface';
 
@@ -30,3 +38,8 @@ export const daffProductRoutingConfigDefaultFactory = (base64: DaffBase64Service
     },
   },
 });
+
+export const DAFF_PRODUCT_ROUTING_CONFIG_DEFAULT = new InjectionToken<DaffProductRoutingConfig>(
+  'DAFF_PRODUCT_ROUTING_CONFIG_DEFAULT',
+  { factory: () => daffProductRoutingConfigDefaultFactory(inject(DaffBase64ServiceToken)) },
+);
