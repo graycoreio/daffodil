@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffProductCollection } from '@daffodil/product';
 import {
-  DAFF_PRODUCT_TYPE_FACTORIES,
+  provideDaffProductExtraFactoryTypes,
   DaffDefaultProductFactory,
 } from '@daffodil/product/testing';
 
@@ -15,11 +15,7 @@ describe('@daffodil/product/testing | DaffProductCollectionFactory', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffProductCollectionFactory,
-        {
-          provide: DAFF_PRODUCT_TYPE_FACTORIES,
-          useExisting: DaffDefaultProductFactory,
-          multi: true,
-        },
+        provideDaffProductExtraFactoryTypes(DaffDefaultProductFactory),
       ],
     });
 

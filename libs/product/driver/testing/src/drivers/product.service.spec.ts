@@ -4,7 +4,7 @@ import { DaffProductImage } from '@daffodil/product';
 import {
   DaffProductImageFactory,
   isProduct,
-  DAFF_PRODUCT_TYPE_FACTORIES,
+  provideDaffProductExtraFactoryTypes,
   DaffProductFactory,
 } from '@daffodil/product/testing';
 
@@ -20,11 +20,7 @@ describe('Driver | Testing | Product | ProductService', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        {
-          provide: DAFF_PRODUCT_TYPE_FACTORIES,
-          useExisting: DaffProductFactory,
-          multi: true,
-        },
+        provideDaffProductExtraFactoryTypes(DaffProductFactory),
       ],
     });
 

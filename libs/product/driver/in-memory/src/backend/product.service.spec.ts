@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   isProduct,
-  DAFF_PRODUCT_TYPE_FACTORIES,
+  provideDaffProductExtraFactoryTypes,
   DaffProductFactory,
 } from '@daffodil/product/testing';
 
@@ -15,11 +15,7 @@ describe('Driver | InMemory | Product | DaffInMemoryBackendProductService', () =
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendProductService,
-        {
-          provide: DAFF_PRODUCT_TYPE_FACTORIES,
-          useExisting: DaffProductFactory,
-          multi: true,
-        },
+        provideDaffProductExtraFactoryTypes(DaffProductFactory),
       ],
     });
 

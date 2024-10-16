@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DAFF_SEARCH_RESULT_KIND_FACTORIES } from '@daffodil/search/testing';
+import { provideDaffSearchResultKindFactories } from '@daffodil/search/testing';
 import { DaffSearchCategoryResultFactory } from '@daffodil/search-category/testing';
 
 /**
@@ -20,11 +20,7 @@ export class DaffSearchCategoryTestingDriverModule {
     return {
       ngModule: DaffSearchCategoryTestingDriverModule,
       providers: [
-        {
-          provide: DAFF_SEARCH_RESULT_KIND_FACTORIES,
-          useExisting: DaffSearchCategoryResultFactory,
-          multi: true,
-        },
+        provideDaffSearchResultKindFactories(DaffSearchCategoryResultFactory),
       ],
     };
   }

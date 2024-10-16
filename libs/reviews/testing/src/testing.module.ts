@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { DAFF_PRODUCT_EXTRA_FACTORIES } from '@daffodil/product/testing';
+import { provideDaffProductExtraProductFactories } from '@daffodil/product/testing';
 
 import { DaffReviewedProductFactory } from './factories/public_api';
 
@@ -9,11 +9,7 @@ import { DaffReviewedProductFactory } from './factories/public_api';
  */
 @NgModule({
   providers: [
-    {
-      provide: DAFF_PRODUCT_EXTRA_FACTORIES,
-      useExisting: DaffReviewedProductFactory,
-      multi: true,
-    },
+    provideDaffProductExtraProductFactories(DaffReviewedProductFactory),
   ],
 })
 export class DaffReviewTestingModule { }
