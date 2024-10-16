@@ -7,7 +7,7 @@ import {
 import { provideDaffContactDriver } from '@daffodil/contact/driver';
 import { DaffHubspotConfig } from '@daffodil/driver/hubspot';
 
-import { DaffContactConfigToken } from './config/contact-config.interface';
+import { provideDaffContactConfigToken } from './config/contact-config.interface';
 import { DaffContactHubspotService } from './contact.service';
 
 @NgModule({
@@ -21,7 +21,7 @@ export class DaffContactHubSpotDriverModule {
       ngModule: DaffContactHubSpotDriverModule,
       providers: [
         provideDaffContactDriver(DaffContactHubspotService),
-        { provide: DaffContactConfigToken, useValue: config },
+        provideDaffContactConfigToken(config),
       ],
     };
   }

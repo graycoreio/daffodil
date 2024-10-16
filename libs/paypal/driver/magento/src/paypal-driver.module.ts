@@ -5,9 +5,9 @@ import {
 } from '@angular/core';
 
 import {
-  DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG,
   DaffPaypalExpressDriverConfig,
   provideDaffPaypalExpressDriver,
+  provideDaffPaypalExpressDriverConfig,
   provideDaffPaypalExpressPaymentDriver,
 } from '@daffodil/paypal/driver';
 
@@ -27,13 +27,10 @@ export class DaffPaypalMagentoDriverModule {
       providers: [
         provideDaffPaypalExpressDriver(DaffMagentoPaypalService),
         provideDaffPaypalExpressPaymentDriver(DaffMagentoPaypalPaymentService),
-        {
-          provide: DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG,
-          useValue: {
-            ...MAGENTO_PAYPAL_EXPRESS_DRIVER_CONFIG_DEFAULT,
-            ...config,
-          },
-        },
+        provideDaffPaypalExpressDriverConfig({
+          ...MAGENTO_PAYPAL_EXPRESS_DRIVER_CONFIG_DEFAULT,
+          ...config,
+        }),
       ],
     };
   }

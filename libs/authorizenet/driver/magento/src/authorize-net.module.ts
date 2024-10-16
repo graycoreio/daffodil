@@ -6,7 +6,7 @@ import {
 
 import {
   DaffAuthorizeNetConfig,
-  DaffAuthorizeNetConfigToken,
+  provideDaffAuthorizeNetConfigToken,
   provideDaffAuthorizeNetDriver,
   provideDaffAuthorizeNetPaymentDriver,
   DaffAuthorizeNetPaymentId,
@@ -30,10 +30,7 @@ export class DaffMagentoAuthorizeNetDriverModule {
     return {
       ngModule: DaffMagentoAuthorizeNetDriverModule,
       providers: [
-        {
-          provide: DaffAuthorizeNetConfigToken,
-          useValue: config,
-        },
+        provideDaffAuthorizeNetConfigToken(config),
         provideDaffAuthorizeNetDriver(DaffMagentoAuthorizeNetService),
         provideDaffAuthorizeNetPaymentDriver(DaffMagentoAuthorizeNetPaymentService),
         {
