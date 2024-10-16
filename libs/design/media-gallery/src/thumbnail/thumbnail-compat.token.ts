@@ -5,5 +5,5 @@ export const {
    * A multi provider injection token that marks a component as renderable for the `DaffMediaRendererComponent`.
    */
   token: daffThumbnailCompatToken,
-  provider: provideDaffdaffThumbnailCompatToken,
+  provider: provideDaffThumbnailCompatToken,
 } = createSingleInjectionToken<unknown>('thumbnailCompatToken');

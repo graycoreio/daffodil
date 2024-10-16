@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DAFF_PRODUCT_IN_MEMORY_EXTRA_PRODUCT_RESPONSE_TRANSFORMS } from '@daffodil/product/driver/in-memory';
+import { provideDaffProductInMemoryExtraProductResponseTransforms } from '@daffodil/product/driver/in-memory';
 import { provideDaffProductExtraProductFactories } from '@daffodil/product/testing';
 import { DaffRelatedProductFactory } from '@daffodil/related-products/testing';
 
@@ -24,11 +24,7 @@ export class DaffRelatedProductsInMemoryDriverModule {
       ngModule: DaffRelatedProductsInMemoryDriverModule,
       providers: [
         provideDaffProductExtraProductFactories(DaffRelatedProductFactory),
-        {
-          provide: DAFF_PRODUCT_IN_MEMORY_EXTRA_PRODUCT_RESPONSE_TRANSFORMS,
-          useValue: transformInMemoryRelatedProducts,
-          multi: true,
-        },
+        provideDaffProductInMemoryExtraProductResponseTransforms(transformInMemoryRelatedProducts),
       ],
     };
   }

@@ -22,7 +22,7 @@ import { DaffCartShippingAddressEffects } from './effects/cart-shipping-address.
 import { DaffCartShippingInformationEffects } from './effects/cart-shipping-information.effects';
 import { DaffCartShippingMethodsEffects } from './effects/cart-shipping-methods.effects';
 import { DaffCartEffects } from './effects/cart.effects';
-import { DaffCartItemStateDebounceTime } from './injection-tokens/cart-item-state-debounce-time';
+import { provideDaffCartItemStateDebounceTime } from './injection-tokens/cart-item-state-debounce-time';
 import { daffCartPaymentReducer } from './reducers/cart-payment/payment.reducer';
 import { DAFF_CART_STORE_FEATURE_KEY } from './reducers/public_api';
 import { DAFF_CART_STORE_CONFIG } from './reducers/token/config.token';
@@ -48,7 +48,7 @@ import { DAFF_CART_REDUCERS } from './reducers/token/reducers.token';
     ]),
   ],
   providers: [
-    { provide: DaffCartItemStateDebounceTime, useValue: 4000 },
+    provideDaffCartItemStateDebounceTime(4000),
     ...daffPaymentProvideExtraReducers(combineReducers({
       payment: daffCartPaymentReducer,
     })),

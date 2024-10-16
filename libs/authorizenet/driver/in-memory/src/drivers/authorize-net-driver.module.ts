@@ -6,7 +6,7 @@ import {
 
 import {
   provideDaffAuthorizeNetDriver,
-  DaffAuthorizeNetPaymentId,
+  provideDaffAuthorizeNetPaymentId,
 } from '@daffodil/authorizenet/driver';
 import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 
@@ -26,10 +26,7 @@ export class DaffAuthorizeNetInMemoryDriverModule {
       ngModule: DaffAuthorizeNetInMemoryDriverModule,
       providers: [
         provideDaffAuthorizeNetDriver(DaffInMemoryAuthorizeNetService),
-        {
-          provide: DaffAuthorizeNetPaymentId,
-          useValue: DAFF_IN_MEMORY_AUTHORIZE_NET_PAYMENT_ID,
-        },
+        provideDaffAuthorizeNetPaymentId(DAFF_IN_MEMORY_AUTHORIZE_NET_PAYMENT_ID),
         provideDaffInMemoryBackends(
           DaffInMemoryBackendAuthorizenetService,
         ),

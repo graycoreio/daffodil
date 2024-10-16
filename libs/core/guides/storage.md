@@ -29,7 +29,7 @@ import {
     {
       provide: DaffPersistenceServiceToken,
       deps: [PLATFORM_ID],
-      factory: (platformId: string) => isPlatformBrowser(platformId)
+      useFactory: (platformId: string) => isPlatformBrowser(platformId)
         ? new DaffLocalStorageService(platformId)
         : new DaffErrorStorageService()
     }

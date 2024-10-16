@@ -48,7 +48,7 @@ class AppModule {}
 
 ```ts
 import {
-  DaffCartPaymentMethodIdMap,
+  provideDaffCartPaymentMethodIdMap,
   DaffCartFacade,
   DaffCartPaymentMethod
 } from '@daffodil/cart';
@@ -56,13 +56,10 @@ import {
 @NgModule({
   ...,
   providers: [
-    {
-      provide: DaffCartPaymentMethodIdMap,
-      useValue: {
-        authorizenet_accept_js: 'authorizenet',
-        payflowpro: 'paypal'
-      }
-    }
+    provideDaffCartPaymentMethodIdMap({
+      authorizenet_accept_js: 'authorizenet',
+      payflowpro: 'paypal'
+    })
   ]
 })
 class AppModule {}

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
-import { DAFF_PRODUCT_META_REDUCERS } from '@daffodil/product/state';
+import { daffProductProvideMetaReducers } from '@daffodil/product/state';
 
 import {
   DAFF_RELATED_PRODUCTS_STORE_FEATURE_KEY,
@@ -17,11 +17,7 @@ import {
     StoreModule.forFeature(DAFF_RELATED_PRODUCTS_STORE_FEATURE_KEY, daffRelatedProductsReducers),
   ],
   providers: [
-    {
-      provide: DAFF_PRODUCT_META_REDUCERS,
-      multi: true,
-      useValue: daffRelatedProductsDedupeMetaReducer,
-    },
+    daffProductProvideMetaReducers(daffRelatedProductsDedupeMetaReducer),
   ],
 })
 export class DaffRelatedProductStateModule {}
