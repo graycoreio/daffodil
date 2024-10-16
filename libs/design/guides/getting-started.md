@@ -4,7 +4,7 @@ This guide is designed to touch upon the very basics of `@daffodil/design` to ge
 ## Before you begin
 `@daffodil/design` is designed to be used with Angular. Make sure [Angular CLI](https://angular.io/cli) has been installed before you begin. You'll also need a pakcage manager like [npm](https://www.npmjs.com/package/@daffodil/design) or [Yarn](https://yarnpkg.com/package?q=%40daffodil%2Fdesign&name=%40daffodil%2Fdesign).
 
-`@daffodil/design` uses [SASS](https://sass-lang.com/), so we recommend you learn it!
+`@daffodil/design` is built with [Sass](https://sass-lang.com/), so we recommend you learn it!
 
 ## Installation
 To install `@daffodil/design`, use the following commands in your terminal:
