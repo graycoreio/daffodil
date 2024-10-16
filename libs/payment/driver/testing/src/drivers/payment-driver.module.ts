@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffPaymentDriver } from '@daffodil/payment/driver';
+import { provideDaffPaymentDriver } from '@daffodil/payment/driver';
 
 import { DaffPaymentTestingDriver } from './payment.service';
 
@@ -21,10 +21,7 @@ export class DaffPaymentTestingDriverModule {
     return {
       ngModule: DaffPaymentTestingDriverModule,
       providers: [
-        {
-          provide: DaffPaymentDriver,
-          useExisting: DaffPaymentTestingDriver,
-        },
+        provideDaffPaymentDriver(DaffPaymentTestingDriver),
       ],
     };
   }

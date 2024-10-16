@@ -9,7 +9,7 @@ import {
   provideDaffProductMagentoExtraProductPreviewFragments,
   provideDaffProductMagentoExtraProductPreviewTransforms,
 } from '@daffodil/product/driver/magento';
-import { DaffReviewsDriver } from '@daffodil/reviews/driver';
+import { provideDaffReviewsDriver } from '@daffodil/reviews/driver';
 
 import {
   magentoReviewedProductFragment,
@@ -28,10 +28,7 @@ export class DaffReviewsMagentoDriverModule {
     return {
       ngModule: DaffReviewsMagentoDriverModule,
       providers: [
-        {
-          provide: DaffReviewsDriver,
-          useExisting: DaffReviewsMagentoService,
-        },
+        provideDaffReviewsDriver(DaffReviewsMagentoService),
         ...provideDaffProductMagentoExtraProductPreviewFragments(
           magentoReviewedProductFragment,
         ),

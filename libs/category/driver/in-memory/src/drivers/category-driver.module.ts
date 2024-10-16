@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffCategoryDriver } from '@daffodil/category/driver';
+import { provideDaffCategoryDriver } from '@daffodil/category/driver';
 import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 
 import { DaffInMemoryCategoryService } from './category.service';
@@ -23,10 +23,7 @@ export class DaffCategoryInMemoryDriverModule {
     return {
       ngModule: DaffCategoryInMemoryDriverModule,
       providers: [
-        {
-          provide: DaffCategoryDriver,
-          useExisting: DaffInMemoryCategoryService,
-        },
+        provideDaffCategoryDriver(DaffInMemoryCategoryService),
         provideDaffInMemoryBackends(DaffInMemoryBackendCategoryService),
       ],
     };

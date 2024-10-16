@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
-import { DaffNewsletterDriver } from '@daffodil/newsletter/driver';
+import { provideDaffNewsletterDriver } from '@daffodil/newsletter/driver';
 
 import { DaffInMemoryNewsletterService } from './newsletter.service';
 import { DaffInMemoryBackendNewsletterService } from '../backend/public_api';
@@ -22,10 +22,7 @@ export class DaffNewsletterInMemoryDriverModule {
     return {
       ngModule: DaffNewsletterInMemoryDriverModule,
       providers: [
-        {
-          provide: DaffNewsletterDriver,
-          useExisting: DaffInMemoryNewsletterService,
-        },
+        provideDaffNewsletterDriver(DaffInMemoryNewsletterService),
         provideDaffInMemoryBackends(DaffInMemoryBackendNewsletterService),
       ],
     };

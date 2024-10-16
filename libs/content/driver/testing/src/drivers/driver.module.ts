@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffContentDriver } from '@daffodil/content/driver';
+import { provideDaffContentDriver } from '@daffodil/content/driver';
 
 import { DaffTestingContentService } from './service';
 
@@ -18,10 +18,7 @@ export class DaffContentTestingDriverModule {
     return {
       ngModule: DaffContentTestingDriverModule,
       providers: [
-        {
-          provide: DaffContentDriver,
-          useExisting: DaffTestingContentService,
-        },
+        provideDaffContentDriver(DaffTestingContentService),
       ],
     };
   }

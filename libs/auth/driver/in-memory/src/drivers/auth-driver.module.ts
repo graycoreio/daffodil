@@ -5,10 +5,10 @@ import {
 } from '@angular/core';
 
 import {
-  DaffLoginDriver,
-  DaffRegisterDriver,
-  DaffAuthDriver,
-  DaffResetPasswordDriver,
+  provideDaffLoginDriver,
+  provideDaffRegisterDriver,
+  provideDaffAuthDriver,
+  provideDaffResetPasswordDriver,
 } from '@daffodil/auth/driver';
 import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 
@@ -28,22 +28,10 @@ export class DaffAuthInMemoryDriverModule {
     return {
       ngModule: DaffAuthInMemoryDriverModule,
       providers: [
-        {
-          provide: DaffLoginDriver,
-          useExisting: DaffInMemoryLoginService,
-        },
-        {
-          provide: DaffRegisterDriver,
-          useExisting: DaffInMemoryRegisterService,
-        },
-        {
-          provide: DaffAuthDriver,
-          useExisting: DaffInMemoryAuthService,
-        },
-        {
-          provide: DaffResetPasswordDriver,
-          useExisting: DaffInMemoryResetPasswordService,
-        },
+        provideDaffLoginDriver(DaffInMemoryLoginService),
+        provideDaffRegisterDriver(DaffInMemoryRegisterService),
+        provideDaffAuthDriver(DaffInMemoryAuthService),
+        provideDaffResetPasswordDriver(DaffInMemoryResetPasswordService),
         provideDaffInMemoryBackends(
           DaffInMemoryBackendAuthService,
         ),

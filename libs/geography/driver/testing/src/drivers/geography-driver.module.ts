@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffGeographyDriver } from '@daffodil/geography/driver';
+import { provideDaffGeographyDriver } from '@daffodil/geography/driver';
 
 import { DaffTestingGeographyService } from './geography.service';
 
@@ -18,10 +18,7 @@ export class DaffGeographyTestingDriverModule {
     return {
       ngModule: DaffGeographyTestingDriverModule,
       providers: [
-        {
-          provide: DaffGeographyDriver,
-          useExisting: DaffTestingGeographyService,
-        },
+        provideDaffGeographyDriver(DaffTestingGeographyService),
       ],
     };
   }

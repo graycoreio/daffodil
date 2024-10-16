@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffNavigationDriver } from '@daffodil/navigation/driver';
+import { provideDaffNavigationDriver } from '@daffodil/navigation/driver';
 
 import { DaffTestingNavigationService } from './navigation.service';
 
@@ -18,10 +18,7 @@ export class DaffNavigationTestingDriverModule {
     return {
       ngModule: DaffNavigationTestingDriverModule,
       providers: [
-        {
-          provide: DaffNavigationDriver,
-          useExisting: DaffTestingNavigationService,
-        },
+        provideDaffNavigationDriver(DaffTestingNavigationService),
       ],
     };
   }

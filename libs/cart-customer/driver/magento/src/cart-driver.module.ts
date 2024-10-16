@@ -5,11 +5,11 @@ import {
 } from '@angular/core';
 
 import {
-  DaffCartAddressDriver,
-  DaffCartBillingAddressDriver,
-  DaffCartDriver,
-  DaffCartPaymentDriver,
-  DaffCartShippingAddressDriver,
+  provideDaffCartAddressDriver,
+  provideDaffCartBillingAddressDriver,
+  provideDaffCartDriver,
+  provideDaffCartPaymentDriver,
+  provideDaffCartShippingAddressDriver,
 } from '@daffodil/cart/driver';
 
 import { DaffMagentoCartCustomerAddressService } from './cart-address.service';
@@ -28,26 +28,11 @@ export class DaffCartCustomerMagentoDriverModule {
     return {
       ngModule: DaffCartCustomerMagentoDriverModule,
       providers: [
-        {
-          provide: DaffCartDriver,
-          useExisting: DaffMagentoCartCustomerService,
-        },
-        {
-          provide: DaffCartAddressDriver,
-          useExisting: DaffMagentoCartCustomerAddressService,
-        },
-        {
-          provide: DaffCartBillingAddressDriver,
-          useExisting: DaffMagentoCartCustomerBillingAddressService,
-        },
-        {
-          provide: DaffCartShippingAddressDriver,
-          useExisting: DaffMagentoCartCustomerShippingAddressService,
-        },
-        {
-          provide: DaffCartPaymentDriver,
-          useExisting: DaffMagentoCartCustomerPaymentService,
-        },
+        provideDaffCartDriver(DaffMagentoCartCustomerService),
+        provideDaffCartAddressDriver(DaffMagentoCartCustomerAddressService),
+        provideDaffCartBillingAddressDriver(DaffMagentoCartCustomerBillingAddressService),
+        provideDaffCartShippingAddressDriver(DaffMagentoCartCustomerShippingAddressService),
+        provideDaffCartPaymentDriver(DaffMagentoCartCustomerPaymentService),
       ],
     };
   }

@@ -7,8 +7,8 @@ import {
 import {
   DaffAuthorizeNetConfig,
   DaffAuthorizeNetConfigToken,
-  DaffAuthorizeNetDriver,
-  DaffAuthorizeNetPaymentDriver,
+  provideDaffAuthorizeNetDriver,
+  provideDaffAuthorizeNetPaymentDriver,
   DaffAuthorizeNetPaymentId,
 } from '@daffodil/authorizenet/driver';
 
@@ -34,14 +34,8 @@ export class DaffMagentoAuthorizeNetDriverModule {
           provide: DaffAuthorizeNetConfigToken,
           useValue: config,
         },
-        {
-          provide: DaffAuthorizeNetDriver,
-          useExisting: DaffMagentoAuthorizeNetService,
-        },
-        {
-          provide: DaffAuthorizeNetPaymentDriver,
-          useExisting: DaffMagentoAuthorizeNetPaymentService,
-        },
+        provideDaffAuthorizeNetDriver(DaffMagentoAuthorizeNetService),
+        provideDaffAuthorizeNetPaymentDriver(DaffMagentoAuthorizeNetPaymentService),
         {
           provide: DaffAuthorizeNetPaymentId,
           useValue: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,

@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffExternalRouterDriver } from '@daffodil/external-router/driver';
+import { provideDaffExternalRouterDriver } from '@daffodil/external-router/driver';
 
 import {
   DaffExternalRouterDriverTestingConfig,
@@ -27,10 +27,7 @@ export class DaffExternalRouterDriverTestingModule {
     return {
       ngModule: DaffExternalRouterDriverTestingModule,
       providers: [
-        {
-          provide: DaffExternalRouterDriver,
-          useExisting: DaffExternalRouterTestingDriver,
-        },
+        provideDaffExternalRouterDriver(DaffExternalRouterTestingDriver),
         {
           provide: DAFF_EXTERNAL_ROUTER_DRIVER_TESTING_CONFIG,
           useValue: config,

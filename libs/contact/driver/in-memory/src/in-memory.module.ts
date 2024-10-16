@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffContactDriver } from '@daffodil/contact/driver';
+import { provideDaffContactDriver } from '@daffodil/contact/driver';
 import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
 
 import { DaffInMemoryContactService } from './contact.service';
@@ -18,10 +18,7 @@ export class DaffContactInMemoryDriverModule {
     return {
       ngModule: DaffContactInMemoryDriverModule,
       providers: [
-        {
-          provide: DaffContactDriver,
-          useClass: DaffInMemoryContactService,
-        },
+        provideDaffContactDriver(DaffInMemoryContactService),
         provideDaffInMemoryBackends(DaffInMemoryBackendContactService),
       ],
     };

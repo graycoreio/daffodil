@@ -5,10 +5,10 @@ import {
 } from '@angular/core';
 
 import {
-  DaffLoginDriver,
-  DaffRegisterDriver,
-  DaffAuthDriver,
-  DaffResetPasswordDriver,
+  provideDaffLoginDriver,
+  provideDaffRegisterDriver,
+  provideDaffAuthDriver,
+  provideDaffResetPasswordDriver,
 } from '@daffodil/auth/driver';
 
 import { DaffTestingAuthService } from './auth/auth.service';
@@ -26,22 +26,10 @@ export class DaffAuthTestingDriverModule {
     return {
       ngModule: DaffAuthTestingDriverModule,
       providers: [
-        {
-          provide: DaffLoginDriver,
-          useExisting: DaffTestingLoginService,
-        },
-        {
-          provide: DaffRegisterDriver,
-          useExisting: DaffTestingRegisterService,
-        },
-        {
-          provide: DaffAuthDriver,
-          useExisting: DaffTestingAuthService,
-        },
-        {
-          provide: DaffResetPasswordDriver,
-          useExisting: DaffTestingResetPasswordService,
-        },
+        provideDaffLoginDriver(DaffTestingLoginService),
+        provideDaffRegisterDriver(DaffTestingRegisterService),
+        provideDaffAuthDriver(DaffTestingAuthService),
+        provideDaffResetPasswordDriver(DaffTestingResetPasswordService),
       ],
     };
   }

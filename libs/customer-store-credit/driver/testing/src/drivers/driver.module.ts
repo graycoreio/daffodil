@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffCustomerStoreCreditDriver } from '@daffodil/customer-store-credit/driver';
+import { provideDaffCustomerStoreCreditDriver } from '@daffodil/customer-store-credit/driver';
 
 import { DaffCustomerStoreCreditTestingDriver } from './store-credit.service';
 
@@ -21,10 +21,7 @@ export class DaffCustomerStoreCreditTestingDriverModule {
     return {
       ngModule: DaffCustomerStoreCreditTestingDriverModule,
       providers: [
-        {
-          provide: DaffCustomerStoreCreditDriver,
-          useExisting: DaffCustomerStoreCreditTestingDriver,
-        },
+        provideDaffCustomerStoreCreditDriver(DaffCustomerStoreCreditTestingDriver),
       ],
     };
   }

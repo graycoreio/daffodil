@@ -8,7 +8,7 @@ If custom behavior is not needed for all driver methods, unimplemented methods c
 
 ```ts
 import {
-  DaffCartDriver,
+  provideDaffCartDriver,
   DaffMagentoCartService
 } from '@daffodil/cart';
 
@@ -41,10 +41,7 @@ export class CustomMagentoCartService implements DaffCartServiceInterface {
 @NgModule({
   ...,
   providers: [
-    {
-      provide: DaffCartDriver,
-      useExisting: CustomMagentoCartService
-    }
+    provideDaffCartDriver(CustomMagentoCartService)
   ]
 })
 class AppModule {}

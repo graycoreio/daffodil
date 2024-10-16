@@ -5,8 +5,8 @@ import {
 } from '@angular/core';
 
 import {
-  DaffCustomerAddressDriver,
-  DaffCustomerDriver,
+  provideDaffCustomerAddressDriver,
+  provideDaffCustomerDriver,
 } from '@daffodil/customer/driver';
 import {
   DaffInMemoryBackendInterface,
@@ -31,14 +31,8 @@ export class DaffCustomerInMemoryDriverModule {
     return {
       ngModule: DaffCustomerInMemoryDriverModule,
       providers: [
-        {
-          provide: DaffCustomerDriver,
-          useExisting: DaffCustomerInMemoryDriver,
-        },
-        {
-          provide: DaffCustomerAddressDriver,
-          useExisting: DaffCustomerAddressInMemoryDriver,
-        },
+        provideDaffCustomerDriver(DaffCustomerInMemoryDriver),
+        provideDaffCustomerAddressDriver(DaffCustomerAddressInMemoryDriver),
         provideDaffInMemoryBackends<DaffInMemoryBackendInterface>(
           DaffCustomerInMemoryBackendService,
           DaffCustomerAddressInMemoryBackendService,
