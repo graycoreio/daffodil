@@ -4,7 +4,10 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DAFF_SEARCH_FEDERATED_DRIVERS } from '@daffodil/search/driver/federated';
+import {
+  DAFF_SEARCH_FEDERATED_DRIVERS,
+  provideDaffSearchFederatedDrivers,
+} from '@daffodil/search/driver/federated';
 
 import { DaffSearchProductMagentoCoreModule } from './core.module';
 import { DaffSearchProductMagentoDriver } from './product-search.service';
@@ -26,11 +29,7 @@ export class DaffSearchProductMagentoFederatedDriverModule {
     return {
       ngModule: DaffSearchProductMagentoFederatedDriverModule,
       providers: [
-        {
-          provide: DAFF_SEARCH_FEDERATED_DRIVERS,
-          multi: true,
-          useExisting: DaffSearchProductMagentoDriver,
-        },
+        provideDaffSearchFederatedDrivers(DaffSearchProductMagentoDriver),
       ],
     };
   }

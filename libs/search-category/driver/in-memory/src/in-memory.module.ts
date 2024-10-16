@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DAFF_SEARCH_IN_MEMORY_BACKENDS } from '@daffodil/search/driver/in-memory';
+import { provideDaffSearchInMemoryBackends } from '@daffodil/search/driver/in-memory';
 
 import { DaffSearchCategoryInMemoryBackendService } from './backend/search.service';
 
@@ -21,11 +21,7 @@ export class DaffSearchCategoryInMemoryDriverModule {
     return {
       ngModule: DaffSearchCategoryInMemoryDriverModule,
       providers: [
-        {
-          provide: DAFF_SEARCH_IN_MEMORY_BACKENDS,
-          useExisting: DaffSearchCategoryInMemoryBackendService,
-          multi: true,
-        },
+        provideDaffSearchInMemoryBackends(DaffSearchCategoryInMemoryBackendService),
       ],
     };
   }

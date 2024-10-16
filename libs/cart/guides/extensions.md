@@ -81,7 +81,7 @@ Only drivers that use GraphQL support extensible fragments because fragments are
 - Magento
 
 ### Magento
-Provide the `DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS` to query additional fields on a Magento cart query. This applies to all of the driver calls that return a `DaffCart`, which is most of them.
+Use `provideDaffCartMagentoExtraCartFragments` to query additional fields on a Magento cart query. This applies to all of the driver calls that return a `DaffCart`, which is most of them.
 
 The additional fields are present on the untyped `extra_attributes` field.
 
@@ -90,7 +90,7 @@ The following example demonstrates providing a GraphQL document using the `graph
 ```ts
 import gql from 'graphql-tag';
 import {
-  DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
+  provideDaffCartMagentoExtraCartFragments,
   DaffCartFacade,
   DaffCartLoad,
   DaffCart
@@ -112,11 +112,7 @@ const extraCartFragment = gql`
 @NgModule({
   ...,
   providers: [
-    {
-      provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
-      useValue: extraCartFragment,
-      multi: true
-    }
+    provideDaffCartMagentoExtraCartFragments(extraCartFragment)
   ]
 })
 class AppModule {}

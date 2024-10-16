@@ -1,18 +1,19 @@
-import {
-  InjectionToken,
-  Provider,
-} from '@angular/core';
+import { Provider } from '@angular/core';
 import { Event } from '@angular/router';
 
+import { createMultiInjectionToken } from '@daffodil/core';
 import { DaffSeoMetaDefinition } from '@daffodil/seo';
 
 import { DaffSeoUpdateEventPair } from '../model/update-event-pair.interface';
 
-/**
- * A multi-provider injection token for providing page meta update logic.
- * `getData` will run in response to, and invoked with, the action specified.
- */
-export const DAFF_SEO_META_ROUTER_UPDATES = new InjectionToken<DaffSeoUpdateEventPair<Event, DaffSeoMetaDefinition>[]>('DAFF_SEO_META_ROUTER_UPDATES', { factory: () => []});
+const {
+  /**
+   * A multi-provider injection token for providing page meta update logic.
+   * `getData` will run in response to, and invoked with, the action specified.
+   */
+  token: DAFF_SEO_META_ROUTER_UPDATES,
+  provider,
+} = createMultiInjectionToken<DaffSeoUpdateEventPair<Event, DaffSeoMetaDefinition>>('DAFF_SEO_META_ROUTER_UPDATES');
 
 /**
  * Provides page meta update logic.
@@ -28,9 +29,7 @@ export const DAFF_SEO_META_ROUTER_UPDATES = new InjectionToken<DaffSeoUpdateEven
  * ```
  */
 export function provideDaffMetaRouterUpdates<T extends Event = Event>(...values: DaffSeoUpdateEventPair<T, DaffSeoMetaDefinition>[]): Provider[] {
-  return values.map(value => ({
-    provide: DAFF_SEO_META_ROUTER_UPDATES,
-    useValue: value,
-    multi: true,
-  }));
+  return provider(...values);
 }
+
+export { DAFF_SEO_META_ROUTER_UPDATES };
