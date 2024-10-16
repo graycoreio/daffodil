@@ -10,7 +10,7 @@ import { provideDaffProductDriver } from '@daffodil/product/driver';
 import { MAGENTO_PRODUCT_CONFIG_DEFAULT } from './config/public_api';
 import {
   DaffProductMagentoDriverConfig,
-  MAGENTO_PRODUCT_CONFIG_TOKEN,
+  provideMagentoProductConfig,
 } from './interfaces/public_api';
 import { DaffMagentoProductService } from './product.service';
 import { DAFF_MAGENTO_GET_ALL_PRODUCTS_QUERY_NAME } from './queries/get-all-products';
@@ -47,13 +47,7 @@ export class DaffProductMagentoDriverModule {
           useValue: DAFF_MAGENTO_GET_A_PRODUCT_BY_URL_QUERY_NAME,
           multi: true,
         },
-        {
-          provide: MAGENTO_PRODUCT_CONFIG_TOKEN,
-          useValue: {
-            ...MAGENTO_PRODUCT_CONFIG_DEFAULT,
-            ...config,
-          },
-        },
+        provideMagentoProductConfig(config),
       ],
     };
   }

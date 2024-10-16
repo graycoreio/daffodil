@@ -18,7 +18,7 @@ import {
 
 import {
   DaffSearchFederatedDriverConfig,
-  SEARCH_FEDERATED_CONFIG_TOKEN,
+  DAFF_SEARCH_FEDERATED_CONFIG_TOKEN,
 } from './config/public_api';
 import { DAFF_SEARCH_FEDERATED_DRIVERS } from './injection-tokens/drivers.token';
 
@@ -33,7 +33,7 @@ import { DAFF_SEARCH_FEDERATED_DRIVERS } from './injection-tokens/drivers.token'
 export class DaffSearchFederatedDriver implements DaffSearchDriverInterface {
   constructor(
     @Inject(DAFF_SEARCH_FEDERATED_DRIVERS) private drivers: DaffSearchDriverKindedInterface[],
-    @Inject(SEARCH_FEDERATED_CONFIG_TOKEN) private config: DaffSearchFederatedDriverConfig,
+    @Inject(DAFF_SEARCH_FEDERATED_CONFIG_TOKEN) private config: DaffSearchFederatedDriverConfig,
   ) {}
 
   search(query: string, options: DaffSearchDriverOptions = {}): Observable<DaffSearchDriverResponse> {

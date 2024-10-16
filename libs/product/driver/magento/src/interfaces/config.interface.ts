@@ -8,7 +8,7 @@ export const {
    * Mandatory for the Magento driver.
    */
   token: MAGENTO_PRODUCT_CONFIG_TOKEN,
-  provider: provideDaffProductMagentoConfig,
+  provider: provideMagentoProductConfig,
 } = createConfigInjectionToken<DaffProductMagentoDriverConfig>(
   MAGENTO_PRODUCT_CONFIG_DEFAULT,
   'MAGENTO_PRODUCT_CONFIG_TOKEN',

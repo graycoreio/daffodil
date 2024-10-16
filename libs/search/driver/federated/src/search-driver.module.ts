@@ -11,8 +11,8 @@ import {
 
 import {
   DaffSearchFederatedDriverConfig,
-  SEARCH_FEDERATED_CONFIG_DEFAULT,
-  SEARCH_FEDERATED_CONFIG_TOKEN,
+  DAFF_SEARCH_FEDERATED_CONFIG_DEFAULT,
+  provideDaffSearchFederatedConfig,
 } from './config/public_api';
 import { DaffSearchFederatedDriver } from './search.service';
 
@@ -25,23 +25,17 @@ import { DaffSearchFederatedDriver } from './search.service';
   ],
 })
 export class DaffSearchFederatedDriverModule {
-  static forRoot(config: DaffSearchFederatedDriverConfig = SEARCH_FEDERATED_CONFIG_DEFAULT): ModuleWithProviders<DaffSearchFederatedDriverModule> {
+  static forRoot(config: DaffSearchFederatedDriverConfig = DAFF_SEARCH_FEDERATED_CONFIG_DEFAULT): ModuleWithProviders<DaffSearchFederatedDriverModule> {
     return {
       ngModule: DaffSearchFederatedDriverModule,
       providers: [
         provideDaffSearchDriver(DaffSearchFederatedDriver),
-        {
-          provide: SEARCH_FEDERATED_CONFIG_TOKEN,
-          useValue: {
-            ...SEARCH_FEDERATED_CONFIG_DEFAULT,
-            ...config,
-          },
-        },
+        provideDaffSearchFederatedConfig(config),
       ],
     };
   }
 
-  static forFeature(config: DaffSearchFederatedDriverConfig = SEARCH_FEDERATED_CONFIG_DEFAULT): ModuleWithProviders<DaffSearchFederatedDriverModule> {
+  static forFeature(config: DaffSearchFederatedDriverConfig = DAFF_SEARCH_FEDERATED_CONFIG_DEFAULT): ModuleWithProviders<DaffSearchFederatedDriverModule> {
     return {
       ngModule: DaffSearchFederatedDriverModule,
       providers: [
@@ -49,13 +43,7 @@ export class DaffSearchFederatedDriverModule {
           provide: DaffSearchDriver,
           useClass: DaffSearchFederatedDriver,
         },
-        {
-          provide: SEARCH_FEDERATED_CONFIG_TOKEN,
-          useValue: {
-            ...SEARCH_FEDERATED_CONFIG_DEFAULT,
-            ...config,
-          },
-        },
+        provideDaffSearchFederatedConfig(config),
       ],
     };
   }

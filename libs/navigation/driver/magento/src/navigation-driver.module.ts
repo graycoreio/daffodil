@@ -13,7 +13,7 @@ import {
 import {
   MagentoNavigationDriverConfig,
   MAGENTO_NAVIGATION_DRIVER_CONFIG_DEFAULT,
-  MAGENTO_NAVIGATION_DRIVER_CONFIG,
+  provideMagentoNavigationDriverConfig,
 } from './config/public_api';
 import { DaffMagentoNavigationService } from './navigation.service';
 import { DAFF_MAGENTO_GET_CATEGORY_TREE_QUERY_NAME } from './queries/get-category-tree';
@@ -34,13 +34,7 @@ export class DaffNavigationMagentoDriverModule {
           provide: DaffNavigationTransformer,
           useExisting: DaffMagentoNavigationTransformerService,
         },
-        {
-          provide: MAGENTO_NAVIGATION_DRIVER_CONFIG,
-          useValue: {
-            ...MAGENTO_NAVIGATION_DRIVER_CONFIG_DEFAULT,
-            ...config,
-          },
-        },
+        provideMagentoNavigationDriverConfig(config),
         {
           provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
           useValue: DAFF_MAGENTO_GET_CATEGORY_TREE_QUERY_NAME,

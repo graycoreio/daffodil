@@ -8,7 +8,7 @@ export const {
    * Mandatory for the Magento driver.
    */
   token: MAGENTO_CATEGORY_CONFIG_TOKEN,
-  provider: provideDaffAnalyticsConfig,
+  provider: provideMagentoCategoryConfig,
 } = createConfigInjectionToken<DaffCategoryMagentoDriverConfig>(
   MAGENTO_CATEGORY_CONFIG_DEFAULT,
   'MAGENTO_CATEGORY_CONFIG_TOKEN',
