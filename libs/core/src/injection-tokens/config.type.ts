@@ -17,6 +17,7 @@ export interface DaffConfigInjectionToken<T = unknown> {
    * A helper function to provide a value to the token.
    * It will shallow merge the passed config with the default config
    * with the passed config keys taking precedence.
+   * An injection token containing a config may also be passed.
    */
   provider: <R extends T = T>(config: Partial<R> | InjectionToken<Partial<R>>) => FactoryProvider;
 }
