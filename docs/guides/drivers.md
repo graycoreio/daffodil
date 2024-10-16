@@ -1,4 +1,4 @@
-## Drivers
+# Drivers
 
 Drivers act as bridges between an application and its backend, simplifying the integration of different platforms. Instead of needing to understand the specific details of each platform, you can interact with them through a driver. This promotes flexibility in data management while providing a consistent way to communicate with each platform.
 
