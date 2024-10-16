@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DAFF_PRODUCT_TYPE_FACTORIES } from '@daffodil/product/testing';
+import { provideDaffProductExtraFactoryTypes } from '@daffodil/product/testing';
 import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
 
 /**
@@ -20,11 +20,7 @@ export class DaffConfigurableProductTestingDriverModule {
     return {
       ngModule: DaffConfigurableProductTestingDriverModule,
       providers: [
-        {
-          provide: DAFF_PRODUCT_TYPE_FACTORIES,
-          useExisting: DaffConfigurableProductFactory,
-          multi: true,
-        },
+        provideDaffProductExtraFactoryTypes(DaffConfigurableProductFactory),
       ],
     };
   }

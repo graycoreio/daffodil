@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { DAFF_SEARCH_RESULT_KIND_FACTORIES } from '@daffodil/search/testing';
+import { provideDaffSearchResultKindFactories } from '@daffodil/search/testing';
 
 import { DaffSearchProductResultFactory } from './factories/public_api';
 
@@ -9,11 +9,7 @@ import { DaffSearchProductResultFactory } from './factories/public_api';
  */
 @NgModule({
   providers: [
-    {
-      provide: DAFF_SEARCH_RESULT_KIND_FACTORIES,
-      useExisting: DaffSearchProductResultFactory,
-      multi: true,
-    },
+    provideDaffSearchResultKindFactories(DaffSearchProductResultFactory),
   ],
 })
 export class DaffSearchProductTestingModule { }

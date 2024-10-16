@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { DAFF_PRODUCT_IN_MEMORY_EXTRA_PRODUCT_RESPONSE_TRANSFORMS } from '@daffodil/product/driver/in-memory';
-import { DAFF_PRODUCT_EXTRA_FACTORIES } from '@daffodil/product/testing';
+import { provideDaffProductExtraProductFactories } from '@daffodil/product/testing';
 import { DaffUpsellProductFactory } from '@daffodil/upsell-products/testing';
 
 import { transformInMemoryUpsellProducts } from './transforms/product-response.service';
@@ -23,11 +23,7 @@ export class DaffUpsellProductsInMemoryDriverModule {
     return {
       ngModule: DaffUpsellProductsInMemoryDriverModule,
       providers: [
-        {
-          provide: DAFF_PRODUCT_EXTRA_FACTORIES,
-          useExisting: DaffUpsellProductFactory,
-          multi: true,
-        },
+        provideDaffProductExtraProductFactories(DaffUpsellProductFactory),
         {
           provide: DAFF_PRODUCT_IN_MEMORY_EXTRA_PRODUCT_RESPONSE_TRANSFORMS,
           useValue: transformInMemoryUpsellProducts,
