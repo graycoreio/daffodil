@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { provideDaffCategoryDriver } from '@daffodil/category/driver';
-import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
+import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/magento';
 import { DAFF_MAGENTO_GET_FILTER_TYPES_QUERY_NAME } from '@daffodil/product/driver/magento';
 
 import { DaffMagentoCategoryService } from './category.service';
@@ -42,21 +42,11 @@ export class DaffCategoryMagentoDriverModule {
         DaffMagentoCategoryResponseTransformService,
         DaffMagentoCategoryTransformerService,
         DaffMagentoAppliedFiltersTransformService,
-        {
-          provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-          useValue: DAFF_MAGENTO_GET_FILTER_TYPES_QUERY_NAME,
-          multi: true,
-        },
-        {
-          provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-          useValue: DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME,
-          multi: true,
-        },
-        {
-          provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-          useValue: DAFF_MAGENTO_RESOLVE_CATEGORY_URL_QUERY_NAME,
-          multi: true,
-        },
+        provideManyDaffMagentoCacheableOperations(
+          DAFF_MAGENTO_GET_FILTER_TYPES_QUERY_NAME,
+          DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME,
+          DAFF_MAGENTO_RESOLVE_CATEGORY_URL_QUERY_NAME,
+        ),
         provideMagentoCategoryConfig(config),
       ],
     };

@@ -4,7 +4,7 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
+import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento';
 import { DAFF_SEARCH_FEDERATED_DRIVERS } from '@daffodil/search/driver/federated';
 
 import { DaffSearchCategoryMagentoDriver } from './category-search.service';
@@ -18,11 +18,7 @@ import { DAFF_MAGENTO_SEARCH_FOR_CATEGORIES_QUERY_NAME } from './queries/categor
     CommonModule,
   ],
   providers: [
-    {
-      provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-      useValue: DAFF_MAGENTO_SEARCH_FOR_CATEGORIES_QUERY_NAME,
-      multi: true,
-    },
+    provideDaffMagentoCacheableOperation(DAFF_MAGENTO_SEARCH_FOR_CATEGORIES_QUERY_NAME),
   ],
 })
 export class DaffSearchCategoryMagentoDriverModule {

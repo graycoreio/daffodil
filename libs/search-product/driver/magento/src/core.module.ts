@@ -1,10 +1,7 @@
 import { CommonModule } from '@angular/common';
-import {
-  NgModule,
-  ModuleWithProviders,
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 
-import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from '@daffodil/driver/magento';
+import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento';
 
 import { DAFF_MAGENTO_SEARCH_FOR_PRODUCTS_QUERY_NAME } from './queries/product-search';
 
@@ -16,11 +13,7 @@ import { DAFF_MAGENTO_SEARCH_FOR_PRODUCTS_QUERY_NAME } from './queries/product-s
     CommonModule,
   ],
   providers: [
-    {
-      provide: DAFF_MAGENTO_CACHEABLE_OPERATIONS,
-      useValue: DAFF_MAGENTO_SEARCH_FOR_PRODUCTS_QUERY_NAME,
-      multi: true,
-    },
+    provideDaffMagentoCacheableOperation(DAFF_MAGENTO_SEARCH_FOR_PRODUCTS_QUERY_NAME),
   ],
 })
 export class DaffSearchProductMagentoCoreModule {}
