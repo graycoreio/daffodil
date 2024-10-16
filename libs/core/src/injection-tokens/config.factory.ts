@@ -1,4 +1,7 @@
-import { InjectionToken } from '@angular/core';
+import {
+  inject,
+  InjectionToken,
+} from '@angular/core';
 
 import { DaffConfigInjectionToken } from './config.type';
 import {
@@ -23,12 +26,12 @@ export const createConfigInjectionToken = <T = unknown>(
       ...options,
     },
   );
-  const provider = <R extends T = T>(config: Partial<R>) => ({
+  const provider = <R extends T = T>(config: Partial<R> | InjectionToken<Partial<R>>) => ({
     provide: token,
-    useValue: {
+    useFactory: () => ({
       ...defaultConfig,
-      ...config,
-    },
+      ...(config instanceof InjectionToken ? inject(config) : config),
+    }),
   });
 
   return {

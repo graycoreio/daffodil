@@ -1,3 +1,5 @@
+import { InjectionToken } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffConfigInjectionToken } from '@daffodil/core';
@@ -11,13 +13,16 @@ interface Config {
 
 describe('@daffodil/core | createConfigInjectionToken', () => {
   let name: string;
-  let value: number;
+  let value: Partial<Config>;
   let defaultConfig: Config;
 
   let result: DaffConfigInjectionToken<Config>;
 
   beforeEach(() => {
     name = faker.random.word();
+    value = {
+      field: faker.random.word(),
+    };
     defaultConfig = {
       field: faker.random.word(),
       other: faker.random.word(),
@@ -29,13 +34,33 @@ describe('@daffodil/core | createConfigInjectionToken', () => {
     expect(result.token.toString()).toContain(name);
   });
 
-  it('should return a provider that spreads in passed values with the default', () => {
-    const val = faker.random.word();
-    const res = result.provider({
-      field: val,
+  describe('when the provided value is an injection token', () => {
+    let token: InjectionToken<Partial<Config>>;
+
+    beforeEach(() => {
+      token = new InjectionToken('test');
+      TestBed.configureTestingModule({
+        providers: [
+          {
+            provide: token,
+            useValue: value,
+          },
+        ],
+      });
     });
+
+    it('should return a provider that spreads in passed values with the default', () => {
+      const res = result.provider(token);
+      expect(res.provide).toEqual(result.token);
+      expect(TestBed.runInInjectionContext<Config>(<any>res.useFactory).field).toEqual(value.field);
+      expect(TestBed.runInInjectionContext<Config>(<any>res.useFactory).other).toEqual(defaultConfig.other);
+    });
+  });
+
+  it('should return a provider that spreads in passed values with the default', () => {
+    const res = result.provider(value);
     expect(res.provide).toEqual(result.token);
-    expect(res.useValue.field).toEqual(val);
-    expect(res.useValue.other).toEqual(defaultConfig.other);
+    expect(TestBed.runInInjectionContext<Config>(<any>res.useFactory).field).toEqual(value.field);
+    expect(TestBed.runInInjectionContext<Config>(<any>res.useFactory).other).toEqual(defaultConfig.other);
   });
 });
