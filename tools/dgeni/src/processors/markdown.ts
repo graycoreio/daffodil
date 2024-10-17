@@ -1,7 +1,4 @@
-import {
-  Processor,
-  Document,
-} from 'dgeni';
+import { Document } from 'dgeni';
 import hljs from 'highlight.js';
 import bash from 'highlight.js/lib/languages/bash';
 import graphql from 'highlight.js/lib/languages/graphql';
@@ -15,6 +12,7 @@ import { markedHighlight } from 'marked-highlight';
 import { daffDocsGetLinkUrl } from '@daffodil/docs-utils';
 
 import { CollectLinkableSymbolsProcessor } from './collect-linkable-symbols';
+import { FilterableProcessor } from '../utils/filterable-processor.type';
 
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('ts', typescript);
@@ -36,16 +34,6 @@ marked.use(
 );
 
 marked.use({
-  walkTokens: (token) => {
-    switch (token.type) {
-      case 'link':
-        token.href = daffDocsGetLinkUrl(token.href);
-        break;
-
-      default:
-        break;
-    }
-  },
   renderer: {
     heading: (text: string, level: number, raw: string) =>
       `<h${level} id="${slugify(raw)}">${text}</h${level}>`,
@@ -58,19 +46,33 @@ marked.use({
 
 export const MARKDOWN_CODE_PROCESSOR_NAME = 'markdown';
 
-export class MarkdownCodeProcessor implements Processor {
+export class MarkdownCodeProcessor implements FilterableProcessor {
   name = MARKDOWN_CODE_PROCESSOR_NAME;
   $runAfter = ['paths-computed'];
   $runBefore = ['rendering-docs'];
   docTypes = [];
   contentKey = 'content';
 
-  constructor() {}
+  constructor(
+    private aliasMap,
+  ) {}
 
   $process(docs: Document[]) {
     return docs.map((doc) => {
-      if(this.docTypes.includes(doc.docType)){
-        doc[this.contentKey] = marked.parse(doc.content);
+      if (this.docTypes.includes(doc.docType)) {
+        doc[this.contentKey] = marked.parse(doc.content, {
+          walkTokens: (token) => {
+            switch (token.type) {
+              case 'link':
+                const alias = this.aliasMap.getDocs(token.href)[0];
+                token.href = alias?.path || daffDocsGetLinkUrl(token.href);
+                break;
+
+              default:
+                break;
+            }
+          },
+        });
       };
       return doc;
     });
@@ -79,5 +81,5 @@ export class MarkdownCodeProcessor implements Processor {
 
 export const MARKDOWN_CODE_PROCESSOR_PROVIDER = <const>[
   MARKDOWN_CODE_PROCESSOR_NAME,
-  () => new MarkdownCodeProcessor(),
+  (aliasMap) => new MarkdownCodeProcessor(aliasMap),
 ];
