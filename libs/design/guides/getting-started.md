@@ -49,9 +49,23 @@ There is a minimal required global style for the Daffodil Design System to opera
 > For more information on our approach to these kinds of styles, see the [Global Styles guide.](/libs/design/guides/foundations/global-styles.md)
 
 ## Add a theme
-`@daffodil/design` is a themable component library. The components in the design library can be configured with customized colors in addition to a dark and light mode for those same colors. No further configuration is needed if you choose to use `@daffodil/design`'s default theme.
+A theme must be configured in order for the components to work properly. The components in the design library can be configured with customized colors in addition to a dark and light mode for those same colors.
 
-See the [Theming guide](/libs/design/scss/theming/README.md) if you'd like to define your own theme.
+To use `@daffodil/design`'s default theme, include the following in your `styles.scss` file:
+
+```scss
+@use '@daffodil/design/scss/theme' as daff;
+
+.daff-theme-light {
+	@include daff.daff-theme(daff.$theme);
+}
+
+.daff-theme-dark {
+	@include daff.daff-theme(daff.$theme-dark);
+}
+```
+
+See the [Theming guide](/libs/design/guides/foundations/theming.md) for more information on how to customize your own theme.
 
 ## Use a component
 Now you're ready to use Daffodil Design [components](/docs/design/components)! For example, here's how to use the [Hero](/libs/design/hero/README.md) component.
@@ -82,4 +96,6 @@ With the component imported, you can add it to your `CustomComponent` template l
 ```
 
 ## Next steps
-We've just walked through the basics of setting up `@daffodil/design`. There is much more to it than just the hero component. Check out the [full list of components](/docs/design/components), try and add them to your sample app, and imagine all the wonderful things you can now build!
+We've just walked through the basics of setting up `@daffodil/design` and using the basic features of the Hero component. Now try to change the color of the [Hero](/libs/design/hero/README.md)!
+
+Check out the [full list of components](/docs/design/components), try and add them to your sample app, and imagine all the wonderful things you can now build!
