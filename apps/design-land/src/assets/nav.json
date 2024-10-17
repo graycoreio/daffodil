@@ -148,6 +148,13 @@
               "id": "quantity-field",
               "items": [],
               "data": {}
+            },
+            {
+              "title": "Select",
+              "url": "select",
+              "id": "select",
+              "items": [],
+              "data": {}
             }
           ],
           "data": {}
