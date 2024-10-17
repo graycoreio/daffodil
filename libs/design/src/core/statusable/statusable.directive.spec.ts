@@ -57,6 +57,15 @@ describe('@daffodil/design | DaffStatusableDirective', () => {
     expect(directive.status).toEqual(wrapper.status);
   });
 
+  it('should add a class of .daff-info to the host element if status is set to info', () => {
+    wrapper.status = 'info';
+    fixture.detectChanges();
+
+    expect(directive.class).toEqual(jasmine.objectContaining({
+      'daff-info': true,
+    }));
+  });
+
   it('should add a class of .daff-warn to the host element if status is set to warn', () => {
     wrapper.status = 'warn';
     fixture.detectChanges();
@@ -66,12 +75,12 @@ describe('@daffodil/design | DaffStatusableDirective', () => {
     }));
   });
 
-  it('should add a class of .daff-danger to the host element if status is set to danger', () => {
-    wrapper.status = 'danger';
+  it('should add a class of .daff-critical to the host element if status is set to critical', () => {
+    wrapper.status = 'critical';
     fixture.detectChanges();
 
     expect(directive.class).toEqual(jasmine.objectContaining({
-      'daff-danger': true,
+      'daff-critical': true,
     }));
   });
 

@@ -89,7 +89,7 @@ Supported colors: `primary | secondary | tertiary | black | white | theme | them
 ## Status Indicators
 Buttons with status indicators can be used to distinguish what type of action it performs and its importance compared to other buttons in the same context.
 
-Supported statuses: `warn | danger | success`
+Supported statuses: `warn | critical | success`
 
 <design-land-example-viewer-container example="statusable-button"></design-land-example-viewer-container>
 

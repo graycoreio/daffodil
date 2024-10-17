@@ -153,7 +153,7 @@ A maximum of three toasts can be shown at a time. Toasts are stacked vertically,
 ## Statuses
 The status color of a toast can be updated by using the `status` property.
 
-Supported statuses: `warn | danger | success`
+Supported statuses: `warn | critical | success`
 
 ### Toast with statuses
 <design-land-example-viewer-container example="toast-status"></design-land-example-viewer-container>

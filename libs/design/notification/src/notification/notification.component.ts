@@ -68,11 +68,11 @@ export class DaffNotificationComponent implements DaffPrefixable {
   @HostBinding('attr.tabindex') tabindex = '0';
 
   /**
-   * Sets role to alert when `status="warn"` or `status="danger"`.
+   * Sets role to alert when `status="warn"` or `status="critical"`.
    * Sets role to status on all other instances.
    */
   @HostBinding('attr.role') get role() {
-    return this.statusDirective.status === DaffStatusEnum.Warn || this.statusDirective.status === DaffStatusEnum.Danger ? 'alert' : 'status';
+    return this.statusDirective.status === DaffStatusEnum.Warn || this.statusDirective.status === DaffStatusEnum.Critical ? 'alert' : 'status';
   };
 
   @HostBinding('class.vertical') get verticalOrientation() {

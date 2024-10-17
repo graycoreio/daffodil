@@ -124,8 +124,8 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
       expect(component.role).toBe('alert');
     });
 
-    it('should set role to alert if status is danger', () => {
-      wrapper.status = 'danger';
+    it('should set role to alert if status is critical', () => {
+      wrapper.status = 'critical';
       fixture.detectChanges();
 
       expect(component.role).toBe('alert');
