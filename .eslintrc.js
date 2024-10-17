@@ -35,7 +35,7 @@ module.exports = {
               caseInsensitive: false
             }
           }
-        ],
+        ]
       }
     },
     {
