@@ -64,8 +64,9 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
           walkTokens: (token) => {
             switch (token.type) {
               case 'link':
-                const alias = this.aliasMap.getDocs(token.href)[0];
-                token.href = alias?.path || daffDocsGetLinkUrl(token.href);
+                const [link, anchor] = token.href.split('#');
+                const alias = this.aliasMap.getDocs(link)[0];
+                token.href = `${alias?.path || daffDocsGetLinkUrl(token.href)}${anchor ? `#${anchor}` : ''}`;
                 break;
 
               default:
