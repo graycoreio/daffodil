@@ -22,7 +22,10 @@ import {
   GENERATE_NAV_LIST_PROCESSOR_PROVIDER,
   GenerateNavListProcessor,
 } from '../../processors/generateNavList';
-import { MarkdownCodeProcessor } from '../../processors/markdown';
+import {
+  MARKDOWN_CODE_PROCESSOR_PROVIDER,
+  MarkdownCodeProcessor,
+} from '../../processors/markdown';
 import { IdSanitizer } from '../../services/id-sanitizer';
 import { outputPathsConfigurator } from '../../utils/configurator/output';
 import { pathsConfigurator } from '../../utils/configurator/path';
@@ -33,6 +36,7 @@ import {
   DESIGN_PATH,
   DOCS_SOURCE_PATH,
   GUIDES_TEMPLATES_PATH,
+  PROJECT_ROOT,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
 
@@ -40,7 +44,7 @@ const docTypes = ['guide', 'package-guide'];
 
 const base = new Package('daffodil-guides-base', [daffodilBasePackage])
   .factory('guideFileReader', guideFileReaderFactory)
-  .processor(new MarkdownCodeProcessor())
+  .processor(...MARKDOWN_CODE_PROCESSOR_PROVIDER)
   .config((markdown: MarkdownCodeProcessor, addKind: AddKindProcessor, convertToJson, breadcrumb: BreadcrumbProcessor) => {
     addKind.docTypes.push(...docTypes);
     markdown.docTypes.push(...docTypes);
@@ -59,7 +63,7 @@ const base = new Package('daffodil-guides-base', [daffodilBasePackage])
     computeIdsProcessor.idTemplates.push({
       docTypes: ['guide'],
       getId: (doc) => idSanitizer.sanitize(doc.fileInfo.relativePath),
-      getAliases: (doc) => [doc.id],
+      getAliases: (doc) => [doc.id, doc.fileInfo.filePath.replace(PROJECT_ROOT, '')],
     });
     idSanitizer.segmentsToRemove = [
       'src/',
