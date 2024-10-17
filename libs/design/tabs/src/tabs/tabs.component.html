@@ -1,0 +1,24 @@
+<div class="daff-tabs__tab-list"
+	role="tablist"
+	[attr.aria-label]="ariaLabel"
+	(keydown.home)="selectFirst($event)"
+	(keydown.end)="selectLast($event)">
+	@for (tab of _tabs; track tab) {
+		<button daff-tab-activator
+			[selected]="tab.id === selectedTab"
+			(click)="select(tab.id)"
+			[panelId]="tab.panelId"
+			[disabled]="tab.disabled"
+			[tabActivatorId]="tab.id"
+			(keydown.arrowright)="next()"
+			(keydown.arrowleft)="previous()">
+				<ng-container *ngTemplateOutlet="tab.labelRef"></ng-container>
+		</button>
+	}
+</div>
+
+@for (tab of _tabs; track tab) {
+	@if(tab.id === selectedTab ) {
+		<ng-container *ngTemplateOutlet="tab.contentRef"></ng-container>
+	}
+}
