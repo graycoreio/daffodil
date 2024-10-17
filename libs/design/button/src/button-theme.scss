@@ -111,7 +111,7 @@
 			);
 		}
 
-		&.daff-danger {
+		&.daff-critical {
 			@include button.daff-button-theme-variant(
 				theming.daff-color(theming.$daff-red, 60),
 				theming.daff-color(theming.$daff-red, 70),
@@ -177,7 +177,7 @@
 			);
 		}
 
-		&.daff-danger {
+		&.daff-critical {
 			@include raised.daff-raised-button-theme-variant(
 				theming.daff-color(theming.$daff-red, 60)
 			);
@@ -274,7 +274,7 @@
 			);
 		}
 
-		&.daff-danger {
+		&.daff-critical {
 			@include icon.daff-icon-button-theme-variant(
 				theming.daff-color(theming.$daff-red, 60),
 				theming.daff-color(theming.$daff-red, 70),
@@ -390,7 +390,7 @@
 			);
 		}
 
-		&.daff-danger {
+		&.daff-critical {
 			@include stroked.daff-stroked-button-theme-variant(
 				theming.daff-color(theming.$daff-red, 60),
 				theming.daff-color(theming.$daff-red, 70)
@@ -492,7 +492,7 @@
 			);
 		}
 
-		&.daff-danger {
+		&.daff-critical {
 			@include flat.daff-flat-button-theme-variant(
 				theming.daff-color(theming.$daff-red, 60),
 				theming.daff-color(theming.$daff-red, 70)
@@ -559,7 +559,7 @@
 			);
 		}
 
-		&.daff-danger {
+		&.daff-critical {
 			@include underline.daff-underline-button-theme-variant(
 				theming.daff-color(theming.$daff-red, 60)
 			);

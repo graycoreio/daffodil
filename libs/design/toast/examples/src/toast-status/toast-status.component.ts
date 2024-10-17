@@ -19,7 +19,7 @@ import {
 } from '@daffodil/design/toast';
 
 const status: Record<string, DaffToastData> =  {
-  danger: {
+  critical: {
     title: 'Server error',
     message: 'There is a server error.',
   },
@@ -60,7 +60,7 @@ export class ToastStatusComponent {
       ...status[this.statusControl.value],
     },
     {
-      duration: this.statusControl.value === 'danger' ? undefined : 5000,
+      duration: this.statusControl.value === 'critical' ? undefined : 5000,
     },
     );
   }

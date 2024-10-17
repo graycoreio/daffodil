@@ -25,7 +25,7 @@
 	--daff-theme-tertiary: #{theming.daff-color($tertiary)};
 	--daff-theme-warn: #{theming.daff-color(theming.$daff-bronze, 60)};
 	--daff-theme-success: #{theming.daff-color(theming.$daff-green, 60)};
-	--daff-theme-danger: #{theming.daff-color(theming.$daff-red, 60)};
+	--daff-theme-critical: #{theming.daff-color(theming.$daff-red, 60)};
 	--daff-theme-white: #{$white};
 	--daff-theme-black: #{$black};
 	--daff-theme-gray: #{theming.daff-color($neutral)};

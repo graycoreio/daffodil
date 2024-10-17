@@ -13,7 +13,7 @@ import {
 /**
  * `DaffStatusableDirective` allows a component to conditionally apply status-specific
  * styles by setting CSS classes based on the specified status. This directive is useful
- * for indicating different statuses such as warning, danger, or success states.
+ * for indicating different statuses such as info, warning, critical, or success states.
  *
  * ## Usage
  *
@@ -42,7 +42,7 @@ import {
  * ```scss
  * .custom-component {
  *
- *  &.daff-danger {
+ *  &.daff-critical {
  *    background: daff-color($red, 10);
  *    color: daff-color($red, 90);
  *  }
@@ -52,8 +52,9 @@ import {
  *
  * The directive applies the following CSS classes based on the status:
  *
+ * - `daff-info`: Applied when the status is `info`.
  * - `daff-warn`: Applied when the status is `warn`.
- * - `daff-danger`: Applied when the status is `danger`.
+ * - `daff-critical`: Applied when the status is `critical`.
  * - `daff-success`: Applied when the status is `success`.
  */
 @Directive({
@@ -68,8 +69,9 @@ export class DaffStatusableDirective implements DaffStatusable {
    */
   @HostBinding('class') get class() {
     return {
+      'daff-info': this.status === DaffStatusEnum.Info,
       'daff-warn': this.status === DaffStatusEnum.Warn,
-      'daff-danger': this.status === DaffStatusEnum.Danger,
+      'daff-critical': this.status === DaffStatusEnum.Critical,
       'daff-success': this.status === DaffStatusEnum.Success,
     };
   }

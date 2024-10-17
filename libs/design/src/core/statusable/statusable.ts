@@ -11,17 +11,19 @@ export interface DaffStatusable {
 
 /**
  * The `DaffStatus` type defines the possible status values that a component can have.
+ * - 'info': Indicatea an informational status.
  * - 'warn': Indicates a warning status.
- * - 'danger': Indicates a danger or error status.
+ * - 'critical': Indicates a critical or error status.
  * - 'success': Indicates a success status.
  */
-export type DaffStatus = 'warn' | 'danger' | 'success';
+export type DaffStatus = 'info' | 'warn' | 'critical' | 'success';
 
 /**
  * The `DaffStatusEnum` enumerates the possible status values for a component.
  */
 export enum DaffStatusEnum {
+  Info = 'info',
   Warn = 'warn',
-  Danger = 'danger',
+  Critical = 'critical',
   Success = 'success'
 }
