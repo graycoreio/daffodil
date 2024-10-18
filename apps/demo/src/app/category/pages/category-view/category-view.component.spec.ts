@@ -4,6 +4,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
 
 import { DaffCategory } from '@daffodil/category';
 import {
@@ -45,6 +46,9 @@ describe('CategoryViewComponent', () => {
         ProductGridModule,
         DaffCategoryStateTestingModule,
         DaffProductTestingModule,
+      ],
+      providers: [
+        provideRouter([]),
       ],
     })
       .compileComponents();

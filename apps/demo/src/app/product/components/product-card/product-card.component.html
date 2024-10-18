@@ -1,14 +1,16 @@
-<div class="demo-product-card" (click)="navigateToProduct()">
-  <img class="demo-product-card__image" src="{{product.images[0].url}}">
-  <div class="demo-product-card__details">
-    <p class="demo-product-card__brand single-line-ellipsis">
-      {{product.brand}}
-    </p>
-    <p class="demo-product-card__name single-line-ellipsis">
-      {{product.name}}
-    </p>
-    <p class="demo-product-card__price">
-      ${{product.price}}
-    </p>
-  </div>
-</div>      
+<a [routerLink]="product.url">
+  <div class="demo-product-card">
+    <img class="demo-product-card__image" src="{{product.images[0].url}}">
+    <div class="demo-product-card__details">
+      <p class="demo-product-card__brand single-line-ellipsis">
+        {{product.brand}}
+      </p>
+      <p class="demo-product-card__name single-line-ellipsis">
+        {{product.name}}
+      </p>
+      <p class="demo-product-card__price">
+        ${{product.price}}
+      </p>
+    </div>
+  </div>      
+</a>
