@@ -14,12 +14,4 @@ import { DaffProduct } from '@daffodil/product';
 export class ProductCardComponent {
 
   @Input() product: DaffProduct;
-
-  constructor(
-    private router: Router,
-  ) { }
-
-  navigateToProduct() {
-    this.router.navigateByUrl('product/' + this.product.id);
-  }
 }

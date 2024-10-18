@@ -68,15 +68,4 @@ describe('ProductCardComponent', () => {
   it('should be able to take a product as input', () => {
     expect(productCardComponent.componentInstance.product).toEqual(stubProduct);
   });
-
-  describe('when demo-product-card is clicked', () => {
-
-    beforeEach(() => {
-      fixture.debugElement.query(By.css('.demo-product-card')).nativeElement.click();
-    });
-
-    it('should call router.navigateByUrl', () => {
-      expect(productCardComponent.componentInstance.router.navigateByUrl).toHaveBeenCalledWith('product/' + stubProduct.id);
-    });
-  });
 });
