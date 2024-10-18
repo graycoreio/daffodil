@@ -15,7 +15,7 @@ export const {
 } = createSingletonInjectionToken<DaffExternalRouterDriverInterface>('DaffExternalRouterDriver');
 
 /**
- * The interface for a @daffodil/external-router driver.
+ * The interface for a `@daffodil/external-router` driver.
  *
  * This driver is responsible for translating a URL into a Route consumable by
  * Daffodil.

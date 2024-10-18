@@ -6,7 +6,6 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import {
   Observable,
   of,
-  throwError,
 } from 'rxjs';
 
 import {
@@ -14,7 +13,10 @@ import {
   daffUriTruncateQueryFragment,
 } from '@daffodil/core/routing';
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
-import { DaffExternalRouterDriverInterface } from '@daffodil/external-router/driver';
+import {
+  DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION,
+  DaffExternalRouterDriverInterface,
+} from '@daffodil/external-router/driver';
 
 import {
   DaffExternalRouterDriverTestingConfig,
@@ -43,16 +45,18 @@ implements DaffExternalRouterDriverInterface {
     const truncatedUrl = daffUriTruncateLeadingSlash(daffUriTruncateQueryFragment(url));
 
     if (!this.testingConfiguration[truncatedUrl]) {
-      return throwError(`\
-The route '${truncatedUrl}' wasn't provided with a matching type by the testing driver. \
-Did you configure the available route types with DaffExternalRouterDriverTestingModule.forRoot(config)`);
+      return of(DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION);
     }
 
-    return of({
-      id: faker.datatype.uuid(),
-      url: truncatedUrl,
-      type: this.testingConfiguration[truncatedUrl],
-      code: 200,
-    });
+    if((typeof this.testingConfiguration[truncatedUrl]) === 'string') {
+      return of({
+        id: faker.datatype.uuid(),
+        url: truncatedUrl,
+        type: <string>this.testingConfiguration[truncatedUrl],
+        code: 200,
+      });
+    }
+
+    return of(<DaffExternallyResolvableUrl>this.testingConfiguration[truncatedUrl]);
   }
 }

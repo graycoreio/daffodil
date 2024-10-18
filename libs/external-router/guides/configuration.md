@@ -1,30 +1,19 @@
 # Configuration
-You can configure the way that `@daffodil/external-router` works by providing configurations to the `DaffExternalRouterModule`.
 
-## Usage
-An array of `DaffTypeRoutePair`s can be passed as the second argument to `forRoot`. They can also be provided through DI using the `provideDaffRouteResolvableByType` function.
+`@daffodil/external-router` can be configured by passing a `DaffExternalRouterConfiguration` to `provideExternalRouter`.
 
 ```ts
-@NgModule({
-	imports: [
-		DaffExternalRouterModule.forRoot({
-			failedResolutionPath: 'your-custom-error-path',
-		}, [
-      {
-        type: 'some-type',
-        route: { redirectTo: '/' },
-        insertionStrategy: (route: Route, routes: Routes) => [
-          ...routes,
-          route
-        ]
-      }
-    ]),
-	],
-})
-class AppModule {}
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes),
+    provideClientHydration(),
+    ...
+    provideExternalRouter({ failedResolutionPath: '/error' }),
+  ],
+};
 ```
 
-### Configuration options
+## Configuration Options
 
 | Property             | Purpose                                                       | Default Value |
 | -------------------- | ------------------------------------------------------------- | ------------- |

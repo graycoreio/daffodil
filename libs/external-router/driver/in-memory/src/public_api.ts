@@ -9,3 +9,5 @@ export {
   DaffExternalRouterDriverInMemoryConfig,
   DaffExternalRouterDriverInMemoryResolver,
 } from './config';
+
+export { provideDaffExternalRouterInMemoryDriver } from './provider';
