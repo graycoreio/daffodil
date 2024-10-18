@@ -93,10 +93,10 @@ export class BreadcrumbProcessor implements FilterableProcessor {
   ) {}
 
   private getBreadcrumbs(doc: ParentedDocument & KindedDocument): Array<DaffBreadcrumb> {
-    const segments = doc.path.split('/');
+    const segments = (<string>doc.path).split('/');
     const breadcrumbs = segments
       .map((segment, i) => getStaticBreadcrumb(segment, segments.slice(0, i).join('/')))
-      .filter((b) => !!b);
+      .filter((b, i, ary) => !!b && ary.findIndex((e) => e?.label === b.label) === i);
 
     // once all static breadcrumbs are generated,
     // create dynamic breadcrumbs for doc kinds that need them
@@ -136,6 +136,13 @@ export class BreadcrumbProcessor implements FilterableProcessor {
             })),
             {
               label: parents.length > 0 ? truncateLabel(doc.name, parents[parents.length - 1].name) : doc.name,
+              path: doc.path,
+            },
+          );
+        } else {
+          breadcrumbs.push(
+            {
+              label: doc.name,
               path: doc.path,
             },
           );
