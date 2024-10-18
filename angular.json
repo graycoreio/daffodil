@@ -58,7 +58,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "apps/demo/src/app/drivers/driver.module.ts",
+                  "with": "apps/demo/src/app/drivers/in-memory.module.ts"
+                }
+              ]
             },
             "production": {
               "budgets": [
