@@ -26,6 +26,9 @@ import {
   DaffCategoryPageApplyFilters,
   DaffCategoryPageClearFilters,
   DaffCategoryPageRemoveFilters,
+  DaffCategoryPageChangePageSize,
+  DaffCategoryPageChangeCurrentPage,
+  DaffCategoryPageChangeSortingOption,
 } from '@daffodil/category/state';
 import {
   DaffCategoryStateTestingModule,
@@ -42,6 +45,7 @@ import {
   DaffFilterRequest,
   daffFiltersToRequests,
   DaffFilterToggleRequest,
+  DaffSortDirectionEnum,
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import { MockDaffCollectionFacade } from '@daffodil/core/state/testing';
@@ -54,7 +58,7 @@ import { DaffProduct } from '@daffodil/product';
 import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffCategoryPageFilterEffects } from './category-page-filter.effects';
+import { DaffCategoryPageMetadataEffects } from './category-page-metadata.effects';
 
 class MockError extends DaffInheritableError implements DaffError {
   code = 'code';
@@ -64,9 +68,9 @@ class MockError extends DaffInheritableError implements DaffError {
   }
 }
 
-describe('DaffCategoryPageFilterEffects', () => {
+describe('DaffCategoryPageMetadataEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffCategoryPageFilterEffects<DaffCategory, DaffProduct>;
+  let effects: DaffCategoryPageMetadataEffects<DaffCategory, DaffProduct>;
   let daffCategoryDriver: DaffCategoryServiceInterface;
   let facade: MockDaffCollectionFacade;
 
@@ -112,7 +116,7 @@ describe('DaffCategoryPageFilterEffects', () => {
           };
 
           expectObservable(
-            effects.updateFilters$(300, testScheduler),
+            effects.update$(300, testScheduler),
           ).toBe(expectedMarble, expectedValue);
         });
 
@@ -162,7 +166,7 @@ describe('DaffCategoryPageFilterEffects', () => {
           };
 
           expectObservable(
-            effects.updateFilters$(0, testScheduler),
+            effects.update$(0, testScheduler),
           ).toBe(expectedMarble, expectedValue);
         });
 
@@ -205,7 +209,7 @@ describe('DaffCategoryPageFilterEffects', () => {
           };
 
           expectObservable(
-            effects.updateFilters$(0, testScheduler),
+            effects.update$(0, testScheduler),
           ).toBe(expectedMarble, expectedValue);
         });
 
@@ -229,14 +233,14 @@ describe('DaffCategoryPageFilterEffects', () => {
         DaffCategoryStateTestingModule,
       ],
       providers: [
-        DaffCategoryPageFilterEffects,
+        DaffCategoryPageMetadataEffects,
         provideMockActions(() => actions$),
       ],
     });
 
     facade = TestBed.inject(MockDaffCollectionFacade);
     daffCategoryDriver = TestBed.inject<DaffCategoryServiceInterface>(DaffCategoryDriver);
-    effects = TestBed.inject(DaffCategoryPageFilterEffects);
+    effects = TestBed.inject(DaffCategoryPageMetadataEffects);
 
     categoryFactory = TestBed.inject(DaffCategoryFactory);
     categoryPageMetadataFactory = TestBed.inject(DaffCategoryPageMetadataFactory);
@@ -325,6 +329,52 @@ describe('DaffCategoryPageFilterEffects', () => {
     beforeEach(() => {
       toggleRequest = filterToggleRequestFactory.create();
       action = new DaffCategoryPageToggleFilter(toggleRequest);
+    });
+
+    describe('driver behavior', () => {
+      testDriverSuccess(() => action);
+      testDriverFailure(() => action);
+    });
+  });
+
+  describe('when CategoryPageChangePageSizeAction is triggered', () => {
+    let action: Action;
+
+    beforeEach(() => {
+      action = new DaffCategoryPageChangePageSize(5);
+    });
+
+    describe('driver behavior', () => {
+      testDriverSuccess(() => action);
+      testDriverFailure(() => action);
+    });
+  });
+
+  describe('when CategoryPageChangeCurrentPageAction is triggered', () => {
+    let toggleRequest: DaffFilterToggleRequest;
+    let action: Action;
+
+    beforeEach(() => {
+      toggleRequest = filterToggleRequestFactory.create();
+      action = new DaffCategoryPageChangeCurrentPage(2);
+    });
+
+    describe('driver behavior', () => {
+      testDriverSuccess(() => action);
+      testDriverFailure(() => action);
+    });
+  });
+
+  describe('when CategoryPageChangeSortingOptionAction is triggered', () => {
+    let toggleRequest: DaffFilterToggleRequest;
+    let action: Action;
+
+    beforeEach(() => {
+      toggleRequest = filterToggleRequestFactory.create();
+      action = new DaffCategoryPageChangeSortingOption({
+        option: 'option',
+        direction: DaffSortDirectionEnum.Ascending,
+      });
     });
 
     describe('driver behavior', () => {

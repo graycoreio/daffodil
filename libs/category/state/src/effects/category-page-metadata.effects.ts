@@ -52,7 +52,7 @@ import { DaffCategoryProductCollectionFacade } from '../facades/public_api';
 import { DAFF_CATEGORY_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
-export class DaffCategoryPageFilterEffects<
+export class DaffCategoryPageMetadataEffects<
   V extends DaffGenericCategory<V>,
   W extends DaffProduct
 > {
@@ -73,7 +73,7 @@ export class DaffCategoryPageFilterEffects<
    * in a sequence.
    */
 
-  updateFilters$: (throttleWindow: number, scheduler: AsyncScheduler) => Observable<
+  update$: (throttleWindow: number, scheduler: AsyncScheduler) => Observable<
   DaffProductGridLoadSuccess
   | DaffCategoryPageLoadSuccess
   | DaffCategoryPageLoadFailure
@@ -85,6 +85,9 @@ export class DaffCategoryPageFilterEffects<
         DaffCategoryPageProductCollectionActionTypes.CategoryPageClearFiltersAction,
         DaffCategoryPageProductCollectionActionTypes.CategoryPageRemoveFiltersAction,
         DaffCategoryPageProductCollectionActionTypes.CategoryPageToggleFilterAction,
+        DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeSizeAction,
+        DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeCurrentPageAction,
+        DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeSortingOptionAction,
       ),
       withLatestFrom(this.facade.metadata$),
       map((

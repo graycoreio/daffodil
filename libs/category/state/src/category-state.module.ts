@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { DaffProductStateModule } from '@daffodil/product/state';
 
-import { DaffCategoryPageFilterEffects } from './effects/category-page-filter.effects';
+import { DaffCategoryPageMetadataEffects } from './effects/category-page-metadata.effects';
 import { DaffCategoryPageEffects } from './effects/category-page.effects';
 import { DaffCategoryEffects } from './effects/category.effects';
 import { DAFF_CATEGORY_STORE_FEATURE_KEY } from './reducers/public_api';
@@ -16,7 +16,7 @@ import { DAFF_CATEGORY_REDUCERS } from './reducers/token/reducers.token';
 @NgModule({
   imports: [
     StoreModule.forFeature(DAFF_CATEGORY_STORE_FEATURE_KEY, DAFF_CATEGORY_REDUCERS),
-    EffectsModule.forFeature([DaffCategoryEffects, DaffCategoryPageEffects, DaffCategoryPageFilterEffects]),
+    EffectsModule.forFeature([DaffCategoryEffects, DaffCategoryPageEffects, DaffCategoryPageMetadataEffects]),
     DaffProductStateModule,
   ],
 })
