@@ -1,5 +1,8 @@
 import { createConfigInjectionToken } from '@daffodil/core';
-import { DaffExternalRouteType } from '@daffodil/external-router';
+import {
+  DaffExternallyResolvableUrl,
+  DaffExternalRouteType,
+} from '@daffodil/external-router';
 
 /**
  * The configuration for the testing driver. It is a dictionary of "url": "type",
@@ -7,7 +10,7 @@ import { DaffExternalRouteType } from '@daffodil/external-router';
  * and the type is a known type to your application, e.g. "CATEGORY".
  */
 export interface DaffExternalRouterDriverTestingConfig {
-  [url: string]: DaffExternalRouteType;
+  [url: string]: DaffExternalRouteType | DaffExternallyResolvableUrl;
 }
 
 export const {
