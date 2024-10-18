@@ -1,3 +1,4 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
@@ -29,6 +30,9 @@ import { DesignLandTemplateModule } from './core/template/template.module';
     DesignLandAppComponent,
   ],
   imports: [
+    // why does OverlayModule have to be in root?
+    OverlayModule,
+
     BrowserModule,
     BrowserAnimationsModule,
     DesignLandAppRoutingModule,
