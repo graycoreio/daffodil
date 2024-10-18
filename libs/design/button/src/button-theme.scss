@@ -12,6 +12,10 @@
 	$primary: map.get($theme, primary);
 	$secondary: map.get($theme, secondary);
 	$tertiary: map.get($theme, tertiary);
+	$info: map.get($theme, info);
+	$warn: map.get($theme, warn);
+	$critical: map.get($theme, critical);
+	$success: map.get($theme, success);
 	$base: core.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
 	$white: core.daff-map-deep-get($theme, 'core.white');
@@ -97,25 +101,25 @@
 
 		&.daff-warn {
 			@include button.daff-button-theme-variant(
-				theming.daff-color(theming.$daff-bronze, 60),
-				theming.daff-color(theming.$daff-bronze, 70),
-				theming.daff-color(theming.$daff-bronze, 80)
+				theming.daff-color($warn),
+				theming.daff-color($warn, 70),
+				theming.daff-color($warn, 80)
 			);
 		}
 
 		&.daff-success {
 			@include button.daff-button-theme-variant(
-				theming.daff-color(theming.$daff-green, 60),
-				theming.daff-color(theming.$daff-green, 70),
-				theming.daff-color(theming.$daff-green, 80)
+				theming.daff-color($success),
+				theming.daff-color($success, 70),
+				theming.daff-color($success, 80)
 			);
 		}
 
 		&.daff-critical {
 			@include button.daff-button-theme-variant(
-				theming.daff-color(theming.$daff-red, 60),
-				theming.daff-color(theming.$daff-red, 70),
-				theming.daff-color(theming.$daff-red, 80)
+				theming.daff-color($critical),
+				theming.daff-color($critical, 70),
+				theming.daff-color($critical, 80)
 			);
 		}
 	}
@@ -173,19 +177,19 @@
 
 		&.daff-warn {
 			@include raised.daff-raised-button-theme-variant(
-				theming.daff-color(theming.$daff-bronze, 60)
+				theming.daff-color($warn)
 			);
 		}
 
 		&.daff-critical {
 			@include raised.daff-raised-button-theme-variant(
-				theming.daff-color(theming.$daff-red, 60)
+				theming.daff-color($critical)
 			);
 		}
 
 		&.daff-success {
 			@include raised.daff-raised-button-theme-variant(
-				theming.daff-color(theming.$daff-green, 60)
+				theming.daff-color($success)
 			);
 		}
 	}
@@ -268,25 +272,25 @@
 
 		&.daff-warn {
 			@include icon.daff-icon-button-theme-variant(
-				theming.daff-color(theming.$daff-bronze, 60),
-				theming.daff-color(theming.$daff-bronze, 70),
-				theming.daff-color(theming.$daff-bronze, 80)
+				theming.daff-color($warn),
+				theming.daff-color($warn, 70),
+				theming.daff-color($warn, 80)
 			);
 		}
 
 		&.daff-critical {
 			@include icon.daff-icon-button-theme-variant(
-				theming.daff-color(theming.$daff-red, 60),
-				theming.daff-color(theming.$daff-red, 70),
-				theming.daff-color(theming.$daff-red, 80)
+				theming.daff-color($critical),
+				theming.daff-color($critical, 70),
+				theming.daff-color($critical, 80)
 			);
 		}
 
 		&.daff-success {
 			@include icon.daff-icon-button-theme-variant(
-				theming.daff-color(theming.$daff-green, 60),
-				theming.daff-color(theming.$daff-green, 70),
-				theming.daff-color(theming.$daff-green, 80)
+				theming.daff-color($success),
+				theming.daff-color($success, 70),
+				theming.daff-color($success, 80)
 			);
 		}
 	}
@@ -385,22 +389,22 @@
 
 		&.daff-warn {
 			@include stroked.daff-stroked-button-theme-variant(
-				theming.daff-color(theming.$daff-bronze, 60),
-				theming.daff-color(theming.$daff-bronze, 70)
+				theming.daff-color($warn),
+				theming.daff-color($warn, 70)
 			);
 		}
 
 		&.daff-critical {
 			@include stroked.daff-stroked-button-theme-variant(
-				theming.daff-color(theming.$daff-red, 60),
-				theming.daff-color(theming.$daff-red, 70)
+				theming.daff-color($critical),
+				theming.daff-color($critical, 70)
 			);
 		}
 
 		&.daff-success {
 			@include stroked.daff-stroked-button-theme-variant(
-				theming.daff-color(theming.$daff-green, 60),
-				theming.daff-color(theming.$daff-green, 70)
+				theming.daff-color($success),
+				theming.daff-color($success, 70)
 			);
 		}
 	}
@@ -487,22 +491,22 @@
 
 		&.daff-warn {
 			@include flat.daff-flat-button-theme-variant(
-				theming.daff-color(theming.$daff-bronze, 60),
-				theming.daff-color(theming.$daff-bronze, 70)
+				theming.daff-color($warn),
+				theming.daff-color($warn, 70)
 			);
 		}
 
 		&.daff-critical {
 			@include flat.daff-flat-button-theme-variant(
-				theming.daff-color(theming.$daff-red, 60),
-				theming.daff-color(theming.$daff-red, 70)
+				theming.daff-color($critical),
+				theming.daff-color($critical, 70)
 			);
 		}
 
 		&.daff-success {
 			@include flat.daff-flat-button-theme-variant(
-				theming.daff-color(theming.$daff-green, 60),
-				theming.daff-color(theming.$daff-green, 70)
+				theming.daff-color($success),
+				theming.daff-color($success, 70)
 			);
 		}
 	}
@@ -555,19 +559,19 @@
 
 		&.daff-warn {
 			@include underline.daff-underline-button-theme-variant(
-				theming.daff-color(theming.$daff-bronze, 60)
+				theming.daff-color($warn)
 			);
 		}
 
 		&.daff-critical {
 			@include underline.daff-underline-button-theme-variant(
-				theming.daff-color(theming.$daff-red, 60)
+				theming.daff-color($critical)
 			);
 		}
 
 		&.daff-success {
 			@include underline.daff-underline-button-theme-variant(
-				theming.daff-color(theming.$daff-green, 60)
+				theming.daff-color($success)
 			);
 		}
 	}

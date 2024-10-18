@@ -6,6 +6,10 @@
 	$primary: map.get($theme, primary);
 	$secondary: map.get($theme, secondary);
 	$tertiary: map.get($theme, tertiary);
+	$info: map.get($theme, info);
+	$warn: map.get($theme, warn);
+	$critical: map.get($theme, critical);
+	$success: map.get($theme, success);
 	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 	$base: core.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
@@ -18,32 +22,32 @@
 		color: theming.daff-text-contrast(theming.daff-illuminate($base, $neutral, 1));
 
 		&.daff-success {
-			background: theming.daff-color(theming.$daff-green, 10);
-			border: 1px solid theming.daff-color(theming.$daff-green, 20);
-			color: theming.daff-text-contrast(theming.daff-color(theming.$daff-green, 10));
+			background: theming.daff-color($success, 10);
+			border: 1px solid theming.daff-color($success, 20);
+			color: theming.daff-text-contrast(theming.daff-color($success, 10));
 
 			.daff-prefix {
-				color: theming.daff-color(theming.$daff-green, 60);
+				color: theming.daff-color($success);
 			}
 		}
 
 		&.daff-warn {
-			background: theming.daff-color(theming.$daff-bronze, 10);
-			border: 1px solid theming.daff-color(theming.$daff-bronze, 20);
-			color: theming.daff-text-contrast(theming.daff-color(theming.$daff-bronze, 10));
+			background: theming.daff-color($warn, 10);
+			border: 1px solid theming.daff-color($warn, 20);
+			color: theming.daff-text-contrast(theming.daff-color($warn, 10));
 
 			.daff-prefix {
-				color: theming.daff-color(theming.$daff-bronze, 60);
+				color: theming.daff-color($warn);
 			}
 		}
 
 		&.daff-critical {
-			background: theming.daff-color(theming.$daff-red, 10);
-			border: 1px solid theming.daff-color(theming.$daff-red, 20);
-			color: theming.daff-text-contrast(theming.daff-color(theming.$daff-red, 10));
+			background: theming.daff-color($critical, 10);
+			border: 1px solid theming.daff-color($critical, 20);
+			color: theming.daff-text-contrast(theming.daff-color($critical, 10));
 
 			.daff-prefix {
-				color: theming.daff-color(theming.$daff-red, 60);
+				color: theming.daff-color($critical);
 			}
 		}
 	}
