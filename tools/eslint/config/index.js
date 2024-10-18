@@ -2,6 +2,7 @@ module.exports = {
   plugins: [
     'modules-newlines',
     'jasmine',
+    'jest',
     "eslint-plugin-import",
     "eslint-plugin-jsdoc",
     "eslint-plugin-prefer-arrow",
@@ -241,6 +242,12 @@ module.exports = {
     "@stylistic/type-annotation-spacing": "error",
 
     // custom
+    "jest/max-nested-describe": [
+      "warn",
+      {
+        "max": 4
+      },
+    ],
     '@typescript-eslint/no-unused-vars': 'off',
     'prefer-arrow/prefer-arrow-functions': [
       'error',

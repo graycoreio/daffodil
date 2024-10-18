@@ -13,6 +13,7 @@
     "eslint": "0.0.0-PLACEHOLDER",
     "eslint-plugin-import": "0.0.0-PLACEHOLDER",
     "eslint-plugin-jasmine": "0.0.0-PLACEHOLDER",
+    "eslint-plugin-jest": "0.0.0-PLACEHOLDER",
     "eslint-plugin-jsdoc": "0.0.0-PLACEHOLDER",
     "eslint-plugin-modules-newlines": "0.0.0-PLACEHOLDER",
     "eslint-plugin-prefer-arrow": "0.0.0-PLACEHOLDER"
