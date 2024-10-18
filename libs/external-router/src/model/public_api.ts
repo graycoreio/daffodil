@@ -1,8 +1,5 @@
 
-export { DaffExternalRouterInsertionStrategy } from './insertion-strategy.type';
 export { DaffExternallyResolvableUrl } from './resolvable-route';
-export { DaffRouteInfo } from './route-info';
+export { DaffRouteData } from './route-data';
 export { DaffExternalRouteType } from './route-type';
-export { DaffRouteWithoutPath } from './route-without-path';
-export { DaffTypeRoutePair } from './type-route-pair';
-export { DaffRouteWithDataPath } from './route-with-data-path';
+export { DaffRouteWithSeoData } from './route-with-seo-data';

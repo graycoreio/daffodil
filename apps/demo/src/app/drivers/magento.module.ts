@@ -10,7 +10,7 @@ import { DaffMagentoAuthorizeNetDriverModule } from '@daffodil/authorizenet/driv
 import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';
 import { DaffCategoryMagentoDriverModule } from '@daffodil/category/driver/magento';
 import { DaffMagentoApolloCacheableOperationsLinkGenerator } from '@daffodil/driver/magento';
-import { DaffExternalRouterDriverMagentoModule } from '@daffodil/external-router/driver/magento/2.4.3';
+import { provideDaffExternalRouterMagentoDriver } from '@daffodil/external-router/driver/magento/2.4.3';
 import { DaffGeographyMagentoDriverModule } from '@daffodil/geography/driver/magento';
 import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation/driver/magento';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
@@ -32,11 +32,11 @@ import { MagentoEnvironmentDriverConfiguration } from '../../environments/enviro
     DaffNewsletterInMemoryDriverModule.forRoot(),
     DaffGeographyMagentoDriverModule.forRoot(),
     DaffCategoryMagentoDriverModule.forRoot(),
-    DaffExternalRouterDriverMagentoModule.forRoot(),
     DaffMagentoAuthorizeNetDriverModule.forRoot((<MagentoEnvironmentDriverConfiguration>environment.driver).anetConfig),
     ApolloModule,
   ],
   providers: [
+    provideDaffExternalRouterMagentoDriver(),
     {
       provide: APOLLO_OPTIONS,
       useFactory: demoMagentoApolloOptions,
