@@ -6,4 +6,4 @@ The `DaffExternalRouterTestingDriver` of the `@daffodil/external-router/driver/t
 
 ## Using the testing driver in a spec
 
-See the [testing guide](../testing.md) for example usage.
+See the [testing guide](/libs/external-router/guides/testing.md) for example usage.

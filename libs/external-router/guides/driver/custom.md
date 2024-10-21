@@ -12,43 +12,43 @@ Additionally, URLs returned by the driver's `resolve` method should be in a form
 
 ```ts
 @Injectable({
-	providedIn: 'root',
+ providedIn: 'root',
 })
 class MyCustomExternalRouterService
-	implements DaffExternalRouterDriverInterface {
-	resolve(url: string): Observable<DaffExternallyResolvableUrl> {
-		// Your logic would go here
-		return {
-			/**
-			 * The URL that will be used for the path of the route inserted
-			 * into the Angular routing config.
-			 * Should not contain URL fragments, query parameters, or leading slashes.
-			 */
-			url: "test.html",
+ implements DaffExternalRouterDriverInterface {
+ resolve(url: string): Observable<DaffExternallyResolvableUrl> {
+  // Your logic would go here
+  return {
+   /**
+    * The URL that will be used for the path of the route inserted
+    * into the Angular routing config.
+    * Should not contain URL fragments, query parameters, or leading slashes.
+    */
+   url: "test.html",
 
-			/**
-			 * The type of the route
-			 */
-			type: "SOME_VALUE";
+   /**
+    * The type of the route
+    */
+   type: "SOME_VALUE";
 
-			/**
-			 * The HTTP status code for the resolvable route.
-			 */
-			code: 200;
+   /**
+    * The HTTP status code for the resolvable route.
+    */
+   code: 200;
 
-			/**
-			 * Additional route data. Note that this is not mandatory or guaranteed,
-			 * its only available when the driver makes it available.
-			 */
-			data: null;
-		};
-	}
+   /**
+    * Additional route data. Note that this is not mandatory or guaranteed,
+    * its only available when the driver makes it available.
+    */
+   data: null;
+  };
+ }
 }
 
 @NgModule({
-	providers: [
-		provideDaffExternalRouterDriver(MyCustomExternalRouterService),
-	],
+ providers: [
+  provideDaffExternalRouterDriver(MyCustomExternalRouterService),
+ ],
 })
 class AppModule {}
 ```

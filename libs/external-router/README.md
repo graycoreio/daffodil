@@ -9,8 +9,8 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Drivers](#drivers)
-- [Configuration](./guides/configuration.md)
-- [Testing](./guides/testing.md)
+- [Configuration](/libs/external-router/guides/configuration.md)
+- [Testing](/libs/external-router/guides/testing.md)
 
 ## Installation
 
@@ -48,7 +48,7 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-2. Configure your [driver of choice](#drivers) (this example uses the [testing driver](./guides/driver/testing)):
+2. Configure your [driver of choice](#drivers) (this example uses the [testing driver](/libs/external-router/guides/driver/testing)):
 
 ```ts
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
@@ -128,7 +128,7 @@ You can now navigate to "/test-page", "/other-page", and "/another-page"  as if 
 
 We provide a driver interface along with a few pre-fabricated drivers for you to simply drop into your app and get started with external route resolution.
 
-- [Testing](./guides/driver/testing)
-- [In-Memory](./guides/driver/in-memory)
-- [Magento](./guides/driver/magento)
-- [BYOD (Bring Your Own Driver)](./guides/driver/custom)
+- [Testing](/libs/external-router/guides/driver/testing)
+- [In-Memory](/libs/external-router/guides/driver/in-memory)
+- [Magento](/libs/external-router/guides/driver/magento)
+- [BYOD (Bring Your Own Driver)](/libs/external-router/guides/driver/custom)

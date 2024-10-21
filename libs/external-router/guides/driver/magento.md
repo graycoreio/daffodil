@@ -33,11 +33,11 @@ import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideDaffExternalRouterMagentoDriver } from '@daffodil/external-router/driver/magento/2.4.3';
 
 export const appConfig: ApplicationConfig = {
-	providers: [
-		provideRouter(routes),
-		provideClientHydration(),
-		provideExternalRouter(),
-		provideDaffExternalRouterMagentoDriver(),
-	],
+ providers: [
+  provideRouter(routes),
+  provideClientHydration(),
+  provideExternalRouter(),
+  provideDaffExternalRouterMagentoDriver(),
+ ],
 };
 ```
