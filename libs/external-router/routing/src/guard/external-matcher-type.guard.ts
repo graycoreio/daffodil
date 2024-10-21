@@ -2,6 +2,7 @@ import { inject } from '@angular/core';
 import {
   CanMatchFn,
   Router,
+  UrlSegment,
   UrlTree,
 } from '@angular/router';
 import {
@@ -33,7 +34,7 @@ import { processRedirects } from '../processors/process-redirect';
  * Depending on the resolution result, the route's data will contain `daffSeoData` with supplemental search engine data
  * about the route. The data on the route is cumulative. If other data properties are set, they will be merged alongside daffSeoData.
  */
-export const daffExternalMatcherTypeGuard = (type: string) => (route: DaffRouteWithSeoData, segments): Observable<boolean | UrlTree> => {
+export const daffExternalMatcherTypeGuard = (type: string) => (route: DaffRouteWithSeoData, segments: Array<UrlSegment>): Observable<boolean | UrlTree> => {
   const router = inject(Router);
   const config: DaffExternalRouterConfiguration = inject(DAFF_EXTERNAL_ROUTER_CONFIG);
   return inject(DaffExternalRouterDriver).resolve(daffConvertToPath(segments)).pipe(
