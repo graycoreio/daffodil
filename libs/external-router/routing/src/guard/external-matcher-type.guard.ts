@@ -38,8 +38,8 @@ export const daffExternalMatcherTypeGuard = (type: string) => (route: DaffRouteW
   const router = inject(Router);
   const config: DaffExternalRouterConfiguration = inject(DAFF_EXTERNAL_ROUTER_CONFIG);
   return inject(DaffExternalRouterDriver).resolve(daffConvertToPath(segments)).pipe(
-    map((resolvedRoute: DaffExternallyResolvableUrl) => processErrors(resolvedRoute)),
-    map((resolvedRoute: DaffExternallyResolvableUrl) => processRedirects(resolvedRoute)),
+    map(processErrors),
+    map(processRedirects),
     map((r) => ({ result: r, isMatch: type === r.type })),
     tap((r) => {
       if(r.isMatch) {
