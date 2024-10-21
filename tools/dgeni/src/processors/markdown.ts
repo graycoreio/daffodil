@@ -22,6 +22,11 @@ hljs.registerLanguage('bash', bash);
 hljs.registerLanguage('graphql', graphql);
 hljs.registerLanguage('gql', graphql);
 
+/**
+ * To avoid loading the plugin inside the processor more than once.
+ */
+let pluginRegistered = false;
+
 // marked.use(markedMermaid);
 marked.use(
   markedHighlight({
@@ -55,25 +60,34 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
 
   constructor(
     private aliasMap,
-  ) {}
+  ) {
+    this.initPlugin();
+  }
+
+  private initPlugin() {
+    if (!pluginRegistered) {
+      marked.use({
+        walkTokens: (token) => {
+          switch (token.type) {
+            case 'link':
+              const [link, anchor] = token.href.split('#');
+              const alias = this.aliasMap.getDocs(link)[0];
+              token.href = `${alias?.path || daffDocsGetLinkUrl(token.href)}${anchor ? `#${anchor}` : ''}`;
+              break;
+
+            default:
+              break;
+          }
+        },
+      });
+      pluginRegistered = true;
+    }
+  }
 
   $process(docs: Document[]) {
     return docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
-        doc[this.contentKey] = marked.parse(doc.content, {
-          walkTokens: (token) => {
-            switch (token.type) {
-              case 'link':
-                const [link, anchor] = token.href.split('#');
-                const alias = this.aliasMap.getDocs(link)[0];
-                token.href = `${alias?.path || daffDocsGetLinkUrl(token.href)}${anchor ? `#${anchor}` : ''}`;
-                break;
-
-              default:
-                break;
-            }
-          },
-        });
+        doc[this.contentKey] = marked.parse(doc.content);
       };
       return doc;
     });
