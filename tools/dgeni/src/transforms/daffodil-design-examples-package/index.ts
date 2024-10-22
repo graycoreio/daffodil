@@ -62,6 +62,6 @@ export const designExamplePackage = new Package('daffodil-design-examples', [daf
     computeIdsProcessor.idTemplates.push({
       docTypes,
       getId: (doc) => doc.id,
-      getAliases: (doc) =>[doc.id],
+      getAliases: (doc) => [doc.id],
     });
   });

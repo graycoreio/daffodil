@@ -21,10 +21,7 @@ import { AddInheritedDocsContentProcessor } from '../../processors/addInheritedD
 import { AddLinkTagToDaffodilReferencesProcessor } from '../../processors/addLinkTagToDaffodilReferences';
 import { BreadcrumbProcessor } from '../../processors/breadcrumb';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
-import {
-  COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME,
-  CollectLinkableSymbolsProcessor,
-} from '../../processors/collect-linkable-symbols';
+import { COLLECT_LINKABLE_SYMBOLS_PROCESSOR_PROVIDER } from '../../processors/collect-linkable-symbols';
 import { CrossEnvSafeNameProcessor } from '../../processors/cross-env-safe-name';
 import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import { FilterOutPrivatePropertiesProcessor } from '../../processors/filterOutPrivateProperties';
@@ -64,7 +61,7 @@ export const apiDocsBase = new Package('api-base', [
   .processor(...ADD_PACKAGE_EXPORTS_PROCESSOR_PROVIDER)
   .processor(...ADD_SUBPACKAGE_EXPORTS_PROCESSOR_PROVIDER)
   .processor(...MARKDOWN_CODE_PROCESSOR_PROVIDER)
-  .processor(COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME, (log, createDocMessage) => new CollectLinkableSymbolsProcessor(log, createDocMessage))
+  .processor(...COLLECT_LINKABLE_SYMBOLS_PROCESSOR_PROVIDER)
   .factory('API_DOC_TYPES_TO_RENDER', (EXPORT_DOC_TYPES) => EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe']))
   .config((readFilesProcessor, readTypeScriptModules, tsParser) => {
 
