@@ -32,3 +32,8 @@ export class CollectLinkableSymbolsProcessor implements Processor {
     return docs;
   }
 }
+
+export const COLLECT_LINKABLE_SYMBOLS_PROCESSOR_PROVIDER = <const>[
+  COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME,
+  (log, createDocMessage) => new CollectLinkableSymbolsProcessor(log, createDocMessage),
+];
