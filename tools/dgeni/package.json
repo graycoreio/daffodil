@@ -15,6 +15,7 @@
       "build": {
         "inputs": [
           "{workspaceRoot}/**/*.md",
+          "{workspaceRoot}/**/index.json",
           "{workspaceRoot}/libs/**/*.ts",
           "{workspaceRoot}/libs/**/*.html",
           "{workspaceRoot}/libs/**/*.scss"

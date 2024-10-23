@@ -14,10 +14,12 @@ import {
 import {
   designGuideFileReaderFactory,
   guideFileReaderFactory,
+  INDEX_FILE_READER_PROVIDER,
 } from './reader/guide-file.reader';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddKindProcessor } from '../../processors/add-kind';
 import { BreadcrumbProcessor } from '../../processors/breadcrumb';
+import { FILTER_NAV_INDEX_PROCESSOR_PROVIDER } from '../../processors/filter-nav-index';
 import {
   GENERATE_NAV_LIST_PROCESSOR_PROVIDER,
   GenerateNavListProcessor,
@@ -44,6 +46,7 @@ const docTypes = ['guide', 'package-guide'];
 
 const base = new Package('daffodil-guides-base', [daffodilBasePackage])
   .factory('guideFileReader', guideFileReaderFactory)
+  .factory(...INDEX_FILE_READER_PROVIDER)
   .processor(...MARKDOWN_CODE_PROCESSOR_PROVIDER)
   .config((markdown: MarkdownCodeProcessor, addKind: AddKindProcessor, convertToJson, breadcrumb: BreadcrumbProcessor) => {
     addKind.docTypes.push(...docTypes);
@@ -51,9 +54,9 @@ const base = new Package('daffodil-guides-base', [daffodilBasePackage])
     breadcrumb.docTypes.push(...docTypes);
     convertToJson.docTypes = convertToJson.docTypes.concat(docTypes);
   })
-  .config((readFilesProcessor, guideFileReader) => {
+  .config((readFilesProcessor, guideFileReader, indexFileReader) => {
     readFilesProcessor.$enabled = true;
-    readFilesProcessor.fileReaders.push(guideFileReader);
+    readFilesProcessor.fileReaders.push(guideFileReader, indexFileReader);
   })
   .config((templateFinder) => {
     // Where to find the templates for the API doc rendering
@@ -86,7 +89,7 @@ export const packageDocsPackage = outputPathsConfigurator({
   .config((readFilesProcessor) => {
     readFilesProcessor.basePath = API_SOURCE_PATH;
     readFilesProcessor.sourceFiles = [
-      { include: [`${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}*/**/README.md`, `${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/guides/**/*.md`]},
+      { include: [`${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}*/**/README.md`, `${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/guides/**/*.md`, `${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/guides/**/index.json`]},
     ];
   });
 
@@ -117,6 +120,7 @@ const design = new Package('design-base', [base])
 
 export const designDocsPackage = new Package('design-docs', [design])
   .processor(...GENERATE_NAV_LIST_PROCESSOR_PROVIDER)
+  .processor(...FILTER_NAV_INDEX_PROCESSOR_PROVIDER)
   .config((generateNavList: GenerateNavListProcessor) => {
     generateNavList.outputFolder = `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`;
   })
@@ -140,7 +144,7 @@ export const designDocsPackage = new Package('design-docs', [design])
   .config((readFilesProcessor) => {
     readFilesProcessor.basePath = DESIGN_PATH;
     readFilesProcessor.sourceFiles = [
-      { include: ['**/*.md']},
+      { include: ['**/*.md', '**/index.json']},
     ];
   })
   .config((generateNavList: GenerateNavListProcessor) => {
@@ -152,11 +156,16 @@ export const designDocsPackage = new Package('design-docs', [design])
           path: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT]}`,
           tableOfContents: '',
         },
-        ...docs.map(transformDesignGuideDoc),
+        ...docs
+          .filter((doc) => doc.docType !== 'index')
+          .map(transformDesignGuideDoc),
       ]),
-      {
-        '': ['overview', 'whats-new', 'getting-started', 'foundations', 'components'],
-      },
+      docs.reduce((acc, doc) => {
+        if (doc.docType === 'index') {
+          acc[doc.id] = doc.content;
+        }
+        return acc;
+      }, {}),
     );
   });
 

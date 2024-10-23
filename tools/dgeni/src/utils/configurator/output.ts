@@ -6,6 +6,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { Configurator } from './type';
+import { FILTER_NAV_INDEX_PROCESSOR_PROVIDER } from '../../processors/filter-nav-index';
 import {
   GENERATE_NAV_LIST_PROCESSOR_PROVIDER,
   GenerateNavListProcessor,
@@ -19,6 +20,7 @@ export interface OutputPathsConfig {
 
 export const outputPathsConfigurator: Configurator<OutputPathsConfig> = (config: OutputPathsConfig) => (pkg: Package) => pkg
   .processor(...GENERATE_NAV_LIST_PROCESSOR_PROVIDER)
+  .processor(...FILTER_NAV_INDEX_PROCESSOR_PROVIDER)
   .config((generateNavList: GenerateNavListProcessor) => {
     generateNavList.outputFolder = `${config.outputPath}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[config.kind]}`;
   })

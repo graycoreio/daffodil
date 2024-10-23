@@ -11,6 +11,9 @@
     "notSpec": [
       "!{projectRoot}/**/*.spec.{ts,tsx}"
     ],
+    "notIndex": [
+      "!{projectRoot}/**/index.json}"
+    ],
     "sharedGlobals": [
       "{workspaceRoot}/angular.json",
       "{workspaceRoot}/tsconfig.json",
@@ -48,6 +51,8 @@
       "inputs": [
         "notSpec",
         "^notSpec",
+        "notIndex",
+        "^notIndex",
         "sharedGlobals"
       ],
       "dependsOn": [
