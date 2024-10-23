@@ -52,7 +52,7 @@ describe('DaffioDocsIndexService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should be able to retrieve a list', (done) => {
+  it('should be able to retrieve a list with a kind', (done) => {
     fetchAssetServiceSpy.fetch.and.returnValue(of(mockGuideList));
     activatedRouteSpy.next(<ActivatedRoute>{
       data: of<DaffioRoute['data']>({
@@ -60,7 +60,7 @@ describe('DaffioDocsIndexService', () => {
       }),
     });
 
-    service.getList().subscribe((guides) => {
+    service.getListForKind(DaffDocKind.PACKAGE).subscribe((guides) => {
       expect(guides).toEqual(mockGuideList);
       expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio//docs/packages/index.json');
       done();

@@ -18,10 +18,14 @@ import { DAFF_NAV_SIDEBAR_REGISTRATION } from '../../core/nav/sidebar.provider';
 import { DaffioRoute } from '../../core/router/route.type';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
+import { daffioDocsDesignIndexResolver } from './services/index.resolver';
 
 export const docsDesignRoutes: Routes = [
   <DaffioRoute>{
     path: '',
+    resolve: {
+      index: daffioDocsDesignIndexResolver,
+    },
     data: {
       docPrefix: `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`,
       daffioSidebars: {
@@ -29,9 +33,6 @@ export const docsDesignRoutes: Routes = [
         [DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION.id]: DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION,
       },
       daffioDockedSidebar: DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION.id,
-      // daffNamedViews: {
-      //   [DaffioRouterNamedViewsEnum.FOOTER]: DaffioSimpleFooterComponent,
-      // },
     },
     children: [
       {

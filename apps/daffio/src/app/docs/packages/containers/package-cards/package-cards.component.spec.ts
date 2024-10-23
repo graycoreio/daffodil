@@ -10,15 +10,17 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
+import { DaffioRoute } from 'apps/daffio/src/app/core/router/route.type';
+import { BehaviorSubject } from 'rxjs';
 
 import { DaffioDocsPackageCardsContainer } from './package-cards.component';
-import { DaffioDocsIndexService } from '../../../index/index.service';
 
 describe('DaffioDocsPackageCardsContainer', () => {
   let component: DaffioDocsPackageCardsContainer;
   let fixture: ComponentFixture<DaffioDocsPackageCardsContainer>;
+  let dataSpy: BehaviorSubject<DaffioRoute['data']>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -29,8 +31,8 @@ describe('DaffioDocsPackageCardsContainer', () => {
         NoopAnimationsModule],
       providers: [
         {
-          provide: DaffioDocsIndexService,
-          useValue: jasmine.createSpyObj('DaffioDocsIndexService', { getList: of() }),
+          provide: ActivatedRoute,
+          useValue: jasmine.createSpyObj('ActivatedRoute', [], { data: dataSpy }),
         },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),

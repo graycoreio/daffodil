@@ -4,10 +4,16 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import {
+  map,
+  Observable,
+  switchMap,
+} from 'rxjs';
+
+import { DaffRouterActivatedRoute } from '@daffodil/router';
 
 import { DaffioDocsListComponent } from '../../components/docs-list/docs-list.component';
-import { DaffioDocsIndexService } from '../../index/index.service';
 import { DaffioDocList } from '../../models/doc-list';
 
 @Component({
@@ -19,18 +25,18 @@ import { DaffioDocList } from '../../models/doc-list';
     AsyncPipe,
     DaffioDocsListComponent,
   ],
-  providers: [
-    DaffioDocsIndexService,
-  ],
 })
 export class DaffioDocsListContainer implements OnInit {
   docsList$: Observable<DaffioDocList>;
 
   constructor(
-    private index: DaffioDocsIndexService,
+    private route: DaffRouterActivatedRoute,
   ) {}
 
   ngOnInit() {
-    this.docsList$ = this.index.getList();
+    this.docsList$ = this.route.route$.pipe(
+      switchMap((route) => route.data),
+      map((data) => data.index),
+    );
   }
 }
