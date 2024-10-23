@@ -1,0 +1,101 @@
+@use '../../../scss/interactions';
+@use '../../../scss/state';
+
+.daff-select {
+	$root: &;
+	display: inline-block;
+	min-width: 240px;
+
+	.daff-suffix {
+		transition: transform 150ms;
+	}
+
+	&.open {
+		#{$root}__field {
+			border-radius: 4px 4px 0 0;
+
+			&:after {
+				top: 56%;
+				transform: translateY(-50%) rotate(225deg);
+			}
+		}
+	}
+
+	&.disabled {
+		#{$root}__field {
+			cursor: not-allowed;
+		}
+	}
+
+	&.daff-skeleton {
+		#{$root}__field {
+			@include state.skeleton-screen(100%, 54px);
+			border: none;
+
+			&::after {
+				visibility: hidden;
+			}
+
+			> * {
+				visibility: hidden;
+			}
+		}
+	}
+
+	&__field {
+		@include interactions.clickable();
+		display: flex;
+		justify-content: space-between;
+		appearance: none;
+		background: none;
+		border-radius: 4px;
+		font-size: 1rem;
+		line-height: 1.25rem;
+		margin: 0;
+		padding: 16px;
+		text-align: left;
+		width: 100%;
+		position: relative;
+
+		&::after {
+      content: '';
+      position: absolute;
+      top: 48%;
+      right: 1rem;
+      display: inline-block;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      width: 0.5rem;
+      height: 0.5rem;
+      transform: translateY(-50%) rotate(45deg);
+      transition: transform 150ms;
+    }
+	}
+
+	.daff-form-label {
+		font-size: 1rem;
+		line-height: 1.25rem;
+	}
+
+	&__options {
+		width: 100%;
+	}
+
+	&__option {
+		@include interactions.clickable();
+		display: block;
+		appearance: none;
+		background: none;
+		border: none;
+		font-size: 1rem;
+		line-height: 1.25rem;
+		margin: 0;
+		padding: 16px;
+		text-align: left;
+		width: 100%;
+
+		&:last-of-type {
+			border-radius: 0 0 4px 4px;
+		}
+	}
+}

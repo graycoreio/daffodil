@@ -1,0 +1,48 @@
+<button #field class="daff-select__field"
+  (click)="toggle($event)"
+  [disabled]="disabled"
+  [tabindex]="tabIndex"
+  [attr.aria-expanded]="isOpen"
+  (keydown.arrowdown)="selectNext($event)"
+  (keydown.arrowup)="selectPrevious($event)"
+  (keydown.alt.arrowup)="open()"
+  (keydown.alt.arrowdown)="open()"
+  (keydown.enter)="toggle($event)"
+  (keydown.space)="toggle($event)">
+  <ng-container *ngIf="!value">
+    <ng-content select="label[daffFormLabel]"></ng-content>
+  </ng-container>
+  <div *ngIf="value">
+    <ng-container
+      [ngTemplateOutlet]="optionTemplate?.templateRef"
+      [ngTemplateOutletContext]="{option: value}"><div></div>
+    </ng-container>
+  </div>
+</button>
+<ng-template cdkPortal #optionsTemplate="cdkPortal">
+  <div class="daff-select__options" #optionsEl
+    tabindex="0"
+    [@openSelect]="animationState"
+    (@openSelect.done)="animationFinished()"
+    (keydown.enter)="selectHighlighted($event)"
+    (keydown.space)="selectHighlighted($event)"
+    (keydown.escape)="close($event)"
+    (keydown.arrowdown)="highlightNext($event)"
+    (keydown.arrowup)="highlightPrevious($event)">
+    <div class="daff-select__option"
+      [class.selected]="value === option"
+      [class.highlighted]="highlighted === i"
+      *ngFor="let option of options; index as i; trackBy:trackByIndex"
+      (click)="optionSelected(option)">
+      <ng-container
+        [ngTemplateOutlet]="optionTemplate?.templateRef"
+        [ngTemplateOutletContext]="{
+          isSelected: value === option,
+          isHighlighted: highlighted === i,
+          option
+        }">
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
+<ng-content select="daff-error-message"></ng-content>
