@@ -4,12 +4,8 @@ import {
   RouterModule,
 } from '@angular/router';
 
-import {
-  DaffExternalRouterModule,
-  daffDataPathUrlMatcher,
-  daffInsertDataPathStrategy,
-} from '@daffodil/external-router';
-import { DaffExternalRouterExistenceGuard } from '@daffodil/external-router/routing';
+import { provideExternalRouter } from '@daffodil/external-router';
+import { daffExternalMatcherTypeGuard } from '@daffodil/external-router/routing';
 import {
   DaffProductPageIdResolver,
   DaffProductPageUrlResolver,
@@ -38,24 +34,7 @@ export const appRoutes: Routes = [
         },
       },
       {
-        matcher: daffDataPathUrlMatcher,
-        data: {
-          daffExternalRouteType: 'PRODUCT',
-        },
-        component: ProductViewComponent,
-        resolve: {
-          product: DaffProductPageUrlResolver,
-        },
-      },
-      {
         path: 'category',
-        loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),
-      },
-      {
-        matcher: daffDataPathUrlMatcher,
-        data: {
-          daffExternalRouteType: 'CATEGORY',
-        },
         loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),
       },
       {
@@ -63,12 +42,20 @@ export const appRoutes: Routes = [
         loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule),
       },
       { path: '404', component: NotFoundComponent },
+      {
+        path: '**',
+        canMatch: [daffExternalMatcherTypeGuard('PRODUCT')],
+        component: ProductViewComponent,
+        resolve: {
+          product: DaffProductPageUrlResolver,
+        },
+      },
+      {
+        path: '**',
+        canMatch: [daffExternalMatcherTypeGuard('CATEGORY')],
+        loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),
+      },
     ],
-  },
-  {
-    path: '**',
-    canActivate: [DaffExternalRouterExistenceGuard],
-    children: [],
   },
 ];
 
@@ -77,21 +64,9 @@ export const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, {
       scrollPositionRestoration: 'enabled',
     }),
-    DaffExternalRouterModule.forRoot({
-      failedResolutionPath: '404',
-      notFoundResolutionPath: '404',
-    }, [
-      {
-        type: 'CATEGORY',
-        insertionStrategy: daffInsertDataPathStrategy,
-        route: {},
-      },
-      {
-        type: 'PRODUCT',
-        insertionStrategy: daffInsertDataPathStrategy,
-        route: {},
-      },
-    ]),
+  ],
+  providers: [
+    provideExternalRouter(),
   ],
   exports: [
     RouterModule,

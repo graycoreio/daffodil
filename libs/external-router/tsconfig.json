@@ -21,6 +21,9 @@
       "@daffodil/external-router/driver/magento/2.4.2": [
         "libs/external-router/driver/magento/2.4.2/src"
       ],
+      "@daffodil/external-router/driver/magento/2.4.3": [
+        "libs/external-router/driver/magento/2.4.3/src"
+      ],
       "@daffodil/external-router/driver/testing": [
         "libs/external-router/driver/testing/src"
       ],

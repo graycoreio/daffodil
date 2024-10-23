@@ -48,7 +48,7 @@ describe('@daffodil/external-router/driver/magento/2-4-1 | DaffExternalRouterMag
         relative_url: responseUrl,
         type: MagentoUrlRewriteEntityTypeEnum.PRODUCT,
         redirectCode: 0,
-        entity_uid: id,
+        id: null,
       },
     };
 
@@ -93,22 +93,20 @@ describe('@daffodil/external-router/driver/magento/2-4-1 | DaffExternalRouterMag
       });
     });
 
-    describe('the driver returning null', () => {
-      it('should return a DaffExternallyResolvableUrl with a code of 404', done => {
-        setupTest();
+    it('should return a DaffExternallyResolvableUrl with a code of 404 when Magento returns null', done => {
+      setupTest();
 
-        service.resolve(requestUrl).subscribe(result => {
-          expect(result.code).toEqual(404);
-          done();
-        });
+      service.resolve(requestUrl).subscribe(result => {
+        expect(result.code).toEqual(404);
+        done();
+      });
 
-        const op = controller.expectOne(MagentoResolveUrlv241);
+      const op = controller.expectOne(MagentoResolveUrlv241);
 
-        op.flush({
-          data: {
-            urlResolver: null,
-          },
-        });
+      op.flush({
+        data: {
+          urlResolver: null,
+        },
       });
     });
   });

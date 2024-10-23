@@ -70,7 +70,6 @@ describe('@daffodil/external-router/driver/magento/2.4.3 | DaffExternalRouterMag
       setupTest();
 
       service.resolve(requestUrl).subscribe(result => {
-        console.log(result);
         expect(result.type).toEqual(MagentoUrlRewriteEntityTypeEnum.PRODUCT);
         done();
       });

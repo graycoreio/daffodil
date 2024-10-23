@@ -10,7 +10,7 @@ import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
 import { DaffCategoryInMemoryDriverModule } from '@daffodil/category/driver/in-memory';
 import { DaffInMemoryBackendCategoryService } from '@daffodil/category/driver/in-memory';
 import { DaffInMemoryDriverModule } from '@daffodil/driver/in-memory';
-import { DaffExternalRouterDriverInMemoryModule } from '@daffodil/external-router/driver/in-memory';
+import { provideDaffExternalRouterInMemoryDriver } from '@daffodil/external-router/driver/in-memory';
 import { DaffGeographyInMemoryDriverModule } from '@daffodil/geography/driver/in-memory';
 import {
   DaffNavigationInMemoryDriverModule,
@@ -36,9 +36,9 @@ import { DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG } from './in-memory/extern
     DaffNewsletterInMemoryDriverModule.forRoot(),
     DaffGeographyInMemoryDriverModule.forRoot(),
     DaffCategoryInMemoryDriverModule.forRoot(),
-    DaffExternalRouterDriverInMemoryModule.forRoot(DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG),
   ],
   providers: [
+    provideDaffExternalRouterInMemoryDriver(DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG),
     {
       provide: DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER,
       useFactory: () => {

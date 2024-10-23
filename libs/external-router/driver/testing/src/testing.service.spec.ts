@@ -4,6 +4,7 @@ import { TestScheduler } from 'rxjs/testing';
 import { DaffExternalRouterDriverTestingConfig } from './config';
 import { DaffExternalRouterDriverTestingModule } from './testing.module';
 import { DaffExternalRouterTestingDriver } from './testing.service';
+import { DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION } from '../../src/not-found-resolution';
 
 describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDriver', () => {
   let service: DaffExternalRouterTestingDriver;
@@ -43,18 +44,15 @@ describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDr
     });
   });
 
-  it('should throw an error if the route lookup fails', () => {
+  it('should return a 404 result if the route lookup fails', () => {
     setupTest();
     scheduler.run(helpers => {
       const { expectObservable } = helpers;
-      const expected = '#';
+      const expected = '(a|)';
 
       expectObservable(service.resolve('/test')).toBe(
         expected,
-        null,
-        `\
-The route 'test' wasn't provided with a matching type by the testing driver. \
-Did you configure the available route types with DaffExternalRouterDriverTestingModule.forRoot(config)`,
+        { a: DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION },
       );
     });
   });
