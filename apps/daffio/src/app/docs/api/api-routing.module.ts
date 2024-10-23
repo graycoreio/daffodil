@@ -19,13 +19,13 @@ export const apiRoutes: Routes = [
     data: {
       docKind: DaffDocKind.API,
     },
+    resolve: {
+      index: daffioDocsIndexResolver,
+    },
     children: [
       {
         path: '',
         component: DaffioApiListPageComponent,
-        resolve: {
-          index: daffioDocsIndexResolver,
-        },
       },
       {
         path: '**',
