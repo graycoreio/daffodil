@@ -20,7 +20,7 @@ export class AbsolutifyPathsProcessor implements FilterableProcessor {
 
   $process(docs: Array<PathedDocument>): Array<PathedDocument> {
     return docs.map((doc) => {
-      if (doc.path[0] !== '/') {
+      if (this.docTypes.includes(doc.docType) && doc.path[0] !== '/') {
         doc.path = `/${doc.path}`;
       }
       return doc;

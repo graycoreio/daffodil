@@ -8,6 +8,26 @@ export const extractTitle = (doc: any) => {
   return matchesArray[1].trim();
 };
 
+export const INDEX_FILE_READER_NAME = 'indexFileReader';
+
+export function indexFileReaderFactory() {
+  return {
+    name: INDEX_FILE_READER_NAME,
+    defaultPattern: /index\.json$/,
+    getDocs: (fileInfo) => fileInfo.content ? [{
+      id: fileInfo.relativePath.replaceAll(/guides\/|\/?index.json/g, ''),
+      docType: 'index',
+      title: 'Nav List Index',
+      content: JSON.parse(fileInfo.content),
+    }] : [],
+  };
+}
+
+export const INDEX_FILE_READER_PROVIDER = <const>[
+  INDEX_FILE_READER_NAME,
+  indexFileReaderFactory,
+];
+
 export function guideFileReaderFactory() {
   return {
     name: 'guideFileReader',

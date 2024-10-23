@@ -10,24 +10,31 @@ export type TrieSortData = Record<Trie['id'], Array<Trie['id']>>;
 
 /**
  * Sorts a trie top to bottom according to the passed sort data.
- * If the sort data does not contain data for a trie child, it is sorted after all children with sort data.
+ * If the sort data does not contain data for a trie child, this function will throw an error.
  */
-export const sortTrie = <T extends Trie>(trie: T, sortData: TrieSortData): T => {
-  if (sortData[trie.id]) {
-    trie.children = trie.children.sort((a, b) => {
-      const aIndex = sortData[trie.id].indexOf(a.id);
-      const bIndex = sortData[trie.id].indexOf(b.id);
+export const sortTrie = <T extends Trie>(trie: T, sortData: TrieSortData, parent = ''): T => {
+  const path = parent && trie.id ? `${parent}/${trie.id}` : trie.id || parent;
+  const sort = sortData[path];
 
-      return aIndex === bIndex
-        ? 0
-        : aIndex < 0
-          ? 1
-          : bIndex < 0
-            ? -1
-            : aIndex - bIndex;
-    });
+  if (!sort) {
+    throw new Error(`Sort data does not contain a reference to ${path}`);
   }
-  trie.children = trie.children.map((child) => sortTrie(child, sortData));
+
+  trie.children = trie.children
+    .map((child) => child.children.length > 0 ? sortTrie(child, sortData, path) : child)
+    .sort((a, b) => {
+      const aIndex = sort.indexOf(a.id);
+      const bIndex = sort.indexOf(b.id);
+
+      if (aIndex < 0) {
+        throw new Error(`Sort data does not contain a reference to ${a.id}`);
+      }
+      if (bIndex < 0) {
+        throw new Error(`Sort data does not contain a reference to ${b.id}`);
+      }
+
+      return aIndex - bIndex;
+    });
 
   return trie;
 };
