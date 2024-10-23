@@ -1,5 +1,77 @@
 # Changelog
 
+## [0.79.0](https://github.com/graycoreio/daffodil/compare/v0.78.0...v0.79.0) (2024-10-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **design:** the `danger` value in `DaffStatus` has been changed to `critical`.
+* **all:** `SEARCH_FEDERATED_CONFIG_DEFAULT` -> `DAFF_SEARCH_FEDERATED_CONFIG_DEFAULT`, `SEARCH_FEDERATED_CONFIG_TOKEN` -> `DAFF_SEARCH_FEDERATED_CONFIG_TOKEN`
+* **all:** rename provider functions to `provideDaff...` ([#3270](https://github.com/graycoreio/daffodil/issues/3270))
+
+### Features
+
+* **all:** export driver providers ([#3273](https://github.com/graycoreio/daffodil/issues/3273)) ([b833dc5](https://github.com/graycoreio/daffodil/commit/b833dc5834e7dd0aa9e233153e67a741253908fa))
+* **all:** provide cacheable operations with function ([#3282](https://github.com/graycoreio/daffodil/issues/3282)) ([e9fc8dc](https://github.com/graycoreio/daffodil/commit/e9fc8dc2684f8478b2f416151b12186b90bee075))
+* **all:** provide drivers with provider functions ([#3275](https://github.com/graycoreio/daffodil/issues/3275)) ([b69b8ec](https://github.com/graycoreio/daffodil/commit/b69b8ecc1609b7b83eea78300eecbec480cc5659))
+* **all:** provide factories with function ([#3285](https://github.com/graycoreio/daffodil/issues/3285)) ([19f05b0](https://github.com/graycoreio/daffodil/commit/19f05b0bb8a9dd078bc4598953ec1401027be28e))
+* **all:** rename provider functions to `provideDaff...` ([#3270](https://github.com/graycoreio/daffodil/issues/3270)) ([c098de0](https://github.com/graycoreio/daffodil/commit/c098de07f3e84b0bfadb85960d87c25158590ecd))
+* **all:** use functions for providing configs ([#3283](https://github.com/graycoreio/daffodil/issues/3283)) ([4c3c9f1](https://github.com/graycoreio/daffodil/commit/4c3c9f16a025dbd924add251a2bed982e6f2794e))
+* **all:** use provider functions ([#3288](https://github.com/graycoreio/daffodil/issues/3288)) ([166a876](https://github.com/graycoreio/daffodil/commit/166a876f250fe16a645bd720238b00398dbca2d2))
+* **all:** use provider functions for providing configs ([#3280](https://github.com/graycoreio/daffodil/issues/3280)) ([ed7930f](https://github.com/graycoreio/daffodil/commit/ed7930fc6de5ff39e7e38cff39d2ed602e21302d))
+* **all:** use singleton injection token factory for driver tokens ([#3268](https://github.com/graycoreio/daffodil/issues/3268)) ([2b16c62](https://github.com/graycoreio/daffodil/commit/2b16c62f8168fa3a7e2e4046518f5219c4ec99c2))
+* **analytics:** create injection tokens with factory ([#3221](https://github.com/graycoreio/daffodil/issues/3221)) ([c3ea0bf](https://github.com/graycoreio/daffodil/commit/c3ea0bf4471ae4639cb928852280f72741e35362))
+* **auth:** create injection tokens with factory ([#3233](https://github.com/graycoreio/daffodil/issues/3233)) ([8f078f5](https://github.com/graycoreio/daffodil/commit/8f078f5612e107b01a8817a0189a0ee07dd6c516))
+* **authorizenet:** create injection tokens with factory ([#3234](https://github.com/graycoreio/daffodil/issues/3234)) ([f96294f](https://github.com/graycoreio/daffodil/commit/f96294f1ac87f8f76e18ad62afad175d7e97c770))
+* **cart-customer:** create injection tokens with factory ([#3236](https://github.com/graycoreio/daffodil/issues/3236)) ([b07ab07](https://github.com/graycoreio/daffodil/commit/b07ab0723a1885e26cfc5ac31aa74e944751b52e))
+* **cart-store-credit:** create injection tokens with factory ([#3237](https://github.com/graycoreio/daffodil/issues/3237)) ([0518d60](https://github.com/graycoreio/daffodil/commit/0518d602b8b2fce3601954d317a8d93028ea3685))
+* **cart:** create injection tokens with factory ([#3235](https://github.com/graycoreio/daffodil/issues/3235)) ([e536798](https://github.com/graycoreio/daffodil/commit/e5367987031bc064ad862b0438aa37717d63104d))
+* **category:** combine all metadata effects ([#3294](https://github.com/graycoreio/daffodil/issues/3294)) ([887c839](https://github.com/graycoreio/daffodil/commit/887c839c715b4482c62277e00960396c2b66b779))
+* **category:** create injection tokens with factory ([#3238](https://github.com/graycoreio/daffodil/issues/3238)) ([2a9a32d](https://github.com/graycoreio/daffodil/commit/2a9a32d642e8d69888dceda7b094b22a4ffd01f1))
+* **contact:** create injection tokens with factory ([#3239](https://github.com/graycoreio/daffodil/issues/3239)) ([0ae0282](https://github.com/graycoreio/daffodil/commit/0ae0282d90f6e35f885119608e06ac15dd88fe44))
+* **content:** create injection tokens with factory ([#3265](https://github.com/graycoreio/daffodil/issues/3265)) ([5ac537a](https://github.com/graycoreio/daffodil/commit/5ac537a50f92de79dfea1b322565d1b18a3de108))
+* **core:** add singleton injection token factory ([#3261](https://github.com/graycoreio/daffodil/issues/3261)) ([a454214](https://github.com/graycoreio/daffodil/commit/a4542144daf6a490f579051b6247481c486172c1))
+* **core:** create injection tokens with factory ([#3240](https://github.com/graycoreio/daffodil/issues/3240)) ([615ccbc](https://github.com/graycoreio/daffodil/commit/615ccbcb813d527e6f685bce4ae3395f4027b00f))
+* **core:** support injection token values to config provider ([#3277](https://github.com/graycoreio/daffodil/issues/3277)) ([c1de2d5](https://github.com/graycoreio/daffodil/commit/c1de2d55b5e3f785b88bb53ad3654f7cc9690292))
+* **customer-order:** create injection tokens with factory ([#3242](https://github.com/graycoreio/daffodil/issues/3242)) ([31af2df](https://github.com/graycoreio/daffodil/commit/31af2df719572eaa5cfab9162e41f1bbc04d35df))
+* **customer-order:** create injection tokens with factory ([#3263](https://github.com/graycoreio/daffodil/issues/3263)) ([87ff316](https://github.com/graycoreio/daffodil/commit/87ff31632465fd02d6799c6a7d9409e28be3195e))
+* **customer-payment-authorizenet:** create injection tokens with factory ([#3244](https://github.com/graycoreio/daffodil/issues/3244)) ([c457f77](https://github.com/graycoreio/daffodil/commit/c457f776e38739ca45d655a6610477b31ae9520b))
+* **customer-payment:** create injection tokens with factory ([#3243](https://github.com/graycoreio/daffodil/issues/3243)) ([81aecc5](https://github.com/graycoreio/daffodil/commit/81aecc5ce4232498bc25967bc0b843b5557a945d))
+* **customer-store-credit:** create injection tokens with factory ([#3245](https://github.com/graycoreio/daffodil/issues/3245)) ([b54761b](https://github.com/graycoreio/daffodil/commit/b54761b18b02baaac3959b6790813bedfc38f71e))
+* **customer:** create injection tokens with factory ([#3241](https://github.com/graycoreio/daffodil/issues/3241)) ([bd0421a](https://github.com/graycoreio/daffodil/commit/bd0421a8c48bbb7d1386fc5ba5e257268f7c755a))
+* **daffio:** clean up design docs overview page ([#3272](https://github.com/graycoreio/daffodil/issues/3272)) ([0f359ce](https://github.com/graycoreio/daffodil/commit/0f359ce7f0918dd00180539e7516c74b9d6c50e9))
+* **daffio:** create injection tokens with factory ([#3267](https://github.com/graycoreio/daffodil/issues/3267)) ([46c8e96](https://github.com/graycoreio/daffodil/commit/46c8e96d8940ca26b5c0ef4576bb131913868ed6))
+* **design:** configure defaults for status themes ([#3291](https://github.com/graycoreio/daffodil/issues/3291)) ([cf4d2f7](https://github.com/graycoreio/daffodil/commit/cf4d2f77a23551beb4fe04b92c1c9ba801cc5a78))
+* **design:** create injection tokens with factory ([#3246](https://github.com/graycoreio/daffodil/issues/3246)) ([7b28ecf](https://github.com/graycoreio/daffodil/commit/7b28ecfd6fe089e9e06167489a1a7b86cd351b42))
+* **design:** create injection tokens with factory ([#3264](https://github.com/graycoreio/daffodil/issues/3264)) ([0f3bb0b](https://github.com/graycoreio/daffodil/commit/0f3bb0b972cf2b63f4d8ff31ba441deefd1ce386))
+* **design:** update `DaffStatus` danger value to critical and add an info value ([#3293](https://github.com/graycoreio/daffodil/issues/3293)) ([e3365b2](https://github.com/graycoreio/daffodil/commit/e3365b2d174b35844abb3134a19ee5d978ba8baa))
+* **design:** update status colors in statusable components to use the status themes ([#3297](https://github.com/graycoreio/daffodil/issues/3297)) ([2a0418f](https://github.com/graycoreio/daffodil/commit/2a0418f8640ed791e349e2b9e3855f22830054a2))
+* **dgeni,design:** hardcode nav list order with `index.json` ([#3311](https://github.com/graycoreio/daffodil/issues/3311)) ([158fd78](https://github.com/graycoreio/daffodil/commit/158fd78d490170f74a064a42d91d4da78214367e))
+* **dgeni:** instantiate `marked` for each pipeline ([#3308](https://github.com/graycoreio/daffodil/issues/3308)) ([5987d24](https://github.com/graycoreio/daffodil/commit/5987d24fed82328ed32049ff9262a225a22cee52))
+* **driver:** create injection tokens with factory ([#3247](https://github.com/graycoreio/daffodil/issues/3247)) ([aba565c](https://github.com/graycoreio/daffodil/commit/aba565c1515de95cf9764fac07e02f2bd3cd7c3c))
+* **external-router:** create injection tokens with factory ([#3248](https://github.com/graycoreio/daffodil/issues/3248)) ([fc3ba6f](https://github.com/graycoreio/daffodil/commit/fc3ba6f4b994b4be7a1658d9bc88155a29dded37))
+* **geography:** create injection tokens with factory ([#3249](https://github.com/graycoreio/daffodil/issues/3249)) ([87f7c6f](https://github.com/graycoreio/daffodil/commit/87f7c6f0a0080aa2386519701b2d60171111739d))
+* **navigation:** create injection tokens with factory ([#3250](https://github.com/graycoreio/daffodil/issues/3250)) ([4fc7be6](https://github.com/graycoreio/daffodil/commit/4fc7be680b75a03471db0ce6f9d2af2299236431))
+* **newsletter:** create injection tokens with factory ([#3251](https://github.com/graycoreio/daffodil/issues/3251)) ([8533b66](https://github.com/graycoreio/daffodil/commit/8533b66b7a3d96caeb54311dc814bee33e6dfe7a))
+* **order:** create injection tokens with factory ([#3252](https://github.com/graycoreio/daffodil/issues/3252)) ([7e971ea](https://github.com/graycoreio/daffodil/commit/7e971eae2a9e453c5c782b696e55a29a5a366ba2))
+* **payment:** create injection tokens with factory ([#3253](https://github.com/graycoreio/daffodil/issues/3253)) ([c094225](https://github.com/graycoreio/daffodil/commit/c09422559bd0de2a02b7fe2a5e3c65f12512010e))
+* **paypal:** create injection tokens with factory ([#3254](https://github.com/graycoreio/daffodil/issues/3254)) ([0a569dc](https://github.com/graycoreio/daffodil/commit/0a569dca128848b09afe0e9f0c7ceb08df43391f))
+* **product-composite:** create injection tokens with factory ([#3256](https://github.com/graycoreio/daffodil/issues/3256)) ([b5e8729](https://github.com/graycoreio/daffodil/commit/b5e8729f0207e4b23bf49495692047b7591f81a4))
+* **product-configurable:** create injection tokens with factory ([#3257](https://github.com/graycoreio/daffodil/issues/3257)) ([34b43bb](https://github.com/graycoreio/daffodil/commit/34b43bb88fb8e3aeebc81c4d0299ee25dc6e2b25))
+* **product,product-composite:** use default config tokens ([#3278](https://github.com/graycoreio/daffodil/issues/3278)) ([d612544](https://github.com/graycoreio/daffodil/commit/d612544d083a1ee35b187411a7024fa2f72bd371))
+* **product:** create injection tokens with factory ([#3255](https://github.com/graycoreio/daffodil/issues/3255)) ([91cf3e9](https://github.com/graycoreio/daffodil/commit/91cf3e9a89579bacd7fa120ce28810f5447bdb1c))
+* **reviews:** create injection tokens with factory ([#3258](https://github.com/graycoreio/daffodil/issues/3258)) ([b2b24d7](https://github.com/graycoreio/daffodil/commit/b2b24d7f822fdbab01dfae4d0e84cc17eb915e56))
+* **search:** create injection tokens with factory ([#3259](https://github.com/graycoreio/daffodil/issues/3259)) ([2fbd482](https://github.com/graycoreio/daffodil/commit/2fbd482df1734d8eff166cbcc94dffa3ff96115a))
+* **seo:** create injection tokens with factory ([#3262](https://github.com/graycoreio/daffodil/issues/3262)) ([e3a6cc1](https://github.com/graycoreio/daffodil/commit/e3a6cc1904ea38fa6764387762a4357c31ccf8bd))
+
+
+### Bug Fixes
+
+* **daffio:** sidebars not loading in SSR ([#3312](https://github.com/graycoreio/daffodil/issues/3312)) ([a5feb39](https://github.com/graycoreio/daffodil/commit/a5feb39373eb4428eca483ed626a7dd4d1c81d14))
+* **dgeni:** API package breadcrumbs missing ([#3296](https://github.com/graycoreio/daffodil/issues/3296)) ([5dad812](https://github.com/graycoreio/daffodil/commit/5dad812428c625d629c160a211c593595b63cbf2))
+* **dgeni:** incorrect link generation for design guides ([#3292](https://github.com/graycoreio/daffodil/issues/3292)) ([f813a1e](https://github.com/graycoreio/daffodil/commit/f813a1eb3040bd7f19416efc9444fe2eeaee8b78))
+* **dgeni:** syntax highlighting broken for code blocks ([#3307](https://github.com/graycoreio/daffodil/issues/3307)) ([8b7df20](https://github.com/graycoreio/daffodil/commit/8b7df20ed60ce88fe31602c32cd9a70c57ee475f))
+
 ## [0.78.0](https://github.com/graycoreio/daffodil/compare/v0.77.0...v0.78.0) (2024-10-14)
 
 
