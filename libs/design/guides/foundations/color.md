@@ -1,10 +1,15 @@
 # Color
-Color helps to distinguish and create consistent experiences across products.
+Color helps to distinguish and create consistent experiences across products. It highlights key areas, conveys status, urgency, and guides attention.
+
+## Color palettes
+The design system includes three core palettes that reflect Daffodil's brand identity, three palettes used to indicate status, and a neutral palette that is dominant throughout the design system. These palettes are built using [HSLuv](https://www.hsluv.org/), a color space designed as a human-friendly alternative to the standard HSL. It aims to address the limitations of traidtional color spaces like RGB and HSL.
+
+For guidance on how to set up your theme with customized palettes, see the [Theming](/libs/design/guides/foundations/theming.md) guide.
 
 ## Accessibility
 We are committed to complying with the [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG/). The design system is built to meet these guidelines automatically. If you choose to identify your own color palettes outside of Daffodil's colors, please make sure to choose primary, secondary, tertiary, and extended colors that will pass the guidelines. Ensure there is sufficient color contrast between elements so that people who are visually impaired can see and use your products.
 
-## Color Contrast
+### Color Contrast
 We have encoded many of the WCAG requirements into our SASS mixins and functions. This means that if you swap to a color palette that does not meet the requirements of WCAG compliance and try to use it within the components, our code will proactively complain and issue errors. This is entirely intentional and will not be changed. The current state of accessibility is lacking, and as a result, we are enforcing accessibility requirements at development time in order to make it easier for developers to accommodate these issues before they are in the hands of users.
 
 To verify contrast ratios, we recommend using this [contrast ratio calculator](https://contrast-ratio.com/).
