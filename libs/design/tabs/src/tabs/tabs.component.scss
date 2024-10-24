@@ -1,0 +1,15 @@
+:host(.daff-tabs) {
+	$root: '.daff-tabs';
+	max-width: 100%;
+}
+
+.daff-tabs {
+	$root: &;
+	display: block;
+
+	#{$root}__tab-list {
+		display: flex;
+		overflow-x: scroll;
+		scrollbar-width: thin;
+	}
+}

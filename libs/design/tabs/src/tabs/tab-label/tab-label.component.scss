@@ -1,0 +1,13 @@
+@use '../../../../scss/typography' as t;
+
+:host {
+	display: flex;
+	gap: 8px;
+}
+
+.daff-tab-label {
+	&__content {
+		@include t.text-truncate();
+		max-width: 240px;
+	}
+}
