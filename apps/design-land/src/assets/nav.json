@@ -223,6 +223,13 @@
           "data": {}
         },
         {
+          "title": "Switch",
+          "url": "switch",
+          "id": "switch",
+          "items": [],
+          "data": {}
+        },
+        {
           "title": "Toast",
           "url": "toast",
           "id": "toast",
