@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +13,6 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
   standalone: true,
   imports: [
     DAFF_SWITCH_COMPONENTS,
-    CommonModule,
   ],
   styles: [`
     :host {
@@ -27,5 +25,4 @@ export class BasicSwitchComponent {
   checked = false;
   disabled = false;
   loading = true;
-  position = 'left';
 }

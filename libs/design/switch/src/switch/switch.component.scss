@@ -12,31 +12,30 @@
   justify-content: space-between;
   gap: 1rem;
 
-  padding: 10px;
-
   &__text {
     font-size: 1rem;
     color: inherit;
   }
 
-  &.daff-switch--position-left {
+  &.left {
     flex-direction: row;
   }
 
-  &.daff-switch--position-right {
+  &.right {
     flex-direction: row-reverse;
   }
 
-  &.daff-switch--position-top {
+  &.top {
     flex-direction: column;
+    align-items: flex-start;
   }
 
-  &.daff-switch--position-bottom {
+  &.bottom {
     flex-direction: column-reverse;
+    align-items: flex-start;
   }
 
-	&[disabled],
-	&.daff-switch--disabled {
+	&.disabled {
 		cursor: not-allowed;
     opacity: 0.5;
 	}

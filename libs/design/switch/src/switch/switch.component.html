@@ -1,16 +1,19 @@
 <label class="daff-switch" 
-  [class.daff-switch--disabled]="disabled"
-  [class.daff-switch--position-left]="position === 'left'"
-  [class.daff-switch--position-right]="position === 'right'"
-  [class.daff-switch--position-top]="position === 'top'"
-  [class.daff-switch--position-bottom]="position === 'bottom'"
+  [class.disabled]="disabled"
+  [class.left]="labelPosition === 'left'"
+  [class.right]="labelPosition === 'right'"
+  [class.top]="labelPosition === 'top'"
+  [class.bottom]="labelPosition === 'bottom'"
 >
-  <div class="daff-switch__text">
+  <div class="daff-switch__text" id="switchLabel">
     <ng-content></ng-content>
   </div>
   <div class="daff-switch__toggle" [class.checked]="checked">
-    <div *ngIf="!loading" class="daff-switch__activator"></div>
-    <daff-loading-icon *ngIf="loading" [diameter]="24" class="daff-switch__activator"></daff-loading-icon>
+    <div class="daff-switch__activator">
+      @if (loading) {
+        <daff-loading-icon></daff-loading-icon>
+      }
+    </div>
     <input 
       type="checkbox" 
       role="switch" 
@@ -18,6 +21,10 @@
       [attr.disabled] = "disabled ? '' : null" 
       [checked]="checked"
       (change)="onToggle()"
+      [attr.aria-label]="switchLabel"
+      [attr.aria-labelledby]="switchLabel"
+      [attr.aria-checked]="checked ? true : false"
     />    
   </div>
 </label>
+<ng-content select="daff-error-message"></ng-content>
