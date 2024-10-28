@@ -3,6 +3,7 @@ import { importProvidersFrom } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import {
   Router,
+  UrlSegment,
   provideRouter,
 } from '@angular/router';
 
@@ -52,7 +53,7 @@ describe('daffExternalMatcherTypeGuard', () => {
 
   it('should match the route type', (done) => {
     TestBed.runInInjectionContext(() => {
-      daffExternalMatcherTypeGuard('TEST_TYPE')(route, [{ path: 'test-path' }]).subscribe(result => {
+      daffExternalMatcherTypeGuard('TEST_TYPE')(route, [<UrlSegment>{ path: 'test-path' }]).subscribe(result => {
         expect(result).toBe(true);
         expect(route.title).toBe('test title');
         done();
@@ -62,7 +63,7 @@ describe('daffExternalMatcherTypeGuard', () => {
 
   it('should set seo data on matched routes', (done) => {
     TestBed.runInInjectionContext(() => {
-      daffExternalMatcherTypeGuard('SEO_TYPE')(route, [{ path: 'seo-path' }]).subscribe(result => {
+      daffExternalMatcherTypeGuard('SEO_TYPE')(route, [<UrlSegment>{ path: 'seo-path' }]).subscribe(result => {
         expect(result).toBe(true);
         expect(route.title).toBe('custom-title');
         done();
@@ -72,7 +73,7 @@ describe('daffExternalMatcherTypeGuard', () => {
 
   it('should handle permanent redirects', (done) => {
     TestBed.runInInjectionContext(() => {
-      daffExternalMatcherTypeGuard(type)(route, [{ path: 'redirect-path' }]).subscribe(result => {
+      daffExternalMatcherTypeGuard(type)(route, [<UrlSegment>{ path: 'redirect-path' }]).subscribe(result => {
         expect(result).toEqual(router.parseUrl('/redirect-result'));
         done();
       });
@@ -81,7 +82,7 @@ describe('daffExternalMatcherTypeGuard', () => {
 
   it('should handle temporary redirects', (done) => {
     TestBed.runInInjectionContext(() => {
-      daffExternalMatcherTypeGuard(type)(route, [{ path: 'temp-redirect-path' }]).subscribe(result => {
+      daffExternalMatcherTypeGuard(type)(route, [<UrlSegment>{ path: 'temp-redirect-path' }]).subscribe(result => {
         expect(result).toEqual(router.parseUrl('/temp-redirect-result'));
         done();
       });
@@ -90,7 +91,7 @@ describe('daffExternalMatcherTypeGuard', () => {
 
   it('should handle not found error', (done) => {
     TestBed.runInInjectionContext(() => {
-      daffExternalMatcherTypeGuard(type)(route, [{ path: 'unknown' }]).subscribe(result => {
+      daffExternalMatcherTypeGuard(type)(route, [<UrlSegment>{ path: 'unknown' }]).subscribe(result => {
         expect(result).toBe(false);
         done();
       });
@@ -99,7 +100,7 @@ describe('daffExternalMatcherTypeGuard', () => {
 
   it('should handle unknown errors', (done) => {
     TestBed.runInInjectionContext(() => {
-      daffExternalMatcherTypeGuard(type)(route, [{ path: 'error-path' }])
+      daffExternalMatcherTypeGuard(type)(route, [<UrlSegment>{ path: 'error-path' }])
         .subscribe(result => {
           expect(result).toEqual(router.parseUrl(config.failedResolutionPath));
           done();
