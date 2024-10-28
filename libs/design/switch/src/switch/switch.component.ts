@@ -16,6 +16,8 @@ import {
 } from './label-position';
 import { DaffSwitchErrorMessage } from './switch-errors';
 
+const switchUniqueId = 0;
+
 @Component({
   selector: 'daff-switch',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,6 +32,18 @@ export class DaffSwitchComponent {
   @Input() checked = false;
   @Input() loading = false;
   @Input() labelPosition: DaffLabelPosition = DaffLabelPositionEnum.LEFT;
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('attr.aria-label') private externalAriaLabel = null;
+
+  /**
+   * aria-label for the switch.
+   */
+  @Input('aria-label') ariaLabel = '';
+
+  @Input() id: string = 'daff-switch-' + switchUniqueId;
 
   @Output() toggle = new EventEmitter<boolean>();
 

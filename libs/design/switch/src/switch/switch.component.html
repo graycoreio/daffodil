@@ -4,7 +4,7 @@
   [class.right]="labelPosition === 'right'"
   [class.top]="labelPosition === 'top'"
   [class.bottom]="labelPosition === 'bottom'"
->
+  [attr.for]="id">
   <div class="daff-switch__text">
     <ng-content></ng-content>
   </div>
@@ -21,9 +21,9 @@
       [attr.disabled] = "disabled ? '' : null" 
       [checked]="checked"
       (change)="onToggle()"
-      [attr.aria-label]="label"
-      [attr.aria-labelledby]="labeledBy"
+      [attr.aria-label]="ariaLabel"
       [attr.aria-checked]="checked ? true : false"
+      [attr.id]="id"
     />    
   </div>
 </label>
