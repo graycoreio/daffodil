@@ -4,6 +4,7 @@ import {
   src,
 } from 'gulp';
 import replace from 'gulp-replace';
+import through2 from 'through2';
 import { TaskFunction } from 'undertaker';
 
 import { RELEASE_CONFIG } from '../config';
@@ -12,6 +13,10 @@ import { getRootPackage } from '../version/leaf-version';
 const VERSION_REGEX = '\\d+\\.\\d+\\.\\d+';
 const PRERELEASE_REMOVAL = 3;
 const RELEASE_REMOVAL = 1;
+const SOURCE_FILES = [
+  `${RELEASE_CONFIG.PROJECT_PATH}/libs/**/*.ts`,
+  `!${RELEASE_CONFIG.PROJECT_PATH}/libs/**/*.spec.ts`,
+];
 const DEPRECATION_MESSAGE = 'Deprecated in version';
 const REMOVAL_MESSAGE = 'Will be removed in version';
 const HAS_ANNOTATION_REGEX = new RegExp(`${DEPRECATION_MESSAGE} ${VERSION_REGEX}\\. ${REMOVAL_MESSAGE} ${VERSION_REGEX}`);
@@ -32,10 +37,7 @@ const buildAnnotation = (rootVersion: string): string =>
 
 const annotate: TaskFunction = async () => {
   const rootVersion = (await getRootPackage()).version;
-  src([
-    `${RELEASE_CONFIG.PROJECT_PATH}/libs/**/*.ts`,
-    `!${RELEASE_CONFIG.PROJECT_PATH}/libs/**/*.spec.ts`,
-  ], {
+  src(SOURCE_FILES, {
     encoding: 'utf8',
     base: RELEASE_CONFIG.PROJECT_PATH,
   })
@@ -50,6 +52,26 @@ const annotate: TaskFunction = async () => {
     );
 };
 
+const check: TaskFunction = async () => {
+  const rootVersion = (await getRootPackage()).version;
+  const regex = new RegExp(`${REMOVAL_MESSAGE} ${rootVersion}`);
+  src(SOURCE_FILES, {
+    encoding: 'utf8',
+    base: RELEASE_CONFIG.PROJECT_PATH,
+  })
+    .pipe(through2.obj((file, enc, next) => {
+      if (file.contents.toString().match(regex)) {
+        next(new Error(`${file.path} contains a symbol that is marked for removal in this version (${rootVersion})`));
+      } else {
+        next();
+      }
+    }));
+};
+
 export const annotateDeprecationMessages = series(
   annotate,
+);
+
+export const checkForRemovals = series(
+  check,
 );
