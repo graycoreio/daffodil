@@ -25,7 +25,7 @@ export enum DaffCategoryPageProductCollectionActionTypes {
  * An action for changing the filters for the current category.
  *
  * @param filters - Filters to be changed on the current category.
- * @deprecated use {@link DaffCategoryPageReplaceFilters} or {@link DaffCategoryPageApplyFilters}
+ * @deprecated use {@link DaffCategoryPageReplaceFilters} or {@link DaffCategoryPageApplyFilters} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
  */
 export class DaffCategoryPageChangeFilters implements Action {
   readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeFiltersAction;

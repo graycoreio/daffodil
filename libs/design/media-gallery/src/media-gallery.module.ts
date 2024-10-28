@@ -6,7 +6,7 @@ import { DaffMediaRendererComponent } from './media-renderer/media-renderer.comp
 import { DaffThumbnailDirective } from './thumbnail/thumbnail.directive';
 
 /**
- * @deprecated in favor of {@link DAFF_MEDIA_GALLERY_COMPONENTS}
+ * @deprecated in favor of {@link DAFF_MEDIA_GALLERY_COMPONENTS} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
  */
 @NgModule({
   imports: [

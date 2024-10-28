@@ -19,7 +19,7 @@ export interface DaffCartServiceInterface<T extends DaffCart = DaffCart> {
   create(): Observable<{id: T['id']}>;
 
   /**
-   * @deprecated
+   * @deprecated Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    * Prefer DaffCartItemServiceInterface.add
    *
    * Add an item to the cart.

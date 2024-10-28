@@ -11,7 +11,7 @@ import { DaffSeoNativeTitleEffects } from '../effects/title.effects';
  *
  * This provider is intended to only be imported exactly once in the root of the application.
  *
- * @deprecated since Angular 14. See https://angular.io/api/router/TitleStrategy
+ * @deprecated since Angular 14. See https://angular.io/api/router/TitleStrategy Deprecated in version 0.78.0. Will be removed in version 0.81.0.
  *
  * ## Usage
  *

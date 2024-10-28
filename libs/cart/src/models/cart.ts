@@ -14,11 +14,11 @@ import { DaffCartTotal } from './cart-total';
  */
 export interface DaffCart extends DaffIdentifiable {
   /**
-   * @deprecated use totals instead
+   * @deprecated use totals instead Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   subtotal: number;
   /**
-   * @deprecated use totals instead
+   * @deprecated use totals instead Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   grand_total: number;
   /**

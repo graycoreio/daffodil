@@ -6,7 +6,7 @@ import { DaffAddress } from '@daffodil/core';
 import { DaffModelFactory } from './factory';
 
 /**
- * @deprecated
+ * @deprecated Deprecated in version 0.78.0. Will be removed in version 0.81.0.
  * Prefer the `MockDaffAddress` of daffodil/geography/testing`
  */
 export class MockDaffAddress implements DaffAddress {
@@ -21,7 +21,7 @@ export class MockDaffAddress implements DaffAddress {
 }
 
 /**
- * @deprecated
+ * @deprecated Deprecated in version 0.78.0. Will be removed in version 0.81.0.
  * Prefer the `DaffAddressFactory` of `daffodil/geography/testing`
  */
 @Injectable({

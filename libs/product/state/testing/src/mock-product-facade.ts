@@ -10,11 +10,11 @@ import { DaffProductFacadeInterface } from '@daffodil/product/state';
 @Injectable({ providedIn: 'root' })
 export class MockDaffProductFacade implements DaffProductFacadeInterface {
   /**
-   * @deprecated use product page facade instead.
+   * @deprecated use product page facade instead. Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   /**
-   * @deprecated use getProduct instead.
+   * @deprecated use getProduct instead. Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   product$: BehaviorSubject<DaffProduct> = new BehaviorSubject(null);
   getProduct(id: DaffProduct['id']): BehaviorSubject<DaffProduct> {

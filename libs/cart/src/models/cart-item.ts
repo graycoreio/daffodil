@@ -31,7 +31,7 @@ export interface DaffCartItemDiscount {
  */
 export interface DaffCartItem extends DaffLocatable, DaffIdentifiable {
   /**
-   * @deprecated use id instead.
+   * @deprecated use id instead. Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   item_id: ID;
   /**

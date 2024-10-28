@@ -17,7 +17,7 @@ export interface DaffAddress {
   /**
    * Use DaffAddress#region instead.
    *
-   * @deprecated
+   * @deprecated Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   region_id?: ID;
   country?: ID;

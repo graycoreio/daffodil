@@ -14,7 +14,7 @@ export interface DaffCartOrderResult {
    */
   orderId: ID;
   /**
-   * @deprecated Use DaffCartOrderResult#orderId instead.
+   * @deprecated Use DaffCartOrderResult#orderId instead. Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   id?: ID;
 }

@@ -46,13 +46,13 @@ export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
   /**
    * Selector for the most recently placed order (if any).
    *
-   * @deprecated in favor of {@link DaffCheckoutPlacedOrderSelectors#selectPlacedOrder}
+   * @deprecated in favor of {@link DaffCheckoutPlacedOrderSelectors#selectPlacedOrder} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   selectPlacedOrder: MemoizedSelector<DaffOrderStateRootSlice<T>, T>;
   /**
    * Selector for the existence of the most recently placed order.
    *
-   * @deprecated in favor of {@link DaffCheckoutPlacedOrderSelectors#selectHasPlacedOrder}
+   * @deprecated in favor of {@link DaffCheckoutPlacedOrderSelectors#selectHasPlacedOrder} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   selectHasPlacedOrder: MemoizedSelector<DaffOrderStateRootSlice<T>, boolean>;
 

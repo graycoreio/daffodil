@@ -11,7 +11,7 @@ export interface DaffProductFacadeInterface<T extends DaffProduct = DaffProduct>
   /**
    * Whether the product page is loading.
    *
-   * @deprecated prefer {@link DaffProductPageFacadeInterface#loading$}
+   * @deprecated prefer {@link DaffProductPageFacadeInterface#loading$} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   loading$: Observable<boolean>;
 

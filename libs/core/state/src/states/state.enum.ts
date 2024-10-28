@@ -43,13 +43,13 @@ export const enum DaffState {
   Updated = 'Updated',
 
   /**
-   * @deprecated in favor of {@link DaffState.Updating}
+   * @deprecated in favor of {@link DaffState.Updating} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   Mutating = 'Updating',
 
   /**
-   * @deprecated in favor of {@link DaffState.Updated}
+   * @deprecated in favor of {@link DaffState.Updated} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   Mutated = 'Updated',
@@ -63,7 +63,7 @@ export const enum DaffState {
   /**
    * An alias for 'Stable'.
    *
-   * @deprecated
+   * @deprecated Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    * Use DaffState.Stable instead.
    */
   // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values

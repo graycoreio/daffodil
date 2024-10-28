@@ -15,7 +15,7 @@ import { DaffModalTitleDirective } from './modal-title/modal-title.directive';
 import { DaffModalService } from './service/modal.service';
 
 /**
- * @deprecated in favor of {@link DAFF_MODAL_COMPONENTS}
+ * @deprecated in favor of {@link DAFF_MODAL_COMPONENTS} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
  */
 @NgModule({
   imports: [

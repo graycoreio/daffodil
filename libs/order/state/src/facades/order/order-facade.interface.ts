@@ -21,11 +21,11 @@ export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> exten
   orderEntities$: Observable<Dictionary<T>>;
 
   /**
-   * @deprecated in favor of {@link DaffCheckoutPlacedOrderFacadeInterface#placedOrder$}
+   * @deprecated in favor of {@link DaffCheckoutPlacedOrderFacadeInterface#placedOrder$} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   placedOrder$: Observable<T>;
   /**
-   * @deprecated in favor of {@link DaffCheckoutPlacedOrderFacadeInterface#hasPlacedOrder$}
+   * @deprecated in favor of {@link DaffCheckoutPlacedOrderFacadeInterface#hasPlacedOrder$} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
    */
   hasPlacedOrder$: Observable<boolean>;
 

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { DaffContainerComponent } from './container/container.component';
 
 /**
- * @deprecated in favor of {@link DAFF_CONTAINER_COMPONENTS}
+ * @deprecated in favor of {@link DAFF_CONTAINER_COMPONENTS} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
  */
 @NgModule({
   imports: [

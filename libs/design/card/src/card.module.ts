@@ -10,7 +10,7 @@ import { DaffCardTaglineDirective } from './card-tagline/card-tagline.directive'
 import { DaffCardTitleDirective } from './card-title/card-title.directive';
 
 /**
- * @deprecated in favor of {@link DAFF_CARD_COMPONENTS}
+ * @deprecated in favor of {@link DAFF_CARD_COMPONENTS} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
  */
 @NgModule({
   imports: [

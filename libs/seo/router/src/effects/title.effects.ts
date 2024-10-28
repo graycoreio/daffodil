@@ -17,7 +17,7 @@ import { DAFF_SEO_TITLE_ROUTER_UPDATES } from '../title/updates.token';
 /**
  * Page hook effects for the page title.
  *
- * @deprecated since Angular 14. See https://angular.io/api/router/TitleStrategy
+ * @deprecated since Angular 14. See https://angular.io/api/router/TitleStrategy Deprecated in version 0.78.0. Will be removed in version 0.81.0.
  */
 @Injectable()
 export class DaffSeoNativeTitleEffects extends DaffSeoPageHookRouterEffects<

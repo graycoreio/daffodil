@@ -11,7 +11,7 @@ import { DaffSidebarViewportComponent } from './sidebar-viewport/sidebar-viewpor
 import { DaffSidebarViewportBackdropComponent } from './sidebar-viewport-backdrop/sidebar-viewport-backdrop.component';
 
 /**
- * @deprecated in favor of {@link DAFF_SIDEBAR_COMPONENTS}
+ * @deprecated in favor of {@link DAFF_SIDEBAR_COMPONENTS} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
  */
 @NgModule({
   imports: [
