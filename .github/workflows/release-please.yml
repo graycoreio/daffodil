@@ -17,7 +17,7 @@ jobs:
           token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
           command: manifest
           default-branch: develop
-          
+
       - uses: actions/checkout@v4
         with:
           ref: release-please--branches--develop--components--daffodil
@@ -36,4 +36,7 @@ jobs:
           npx gulp addPackagesToReadme
           git add ../../README.md
           git commit -m 'docs: autogenerate package table in README' || true
+          npx gulp annotateDeprecationMessages
+          git add ../..
+          git commit -m 'docs: annotate deprecation messages' || true
           git push
