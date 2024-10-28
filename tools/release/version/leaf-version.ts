@@ -36,7 +36,7 @@ const updateObjectFromObject = (a: any, b: any): typeof a => ({
   }, {}),
 });
 
-const getRootPackage = (): Promise<PackageJson> => readFile(RELEASE_CONFIG.ROOT_PACKAGE, { encoding: 'utf8' }).then(d => JSON.parse(d));
+export const getRootPackage = (): Promise<PackageJson> => readFile(RELEASE_CONFIG.ROOT_PACKAGE, { encoding: 'utf8' }).then(d => JSON.parse(d));
 
 const updateLeafPackageVersions = async (): Promise<any> => {
   const rootPackage = await getRootPackage();
