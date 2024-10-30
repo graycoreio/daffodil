@@ -2,6 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
+import {
+  UntypedFormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
 
@@ -13,6 +17,7 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
   standalone: true,
   imports: [
     DAFF_SWITCH_COMPONENTS,
+    ReactiveFormsModule,
   ],
   styles: [`
     :host {
@@ -25,4 +30,6 @@ export class BasicSwitchComponent {
   checked = false;
   disabled = false;
   loading = true;
+
+  defaultSwitchExample = new UntypedFormControl();
 }

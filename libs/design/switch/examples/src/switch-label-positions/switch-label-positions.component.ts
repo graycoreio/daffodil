@@ -23,6 +23,7 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
   ],
 })
 export class SwitchLabelPositionsComponent {
+  labelSwitchExample = new UntypedFormControl();
   labelPositionControl: UntypedFormControl = new UntypedFormControl('left');
 
   options = [

@@ -4,6 +4,7 @@ import {
   Component,
   EventEmitter,
   HostBinding,
+  HostListener,
   Input,
   Output,
 } from '@angular/core';
@@ -16,7 +17,7 @@ import {
 } from './label-position';
 import { DaffSwitchErrorMessage } from './switch-errors';
 
-const switchUniqueId = 0;
+let switchUniqueId = 0;
 
 @Component({
   selector: 'daff-switch',
@@ -33,6 +34,16 @@ export class DaffSwitchComponent {
   @Input() loading = false;
   @Input() labelPosition: DaffLabelPosition = DaffLabelPositionEnum.LEFT;
 
+  @HostBinding('attr.tabindex') tabindex = 0;
+
+  @HostListener('keydown', ['$event'])
+  handleKeydown(event: KeyboardEvent) {
+    if (event.code === 'Space') {
+      event.preventDefault();
+      this.onToggle();
+    }
+  }
+
   /**
    * @docs-private
    */
@@ -43,16 +54,18 @@ export class DaffSwitchComponent {
    */
   @Input('aria-label') ariaLabel = '';
 
-  @Input() id: string = 'daff-switch-' + switchUniqueId;
+  @Input() id: string = 'daff-switch-' + switchUniqueId++;
 
   @Output() toggle = new EventEmitter<boolean>();
 
   onToggle() {
-    try {
-      this.checked = !this.checked;
-      this.toggle.emit(this.checked);
-    } catch (error) {
-      throw new Error(DaffSwitchErrorMessage);
+    if (!this.disabled) {
+      try {
+        this.checked = !this.checked;
+        this.toggle.emit(this.checked);
+      } catch (error) {
+        throw new Error(DaffSwitchErrorMessage);
+      }
     }
   }
 
