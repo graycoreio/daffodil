@@ -56,6 +56,12 @@ const getStaticBreadcrumb = (segment: string, parent: string): DaffBreadcrumb =>
         path: `${parent}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.API]}`,
       };
 
+    case 'components':
+      return {
+        label: 'Components',
+        path: `${parent}/components`,
+      };
+
     default:
       return null;
   }
