@@ -13,6 +13,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
+import { DaffioDocsDesignComponentOverviewPageComponent } from './pages/components-overview/component-overview.component';
 import { DaffioDocsDesignOverviewPageComponent } from './pages/overview/overview.component';
 import { DAFF_NAV_SIDEBAR_REGISTRATION } from '../../core/nav/sidebar.provider';
 import { DaffioRoute } from '../../core/router/route.type';
@@ -43,6 +44,10 @@ export const docsDesignRoutes: Routes = [
         path: '',
         pathMatch: 'full',
         component: DaffioDocsDesignOverviewPageComponent,
+      },
+      {
+        path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT],
+        component: DaffioDocsDesignComponentOverviewPageComponent,
       },
       <DaffioRoute>{
         path: '**',

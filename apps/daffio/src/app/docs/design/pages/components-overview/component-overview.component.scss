@@ -1,0 +1,26 @@
+@use 'utilities' as daff;
+
+.daffio-docs-design-component-overview {
+	&__body {
+		display: block;
+		padding: 48px 24px;
+
+		@include daff.breakpoint(small-laptop) {
+			padding: 48px 0;
+		}
+	}
+
+	&__card-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 16px;
+
+		@include daff.breakpoint(tablet) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include daff.breakpoint(small-laptop) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+}
