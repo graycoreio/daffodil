@@ -17,6 +17,7 @@ import {
   INDEX_FILE_READER_PROVIDER,
 } from './reader/guide-file.reader';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
+import { AbsolutifyPathsProcessor } from '../../processors/absolutify-paths';
 import { AddKindProcessor } from '../../processors/add-kind';
 import { BreadcrumbProcessor } from '../../processors/breadcrumb';
 import { ConvertToJsonProcessor } from '../../processors/convertToJson';
@@ -150,6 +151,9 @@ export const designDocsPackage = new Package('design-docs', [design])
   })
   .config((convertToJson: ConvertToJsonProcessor) => {
     convertToJson.extraFields.push('description');
+  })
+  .config((absolutifyPaths: AbsolutifyPathsProcessor) => {
+    absolutifyPaths.docTypes = docTypes;
   })
   .config((generateNavList: GenerateNavListProcessor) => {
     generateNavList.transform = (docs) => sortTrie(
