@@ -16,25 +16,25 @@ export const sortTrie = <T extends Trie>(trie: T, sortData: TrieSortData, parent
   const path = parent && trie.id ? `${parent}/${trie.id}` : trie.id || parent;
   const sort = sortData[path];
 
-  if (!sort) {
-    throw new Error(`Sort data does not contain a reference to ${path}`);
-  }
-
   trie.children = trie.children
-    .map((child) => child.children.length > 0 ? sortTrie(child, sortData, path) : child)
-    .sort((a, b) => {
-      const aIndex = sort.indexOf(a.id);
-      const bIndex = sort.indexOf(b.id);
+    .map((child) => child.children.length > 0 ? sortTrie(child, sortData, path) : child);
 
-      if (aIndex < 0) {
-        throw new Error(`Sort data does not contain a reference to ${a.id}`);
-      }
-      if (bIndex < 0) {
-        throw new Error(`Sort data does not contain a reference to ${b.id}`);
-      }
+  if (sort) {
+    trie.children = trie.children
+      .sort((a, b) => {
+        const aIndex = sort.indexOf(a.id);
+        const bIndex = sort.indexOf(b.id);
 
-      return aIndex - bIndex;
-    });
+        if (aIndex < 0) {
+          throw new Error(`Sort data does not contain a reference to ${a.id}`);
+        }
+        if (bIndex < 0) {
+          throw new Error(`Sort data does not contain a reference to ${b.id}`);
+        }
+
+        return aIndex - bIndex;
+      });
+  }
 
   return trie;
 };
