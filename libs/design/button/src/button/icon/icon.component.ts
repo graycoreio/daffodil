@@ -11,6 +11,20 @@ import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 import { DaffButtonBaseDirective } from '../button-base.directive';
 
+/**
+ * DaffIconButtonComponent is an icon button used with icon fonts.
+ *
+ * ## Usage
+ * ```html
+ * <button daff-icon-button>
+ *  <fa-icon [icon]="faPlus"></fa-icon>
+ * </button>
+ *
+ * <a href="/" daff-icon-button>
+ *  <fa-icon [icon]="faPlus"></fa-icon>
+ * </a>
+ * ```
+ */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '' +

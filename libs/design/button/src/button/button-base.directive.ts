@@ -63,11 +63,19 @@ export class DaffButtonBaseDirective
      */
     this.size.defaultSize = 'md';
   }
+
+  /**
+   * @docs-private
+   */
   @HostBinding('class.disabled') get disabledClass() {
     return this.disabled;
   }
 
   @Input() loading = false;
+
+  /**
+   * Set the `tabindex` to 0.
+   */
   @Input() tabindex = 0;
 
   _disabled = false;
@@ -90,6 +98,9 @@ export class DaffButtonBaseDirective
     return this.disabled ? true : null;
   }
 
+  /**
+   * Set the `tabindex` to -1 if the button is disabled.
+   */
   @HostBinding('attr.tabindex') get disabledTabIndex() {
     return this.disabled ? -1 : this.tabindex;
   }

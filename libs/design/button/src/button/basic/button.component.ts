@@ -11,6 +11,24 @@ import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 import { DaffButtonBaseDirective } from '../button-base.directive';
 
+/**
+ * DaffButtonComponent is a rectangular contained button with background color.
+ *
+ * ## Usage
+ * ```html
+ * <button daff-button>
+ *  <div daffPrefix></div>
+ *  Button
+ *  <div daffSuffix></div>
+ * </button>
+ *
+ * <a href="/" daff-button>
+ *  <div daffPrefix></div>
+ *  Linked button
+ *  <div daffSuffix></div>
+ * </a>
+ * ```
+ */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '' +

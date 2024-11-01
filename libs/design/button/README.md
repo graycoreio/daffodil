@@ -34,7 +34,7 @@ Native `<button>` or `<a>` elements are always used in order to provide an easy,
 ## Usage
 
 ### Within a standalone component
-To use button in a standalone component, import it directly into your custom component:
+To use button in a standalone component, import it directly into your custom component. Buttons can be imported individually or all together by using `DAFF_BUTTON_COMPONENTS`:
 
 ```ts
 @Component({
@@ -42,7 +42,7 @@ To use button in a standalone component, import it directly into your custom com
   templateUrl: './custom-component.component.html',
   standalone: true,
   imports: [
-    DAFF_BUTTON_COMPONENTS,
+    DaffButtonComponent,
   ],
 })
 export class CustomComponent {}
