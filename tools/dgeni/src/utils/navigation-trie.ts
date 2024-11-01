@@ -31,6 +31,7 @@ export class NavigationTrie<T extends DaffNavDoc = DaffNavDoc> {
     return {
       ...this._doc,
       children: this.children,
+      path: this.children.length ? undefined : this._doc.path,
     };
   }
 
@@ -92,7 +93,7 @@ export class NavigationTrie<T extends DaffNavDoc = DaffNavDoc> {
     // any documents over time we throw an error.
     if (child.id) {
       throw new Error(
-        'Error: attempted to insert a document with a duplicate id: ' + child.id,
+        'Error: attempted to insert a document with a duplicate path: ' + child.path,
       );
     }
   }
@@ -122,7 +123,6 @@ export class NavigationTrie<T extends DaffNavDoc = DaffNavDoc> {
         title: 'Overview',
         path: child.path,
       });
-      delete child._doc.path;
       child.appendChild(node);
     }
     return child;
