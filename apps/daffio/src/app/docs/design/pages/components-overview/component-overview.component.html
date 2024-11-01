@@ -8,26 +8,14 @@
 <daff-container size="md">
 	<div class="daffio-docs-design-component-overview__body">
 		<div class="daffio-docs-design-component-overview__card-grid">
-			<a daff-card routerLink="">
-				<h3 daffCardTitle>Accordion</h3>
-				<div daffCardContent>
-					<p>An accordion is a group of vertically stacked headings used to toggle the visibility of a section of content.</p>
-				</div>
-			</a>
-
-			<a daff-card routerLink="">
-				<h3 daffCardTitle>Article</h3>
-				<div daffCardContent>
-					<p>Article provides styles to common element selectors to create an article in a content page.</p>
-				</div>
-			</a>
-
-			<a daff-card routerLink="">
-				<h3 daffCardTitle>Breadcrumb</h3>
-				<div daffCardContent>
-					<p>Breadcrumbs are a secondary navigation that displays a user's location within a website or application.</p>
-				</div>
-			</a>
+      @for (component of components$ | async; track component.id) {
+        <a daff-card [routerLink]="component.path">
+          <h3 daffCardTitle>{{component.title}}</h3>
+          <div daffCardContent>
+            <p [innerHTML]="component.description"></p>
+          </div>
+        </a>
+      }
 		</div>
 	</div>
 </daff-container>
