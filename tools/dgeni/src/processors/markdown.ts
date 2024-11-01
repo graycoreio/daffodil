@@ -9,7 +9,10 @@ import { slugify } from 'markdown-toc';
 import { Marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 
-import { daffDocsGetLinkUrl } from '@daffodil/docs-utils';
+import {
+  DaffDocKind,
+  daffDocsGetLinkUrl,
+} from '@daffodil/docs-utils';
 
 import { CollectLinkableSymbolsProcessor } from './collect-linkable-symbols';
 import { FilterableProcessor } from '../utils/filterable-processor.type';
@@ -25,6 +28,7 @@ hljs.registerLanguage('gql', graphql);
 export const MARKDOWN_CODE_PROCESSOR_NAME = 'markdown';
 
 export class MarkdownCodeProcessor implements FilterableProcessor {
+  private docDescription: string;
   private marked = new Marked(
     markedHighlight({
       highlight: (code, lang, info) => {
@@ -52,6 +56,13 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
           const path = CollectLinkableSymbolsProcessor.symbols.get(text);
           return path ? `<a href="${path}"><code>${text}</code></a>` : false;
         },
+        paragraph: (text) => {
+          if (!this.docDescription) {
+            // get the first paragraph of the doc
+            this.docDescription = text;
+          }
+          return false;
+        },
       },
     },
   );
@@ -67,12 +78,18 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
   ) {}
 
   $process(docs: Document[]) {
-    return docs.map((doc) => {
+    const ret = docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
         doc[this.contentKey] = this.marked.parse(doc.content);
+        if (doc.kind === DaffDocKind.PACKAGE || doc.kind === DaffDocKind.COMPONENT) {
+          doc.description = this.docDescription;
+        }
+        this.docDescription = null;
       };
       return doc;
     });
+
+    return ret;
   }
 };
 
