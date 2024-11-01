@@ -1,39 +1,37 @@
+import { DaffNavDoc } from '@daffodil/docs-utils';
+
 import { capitalize } from './capitalize';
 import { sortedArrayInsert } from './sorted-array-insert';
-
-export interface NavigationDocument {
-  id: string;
-  title: string;
-  path: string;
-  tableOfContents: string;
-}
 
 /**
  * A class to form a navigation Prefix Trie from a list of navigation documents
  * where each document's id represents a path to a document and paths are
  * separated by the `/` character.
  */
-export class NavigationTrie {
-  id = '';
-  path?: string;
-  title = '';
-  tableOfContents = '';
-  children: NavigationTrie[] = [];
+export class NavigationTrie<T extends DaffNavDoc = DaffNavDoc> {
+  children: Array<NavigationTrie<T>> = [];
+
+  get id(): T['id'] {
+    return this._doc.id;
+  }
+
+  get path(): T['path'] {
+    return this._doc.path;
+  }
+
+  set title(v: T['title']) {
+    this._doc.title = v;
+  }
 
   constructor(
-    key: string = '',
-    title: string = '',
-    path: string = '',
-    tableOfContents: string = '',
-    children: NavigationTrie[] = [],
-  ) {
-    this.id = key;
-    this.title = title;
-    this.tableOfContents = '';
-    if (path) {
-      this.path = path;
-    }
-    this.children = children;
+    private _doc: T,
+  ) {}
+
+  toJSON(): T {
+    return {
+      ...this._doc,
+      children: this.children,
+    };
   }
 
   /**
@@ -42,23 +40,19 @@ export class NavigationTrie {
    * this happening, as the depth of the trie should be
    * artificially limited due to how docs folders are
    * typically structured.
-   *
-   * @param path
-   * @param doc
-   * @returns void
    */
-  insert(path: string = '', doc: NavigationDocument): void {
+  insert(id: string = '', doc: T): void {
     //If we've hit a word
-    if (path.indexOf('/') === -1) {
-      this.appendWord(path, doc);
+    if (id.indexOf('/') === -1) {
+      this.appendWord(id, doc);
       return;
     }
 
-    const keyArray = path.split('/');
+    const keyArray = id.split('/');
     const key = keyArray.shift();
     const newKey = keyArray.join('/');
 
-    const child = this.appendBranch(key);
+    const child = this.appendBranch(key, doc);
 
     child.insert(newKey, doc);
   }
@@ -69,57 +63,66 @@ export class NavigationTrie {
    * This is slightly different than a typical trie append
    * as we assume a the element is a word node if
    * its children is an empty array.
-   *
-   * @param path
-   * @param doc
    */
-  appendWord(path: string, doc: NavigationDocument) {
-    const child = this.getExistingChild(path);
+  appendWord(id: string, doc: T) {
+    const child = this.getExistingChild(id);
 
     //If no child exists, simply append the word
     if (!child) {
-      this.appendChild(new NavigationTrie(path, doc.title, doc.path, ''));
+      this.appendChild(new NavigationTrie({
+        ...doc,
+        id,
+      }));
       return;
     }
 
     //If a child already exists, but that child isn't a word.
     if (child.children.length !== 0) {
       child.title = doc.title;
-      child.tableOfContents = doc.tableOfContents;
-      child.appendChild(new NavigationTrie('', 'Overview', doc.path, ''));
+      child.appendChild(new NavigationTrie({
+        ...doc,
+        id: '',
+        title: 'Overview',
+      }));
       return;
     }
 
-    // If theres already a child, we've already inserted a document that matches the path
+    // If theres already a child, we've already inserted a document that matches the id
     // of the document we're trying to insert. To ensure that we don't mysteriously lose
     // any documents over time we throw an error.
-    if (child.path) {
+    if (child.id) {
       throw new Error(
-        'Error: attempted to insert a document with a duplicate path: ' + child.path,
+        'Error: attempted to insert a document with a duplicate id: ' + child.id,
       );
     }
   }
-
 
   /**
    * Append a branch onto the trie
    *
    * This is slightly different than a typical branch append to a trie
    * as we may have to transform a 'word' node into a true word
-   *
-   * @param key
    */
-  appendBranch(path: string): NavigationTrie {
-    let child = this.getExistingChild(path);
+  appendBranch(id: string, doc: T): NavigationTrie<T> {
+    let child = this.getExistingChild(id);
     // If there isn't a child, simply append the branch.
     if (!child) {
-      child = new NavigationTrie(path, capitalize(path), '');
+      child = new NavigationTrie({
+        ...doc,
+        id,
+        title: capitalize(id),
+      });
       this.appendChild(child);
     } else if (child && child.children.length === 0) {
       //If there is a child, and it is a 'word' node, transform that
       //node into a true word node.
-      const node = new NavigationTrie('', 'Overview', child.path, '');
-      delete (child.path);
+      const node = new NavigationTrie({
+        ...doc,
+        id: '',
+        title: 'Overview',
+        path: child.path,
+      });
+      delete child._doc.path;
       child.appendChild(node);
     }
     return child;
@@ -130,7 +133,7 @@ export class NavigationTrie {
    *
    * @param element
    */
-  appendChild(element: NavigationTrie) {
+  appendChild(element: NavigationTrie<T>) {
     sortedArrayInsert(element, this.children, (a, b) => {
       if (a.id > b.id) {
         return 1;
@@ -147,19 +150,20 @@ export class NavigationTrie {
   /**
    * Determines whether or not a node has a particular child.
    * If it does, it returns it, otherwise it returns false.
-   *
-   * @param path
    */
-  getExistingChild(path: string): NavigationTrie | undefined {
-    return this.children.find((child) => child.id === path);
+  getExistingChild(id: string): NavigationTrie<T> | undefined {
+    return this.children.find((child) => child.id === id);
   }
 }
 
 /**
  * @param items
  */
-export const generateNavigationTrieFromDocuments = (items: NavigationDocument[] = []) => {
-  const tree = new NavigationTrie();
+export const generateNavigationTrieFromDocuments = <T extends DaffNavDoc = DaffNavDoc>(
+  items: Array<T>,
+  root: T,
+): NavigationTrie<T> => {
+  const tree = new NavigationTrie(root);
   for (const doc of items) {
     tree.insert(doc.id, doc);
   }

@@ -7,8 +7,9 @@ import {
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { DaffApiNavDoc } from '@daffodil/docs-utils';
+
 import { DaffioApiListSectionComponent } from './api-list-section.component';
-import { DaffioApiReference } from '../../models/api-reference';
 
 @Component({
   template: `
@@ -20,22 +21,18 @@ import { DaffioApiReference } from '../../models/api-reference';
   ],
 })
 class WrapperComponent {
-  apiListValue: Array<DaffioApiReference> = [
+  apiListValue: Array<DaffApiNavDoc> = [
     {
       id: 'name1Component',
       title: 'title1Component',
       path: 'path1',
       docType: 'docType1',
-      docTypeShorthand: 'dt',
-      children: [],
     },
     {
       id: 'name2Module',
       title: 'title2Module',
       path: 'path2',
       docType: 'docType2',
-      docTypeShorthand: 'dt',
-      children: [],
     },
   ];
 }

@@ -17,14 +17,14 @@ import {
   daffUriTruncateLeadingSlash,
   daffUriTruncateQueryFragment,
 } from '@daffodil/core/routing';
+import { DaffDoc } from '@daffodil/docs-utils';
 
-import { DaffioDoc } from '../models/doc';
 import { DaffioDocsService } from '../services/docs.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DocsResolver<T extends DaffioDoc = DaffioDoc>  {
+export class DocsResolver<T extends DaffDoc = DaffDoc>  {
 
   constructor(private docService: DaffioDocsService<T>, private router: Router) { }
 

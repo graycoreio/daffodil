@@ -7,15 +7,15 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffLinkSetModule } from '@daffodil/design/link-set';
+import { DaffGuideDoc } from '@daffodil/docs-utils';
 
 import { DaffioDocsTableOfContentsComponent } from './table-of-contents.component';
-import { DaffioDoc } from '../../models/doc';
 import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
 
 describe('DaffioDocsTableOfContentsComponent', () => {
   let component: DaffioDocsTableOfContentsComponent;
   let fixture: ComponentFixture<DaffioDocsTableOfContentsComponent>;
-  let stubDaffioDoc: DaffioDoc;
+  let stubDaffioDoc: DaffGuideDoc;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

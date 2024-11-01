@@ -14,19 +14,20 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffDoc } from '@daffodil/docs-utils';
+
 import { DaffioDocsPageComponent } from './docs-page.component';
-import { DaffioDoc } from '../../../docs/models/doc';
 import { DaffioDocsFactory } from '../../../docs/testing/factories/docs.factory';
 
 @Component({ selector: 'daffio-doc-viewer', template: '' })
 class MockDaffioDocViewerComponent {
-  @Input() doc: DaffioDoc;
+  @Input() doc: DaffDoc;
 }
 
 describe('DaffioDocsPageComponent', () => {
   let component: DaffioDocsPageComponent;
   let fixture: ComponentFixture<DaffioDocsPageComponent>;
-  const doc: DaffioDoc = new DaffioDocsFactory().create();
+  const doc: DaffDoc = new DaffioDocsFactory().create();
   const stubActivatedRoute = {
     data: new BehaviorSubject({}),
   };

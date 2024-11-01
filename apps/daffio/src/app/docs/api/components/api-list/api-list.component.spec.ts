@@ -12,32 +12,30 @@ import { RouterLink } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffDocsApiNavList } from '@daffodil/docs-utils';
 
 import { DaffioApiListComponent } from './api-list.component';
-import { DaffioApiReference } from '../../models/api-reference';
 import { DaffioApiListSectionComponent } from '../api-list-section/api-list-section.component';
 
 @Component({ template: '<daffio-api-list [apiList]="apiListValue"></daffio-api-list>' })
 class WrapperComponent {
-  apiListValue: DaffioApiReference = {
+  apiListValue: DaffDocsApiNavList = {
     id: 'id',
     title: 'title',
     docType: '',
-    docTypeShorthand: '',
+    path: '',
     children: [
       {
         id: 'name1Component',
         title: 'title1Component',
         path: 'path1',
         docType: 'docType1',
-        docTypeShorthand: 'dt',
         children: [
           {
             id: 'name1ComponentChild',
             title: 'title1ComponentChild',
             path: 'path1/child',
             docType: 'docType1',
-            docTypeShorthand: 'dt',
             children: [],
           },
         ],
@@ -47,7 +45,6 @@ class WrapperComponent {
         title: 'title2Module',
         path: 'path2',
         docType: 'docType2',
-        docTypeShorthand: 'dt',
         children: [],
       },
     ],

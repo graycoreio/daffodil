@@ -4,7 +4,10 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { crossOsFilename } from '@daffodil/docs-utils';
+import {
+  crossOsFilename,
+  DaffDoc,
+} from '@daffodil/docs-utils';
 
 import { DAFFIO_DOCS_PATH_TOKEN } from './docs-path.token';
 import { DaffioDocsServiceInterface } from './docs-service.interface';
@@ -12,12 +15,11 @@ import {
   DaffioAssetFetchService,
   DaffioAssetFetchServiceInterface,
 } from '../../core/assets/fetch/service.interface';
-import { DaffioDoc } from '../models/doc';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DaffioDocsService<T extends DaffioDoc = DaffioDoc> implements DaffioDocsServiceInterface<T> {
+export class DaffioDocsService<T extends DaffDoc = DaffDoc> implements DaffioDocsServiceInterface<T> {
 
   constructor(
     @Inject(DaffioAssetFetchService) private fetchAsset: DaffioAssetFetchServiceInterface,

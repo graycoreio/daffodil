@@ -13,16 +13,17 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DaffioRoute } from 'apps/daffio/src/app/core/router/route.type';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffDocsApiNavList } from '@daffodil/docs-utils';
+
 import { DaffioApiListPageComponent } from './api-list-page.component';
 import { DaffioApiListComponent } from '../../components/api-list/api-list.component';
-import { DaffioApiReference } from '../../models/api-reference';
 
 @Component({
   template: '',
   selector: 'daffio-api-list',
 })
 class MockDaffioApiListComponent {
-  @Input() apiList: DaffioApiReference[] = [];
+  @Input() apiList: DaffDocsApiNavList[] = [];
 }
 
 describe('DaffioApiListPageComponent', () => {
@@ -30,18 +31,17 @@ describe('DaffioApiListPageComponent', () => {
   let fixture: ComponentFixture<DaffioApiListPageComponent>;
   let dataSpy: BehaviorSubject<DaffioRoute['data']>;
 
-  const stubDocsList: DaffioApiReference = {
+  const stubDocsList: DaffDocsApiNavList = {
     id: 'id',
     title: 'title',
     docType: '',
-    docTypeShorthand: '',
+    path: '',
     children: [
       {
         id: 'name1Component',
         title: 'title1Component',
         path: 'path1',
         docType: 'docType1',
-        docTypeShorthand: 'dt',
         children: [],
       },
       {
@@ -49,7 +49,6 @@ describe('DaffioApiListPageComponent', () => {
         title: 'title2Module',
         path: 'path2',
         docType: 'docType2',
-        docTypeShorthand: 'dt',
         children: [],
       },
     ],

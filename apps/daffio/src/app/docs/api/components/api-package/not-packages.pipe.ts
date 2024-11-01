@@ -3,7 +3,7 @@ import {
   PipeTransform,
 } from '@angular/core';
 
-import { DaffioApiReference } from '../../models/api-reference';
+import { DaffApiDoc } from '@daffodil/docs-utils';
 
 /**
  * Filters packages from a list of API docs.
@@ -15,7 +15,7 @@ import { DaffioApiReference } from '../../models/api-reference';
   standalone: true,
 })
 export class DaffioApiPackageFilterPipe implements PipeTransform {
-  transform(docs: Array<DaffioApiReference>, exclude = false) {
+  transform(docs: Array<DaffApiDoc>, exclude = false) {
     return exclude
       ? docs.filter((doc) => doc.docType !== 'package')
       : docs.filter((doc) => doc.docType === 'package');

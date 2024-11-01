@@ -10,10 +10,10 @@ import {
   switchMap,
 } from 'rxjs';
 
+import { DaffDocsDesignGuideNavList } from '@daffodil/docs-utils';
 import { DaffRouterActivatedRoute } from '@daffodil/router';
 
 import { DaffioDocsListComponent } from '../../../components/docs-list/docs-list.component';
-import { DaffioDocList } from '../../../models/doc-list';
 
 @Component({
   selector: 'daffio-docs-design-list-container',
@@ -26,7 +26,7 @@ import { DaffioDocList } from '../../../models/doc-list';
   ],
 })
 export class DaffioDocsDesignListContainer implements OnInit {
-  docsList$: Observable<DaffioDocList>;
+  docsList$: Observable<DaffDocsDesignGuideNavList>;
 
   constructor(
     private route: DaffRouterActivatedRoute,

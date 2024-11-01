@@ -5,7 +5,10 @@ import {
   of,
 } from 'rxjs';
 
-import { DaffDocKind } from '@daffodil/docs-utils';
+import {
+  DaffDoc,
+  DaffDocKind,
+} from '@daffodil/docs-utils';
 import { DaffRouterActivatedRoute } from '@daffodil/router';
 
 import { DaffioDocsIndexService } from './index.service';
@@ -14,7 +17,6 @@ import {
   DaffioAssetFetchServiceInterface,
 } from '../../core/assets/fetch/service.interface';
 import { DaffioRoute } from '../../core/router/route.type';
-import { DaffioDoc } from '../models/doc';
 import { DaffioDocsFactory } from '../testing/factories/docs.factory';
 import { mockPackages } from '../testing/factories/packages-list.factory';
 
@@ -22,7 +24,7 @@ describe('DaffioDocsIndexService', () => {
   let service: DaffioDocsIndexService;
   let fetchAssetServiceSpy: jasmine.SpyObj<DaffioAssetFetchServiceInterface>;
   let activatedRouteSpy: BehaviorSubject<ActivatedRoute>;
-  let doc: DaffioDoc;
+  let doc: DaffDoc;
   const mockGuideList = mockPackages;
 
   beforeEach(() => {

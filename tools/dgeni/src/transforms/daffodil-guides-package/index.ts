@@ -19,6 +19,7 @@ import {
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddKindProcessor } from '../../processors/add-kind';
 import { BreadcrumbProcessor } from '../../processors/breadcrumb';
+import { ConvertToJsonProcessor } from '../../processors/convertToJson';
 import { FILTER_NAV_INDEX_PROCESSOR_PROVIDER } from '../../processors/filter-nav-index';
 import {
   GENERATE_NAV_LIST_PROCESSOR_PROVIDER,
@@ -77,7 +78,7 @@ const base = new Package('daffodil-guides-base', [daffodilBasePackage])
     ];
   })
   .config((generateNavList: GenerateNavListProcessor) => {
-    generateNavList.transform = (docs) => generateNavigationTrieFromDocuments(docs.map(transformGuideDoc));
+    generateNavList.transform = (docs) => generateNavigationTrieFromDocuments(docs.map(transformGuideDoc), { id: '', title: '', path: '' });
   });
 
 // global
@@ -147,6 +148,9 @@ export const designDocsPackage = new Package('design-docs', [design])
       { include: ['**/*.md', '**/index.json']},
     ];
   })
+  .config((convertToJson: ConvertToJsonProcessor) => {
+    convertToJson.extraFields.push('description');
+  })
   .config((generateNavList: GenerateNavListProcessor) => {
     generateNavList.transform = (docs) => sortTrie(
       generateNavigationTrieFromDocuments([
@@ -154,12 +158,16 @@ export const designDocsPackage = new Package('design-docs', [design])
           id: 'components',
           title: 'Components',
           path: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT]}`,
-          tableOfContents: '',
+          description: '',
         },
         ...docs
           .filter((doc) => doc.docType !== 'index')
           .map(transformDesignGuideDoc),
-      ]),
+      ], {
+        id: '',
+        title: '',
+        path: '',
+      }),
       docs.reduce((acc, doc) => {
         if (doc.docType === 'index') {
           acc[doc.id] = doc.content;

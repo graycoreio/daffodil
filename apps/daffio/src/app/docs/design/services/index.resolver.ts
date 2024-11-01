@@ -1,8 +1,9 @@
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 
-import { DaffioDocsDesignIndexService } from './index.service';
-import { DaffioDocList } from '../../models/doc-list';
+import { DaffDocsDesignGuideNavList } from '@daffodil/docs-utils';
 
-export const daffioDocsDesignIndexResolver: ResolveFn<DaffioDocList> = () =>
+import { DaffioDocsDesignIndexService } from './index.service';
+
+export const daffioDocsDesignIndexResolver: ResolveFn<DaffDocsDesignGuideNavList> = () =>
   inject(DaffioDocsDesignIndexService).getList();

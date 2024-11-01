@@ -9,12 +9,12 @@ import {
   switchMap,
 } from 'rxjs';
 
+import { DaffDocsNavList } from '@daffodil/docs-utils';
 import { DaffRouterActivatedRoute } from '@daffodil/router';
 
-import { DaffioDocList } from '../../../models/doc-list';
 import { DaffioPackage } from '../../components/package-cards/package-cards.component';
 
-function getPath(doc: DaffioDocList): string {
+function getPath(doc: DaffDocsNavList): string {
   return doc.path || doc.children?.[0].path || '';
 }
 

@@ -1,15 +1,7 @@
+import { DaffDocsApiNavList } from '@daffodil/docs-utils';
+
 import { GenerateNavListProcessor } from '../../../processors/generateNavList';
 import { DocumentWithDepth } from '../../../processors/packages';
-
-interface DaffDocsApiNavigationList {
-  id: string;
-  title: string;
-  path: string;
-  description?: string;
-  docType: string;
-  docTypeShorthand: string;
-  children: Array<DaffDocsApiNavigationList>;
-}
 
 const comparePackage = (aDoc: {name: string}, bDoc: {name: string}): -1 | 0 | 1 => {
   const a = aDoc.name.split('/');
@@ -30,12 +22,11 @@ const comparePackage = (aDoc: {name: string}, bDoc: {name: string}): -1 | 0 | 1 
   );
 };
 
-export const transformApiNavList: GenerateNavListProcessor['transform'] = (docs: Array<DocumentWithDepth>): DaffDocsApiNavigationList => ({
+export const transformApiNavList: GenerateNavListProcessor['transform'] = (docs: Array<DocumentWithDepth>): DaffDocsApiNavList => ({
   id: '',
   title: '',
   path: '',
   docType: '',
-  docTypeShorthand: '',
   children: docs
     .filter(doc => doc.docType === 'package' && doc.depth === 0)
     // sort alphabetically
@@ -43,25 +34,23 @@ export const transformApiNavList: GenerateNavListProcessor['transform'] = (docs:
     .map(doc => getPackageInfo(doc)),
 });
 
-export function getPackageInfo(packageDoc): DaffDocsApiNavigationList {
+export function getPackageInfo(packageDoc): DaffDocsApiNavList {
   return {
     ...getExportInfo(packageDoc),
     title: packageDoc.name,
     description: packageDoc.description,
     docType: 'package',
-    docTypeShorthand: 'pk',
     children: packageDoc.exports
-      .map(getExportInfo),
+      .map((doc) => doc.docType === 'package' ? getPackageInfo(doc) : getExportInfo(doc)),
   };
 }
 
-function getExportInfo(exportDoc): DaffDocsApiNavigationList {
+function getExportInfo(exportDoc): DaffDocsApiNavList {
   return {
     id: exportDoc.id,
     title: exportDoc.name,
     path: `${exportDoc.path[0] === '/' ? '' : '/'}${exportDoc.path}`,
     docType: getDocType(exportDoc),
-    docTypeShorthand: exportDoc.docType.charAt(0),
     children: exportDoc.docType === 'package'
       ? exportDoc.exports
         .map(getExportInfo)
@@ -69,7 +58,7 @@ function getExportInfo(exportDoc): DaffDocsApiNavigationList {
   };
 }
 
-function getDocType(doc): DaffDocsApiNavigationList['docType'] {
+function getDocType(doc): DaffDocsApiNavList['docType'] {
   // We map `let` and `var` types to `const`
   if (['let', 'var'].indexOf(doc.docType) !== -1) {
     return 'const';

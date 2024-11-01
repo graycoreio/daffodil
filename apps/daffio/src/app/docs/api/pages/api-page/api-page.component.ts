@@ -7,10 +7,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { DaffioApiDoc } from '../../models/api-doc';
+import { DaffApiDoc } from '@daffodil/docs-utils';
 
 interface ApiResolverData {
-  doc: DaffioApiDoc;
+  doc: DaffApiDoc;
 }
 
 @Component({
@@ -19,7 +19,7 @@ interface ApiResolverData {
 })
 export class DaffioApiPageComponent implements OnInit {
 
-  doc$: Observable<DaffioApiDoc>;
+  doc$: Observable<DaffApiDoc>;
 
   constructor(private route: ActivatedRoute) { }
 

@@ -11,8 +11,9 @@ import {
   throwError,
 } from 'rxjs';
 
+import { DaffDoc } from '@daffodil/docs-utils';
+
 import { DocsResolver } from './docs-resolver.service';
-import { DaffioDoc } from '../models/doc';
 import { DaffioDocsServiceInterface } from '../services/docs-service.interface';
 import { DaffioDocsService } from '../services/docs.service';
 import { DaffioDocsFactory } from '../testing/factories/docs.factory';
@@ -24,7 +25,7 @@ describe('DocsResolver', () => {
 
   const doc = new DaffioDocsFactory().create();
   const stubDocService: DaffioDocsServiceInterface = {
-    get: (path: string): Observable<DaffioDoc> => of(doc),
+    get: (path: string): Observable<DaffDoc> => of(doc),
   };
 
   beforeEach(() => {

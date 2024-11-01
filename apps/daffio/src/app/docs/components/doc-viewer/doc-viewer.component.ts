@@ -9,10 +9,15 @@ import {
 } from '@angular/platform-browser';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
+import {
+  DaffApiDoc,
+  DaffApiPackageDoc,
+  DaffDoc,
+  DaffGuideDoc,
+} from '@daffodil/docs-utils';
+
 import { DaffioSidebarService } from '../../../core/sidebar/services/sidebar.service';
-import { DaffioApiReference } from '../../api/models/api-reference';
 import { DAFFIO_DOCS_LIST_SIDEBAR_ID } from '../../containers/docs-list/sidebar.provider';
-import { DaffioDoc } from '../../models/doc';
 
 @Component({
   selector: 'daffio-doc-viewer',
@@ -31,7 +36,7 @@ export class DaffioDocViewerComponent {
   /**
    * The doc to render
    */
-  @Input() doc: DaffioDoc | DaffioApiReference;
+  @Input() doc: DaffDoc | DaffGuideDoc | DaffApiDoc | DaffApiPackageDoc;
 
   sanitizedContent: SafeHtml;
 
@@ -39,11 +44,15 @@ export class DaffioDocViewerComponent {
     return 'docType' in this.doc && this.doc.docType === 'package';
   }
 
+  get isGuideDoc(): boolean {
+    return 'tableOfContents' in this.doc;
+  }
+
   open() {
     this.sidebarService.open(DAFFIO_DOCS_LIST_SIDEBAR_ID);
   }
 
-  getInnerHtml(doc: DaffioDoc): SafeHtml {
+  getInnerHtml(doc: DaffDoc | DaffGuideDoc): SafeHtml {
     //It is necessary to bypass the default angular sanitization to keep id tags in the injected html. These id tags are used for fragment routing.
     return this.sanitizer.bypassSecurityTrustHtml(doc.contents);
   }

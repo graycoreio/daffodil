@@ -28,9 +28,10 @@
       </daff-article>
     }
   </div>
-	<daffio-docs-table-of-contents
-		*ngIf="doc.tableOfContents"
-		class="daffio-doc-viewer__table-of-contents"
-		[tableOfContents]="doc.tableOfContents.json">
-	</daffio-docs-table-of-contents>
+  @if (isGuideDoc) {
+    <daffio-docs-table-of-contents
+      class="daffio-doc-viewer__table-of-contents"
+      [tableOfContents]="doc.tableOfContents.json">
+    </daffio-docs-table-of-contents>
+  }
 </div>

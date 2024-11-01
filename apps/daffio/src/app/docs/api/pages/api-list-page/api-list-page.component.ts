@@ -7,13 +7,12 @@ import { ActivatedRoute } from '@angular/router';
 import {
   map,
   Observable,
-  tap,
 } from 'rxjs';
 
-import { DaffioApiReference } from '../../models/api-reference';
+import { DaffDocsApiNavList } from '@daffodil/docs-utils';
 
 @Component({
-  selector: '<daffio-api-list-page>',
+  selector: 'daffio-api-list-page',
   templateUrl: './api-list-page.component.html',
   styleUrls: ['./api-list-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,7 +21,7 @@ export class DaffioApiListPageComponent implements OnInit {
   /**
    * A list of references for API documents.
    */
-  apiList$: Observable<DaffioApiReference>;
+  apiList$: Observable<DaffDocsApiNavList>;
 
   constructor(
     private route: ActivatedRoute,

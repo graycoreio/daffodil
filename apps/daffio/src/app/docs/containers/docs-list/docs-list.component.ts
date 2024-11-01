@@ -4,17 +4,16 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import {
   map,
   Observable,
   switchMap,
 } from 'rxjs';
 
+import { DaffDocsNavList } from '@daffodil/docs-utils';
 import { DaffRouterActivatedRoute } from '@daffodil/router';
 
 import { DaffioDocsListComponent } from '../../components/docs-list/docs-list.component';
-import { DaffioDocList } from '../../models/doc-list';
 
 @Component({
   selector: 'daffio-docs-list-container',
@@ -27,7 +26,7 @@ import { DaffioDocList } from '../../models/doc-list';
   ],
 })
 export class DaffioDocsListContainer implements OnInit {
-  docsList$: Observable<DaffioDocList>;
+  docsList$: Observable<DaffDocsNavList>;
 
   constructor(
     private route: DaffRouterActivatedRoute,

@@ -10,8 +10,13 @@ import {
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import {
+  DaffApiNavPackageDoc,
+  DaffApiPackageDoc,
+  DaffDocsGenericNavList,
+} from '@daffodil/docs-utils';
+
 import { DaffioApiPackageComponent } from './api-package.component';
-import { DaffioApiReference } from '../../models/api-reference';
 import { DaffioApiListSectionComponent } from '../api-list-section/api-list-section.component';
 
 @Component({
@@ -24,7 +29,7 @@ import { DaffioApiListSectionComponent } from '../api-list-section/api-list-sect
   ],
 })
 class WrapperComponent {
-  apiListValue: DaffioApiReference;
+  apiListValue: DaffApiPackageDoc;
 }
 
 describe('DaffioApiPackageComponent', () => {
@@ -50,16 +55,15 @@ describe('DaffioApiPackageComponent', () => {
       id: 'Root',
       path: 'path',
       docType: 'package',
-      docTypeShorthand: 'pk',
       title: 'title',
       description: 'description',
+      breadcrumbs: [],
       children: [
         {
           id: 'name1Component',
           title: 'title1Component',
           path: 'path1',
           docType: 'docType1',
-          docTypeShorthand: 'dt',
           children: [],
         },
         {
@@ -67,14 +71,12 @@ describe('DaffioApiPackageComponent', () => {
           title: 'title2Module',
           path: 'path2',
           docType: 'package',
-          docTypeShorthand: 'pk',
           children: [
             {
               id: 'name1Component',
               title: 'title1Component',
               path: 'path1',
               docType: 'docType1',
-              docTypeShorthand: 'dt',
               children: [],
             },
             {
@@ -82,7 +84,6 @@ describe('DaffioApiPackageComponent', () => {
               title: 'title2Module',
               path: 'path2',
               docType: 'package',
-              docTypeShorthand: 'pk',
               children: [],
             },
           ],
@@ -104,10 +105,10 @@ describe('DaffioApiPackageComponent', () => {
   });
 
   describe('for every subpackage in children', () => {
-    let subpackages: Array<DaffioApiReference>;
+    let subpackages: Array<DaffDocsGenericNavList<DaffApiNavPackageDoc>>;
 
     beforeEach(() => {
-      subpackages = wrapper.apiListValue.children.filter((d) => d.docType === 'package');
+      subpackages = wrapper.apiListValue.children.filter((d): d is DaffDocsGenericNavList<DaffApiNavPackageDoc> => d.docType === 'package');
     });
 
     it('should render a link with the title', () => {

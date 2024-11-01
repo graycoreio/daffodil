@@ -22,14 +22,13 @@ import {
   DAFF_TREE_COMPONENTS,
   daffTransformTree,
 } from '@daffodil/design/tree';
-
-import { DaffioDocList } from '../../models/doc-list';
+import { DaffDocsNavList } from '@daffodil/docs-utils';
 
 const DEFAULT_ROUTER_LINK_ACTIVE_CONFIG: RouterLinkActive['routerLinkActiveOptions'] = {
   exact: true,
 };
 
-const visit = (guide: DaffioDocList): DaffTreeData<unknown> => ({
+const visit = (guide: DaffDocsNavList): DaffTreeData<unknown> => ({
   id: guide.id,
   title: guide.title,
   url: guide.path || '',
@@ -50,7 +49,7 @@ const visit = (guide: DaffioDocList): DaffTreeData<unknown> => ({
   ],
 })
 export class DaffioDocsListComponent implements OnInit {
-  private _list$ = new BehaviorSubject<DaffioDocList>(null);
+  private _list$ = new BehaviorSubject<DaffDocsNavList>(null);
 
   readonly ROUTER_LINK_ACTIVE_CONFIG = DEFAULT_ROUTER_LINK_ACTIVE_CONFIG;
 
@@ -58,7 +57,7 @@ export class DaffioDocsListComponent implements OnInit {
    * The guide list to render
    */
   @Input()
-  set list(val: DaffioDocList) {
+  set list(val: DaffDocsNavList) {
     this._list$.next(val);
   }
 

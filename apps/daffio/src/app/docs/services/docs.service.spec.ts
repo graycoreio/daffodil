@@ -1,20 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
+import { DaffDoc } from '@daffodil/docs-utils';
+
 import { DaffioDocsService } from './docs.service';
 import {
   DaffioAssetFetchService,
   DaffioAssetFetchServiceInterface,
 } from '../../core/assets/fetch/service.interface';
-import { DaffioDoc } from '../models/doc';
-import { DaffioDocList } from '../models/doc-list';
 import { DaffioDocsFactory } from '../testing/factories/docs.factory';
 import { mockPackages } from '../testing/factories/packages-list.factory';
 
 describe('DaffioDocsService', () => {
   let service: DaffioDocsService;
   let fetchAssetServiceSpy: jasmine.SpyObj<DaffioAssetFetchServiceInterface>;
-  let doc: DaffioDoc;
+  let doc: DaffDoc;
   const mockGuideList = mockPackages;
 
   beforeEach(() => {

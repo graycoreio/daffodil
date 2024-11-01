@@ -13,19 +13,20 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffDoc } from '@daffodil/docs-utils';
+
 import { DaffioApiPageComponent } from './api-page.component';
-import { DaffioDoc } from '../../../models/doc';
 import { DaffioDocsFactory } from '../../../testing/factories/docs.factory';
 
 @Component({ selector: 'daffio-doc-viewer', template: '' })
 class MockDaffioDocViewerComponent {
-  @Input() doc: DaffioDoc;
+  @Input() doc: DaffDoc;
 }
 
 describe('DaffioApiPageComponent', () => {
   let component: DaffioApiPageComponent;
   let fixture: ComponentFixture<DaffioApiPageComponent>;
-  const doc: DaffioDoc = new DaffioDocsFactory().create();
+  const doc: DaffDoc = new DaffioDocsFactory().create();
   const stubActivatedRoute = {
     data: new BehaviorSubject({}),
   };

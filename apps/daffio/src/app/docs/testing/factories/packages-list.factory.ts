@@ -1,6 +1,6 @@
-import { DaffioDocList } from '../../models/doc-list';
+import { DaffDocsNavList } from '@daffodil/docs-utils';
 
-export const mockPackages: DaffioDocList = {
+export const mockPackages: DaffDocsNavList = {
   id: '',
   title: '',
   children: [

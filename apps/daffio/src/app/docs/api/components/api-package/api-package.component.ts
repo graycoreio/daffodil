@@ -8,9 +8,9 @@ import { RouterLink } from '@angular/router';
 
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 import { DAFF_ARTICLE_COMPONENTS } from '@daffodil/design/article';
+import { DaffApiPackageDoc } from '@daffodil/docs-utils';
 
 import { DaffioApiPackageFilterPipe } from './not-packages.pipe';
-import { DaffioApiReference } from '../../models/api-reference';
 import { DaffioApiListSectionComponent } from '../api-list-section/api-list-section.component';
 
 @Component({
@@ -35,5 +35,5 @@ export class DaffioApiPackageComponent {
   /**
    * A list of references for API documents.
    */
-  @Input() doc: DaffioApiReference;
+  @Input() doc: DaffApiPackageDoc;
 }

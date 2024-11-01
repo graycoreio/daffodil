@@ -5,7 +5,7 @@ import {
   HostBinding,
 } from '@angular/core';
 
-import { DaffioApiReference } from '../../models/api-reference';
+import { DaffDocsApiNavList } from '@daffodil/docs-utils';
 
 @Component({
   selector: 'daffio-api-list',
@@ -19,5 +19,5 @@ export class DaffioApiListComponent {
   /**
    * A list of references for API documents.
    */
-  @Input() apiList: DaffioApiReference;
+  @Input() apiList: DaffDocsApiNavList;
 }

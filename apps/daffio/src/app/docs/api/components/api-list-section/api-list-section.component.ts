@@ -7,8 +7,7 @@ import {
 import { RouterLink } from '@angular/router';
 
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
-
-import { DaffioApiReference } from '../../models/api-reference';
+import { DaffApiNavDoc } from '@daffodil/docs-utils';
 
 @Component({
   selector: 'daffio-api-list-section',
@@ -29,5 +28,5 @@ export class DaffioApiListSectionComponent {
   /**
    * A list of references for API documents.
    */
-  @Input() children: Array<DaffioApiReference>;
+  @Input() children: Array<DaffApiNavDoc>;
 }

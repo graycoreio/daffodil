@@ -7,17 +7,17 @@ import {
   DAFF_DOC_KIND_PATH_SEGMENT_MAP,
   DAFF_DOCS_PATH,
   DaffDocKind,
+  DaffDocsNavList,
 } from '@daffodil/docs-utils';
 
 import {
   DaffioAssetFetchService,
   DaffioAssetFetchServiceInterface,
 } from '../../core/assets/fetch/service.interface';
-import { DaffioDocList } from '../models/doc-list';
 import { DAFFIO_DOCS_PATH_TOKEN } from '../services/docs-path.token';
 
 @Injectable()
-export class DaffioDocsIndexService<T extends DaffioDocList = DaffioDocList> {
+export class DaffioDocsIndexService<T extends DaffDocsNavList = DaffDocsNavList> {
 
   constructor(
     @Inject(DaffioAssetFetchService) private fetchAsset: DaffioAssetFetchServiceInterface,

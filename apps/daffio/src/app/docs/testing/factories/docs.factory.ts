@@ -2,39 +2,20 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
+import { DaffGuideDoc } from '@daffodil/docs-utils';
 
-import { DaffioDoc } from '../../models/doc';
-
-export class MockDoc implements DaffioDoc {
+export class MockDoc implements DaffGuideDoc {
   id = String(faker.datatype.number(1000));
   title = faker.lorem.words();
   contents = faker.lorem.paragraph();
+  // TODO: implement child models
+  breadcrumbs = [];
   tableOfContents = {
     json: [
       {
-        content: faker.lorem.words(),
-        lvl: 1,
-        slug: faker.random.word(),
-      },
-      {
-        content: faker.lorem.words(),
-        lvl: 2,
-        slug: faker.random.word(),
-      },
-      {
-        content: faker.lorem.words(),
-        lvl: 3,
-        slug: faker.random.word(),
-      },
-      {
-        content: faker.lorem.words(),
-        lvl: 3,
-        slug: faker.random.word(),
-      },
-      {
-        content: faker.lorem.words(),
-        lvl: 2,
-        slug: faker.random.word(),
+        content: faker.lorem.paragraph(),
+        lvl: faker.datatype.number(),
+        slug: faker.random.alphaNumeric(),
       },
     ],
   };
@@ -43,7 +24,7 @@ export class MockDoc implements DaffioDoc {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffioDocsFactory extends DaffModelFactory<DaffioDoc>{
+export class DaffioDocsFactory extends DaffModelFactory<DaffGuideDoc>{
   constructor() {
     super(MockDoc);
   }

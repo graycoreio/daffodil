@@ -4,7 +4,7 @@ import {
   Input,
 } from '@angular/core';
 
-import { DaffioDoc } from '../../models/doc';
+import { DaffGuideDoc } from '@daffodil/docs-utils';
 
 @Component({
   selector: 'daffio-docs-table-of-contents',
@@ -16,5 +16,5 @@ export class DaffioDocsTableOfContentsComponent {
   /**
    * The doc to render
    */
-  @Input() tableOfContents: DaffioDoc['tableOfContents']['json'];
+  @Input() tableOfContents: DaffGuideDoc['tableOfContents']['json'];
 }
