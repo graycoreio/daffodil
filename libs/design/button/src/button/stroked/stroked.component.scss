@@ -1,0 +1,7 @@
+@use '../button-base' as base;
+
+.daff-stroked-button {
+	@include base.daff-button-base();
+	@include base.daff-button-background(3px);
+	@include base.daff-button-sizes();
+}

@@ -19,7 +19,12 @@
 // @daffodil/design components
 @use './theming/theme-css-variables' as variables;
 @use '../breadcrumb/src/breadcrumb-theme' as breadcrumb;
-@use '../button/src/button-theme' as button;
+@use '../button/src/button/basic/button-theme' as button;
+@use '../button/src/button/flat/flat-theme' as flat-button;
+@use '../button/src/button/icon/icon-theme' as icon-button;
+@use '../button/src/button/raised/raised-theme' as raised-button;
+@use '../button/src/button/stroked/stroked-theme' as stroked-button;
+@use '../button/src/button/underline/underline-theme' as underline-button;
 @use '../article/src/article-theme' as article;
 @use '../src/atoms/form/error-message/error-message-theme' as error-message;
 @use '../src/atoms/form/form-field/form-field/form-field-theme' as form-field;
@@ -62,6 +67,11 @@
 
 	// Atoms
 	@include button.daff-button-theme($theme);
+	@include flat-button.daff-flat-button-theme($theme);
+	@include icon-button.daff-icon-button-theme($theme);
+	@include raised-button.daff-raised-button-theme($theme);
+	@include stroked-button.daff-stroked-button-theme($theme);
+	@include underline-button.daff-underline-button-theme($theme);
 	@include breadcrumb.daff-breadcrumb-theme($theme);
 	@include error-message.daff-error-message-theme($theme);
 	@include form-field.daff-form-field-theme($theme);

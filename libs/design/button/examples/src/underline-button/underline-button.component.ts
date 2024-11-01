@@ -8,7 +8,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffUnderlineButtonComponent } from '@daffodil/design/button';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -24,7 +24,7 @@ import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DAFF_BUTTON_COMPONENTS,
+    DaffUnderlineButtonComponent,
     FaIconComponent,
   ],
 })

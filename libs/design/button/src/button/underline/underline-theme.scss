@@ -1,0 +1,93 @@
+@use 'sass:map';
+@use '../../../../scss/theming';
+@use '../../../../scss/core';
+
+@mixin daff-underline-button-theme-variant(
+	$base-color: currentColor,
+) {
+	color: $base-color;
+
+	&::after {
+		background-color: $base-color;
+	}
+}
+
+@mixin daff-underline-button-theme($theme) {
+	$primary: map.get($theme, primary);
+	$secondary: map.get($theme, secondary);
+	$tertiary: map.get($theme, tertiary);
+	$info: map.get($theme, info);
+	$warn: map.get($theme, warn);
+	$critical: map.get($theme, critical);
+	$success: map.get($theme, success);
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$white: core.daff-map-deep-get($theme, 'core.white');
+	$black: core.daff-map-deep-get($theme, 'core.black');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
+
+	.daff-underline-button {
+		@include daff-underline-button-theme-variant(
+			theming.daff-illuminate($base, $neutral, 7)
+		);
+
+		&.daff-primary {
+			@include daff-underline-button-theme-variant(
+				theming.daff-color($primary)
+			);
+		}
+
+		&.daff-secondary {
+			@include daff-underline-button-theme-variant(
+				theming.daff-color($secondary)
+			);
+		}
+
+		&.daff-tertiary {
+			@include daff-underline-button-theme-variant(
+				theming.daff-color($tertiary)
+			);
+		}
+
+		&.daff-black {
+			@include daff-underline-button-theme-variant($black);
+		}
+
+		&.daff-white {
+			@include daff-underline-button-theme-variant($white);
+		}
+
+		&.daff-theme {
+			@include daff-underline-button-theme-variant($base);
+		}
+
+		&.daff-theme-contrast {
+			@include daff-underline-button-theme-variant($base-contrast);
+		}
+
+		&[disabled],
+		&.disabled {
+			@include daff-underline-button-theme-variant(
+				theming.daff-illuminate($base, $neutral, 4)
+			);
+		}
+
+		&.daff-warn {
+			@include daff-underline-button-theme-variant(
+				theming.daff-color($warn)
+			);
+		}
+
+		&.daff-critical {
+			@include daff-underline-button-theme-variant(
+				theming.daff-color($critical)
+			);
+		}
+
+		&.daff-success {
+			@include daff-underline-button-theme-variant(
+				theming.daff-color($success)
+			);
+		}
+	}
+}

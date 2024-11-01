@@ -1,0 +1,30 @@
+@use '../button-base' as base;
+@use '../../../../scss/typography' as t;
+
+.daff-icon-button {
+	@include base.daff-button-base();
+	background: none;
+	border: 0;
+	padding: 0;
+
+	&.daff-sm {
+		font-size: t.$small-font-size;
+		line-height: 2rem;
+		height: 2rem;
+		width: 2rem;
+	}
+
+	&.daff-md {
+		font-size: t.$normal-font-size;
+		line-height: 3rem;
+		height: 3rem;
+		width: 3rem;
+	}
+
+	&.daff-lg {
+		font-size: t.$medium-font-size;
+		line-height: 3.5rem;
+		height: 3.5rem;
+		width: 3.5rem;
+	}
+}

@@ -1,0 +1,75 @@
+@use '../../../scss/interactions';
+@use '../../../scss/typography' as t;
+
+@mixin daff-button-base {
+	@include interactions.clickable();
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	appearance: none;
+	border: none;
+	border-radius: 4px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+
+	&[disabled],
+	&.disabled {
+		cursor: not-allowed;
+	}
+
+	.daff-button__content,
+	.daff-prefix,
+	.daff-suffix {
+		z-index: 2;
+	}
+
+	.daff-button__content {
+		@include t.text-truncate();
+	}
+}
+
+@mixin daff-button-background($border-radius) {
+	&:after {
+		content: '';
+		border-radius: $border-radius;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transition: opacity 300ms;
+	}
+
+	&:hover,
+	&:active {
+		&:after {
+			opacity: 1;
+		}
+	}
+}
+
+@mixin daff-button-sizes {
+	min-width: 96px;
+
+	&.daff-sm {
+		font-size: t.$small-font-size;
+		line-height: 2rem;
+		height: 2rem;
+		padding: 0 1rem;
+	}
+
+	&.daff-md {
+		font-size: t.$normal-font-size;
+		line-height: 3rem;
+		height: 3rem;
+		padding: 0 1.5rem;
+	}
+
+	&.daff-lg {
+		font-size: t.$medium-font-size;
+		line-height: 3.5rem;
+		height: 3.5rem;
+		padding: 0 1.5rem;
+	}
+}

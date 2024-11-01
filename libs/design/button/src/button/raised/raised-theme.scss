@@ -1,0 +1,120 @@
+@use 'sass:map';
+@use '../../../../scss/theming';
+@use '../../../../scss/core';
+
+@mixin daff-raised-button-theme-variant(
+	$base-color,
+) {
+	@if theming.daff-contrast-ratio($base-color, theming.daff-text-contrast($base-color)) < 4.5 {
+		@error 'Button Initial State: ' + map.get(a11y.$wcag-aa-errors, 'text-contrast');
+	}
+
+	@if theming.daff-contrast-ratio($base-color, theming.daff-text-contrast($base-color)) < 4.5 {
+		@error 'Button Hover State: '+ map.get(a11y.$wcag-aa-errors, 'text-contrast');
+	}
+
+	$black: theming.daff-color(theming.$daff-neutral, 110);
+
+	background-color: $base-color;
+	border: 1px solid $base-color;
+	box-shadow:
+		0 3px 5px rgba($black, 0.12),
+		0 1px 3px rgba($black, 0.08);
+	color: theming.daff-text-contrast($base-color);
+
+	&:after {
+		box-shadow:
+			0 6px 12px rgba($black, 0.08),
+			0 4px 6px rgba($black, 0.04);
+	}
+
+	&:hover {
+		background-color: $base-color;
+		border: 1px solid $base-color;
+	}
+}
+
+@mixin daff-raised-button-theme($theme) {
+	$primary: map.get($theme, primary);
+	$secondary: map.get($theme, secondary);
+	$tertiary: map.get($theme, tertiary);
+	$info: map.get($theme, info);
+	$warn: map.get($theme, warn);
+	$critical: map.get($theme, critical);
+	$success: map.get($theme, success);
+	$base: core.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$white: core.daff-map-deep-get($theme, 'core.white');
+	$black: core.daff-map-deep-get($theme, 'core.black');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
+
+	.daff-raised-button {
+		@include daff-raised-button-theme-variant(
+			theming.daff-illuminate($base, $neutral, 2)
+		);
+
+		&.daff-primary {
+			@include daff-raised-button-theme-variant(
+				theming.daff-color($primary)
+			);
+		}
+
+		&.daff-secondary {
+			@include daff-raised-button-theme-variant(
+				theming.daff-color($secondary)
+			);
+		}
+
+		&.daff-tertiary {
+			@include daff-raised-button-theme-variant(
+				theming.daff-color($tertiary)
+			);
+		}
+
+		&.daff-black {
+			@include daff-raised-button-theme-variant($black);
+		}
+
+		&.daff-white {
+			@include daff-raised-button-theme-variant($white);
+		}
+
+		&.daff-theme {
+			@include daff-raised-button-theme-variant($base);
+		}
+
+		&.daff-theme-contrast {
+			@include daff-raised-button-theme-variant($base-contrast);
+		}
+
+		&[disabled],
+		&.disabled {
+			@include daff-raised-button-theme-variant(
+				theming.daff-illuminate($base, $neutral, 3)
+			);
+			color: theming.daff-illuminate($base, $neutral, 5);
+
+			&:after {
+				box-shadow: none;
+			}
+		}
+
+		&.daff-warn {
+			@include daff-raised-button-theme-variant(
+				theming.daff-color($warn)
+			);
+		}
+
+		&.daff-critical {
+			@include daff-raised-button-theme-variant(
+				theming.daff-color($critical)
+			);
+		}
+
+		&.daff-success {
+			@include daff-raised-button-theme-variant(
+				theming.daff-color($success)
+			);
+		}
+	}
+}

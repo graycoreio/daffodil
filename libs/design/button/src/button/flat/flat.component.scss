@@ -1,0 +1,9 @@
+@use '../button-base' as base;
+
+.daff-flat-button {
+	@include base.daff-button-base();
+	@include base.daff-button-background(4px);
+	@include base.daff-button-sizes();
+	background: none;
+	border: none;
+}

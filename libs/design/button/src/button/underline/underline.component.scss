@@ -1,0 +1,82 @@
+@use '../button-base' as base;
+@use '../../../../scss/layout';
+@use '../../../../scss/typography' as t;
+
+.daff-underline-button {
+	@include base.daff-button-base();
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	line-height: 1.25rem;
+	overflow: hidden;
+	text-decoration: none;
+	vertical-align: middle;
+
+	&[disabled],
+	&.disabled {
+		cursor: not-allowed;
+
+		&:hover,
+		&:active {
+			&::after {
+				animation: none;
+			}
+		}
+	}
+
+	&::after {
+		bottom: 0;
+		content: '';
+		height: 2px;
+		left: 0;
+		opacity: 1;
+		position: absolute;
+		width: 100%;
+	}
+
+	&:hover {
+		&::after {
+			animation: none;
+
+			@include layout.breakpoint(big-tablet) {
+				animation: underline-button-hover 700ms ease;
+			}
+		}
+	}
+
+	&.daff-sm {
+		font-size: t.$small-font-size;
+		height: 1.25rem;
+		padding: 0;
+	}
+
+	&.daff-md {
+		font-size: t.$normal-font-size;
+		height: 1.5rem;
+		padding: 0 0 4px;
+	}
+
+	&.daff-lg {
+		font-size: t.$medium-font-size;
+		height: 1.75rem;
+		padding: 0 0 8px;
+	}
+}
+
+@keyframes underline-button-hover {
+	0% {
+		transform: translateX(0);
+	}
+
+	50% {
+		transform: translateX(100%);
+	}
+
+	51% {
+		transform: translateX(-100%);
+	}
+
+	to {
+		transform: translateX(0);
+	}
+}

@@ -1,8 +1,0 @@
-<ng-container *ngIf="_prefix">
-  <ng-content select="[daffPrefix]"></ng-content>
-</ng-container>
-<span class="daff-button__content" *ngIf="!loading"><ng-content></ng-content></span>
-<daff-loading-icon *ngIf="loading" [diameter]="24"></daff-loading-icon>
-<ng-container *ngIf="_suffix">
-  <ng-content select="[daffSuffix]"></ng-content>
-</ng-container>

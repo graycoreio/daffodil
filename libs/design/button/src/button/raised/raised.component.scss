@@ -1,0 +1,7 @@
+@use '../button-base' as base;
+
+.daff-raised-button {
+	@include base.daff-button-base();
+	@include base.daff-button-background(0px);
+	@include base.daff-button-sizes();
+}

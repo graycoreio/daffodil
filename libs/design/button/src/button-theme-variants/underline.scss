@@ -1,9 +1,0 @@
-@mixin daff-underline-button-theme-variant(
-	$base-color: currentColor,
-) {
-	color: $base-color;
-
-	&::after {
-		background-color: $base-color;
-	}
-}
