@@ -6,7 +6,7 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffButtonComponent } from '@daffodil/design/button';
 import {
   DAFF_TABS_COMPONENTS,
   DaffTabsComponent,
@@ -21,7 +21,7 @@ import {
   standalone: true,
   imports: [
     DAFF_TABS_COMPONENTS,
-    DAFF_BUTTON_COMPONENTS,
+    DaffButtonComponent,
     FaIconComponent,
   ],
 })

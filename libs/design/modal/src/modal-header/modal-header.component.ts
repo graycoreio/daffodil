@@ -9,7 +9,7 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffIconButtonComponent } from '@daffodil/design/button';
 
 import { DaffModalCloseDirective } from '../modal-close/modal-close.directive';
 
@@ -21,7 +21,7 @@ import { DaffModalCloseDirective } from '../modal-close/modal-close.directive';
   standalone: true,
   imports: [
     NgIf,
-    DAFF_BUTTON_COMPONENTS,
+    DaffIconButtonComponent,
     FaIconComponent,
     DaffModalCloseDirective,
   ],

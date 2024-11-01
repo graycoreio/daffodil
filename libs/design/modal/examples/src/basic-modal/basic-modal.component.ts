@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffButtonComponent } from '@daffodil/design/button';
 import {
   DaffModalComponent,
   DAFF_MODAL_COMPONENTS,
@@ -19,7 +19,7 @@ import { BasicModalContentComponent } from './modal-content.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DAFF_BUTTON_COMPONENTS,
+    DaffButtonComponent,
     DAFF_MODAL_COMPONENTS,
   ],
   providers: [

@@ -9,7 +9,10 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import {
+  DaffButtonComponent,
+  DaffIconButtonComponent,
+} from '@daffodil/design/button';
 import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
 
 @Component({
@@ -23,7 +26,8 @@ import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
     DAFF_SIDEBAR_COMPONENTS,
     FaIconComponent,
     ReactiveFormsModule,
-    DAFF_BUTTON_COMPONENTS,
+    DaffButtonComponent,
+    DaffIconButtonComponent,
   ],
 })
 export class OverandUnderSidebarsComponent {

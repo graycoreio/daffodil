@@ -5,7 +5,7 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
 
 @Component({
@@ -18,7 +18,7 @@ import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
   imports: [
     FaIconComponent,
     DAFF_HERO_COMPONENTS,
-    DAFF_BUTTON_COMPONENTS,
+    DaffButtonComponent,
   ],
 })
 export class CompactHeroComponent {

@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffButtonComponent } from '@daffodil/design/button';
 import {
   DaffToast,
   DaffToastAction,
@@ -20,7 +20,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DAFF_BUTTON_COMPONENTS,
+    DaffButtonComponent,
   ],
 })
 export class DefaultToastComponent implements OnInit {

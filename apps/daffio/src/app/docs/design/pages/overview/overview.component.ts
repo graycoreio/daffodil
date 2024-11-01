@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
 
@@ -16,7 +16,7 @@ import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
   standalone: true,
   imports: [
     DAFF_CONTAINER_COMPONENTS,
-    DAFF_BUTTON_COMPONENTS,
+    DaffButtonComponent,
     DAFF_HERO_COMPONENTS,
     RouterLink,
   ],

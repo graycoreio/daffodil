@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffButtonComponent } from '@daffodil/design/button';
 import { DaffMenuModule } from '@daffodil/design/menu';
 
 import { MenuContentComponent } from './menu-content/menu-content.component';
@@ -15,7 +15,7 @@ import { MenuContentComponent } from './menu-content/menu-content.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DAFF_BUTTON_COMPONENTS,
+    DaffButtonComponent,
     DaffMenuModule,
   ],
 })

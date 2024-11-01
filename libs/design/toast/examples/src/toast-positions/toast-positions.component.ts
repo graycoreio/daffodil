@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { combineLatest } from 'rxjs';
 
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffButtonComponent } from '@daffodil/design/button';
 import {
   DaffToast,
   DaffToastService,
@@ -26,7 +26,7 @@ import {
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    DAFF_BUTTON_COMPONENTS,
+    DaffButtonComponent,
   ],
   providers: [
     provideDaffToastOptions({

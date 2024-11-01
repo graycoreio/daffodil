@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_MODAL_COMPONENTS } from '@daffodil/design/modal';
 
 @Component({
@@ -14,7 +14,7 @@ import { DAFF_MODAL_COMPONENTS } from '@daffodil/design/modal';
   standalone: true,
   imports: [
     DAFF_MODAL_COMPONENTS,
-    DAFF_BUTTON_COMPONENTS,
+    DaffButtonComponent,
   ],
 })
 export class BasicModalContentComponent {

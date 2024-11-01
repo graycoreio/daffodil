@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
 
 @Component({
@@ -15,7 +15,7 @@ import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
   standalone: true,
   imports: [
     DAFF_NAVBAR_COMPONENTS,
-    DAFF_BUTTON_COMPONENTS,
+    DaffButtonComponent,
   ],
 })
 export class RaisedNavbarComponent {}
