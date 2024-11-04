@@ -5,6 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import {
+  filter,
   map,
   Observable,
   switchMap,
@@ -35,6 +36,7 @@ export class DaffioDocsListContainer implements OnInit {
   ngOnInit() {
     this.docsList$ = this.route.route$.pipe(
       switchMap((route) => route.data),
+      filter(Boolean),
       map((data) => data.index),
     );
   }

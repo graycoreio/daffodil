@@ -4,6 +4,7 @@ import {
   OnInit,
 } from '@angular/core';
 import {
+  filter,
   map,
   Observable,
   switchMap,
@@ -35,6 +36,7 @@ export class DaffioDocsPackageCardsContainer implements OnInit {
     this.packagesList$ = this.route.route$.pipe(
       switchMap((route) => route.data),
       map((data) => data.index),
+      filter(Boolean),
       map((guidesTree) => guidesTree.children.map((p) => ({
         title: p.title,
         path: `/${getPath(p)}`,

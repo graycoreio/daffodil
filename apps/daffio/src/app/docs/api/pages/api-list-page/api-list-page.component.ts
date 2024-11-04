@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
+  filter,
   map,
   Observable,
 } from 'rxjs';
@@ -29,6 +30,7 @@ export class DaffioApiListPageComponent implements OnInit {
 
   ngOnInit() {
     this.apiList$ = this.route.data.pipe(
+      filter(Boolean),
       map((data) => data.index),
     );
   }
