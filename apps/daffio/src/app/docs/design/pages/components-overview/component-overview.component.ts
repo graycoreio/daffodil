@@ -42,7 +42,14 @@ export class DaffioDocsDesignComponentOverviewPageComponent implements OnInit {
     this.components$ = this.route.route$.pipe(
       switchMap((route) => route.data),
       map((data) => data.index),
-      map((docsList: DaffDocsDesignGuideNavList) => docsList.children.find(({ id }) => id === 'components').children.filter(({ id }) => !!id)),
+      map((docsList: DaffDocsDesignGuideNavList) =>
+        docsList
+          .children
+          .find(({ id }) => id === 'components')
+          .children
+          .filter(({ id }) => !!id)
+          .flatMap((d) => d.children.length ? d.children : d),
+      ),
     );
   }
 }
