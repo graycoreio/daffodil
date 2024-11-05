@@ -7,8 +7,8 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'disabled-switch',
-  templateUrl: './disabled-switch.component.html',
+  selector: 'loading-switch',
+  templateUrl: './loading-switch.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -21,7 +21,7 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
     }
   `],
 })
-export class DisabledSwitchComponent {
+export class LoadingSwitchComponent {
   checked = false;
-  disabled = true;
+  loading = true;
 }
