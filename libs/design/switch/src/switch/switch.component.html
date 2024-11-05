@@ -27,4 +27,6 @@
     />    
   </div>
 </label>
-<ng-content select="daff-error-message"></ng-content>
+@if (error) {
+  <ng-content select="daff-error-message"></ng-content>
+}

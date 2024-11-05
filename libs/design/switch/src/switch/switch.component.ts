@@ -15,6 +15,7 @@ import {
   DaffLabelPosition,
   DaffLabelPositionEnum,
 } from './label-position';
+import { DaffSwitchErrorMessage } from './switch-errors';
 
 let switchUniqueId = 0;
 
@@ -32,6 +33,7 @@ export class DaffSwitchComponent {
   @Input() checked = false;
   @Input() loading = false;
   @Input() labelPosition: DaffLabelPosition = DaffLabelPositionEnum.LEFT;
+  @Input() error = false;
 
   _disabled = false;
 
@@ -63,9 +65,11 @@ export class DaffSwitchComponent {
   @Output() toggle = new EventEmitter<boolean>();
 
   onToggle() {
-    if (!this.disabled) {
+    if (!this.disabled && !this.error) {
       this.checked = !this.checked;
       this.toggle.emit(this.checked);
+    } else if (this.error) {
+      throw new Error(DaffSwitchErrorMessage);
     }
   }
 

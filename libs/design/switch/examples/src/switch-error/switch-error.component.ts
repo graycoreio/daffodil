@@ -7,12 +7,12 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
 
+import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'basic-switch',
-  templateUrl: './basic-switch.component.html',
+  selector: 'switch-error',
+  templateUrl: './switch-error.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -26,8 +26,7 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
     }
   `],
 })
-export class BasicSwitchComponent {
+export class SwitchErrorComponent {
   checked = false;
-  disabled = false;
-  loading = true;
+  error = false;
 }
