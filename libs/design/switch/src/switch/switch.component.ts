@@ -9,13 +9,13 @@ import {
   Output,
 } from '@angular/core';
 
+import { DaffErrorMessageModule } from '@daffodil/design';
 import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 import {
   DaffLabelPosition,
   DaffLabelPositionEnum,
 } from './label-position';
-import { DaffSwitchErrorMessage } from './switch-errors';
 
 let switchUniqueId = 0;
 
@@ -27,6 +27,7 @@ let switchUniqueId = 0;
   standalone: true,
   imports: [
     DAFF_LOADING_ICON_COMPONENTS,
+    DaffErrorMessageModule,
   ],
 })
 export class DaffSwitchComponent {
@@ -65,11 +66,9 @@ export class DaffSwitchComponent {
   @Output() toggle = new EventEmitter<boolean>();
 
   onToggle() {
-    if (!this.disabled && !this.error) {
+    if (!this.disabled) {
       this.checked = !this.checked;
       this.toggle.emit(this.checked);
-    } else if (this.error) {
-      throw new Error(DaffSwitchErrorMessage);
     }
   }
 
