@@ -28,7 +28,7 @@ export class DaffLoadingIconComponent {
   /**
    * The (pixel) diameter of the animation
    */
-  @Input() diameter = 60;
+  @Input() diameter = '60px';
 
   /**
    * @docs-private
@@ -38,6 +38,6 @@ export class DaffLoadingIconComponent {
    * @docs-private
    */
   @HostBinding('style.max-width') get maxWidth() {
-    return this.diameter + 'px';
+    return this.diameter;
   }
 }
