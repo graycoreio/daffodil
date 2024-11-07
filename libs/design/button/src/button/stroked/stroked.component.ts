@@ -40,7 +40,6 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    NgIf,
     DaffPrefixSuffixModule,
     DAFF_LOADING_ICON_COMPONENTS,
   ],
