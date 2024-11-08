@@ -2127,6 +2127,43 @@
           }
         }
       }
+    },
+    "ssr": {
+      "projectType": "library",
+      "root": "libs/ssr",
+      "sourceRoot": "libs/ssr",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/ssr/tsconfig.lib.json",
+            "project": "libs/ssr/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ssr/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/ssr/test.ts",
+            "tsConfig": "libs/ssr/tsconfig.spec.json",
+            "karmaConfig": "libs/ssr/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ssr/**/*.ts",
+              "libs/ssr/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "schematics": {
