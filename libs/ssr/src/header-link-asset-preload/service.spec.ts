@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  DAFF_SSR_HEADER_SERVICE,
-  DaffSsrHeaderService,
+  DAFF_SSR_RESPONSE,
+  DaffSsrResponse,
   DaffSsrHeadersLinkPreloadAssetKind,
   DaffSsrHeadersLinkPreloadAssetPriority,
 } from '@daffodil/ssr';
@@ -10,16 +10,16 @@ import {
 import { DaffSsrHeaderLinkAssetPreloader } from './service';
 
 describe('@daffodil/ssr | DaffSsrHeaderLinkAssetPreloader', () => {
-  let headerServiceSpy: jasmine.SpyObj<DaffSsrHeaderService>;
+  let headerServiceSpy: jasmine.SpyObj<DaffSsrResponse>;
   let service: DaffSsrHeaderLinkAssetPreloader;
 
   beforeEach(() => {
-    headerServiceSpy = jasmine.createSpyObj('DaffSsrHeaderService', ['addResponseHeader']);
+    headerServiceSpy = jasmine.createSpyObj('DaffSsrResponse', ['append']);
 
     TestBed.configureTestingModule({
       providers: [
         {
-          provide: DAFF_SSR_HEADER_SERVICE,
+          provide: DAFF_SSR_RESPONSE,
           useValue: headerServiceSpy,
         },
       ],
@@ -35,9 +35,9 @@ describe('@daffodil/ssr | DaffSsrHeaderLinkAssetPreloader', () => {
         DaffSsrHeadersLinkPreloadAssetKind.IMAGE,
         DaffSsrHeadersLinkPreloadAssetPriority.HIGH,
       );
-      expect(headerServiceSpy.addResponseHeader).toHaveBeenCalledWith('Link', jasmine.stringMatching('<uri>'));
-      expect(headerServiceSpy.addResponseHeader).toHaveBeenCalledWith('Link', jasmine.stringMatching('as=image'));
-      expect(headerServiceSpy.addResponseHeader).toHaveBeenCalledWith('Link', jasmine.stringMatching('fetchpriority=high'));
+      expect(headerServiceSpy.append).toHaveBeenCalledWith('Link', jasmine.stringMatching('<uri>'));
+      expect(headerServiceSpy.append).toHaveBeenCalledWith('Link', jasmine.stringMatching('as=image'));
+      expect(headerServiceSpy.append).toHaveBeenCalledWith('Link', jasmine.stringMatching('fetchpriority=high'));
     });
   });
 });
