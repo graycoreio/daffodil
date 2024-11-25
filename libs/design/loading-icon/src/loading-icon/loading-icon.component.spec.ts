@@ -22,7 +22,7 @@ import { DaffLoadingIconComponent } from './loading-icon.component';
 })
 class WrapperComponent {
   color: DaffPalette;
-  diameter = 60;
+  diameter = '60';
 }
 
 describe('@daffodil/design/loading-icon | DaffLoadingIconComponent', () => {
@@ -61,11 +61,11 @@ describe('@daffodil/design/loading-icon | DaffLoadingIconComponent', () => {
   });
 
   it('has a default value of 60 for the diameter', () => {
-    expect(component.diameter).toEqual(60);
+    expect(component.diameter).toEqual('60');
   });
 
   it('can take a `diameter` as input which sets max-width on the `daff-loading-icon` host', () => {
-    wrapper.diameter = 50;
+    wrapper.diameter = '50px';
     fixture.detectChanges();
     expect(de.nativeElement.style.maxWidth).toEqual('50px');
   });
