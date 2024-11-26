@@ -16,6 +16,7 @@ $angle: 270 - $max-percentage-fill * 360;
 :host {
 	display: flex;
 	width: 100%;
+	max-width: 4rem;
 }
 
 .daff-loading-icon {

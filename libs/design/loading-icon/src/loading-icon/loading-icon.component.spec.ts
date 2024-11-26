@@ -14,7 +14,7 @@ import { DaffPalette } from '@daffodil/design';
 import { DaffLoadingIconComponent } from './loading-icon.component';
 
 @Component({
-  template: '<daff-loading-icon [color]="color" [diameter]="diameter"></daff-loading-icon>',
+  template: '<daff-loading-icon [color]="color"></daff-loading-icon>',
   standalone: true,
   imports: [
     DaffLoadingIconComponent,
@@ -22,7 +22,6 @@ import { DaffLoadingIconComponent } from './loading-icon.component';
 })
 class WrapperComponent {
   color: DaffPalette;
-  diameter = '60';
 }
 
 describe('@daffodil/design/loading-icon | DaffLoadingIconComponent', () => {
@@ -44,7 +43,7 @@ describe('@daffodil/design/loading-icon | DaffLoadingIconComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('daff-loading-icon'));
-    component = fixture.debugElement.query(By.css('daff-loading-icon')).componentInstance;
+    component = de.componentInstance;
     fixture.detectChanges();
   });
 
@@ -52,22 +51,10 @@ describe('@daffodil/design/loading-icon | DaffLoadingIconComponent', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('<daff-loading-icon>', () => {
-    it('should add a class of "daff-loading-icon" to the host element', () => {
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-loading-icon': true,
-      }));
-    });
-  });
-
-  it('has a default value of 60 for the diameter', () => {
-    expect(component.diameter).toEqual('60');
-  });
-
-  it('can take a `diameter` as input which sets max-width on the `daff-loading-icon` host', () => {
-    wrapper.diameter = '50px';
-    fixture.detectChanges();
-    expect(de.nativeElement.style.maxWidth).toEqual('50px');
+  it('should add a class of "daff-loading-icon" to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-loading-icon': true,
+    }));
   });
 
   it('should take color as an input', () => {

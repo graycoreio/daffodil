@@ -1,7 +1,6 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  Input,
   HostBinding,
 } from '@angular/core';
 
@@ -24,20 +23,8 @@ import { DaffColorableDirective } from '@daffodil/design';
   standalone: true,
 })
 export class DaffLoadingIconComponent {
-
-  /**
-   * The (pixel) diameter of the animation
-   */
-  @Input() diameter = '60px';
-
   /**
    * @docs-private
    */
   @HostBinding('class.daff-loading-icon') class = true;
-  /**
-   * @docs-private
-   */
-  @HostBinding('style.max-width') get maxWidth() {
-    return this.diameter;
-  }
 }

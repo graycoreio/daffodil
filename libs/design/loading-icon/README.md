@@ -45,11 +45,6 @@ export class CustomComponentModule { }
 
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
-## Diameter
-The diameter of a loading icon can be defined by using the `diameter` property. By default, the diameter is set to `60px`.
-
-<design-land-example-viewer-container example="loading-icon-diameter"></design-land-example-viewer-container>
-
 ## Theming
 The loading icon color is defined by using the `color` property. By default, the color is set to `primary`. This can be changed to one of the supported colors.
 
