@@ -12,15 +12,20 @@
 
 	.daff-switch {
 		&__toggle {
-			background: theming.daff-illuminate($base, $neutral, 3);
+			background-color: theming.daff-illuminate($base, $neutral, 3);
+			border: 2px solid transparent;
+
+			&:focus-within {
+				border: 2px solid theming.daff-illuminate($base, $neutral, 2);
+			}
 
 			&.checked {
-				background: theming.daff-color($primary);
+				background-color: theming.daff-color($primary);
 			}
-		}
 
-		&__activator {
-			background: $base;
+			&::before {
+				background-color: $base;
+			}
 		}
 	}
 }

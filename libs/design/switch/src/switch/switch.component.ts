@@ -31,17 +31,35 @@ let switchUniqueId = 0;
   ],
 })
 export class DaffSwitchComponent {
+  @Input() @HostBinding('class.disabled') get disabled() {
+    return this._disabled || this.loading;
+  }
+  set disabled(value: any) {
+    this._disabled = coerceBooleanProperty(value);
+  }
+
+  @HostBinding('attr.disabled') get disabledAttribute() {
+    return this.disabled ? true : null;
+  }
+
+  @HostBinding('attr.aria-disabled') get ariaDisabled() {
+    return this.disabled ? true : null;
+  }
+
+  @HostBinding('class') get classes() {
+    return {
+      'daff-switch': true,
+      [this.labelPosition]: true,
+    };
+  };
+
+  @Input() @HostBinding('class.loading') loading = false;
+
   @Input() checked = false;
-  @Input() loading = false;
   @Input() labelPosition: DaffLabelPosition = DaffLabelPositionEnum.LEFT;
   @Input() error = false;
 
   _disabled = false;
-
-  @HostBinding('attr.tabindex')
-  get tabindex(): number {
-    return this.disabled ? -1 : 0;
-  }
 
   @HostListener('keydown', ['$event'])
   handleKeydown(event: KeyboardEvent) {
@@ -71,20 +89,4 @@ export class DaffSwitchComponent {
       this.toggle.emit(this.checked);
     }
   }
-
-  @Input() get disabled() {
-    return this._disabled || this.loading;
-  }
-  set disabled(value: any) {
-    this._disabled = coerceBooleanProperty(value);
-  }
-
-  @HostBinding('attr.disabled') get disabledAttribute() {
-    return this.disabled ? true : null;
-  }
-
-  @HostBinding('attr.aria-disabled') get ariaDisabled() {
-    return this.disabled ? true : null;
-  }
-
 }

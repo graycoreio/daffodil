@@ -2,66 +2,124 @@
 @use '../../../scss/theming';
 
 :host {
-  display: inline-block;
+  $root: '.daff-switch';
+
+  &.loading {
+    #{$root}__toggle {
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  &.left {
+    #{$root}__wrapper {
+      flex-direction: row;
+    }
+  }
+
+  &.right {
+    #{$root}__wrapper {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &.left,
+  &.right {
+    #{$root}__wrapper {
+      gap: 0.5rem;
+    }
+  }
+
+  &.top {
+    #{$root}__wrapper {
+      flex-direction: column;
+    }
+
+    #{$root}__toggle {
+      margin-left: -0.125rem;
+    }
+  }
+
+  &.bottom {
+    #{$root}__wrapper {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &.top,
+  &.bottom {
+    #{$root}__wrapper {
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    #{$root}__toggle {
+      margin-left: -0.25rem;
+    }
+  }
+
+	&.disabled {
+    opacity: 0.5;
+
+		#{$root}__toggle {
+      cursor: default;
+    }
+	}
 }
 
 .daff-switch {
   $root: &;
-  @include interactions.clickable();
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
 
-  &__text {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__label {
     font-size: 1rem;
     color: inherit;
   }
 
-  &.left {
-    flex-direction: row;
+  &__loading {
+    position: relative;
+    left: 0.125rem;
+    max-width: 1.25rem;
   }
-
-  &.right {
-    flex-direction: row-reverse;
-  }
-
-  &.top {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  &.bottom {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  }
-
-	&.disabled {
-		cursor: not-allowed;
-    opacity: 0.5;
-	}
-  
 
   &__toggle {
+    @include interactions.clickable();
     display: flex;
     align-items: center;
-    height: 1.5rem;
-    width: 3rem;
+    background-clip: content-box;
     border-radius: 1rem;
+    height: 2rem;
+    width: 3.5rem;
+    padding: 0.125rem;
+    margin: 0.125rem;
+    position: relative;
 
-    #{$root}__activator {
-      position: relative;
-      left: 2px;
+    input[type="checkbox"] {
+      opacity: 0;
+      margin: 0px;
+      padding: 0px;
+      border: none;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      border-radius: 1.5rem;
       height: 1.25rem;
       width: 1.25rem;
-      border-radius: 1.25rem;
+      inset-block-end: 4px;
+      inset-inline-start: 4px;
       transition: transform 300ms;
     }
     
     &.checked {
-      #{$root}__activator {
-        left: 0;
-        transform: translateX(1.625rem);
+      &::before {
+        transform: translateX(1.5rem);
       }
     }
   }
