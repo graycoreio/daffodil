@@ -26,7 +26,7 @@ const getActivatedRoute = (routerState: RouterState): ActivatedRoute => {
  *
  * Note that this service operates by listening to router events. It is therefore recommended to
  * inject this service in the root and subscribe to `route$` on app init so that all routing events are captured.
- * The consumer can then subscribe at any later time (after all navigations) and the emission stream will be replayed.
+ * The consumer can then subscribe at any later time (after all navigations) and the last emitted value will be replayed.
  * {@link provideDaffRouterActivatedRoute} is the recommended way to do this.
  */
 @Injectable({
@@ -36,7 +36,7 @@ export class DaffRouterActivatedRoute {
   route$: Observable<ActivatedRoute> = this.router.events.pipe(
     filter((event) => event instanceof NavigationEnd),
     map(() => getActivatedRoute(this.router.routerState)),
-    shareReplay(),
+    shareReplay(1),
   );
 
   constructor(

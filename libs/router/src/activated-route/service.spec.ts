@@ -4,6 +4,7 @@ import {
   provideRouter,
   Router,
 } from '@angular/router';
+import { tap } from 'rxjs';
 
 import { DaffRouterActivatedRoute } from './service';
 
@@ -36,6 +37,13 @@ describe('@daffodil/router | DaffRouterActivatedRoute', () => {
                   },
                 ],
               },
+              {
+                path: 'other',
+                data: {
+                  test: 'other',
+                },
+                component: TestComponent,
+              },
             ],
           },
         ]),
@@ -57,5 +65,20 @@ describe('@daffodil/router | DaffRouterActivatedRoute', () => {
       done();
     });
     router.initialNavigation();
+  });
+
+  it('should only emit the last value when the stream is subscribed to late', async (done) => {
+    const spy = jasmine.createSpy();
+    service.route$.subscribe();
+    router.initialNavigation();
+    await router.navigateByUrl('/');
+    await router.navigateByUrl('/other');
+    service.route$.pipe(
+      tap(spy),
+    ).subscribe((route) => {
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(route.snapshot.data['test']).toEqual('other');
+      done();
+    });
   });
 });
