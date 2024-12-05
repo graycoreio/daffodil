@@ -166,7 +166,13 @@ export class BreadcrumbProcessor implements FilterableProcessor {
         break;
     }
 
-    return breadcrumbs;
+    // ensure that breadcrumbs have absolute paths
+    return breadcrumbs.map((breadcrumb) => {
+      if (breadcrumb.path[0] !== '/') {
+        breadcrumb.path = `/${breadcrumb.path}`;
+      }
+      return breadcrumb;
+    });
   }
 
   $process(docs: Array<ParentedDocument & KindedDocument>): Array<ParentedDocument & KindedDocument & BreadcrumbedDocument> {
