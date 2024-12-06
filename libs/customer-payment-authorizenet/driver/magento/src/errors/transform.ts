@@ -1,5 +1,5 @@
 import { ApolloError } from '@apollo/client/core';
-import { GraphQLError } from 'graphql';
+import { GraphQLFormattedError } from 'graphql';
 
 import { DaffError } from '@daffodil/core';
 import {
@@ -15,7 +15,7 @@ import { DaffCustomerPaymentMagentoErrorMessageRegexMap } from './map';
  * Optionally accepts a request payload which can be used in certain cases
  * to add supplemental info to the error.
  */
-export function transformMagentoCartGraphQlError(error: GraphQLError, requestPayload?: unknown): DaffError {
+export function transformMagentoCartGraphQlError(error: GraphQLFormattedError, requestPayload?: unknown): DaffError {
   // TODO: repayment this when we move to eslint
   // eslint-disable-next-line
   for (const code in DaffCustomerPaymentMagentoErrorMessageRegexMap) {

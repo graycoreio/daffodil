@@ -1,5 +1,5 @@
 import { ApolloError } from '@apollo/client/core';
-import { GraphQLError } from 'graphql';
+import { GraphQLFormattedError } from 'graphql';
 
 import { DaffError } from '@daffodil/core';
 import {
@@ -17,7 +17,7 @@ import {
  * Optionally accepts a request payload which can be used in certain cases
  * to add supplemental info to the error.
  */
-export function transformMagentoSearchCategoryGraphQlError(error: GraphQLError, requestPayload?: unknown): DaffError {
+export function transformMagentoSearchCategoryGraphQlError(error: GraphQLFormattedError, requestPayload?: unknown): DaffError {
   // TODO: readdress this when we move to eslint
   // eslint-disable-next-line
   for (const code in MagentoSearchCategoryErrorMessageRegexMap) {
