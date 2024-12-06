@@ -27,9 +27,10 @@
 				background-color: $base;
 			}
 
-			&:hover {
+			&:hover,
+			&.active {
 				&:after {
-					background-color: theming.daff-illuminate($base, $neutral, 1);
+					background-color: theming.daff-illuminate($base, $neutral, 2);
 				}
 			}
 		}

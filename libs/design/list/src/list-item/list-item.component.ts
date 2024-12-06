@@ -5,6 +5,7 @@ import {
   HostBinding,
   ContentChild,
   ElementRef,
+  Input,
 } from '@angular/core';
 
 import {
@@ -32,6 +33,9 @@ export class DaffListItemComponent {
    * @docs-private
    */
   @HostBinding('class.daff-list-item') class = true;
+
+  /** Whether or not the header item is active */
+  @Input() @HostBinding('class.active') active = false;
 
   /**
    * @docs-private
