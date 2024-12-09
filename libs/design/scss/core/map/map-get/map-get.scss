@@ -1,0 +1,22 @@
+@use 'sass:map';
+
+//
+// Return a the value of a nested key in a map if it exists.
+// If the key doesn't exist, it throw an error.
+//
+// Note: This function doesn't support the use
+// of the search character in your map key names.
+//
+// @usage daff-map-get($map, nested, map, key);
+// @returns any
+// @throws error
+@function daff-map-get($map, $keys...) {
+	@each $key in $keys {
+    @if not map.has-key($map, $keys) {
+      @error 'The map doesn\'t contain the $key: `#{$key}`\'';
+    }
+		$map: map.get($map, $key);
+	}
+
+	@return $map;
+}
