@@ -12,7 +12,7 @@
 // @throws error
 @function daff-map-get($map, $keys...) {
 	@each $key in $keys {
-    @if not map.has-key($map, $keys) {
+    @if not map.has-key($map, $key) {
       @error 'The map doesn\'t contain the $key: `#{$key}`\'';
     }
 		$map: map.get($map, $key);
