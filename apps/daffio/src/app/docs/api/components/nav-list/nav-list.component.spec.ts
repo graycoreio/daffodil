@@ -8,6 +8,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffTreeModule } from '@daffodil/design/tree';
+import { DaffDocsApiNavList } from '@daffodil/docs-utils';
 
 import { DaffioApiNavListComponent } from './nav-list.component';
 
@@ -47,7 +48,7 @@ describe('DaffioApiNavListComponent', () => {
       ],
     };
 
-    component.list = {
+    component.navList = <DaffDocsApiNavList>{
       id: 'root',
       title: 'root',
       children: [
@@ -62,11 +63,8 @@ describe('DaffioApiNavListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render an anchor tag when the guide child has no children', () => {
+  it('should render an anchor tag for each of the direct children', () => {
     const anchorTags = fixture.debugElement.queryAll(By.css('a'));
     expect(anchorTags.length).toEqual(2);
-    const buttons = fixture.debugElement.queryAll(By.css('button'));
-    expect(buttons.length).toEqual(1);
-    console.log(fixture.debugElement.nativeElement.innerHTML);
   });
 });
