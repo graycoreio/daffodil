@@ -1,0 +1,5 @@
+<daff-nav-list>
+  @for (doc of navList.children; track $index) {
+    <a daff-list-item [selected]="rla.isActive" routerLinkActive [routerLinkActiveOptions]="ROUTER_LINK_ACTIVE_CONFIG" #rla="routerLinkActive" [node]="doc" [routerLink]="doc.path">{{ doc.title }}</a>
+  }
+</daff-nav-list>

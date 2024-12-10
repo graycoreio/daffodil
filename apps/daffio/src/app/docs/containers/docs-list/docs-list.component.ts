@@ -2,19 +2,10 @@ import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
 } from '@angular/core';
-import {
-  filter,
-  map,
-  Observable,
-  switchMap,
-} from 'rxjs';
-
-import { DaffDocsNavList } from '@daffodil/docs-utils';
-import { DaffRouterActivatedRoute } from '@daffodil/router';
 
 import { DaffioDocsListComponent } from '../../components/docs-list/docs-list.component';
+import { useDaffioNavList } from '../../composables/nav-index';
 
 @Component({
   selector: 'daffio-docs-list-container',
@@ -26,18 +17,6 @@ import { DaffioDocsListComponent } from '../../components/docs-list/docs-list.co
     DaffioDocsListComponent,
   ],
 })
-export class DaffioDocsListContainer implements OnInit {
-  docsList$: Observable<DaffDocsNavList>;
-
-  constructor(
-    private route: DaffRouterActivatedRoute,
-  ) {}
-
-  ngOnInit() {
-    this.docsList$ = this.route.route$.pipe(
-      switchMap((route) => route.data),
-      filter(Boolean),
-      map((data) => data.index),
-    );
-  }
+export class DaffioDocsListContainer {
+  docsList$ = useDaffioNavList().list;
 }
