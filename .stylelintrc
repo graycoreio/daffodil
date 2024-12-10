@@ -93,7 +93,7 @@
     "indentation": "tab",
     "linebreaks": "unix",
     "selector-class-pattern": [
-      "^_?(daff-|demo-|daffio-)",
+      "(^_?(daff-|demo-|daffio-))|(^(active|horizontal|vertical|left|right|disabled|hidden)$)",
       {
         "resolveNestedSelectors": true
       }
