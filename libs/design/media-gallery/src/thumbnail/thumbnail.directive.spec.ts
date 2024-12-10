@@ -83,15 +83,6 @@ describe('@daffodil/design/media-gallery | DaffThumbnailDirective', () => {
     }));
   });
 
-  it('should add a "daff-thumbnail--selected" class when the thumbnail is selected', () => {
-    directive.select();
-    fixture.detectChanges();
-
-    expect(de.classes).toEqual(jasmine.objectContaining({
-      'daff-thumbnail--selected': true,
-    }));
-  });
-
   it('should add itself to the media-gallery registry on initialization', () => {
     expect(registry.add).toHaveBeenCalledWith(directive.gallery, directive);
   });

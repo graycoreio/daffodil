@@ -25,15 +25,15 @@ export class DaffSelectableDirective implements DaffSelectable {
   constructor(private cd: ChangeDetectorRef) {}
 
   select() {
-	  this.selected = true;
-	  this.becameSelected.emit();
-	  this.cd.markForCheck();
-	  return this;
+    this.selected = true;
+    this.becameSelected.emit();
+    this.cd.markForCheck();
+    return this;
   }
 
   deselect() {
-	  this.selected = false;
-	  this.cd.markForCheck();
-	  return this;
+    this.selected = false;
+    this.cd.markForCheck();
+    return this;
   }
 }

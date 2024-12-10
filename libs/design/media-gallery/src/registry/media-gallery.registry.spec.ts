@@ -168,7 +168,6 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryRegistry', () => {
     });
 
     it('should select the thumbnail', () => {
-      mockThumbnailAlreadyAdded.select();
       spyOn(mockThumbnailAlreadyAdded, 'select').and.callThrough();
 
       registry.select(mockThumbnailAlreadyAdded);
