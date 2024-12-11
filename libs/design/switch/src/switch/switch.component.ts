@@ -19,6 +19,15 @@ import {
 
 let switchUniqueId = 0;
 
+/**
+ * The switch component provides a way to toggle between two settings.
+ *
+ * ## Usage
+ * <daff-switch [checked]="checked" loading="loading" [error]="true" [labelPosition]="left">
+ *    Label
+ *    <daff-error-message>Error message</daff-error-message>
+ * </daff-switch>
+ */
 @Component({
   selector: 'daff-switch',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,6 +40,9 @@ let switchUniqueId = 0;
   ],
 })
 export class DaffSwitchComponent {
+  /**
+   * Whether the switch is disabled and/or loading.
+   */
   @Input() @HostBinding('class.disabled') get disabled() {
     return this._disabled || this.loading;
   }
@@ -53,10 +65,24 @@ export class DaffSwitchComponent {
     };
   };
 
+  /**
+   * Whether the switch is loading.
+   */
   @Input() @HostBinding('class.loading') loading = false;
 
+  /**
+   * Current state of switch (on/off).
+   */
   @Input() checked = false;
+
+  /**
+   * The position of the label relative to the switch. Defaults to 'left'.
+   */
   @Input() labelPosition: DaffLabelPosition = DaffLabelPositionEnum.LEFT;
+
+  /**
+   * Whether the switch shows an error.
+   */
   @Input() error = false;
 
   _disabled = false;
@@ -81,12 +107,12 @@ export class DaffSwitchComponent {
 
   @Input() id: string = 'daff-switch-' + switchUniqueId++;
 
-  @Output() toggle = new EventEmitter<boolean>();
+  @Output() toggleSwitch = new EventEmitter<boolean>();
 
   onToggle() {
     if (!this.disabled) {
       this.checked = !this.checked;
-      this.toggle.emit(this.checked);
+      this.toggleSwitch.emit(this.checked);
     }
   }
 }
