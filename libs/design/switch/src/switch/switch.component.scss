@@ -3,6 +3,9 @@
 
 :host {
   $root: '.daff-switch';
+  display: block;
+  width: 100%;
+  margin: 0;
 
   &.loading {
     #{$root}__toggle {
