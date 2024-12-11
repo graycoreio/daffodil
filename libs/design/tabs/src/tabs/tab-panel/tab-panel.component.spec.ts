@@ -21,9 +21,7 @@ import { DaffTabComponent } from '../tab/tab.component';
     DaffTabPanelComponent,
   ],
 })
-class WrapperComponent {
-  selected: boolean;
-}
+class WrapperComponent {}
 
 describe('@daffodil/design/tabs | DaffTabPanelComponent', () => {
   let wrapper: WrapperComponent;

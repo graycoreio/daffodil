@@ -65,10 +65,6 @@ describe('@daffodil/design/tabs | DaffTabActivatorComponent', () => {
     expect(component.role).toBe('tab');
   });
 
-  it('should take selected as an input', () => {
-    expect(component.selected).toEqual(wrapper.selected);
-  });
-
   it('should take panelId as an input', () => {
     expect(component.panelId).toEqual(wrapper.panelId);
   });
