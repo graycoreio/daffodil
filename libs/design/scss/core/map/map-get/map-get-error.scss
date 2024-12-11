@@ -1,0 +1,13 @@
+$debug: false !default;
+
+@function map-get-error($message, $override: $debug) {
+  @if $override {
+    @return $message;
+  } @else {
+    @error $message;
+  }
+}
+
+@mixin set-debug($state: true) {
+  $debug: $state !global;
+}
