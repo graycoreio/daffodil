@@ -15,7 +15,7 @@
 	.daff-tab-activator {
 		border-bottom: 2px solid theming.daff-illuminate($base, $neutral, 2);
 
-		&.selected {
+		&.selected { /* stylelint-disable-line selector-class-pattern */
 			border-bottom: 2px solid theming.daff-color($primary);
 		}
 	}

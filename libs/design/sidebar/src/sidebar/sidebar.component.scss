@@ -1,6 +1,8 @@
 @use '../helper/variables';
 @use '../../../scss/layout';
 
+// stylelint-disable selector-class-pattern
+// stylelint-disable unit-no-unknown
 :host {
 	display: flex;
 	flex-direction: column;
@@ -15,7 +17,6 @@
 	&.right {
 		width: var(--daff-sidebar-right-width, 240px);
 	}
-	
 
 	&.side-fixed {
 		visibility: hidden;

@@ -10,7 +10,7 @@
 	background-color: $base-color;
 	color: theming.daff-text-contrast($base-color);
 
-	&:after {
+	&::after {
 		background: $hover-color;
 	}
 
@@ -21,7 +21,7 @@
 	&:active {
 		color: theming.daff-text-contrast($active-color);
 
-		&:after {
+		&::after {
 			background: $active-color;
 		}
 	}

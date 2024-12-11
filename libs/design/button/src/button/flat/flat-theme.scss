@@ -8,7 +8,7 @@
 ) {
 	color: $base-color;
 
-	&:after {
+	&::after {
 		background-color: $base-color;
 	}
 
@@ -19,7 +19,7 @@
 	&:active {
 		color: theming.daff-text-contrast($active-color);
 
-		&:after {
+		&::after {
 			background-color: $active-color;
 		}
 	}
@@ -42,12 +42,12 @@
 	.daff-flat-button {
 		color: currentColor;
 
-		&:after {
+		&::after {
 			background-color: theming.daff-illuminate($base, $neutral, 2);
 		}
 
 		&:active {
-			&:after {
+			&::after {
 				background-color: theming.daff-illuminate($base, $neutral, 3);
 			}
 		}
@@ -113,7 +113,7 @@
 			&:hover,
 			&:focus,
 			&:active {
-				&:after {
+				&::after {
 					background: transparent;
 				}
 			}

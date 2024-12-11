@@ -19,23 +19,23 @@
 		position: relative;
 
 		&::after {
-      content: '';
-      position: absolute;
-      top: 48%;
-      right: 2px;
-      display: inline-block;
-      border-right: 2px solid currentColor;
-      border-bottom: 2px solid currentColor;
-      width: 8px;
-      height: 8px;
-      transform: translateY(-50%) rotate(45deg);
-      transition: transform 150ms;
-    }
+			content: '';
+			position: absolute;
+			top: 48%;
+			right: 2px;
+			display: inline-block;
+			border-right: 2px solid currentColor;
+			border-bottom: 2px solid currentColor;
+			width: 8px;
+			height: 8px;
+			transform: translateY(-50%) rotate(45deg);
+			transition: transform 150ms;
+		}
 	}
 
 	&.daff-open {
 		#{$root}__header {
-			&:after {
+			&::after {
 				top: 56%;
 				transform: translateY(-50%) rotate(225deg);
 			}

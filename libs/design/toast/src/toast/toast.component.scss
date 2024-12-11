@@ -1,6 +1,8 @@
 @use '../../../scss/interactions';
 @use '../../../scss/layout';
 
+$-multiple-toast-margin: 0.75rem;
+
 .daff-toast {
 	$root: &;
 	display: flex;
@@ -16,13 +18,23 @@
 	}
 
 	// the div selectors are to add margin to toast if focus trapping is involved
-	+ div + .daff-toast,
-	+ div + div + .daff-toast,
-	+ .daff-toast {
-		margin-top: 0.75rem;
+	+ div {
+		+ .daff-toast {
+			margin-top: $-multiple-toast-margin;
+		}
+
+		+ div {
+			+ .daff-toast {
+				margin-top: $-multiple-toast-margin;
+			}
+		}
 	}
 
-	&:before {
+	+ .daff-toast {
+		margin-top: $-multiple-toast-margin;
+	}
+
+	&::before {
 		content: '';
 		border-radius: 0.25rem 0 0 0.25rem;
 		position: absolute;
@@ -59,7 +71,7 @@
 	&__content {
 		display: flex;
 		flex-direction: column;
-    gap: 0.25rem;
+		gap: 0.25rem;
 		padding: 1rem;
 	}
 
@@ -73,9 +85,9 @@
 	}
 
 	&__actions {
-    display: flex;
+		display: flex;
 		align-items: center;
-    gap: 0.5rem;
+		gap: 0.5rem;
 		min-height: 3rem;
 		padding: 0 1rem 1rem;
 	}

@@ -15,13 +15,13 @@ $highlight-color: rgba(0, 0, 0, 0);
 	visibility: hidden;
 	z-index: variables.$daff-sidebar-backdrop-z-index;
 
-	&.interactable {
+	&.interactable { /* stylelint-disable-line selector-class-pattern */
 		visibility: visible;
 		pointer-events: all;
 		@include interactions.clickable;
 	}
 
-	&.transparent {
+	&.transparent { /* stylelint-disable-line selector-class-pattern */
 		background: none;
 	}
 
@@ -31,7 +31,7 @@ $highlight-color: rgba(0, 0, 0, 0);
 		outline: 0;
 	}
 
-	&.fullscreen {
+	&.fullscreen { /* stylelint-disable-line selector-class-pattern */
 		position: absolute;
 	}
 }

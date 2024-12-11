@@ -38,7 +38,7 @@ $supported-theme-types: (
 // $primary: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
 // $secondary: configure-palette.daff-configure-palette(palette.$daff-purple, 60);
 // $tertiary: configure-palette.daff-configure-palette(palette.$daff-turquoise, 60);
-// 
+//
 // $theme: daff-configure-theme($primary, $secondary, $tertiary)
 // ```
 @function daff-configure-theme(
@@ -87,7 +87,7 @@ $supported-theme-types: (
 // $warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 60);
 // $critical: configure-palette.daff-configure-palette(palette.$daff-red, 60);
 // $success: configure-palette.daff-configure-palette(palette.$daff-green, 60);
-// 
+//
 // $theme: daff-configure-theme-status($info, $warn, $critical, $success);
 // ```
 @function daff-configure-theme-status(

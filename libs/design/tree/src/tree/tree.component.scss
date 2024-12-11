@@ -2,76 +2,79 @@
 @use '../../../scss/typography' as t;
 
 @mixin level-padding() {
-  padding-left: calc(var(--tree-padding) * (var(--depth)));
+	padding-left: calc(var(--tree-padding) * (var(--depth)));
 }
 
 .daff-tree {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  --tree-padding: 1rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	--tree-padding: 1rem;
 
-  li.hidden {
-    display: none;
-  }
+	li {
+		&.hidden { /* stylelint-disable-line selector-class-pattern */
+			display: none;
+		}
+	}
 }
 
 .daff-tree-item {
-  @include interactions.clickable();
-  @include t.text-truncate();
-  display: block;
-  position: relative;
-  background: none;
-  border: 0;
-  padding: 0.5rem 1rem 0.5rem 0;
-  line-height: 1.5rem;
-  font-weight: 400;
-  text-align: left;
-  text-decoration: none;
-  width: 100%;
-  @include level-padding();
+	@include interactions.clickable();
+	@include t.text-truncate();
+	display: block;
+	position: relative;
+	background: none;
+	border: 0;
+	padding: 0.5rem 1rem 0.5rem 0;
+	line-height: 1.5rem;
+	font-weight: 400;
+	text-align: left;
+	text-decoration: none;
+	width: 100%;
+	@include level-padding();
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 0.25rem;
-  }
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 0.25rem;
+	}
 
-  &:focus,
-  &:focus-visible {
-    z-index: 1;
-  }
+	&:focus,
+	&:focus-visible {
+		z-index: 1;
+	}
 
-  &.selected {
-    font-weight: 600;
-  }
+	&.selected { /* stylelint-disable-line selector-class-pattern */
+		font-weight: 600;
+	}
 
-  &.parent {
-    position: relative;
-    padding-right: 2.5rem;
+	// stylelint-disable selector-class-pattern
+	&.parent {
+		position: relative;
+		padding-right: 2.5rem;
 
-    &::after {
-      content: '';
-      position: absolute;
-      top: 48%;
-      right: 1rem;
-      display: inline-block;
-      border-right: 2px solid currentColor;
-      border-bottom: 2px solid currentColor;
-      width: 0.5rem;
-      height: 0.5rem;
-      transform: translateY(-50%) rotate(45deg);
-      transition: transform 150ms;
-    }
+		&::after {
+			content: '';
+			position: absolute;
+			top: 48%;
+			right: 1rem;
+			display: inline-block;
+			border-right: 2px solid currentColor;
+			border-bottom: 2px solid currentColor;
+			width: 0.5rem;
+			height: 0.5rem;
+			transform: translateY(-50%) rotate(45deg);
+			transition: transform 150ms;
+		}
 
-    &.open {
-      &:after {
-        top: 56%;
-        transform: translateY(-50%) rotate(225deg);
-      }
-    }
-  }
+		&.open {
+			&::after {
+				top: 56%;
+				transform: translateY(-50%) rotate(225deg);
+			}
+		}
+	}
 }

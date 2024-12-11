@@ -1,6 +1,8 @@
 @use '../helper/variables';
 @use '../../../scss/layout';
 
+// stylelint-disable selector-class-pattern
+// stylelint-disable unit-no-unknown
 :host {
 	// fixes a bug where certain elements show in front of backdrop for a second.
 	display: flex;
@@ -17,11 +19,11 @@
 				padding-left: var(--daff-sidebar-left-width, 240px);
 			}
 		}
-		
+
 		&.beside {
 			.daff-sidebar-viewport__nav {
 				padding-left: 0;
-	
+
 				@include layout.breakpoint(big-tablet) {
 					padding-left: var(--daff-sidebar-left-width, 240px);
 				}
@@ -41,7 +43,7 @@
 		&.beside {
 			.daff-sidebar-viewport__nav {
 				padding-right: 0;
-	
+
 				@include layout.breakpoint(big-tablet) {
 					padding-right: var(--daff-sidebar-right-width, 240px);
 				}
@@ -79,11 +81,12 @@
 }
 
 :host-context(daff-sidebar-viewport daff-sidebar-viewport) {
-	transform: translateX(0px);
+	transform: translateX(0);
 	min-height: auto;
 
 	.daff-sidebar-viewport__inner {
-		padding-left: 0px !important;
-		padding-right: 0px !important;
+		// stylelint-disable declaration-no-important
+		padding-left: 0 !important;
+		padding-right: 0 !important;
 	}
 }

@@ -22,11 +22,12 @@
 		&__page-link {
 			color: $font-color;
 
+			// stylelint-disable selector-class-pattern
 			&:hover,
 			&.selected {
 				color: daff-text-contrast(theming.daff-illuminate($base, $neutral, 2));
 
-				&:after {
+				&::after {
 					background: theming.daff-illuminate($base, $neutral, 2);
 				}
 			}

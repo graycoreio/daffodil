@@ -14,7 +14,7 @@ $height: 4px;
 			line-height: 1rem;
 		}
 	}
-	
+
 	#{$root}__track {
 		height: $height;
 		position: relative;
@@ -28,6 +28,7 @@ $height: 4px;
 		transform-origin: 0 center;
 	}
 
+	// stylelint-disable selector-class-pattern
 	&.indeterminate {
 		overflow: hidden;
 

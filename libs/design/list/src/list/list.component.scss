@@ -2,6 +2,7 @@
 @use '../../../scss/interactions';
 @use '../../../scss/layout';
 
+// styleline-disable selector-class-pattern
 @mixin daff-list() {
 	$root: &;
 	display: block;
@@ -17,7 +18,8 @@
 		&__content {
 			flex-grow: 1;
 
-			*:nth-child(1) { /* stylelint-disable-line scss/selector-nest-combinators */
+			*:nth-child(1) {
+				/* stylelint-disable-line scss/selector-nest-combinators */
 				@include t.embolden;
 				font-size: t.$normal-font-size;
 				line-height: 1.5em;
@@ -25,7 +27,8 @@
 				padding: 0;
 			}
 
-			*:nth-child(n + 2) { /* stylelint-disable-line scss/selector-nest-combinators */
+			*:nth-child(n + 2) {
+				/* stylelint-disable-line scss/selector-nest-combinators */
 				font-size: t.$normal-font-size;
 				margin: 0;
 				padding: 0;
@@ -58,7 +61,7 @@
 			z-index: 2;
 		}
 
-		&:after {
+		&::after {
 			content: '';
 			position: absolute;
 			height: 100%;
@@ -72,7 +75,7 @@
 
 		&:hover,
 		&.active {
-			&:after {
+			&::after {
 				opacity: 1;
 			}
 		}

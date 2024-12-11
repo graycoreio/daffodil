@@ -10,7 +10,7 @@
 	color: $base-color;
 	background-color: transparent;
 
-	&:after {
+	&::after {
 		background-color: $base-color;
 	}
 
@@ -22,7 +22,7 @@
 		border: 1px solid $active-color;
 		color: theming.daff-text-contrast($active-color);
 
-		&:after {
+		&::after {
 			background-color: $active-color;
 		}
 	}
@@ -47,7 +47,7 @@
 		border: 1px solid theming.daff-illuminate($base, $neutral, 5);
 		color: currentColor;
 
-		&:after {
+		&::after {
 			background: theming.daff-illuminate($base, $neutral, 2);
 		}
 
@@ -64,7 +64,7 @@
 				theming.daff-illuminate($base, $neutral, 3)
 			);
 
-			&:after {
+			&::after {
 				background: theming.daff-illuminate($base, $neutral, 3);
 			}
 		}
@@ -127,7 +127,7 @@
 			&:hover {
 				color: theming.daff-illuminate($base, $neutral, 5);
 
-				&:after {
+				&::after {
 					background-color: transparent;
 					opacity: 0;
 				}

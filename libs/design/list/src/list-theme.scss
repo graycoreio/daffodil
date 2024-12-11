@@ -2,6 +2,7 @@
 @use '../../scss/core';
 @use '../../scss/theming';
 
+// styleline-disable selector-class-pattern
 @mixin daff-list-theme($theme) {
 	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
 	$base: core.daff-map-deep-get($theme, 'core.base');
@@ -23,13 +24,13 @@
 
 	.daff-nav-list {
 		.daff-list-item {
-			&:after {
+			&::after {
 				background-color: $base;
 			}
 
 			&:hover,
 			&.active {
-				&:after {
+				&::after {
 					background-color: theming.daff-illuminate($base, $neutral, 2);
 				}
 			}

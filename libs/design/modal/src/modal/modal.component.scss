@@ -58,10 +58,14 @@
 	padding: 24px;
 }
 
-.daff-modal-content + .daff-modal-actions {
-	padding: 0 24px 24px;
+.daff-modal-content {
+	+ .daff-modal-actions {
+		padding: 0 24px 24px;
+	}
 }
 
-.daff-modal-header + .daff-modal-content {
-	padding-top: 0;
+.daff-modal-header {
+	+ .daff-modal-content {
+		padding-top: 0;
+	}
 }

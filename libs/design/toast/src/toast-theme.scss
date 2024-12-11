@@ -18,10 +18,10 @@
 
 	.daff-toast {
 		background: theming.daff-illuminate($base, $neutral, 1);
-		box-shadow: 0 -16px 24px -4px rgba($black, 0.04), 0 8px 24px -4px rgba($black, 0.10);
+		box-shadow: 0 -16px 24px -4px rgba($black, 0.04), 0 8px 24px -4px rgba($black, 0.1);
 		color: theming.daff-text-contrast($base);
 
-		&:before {
+		&::before {
 			background: theming.daff-illuminate($base, $neutral, 4);
 		}
 
@@ -32,8 +32,8 @@
 			.daff-prefix {
 				color: theming.daff-color($success);
 			}
-			
-			&:before {
+
+			&::before {
 				background: theming.daff-color($success);
 			}
 		}
@@ -46,7 +46,7 @@
 				color: theming.daff-color($warn);
 			}
 
-			&:before {
+			&::before {
 				background: theming.daff-color($warn);
 			}
 		}
@@ -59,7 +59,7 @@
 				color: theming.daff-color($critical);
 			}
 
-			&:before {
+			&::before {
 				background: theming.daff-color($critical);
 			}
 		}

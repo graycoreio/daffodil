@@ -39,7 +39,8 @@
 			:root {
 				@include daff-root-theme-tokens($theme);
 			}
-		} @else {
+		}
+		@else {
 			@include daff-root-theme-tokens($theme);
 		}
 	}

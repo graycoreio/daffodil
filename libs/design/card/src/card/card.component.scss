@@ -101,9 +101,11 @@ a {
 		$root: &;
 		text-decoration: none;
 
-		.daff-card__image + .daff-card__wrapper {
-			&::after {
-				border-radius: 0 0 $card-border-radius $card-border-radius;
+		.daff-card__image {
+			+ .daff-card__wrapper {
+				&::after {
+					border-radius: 0 0 $card-border-radius $card-border-radius;
+				}
 			}
 		}
 
@@ -124,11 +126,13 @@ a {
 				z-index: 1;
 			}
 		}
-		
+
 		&.daff-card--horizontal {
-			.daff-card__image + .daff-card__wrapper {
-				&::after {
-					border-radius: 0 $card-border-radius $card-border-radius 0;
+			.daff-card__image {
+				+ .daff-card__wrapper {
+					&::after {
+						border-radius: 0 $card-border-radius $card-border-radius 0;
+					}
 				}
 			}
 		}

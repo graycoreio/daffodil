@@ -69,6 +69,7 @@ $border-radius: 4px;
 			transition: opacity 300ms;
 		}
 
+		// stylelint-disable selector-class-pattern
 		&:hover,
 		&:active,
 		&.selected {

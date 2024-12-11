@@ -4,7 +4,7 @@
 	$hover-color,
 ) {
 	.daff-card__wrapper {
-		&:after {
+		&::after {
 			background: $hover-color;
 		}
 	}

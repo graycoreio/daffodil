@@ -12,9 +12,9 @@
 		&:last-child {
 			border-bottom: 1px solid theming.daff-illuminate($base, $neutral, 2);
 		}
-		
+
 		&__header {
-			&:after {
+			&::after {
 				border-color: currentColor;
 			}
 		}
