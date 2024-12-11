@@ -34,7 +34,7 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    * The tracking property used to determine if the parent form has been submitted,
    * and thus show an error message (even if the field hasn't been touched).
    *
-   * @deprecated Deprecated in version 0.78.0. Will be removed in version 0.81.0.
+   * @deprecated Deprecated in version 0.78.0. Will be removed in version 1.0.0.
    */
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() formSubmitted: boolean = false;

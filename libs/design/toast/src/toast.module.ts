@@ -14,7 +14,7 @@ import { DaffToastMessageDirective } from './toast-message/toast-message.directi
 import { DaffToastTitleDirective } from './toast-title/toast-title.directive';
 
 /**
- * @deprecated in favor of {@link provideDaffToast} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
+ * @deprecated in favor of {@link provideDaffToast}. Deprecated in version 0.78.0. Will be removed in version 1.0.0.
  */
 @NgModule({
   imports: [
