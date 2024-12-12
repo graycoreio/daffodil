@@ -104,12 +104,12 @@ export class DaffSwitchComponent {
 
   @Input() id: string = 'daff-switch-' + switchUniqueId++;
 
-  @Output() toggleSwitch = new EventEmitter<boolean>();
+  @Output() toggled = new EventEmitter<boolean>();
 
   onToggle() {
     if (!this.disabled) {
       this.checked = !this.checked;
-      this.toggleSwitch.emit(this.checked);
+      this.toggled.emit(this.checked);
     }
   }
 }
