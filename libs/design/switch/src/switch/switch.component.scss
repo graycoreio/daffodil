@@ -2,128 +2,130 @@
 @use '../../../scss/theming';
 
 :host {
-  $root: '.daff-switch';
-  display: block;
-  width: 100%;
-  margin: 0;
+	$root: '.daff-switch';
+	display: block;
+	width: 100%;
+	margin: 0;
 
-  &.loading {
-    #{$root}__toggle {
-      &::before {
-        display: none;
-      }
-    }
-  }
+	&.daff-loading {
+		#{$root}__toggle {
+			&::before {
+				display: none;
+			}
+		}
+	}
 
-  &.left {
-    #{$root}__wrapper {
-      flex-direction: row;
-    }
-  }
+	&.daff-left {
+		#{$root}__wrapper {
+			flex-direction: row;
+		}
+	}
 
-  &.right {
-    #{$root}__wrapper {
-      flex-direction: row-reverse;
-    }
-  }
+	&.daff-right {
+		#{$root}__wrapper {
+			flex-direction: row-reverse;
+		}
+	}
 
-  &.left,
-  &.right {
-    #{$root}__wrapper {
-      gap: 0.5rem;
-    }
-  }
+	&.daff-left,
+	&.daff-right {
+		#{$root}__wrapper {
+			gap: 0.5rem;
+		}
+	}
 
-  &.top {
-    #{$root}__wrapper {
-      flex-direction: column;
-    }
-
-    #{$root}__toggle {
-      margin-left: -0.125rem;
-    }
-  }
-
-  &.bottom {
-    #{$root}__wrapper {
-      flex-direction: column-reverse;
-    }
-  }
-
-  &.top,
-  &.bottom {
-    #{$root}__wrapper {
-      align-items: flex-start;
-      gap: 0.25rem;
-    }
-
-    #{$root}__toggle {
-      margin-left: -0.25rem;
-    }
-  }
-
-	&.disabled {
-    opacity: 0.5;
+	&.daff-top {
+		#{$root}__wrapper {
+			flex-direction: column;
+		}
 
 		#{$root}__toggle {
-      cursor: default;
-    }
+			margin-left: -0.125rem;
+		}
+	}
+
+	&.daff-bottom {
+		#{$root}__wrapper {
+			flex-direction: column-reverse;
+		}
+	}
+
+	&.daff-top,
+	&.daff-bottom {
+		#{$root}__wrapper {
+			align-items: flex-start;
+			gap: 0.25rem;
+		}
+
+		#{$root}__toggle {
+			margin-left: -0.25rem;
+		}
+	}
+
+	&.daff-disabled {
+		opacity: 0.5;
+
+		#{$root}__toggle {
+			cursor: default;
+		}
 	}
 }
 
 .daff-switch {
-  $root: &;
+	$root: &;
 
-  &__wrapper {
-    display: flex;
-    align-items: center;
-  }
+	&__wrapper {
+		display: flex;
+		align-items: center;
+	}
 
-  &__label {
-    font-size: 1rem;
-    color: inherit;
-  }
+	&__label {
+		font-size: 1rem;
+		color: inherit;
+	}
 
-  &__loading {
-    position: relative;
-    left: 0.125rem;
-    max-width: 1.25rem;
-  }
+	&__loading {
+		position: relative;
+		left: 0.125rem;
+		max-width: 1.25rem;
+	}
 
-  &__toggle {
-    @include interactions.clickable();
-    display: flex;
-    align-items: center;
-    background-clip: content-box;
-    border-radius: 1rem;
-    height: 2rem;
-    width: 3.5rem;
-    padding: 0.125rem;
-    margin: 0.125rem;
-    position: relative;
+	&__toggle {
+		@include interactions.clickable();
+		display: flex;
+		align-items: center;
+		background-clip: content-box;
+		border-radius: 1rem;
+		height: 2rem;
+		width: 3.5rem;
+		padding: 0.125rem;
+		margin: 0.125rem;
+		position: relative;
 
-    input[type="checkbox"] {
-      opacity: 0;
-      margin: 0px;
-      padding: 0px;
-      border: none;
-    }
+		> input {
+			&[type='checkbox'] {
+				opacity: 0;
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+		}
 
-    &::before {
-      content: '';
-      position: absolute;
-      border-radius: 1.5rem;
-      height: 1.25rem;
-      width: 1.25rem;
-      inset-block-end: 4px;
-      inset-inline-start: 4px;
-      transition: transform 300ms;
-    }
-    
-    &.checked {
-      &::before {
-        transform: translateX(1.5rem);
-      }
-    }
-  }
+		&::before {
+			content: '';
+			position: absolute;
+			border-radius: 1.5rem;
+			height: 1.25rem;
+			width: 1.25rem;
+			inset-block-end: 4px;
+			inset-inline-start: 4px;
+			transition: transform 300ms;
+		}
+
+		&.daff-checked {
+			&::before {
+				transform: translateX(1.5rem);
+			}
+		}
+	}
 }

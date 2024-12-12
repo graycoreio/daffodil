@@ -23,7 +23,7 @@ let switchUniqueId = 0;
  * The switch component provides a way to toggle between two settings.
  *
  * ## Usage
- * <daff-switch [checked]="checked" loading="loading" [error]="true" [labelPosition]="left">
+ * <daff-switch [checked]="checked" loading="loading" [error]="true" [labelPosition]="daff-left">
  *    Label
  *    <daff-error-message>Error message</daff-error-message>
  * </daff-switch>
@@ -43,7 +43,7 @@ export class DaffSwitchComponent {
   /**
    * Whether the switch is disabled and/or loading.
    */
-  @Input() @HostBinding('class.disabled') get disabled() {
+  @Input() @HostBinding('class.daff-disabled') get disabled() {
     return this._disabled || this.loading;
   }
   set disabled(value: any) {
@@ -59,16 +59,13 @@ export class DaffSwitchComponent {
   }
 
   @HostBinding('class') get classes() {
-    return {
-      'daff-switch': true,
-      [this.labelPosition]: true,
-    };
-  };
+    return `daff-switch ${this.labelPosition}`;
+  }
 
   /**
    * Whether the switch is loading.
    */
-  @Input() @HostBinding('class.loading') loading = false;
+  @Input() @HostBinding('class.daff-loading') loading = false;
 
   /**
    * Current state of switch (on/off).
@@ -76,7 +73,7 @@ export class DaffSwitchComponent {
   @Input() checked = false;
 
   /**
-   * The position of the label relative to the switch. Defaults to 'left'.
+   * The position of the label relative to the switch. Defaults to 'daff-left'.
    */
   @Input() labelPosition: DaffLabelPosition = DaffLabelPositionEnum.LEFT;
 
