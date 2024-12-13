@@ -3,8 +3,8 @@
 @use '../../scss/theming';
 
 @mixin daff-accordion-theme($theme) {
-	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
-	$base: core.daff-map-deep-get($theme, 'core.base');
+	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$base: core.daff-map-get($theme, 'core', 'base');
 
 	.daff-accordion-item {
 		border-top: 1px solid theming.daff-illuminate($base, $neutral, 2);

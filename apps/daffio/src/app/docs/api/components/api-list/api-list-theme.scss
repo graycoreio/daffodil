@@ -1,9 +1,9 @@
 @use 'theme' as daff-theme;
 
 @mixin daffio-api-list-theme($theme) {
-	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
-	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-theme.daff-map-deep-get($theme, 'core.base-contrast');
+	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
+	$base: daff-theme.daff-map-get($theme, 'core', 'base');
+	$base-contrast: daff-theme.daff-map-get($theme, 'core', 'base-contrast');
 
 	.daffio-api-list {
 		&__package-name {

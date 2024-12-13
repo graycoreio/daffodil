@@ -3,7 +3,7 @@
 @use '../../scss/core';
 
 @mixin daff-media-gallery-theme($theme) {
-	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
+	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 
 	.daff-media-gallery {
 		$root: &;

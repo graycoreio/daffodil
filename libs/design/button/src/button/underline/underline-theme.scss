@@ -2,9 +2,7 @@
 @use '../../../../scss/theming';
 @use '../../../../scss/core';
 
-@mixin daff-underline-button-theme-variant(
-	$base-color: currentColor,
-) {
+@mixin daff-underline-button-theme-variant($base-color: currentColor) {
 	color: $base-color;
 
 	&::after {
@@ -20,11 +18,11 @@
 	$warn: map.get($theme, warn);
 	$critical: map.get($theme, critical);
 	$success: map.get($theme, success);
-	$base: core.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
-	$white: core.daff-map-deep-get($theme, 'core.white');
-	$black: core.daff-map-deep-get($theme, 'core.black');
-	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
+	$base: core.daff-map-get($theme, 'core', 'base');
+	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
+	$white: core.daff-map-get($theme, 'core', 'white');
+	$black: core.daff-map-get($theme, 'core', 'black');
+	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 
 	.daff-underline-button {
 		@include daff-underline-button-theme-variant(
@@ -73,9 +71,7 @@
 		}
 
 		&.daff-warn {
-			@include daff-underline-button-theme-variant(
-				theming.daff-color($warn)
-			);
+			@include daff-underline-button-theme-variant(theming.daff-color($warn));
 		}
 
 		&.daff-critical {

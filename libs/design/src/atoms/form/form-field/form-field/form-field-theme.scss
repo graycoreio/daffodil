@@ -6,9 +6,9 @@
 	$primary: map.get($theme, primary);
 	$secondary: map.get($theme, secondary);
 	$tertiary: map.get($theme, tertiary);
-	$base: core.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
-	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
+	$base: core.daff-map-get($theme, 'core', 'base');
+	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
+	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 
 	.daff-form-field {
 		&__control {

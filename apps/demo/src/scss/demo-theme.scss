@@ -7,6 +7,6 @@ $tertiary: daff-theme.daff-configure-palette(daff-theme.$daff-turquoise, 60);
 
 $theme: daff-theme.daff-configure-theme($primary, $secondary, $tertiary, 'light');
 
-$black: daff-theme.daff-map-deep-get($theme, 'core.black');
-$white: daff-theme.daff-map-deep-get($theme, 'core.white');
-$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
+$black: daff-theme.daff-map-get($theme, 'core', 'black');
+$white: daff-theme.daff-map-get($theme, 'core', 'white');
+$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');

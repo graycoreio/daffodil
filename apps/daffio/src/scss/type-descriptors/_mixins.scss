@@ -6,8 +6,12 @@
 $primary: map.get(daff-theme.$theme, primary);
 $secondary: map.get(daff-theme.$theme, secondary);
 $tertiary: map.get(daff-theme.$theme, tertiary);
-$base: daff-theme.daff-map-deep-get(daff-theme.$theme, 'core.base');
-$base-contrast: daff-theme.daff-map-deep-get(daff-theme.$theme, 'core.base-contrast');
+$base: daff-theme.daff-map-get(daff-theme.$theme, 'core', 'base');
+$base-contrast: daff-theme.daff-map-get(
+	daff-theme.$theme,
+	'core',
+	'base-contrast'
+);
 
 @mixin type-theming($color) {
 	background: $color;

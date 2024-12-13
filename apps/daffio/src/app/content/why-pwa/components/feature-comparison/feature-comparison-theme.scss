@@ -3,8 +3,8 @@
 
 @mixin daffio-feature-comparison-theme($theme) {
 	$secondary: map.get($theme, secondary);
-	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-theme.daff-map-deep-get($theme, 'core.base-contrast');
+	$base: daff-theme.daff-map-get($theme, 'core', 'base');
+	$base-contrast: daff-theme.daff-map-get($theme, 'core', 'base-contrast');
 
 	.daffio-feature-comparison {
 		background: $base;

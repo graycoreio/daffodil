@@ -2,8 +2,8 @@
 @use '../../theming';
 
 @mixin daff-skeleton-theme($theme) {
-	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
-	$base: core.daff-map-deep-get($theme, 'core.base');
+	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$base: core.daff-map-get($theme, 'core', 'base');
 
 	.daff-skeleton {
 		&::before,

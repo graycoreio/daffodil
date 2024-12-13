@@ -2,16 +2,16 @@
 @use 'theme' as daff-theme;
 
 @mixin typography-theme($theme) {
-	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
+	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
 
 	.dl-typography {
 		&__typescale-card {
 			border: 1px solid daff-theme.daff-color($neutral, 20);
 		}
-		
+
 		&__desktop-subheading,
 		&__mobile-subheading {
 			color: daff-theme.daff-color($neutral);
 		}
-	}	
+	}
 }

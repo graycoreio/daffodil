@@ -1,9 +1,9 @@
 @use '../../scss/core';
 
 @mixin daff-sidebar-theme($theme) {
-	$base: core.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
-	$font-color: core.daff-map-deep-get($theme, 'core.font-color');
+	$base: core.daff-map-get($theme, 'core', 'base');
+	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
+	$font-color: core.daff-map-get($theme, 'core', 'font-color');
 
 	.daff-sidebar {
 		background: $base;

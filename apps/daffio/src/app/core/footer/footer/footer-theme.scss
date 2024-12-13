@@ -2,9 +2,9 @@
 @use 'sass:map';
 
 @mixin daffio-footer-theme($theme) {
-	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
-	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-theme.daff-map-deep-get($theme, 'core.base-contrast');
+	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
+	$base: daff-theme.daff-map-get($theme, 'core', 'base');
+	$base-contrast: daff-theme.daff-map-get($theme, 'core', 'base-contrast');
 	$secondary: map.get($theme, secondary);
 
 	.daffio-footer {

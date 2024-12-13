@@ -11,11 +11,11 @@
 	$primary: map.get($theme, primary);
 	$secondary: map.get($theme, secondary);
 	$tertiary: map.get($theme, tertiary);
-	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
-	$base: core.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
-	$white: core.daff-map-deep-get($theme, 'core.white');
-	$black: core.daff-map-deep-get($theme, 'core.black');
+	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$base: core.daff-map-get($theme, 'core', 'base');
+	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
+	$white: core.daff-map-get($theme, 'core', 'white');
+	$black: core.daff-map-get($theme, 'core', 'black');
 
 	.daff-hero {
 		@include daff-hero-theme-variant(
@@ -23,21 +23,15 @@
 		);
 
 		&.daff-primary {
-			@include daff-hero-theme-variant(
-				theming.daff-color($primary)
-			);
+			@include daff-hero-theme-variant(theming.daff-color($primary));
 		}
 
 		&.daff-secondary {
-			@include daff-hero-theme-variant(
-				theming.daff-color($secondary)
-			);
+			@include daff-hero-theme-variant(theming.daff-color($secondary));
 		}
 
 		&.daff-tertiary {
-			@include daff-hero-theme-variant(
-				theming.daff-color($tertiary)
-			);
+			@include daff-hero-theme-variant(theming.daff-color($tertiary));
 		}
 
 		&.daff-theme {

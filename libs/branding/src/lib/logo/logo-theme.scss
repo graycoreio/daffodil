@@ -2,9 +2,9 @@
 @use 'theme' as daff-theme;
 
 @mixin daff-logo-theme($theme) {
-	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
-	$base: branding-theme.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: branding-theme.daff-map-deep-get($theme, 'core.base-contrast');
+	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
+	$base: branding-theme.daff-map-get($theme, 'core', 'base');
+	$base-contrast: branding-theme.daff-map-get($theme, 'core', 'base-contrast');
 
 	.daff-branding-logo {
 		fill: daff-theme.daff-illuminate($base-contrast, $neutral, 1);

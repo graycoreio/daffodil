@@ -1,7 +1,7 @@
 // @import 'theme';
 // @use 'utilities' as *;
 
-// $phoneColor: daff-map-deep-get($theme, 'core.base');
+// $phoneColor: daff-map-get($theme, "core", "base");
 // $phoneShadow: daff-illuminate($phoneColor, $daff-neutral, 3);
 
 // .iphone {

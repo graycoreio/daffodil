@@ -3,9 +3,9 @@
 @use '../../../../scss/theming';
 
 @mixin daff-native-select-theme($theme) {
-	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
-	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
-	$black: core.daff-map-deep-get($theme, 'core.black');
+	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
+	$black: core.daff-map-get($theme, 'core', 'black');
 
 	.daff-native-select {
 		color: theming.daff-illuminate($base-contrast, $neutral, 4);

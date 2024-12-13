@@ -1,9 +1,9 @@
 @use 'theme' as daff-theme;
 
 @mixin daffio-simple-footer-theme($theme) {
-	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
-	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: daff-theme.daff-map-deep-get($theme, 'core.base-contrast');
+	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
+	$base: daff-theme.daff-map-get($theme, 'core', 'base');
+	$base-contrast: daff-theme.daff-map-get($theme, 'core', 'base-contrast');
 
 	.daffio-simple-footer {
 		border-top: 1px solid daff-theme.daff-illuminate($base, $neutral, 2);

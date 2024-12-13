@@ -13,5 +13,5 @@ $tertiary-dark: daff-theme.daff-configure-palette(daff-theme.$daff-turquoise, 50
 
 $theme-dark: daff-theme.daff-configure-theme($primary-dark, $secondary-dark, $tertiary-dark, 'dark');
 
-$black: daff-theme.daff-map-deep-get($theme, 'core.black');
-$white: daff-theme.daff-map-deep-get($theme, 'core.white');
+$black: daff-theme.daff-map-get($theme, 'core', 'black');
+$white: daff-theme.daff-map-get($theme, 'core', 'white');

@@ -2,8 +2,8 @@
 @use '../../../../scss/theming';
 
 @mixin daff-input-theme($theme) {
-	$base: core.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$base: core.daff-map-get($theme, 'core', 'base');
+	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 
 	:host {
 		background: $base;

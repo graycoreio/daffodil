@@ -10,11 +10,11 @@
 	$warn: map.get($theme, warn);
 	$critical: map.get($theme, critical);
 	$success: map.get($theme, success);
-	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
-	$base: core.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
-	$white: core.daff-map-deep-get($theme, 'core.white');
-	$black: core.daff-map-deep-get($theme, 'core.black');
+	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$base: core.daff-map-get($theme, 'core', 'base');
+	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
+	$white: core.daff-map-get($theme, 'core', 'white');
+	$black: core.daff-map-get($theme, 'core', 'black');
 
 	.daff-notification {
 		background: theming.daff-illuminate($base, $neutral, 1);

@@ -2,29 +2,29 @@
 @use '../../../../scss/theming';
 @use '../../../../scss/core';
 
-@mixin daff-raised-button-theme-variant(
-	$base-color,
-) {
-	@if theming.daff-contrast-ratio($base-color, theming.daff-text-contrast($base-color)) < 4.5 {
+@mixin daff-raised-button-theme-variant($base-color) {
+	@if theming.daff-contrast-ratio(
+			$base-color,
+			theming.daff-text-contrast($base-color)
+		) < 4.5 {
 		@error 'Button Initial State: ' + map.get(a11y.$wcag-aa-errors, 'text-contrast');
 	}
 
-	@if theming.daff-contrast-ratio($base-color, theming.daff-text-contrast($base-color)) < 4.5 {
+	@if theming.daff-contrast-ratio(
+			$base-color,
+			theming.daff-text-contrast($base-color)
+		) < 4.5 {
 		@error 'Button Hover State: ' + map.get(a11y.$wcag-aa-errors, 'text-contrast');
 	}
 
 	$black: theming.daff-color(theming.$daff-neutral, 110);
 	background-color: $base-color;
 	border: 1px solid $base-color;
-	box-shadow:
-		0 3px 5px rgba($black, 0.12),
-		0 1px 3px rgba($black, 0.08);
+	box-shadow: 0 3px 5px rgba($black, 0.12), 0 1px 3px rgba($black, 0.08);
 	color: theming.daff-text-contrast($base-color);
 
 	&::after {
-		box-shadow:
-			0 6px 12px rgba($black, 0.08),
-			0 4px 6px rgba($black, 0.04);
+		box-shadow: 0 6px 12px rgba($black, 0.08), 0 4px 6px rgba($black, 0.04);
 	}
 
 	&:hover {
@@ -41,11 +41,11 @@
 	$warn: map.get($theme, warn);
 	$critical: map.get($theme, critical);
 	$success: map.get($theme, success);
-	$base: core.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
-	$white: core.daff-map-deep-get($theme, 'core.white');
-	$black: core.daff-map-deep-get($theme, 'core.black');
-	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
+	$base: core.daff-map-get($theme, 'core', 'base');
+	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
+	$white: core.daff-map-get($theme, 'core', 'white');
+	$black: core.daff-map-get($theme, 'core', 'black');
+	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 
 	.daff-raised-button {
 		@include daff-raised-button-theme-variant(
@@ -53,21 +53,15 @@
 		);
 
 		&.daff-primary {
-			@include daff-raised-button-theme-variant(
-				theming.daff-color($primary)
-			);
+			@include daff-raised-button-theme-variant(theming.daff-color($primary));
 		}
 
 		&.daff-secondary {
-			@include daff-raised-button-theme-variant(
-				theming.daff-color($secondary)
-			);
+			@include daff-raised-button-theme-variant(theming.daff-color($secondary));
 		}
 
 		&.daff-tertiary {
-			@include daff-raised-button-theme-variant(
-				theming.daff-color($tertiary)
-			);
+			@include daff-raised-button-theme-variant(theming.daff-color($tertiary));
 		}
 
 		&.daff-black {
@@ -99,21 +93,15 @@
 		}
 
 		&.daff-warn {
-			@include daff-raised-button-theme-variant(
-				theming.daff-color($warn)
-			);
+			@include daff-raised-button-theme-variant(theming.daff-color($warn));
 		}
 
 		&.daff-critical {
-			@include daff-raised-button-theme-variant(
-				theming.daff-color($critical)
-			);
+			@include daff-raised-button-theme-variant(theming.daff-color($critical));
 		}
 
 		&.daff-success {
-			@include daff-raised-button-theme-variant(
-				theming.daff-color($success)
-			);
+			@include daff-raised-button-theme-variant(theming.daff-color($success));
 		}
 	}
 }
