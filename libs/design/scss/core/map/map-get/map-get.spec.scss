@@ -1,6 +1,6 @@
 @use 'true' as *;
 @use './map-get' as *;
-@use './map-get-error';
+@use '../../error/error-to-string';
 
 @include describe('map-get') {
 	$nested-map: (
@@ -28,7 +28,7 @@
 
 	$empty-map: ();
 
-	@include map-get-error.set-debug(true);
+	@include error-to-string.set-use-string(true);
 
 	@include it('returns the value of the nested key if it exists in the map') {
 		@include assert-equal(daff-map-get($map, 'nested', 'string'), '1');
@@ -61,5 +61,5 @@
 		);
 	}
 
-	@include map-get-error.set-debug(false);
+	@include error-to-string.set-use-string(false);
 }

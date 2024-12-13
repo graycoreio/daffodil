@@ -1,0 +1,13 @@
+$use-string: false !default;
+
+@function error-to-string($message, $override: $use-string) {
+  @if $override {
+    @return $message;
+  } @else {
+    @error $message;
+  }
+}
+
+@mixin set-use-string($state: true) {
+  $use-string: $state !global;
+}
