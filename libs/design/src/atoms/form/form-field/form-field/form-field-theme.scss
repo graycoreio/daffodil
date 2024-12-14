@@ -11,21 +11,21 @@
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 
 	.daff-form-field {
+    &:has(.error) .error {
+      color: theming.daff-color(theming.$daff-red, 60);
+    }
+
 		&__control {
 			background: $base;
-			border: 1px solid theming.daff-illuminate($base, $neutral, 3);
-			color: theming.daff-illuminate($base-contrast, $neutral, 4);
+			border: 1px solid theming.daff-illuminate($base, $neutral, 6);
+			color: theming.daff-illuminate($base, $neutral, 6);
 
-			&:focus {
-				border: 1px solid $base-contrast;
+			&.daff-focus {
+        border: 1px solid theming.daff-color($primary, 'default');
 			}
 
 			&.daff-error {
 				border: 1px solid theming.daff-color(theming.$daff-red, 60);
-
-				&:focus {
-					border: 1px solid theming.daff-color(theming.$daff-red, 60);
-				}
 			}
 
 			&.daff-valid {
@@ -33,6 +33,15 @@
 					color: $base-contrast;
 				}
 			}
+
+      &:has(input:disabled) {
+        border: 1px solid theming.daff-illuminate($base, $neutral, 4);
+        color: theming.daff-illuminate($base, $neutral, 4);
+      }
+
+      input:disabled {
+        background-color: transparent;
+      }
 		}
 	}
 }

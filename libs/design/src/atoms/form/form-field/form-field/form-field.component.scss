@@ -2,20 +2,60 @@
 	display: block;
 	position: relative;
 
+  &:has(.error) {
+    padding-bottom: 32px;
+  }
+
 	&__control {
-		border-radius: 3px;
+		border-radius: 4px;
 		display: inline-block;
-		font-size: 1rem;
+		font-size: 16px;
 		height: inherit;
-		line-height: 1.5rem;
-		padding: 10px 15px;
+		line-height: 16px;
+		padding: 8px 16px;
+    max-width: 320px;
 		width: 100%;
+    position: relative;
+
+    label {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+
+    input {
+      padding-top: 16px;
+
+      &:placeholder-shown ~ label,
+      &:focus ~ label {
+        top: 6px;
+        font-size: 12px;
+        transform: none;
+      }
+    }
+
+    &.daff-filled label {
+      top: 6px;
+      font-size: 12px;
+      transform: none;
+    }
 	}
 
 	&__icon {
 		display: inline-block;
 		pointer-events: none;
 		position: absolute;
-		right: 15px;
+		right: 16px;
 	}
+
+  .error {
+    position: absolute;
+    top: 100%;
+    left: 16px;
+    padding-top: 8px;
+    font-size: 12px;
+  }
 }
