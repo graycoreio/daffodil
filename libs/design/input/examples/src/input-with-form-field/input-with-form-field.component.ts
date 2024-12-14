@@ -2,6 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
+import {
+  ReactiveFormsModule,
+  UntypedFormControl,
+} from '@angular/forms';
 
 import {
   DaffFormFieldModule,
@@ -14,8 +18,8 @@ import {
   templateUrl: './input-with-form-field.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffFormFieldModule, DaffInputModule],
+  imports: [DaffFormFieldModule, DaffInputModule, ReactiveFormsModule],
 })
 export class InputWithFormFieldComponent {
-
+  control: UntypedFormControl = new UntypedFormControl();
 }

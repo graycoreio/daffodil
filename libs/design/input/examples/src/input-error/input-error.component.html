@@ -1,4 +1,6 @@
 <daff-form-field>
-  <input daff-input type="text" placeholder="Email" name="email" [formControl]="control" />
+  <input daff-input type="text" placeholder="Email" name="email" [formControl]="control" id="error-input"/>
+  <label for="error-input">Label</label>
+  <div class="error">Error message goes here.</div>
 </daff-form-field>
 <p>Value: {{ control.value }} </p>

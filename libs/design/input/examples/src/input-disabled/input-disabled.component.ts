@@ -17,5 +17,5 @@ import {
   imports: [DaffFormFieldModule, DaffInputModule],
 })
 export class InputDisabledComponent {
-
+  isDisabled = true;
 }

@@ -54,9 +54,21 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
 
   /**
    * Tracking property to keep a record of whether or not the
+   * form field contains any user input.
+   */
+  isFilled = false;
+
+  /**
+   * Tracking property to keep a record of whether or not the
    * form field should be marked as valid.
    */
   isValid = false;
+
+  /**
+   * Tracking property to keep a record of whether or not the
+   * form field should be marked as disabled.
+   */
+  // isDisabled = false;
 
   /**
    * @docs
@@ -79,6 +91,8 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
     if(this._control?.ngControl) {
       this.isError = this._control.ngControl.errors && (this._control.ngControl.touched);
       this.isValid = !this._control.ngControl.errors && this._control.ngControl.touched;
+      this.isFilled = !!this._control.ngControl.value;
+      // this.isDisabled = this._control.ngControl.disabled;
     }
   }
 
