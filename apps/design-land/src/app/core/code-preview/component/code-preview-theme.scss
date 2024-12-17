@@ -4,7 +4,7 @@
 @mixin code-preview-theme($theme) {
 	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
 	$base: daff-theme.daff-map-get($theme, 'core', 'base');
-	$primary: map.get(daff-theme.$theme, primary);
+	$primary: daff-theme.daff-map-get(daff-theme.$theme, primary);
 	$font-color: daff-theme.daff-map-get($theme, 'core', 'font-color');
 	$border: 1px solid daff-theme.daff-illuminate($base, $neutral, 2);
 

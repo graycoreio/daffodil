@@ -5,7 +5,7 @@
 	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
 	$base: daff-theme.daff-map-get($theme, 'core', 'base');
 	$base-contrast: daff-theme.daff-map-get($theme, 'core', 'base-contrast');
-	$primary: map.get($theme, primary);
+	$primary: daff-theme.daff-map-get($theme, primary);
 
 	.design-land-sidebar-viewport {
 		&__sidebar {

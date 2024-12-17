@@ -5,7 +5,7 @@
 	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
 	$base: daff-theme.daff-map-get($theme, 'core', 'base');
 	$base-contrast: daff-theme.daff-map-get($theme, 'core', 'base-contrast');
-	$secondary: map.get($theme, secondary);
+	$secondary: daff-theme.daff-map-get($theme, secondary);
 
 	.daffio-footer {
 		border-top: 1px solid daff-theme.daff-illuminate($base, $neutral, 2);

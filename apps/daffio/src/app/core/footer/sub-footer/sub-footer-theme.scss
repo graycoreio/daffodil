@@ -2,7 +2,7 @@
 @use 'theme' as daff-theme;
 
 @mixin daffio-sub-footer-theme($theme) {
-	$secondary: map.get($theme, secondary);
+	$secondary: daff-theme.daff-map-get($theme, secondary);
 
 	.daffio-sub-footer {
 		background: linear-gradient(

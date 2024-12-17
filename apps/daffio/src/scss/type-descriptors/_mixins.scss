@@ -3,9 +3,9 @@
 @use 'utilities' as daff;
 
 // stylelint-disable selector-class-pattern
-$primary: map.get(daff-theme.$theme, primary);
-$secondary: map.get(daff-theme.$theme, secondary);
-$tertiary: map.get(daff-theme.$theme, tertiary);
+$primary: daff-theme.daff-map-get(daff-theme.$theme, primary);
+$secondary: daff-theme.daff-map-get(daff-theme.$theme, secondary);
+$tertiary: daff-theme.daff-map-get(daff-theme.$theme, tertiary);
 $base: daff-theme.daff-map-get(daff-theme.$theme, 'core', 'base');
 $base-contrast: daff-theme.daff-map-get(
 	daff-theme.$theme,
@@ -39,18 +39,26 @@ $base-contrast: daff-theme.daff-map-get(
 	}
 
 	&.const {
-		@include type-theming(daff-theme.daff-illuminate($base-contrast, $secondary, 3));
+		@include type-theming(
+			daff-theme.daff-illuminate($base-contrast, $secondary, 3)
+		);
 	}
 
 	&.enum {
-		@include type-theming(daff-theme.daff-illuminate($base-contrast, $primary, 3));
+		@include type-theming(
+			daff-theme.daff-illuminate($base-contrast, $primary, 3)
+		);
 	}
 
 	&.package {
-		@include type-theming(daff-theme.daff-illuminate($base-contrast, daff-theme.$daff-yellow, 3));
+		@include type-theming(
+			daff-theme.daff-illuminate($base-contrast, daff-theme.$daff-yellow, 3)
+		);
 	}
 
 	&.function {
-		@include type-theming(daff-theme.daff-illuminate($base-contrast, $tertiary, 3));
+		@include type-theming(
+			daff-theme.daff-illuminate($base-contrast, $tertiary, 3)
+		);
 	}
 }

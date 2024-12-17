@@ -2,7 +2,7 @@
 @use 'theme' as daff-theme;
 
 @mixin daffio-header-theme($theme) {
-	$primary: map.get($theme, primary);
+	$primary: daff-theme.daff-map-get($theme, primary);
 
 	.daffio-header-item {
 		&.active {

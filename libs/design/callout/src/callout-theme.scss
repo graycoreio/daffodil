@@ -8,9 +8,9 @@
 }
 
 @mixin daff-callout-theme($theme) {
-	$primary: map.get($theme, primary);
-	$secondary: map.get($theme, secondary);
-	$tertiary: map.get($theme, tertiary);
+	$primary: core.daff-map-get($theme, primary);
+	$secondary: core.daff-map-get($theme, secondary);
+	$tertiary: core.daff-map-get($theme, tertiary);
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 	$base: core.daff-map-get($theme, 'core', 'base');
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
