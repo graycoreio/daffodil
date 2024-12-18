@@ -18,7 +18,6 @@ import { RouterPercentEnum } from '../router-percent-enum';
 @Component({
   selector: 'demo-routing-indicator',
   templateUrl: './indicator.component.html',
-  styleUrls: ['./indicator.component.scss'],
 })
 export class DemoIndicatorComponent implements OnInit {
 

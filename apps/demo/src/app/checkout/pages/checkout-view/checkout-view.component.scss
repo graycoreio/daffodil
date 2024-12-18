@@ -18,10 +18,15 @@
 
 	&__payment {
 		align-self: start;
+		padding-top: 30px;
 	}
 
 	&__review {
 		margin-top: 25px;
+
+		@include breakpoint(big-tablet) {
+			display: none;
+		}
 	}
 
 	&__shipping {
@@ -30,16 +35,6 @@
 
 		@include breakpoint(big-tablet) {
 			border-top: 1px solid daff-color($daff-neutral, 20);
-		}
-	}
-
-	&__payment {
-		padding-top: 30px;
-	}
-
-	&__review {
-		@include breakpoint(big-tablet) {
-			display: none;
 		}
 	}
 

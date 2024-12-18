@@ -21,9 +21,10 @@
 	}
 
 	&__title {
-		@include embolden();
-		margin-bottom: 5px;
 		grid-area: title;
+		@include embolden();
+		font-size: 1rem;
+		margin-bottom: 15px;
 		text-transform: uppercase;
 	}
 
@@ -52,12 +53,5 @@
 			justify-self: start;
 			margin-top: 15px;
 		}
-	}
-
-	&__title {
-		@include embolden();
-		font-size: 1rem;
-		margin-bottom: 15px;
-		text-transform: uppercase;
 	}
 }
