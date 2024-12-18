@@ -1,35 +1,35 @@
 @use 'utilities' as daff;
 
-/* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
+/* stylelint-disable-line scss/comment-no-loud */
 .daffio-sub-footer {
-  display: block;
+	display: block;
 
-  &__body {
-    text-align: center;
-  }
+	&__body {
+		text-align: center;
+	}
 
-  &__actions {
-    display: inline-grid;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'repo'
-      'discord';
-    grid-gap: 16px;
-    
-    @include daff.breakpoint(tablet) {
-      grid-template-columns: 1fr 1fr;
-      grid-template-areas: 'repo discord';
-      grid-gap: 16px;
-    }
+	&__actions {
+		display: inline-grid;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'repo'
+			'discord';
+		grid-gap: 16px;
 
-    > * {
-      &:nth-child(1) {
-        grid-area: repo;
-      }
+		@include daff.breakpoint(tablet) {
+			grid-template-columns: 1fr 1fr;
+			grid-template-areas: 'repo discord';
+			grid-gap: 16px;
+		}
 
-      &:nth-child(2) {
-        grid-area: discord;
-      }
-    }
-  }
+		>* {
+			&:nth-child(1) {
+				grid-area: repo;
+			}
+
+			&:nth-child(2) {
+				grid-area: discord;
+			}
+		}
+	}
 }

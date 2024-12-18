@@ -6,7 +6,6 @@ import {
 @Component({
   selector: 'daffio-app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 

@@ -2,6 +2,7 @@
 @use 'theme' as daff-theme;
 @use 'utilities' as daff;
 
+// stylelint-disable selector-class-pattern
 $primary: map.get(daff-theme.$theme, primary);
 $secondary: map.get(daff-theme.$theme, secondary);
 $tertiary: map.get(daff-theme.$theme, tertiary);

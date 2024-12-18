@@ -1,85 +1,85 @@
 @use 'utilities' as daff;
 
 :host {
-  $root: '.daffio-header';
-  display: block;
+	$root: '.daffio-header';
+	display: block;
 
-  ::ng-deep {
-    .daffio-header-item {
-      display: none;
+	::ng-deep {
+		.daffio-header-item {
+			display: none;
 
-      @include daff.breakpoint(big-tablet) {
-        display: block;
-        color: currentColor;
-        font-size: daff.$normal-font-size;
-        font-weight: 500;
-        line-height: 64px;
-        padding: 0 1rem;
-        position: relative;
-        text-decoration: none;
-      }
-    }
-  }
+			@include daff.breakpoint(big-tablet) {
+				display: block;
+				color: currentColor;
+				font-size: daff.$normal-font-size;
+				font-weight: 500;
+				line-height: 64px;
+				padding: 0 1rem;
+				position: relative;
+				text-decoration: none;
+			}
+		}
+	}
 }
 
 .daffio-header {
-  &__navbar {
-    justify-content: space-between;
-    padding: 0 24px;
-  }
+	&__navbar {
+		justify-content: space-between;
+		padding: 0 24px;
+	}
 
-  &__left,
-  &__right {
-    display: flex;
-    align-items: center;
-  }
+	&__left,
+	&__right {
+		display: flex;
+		align-items: center;
+	}
 
-  &__left {
-    gap: 32px;
-  }
+	&__left {
+		gap: 32px;
+	}
 
-  &__theme-toggle {
-    margin-right: 0.25rem;
+	&__theme-toggle {
+		margin-right: 0.25rem;
 
-    @include daff.breakpoint(big-tablet) {
-      margin-right: 0;
-    }
-  }
+		@include daff.breakpoint(big-tablet) {
+			margin-right: 0;
+		}
+	}
 
-  &__menu {
-    margin: 0;
-    padding: 0;
+	&__menu {
+		margin: 0;
+		padding: 0;
 
-    @include daff.breakpoint(big-tablet) {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-  }
+		@include daff.breakpoint(big-tablet) {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+		}
+	}
 
-  &__button {
-    display: none;
+	&__button {
+		display: none;
 
-    @include daff.breakpoint(big-tablet) {
-      display: flex;
-      margin-left: 1rem;
-    }
-  }
+		@include daff.breakpoint(big-tablet) {
+			display: flex;
+			margin-left: 1rem;
+		}
+	}
 
-  &__logo {
-    width: 128px;
+	&__logo {
+		width: 128px;
 
-    @include daff.breakpoint(mobile) {
-      width: 160px;
-    }
-  }
+		@include daff.breakpoint(mobile) {
+			width: 160px;
+		}
+	}
 
-  &__bars {
-    display: flex;
-    margin-right: -0.8125rem;
+	&__bars {
+		display: flex;
+		margin-right: -0.8125rem;
 
-    @include daff.breakpoint(big-tablet) {
-      display: none;
-    }
-  }
+		@include daff.breakpoint(big-tablet) {
+			display: none;
+		}
+	}
 }

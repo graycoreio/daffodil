@@ -1,6 +1,5 @@
 @use 'utilities' as daff;
 
-/* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
 .daffio-home-callout-platforms {
 	&__logos {
 		display: grid;
@@ -11,8 +10,8 @@
 
 		@include daff.breakpoint(mobile) {
 			grid-template-columns: 144px 144px;
-		grid-template-areas: 'magento shopify';
-		grid-gap: 48px;
+			grid-template-areas: 'magento shopify';
+			grid-gap: 48px;
 		}
 	}
 

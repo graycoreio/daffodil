@@ -2,25 +2,25 @@
 
 .daffio-why-pwa-solution {
 	&__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'feature-comparison'
-      'list';
-    grid-gap: 48px;
-    align-items: center;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'feature-comparison'
+			'list';
+		grid-gap: 48px;
+		align-items: center;
 
-    @include daff.breakpoint(big-tablet) {
-      grid-template-columns: 2fr 1fr;
-      grid-template-areas: 'feature-comparison list';
-    }
-  }
+		@include daff.breakpoint(big-tablet) {
+			grid-template-columns: 2fr 1fr;
+			grid-template-areas: 'feature-comparison list';
+		}
+	}
 
-  &__feature-comparison {
-    grid-area: feature-comparison;
-  }
+	&__feature-comparison {
+		grid-area: feature-comparison;
+	}
 
-  &__list {
-    grid-area: list;
-  }
+	&__list {
+		grid-area: list;
+	}
 }

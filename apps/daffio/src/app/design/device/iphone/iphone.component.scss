@@ -1,20 +1,18 @@
 // @import 'theme';
 // @use 'utilities' as *;
 
-// $phoneColor: daff-map-deep-get($theme, "core.base");
+// $phoneColor: daff-map-deep-get($theme, 'core.base');
 // $phoneShadow: daff-illuminate($phoneColor, $daff-neutral, 3);
 
 // .iphone {
-//     background: $phoneColor;
-//     box-shadow:
-//         inset 0 -5px 15px rgba($phoneShadow, 0.2), 
-//         0 2px 5px 0 rgba($phoneShadow, 0.1),
-//         0 0 25px 10px rgba($phoneShadow, 0.15);
-//     border-radius: 10%/5%;
-//     padding: 24% 2.75%;
+// 	background: $phoneColor;
+// 	box-shadow: inset 0 -5px 15px rgba($phoneShadow, 0.2),
+// 		0 2px 5px 0 rgba($phoneShadow, 0.1), 0 0 25px 10px rgba($phoneShadow, 0.15);
+// 	border-radius: 10%/5%;
+// 	padding: 24% 2.75%;
 
-//     > * {
-//         display: block;
-//         width: 100%;
-//     }
+// 	> * {
+// 		display: block;
+// 		width: 100%;
+// 	}
 // }

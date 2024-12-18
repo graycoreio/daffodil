@@ -1,46 +1,46 @@
 @use 'utilities' as daff;
 
-.newsletter {
-  &__header {
-    @include daff.embolden();
-    text-transform: uppercase;
-    font-size: 1rem;
-    padding: 0 0 25px 0;
-  }
+.daffio-newsletter {
+	&__header {
+		@include daff.embolden();
+		text-transform: uppercase;
+		font-size: 1rem;
+		padding: 0 0 24px;
+	}
 
-  &__content {
-    font-size: 1rem;
-    padding: 0 0 25px 0;
-  }
+	&__content {
+		font-size: 1rem;
+		padding: 0 0 24px;
+	}
 
-  &__form {
-    display: flex;
-    flex-wrap: wrap;
-  }
+	&__form {
+		display: flex;
+		flex-wrap: wrap;
+	}
 
-  &__input {
-    width: 60%;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+	&__input {
+		width: 60%;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
 
-    @include daff.breakpoint(laptop) {
-      width: 60%;
-    }
-  }
+		@include daff.breakpoint(laptop) {
+			width: 60%;
+		}
+	}
 
-  &__button {
-    width: 40%;
-    line-height: 1.5rem;
-    font-size: 0.875rem;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+	&__button {
+		width: 40%;
+		line-height: 1.5rem;
+		font-size: 0.875rem;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
 
-    @include daff.breakpoint(tablet) {
-      font-size: 1rem;
-    }
+		@include daff.breakpoint(tablet) {
+			font-size: 1rem;
+		}
 
-    @include daff.breakpoint(laptop) {
-      width: 30%;
-    }
-  }
+		@include daff.breakpoint(laptop) {
+			width: 30%;
+		}
+	}
 }

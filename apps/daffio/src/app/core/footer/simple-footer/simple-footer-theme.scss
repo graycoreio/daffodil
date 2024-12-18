@@ -14,7 +14,7 @@
 
 		&__link {
 			color: daff-theme.daff-text-contrast($base);
-			transition: color 0.3s;
+			transition: color 300ms;
 
 			&:hover {
 				color: daff-theme.daff-illuminate($base-contrast, $neutral, 3);

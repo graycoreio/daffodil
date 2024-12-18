@@ -1,7 +1,6 @@
-/***********************************
-* DO NOT IMPORT THIS FILE ANYWHERE ELSE
-************************************/
+// DO NOT IMPORT THIS FILE ANYWHERE ELSE
 
+@use 'sass:meta';
 @use 'global';
 @use 'theme' as daff-theme;
 @use './component-themes' as daffio-components;
@@ -10,27 +9,24 @@
 @use 'daff-branding-theme' as branding;
 
 .daff-theme-light {
-	@import 'highlight.js/scss/a11y-light.scss';
+	@include meta.load-css('highlight.js/scss/a11y-light');
 
 	@include branding.daff-branding-theme(daff-theme.$theme);
 	@include daff-theme.daff-theme(daff-theme.$theme);
 	@include daffio-components.component-themes(daff-theme.$theme);
-
 	background: var(--daff-base-bg);
 	color: var(--daff-base-text);
 }
 
 .daff-theme-dark {
-	@import 'highlight.js/scss/a11y-dark.scss';
+	@include meta.load-css('highlight.js/scss/a11y-dark');
 
 	@include branding.daff-branding-theme(daff-theme.$theme-dark);
 	@include daff-theme.daff-theme(daff-theme.$theme-dark);
 	@include daffio-components.component-themes(daff-theme.$theme-dark);
-
 	background: var(--daff-base-bg);
 	color: var(--daff-base-text);
 }
-
 
 body {
 	--daff-sidebar-side-fixed-top-shift: 64px;

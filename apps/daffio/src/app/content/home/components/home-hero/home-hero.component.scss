@@ -13,29 +13,28 @@
 	}
 }
 
-/* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
 .daffio-home-hero {
 	&__grid {
-    display: grid;
-    grid-template-columns: 1fr;
+		display: grid;
+		grid-template-columns: 1fr;
 		grid-template-areas:
 			'content';
 		position: relative;
 
-    @include daff.breakpoint(big-tablet) {
-      grid-template-columns: 560px 1fr;
-			grid-template-areas:
-				'content illustration';
-    	grid-gap: 48px;
-    }
-
-    @include daff.breakpoint(small-laptop) {
+		@include daff.breakpoint(big-tablet) {
 			grid-template-columns: 560px 1fr;
 			grid-template-areas:
 				'content illustration';
-    	grid-gap: 48px;
-    }
-  }
+			grid-gap: 48px;
+		}
+
+		@include daff.breakpoint(small-laptop) {
+			grid-template-columns: 560px 1fr;
+			grid-template-areas:
+				'content illustration';
+			grid-gap: 48px;
+		}
+	}
 
 	&__content {
 		grid-area: content;

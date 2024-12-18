@@ -1,7 +1,9 @@
 module.exports = {
   extends: '../../.eslintrc.js',
   ignorePatterns: [
-    '!**/*'
+    'src/test.ts',
+    'src/polyfills.ts',
+    'node_modules/**/*'
   ],
   overrides: [
     {
@@ -11,15 +13,11 @@ module.exports = {
       parserOptions: {
         project: [
           'apps/daffio/tsconfig.app.json',
-          'apps/daffio/tsconfig.spec.json',
+          'apps/daffio/tsconfig.spec.json'
         ],
         createDefaultProgram: true
       },
       rules: {
-        // TODO: Remove once the rule is added to the global eslint config
-        '@angular-eslint/prefer-on-push-component-change-detection': [
-          'error'
-        ],
         '@angular-eslint/component-class-suffix': [
           'error',
           {
@@ -51,16 +49,6 @@ module.exports = {
             'message': 'Usage of private modules not allowed. Did you mean to import from @daffodil/*?'
           }],
         }],
-      }
-    },
-    {
-      files: [
-        '*.spec.ts'
-      ],
-      rules: {
-        '@angular-eslint/prefer-on-push-component-change-detection': [
-          0
-        ],
       }
     },
     {

@@ -4,17 +4,17 @@
 $api-list-section-item-border-radius: 4px;
 
 :host {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 8px 24px;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 8px 24px;
 
-  @include daff.breakpoint(tablet) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+	@include daff.breakpoint(tablet) {
+		grid-template-columns: repeat(2, 1fr);
+	}
 
-  @include daff.breakpoint(small-laptop) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+	@include daff.breakpoint(small-laptop) {
+		grid-template-columns: repeat(3, 1fr);
+	}
 
 	a {
 		text-decoration: none;

@@ -7,7 +7,6 @@ import { DaffioRouterNamedViewsEnum } from '../router/named-views/models/named-v
 
 @Component({
   templateUrl: './template.component.html',
-  styleUrls: ['./template.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TemplateComponent {

@@ -1,6 +1,5 @@
 @use 'utilities' as daff;
 
-/* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
 .daffio-home-callout-pwa {
 	&__body {
 		display: grid;
@@ -11,7 +10,7 @@
 		grid-gap: 48px;
 	}
 
-  &__card-grid {
+	&__card-grid {
 		grid-area: card-grid;
 		display: grid;
 		grid-template-columns: 1fr;
@@ -21,7 +20,7 @@
 			'c'
 			'd';
 		grid-gap: 16px;
-	
+
 		@include daff.breakpoint(tablet) {
 			grid-template-columns: 1fr 1fr;
 			grid-template-areas:
@@ -34,21 +33,21 @@
 			&:first-child {
 				grid-area: a;
 			}
-	
+
 			&:nth-child(2) {
 				grid-area: b;
 			}
-	
+
 			&:nth-child(3) {
 				grid-area: c;
 			}
-	
+
 			&:last-child {
 				grid-area: d;
 			}
 		}
 	}
-	
+
 	&__button {
 		grid-area: button;
 		justify-self: center;

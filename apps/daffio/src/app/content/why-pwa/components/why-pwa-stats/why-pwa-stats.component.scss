@@ -2,13 +2,13 @@
 
 .daffio-why-pwa-stats {
 	&__card-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 24px;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 24px;
 
-    @include daff.breakpoint(big-tablet) {
-      grid-template-columns: 1fr 1fr;
-    }
+		@include daff.breakpoint(big-tablet) {
+			grid-template-columns: 1fr 1fr;
+		}
 
 		fa-icon {
 			font-size: 1.5rem;

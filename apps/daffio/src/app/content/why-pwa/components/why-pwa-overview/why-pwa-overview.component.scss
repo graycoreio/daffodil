@@ -3,16 +3,16 @@
 .daffio-why-pwa-overview {
 	&__card-grid {
 		display: grid;
-    grid-template-columns: 1fr;
+		grid-template-columns: 1fr;
 		grid-gap: 16px;
 
-    @include daff.breakpoint(mobile) {
-      grid-template-columns: 1fr 1fr;
-    }
+		@include daff.breakpoint(mobile) {
+			grid-template-columns: 1fr 1fr;
+		}
 
-    @include daff.breakpoint(tablet) {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
+		@include daff.breakpoint(tablet) {
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+		}
 
 		fa-icon {
 			font-size: 1.5rem;

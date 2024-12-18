@@ -5,7 +5,7 @@
 	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
 	$base-contrast: daff-theme.daff-map-deep-get($theme, 'core.base-contrast');
 
-	.newsletter {
+	.daffio-newsletter {
 		&__input {
 			border-color: daff-theme.daff-color($neutral, 30);
 		}

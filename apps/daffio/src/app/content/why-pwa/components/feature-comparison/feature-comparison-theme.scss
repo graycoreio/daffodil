@@ -1,20 +1,20 @@
 @use 'sass:map';
 @use 'theme' as daff-theme;
 
-@mixin daffio-feature-comparison-theme($theme){
-    $secondary: map.get($theme, secondary);
-    $base: daff-theme.daff-map-deep-get($theme, "core.base");
-    $base-contrast: daff-theme.daff-map-deep-get($theme, "core.base-contrast");
-    
-    .feature-comparison {
-        background: $base;
-        box-shadow: 0 0 30px 0 rgba($base-contrast, 0.05);
-        
-        > * {
-            &:nth-child(4n-2) {
-                background: daff-theme.daff-color($secondary);
-                color: daff-theme.daff-text-contrast(daff-theme.daff-color($secondary));
-            }
-        }
-    }
+@mixin daffio-feature-comparison-theme($theme) {
+	$secondary: map.get($theme, secondary);
+	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-theme.daff-map-deep-get($theme, 'core.base-contrast');
+
+	.daffio-feature-comparison {
+		background: $base;
+		box-shadow: 0 0 30px 0 rgba($base-contrast, 0.05);
+
+		> * {
+			&:nth-child(4n-2) {
+				background: daff-theme.daff-color($secondary);
+				color: daff-theme.daff-text-contrast(daff-theme.daff-color($secondary));
+			}
+		}
+	}
 }

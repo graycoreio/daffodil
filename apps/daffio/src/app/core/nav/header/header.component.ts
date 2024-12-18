@@ -35,7 +35,6 @@ import { DaffioNavLink } from '../link/type';
 @Component({
   selector: 'daffio-nav-header-container',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [

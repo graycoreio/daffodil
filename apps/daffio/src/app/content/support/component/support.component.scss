@@ -1,18 +1,17 @@
 @use 'utilities' as daff;
 
-/* autoprefixer grid: autoplace */ /* stylelint-disable-line scss/comment-no-loud */
 .daffio-support {
-  &__body {
-    text-align: center;
-  }
+	&__body {
+		text-align: center;
+	}
 
-  &__actions {
-    display: inline-grid;
-    grid-template-columns: 1fr;
-    grid-gap: 16px;
+	&__actions {
+		display: inline-grid;
+		grid-template-columns: 1fr;
+		grid-gap: 16px;
 
-    @include daff.breakpoint(tablet) {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
+		@include daff.breakpoint(tablet) {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
 }

@@ -17,8 +17,10 @@
   "scripts": {
     "build": "ng build daffio --configuration production",
     "test": "ng test daffio --watch=false --browsers=ChromeHeadless",
-    "lint": "cd ../.. && ng lint daffio",
-    "lint:fix": "npm run lint -- --fix",
+    "lint": "ng lint daffio && npm run lint:scss",
+    "lint:scss": "stylelint '**/*.scss'",
+    "lint:fix": "ng lint daffio --fix",
+    "lint:scss:fix": "ng run lint:scss -- --fix",
     "dev:ssr": "ng run daffio:serve-ssr",
     "serve:ssr": "node ../../dist/apps/daffio/server/server.mjs"
   },

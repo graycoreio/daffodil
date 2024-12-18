@@ -1,51 +1,51 @@
 @use 'utilities' as daff;
 
 @mixin comparison-cell {
-  display: flex;
-  justify-content: center;
-  text-align: center;
+	display: flex;
+	justify-content: center;
+	text-align: center;
 }
 
-.feature-comparison {
-  border-radius: 10px;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+.daffio-feature-comparison {
+	border-radius: 10px;
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr 1fr;
 
-  &__header {
-    @include comparison-cell();
-    @include daff.embolden();
-    align-items: flex-start;
-    font-size: 0.75rem;
-    padding: 15px 5px;
-    text-transform: uppercase;
-  
-    @include daff.breakpoint(tablet) {
-      padding: 25px 5px;
-      font-size: daff.$small-font-size;
-    }
-  }
+	&__header {
+		@include comparison-cell();
+		@include daff.embolden();
+		align-items: flex-start;
+		font-size: 0.75rem;
+		padding: 15px 5px;
+		text-transform: uppercase;
 
-  &__cell {
-    @include comparison-cell();
-    align-items: center;
-    font-size: daff.$small-font-size;
-    padding: 10px 15px;
-  
-    @include daff.breakpoint(tablet) {
-      font-size: 1rem;
-      padding: 15px 25px;
-    }
-  }
+		@include daff.breakpoint(tablet) {
+			padding: 25px 5px;
+			font-size: daff.$small-font-size;
+		}
+	}
 
-  > * {
-    &:nth-child(4n+1) {
-      justify-content: flex-start;
-      text-align: left;
-    }
+	&__cell {
+		@include comparison-cell();
+		align-items: center;
+		font-size: daff.$small-font-size;
+		padding: 10px 15px;
 
-    &:first-child {
-      justify-content: center;
-      text-align: center;
-    }
-  }
+		@include daff.breakpoint(tablet) {
+			font-size: 1rem;
+			padding: 15px 25px;
+		}
+	}
+
+	>* {
+		&:nth-child(4n+1) {
+			justify-content: flex-start;
+			text-align: left;
+		}
+
+		&:first-child {
+			justify-content: center;
+			text-align: center;
+		}
+	}
 }
