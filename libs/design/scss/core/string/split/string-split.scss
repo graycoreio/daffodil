@@ -1,3 +1,6 @@
+@use 'sass:string';
+@use 'sass:list';
+
 //
 // @docs
 // @private
@@ -8,25 +11,25 @@
 //
 @function daff-string-split($string, $separator) {
 	$list: ();
-	$index: str-index($string, $separator);
+	$index: string.index($string, $separator);
 
 	@if ($index == null) {
 		@return $list;
 	}
 
-	@while $index !=null {
-		$item: str-slice($string, 1, $index - 1);
+	@while $index != null {
+		$item: string.slice($string, 1, $index - 1);
 
 		@if ($item != '') {
-			$list: append($list, $item, 'comma');
+			$list: list.append($list, $item, 'comma');
 		}
 
-		$string: str-slice($string, $index + 1);
-		$index: str-index($string, $separator);
+		$string: string.slice($string, $index + 1);
+		$index: string.index($string, $separator);
 	}
 
 	@if ($string != '') {
-		$list: append($list, $string, 'comma');
+		$list: list.append($list, $string, 'comma');
 	}
 
 	@return $list;

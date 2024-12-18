@@ -1,3 +1,5 @@
+@use 'sass:color';
+@use 'sass:list';
 @use 'variables' as v;
 
 // Calculate the luminance of a color.
@@ -8,12 +10,12 @@
 // See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 
 @function daff-luminance($color) {
-	$red-index: red($color) + 1;
-	$green-index: green($color) + 1;
-	$blue-index: blue($color) + 1;
+	$red-index: color.red($color) + 1;
+	$green-index: color.green($color) + 1;
+	$blue-index: color.blue($color) + 1;
 
-	$red: nth(v.$linear-channel-values, $red-index);
-	$green: nth(v.$linear-channel-values, $green-index);
-	$blue: nth(v.$linear-channel-values, $blue-index);
+	$red: list.nth(v.$linear-channel-values, $red-index);
+	$green: list.nth(v.$linear-channel-values, $green-index);
+	$blue: list.nth(v.$linear-channel-values, $blue-index);
 	@return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
 }

@@ -1,7 +1,7 @@
 @use 'sass:math';
 
 // Formula Constants
-$radius: 46; //This must be the same as the radius of the circle in the svg
+$radius: 46; // This must be the same as the radius of the circle in the svg
 $pi: 3.14159265359;
 $max-percentage-fill: math.div(3.5, 10);
 

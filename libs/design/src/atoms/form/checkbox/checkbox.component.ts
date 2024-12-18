@@ -15,7 +15,6 @@ let checkboxIdNum = 0;
 @Component({
   selector: 'daff-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffCheckboxComponent {

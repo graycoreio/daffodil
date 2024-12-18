@@ -8,7 +8,6 @@ import {
 @Component({
   selector: 'daff-radio-set',
   templateUrl: './radio-set.component.html',
-  styleUrls: ['./radio-set.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffRadioSetComponent {

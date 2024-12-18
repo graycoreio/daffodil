@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 @use '../core';
 @use '../theming';
 
@@ -15,9 +16,9 @@
 	$white: core.daff-map-deep-get($theme, 'core.white');
 	$black: core.daff-map-deep-get($theme, 'core.black');
 
-	--daff-theme-rgb: #{red($base), green($base), blue($base)};
-	--daff-theme-contrast-rgb: #{red($base-contrast), green($base-contrast),
-		blue($base-contrast)};
+	--daff-theme-rgb: #{color.red($base), color.green($base), color.blue($base)};
+	--daff-theme-contrast-rgb: #{color.red($base-contrast), color.green($base-contrast),
+		color.blue($base-contrast)};
 	--daff-theme: #{$base};
 	--daff-theme-contrast: #{$base-contrast};
 	--daff-theme-primary: #{theming.daff-color($primary)};

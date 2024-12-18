@@ -15,7 +15,6 @@ import { DaffCheckboxComponent } from '../checkbox/checkbox.component';
 @Component({
   selector: 'daff-checkbox-set',
   templateUrl: './checkbox-set.component.html',
-  styleUrls: ['./checkbox-set.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffCheckboxSetComponent {

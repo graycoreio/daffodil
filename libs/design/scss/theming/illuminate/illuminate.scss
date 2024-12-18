@@ -1,4 +1,7 @@
+@use 'sass:list';
 @use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
 @use '../contrast/luminance/luminance';
 
 // @docs
@@ -13,21 +16,21 @@
 	$values: ();
 
 	@each $key, $val in $map {
-		$keys: append($keys, $key);
-		$values: append($values, $val);
+		$keys: list.append($keys, $key);
+		$values: list.append($values, $val);
 	}
 
-	$list: zip($keys, $values);
+	$list: list.zip($keys, $values);
 
 	$sorted-map: ();
 
-	@while length($list) > 0 {
+	@while list.length($list) > 0 {
 		// Find smallest pair
-		$smallest-pair: nth($list, 1);
+		$smallest-pair: list.nth($list, 1);
 
 		@each $pair in $list {
-			$value: nth($pair, 2);
-			$smallest-value: nth($smallest-pair, 2);
+			$value: list.nth($pair, 2);
+			$smallest-value: list.nth($smallest-pair, 2);
 
 			@if $value < $smallest-value {
 				$smallest-pair: $pair;
@@ -35,8 +38,8 @@
 		}
 
 		// Add smallest pair to sorted map
-		$key: nth($smallest-pair, 1);
-		$value: nth($smallest-pair, 2);
+		$key: list.nth($smallest-pair, 1);
+		$value: list.nth($smallest-pair, 2);
 		$sorted-map: map.merge(
 			$sorted-map,
 			(
@@ -45,12 +48,12 @@
 		);
 
 		// Remove from list smallest pair
-		$smallest-pair-index: index($list, $smallest-pair);
+		$smallest-pair-index: list.index($list, $smallest-pair);
 		$new-list: ();
 
-		@for $i from 1 through length($list) {
+		@for $i from 1 through list.length($list) {
 			@if $i != $smallest-pair-index {
-				$new-list: append($new-list, nth($list, $i), 'space');
+				$new-list: list.append($new-list, list.nth($list, $i), 'space');
 			}
 		}
 
@@ -67,12 +70,12 @@
 // @param $nth: nth steps away from zero
 @function _daff-illuminate-get-key($map, $nth: 1) {
 	//Cap off "nth" to prevent going out-of-bounds.
-	@if ($nth > length($map)) {
-		$nth: length(map);
+	@if ($nth > list.length($map)) {
+		$nth: list.length(map);
 	}
 
 	$map: _daff-illuminate-sort($map);
-	@return nth(nth($map, $nth), 1);
+	@return list.nth(list.nth($map, $nth), 1);
 }
 
 // Takes a $color and palette and returns the color in
@@ -88,7 +91,7 @@
 
 	//Validate
 	@each $key, $palette-color in $palette {
-		@if (type-of($key) == 'string') {
+		@if (meta.type-of($key) == 'string') {
 			$palette: map.remove($palette, $key);
 		}
 	}
@@ -124,7 +127,7 @@
 			$darker-colors: map.merge(
 				$darker-colors,
 				(
-					$key: abs($luminance)
+					$key: math.abs($luminance)
 				)
 			);
 		}

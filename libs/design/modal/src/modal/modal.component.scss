@@ -1,6 +1,7 @@
 @use '../../../scss/typography' as t;
 @use '../../../scss/layout';
 
+// stylelint-disable no-duplicate-selectors
 .daff-modal {
 	display: flex;
 	flex-direction: column;

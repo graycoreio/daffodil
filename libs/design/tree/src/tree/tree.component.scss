@@ -1,6 +1,7 @@
 @use '../../../scss/interactions';
 @use '../../../scss/typography' as t;
 
+// stylelint-disable selector-class-pattern
 @mixin level-padding() {
 	padding-left: calc(var(--tree-padding) * (var(--depth)));
 }
@@ -12,7 +13,7 @@
 	--tree-padding: 1rem;
 
 	li {
-		&.hidden { /* stylelint-disable-line selector-class-pattern */
+		&.hidden {
 			display: none;
 		}
 	}
@@ -47,11 +48,10 @@
 		z-index: 1;
 	}
 
-	&.selected { /* stylelint-disable-line selector-class-pattern */
+	&.selected {
 		font-weight: 600;
 	}
 
-	// stylelint-disable selector-class-pattern
 	&.parent {
 		position: relative;
 		padding-right: 2.5rem;

@@ -4,12 +4,10 @@ import {
   Input,
   HostBinding,
   ChangeDetectionStrategy,
-  forwardRef,
   Optional,
   Output,
   EventEmitter,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { DaffRadioSetComponent } from '../radio-set/radio-set.component';
 
@@ -18,7 +16,6 @@ let radioUniqueId = 0;
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'daff-radio',
   templateUrl: './radio.html',
-  styleUrls: ['./radio.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffRadioComponent implements OnInit {

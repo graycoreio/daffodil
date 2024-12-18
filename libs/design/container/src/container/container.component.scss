@@ -1,29 +1,29 @@
 :host-context(.daff-manage-container-layout) {
 	display: inherit;
 	flex: inherit;
-	flex-direction: inherit;
 	flex-flow: inherit;
+	flex-direction: inherit;
 	flex-wrap: inherit;
+	place-items: inherit;
+	place-content: inherit;
 	justify-content: inherit;
 	justify-items: inherit;
 	align-items: inherit;
 	align-content: inherit;
 	gap: inherit;
+	grid: inherit;
+	grid-template: inherit;
+	grid-template-areas: inherit;
 	grid-template-columns: inherit;
 	grid-template-rows: inherit;
-	grid-template-areas: inherit;
-	grid-template: inherit;
 	grid-auto-columns: inherit;
 	grid-auto-rows: inherit;
 	grid-auto-flow: inherit;
-	grid: inherit;
+	grid-gap: inherit;
 	column-gap: inherit;
 	row-gap: inherit;
-	grid-gap: inherit;
 	grid-column-gap: inherit;
 	grid-row-gap: inherit;
-	place-items: inherit;
-	place-content: inherit;
 }
 
 :host {

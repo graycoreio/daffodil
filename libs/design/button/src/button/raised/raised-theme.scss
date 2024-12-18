@@ -10,7 +10,7 @@
 	}
 
 	@if theming.daff-contrast-ratio($base-color, theming.daff-text-contrast($base-color)) < 4.5 {
-		@error 'Button Hover State: '+ map.get(a11y.$wcag-aa-errors, 'text-contrast');
+		@error 'Button Hover State: ' + map.get(a11y.$wcag-aa-errors, 'text-contrast');
 	}
 
 	$black: theming.daff-color(theming.$daff-neutral, 110);
