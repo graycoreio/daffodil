@@ -4,7 +4,7 @@ Article provides styles to common element selectors to create an article in a co
 ## Overview
 Article can be used on any content page that displays large blocks of text-driven information. It's meant to be used as a standalone element and should not be nested inside any other components that may change the background color from the anticipated one. In the event that you must nest an article inside another component, please ensure that you set the article's background color to the default body color.
 
-## Supported Elements
+## Supported elements
 
 ### Headings
 <design-land-example-viewer-container example="article-headings"></design-land-example-viewer-container>
@@ -24,10 +24,10 @@ The link style in an article uses the default browser link style.
 
 ### Lists
 
-#### Unordered List
+#### Unordered list
 <design-land-example-viewer-container example="article-ul"></design-land-example-viewer-container>
 
-#### Ordered List
+#### Ordered list
 <design-land-example-viewer-container example="article-ol"></design-land-example-viewer-container>
 
 ### Code
@@ -39,15 +39,14 @@ These are styles for inline and multiline blocks of code.
 #### Code blocks
 <design-land-example-viewer-container example="article-code-block"></design-land-example-viewer-container>
 
-### Horizontal Rules
+### Horizontal rules
 <design-land-example-viewer-container example="article-hr"></design-land-example-viewer-container>
 
 ### Blockquote
 <design-land-example-viewer-container example="article-blockquote"></design-land-example-viewer-container>
 
 ## Encapsulation
-
-Articles also support other custom "non-native" components like [accordions](../accordion/README.md), [media galleries](../media-gallery/README.md), and [lists](../list/README.md). Unlike typical HTML (<p>, <ol>, <ul>, etc) content, these components must be style encaspulated to prevent article styles bleeding down from the article into their content. Many Daffodil components support this out of the box. If you have a custom component that you would like to place inside an article, you can use the `DaffArticleEncapsulatedDirective` on your component to prevent article styles bleeding into your component.
+Articles also support other custom "non-native" components like [accordions](/libs/design/accordion/README.md), [media galleries](/libs/design/media-gallery/README.md), and [lists](/libs/design/list/README.md). Unlike typical HTML (`<p>`, `<ol>`, `<ul>`, etc) content, these components must be style encaspulated to prevent article styles bleeding down from the article into their content. Many Daffodil components support this out of the box. If you have a custom component that you would like to place inside an article, you can use the `DaffArticleEncapsulatedDirective` on your component to prevent article styles bleeding into your component.
 
 ## Usage
 
