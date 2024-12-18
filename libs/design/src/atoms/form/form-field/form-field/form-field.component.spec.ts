@@ -36,7 +36,7 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
   let component: DaffFormFieldComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let formFieldControlElement: HTMLElement;
-  let control: DaffFormFieldControl;
+  let control: DaffFormFieldControl<unknown>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

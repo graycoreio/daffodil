@@ -4,7 +4,6 @@
 	[class.daff-error]="isError"
 	[class.daff-valid]="isValid"
 	[class.daff-filled]="isFilled"
-	[class.daff-disabled]="isDisabled"
 >
 	<ng-content></ng-content>
 	<div
@@ -14,4 +13,6 @@
 		<fa-icon [icon]="faChevronDown"></fa-icon>
 	</div>
 </div>
-<ng-content select="daff-error-message"></ng-content>
+@if (_control?.ngControl?.touched) {
+  <ng-content select="daff-error-message"></ng-content>
+}

@@ -27,7 +27,7 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
   standalone: false,
 })
 
-export class DaffNativeSelectComponent implements DaffFormFieldControl {
+export class DaffNativeSelectComponent implements DaffFormFieldControl<string | number> {
   /**
    * @docs-private
    */
@@ -67,4 +67,7 @@ export class DaffNativeSelectComponent implements DaffFormFieldControl {
     this._elementRef.nativeElement.focus();
   }
 
+  get value() {
+    return this._elementRef.nativeElement.value;
+  }
 }

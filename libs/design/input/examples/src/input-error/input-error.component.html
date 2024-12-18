@@ -1,6 +1,11 @@
 <daff-form-field>
   <input daff-input type="text" placeholder="Email" name="email" [formControl]="control" id="error-input"/>
   <label for="error-input">Label</label>
-  <div class="error">Error message goes here.</div>
+  @if (control.errors?.required) {
+    <daff-error-message>Email is a required field.</daff-error-message>
+  }
+  @if (control.errors?.email) {
+    <daff-error-message>Email is not valid.</daff-error-message>
+  }
 </daff-form-field>
 <p>Value: {{ control.value }} </p>

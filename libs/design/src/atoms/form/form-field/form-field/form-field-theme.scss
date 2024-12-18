@@ -34,12 +34,14 @@
 				}
 			}
 
-      &:has(input:disabled) {
+      &:has(*:disabled),
+      &:has(*.isDisabled) {
         border: 1px solid theming.daff-illuminate($base, $neutral, 4);
         color: theming.daff-illuminate($base, $neutral, 4);
       }
 
-      input:disabled {
+      *:disabled,
+      .isDisabled {
         background-color: transparent;
       }
 		}
