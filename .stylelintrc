@@ -4,6 +4,8 @@
     "stylelint-scss",
     "@stylistic/stylelint-plugin"
   ],
+  "extends": "stylelint-config-recommended-scss",
+  
   "rules": {
     "color-hex-length": "long",
     "color-no-invalid-hex": true,
@@ -44,6 +46,7 @@
     "declaration-no-important": true,
     "declaration-empty-line-before":"never",
     "block-no-empty": true,
+    "no-descending-specificity": null,
     "selector-pseudo-element-colon-notation": "double",
     "selector-pseudo-element-no-unknown": [true, {
       "ignorePseudoElements": ["ng-deep"]
@@ -61,6 +64,8 @@
     "scss/selector-no-redundant-nesting-selector": true,
     "scss/dollar-variable-pattern": "^_?[a-z\\-]+$",
     "scss/at-else-empty-line-before": "never",
+    "scss/at-if-no-null": null,
+    "scss/comment-no-empty": null,
     "@stylistic/block-closing-brace-newline-after": "always",
     "@stylistic/block-closing-brace-newline-before": "always-multi-line",
     "@stylistic/block-closing-brace-empty-line-before": "never",
@@ -75,9 +80,8 @@
     "@stylistic/function-comma-space-after": "always-single-line",
     "@stylistic/function-comma-space-before": "never",
     "@stylistic/function-whitespace-after": "always",
-    "@stylistic/indentation": "tab",
     "@stylistic/linebreaks": "unix",
-    "@stylistic/max-line-length": 100,
+    "@stylistic/max-line-length": 120,
     "@stylistic/no-missing-end-of-source-newline": true,
     "@stylistic/no-eol-whitespace": true,
     "@stylistic/number-leading-zero": "always",
