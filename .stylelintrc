@@ -1,7 +1,6 @@
 {
   "plugins": [
     "stylelint-selector-bem-pattern",
-    "stylelint-scss",
     "@stylistic/stylelint-plugin"
   ],
   "extends": "stylelint-config-recommended-scss",
