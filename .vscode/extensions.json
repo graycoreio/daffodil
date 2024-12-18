@@ -8,6 +8,7 @@
         "mrmlnc.vscode-scss",
         "tehnix.vscode-tidymarkdown",
         "dbaeumer.vscode-eslint",
-        "github.vscode-github-actions"
+        "github.vscode-github-actions",
+        "esbenp.prettier-vscode"
     ]
 }

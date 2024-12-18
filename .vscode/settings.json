@@ -39,5 +39,22 @@
         "typescriptreact",
         "html"
     ],
-    "eslint.format.enable": true
+    "eslint.format.enable": true,
+    "editor.insertSpaces": false,
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+    "stylelint.validate": ["css", "scss"],
+    "[html]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
