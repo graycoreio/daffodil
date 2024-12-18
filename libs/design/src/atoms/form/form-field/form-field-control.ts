@@ -11,7 +11,7 @@ import { NgControl } from '@angular/forms';
  * in javascript, they get thrown out by the typescript compiler and cannot
  * be used for the necessary dependency injection.
  */
-export abstract class DaffFormFieldControl {
+export abstract class DaffFormFieldControl<T> {
   readonly ngControl: NgControl | null;
 
   readonly controlType?: any;
@@ -19,4 +19,6 @@ export abstract class DaffFormFieldControl {
   readonly focused: boolean;
 
   abstract focus(event?: Event): void;
+
+  readonly value: T;
 };

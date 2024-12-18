@@ -25,7 +25,7 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
     { provide: DaffFormFieldControl, useExisting: DaffInputComponent },
   ],
 })
-export class DaffInputComponent implements DaffFormFieldControl {
+export class DaffInputComponent implements DaffFormFieldControl<string> {
 
   /**
    * Has the form been submitted.
@@ -58,5 +58,9 @@ export class DaffInputComponent implements DaffFormFieldControl {
 
   onFocus() {
     this._elementRef.nativeElement.focus();
+  }
+
+  get value() {
+    return this._elementRef.nativeElement.value;
   }
 }

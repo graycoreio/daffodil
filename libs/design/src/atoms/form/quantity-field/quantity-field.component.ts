@@ -29,7 +29,7 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFormFieldControl {
+export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFormFieldControl<number> {
 
   @ViewChild(DaffQuantityInputComponent) input: DaffQuantityInputComponent;
   @ViewChild(DaffQuantitySelectComponent) select: DaffQuantitySelectComponent;
@@ -137,6 +137,15 @@ export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFor
     }
     if(this.input) {
       this.input.focus();
+    }
+  }
+
+  get value() {
+    if(this.select) {
+      return this.select.value;
+    }
+    if(this.input) {
+      return this.input.value;
     }
   }
 }

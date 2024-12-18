@@ -21,7 +21,7 @@ import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
   styleUrls: ['./form-field.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterContentChecked {
+export class DaffFormFieldComponent implements AfterContentInit, AfterContentChecked {
 
   /**
    * @docs-private
@@ -44,7 +44,7 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    *
    * @docs-private
    */
-  @ContentChild(DaffFormFieldControl) _control: DaffFormFieldControl;
+  @ContentChild(DaffFormFieldControl) _control: DaffFormFieldControl<unknown>;
 
   /**
    * Tracking property to keep a record of whether or not the
@@ -65,35 +65,12 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
   isValid = false;
 
   /**
-   * Tracking property to keep a record of whether or not the
-   * form field should be marked as disabled.
-   */
-  // isDisabled = false;
-
-  /**
    * @docs
    *
    * Determines whether or not the form field should display its focused state.
    */
   get isFocused() {
     return this._control?.focused;
-  }
-
-  /**
-   * Keeps the state of the form field consistent with its child DaffFormControl
-   *
-   * TODO: consider whether or not this can be refactored to some kind of
-   * observable to remove unnecessary change detection.
-   *
-   * @docs-private
-   */
-  ngDoCheck() {
-    if(this._control?.ngControl) {
-      this.isError = this._control.ngControl.errors && (this._control.ngControl.touched);
-      this.isValid = !this._control.ngControl.errors && this._control.ngControl.touched;
-      this.isFilled = !!this._control.ngControl.value;
-      // this.isDisabled = this._control.ngControl.disabled;
-    }
   }
 
   /**
@@ -126,5 +103,10 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    */
   ngAfterContentChecked() {
     this._validateFormControl();
+    if(this._control?.ngControl) {
+      this.isError = this._control.ngControl.errors && (this._control.ngControl.touched);
+      this.isValid = !this._control.ngControl.errors && this._control.ngControl.touched;
+    }
+    this.isFilled = !!this._control.value;
   }
 }
