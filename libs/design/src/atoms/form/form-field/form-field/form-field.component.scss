@@ -2,13 +2,9 @@
 	display: block;
 	position: relative;
 
-  &:has(.error) {
-    padding-bottom: 32px;
-  }
-
 	&__control {
 		border-radius: 4px;
-		display: inline-block;
+		display: flex;
 		font-size: 16px;
 		height: inherit;
 		line-height: 16px;
@@ -48,14 +44,40 @@
 		display: inline-block;
 		pointer-events: none;
 		position: absolute;
-		right: 16px;
-	}
+    top: 50%;
+    transform: translateY(-50%);
 
-  .error {
+    &--prefix {
+      left: 16px;
+    }
+
+    &--suffix {
+      right: 16px;
+    }
+  }
+
+  :has(fa-icon.prefix) > label,
+  :has(fa-icon.prefix) > input {
+    padding-left: 28px;
+  }
+
+  .hint {
     position: absolute;
     top: 100%;
     left: 16px;
-    padding-top: 8px;
+    margin-top: 8px;
     font-size: 12px;
+  }
+
+  &:has(.hint) {
+    margin-bottom: 24px;
+
+    daff-error-message {
+      margin-top: 24px;
+    }
+
+    &:has(daff-error-message) {
+      margin-bottom: 0px;
+    }
   }
 }

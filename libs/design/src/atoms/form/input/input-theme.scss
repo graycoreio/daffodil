@@ -5,12 +5,8 @@
 	$base: core.daff-map-get($theme, 'core', 'base');
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 
-	:host {
+	.daff-input {
 		background: $base;
 		color: $base-contrast;
-
-		&::placeholder {
-			color: transparent;
-		}
 	}
 }

@@ -5,6 +5,9 @@
 	[class.daff-valid]="isValid"
 	[class.daff-filled]="isFilled"
 >
+  <span class="daff-form-field__icon daff-form-field__icon--prefix">
+    <ng-content select=".prefix"></ng-content>
+  </span>
 	<ng-content></ng-content>
 	<div
 		class="daff-form-field__icon"
@@ -12,6 +15,9 @@
 	>
 		<fa-icon [icon]="faChevronDown"></fa-icon>
 	</div>
+  <span class="daff-form-field__icon daff-form-field__icon--suffix">
+    <ng-content select=".suffix"></ng-content>
+  </span>
 </div>
 @if (_control?.ngControl?.touched) {
   <ng-content select="daff-error-message"></ng-content>
