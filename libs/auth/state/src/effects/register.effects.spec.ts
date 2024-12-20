@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
+import { Action } from '@ngrx/store';
 import {
   hot,
   cold,
@@ -8,6 +9,7 @@ import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffLoginInfo,
@@ -38,6 +40,15 @@ import {
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 
 import { DaffAuthRegisterEffects } from './register.effects';
+
+interface RegisterTestStates {
+  isAutoLoginTrue: boolean;
+  didRegisterSucceed: boolean;
+  didTokenStorageSucceed?: boolean;
+  whatErrorWasThrown?: DaffStorageServiceError;
+  whatActionWasReturned?: Action;
+  whatOtherActionWasReturned?: Action;
+}
 
 describe('@daffodil/auth/state | DaffAuthRegisterEffects', () => {
   let actions$: Observable<any>;
@@ -90,115 +101,100 @@ describe('@daffodil/auth/state | DaffAuthRegisterEffects', () => {
   });
 
   describe('register$ | when the user registers an account', () => {
-    let expected;
-    let mockAuthRegisterAction: DaffAuthRegister;
 
-    describe('when autoLogin is true', () => {
-      beforeEach(() => {
-        mockAuthRegisterAction = new DaffAuthRegister(mockRegistration, true);
-        actions$ = hot('--a', { a: mockAuthRegisterAction });
-      });
+    it('should compute the next action correctly', () => {
+      const testStates: RegisterTestStates[] = [
+        {
+          isAutoLoginTrue: true,
+          didRegisterSucceed: true,
+          didTokenStorageSucceed: true,
+          whatActionWasReturned: new DaffAuthRegisterSuccess(token),
+        },
+        {
+          isAutoLoginTrue: true,
+          didRegisterSucceed: true,
+          didTokenStorageSucceed: false,
+          whatErrorWasThrown: new DaffServerSideStorageError('Server side'),
+          whatActionWasReturned: new DaffAuthRegisterFailure(daffTransformErrorToStateError(
+            new DaffServerSideStorageError('Server side'),
+          )),
+          whatOtherActionWasReturned: new DaffAuthServerSide(daffTransformErrorToStateError(
+            new DaffServerSideStorageError('Server side'),
+          )),
+        },
+        {
+          isAutoLoginTrue: true,
+          didRegisterSucceed: true,
+          didTokenStorageSucceed: false,
+          whatErrorWasThrown: new DaffStorageServiceError('Storage error'),
+          whatActionWasReturned: new DaffAuthRegisterFailure(daffTransformErrorToStateError(
+            new DaffStorageServiceError('Storage error'),
+          )),
+          whatOtherActionWasReturned: new DaffAuthStorageFailure(daffTransformErrorToStateError(
+            new DaffStorageServiceError('Storage error'),
+          )),
+        },
+        {
+          isAutoLoginTrue: true,
+          didRegisterSucceed: false,
+          whatErrorWasThrown: new DaffAuthInvalidAPIResponseError('Failed to register a new user'),
+          whatActionWasReturned: new DaffAuthRegisterFailure(daffTransformErrorToStateError(
+            new DaffAuthInvalidAPIResponseError('Failed to register a new user'),
+          )),
+        },
+        {
+          isAutoLoginTrue: false,
+          didRegisterSucceed: true,
+          whatActionWasReturned: new DaffAuthRegisterSuccess(),
+        },
+        {
+          isAutoLoginTrue: false,
+          didRegisterSucceed: false,
+          whatErrorWasThrown: new DaffAuthInvalidAPIResponseError('Failed to register a new user'),
+          whatActionWasReturned: new DaffAuthRegisterFailure(daffTransformErrorToStateError(
+            new DaffAuthInvalidAPIResponseError('Failed to register a new user'),
+          )),
+        },
+      ];
 
-      describe('and the register is successful', () => {
-        beforeEach(() => {
-          daffRegisterDriver.register.and.returnValue(of(token));
+      testStates.forEach((el) => {
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
         });
 
-        describe('and setToken is successful', () => {
-          beforeEach(() => {
-            const mockAuthResetPasswordSuccessAction = new DaffAuthRegisterSuccess(token);
+        testScheduler.run(helpers => {
+          const mockAuthRegisterAction = new DaffAuthRegister(mockRegistration, el.isAutoLoginTrue);
+          actions$ = helpers.hot('--a', { a: mockAuthRegisterAction });
 
-            expected = cold('--a', { a: mockAuthResetPasswordSuccessAction });
-          });
+          if (el.didRegisterSucceed) {
+            if (el.isAutoLoginTrue) {
+              daffRegisterDriver.register.and.returnValue(of(token));
+            } else {
+              daffRegisterDriver.registerOnly.and.returnValue(of(undefined));
+            }
+            if (el.whatErrorWasThrown) {
+              setAuthTokenSpy.and.throwError(el.whatErrorWasThrown);
+            } else {
+              setAuthTokenSpy.and.returnValue(undefined);
+            }
+          } else {
+            if (el.isAutoLoginTrue) {
+              daffRegisterDriver.register.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+            } else {
+              daffRegisterDriver.registerOnly.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+            }
+          }
 
-          it('should notify state that the register was successful', () => {
-            expect(effects.register$).toBeObservable(expected);
-          });
+          if (el.didRegisterSucceed && el.whatErrorWasThrown){
+            helpers.expectObservable(effects.register$).toBe('--(ab)', { a: el.whatOtherActionWasReturned, b: el.whatActionWasReturned });
+          } else {
+            helpers.expectObservable(effects.register$).toBe('--b', { b: el.whatActionWasReturned });
+          }
 
-          it('should store the auth token', () => {
-            expect(effects.register$).toBeObservable(expected);
+          helpers.flush();
+          if (el.didTokenStorageSucceed) {
             expect(setAuthTokenSpy).toHaveBeenCalledWith(token);
-          });
-        });
-
-        describe('and the storage service throws a server side error', () => {
-          beforeEach(() => {
-            const error = new DaffServerSideStorageError('Server side');
-            const serverSideAction = new DaffAuthServerSide(daffTransformErrorToStateError(error));
-            const mockAuthResetPasswordFailureAction = new DaffAuthRegisterFailure(daffTransformErrorToStateError(error));
-            setAuthTokenSpy.and.throwError(error);
-            expected = cold('--(ab)', { a: serverSideAction, b: mockAuthResetPasswordFailureAction });
-          });
-
-          it('should dispatch a server side and a failure action', () => {
-            expect(effects.register$).toBeObservable(expected);
-          });
-        });
-
-        describe('and the storage service throws a storage error', () => {
-          beforeEach(() => {
-            const error = new DaffStorageServiceError('Storage error');
-            const storageAction = new DaffAuthStorageFailure(daffTransformErrorToStateError(error));
-            const mockAuthResetPasswordFailureAction = new DaffAuthRegisterFailure(daffTransformErrorToStateError(error));
-            setAuthTokenSpy.and.throwError(error);
-            expected = cold('--(ab)', { a: storageAction, b: mockAuthResetPasswordFailureAction });
-          });
-
-          it('should dispatch a server side action', () => {
-            expect(effects.register$).toBeObservable(expected);
-          });
-        });
-      });
-
-      describe('and the register fails', () => {
-        beforeEach(() => {
-          const error = new DaffAuthInvalidAPIResponseError('Failed to register a new user');
-          const response = cold('#', {}, error);
-          daffRegisterDriver.register.and.returnValue(response);
-          const mockAuthResetPasswordFailureAction = new DaffAuthRegisterFailure(daffTransformErrorToStateError(error));
-
-          actions$ = hot('--a', { a: mockAuthRegisterAction });
-          expected = cold('--b', { b: mockAuthResetPasswordFailureAction });
-        });
-
-        it('should notify state that the register failed', () => {
-          expect(effects.register$).toBeObservable(expected);
-        });
-      });
-    });
-
-    describe('when autoLogin is false', () => {
-      beforeEach(() => {
-        mockAuthRegisterAction = new DaffAuthRegister(mockRegistration, false);
-      });
-
-      describe('and the register is successful', () => {
-        beforeEach(() => {
-          daffRegisterDriver.registerOnly.and.returnValue(of(undefined));
-          const mockAuthResetPasswordSuccessAction = new DaffAuthRegisterSuccess();
-
-          actions$ = hot('--a', { a: mockAuthRegisterAction });
-          expected = cold('--b', { b: mockAuthResetPasswordSuccessAction });
-        });
-
-        it('should notify state that the register was successful', () => {
-          expect(effects.register$).toBeObservable(expected);
-        });
-      });
-
-      describe('and the register fails', () => {
-        beforeEach(() => {
-          const error = new DaffAuthInvalidAPIResponseError('Failed to register a new user');
-          const response = cold('#', {}, error);
-          daffRegisterDriver.registerOnly.and.returnValue(response);
-          const mockAuthResetPasswordFailureAction = new DaffAuthRegisterFailure(daffTransformErrorToStateError(error));
-
-          actions$ = hot('--a', { a: mockAuthRegisterAction });
-          expected = cold('--b', { b: mockAuthResetPasswordFailureAction });
-        });
-
-        it('should notify state that the register failed', () => {
-          expect(effects.register$).toBeObservable(expected);
+          }
         });
       });
     });
