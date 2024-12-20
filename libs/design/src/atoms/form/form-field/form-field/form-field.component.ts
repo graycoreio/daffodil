@@ -103,7 +103,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    */
   ngAfterContentChecked() {
     this._validateFormControl();
-    if(this._control?.ngControl) {
+    if (this._control?.ngControl) {
       this.isError = this._control.ngControl.errors && (this._control.ngControl.touched);
       this.isValid = !this._control.ngControl.errors && this._control.ngControl.touched;
     }
