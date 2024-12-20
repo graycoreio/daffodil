@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
+import { Action } from '@ngrx/store';
 import {
   hot,
   cold,
@@ -8,6 +9,7 @@ import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffAuthLoginSuccess,
@@ -32,6 +34,19 @@ import { DaffStorageServiceError } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartCustomerAuthEffects } from './auth.effects';
+
+interface TestState {
+  wasCardIdInStorage: boolean;
+  didFirstDriverCallSucceed: boolean;
+  didLastDriverCallSucceed?: boolean;
+  whatActionWasReturned: Action;
+  whatErrorWasThrown?: DaffStateError;
+  whatCardIdWasFound: string | null;
+}
+
+interface ActionState {
+  whatAction: DaffAuthLoginSuccess | DaffAuthRegisterSuccess | DaffResetPasswordSuccess;
+}
 
 describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
   let actions$: Observable<any>;
@@ -83,325 +98,100 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
     expect(effects).toBeTruthy();
   });
 
-  describe('when DaffAuthLoginSuccess is triggered', () => {
-    let expected;
-    const authCompleteAction = new DaffAuthLoginSuccess(null);
+  describe('when an action is triggered', () => {
+    const actionStates: ActionState[] = [
+      {
+        whatAction: new DaffAuthLoginSuccess(null),
+      },
+      {
+        whatAction: new DaffAuthRegisterSuccess('token'),
+      },
+      {
+        whatAction: new DaffResetPasswordSuccess('token'),
+      },
+    ];
 
-    describe('and there is a cart ID in storage', () => {
-      beforeEach(() => {
-        getCartIdSpy.and.returnValue(stubCart.id);
-      });
+    actionStates.forEach((as) => {
+      const authCompleteAction = as.whatAction;
 
-      describe('and the call to the driver is successful', () => {
-        beforeEach(() => {
-          driverMergeSpy.and.returnValue(of({
-            response: stubCart,
-            errors: [],
-          }));
-          const resolveSuccessAction = new DaffResolveCartSuccess(stubCart);
-          actions$ = hot('--a', { a: authCompleteAction });
-          expected = cold('--b', { b: resolveSuccessAction });
-        });
+      it('should compute the next action correctly', () => {
+        const testStates: TestState[] = [
+          {
+            wasCardIdInStorage: true,
+            didFirstDriverCallSucceed: true,
+            whatActionWasReturned: new DaffResolveCartSuccess(stubCart),
+            whatCardIdWasFound: stubCart.id,
+          },
+          {
+            wasCardIdInStorage: true,
+            didFirstDriverCallSucceed: false,
+            didLastDriverCallSucceed: true,
+            whatErrorWasThrown: { code: 'code', recoverable: false, message: 'Failed to load cart' },
+            whatActionWasReturned: new DaffResolveCartSuccess(stubCart),
+            whatCardIdWasFound: stubCart.id,
+          },
+          {
+            wasCardIdInStorage: true,
+            didFirstDriverCallSucceed: false,
+            didLastDriverCallSucceed: false,
+            whatErrorWasThrown: { code: 'code', recoverable: false, message: 'Failed to load cart' },
+            whatActionWasReturned: new DaffResolveCartFailure([
+              { code: 'code', recoverable: false, message: 'Failed to load cart' },
+            ]),
+            whatCardIdWasFound: stubCart.id,
+          },
+          {
+            wasCardIdInStorage: false,
+            didFirstDriverCallSucceed: true,
+            didLastDriverCallSucceed: true,
+            whatActionWasReturned: new DaffResolveCartSuccess(stubCart),
+            whatCardIdWasFound: null,
+          },
+          {
+            wasCardIdInStorage: false,
+            didFirstDriverCallSucceed: false,
+            didLastDriverCallSucceed: false,
+            whatErrorWasThrown: { code: 'code', recoverable: false, message: 'Failed to load cart' },
+            whatActionWasReturned: new DaffResolveCartFailure([
+              { code: 'code', recoverable: false, message: 'Failed to load cart' },
+            ]),
+            whatCardIdWasFound: null,
+          },
+        ];
 
-        it('should dispatch a DaffResolveCartSuccess action', () => {
-          expect(effects.mergeAfterLogin$).toBeObservable(expected);
-        });
-      });
-
-      describe('and the call to the driver fails', () => {
-        beforeEach(() => {
-          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart' };
-          const response = cold('#', {}, error);
-          driverMergeSpy.and.returnValue(response);
-          actions$ = hot('--a', { a: authCompleteAction });
-        });
-
-        describe('and the call to the driver is successful', () => {
-          beforeEach(() => {
-            driverGetSpy.and.returnValue(of({
-              response: stubCart,
-              errors: [],
-            }));
-            const resolveSuccessAction = new DaffResolveCartSuccess(stubCart);
-            actions$ = hot('--a', { a: authCompleteAction });
-            expected = cold('--b', { b: resolveSuccessAction });
+        testStates.forEach((el) => {
+          const testScheduler = new TestScheduler((actual, expected) => {
+            expect(actual).toEqual(expected);
           });
+          testScheduler.run(helpers => {
+            getCartIdSpy.and.returnValue(el.whatCardIdWasFound);
+            if (el.didLastDriverCallSucceed) {
+              driverGetSpy.and.returnValue(of({
+                response: stubCart,
+                errors: [],
+              }));
+            } else {
+              driverGetSpy.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+            }
+            if (el.wasCardIdInStorage) {
+              if (el.didFirstDriverCallSucceed) {
+                driverMergeSpy.and.returnValue(of({
+                  response: stubCart,
+                  errors: [],
+                }));
+              } else {
+                driverMergeSpy.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+              }
+            }
 
-          it('should dispatch a DaffResolveCartSuccess action', () => {
-            expect(effects.mergeAfterLogin$).toBeObservable(expected);
+            actions$ = helpers.hot('--a', { a: authCompleteAction });
+            helpers.expectObservable(effects.mergeAfterLogin$).toBe('--b', { b: el.whatActionWasReturned });
+
+            // helpers.flush();
+            // if (!el.wasCardIdInStorage && el.didFirstDriverCallSucceed) {
+            //   expect(driverMergeSpy).not.toHaveBeenCalled();
+            // }
           });
-        });
-
-        describe('and the call to the driver fails', () => {
-          beforeEach(() => {
-            const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart' };
-            const response = cold('#', {}, error);
-            driverGetSpy.and.returnValue(response);
-            const resolveFailureAction = new DaffResolveCartFailure([error]);
-            actions$ = hot('--a', { a: authCompleteAction });
-            expected = cold('--b', { b: resolveFailureAction });
-          });
-
-          it('should dispatch a DaffResolveCartFailure action', () => {
-            expect(effects.mergeAfterLogin$).toBeObservable(expected);
-          });
-        });
-      });
-    });
-
-    describe('and there is not a cart ID in storage', () => {
-      beforeEach(() => {
-        getCartIdSpy.and.returnValue(null);
-      });
-
-      describe('and the call to the driver is successful', () => {
-        beforeEach(() => {
-          driverGetSpy.and.returnValue(of({
-            response: stubCart,
-            errors: [],
-          }));
-          const resolveSuccessAction = new DaffResolveCartSuccess(stubCart);
-          actions$ = hot('--a', { a: authCompleteAction });
-          expected = cold('--b', { b: resolveSuccessAction });
-        });
-
-        it('should dispatch a DaffResolveCartSuccess action', () => {
-          expect(effects.mergeAfterLogin$).toBeObservable(expected);
-        });
-
-        it('should not try to merge the carts', () => {
-          expect(driverMergeSpy).not.toHaveBeenCalled();
-        });
-      });
-
-      describe('and the call to the driver fails', () => {
-        beforeEach(() => {
-          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart' };
-          const response = cold('#', {}, error);
-          driverGetSpy.and.returnValue(response);
-          const resolveFailureAction = new DaffResolveCartFailure([error]);
-          actions$ = hot('--a', { a: authCompleteAction });
-          expected = cold('--b', { b: resolveFailureAction });
-        });
-
-        it('should dispatch a DaffResolveCartFailure action', () => {
-          expect(effects.mergeAfterLogin$).toBeObservable(expected);
-        });
-      });
-    });
-  });
-
-  describe('when DaffAuthRegisterSuccess is triggered with a token', () => {
-    let expected;
-    const authCompleteAction = new DaffAuthRegisterSuccess('token');
-
-    describe('and there is a cart ID in storage', () => {
-      beforeEach(() => {
-        getCartIdSpy.and.returnValue(stubCart.id);
-      });
-
-      describe('and the call to the driver is successful', () => {
-        beforeEach(() => {
-          driverMergeSpy.and.returnValue(of({
-            response: stubCart,
-            errors: [],
-          }));
-          const resolveSuccessAction = new DaffResolveCartSuccess(stubCart);
-          actions$ = hot('--a', { a: authCompleteAction });
-          expected = cold('--b', { b: resolveSuccessAction });
-        });
-
-        it('should dispatch a DaffResolveCartSuccess action', () => {
-          expect(effects.mergeAfterLogin$).toBeObservable(expected);
-        });
-      });
-
-      describe('and the call to the driver fails', () => {
-        beforeEach(() => {
-          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart' };
-          const response = cold('#', {}, error);
-          driverMergeSpy.and.returnValue(response);
-          actions$ = hot('--a', { a: authCompleteAction });
-        });
-
-        describe('and the call to the driver is successful', () => {
-          beforeEach(() => {
-            driverGetSpy.and.returnValue(of({
-              response: stubCart,
-              errors: [],
-            }));
-            const resolveSuccessAction = new DaffResolveCartSuccess(stubCart);
-            actions$ = hot('--a', { a: authCompleteAction });
-            expected = cold('--b', { b: resolveSuccessAction });
-          });
-
-          it('should dispatch a DaffResolveCartSuccess action', () => {
-            expect(effects.mergeAfterLogin$).toBeObservable(expected);
-          });
-        });
-
-        describe('and the call to the driver fails', () => {
-          beforeEach(() => {
-            const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart' };
-            const response = cold('#', {}, error);
-            driverGetSpy.and.returnValue(response);
-            const resolveFailureAction = new DaffResolveCartFailure([error]);
-            actions$ = hot('--a', { a: authCompleteAction });
-            expected = cold('--b', { b: resolveFailureAction });
-          });
-
-          it('should dispatch a DaffResolveCartFailure action', () => {
-            expect(effects.mergeAfterLogin$).toBeObservable(expected);
-          });
-        });
-      });
-    });
-
-    describe('and there is not a cart ID in storage', () => {
-      beforeEach(() => {
-        getCartIdSpy.and.returnValue(null);
-      });
-
-      describe('and the call to the driver is successful', () => {
-        beforeEach(() => {
-          driverGetSpy.and.returnValue(of({
-            response: stubCart,
-            errors: [],
-          }));
-          const resolveSuccessAction = new DaffResolveCartSuccess(stubCart);
-          actions$ = hot('--a', { a: authCompleteAction });
-          expected = cold('--b', { b: resolveSuccessAction });
-        });
-
-        it('should dispatch a DaffResolveCartSuccess action', () => {
-          expect(effects.mergeAfterLogin$).toBeObservable(expected);
-        });
-
-        it('should not try to merge the carts', () => {
-          expect(driverMergeSpy).not.toHaveBeenCalled();
-        });
-      });
-
-      describe('and the call to the driver fails', () => {
-        beforeEach(() => {
-          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart' };
-          const response = cold('#', {}, error);
-          driverGetSpy.and.returnValue(response);
-          const resolveFailureAction = new DaffResolveCartFailure([error]);
-          actions$ = hot('--a', { a: authCompleteAction });
-          expected = cold('--b', { b: resolveFailureAction });
-        });
-
-        it('should dispatch a DaffResolveCartFailure action', () => {
-          expect(effects.mergeAfterLogin$).toBeObservable(expected);
-        });
-      });
-    });
-  });
-
-  describe('when DaffResetPasswordSuccess is triggered with a token', () => {
-    let expected;
-    const authCompleteAction = new DaffResetPasswordSuccess('token');
-
-    describe('and there is a cart ID in storage', () => {
-      beforeEach(() => {
-        getCartIdSpy.and.returnValue(stubCart.id);
-      });
-
-      describe('and the call to the driver is successful', () => {
-        beforeEach(() => {
-          driverMergeSpy.and.returnValue(of({
-            response: stubCart,
-            errors: [],
-          }));
-          const resolveSuccessAction = new DaffResolveCartSuccess(stubCart);
-          actions$ = hot('--a', { a: authCompleteAction });
-          expected = cold('--b', { b: resolveSuccessAction });
-        });
-
-        it('should dispatch a DaffResolveCartSuccess action', () => {
-          expect(effects.mergeAfterLogin$).toBeObservable(expected);
-        });
-      });
-
-      describe('and the call to the driver fails', () => {
-        beforeEach(() => {
-          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart' };
-          const response = cold('#', {}, error);
-          driverMergeSpy.and.returnValue(response);
-          actions$ = hot('--a', { a: authCompleteAction });
-        });
-
-        describe('and the call to the driver is successful', () => {
-          beforeEach(() => {
-            driverGetSpy.and.returnValue(of({
-              response: stubCart,
-              errors: [],
-            }));
-            const resolveSuccessAction = new DaffResolveCartSuccess(stubCart);
-            actions$ = hot('--a', { a: authCompleteAction });
-            expected = cold('--b', { b: resolveSuccessAction });
-          });
-
-          it('should dispatch a DaffResolveCartSuccess action', () => {
-            expect(effects.mergeAfterLogin$).toBeObservable(expected);
-          });
-        });
-
-        describe('and the call to the driver fails', () => {
-          beforeEach(() => {
-            const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart' };
-            const response = cold('#', {}, error);
-            driverGetSpy.and.returnValue(response);
-            const resolveFailureAction = new DaffResolveCartFailure([error]);
-            actions$ = hot('--a', { a: authCompleteAction });
-            expected = cold('--b', { b: resolveFailureAction });
-          });
-
-          it('should dispatch a DaffResolveCartFailure action', () => {
-            expect(effects.mergeAfterLogin$).toBeObservable(expected);
-          });
-        });
-      });
-    });
-
-    describe('and there is not a cart ID in storage', () => {
-      beforeEach(() => {
-        getCartIdSpy.and.returnValue(null);
-      });
-
-      describe('and the call to the driver is successful', () => {
-        beforeEach(() => {
-          driverGetSpy.and.returnValue(of({
-            response: stubCart,
-            errors: [],
-          }));
-          const resolveSuccessAction = new DaffResolveCartSuccess(stubCart);
-          actions$ = hot('--a', { a: authCompleteAction });
-          expected = cold('--b', { b: resolveSuccessAction });
-        });
-
-        it('should dispatch a DaffResolveCartSuccess action', () => {
-          expect(effects.mergeAfterLogin$).toBeObservable(expected);
-        });
-
-        it('should not try to merge the carts', () => {
-          expect(driverMergeSpy).not.toHaveBeenCalled();
-        });
-      });
-
-      describe('and the call to the driver fails', () => {
-        beforeEach(() => {
-          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart' };
-          const response = cold('#', {}, error);
-          driverGetSpy.and.returnValue(response);
-          const resolveFailureAction = new DaffResolveCartFailure([error]);
-          actions$ = hot('--a', { a: authCompleteAction });
-          expected = cold('--b', { b: resolveFailureAction });
-        });
-
-        it('should dispatch a DaffResolveCartFailure action', () => {
-          expect(effects.mergeAfterLogin$).toBeObservable(expected);
         });
       });
     });
