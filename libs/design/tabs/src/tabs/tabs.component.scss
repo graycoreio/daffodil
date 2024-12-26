@@ -9,7 +9,7 @@
 
 	#{$root}__tab-list {
 		display: flex;
-		overflow-x: scroll;
+		overflow-x: auto;
 		scrollbar-width: thin;
 	}
 }
