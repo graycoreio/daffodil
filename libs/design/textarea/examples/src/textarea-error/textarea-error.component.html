@@ -1,0 +1,12 @@
+<daff-form-field>
+  <textarea daff-textarea type="text" placeholder="Email" name="email" [formControl]="control" id="error-textarea"></textarea>
+  <label for="error-textarea">Label</label>
+  @if (control.errors?.required) {
+    <daff-error-message>Email is a required field.</daff-error-message>
+  }
+  @if (control.errors?.email) {
+    <daff-error-message>Email is not valid.</daff-error-message>
+  }
+  <div class="hint">Hint goes here.</div>
+</daff-form-field>
+<p>Value: {{ control.value }} </p>

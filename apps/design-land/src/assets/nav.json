@@ -76,6 +76,13 @@
               "id": "input",
               "items": [],
               "data": {}
+            },
+            {
+              "title": "Textarea",
+              "url": "textarea",
+              "id": "textarea",
+              "items": [],
+              "data": {}
             }
           ],
           "data": {}
