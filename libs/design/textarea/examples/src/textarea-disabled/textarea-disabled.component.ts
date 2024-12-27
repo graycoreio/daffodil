@@ -12,6 +12,11 @@ import {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'textarea-disabled',
   templateUrl: './textarea-disabled.component.html',
+  styles: [`
+    daff-form-field {
+      max-width: 320px;
+    }
+  `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [DaffFormFieldModule, DaffTextareaModule],

@@ -18,6 +18,11 @@ import {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'textarea-with-form-field',
   templateUrl: './textarea-with-form-field.component.html',
+  styles: [`
+    daff-form-field {
+      max-width: 320px;
+    }
+  `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [DaffFormFieldModule, DaffTextareaModule, FontAwesomeModule],
