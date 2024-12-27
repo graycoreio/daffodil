@@ -13,6 +13,7 @@ import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffLinkSetModule } from '@daffodil/design/link-set';
 import { DaffNavbarModule } from '@daffodil/design/navbar';
 import { DaffSidebarModule } from '@daffodil/design/sidebar';
+import { provideDaffToast } from '@daffodil/design/toast';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
 import { DesignLandAppRoutingModule } from './app-routing.module';
@@ -46,6 +47,7 @@ import { DesignLandSwitchModule } from './switch/switch.module';
   providers: [
     DAFF_THEME_INITIALIZER,
     provideHttpClient(withInterceptorsFromDi()),
+    provideDaffToast(),
   ],
 })
 export class AppModule { }
