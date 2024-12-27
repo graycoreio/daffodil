@@ -6,37 +6,35 @@
 		border-radius: 4px;
 		display: flex;
 		font-size: 16px;
-		height: inherit;
+    width: 100%;
 		line-height: 16px;
-		padding: 8px 16px;
-    max-width: 320px;
-		width: 100%;
     position: relative;
+
+    .daff-input {
+      height: 56px;
+      padding: 8px 16px;
+      padding-top: 24px;
+    }
 
     label {
       position: absolute;
       left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: all 0.2s ease;
+      top: 20px;
       pointer-events: none;
+      transition: all 0.2s ease;
     }
 
-    input {
-      padding-top: 16px;
-
+    input, textarea {
       &:placeholder-shown ~ label,
       &:focus ~ label {
         top: 6px;
         font-size: 12px;
-        transform: none;
       }
     }
 
     &.daff-filled label {
       top: 6px;
       font-size: 12px;
-      transform: none;
     }
 	}
 
@@ -44,28 +42,35 @@
 		display: inline-block;
 		pointer-events: none;
 		position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 20px;
 
-    &--prefix {
+    &:has(.prefix) {
       left: 16px;
     }
 
-    &--suffix {
+    &:has(.suffix) {
       right: 16px;
     }
   }
 
-  :has(fa-icon.prefix) > label,
-  :has(fa-icon.prefix) > input {
-    padding-left: 28px;
+  :has(.prefix) > input,
+  :has(.prefix) > textarea {
+    padding-left: 48px;
+  }
+
+  :has(.prefix) > label {
+    left: 48px;
+  }
+
+  :has(.suffix) > input,
+  :has(.suffix) > textarea {
+    padding-right: 48px;
   }
 
   .hint {
     position: absolute;
-    top: 100%;
+    top: 64px;
     left: 16px;
-    margin-top: 8px;
     font-size: 12px;
   }
 
