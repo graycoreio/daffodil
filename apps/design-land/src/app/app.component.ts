@@ -21,6 +21,7 @@ import { LOADING_ICON_EXAMPLES } from '@daffodil/design/loading-icon/examples';
 import { MEDIA_GALLERY_EXAMPLES } from '@daffodil/design/media-gallery/examples';
 import { MENU_EXAMPLES } from '@daffodil/design/menu/examples';
 import { MODAL_EXAMPLES } from '@daffodil/design/modal/examples';
+import { NATIVE_SELECT_EXAMPLES } from '@daffodil/design/native-select/examples';
 import { NAVBAR_EXAMPLES } from '@daffodil/design/navbar/examples';
 import { NOTIFICATION_EXAMPLES } from '@daffodil/design/notification/examples';
 import { PAGINATOR_EXAMPLES } from '@daffodil/design/paginator/examples';
@@ -65,6 +66,7 @@ export class DesignLandAppComponent {
       ...MEDIA_GALLERY_EXAMPLES,
       ...MENU_EXAMPLES,
       ...MODAL_EXAMPLES,
+      ...NATIVE_SELECT_EXAMPLES,
       ...NAVBAR_EXAMPLES,
       ...NOTIFICATION_EXAMPLES,
       ...QUANTITY_FIELD_EXAMPLES,

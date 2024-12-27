@@ -1,0 +1,16 @@
+<daff-form-field>
+  <label>Label</label>
+  <select daff-native-select name="native-select-form-field" [formControl]="control">
+    <option value="''">Select an option</option>
+    <option value="test&#64;example.com">test&#64;example.com</option>
+    <option value="option2">Wrong</option>
+    <option value="option3">Wrong</option>
+  </select>
+  <div class="hint">Hint goes here.</div>
+  @if (control.errors?.required) {
+    <daff-error-message>Email is a required field.</daff-error-message>
+  }
+  @if (control.errors?.email) {
+    <daff-error-message>Email is not valid.</daff-error-message>
+  }
+</daff-form-field>

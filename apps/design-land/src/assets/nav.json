@@ -83,6 +83,13 @@
               "id": "textarea",
               "items": [],
               "data": {}
+            },
+            {
+              "title": "Native Select",
+              "url": "native-select",
+              "id": "native-select",
+              "items": [],
+              "data": {}
             }
           ],
           "data": {}
