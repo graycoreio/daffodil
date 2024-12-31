@@ -14,8 +14,6 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 
-import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
-
 import { DaffTabComponent } from './tab/tab.component';
 import { DaffTabActivatorComponent } from './tab-activator/tab-activator.component';
 import { DaffTabLabelComponent } from './tab-label/tab-label.component';
@@ -48,18 +46,15 @@ import { DaffTabLabelComponent } from './tab-label/tab-label.component';
  * ```
  */
 @Component({
-  standalone: true,
   selector: 'daff-tabs',
   templateUrl: './tabs.component.html',
   styleUrl: './tabs.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
   imports: [
     NgTemplateOutlet,
     DaffTabActivatorComponent,
-  ],
-  hostDirectives: [
-    { directive: DaffArticleEncapsulatedDirective },
   ],
 })
 
