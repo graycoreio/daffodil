@@ -3,12 +3,12 @@
 @use '../../scss/theming';
 
 @mixin daff-switch-theme($theme) {
-	$primary: map.get($theme, primary);
-	$base: core.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
-	$white: core.daff-map-deep-get($theme, 'core.white');
-	$black: core.daff-map-deep-get($theme, 'core.black');
-	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
+	$primary: core.daff-map-get($theme, primary);
+	$base: core.daff-map-get($theme, 'core', 'base');
+	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
+	$white: core.daff-map-get($theme, 'core', 'white');
+	$black: core.daff-map-get($theme, 'core', 'black');
+	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 
 	.daff-switch {
 		&__toggle {
