@@ -11,13 +11,13 @@
 	.daff-list {
 		.daff-list-item {
 			&__content {
+				// stylelint-disable-next-line scss/selector-nest-combinators
 				*:nth-child(1) {
-					/* stylelint-disable-line scss/selector-nest-combinators */
 					color: $base-contrast;
 				}
 
+				// stylelint-disable-next-line scss/selector-nest-combinators
 				*:nth-child(n + 2) {
-					/* stylelint-disable-line scss/selector-nest-combinators */
 					color: theming.daff-illuminate($base-contrast, $neutral, 3);
 				}
 			}

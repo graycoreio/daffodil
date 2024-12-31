@@ -33,7 +33,7 @@
 				color: theming.daff-color($success);
 			}
 
-			&:before {
+			&::before {
 				background: theming.daff-color($success);
 			}
 		}
