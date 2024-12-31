@@ -64,7 +64,12 @@
     "scss/at-else-empty-line-before": "never",
     "scss/at-if-no-null": null,
     "scss/comment-no-empty": null,
-    "@stylistic/block-closing-brace-newline-after": "always",
+    "@stylistic/block-closing-brace-newline-after": [
+      "always", 
+      {
+        "ignoreAtRules": ["if", "else"]
+      }
+    ],
     "@stylistic/block-closing-brace-newline-before": "always-multi-line",
     "@stylistic/block-closing-brace-empty-line-before": "never",
     "@stylistic/block-opening-brace-newline-after": "always-multi-line",
