@@ -1,4 +1,10 @@
 import { NgControl } from '@angular/forms';
+import {
+  BehaviorSubject,
+  Observable,
+} from 'rxjs';
+
+import { DaffFormFieldState } from './form-field-state';
 
 /**
  *
@@ -12,13 +18,38 @@ import { NgControl } from '@angular/forms';
  * be used for the necessary dependency injection.
  */
 export abstract class DaffFormFieldControl<T> {
-  readonly ngControl: NgControl | null;
+  abstract readonly controlType?: any;
 
-  readonly controlType?: any;
-
-  readonly focused: boolean;
+  abstract readonly focused: boolean;
 
   abstract focus(event?: Event): void;
 
-  readonly value: T;
+  abstract readonly value: T;
+
+  constructor(public ngControl: NgControl | null) {
+  }
+
+  get state(): DaffFormFieldState {
+    return {
+      focused: this.focused,
+      filled: !!this.value,
+      disabled: this.ngControl?.disabled,
+      error: this.ngControl?.errors && this.ngControl?.touched,
+      valid: !this.ngControl?.errors && this.ngControl?.touched,
+    };
+  }
+
+  _stateChanges = new BehaviorSubject({
+    focused: false,
+    filled: false,
+    disabled: false,
+    error: false,
+    valid: true,
+  });
+
+  stateChanges: Observable<DaffFormFieldState>;
+
+  emitState() {
+    this._stateChanges.next(this.state);
+  }
 };

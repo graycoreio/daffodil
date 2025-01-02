@@ -10,6 +10,7 @@ import {
 
 import {
   DaffFormFieldModule,
+  DaffHintComponent,
   DaffInputModule,
 } from '@daffodil/design';
 
@@ -26,6 +27,7 @@ import {
   imports: [
     DaffFormFieldModule,
     DaffInputModule,
+    DaffHintComponent,
     ReactiveFormsModule,
   ],
 })

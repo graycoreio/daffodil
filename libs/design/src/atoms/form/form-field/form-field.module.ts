@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffFormFieldComponent } from './form-field/form-field.component';
 import { DaffErrorMessageModule } from '../error-message/error-message.module';
+import { DaffFormLabelModule } from '../form-label/form-label.module';
 
 @NgModule({
   imports: [
@@ -11,10 +12,12 @@ import { DaffErrorMessageModule } from '../error-message/error-message.module';
 
     FontAwesomeModule,
     DaffErrorMessageModule,
+    DaffFormLabelModule,
   ],
   exports: [
     DaffFormFieldComponent,
     DaffErrorMessageModule,
+    DaffFormLabelModule,
   ],
   declarations: [
     DaffFormFieldComponent,

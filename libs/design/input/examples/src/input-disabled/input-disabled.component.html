@@ -1,4 +1,4 @@
 <daff-form-field>
-  <input daff-input type="text" name="email" id="disabled-input" disabled/>
-  <label for="disabled-input">Label</label>
+  <label daffFormLabel for="disabled-input">Email</label>
+  <input daff-input type="text" name="email" id="disabled-input" [formControl]="disabled"/>
 </daff-form-field>

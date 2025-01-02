@@ -2,6 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
+import {
+  ReactiveFormsModule,
+  UntypedFormControl,
+} from '@angular/forms';
 
 import {
   DaffFormFieldModule,
@@ -18,8 +22,13 @@ import {
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DaffFormFieldModule, DaffInputModule],
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    DaffFormFieldModule,
+    DaffInputModule,
+  ],
 })
 export class InputDisabledComponent {
-  isDisabled = true;
+  disabled = new UntypedFormControl({ value : '' , disabled: true });
 }

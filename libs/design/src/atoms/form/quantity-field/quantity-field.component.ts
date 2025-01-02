@@ -30,7 +30,7 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFormFieldControl<number> {
+export class DaffQuantityFieldComponent extends DaffFormFieldControl<number> implements ControlValueAccessor, DaffFormFieldControl<number> {
 
   @ViewChild(DaffQuantityInputComponent) input: DaffQuantityInputComponent;
   @ViewChild(DaffQuantitySelectComponent) select: DaffQuantitySelectComponent;
@@ -107,6 +107,8 @@ export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFor
     @Optional() @Self() public ngControl: NgControl,
     private cd: ChangeDetectorRef,
   ) {
+    super(ngControl);
+
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }

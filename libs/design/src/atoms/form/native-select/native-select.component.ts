@@ -27,12 +27,15 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
   standalone: false,
 })
 
-export class DaffNativeSelectComponent implements DaffFormFieldControl<string | number> {
+export class DaffNativeSelectComponent extends DaffFormFieldControl<string | number> implements DaffFormFieldControl<string | number> {
   /**
    * @docs-private
    */
   controlType = 'native-select';
 
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-native-select') class = true;
 
   /**
@@ -46,6 +49,7 @@ export class DaffNativeSelectComponent implements DaffFormFieldControl<string | 
    */
   @HostListener('focus') focus() {
     this.focused = true;
+    this.emitState();
   }
 
   /**
@@ -53,6 +57,7 @@ export class DaffNativeSelectComponent implements DaffFormFieldControl<string | 
    */
   @HostListener('blur') blur() {
     this.focused = false;
+    this.emitState();
   }
 
   constructor(
@@ -61,7 +66,9 @@ export class DaffNativeSelectComponent implements DaffFormFieldControl<string | 
      */
     @Optional() @Self() public ngControl: NgControl,
     private _elementRef: ElementRef<HTMLInputElement>,
-  ) {}
+  ) {
+    super(ngControl);
+  }
 
   onFocus() {
     this._elementRef.nativeElement.focus();

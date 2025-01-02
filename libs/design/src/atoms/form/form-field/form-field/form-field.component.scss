@@ -1,88 +1,58 @@
+@use '../../../../../scss/typography' as t;
+
 .daff-form-field {
 	display: block;
 	position: relative;
 
 	&__control {
-		border-radius: 4px;
 		display: flex;
-		font-size: 16px;
-    width: 100%;
-		line-height: 16px;
+    align-items: center;
+		border-radius: 0.25rem;
+    box-sizing: border-box;
+		font-size: t.$font-size-base;
+    height: 3.5rem;
+		line-height: 1rem;
     position: relative;
+    width: 100%;
 
-    .daff-input {
-      height: 56px;
-      padding: 8px 16px;
-      padding-top: 24px;
-    }
-
-    label {
+    .daff-form-label {
       position: absolute;
-      left: 16px;
+      left: 1rem;
       top: 20px;
       pointer-events: none;
       transition: all 0.2s ease;
     }
 
-    input, textarea {
-      &:placeholder-shown ~ label,
-      &:focus ~ label {
+    &.daff-focus,
+    &.daff-filled {
+      .daff-form-label {
+        font-size: 0.75rem;
         top: 6px;
-        font-size: 12px;
       }
-    }
-
-    &.daff-filled label {
-      top: 6px;
-      font-size: 12px;
     }
 	}
 
-	&__icon {
-		display: inline-block;
-		pointer-events: none;
-		position: absolute;
-    top: 20px;
+  &__form-wrapper {
+    flex-grow: 1;
+    padding: 1.5rem 1rem 0.5rem;
+  }
 
-    &:has(.prefix) {
-      left: 16px;
+  .daff-hint,
+  .daff-error-message {
+    margin-top: 4px;
+  }
+
+  :has(.daff-prefix) {
+    .daff-form-label {
+      left: 48px;
     }
-
-    &:has(.suffix) {
-      right: 16px;
-    }
   }
 
-  :has(.prefix) > input,
-  :has(.prefix) > textarea {
-    padding-left: 48px;
+	.daff-prefix {
+    padding-left: 1rem;
   }
 
-  :has(.prefix) > label {
-    left: 48px;
-  }
-
-  :has(.suffix) > input,
-  :has(.suffix) > textarea {
-    padding-right: 48px;
-  }
-
-  .hint {
-    position: absolute;
-    top: 64px;
-    left: 16px;
-    font-size: 12px;
-  }
-
-  &:has(.hint) {
-    margin-bottom: 24px;
-
-    daff-error-message {
-      margin-top: 24px;
-    }
-
-    &:has(daff-error-message) {
-      margin-bottom: 0px;
-    }
+  .daff-suffix {
+    padding-right: 1rem;
   }
 }

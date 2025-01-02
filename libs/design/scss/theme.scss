@@ -27,6 +27,7 @@
 @use '../button/src/button/underline/underline-theme' as underline-button;
 @use '../article/src/article-theme' as article;
 @use '../src/atoms/form/error-message/error-message-theme' as error-message;
+@use '../src/atoms/form/hint/hint-theme' as hint;
 @use '../src/atoms/form/form-field/form-field/form-field-theme' as form-field;
 @use '../src/atoms/form/input/input-theme' as input;
 @use '../src/atoms/form/native-select/native-select-theme' as native-select;
@@ -86,6 +87,7 @@
 
 	@include form-field.daff-form-field-theme($theme);
 	@include error-message.daff-error-message-theme($theme);
+	@include hint.daff-hint-theme($theme);
 	@include input.daff-input-theme($theme);
 	@include native-select.daff-native-select-theme($theme);
 

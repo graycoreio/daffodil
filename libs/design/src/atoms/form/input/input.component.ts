@@ -1,14 +1,19 @@
 import {
   Component,
-  Input,
   Optional,
   Self,
   ElementRef,
   HostListener,
   ChangeDetectionStrategy,
   HostBinding,
+  OnInit,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
+import {
+  merge,
+  of,
+  map,
+} from 'rxjs';
 
 import { DaffFormFieldControl } from '../form-field/form-field-control';
 
@@ -19,7 +24,7 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'input[daff-input]',
   template: '<ng-content></ng-content>',
-  styleUrls: ['./input.component.scss'],
+  styleUrl: './input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -27,38 +32,45 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
   ],
   standalone: false,
 })
-export class DaffInputComponent implements DaffFormFieldControl<string> {
+export class DaffInputComponent extends DaffFormFieldControl<string> implements DaffFormFieldControl<string>, OnInit {
 
+  /** @docs-private */
   @HostBinding('class.daff-input') class = true;
 
-  /**
-   * Has the form been submitted.
-   */
-  @Input() formSubmitted: boolean;
+  /** @docs-private */
+  controlType = 'native-input';
 
   focused = false;
 
-  /**
-   * @docs-private
-   */
+  /** @docs-private */
   @HostListener('focus') focus() {
     this.focused = true;
+    this.emitState();
+
   }
 
-  /**
-   * @docs-private
-   */
+  /** @docs-private */
   @HostListener('blur') blur() {
     this.focused = false;
+    this.emitState();
   }
 
   constructor(
-    /**
-     * @docs-private
-     */
+    /** @docs-private */
     @Optional() @Self() public ngControl: NgControl,
     private _elementRef: ElementRef<HTMLInputElement>,
-  ) {}
+  ) {
+    super(ngControl);
+  }
+
+  ngOnInit() {
+    this.stateChanges = merge(
+      this._stateChanges.asObservable(),
+      this.ngControl ? this.ngControl.statusChanges : of(undefined),
+    ).pipe(
+      map(() => this.state),
+    );
+  }
 
   onFocus() {
     this._elementRef.nativeElement.focus();

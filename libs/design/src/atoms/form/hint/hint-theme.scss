@@ -1,0 +1,11 @@
+@use '../../../../scss/core';
+@use '../../../../scss/theming';
+
+@mixin daff-hint-theme($theme) {
+	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
+
+	.daff-hint {
+		color: theming.daff-illuminate($base-contrast, $neutral, 2);
+	}
+}

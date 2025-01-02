@@ -6,6 +6,7 @@
 	$primary: core.daff-map-get($theme, primary);
 	$secondary: core.daff-map-get($theme, secondary);
 	$tertiary: core.daff-map-get($theme, tertiary);
+	$critical: core.daff-map-get($theme, critical);
 	$base: core.daff-map-get($theme, 'core', 'base');
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
@@ -17,11 +18,11 @@
 			color: theming.daff-illuminate($base, $neutral, 6);
 
 			&.daff-focus {
-        border: 1px solid theming.daff-color($primary, 'default');
+        border: 1px solid theming.daff-color($primary);
 			}
 
 			&.daff-error {
-				border: 1px solid theming.daff-color(theming.$daff-red, 60);
+				border: 1px solid theming.daff-color($critical);
 			}
 
 			&.daff-valid {
@@ -30,15 +31,10 @@
 				}
 			}
 
-      &:has(*:disabled),
-      &:has(*.isDisabled) {
+      &.daff-disabled {
+				background-color: transparent;
         border: 1px solid theming.daff-illuminate($base, $neutral, 4);
         color: theming.daff-illuminate($base, $neutral, 4);
-      }
-
-      *:disabled,
-      .isDisabled {
-        background-color: transparent;
       }
 		}
 	}

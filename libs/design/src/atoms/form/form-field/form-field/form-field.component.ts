@@ -1,47 +1,49 @@
 import {
   Component,
   ViewEncapsulation,
-  DoCheck,
   ContentChild,
-  Input,
   AfterContentInit,
   AfterContentChecked,
   HostBinding,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
+import { DaffPrefixDirective } from '../../../../core/prefix-suffix/prefix.directive';
+import { DaffSuffixDirective } from '../../../../core/prefix-suffix/suffix.directive';
 import { DaffFormFieldControl } from '../form-field-control';
 import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
 
-// ChangeDetection is ignored because this component needs to be refactored
-// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
   selector: 'daff-form-field',
   templateUrl: './form-field.component.html',
   styleUrls: ['./form-field.component.scss'],
   encapsulation: ViewEncapsulation.None,
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffFormFieldComponent implements AfterContentInit, AfterContentChecked {
 
-  /**
-   * @docs-private
-   */
+  /** @docs-private */
   faChevronDown = faChevronDown;
 
+  /** @docs-private */
   @HostBinding('class.daff-form-field') class = true;
 
-  /**
-   * The tracking property used to determine if the parent form has been submitted,
-   * and thus show an error message (even if the field hasn't been touched).
-   *
-   * @deprecated Deprecated in version 0.78.0. Will be removed in version 1.0.0.
-   */
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
-  @Input() formSubmitted: boolean = false;
+  /** @docs-private */
+  get isSelectField(): boolean {
+    return this._control.controlType === 'native-select';
+  }
+
+  /** @docs-private */
+  @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
+
+  /** @docs-private */
+  @ContentChild(DaffSuffixDirective) _suffix: DaffSuffixDirective;
 
   /**
-   * The child form control that the form-field manages
+   * The child form control that the form field manages.
    *
    * @docs-private
    */
@@ -59,15 +61,17 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    */
   isFilled = false;
 
+  isDisabled = false;
+
   /**
    * Tracking property to keep a record of whether or not the
    * form field should be marked as valid.
    */
   isValid = false;
 
+  constructor(private cd: ChangeDetectorRef) {}
+
   /**
-   * @docs
-   *
    * Determines whether or not the form field should display its focused state.
    */
   get isFocused() {
@@ -75,8 +79,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   }
 
   /**
-   * Validate whether or not the FormField is in
-   * a "usable" state.
+   * Validate whether or not the FormField is in a "usable" state.
    */
   private _validateFormControl() {
     if (!this._control) {
@@ -93,6 +96,15 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    */
   ngAfterContentInit() {
     this._validateFormControl();
+
+    this._control.stateChanges?.subscribe(({ focused, filled, disabled, error, valid }) => {
+      this.isFilled = filled;
+      this.isError = error;
+      this.isDisabled = disabled;
+      this.isValid = valid;
+
+      this.cd.markForCheck();
+    });
   }
 
   /**
@@ -104,10 +116,5 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    */
   ngAfterContentChecked() {
     this._validateFormControl();
-    if (this._control?.ngControl) {
-      this.isError = this._control.ngControl.errors && (this._control.ngControl.touched);
-      this.isValid = !this._control.ngControl.errors && this._control.ngControl.touched;
-    }
-    this.isFilled = !!this._control.value;
   }
 }

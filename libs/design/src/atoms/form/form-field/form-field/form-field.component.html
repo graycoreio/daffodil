@@ -4,21 +4,22 @@
 	[class.daff-error]="isError"
 	[class.daff-valid]="isValid"
 	[class.daff-filled]="isFilled"
->
-  <span class="daff-form-field__icon daff-form-field__icon--prefix">
-    <ng-content select=".prefix"></ng-content>
-  </span>
-	<ng-content></ng-content>
-	<div
-		class="daff-form-field__icon"
-		*ngIf="_control.controlType === 'native-select'"
-	>
-		<fa-icon [icon]="faChevronDown"></fa-icon>
+	[class.daff-disabled]="isDisabled">
+	@if (_prefix) {
+		<ng-content select="[daffPrefix]"></ng-content>
+	}
+	<div class="daff-form-field__form-wrapper">
+		<ng-content select="label[daffFormLabel]"></ng-content>
+		<ng-content></ng-content>
+		@if (isSelectField) {
+			<div class="daff-form-field__icon">
+				<fa-icon [icon]="faChevronDown"></fa-icon>
+			</div>
+		}
 	</div>
-  <span class="daff-form-field__icon daff-form-field__icon--suffix">
-    <ng-content select=".suffix"></ng-content>
-  </span>
+  @if (_suffix) {
+		<ng-content select="[daffSuffix]"></ng-content>
+	}
 </div>
-@if (_control?.ngControl?.touched) {
-  <ng-content select="daff-error-message"></ng-content>
-}
+<ng-content select="daff-error-message"></ng-content>
+<ng-content select="daff-hint"></ng-content>

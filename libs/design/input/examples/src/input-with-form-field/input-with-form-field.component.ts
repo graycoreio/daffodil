@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   faUser,
   faCircleXmark,
@@ -11,8 +11,8 @@ import {
 import {
   DaffFormFieldModule,
   DaffInputModule,
+  DaffPrefixSuffixModule,
 } from '@daffodil/design';
-
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -25,7 +25,12 @@ import {
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [DaffFormFieldModule, DaffInputModule, FontAwesomeModule],
+  imports: [
+    DaffFormFieldModule,
+    DaffInputModule,
+    FaIconComponent,
+    DaffPrefixSuffixModule,
+  ],
 })
 export class InputWithFormFieldComponent {
   faUser = faUser;
