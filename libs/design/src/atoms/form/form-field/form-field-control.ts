@@ -34,8 +34,8 @@ export abstract class DaffFormFieldControl<T> {
       focused: this.focused,
       filled: !!this.value,
       disabled: this.ngControl?.disabled,
-      error: this.ngControl?.errors && this.ngControl?.touched,
-      valid: !this.ngControl?.errors && this.ngControl?.touched,
+      error: this.ngControl?.errors && (this.ngControl?.dirty || this.ngControl?.touched),
+      valid: !this.ngControl?.errors && (this.ngControl?.dirty || this.ngControl?.touched),
     };
   }
 

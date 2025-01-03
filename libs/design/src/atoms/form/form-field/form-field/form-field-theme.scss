@@ -17,18 +17,24 @@
 			border: 1px solid theming.daff-illuminate($base, $neutral, 6);
 			color: theming.daff-illuminate($base, $neutral, 6);
 
-			&.daff-focus {
+			&.daff-focused {
         border: 1px solid theming.daff-color($primary);
+
+				.daff-form-label {
+					color: theming.daff-color($primary);
+				}
 			}
 
 			&.daff-error {
 				border: 1px solid theming.daff-color($critical);
+
+				.daff-form-label {
+					color: theming.daff-color($critical);
+				}
 			}
 
 			&.daff-valid {
-				> * {
-					color: $base-contrast;
-				}
+				color: $base-contrast;
 			}
 
       &.daff-disabled {

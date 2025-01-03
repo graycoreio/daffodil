@@ -15,19 +15,31 @@
     position: relative;
     width: 100%;
 
+    * {
+      ::-webkit-input-placeholder {
+        opacity: 0;
+      }
+    }
+
     .daff-form-label {
       position: absolute;
       left: 1rem;
-      top: 20px;
+      top: 1.25rem;
       pointer-events: none;
-      transition: all 0.2s ease;
+      transition: all 200ms ease;
     }
 
-    &.daff-focus,
+    &.daff-focused,
     &.daff-filled {
       .daff-form-label {
         font-size: 0.75rem;
-        top: 6px;
+        top: 0.25rem;
+      }
+
+      * {
+        ::-webkit-input-placeholder {
+          opacity: 1;
+        }
       }
     }
 	}
@@ -35,17 +47,12 @@
   &__form-wrapper {
     flex-grow: 1;
     padding: 1.5rem 1rem 0.5rem;
+    position: relative;
   }
 
   .daff-hint,
   .daff-error-message {
-    margin-top: 4px;
-  }
-
-  :has(.daff-prefix) {
-    .daff-form-label {
-      left: 48px;
-    }
+    margin-top: 0.25rem;
   }
 
 	.daff-prefix {
