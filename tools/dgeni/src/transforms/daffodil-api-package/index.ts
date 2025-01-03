@@ -1,4 +1,7 @@
-import { Package } from 'dgeni';
+import {
+  Document,
+  Package,
+} from 'dgeni';
 import linksPackage from 'dgeni-packages/links';
 import typescriptPackage from 'dgeni-packages/typescript';
 
@@ -42,6 +45,11 @@ import {
   DESIGN_PATH,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
+import {
+  EXAMPLES_PROCESSOR_PROVIDER,
+  ExamplesProcessor,
+} from './processors/examples';
+import { ConvertToJsonProcessor } from '../../processors/convertToJson';
 
 const API_PACKAGE_NAME = 'daffodil-api';
 
@@ -62,6 +70,7 @@ export const apiDocsBase = new Package('api-base', [
   .processor(...ADD_SUBPACKAGE_EXPORTS_PROCESSOR_PROVIDER)
   .processor(...MARKDOWN_CODE_PROCESSOR_PROVIDER)
   .processor(...COLLECT_LINKABLE_SYMBOLS_PROCESSOR_PROVIDER)
+  .processor(...EXAMPLES_PROCESSOR_PROVIDER)
   .factory('API_DOC_TYPES_TO_RENDER', (EXPORT_DOC_TYPES) => EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe']))
   .config((readFilesProcessor, readTypeScriptModules, tsParser) => {
 
@@ -76,8 +85,15 @@ export const apiDocsBase = new Package('api-base', [
     readTypeScriptModules.basePath = API_SOURCE_PATH;
     readTypeScriptModules.hidePrivateMembers = true;
   })
-  .config((markdown: MarkdownCodeProcessor, EXPORT_DOC_TYPES, addKind: AddKindProcessor, breadcrumb: BreadcrumbProcessor) => {
+  .config((
+    markdown: MarkdownCodeProcessor,
+    EXPORT_DOC_TYPES,
+    addKind: AddKindProcessor,
+    breadcrumb: BreadcrumbProcessor,
+    examples: ExamplesProcessor,
+  ) => {
     markdown.docTypes.push(...EXPORT_DOC_TYPES);
+    examples.docTypes.push(...EXPORT_DOC_TYPES);
     addKind.docTypes.push(...EXPORT_DOC_TYPES, 'package', 'module');
     breadcrumb.docTypes.push(...EXPORT_DOC_TYPES, 'package');
     markdown.contentKey = 'description';
@@ -96,10 +112,22 @@ export const apiDocsBase = new Package('api-base', [
     parseTagsProcessor.tagDefinitions = parseTagsProcessor.tagDefinitions.concat([
       { name: 'docs-private' },
       { name: 'inheritdoc' },
+      {
+        name: 'example',
+        multi: true,
+        transforms: (doc: Document, tag: any, value: any) => {
+          const match = value.match(/^(.*)$/gm);
+          tag.caption = match[0];
+          tag.body = value.replace(match[0], '').trim();
+
+          return value;
+        },
+      },
     ]);
   })
-  .config((convertToJson, API_DOC_TYPES_TO_RENDER) => {
+  .config((convertToJson: ConvertToJsonProcessor, API_DOC_TYPES_TO_RENDER) => {
     convertToJson.docTypes = convertToJson.docTypes.concat(API_DOC_TYPES_TO_RENDER);
+    convertToJson.extraFields.push('examples');
   })
   .config((templateFinder) => {
     // Where to find the templates for the API doc rendering

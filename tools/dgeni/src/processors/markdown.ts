@@ -10,6 +10,7 @@ import { Marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 
 import {
+  DaffDocExample,
   DaffDocKind,
   daffDocsGetLinkUrl,
 } from '@daffodil/docs-utils';
@@ -80,9 +81,15 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
   $process(docs: Document[]) {
     const ret = docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
-        doc[this.contentKey] = this.marked.parse(doc.content);
+        doc[this.contentKey] = this.marked.parse(typeof doc.description === 'undefined' ? doc.content : doc.description);
         if (doc.kind === DaffDocKind.PACKAGE || doc.kind === DaffDocKind.COMPONENT) {
           doc.description = this.docDescription;
+        }
+        if (doc.examples) {
+          doc.examples = (<Array<DaffDocExample>>doc.examples).map((example) => ({
+            ...example,
+            body: this.marked.parse(example.body),
+          }));
         }
         this.docDescription = null;
       };
