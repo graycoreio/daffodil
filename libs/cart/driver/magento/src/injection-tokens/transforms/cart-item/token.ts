@@ -16,6 +16,7 @@ export const {
    *
    * See {@link DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...provideDaffCartMagentoCartItemTransforms(

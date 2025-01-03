@@ -11,8 +11,7 @@ import { DaffSeoNativeMetaEffects } from '../effects/meta.effects';
  *
  * This provider is intended to only be imported exactly once in the root of the application.
  *
- * ## Usage
- *
+ * @example
  * ```ts
  * @NgModule({
  *   providers: [

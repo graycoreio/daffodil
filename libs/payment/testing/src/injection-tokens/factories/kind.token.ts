@@ -20,6 +20,7 @@ export const {
    *
    * See {@link DAFF_PAYMENT_RESPONSE_KIND_FACTORIES}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...provideDaffPaymentResponseKindFactories(

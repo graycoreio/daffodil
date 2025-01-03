@@ -20,6 +20,7 @@ export const {
    *
    * See {@link DAFF_SEARCH_RESULT_KIND_FACTORIES}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...provideDaffSearchResultKindFactories(

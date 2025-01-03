@@ -15,7 +15,8 @@ export const {
   /**
    * Provides additional reducers that run after the standard Daffodil cart reducers.
    *
-   * ```ts
+   * @example
+
    * providers: [
    *   ...daffProductConfigurableProvideExtraReducers(
    *     myReducer1,

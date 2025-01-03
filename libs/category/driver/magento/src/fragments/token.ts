@@ -14,6 +14,7 @@ export const {
    *
    * See {@link MAGENTO_CATEGORY_EXTRA_FRAGMENTS}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...magentoProvideCategoryExtraFragments(

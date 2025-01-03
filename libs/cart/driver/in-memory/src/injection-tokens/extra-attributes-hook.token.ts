@@ -14,15 +14,15 @@ export const {
    * The value returned by the hook function will be set to the returned cart's `extra_attributes` field
    * for driver calls that return a cart.
    *
-   * The following example demonstrates adding the `numberOfCartItems` field to `extra_attributes`:
+   * Note that this and any `extra_attributes` features are for advanced users
+   * and should be used with care.
+   *
+   * @example Adding the `numberOfCartItems` field to `extra_attributes`
    * ```ts
    * (reqInfo: RequestInfo, cart: DaffCart) => ({
    *   numberOfCartItems: cart.items.length
    * })
    * ```
-   *
-   * Note that this and any `extra_attributes` features are for advanced users
-   * and should be used with care.
    */
   token: DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK,
   /**

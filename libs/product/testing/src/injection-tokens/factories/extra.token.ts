@@ -18,6 +18,7 @@ export const {
    *
    * See {@link DAFF_PRODUCT_EXTRA_FACTORIES}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...provideDaffProductExtraProductFactories(

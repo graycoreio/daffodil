@@ -21,6 +21,7 @@ export const {
    *
    * See {@link DAFF_CUSTOMER_ORDER_MAGENTO_EXTRA_ORDER_FRAGMENTS}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...provideDaffCustomerOrderMagentoExtraOrderFragments(

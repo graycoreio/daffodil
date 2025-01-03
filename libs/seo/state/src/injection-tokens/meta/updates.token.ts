@@ -20,6 +20,7 @@ const {
  *
  * See {@link DAFF_SEO_META_UPDATES}.
  *
+ * @example
  * ```ts
  * providers: [
  *   ...provideDaffMetaUpdates(

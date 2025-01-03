@@ -1,9 +1,8 @@
 /**
  * Represents the structure of an external script that can be loaded into a document.
  *
+ * @example Using DaffExternalScript interface to define an external script object
  * ```ts
- * // Example of using DaffExternalScript interface to define an external script object.
- *
  * const externalScript: DaffExternalScript = {
  *  src: 'https://example.com/script.js',
  *  async: true,

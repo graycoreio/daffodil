@@ -15,6 +15,7 @@ export const {
    *
    * See {@link MAGENTO_NAVIGATION_TREE_TRANSFORMS}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...magentoProvideNavigationTreeTransforms(

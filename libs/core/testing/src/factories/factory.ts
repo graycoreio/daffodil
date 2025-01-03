@@ -13,9 +13,7 @@ import { IDaffModelFactory } from './factory.interface';
  *
  * The constructor args can be omitted if the `create` method is overridden.
  *
- * The following example demonstrates using this feature to inject
- * a different factory into a mock class.
- *
+ * @example Injecting a different factory into a mock class
  * ```ts
  * class MyMockModel {
  *  constructor(

@@ -24,7 +24,7 @@ export interface LoadedExternalScript extends DaffExternalScript {
  *
  * ### Usage example
  *
- * The following loads an external script into the document.
+ * @example Loading an external script into the document
  *
  * ```ts
  * import { DOCUMENT } from '@angular/common';

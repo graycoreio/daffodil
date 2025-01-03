@@ -2,7 +2,7 @@
  * A type which describes a function which would return an instance of a class
  * Typically, we call this the "new" method in a language.
  *
- * A sample usage:
+ * @example
  * ```ts
  * class MyClass {
  *  readonly myProp: string = 'prop';

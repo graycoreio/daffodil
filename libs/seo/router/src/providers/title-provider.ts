@@ -13,8 +13,7 @@ import { DaffSeoNativeTitleEffects } from '../effects/title.effects';
  *
  * @deprecated since Angular 14. See https://angular.io/api/router/TitleStrategy Deprecated in version 0.78.0. Will be removed in version 0.81.0.
  *
- * ## Usage
- *
+ * @example
  * ```ts
  * @NgModule({
  *   providers: [

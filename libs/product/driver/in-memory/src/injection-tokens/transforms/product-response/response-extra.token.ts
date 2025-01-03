@@ -17,6 +17,7 @@ export const {
    *
    * See {@link DAFF_PRODUCT_IN_MEMORY_EXTRA_PRODUCT_RESPONSE_TRANSFORMS}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...provideDaffProductInMemoryExtraProductResponseTransforms(

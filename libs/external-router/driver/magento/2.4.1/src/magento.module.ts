@@ -12,6 +12,7 @@ import { DaffExternalRouterMagentoDriver } from './magento.service';
 /**
  * The module used to configure the {@link DaffExternalRouterDriver} for usage with Magento.
  *
+ * @example
  * ```ts
  * @NgModule({
  *   declarations: [],

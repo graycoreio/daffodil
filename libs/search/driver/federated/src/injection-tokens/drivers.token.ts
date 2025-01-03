@@ -15,6 +15,7 @@ export const {
    *
    * See {@link DAFF_SEARCH_FEDERATED_DRIVERS}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...provideDaffSearchFederatedDrivers(MySearchDriver)

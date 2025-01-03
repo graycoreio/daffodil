@@ -15,6 +15,7 @@ export const {
   /**
    * Provides additional reducers that run after the standard Daffodil customer reducers.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...daffCustomerStoreCreditProvideExtraReducers(

@@ -15,6 +15,7 @@ export const {
    *
    * See {@link MAGENTO_CATEGORY_EXTRA_TRANSFORMS}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...magentoProvideCategoryExtraTransforms(

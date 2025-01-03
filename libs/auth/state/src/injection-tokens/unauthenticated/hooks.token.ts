@@ -13,11 +13,12 @@ export const {
   /**
    * Provides {@link DAFF_AUTH_UNAUTHENTICATED_HOOKS}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...daffAuthProvideUnauthenticatedHooks(
-   *     myReducer1,
-   *     myReducer2
+   *     myHook1,
+   *     myHook2
    *   )
    * ]
    * ```

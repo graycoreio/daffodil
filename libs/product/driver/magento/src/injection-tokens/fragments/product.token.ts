@@ -21,6 +21,7 @@ export const {
    *
    * See {@link DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...provideDaffProductMagentoExtraProductFragments(

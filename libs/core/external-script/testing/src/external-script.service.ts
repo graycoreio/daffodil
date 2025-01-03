@@ -13,12 +13,9 @@ import { TestScripts } from './constants';
 /**
  * A service for loading external scripts into the document.
  *
- * ### Usage example
- *
- * The following loads an external script into the document.
+ * @example Loading an external script into the document
  *
  * ```ts
- *
  * import { DaffExternalScriptTestingService } from '@daffodil/core/external-script/testing';
  *
  * const externalScriptService = new DaffExternalScriptTestingService();

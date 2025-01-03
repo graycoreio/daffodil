@@ -18,6 +18,7 @@ export const {
    *
    * See {@link DAFF_SEARCH_ROUTING_OPTIONS_BUILDERS}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...provideDaffSearchRoutingOptionBuilders(

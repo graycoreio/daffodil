@@ -19,6 +19,7 @@ const {
  *
  * See {@link DAFF_SEO_CANONICAL_URL_UPDATES}.
  *
+ * @example
  * ```ts
  * providers: [
  *   ...provideDaffCanonicalUrlUpdates(

@@ -19,6 +19,7 @@ const {
  *
  * See {@link DAFF_SEO_TITLE_UPDATES}.
  *
+ * @example
  * ```ts
  * providers: [
  *   ...provideDaffTitleUpdates(

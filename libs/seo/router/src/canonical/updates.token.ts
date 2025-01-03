@@ -20,7 +20,8 @@ const {
  *
  * See {@link DAFF_SEO_CANONICAL_URL_ROUTER_UPDATES}.
  *
- * ```ts
+ * @example
+
  * providers: [
  *   ...provideDaffCanonicalUrlUpdates(
  *     myCanonicalUrlUpdate

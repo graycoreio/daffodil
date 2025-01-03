@@ -20,7 +20,7 @@ export type DaffAnalyticsTrackerFunction = (event: DaffAnalyticsEvent) => Observ
 /**
  * The tracker type.
  *
- * Trackers can either be classes:
+ * @example Implementing a tracker as a class
  *
  * ```ts
  * export class MyTracker implements DaffAnalyticsTracker {
@@ -30,7 +30,7 @@ export type DaffAnalyticsTrackerFunction = (event: DaffAnalyticsEvent) => Observ
  * }
  * ```
  *
- * or functions:
+ * @example Implementing a tracker as a function
  *
  * ```ts
  * export const trackThis = (event: DaffAnalyticsEvent) => {

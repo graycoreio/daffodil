@@ -16,6 +16,7 @@ export const {
    *
    * See {@link DAFF_PRODUCT_TYPE_FACTORIES}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...provideDaffProductExtraFactoryTypes(

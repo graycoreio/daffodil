@@ -20,6 +20,7 @@ export const {
    *
    * See {@link DAFF_CATEGORY_ROUTING_OPTIONS_BUILDERS}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...provideDaffCategoryRoutingRequestBuilders(

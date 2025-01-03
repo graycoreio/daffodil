@@ -15,6 +15,7 @@ export const {
    *
    * See {@link DAFF_SEARCH_IN_MEMORY_BACKENDS}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...provideDaffSearchInMemoryBackends(MySearchFeatureBackend)

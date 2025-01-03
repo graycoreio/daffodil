@@ -16,6 +16,7 @@ export const {
   /**
    * Provides additional meta-reducers that run after the standard Daffodil cart meta-reducers.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...daffCartProvideMetaReducers(

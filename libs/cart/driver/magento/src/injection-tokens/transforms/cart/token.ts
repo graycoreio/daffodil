@@ -20,6 +20,7 @@ export const {
    *
    * See {@link DAFF_CART_MAGENTO_CART_TRANSFORMS}.
    *
+   * @example
    * ```ts
    * providers: [
    *   ...provideDaffCartMagentoCartTransforms(

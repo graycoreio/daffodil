@@ -12,8 +12,7 @@ import { DaffSeoNativeCanonicalUrlEffects } from '../effects/canonical.effects';
  *
  * This provider is intended to only be imported exactly once in the root of the application.
  *
- * ## Usage
- *
+ * @example
  * ```ts
  * @NgModule({
  *   providers: [
@@ -23,6 +22,7 @@ import { DaffSeoNativeCanonicalUrlEffects } from '../effects/canonical.effects';
  * export class AppModule { }
  * ```
  */
+// TODO: change return type to EnvironmentProvider
 export const daffSeoRouterCanonicalProvider = (): Provider[] => [
   DaffSeoNativeCanonicalUrlEffects,
   {
