@@ -1,5 +1,38 @@
 # Changelog
 
+## [0.80.0](https://github.com/graycoreio/daffodil/compare/v0.79.0...v0.80.0) (2025-01-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade node to `20.18` ([#3361](https://github.com/graycoreio/daffodil/issues/3361))
+
+### Features
+
+* **daffio:** add schema to homepage ([#3378](https://github.com/graycoreio/daffodil/issues/3378)) ([2c07c6f](https://github.com/graycoreio/daffodil/commit/2c07c6f8577b2b115ba33dbee9953120ce4d5630))
+* **daffio:** only render root api nav items ([#3354](https://github.com/graycoreio/daffodil/issues/3354)) ([01dbb28](https://github.com/graycoreio/daffodil/commit/01dbb28f677886f4514f83977ab766cb79537706))
+* **design:** add switch component ([#3143](https://github.com/graycoreio/daffodil/issues/3143)) ([8879733](https://github.com/graycoreio/daffodil/commit/8879733a5e7a2c0b1c52e3fec61246553eca3f6d))
+* **design:** create `DaffSelectable` host directive ([#2910](https://github.com/graycoreio/daffodil/issues/2910)) ([9245bb6](https://github.com/graycoreio/daffodil/commit/9245bb614b16d531b243b3d7231e5daf3494842c))
+* **design:** create daff-map-get function ([#3358](https://github.com/graycoreio/daffodil/issues/3358)) ([82045b7](https://github.com/graycoreio/daffodil/commit/82045b7861e80ce73ab76a44c0f67000a6166852))
+* **design:** remove DaffArticleEncapsulatedDirective from tabs component ([#3387](https://github.com/graycoreio/daffodil/issues/3387)) ([db4e9ef](https://github.com/graycoreio/daffodil/commit/db4e9ef11eba9e0f6f7c5fac73472e0ebf61e0c7))
+* **design:** tab style updates ([#3379](https://github.com/graycoreio/daffodil/issues/3379)) ([53d3a41](https://github.com/graycoreio/daffodil/commit/53d3a41e013c91c8e80c570faaf7925707ba20ef))
+* **design:** update active style for list component ([#3356](https://github.com/graycoreio/daffodil/issues/3356)) ([95d2d31](https://github.com/graycoreio/daffodil/commit/95d2d3139063cf25b390a3d6701229f93c07e8f4))
+* **eslint:** add linting rules for testing ([#3056](https://github.com/graycoreio/daffodil/issues/3056)) ([1f1f854](https://github.com/graycoreio/daffodil/commit/1f1f85482b0d5d5fbdc9c5f5ec5f06ad2ff022cc))
+* **external-router:** add schema for magento v2.4.3.+ ([#3378](https://github.com/graycoreio/daffodil/issues/3378)) ([15e6dd9](https://github.com/graycoreio/daffodil/commit/15e6dd9f6538543d9a7cd053fa7893cd995e4182))
+* **seo:** add schema support ([#3378](https://github.com/graycoreio/daffodil/issues/3378)) ([b249bc5](https://github.com/graycoreio/daffodil/commit/b249bc5129f14b7bde38d2b3c3de019e4547ad77))
+
+
+### Bug Fixes
+
+* **design-land:** add missing provideDaffToast provider inn root ([#3380](https://github.com/graycoreio/daffodil/issues/3380)) ([845d490](https://github.com/graycoreio/daffodil/commit/845d4908f2660082a647f1f044646e0f8c5e6bce))
+* **dgeni:** breadcrumbs have relative paths ([#3355](https://github.com/graycoreio/daffodil/issues/3355)) ([4ec3743](https://github.com/graycoreio/daffodil/commit/4ec37437c8fe3328dd4f97ee409ce9217658cb4b))
+* **router:** old route data is replayed for new routes ([#3352](https://github.com/graycoreio/daffodil/issues/3352)) ([ea2e75d](https://github.com/graycoreio/daffodil/commit/ea2e75d910b59adae4117d2e25d56ffee7b716ab))
+
+
+### Miscellaneous Chores
+
+* upgrade node to `20.18` ([#3361](https://github.com/graycoreio/daffodil/issues/3361)) ([d5524f1](https://github.com/graycoreio/daffodil/commit/d5524f152a14113957e85e2e44003b558f1c58e0))
+
 ## [0.79.0](https://github.com/graycoreio/daffodil/compare/v0.78.0...v0.79.0) (2024-11-26)
 
 
