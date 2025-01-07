@@ -19,7 +19,7 @@ import {
  *
  * ## Usage
  *
- * ### Implementing it as an attribute directive
+ * @example Implementing it as an attribute directive
  *
  * ```html
  * <div daffTextAlignable textAlignment="center">Aligned text</div>
@@ -29,7 +29,7 @@ import {
  *
  * ```
  *
- * ### Implementing it as an Angular host directive
+ * @example Implementing it as an Angular host directive
  *
  * ```ts
  * @Component({

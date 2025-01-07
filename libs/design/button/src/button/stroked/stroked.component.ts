@@ -14,7 +14,7 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
 /**
  * DaffStrokedButtonComponent is a rectangular outlined button with no background color.
  *
- * ## Usage
+ * @example Stroked button
  * ```html
  * <button daff-stroked-button>
  *  <div daffPrefix></div>

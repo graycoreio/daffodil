@@ -9,6 +9,7 @@ import { DaffTabComponent } from '../tab/tab.component';
 /**
  * DaffTabPanelComponent is used to display the content panel of a tab.
  *
+ * @example Basic structure of tab panel
  * ```html
  * <daff-tab-panel>
  *  <!-- Tab panel content goes here -->

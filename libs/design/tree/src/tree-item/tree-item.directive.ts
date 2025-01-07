@@ -11,10 +11,11 @@ import { DaffTreeNotifierService } from '../tree/tree-notifier.service';
 import { DaffTreeFlatNode } from '../utils/flatten-tree';
 
 /**
- * The `DaffTreeItemDirective` allows you to demarcate the elements which are
- * tree-children that interact with the parent tree.
+ * The `DaffTreeItemDirective` marks elements as tree child nodes that interact with the parent tree structure.
  *
- * They can be used like:
+ * @example Using a `[daffTreeItem]`
+ *
+ * `[tree]` is a {@link DaffTreeData} and `[daff-tree]` is a {@link DaffTreeComponent}.
  *
  * ```html
  * <ul daff-tree [tree]="tree">
@@ -28,8 +29,6 @@ import { DaffTreeFlatNode } from '../utils/flatten-tree';
  * </ul>
  * ```
  *
- * where `tree` is a {@link DaffTreeData} and `daff-tree` is a {@link DaffTreeComponent}.
- *
  */
 @Directive({
   selector: '[daffTreeItem]',
@@ -38,7 +37,7 @@ import { DaffTreeFlatNode } from '../utils/flatten-tree';
 export class DaffTreeItemDirective {
 
   /**
-   * The css class of the daff-tree.
+   * The css class of the tree item.
    *
    * @docs-private
    */

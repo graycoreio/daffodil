@@ -7,15 +7,13 @@ import {
  * `DaffArticleEncapsulatedDirective` is used to encapsulate custom components within an article,
  * preventing {@link DaffArticleComponent } styles from bleeding into the component.
  *
- * ## Usage
- *
- * ### Implementing it as an attribute directive
+ * @example Implementing it as an attribute directive
  *
  * ```html
  * <my-custom-component daffArticleEncapsulated></my-custom-component>
  * ```
  *
- * ### Implementing it as an Angular host directive
+ * @example Implementing it as an Angular host directive
  *
  * ```ts
  * @Component({
@@ -25,6 +23,7 @@ import {
  *  hostDirectives: [{ directive: DaffArticleEncapsulatedDirective }],
  * })
  * export class CustomComponent { }
+ * ```
  *
  * This directive will apply the `daff-ae` class to your component, ensuring that it is encapsulated from the article's styles.
  */

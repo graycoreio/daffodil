@@ -14,7 +14,7 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
 /**
  * DaffUnderlineButtonComponent is a borderless button with a custom underline style.
  *
- * ## Usage
+ * @example Underline button
  * ```html
  * <button daff-underline-button>
  *  <div daffPrefix></div>

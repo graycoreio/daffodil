@@ -14,13 +14,13 @@ import {
  *
  * ## Usage
  *
- * ### Implementing it as an attribute directive
+ * @example Implementing it as an attribute directive
  *
  * ```html
  * <div daffSkeletonable [skeleton]="isLoading">Content</div>
  * ```
  *
- * ### Implementing it as an Angular host directive
+ * @example Implementing it as an Angular host directive
  *
  * ```ts
  * @Component({

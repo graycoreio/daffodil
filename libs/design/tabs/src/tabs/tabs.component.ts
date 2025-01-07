@@ -21,7 +21,7 @@ import { DaffTabLabelComponent } from './tab-label/tab-label.component';
 /**
  * Tabs provide a way to navigate between panels that display related content.
  *
- * ## Usage
+ * @example Basic use of the tabs component
  * ```html
  * <daff-tabs aria-label="List of tabs">
  * 	<daff-tab>

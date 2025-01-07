@@ -19,7 +19,7 @@ import {
  *
  * ## Usage
  *
- * ### Implementing it as an attribute directive
+ * @example Implementing it as an attribute directive
  *
  * ```html
  * <div daffSizable [size]="small">Sized content</div>
@@ -27,7 +27,7 @@ import {
  * In this example, the `daff-small` class is applied to the `div` element, allowing you to
  * use the class to style the `div`.
  *
- * ### Implementing it as an Angular host directive
+ * @example Implementing it as an Angular host directive
  *
  * ```ts
  * @Component({

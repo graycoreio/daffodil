@@ -16,6 +16,7 @@ import {
 /**
  * DaffTabLabelComponent is used to display the label of a tab panel. Labels may optionally contain a `daffPrefix` or `daffSuffix` to add icons or badges.
  *
+ * @example Basic structure of tab label
  * ```html
  * <daff-tab-label>
  *  <div daffPrefix></div>

@@ -25,6 +25,7 @@ export class DaffFocusStackService {
    * Generally, you will probably want to call this before you transition focus
    * onto a new element.
    *
+   * @example Using the push function
    * ```ts
    * this._focusStack.push(this._doc.activeElement);
    * ```
@@ -37,8 +38,9 @@ export class DaffFocusStackService {
   /**
    * Focuses on the HTML element at the top of a stack.
    *
+   * @example Using the focus function
    * ```ts
-   * this._focusStack.push(this._doc.activeElement);
+   * this._focusStack.focus(this._doc.activeElement);
    * ```
    */
   focus() {

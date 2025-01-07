@@ -17,13 +17,13 @@ import {
  *
  * ## Usage
  *
- * ### Implementing it as an attribute directive
+ * @example Implementing it as an attribute directive
  *
  * ```html
  * <div daffStatusable [status]="componentStatus">Status content</div>
  * ```
  *
- * ### Implementing it as an Angular host directive
+ * @example Implementing it as an Angular host directive
  *
  * ```ts
  * @Component({

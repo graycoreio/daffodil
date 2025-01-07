@@ -16,7 +16,7 @@ import { DaffOpenableStateError } from './utils/state-error';
  * A directive that opens or closes a component. It should only be used as an [Angular Host Directive](https://angular.dev/guide/directives/directive-composition-api).
  * This directive is stateless by default, but it supports both a state and stateless implementation. Only one version should be used within a component.
  *
- * ## Example
+ * @example Using the DaffOpenableDirective
  * ```ts
  * import {
  *  Component,
@@ -74,6 +74,7 @@ export class DaffOpenableDirective implements DaffOpenable, OnChanges {
 
   /** Whether or not a component should handle state
    *
+   * @example Setting the `stateless` property on a component
    * ```ts
    * constructor(private openDirective: DaffOpenableDirective) {
    *  this.openDirective.stateless = false;

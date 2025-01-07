@@ -28,7 +28,7 @@ import {
  *
  * ## Usage
  *
- * ### Implementing it as an attribute directive
+ * @example Implementing it as an attribute directive
  *
  * ```html
  * <my-custom-component daffManageContainerLayout>
@@ -43,7 +43,7 @@ import {
  * }
  * ```
  *
- * ### Implementing it as an Angular host directive
+ * @example Implementing it as an Angular host directive
  *
  * ```ts
  * @Component({

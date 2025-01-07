@@ -30,8 +30,7 @@ import { hydrateTree } from '../utils/hydrate-tree';
 /**
  * The `DaffTreeComponent` allows you to render tree structures as interactable ui.
  *
- * They can be used like:
- *
+ * @example Basic use of the tree component
  * ```html
  * <ul daff-tree [tree]="tree">
  *   <ng-template #daffTreeItemWithChildrenTpl let-node>

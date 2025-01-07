@@ -13,7 +13,7 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
 /**
  * DaffIconButtonComponent is an icon button used with icon fonts.
  *
- * ## Usage
+ * @example Icon button
  * ```html
  * <button daff-icon-button>
  *  <fa-icon [icon]="faPlus"></fa-icon>
