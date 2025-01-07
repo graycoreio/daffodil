@@ -4,6 +4,7 @@ import { DAFF_DOC_KIND_PATH_SEGMENT_MAP } from './path-segment-map';
 const DOC_KIND_REGEX = {
   [DaffDocKind.GUIDE]: /\/docs\/guides\/(?<path>.+)\.md/,
   [DaffDocKind.EXPLANATION]: /\/docs\/explanations\/(?<path>.+)\.md/,
+  [DaffDocKind.COMPONENT]: /\/libs\/design\/(?<path>.+)\/README\.md/,
   [DaffDocKind.PACKAGE]: /\/libs\/(?<path>.+)\.md/,
   [DaffDocKind.API]: /\/libs\/(?<path>.+)\.ts/,
 };
