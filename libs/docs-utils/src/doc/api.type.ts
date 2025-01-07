@@ -6,5 +6,5 @@ import { DaffDoc } from './type';
  */
 export interface DaffApiDoc extends DaffDoc {
   docType: string;
-  example: Array<DaffDocExample>;
+  examples: Array<DaffDocExample>;
 }
