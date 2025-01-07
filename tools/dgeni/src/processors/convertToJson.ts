@@ -6,8 +6,9 @@ import {
 export const CONVERT_TO_JSON_PROCESSOR_NAME = 'convertToJson';
 
 export class ConvertToJsonProcessor implements Processor {
-  name = CONVERT_TO_JSON_PROCESSOR_NAME;
-  $runBefore = ['writeFilesProcessor'];
+  readonly name = CONVERT_TO_JSON_PROCESSOR_NAME;
+  readonly $runAfter = ['docs-rendered'];
+  readonly $runBefore = ['writeFilesProcessor'];
   docTypes = [];
   /**
    * Extra doc fields to be copied into the written JSON document.

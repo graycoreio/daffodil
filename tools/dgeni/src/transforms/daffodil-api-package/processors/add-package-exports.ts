@@ -24,6 +24,7 @@ export class AddPackageExportsProcessor implements Processor {
       if (this.docTypes.includes(doc.docType)) {
         doc.data = {
           breadcrumbs: doc.breadcrumbs,
+          kind: doc.kind,
           ...getPackageInfo(doc),
         };
       }

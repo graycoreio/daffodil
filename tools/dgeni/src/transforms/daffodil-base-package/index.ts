@@ -10,7 +10,10 @@ import * as basePackage from 'dgeni-packages/base';
 import * as nunjucksPackage from 'dgeni-packages/nunjucks';
 import * as path from 'path';
 
-import { ABSOLUTIFY_PATHS_PROCESSOR_PROVIDER } from '../../processors/absolutify-paths';
+import {
+  ABSOLUTIFY_PATHS_PROCESSOR_NAME,
+  ABSOLUTIFY_PATHS_PROCESSOR_PROVIDER,
+} from '../../processors/absolutify-paths';
 import { ADD_KIND_PROCESSOR_PROVIDER } from '../../processors/add-kind';
 import { BREADCRUMB_PROCESSOR_PROVIDER } from '../../processors/breadcrumb';
 import {
@@ -30,7 +33,7 @@ export const daffodilBasePackage = new Package('daffodil-base', [
 ])
   .processor({ name: 'absolutify-paths', $runAfter: ['paths-computed'], $process: (d) => d })
   .processor(...ABSOLUTIFY_PATHS_PROCESSOR_PROVIDER)
-  .processor({ name: 'paths-absolutified', $runAfter: ['absolutify-paths'], $process: (d) => d })
+  .processor({ name: 'paths-absolutified', $runAfter: [ABSOLUTIFY_PATHS_PROCESSOR_NAME], $process: (d) => d })
   .processor(...ADD_KIND_PROCESSOR_PROVIDER)
   .factory(...ID_SANITIZER_PROVIDER)
   .processor(...BREADCRUMB_PROCESSOR_PROVIDER)
@@ -78,5 +81,5 @@ export const daffodilBasePackage = new Package('daffodil-base', [
   })
 
   .config((convertToJson: ConvertToJsonProcessor) => {
-    convertToJson.extraFields.push('breadcrumbs');
+    convertToJson.extraFields.push('breadcrumbs', 'kind');
   });
