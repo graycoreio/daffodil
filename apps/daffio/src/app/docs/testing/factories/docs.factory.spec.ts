@@ -17,8 +17,8 @@ describe('DaffioDocsFactory', () => {
     expect(Object.keys(doc)).toContain('id');
     expect(Object.keys(doc)).toContain('title');
     expect(Object.keys(doc)).toContain('contents');
-    expect(Object.keys(doc.tableOfContents.json[0])).toContain('content');
-    expect(Object.keys(doc.tableOfContents.json[0])).toContain('lvl');
-    expect(Object.keys(doc.tableOfContents.json[0])).toContain('slug');
+    expect(Object.keys(doc.tableOfContents[0])).toContain('content');
+    expect(Object.keys(doc.tableOfContents[0])).toContain('lvl');
+    expect(Object.keys(doc.tableOfContents[0])).toContain('slug');
   });
 });
