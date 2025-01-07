@@ -36,6 +36,14 @@ describe('@daffodil/docs-utils | daffDocsGetKind', () => {
       expect(result).toEqual(DaffDocKind.EXPLANATION);
     });
   });
+
+  describe('for a design component path', () => {
+    it('should return explanation kind', () => {
+      const path = '/libs/design/component/README.md';
+      const result = daffDocsGetKind(path);
+      expect(result).toEqual(DaffDocKind.COMPONENT);
+    });
+  });
 });
 
 describe('@daffodil/docs-utils | daffDocsGetLinkUrl', () => {
