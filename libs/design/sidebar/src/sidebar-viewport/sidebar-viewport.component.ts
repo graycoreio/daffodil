@@ -47,7 +47,16 @@ import { DaffSidebarViewportBackdropComponent } from '../sidebar-viewport-backdr
 
 /**
  * The DaffSidebarViewportComponent is the "holder" of sidebars throughout an entire application.
- * It's generally only used once, like:
+ *
+ * `<daff-sidebar-viewport>` should only ever be used once in an application,
+ * but it's possible for there to be multiple sidebars of many modes
+ * at the same time. See {@link DaffSidebarMode}.
+ *
+ * Since this is a functional component, it's possible to have multiple "open" sidebars
+ * at the same time. As a result, this component attempts to gracefully handle these situations.
+ * However, importantly, there can only be one sidebar of each mode, on each side, at any given time.
+ *
+ * If this is violated, this component will throw an exception.
  *
  * @example Using the sidebar viewport
  * ```html
@@ -56,15 +65,6 @@ import { DaffSidebarViewportBackdropComponent } from '../sidebar-viewport-backdr
  *    <p>Site content</p>
  * </daff-sidebar-viewport>
  * ```
- *
- * Importantly, its possible for there to be multiple sidebars of many modes
- * at the same time. See {@link DaffSidebarMode}.
- *
- * Since this is a functional component, it's possible to have multiple "open" sidebars
- * at the same time. As a result, this component attempts to gracefully handle these situations.
- * However, importantly, there can only be one sidebar of each mode, on each side, at any given time.
- *
- * If this is violated, this component will throw an exception.
  */
 @Component({
   selector: 'daff-sidebar-viewport',

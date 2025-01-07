@@ -12,15 +12,15 @@ import {
  * input property. When `skeleton` is `true`, the `daff-skeleton` CSS class
  * is applied, which should style the component to look like a loading placeholder.
  *
- * ## Usage
+ * @example
  *
- * @example Implementing it as an attribute directive
+ * Implementing it as an attribute directive
  *
  * ```html
  * <div daffSkeletonable [skeleton]="isLoading">Content</div>
  * ```
  *
- * @example Implementing it as an Angular host directive
+ * Implementing it as an Angular host directive
  *
  * ```ts
  * @Component({
@@ -42,8 +42,6 @@ import {
  *  @include state.skeleton-screen(48px, 24px);
  * }
  * ```
- *
- * ## Styles
  *
  * The `daff-skeleton` class should be defined in your styles to display the loading
  * state as desired. It can be used in conjuction with the `skeleton-screen` mixin, which provides predefined loading styles.

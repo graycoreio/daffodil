@@ -22,11 +22,14 @@ let switchUniqueId = 0;
 /**
  * The switch component provides a way to toggle between two settings.
  *
- * ## Usage
- * <daff-switch [checked]="checked" loading="loading" [error]="true" [labelPosition]="daff-left">
+ * @example
+ *
+ * ```html
+ * <daff-switch [checked]="checked" loading="loading" [error]="true" [labelPosition]="top">
  *    Label
  *    <daff-error-message>Error message</daff-error-message>
  * </daff-switch>
+ * ```
  */
 @Component({
   selector: 'daff-switch',

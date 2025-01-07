@@ -26,9 +26,9 @@ import {
  * while the latter (without `DaffManageContainerLayoutDirective`) may unexpectedly
  * interfere in the layout features of its parent element (i.e. display: grid, display: flex).
  *
- * ## Usage
+ * @example
  *
- * @example Implementing it as an attribute directive
+ * Implementing it as an attribute directive
  *
  * ```html
  * <my-custom-component daffManageContainerLayout>
@@ -43,7 +43,7 @@ import {
  * }
  * ```
  *
- * @example Implementing it as an Angular host directive
+ * Implementing it as an Angular host directive
  *
  * ```ts
  * @Component({

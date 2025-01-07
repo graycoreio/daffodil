@@ -15,15 +15,15 @@ import {
  * styles by setting CSS classes based on the specified status. This directive is useful
  * for indicating different statuses such as info, warning, critical, or success states.
  *
- * ## Usage
+ * @example
  *
- * @example Implementing it as an attribute directive
+ * Implementing it as an attribute directive
  *
  * ```html
  * <div daffStatusable [status]="componentStatus">Status content</div>
  * ```
  *
- * @example Implementing it as an Angular host directive
+ * Implementing it as an Angular host directive
  *
  * ```ts
  * @Component({
@@ -48,7 +48,6 @@ import {
  *  }
  * }
  * ```
- * ## Styles
  *
  * The directive applies the following CSS classes based on the status:
  *

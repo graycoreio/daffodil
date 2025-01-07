@@ -26,13 +26,15 @@ const validateColor = (color: string) => {
  * styles by setting CSS classes based on the specified color. This directive is useful
  * for applying different color palettes to a component in an Angular application.
  *
- * @example Implementing it as an attribute directive
+ * @example
+ *
+ * Implementing it as an attribute directive
  *
  * ```html
  * <div daffColorable [color]="componentColor">Colored content</div>
  * ```
  *
- * @example Implementing it as an Angular host directive
+ * Implementing it as an Angular host directive
  *
  * ```ts
  * @Component({
@@ -49,7 +51,7 @@ const validateColor = (color: string) => {
  * export class CustomComponent { }
  * ```
  *
- * @example Setting custom styles
+ * Setting custom styles
  * ```scss
  * .custom-component {
  *
@@ -59,8 +61,6 @@ const validateColor = (color: string) => {
  *  }
  * }
  * ```
- *
- * ## Styles
  *
  * The directive applies the following CSS classes based on the color:
  *
