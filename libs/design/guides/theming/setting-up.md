@@ -1,4 +1,4 @@
-# Theming
+# Setting up your theme
 Daffodil's theming capabilities enable you to customize `@daffodil/design`'s component color styles to reflect your brand or product.
 
 ## Overview
