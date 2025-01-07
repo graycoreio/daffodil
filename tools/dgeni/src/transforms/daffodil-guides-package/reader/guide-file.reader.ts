@@ -35,7 +35,7 @@ export function guideFileReaderFactory() {
     getDocs: (fileInfo) => fileInfo.content ? [{
       docType: 'guide',
       title: extractTitle(fileInfo),
-      tableOfContents: toc(fileInfo.content),
+      tableOfContents: toc(fileInfo.content).json,
       content: fileInfo.content,
     }] : [],
   };

@@ -10,15 +10,13 @@ export class MockDoc implements DaffGuideDoc {
   contents = faker.lorem.paragraph();
   // TODO: implement child models
   breadcrumbs = [];
-  tableOfContents = {
-    json: [
-      {
-        content: faker.lorem.paragraph(),
-        lvl: faker.datatype.number(),
-        slug: faker.random.alphaNumeric(),
-      },
-    ],
-  };
+  tableOfContents = [
+    {
+      content: faker.lorem.paragraph(),
+      lvl: faker.datatype.number(),
+      slug: faker.random.alphaNumeric(),
+    },
+  ];
 };
 
 @Injectable({
