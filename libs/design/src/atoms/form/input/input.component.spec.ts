@@ -13,18 +13,15 @@ import { By } from '@angular/platform-browser';
 import { DaffInputComponent } from './input.component';
 
 @Component({
-  template: `<input daff-input [formSubmitted]="formSubmittedValue">`,
+  template: `<input daff-input>`,
   standalone: false,
 })
-class WrapperComponent {
-  formSubmittedValue: boolean;
-}
+class WrapperComponent {}
 
 describe('@daffodil/design | DaffInputComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let stubFormControl;
-  let stubFormSubmitted: boolean;
   let component: DaffInputComponent;
   let componentDE: DebugElement;
 
@@ -40,11 +37,9 @@ describe('@daffodil/design | DaffInputComponent', () => {
 
   beforeEach(() => {
     stubFormControl = new UntypedFormControl();
-    stubFormSubmitted = false;
 
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    wrapper.formSubmittedValue = stubFormSubmitted;
     fixture.detectChanges();
 
     componentDE = fixture.debugElement.query(By.css('[daff-input]'));
@@ -53,10 +48,6 @@ describe('@daffodil/design | DaffInputComponent', () => {
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
-  });
-
-  it('should be able to take formSubmitted as input', () => {
-    expect(component.formSubmitted).toEqual(stubFormSubmitted);
   });
 
   describe('onFocus', () => {
