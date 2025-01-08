@@ -1,10 +1,12 @@
 {
   "plugins": [
     "stylelint-selector-bem-pattern",
-    "@stylistic/stylelint-plugin"
+    "@stylistic/stylelint-plugin",
+    "./custom-stylelint-plugins/no-direct-cursor-pointer"
   ],
   "extends": "stylelint-config-recommended-scss",
   "rules": {
+    "daffodil/no-direct-cursor-pointer": true,
     "color-hex-length": "long",
     "color-no-invalid-hex": true,
     "color-named": "never",

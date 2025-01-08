@@ -5,7 +5,7 @@
 	padding: 75px 25px 0;
 
 	&__close {
-		cursor: pointer;
+		@include clickable();
 		font-size: $medium-font-size;
 		position: absolute;
 		right: 25px;

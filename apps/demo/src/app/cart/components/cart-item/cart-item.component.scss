@@ -9,7 +9,7 @@
 	grid-template-columns: 1fr 3fr;
 
 	&__image {
-		cursor: pointer;
+		@include clickable();
 		display: block;
 		max-width: 100%;
 	}
@@ -19,7 +19,7 @@
 	}
 
 	&__name {
-		cursor: pointer;
+		@include clickable();
 		font-size: 1rem;
 		@include embolden();
 

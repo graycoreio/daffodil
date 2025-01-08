@@ -11,6 +11,7 @@
 // @include clickable();
 // ```
 @mixin clickable() {
+	// stylelint-disable daffodil/no-direct-cursor-pointer
 	cursor: pointer;
 	-webkit-user-select: none;
 	/// Chrome all / Safari all ///

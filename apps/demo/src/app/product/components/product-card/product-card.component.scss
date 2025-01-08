@@ -1,8 +1,8 @@
 @use 'utilities' as *;
 
 .demo-product-card {
+	@include clickable();
 	border: none;
-	cursor: pointer;
 
 	&__details {
 		padding: 15px 15px 0;
