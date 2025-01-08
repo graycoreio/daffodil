@@ -15,15 +15,13 @@ import {
  * styles by setting CSS classes based on the specified status. This directive is useful
  * for indicating different statuses such as info, warning, critical, or success states.
  *
- * @example
- *
- * Implementing it as an attribute directive
+ * @example Implementing it as an attribute directive
  *
  * ```html
  * <div daffStatusable [status]="componentStatus">Status content</div>
  * ```
  *
- * Implementing it as an Angular host directive
+ * @example Implementing it as an Angular host directive
  *
  * ```ts
  * @Component({
@@ -40,8 +38,7 @@ import {
  * export class CustomComponent { }
  *
  * ```scss
- * .custom-component {
- *
+ * :host {
  *  &.daff-critical {
  *    background: daff-color($red, 10);
  *    color: daff-color($red, 90);
@@ -49,7 +46,7 @@ import {
  * }
  * ```
  *
- * The directive applies the following CSS classes based on the status:
+ * The directive applies the following CSS classes to the component based on the status:
  *
  * - `daff-info`: Applied when the status is `info`.
  * - `daff-warn`: Applied when the status is `warn`.

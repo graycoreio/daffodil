@@ -26,15 +26,16 @@ const validateColor = (color: string) => {
  * styles by setting CSS classes based on the specified color. This directive is useful
  * for applying different color palettes to a component in an Angular application.
  *
- * @example
- *
- * Implementing it as an attribute directive
+ * @example Implementing it as an attribute directive
  *
  * ```html
- * <div daffColorable [color]="componentColor">Colored content</div>
+ * <div daffColorable [color]="primary">Colored content</div>
  * ```
  *
- * Implementing it as an Angular host directive
+ * In this example, the `daff-primary` class is applied to the `div` element, allowing you to
+ * use the class to style the `div`.
+ *
+ * @example Implementing it as an Angular host directive
  *
  * ```ts
  * @Component({
@@ -54,7 +55,6 @@ const validateColor = (color: string) => {
  * Setting custom styles
  * ```scss
  * .custom-component {
- *
  *  &.daff-primary {
  *    background: daff-color($primary, 10);
  *    color: daff-color($primary, 90);
@@ -62,7 +62,7 @@ const validateColor = (color: string) => {
  * }
  * ```
  *
- * The directive applies the following CSS classes based on the color:
+ * The directive applies the following CSS classes to the component based on the color:
  *
  * - `daff-primary`: Applied when the color is `primary`.
  * - `daff-secondary`: Applied when the color is `secondary`.

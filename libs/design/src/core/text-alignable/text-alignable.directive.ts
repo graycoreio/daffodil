@@ -24,9 +24,7 @@ import {
  * dynamic text alignment within Angular components in more complex use cases where the
  * application of `text-align: center;` would cause unexpected side effects.
  *
- * @example
- *
- * Implementing it as an attribute directive
+ * @example Implementing it as an attribute directive
  *
  * ```html
  * <div daffTextAlignable textAlignment="center">Aligned text</div>
@@ -35,7 +33,7 @@ import {
  * In this example, the `daff-center` class is added to the `div` element, allowing
  * you to style the `div` as you wish using the class.
  *
- * Implementing it as an Angular host directive
+ * @example Implementing it as an Angular host directive
  *
  * ```ts
  * @Component({
