@@ -4,7 +4,7 @@ Color helps to distinguish and create consistent experiences across products. It
 ## Color palettes
 The design system includes three core palettes that reflect Daffodil's brand identity, three palettes used to indicate status, and a neutral palette that is dominant throughout the design system. These palettes are built using [HSLuv](https://www.hsluv.org/), a color space designed as a human-friendly alternative to the standard HSL. It aims to address the limitations of traidtional color spaces like RGB and HSL.
 
-For guidance on how to set up your theme with customized palettes, see the [Theming](/libs/design/guides/foundations/theming.md) guide.
+For guidance on how to set up your theme with customized palettes, see theming's [getting started](/libs/design/guides/theming/getting-started.md) guide.
 
 ## Accessibility
 We are committed to complying with the [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG/). The design system is built to meet these guidelines automatically. If you choose to identify your own color palettes outside of Daffodil's colors, please make sure to choose primary, secondary, tertiary, and extended colors that will pass the guidelines. Ensure there is sufficient color contrast between elements so that people who are visually impaired can see and use your products.

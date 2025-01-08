@@ -65,7 +65,7 @@ To use `@daffodil/design`'s default theme, include the following in your `styles
 }
 ```
 
-See the [Theming guide](/libs/design/guides/foundations/theming.md) for more information on how to customize your own theme.
+See the [Theming guide](/libs/design/guides/theming/setting-up.md) for more information on how to customize your own theme.
 
 ## Use a component
 Now you're ready to use Daffodil Design [components](/docs/design/components)! For example, here's how to use the [Hero](/libs/design/hero/README.md) component.
