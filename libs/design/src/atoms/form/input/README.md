@@ -1,8 +1,8 @@
 # Input
-The input component allows the native HTML `<input>` element to work with the [Form Field](/libs/design/src/atoms/form/form-field/README.md) component.
+The input component allows a native HTML input element to work with the form field component.
 
 ## Overview
-The input component has the same functionality as a native HTML `<input>` element, with additional custom styling and functionality. It can't be used by itself and must be contained within a `<daff-form-field>`.
+The input component has the same functionality as a native HTML `<input>` element, with additional custom styling and functionality. It can't be used by itself and must be contained within a [`<daff-form-field>`](/libs/design/src/atoms/form/form-field/README.md).
 
 ## Basic input with form field
 <design-land-example-viewer-container example="input-with-form-field"></design-land-example-viewer-container>
