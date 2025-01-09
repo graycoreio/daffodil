@@ -2,12 +2,14 @@
 
 :host {
 	display: flex;
-	gap: 8px;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
 }
 
 .daff-tab-label {
 	&__content {
 		@include t.text-truncate();
-		max-width: 240px;
+		max-width: 15rem;
 	}
 }

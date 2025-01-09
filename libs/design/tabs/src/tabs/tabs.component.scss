@@ -11,5 +11,14 @@
 		display: flex;
 		overflow-x: auto;
 		scrollbar-width: thin;
+		position: relative;
+
+		&::after {
+			content: '';
+			position: absolute;
+			height: 0.125rem;
+			width: 100%;
+			bottom: 0;
+		}
 	}
 }

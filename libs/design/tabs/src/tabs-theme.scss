@@ -12,6 +12,14 @@
 	$white: core.daff-map-get($theme, 'core', 'white');
 	$black: core.daff-map-get($theme, 'core', 'black');
 
+	.daff-tabs {
+		&__tab-list {
+			&::after {
+				background: theming.daff-illuminate($base, $neutral, 2);
+			}
+		}
+	}
+
 	.daff-tab-activator {
 		border-bottom: 2px solid theming.daff-illuminate($base, $neutral, 2);
 

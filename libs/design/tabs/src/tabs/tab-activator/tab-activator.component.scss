@@ -10,9 +10,11 @@
 	font-size: 1rem;
 	line-height: 1.5rem;
 	font-weight: 400;
-	height: 2.5rem;
+	height: 3rem;
 	margin: 0;
+	min-width: 8rem;
 	padding: 0.5rem 1.5rem;
+	z-index: 2;
 
 	&[disabled] {
 		cursor: not-allowed;
