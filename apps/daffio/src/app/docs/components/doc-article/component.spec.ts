@@ -8,13 +8,11 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 
-import { DaffArticleModule } from '@daffodil/design/article';
+import { DAFF_ARTICLE_COMPONENTS } from '@daffodil/design/article';
 import {
-  DaffApiDoc,
   DaffApiPackageDoc,
-  DaffDoc,
-  DaffDocsApiNavList,
-  DaffGuideDoc,
+  DaffBreadcrumb,
+  DaffDocTableOfContents,
 } from '@daffodil/docs-utils';
 
 import { DaffioDocArticleComponent } from './component';
@@ -23,13 +21,18 @@ import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
 import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 
 @Component({
-  template: `<daffio-doc-article [doc]="doc"></daffio-doc-article>`,
+  template: `<daffio-doc-article
+		[toc]="tocValue"
+		[breadcrumbs]="breadcrumbsValue"
+	></daffio-doc-article>`,
 })
 class WrapperComponent {
-  doc: DaffDoc | DaffGuideDoc | DaffApiDoc | DaffApiPackageDoc;
+  tocValue: DaffDocTableOfContents;
+  breadcrumbsValue: Array<DaffBreadcrumb>;
 }
 
 describe('DaffioDocArticleComponent', () => {
+  let component: DaffioDocArticleComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapper: WrapperComponent;
   const docFactory = new DaffioDocsFactory();
@@ -38,7 +41,7 @@ describe('DaffioDocArticleComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffArticleModule,
+        DAFF_ARTICLE_COMPONENTS,
         DaffioDocsTableOfContentsModule,
         DaffioApiPackageComponent,
       ],
@@ -56,45 +59,22 @@ describe('DaffioDocArticleComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    wrapper.doc = docFactory.create();
+    wrapper.tocValue = [];
+    wrapper.breadcrumbsValue = [];
     fixture.detectChanges();
+
+    component = fixture.debugElement.query(By.directive(DaffioDocArticleComponent)).componentInstance;
   });
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('when the doc is an API package doc', () => {
-    beforeEach(() => {
-      wrapper.doc = <DaffApiPackageDoc>{
-        id: 'name1Component',
-        title: 'title1Component',
-        path: 'path1',
-        docType: 'package',
-        description: '',
-        children: [
-          {
-            id: 'name1ComponentChild',
-            title: 'title1ComponentChild',
-            path: 'path1/child',
-            docType: 'docType1',
-            children: [],
-          },
-        ],
-      };
-      fixture.detectChanges();
-    });
-
-    it('should render the package doc', () => {
-      const apiChildren: DaffioApiPackageComponent = fixture.debugElement.query(By.directive(DaffioApiPackageComponent)).componentInstance;
-      expect(apiChildren.doc).toEqual((<DaffApiPackageDoc>wrapper.doc));
-    });
+  it('should take toc as an input', () => {
+    expect(component.toc).toEqual(wrapper.tocValue);
   });
 
-  it('should render the contents of the doc as innerhtml', () => {
-    wrapper.doc = docFactory.create({ contents: 'Some Content' });
-    fixture.detectChanges();
-    const articleElement = fixture.debugElement.query(By.css('daff-article')).nativeElement;
-    expect(articleElement.innerHTML).toEqual(wrapper.doc.contents);
+  it('should take breadcrumbs as an input', () => {
+    expect(component.breadcrumbs).toEqual(wrapper.breadcrumbsValue);
   });
 });

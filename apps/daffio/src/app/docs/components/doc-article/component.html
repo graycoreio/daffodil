@@ -5,7 +5,7 @@
 <div class="daffio-doc-article__grid">
   <div class="daffio-doc-article__content">
     <daff-article>
-      @if (breadcrumbs()?.length > 0) {
+      @if (breadcrumbs.length > 0) {
         <nav aria-label="Breadcrumb">
           <ol daff-breadcrumb>
             @for (breadcrumb of breadcrumbs(); track $index) {
@@ -27,7 +27,7 @@
   @if (toc) {
     <daffio-docs-table-of-contents
       class="daffio-doc-article__table-of-contents"
-      [tableOfContents]="toc()">
+      [tableOfContents]="toc">
     </daffio-docs-table-of-contents>
   }
 </div>

@@ -1,7 +1,7 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  input,
+  Input,
 } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -26,8 +26,8 @@ export class DaffioDocArticleComponent {
     private sidebarService: DaffioSidebarService,
   ) {}
 
-  toc = input<DaffDocTableOfContents | undefined>(undefined);
-  breadcrumbs = input<Array<DaffBreadcrumb>>([]);
+  @Input() toc?: DaffDocTableOfContents;
+  @Input() breadcrumbs: Array<DaffBreadcrumb> = [];
 
   open() {
     this.sidebarService.open(DAFFIO_DOCS_LIST_SIDEBAR_ID);
