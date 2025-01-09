@@ -26,7 +26,7 @@ export class DaffioDocArticleComponent {
     private sidebarService: DaffioSidebarService,
   ) {}
 
-  @Input() toc?: DaffDocTableOfContents;
+  @Input() toc: DaffDocTableOfContents = [];
   @Input() breadcrumbs: Array<DaffBreadcrumb> = [];
 
   open() {
