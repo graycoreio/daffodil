@@ -19,7 +19,7 @@ import { DaffDoc } from '@daffodil/docs-utils';
 import { DaffioDocsPageComponent } from './docs-page.component';
 import { DaffioDocsFactory } from '../../../docs/testing/factories/docs.factory';
 
-@Component({ selector: 'daffio-doc-viewer', template: '' })
+@Component({ selector: 'daffio-doc-article', template: '' })
 class MockDaffioDocViewerComponent {
   @Input() doc: DaffDoc;
 }
@@ -65,8 +65,8 @@ describe('DaffioDocsPageComponent', () => {
     expect(component.doc$).toBeObservable(expected);
   });
 
-  it('should pass the down the observed doc to the `daffio-doc-viewer`', () => {
-    const docViewerComponent = fixture.debugElement.query(By.css('daffio-doc-viewer')).componentInstance;
+  it('should pass the down the observed doc to the `daffio-doc-article`', () => {
+    const docViewerComponent = fixture.debugElement.query(By.css('daffio-doc-article')).componentInstance;
     expect(docViewerComponent.doc).toEqual(doc);
   });
 });

@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
 
 import { DaffDoc } from '@daffodil/docs-utils';
 
-import { DaffioDocViewerModule } from '../../components/doc-viewer/doc-viewer.module';
+import { DaffioDocRendererComponent } from '../../components/doc-renderer/component';
 
 @Component({
   selector: 'daffio-docs-page',
@@ -23,7 +23,7 @@ import { DaffioDocViewerModule } from '../../components/doc-viewer/doc-viewer.mo
   imports: [
     AsyncPipe,
     RouterModule,
-    DaffioDocViewerModule,
+    DaffioDocRendererComponent,
   ],
 })
 export class DaffioDocsPageComponent implements OnInit {
