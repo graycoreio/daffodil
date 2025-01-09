@@ -21,7 +21,7 @@
 	&__name {
 		cursor: pointer;
 		font-size: 1rem;
-		@include embolden();
+		font-weight: bold;
 
 		@include breakpoint(big-tablet) {
 			margin-bottom: 15px;
@@ -40,7 +40,7 @@
 
 	&__mobile-qty {
 		display: inline;
-		@include embolden();
+		font-weight: bold;
 
 		@include breakpoint(big-tablet) {
 			display: none;
@@ -88,6 +88,10 @@
 
 		&__attribute {
 			grid-area: attribute;
+		}
+
+		&__attribute-label {
+			font-weight: bold;
 		}
 
 		&__size {

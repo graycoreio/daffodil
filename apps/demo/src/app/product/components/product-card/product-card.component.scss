@@ -10,7 +10,7 @@
 	}
 
 	&__brand {
-		@include embolden();
+		font-weight: bold;
 		text-transform: uppercase;
 	}
 

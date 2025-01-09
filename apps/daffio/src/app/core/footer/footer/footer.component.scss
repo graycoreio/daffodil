@@ -66,10 +66,10 @@
 	}
 
 	&__link {
-		@include daff.embolden();
 		display: flex;
 		align-items: center;
 		gap: 8px;
+		font-weight: bold;
 		text-decoration: none;
 		text-transform: uppercase;
 	}

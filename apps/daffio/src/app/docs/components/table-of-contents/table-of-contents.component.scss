@@ -11,7 +11,7 @@
 	top: calc(var(--daff-sidebar-side-fixed-top-shift) + 96px);
 
 	&__title {
-		@include daff.embolden();
+		font-weight: bold;
 		margin: 0 0 24px;
 	}
 

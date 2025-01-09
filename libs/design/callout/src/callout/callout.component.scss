@@ -21,8 +21,8 @@
 	}
 
 	&__title {
-		@include t.embolden;
 		font-size: 1.75rem;
+		font-weight: bold;
 		line-height: 2rem;
 		margin: 0;
 		max-width: 1040px;

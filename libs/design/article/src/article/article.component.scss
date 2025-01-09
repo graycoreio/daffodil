@@ -75,7 +75,7 @@
 	}
 
 	strong {
-		@include t.embolden;
+		font-weight: bold;
 	}
 
 	pre {

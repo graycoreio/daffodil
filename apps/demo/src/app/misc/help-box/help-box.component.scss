@@ -6,7 +6,7 @@
 	padding: 25px;
 
 	&__title {
-		@include embolden();
+		font-weight: bold;
 		margin-bottom: 15px;
 	}
 

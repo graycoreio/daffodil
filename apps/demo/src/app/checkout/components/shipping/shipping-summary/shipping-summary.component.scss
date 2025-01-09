@@ -21,8 +21,8 @@
 	}
 
 	&__title {
-		@include embolden();
 		font-size: 1rem;
+		font-weight: bold;
 		margin-bottom: 15px;
 		text-transform: uppercase;
 		grid-area: title;
@@ -48,7 +48,7 @@
 
 	&__subtitle {
 		margin: 15px 0 5px;
-		@include embolden();
+		font-weight: bold;
 		grid-area: subtitle;
 	}
 

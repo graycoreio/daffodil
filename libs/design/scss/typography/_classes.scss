@@ -2,8 +2,9 @@
 @use './mixins/font-weight' as *;
 @use './mixins/text-truncate' as *;
 
+// @deprecated
 .embolden { /* stylelint-disable-line selector-class-pattern */
-	@include embolden();
+	font-weight: bold;
 }
 
 .uppercase { /* stylelint-disable-line selector-class-pattern */

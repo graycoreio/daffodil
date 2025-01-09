@@ -66,7 +66,6 @@ The headline mixins are responsive and will adjust at the `tablet` breakpoint.
 
 | Class/Mixin   | Description                                                                  |
 | ------------- | ---------------------------------------------------------------------------- |
-| embolden      | Changes the weight of text to 700                                            |
 | uppercase     | Changes the casing of a piece of text to uppercase                           |
 | text-truncate | Forces a line of text to ellipsis once it reaches the width of its container |
 

@@ -13,9 +13,9 @@
 
 	&__header {
 		@include comparison-cell();
-		@include daff.embolden();
 		align-items: flex-start;
 		font-size: 0.75rem;
+		font-weight: bold;
 		padding: 15px 5px;
 		text-transform: uppercase;
 

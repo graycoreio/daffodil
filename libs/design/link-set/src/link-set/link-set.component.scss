@@ -7,9 +7,9 @@
 	padding: 0;
 
 	&__heading {
-		@include t.embolden;
 		display: block;
 		font-size: 1rem;
+		font-weight: bold;
 		line-height: 1em;
 		margin-bottom: 15px;
 		text-transform: uppercase;

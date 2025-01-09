@@ -14,7 +14,7 @@
 	}
 
 	&.emphasize { /* stylelint-disable-line selector-class-pattern */
-		@include embolden();
+		font-weight: bold;
 		text-transform: uppercase;
 	}
 }

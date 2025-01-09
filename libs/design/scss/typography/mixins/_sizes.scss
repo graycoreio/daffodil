@@ -2,8 +2,8 @@
 @use 'font-weight';
 
 @mixin headline-xl() {
-	@include font-weight.embolden;
 	font-size: 2.5rem;
+	font-weight: bold;
 	line-height: 2.75rem;
 
 	@include layout.breakpoint(tablet) {
@@ -13,8 +13,8 @@
 }
 
 @mixin headline-lg() {
-	@include font-weight.embolden;
 	font-size: 2rem;
+	font-weight: bold;
 	line-height: 2.25rem;
 
 	@include layout.breakpoint(tablet) {
@@ -24,8 +24,8 @@
 }
 
 @mixin headline-md() {
-	@include font-weight.embolden;
 	font-size: 1.5rem;
+	font-weight: bold;
 	line-height: 1.75rem;
 
 	@include layout.breakpoint(tablet) {
@@ -35,8 +35,8 @@
 }
 
 @mixin headline-sm() {
-	@include font-weight.embolden;
 	font-size: 1.25rem;
+	font-weight: bold;
 	line-height: 1.5rem;
 
 	@include layout.breakpoint(tablet) {

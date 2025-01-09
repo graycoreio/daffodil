@@ -5,7 +5,7 @@
   justify-content: space-between;
 
   &__link {
-    @include embolden();
+    font-weight: bold;
     font-size: 1.125rem;
     padding: 0 15px;
     text-decoration: none;

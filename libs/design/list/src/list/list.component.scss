@@ -19,8 +19,8 @@
 			flex-grow: 1;
 
 			*:nth-child(1) { // stylelint-disable-line scss/selector-nest-combinators
-				@include t.embolden;
 				font-size: t.$normal-font-size;
+				font-weight: bold;
 				line-height: 1.5em;
 				margin: 0;
 				padding: 0;

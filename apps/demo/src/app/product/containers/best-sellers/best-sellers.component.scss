@@ -2,7 +2,7 @@
 
 .demo-best-sellers {
 	&__title {
-		@include embolden();
+		font-weight: bold;
 		font-size: $medium-font-size;
 		margin-bottom: 30px;
 		text-align: center;

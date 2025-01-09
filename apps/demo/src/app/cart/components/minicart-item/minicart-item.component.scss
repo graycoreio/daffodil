@@ -20,8 +20,8 @@
 	}
 
 	&__name {
-		@include embolden();
 		@include clickable();
+		font-weight: bold;
 	}
 
 	&__price {

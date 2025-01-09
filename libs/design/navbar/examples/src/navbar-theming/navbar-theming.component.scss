@@ -5,8 +5,8 @@
 
 	&__links {
 		> * {
-			@include t.embolden;
 			font-size: 1.125rem;
+			font-weight: bold;
 			padding: 0 16px;
 			text-decoration: none;
 			text-transform: uppercase;

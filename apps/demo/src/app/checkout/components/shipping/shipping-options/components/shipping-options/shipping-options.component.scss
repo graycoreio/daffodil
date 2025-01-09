@@ -17,7 +17,7 @@
 		}
 
 		legend {
-			@include embolden();
+			font-weight: bold;
 			font-size: 1rem;
 			margin-right: 15px;
 		}

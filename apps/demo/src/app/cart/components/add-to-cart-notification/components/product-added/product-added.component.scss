@@ -16,10 +16,10 @@
 	}
 
 	&__name {
-		font-size: $medium-font-size;
-		margin-bottom: 5px;
-		@include embolden();
 		@include clickable();
+		font-size: $medium-font-size;
+		font-weight: bold;
+		margin-bottom: 5px;
 	}
 
 	&__price {

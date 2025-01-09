@@ -12,7 +12,7 @@
 	}
 
 	&__title {
-		@include embolden();
+		font-weight: bold;
 		text-transform: uppercase;
 	}
 
@@ -20,7 +20,7 @@
 		margin: 25px 0 50px;
 
 		span {
-			@include embolden();
+			font-weight: bold;
 		}
 	}
 }

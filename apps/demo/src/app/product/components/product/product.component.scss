@@ -56,8 +56,8 @@
 	}
 
 	&__name {
-		@include embolden();
 		font-size: $large-font-size;
+		font-weight: bold;
 		padding: 5px 0;
 	}
 

@@ -19,7 +19,7 @@
 	}
 
 	&__title {
-		@include embolden();
+		font-weight: bold;
 	}
 
 	&__minicart {
