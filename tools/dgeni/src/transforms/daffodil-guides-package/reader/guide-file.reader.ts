@@ -50,7 +50,7 @@ export function designGuideFileReaderFactory() {
         // check if the doc is a package readme, ignore the root readme though
         docType: fileInfo.relativePath.split('/').slice(1).includes('README.md') ? 'package-guide' : 'guide',
         title: extractTitle(fileInfo),
-        tableOfContents: toc(fileInfo.content),
+        tableOfContents: toc(fileInfo.content).json,
         content: fileInfo.content,
       }]
       : [],
