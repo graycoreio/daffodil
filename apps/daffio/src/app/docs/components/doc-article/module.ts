@@ -12,16 +12,16 @@ import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffSidebarModule } from '@daffodil/design/sidebar';
 
-import { DaffioDocViewerComponent } from './doc-viewer.component';
+import { DaffioDocArticleComponent } from './component';
 import { DaffioApiPackageComponent } from '../../api/components/api-package/api-package.component';
 import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 
 @NgModule({
   declarations: [
-    DaffioDocViewerComponent,
+    DaffioDocArticleComponent,
   ],
   exports: [
-    DaffioDocViewerComponent,
+    DaffioDocArticleComponent,
   ],
   imports: [
     CommonModule,
@@ -37,4 +37,4 @@ import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-c
     RouterLink,
   ],
 })
-export class DaffioDocViewerModule { }
+export class DaffioDocArticleModule { }

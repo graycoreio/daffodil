@@ -1,0 +1,33 @@
+<button class="daffio-doc-article__menu-button" (click)="open()">
+	<fa-icon [icon]="faBars"></fa-icon>
+	<div>Menu</div>
+</button>
+<div class="daffio-doc-article__grid">
+  <div class="daffio-doc-article__content">
+    <daff-article>
+      @if (breadcrumbs()?.length > 0) {
+        <nav aria-label="Breadcrumb">
+          <ol daff-breadcrumb>
+            @for (breadcrumb of breadcrumbs(); track $index) {
+              <li daffBreadcrumbItem [active]="$last">
+                @if ($last) {
+                  {{breadcrumb.label}}
+                } @else {
+                  <a [routerLink]="breadcrumb.path">{{breadcrumb.label}}</a>
+                }
+              </li>
+            }
+          </ol>
+        </nav>
+      }
+
+      <ng-content></ng-content>
+    </daff-article>
+  </div>
+  @if (toc) {
+    <daffio-docs-table-of-contents
+      class="daffio-doc-article__table-of-contents"
+      [tableOfContents]="toc()">
+    </daffio-docs-table-of-contents>
+  }
+</div>

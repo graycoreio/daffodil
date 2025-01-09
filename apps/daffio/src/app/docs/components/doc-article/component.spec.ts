@@ -17,19 +17,19 @@ import {
   DaffGuideDoc,
 } from '@daffodil/docs-utils';
 
-import { DaffioDocViewerComponent } from './doc-viewer.component';
+import { DaffioDocArticleComponent } from './component';
 import { DaffioApiPackageComponent } from '../../api/components/api-package/api-package.component';
 import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
 import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 
 @Component({
-  template: `<daffio-doc-viewer [doc]="doc"></daffio-doc-viewer>`,
+  template: `<daffio-doc-article [doc]="doc"></daffio-doc-article>`,
 })
 class WrapperComponent {
   doc: DaffDoc | DaffGuideDoc | DaffApiDoc | DaffApiPackageDoc;
 }
 
-describe('DaffioDocViewerComponent', () => {
+describe('DaffioDocArticleComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapper: WrapperComponent;
   const docFactory = new DaffioDocsFactory();
@@ -44,7 +44,7 @@ describe('DaffioDocViewerComponent', () => {
       ],
       declarations: [
         WrapperComponent,
-        DaffioDocViewerComponent,
+        DaffioDocArticleComponent,
       ],
       providers: [
         provideMockStore(),
