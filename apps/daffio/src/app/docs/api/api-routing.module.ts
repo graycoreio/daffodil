@@ -7,12 +7,12 @@ import {
 import { DaffDocKind } from '@daffodil/docs-utils';
 
 import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.component';
-import { DaffioApiPageComponent } from './pages/api-page/api-page.component';
 import { DaffioRoute } from '../../core/router/route.type';
 import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from '../containers/docs-list/sidebar.provider';
 import { daffioDocsIndexResolver } from '../index/resolver';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
 import { DAFFIO_API_NAV_LIST_SIDEBAR_REGISTRATION } from './sidebar/provider';
+import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
 
 export const apiRoutes: Routes = [
   <DaffioRoute>{
@@ -33,7 +33,7 @@ export const apiRoutes: Routes = [
       },
       {
         path: '**',
-        component: DaffioApiPageComponent,
+        component: DaffioDocsPageComponent,
         resolve: {
           doc: DocsResolver,
         },

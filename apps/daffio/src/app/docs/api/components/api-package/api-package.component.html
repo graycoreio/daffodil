@@ -5,7 +5,7 @@
       <p class="daffio-api-package__package-description">{{doc.description}}</p>
     }
   </div>
-  <daffio-api-list-section [children]="doc.children | apiPackageFilter:true" class="daffio-doc-viewer__api-section"></daffio-api-list-section>
+  <daffio-api-list-section [children]="doc.children | apiPackageFilter:true"></daffio-api-list-section>
 </div>
 
 @for (package of doc.children | apiPackageFilter; track package.id) {
@@ -13,6 +13,6 @@
     <h2 class="daffio-api-package__subpackage-name">
       <a [routerLink]="package.path">{{package.title}}</a>
     </h2>
-    <daffio-api-list-section [children]="package.children | apiPackageFilter:true" class="daffio-doc-viewer__api-section" [attr.data-section-for-subpackage]="package.id"></daffio-api-list-section>
+    <daffio-api-list-section [children]="package.children | apiPackageFilter:true" [attr.data-section-for-subpackage]="package.id"></daffio-api-list-section>
   </div>
 }

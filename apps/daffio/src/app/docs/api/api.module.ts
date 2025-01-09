@@ -6,9 +6,8 @@ import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioDocsApiRoutingModule } from './api-routing.module';
 import { DaffioApiListModule } from './components/api-list/api-list.module';
+import { daffioDocsApiComponentProvider } from './components/doc/provider';
 import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.component';
-import { DaffioApiPageComponent } from './pages/api-page/api-page.component';
-import { DaffioDocViewerModule } from '../components/doc-viewer/doc-viewer.module';
 
 @NgModule({
   imports: [
@@ -16,17 +15,17 @@ import { DaffioDocViewerModule } from '../components/doc-viewer/doc-viewer.modul
     DaffArticleModule,
     DaffioDocsApiRoutingModule,
     DaffioApiListModule,
-    DaffioDocViewerModule,
 
     DaffContainerModule,
   ],
   declarations: [
     DaffioApiListPageComponent,
-    DaffioApiPageComponent,
   ],
   exports: [
     DaffioApiListPageComponent,
-    DaffioApiPageComponent,
+  ],
+  providers: [
+    daffioDocsApiComponentProvider(),
   ],
 })
 export class DaffioApiModule {}
