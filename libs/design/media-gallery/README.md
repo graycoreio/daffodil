@@ -46,7 +46,7 @@ export class CustomComponentModule { }
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
 ## Thumbnail
-`[daffThumbnail]` should be used as a directive with `<daff-image>`. [View Image Documentation](/libs/design/src/atoms/image/README.md)
+`[daffThumbnail]` should be used as a directive with `<daff-image>`. [View Image Documentation](/libs/design/image/README.md)
 
 It should never be used as a standalone component. The first thumbnail is selected by default and dynamically rendered as the primary image by utilizing the `<daff-media-renderer>` component. The selected thumbnail can be controlled by the enduser, and the position of the list of thumbnails is dependent on the screen size.
 
@@ -60,4 +60,4 @@ The thumbnail dimension is set to `80x80` pixels, so the recommended aspect rati
 <design-land-example-viewer-container example="mismatched-sizes-media-gallery"></design-land-example-viewer-container>
 
 ## Accessibility
-Accessibility considerations for media gallery is handled by the `DaffImageComponent`. The `alt` attribute must be defined in `<daff-image>`. It specifies an alternate text for an image. An error will appear if it's not defined. This is important because it allows screen readers to describe what's in the image for visually impaired people. [View Image Documentation](/libs/design/src/atoms/image/README.md)
+Accessibility considerations for media gallery is handled by the `DaffImageComponent`. The `alt` attribute must be defined in `<daff-image>`. It specifies an alternate text for an image. An error will appear if it's not defined. This is important because it allows screen readers to describe what's in the image for visually impaired people. [View Image Documentation](/libs/design/image/README.md)
