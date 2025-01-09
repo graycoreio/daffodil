@@ -25,15 +25,35 @@ const validateColor = (color: string) => {
  * `DaffColorableDirective` allows a component to conditionally apply color-specific
  * styles by setting CSS classes based on the specified color. This directive is useful
  * for applying different color palettes to a component in an Angular application.
+ * 
+ * Supported colors: `primary | secondary | tertiary | black | white | theme | theme-contrast`
+ * 
+ * | Color | Class |
+ * | -------- | ----- |
+ * | `primary` | `.daff-primary`|
+ * | `secondary` | `.daff-secondary`|
+ * | `tertiary` | `.daff-tertiary`|
+ * | `black` | `.daff-black`|
+ * | `white` | `.daff-white`|
+ * | `theme` | `daff-theme`|
+ * | `theme-contrast` | `.daff-theme-contrast`|
  *
  * @example Implementing it as an attribute directive
  *
  * ```html
  * <div daffColorable [color]="primary">Colored content</div>
  * ```
+ * 
+ *  ```scss
+ * .div {
+ *  &.daff-primary {
+ *    color: daff-color($primary);
+ *  }
+ * }
+ * ```
  *
  * In this example, the `daff-primary` class is applied to the `div` element, allowing you to
- * use the class to style the `div`.
+ * use the color class to style the `div`.
  *
  * @example Implementing it as an Angular host directive
  *
@@ -49,10 +69,11 @@ const validateColor = (color: string) => {
  *    },
  *  ],
  * })
- * export class CustomComponent { }
+ * export class CustomComponent {
+ *  @HostBinding('class.custom-component') class = true;
+ * }
  * ```
  *
- * Setting custom styles
  * ```scss
  * .custom-component {
  *  &.daff-primary {
@@ -61,16 +82,6 @@ const validateColor = (color: string) => {
  *  }
  * }
  * ```
- *
- * The directive applies the following CSS classes to the component based on the color:
- *
- * - `daff-primary`: Applied when the color is `primary`.
- * - `daff-secondary`: Applied when the color is `secondary`.
- * - `daff-tertiary`: Applied when the color is `tertiary`.
- * - `daff-black`: Applied when the color is `black`.
- * - `daff-white`: Applied when the color is `white`.
- * - `daff-theme`: Applied when the color is `theme`.
- * - `daff-theme-contrast`: Applied when the color is `theme-contrast`.
  */
 @Directive({
   selector: '[daffColorable]',
