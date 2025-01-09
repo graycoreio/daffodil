@@ -18,6 +18,10 @@ import {
 } from './reader/guide-file.reader';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AbsolutifyPathsProcessor } from '../../processors/absolutify-paths';
+import {
+  ADD_API_SYMBOLS_TO_PACKAGES_PROCESSOR_PROVIDER,
+  AddApiSymbolsToPackagesProcessor,
+} from '../../processors/add-api-symbols-to-package';
 import { AddKindProcessor } from '../../processors/add-kind';
 import { BreadcrumbProcessor } from '../../processors/breadcrumb';
 import { ConvertToJsonProcessor } from '../../processors/convertToJson';
@@ -80,6 +84,9 @@ const base = new Package('daffodil-guides-base', [daffodilBasePackage])
   })
   .config((generateNavList: GenerateNavListProcessor) => {
     generateNavList.transform = (docs) => generateNavigationTrieFromDocuments(docs.map(transformGuideDoc), { id: '', title: '', path: '' });
+  })
+  .config((convertToJson: ConvertToJsonProcessor) => {
+    convertToJson.extraFields.push('api');
   });
 
 // global
@@ -123,6 +130,7 @@ const design = new Package('design-base', [base])
 export const designDocsPackage = new Package('design-docs', [design])
   .processor(...GENERATE_NAV_LIST_PROCESSOR_PROVIDER)
   .processor(...FILTER_NAV_INDEX_PROCESSOR_PROVIDER)
+  .processor(...ADD_API_SYMBOLS_TO_PACKAGES_PROCESSOR_PROVIDER)
   .config((generateNavList: GenerateNavListProcessor) => {
     generateNavList.outputFolder = `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`;
   })
@@ -143,6 +151,10 @@ export const designDocsPackage = new Package('design-docs', [design])
       getAliases: (doc) => [doc.id],
     });
   })
+  .config((addApiSymbolsToPackages: AddApiSymbolsToPackagesProcessor) => {
+    addApiSymbolsToPackages.docTypes.push('package-guide');
+    addApiSymbolsToPackages.lookup = (doc) => doc.id.replace('components/', '');
+  })
   .config((readFilesProcessor) => {
     readFilesProcessor.basePath = DESIGN_PATH;
     readFilesProcessor.sourceFiles = [
@@ -150,7 +162,7 @@ export const designDocsPackage = new Package('design-docs', [design])
     ];
   })
   .config((convertToJson: ConvertToJsonProcessor) => {
-    convertToJson.extraFields.push('description');
+    convertToJson.extraFields.push('description', 'symbols');
   })
   .config((absolutifyPaths: AbsolutifyPathsProcessor) => {
     absolutifyPaths.docTypes = docTypes;

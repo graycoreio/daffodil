@@ -10,9 +10,14 @@ export const COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME = 'collectLinkableSymbols';
  */
 export class CollectLinkableSymbolsProcessor implements Processor {
   private static readonly _symbols = new Map<string, string>();
+  private static readonly _packages = new Map<string, Array<string>>();
 
   public static get symbols(): ReadonlyMap<string, string> {
     return this._symbols;
+  }
+
+  public static get packages(): ReadonlyMap<string, Array<Document>> {
+    return this._packages;
   }
 
   name = COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME;
@@ -27,6 +32,13 @@ export class CollectLinkableSymbolsProcessor implements Processor {
         this.log.warn(this.createDocMessage(`Linkable symbol collision for name ${doc.name}. Existing path: ${CollectLinkableSymbolsProcessor._symbols.get(doc.name)}, new path: ${doc.path}`));
       }
       CollectLinkableSymbolsProcessor._symbols.set(doc.name, doc.path);
+      if (doc.docType !== 'package') {
+        const packageName = doc.id.match(/(.*)\/src/)[1];
+        if (!CollectLinkableSymbolsProcessor._packages.get(packageName)) {
+          CollectLinkableSymbolsProcessor._packages.set(packageName, []);
+        }
+        CollectLinkableSymbolsProcessor._packages.get(packageName).push(doc);
+      }
     });
 
     return docs;

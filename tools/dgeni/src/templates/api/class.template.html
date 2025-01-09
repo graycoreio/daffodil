@@ -10,7 +10,7 @@
 <span class="selectors__name"><code>{$ doc.decorators[0].argumentInfo[0].selector $}</code></span>
 {% endif %}
 
-<h2>Properties</h2>
+{$'<h4>' if child else '<h2>'$}Properties{$'<h4>' if child else '<h2>'$}
 <table>
   <thead>
     <tr>

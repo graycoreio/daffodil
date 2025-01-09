@@ -1,5 +1,5 @@
 {% block header %}
-<h1>{$ doc.name $}</h1>
+{$'<h3>' if child else '<h1>'$}{$ doc.name $}{$'</h3>' if child else '</h1>'$}
 {% endblock %}
 <p>{$ doc.description $}</p>
 
