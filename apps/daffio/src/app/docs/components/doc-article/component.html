@@ -24,7 +24,7 @@
       <ng-content></ng-content>
     </daff-article>
   </div>
-  @if (toc) {
+  @if (toc.length > 0) {
     <daffio-docs-table-of-contents
       class="daffio-doc-article__table-of-contents"
       [tableOfContents]="toc">
