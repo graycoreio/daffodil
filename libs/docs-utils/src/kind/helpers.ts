@@ -1,3 +1,4 @@
+import { DAFF_DOCS_DESIGN_PATH } from '../path';
 import { DaffDocKind } from './enum';
 import { DAFF_DOC_KIND_PATH_SEGMENT_MAP } from './path-segment-map';
 
@@ -37,6 +38,9 @@ export const daffDocsGetLinkUrl = (path: string): string => {
     case DaffDocKind.EXPLANATION:
     case DaffDocKind.API:
       return `/docs/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/${matchPath}`;
+
+    case DaffDocKind.COMPONENT:
+      return `/docs/${DAFF_DOCS_DESIGN_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/${matchPath}`;
 
     case DaffDocKind.PACKAGE:
       return `/docs/packages/${matchPath}`;
