@@ -25,9 +25,9 @@ const validateColor = (color: string) => {
  * `DaffColorableDirective` allows a component to conditionally apply color-specific
  * styles by setting CSS classes based on the specified color. This directive is useful
  * for applying different color palettes to a component in an Angular application.
- * 
+ *
  * Supported colors: `primary | secondary | tertiary | black | white | theme | theme-contrast`
- * 
+ *
  * | Color | Class |
  * | -------- | ----- |
  * | `primary` | `.daff-primary`|
@@ -43,7 +43,7 @@ const validateColor = (color: string) => {
  * ```html
  * <div daffColorable [color]="primary">Colored content</div>
  * ```
- * 
+ *
  *  ```scss
  * .div {
  *  &.daff-primary {
