@@ -7,7 +7,7 @@ import {
 import { DaffDoc } from '@daffodil/docs-utils';
 
 import { DaffioSafeHtmlPipe } from '../../../core/html-sanitizer/safe.pipe';
-import { DaffioDocComponent } from '../../renderer/component.type';
+import { DaffioDocsDynamicallyRenderable } from '../../dynamically-renderable/type';
 import { DaffioDocArticleModule } from '../doc-article/module';
 
 @Component({
@@ -20,6 +20,6 @@ import { DaffioDocArticleModule } from '../doc-article/module';
     DaffioSafeHtmlPipe,
   ],
 })
-export class DaffioDocDefaultComponent<T extends DaffDoc = DaffDoc> implements DaffioDocComponent<T> {
+export class DaffioDocDefaultComponent<T extends DaffDoc = DaffDoc> implements DaffioDocsDynamicallyRenderable<T> {
   doc = input<T>();
 }

@@ -12,7 +12,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioDocArticleModule } from '../../../components/doc-article/module';
-import { DaffioDocComponent } from '../../../renderer/component.type';
+import { DaffioDocsDynamicallyRenderable } from '../../../dynamically-renderable/type';
 import { DaffioApiPackageComponent } from '../api-package/api-package.component';
 
 @Component({
@@ -26,7 +26,7 @@ import { DaffioApiPackageComponent } from '../api-package/api-package.component'
     DaffioSafeHtmlPipe,
   ],
 })
-export class DaffioDocApiComponent implements DaffioDocComponent<DaffApiDoc> {
+export class DaffioDocApiComponent implements DaffioDocsDynamicallyRenderable<DaffApiDoc> {
   static readonly kind = DaffDocKind.API;
 
   readonly isApiPackage = computed(() => this.doc().docType === 'package');

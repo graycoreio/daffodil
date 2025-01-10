@@ -1,4 +1,4 @@
 import { DaffioDocApiComponent } from './component';
-import { provideDaffioDocRendererComponents } from '../../../renderer/components.token';
+import { provideDaffioDocsDynamicallyRenderableComponents } from '../../../dynamically-renderable/components.token';
 
-export const daffioDocsApiComponentProvider = () => provideDaffioDocRendererComponents(DaffioDocApiComponent);
+export const daffioDocsApiComponentProvider = () => provideDaffioDocsDynamicallyRenderableComponents(DaffioDocApiComponent);

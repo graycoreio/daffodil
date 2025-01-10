@@ -11,7 +11,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioDocArticleModule } from '../../../components/doc-article/module';
-import { DaffioDocComponent } from '../../../renderer/component.type';
+import { DaffioDocsDynamicallyRenderable } from '../../../dynamically-renderable/type';
 
 @Component({
   selector: 'daffio-docs-guides-content',
@@ -23,7 +23,7 @@ import { DaffioDocComponent } from '../../../renderer/component.type';
     DaffioSafeHtmlPipe,
   ],
 })
-export class DaffioDocsGuidesContentComponent implements DaffioDocComponent<DaffGuideDoc> {
+export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicallyRenderable<DaffGuideDoc> {
   static readonly kind = DaffDocKind.GUIDE;
 
   doc = input<DaffGuideDoc>();
