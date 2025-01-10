@@ -12,7 +12,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioDocArticleModule } from '../../../components/doc-article/module';
-import { DaffioDocComponent } from '../../../components/doc-renderer/component.type';
+import { DaffioDocComponent } from '../../../renderer/component.type';
 import { DaffioApiPackageComponent } from '../api-package/api-package.component';
 
 @Component({

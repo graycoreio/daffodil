@@ -2,6 +2,7 @@ import { NgComponentOutlet } from '@angular/common';
 import {
   Component,
   Inject,
+  Injectable,
   Input,
   Type,
 } from '@angular/core';
@@ -16,29 +17,20 @@ import { DaffioDocComponent } from './component.type';
 import {
   DAFFIO_DOC_RENDERER_COMPONENTS,
   DaffioDocComponentInjection,
-} from './token';
-import { DaffioDocDefaultComponent } from '../doc-default/component';
+} from './components.token';
+import { DaffioDocDefaultComponent } from '../components/doc-default/component';
 
-@Component({
-  selector: 'daffio-doc-renderer',
-  standalone: true,
-  imports: [
-    NgComponentOutlet,
-  ],
-  template: `
-		<ng-template [ngComponentOutlet]="component" [ngComponentOutletInputs]="{doc}"></ng-template>
-	`,
+@Injectable({
+  providedIn: 'any',
 })
-export class DaffioDocRendererComponent<T extends DaffDoc = DaffDoc> {
+export class DaffioDocComponentService<T extends DaffDoc = DaffDoc> {
   private readonly _map: Record<DaffDocKind, DaffioDocComponentInjection<T>> = daffArrayToDict(this.components, (c) => c.kind);
-
-  @Input() doc: DaffDoc;
-
-  get component(): Type<DaffioDocComponent<T>> {
-    return this._map[this.doc.kind] || DaffioDocDefaultComponent;
-  }
 
   constructor(
     @Inject(DAFFIO_DOC_RENDERER_COMPONENTS) private components: Array<DaffioDocComponentInjection<T>>,
   ) {}
+
+  getComponent(doc: T): Type<DaffioDocComponent<T>> {
+    return this._map[doc.kind] || DaffioDocDefaultComponent;
+  }
 }

@@ -11,7 +11,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioDocArticleModule } from '../../../components/doc-article/module';
-import { DaffioDocComponent } from '../../../components/doc-renderer/component.type';
+import { DaffioDocComponent } from '../../../renderer/component.type';
 
 @Component({
   selector: 'daffio-docs-packages-content',

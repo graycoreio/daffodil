@@ -7,8 +7,8 @@ import {
 import { DaffDoc } from '@daffodil/docs-utils';
 
 import { DaffioSafeHtmlPipe } from '../../../core/html-sanitizer/safe.pipe';
+import { DaffioDocComponent } from '../../renderer/component.type';
 import { DaffioDocArticleModule } from '../doc-article/module';
-import { DaffioDocComponent } from '../doc-renderer/component.type';
 
 @Component({
   selector: 'daffio-doc-default',

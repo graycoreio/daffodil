@@ -1,1 +1,1 @@
-<daffio-doc-renderer [doc]="doc$ | async"></daffio-doc-renderer>
+<ng-template [ngComponentOutlet]="component$ | async" [ngComponentOutletInputs]="{doc: doc$ | async}"></ng-template>
