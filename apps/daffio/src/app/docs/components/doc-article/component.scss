@@ -22,11 +22,6 @@
 		}
 	}
 
-	&__title {
-		@include daff.headline-xl();
-		margin-bottom: 48px;
-	}
-
 	&__content {
 		flex-grow: 1;
 		display: flex;
@@ -64,9 +59,5 @@
 		@include daff.breakpoint(big-tablet) {
 			display: none;
 		}
-	}
-
-	&__api-section {
-		margin: 48px 0 0;
 	}
 }

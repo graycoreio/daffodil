@@ -14,7 +14,7 @@ import { DaffioDocArticleModule } from '../../../components/doc-article/module';
 import { DaffioDocComponent } from '../../../components/doc-renderer/component.type';
 
 @Component({
-  selector: 'daffio-api-doc',
+  selector: 'daffio-docs-guides-content',
   templateUrl: './component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
@@ -23,7 +23,7 @@ import { DaffioDocComponent } from '../../../components/doc-renderer/component.t
     DaffioSafeHtmlPipe,
   ],
 })
-export class DaffioDocGuideComponent implements DaffioDocComponent<DaffGuideDoc> {
+export class DaffioDocsGuidesContentComponent implements DaffioDocComponent<DaffGuideDoc> {
   static readonly kind = DaffDocKind.GUIDE;
 
   doc = input<DaffGuideDoc>();

@@ -1,4 +1,4 @@
-import { DaffioDocPackageComponent } from './component';
+import { DaffioDocPackagesContentComponent } from './component';
 import { provideDaffioDocRendererComponents } from '../../../components/doc-renderer/token';
 
-export const daffioDocsPackageComponentProvider = () => provideDaffioDocRendererComponents(DaffioDocPackageComponent);
+export const daffioDocsPackageComponentProvider = () => provideDaffioDocRendererComponents(DaffioDocPackagesContentComponent);
