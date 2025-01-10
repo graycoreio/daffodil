@@ -11,7 +11,7 @@ import {
 
 import { DaffioSafeHtmlPipe } from '../../../../core/html-sanitizer/safe.pipe';
 import { DaffioDocArticleModule } from '../../../components/doc-article/module';
-import { DaffioDocsDynamicContent } from '../../../dynamically-renderable-content/type';
+import { DaffioDocsDynamicContent } from '../../../dynamic-content/dynamic-content.type';
 
 @Component({
   selector: 'daffio-docs-packages-content',

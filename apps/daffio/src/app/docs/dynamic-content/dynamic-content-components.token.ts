@@ -6,7 +6,7 @@ import {
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
-import { DaffioDocsDynamicContent } from './type';
+import { DaffioDocsDynamicContent } from './dynamic-content.type';
 
 export type DaffioDocsDynamicContentComponentInjection<T extends DaffDoc = DaffDoc> = {readonly kind: DaffDocKind} & Type<DaffioDocsDynamicContent<T>>;
 

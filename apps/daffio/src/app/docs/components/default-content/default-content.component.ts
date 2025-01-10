@@ -7,7 +7,7 @@ import {
 import { DaffDoc } from '@daffodil/docs-utils';
 
 import { DaffioSafeHtmlPipe } from '../../../core/html-sanitizer/safe.pipe';
-import { DaffioDocsDynamicContent } from '../../dynamically-renderable-content/type';
+import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.type';
 import { DaffioDocArticleModule } from '../doc-article/module';
 
 @Component({

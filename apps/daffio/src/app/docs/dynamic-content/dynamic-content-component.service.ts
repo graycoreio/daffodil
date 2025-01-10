@@ -13,8 +13,8 @@ import {
 import {
   DAFFIO_DOCS_DYNAMIC_CONTENT_COMPONENTS,
   DaffioDocsDynamicContentComponentInjection,
-} from './components.token';
-import { DaffioDocsDynamicContent } from './type';
+} from './dynamic-content-components.token';
+import { DaffioDocsDynamicContent } from './dynamic-content.type';
 import { DaffioDocsDefaultContentComponent } from '../components/default-content/default-content.component';
 
 @Injectable()

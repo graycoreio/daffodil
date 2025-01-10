@@ -18,8 +18,8 @@ import { DaffDoc } from '@daffodil/docs-utils';
 
 import { DaffioDocsPageComponent } from './docs-page.component';
 import { DaffioDocsFactory } from '../../../docs/testing/factories/docs.factory';
-import { DaffioDocsDynamicContentComponentService } from '../../dynamically-renderable-content/component.service';
-import { DaffioDocsDynamicContent } from '../../dynamically-renderable-content/type';
+import { DaffioDocsDynamicContentComponentService } from '../../dynamic-content/dynamic-content-component.service';
+import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.type';
 
 @Component({
   selector: 'daffio-mock-content',
