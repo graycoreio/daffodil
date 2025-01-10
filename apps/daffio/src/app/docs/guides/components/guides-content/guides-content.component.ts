@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import {
-  DaffGuideDoc,
+  DaffDoc,
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
@@ -23,8 +23,8 @@ import { DaffioDocsDynamicContent } from '../../../dynamic-content/dynamic-conte
     DaffioSafeHtmlPipe,
   ],
 })
-export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicContent<DaffGuideDoc> {
+export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicContent<DaffDoc> {
   static readonly kind = DaffDocKind.GUIDE;
 
-  doc = input<DaffGuideDoc>();
+  doc = input<DaffDoc>();
 }

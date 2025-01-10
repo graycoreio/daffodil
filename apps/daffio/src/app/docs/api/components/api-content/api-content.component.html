@@ -1,7 +1,14 @@
-<daffio-doc-article [breadcrumbs]="doc().breadcrumbs">
+<daffio-doc-article [breadcrumbs]="doc().breadcrumbs" [toc]="doc().tableOfContents">
 	@if (isApiPackage()) {
 		<daffio-api-package [doc]="doc()"></daffio-api-package>
 	} @else {
 		<div [innerHTML]="doc().contents | safe"></div>
+		@if (doc().examples.length > 0) {
+			<h2 id="examples">Examples</h2>
+		}
+		@for (example of doc().examples; track example.id) {
+			<h3 [attr.id]="example.id">{{example.caption}}</h3>
+			<div [innerHTML]="example.body | safe"></div>
+		}
 	}
 </daffio-doc-article>

@@ -1,6 +1,8 @@
 import { Document } from 'dgeni';
 import type { Environment } from 'nunjucks';
 
+import { DaffApiDoc } from '@daffodil/docs-utils';
+
 import { CollectLinkableSymbolsProcessor } from './collect-linkable-symbols';
 import { API_TEMPLATES_PATH } from '../transforms/config';
 import { FilterableProcessor } from '../utils/filterable-processor.type';
@@ -30,8 +32,13 @@ export class AddApiSymbolsToPackagesProcessor implements FilterableProcessor {
 
     const ret = docs.map(doc => {
       if (this.docTypes.includes(doc.docType)) {
-        doc.symbols = CollectLinkableSymbolsProcessor.packages.get(this.lookup(doc))?.map((d) => d.path);
-        doc.api = CollectLinkableSymbolsProcessor.packages.get(this.lookup(doc))?.map((symbol) => render(this.templateFinder.getFinder()(symbol), { doc: symbol, child: true }));
+        const exportDocs = CollectLinkableSymbolsProcessor.packages.get(this.lookup(doc));
+        doc.symbols = exportDocs?.map((d) => d.path);
+        doc.api = exportDocs?.map((symbol) => render(this.templateFinder.getFinder()(symbol), { doc: symbol, child: true }));
+        doc.apiToc = exportDocs?.flatMap((symbol: DaffApiDoc) => symbol.tableOfContents.map((entry) => ({
+          ...entry,
+          lvl: entry.lvl + 1,
+        })));
       }
       return doc;
     });

@@ -5,10 +5,10 @@ import { sample } from '@daffodil/core';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   DaffDocKind,
-  DaffGuideDoc,
+  DaffDoc,
 } from '@daffodil/docs-utils';
 
-export class MockDoc implements DaffGuideDoc {
+export class MockDoc implements DaffDoc {
   id = String(faker.datatype.number(1000));
   kind = sample(Object.values(DaffDocKind));
   title = faker.lorem.words();
@@ -27,7 +27,7 @@ export class MockDoc implements DaffGuideDoc {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffioDocsFactory extends DaffModelFactory<DaffGuideDoc>{
+export class DaffioDocsFactory extends DaffModelFactory<DaffDoc>{
   constructor() {
     super(MockDoc);
   }

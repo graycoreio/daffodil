@@ -1,5 +1,5 @@
-import { DaffDocExample } from './example.type';
 import { DaffDoc } from './type';
+import { DaffDocExample } from '../example/public_api';
 
 /**
  * An API doc that includes the type of the symbol.

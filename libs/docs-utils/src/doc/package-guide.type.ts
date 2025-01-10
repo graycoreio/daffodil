@@ -1,17 +1,20 @@
-import { DaffApiDoc } from '@daffodil/docs-utils';
-
-import { DaffGuideDoc } from './guide.type';
+import { DaffDoc } from './type';
+import { DaffDocTableOfContents } from '../toc/public_api';
 
 /**
  * A guide doc for a package.
  */
-export interface DaffPackageGuideDoc extends DaffGuideDoc {
+export interface DaffPackageGuideDoc extends DaffDoc {
   /**
    * A list of symbol paths exported from the package.
    */
-  symbols?: Array<string>;
+  symbols: Array<string>;
   /**
-   * A list of API docs for symbols exported from this package.
+   * A list of rendered API docs.
    */
-  api?: Array<DaffApiDoc>;
+  api: Array<string>;
+  /**
+   * A table of contents for the API section.
+   */
+  apiToc: DaffDocTableOfContents;
 }
