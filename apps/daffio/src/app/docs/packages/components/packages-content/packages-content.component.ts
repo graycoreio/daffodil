@@ -11,7 +11,7 @@ import {
 
 import { DaffioSafeHtmlPipe } from '../../../../core/html-sanitizer/safe.pipe';
 import { DaffioDocArticleModule } from '../../../components/doc-article/module';
-import { DaffioDocsDynamicallyRenderableContent } from '../../../dynamically-renderable-content/type';
+import { DaffioDocsDynamicContent } from '../../../dynamically-renderable-content/type';
 
 @Component({
   selector: 'daffio-docs-packages-content',
@@ -23,7 +23,7 @@ import { DaffioDocsDynamicallyRenderableContent } from '../../../dynamically-ren
     DaffioSafeHtmlPipe,
   ],
 })
-export class DaffioDocsPackagesContentComponent implements DaffioDocsDynamicallyRenderableContent<DaffPackageGuideDoc> {
+export class DaffioDocsPackagesContentComponent implements DaffioDocsDynamicContent<DaffPackageGuideDoc> {
   static readonly kind = DaffDocKind.PACKAGE;
 
   doc = input<DaffPackageGuideDoc>();

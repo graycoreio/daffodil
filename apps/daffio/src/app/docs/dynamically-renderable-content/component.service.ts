@@ -12,20 +12,20 @@ import {
 
 import {
   DAFFIO_DOCS_DYNAMICALLY_RENDERABLE_CONTENT_COMPONENTS,
-  DaffioDocsDynamicallyRenderableContentComponentInjection,
+  DaffioDocsDynamicContentComponentInjection,
 } from './components.token';
-import { DaffioDocsDynamicallyRenderableContent } from './type';
+import { DaffioDocsDynamicContent } from './type';
 import { DaffioDocsDefaultContentComponent } from '../components/default-content/default-content.component';
 
 @Injectable()
-export class DaffioDocsDynamicallyRenderableContentComponentService<T extends DaffDoc = DaffDoc> {
-  private readonly _map: Record<DaffDocKind, DaffioDocsDynamicallyRenderableContentComponentInjection<T>> = daffArrayToDict(this.components, (c) => c.kind);
+export class DaffioDocsDynamicContentComponentService<T extends DaffDoc = DaffDoc> {
+  private readonly _map: Record<DaffDocKind, DaffioDocsDynamicContentComponentInjection<T>> = daffArrayToDict(this.components, (c) => c.kind);
 
   constructor(
-    @Inject(DAFFIO_DOCS_DYNAMICALLY_RENDERABLE_CONTENT_COMPONENTS) private components: Array<DaffioDocsDynamicallyRenderableContentComponentInjection<T>>,
+    @Inject(DAFFIO_DOCS_DYNAMICALLY_RENDERABLE_CONTENT_COMPONENTS) private components: Array<DaffioDocsDynamicContentComponentInjection<T>>,
   ) {}
 
-  getComponent(doc: T): Type<DaffioDocsDynamicallyRenderableContent<T>> {
+  getComponent(doc: T): Type<DaffioDocsDynamicContent<T>> {
     return this._map[doc.kind] || DaffioDocsDefaultContentComponent;
   }
 }

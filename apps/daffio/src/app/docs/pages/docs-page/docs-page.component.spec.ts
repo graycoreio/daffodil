@@ -18,15 +18,15 @@ import { DaffDoc } from '@daffodil/docs-utils';
 
 import { DaffioDocsPageComponent } from './docs-page.component';
 import { DaffioDocsFactory } from '../../../docs/testing/factories/docs.factory';
-import { DaffioDocsDynamicallyRenderableContentComponentService } from '../../dynamically-renderable-content/component.service';
-import { DaffioDocsDynamicallyRenderableContent } from '../../dynamically-renderable-content/type';
+import { DaffioDocsDynamicContentComponentService } from '../../dynamically-renderable-content/component.service';
+import { DaffioDocsDynamicContent } from '../../dynamically-renderable-content/type';
 
 @Component({
   selector: 'daffio-mock-content',
   template: '',
   standalone: true,
 })
-class MockContentComponent implements DaffioDocsDynamicallyRenderableContent {
+class MockContentComponent implements DaffioDocsDynamicContent {
   doc = input<DaffDoc>();
 }
 
@@ -37,10 +37,10 @@ describe('DaffioDocsPageComponent', () => {
   const stubActivatedRoute = {
     data: new BehaviorSubject({}),
   };
-  let componentServiceSpy: jasmine.SpyObj<DaffioDocsDynamicallyRenderableContentComponentService>;
+  let componentServiceSpy: jasmine.SpyObj<DaffioDocsDynamicContentComponentService>;
 
   beforeEach(waitForAsync(() => {
-    componentServiceSpy = jasmine.createSpyObj('DaffioDocsDynamicallyRenderableContentComponentService', ['getComponent']);
+    componentServiceSpy = jasmine.createSpyObj('DaffioDocsDynamicContentComponentService', ['getComponent']);
 
     TestBed.configureTestingModule({
       imports: [
@@ -57,13 +57,13 @@ describe('DaffioDocsPageComponent', () => {
         {
           remove: {
             providers: [
-              DaffioDocsDynamicallyRenderableContentComponentService,
+              DaffioDocsDynamicContentComponentService,
             ],
           },
           add: {
             providers: [
               {
-                provide: DaffioDocsDynamicallyRenderableContentComponentService,
+                provide: DaffioDocsDynamicContentComponentService,
                 useValue: componentServiceSpy,
               },
             ],

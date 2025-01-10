@@ -17,8 +17,8 @@ import { map } from 'rxjs/operators';
 
 import { DaffDoc } from '@daffodil/docs-utils';
 
-import { DaffioDocsDynamicallyRenderableContentComponentService } from '../../dynamically-renderable-content/component.service';
-import { DaffioDocsDynamicallyRenderableContent } from '../../dynamically-renderable-content/type';
+import { DaffioDocsDynamicContentComponentService } from '../../dynamically-renderable-content/component.service';
+import { DaffioDocsDynamicContent } from '../../dynamically-renderable-content/type';
 
 @Component({
   selector: 'daffio-docs-page',
@@ -31,16 +31,16 @@ import { DaffioDocsDynamicallyRenderableContent } from '../../dynamically-render
     NgComponentOutlet,
   ],
   providers: [
-    DaffioDocsDynamicallyRenderableContentComponentService,
+    DaffioDocsDynamicContentComponentService,
   ],
 })
 export class DaffioDocsPageComponent implements OnInit {
   doc$: Observable<DaffDoc>;
-  component$: Observable<Type<DaffioDocsDynamicallyRenderableContent>>;
+  component$: Observable<Type<DaffioDocsDynamicContent>>;
 
   constructor(
     private route: ActivatedRoute,
-    private componentService: DaffioDocsDynamicallyRenderableContentComponentService,
+    private componentService: DaffioDocsDynamicContentComponentService,
   ) {}
 
   ngOnInit() {

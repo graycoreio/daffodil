@@ -12,7 +12,7 @@ import {
 
 import { DaffioSafeHtmlPipe } from '../../../../core/html-sanitizer/safe.pipe';
 import { DaffioDocArticleModule } from '../../../components/doc-article/module';
-import { DaffioDocsDynamicallyRenderableContent } from '../../../dynamically-renderable-content/type';
+import { DaffioDocsDynamicContent } from '../../../dynamically-renderable-content/type';
 import { DaffioApiPackageComponent } from '../api-package/api-package.component';
 
 @Component({
@@ -26,7 +26,7 @@ import { DaffioApiPackageComponent } from '../api-package/api-package.component'
     DaffioSafeHtmlPipe,
   ],
 })
-export class DaffioDocsApiContentComponent implements DaffioDocsDynamicallyRenderableContent<DaffApiDoc> {
+export class DaffioDocsApiContentComponent implements DaffioDocsDynamicContent<DaffApiDoc> {
   static readonly kind = DaffDocKind.API;
 
   readonly isApiPackage = computed(() => this.doc().docType === 'package');
