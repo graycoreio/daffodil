@@ -10,12 +10,12 @@ import {
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DaffioRoute } from 'apps/daffio/src/app/core/router/route.type';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffDocsApiNavList } from '@daffodil/docs-utils';
 
 import { DaffioApiListPageComponent } from './api-list-page.component';
+import { DaffioRoute } from '../../../../core/router/route.type';
 import { DaffioApiListComponent } from '../../components/api-list/api-list.component';
 
 @Component({

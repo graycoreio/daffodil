@@ -1,6 +1,6 @@
 import {
   Component,
-  Input,
+  input,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -18,10 +18,16 @@ import { DaffDoc } from '@daffodil/docs-utils';
 
 import { DaffioDocsPageComponent } from './docs-page.component';
 import { DaffioDocsFactory } from '../../../docs/testing/factories/docs.factory';
+import { DaffioDocsDynamicallyRenderableContentComponentService } from '../../dynamically-renderable-content/component.service';
+import { DaffioDocsDynamicallyRenderableContent } from '../../dynamically-renderable-content/type';
 
-@Component({ selector: 'daffio-doc-renderer', template: '' })
-class MockDaffioDocRendererComponent {
-  @Input() doc: DaffDoc;
+@Component({
+  selector: 'daffio-mock-content',
+  template: '',
+  standalone: true,
+})
+class MockContentComponent implements DaffioDocsDynamicallyRenderableContent {
+  doc = input<DaffDoc>();
 }
 
 describe('DaffioDocsPageComponent', () => {
@@ -31,12 +37,12 @@ describe('DaffioDocsPageComponent', () => {
   const stubActivatedRoute = {
     data: new BehaviorSubject({}),
   };
+  let componentServiceSpy: jasmine.SpyObj<DaffioDocsDynamicallyRenderableContentComponentService>;
 
   beforeEach(waitForAsync(() => {
+    componentServiceSpy = jasmine.createSpyObj('DaffioDocsDynamicallyRenderableContentComponentService', ['getComponent']);
+
     TestBed.configureTestingModule({
-      declarations: [
-        MockDaffioDocRendererComponent,
-      ],
       imports: [
         DaffioDocsPageComponent,
         RouterTestingModule,
@@ -46,15 +52,32 @@ describe('DaffioDocsPageComponent', () => {
         provideMockStore(),
       ],
     })
+      .overrideComponent(
+        DaffioDocsPageComponent,
+        {
+          remove: {
+            providers: [
+              DaffioDocsDynamicallyRenderableContentComponentService,
+            ],
+          },
+          add: {
+            providers: [
+              {
+                provide: DaffioDocsDynamicallyRenderableContentComponentService,
+                useValue: componentServiceSpy,
+              },
+            ],
+          },
+        },
+      )
       .compileComponents();
-  }));
 
-  beforeEach(() => {
+    componentServiceSpy.getComponent.and.returnValue(MockContentComponent);
     fixture = TestBed.createComponent(DaffioDocsPageComponent);
     component = fixture.componentInstance;
     stubActivatedRoute.data.next({ doc });
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -65,8 +88,8 @@ describe('DaffioDocsPageComponent', () => {
     expect(component.doc$).toBeObservable(expected);
   });
 
-  it('should pass the down the observed doc to the `daffio-doc-article`', () => {
-    const docViewerComponent: MockDaffioDocRendererComponent = fixture.debugElement.query(By.css('daffio-doc-renderer')).componentInstance;
-    expect(docViewerComponent.doc).toEqual(doc);
+  it('should render the dynamic component with the doc', () => {
+    const docViewerComponent: MockContentComponent = fixture.debugElement.query(By.directive(MockContentComponent)).componentInstance;
+    expect(docViewerComponent.doc()).toEqual(doc);
   });
 });

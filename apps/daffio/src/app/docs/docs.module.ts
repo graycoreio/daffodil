@@ -7,7 +7,6 @@ import { DaffHeroModule } from '@daffodil/design/hero';
 
 import { DaffioDocArticleModule } from './components/doc-article/module';
 import { DaffioDocsRoutingModule } from './docs-routing.module';
-import { DaffioDocsDynamicallyRenderableComponentService } from './dynamically-renderable/component.service';
 import { DaffioDocsIndexService } from './index/index.service';
 import { DaffioDocsPageComponent } from './pages/docs-page/docs-page.component';
 
@@ -24,7 +23,6 @@ import { DaffioDocsPageComponent } from './pages/docs-page/docs-page.component';
   ],
   providers: [
     DaffioDocsIndexService,
-    DaffioDocsDynamicallyRenderableComponentService,
   ],
 })
 export class DaffioDocsModule {}

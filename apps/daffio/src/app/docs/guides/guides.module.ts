@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { daffioDocsGuideComponentProvider } from './components/doc/provider';
+import { daffioDocsGuidesContentComponentProvider } from './components/guides-content/guides-content.provider';
 import { DaffioGuidesRoutingModule } from './guides-routing.module';
 
 @NgModule({
@@ -8,7 +8,7 @@ import { DaffioGuidesRoutingModule } from './guides-routing.module';
     DaffioGuidesRoutingModule,
   ],
   providers: [
-    daffioDocsGuideComponentProvider(),
+    daffioDocsGuidesContentComponentProvider(),
   ],
 })
 export class DaffioGuidesModule {}

@@ -4,20 +4,20 @@ import {
   input,
   computed,
 } from '@angular/core';
-import { DaffioSafeHtmlPipe } from 'apps/daffio/src/app/core/html-sanitizer/safe.pipe';
 
 import {
   DaffApiDoc,
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
+import { DaffioSafeHtmlPipe } from '../../../../core/html-sanitizer/safe.pipe';
 import { DaffioDocArticleModule } from '../../../components/doc-article/module';
-import { DaffioDocsDynamicallyRenderable } from '../../../dynamically-renderable/type';
+import { DaffioDocsDynamicallyRenderableContent } from '../../../dynamically-renderable-content/type';
 import { DaffioApiPackageComponent } from '../api-package/api-package.component';
 
 @Component({
-  selector: 'daffio-api-doc',
-  templateUrl: './component.html',
+  selector: 'daffio-docs-api-content',
+  templateUrl: './api-content.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -26,7 +26,7 @@ import { DaffioApiPackageComponent } from '../api-package/api-package.component'
     DaffioSafeHtmlPipe,
   ],
 })
-export class DaffioDocApiComponent implements DaffioDocsDynamicallyRenderable<DaffApiDoc> {
+export class DaffioDocsApiContentComponent implements DaffioDocsDynamicallyRenderableContent<DaffApiDoc> {
   static readonly kind = DaffDocKind.API;
 
   readonly isApiPackage = computed(() => this.doc().docType === 'package');

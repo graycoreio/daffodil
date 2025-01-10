@@ -12,10 +12,10 @@ import {
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DaffioRoute } from 'apps/daffio/src/app/core/router/route.type';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffioDocsPackageCardsContainer } from './package-cards.component';
+import { DaffioRoute } from '../../../../core/router/route.type';
 
 describe('DaffioDocsPackageCardsContainer', () => {
   let component: DaffioDocsPackageCardsContainer;

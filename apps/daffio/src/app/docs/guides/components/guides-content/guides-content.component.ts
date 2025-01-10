@@ -3,19 +3,19 @@ import {
   ChangeDetectionStrategy,
   input,
 } from '@angular/core';
-import { DaffioSafeHtmlPipe } from 'apps/daffio/src/app/core/html-sanitizer/safe.pipe';
 
 import {
   DaffGuideDoc,
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
+import { DaffioSafeHtmlPipe } from '../../../../core/html-sanitizer/safe.pipe';
 import { DaffioDocArticleModule } from '../../../components/doc-article/module';
-import { DaffioDocsDynamicallyRenderable } from '../../../dynamically-renderable/type';
+import { DaffioDocsDynamicallyRenderableContent } from '../../../dynamically-renderable-content/type';
 
 @Component({
   selector: 'daffio-docs-guides-content',
-  templateUrl: './component.html',
+  templateUrl: './guides-content.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -23,7 +23,7 @@ import { DaffioDocsDynamicallyRenderable } from '../../../dynamically-renderable
     DaffioSafeHtmlPipe,
   ],
 })
-export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicallyRenderable<DaffGuideDoc> {
+export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicallyRenderableContent<DaffGuideDoc> {
   static readonly kind = DaffDocKind.GUIDE;
 
   doc = input<DaffGuideDoc>();

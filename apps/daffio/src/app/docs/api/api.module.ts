@@ -5,8 +5,8 @@ import { DaffArticleModule } from '@daffodil/design/article';
 import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioDocsApiRoutingModule } from './api-routing.module';
+import { daffioDocsApiContentComponentProvider } from './components/api-content/api-content.provider';
 import { DaffioApiListModule } from './components/api-list/api-list.module';
-import { daffioDocsApiComponentProvider } from './components/doc/provider';
 import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.component';
 
 @NgModule({
@@ -25,7 +25,7 @@ import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.
     DaffioApiListPageComponent,
   ],
   providers: [
-    daffioDocsApiComponentProvider(),
+    daffioDocsApiContentComponentProvider(),
   ],
 })
 export class DaffioApiModule {}
