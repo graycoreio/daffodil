@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffHeroModule } from '@daffodil/design/hero';
 
-import { daffioDocsPackagesContentComponentProvider } from './components/packages-content/packages-content.provider';
+import { provideDaffioDocsPackagesContentComponent } from './components/packages-content/packages-content.provider';
 import { DaffioDocsPackageCardsContainerModule } from './containers/package-cards/package-cards.module';
 import { DaffioPackagesRoutingModule } from './packages-routing.module';
 import { DaffioPackagesOverviewPageComponent } from './pages/packages-overview/packages-overview.component';
@@ -27,7 +27,7 @@ import { DaffioPackagesOverviewPageComponent } from './pages/packages-overview/p
     DaffioPackagesOverviewPageComponent,
   ],
   providers: [
-    daffioDocsPackagesContentComponentProvider(),
+    provideDaffioDocsPackagesContentComponent(),
   ],
 })
 export class DaffioPackagesModule {}
