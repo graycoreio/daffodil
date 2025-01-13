@@ -12,6 +12,9 @@
 	$primary: core.daff-map-get($theme, primary);
 	$secondary: core.daff-map-get($theme, secondary);
 	$tertiary: core.daff-map-get($theme, tertiary);
+	$warn: core.daff-map-get($theme, warn);
+	$success: core.daff-map-get($theme, success);
+	$critical: core.daff-map-get($theme, critical);
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 	$white: core.daff-map-get($theme, 'core', 'white');
 	$black: core.daff-map-get($theme, 'core', 'black');
@@ -24,9 +27,9 @@
 	--daff-theme-primary: #{theming.daff-color($primary)};
 	--daff-theme-secondary: #{theming.daff-color($secondary)};
 	--daff-theme-tertiary: #{theming.daff-color($tertiary)};
-	--daff-theme-warn: #{theming.daff-color(theming.$daff-bronze, 60)};
-	--daff-theme-success: #{theming.daff-color(theming.$daff-green, 60)};
-	--daff-theme-critical: #{theming.daff-color(theming.$daff-red, 60)};
+	--daff-theme-warn: #{theming.daff-color($warn)};
+	--daff-theme-success: #{theming.daff-color($success)};
+	--daff-theme-critical: #{theming.daff-color($critical)};
 	--daff-theme-white: #{$white};
 	--daff-theme-black: #{$black};
 	--daff-theme-gray: #{theming.daff-color($neutral)};
