@@ -20,7 +20,7 @@ $base-contrast: daff-theme.daff-map-get(
 
 @mixin type-label() {
 	border-radius: 4px;
-	font-family: daff.$monospace-font-family;
+	font-family: daff.$font-family-mono;
 	font-size: 0.625rem;
 	line-height: 0.875rem;
 	box-sizing: border-box;
