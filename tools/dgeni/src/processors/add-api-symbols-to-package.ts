@@ -48,6 +48,7 @@ export class AddApiSymbolsToPackagesProcessor implements FilterableProcessor {
           ...symbol.tableOfContents.map((entry) => ({
             ...entry,
             lvl: entry.lvl + 1,
+            slug: entry.slug === 'examples' ? `${symbol.slug}-examples` : entry.slug,
           })),
         ]);
       }

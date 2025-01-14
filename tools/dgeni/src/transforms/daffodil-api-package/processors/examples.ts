@@ -40,7 +40,6 @@ export class ExamplesProcessor implements FilterableProcessor {
           {
             content: 'Examples',
             lvl: 2,
-            // TODO: add doc-specific prefix
             slug: 'examples',
           },
           ...genExamplesToc(doc.examples),
