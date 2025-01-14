@@ -23,6 +23,7 @@
 	&__content {
 		display: flex;
 		flex-direction: column;
+		flex-basis: 100%;
 		gap: 1.5rem;
 	}
 
