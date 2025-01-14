@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -10,6 +11,10 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import {
+  provideRouter,
+  RouterModule,
+} from '@angular/router';
 
 import { DaffTabComponent } from './tab/tab.component';
 import { DaffTabActivatorComponent } from './tab-activator/tab-activator.component';
@@ -19,7 +24,11 @@ import { DAFF_TABS_COMPONENTS } from '../tabs';
 
 @Component({
   template: `
-    <daff-tabs (tabChange)="onTabChange($event)">
+    <daff-tabs
+			[linkMode]="linkModeValue"
+			[url]="urlValue"
+			(tabChange)="onTabChange($event)"
+		>
       <daff-tab>
         <daff-tab-label>
           Tab 1
@@ -55,6 +64,8 @@ import { DAFF_TABS_COMPONENTS } from '../tabs';
 })
 class WrapperComponent {
   changed: string | null = null;
+  linkModeValue: boolean;
+  urlValue: string;
 
   onTabChange(val: string) {
     this.changed = val;
@@ -66,20 +77,37 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffTabsComponent;
   let de: DebugElement;
+  let locationSpy: jasmine.SpyObj<Location>;
+  let path: string;
+  let onUrlChangeCb: (url: string, state: unknown) => void;
 
   beforeEach(waitForAsync(() => {
+    locationSpy = jasmine.createSpyObj('Location', ['path', 'onUrlChange']);
+    locationSpy.onUrlChange.and.callFake((cb) => {
+      onUrlChangeCb = cb;
+      return () => {};
+    });
+
     TestBed.configureTestingModule({
       imports: [
         WrapperComponent,
       ],
       providers: [
         ChangeDetectorRef,
+        {
+          provide: Location,
+          useValue: locationSpy,
+        },
+        provideRouter([]),
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
+    path = 'path';
+    locationSpy.path.and.returnValue(path);
+
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
 
@@ -90,6 +118,46 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
+  });
+
+  describe('in link mode', () => {
+    beforeEach(() => {
+      wrapper.linkModeValue = true;
+      fixture.detectChanges();
+    });
+
+    it('should render the tabs as anchors with the current path', () => {
+      fixture.debugElement.queryAll(By.directive(DaffTabActivatorComponent)).forEach((tab) => {
+        expect((<HTMLAnchorElement>tab.nativeElement).tagName).toEqual('A');
+        expect((<HTMLAnchorElement>tab.nativeElement).attributes.getNamedItem('ng-reflect-router-link').value).toEqual(path);
+      });
+    });
+
+    describe('when the url changes', () => {
+      beforeEach(() => {
+        component.select('tab-2');
+        fixture.detectChanges();
+        onUrlChangeCb('newurl', {});
+        fixture.detectChanges();
+      });
+
+      it('should reset the selected tab', () => {
+        expect(component.selectedTab).not.toEqual('tab-2');
+      });
+    });
+
+    describe('when a url is specified', () => {
+      beforeEach(() => {
+        wrapper.urlValue = 'url';
+        fixture.detectChanges();
+      });
+
+      it('should use that value as the router link', () => {
+        fixture.debugElement.queryAll(By.directive(DaffTabActivatorComponent)).forEach((tab) => {
+          expect((<HTMLAnchorElement>tab.nativeElement).attributes.getNamedItem('ng-reflect-router-link').value).toEqual(wrapper.urlValue);
+        });
+      });
+    });
   });
 
   it('should add a class of "daff-tabs" to the host element', () => {

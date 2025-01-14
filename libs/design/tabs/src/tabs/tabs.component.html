@@ -4,16 +4,42 @@
 	(keydown.home)="selectFirst($event)"
 	(keydown.end)="selectLast($event)">
 	@for (tab of _tabs; track tab) {
-		<button daff-tab-activator
-			[selected]="tab.id === selectedTab"
-			(click)="select(tab.id)"
-			[panelId]="tab.panelId"
-			[disabled]="tab.disabled"
-			[tabActivatorId]="tab.id"
-			(keydown.arrowright)="next()"
-			(keydown.arrowleft)="previous()">
-				<ng-container *ngTemplateOutlet="tab.labelRef"></ng-container>
-		</button>
+		@if (linkMode && tab.disabled) {
+			<button daff-tab-activator routerLinkActive
+				[selected]="tab.id === selectedTab"
+				[panelId]="tab.panelId"
+				[disabled]="tab.disabled"
+				[tabActivatorId]="tab.id"
+				(keydown.arrowright)="next()"
+				(keydown.arrowleft)="previous()">
+					<ng-container *ngTemplateOutlet="tab.labelRef"></ng-container>
+			</button>
+		} @else if (linkMode) {
+			<a daff-tab-activator routerLinkActive
+				class="daff-ae daff_tabs__link"
+				[selected]="tab.id === selectedTab"
+				[routerLink]="url || currentPath"
+				queryParamsHandling="merge"
+				[queryParams]="_buildQueryParams(tab.id)"
+				[panelId]="tab.panelId"
+				[tabActivatorId]="tab.id"
+				(keydown.arrowright)="next()"
+				(keydown.arrowleft)="previous()"
+				(isActiveChange)="$event && select(tab.id)">
+					<ng-container *ngTemplateOutlet="tab.labelRef"></ng-container>
+			</a>
+		} @else {
+			<button daff-tab-activator
+				[selected]="tab.id === selectedTab"
+				(click)="select(tab.id)"
+				[panelId]="tab.panelId"
+				[disabled]="tab.disabled"
+				[tabActivatorId]="tab.id"
+				(keydown.arrowright)="next()"
+				(keydown.arrowleft)="previous()">
+					<ng-container *ngTemplateOutlet="tab.labelRef"></ng-container>
+			</button>
+		}
 	}
 </div>
 
