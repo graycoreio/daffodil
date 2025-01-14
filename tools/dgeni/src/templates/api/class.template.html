@@ -10,17 +10,19 @@
 <span class="selectors__name"><code>{$ doc.decorators[0].argumentInfo[0].selector $}</code></span>
 {% endif %}
 
-{$'<h4>' if child else '<h2>'$}Properties{$'<h4>' if child else '<h2>'$}
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  {%- for i in range(0, doc.members.length) %}
-    {$ member(doc.members[i]) $}
-  {% endfor -%}
-</table>
+{% if doc.members.length > 0 %}
+	{$'<h4>' if child else '<h2>'$}Properties{$'</h4>' if child else '</h2>'$}
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		{%- for i in range(0, doc.members.length) %}
+			{$ member(doc.members[i]) $}
+		{% endfor -%}
+	</table>
+{% endif %}
 {% endblock %}
