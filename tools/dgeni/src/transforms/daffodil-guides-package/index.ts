@@ -86,7 +86,7 @@ const base = new Package('daffodil-guides-base', [daffodilBasePackage])
     generateNavList.transform = (docs) => generateNavigationTrieFromDocuments(docs.map(transformGuideDoc), { id: '', title: '', path: '' });
   })
   .config((convertToJson: ConvertToJsonProcessor) => {
-    convertToJson.extraFields.push('api');
+    convertToJson.extraFields.push('api', 'apiToc');
   });
 
 // global

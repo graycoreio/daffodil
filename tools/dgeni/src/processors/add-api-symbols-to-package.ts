@@ -1,7 +1,11 @@
 import { Document } from 'dgeni';
+import { slugify } from 'markdown-toc';
 import type { Environment } from 'nunjucks';
 
-import { DaffApiDoc } from '@daffodil/docs-utils';
+import {
+  DaffApiDoc,
+  DaffDocTableOfContents,
+} from '@daffodil/docs-utils';
 
 import { CollectLinkableSymbolsProcessor } from './collect-linkable-symbols';
 import { API_TEMPLATES_PATH } from '../transforms/config';
@@ -35,10 +39,17 @@ export class AddApiSymbolsToPackagesProcessor implements FilterableProcessor {
         const exportDocs = CollectLinkableSymbolsProcessor.packages.get(this.lookup(doc));
         doc.symbols = exportDocs?.map((d) => d.path);
         doc.api = exportDocs?.map((symbol) => render(this.templateFinder.getFinder()(symbol), { doc: symbol, child: true }));
-        doc.apiToc = exportDocs?.flatMap((symbol: DaffApiDoc) => symbol.tableOfContents.map((entry) => ({
-          ...entry,
-          lvl: entry.lvl + 1,
-        })));
+        doc.apiToc = exportDocs?.flatMap((symbol: Document & DaffApiDoc): DaffDocTableOfContents => [
+          {
+            content: symbol.name,
+            lvl: 2,
+            slug: slugify(symbol.name),
+          },
+          ...symbol.tableOfContents.map((entry) => ({
+            ...entry,
+            lvl: entry.lvl + 1,
+          })),
+        ]);
       }
       return doc;
     });
