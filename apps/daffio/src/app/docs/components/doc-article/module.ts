@@ -35,6 +35,7 @@ import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-c
     DaffBreadcrumbItemDirective,
     FontAwesomeModule,
     RouterLink,
+    DaffContainerModule,
   ],
 })
 export class DaffioDocArticleModule { }
