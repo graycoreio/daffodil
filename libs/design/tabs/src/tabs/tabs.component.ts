@@ -76,7 +76,7 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
   @HostBinding('class.daff-tabs') private class = true;
 
   /**
-   * The currently selected tab. This property is dynamically updated when a user selects a tab
+   * The currently selected tab. This property is dynamically updated when a user selects a tab.
    */
   selectedTab: string;
 
@@ -101,13 +101,13 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
   @Input() linkMode = false;
 
   /**
-   * The url to which to navigate if the component is in link mode.
+   * The URL to navigate to when the component is in link mode.
    * This component will set the specified query param.
    */
   @Input() url?: string;
 
   /**
-   * The query param to which the tabs component will set the tab value in link mode.
+   * The query parameter that the tabs component will use to set the tab value in link mode.
    */
   @Input() queryParam = 'tab';
 
