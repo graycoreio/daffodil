@@ -9,9 +9,9 @@
 		padding: 1.5rem;
 
 		@include daff.breakpoint(small-laptop) {
-			display: grid;
-			grid-template-columns: 1fr 15rem;
-			grid-gap: 4rem;
+			display: flex;
+			justify-content: space-between;
+			gap: 4rem;
 			padding: 3rem;
 		}
 
@@ -31,6 +31,7 @@
 
 		@include daff.breakpoint(small-laptop) {
 			display: block;
+			flex: 1 0 15rem;
 		}
 	}
 
