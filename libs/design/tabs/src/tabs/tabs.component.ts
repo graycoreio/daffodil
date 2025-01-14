@@ -140,6 +140,9 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
     private location: Location,
   ) {}
 
+  /**
+   * @docs-private
+   */
   ngOnInit(): void {
     this.location.onUrlChange(() => {
       if (this.linkMode) {
@@ -198,6 +201,9 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
     this.select(array[newIndex].id);
   }
 
+  /**
+   * @docs-private
+   */
   _buildQueryParams(tab: string): Params {
     return {
       [this.queryParam]: tab,
