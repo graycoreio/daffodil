@@ -17,3 +17,6 @@ A meaningful `aria-label` should be set on `<daff-tabs>` by using the `aria-labe
 | Right Arrow |  Moves focus and activates next tab. If focus is on the last tab, moves focus to the first tab. |
 | Home |  Moves focus and activates first tab. |
 | End |  Moves focus and activates last tab. |
+
+### Link Mode
+Tabs can operate in "link mode" which replaces the tab buttons with anchors. This allows the selected tab to be connected to the URL. To use this mode, set `linkMode` to `true` on the tabs component. By default, the current URL and `tab` query param will be used. These can be overriden with the `url` and `queryParam` inputs respectively.
