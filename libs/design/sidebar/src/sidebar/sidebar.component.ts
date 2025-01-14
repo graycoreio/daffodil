@@ -174,6 +174,8 @@ export class DaffSidebarComponent implements DaffOpenable {
      */
     if (e.toState === 'closed' || e.toState === 'under-closed' || e.toState === 'side-fixed-closed') {
       this._elementRef.nativeElement.style.visibility = 'hidden';
+    } else {
+      this._elementRef.nativeElement.style.visibility = null;
     }
   }
 
