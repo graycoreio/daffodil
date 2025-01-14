@@ -92,6 +92,7 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
           }));
         }
         this.docDescription = null;
+        doc.slug = slugify(doc.name || doc.title);
       };
       return doc;
     });
