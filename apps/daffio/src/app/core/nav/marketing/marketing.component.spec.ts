@@ -10,25 +10,25 @@ import { BehaviorSubject } from 'rxjs';
 
 import { DaffRouterDataService } from '@daffodil/router';
 
-import { DaffioNavHeaderContainer } from './header.component';
-import { DAFFIO_NAV_SIDEBAR_ID } from './sidebar-id';
+import { DaffioMarketingNavContainer } from './marketing.component';
 import { DaffioRoute } from '../../router/route.type';
+import { DAFFIO_MARKETING_NAV_SIDEBAR_ID } from '../../sidebar/marketing-sidebar-id';
 import { DaffioSidebarService } from '../../sidebar/services/sidebar.service';
 import { DaffioNavLink } from '../link/type';
 
 @Component({
-  template: '<daffio-nav-header-container></daffio-nav-header-container>',
+  template: '<daffio-nav-marketing-container></daffio-nav-marketing-container>',
   standalone: true,
   imports: [
-    DaffioNavHeaderContainer,
+    DaffioMarketingNavContainer,
   ],
 })
 class WrapperComponent {}
 
-describe('DaffioNavHeaderContainer', () => {
+describe('DaffioMarketingNavContainer', () => {
   let component: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let daffioHeaderContainer: DaffioNavHeaderContainer;
+  let marketingNavContainer: DaffioMarketingNavContainer;
   let dataSpy: BehaviorSubject<DaffioRoute['data']>;
   let sidebarServiceSpy: jasmine.SpyObj<DaffioSidebarService>;
   let links: Array<DaffioNavLink>;
@@ -69,7 +69,7 @@ describe('DaffioNavHeaderContainer', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    daffioHeaderContainer = fixture.debugElement.query(By.css('daffio-nav-header-container')).componentInstance;
+    marketingNavContainer = fixture.debugElement.query(By.css('daffio-nav-marketing-container')).componentInstance;
   });
 
   it('should create', () => {
@@ -88,7 +88,7 @@ describe('DaffioNavHeaderContainer', () => {
       const sidebarButton = fixture.debugElement.query(By.css('[sidebar-button]')).nativeElement;
       sidebarButton.click();
 
-      expect(sidebarServiceSpy.open).toHaveBeenCalledWith(DAFFIO_NAV_SIDEBAR_ID);
+      expect(sidebarServiceSpy.open).toHaveBeenCalledWith(DAFFIO_MARKETING_NAV_SIDEBAR_ID);
     });
   });
 });

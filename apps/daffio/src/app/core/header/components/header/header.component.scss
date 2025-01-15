@@ -3,6 +3,7 @@
 :host {
 	$root: '.daffio-header';
 	display: block;
+	box-sizing: border-box;
 
 	::ng-deep {
 		.daffio-header-item {

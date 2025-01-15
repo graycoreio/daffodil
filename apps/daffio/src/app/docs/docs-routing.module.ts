@@ -13,7 +13,7 @@ import {
 
 import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
 import { DaffioSimpleFooterComponent } from '../core/footer/simple-footer/simple-footer.component';
-import { DAFF_NAV_SIDEBAR_REGISTRATION } from '../core/nav/sidebar.provider';
+import { DaffioDocsNavContainer } from '../core/nav/docs/docs.component';
 import { DaffioRouterNamedViewsEnum } from '../core/router/named-views/models/named-views.enum';
 import { DaffioRoute } from '../core/router/route.type';
 
@@ -21,6 +21,10 @@ export const docsRoutes: Routes = [
   <DaffioRoute>{
     path: '',
     data: {
+      daffNamedViews: {
+        [DaffioRouterNamedViewsEnum.NAV]: DaffioDocsNavContainer,
+        [DaffioRouterNamedViewsEnum.FOOTER]: DaffioSimpleFooterComponent,
+      },
       daffioNavLinks: [
         { url: `/${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.GUIDE]}`, title: 'Guides' },
         { url: `/${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.PACKAGE]}`, title: 'Packages' },
@@ -28,11 +32,7 @@ export const docsRoutes: Routes = [
         { url: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`, title: 'Design' },
       ],
       daffioSidebars: {
-        [DAFF_NAV_SIDEBAR_REGISTRATION.id]: DAFF_NAV_SIDEBAR_REGISTRATION,
         [DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION.id]: DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION,
-      },
-      daffNamedViews: {
-        [DaffioRouterNamedViewsEnum.FOOTER]: DaffioSimpleFooterComponent,
       },
     },
     children: [

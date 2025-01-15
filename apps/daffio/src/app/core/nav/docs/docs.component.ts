@@ -26,15 +26,15 @@ import {
 import { DaffRouterDataService } from '@daffodil/router';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
-import { DAFFIO_NAV_SIDEBAR_ID } from './sidebar-id';
 import { DaffioHeaderComponentModule } from '../../header/components/header.module';
 import { DaffioRoute } from '../../router/route.type';
 import { DaffioSidebarService } from '../../sidebar/services/sidebar.service';
+import { DAFFIO_NAV_SIDEBAR_ID } from '../header/sidebar-id';
 import { DaffioNavLink } from '../link/type';
 
 @Component({
-  selector: 'daffio-nav-header-container',
-  templateUrl: './header.component.html',
+  selector: 'daffio-docs-nav-container',
+  templateUrl: './docs.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -50,7 +50,7 @@ import { DaffioNavLink } from '../link/type';
     AsyncPipe,
   ],
 })
-export class DaffioNavHeaderContainer implements OnInit {
+export class DaffioDocsNavContainer implements OnInit {
   faBars = faBars;
 
   links$: Observable<Array<DaffioNavLink>>;

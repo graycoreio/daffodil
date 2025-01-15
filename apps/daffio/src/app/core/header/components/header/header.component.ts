@@ -2,6 +2,7 @@ import {
   Component,
   HostBinding,
   ChangeDetectionStrategy,
+  Input,
 } from '@angular/core';
 
 @Component({
@@ -13,4 +14,5 @@ import {
 
 export class DaffioHeaderComponent {
   @HostBinding('class.daffio-header') class = true;
+  @Input() @HostBinding('class.bordered') bordered = false;
 }

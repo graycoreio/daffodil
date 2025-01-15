@@ -39,6 +39,7 @@ const visit = (guide: DaffDocsNavList): DaffTreeData<unknown> => ({
 @Component({
   selector: 'daffio-docs-list',
   templateUrl: './docs-list.component.html',
+  styleUrl: './docs-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [

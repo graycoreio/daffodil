@@ -7,7 +7,7 @@ import {
 import { DAFF_DOCS_PATH } from '@daffodil/docs-utils';
 
 import { DaffioMarketingFooterComponent } from './core/footer/marketing-footer/marketing-footer.component';
-import { DaffioNavHeaderContainer } from './core/nav/header/header.component';
+import { DaffioMarketingNavContainer } from './core/nav/marketing/marketing.component';
 import { DAFF_NAV_SIDEBAR_REGISTRATION } from './core/nav/sidebar.provider';
 import { DaffioRouterNamedViewsEnum } from './core/router/named-views/models/named-views.enum';
 import { DaffioRoute } from './core/router/route.type';
@@ -20,7 +20,7 @@ export const appRoutes: Routes = [
     component: TemplateComponent,
     data: {
       daffNamedViews: {
-        [DaffioRouterNamedViewsEnum.NAV]: DaffioNavHeaderContainer,
+        [DaffioRouterNamedViewsEnum.NAV]: DaffioMarketingNavContainer,
       },
       daffioSidebars: {
         [DAFF_NAV_SIDEBAR_REGISTRATION.id]: DAFF_NAV_SIDEBAR_REGISTRATION,

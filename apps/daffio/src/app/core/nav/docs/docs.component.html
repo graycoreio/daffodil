@@ -1,0 +1,20 @@
+<daffio-header [bordered]="true">
+  <a routerLink="/" daffio-logo>
+    <daff-branding-logo type="full"></daff-branding-logo>
+  </a>
+  <daff-theme-switch-button theme-toggle></daff-theme-switch-button>
+  @for (link of links$ | async; track $index) {
+    <ng-container daffioHeaderItem>
+      @if (link.external) {
+        <a daffioHeaderItem [href]="link.url" target="_blank">{{link.title}}</a>
+      } @else {
+        <a daffioHeaderItem [routerLink]="link.url" [active]="rla.isActive" routerLinkActive #rla="routerLinkActive">{{ link.title }}</a>
+      }
+    </ng-container>
+  }
+  <button daff-icon-button color="theme-contrast" aria-label="Open Navigation Sidebar"
+    sidebar-button
+    (click)="openSidebar()">
+    <fa-icon [icon]="faBars"></fa-icon>
+  </button>
+</daffio-header>
