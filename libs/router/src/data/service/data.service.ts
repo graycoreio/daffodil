@@ -1,8 +1,11 @@
-import { Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
 import {
   ActivatedRoute,
+  ActivatedRouteSnapshot,
   NavigationEnd,
-  Route,
   Router,
 } from '@angular/router';
 import {
@@ -12,12 +15,16 @@ import {
   merge,
 } from 'rxjs';
 
+import {
+  DAFF_ROUTER_DATA_SERVICE_CONFIG,
+  DaffRouterDataServiceConfig,
+} from '../config/public_api';
 import { daffRouterDataCollect } from '../helpers/collect-data';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DaffRouterDataService<T extends Route['data'] = Route['data']> {
+export class DaffRouterDataService<T extends ActivatedRouteSnapshot['data'] = ActivatedRouteSnapshot['data']> {
   /**
    * A collection of all the route data defined in any part of the currently activated route's tree.
    * Child route's data takes precendence over parent data.
@@ -27,6 +34,7 @@ export class DaffRouterDataService<T extends Route['data'] = Route['data']> {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    @Inject(DAFF_ROUTER_DATA_SERVICE_CONFIG) private config: DaffRouterDataServiceConfig,
   ) {
     /**
      * Because data won't reemit for route changes and
@@ -46,7 +54,7 @@ export class DaffRouterDataService<T extends Route['data'] = Route['data']> {
       this.route.url,
     ).pipe(
       map(() => this.route.snapshot),
-      map(daffRouterDataCollect<T>),
+      map((r) => daffRouterDataCollect<T>(r, this.config.mergeStrategy)),
     );
   }
 }
