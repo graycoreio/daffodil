@@ -1,11 +1,8 @@
 import { DaffioApiNavListSidebarContainer } from './component';
-import { DaffioSidebarFooterComponent } from '../../../core/sidebar/components/sidebar-footer/sidebar-footer.component';
-import { DaffioSidebarHeaderComponent } from '../../../core/sidebar/components/sidebar-header/sidebar-header.component';
-import { DAFFIO_DOCS_LIST_SIDEBAR_ID } from '../../containers/docs-list/sidebar.provider';
+import { DaffioSidebarRegistration } from '../../../core/sidebar/registration/type';
+import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from '../../containers/docs-list/sidebar.provider';
 
-export const DAFFIO_API_NAV_LIST_SIDEBAR_REGISTRATION = {
-  id: DAFFIO_DOCS_LIST_SIDEBAR_ID,
-  header: DaffioSidebarHeaderComponent,
+export const DAFFIO_API_NAV_LIST_SIDEBAR_REGISTRATION: DaffioSidebarRegistration = {
+  ...DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION,
   body: DaffioApiNavListSidebarContainer,
-  footer: DaffioSidebarFooterComponent,
 };
