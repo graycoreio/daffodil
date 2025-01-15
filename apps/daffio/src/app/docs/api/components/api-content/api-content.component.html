@@ -1,4 +1,4 @@
-<daffio-doc-article [breadcrumbs]="doc().breadcrumbs" [toc]="doc().tableOfContents">
+<daffio-doc-article [breadcrumbs]="doc().breadcrumbs" [toc]="doc().tableOfContents || []">
 	@if (isApiPackage()) {
 		<daffio-api-package [doc]="doc()"></daffio-api-package>
 	} @else {
