@@ -13,9 +13,9 @@ import {
 import {
   daffSidebarIsFloatingMode,
   DaffSidebarModeEnum,
-  DaffSidebarRegistration,
 } from '@daffodil/design/sidebar';
 
+import { DaffioSidebarRegistration } from '../../registration/type';
 import { DaffioSidebarService } from '../../services/sidebar.service';
 
 @Component({
@@ -29,7 +29,7 @@ export class DaffioSidebarViewportContainer implements OnInit {
   mode$: Observable<DaffSidebarModeEnum>;
   showSidebarHeader$: Observable<boolean>;
   showSidebarFooter$: Observable<boolean>;
-  component$: Observable<DaffSidebarRegistration>;
+  component$: Observable<DaffioSidebarRegistration>;
 
   ngOnInit() {
     this.component$ = this.sidebarService.activeRegistration$;
@@ -39,13 +39,13 @@ export class DaffioSidebarViewportContainer implements OnInit {
       this.component$,
       this.mode$,
     ]).pipe(
-      map(([component, mode]) => component?.header && daffSidebarIsFloatingMode(mode)),
+      map(([component, mode]) => component?.header && (component.alwaysShowHeader || daffSidebarIsFloatingMode(mode))),
     );
     this.showSidebarFooter$ = combineLatest([
       this.component$,
       this.mode$,
     ]).pipe(
-      map(([component, mode]) => component?.footer && daffSidebarIsFloatingMode(mode)),
+      map(([component, mode]) => component?.footer && (component.alwaysShowFooter || daffSidebarIsFloatingMode(mode))),
     );
   }
 
