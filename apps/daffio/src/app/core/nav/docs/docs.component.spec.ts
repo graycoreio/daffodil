@@ -12,8 +12,8 @@ import { DaffRouterDataService } from '@daffodil/router';
 
 import { DaffioDocsNavContainer } from './docs.component';
 import { DaffioRoute } from '../../router/route.type';
-import { DAFFIO_DOCS_NAV_SIDEBAR_ID } from '../../sidebar/docs-sidebar-id';
 import { DaffioSidebarService } from '../../sidebar/services/sidebar.service';
+import { DAFFIO_NAV_SIDEBAR_ID } from '../header/sidebar-id';
 import { DaffioNavLink } from '../link/type';
 
 @Component({
@@ -88,7 +88,7 @@ describe('DaffioDocsNavContainer', () => {
       const sidebarButton = fixture.debugElement.query(By.css('[sidebar-button]')).nativeElement;
       sidebarButton.click();
 
-      expect(sidebarServiceSpy.open).toHaveBeenCalledWith(DAFFIO_DOCS_NAV_SIDEBAR_ID);
+      expect(sidebarServiceSpy.open).toHaveBeenCalledWith(DAFFIO_NAV_SIDEBAR_ID);
     });
   });
 });
