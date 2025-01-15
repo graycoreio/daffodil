@@ -1,7 +1,10 @@
 # Testing
+You may want to test your routing configuration if you have a complex routing configuration with multiple types of routes that are handled by the `daffExternalMatcherTypeGuard`. 
 
-You may want to test your routing configuration if you have a complex routing configuration with multiple types of routes that are handled by the `daffExternalMatcherTypeGuard`. This guide will walk you through setting up and using the `DaffExternalRouterDriverTestingModule` and `DaffExternalRouterDriver` to test the behavior of the `daffExternalMatcherTypeGuard` in your Angular routing configuration.
+## Overview
+This guide will walk you through setting up and using the `DaffExternalRouterDriverTestingModule` and `DaffExternalRouterDriver` to test the behavior of the `daffExternalMatcherTypeGuard` in your Angular routing configuration.
 
+## Example
 Let's take the following sample routing configuration:
 
 ```ts
@@ -76,37 +79,37 @@ describe('daffExternalMatcherTypeGuard', () => {
     });
   });
 
- it('should match the route type for `test-path` correctly', done => {
-  const router = TestBed.inject(Router);
+  it('should match the route type for `test-path` correctly', done => {
+    const router = TestBed.inject(Router);
 
-  router
-   .navigateByUrl('/test-path')
-   .then(isMatch => {
-    expect(isMatch).toBe(true);
-    done();
-   })
-   .catch(done.fail);
- });
+    router
+      .navigateByUrl('/test-path')
+      .then(isMatch => {
+      expect(isMatch).toBe(true);
+      done();
+      })
+      .catch(done.fail);
+  });
 
- it('should match the route type for `some-other-type` correctly', done => {
-  const router = TestBed.inject(Router);
+  it('should match the route type for `some-other-type` correctly', done => {
+    const router = TestBed.inject(Router);
 
-  router
-   .navigateByUrl('/some-other-type')
-   .then(isMatch => {
-    expect(isMatch).toBe(true);
-    done();
-   })
-   .catch(done.fail);
- });
+    router
+      .navigateByUrl('/some-other-type')
+      .then(isMatch => {
+      expect(isMatch).toBe(true);
+      done();
+      })
+      .catch(done.fail);
+  });
 
- it('should not match the route type incorrectly', done => {
-  const router = TestBed.inject(Router);
+  it('should not match the route type incorrectly', done => {
+    const router = TestBed.inject(Router);
 
-  router
-   .navigateByUrl('/non-existent-path')
-   .then(() => done.fail)
-   .catch(e => done());
- });
+    router
+    .navigateByUrl('/non-existent-path')
+    .then(() => done.fail)
+    .catch(e => done());
+  });
 });
 ```

@@ -1,7 +1,7 @@
 # Configuration
-
 `@daffodil/external-router` can be configured by passing a `DaffExternalRouterConfiguration` to `provideExternalRouter`.
 
+## Usage
 ```ts
 export const appConfig: ApplicationConfig = {
   providers: [
