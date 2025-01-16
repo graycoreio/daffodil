@@ -8,6 +8,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { CollectLinkableSymbolsProcessor } from './collect-linkable-symbols';
+import { MARKDOWN_CODE_PROCESSOR_NAME } from './markdown';
 import { API_TEMPLATES_PATH } from '../transforms/config';
 import { FilterableProcessor } from '../utils/filterable-processor.type';
 
@@ -16,7 +17,7 @@ export const ADD_API_SYMBOLS_TO_PACKAGES_PROCESSOR_NAME = 'addApiSymbolsToPackag
 export class AddApiSymbolsToPackagesProcessor implements FilterableProcessor {
   readonly name = ADD_API_SYMBOLS_TO_PACKAGES_PROCESSOR_NAME;
   readonly $runAfter = ['paths-absolutified'];
-  readonly $runBefore = ['rendering-docs'];
+  readonly $runBefore = ['rendering-docs', MARKDOWN_CODE_PROCESSOR_NAME];
 
   docTypes = [];
   lookup = (doc: Document) => doc.id;
@@ -51,6 +52,9 @@ export class AddApiSymbolsToPackagesProcessor implements FilterableProcessor {
             slug: entry.slug === 'examples' ? `${symbol.slug}-examples` : entry.slug,
           })),
         ]);
+        const match = doc.content.match(/# .*\n+(.*)\n*/);
+        doc.longDescription = match[1];
+        doc.content = doc.content.replace(match[0], '');
       }
       return doc;
     });

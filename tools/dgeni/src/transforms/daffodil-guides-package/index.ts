@@ -162,7 +162,7 @@ export const designDocsPackage = new Package('design-docs', [design])
     ];
   })
   .config((convertToJson: ConvertToJsonProcessor) => {
-    convertToJson.extraFields.push('description', 'symbols');
+    convertToJson.extraFields.push('longDescription', 'symbols');
   })
   .config((absolutifyPaths: AbsolutifyPathsProcessor) => {
     absolutifyPaths.docTypes = docTypes;

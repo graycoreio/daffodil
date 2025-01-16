@@ -29,7 +29,6 @@ hljs.registerLanguage('gql', graphql);
 export const MARKDOWN_CODE_PROCESSOR_NAME = 'markdown';
 
 export class MarkdownCodeProcessor implements FilterableProcessor {
-  private docDescription: string;
   private marked = new Marked(
     markedHighlight({
       highlight: (code, lang, info) => {
@@ -57,13 +56,6 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
           const path = CollectLinkableSymbolsProcessor.symbols.get(text);
           return path ? `<a href="${path}"><code>${text}</code></a>` : false;
         },
-        paragraph: (text) => {
-          if (!this.docDescription) {
-            // get the first paragraph of the doc
-            this.docDescription = text;
-          }
-          return false;
-        },
       },
     },
   );
@@ -82,16 +74,12 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
     const ret = docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
         doc[this.contentKey] = this.marked.parse(typeof doc.description === 'undefined' ? doc.content : doc.description);
-        if (doc.kind === DaffDocKind.PACKAGE || doc.kind === DaffDocKind.COMPONENT) {
-          doc.description = this.docDescription;
-        }
         if (doc.examples) {
           doc.examples = (<Array<DaffDocExample>>doc.examples).map((example) => ({
             ...example,
             body: this.marked.parse(example.body),
           }));
         }
-        this.docDescription = null;
         doc.slug = slugify(doc.name || doc.title);
       };
       return doc;

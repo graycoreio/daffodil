@@ -23,7 +23,7 @@ export const transformDesignGuideDoc = (doc: Document): DaffDesignGuideNavDoc =>
     id: doc.id,
     title: doc.title,
     path: doc.path,
-    description: doc.description,
+    description: doc.longDescription,
   };
 
 
