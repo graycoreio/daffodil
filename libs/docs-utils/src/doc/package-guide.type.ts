@@ -18,7 +18,7 @@ export interface DaffPackageGuideDoc extends DaffDoc {
    */
   apiToc: DaffDocTableOfContents;
   /**
-   * A description of the package.
+   * A description of the package. This is renderable HTML.
    */
   longDescription: string;
 }

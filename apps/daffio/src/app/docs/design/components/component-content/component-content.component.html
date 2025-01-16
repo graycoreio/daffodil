@@ -1,6 +1,6 @@
 <daffio-doc-article [breadcrumbs]="doc().breadcrumbs" [toc]="toc()">
 	<h1>{{doc().title}}</h1>
-	<p>{{doc().longDescription}}</p>
+	<div [innerHtml]="doc().longDescription | safe"></div>
 	<daff-tabs
 		[initiallySelected]="USAGE_TAB_ID"
 		[linkMode]="true"

@@ -80,6 +80,9 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
             body: this.marked.parse(example.body),
           }));
         }
+        if (doc.longDescription) {
+          doc.longDescription = this.marked.parse(doc.longDescription);
+        }
         doc.slug = slugify(doc.name || doc.title);
       };
       return doc;
