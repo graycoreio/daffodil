@@ -1,0 +1,32 @@
+<daffio-doc-article [breadcrumbs]="doc().breadcrumbs" [toc]="toc()">
+	<h1>{{doc().title}}</h1>
+	<p>{{doc().longDescription}}</p>
+	<daff-tabs
+		[initiallySelected]="USAGE_TAB_ID"
+		[linkMode]="true"
+		[url]="doc().id"
+		(tabChange)="setTab($event)"
+	>
+		<daff-tab [id]="USAGE_TAB_ID">
+			<daff-tab-label>
+				Usage
+			</daff-tab-label>
+			<daff-tab-panel>
+				<daff-article
+					[innerHtml]="doc().contents | safe">
+				</daff-article>
+			</daff-tab-panel>
+		</daff-tab>
+
+		<daff-tab [id]="API_TAB_ID">
+			<daff-tab-label>
+				API
+			</daff-tab-label>
+			<daff-tab-panel>
+				@for (apiDoc of doc().api; track $index) {
+					<div [innerHtml]="apiDoc | safe"></div>
+				}
+			</daff-tab-panel>
+		</daff-tab>
+	</daff-tabs>
+</daffio-doc-article>
