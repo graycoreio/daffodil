@@ -10,11 +10,11 @@ import {
 } from '@daffodil/design/tree';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'deep-tree',
-    templateUrl: './deep-tree.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [DaffTreeModule, RouterLink]
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'deep-tree',
+  templateUrl: './deep-tree.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [DaffTreeModule, RouterLink],
 })
 export class DeepTreeComponent {
   tree: DaffTreeData<unknown> = {

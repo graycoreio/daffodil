@@ -25,15 +25,15 @@ import { DaffModalService } from '../service/modal.service';
 class DynamicComponent {}
 
 @Component({
-    template: `<daff-modal></daff-modal>`,
-    imports: [
-        DaffModalComponent,
-        PortalModule,
-        DynamicComponent,
-    ],
-    providers: [
-        DaffModalService,
-    ]
+  template: `<daff-modal></daff-modal>`,
+  imports: [
+    DaffModalComponent,
+    PortalModule,
+    DynamicComponent,
+  ],
+  providers: [
+    DaffModalService,
+  ],
 })
 class WrapperComponent {}
 

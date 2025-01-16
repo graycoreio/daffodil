@@ -18,17 +18,17 @@ import { ThankYouComponent } from '../components/thank-you/thank-you.component';
 
 
 @Component({
-    templateUrl: './thank-you-view.component.html',
-    styleUrls: ['./thank-you-view.component.scss'],
-    imports: [
-        CommonModule,
-        LetDirective,
-        ThankYouComponent,
-        DAFF_CONTAINER_COMPONENTS,
-        CartSummaryWrapperModule,
-        DAFF_ACCORDION_COMPONENTS,
-        DAFF_LOADING_ICON_COMPONENTS,
-    ]
+  templateUrl: './thank-you-view.component.html',
+  styleUrls: ['./thank-you-view.component.scss'],
+  imports: [
+    CommonModule,
+    LetDirective,
+    ThankYouComponent,
+    DAFF_CONTAINER_COMPONENTS,
+    CartSummaryWrapperModule,
+    DAFF_ACCORDION_COMPONENTS,
+    DAFF_LOADING_ICON_COMPONENTS,
+  ],
 })
 export class ThankYouViewComponent implements OnInit {
   order$: Observable<DaffOrder>;

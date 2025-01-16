@@ -21,28 +21,28 @@ import { daffThumbnailCompatToken } from '../thumbnail/thumbnail-compat.token';
 import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 
 @Component({
-    selector: 'daff-mock-thumbnail1',
-    template: '<ng-content></ng-content>',
-    providers: [
-        {
-            // eslint-disable-next-line @typescript-eslint/no-use-before-define
-            provide: daffThumbnailCompatToken, useExisting: DaffMockThumbnail1Component,
-        },
-    ],
-    standalone: false
+  selector: 'daff-mock-thumbnail1',
+  template: '<ng-content></ng-content>',
+  providers: [
+    {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      provide: daffThumbnailCompatToken, useExisting: DaffMockThumbnail1Component,
+    },
+  ],
+  standalone: false,
 })
 export class DaffMockThumbnail1Component {}
 
 @Component({
-    selector: 'daff-mock-thumbnail2',
-    template: '<ng-content></ng-content>',
-    providers: [
-        {
-            // eslint-disable-next-line @typescript-eslint/no-use-before-define
-            provide: daffThumbnailCompatToken, useExisting: DaffMockThumbnail2Component,
-        },
-    ],
-    standalone: false
+  selector: 'daff-mock-thumbnail2',
+  template: '<ng-content></ng-content>',
+  providers: [
+    {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      provide: daffThumbnailCompatToken, useExisting: DaffMockThumbnail2Component,
+    },
+  ],
+  standalone: false,
 })
 export class DaffMockThumbnail2Component {}
 

@@ -14,11 +14,11 @@ import {
 } from '../model/code-example';
 
 @Component({
-    selector: 'design-land-code-preview',
-    templateUrl: './code-preview.component.html',
-    styleUrls: ['./code-preview.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'design-land-code-preview',
+  templateUrl: './code-preview.component.html',
+  styleUrls: ['./code-preview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class CodePreviewComponent implements OnChanges {
   @HostBinding('class.design-land-code-preview') class = true;

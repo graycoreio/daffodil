@@ -12,13 +12,13 @@ import { By } from '@angular/platform-browser';
 import { DaffStrokedButtonComponent } from './stroked.component';
 
 @Component({
-    template: `
+  template: `
     <a daff-stroked-button>Stroked Link Button</a>
     <button daff-stroked-button>Stroked Button</button>
   `,
-    imports: [
-        DaffStrokedButtonComponent,
-    ]
+  imports: [
+    DaffStrokedButtonComponent,
+  ],
 })
 
 class WrapperComponent {}

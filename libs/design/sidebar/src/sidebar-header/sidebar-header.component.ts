@@ -12,15 +12,15 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-    selector: 'daff-sidebar-header',
-    templateUrl: './sidebar-header.component.html',
-    styleUrls: ['./sidebar-header.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        FaIconComponent,
-        NgIf,
-    ]
+  selector: 'daff-sidebar-header',
+  templateUrl: './sidebar-header.component.html',
+  styleUrls: ['./sidebar-header.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    FaIconComponent,
+    NgIf,
+  ],
 })
 export class DaffSidebarHeaderComponent {
   faTimes = faTimes;

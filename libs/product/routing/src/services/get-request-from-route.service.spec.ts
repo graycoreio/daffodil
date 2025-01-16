@@ -24,8 +24,8 @@ import { DaffProductGetCollectionRequestFromRoute } from './get-request-from-rou
 import { DAFF_PRODUCT_ROUTING_CONFIG } from '../config/token';
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  standalone: false,
 })
 class TestComponent {}
 

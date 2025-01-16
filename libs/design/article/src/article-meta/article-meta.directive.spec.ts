@@ -12,12 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffArticleMetaDirective } from './article-meta.directive';
 
 @Component({
-    template: `
+  template: `
     <h3 daffArticleMeta>Lorem Ipsum</h3>
   `,
-    imports: [
-        DaffArticleMetaDirective,
-    ]
+  imports: [
+    DaffArticleMetaDirective,
+  ],
 })
 class WrapperComponent {}
 

@@ -19,12 +19,12 @@ import { DaffButtonBaseDirective } from './button-base.directive';
 import { DaffButtonSize } from './button-sizable.directive';
 
 @Component({
-    template: `
+  template: `
 		<div daffButtonBase [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex"></div>`,
-    imports: [
-        DaffButtonBaseDirective,
-        DaffLoadingIconComponent,
-    ]
+  imports: [
+    DaffButtonBaseDirective,
+    DaffLoadingIconComponent,
+  ],
 })
 
 class WrapperComponent {

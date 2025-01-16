@@ -17,11 +17,11 @@ import { DaffMenuService } from '../services/menu.service';
 import { provideTestMenuService } from '../testing/dummy-service';
 
 @Component({
-    template: `<daff-menu></daff-menu>`,
-    imports: [
-        DaffMenuComponent,
-        DaffMenuItemComponent,
-    ]
+  template: `<daff-menu></daff-menu>`,
+  imports: [
+    DaffMenuComponent,
+    DaffMenuItemComponent,
+  ],
 })
 class WrapperComponent {}
 

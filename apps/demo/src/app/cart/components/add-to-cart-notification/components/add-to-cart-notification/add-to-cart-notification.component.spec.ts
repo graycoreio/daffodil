@@ -52,14 +52,14 @@ import {
 import * as fromAddToCartNotification from '../../reducers/index';
 
 @Component({
-    template: '<demo-add-to-cart-notification></demo-add-to-cart-notification>',
-    standalone: false
+  template: '<demo-add-to-cart-notification></demo-add-to-cart-notification>',
+  standalone: false,
 })
 class WrapperComponent {}
 
 @Component({
-    selector: 'demo-product-added', template: '',
-    standalone: false
+  selector: 'demo-product-added', template: '',
+  standalone: false,
 })
 class MockProductAddedComponent {
   @Input() product: DaffProduct;

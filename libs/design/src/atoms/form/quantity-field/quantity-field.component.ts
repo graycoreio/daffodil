@@ -18,17 +18,17 @@ import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.c
 import { DaffFormFieldControl } from '../form-field/form-field-control';
 
 @Component({
-    selector: 'daff-quantity-field',
-    templateUrl: './quantity-field.component.html',
-    providers: [
-        {
-            provide: DaffFormFieldControl,
-            // eslint-disable-next-line @typescript-eslint/no-use-before-define
-            useExisting: DaffQuantityFieldComponent,
-        },
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'daff-quantity-field',
+  templateUrl: './quantity-field.component.html',
+  providers: [
+    {
+      provide: DaffFormFieldControl,
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      useExisting: DaffQuantityFieldComponent,
+    },
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DaffQuantityFieldComponent implements ControlValueAccessor, DaffFormFieldControl {
 

@@ -20,8 +20,8 @@ import { provideDaffProductCompositeRoutingConfig } from '../config/public_api';
 import { DaffProductCompositeQueryParamService } from '../services/query-param.service';
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  standalone: false,
 })
 class TestComponent {}
 

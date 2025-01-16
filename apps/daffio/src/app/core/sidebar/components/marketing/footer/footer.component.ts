@@ -6,12 +6,12 @@ import {
 import { DaffSidebarFooterComponent } from '@daffodil/design/sidebar';
 
 @Component({
-    selector: 'daffio-marketing-sidebar-footer',
-    templateUrl: './footer.component.html',
-    styleUrls: ['./footer.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DaffSidebarFooterComponent,
-    ]
+  selector: 'daffio-marketing-sidebar-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DaffSidebarFooterComponent,
+  ],
 })
 export class DaffioMarketingSidebarFooterComponent { }

@@ -12,12 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffCalloutTitleDirective } from './callout-title.directive';
 
 @Component({
-    template: `
+  template: `
     <h3 daffCalloutTitle>Lorem Ipsum</h3>
   `,
-    imports: [
-        DaffCalloutTitleDirective,
-    ]
+  imports: [
+    DaffCalloutTitleDirective,
+  ],
 })
 class WrapperComponent {}
 

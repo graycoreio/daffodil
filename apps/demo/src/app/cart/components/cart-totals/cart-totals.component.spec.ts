@@ -27,8 +27,8 @@ import { CartTotalsItemComponent } from '../cart-totals-item/cart-totals-item.co
 import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
 
 @Component({
-    template: '<demo-cart-totals [cart]="cartValue"></demo-cart-totals>',
-    standalone: false
+  template: '<demo-cart-totals [cart]="cartValue"></demo-cart-totals>',
+  standalone: false,
 })
 class WrapperComponent {
   @Input() cartValue: DaffCart;

@@ -16,14 +16,14 @@ import { DaffioDocsDynamicContent } from '../../../dynamic-content/dynamic-conte
 import { DaffioApiPackageComponent } from '../api-package/api-package.component';
 
 @Component({
-    selector: 'daffio-docs-api-content',
-    templateUrl: './api-content.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DaffioDocArticleModule,
-        DaffioApiPackageComponent,
-        DaffioSafeHtmlPipe,
-    ]
+  selector: 'daffio-docs-api-content',
+  templateUrl: './api-content.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DaffioDocArticleModule,
+    DaffioApiPackageComponent,
+    DaffioSafeHtmlPipe,
+  ],
 })
 export class DaffioDocsApiContentComponent implements DaffioDocsDynamicContent<DaffApiDoc> {
   static readonly kind = DaffDocKind.API;

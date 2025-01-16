@@ -12,12 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffOpenableDirective } from './openable.directive';
 
 @Component({
-    template: `
+  template: `
 		<div daffOpenable
 			(toggled)="toggledFunction($event)"
       [open]="open">
 		</div>`,
-    standalone: false
+  standalone: false,
 })
 
 class WrapperComponent {

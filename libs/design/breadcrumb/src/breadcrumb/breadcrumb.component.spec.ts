@@ -12,10 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffBreadcrumbComponent } from './breadcrumb.component';
 
 @Component({
-    template: `<ol daff-breadcrumb [skeleton]="skeleton"></ol>`,
-    imports: [
-        DaffBreadcrumbComponent,
-    ]
+  template: `<ol daff-breadcrumb [skeleton]="skeleton"></ol>`,
+  imports: [
+    DaffBreadcrumbComponent,
+  ],
 })
 
 class WrapperComponent {

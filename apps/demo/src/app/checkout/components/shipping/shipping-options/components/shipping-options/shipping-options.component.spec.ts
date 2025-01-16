@@ -14,15 +14,15 @@ import { DemoCheckoutShippingFormFactory } from '../../factories/shipping-option
 import { DemoCheckoutShippingFormGroup } from '../../models/shipping-form.type';
 
 @Component({
-    template: `
+  template: `
     <demo-checkout-shipping-options
       [group]="formGroupValue"
       [options]="optionsValue"
     ></demo-checkout-shipping-options>
   `,
-    imports: [
-        DemoCheckoutShippingOptionsComponent,
-    ]
+  imports: [
+    DemoCheckoutShippingOptionsComponent,
+  ],
 })
 class WrapperComponent {
   formGroupValue: DemoCheckoutShippingFormGroup;

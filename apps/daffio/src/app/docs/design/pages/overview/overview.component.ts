@@ -9,15 +9,15 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
 
 @Component({
-    selector: 'daffio-docs-design-overview',
-    templateUrl: './overview.component.html',
-    styleUrls: ['./overview.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DAFF_CONTAINER_COMPONENTS,
-        DaffButtonComponent,
-        DAFF_HERO_COMPONENTS,
-        RouterLink,
-    ]
+  selector: 'daffio-docs-design-overview',
+  templateUrl: './overview.component.html',
+  styleUrls: ['./overview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DAFF_CONTAINER_COMPONENTS,
+    DaffButtonComponent,
+    DAFF_HERO_COMPONENTS,
+    RouterLink,
+  ],
 })
 export class DaffioDocsDesignOverviewPageComponent {}

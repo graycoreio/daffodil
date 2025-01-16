@@ -20,9 +20,9 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { BestSellersComponent } from './best-sellers.component';
 
 @Component({
-    selector: 'demo-product-grid',
-    template: '',
-    standalone: false
+  selector: 'demo-product-grid',
+  template: '',
+  standalone: false,
 })
 class MockProductGridComponent {
   @Input() products: DaffProduct[];

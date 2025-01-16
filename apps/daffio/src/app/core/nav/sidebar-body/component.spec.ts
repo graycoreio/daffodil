@@ -12,10 +12,10 @@ import { DaffioSidebarService } from '../../sidebar/services/sidebar.service';
 import { DaffioNavLink } from '../link/type';
 
 @Component({
-    template: '<daffio-nav-header-container></daffio-nav-header-container>',
-    imports: [
-        DaffioNavSidebarBodyComponent,
-    ]
+  template: '<daffio-nav-header-container></daffio-nav-header-container>',
+  imports: [
+    DaffioNavSidebarBodyComponent,
+  ],
 })
 class WrapperComponent {}
 

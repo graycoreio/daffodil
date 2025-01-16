@@ -8,11 +8,11 @@ import {
 import { DaffDocsApiNavList } from '@daffodil/docs-utils';
 
 @Component({
-    selector: 'daffio-api-list',
-    templateUrl: './api-list.component.html',
-    styleUrls: ['./api-list.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'daffio-api-list',
+  templateUrl: './api-list.component.html',
+  styleUrls: ['./api-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DaffioApiListComponent {
   @HostBinding('class.daffio-api-list') class = true;

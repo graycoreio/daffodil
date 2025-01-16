@@ -12,12 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffCalloutTaglineDirective } from './callout-tagline.directive';
 
 @Component({
-    template: `
+  template: `
     <h3 daffCalloutTagline>Lorem Ipsum</h3>
   `,
-    imports: [
-        DaffCalloutTaglineDirective,
-    ]
+  imports: [
+    DaffCalloutTaglineDirective,
+  ],
 })
 class WrapperComponent {}
 

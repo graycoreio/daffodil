@@ -14,10 +14,10 @@ import { DaffPalette } from '@daffodil/design';
 import { DaffNavbarComponent } from './navbar.component';
 
 @Component({
-    template: '<nav daff-navbar [color]="color" [raised]="raised"></ nav>',
-    imports: [
-        DaffNavbarComponent,
-    ]
+  template: '<nav daff-navbar [color]="color" [raised]="raised"></ nav>',
+  imports: [
+    DaffNavbarComponent,
+  ],
 })
 class WrapperComponent {
   color: DaffPalette;

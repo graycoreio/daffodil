@@ -12,14 +12,14 @@ import { By } from '@angular/platform-browser';
 import { DaffModalContentComponent } from './modal-content.component';
 
 @Component({
-    template: `
+  template: `
     <daff-modal-content>
       Content
     </daff-modal-content>
   `,
-    imports: [
-        DaffModalContentComponent,
-    ]
+  imports: [
+    DaffModalContentComponent,
+  ],
 })
 class WrapperComponent {}
 

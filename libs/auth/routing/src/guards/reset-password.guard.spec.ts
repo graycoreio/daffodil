@@ -21,8 +21,8 @@ import {
 import { DaffAuthResetPasswordGuard } from './reset-password.guard';
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  standalone: false,
 })
 class TestComponent {}
 

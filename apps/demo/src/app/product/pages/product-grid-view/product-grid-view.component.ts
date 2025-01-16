@@ -11,9 +11,9 @@ import {
 } from '@daffodil/product/state';
 
 @Component({
-    selector: 'demo-product-grid-view',
-    templateUrl: './product-grid-view.component.html',
-    standalone: false
+  selector: 'demo-product-grid-view',
+  templateUrl: './product-grid-view.component.html',
+  standalone: false,
 })
 export class ProductGridViewComponent implements OnInit {
 

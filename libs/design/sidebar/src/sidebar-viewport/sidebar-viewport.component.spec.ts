@@ -18,15 +18,15 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 import { DaffSidebarViewportBackdropComponent } from '../sidebar-viewport-backdrop/sidebar-viewport-backdrop.component';
 
 @Component({
-    template: `
+  template: `
     <div class="sidebar-content-wrapper">
       <daff-sidebar-viewport (backdropClicked)="incrementBackdropClicked()" [navPlacement]="navPlacement">
       </daff-sidebar-viewport>
     </div>`,
-    imports: [
-        DaffSidebarViewportComponent,
-        DaffSidebarComponent,
-    ]
+  imports: [
+    DaffSidebarViewportComponent,
+    DaffSidebarComponent,
+  ],
 })
 class WrapperComponent {
   backdropClickedCounter = 0;

@@ -12,10 +12,10 @@ import { DaffRadioModule } from './radio.module';
 
 
 @Component({
-    template: `
+  template: `
     <daff-radio name="test" value="testValue"></daff-radio>
   `,
-    standalone: false
+  standalone: false,
 })
 class RadioWrapperComponent { }
 

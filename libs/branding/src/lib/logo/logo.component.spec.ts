@@ -12,8 +12,8 @@ import { By } from '@angular/platform-browser';
 import { DaffLogoComponent } from './logo.component';
 
 @Component({
-    template: `<daff-branding-logo></daff-branding-logo>`,
-    standalone: false
+  template: `<daff-branding-logo></daff-branding-logo>`,
+  standalone: false,
 })
 class WrapperComponent {}
 

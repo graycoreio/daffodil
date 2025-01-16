@@ -9,8 +9,8 @@ import {
  * `daff-form-field`, `daff-solo-field`, and `daff-list`.
  */
 @Directive({
-    selector: '[daffSuffix]',
-    standalone: false
+  selector: '[daffSuffix]',
+  standalone: false,
 })
 
 export class DaffSuffixDirective {

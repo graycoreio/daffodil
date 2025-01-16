@@ -13,15 +13,15 @@ import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 import { DemoCheckoutBillingAddressSummaryComponent } from './billing-summary.component';
 
 @Component({
-    template: `
+  template: `
     <demo-checkout-billing-summary
       [billingAddress]="billingAddressValue"
       (edit)="editBillingInfoFunction()"
     ></demo-checkout-billing-summary>
   `,
-    imports: [
-        DemoCheckoutBillingAddressSummaryComponent,
-    ]
+  imports: [
+    DemoCheckoutBillingAddressSummaryComponent,
+  ],
 })
 class WrapperComponent {
   billingAddressValue: DaffCartAddress;

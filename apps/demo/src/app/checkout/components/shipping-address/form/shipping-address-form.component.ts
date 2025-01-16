@@ -18,14 +18,14 @@ import {
 } from '../../forms/address/models/address-form.type';
 
 @Component({
-    selector: 'demo-checkout-shipping-address-form',
-    templateUrl: './shipping-address-form.component.html',
-    styleUrls: ['./shipping-address-form.component.scss'],
-    imports: [
-        DemoCheckoutAddressFormComponent,
-        ReactiveFormsModule,
-        DaffButtonComponent,
-    ]
+  selector: 'demo-checkout-shipping-address-form',
+  templateUrl: './shipping-address-form.component.html',
+  styleUrls: ['./shipping-address-form.component.scss'],
+  imports: [
+    DemoCheckoutAddressFormComponent,
+    ReactiveFormsModule,
+    DaffButtonComponent,
+  ],
 })
 export class DemoCheckoutShippingAddressFormComponent implements OnInit {
   @Input() shippingAddress: DaffPersonalAddress;

@@ -10,13 +10,13 @@ import { DaffioDocsListComponent } from '../../../components/docs-list/docs-list
 import { useDaffioNavList } from '../../../composables/nav-index';
 
 @Component({
-    selector: 'daffio-docs-design-list-container',
-    templateUrl: './docs-list.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        AsyncPipe,
-        DaffioDocsListComponent,
-    ]
+  selector: 'daffio-docs-design-list-container',
+  templateUrl: './docs-list.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    AsyncPipe,
+    DaffioDocsListComponent,
+  ],
 })
 export class DaffioDocsDesignListContainer {
   docsList$ = useDaffioNavList<DaffDocsDesignGuideNavList>().list;

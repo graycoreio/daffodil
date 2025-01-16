@@ -25,8 +25,8 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { ProductComponent } from './product.component';
 
 @Component({
-    template: '<demo-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></demo-product>',
-    standalone: false
+  template: '<demo-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></demo-product>',
+  standalone: false,
 })
 class WrapperComponent {
   productValue: DaffProduct;
@@ -35,8 +35,8 @@ class WrapperComponent {
 }
 
 @Component({
-    selector: 'demo-image-gallery-container', template: '',
-    standalone: false
+  selector: 'demo-image-gallery-container', template: '',
+  standalone: false,
 })
 class MockImageGalleryContainer {
   @Input() images;

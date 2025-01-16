@@ -28,20 +28,20 @@ import { DemoCheckoutPaymentInfoFormComponent } from '../payment-info-form/compo
 import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-info-form.factory';
 
 @Component({
-    selector: 'demo-checkout-payment-form',
-    templateUrl: './payment-form.component.html',
-    styleUrls: ['./payment-form.component.scss'],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        DaffInputModule,
-        DaffNativeSelectModule,
-        DemoCheckoutPaymentInfoFormComponent,
-        DaffButtonComponent,
-        DaffCheckboxModule,
-        DemoCheckoutAddressFormComponent,
-        DemoGeographyAddressSummaryComponent,
-    ]
+  selector: 'demo-checkout-payment-form',
+  templateUrl: './payment-form.component.html',
+  styleUrls: ['./payment-form.component.scss'],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    DaffInputModule,
+    DaffNativeSelectModule,
+    DemoCheckoutPaymentInfoFormComponent,
+    DaffButtonComponent,
+    DaffCheckboxModule,
+    DemoCheckoutAddressFormComponent,
+    DemoGeographyAddressSummaryComponent,
+  ],
 })
 export class DemoCheckoutPaymentFormComponent implements OnInit {
   @Input() paymentInfo: DaffAuthorizeNetCreditCard;

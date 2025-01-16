@@ -32,17 +32,17 @@ import {
 import { DemoCheckoutAddressFormGroup } from '../../models/address-form.type';
 
 @Component({
-    selector: 'demo-checkout-address-form',
-    templateUrl: './address-form.component.html',
-    styleUrls: ['./address-form.component.scss'],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        DaffInputModule,
-        DaffNativeSelectModule,
-        DaffFormFieldModule,
-        DaffGeographyStateModule,
-    ]
+  selector: 'demo-checkout-address-form',
+  templateUrl: './address-form.component.html',
+  styleUrls: ['./address-form.component.scss'],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    DaffInputModule,
+    DaffNativeSelectModule,
+    DaffFormFieldModule,
+    DaffGeographyStateModule,
+  ],
 })
 export class DemoCheckoutAddressFormComponent implements OnInit, OnDestroy {
   private _destroyed$ = new Subject<boolean>();

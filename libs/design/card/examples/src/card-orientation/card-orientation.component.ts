@@ -15,19 +15,19 @@ import { DAFF_CARD_COMPONENTS } from '@daffodil/design/card';
 import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'card-orientation',
-    templateUrl: './card-orientation.component.html',
-    styleUrls: ['./card-orientation.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DAFF_CARD_COMPONENTS,
-        DAFF_IMAGE_COMPONENTS,
-        FaIconComponent,
-        DaffButtonComponent,
-        ReactiveFormsModule,
-        NgFor,
-    ]
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'card-orientation',
+  templateUrl: './card-orientation.component.html',
+  styleUrls: ['./card-orientation.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DAFF_CARD_COMPONENTS,
+    DAFF_IMAGE_COMPONENTS,
+    FaIconComponent,
+    DaffButtonComponent,
+    ReactiveFormsModule,
+    NgFor,
+  ],
 })
 export class CardOrientationComponent {
   faMapMarked = faMapMarked;

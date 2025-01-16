@@ -12,12 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffHeroTaglineDirective } from './hero-tagline.directive';
 
 @Component({
-    template: `
+  template: `
     <h1 daffHeroTagline>Lorem Ipsum</h1>
   `,
-    imports: [
-        DaffHeroTaglineDirective,
-    ]
+  imports: [
+    DaffHeroTaglineDirective,
+  ],
 })
 class WrapperComponent {}
 

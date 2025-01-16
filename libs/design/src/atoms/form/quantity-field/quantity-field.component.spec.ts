@@ -18,7 +18,7 @@ import { DaffInputModule } from '../input/public_api';
 import { DaffNativeSelectModule } from '../native-select/public_api';
 
 @Component({
-    template: `
+  template: `
     <daff-quantity-field
       [formControl]="formControl"
       [min]="minValue"
@@ -26,7 +26,7 @@ import { DaffNativeSelectModule } from '../native-select/public_api';
       [selectMax]="selectMaxValue"
     ></daff-quantity-field>
   `,
-    standalone: false
+  standalone: false,
 })
 class WrapperComponent {
   minValue = 0;

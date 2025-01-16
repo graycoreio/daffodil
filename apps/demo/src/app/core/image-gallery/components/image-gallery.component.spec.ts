@@ -21,8 +21,8 @@ const stubImages = [
 ];
 
 @Component({
-    template: '<demo-image-gallery-container [images]="imagesValue"></demo-image-gallery-container>',
-    standalone: false
+  template: '<demo-image-gallery-container [images]="imagesValue"></demo-image-gallery-container>',
+  standalone: false,
 })
 class WrapperComponent {
   imagesValue: Record<string, any>[] = stubImages;

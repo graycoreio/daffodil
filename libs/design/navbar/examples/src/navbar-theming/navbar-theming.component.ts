@@ -12,17 +12,17 @@ import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'navbar-theming',
-    templateUrl: './navbar-theming.component.html',
-    styleUrls: ['./navbar-theming.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DAFF_NAVBAR_COMPONENTS,
-        DaffButtonComponent,
-        ReactiveFormsModule,
-        NgFor,
-    ]
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'navbar-theming',
+  templateUrl: './navbar-theming.component.html',
+  styleUrls: ['./navbar-theming.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DAFF_NAVBAR_COMPONENTS,
+    DaffButtonComponent,
+    ReactiveFormsModule,
+    NgFor,
+  ],
 })
 export class NavbarThemingComponent {
   colorControl: UntypedFormControl = new UntypedFormControl('');

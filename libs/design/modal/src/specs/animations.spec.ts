@@ -14,17 +14,17 @@ import { DaffModalComponent } from '../modal/modal.component';
 import { DaffModalService } from '../service/modal.service';
 
 @Component({
-    template: `
+  template: `
     <div class="daff-modal-wrapper">
       <daff-modal [open]="open"></daff-modal>
     </div>
   `,
-    imports: [
-        DaffModalComponent,
-    ],
-    providers: [
-        DaffModalService,
-    ]
+  imports: [
+    DaffModalComponent,
+  ],
+  providers: [
+    DaffModalService,
+  ],
 })
 class WrapperComponent {
   open = true;

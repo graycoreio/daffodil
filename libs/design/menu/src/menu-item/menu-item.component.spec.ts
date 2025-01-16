@@ -12,13 +12,13 @@ import { By } from '@angular/platform-browser';
 import { DaffMenuItemComponent } from './menu-item.component';
 
 @Component({
-    template: `
+  template: `
     <a href="/test" daff-menu-item>Test 1</a>
     <button daff-menu-item>Test 2</button>
   `,
-    imports: [
-        DaffMenuItemComponent,
-    ]
+  imports: [
+    DaffMenuItemComponent,
+  ],
 })
 
 class WrapperComponent {}

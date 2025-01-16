@@ -19,14 +19,14 @@ import { DemoCheckoutAddressFormGroup } from '../../forms/address/models/address
 
 
 @Component({
-    template: `
+  template: `
     <demo-checkout-shipping-address-form
       [shippingAddress]="shippingAddressValue"
       (submitted)="submittedFunction($event)"></demo-checkout-shipping-address-form>
   `,
-    imports: [
-        DemoCheckoutShippingAddressFormComponent,
-    ]
+  imports: [
+    DemoCheckoutShippingAddressFormComponent,
+  ],
 })
 class WrapperComponent {
   shippingAddressValue: DaffPersonalAddress;

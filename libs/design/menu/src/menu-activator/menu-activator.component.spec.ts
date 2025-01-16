@@ -15,14 +15,14 @@ import { DaffMenuService } from '../services/menu.service';
 import { provideTestMenuService } from '../testing/dummy-service';
 
 @Component({
-    template: `
+  template: `
     <button daffMenuActivator="menu"></button>
     <daff-menu #menu></daff-menu>
   `,
-    imports: [
-        DaffMenuComponent,
-        DaffMenuActivatorDirective,
-    ]
+  imports: [
+    DaffMenuComponent,
+    DaffMenuActivatorDirective,
+  ],
 })
 class WrapperComponent {}
 

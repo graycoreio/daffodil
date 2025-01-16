@@ -12,11 +12,11 @@ export enum LogoSize {
 }
 
 @Component({
-    selector: 'demo-logo',
-    templateUrl: './logo.component.html',
-    styleUrls: ['./logo.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'demo-logo',
+  templateUrl: './logo.component.html',
+  styleUrls: ['./logo.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class LogoComponent{
   @Input() size: LogoSize = LogoSize.ICON;

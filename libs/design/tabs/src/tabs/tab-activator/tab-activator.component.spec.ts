@@ -12,13 +12,13 @@ import { By } from '@angular/platform-browser';
 import { DaffTabActivatorComponent } from './tab-activator.component';
 
 @Component({
-    template: `
+  template: `
 		<button daff-tab-activator [selected]="selected" [tabActivatorId]="tabActivatorId" [panelId]="panelId">Tab Activator</button>
 		<a daff-tab-activator [selected]="selected" [tabActivatorId]="tabActivatorId" [panelId]="panelId">Tab Activator</a>
 	`,
-    imports: [
-        DaffTabActivatorComponent,
-    ]
+  imports: [
+    DaffTabActivatorComponent,
+  ],
 })
 class WrapperComponent {
   selected: boolean;

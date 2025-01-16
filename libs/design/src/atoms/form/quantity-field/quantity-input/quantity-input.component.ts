@@ -18,10 +18,10 @@ import { takeUntil } from 'rxjs/operators';
 import { DaffInputComponent } from '../../input/public_api';
 
 @Component({
-    selector: 'daff-quantity-input',
-    templateUrl: './quantity-input.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'daff-quantity-input',
+  templateUrl: './quantity-input.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DaffQuantityInputComponent implements OnInit, OnDestroy {
   @ViewChild(DaffInputComponent) input: DaffInputComponent;

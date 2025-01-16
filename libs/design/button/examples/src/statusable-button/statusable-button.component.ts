@@ -12,15 +12,15 @@ import {
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'statusable-button',
-    templateUrl: './statusable-button.component.html',
-    styleUrls: ['./statusable-button.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DAFF_BUTTON_COMPONENTS,
-        FaIconComponent,
-    ]
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'statusable-button',
+  templateUrl: './statusable-button.component.html',
+  styleUrls: ['./statusable-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DAFF_BUTTON_COMPONENTS,
+    FaIconComponent,
+  ],
 })
 export class StatusableButtonComponent {
   faExclamation = faExclamation;

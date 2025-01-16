@@ -16,15 +16,15 @@ import { DaffToastComponent } from './toast.component';
 import { DaffToast } from '../interfaces/toast';
 
 @Component ({
-    template: `
+  template: `
     <daff-toast
       [status]="status"
       [toast]="toast"
     ></daff-toast>
   `,
-    imports: [
-        DaffToastComponent,
-    ]
+  imports: [
+    DaffToastComponent,
+  ],
 })
 
 class WrapperComponent {

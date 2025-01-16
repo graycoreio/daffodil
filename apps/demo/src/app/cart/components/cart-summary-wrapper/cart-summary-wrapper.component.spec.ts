@@ -27,8 +27,8 @@ let cart: DaffCart;
 const stubCartTitle = 'cartTitle';
 
 @Component({
-    template: '<demo-cart-summary-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></demo-cart-summary-wrapper>',
-    standalone: false
+  template: '<demo-cart-summary-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></demo-cart-summary-wrapper>',
+  standalone: false,
 })
 class WrapperComponent {
   cartValue$: Observable<DaffCart>;
@@ -37,9 +37,9 @@ class WrapperComponent {
 }
 
 @Component({
-    selector: 'demo-cart-summary',
-    template: '',
-    standalone: false
+  selector: 'demo-cart-summary',
+  template: '',
+  standalone: false,
 })
 class MockCartSummaryComponent {
   @Input() cart: DaffCart;
@@ -47,18 +47,18 @@ class MockCartSummaryComponent {
 }
 
 @Component({
-    selector: 'demo-cart-totals',
-    template: '',
-    standalone: false
+  selector: 'demo-cart-totals',
+  template: '',
+  standalone: false,
 })
 class MockCartTotalsComponent {
   @Input() cart: DaffCart;
 }
 
 @Component({
-    selector: 'demo-help-box',
-    template: '',
-    standalone: false
+  selector: 'demo-help-box',
+  template: '',
+  standalone: false,
 })
 class MockHelpBoxComponent {}
 

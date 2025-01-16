@@ -11,20 +11,20 @@ import {
 import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'basic-switch',
-    templateUrl: './basic-switch.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DAFF_SWITCH_COMPONENTS,
-        ReactiveFormsModule,
-    ],
-    styles: [`
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'basic-switch',
+  templateUrl: './basic-switch.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DAFF_SWITCH_COMPONENTS,
+    ReactiveFormsModule,
+  ],
+  styles: [`
     :host {
       display: flex;
       flex-wrap: wrap;
     }
-  `]
+  `],
 })
 export class BasicSwitchComponent {
   checked = false;

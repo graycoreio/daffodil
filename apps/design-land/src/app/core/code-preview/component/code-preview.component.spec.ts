@@ -10,10 +10,10 @@ import { CodePreviewComponent } from './code-preview.component';
 import { DesignLandCodePreviewModule } from './code-preview.module';
 
 @Component({
-    template: `
+  template: `
   <design-land-code-preview [example]="exampleComponent"></design-land-code-preview>
   `,
-    standalone: false
+  standalone: false,
 })
 class WrapperComponent {
   exampleComponent = {

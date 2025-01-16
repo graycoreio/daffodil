@@ -11,21 +11,21 @@ import {
 import { DaffStrokedButtonComponent } from '@daffodil/design/button';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'stroked-button',
-    templateUrl: './stroked-button.component.html',
-    styles: [`
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'stroked-button',
+  templateUrl: './stroked-button.component.html',
+  styles: [`
     :host {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
   `],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DaffStrokedButtonComponent,
-        FaIconComponent,
-    ]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DaffStrokedButtonComponent,
+    FaIconComponent,
+  ],
 })
 export class StrokedButtonComponent {
   faChevronLeft = faChevronLeft;

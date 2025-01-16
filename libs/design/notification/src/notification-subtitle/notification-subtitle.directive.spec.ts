@@ -12,12 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffNotificationSubtitleDirective } from './notification-subtitle.directive';
 
 @Component({
-    template: `
+  template: `
     <h3 daffNotificationSubtitle>Subtitle</h3>
   `,
-    imports: [
-        DaffNotificationSubtitleDirective,
-    ]
+  imports: [
+    DaffNotificationSubtitleDirective,
+  ],
 })
 class WrapperComponent {}
 

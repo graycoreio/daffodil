@@ -12,12 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffNotificationMessageDirective } from './notification-message.directive';
 
 @Component({
-    template: `
+  template: `
     <h3 daffNotificationMessage>Lorem Ipsum</h3>
   `,
-    imports: [
-        DaffNotificationMessageDirective,
-    ]
+  imports: [
+    DaffNotificationMessageDirective,
+  ],
 })
 class WrapperComponent {}
 

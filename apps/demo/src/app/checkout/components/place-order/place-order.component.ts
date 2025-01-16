@@ -11,10 +11,10 @@ import {
 } from '@daffodil/cart/state';
 
 @Component({
-    selector: 'demo-place-order',
-    templateUrl: './place-order.component.html',
-    styleUrls: ['./place-order.component.scss'],
-    standalone: false
+  selector: 'demo-place-order',
+  templateUrl: './place-order.component.html',
+  styleUrls: ['./place-order.component.scss'],
+  standalone: false,
 })
 export class PlaceOrderComponent implements OnInit {
   enablePlaceOrderButton$: Observable<boolean>;

@@ -12,12 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffToastTitleDirective } from './toast-title.directive';
 
 @Component({
-    template: `
+  template: `
     <h3 daffToastTitle>Title</h3>
   `,
-    imports: [
-        DaffToastTitleDirective,
-    ]
+  imports: [
+    DaffToastTitleDirective,
+  ],
 })
 class WrapperComponent {}
 

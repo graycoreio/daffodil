@@ -39,8 +39,8 @@ import { DaffToastMessageDirective } from '../toast-message/toast-message.direct
 import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
 
 @Component({
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
     <daff-toast
       *ngFor="let item of items | slice:0:3"
       [toast]="item"
@@ -111,34 +111,34 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
       </ng-container>
     </ng-template>
   `,
-    animations: [
-        trigger('slideIn', [
-            transition(':enter', [
-                style({ opacity: '0', transform: 'translate({{startX}}, {{startY}})' }),
-                animate('300ms ease-out', style({ opacity: '1', transform: 'translate({{endX}}, {{endY}})' })),
-            ], { params: {
-                    startX: '0',
-                    startY: '0',
-                    endX: '0',
-                    endY: '0',
-                } }),
-        ]),
-    ],
-    imports: [
-        DAFF_BUTTON_COMPONENTS,
-        DaffToastComponent,
-        DaffToastActionsDirective,
-        DaffToastTitleDirective,
-        DaffToastMessageDirective,
-        FaIconComponent,
-        NgSwitch,
-        NgFor,
-        NgSwitchCase,
-        NgSwitchDefault,
-        NgIf,
-        SlicePipe,
-        NgTemplateOutlet,
-    ]
+  animations: [
+    trigger('slideIn', [
+      transition(':enter', [
+        style({ opacity: '0', transform: 'translate({{startX}}, {{startY}})' }),
+        animate('300ms ease-out', style({ opacity: '1', transform: 'translate({{endX}}, {{endY}})' })),
+      ], { params: {
+        startX: '0',
+        startY: '0',
+        endX: '0',
+        endY: '0',
+      } }),
+    ]),
+  ],
+  imports: [
+    DAFF_BUTTON_COMPONENTS,
+    DaffToastComponent,
+    DaffToastActionsDirective,
+    DaffToastTitleDirective,
+    DaffToastMessageDirective,
+    FaIconComponent,
+    NgSwitch,
+    NgFor,
+    NgSwitchCase,
+    NgSwitchDefault,
+    NgIf,
+    SlicePipe,
+    NgTemplateOutlet,
+  ],
 })
 export class DaffToastTemplateComponent {
   faTimes = faTimes;

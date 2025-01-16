@@ -8,13 +8,13 @@ import { DaffioDocsListComponent } from '../../components/docs-list/docs-list.co
 import { useDaffioNavList } from '../../composables/nav-index';
 
 @Component({
-    selector: 'daffio-docs-list-container',
-    templateUrl: './docs-list.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        AsyncPipe,
-        DaffioDocsListComponent,
-    ]
+  selector: 'daffio-docs-list-container',
+  templateUrl: './docs-list.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    AsyncPipe,
+    DaffioDocsListComponent,
+  ],
 })
 export class DaffioDocsListContainer {
   docsList$ = useDaffioNavList().list;

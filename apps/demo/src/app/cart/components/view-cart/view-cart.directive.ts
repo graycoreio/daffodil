@@ -5,8 +5,8 @@ import {
 import { Router } from '@angular/router';
 
 @Directive({
-    selector: '[demoViewCart]',
-    standalone: false
+  selector: '[demoViewCart]',
+  standalone: false,
 })
 export class ViewCartDirective {
 

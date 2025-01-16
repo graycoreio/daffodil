@@ -6,9 +6,9 @@ import {
 import { DaffCart } from '@daffodil/cart';
 
 @Component({
-    selector: 'demo-cart-items',
-    templateUrl: './cart-items.component.html',
-    standalone: false
+  selector: 'demo-cart-items',
+  templateUrl: './cart-items.component.html',
+  standalone: false,
 })
 export class CartItemsComponent {
 

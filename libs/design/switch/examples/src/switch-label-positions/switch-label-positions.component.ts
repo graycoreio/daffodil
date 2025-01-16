@@ -11,15 +11,15 @@ import {
 import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'switch-label-positions',
-    templateUrl: './switch-label-positions.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DAFF_SWITCH_COMPONENTS,
-        ReactiveFormsModule,
-        NgFor,
-    ]
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'switch-label-positions',
+  templateUrl: './switch-label-positions.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DAFF_SWITCH_COMPONENTS,
+    ReactiveFormsModule,
+    NgFor,
+  ],
 })
 export class SwitchLabelPositionsComponent {
   labelSwitchExample = new UntypedFormControl();

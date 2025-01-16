@@ -12,12 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffCalloutIconDirective } from './callout-icon.directive';
 
 @Component({
-    template: `
+  template: `
     <h3 daffCalloutIcon>Lorem Ipsum</h3>
   `,
-    imports: [
-        DaffCalloutIconDirective,
-    ]
+  imports: [
+    DaffCalloutIconDirective,
+  ],
 })
 class WrapperComponent {}
 

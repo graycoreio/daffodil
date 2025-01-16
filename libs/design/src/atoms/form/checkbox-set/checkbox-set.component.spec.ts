@@ -19,7 +19,7 @@ import { DaffCheckboxSetComponent } from './checkbox-set.component';
 import { DaffCheckboxModule } from '../checkbox/checkbox.module';
 
 @Component({
-    template: `
+  template: `
 
   <daff-checkbox-set name="example" [formArray]="checkboxArray">
   <daff-checkbox [formControl]="checkboxArray.at(0)" value="option1">Option 1 </daff-checkbox>
@@ -27,7 +27,7 @@ import { DaffCheckboxModule } from '../checkbox/checkbox.module';
   <daff-checkbox [formControl]="checkboxArray.at(2)" value="option3">Option 3 </daff-checkbox>
 </daff-checkbox-set>
   `,
-    standalone: false
+  standalone: false,
 })
 class CheckboxEmbeddedComponent implements OnInit {
   @ViewChild(DaffCheckboxSetComponent)

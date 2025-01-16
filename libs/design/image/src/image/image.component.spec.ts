@@ -12,10 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffImageComponent } from './image.component';
 
 @Component({
-    template: `<daff-image [src]="src" [alt]="alt" [width]="width" [height]="height" [skeleton]="skeleton"></daff-image>`,
-    imports: [
-        DaffImageComponent,
-    ]
+  template: `<daff-image [src]="src" [alt]="alt" [width]="width" [height]="height" [skeleton]="skeleton"></daff-image>`,
+  imports: [
+    DaffImageComponent,
+  ],
 })
 
 class WrapperComponent {

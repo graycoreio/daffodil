@@ -11,8 +11,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ViewCartDirective } from './view-cart.directive';
 
 @Component({
-    template: '<div demoViewCart></div>',
-    standalone: false
+  template: '<div demoViewCart></div>',
+  standalone: false,
 })
 class WrapperComponent {}
 

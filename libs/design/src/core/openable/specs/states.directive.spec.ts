@@ -56,14 +56,14 @@ class StatelessComponent {
 }
 
 @Component({
-    template: `
+  template: `
 		<daff-stateful (toggled)="toggledFunction()"></daff-stateful>
 		<daff-stateless [open]="statelessOpen" (toggled)="toggledFunction()"></daff-stateless>
 	`,
-    imports: [
-        StatefulComponent,
-        StatelessComponent,
-    ]
+  imports: [
+    StatefulComponent,
+    StatelessComponent,
+  ],
 })
 
 class WrapperComponent {

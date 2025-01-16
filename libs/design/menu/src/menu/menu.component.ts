@@ -22,13 +22,13 @@ import { DaffMenuItemComponent } from '../menu-item/menu-item.component';
 import { DaffMenuService } from '../services/menu.service';
 
 @Component({
-    selector: 'daff-menu',
-    template: '<ng-content select="[daff-menu-item]"></ng-content>',
-    styleUrls: ['./menu.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DaffMenuItemComponent,
-    ]
+  selector: 'daff-menu',
+  template: '<ng-content select="[daff-menu-item]"></ng-content>',
+  styleUrls: ['./menu.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DaffMenuItemComponent,
+  ],
 })
 export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
   @HostBinding('class.daff-menu') class = true;

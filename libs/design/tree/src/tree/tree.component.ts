@@ -47,22 +47,22 @@ import { hydrateTree } from '../utils/hydrate-tree';
  *
  */
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'ul[daff-tree]',
-    templateUrl: './tree.component.html',
-    styleUrls: ['./tree.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        DaffTreeNotifierService,
-    ],
-    hostDirectives: [{
-            directive: DaffArticleEncapsulatedDirective,
-        }],
-    imports: [
-        NgFor,
-        NgTemplateOutlet,
-    ]
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'ul[daff-tree]',
+  templateUrl: './tree.component.html',
+  styleUrls: ['./tree.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    DaffTreeNotifierService,
+  ],
+  hostDirectives: [{
+    directive: DaffArticleEncapsulatedDirective,
+  }],
+  imports: [
+    NgFor,
+    NgTemplateOutlet,
+  ],
 })
 export class DaffTreeComponent implements OnInit, OnChanges {
 

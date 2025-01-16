@@ -30,16 +30,16 @@ import {
 const visiblePageRange = 2;
 
 @Component({
-    selector: 'daff-paginator',
-    styleUrls: ['./paginator.component.scss'],
-    templateUrl: './paginator.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        FaIconComponent,
-        RouterModule,
-        NgIf,
-        NgFor,
-    ]
+  selector: 'daff-paginator',
+  styleUrls: ['./paginator.component.scss'],
+  templateUrl: './paginator.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    FaIconComponent,
+    RouterModule,
+    NgIf,
+    NgFor,
+  ],
 })
 export class DaffPaginatorComponent implements OnChanges {
 

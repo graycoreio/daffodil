@@ -36,7 +36,6 @@ import { DaffioNavLink } from '../link/type';
   selector: 'daffio-nav-marketing-container',
   templateUrl: './marketing.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     DaffioHeaderComponentModule,
     RouterLink,

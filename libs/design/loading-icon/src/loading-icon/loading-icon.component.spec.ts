@@ -14,10 +14,10 @@ import { DaffPalette } from '@daffodil/design';
 import { DaffLoadingIconComponent } from './loading-icon.component';
 
 @Component({
-    template: '<daff-loading-icon [color]="color"></daff-loading-icon>',
-    imports: [
-        DaffLoadingIconComponent,
-    ]
+  template: '<daff-loading-icon [color]="color"></daff-loading-icon>',
+  imports: [
+    DaffLoadingIconComponent,
+  ],
 })
 class WrapperComponent {
   color: DaffPalette;

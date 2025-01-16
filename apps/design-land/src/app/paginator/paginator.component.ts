@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'design-land-paginator',
-    templateUrl: './paginator.component.html',
-    styleUrls: ['./paginator.component.scss'],
-    standalone: false
+  selector: 'design-land-paginator',
+  templateUrl: './paginator.component.html',
+  styleUrls: ['./paginator.component.scss'],
+  standalone: false,
 })
 export class DesignLandPaginatorComponent {
   numberOfPages = 20;

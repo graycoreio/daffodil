@@ -39,8 +39,8 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffProductPageUrlResolver } from './product-page-url.resolver';
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  standalone: false,
 })
 class TestComponent {}
 

@@ -12,12 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffTabComponent } from './tab.component';
 
 @Component({
-    template: `
+  template: `
 		<daff-tab [disabled]="disabled"></daff-tab>
 	`,
-    imports: [
-        DaffTabComponent,
-    ]
+  imports: [
+    DaffTabComponent,
+  ],
 })
 class WrapperComponent {
   disabled: boolean;
@@ -61,12 +61,12 @@ describe('@daffodil/design/tabs | DaffTabComponent | Defaults', () => {
 });
 
 @Component({
-    template: `
+  template: `
 		<daff-tab [id]="id"></daff-tab>
 	`,
-    imports: [
-        DaffTabComponent,
-    ]
+  imports: [
+    DaffTabComponent,
+  ],
 })
 class IdWrapperComponent {
   id: string;

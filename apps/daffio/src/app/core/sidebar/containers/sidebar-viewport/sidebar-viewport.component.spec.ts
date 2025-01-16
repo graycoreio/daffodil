@@ -34,8 +34,8 @@ import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
 import { DaffioSidebarService } from '../../services/sidebar.service';
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  standalone: false,
 })
 class TestComponent {}
 

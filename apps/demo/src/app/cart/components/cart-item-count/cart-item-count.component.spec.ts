@@ -12,8 +12,8 @@ import { By } from '@angular/platform-browser';
 import { CartItemCountComponent } from './cart-item-count.component';
 
 @Component({
-    template: '<demo-cart-item-count [itemCount]="itemCountValue"></demo-cart-item-count>',
-    standalone: false
+  template: '<demo-cart-item-count [itemCount]="itemCountValue"></demo-cart-item-count>',
+  standalone: false,
 })
 class WrapperComponent {
   itemCountValue = 0;

@@ -13,13 +13,13 @@ import { DaffModalHeaderComponent } from './modal-header.component';
 import { DaffModalService } from '../service/modal.service';
 
 @Component ({
-    template: `<daff-modal-header [dismissible]="dismissible"></daff-modal-header>`,
-    imports: [
-        DaffModalHeaderComponent,
-    ],
-    providers: [
-        DaffModalService,
-    ]
+  template: `<daff-modal-header [dismissible]="dismissible"></daff-modal-header>`,
+  imports: [
+    DaffModalHeaderComponent,
+  ],
+  providers: [
+    DaffModalService,
+  ],
 })
 
 class WrapperComponent {

@@ -29,8 +29,8 @@ import { SidebarContainer } from './sidebar.component';
 import { SidebarListComponent } from '../../components/sidebar-list/sidebar-list.component';
 
 @Component({
-    template: '<demo-sidebar></demo-sidebar>',
-    standalone: false
+  template: '<demo-sidebar></demo-sidebar>',
+  standalone: false,
 })
 class WrapperComponent {}
 

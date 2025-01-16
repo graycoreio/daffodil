@@ -16,13 +16,13 @@ import { isSidebarViewportContentPadded } from './content-pad';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 @Component({
-    template: `
+  template: `
     <daff-sidebar *ngFor="let sidebar of sidebars" [side]="sidebar.side" [mode]="sidebar.mode" [open]="sidebar.open"></daff-sidebar>
   `,
-    imports: [
-        NgFor,
-        DaffSidebarComponent,
-    ]
+  imports: [
+    NgFor,
+    DaffSidebarComponent,
+  ],
 })
 class IterableWrapperComponent{
   @Input() sidebars: { side: any; mode: any; open: boolean }[] = [];

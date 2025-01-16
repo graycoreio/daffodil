@@ -11,21 +11,21 @@ import {
 import { DaffFlatButtonComponent } from '@daffodil/design/button';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'flat-button',
-    templateUrl: './flat-button.component.html',
-    styles: [`
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'flat-button',
+  templateUrl: './flat-button.component.html',
+  styles: [`
     :host {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
   `],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DaffFlatButtonComponent,
-        FaIconComponent,
-    ]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DaffFlatButtonComponent,
+    FaIconComponent,
+  ],
 })
 export class FlatButtonComponent {
   faChevronLeft = faChevronLeft;

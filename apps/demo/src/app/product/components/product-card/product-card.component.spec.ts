@@ -17,8 +17,8 @@ import {
 import { ProductCardComponent } from './product-card.component';
 
 @Component({
-    template: '<demo-product-card [product]="productValue"></demo-product-card>',
-    standalone: false
+  template: '<demo-product-card [product]="productValue"></demo-product-card>',
+  standalone: false,
 })
 class WrapperComponent {
   productValue: DaffProduct;

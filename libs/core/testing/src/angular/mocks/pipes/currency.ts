@@ -10,8 +10,8 @@ import {
  * but ignoring the actual underlying implementation
  */
 @Pipe({
-    name: 'currency',
-    standalone: false
+  name: 'currency',
+  standalone: false,
 })
 export class DaffMockCurrencyPipe implements PipeTransform {
   transform(value: number) {};

@@ -10,10 +10,10 @@ import { Observable } from 'rxjs';
 import { DaffTreeData } from '@daffodil/design/tree';
 
 @Component({
-    selector: 'design-land-nav',
-    templateUrl: './nav.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'design-land-nav',
+  templateUrl: './nav.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DesignLandNavComponent implements OnInit {
   tree$: Observable<DaffTreeData<unknown>>;

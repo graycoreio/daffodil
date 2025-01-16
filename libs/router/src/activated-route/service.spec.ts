@@ -9,7 +9,7 @@ import { tap } from 'rxjs';
 import { DaffRouterActivatedRoute } from './service';
 
 @Component({
-    standalone: false
+  standalone: false,
 })
 class TestComponent {}
 

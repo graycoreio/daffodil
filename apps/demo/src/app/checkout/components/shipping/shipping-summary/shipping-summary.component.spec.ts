@@ -12,14 +12,14 @@ import { DaffCartShippingRateFactory } from '@daffodil/cart/testing';
 import { DemoCheckoutShippingSummaryComponent } from './shipping-summary.component';
 
 @Component({
-    template: `
+  template: `
     <demo-checkout-shipping-summary
       [selectedShippingOption]="shippingValue"
       (editShippingInfo)="editShippingInfoFunction()"></demo-checkout-shipping-summary>
   `,
-    imports: [
-        DemoCheckoutShippingSummaryComponent,
-    ]
+  imports: [
+    DemoCheckoutShippingSummaryComponent,
+  ],
 })
 class WrapperComponent {
   shippingValue: DaffCartShippingRate;

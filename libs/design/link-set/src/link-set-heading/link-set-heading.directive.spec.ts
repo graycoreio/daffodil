@@ -12,10 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffLinkSetHeadingDirective } from './link-set-heading.directive';
 
 @Component({
-    template: `<div daffLinkSetHeading>Heading</div>`,
-    imports: [
-        DaffLinkSetHeadingDirective,
-    ]
+  template: `<div daffLinkSetHeading>Heading</div>`,
+  imports: [
+    DaffLinkSetHeadingDirective,
+  ],
 })
 
 class WrapperComponent {}

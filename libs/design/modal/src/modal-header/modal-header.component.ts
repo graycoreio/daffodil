@@ -14,16 +14,16 @@ import { DaffIconButtonComponent } from '@daffodil/design/button';
 import { DaffModalCloseDirective } from '../modal-close/modal-close.directive';
 
 @Component({
-    selector: 'daff-modal-header',
-    templateUrl: './modal-header.component.html',
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        NgIf,
-        DaffIconButtonComponent,
-        FaIconComponent,
-        DaffModalCloseDirective,
-    ]
+  selector: 'daff-modal-header',
+  templateUrl: './modal-header.component.html',
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    NgIf,
+    DaffIconButtonComponent,
+    FaIconComponent,
+    DaffModalCloseDirective,
+  ],
 })
 export class DaffModalHeaderComponent {
   faXmark = faXmark;

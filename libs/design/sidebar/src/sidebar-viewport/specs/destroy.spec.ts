@@ -12,15 +12,15 @@ import { DaffSidebarViewportComponent } from './../sidebar-viewport.component';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 @Component({
-    template: `
+  template: `
     <daff-sidebar-viewport>
       <daff-sidebar side="left" mode="over" [open]="true"></daff-sidebar>
     </daff-sidebar-viewport>
     `,
-    imports: [
-        DaffSidebarViewportComponent,
-        DaffSidebarComponent,
-    ]
+  imports: [
+    DaffSidebarViewportComponent,
+    DaffSidebarComponent,
+  ],
 })
 
 class WrapperOneComponent {}

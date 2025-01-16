@@ -12,10 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffSidebarHeaderActionDirective } from './sidebar-header-action.directive';
 
 @Component({
-    template: `<div daffSidebarHeaderAction>Action</div>`,
-    imports: [
-        DaffSidebarHeaderActionDirective,
-    ]
+  template: `<div daffSidebarHeaderAction>Action</div>`,
+  imports: [
+    DaffSidebarHeaderActionDirective,
+  ],
 })
 class WrapperComponent {}
 

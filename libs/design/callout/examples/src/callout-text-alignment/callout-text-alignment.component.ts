@@ -15,19 +15,19 @@ import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'callout-text-alignment',
-    templateUrl: './callout-text-alignment.component.html',
-    styleUrls: ['./callout-text-alignment.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DAFF_CALLOUT_COMPONENTS,
-        DAFF_CONTAINER_COMPONENTS,
-        FaIconComponent,
-        DaffButtonComponent,
-        ReactiveFormsModule,
-        NgFor,
-    ]
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'callout-text-alignment',
+  templateUrl: './callout-text-alignment.component.html',
+  styleUrls: ['./callout-text-alignment.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DAFF_CALLOUT_COMPONENTS,
+    DAFF_CONTAINER_COMPONENTS,
+    FaIconComponent,
+    DaffButtonComponent,
+    ReactiveFormsModule,
+    NgFor,
+  ],
 })
 export class CalloutTextAlignmentComponent {
   faMobile = faMobile;

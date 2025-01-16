@@ -16,7 +16,7 @@ import { DaffRadioModule } from '../radio.module';
 
 
 @Component({
-    template: `
+  template: `
 
 <daff-radio-set [formGroup]='radioGroup' name='fruit'>
   <daff-radio formControlName='fruit' value='apple'>Apple</daff-radio>
@@ -24,7 +24,7 @@ import { DaffRadioModule } from '../radio.module';
   <daff-radio formControlName='fruit' value='peach'>Peach</daff-radio>
 </daff-radio-set>
   `,
-    standalone: false
+  standalone: false,
 })
 class RadioEmbeddedComponent {
   radioGroup = new UntypedFormGroup({

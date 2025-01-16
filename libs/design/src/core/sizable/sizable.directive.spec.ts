@@ -13,9 +13,9 @@ import { DaffSizeAllType } from './sizable';
 import { DaffSizableDirective } from './sizable.directive';
 
 @Component({
-    template: `
+  template: `
 		<div daffSizable [size]="size"></div>`,
-    standalone: false
+  standalone: false,
 })
 
 class WrapperComponent {

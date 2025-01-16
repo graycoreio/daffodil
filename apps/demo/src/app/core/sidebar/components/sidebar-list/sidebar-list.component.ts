@@ -6,10 +6,10 @@ import {
 import { DaffNavigationTree } from '@daffodil/navigation';
 
 @Component({
-    selector: 'demo-sidebar-list',
-    templateUrl: './sidebar-list.component.html',
-    styleUrls: ['./sidebar-list.component.scss'],
-    standalone: false
+  selector: 'demo-sidebar-list',
+  templateUrl: './sidebar-list.component.html',
+  styleUrls: ['./sidebar-list.component.scss'],
+  standalone: false,
 })
 export class SidebarListComponent {
   @Input() tree: DaffNavigationTree;

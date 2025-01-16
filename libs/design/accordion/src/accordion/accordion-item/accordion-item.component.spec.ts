@@ -50,15 +50,15 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', (
 
 
 @Component({
-    template: `
+  template: `
     <daff-accordion-item [initiallyExpanded]="initiallyExpandedValue" (toggled)="toggledFunction($event)">
       <h3 daffAccordionItemTitle>Size and Fit</h3>
       <div>no content</div>
     </daff-accordion-item>
     `,
-    imports: [
-        DaffAccordionItemComponent,
-    ]
+  imports: [
+    DaffAccordionItemComponent,
+  ],
 })
 class WrapperComponent {
   initiallyExpandedValue: boolean;

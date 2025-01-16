@@ -21,11 +21,11 @@ import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
 import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 
 @Component({
-    template: `<daffio-doc-article
+  template: `<daffio-doc-article
 		[toc]="tocValue"
 		[breadcrumbs]="breadcrumbsValue"
 	></daffio-doc-article>`,
-    standalone: false
+  standalone: false,
 })
 class WrapperComponent {
   tocValue: DaffDocTableOfContents;

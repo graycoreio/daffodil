@@ -20,14 +20,14 @@ import { PaymentInfoFormFactory } from '../../factories/payment-info-form.factor
 import { PaymentInfoFormGroup } from '../../models/payment-form.type';
 
 @Component({
-    template: `
+  template: `
     <demo-payment-info-form
       [formGroup]="formGroupValue"
     ></demo-payment-info-form>
   `,
-    imports: [
-        DemoCheckoutPaymentInfoFormComponent,
-    ]
+  imports: [
+    DemoCheckoutPaymentInfoFormComponent,
+  ],
 })
 class WrapperComponent {
   formGroupValue: PaymentInfoFormGroup;

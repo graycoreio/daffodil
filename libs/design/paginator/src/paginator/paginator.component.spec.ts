@@ -25,13 +25,13 @@ import {
 } from '../utils/paginator-errors';
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  standalone: false,
 })
 class TestComponent {}
 
 @Component({
-    template: `
+  template: `
     <daff-paginator
       aria-label="id"
       [numberOfPages]="numberOfPagesValue"
@@ -40,9 +40,9 @@ class TestComponent {}
       [url]="urlValue"
       [queryParam]="queryParamValue">
     </daff-paginator>`,
-    imports: [
-        DaffPaginatorComponent,
-    ]
+  imports: [
+    DaffPaginatorComponent,
+  ],
 })
 
 class WrapperComponent {

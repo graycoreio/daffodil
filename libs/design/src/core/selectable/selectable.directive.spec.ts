@@ -12,12 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffSelectableDirective } from './selectable.directive';
 
 @Component({
-    template: `
+  template: `
 		<div daffSelected
       (becameSelected)="becameSelectedFunction($event)"
       [selected]="selected">
 		</div>`,
-    standalone: false
+  standalone: false,
 })
 
 class WrapperComponent {

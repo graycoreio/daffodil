@@ -9,10 +9,10 @@ import {
 } from '@angular/forms';
 
 @Component({
-    selector: 'design-land-form',
-    templateUrl: './form.component.html',
-    styleUrls: ['./form.component.scss'],
-    standalone: false
+  selector: 'design-land-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss'],
+  standalone: false,
 })
 export class DesignLandFormComponent implements OnInit {
 

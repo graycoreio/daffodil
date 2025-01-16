@@ -13,14 +13,14 @@ import {
 } from '@daffodil/design/toast';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'default-toast',
-    templateUrl: './default-toast.component.html',
-    styles: [],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DaffButtonComponent,
-    ]
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'default-toast',
+  templateUrl: './default-toast.component.html',
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DaffButtonComponent,
+  ],
 })
 export class DefaultToastComponent implements OnInit {
   private toast: DaffToast;

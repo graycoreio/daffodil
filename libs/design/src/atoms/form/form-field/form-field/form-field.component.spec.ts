@@ -19,12 +19,12 @@ import { DaffFormFieldControl } from '../form-field-control';
 import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
 
 @Component({
-    template: `
+  template: `
   <daff-form-field [formSubmitted]="formSubmittedValue">
     <input daff-input [formControl]="formControl">
     <daff-error-message></daff-error-message>
   </daff-form-field>`,
-    standalone: false
+  standalone: false,
 })
 class WrapperComponent {
   formSubmittedValue: boolean;
@@ -121,11 +121,11 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
 });
 
 @Component({
-    template: `
+  template: `
   <daff-form-field [formSubmitted]="formSubmittedValue">
     <daff-error-message></daff-error-message>
   </daff-form-field>`,
-    standalone: false
+  standalone: false,
 })
 
 class WrapperWithoutControlComponent {

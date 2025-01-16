@@ -13,9 +13,9 @@ import { DaffTextAlignment } from './text-alignable';
 import { DaffTextAlignableDirective } from './text-alignable.directive';
 
 @Component({
-    template: `
+  template: `
 		<div daffTextAlignable [textAlignment]="textAlignment"></div>`,
-    standalone: false
+  standalone: false,
 })
 
 class WrapperComponent {

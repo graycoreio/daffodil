@@ -11,21 +11,21 @@ import {
 import { DaffUnderlineButtonComponent } from '@daffodil/design/button';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'underline-button',
-    templateUrl: './underline-button.component.html',
-    styles: [`
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'underline-button',
+  templateUrl: './underline-button.component.html',
+  styles: [`
     :host {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
   `],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DaffUnderlineButtonComponent,
-        FaIconComponent,
-    ]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DaffUnderlineButtonComponent,
+    FaIconComponent,
+  ],
 })
 export class UnderlineButtonComponent {
   faChevronLeft = faChevronLeft;

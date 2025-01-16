@@ -16,10 +16,10 @@ import { DaffRadioModule } from '../radio.module';
 
 
 @Component({
-    template: `
+  template: `
     <daff-radio name='test' value='testValue' [formControl]='radio'></daff-radio>
   `,
-    standalone: false
+  standalone: false,
 })
 class RadioWrapperComponent {
   radio = new UntypedFormControl();

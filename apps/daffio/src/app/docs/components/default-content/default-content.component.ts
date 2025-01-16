@@ -11,13 +11,13 @@ import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.
 import { DaffioDocArticleModule } from '../doc-article/module';
 
 @Component({
-    selector: 'daffio-doc-default-content',
-    templateUrl: './default-content.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DaffioDocArticleModule,
-        DaffioSafeHtmlPipe,
-    ]
+  selector: 'daffio-doc-default-content',
+  templateUrl: './default-content.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DaffioDocArticleModule,
+    DaffioSafeHtmlPipe,
+  ],
 })
 export class DaffioDocsDefaultContentComponent<T extends DaffDoc = DaffDoc> implements DaffioDocsDynamicContent<T> {
   doc = input<T>();

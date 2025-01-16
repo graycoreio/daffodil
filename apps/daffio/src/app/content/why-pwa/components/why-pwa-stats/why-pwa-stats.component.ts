@@ -9,11 +9,11 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
-    selector: 'daffio-why-pwa-stats',
-    templateUrl: './why-pwa-stats.component.html',
-    styleUrls: ['./why-pwa-stats.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'daffio-why-pwa-stats',
+  templateUrl: './why-pwa-stats.component.html',
+  styleUrls: ['./why-pwa-stats.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 
 export class DaffioWhyPwaStatsComponent {

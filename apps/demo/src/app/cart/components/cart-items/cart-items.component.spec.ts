@@ -21,16 +21,16 @@ import {
 import { CartItemsComponent } from './cart-items.component';
 
 @Component({
-    template: '<demo-cart-items [cart]="cartValue"></demo-cart-items>',
-    standalone: false
+  template: '<demo-cart-items [cart]="cartValue"></demo-cart-items>',
+  standalone: false,
 })
 class WrapperComponent {
   cartValue: DaffCart;
 }
 
 @Component({
-    selector: 'demo-cart-item', template: '',
-    standalone: false
+  selector: 'demo-cart-item', template: '',
+  standalone: false,
 })
 class MockCartItemComponent {
   @Input() item: DaffCartItem;

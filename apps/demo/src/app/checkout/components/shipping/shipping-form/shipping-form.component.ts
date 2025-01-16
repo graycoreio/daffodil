@@ -19,15 +19,15 @@ import {
 } from '../shipping-options/models/shipping-form.type';
 
 @Component({
-    selector: 'demo-checkout-shipping-form',
-    templateUrl: './shipping-form.component.html',
-    styleUrls: ['./shipping-form.component.scss'],
-    imports: [
-        DemoCheckoutAddressFormComponent,
-        DemoCheckoutShippingOptionsComponent,
-        ReactiveFormsModule,
-        DaffButtonComponent,
-    ]
+  selector: 'demo-checkout-shipping-form',
+  templateUrl: './shipping-form.component.html',
+  styleUrls: ['./shipping-form.component.scss'],
+  imports: [
+    DemoCheckoutAddressFormComponent,
+    DemoCheckoutShippingOptionsComponent,
+    ReactiveFormsModule,
+    DaffButtonComponent,
+  ],
 })
 export class DemoCheckoutShippingFormComponent implements OnInit {
   @Input() selectedOption: DaffCartShippingRate;

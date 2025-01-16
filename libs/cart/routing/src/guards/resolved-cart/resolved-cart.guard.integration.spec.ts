@@ -18,8 +18,8 @@ import {
 import { DaffResolvedCartGuard } from './resolved-cart.guard';
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  standalone: false,
 })
 class TestComponent {}
 

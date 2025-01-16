@@ -26,14 +26,14 @@ import {
  * ```
  */
 @Component({
-    selector: 'daff-tab-label',
-    templateUrl: './tab-label.component.html',
-    styleUrl: './tab-label.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        NgIf,
-        DaffPrefixSuffixModule,
-    ]
+  selector: 'daff-tab-label',
+  templateUrl: './tab-label.component.html',
+  styleUrl: './tab-label.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    NgIf,
+    DaffPrefixSuffixModule,
+  ],
 })
 export class DaffTabLabelComponent implements DaffPrefixable, DaffSuffixable {
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;

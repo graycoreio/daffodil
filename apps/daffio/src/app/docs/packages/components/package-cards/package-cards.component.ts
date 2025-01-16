@@ -11,11 +11,11 @@ export interface DaffioPackage {
 }
 
 @Component({
-    selector: 'daffio-docs-package-cards',
-    templateUrl: './package-cards.component.html',
-    styleUrls: ['./package-cards.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'daffio-docs-package-cards',
+  templateUrl: './package-cards.component.html',
+  styleUrls: ['./package-cards.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DaffioDocsPackageCardsComponent {
 

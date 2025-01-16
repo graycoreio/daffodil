@@ -17,10 +17,10 @@ import { DAFFIO_NAV_SIDEBAR_ID } from '../header/sidebar-id';
 import { DaffioNavLink } from '../link/type';
 
 @Component({
-    template: '<daffio-nav-marketing-container></daffio-nav-marketing-container>',
-    imports: [
-        DaffioMarketingNavContainer,
-    ]
+  template: '<daffio-nav-marketing-container></daffio-nav-marketing-container>',
+  imports: [
+    DaffioMarketingNavContainer,
+  ],
 })
 class WrapperComponent {}
 

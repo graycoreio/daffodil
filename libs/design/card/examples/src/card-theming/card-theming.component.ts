@@ -11,20 +11,20 @@ import {
 import { DAFF_CARD_COMPONENTS } from '@daffodil/design/card';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'card-theming',
-    templateUrl: './card-theming.component.html',
-    styles: [`
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'card-theming',
+  templateUrl: './card-theming.component.html',
+  styles: [`
     daff-card {
       max-width: 480px;
     }
   `],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DAFF_CARD_COMPONENTS,
-        ReactiveFormsModule,
-        NgFor,
-    ]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DAFF_CARD_COMPONENTS,
+    ReactiveFormsModule,
+    NgFor,
+  ],
 })
 export class CardThemingComponent {
   colorControl: UntypedFormControl = new UntypedFormControl('');

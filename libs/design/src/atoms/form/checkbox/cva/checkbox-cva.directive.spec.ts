@@ -14,10 +14,10 @@ import { DaffCheckboxComponent } from '../checkbox.component';
 import { DaffCheckboxModule } from '../checkbox.module';
 
 @Component({
-    template: `
+  template: `
     <daff-checkbox name='test' value='testValue' [formControl]='checkbox'></daff-checkbox>
   `,
-    standalone: false
+  standalone: false,
 })
 class CheckboxWrapperComponent {
   checkbox = new UntypedFormControl();

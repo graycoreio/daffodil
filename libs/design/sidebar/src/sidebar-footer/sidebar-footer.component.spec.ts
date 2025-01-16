@@ -12,10 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffSidebarFooterComponent } from './sidebar-footer.component';
 
 @Component({
-    template: `<daff-sidebar-footer>Footer</daff-sidebar-footer>`,
-    imports: [
-        DaffSidebarFooterComponent,
-    ]
+  template: `<daff-sidebar-footer>Footer</daff-sidebar-footer>`,
+  imports: [
+    DaffSidebarFooterComponent,
+  ],
 })
 class WrapperComponent {}
 

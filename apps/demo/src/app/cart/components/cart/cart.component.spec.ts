@@ -22,26 +22,26 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 import { CartComponent } from './cart.component';
 
 @Component({
-    template: '<demo-cart [cart]="cartValue"></demo-cart>',
-    standalone: false
+  template: '<demo-cart [cart]="cartValue"></demo-cart>',
+  standalone: false,
 })
 class WrapperComponent {
   cartValue: DaffCart;
 }
 
 @Component({
-    selector: 'demo-cart-items',
-    template: '',
-    standalone: false
+  selector: 'demo-cart-items',
+  template: '',
+  standalone: false,
 })
 class MockCartItemsComponent {
   @Input() cart: DaffCart;
 }
 
 @Component({
-    selector: 'demo-cart-sidebar',
-    template: '',
-    standalone: false
+  selector: 'demo-cart-sidebar',
+  template: '',
+  standalone: false,
 })
 class MockCartSidebarComponent {
   @Input() cart: DaffCart;
@@ -49,9 +49,9 @@ class MockCartSidebarComponent {
 }
 
 @Component({
-    selector: 'demo-cart-item-count',
-    template: '',
-    standalone: false
+  selector: 'demo-cart-item-count',
+  template: '',
+  standalone: false,
 })
 class MockCartItemCountComponent {
   @Input() itemCount: number;

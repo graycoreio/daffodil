@@ -33,20 +33,20 @@ import { getAnimationState } from '../animations/modal-animation-state';
 import { DaffModalService } from '../service/modal.service';
 
 @Component({
-    selector: 'daff-modal',
-    templateUrl: './modal.component.html',
-    styleUrls: ['./modal.component.scss'],
-    hostDirectives: [{
-            directive: DaffOpenableDirective,
-            outputs: ['toggled'],
-        }],
-    animations: [daffFadeAnimations.fade],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        PortalModule,
-        OverlayModule,
-    ]
+  selector: 'daff-modal',
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.scss'],
+  hostDirectives: [{
+    directive: DaffOpenableDirective,
+    outputs: ['toggled'],
+  }],
+  animations: [daffFadeAnimations.fade],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    PortalModule,
+    OverlayModule,
+  ],
 })
 export class DaffModalComponent implements AfterContentInit, AfterViewInit, DaffOpenable {
   /**

@@ -10,15 +10,15 @@ import { daffExternalMatcherTypeGuard } from '@daffodil/external-router/routing'
 
 // Dummy component for routing
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  standalone: false,
 })
 class DummyComponent {}
 
 // Dummy component for routing
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  standalone: false,
 })
 class DummyOtherComponent {}
 

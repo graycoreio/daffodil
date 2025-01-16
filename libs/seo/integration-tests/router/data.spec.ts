@@ -20,8 +20,8 @@ import {
 } from '@daffodil/seo/router';
 
 @Component({
-    selector: 'lib-seo-compomnent', template: 'my-component',
-    standalone: false
+  selector: 'lib-seo-compomnent', template: 'my-component',
+  standalone: false,
 })
 class SeoTestComponent {}
 

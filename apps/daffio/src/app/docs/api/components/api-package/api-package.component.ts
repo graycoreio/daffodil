@@ -14,19 +14,19 @@ import { DaffioApiPackageFilterPipe } from './not-packages.pipe';
 import { DaffioApiListSectionComponent } from '../api-list-section/api-list-section.component';
 
 @Component({
-    selector: 'daffio-api-package',
-    templateUrl: './api-package.component.html',
-    styleUrls: ['./api-package.component.scss'],
-    hostDirectives: [{
-            directive: DaffArticleEncapsulatedDirective,
-        }],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        RouterLink,
-        DaffioApiListSectionComponent,
-        DAFF_ARTICLE_COMPONENTS,
-        DaffioApiPackageFilterPipe,
-    ]
+  selector: 'daffio-api-package',
+  templateUrl: './api-package.component.html',
+  styleUrls: ['./api-package.component.scss'],
+  hostDirectives: [{
+    directive: DaffArticleEncapsulatedDirective,
+  }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    RouterLink,
+    DaffioApiListSectionComponent,
+    DAFF_ARTICLE_COMPONENTS,
+    DaffioApiPackageFilterPipe,
+  ],
 })
 export class DaffioApiPackageComponent {
   @HostBinding('class.daffio-api-package') class = true;

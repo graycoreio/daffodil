@@ -15,13 +15,13 @@ import { DaffSidebarMode } from '../../helper/sidebar-mode';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 @Component({
-    template: `
+  template: `
     <daff-sidebar side="left" mode="side"></daff-sidebar>
     <daff-sidebar side="right" [mode]="mode" [open]="true"></daff-sidebar>
   `,
-    imports: [
-        DaffSidebarComponent,
-    ]
+  imports: [
+    DaffSidebarComponent,
+  ],
 })
 class WrapperComponent {
   @Input() mode: DaffSidebarMode;

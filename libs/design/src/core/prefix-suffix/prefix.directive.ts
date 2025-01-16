@@ -9,8 +9,8 @@ import {
  * `daff-form-field`, `daff-solo-field`, and `daff-list`.
  */
 @Directive({
-    selector: '[daffPrefix]',
-    standalone: false
+  selector: '[daffPrefix]',
+  standalone: false,
 })
 
 export class DaffPrefixDirective {

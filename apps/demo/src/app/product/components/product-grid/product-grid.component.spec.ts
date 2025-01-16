@@ -15,16 +15,16 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { ProductGridComponent } from './product-grid.component';
 
 @Component({
-    template: '<demo-product-grid [products]="productsValue"></demo-product-grid>',
-    standalone: false
+  template: '<demo-product-grid [products]="productsValue"></demo-product-grid>',
+  standalone: false,
 })
 class WrapperComponent {
   productsValue: DaffProduct[];
 }
 
 @Component({
-    selector: 'demo-product-card', template: '',
-    standalone: false
+  selector: 'demo-product-card', template: '',
+  standalone: false,
 })
 class MockProductCardComponent {
   @Input() product: DaffProduct;

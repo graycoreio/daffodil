@@ -8,12 +8,12 @@ import {
 import { DAFF_BRANDING_CONSTANTS } from '@daffodil/branding';
 
 @Component({
-    selector: 'daffio-sub-footer',
-    templateUrl: './sub-footer.component.html',
-    styleUrls: ['./sub-footer.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'daffio-sub-footer',
+  templateUrl: './sub-footer.component.html',
+  styleUrls: ['./sub-footer.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DaffioSubFooterComponent {
   @HostBinding('class.daffio-sub-footer') class = true;

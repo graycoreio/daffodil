@@ -12,24 +12,24 @@ import { DaffRouteWithNamedViews } from '@daffodil/router';
 import { DaffRouterNamedViewOutletDirective } from './outlet.directive';
 
 @Component({
-    template: `
+  template: `
     <ng-container *ngIf="view" [daffRouterNamedViewOutlet]="view"></ng-container>
   `,
-    standalone: false
+  standalone: false,
 })
 class WrapperComponent {
   view?: string;
 }
 
 @Component({
-    template: 'component A',
-    standalone: false
+  template: 'component A',
+  standalone: false,
 })
 class AComponent {}
 
 @Component({
-    template: 'component B',
-    standalone: false
+  template: 'component B',
+  standalone: false,
 })
 class BComponent {}
 

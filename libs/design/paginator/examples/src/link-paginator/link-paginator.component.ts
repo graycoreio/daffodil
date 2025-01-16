@@ -12,14 +12,14 @@ import {
 import { DAFF_PAGINATOR_COMPONENTS } from '@daffodil/design/paginator';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'link-paginator',
-    templateUrl: './link-paginator.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DAFF_PAGINATOR_COMPONENTS,
-        AsyncPipe,
-    ]
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'link-paginator',
+  templateUrl: './link-paginator.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DAFF_PAGINATOR_COMPONENTS,
+    AsyncPipe,
+  ],
 })
 export class LinkPaginatorComponent {
   numberOfPages = 15;

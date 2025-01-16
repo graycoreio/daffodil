@@ -20,14 +20,14 @@ import {
 } from '../../native-select/public_api';
 
 @Component({
-    template: `
+  template: `
     <daff-quantity-select
       [min]="minValue"
       [max]="maxValue"
       [extendable]="extendableValue"
     ></daff-quantity-select>
   `,
-    standalone: false
+  standalone: false,
 })
 class WrapperComponent {
   minValue = 2;

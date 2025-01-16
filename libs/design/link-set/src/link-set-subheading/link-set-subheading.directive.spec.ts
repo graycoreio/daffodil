@@ -12,10 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffLinkSetSubheadingDirective } from './link-set-subheading.directive';
 
 @Component({
-    template: `<div daffLinkSetSubheading>Subheading</div>`,
-    imports: [
-        DaffLinkSetSubheadingDirective,
-    ]
+  template: `<div daffLinkSetSubheading>Subheading</div>`,
+  imports: [
+    DaffLinkSetSubheadingDirective,
+  ],
 })
 
 class WrapperComponent {}

@@ -12,10 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffBreadcrumbItemDirective } from './breadcrumb-item.directive';
 
 @Component({
-    template: `<li daffBreadcrumbItem [active]="active">Breadcrumb Item</li>`,
-    imports: [
-        DaffBreadcrumbItemDirective,
-    ]
+  template: `<li daffBreadcrumbItem [active]="active">Breadcrumb Item</li>`,
+  imports: [
+    DaffBreadcrumbItemDirective,
+  ],
 })
 class WrapperComponent {
   active = false;

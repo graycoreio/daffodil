@@ -12,8 +12,8 @@ import { By } from '@angular/platform-browser';
 import { DaffioHomeCalloutPwaComponent } from './home-callout-pwa.component';
 
 @Component({
-    template: `<daffio-home-callout-pwa></daffio-home-callout-pwa>`,
-    standalone: false
+  template: `<daffio-home-callout-pwa></daffio-home-callout-pwa>`,
+  standalone: false,
 })
 class WrapperComponent {}
 

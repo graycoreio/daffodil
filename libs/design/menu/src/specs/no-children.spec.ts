@@ -15,16 +15,16 @@ import { DaffMenuItemComponent } from '../menu-item/menu-item.component';
 import { provideTestMenuService } from '../testing/dummy-service';
 
 @Component({
-    template: `
+  template: `
     <daff-menu>
       <a href="/test" daff-menu-item id="focused">Test</a>
       <button daff-menu-item id="not-focused">Test 2</button>
     </daff-menu>
   `,
-    imports: [
-        DaffMenuComponent,
-        DaffMenuItemComponent,
-    ]
+  imports: [
+    DaffMenuComponent,
+    DaffMenuItemComponent,
+  ],
 })
 class WrapperComponent {}
 

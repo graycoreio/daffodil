@@ -18,7 +18,7 @@ import { DaffMediaGalleryRegistration } from '../helpers/media-gallery-registrat
 import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 
 @Component({
-    standalone: false
+  standalone: false,
 })
 export class FakeComponent {}
 

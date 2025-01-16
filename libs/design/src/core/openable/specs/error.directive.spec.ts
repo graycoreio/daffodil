@@ -33,10 +33,10 @@ class StatefulComponent {
 }
 
 @Component({
-    template: `<stateful-component [open]="true"></stateful-component>`,
-    imports: [
-        StatefulComponent,
-    ]
+  template: `<stateful-component [open]="true"></stateful-component>`,
+  imports: [
+    StatefulComponent,
+  ],
 })
 
 class WrapperComponent {}

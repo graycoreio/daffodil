@@ -17,11 +17,11 @@ import {
 } from '@daffodil/design/sidebar';
 
 @Component({
-    selector: 'design-land-sidebar-viewport',
-    templateUrl: './sidebar-viewport.component.html',
-    styleUrls: ['./sidebar-viewport.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'design-land-sidebar-viewport',
+  templateUrl: './sidebar-viewport.component.html',
+  styleUrls: ['./sidebar-viewport.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DesignLandSidebarViewportComponent {
   faBars = faBars;

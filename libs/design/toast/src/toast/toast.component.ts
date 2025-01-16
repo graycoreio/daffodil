@@ -34,21 +34,21 @@ import { DaffToastActionsDirective } from '../toast-actions/toast-actions.direct
  * communicate information for user actions or system updates.
  */
 @Component({
-    selector: 'daff-toast',
-    templateUrl: './toast.component.html',
-    styleUrls: ['./toast.component.scss'],
-    hostDirectives: [
-        { directive: DaffArticleEncapsulatedDirective },
-        {
-            directive: DaffStatusableDirective,
-            inputs: ['status'],
-        },
-    ],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        NgIf,
-    ]
+  selector: 'daff-toast',
+  templateUrl: './toast.component.html',
+  styleUrls: ['./toast.component.scss'],
+  hostDirectives: [
+    { directive: DaffArticleEncapsulatedDirective },
+    {
+      directive: DaffStatusableDirective,
+      inputs: ['status'],
+    },
+  ],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    NgIf,
+  ],
 })
 export class DaffToastComponent implements DaffPrefixable, AfterContentInit, AfterViewInit, OnDestroy {
   /** @docs-private */

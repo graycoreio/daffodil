@@ -10,14 +10,14 @@ import {
 } from '@daffodil/design/tree';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'basic-tree',
-    templateUrl: './basic-tree.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DAFF_TREE_COMPONENTS,
-        RouterLink,
-    ]
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'basic-tree',
+  templateUrl: './basic-tree.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DAFF_TREE_COMPONENTS,
+    RouterLink,
+  ],
 })
 export class BasicTreeComponent {
   tree: DaffTreeData<unknown> = {

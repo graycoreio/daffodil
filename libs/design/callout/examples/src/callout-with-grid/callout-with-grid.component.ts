@@ -13,18 +13,18 @@ import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'callout-with-grid',
-    templateUrl: './callout-with-grid.component.html',
-    styleUrls: ['./callout-with-grid.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DAFF_CALLOUT_COMPONENTS,
-        DAFF_CONTAINER_COMPONENTS,
-        FaIconComponent,
-        DaffButtonComponent,
-        DaffUnderlineButtonComponent,
-    ]
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'callout-with-grid',
+  templateUrl: './callout-with-grid.component.html',
+  styleUrls: ['./callout-with-grid.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DAFF_CALLOUT_COMPONENTS,
+    DAFF_CONTAINER_COMPONENTS,
+    FaIconComponent,
+    DaffButtonComponent,
+    DaffUnderlineButtonComponent,
+  ],
 })
 export class CalloutWithGridComponent {
   faMobile = faMobile;

@@ -12,13 +12,13 @@ import { By } from '@angular/platform-browser';
 import { DaffListComponent } from './list.component';
 
 @Component({
-    template: `
+  template: `
     <daff-list [mode]="mode"></daff-list>
     <daff-nav-list></daff-nav-list>
   `,
-    imports: [
-        DaffListComponent,
-    ]
+  imports: [
+    DaffListComponent,
+  ],
 })
 class WrapperComponent {}
 

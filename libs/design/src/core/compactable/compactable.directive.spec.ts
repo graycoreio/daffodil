@@ -12,9 +12,9 @@ import { By } from '@angular/platform-browser';
 import { DaffCompactableDirective } from './compactable.directive';
 
 @Component({
-    template: `
+  template: `
 		<div daffCompactable [compact]="compact"></div>`,
-    standalone: false
+  standalone: false,
 })
 
 class WrapperComponent {

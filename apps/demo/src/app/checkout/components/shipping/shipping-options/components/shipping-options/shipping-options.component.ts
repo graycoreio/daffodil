@@ -16,14 +16,14 @@ import {
 import { DemoCheckoutShippingFormGroup } from '../../models/shipping-form.type';
 
 @Component({
-    selector: 'demo-checkout-shipping-options',
-    templateUrl: './shipping-options.component.html',
-    styleUrls: ['./shipping-options.component.scss'],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        DaffRadioModule,
-    ]
+  selector: 'demo-checkout-shipping-options',
+  templateUrl: './shipping-options.component.html',
+  styleUrls: ['./shipping-options.component.scss'],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    DaffRadioModule,
+  ],
 })
 export class DemoCheckoutShippingOptionsComponent implements OnInit, DoCheck {
   private errorStateMatcher: DaffErrorStateMatcher;

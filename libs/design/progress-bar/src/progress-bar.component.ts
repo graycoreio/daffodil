@@ -21,22 +21,22 @@ export const clamp = (number: number, min: number, max: number) => Math.min(Math
  * @inheritdoc
  */
 @Component({
-    selector: 'daff-progress-bar',
-    templateUrl: './progress-bar.component.html',
-    styleUrls: ['./progress-bar.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    hostDirectives: [
-        {
-            directive: DaffColorableDirective,
-            inputs: ['color'],
-        },
-    ],
-    animations: [
-        daffProgressBarAnimation.fill,
-    ],
-    imports: [
-        NgIf,
-    ]
+  selector: 'daff-progress-bar',
+  templateUrl: './progress-bar.component.html',
+  styleUrls: ['./progress-bar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  hostDirectives: [
+    {
+      directive: DaffColorableDirective,
+      inputs: ['color'],
+    },
+  ],
+  animations: [
+    daffProgressBarAnimation.fill,
+  ],
+  imports: [
+    NgIf,
+  ],
 })
 export class DaffProgressBarComponent {
 

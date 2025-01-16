@@ -12,17 +12,17 @@ import { DAFF_CARD_COMPONENTS } from '@daffodil/design/card';
 import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'raised-card',
-    templateUrl: './raised-card.component.html',
-    styleUrls: ['./raised-card.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DAFF_CARD_COMPONENTS,
-        DAFF_IMAGE_COMPONENTS,
-        ReactiveFormsModule,
-        NgFor,
-    ]
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'raised-card',
+  templateUrl: './raised-card.component.html',
+  styleUrls: ['./raised-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DAFF_CARD_COMPONENTS,
+    DAFF_IMAGE_COMPONENTS,
+    ReactiveFormsModule,
+    NgFor,
+  ],
 })
 export class RaisedCardComponent {
   colorControl: UntypedFormControl = new UntypedFormControl('');

@@ -21,7 +21,7 @@ import { DemoCheckoutBillingFormGroup } from '../models/payment-form.type';
 import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-info-form.factory';
 
 @Component({
-    template: `
+  template: `
     <demo-checkout-payment-form
       [paymentInfo]="paymentInfoValue"
       [billingAddress]="billingAddressValue"
@@ -30,9 +30,9 @@ import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-i
       (submitted)="submittedFunction($event)"
     ></demo-checkout-payment-form>
   `,
-    imports: [
-        DemoCheckoutPaymentFormComponent,
-    ]
+  imports: [
+    DemoCheckoutPaymentFormComponent,
+  ],
 })
 class WrapperComponent {
   paymentInfoValue: any;

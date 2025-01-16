@@ -12,10 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffLinkSetComponent } from './link-set.component';
 
 @Component ({
-    template: `<daff-link-set></daff-link-set>`,
-    imports: [
-        DaffLinkSetComponent,
-    ]
+  template: `<daff-link-set></daff-link-set>`,
+  imports: [
+    DaffLinkSetComponent,
+  ],
 })
 
 class WrapperComponent {}

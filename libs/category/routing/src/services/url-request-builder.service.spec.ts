@@ -27,8 +27,8 @@ import { DaffCategoryRoutingUrlRequestBuilder } from './url-request-builder.serv
 import { DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER } from '../injection-tokens/request/builder.token';
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  standalone: false,
 })
 class TestComponent {}
 

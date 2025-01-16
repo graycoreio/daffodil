@@ -4,9 +4,9 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: 'daffio-marketing-footer',
-    templateUrl: './marketing-footer.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'daffio-marketing-footer',
+  templateUrl: './marketing-footer.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DaffioMarketingFooterComponent {}

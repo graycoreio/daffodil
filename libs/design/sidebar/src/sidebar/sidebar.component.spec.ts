@@ -64,14 +64,14 @@ describe('@daffodil/design/sidebar | DaffSidebarComponent', () => {
 });
 
 @Component({
-    template: `
+  template: `
     <div class="host-element">
       <daff-sidebar [mode]="mode" [side]="side"></daff-sidebar>
     </div>
   `,
-    imports: [
-        DaffSidebarComponent,
-    ]
+  imports: [
+    DaffSidebarComponent,
+  ],
 })
 class DefaultsWrapperComponent {
   side = 'left';
@@ -125,14 +125,14 @@ describe('DaffSidebarComponent | Defaults', () => {
 });
 
 @Component({
-    template: `
+  template: `
     <div class="host-element">
       <daff-sidebar (escapePressed)="pressed()" [mode]="mode" [side]="side" [open]="open"></daff-sidebar>
     </div>
   `,
-    imports: [
-        DaffSidebarComponent,
-    ]
+  imports: [
+    DaffSidebarComponent,
+  ],
 })
 class UsageWrapperComponent {
   open = false;

@@ -12,9 +12,9 @@ import { By } from '@angular/platform-browser';
 import { DaffManageContainerLayoutDirective } from './manage-container-layout.directive';
 
 @Component({
-    template: `
+  template: `
 		<div daffManageContainerLayout></div>`,
-    standalone: false
+  standalone: false,
 })
 
 class WrapperComponent {}

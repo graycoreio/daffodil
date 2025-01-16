@@ -16,10 +16,10 @@ export const makeValueArray = (min: number, max: number, increment: number) =>
   Array(max - min).fill(0).map((x, i) => (i * increment) + min);
 
 @Component({
-    selector: 'daff-quantity-select',
-    templateUrl: './quantity-select.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'daff-quantity-select',
+  templateUrl: './quantity-select.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DaffQuantitySelectComponent {
 
