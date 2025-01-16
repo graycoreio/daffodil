@@ -51,7 +51,7 @@ jobs:
 
       - run: cd dist/apps/daffio && zip -r ../daffio.zip .
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: daffio-${{ matrix.node }}
           path: dist/apps/daffio.zip

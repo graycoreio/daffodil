@@ -1,6 +1,6 @@
 on:
-  workflow_call: 
-    inputs: 
+  workflow_call:
+    inputs:
       artifact:
         required: true
         description: 'The name of the artifact to download'
@@ -22,15 +22,15 @@ jobs:
   next:
     name: 'Next'
     runs-on: ubuntu-latest
-    environment: 
+    environment:
       name: next
       url: ${{ steps.vercel-deploy.outputs.url }}
     if: github.ref == 'refs/heads/develop'
-    steps: 
-      - uses: actions/download-artifact@v3
+    steps:
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ inputs.artifact }}
-      
+
       - run: unzip -q ${{ inputs.artifact-zip-name }} -d . && rm ${{ inputs.artifact-zip-name }}
         name: Unzip internal artifact zip
         if: inputs.artifact-zip-name
@@ -43,19 +43,19 @@ jobs:
           vercel_org: ${{ secrets.VERCEL_ORG }}
           vercel_project_id: ${{ secrets.VERCEL_NEXT_PROJECT_ID }}
           ng_version: '17'
-    
+
   production:
     name: 'Production'
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v') 
-    environment: 
+    if: startsWith(github.ref, 'refs/tags/v')
+    environment:
       name: production
       url: ${{ steps.vercel-deploy.outputs.url }}
-    steps: 
-      - uses: actions/download-artifact@v3
+    steps:
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ inputs.artifact }}
-      
+
       - run: unzip -q ${{ inputs.artifact-zip-name }} -d . && rm ${{ inputs.artifact-zip-name }}
         name: Unzip internal artifact zip
         if: inputs.artifact-zip-name
