@@ -22,8 +22,9 @@ import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DemoCartViewComponent } from './cart-view.component';
 
 @Component({
-  selector: 'demo-cart',
-  template: '',
+    selector: 'demo-cart',
+    template: '',
+    standalone: false
 })
 class MockCartWrapperComponent {
   @Input() cart: DaffCart;

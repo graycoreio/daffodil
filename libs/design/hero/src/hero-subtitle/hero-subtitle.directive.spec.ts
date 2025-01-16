@@ -12,13 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffHeroSubtitleDirective } from './hero-subtitle.directive';
 
 @Component({
-  template: `
+    template: `
     <h1 daffHeroSubtitle>Lorem Ipsum</h1>
   `,
-  standalone: true,
-  imports: [
-    DaffHeroSubtitleDirective,
-  ],
+    imports: [
+        DaffHeroSubtitleDirective,
+    ]
 })
 class WrapperComponent {}
 

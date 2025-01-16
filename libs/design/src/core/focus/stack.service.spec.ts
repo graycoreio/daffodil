@@ -8,12 +8,13 @@ import { By } from '@angular/platform-browser';
 import { DaffFocusStackService } from './stack.service';
 
 @Component({
-  template: `
+    template: `
     <button id="one">one</button>
     <button id="two">two</button>
     <button id="three">three</button>
     <button id="four">four</button>
   `,
+    standalone: false
 })
 export class FakeComponent {}
 

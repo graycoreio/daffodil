@@ -20,7 +20,10 @@ const stubImages = [
   { url: '/assets/mh01-gray_alt1.jpg', label: 'testlabel1' },
 ];
 
-@Component({ template: '<demo-image-gallery-container [images]="imagesValue"></demo-image-gallery-container>' })
+@Component({
+    template: '<demo-image-gallery-container [images]="imagesValue"></demo-image-gallery-container>',
+    standalone: false
+})
 class WrapperComponent {
   imagesValue: Record<string, any>[] = stubImages;
 }

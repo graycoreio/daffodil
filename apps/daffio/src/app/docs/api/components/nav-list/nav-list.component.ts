@@ -20,7 +20,6 @@ const DEFAULT_ROUTER_LINK_ACTIVE_CONFIG: RouterLinkActive['routerLinkActiveOptio
   templateUrl: './nav-list.component.html',
   styleUrl: './nav-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     RouterLink,
     DAFF_LIST_COMPONENTS,

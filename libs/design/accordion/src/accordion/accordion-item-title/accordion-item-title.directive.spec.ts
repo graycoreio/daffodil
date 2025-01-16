@@ -12,13 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffAccordionItemTitleDirective } from './accordion-item-title.directive';
 
 @Component({
-  template: `
+    template: `
     <div daffAccordionItemTitle>Title</div>
   `,
-  standalone: true,
-  imports: [
-    DaffAccordionItemTitleDirective,
-  ],
+    imports: [
+        DaffAccordionItemTitleDirective,
+    ]
 })
 class WrapperComponent {}
 

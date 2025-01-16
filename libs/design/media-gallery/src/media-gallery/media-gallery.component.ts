@@ -21,26 +21,25 @@ import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 let uniqueGalleryId = 0;
 
 @Component({
-  selector: 'daff-media-gallery',
-  templateUrl: './media-gallery.component.html',
-  styleUrls: ['./media-gallery.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    { provide: DAFF_MEDIA_GALLERY_TOKEN, useExisting: DaffMediaGalleryComponent },
-  ],
-  hostDirectives: [
-    { directive: DaffArticleEncapsulatedDirective },
-    {
-      directive: DaffSkeletonableDirective,
-      inputs: ['skeleton'],
-    },
-  ],
-  standalone: true,
-  imports: [
-    DaffMediaRendererComponent,
-    DaffThumbnailDirective,
-  ],
+    selector: 'daff-media-gallery',
+    templateUrl: './media-gallery.component.html',
+    styleUrls: ['./media-gallery.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        { provide: DAFF_MEDIA_GALLERY_TOKEN, useExisting: DaffMediaGalleryComponent },
+    ],
+    hostDirectives: [
+        { directive: DaffArticleEncapsulatedDirective },
+        {
+            directive: DaffSkeletonableDirective,
+            inputs: ['skeleton'],
+        },
+    ],
+    imports: [
+        DaffMediaRendererComponent,
+        DaffThumbnailDirective,
+    ]
 })
 export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, OnInit, OnDestroy {
   /**

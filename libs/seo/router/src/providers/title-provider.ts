@@ -1,6 +1,7 @@
 import {
-  APP_INITIALIZER,
-  Provider,
+  inject,
+  makeEnvironmentProviders,
+  provideAppInitializer,
 } from '@angular/core';
 
 import { initializeRouterService } from './initializer';
@@ -23,12 +24,10 @@ import { DaffSeoNativeTitleEffects } from '../effects/title.effects';
  * export class AppModule { }
  * ```
  */
-export const daffSeoRouterTitleProvider = (): Provider[] => [
+export const daffSeoRouterTitleProvider = () => makeEnvironmentProviders([
   DaffSeoNativeTitleEffects,
-  {
-    provide: APP_INITIALIZER,
-    useFactory: initializeRouterService,
-    deps: [DaffSeoNativeTitleEffects],
-    multi: true,
-  },
-];
+  provideAppInitializer(() => {
+    const initializerFn = (initializeRouterService)(inject(DaffSeoNativeTitleEffects));
+    return initializerFn();
+  }),
+]);

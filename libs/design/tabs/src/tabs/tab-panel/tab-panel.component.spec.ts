@@ -13,13 +13,12 @@ import { DaffTabPanelComponent } from './tab-panel.component';
 import { DaffTabComponent } from '../tab/tab.component';
 
 @Component({
-  template: `
+    template: `
 		<daff-tab-panel></daff-tab-panel>
 	`,
-  standalone: true,
-  imports: [
-    DaffTabPanelComponent,
-  ],
+    imports: [
+        DaffTabPanelComponent,
+    ]
 })
 class WrapperComponent {}
 

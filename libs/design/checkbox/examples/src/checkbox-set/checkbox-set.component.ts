@@ -17,16 +17,15 @@ import {
 import { DaffButtonComponent } from '@daffodil/design/button';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'checkbox-set',
-  templateUrl: './checkbox-set.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffCheckboxModule,
-    ReactiveFormsModule,
-    DaffButtonComponent,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'checkbox-set',
+    templateUrl: './checkbox-set.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DaffCheckboxModule,
+        ReactiveFormsModule,
+        DaffButtonComponent,
+    ]
 })
 export class CheckboxSetComponent implements OnInit {
 

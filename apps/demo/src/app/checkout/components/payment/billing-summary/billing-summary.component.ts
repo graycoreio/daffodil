@@ -9,13 +9,12 @@ import { DemoGeographyAddressSummaryComponent } from '../../../../geography/comp
 
 
 @Component({
-  selector: 'demo-checkout-billing-summary',
-  templateUrl: './billing-summary.component.html',
-  styleUrls: ['./billing-summary.component.scss'],
-  standalone: true,
-  imports: [
-    DemoGeographyAddressSummaryComponent,
-  ],
+    selector: 'demo-checkout-billing-summary',
+    templateUrl: './billing-summary.component.html',
+    styleUrls: ['./billing-summary.component.scss'],
+    imports: [
+        DemoGeographyAddressSummaryComponent,
+    ]
 })
 export class DemoCheckoutBillingAddressSummaryComponent {
   @Input() billingAddress: DaffCartAddress;

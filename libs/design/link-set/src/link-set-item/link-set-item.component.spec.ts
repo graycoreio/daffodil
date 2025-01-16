@@ -12,11 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffLinkSetItemComponent } from './link-set-item.component';
 
 @Component ({
-  template: `<a daff-link-set-item href="#"></a>`,
-  standalone: true,
-  imports: [
-    DaffLinkSetItemComponent,
-  ],
+    template: `<a daff-link-set-item href="#"></a>`,
+    imports: [
+        DaffLinkSetItemComponent,
+    ]
 })
 
 class WrapperComponent {}

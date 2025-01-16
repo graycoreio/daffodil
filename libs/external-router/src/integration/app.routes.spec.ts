@@ -9,11 +9,17 @@ import { provideDaffExternalRouterTestingDriver } from '@daffodil/external-route
 import { daffExternalMatcherTypeGuard } from '@daffodil/external-router/routing';
 
 // Dummy component for routing
-@Component({ template: '' })
+@Component({
+    template: '',
+    standalone: false
+})
 class DummyComponent {}
 
 // Dummy component for routing
-@Component({ template: '' })
+@Component({
+    template: '',
+    standalone: false
+})
 class DummyOtherComponent {}
 
 const TESTING_CONFIG = {

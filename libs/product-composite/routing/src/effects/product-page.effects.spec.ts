@@ -19,7 +19,10 @@ import { DaffProductCompositePageEffects } from './product-page.effects';
 import { provideDaffProductCompositeRoutingConfig } from '../config/public_api';
 import { DaffProductCompositeQueryParamService } from '../services/query-param.service';
 
-@Component({ template: '' })
+@Component({
+    template: '',
+    standalone: false
+})
 class TestComponent {}
 
 describe('@daffodil/product-composite/routing | DaffProductCompositePageEffects', () => {

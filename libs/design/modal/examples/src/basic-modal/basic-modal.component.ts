@@ -13,18 +13,17 @@ import {
 import { BasicModalContentComponent } from './modal-content.component';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'basic-modal',
-  templateUrl: './basic-modal.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffButtonComponent,
-    DAFF_MODAL_COMPONENTS,
-  ],
-  providers: [
-    DaffModalService,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'basic-modal',
+    templateUrl: './basic-modal.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DaffButtonComponent,
+        DAFF_MODAL_COMPONENTS,
+    ],
+    providers: [
+        DaffModalService,
+    ]
 })
 export class BasicModalComponent {
   modal: DaffModalComponent;

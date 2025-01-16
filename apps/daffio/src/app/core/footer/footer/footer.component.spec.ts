@@ -20,7 +20,8 @@ import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffioFooterComponent } from './footer.component';
 
 @Component({
-  template: `<daffio-footer></daffio-footer>`,
+    template: `<daffio-footer></daffio-footer>`,
+    standalone: false
 })
 class WrapperComponent { }
 

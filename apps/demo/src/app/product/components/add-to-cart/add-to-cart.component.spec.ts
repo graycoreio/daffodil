@@ -11,7 +11,10 @@ import { DaffCartItemInputType } from '@daffodil/cart';
 
 import { AddToCartComponent } from './add-to-cart.component';
 
-@Component({ template: '<demo-add-to-cart (addToCart)="eventCatcher()" [additive]="additiveValue" [qty]="qtyValue"></demo-add-to-cart>' })
+@Component({
+    template: '<demo-add-to-cart (addToCart)="eventCatcher()" [additive]="additiveValue" [qty]="qtyValue"></demo-add-to-cart>',
+    standalone: false
+})
 class WrapperComponent {
   additiveValue = 'additiveValue';
   qtyValue = 1;

@@ -12,16 +12,15 @@ import { By } from '@angular/platform-browser';
 import { DaffModalActionsComponent } from './modal-actions.component';
 
 @Component({
-  template: `
+    template: `
     <daff-modal-actions>
       <button>Close</button>
       <button>Save</button>
     </daff-modal-actions>
   `,
-  standalone: true,
-  imports: [
-    DaffModalActionsComponent,
-  ],
+    imports: [
+        DaffModalActionsComponent,
+    ]
 })
 class WrapperComponent {}
 

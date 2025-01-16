@@ -22,9 +22,10 @@ import {
 } from '@daffodil/core';
 
 @Component({
-  selector: 'demo-cart-item',
-  templateUrl: './cart-item.component.html',
-  styleUrls: ['./cart-item.component.scss'],
+    selector: 'demo-cart-item',
+    templateUrl: './cart-item.component.html',
+    styleUrls: ['./cart-item.component.scss'],
+    standalone: false
 })
 export class CartItemComponent implements OnInit {
 

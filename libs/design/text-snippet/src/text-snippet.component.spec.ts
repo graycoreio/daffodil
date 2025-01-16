@@ -14,12 +14,11 @@ import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffTextSnippetComponent } from './text-snippet.component';
 
 @Component({
-  template: '<daff-text-snippet [condensed]="condensed" [html]="html">content</daff-text-snippet>',
-  standalone: true,
-  imports: [
-    DaffButtonModule,
-    DaffTextSnippetComponent,
-  ],
+    template: '<daff-text-snippet [condensed]="condensed" [html]="html">content</daff-text-snippet>',
+    imports: [
+        DaffButtonModule,
+        DaffTextSnippetComponent,
+    ]
 })
 
 class WrapperComponent {

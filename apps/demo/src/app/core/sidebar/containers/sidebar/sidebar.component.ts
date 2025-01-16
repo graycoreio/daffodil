@@ -26,11 +26,12 @@ import { CloseSidebar } from '../../actions/sidebar.actions';
 import * as fromDemoSidebar from '../../reducers/index';
 
 @Component({
-  selector: 'demo-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'],
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
-  providers: [{ provide: DaffSidebarComponent, useExisting: forwardRef(() => SidebarContainer ) }],
+    selector: 'demo-sidebar',
+    templateUrl: './sidebar.component.html',
+    styleUrls: ['./sidebar.component.scss'],
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    providers: [{ provide: DaffSidebarComponent, useExisting: forwardRef(() => SidebarContainer) }],
+    standalone: false
 })
 export class SidebarContainer implements OnInit {
 

@@ -17,13 +17,12 @@ import {
 import { DaffCalloutComponent } from './callout.component';
 
 @Component ({
-  template: `
+    template: `
     <daff-callout [color]="color" [textAlignment]="textAlignment" [compact]="compact"></daff-callout>
   `,
-  standalone: true,
-  imports: [
-    DaffCalloutComponent,
-  ],
+    imports: [
+        DaffCalloutComponent,
+    ]
 })
 
 class WrapperComponent {

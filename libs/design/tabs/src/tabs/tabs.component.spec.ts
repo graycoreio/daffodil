@@ -23,7 +23,7 @@ import { DaffTabsComponent } from './tabs.component';
 import { DAFF_TABS_COMPONENTS } from '../tabs';
 
 @Component({
-  template: `
+    template: `
     <daff-tabs
 			[linkMode]="linkModeValue"
 			[url]="urlValue"
@@ -57,10 +57,9 @@ import { DAFF_TABS_COMPONENTS } from '../tabs';
       </daff-tab>
     </daff-tabs>
   `,
-  standalone: true,
-  imports: [
-    DAFF_TABS_COMPONENTS,
-  ],
+    imports: [
+        DAFF_TABS_COMPONENTS,
+    ]
 })
 class WrapperComponent {
   changed: string | null = null;

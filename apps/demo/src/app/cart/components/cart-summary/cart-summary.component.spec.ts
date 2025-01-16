@@ -21,13 +21,19 @@ import {
 
 import { CartSummaryComponent } from './cart-summary.component';
 
-@Component({ template: '<demo-cart-summary [cart]="cartValue" [title]="titleValue"></demo-cart-summary>' })
+@Component({
+    template: '<demo-cart-summary [cart]="cartValue" [title]="titleValue"></demo-cart-summary>',
+    standalone: false
+})
 class WrapperComponent {
   cartValue: DaffCart;
   titleValue: string;
 }
 
-@Component({ selector: 'demo-minicart-item', template: '' })
+@Component({
+    selector: 'demo-minicart-item', template: '',
+    standalone: false
+})
 class MockMiniCartItemComponent {
   @Input() item: DaffCartItem;
 }

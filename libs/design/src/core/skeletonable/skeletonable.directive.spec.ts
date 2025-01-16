@@ -12,10 +12,11 @@ import { By } from '@angular/platform-browser';
 import { DaffSkeletonableDirective } from './skeletonable.directive';
 
 @Component({
-  template: `
+    template: `
 		<div daffSkeletonable
 			[skeleton]="skeleton">
 		</div>`,
+    standalone: false
 })
 
 class WrapperComponent {

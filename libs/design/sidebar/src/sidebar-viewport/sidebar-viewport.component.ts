@@ -67,23 +67,22 @@ import { DaffSidebarViewportBackdropComponent } from '../sidebar-viewport-backdr
  * ```
  */
 @Component({
-  selector: 'daff-sidebar-viewport',
-  templateUrl: './sidebar-viewport.component.html',
-  styleUrls: ['./sidebar-viewport.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    daffSidebarAnimations.transformContent,
-  ],
-  providers: [
-    {
-      provide: DAFF_SIDEBAR_SCROLL_TOKEN,
-      useFactory: daffSidebarViewportScrollFactory,
-    },
-  ],
-  standalone: true,
-  imports: [
-    DaffSidebarViewportBackdropComponent,
-  ],
+    selector: 'daff-sidebar-viewport',
+    templateUrl: './sidebar-viewport.component.html',
+    styleUrls: ['./sidebar-viewport.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    animations: [
+        daffSidebarAnimations.transformContent,
+    ],
+    providers: [
+        {
+            provide: DAFF_SIDEBAR_SCROLL_TOKEN,
+            useFactory: daffSidebarViewportScrollFactory,
+        },
+    ],
+    imports: [
+        DaffSidebarViewportBackdropComponent,
+    ]
 })
 export class DaffSidebarViewportComponent implements AfterContentChecked, OnDestroy {
   @HostBinding('class.daff-sidebar-viewport') hostClass = true;

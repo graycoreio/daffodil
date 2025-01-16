@@ -8,12 +8,15 @@ import { By } from '@angular/platform-browser';
 
 import { CartTotalsItemComponent } from './cart-totals-item.component';
 
-@Component({ template: `
+@Component({
+    template: `
   <demo-cart-totals-item emphasize="true">
     <ng-container cart-total-label>{{label}}</ng-container>
     <ng-container cart-total-value>{{value}}</ng-container>
   </demo-cart-totals-item>
-` })
+`,
+    standalone: false
+})
 class WrapperComponent {
   label: string;
   value: string;

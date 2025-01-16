@@ -19,7 +19,10 @@ import {
   provideDaffSeoRouterSchema,
 } from '@daffodil/seo/router';
 
-@Component({ selector: 'lib-seo-compomnent', template: 'my-component' })
+@Component({
+    selector: 'lib-seo-compomnent', template: 'my-component',
+    standalone: false
+})
 class SeoTestComponent {}
 
 const routes: DaffRouteWithSeoData<unknown>[] = [

@@ -8,15 +8,14 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'icon-list',
-  templateUrl: './icon-list.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DAFF_LIST_COMPONENTS,
-    FaIconComponent,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'icon-list',
+    templateUrl: './icon-list.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DAFF_LIST_COMPONENTS,
+        FaIconComponent,
+    ]
 })
 export class IconListComponent {
   faInfoCircle = faInfoCircle;

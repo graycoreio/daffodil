@@ -26,12 +26,13 @@ import {
 } from '../../input/public_api';
 
 @Component({
-  template: `
+    template: `
     <daff-quantity-input
       [min]="minValue"
       [max]="maxValue"
     ></daff-quantity-input>
   `,
+    standalone: false
 })
 class WrapperComponent {
   minValue = 0;

@@ -55,18 +55,17 @@ import { DaffTabLabelComponent } from './tab-label/tab-label.component';
  * ```
  */
 @Component({
-  selector: 'daff-tabs',
-  templateUrl: './tabs.component.html',
-  styleUrl: './tabs.component.scss',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    NgTemplateOutlet,
-    RouterLink,
-    RouterLinkActive,
-    DaffTabActivatorComponent,
-  ],
+    selector: 'daff-tabs',
+    templateUrl: './tabs.component.html',
+    styleUrl: './tabs.component.scss',
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        NgTemplateOutlet,
+        RouterLink,
+        RouterLinkActive,
+        DaffTabActivatorComponent,
+    ]
 })
 
 export class DaffTabsComponent implements AfterContentInit, OnInit {

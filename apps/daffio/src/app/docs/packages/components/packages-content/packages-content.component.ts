@@ -14,14 +14,13 @@ import { DaffioDocArticleModule } from '../../../components/doc-article/module';
 import { DaffioDocsDynamicContent } from '../../../dynamic-content/dynamic-content.type';
 
 @Component({
-  selector: 'daffio-docs-packages-content',
-  templateUrl: './packages-content.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffioDocArticleModule,
-    DaffioSafeHtmlPipe,
-  ],
+    selector: 'daffio-docs-packages-content',
+    templateUrl: './packages-content.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DaffioDocArticleModule,
+        DaffioSafeHtmlPipe,
+    ]
 })
 export class DaffioDocsPackagesContentComponent implements DaffioDocsDynamicContent<DaffPackageGuideDoc> {
   static readonly kind = DaffDocKind.PACKAGE;

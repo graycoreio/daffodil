@@ -32,15 +32,14 @@ let switchUniqueId = 0;
  * ```
  */
 @Component({
-  selector: 'daff-switch',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './switch.component.html',
-  styleUrls: ['./switch.component.scss'],
-  standalone: true,
-  imports: [
-    DAFF_LOADING_ICON_COMPONENTS,
-    DaffErrorMessageModule,
-  ],
+    selector: 'daff-switch',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './switch.component.html',
+    styleUrls: ['./switch.component.scss'],
+    imports: [
+        DAFF_LOADING_ICON_COMPONENTS,
+        DaffErrorMessageModule,
+    ]
 })
 export class DaffSwitchComponent {
   /**

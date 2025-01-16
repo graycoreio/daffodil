@@ -12,13 +12,12 @@ import { DaffTreeData } from '@daffodil/design/tree';
 import { DaffTreeComponent } from '../tree.component';
 
 @Component({
-  template: `
+    template: `
     <ul daff-tree [tree]="data"></ul>
   `,
-  standalone: true,
-  imports: [
-    DaffTreeComponent,
-  ],
+    imports: [
+        DaffTreeComponent,
+    ]
 })
 class WrapperComponent {
   @Input() data: DaffTreeData<any>;

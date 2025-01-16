@@ -12,15 +12,14 @@ import {
 import { DaffMenuModule } from '@daffodil/design/menu';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'menu-content',
-  templateUrl: './menu-content.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffMenuModule,
-    FaIconComponent,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'menu-content',
+    templateUrl: './menu-content.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DaffMenuModule,
+        FaIconComponent,
+    ]
 })
 export class MenuContentComponent {
   faUser = faUser;

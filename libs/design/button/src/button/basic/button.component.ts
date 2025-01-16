@@ -29,19 +29,18 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
  * ```
  */
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: '' +
-    'button[daff-button]' + ',' +
-    'a[daff-button]',
-  templateUrl: '../button-base.component.html',
-  styleUrl: './button.component.scss',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffPrefixSuffixModule,
-    DAFF_LOADING_ICON_COMPONENTS,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: '' +
+        'button[daff-button]' + ',' +
+        'a[daff-button]',
+    templateUrl: '../button-base.component.html',
+    styleUrl: './button.component.scss',
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DaffPrefixSuffixModule,
+        DAFF_LOADING_ICON_COMPONENTS,
+    ]
 })
 export class DaffButtonComponent extends DaffButtonBaseDirective {
   /**

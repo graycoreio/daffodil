@@ -7,10 +7,11 @@ import {
 import { DAFF_BRANDING_CONSTANTS } from '@daffodil/branding';
 
 @Component({
-  selector: 'daffio-home-hero',
-  templateUrl: './home-hero.component.html',
-  styleUrls: ['./home-hero.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'daffio-home-hero',
+    templateUrl: './home-hero.component.html',
+    styleUrls: ['./home-hero.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 
 export class DaffioHomeHeroComponent {

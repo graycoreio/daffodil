@@ -13,8 +13,9 @@ import { DaffStatus } from './statusable';
 import { DaffStatusableDirective } from './statusable.directive';
 
 @Component({
-  template: `
+    template: `
 		<div daffStatusable [status]="status"></div>`,
+    standalone: false
 })
 
 class WrapperComponent {

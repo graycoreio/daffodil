@@ -17,16 +17,15 @@ import { DemoCheckoutShippingFormComponent } from './shipping-form.component';
 import { DemoCheckoutShippingOptionsComponent } from '../shipping-options/components/shipping-options/shipping-options.component';
 
 @Component({
-  template: `
+    template: `
     <demo-checkout-shipping-form
       [selectedOption]="selectedOptionValue"
       [options]="optionsValue"
       (submitted)="submittedFunction($event)"></demo-checkout-shipping-form>
   `,
-  standalone: true,
-  imports: [
-    DemoCheckoutShippingFormComponent,
-  ],
+    imports: [
+        DemoCheckoutShippingFormComponent,
+    ]
 })
 class WrapperComponent {
   selectedOptionValue: DaffCartShippingRate;

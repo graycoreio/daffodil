@@ -12,7 +12,8 @@ import { By } from '@angular/platform-browser';
 import { DaffFormLabelDirective } from './form-label.directive';
 
 @Component({
-  template: `<div daffFormLabel>Label</div>`,
+    template: `<div daffFormLabel>Label</div>`,
+    standalone: false
 })
 
 class WrapperComponent {}

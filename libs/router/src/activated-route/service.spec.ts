@@ -8,7 +8,9 @@ import { tap } from 'rxjs';
 
 import { DaffRouterActivatedRoute } from './service';
 
-@Component({})
+@Component({
+    standalone: false
+})
 class TestComponent {}
 
 describe('@daffodil/router | DaffRouterActivatedRoute', () => {

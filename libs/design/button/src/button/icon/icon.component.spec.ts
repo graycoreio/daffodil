@@ -12,14 +12,13 @@ import { By } from '@angular/platform-browser';
 import { DaffIconButtonComponent } from './icon.component';
 
 @Component({
-  template: `
+    template: `
     <a daff-icon-button>Icon Link Button</a>
     <button daff-icon-button>Icon Button</button>
   `,
-  standalone: true,
-  imports: [
-    DaffIconButtonComponent,
-  ],
+    imports: [
+        DaffIconButtonComponent,
+    ]
 })
 
 class WrapperComponent {}

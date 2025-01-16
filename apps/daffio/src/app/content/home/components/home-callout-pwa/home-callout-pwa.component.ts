@@ -5,10 +5,11 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'daffio-home-callout-pwa',
-  templateUrl: './home-callout-pwa.component.html',
-  styleUrls: ['./home-callout-pwa.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'daffio-home-callout-pwa',
+    templateUrl: './home-callout-pwa.component.html',
+    styleUrls: ['./home-callout-pwa.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 
 export class DaffioHomeCalloutPwaComponent {

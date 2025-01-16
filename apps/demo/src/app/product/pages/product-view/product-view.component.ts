@@ -25,8 +25,9 @@ import {
 } from '@daffodil/product/state';
 
 @Component({
-  selector: 'demo-product-view',
-  templateUrl: './product-view.component.html',
+    selector: 'demo-product-view',
+    templateUrl: './product-view.component.html',
+    standalone: false
 })
 export class ProductViewComponent implements OnInit {
 

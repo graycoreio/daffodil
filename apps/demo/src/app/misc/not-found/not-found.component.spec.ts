@@ -11,7 +11,10 @@ import { By } from '@angular/platform-browser';
 
 import { NotFoundComponent } from './not-found.component';
 
-@Component({ selector: 'demo-best-sellers', template: '' })
+@Component({
+    selector: 'demo-best-sellers', template: '',
+    standalone: false
+})
 class MockBestSellersComponent {}
 
 describe('NotFoundComponent', () => {

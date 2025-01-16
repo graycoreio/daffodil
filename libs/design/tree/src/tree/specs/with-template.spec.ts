@@ -12,7 +12,7 @@ import { DaffTreeData } from '../../interfaces/tree-data';
 import { DaffTreeComponent } from '../tree.component';
 
 @Component({
-  template: `
+    template: `
     <ul daff-tree [tree]="data">
       <ng-template #daffTreeItemWithChildrenTpl let-node>
           <button daffTreeItem [node]="node">{{ node.title }} </button>
@@ -23,10 +23,9 @@ import { DaffTreeComponent } from '../tree.component';
       </ng-template>
     </ul>
   `,
-  standalone: true,
-  imports: [
-    DaffTreeComponent,
-  ],
+    imports: [
+        DaffTreeComponent,
+    ]
 })
 class WrapperComponent {
   @Input() data: DaffTreeData<any>;

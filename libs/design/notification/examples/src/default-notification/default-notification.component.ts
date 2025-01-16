@@ -10,18 +10,17 @@ import { DaffPrefixSuffixModule } from '@daffodil/design';
 import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'default-notification',
-  templateUrl: './default-notification.component.html',
-  styleUrls: ['./default-notification.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DAFF_NOTIFICATION_COMPONENTS,
-    FaIconComponent,
-    DaffPrefixSuffixModule,
-    NgIf,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'default-notification',
+    templateUrl: './default-notification.component.html',
+    styleUrls: ['./default-notification.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DAFF_NOTIFICATION_COMPONENTS,
+        FaIconComponent,
+        DaffPrefixSuffixModule,
+        NgIf,
+    ]
 })
 export class DefaultNotificationComponent {
   faInfoCircle = faInfoCircle;

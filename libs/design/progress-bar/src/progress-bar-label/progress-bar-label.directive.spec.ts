@@ -12,11 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffProgressBarLabelDirective } from './progress-bar-label.directive';
 
 @Component({
-  template: `<label daffProgressBarLabel>Label</label>`,
-  standalone: true,
-  imports: [
-    DaffProgressBarLabelDirective,
-  ],
+    template: `<label daffProgressBarLabel>Label</label>`,
+    imports: [
+        DaffProgressBarLabelDirective,
+    ]
 })
 
 class WrapperComponent {}

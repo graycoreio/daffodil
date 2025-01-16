@@ -15,15 +15,16 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
  * DaffInputComponent provides the same functionality as a native `<input>` and contains custom styling and functionality.
  */
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'input[daff-input]',
-  template: '<ng-content></ng-content>',
-  styleUrls: ['./input.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    { provide: DaffFormFieldControl, useExisting: DaffInputComponent },
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'input[daff-input]',
+    template: '<ng-content></ng-content>',
+    styleUrls: ['./input.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        { provide: DaffFormFieldControl, useExisting: DaffInputComponent },
+    ],
+    standalone: false
 })
 export class DaffInputComponent implements DaffFormFieldControl {
 

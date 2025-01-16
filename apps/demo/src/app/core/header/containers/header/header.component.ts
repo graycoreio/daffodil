@@ -9,8 +9,9 @@ import { ToggleSidebar } from '../../../sidebar/actions/sidebar.actions';
 
 
 @Component({
-  selector: 'demo-header-container',
-  templateUrl: './header.component.html',
+    selector: 'demo-header-container',
+    templateUrl: './header.component.html',
+    standalone: false
 })
 export class DemoHeaderContainer {
   faBars = faBars;

@@ -12,17 +12,15 @@ import {
 } from '@daffodil/design';
 
 @Component({
-  selector:
-    'a[daff-menu-item]' + ',' +
-    'button[daff-menu-item]',
-  templateUrl: './menu-item.component.html',
-  styleUrls: ['./menu-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    NgIf,
-    DaffPrefixSuffixModule,
-  ],
+    selector: 'a[daff-menu-item]' + ',' +
+        'button[daff-menu-item]',
+    templateUrl: './menu-item.component.html',
+    styleUrls: ['./menu-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        NgIf,
+        DaffPrefixSuffixModule,
+    ]
 })
 
 export class DaffMenuItemComponent {

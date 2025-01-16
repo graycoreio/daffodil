@@ -13,16 +13,15 @@ import { DaffPersonalAddress } from '@daffodil/geography';
 import { DemoCheckoutShippingAddressSummaryComponent } from './shipping-address-summary.component';
 
 @Component({
-  template: `
+    template: `
     <demo-checkout-shipping-address-summary
       [shippingAddress]="shippingAddressValue"
       (edit)="editShippingInfoFunction()"
     ></demo-checkout-shipping-address-summary>
   `,
-  standalone: true,
-  imports: [
-    DemoCheckoutShippingAddressSummaryComponent,
-  ],
+    imports: [
+        DemoCheckoutShippingAddressSummaryComponent,
+    ]
 })
 class WrapperComponent {
   shippingAddressValue: DaffPersonalAddress;

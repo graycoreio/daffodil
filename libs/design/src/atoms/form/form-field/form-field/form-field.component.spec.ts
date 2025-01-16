@@ -18,11 +18,14 @@ import { DaffInputModule } from '../../input/public_api';
 import { DaffFormFieldControl } from '../form-field-control';
 import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
 
-@Component({ template: `
+@Component({
+    template: `
   <daff-form-field [formSubmitted]="formSubmittedValue">
     <input daff-input [formControl]="formControl">
     <daff-error-message></daff-error-message>
-  </daff-form-field>` })
+  </daff-form-field>`,
+    standalone: false
+})
 class WrapperComponent {
   formSubmittedValue: boolean;
   formControl = new UntypedFormControl('', Validators.required);
@@ -117,10 +120,13 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
 
 });
 
-@Component({ template: `
+@Component({
+    template: `
   <daff-form-field [formSubmitted]="formSubmittedValue">
     <daff-error-message></daff-error-message>
-  </daff-form-field>` })
+  </daff-form-field>`,
+    standalone: false
+})
 
 class WrapperWithoutControlComponent {
   formSubmittedValue: boolean;

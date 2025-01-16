@@ -13,16 +13,15 @@ import { DaffModalCloseDirective } from './modal-close.directive';
 import { DaffModalService } from '../service/modal.service';
 
 @Component({
-  template: `
+    template: `
     <button daffModalClose></button>
   `,
-  standalone: true,
-  imports: [
-    DaffModalCloseDirective,
-  ],
-  providers: [
-    DaffModalService,
-  ],
+    imports: [
+        DaffModalCloseDirective,
+    ],
+    providers: [
+        DaffModalService,
+    ]
 })
 class WrapperComponent {}
 

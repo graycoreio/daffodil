@@ -35,9 +35,10 @@ import { TREE_EXAMPLES } from '@daffodil/design/tree/examples';
 import { createCustomElementFromExample } from './core/elements/create-element-from-example';
 
 @Component({
-  selector: 'design-land-app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'design-land-app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class DesignLandAppComponent {
   constructor(

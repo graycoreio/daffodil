@@ -17,7 +17,7 @@ import {
 } from './notification.component';
 
 @Component ({
-  template: `
+    template: `
     <daff-notification
       [status]="status"
       [orientation]="orientation"
@@ -25,10 +25,9 @@ import {
       (closeNotification)="closeNotificationFunction()">
     </daff-notification>
   `,
-  standalone: true,
-  imports: [
-    DaffNotificationComponent,
-  ],
+    imports: [
+        DaffNotificationComponent,
+    ]
 })
 
 class WrapperComponent {

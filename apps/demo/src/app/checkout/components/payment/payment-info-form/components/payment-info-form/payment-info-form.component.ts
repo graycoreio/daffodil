@@ -27,17 +27,16 @@ interface YearOption {
 const currentYear = new Date().getFullYear();
 
 @Component({
-  selector: 'demo-payment-info-form',
-  templateUrl: './payment-info-form.component.html',
-  styleUrls: ['./payment-info-form.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    DaffInputModule,
-    DaffNativeSelectModule,
-    DaffFormFieldModule,
-  ],
+    selector: 'demo-payment-info-form',
+    templateUrl: './payment-info-form.component.html',
+    styleUrls: ['./payment-info-form.component.scss'],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        DaffInputModule,
+        DaffNativeSelectModule,
+        DaffFormFieldModule,
+    ]
 })
 export class DemoCheckoutPaymentInfoFormComponent {
   @Input() formGroup: PaymentInfoFormGroup;

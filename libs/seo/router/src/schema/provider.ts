@@ -1,7 +1,8 @@
 import {
-  APP_INITIALIZER,
   EnvironmentProviders,
   makeEnvironmentProviders,
+  inject,
+  provideAppInitializer,
 } from '@angular/core';
 
 import { DaffSchemaEffect } from './schema.effect';
@@ -19,10 +20,8 @@ const initialize = (effect: DaffSchemaEffect): () => void => () => {
  */
 export const provideDaffSeoRouterSchema = (): EnvironmentProviders => makeEnvironmentProviders([
   DaffSchemaEffect,
-  {
-    provide: APP_INITIALIZER,
-    useFactory: initialize,
-    deps: [DaffSchemaEffect],
-    multi: true,
-  },
+  provideAppInitializer(() => {
+    const initializerFn = (initialize)(inject(DaffSchemaEffect));
+    return initializerFn();
+  }),
 ]);

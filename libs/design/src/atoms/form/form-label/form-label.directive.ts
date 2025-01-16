@@ -4,7 +4,8 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[daffFormLabel]',
+    selector: '[daffFormLabel]',
+    standalone: false
 })
 export class DaffFormLabelDirective {
   @HostBinding('class.daff-form-label') class = true;

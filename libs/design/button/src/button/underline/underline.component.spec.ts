@@ -12,14 +12,13 @@ import { By } from '@angular/platform-browser';
 import { DaffUnderlineButtonComponent } from './underline.component';
 
 @Component({
-  template: `
+    template: `
     <a daff-underline-button>Underline Link Button</a>
     <button daff-underline-button>Underline Button</button>
   `,
-  standalone: true,
-  imports: [
-    DaffUnderlineButtonComponent,
-  ],
+    imports: [
+        DaffUnderlineButtonComponent,
+    ]
 })
 
 class WrapperComponent {}

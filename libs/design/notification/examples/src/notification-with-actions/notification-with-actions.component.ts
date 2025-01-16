@@ -9,10 +9,10 @@ import { DaffFlatButtonComponent } from '@daffodil/design/button';
 import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'notification-with-actions',
-  templateUrl: './notification-with-actions.component.html',
-  styles: [`
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'notification-with-actions',
+    templateUrl: './notification-with-actions.component.html',
+    styles: [`
     :host {
       display: flex;
       flex-direction: column;
@@ -20,13 +20,12 @@ import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
       gap: 16px;
     }
   `],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DAFF_NOTIFICATION_COMPONENTS,
-    FontAwesomeModule,
-    DaffFlatButtonComponent,
-  ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DAFF_NOTIFICATION_COMPONENTS,
+        FontAwesomeModule,
+        DaffFlatButtonComponent,
+    ]
 })
 export class NotificationWithActionsComponent {
   faExclamationCircle = faExclamationCircle;

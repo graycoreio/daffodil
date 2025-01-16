@@ -17,18 +17,17 @@ import { DaffDocsDesignGuideNavList } from '@daffodil/docs-utils';
 import { useDaffioNavList } from '../../../composables/nav-index';
 
 @Component({
-  selector: 'daffio-docs-design-component-overview',
-  templateUrl: './component-overview.component.html',
-  styleUrls: ['./component-overview.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    RouterLink,
-    AsyncPipe,
-    DAFF_CARD_COMPONENTS,
-    DAFF_HERO_COMPONENTS,
-    DAFF_CONTAINER_COMPONENTS,
-  ],
+    selector: 'daffio-docs-design-component-overview',
+    templateUrl: './component-overview.component.html',
+    styleUrls: ['./component-overview.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        RouterLink,
+        AsyncPipe,
+        DAFF_CARD_COMPONENTS,
+        DAFF_HERO_COMPONENTS,
+        DAFF_CONTAINER_COMPONENTS,
+    ]
 })
 export class DaffioDocsDesignComponentOverviewPageComponent {
   components$: Observable<Array<DaffDocsDesignGuideNavList>> = useDaffioNavList<DaffDocsDesignGuideNavList>().list.pipe(

@@ -11,10 +11,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'daffio-why-pwa-overview',
-  templateUrl: './why-pwa-overview.component.html',
-  styleUrls: ['./why-pwa-overview.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'daffio-why-pwa-overview',
+    templateUrl: './why-pwa-overview.component.html',
+    styleUrls: ['./why-pwa-overview.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 
 export class DaffioWhyPwaOverviewComponent {

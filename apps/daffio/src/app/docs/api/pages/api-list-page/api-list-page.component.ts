@@ -13,10 +13,11 @@ import {
 import { DaffDocsApiNavList } from '@daffodil/docs-utils';
 
 @Component({
-  selector: 'daffio-api-list-page',
-  templateUrl: './api-list-page.component.html',
-  styleUrls: ['./api-list-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'daffio-api-list-page',
+    templateUrl: './api-list-page.component.html',
+    styleUrls: ['./api-list-page.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class DaffioApiListPageComponent implements OnInit {
   /**

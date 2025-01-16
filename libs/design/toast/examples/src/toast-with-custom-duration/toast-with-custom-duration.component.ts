@@ -10,15 +10,14 @@ import {
 } from '@daffodil/design/toast';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'toast-with-custom-duration',
-  templateUrl: './toast-with-custom-duration.component.html',
-  styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffButtonComponent,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'toast-with-custom-duration',
+    templateUrl: './toast-with-custom-duration.component.html',
+    styles: [],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DaffButtonComponent,
+    ]
 })
 export class ToastWithCustomDurationComponent {
   private toast: DaffToast;

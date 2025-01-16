@@ -41,7 +41,6 @@ const visit = (guide: DaffDocsNavList): DaffTreeData<unknown> => ({
   templateUrl: './docs-list.component.html',
   styleUrl: './docs-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     AsyncPipe,
     RouterLink,

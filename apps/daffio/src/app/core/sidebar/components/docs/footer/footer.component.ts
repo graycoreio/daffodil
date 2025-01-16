@@ -8,15 +8,14 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { DaffSidebarFooterComponent } from '@daffodil/design/sidebar';
 
 @Component({
-  selector: 'daffio-docs-sidebar-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffSidebarFooterComponent,
-    FaIconComponent,
-  ],
+    selector: 'daffio-docs-sidebar-footer',
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DaffSidebarFooterComponent,
+        FaIconComponent,
+    ]
 })
 export class DaffioDocsSidebarFooterComponent {
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;

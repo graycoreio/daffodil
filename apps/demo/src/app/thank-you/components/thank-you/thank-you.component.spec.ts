@@ -13,15 +13,14 @@ import { ThankYouComponent } from './thank-you.component';
 
 
 @Component({
-  template: `
+    template: `
     <demo-thank-you
       [order]="orderValue"
     ></demo-thank-you>
   `,
-  standalone: true,
-  imports: [
-    ThankYouComponent,
-  ],
+    imports: [
+        ThankYouComponent,
+    ]
 })
 class WrapperComponent {
   orderValue: DaffOrder;

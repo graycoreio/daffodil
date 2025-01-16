@@ -20,10 +20,11 @@ import {
 import { DaffProduct } from '@daffodil/product';
 
 @Component({
-  selector: 'demo-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'demo-product',
+    templateUrl: './product.component.html',
+    styleUrls: ['./product.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ProductComponent implements OnInit {
   @Input() product: DaffProduct;

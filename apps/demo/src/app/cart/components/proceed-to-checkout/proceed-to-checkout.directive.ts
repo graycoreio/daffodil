@@ -5,7 +5,8 @@ import {
 import { Router } from '@angular/router';
 
 @Directive({
-  selector: '[demoProceedToCheckout]',
+    selector: '[demoProceedToCheckout]',
+    standalone: false
 })
 
 export class ProceedToCheckoutDirective {

@@ -12,16 +12,15 @@ import { DaffCheckboxModule } from '@daffodil/design';
 import { DaffButtonComponent } from '@daffodil/design/button';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'basic-checkbox',
-  templateUrl: './basic-checkbox.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffCheckboxModule,
-    ReactiveFormsModule,
-    DaffButtonComponent,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'basic-checkbox',
+    templateUrl: './basic-checkbox.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DaffCheckboxModule,
+        ReactiveFormsModule,
+        DaffButtonComponent,
+    ]
 })
 export class BasicCheckboxComponent implements OnInit {
   checkboxExample = new UntypedFormControl();

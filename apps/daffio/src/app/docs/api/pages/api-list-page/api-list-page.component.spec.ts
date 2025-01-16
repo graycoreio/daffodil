@@ -19,8 +19,9 @@ import { DaffioRoute } from '../../../../core/router/route.type';
 import { DaffioApiListComponent } from '../../components/api-list/api-list.component';
 
 @Component({
-  template: '',
-  selector: 'daffio-api-list',
+    template: '',
+    selector: 'daffio-api-list',
+    standalone: false
 })
 class MockDaffioApiListComponent {
   @Input() apiList: DaffDocsApiNavList[] = [];

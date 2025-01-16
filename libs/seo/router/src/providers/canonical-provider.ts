@@ -1,6 +1,7 @@
 import {
-  APP_INITIALIZER,
-  Provider,
+  inject,
+  makeEnvironmentProviders,
+  provideAppInitializer,
 } from '@angular/core';
 
 import { initializeRouterService } from './initializer';
@@ -22,13 +23,10 @@ import { DaffSeoNativeCanonicalUrlEffects } from '../effects/canonical.effects';
  * export class AppModule { }
  * ```
  */
-// TODO: change return type to EnvironmentProvider
-export const daffSeoRouterCanonicalProvider = (): Provider[] => [
+export const daffSeoRouterCanonicalProvider = () => makeEnvironmentProviders([
   DaffSeoNativeCanonicalUrlEffects,
-  {
-    provide: APP_INITIALIZER,
-    useFactory: initializeRouterService,
-    deps: [DaffSeoNativeCanonicalUrlEffects],
-    multi: true,
-  },
-];
+  provideAppInitializer(() => {
+    const initializerFn = (initializeRouterService)(inject(DaffSeoNativeCanonicalUrlEffects));
+    return initializerFn();
+  }),
+]);

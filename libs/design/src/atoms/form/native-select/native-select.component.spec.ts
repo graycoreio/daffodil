@@ -16,13 +16,14 @@ import { By } from '@angular/platform-browser';
 import { DaffNativeSelectComponent } from './native-select.component';
 
 @Component({
-  template: `
+    template: `
     <select daff-native-select [formSubmitted]="formSubmittedValue" [formControl]="formControlValue">
       <option value="1">Option 1</option>
       <option value="2">Option 2</option>
       <option value="3">Option 3</option>
     </select>
   `,
+    standalone: false
 })
 
 class WrapperComponent {

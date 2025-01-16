@@ -13,17 +13,16 @@ import {
 } from '@daffodil/design';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'select-max-quantity-field',
-  templateUrl: './select-max-quantity-field.component.html',
-  styleUrls: ['./select-max-quantity-field.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffFormFieldModule,
-    DaffQuantityFieldModule,
-    ReactiveFormsModule,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'select-max-quantity-field',
+    templateUrl: './select-max-quantity-field.component.html',
+    styleUrls: ['./select-max-quantity-field.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DaffFormFieldModule,
+        DaffQuantityFieldModule,
+        ReactiveFormsModule,
+    ]
 })
 export class SelectMaxQuantityFieldComponent {
   control = new UntypedFormControl(1);

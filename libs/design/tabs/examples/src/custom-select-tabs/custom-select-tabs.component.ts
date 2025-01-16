@@ -13,17 +13,16 @@ import {
 } from '@daffodil/design/tabs';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'custom-select-tabs',
-  templateUrl: './custom-select-tabs.component.html',
-  styleUrl: './custom-select-tabs.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DAFF_TABS_COMPONENTS,
-    DaffButtonComponent,
-    FaIconComponent,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'custom-select-tabs',
+    templateUrl: './custom-select-tabs.component.html',
+    styleUrl: './custom-select-tabs.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DAFF_TABS_COMPONENTS,
+        DaffButtonComponent,
+        FaIconComponent,
+    ]
 })
 export class CustomSelectTabsComponent {
   faInfoCircle = faInfoCircle;

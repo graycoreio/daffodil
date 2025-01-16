@@ -23,15 +23,14 @@ import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 class MockMediaRendererComponent {}
 
 @Component({
-  template: `
+    template: `
     <daff-media-gallery>
       <div daffThumbnail (becameSelected)="becameSelectedFunction()"></div>
     </daff-media-gallery>`,
-  standalone: true,
-  imports: [
-    DaffMediaGalleryComponent,
-    DaffThumbnailDirective,
-  ],
+    imports: [
+        DaffMediaGalleryComponent,
+        DaffThumbnailDirective,
+    ]
 })
 class WrapperComponent {
   becameSelectedFunction() {};

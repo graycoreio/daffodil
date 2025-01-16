@@ -17,11 +17,10 @@ import {
 } from './card.component';
 
 @Component ({
-  template: `<daff-card [color]="color" [orientation]="orientation"></daff-card>`,
-  standalone: true,
-  imports: [
-    DaffCardComponent,
-  ],
+    template: `<daff-card [color]="color" [orientation]="orientation"></daff-card>`,
+    imports: [
+        DaffCardComponent,
+    ]
 })
 
 class WrapperComponent {

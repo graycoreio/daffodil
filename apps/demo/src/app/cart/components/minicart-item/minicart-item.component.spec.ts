@@ -15,7 +15,10 @@ import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { MiniCartItemComponent } from './minicart-item.component';
 import { CartItemComponent } from '../cart-item/cart-item.component';
 
-@Component({ template: '<demo-minicart-item [item]="cartItemValue"></demo-minicart-item>' })
+@Component({
+    template: '<demo-minicart-item [item]="cartItemValue"></demo-minicart-item>',
+    standalone: false
+})
 class WrapperComponent {
   cartItemValue: DaffCartItem;
 }

@@ -12,11 +12,10 @@ import { DaffPersonalAddressFactory } from '@daffodil/geography/testing';
 import { DemoGeographyAddressSummaryComponent } from './address-summary.component';
 
 @Component({
-  template: '<demo-geography-address-summary [address]="addressValue"></demo-geography-address-summary>',
-  standalone: true,
-  imports: [
-    DemoGeographyAddressSummaryComponent,
-  ],
+    template: '<demo-geography-address-summary [address]="addressValue"></demo-geography-address-summary>',
+    imports: [
+        DemoGeographyAddressSummaryComponent,
+    ]
 })
 class WrapperComponent {
   addressValue: DaffPersonalAddress;

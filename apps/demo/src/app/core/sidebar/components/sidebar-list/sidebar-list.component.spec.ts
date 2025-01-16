@@ -16,7 +16,10 @@ import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { SidebarListComponent } from './sidebar-list.component';
 
-@Component({ template: '<demo-sidebar-list [tree]="tree"></demo-sidebar-list>' })
+@Component({
+    template: '<demo-sidebar-list [tree]="tree"></demo-sidebar-list>',
+    standalone: false
+})
 class WrapperComponent {
   tree: DaffNavigationTree;
   closeFunction() {};

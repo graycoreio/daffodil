@@ -12,11 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffHeroBodyDirective } from './hero-body.directive';
 
 @Component({
-  template: `<h1 daffHeroBody>Hero Body</h1>`,
-  standalone: true,
-  imports: [
-    DaffHeroBodyDirective,
-  ],
+    template: `<h1 daffHeroBody>Hero Body</h1>`,
+    imports: [
+        DaffHeroBodyDirective,
+    ]
 })
 class WrapperComponent {}
 

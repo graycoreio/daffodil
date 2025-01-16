@@ -37,24 +37,23 @@ enum DaffNotificationOrientationEnum {
  * information related to user actions within a page's content.
  */
 @Component({
-  selector: 'daff-notification',
-  templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.scss'],
-  hostDirectives: [
-    { directive: DaffArticleEncapsulatedDirective },
-    {
-      directive: DaffStatusableDirective,
-      inputs: ['status'],
-    },
-  ],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    NgIf,
-    FaIconComponent,
-    DaffPrefixSuffixModule,
-  ],
+    selector: 'daff-notification',
+    templateUrl: './notification.component.html',
+    styleUrls: ['./notification.component.scss'],
+    hostDirectives: [
+        { directive: DaffArticleEncapsulatedDirective },
+        {
+            directive: DaffStatusableDirective,
+            inputs: ['status'],
+        },
+    ],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        NgIf,
+        FaIconComponent,
+        DaffPrefixSuffixModule,
+    ]
 })
 export class DaffNotificationComponent implements DaffPrefixable {
   faTimes = faTimes;

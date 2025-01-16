@@ -10,23 +10,22 @@ import { DaffPrefixSuffixModule } from '@daffodil/design';
 import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'dismissible-notification',
-  templateUrl: './dismissible-notification.component.html',
-  styles: [`
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'dismissible-notification',
+    templateUrl: './dismissible-notification.component.html',
+    styles: [`
     :host {
       display: flex;
       justify-content: center;
     }
   `],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DAFF_NOTIFICATION_COMPONENTS,
-    FaIconComponent,
-    DaffPrefixSuffixModule,
-    NgIf,
-  ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DAFF_NOTIFICATION_COMPONENTS,
+        FaIconComponent,
+        DaffPrefixSuffixModule,
+        NgIf,
+    ]
 })
 export class DismissibleNotificationComponent {
   faInfoCircle = faInfoCircle;

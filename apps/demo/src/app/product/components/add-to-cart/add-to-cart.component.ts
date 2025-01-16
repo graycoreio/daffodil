@@ -13,10 +13,11 @@ import {
 } from '@daffodil/cart';
 
 @Component({
-  selector: 'demo-add-to-cart',
-  templateUrl: './add-to-cart.component.html',
-  styleUrls: ['./add-to-cart.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'demo-add-to-cart',
+    templateUrl: './add-to-cart.component.html',
+    styleUrls: ['./add-to-cart.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class AddToCartComponent {
   @HostBinding('class.demo-add-to-cart') class = true;

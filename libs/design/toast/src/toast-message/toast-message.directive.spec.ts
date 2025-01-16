@@ -12,13 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffToastMessageDirective } from './toast-message.directive';
 
 @Component({
-  template: `
+    template: `
     <div daffToastMessage>Message</div>
   `,
-  standalone: true,
-  imports: [
-    DaffToastMessageDirective,
-  ],
+    imports: [
+        DaffToastMessageDirective,
+    ]
 })
 class WrapperComponent {}
 

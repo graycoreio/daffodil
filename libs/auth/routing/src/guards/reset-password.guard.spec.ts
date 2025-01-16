@@ -20,7 +20,10 @@ import {
 
 import { DaffAuthResetPasswordGuard } from './reset-password.guard';
 
-@Component({ template: '' })
+@Component({
+    template: '',
+    standalone: false
+})
 class TestComponent {}
 
 describe('@daffodil/auth/routing | DaffAuthResetPasswordGuard', () => {

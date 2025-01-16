@@ -13,7 +13,8 @@ import { By } from '@angular/platform-browser';
 import { DaffInputComponent } from './input.component';
 
 @Component({
-  template: `<input daff-input [formSubmitted]="formSubmittedValue">`,
+    template: `<input daff-input [formSubmitted]="formSubmittedValue">`,
+    standalone: false
 })
 class WrapperComponent {
   formSubmittedValue: boolean;

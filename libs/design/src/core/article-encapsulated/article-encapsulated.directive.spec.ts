@@ -12,8 +12,9 @@ import { By } from '@angular/platform-browser';
 import { DaffArticleEncapsulatedDirective } from './article-encapsulated.directive';
 
 @Component({
-  template: `
+    template: `
 		<div daffArticleEncapsulated></div>`,
+    standalone: false
 })
 
 class WrapperComponent {}

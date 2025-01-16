@@ -12,13 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffModalTitleDirective } from './modal-title.directive';
 
 @Component({
-  template: `
+    template: `
     <h2 daffModalTitle>Lorem Ipsum</h2>
   `,
-  standalone: true,
-  imports: [
-    DaffModalTitleDirective,
-  ],
+    imports: [
+        DaffModalTitleDirective,
+    ]
 })
 class WrapperComponent {}
 

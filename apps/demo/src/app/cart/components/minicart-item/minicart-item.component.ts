@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
 import { DaffCartItem } from '@daffodil/cart';
 
 @Component({
-  selector: 'demo-minicart-item',
-  templateUrl: './minicart-item.component.html',
-  styleUrls: ['./minicart-item.component.scss'],
+    selector: 'demo-minicart-item',
+    templateUrl: './minicart-item.component.html',
+    styleUrls: ['./minicart-item.component.scss'],
+    standalone: false
 })
 export class MiniCartItemComponent {
   @HostBinding('class.demo-minicart-item') class = true;

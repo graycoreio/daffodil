@@ -17,7 +17,10 @@ import {
 
 import { DaffResolvedCartGuard } from './resolved-cart.guard';
 
-@Component({ template: '' })
+@Component({
+    template: '',
+    standalone: false
+})
 class TestComponent {}
 
 describe('@daffodil/cart/routing | DaffResolvedCartGuard | Integration', () => {

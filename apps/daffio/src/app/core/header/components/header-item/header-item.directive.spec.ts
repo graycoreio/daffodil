@@ -12,7 +12,8 @@ import { By } from '@angular/platform-browser';
 import { DaffioHeaderItemDirective } from './header-item.directive';
 
 @Component({
-  template: `<a daffioHeaderItem [active]="active">Header Item</a>`,
+    template: `<a daffioHeaderItem [active]="active">Header Item</a>`,
+    standalone: false
 })
 class WrapperComponent {
   active: boolean;

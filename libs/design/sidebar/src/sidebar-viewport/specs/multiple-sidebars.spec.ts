@@ -18,16 +18,15 @@ import { DaffSidebarViewportComponent } from './../sidebar-viewport.component';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 @Component({
-  template: `
+    template: `
 		<daff-sidebar-viewport>
 			<daff-sidebar *ngFor="let sidebar of sidebars" [side]="sidebar[1]" [mode]="sidebar[0]"></daff-sidebar>
 		</daff-sidebar-viewport>
 		`,
-  standalone: true,
-  imports: [
-    DaffSidebarComponent,
-    DaffSidebarViewportComponent,
-  ],
+    imports: [
+        DaffSidebarComponent,
+        DaffSidebarViewportComponent,
+    ]
 })
 class IterableWrapperComponent{
   @Input() sidebars: any[] = [];

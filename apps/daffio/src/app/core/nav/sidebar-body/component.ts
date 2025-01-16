@@ -20,7 +20,6 @@ import { DaffioNavLink } from '../link/type';
   selector: 'daffio-nav-links-sidebar-body',
   templateUrl: './component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     AsyncPipe,
     DAFF_LIST_COMPONENTS,

@@ -12,11 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffCardContentDirective } from './card-content.directive';
 
 @Component({
-  template: `<div daffCardContent></div>`,
-  standalone: true,
-  imports: [
-    DaffCardContentDirective,
-  ],
+    template: `<div daffCardContent></div>`,
+    imports: [
+        DaffCardContentDirective,
+    ]
 })
 
 class WrapperComponent {}

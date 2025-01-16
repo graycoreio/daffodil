@@ -13,7 +13,8 @@ import { By } from '@angular/platform-browser';
 import { DaffioWhyPwaOverviewComponent } from './why-pwa-overview.component';
 
 @Component({
-  template: `<daffio-why-pwa-overview></daffio-why-pwa-overview>`,
+    template: `<daffio-why-pwa-overview></daffio-why-pwa-overview>`,
+    standalone: false
 })
 class WrapperComponent {}
 

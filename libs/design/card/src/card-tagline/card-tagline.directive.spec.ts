@@ -12,11 +12,10 @@ import { By } from '@angular/platform-browser';
 import { DaffCardTaglineDirective } from './card-tagline.directive';
 
 @Component({
-  template: `<div daffCardTagline></div>`,
-  standalone: true,
-  imports: [
-    DaffCardTaglineDirective,
-  ],
+    template: `<div daffCardTagline></div>`,
+    imports: [
+        DaffCardTaglineDirective,
+    ]
 })
 
 class WrapperComponent {}

@@ -13,9 +13,10 @@ import { UntypedFormArray } from '@angular/forms';
 import { DaffCheckboxComponent } from '../checkbox/checkbox.component';
 
 @Component({
-  selector: 'daff-checkbox-set',
-  templateUrl: './checkbox-set.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'daff-checkbox-set',
+    templateUrl: './checkbox-set.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class DaffCheckboxSetComponent {
 

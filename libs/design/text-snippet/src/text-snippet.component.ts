@@ -12,15 +12,14 @@ import {
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
-  selector: 'daff-text-snippet',
-  templateUrl: './text-snippet.component.html',
-  styleUrls: ['./text-snippet.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    NgIf,
-    DAFF_BUTTON_COMPONENTS,
-  ],
+    selector: 'daff-text-snippet',
+    templateUrl: './text-snippet.component.html',
+    styleUrls: ['./text-snippet.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        NgIf,
+        DAFF_BUTTON_COMPONENTS,
+    ]
 })
 export class DaffTextSnippetComponent {
 

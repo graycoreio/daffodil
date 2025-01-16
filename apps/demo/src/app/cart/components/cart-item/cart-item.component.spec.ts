@@ -26,7 +26,10 @@ import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { CartItemComponent } from './cart-item.component';
 
 
-@Component({ template: '<demo-cart-item [item]="cartItemValue"></demo-cart-item>' })
+@Component({
+    template: '<demo-cart-item [item]="cartItemValue"></demo-cart-item>',
+    standalone: false
+})
 class WrapperComponent {
   cartItemValue: DaffCartItem;
 }

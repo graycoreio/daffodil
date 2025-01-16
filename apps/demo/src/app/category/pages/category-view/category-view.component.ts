@@ -9,8 +9,9 @@ import { DaffCategoryFacade } from '@daffodil/category/state';
 import { DaffProduct } from '@daffodil/product';
 
 @Component({
-  selector: 'demo-category-view',
-  templateUrl: './category-view.component.html',
+    selector: 'demo-category-view',
+    templateUrl: './category-view.component.html',
+    standalone: false
 })
 export class CategoryViewComponent implements OnInit {
   category$: Observable<DaffCategory>;

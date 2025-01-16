@@ -13,16 +13,15 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DaffSidebarViewportBackdropComponent } from './sidebar-viewport-backdrop.component';
 
 @Component({
-  template: `
+    template: `
     <daff-sidebar-viewport-backdrop
       [fullscreen]="fullscreen"
       [transparent]="transparent"
       (backdropClicked)="backdropFunction()"></daff-sidebar-viewport-backdrop>
     `,
-  standalone: true,
-  imports: [
-    DaffSidebarViewportBackdropComponent,
-  ],
+    imports: [
+        DaffSidebarViewportBackdropComponent,
+    ]
 })
 class WrapperComponent {
   fullscreen = false;

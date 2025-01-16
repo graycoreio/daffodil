@@ -30,7 +30,10 @@ import {
 } from '../../actions/sidebar.actions';
 import * as fromDemoSidebar from '../../reducers';
 
-@Component({ selector: 'demo-sidebar', template: '' })
+@Component({
+    selector: 'demo-sidebar', template: '',
+    standalone: false
+})
 class MockSidebarContainer {
   @Input() side: DaffSidebarSide;
 

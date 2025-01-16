@@ -23,7 +23,10 @@ import {
 import { DaffProductGetCollectionRequestFromRoute } from './get-request-from-route.service';
 import { DAFF_PRODUCT_ROUTING_CONFIG } from '../config/token';
 
-@Component({ template: '' })
+@Component({
+    template: '',
+    standalone: false
+})
 class TestComponent {}
 
 describe('@daffodil/product/routing | DaffProductGetCollectionRequestFromRoute', () => {

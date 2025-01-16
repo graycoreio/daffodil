@@ -21,18 +21,17 @@ import { DaffioDocsDynamicContentComponentService } from '../../dynamic-content/
 import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.type';
 
 @Component({
-  selector: 'daffio-docs-page',
-  templateUrl: './docs-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    AsyncPipe,
-    RouterModule,
-    NgComponentOutlet,
-  ],
-  providers: [
-    DaffioDocsDynamicContentComponentService,
-  ],
+    selector: 'daffio-docs-page',
+    templateUrl: './docs-page.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        AsyncPipe,
+        RouterModule,
+        NgComponentOutlet,
+    ],
+    providers: [
+        DaffioDocsDynamicContentComponentService,
+    ]
 })
 export class DaffioDocsPageComponent implements OnInit {
   doc$: Observable<DaffDoc>;

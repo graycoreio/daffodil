@@ -35,9 +35,10 @@ import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.com
 import { ProductComponent } from '../../components/product/product.component';
 
 @Component({
-  selector: 'demo-product',
-  template: '<ng-content></ng-content>',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'demo-product',
+    template: '<ng-content></ng-content>',
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 class MockProductComponent {
   @Input() product: DaffProduct;
@@ -45,7 +46,10 @@ class MockProductComponent {
   @Output() updateQty: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({ selector: 'demo-add-to-cart', template: '' })
+@Component({
+    selector: 'demo-add-to-cart', template: '',
+    standalone: false
+})
 class MockAddToCartComponent {
   @Input() additive: any;
   @Input() qty: number;

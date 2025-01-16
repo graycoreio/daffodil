@@ -16,19 +16,18 @@ import {
 import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'over-and-under-sidebars',
-  templateUrl: './over-and-under-sidebars.component.html',
-  styleUrls: ['over-and-under-sidebars.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DAFF_SIDEBAR_COMPONENTS,
-    FaIconComponent,
-    ReactiveFormsModule,
-    DaffButtonComponent,
-    DaffIconButtonComponent,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'over-and-under-sidebars',
+    templateUrl: './over-and-under-sidebars.component.html',
+    styleUrls: ['over-and-under-sidebars.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DAFF_SIDEBAR_COMPONENTS,
+        FaIconComponent,
+        ReactiveFormsModule,
+        DaffButtonComponent,
+        DaffIconButtonComponent,
+    ]
 })
 export class OverandUnderSidebarsComponent {
   faTimes = faTimes;

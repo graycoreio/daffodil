@@ -33,7 +33,10 @@ import {
 import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
 import { DaffioSidebarService } from '../../services/sidebar.service';
 
-@Component({ template: '' })
+@Component({
+    template: '',
+    standalone: false
+})
 class TestComponent {}
 
 describe('DaffioSidebarViewportContainer', () => {

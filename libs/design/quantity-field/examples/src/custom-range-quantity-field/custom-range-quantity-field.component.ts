@@ -13,17 +13,16 @@ import {
 } from '@daffodil/design';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'custom-range-quantity-field',
-  templateUrl: './custom-range-quantity-field.component.html',
-  styleUrls: ['./custom-range-quantity-field.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffFormFieldModule,
-    DaffQuantityFieldModule,
-    ReactiveFormsModule,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'custom-range-quantity-field',
+    templateUrl: './custom-range-quantity-field.component.html',
+    styleUrls: ['./custom-range-quantity-field.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DaffFormFieldModule,
+        DaffQuantityFieldModule,
+        ReactiveFormsModule,
+    ]
 })
 export class CustomRangeQuantityFieldComponent {
   control = new UntypedFormControl(5);

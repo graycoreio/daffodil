@@ -20,13 +20,12 @@ import { DaffioApiPackageComponent } from './api-package.component';
 import { DaffioApiListSectionComponent } from '../api-list-section/api-list-section.component';
 
 @Component({
-  template: `
+    template: `
     <daffio-api-package [doc]="apiListValue"></daffio-api-package>
   `,
-  standalone: true,
-  imports: [
-    DaffioApiPackageComponent,
-  ],
+    imports: [
+        DaffioApiPackageComponent,
+    ]
 })
 class WrapperComponent {
   apiListValue: DaffApiPackageDoc;

@@ -12,13 +12,12 @@ import { DaffApiNavDoc } from '@daffodil/docs-utils';
 import { DaffioApiListSectionComponent } from './api-list-section.component';
 
 @Component({
-  template: `
+    template: `
     <daffio-api-list-section [children]="apiListValue"></daffio-api-list-section>
   `,
-  standalone: true,
-  imports: [
-    DaffioApiListSectionComponent,
-  ],
+    imports: [
+        DaffioApiListSectionComponent,
+    ]
 })
 class WrapperComponent {
   apiListValue: Array<DaffApiNavDoc> = [

@@ -11,21 +11,20 @@ import {
 import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'loading-icon-color',
-  templateUrl: './loading-icon-color.component.html',
-  styles: [`
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'loading-icon-color',
+    templateUrl: './loading-icon-color.component.html',
+    styles: [`
     select {
       margin-top: 16px;
     }
   `],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DAFF_LOADING_ICON_COMPONENTS,
-    ReactiveFormsModule,
-    NgFor,
-  ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DAFF_LOADING_ICON_COMPONENTS,
+        ReactiveFormsModule,
+        NgFor,
+    ]
 })
 export class LoadingIconColorComponent {
   colorControl: UntypedFormControl = new UntypedFormControl('primary');

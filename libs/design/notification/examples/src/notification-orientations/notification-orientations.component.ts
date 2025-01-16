@@ -17,18 +17,17 @@ import { DaffPrefixSuffixModule } from '@daffodil/design';
 import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'notification-orientations',
-  templateUrl: './notification-orientations.component.html',
-  styleUrls: ['./notification-orientations.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DAFF_NOTIFICATION_COMPONENTS,
-    FaIconComponent,
-    DaffPrefixSuffixModule,
-    ReactiveFormsModule,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'notification-orientations',
+    templateUrl: './notification-orientations.component.html',
+    styleUrls: ['./notification-orientations.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DAFF_NOTIFICATION_COMPONENTS,
+        FaIconComponent,
+        DaffPrefixSuffixModule,
+        ReactiveFormsModule,
+    ]
 })
 export class NotificationOrientationsComponent {
   faInfoCircle = faInfoCircle;

@@ -17,14 +17,13 @@ import { DaffPalette } from '@daffodil/design';
 import { DaffProgressBarComponent } from './progress-bar.component';
 
 @Component({
-  template: `
+    template: `
   <daff-progress-bar [color]="color" [percentage]="percentage" (finished)="onAnimationComplete()">
   </daff-progress-bar>
   `,
-  standalone: true,
-  imports: [
-    DaffProgressBarComponent,
-  ],
+    imports: [
+        DaffProgressBarComponent,
+    ]
 })
 class WrapperComponent {
   color: DaffPalette;

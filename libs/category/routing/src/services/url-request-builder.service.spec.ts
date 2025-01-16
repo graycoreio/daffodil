@@ -26,7 +26,10 @@ import {
 import { DaffCategoryRoutingUrlRequestBuilder } from './url-request-builder.service';
 import { DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER } from '../injection-tokens/request/builder.token';
 
-@Component({ template: '' })
+@Component({
+    template: '',
+    standalone: false
+})
 class TestComponent {}
 
 describe('@daffodil/category/routing | DaffCategoryRoutingUrlRequestBuilder', () => {

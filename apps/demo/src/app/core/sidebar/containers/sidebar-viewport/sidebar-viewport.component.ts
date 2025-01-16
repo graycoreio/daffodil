@@ -17,8 +17,9 @@ import {
 import * as fromDemoSidebar from '../../reducers/index';
 
 @Component({
-  selector: 'demo-sidebar-viewport-container',
-  templateUrl: './sidebar-viewport.component.html',
+    selector: 'demo-sidebar-viewport-container',
+    templateUrl: './sidebar-viewport.component.html',
+    standalone: false
 })
 export class SidebarViewportContainer implements OnInit {
 

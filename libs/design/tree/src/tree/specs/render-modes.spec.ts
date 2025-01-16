@@ -13,7 +13,7 @@ import { DaffTreeRenderMode } from '../../interfaces/tree-render-mode';
 import { DaffTreeComponent } from '../tree.component';
 
 @Component({
-  template: `
+    template: `
     <ul daff-tree [tree]="data" [renderMode]="renderMode">
       <ng-template #daffTreeItemWithChildrenTpl let-node>
           <button daffTreeItem [node]="node">{{ node.title }} </button>
@@ -24,10 +24,9 @@ import { DaffTreeComponent } from '../tree.component';
       </ng-template>
     </ul>
   `,
-  standalone: true,
-  imports: [
-    DaffTreeComponent,
-  ],
+    imports: [
+        DaffTreeComponent,
+    ]
 })
 class WrapperComponent {
   @Input() data: DaffTreeData<any>;

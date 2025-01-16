@@ -51,10 +51,16 @@ import {
 } from '../../actions/add-to-cart-notification.actions';
 import * as fromAddToCartNotification from '../../reducers/index';
 
-@Component({ template: '<demo-add-to-cart-notification></demo-add-to-cart-notification>' })
+@Component({
+    template: '<demo-add-to-cart-notification></demo-add-to-cart-notification>',
+    standalone: false
+})
 class WrapperComponent {}
 
-@Component({ selector: 'demo-product-added', template: '' })
+@Component({
+    selector: 'demo-product-added', template: '',
+    standalone: false
+})
 class MockProductAddedComponent {
   @Input() product: DaffProduct;
   @Input() qty: number;

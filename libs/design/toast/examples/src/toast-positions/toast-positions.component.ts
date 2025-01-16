@@ -18,25 +18,24 @@ import {
 } from '@daffodil/design/toast';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'toast-positions',
-  templateUrl: './toast-positions.component.html',
-  styleUrls: ['./toast-positions.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    DaffButtonComponent,
-  ],
-  providers: [
-    provideDaffToastOptions({
-      position: {
-        vertical: 'top',
-        horizontal: 'right',
-      },
-      useParent: false,
-    }),
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'toast-positions',
+    templateUrl: './toast-positions.component.html',
+    styleUrls: ['./toast-positions.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        ReactiveFormsModule,
+        DaffButtonComponent,
+    ],
+    providers: [
+        provideDaffToastOptions({
+            position: {
+                vertical: 'top',
+                horizontal: 'right',
+            },
+            useParent: false,
+        }),
+    ]
 })
 export class ToastPositionsComponent implements OnInit {
   private toast: DaffToast;

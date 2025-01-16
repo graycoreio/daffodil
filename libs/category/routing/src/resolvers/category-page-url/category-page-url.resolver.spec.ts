@@ -53,7 +53,10 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffCategoryPageUrlResolver } from './category-page-url.resolver';
 import { DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER } from '../../injection-tokens/request/builder.token';
 
-@Component({ template: '' })
+@Component({
+    template: '',
+    standalone: false
+})
 class TestComponent {}
 
 describe('DaffCategoryPageUrlResolver', () => {

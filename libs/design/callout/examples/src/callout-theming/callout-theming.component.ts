@@ -14,19 +14,18 @@ import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'callout-theming',
-  templateUrl: './callout-theming.component.html',
-  styleUrls: ['./callout-theming.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DAFF_CALLOUT_COMPONENTS,
-    FaIconComponent,
-    DaffButtonComponent,
-    ReactiveFormsModule,
-    NgFor,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'callout-theming',
+    templateUrl: './callout-theming.component.html',
+    styleUrls: ['./callout-theming.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DAFF_CALLOUT_COMPONENTS,
+        FaIconComponent,
+        DaffButtonComponent,
+        ReactiveFormsModule,
+        NgFor,
+    ]
 })
 export class CalloutThemingComponent {
   faMobile = faMobile;

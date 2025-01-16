@@ -1,6 +1,7 @@
 import {
-  APP_INITIALIZER,
-  Provider,
+  inject,
+  makeEnvironmentProviders,
+  provideAppInitializer,
 } from '@angular/core';
 
 import { initializeRouterService } from './initializer';
@@ -21,12 +22,10 @@ import { DaffSeoNativeMetaEffects } from '../effects/meta.effects';
  * export class AppModule { }
  * ```
  */
-export const daffSeoRouterMetaProvider = (): Provider[] => [
+export const daffSeoRouterMetaProvider = () => makeEnvironmentProviders([
   DaffSeoNativeMetaEffects,
-  {
-    provide: APP_INITIALIZER,
-    useFactory: initializeRouterService,
-    deps: [DaffSeoNativeMetaEffects],
-    multi: true,
-  },
-];
+  provideAppInitializer(() => {
+    const initializerFn = (initializeRouterService)(inject(DaffSeoNativeMetaEffects));
+    return initializerFn();
+  }),
+]);

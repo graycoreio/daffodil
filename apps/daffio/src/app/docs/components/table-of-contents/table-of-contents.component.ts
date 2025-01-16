@@ -7,10 +7,11 @@ import {
 import { DaffDocTableOfContents } from '@daffodil/docs-utils';
 
 @Component({
-  selector: 'daffio-docs-table-of-contents',
-  templateUrl: './table-of-contents.component.html',
-  styleUrls: ['table-of-contents.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'daffio-docs-table-of-contents',
+    templateUrl: './table-of-contents.component.html',
+    styleUrls: ['table-of-contents.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class DaffioDocsTableOfContentsComponent {
   /**

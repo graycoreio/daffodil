@@ -13,17 +13,16 @@ import {
 } from '@daffodil/design';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'basic-quantity-field',
-  templateUrl: './basic-quantity-field.component.html',
-  styleUrls: ['./basic-quantity-field.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffFormFieldModule,
-    DaffQuantityFieldModule,
-    ReactiveFormsModule,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'basic-quantity-field',
+    templateUrl: './basic-quantity-field.component.html',
+    styleUrls: ['./basic-quantity-field.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DaffFormFieldModule,
+        DaffQuantityFieldModule,
+        ReactiveFormsModule,
+    ]
 })
 export class BasicQuantityFieldComponent {
   control = new UntypedFormControl(1);

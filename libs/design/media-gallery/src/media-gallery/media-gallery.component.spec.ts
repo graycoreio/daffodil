@@ -15,16 +15,15 @@ import { daffThumbnailCompatToken } from '../thumbnail/thumbnail-compat.token';
 import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 
 @Component({
-  template: `
+    template: `
     <daff-media-gallery [name]="nameValue" [skeleton]="skeleton">
       <div daffThumbnail></div>
     </daff-media-gallery>
   `,
-  standalone: true,
-  imports: [
-    DaffMediaGalleryComponent,
-    DaffThumbnailDirective,
-  ],
+    imports: [
+        DaffMediaGalleryComponent,
+        DaffThumbnailDirective,
+    ]
 })
 class WrapperComponent {
   nameValue: string;
@@ -32,8 +31,9 @@ class WrapperComponent {
 }
 
 @Component({
-  template: '',
-  selector: 'daff-media-renderer',
+    template: '',
+    selector: 'daff-media-renderer',
+    standalone: false
 })
 class MockMediaRendererComponent {}
 
@@ -101,12 +101,11 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
 });
 
 @Component({
-  template: '<daff-media-gallery></daff-media-gallery>',
-  standalone: true,
-  imports: [
-    DaffMediaGalleryComponent,
-    DaffThumbnailDirective,
-  ],
+    template: '<daff-media-gallery></daff-media-gallery>',
+    imports: [
+        DaffMediaGalleryComponent,
+        DaffThumbnailDirective,
+    ]
 })
 class DefaultWrapperComponent {}
 

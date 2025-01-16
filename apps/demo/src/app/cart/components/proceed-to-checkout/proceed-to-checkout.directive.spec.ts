@@ -10,7 +10,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { ProceedToCheckoutDirective } from './proceed-to-checkout.directive';
 
-@Component({ template: '<div demoProceedToCheckout></div>' })
+@Component({
+    template: '<div demoProceedToCheckout></div>',
+    standalone: false
+})
 class WrapperComponent {}
 
 describe('ProceedToCheckoutDirective', () => {

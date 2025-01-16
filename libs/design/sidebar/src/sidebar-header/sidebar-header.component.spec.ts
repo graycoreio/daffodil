@@ -13,8 +13,8 @@ import { DaffSidebarHeaderComponent } from './sidebar-header.component';
 
 @Component({
   template: `
-    <daff-sidebar-header [dismissible]="dismissible" (closeSidebar)="closeSidebarFunction()">Header</daff-sidebar-header>`,
-  standalone: true,
+    <daff-sidebar-header [dismissible]="dismissible" (closeSidebar)="closeSidebarFunction()">Header</daff-sidebar-header>
+	`,
   imports: [
     DaffSidebarHeaderComponent,
   ],

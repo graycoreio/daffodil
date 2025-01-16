@@ -7,9 +7,10 @@ import { Router } from '@angular/router';
 import { DaffCart } from '@daffodil/cart';
 
 @Component({
-  selector: 'demo-cart-summary',
-  templateUrl: './cart-summary.component.html',
-  styleUrls: ['./cart-summary.component.scss'],
+    selector: 'demo-cart-summary',
+    templateUrl: './cart-summary.component.html',
+    styleUrls: ['./cart-summary.component.scss'],
+    standalone: false
 })
 export class CartSummaryComponent {
 

@@ -6,9 +6,10 @@ import {
 import { DaffioSidebarService } from '../../services/sidebar.service';
 
 @Component({
-  selector: 'daffio-sidebar-header',
-  templateUrl: './sidebar-header.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'daffio-sidebar-header',
+    templateUrl: './sidebar-header.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class DaffioSidebarHeaderComponent {
   constructor(

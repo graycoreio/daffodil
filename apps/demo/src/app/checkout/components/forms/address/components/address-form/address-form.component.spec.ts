@@ -27,15 +27,14 @@ import { DemoCheckoutAddressFormFactory } from '../../factories/address-form.fac
 import { DemoCheckoutAddressFormGroup } from '../../models/address-form.type';
 
 @Component({
-  template: `
+    template: `
     <demo-checkout-address-form
       [formGroup]="formGroupValue"
     ></demo-checkout-address-form>
   `,
-  standalone: true,
-  imports: [
-    DemoCheckoutAddressFormComponent,
-  ],
+    imports: [
+        DemoCheckoutAddressFormComponent,
+    ]
 })
 class WrapperComponent {
   formGroupValue: DemoCheckoutAddressFormGroup;

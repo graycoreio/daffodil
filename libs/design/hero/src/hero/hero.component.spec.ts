@@ -17,11 +17,10 @@ import {
 import { DaffHeroComponent } from './hero.component';
 
 @Component({
-  template: `<daff-hero [color]="color" [textAlignment]="textAlignment" [compact]="compact"></daff-hero>`,
-  standalone: true,
-  imports: [
-    DaffHeroComponent,
-  ],
+    template: `<daff-hero [color]="color" [textAlignment]="textAlignment" [compact]="compact"></daff-hero>`,
+    imports: [
+        DaffHeroComponent,
+    ]
 })
 class WrapperComponent {
   color: DaffPalette;

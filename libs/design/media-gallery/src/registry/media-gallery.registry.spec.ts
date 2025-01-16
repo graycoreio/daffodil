@@ -17,7 +17,9 @@ import {
 import { DaffMediaGalleryRegistration } from '../helpers/media-gallery-registration.interface';
 import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 
-@Component({})
+@Component({
+    standalone: false
+})
 export class FakeComponent {}
 
 export class ChangeDetectorRefMock implements Partial<ChangeDetectorRef> {

@@ -34,16 +34,15 @@ const status: Record<string, DaffToastData> =  {
 };
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'toast-status',
-  templateUrl: './toast-status.component.html',
-  styleUrls: ['./toast-status.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DaffButtonComponent,
-    ReactiveFormsModule,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'toast-status',
+    templateUrl: './toast-status.component.html',
+    styleUrls: ['./toast-status.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DaffButtonComponent,
+        ReactiveFormsModule,
+    ]
 })
 export class ToastStatusComponent {
   faInfoCircle = faInfoCircle;
