@@ -212,7 +212,7 @@ describe('AddToCartNotificationComponent', () => {
       it('should call dispatch a CloseAddToCartNotification action', () => {
         spyOn(store, 'dispatch');
         fixture.debugElement.query(By.css('.demo-add-to-cart-notification__close')).nativeElement.click();
-        expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
+        expect(<any>store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
       });
     });
 

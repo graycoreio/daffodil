@@ -87,7 +87,7 @@ describe('@daffodil/paypal/routing | DaffPaypalExpressApplyPaymentGuard', () => 
         },
       });
       service.canActivate(route).subscribe(() => {
-        expect(store.dispatch).toHaveBeenCalledWith(expected);
+        expect(<any>store.dispatch).toHaveBeenCalledWith(expected);
       });
     });
   });

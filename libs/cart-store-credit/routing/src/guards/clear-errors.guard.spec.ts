@@ -33,7 +33,7 @@ describe('@daffodil/cart-store-credit/routing | DaffCartStoreCreditClearErrorsGu
     it('should dispatch DaffCartStoreCreditClearErrors', () => {
       const expected = new DaffCartStoreCreditClearErrors();
       expect(guard.canDeactivate()).toBeTrue();
-      expect(store.dispatch).toHaveBeenCalledWith(expected);
+      expect(<any>store.dispatch).toHaveBeenCalledWith(expected);
     });
   });
 });

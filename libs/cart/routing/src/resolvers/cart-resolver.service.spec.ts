@@ -70,7 +70,7 @@ describe('@daffodil/cart/routing | DaffCartResolver', () => {
       spyOn(store, 'dispatch');
       cartResolver.resolve().subscribe();
 
-      expect(store.dispatch).toHaveBeenCalledWith(new DaffResolveCart());
+      expect(<any>store.dispatch).toHaveBeenCalledWith(new DaffResolveCart());
     });
 
     describe('when DaffResolveCartSuccess is dispatched', () => {

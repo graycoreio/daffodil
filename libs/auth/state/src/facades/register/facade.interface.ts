@@ -9,6 +9,4 @@ import {
 export interface DaffAuthRegisterFacadeInterface extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
   errors$: Observable<DaffStateError[]>;
-
-  dispatch(action: Action): void;
 }

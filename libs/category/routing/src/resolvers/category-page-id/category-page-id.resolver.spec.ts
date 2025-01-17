@@ -79,7 +79,7 @@ describe('DaffCategoryPageIdResolver', () => {
     it('should dispatch a DaffCategoryPageLoad action with the correct category id', () => {
       spyOn(store, 'dispatch');
       categoryResolver.resolve( route.snapshot );
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(<any>store.dispatch).toHaveBeenCalledWith(
         new DaffCategoryPageLoad({ id: '123', kind: DaffCategoryRequestKind.ID }),
       );
     });
@@ -143,7 +143,7 @@ describe('DaffCategoryPageIdResolver', () => {
     it('should dispatch a DaffCategoryPageLoad action with the correct category id', () => {
       spyOn(store, 'dispatch');
       categoryResolver.resolve( route.snapshot );
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(<any>store.dispatch).toHaveBeenCalledWith(
         new DaffCategoryPageLoad({ id: '123', kind: DaffCategoryRequestKind.ID }),
       );
     });

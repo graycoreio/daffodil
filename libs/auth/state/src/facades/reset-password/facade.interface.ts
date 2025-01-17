@@ -12,6 +12,4 @@ export interface DaffAuthResetPasswordFacadeInterface extends DaffStoreFacade<Ac
 
   loading$: Observable<boolean>;
   errors$: Observable<DaffStateError[]>;
-
-  dispatch(action: Action): void;
 }

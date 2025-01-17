@@ -61,7 +61,7 @@ describe('@daffodil/customer/state | DaffCustomerAddressPageFacade', () => {
     const action = { type: 'SOME_TYPE' };
 
     facade.dispatch(action);
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(<any>store.dispatch).toHaveBeenCalledWith(action);
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 

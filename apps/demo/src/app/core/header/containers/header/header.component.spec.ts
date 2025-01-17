@@ -60,7 +60,7 @@ describe('DemoHeaderContainer', () => {
       const sidebarButton = fixture.debugElement.query(By.css('[header-menu-button]')).nativeElement;
       sidebarButton.click();
 
-      expect(store.dispatch).toHaveBeenCalledWith(new ToggleSidebar());
+      expect(<any>store.dispatch).toHaveBeenCalledWith(new ToggleSidebar());
     });
   });
 });

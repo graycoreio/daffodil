@@ -33,7 +33,7 @@ describe('@daffodil/customer/routing | DaffCustomerClearErrorsGuard', () => {
     it('should dispatch DaffCustomerClearErrors', () => {
       const expected = new DaffCustomerClearErrors();
       expect(guard.canDeactivate()).toBeTrue();
-      expect(store.dispatch).toHaveBeenCalledWith(expected);
+      expect(<any>store.dispatch).toHaveBeenCalledWith(expected);
     });
   });
 });

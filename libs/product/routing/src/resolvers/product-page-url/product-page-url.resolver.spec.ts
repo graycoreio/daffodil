@@ -102,7 +102,7 @@ describe('DaffProductPageUrlResolver', () => {
 
       spyOn(store, 'dispatch');
       resolver.resolve( route.snapshot, router.routerState.snapshot );
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(<any>store.dispatch).toHaveBeenCalledWith(
         new DaffProductPageLoadByUrl(`/${path}`),
       );
     }));
@@ -190,7 +190,7 @@ describe('DaffProductPageUrlResolver', () => {
 
       spyOn(store, 'dispatch');
       resolver.resolve( route.snapshot, router.routerState.snapshot );
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(<any>store.dispatch).toHaveBeenCalledWith(
         new DaffProductPageLoadByUrl(`/${path}`),
       );
     }));

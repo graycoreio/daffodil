@@ -13,6 +13,4 @@ export interface DaffAuthFacadeInterface extends DaffStoreFacade<Action> {
    * Whether the current user is logged in.
    */
   loggedIn$: Observable<boolean>;
-
-  dispatch(action: Action): void;
 }

@@ -140,7 +140,7 @@ describe('DaffCategoryPageUrlResolver', () => {
       it('should dispatch a DaffCategoryPageLoadByUrl action with the currentPage', () => {
         spyOn(store, 'dispatch');
         categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
-        expect(store.dispatch).toHaveBeenCalledWith(
+        expect(<any>store.dispatch).toHaveBeenCalledWith(
           new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, currentPage: page }),
         );
       });
@@ -153,7 +153,7 @@ describe('DaffCategoryPageUrlResolver', () => {
 
       spyOn(store, 'dispatch');
       categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(<any>store.dispatch).toHaveBeenCalledWith(
         new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL }),
       );
     }));
@@ -260,7 +260,7 @@ describe('DaffCategoryPageUrlResolver', () => {
       it('should dispatch a DaffCategoryPageLoadByUrl action with the currentPage', () => {
         spyOn(store, 'dispatch');
         categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
-        expect(store.dispatch).toHaveBeenCalledWith(
+        expect(<any>store.dispatch).toHaveBeenCalledWith(
           new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL, currentPage: page }),
         );
       });
@@ -273,7 +273,7 @@ describe('DaffCategoryPageUrlResolver', () => {
 
       spyOn(store, 'dispatch');
       categoryResolver.resolve(route.snapshot, router.routerState.snapshot);
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(<any>store.dispatch).toHaveBeenCalledWith(
         new DaffCategoryPageLoadByUrl({ url: `/${path}`, kind: DaffCategoryRequestKind.URL }),
       );
     }));

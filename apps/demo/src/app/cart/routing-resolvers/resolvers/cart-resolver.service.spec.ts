@@ -83,7 +83,7 @@ describe('CartResolver', () => {
       spyOn(store, 'dispatch');
       cartResolver.resolve().subscribe();
 
-      expect(store.dispatch).toHaveBeenCalledWith(new ResolveCart());
+      expect(<any>store.dispatch).toHaveBeenCalledWith(new ResolveCart());
     });
 
     describe('when ResolveCartSuccess is dispatched with a cart', () => {

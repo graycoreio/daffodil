@@ -92,7 +92,7 @@ describe('@daffodil/search/routing | DaffSearchPageResolver', () => {
 
       it('should dispatch a DaffSearchLoad action with the correct search query', () => {
         searchResolver.resolve(snapshot).subscribe();
-        expect(store.dispatch).toHaveBeenCalledWith(
+        expect(<any>store.dispatch).toHaveBeenCalledWith(
           new DaffSearchLoad(query, options),
         );
       });
@@ -175,7 +175,7 @@ describe('@daffodil/search/routing | DaffSearchPageResolver', () => {
           query,
         },
       }).subscribe();
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(<any>store.dispatch).toHaveBeenCalledWith(
         new DaffSearchLoad(query, options),
       );
     });

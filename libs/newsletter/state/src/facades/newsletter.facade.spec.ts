@@ -47,7 +47,7 @@ describe('DaffNewsletterFacade', () => {
     const action = { type: 'Type' };
 
     facade.dispatch(action);
-    expect(store.dispatch).toHaveBeenCalledWith(action);
+    expect(<any>store.dispatch).toHaveBeenCalledWith(action);
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 

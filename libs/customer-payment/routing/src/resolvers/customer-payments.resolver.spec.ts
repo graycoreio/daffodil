@@ -47,7 +47,7 @@ describe('@daffodil/customer-payment/routing | DaffCustomerPaymentResolver', () 
     it('should dispatch a DaffCustomerPaymentList action', done => {
       spyOn(store, 'dispatch');
       resolver.resolve().subscribe(() => {
-        expect(store.dispatch).toHaveBeenCalledWith(new DaffCustomerPaymentList());
+        expect(<any>store.dispatch).toHaveBeenCalledWith(new DaffCustomerPaymentList());
         done();
       });
     });

@@ -47,7 +47,7 @@ describe('@daffodil/customer-store-credit/routing | DaffCustomerStoreCreditResol
     it('should dispatch a DaffCustomerStoreCreditLoad action', done => {
       spyOn(store, 'dispatch');
       resolver.resolve().subscribe(() => {
-        expect(store.dispatch).toHaveBeenCalledWith(new DaffCustomerStoreCreditLoad());
+        expect(<any>store.dispatch).toHaveBeenCalledWith(new DaffCustomerStoreCreditLoad());
         done();
       });
     });

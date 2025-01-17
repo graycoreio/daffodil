@@ -47,7 +47,7 @@ describe('@daffodil/customer/routing | DaffCustomerResolver', () => {
     it('should dispatch a DaffCustomerLoad action', done => {
       spyOn(store, 'dispatch');
       resolver.resolve().subscribe(() => {
-        expect(store.dispatch).toHaveBeenCalledWith(new DaffCustomerLoad());
+        expect(<any>store.dispatch).toHaveBeenCalledWith(new DaffCustomerLoad());
         done();
       });
     });

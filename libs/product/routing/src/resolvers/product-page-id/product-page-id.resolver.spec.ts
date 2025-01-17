@@ -66,7 +66,7 @@ describe('DaffProductPageIdResolver', () => {
     it('should dispatch a DaffProductPageLoad action with the correct product id', () => {
       spyOn(store, 'dispatch');
       resolver.resolve( route.snapshot );
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(<any>store.dispatch).toHaveBeenCalledWith(
         new DaffProductPageLoad('123'),
       );
     });
@@ -127,7 +127,7 @@ describe('DaffProductPageIdResolver', () => {
     it('should dispatch a DaffProductPageLoad action with the correct product id', () => {
       spyOn(store, 'dispatch');
       resolver.resolve( route.snapshot );
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(<any>store.dispatch).toHaveBeenCalledWith(
         new DaffProductPageLoad('123'),
       );
     });

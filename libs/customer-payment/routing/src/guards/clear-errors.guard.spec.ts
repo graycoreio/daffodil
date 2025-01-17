@@ -33,7 +33,7 @@ describe('@daffodil/customer-payment/routing | DaffCustomerPaymentClearErrorsGua
     it('should dispatch DaffCustomerPaymentClearErrors', () => {
       const expected = new DaffCustomerPaymentClearErrors();
       expect(guard.canDeactivate()).toBeTrue();
-      expect(store.dispatch).toHaveBeenCalledWith(expected);
+      expect(<any>store.dispatch).toHaveBeenCalledWith(expected);
     });
   });
 });
