@@ -31,10 +31,7 @@ export class DaffInMemoryBackendDelegate implements DaffInMemoryDataServiceInter
       // allow child backends to return nully values
       // which will fall back to default request behavior (https://github.com/angular/angular/tree/main/packages/misc/angular-in-memory-web-api#http-request-handling)
       ? request.call(backend, reqInfo)
-      : reqInfo.utils.createResponse$(() => ({
-        status: STATUS.NOT_FOUND,
-        statusText: `Backend ${reqInfo.collectionName} not found or does not support the ${method} request method`,
-      }));
+      : undefined;
   }
 
   get?(reqInfo: RequestInfo): Observable<any> {
