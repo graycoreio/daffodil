@@ -3,13 +3,9 @@ import {
   Apollo,
   gql,
 } from 'apollo-angular';
-import {
-  Observable,
-  of,
-} from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { daffArrayToDict } from '@daffodil/core';
 import {
   DaffProduct,
   DaffProductTypeEnum,
@@ -20,14 +16,6 @@ import {
 } from '@daffodil/product/driver';
 
 interface GetAllProductsResponse {
-  shop?: ShopGraph;
-}
-
-interface GetAProductResponse {
-  node: ProductNode;
-}
-
-interface ShopGraph {
   products?: ProductGraph;
 }
 
@@ -42,42 +30,48 @@ interface ProductEdge {
 interface ProductNode {
   __typename?: 'Product';
   id: string;
-  title?: string;
-  price?: string;
+  title: string;
+  description: string;
+  onlineStoreUrl: string;
+  priceRange: {
+    maxVariantPrice: {
+      amount: number;
+      currencyCode: string;
+    };
+  };
+  images: {
+    nodes: {
+      url: string;
+      altText: string;
+    }[];
+  };
 }
-
-interface Variables {
-  first: number;
-};
-
 
 /**
  * GraphQL query object for getting all products.
  */
 export const GetAllProductsQuery = gql`
   query ShopifyGetAllProducts($length: Int) {
-    shop {
-      products(first: $length)  {
-        edges {
-          node {
-            id
-            title
+    products(first: $length)  {
+      edges {
+        node {
+          onlineStoreUrl
+          priceRange {
+            maxVariantPrice {
+              amount
+              currencyCode
+            }
+          }
+          id
+          title
+          description
+          images(first: 1) {
+            nodes {
+              url
+              altText
+            }
           }
         }
-      }
-    }
-  }
-`;
-
-/**
- * GraphQL query object for getting a product by ID.
- */
-export const GetAProduct = gql`
-  query ShopifyGetAProduct($id: ID!){
-    node(id: $id) {
-      id
-      ... on Product {
-        title
       }
     }
   }
@@ -89,16 +83,20 @@ export const GetAProduct = gql`
  * @param node - ProductNode object
  * @returns A Product object
  */
-export const DaffShopifyProductTransformer = (node: ProductNode): DaffProduct => ({
-  id: node.id,
-  url: null,
+
+const DaffShopifyProductTransformer = (node: ProductNode): DaffProduct => ({
   name: node.title,
   images: [],
-  thumbnail: null,
+  thumbnail: {
+    url: node.images.nodes[0].url,
+    label: node.images.nodes[0].altText,
+    id: node.id,
+  },
+  id: node.id,
+  url: node.onlineStoreUrl,
   type: DaffProductTypeEnum.Simple,
-  price: null,
-  discount: null,
-  in_stock: true,
+  price: node.priceRange.maxVariantPrice.amount,
+  description: node.description,
 });
 
 /**
@@ -110,54 +108,36 @@ export const DaffShopifyProductTransformer = (node: ProductNode): DaffProduct =>
 @Injectable({
   providedIn: 'root',
 })
-export class DaffShopifyProductService implements DaffProductServiceInterface {
-
+export class DaffShopifyProductService
+implements DaffProductServiceInterface {
   defaultLength = 20;
 
   constructor(private apollo: Apollo) {}
 
-  getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse> {
-    // TODO: implement
-    return of({
-      id: null,
-      products: [],
-    });
-  }
-
   getAll(): Observable<DaffProduct[]> {
-    return this.apollo.query<GetAllProductsResponse>({
-      query: GetAllProductsQuery,
-      variables: {
-        length: this.defaultLength,
-      },
-    }).pipe(
-      map(result => result.data.shop.products.edges.map(edge => DaffShopifyProductTransformer(edge.node))),
-    );
+    return this.apollo
+      .query<GetAllProductsResponse>({
+        query: GetAllProductsQuery,
+        variables: {
+          length: this.defaultLength,
+        },
+      })
+      .pipe(
+        map((result) => {
+          const edges = result.data?.products?.edges || [];
+          return edges.map((edge) => DaffShopifyProductTransformer(edge.node));
+        }),
+      );
   }
 
-  //todo: add actual getBestSellers apollo call. Right now, it just makes the getAll() call
+  // Following methods not yet implemented - could be defaulted to the getAll() method for testing
   getBestSellers(): Observable<DaffProduct[]> {
-    return this.apollo.query<GetAllProductsResponse>({
-      query: GetAllProductsQuery,
-      variables: {
-        length: this.defaultLength,
-      },
-    }).pipe(
-      map(result => result.data.shop.products.edges.map(edge => DaffShopifyProductTransformer(edge.node))),
-    );
+    throw new Error('Method not implemented.');
   }
-
-  get(productId: string): Observable<DaffProductDriverResponse> {
-    return this.apollo.query<GetAProductResponse>({
-      query: GetAProduct,
-      variables: {
-        id: productId,
-      },
-    }).pipe(
-      map(result => ({
-        id: productId,
-        products: [DaffShopifyProductTransformer(result.data.node)],
-      })),
-    );
+  get(productId: string): Observable<DaffProductDriverResponse<DaffProduct>> {
+    throw new Error('Method not implemented.');
+  }
+  getByUrl(url: string): Observable<DaffProductDriverResponse<DaffProduct>> {
+    throw new Error('Method not implemented.');
   }
 }
