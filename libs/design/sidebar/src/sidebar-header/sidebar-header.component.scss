@@ -1,48 +1,57 @@
 @use '../../../scss/typography' as t;
+@use '../../../scss/interactions';
 
 .daff-sidebar-header {
 	display: flex;
 	align-items: center;
 	position: relative;
+	padding: 0 1rem;
+	min-height: 3rem;
+	max-height: 3rem;
 	width: 100%;
 
-	&__action {
+	&__close-icon {
+		@include interactions.clickable();
 		position: absolute;
+		appearance: none;
+		background: none;
+		border: none;
+		color: currentColor;
+		height: 3rem;
+		margin: 0;
+		min-height: 3rem;
+		min-width: 3rem;
+		padding: 0;
+		width: 3rem;
+		left: initial;
+		right: 0;
+		top: 0;
 	}
 
-	&__title {
+	&__title,
+	&__content {
 		@include t.text-truncate();
 		font-size: 1rem;
 		line-height: 1rem;
 		font-weight: 500;
 	}
 
-	&__action + &__title {
-		margin: 0 0 0 29px;
+	&__close-icon + &__content {
+		margin: 0 1.75rem 0 0;
 	}
 }
 
 .daff-sidebar {
-	.daff-sidebar-header {
-		padding: 16px;
-
-		&__action {
-			position: absolute;
-			left: 0;
-			right: initial;
-			top: 0;
-		}
-	}
-
 	&.right {
 		.daff-sidebar-header {
-			&__action {
-				left: initial;
-				right: 0;
-			}
+			&__close-icon {
+				left: 0;
+				right: initial;
 
-			&__title {
-				margin: 0 29px 0 0;
+				+ .daff-sidebar-header__title,
+				+ .daff-sidebar-header__content {
+					margin: 0 0 0 1.75rem;
+				}
 			}
 		}
 	}

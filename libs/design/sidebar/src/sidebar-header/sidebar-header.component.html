@@ -1,3 +1,6 @@
-<ng-content select="[daffSidebarHeaderAction]"></ng-content>
-<ng-content select="[daffSidebarHeaderTitle]"></ng-content>
-<ng-content></ng-content>
+<button class="daff-sidebar-header__close-icon" aria-label="Close Sidebar" *ngIf="dismissible" (click)="onCloseSidebar($event)">
+  <fa-icon [icon]="faTimes" [fixedWidth]="true" size="lg"></fa-icon>
+</button>
+<div class="daff-sidebar-header__content">
+  <ng-content></ng-content>
+</div>

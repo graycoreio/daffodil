@@ -1,6 +1,8 @@
 @use '../helper/variables';
 @use '../../../scss/layout';
 
+$default-sidebar-width: 15rem;
+
 // stylelint-disable selector-class-pattern
 // stylelint-disable unit-no-unknown
 :host {
@@ -8,14 +10,14 @@
 	flex-direction: column;
 	flex-shrink: 0;
 	overflow-y: auto;
-	width: 240px;
+	width: $default-sidebar-width;
 
 	&.left {
-		width: var(--daff-sidebar-left-width, 240px);
+		width: var(--daff-sidebar-left-width, $default-sidebar-width);
 	}
 
 	&.right {
-		width: var(--daff-sidebar-right-width, 240px);
+		width: var(--daff-sidebar-right-width, $default-sidebar-width);
 	}
 
 	&.side-fixed {

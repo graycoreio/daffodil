@@ -1,9 +1,6 @@
 <daff-sidebar-viewport (backdropClicked)="closeSidebar()">
   <daff-sidebar class="over-sidebar" [mode]="modeControl.value" [side]="sideControl.value" [open]="open" (escapePressed)="closeSidebar()">
-    <daff-sidebar-header>
-      <button daff-icon-button color="theme-contrast" daffSidebarHeaderAction (click)="closeSidebar()">
-        <fa-icon [icon]="faTimes" size="sm"></fa-icon>
-      </button>
+    <daff-sidebar-header [dismissible]="true">
       <div daffSidebarHeaderTitle>Title</div>
     </daff-sidebar-header>
     <div class="over-and-under-sidebars__sidebar-content">

@@ -19,7 +19,6 @@ import { DaffioNavLink } from '../link/type';
 @Component({
   selector: 'daffio-nav-links-sidebar-body',
   templateUrl: './component.html',
-  styleUrls: ['./component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
