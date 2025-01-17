@@ -21,7 +21,10 @@ export class DaffInMemoryDriverModule {
     return {
       ngModule: DaffInMemoryDriverModule,
       providers: [
-        importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryRootBackend, config)),
+        importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryRootBackend, {
+          ...config,
+          passThruUnknownUrl: true,
+        })),
         provideDaffInMemoryDriverConfig(config),
       ],
     };

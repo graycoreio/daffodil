@@ -114,6 +114,18 @@
                   "with": "apps/demo/src/app/drivers/magento.module.ts"
                 }
               ]
+            },
+            "shopify": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/demo/src/environments/environment.ts",
+                  "with": "apps/demo/src/environments/environment.shopify.ts"
+                },
+                {
+                  "replace": "apps/demo/src/app/drivers/driver.module.ts",
+                  "with": "apps/demo/src/app/drivers/shopify.module.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -141,6 +153,9 @@
             },
             "venia": {
               "buildTarget": "demo:build:venia"
+            },
+            "shopify": {
+              "buildTarget": "demo:build:development,shopify"
             }
           }
         },
