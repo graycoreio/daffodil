@@ -14,6 +14,7 @@ import {
 import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
 import { DaffioSimpleFooterComponent } from '../core/footer/simple-footer/simple-footer.component';
 import { DaffioDocsNavContainer } from '../core/nav/docs/docs.component';
+import { DAFF_DOCS_NAV_SIDEBAR_REGISTRATION } from '../core/nav/docs-sidebar.provider';
 import { DaffioRouterNamedViewsEnum } from '../core/router/named-views/models/named-views.enum';
 import { DaffioRoute } from '../core/router/route.type';
 
@@ -32,6 +33,7 @@ export const docsRoutes: Routes = [
         { url: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`, title: 'Design' },
       ],
       daffioSidebars: {
+        [DAFF_DOCS_NAV_SIDEBAR_REGISTRATION.id]: DAFF_DOCS_NAV_SIDEBAR_REGISTRATION,
         [DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION.id]: DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION,
       },
     },
