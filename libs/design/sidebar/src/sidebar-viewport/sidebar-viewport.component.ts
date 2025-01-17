@@ -103,7 +103,7 @@ export class DaffSidebarViewportComponent implements AfterContentChecked, OnDest
 
   onContentAnimationStart(e: AnimationEvent) {
     if(e.toState === 'open') {
-      this._elementRef.nativeElement.style.overflow = 'hidden';
+      this._elementRef.nativeElement.style.overflow = 'clip';
     }
   }
 
