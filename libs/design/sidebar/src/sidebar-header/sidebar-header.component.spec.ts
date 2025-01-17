@@ -69,7 +69,7 @@ describe('@daffodil/design/sidebar | DaffSidebarHeaderComponent', () => {
     });
 
     it('should show the close icon button', () => {
-      expect(fixture.debugElement.query(By.css('.daff-sidebear-header__close-icon'))).toBeTruthy();
+      expect(fixture.debugElement.query(By.css('.daff-sidebar-header__close-icon'))).toBeTruthy();
     });
   });
 
