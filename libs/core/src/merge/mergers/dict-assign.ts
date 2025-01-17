@@ -1,3 +1,6 @@
 export function daffDictAssignMerger<T extends Record<string, unknown> = Record<string, unknown>>(a: T, b: T): T {
-  return Object.assign(a, b);
+  return {
+    ...a,
+    ...b,
+  };
 }
