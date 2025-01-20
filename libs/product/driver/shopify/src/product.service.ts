@@ -41,6 +41,7 @@ interface ProductNode {
   };
   images: {
     nodes: {
+      id: string;
       url: string;
       altText: string;
     }[];
@@ -67,6 +68,7 @@ export const GetAllProductsQuery = gql`
           description
           images(first: 1) {
             nodes {
+              id
               url
               altText
             }
@@ -86,11 +88,15 @@ export const GetAllProductsQuery = gql`
 
 const DaffShopifyProductTransformer = (node: ProductNode): DaffProduct => ({
   name: node.title,
-  images: [],
+  images: node.images.nodes.map(imageNode => ({
+    id: imageNode.id,
+    url: imageNode.url,
+    label: imageNode.altText,
+  })),
   thumbnail: {
     url: node.images.nodes[0].url,
     label: node.images.nodes[0].altText,
-    id: node.id,
+    id: node.images.nodes[0].id,
   },
   id: node.id,
   url: node.onlineStoreUrl,
