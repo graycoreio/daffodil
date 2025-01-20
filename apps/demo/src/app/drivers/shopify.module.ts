@@ -6,19 +6,15 @@ import {
 } from 'apollo-angular';
 
 
+import { DaffAuthorizeNetInMemoryDriverModule } from '@daffodil/authorizenet/driver/in-memory';
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
+import { DaffCategoryInMemoryDriverModule } from '@daffodil/category/driver/in-memory';
 import { DaffInMemoryDriverModule } from '@daffodil/driver/in-memory';
+import { DaffNavigationInMemoryDriverModule } from '@daffodil/navigation/driver/in-memory';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
 import { createApolloConfig } from '@daffodil/product/driver';
 import { DaffProductShopifyDriverModule } from '@daffodil/product/driver/shopify';
 import { shopifyDriverConfig } from '@daffodil/product/driver/shopify';
-import {
-  DaffNavigationInMemoryDriverModule,
-  DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER,
-} from '@daffodil/navigation/driver/in-memory';
-import { DaffCategoryInMemoryDriverModule } from '@daffodil/category/driver/in-memory';
-
-import { DaffAuthorizeNetInMemoryDriverModule } from '@daffodil/authorizenet/driver/in-memory';
 import {
   DaffDefaultProductFactory,
   provideDaffProductExtraFactoryTypes,
@@ -27,8 +23,6 @@ import {
 
 import { environment } from '../../environments/environment';
 import { ShopifyEnviromentDriverConfiguration } from '../../environments/environment.interface';
-
-const cache = new InMemoryCache();
 
 @NgModule({
   imports: [
