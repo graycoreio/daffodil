@@ -79,6 +79,9 @@ export const GetAllProductsQuery = gql`
   }
 `;
 
+// To be implemented properly later
+export const GetAProduct = GetAllProductsQuery;
+
 /**
  * Transforms a ProductNode into a different object.
  *
