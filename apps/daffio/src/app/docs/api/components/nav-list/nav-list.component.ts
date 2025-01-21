@@ -18,6 +18,7 @@ const DEFAULT_ROUTER_LINK_ACTIVE_CONFIG: RouterLinkActive['routerLinkActiveOptio
 @Component({
   selector: 'daffio-api-nav-list',
   templateUrl: './nav-list.component.html',
+  styleUrl: './nav-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [

@@ -7,7 +7,8 @@
 @use '../app/docs/api/components/api-list-section/api-list-section-theme' as api-list-section;
 @use '../app/docs/api/components/api-package/api-package-theme' as api-package;
 @use '../app/newsletter/newsletter-theme' as newsletter;
-@use '../app/core/sidebar/components/sidebar-footer/sidebar-footer-theme' as sidebar-footer;
+@use '../app/core/sidebar/components/marketing/footer/footer-theme' as marketing-sidebar-footer;
+@use '../app/core/sidebar/components/docs/footer/footer-theme' as docs-sidebar-footer;
 @use '../app/core/header/components/header/header-theme' as header;
 
 @mixin component-themes($theme) {
@@ -20,6 +21,7 @@
 	@include api-list-section.daffio-api-list-section-theme($theme);
 	@include api-package.daffio-api-package-theme($theme);
 	@include newsletter.daffio-newsletter-theme($theme);
-	@include sidebar-footer.daffio-sidebar-footer-theme($theme);
 	@include header.daffio-header-theme($theme);
+	@include marketing-sidebar-footer.daffio-marketing-sidebar-footer-theme($theme);
+	@include docs-sidebar-footer.daffio-docs-sidebar-footer-theme($theme);
 }

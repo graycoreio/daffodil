@@ -1,0 +1,15 @@
+@use 'sass:map';
+@use 'theme' as daff-theme;
+
+@mixin daffio-docs-sidebar-footer-theme($theme) {
+	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
+	$base: daff-theme.daff-map-get($theme, 'core', 'base');
+
+	.daffio-docs-sidebar-footer {
+		border-top: 1px solid daff-theme.daff-illuminate($base, $neutral, 2);
+
+		&::after {
+			background: daff-theme.daff-illuminate($base, $neutral, 2);
+		}
+	}
+}

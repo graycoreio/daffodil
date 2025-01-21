@@ -1,13 +1,13 @@
 @use 'sass:map';
 @use 'theme' as daff-theme;
 
-@mixin daffio-sidebar-footer-theme($theme) {
+@mixin daffio-marketing-sidebar-footer-theme($theme) {
 	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
 	$base: daff-theme.daff-map-get($theme, 'core', 'base');
 	$base-contrast: daff-theme.daff-map-get($theme, 'core', 'base-contrast');
 	$primary: daff-theme.daff-map-get($theme, primary);
 
-	.daffio-sidebar-footer {
+	.daffio-marketing-sidebar-footer {
 		background: daff-theme.daff-illuminate($base, $neutral, 2);
 
 		&:hover {
