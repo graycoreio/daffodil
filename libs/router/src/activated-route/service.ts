@@ -28,6 +28,8 @@ const getActivatedRoute = (routerState: RouterState): ActivatedRoute => {
  * inject this service in the root and subscribe to `route$` on app init so that all routing events are captured.
  * The consumer can then subscribe at any later time (after all navigations) and the last emitted value will be replayed.
  * {@link provideDaffRouterActivatedRoute} is the recommended way to do this.
+ *
+ * @deprecated do `inject(ChildrenOutletContexts).getContext(PRIMARY_OUTLET).route` instead.
  */
 @Injectable({
   providedIn: 'root',
