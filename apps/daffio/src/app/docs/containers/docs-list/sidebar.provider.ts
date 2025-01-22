@@ -10,5 +10,5 @@ export const DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION: DaffioSidebarRegistration = 
   header: DaffioSidebarHeaderComponent,
   body: DaffioDocsListContainer,
   footer: DaffioDocsSidebarFooterComponent,
-  alwaysShowFooter: true,
+  footerStrategy: () => true,
 };

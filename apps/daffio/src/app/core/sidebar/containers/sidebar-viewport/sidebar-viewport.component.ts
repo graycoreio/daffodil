@@ -1,6 +1,8 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   ChangeDetectionStrategy,
   Component,
+  Inject,
   OnInit,
   Signal,
 } from '@angular/core';
@@ -8,8 +10,13 @@ import {
   combineLatest,
   map,
   Observable,
+  startWith,
 } from 'rxjs';
 
+import {
+  DaffBreakpoints,
+  SERVER_SAFE_BREAKPOINT_OBSERVER,
+} from '@daffodil/design';
 import {
   daffSidebarIsFloatingMode,
   DaffSidebarModeEnum,
@@ -31,27 +38,35 @@ export class DaffioSidebarViewportContainer implements OnInit {
   showSidebarHeader$: Observable<boolean>;
   showSidebarFooter$: Observable<boolean>;
   component$: Observable<DaffioSidebarRegistration>;
+  isBigTablet$: Observable<boolean>;
 
   ngOnInit() {
     this.component$ = this.sidebarService.activeRegistration$;
     this.showSidebar = this.sidebarService.isOpen;
     this.mode$ = this.sidebarService.mode$;
+    this.breakpointObserver.observe(DaffBreakpoints.BIG_TABLET).pipe(
+      startWith({ matches: true }),
+      map((result) => result?.matches),
+    );
     this.showSidebarHeader$ = combineLatest([
       this.component$,
       this.mode$,
+      this.isBigTablet$,
     ]).pipe(
-      map(([component, mode]) => component?.header && (component.alwaysShowHeader || daffSidebarIsFloatingMode(mode))),
+      map(([component, mode, isBigTablet]) => component?.header && component.headerStrategy ? component.headerStrategy(isBigTablet, mode) : daffSidebarIsFloatingMode(mode)),
     );
     this.showSidebarFooter$ = combineLatest([
       this.component$,
       this.mode$,
+      this.isBigTablet$,
     ]).pipe(
-      map(([component, mode]) => component?.footer && (component.alwaysShowFooter || daffSidebarIsFloatingMode(mode))),
+      map(([component, mode, isBigTablet]) => component?.footer && component.footerStrategy ? component.footerStrategy(isBigTablet, mode) : daffSidebarIsFloatingMode(mode)),
     );
   }
 
   constructor(
     private sidebarService: DaffioSidebarService,
+    @Inject(SERVER_SAFE_BREAKPOINT_OBSERVER) private breakpointObserver: BreakpointObserver,
   ) { }
 
   close() {

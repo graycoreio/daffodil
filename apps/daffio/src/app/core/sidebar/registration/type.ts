@@ -1,12 +1,21 @@
-import { DaffSidebarRegistration } from '@daffodil/design/sidebar';
+import {
+  DaffSidebarMode,
+  DaffSidebarRegistration,
+} from '@daffodil/design/sidebar';
+
+/**
+ * A strategy that determines whether a section of the sidebar should be visible based on the screen breakpoint and sidebar mode.
+ */
+export type DaffioSidebarSectionStrategy = (isBigTablet: boolean, mode: DaffSidebarMode) => boolean;
 
 export interface DaffioSidebarRegistration extends DaffSidebarRegistration {
   /**
-   * Whether to show the sidebar header regardless of sidebar mode.
+   * Determines when to show the header.
    */
-  alwaysShowHeader?: boolean;
+  headerStrategy?: DaffioSidebarSectionStrategy;
+
   /**
-   * Whether to show the sidebar footer regardless of sidebar mode.
+   * Determines when to show the footer.
    */
-  alwaysShowFooter?: boolean;
+  footerStrategy?: DaffioSidebarSectionStrategy;
 }
