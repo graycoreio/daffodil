@@ -44,7 +44,7 @@ export class DaffioSidebarViewportContainer implements OnInit {
     this.component$ = this.sidebarService.activeRegistration$;
     this.showSidebar = this.sidebarService.isOpen;
     this.mode$ = this.sidebarService.mode$;
-    this.breakpointObserver.observe(DaffBreakpoints.BIG_TABLET).pipe(
+    this.isBigTablet$ = this.breakpointObserver.observe(DaffBreakpoints.BIG_TABLET).pipe(
       startWith({ matches: true }),
       map((result) => result?.matches),
     );
@@ -53,14 +53,14 @@ export class DaffioSidebarViewportContainer implements OnInit {
       this.mode$,
       this.isBigTablet$,
     ]).pipe(
-      map(([component, mode, isBigTablet]) => component?.header && component.headerStrategy ? component.headerStrategy(isBigTablet, mode) : daffSidebarIsFloatingMode(mode)),
+      map(([component, mode, isBigTablet]) => component?.header && (component.headerStrategy ? component.headerStrategy(isBigTablet, mode) : daffSidebarIsFloatingMode(mode))),
     );
     this.showSidebarFooter$ = combineLatest([
       this.component$,
       this.mode$,
       this.isBigTablet$,
     ]).pipe(
-      map(([component, mode, isBigTablet]) => component?.footer && component.footerStrategy ? component.footerStrategy(isBigTablet, mode) : daffSidebarIsFloatingMode(mode)),
+      map(([component, mode, isBigTablet]) => component?.footer && (component.footerStrategy ? component.footerStrategy(isBigTablet, mode) : daffSidebarIsFloatingMode(mode))),
     );
   }
 
