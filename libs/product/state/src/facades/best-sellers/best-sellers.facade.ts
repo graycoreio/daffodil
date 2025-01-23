@@ -16,6 +16,7 @@ import { getDaffProductSelectors } from '../../selectors/public_api';
  * A facade for accessing best sellers state from an application component.
  *
  * @inheritdoc
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
  */
 @Injectable({
   providedIn: 'root',

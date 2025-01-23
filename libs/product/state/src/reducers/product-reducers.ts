@@ -13,5 +13,8 @@ export const daffProductReducers: ActionReducerMap<DaffProductReducersState> = {
   products: daffProductEntitiesReducer,
   productGrid: daffProductGridReducer,
   product: daffProductReducer,
+  /**
+   * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
+   */
   bestSellers: daffBestSellersReducer,
 };

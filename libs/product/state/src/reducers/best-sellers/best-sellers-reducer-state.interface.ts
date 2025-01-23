@@ -3,6 +3,7 @@ import { DaffProduct } from '@daffodil/product';
 
 /**
  * An interface describing best sellers redux state.
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
  */
 export interface DaffBestSellersReducerState {
   /**

@@ -14,6 +14,9 @@ export interface DaffProductReducersState<T extends DaffProduct = DaffProduct> {
   products: EntityState<T>;
   productGrid: DaffProductGridReducerState<T>;
   product: DaffProductReducerState;
+  /**
+   * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
+   */
   bestSellers: DaffBestSellersReducerState;
 }
 

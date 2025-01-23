@@ -15,6 +15,7 @@ import { getDaffProductFeatureSelector } from '../product-feature.selector';
 
 /**
  * An interface for the available best sellers selectors.
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
  */
 export interface DaffBestSellersMemoizedSelectors<T extends DaffProduct = DaffProduct> {
   /**
@@ -76,6 +77,7 @@ const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMem
  * A function that returns all selectors related to best sellers state.
  *
  * Returns {@link DaffBestSellersMemoizedSelectors}.
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
  */
 export const getDaffBestSellersSelectors = (() => {
   let cache;
