@@ -24,7 +24,7 @@
 			</daff-tab-label>
 			<daff-tab-panel>
 				@for (apiDoc of doc().api; track $index) {
-					<div [innerHtml]="apiDoc | safe"></div>
+					<section [innerHtml]="apiDoc | safe"></section>
 				}
 			</daff-tab-panel>
 		</daff-tab>
