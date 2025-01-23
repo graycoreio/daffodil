@@ -81,7 +81,7 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
           }));
         }
         if (doc.longDescription) {
-          doc.longDescription = this.marked.parse(doc.longDescription);
+          doc.longDescription = (<string>this.marked.parse(doc.longDescription)).replaceAll(/(^<p>)|(<\/p>(\n)*$)/gm, '');
         }
         doc.slug = slugify(doc.name || doc.title);
       };
