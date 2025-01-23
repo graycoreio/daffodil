@@ -1,5 +1,5 @@
 {% block header %}
-{$'<h3 id="' + doc.slug + '"><a href="' + doc.path + '">' if child else '<h1>'$}{$ doc.name $}{$'</a></h3>' if child else '</h1>'$}
+{$'<h3 id="' + doc.slug + '">' if child else '<h1>'$}{$ doc.name $}{$'</h3>' if child else '</h1>'$}
 {% endblock %}
 <p>{$ doc.description $}</p>
 
