@@ -65,9 +65,6 @@
       ],
       "dependsOn": [
         "build"
-      ],
-      "outputs": [
-        "{workspaceRoot}/{projectRoot}/coverage"
       ]
     },
     "lint": {
