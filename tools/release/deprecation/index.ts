@@ -3,6 +3,7 @@ import {
   series,
   src,
 } from 'gulp';
+import reduce from 'gulp-reduce-async';
 import replace from 'gulp-replace';
 import through2 from 'through2';
 import { TaskFunction } from 'undertaker';
@@ -59,11 +60,21 @@ const check: TaskFunction = async () => {
     encoding: 'utf8',
     base: RELEASE_CONFIG.PROJECT_PATH,
   })
-    .pipe(through2.obj((file, enc, next) => {
+    .pipe(reduce((memo, path, file, next) => {
       if (file.contents.toString().match(regex)) {
-        next(new Error(`${file.path} contains a symbol that is marked for removal in this version (${rootVersion})`));
+        const message = `${file.path} contains a symbol that is marked for removal in this version (${rootVersion})`;
+        (<any>message).__proto__.isNull = () => false;
+        next(null, `${memo}${message}\n`);
       } else {
-        next();
+        next(null, memo);
+      }
+    }, ''))
+    .pipe(through2.obj((file, enc, next) => {
+      const contents = file.contents.toString();
+      if (contents) {
+        next(contents);
+      } else {
+        next(null, file);
       }
     }));
 };
