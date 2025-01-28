@@ -21,10 +21,6 @@ export interface DaffCompositeCartItem extends DaffCartItem {
  */
 export interface DaffCompositeCartItemOption extends DaffIdentifiable {
   /**
-   * @deprecated use id instead. Deprecated in version 0.78.0. Will be removed in version 0.81.0.
-   */
-  option_id: ID;
-  /**
    * A human-readable label for the option.
    */
   option_label: string;

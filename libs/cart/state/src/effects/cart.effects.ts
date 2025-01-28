@@ -109,17 +109,6 @@ export class DaffCartEffects<T extends DaffCart = DaffCart> {
   ));
 
 
-  addToCart$ = createEffect(() => this.actions$.pipe(
-    ofType(DaffCartActionTypes.AddToCartAction),
-    switchMap((action: DaffAddToCart) =>
-      this.driver.addToCart(action.payload.productId, action.payload.qty).pipe(
-        map((resp: T) => new DaffAddToCartSuccess(resp)),
-        catchAndArrayifyErrors(error => of(new DaffAddToCartFailure(error.map(this.errorMatcher)))),
-      ),
-    ),
-  ));
-
-
   clear$ = createEffect(() => this.actions$.pipe(
     ofType(DaffCartActionTypes.CartClearAction),
     switchMap((action: DaffCartClear) => defer(() => of(this.storage.getCartId())).pipe(

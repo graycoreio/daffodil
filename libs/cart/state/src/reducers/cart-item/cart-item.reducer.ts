@@ -33,7 +33,7 @@ export function cartItemReducer<T extends DaffCart = DaffCart>(
     case DaffCartItemActionTypes.CartItemDeleteOutOfStockAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffState.Mutating),
+        ...setLoading(state.loading, DaffState.Updating),
       };
 
     case DaffCartItemActionTypes.CartItemAddAction:
@@ -50,7 +50,7 @@ export function cartItemReducer<T extends DaffCart = DaffCart>(
           ...state.cart,
           items: action.payload,
         },
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartItemActionTypes.CartItemLoadSuccessAction:
@@ -65,7 +65,7 @@ export function cartItemReducer<T extends DaffCart = DaffCart>(
               : item,
           ),
         },
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
@@ -74,7 +74,7 @@ export function cartItemReducer<T extends DaffCart = DaffCart>(
       return {
         ...state,
         ...resetErrors(state.errors),
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartItemActionTypes.CartItemDeleteOutOfStockSuccessAction:
@@ -86,7 +86,7 @@ export function cartItemReducer<T extends DaffCart = DaffCart>(
           // out of stock errors can be in the main cart, remove them here
           [DaffCartOperationType.Cart]: state.errors[DaffCartOperationType.Cart].filter(({ code }) => code !== DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK),
         },
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartItemActionTypes.CartItemListFailureAction:
@@ -96,14 +96,14 @@ export function cartItemReducer<T extends DaffCart = DaffCart>(
       return {
         ...state,
         ...addError(state.errors, ...action.payload),
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartItemActionTypes.CartItemUpdateFailureAction:
     case DaffCartItemActionTypes.CartItemDeleteFailureAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     default:

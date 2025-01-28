@@ -21,13 +21,9 @@ import { getDaffProductSelectors } from '../../selectors/public_api';
   providedIn: 'root',
 })
 export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements DaffProductFacadeInterface<T> {
-  loading$: Observable<boolean>;
-
   private selectors = getDaffProductSelectors<T>();
 
-  constructor(private store: Store<DaffProductStateRootSlice<T>>) {
-    this.loading$ = this.store.pipe(select(this.selectors.selectLoading));
-  }
+  constructor(private store: Store<DaffProductStateRootSlice<T>>) {}
 
   getProduct(id: T['id']): Observable<T> {
     return this.store.pipe(select(this.selectors.selectProduct(id)));

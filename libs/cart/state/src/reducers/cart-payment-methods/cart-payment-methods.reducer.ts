@@ -35,14 +35,14 @@ export function cartPaymentMethodsReducer<T extends DaffCart = DaffCart>(
           ...state.cart,
           available_payment_methods: action.payload,
         },
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadFailureAction:
       return {
         ...state,
         ...addError(state.errors, ...action.payload),
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     default:

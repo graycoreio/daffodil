@@ -144,7 +144,7 @@ describe('@daffodil/cart/state | daffCartItemEntitiesReducer', () => {
     });
 
     it('sets the updating cart item state to mutating', () => {
-      expect(result.entities[stubStatefulCartItem.id].daffState).toEqual(DaffState.Mutating);
+      expect(result.entities[stubStatefulCartItem.id].daffState).toEqual(DaffState.Updating);
     });
   });
 

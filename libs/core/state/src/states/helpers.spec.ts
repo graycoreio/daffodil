@@ -27,7 +27,7 @@ describe('@daffodil/core/state | daffStateIsLoading', () => {
 
   describe('when the state is Mutated', () => {
     beforeEach(() => {
-      result = daffStateIsLoading(DaffState.Mutated);
+      result = daffStateIsLoading(DaffState.Updated);
     });
 
     it('should be false', () => {
@@ -47,7 +47,7 @@ describe('@daffodil/core/state | daffStateIsLoading', () => {
 
   describe('when the state is Mutating', () => {
     beforeEach(() => {
-      result = daffStateIsLoading(DaffState.Mutating);
+      result = daffStateIsLoading(DaffState.Updating);
     });
 
     it('should be true', () => {

@@ -52,6 +52,6 @@ export class CartItemComponent implements OnInit {
   }
 
   removeItem() {
-    this.facade.dispatch(new DaffCartItemDelete(this.item.item_id));
+    this.facade.dispatch(new DaffCartItemDelete(this.item.id));
   }
 }

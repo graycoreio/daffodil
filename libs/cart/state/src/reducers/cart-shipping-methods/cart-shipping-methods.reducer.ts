@@ -35,14 +35,14 @@ export function cartShippingMethodsReducer<T extends DaffCart = DaffCart>(
           ...state.cart,
           available_shipping_methods: action.payload,
         },
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartShippingMethodsActionTypes.CartShippingMethodsLoadFailureAction:
       return {
         ...state,
         ...addError(state.errors, ...action.payload),
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     default:

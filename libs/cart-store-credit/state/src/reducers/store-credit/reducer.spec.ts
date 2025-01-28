@@ -48,7 +48,7 @@ describe('@daffodil/cart-store-credit/state | daffCartStoreCreditReducer', () =>
     });
 
     it('sets loading state to mutating', () => {
-      expect(result.daffState).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Updating);
     });
   });
 
@@ -125,7 +125,7 @@ describe('@daffodil/cart-store-credit/state | daffCartStoreCreditReducer', () =>
     });
 
     it('sets loading state to mutating', () => {
-      expect(result.daffState).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Updating);
     });
   });
 

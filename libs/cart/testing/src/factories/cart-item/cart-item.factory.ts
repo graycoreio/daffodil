@@ -15,7 +15,6 @@ import { DaffProductImageFactory } from '@daffodil/product/testing';
 
 export class DaffMockCartItem implements DaffCartItem {
   id = faker.datatype.uuid();
-  item_id = this.id;
   type = DaffCartItemInputType.Simple;
   product_id = faker.datatype.uuid();
   parent_item_id = faker.datatype.uuid();

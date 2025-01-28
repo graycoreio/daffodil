@@ -30,7 +30,6 @@ describe('Cart | State | Testing | Factories | StatefulConfigurableCartItemFacto
     });
 
     it('should return a StatefulConfigurableCartItem with all required fields defined', () => {
-      expect(result.item_id).not.toBeNull();
       expect(result.id).not.toBeNull();
       expect(result.product_id).not.toBeNull();
       expect(result.parent_item_id).not.toBeNull();

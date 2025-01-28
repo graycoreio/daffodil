@@ -132,7 +132,7 @@ describe('@daffodil/category/state | daffCategoryReducer', () => {
     });
 
     it('sets daffState to mutating', () => {
-      expect(result.daffState).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Updating);
     });
   });
 
@@ -146,7 +146,7 @@ describe('@daffodil/category/state | daffCategoryReducer', () => {
     });
 
     it('sets daffState to mutating', () => {
-      expect(result.daffState).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Updating);
     });
   });
 
@@ -163,7 +163,7 @@ describe('@daffodil/category/state | daffCategoryReducer', () => {
     });
 
     it('sets daffState to mutating', () => {
-      expect(result.daffState).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Updating);
     });
   });
 
@@ -184,7 +184,7 @@ describe('@daffodil/category/state | daffCategoryReducer', () => {
     });
 
     it('sets daffState to mutating', () => {
-      expect(result.daffState).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Updating);
     });
   });
 
@@ -234,7 +234,7 @@ describe('@daffodil/category/state | daffCategoryReducer', () => {
     });
 
     it('sets daffState to mutating', () => {
-      expect(result.daffState).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Updating);
     });
   });
 
@@ -283,7 +283,7 @@ describe('@daffodil/category/state | daffCategoryReducer', () => {
     });
 
     it('sets daffState to mutating', () => {
-      expect(result.daffState).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Updating);
     });
   });
 
@@ -304,7 +304,7 @@ describe('@daffodil/category/state | daffCategoryReducer', () => {
     });
 
     it('sets daffState to mutating', () => {
-      expect(result.daffState).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Updating);
     });
   });
 
@@ -337,7 +337,7 @@ describe('@daffodil/category/state | daffCategoryReducer', () => {
     });
 
     it('sets daffState to mutating', () => {
-      expect(result.daffState).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Updating);
     });
   });
 
@@ -360,7 +360,7 @@ describe('@daffodil/category/state | daffCategoryReducer', () => {
     });
 
     it('sets daffState to mutating', () => {
-      expect(result.daffState).toEqual(DaffState.Mutating);
+      expect(result.daffState).toEqual(DaffState.Updating);
     });
   });
 

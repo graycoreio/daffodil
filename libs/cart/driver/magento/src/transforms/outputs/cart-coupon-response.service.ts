@@ -33,16 +33,6 @@ export class DaffMagentoCartCouponResponseTransformer {
     };
   }
 
-  private transformTotals(cart: Partial<MagentoCart>): {
-    grand_total: DaffCart['grand_total'];
-    subtotal: DaffCart['subtotal'];
-  } {
-    return {
-      grand_total: cart.prices.grand_total.value,
-      subtotal: cart.prices.subtotal_excluding_tax.value,
-    };
-  }
-
   private transformCoupons(cart: Partial<MagentoCart>): {coupons: DaffCart['coupons']} {
     return {
       coupons: cart.applied_coupons
@@ -60,7 +50,6 @@ export class DaffMagentoCartCouponResponseTransformer {
     return cart ? {
       ...this.transformCartItems(cart),
       ...this.transformCoupons(cart),
-      ...this.transformTotals(cart),
       ...transformCartTotals(cart),
 
       id: cart.id,

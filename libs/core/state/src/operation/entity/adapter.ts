@@ -139,7 +139,7 @@ export class DaffOperationEntityStateAdapter<T extends DaffIdentifiable = DaffId
   preupdate<S extends DaffOperationEntityState<T> = DaffOperationEntityState<T>>(entity: Partial<T> & DaffIdentifiable, state: S): S {
     return this.adapter.upsertOne({
       ...state.entities[entity.id],
-      daffState: DaffState.Mutating,
+      daffState: DaffState.Updating,
       daffErrors: [],
     }, state);
   }
@@ -148,7 +148,7 @@ export class DaffOperationEntityStateAdapter<T extends DaffIdentifiable = DaffId
     return this.adapter.updateOne({
       id: entity.id,
       changes: <Partial<DaffOperationEntity<T>>>{
-        daffState: DaffState.Mutated,
+        daffState: DaffState.Updated,
         ...entity,
         daffErrors: [],
         daffTemp: false,

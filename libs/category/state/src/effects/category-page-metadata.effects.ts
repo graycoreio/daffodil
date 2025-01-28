@@ -79,7 +79,6 @@ export class DaffCategoryPageMetadataEffects<
   | DaffCategoryPageLoadFailure
   > = createEffect(() => (throttleWindow = 300, scheduler = asyncScheduler) => this.actions$.pipe(
       ofType(
-        DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeFiltersAction,
         DaffCategoryPageProductCollectionActionTypes.CategoryPageReplaceFiltersAction,
         DaffCategoryPageProductCollectionActionTypes.CategoryPageApplyFiltersAction,
         DaffCategoryPageProductCollectionActionTypes.CategoryPageClearFiltersAction,

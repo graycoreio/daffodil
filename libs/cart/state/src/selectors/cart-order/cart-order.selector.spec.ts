@@ -87,7 +87,7 @@ describe('@daffodil/cart/state | getCartOrderSelectors', () => {
           orderId,
           cartId: cart.id,
         },
-        loading: DaffState.Complete,
+        loading: DaffState.Stable,
         errors: [],
       };
       const selector = store.pipe(select(selectCartOrderState));

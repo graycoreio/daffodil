@@ -33,7 +33,7 @@ export function cartCouponReducer<T extends DaffCart = DaffCart>(
     case DaffCartCouponActionTypes.CartCouponRemoveAllAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffState.Mutating),
+        ...setLoading(state.loading, DaffState.Updating),
       };
 
     case DaffCartCouponActionTypes.CartCouponApplySuccessAction:
@@ -42,7 +42,7 @@ export function cartCouponReducer<T extends DaffCart = DaffCart>(
       return {
         ...state,
         ...resetErrors(state.errors),
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartCouponActionTypes.CartCouponClearErrorsAction:
@@ -59,7 +59,7 @@ export function cartCouponReducer<T extends DaffCart = DaffCart>(
           ...state.cart,
           coupons: action.payload,
         },
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartCouponActionTypes.CartCouponApplyFailureAction:
@@ -69,7 +69,7 @@ export function cartCouponReducer<T extends DaffCart = DaffCart>(
       return {
         ...state,
         ...addError(state.errors, ...action.payload),
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     default:

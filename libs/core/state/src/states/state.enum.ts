@@ -43,31 +43,10 @@ export const enum DaffState {
   Updated = 'Updated',
 
   /**
-   * @deprecated in favor of {@link DaffState.Updating} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
-   */
-  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
-  Mutating = 'Updating',
-
-  /**
-   * @deprecated in favor of {@link DaffState.Updated} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
-   */
-  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
-  Mutated = 'Updated',
-
-  /**
    * The "Deleting" state occurs when an object is in the process of being
    * removed from state.
    */
   Deleting = 'Deleting',
-
-  /**
-   * An alias for 'Stable'.
-   *
-   * @deprecated Deprecated in version 0.78.0. Will be removed in version 0.81.0.
-   * Use DaffState.Stable instead.
-   */
-  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
-  Complete = 'Stable',
 
   /**
    * Indicates that the most recent operation specififc to this entity has failed.

@@ -24,13 +24,6 @@ export interface DaffCartPaymentServiceInterface<T extends DaffCart = DaffCart> 
   update(cartId: T['id'], payment: Partial<T['payment']>, billingAddress?: Partial<T['billing_address']>): Observable<Partial<T>>;
 
   /**
-   * Update the billing address and payment method applied to a cart.
-   *
-   * @deprecated use `update` with the `billingAddress` parameter instead. Deprecated in version 0.78.0. Will be removed in version 0.81.0.
-   */
-  updateWithBilling(cartId: T['id'], payment: Partial<T['payment']>, address: Partial<T['billing_address']>): Observable<Partial<T>>;
-
-  /**
    * Remove the payment method applied to a cart.
    */
   remove(cartId: T['id']): Observable<void>;

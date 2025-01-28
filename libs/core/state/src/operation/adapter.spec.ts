@@ -37,7 +37,7 @@ describe('@daffodil/core/state | daffStartMutation', () => {
   });
 
   it('should set loading to mutating', () => {
-    expect(result.daffState).toEqual(DaffState.Mutating);
+    expect(result.daffState).toEqual(DaffState.Updating);
   });
 });
 

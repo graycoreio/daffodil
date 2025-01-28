@@ -6,10 +6,6 @@ import {
 } from '@ngrx/store';
 
 import {
-  getDaffCartSelectors,
-  DaffCartStateRootSlice,
-} from '@daffodil/cart/state';
-import {
   DaffOrder,
   DaffOrderItem,
   DaffOrderTotal,
@@ -42,19 +38,6 @@ export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
    */
   selectOrderTotal: MemoizedSelector<DaffOrderStateRootSlice<T>, number>;
   selectOrder: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T>;
-
-  /**
-   * Selector for the most recently placed order (if any).
-   *
-   * @deprecated in favor of {@link DaffCheckoutPlacedOrderSelectors#selectPlacedOrder} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
-   */
-  selectPlacedOrder: MemoizedSelector<DaffOrderStateRootSlice<T>, T>;
-  /**
-   * Selector for the existence of the most recently placed order.
-   *
-   * @deprecated in favor of {@link DaffCheckoutPlacedOrderSelectors#selectHasPlacedOrder} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
-   */
-  selectHasPlacedOrder: MemoizedSelector<DaffOrderStateRootSlice<T>, boolean>;
 
   /**
    * Selects the specified order's totals.
@@ -131,24 +114,12 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
     state => state.orders,
   );
   const { selectIds, selectEntities, selectAll, selectTotal } = daffGetOrderAdapter<T>().getSelectors(selectOrderEntitiesState);
-  const { selectCartOrderId } = getDaffCartSelectors();
 
   const selectOrder: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T> =
     defaultMemoize((orderId: T['id']) => createSelector(
       selectEntities,
       (orders: Dictionary<T>) => orders[orderId] || null,
     )).memoized;
-
-  const selectPlacedOrder = createSelector(
-    selectEntities,
-    selectCartOrderId,
-    (orders, orderId) => orderId ? selectOrder(orderId).projector(orders) : null,
-  );
-
-  const selectHasPlacedOrder = createSelector(
-    selectPlacedOrder,
-    placedOrder => !!placedOrder,
-  );
 
   const selectOrderTotals: (orderId: T['id']) => MemoizedSelector<DaffOrderStateRootSlice<T>, T['totals']> =
     defaultMemoize((orderId: T['id']) => createSelector(
@@ -259,9 +230,6 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
     selectOrderEntities: selectEntities,
     selectAllOrders: selectAll,
     selectOrderTotal: selectTotal,
-
-    selectPlacedOrder,
-    selectHasPlacedOrder,
 
     selectOrder,
     selectOrderTotals,

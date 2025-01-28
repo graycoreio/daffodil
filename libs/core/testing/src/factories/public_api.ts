@@ -1,9 +1,5 @@
 export { DaffModelFactory } from './factory';
 export { IDaffModelFactory } from './factory.interface';
-export {
-  DaffAddressFactory,
-  MockDaffAddress,
-} from './address.factory';
 export * from './identifiable.factory';
 
 export * from './collection/public_api';

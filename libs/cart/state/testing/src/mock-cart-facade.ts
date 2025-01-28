@@ -90,7 +90,6 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   orderResultLoading$ = new BehaviorSubject<boolean>(false);
   orderResultErrors$ = new BehaviorSubject<DaffStateError[]>([]);
   orderResult$ = new BehaviorSubject<DaffCartOrderResult>({
-    id: null,
     orderId: null,
     cartId: null,
   });

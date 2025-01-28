@@ -34,7 +34,7 @@ export function cartBillingAddressReducer<T extends DaffCart = DaffCart>(
     case DaffCartAddressActionTypes.CartAddressUpdateAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffState.Mutating),
+        ...setLoading(state.loading, DaffState.Updating),
       };
 
     case DaffCartBillingAddressActionTypes.CartBillingAddressLoadSuccessAction:
@@ -45,7 +45,7 @@ export function cartBillingAddressReducer<T extends DaffCart = DaffCart>(
           ...state.cart,
           billing_address: action.payload,
         },
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartBillingAddressActionTypes.CartBillingAddressUpdateSuccessAction:
@@ -53,7 +53,7 @@ export function cartBillingAddressReducer<T extends DaffCart = DaffCart>(
       return {
         ...state,
         ...resetErrors(state.errors),
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartBillingAddressActionTypes.CartBillingAddressLoadFailureAction:
@@ -62,7 +62,7 @@ export function cartBillingAddressReducer<T extends DaffCart = DaffCart>(
       return {
         ...state,
         ...addError(state.errors, ...action.payload),
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     default:

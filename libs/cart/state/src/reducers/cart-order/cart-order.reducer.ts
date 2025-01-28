@@ -37,21 +37,21 @@ export function daffCartOrderReducer<T extends DaffCartOrderResult = DaffCartOrd
     case DaffCartOrderActionTypes.CartPlaceOrderAction:
       return {
         ...state,
-        loading: DaffState.Mutating,
+        loading: DaffState.Updating,
       };
 
     case DaffCartOrderActionTypes.CartPlaceOrderSuccessAction:
       return {
         ...state,
         errors: [],
-        loading: DaffState.Complete,
+        loading: DaffState.Stable,
         cartOrderResult: action.payload,
       };
 
     case DaffCartOrderActionTypes.CartPlaceOrderFailureAction:
       return {
         ...state,
-        loading: DaffState.Complete,
+        loading: DaffState.Stable,
         errors: action.payload,
       };
 

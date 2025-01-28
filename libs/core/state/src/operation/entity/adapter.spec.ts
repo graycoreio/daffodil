@@ -142,7 +142,7 @@ describe('@daffodil/core/state | daffCreateOperationEntityStateAdapter', () => {
 
     it('should set mutating operation state on the entity', () => {
       expect(result.entities[entity.id].daffErrors).toEqual([]);
-      expect(result.entities[entity.id].daffState).toEqual(DaffState.Mutating);
+      expect(result.entities[entity.id].daffState).toEqual(DaffState.Updating);
       expect(result.entities[entity.id].daffTemp).toBeFalse();
     });
   });
@@ -154,7 +154,7 @@ describe('@daffodil/core/state | daffCreateOperationEntityStateAdapter', () => {
 
     it('should set mutated operation state on the entity', () => {
       expect(result.entities[entity.id].daffErrors).toEqual([]);
-      expect(result.entities[entity.id].daffState).toEqual(DaffState.Mutated);
+      expect(result.entities[entity.id].daffState).toEqual(DaffState.Updated);
       expect(result.entities[entity.id].daffTemp).toBeFalse();
     });
   });

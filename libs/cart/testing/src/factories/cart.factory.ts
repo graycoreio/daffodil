@@ -9,8 +9,6 @@ import { DaffCartTotalFactory } from './cart-total.factory';
 
 export class MockCart implements DaffCart {
   id = faker.datatype.uuid();
-  subtotal = 10000;
-  grand_total = 15000;
   coupons = [];
   items = [];
   billing_address = null;

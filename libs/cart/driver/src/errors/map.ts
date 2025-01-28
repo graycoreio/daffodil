@@ -7,7 +7,6 @@ import { DaffInvalidCouponCodeError } from './invalid-coupon-code';
 import { DaffInvalidEmailError } from './invalid-email';
 import { DaffInvalidRegionError } from './invalid-region';
 import { DaffCartItemExceedsMaxQtyError } from './item-exceeds-max-qty';
-import { DaffProductNotFoundError } from './product-not-found';
 import { DaffProductOutOfStockError } from './product-out-of-stock';
 import { DaffUnauthorizedForCartError } from './unauthorized-for-cart';
 
@@ -16,7 +15,6 @@ import { DaffUnauthorizedForCartError } from './unauthorized-for-cart';
  */
 export const DaffCartDriverErrorMap = {
   [DaffCartDriverErrorCodes.CART_NOT_FOUND]: DaffCartNotFoundError,
-  [DaffCartDriverErrorCodes.PRODUCT_NOT_FOUND]: DaffProductNotFoundError,
   [DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK]: DaffProductOutOfStockError,
   [DaffCartDriverErrorCodes.INVALID_COUPON_CODE]: DaffInvalidCouponCodeError,
   [DaffCartDriverErrorCodes.INVALID_COUNTRY]: DaffInvalidCountryError,

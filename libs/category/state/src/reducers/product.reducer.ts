@@ -33,7 +33,6 @@ export function daffCategoryProductReducer<U extends DaffGenericCategory<U>, W e
     case DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeSizeAction:
     case DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeCurrentPageAction:
     case DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeSortingOptionAction:
-    case DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeFiltersAction:
     case DaffCategoryPageProductCollectionActionTypes.CategoryPageReplaceFiltersAction:
     case DaffCategoryPageProductCollectionActionTypes.CategoryPageApplyFiltersAction:
     case DaffCategoryPageProductCollectionActionTypes.CategoryPageClearFiltersAction:

@@ -4,4 +4,3 @@ export {
   DAFF_DRIVER_MAGENTO_ERROR_CODE,
   DaffDriverMagentoError,
 } from './error.class';
-export * from './network-error.class';

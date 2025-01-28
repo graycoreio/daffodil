@@ -31,7 +31,7 @@ describe('@daffodil/cart/state | daffCartItemsEntityTransform', () => {
     });
 
     it('should set the cart item state to mutated', () => {
-      expect(result.find((item) => item.id === cartItem.id).daffState).toEqual(DaffState.Mutated);
+      expect(result.find((item) => item.id === cartItem.id).daffState).toEqual(DaffState.Updated);
     });
 
     it('should set operation entity values', () => {

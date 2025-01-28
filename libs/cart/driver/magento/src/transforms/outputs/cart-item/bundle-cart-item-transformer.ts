@@ -9,7 +9,6 @@ import { MagentoBundleCartItem } from '../../../models/responses/cart-item';
 
 function transformBundleCartItemOption(option: MagentoBundleCartItem['bundle_options'][0]): DaffCompositeCartItemOption {
   return {
-    option_id: String(option.values[0].id),
     id: String(option.values[0].id),
     option_label: option.label,
     value_label: option.values[0].label,

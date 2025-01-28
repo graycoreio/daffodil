@@ -70,16 +70,6 @@ export class DaffMagentoCartTransformer<T extends MagentoCart = MagentoCart, V e
     };
   }
 
-  private transformTotals(cart: T): {
-    grand_total: V['grand_total'];
-    subtotal: V['subtotal'];
-  } {
-    return {
-      grand_total: cart.prices.grand_total.value,
-      subtotal: cart.prices.subtotal_excluding_tax.value,
-    };
-  }
-
   private transformCoupons(cart: T): {coupons: V['coupons']} {
     return {
       coupons: cart.applied_coupons
@@ -136,7 +126,6 @@ export class DaffMagentoCartTransformer<T extends MagentoCart = MagentoCart, V e
         ...this.transformShippingAddress(cart),
         ...this.transformCoupons(cart),
         ...this.transformPayment(cart),
-        ...this.transformTotals(cart),
         ...transformCartTotals(cart),
         ...this.transformShippingInformation(cart),
         ...this.transformShippingMethods(cart),

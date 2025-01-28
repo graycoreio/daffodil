@@ -8,7 +8,6 @@ export { DaffInvalidCountryError } from './invalid-country';
 export { DaffInvalidCouponCodeError } from './invalid-coupon-code';
 export { DaffInvalidEmailError } from './invalid-email';
 export { DaffInvalidRegionError } from './invalid-region';
-export { DaffProductNotFoundError } from './product-not-found';
 export { DaffProductOutOfStockError } from './product-out-of-stock';
 export { DaffCartItemExceedsMaxQtyError } from './item-exceeds-max-qty';
 export { DaffUnauthorizedForCartError } from './unauthorized-for-cart';

@@ -8,6 +8,6 @@ export const daffCartOrderInitialState: DaffCartOrderReducerState<any> = {
     orderId: null,
     cartId: null,
   },
-  loading: DaffState.Complete,
+  loading: DaffState.Stable,
   errors: [],
 };

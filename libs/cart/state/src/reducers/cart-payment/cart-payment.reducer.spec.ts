@@ -76,7 +76,7 @@ describe('@daffodil/cart/state | cartPaymentReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Stable);
     });
 
     it('should set payment from action.payload', () => {
@@ -112,7 +112,7 @@ describe('@daffodil/cart/state | cartPaymentReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Stable);
     });
 
     it('should add an error to the payment section of state.errors', () => {
@@ -126,7 +126,7 @@ describe('@daffodil/cart/state | cartPaymentReducer', () => {
 
       const result = cartPaymentReducer(daffCartReducerInitialState, cartPaymentUpdateAction);
 
-      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Mutating);
+      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Updating);
     });
   });
 
@@ -148,7 +148,7 @@ describe('@daffodil/cart/state | cartPaymentReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Stable);
     });
 
     it('should reset the errors in the payment section of state.errors to an empty array', () => {
@@ -182,7 +182,7 @@ describe('@daffodil/cart/state | cartPaymentReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Stable);
     });
 
     it('should add an error to the payment section of state.errors', () => {
@@ -196,7 +196,7 @@ describe('@daffodil/cart/state | cartPaymentReducer', () => {
 
       const result = cartPaymentReducer(daffCartReducerInitialState, cartPaymentUpdateWithBillingAction);
 
-      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Mutating);
+      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Updating);
     });
   });
 
@@ -218,7 +218,7 @@ describe('@daffodil/cart/state | cartPaymentReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Stable);
     });
 
     it('should reset the errors in the payment section of state.errors to an empty array', () => {
@@ -252,7 +252,7 @@ describe('@daffodil/cart/state | cartPaymentReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Stable);
     });
 
     it('should add an error to the payment section of state.errors', () => {
@@ -266,7 +266,7 @@ describe('@daffodil/cart/state | cartPaymentReducer', () => {
         ...daffCartReducerInitialState,
         loading: {
           ...daffCartReducerInitialState.loading,
-          [DaffCartOperationType.Payment]: DaffState.Mutating,
+          [DaffCartOperationType.Payment]: DaffState.Updating,
         },
       };
       const cartPaymentRemove = new DaffCartPaymentRemove();
@@ -291,7 +291,7 @@ describe('@daffodil/cart/state | cartPaymentReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Stable);
     });
 
     it('should reset the errors in the payment section of state.errors to an empty array', () => {
@@ -325,7 +325,7 @@ describe('@daffodil/cart/state | cartPaymentReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Payment]).toEqual(DaffState.Stable);
     });
 
     it('should add an error to the payment section of state.errors', () => {

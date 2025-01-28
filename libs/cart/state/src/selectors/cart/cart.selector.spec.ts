@@ -168,15 +168,15 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
       payment: paymentFactory.create(),
     });
     loading = {
-      [DaffCartOperationType.Cart]: DaffState.Complete,
-      [DaffCartOperationType.Item]: DaffState.Complete,
-      [DaffCartOperationType.ShippingAddress]: DaffState.Complete,
-      [DaffCartOperationType.BillingAddress]: DaffState.Complete,
-      [DaffCartOperationType.ShippingInformation]: DaffState.Complete,
-      [DaffCartOperationType.ShippingMethods]: DaffState.Complete,
-      [DaffCartOperationType.Payment]: DaffState.Complete,
-      [DaffCartOperationType.PaymentMethods]: DaffState.Complete,
-      [DaffCartOperationType.Coupon]: DaffState.Complete,
+      [DaffCartOperationType.Cart]: DaffState.Stable,
+      [DaffCartOperationType.Item]: DaffState.Stable,
+      [DaffCartOperationType.ShippingAddress]: DaffState.Stable,
+      [DaffCartOperationType.BillingAddress]: DaffState.Stable,
+      [DaffCartOperationType.ShippingInformation]: DaffState.Stable,
+      [DaffCartOperationType.ShippingMethods]: DaffState.Stable,
+      [DaffCartOperationType.Payment]: DaffState.Stable,
+      [DaffCartOperationType.PaymentMethods]: DaffState.Stable,
+      [DaffCartOperationType.Coupon]: DaffState.Stable,
     };
     errors = {
       [DaffCartOperationType.Cart]: [],

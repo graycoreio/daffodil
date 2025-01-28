@@ -18,7 +18,6 @@ import {
 import { DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER } from './injection-tokens/request/builder.token';
 import {
   DaffCategoryPageIdResolver,
-  DaffCategoryPageResolver,
   DaffCategoryPageUrlResolver,
 } from './resolvers/public_api';
 import { DaffCategoryRoutingUrlRequestBuilder } from './services/public_api';
@@ -31,7 +30,6 @@ import { DaffCategoryRoutingUrlRequestBuilder } from './services/public_api';
     ]),
   ],
   providers: [
-    DaffCategoryPageResolver,
     DaffCategoryPageIdResolver,
     DaffCategoryPageUrlResolver,
     DaffCategoryRoutingUrlRequestBuilder,

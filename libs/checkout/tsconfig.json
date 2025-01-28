@@ -18,6 +18,9 @@
       "@daffodil/checkout/testing": [
         "libs/checkout/testing/src"
       ],
+      "@daffodil/checkout/routing": [
+        "libs/checkout/routing/src"
+      ],
     }
   }
 }

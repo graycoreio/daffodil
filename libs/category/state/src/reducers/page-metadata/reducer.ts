@@ -50,7 +50,6 @@ export function daffCategoryPageMetadataReducer<U extends DaffGenericCategory<U>
     case DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeSortingOptionAction:
       return adapter.setSort(action.sort.option, action.sort.direction, state);
 
-    case DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeFiltersAction:
     case DaffCategoryPageProductCollectionActionTypes.CategoryPageReplaceFiltersAction:
       return adapter.setFilters(daffApplyRequestsToFilters(action.filters, daffClearFilters(state.filters)), state);
 

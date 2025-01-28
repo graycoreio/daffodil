@@ -33,7 +33,7 @@ export function cartReducer<T extends DaffCart = DaffCart>(
     case DaffCartActionTypes.CartCreateAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffState.Mutating),
+        ...setLoading(state.loading, DaffState.Updating),
       };
 
     case DaffCartActionTypes.CartLoadSuccessAction:

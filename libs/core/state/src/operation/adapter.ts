@@ -18,7 +18,7 @@ export function daffStartResolution <T extends DaffOperationState = DaffOperatio
 export function daffStartMutation <T extends DaffOperationState = DaffOperationState>(state: T): T {
   return {
     ...state,
-    daffState: DaffState.Mutating,
+    daffState: DaffState.Updating,
   };
 };
 

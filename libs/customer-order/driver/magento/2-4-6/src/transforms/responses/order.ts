@@ -123,7 +123,6 @@ export function daffMagentoCustomerOrderTransformItem(item: MagentoOrderItem, or
   return {
     type: DaffOrderItemType.Simple,
     id: null,
-    item_id: null,
     qty_ordered: item.quantity_ordered,
     qty_canceled: item.quantity_canceled,
     qty_fulfilled: item.quantity_shipped,
@@ -210,7 +209,6 @@ export function daffMagentoCustomerOrderTransformPayment(payment: MagentoOrderPa
   };
   return {
     id: null,
-    payment_id: null,
     order_id: order.id,
     created_at: null,
     updated_at: null,

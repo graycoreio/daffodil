@@ -22,7 +22,7 @@ export function daffCartItemsEntityTransform<T extends DaffCartItem = DaffCartIt
       daffState: !oldItem
         ? DaffState.Added
         : oldItem?.qty !== newItem.qty
-          ? DaffState.Mutated
+          ? DaffState.Updated
           : DaffState.Stable,
       daffErrors: [],
       daffTemp: false,

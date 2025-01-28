@@ -9,7 +9,6 @@ import {
 
 export class MockOrderItem implements DaffOrderItem {
   id = faker.datatype.uuid();
-  item_id = this.id;
   image = {
     url: faker.image.imageUrl(),
     id: faker.datatype.uuid(),

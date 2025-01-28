@@ -15,7 +15,6 @@ export function transformMagentoSimpleCartItem(cartItem: MagentoCartItem): DaffC
   return {
     // base
     type: DaffCartItemInputType.Simple,
-    item_id: cartItem.id,
     id: cartItem.id,
     url: `/${cartItem.product.url_key}${cartItem.product.url_suffix}`,
     sku: cartItem.product.sku,

@@ -67,7 +67,6 @@ function transformTotals(totals: {
 function transformItem(item: MagentoGraycoreOrderItem): DaffOrderItem {
   return {
     id: null,
-    item_id: null,
     type: DaffOrderItemType.Simple,
     qty_ordered: item.qty_ordered,
     qty_canceled: item.qty_canceled,
@@ -150,7 +149,6 @@ function transformShipment(shipment: MagentoGraycoreOrderShipment): DaffOrderShi
 function transformPayment(payment: MagentoGraycoreOrderPayment): DaffOrderPayment {
   return {
     id: String(payment.payment_id),
-    payment_id: String(payment.payment_id),
     order_id: String(payment.order_id),
     created_at: null,
     updated_at: null,

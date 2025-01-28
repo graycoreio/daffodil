@@ -41,7 +41,7 @@ export const daffCartCustomerLoginMutatingReducer: ActionReducer<DaffCartReducer
         ...state,
         loading: {
           ...state.loading,
-          [DaffCartOperationType.Cart]: DaffState.Mutating,
+          [DaffCartOperationType.Cart]: DaffState.Updating,
         },
       };
 

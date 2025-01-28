@@ -11,7 +11,6 @@ export const daffCartItemInputToItemTransform = (input: DaffCartItemInput): Daff
   product_id: input.productId,
   qty: input.qty,
 
-  item_id: null,
   id: null,
   parent_item_id: null,
   sku: null,

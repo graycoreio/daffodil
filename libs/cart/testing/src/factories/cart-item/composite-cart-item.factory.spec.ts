@@ -29,7 +29,6 @@ describe('Cart | Testing | Factories | CompositeCartItemFactory', () => {
     });
 
     it('should return a DaffCompositeCartItem with all required fields defined', () => {
-      expect(result.item_id).not.toBeNull();
       expect(result.id).not.toBeNull();
       expect(result.product_id).not.toBeNull();
       expect(result.parent_item_id).not.toBeNull();
@@ -39,7 +38,6 @@ describe('Cart | Testing | Factories | CompositeCartItemFactory', () => {
       expect(result.qty).not.toBeNull();
       expect(result.price).not.toBeNull();
       expect(result.row_total).not.toBeNull();
-      expect(result.options[0].option_id).not.toBeNull();
       expect(result.options[0].id).not.toBeNull();
       expect(result.options[0].option_label).not.toBeNull();
       expect(result.options[0].value_label).not.toBeNull();

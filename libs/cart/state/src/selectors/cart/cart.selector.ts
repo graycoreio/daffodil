@@ -234,7 +234,7 @@ const createCartSelectors = <
   );
   const selectCartLoading = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.Cart] !== DaffState.Complete,
+    loadingObject => loadingObject[DaffCartOperationType.Cart] !== DaffState.Stable,
   );
   const selectCartResolving = createSelector(
     selectCartLoadingObject,
@@ -242,11 +242,11 @@ const createCartSelectors = <
   );
   const selectCartMutating = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.Cart] === DaffState.Mutating,
+    loadingObject => loadingObject[DaffCartOperationType.Cart] === DaffState.Updating,
   );
   const selectBillingAddressLoading = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.BillingAddress] !== DaffState.Complete,
+    loadingObject => loadingObject[DaffCartOperationType.BillingAddress] !== DaffState.Stable,
   );
   const selectBillingAddressResolving = createSelector(
     selectCartLoadingObject,
@@ -254,11 +254,11 @@ const createCartSelectors = <
   );
   const selectBillingAddressMutating = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.BillingAddress] === DaffState.Mutating,
+    loadingObject => loadingObject[DaffCartOperationType.BillingAddress] === DaffState.Updating,
   );
   const selectShippingAddressLoading = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.ShippingAddress] !== DaffState.Complete,
+    loadingObject => loadingObject[DaffCartOperationType.ShippingAddress] !== DaffState.Stable,
   );
   const selectShippingAddressResolving = createSelector(
     selectCartLoadingObject,
@@ -266,11 +266,11 @@ const createCartSelectors = <
   );
   const selectShippingAddressMutating = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.ShippingAddress] === DaffState.Mutating,
+    loadingObject => loadingObject[DaffCartOperationType.ShippingAddress] === DaffState.Updating,
   );
   const selectShippingInformationLoading = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.ShippingInformation] !== DaffState.Complete,
+    loadingObject => loadingObject[DaffCartOperationType.ShippingInformation] !== DaffState.Stable,
   );
   const selectShippingInformationResolving = createSelector(
     selectCartLoadingObject,
@@ -278,11 +278,11 @@ const createCartSelectors = <
   );
   const selectShippingInformationMutating = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.ShippingInformation] === DaffState.Mutating,
+    loadingObject => loadingObject[DaffCartOperationType.ShippingInformation] === DaffState.Updating,
   );
   const selectShippingMethodsLoading = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.ShippingMethods] !== DaffState.Complete,
+    loadingObject => loadingObject[DaffCartOperationType.ShippingMethods] !== DaffState.Stable,
   );
   const selectShippingMethodsResolving = createSelector(
     selectCartLoadingObject,
@@ -290,7 +290,7 @@ const createCartSelectors = <
   );
   const selectPaymentLoading = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.Payment] !== DaffState.Complete,
+    loadingObject => loadingObject[DaffCartOperationType.Payment] !== DaffState.Stable,
   );
   const selectPaymentResolving = createSelector(
     selectCartLoadingObject,
@@ -298,11 +298,11 @@ const createCartSelectors = <
   );
   const selectPaymentMutating = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.Payment] === DaffState.Mutating,
+    loadingObject => loadingObject[DaffCartOperationType.Payment] === DaffState.Updating,
   );
   const selectPaymentMethodsLoading = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.PaymentMethods] !== DaffState.Complete,
+    loadingObject => loadingObject[DaffCartOperationType.PaymentMethods] !== DaffState.Stable,
   );
   const selectPaymentMethodsResolving = createSelector(
     selectCartLoadingObject,
@@ -310,7 +310,7 @@ const createCartSelectors = <
   );
   const selectItemLoading = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.Item] !== DaffState.Complete,
+    loadingObject => loadingObject[DaffCartOperationType.Item] !== DaffState.Stable,
   );
   const selectItemAdding = createSelector(
     selectCartLoadingObject,
@@ -322,11 +322,11 @@ const createCartSelectors = <
   );
   const selectItemMutating = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.Item] === DaffState.Mutating,
+    loadingObject => loadingObject[DaffCartOperationType.Item] === DaffState.Updating,
   );
   const selectCouponLoading = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.Coupon] !== DaffState.Complete,
+    loadingObject => loadingObject[DaffCartOperationType.Coupon] !== DaffState.Stable,
   );
   const selectCouponResolving = createSelector(
     selectCartLoadingObject,
@@ -334,7 +334,7 @@ const createCartSelectors = <
   );
   const selectCouponMutating = createSelector(
     selectCartLoadingObject,
-    loadingObject => loadingObject[DaffCartOperationType.Coupon] === DaffState.Mutating,
+    loadingObject => loadingObject[DaffCartOperationType.Coupon] === DaffState.Updating,
   );
   const selectCartFeatureLoading = createSelector(
     selectCartLoadingObject,

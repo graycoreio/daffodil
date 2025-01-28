@@ -20,15 +20,6 @@ export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> exten
   orderCount$: Observable<number>;
   orderEntities$: Observable<Dictionary<T>>;
 
-  /**
-   * @deprecated in favor of {@link DaffCheckoutPlacedOrderFacadeInterface#placedOrder$} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
-   */
-  placedOrder$: Observable<T>;
-  /**
-   * @deprecated in favor of {@link DaffCheckoutPlacedOrderFacadeInterface#hasPlacedOrder$} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
-   */
-  hasPlacedOrder$: Observable<boolean>;
-
   getOrder$(orderId: T['id']): Observable<T>;
   getTotals$(orderId: T['id']): Observable<T['totals']>;
   getAppliedCodes$(orderId: T['id']): Observable<T['applied_codes']>;

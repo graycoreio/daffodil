@@ -99,7 +99,6 @@ describe('Order | Driver | Magento | 2.4.0 | Transformer | Order', () => {
       created_at: null,
       order_id: '2',
       id: '6',
-      payment_id: '6',
       updated_at: null,
     });
     mockDaffOrderItem = daffOrderItemFactory.create({
@@ -111,7 +110,6 @@ describe('Order | Driver | Magento | 2.4.0 | Transformer | Order', () => {
       parent_item_id: null,
       product_id: '4',
       order_id: '2',
-      item_id: null,
       id: null,
     });
     mockDaffOrderShipmentItem = daffOrderShipmentItemFactory.create({

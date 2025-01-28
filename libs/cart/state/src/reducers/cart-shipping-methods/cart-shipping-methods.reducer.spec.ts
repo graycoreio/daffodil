@@ -79,7 +79,7 @@ describe('@daffodil/cart/state | cartShippingMethodsReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.ShippingMethods]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.ShippingMethods]).toEqual(DaffState.Stable);
     });
 
     it('should set available_shipping_methods from action.payload', () => {
@@ -115,7 +115,7 @@ describe('@daffodil/cart/state | cartShippingMethodsReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.ShippingMethods]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.ShippingMethods]).toEqual(DaffState.Stable);
     });
 
     it('should add an error to the shipping methods section of state.errors', () => {

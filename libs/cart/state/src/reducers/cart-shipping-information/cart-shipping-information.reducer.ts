@@ -31,7 +31,7 @@ export function cartShippingInformationReducer<T extends DaffCart = DaffCart>(
     case DaffCartShippingInformationActionTypes.CartShippingInformationDeleteAction:
       return {
         ...state,
-        ...setLoading(state.loading, DaffState.Mutating),
+        ...setLoading(state.loading, DaffState.Updating),
       };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationLoadSuccessAction:
@@ -42,7 +42,7 @@ export function cartShippingInformationReducer<T extends DaffCart = DaffCart>(
           ...state.cart,
           shipping_information: action.payload,
         },
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationUpdateSuccessAction:
@@ -50,7 +50,7 @@ export function cartShippingInformationReducer<T extends DaffCart = DaffCart>(
       return {
         ...state,
         ...resetErrors(state.errors),
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationLoadFailureAction:
@@ -59,7 +59,7 @@ export function cartShippingInformationReducer<T extends DaffCart = DaffCart>(
       return {
         ...state,
         ...addError(state.errors, ...action.payload),
-        ...setLoading(state.loading, DaffState.Complete),
+        ...setLoading(state.loading, DaffState.Stable),
       };
 
     default:

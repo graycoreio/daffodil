@@ -23,7 +23,7 @@ export function daffCartStoreCreditCartReducer<T extends DaffCartWithStoreCredit
         ...state,
         loading: {
           ...state.loading,
-          [DaffCartOperationType.Cart]: DaffState.Mutating,
+          [DaffCartOperationType.Cart]: DaffState.Updating,
         },
       };
 

@@ -9,13 +9,6 @@ import { DaffProduct } from '@daffodil/product';
  */
 export interface DaffProductFacadeInterface<T extends DaffProduct = DaffProduct> extends DaffStoreFacade<Action> {
   /**
-   * Whether the product page is loading.
-   *
-   * @deprecated prefer {@link DaffProductPageFacadeInterface#loading$} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
-   */
-  loading$: Observable<boolean>;
-
-  /**
    * Get a product.
    *
    * @param id a product id

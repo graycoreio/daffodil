@@ -79,7 +79,6 @@ export class MagentoOrderTestDataFactory {
       created_at: null,
       updated_at: null,
       id: null,
-      payment_id: null,
     });
     const mockDaffOrderItem: DaffOrderItem = this.daffOrderItemFactory.create({
       image: {
@@ -89,7 +88,6 @@ export class MagentoOrderTestDataFactory {
       },
       parent_item_id: null,
       id: null,
-      item_id: null,
       created_at: null,
       product_id: null,
       row_weight: null,
@@ -108,7 +106,6 @@ export class MagentoOrderTestDataFactory {
       },
       parent_item_id: null,
       id: null,
-      item_id: null,
       created_at: null,
       product_id: null,
       row_weight: null,
@@ -127,7 +124,6 @@ export class MagentoOrderTestDataFactory {
       },
       parent_item_id: null,
       id: null,
-      item_id: null,
       created_at: null,
       product_id: null,
       row_weight: null,

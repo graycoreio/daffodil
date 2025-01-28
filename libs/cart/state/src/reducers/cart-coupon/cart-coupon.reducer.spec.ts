@@ -65,7 +65,7 @@ describe('@daffodil/cart/state | cartCouponReducer', () => {
 
       const result = reducer(daffCartReducerInitialState, cartCouponApplyAction);
 
-      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Mutating);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Updating);
     });
   });
 
@@ -88,7 +88,7 @@ describe('@daffodil/cart/state | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Stable);
     });
 
     it('should reset the errors in the coupon section of state.errors to an empty array', () => {
@@ -120,7 +120,7 @@ describe('@daffodil/cart/state | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Stable);
     });
 
     it('should add an error to the coupon section of state.errors', () => {
@@ -161,7 +161,7 @@ describe('@daffodil/cart/state | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Stable);
     });
 
     it('should reset the errors in the coupon section of state.errors to an empty array', () => {
@@ -193,7 +193,7 @@ describe('@daffodil/cart/state | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Stable);
     });
 
     it('should add an error to the coupon section of state.errors', () => {
@@ -207,7 +207,7 @@ describe('@daffodil/cart/state | cartCouponReducer', () => {
 
       const result = reducer(daffCartReducerInitialState, cartCouponRemoveAction);
 
-      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Mutating);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Updating);
     });
   });
 
@@ -229,7 +229,7 @@ describe('@daffodil/cart/state | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Stable);
     });
 
     it('should reset the errors in the coupon section of state.errors to an empty array', () => {
@@ -263,7 +263,7 @@ describe('@daffodil/cart/state | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Stable);
     });
 
     it('should add an error to the coupon section of state.errors', () => {
@@ -277,7 +277,7 @@ describe('@daffodil/cart/state | cartCouponReducer', () => {
         ...daffCartReducerInitialState,
         loading: {
           ...daffCartReducerInitialState.loading,
-          [DaffCartOperationType.Coupon]: DaffState.Mutating,
+          [DaffCartOperationType.Coupon]: DaffState.Updating,
         },
       };
       const cartClear = new DaffCartCouponRemoveAll();
@@ -326,7 +326,7 @@ describe('@daffodil/cart/state | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffState.Stable);
     });
 
     it('should add an error to the coupon section of state.errors', () => {

@@ -22,11 +22,11 @@ import {
 } from '@daffodil/order/state';
 import { DaffOrderFactory } from '@daffodil/order/testing';
 
-import { DaffPlacedOrderGuardRedirectUrl } from './placed-order-guard-redirect.token';
-import { DaffPlacedOrderGuard } from './placed-order.guard';
+import { DaffCheckoutPlacedOrderGuardRedirectUrl } from './placed-order-guard-redirect.token';
+import { DaffCheckoutPlacedOrderGuard } from './placed-order.guard';
 
-describe('DaffPlacedOrderGuard', () => {
-  let service: DaffPlacedOrderGuard;
+describe('DaffCheckoutPlacedOrderGuard', () => {
+  let service: DaffCheckoutPlacedOrderGuard;
   let store: Store<any>;
   let router: Router;
 
@@ -38,9 +38,9 @@ describe('DaffPlacedOrderGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffPlacedOrderGuard,
+        DaffCheckoutPlacedOrderGuard,
         DaffOrderFacade,
-        { provide: DaffPlacedOrderGuardRedirectUrl, useValue: stubUrl },
+        { provide: DaffCheckoutPlacedOrderGuardRedirectUrl, useValue: stubUrl },
       ],
       imports: [
         StoreModule.forRoot({
@@ -51,7 +51,7 @@ describe('DaffPlacedOrderGuard', () => {
       ],
     });
 
-    service = TestBed.inject(DaffPlacedOrderGuard);
+    service = TestBed.inject(DaffCheckoutPlacedOrderGuard);
     store = TestBed.inject(Store);
     router = TestBed.inject(Router);
 
@@ -88,7 +88,7 @@ describe('DaffPlacedOrderGuard', () => {
         expect(service.canActivate()).toBeObservable(expected);
       });
 
-      it('should redirect to the given DaffPlacedOrderGuardRedirectUrl', () => {
+      it('should redirect to the given DaffCheckoutPlacedOrderGuardRedirectUrl', () => {
         service.canActivate().subscribe();
         expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
       });

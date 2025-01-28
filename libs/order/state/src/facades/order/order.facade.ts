@@ -40,9 +40,6 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
   orderCount$: Observable<number>;
   orderEntities$: Observable<Dictionary<T>>;
 
-  placedOrder$: Observable<T>;
-  hasPlacedOrder$: Observable<boolean>;
-
   _order: DaffOrderEntitySelectors<T>['selectOrder'];
   _totals: DaffOrderEntitySelectors<T>['selectOrderTotals'];
   _appliedCodes: DaffOrderEntitySelectors<T>['selectOrderAppliedCodes'];
@@ -72,9 +69,6 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
       selectMutating,
       selectResolving,
       selectLoadingState,
-
-      selectPlacedOrder,
-      selectHasPlacedOrder,
 
       selectOrder,
       selectOrderTotals,
@@ -106,9 +100,6 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
     this.orderIds$ = this.store.pipe(select(selectOrderIds));
     this.orderCount$ = this.store.pipe(select(selectOrderTotal));
     this.orderEntities$ = this.store.pipe(select(selectOrderEntities));
-
-    this.placedOrder$ = this.store.pipe(select(selectPlacedOrder));
-    this.hasPlacedOrder$ = this.store.pipe(select(selectHasPlacedOrder));
 
     this._order = selectOrder;
     this._totals = selectOrderTotals;

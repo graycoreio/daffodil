@@ -6,22 +6,22 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { DaffOrderFacade } from '@daffodil/order/state';
+import { DaffCheckoutPlacedOrderFacade } from '@daffodil/checkout/state';
 
-import { DaffPlacedOrderGuardRedirectUrl } from './placed-order-guard-redirect.token';
+import { DaffCheckoutPlacedOrderGuardRedirectUrl } from './placed-order-guard-redirect.token';
 
 /**
  * A routing guard that will redirect to a given url if the placed order is not defined.
- * The url is `/` by default, but can be overridden with the DaffPlacedOrderGuardRedirectUrl injection token.
+ * The url is `/` by default, but can be overridden with the DaffCheckoutPlacedOrderGuardRedirectUrl injection token.
  */
 @Injectable({
   providedIn: 'root',
 })
-export class DaffPlacedOrderGuard  {
+export class DaffCheckoutPlacedOrderGuard  {
   constructor(
-    private facade: DaffOrderFacade,
+    private facade: DaffCheckoutPlacedOrderFacade,
     private router: Router,
-    @Inject(DaffPlacedOrderGuardRedirectUrl) private redirectUrl: string,
+    @Inject(DaffCheckoutPlacedOrderGuardRedirectUrl) private redirectUrl: string,
   ) {}
 
   canActivate(): Observable<boolean> {

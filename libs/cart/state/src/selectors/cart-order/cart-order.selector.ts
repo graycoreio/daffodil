@@ -60,11 +60,11 @@ const createCartOrderSelectors = <
   );
   const selectCartOrderLoading = createSelector(
     selectCartOrderState,
-    (state: DaffCartOrderReducerState<V>) => state.loading !== DaffState.Complete,
+    (state: DaffCartOrderReducerState<V>) => state.loading !== DaffState.Stable,
   );
   const selectCartOrderMutating = createSelector(
     selectCartOrderState,
-    (state: DaffCartOrderReducerState<V>) => state.loading === DaffState.Mutating,
+    (state: DaffCartOrderReducerState<V>) => state.loading === DaffState.Updating,
   );
   const selectCartOrderErrors = createSelector(
     selectCartOrderState,

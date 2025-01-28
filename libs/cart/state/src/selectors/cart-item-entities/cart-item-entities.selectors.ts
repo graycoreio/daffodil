@@ -160,7 +160,7 @@ const createCartItemEntitiesSelectors = <
   const selectCartItemMutating = createSelector(
     selectAllCartItems,
     (cartItems) => cartItems?.reduce((acc, item) =>
-      acc || item.daffState === DaffState.Mutating, false),
+      acc || item.daffState === DaffState.Updating, false),
   );
 
   return {

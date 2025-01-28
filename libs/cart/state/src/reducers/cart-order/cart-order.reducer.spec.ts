@@ -54,7 +54,7 @@ describe('@daffodil/cart/state | daffCartOrderReducer', () => {
 
       const result = reducer(initialState, cartPlaceOrderAction);
 
-      expect(result.loading).toEqual(DaffState.Mutating);
+      expect(result.loading).toEqual(DaffState.Updating);
     });
   });
 
@@ -86,7 +86,7 @@ describe('@daffodil/cart/state | daffCartOrderReducer', () => {
     });
 
     it('should indicate that the place order operation is not in progress', () => {
-      expect(result.loading).toEqual(DaffState.Complete);
+      expect(result.loading).toEqual(DaffState.Stable);
     });
 
     it('should reset the errors in state', () => {
@@ -115,7 +115,7 @@ describe('@daffodil/cart/state | daffCartOrderReducer', () => {
     });
 
     it('should indicate that the place order operation is not in progress', () => {
-      expect(result.loading).toEqual(DaffState.Complete);
+      expect(result.loading).toEqual(DaffState.Stable);
     });
 
     it('should set the action errors in state', () => {

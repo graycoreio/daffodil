@@ -10,7 +10,6 @@ import {
  * The possible types of category page filter actions.
  */
 export enum DaffCategoryPageProductCollectionActionTypes {
-  CategoryPageChangeFiltersAction = '[@daffodil/category] Category Page Change Filters Action',
   CategoryPageReplaceFiltersAction = '[@daffodil/category] Category Page Replace Filters Action',
   CategoryPageApplyFiltersAction = '[@daffodil/category] Category Page Apply Filters Action',
   CategoryPageRemoveFiltersAction = '[@daffodil/category] Category Page Remove Filters Action',
@@ -19,18 +18,6 @@ export enum DaffCategoryPageProductCollectionActionTypes {
   CategoryPageChangeSizeAction = '[@daffodil/category] Category Page Change Size Action',
   CategoryPageChangeCurrentPageAction = '[@daffodil/category] Category Page Change Current Page Action',
   CategoryPageChangeSortingOptionAction = '[@daffodil/category] Category Page Change Sorting Option Action',
-}
-
-/**
- * An action for changing the filters for the current category.
- *
- * @param filters - Filters to be changed on the current category.
- * @deprecated use {@link DaffCategoryPageReplaceFilters} or {@link DaffCategoryPageApplyFilters} Deprecated in version 0.78.0. Will be removed in version 0.81.0.
- */
-export class DaffCategoryPageChangeFilters implements Action {
-  readonly type = DaffCategoryPageProductCollectionActionTypes.CategoryPageChangeFiltersAction;
-
-  constructor(public filters: DaffFilterRequest[]) { }
 }
 
 /**
@@ -125,7 +112,6 @@ export class DaffCategoryPageChangeSortingOption implements Action {
 }
 
 export type DaffCategoryPageProductCollectionActions =
-  | DaffCategoryPageChangeFilters
   | DaffCategoryPageReplaceFilters
   | DaffCategoryPageApplyFilters
   | DaffCategoryPageRemoveFilters

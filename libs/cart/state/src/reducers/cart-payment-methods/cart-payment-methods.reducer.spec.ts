@@ -67,7 +67,7 @@ describe('@daffodil/cart/state | cartPaymentMethodsReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffState.Stable);
     });
 
     it('should set available_payment_methods from action.payload', () => {
@@ -103,7 +103,7 @@ describe('@daffodil/cart/state | cartPaymentMethodsReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffState.Complete);
+      expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffState.Stable);
     });
 
     it('should add an error to the payment methods section of state.errors', () => {

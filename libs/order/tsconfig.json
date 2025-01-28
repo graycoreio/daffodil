@@ -36,9 +36,6 @@
       "@daffodil/order/driver/magento/2-4-1/testing": [
         "libs/order/driver/magento/2-4-1/testing/src"
       ],
-      "@daffodil/order/routing": [
-        "libs/order/routing/src"
-      ],
     }
   }
 }
