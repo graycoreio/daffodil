@@ -20,7 +20,6 @@ import { DaffCategoryTestingDriverModule } from '@daffodil/category/driver/testi
 import {
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoadFailure,
-  DaffCategoryPageChangeFilters,
   DaffCategoryPageToggleFilter,
   DaffCategoryPageReplaceFilters,
   DaffCategoryPageApplyFilters,
@@ -252,19 +251,6 @@ describe('DaffCategoryPageMetadataEffects', () => {
 
   it('should be created', () => {
     expect(effects).toBeTruthy();
-  });
-
-  describe('when ChangeCategoryFiltersAction is triggered', () => {
-    let filterRequest: DaffFilterRequest;
-    let action: Action;
-
-    beforeEach(() => {
-      filterRequest = filterRequestFactory.create();
-      action = new DaffCategoryPageChangeFilters([filterRequest]);
-    });
-
-    testDriverSuccess(() => action);
-    testDriverFailure(() => action);
   });
 
   describe('when CategoryPageReplaceFiltersAction is triggered', () => {

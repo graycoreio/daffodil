@@ -167,8 +167,6 @@ describe('@daffodil/cart/driver/magento | MagentoCart', () => {
 
       it('should return an object with the correct values', () => {
         expect(transformedCart.id).toEqual(id);
-        expect(transformedCart.subtotal).toEqual(subtotal);
-        expect(transformedCart.grand_total).toEqual(grand_total);
       });
 
       it('should return the expected cart totals', () => {

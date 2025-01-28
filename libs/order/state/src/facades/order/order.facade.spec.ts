@@ -162,34 +162,6 @@ describe('DaffOrderFacade', () => {
     });
   });
 
-  describe('placedOrder$', () => {
-    it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.placedOrder$).toBeObservable(expected);
-    });
-
-    it('should contain the order upon a successful place order and order load', () => {
-      const expected = cold('a', { a: mockOrder });
-      store.dispatch(new DaffCartPlaceOrderSuccess({ orderId: mockOrder.id, cartId: 'cartId' }));
-      store.dispatch(new DaffOrderLoadSuccess(mockOrder));
-      expect(facade.placedOrder$).toBeObservable(expected);
-    });
-  });
-
-  describe('hasPlacedOrder$', () => {
-    it('should initially be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.hasPlacedOrder$).toBeObservable(expected);
-    });
-
-    it('should be true upon a successful place order and order load', () => {
-      const expected = cold('a', { a: true });
-      store.dispatch(new DaffCartPlaceOrderSuccess({ orderId: mockOrder.id, cartId: 'cartId' }));
-      store.dispatch(new DaffOrderLoadSuccess(mockOrder));
-      expect(facade.hasPlacedOrder$).toBeObservable(expected);
-    });
-  });
-
   describe('getOrder$', () => {
     it('should initially be null', () => {
       const expected = cold('a', { a: null });

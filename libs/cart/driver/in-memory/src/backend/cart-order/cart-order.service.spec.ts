@@ -59,8 +59,9 @@ describe('DaffInMemoryBackendCartOrderService', () => {
       result = service.post(reqInfoStub);
     });
 
-    it('should return the cart order result with a defined ID', () => {
-      expect(result.body.id).toBeDefined();
+    it('should return the cart order result with a defined cart and order ID', () => {
+      expect(result.body.orderId).toBeDefined();
+      expect(result.body.cartId).toBeDefined();
     });
   });
 });

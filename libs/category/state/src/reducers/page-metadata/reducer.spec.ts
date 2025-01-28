@@ -13,7 +13,6 @@ import {
   DaffCategoryPageChangeCurrentPage,
   DaffCategoryPageChangeSortingOption,
   DaffCategoryPageToggleFilter,
-  DaffCategoryPageChangeFilters,
   DaffCategoryPageLoad,
   DaffCategoryPageLoadSuccess,
   DaffCategoryPageLoadFailure,
@@ -302,68 +301,6 @@ describe('@daffodil/category/state | daffCategoryPageMetadataReducer', () => {
       it('should apply the filter', () => {
         expect(result.filters[rangeFilterToggleRequest.name].options[rangeFilterRequestOptionLabel].applied).toBeTrue();
       });
-    });
-  });
-
-  describe('when CategoryPageChangeFiltersAction is triggered', () => {
-    let result: DaffCategoryPageMetadataReducerState;
-    let stateUnderTest: DaffCategoryPageMetadataReducerState;
-
-    beforeEach(() => {
-      currentAppliedEqualFilterOption = equalOptionFactory.create({
-        applied: true,
-      });
-      currentUnappliedEqualFilterOption = equalOptionFactory.create({
-        applied: false,
-      });
-      currentEqualFilter = equalFilterFactory.create({
-        options: daffFilterEqualOptionArrayToDict([
-          currentAppliedEqualFilterOption,
-          currentUnappliedEqualFilterOption,
-        ]),
-      });
-      currentRangeFilterPair = rangePairFactory.create();
-      currentRangeFilter = rangeFilterFactory.create({
-        options: daffFilterRangePairArrayToDict([currentRangeFilterPair]),
-      });
-
-      equalFilterRequest = equalFilterRequestFactory.create({
-        name: currentEqualFilter.name,
-        value: [currentUnappliedEqualFilterOption.value],
-      });
-      rangeFilterRequestOption = rangeFilterRequestOptionFactory.create();
-      rangeFilterRequest = rangeFilterRequestFactory.create({
-        value: rangeFilterRequestOption,
-        name: currentRangeFilter.name,
-      });
-      currentRangeFilterPairLabel = daffFilterComputeRangePairLabel(currentRangeFilterPair.min.value, currentRangeFilterPair.max.value);
-      rangeFilterRequestOptionLabel = daffFilterComputeRangePairLabel(rangeFilterRequestOption.min, rangeFilterRequestOption.max);
-      stateUnderTest = {
-        ...daffCategoryPageMetadataInitialState,
-        filters: daffFilterArrayToDict([
-          currentEqualFilter,
-          currentRangeFilter,
-        ]),
-      };
-
-      const changeCategoryFilters = new DaffCategoryPageChangeFilters([
-        equalFilterRequest,
-        rangeFilterRequest,
-      ]);
-
-      result = daffCategoryPageMetadataReducer(stateUnderTest, changeCategoryFilters);
-    });
-
-    it('should apply the requested options', () => {
-      equalFilterRequest.value.forEach(option => {
-        expect(result.filters[equalFilterRequest.name].options[option].applied).toBeTrue();
-      });
-      expect(result.filters[rangeFilterRequest.name].options[rangeFilterRequestOptionLabel].applied).toBeTrue();
-    });
-
-    it('should remove the existing options', () => {
-      expect(result.filters[currentEqualFilter.name].options[currentAppliedEqualFilterOption.value].applied).toBeFalse();
-      expect(result.filters[rangeFilterRequest.name].options[currentRangeFilterPairLabel]?.applied).toBeFalsy();
     });
   });
 

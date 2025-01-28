@@ -7,8 +7,6 @@ import { DaffCartReducerState } from './cart-state.interface';
 export const daffCartReducerInitialState: DaffCartReducerState<any> = Object.freeze({
   cart: {
     id: null,
-    subtotal: null,
-    grand_total: null,
     coupons: [],
     items: [],
     billing_address: null,

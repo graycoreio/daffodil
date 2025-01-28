@@ -55,8 +55,6 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
     selectOrderEntities,
     selectOrderIds,
     selectOrderTotal,
-    selectPlacedOrder,
-    selectHasPlacedOrder,
     selectOrderTotals,
     selectOrderAppliedCodes,
     selectOrderItems,
@@ -187,52 +185,6 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       it('should select the total number of orders', () => {
         const selector = store.pipe(select(selectOrderTotal));
         const expected = cold('a', { a: 1 });
-
-        expect(selector).toBeObservable(expected);
-      });
-    });
-  });
-
-  describe('selectPlacedOrder', () => {
-    it('should initially be null', () => {
-      const selector = store.pipe(select(selectPlacedOrder));
-      const expected = cold('a', { a: null });
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    describe('when an order has been placed and loaded', () => {
-      beforeEach(() => {
-        store.dispatch(new DaffCartPlaceOrderSuccess({ orderId: mockOrder.id, cartId: 'cartId' }));
-        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
-      });
-
-      it('should select the most recently placed order', () => {
-        const selector = store.pipe(select(selectPlacedOrder));
-        const expected = cold('a', { a: mockOrder });
-
-        expect(selector).toBeObservable(expected);
-      });
-    });
-  });
-
-  describe('selectHasPlacedOrder', () => {
-    it('should initially be false', () => {
-      const selector = store.pipe(select(selectHasPlacedOrder));
-      const expected = cold('a', { a: false });
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    describe('when an order has been placed and loaded', () => {
-      beforeEach(() => {
-        store.dispatch(new DaffCartPlaceOrderSuccess({ orderId: mockOrder.id, cartId: 'cartId' }));
-        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
-      });
-
-      it('should select if the most recently placed order exists', () => {
-        const selector = store.pipe(select(selectHasPlacedOrder));
-        const expected = cold('a', { a: true });
 
         expect(selector).toBeObservable(expected);
       });

@@ -57,19 +57,6 @@ describe('DaffProductFacade', () => {
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
-  describe('loading$', () => {
-    it('should be false if the product state is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
-    });
-
-    it('should be true if the product state is loading', () => {
-      const expected = cold('a', { a: true });
-      store.dispatch(new DaffProductPageLoad('1'));
-      expect(facade.loading$).toBeObservable(expected);
-    });
-  });
-
   describe('getProduct()', () => {
     it('should be an observable of a product', () => {
       const product = productFactory.create();

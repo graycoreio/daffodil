@@ -59,7 +59,6 @@ describe('@daffodil/cart/state | DaffCartEffects', () => {
   let driverGetSpy: jasmine.Spy<DaffCartServiceInterface['get']>;
   let driverCreateSpy: jasmine.Spy<DaffCartServiceInterface['create']>;
   let driverClearSpy: jasmine.Spy<DaffCartServiceInterface['clear']>;
-  let driverAddToCartSpy: jasmine.Spy<DaffCartServiceInterface['addToCart']>;
   let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
   let setCartIdSpy: jasmine.Spy;
 
@@ -89,7 +88,6 @@ describe('@daffodil/cart/state | DaffCartEffects', () => {
     driverGetSpy = spyOn(driver, 'get');
     driverCreateSpy = spyOn(driver, 'create');
     driverClearSpy = spyOn(driver, 'clear');
-    driverAddToCartSpy = spyOn(driver, 'addToCart');
     setCartIdSpy = spyOn(daffCartStorageService, 'setCartId');
     getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
     getCartIdSpy.and.returnValue(mockCart.id);
@@ -255,45 +253,6 @@ describe('@daffodil/cart/state | DaffCartEffects', () => {
 
       it('should return a DaffCartStorageFailure', () => {
         expect(effects.storeId$).toBeObservable(expected);
-      });
-    });
-  });
-
-  describe('when AddToCartAction is triggered', () => {
-    let expected;
-    let productId: string;
-    const qty = 1;
-    const addToCartAction = new DaffAddToCart({ productId, qty });
-
-    beforeEach(() => {
-      productId = '1001';
-    });
-
-    describe('and the call to CartService is successful', () => {
-      beforeEach(() => {
-        driverAddToCartSpy.and.returnValue(of(mockCart));
-        const addToCartSuccessAction = new DaffAddToCartSuccess(mockCart);
-        actions$ = hot('--a', { a: addToCartAction });
-        expected = cold('--b', { b: addToCartSuccessAction });
-      });
-
-      it('should dispatch a CartLoadSuccess action', () => {
-        expect(effects.addToCart$).toBeObservable(expected);
-      });
-    });
-
-    describe('and the call to CartService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to add item to cart' };
-        const response = cold('#', {}, error);
-        driverAddToCartSpy.and.returnValue(response);
-        const addToCartFailureAction = new DaffAddToCartFailure([error]);
-        actions$ = hot('--a', { a: addToCartAction });
-        expected = cold('--b', { b: addToCartFailureAction });
-      });
-
-      it('should dispatch a CartLoadFailure action', () => {
-        expect(effects.addToCart$).toBeObservable(expected);
       });
     });
   });

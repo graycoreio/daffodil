@@ -38,7 +38,6 @@ describe('Driver | Testing | Cart | CartOrderService', () => {
     mockCart = cartFactory.create();
     mockCartPayment = cartPaymentFactory.create();
     mockCartOrderResult = {
-      id: 'orderId',
       orderId: 'orderId',
       cartId: 'cartId',
     };

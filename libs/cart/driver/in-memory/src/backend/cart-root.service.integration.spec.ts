@@ -234,7 +234,8 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     });
 
     it('should return a cart order result with a defined ID', () => {
-      expect(result.id).toBeDefined();
+      expect(result.orderId).toBeDefined();
+      expect(result.cartId).toBeDefined();
     });
   });
 

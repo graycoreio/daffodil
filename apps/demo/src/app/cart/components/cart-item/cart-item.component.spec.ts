@@ -127,7 +127,7 @@ describe('CartItemComponent', () => {
       const removeButton = fixture.debugElement.query(By.css('.demo-cart-item__remove')).nativeElement;
       removeButton.click();
 
-      expect(facade.dispatch).toHaveBeenCalledOnceWith(new DaffCartItemDelete(mockCartItem.item_id));
+      expect(facade.dispatch).toHaveBeenCalledOnceWith(new DaffCartItemDelete(mockCartItem.id));
     });
   });
 });

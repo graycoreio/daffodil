@@ -57,7 +57,6 @@ describe('@daffodil/cart/driver/in-memory | CartOrderService', () => {
     mockCart = cartFactory.create();
     mockCartPayment = cartPaymentFactory.create();
     mockCartOrderResult = {
-      id: 'orderId',
       orderId: 'orderId',
       cartId: 'cartId',
     };
