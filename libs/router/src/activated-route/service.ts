@@ -29,7 +29,7 @@ const getActivatedRoute = (routerState: RouterState): ActivatedRoute => {
  * The consumer can then subscribe at any later time (after all navigations) and the last emitted value will be replayed.
  * {@link provideDaffRouterActivatedRoute} is the recommended way to do this.
  *
- * @deprecated do `inject(ChildrenOutletContexts).getContext(PRIMARY_OUTLET).route` instead.
+ * @deprecated do `inject(ChildrenOutletContexts).getContext(PRIMARY_OUTLET).route` instead. Deprecated in version 0.81.0. Will be removed in version 0.84.0.
  */
 @Injectable({
   providedIn: 'root',

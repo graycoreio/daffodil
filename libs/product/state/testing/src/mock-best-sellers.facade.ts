@@ -7,7 +7,7 @@ import { DaffProduct } from '@daffodil/product';
 
 /**
  * @inheritdoc
- * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`. Deprecated in version 0.81.0. Will be removed in version 0.84.0.
  */
 @Injectable({ providedIn: 'root' })
 export class MockDaffBestSellersFacade implements DaffStoreFacade<Action> {

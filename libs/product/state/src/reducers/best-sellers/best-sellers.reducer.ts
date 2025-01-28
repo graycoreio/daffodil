@@ -7,7 +7,7 @@ import {
 } from '../../actions/best-sellers.actions';
 
 /**
- * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`. Deprecated in version 0.81.0. Will be removed in version 0.84.0.
  */
 export const initialState: DaffBestSellersReducerState = {
   productIds: [],
@@ -19,7 +19,7 @@ export const resetState: DaffBestSellersReducerState = Object.assign({}, initial
 
 /**
  * The default best sellers reducer provided by Daffodil.
- * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`. Deprecated in version 0.81.0. Will be removed in version 0.84.0.
  */
 export function daffBestSellersReducer<T extends DaffProduct>(state = initialState, action: DaffBestSellersActions<T>): DaffBestSellersReducerState {
   switch (action.type) {

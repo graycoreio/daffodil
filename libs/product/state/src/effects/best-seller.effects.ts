@@ -38,7 +38,7 @@ import { DAFF_PRODUCT_ERROR_MATCHER } from '../injection-tokens/public_api';
  *
  * @param action$ - Redux action object
  * @param driver - A product service driver
- * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`. Deprecated in version 0.81.0. Will be removed in version 0.84.0.
  */
 @Injectable()
 export class DaffBestSellersEffects<T extends DaffProduct> {

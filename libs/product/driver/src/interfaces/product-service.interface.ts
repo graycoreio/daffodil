@@ -28,7 +28,7 @@ export interface DaffProductServiceInterface<T extends DaffProduct = DaffProduct
   /**
    * Get best selling products.
    *
-   * @deprecated in favor of `@daffodil/related-products/driver` and `@daffodil/upsell-products/driver`.
+   * @deprecated in favor of `@daffodil/related-products/driver` and `@daffodil/upsell-products/driver`. Deprecated in version 0.81.0. Will be removed in version 0.84.0.
    */
   getBestSellers(): Observable<T[]>;
   /**

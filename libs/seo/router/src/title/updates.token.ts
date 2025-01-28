@@ -10,7 +10,7 @@ const {
    * A multi-provider injection token for providing canonical URL update logic.
    * `getData` will run in response to, and invoked with, the action specified.
    *
-   * @deprecated
+   * @deprecated Deprecated in version 0.81.0. Will be removed in version 0.84.0.
    */
   token: DAFF_SEO_TITLE_ROUTER_UPDATES,
   provider,
@@ -21,7 +21,7 @@ const {
  *
  * See {@link DAFF_SEO_TITLE_ROUTER_UPDATES}.
  *
- * @deprecated
+ * @deprecated Deprecated in version 0.81.0. Will be removed in version 0.84.0.
  *
  * @example
  * ```ts

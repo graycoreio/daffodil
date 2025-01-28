@@ -5,7 +5,7 @@ import { DaffProduct } from '@daffodil/product';
 
 /**
  * Action types for Best Seller Actions.
- * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`. Deprecated in version 0.81.0. Will be removed in version 0.84.0.
  */
 export enum DaffBestSellersActionTypes {
   BestSellersLoadAction = '[@daffodil/product] BestSellers Load Action',
@@ -16,7 +16,7 @@ export enum DaffBestSellersActionTypes {
 
 /**
  * Triggers a request for best selling products.
- * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`. Deprecated in version 0.81.0. Will be removed in version 0.84.0.
  */
 export class DaffBestSellersLoad implements Action {
   readonly type = DaffBestSellersActionTypes.BestSellersLoadAction;
@@ -28,7 +28,7 @@ export class DaffBestSellersLoad implements Action {
  * An action called when a request for best selling products succeeded.
  *
  * @param payload - An array of Products
- * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`. Deprecated in version 0.81.0. Will be removed in version 0.84.0.
  */
 export class DaffBestSellersLoadSuccess<T extends DaffProduct = DaffProduct> implements Action {
   readonly type = DaffBestSellersActionTypes.BestSellersLoadSuccessAction;
@@ -40,7 +40,7 @@ export class DaffBestSellersLoadSuccess<T extends DaffProduct = DaffProduct> imp
  * An action called when a request for best selling products failed.
  *
  * @param payload - An error message
- * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`. Deprecated in version 0.81.0. Will be removed in version 0.84.0.
  */
 export class DaffBestSellersLoadFailure implements Action {
   readonly type = DaffBestSellersActionTypes.BestSellersLoadFailureAction;
@@ -51,7 +51,7 @@ export class DaffBestSellersLoadFailure implements Action {
 /**
  * Resets the state of the best sellers redux store to its initial state.
  *
- * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`. Deprecated in version 0.81.0. Will be removed in version 0.84.0.
  */
 export class DaffBestSellersReset implements Action {
   readonly type = DaffBestSellersActionTypes.BestSellersResetAction;
@@ -60,7 +60,7 @@ export class DaffBestSellersReset implements Action {
 }
 
 /**
- * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`.
+ * @deprecated in favor of features from `@daffodil/related-products/state` and `@daffodil/upsell-products/state`. Deprecated in version 0.81.0. Will be removed in version 0.84.0.
  */
 export type DaffBestSellersActions<T extends DaffProduct = DaffProduct> =
     | DaffBestSellersLoad
