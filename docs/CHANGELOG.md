@@ -1,5 +1,55 @@
 # Changelog
 
+## [0.81.0](https://github.com/graycoreio/daffodil/compare/v0.80.0...v0.81.0) (2025-01-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove deprecations ([#3464](https://github.com/graycoreio/daffodil/issues/3464))
+* Angular has been upgraded to v19
+* **dgeni,docs-utils:** the ToC types have been trimmed up to only have fields used
+
+### Features
+
+* **core:** add `daffMerge` ([#3441](https://github.com/graycoreio/daffodil/issues/3441)) ([b20b7ce](https://github.com/graycoreio/daffodil/commit/b20b7ceba79052528c1f665f35136744b6ef9f79))
+* **daffio:** add safe html pipe ([#3413](https://github.com/graycoreio/daffodil/issues/3413)) ([128fa4a](https://github.com/graycoreio/daffodil/commit/128fa4a5b1e14c925d38d84b18aae67b6c01cbaf))
+* **daffio:** clean up doc article template UI ([#3431](https://github.com/graycoreio/daffodil/issues/3431)) ([ef5254b](https://github.com/graycoreio/daffodil/commit/ef5254bb81e6d56ecc739e02636c749a0a5b680d))
+* **daffio:** dynamically render doc views ([#3415](https://github.com/graycoreio/daffodil/issues/3415)) ([4edd95a](https://github.com/graycoreio/daffodil/commit/4edd95a1115c8e3cb12a26641aef00c592fe7370))
+* **daffio:** fix duplicate selector names in docs components ([#3418](https://github.com/graycoreio/daffodil/issues/3418)) ([4c6e46a](https://github.com/graycoreio/daffodil/commit/4c6e46a598dc3bd359dd7caf80721cac0905596e))
+* **daffio:** replace dynamic doc renderer with service in page component ([#3419](https://github.com/graycoreio/daffodil/issues/3419)) ([d3cee1e](https://github.com/graycoreio/daffodil/commit/d3cee1efdf07314cf91911b847be8ad0c1ed9fe6))
+* **daffio:** split daffio nav into separate docs and marketing components ([#3436](https://github.com/graycoreio/daffodil/issues/3436)) ([91ac6ab](https://github.com/graycoreio/daffodil/commit/91ac6ab325ea7efbf5a41f21254d153918e2c46f))
+* **daffio:** support always showing sidebar header and footer ([#3451](https://github.com/graycoreio/daffodil/issues/3451)) ([249b8f9](https://github.com/graycoreio/daffodil/commit/249b8f959fdd070b348c503a8700ee8a722edd10))
+* **design:** add link mode to tabs component ([#3429](https://github.com/graycoreio/daffodil/issues/3429)) ([69d2859](https://github.com/graycoreio/daffodil/commit/69d28594e860ae69a1e0ea3cc93e6ad060fe4d35))
+* **design:** clean up sidebar header UI ([#3453](https://github.com/graycoreio/daffodil/issues/3453)) ([814c33f](https://github.com/graycoreio/daffodil/commit/814c33f7454f18ec765d748f0bb3686121e2b7a9))
+* **design:** clean up typography docs and update usage of font family base ([#3427](https://github.com/graycoreio/daffodil/issues/3427)) ([bfb40e4](https://github.com/graycoreio/daffodil/commit/bfb40e4f52e6b9eb402919e3784fa26e007bceb0))
+* **design:** deprecate embolden mixin and class ([#3409](https://github.com/graycoreio/daffodil/issues/3409)) ([c339f7c](https://github.com/graycoreio/daffodil/commit/c339f7c09f9bc3c0b206223be6258e31203074b4))
+* **design:** tabs component UI updates ([#3403](https://github.com/graycoreio/daffodil/issues/3403)) ([203f7e0](https://github.com/graycoreio/daffodil/commit/203f7e04388f5e7b229137c28e44aea68df53e1a))
+* **design:** update root status tokens to use value retrieved from `daff-map-get` function ([#3428](https://github.com/graycoreio/daffodil/issues/3428)) ([f299a83](https://github.com/graycoreio/daffodil/commit/f299a839aba30f06f0521aa133be4741898d6aee))
+* **dgeni,daffio:** implement ToC for package guide API symbols ([#3440](https://github.com/graycoreio/daffodil/issues/3440)) ([8c8d530](https://github.com/graycoreio/daffodil/commit/8c8d53041354442108a1812f13eb82e62c3cc565))
+* **dgeni,docs-utils:** add kind to documents ([#3396](https://github.com/graycoreio/daffodil/issues/3396)) ([a26cde4](https://github.com/graycoreio/daffodil/commit/a26cde40ac29ce4805d3393805a63739eaff7d74))
+* **dgeni,docs-utils:** extract out ToC type ([#3397](https://github.com/graycoreio/daffodil/issues/3397)) ([0db48b5](https://github.com/graycoreio/daffodil/commit/0db48b5e7b519c2ed90a8e22a2a5197460c876c6))
+* **dgeni,docs-utils:** store API docs and symbols on package guides ([#3412](https://github.com/graycoreio/daffodil/issues/3412)) ([7a9f3d0](https://github.com/graycoreio/daffodil/commit/7a9f3d0afa84531f18b4920929b26bcd01577859))
+* **dgeni,docs,daffio:** implement ToC for all doc kinds ([#3423](https://github.com/graycoreio/daffodil/issues/3423)) ([676e498](https://github.com/graycoreio/daffodil/commit/676e498c01aa42837bb9b21ff66b414bd9f38e10))
+* **docs-utils,dgeni:** pull examples out of content and store in doc ([#3389](https://github.com/graycoreio/daffodil/issues/3389)) ([84a5def](https://github.com/graycoreio/daffodil/commit/84a5def17246eacaf073da6503dacd10ed292f5f))
+* **docs-utils:** support component doc kinds in helper ([#3398](https://github.com/graycoreio/daffodil/issues/3398)) ([bd26e3d](https://github.com/graycoreio/daffodil/commit/bd26e3dca8473437be2f59bc269d56b54a0c701f))
+* **product:** deprecate best sellers ([#3461](https://github.com/graycoreio/daffodil/issues/3461)) ([13f40a4](https://github.com/graycoreio/daffodil/commit/13f40a416062b8ee8bbbbe44572c1678f384676e))
+* remove deprecations ([#3464](https://github.com/graycoreio/daffodil/issues/3464)) ([ff9d582](https://github.com/graycoreio/daffodil/commit/ff9d582a45d8db54b3b159695c330abc4ad7655a))
+* **router:** add merge strategy config for route data service ([#3443](https://github.com/graycoreio/daffodil/issues/3443)) ([455e53b](https://github.com/graycoreio/daffodil/commit/455e53b6e65d6a2f555f3b36292a5a0dd8e618f2))
+* **router:** deprecate `DaffRouterActivatedRoute` ([#3460](https://github.com/graycoreio/daffodil/issues/3460)) ([be722a7](https://github.com/graycoreio/daffodil/commit/be722a7a449c57d98b7fc40eb0a99f61334a3edb))
+* upgrade to Angular v19 ([#3351](https://github.com/graycoreio/daffodil/issues/3351)) ([0275f41](https://github.com/graycoreio/daffodil/commit/0275f410b57d44815c73d278f3fb3c14e3dcc649))
+
+
+### Bug Fixes
+
+* **core:** mutating object merger ([#3454](https://github.com/graycoreio/daffodil/issues/3454)) ([71f5f6f](https://github.com/graycoreio/daffodil/commit/71f5f6f335066b54664e9fc43cd9c275ea329877))
+* **daffio:** API package ToC missing error ([#3442](https://github.com/graycoreio/daffodil/issues/3442)) ([c461515](https://github.com/graycoreio/daffodil/commit/c461515bda6c2b118212fa98abc701559e37dc36))
+* **daffio:** rendering empty toc ([#3416](https://github.com/graycoreio/daffodil/issues/3416)) ([7c57b80](https://github.com/graycoreio/daffodil/commit/7c57b8081d463671c39702a15a7c7efb25ec0d90))
+* **daffio:** sidebars not registered on child docs routes ([#3444](https://github.com/graycoreio/daffodil/issues/3444)) ([2017cc8](https://github.com/graycoreio/daffodil/commit/2017cc8f66e7b0c9062f6ebb573f6ef2082c8c6c))
+* **design:** fix sidebar flickering on SSR ([#3434](https://github.com/graycoreio/daffodil/issues/3434)) ([b3e10bd](https://github.com/graycoreio/daffodil/commit/b3e10bd082f01d5fb8d52f37e5e6368ebbd836ed))
+* **design:** fix sticky element positioning by updating sidebar viewport overflow for opened over/under sidebars ([#3452](https://github.com/graycoreio/daffodil/issues/3452)) ([3f35296](https://github.com/graycoreio/daffodil/commit/3f352963124f5276a0294fb7c3db94b2db596e9a))
+* **dgeni:** incorrect generation of design ToC ([#3411](https://github.com/graycoreio/daffodil/issues/3411)) ([cb8d631](https://github.com/graycoreio/daffodil/commit/cb8d6310a138cc3df5695cc8c42bc1c0f5a74d55))
+* **docs-utils:** link computation missing for components ([#3410](https://github.com/graycoreio/daffodil/issues/3410)) ([4f2eaca](https://github.com/graycoreio/daffodil/commit/4f2eacae7b43dadefb4934614c1e619c19d181a6))
+
 ## [0.80.0](https://github.com/graycoreio/daffodil/compare/v0.79.0...v0.80.0) (2025-01-06)
 
 
