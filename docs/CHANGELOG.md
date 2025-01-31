@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.81.1](https://github.com/graycoreio/daffodil/compare/v0.81.0...v0.81.1) (2025-01-31)
+
+
+### Bug Fixes
+
+* widen supported angular range to ^19 ([#3468](https://github.com/graycoreio/daffodil/issues/3468)) ([8311107](https://github.com/graycoreio/daffodil/commit/831110747221c28782cc7d5e4ea0419897579ee7))
+
 ## [0.81.0](https://github.com/graycoreio/daffodil/compare/v0.80.0...v0.81.0) (2025-01-28)
 
 
