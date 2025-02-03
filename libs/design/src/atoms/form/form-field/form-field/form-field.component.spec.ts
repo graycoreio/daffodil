@@ -23,8 +23,7 @@ import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
     <input daff-input [formControl]="formControl">
     <daff-error-message></daff-error-message>
   </daff-form-field>`,
-  standalone: false,
-})
+standalone: false })
 class WrapperComponent {
   formControl = new UntypedFormControl('', Validators.required);
 }
@@ -118,18 +117,11 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
 
 });
 
-<<<<<<< HEAD
-@Component({
-  template: `
-  <daff-form-field [formSubmitted]="formSubmittedValue">
-=======
 @Component({ template: `
   <daff-form-field>
->>>>>>> fix tests
     <daff-error-message></daff-error-message>
   </daff-form-field>`,
-  standalone: false,
-})
+standalone: false })
 
 class WrapperWithoutControlComponent {}
 
