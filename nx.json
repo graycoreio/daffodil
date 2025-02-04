@@ -12,7 +12,7 @@
       "!{projectRoot}/**/*.spec.{ts,tsx}"
     ],
     "notIndex": [
-      "!{projectRoot}/**/index.json}"
+      "!{projectRoot}/**/index.json"
     ],
     "sharedGlobals": [
       "{workspaceRoot}/angular.json",
