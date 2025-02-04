@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffCardComponent } from './card/card.component';
+import { DaffCardComponent } from './card/basic/basic.component';
+import { DaffRaisedCardComponent } from './card/raised/raised.component';
+import { DaffStrokedCardComponent } from './card/stroked/stroked.component';
 import { DaffCardActionsDirective } from './card-actions/card-actions.directive';
 import { DaffCardContentDirective } from './card-content/card-content.directive';
 import { DaffCardIconDirective } from './card-icon/card-icon.directive';
@@ -16,6 +18,8 @@ import { DaffCardTitleDirective } from './card-title/card-title.directive';
   imports: [
     CommonModule,
     DaffCardComponent,
+    DaffRaisedCardComponent,
+    DaffStrokedCardComponent,
     DaffCardIconDirective,
     DaffCardImageDirective,
     DaffCardTaglineDirective,
@@ -25,6 +29,8 @@ import { DaffCardTitleDirective } from './card-title/card-title.directive';
   ],
   exports: [
     DaffCardComponent,
+    DaffRaisedCardComponent,
+    DaffStrokedCardComponent,
     DaffCardIconDirective,
     DaffCardImageDirective,
     DaffCardTaglineDirective,

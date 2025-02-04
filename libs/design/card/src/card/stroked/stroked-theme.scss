@@ -1,0 +1,46 @@
+@use 'sass:map';
+@use '../../../../scss/core';
+@use '../../../../scss/theming';
+
+@mixin daff-stroked-card-theme($theme) {
+	$primary: core.daff-map-get($theme, primary);
+	$secondary: core.daff-map-get($theme, secondary);
+	$tertiary: core.daff-map-get($theme, tertiary);
+	$base: core.daff-map-get($theme, 'core', 'base');
+	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
+	$white: core.daff-map-get($theme, 'core', 'white');
+	$black: core.daff-map-get($theme, 'core', 'black');
+	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+
+	.daff-stroked-card {
+		border: 1px solid theming.daff-illuminate($base, $neutral, 2);
+
+		&.daff-primary {
+			border: 1px solid theming.daff-illuminate($base-contrast, $primary, 3);
+		}
+
+		&.daff-secondary {
+			border: 1px solid theming.daff-illuminate($base-contrast, $secondary, 3);
+		}
+
+		&.daff-tertiary {
+			border: 1px solid theming.daff-illuminate($base-contrast, $tertiary, 3);
+		}
+
+		&.daff-theme {
+			border: 1px solid theming.daff-illuminate($base, $neutral, 2);
+		}
+
+		&.daff-theme-contrast {
+			border: 1px solid theming.daff-illuminate($base-contrast, $neutral, 2);
+		}
+
+		&.daff-black {
+			border: 1px solid theming.daff-color($neutral, 90);
+		}
+
+		&.daff-white {
+			border: 1px solid theming.daff-color($neutral, 20);
+		}
+	}
+}

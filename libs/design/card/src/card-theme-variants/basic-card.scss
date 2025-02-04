@@ -1,6 +1,0 @@
-@use '../../../scss/theming';
-
-@mixin daff-basic-card-theme-variant($color) {
-	background: $color;
-	color: theming.daff-text-contrast($color);
-}

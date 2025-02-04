@@ -1,0 +1,11 @@
+@use '../../card-base' as base;
+
+.daff-raised-card {
+	@include base.daff-card-base();
+}
+
+a {
+	&.daff-raised-card {
+		@include base.daff-linked-card-base();
+	}
+}

@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { DAFF_CARD_COMPONENTS } from '@daffodil/design/card';
+import { DAFF_RAISED_CARD_COMPONENTS } from '@daffodil/design/card';
 import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
 
 @Component({
@@ -18,7 +18,7 @@ import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
   styleUrls: ['./raised-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DAFF_CARD_COMPONENTS,
+    DAFF_RAISED_CARD_COMPONENTS,
     DAFF_IMAGE_COMPONENTS,
     ReactiveFormsModule,
     NgFor,

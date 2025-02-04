@@ -1,24 +1,41 @@
-@use '../../../scss/typography' as t;
-@use '../../../scss/layout';
+@use '../../scss/typography' as t;
+@use '../../scss/layout';
 
 $card-border-radius: 8px;
 $card-inner-border-radius: calc(#{$card-border-radius} - 1px);
 
-.daff-card {
-	$root: &;
+@mixin daff-card-base {
 	display: flex;
 	border-radius: $card-border-radius;
 	position: relative;
 
-	&__image {
+	.daff-card__image {
 		display: inline-block;
 		width: 100%;
 	}
 
-	&--vertical {
+	.daff-card__wrapper {
+		position: relative;
+		height: 100%;
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 100%;
+			border-radius: $card-border-radius;
+			opacity: 0;
+			width: 100%;
+			transition: opacity 300ms;
+			z-index: 1;
+		}
+	}
+
+	&.vertical {
 		flex-direction: column;
 
-		#{$root}__image {
+		.daff-card__image {
 			border-radius: $card-inner-border-radius $card-inner-border-radius 0 0;
 
 			img {
@@ -27,7 +44,7 @@ $card-inner-border-radius: calc(#{$card-border-radius} - 1px);
 		}
 	}
 
-	&--horizontal {
+	&.horizontal {
 		flex-wrap: wrap;
 
 		@include layout.breakpoint(mobile) {
@@ -35,7 +52,7 @@ $card-inner-border-radius: calc(#{$card-border-radius} - 1px);
 			flex-wrap: nowrap;
 		}
 
-		#{$root}__image {
+		.daff-card__image {
 			border-radius: $card-inner-border-radius 0 0 $card-inner-border-radius;
 
 			img {
@@ -48,34 +65,34 @@ $card-inner-border-radius: calc(#{$card-border-radius} - 1px);
 		}
 	}
 
-	&__body {
+	.daff-card__body {
 		padding: 1.5rem;
 		position: relative;
 		z-index: 2;
 	}
 
-	&__icon {
+	.daff-card__icon {
 		display: block;
 		margin: 0 0 0.5rem;
 	}
 
-	&__tagline {
+	.daff-card__tagline {
 		@include t.subheading;
 		padding: 0;
 		margin: 0 0 0.25rem;
 	}
 
-	&__title {
+	.daff-card__title {
 		font-size: 1.25rem;
 		font-weight: 600;
 		line-height: 1.5rem;
+
+		+ .daff-card__content {
+			margin: 1rem 0 0;
+		}
 	}
 
-	&__title + &__content {
-		margin: 1rem 0 0;
-	}
-
-	&__content {
+	.daff-card__content {
 		p {
 			&:first-of-type {
 				margin-top: 0;
@@ -87,62 +104,29 @@ $card-inner-border-radius: calc(#{$card-border-radius} - 1px);
 		}
 	}
 
-	&__actions {
+	.daff-card__actions {
 		padding: 0 1.5rem 1.5rem;
 		position: relative;
 		z-index: 2;
 	}
 }
 
-a {
-	&.daff-card,
-	&.daff-raised-card,
-	&.daff-stroked-card {
-		$root: &;
-		text-decoration: none;
+@mixin daff-linked-card-base {
+	text-decoration: none;
 
+	.daff-card__image {
+		+ .daff-card__wrapper {
+			&::after {
+				border-radius: 0 0 $card-border-radius $card-border-radius;
+			}
+		}
+	}
+
+	&.horizontal {
 		.daff-card__image {
 			+ .daff-card__wrapper {
 				&::after {
-					border-radius: 0 0 $card-border-radius $card-border-radius;
-				}
-			}
-		}
-
-		.daff-card__wrapper {
-			position: relative;
-			height: 100%;
-
-			&::after {
-				content: '';
-				position: absolute;
-				left: 0;
-				top: 0;
-				height: 100%;
-				border-radius: $card-border-radius;
-				opacity: 0;
-				width: 100%;
-				transition: opacity 300ms;
-				z-index: 1;
-			}
-		}
-
-		&.daff-card--horizontal {
-			.daff-card__image {
-				+ .daff-card__wrapper {
-					&::after {
-						border-radius: 0 $card-border-radius $card-border-radius 0;
-					}
-				}
-			}
-		}
-
-		&:hover,
-		&:focus,
-		&:active {
-			.daff-card__wrapper {
-				&::after {
-					opacity: 1;
+					border-radius: 0 $card-border-radius $card-border-radius 0;
 				}
 			}
 		}
