@@ -26,7 +26,6 @@ import { DaffioDocArticleComponent } from '../../../components/doc-article/compo
   template: `<daffio-docs-design-component-content
 		[doc]="docValue"
 	></daffio-docs-design-component-content>`,
-  standalone: true,
   imports: [
     DaffioDocsDesignComponentContentComponent,
   ],

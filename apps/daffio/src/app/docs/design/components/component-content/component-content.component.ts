@@ -24,12 +24,10 @@ import { DaffioSafeHtmlPipe } from '../../../../core/html-sanitizer/safe.pipe';
 import { DaffioDocArticleModule } from '../../../components/doc-article/module';
 import { DaffioDocsDynamicContent } from '../../../dynamic-content/dynamic-content.type';
 
-
 @Component({
   selector: 'daffio-docs-design-component-content',
   templateUrl: './component-content.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     DAFF_TABS_COMPONENTS,
     DAFF_ARTICLE_COMPONENTS,
