@@ -1,7 +1,4 @@
-import {
-  AsyncPipe,
-  NgFor,
-} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -42,7 +39,6 @@ import { DaffioNavLink } from '../link/type';
     RouterLinkActive,
     DaffLogoModule,
     DaffThemeSwitchButtonModule,
-    NgFor,
     DaffButtonComponent,
     DaffIconButtonComponent,
     FaIconComponent,

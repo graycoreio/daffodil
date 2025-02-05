@@ -1,7 +1,4 @@
-import {
-  AsyncPipe,
-  NgFor,
-} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,10 +16,7 @@ import {
 } from 'rxjs';
 
 import { DaffLogoModule } from '@daffodil/branding';
-import {
-  DaffButtonComponent,
-  DaffIconButtonComponent,
-} from '@daffodil/design/button';
+import { DaffIconButtonComponent } from '@daffodil/design/button';
 import { DaffRouterDataService } from '@daffodil/router';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
@@ -42,8 +36,6 @@ import { DaffioNavLink } from '../link/type';
     RouterLinkActive,
     DaffLogoModule,
     DaffThemeSwitchButtonModule,
-    NgFor,
-    DaffButtonComponent,
     DaffIconButtonComponent,
     FaIconComponent,
     AsyncPipe,
