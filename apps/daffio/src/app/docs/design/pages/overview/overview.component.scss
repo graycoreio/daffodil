@@ -6,13 +6,13 @@
 
 .daffio-docs-design-overview {
 	&__title {
-		@include daff.headline-xl();
 		margin: 0 0 16px;
 		padding: 0;
+		@include daff.headline-xl();
 	}
 
 	&__subtitle {
-		@include daff.body-lg;
+		@include daff.body-lg();
 		font-weight: 400;
 		margin: 0 0 32px;
 		padding: 0;

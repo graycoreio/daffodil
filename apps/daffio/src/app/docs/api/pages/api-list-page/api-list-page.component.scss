@@ -11,7 +11,7 @@
 
 .daffio-api-list-page {
 	&__title {
-		@include daff.headline-xl();
 		margin-bottom: 48px;
+		@include daff.headline-xl();
 	}
 }
