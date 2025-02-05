@@ -3,26 +3,27 @@
 ************************************/
 
 @use 'global';
+@use "sass:meta";
 
 @use 'theme' as daff-theme;
 @use './component-themes' as dl-components;
 
 .daff-theme-light {
-  @import 'highlight.js/scss/a11y-light.scss';
+  background: var(--daff-base-bg);
+	color: var(--daff-base-text);
+  
+  @include meta.load-css("highlight.js/scss/a11y-light.scss");
 
   @include daff-theme.daff-theme(daff-theme.$theme);
   @include dl-components.component-themes(daff-theme.$theme);
-
-  background: var(--daff-base-bg);
-	color: var(--daff-base-text);
 }
 
 .daff-theme-dark {
-  @import 'highlight.js/scss/a11y-dark.scss';
+  background: var(--daff-base-bg);
+	color: var(--daff-base-text);
+
+  @include meta.load-css("highlight.js/scss/a11y-dark.scss");
 
   @include daff-theme.daff-theme(daff-theme.$theme-dark);
   @include dl-components.component-themes(daff-theme.$theme-dark);
-
-  background: var(--daff-base-bg);
-	color: var(--daff-base-text);
 }
