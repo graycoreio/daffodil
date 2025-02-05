@@ -32,7 +32,7 @@ export class CartComponent {
 
 Once the `DaffCartFacade` has been set up in the component, it can now be used to manage a user's cart. To perform operations on the cart, pass actions to the `DaffCartFacade#dispatch` method. When carts are created using the `DaffCartCreate` action, Daffodil will save the cart ID in local storage and automatically pass it to the driver layer for future operations. Various cart properties and a list of errors are available on the cart facade as observable streams.
 
-> Note: The storage mechanism can be configured. See the [storage guide](../../core/guides/advanced/storage.md#environment-specific-storage-services) for more details.
+> Note: The storage mechanism can be configured. See the [storage guide](/libs/core/guides/storage.md#environment-specific-storage-services) for more details.
 
 Additionally, the Daffodil cart facade provides three different loading states for each section of the cart:
 

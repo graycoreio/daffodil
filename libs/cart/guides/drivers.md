@@ -52,7 +52,7 @@ This `DaffCart` implementation will now be able to interact with Magento.
 > Note: It is important to only have one `@daffodil/cart` driver set up in the root component at a time. To set up a driver configuration to make switching between different backend drivers simple, follow the [advanced setup guide](). <!-- TODO: add multiple drivers guide -->
 
 ### Fragment introspection
-You should set up fragment introspection with the Magento backend. Refer to the [fragment introspection guide](../../../../tools/builders/guides/fragment-introspection.md) for more information.
+You should set up fragment introspection with the Magento backend. Refer to the [fragment introspection guide](/tools/builders/guides/fragment-introspection.md) for more information.
 
 ## Usage
 The drivers can be injected into components and invoked directly. The following example shows how to list the items in the cart and add a simple item to the cart.

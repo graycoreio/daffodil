@@ -17,7 +17,7 @@ yarn add @daffodil/search
 
 ## Subpackages
 
-- [@daffodil/search-category](../search-category/README.md)
-- [@daffodil/search-product](../search-product/README.md)
-- [@daffodil/search-product-composite](../search-product-composite/README.md)
-- [@daffodil/search-product-configurable](../search-product-configurable/README.md)
+- [@daffodil/search-category](/libs/search-category/README.md)
+- [@daffodil/search-product](/libs/search-product/README.md)
+- [@daffodil/search-product-composite](/libs/search-product-composite/README.md)
+- [@daffodil/search-product-configurable](/libs/search-product-configurable/README.md)

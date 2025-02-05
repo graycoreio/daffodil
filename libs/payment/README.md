@@ -4,7 +4,7 @@
 ## Overview
 `@daffodil/payment` doesn't inherently support any particular payment methods but instead provide base models and extension points that are utilized by other libraries.
 
-See [@daffodil/authorizenet](../authorizenet/README.md) for an example of such a library.
+See [@daffodil/authorizenet](/libs/authorizenet/README.md) for an example of such a library.
 
 ## Installation
 To install `@daffodil/payment`, use the following commands in your terminal.
