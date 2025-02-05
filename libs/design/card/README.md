@@ -14,7 +14,7 @@ The example below is a default, filled card that includes all of a card's pre-st
 ### Within a standalone component
 To use card in a standalone component, import it directly into your custom component.
 
-The following array exports can be used, depending on which card is being used: `DAFF_CARD_COMPONENTS`, `DAFF_RAISED_COMPONENTS`, `DAFF_STROKED_CARD_COMPONENTS`, and `DAFF_ALL_CARD_COMPONENTS`.
+The following imports are available, depending on which card you choose to use: `DAFF_CARD_COMPONENTS`, `DAFF_RAISED_COMPONENTS`, `DAFF_STROKED_CARD_COMPONENTS`. If you need to use all the card types, you can use `DAFF_ALL_CARD_COMPONENTS`.
 
 ```ts
 @Component({
