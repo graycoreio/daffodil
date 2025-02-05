@@ -15,7 +15,6 @@ import { DaffCardBaseDirective } from '../../card-base.directive';
   styleUrls: ['./raised.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 
 export class DaffRaisedCardComponent extends DaffCardBaseDirective {
