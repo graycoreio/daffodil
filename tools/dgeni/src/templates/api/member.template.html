@@ -2,16 +2,16 @@
 <tbody>
 	<tr>
 		<td>@Input() {$ member.name $}</td>
-		<td>{$ member.type $}</td>
-		<td>{$ member.description $}</td>
+		<td>{$ member.type | linkSymbols $}</td>
+		<td>{$ member.description | linkSymbols $}</td>
 		{% elif member.decorators[0].name === 'Output' %}
 		<td>@Output() {$ member.name $}</td>
-		<td>{$ member.type $}</td>
-		<td>{$ member.description $}</td>
+		<td>{$ member.type | linkSymbols $}</td>
+		<td>{$ member.description | linkSymbols $}</td>
 		{% else %}
 		<td>{$ member.name $}</td>
-		<td>{$ member.type $}</td>
-		<td>{$ member.description $}</td>
+		<td>{$ member.type | linkSymbols $}</td>
+		<td>{$ member.description | linkSymbols $}</td>
 	</tr>
 </tbody>
 {% endif %}

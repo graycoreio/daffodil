@@ -3,6 +3,8 @@ import {
   Document,
 } from 'dgeni';
 
+import { MARKDOWN_CODE_PROCESSOR_NAME } from './markdown';
+
 export const COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME = 'collectLinkableSymbols';
 
 /**
@@ -22,7 +24,7 @@ export class CollectLinkableSymbolsProcessor implements Processor {
 
   name = COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME;
   $runAfter = ['paths-absolutified'];
-  $runBefore = ['markdown'];
+  $runBefore = [MARKDOWN_CODE_PROCESSOR_NAME];
 
   constructor(private log, private createDocMessage) {}
 

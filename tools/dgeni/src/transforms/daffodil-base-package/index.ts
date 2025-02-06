@@ -21,6 +21,7 @@ import {
   ConvertToJsonProcessor,
 } from '../../processors/convertToJson';
 import { ID_SANITIZER_PROVIDER } from '../../services/id-sanitizer';
+import { linkSymbols } from '../../utils/link-symbols';
 import {
   PROJECT_ROOT,
   TEMPLATES_PATH,
@@ -75,6 +76,10 @@ export const daffodilBasePackage = new Package('daffodil-base', [
 
     // Nunjucks and Angular conflict in their template bindings so change Nunjucks
     templateEngine.config.tags = { variableStart: '{$', variableEnd: '$}' };
+    templateEngine.filters.push({
+      name: 'linkSymbols',
+      process: linkSymbols,
+    });
 
     // helpers are made available to the nunjucks templates
     renderDocsProcessor.helpers.relativePath = (from, to) => path.relative(from, to);

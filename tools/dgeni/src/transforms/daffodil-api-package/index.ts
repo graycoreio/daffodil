@@ -21,7 +21,6 @@ import { RemoveDuplicatesProcessor } from './processors/remove-duplicates';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddKindProcessor } from '../../processors/add-kind';
 import { AddInheritedDocsContentProcessor } from '../../processors/addInheritedDocsContent';
-import { AddLinkTagToDaffodilReferencesProcessor } from '../../processors/addLinkTagToDaffodilReferences';
 import { BreadcrumbProcessor } from '../../processors/breadcrumb';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 import { COLLECT_LINKABLE_SYMBOLS_PROCESSOR_PROVIDER } from '../../processors/collect-linkable-symbols';
@@ -64,7 +63,6 @@ export const apiDocsBase = new Package('api-base', [
   .processor(new MakeTypesHtmlCompatibleProcessor())
   .processor(new FilterOutPrivatePropertiesProcessor())
   .processor(new AddInheritedDocsContentProcessor())
-  .processor(new AddLinkTagToDaffodilReferencesProcessor())
   .processor(...PACKAGES_PROCESSOR_PROVIDER)
   .processor(...ADD_PACKAGE_EXPORTS_PROCESSOR_PROVIDER)
   .processor(...ADD_SUBPACKAGE_EXPORTS_PROCESSOR_PROVIDER)
