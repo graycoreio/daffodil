@@ -8,7 +8,10 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffPrefixSuffixModule } from '@daffodil/design';
+import {
+  DaffPrefixDirective,
+  DaffSuffixDirective,
+} from '@daffodil/design';
 import { DaffStrokedButtonComponent } from '@daffodil/design/button';
 
 @Component({
@@ -25,8 +28,9 @@ import { DaffStrokedButtonComponent } from '@daffodil/design/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DaffStrokedButtonComponent,
+    DaffPrefixDirective,
+    DaffSuffixDirective,
     FaIconComponent,
-    DaffPrefixSuffixModule,
   ],
 })
 export class StrokedButtonComponent {

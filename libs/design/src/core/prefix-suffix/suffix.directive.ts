@@ -10,9 +10,7 @@ import {
  */
 @Directive({
   selector: '[daffSuffix]',
-  standalone: false,
 })
-
 export class DaffSuffixDirective {
 
   @HostBinding('class.daff-suffix') class = true;

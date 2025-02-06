@@ -10,9 +10,7 @@ import {
  */
 @Directive({
   selector: '[daffPrefix]',
-  standalone: false,
 })
-
 export class DaffPrefixDirective {
 
   @HostBinding('class.daff-prefix') class = true;

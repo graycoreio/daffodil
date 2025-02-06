@@ -66,7 +66,7 @@ describe('@daffodil/design/button | DaffButtonBaseDirective', () => {
 
   describe('using the color property of a button', () => {
     it('should not set a default color', () => {
-      expect(directive.color).toBeFalsy();
+      expect(de.componentInstance.color).toBeFalsy();
     });
 
     it('should add the class of the defined color to the host element', () => {
@@ -98,7 +98,7 @@ describe('@daffodil/design/button | DaffButtonBaseDirective', () => {
   });
 
   it('should not set a default status', () => {
-    expect(directive.status).toBeFalsy();
+    expect(de.componentInstance.status).toBeFalsy();
   });
 
   describe('using the tabindex property of a button', () => {

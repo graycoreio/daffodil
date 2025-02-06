@@ -20,7 +20,6 @@ import {
 import {
   DaffArticleEncapsulatedDirective,
   DaffFocusStackService,
-  DaffPrefixable,
   DaffPrefixDirective,
   DaffStatusableDirective,
 } from '@daffodil/design';
@@ -52,10 +51,8 @@ import { DaffToastActionsDirective } from '../toast-actions/toast-actions.direct
     NgIf,
   ],
 })
-export class DaffToastComponent implements DaffPrefixable, AfterContentInit, AfterViewInit, OnDestroy {
-  /**
-   * @docs-private
-   */
+export class DaffToastComponent implements AfterContentInit, AfterViewInit, OnDestroy {
+  /** @docs-private */
   @HostBinding('class.daff-toast') class = true;
 
   /**

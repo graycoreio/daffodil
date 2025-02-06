@@ -4,12 +4,11 @@ import { DaffPrefixDirective } from './prefix.directive';
 import { DaffSuffixDirective } from './suffix.directive';
 
 @NgModule({
-  imports: [],
-  exports: [
+  imports: [
     DaffPrefixDirective,
     DaffSuffixDirective,
   ],
-  declarations: [
+  exports: [
     DaffPrefixDirective,
     DaffSuffixDirective,
   ],

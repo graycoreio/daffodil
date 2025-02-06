@@ -1,32 +1,20 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  ElementRef,
   HostBinding,
-  Renderer2,
   Input,
   Directive,
+  ContentChild,
 } from '@angular/core';
 
 import {
-  DaffPrefixable,
-  DaffSuffixable,
-  daffPrefixableMixin,
-  daffSuffixableMixin,
   DaffArticleEncapsulatedDirective,
   DaffStatusableDirective,
   DaffColorableDirective,
+  DaffPrefixDirective,
+  DaffSuffixDirective,
 } from '@daffodil/design';
 
 import { DaffButtonSizableDirective } from './button-sizable.directive';
-
-/**
- * An _elementRef and an instance of renderer2 are needed for the button mixins
- */
-class DaffButtonBase{
-  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
-}
-
-const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin((DaffButtonBase)));
 
 @Directive({
   selector: '[daffButtonBase]',
@@ -47,17 +35,16 @@ const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin((DaffButtonBase)
   ],
   standalone: true,
 })
-export class DaffButtonBaseDirective
-  extends _daffButtonBase
-  implements DaffPrefixable, DaffSuffixable {
+export class DaffButtonBaseDirective {
+
+  @ContentChild(DaffPrefixDirective, { static: true })
+  _prefix: DaffPrefixDirective;
+  @ContentChild(DaffSuffixDirective, { static: true })
+  _suffix: DaffSuffixDirective;
 
   constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
     private size: DaffButtonSizableDirective,
   ) {
-    super(elementRef, renderer);
-
     /**
      * Sets the default size of a button to medium.
      */

@@ -14,9 +14,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import {
   DaffArticleEncapsulatedDirective,
-  DaffPrefixable,
   DaffPrefixDirective,
-  DaffPrefixSuffixModule,
   DaffStatusableDirective,
   DaffStatusEnum,
 } from '@daffodil/design';
@@ -50,10 +48,10 @@ enum DaffNotificationOrientationEnum {
   imports: [
     NgIf,
     FaIconComponent,
-    DaffPrefixSuffixModule,
+    DaffPrefixDirective,
   ],
 })
-export class DaffNotificationComponent implements DaffPrefixable {
+export class DaffNotificationComponent {
   faTimes = faTimes;
 
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;

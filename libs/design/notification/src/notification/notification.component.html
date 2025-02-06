@@ -1,6 +1,6 @@
-<ng-container *ngIf="_prefix">
+@if (_prefix) {
   <ng-content select="[daffPrefix]"></ng-content>
-</ng-container>
+}
 <div class="daff-notification__body">
   <div class="daff-notification__content">
     <ng-content select="[daffNotificationTitle]"></ng-content>

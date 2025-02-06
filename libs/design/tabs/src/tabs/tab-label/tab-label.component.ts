@@ -8,9 +8,6 @@ import {
 import {
   DaffPrefixDirective,
   DaffSuffixDirective,
-  DaffPrefixable,
-  DaffSuffixable,
-  DaffPrefixSuffixModule,
 } from '@daffodil/design';
 
 /**
@@ -32,13 +29,11 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgIf,
-    DaffPrefixSuffixModule,
+    DaffPrefixDirective,
+    DaffSuffixDirective,
   ],
 })
-export class DaffTabLabelComponent implements DaffPrefixable, DaffSuffixable {
-  /**
-   * @docs-private
-   */
+export class DaffTabLabelComponent {
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
 
   /**
