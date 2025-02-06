@@ -11,6 +11,12 @@
 	width: 100%;
 	z-index: variables.$daff-sidebar-viewport-z-index;
 
+	.daff-sidebar-viewport__inner {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
 	&.pad-left {
 		.daff-sidebar-viewport__inner {
 			padding-left: 0;
@@ -77,6 +83,10 @@
 				margin-top: var(--daff-sidebar-side-fixed-top-shift);
 			}
 		}
+	}
+
+	&__footer {
+		margin-top: auto;
 	}
 }
 

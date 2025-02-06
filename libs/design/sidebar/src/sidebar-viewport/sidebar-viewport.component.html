@@ -17,6 +17,9 @@
   (@transformContent.done)="onContentAnimationDone($event)">
   <div class="daff-sidebar-viewport__inner">
       <ng-content></ng-content>
+      <div class="daff-sidebar-viewport__footer">
+        <ng-content select="[daff-sidebar-viewport-footer]"></ng-content>
+      </div>
   </div>
 </div>
 
