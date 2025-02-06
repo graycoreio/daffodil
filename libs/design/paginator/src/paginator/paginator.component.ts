@@ -208,6 +208,9 @@ export class DaffPaginatorComponent implements OnChanges {
       || (this.currentPage > this.numberOfPages - visiblePageRange && pageNumber > this.numberOfPages - 2*visiblePageRange);
   }
 
+  /**
+   * @docs-private
+   */
   _buildPageQueryParams(page: number): Params {
     return {
       [this.queryParam]: page,
