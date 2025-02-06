@@ -27,12 +27,10 @@ export interface DaffCategoryServiceInterface<
   getByUrl(categoryRequest: DaffCategoryUrlRequest): Observable<DaffGetCategoryResponse<V, W>>;
 }
 
-//TODO(damienwebdev): This any generic is necessary until we ship Ivy packages, do not change it.
-//See: https://github.com/ng-packagr/ng-packagr/issues/1844
 export const {
   token: DaffCategoryDriver,
   /**
    * Provider function for {@link DaffCategoryDriver}.
    */
   provider: provideDaffCategoryDriver,
-} = createSingletonInjectionToken<any>('DaffCategoryDriver');
+} = createSingletonInjectionToken<DaffCategoryServiceInterface>('DaffCategoryDriver');

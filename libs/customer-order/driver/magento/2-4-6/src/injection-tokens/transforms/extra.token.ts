@@ -1,6 +1,5 @@
 import { Provider } from '@angular/core';
 
-// workaround https://github.com/graycoreio/daffodil/issues/1667
 import { createMultiInjectionToken } from '@daffodil/core';
 import { DaffOrder } from '@daffodil/order';
 

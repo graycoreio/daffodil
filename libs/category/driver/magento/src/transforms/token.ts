@@ -1,5 +1,3 @@
-// workaround https://github.com/graycoreio/daffodil/issues/1667
-import { DaffCategory } from '@daffodil/category';
 import { createMultiInjectionToken } from '@daffodil/core';
 
 import { MagentoCategoryTreeTransform } from './type';

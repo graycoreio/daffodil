@@ -2,8 +2,6 @@ import { inject } from '@angular/core';
 
 import { createSingleInjectionToken } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
-// workaround https://github.com/graycoreio/daffodil/issues/1667
-import { DaffProductDriverResponse } from '@daffodil/product/driver';
 
 import { DAFF_PRODUCT_IN_MEMORY_EXTRA_PRODUCT_RESPONSE_TRANSFORMS } from './response-extra.token';
 import { DaffInMemoryProductResponseTransform } from '../../../interfaces/public_api';

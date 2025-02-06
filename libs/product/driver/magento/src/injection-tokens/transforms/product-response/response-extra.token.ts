@@ -1,10 +1,6 @@
 import { createMultiInjectionToken } from '@daffodil/core';
-// workaround https://github.com/graycoreio/daffodil/issues/1667
-import { DaffProduct } from '@daffodil/product';
-import { DaffProductDriverResponse } from '@daffodil/product/driver';
 
 import { DaffMagentoProductResponseExtraTransform } from '../../../interfaces/public_api';
-import { MagentoProduct } from '../../../models/public_api';
 
 export const {
   /**

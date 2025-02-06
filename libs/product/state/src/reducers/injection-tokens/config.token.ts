@@ -2,8 +2,6 @@ import { inject } from '@angular/core';
 import { StoreConfig } from '@ngrx/store';
 
 import { createSingleInjectionToken } from '@daffodil/core';
-// workaround https://github.com/graycoreio/daffodil/issues/1667
-import { DaffProduct } from '@daffodil/product';
 
 import { DAFF_PRODUCT_META_REDUCERS } from './meta.token';
 import { DaffProductReducersState } from '../product-reducers-state.interface';

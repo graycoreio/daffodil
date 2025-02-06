@@ -1,10 +1,3 @@
-import {
-  InjectionToken,
-  Provider,
-} from '@angular/core';
-
-// workaround https://github.com/graycoreio/daffodil/issues/1667
-import { DaffCart } from '@daffodil/cart';
 import { createMultiInjectionToken } from '@daffodil/core';
 
 import { DaffCartMagentoCartTransform } from '../../../interfaces/public_api';

@@ -1,7 +1,6 @@
 import { Provider } from '@angular/core';
 
 import { createMultiInjectionToken } from '@daffodil/core';
-// workaround https://github.com/graycoreio/daffodil/issues/1667
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffMagentoProductExtraTransform } from '../../../interfaces/product-preview-extra-transform.type';

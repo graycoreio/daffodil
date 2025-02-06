@@ -1,8 +1,6 @@
 import { inject } from '@angular/core';
 import { StoreConfig } from '@ngrx/store';
 
-// workaround https://github.com/graycoreio/daffodil/issues/1667
-import { DaffCart } from '@daffodil/cart';
 import { createSingleInjectionToken } from '@daffodil/core';
 
 import { DAFF_CART_META_REDUCERS } from './meta.token';

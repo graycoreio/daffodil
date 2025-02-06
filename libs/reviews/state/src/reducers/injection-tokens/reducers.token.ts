@@ -6,8 +6,6 @@ import {
 
 import { createSingleInjectionToken } from '@daffodil/core';
 import { daffComposeReducers } from '@daffodil/core/state';
-// workaround https://github.com/graycoreio/daffodil/issues/1667
-import { DaffProductReview } from '@daffodil/reviews';
 
 import { DAFF_REVIEWS_EXTRA_REDUCERS } from './extra.token';
 import { daffReviewsReducers } from '../reducers';

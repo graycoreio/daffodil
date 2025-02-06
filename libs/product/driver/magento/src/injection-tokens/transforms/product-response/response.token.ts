@@ -1,9 +1,6 @@
 import { inject } from '@angular/core';
 
 import { createSingleInjectionToken } from '@daffodil/core';
-// workaround https://github.com/graycoreio/daffodil/issues/1667
-import { DaffProduct } from '@daffodil/product';
-import { DaffProductDriverResponse } from '@daffodil/product/driver';
 
 import { DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS } from './response-extra.token';
 import { DaffMagentoProductResponseTransform } from '../../../interfaces/public_api';

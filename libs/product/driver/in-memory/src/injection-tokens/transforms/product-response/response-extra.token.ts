@@ -1,7 +1,4 @@
 import { createMultiInjectionToken } from '@daffodil/core';
-// workaround https://github.com/graycoreio/daffodil/issues/1667
-import { DaffProduct } from '@daffodil/product';
-import { DaffProductDriverResponse } from '@daffodil/product/driver';
 
 import { DaffInMemoryProductResponseExtraTransform } from '../../../interfaces/public_api';
 

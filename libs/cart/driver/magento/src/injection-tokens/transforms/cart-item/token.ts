@@ -1,5 +1,3 @@
-// workaround https://github.com/graycoreio/daffodil/issues/1667
-import { DaffCartItem } from '@daffodil/cart';
 import { createMultiInjectionToken } from '@daffodil/core';
 
 import { DaffCartMagentoCartItemTransform } from '../../../interfaces/public_api';

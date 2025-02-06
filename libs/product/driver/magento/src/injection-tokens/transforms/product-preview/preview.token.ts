@@ -1,8 +1,6 @@
 import { inject } from '@angular/core';
 
 import { createSingleInjectionToken } from '@daffodil/core';
-// workaround https://github.com/graycoreio/daffodil/issues/1667
-import { DaffProduct } from '@daffodil/product';
 
 import { DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_TRANSFORMS } from './preview-extra.token';
 import { DaffMagentoProductTransform } from '../../../interfaces/product-preview-transform.type';
