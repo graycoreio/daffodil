@@ -14,6 +14,10 @@ import {
 import { transformApiNavList } from './helpers/generateApiList';
 import { ADD_PACKAGE_EXPORTS_PROCESSOR_PROVIDER } from './processors/add-package-exports';
 import {
+  ADD_SOURCE_PROVIDER,
+  AddSourceProcessor,
+} from './processors/add-source';
+import {
   ADD_SUBPACKAGE_EXPORTS_PROCESSOR_NAME,
   ADD_SUBPACKAGE_EXPORTS_PROCESSOR_PROVIDER,
 } from './processors/add-subpackage-exports';
@@ -69,6 +73,7 @@ export const apiDocsBase = new Package('api-base', [
   .processor(...MARKDOWN_CODE_PROCESSOR_PROVIDER)
   .processor(...COLLECT_LINKABLE_SYMBOLS_PROCESSOR_PROVIDER)
   .processor(...EXAMPLES_PROCESSOR_PROVIDER)
+  .processor(...ADD_SOURCE_PROVIDER)
   .factory('API_DOC_TYPES_TO_RENDER', (EXPORT_DOC_TYPES) => EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe']))
   .config((readFilesProcessor, readTypeScriptModules, tsParser) => {
 
@@ -89,9 +94,12 @@ export const apiDocsBase = new Package('api-base', [
     addKind: AddKindProcessor,
     breadcrumb: BreadcrumbProcessor,
     examples: ExamplesProcessor,
+    addSource: AddSourceProcessor,
   ) => {
     markdown.docTypes.push(...EXPORT_DOC_TYPES);
     examples.docTypes.push(...EXPORT_DOC_TYPES);
+    markdown.docTypes.push(...EXPORT_DOC_TYPES);
+    addSource.docTypes.push(...EXPORT_DOC_TYPES);
     addKind.docTypes.push(...EXPORT_DOC_TYPES, 'package', 'module');
     breadcrumb.docTypes.push(...EXPORT_DOC_TYPES, 'package');
     markdown.contentKey = 'description';

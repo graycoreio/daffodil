@@ -2,5 +2,7 @@
 {$'<h3 id="' + doc.slug + '">' if child else '<h1>'$}{$ doc.name $}{$'</h3>' if child else '</h1>'$}
 {% endblock %}
 <p>{$ doc.description $}</p>
+<h2>API</h2>
+<p>{$ doc.sourceApiBlock $}</p>
 
 {% block body %}{% endblock %}
