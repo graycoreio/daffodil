@@ -83,6 +83,7 @@
     "dgeni": "^0.4.14",
     "dgeni-packages": "^0.28.4",
     "dotenv": "^16.4.5",
+    "esbuild": "^0.24.0",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-jasmine": "^4.2.1",
@@ -129,5 +130,16 @@
     "typescript": "~5.5.4",
     "vercel": "^21.3.3",
     "webpack-cli": "^4.10.0"
+  },
+  "overrides": {
+    "vite": {
+      "esbuild": "0.24.0"
+    },
+    "@angular-devkit/build-angular": {
+      "esbuild": "0.24.0"
+    },
+    "@angular/build": {
+      "esbuild": "0.24.0"
+    }
   }
 }
