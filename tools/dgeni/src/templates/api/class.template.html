@@ -6,8 +6,10 @@
 
 {% block body %}
 {% if doc.decorators[0].argumentInfo[0].selector %}
-<span class="selectors__label">Selector:</span>
-<span class="selectors__name"><code>{$ doc.decorators[0].argumentInfo[0].selector $}</code></span>
+<div class="selectors__wrapper">
+	<span class="selectors__label">Selector:</span>
+	<span class="selectors__name"><code>{$ doc.decorators[0].argumentInfo[0].selector $}</code></span>
+</div>
 {% endif %}
 
 {% if doc.members.length > 0 %}

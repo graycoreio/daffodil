@@ -6,6 +6,7 @@
 		[linkMode]="true"
 		[url]="doc().id"
 		(tabChange)="setTab($event)"
+		aria-label="Documentation sections"
 	>
 		<daff-tab [id]="USAGE_TAB_ID">
 			<daff-tab-label>
@@ -25,6 +26,7 @@
 			<daff-tab-panel>
 				@for (apiDoc of doc().api; track $index) {
 					<section [innerHtml]="apiDoc | safe"></section>
+					<hr>
 				}
 			</daff-tab-panel>
 		</daff-tab>
