@@ -4,8 +4,6 @@ import {
   combineReducers,
 } from '@ngrx/store';
 
-// these unused imports are a workaround
-import { DaffCategory } from '@daffodil/category';
 import { createSingleInjectionToken } from '@daffodil/core';
 import { daffComposeReducers } from '@daffodil/core/state';
 

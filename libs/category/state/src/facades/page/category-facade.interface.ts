@@ -1,15 +1,10 @@
-import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import {
   DaffGenericCategory,
   DaffCategory,
 } from '@daffodil/category';
-import {
-  DaffStoreFacade,
-  DaffStateError,
-  DaffOperationStateFacadeInterface,
-} from '@daffodil/core/state';
+import { DaffOperationStateFacadeInterface } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffCategoryReducerState } from '../../reducers/category/category-reducer-state.interface';

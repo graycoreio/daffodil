@@ -1,7 +1,4 @@
-import {
-  ID,
-  DaffLocatable,
-} from '@daffodil/core';
+import { DaffLocatable } from '@daffodil/core';
 import { DaffCollectionRequest } from '@daffodil/core';
 
 import { DaffCategory } from './category';

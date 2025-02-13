@@ -15,7 +15,6 @@ import {
 } from '@angular/core/testing';
 import {
   ActivatedRoute,
-  ActivatedRouteSnapshot,
   Router,
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';

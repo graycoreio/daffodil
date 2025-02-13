@@ -1,10 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import {
-  DaffCartPaymentMethod,
-  DaffCart,
-  DaffCartAddress,
-} from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import {
   DaffFailureAction,
   DaffStateError,

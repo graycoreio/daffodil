@@ -15,10 +15,8 @@ import {
   ActivatedRoute,
   RouterModule,
 } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffPaginatorComponent } from './paginator.component';
-import { DaffPaginatorModule } from '../paginator.module';
 import {
   DaffPaginatorNumberOfPagesErrorMessage,
   DaffPaginatorPageOutOfRangeErrorMessage,

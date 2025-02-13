@@ -9,7 +9,6 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffCountry } from '@daffodil/geography';
 import {
-  DaffCountryEntityState,
   daffGeographyReducers,
   DAFF_GEOGRAPHY_STORE_FEATURE_KEY,
   DaffCountryLoadSuccess,

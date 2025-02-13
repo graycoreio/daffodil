@@ -1,6 +1,8 @@
 import { MetaReducer } from '@ngrx/store';
 
 import { createMultiInjectionToken } from '@daffodil/core';
+// workaround https://github.com/graycoreio/daffodil/issues/1667
+// eslint-disable-next-line unused-imports/no-unused-imports
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffProductReducersState } from '../product-reducers-state.interface';

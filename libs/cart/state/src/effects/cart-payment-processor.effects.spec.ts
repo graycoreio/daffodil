@@ -17,7 +17,6 @@ import {
   DaffCart,
   DaffCartPaymentMethod,
   DaffCartAddress,
-  DaffCartStorageService,
 } from '@daffodil/cart';
 import {
   DaffCartPaymentServiceInterface,
@@ -25,7 +24,6 @@ import {
 } from '@daffodil/cart/driver';
 import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 import {
-  DaffCartPaymentUpdate,
   DaffCartPaymentUpdateSuccess,
   DaffCartPaymentUpdateFailure,
 } from '@daffodil/cart/state';

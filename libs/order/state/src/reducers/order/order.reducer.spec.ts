@@ -4,10 +4,7 @@ import {
   DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
-import {
-  DaffOrder,
-  DaffOrderCollection,
-} from '@daffodil/order';
+import { DaffOrderCollection } from '@daffodil/order';
 import {
   DaffOrderLoad,
   DaffOrderLoadSuccess,
@@ -18,10 +15,7 @@ import {
   daffOrderInitialState as initialState,
   DaffOrderReducerState,
 } from '@daffodil/order/state';
-import {
-  DaffOrderCollectionFactory,
-  DaffOrderFactory,
-} from '@daffodil/order/testing';
+import { DaffOrderCollectionFactory } from '@daffodil/order/testing';
 
 import { daffOrderReducer as reducer } from './order.reducer';
 

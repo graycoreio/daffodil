@@ -3,18 +3,9 @@ import { TestBed } from '@angular/core/testing';
 import { EntityState } from '@ngrx/entity';
 
 import { DaffProduct } from '@daffodil/product';
-import {
-  DaffProductLoadSuccess,
-  DaffProductGridLoadSuccess,
-  DaffBestSellersLoadSuccess,
-  DaffProductPageLoadSuccess,
-} from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import {
-  DaffConfigurableProductApplyAttribute,
-  DaffConfigurableProductRemoveAttribute,
-  DaffConfigurableProductToggleAttribute,
   daffConfigurableProductAppliedAttributesEntitiesAdapter,
   DaffConfigurableProductEntity,
 } from '@daffodil/product-configurable/state';

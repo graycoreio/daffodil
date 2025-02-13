@@ -1,18 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffAuthResetPasswordInfo } from '@daffodil/auth';
 import {
-  DaffLoginInfo,
-  DaffAuthResetPasswordInfo,
-} from '@daffodil/auth';
-import {
-  DaffResetPassword,
   DaffAuthResetPasswordReducerState,
   DaffResetPasswordSuccess,
   DaffResetPasswordFailure,
   daffAuthResetPasswordInitialState as initialState,
   DaffSendResetEmailFailure,
   DaffSendResetEmailSuccess,
-  DaffSendResetEmail,
 } from '@daffodil/auth/state';
 import { DaffAuthResetPasswordInfoFactory } from '@daffodil/auth/testing';
 import {

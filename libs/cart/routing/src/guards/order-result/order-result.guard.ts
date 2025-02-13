@@ -3,10 +3,7 @@ import {
   Inject,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  Observable,
-  of,
-} from 'rxjs';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { DaffCartFacade } from '@daffodil/cart/state';

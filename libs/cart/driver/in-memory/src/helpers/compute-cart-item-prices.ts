@@ -1,5 +1,3 @@
-import { faker } from '@faker-js/faker/locale/en_US';
-
 import { DaffCartItem } from '@daffodil/cart';
 import { daffMultiply } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';

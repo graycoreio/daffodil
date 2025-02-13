@@ -13,10 +13,7 @@ import {
   DaffBase64ServiceToken,
 } from '@daffodil/core';
 import { DaffProductPageFacade } from '@daffodil/product/state';
-import {
-  DaffProductCompositeSelectionPayload,
-  daffProductCompositeBuildSelectionPayload,
-} from '@daffodil/product-composite';
+import { daffProductCompositeBuildSelectionPayload } from '@daffodil/product-composite';
 import { DaffCompositeProductFacade } from '@daffodil/product-composite/state';
 
 import {

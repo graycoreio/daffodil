@@ -11,16 +11,12 @@ import {
   DaffCartOrderResult,
   DaffCartItemInputType,
   DaffCompositeCartItem,
-  DaffCartItemDiscount,
   DaffConfigurableCartItem,
 } from '@daffodil/cart';
-import { daffAdd } from '@daffodil/core';
 import {
   DaffOperationEntity,
   DaffOperationEntityState,
   DaffState,
-  DaffStateError,
-  daffOperationStateSelectorFactory,
 } from '@daffodil/core/state';
 
 import { daffCartItemEntitiesAdapter } from '../../reducers/cart-item-entities/adapter';

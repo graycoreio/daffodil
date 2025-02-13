@@ -10,10 +10,7 @@ import {
 } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 
-import {
-  DaffAuthMissingTokenError,
-  DaffAuthStorageService,
-} from '@daffodil/auth';
+import { DaffAuthStorageService } from '@daffodil/auth';
 import {
   DaffAuthDriver,
   DaffAuthInvalidAPIResponseError,
@@ -27,16 +24,12 @@ import {
   DaffAuthCheckFailure,
   DAFF_AUTH_STATE_CONFIG,
   DaffAuthStateConfig,
-  DaffAuthServerSide,
   DaffAuthStorageFailure,
   DaffAuthGuardLogout,
   DaffAuthLogoutSuccess,
   DaffAuthResetToUnauthenticated,
 } from '@daffodil/auth/state';
-import {
-  DaffServerSideStorageError,
-  DaffStorageServiceError,
-} from '@daffodil/core';
+import { DaffStorageServiceError } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import {
   DAFF_DRIVER_HTTP_CLIENT_CACHE_SERVICE,

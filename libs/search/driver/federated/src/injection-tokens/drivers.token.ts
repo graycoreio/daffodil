@@ -1,5 +1,4 @@
 import { createServicesInjectionToken } from '@daffodil/core';
-import { DaffSearchResult } from '@daffodil/search';
 import { DaffSearchDriverKindedInterface } from '@daffodil/search/driver';
 
 export const {

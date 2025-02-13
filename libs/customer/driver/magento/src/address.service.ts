@@ -3,7 +3,6 @@ import { ApolloQueryResult } from '@apollo/client/core';
 import { Apollo } from 'apollo-angular';
 import {
   Observable,
-  Subject,
   throwError,
 } from 'rxjs';
 import {

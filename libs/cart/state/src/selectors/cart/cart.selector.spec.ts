@@ -10,7 +10,6 @@ import { cold } from 'jasmine-marbles';
 import {
   DaffCart,
   DaffCartItemInputType,
-  DaffCartTotalTypeEnum,
 } from '@daffodil/cart';
 import {
   DaffCartLoadSuccess,

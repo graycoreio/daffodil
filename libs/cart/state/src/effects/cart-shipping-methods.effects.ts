@@ -11,7 +11,6 @@ import { of } from 'rxjs';
 import {
   switchMap,
   map,
-  catchError,
 } from 'rxjs/operators';
 
 import {

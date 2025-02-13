@@ -12,7 +12,6 @@ import {
 } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import {
-  defer,
   EMPTY,
   iif,
   Observable,
@@ -20,7 +19,6 @@ import {
 } from 'rxjs';
 import {
   switchMap,
-  catchError,
   map,
 } from 'rxjs/operators';
 
@@ -32,14 +30,10 @@ import {
   DaffCartResolutionError,
 } from '@daffodil/cart';
 import {
-  DaffCartDriver,
-  DaffCartServiceInterface,
   DaffCartDriverResolveService,
   daffCartDriverHandleCartNotFound,
 } from '@daffodil/cart/driver';
 import {
-  DaffStorageServiceError,
-  DaffServerSideStorageError,
   DaffError,
   DaffInheritableError,
   DAFF_STORAGE_SERVICE_ERROR_CODE,

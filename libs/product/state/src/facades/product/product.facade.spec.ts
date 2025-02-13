@@ -17,10 +17,6 @@ import {
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffProductFacade } from './product.facade';
-import {
-  DaffProductPageLoad,
-  DaffProductPageLoadSuccess,
-} from '../../actions/product-page.actions';
 
 describe('DaffProductFacade', () => {
   let store: Store<DaffProductStateRootSlice>;

@@ -12,15 +12,9 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import {
-  map,
-  switchMap,
-} from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
-import {
-  DaffProduct,
-  DaffProductTypeEnum,
-} from '@daffodil/product';
+import { DaffProductTypeEnum } from '@daffodil/product';
 import {
   DaffProductPageActionTypes,
   DaffProductPageLoadSuccess,

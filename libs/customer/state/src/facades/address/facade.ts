@@ -6,12 +6,9 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffCustomerAddress } from '@daffodil/customer';
-
 import { DaffCustomerAddressPageFacadeInterface } from './interface';
 import { DaffCustomerAddressEntity } from '../../models/public_api';
 import {
-  daffCustomerAddressEntitiesAdapter,
   DaffCustomerAddressReducerState,
   DaffCustomerStateRootSlice,
 } from '../../reducers/public_api';

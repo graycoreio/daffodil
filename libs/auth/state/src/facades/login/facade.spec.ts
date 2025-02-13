@@ -14,8 +14,6 @@ import {
 import {
   DAFF_AUTH_STORE_FEATURE_KEY,
   daffAuthReducers,
-  DaffAuthCheck,
-  DaffAuthCheckFailure,
   DaffAuthLoginFailure,
 } from '@daffodil/auth/state';
 import {

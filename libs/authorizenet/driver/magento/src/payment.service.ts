@@ -1,7 +1,4 @@
-import {
-  Injectable,
-  Inject,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   map,
   Observable,

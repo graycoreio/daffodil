@@ -7,21 +7,14 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { daffIdentifiableArrayToDict } from '@daffodil/core';
-import {
-  DaffOrder,
-  DaffOrderCollection,
-} from '@daffodil/order';
+import { DaffOrderCollection } from '@daffodil/order';
 import {
   daffOrderReducers,
   DaffOrderStateRootSlice,
   DAFF_ORDER_STORE_FEATURE_KEY,
   DaffOrderListSuccess,
 } from '@daffodil/order/state';
-import {
-  DaffOrderCollectionFactory,
-  DaffOrderFactory,
-} from '@daffodil/order/testing';
+import { DaffOrderCollectionFactory } from '@daffodil/order/testing';
 
 import { getOrderSelectors } from './order.selector';
 

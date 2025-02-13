@@ -1,6 +1,5 @@
 import { PLATFORM_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { platformBrowser } from '@angular/platform-browser';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
   hot,

@@ -1,8 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  DebugElement,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -14,10 +11,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import {
-  of,
-  Subject,
-} from 'rxjs';
+import { Subject } from 'rxjs';
 
 import { DaffQuantityInputComponent } from './quantity-input.component';
 import {

@@ -1,7 +1,6 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
 import {
   Component,
-  NgModule,
   ViewContainerRef,
 } from '@angular/core';
 import {

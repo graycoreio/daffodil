@@ -7,7 +7,6 @@ import {
 import { cold } from 'jasmine-marbles';
 
 import {
-  DaffCartPlaceOrderSuccess,
   daffCartReducers,
   DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
@@ -27,11 +26,7 @@ import {
   DAFF_ORDER_STORE_FEATURE_KEY,
   DaffOrderListSuccess,
 } from '@daffodil/order/state';
-import {
-  DaffOrderCollectionFactory,
-  DaffOrderFactory,
-  DaffOrderTotalFactory,
-} from '@daffodil/order/testing';
+import { DaffOrderCollectionFactory } from '@daffodil/order/testing';
 
 import { DaffOrderFacade } from './order.facade';
 

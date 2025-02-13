@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
 
 import {
-  DaffCategoryRequest,
   DaffGenericCategory,
   DaffCategory,
   DaffGetCategoryResponse,

@@ -1,7 +1,6 @@
 import { ActionReducer } from '@ngrx/store';
 
 import { createMultiInjectionToken } from '@daffodil/core';
-import { DaffSearchResult } from '@daffodil/search';
 
 import { DaffSearchReducersState } from '../reducers.interface';
 

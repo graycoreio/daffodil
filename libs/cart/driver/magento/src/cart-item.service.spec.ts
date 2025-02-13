@@ -42,7 +42,6 @@ import {
   DaffCartMagentoCartItemTransform,
   provideDaffCartMagentoCartItemTransforms,
   MagentoCartUserInputErrorType,
-  MagentoCartUserInputError,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,

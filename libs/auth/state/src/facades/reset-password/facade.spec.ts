@@ -19,7 +19,6 @@ import { DaffAuthResetPasswordFacade } from './facade';
 import {
   DaffResetPasswordFailure,
   DaffResetPasswordLanding,
-  DaffResetPasswordSuccess,
 } from '../../public_api';
 
 describe('DaffAuthResetPasswordFacade', () => {

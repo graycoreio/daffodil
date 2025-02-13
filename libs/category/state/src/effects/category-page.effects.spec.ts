@@ -31,9 +31,6 @@ import {
   daffCategoryReducers,
   DaffCategoryPageLoad,
   DaffCategoryPageLoadFailure,
-  DaffCategoryPageChangePageSize,
-  DaffCategoryPageChangeCurrentPage,
-  DaffCategoryPageChangeSortingOption,
   DAFF_CATEGORY_STORE_FEATURE_KEY,
   DaffCategoryPageLoadByUrl,
 } from '@daffodil/category/state';
@@ -41,10 +38,6 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import {
-  daffFiltersToRequests,
-  DaffSortDirectionEnum,
-} from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {

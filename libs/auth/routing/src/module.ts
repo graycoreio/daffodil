@@ -5,8 +5,6 @@ import {
 
 import {
   DaffAuthRoutingConfig,
-  DAFF_AUTH_ROUTING_CONFIG,
-  DAFF_AUTH_ROUTING_CONFIG_DEFAULT,
   provideDaffAuthRoutingConfig,
 } from './config/public_api';
 import {

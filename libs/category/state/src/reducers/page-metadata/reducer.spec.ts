@@ -15,7 +15,6 @@ import {
   DaffCategoryPageToggleFilter,
   DaffCategoryPageLoad,
   DaffCategoryPageLoadSuccess,
-  DaffCategoryPageLoadFailure,
   DaffCategoryPageReplaceFilters,
   DaffCategoryPageApplyFilters,
   DaffCategoryPageClearFilters,

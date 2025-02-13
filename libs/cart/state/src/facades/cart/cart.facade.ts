@@ -14,15 +14,12 @@ import { map } from 'rxjs/operators';
 import {
   DaffCart,
   DaffCartOrderResult,
-  DaffCartTotal,
   DaffCartPaymentMethodIdMap,
   DaffConfigurableCartItemAttribute,
   DaffCompositeCartItemOption,
-  DaffCartItemDiscount,
 } from '@daffodil/cart';
 import {
   DaffOperationEntity,
-  DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
 

@@ -10,8 +10,6 @@ import {
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
 import { DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM } from './response.token';
-import { DaffMagentoProductResponseTransformers } from '../../../transforms/product-response';
-
 
 describe('DAFF_PRODUCT_MAGENTO_PRODUCT_RESPONSE_TRANSFORM', () => {
   let magentoProductFactory: MagentoProductFactory;

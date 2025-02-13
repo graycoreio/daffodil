@@ -29,10 +29,7 @@ import {
   DaffCategoryPageChangeCurrentPage,
   DaffCategoryPageChangeSortingOption,
 } from '@daffodil/category/state';
-import {
-  DaffCategoryStateTestingModule,
-  MockDaffCategoryFacade,
-} from '@daffodil/category/state/testing';
+import { DaffCategoryStateTestingModule } from '@daffodil/category/state/testing';
 import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,

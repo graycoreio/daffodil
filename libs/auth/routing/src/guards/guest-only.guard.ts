@@ -17,7 +17,6 @@ import {
 import { DaffAuthStorageService } from '@daffodil/auth';
 import {
   DAFF_AUTH_UNAUTHENTICATED_ERROR_CODES,
-  DaffAuthDriverErrorCodes,
   DaffAuthDriverTokenCheck,
 } from '@daffodil/auth/driver';
 import {

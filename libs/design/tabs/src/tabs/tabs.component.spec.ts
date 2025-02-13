@@ -3,7 +3,6 @@ import {
   ChangeDetectorRef,
   Component,
   DebugElement,
-  QueryList,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -11,14 +10,9 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import {
-  provideRouter,
-  RouterModule,
-} from '@angular/router';
+import { provideRouter } from '@angular/router';
 
-import { DaffTabComponent } from './tab/tab.component';
 import { DaffTabActivatorComponent } from './tab-activator/tab-activator.component';
-import { DaffTabLabelComponent } from './tab-label/tab-label.component';
 import { DaffTabsComponent } from './tabs.component';
 import { DAFF_TABS_COMPONENTS } from '../tabs';
 

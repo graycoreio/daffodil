@@ -4,16 +4,9 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import {
-  filter,
-  map,
-} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { DaffCart } from '@daffodil/cart';
-import {
-  DaffCartLoadSuccess,
-  DaffCartActionTypes,
-} from '@daffodil/cart/state';
 
 import { DaffCartResolver } from './cart-resolver.service';
 import { DaffEmptyCartResolverRedirectUrl } from './tokens/empty-cart-resolver-redirect.token';

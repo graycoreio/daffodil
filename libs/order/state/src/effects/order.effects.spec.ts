@@ -28,10 +28,7 @@ import {
   DaffOrderListSuccess,
   DaffOrderListFailure,
 } from '@daffodil/order/state';
-import {
-  DaffOrderCollectionFactory,
-  DaffOrderFactory,
-} from '@daffodil/order/testing';
+import { DaffOrderCollectionFactory } from '@daffodil/order/testing';
 
 import { DaffOrderEffects } from './order.effects';
 

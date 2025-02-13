@@ -4,10 +4,7 @@ import {
   DaffState,
   DaffStateError,
 } from '@daffodil/core/state';
-import {
-  DaffCustomer,
-  DaffCustomerAddress,
-} from '@daffodil/customer';
+import { DaffCustomerAddress } from '@daffodil/customer';
 import {
   DaffCustomerAddressLoad,
   DaffCustomerAddressLoadSuccess,

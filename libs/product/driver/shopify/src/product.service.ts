@@ -9,7 +9,6 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { daffArrayToDict } from '@daffodil/core';
 import {
   DaffProduct,
   DaffProductTypeEnum,

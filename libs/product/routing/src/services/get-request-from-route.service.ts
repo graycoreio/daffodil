@@ -8,10 +8,7 @@ import {
   DaffCollectionRequest,
   DaffFilterRequest,
 } from '@daffodil/core';
-import {
-  DaffRoutingQueryParamFilter,
-  daffRoutingQueryParamFilterRequestEqualBuilder,
-} from '@daffodil/core/routing';
+import { DaffRoutingQueryParamFilter } from '@daffodil/core/routing';
 
 import {
   DaffProductRoutingConfig,

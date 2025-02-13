@@ -11,7 +11,6 @@ import {
 
 import {
   DaffAuthResetPasswordInfo,
-  DaffAuthToken,
   DaffAccountRegistration,
   DaffAuthStorageService,
 } from '@daffodil/auth';

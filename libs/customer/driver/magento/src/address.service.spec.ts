@@ -12,7 +12,6 @@ import { catchError } from 'rxjs/operators';
 import { DaffCustomerAddress } from '@daffodil/customer';
 import {
   MagentoCustomerAddress,
-  MagentoChangeEmailResponse,
   createCustomerAddress,
   magentoCustomerAddressInputTransform,
   updateCustomerAddress,

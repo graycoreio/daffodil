@@ -6,8 +6,6 @@ import {
 
 import { createSingleInjectionToken } from '@daffodil/core';
 import { daffComposeReducers } from '@daffodil/core/state';
-// these unused imports are a workaround
-import { DaffSearchResult } from '@daffodil/search';
 
 import { DAFF_SEARCH_EXTRA_REDUCERS } from './extra.token';
 import { daffSearchReducers } from '../reducers';

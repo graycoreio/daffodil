@@ -7,6 +7,7 @@ import {
 import { createSingleInjectionToken } from '@daffodil/core';
 import { daffComposeReducers } from '@daffodil/core/state';
 // these unused imports are a workaround
+// eslint-disable-next-line unused-imports/no-unused-imports
 import { DaffProduct } from '@daffodil/product';
 
 import { DAFF_PRODUCT_EXTRA_REDUCERS } from './extra.token';

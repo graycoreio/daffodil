@@ -5,7 +5,6 @@ import {
   daffOperationInitialState,
   daffStartMutation,
   daffStartResolution,
-  DaffState,
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 

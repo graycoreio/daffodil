@@ -4,12 +4,10 @@ import {
   OnInit,
   Self,
   Optional,
-  forwardRef,
 } from '@angular/core';
 import {
   NgControl,
   ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 
 import { DaffCheckboxComponent } from '../checkbox.component';

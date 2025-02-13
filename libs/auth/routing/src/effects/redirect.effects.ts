@@ -19,7 +19,6 @@ import {
 } from 'rxjs/operators';
 
 import {
-  DaffAuthActionTypes,
   DaffAuthActions,
   DaffAuthLoginActionTypes,
   DaffAuthLoginActions,

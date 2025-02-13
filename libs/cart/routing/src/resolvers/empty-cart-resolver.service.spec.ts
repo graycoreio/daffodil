@@ -20,7 +20,6 @@ import {
   DaffCartResolverRedirectUrl,
   DaffEmptyCartResolverRedirectUrl,
 }  from '@daffodil/cart/routing';
-import { DaffCartLoadSuccess } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
   DaffCartItemFactory,

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffCartItem } from '@daffodil/cart';
 import { DaffMockCartItem } from '@daffodil/cart/testing';

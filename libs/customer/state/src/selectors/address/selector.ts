@@ -1,7 +1,5 @@
-import { Dictionary } from '@ngrx/entity';
 import {
   createSelector,
-  defaultMemoize,
   MemoizedSelector,
 } from '@ngrx/store';
 
@@ -19,7 +17,6 @@ import {
   DaffCustomerAddressReducerState,
   DaffCustomerStateRootSlice,
 } from '../../reducers/public_api';
-import { daffCustomerGetSelectors } from '../customer/selector';
 import { getDaffCustomerReducersStateSelector } from '../feature.selector';
 
 /**

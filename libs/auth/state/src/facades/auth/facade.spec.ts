@@ -16,10 +16,6 @@ import {
   daffAuthReducers,
   DaffAuthCheck,
   DaffAuthCheckFailure,
-  DaffAuthLogin,
-  DaffAuthLoginFailure,
-  DaffAuthRegister,
-  DaffAuthRegisterFailure,
   DaffAuthLoginSuccess,
 } from '@daffodil/auth/state';
 import {

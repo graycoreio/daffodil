@@ -1,6 +1,5 @@
 import { MetaReducer } from '@ngrx/store';
 
-import { DaffCart } from '@daffodil/cart';
 import { createMultiInjectionToken } from '@daffodil/core';
 
 import { DaffCartReducersState } from '../cart-reducers-state.interface';

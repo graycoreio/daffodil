@@ -4,8 +4,6 @@ import {
   of,
 } from 'rxjs';
 
-import { randomSubset } from '@daffodil/core';
-import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductDriverResponse,

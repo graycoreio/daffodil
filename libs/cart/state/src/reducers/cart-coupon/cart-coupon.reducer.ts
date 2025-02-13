@@ -1,6 +1,5 @@
 import { DaffCart } from '@daffodil/cart';
 import { DaffState } from '@daffodil/core/state';
-import { DaffLoadingState } from '@daffodil/core/state';
 
 import { DaffCartCouponActionTypes } from '../../actions/public_api';
 import { ActionTypes } from '../action-types.type';

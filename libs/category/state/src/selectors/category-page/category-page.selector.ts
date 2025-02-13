@@ -11,8 +11,6 @@ import {
 import {
   daffOperationStateSelectorFactory,
   DaffOperationStateSelectors,
-  DaffState,
-  DaffStateError,
 } from '@daffodil/core/state';
 
 import {

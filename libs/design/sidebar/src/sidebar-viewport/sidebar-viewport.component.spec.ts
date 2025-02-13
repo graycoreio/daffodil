@@ -1,8 +1,6 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   DebugElement,
-  Input,
 } from '@angular/core';
 import {
   waitForAsync,

@@ -14,12 +14,10 @@ import {
 import {
   switchMap,
   map,
-  catchError,
 } from 'rxjs/operators';
 
 import {
   DaffCart,
-  DaffCartPaymentMethod,
   DaffCartOrderResult,
   DaffCartStorageService,
 } from '@daffodil/cart';
@@ -29,14 +27,12 @@ import {
 } from '@daffodil/cart/driver';
 import {
   DAFF_STORAGE_SERVICE_ERROR_CODE,
-  DaffStorageServiceError,
   catchAndArrayifyErrors,
 } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 
 import {
   DaffCartOrderActionTypes,
-  DaffCartPlaceOrder,
   DaffCartPlaceOrderSuccess,
   DaffCartPlaceOrderFailure,
   DaffCartStorageFailure,

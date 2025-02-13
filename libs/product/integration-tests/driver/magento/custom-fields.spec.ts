@@ -21,7 +21,6 @@ import {
   MagentoProduct,
   provideDaffProductMagentoExtraProductResponseTransforms,
   MagentoSimpleProduct,
-  getProduct,
   DAFF_MAGENTO_GET_A_PRODUCT_QUERY_NAME,
 } from '@daffodil/product/driver/magento';
 import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';

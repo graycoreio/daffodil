@@ -1,6 +1,5 @@
 import { ActionReducer } from '@ngrx/store';
 
-import { DaffProductTypeEnum } from '@daffodil/product';
 import {
   DaffProductActionTypes,
   DaffProductActions,

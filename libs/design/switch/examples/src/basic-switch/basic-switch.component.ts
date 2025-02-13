@@ -1,12 +1,8 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import {
-  UntypedFormControl,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
 

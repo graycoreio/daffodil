@@ -4,7 +4,6 @@ import {
   daffPaymentInitialState as initialState,
   DaffPaymentReducerState,
 } from '@daffodil/payment/state';
-import { DaffPaymentResponseFactory } from '@daffodil/payment/testing';
 
 import { DaffPaymentStateReducerAdapter } from './adapter';
 

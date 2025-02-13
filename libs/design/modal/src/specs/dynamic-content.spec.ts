@@ -5,7 +5,6 @@ import {
 import {
   Component,
   DebugElement,
-  NgModule,
 } from '@angular/core';
 import {
   waitForAsync,

@@ -11,7 +11,6 @@ import { markedHighlight } from 'marked-highlight';
 
 import {
   DaffDocExample,
-  DaffDocKind,
   daffDocsGetLinkUrl,
 } from '@daffodil/docs-utils';
 

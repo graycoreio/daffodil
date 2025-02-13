@@ -1,7 +1,4 @@
-import {
-  DaffIdentifiable,
-  ID,
-} from '@daffodil/core';
+import { DaffIdentifiable } from '@daffodil/core';
 import { DaffCollectionMetadata } from '@daffodil/core';
 
 /**

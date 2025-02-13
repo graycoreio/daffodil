@@ -14,7 +14,6 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-import { DaffCart } from '@daffodil/cart';
 import { DaffError } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 import { DaffOrder } from '@daffodil/order';

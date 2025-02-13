@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 import {
   Observable,
-  map,
   of,
   switchMap,
   throwError,

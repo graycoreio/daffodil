@@ -5,10 +5,8 @@ import {
 import {
   of,
   Observable,
-  throwError,
 } from 'rxjs';
 import {
-  catchError,
   map,
   switchMap,
   tap,

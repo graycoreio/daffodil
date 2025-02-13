@@ -10,10 +10,7 @@ import {
 } from 'rxjs';
 
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
-import {
-  DaffCustomer,
-  DaffCustomerAddress,
-} from '@daffodil/customer';
+import { DaffCustomerAddress } from '@daffodil/customer';
 import {
   DaffCustomerAddressDriverInterface,
   DaffCustomerAddressDriver,

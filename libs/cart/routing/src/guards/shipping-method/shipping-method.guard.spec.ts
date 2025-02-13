@@ -19,10 +19,7 @@ import {
   daffCartRetrievalActionsReducerFactory,
   daffCartRetrivalActions,
 } from '@daffodil/cart/state';
-import {
-  DaffCartFactory,
-  DaffCartShippingRateFactory,
-} from '@daffodil/cart/testing';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 import {
   daffComposeReducers,
   daffIdentityReducer,

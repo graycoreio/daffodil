@@ -38,10 +38,7 @@ import {
   getCustomerOrder,
   getCustomerOrders,
 } from './queries/public_api';
-import {
-  MagentoCustomerOrderCollectionTransformer,
-  daffMagentoCustomerOrderTransformOrder,
-} from './transforms/public_api';
+import { MagentoCustomerOrderCollectionTransformer } from './transforms/public_api';
 import { validateGetCustomerOrderResponse } from './validators/get-order';
 import { validateGetCustomerOrdersResponse } from './validators/public_api';
 

@@ -1,7 +1,6 @@
 import { MagentoCategoryRoute } from '@daffodil/external-router/driver/magento';
 
 import { transformMagentoProductSchema } from '../product/product';
-import { rescaleRatingOutOf5 } from '../rescale-rating';
 
 export const transformMagentoCategorySchema = (resolution: MagentoCategoryRoute): Record<string, unknown> => ({
   '@context': 'https://schema.org',

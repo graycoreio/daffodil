@@ -15,7 +15,6 @@ import {
 import {
   switchMap,
   map,
-  catchError,
   tap,
 } from 'rxjs/operators';
 
@@ -29,7 +28,6 @@ import {
 } from '@daffodil/cart/driver';
 import {
   DAFF_STORAGE_SERVICE_ERROR_CODE,
-  DaffStorageServiceError,
   catchAndArrayifyErrors,
 } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
@@ -39,9 +37,6 @@ import {
   DaffCartLoad,
   DaffCartLoadSuccess,
   DaffCartLoadFailure,
-  DaffAddToCartSuccess,
-  DaffAddToCartFailure,
-  DaffAddToCart,
   DaffCartClear,
   DaffCartClearSuccess,
   DaffCartClearFailure,

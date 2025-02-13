@@ -1,14 +1,9 @@
 import {
   DaffCart,
-  DaffCartAddress,
-  DaffCartCoupon,
   DaffCartItemInput,
   DaffCartOrderResult,
-  DaffCartPaymentMethod,
-  DaffCartShippingRate,
 } from '@daffodil/cart';
 import { DaffState } from '@daffodil/core/state';
-import { DaffLoadingState } from '@daffodil/core/state';
 
 import { daffCartOrderInitialState } from './cart-order-initial-state';
 import { DaffCartOrderReducerState } from './cart-order-state.interface';

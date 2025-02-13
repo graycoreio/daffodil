@@ -6,9 +6,7 @@ import {
 
 import {
   DaffCart,
-  DaffCartTotal,
   DaffCartOrderResult,
-  DaffCartTotalTypeEnum,
 } from '@daffodil/cart';
 import {
   DaffState,

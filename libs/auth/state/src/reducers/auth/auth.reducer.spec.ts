@@ -1,5 +1,4 @@
 import {
-  DaffAuthCheck,
   DaffAuthReducerState,
   DaffAuthCheckSuccess,
   DaffAuthCheckFailure,

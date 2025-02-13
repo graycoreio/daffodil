@@ -9,10 +9,7 @@ import {
   STATUS,
   RequestInfo,
 } from 'angular-in-memory-web-api';
-import {
-  combineLatest,
-  Observable,
-} from 'rxjs';
+import { combineLatest } from 'rxjs';
 import {
   map,
   switchMap,

@@ -34,7 +34,6 @@ import {
   DaffSearchResultCollection,
   daffSearchTransformResultsToCollection,
 } from '@daffodil/search';
-import { DaffSearchDriverOptions } from '@daffodil/search/driver';
 import {
   daffTransformProductsToSearchResults,
   DAFF_SEARCH_PRODUCT_RESULT_KIND,

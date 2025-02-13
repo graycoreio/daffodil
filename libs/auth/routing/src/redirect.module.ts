@@ -7,17 +7,8 @@ import {
   Router,
 } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
-import {
-  from,
-  of,
-} from 'rxjs';
 
-import {
-  DAFF_AUTH_UNAUTHENTICATED_HOOKS,
-  DaffAuthActionTypes,
-  DaffAuthLoginActionTypes,
-  DaffAuthUnauthenticatedHook,
-} from '@daffodil/auth/state';
+import { DAFF_AUTH_UNAUTHENTICATED_HOOKS } from '@daffodil/auth/state';
 
 import { DAFF_AUTH_ROUTING_CONFIG } from './config/public_api';
 import { DaffAuthRedirectEffects } from './effects/redirect.effects';

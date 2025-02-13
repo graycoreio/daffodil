@@ -7,14 +7,9 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { Observable } from '@apollo/client/core';
 import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
-import {
-  DaffSearchResult,
-  DaffSearchResultCollection,
-  daffSearchTransformResultsToCollection,
-} from '@daffodil/search';
+import { daffSearchTransformResultsToCollection } from '@daffodil/search';
 import { DaffSearchDriverResponse } from '@daffodil/search/driver';
 import { DaffSearchResultFactory } from '@daffodil/search/testing';
 

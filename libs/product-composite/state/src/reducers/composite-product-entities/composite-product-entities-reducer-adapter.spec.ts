@@ -2,18 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { EntityState } from '@ngrx/entity';
 
 import { DaffProduct } from '@daffodil/product';
-import {
-  DaffProductLoadSuccess,
-  DaffProductGridLoadSuccess,
-  DaffBestSellersLoadSuccess,
-  DaffProductPageLoadSuccess,
-} from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffCompositeProduct } from '@daffodil/product-composite';
-import {
-  DaffCompositeProductApplyOption,
-  DaffCompositeProductEntity,
-} from '@daffodil/product-composite/state';
+import { DaffCompositeProductEntity } from '@daffodil/product-composite/state';
 import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing';
 
 import { daffCompositeProductAppliedOptionsEntitiesAdapter } from './composite-product-entities-reducer-adapter';

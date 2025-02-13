@@ -13,10 +13,7 @@ import {
   DaffOrder,
   DaffOrderCollection,
 } from '@daffodil/order';
-import {
-  DaffOrderCollectionFactory,
-  DaffOrderFactory,
-} from '@daffodil/order/testing';
+import { DaffOrderCollectionFactory } from '@daffodil/order/testing';
 
 import { DaffInMemoryOrderService } from './order.service';
 

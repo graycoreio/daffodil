@@ -2,8 +2,6 @@ import { NgIf } from '@angular/common';
 import {
   Component,
   Input,
-  ElementRef,
-  Renderer2,
   HostBinding,
   ContentChild,
   ViewEncapsulation,

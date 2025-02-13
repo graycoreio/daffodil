@@ -1,8 +1,4 @@
-import { Inject } from '@angular/core';
-import {
-  inject,
-  TestBed,
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import {
   DocumentNode,
   gql,
@@ -16,10 +12,6 @@ import {
 } from 'apollo-angular/testing';
 
 import { DaffAuthStorageService } from '@daffodil/auth';
-import {
-  DaffPersistenceServiceToken,
-  DaffServerErrorStorageService,
-} from '@daffodil/core';
 
 import { MagentoAuthApolloBearerTokenLinkGenerator } from './apollo-bearer-token-link-generator';
 

@@ -1,7 +1,4 @@
-import {
-  inject,
-  InjectionToken,
-} from '@angular/core';
+import { inject } from '@angular/core';
 import {
   ActionReducer,
   combineReducers,

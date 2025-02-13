@@ -3,8 +3,6 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 
-import { DaffAddress } from '@daffodil/geography';
-
 import {
   DaffAddressFactory,
   MockDaffAddress,

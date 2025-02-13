@@ -1,6 +1,5 @@
 import { inject } from '@angular/core';
 import {
-  CanMatchFn,
   Router,
   UrlSegment,
   UrlTree,
@@ -16,7 +15,6 @@ import {
 import {
   DAFF_EXTERNAL_ROUTER_CONFIG,
   DaffExternalRouterConfiguration,
-  DaffExternallyResolvableUrl,
   DaffRouteWithSeoData,
 } from '@daffodil/external-router';
 import { DaffExternalRouterDriver } from '@daffodil/external-router/driver';

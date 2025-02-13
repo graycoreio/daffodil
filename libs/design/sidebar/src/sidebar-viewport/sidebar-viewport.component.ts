@@ -41,7 +41,6 @@ import {
   DaffSidebarViewportAnimationStateWithParams,
   getSidebarViewportAnimationState,
 } from '../animation/sidebar-viewport-animation-state';
-import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 import { DaffSidebarViewportBackdropComponent } from '../sidebar-viewport-backdrop/sidebar-viewport-backdrop.component';
 

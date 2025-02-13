@@ -6,8 +6,6 @@ import {
 
 import { createSingleInjectionToken } from '@daffodil/core';
 import { daffComposeReducers } from '@daffodil/core/state';
-// these unused imports are a workaround
-import { DaffOrder } from '@daffodil/order';
 
 import { DAFF_ORDER_EXTRA_REDUCERS } from './extra.token';
 import { daffOrderReducer } from '../order/order.reducer';

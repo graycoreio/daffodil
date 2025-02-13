@@ -2,7 +2,6 @@ import {
   ɵPLATFORM_BROWSER_ID,
   ɵPLATFORM_SERVER_ID,
 } from '@angular/common';
-import { PLATFORM_ID } from '@angular/core';
 import {
   TestBed,
   waitForAsync,
@@ -12,20 +11,15 @@ import {
   ActivatedRouteSnapshot,
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { provideMockActions } from '@ngrx/effects/testing';
 import {
   StoreModule,
   combineReducers,
   Store,
   ActionsSubject,
 } from '@ngrx/store';
-import { Observable } from 'rxjs';
 
 import { DaffSearchDriverOptions } from '@daffodil/search/driver';
-import {
-  DaffSearchRoutingOptionBuilder,
-  DAFF_SEARCH_ROUTING_OPTIONS_BUILDER,
-} from '@daffodil/search/routing';
+import { DaffSearchRoutingOptionBuilder } from '@daffodil/search/routing';
 import {
   daffSearchReducers,
   DaffSearchLoad,

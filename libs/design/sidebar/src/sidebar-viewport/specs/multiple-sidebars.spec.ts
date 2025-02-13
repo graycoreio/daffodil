@@ -1,8 +1,4 @@
-import { A11yModule } from '@angular/cdk/a11y';
-import {
-  CommonModule,
-  DOCUMENT,
-} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   Component,
   Input,

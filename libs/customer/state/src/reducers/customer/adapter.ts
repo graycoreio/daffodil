@@ -1,8 +1,5 @@
 import { daffCompleteOperation } from '@daffodil/core/state';
-import {
-  DaffCustomer,
-  DaffCustomerAddress,
-} from '@daffodil/customer';
+import { DaffCustomer } from '@daffodil/customer';
 
 import { DaffCustomerReducerState } from './interface';
 

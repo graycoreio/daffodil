@@ -16,11 +16,7 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-import {
-  DaffCart,
-  DaffCartItem,
-  DaffCartItemInput,
-} from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import {
   DaffCartServiceInterface,
   DaffCartItemDriver,

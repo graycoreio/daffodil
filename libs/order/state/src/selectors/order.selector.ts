@@ -6,7 +6,6 @@ import {
 import {
   daffOperationStateSelectorFactory,
   DaffOperationStateSelectors,
-  DaffStateError,
 } from '@daffodil/core/state';
 import { DaffOrder } from '@daffodil/order';
 

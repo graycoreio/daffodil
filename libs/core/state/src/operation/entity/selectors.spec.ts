@@ -3,8 +3,6 @@ import { createEntityAdapter } from '@ngrx/entity';
 import {
   createFeatureSelector,
   select,
-  Store,
-  StoreModule,
 } from '@ngrx/store';
 import {
   MockStore,
@@ -15,13 +13,7 @@ import { Observable } from 'rxjs';
 
 import { DaffIdentifiable } from '@daffodil/core';
 import {
-  daffCompleteOperation,
-  daffOperationFailed,
-  daffOperationInitialState,
   DaffOperationEntityState,
-  daffStartMutation,
-  daffStartResolution,
-  DaffState,
   DaffStateError,
   DaffOperationEntity,
   DaffOperationEntityStateAdapter,

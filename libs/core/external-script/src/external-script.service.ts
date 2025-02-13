@@ -6,7 +6,6 @@ import {
 import {
   BehaviorSubject,
   Observable,
-  Subject,
 } from 'rxjs';
 import { filter } from 'rxjs/operators';
 

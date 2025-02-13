@@ -1,8 +1,8 @@
-import { DaffTreeItemDirective } from './tree-item.directive';
+// import { DaffTreeItemDirective } from './tree-item.directive';
 
-describe('DaffTreeItemDirective', () => {
-  it('should create an instance', () => {
-    // const directive = new DaffTreeItemDirective();
-    // expect(directive).toBeTruthy();
-  });
-});
+// describe('DaffTreeItemDirective', () => {
+//   it('should create an instance', () => {
+//     // const directive = new DaffTreeItemDirective();
+//     // expect(directive).toBeTruthy();
+//   });
+// });

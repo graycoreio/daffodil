@@ -1,7 +1,4 @@
-import {
-  ModuleWithProviders,
-  NgModule,
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 import {
   combineReducers,
   StoreModule,

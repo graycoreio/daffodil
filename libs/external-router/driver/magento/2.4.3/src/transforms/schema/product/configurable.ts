@@ -1,7 +1,4 @@
-import {
-  MagentoProductRoute,
-  MagentoRoute,
-} from '@daffodil/external-router/driver/magento';
+import { MagentoProductRoute } from '@daffodil/external-router/driver/magento';
 
 import { transformMagentoBaseProduct } from './base';
 

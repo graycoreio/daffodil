@@ -5,14 +5,11 @@ import { Observable } from 'rxjs';
 import {
   DaffCart,
   DaffCartOrderResult,
-  DaffCartTotal,
   DaffConfigurableCartItemAttribute,
   DaffCompositeCartItemOption,
-  DaffCartItemDiscount,
 } from '@daffodil/cart';
 import {
   DaffOperationEntity,
-  DaffState,
   DaffStateError,
   DaffStoreFacade,
 } from '@daffodil/core/state';

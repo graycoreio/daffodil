@@ -5,6 +5,7 @@ import {
 } from '@ngrx/store';
 
 // these unused imports are a workaround
+/* eslint-disable unused-imports/no-unused-imports */
 import {
   DaffCart,
   DaffCartOrderResult,

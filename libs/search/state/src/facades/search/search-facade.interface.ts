@@ -1,4 +1,3 @@
-import { Dictionary } from '@ngrx/entity';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -6,10 +5,7 @@ import {
   DaffStoreFacade,
   DaffStateError,
 } from '@daffodil/core/state';
-import {
-  DaffSearchResult,
-  DaffSearchResultCollection,
-} from '@daffodil/search';
+import { DaffSearchResult } from '@daffodil/search';
 
 /**
  * Exposes the search state selectors.

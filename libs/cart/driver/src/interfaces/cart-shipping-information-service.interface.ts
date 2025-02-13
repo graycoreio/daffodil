@@ -1,9 +1,6 @@
 import { Observable } from 'rxjs';
 
-import {
-  DaffCartShippingRate,
-  DaffCart,
-} from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import { createSingletonInjectionToken } from '@daffodil/core';
 
 /**

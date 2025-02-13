@@ -1,9 +1,4 @@
-import {
-  fakeAsync,
-  flush,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import {
   ApolloTestingModule,
   ApolloTestingController,
@@ -31,7 +26,6 @@ import {
   sendPasswordResetEmailMutation,
   DaffMagentoLoginService,
   MagentoGenerateTokenResponse,
-  generateTokenMutation,
 } from '@daffodil/auth/driver/magento';
 import {
   DaffAuthResetPasswordInfoFactory,

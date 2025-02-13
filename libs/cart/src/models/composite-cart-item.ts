@@ -1,10 +1,6 @@
-import {
-  DaffIdentifiable,
-  ID,
-} from '@daffodil/core';
+import { DaffIdentifiable } from '@daffodil/core';
 
 import { DaffCartItem } from './cart-item';
-
 
 /**
  * A cart item for a composite product.

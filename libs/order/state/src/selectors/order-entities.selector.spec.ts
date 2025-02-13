@@ -9,7 +9,6 @@ import { cold } from 'jasmine-marbles';
 
 import {
   daffCartReducers,
-  DaffCartPlaceOrderSuccess,
   DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
 import { daffIdentifiableArrayToDict } from '@daffodil/core';
@@ -21,7 +20,6 @@ import {
   DaffOrderTotalTypeEnum,
 } from '@daffodil/order';
 import {
-  DaffOrderEntityState,
   daffOrderReducers,
   DAFF_ORDER_STORE_FEATURE_KEY,
   DaffOrderListSuccess,

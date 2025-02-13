@@ -6,7 +6,6 @@ import {
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProduct } from '@daffodil/product';
 
-import { MockProduct } from './default-product.factory';
 import { DaffProductKindFactory } from './kind.factory';
 import { DAFF_PRODUCT_EXTRA_FACTORIES } from '../injection-tokens/public_api';
 
