@@ -6,13 +6,16 @@ import {
   HostBinding,
 } from '@angular/core';
 
-import { DaffPrefixSuffixModule } from '@daffodil/design';
 import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 import { DaffButtonBaseDirective } from '../button-base.directive';
 
 /**
  * DaffStrokedButtonComponent is a rectangular outlined button with no background color.
+ *
+ * ```ts
+ * import { DaffStrokedButtonComponent } from '@daffodil/design/button';
+ * ```
  *
  * @example Stroked button
  * ```html
@@ -31,15 +34,12 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
  */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: '' +
-        'button[daff-stroked-button]' + ',' +
-        'a[daff-stroked-button]',
+  selector: 'button[daff-stroked-button]' + ',' + 'a[daff-stroked-button]',
   templateUrl: '../button-base.component.html',
   styleUrl: './stroked.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffPrefixSuffixModule,
     DAFF_LOADING_ICON_COMPONENTS,
   ],
 })

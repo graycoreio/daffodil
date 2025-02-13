@@ -74,11 +74,11 @@ export class DaffButtonBaseDirective
   @Input() loading = false;
 
   /**
-   * Set the `tabindex` to 0.
+   * Sets the tabindex. Defaults to 0.
    */
   @Input() tabindex = 0;
 
-  _disabled = false;
+  private _disabled = false;
 
   /**
    * The disabled state of the button.
@@ -90,18 +90,26 @@ export class DaffButtonBaseDirective
     this._disabled = coerceBooleanProperty(value);
   }
 
+  /**
+   * @docs-private
+   */
   @HostBinding('attr.disabled') get disabledAttribute() {
     return this.disabled ? true : null;
   }
 
+  /**
+   * @docs-private
+   */
   @HostBinding('attr.aria-disabled') get ariaDisabled() {
     return this.disabled ? true : null;
   }
 
   /**
+   * @docs-private
+   *
    * Set the `tabindex` to -1 if the button is disabled.
    */
-  @HostBinding('attr.tabindex') get disabledTabIndex() {
+  @HostBinding('attr.tabindex') get tabIndexAttribute() {
     return this.disabled ? -1 : this.tabindex;
   }
 }

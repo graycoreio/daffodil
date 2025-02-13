@@ -8,6 +8,7 @@ Native `<button>` or `<a>` elements are always used in order to provide an easy,
 
 ## Types
 - `daff-button` - Rectangular contained button with background color
+- `daff-flat-button` - Rectangular contained button with no outline or background color
 - `daff-icon-button` - Icon button used with icon fonts
 - `daff-raised-button` - Rectangular contained button with background color and elevation
 - `daff-stroked-button` - Rectangular outlined button with no background color
@@ -15,20 +16,23 @@ Native `<button>` or `<a>` elements are always used in order to provide an easy,
 ### Basic Button
 <design-land-example-viewer-container example="basic-button"></design-land-example-viewer-container>
 
-### Stroked Button
+### Flat Button
+<design-land-example-viewer-container example="flat-button"></design-land-example-viewer-container>
+
+### Stroked button
 <design-land-example-viewer-container example="stroked-button"></design-land-example-viewer-container>
 
 > `black`, `white`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
-### Raised Button
+### Raised button
 <design-land-example-viewer-container example="raised-button"></design-land-example-viewer-container>
 
-### Icon Button
+### Icon button
 <design-land-example-viewer-container example="icon-button"></design-land-example-viewer-container>
 
 > `black`, `white`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
-### Underline Button
+### Underline button
 <design-land-example-viewer-container example="underline-button"></design-land-example-viewer-container>
 
 ## Usage
@@ -37,10 +41,11 @@ Native `<button>` or `<a>` elements are always used in order to provide an easy,
 To use button in a standalone component, import it directly into your custom component. Buttons can be imported individually or all together by using `DAFF_BUTTON_COMPONENTS`:
 
 ```ts
+import { DaffButtonComponent } from '@daffodil/design/button';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DaffButtonComponent,
   ],
@@ -86,7 +91,7 @@ Supported colors: `primary | secondary | tertiary | black | white | theme | them
 
 > For select button types, `black` and `white` should be used on a darker background in order to have sufficient contrast.
 
-## Status Indicators
+## Status indicators
 Buttons with status indicators can be used to distinguish what type of action it performs and its importance compared to other buttons in the same context.
 
 Supported statuses: `warn | critical | success`

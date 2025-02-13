@@ -8,6 +8,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { DaffPrefixSuffixModule } from '@daffodil/design';
 import { DaffUnderlineButtonComponent } from '@daffodil/design/button';
 
 @Component({
@@ -25,6 +26,7 @@ import { DaffUnderlineButtonComponent } from '@daffodil/design/button';
   imports: [
     DaffUnderlineButtonComponent,
     FaIconComponent,
+    DaffPrefixSuffixModule,
   ],
 })
 export class UnderlineButtonComponent {

@@ -5,13 +5,16 @@ import {
   HostBinding,
 } from '@angular/core';
 
-import { DaffPrefixSuffixModule } from '@daffodil/design';
 import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 import { DaffButtonBaseDirective } from '../button-base.directive';
 
 /**
  * DaffButtonComponent is a rectangular contained button with background color.
+ *
+ * ```ts
+ * import { DaffButtonComponent } from '@daffodil/design/button';
+ * ```
  *
  * @example Basic button
  * ```html
@@ -30,15 +33,12 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
  */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: '' +
-        'button[daff-button]' + ',' +
-        'a[daff-button]',
+  selector: 'button[daff-button]' + ',' + 'a[daff-button]',
   templateUrl: '../button-base.component.html',
   styleUrl: './button.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffPrefixSuffixModule,
     DAFF_LOADING_ICON_COMPONENTS,
   ],
 })

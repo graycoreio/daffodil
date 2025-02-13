@@ -6,13 +6,16 @@ import {
   HostBinding,
 } from '@angular/core';
 
-import { DaffPrefixSuffixModule } from '@daffodil/design';
 import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 import { DaffButtonBaseDirective } from '../button-base.directive';
 
 /**
  * DaffUnderlineButtonComponent is a borderless button with a custom underline style.
+ *
+ * ```ts
+ * import { DaffUnderlineButtonComponent } from '@daffodil/design/button';
+ * ```
  *
  * @example Underline button
  * ```html
@@ -31,15 +34,12 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
  */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: '' +
-        'button[daff-underline-button]' + ',' +
-        'a[daff-underline-button]',
+  selector: 'button[daff-underline-button]' + ',' + 'a[daff-underline-button]',
   templateUrl: '../button-base.component.html',
   styleUrl: './underline.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffPrefixSuffixModule,
     DAFF_LOADING_ICON_COMPONENTS,
   ],
 })

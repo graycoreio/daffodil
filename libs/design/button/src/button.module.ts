@@ -30,7 +30,6 @@ import { DaffUnderlineButtonComponent } from './button/underline/underline.compo
     DaffRaisedButtonComponent,
     DaffStrokedButtonComponent,
     DaffUnderlineButtonComponent,
-    DaffPrefixSuffixModule,
   ],
 })
 export class DaffButtonModule { }
