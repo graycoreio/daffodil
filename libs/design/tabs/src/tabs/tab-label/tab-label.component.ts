@@ -36,6 +36,13 @@ import {
   ],
 })
 export class DaffTabLabelComponent implements DaffPrefixable, DaffSuffixable {
+  /**
+   * @docs-private
+   */
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
+
+  /**
+   * @docs-private
+   */
   @ContentChild(DaffSuffixDirective) _suffix: DaffSuffixDirective;
 }

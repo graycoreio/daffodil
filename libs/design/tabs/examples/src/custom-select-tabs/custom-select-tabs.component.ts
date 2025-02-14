@@ -6,6 +6,7 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
+import { DaffPrefixSuffixModule } from '@daffodil/design';
 import { DaffButtonComponent } from '@daffodil/design/button';
 import {
   DAFF_TABS_COMPONENTS,
@@ -22,6 +23,7 @@ import {
     DAFF_TABS_COMPONENTS,
     DaffButtonComponent,
     FaIconComponent,
+    DaffPrefixSuffixModule,
   ],
 })
 export class CustomSelectTabsComponent {

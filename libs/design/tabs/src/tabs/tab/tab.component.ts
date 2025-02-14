@@ -11,7 +11,7 @@ let tabId = 1;
 /**
  * `DaffTabComponet` is an element in the tab list that is used as a content container to group the label of a tab panel and the tab panel together.
  *
- * A `<daff-tab>` should include the {@link DaffTabLabelComponent} and {@link DaffTabPanelComponent} components in order to properly structure the UI.
+ * A `<daff-tab>` should include the DaffTabLabelComponent and DaffTabPanelComponent components in order to properly structure the UI.
  *
  * @example Basic structure of tab
  * ```html
@@ -27,7 +27,6 @@ let tabId = 1;
  * ```
  */
 @Component({
-  standalone: true,
   selector: 'daff-tab',
   template: `
       <ng-template #label>

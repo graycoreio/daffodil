@@ -75,27 +75,30 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
   @HostBinding('class.daff-tabs') private class = true;
 
   /**
+   * @docs-private
+   *
    * The currently selected tab. This property is dynamically updated when a user selects a tab.
    */
   selectedTab: string;
 
   /**
-   * The tab that is initially selected on initial load. If it's not used, the first tab in the tablist will be selected by default.
+   * The tab that is selected on initial load. If it's not used, the first tab in the tablist will be selected by default.
    */
   @Input() initiallySelected: string = null;
 
   /**
-   * @docs-private
+   * aria-label for the tab.
    */
   @HostBinding('attr.aria-label') private externalAriaLabel = null;
 
   /**
-   * aria-label for the tab.
+   * @docs-private
+   *
    */
   @Input('aria-label') ariaLabel = '';
 
   /**
-   * Replace the tab buttons with links.
+   * Replace the tab buttons as links.
    */
   @Input() linkMode = false;
 
@@ -130,6 +133,9 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
    */
   @ViewChildren(DaffTabActivatorComponent) _tabActivators: QueryList<DaffTabActivatorComponent>;
 
+  /**
+   * @docs-private
+   */
   get currentPath(): string {
     return this.location.path();
   }
@@ -165,6 +171,8 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
   }
 
   /**
+   * @docs-private
+   *
    * Selects a tab and sets focus on the selected tab.
    */
   select(tabId: string) {
@@ -210,6 +218,8 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
   }
 
   /**
+   * @docs-private
+   *
    * Selects the previous tab and wraps around to the last tab if the first tab is currently selected.
    */
   previous() {
@@ -217,6 +227,8 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
   }
 
   /**
+   * @docs-private
+   *
    * Selects the next tab and wraps around to the first tab if the last tab is currently selected.
    */
   next() {
@@ -224,6 +236,8 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
   }
 
   /**
+   * @docs-private
+   *
    * Selects the first tab.
    */
   selectFirst(event: KeyboardEvent | null) {
@@ -232,6 +246,8 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
   }
 
   /**
+   * @docs-private
+   *
    * Selects the last tab.
    */
   selectLast(event: KeyboardEvent | null) {

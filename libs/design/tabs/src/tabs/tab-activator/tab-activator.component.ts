@@ -11,7 +11,6 @@ import {
 import { DaffSelectableDirective } from '@daffodil/design';
 
 @Component({
-  standalone: true,
   selector: '' +
     'button[daff-tab-activator]' + ',' +
     'a[daff-tab-activator]',
