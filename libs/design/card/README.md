@@ -12,15 +12,16 @@ The example below is a default, filled card that includes all of a card's pre-st
 ## Usage
 
 ### Within a standalone component
-To use card in a standalone component, import it directly into your custom component.
+To use card in a standalone component, import each card type directly into your custom component.
 
-The following imports are available, depending on which card you choose to use: `DAFF_CARD_COMPONENTS`, `DAFF_RAISED_COMPONENTS`, `DAFF_STROKED_CARD_COMPONENTS`. If you need to use all the card types, you can use `DAFF_ALL_CARD_COMPONENTS`.
+The following imports are available, depending on which card you choose to use: `DAFF_CARD_COMPONENTS`, `DAFF_RAISED_CARD_COMPONENTS`, `DAFF_STROKED_CARD_COMPONENTS`. If you need to use all the card types, you can use `DAFF_ALL_CARD_COMPONENTS`.
 
 ```ts
+import { DAFF_CARD_COMPONENTS } from '@daffodil/design/card';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_CARD_COMPONENTS,
   ],
@@ -33,8 +34,8 @@ To use card in a module, import `DaffCardModule` into your custom module:
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffCardModule } from '@daffodil/design/card';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

@@ -10,10 +10,11 @@ Paginator is used to break up large amounts of content into multiple pages, enab
 To use paginator in a standalone component, import `DAFF_PAGINATOR_COMPONENTS` directly into your custom component:
 
 ```ts
+import { DAFF_PAGINATOR_COMPONENTS } from '@daffodil/design/paginator';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_PAGINATOR_COMPONENTS,
   ],
@@ -26,8 +27,8 @@ To use paginator in a module, import `DaffPaginatorModule` into your custom modu
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffPaginatorModule } from '@daffodil/design/paginator';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

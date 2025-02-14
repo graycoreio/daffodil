@@ -10,10 +10,11 @@ Sidebars are often used for navigation, but it's built to be flexible and extens
 To use sidebar in a standalone component, import `DAFF_SIDEBAR_COMPONENTS` directly into your custom component:
 
 ```ts
+import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_SIDEBAR_COMPONENTS,
   ],
@@ -26,8 +27,8 @@ To use sidebar in a module, import `DaffSidebarModule` into your custom module:
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffSidebarModule } from '@daffodil/design/sidebar';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

@@ -2,12 +2,14 @@
 Trees are used to visualize hierarchial information. They are often used to display navigational structures like nested lists of links.
 
 ## Overview
-
 The `DaffTreeComponent` renders a tree structure. Typically, this is a structure of `<a>` and `<button>` elements that allow users to either navigate to a page, or explore the tree to find an item inside the tree that they want to navigate to.
 
 Instead of defining a recursive tree structure of components, which is often prohibitively slow when rendering large trees, the `DaffTreeComponent` renders a flattened tree, using padding to indicate the nesting level of the tree elements.
 
 Generally, tree usage consists of taking existing tree data, converting it to the `DaffTreeData` format, setting the `tree` input on the `DaffTreeComponent`, and providing templates for the cases where the tree element has children or not.
+
+<design-land-example-viewer-container example="basic-tree">
+</design-land-example-viewer-container>
 
 ## Usage
 
@@ -15,10 +17,11 @@ Generally, tree usage consists of taking existing tree data, converting it to th
 To use sidebar in a standalone component, import `DAFF_TREE_COMPONENTS` directly into your custom component:
 
 ```ts
+import { DAFF_TREE_COMPONENTS } from '@daffodil/design/tree';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_TREE_COMPONENTS,
   ],
@@ -31,8 +34,8 @@ To use sidebar in a module, import `DaffTreeModule` into your custom module:
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffTreeModule } from '@daffodil/design/tree';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [
@@ -64,13 +67,6 @@ Currently, we support two kind of templates: `daffTreeItemWithChildrenTpl` and `
   <a daffTreeItem [node]="node" [routerLink]="node.url">{{ node.title }}</a>
 </ng-template>
 ```
-
-## Usage
-
-### Basic Tree
-
-<design-land-example-viewer-container example="basic-tree">
-</design-land-example-viewer-container>
 
 ## Accessibility
 

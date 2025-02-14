@@ -4,13 +4,14 @@ Link set is a component for displaying two or more link set items.
 ## Usage
 
 ### Within a standalone component
-To use link set in a standalone component, import it directly into your custom component:
+To use link set in a standalone component, import `DAFF_LINK_SET_COMPONENTS` directly into your custom component:
 
 ```ts
+import { DAFF_LINK_SET_COMPONENTS } from '@daffodil/design/link-set';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_LINK_SET_COMPONENTS,
   ],
@@ -23,8 +24,8 @@ To use link set in a module, import `DaffLinkSetModule` into your custom module:
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffLinkSetModule } from '@daffodil/design/link-set';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

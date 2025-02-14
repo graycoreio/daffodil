@@ -14,13 +14,14 @@ The `src`, `width`, `height`, and `alt` attributes must be defined. An error wil
 ## Usage
 
 ### Within a standalone component
-To use image in a standalone component, import it directly into your custom component:
+To use image in a standalone component, import `DAFF_IMAGE_COMPONENTS` directly into your custom component:
 
 ```ts
+import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_IMAGE_COMPONENTS,
   ],
@@ -33,8 +34,8 @@ To use image in a module, import `DaffImageModule` into your custom module:
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffImageModule } from '@daffodil/design/image';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

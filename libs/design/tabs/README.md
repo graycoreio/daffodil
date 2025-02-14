@@ -4,6 +4,24 @@ Tabs provide a way to navigate between panels that display related content.
 ## Overview
 Tabs allow for users to navigate between related content without having to leave the page. They can be used within components like modals or cards.
 
+## Usage
+
+### Within a standalone component
+To use a tabs in a standalone component, import `DAFF_TABS_COMPONENTS` directly into your custom component:
+
+```ts
+import { DAFF_TABS_COMPONENTS } from '@daffodil/design/tabs';
+
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  imports: [
+    DAFF_TABS_COMPONENTS,
+  ],
+})
+export class CustomComponent {}
+```
+
 ## Accessbility
 Tabs follow the [ARIA Tabs design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/). Tabs compose of `tablist`, `tab`, and `tabpanel` elements,  each with its appropriate role and integrated keyboard interactions.
 

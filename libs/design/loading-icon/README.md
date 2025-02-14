@@ -7,13 +7,14 @@ Loading icons are used to indicate to users that an event is ocurring and is sti
 ## Usage
 
 ### Within a standalone component
-To use loading icon in a standalone component, import it directly into your custom component:
+To use loading icon in a standalone component, import `DAFF_LOADING_ICON_COMPONENTS` directly into your custom component:
 
 ```ts
+import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_LOADING_ICON_COMPONENTS,
   ],
@@ -26,8 +27,8 @@ To use loading icon in a module, import `DaffLoadingIconModule` into your custom
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

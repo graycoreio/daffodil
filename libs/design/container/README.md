@@ -23,13 +23,15 @@ Supported sizes: `xs | sm | md | lg | xl`
 ## Usage
 
 ### Within a standalone component
-To use container in a standalone component, import it directly into your custom component:
+To use container in a standalone component, import `DAFF_CONTAINER_COMPONENTS` directly into your custom component:
 
 ```ts
+
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_CONTAINER_COMPONENTS,
   ],
@@ -42,8 +44,8 @@ To use container in a module, import `DaffCalloutModule` into your custom module
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffCalloutModule } from '@daffodil/design/container';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

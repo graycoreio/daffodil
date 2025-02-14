@@ -13,10 +13,11 @@ Breadcrumbs are a visual representation of the site's navigational hierarchy. Th
 To use breadcrumb in a standalone component, import it directly into your custom component:
 
 ```ts
+import { DAFF_BREADCRUMB_COMPONENTS } from '@daffodil/design/breadcrumb';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_BREADCRUMB_COMPONENTS,
   ],
@@ -29,8 +30,8 @@ To use breadcrumb in a module, import `DaffBreadcrumbModule` into your custom mo
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffBreadcrumbModule } from '@daffodil/design/breadcrumb';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

@@ -7,10 +7,11 @@ A progress bar provides visual feedback about the duration or progress of a task
 To use progress bar in a standalone component, import `DAFF_PROGRESS_BAR_COMPONENTS` directly into your custom component:
 
 ```ts
+import { DAFF_PROGRESS_BAR_COMPONENTS } from '@daffodil/design/progress-bar';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_PROGRESS_BAR_COMPONENTS,
   ],
@@ -23,8 +24,8 @@ To use progress bar in a module, import `DaffProgressBarModule` into your custom
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffProgressBarModule } from '@daffodil/design/progress-bar';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

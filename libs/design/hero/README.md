@@ -7,13 +7,14 @@ Heros are the first thing users see on a page and are designed to catch their at
 ## Usage
 
 ### Within a standalone component
-To use hero in a standalone component, import it directly into your custom component:
+To use hero in a standalone component, import `DAFF_HERO_COMPONENTS` directly into your custom component:
 
 ```ts
+import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_HERO_COMPONENTS,
   ],
@@ -26,8 +27,8 @@ To use hero in a module, import `DaffHeroModule` into your custom module:
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffHeroModule } from '@daffodil/design/hero';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

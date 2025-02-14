@@ -8,13 +8,12 @@ Menus only appear when a user interacts with a menu activator button. They shoul
 <design-land-example-viewer-container example="basic-menu"></design-land-example-viewer-container>
 
 ## Usage
-
 To use menu, import `DaffMenuModule` into your custom module:
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffMenuModule } from '@daffodil/design/menu';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

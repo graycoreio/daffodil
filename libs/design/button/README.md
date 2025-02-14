@@ -34,13 +34,14 @@ Native `<button>` or `<a>` elements are always used in order to provide an easy,
 ## Usage
 
 ### Within a standalone component
-To use button in a standalone component, import it directly into your custom component. Buttons can be imported individually or all together by using `DAFF_BUTTON_COMPONENTS`:
+To use button in a standalone component, import each button type directly into your custom component. Buttons can be imported individually or all together by using `DAFF_BUTTON_COMPONENTS`:
 
 ```ts
+import { DaffButtonComponent } from '@daffodil/design/button';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DaffButtonComponent,
   ],
@@ -53,8 +54,8 @@ To use button in a module, import `DaffButtonModule` into your custom module:
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffButtonModule } from '@daffodil/design/button';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

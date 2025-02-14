@@ -11,19 +11,20 @@ An accordion item can include a `[daffAccordionItemTitle]`, which provides a hig
 
 By default, the accordion item includes a toggle icon at the end of the header to indicate if it's expanded or collapsed.
 
-### Setting an item to be expanded by default 
+## Setting an item to be expanded by default 
 An item content can be visibile on render by setting the `initiallyExpanded` property to `true` on `daff-accordion-item`.
 
 ## Usage
 
 ### Within a standalone component
-To use accordion in a standalone component, import it directly into your custom component:
+To use accordion in a standalone component, import `DAFF_ACCORDION_COMPONENTS` directly into your custom component:
 
 ```ts
+import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_ACCORDION_COMPONENTS,
   ],
@@ -36,8 +37,8 @@ To use accordion in a module, import `DaffAccordionModule` into your custom modu
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffAccordionModule } from '@daffodil/design/accordion';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

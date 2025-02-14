@@ -13,10 +13,11 @@ The navbar contains minimal layout styles, allowing the content within it to be 
 To use navbar in a standalone component, import `DAFF_NAVBAR_COMPONENTS` directly into your custom component:
 
 ```ts
+import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_NAVBAR_COMPONENTS,
   ],
@@ -29,8 +30,8 @@ To use navbar in a module, import `DaffNavbarModule` into your custom module:
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffNavbarModule } from '@daffodil/design/navbar';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

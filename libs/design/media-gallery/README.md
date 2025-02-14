@@ -7,13 +7,14 @@ Media galleries are useful to showcase multiple images related to a single produ
 ## Usage
 
 ### Within a standalone component
-To use media gallery in a standalone component, import it directly into your custom component:
+To use media gallery in a standalone component, import `DAFF_MEDIA_GALLERY_COMPONENTS` directly into your custom component:
 
 ```ts
+import { DAFF_MEDIA_GALLERY_COMPONENTS } from '@daffodil/design/media-gallery';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_MEDIA_GALLERY_COMPONENTS,
   ],
@@ -26,8 +27,8 @@ To use media gallery in a module, import `DaffMediaGalleryModule` into your cust
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffMediaGalleryModule } from '@daffodil/design/media-gallery';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

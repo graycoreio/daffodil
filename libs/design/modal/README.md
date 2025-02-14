@@ -10,10 +10,11 @@ Modal is a dynamically rendered element that floats above the rest of a page's c
 To use modal in a standalone component, import `DAFF_MODAL_COMPONENTS` directly into your custom component:
 
 ```ts
+import { DAFF_MODAL_COMPONENTS } from '@daffodil/design/modal';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_MODAL_COMPONENTS,
   ],
@@ -26,8 +27,8 @@ To use modal in a module, import `DaffModalModule` into your custom module:
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffModalModule } from '@daffodil/design/modal';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [

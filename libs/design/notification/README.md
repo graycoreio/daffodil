@@ -13,10 +13,11 @@ Notifications are used to display short messages that provide context in close p
 To use notification in a standalone component, import `DAFF_NOTIFICATION_COMPONENTS` directly into your custom component:
 
 ```ts
+import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
+
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
-  standalone: true,
   imports: [
     DAFF_NOTIFICATION_COMPONENTS,
   ],
@@ -29,8 +30,8 @@ To use notification in a module, import `DaffNotificationModule` into your custo
 
 ```ts
 import { NgModule } from '@angular/core';
-
 import { DaffNotificationModule } from '@daffodil/design/notification';
+import { CustomComponent } from './custom.component';
 
 @NgModule({
 	declarations: [
