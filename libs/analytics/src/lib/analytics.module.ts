@@ -6,7 +6,6 @@ import {
 import { EffectsModule } from '@ngrx/effects';
 
 import {
-  DaffAnalyticsConfig,
   DaffAnalyticsConfigInterface,
   defaultConfig,
   provideDaffAnalyticsConfig,

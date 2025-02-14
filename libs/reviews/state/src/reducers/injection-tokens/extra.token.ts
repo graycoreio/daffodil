@@ -1,7 +1,6 @@
 import { ActionReducer } from '@ngrx/store';
 
 import { createMultiInjectionToken } from '@daffodil/core';
-import { DaffProductReview } from '@daffodil/reviews';
 
 import { DaffReviewsReducersState } from '../reducers-state.interface';
 

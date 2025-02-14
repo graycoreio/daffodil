@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   forwardRef,
   Input,

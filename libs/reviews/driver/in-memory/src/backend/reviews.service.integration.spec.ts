@@ -7,7 +7,6 @@ import { importProvidersFrom } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
-import { DaffProduct } from '@daffodil/product';
 import { DaffProductReviews } from '@daffodil/reviews';
 import { DaffProductReviewsFactory } from '@daffodil/reviews/testing';
 

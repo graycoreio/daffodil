@@ -10,7 +10,6 @@ import {
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PAGE_FRAGMENTS,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_RESPONSE_TRANSFORMS,
-  MagentoProduct,
 } from '@daffodil/product/driver/magento';
 
 import { MagentoProductWithRelated } from './models/product-with-related.interface';

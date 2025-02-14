@@ -6,7 +6,6 @@ import {
   filter,
   map,
   take,
-  tap,
 } from 'rxjs';
 
 import { DaffCartFacade } from '@daffodil/cart/state';

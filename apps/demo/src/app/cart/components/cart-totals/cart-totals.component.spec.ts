@@ -1,7 +1,4 @@
-import {
-  CommonModule,
-  CurrencyPipe,
-} from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import {
   Component,
   Input,
@@ -23,7 +20,6 @@ import {
 } from '@daffodil/cart/testing';
 
 import { CartTotalsComponent } from './cart-totals.component';
-import { CartTotalsItemComponent } from '../cart-totals-item/cart-totals-item.component';
 import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
 
 @Component({

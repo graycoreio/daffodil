@@ -4,16 +4,7 @@ import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { AbstractControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-
-import {
-  DaffNativeSelectModule,
-  DaffNativeSelectComponent,
-  DaffInputModule,
-  DaffInputComponent,
-  DaffFormFieldModule,
-} from '@daffodil/design';
 
 import { DemoCheckoutPaymentInfoFormComponent } from './payment-info-form.component';
 import { PaymentInfoFormFactory } from '../../factories/payment-info-form.factory';

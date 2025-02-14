@@ -4,10 +4,8 @@ import {
   combineReducers,
 } from '@ngrx/store';
 
-import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 import { createSingleInjectionToken } from '@daffodil/core';
 import { daffComposeReducers } from '@daffodil/core/state';
-// these unused imports are a workaround
 
 import { DAFF_CART_STORE_CREDIT_EXTRA_REDUCERS } from './extra.token';
 import { DaffCartStoreCreditReducersState } from '../reducers.interface';

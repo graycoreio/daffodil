@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import { provideLocationMocks } from '@angular/common/testing';
 import {
   Component,
@@ -11,7 +10,6 @@ import {
   Router,
 } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
-import { Schema } from 'inspector/promises';
 
 import { DaffSchemaService } from '@daffodil/seo';
 import {

@@ -1,10 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  StoreModule,
-  combineReducers,
-} from '@ngrx/store';
-import {
   hot,
   cold,
 } from 'jasmine-marbles';

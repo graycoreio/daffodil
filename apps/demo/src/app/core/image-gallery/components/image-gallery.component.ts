@@ -4,11 +4,7 @@ import {
   ViewEncapsulation,
   OnInit,
 } from '@angular/core';
-import {
-  Store,
-  select,
-} from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { daffThumbnailCompatToken } from '@daffodil/design/media-gallery';
 

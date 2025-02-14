@@ -14,7 +14,6 @@ import { DAFF_AUTHORIZENET_PAYMENT_KIND } from '@daffodil/authorizenet';
 import { DaffAuthorizeNetCreditCardFactory } from '@daffodil/authorizenet/testing';
 import {
   DaffCart,
-  DaffCartPaymentMethod,
   DaffCartShippingRate,
 } from '@daffodil/cart';
 import {

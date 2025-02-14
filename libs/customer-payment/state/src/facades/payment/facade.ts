@@ -6,12 +6,9 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffCustomerPayment } from '@daffodil/customer-payment';
-
 import { DaffCustomerPaymentPageFacadeInterface } from './interface';
 import { DaffCustomerPaymentEntity } from '../../models/public_api';
 import {
-  daffCustomerPaymentEntitiesAdapter,
   DaffCustomerPaymentReducerState,
   DaffCustomerPaymentStateRootSlice,
 } from '../../reducers/public_api';

@@ -8,12 +8,9 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
-import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductReviews } from '@daffodil/reviews';
-import { DaffProductReviewsNotFoundError } from '@daffodil/reviews/driver';
 import { DaffProductReviewsFactory } from '@daffodil/reviews/testing';
 
 import { DaffReviewsInMemoryService } from './reviews.service';

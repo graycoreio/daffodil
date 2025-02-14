@@ -7,7 +7,6 @@ import {
 import { Observable } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffPaypalExpressTokenResponse } from '@daffodil/paypal';
 
 import { DaffPaypalFacadeInterface } from '../interfaces/paypal-facade.interface';
 import { DaffPaypalStateRootSlice } from '../reducers/paypal-reducers.interface';

@@ -14,7 +14,6 @@ import { DaffCartItem } from '@daffodil/cart';
 import {
   DaffCartFacade,
   DaffCartItemDelete,
-  DaffCartItemUpdate,
 } from '@daffodil/cart/state';
 import {
   DaffBase64Service,

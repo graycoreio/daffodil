@@ -1,10 +1,6 @@
 import { EntityState } from '@ngrx/entity';
 
 import {
-  DaffProductTypeEnum,
-  DaffProduct,
-} from '@daffodil/product';
-import {
   daffConfigurableProductAppliedAttributesEntitiesAdapter,
   DaffConfigurableProductEntity,
 } from '@daffodil/product-configurable/state';

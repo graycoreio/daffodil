@@ -15,7 +15,6 @@ import {
 import { DaffIdentifiable } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffPersonalAddress } from '@daffodil/geography';
-import { DaffPaymentRequest } from '@daffodil/payment';
 import { DaffPaymentGenerateToken } from '@daffodil/payment/state';
 
 export enum DemoCheckoutStepActionTypes {

@@ -1,4 +1,3 @@
-import { DaffCart } from '@daffodil/cart';
 import {
   DaffCartOperationType,
   DaffCartReducerState,

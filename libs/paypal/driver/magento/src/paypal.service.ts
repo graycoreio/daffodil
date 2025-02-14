@@ -16,10 +16,7 @@ import {
   DaffPaypalExpressDriverConfig,
 } from '@daffodil/paypal/driver';
 
-import {
-  DaffMagentoPaypalConfig,
-  MagentoPaypalTokenResponse,
-} from './models/public_api';
+import { MagentoPaypalTokenResponse } from './models/public_api';
 import { magentoGenerateTokenMutation } from './mutations/generate-token';
 import { magentoPaypalExpressResponseTransform } from './transformers/public_api';
 

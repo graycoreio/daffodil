@@ -2,12 +2,10 @@ import { Action } from '@ngrx/store';
 
 import { DaffIdentifiable } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
-import { DaffCustomerAddress } from '@daffodil/customer';
 import {
   DaffCustomerPayment,
   DaffCustomerPaymentRequest,
 } from '@daffodil/customer-payment';
-import { DaffPersonalAddress } from '@daffodil/geography';
 
 /**
  * The customer payment action types enum.

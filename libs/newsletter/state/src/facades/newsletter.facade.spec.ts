@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import {
   Store,
   StoreModule,
-  combineReducers,
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 

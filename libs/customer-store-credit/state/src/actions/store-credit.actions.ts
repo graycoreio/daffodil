@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
 
-import { DaffIdentifiable } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
 

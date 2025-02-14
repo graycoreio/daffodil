@@ -2,7 +2,6 @@ import {
   NgModule,
   inject,
 } from '@angular/core';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { DaffAuthInMemoryDriverModule } from '@daffodil/auth/driver/in-memory';
 import { DaffAuthorizeNetInMemoryDriverModule } from '@daffodil/authorizenet/driver/in-memory';

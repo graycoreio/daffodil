@@ -6,7 +6,6 @@ import {
 
 import { createSingleInjectionToken } from '@daffodil/core';
 import { daffComposeReducers } from '@daffodil/core/state';
-// these unused imports are a workaround
 
 import { DAFF_AUTHORIZE_NET_EXTRA_REDUCERS } from './extra.token';
 import { daffAuthorizeNetReducer } from '../authorize-net/authorize-net.reducer';

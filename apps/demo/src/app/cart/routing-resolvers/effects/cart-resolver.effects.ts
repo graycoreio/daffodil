@@ -7,11 +7,7 @@ import {
   createEffect,
   ofType,
 } from '@ngrx/effects';
-import {
-  Action,
-  select,
-  Store,
-} from '@ngrx/store';
+import { Action } from '@ngrx/store';
 import {
   Observable,
   of,
@@ -23,20 +19,13 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-import {
-  DaffCart,
-  DaffCartStorageService,
-} from '@daffodil/cart';
+import { DaffCartStorageService } from '@daffodil/cart';
 import {
   DaffCartDriver,
   DaffCartServiceInterface,
 } from '@daffodil/cart/driver';
-import {
-  DaffCartFacade,
-  DaffCartStateRootSlice,
-} from '@daffodil/cart/state';
+import { DaffCartFacade } from '@daffodil/cart/state';
 
-import { daffCartSelectors } from '../../selectors/cart-selector';
 import {
   ResolveCartSuccess,
   CartResolverActionTypes,

@@ -2,7 +2,6 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
 } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import {

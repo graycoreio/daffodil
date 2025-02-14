@@ -1,5 +1,3 @@
-import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
-
 import { DaffCartStoreCreditReducerState } from './store-credit/public_api';
 import { DAFF_CART_STORE_CREDIT_STORE_FEATURE_KEY } from './store-feature-key';
 

@@ -4,12 +4,10 @@ import {
   DaffIdentifiable,
   createSingletonInjectionToken,
 } from '@daffodil/core';
-import { DaffCustomerAddress } from '@daffodil/customer';
 import {
   DaffCustomerPayment,
   DaffCustomerPaymentRequest,
 } from '@daffodil/customer-payment';
-import { DaffPersonalAddress } from '@daffodil/geography';
 
 export const {
   /**

@@ -14,7 +14,6 @@ import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 import { DaffGeographyTestingDriverModule } from '@daffodil/geography/driver/testing';
 
 import { DemoCheckoutPaymentFormComponent } from './payment-form.component';
-import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';
 import { DemoCheckoutAddressFormComponent } from '../../forms/address/components/address-form/address-form.component';
 import { DemoCheckoutAddressFormFactory } from '../../forms/address/factories/address-form.factory';
 import { DemoCheckoutBillingFormGroup } from '../models/payment-form.type';

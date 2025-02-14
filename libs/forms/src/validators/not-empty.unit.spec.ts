@@ -3,7 +3,6 @@ import {
   UntypedFormControl,
   UntypedFormGroup,
   ReactiveFormsModule,
-  ValidationErrors,
 } from '@angular/forms';
 
 import { daffFormNotEmptyValidator } from './not-empty';

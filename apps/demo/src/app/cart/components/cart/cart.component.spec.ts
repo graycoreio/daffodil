@@ -10,7 +10,6 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideMockStore } from '@ngrx/store/testing';
-import { BehaviorSubject } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
 import {

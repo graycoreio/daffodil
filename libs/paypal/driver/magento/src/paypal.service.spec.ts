@@ -13,7 +13,6 @@ import {
   DAFF_PAYPAL_EXPRESS_DRIVER_CONFIG,
 } from '@daffodil/paypal/driver';
 import {
-  MagentoPaypalTokenRequest,
   MagentoPaypalExpressToken,
   magentoGenerateTokenMutation,
   MAGENTO_PAYPAL_EXPRESS_DRIVER_CONFIG_DEFAULT,

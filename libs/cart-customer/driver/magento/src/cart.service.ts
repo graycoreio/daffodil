@@ -8,10 +8,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { DaffCart } from '@daffodil/cart';
-import {
-  DaffCartServiceInterface,
-  DaffProductOutOfStockError,
-} from '@daffodil/cart/driver';
+import { DaffCartServiceInterface } from '@daffodil/cart/driver';
 import {
   DaffMagentoCartService,
   DaffMagentoCartTransformer,

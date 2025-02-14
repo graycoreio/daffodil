@@ -18,16 +18,11 @@ import { DaffAuthorizeNetPaymentId } from '@daffodil/authorizenet/driver';
 import { DaffMagentoAuthorizeNetService } from '@daffodil/authorizenet/driver/magento';
 import { DaffIdentifiable } from '@daffodil/core';
 import { DaffQueuedApollo } from '@daffodil/core/graphql';
-import { DaffCustomerAddress } from '@daffodil/customer';
-import {
-  DaffCustomerPaymentDriverInterface,
-  DaffCustomerPaymentNotFoundError,
-} from '@daffodil/customer-payment/driver';
+import { DaffCustomerPaymentDriverInterface } from '@daffodil/customer-payment/driver';
 import {
   DaffCustomerPaymentAuthorizeNet,
   DaffCustomerPaymentAuthorizeNetRequest,
 } from '@daffodil/customer-payment-authorizenet';
-import { DaffPersonalAddress } from '@daffodil/geography';
 
 import { transformMagentoReviewsError } from './errors/transform';
 import {

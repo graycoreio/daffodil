@@ -6,9 +6,6 @@ import {
 
 import { createSingleInjectionToken } from '@daffodil/core';
 import { daffComposeReducers } from '@daffodil/core/state';
-// these unused imports are a workaround
-// eslint-disable-next-line unused-imports/no-unused-imports
-import { DaffCustomer } from '@daffodil/customer';
 
 import { DAFF_CUSTOMER_EXTRA_REDUCERS } from './extra.token';
 import { daffCustomerAddressReducer } from '../address/public_api';

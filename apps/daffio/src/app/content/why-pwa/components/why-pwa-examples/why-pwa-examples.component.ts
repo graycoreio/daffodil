@@ -3,10 +3,6 @@ import {
   Component,
   HostBinding,
 } from '@angular/core';
-import {
-  faChartBar,
-  faFileAlt,
-} from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'daffio-why-pwa-examples',

@@ -7,20 +7,15 @@ import {
   createEffect,
   ofType,
 } from '@ngrx/effects';
-import {
-  defer,
-  of,
-} from 'rxjs';
+import { of } from 'rxjs';
 import {
   catchError,
   filter,
   map,
   switchMap,
-  tap,
 } from 'rxjs/operators';
 
 import {
-  DaffAuthActionTypes,
   DaffAuthActions,
   DaffAuthLoginActionTypes,
   DaffAuthLoginActions,

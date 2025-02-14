@@ -1,10 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
-import {
-  map,
-  Observable,
-} from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { DaffIdentifiable } from '@daffodil/core';
 import { DaffCustomerPayment } from '@daffodil/customer-payment';

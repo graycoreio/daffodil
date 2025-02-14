@@ -5,7 +5,6 @@ import {
   defaultMemoize,
 } from '@ngrx/store';
 
-import { daffSubtract } from '@daffodil/core';
 import { DaffProductReview } from '@daffodil/reviews';
 
 import { daffProductReviewEntitiesAdapter } from '../../reducers/product-review-entities/product-entities-reducer-adapter';

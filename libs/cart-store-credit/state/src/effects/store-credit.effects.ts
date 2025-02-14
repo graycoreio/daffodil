@@ -14,7 +14,6 @@ import {
 import {
   switchMap,
   map,
-  catchError,
 } from 'rxjs/operators';
 
 import { DaffCartStorageService } from '@daffodil/cart';

@@ -1,13 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  cold,
-  hot,
-} from 'jasmine-marbles';
+import { cold } from 'jasmine-marbles';
 
-import {
-  DaffAuthorizeNetPastCCExpirationError,
-  DaffAuthorizeNetPaymentId,
-} from '@daffodil/authorizenet/driver';
+import { DaffAuthorizeNetPaymentId } from '@daffodil/authorizenet/driver';
 import { DaffCustomerPaymentAuthorizeNetApplyRequest } from '@daffodil/customer-payment-authorizenet';
 import { DaffCustomerPaymentAuthorizeNetApplyRequestFactory } from '@daffodil/customer-payment-authorizenet/testing';
 

@@ -1,7 +1,6 @@
 import {
   daffCompleteOperation,
   daffOperationFailed,
-  daffStartMutation,
   daffStartResolution,
 } from '@daffodil/core/state';
 import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';

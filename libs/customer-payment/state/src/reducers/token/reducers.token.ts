@@ -6,8 +6,6 @@ import {
 
 import { createSingleInjectionToken } from '@daffodil/core';
 import { daffComposeReducers } from '@daffodil/core/state';
-// these unused imports are a workaround
-import { DaffCustomerPayment } from '@daffodil/customer-payment';
 
 import { DAFF_CUSTOMER_PAYMENT_EXTRA_REDUCERS } from './extra.token';
 import { daffCustomerPaymentReducer } from '../payment/public_api';

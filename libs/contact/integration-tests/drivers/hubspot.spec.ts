@@ -8,7 +8,6 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
 
 import { DaffContactDriver } from '@daffodil/contact/driver';
 import { DaffContactHubSpotDriverModule } from '@daffodil/contact/driver/hubspot';

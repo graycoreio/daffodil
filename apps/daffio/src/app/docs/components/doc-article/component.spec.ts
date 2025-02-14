@@ -10,7 +10,6 @@ import { provideMockStore } from '@ngrx/store/testing';
 
 import { DAFF_ARTICLE_COMPONENTS } from '@daffodil/design/article';
 import {
-  DaffApiPackageDoc,
   DaffBreadcrumb,
   DaffDocTableOfContents,
 } from '@daffodil/docs-utils';

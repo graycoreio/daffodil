@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
   OnInit,
 } from '@angular/core';
 import { Observable } from 'rxjs';

@@ -1,5 +1,4 @@
 import {
-  Component,
   CUSTOM_ELEMENTS_SCHEMA,
   DebugElement,
 } from '@angular/core';

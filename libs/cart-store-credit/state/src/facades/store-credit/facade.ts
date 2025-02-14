@@ -6,8 +6,6 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
-
 import { DaffCartStoreCreditPageFacadeInterface } from './interface';
 import {
   DaffCartStoreCreditReducerState,

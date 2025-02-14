@@ -4,12 +4,6 @@ import {
   combineReducers,
 } from '@ngrx/store';
 
-// these unused imports are a workaround
-/* eslint-disable unused-imports/no-unused-imports */
-import {
-  DaffCart,
-  DaffCartOrderResult,
-} from '@daffodil/cart';
 import { createSingleInjectionToken } from '@daffodil/core';
 import {
   daffComposeReducers,

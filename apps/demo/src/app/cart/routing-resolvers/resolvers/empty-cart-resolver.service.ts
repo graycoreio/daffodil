@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  ActionsSubject,
-  Action,
-} from '@ngrx/store';
+import { Action } from '@ngrx/store';
 import {
   Observable,
   of,

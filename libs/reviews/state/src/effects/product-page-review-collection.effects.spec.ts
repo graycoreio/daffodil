@@ -9,7 +9,6 @@ import { TestScheduler } from 'rxjs/testing';
 
 import {
   daffCollectionBuildRequestFromMetadata,
-  DaffCollectionRequest,
   DaffError,
   DaffInheritableError,
   DaffSortDirectionEnum,
