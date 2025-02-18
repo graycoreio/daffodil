@@ -10,6 +10,7 @@
 @use '../app/core/sidebar/components/marketing/footer/footer-theme' as marketing-sidebar-footer;
 @use '../app/core/sidebar/components/docs/footer/footer-theme' as docs-sidebar-footer;
 @use '../app/core/header/components/header/header-theme' as header;
+@use '../app/docs/components/scroll-to-top/scroll-to-top-theme' as scroll-to-top;
 
 @mixin component-themes($theme) {
 	@include simple-footer.daffio-simple-footer-theme($theme);
@@ -24,4 +25,5 @@
 	@include header.daffio-header-theme($theme);
 	@include marketing-sidebar-footer.daffio-marketing-sidebar-footer-theme($theme);
 	@include docs-sidebar-footer.daffio-docs-sidebar-footer-theme($theme);
+	@include scroll-to-top.daffio-docs-scroll-to-top-theme($theme);
 }

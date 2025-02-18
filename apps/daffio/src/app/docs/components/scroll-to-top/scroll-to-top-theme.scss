@@ -1,0 +1,19 @@
+@use 'theme' as daff-theme;
+
+@mixin daffio-docs-scroll-to-top-theme($theme) {
+	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
+	$base: daff-theme.daff-map-get($theme, 'core', 'base');
+	$base-contrast: daff-theme.daff-map-get($theme, 'core', 'base-contrast');
+
+	.daffio-docs-scroll-to-top {
+		&__button {
+			background-color: daff-theme.daff-illuminate($base, $neutral, 2);
+			color: daff-theme.daff-illuminate($base-contrast, $neutral, 3);
+
+			&:hover {
+				background-color: daff-theme.daff-illuminate($base, $neutral, 3);
+				color: daff-theme.daff-illuminate($base-contrast, $neutral, 4);
+			}
+		}
+	}
+}
