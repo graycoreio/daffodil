@@ -5,7 +5,6 @@ import { DaffMediaGalleryRegistration } from '../helpers/media-gallery-registrat
 export interface DaffThumbnailRegistration {
   gallery: DaffMediaGalleryRegistration;
   selected: boolean;
-  component: Type<unknown>;
   select: () => DaffThumbnailRegistration;
   deselect: () => DaffThumbnailRegistration;
 }

@@ -47,7 +47,15 @@ export class CustomComponentModule { }
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
 ## Thumbnail
-`[daffThumbnail]` should be used as a directive with `<daff-image>`. [View Image Documentation](/libs/design/image/README.md)
+`[daffThumbnail]` is a **structural** directive that can be used with any component that you would like to render inside your media gallery. You can set a value for the image for your element like:
+
+```html
+<daff-media-gallery>
+  <daff-image 
+      *daffThumbnail
+      src="/path/to/your/image.jpg" alt="Your description" width="100" height="100"></daff-image>
+</daff-media-gallery>
+```
 
 It should never be used as a standalone component. The first thumbnail is selected by default and dynamically rendered as the primary image by utilizing the `<daff-media-renderer>` component. The selected thumbnail can be controlled by the enduser, and the position of the list of thumbnails is dependent on the screen size.
 

@@ -1,6 +1,16 @@
 <div class="daff-media-gallery__thumbnails">
-	<ng-content select="[daffThumbnail]"></ng-content>
+	@for (thumbnail of _thumbnails; track thumbnail; let index = $index) {
+		<button class="daff-thumbnail" [class.daff-selected]="thumbnail.selected" 
+		attr.aria-label="Select {{ thumbnail.label }}"
+		(click)="selectThumbnail(thumbnail)" >
+			@if(thumbnail.thumbnail) {
+				<img [src]="thumbnail.thumbnail" aria-hidden="true"/>
+			}
+		</button>
+	}
 </div>
 <div class="daff-media-gallery__selected-thumbnail">
-	<daff-media-renderer></daff-media-renderer>
+	@if(_selectedThumbnail) {
+		<ng-container *ngTemplateOutlet="_selectedThumbnail.templateRef"></ng-container>
+	}
 </div>

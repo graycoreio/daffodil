@@ -14,13 +14,17 @@
 	::ng-deep {
 		.daff-thumbnail {
 			@include interactions.clickable();
-			display: inline-block;
+			display:flex;
+			justify-content: center;
+			align-items: center;
 			height: 64px;
 			width: 64px;
 			margin: 0 2px;
 			max-width: 100%;
 			overflow: hidden;
 			user-select: none;
+			padding: 0px;
+			flex-shrink: 0;
 
 			@include layout.breakpoint(mobile) {
 				height: 72px;
@@ -32,6 +36,11 @@
 				margin: 0 0 4px;
 				height: 80px;
 				width: 80px;
+			}
+
+			img {
+				display: block;
+				width: 100%;
 			}
 		}
 	}
@@ -59,11 +68,18 @@
 
 .daff-media-gallery {
 	&__thumbnails {
-		margin: 0 -2px;
-		max-height: 100%;
+		max-height: 408px;
+		display: flex;
+		flex-direction: row;
+		flex-shrink: 0;
+		gap: 2px;
 		order: 2;
+		max-width: 100%;
+		overflow-x: auto;
 
 		@include layout.breakpoint(big-tablet) {
+			flex-direction: column;
+			overflow-y: auto;
 			margin: 0 8px 0 0;
 			order: 1;
 		}
@@ -74,9 +90,12 @@
 		flex-grow: 1;
 		order: 1;
 		position: relative;
-
+		margin: 10px 0;
+		overflow: hidden;
+		
 		@include layout.breakpoint(big-tablet) {
 			order: 2;
+			margin: 0;
 		}
 	}
 }

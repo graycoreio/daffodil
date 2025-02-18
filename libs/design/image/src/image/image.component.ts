@@ -10,7 +10,6 @@ import {
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { DaffSkeletonableDirective } from '@daffodil/design';
-import { daffThumbnailCompatToken } from '@daffodil/design/media-gallery';
 
 const validateProperty = (object: Record<string, any>, prop: string) => {
   if (object[prop] === null || object[prop] === undefined || object[prop] === '') {
@@ -38,16 +37,12 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
+  hostDirectives: [
     {
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      provide: daffThumbnailCompatToken, useExisting: DaffImageComponent,
+      directive: DaffSkeletonableDirective,
+      inputs: ['skeleton'],
     },
   ],
-  hostDirectives: [{
-    directive: DaffSkeletonableDirective,
-    inputs: ['skeleton'],
-  }],
   standalone: true,
 })
 export class DaffImageComponent implements OnInit {

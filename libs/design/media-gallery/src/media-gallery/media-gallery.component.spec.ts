@@ -10,8 +10,6 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffMediaGalleryComponent } from './media-gallery.component';
-import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
-import { daffThumbnailCompatToken } from '../thumbnail/thumbnail-compat.token';
 import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 
 @Component({
@@ -43,7 +41,6 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
   let de: DebugElement;
   let component: DaffMediaGalleryComponent;
   const stubName = 'some name';
-  let registry: DaffMediaGalleryRegistry;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -53,10 +50,6 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
       imports: [
         WrapperComponent,
       ],
-      providers: [
-        { provide: daffThumbnailCompatToken, useValue: DaffThumbnailDirective },
-        DaffMediaGalleryRegistry,
-      ],
     }).compileComponents();
   }));
 
@@ -64,7 +57,6 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     wrapper.nameValue = stubName;
-    registry = TestBed.inject(DaffMediaGalleryRegistry);
     fixture.detectChanges();
 
     de = fixture.debugElement.query(By.css('daff-media-gallery'));
@@ -90,13 +82,6 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('daff-skeleton')).toEqual(true);
-  });
-
-  it('should remove the gallery from the registry when the gallery is destroyed', () => {
-    spyOn(registry, 'remove');
-    component.ngOnDestroy();
-
-    expect(registry.remove).toHaveBeenCalledWith(component);
   });
 });
 

@@ -16,7 +16,4 @@ import { DAFF_MEDIA_GALLERY_COMPONENTS } from '@daffodil/design/media-gallery';
     DAFF_IMAGE_COMPONENTS,
   ],
 })
-export class BasicMediaGalleryComponent {
-
-
-}
+export class BasicMediaGalleryComponent {}

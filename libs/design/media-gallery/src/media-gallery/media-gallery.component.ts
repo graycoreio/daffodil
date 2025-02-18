@@ -1,10 +1,12 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   HostBinding,
   ChangeDetectionStrategy,
   Input,
-  OnInit,
-  OnDestroy,
+  ContentChildren,
+  QueryList,
+  AfterContentInit,
 } from '@angular/core';
 
 import {
@@ -14,8 +16,6 @@ import {
 
 import { DaffMediaGalleryRegistration } from '../helpers/media-gallery-registration.interface';
 import { DAFF_MEDIA_GALLERY_TOKEN } from '../helpers/media-gallery-token';
-import { DaffMediaRendererComponent } from '../media-renderer/media-renderer.component';
-import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 
 let uniqueGalleryId = 0;
@@ -37,13 +37,14 @@ let uniqueGalleryId = 0;
     },
   ],
   imports: [
-    DaffMediaRendererComponent,
     DaffThumbnailDirective,
+    NgTemplateOutlet,
   ],
 })
-export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, OnInit, OnDestroy {
+export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, AfterContentInit {
   /**
    * Adds a class for styling the media gallery
+   * @docs-private
    */
   @HostBinding('class.daff-media-gallery') class = true;
 
@@ -52,15 +53,35 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, 
    */
   @Input() name = `${uniqueGalleryId}`;
 
-  constructor(private registry: DaffMediaGalleryRegistry) {
+  /**
+   * @docs-private
+   */
+  @ContentChildren(DaffThumbnailDirective) _thumbnails: QueryList<DaffThumbnailDirective>;
+
+  constructor() {
     uniqueGalleryId++;
   }
 
-  ngOnInit() {
-    this.registry.add(this);
+  /**
+   * @docs-private
+   */
+  _selectedThumbnail: DaffThumbnailDirective = undefined;
+
+  /**
+   * Select a specific thumbnail for this gallery.
+   */
+  selectThumbnail(thumbnail: DaffThumbnailDirective) {
+    this._selectedThumbnail?.deselect();
+    thumbnail.select();
+    this._selectedThumbnail = thumbnail;
   }
 
-  ngOnDestroy() {
-    this.registry.remove(this);
+  /**
+   * @docs-private
+   */
+  ngAfterContentInit(): void {
+    if(this._thumbnails.first) {
+      this.selectThumbnail(this._thumbnails.first);
+    }
   }
 }

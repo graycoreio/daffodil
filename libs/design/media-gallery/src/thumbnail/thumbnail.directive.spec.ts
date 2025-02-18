@@ -9,11 +9,8 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { daffThumbnailCompatToken } from './thumbnail-compat.token';
 import { DaffThumbnailDirective } from './thumbnail.directive';
 import { DaffMediaGalleryComponent } from '../media-gallery/media-gallery.component';
-import { DaffMediaRendererComponent } from '../media-renderer/media-renderer.component';
-import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
 
 @Component({
   template: '',
@@ -41,7 +38,6 @@ describe('@daffodil/design/media-gallery | DaffThumbnailDirective', () => {
   let de: DebugElement;
   let directive: DaffThumbnailDirective;
   let fixture: ComponentFixture<WrapperComponent>;
-  let registry: DaffMediaGalleryRegistry;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -49,23 +45,11 @@ describe('@daffodil/design/media-gallery | DaffThumbnailDirective', () => {
         MockMediaRendererComponent,
         WrapperComponent,
       ],
-      providers: [
-        {
-          provide: DaffMediaGalleryRegistry,
-          useValue: jasmine.createSpyObj('DaffMediaGalleryRegistry', ['add', 'remove', 'select']),
-        },
-        { provide: daffThumbnailCompatToken, useValue: DaffThumbnailDirective },
-      ],
-    }).overrideComponent(DaffMediaGalleryComponent, {
-      add: { imports: [ MockMediaRendererComponent ]},
-      remove: { imports: [ DaffMediaRendererComponent ]},
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    registry = TestBed.inject(DaffMediaGalleryRegistry);
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('[daffThumbnail]'));
     directive = fixture.debugElement.query(By.directive(DaffThumbnailDirective)).injector.get(DaffThumbnailDirective);
@@ -80,23 +64,6 @@ describe('@daffodil/design/media-gallery | DaffThumbnailDirective', () => {
     expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-thumbnail': true,
     }));
-  });
-
-  it('should add itself to the media-gallery registry on initialization', () => {
-    expect(registry.add).toHaveBeenCalledWith(directive.gallery, directive);
-  });
-
-  it('should notify the registry when the thumbnail is clicked', () => {
-    de.nativeElement.click();
-    fixture.detectChanges();
-
-    expect(registry.select).toHaveBeenCalledWith(directive);
-  });
-
-  it('should remove itself from the registry when it is destroyed', () => {
-    directive.ngOnDestroy();
-
-    expect(registry.remove).toHaveBeenCalledWith(directive);
   });
 
   describe('select', () => {
