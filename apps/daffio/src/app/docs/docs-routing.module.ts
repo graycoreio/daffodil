@@ -29,8 +29,8 @@ export const docsRoutes: Routes = [
       daffioNavLinks: [
         { url: `/${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.GUIDE]}`, title: 'Guides' },
         { url: `/${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.PACKAGE]}`, title: 'Packages' },
-        { url: `/${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.API]}`, title: 'API Reference' },
         { url: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`, title: 'Design' },
+        { url: `/${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.API]}`, title: 'API Reference' },
       ],
       daffioSidebars: {
         [DAFF_DOCS_NAV_SIDEBAR_REGISTRATION.id]: DAFF_DOCS_NAV_SIDEBAR_REGISTRATION,
