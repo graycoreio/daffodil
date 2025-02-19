@@ -9,27 +9,33 @@
 		@include interactions.clickable;
 		display: flex;
 		align-items: center;
+		appearance: none;
 		justify-content: space-between;
-		gap: 8px;
+		gap: 0.5rem;
 		background: none;
 		border: none;
 		inline-size: 100%;
 		margin: 0;
-		padding: 16px;
+		padding: 1rem;
 		position: relative;
 
 		&::after {
 			content: '';
 			position: absolute;
 			top: 48%;
-			right: 2px;
+			right: 1rem;
 			display: inline-block;
 			border-right: 2px solid currentColor;
 			border-bottom: 2px solid currentColor;
-			width: 8px;
-			height: 8px;
+			width: 0.5rem;
+			height: 0.5rem;
 			transform: translateY(-50%) rotate(45deg);
 			transition: transform 150ms;
+		}
+
+		&[disabled] {
+			cursor: not-allowed;
+			opacity: 0.7;
 		}
 	}
 
@@ -47,15 +53,15 @@
 		font-weight: 500;
 		inline-size: 100%;
 		margin: 0;
-		padding: 0 32px 0 0;
+		padding: 0 2rem 0 0;
 		text-align: start;
 	}
 
 	&__content {
-		padding: 0 16px 16px;
+		padding: 0 1rem 1rem;
 
 		> p {
-			margin: 0 0 16px;
+			margin: 0 0 1rem;
 
 			&:last-child {
 				margin: 0;

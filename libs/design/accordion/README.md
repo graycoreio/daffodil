@@ -2,23 +2,11 @@
 An accordion is a group of vertically stacked headings used to toggle the visibility of a section of content.
 
 ## Overview
-Accordions are made up of `<daff-accordion-item>`s that can be expanded or collapsed to display large amounts of information. Accordions are helpful to shorten pages and reduce scrolling by hiding content that's not crucial to display at all times.
+Accordions are helpful to shorten pages and reduce scrolling by hiding content that's not crucial to display at all times. The accordion component consists of several pre-styled components and directives.
 
 <design-land-example-viewer-container example="basic-accordion"></design-land-example-viewer-container>
 
-## Supported Content Types
-An accordion item can include a `[daffAccordionItemTitle]`, which provides a high level overview of the content. Any other content within an accordion item will be displayed as the primary content.
-
-By default, the accordion item includes a toggle icon at the end of the header to indicate if it's expanded or collapsed.
-
-## Setting an item to be expanded by default 
-An item content can be visibile on render by setting the `initiallyExpanded` property to `true` on `daff-accordion-item`.
-
 ## Usage
-
-### Within a standalone component
-To use accordion in a standalone component, import `DAFF_ACCORDION_COMPONENTS` directly into your custom component:
-
 ```ts
 import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
 
@@ -32,26 +20,41 @@ import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use accordion in a module, import `DaffAccordionModule` into your custom module:
+## Anatomy
+- **Accordion**: a wrapper for grouping accordion items.
+- **Accordion Item**: the wrapper for the title and content. It handles the expansion and collapse of the inner content when clicked.
+- **Accordion Item Title**: used to provide a high level overview of the content.
 
-```ts
-import { NgModule } from '@angular/core';
-import { DaffAccordionModule } from '@daffodil/design/accordion';
-import { CustomComponent } from './custom.component';
+Any additional content placed inside of an accordion item will be displayed as part of the collapsible content. 
 
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffAccordionModule,
-  ],
-})
-export class CustomComponentModule { }
+```html
+<daff-accordion>
+	<daff-accordion-item>
+		<div daffAccordionItemTitle></div>
+    <p>Item Content</p>
+	</daff-accordion-item>
+	<daff-accordion-item>
+		<div daffAccordionItemTitle></div>
+    <p>Item Content</p>
+	</daff-accordion-item>
+</daff-accordion>
 ```
 
-> This method is deprecated. It's recommended to update all custom components to standalone.
+## Examples
+
+### Expand an item by default
+Use the `initiallyExpanded` property on the accordion item to have it opened by default.
+
+```html
+<daff-accordion-item [initiallyExpanded]="true"></daff-accordion-item>
+```
+
+### Disable an item
+Use the `disabled` property on the accordion item to prevent it from being expanded or collapsed.
+
+```html
+<daff-accordion-item [disabled]="true"></daff-accordion-item>
+```
+
+## Accessibility
+Accordion follows the to the [Accordion WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).

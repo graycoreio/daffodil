@@ -9,7 +9,6 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffAccordionItemComponent } from './accordion-item.component';
 
@@ -21,7 +20,6 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', (
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        FontAwesomeModule,
         DaffAccordionItemComponent,
       ],
     })
@@ -68,14 +66,14 @@ class WrapperComponent {
 describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapper: WrapperComponent;
-  let accordionHeader: DebugElement;
+  let accordionItemHeader: DebugElement;
   let daffAccordionItem: DaffAccordionItemComponent;
+  let de: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        FontAwesomeModule,
         WrapperComponent,
       ],
     })
@@ -86,8 +84,9 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
 
-    daffAccordionItem = fixture.debugElement.query(By.css('daff-accordion-item')).componentInstance;
-    accordionHeader = fixture.debugElement.query(By.css('.daff-accordion-item__header'));
+    de = fixture.debugElement.query(By.css('daff-accordion-item'));
+    daffAccordionItem = de.componentInstance;
+    accordionItemHeader = fixture.debugElement.query(By.css('.daff-accordion-item__header'));
   });
 
   it('should create', () => {
@@ -112,7 +111,7 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
     daffAccordionItem.reveal();
     fixture.detectChanges();
 
-    expect(accordionHeader.nativeElement.attributes['aria-expanded'].value).toEqual('true');
+    expect(accordionItemHeader.nativeElement.attributes['aria-expanded'].value).toEqual('true');
 
   });
 
@@ -120,7 +119,7 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
     daffAccordionItem.hide();
     fixture.detectChanges();
 
-    expect(accordionHeader.nativeElement.attributes['aria-expanded'].value).toEqual('false');
+    expect(accordionItemHeader.nativeElement.attributes['aria-expanded'].value).toEqual('false');
 
   });
 
@@ -149,7 +148,7 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
     beforeEach(() => {
       spyOn(daffAccordionItem, 'toggle');
 
-      accordionHeader.nativeElement.click();
+      accordionItemHeader.nativeElement.click();
     });
 
     it('should call toggle', () => {
@@ -171,6 +170,21 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
 
       daffAccordionItem.toggle();
       expect(daffAccordionItem._animationState).toEqual('void');
+    });
+  });
+
+  describe('when disabled is set to true on the accordion item', () => {
+    beforeEach(() => {
+      daffAccordionItem.disabled = true;
+      fixture.detectChanges();
+    });
+
+    it('should set disabled to true on the accordion item header', () => {
+      expect(accordionItemHeader.nativeElement.disabled).toBeTruthy();
+    });
+
+    it('should set aria-disabled to true on the accordion item header', () => {
+      expect(accordionItemHeader.nativeElement.attributes['aria-disabled'].value).toEqual('true');
     });
   });
 });

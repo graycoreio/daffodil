@@ -6,10 +6,6 @@ import {
   HostBinding,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import {
-  faChevronDown,
-  faChevronUp,
-} from '@fortawesome/free-solid-svg-icons';
 
 import {
   DaffOpenable,
@@ -20,6 +16,7 @@ import { daffAccordionAnimations } from '../animation/accordion-animation';
 import { getAnimationState } from '../animation/accordion-animation-state';
 
 let daffAccordionItemId = 0;
+let daffAccordionItemContentId = 0;
 
 @Component({
   selector: 'daff-accordion-item',
@@ -35,29 +32,32 @@ let daffAccordionItemId = 0;
   animations: [
     daffAccordionAnimations.openAccordion,
   ],
-  standalone: true,
 })
 export class DaffAccordionItemComponent implements OnInit, DaffOpenable {
   /**
    * @docs-private
    */
-  faChevronDown = faChevronDown;
-  /**
-   * @docs-private
-   */
-  faChevronUp = faChevronUp;
-
-  /**
-   * @docs-private
-   */
   @HostBinding('class.daff-accordion-item') class = true;
 
-  _daffAccordionItemId = 'daff-accordion-item' + '-' + ++daffAccordionItemId;
+  /**
+   * The unique id of an accordion item.
+   */
+  @Input() id: string = 'daff-accordion-item' + '-' + ++daffAccordionItemId;
 
-  @Input() id: string = this._daffAccordionItemId;
+  /**
+   * The unique id of an accordion item content.
+   */
+  @Input() contentId: string = 'daff-accordion-item-content' + '-' + ++daffAccordionItemContentId;
 
-  /** Whether or not the item is initiallyExpanded by default. */
+  /**
+   * Whether or not the item is initially opened by default.
+   */
   @Input() initiallyExpanded = false;
+
+  /**
+   * Disables an accordion item and prevents it from being expanded or collapsed.
+   */
+  @Input() disabled = false;
 
   /**
    * @docs-private
@@ -81,21 +81,21 @@ export class DaffAccordionItemComponent implements OnInit, DaffOpenable {
   }
 
   /**
-   * Reveals the contents of the accordion item
+   * Reveals the contents of the accordion item.
    */
   reveal() {
     this.openDirective.reveal();
   }
 
   /**
-   * Hides the contents of the accordion item
+   * Hides the contents of the accordion item.
    */
   hide() {
     this.openDirective.hide();
   }
 
   /**
-   * Toggles the visibility of the contents of the accordion item
+   * Toggles the visibility of the contents of the accordion item.
    */
   toggle() {
     this.openDirective.toggle();

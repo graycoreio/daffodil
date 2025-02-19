@@ -12,10 +12,12 @@ export const daffAccordionAnimations: {
 } = {
   openAccordion: trigger('openAccordion', [
     state('open', style({
+      visibility: 'visible',
       opacity: '1',
       height: '*',
     })),
     state('void',style({
+      visibility: 'hidden',
       opacity: '0',
       height: '0',
     })),
