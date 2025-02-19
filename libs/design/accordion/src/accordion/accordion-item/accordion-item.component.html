@@ -2,12 +2,12 @@
   (click)="toggle()"
   [attr.aria-expanded]="open"
   [attr.aria-controls]="contentId"
-  [id]="id"
+  [id]="itemId"
   [disabled]="disabled"
   [attr.aria-disabled]="disabled">
   <ng-content select="[daffAccordionItemTitle]"></ng-content>
 </button>
-<div [@openAccordion]="_animationState" [id]="contentId" [attr.aria-labelledby]="id" role="region">
+<div [@openAccordion]="_animationState" [id]="contentId" [attr.aria-labelledby]="itemId" role="region">
   <div class="daff-accordion-item__content">
     <ng-content></ng-content>
   </div>
