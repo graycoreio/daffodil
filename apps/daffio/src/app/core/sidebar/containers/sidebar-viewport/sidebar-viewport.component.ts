@@ -22,7 +22,7 @@ import {
   DaffSidebarModeEnum,
 } from '@daffodil/design/sidebar';
 
-import { DaffioSidebarRegistration } from '../../registration/type';
+import { DaffioSidebarSectionRegistration } from '../../interfaces/section-registration.interface';
 import { DaffioSidebarService } from '../../services/sidebar.service';
 
 @Component({
@@ -37,7 +37,7 @@ export class DaffioSidebarViewportContainer implements OnInit {
   mode$: Observable<DaffSidebarModeEnum>;
   showSidebarHeader$: Observable<boolean>;
   showSidebarFooter$: Observable<boolean>;
-  component$: Observable<DaffioSidebarRegistration>;
+  component$: Observable<DaffioSidebarSectionRegistration>;
   isBigTablet$: Observable<boolean>;
 
   ngOnInit() {

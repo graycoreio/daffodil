@@ -19,15 +19,14 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { BehaviorSubject } from 'rxjs';
 
 import {
-  DaffSidebarModule,
   DaffSidebarViewportComponent,
   DaffSidebarComponent,
   DaffSidebarModeEnum,
-  DaffSidebarRegistration,
+  DAFF_SIDEBAR_COMPONENTS,
 } from '@daffodil/design/sidebar';
 
 import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
-import { DaffioSidebarRegistration } from '../../registration/type';
+import { DaffioSidebarSectionRegistration } from '../../interfaces/section-registration.interface';
 import { DaffioSidebarService } from '../../services/sidebar.service';
 
 @Component({
@@ -43,7 +42,7 @@ describe('DaffioSidebarViewportContainer', () => {
   let daffSidebarViewport: DaffSidebarViewportComponent;
   let daffSidebar: DaffSidebarComponent;
 
-  let activeRegistration: BehaviorSubject<DaffioSidebarRegistration>;
+  let activeRegistration: BehaviorSubject<DaffioSidebarSectionRegistration>;
   let mode: BehaviorSubject<DaffSidebarModeEnum>;
   let sidebarServiceSpy: jasmine.SpyObj<DaffioSidebarService>;
 
@@ -67,9 +66,11 @@ describe('DaffioSidebarViewportContainer', () => {
         DaffioSidebarViewportContainer,
         TestComponent,
       ],
-      imports: [RouterTestingModule,
+      imports: [
+        DAFF_SIDEBAR_COMPONENTS,
+        RouterTestingModule,
         NoopAnimationsModule,
-        DaffSidebarModule],
+      ],
       providers: [
         {
           provide: DaffioSidebarService,
