@@ -1,0 +1,64 @@
+@use 'utilities' as daff;
+
+:host {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.75rem;
+	font-size: daff.$small-font-size;
+	line-height: 1rem;
+	padding: 1rem 1.5rem;
+
+	@include daff.breakpoint(big-tablet) {
+		padding: 1rem 1.5rem;
+	}
+
+	@include daff.breakpoint(small-laptop) {
+		padding: 1rem 3rem;
+	}
+}
+
+.daffio-docs-footer {
+	&__grid {
+		display: grid;
+		grid-template-columns: 2rem auto;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	&__logo {
+		display: flex;
+		align-self: flex-start;
+		width: 2rem;
+	}
+
+	&__links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 1.5rem;
+
+		@include daff.breakpoint(big-tablet) {
+			gap: 2rem;
+		}
+	}
+
+	&__social-links {
+		display: flex;
+		flex-wrap: wrap;
+		justify-self: flex-end;
+		gap: 2rem;
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: 500;
+		text-decoration: none;
+	}
+
+	&__copyright {
+		display: block;
+		text-align: center;
+	}
+}

@@ -28,7 +28,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { DaffioAppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { DaffioMarketingFooterComponentModule } from './core/footer/marketing-footer/marketing-footer.module';
-import { DaffioSimpleFooterComponentModule } from './core/footer/simple-footer/simple-footer.module';
 import { daffioRouterDataServiceConfig } from './core/router/data-service-config';
 import { DaffioSidebarHeaderComponentModule } from './core/sidebar/components/sidebar-header/sidebar-header.module';
 import { TemplateModule } from './core/template/template.module';
@@ -47,7 +46,6 @@ import { TemplateModule } from './core/template/template.module';
     EffectsModule.forRoot(),
     AppRoutingModule,
     DaffioSidebarHeaderComponentModule,
-    DaffioSimpleFooterComponentModule,
     DaffioMarketingFooterComponentModule,
     //Make sure this loads after Router and Store
     StoreRouterConnectingModule.forRoot({ serializer: FullRouterStateSerializer,

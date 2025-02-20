@@ -12,7 +12,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
-import { DaffioSimpleFooterComponent } from '../core/footer/simple-footer/simple-footer.component';
+import { DaffioDocsFooterComponent } from '../core/footer/docs-footer/docs-footer.component';
 import { DaffioDocsNavContainer } from '../core/nav/docs/docs.component';
 import { DAFF_DOCS_NAV_SIDEBAR_REGISTRATION } from '../core/nav/docs-sidebar.provider';
 import { DaffioRouterNamedViewsEnum } from '../core/router/named-views/models/named-views.enum';
@@ -24,7 +24,7 @@ export const docsRoutes: Routes = [
     data: {
       daffNamedViews: {
         [DaffioRouterNamedViewsEnum.NAV]: DaffioDocsNavContainer,
-        [DaffioRouterNamedViewsEnum.FOOTER]: DaffioSimpleFooterComponent,
+        [DaffioRouterNamedViewsEnum.FOOTER]: DaffioDocsFooterComponent,
       },
       daffioNavLinks: [
         { url: `/${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.GUIDE]}`, title: 'Guides' },

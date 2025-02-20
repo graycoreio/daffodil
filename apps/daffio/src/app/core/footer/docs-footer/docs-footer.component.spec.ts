@@ -1,0 +1,76 @@
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  ComponentFixture,
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import {
+  DaffLogoModule,
+  DaffCopyrightModule,
+} from '@daffodil/branding';
+import { DaffContainerModule } from '@daffodil/design/container';
+
+import { DaffioDocsFooterComponent } from './docs-footer.component';
+
+@Component({
+  template: `<daffio-docs-footer></daffio-docs-footer>`,
+})
+class WrapperComponent { }
+
+describe('DaffioDocsFooterComponent', () => {
+  let wrapper: WrapperComponent;
+  let component: DaffioDocsFooterComponent;
+  let de: DebugElement;
+  let fixture: ComponentFixture<WrapperComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        DaffContainerModule,
+        WrapperComponent,
+        DaffLogoModule,
+        DaffCopyrightModule,
+        FontAwesomeModule,
+      ],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.debugElement.componentInstance;
+    de = fixture.debugElement.query(By.css('daffio-docs-footer'));
+    component = de.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should add a class of "daffio-docs-footer" to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daffio-docs-footer': true,
+    }));
+  });
+
+  it('should show the copyright', () => {
+    expect(fixture.debugElement.query(By.css('daff-branding-copyright'))).toBeTruthy();
+  });
+
+  describe('on <daff-branding-logo>', () => {
+    it('should set type="icon"', () => {
+      const logo = fixture.debugElement.query(By.css('daff-branding-logo'));
+
+      expect(logo.componentInstance.type).toEqual('icon');
+    });
+  });
+});
