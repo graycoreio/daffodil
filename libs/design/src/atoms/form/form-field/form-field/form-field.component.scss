@@ -44,6 +44,20 @@
     }
 	}
 
+  &__icon {
+		content: '';
+    position: absolute;
+    top: 48%;
+    right: 1rem;
+    display: inline-block;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    width: 0.5rem;
+    height: 0.5rem;
+    transform: translateY(-50%) rotate(45deg);
+    transition: transform 150ms;
+  }
+
   &__form-wrapper {
     flex-grow: 1;
     padding: 1.5rem 1rem 0.5rem;

@@ -8,7 +8,6 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffPrefixDirective } from '../../../../core/prefix-suffix/prefix.directive';
 import { DaffSuffixDirective } from '../../../../core/prefix-suffix/suffix.directive';
@@ -24,10 +23,6 @@ import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffFormFieldComponent implements AfterContentInit, AfterContentChecked {
-
-  /** @docs-private */
-  faChevronDown = faChevronDown;
-
   /** @docs-private */
   @HostBinding('class.daff-form-field') class = true;
 
