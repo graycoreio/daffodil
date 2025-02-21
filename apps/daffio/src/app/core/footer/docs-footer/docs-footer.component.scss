@@ -4,9 +4,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 0.75rem;
-	font-size: daff.$small-font-size;
-	line-height: 1rem;
+	gap: 0.5rem;
 	padding: 1rem 1.5rem;
 
 	@include daff.breakpoint(big-tablet) {
@@ -21,9 +19,16 @@
 .daffio-docs-footer {
 	&__grid {
 		display: grid;
-		grid-template-columns: 2rem auto;
+		grid-template-columns: 1fr;
 		align-items: center;
-		gap: 2rem;
+		justify-content: space-between;
+		gap: 0.5rem;
+		width: 100%;
+
+		@include daff.breakpoint(tablet) {
+			grid-template-columns: repeat(2, auto);
+			gap: 2rem;
+		}
 	}
 
 	&__logo {
@@ -35,9 +40,11 @@
 	&__links {
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: center;
 		gap: 0.25rem 1.5rem;
 
-		@include daff.breakpoint(big-tablet) {
+		@include daff.breakpoint(tablet) {
+			justify-self: flex-start;
 			gap: 2rem;
 		}
 	}
@@ -45,8 +52,12 @@
 	&__social-links {
 		display: flex;
 		flex-wrap: wrap;
-		justify-self: flex-end;
+		justify-self: center;
 		gap: 2rem;
+
+		@include daff.breakpoint(tablet) {
+			justify-self: flex-end;
+		}
 	}
 
 	&__link {
@@ -55,6 +66,12 @@
 		gap: 0.5rem;
 		font-weight: 500;
 		text-decoration: none;
+	}
+
+	&__link,
+	&__copyright {
+		font-size: daff.$font-size-sm;
+		line-height: 1rem;
 	}
 
 	&__copyright {

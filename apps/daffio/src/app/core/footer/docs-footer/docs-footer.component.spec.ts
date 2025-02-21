@@ -8,12 +8,8 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
 
-import {
-  DaffLogoModule,
-  DaffCopyrightModule,
-} from '@daffodil/branding';
+import { DaffCopyrightModule } from '@daffodil/branding';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
 import { DaffioDocsFooterComponent } from './docs-footer.component';
@@ -23,7 +19,6 @@ import { DaffioDocsFooterComponent } from './docs-footer.component';
   imports: [
     DaffioDocsFooterComponent,
     DAFF_CONTAINER_COMPONENTS,
-    DaffLogoModule,
     DaffCopyrightModule,
   ],
 })
@@ -38,7 +33,6 @@ describe('DaffioDocsFooterComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         WrapperComponent,
       ],
     })
@@ -65,13 +59,5 @@ describe('DaffioDocsFooterComponent', () => {
 
   it('should show the copyright', () => {
     expect(fixture.debugElement.query(By.css('daff-branding-copyright'))).toBeTruthy();
-  });
-
-  describe('on <daff-branding-logo>', () => {
-    it('should set type="icon"', () => {
-      const logo = fixture.debugElement.query(By.css('daff-branding-logo'));
-
-      expect(logo.componentInstance.type).toEqual('icon');
-    });
   });
 });

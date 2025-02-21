@@ -1,8 +1,5 @@
 <daff-container size="lg">
   <div class="daffio-docs-footer__grid">
-    <a class="daffio-docs-footer__logo" routerLink="/">
-      <daff-branding-logo type="icon"></daff-branding-logo>
-    </a>
     <div class="daffio-docs-footer__links">
       @for (link of links; track link) {
         <a [href]="link.path" target="_blank" rel="noopener noreferrer"
@@ -10,11 +7,12 @@
           {{ link.title }}
         </a>
       }
+    </div>
+    <div class="daffio-docs-footer__social-links">
       @for (socialLink of socialLinks; track socialLink) {
         <a [href]="socialLink.link" target="_blank" rel="noopener noreferrer"
-          class="daffio-docs-footer__link">
-          <fa-icon [icon]="socialLink.icon" attr.aria-label="{{socialLink.title}} Logo"></fa-icon>
-          <span>{{socialLink.title}}</span>
+          class="daffio-docs-footer__social-link">
+          <fa-icon [icon]="socialLink.icon" attr.aria-label="Go to {{socialLink.title}}"></fa-icon>
         </a>
       }
     </div>
