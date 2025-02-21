@@ -9,18 +9,23 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
   DaffLogoModule,
   DaffCopyrightModule,
 } from '@daffodil/branding';
-import { DaffContainerModule } from '@daffodil/design/container';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
 import { DaffioDocsFooterComponent } from './docs-footer.component';
 
 @Component({
   template: `<daffio-docs-footer></daffio-docs-footer>`,
+  imports: [
+    DaffioDocsFooterComponent,
+    DAFF_CONTAINER_COMPONENTS,
+    DaffLogoModule,
+    DaffCopyrightModule,
+  ],
 })
 class WrapperComponent { }
 
@@ -34,11 +39,7 @@ describe('DaffioDocsFooterComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffContainerModule,
         WrapperComponent,
-        DaffLogoModule,
-        DaffCopyrightModule,
-        FontAwesomeModule,
       ],
     })
       .compileComponents();
