@@ -46,11 +46,15 @@
 		border: 0;
 		border-bottom: 1px solid rgb(var(--daff-theme-contrast-rgb), 0.1);
 		color: var(--daff-theme-contrast);
-		overflow: auto;
+		font-size: 1rem;
+		line-height: 1rem;
 		padding: 1rem 1.5rem;
 		position: sticky;
 		top: var(--daff-sidebar-side-fixed-top-shift);
+    height: 3rem;
 		width: 100%;
+		box-sizing: border-box;
+		z-index: 5;
 
 		@include daff.breakpoint(big-tablet) {
 			display: none;
