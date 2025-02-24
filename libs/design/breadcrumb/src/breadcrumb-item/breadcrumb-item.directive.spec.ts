@@ -12,14 +12,12 @@ import { By } from '@angular/platform-browser';
 import { DaffBreadcrumbItemDirective } from './breadcrumb-item.directive';
 
 @Component({
-  template: `<li daffBreadcrumbItem [active]="active">Breadcrumb Item</li>`,
+  template: `<li daffBreadcrumbItem>Breadcrumb Item</li>`,
   imports: [
     DaffBreadcrumbItemDirective,
   ],
 })
-class WrapperComponent {
-  active = false;
-}
+class WrapperComponent {}
 
 describe('@daffodil/design/breadcrumb | DaffBreadcrumbItemDirective', () => {
   let wrapper: WrapperComponent;
@@ -54,19 +52,5 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbItemDirective', () => {
         'daff-breadcrumb__item': true,
       }));
     });
-  });
-
-  it('should set the `aria-current` to page if it`s the active breadcrumb', () => {
-    wrapper.active = true;
-    fixture.detectChanges();
-
-    expect(de.nativeElement.ariaCurrent).toEqual('page');
-  });
-
-  it('should set the `aria-current` to false if it`s not the active breadcrumb', () => {
-    wrapper.active = false;
-    fixture.detectChanges();
-
-    expect(de.nativeElement.ariaCurrent).toEqual('false');
   });
 });

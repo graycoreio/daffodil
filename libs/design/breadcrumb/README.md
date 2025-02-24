@@ -2,16 +2,21 @@
 Breadcrumbs are a secondary navigation that displays a user's location within a website or application.
 
 ## Overview
-Breadcrumbs are a visual representation of the site's navigational hierarchy. They indicate the current page's location and allows users to easily move up to a parent level. It's required for breadcrumbs to be used with the native HTML `<ol>` element, and for each item to be an `<li>`. This offers additional context for assistive technology.
+Breadcrumbs are a visual representation of the site's navigational hierarchy. They indicate the current page's location and allows users to easily move up to a parent level.
 
-## Basic Breadcrumb
+## Requirements
+- `[daff-breadcrumb]` is required to be used with the native HTML `<ol>` element.
+- Each `[daffBreadcrumbItem]` needs to be a `<li>` element.
+
+## Structure
+Breadcrumbs are built using `[daff-breadcrumb]` and `[daffBreadCrumbItem]`.
+
+- **`[daff-breadcrumb]`**: a wrapper for grouping breadcrumb items.
+- **`[daffBreacrumbItem]`**: used to display each breadcrumb item.
+
 <design-land-example-viewer-container example="basic-breadcrumb"></design-land-example-viewer-container>
 
 ## Usage
-
-## Within a standalone component
-To use breadcrumb in a standalone component, import it directly into your custom component:
-
 ```ts
 import { DAFF_BREADCRUMB_COMPONENTS } from '@daffodil/design/breadcrumb';
 
@@ -25,29 +30,33 @@ import { DAFF_BREADCRUMB_COMPONENTS } from '@daffodil/design/breadcrumb';
 export class CustomComponent {}
 ```
 
-## Within a module (deprecated)
-To use breadcrumb in a module, import `DaffBreadcrumbModule` into your custom module:
-
-```ts
-import { NgModule } from '@angular/core';
-import { DaffBreadcrumbModule } from '@daffodil/design/breadcrumb';
-import { CustomComponent } from './custom.component';
-
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffBreadcrumbModule,
-  ],
-})
-export class CustomComponentModule { }
+```html
+<ol daff-breadcrumb>
+  <li daffBreadcrumbItem>
+    <a routerLink="/link">Link</a>
+  </li>
+  <li daffBreadcrumbItem>
+    <a routerLink="/link">Link</a>
+  </li>
+  <li daffBreacrumbItem>
+    <span>Active Link</span>
+  </li>
+</ol>
 ```
 
-> This method is deprecated. It's recommended to update all custom components to standalone.
-
 ## Accessibility
-Breadcrumbs should be wrapped in a native HTML `<nav>` element so that assistive technologies can present the breadcrumbs as a navigational element on the page. Use `aria-label="Breadcrumbs"` on the `nav` element to provide more context. `aria-current="page"` is added to a breadcrumb item when it's the current page, and `aria-current="false"` on all other items.
+Breadcrumb follows the [Breadcrumb WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/).
+
+- `aria-current="page"` is automatically applied to the last item to indicate that it represents the current page.
+
+In order to fully comply with the WAI-ARIA design pattern:
+
+- Breadcrumbs should be wrapped in a native HTML `<nav>` element so that assistive technologies can present the breadcrumbs as a navigational element on the page.
+- Use `aria-label="Breadcrumb"` on the `nav` element to provide more context into what kind of navigation it is.
+
+```html
+<nav aria-label="breadcrumb">
+  <ol daff-breadcrumb>
+  </ol>
+</nav>
+```

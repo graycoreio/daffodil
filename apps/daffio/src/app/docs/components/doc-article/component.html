@@ -9,7 +9,7 @@
         <nav aria-label="Breadcrumb">
           <ol daff-breadcrumb>
             @for (breadcrumb of breadcrumbs; track $index) {
-              <li daffBreadcrumbItem [active]="$last">
+              <li daffBreadcrumbItem>
                 @if ($last) {
                   {{breadcrumb.label}}
                 } @else {
