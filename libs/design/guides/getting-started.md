@@ -49,28 +49,26 @@ There is a minimal required global style for the Daffodil Design System to opera
 > For more information on our approach to these kinds of styles, see the [Global Styles guide.](/libs/design/guides/foundations/global-styles.md)
 
 ## Add a theme
-A theme must be configured in order for the components to work properly. The components in the design library can be configured with customized colors in addition to a dark and light mode for those same colors.
+A theme must be configured in order for Daffodil Design components to work properly.
 
-To use `@daffodil/design`'s default theme, include the following in your `styles.scss` file:
+The `daff-theme` mixin includes styles for all components. The example below demonstrates how to use Daffodil Design's default theme, where the `$theme` variable is the default configured theme. The mixin is included in the `html` selector to ensure that component styles are applied across the entire application.
 
 ```scss
-@use '@daffodil/design/scss/theme' as daff;
+@use '@daffodil/design/scss/theme' as daff-theme;
 
-.daff-theme-light {
-	@include daff.daff-theme(daff.$theme);
-}
-
-.daff-theme-dark {
-	@include daff.daff-theme(daff.$theme-dark);
+html {
+	@include daff-theme.daff-theme(daff-theme.$theme);
 }
 ```
 
-See the [Theming guide](/libs/design/guides/theming/setting-up.md) for more information on how to customize your own theme.
+The components in Daffodil Design can be configured with custom colors in addition to a dark and light mode for those same colors. See the [theming guide](/libs/design/guides/theming/setting-up.md) for more information on how to customize your own theme.
 
 ## Use a component
 Now you're ready to use Daffodil Design [components](/docs/design/components)! For example, here's how to use the [Hero](/libs/design/hero/README.md) component.
 
 ```ts
+import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
+
 @Component({
   standalone: true,
   selector: 'custom-component',
@@ -98,4 +96,4 @@ With the component imported, you can add it to your `CustomComponent` template l
 ## Next steps
 We've just walked through the basics of setting up `@daffodil/design` and using the basic features of the Hero component. Now try to change the color of the [Hero](/libs/design/hero/README.md)!
 
-Check out the [full list of components](/docs/design/components), try and add them to your sample app, and imagine all the wonderful things you can now build!
+Check out the [full list of components](/docs/design/components). Try and add them to your sample app and imagine all the wonderful things you can now build!
