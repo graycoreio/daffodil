@@ -1,8 +1,7 @@
 import {
+  ChangeDetectorRef,
   Directive,
-  ElementRef,
   HostBinding,
-  Renderer2,
 } from '@angular/core';
 
 @Directive({
@@ -14,21 +13,28 @@ export class DaffBreadcrumbItemDirective {
    */
   @HostBinding('class.daff-breadcrumb__item') class = true;
 
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.active') get activeClass() {
+    return this._active;
+  }
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('attr.aria-current') get ariaCurrent() {
+    return this._active ? 'page' : null;
+  }
+
   private _active = false;
 
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
-  ) {}
+  constructor( private cdRef: ChangeDetectorRef ) {}
 
   /** Called by the DaffBreadcrumbComponent to set the active state */
   setActive(value: boolean) {
     this._active = value;
-    if (value) {
-      this.renderer.addClass(this.elementRef.nativeElement, 'active');
-      this.renderer.setAttribute(this.elementRef.nativeElement, 'aria-current', 'page');
-    } else {
-      this.renderer.removeClass(this.elementRef.nativeElement, 'active');
-    }
+
+    this.cdRef.detectChanges();
   }
 }

@@ -62,7 +62,6 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
 
     this.breadcrumbItems.forEach(item => item.setActive(false));
 
-    // Sets only the last breadcrumb item as active
     this.breadcrumbItems.last.setActive(true);
   }
 }
