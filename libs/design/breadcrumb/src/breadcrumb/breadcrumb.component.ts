@@ -6,16 +6,15 @@ import {
   ContentChildren,
   QueryList,
   AfterContentInit,
+  DestroyRef,
 } from '@angular/core';
-import {
-  Subject,
-  takeUntil,
-} from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import {
   DaffArticleEncapsulatedDirective,
   DaffSkeletonableDirective,
 } from '@daffodil/design';
+
 
 import { DaffBreadcrumbItemDirective } from '../breadcrumb-item/breadcrumb-item.directive';
 
@@ -36,6 +35,8 @@ import { DaffBreadcrumbItemDirective } from '../breadcrumb-item/breadcrumb-item.
 })
 
 export class DaffBreadcrumbComponent implements AfterContentInit {
+
+  constructor(private destroyRef: DestroyRef) {}
   /**
    * @docs-private
    */
@@ -46,13 +47,11 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
    */
   @ContentChildren(DaffBreadcrumbItemDirective) breadcrumbItems!: QueryList<DaffBreadcrumbItemDirective>;
 
-  private _destroyed$ = new Subject<boolean>();
-
   ngAfterContentInit() {
     this.updateActiveState();
 
     this.breadcrumbItems.changes
-      .pipe(takeUntil(this._destroyed$))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.updateActiveState());
   }
 
