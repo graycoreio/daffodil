@@ -7,6 +7,10 @@ import {
   QueryList,
   AfterContentInit,
 } from '@angular/core';
+import {
+  Subject,
+  takeUntil,
+} from 'rxjs';
 
 import {
   DaffArticleEncapsulatedDirective,
@@ -42,12 +46,14 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
    */
   @ContentChildren(DaffBreadcrumbItemDirective) breadcrumbItems!: QueryList<DaffBreadcrumbItemDirective>;
 
-  /**
-   * @docs-private
-   */
+  private _destroyed$ = new Subject<boolean>();
+
   ngAfterContentInit() {
     this.updateActiveState();
-    this.breadcrumbItems.changes.subscribe(() => this.updateActiveState());
+
+    this.breadcrumbItems.changes
+      .pipe(takeUntil(this._destroyed$))
+      .subscribe(() => this.updateActiveState());
   }
 
   private updateActiveState() {
@@ -55,9 +61,9 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
       return;
     }
 
+    this.breadcrumbItems.forEach(item => item.setActive(false));
+
     // Sets only the last breadcrumb item as active
-    this.breadcrumbItems.forEach((item, index) => {
-      item.setActive(index === this.breadcrumbItems.length - 1);
-    });
+    this.breadcrumbItems.last.setActive(true);
   }
 }
