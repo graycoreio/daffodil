@@ -1,0 +1,14 @@
+@use 'theme' as daff-theme;
+
+@mixin my-component-theme($theme) {
+	$theme: daff-theme.daff-map-get($theme, 'core','type');
+	color: black;
+
+	@include daff-theme.light($theme) {
+		color: blue;
+
+		.class {
+			background: white;
+		}
+	}
+}

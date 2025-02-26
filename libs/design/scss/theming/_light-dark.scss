@@ -1,0 +1,40 @@
+//
+// Apply styles only in light mode.
+//
+// @usage
+// ```scss
+// @use 'theme' as daff-theme;
+// 
+// @include daff-theme.light($theme) {
+//   color: blue;
+// 
+//   .class {
+//      background: white;
+//	 }
+// }
+// ```
+@mixin light($mode) {
+  @if $mode == 'light' {
+    @content;
+  }
+}
+
+//
+// Apply styles only in dark mode.
+//
+// @usage
+// ```scss
+//
+// @dark {
+//   color: blue;
+// 
+//   .class {
+//      background: white;
+//	 }
+// }
+// ```
+@mixin dark($mode) {
+  @if $mode == 'dark' {
+    @content;
+  }
+}

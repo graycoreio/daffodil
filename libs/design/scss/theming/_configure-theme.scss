@@ -4,6 +4,7 @@
 @use 'get-color';
 
 $daff-light-theme: (
+	'type': 'light',
 	'font-color': get-color.daff-color(palette.$daff-neutral, 110),
 	'base': get-color.daff-color(palette.$daff-neutral, 0),
 	'base-contrast': get-color.daff-color(palette.$daff-neutral, 110),
@@ -13,6 +14,7 @@ $daff-light-theme: (
 );
 
 $daff-dark-theme: (
+	'type': 'dark',
 	'font-color': get-color.daff-color(palette.$daff-neutral, 0),
 	'base': get-color.daff-color(palette.$daff-neutral, 100),
 	'base-contrast': get-color.daff-color(palette.$daff-neutral, 0),
