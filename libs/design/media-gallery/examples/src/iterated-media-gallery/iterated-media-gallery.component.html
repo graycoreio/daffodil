@@ -1,6 +1,6 @@
 <daff-media-gallery>
 	@for(element of elements; track element) {
-		<ng-template [daffThumbnail]="element.thumbnail" [label]="element.alt">
+		<ng-template daffThumbnail [thumbnailSrc]="element.thumbnail" [label]="element.alt">
 			@switch (element.type) {
 				@case ('image') {
 					<daff-image [src]="element.src" [alt]="element.alt" [width]="element.width" [height]="element.height"></daff-image>

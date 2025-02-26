@@ -1,15 +1,25 @@
 <div class="daff-media-gallery__thumbnails">
 	@for (thumbnail of _thumbnails; track thumbnail; let index = $index) {
-		<button class="daff-thumbnail" [class.daff-selected]="thumbnail.selected" 
-		attr.aria-label="Select {{ thumbnail.label }}"
-		(click)="selectThumbnail(thumbnail)" >
-			@if(thumbnail.thumbnail) {
-				<img [src]="thumbnail.thumbnail" aria-hidden="true"/>
+		<button 
+			#thumbnailButtons
+			class="daff-thumbnail" 
+			role="tab"
+			[class.daff-selected]="thumbnail.selected" 
+			attr.aria-label="{{ thumbnail.label ?? 'Gallery Element ' + (index + 1) }}"
+			[attr.aria-selected]="thumbnail.selected ? 'true' : 'false'"
+			[attr.aria-controls]="thumbnail.panelId"
+			[attr.tabindex]="thumbnail.selected ? 0 : -1"
+			(click)="selectIndex(thumbnail)"
+			[attr.id]="thumbnail.id" 
+			(keydown.arrowright)="next()"
+			(keydown.arrowleft)="previous()">
+			@if(thumbnail.thumbnailSrc) {
+				<img [src]="thumbnail.thumbnailSrc" aria-hidden="true"/>
 			}
 		</button>
 	}
 </div>
-<div class="daff-media-gallery__selected-thumbnail">
+<div class="daff-media-gallery__selected-thumbnail" role="tabpanel" [attr.id]="_selectedThumbnail ? _selectedThumbnail.panelId : null" tabindex="0">
 	@if(_selectedThumbnail) {
 		<ng-container *ngTemplateOutlet="_selectedThumbnail.templateRef"></ng-container>
 	}

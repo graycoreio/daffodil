@@ -27,5 +27,13 @@ export class IteratedMediaGalleryComponent {
       width: 946,
       height: 946,
     },
+    {
+      type: 'image',
+      src: 'https://images.unsplash.com/photo-1607344635159-59930e3330b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&fit=crop&w=1600',
+      thumbnail: 'https://images.unsplash.com/photo-1607344635159-59930e3330b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&fit=crop&w=80',
+      alt: 'Lemons',
+      width: 946,
+      height: 946,
+    },
   ];
 }
