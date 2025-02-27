@@ -1,4 +1,3 @@
-import { Type } from '@angular/core';
 
 import { DaffMediaGalleryRegistration } from '../helpers/media-gallery-registration.interface';
 

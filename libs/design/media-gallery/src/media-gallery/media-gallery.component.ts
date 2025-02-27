@@ -9,7 +9,6 @@ import {
   AfterContentInit,
   ViewChildren,
   ElementRef,
-  viewChildren,
 } from '@angular/core';
 
 import {
