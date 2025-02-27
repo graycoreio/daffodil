@@ -46,14 +46,13 @@ let uniqueGalleryId = 0;
 })
 export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, AfterContentInit {
 
+  private _id: string;
 
   /**
    * @docs-private
    */
   @HostBinding('attr.role')
   role = 'tablist';
-
-  private _id: string;
 
   /**
    * The id of the gallery.
@@ -104,16 +103,20 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, 
    */
   private _selectedIndex: number = undefined;
 
-  /**
-   * @docs-private
-   */
-  private selectIndex(index: number) {
-    this._selectedIndex = index;
-    this._selectedThumbnail = this._thumbnails.get(index);
-  }
-
   private focusSelected() {
     this._thumbnailButtons.get(this._selectedIndex)?.nativeElement.focus();
+  }
+
+  /**
+   * Select a specific entry in the media gallery by its index (starting at 0).
+   */
+  selectIndex(index: number) {
+    if(this._thumbnails.get(index)){
+      this._selectedIndex = index;
+      this._selectedThumbnail?.deselect();
+      this._thumbnails.get(index).select();
+      this._selectedThumbnail = this._thumbnails.get(index);
+    }
   }
 
   /**
@@ -166,7 +169,7 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, 
    * Select the last element of the gallery.
    */
   selectLast(focus: boolean = true) {
-    this.selectIndex(this._thumbnails.length + 1);
+    this.selectIndex(this._thumbnails.length - 1);
     this.focusSelected();
   }
 }

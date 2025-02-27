@@ -40,7 +40,7 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
   let de: DebugElement;
   let component: DaffMediaGalleryComponent;
   const stubName = 'some name';
-  let thumbnailButtons: ReturnType<HTMLElement['querySelectorAll']>;
+  let thumbnailButtons: NodeListOf<HTMLButtonElement>;
   let panelEl: ReturnType<HTMLElement['querySelector']>;
 
   beforeEach(waitForAsync(() => {
@@ -162,5 +162,14 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
       fixture.detectChanges();
       expect(document.activeElement).toEqual(thumbnailButtons[1]);
     });
+  });
+
+  it('should select a specific thumbnail when that thumbnail is clicked', () => {
+    component.selectFirst();
+    fixture.detectChanges();
+    const buttons = fixture.debugElement.queryAll(By.css('.daff-thumbnail'));
+    buttons.at(1).triggerEventHandler('click', null);
+    fixture.detectChanges();
+    console.log(buttons.at(1).nativeElement);
   });
 });

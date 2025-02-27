@@ -14,7 +14,7 @@
 	::ng-deep {
 		.daff-thumbnail {
 			@include interactions.clickable();
-			display:flex;
+			display: flex;
 			justify-content: center;
 			align-items: center;
 			height: 64px;
@@ -23,7 +23,7 @@
 			max-width: 100%;
 			overflow: hidden;
 			user-select: none;
-			padding: 0px;
+			padding: 0;
 			flex-shrink: 0;
 
 			@include layout.breakpoint(mobile) {
@@ -92,7 +92,7 @@
 		position: relative;
 		margin: 10px 0;
 		overflow: hidden;
-		
+
 		@include layout.breakpoint(big-tablet) {
 			order: 2;
 			margin: 0;

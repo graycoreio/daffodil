@@ -9,7 +9,7 @@
 			[attr.aria-selected]="thumbnail.selected ? 'true' : 'false'"
 			[attr.aria-controls]="thumbnail.panelId"
 			[attr.tabindex]="thumbnail.selected ? 0 : -1"
-			(click)="selectIndex(thumbnail)"
+			(click)="selectIndex(index)"
 			[attr.id]="thumbnail.id" 
 			(keydown.arrowright)="next()"
 			(keydown.arrowleft)="previous()">
