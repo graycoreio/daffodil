@@ -3,7 +3,6 @@ import {
   Component,
 } from '@angular/core';
 
-import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
 import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
 import { DAFF_MEDIA_GALLERY_COMPONENTS } from '@daffodil/design/media-gallery';
 

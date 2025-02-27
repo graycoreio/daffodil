@@ -170,6 +170,6 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
     const buttons = fixture.debugElement.queryAll(By.css('.daff-thumbnail'));
     buttons.at(1).triggerEventHandler('click', null);
     fixture.detectChanges();
-    console.log(buttons.at(1).nativeElement);
+    expect(buttons.at(1).attributes['aria-selected']).toEqual('true');
   });
 });
