@@ -18,7 +18,7 @@ import * as fromDemoImageGallery from '../reducers/index';
 })
 export class ImageGalleryComponent implements OnInit {
 
-  @Input() images: Array<{ url: string, label: string }>;
+  @Input() images: Array<{ url: string; label: string }>;
 
   constructor(
     private store: Store<fromDemoImageGallery.State>,
