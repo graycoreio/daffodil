@@ -6,7 +6,6 @@ import {
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { daffThumbnailCompatToken } from '@daffodil/design/media-gallery';
 
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
 import * as fromDemoImageGallery from '../reducers/index';
@@ -15,17 +14,11 @@ import * as fromDemoImageGallery from '../reducers/index';
   selector: 'demo-image-gallery-container',
   templateUrl: './image-gallery.component.html',
   encapsulation: ViewEncapsulation.None,
-  providers: [
-    {
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      provide: daffThumbnailCompatToken, useFactory: () => ImageGalleryComponent,
-    },
-  ],
   standalone: false,
 })
 export class ImageGalleryComponent implements OnInit {
 
-  @Input() images;
+  @Input() images: Array<{ url: string, label: string }>;
 
   constructor(
     private store: Store<fromDemoImageGallery.State>,

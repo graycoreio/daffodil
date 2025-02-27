@@ -1,9 +1,12 @@
 <daff-media-gallery>
-  <daff-image daffThumbnail
-    *ngFor="let image of images"
-    alt="{{image.label}}"
-    src="{{image.url}}"
-    width="594"
-    height="737">
-  </daff-image>
+  @for(image of images; track image) {
+    <ng-template daffThumbnail>
+      <daff-image 
+        alt="{{ image.label }}"
+        src="{{ image.url }}"
+        width="594"
+        height="737">
+      </daff-image>
+    </ng-template>
+  }
 </daff-media-gallery>
