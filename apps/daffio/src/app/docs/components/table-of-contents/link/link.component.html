@@ -1,12 +1,14 @@
-@for (entry of tableOfContents; track entry.slug) {
-	<a
-		class="daffio-docs-table-of-contents-link level-{{entry.lvl}}"
-		routerLink="./"
-		queryParamsHandling="merge"
-		[fragment]="entry.slug"
-		routerLinkActive
-		#rla="routerLinkActive"
-		[routerLinkActiveOptions]="ROUTER_LINK_ACTIVE_CONFIG"
-		[class.active]="rla.isActive"
-	>{{ entry.content }}</a>
-}
+<ng-container *ngrxLet="activeHeaderService.fragment$; let fragment">
+	@for (entry of tableOfContents; track entry.slug) {
+		<a
+			class="daffio-docs-table-of-contents-link level-{{entry.lvl}}"
+			routerLink="./"
+			queryParamsHandling="merge"
+			[fragment]="entry.slug"
+			routerLinkActive
+			#rla="routerLinkActive"
+			[routerLinkActiveOptions]="ROUTER_LINK_ACTIVE_CONFIG"
+			[class.active]="rla.isActive || fragment === entry.slug"
+		>{{ entry.content }}</a>
+	}
+</ng-container>

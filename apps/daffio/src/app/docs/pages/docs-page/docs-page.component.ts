@@ -17,6 +17,7 @@ import { map } from 'rxjs/operators';
 
 import { DaffDoc } from '@daffodil/docs-utils';
 
+import { DaffioActiveHeaderService } from '../../../core/dynamic-fragment/service';
 import { DaffioDocsScrollToTopComponent } from '../../components/scroll-to-top/scroll-to-top.component';
 import { DaffioDocsDynamicContentComponentService } from '../../dynamic-content/dynamic-content-component.service';
 import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.type';
@@ -33,6 +34,7 @@ import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.
   ],
   providers: [
     DaffioDocsDynamicContentComponentService,
+    DaffioActiveHeaderService,
   ],
 })
 export class DaffioDocsPageComponent implements OnInit {

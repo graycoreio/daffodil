@@ -9,8 +9,11 @@ import {
   RouterLink,
   RouterLinkActive,
 } from '@angular/router';
+import { LetDirective } from '@ngrx/component';
 
 import { DaffDocTableOfContents } from '@daffodil/docs-utils';
+
+import { DaffioActiveHeaderService } from '../../../../core/dynamic-fragment/service';
 
 const DEFAULT_ROUTER_LINK_ACTIVE_CONFIG: RouterLinkActive['routerLinkActiveOptions'] = {
   paths: 'exact',
@@ -25,6 +28,7 @@ const DEFAULT_ROUTER_LINK_ACTIVE_CONFIG: RouterLinkActive['routerLinkActiveOptio
   styleUrl: 'link.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    LetDirective,
     RouterLink,
     RouterLinkActive,
   ],
@@ -37,4 +41,8 @@ export class DaffioDocsTableOfContentsLinkComponent {
    */
   @Input() tableOfContents: DaffDocTableOfContents;
   @Input() @HostBinding('class.in-sidebar') inSidebar = false;
+
+  constructor(
+    public activeHeaderService: DaffioActiveHeaderService,
+  ) {}
 }
