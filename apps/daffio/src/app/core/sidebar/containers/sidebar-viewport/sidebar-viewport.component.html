@@ -1,20 +1,22 @@
-<daff-sidebar-viewport (backdropClicked)="close()">
-  <daff-sidebar class="daffio-sidebar" [mode]="mode$ | async" [open]="showSidebar()" (escapePressed)="close()">
-    @if (showSidebarHeader$ | async) {
-      <ng-container [ngComponentOutlet]="(component$ | async)?.header" ngProjectAs="daff-sidebar-header"></ng-container>
-    }
-    @if ((component$ | async)?.body; as body) {
-      <ng-container [ngComponentOutlet]="body"></ng-container>
-    }
-    @if (showSidebarFooter$ | async) {
-      <ng-container [ngComponentOutlet]="(component$ | async)?.footer" ngProjectAs="daff-sidebar-footer"></ng-container>
-    }
-  </daff-sidebar>
-  <ng-container daff-sidebar-viewport-nav>
-    <ng-content select="[daff-sidebar-viewport-nav]"></ng-content>
-  </ng-container>
-  <ng-content></ng-content>
-  <ng-container daff-sidebar-viewport-footer>
-    <ng-content select="[daff-sidebar-viewport-footer]"></ng-content>
-  </ng-container>
-</daff-sidebar-viewport>
+<ng-container *ngrxLet="component$; let component">
+	<daff-sidebar-viewport (backdropClicked)="close()">
+		<daff-sidebar class="daffio-sidebar" [mode]="mode$ | async" [side]="component?.side || 'left'" [open]="showSidebar()" (escapePressed)="close()">
+			@if (showSidebarHeader$ | async) {
+				<ng-container [ngComponentOutlet]="component?.header" ngProjectAs="daff-sidebar-header"></ng-container>
+			}
+			@if (component?.body) {
+				<ng-container [ngComponentOutlet]="component.body"></ng-container>
+			}
+			@if (showSidebarFooter$ | async) {
+				<ng-container [ngComponentOutlet]="component?.footer" ngProjectAs="daff-sidebar-footer"></ng-container>
+			}
+		</daff-sidebar>
+		<ng-container daff-sidebar-viewport-nav>
+			<ng-content select="[daff-sidebar-viewport-nav]"></ng-content>
+		</ng-container>
+		<ng-content></ng-content>
+		<ng-container daff-sidebar-viewport-footer>
+			<ng-content select="[daff-sidebar-viewport-footer]"></ng-content>
+		</ng-container>
+	</daff-sidebar-viewport>
+</ng-container>
