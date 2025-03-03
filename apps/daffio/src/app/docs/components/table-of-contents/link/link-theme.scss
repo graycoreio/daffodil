@@ -1,0 +1,12 @@
+@use 'sass:map';
+@use 'theme' as daff-theme;
+
+@mixin daffio-docs-table-of-contents-link-theme($theme) {
+	$primary: daff-theme.daff-map-get($theme, primary);
+
+	.daffio-docs-table-of-contents-link {
+		&::before {
+			background: daff-theme.daff-color($primary);
+		}
+	}
+}

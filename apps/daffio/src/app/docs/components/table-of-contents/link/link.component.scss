@@ -4,30 +4,48 @@
 	gap: 8px;
 }
 
+// stylelint-disable selector-class-pattern
 .daffio-docs-table-of-contents-link {
 	display: block;
 	font-size: 1rem;
 	line-height: 1.25rem;
 	text-decoration: none;
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: -0.75rem;
+		opacity: 0;
+		transition: opacity 300ms;
+		width: 0.125rem;
+		height: 100%;
+	}
 
 	&.active {
 		font-weight: 500;
+
+		&::before {
+			opacity: 1;
+		}
 	}
 
-	&__level-1 {
+	&.level-1 {
 		display: none;
 		padding: 0;
 	}
 
-	&__level-2 {
+	&.level-2 {
 		padding: 0;
 	}
 
-	&__level-3 {
-		padding: 0 0 0 16px;
+	&.level-3 {
+		padding: 0 0 0 1rem;
 	}
 
-	&__level-4 {
-		padding: 0 0 0 32px;
+	&.level-4 {
+		padding: 0 0 0 2rem;
 	}
 }
