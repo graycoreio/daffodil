@@ -11,7 +11,6 @@ import { DaffioSidebarService } from '../../../../../core/sidebar/services/sideb
   selector: 'daffio-docs-toc-sidebar-header',
   templateUrl: './sidebar-header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     DAFF_SIDEBAR_COMPONENTS,
   ],

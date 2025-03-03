@@ -13,7 +13,6 @@ import { DaffDocTableOfContents } from '@daffodil/docs-utils';
   templateUrl: './link.component.html',
   styleUrl: 'link.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     RouterLink,
   ],

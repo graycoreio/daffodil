@@ -12,7 +12,6 @@ import { DaffioDocsTocService } from '../../services/toc.service';
   templateUrl: './toc-sidebar-content.component.html',
   styleUrl: './toc-sidebar-content.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     AsyncPipe,
     DaffioDocsTableOfContentsLinkComponent,
