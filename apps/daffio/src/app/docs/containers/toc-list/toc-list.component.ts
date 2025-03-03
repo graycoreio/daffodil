@@ -2,13 +2,10 @@ import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
 } from '@angular/core';
 
-import { DaffDocTableOfContents } from '@daffodil/docs-utils';
-
-import { DaffioDocsListComponent } from '../../components/docs-list/docs-list.component';
 import { DaffioDocsTableOfContentsLinkComponent } from '../../components/table-of-contents/link/link.component';
+import { DaffioDocsTocService } from '../../services/toc.service';
 
 @Component({
   selector: 'daffio-docs-toc-list-container',
@@ -17,10 +14,13 @@ import { DaffioDocsTableOfContentsLinkComponent } from '../../components/table-o
   standalone: true,
   imports: [
     AsyncPipe,
-    DaffioDocsListComponent,
     DaffioDocsTableOfContentsLinkComponent,
   ],
 })
 export class DaffioDocsTocListContainer {
-  @Input() toc: DaffDocTableOfContents = [];
+  toc$ = this.tocService.toc$;
+
+  constructor(
+    private tocService: DaffioDocsTocService,
+  ) {}
 }

@@ -1,4 +1,5 @@
-import { NgFor } from '@angular/common';
+
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,6 +8,7 @@ import {
 import { RouterLink } from '@angular/router';
 
 import { DaffDocTableOfContents } from '@daffodil/docs-utils';
+import { DaffRouterActivatedRoute } from '@daffodil/router';
 
 @Component({
   selector: 'daffio-docs-table-of-contents-link',
@@ -15,7 +17,7 @@ import { DaffDocTableOfContents } from '@daffodil/docs-utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    NgFor,
+    AsyncPipe,
     RouterLink,
   ],
 })
@@ -24,4 +26,8 @@ export class DaffioDocsTableOfContentsLinkComponent {
    * The doc to render
    */
   @Input() tableOfContents: DaffDocTableOfContents;
+
+  constructor(
+    public route: DaffRouterActivatedRoute,
+  ) {}
 }

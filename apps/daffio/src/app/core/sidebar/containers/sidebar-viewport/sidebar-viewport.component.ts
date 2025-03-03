@@ -3,9 +3,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   Inject,
+  Injector,
   OnInit,
   Signal,
 } from '@angular/core';
+import {
+  ChildrenOutletContexts,
+  PRIMARY_OUTLET,
+} from '@angular/router';
 import {
   combineLatest,
   map,
@@ -40,6 +45,10 @@ export class DaffioSidebarViewportContainer implements OnInit {
   component$: Observable<DaffioSidebarSectionRegistration>;
   isBigTablet$: Observable<boolean>;
 
+  get childInjector(): Injector {
+    return this.childrenOutletContext.getContext(PRIMARY_OUTLET)?.injector;
+  }
+
   ngOnInit() {
     this.component$ = this.sidebarService.activeRegistration$;
     this.showSidebar = this.sidebarService.isOpen;
@@ -67,6 +76,7 @@ export class DaffioSidebarViewportContainer implements OnInit {
   constructor(
     private sidebarService: DaffioSidebarService,
     @Inject(SERVER_SAFE_BREAKPOINT_OBSERVER) private breakpointObserver: BreakpointObserver,
+    private childrenOutletContext: ChildrenOutletContexts,
   ) { }
 
   close() {
