@@ -17,6 +17,7 @@ import {
   map,
   Observable,
   startWith,
+  tap,
 } from 'rxjs';
 
 import {
@@ -43,23 +44,24 @@ export class DaffioSidebarViewportContainer implements OnInit {
   mode$: Observable<DaffSidebarModeEnum>;
   showSidebarHeader$: Observable<boolean>;
   showSidebarFooter$: Observable<boolean>;
+	isBigTablet$: Observable<boolean>;
   component$: Observable<DaffioSidebarSectionRegistration>;
-  isBigTablet$: Observable<boolean>;
-
-  get injector(): Injector {
-    const outlet = this.childrenOutletContext.getContext(PRIMARY_OUTLET);
-    return outlet?.injector
-      ? Injector.create({
-        parent: outlet.injector,
-        providers: [
-          { provide: ActivatedRoute, useValue: outlet.route },
-        ],
-      })
-      : this._injector;
-  }
+  injector = this._injector;
 
   ngOnInit() {
-    this.component$ = this.sidebarService.activeRegistration$;
+    this.component$ = this.sidebarService.activeRegistration$.pipe(
+      tap(() => {
+        const outlet = this.childrenOutletContext.getContext(PRIMARY_OUTLET);
+        this.injector = outlet?.injector
+          ? Injector.create({
+            parent: outlet.injector,
+            providers: [
+              { provide: ActivatedRoute, useValue: outlet.route },
+            ],
+          })
+          : this._injector;
+      }),
+    );
     this.showSidebar = this.sidebarService.isOpen;
     this.mode$ = this.sidebarService.mode$;
     this.isBigTablet$ = this.breakpointObserver.observe(DaffBreakpoints.BIG_TABLET).pipe(
