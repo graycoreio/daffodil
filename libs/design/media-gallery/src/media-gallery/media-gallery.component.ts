@@ -44,7 +44,6 @@ let uniqueGalleryId = 0;
   ],
 })
 export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, AfterContentInit {
-
   private _id: string;
 
   /**
@@ -85,11 +84,18 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, 
    */
   @ContentChildren(DaffThumbnailDirective) _thumbnails: QueryList<DaffThumbnailDirective>;
 
+  /**
+   * @docs-private
+   */
   @ViewChildren('thumbnailButtons', { read: ElementRef }) private _thumbnailButtons: QueryList<ElementRef<HTMLElement>>;
 
-  constructor() {
+  constructor(private skeletonDirective: DaffSkeletonableDirective) {
     uniqueGalleryId++;
     this.name = 'gallery-' + uniqueGalleryId;
+  }
+
+  get skeleton() {
+    return this.skeletonDirective.skeleton;
   }
 
   /**

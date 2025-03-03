@@ -6,6 +6,7 @@
 	$root: '.daff-media-gallery';
 	display: flex;
 	flex-direction: column;
+	gap: 0.5rem;
 
 	@include layout.breakpoint(big-tablet) {
 		flex-direction: row;
@@ -15,11 +16,11 @@
 		.daff-thumbnail {
 			@include interactions.clickable();
 			display: flex;
+			flex-direction: row;
 			justify-content: center;
 			align-items: center;
-			height: 64px;
-			width: 64px;
-			margin: 0 2px;
+			height: 4rem;
+			width: 4rem;
 			max-width: 100%;
 			overflow: hidden;
 			user-select: none;
@@ -27,15 +28,14 @@
 			flex-shrink: 0;
 
 			@include layout.breakpoint(mobile) {
-				height: 72px;
-				width: 72px;
+				height: 4.5rem;
+				width: 4.5rem;
 			}
 
 			@include layout.breakpoint(big-tablet) {
-				display: block;
-				margin: 0 0 4px;
-				height: 80px;
-				width: 80px;
+				flex-direction: column;
+				height: 5rem;
+				width: 5rem;
 			}
 
 			img {
@@ -48,10 +48,14 @@
 	&.daff-skeleton {
 		::ng-deep {
 			.daff-thumbnail {
-				@include state.skeleton-screen(72px, 72px);
+				@include state.skeleton-screen(4rem, 4rem);
+
+				@include layout.breakpoint(mobile) {
+					@include state.skeleton-screen(4.5rem, 4.5rem);
+				}
 
 				@include layout.breakpoint(big-tablet) {
-					@include state.skeleton-screen(80px, 80px);
+					@include state.skeleton-screen(5rem, 5rem);
 				}
 			}
 
@@ -68,11 +72,10 @@
 
 .daff-media-gallery {
 	&__thumbnails {
-		max-height: 408px;
 		display: flex;
 		flex-direction: row;
 		flex-shrink: 0;
-		gap: 2px;
+		gap: 0.25rem;
 		order: 2;
 		max-width: 100%;
 		overflow-x: auto;
@@ -80,17 +83,15 @@
 		@include layout.breakpoint(big-tablet) {
 			flex-direction: column;
 			overflow-y: auto;
-			margin: 0 8px 0 0;
 			order: 1;
 		}
 	}
 
 	&__selected-thumbnail {
-		display: block;
+		display: flex;
 		flex-grow: 1;
 		order: 1;
 		position: relative;
-		margin: 10px 0;
 		overflow: hidden;
 
 		@include layout.breakpoint(big-tablet) {

@@ -51,9 +51,9 @@ export class CustomComponentModule { }
 
 ```html
 <daff-media-gallery>
-  <daff-image 
-      *daffThumbnail
-      src="/path/to/your/image.jpg" alt="Your description" width="100" height="100"></daff-image>
+  <ng-template daffThumbnail thumbnailSrc="/thumbnail-path.jpg" label="Your description">
+    <daff-image src="/image-path.jpg" alt="Your description" width="100" height="100"></daff-image>
+  </ng-template>
 </daff-media-gallery>
 ```
 

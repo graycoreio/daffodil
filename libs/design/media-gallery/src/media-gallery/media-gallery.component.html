@@ -1,4 +1,5 @@
-<div class="daff-media-gallery__thumbnails">
+@if (!skeleton) {
+	<div class="daff-media-gallery__thumbnails">
 	@for (thumbnail of _thumbnails; track thumbnail; let index = $index) {
 		<button 
 			#thumbnailButtons
@@ -24,3 +25,11 @@
 		<ng-container *ngTemplateOutlet="_selectedThumbnail.templateRef"></ng-container>
 	}
 </div>
+} @else {
+	<div class="daff-media-gallery__thumbnails">
+		<button class="daff-thumbnail"></button>
+		<button class="daff-thumbnail"></button>
+		<button class="daff-thumbnail"></button>
+	</div>
+	<div class="daff-media-gallery__selected-thumbnail"></div>
+}
