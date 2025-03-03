@@ -8,7 +8,7 @@ import {
   Signal,
 } from '@angular/core';
 import {
-	ActivatedRoute,
+  ActivatedRoute,
   ChildrenOutletContexts,
   PRIMARY_OUTLET,
 } from '@angular/router';
@@ -44,7 +44,7 @@ export class DaffioSidebarViewportContainer implements OnInit {
   mode$: Observable<DaffSidebarModeEnum>;
   showSidebarHeader$: Observable<boolean>;
   showSidebarFooter$: Observable<boolean>;
-	isBigTablet$: Observable<boolean>;
+  isBigTablet$: Observable<boolean>;
   component$: Observable<DaffioSidebarRegistration>;
   injector = this._injector;
 

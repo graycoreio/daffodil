@@ -24,7 +24,7 @@ import {
   DaffSidebarComponent,
   DaffSidebarModeEnum,
   DAFF_SIDEBAR_COMPONENTS,
-	DaffSidebarModule,
+  DaffSidebarModule,
 } from '@daffodil/design/sidebar';
 
 import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';

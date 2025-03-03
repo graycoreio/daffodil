@@ -10,7 +10,7 @@ const HEADER_WITH_ID_SELECTOR = 'h1[id],h2[id],h3[id],h4[id],h5[id]';
 @Injectable()
 export class DaffioActiveHeaderService {
   /**
-   * True when
+   * True when the service is processing a scroll event.
    */
   private _ticking = false;
   private _fragment = new BehaviorSubject<string | null>(null);

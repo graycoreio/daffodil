@@ -9,6 +9,7 @@ import { DaffioDocArticleModule } from './components/doc-article/module';
 import { DaffioDocsRoutingModule } from './docs-routing.module';
 import { DaffioDocsIndexService } from './index/index.service';
 import { DaffioDocsPageComponent } from './pages/docs-page/docs-page.component';
+import { DaffioActiveHeaderService } from '../core/dynamic-fragment/service';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { DaffioDocsPageComponent } from './pages/docs-page/docs-page.component';
   ],
   providers: [
     DaffioDocsIndexService,
+    DaffioActiveHeaderService,
   ],
 })
 export class DaffioDocsModule {}
