@@ -33,9 +33,7 @@ import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import { FilterOutPrivatePropertiesProcessor } from '../../processors/filterOutPrivateProperties';
 import { GenerateNavListProcessor } from '../../processors/generateNavList';
 import { MakeTypesHtmlCompatibleProcessor } from '../../processors/makeTypesHtmlCompatible';
-import {
-  MarkdownCodeProcessor,
-} from '../../processors/markdown';
+import { MarkdownCodeProcessor } from '../../processors/markdown';
 import {
   PACKAGES_PROCESSOR_PROVIDER,
   PackagesProcessor,

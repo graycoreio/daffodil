@@ -30,9 +30,7 @@ import {
   GENERATE_NAV_LIST_PROCESSOR_PROVIDER,
   GenerateNavListProcessor,
 } from '../../processors/generateNavList';
-import {
-  MarkdownCodeProcessor,
-} from '../../processors/markdown';
+import { MarkdownCodeProcessor } from '../../processors/markdown';
 import { IdSanitizer } from '../../services/id-sanitizer';
 import { outputPathsConfigurator } from '../../utils/configurator/output';
 import { pathsConfigurator } from '../../utils/configurator/path';

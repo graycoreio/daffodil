@@ -89,9 +89,9 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
     });
   }
 
-	parse(text: string): string {
-		return <string>this.marked.parse(text)
-	}
+  parse(text: string): string {
+    return <string>this.marked.parse(text);
+  }
 };
 
 export const MARKDOWN_CODE_PROCESSOR_PROVIDER = <const>[
