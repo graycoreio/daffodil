@@ -28,7 +28,7 @@ import {
 } from '@daffodil/design/sidebar';
 
 import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
-import { DaffioSidebarSectionRegistration } from '../../interfaces/section-registration.interface';
+import { DaffioSidebarRegistration } from '../../interfaces/registration.type';
 import { DaffioSidebarService } from '../../services/sidebar.service';
 
 @Component({
@@ -44,7 +44,7 @@ describe('DaffioSidebarViewportContainer', () => {
   let daffSidebarViewport: DaffSidebarViewportComponent;
   let daffSidebar: DaffSidebarComponent;
 
-  let activeRegistration: BehaviorSubject<DaffioSidebarSectionRegistration>;
+  let activeRegistration: BehaviorSubject<DaffioSidebarRegistration>;
   let mode: BehaviorSubject<DaffSidebarModeEnum>;
   let sidebarServiceSpy: jasmine.SpyObj<DaffioSidebarService>;
 
