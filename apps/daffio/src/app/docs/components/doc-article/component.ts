@@ -15,7 +15,7 @@ import {
 
 import { DaffioSidebarService } from '../../../core/sidebar/services/sidebar.service';
 import { DAFFIO_DOCS_LIST_SIDEBAR_ID } from '../../containers/docs-list/sidebar.provider';
-import { DAFFIO_DOCS_TOC_SIDEBAR_ID } from '../../containers/toc-list/sidebar.provider';
+import { DAFFIO_DOCS_TOC_SIDEBAR_ID } from '../../containers/toc-sidebar-content/sidebar.provider';
 
 @Component({
   selector: 'daffio-doc-article',

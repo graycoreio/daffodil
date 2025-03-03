@@ -11,15 +11,15 @@ import {
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffioDocsTocListContainer } from './toc-list.component';
+import { DaffioDocsTocSidebarContentContainer } from './toc-sidebar-content.component';
 
-describe('DaffioDocsTocListContainer', () => {
-  let component: DaffioDocsTocListContainer;
-  let fixture: ComponentFixture<DaffioDocsTocListContainer>;
+describe('DaffioDocsTocSidebarContentContainer', () => {
+  let component: DaffioDocsTocSidebarContentContainer;
+  let fixture: ComponentFixture<DaffioDocsTocSidebarContentContainer>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [DaffioDocsTocListContainer,
+      imports: [DaffioDocsTocSidebarContentContainer,
         RouterTestingModule,
         NoopAnimationsModule],
       providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
@@ -28,7 +28,7 @@ describe('DaffioDocsTocListContainer', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioDocsTocListContainer);
+    fixture = TestBed.createComponent(DaffioDocsTocSidebarContentContainer);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

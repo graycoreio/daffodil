@@ -8,8 +8,9 @@ import { DaffioDocsTableOfContentsLinkComponent } from '../../components/table-o
 import { DaffioDocsTocService } from '../../services/toc.service';
 
 @Component({
-  selector: 'daffio-docs-toc-list-container',
-  templateUrl: './toc-list.component.html',
+  selector: 'daffio-docs-toc-sidebar-content-container',
+  templateUrl: './toc-sidebar-content.component.html',
+  styleUrl: './toc-sidebar-content.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -17,7 +18,7 @@ import { DaffioDocsTocService } from '../../services/toc.service';
     DaffioDocsTableOfContentsLinkComponent,
   ],
 })
-export class DaffioDocsTocListContainer {
+export class DaffioDocsTocSidebarContentContainer {
   toc$ = this.tocService.toc$;
 
   constructor(
