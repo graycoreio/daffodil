@@ -2,6 +2,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostBinding,
   Input,
 } from '@angular/core';
 import {
@@ -35,4 +36,5 @@ export class DaffioDocsTableOfContentsLinkComponent {
    * The doc to render
    */
   @Input() tableOfContents: DaffDocTableOfContents;
+  @Input() @HostBinding('class.in-sidebar') inSidebar = false;
 }

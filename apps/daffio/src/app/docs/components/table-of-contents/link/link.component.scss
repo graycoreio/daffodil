@@ -1,10 +1,18 @@
+// stylelint-disable selector-class-pattern
 :host {
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
+
+	&.in-sidebar {
+		.daffio-docs-table-of-contents-link {
+			&::before {
+				left: -1rem;
+			}
+		}
+	}
 }
 
-// stylelint-disable selector-class-pattern
 .daffio-docs-table-of-contents-link {
 	display: block;
 	font-size: 1rem;
