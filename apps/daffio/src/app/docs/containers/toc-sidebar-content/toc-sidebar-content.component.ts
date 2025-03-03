@@ -16,6 +16,9 @@ import { DaffioDocsTocService } from '../../services/toc.service';
     AsyncPipe,
     DaffioDocsTableOfContentsLinkComponent,
   ],
+  providers: [
+    DaffioDocsTocService,
+  ],
 })
 export class DaffioDocsTocSidebarContentContainer {
   toc$ = this.tocService.toc$;

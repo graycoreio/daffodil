@@ -23,6 +23,8 @@ describe('DaffioDocsPackageCardsContainer', () => {
   let dataSpy: BehaviorSubject<DaffioRoute['data']>;
 
   beforeEach(waitForAsync(() => {
+    dataSpy = new BehaviorSubject({});
+
     TestBed.configureTestingModule({
       declarations: [
         DaffioDocsPackageCardsContainer,

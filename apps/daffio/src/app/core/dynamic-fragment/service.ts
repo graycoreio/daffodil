@@ -3,7 +3,6 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 const HEADER_WITH_ID_SELECTOR = 'h1[id],h2[id],h3[id],h4[id],h5[id]';
@@ -19,16 +18,18 @@ export class DaffioActiveHeaderService {
   readonly fragment$ = this._fragment.asObservable();
 
   constructor(
-    private router: Router,
     @Inject(DOCUMENT) private document: Document,
   ) {
     this.document.addEventListener('scroll', () => {
       if (!this._ticking) {
         this.document.defaultView.requestAnimationFrame(() => {
-          this._fragment.next([...document.querySelectorAll(HEADER_WITH_ID_SELECTOR)].find(el => {
+          const fragment = [...document.querySelectorAll(HEADER_WITH_ID_SELECTOR)].find(el => {
             const rect = el.getBoundingClientRect();
             return rect.top >= 0 && rect.bottom >= 0;
-          })?.getAttribute('id'));
+          })?.getAttribute('id');
+          if (fragment) {
+            this._fragment.next(fragment);
+          }
           this._ticking = false;
         });
 

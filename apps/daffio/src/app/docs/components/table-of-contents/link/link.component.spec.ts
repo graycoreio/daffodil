@@ -9,6 +9,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DaffDoc } from '@daffodil/docs-utils';
 
 import { DaffioDocsTableOfContentsLinkComponent } from './link.component';
+import { DaffioActiveHeaderService } from '../../../../core/dynamic-fragment/service';
 import { DaffioDocsFactory } from '../../../testing/factories/docs.factory';
 
 describe('DaffioDocsTableOfContentsLinkComponent', () => {
@@ -21,6 +22,9 @@ describe('DaffioDocsTableOfContentsLinkComponent', () => {
       imports: [
         RouterTestingModule,
         DaffioDocsTableOfContentsLinkComponent,
+      ],
+      providers: [
+        DaffioActiveHeaderService,
       ],
     })
       .compileComponents();

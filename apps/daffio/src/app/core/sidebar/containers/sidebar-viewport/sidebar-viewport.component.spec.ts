@@ -15,6 +15,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LetDirective } from '@ngrx/component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { BehaviorSubject } from 'rxjs';
 
@@ -23,6 +24,7 @@ import {
   DaffSidebarComponent,
   DaffSidebarModeEnum,
   DAFF_SIDEBAR_COMPONENTS,
+	DaffSidebarModule,
 } from '@daffodil/design/sidebar';
 
 import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
@@ -70,6 +72,8 @@ describe('DaffioSidebarViewportContainer', () => {
         DAFF_SIDEBAR_COMPONENTS,
         RouterTestingModule,
         NoopAnimationsModule,
+        DaffSidebarModule,
+        LetDirective,
       ],
       providers: [
         {

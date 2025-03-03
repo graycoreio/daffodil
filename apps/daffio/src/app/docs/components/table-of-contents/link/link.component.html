@@ -5,10 +5,7 @@
 			routerLink="./"
 			queryParamsHandling="merge"
 			[fragment]="entry.slug"
-			routerLinkActive
-			#rla="routerLinkActive"
-			[routerLinkActiveOptions]="ROUTER_LINK_ACTIVE_CONFIG"
-			[class.active]="rla.isActive || fragment === entry.slug"
+			[class.active]="fragment === entry.slug"
 		>{{ entry.content }}</a>
 	}
 </ng-container>

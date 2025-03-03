@@ -20,6 +20,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioDocsDesignComponentContentComponent } from './component-content.component';
+import { DaffioActiveHeaderService } from '../../../../core/dynamic-fragment/service';
 import { DaffioDocArticleComponent } from '../../../components/doc-article/component';
 
 @Component({
@@ -48,7 +49,11 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
         NoopAnimationsModule,
         WrapperComponent,
       ],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
+      providers: [
+        DaffioActiveHeaderService,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
     })
       .compileComponents();
   }));

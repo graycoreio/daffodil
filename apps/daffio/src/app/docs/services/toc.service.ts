@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
   map,
   switchMap,
 } from 'rxjs';
 
 import { DaffDoc } from '@daffodil/docs-utils';
-import { DaffRouterActivatedRoute } from '@daffodil/router';
 
 @Injectable()
 export class DaffioDocsTocService {
-  toc$ = this.route.route$.pipe(
+  toc$ = this.route.data.pipe(
     switchMap((route) => route.data),
-    map((data) => (<DaffDoc>data.doc)?.tableOfContents || []),
+    map((data: {doc?: DaffDoc}) => data.doc?.tableOfContents || []),
   );
 
   constructor(
-    private route: DaffRouterActivatedRoute,
+    private route: ActivatedRoute,
   ) {}
 }

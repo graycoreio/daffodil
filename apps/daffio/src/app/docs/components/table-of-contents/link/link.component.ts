@@ -5,22 +5,12 @@ import {
   HostBinding,
   Input,
 } from '@angular/core';
-import {
-  RouterLink,
-  RouterLinkActive,
-} from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { LetDirective } from '@ngrx/component';
 
 import { DaffDocTableOfContents } from '@daffodil/docs-utils';
 
 import { DaffioActiveHeaderService } from '../../../../core/dynamic-fragment/service';
-
-const DEFAULT_ROUTER_LINK_ACTIVE_CONFIG: RouterLinkActive['routerLinkActiveOptions'] = {
-  paths: 'exact',
-  queryParams: 'exact',
-  fragment: 'exact',
-  matrixParams: 'ignored',
-};
 
 @Component({
   selector: 'daffio-docs-table-of-contents-link',
@@ -30,12 +20,9 @@ const DEFAULT_ROUTER_LINK_ACTIVE_CONFIG: RouterLinkActive['routerLinkActiveOptio
   imports: [
     LetDirective,
     RouterLink,
-    RouterLinkActive,
   ],
 })
 export class DaffioDocsTableOfContentsLinkComponent {
-  readonly ROUTER_LINK_ACTIVE_CONFIG = DEFAULT_ROUTER_LINK_ACTIVE_CONFIG;
-
   /**
    * The doc to render
    */
