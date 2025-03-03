@@ -2,7 +2,7 @@
 Color helps to distinguish and create consistent experiences across products. It highlights key areas, conveys status, urgency, and guides attention.
 
 ## Color palettes
-The default Daffodil design system theme features three core palettes that define's Daffodil's brand identity, three status indicating palettes, and a neutral palette that is dominant throughout the design system. These palettes are built using [HSLuv](https://www.hsluv.org/), a perceptually uniform color space designed to be more human-friendly than traditional models like RGB and HSL. By addressing the inconsistencies of conventional color spaces, HSLuv ensures predictable contrast and visual harmony.
+The default Daffodil design system theme features three core palettes that defines Daffodil's brand identity, three status indicating palettes, and a neutral palette that is dominant throughout the design system. These palettes are built using [HSLuv](https://www.hsluv.org/), a perceptually uniform color space designed to be more human-friendly than traditional models like RGB and HSL. By addressing the inconsistencies of conventional color spaces, HSLuv ensures predictable contrast and visual harmony.
 
 Each palette consists of a collection of [perceptually uniform colors](https://programmingdesignsystems.com/color/perceptually-uniform-color-spaces/) with consistent contrast ratios, enhancing accessibility and usability across the design system. These palettes are represented as Sass maps, where each individual color value is referred to as a **hue**.
 

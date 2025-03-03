@@ -1,10 +1,10 @@
 # Theming
-Daffodil's extensible theming architecture allows you to customize Daffodil Design components to match your brand or product's visual style using a set of universal variables, eliminating the need for individual component modifications.
+Daffodil's extensible theming architecture allows you to customize our components to match your brand or product's visual style using a set of universal variables, eliminating the need for individual component modifications.
 
 ## Theming basics
 Daffodil Design is built with [Sass](https://sass-lang.com/). You should be familiar with the basics of CSS and Sass, including variables, functions, and mixins.
 
-A theme must be configured in order for Daffodil Design components to work properly.
+A theme must be configured in order for the components to work properly.
 
 ## Default theme
 The `daff-theme` mixin includes styles for all components. The example below demonstrates how to use Daffodil Design's default theme, where the `$theme` variable is the default configured theme. The mixin is included in the `html` selector to ensure that component styles are applied across the entire application.
