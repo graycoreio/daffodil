@@ -1,0 +1,13 @@
+<nav aria-label="Breadcrumb">
+	<ol daff-breadcrumb>
+		@for (breadcrumb of breadcrumbs; track breadcrumb) {
+			<li daffBreadcrumbItem>
+				@if ($last) {
+					<div>{{breadcrumb.label}}</div>
+				} @else {
+					<a [routerLink]="breadcrumb.path">{{breadcrumb.label}}</a>
+				}
+			</li>
+		}
+	</ol>
+</nav>
