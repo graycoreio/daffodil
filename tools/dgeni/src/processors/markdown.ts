@@ -70,24 +70,28 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
   $process(docs: Document[]) {
     return docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
-        doc[this.contentKey] = this.marked.parse(typeof doc.description === 'undefined' ? doc.content : doc.description);
+        doc[this.contentKey] = this.parse(typeof doc.description === 'undefined' ? doc.content : doc.description);
         if (doc.examples) {
           doc.examples = (<Array<DaffDocExample>>doc.examples).map((example) => ({
             ...example,
-            body: this.marked.parse(example.body),
+            body: this.parse(example.body),
           }));
         }
         if (doc.longDescription) {
-          doc.longDescription = (<string>this.marked.parse(doc.longDescription)).replaceAll(/(^<p>)|(<\/p>(\n)*$)/gm, '');
+          doc.longDescription = this.parse(doc.longDescription).replaceAll(/(^<p>)|(<\/p>(\n)*$)/gm, '');
         }
         doc.slug = slugify(doc.name || doc.title);
         if (doc.sourceApiBlock) {
-          doc.sourceApiBlock = this.marked.parse(`\`\`\`ts\n${doc.sourceApiBlock}\n\`\`\``);
+          doc.sourceApiBlock = this.parse(`\`\`\`ts\n${doc.sourceApiBlock}\n\`\`\``);
         }
       };
       return doc;
     });
   }
+
+	parse(text: string): string {
+		return <string>this.marked.parse(text)
+	}
 };
 
 export const MARKDOWN_CODE_PROCESSOR_PROVIDER = <const>[

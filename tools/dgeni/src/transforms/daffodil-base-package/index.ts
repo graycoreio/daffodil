@@ -27,6 +27,7 @@ import {
   TEMPLATES_PATH,
   OUTPUT_PATH,
 } from '../config';
+import { MARKDOWN_CODE_PROCESSOR_PROVIDER, MarkdownCodeProcessor } from '../../processors/markdown';
 
 export const daffodilBasePackage = new Package('daffodil-base', [
   basePackage,
@@ -39,6 +40,7 @@ export const daffodilBasePackage = new Package('daffodil-base', [
   .factory(...ID_SANITIZER_PROVIDER)
   .processor(...BREADCRUMB_PROCESSOR_PROVIDER)
   .processor(...CONVERT_TO_JSON_PROCESSOR_PROVIDER)
+	.processor(...MARKDOWN_CODE_PROCESSOR_PROVIDER)
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   .factory('packageInfo', () => require(path.resolve(PROJECT_ROOT, 'package.json')))
 
@@ -54,8 +56,8 @@ export const daffodilBasePackage = new Package('daffodil-base', [
     writeFilesProcessor.outputFolder = OUTPUT_PATH;
   })
 
-// Configure nunjucks rendering of docs via templates
-  .config((renderDocsProcessor, templateFinder, templateEngine) => {
+	// Configure nunjucks rendering of docs via templates
+  .config((renderDocsProcessor, templateFinder, templateEngine, markdown: MarkdownCodeProcessor) => {
     // Where to find the templates for the doc rendering
     templateFinder.templateFolders = [TEMPLATES_PATH];
 
@@ -76,10 +78,16 @@ export const daffodilBasePackage = new Package('daffodil-base', [
 
     // Nunjucks and Angular conflict in their template bindings so change Nunjucks
     templateEngine.config.tags = { variableStart: '{$', variableEnd: '$}' };
-    templateEngine.filters.push({
-      name: 'linkSymbols',
-      process: linkSymbols,
-    });
+    templateEngine.filters.push(
+			{
+				name: 'linkSymbols',
+				process: linkSymbols,
+			},
+			{
+				name: 'markdown',
+				process: (text) => markdown.parse(text),
+			}
+		);
 
     // helpers are made available to the nunjucks templates
     renderDocsProcessor.helpers.relativePath = (from, to) => path.relative(from, to);

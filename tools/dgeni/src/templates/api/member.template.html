@@ -3,19 +3,19 @@
 	<tr>
 		<td>@Input() {$ member.name $}</td>
 		<td>{$ member.type | linkSymbols $}</td>
-		<td>{$ member.description | linkSymbols $}</td>
+		<td>{$ member.description | markdown $}</td>
 	</tr>
 	{% elif member.decorators[0].name === 'Output' %}
 	<tr>
 		<td>@Output() {$ member.name $}</td>
 		<td>{$ member.type | linkSymbols $}</td>
-		<td>{$ member.description | linkSymbols $}</td>
+		<td>{$ member.description | markdown $}</td>
 	</tr>
 	{% else %}
 	<tr>
 		<td>{$ member.name $}</td>
 		<td>{$ member.type | linkSymbols $}</td>
-		<td>{$ member.description | linkSymbols $}</td>
+		<td>{$ member.description | markdown $}</td>
 	</tr>
 </tbody>
 {% endif %}
