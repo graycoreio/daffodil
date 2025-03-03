@@ -2,6 +2,7 @@ import { DaffNavDoc } from '@daffodil/docs-utils';
 
 import { capitalize } from './capitalize';
 import { sortedArrayInsert } from './sorted-array-insert';
+import { absolutifyPaths } from '../processors/absolutify-paths';
 
 /**
  * A class to form a navigation Prefix Trie from a list of navigation documents
@@ -31,7 +32,7 @@ export class NavigationTrie<T extends DaffNavDoc = DaffNavDoc> {
     return {
       ...this._doc,
       children: this.children,
-      path: this.children.length ? undefined : this._doc.path,
+      path: this.children.length ? undefined : absolutifyPaths(this._doc.path),
     };
   }
 

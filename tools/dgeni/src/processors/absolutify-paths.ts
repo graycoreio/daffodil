@@ -8,6 +8,9 @@ export interface PathedDocument extends Document {
 
 export const ABSOLUTIFY_PATHS_PROCESSOR_NAME = 'absolutifyPaths';
 
+export const absolutifyPaths = (path: string): string =>
+  path[0] !== '/' ? `/${path}` : path;
+
 /**
  * Converts paths to absolute if they are not already.
  */

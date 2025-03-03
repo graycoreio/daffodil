@@ -98,7 +98,11 @@ export const packageDocsPackage = outputPathsConfigurator({
   .config((readFilesProcessor) => {
     readFilesProcessor.basePath = API_SOURCE_PATH;
     readFilesProcessor.sourceFiles = [
-      { include: [`${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}*/**/README.md`, `${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/guides/**/*.md`, `${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/guides/**/index.json`]},
+      { include: [
+        `${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}*/**/README.md`,
+        `${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/guides/**/*.md`,
+        `${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/guides/**/index.json`,
+      ]},
     ];
   });
 
