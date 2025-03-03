@@ -12,7 +12,10 @@ import {
 import { DaffDocTableOfContents } from '@daffodil/docs-utils';
 
 const DEFAULT_ROUTER_LINK_ACTIVE_CONFIG: RouterLinkActive['routerLinkActiveOptions'] = {
-  exact: true,
+  paths: 'exact',
+  queryParams: 'exact',
+  fragment: 'exact',
+  matrixParams: 'ignored',
 };
 
 @Component({
