@@ -10,6 +10,10 @@
 	line-height: 1.25rem;
 	text-decoration: none;
 
+	&.active {
+		font-weight: 500;
+	}
+
 	&__level-1 {
 		display: none;
 		padding: 0;
