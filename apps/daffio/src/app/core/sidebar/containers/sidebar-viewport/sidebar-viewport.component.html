@@ -2,13 +2,13 @@
 	<daff-sidebar-viewport (backdropClicked)="close()">
 		<daff-sidebar class="daffio-sidebar" [mode]="mode$ | async" [side]="component?.side || 'left'" [open]="showSidebar()" (escapePressed)="close()">
 			@if (showSidebarHeader$ | async) {
-				<ng-container [ngComponentOutlet]="component?.header" [ngComponentOutletInjector]="childInjector" ngProjectAs="daff-sidebar-header"></ng-container>
+				<ng-container [ngComponentOutlet]="component?.header" [ngComponentOutletInjector]="injector" ngProjectAs="daff-sidebar-header"></ng-container>
 			}
 			@if (component?.body) {
-				<ng-container [ngComponentOutlet]="component.body" [ngComponentOutletInjector]="childInjector"></ng-container>
+				<ng-container [ngComponentOutlet]="component.body" [ngComponentOutletInjector]="injector"></ng-container>
 			}
 			@if (showSidebarFooter$ | async) {
-				<ng-container [ngComponentOutlet]="component?.footer" [ngComponentOutletInjector]="childInjector" ngProjectAs="daff-sidebar-footer"></ng-container>
+				<ng-container [ngComponentOutlet]="component?.footer" [ngComponentOutletInjector]="injector" ngProjectAs="daff-sidebar-footer"></ng-container>
 			}
 		</daff-sidebar>
 		<ng-container daff-sidebar-viewport-nav>

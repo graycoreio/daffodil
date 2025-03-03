@@ -8,6 +8,7 @@ import {
   Signal,
 } from '@angular/core';
 import {
+	ActivatedRoute,
   ChildrenOutletContexts,
   PRIMARY_OUTLET,
 } from '@angular/router';
@@ -45,8 +46,16 @@ export class DaffioSidebarViewportContainer implements OnInit {
   component$: Observable<DaffioSidebarSectionRegistration>;
   isBigTablet$: Observable<boolean>;
 
-  get childInjector(): Injector {
-    return this.childrenOutletContext.getContext(PRIMARY_OUTLET)?.injector;
+  get injector(): Injector {
+    const outlet = this.childrenOutletContext.getContext(PRIMARY_OUTLET);
+    return outlet?.injector
+      ? Injector.create({
+        parent: outlet.injector,
+        providers: [
+          { provide: ActivatedRoute, useValue: outlet.route },
+        ],
+      })
+      : this._injector;
   }
 
   ngOnInit() {
@@ -77,6 +86,7 @@ export class DaffioSidebarViewportContainer implements OnInit {
     private sidebarService: DaffioSidebarService,
     @Inject(SERVER_SAFE_BREAKPOINT_OBSERVER) private breakpointObserver: BreakpointObserver,
     private childrenOutletContext: ChildrenOutletContexts,
+    private _injector: Injector,
   ) { }
 
   close() {
