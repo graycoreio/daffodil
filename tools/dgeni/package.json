@@ -15,6 +15,7 @@
       "build": {
         "inputs": [
 					"default",
+					"notSpec",
           "{workspaceRoot}/**/*.md",
           "{workspaceRoot}/**/index.json",
           "{workspaceRoot}/libs/**/*.ts",
