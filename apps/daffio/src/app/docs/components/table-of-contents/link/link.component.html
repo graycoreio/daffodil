@@ -1,0 +1,1 @@
+<a *ngFor="let entry of tableOfContents" class="daffio-docs-table-of-contents-link daffio-docs-table-of-contents-link__level-{{entry.lvl}}" routerLink="./" queryParamsHandling="merge" [fragment]="entry.slug">{{ entry.content }}</a>

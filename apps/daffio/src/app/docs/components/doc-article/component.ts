@@ -3,7 +3,10 @@ import {
   ChangeDetectionStrategy,
   Input,
 } from '@angular/core';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBars,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 
 import {
   DaffBreadcrumb,
@@ -12,6 +15,7 @@ import {
 
 import { DaffioSidebarService } from '../../../core/sidebar/services/sidebar.service';
 import { DAFFIO_DOCS_LIST_SIDEBAR_ID } from '../../containers/docs-list/sidebar.provider';
+import { DAFFIO_DOCS_TOC_SIDEBAR_ID } from '../../containers/toc-list/sidebar.provider';
 
 @Component({
   selector: 'daffio-doc-article',
@@ -22,6 +26,7 @@ import { DAFFIO_DOCS_LIST_SIDEBAR_ID } from '../../containers/docs-list/sidebar.
 })
 export class DaffioDocArticleComponent {
   faBars = faBars;
+  faChevronRight = faChevronRight;
 
   constructor(
     private sidebarService: DaffioSidebarService,
@@ -32,5 +37,9 @@ export class DaffioDocArticleComponent {
 
   open() {
     this.sidebarService.open(DAFFIO_DOCS_LIST_SIDEBAR_ID);
+  }
+
+  openToc() {
+    this.sidebarService.open(DAFFIO_DOCS_TOC_SIDEBAR_ID);
   }
 }

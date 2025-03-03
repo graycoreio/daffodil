@@ -36,19 +36,14 @@
 		}
 	}
 
-	&__menu-button {
-		@include daff.clickable();
+	&__sidebar-activators {
 		display: flex;
-		gap: 0.5rem;
-		align-items: center;
-		justify-content: center;
+		gap: 1rem;
+		justify-content: space-between;
 		background: var(--daff-theme);
-		border: 0;
 		border-bottom: 1px solid rgb(var(--daff-theme-contrast-rgb), 0.1);
-		color: var(--daff-theme-contrast);
 		font-size: 1rem;
 		line-height: 1rem;
-		padding: 1rem 1.5rem;
 		position: sticky;
 		top: var(--daff-sidebar-side-fixed-top-shift);
     height: 3rem;
@@ -59,5 +54,18 @@
 		@include daff.breakpoint(big-tablet) {
 			display: none;
 		}
+	}
+
+	&__button {
+		@include daff.clickable();
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+		justify-content: center;
+		background: var(--daff-theme);
+		border: 0;
+		color: var(--daff-theme-contrast);
+		overflow: auto;
+		padding: 1rem 1.5rem;
 	}
 }

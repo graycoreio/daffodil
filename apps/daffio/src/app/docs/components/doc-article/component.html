@@ -1,8 +1,15 @@
 <daff-container size="lg">
-  <button class="daffio-doc-article__menu-button" (click)="open()">
-    <fa-icon [icon]="faBars"></fa-icon>
-    <div>Menu</div>
-  </button>
+  <div class="daffio-doc-article__sidebar-activators">
+    <button class="daffio-doc-article__button" (click)="open()">
+      <fa-icon [icon]="faBars"></fa-icon>
+      <div>Menu</div>
+    </button>
+
+    <button class="daffio-doc-article__button" (click)="openToc()">
+      <div>On this page</div>
+      <fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
+    </button>
+  </div>
   <div class="daffio-doc-article__grid">
     <div class="daffio-doc-article__content">
       @if (breadcrumbs.length > 0) {

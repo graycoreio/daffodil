@@ -2,7 +2,5 @@
 	<div class="daffio-docs-table-of-contents__title">
 		On this page
 	</div>
-	<div class="daffio-docs-table-of-contents__links">
-		<a *ngFor="let entry of tableOfContents"class="daffio-docs-table-of-contents__item daffio-docs-table-of-contents__item--level-{{entry.lvl}}" routerLink="./" queryParamsHandling="merge" [fragment]="entry.slug">{{ entry.content }}</a>
-	</div>
+	<daffio-docs-table-of-contents-link [tableOfContents]="tableOfContents"></daffio-docs-table-of-contents-link>
 </aside>

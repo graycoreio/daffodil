@@ -10,6 +10,7 @@ import {
 } from '@daffodil/design/breadcrumb';
 import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffMenuModule } from '@daffodil/design/menu';
 import { DaffSidebarModule } from '@daffodil/design/sidebar';
 
 import { DaffioDocArticleComponent } from './component';
@@ -36,6 +37,7 @@ import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-c
     FontAwesomeModule,
     RouterLink,
     DaffContainerModule,
+    DaffMenuModule,
   ],
 })
 export class DaffioDocArticleModule { }

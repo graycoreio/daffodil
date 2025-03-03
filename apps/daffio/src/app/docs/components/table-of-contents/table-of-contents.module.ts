@@ -6,6 +6,7 @@ import { DaffAccordionModule } from '@daffodil/design/accordion';
 import { DaffLinkSetModule } from '@daffodil/design/link-set';
 import { DaffListModule } from '@daffodil/design/list';
 
+import { DaffioDocsTableOfContentsLinkComponent } from './link/link.component';
 import { DaffioDocsTableOfContentsComponent } from './table-of-contents.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { DaffioDocsTableOfContentsComponent } from './table-of-contents.componen
     DaffListModule,
     RouterModule,
     DaffAccordionModule,
+    DaffioDocsTableOfContentsLinkComponent,
   ],
 })
 export class DaffioDocsTableOfContentsModule { }

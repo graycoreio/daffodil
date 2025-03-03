@@ -1,0 +1,29 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.daffio-docs-table-of-contents-link {
+	display: block;
+	font-size: 1rem;
+	line-height: 1.25rem;
+	text-decoration: none;
+
+	&__level-1 {
+		display: none;
+		padding: 0;
+	}
+
+	&__level-2 {
+		padding: 0;
+	}
+
+	&__level-3 {
+		padding: 0 0 0 16px;
+	}
+
+	&__level-4 {
+		padding: 0 0 0 32px;
+	}
+}
