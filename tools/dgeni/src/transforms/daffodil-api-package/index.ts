@@ -119,8 +119,14 @@ export const apiDocsBase = new Package('api-base', [
         multi: true,
         transforms: (doc: Document, tag: any, value: any) => {
           const match = value.match(/^(.*)$/gm);
-          tag.caption = match[0];
-          tag.body = value.replace(match[0], '').trim();
+          // check if the example has a caption
+          if (match[0].startsWith('```')) {
+            tag.caption = '';
+            tag.body = value.trim();
+          } else {
+            tag.caption = match[0];
+            tag.body = value.replace(match[0], '').trim();
+          }
 
           return value;
         },
