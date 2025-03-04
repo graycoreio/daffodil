@@ -4,15 +4,20 @@ import {
   HostBinding,
   ChangeDetectionStrategy,
   Input,
-  ContentChildren,
   QueryList,
-  AfterContentInit,
   ViewChildren,
   ElementRef,
+  Output,
+  EventEmitter,
+  contentChildren,
+  signal,
+  computed,
+  Signal,
 } from '@angular/core';
 
 import {
   DaffArticleEncapsulatedDirective,
+  DaffSelectableDirective,
   DaffSkeletonableDirective,
 } from '@daffodil/design';
 
@@ -41,16 +46,21 @@ let uniqueGalleryId = 0;
   imports: [
     DaffThumbnailDirective,
     NgTemplateOutlet,
+    DaffSelectableDirective,
   ],
 })
-export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, AfterContentInit {
-  private _id: string;
+export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
 
   /**
    * @docs-private
    */
   @HostBinding('attr.role')
   role = 'tablist';
+
+  /**
+   * The internal id of the gallery.
+   */
+  private _id: string;
 
   /**
    * The id of the gallery.
@@ -79,10 +89,16 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, 
    */
   @Input() name: string;
 
+
+  /**
+   * An event indicating that the selected media gallery element has changed.
+   */
+  @Output() elementChange: EventEmitter<number> = new EventEmitter<number>();
+
   /**
    * @docs-private
    */
-  @ContentChildren(DaffThumbnailDirective) _thumbnails: QueryList<DaffThumbnailDirective>;
+  _thumbnails = contentChildren(DaffThumbnailDirective);
 
   /**
    * @docs-private
@@ -94,6 +110,9 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, 
     this.name = 'gallery-' + uniqueGalleryId;
   }
 
+  /**
+   * Whether or not the component its currently displaying its skeleton state.
+   */
   get skeleton() {
     return this.skeletonDirective.skeleton;
   }
@@ -101,56 +120,38 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, 
   /**
    * @docs-private
    */
-  _selectedThumbnail: DaffThumbnailDirective = undefined;
+  _selectedThumbnail: Signal<DaffThumbnailDirective> = computed(() => {
+    const idx = this._selectedIndex();
+    if(!idx) {
+      return this._thumbnails().at(0);
+    }
+    return this._thumbnails().at(idx);
+  });
 
   /**
    * @docs-private
    */
-  private _selectedIndex: number = undefined;
+  private _selectedIndex = signal<number | null>(null);
+
 
   private focusSelected() {
-    this._thumbnailButtons.get(this._selectedIndex)?.nativeElement.focus();
+    this._thumbnailButtons.get(this._selectedIndex())?.nativeElement.focus();
   }
 
   /**
    * Select a specific entry in the media gallery by its index (starting at 0).
    */
   selectIndex(index: number) {
-    if(this._thumbnails.get(index)){
-      this._selectedIndex = index;
-      this._selectedThumbnail?.deselect();
-      this._thumbnails.get(index).select();
-      this._selectedThumbnail = this._thumbnails.get(index);
-    }
-  }
-
-  /**
-   * Select a specific thumbnail for this gallery.
-   */
-  selectThumbnail(thumbnail: DaffThumbnailDirective) {
-    if(!thumbnail){
-      return;
-    }
-    this._selectedThumbnail?.deselect();
-    thumbnail.select();
-    this._selectedThumbnail = thumbnail;
-    this._selectedIndex = this._thumbnails.toArray().findIndex((el) => el === thumbnail);
-  }
-
-  /**
-   * @docs-private
-   */
-  ngAfterContentInit(): void {
-    if(this._thumbnails.first) {
-      this.selectThumbnail(this._thumbnails.first);
-    }
+    this._selectedIndex.set(index);
+    this.elementChange.emit(index);
   }
 
   /**
    * Navigate to the next element in the list of thumbnails.
    */
   next(focus: boolean = true) {
-    this.selectIndex((this._selectedIndex + 1 + this._thumbnails.length) % this._thumbnails.length);
+    this._selectedIndex.update((curr) => ((curr ?? 0) + 1 + this._thumbnails().length) % this._thumbnails().length);
+    this.elementChange.emit(this._selectedIndex());
     this.focusSelected();
   }
 
@@ -158,7 +159,8 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, 
    * Navigate to the previous element in the list of thumbnails.
    */
   previous(focus: boolean = true) {
-    this.selectIndex((this._selectedIndex + -1 + this._thumbnails.length) % this._thumbnails.length);
+    this._selectedIndex.update((curr) => ((curr ?? 0) - 1 + this._thumbnails().length) % this._thumbnails().length);
+    this.elementChange.emit(this._selectedIndex());
     this.focusSelected();
   }
 
@@ -166,7 +168,8 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, 
    * Select the first element
    */
   selectFirst(focus: boolean = true) {
-    this.selectIndex(0);
+    this._selectedIndex.set(0);
+    this.elementChange.emit(this._selectedIndex());
     this.focusSelected();
   }
 
@@ -174,7 +177,8 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration, 
    * Select the last element of the gallery.
    */
   selectLast(focus: boolean = true) {
-    this.selectIndex(this._thumbnails.length - 1);
+    this._selectedIndex.set(this._thumbnails().length - 1);
+    this.elementChange.emit(this._selectedIndex());
     this.focusSelected();
   }
 }

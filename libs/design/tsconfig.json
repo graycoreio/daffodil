@@ -54,8 +54,8 @@
       "@daffodil/design/loading": [
         "libs/design/loading/src"
       ],
-      "@daffodil/design/media": [
-        "libs/design/media/src"
+      "@daffodil/design/media-gallery": [
+        "libs/design/media-gallery/src"
       ],
       "@daffodil/design/menu": [
         "libs/design/menu/src"

@@ -1,30 +1,35 @@
 @if (!skeleton) {
-	<div class="daff-media-gallery__thumbnails">
-	@for (thumbnail of _thumbnails; track thumbnail; let index = $index) {
-		<button 
-			#thumbnailButtons
-			class="daff-thumbnail" 
-			role="tab"
-			[class.daff-selected]="thumbnail.selected" 
-			attr.aria-label="{{ thumbnail.label ?? 'Gallery Element ' + (index + 1) }}"
-			[attr.aria-selected]="thumbnail.selected ? 'true' : 'false'"
-			[attr.aria-controls]="thumbnail.panelId"
-			[attr.tabindex]="thumbnail.selected ? 0 : -1"
-			(click)="selectIndex(index)"
-			[attr.id]="thumbnail.id" 
-			(keydown.arrowright)="next()"
-			(keydown.arrowleft)="previous()">
-			@if(thumbnail.thumbnailSrc) {
-				<img [src]="thumbnail.thumbnailSrc" aria-hidden="true"/>
-			}
-		</button>
+		<div class="daff-media-gallery__thumbnails">
+		@for (thumbnail of _thumbnails(); track thumbnail; let index = $index) {
+			<button 
+				#thumbnailButtons
+				class="daff-thumbnail" 
+				role="tab"
+				daffSelected
+				[selected]="thumbnail === _selectedThumbnail()"
+				attr.aria-label="{{ thumbnail.label ?? 'Gallery Element ' + (index + 1) }}"
+				[attr.aria-selected]="thumbnail === _selectedThumbnail() ? 'true' : 'false'"
+				[attr.aria-controls]="thumbnail.panelId"
+				[attr.tabindex]="thumbnail === _selectedThumbnail() ? 0 : -1"
+				(click)="selectIndex(index)"
+				[attr.id]="thumbnail.id" 
+				(keydown.arrowright)="next()"
+				(keydown.arrowleft)="previous()">
+				@if(thumbnail.thumbnailSrc) {
+					<img [src]="thumbnail.thumbnailSrc" aria-hidden="true"/>
+				}
+			</button>
+		}
+	</div>
+	@if(_selectedThumbnail(); as el) {
+		<div class="daff-media-gallery__selected-thumbnail" role="tabpanel" [attr.id]="el.panelId" tabindex="0">
+				<ng-container *ngTemplateOutlet="el.templateRef"></ng-container>
+		</div>
 	}
-</div>
-<div class="daff-media-gallery__selected-thumbnail" role="tabpanel" [attr.id]="_selectedThumbnail ? _selectedThumbnail.panelId : null" tabindex="0">
-	@if(_selectedThumbnail) {
-		<ng-container *ngTemplateOutlet="_selectedThumbnail.templateRef"></ng-container>
+	@else {
+		<div class="daff-media-gallery__selected-thumbnail" role="tabpanel" tabindex="0">
+		</div>
 	}
-</div>
 } @else {
 	<div class="daff-media-gallery__thumbnails">
 		<button class="daff-thumbnail"></button>
