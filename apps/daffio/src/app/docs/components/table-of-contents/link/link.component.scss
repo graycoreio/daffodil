@@ -1,8 +1,10 @@
+@use 'typography' as t;
+
 // stylelint-disable selector-class-pattern
 :host {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: 0.5rem;
 
 	&.in-sidebar {
 		.daffio-docs-table-of-contents-link {
@@ -14,46 +16,28 @@
 }
 
 .daffio-docs-table-of-contents-link {
+	@include t.text-truncate();
 	display: block;
 	font-size: 1rem;
 	line-height: 1.25rem;
 	text-decoration: none;
 	position: relative;
-
-	&::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: -0.75rem;
-		opacity: 0;
-		transition: opacity 300ms;
-		width: 0.125rem;
-		height: 100%;
-	}
+	padding: 0 0 0 0.5rem;
+	margin: 0 0 0 -0.625rem;
 
 	&.active {
 		font-weight: 500;
-
-		&::before {
-			opacity: 1;
-		}
 	}
 
 	&.level-1 {
 		display: none;
-		padding: 0;
-	}
-
-	&.level-2 {
-		padding: 0;
 	}
 
 	&.level-3 {
-		padding: 0 0 0 1rem;
+		padding: 0 0 0 1.5rem;
 	}
 
 	&.level-4 {
-		padding: 0 0 0 2rem;
+		padding: 0 0 0 2.5rem;
 	}
 }

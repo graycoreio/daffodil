@@ -5,8 +5,10 @@
 	$primary: daff-theme.daff-map-get($theme, primary);
 
 	.daffio-docs-table-of-contents-link {
-		&::before {
-			background: daff-theme.daff-color($primary);
+		border-left: 0.125rem solid rgba(daff-theme.daff-color($primary), 0);
+
+		&.active {
+			border-left: 0.125rem solid daff-theme.daff-color($primary);
 		}
 	}
 }
