@@ -31,7 +31,7 @@ export class ExamplesProcessor implements FilterableProcessor {
   $process(docs: Array<Document>): Array<Document> {
     return docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
-        doc.examples = doc.tags.tagsByName.get('example')?.map((example, i): DaffDocExample => ({ //
+        doc.examples = doc.tags.tagsByName.get('example')?.map((example, i): DaffDocExample => ({
           id: slugify(`${doc.name}-example-${i}`),
           caption: example.caption,
           body: example.body,
