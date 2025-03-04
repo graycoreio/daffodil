@@ -10,8 +10,8 @@ import {
   MockStore,
 } from '@ngrx/store/testing';
 
-import { DaffImageModule } from '@daffodil/design/image';
-import { DaffMediaGalleryModule } from '@daffodil/design/media-gallery';
+import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
+import { DAFF_MEDIA_GALLERY_COMPONENTS } from '@daffodil/design/media-gallery';
 
 import { ImageGalleryComponent } from './image-gallery.component';
 
@@ -28,7 +28,7 @@ class WrapperComponent {
   imagesValue: Record<string, any>[] = stubImages;
 }
 
-describe('ImageGalleryComponent', () => {
+fdescribe('ImageGalleryComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let imageGalleryContainer: ImageGalleryComponent;
@@ -38,8 +38,8 @@ describe('ImageGalleryComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffMediaGalleryModule,
-        DaffImageModule,
+        DAFF_MEDIA_GALLERY_COMPONENTS,
+        DAFF_IMAGE_COMPONENTS,
       ],
       declarations: [
         WrapperComponent,
