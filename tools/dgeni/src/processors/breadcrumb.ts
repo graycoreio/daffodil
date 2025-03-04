@@ -99,7 +99,7 @@ export class BreadcrumbProcessor implements FilterableProcessor {
   ) {}
 
   private getBreadcrumbs(doc: ParentedDocument & KindedDocument): Array<DaffBreadcrumb> {
-    const segments = (<string>doc.path).split('/');
+    const segments = (<string>doc.path).split('/');////
     const breadcrumbs = segments
       .map((segment, i) => getStaticBreadcrumb(segment, segments.slice(0, i).join('/')))
       .filter((b, i, ary) => !!b && ary.findIndex((e) => e?.label === b.label) === i);
@@ -112,7 +112,7 @@ export class BreadcrumbProcessor implements FilterableProcessor {
         const parents_ = segments
         // get all the dynamic segments not including the last (which is the current doc)
         // we only want to process dynamic parents here
-          .slice(breadcrumbs.length + 1, segments.length - 1)
+          .slice(breadcrumbs.length, segments.length - 1)
         // look up parents based on an alias built from segments
           .flatMap((_, i, ids) => this.aliasMap.getDocs(ids.slice(0, i + 1).join('/')));
         breadcrumbs.push(
