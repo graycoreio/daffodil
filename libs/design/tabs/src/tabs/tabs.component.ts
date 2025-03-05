@@ -168,6 +168,8 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
     if (!this.selectedTab) {
       this.selectedTab = this._tabs.first.id;
     }
+
+    this.tabChange.emit(this.selectedTab);
   }
 
   /**
