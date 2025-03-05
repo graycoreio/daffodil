@@ -56,13 +56,10 @@ import { DAFF_TABS_COMPONENTS } from '../tabs';
   ],
 })
 class WrapperComponent {
-  changed: string | null = null;
   linkModeValue: boolean;
   urlValue: string;
 
-  onTabChange(val: string) {
-    this.changed = val;
-  }
+  onTabChange: (val: string) => void;
 }
 
 describe('@daffodil/design/tabs | DaffTabsComponent', () => {
@@ -104,6 +101,8 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
 
+    wrapper.onTabChange = jasmine.createSpy();
+
     de = fixture.debugElement.query(By.css('daff-tabs'));
     component = de.componentInstance;
     fixture.detectChanges();
@@ -136,6 +135,10 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
 
       it('should reset the selected tab', () => {
         expect(component.selectedTab).not.toEqual('tab-2');
+      });
+
+      it('should notify the parent component that the tab changed', () => {
+        expect(wrapper.onTabChange).toHaveBeenCalledWith(component.selectedTab);
       });
     });
 
@@ -182,9 +185,8 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
   it('should emit tabChange when a tab is selected', () => {
     const id = component._tabs.toArray()[1].id;
 
-    wrapper.changed = null;
     component.select(id);
-    expect(wrapper.changed).toEqual(id);
+    expect(wrapper.onTabChange).toHaveBeenCalledWith(id);
   });
 
   it('should focus on the selected tab when select is called', () => {
