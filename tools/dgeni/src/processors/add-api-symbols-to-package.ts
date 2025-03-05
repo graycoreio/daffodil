@@ -8,16 +8,17 @@ import {
 } from '@daffodil/docs-utils';
 
 import { CollectLinkableSymbolsProcessor } from './collect-linkable-symbols';
-import { MARKDOWN_CODE_PROCESSOR_NAME } from './markdown';
 import { API_TEMPLATES_PATH } from '../transforms/config';
 import { FilterableProcessor } from '../utils/filterable-processor.type';
 
 export const ADD_API_SYMBOLS_TO_PACKAGES_PROCESSOR_NAME = 'addApiSymbolsToPackages';
 
+const LINK_TAG = /\{@link ([a-zA-Z]+)}/g;
+
 export class AddApiSymbolsToPackagesProcessor implements FilterableProcessor {
   readonly name = ADD_API_SYMBOLS_TO_PACKAGES_PROCESSOR_NAME;
   readonly $runAfter = ['paths-absolutified'];
-  readonly $runBefore = ['rendering-docs', MARKDOWN_CODE_PROCESSOR_NAME];
+  readonly $runBefore = ['rendering-docs'];
 
   docTypes = [];
   lookup = (doc: Document) => doc.id;
@@ -39,7 +40,17 @@ export class AddApiSymbolsToPackagesProcessor implements FilterableProcessor {
       if (this.docTypes.includes(doc.docType)) {
         const exportDocs = CollectLinkableSymbolsProcessor.packages.get(this.lookup(doc));
         doc.symbols = exportDocs?.map((d) => d.slug);
-        doc.api = exportDocs?.map((symbol) => render(this.templateFinder.getFinder()(symbol), { doc: symbol, child: true }));
+        // the inline tag processor runs after doc rendering and
+        // doesn't expose anything besides `$process` so trick it into processing our child docs
+        doc.api = exportDocs?.map((symbol) =>
+          render(
+            this.templateFinder.getFinder()(symbol),
+            { doc: symbol, child: true },
+          ).replaceAll(
+            LINK_TAG,
+            (match, linkableSymbol) => `<a href="${CollectLinkableSymbolsProcessor.symbols.get(linkableSymbol)}"><code>${linkableSymbol}</code></a>`,
+          ),
+        );
         doc.apiToc = exportDocs?.flatMap((symbol: Document & DaffApiDoc): DaffDocTableOfContents => [
           {
             content: symbol.name,
@@ -52,9 +63,6 @@ export class AddApiSymbolsToPackagesProcessor implements FilterableProcessor {
             slug: entry.slug === 'examples' ? `${symbol.slug}-examples` : entry.slug,
           })),
         ]);
-        const match = doc.content.match(/# .*\n+(.*)\n*/);
-        doc.longDescription = match[1];
-        doc.content = doc.content.replace(match[0], '');
       }
       return doc;
     });

@@ -30,6 +30,10 @@ import {
   GENERATE_NAV_LIST_PROCESSOR_PROVIDER,
   GenerateNavListProcessor,
 } from '../../processors/generateNavList';
+import {
+  LONG_DESCRIPTION_PROCESSOR_PROVIDER,
+  LongDescriptionProcessor,
+} from '../../processors/long-description';
 import { MarkdownCodeProcessor } from '../../processors/markdown';
 import { IdSanitizer } from '../../services/id-sanitizer';
 import { outputPathsConfigurator } from '../../utils/configurator/output';
@@ -131,6 +135,7 @@ export const designDocsPackage = new Package('design-docs', [design])
   .processor(...GENERATE_NAV_LIST_PROCESSOR_PROVIDER)
   .processor(...FILTER_NAV_INDEX_PROCESSOR_PROVIDER)
   .processor(...ADD_API_SYMBOLS_TO_PACKAGES_PROCESSOR_PROVIDER)
+  .processor(...LONG_DESCRIPTION_PROCESSOR_PROVIDER)
   .config((generateNavList: GenerateNavListProcessor) => {
     generateNavList.outputFolder = `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`;
   })
@@ -151,7 +156,8 @@ export const designDocsPackage = new Package('design-docs', [design])
       getAliases: (doc) => [doc.id],
     });
   })
-  .config((addApiSymbolsToPackages: AddApiSymbolsToPackagesProcessor) => {
+  .config((addApiSymbolsToPackages: AddApiSymbolsToPackagesProcessor, longDescription: LongDescriptionProcessor) => {
+    longDescription.docTypes.push('package-guide');
     addApiSymbolsToPackages.docTypes.push('package-guide');
     addApiSymbolsToPackages.lookup = (doc) => doc.id.replace('components/', '');
   })

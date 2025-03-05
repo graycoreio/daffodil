@@ -6,7 +6,7 @@ import {
 } from '@daffodil/design';
 
 /**
- * An interface for properties of actions, specifically the DaffButtonComponent, placed inside of the toast.
+ * An interface for properties of actions, specifically the {@link DaffButtonComponent}, placed inside of the toast.
  */
 export interface DaffToastAction {
   /**
