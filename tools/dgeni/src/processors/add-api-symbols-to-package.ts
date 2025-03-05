@@ -57,11 +57,11 @@ export class AddApiSymbolsToPackagesProcessor implements FilterableProcessor {
             lvl: 2,
             slug: slugify(symbol.name),
           },
-          ...symbol.tableOfContents.map((entry) => ({
-            ...entry,
-            lvl: entry.lvl + 1,
-            slug: entry.slug === 'examples' ? `${symbol.slug}-examples` : entry.slug,
-          })),
+          // ...symbol.tableOfContents.map((entry) => ({
+          //   ...entry,
+          //   lvl: entry.lvl + 1,
+          //   slug: entry.slug === 'examples' ? `${symbol.slug}-examples` : entry.slug,
+          // })),
         ]);
       }
       return doc;
