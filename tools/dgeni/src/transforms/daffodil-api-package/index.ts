@@ -21,6 +21,10 @@ import {
   ADD_SUBPACKAGE_EXPORTS_PROCESSOR_NAME,
   ADD_SUBPACKAGE_EXPORTS_PROCESSOR_PROVIDER,
 } from './processors/add-subpackage-exports';
+import {
+  IMPORT_EXAMPLE_PROCESSOR_PROVIDER,
+  ImportExampleProcessor,
+} from './processors/import-example';
 import { RemoveDuplicatesProcessor } from './processors/remove-duplicates';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddKindProcessor } from '../../processors/add-kind';
@@ -70,6 +74,7 @@ export const apiDocsBase = new Package('api-base', [
   .processor(...COLLECT_LINKABLE_SYMBOLS_PROCESSOR_PROVIDER)
   .processor(...EXAMPLES_PROCESSOR_PROVIDER)
   .processor(...ADD_SOURCE_PROVIDER)
+  .processor(...IMPORT_EXAMPLE_PROCESSOR_PROVIDER)
   .factory('API_DOC_TYPES_TO_RENDER', (EXPORT_DOC_TYPES) => EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe']))
   .config((readFilesProcessor, readTypeScriptModules, tsParser) => {
 
@@ -91,7 +96,9 @@ export const apiDocsBase = new Package('api-base', [
     breadcrumb: BreadcrumbProcessor,
     examples: ExamplesProcessor,
     addSource: AddSourceProcessor,
+    importExample: ImportExampleProcessor,
   ) => {
+    importExample.docTypes.push(...EXPORT_DOC_TYPES);
     markdown.docTypes.push(...EXPORT_DOC_TYPES);
     examples.docTypes.push(...EXPORT_DOC_TYPES);
     markdown.docTypes.push(...EXPORT_DOC_TYPES);
