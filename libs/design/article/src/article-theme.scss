@@ -46,6 +46,10 @@
 		code {
 			background: rgba(theming.daff-illuminate($base, $neutral, 2), 0.5);
 			color: $base-contrast;
+
+			@include stopsArticleCascade(a) {
+				color: theming.daff-color($primary, 70);
+			}
 		}
 
 		hr {

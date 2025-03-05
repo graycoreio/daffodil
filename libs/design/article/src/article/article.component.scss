@@ -15,9 +15,9 @@
 		}
 
 		code {
-			font-size: 0.875em;
+			font-size: 0.875rem;
 			font-weight: 600;
-			line-height: 0.875em;
+			line-height: 0.875rem;
 		}
 	}
 
@@ -26,9 +26,9 @@
 		word-wrap: break-word;
 
 		code {
-			font-size: 0.875em;
+			font-size: 0.875rem;
 			font-weight: 600;
-			line-height: 0.875em;
+			line-height: 0.875rem;
 		}
 	}
 
@@ -38,10 +38,16 @@
 
 	@include stopsArticleCascade(h1) {
 		@include t.headline-lg;
+		word-break: break-all;
 
 		+ p {
 			@include t.body-md;
 			font-weight: 400;
+
+			code {
+				font-size: 1rem;
+				line-height: 1rem;
+			}
 		}
 	}
 
@@ -80,7 +86,7 @@
 
 	pre {
 		display: block;
-		border-radius: 0.25em;
+		border-radius: 0.25rem;
 		font-size: t.$small-font-size;
 		line-height: 1.5rem;
 		margin: 1.5rem 0;
@@ -99,10 +105,10 @@
 	}
 
 	code {
-		border-radius: 0.25em;
+		border-radius: 0.25rem;
 		font-size: t.$small-font-size;
 		line-height: 1rem;
-		padding: 0.125em 0.25em;
+		padding: 0.125rem 0.25rem;
 	}
 
 	&__meta {
@@ -116,7 +122,7 @@
 	}
 
 	blockquote {
-		border-radius: 0.25em;
+		border-radius: 0.25rem;
 		margin: 1.5rem 0;
 		padding: 1rem 1.5rem;
 
@@ -140,6 +146,9 @@
 	table {
 		display: block;
 		border-collapse: collapse;
+		border-radius: 0.25rem;
+		font-size: 1rem;
+    line-height: 1.25rem;
 		margin: 1.5rem 0;
 		overflow: auto;
 		width: 100%;
@@ -158,9 +167,16 @@
 		}
 
 		td {
-			padding: 0.5rem 1rem;
+			padding: 0.75rem 1rem;
 			vertical-align: top;
 			box-sizing: border-box;
+
+			p {
+				&:only-child,
+				&:last-child {
+					margin: 0;
+				}
+			}
 		}
 	}
 }
