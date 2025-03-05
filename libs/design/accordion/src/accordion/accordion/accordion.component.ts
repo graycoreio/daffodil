@@ -5,6 +5,9 @@ import {
 
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
+/**
+ * A wrapper for grouping accordion items.
+ */
 @Component({
   selector: 'daff-accordion',
   template: '<ng-content></ng-content>',
@@ -17,7 +20,6 @@ import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
     directive: DaffArticleEncapsulatedDirective,
   }],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 
 export class DaffAccordionComponent {}

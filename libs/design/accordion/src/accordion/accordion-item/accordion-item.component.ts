@@ -18,6 +18,10 @@ import { getAnimationState } from '../animation/accordion-animation-state';
 let daffAccordionItemId = 0;
 let daffAccordionItemContentId = 0;
 
+/**
+ * The wrapper for the title and content. It handles the expansion and collapse of the inner content when clicked.
+ * All `daff-accordion-item`s should be grouped inside the `daff-accordion` component.
+ */
 @Component({
   selector: 'daff-accordion-item',
   templateUrl: './accordion-item.component.html',
@@ -76,6 +80,9 @@ export class DaffAccordionItemComponent implements OnInit, DaffOpenable {
     this._animationState = getAnimationState(this.openDirective.open);
   }
 
+  /**
+   * @docs-private
+   */
   get open() {
     return this.openDirective.open;
   }

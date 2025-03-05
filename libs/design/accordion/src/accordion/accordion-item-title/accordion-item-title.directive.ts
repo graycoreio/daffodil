@@ -3,9 +3,11 @@ import {
   HostBinding,
 } from '@angular/core';
 
+/**
+ * Used to provide a high level overview of the content. It should be wrapped by a `<daff-accordion-item>`.
+ */
 @Directive({
   selector: '[daffAccordionItemTitle]',
-  standalone: true,
 })
 export class DaffAccordionItemTitleDirective {
 
