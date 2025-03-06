@@ -1,8 +1,11 @@
 import { Document } from 'dgeni';
-import { MarkdownCodeProcessor } from 'tools/dgeni/src/processors/markdown';
+import hljs from 'highlight.js';
+import typescript from 'highlight.js/lib/languages/typescript';
 
+import { MarkdownCodeProcessor } from '../../../processors/markdown';
 import { FilterableProcessor } from '../../../utils/filterable-processor.type';
 
+hljs.registerLanguage('typescript', typescript);
 
 export const IMPORT_EXAMPLE_PROCESSOR_NAME = 'importExample';
 
@@ -23,7 +26,7 @@ export class ImportExampleProcessor implements FilterableProcessor {
   $process(docs: Array<Document>): Array<Document> {
     return docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
-        doc.importExample = this.markdown.parse(`\`\`\`ts\nimport { ${doc.name} } from '${doc.parent.name}'\n\`\`\``);
+        doc.importExample = `<code>${hljs.highlight(`import { ${doc.name} } from '${doc.parent.name}'`, { language: 'typescript' }).value}</code>`;
       }
       return doc;
     });
