@@ -150,7 +150,8 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
    */
   ngOnInit(): void {
     this.location.onUrlChange(() => {
-      if (this.linkMode) {
+      // if the app is navigated away from the current page, reset the state
+      if (this.linkMode && !this.location.isCurrentPathEqualTo(this.url, `${this.queryParam}=${this.selectedTab}`)) {
         this.selectedTab = null;
         this.ngAfterContentInit();
       }

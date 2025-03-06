@@ -72,7 +72,7 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
   let onUrlChangeCb: (url: string, state: unknown) => void;
 
   beforeEach(waitForAsync(() => {
-    locationSpy = jasmine.createSpyObj('Location', ['path', 'onUrlChange']);
+    locationSpy = jasmine.createSpyObj('Location', ['path', 'onUrlChange', 'isCurrentPathEqualTo']);
     locationSpy.onUrlChange.and.callFake((cb) => {
       onUrlChangeCb = cb;
       return () => {};
@@ -125,8 +125,9 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
       });
     });
 
-    describe('when the url changes', () => {
+    describe('when the url changes to a different page', () => {
       beforeEach(() => {
+        locationSpy.isCurrentPathEqualTo.and.returnValue(false);
         component.select('tab-2');
         fixture.detectChanges();
         onUrlChangeCb('newurl', {});
@@ -139,6 +140,20 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
 
       it('should notify the parent component that the tab changed', () => {
         expect(wrapper.onTabChange).toHaveBeenCalledWith(component.selectedTab);
+      });
+    });
+
+    describe('when the url changes to the same page', () => {
+      beforeEach(() => {
+        locationSpy.isCurrentPathEqualTo.and.returnValue(true);
+        component.select('tab-2');
+        fixture.detectChanges();
+        onUrlChangeCb(`${path}#an-anchor`, {});
+        fixture.detectChanges();
+      });
+
+      it('should not reset the selected tab', () => {
+        expect(component.selectedTab).toEqual('tab-2');
       });
     });
 
