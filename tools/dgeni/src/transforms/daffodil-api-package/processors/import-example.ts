@@ -23,7 +23,7 @@ export class ImportExampleProcessor implements FilterableProcessor {
   $process(docs: Array<Document>): Array<Document> {
     return docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
-        doc.importExample = this.markdown.parse(`\`\`\`ts\nimport {${doc.name}} from '${doc.parent.name}'\n\`\`\``);
+        doc.importExample = this.markdown.parse(`\`\`\`ts\nimport { ${doc.name} } from '${doc.parent.name}'\n\`\`\``);
       }
       return doc;
     });
