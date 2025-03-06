@@ -28,6 +28,11 @@ hljs.registerLanguage('gql', graphql);
 export const MARKDOWN_CODE_PROCESSOR_NAME = 'markdown';
 
 export class MarkdownCodeProcessor implements FilterableProcessor {
+  /**
+   * Stores a list of headings for the current document.
+   * Needed so that `slugify` can generate unique slugs.
+   */
+  private headingList: Array<string> = [];
   private marked = new Marked(
     markedHighlight({
       highlight: (code, lang, info) => {
@@ -49,8 +54,11 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
         }
       },
       renderer: {
-        heading: (text: string, level: number, raw: string) =>
-          `<h${level} id="${slugify(raw)}">${text}</h${level}>`,
+        heading: (text: string, level: number, raw: string) => {
+          const count = this.headingList.filter((heading) => heading === raw).length;
+          this.headingList.push(raw);
+          return `<h${level} id="${slugify(raw, count > 0 ? { num: count } : undefined)}">${text}</h${level}>`;
+        },
         codespan: (text: string): string | false =>
           `<code>${linkSymbols(text)}</code>`,
       },
@@ -90,6 +98,7 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
   }
 
   parse(text: string): string {
+    this.headingList = [];
     return <string>this.marked.parse(text);
   }
 };
