@@ -66,6 +66,15 @@
 
 		#{$root}__selected-thumbnail {
 			@include state.skeleton-screen(100%, 100%);
+			flex-grow: 1;
+		}
+
+		#{$root}__skeleton-placeholder {
+			height: 16rem;
+
+			@include layout.breakpoint(big-tablet) {
+				height: 30rem;
+			}
 		}
 	}
 }
@@ -81,6 +90,7 @@
 		overflow-x: auto;
 
 		@include layout.breakpoint(big-tablet) {
+			max-height: 29.5rem;
 			flex-direction: column;
 			overflow-y: auto;
 			order: 1;
@@ -88,11 +98,8 @@
 	}
 
 	&__selected-thumbnail {
-		display: flex;
-		flex-grow: 1;
+		display: block;
 		order: 1;
-		position: relative;
-		overflow: hidden;
 
 		@include layout.breakpoint(big-tablet) {
 			order: 2;

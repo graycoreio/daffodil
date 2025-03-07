@@ -1,7 +1,7 @@
 @use '../../../scss/state';
 
 :host {
-	display: inline-block;
+	display: block;
 	border-radius: inherit;
 	position: relative;
 	width: 100%;
@@ -15,20 +15,10 @@
 	}
 
 	img {
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		height: auto;
-		margin: auto;
+		display: block;
+		object-fit: cover;
 		max-width: 100%;
-	}
-}
-
-.daff-image {
-	&__wrapper {
-		border-radius: inherit;
-		height: 0;
+		max-height: 100%;
+		width: 100%;
 	}
 }

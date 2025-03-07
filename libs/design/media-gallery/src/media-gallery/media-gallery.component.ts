@@ -27,6 +27,11 @@ import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 
 let uniqueGalleryId = 0;
 
+/**
+ * ```html
+ * <daff-media-gallery></daff-media-gallery>
+ * ```
+ */
 @Component({
   selector: 'daff-media-gallery',
   templateUrl: './media-gallery.component.html',
@@ -54,8 +59,7 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   /**
    * @docs-private
    */
-  @HostBinding('attr.role')
-  role = 'tablist';
+  @HostBinding('attr.role') role = 'tablist';
 
   /**
    * The internal id of the gallery.
@@ -78,14 +82,16 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   };
 
   /**
-   * Adds a class for styling the media gallery
    * @docs-private
+   *
+   * Adds a class for styling the media gallery
    */
-  @HostBinding('class.daff-media-gallery') class = true;
+  @HostBinding('class.daff-media-gallery') private class = true;
 
   /**
-   * The name of the gallery.
    * @deprecated use `id` instead.
+   *
+   * The name of the gallery.
    */
   @Input() name: string;
 
@@ -105,12 +111,17 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
    */
   @ViewChildren('thumbnailButtons', { read: ElementRef }) private _thumbnailButtons: QueryList<ElementRef<HTMLElement>>;
 
+  /**
+   * @docs-private
+   */
   constructor(private skeletonDirective: DaffSkeletonableDirective) {
     uniqueGalleryId++;
     this.name = 'gallery-' + uniqueGalleryId;
   }
 
   /**
+   * @docs-private
+   *
    * Whether or not the component its currently displaying its skeleton state.
    */
   get skeleton() {
@@ -128,9 +139,6 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
     return this._thumbnails().at(idx);
   });
 
-  /**
-   * @docs-private
-   */
   private _selectedIndex = signal<number | null>(null);
 
 

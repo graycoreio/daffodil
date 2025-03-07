@@ -1,5 +1,11 @@
-@if (!skeleton) {
-		<div class="daff-media-gallery__thumbnails">
+
+<div class="daff-media-gallery__thumbnails" #thumbnailsEl>
+	@if(skeleton) {
+		<div class="daff-thumbnail"></div>
+		<div class="daff-thumbnail"></div>
+		<div class="daff-thumbnail"></div>
+	}
+	@else {
 		@for (thumbnail of _thumbnails(); track thumbnail; let index = $index) {
 			<button 
 				#thumbnailButtons
@@ -20,21 +26,19 @@
 				}
 			</button>
 		}
-	</div>
-	@if(_selectedThumbnail(); as el) {
-		<div class="daff-media-gallery__selected-thumbnail" role="tabpanel" [attr.id]="el.panelId" tabindex="0">
-				<ng-container *ngTemplateOutlet="el.templateRef"></ng-container>
-		</div>
 	}
-	@else {
-		<div class="daff-media-gallery__selected-thumbnail" role="tabpanel" tabindex="0">
-		</div>
-	}
-} @else {
-	<div class="daff-media-gallery__thumbnails">
-		<button class="daff-thumbnail"></button>
-		<button class="daff-thumbnail"></button>
-		<button class="daff-thumbnail"></button>
-	</div>
-	<div class="daff-media-gallery__selected-thumbnail"></div>
-}
+</div>
+@let el = this._selectedThumbnail();
+<div 
+	class="daff-media-gallery__selected-thumbnail"
+	tabindex="0"
+	#selectedThumbnail
+	role="tabpanel"
+	[attr.id]="el?.panelId">
+		@if(el) {
+			<ng-container *ngTemplateOutlet="el.templateRef"></ng-container>
+		}
+		@else {
+			<div class="daff-media-gallery__skeleton-placeholder"></div>
+		}
+</div>

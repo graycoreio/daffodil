@@ -14,10 +14,13 @@ let uniqueThumbnailId = 0;
 
 /**
  * A structural directive marking thumbnails for the `DaffMediaGalleryComponent`.
+ *
+ * ```html
+ * <ng-template daffThumbnail></ng-template>
+ * ```
  */
 @Directive({
   selector: '[daffThumbnail]',
-  standalone: true,
 })
 export class DaffThumbnailDirective implements OnInit {
 
@@ -46,6 +49,9 @@ export class DaffThumbnailDirective implements OnInit {
    */
   @Input() label: string = undefined;
 
+  /**
+   * @docs-private
+   */
   constructor(
     @Inject(DAFF_MEDIA_GALLERY_TOKEN) public gallery: DaffMediaGalleryRegistration,
     public templateRef: TemplateRef<unknown>,

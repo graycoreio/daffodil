@@ -7,7 +7,10 @@ import {
   Output,
   HostBinding,
 } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import {
+  DomSanitizer,
+  SafeStyle,
+} from '@angular/platform-browser';
 
 import { DaffSkeletonableDirective } from '@daffodil/design';
 
@@ -43,7 +46,6 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
       inputs: ['skeleton'],
     },
   ],
-  standalone: true,
 })
 export class DaffImageComponent implements OnInit {
 
@@ -113,6 +115,14 @@ export class DaffImageComponent implements OnInit {
     }
 
     return this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)');
+  }
+
+  get _aspectRatio(): SafeStyle {
+    if (!this.height || !this.width ) {
+      return undefined;
+    }
+
+    return this.sanitizer.bypassSecurityTrustStyle(this.width + ' / ' + this.height);
   }
 
   /**
