@@ -13,7 +13,7 @@ import { FilterableProcessor } from '../utils/filterable-processor.type';
 
 export const ADD_API_SYMBOLS_TO_PACKAGES_PROCESSOR_NAME = 'addApiSymbolsToPackages';
 
-const LINK_TAG = /\{@link ([a-zA-Z]+)}/g;
+const LINK_TAG = /\{@link (\w+)}/g;
 
 export class AddApiSymbolsToPackagesProcessor implements FilterableProcessor {
   readonly name = ADD_API_SYMBOLS_TO_PACKAGES_PROCESSOR_NAME;
