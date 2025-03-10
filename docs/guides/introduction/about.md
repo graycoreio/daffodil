@@ -4,7 +4,7 @@
 
 Daffodil is a Typescript framework for building headless ecommerce stores. It is built on top of Angular and provides a suite of composable packages that allow you to build complicated ecommerce stores.
 
-These packages, in turn, provide tools and architectures that allow you to quickly build storefronts that are:
+These packages provide tools and architectures that allow you to quickly build storefronts that are:
 
 1. Performant
 2. Reliable
