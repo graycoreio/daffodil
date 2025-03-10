@@ -5,10 +5,11 @@ import {
 
 @Directive({
   selector: '[daffToastMessage]',
-  standalone: true,
 })
 
 export class DaffToastMessageDirective {
-
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-toast__message') class = true;
 }

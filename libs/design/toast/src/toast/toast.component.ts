@@ -30,6 +30,8 @@ import { daffToastChangesFocus } from '../service/changes-focus';
 import { DaffToastActionsDirective } from '../toast-actions/toast-actions.directive';
 
 /**
+ * @docs-private
+ *
  * DaffToastComponent provides a way to display and
  * communicate information for user actions or system updates.
  */
@@ -51,12 +53,20 @@ import { DaffToastActionsDirective } from '../toast-actions/toast-actions.direct
   ],
 })
 export class DaffToastComponent implements DaffPrefixable, AfterContentInit, AfterViewInit, OnDestroy {
-  /** @docs-private */
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-toast') class = true;
 
+  /**
+   * @docs-private
+   */
   @ContentChild(DaffToastActionsDirective)
   _actions: DaffToastActionsDirective;
 
+  /**
+   * @docs-private
+   */
   @ContentChild(DaffPrefixDirective)
   _prefix: DaffPrefixDirective;
 
@@ -79,6 +89,9 @@ export class DaffToastComponent implements DaffPrefixable, AfterContentInit, Aft
   ) {
   }
 
+  /**
+   * @docs-private
+   */
   ngAfterContentInit() {
     if(daffToastChangesFocus(this.toast)) {
       this._focusTrap = this._focusTrapFactory.create(
@@ -87,6 +100,9 @@ export class DaffToastComponent implements DaffPrefixable, AfterContentInit, Aft
     }
   }
 
+  /**
+   * @docs-private
+   */
   ngAfterViewInit() {
     if(daffToastChangesFocus(this.toast)) {
       this._focusStack.push();
@@ -94,6 +110,9 @@ export class DaffToastComponent implements DaffPrefixable, AfterContentInit, Aft
     }
   }
 
+  /**
+   * @docs-private
+   */
   ngOnDestroy() {
     if(daffToastChangesFocus(this.toast)) {
       this._focusTrap.destroy();

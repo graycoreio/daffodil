@@ -15,7 +15,7 @@ export interface DaffToastAction {
   type?: 'raised' | 'underline' | 'stroked' | 'flat' | undefined;
 
   /**
-   * The text for the button
+   * The text for the button.
    */
   content: string;
 

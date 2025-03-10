@@ -5,10 +5,11 @@ import {
 
 @Directive({
   selector: '[daffToastActions]',
-  standalone: true,
 })
 
 export class DaffToastActionsDirective {
-
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-toast__actions') class = true;
 }

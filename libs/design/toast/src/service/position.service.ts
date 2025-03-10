@@ -22,16 +22,22 @@ export class DaffToastPositionService {
   private _config: DaffToastPosition;
   private _position: DaffToastPosition;
 
+  /**
+   * Reads the current position of the toast.
+   */
   get config(): DaffToastPosition {
     return this.mediaQuery.isMatched(DaffBreakpoints.MOBILE)
       ? this._position ?? this._config
       : <DaffToastPosition>{ vertical: 'bottom', horizontal: 'center' };
   }
 
-  set config(val: DaffToastPosition) {
+  private set config(val: DaffToastPosition) {
     this._config = val;
   }
 
+  /**
+   * Changes the position of the toast.
+   */
   setPosition(position: DaffToastPosition) {
     this._position = position;
   }

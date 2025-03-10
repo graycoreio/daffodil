@@ -5,10 +5,11 @@ import {
 
 @Directive({
   selector: '[daffToastTitle]',
-  standalone: true,
 })
 
 export class DaffToastTitleDirective {
-
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-toast__title') class = true;
 }

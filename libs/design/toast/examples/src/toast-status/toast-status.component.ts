@@ -57,9 +57,10 @@ export class ToastStatusComponent {
     this.toastService.open({
       status: this.statusControl.value,
       ...status[this.statusControl.value],
-    },
-    {
-      duration: this.statusControl.value === 'critical' ? undefined : 5000,
+      actions: [
+        { content: 'Update', color: 'theme-contrast', size: 'sm' },
+        { content: 'Remind me later', type: 'flat', size: 'sm' },
+      ],
     },
     );
   }

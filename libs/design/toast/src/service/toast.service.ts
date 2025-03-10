@@ -50,6 +50,9 @@ import {
 } from '../toast/toast-config';
 import { DaffToastTemplateComponent } from '../toast/toast-template.component';
 
+/**
+ * Service to display toasts.
+ */
 @Injectable()
 export class DaffToastService implements OnDestroy {
 
@@ -77,6 +80,9 @@ export class DaffToastService implements OnDestroy {
     ).subscribe();
   }
 
+  /**
+   * @docs-private
+   */
   ngOnDestroy(): void {
     this._sub.unsubscribe();
   }
@@ -96,6 +102,9 @@ export class DaffToastService implements OnDestroy {
     });
   }
 
+  /**
+   * Opens the toast. See DaffToastConfiguration for configuration options.
+   */
   open(
     toast: DaffToastData,
     configuration?: Partial<DaffToastConfiguration>,
@@ -143,6 +152,9 @@ export class DaffToastService implements OnDestroy {
     return _toastPlus;
   }
 
+  /**
+   * Closes the toast.
+   */
   close(toast: DaffToast): void {
     if(this._parentToast && this.options.useParent) {
       this._parentToast.close(toast);
