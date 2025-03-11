@@ -52,6 +52,52 @@ import { DaffToastTemplateComponent } from '../toast/toast-template.component';
 
 /**
  * Service to display toasts.
+ *
+ * @example
+ * ```ts
+ * import {
+ *   ChangeDetectionStrategy,
+ *   Component,
+ *   EventEmitter,
+ *   OnInit,
+ * } from '@angular/core';
+ *
+ * import {
+ *   DaffToast,
+ *   DaffToastAction,
+ *   DaffToastService,
+ * } from '@daffodil/design/toast';
+ *
+ * @Component({
+ *   selector: 'default-toast',
+ *   templateUrl: './default-toast.component.html',
+ *   styles: [],
+ *   changeDetection: ChangeDetectionStrategy.OnPush,
+ * })
+ * export class DefaultToastComponent implements OnInit {
+ *   private toast: DaffToast;
+ *
+ *   constructor(private toastService: DaffToastService) {}
+ *
+ *   closeToast = new EventEmitter<DaffToastAction>();
+ *
+ *   open() {
+ *     this.toast = this.toastService.open({
+ *       title: 'Update Available',
+ *       message: 'A new version of this page is available.',
+ *       actions: [
+ *         { content: 'Remind me later', type: 'flat', size: 'sm', eventEmitter: this.closeToast },
+ *       ],
+ *     });
+ *   }
+ *
+ *   ngOnInit() {
+ *     this.closeToast.subscribe(() => {
+ *       this.toastService.close(this.toast);
+ *     });
+ *   }
+ * }
+ * ```
  */
 @Injectable()
 export class DaffToastService implements OnDestroy {
@@ -103,7 +149,10 @@ export class DaffToastService implements OnDestroy {
   }
 
   /**
-   * Opens the toast. See DaffToastConfiguration for configuration options.
+   * Opens the toast.
+   *
+   * @param toast Data that can be shown on a toast.
+   * @param configuration Additional configuration options such as duration.
    */
   open(
     toast: DaffToastData,
@@ -154,6 +203,8 @@ export class DaffToastService implements OnDestroy {
 
   /**
    * Closes the toast.
+   *
+   * @param toast The instance of toast that you wish to close.
    */
   close(toast: DaffToast): void {
     if(this._parentToast && this.options.useParent) {

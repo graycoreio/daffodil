@@ -22,182 +22,30 @@ import { provideDaffToast } from '@daffodil/design/toast';
 export class AppModule {}
 ```
 
-### Configurations
-Toast can be configured by using the `DaffToastService`.
-
-The following is an example of a toast with a duration:
-
-```ts
-import {
-  ChangeDetectionStrategy,
-  Component,
-} from '@angular/core';
-
-import {
-  DaffToast
-  DaffToastService,
-} from '@daffodil/design/toast';
-
-@Component({
-  selector: 'custom-toast',
-  templateUrl: './custom-toast.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class CustomToastComponent {
-  private toast: DaffToast;
-
-  constructor(private toastService: DaffToastService) {}
-
-  open() {
-    this.toast = this.toastService.open({
-      title: 'Update Complete',
-      message: 'This page has been updated to the newest version.',
-    },
-    {
-      duration: 5000,
-    });
-  }
-}
-```
-
-The following is an example of a toast with actions:
-
-```ts
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  OnInit,
-} from '@angular/core';
-
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
-import {
-  DaffToast,
-  DaffToastAction,
-  DaffToastService,
-} from '@daffodil/design/toast';
-
-@Component({
-  selector: 'action-toast',
-  templateUrl: './action-toast.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    DAFF_BUTTON_COMPONENTS,
-  ],
-})
-export class ActionToastComponent implements OnInit {
-  private toast: DaffToast;
-
-  constructor(private toastService: DaffToastService) {}
-
-  update = new EventEmitter<DaffToastAction>();
-
-  closeToast = new EventEmitter<DaffToastAction>();
-
-  open() {
-    this.toast = this.toastService.open({
-      title: 'Update Available',
-      message: 'A new version of this page is available.',
-      actions: [
-        { content: 'Update', color: 'theme-contrast', size: 'sm', eventEmitter: this.update },
-        { content: 'Remind me later', type: 'flat', size: 'sm', eventEmitter: this.closeToast },
-      ],
-    });
-  }
-
-  ngOnInit() {
-    this.update.subscribe(() => {
-    });
-
-    this.closeToast.subscribe(() => {
-      this.toastService.close(this.toast);
-    });
-  }
-}
-```
-
-The following configurations are available in the `DaffToastService`:
-
-| Property | Type   | Description                     | Default |
-| -------- | ------ | ------------------------------- | ------- |
-| title    | string | A quick overview of the toast   | --      |
-| message  | string | Additional details about the message that should be limited to one or two sentences | --      |
-| statuses | `DaffStatus` | Sets a status on the toast. | - |
-| actions  | `DaffToastAction` | Adds a `daff-button` that allow users to perform an action related to the message. Actions should be limited to two buttons. | --      |
-| dismissible  | boolean | Allows a toast to be dismissible via a close button | true |
-| duration  | number | The duration in milliseconds that a toast without actions is visible before it's dismissed | 5000ms |
-
-The `actions` configurations are based on the properties of the `DaffButtonComponent` (view [Button Documentation](/libs/design/button/README.md)) with the addition of `data` and `eventEmitter`.
-
 ## Dismissal
-A toast can be dismissed via a timed duration, a close button, or the `ESC` key.
+A toast can be dismissed via a timed duration or a close button.
+
+The `duration` and `dismissible` properties can be updated when you open it with the `DaffToastService`.
 
 ### Timed duration
-A toast with actions will persist until one of the actions have been interacted with, or is dismissed by the close button or the `ESC` key. Actionable toasts should be persistent, but a duration is allowed to be set. If duration must be set, make sure it's long enough for users to engage with the actions.
+A toast with actions will persist until one of the actions have been interacted with or dismissed by the close button. By default, a toast without actions will be dismissed after `5000ms`.
 
-By default, a toast without actions will be dismissed after `5000ms`. This can be updated by setting `duration` through the `DaffToastService`.
+> Actionable toasts should be persistent, but a duration is allowed to be set. If duration must be set, make sure it's long enough for users to engage with the actions.
 
-#### Toast with custom duration
 <design-land-example-viewer-container example="toast-with-custom-duration"></design-land-example-viewer-container>
 
 ### Close button
-The close button is shown by default but can be hidden by setting `dismissible: false` through the `DaffToastService`.
+The close button is hidden by default, and dismissible is ignored when there are actions in a toast. You can change the visibility of the close button via the `dismissible` property.
 
-### Escape key
-A toast can be dismissed by using the `ESC` key if it has actions and is focus trapped.
+<design-land-example-viewer-container example="dismissible-toast"></design-land-example-viewer-container>
 
 ## Stacking
 A maximum of three toasts can be shown at a time. Toasts are stacked vertically, with the most recent toast displayed on top.
 
 ## Statuses
-Set the `status` property through the `DaffToastService`.
+You can set the status of a toast when opening it with `DaffToastService`, using values defined by `DaffStatus`.
 
-Supported statuses: `warn | critical | success`
-
-### Toast with statuses
 <design-land-example-viewer-container example="toast-status"></design-land-example-viewer-container>
-
-## Positions
-
-| Property     | Value                    | Default |
-| ------------ | ------------------------ | ------- |
-| `vertical`   | `top` `bottom`           | top     |
-| `horizontal` | `left` `center` `right`  | right   |
-
-To change the horizontal and vertical position of a toast, add the `provideDaffToastOptions` dependency key to the `providers` key in the component as shown below:
-
-```ts
-@Component({
-  selector: 'custom-toast',
-  templateUrl: './custom-toast.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    provideDaffToastOptions({
-      position: {
-        vertical: 'bottom',
-        horizontal: 'center',
-      },
-      useParent: false,
-    }),
-  ],
-})
-export class CustomToastComponent {
-  private toast: DaffToast;
-
-  constructor(private toastService: DaffToastService) {}
-
-  open() {
-    this.toast = this.toastService.open({
-      title: 'Update Available',
-      message: 'A new version of this page is available.',
-    });
-  }
-}
-```
-
-> The position of a toast on a mobile device will always be on the bottom center.
-
-<design-land-example-viewer-container example="toast-positions"></design-land-example-viewer-container>
 
 ## Accessibility
 By default, toasts use a `role="status"` to announce messages. It's the equivalent of `aria-live="polite"`, which does not interrupt a user's current activity and waits until they are idle to make the announcement.
@@ -205,3 +53,8 @@ By default, toasts use a `role="status"` to announce messages. It's the equivale
 `role="alertdialog"` is used when a toast has action. The toast will be focus trapped and focus immediately moves to the actions.
 
 Avoid setting a duration on toasts with actions because they will disappear automatically, making it difficult for users to interact with the actions.
+
+### Keyboard Interactions
+| Key   | Action |
+| ----- | ------ |
+| `ESC` |  Dismisses a toast if it has actions and is focus trapped. |
