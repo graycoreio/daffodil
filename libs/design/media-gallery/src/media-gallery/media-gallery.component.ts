@@ -89,14 +89,6 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   @HostBinding('class.daff-media-gallery') private class = true;
 
   /**
-   * @deprecated use `id` instead.
-   *
-   * The name of the gallery.
-   */
-  @Input() name: string;
-
-
-  /**
    * An event indicating that the selected media gallery element has changed.
    */
   @Output() elementChange: EventEmitter<number> = new EventEmitter<number>();
@@ -116,7 +108,6 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
    */
   constructor(private skeletonDirective: DaffSkeletonableDirective) {
     uniqueGalleryId++;
-    this.name = 'gallery-' + uniqueGalleryId;
   }
 
   /**
