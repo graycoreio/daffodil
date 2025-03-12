@@ -12,10 +12,6 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
 /**
  * DaffButtonComponent is a rectangular contained button with background color.
  *
- * ```ts
- * import { DaffButtonComponent } from '@daffodil/design/button';
- * ```
- *
  * @example Basic button
  * ```html
  * <button daff-button>

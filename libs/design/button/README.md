@@ -1,5 +1,5 @@
 # Button
-The button is used for making actions apparent to the end-user. It can be used to navigate users to a different page or to perform an action. Buttons can contain text, icons, or both.
+Buttons are used to make actions apparent to the end user. It can be used to navigate users to a different page or to perform an action. Buttons can contain text, icons, or both.
 
 ## Overview
 Native `<button>` or `<a>` elements are always used in order to provide an easy, accessible experience for users.
@@ -78,27 +78,24 @@ export class CustomComponentModule { }
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
 ## Sizes
-The size of a button can be changed by using the `size` property. The size of all the button variants will default to `md` if no size is defined. This can be changed to one of the supported sizes.
-
-Supported Sizes: `sm | md | lg`
+Use the `size` property to specify a button size. Setting this property will change the height and padding of a button. The size of all variants will default to `md` if none is defined.
 
 <design-land-example-viewer-container example="sizeable-button"></design-land-example-viewer-container>
 
 ## Theming
-The default color of a button is light gray, but it can be updated to one of the supported colors by using the `color` property.
-
-Supported colors: `primary | secondary | tertiary | black | white | theme | theme-contrast`
+Use the `color` property to change the color of a button. The default color is light gray.
 
 > For select button types, `black` and `white` should be used on a darker background in order to have sufficient contrast.
 
 ## Status indicators
-Buttons with status indicators can be used to distinguish what type of action it performs and its importance compared to other buttons in the same context.
-
-Supported statuses: `warn | critical | success`
+Buttons with status indicators can be used to distinguish what type of action it performs and its importance compared to other buttons in the same context. Use the `status` property to change the status.
 
 <design-land-example-viewer-container example="statusable-button"></design-land-example-viewer-container>
 
 ## Accessbility
-Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible experience by default. The `<button>` element should be used when a clickable action is performed within the same page. The `<a>` element should be used to navigate users to a new page or to a different target on the same page.
+Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible experience by default.
+
+- The `<button>` element should be used when a clickable action is performed within the same page.
+- The `<a>` element should be used to navigate users to a new page or to a different target on the same page.
 
 Buttons and links containing only icons (`<daff-icon-button>`) need to be given meaningful labels using `aria-label` or `aria-labelledby`.

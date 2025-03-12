@@ -12,10 +12,6 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
 /**
  * DaffRaisedButtonComponent is a rectangular contained button with background color and elevation.
  *
- * ```ts
- * import { DaffRaisedButtonComponent } from '@daffodil/design/button';
- * ```
- *
  * @example Raised button
  * ```html
  * <button daff-raised-button>

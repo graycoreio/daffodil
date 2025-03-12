@@ -8,7 +8,7 @@ import {
 } from '@daffodil/design';
 
 /**
- * The DaffSizable {@link DaffSizable } types that the DaffButtonComponent can implement.
+ * The size types that the DaffButtonComponent can implement.
  */
 export type DaffButtonSize = DaffSizeSmallType | DaffSizeMediumType | DaffSizeLargeType;
 

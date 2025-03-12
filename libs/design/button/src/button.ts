@@ -6,10 +6,7 @@ import { DaffStrokedButtonComponent } from './button/stroked/stroked.component';
 import { DaffUnderlineButtonComponent } from './button/underline/underline.component';
 
 /**
- * `DAFF_BUTTON_COMPONENTS` imports all the available button types.
- * ```ts
- * import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
- * ```
+ * @docs-private
  */
 export const DAFF_BUTTON_COMPONENTS = <const> [
   DaffButtonComponent,

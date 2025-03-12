@@ -12,10 +12,6 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
 /**
  * DaffIconButtonComponent is an icon button used with icon fonts.
  *
- * ```ts
- * import { DaffIconButtonComponent } from '@daffodil/design/button';
- * ```
- *
  * @example Icon button
  * ```html
  * <button daff-icon-button>

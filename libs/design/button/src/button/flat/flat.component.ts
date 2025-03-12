@@ -12,10 +12,6 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
 /**
  * DaffFlatButtonComponent is a rectangular contained button no background.
  *
- * ```ts
- * import { DaffFlatButton } from '@daffodil/design/button';
- * ```
- *
  * @example Flat button
  * ```html
  * <button daff-flat-button>

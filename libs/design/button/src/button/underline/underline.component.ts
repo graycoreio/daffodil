@@ -12,10 +12,6 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
 /**
  * DaffUnderlineButtonComponent is a borderless button with a custom underline style.
  *
- * ```ts
- * import { DaffUnderlineButtonComponent } from '@daffodil/design/button';
- * ```
- *
  * @example Underline button
  * ```html
  * <button daff-underline-button>
