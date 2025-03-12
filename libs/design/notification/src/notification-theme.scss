@@ -15,7 +15,6 @@
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 	$white: core.daff-map-get($theme, 'core', 'white');
 	$black: core.daff-map-get($theme, 'core', 'black');
-	$type: core.daff-map-get($theme, 'core','type');
 
 	.daff-notification {
 		background: theming.daff-illuminate($base, $neutral, 1);
@@ -23,14 +22,12 @@
 		color: theming.daff-text-contrast(theming.daff-illuminate($base, $neutral, 1));
 
 		&.daff-success {
-			@include theming.light($theme) {
-				background: theming.daff-color($success, 10);
-				border: 1px solid theming.daff-color($success, 20);
-				color: theming.daff-text-contrast(theming.daff-color($success, 10));
-				
-				.daff-prefix {
-					color: theming.daff-color($success);
-				}
+			background: theming.daff-color($success, 10);
+			border: 1px solid theming.daff-color($success, 20);
+			color: theming.daff-text-contrast(theming.daff-color($success, 10));
+
+			.daff-prefix {
+				color: theming.daff-color($success);
 			}
 		}
 

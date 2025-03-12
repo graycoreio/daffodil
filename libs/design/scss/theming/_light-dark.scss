@@ -4,19 +4,21 @@
 // @usage
 // ```scss
 // @use 'theme' as daff-theme;
-// 
-// @include daff-theme.light($theme) {
+//
+// $type: daff-theme.daff-map-get($theme, 'core', 'type');
+//
+// @include daff-theme.light($type) {
 //   color: blue;
-// 
+//
 //   .class {
 //      background: white;
 //	 }
 // }
 // ```
 @mixin light($mode) {
-  @if $mode == 'light' {
-    @content;
-  }
+	@if $mode == 'light' {
+		@content;
+	}
 }
 
 //
@@ -24,17 +26,20 @@
 //
 // @usage
 // ```scss
+// @use 'theme' as daff-theme;
 //
-// @dark {
+// $type: daff-theme.daff-map-get($theme, 'core', 'type');
+//
+// @include daff-theme.dark($type) {
 //   color: blue;
-// 
+//
 //   .class {
 //      background: white;
 //	 }
 // }
 // ```
 @mixin dark($mode) {
-  @if $mode == 'dark' {
-    @content;
-  }
+	@if $mode == 'dark' {
+		@content;
+	}
 }
