@@ -28,7 +28,7 @@ class WrapperComponent {
   imagesValue: Record<string, any>[] = stubImages;
 }
 
-fdescribe('ImageGalleryComponent', () => {
+describe('ImageGalleryComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let imageGalleryContainer: ImageGalleryComponent;

@@ -31,7 +31,7 @@ describe('@daffodil/design/image | DaffImageComponent', () => {
   let component: DaffImageComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
-  let wrapperDE: DebugElement;
+  let imageDE: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -46,7 +46,7 @@ describe('@daffodil/design/image | DaffImageComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('daff-image'));
-    wrapperDE = fixture.debugElement.query(By.css('.daff-image__wrapper'));
+    imageDE = fixture.debugElement.query(By.css('.daff-image'));
     component = de.componentInstance;
 
     fixture.detectChanges();
@@ -107,26 +107,17 @@ describe('@daffodil/design/image | DaffImageComponent', () => {
   });
 
   it('should throw an error when height is invalid', () => {
-    wrapper.height = null;
+    wrapper.height = undefined;
     expect(() => fixture.detectChanges()).toThrowError(/height/);
   });
 
-  it('sets padding-top to an empty string on `.daff-image__wrapper` if width is `0`', () => {
-    wrapper.height = 100;
-    wrapper.width = 0;
-
-    fixture.detectChanges();
-
-    expect(wrapperDE.styles['paddingTop']).toBeFalsy();
-  });
-
-  it('calculates and sets `padding-top` on `.daff-image__wrapper` based on height and width', () => {
-    wrapper.height = 100;
+  it('should calculate and set `aspect-ratio` on `.daff-image` based on the width and height', () => {
     wrapper.width = 300;
+    wrapper.height = 100;
 
     fixture.detectChanges();
 
-    expect(wrapperDE.styles['paddingTop']).toEqual('calc(33.3333%)');
+    expect(imageDE.styles['aspect-ratio']).toEqual('300 / 100');
   });
 
   it('sets `max-width` on the host element based on the width', () => {

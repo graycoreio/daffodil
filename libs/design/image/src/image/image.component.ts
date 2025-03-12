@@ -118,10 +118,6 @@ export class DaffImageComponent implements OnInit {
   }
 
   get _aspectRatio(): SafeStyle {
-    if (!this.height || !this.width ) {
-      return undefined;
-    }
-
     return this.sanitizer.bypassSecurityTrustStyle(this.width + ' / ' + this.height);
   }
 
