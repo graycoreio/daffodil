@@ -18,6 +18,6 @@ Daffodil is built with flexibility and scalability in mind. Here are a few featu
 
 - **Drivers**: [Drivers](/docs/guides/drivers.md) are Daffodil's lifeblood. The drivers enable you to easily integrate with various ecommerce backends, payment systems, and other services, allowing you to extend functionality without disrupting the core framework.
 - **Design Components**: Building trust is key in ecommerce. With [Daffodil's component kit](/docs/design), you can streamline development and create a polished, professional store that customers will love.
-- **Performance**: Performance is paramount. Your store can only be performant if our code is fast, you can rely on us to prevent and fix performance issues as quickly as possible.
+- **Performance**: Performance is paramount. Your store can only be performant if our code is fast. You can rely on us to prevent and fix performance issues as quickly as possible.
 - **Modular Packages**: Daffodil’s architecture is based on [interoperable packages](/docs/packages), so you can select the *exact* components you need. This makes it easy to build a solution tailored specifically to your requirements.
 - **Headless**: Built to integrate seamlessly with modern platforms, Daffodil serves as the frontend "head" to your headless system.
