@@ -28,7 +28,7 @@ export class DaffThumbnailDirective implements OnInit {
    * The id of the thumbnail.
    */
   get id(): string {
-    return (this.gallery.id ?? this.gallery.name) + '-thumbnail-' + uniqueThumbnailId;
+    return this.gallery.id + '-thumbnail-' + uniqueThumbnailId;
   }
 
   /**
