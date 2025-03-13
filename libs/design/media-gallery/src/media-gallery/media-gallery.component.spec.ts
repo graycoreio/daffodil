@@ -73,10 +73,6 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
     }));
   });
 
-  it('should take a name as input', () => {
-    expect(component.name).toEqual(stubName);
-  });
-
   it('should take skeleton as an input', () => {
     wrapper.skeleton = true;
     fixture.detectChanges();
@@ -114,12 +110,6 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
   it('should an id on each thumbnail automatically', () => {
     fixture.detectChanges();
     expect(thumbnailButtons[1].id).toBeTruthy();
-  });
-
-  it('should use the gallery name for thumbnail ids if the gallery has an input name', () => {
-    wrapper.nameValue = 'test-gallery';
-    fixture.detectChanges();
-    expect(thumbnailButtons[1].id).toContain('test-gallery');
   });
 
   it('should use the gallery id for thumbnail ids if the gallery has an input id', () => {

@@ -12,6 +12,7 @@ import { By } from '@angular/platform-browser';
 
 import { DaffThumbnailDirective } from '../../thumbnail/thumbnail.directive';
 import { DaffMediaGalleryComponent } from '../media-gallery.component';
+
 @Component({
   template: '<daff-media-gallery></daff-media-gallery>',
   imports: [
@@ -21,7 +22,7 @@ import { DaffMediaGalleryComponent } from '../media-gallery.component';
 })
 class DefaultWrapperComponent {}
 
-describe('DaffMediaGalleryComponent - default', () => {
+describe('DaffMediaGalleryComponent | Defaults', () => {
   let wrapper: DefaultWrapperComponent;
   let fixture: ComponentFixture<DefaultWrapperComponent>;
   let de: DebugElement;
@@ -44,8 +45,13 @@ describe('DaffMediaGalleryComponent - default', () => {
     component = de.componentInstance;
   });
 
-  it('should set the name to a unique id if a name is not provided', () => {
-    expect(component.name).not.toEqual('');
-    expect(component.name).toEqual(jasmine.any(String));
+  it('should add a class of "daff-media-gallery" to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-media-gallery': true,
+    }));
+  });
+
+  it('should have a role of tablist', () => {
+    expect(component.role).toBe('tablist');
   });
 });
