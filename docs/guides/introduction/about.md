@@ -12,7 +12,7 @@ These packages provide tools and architectures that allow you to quickly build s
 4. Maintainable
 5. Accessible
 
-## The Framework
+## The framework
 
 Daffodil is built with flexibility and scalability in mind. Here are a few features that we believe make Daffodil special:
 
