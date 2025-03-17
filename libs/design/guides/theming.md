@@ -139,10 +139,10 @@ $daff-blue: (
 ### Configure your custom palettes
 Configure your app to support the custom palettes and set defaults for each palette by using  the `daff-configure-palettes` function:
 
-| Argument       | Description                                                                    |
-| -------------- | ------------------------------------------------------------------------------ |
-| $color-palette | The name of the palette to read from.                                          |
-| $hue           | The hue number to read from the palette. This defaults to 60 if not specified. |
+| Argument         | Description                                                                    |
+| ---------------- | ------------------------------------------------------------------------------ |
+| `$color-palette` | The name of the palette to read from.                                          |
+| `$hue`           | The hue number to read from the palette. This defaults to 60 if not specified. |
 
 ```scss
 @use '@daffodil/design/scss/theme' as daff-theme;
@@ -158,10 +158,10 @@ Define your themes by using the `daff-configure-theme` function:
 
 | Argument | Description                                                               |
 | -------- | ------------------------------------------------------------------------- |
-| $primary | Specifies the configured palette to use for your app's primary color.     |
-| $secondary | Specifies the configured palette to use for your app's secondary color. |
-| $tertiary | Specifies the configured palette to use for your app's tertiary color.   |
-| $type | Specifies the type of theme. This can be `light` or `dark`.                  |
+| `$primary` | Specifies the configured palette to use for your app's primary color.     |
+| `$secondary` | Specifies the configured palette to use for your app's secondary color. |
+| `$tertiary` | Specifies the configured palette to use for your app's tertiary color.   |
+| `$type` | Specifies the type of theme. This can be `light` or `dark`.                  |
 
 ```scss
 @use '@daffodil/design/scss/theme' as daff-theme;
