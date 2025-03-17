@@ -145,6 +145,16 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
     private location: Location,
   ) {}
 
+  private reset() {
+    if(this.initiallySelected) {
+      this.selectedTab = this.initiallySelected;
+    }
+
+    if (!this.selectedTab) {
+      this.selectedTab = this._tabs.first.id;
+    }
+  }
+
   /**
    * @docs-private
    */
@@ -153,7 +163,8 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
       // if the app is navigated away from the current page, reset the state
       if (this.linkMode && !this.location.isCurrentPathEqualTo(this.url, `${this.queryParam}=${this.selectedTab}`)) {
         this.selectedTab = null;
-        this.ngAfterContentInit();
+        this.reset();
+        this.tabChange.emit(this.selectedTab);
       }
     });
   }
@@ -162,15 +173,7 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
    * @docs-private
    */
   ngAfterContentInit() {
-    if(this.initiallySelected) {
-      this.selectedTab = this.initiallySelected;
-    }
-
-    if (!this.selectedTab) {
-      this.selectedTab = this._tabs.first.id;
-    }
-
-    this.tabChange.emit(this.selectedTab);
+    this.reset();
   }
 
   /**
