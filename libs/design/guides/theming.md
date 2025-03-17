@@ -7,14 +7,12 @@ Daffodil Design is built with [Sass](https://sass-lang.com/). You should be fami
 A theme must be configured in order for the components to work properly.
 
 ## Default theme
-The `daff-theme` mixin includes styles for all components. The example below demonstrates how to use Daffodil Design's default theme, where the `$theme` variable is the default configured theme. The mixin is included in the `html` selector to ensure that component styles are applied across the entire application.
+The `daff-theme` mixin includes styles for all components. The example below demonstrates how to use Daffodil Design's default theme, where the `$theme` variable is the default configured theme. The mixin is included as part of the `styles.scss` file to ensure that component styles are applied across the entire application.
 
 ```scss
 @use '@daffodil/design/scss/theme' as daff-theme;
 
-html {
-	@include daff-theme.daff-theme(daff-theme.$theme);
-}
+@include daff-theme.daff-theme(daff-theme.$theme);
 ```
 
 ## Modes
