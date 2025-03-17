@@ -7,12 +7,12 @@ Daffodil Design is built with [Sass](https://sass-lang.com/). You should be fami
 A theme must be configured in order for the components to work properly.
 
 ## Default theme
-The `daff-theme` mixin includes styles for all components. The example below demonstrates how to use Daffodil Design's default theme, where the `$theme` variable is the default configured theme. The mixin is included as part of the `styles.scss` file to ensure that component styles are applied across the entire application.
+The `daff-component-themes` mixin includes styles for all components. The example below demonstrates how to use Daffodil Design's default theme, where the `$theme` variable is the default configured theme. The mixin is included as part of the `styles.scss` file to ensure that component styles are applied across the entire application.
 
 ```scss
 @use '@daffodil/design/scss/theme' as daff-theme;
 
-@include daff-theme.daff-theme(daff-theme.$theme);
+@include daff-theme.daff-component-themes(daff-theme.$theme);
 ```
 
 ## Modes
@@ -21,17 +21,17 @@ Dark and light modes are supported out of the box in all Daffodil Design compone
 ### Usage
 To support light and dark mode in your application:
 
-1. Include the `daff-theme` mixin with `$theme` and `$theme-dark` variables to the `.daff-theme-light` and `.daff-theme-dark` classes.
+1. Include the `daff-component-themes` mixin with `$theme` and `$theme-dark` variables to the `.daff-theme-light` and `.daff-theme-dark` classes.
 
 ```scss
 @use '@daffodil/design/scss/theme' as daff-theme;
 
 .daff-theme-light {
-	@include daff-theme.daff-theme(daff-theme.$theme);
+	@include daff-theme.daff-component-themes(daff-theme.$theme);
 }
 
 .daff-theme-dark {
-	@include daff-theme.daff-theme(daff-theme.$theme-dark);
+	@include daff-theme.daff-component-themes(daff-theme.$theme-dark);
 }
 ```
 
@@ -184,10 +184,10 @@ $theme-dark: daff-theme.daff-configure-theme($app-primary-dark, $app-secondary-d
 @use 'app-theme';
 
 .daff-theme-light {
-  @include daff-theme.daff-theme(app-theme.$theme-light);
+  @include daff-theme.daff-component-themes(app-theme.$theme-light);
 }
 
 .daff-theme-dark {
-  @include daff-theme.daff-theme(app-theme.$theme-dark);
+  @include daff-theme.daff-component-themes(app-theme.$theme-dark);
 }
 ```

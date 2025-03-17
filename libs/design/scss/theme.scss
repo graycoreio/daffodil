@@ -53,6 +53,61 @@
 @use '../toast/src/toast-theme' as toast;
 
 //
+// Generates the styles of `@daffodil/design`'s component themes.
+//
+// @usage
+// ```scss
+// @use '@daffodil/design/scss/theme' as daff-theme;
+//
+// @include daff-theme.daff-component-themes($theme);
+// ```
+@mixin daff-component-themes($theme) {
+	// CSS variables
+	@include variables.daff-theme-css-variables($theme);
+
+	// Mixins
+	@include skeleton.daff-skeleton-theme($theme);
+
+	@include accordion.daff-accordion-theme($theme);
+	@include article.daff-article-theme($theme);
+	@include breadcrumb.daff-breadcrumb-theme($theme);
+
+	@include button.daff-button-theme($theme);
+	@include flat-button.daff-flat-button-theme($theme);
+	@include icon-button.daff-icon-button-theme($theme);
+	@include raised-button.daff-raised-button-theme($theme);
+	@include stroked-button.daff-stroked-button-theme($theme);
+	@include underline-button.daff-underline-button-theme($theme);
+
+	@include callout.daff-callout-theme($theme);
+	@include card-base.daff-card-base-theme($theme);
+	@include raised-card.daff-raised-card-theme($theme);
+	@include stroked-card.daff-stroked-card-theme($theme);
+
+	@include form-field.daff-form-field-theme($theme);
+	@include error-message.daff-error-message-theme($theme);
+	@include input.daff-input-theme($theme);
+	@include native-select.daff-native-select-theme($theme);
+
+	@include hero.daff-hero-theme($theme);
+	@include list.daff-list-theme($theme);
+	@include loading-icon.daff-loading-icon-theme($theme);
+	@include media-gallery.daff-media-gallery-theme($theme);
+	@include menu.daff-menu-theme($theme);
+	@include modal.daff-modal-theme($theme);
+	@include navbar.daff-navbar-theme($theme);
+	@include notification.daff-notification-theme($theme);
+	@include paginator.daff-paginator-theme($theme);
+	@include progress-bar.daff-progress-bar-theme($theme);
+	@include sidebar.daff-sidebar-theme($theme);
+	@include switch.daff-switch-theme($theme);
+	@include tabs.daff-tabs-theme($theme);
+	@include toast.daff-toast-theme($theme);
+	@include tree.daff-tree-theme($theme);
+}
+
+//
+// @deprecated
 // Generates the styles of a @daffodil/design theme.
 //
 // Usage:

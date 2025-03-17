@@ -6,4 +6,4 @@
 @use 'demo-theme';
 @use 'theme' as daff-theme;
 
-@include daff-theme.daff-theme(demo-theme.$theme);
+@include daff-theme.daff-component-themes(demo-theme.$theme);
