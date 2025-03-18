@@ -117,7 +117,7 @@ export class ThemeSwitchButtonComponent implements OnInit {
 Daffodil allows you to define your own themes to match your brand or product's visual style. The guides below will walk you through the entire process.
 
 ### Create custom palettes
-Create a palettes file that includes Sass maps that can be used as `$primary`, `$secondary`, and `$teritary` colors. Your Sass maps must have hues from 10 to 100, with a step increment of 10 like the example below:
+Create a palettes file that includes Sass maps that can be used as `$primary`, `$secondary`, and `$tertiary` colors. Your Sass maps must have hues from 10 to 100, with a step increment of 10 like the example below:
 
 ```scss
 $daff-blue: (
