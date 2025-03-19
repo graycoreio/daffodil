@@ -1,7 +1,10 @@
 /* eslint-disable quote-props */
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Directive,
+  Component,
+  TemplateRef,
+  ViewChild,
 } from '@angular/core';
 
 /**
@@ -14,8 +17,14 @@ import {
  * </li>
  * ```
  */
-@Directive({
+@Component({
   selector: 'li[daffBreadcrumbItem]',
+  template: `
+    <ng-template #item>
+      <ng-content></ng-content>
+    </ng-template>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'class': 'daff-breadcrumb__item',
     '[class.active]': '_active',
@@ -23,6 +32,11 @@ import {
   },
 })
 export class DaffBreadcrumbItemDirective {
+  /**
+   * @docs-private
+   */
+  @ViewChild('item', { read: TemplateRef, static: true }) itemRef: TemplateRef<any>;
+
   private _active = false;
 
   constructor( private cdRef: ChangeDetectorRef ) {}

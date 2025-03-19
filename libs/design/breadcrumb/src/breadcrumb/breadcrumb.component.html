@@ -1,1 +1,24 @@
-<ng-content select="[daffBreadcrumbItem]"></ng-content>
+@for (breadcrumbItem of breadcrumbItems; track breadcrumbItem; let index = $index) {
+	@if (breadcrumbItem.type === 'item') {
+		<li class="daff-breadcrumb__item">
+			<ng-container *ngTemplateOutlet="breadcrumbItem.itemRef"></ng-container>
+		</li>
+	} @else {
+		<li class="daff-breadcrumb__item" [daffMenuActivator]="inner"><button>...</button></li>
+
+		<ng-template #inner>
+			<daff-menu>
+				@for (breadcrumbItem of _computedBreadcrumbItems; track breadcrumbItem; let index = $index) {
+					<button daff-menu-item>
+						{{ index }}
+					</button>
+					<!-- @if (index !== 0 && index !== 1) {
+						<button daff-menu-item>
+							<ng-container *ngTemplateOutlet="breadcrumbItem.itemRef"></ng-container>
+						</button>
+					} -->
+				}
+			</daff-menu>	
+		</ng-template>
+	}
+}

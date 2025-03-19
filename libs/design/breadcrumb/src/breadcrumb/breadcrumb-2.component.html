@@ -1,0 +1,71 @@
+@if (mobile) {
+	<li class="daff-breadcrumb__item"><button class="daff-breadcrumb__truncate" [daffMenuActivator]="menu">...</button></li>
+	<ng-template #menu>
+		<daff-menu>
+			@for (breadcrumbItem of breadcrumbItems; track breadcrumbItem) {
+				<button daff-menu-item>
+					<ng-container *ngTemplateOutlet="breadcrumbItem.itemRef"></ng-container>
+				</button>
+			}
+		</daff-menu>	
+	</ng-template>
+	@for (breadcrumbItem of breadcrumbItems; track breadcrumbItem) {
+		@if (index === (breadcrumbItems.length - 1)) {
+			<li class="daff-breadcrumb__item">
+				<ng-container *ngTemplateOutlet="breadcrumbItem.itemRef"></ng-container>
+			</li>
+		}
+	}
+}
+
+@if (breadcrumbItems.length < 5 ) {
+
+	<ng-template #menu>
+		<daff-menu>
+			@for (breadcrumbItem of breadcrumbItems; track breadcrumbItem) {
+				<button daff-menu-item>
+					<ng-container *ngTemplateOutlet="breadcrumbItem.itemRef"></ng-container>
+				</button>
+			}
+		</daff-menu>	
+	</ng-template>
+
+	@for (breadcrumbItem of breadcrumbItems; track breadcrumbItem) {
+		<li class="daff-breadcrumb__item">
+			<ng-container *ngTemplateOutlet="breadcrumbItem.itemRef"></ng-container>
+		</li>
+	}
+} @else {
+	@for (breadcrumbItem of breadcrumbItems; track breadcrumbItem; let index = $index) {
+		@if (index === 0 || index === 1) {
+			<li class="daff-breadcrumb__item">
+				<ng-container *ngTemplateOutlet="breadcrumbItem.itemRef"></ng-container>
+			</li>
+		}
+	}
+
+	<li class="daff-breadcrumb__item" [daffMenuActivator]="inner"><button>...</button></li>
+
+	<ng-template #inner>
+		<daff-menu>
+			@for (breadcrumbItem of breadcrumbItems; track breadcrumbItem; let index = $index) {
+				<button daff-menu-item>
+					{{ index }}
+				</button>
+				<!-- @if (index !== 0 && index !== 1) {
+					<button daff-menu-item>
+						<ng-container *ngTemplateOutlet="breadcrumbItem.itemRef"></ng-container>
+					</button>
+				} -->
+			}
+		</daff-menu>	
+	</ng-template>
+
+	@for (breadcrumbItem of breadcrumbItems; track breadcrumbItem; let index = $index) {
+		@if (index === (breadcrumbItems.length - 1) || index === (breadcrumbItems.length - 2)) {
+			<li class="daff-breadcrumb__item">
+				<ng-container *ngTemplateOutlet="breadcrumbItem.itemRef"></ng-container>
+			</li>
+		}
+	}
+}

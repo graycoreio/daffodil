@@ -1,4 +1,5 @@
 /* eslint-disable quote-props */
+import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -7,6 +8,9 @@ import {
   QueryList,
   AfterContentInit,
   DestroyRef,
+  ViewChild,
+  contentChildren,
+  computed,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -14,7 +18,10 @@ import {
   DaffArticleEncapsulatedDirective,
   DaffSkeletonableDirective,
 } from '@daffodil/design';
-
+import {
+  DaffMenuComponent,
+  DaffMenuModule,
+} from '@daffodil/design/menu';
 
 import { DaffBreadcrumbItemDirective } from '../breadcrumb-item/breadcrumb-item.directive';
 
@@ -50,6 +57,10 @@ import { DaffBreadcrumbItemDirective } from '../breadcrumb-item/breadcrumb-item.
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  imports: [
+    DaffMenuModule,
+    NgTemplateOutlet,
+  ],
 })
 
 export class DaffBreadcrumbComponent implements AfterContentInit {
@@ -60,6 +71,23 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
    * @docs-private
    */
   @ContentChildren(DaffBreadcrumbItemDirective) breadcrumbItems!: QueryList<DaffBreadcrumbItemDirective>;
+
+  @ViewChild('menu', { read: DaffMenuComponent }) menu;
+
+  @ViewChild('inner', { read: DaffMenuComponent }) inner;
+
+  /**
+   * @docs-private
+   */
+  _breadcrumbItems = contentChildren(DaffBreadcrumbItemDirective);
+
+  _computedBreacrumbItems = computed(() => {
+    const items = this._breadcrumbItems();
+
+    return items.reduce((acc, item, index) => {
+
+    }, []);
+  });
 
   /**
    * @docs-private

@@ -1,5 +1,6 @@
 @use '../../../scss/typography' as t;
 @use '../../../scss/state';
+@use '../../../scss/layout';
 
 .daff-breadcrumb {
 	$root: &;
@@ -31,6 +32,17 @@
 				font-weight: normal;
 				margin: 0 0.5rem;
 			}
+		}
+	}
+
+	&__truncate {
+		display: inline-block;
+		appearance: none;
+		background-color: none;
+		border: none;
+
+		@include layout.breakpoint(mobile) {
+			display: none;
 		}
 	}
 
