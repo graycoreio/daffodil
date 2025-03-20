@@ -23,6 +23,8 @@ import {
   DaffMenuModule,
 } from '@daffodil/design/menu';
 
+import { DaffBreadcrumbRender } from './breadcrumb-render.type';
+import { toRenderType } from './to-render-type';
 import { DaffBreadcrumbItemDirective } from '../breadcrumb-item/breadcrumb-item.directive';
 
 /**
@@ -72,22 +74,45 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
    */
   @ContentChildren(DaffBreadcrumbItemDirective) breadcrumbItems!: QueryList<DaffBreadcrumbItemDirective>;
 
-  @ViewChild('menu', { read: DaffMenuComponent }) menu;
+  @ViewChild('fullMenu', { read: DaffMenuComponent, static: true }) fullMenu;
 
-  @ViewChild('inner', { read: DaffMenuComponent }) inner;
+  @ViewChild('partialMenu', { read: DaffMenuComponent, static: true }) partialMenu;
 
   /**
    * @docs-private
    */
   _breadcrumbItems = contentChildren(DaffBreadcrumbItemDirective);
 
-  _computedBreacrumbItems = computed(() => {
+  _computedBreadcrumbItems = computed(() => {
     const items = this._breadcrumbItems();
 
-    return items.reduce((acc, item, index) => {
-
+    return items.reduce<DaffBreadcrumbRender[]>((acc, item, index) => {
+      const res = toRenderType(item, items.length, index);
+      if(Array.isArray(res)) {
+        return [...acc, ...res];
+      } else {
+        return [...acc,  res];
+      }
     }, []);
   });
+
+  _partialMenuItems = computed(() => {
+    const items = this._breadcrumbItems();
+    const res = items.reduce<DaffBreadcrumbItemDirective[]>((acc, item, index) => {
+      if(items.length > 5
+          && (index !== 0 && index !== 1)
+          && (index !== items.length - 1 && index !== items.length - 2)
+      ) {
+        console.log(...acc, item);
+        return [...acc, item];
+      } else {
+        return acc;
+      }
+    }, []);
+    return res;
+  });
+
+  _fullMenuItems = computed(() => this._breadcrumbItems().slice(0, length - 1));
 
   /**
    * @docs-private
