@@ -74,8 +74,14 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
    */
   @ContentChildren(DaffBreadcrumbItemDirective) breadcrumbItems!: QueryList<DaffBreadcrumbItemDirective>;
 
+  /**
+   * @docs-private
+   */
   @ViewChild('fullMenu', { read: DaffMenuComponent, static: true }) fullMenu;
 
+  /**
+   * @docs-private
+   */
   @ViewChild('partialMenu', { read: DaffMenuComponent, static: true }) partialMenu;
 
   /**

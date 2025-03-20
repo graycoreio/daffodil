@@ -1,6 +1,7 @@
 @use '../../../scss/typography' as t;
 @use '../../../scss/state';
 @use '../../../scss/layout';
+@use '../../../scss/interactions';
 
 .daff-breadcrumb {
 	$root: &;
@@ -33,17 +34,45 @@
 				margin: 0 0.5rem;
 			}
 		}
-	}
 
-	&__truncate {
-		display: inline-block;
-		appearance: none;
-		background-color: none;
-		border: none;
+		&.on-mobile { /* stylelint-disable-line selector-class-pattern */
+			display: inline-block;
 
-		@include layout.breakpoint(mobile) {
+			@include layout.breakpoint(mobile) {
+				display: none;
+			}
+		}
+
+		&.on-desktop { /* stylelint-disable-line selector-class-pattern */
+			display: none;
+
+			@include layout.breakpoint(mobile) {
+				display: inline-block;
+			}
+		}
+
+		&:nth-child(2),
+		&:nth-child(3),
+		&:nth-last-child(2) {
 			display: none;
 		}
+
+		@include layout.breakpoint(mobile) {
+			&:nth-child(2),
+			&:nth-child(3),
+			&:nth-last-child(2) {
+				display: inline-block;
+			}
+		}
+	}
+
+	&__menu-activator {
+		@include interactions.clickable();
+		appearance: none;
+		background: none;
+		border: none;
+		margin: 0;
+		padding: 0;
 	}
 
 	&.daff-skeleton {
@@ -53,7 +82,7 @@
 		#{$root}__item {
 			visibility: hidden;
 
-			&::before {
+			&::after {
 				content: unset;
 			}
 		}

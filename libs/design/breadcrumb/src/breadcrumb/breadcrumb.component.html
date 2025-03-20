@@ -4,7 +4,12 @@
 			<ng-container *ngTemplateOutlet="breadcrumbItem.item.itemRef"></ng-container>
 		</li>
 	} @else {
-		<li class="daff-breadcrumb__item" [daffMenuActivator]="breadcrumbItem.target === 'full' ? fullMenu : partialMenu"><button>...</button></li>
+		<li class="daff-breadcrumb__item"
+			[class.on-mobile]="breadcrumbItem.target === 'full'"
+			[class.on-desktop]="breadcrumbItem.target === 'partial'"
+			[daffMenuActivator]="breadcrumbItem.target === 'full' ? fullMenu : partialMenu">
+				<button class="daff-breadcrumb__menu-activator">...</button>
+		</li>
 	}
 }
 
