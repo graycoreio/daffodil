@@ -8,14 +8,14 @@ import { DaffDoc } from '@daffodil/docs-utils';
 
 import { DaffioSafeHtmlPipe } from '../../../core/html-sanitizer/safe.pipe';
 import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.type';
-import { DaffioDocArticleModule } from '../doc-article/module';
+import { DaffioDocViewerComponent } from '../doc-viewer/doc-viewer.component';
 
 @Component({
   selector: 'daffio-doc-default-content',
   templateUrl: './default-content.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffioDocArticleModule,
+    DaffioDocViewerComponent,
     DaffioSafeHtmlPipe,
   ],
 })

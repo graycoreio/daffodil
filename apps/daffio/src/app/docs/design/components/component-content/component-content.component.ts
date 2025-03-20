@@ -18,7 +18,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioSafeHtmlPipe } from '../../../../core/html-sanitizer/safe.pipe';
-import { DaffioDocArticleModule } from '../../../components/doc-article/module';
+import { DaffioDocViewerComponent } from '../../../components/doc-viewer/doc-viewer.component';
 import { DaffioDocsDynamicContent } from '../../../dynamic-content/dynamic-content.type';
 
 @Component({
@@ -28,7 +28,7 @@ import { DaffioDocsDynamicContent } from '../../../dynamic-content/dynamic-conte
   imports: [
     DAFF_TABS_COMPONENTS,
     DAFF_ARTICLE_COMPONENTS,
-    DaffioDocArticleModule,
+    DaffioDocViewerComponent,
     DaffioSafeHtmlPipe,
   ],
 })

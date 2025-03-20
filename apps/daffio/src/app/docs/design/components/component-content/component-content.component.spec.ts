@@ -21,7 +21,7 @@ import {
 
 import { DaffioDocsDesignComponentContentComponent } from './component-content.component';
 import { DaffioActiveHeaderService } from '../../../../core/dynamic-fragment/service';
-import { DaffioDocArticleComponent } from '../../../components/doc-article/component';
+import { DaffioDocViewerComponent } from '../../../components/doc-viewer/doc-viewer.component';
 
 @Component({
   template: `<daffio-docs-design-component-content
@@ -40,7 +40,7 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
   let component: DaffioDocsDesignComponentContentComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let tabsComponent: DaffTabsComponent;
-  let articleComponent: DaffioDocArticleComponent;
+  let articleComponent: DaffioDocViewerComponent;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -85,7 +85,7 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
 
     component = fixture.debugElement.query(By.directive(DaffioDocsDesignComponentContentComponent)).componentInstance;
     tabsComponent = fixture.debugElement.query(By.directive(DaffTabsComponent)).componentInstance;
-    articleComponent = fixture.debugElement.query(By.directive(DaffioDocArticleComponent)).componentInstance;
+    articleComponent = fixture.debugElement.query(By.directive(DaffioDocViewerComponent)).componentInstance;
   });
 
   it('should create', () => {

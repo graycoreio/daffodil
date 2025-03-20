@@ -11,7 +11,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioSafeHtmlPipe } from '../../../../core/html-sanitizer/safe.pipe';
-import { DaffioDocArticleModule } from '../../../components/doc-article/module';
+import { DaffioDocViewerComponent } from '../../../components/doc-viewer/doc-viewer.component';
 import { DaffioDocsDynamicContent } from '../../../dynamic-content/dynamic-content.type';
 import { DaffioApiPackageComponent } from '../api-package/api-package.component';
 
@@ -20,7 +20,7 @@ import { DaffioApiPackageComponent } from '../api-package/api-package.component'
   templateUrl: './api-content.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffioDocArticleModule,
+    DaffioDocViewerComponent,
     DaffioApiPackageComponent,
     DaffioSafeHtmlPipe,
   ],

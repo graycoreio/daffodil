@@ -14,25 +14,27 @@ import {
   DaffDocTableOfContents,
 } from '@daffodil/docs-utils';
 
-import { DaffioDocArticleComponent } from './component';
-import { DaffioApiPackageComponent } from '../../api/components/api-package/api-package.component';
+import { DaffioDocViewerComponent } from './doc-viewer.component';
+import { DaffioDocViewerModule } from './doc-viewer.module';
 import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
 import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 
 @Component({
-  template: `<daffio-doc-article
+  template: `<daffio-doc-viewer
 		[toc]="tocValue"
 		[breadcrumbs]="breadcrumbsValue"
-	></daffio-doc-article>`,
-  standalone: false,
+	></daffio-doc-viewer>`,
+  imports: [
+    DaffioDocViewerModule,
+  ],
 })
 class WrapperComponent {
   tocValue: DaffDocTableOfContents;
   breadcrumbsValue: Array<DaffBreadcrumb>;
 }
 
-describe('DaffioDocArticleComponent', () => {
-  let component: DaffioDocArticleComponent;
+describe('DaffioDocViewerComponent', () => {
+  let component: DaffioDocViewerComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapper: WrapperComponent;
   const docFactory = new DaffioDocsFactory();
@@ -43,11 +45,7 @@ describe('DaffioDocArticleComponent', () => {
         RouterTestingModule,
         DAFF_ARTICLE_COMPONENTS,
         DaffioDocsTableOfContentsModule,
-        DaffioApiPackageComponent,
-      ],
-      declarations: [
         WrapperComponent,
-        DaffioDocArticleComponent,
       ],
       providers: [
         provideMockStore(),
@@ -63,7 +61,7 @@ describe('DaffioDocArticleComponent', () => {
     wrapper.breadcrumbsValue = [];
     fixture.detectChanges();
 
-    component = fixture.debugElement.query(By.directive(DaffioDocArticleComponent)).componentInstance;
+    component = fixture.debugElement.query(By.directive(DaffioDocViewerComponent)).componentInstance;
   });
 
   it('should create', () => {

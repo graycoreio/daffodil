@@ -1,17 +1,17 @@
 <daff-container size="lg">
-  <div class="daffio-doc-article__sidebar-activators">
-    <button class="daffio-doc-article__button" (click)="open()">
+  <div class="daffio-doc-viewer__sidebar-activators">
+    <button class="daffio-doc-viewer__button" (click)="open()">
       <fa-icon [icon]="faBars"></fa-icon>
       <div>Menu</div>
     </button>
 
-    <button class="daffio-doc-article__button" (click)="openToc()">
+    <button class="daffio-doc-viewer__button" (click)="openToc()">
       <div>On this page</div>
       <fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
     </button>
   </div>
-  <div class="daffio-doc-article__grid">
-    <div class="daffio-doc-article__content">
+  <div class="daffio-doc-viewer__grid">
+    <div class="daffio-doc-viewer__content">
       @if (breadcrumbs.length > 0) {
         <nav aria-label="Breadcrumb">
           <ol daff-breadcrumb>
@@ -33,7 +33,7 @@
     </div>
     @if (toc.length > 0) {
       <daffio-docs-table-of-contents
-        class="daffio-doc-article__table-of-contents"
+        class="daffio-doc-viewer__table-of-contents"
         [tableOfContents]="toc">
       </daffio-docs-table-of-contents>
     }
