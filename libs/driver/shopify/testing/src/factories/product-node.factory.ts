@@ -6,9 +6,10 @@ import {
   ShopifyProductNode,
   shopifyHandleTransformer,
   shopifyIdTransformer,
+  shopifyImageTransformer,
 } from '@daffodil/driver/shopify';
 
-import { ShopifyProductImagesFactory } from './product-images.factory';
+import { ShopifyImageNodeFactory } from './image-node.factory';
 import { ShopifyProductPriceRangeFactory } from './product-price-range.factory';
 
 class MockShopifyProductNode implements ShopifyProductNode {
@@ -20,7 +21,14 @@ class MockShopifyProductNode implements ShopifyProductNode {
   descriptionHtml = faker.commerce.productDescription();
   handle = shopifyHandleTransformer(faker.commerce.productName());
   id = shopifyIdTransformer(`${faker.number.int({ min: 100000000000 })}`, 'Product');
-  images = this.shopifyProductImagesFactory.create();
+  images = {
+    edges: [],
+    nodes: this.shopifyImageNodeFactory.createMany().map(node => (<any>shopifyImageTransformer(node, 'ProductImage'))),
+    pageInfo: {
+      hasNextPage: false,
+      hasPreviousPage: false,
+    },
+  };
   isGiftCard = faker.datatype.boolean();
   media = null;
   metafields = [];
@@ -40,7 +48,7 @@ class MockShopifyProductNode implements ShopifyProductNode {
 
   constructor(
     protected shopifyProductPriceRangeFactory: ShopifyProductPriceRangeFactory,
-    protected shopifyProductImagesFactory: ShopifyProductImagesFactory,
+    protected shopifyImageNodeFactory: ShopifyImageNodeFactory,
   ) {}
 }
 
@@ -50,8 +58,8 @@ class MockShopifyProductNode implements ShopifyProductNode {
 export class ShopifyProductNodeFactory extends DaffModelFactory<ShopifyProductNode, typeof MockShopifyProductNode> {
   constructor(
     shopifyProductPriceRangeFactory: ShopifyProductPriceRangeFactory,
-    shopifyProductImagesFactory: ShopifyProductImagesFactory,
+    shopifyImageNodeFactory: ShopifyImageNodeFactory,
   ) {
-    super(MockShopifyProductNode, shopifyProductPriceRangeFactory, shopifyProductImagesFactory);
+    super(MockShopifyProductNode, shopifyProductPriceRangeFactory, shopifyImageNodeFactory);
   }
 }

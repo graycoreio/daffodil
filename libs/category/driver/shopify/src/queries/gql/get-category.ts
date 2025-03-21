@@ -1,0 +1,51 @@
+import { gql } from 'apollo-angular';
+
+import { ShopifyCategoryResponse } from '../response.types';
+import { ShopifyCategoryIDVariables } from '../variables.types';
+
+/**
+ * GraphQL query object for getting a category (Shopify Collection) by ID.
+ */
+export const getCategory = gql<ShopifyCategoryResponse, ShopifyCategoryIDVariables>`
+  query ShopifyGetACategory($id: ID, $reverse: Boolean, $sortKey: ProductCollectionSortKeys, $filters: [ProductFilter!]!) {
+    collection(id: $id) {
+      handle
+      id
+      title
+      description
+      onlineStoreUrl
+      image { 
+        altText 
+        id 
+        url 
+      } 
+      products(first: 10, reverse: $reverse, sortKey: $sortKey, filters: $filters) { 
+        nodes { 
+          handle
+          onlineStoreUrl
+          availableForSale
+          priceRange { 
+            maxVariantPrice { 
+              amount 
+              currencyCode 
+            } 
+            minVariantPrice { 
+              amount 
+              currencyCode 
+            } 
+          } 
+          id
+          title
+          description
+          images(first: 1) { 
+            nodes { 
+              id 
+              url 
+              altText 
+            } 
+          } 
+        } 
+      } 
+    }
+  }
+`;
