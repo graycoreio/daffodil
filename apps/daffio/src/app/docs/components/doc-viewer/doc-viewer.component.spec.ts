@@ -15,7 +15,6 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioDocViewerComponent } from './doc-viewer.component';
-import { DaffioDocViewerModule } from './doc-viewer.module';
 import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
 import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 
@@ -25,7 +24,7 @@ import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-c
 		[breadcrumbs]="breadcrumbsValue"
 	></daffio-doc-viewer>`,
   imports: [
-    DaffioDocViewerModule,
+    DaffioDocViewerComponent,
   ],
 })
 class WrapperComponent {
