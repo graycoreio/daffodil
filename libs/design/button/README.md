@@ -3,10 +3,13 @@ Buttons are used to make actions apparent to the end user. It can be used to nav
 
 ## Overview
 Native `<button>` or `<a>` elements are always used in order to provide an easy, accessible experience for users.
+
 - `<a>` should be used for interactions that will navigate users to a new page or to a different target on the same page.
 - `<button>` should be used when a clickable action is performed within the same page.
 
 ## Types
+Button supports five types that change its visual style.
+
 - `daff-button` - Rectangular contained button with background color
 - `daff-flat-button` - Rectangular contained button with no outline or background color
 - `daff-icon-button` - Icon button used with icon fonts
@@ -91,6 +94,17 @@ Use the `color` property to change the color of a button. The default color is l
 Buttons with status indicators can be used to distinguish what type of action it performs and its importance compared to other buttons in the same context. Use the `status` property to change the status.
 
 <design-land-example-viewer-container example="statusable-button"></design-land-example-viewer-container>
+
+## Icon support
+An icon can be rendered on either side of the button text content with the `daffPrefix` and `daffSuffix` selectors.
+
+```html
+<button daff-button>
+  <fa-icon [faIcon]="faUser" daffPrefix></fa-icon>
+  Button Content
+  <fa-icon [faIcon]="faUser" daffSuffix></fa-icon>
+</button>
+```
 
 ## Accessbility
 Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible experience by default.
