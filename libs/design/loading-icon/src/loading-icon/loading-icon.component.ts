@@ -20,7 +20,6 @@ import { DaffColorableDirective } from '@daffodil/design';
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class DaffLoadingIconComponent {
   /**

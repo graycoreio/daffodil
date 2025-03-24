@@ -27,7 +27,7 @@ import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
   ],
 })
 export class LoadingIconColorComponent {
-  colorControl: UntypedFormControl = new UntypedFormControl('primary');
+  colorControl: UntypedFormControl = new UntypedFormControl('');
 
   options = [
     { value: '', label: 'Default' },

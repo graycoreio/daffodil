@@ -3,7 +3,7 @@
 // Formula Constants
 $radius: 46; // This must be the same as the radius of the circle in the svg
 $pi: 3.14159265359;
-$max-percentage-fill: math.div(3.5, 10);
+$max-percentage-fill: math.div(2, 10);
 
 //P = 2πr
 $perimeter: 2 * $pi * $radius;
@@ -21,46 +21,24 @@ $angle: 270 - $max-percentage-fill * 360;
 
 .daff-loading-icon {
 	&__loader {
-		animation: rotation linear, circle-animation linear;
+		animation: circle-rotation linear;
 		animation-duration: 1000ms;
 		animation-iteration-count: infinite;
 		fill: transparent;
 		stroke-dasharray: $max-stroke-length 400;
 		stroke-linecap: round;
-		stroke-width: 5px;
+		stroke-width: 0.25rem;
 		transform-origin: center;
 	}
 
 	&__bg {
 		fill: transparent;
 		stroke-linecap: round;
-		stroke-width: 5px;
+		stroke-width: 0.25rem;
 	}
 }
 
-@keyframes circle-animation {
-	0% {
-		stroke-dasharray: $max-stroke-length 400;
-		stroke-dashoffset: $max-stroke-length;
-	}
-
-	50% {
-		stroke-dasharray: $max-stroke-length 400;
-		stroke-dashoffset: $max-stroke-length - $perimeter * 0.25;
-	}
-
-	75% {
-		stroke-dasharray: $max-stroke-length 400;
-		stroke-dashoffset: 0;
-	}
-
-	100% {
-		stroke-dasharray: 0 400;
-		stroke-dashoffset: -$max-stroke-length;
-	}
-}
-
-@keyframes rotation {
+@keyframes circle-rotation {
 	0% {
 		transform: rotate(0deg);
 	}

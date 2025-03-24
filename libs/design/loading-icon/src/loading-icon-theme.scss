@@ -2,6 +2,26 @@
 @use '../../scss/core';
 @use '../../scss/theming';
 
+@mixin daff-loading-icon-light-variant($loader-color) {
+	.daff-loading-icon__loader {
+		stroke: $loader-color;
+	}
+
+	.daff-loading-icon__bg {
+		stroke: rgba($loader-color, 0.1);
+	}
+}
+
+@mixin daff-loading-icon-dark-variant($loader-color) {
+	.daff-loading-icon__loader {
+		stroke: $loader-color;
+	}
+
+	.daff-loading-icon__bg {
+		stroke: rgba($loader-color, 0.3);
+	}
+}
+
 @mixin daff-loading-icon-theme($theme) {
 	$primary: core.daff-map-get($theme, primary);
 	$secondary: core.daff-map-get($theme, secondary);
@@ -10,67 +30,75 @@
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 	$white: core.daff-map-get($theme, 'core', 'white');
 	$black: core.daff-map-get($theme, 'core', 'black');
+	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-loading-icon {
-		&__loader {
-			stroke: currentColor;
-		}
+		@include theming.light($type) {
+			@include daff-loading-icon-light-variant(
+				theming.daff-color($neutral, 60)
+			);
 
-		&__bg {
-			stroke: rgba($black, 0.08);
-		}
-
-		&.daff-primary {
-			.daff-loading-icon__loader {
-				stroke: theming.daff-color($primary);
+			&.daff-primary {
+				@include daff-loading-icon-light-variant(theming.daff-color($primary));
 			}
 
-			.daff-loading-icon__bg {
-				stroke: rgba(theming.daff-color($primary), 0.08);
-			}
-		}
-
-		&.daff-secondary {
-			.daff-loading-icon__loader {
-				stroke: theming.daff-color($secondary);
+			&.daff-secondary {
+				@include daff-loading-icon-light-variant(
+					theming.daff-color($secondary)
+				);
 			}
 
-			.daff-loading-icon__bg {
-				stroke: rgba(theming.daff-color($secondary), 0.08);
-			}
-		}
-
-		&.daff-tertiary {
-			.daff-loading-icon__loader {
-				stroke: theming.daff-color($tertiary);
+			&.daff-tertiary {
+				@include daff-loading-icon-light-variant(theming.daff-color($tertiary));
 			}
 
-			.daff-loading-icon__bg {
-				stroke: rgba(theming.daff-color($tertiary), 0.08);
+			&.daff-theme {
+				@include daff-loading-icon-light-variant($base);
+			}
+
+			&.daff-theme-contrast {
+				@include daff-loading-icon-light-variant($base-contrast);
+			}
+
+			&.daff-black {
+				@include daff-loading-icon-light-variant($black);
+			}
+
+			&.daff-white {
+				@include daff-loading-icon-light-variant($white);
 			}
 		}
 
-		&.daff-theme {
-			.daff-loading-icon__loader {
-				stroke: $base;
-			}
-		}
+		@include theming.dark($type) {
+			@include daff-loading-icon-dark-variant(theming.daff-color($neutral, 40));
 
-		&.daff-theme-contrast {
-			.daff-loading-icon__loader {
-				stroke: $base-contrast;
+			&.daff-primary {
+				@include daff-loading-icon-dark-variant(theming.daff-color($primary));
 			}
-		}
 
-		&.daff-black {
-			.daff-loading-icon__loader {
-				stroke: $black;
+			&.daff-secondary {
+				@include daff-loading-icon-dark-variant(theming.daff-color($secondary));
 			}
-		}
 
-		&.daff-white {
-			.daff-loading-icon__loader {
-				stroke: $white;
+			&.daff-tertiary {
+				@include daff-loading-icon-dark-variant(theming.daff-color($tertiary));
+			}
+
+			&.daff-theme {
+				@include daff-loading-icon-dark-variant($base);
+			}
+
+			&.daff-theme-contrast {
+				@include daff-loading-icon-dark-variant($base-contrast);
+			}
+
+			&.daff-black {
+				@include daff-loading-icon-dark-variant($black);
+			}
+
+			&.daff-white {
+				@include daff-loading-icon-dark-variant($white);
 			}
 		}
 	}

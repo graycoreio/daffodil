@@ -46,12 +46,14 @@ export class CustomComponentModule { }
 
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
-## Theming
-The loading icon color is defined by using the `color` property. By default, the color is set to `primary`. This can be changed to one of the supported colors.
+## Colors
+Use the `color` property to change the color of a loading icon. The default color is gray.
 
-Supported colors: `primary | secondary | tertiary | black | white | theme | theme-contrast`
+> `theme` and `white` should be used on a darker background in order to have sufficient contrast.
 
 <design-land-example-viewer-container example="loading-icon-color"></design-land-example-viewer-container>
 
 ## Accessibility
-Loading icons should be given meaningful labels by using `aria-label` or `aria-labelledby`. Additionally, if a loading icon is used to indicate a process in progress, using [aria-live](https://www.w3.org/TR/wai-aria-1.0/states_and_properties#aria-live) and [aria-busy](https://www.w3.org/TR/wai-aria-1.0/states_and_properties#aria-busy") should be strongly considered.
+Loading icons should be given meaningful labels by using `aria-label` or `aria-labelledby`.
+
+If a loading icon is used to indicate a process in progress, using [aria-live](https://www.w3.org/TR/wai-aria-1.0/states_and_properties#aria-live) and [aria-busy](https://www.w3.org/TR/wai-aria-1.0/states_and_properties#aria-busy") should be strongly considered.
