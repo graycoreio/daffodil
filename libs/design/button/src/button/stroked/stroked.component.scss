@@ -4,4 +4,5 @@
 	@include base.daff-button-base();
 	@include base.daff-button-background(3px);
 	@include base.daff-button-sizes();
+	@include base.daff-button-elevated();
 }

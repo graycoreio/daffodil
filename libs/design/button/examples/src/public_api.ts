@@ -8,3 +8,4 @@ export { SizeableButtonComponent } from './sizeable-button/sizeable-button.compo
 export { StatusableButtonComponent } from './statusable-button/statusable-button.component';
 export { StrokedButtonComponent } from './stroked-button/stroked-button.component';
 export { UnderlineButtonComponent } from './underline-button/underline-button.component';
+export { ElevatedButtonComponent } from './elevated-button/elevated-button.component';

@@ -1,4 +1,5 @@
 import { BasicButtonComponent } from './basic-button/basic-button.component';
+import { ElevatedButtonComponent } from './elevated-button/elevated-button.component';
 import { FlatButtonComponent } from './flat-button/flat-button.component';
 import { IconButtonComponent } from './icon-button/icon-button.component';
 import { RaisedButtonComponent } from './raised-button/raised-button.component';
@@ -16,4 +17,5 @@ export const BUTTON_EXAMPLES = [
   StrokedButtonComponent,
   UnderlineButtonComponent,
   FlatButtonComponent,
+  ElevatedButtonComponent,
 ];

@@ -3,6 +3,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   HostBinding,
+  Input,
 } from '@angular/core';
 
 import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
@@ -45,4 +46,9 @@ export class DaffStrokedButtonComponent
    * @docs-private
    */
   @HostBinding('class.daff-stroked-button') class = true;
+
+  /**
+   * Whether or not the button displays a shadow.
+   */
+  @Input() @HostBinding('class.elevated') elevated = false;
 }

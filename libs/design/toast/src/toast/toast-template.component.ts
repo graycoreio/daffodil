@@ -74,16 +74,6 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
               {{ action.content }}
           </button>
         }
-        @case ('raised') {
-          <button type="button" daff-raised-button
-            [status]="action.status"
-            [color]="action.color"
-            [size]="action.size"
-            [attr.aria-label]="action.content"
-            (click)="action.eventEmitter?.emit({ event: $event, action})">
-              {{ action.content }}
-          </button>
-        }
         @case ('flat') {
           <button type="button" daff-flat-button
             [status]="action.status"

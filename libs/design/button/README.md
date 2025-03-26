@@ -13,7 +13,6 @@ Button supports five types that change its visual style.
 - `daff-button` - Rectangular contained button with background color
 - `daff-flat-button` - Rectangular contained button with no outline or background color
 - `daff-icon-button` - Icon button used with icon fonts
-- `daff-raised-button` - Rectangular contained button with background color and elevation
 - `daff-stroked-button` - Rectangular outlined button with no background color
 
 ### Basic Button
@@ -27,9 +26,6 @@ Button supports five types that change its visual style.
 
 > `black`, `white`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
-### Raised button
-<design-land-example-viewer-container example="raised-button"></design-land-example-viewer-container>
-
 ### Icon button
 <design-land-example-viewer-container example="icon-button"></design-land-example-viewer-container>
 
@@ -37,6 +33,9 @@ Button supports five types that change its visual style.
 
 ### Underline button
 <design-land-example-viewer-container example="underline-button"></design-land-example-viewer-container>
+
+### Raised button (deprecated)
+<design-land-example-viewer-container example="raised-button"></design-land-example-viewer-container>
 
 ## Usage
 
@@ -85,7 +84,7 @@ Use the `size` property to specify a button size. Setting this property will cha
 
 <design-land-example-viewer-container example="sizeable-button"></design-land-example-viewer-container>
 
-## Theming
+## Colors
 Use the `color` property to change the color of a button. The default color is light gray.
 
 > For select button types, `black` and `white` should be used on a darker background in order to have sufficient contrast.
@@ -94,6 +93,11 @@ Use the `color` property to change the color of a button. The default color is l
 Buttons with status indicators can be used to distinguish what type of action it performs and its importance compared to other buttons in the same context. Use the `status` property to change the status.
 
 <design-land-example-viewer-container example="statusable-button"></design-land-example-viewer-container>
+
+## Elevation
+Use the `elevated` property to add a shadow to buttons. Note that the `elevated` property is not supported for flat, icon, and underline buttons.
+
+<design-land-example-viewer-container example="elevated-button"></design-land-example-viewer-container>
 
 ## Icon support
 An icon can be rendered on either side of the button text content with the `daffPrefix` and `daffSuffix` selectors.
