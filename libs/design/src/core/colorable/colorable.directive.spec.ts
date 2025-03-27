@@ -58,7 +58,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     expect(directive.color).toEqual(wrapper.color);
   });
 
-  it('should add a class of .daff-primary to the host element if color is set to primary', () => {
+  it('should add a class of `.daff-primary` to the host element if color is set to primary', () => {
     wrapper.color = 'primary';
     fixture.detectChanges();
 
@@ -67,7 +67,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     }));
   });
 
-  it('should add a class of .daff-secondary to the host element if color is set to secondary', () => {
+  it('should add a class of `.daff-secondary` to the host element if color is set to secondary', () => {
     wrapper.color = 'secondary';
     fixture.detectChanges();
 
@@ -76,7 +76,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     }));
   });
 
-  it('should add a class of .daff-tertiary to the host element if color is set to tertiary', () => {
+  it('should add a class of `.daff-tertiary` to the host element if color is set to tertiary', () => {
     wrapper.color = 'tertiary';
     fixture.detectChanges();
 
@@ -85,7 +85,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     }));
   });
 
-  it('should add a class of .daff-black to the host element if color is set to black', () => {
+  it('should add a class of `.daff-black` to the host element if color is set to black', () => {
     wrapper.color = 'black';
     fixture.detectChanges();
 
@@ -94,7 +94,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     }));
   });
 
-  it('should add a class of .daff-white to the host element if color is set to white', () => {
+  it('should add a class of `.daff-white` to the host element if color is set to white', () => {
     wrapper.color = 'white';
     fixture.detectChanges();
 
@@ -103,7 +103,25 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     }));
   });
 
-  it('should add a class of .daff-theme to the host element if color is set to theme', () => {
+  it('should add a class of `.daff-light` to the host element if color is set to light', () => {
+    wrapper.color = 'light';
+    fixture.detectChanges();
+
+    expect(directive.class).toEqual(jasmine.objectContaining({
+      'daff-light': true,
+    }));
+  });
+
+  it('should add a class of `.daff-dark` to the host element if color is set to dark', () => {
+    wrapper.color = 'dark';
+    fixture.detectChanges();
+
+    expect(directive.class).toEqual(jasmine.objectContaining({
+      'daff-dark': true,
+    }));
+  });
+
+  it('should add a class of `.daff-theme` to the host element if color is set to theme', () => {
     wrapper.color = 'theme';
     fixture.detectChanges();
 
@@ -112,7 +130,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     }));
   });
 
-  it('should add a class of .daff-theme-contrast to the host element if color is set to theme-contrast', () => {
+  it('should add a class of `.daff-theme-contrast` to the host element if color is set to theme-contrast', () => {
     wrapper.color = 'theme-contrast';
     fixture.detectChanges();
 

@@ -26,17 +26,19 @@ const validateColor = (color: string) => {
  * styles by setting CSS classes based on the specified color. This directive is useful
  * for applying different color palettes to a component in an Angular application.
  *
- * Supported colors: `primary | secondary | tertiary | black | white | theme | theme-contrast`
+ * Supported colors: `primary | secondary | tertiary | light | dark | theme | theme-contrast`
  *
  * | Color | Class |
  * | -------- | ----- |
  * | `primary` | `.daff-primary`|
  * | `secondary` | `.daff-secondary`|
  * | `tertiary` | `.daff-tertiary`|
- * | `black` | `.daff-black`|
- * | `white` | `.daff-white`|
+ * | `light` | `daff-light` |
+ * | `dark` | `daff-dark` |
  * | `theme` | `daff-theme`|
  * | `theme-contrast` | `.daff-theme-contrast`|
+ *
+ *  `white` and `black` have been deprecated in favor of `light` and `dark`.
  *
  * @example Implementing it as an attribute directive
  *
@@ -59,7 +61,6 @@ const validateColor = (color: string) => {
  *
  * ```ts
  * @Component({
- *  standalone: true,
  *  selector: 'custom-component',
  *  template: 'custom-component.html',
  *  hostDirectives: [
@@ -98,10 +99,12 @@ export class DaffColorableDirective implements DaffColorable, OnChanges, OnInit 
       'daff-primary': this.color === DaffPaletteEnum.Primary,
       'daff-secondary': this.color === DaffPaletteEnum.Secondary,
       'daff-tertiary': this.color === DaffPaletteEnum.Tertiary,
-      'daff-black': this.color === DaffPaletteEnum.Black,
-      'daff-white': this.color === DaffPaletteEnum.White,
+      'daff-light': this.color === DaffPaletteEnum.Light,
+      'daff-dark': this.color === DaffPaletteEnum.Dark,
       'daff-theme': this.color === DaffPaletteEnum.Theme,
       'daff-theme-contrast': this.color === DaffPaletteEnum.ThemeContrast,
+      'daff-black': this.color === DaffPaletteEnum.Black,
+      'daff-white': this.color === DaffPaletteEnum.White,
     };
   }
 
