@@ -13,15 +13,17 @@ import { DaffButtonComponent } from './button.component';
 
 @Component({
   template: `
-    <a daff-button>Link Button</a>
-    <button daff-button>Button</button>
+    <a daff-button [elevated]="elevated">Link Button</a>
+    <button daff-button [elevated]="elevated">Button</button>
   `,
   imports: [
     DaffButtonComponent,
   ],
 })
 
-class WrapperComponent {}
+class WrapperComponent {
+  elevated = false;
+}
 
 describe('@daffodil/design/button | DaffButtonComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
@@ -66,6 +68,21 @@ describe('@daffodil/design/button | DaffButtonComponent', () => {
       expect(anchorDE.classes).toEqual(jasmine.objectContaining({
         'daff-button': true,
       }));
+    });
+
+    describe('the elevated property', () => {
+      it('should be able to take `elevated` as an input', () => {
+        expect(component.elevated).toEqual(wrapper.elevated);
+      });
+
+      it('should add a class of `.elevated` to the host element if elevated is true', () => {
+        wrapper.elevated = true;
+        fixture.detectChanges();
+
+        expect(de.classes).toEqual(jasmine.objectContaining({
+          elevated: true,
+        }));
+      });
     });
   });
 });
