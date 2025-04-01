@@ -18,7 +18,6 @@ import {
   getCategory,
   getCategoryByUrl,
 } from './queries/public_api';
-import { ShopifyCategoryResponse } from './queries/response.types';
 import { daffShopifyCategoryTransformer } from './transforms/public_api';
 import { shopifyProductCollectionVariablesTransformer } from './transforms/shopify-product-collection-variables-transform.ts';
 
@@ -37,7 +36,7 @@ export class DaffShopifyCategoryService implements DaffCategoryServiceInterface 
   get(categoryRequest: DaffCategoryIdRequest): Observable<DaffGetCategoryResponse> {
     const shopifyVariables = shopifyProductCollectionVariablesTransformer(categoryRequest);
     return this.apollo
-      .query<ShopifyCategoryResponse>({
+      .query({
         query: getCategory,
         variables: {
           id: shopifyIdTransformer(categoryRequest.id, 'Collection'),
@@ -57,7 +56,7 @@ export class DaffShopifyCategoryService implements DaffCategoryServiceInterface 
   getByUrl(categoryRequest: DaffCategoryUrlRequest): Observable<DaffGetCategoryResponse> {
     const shopifyVariables = shopifyProductCollectionVariablesTransformer(categoryRequest);
     return this.apollo
-      .query<ShopifyCategoryResponse>({
+      .query({
         query: getCategoryByUrl,
         variables: {
           handle: shopifyUrlTransformer(categoryRequest.url),
