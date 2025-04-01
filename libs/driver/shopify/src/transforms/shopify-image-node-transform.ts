@@ -4,7 +4,6 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import {
   shopifyIdTransformer,
   ShopifyImageNode,
-  ShopifyObjectTypes,
 } from '../public_api';
 
 /**

@@ -1,8 +1,6 @@
 /**
  * Transforms a DaffIdentifiable id and object type into a Shopify object id
  *
- * See {@link DaffIdentifiable} for more information on the requirements for the id argument.
- *
  * @param id - string
  * @param type - string
  * @returns string
