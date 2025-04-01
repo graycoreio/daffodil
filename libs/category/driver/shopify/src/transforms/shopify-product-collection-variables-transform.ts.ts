@@ -3,7 +3,7 @@ import {
   DaffCategoryUrlRequest,
 } from '@daffodil/category';
 import { DaffSortDirectionEnum } from '@daffodil/core';
-import { ProductCollectionSortKeys } from '@daffodil/driver/shopify';
+import { ShopifyProductCollectionSortKeys } from '@daffodil/driver/shopify';
 
 import { shopifyProductFilterRequestTransformer } from './shopify-daff-filter-request-transformer';
 import { ShopifyCollectionProductVariables } from '../queries/variables.types';
@@ -15,7 +15,7 @@ import { ShopifyCollectionProductVariables } from '../queries/variables.types';
  * @returns A ShopifyCollectionProductVariables object
  */
 export const shopifyProductCollectionVariablesTransformer = (categoryRequest: DaffCategoryIdRequest | DaffCategoryUrlRequest): ShopifyCollectionProductVariables => ({
-  sortKey: categoryRequest.appliedSortOption ?? ProductCollectionSortKeys.CollectionDefault,
+  sortKey: categoryRequest.appliedSortOption ?? ShopifyProductCollectionSortKeys.CollectionDefault,
   reverse: categoryRequest.appliedSortDirection === DaffSortDirectionEnum.Descending ? true : false,
   filters: shopifyProductFilterRequestTransformer(categoryRequest.filterRequests),
 });

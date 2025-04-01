@@ -1,3 +1,3 @@
-import { Image } from '../../codegen/generated-shopify-types';
+import { ShopifyImage } from '../../codegen/generated-shopify-types';
 
-export interface ShopifyImageNode extends Omit<Image, 'src' | 'transformedSrc' | 'originalSrc'> {}
+export interface ShopifyImageNode extends Omit<ShopifyImage, 'src' | 'transformedSrc' | 'originalSrc'> {}

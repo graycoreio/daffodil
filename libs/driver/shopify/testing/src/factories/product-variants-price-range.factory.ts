@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { ShopifyProductPriceRange } from '@daffodil/driver/shopify';
+import { ShopifyProductVariantsPriceRange } from '@daffodil/driver/shopify';
 
 import { ShopifyMoneyFactory } from './money.factory';
 
-class MockShopifyProductPriceRange implements ShopifyProductPriceRange {
+class MockShopifyProductVariantsPriceRange implements ShopifyProductVariantsPriceRange {
   maxVariantPrice = this.shopifyMoneyFactory.create();
   minVariantPrice = this.shopifyMoneyFactory.create();
   constructor(
@@ -16,10 +16,10 @@ class MockShopifyProductPriceRange implements ShopifyProductPriceRange {
 @Injectable({
   providedIn: 'root',
 })
-export class ShopifyProductPriceRangeFactory extends DaffModelFactory<ShopifyProductPriceRange, typeof MockShopifyProductPriceRange> {
+export class ShopifyProductVariantsPriceRangeFactory extends DaffModelFactory<ShopifyProductVariantsPriceRange, typeof MockShopifyProductVariantsPriceRange> {
   constructor(
     shopifyMoneyFactory: ShopifyMoneyFactory,
   ){
-    super(MockShopifyProductPriceRange, shopifyMoneyFactory);
+    super(MockShopifyProductVariantsPriceRange, shopifyMoneyFactory);
   }
 }

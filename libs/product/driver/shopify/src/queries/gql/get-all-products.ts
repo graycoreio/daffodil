@@ -7,7 +7,7 @@ import { ShopifyProductAllVariables } from '../variables.types';
  * GraphQL query object for getting all products.
  */
 export const getAllProducts = gql<ShopifyProductAllResponse, ShopifyProductAllVariables>`
-	query ShopifyGetAllProducts($length: Int) {
+	query GetAllProducts($length: Int) {
 		products(first: $length)  {
 			nodes {
 				handle

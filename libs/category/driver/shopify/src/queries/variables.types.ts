@@ -1,9 +1,9 @@
-import { ProductFilter } from '@daffodil/driver/shopify';
+import { ShopifyProductFilter } from '@daffodil/driver/shopify';
 
 export interface ShopifyCollectionProductVariables {
   reverse: boolean;
   sortKey: string;
-  filters: ProductFilter[];
+  filters: ShopifyProductFilter;
 }
 
 export interface ShopifyCategoryIDVariables extends ShopifyCollectionProductVariables {

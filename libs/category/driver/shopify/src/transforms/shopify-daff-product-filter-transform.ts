@@ -5,29 +5,29 @@ import {
   DaffFilterType,
 } from '@daffodil/core';
 import {
-  PriceRangeFilter,
-  ProductFilter,
+  ShopifyPriceRangeFilter,
+  ShopifyProductFilter,
 } from '@daffodil/driver/shopify';
 
 /**
- * Transforms a Shopify {@link ProductFilter} object into a {@link DaffFilters} object.
+ * Transforms a Shopify {@link ShopifyProductFilter} object into a {@link DaffFilters} object.
  */
-export const daffShopifyProductFiltersTransformer = (shopifyFilters: ProductFilter[]): DaffFilters => {
+export const daffShopifyProductFilterTransformer = (shopifyProductFilter: ShopifyProductFilter): DaffFilters => {
   const daffFilters: DaffFilters = {};
-  for (const shopifyFilter of shopifyFilters) {
-    if (shopifyFilter.price) {
-      daffFilters['price'] = transformPriceRangeFilter('price', shopifyFilter.price);
-    } else if (shopifyFilter.available !== undefined) {
-      daffFilters['available'] = transformEqualsFilter('available', shopifyFilter.available);
-    }
+  if (shopifyProductFilter.price) {
+    daffFilters['price'] = transformPriceRangeFilter('price', shopifyProductFilter.price);
   }
+  if (shopifyProductFilter.available !== undefined) {
+    daffFilters['available'] = transformEqualsFilter('available', shopifyProductFilter.available);
+  }
+  // todo: implement remaining ShopifyProductFilter fields - blocked by shopify product driver functinoality
   return daffFilters;
 };
 
 /**
  * Transforms a Shopify numeric range into a {@link DaffFilterRangeNumeric}.
  */
-function transformPriceRangeFilter(filterName: string, range: PriceRangeFilter): DaffFilterRangeNumeric {
+function transformPriceRangeFilter(filterName: string, range: ShopifyPriceRangeFilter): DaffFilterRangeNumeric {
   return {
     type: DaffFilterType.RangeNumeric,
     min: range.min,

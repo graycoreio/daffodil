@@ -1,10 +1,13 @@
 import { DaffGetCategoryResponse } from '@daffodil/category';
 import { DaffSortDirectionEnum } from '@daffodil/core';
-import { ShopifyCategory } from '@daffodil/driver/shopify';
-import { ProductCollectionSortKeys } from '@daffodil/driver/shopify';
+import {
+  ShopifyCategory,
+  shopifyProductCollectionSortKeyValidator,
+} from '@daffodil/driver/shopify';
+import { ShopifyProductCollectionSortKeys } from '@daffodil/driver/shopify';
 import { daffShopifyProductTransformer } from '@daffodil/product/driver/shopify';
 
-import { daffShopifyProductFiltersTransformer } from './shopify-daff-product-filter-transform';
+import { daffShopifyProductFilterTransformer } from './shopify-daff-product-filter-transform';
 import { ShopifyCollectionProductVariables } from '../queries/public_api';
 
 
@@ -32,20 +35,20 @@ export const daffShopifyCategoryTransformer = (collection: ShopifyCategory, vari
   },
   categoryPageMetadata: {
     id: `/${collection.handle}`,
-    ids: [],
+    ids: collection.products.nodes.map(node => node.id),
     currentPage: 0,
     totalPages: 0,
     pageSize: 0,
     count: 0,
     sortOptions: {
-      default: ProductCollectionSortKeys.CollectionDefault,
-      options: [],
+      default: ShopifyProductCollectionSortKeys.CollectionDefault,
+      options: Object.entries(ShopifyProductCollectionSortKeys).map(([label, value]) => ({ label,value })),
     },
     appliedSortOption: {
       label: variables.sortKey,
-      value: null,
+      value: shopifyProductCollectionSortKeyValidator(variables.sortKey),
     },
     appliedSortDirection: variables.reverse ? DaffSortDirectionEnum.Descending : DaffSortDirectionEnum.Ascending,
-    filters: daffShopifyProductFiltersTransformer(variables.filters),
+    filters: daffShopifyProductFilterTransformer(variables.filters),
   },
 });

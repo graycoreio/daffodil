@@ -7,7 +7,7 @@ import { ShopifyCategoryIDVariables } from '../variables.types';
  * GraphQL query object for getting a category (Shopify Collection) by ID.
  */
 export const getCategory = gql<ShopifyCategoryResponse, ShopifyCategoryIDVariables>`
-  query ShopifyGetACategory($id: ID, $reverse: Boolean, $sortKey: ProductCollectionSortKeys, $filters: [ProductFilter!]!) {
+  query GetACategory($id: ID, $reverse: Boolean, $sortKey: ProductCollectionSortKeys, $filters: [ProductFilter!]!) {
     collection(id: $id) {
       handle
       id

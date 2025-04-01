@@ -1,3 +1,3 @@
-import { MoneyV2 } from '../../codegen/generated-shopify-types';
+import { ShopifyMoneyV2 } from '../../codegen/generated-shopify-types';
 
-export interface ShopifyMoneyV2 extends MoneyV2 {}
+export interface ShopifyMoney extends ShopifyMoneyV2 {}

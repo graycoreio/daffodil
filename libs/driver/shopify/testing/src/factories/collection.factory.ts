@@ -32,7 +32,7 @@ class MockShopifyCategory implements ShopifyCategory {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCategoryDriverShopifyCategoryFactory extends DaffModelFactory<ShopifyCategory> {
+export class DaffCategoryDriverShopifyCategoryFactory extends DaffModelFactory<ShopifyCategory, typeof MockShopifyCategory> {
   constructor(
     shopifyProductNodeFactory: ShopifyProductNodeFactory,
     shopifyImageNodeFactory: ShopifyImageNodeFactory,

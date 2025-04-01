@@ -7,7 +7,7 @@ import { ShopifyCategoryUrlVariables } from '../variables.types';
  * GraphQL query object for getting a category (Shopify Collection) by url (handle).
  */
 export const getCategoryByUrl = gql<ShopifyCategoryResponse, ShopifyCategoryUrlVariables>`
-  query ShopifyGetCategoryByUrl($handle: String!, $reverse: Boolean, $sortKey: ProductCollectionSortKeys, $filters: [ProductFilter!]!) {
+  query GetCategoryByUrl($handle: String!, $reverse: Boolean, $sortKey: ProductCollectionSortKeys, $filters: [ProductFilter!]!) {
     collection(handle: $handle) {
       handle
       id

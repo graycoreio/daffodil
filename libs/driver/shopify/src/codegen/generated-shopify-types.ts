@@ -77,14 +77,14 @@ export interface ShopifyAppliedGiftCard extends ShopifyNode {
   amountUsed: ShopifyMoneyV2;
   /**
    * The amount that was taken from the gift card by applying it.
-   * @deprecated Use `amountUsed` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `amountUsed` instead.
    */
   amountUsedV2: ShopifyMoneyV2;
   /** The amount left on the gift card. */
   balance: ShopifyMoneyV2;
   /**
    * The amount left on the gift card.
-   * @deprecated Use `balance` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `balance` instead.
    */
   balanceV2: ShopifyMoneyV2;
   /** A globally-unique ID. */
@@ -100,7 +100,7 @@ export interface ShopifyArticle extends ShopifyHasMetafields, ShopifyNode, Shopi
   __typename?: 'Article';
   /**
    * The article's author.
-   * @deprecated Use `authorV2` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `authorV2` instead.
    */
   author: ShopifyArticleAuthor;
   /** The article's author. */
@@ -309,7 +309,7 @@ export interface ShopifyBaseCartLine {
   discountAllocations: Array<ShopifyCartDiscountAllocation>;
   /**
    * The estimated cost of the merchandise that the buyer will pay for at checkout. The estimated costs are subject to change and changes will be reflected at checkout.
-   * @deprecated Use `cost` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `cost` instead.
    */
   estimatedCost: ShopifyCartLineEstimatedCost;
   /** A globally-unique ID. */
@@ -559,7 +559,7 @@ export interface ShopifyCart extends ShopifyHasMetafields, ShopifyNode {
   discountCodes: Array<ShopifyCartDiscountCode>;
   /**
    * The estimated costs that the buyer will pay at checkout. The estimated costs are subject to change and changes will be reflected at checkout. The `estimatedCost` field uses the `buyerIdentity` field to determine [international pricing](https://shopify.dev/custom-storefronts/internationalization/international-pricing).
-   * @deprecated Use `cost` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `cost` instead.
    */
   estimatedCost: ShopifyCartEstimatedCost;
   /** A globally-unique ID. */
@@ -683,7 +683,7 @@ export interface ShopifyCartBuyerIdentity {
    * - `cartDeliveryAddressUpdate`
    * - `cartDeliveryAddressDelete`
    *
-   * @deprecated Use `cart.delivery` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `cart.delivery` instead.
    */
   deliveryAddressPreferences: Array<ShopifyDeliveryAddress>;
   /** The email address of the buyer that's interacting with the cart. */
@@ -702,7 +702,7 @@ export interface ShopifyCartBuyerIdentity {
    * A set of wallet preferences tied to the buyer that is interacting with the cart.
    * Preferences can be used to populate relevant payment fields in the checkout flow.
    *
-   * @deprecated Use `preferences` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `preferences` instead.
    */
   walletPreferences: Array<Scalars['String']['output']>;
 }
@@ -830,7 +830,7 @@ export interface ShopifyCartCost {
   totalAmountEstimated: Scalars['Boolean']['output'];
   /**
    * The duty amount for the customer to pay at checkout.
-   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version.
    * Please see [the changelog](https://shopify.dev/changelog/tax-and-duties-are-deprecated-in-storefront-cart-api)
    * for more information.
    *
@@ -838,7 +838,7 @@ export interface ShopifyCartCost {
   totalDutyAmount?: Maybe<ShopifyMoneyV2>;
   /**
    * Whether the total duty amount is estimated.
-   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version.
    * Please see [the changelog](https://shopify.dev/changelog/tax-and-duties-are-deprecated-in-storefront-cart-api)
    * for more information.
    *
@@ -846,7 +846,7 @@ export interface ShopifyCartCost {
   totalDutyAmountEstimated: Scalars['Boolean']['output'];
   /**
    * The tax amount for the customer to pay at checkout.
-   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version.
    * Please see [the changelog](https://shopify.dev/changelog/tax-and-duties-are-deprecated-in-storefront-cart-api)
    * for more information.
    *
@@ -854,7 +854,7 @@ export interface ShopifyCartCost {
   totalTaxAmount?: Maybe<ShopifyMoneyV2>;
   /**
    * Whether the total tax amount is estimated.
-   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Tax and duty amounts are no longer available and will be removed in a future version.
    * Please see [the changelog](https://shopify.dev/changelog/tax-and-duties-are-deprecated-in-storefront-cart-api)
    * for more information.
    *
@@ -1225,7 +1225,7 @@ export interface ShopifyCartLine extends ShopifyBaseCartLine, ShopifyNode {
   discountAllocations: Array<ShopifyCartDiscountAllocation>;
   /**
    * The estimated cost of the merchandise that the buyer will pay for at checkout. The estimated costs are subject to change and changes will be reflected at checkout.
-   * @deprecated Use `cost` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `cost` instead.
    */
   estimatedCost: ShopifyCartLineEstimatedCost;
   /** A globally-unique ID. */
@@ -1563,7 +1563,7 @@ export interface ShopifyCheckout extends ShopifyNode {
   paymentDue: ShopifyMoneyV2;
   /**
    * The amount left to be paid. This is equal to the cost of the line items, duties, taxes, and shipping, minus discounts and gift cards.
-   * @deprecated Use `paymentDue` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `paymentDue` instead.
    */
   paymentDueV2: ShopifyMoneyV2;
   /**
@@ -1589,7 +1589,7 @@ export interface ShopifyCheckout extends ShopifyNode {
   subtotalPrice: ShopifyMoneyV2;
   /**
    * The price at checkout before duties, shipping, and taxes.
-   * @deprecated Use `subtotalPrice` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `subtotalPrice` instead.
    */
   subtotalPriceV2: ShopifyMoneyV2;
   /** Whether the checkout is tax exempt. */
@@ -1602,14 +1602,14 @@ export interface ShopifyCheckout extends ShopifyNode {
   totalPrice: ShopifyMoneyV2;
   /**
    * The sum of all the prices of all the items in the checkout, including taxes and duties.
-   * @deprecated Use `totalPrice` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `totalPrice` instead.
    */
   totalPriceV2: ShopifyMoneyV2;
   /** The sum of all the taxes applied to the line items and shipping lines in the checkout. */
   totalTax: ShopifyMoneyV2;
   /**
    * The sum of all the taxes applied to the line items and shipping lines in the checkout.
-   * @deprecated Use `totalTax` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `totalTax` instead.
    */
   totalTaxV2: ShopifyMoneyV2;
   /** The date and time when the checkout was last updated. */
@@ -1677,7 +1677,7 @@ export interface ShopifyCheckoutAttributesUpdateV2Payload {
   checkoutUserErrors: Array<ShopifyCheckoutUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -1709,7 +1709,7 @@ export interface ShopifyCheckoutCompleteFreePayload {
   checkoutUserErrors: Array<ShopifyCheckoutUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -1725,7 +1725,7 @@ export interface ShopifyCheckoutCompleteWithCreditCardV2Payload {
   payment?: Maybe<ShopifyPayment>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -1741,7 +1741,7 @@ export interface ShopifyCheckoutCompleteWithTokenizedPaymentV3Payload {
   payment?: Maybe<ShopifyPayment>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -1788,7 +1788,7 @@ export interface ShopifyCheckoutCreatePayload {
   queueToken?: Maybe<Scalars['String']['output']>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -1804,7 +1804,7 @@ export interface ShopifyCheckoutCustomerAssociateV2Payload {
   customer?: Maybe<ShopifyCustomer>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -1818,7 +1818,7 @@ export interface ShopifyCheckoutCustomerDisassociateV2Payload {
   checkoutUserErrors: Array<ShopifyCheckoutUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -1832,7 +1832,7 @@ export interface ShopifyCheckoutDiscountCodeApplyV2Payload {
   checkoutUserErrors: Array<ShopifyCheckoutUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -1846,7 +1846,7 @@ export interface ShopifyCheckoutDiscountCodeRemovePayload {
   checkoutUserErrors: Array<ShopifyCheckoutUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -1860,7 +1860,7 @@ export interface ShopifyCheckoutEmailUpdateV2Payload {
   checkoutUserErrors: Array<ShopifyCheckoutUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -1970,7 +1970,7 @@ export interface ShopifyCheckoutGiftCardRemoveV2Payload {
   checkoutUserErrors: Array<ShopifyCheckoutUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -1984,7 +1984,7 @@ export interface ShopifyCheckoutGiftCardsAppendPayload {
   checkoutUserErrors: Array<ShopifyCheckoutUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -2073,7 +2073,7 @@ export interface ShopifyCheckoutLineItemsAddPayload {
   checkoutUserErrors: Array<ShopifyCheckoutUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -2087,7 +2087,7 @@ export interface ShopifyCheckoutLineItemsRemovePayload {
   checkoutUserErrors: Array<ShopifyCheckoutUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -2110,7 +2110,7 @@ export interface ShopifyCheckoutLineItemsUpdatePayload {
   checkoutUserErrors: Array<ShopifyCheckoutUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -2124,7 +2124,7 @@ export interface ShopifyCheckoutShippingAddressUpdateV2Payload {
   checkoutUserErrors: Array<ShopifyCheckoutUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -2138,7 +2138,7 @@ export interface ShopifyCheckoutShippingLineUpdatePayload {
   checkoutUserErrors: Array<ShopifyCheckoutUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `checkoutUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `checkoutUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -2465,7 +2465,7 @@ export interface ShopifyComponentizableCartLine extends ShopifyBaseCartLine, Sho
   discountAllocations: Array<ShopifyCartDiscountAllocation>;
   /**
    * The estimated cost of the merchandise that the buyer will pay for at checkout. The estimated costs are subject to change and changes will be reflected at checkout.
-   * @deprecated Use `cost` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `cost` instead.
    */
   estimatedCost: ShopifyCartLineEstimatedCost;
   /** A globally-unique ID. */
@@ -3124,7 +3124,7 @@ export enum ShopifyCurrencyCode {
   Byn = 'BYN',
   /**
    * Belarusian Ruble (BYR).
-   * @deprecated `BYR` is deprecated. Use `BYN` available from version `2021-01` onwards instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated `BYR` is deprecated. Use `BYN` available from version `2021-01` onwards instead.
    */
   Byr = 'BYR',
   /** Belize Dollar (BZD). */
@@ -3337,7 +3337,7 @@ export enum ShopifyCurrencyCode {
   Ssp = 'SSP',
   /**
    * Sao Tome And Principe Dobra (STD).
-   * @deprecated `STD` is deprecated. Use `STN` available from version `2022-07` onwards instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated `STD` is deprecated. Use `STN` available from version `2022-07` onwards instead.
    */
   Std = 'STD',
   /** Sao Tome And Principe Dobra (STN). */
@@ -3378,7 +3378,7 @@ export enum ShopifyCurrencyCode {
   Ved = 'VED',
   /**
    * Venezuelan Bolivares (VEF).
-   * @deprecated `VEF` is deprecated. Use `VES` available from version `2020-10` onwards instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated `VEF` is deprecated. Use `VES` available from version `2020-10` onwards instead.
    */
   Vef = 'VEF',
   /** Venezuelan Bolivares Soberanos (VES). */
@@ -3428,7 +3428,7 @@ export interface ShopifyCustomer extends ShopifyHasMetafields {
   id: Scalars['ID']['output'];
   /**
    * The customer's most recently updated, incomplete checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   lastIncompleteCheckout?: Maybe<ShopifyCheckout>;
   /** The customer’s last name. */
@@ -3514,7 +3514,7 @@ export interface ShopifyCustomerAccessTokenCreatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3578,7 +3578,7 @@ export interface ShopifyCustomerActivatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3592,7 +3592,7 @@ export interface ShopifyCustomerAddressCreatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3606,7 +3606,7 @@ export interface ShopifyCustomerAddressDeletePayload {
   deletedCustomerAddressId?: Maybe<Scalars['String']['output']>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3620,7 +3620,7 @@ export interface ShopifyCustomerAddressUpdatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3655,7 +3655,7 @@ export interface ShopifyCustomerCreatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3669,7 +3669,7 @@ export interface ShopifyCustomerDefaultAddressUpdatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3715,7 +3715,7 @@ export interface ShopifyCustomerRecoverPayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3731,7 +3731,7 @@ export interface ShopifyCustomerResetByUrlPayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3755,7 +3755,7 @@ export interface ShopifyCustomerResetPayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3796,7 +3796,7 @@ export interface ShopifyCustomerUpdatePayload {
   customerUserErrors: Array<ShopifyCustomerUserError>;
   /**
    * The list of errors that occurred from executing the mutation.
-   * @deprecated Use `customerUserErrors` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `customerUserErrors` instead.
    */
   userErrors: Array<ShopifyUserError>;
 }
@@ -3910,7 +3910,7 @@ export enum ShopifyDiscountApplicationAllocationMethod {
   Each = 'EACH',
   /**
    * The value is specifically applied onto a particular line.
-   * @deprecated Use ACROSS instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use ACROSS instead.
    */
   One = 'ONE'
 }
@@ -4017,7 +4017,7 @@ export interface ShopifyExternalVideo extends ShopifyMedia, ShopifyNode {
   embedUrl: Scalars['URL']['output'];
   /**
    * The URL.
-   * @deprecated Use `originUrl` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `originUrl` instead.
    */
   embeddedUrl: Scalars['URL']['output'];
   /** The host of the external video. */
@@ -4249,12 +4249,12 @@ export interface ShopifyImage {
    *
    * If there are any existing transformations in the original source URL, they will remain and not be stripped.
    *
-   * @deprecated Use `url` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `url` instead.
    */
   originalSrc: Scalars['URL']['output'];
   /**
    * The location of the image as a URL.
-   * @deprecated Use `url` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `url` instead.
    */
   src: Scalars['URL']['output'];
   /**
@@ -4263,7 +4263,7 @@ export interface ShopifyImage {
    * All transformation arguments are considered "best-effort". If they can be applied to an image, they will be.
    * Otherwise any transformations which an image type doesn't support will be ignored.
    *
-   * @deprecated Use `url(transform:)` instead Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `url(transform:)` instead
    */
   transformedSrc: Scalars['URL']['output'];
   /**
@@ -4829,7 +4829,7 @@ export interface ShopifyMailingAddress extends ShopifyNode {
    *
    * For example, US.
    *
-   * @deprecated Use `countryCodeV2` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `countryCodeV2` instead.
    */
   countryCode?: Maybe<Scalars['String']['output']>;
   /**
@@ -5529,92 +5529,92 @@ export interface ShopifyMutation {
   cartSubmitForCompletion?: Maybe<ShopifyCartSubmitForCompletionPayload>;
   /**
    * Updates the attributes of a checkout if `allowPartialAddresses` is `true`.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutAttributesUpdateV2?: Maybe<ShopifyCheckoutAttributesUpdateV2Payload>;
   /**
    * Completes a checkout without providing payment information. You can use this mutation for free items or items whose purchase price is covered by a gift card.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutCompleteFree?: Maybe<ShopifyCheckoutCompleteFreePayload>;
   /**
    * Completes a checkout using a credit card token from Shopify's card vault. Before you can complete checkouts using CheckoutCompleteWithCreditCardV2, you need to  [_request payment processing_](https://shopify.dev/apps/channels/getting-started#request-payment-processing).
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutCompleteWithCreditCardV2?: Maybe<ShopifyCheckoutCompleteWithCreditCardV2Payload>;
   /**
    * Completes a checkout with a tokenized payment.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutCompleteWithTokenizedPaymentV3?: Maybe<ShopifyCheckoutCompleteWithTokenizedPaymentV3Payload>;
   /**
    * Creates a new checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutCreate?: Maybe<ShopifyCheckoutCreatePayload>;
   /**
    * Associates a customer to the checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutCustomerAssociateV2?: Maybe<ShopifyCheckoutCustomerAssociateV2Payload>;
   /**
    * Disassociates the current checkout customer from the checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutCustomerDisassociateV2?: Maybe<ShopifyCheckoutCustomerDisassociateV2Payload>;
   /**
    * Applies a discount to an existing checkout using a discount code.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutDiscountCodeApplyV2?: Maybe<ShopifyCheckoutDiscountCodeApplyV2Payload>;
   /**
    * Removes the applied discounts from an existing checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutDiscountCodeRemove?: Maybe<ShopifyCheckoutDiscountCodeRemovePayload>;
   /**
    * Updates the email on an existing checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutEmailUpdateV2?: Maybe<ShopifyCheckoutEmailUpdateV2Payload>;
   /**
    * Removes an applied gift card from the checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutGiftCardRemoveV2?: Maybe<ShopifyCheckoutGiftCardRemoveV2Payload>;
   /**
    * Appends gift cards to an existing checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutGiftCardsAppend?: Maybe<ShopifyCheckoutGiftCardsAppendPayload>;
   /**
    * Adds a list of line items to a checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutLineItemsAdd?: Maybe<ShopifyCheckoutLineItemsAddPayload>;
   /**
    * Removes line items from an existing checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutLineItemsRemove?: Maybe<ShopifyCheckoutLineItemsRemovePayload>;
   /**
    * Sets a list of line items to a checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutLineItemsReplace?: Maybe<ShopifyCheckoutLineItemsReplacePayload>;
   /**
    * Updates line items on a checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutLineItemsUpdate?: Maybe<ShopifyCheckoutLineItemsUpdatePayload>;
   /**
    * Updates the shipping address of an existing checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutShippingAddressUpdateV2?: Maybe<ShopifyCheckoutShippingAddressUpdateV2Payload>;
   /**
    * Updates the shipping lines on an existing checkout.
-   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
    */
   checkoutShippingLineUpdate?: Maybe<ShopifyCheckoutShippingLineUpdatePayload>;
   /**
@@ -6091,7 +6091,7 @@ export interface ShopifyOrder extends ShopifyHasMetafields, ShopifyNode {
   subtotalPrice?: Maybe<ShopifyMoneyV2>;
   /**
    * Price of the order before duties, shipping and taxes.
-   * @deprecated Use `subtotalPrice` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `subtotalPrice` instead.
    */
   subtotalPriceV2?: Maybe<ShopifyMoneyV2>;
   /** List of the order’s successful fulfillments. */
@@ -6100,28 +6100,28 @@ export interface ShopifyOrder extends ShopifyHasMetafields, ShopifyNode {
   totalPrice: ShopifyMoneyV2;
   /**
    * The sum of all the prices of all the items in the order, duties, taxes and discounts included (must be positive).
-   * @deprecated Use `totalPrice` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `totalPrice` instead.
    */
   totalPriceV2: ShopifyMoneyV2;
   /** The total amount that has been refunded. */
   totalRefunded: ShopifyMoneyV2;
   /**
    * The total amount that has been refunded.
-   * @deprecated Use `totalRefunded` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `totalRefunded` instead.
    */
   totalRefundedV2: ShopifyMoneyV2;
   /** The total cost of shipping. */
   totalShippingPrice: ShopifyMoneyV2;
   /**
    * The total cost of shipping.
-   * @deprecated Use `totalShippingPrice` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `totalShippingPrice` instead.
    */
   totalShippingPriceV2: ShopifyMoneyV2;
   /** The total cost of taxes. */
   totalTax?: Maybe<ShopifyMoneyV2>;
   /**
    * The total cost of taxes.
-   * @deprecated Use `totalTax` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `totalTax` instead.
    */
   totalTaxV2?: Maybe<ShopifyMoneyV2>;
 }
@@ -6421,7 +6421,7 @@ export interface ShopifyPayment extends ShopifyNode {
   amount: ShopifyMoneyV2;
   /**
    * The amount of the payment.
-   * @deprecated Use `amount` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `amount` instead.
    */
   amountV2: ShopifyMoneyV2;
   /** The billing address for the payment. */
@@ -7020,7 +7020,7 @@ export interface ShopifyProductOption extends ShopifyNode {
   name: Scalars['String']['output'];
   /**
    * The corresponding value to the product option name.
-   * @deprecated Use `optionValues` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `optionValues` instead.
    */
   values: Array<Scalars['String']['output']>;
 }
@@ -7086,7 +7086,7 @@ export interface ShopifyProductVariant extends ShopifyHasMetafields, ShopifyNode
   compareAtPrice?: Maybe<ShopifyMoneyV2>;
   /**
    * The compare at price of the variant. This can be used to mark a variant as on sale, when `compareAtPriceV2` is higher than `priceV2`.
-   * @deprecated Use `compareAtPrice` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `compareAtPrice` instead.
    */
   compareAtPriceV2?: Maybe<ShopifyMoneyV2>;
   /** Whether a product is out of stock but still available for purchase (used for backorders). */
@@ -7103,7 +7103,7 @@ export interface ShopifyProductVariant extends ShopifyHasMetafields, ShopifyNode
   price: ShopifyMoneyV2;
   /**
    * The product variant’s price.
-   * @deprecated Use `price` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `price` instead.
    */
   priceV2: ShopifyMoneyV2;
   /** The product object that the product variant belongs to. */
@@ -7336,7 +7336,7 @@ export interface ShopifyQueryRoot {
   blog?: Maybe<ShopifyBlog>;
   /**
    * Find a blog by its handle.
-   * @deprecated Use `blog` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `blog` instead.
    */
   blogByHandle?: Maybe<ShopifyBlog>;
   /** List of the shop's blogs. */
@@ -7356,7 +7356,7 @@ export interface ShopifyQueryRoot {
   collection?: Maybe<ShopifyCollection>;
   /**
    * Find a collection by its handle.
-   * @deprecated Use `collection` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `collection` instead.
    */
   collectionByHandle?: Maybe<ShopifyCollection>;
   /** List of the shop’s collections. */
@@ -7391,7 +7391,7 @@ export interface ShopifyQueryRoot {
   page?: Maybe<ShopifyPage>;
   /**
    * Find a page by its handle.
-   * @deprecated Use `page` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `page` instead.
    */
   pageByHandle?: Maybe<ShopifyPage>;
   /** List of the shop's pages. */
@@ -7402,7 +7402,7 @@ export interface ShopifyQueryRoot {
   product?: Maybe<ShopifyProduct>;
   /**
    * Find a product by its handle.
-   * @deprecated Use `product` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `product` instead.
    */
   productByHandle?: Maybe<ShopifyProduct>;
   /**
@@ -8065,7 +8065,7 @@ export interface ShopifyShippingRate {
   price: ShopifyMoneyV2;
   /**
    * Price of this shipping rate.
-   * @deprecated Use `price` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `price` instead.
    */
   priceV2: ShopifyMoneyV2;
   /** Title of this shipping rate. */
@@ -8418,14 +8418,14 @@ export interface ShopifyTransaction {
   amount: ShopifyMoneyV2;
   /**
    * The amount of money that the transaction was for.
-   * @deprecated Use `amount` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `amount` instead.
    */
   amountV2: ShopifyMoneyV2;
   /** The kind of the transaction. */
   kind: ShopifyTransactionKind;
   /**
    * The status of the transaction.
-   * @deprecated Use `statusV2` instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
+   * @deprecated Use `statusV2` instead.
    */
   status: ShopifyTransactionStatus;
   /** The status of the transaction. */

@@ -9,7 +9,7 @@ import { ShopifyProductUrlVariables } from '../variables.types';
  * The DaffLocatable url is transformed into a Shopify product handle for querying.
  */
 export const getProductByUrl = gql<ShopifyProductSingleResponse, ShopifyProductUrlVariables>`
- query ShopifyGetProductByURL($handle: String!) {
+ query GetProductByURL($handle: String!) {
 	 product(handle: $handle) {
 		 handle
 		 id
