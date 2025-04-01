@@ -13,10 +13,14 @@ import { ShopifyProductFilter } from '@daffodil/driver/shopify';
 export const shopifyProductFilterRequestTransformer = (daffFilters: DaffFilterRequest[]): ShopifyProductFilter => {
   const result: ShopifyProductFilter = {};
   for (const filter of daffFilters) {
-    if (filter.type === DaffFilterType.Equal && filter.name === 'available') {
-      result.available = filter.value.length > 0;
-    } else if (filter.type === DaffFilterType.RangeNumeric && filter.name === 'price') {
-      result.price = { min: filter.value.min, max: filter.value.max };
+    if (filter.type === DaffFilterType.Equal) {
+      if (filter.name === 'available') {
+        result.available = filter.value.length > 0;
+      }
+    } else if (filter.type === DaffFilterType.RangeNumeric) {
+      if (filter.name === 'price') {
+        result.price = { min: filter.value.min, max: filter.value.max };
+      }
     }
     // todo: implement remaining ShopifyProductFilter fields - blocked by shopify product driver functinoality
   }
