@@ -1,3 +1,4 @@
+<ng-content></ng-content>
 
 <div class="daff-media-gallery__thumbnails" #thumbnailsEl>
 	@if(skeleton) {
@@ -21,8 +22,12 @@
 				[attr.id]="thumbnail.id" 
 				(keydown.arrowright)="next()"
 				(keydown.arrowleft)="previous()">
-				@if(thumbnail.thumbnailSrc) {
+				@if (thumbnail.thumbnailSrc) {
 					<img [src]="thumbnail.thumbnailSrc" aria-hidden="true"/>
+				}
+				@if (thumbnail.isVideo) {
+					<div class="daff-media-gallery__video-button">
+					</div>
 				}
 			</button>
 		}

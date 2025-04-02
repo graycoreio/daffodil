@@ -49,6 +49,8 @@ export class DaffThumbnailDirective implements OnInit {
    */
   @Input() label: string = undefined;
 
+  @Input() isVideo = false;
+
   /**
    * @docs-private
    */

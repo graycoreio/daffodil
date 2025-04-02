@@ -4,16 +4,34 @@
 
 @mixin daff-media-gallery-theme($theme) {
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$white: core.daff-map-get($theme, 'core', 'white');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-media-gallery {
 		$root: &;
 
+		@include theming.light($type) {
+			.daff-thumbnail {
+				background: theming.daff-color($neutral, 20);
+
+				&.daff-selected {
+					border: 1px solid theming.daff-color($neutral);
+				}
+			}
+		}
+
+		@include theming.dark($type) {
+			.daff-thumbnail {
+				background: theming.daff-color($neutral, 70);
+
+				&.daff-selected {
+					border: 1px solid theming.daff-color($neutral, 30);
+				}
+			}
+		}
+
 		.daff-thumbnail {
 			border: 1px solid transparent;
-
-			&.daff-selected {
-				border: 1px solid theming.daff-color($neutral);
-			}
 		}
 
 		&.daff-skeleton {
@@ -21,6 +39,14 @@
 				&.daff-selected {
 					border: none;
 				}
+			}
+		}
+
+		&__video-button {
+			border: solid thin $white;
+
+			&::after {
+				background-color: $white;
 			}
 		}
 	}

@@ -25,6 +25,7 @@
 			overflow: hidden;
 			user-select: none;
 			padding: 0;
+			position: relative;
 			flex-shrink: 0;
 
 			@include layout.breakpoint(mobile) {
@@ -98,12 +99,35 @@
 	}
 
 	&__selected-thumbnail {
-		display: block;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-grow: 1;
+		width: 100%;
 		order: 1;
 
 		@include layout.breakpoint(big-tablet) {
 			order: 2;
 			margin: 0;
+		}
+	}
+
+	&__video-button {
+		width: 2rem;
+		height: 2rem;
+		border-radius: 100%;
+		position: absolute;
+
+		&::after {
+			content: '';
+			position: absolute;
+			width: 0.75rem;
+			height: 0.75rem;
+			left: 60%;
+			top: 50%;
+			transform: translate(-60%, -50%) rotate(90deg);
+			clip-path: polygon(50% 15%, 0% 100%, 100% 100%);
+			transition: all 400ms ease-in-out;
 		}
 	}
 }
