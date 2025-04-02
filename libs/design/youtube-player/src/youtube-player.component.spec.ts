@@ -23,7 +23,7 @@ class WrapperComponent {
   height = 100;
 }
 
-describe('@daffodil/design/image | DaffYoutubePlayerComponent', () => {
+describe('@daffodil/design/youtube-player | DaffYoutubePlayerComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffYoutubePlayerComponent;
   let de: DebugElement;
