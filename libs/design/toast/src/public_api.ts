@@ -14,3 +14,8 @@ export {
 } from './options/daff-toast-options';
 
 export { provideDaffToast } from './toast/toast-provider';
+
+export {
+  DaffToastActionButtonSize,
+  DaffToastActionButtonType,
+} from './interfaces/toast-action.type';
