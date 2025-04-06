@@ -129,14 +129,14 @@ describe('@daffodil/customer-order/driver/magento/2-4-6 | DaffCustomerOrderMagen
             mockMagentoOrders.items.forEach((item) => {
               expect(result.data[item.number]).toEqual(jasmine.objectContaining({ id: item.number }));
               expect(result.metadata.ids).toContain(item.number);
-              expect(result.metadata.appliedSortDirection).toEqual(MagentoSortEnum.DESC);
-              expect(result.metadata.appliedSortOption).toEqual(MagentoCustomerOrderSortableField.CREATED_AT);
             });
             done();
           });
 
           const op = controller.expectOne(addTypenameToDocument(getCustomerOrders()));
-          expect(op.operation.variables.sort).toBeDefined();
+          console.log(op);
+          expect(op.operation.variables.sort.sort_direction).toEqual(MagentoSortEnum.DESC);
+          expect(op.operation.variables.sort.sort_field).toEqual(MagentoCustomerOrderSortableField.CREATED_AT);
 
           op.flush({
             data: mockGetOrdersResponse,

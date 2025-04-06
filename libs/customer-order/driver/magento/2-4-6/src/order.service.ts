@@ -34,7 +34,6 @@ import {
 import { DaffMagentoCustomerOrderTransform } from './interfaces/public_api';
 import { MagentoCustomerOrderSortableField } from './models/public_api';
 import {
-  MagentoCustomerOrderListQueryVariables,
   getCustomerOrder,
   getCustomerOrders,
 } from './queries/public_api';
@@ -61,20 +60,17 @@ export class DaffCustomerOrderMagentoService implements DaffOrderServiceInterfac
   ) {}
 
   list(cartId?: string, request: DaffCollectionRequest = {}): Observable<DaffOrderCollection> {
-    const variables: MagentoCustomerOrderListQueryVariables = {
-      currentPage: request.currentPage,
-      pageSize: request.pageSize,
-    };
-    if (request.appliedSortDirection || request.appliedSortOption) {
-      variables.sort = {
-        sort_direction: request.appliedSortDirection ? magentoSortDirectionRequestTransform(request.appliedSortDirection) : MagentoSortEnum.DESC,
-        sort_field: (<MagentoCustomerOrderSortableField>request.appliedSortOption) || MagentoCustomerOrderSortableField.CREATED_AT,
-      };
-    }
     return this.authStorage.getAuthToken()
       ? this.apollo.query({
         query: getCustomerOrders(this.extraFragments),
-        variables,
+        variables: {
+          currentPage: request.currentPage,
+          pageSize: request.pageSize,
+          sort: {
+            sort_direction: request.appliedSortDirection ? magentoSortDirectionRequestTransform(request.appliedSortDirection) : MagentoSortEnum.DESC,
+            sort_field: (<MagentoCustomerOrderSortableField>request.appliedSortOption) || MagentoCustomerOrderSortableField.CREATED_AT,
+          },
+        },
       }).pipe(
         map(validateGetCustomerOrdersResponse),
         map(response => this.transformer.transform(response.data, request)),
