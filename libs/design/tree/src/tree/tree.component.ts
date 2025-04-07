@@ -28,7 +28,7 @@ import {
 import { hydrateTree } from '../utils/hydrate-tree';
 
 /**
- * The `DaffTreeComponent` allows you to render tree structures as interactable ui.
+ * The `DaffTreeComponent` allows you to render tree structures as interactable UI.
  *
  * @example Basic use of the tree component
  * ```html
@@ -76,7 +76,7 @@ export class DaffTreeComponent implements OnInit, OnChanges {
   /**
    * The rendering mode for nodes in the tree.
    *
-   * Default value is 'in-dom', which means nodes are present in the DOM.
+   * Default value is `in-dom`, which means nodes are present in the DOM.
    *
    * Generally, `not-in-dom` is faster as there are less DOM elements to render,
    * but there may be use-cases (like SEO) where having the tree in the DOM
@@ -90,7 +90,9 @@ export class DaffTreeComponent implements OnInit, OnChanges {
   private _tree: DaffTreeUi<unknown> = undefined;
 
   /**
-   * The flattened tree data. You can iterate through this if you want to inspect
+   * @docs-private
+   *
+   * The flattened tree data. For debugging purposes, you can iterate through this if you want to inspect
    * the resulting array structure we computed to render the tree.
    */
   public flatTree: DaffTreeFlatNode[] = [];
@@ -115,8 +117,14 @@ export class DaffTreeComponent implements OnInit, OnChanges {
    */
   @ContentChild('daffTreeItemTpl', { static: true }) treeItemTemplate: TemplateRef<any>;
 
+  /**
+   * @docs-private
+   */
   constructor(private notifier: DaffTreeNotifierService) {}
 
+  /**
+   * @docs-private
+   */
   ngOnChanges(changes: SimpleChanges): void {
     if(!changes.tree.currentValue) {
       this._tree = undefined;
@@ -133,6 +141,8 @@ export class DaffTreeComponent implements OnInit, OnChanges {
   }
 
   /**
+   * @docs-private
+   *
    * The track-by function used to reduce tree-item re-renders
    */
   trackByTreeElement(index: number, el: any): any {

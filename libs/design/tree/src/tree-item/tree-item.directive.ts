@@ -66,6 +66,8 @@ export class DaffTreeItemDirective {
   @HostBinding('attr.aria-expanded') ariaExpanded: string;
 
   /**
+   * @docs-private
+   *
    * A css variable indicating the depth of the tree.
    * You can use this to style your templates if you want to
    * use different designs at different depths.
@@ -73,6 +75,8 @@ export class DaffTreeItemDirective {
   @HostBinding('style.--depth') depth: number;
 
   /**
+   * @docs-private
+   *
    * The CSS class indicating whether or not the tree is `selected`.
    */
   @HostBinding('class.selected') get selectedClass() {
@@ -80,6 +84,8 @@ export class DaffTreeItemDirective {
   };
 
   /**
+   * @docs-private
+   *
    * The CSS class indicating whether or not the tree is `open`.
    */
   @HostBinding('class.open') openClass = false;

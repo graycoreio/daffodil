@@ -5,11 +5,11 @@ import {
 import { BehaviorSubject } from 'rxjs';
 
 /**
- * This service is used by tree-items to notify their parent
- * that the tree has to be re-computed.
+ * This service is used by tree items to notify their parent
+ * that the tree has to be recomputed.
  *
  * This service is a multiton associated with each tree instance.
- * It follows the same lifecycle has the tree it is associated with.
+ * It follows the same lifecycle as the tree it is associated with.
  */
 @Inject({})
 export class DaffTreeNotifierService implements OnDestroy {
