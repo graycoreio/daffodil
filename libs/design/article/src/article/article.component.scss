@@ -22,7 +22,7 @@
 	}
 
 	@include stopsArticleCascade(h1, h2, h3, h4, h5, h6) {
-		margin-bottom: 1.5rem;
+		margin-bottom: 1rem;
 		word-wrap: break-word;
 
 		code {
@@ -30,10 +30,6 @@
 			font-weight: 600;
 			line-height: 0.875rem;
 		}
-	}
-
-	@include stopsArticleCascade(h2, h3, h4, h5, h6) {
-		margin-top: 2.5rem;
 	}
 
 	@include stopsArticleCascade(h1) {
@@ -54,26 +50,33 @@
 	@include stopsArticleCascade(h2) {
 		font-size: 2rem;
 		line-height: 2.5rem;
+		margin-top: 2.5rem;
 	}
 
 	@include stopsArticleCascade(h3) {
 		font-size: 1.5rem;
 		line-height: 2rem;
+		margin-top: 2.5rem;
 	}
 
 	@include stopsArticleCascade(h4) {
 		font-size: 1.25rem;
 		line-height: 1.5rem;
+		margin-top: 2rem;
 	}
 
 	@include stopsArticleCascade(h5) {
 		font-size: 1.125rem;
+		font-weight: 600;
 		line-height: 1.5rem;
+		margin-top: 1.5rem;
 	}
 
 	@include stopsArticleCascade(h6) {
 		font-size: 1rem;
+		font-weight: 600;
 		line-height: 1.5rem;
+		margin-top: 1.5rem;
 	}
 
 	@include stopsArticleCascade(p) {
@@ -144,14 +147,14 @@
 	}
 
 	table {
-		display: block;
-		border-collapse: collapse;
+		display: table;
+		border-collapse: separate;
+    border-spacing: 0;
 		border-radius: 0.25rem;
 		font-size: 1rem;
     line-height: 1.25rem;
 		margin: 1.5rem 0;
-		overflow: auto;
-		width: 100%;
+		overflow: hidden;
 
 		&:last-child {
 			margin-bottom: 0;
@@ -162,12 +165,12 @@
 			outline: 0;
 			padding: 1rem;
 			text-align: left;
-			vertical-align: bottom;
+			vertical-align: top;
 			box-sizing: border-box;
 		}
 
 		td {
-			padding: 0.75rem 1rem;
+			padding: 1rem;
 			vertical-align: top;
 			box-sizing: border-box;
 

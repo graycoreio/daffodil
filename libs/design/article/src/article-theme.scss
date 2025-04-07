@@ -79,13 +79,32 @@
 		}
 
 		table {
+			border: 1px solid $table-border-color;
+
 			th {
 				background: theming.daff-illuminate($base, $neutral, 1);
-				border: 1px solid $table-border-color;
 			}
 
+			th,
 			td {
-				border: 1px solid $table-border-color;
+				&:not(:last-child) {
+					border-right: 1px solid $table-border-color;
+				}
+			}
+
+			thead {
+				th {
+					border-bottom: 1px solid $table-border-color;
+				}
+			}
+
+			tr {
+				&:not(:last-child) {
+					th,
+					td {
+						border-bottom: 1px solid $table-border-color;
+					}
+				}
 			}
 		}
 	}
