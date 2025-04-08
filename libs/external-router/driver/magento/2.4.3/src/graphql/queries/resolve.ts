@@ -16,6 +16,7 @@ export const MagentoResolveUrlv243 = gql`
 				uid
 				name
 				meta_title
+				meta_description
 				canonical_url
 				products {
 					items {
