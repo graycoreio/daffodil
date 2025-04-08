@@ -51,6 +51,9 @@ export class DaffImageComponent implements OnInit {
 
   private _src: string;
 
+  /**
+   * The URL of the image.
+   */
   @Input()
   get src(): string {
     return this._src;
@@ -62,6 +65,9 @@ export class DaffImageComponent implements OnInit {
 
   private _alt: string;
 
+  /**
+   * The alternate text for the image.
+   */
   @Input()
   get alt(): string {
     return this._alt;
@@ -73,6 +79,9 @@ export class DaffImageComponent implements OnInit {
 
   private _width: number;
 
+  /**
+   * The width of the image.
+   */
   @Input()
   get width(): number {
     return this._width;
@@ -84,6 +93,9 @@ export class DaffImageComponent implements OnInit {
 
   private _height: number;
 
+  /**
+   * The height of the image.
+   */
   @Input()
   get height(): number {
     return this._height;
@@ -93,6 +105,9 @@ export class DaffImageComponent implements OnInit {
     validateProperty(this, 'height');
   }
 
+  /**
+   * Emits when the image has loaded.
+   */
   // TODO: rename event to not collide with native event (unless that's intentional)
   // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() load: EventEmitter<void> = new EventEmitter();
@@ -117,6 +132,11 @@ export class DaffImageComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)');
   }
 
+  /**
+   * @docs-private
+   *
+   * The aspect ratio of an image, based on the width and height set by the user.
+   */
   get _aspectRatio(): SafeStyle {
     return this.sanitizer.bypassSecurityTrustStyle(this.width + ' / ' + this.height);
   }
