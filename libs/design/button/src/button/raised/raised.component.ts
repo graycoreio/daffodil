@@ -10,7 +10,7 @@ import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 import { DaffButtonBaseDirective } from '../button-base.directive';
 
 /**
- * @deprecated in favor of the `elevated` property. Deprecated in 0.82.0. Will be removed in version 1.0.0.
+ * @deprecated in favor of the `elevated` property. Deprecated in 0.82.0. Will be removed in version 1.0.0. Deprecated in version 0.82.0. Will be removed in version 0.85.0.
  *
  * DaffRaisedButtonComponent is a rectangular contained button with background color and elevation.
  *

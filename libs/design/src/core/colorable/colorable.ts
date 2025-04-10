@@ -48,13 +48,13 @@ export enum DaffPaletteEnum {
   ThemeContrast = 'theme-contrast',
 
   /**
-   * @deprecated
+   * @deprecated Deprecated in version 0.82.0. Will be removed in version 0.85.0.
    * Black. It's dark.
    */
   Black = 'black',
 
   /**
-   * @deprecated
+   * @deprecated Deprecated in version 0.82.0. Will be removed in version 0.85.0.
    * White. It's bright.
    */
   White = 'white',
