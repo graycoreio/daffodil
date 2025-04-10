@@ -1,5 +1,71 @@
 # Changelog
 
+## [0.82.0](https://github.com/graycoreio/daffodil/compare/v0.81.1...v0.82.0) (2025-04-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **external-router:** `DaffExternalRouterDriverInMemoryModule` has been removed
+* **design:** update breadcrumb active state implementation ([#3523](https://github.com/graycoreio/daffodil/issues/3523))
+* **design:** `DaffPrefixSuffixModule` is no longer exported through `DAFF_TABS_COMPONENTS`. If you are using tabs with a prefix or suffix, make sure to import `DaffPrefixSuffixModule` in your usage component.
+* **design:** `DaffPrefixSuffixModule` is no longer exported through `DAFF_BUTTON_COMPONENTS`. If you are using a button with a prefix or suffix, make sure to import `DaffPrefixSuffixModule` in your usage component.
+* **design:** `DAFF_CARD_COMPONENTS` now only exports the `DaffCardComponent`. To use `DaffRaisedComponent` or `DaffStrokedComponent`, used `DAFF_RAISED_CARD_COMPONENTS` and `DAFF_STROKED_CARD_COMPONENTS`. `DAFF_ALL_CARD_COMPONENTS` can be used if all card types are needed.
+
+### Features
+
+* **customer-order:** sort newest first by default ([#3582](https://github.com/graycoreio/daffodil/issues/3582)) ([c3d70e1](https://github.com/graycoreio/daffodil/commit/c3d70e1ba71cf70789cac6350ae9626e02c7739f))
+* **daffio:** add sidebar section strategy support ([#3459](https://github.com/graycoreio/daffodil/issues/3459)) ([9d90ad0](https://github.com/graycoreio/daffodil/commit/9d90ad089a9ff1fa37672322b0538520882736dc))
+* **daffio:** add table of contents sidebar for mobile view ([#3458](https://github.com/graycoreio/daffodil/issues/3458)) ([fe07b27](https://github.com/graycoreio/daffodil/commit/fe07b27eb715e80771faf7b59992b29375b24f49))
+* **daffio:** clean up mobile menu button UI ([#3522](https://github.com/graycoreio/daffodil/issues/3522)) ([63af378](https://github.com/graycoreio/daffodil/commit/63af378831578ed094e1080567fd29afd90f8e54))
+* **daffio:** create docs footer ([#3516](https://github.com/graycoreio/daffodil/issues/3516)) ([7039c7f](https://github.com/graycoreio/daffodil/commit/7039c7fb07ee87520521d2a0a626d6a4c71ed91e))
+* **daffio:** rename `DaffioDocArticleComponent` to `DaffioDocViewerComponent` ([#3570](https://github.com/graycoreio/daffodil/issues/3570)) ([00e1724](https://github.com/graycoreio/daffodil/commit/00e17249049b15735fe52ceb75794299b5a50ff4))
+* **daffio:** render design component guide and API docs with tabs ([#3377](https://github.com/graycoreio/daffodil/issues/3377)) ([0a8daf3](https://github.com/graycoreio/daffodil/commit/0a8daf3dd9c3eed5a8c6638f8bf5b8702d0ff5fe))
+* **daffio:** reorder docs nav ([#3510](https://github.com/graycoreio/daffodil/issues/3510)) ([73f8d86](https://github.com/graycoreio/daffodil/commit/73f8d869f1c2535fd41efd58bdbd641fbdd42800))
+* **daffio:** truncate table of content links ([#3532](https://github.com/graycoreio/daffodil/issues/3532)) ([4972581](https://github.com/graycoreio/daffodil/commit/49725819821df22ab5014f09a5bb1c38e50b095f))
+* **demo:** add shopify configuration for demo ([#3576](https://github.com/graycoreio/daffodil/issues/3576)) ([8a99876](https://github.com/graycoreio/daffodil/commit/8a9987688e8cf9d1589300c73d7ea384aa936a5d))
+* **design, daffio:** add sidebar viewport footer content slot ([#3484](https://github.com/graycoreio/daffodil/issues/3484)) ([095d781](https://github.com/graycoreio/daffodil/commit/095d781e8965cb15d2ac1f22f439bedfb9e3be68))
+* **design:** add `elevated` property to button and deprecated `DaffRaisedButtonComponent` ([#3575](https://github.com/graycoreio/daffodil/issues/3575)) ([b76b0ab](https://github.com/graycoreio/daffodil/commit/b76b0abc65a6b9af29b1797d0119c2e17df24ddd))
+* **design:** add accessibility considerations and disabled prop to accordion ([#3511](https://github.com/graycoreio/daffodil/issues/3511)) ([929bc45](https://github.com/graycoreio/daffodil/commit/929bc45f8b8ca8941cf20280bc5c4fb51d58c606))
+* **design:** add dark and light mixins for theme handling ([#3524](https://github.com/graycoreio/daffodil/issues/3524)) ([b947db2](https://github.com/graycoreio/daffodil/commit/b947db2abfe0c91be36511088c25d9280477f3a0))
+* **design:** add new youtube player component ([#3579](https://github.com/graycoreio/daffodil/issues/3579)) ([e17e63c](https://github.com/graycoreio/daffodil/commit/e17e63ca3fa93bded1e656709ecf2d2a122ea9d8))
+* **design:** add video support to media gallery ([#3580](https://github.com/graycoreio/daffodil/issues/3580)) ([cc685b0](https://github.com/graycoreio/daffodil/commit/cc685b0e88616c53d0e30e3ad00cfa2216e09948))
+* **design:** allow individual card type imports ([#3474](https://github.com/graycoreio/daffodil/issues/3474)) ([ce27b32](https://github.com/graycoreio/daffodil/commit/ce27b3276b77badb34b9f44000ea12e80490783f))
+* **design:** clean up article styles ([#3536](https://github.com/graycoreio/daffodil/issues/3536)) ([99a116d](https://github.com/graycoreio/daffodil/commit/99a116d03594696c25a2438cf347428beed2b27b))
+* **design:** deprecate white and black options in favor of light and dark ([#3577](https://github.com/graycoreio/daffodil/issues/3577)) ([83d9792](https://github.com/graycoreio/daffodil/commit/83d9792e9aa7bf18b8ec8bf88fc77e8673bf9d38))
+* **design:** move toast action button style and size values into separate types ([#3581](https://github.com/graycoreio/daffodil/issues/3581)) ([02f910d](https://github.com/graycoreio/daffodil/commit/02f910d6a126bfe73d71d4bb411f57de629c08db))
+* **design:** refine `onUrlChange` behavior for tabs component ([#3567](https://github.com/graycoreio/daffodil/issues/3567)) ([f004546](https://github.com/graycoreio/daffodil/commit/f004546d1ff95453fc922ed4d7e22ce0ff9eac69))
+* **design:** remove DaffPrefixSuffixModule imports from button components and update usage docs ([#3503](https://github.com/graycoreio/daffodil/issues/3503)) ([14d92d1](https://github.com/graycoreio/daffodil/commit/14d92d1bc39b7321b1a6eabc68fbb740e2521bfe))
+* **design:** remove prefix suffix import from tabs and udpdate docs ([#3506](https://github.com/graycoreio/daffodil/issues/3506)) ([352ca08](https://github.com/graycoreio/daffodil/commit/352ca0868ba7885e81fa62a76c5759d7158a5b2d))
+* **design:** rename `daff-theme` mixin to `daff-component-themes` ([#3564](https://github.com/graycoreio/daffodil/issues/3564)) ([5b4ffad](https://github.com/graycoreio/daffodil/commit/5b4ffad273df75f325731c9125dfcbf54a9c9a61))
+* **design:** update article heading and table styles ([#3584](https://github.com/graycoreio/daffodil/issues/3584)) ([c8c0824](https://github.com/graycoreio/daffodil/commit/c8c0824fc32dfd85b37243e3c288d0d0fd93edc5))
+* **design:** update breadcrumb active state implementation ([#3523](https://github.com/graycoreio/daffodil/issues/3523)) ([b3e6efa](https://github.com/graycoreio/daffodil/commit/b3e6efa14223def6c08657ed4e0275af475b88a9))
+* **design:** update button themes to support light and dark mode ([#3571](https://github.com/graycoreio/daffodil/issues/3571)) ([fdb4490](https://github.com/graycoreio/daffodil/commit/fdb4490a1643a82511de8aef56b30bdf70a2fee4))
+* **design:** update loading icon theme to support light and dark mode ([#3572](https://github.com/graycoreio/daffodil/issues/3572)) ([6b67713](https://github.com/graycoreio/daffodil/commit/6b677136e703cdc1b08d95c66b9295320378ca94))
+* **dgeni:** add an import example to API docs ([#3542](https://github.com/graycoreio/daffodil/issues/3542)) ([5b1c3f1](https://github.com/graycoreio/daffodil/commit/5b1c3f1c554a58dc872088170e90440dd7d13a72))
+* **dgeni:** ensure unique slug in heading IDs ([#3547](https://github.com/graycoreio/daffodil/issues/3547)) ([59209f0](https://github.com/graycoreio/daffodil/commit/59209f050f6ddc68f6b3a61ee63a0e46a48f6159))
+* **dgeni:** render API source block ([#3385](https://github.com/graycoreio/daffodil/issues/3385)) ([3fb4350](https://github.com/graycoreio/daffodil/commit/3fb4350ab533d94c2817fcc03e0d48b126f19f78))
+* **driver, product:** add Shopify product driver and supporting code ([#3529](https://github.com/graycoreio/daffodil/issues/3529)) ([50f2b4c](https://github.com/graycoreio/daffodil/commit/50f2b4c1a4dc8b4e6d3fdfae2ba04c068bb5b6ee))
+* **driver:** add shopify driver with models + graphql config + codegen ([#3519](https://github.com/graycoreio/daffodil/issues/3519)) ([68e6289](https://github.com/graycoreio/daffodil/commit/68e6289dc5a3c270aac45a09ac9de568e541ef37))
+* **external-router:** remove `DaffExternalRouterDriverInMemoryModule` ([#3592](https://github.com/graycoreio/daffodil/issues/3592)) ([f964cab](https://github.com/graycoreio/daffodil/commit/f964cabb9189ec193277328b6f092811e905af8a))
+* **shop:** add scroll to top button to docs ([#3509](https://github.com/graycoreio/daffodil/issues/3509)) ([452606b](https://github.com/graycoreio/daffodil/commit/452606be576b981e996a10c2d995f39012098b84))
+* **tools-dgeni:** clean up API templates ([#3495](https://github.com/graycoreio/daffodil/issues/3495)) ([4edba98](https://github.com/graycoreio/daffodil/commit/4edba98f39630d0b594538d5826726154f177613))
+
+
+### Bug Fixes
+
+* **design,dgeni:** link tags don't work in child API descriptions ([#3537](https://github.com/graycoreio/daffodil/issues/3537)) ([7808631](https://github.com/graycoreio/daffodil/commit/78086315aa8b3e555ee8b52acbc9a1340573ef66))
+* **design:** tab consumers not notified of tab reset on location change ([#3540](https://github.com/graycoreio/daffodil/issues/3540)) ([b577827](https://github.com/graycoreio/daffodil/commit/b57782703cd45c175a563251913cece11e675fb9))
+* **design:** tabs reset on same page navigation ([#3548](https://github.com/graycoreio/daffodil/issues/3548)) ([10ca503](https://github.com/graycoreio/daffodil/commit/10ca50391bb591f67613dd1ab231f1cd0e111249))
+* **dgeni:** API docs include private members ([#3535](https://github.com/graycoreio/daffodil/issues/3535)) ([66ae18e](https://github.com/graycoreio/daffodil/commit/66ae18e929110ca9bf97a02f87943f71857a9471))
+* **dgeni:** design component API ToC has examples ([#3539](https://github.com/graycoreio/daffodil/issues/3539)) ([82f9f6d](https://github.com/graycoreio/daffodil/commit/82f9f6d0a61be5bb845efeae278ca74b70dabd55))
+* **dgeni:** examples without captions are misrendered ([#3530](https://github.com/graycoreio/daffodil/issues/3530)) ([86cad3a](https://github.com/graycoreio/daffodil/commit/86cad3a520ee26ffc45d055f59bc411ce3b94766))
+* **dgeni:** interface property heading tags don't respect child mode ([#3538](https://github.com/graycoreio/daffodil/issues/3538)) ([c2bd2df](https://github.com/graycoreio/daffodil/commit/c2bd2df885d6fa837c63922e0c28699df0f9f9a2))
+* **dgeni:** linking API member descriptions that aren't codespans ([#3527](https://github.com/graycoreio/daffodil/issues/3527)) ([3523701](https://github.com/graycoreio/daffodil/commit/3523701c51c4af9b58d5a3c3c1061681fa8b608f))
+* **dgeni:** non-alphabetic characters don't get linked ([#3551](https://github.com/graycoreio/daffodil/issues/3551)) ([7231562](https://github.com/graycoreio/daffodil/commit/7231562c13424801c3af9b33999082b5d68766c6))
+* **dgeni:** package is skipped during breadcrumb generation ([#3533](https://github.com/graycoreio/daffodil/issues/3533)) ([be3a0e1](https://github.com/graycoreio/daffodil/commit/be3a0e109b5fde7b026787326da5887fb8d8e977))
+* **external-router:** `meta_description` missing from magento categories ([#3585](https://github.com/graycoreio/daffodil/issues/3585)) ([7fb8539](https://github.com/graycoreio/daffodil/commit/7fb8539caffd8e1e5004a9055249bc32e1877ab5))
+* **product:** improve getByUrl url param docs ([#3518](https://github.com/graycoreio/daffodil/issues/3518)) ([c609ab5](https://github.com/graycoreio/daffodil/commit/c609ab5b9c910b8e1d53d8ee01ad20c63e66554b))
+
 ## [0.81.1](https://github.com/graycoreio/daffodil/compare/v0.81.0...v0.81.1) (2025-01-31)
 
 
