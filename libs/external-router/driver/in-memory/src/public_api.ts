@@ -3,7 +3,6 @@
  */
 
 export { DaffExternalRouterInMemoryDriver } from './in-memory.service';
-export { DaffExternalRouterDriverInMemoryModule } from './in-memory.module';
 
 export {
   DaffExternalRouterDriverInMemoryConfig,
