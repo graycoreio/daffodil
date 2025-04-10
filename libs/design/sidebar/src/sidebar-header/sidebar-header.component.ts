@@ -11,6 +11,15 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * Sidebar header is a child component of the sidebar that is used to display a header container,
+ * positioned at the top of a sidebar. It includes an optional title (`[daffSidebarHeaderTitle]`)
+ * slot and a slot to render any custom content.
+ *
+ * ```html
+ * <daff-sidebar-header></daff-sidebar-header>
+ * ```
+ */
 @Component({
   selector: 'daff-sidebar-header',
   templateUrl: './sidebar-header.component.html',
@@ -23,11 +32,17 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
   ],
 })
 export class DaffSidebarHeaderComponent {
+  /**
+   * @docs-private
+   */
   faTimes = faTimes;
 
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-sidebar-header') class = true;
 
-  /** Whether or not a sidebar header displays the close icon */
+  /** Whether or not a sidebar header should display the close icon. */
   @Input() @HostBinding('class.dismissible') dismissible = false;
 
   /**
@@ -35,6 +50,9 @@ export class DaffSidebarHeaderComponent {
    */
   @Output() closeSidebar: EventEmitter<void> = new EventEmitter();
 
+  /**
+   * @docs-private
+   */
   onCloseSidebar(event: Event) {
     this.closeSidebar.emit();
   }

@@ -21,10 +21,12 @@ import { getAnimationState } from './animation/backdrop-animation-state';
     daffSidebarViewportBackdropAnimations.fadeBackdrop,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class DaffSidebarViewportBackdropComponent implements OnInit {
 
+  /**
+   * @docs-private
+   */
   @HostBinding('class.interactable') interactableClass = true;
 
   /**
@@ -48,11 +50,16 @@ export class DaffSidebarViewportBackdropComponent implements OnInit {
    */
   @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
 
+  /**
+   * @docs-private
+   */
   ngOnInit(): void {
     this.interactableClass = this.interactable;
   }
 
   /**
+   * @docs-private
+   *
    * Animation hook for that controls the backdrops
    * entrance and fade animations.
    */
@@ -60,11 +67,17 @@ export class DaffSidebarViewportBackdropComponent implements OnInit {
     return getAnimationState(this.interactable);
   }
 
+  /**
+   * @docs-private
+   */
   @HostListener('@fadeBackdrop.done', ['$event'])
   animationDone(e: AnimationEvent) {
     this.interactableClass = !(e.toState === ':leave' || e.toState === 'non-interactable');
   }
 
+  /**
+   * @docs-private
+   */
   @HostListener('@fadeBackdrop.start', ['$event'])
   animationStart(e: AnimationEvent) {
     if(e.toState === ':enter' || e.toState === 'interactable'){
@@ -72,6 +85,9 @@ export class DaffSidebarViewportBackdropComponent implements OnInit {
     }
   }
 
+  /**
+   * @docs-private
+   */
   @HostListener('click')
   onBackdropClicked(): void {
     this.backdropClicked.emit();

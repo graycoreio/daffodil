@@ -45,23 +45,19 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 import { DaffSidebarViewportBackdropComponent } from '../sidebar-viewport-backdrop/sidebar-viewport-backdrop.component';
 
 /**
- * The DaffSidebarViewportComponent is the "holder" of sidebars throughout an entire application.
+ * DaffSidebarViewportComponent serves as the container for managing sidebars across an entire application.
+ * Because it's a functional component, it supports multiple simultaneously open sidebar and is designed to
+ * handle these scenarios gracefully.
  *
- * `<daff-sidebar-viewport>` should only ever be used once in an application,
- * but it's possible for there to be multiple sidebars of many modes
- * at the same time. See {@link DaffSidebarMode}.
+ * > However, there is one key contraint: only one sidebar per **mode** is allowed
+ * on each **side** (e.g., left or right) at any given time.
  *
- * Since this is a functional component, it's possible to have multiple "open" sidebars
- * at the same time. As a result, this component attempts to gracefully handle these situations.
- * However, importantly, there can only be one sidebar of each mode, on each side, at any given time.
+ * If this constraint is violated, the component will throw an exception to prevent unintended behavior.
  *
- * If this is violated, this component will throw an exception.
- *
- * @example Using the sidebar viewport
  * ```html
  * <daff-sidebar-viewport>
  *    <daff-sidebar></daff-sidebar>
- *    <p>Site content</p>
+ *    <div>Site content</div>
  * </daff-sidebar-viewport>
  * ```
  */
@@ -84,8 +80,14 @@ import { DaffSidebarViewportBackdropComponent } from '../sidebar-viewport-backdr
   ],
 })
 export class DaffSidebarViewportComponent implements AfterContentChecked, OnDestroy {
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-sidebar-viewport') hostClass = true;
 
+  /**
+   * @docs-private
+   */
   @HostBinding('class') get classes() {
     return {
       'daff-sidebar-viewport': true,
@@ -95,16 +97,25 @@ export class DaffSidebarViewportComponent implements AfterContentChecked, OnDest
     };
   };
 
+  /**
+   * @docs-private
+   */
   get isNavOnSide() {
     return this.navPlacement === DaffNavPlacementEnum.BESIDE;
   }
 
+  /**
+   * @docs-private
+   */
   onContentAnimationStart(e: AnimationEvent) {
     if(e.toState === 'open') {
       this._elementRef.nativeElement.style.overflow = 'clip';
     }
   }
 
+  /**
+   * @docs-private
+   */
   onContentAnimationDone(e: AnimationEvent) {
     if(e.toState === 'closed') {
       this._elementRef.nativeElement.style.overflow = null;
@@ -112,8 +123,7 @@ export class DaffSidebarViewportComponent implements AfterContentChecked, OnDest
   }
 
   /**
-   * The placement of the nav in relation to the sidebar. The default is set to `top`.
-   * Note that this is really only available when there is a `side-fixed` sidebar.
+   * The placement of the nav in relation to the sidebar. Note that this is really only available when there is a `side-fixed` sidebar.
    */
   @Input() navPlacement: DaffNavPlacement = DaffNavPlacementEnum.ABOVE;
 
@@ -143,11 +153,15 @@ export class DaffSidebarViewportComponent implements AfterContentChecked, OnDest
   private _isPaddedRight = false;
 
   /**
+   * @docs-private
+   *
    * Whether or not the backdrop is interactable
    */
   _backdropInteractable = false;
 
   /**
+   * @docs-private
+   *
    * The animation state
    */
   _animationState: DaffSidebarViewportAnimationStateWithParams = { value: DaffSidebarAnimationStates.CLOSED, params: { shift: '0px' }};
@@ -157,6 +171,9 @@ export class DaffSidebarViewportComponent implements AfterContentChecked, OnDest
    */
   @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
 
+  /**
+   * @docs-private
+   */
   ngAfterContentChecked() {
     const nextShift = sidebarViewportContentShift(this.sidebars) + 'px';
     if (this._shift !== nextShift) {
@@ -189,6 +206,9 @@ export class DaffSidebarViewportComponent implements AfterContentChecked, OnDest
     this._isPaddedRight = isSidebarViewportContentPadded(this.sidebars, 'right');
   }
 
+  /**
+   * @docs-private
+   */
   ngOnDestroy() {
     if(!this.parentViewport && !hasParentViewport(this._elementRef.nativeElement)) {
       this.bodyScroll.enable();
@@ -214,7 +234,8 @@ export class DaffSidebarViewportComponent implements AfterContentChecked, OnDest
 
   /**
    * @docs-private
-   * The called when the backdrop of the viewport is clicked upon.
+   *
+   * Called when the backdrop of the viewport is clicked upon.
    */
   _backdropClicked(): void {
     this.backdropClicked.emit();

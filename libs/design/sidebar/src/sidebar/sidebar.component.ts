@@ -37,9 +37,13 @@ import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { DaffSidebarSide } from '../helper/sidebar-side';
 
 /**
- * DaffSidebarComponent is heavily based upon the work done by the @angular/components
- * team on `mat-drawer` and `mat-sidenav`. `daff-sidebar` is intended to be
- * a simplified version (with a different design) of `mat-drawer`.
+ * DaffSidebarComponent is heavily based upon the work done by the `@angular/components`
+ * team on `mat-drawer` and `mat-sidenav`. It's intended to be a simplified version
+ * (with a different design) of `mat-drawer`.
+ *
+ * ```html
+ * <daff-sidebar></daff-sidebar>
+ * ```
  */
 @Component({
   selector: 'daff-sidebar',
@@ -54,7 +58,6 @@ import { DaffSidebarSide } from '../helper/sidebar-side';
   animations: [
     daffSidebarAnimations.transformSidebar,
   ],
-  standalone: true,
 })
 export class DaffSidebarComponent implements DaffOpenable {
   /**
@@ -71,6 +74,8 @@ export class DaffSidebarComponent implements DaffOpenable {
   };
 
   /**
+   * @docs-private
+   *
    * The animation state of the sidebar.
    */
   @HostBinding('@transformSidebar') get transformSidebar() {
@@ -81,7 +86,7 @@ export class DaffSidebarComponent implements DaffOpenable {
   }
 
   /**
-   * Event fired when `ESC` key is pressed when the sidebar has focus
+   * Event fired when `ESC` key is pressed when the sidebar has focus.
    */
   @Output() escapePressed: EventEmitter<void> = new EventEmitter<void>();
 
@@ -96,12 +101,17 @@ export class DaffSidebarComponent implements DaffOpenable {
   @Input() mode: DaffSidebarMode = 'side';
 
   /**
+   * @docs-private
+   *
    * The width of the sidebar.
    */
   get width() {
     return this._elementRef.nativeElement.offsetWidth;
   }
 
+  /**
+   * @docs-private
+   */
   get open() {
     return this.openDirective.open;
   }
@@ -132,6 +142,8 @@ export class DaffSidebarComponent implements DaffOpenable {
   private _focusTrap: ConfigurableFocusTrap;
 
   /**
+   * @docs-private
+   *
    * Animation event that can be used to hook into when the transformSidebar
    * animation begins. This is used in sidebar to determine when to show the
    * visibility of the sidebar so that the animation does not jump as the element is shown.
@@ -143,6 +155,8 @@ export class DaffSidebarComponent implements DaffOpenable {
   }
 
   /**
+   * @docs-private
+   *
    * Animation event that can be used to hook into when the
    * transformSidebar animation is complete.
    */
@@ -169,6 +183,8 @@ export class DaffSidebarComponent implements DaffOpenable {
     }
 
     /**
+     * @docs-private
+     *
      * This is used in sidebar to determine when to hide the visibility
      * of the sidebar so that the animation does not jump as the element is hidden.
      */
@@ -180,21 +196,21 @@ export class DaffSidebarComponent implements DaffOpenable {
   }
 
   /**
-   * Reveal the contents of the sidebar
+   * Reveal the contents of the sidebar.
    */
   reveal() {
     this.openDirective.reveal();
   }
 
   /**
-   * Hide the contents of the sidebar
+   * Hide the contents of the sidebar.
    */
   hide() {
     this.openDirective.hide();
   }
 
   /**
-   * Toggle the visibility of the sidebar
+   * Toggle the visibility of the sidebar.
    */
   toggle() {
     this.openDirective.toggle();

@@ -3,9 +3,16 @@ import {
   HostBinding,
 } from '@angular/core';
 
+/**
+ * Sidebar header title is a child directive of `DaffSidebarHeaderComponent`
+ * that can be used to provide a title for the sidebar.
+ *
+ * ```html
+ * <div daffSidebarHeaderTitle>Title</div>
+ * ```
+ */
 @Directive({
   selector: '[daffSidebarHeaderTitle]',
-  standalone: true,
 })
 export class DaffSidebarHeaderTitleDirective {
   /**

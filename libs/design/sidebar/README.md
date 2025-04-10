@@ -54,6 +54,8 @@ The default setting for sidebar is `mode="side"` and `side="left"`.
 ## Implementing the main and sidebar content
 The main and sidebar content should be placed inside of the `<daff-sidebar-viewport>`. The sidebar content should be placed inside of the `<daff-sidebar>`.
 
+> The sidebar viewport should only ever be used once in an application, but it's possible for there to be multiple sidebars of many modes at the same time.
+
 A viewport navigation can either be:
 
 - Placed alongside the `<daff-sidebar>` using the `[daff-sidebar-viewport-nav]` selector.
@@ -92,7 +94,7 @@ A viewport navigation can either be:
 </daff-sidebar-viewport>
 ```
 
-### Required Imports
+### Required imports
 The `BrowserAnimationsModule` or `NoopAnimationsModule` must be imported in the particular Angular `@NgModule` the sidebar is used in for the sidebar to render and work properly.
 
 ## Header and footer
@@ -102,14 +104,13 @@ The `<daff-sidebar-footer>` is a "holder" component with minimal default styling
 
 Both the header and footer are optional components that will not render in the DOM if they are not used.
 
-## Opening and closing a sidebar
-THe `open` property is used to set the open state for a sidebar.
+## Closing a sidebar
+A sidebar can be closed in two ways:
 
-By default, sidebar supports two methods of closing itself: clicking on the backdrop of the sidebar viewport or pressing `ESC` when the sidebar has focus.
+- Clicking on the backdrop by using the `backdropClicked()` method.
+- Clicking the close button by using the `closeSidebar()` and `dismissible` property on the sidebar heder.
 
-| Method              | ------------------------------------ |
-| `(backdropClicked)` | Set on the `<daff-sidebar-viewport>` |
-| `(escapePressed)`   | Set on the `<daff-sidebar>`          |
+The close button in the sidebar header is hidden by default but can be visible by setting the `dismissible` property to `true`.
 
 ## Modes
 `<daff-sidebar>` can be rendered four different ways by using the `mode` property. If `mode` is not specified, `side` is used by default.
@@ -134,7 +135,7 @@ By default, sidebar supports two methods of closing itself: clicking on the back
 <design-land-example-viewer-container example="fixed-and-over-sidebar"></design-land-example-viewer-container>
 
 ## Sides
-`<daff-sidebar>` can be positioned on either side of a screen by using the `side` property. If `side` is not specificed, `left` is used by default.
+A sidebar can be positioned on either side of a screen by using the `side` property. If `side` is not specificed, `left` is used by default.
 
 | Side  | Description                                    |
 | ----- | ---------------------------------------------- |
@@ -169,7 +170,7 @@ daff-sidebar-viewport {
 }
 ```
 
-## Changing a side-fixed sidebar's top offset position
+## Changing a side- fixed sidebar's top offset position
 The default offset position of a sidebar is `0px`. The `--daff-sidebar-side-fixed-top-shift` variable can be used to adjust the top offset position for a primary sidebar and its viewport content.
 
 ```scss
@@ -188,7 +189,7 @@ body {
 ## Accessibility
 A meaningful `role` should be set on all sidebars depending on how they are used.
 
-When the `<daff-sidebar-header>` is not used or there is no title for the sidebar, a meaningful `aria-label` should be set to describe the sidebar.
+When a sidebar header is not used or there is no title for the sidebar, a meaningful `aria-label` should be set to describe the sidebar.
 
 ### Focus
 Focus trapping is enabled for `over` and `under` modes, and disabled for `side` and `side-fixed` modes. When a sidebar is opened, the first tabbable element within the will receive focus. When a sidebar is opened, the first tabbable element within the will receive focus. When a sidebar is closed, the element that was focused before the sidebar was opened will be re-focused.

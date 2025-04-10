@@ -1,24 +1,18 @@
 /**
- * The various modes that a DaffSidebar can be in.
+ * The available display modes for the `DaffSidebarComponent`.
  *
- * * `side` is a mode that allows you to place the sidebar alongside
- *    the content.
- *
- * * `side-fixed` is a mode that allows you want to place the sidebar
- *    alongside the content, however the sidebar will scroll separately
- *    from the content.
- *
- * * `over` is a mode which allows the sidebar to slide *over* the rest of
- *    the content in the viewport.
- *
- * * `under` is a mode that freezes the sidebar in place and allows the content
- *   slide above it.
+ * | Mode | Description |
+ * | -- | -- |
+ * | `side` | Displays the sidebar alongside the main content. |
+ * | `side-fixed` | Displays the sidebar alongside the content, but the sidebar remains fixed in place and scrolls independently from the content. |
+ * | `over` | The sidebar slides over the main content when open, temporarily covering part of the content when active. |
+ * | `under` | The sidebar remains fixed in place while the main content slides over it when the sidebar is closed.
  */
 export type DaffSidebarMode = 'side' | 'over' | 'under' | 'side-fixed';
 
 /**
- * A enum representing the different sidebar modes.
- * See {@link DaffSidebarMode}
+ * Enum for representing the available sidebar display modes.
+ * See {@link DaffSidebarMode} for descriptions of each mode.
  */
 export const enum DaffSidebarModeEnum  {
   Side = 'side',
