@@ -46,6 +46,9 @@ export class CustomComponentModule { }
 
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
+### Required imports
+The `BrowserAnimationsModule` or `NoopAnimationsModule` must be imported in the particular Angular `@NgModule` the sidebar is used in for the sidebar to render and work properly.
+
 ## Basic sidebar
 The default setting for sidebar is `mode="side"` and `side="left"`.
 
@@ -94,9 +97,6 @@ A viewport navigation can either be:
 </daff-sidebar-viewport>
 ```
 
-### Required imports
-The `BrowserAnimationsModule` or `NoopAnimationsModule` must be imported in the particular Angular `@NgModule` the sidebar is used in for the sidebar to render and work properly.
-
 ## Header and footer
 The `<daff-sidebar-header>` includes optional title (`[daffSidebarHeaderTitle]`) and action (`[daffSidebarHeaderAction]`) selectors, and a slot to render custom content. The action selector should be used along with the `<daff-icon-button>` (view [Button Documentation](/libs/design/button/README.md)) to make sure that the action is positioned correctly and it passes WCAG guidelines.
 
@@ -105,22 +105,19 @@ The `<daff-sidebar-footer>` is a "holder" component with minimal default styling
 Both the header and footer are optional components that will not render in the DOM if they are not used.
 
 ## Closing a sidebar
-A sidebar can be closed in two ways:
+A sidebar can be closed by clicking on the backdrop, using the escape key, or clicking on the close button in the sidebar header.
 
-- Clicking on the backdrop by using the `backdropClicked()` method.
-- Clicking the close button by using the `closeSidebar()` and `dismissible` property on the sidebar heder.
-
-The close button in the sidebar header is hidden by default but can be visible by setting the `dismissible` property to `true`.
+> Note:  The close button is hidden by default. To make it visible, set the `dismissible` property on the sidebar header to `true`.
 
 ## Modes
-`<daff-sidebar>` can be rendered four different ways by using the `mode` property. If `mode` is not specified, `side` is used by default.
+A sidebar can be rendered four different ways by using the `mode` property. If `mode` is not specified, `side` is used by default.
 
 | Mode       | Description                                                                                          |
 | ---------- | ---------------------------------------------------------------------------------------------------- |
-| side       | Sidebar is placed alongside the content                                                              |
-| side-fixed | Sidebar is placed alongside the content and will scroll separately from the content                  |
-| over       | Sidebar slides over the rest of the content in the viewport and covering it with a backdrop          |
-| under      | Sidebar freezes in place and and the content slides above it, while also being covered by a backdrop |
+| side       | Displays the sidebar alongside the main content.                                                              |
+| side-fixed | Displays the sidebar alongside the content, but the sidebar remains fixed in place and scrolls independently from the content.                  |
+| over       | The sidebar slides over the main content when open, temporarily covering part of the content when active.          |
+| under      | The sidebar remains fixed in place while the main content slides over it when the sidebar is closed. |
 
 ### Over sidebar
 <design-land-example-viewer-container example="over-sidebar"></design-land-example-viewer-container>
@@ -192,4 +189,4 @@ A meaningful `role` should be set on all sidebars depending on how they are used
 When a sidebar header is not used or there is no title for the sidebar, a meaningful `aria-label` should be set to describe the sidebar.
 
 ### Focus
-Focus trapping is enabled for `over` and `under` modes, and disabled for `side` and `side-fixed` modes. When a sidebar is opened, the first tabbable element within the will receive focus. When a sidebar is opened, the first tabbable element within the will receive focus. When a sidebar is closed, the element that was focused before the sidebar was opened will be re-focused.
+Focus trapping is enabled for `over` and `under` modes, and disabled for `side` and `side-fixed` modes. When a sidebar is opened, the first tabbable element within the sidebar will receive focus. When a sidebar is closed, the element that was focused before the sidebar was opened will be re-focused.

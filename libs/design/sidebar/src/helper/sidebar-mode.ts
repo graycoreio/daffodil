@@ -6,7 +6,7 @@
  * | `side` | Displays the sidebar alongside the main content. |
  * | `side-fixed` | Displays the sidebar alongside the content, but the sidebar remains fixed in place and scrolls independently from the content. |
  * | `over` | The sidebar slides over the main content when open, temporarily covering part of the content when active. |
- * | `under` | The sidebar remains fixed in place while the main content slides over it when the sidebar is closed.
+ * | `under` | The sidebar remains fixed in place while the main content slides over it when the sidebar is closed. |
  */
 export type DaffSidebarMode = 'side' | 'over' | 'under' | 'side-fixed';
 
