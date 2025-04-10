@@ -5,7 +5,7 @@ import { daffUriTruncateLeadingSlash } from '@daffodil/core/routing';
 import { DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION } from '@daffodil/external-router/driver';
 import {
   DaffExternalRouterDriverInMemoryConfig,
-  DaffExternalRouterDriverInMemoryModule,
+  provideDaffExternalRouterInMemoryDriver,
 } from '@daffodil/external-router/driver/in-memory';
 
 import { DaffExternalRouterInMemoryDriver } from './in-memory.service';
@@ -18,8 +18,11 @@ describe('@daffodil/external-router/driver/in-memory | DaffExternalRouterInMemor
     configuration?: DaffExternalRouterDriverInMemoryConfig,
   ) => {
     TestBed.configureTestingModule({
-      imports: [DaffExternalRouterDriverInMemoryModule.forRoot(configuration)],
+      providers: [
+        provideDaffExternalRouterInMemoryDriver(configuration),
+      ],
     });
+
     service = TestBed.inject(DaffExternalRouterInMemoryDriver);
 
     scheduler = new TestScheduler((actual, expected) => {
