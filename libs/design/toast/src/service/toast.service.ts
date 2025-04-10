@@ -152,7 +152,7 @@ export class DaffToastService implements OnDestroy {
    * Opens the toast.
    *
    * @param toast Data that can be shown on a toast.
-   * @param configuration Additional configuration options such as duration.
+   * @param configuration Additional configuration options such as duration. The default duration is set to 5000ms.
    */
   open(
     toast: DaffToastData,

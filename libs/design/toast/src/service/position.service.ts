@@ -23,7 +23,7 @@ export class DaffToastPositionService {
   private _position: DaffToastPosition;
 
   /**
-   * Reads the current position of the toast.
+   * Reads the current position of the toast. Defaults to bottom center on mobile devices.
    */
   get config(): DaffToastPosition {
     return this.mediaQuery.isMatched(DaffBreakpoints.MOBILE)
@@ -37,6 +37,8 @@ export class DaffToastPositionService {
 
   /**
    * Changes the position of the toast.
+   *
+   * @param position The position of the toast.
    */
   setPosition(position: DaffToastPosition) {
     this._position = position;

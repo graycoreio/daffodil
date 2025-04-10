@@ -1,7 +1,6 @@
 export interface DaffToastConfiguration {
   /**
    * The duration (in milliseconds) for which a toast remains visible before dismissal.
-   * By default, toasts without actions are displayed for 5000ms.
    *
    * While you can set a duration for toasts with actions, it's generally not recommended,
    * as users should have ample time to interact with them.
