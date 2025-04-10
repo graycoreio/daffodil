@@ -6,6 +6,9 @@ import { DaffSidebarHeaderComponent } from './sidebar-header/sidebar-header.comp
 import { DaffSidebarViewportComponent } from './sidebar-viewport/sidebar-viewport.component';
 import { DaffSidebarViewportBackdropComponent } from './sidebar-viewport-backdrop/sidebar-viewport-backdrop.component';
 
+/**
+ * @docs-private
+ */
 export const DAFF_SIDEBAR_COMPONENTS = <const> [
   DaffSidebarComponent,
   DaffSidebarViewportComponent,

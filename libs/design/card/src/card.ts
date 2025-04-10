@@ -8,6 +8,9 @@ import { DaffCardImageDirective } from './card-image/card-image.directive';
 import { DaffCardTaglineDirective } from './card-tagline/card-tagline.directive';
 import { DaffCardTitleDirective } from './card-title/card-title.directive';
 
+/**
+ * @docs-private
+ */
 export const DAFF_CARD_COMPONENTS = <const> [
   DaffCardComponent,
   DaffCardIconDirective,
@@ -18,6 +21,9 @@ export const DAFF_CARD_COMPONENTS = <const> [
   DaffCardActionsDirective,
 ];
 
+/**
+ * @docs-private
+ */
 export const DAFF_RAISED_CARD_COMPONENTS = <const> [
   DaffRaisedCardComponent,
   DaffCardIconDirective,
@@ -28,6 +34,9 @@ export const DAFF_RAISED_CARD_COMPONENTS = <const> [
   DaffCardActionsDirective,
 ];
 
+/**
+ * @docs-private
+ */
 export const DAFF_STROKED_CARD_COMPONENTS = <const> [
   DaffStrokedCardComponent,
   DaffCardIconDirective,
@@ -38,6 +47,9 @@ export const DAFF_STROKED_CARD_COMPONENTS = <const> [
   DaffCardActionsDirective,
 ];
 
+/**
+ * @docs-private
+ */
 export const DAFF_ALL_CARD_COMPONENTS = <const> [
   DaffCardComponent,
   DaffRaisedCardComponent,

@@ -5,7 +5,10 @@ import { DaffHeroSubtitleDirective } from './hero-subtitle/hero-subtitle.directi
 import { DaffHeroTaglineDirective } from './hero-tagline/hero-tagline.directive';
 import { DaffHeroTitleDirective } from './hero-title/hero-title.directive';
 
-export const DAFF_HERO_COMPONENTS = <const>[
+/**
+ * @docs-private
+ */
+export const DAFF_HERO_COMPONENTS = <const> [
   DaffHeroComponent,
   DaffHeroIconDirective,
   DaffHeroTaglineDirective,

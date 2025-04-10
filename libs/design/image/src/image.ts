@@ -1,5 +1,8 @@
 import { DaffImageComponent } from './image/image.component';
 
-export const DAFF_IMAGE_COMPONENTS = <const>[
+/**
+ * @docs-private
+ */
+export const DAFF_IMAGE_COMPONENTS = <const> [
   DaffImageComponent,
 ];

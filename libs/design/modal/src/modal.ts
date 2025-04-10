@@ -4,6 +4,9 @@ import { DaffModalContentComponent } from './modal-content/modal-content.compone
 import { DaffModalHeaderComponent } from './modal-header/modal-header.component';
 import { DaffModalTitleDirective } from './modal-title/modal-title.directive';
 
+/**
+ * @docs-private
+ */
 export const DAFF_MODAL_COMPONENTS = <const> [
   DaffModalHeaderComponent,
   DaffModalTitleDirective,

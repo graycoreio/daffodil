@@ -6,6 +6,9 @@ import { DaffNotificationMessageDirective } from './notification-message/notific
 import { DaffNotificationSubtitleDirective } from './notification-subtitle/notification-subtitle.directive';
 import { DaffNotificationTitleDirective } from './notification-title/notification-title.directive';
 
+/**
+ * @docs-private
+ */
 export const DAFF_NOTIFICATION_COMPONENTS = <const> [
   DaffNotificationComponent,
   DaffNotificationActionsDirective,

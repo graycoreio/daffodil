@@ -4,6 +4,8 @@ import { DaffTabPanelComponent } from './tabs/tab-panel/tab-panel.component';
 import { DaffTabsComponent } from './tabs/tabs.component';
 
 /**
+ * @docs-private
+ *
  * ```ts
  * import { DAFF_TABS_COMPONENTS } from '@daffodil/design/tabs';
  * ```
