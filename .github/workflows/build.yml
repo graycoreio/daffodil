@@ -30,10 +30,6 @@ jobs:
         with:
           main-branch-name: 'develop'
 
-      - uses: graycoreio/github-actions/clear-old-nx-cache@main
-        with:
-          size-in-mb: 500
-
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: ${{ matrix.node }}
