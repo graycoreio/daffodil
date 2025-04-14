@@ -1,8 +1,5 @@
 name: Daffodil Build
 
-env:
-  NX_REJECT_UNKNOWN_LOCAL_CACHE: 0
-
 on:
   push:
     branches:
@@ -11,6 +8,10 @@ on:
   pull_request:
     branches:
       - develop
+
+env:
+  AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_CONNECTION_STRING }}
+  NX_KEY: ${{ secrets.NX_KEY }}
 
 jobs:
   build:
@@ -28,15 +29,6 @@ jobs:
         name: Derive appropriate SHAs for base and head for `nx affected` commands
         with:
           main-branch-name: 'develop'
-
-      - uses: actions/cache@v3
-        name: Cache `.nx_cache`
-        id: build_cache
-        with:
-          path: .nx_cache
-          key: build-${{ matrix.node }}-${{ github.sha }}
-          restore-keys:
-            build-${{ matrix.node }}
 
       - uses: graycoreio/github-actions/clear-old-nx-cache@main
         with:
@@ -103,14 +95,6 @@ jobs:
         with:
           main-branch-name: 'develop'
 
-      - uses: actions/cache@v3
-        name: Cache `.nx_cache`
-        id: build_cache
-        with:
-          fail-on-cache-miss: true
-          path: .nx_cache
-          key: build-${{ matrix.node }}-${{ github.sha }}
-
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: ${{ matrix.node }}
@@ -143,14 +127,6 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 1
-
-    - uses: actions/cache@v3
-      name: Cache `.nx_cache`
-      id: build_cache
-      with:
-        fail-on-cache-miss: true
-        path: .nx_cache
-        key: build-20.18.x-${{ github.sha }}
 
     - uses: graycoreio/github-actions/setup-node@main
       with:

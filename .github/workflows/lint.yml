@@ -1,7 +1,8 @@
 name: Daffodil Lint
 
 env:
-  NX_REJECT_UNKNOWN_LOCAL_CACHE: 0
+  AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_CONNECTION_STRING }}
+  NX_KEY: ${{ secrets.NX_KEY }}
 
 on:
   push:
@@ -42,13 +43,6 @@ jobs:
         name: Derive appropriate SHAs for base and head for `nx affected` commands
         with:
           main-branch-name: 'develop'
-
-      - uses: actions/cache@v3
-        name: Lint Cache
-        id: lint_cache
-        with:
-          path: .nx_cache
-          key: lint-${{ matrix.node }}
 
       - uses: graycoreio/github-actions/clear-old-nx-cache@main
         with:
