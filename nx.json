@@ -1,82 +1,68 @@
 {
-  "$schema": "https://raw.githubusercontent.com/nrwl/nx/master/packages/nx/schemas/nx-schema.json",
-  "affected": {
-    "defaultBase": "develop"
-  },
-  "extends": "nx/presets/npm.json",
-  "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*"
-    ],
-    "notSpec": [
-      "!{projectRoot}/**/*.spec.{ts,tsx}"
-    ],
-    "notIndex": [
-      "!{projectRoot}/**/index.json"
-    ],
-    "sharedGlobals": [
-      "{workspaceRoot}/angular.json",
-      "{workspaceRoot}/tsconfig.json",
-      "{workspaceRoot}/lerna.json",
-      "{workspaceRoot}/package-lock.json"
-    ],
-    "eslint": [
-      "{workspaceRoot}/.eslintrc.js",
-      "{workspaceRoot}/tools/eslint/config/index.js"
-    ]
-  },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheDirectory": ".nx_cache",
-        "cacheableOperations": [
-          "build",
-          "test",
-          "lint"
-        ]
-      }
-    }
-  },
-  "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ]
-  },
-  "targetDefaults": {
-    "build": {
-      "inputs": [
-        "notSpec",
-        "^notSpec",
-        "notIndex",
-        "^notIndex",
-        "sharedGlobals"
-      ],
-      "dependsOn": [
-        "^build"
-      ]
-    },
-    "test": {
-      "inputs": [
-        "default"
-      ],
-      "dependsOn": [
-        "build"
-      ]
-    },
-    "lint": {
-      "inputs": [
-        "eslint"
-      ],
-      "dependsOn": [
-        {
-          "projects": ["@daffodil/eslint-config"],
-          "target": "build"
-        }
-      ]
-    }
-  }
+	"$schema": "https://raw.githubusercontent.com/nrwl/nx/master/packages/nx/schemas/nx-schema.json",
+	"affected": {
+		"defaultBase": "develop"
+	},
+	"extends": "nx/presets/npm.json",
+	"azure": {
+		"container": "cache",
+		"localMode": "read-write"
+	},
+	"namedInputs": {
+		"default": ["{projectRoot}/**/*"],
+		"notSpec": ["!{projectRoot}/**/*.spec.{ts,tsx}"],
+		"notIndex": ["!{projectRoot}/**/index.json"],
+		"sharedGlobals": [
+			"{workspaceRoot}/angular.json",
+			"{workspaceRoot}/tsconfig.json",
+			"{workspaceRoot}/lerna.json",
+			"{workspaceRoot}/package-lock.json"
+		],
+		"eslint": [
+			"{workspaceRoot}/.eslintrc.js",
+			"{workspaceRoot}/tools/eslint/config/index.js"
+		]
+	},
+	"tasksRunnerOptions": {
+		"default": {
+			"runner": "nx/tasks-runners/default",
+			"options": {
+				"cacheDirectory": ".nx_cache",
+				"cacheableOperations": ["build", "test", "lint"]
+			}
+		}
+	},
+	"targetDependencies": {
+		"build": [
+			{
+				"target": "build",
+				"projects": "dependencies"
+			}
+		]
+	},
+	"targetDefaults": {
+		"build": {
+			"inputs": [
+				"notSpec",
+				"^notSpec",
+				"notIndex",
+				"^notIndex",
+				"sharedGlobals"
+			],
+			"dependsOn": ["^build"]
+		},
+		"test": {
+			"inputs": ["default"],
+			"dependsOn": ["build"]
+		},
+		"lint": {
+			"inputs": ["eslint"],
+			"dependsOn": [
+				{
+					"projects": ["@daffodil/eslint-config"],
+					"target": "build"
+				}
+			]
+		}
+	}
 }
