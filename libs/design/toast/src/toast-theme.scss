@@ -3,64 +3,111 @@
 @use '../../scss/theming';
 
 @mixin daff-toast-theme($theme) {
-	$primary: core.daff-map-get($theme, primary);
-	$secondary: core.daff-map-get($theme, secondary);
-	$tertiary: core.daff-map-get($theme, tertiary);
 	$info: core.daff-map-get($theme, informational);
 	$warn: core.daff-map-get($theme, warn);
 	$critical: core.daff-map-get($theme, critical);
 	$success: core.daff-map-get($theme, success);
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$white: core.daff-map-get($theme, 'core', 'white');
 	$black: core.daff-map-get($theme, 'core', 'black');
+	$white: core.daff-map-get($theme, 'core', 'white');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-toast {
-		background: theming.daff-illuminate($base, $neutral, 1);
-		box-shadow: 0 -16px 24px -4px rgba($black, 0.04), 0 8px 24px -4px rgba($black, 0.1);
-		color: theming.daff-text-contrast($base);
-
-		&::before {
-			background: theming.daff-illuminate($base, $neutral, 4);
-		}
-
-		&.daff-success {
-			background: theming.daff-color($success, 10);
-			color: $black;
-
-			.daff-prefix {
-				color: theming.daff-color($success);
-			}
+		@include theming.light($type) {
+			background: theming.daff-color($neutral, 10);
+			box-shadow: 0 -16px 24px -4px rgba($black, 0.04),
+				0 8px 24px -4px rgba($black, 0.1);
+			color: theming.daff-text-contrast($base);
 
 			&::before {
-				background: theming.daff-color($success);
+				background: theming.daff-color($neutral, 40);
+			}
+
+			&.daff-success {
+				background: theming.daff-color($success, 10);
+				color: $black;
+
+				.daff-prefix {
+					color: theming.daff-color($success);
+				}
+
+				&::before {
+					background: theming.daff-color($success);
+				}
+			}
+
+			&.daff-warn {
+				background: theming.daff-color($warn, 10);
+				color: $black;
+
+				.daff-prefix {
+					color: theming.daff-color($warn);
+				}
+
+				&::before {
+					background: theming.daff-color($warn);
+				}
+			}
+
+			&.daff-critical {
+				background: theming.daff-color($critical, 10);
+				color: $black;
+
+				.daff-prefix {
+					color: theming.daff-color($critical);
+				}
+
+				&::before {
+					background: theming.daff-color($critical);
+				}
 			}
 		}
 
-		&.daff-warn {
-			background: theming.daff-color($warn, 10);
-			color: $black;
-
-			.daff-prefix {
-				color: theming.daff-color($warn);
-			}
+		@include theming.dark($type) {
+			background: theming.daff-color($neutral, 90);
+			box-shadow: 0 -16px 24px -4px rgba($black, 0.04),
+				0 8px 24px -4px rgba($black, 0.1);
+			color: theming.daff-text-contrast($base);
 
 			&::before {
-				background: theming.daff-color($warn);
-			}
-		}
-
-		&.daff-critical {
-			background: theming.daff-color($critical, 10);
-			color: $black;
-
-			.daff-prefix {
-				color: theming.daff-color($critical);
+				background: theming.daff-color($neutral, 30);
 			}
 
-			&::before {
-				background: theming.daff-color($critical);
+			&.daff-success {
+				background: theming.daff-color($success, 90);
+
+				.daff-prefix {
+					color: theming.daff-color($success, 30);
+				}
+
+				&::before {
+					background: theming.daff-color($success, 30);
+				}
+			}
+
+			&.daff-warn {
+				background: theming.daff-color($warn, 90);
+
+				.daff-prefix {
+					color: theming.daff-color($warn, 30);
+				}
+
+				&::before {
+					background: theming.daff-color($warn, 30);
+				}
+			}
+
+			&.daff-critical {
+				background: theming.daff-color($critical, 90);
+
+				.daff-prefix {
+					color: theming.daff-color($critical, 30);
+				}
+
+				&::before {
+					background: theming.daff-color($critical, 30);
+				}
 			}
 		}
 	}

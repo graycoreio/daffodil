@@ -25,7 +25,10 @@ import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 import { DaffToastComponent } from './toast.component';
 import { DaffToast } from '../interfaces/toast';
-import { DAFF_TOAST_OPTIONS } from '../options/daff-toast-options';
+import {
+  DaffToastOptions,
+  DAFF_TOAST_OPTIONS,
+} from '../options/daff-toast-options';
 import { DaffToastPositionService } from '../service/position.service';
 import { DaffToastActionsDirective } from '../toast-actions/toast-actions.directive';
 import { DaffToastMessageDirective } from '../toast-message/toast-message.directive';
@@ -54,10 +57,10 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
       }
       @if (item.dismissible) {
         <button daff-icon-button color="theme-contrast"
-          aria-label="close button"
+          aria-label="Close"
           [attr.aria-hidden]="item.actions ? undefined : true"
           (click)="onCloseToast(item.dismiss())">
-            <fa-icon [icon]="faTimes" size="sm" [fixedWidth]="true"></fa-icon>
+            <fa-icon [icon]="faTimes" [fixedWidth]="true"></fa-icon>
         </button>
       }
     </daff-toast>
@@ -140,6 +143,7 @@ export class DaffToastTemplateComponent {
   constructor(
     private cd: ChangeDetectorRef,
     @Inject(DAFF_TOAST_OPTIONS)
+    private options: DaffToastOptions,
     private toastPosition: DaffToastPositionService,
   ) { }
 
