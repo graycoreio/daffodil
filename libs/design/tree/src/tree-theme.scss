@@ -11,27 +11,53 @@
 	$white: core.daff-map-get($theme, 'core', 'white');
 	$black: core.daff-map-get($theme, 'core', 'black');
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
+	// stylelint-disable selector-class-pattern
 	.daff-tree-item {
 		$root: &;
-		background-color: $base;
-		color: theming.daff-illuminate($base-contrast, $neutral, 2);
 
-		&:hover {
-			background-color: theming.daff-illuminate($base, $neutral, 2);
+		@include theming.light($type) {
+			background-color: $base;
+			color: theming.daff-color($neutral, 90);
+
+			&:hover {
+				background-color: theming.daff-color($neutral, 20);
+			}
+
+			&::after {
+				border-color: $base;
+			}
+
+			&.selected {
+				background-color: theming.daff-color($neutral, 20);
+				color: $base-contrast;
+
+				&::before {
+					background-color: theming.daff-color($primary);
+				}
+			}
 		}
 
-		&::after {
-			border-color: currentColor;
-		}
+		@include theming.dark($type) {
+			background-color: $base;
+			color: theming.daff-color($neutral, 20);
 
-		// stylelint-disable selector-class-pattern
-		&.selected {
-			background-color: theming.daff-illuminate($base, $neutral, 2);
-			color: $base-contrast;
+			&:hover {
+				background-color: theming.daff-color($neutral, 90);
+			}
 
-			&::before {
-				background-color: theming.daff-color($primary);
+			&::after {
+				border-color: $base;
+			}
+
+			&.selected {
+				background-color: theming.daff-color($neutral, 90);
+				color: $base-contrast;
+
+				&::before {
+					background-color: theming.daff-color($primary);
+				}
 			}
 		}
 	}
