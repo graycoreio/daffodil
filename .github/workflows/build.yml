@@ -104,6 +104,7 @@ jobs:
     needs:
       - build
     uses: ./.github/workflows/deploy.yml
+    if: ${{ github.event_name == 'push' }}
     secrets:
       VERCEL_NEXT_PROJECT_ID: ${{ secrets.VERCEL_DAFFIO_NEXT_PROJECT_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_DAFFIO_PROJECT_ID }}
@@ -116,7 +117,7 @@ jobs:
   publish:
     name: Publish
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v') && github.event_name == 'push'
     needs:
       - build
     steps:
