@@ -5,17 +5,39 @@
 @mixin daff-accordion-theme($theme) {
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 	$base: core.daff-map-get($theme, 'core', 'base');
+	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-accordion-item {
-		border-top: 1px solid theming.daff-illuminate($base, $neutral, 2);
+		@include theming.light($type) {
+			border-top: 1px solid theming.daff-color($neutral, 20);
 
-		&:last-child {
-			border-bottom: 1px solid theming.daff-illuminate($base, $neutral, 2);
+			&:last-child {
+				border-bottom: 1px solid theming.daff-color($neutral, 20);
+			}
+
+			.daff-accordion-item__header {
+				color: $base-contrast;
+
+				&::after {
+					border-color: $base-contrast;
+				}
+			}
 		}
 
-		&__header {
-			&::after {
-				border-color: currentColor;
+		@include theming.dark($type) {
+			border-top: 1px solid theming.daff-color($neutral, 80);
+
+			&:last-child {
+				border-bottom: 1px solid theming.daff-color($neutral, 80);
+			}
+
+			.daff-accordion-item__header {
+				color: $base-contrast;
+
+				&::after {
+					border-color: $base-contrast;
+				}
 			}
 		}
 	}
