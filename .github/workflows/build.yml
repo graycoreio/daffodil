@@ -39,6 +39,8 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
+      - run: echo $AZURE_STORAGE_CONNECTION_STRING
+      - run: echo $NX_KEY
       - run: npx nx run-many --target=build --parallel=1
 
       - run: cd dist/apps/daffio && zip -r ../daffio.zip .
