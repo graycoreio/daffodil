@@ -8,17 +8,19 @@ import {
   createEffect,
 } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { of } from 'rxjs';
+import {
+  EMPTY,
+  of,
+} from 'rxjs';
 import { Observable } from 'rxjs';
 import {
   switchMap,
   map,
-  catchError,
 } from 'rxjs/operators';
 
-import { DaffError } from '@daffodil/core';
+import { catchAndArrayifyErrors } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
-import { DaffNewsletterSubmission } from '@daffodil/newsletter';
+import { DaffNewsletterResponse } from '@daffodil/newsletter';
 import {
   DaffNewsletterDriver,
   DaffNewsletterServiceInterface,
@@ -27,36 +29,37 @@ import {
 import {
   DaffNewsletterActionTypes,
   DaffNewsletterSubscribe,
-  DaffNewsletterSuccessSubscribe,
-  DaffNewsletterFailedSubscribe,
+  DaffNewsletterSubscribeSuccess,
+  DaffNewsletterSubscribeFailure,
   DaffNewsletterRetry,
   DaffNewsletterCancel,
 } from '../actions/newsletter.actions';
 import { DAFF_NEWSLETTER_ERROR_MATCHER } from '../injection-tokens/public_api';
 
 @Injectable()
-export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
+export class DaffNewsletterEffects {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffNewsletterDriver) private driver: DaffNewsletterServiceInterface<T, V>,
+    @Inject(DaffNewsletterDriver) private driver: DaffNewsletterServiceInterface,
     @Inject(DAFF_NEWSLETTER_ERROR_MATCHER) private errorMatcher: ErrorTransformer,
   ) { }
 
   trySubmission$: Observable<Action> = createEffect(() => this.actions$.pipe(
-    ofType(DaffNewsletterActionTypes.NewsletterSubscribeAction,
-      DaffNewsletterActionTypes.NewsletterRetry,
-      DaffNewsletterActionTypes.NewsletterCancelAction),
-    switchMap((action: DaffNewsletterSubscribe<T> | DaffNewsletterRetry<T> | DaffNewsletterCancel) => {
-      if ((action.type === DaffNewsletterActionTypes.NewsletterCancelAction)) {
-        return of(action);
+    ofType(
+      DaffNewsletterActionTypes.Subscribe,
+      DaffNewsletterActionTypes.Retry,
+      DaffNewsletterActionTypes.Cancel,
+    ),
+    switchMap((action: DaffNewsletterSubscribe | DaffNewsletterRetry | DaffNewsletterCancel) => {
+      if ((action.type === DaffNewsletterActionTypes.Cancel)) {
+        return EMPTY;
       } else if (action instanceof DaffNewsletterSubscribe || action instanceof DaffNewsletterRetry){
         return this.driver.send(action.payload).pipe(
-          map((resp: V) => new DaffNewsletterSuccessSubscribe()),
-          catchError((error: DaffError) => of(new DaffNewsletterFailedSubscribe(this.errorMatcher(error)))),
+          map((resp: DaffNewsletterResponse) => new DaffNewsletterSubscribeSuccess()),
+          catchAndArrayifyErrors((errors) => of(new DaffNewsletterSubscribeFailure(errors.map(this.errorMatcher)))),
         );
       }
     }),
-    ofType(DaffNewsletterActionTypes.NewsletterFailedSubscribeAction, DaffNewsletterActionTypes.NewsletterSuccessSubscribeAction),
   ));
 }

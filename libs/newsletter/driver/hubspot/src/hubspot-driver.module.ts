@@ -20,6 +20,7 @@ export class DaffNewsletterHubSpotDriverModule {
     return {
       ngModule: DaffNewsletterHubSpotDriverModule,
       providers: [
+        DaffNewsletterHubspotService,
         provideDaffNewsletterDriver(DaffNewsletterHubspotService),
         provideDaffNewsletterConfigToken(config),
       ],

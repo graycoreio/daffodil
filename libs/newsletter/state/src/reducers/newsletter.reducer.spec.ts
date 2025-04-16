@@ -1,22 +1,28 @@
+import {
+  daffOperationInitialState,
+  DaffState,
+} from '@daffodil/core/state';
 import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 import {
   DaffNewsletterSubscribe,
   DaffNewsletterRetry,
   DaffNewsletterCancel,
-  DaffNewsletterFailedSubscribe,
-  DaffNewsletterSuccessSubscribe,
+  DaffNewsletterSubscribeFailure,
+  DaffNewsletterSubscribeSuccess,
   DaffNewsletterReset,
   DaffNewsletterState,
 } from '@daffodil/newsletter/state';
 
-import { reducer } from './newsletter.reducer';
+import {
+  daffNewsletterStateReducer as reducer,
+  daffNewsletterReducerInitialState as initialState,
+} from './newsletter.reducer';
 
 
-describe('the newsletter reducer', () => {
+describe('@daffodil/newsletter/state | reducer', () => {
   it('should create an initial state', () => {
     const expectedInitialState: DaffNewsletterState = {
-      error: null,
-      loading: false,
+      ...daffOperationInitialState,
       success: false,
     };
     const action = <any>{};
@@ -24,80 +30,56 @@ describe('the newsletter reducer', () => {
   });
 
   it('should start loading when a subscription attempt occurs', () =>{
-    const payload: DaffNewsletterSubmission = { email: 'yes@gmail.com' };
+    const payload: DaffNewsletterSubmission = 'yes@gmail.com';
     const action = new DaffNewsletterSubscribe(payload);
-    const expectedState = {
-      error: null,
-      loading: true,
-      success: false,
-    };
-    expect(reducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action).daffState).toEqual(DaffState.Updating);
   });
 
   it('should start loading when a retry occurs', () =>{
-    const payload: DaffNewsletterSubmission = { email: 'yes@gmail.com' };
+    const payload: DaffNewsletterSubmission = 'yes@gmail.com';
     const action = new DaffNewsletterRetry(payload);
-    const expectedState = {
-      error: null,
-      loading: true,
-      success: false,
-    };
-    expect(reducer(undefined, action)).toEqual(expectedState);
+    expect(reducer(undefined, action).daffState).toEqual(DaffState.Updating);
   });
 
   it('should cancel loading the newsletter', () => {
     const action = new DaffNewsletterCancel();
-    const loadingState = {
-      error: null,
-      loading: true,
-      success: false,
+    const loadingState: DaffNewsletterState = {
+      ...initialState,
+      daffState: DaffState.Updating,
     };
-    const expectedState = {
-      error: null,
-      loading: false,
-      success: false,
-    };
-    expect(reducer(loadingState, action)).toEqual(expectedState);
+    expect(reducer(loadingState, action).daffState).toEqual(DaffState.Stable);
   });
 
   it('should cancel loading and have an error message if the subscribe fails', () =>{
     const error = { code: 'code', message: 'Failed to subscribe to newsletter' };
-    const action = new DaffNewsletterFailedSubscribe(error);
-    const failedState = {
-      error: null,
-      loading: true,
+    const action = new DaffNewsletterSubscribeFailure([error]);
+    const state: DaffNewsletterState = {
+      ...initialState,
       success: false,
     };
-    const expectedState = {
-      error,
-      loading: false,
-      success: false,
-    };
-    expect(reducer(failedState, action)).toEqual(expectedState);
+    const result = reducer(state, action);
+    expect(result.success).toBeFalse();
+    expect(result.daffState).toEqual(DaffState.Error);
+    expect(result.daffErrors).toContain(error);
   });
 
   it('should set success to true after a successful subscription', () =>{
-    const action = new DaffNewsletterSuccessSubscribe();
-    const preSuccessState = {
-      error: null,
-      loading: true,
+    const action = new DaffNewsletterSubscribeSuccess();
+    const preSuccessState: DaffNewsletterState = {
+      ...initialState,
       success: false,
     };
-    const expectedState = {
-      error: null,
-      loading: false,
-      success: true,
-    };
-    expect(reducer(preSuccessState, action)).toEqual(expectedState);
+    const result = reducer(preSuccessState, action);
+    expect(result.success).toBeTrue();
+    expect(result.daffState).toEqual(DaffState.Stable);
   });
 
   it('should return to the intialState when reset', () => {
     const action = new DaffNewsletterReset();
     const successState = {
-      error: null,
-      loading: false,
+      ...initialState,
       success: true,
     };
-    expect(reducer(successState, action)).toEqual(reducer(undefined,<any>{}));
+    expect(reducer(successState, action)).toEqual(initialState);
   });
 });

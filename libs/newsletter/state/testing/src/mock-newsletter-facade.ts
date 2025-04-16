@@ -8,7 +8,7 @@ import { DaffNewsletterFacadeInterface } from '@daffodil/newsletter/state';
 @Injectable({ providedIn: 'root' })
 export class MockDaffNewsletterFacade implements DaffNewsletterFacadeInterface {
   success$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  error$: BehaviorSubject<DaffStateError> = new BehaviorSubject(null);
+  error$: BehaviorSubject<Array<DaffStateError>> = new BehaviorSubject([]);
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   dispatch(action: Action) {}

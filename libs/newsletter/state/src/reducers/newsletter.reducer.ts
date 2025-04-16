@@ -1,5 +1,12 @@
-import { DaffStateError } from '@daffodil/core/state';
-import { DaffNewsletterSubmission } from '@daffodil/newsletter';
+import { ActionReducer } from '@ngrx/store';
+
+import {
+  daffCompleteOperation,
+  daffOperationFailed,
+  daffOperationInitialState,
+  DaffOperationState,
+  daffStartMutation,
+} from '@daffodil/core/state';
 
 import {
   DaffNewsletterActions,
@@ -7,36 +14,38 @@ import {
 } from './../actions/newsletter.actions';
 import { DAFF_NEWSLETTER_STORE_FEATURE_KEY } from './newsletter-store-feature-key';
 
-export interface DaffNewsletterState {
+export interface DaffNewsletterState extends DaffOperationState {
   success: boolean;
-  loading: boolean;
-  error: DaffStateError;
 }
 
 export interface DaffNewsletterStateRootSlice {
   [DAFF_NEWSLETTER_STORE_FEATURE_KEY]: DaffNewsletterState;
 }
 
-const initialState: DaffNewsletterState = {
+export const daffNewsletterReducerInitialState: DaffNewsletterState = {
+  ...daffOperationInitialState,
   success: false,
-  loading: false,
-  error: null,
 };
 
-export function reducer<T extends DaffNewsletterSubmission>(state: DaffNewsletterState = initialState, action: DaffNewsletterActions<T>) {
+export const daffNewsletterStateReducer: ActionReducer<DaffNewsletterState, DaffNewsletterActions> = (state: DaffNewsletterState = daffNewsletterReducerInitialState, action: DaffNewsletterActions): DaffNewsletterState => {
   switch (action.type) {
-    case DaffNewsletterActionTypes.NewsletterRetry:
-    case DaffNewsletterActionTypes.NewsletterSubscribeAction:
-      return { ...state, loading: true };
-    case DaffNewsletterActionTypes.NewsletterFailedSubscribeAction:
-      return { ...state, loading: false, error: action.payload };
-    case DaffNewsletterActionTypes.NewsletterCancelAction:
-      return { ...state, loading: false };
-    case DaffNewsletterActionTypes.NewsletterSuccessSubscribeAction:
-      return { ...state, success: true, loading: false };
-    case DaffNewsletterActionTypes.NewsletterReset:
-      return { ...state, ...initialState };
+    case DaffNewsletterActionTypes.Retry:
+    case DaffNewsletterActionTypes.Subscribe:
+      return daffStartMutation(state);
+
+    case DaffNewsletterActionTypes.SubscribeFailure:
+      return daffOperationFailed(action.payload, state);
+
+    case DaffNewsletterActionTypes.Cancel:
+      return daffCompleteOperation(state);
+
+    case DaffNewsletterActionTypes.SubscribeSuccess:
+      return { ...daffCompleteOperation(state), success: true };
+
+    case DaffNewsletterActionTypes.Reset:
+      return daffNewsletterReducerInitialState;
+
     default:
       return state;
   }
-}
+};

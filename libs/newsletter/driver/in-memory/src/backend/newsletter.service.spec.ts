@@ -1,29 +1,36 @@
 import { TestBed } from '@angular/core/testing';
-
-import { DaffNewsletterSubmission } from '@daffodil/newsletter';
+import { STATUS } from 'angular-in-memory-web-api';
 
 import { DaffInMemoryBackendNewsletterService } from './newsletter.service';
 
-describe('DaffNewsletterInMemoryBackend', () => {
-  let newsletterTestingService;
+describe('@daffodil/newsletter/driver/in-memory | DaffInMemoryBackendNewsletterService', () => {
+  let service: DaffInMemoryBackendNewsletterService;
+  let result;
+  let reqInfoStub;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [DaffInMemoryBackendNewsletterService],
     });
 
-    newsletterTestingService = TestBed.inject(DaffInMemoryBackendNewsletterService);
+    service = TestBed.inject(DaffInMemoryBackendNewsletterService);
+
+    reqInfoStub = {
+      req: {},
+      utils: {
+        createResponse$: f => f(),
+        getJsonBody: req => req.body,
+      },
+    };
   });
 
   it('should be created', () => {
-    expect(newsletterTestingService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   describe('after intializiaton', () => {
-    let result;
-
     beforeEach(() => {
-      result = newsletterTestingService.createDb();
+      result = service.createDb();
     });
 
     it('should have any empty database', () => {
@@ -32,19 +39,24 @@ describe('DaffNewsletterInMemoryBackend', () => {
   });
 
   it('should validate that a submission is not empty', () => {
-    const newsletterSubmission: DaffNewsletterSubmission = undefined;
-    expect(newsletterTestingService.post(newsletterSubmission)).toEqual(Error('Payload is undefined'));
+    reqInfoStub.req.body = undefined;
+    result = service.post(reqInfoStub);
+    expect(result.status).toEqual(STATUS.BAD_REQUEST);
+    expect(result.statusText).toEqual('Payload is undefined');
   });
 
   it('should validate that a submission already exists', () => {
-
-    const newsletterSubmission: DaffNewsletterSubmission = { email: 'test@test.com' };
-    newsletterTestingService.post(newsletterSubmission);
-    expect(newsletterTestingService.post(newsletterSubmission)).toEqual(Error('Already contains submission'));
+    reqInfoStub.req.body = { email: 'test@test.com' };
+    service.post(reqInfoStub);
+    result = service.post(reqInfoStub);
+    expect(result.status).toEqual(STATUS.BAD_REQUEST);
+    expect(result.statusText).toEqual('Already contains submission');
   });
 
   it('should not throw an error if it is in the 0th position', () => {
-    const newsletterSubmission: DaffNewsletterSubmission = { email: 'test2@test.com' };
-    expect(newsletterTestingService.post(newsletterSubmission)).toEqual(newsletterSubmission);
+    reqInfoStub.req.body = { email: 'test2@test.com' };
+    result = service.post(reqInfoStub);
+    expect(result.status).toEqual(STATUS.OK);
+    expect(result.body).toBeTrue();
   });
 });

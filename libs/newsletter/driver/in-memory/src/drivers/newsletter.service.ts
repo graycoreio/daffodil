@@ -4,7 +4,10 @@ import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 
 import { DaffInMemoryDriverBase } from '@daffodil/driver/in-memory';
-import { DaffNewsletterUnion } from '@daffodil/newsletter';
+import {
+  DaffNewsletterSubmission,
+  DaffNewsletterResponse,
+} from '@daffodil/newsletter';
 import { DaffNewsletterServiceInterface } from '@daffodil/newsletter/driver';
 
 import { DAFF_NEWSLETTER_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
@@ -17,7 +20,7 @@ import { DAFF_NEWSLETTER_IN_MEMORY_COLLECTION_NAME } from '../collection-name.co
 @Injectable({
   providedIn: 'root',
 })
-export class DaffInMemoryNewsletterService extends DaffInMemoryDriverBase implements DaffNewsletterServiceInterface<DaffNewsletterUnion, DaffNewsletterUnion>{
+export class DaffInMemoryNewsletterService extends DaffInMemoryDriverBase implements DaffNewsletterServiceInterface {
   constructor(
     private http: HttpClient,
     config: InMemoryBackendConfig,
@@ -28,11 +31,10 @@ export class DaffInMemoryNewsletterService extends DaffInMemoryDriverBase implem
   /**
    * Sends your newsletter submission data.
    *
-   * @param payload DaffNewsletterUnion
-   * @returns An Observable of DaffNewsletterUnion
+   * @param payload DaffNewsletterSubmission
+   * @returns An Observable of DaffNewsletterResponse
    */
-  send(payload: DaffNewsletterUnion): Observable<DaffNewsletterUnion> {
-    return this.http.post<DaffNewsletterUnion>(this.url, payload);
+  send(payload: DaffNewsletterSubmission): Observable<DaffNewsletterResponse> {
+    return this.http.post<DaffNewsletterResponse>(this.url, payload);
   }
-
 }

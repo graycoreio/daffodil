@@ -46,7 +46,7 @@ describe('@daffodil/newsletter/driver/in-memory | NewsletterService', () => {
 
   describe('when sending', () => {
     it('should send a POST request', () => {
-      const newsletterSubmission: DaffNewsletterSubmission = { email: 'test@email.com' };
+      const newsletterSubmission: DaffNewsletterSubmission = 'test@email.com';
 
 
       newsletterService.send(newsletterSubmission).subscribe();
@@ -56,7 +56,7 @@ describe('@daffodil/newsletter/driver/in-memory | NewsletterService', () => {
     });
 
     it('should send a submission', () => {
-      const newsletterSubmission: DaffNewsletterSubmission = { email: 'test@email.com' };
+      const newsletterSubmission: DaffNewsletterSubmission = 'test@email.com';
 
       newsletterService.send(newsletterSubmission).subscribe();
 
@@ -66,17 +66,5 @@ describe('@daffodil/newsletter/driver/in-memory | NewsletterService', () => {
 
 
     });
-
-    it('should send a submission that extends the DaffNewsletterSubmission', () => {
-      const newsletterSubmission = { email: 'test@email.com', name: 'James Arnold' };
-
-      newsletterService.send(newsletterSubmission).subscribe();
-
-      const req = httpMock.expectOne(`${newsletterService['url']}`);
-      expect(req.request.body).toBe(newsletterSubmission);
-
-    });
-
   });
-
 });
