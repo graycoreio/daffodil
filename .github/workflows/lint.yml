@@ -1,9 +1,5 @@
 name: Daffodil Lint
 
-env:
-  AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_CONNECTION_STRING }}
-  NX_KEY: ${{ secrets.NX_KEY }}
-
 on:
   push:
     paths:
@@ -61,4 +57,4 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - run: npx nx run-many --target=lint
+      - run: AZURE_STORAGE_CONNECTION_STRING=${{ secrets.AZURE_NX_CACHE_CONNECTION_STRING }} NX_KEY=${{ secrets.NX_KEY }} npx nx run-many --target=lint
