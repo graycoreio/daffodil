@@ -1,0 +1,39 @@
+name: "Setup NX Remote Cache Configurations"
+author: "Graycore"
+description: "A Github Action that sets up NX Remote Cache Configurations for Daffodil"
+inputs:
+  cache-mode:
+    required: false
+    description: 'The NX Cache Mode - https://nx.dev/nx-api/azure-cache#cache-modes'
+  read-only-azure-connection-string: 
+    required: true
+    description: 'The Nx Remote Cache RO Connection string - https://nx.dev/nx-api/azure-cache'
+  read-write-azure-connection-string: 
+    required: true
+    description: 'The Nx Remote Cache RW Connection string - https://nx.dev/nx-api/azure-cache'
+  event-name:
+    required: true
+    description: 'The triggering Github event.'
+
+runs:
+  using: "composite"
+  steps:
+    ## Set the NX Cache Mode. For pull requests, this comes from the `input` and likely `read-only`, 
+    ## by default (for `push` events mostly) this is `read-write`. 
+  - run: echo NX_POWERPACK_CACHE_MODE='${{ inputs.cache-mode }}' >> $GITHUB_ENV
+    shell: bash
+    name: Set NX Cache Mode
+    if: ${{ inputs.cache-mode }}
+
+    ## Set the AZURE_STORAGE_CONNECTION_STRING. 
+    ##  - For `pull_request`, this comes from the passed secret.
+    ##  - For `push` this is `AZURE_NX_CACHE_READWRITE_CONNECTION_STRING``. 
+  - run: echo AZURE_STORAGE_CONNECTION_STRING='${{ inputs.read-write-azure-connection-string }}' >> $GITHUB_ENV
+    shell: bash
+    name: Set AZURE_STORAGE_CONNECTION_STRING
+    if: ${{ inputs.event-name == 'push' }}
+
+  - run: echo AZURE_STORAGE_CONNECTION_STRING='${{ inputs.read-only-azure-connection-string }}' >> $GITHUB_ENV
+    shell: bash
+    name: Set AZURE_STORAGE_CONNECTION_STRING
+    if: ${{ inputs.event-name == 'pull_request_target' }}
