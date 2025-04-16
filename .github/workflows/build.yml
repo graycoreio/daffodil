@@ -34,17 +34,12 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
-      - uses: nrwl/nx-set-shas@v3
-        name: Derive appropriate SHAs for base and head for `nx affected` commands
-        with:
-          main-branch-name: 'develop'
-
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - run: npx lerna run build --concurrency=1
+      - run: npx nx run-many --target=build --parallel=1
 
       - run: cd dist/apps/daffio && zip -r ../daffio.zip .
 
@@ -95,17 +90,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: nrwl/nx-set-shas@v3
-        name: Derive appropriate SHAs for base and head for `nx affected` commands
-        with:
-          main-branch-name: 'develop'
-
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - run: npx lerna run test --scope="${{ matrix.package }}" --concurrency=1
+      - run: npx nx run ${{ matrix.package }}:test --parallel=1
         name: Test ${{ matrix.package }}
 
   deploy_daffio:
