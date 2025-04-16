@@ -26,6 +26,16 @@ on:
       - '.github/**'
     branches:
       - develop
+  pull_request_target:
+    paths:
+      - '**.ts'
+      - '**.scss'
+      - '**.html'
+      - '**.js'
+      - '**.json'
+      - '!.github/**'
+    branches:
+      - develop
 
 jobs:
   lint:
