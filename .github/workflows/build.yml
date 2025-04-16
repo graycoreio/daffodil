@@ -19,6 +19,7 @@ on:
 env:
   AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_CONNECTION_STRING }}
   NX_KEY: ${{ secrets.NX_KEY }}
+  HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
 
 jobs:
   build:
@@ -44,7 +45,7 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - run: npx lerna run build --concurrency=1
+      - run: npx nx affected --target=build --head=$HEAD --parallel=1
 
       - run: cd dist/apps/daffio && zip -r ../daffio.zip .
 
@@ -105,7 +106,7 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - run: npx lerna run test --scope="${{ matrix.package }}" --concurrency=1
+      - run: npx nx run ${{ matrix.package }}:test --parallel=1
         name: Test ${{ matrix.package }}
 
   deploy_daffio:

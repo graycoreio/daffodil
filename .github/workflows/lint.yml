@@ -3,6 +3,7 @@ name: Daffodil Lint
 env:
   AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_CONNECTION_STRING }}
   NX_KEY: ${{ secrets.NX_KEY }}
+  HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
 
 on:
   push:
@@ -59,4 +60,4 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - run: npx nx affected --target=lint
+      - run: npx nx affected --target=lint --head=$HEAD
