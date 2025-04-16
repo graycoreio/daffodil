@@ -19,7 +19,6 @@ on:
 env:
   AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_CONNECTION_STRING }}
   NX_KEY: ${{ secrets.NX_KEY }}
-  HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
 
 jobs:
   build:
@@ -33,7 +32,7 @@ jobs:
         with:
           fetch-depth: 0
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
-          ref: $HEAD
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - uses: graycoreio/github-actions/setup-node@main
         with:
