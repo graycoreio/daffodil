@@ -28,8 +28,14 @@ import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 let uniqueGalleryId = 0;
 
 /**
+ * The `DaffMediaGalleryComonent` is used to display a group of thumbnails in a gallery format.
+ *
  * ```html
- * <daff-media-gallery></daff-media-gallery>
+ * <daff-media-gallery>
+ *  <ng-template daffThumbnail thumbnailSrc="/thumbnail-path.jpg" label="Your description">
+ *    <daff-image src="/image-path.jpg" alt="Your description" width="100" height="100"></daff-image>
+ *  </ng-template>
+ * </daff-media-gallery>
  * ```
  */
 @Component({
@@ -62,12 +68,12 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   @HostBinding('attr.role') role = 'tablist';
 
   /**
-   * The internal id of the gallery.
+   * The internal ID of the gallery.
    */
   private _id: string;
 
   /**
-   * The id of the gallery.
+   * Custom ID for the media gallery that overrides the auto-generated one. When using this input, it is your responsibility to ensure that the ID is unique.
    */
   @HostBinding('attr.id')
   @Input()
@@ -138,7 +144,9 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   }
 
   /**
-   * Select a specific entry in the media gallery by its index (starting at 0).
+   * Select a specific entry in the media gallery by its index.
+   *
+   * @param index The index to set, starting at 0.
    */
   selectIndex(index: number) {
     this._selectedIndex.set(index);
@@ -147,6 +155,8 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
 
   /**
    * Navigate to the next element in the list of thumbnails.
+   *
+   * @param focus Whether to move focus to the newly selected item.
    */
   next(focus: boolean = true) {
     this._selectedIndex.update((curr) => ((curr ?? 0) + 1 + this._thumbnails().length) % this._thumbnails().length);
@@ -156,6 +166,8 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
 
   /**
    * Navigate to the previous element in the list of thumbnails.
+   *
+   * @param focus Whether to move focus to the newly selected item.
    */
   previous(focus: boolean = true) {
     this._selectedIndex.update((curr) => ((curr ?? 0) - 1 + this._thumbnails().length) % this._thumbnails().length);
@@ -164,7 +176,9 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   }
 
   /**
-   * Select the first element
+   * Select the first element.
+   *
+   * @param focus Whether to move focus to the newly selected item.
    */
   selectFirst(focus: boolean = true) {
     this._selectedIndex.set(0);
@@ -174,6 +188,8 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
 
   /**
    * Select the last element of the gallery.
+   *
+   * @param Whether to move focus to the newly selected item.
    */
   selectLast(focus: boolean = true) {
     this._selectedIndex.set(this._thumbnails().length - 1);
