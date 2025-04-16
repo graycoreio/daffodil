@@ -45,7 +45,7 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - run: npx nx affected --target=build --head=$HEAD --parallel=1
+      - run: npx nx affected --target=build --base=$NX_BASE --head=$HEAD --parallel=1
 
       - run: cd dist/apps/daffio && zip -r ../daffio.zip .
 

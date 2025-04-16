@@ -60,4 +60,4 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - run: npx nx affected --target=lint --head=$HEAD
+      - run: npx nx affected --target=lint --base=$NX_BASE --head=$HEAD
