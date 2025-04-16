@@ -6,28 +6,31 @@ import { Router } from '@angular/router';
 
 import { createSingleInjectionToken } from '@daffodil/core';
 import {
-  DaffHubspotFormsService,
+  DaffHubspotFormsInterface,
   daffHubspotFormsServiceFactory,
 } from '@daffodil/driver/hubspot';
 
-import { DaffContactConfigToken } from '../config/contact-config.interface';
+import { DaffContactHubspotConfig } from '../config/contact-config.interface';
 
 export const {
+  /**
+   * The InjectionToken that holds the Hubspot Forms Service
+   * used by the ContactDriver to send submissions to Hubspot.
+   */
   token: DAFF_CONTACT_HUBSPOT_FORMS_TOKEN,
   /**
    * Provider function for {@link DAFF_CONTACT_HUBSPOT_FORMS_TOKEN}.
    */
   provider: provideDaffContactHubspotFormsToken,
-} = createSingleInjectionToken<DaffHubspotFormsService>(
+} = createSingleInjectionToken<DaffHubspotFormsInterface>(
   'DAFF_CONTACT_HUBSPOT_FORMS_TOKEN',
   {
-    providedIn: 'root',
     factory: () => daffHubspotFormsServiceFactory(
       inject(HttpClient),
       inject(DOCUMENT),
       inject(Router),
       inject(Title),
-      inject(DaffContactConfigToken),
+      inject(DaffContactHubspotConfig),
     ),
   },
 );

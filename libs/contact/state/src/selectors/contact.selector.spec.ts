@@ -7,17 +7,14 @@ import {
 import { cold } from 'jasmine-marbles';
 
 import {
-  reducer,
+  daffContactStateReducer,
   DaffContactState,
   DAFF_CONTACT_STORE_FEATURE_KEY,
   DaffContactStateRootSlice,
 } from '@daffodil/contact/state';
 
-import {
-  selectDaffContactLoading,
-  selectDaffContactSuccess,
-  selectDaffContactError,
-} from './contact.selector';
+import { selectDaffContactSuccess } from './contact.selector';
+import { daffContactReducerInitialState } from '../reducers/contact.reducer';
 
 describe('the contact selectors', () => {
 
@@ -27,21 +24,12 @@ describe('the contact selectors', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          [DAFF_CONTACT_STORE_FEATURE_KEY]: reducer,
+          [DAFF_CONTACT_STORE_FEATURE_KEY]: daffContactStateReducer,
         }),
       ],
     });
-    mockContactState = { loading: false, success: false, errors: []};
+    mockContactState = daffContactReducerInitialState;
     store = TestBed.inject(Store);
-  });
-
-  describe('the selectDaffContactLoading', () => {
-    it('should select the loading property of the contact state', () =>{
-      const selector = store.pipe(select(selectDaffContactLoading));
-      const expected = cold('a', { a: mockContactState.loading });
-
-      expect(selector).toBeObservable(expected);
-    });
   });
 
   describe('the selectDaffContactSuccess', () => {
@@ -52,14 +40,4 @@ describe('the contact selectors', () => {
       expect(selector).toBeObservable(expected);
     });
   });
-
-  describe('the selectDaffContactError', () => {
-    it('should select the error property of the contact state', () =>{
-      const selector = store.pipe(select(selectDaffContactError));
-      const expected = cold('a', { a: mockContactState.errors });
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
 });

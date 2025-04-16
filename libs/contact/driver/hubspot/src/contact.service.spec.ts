@@ -5,39 +5,40 @@ import {
 } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
-import { DaffContactDriver } from '@daffodil/contact/driver';
+import { HubspotResponse } from '@daffodil/driver/hubspot';
 
 import { DaffContactHubspotService } from './contact.service';
 import { DAFF_CONTACT_HUBSPOT_FORMS_TOKEN } from './token/hubspot-forms.token';
 
-describe('DaffContactHubspotService', () => {
-  let contactService;
+const stubHubspotResponse: HubspotResponse = { inlineMessage: '123', errors: []};
+
+describe('@daffodil/contact/driver/hubspot | DaffContactHubspotService', () => {
+  let service: DaffContactHubspotService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: DaffContactDriver, useClass: DaffContactHubspotService },
         {
           provide: DAFF_CONTACT_HUBSPOT_FORMS_TOKEN,
           useValue: {
-            submit: (): Observable<any> => hot('--a', { a: { test: '123' }}),
+            submit: (): Observable<any> => hot('--a', { a: stubHubspotResponse }),
           },
         },
       ],
     });
 
-    contactService = TestBed.inject(DaffContactDriver);
+    service = TestBed.inject(DaffContactHubspotService);
   });
 
   it('should be created', () => {
-    expect(contactService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   describe('when sending', () => {
-    it('should return an observable of HubspotResponse', () => {
+    it('should return an observable of DaffContactResponse', () => {
       const payload = { email: 'email@email.edu' };
-      const expected = cold('--b', { b: { test: '123' }});
-      expect(contactService.send(payload)).toBeObservable(expected);
+      const expected = cold('--b', { b: { message: '123' }});
+      expect(service.send(payload)).toBeObservable(expected);
     });
   });
 });

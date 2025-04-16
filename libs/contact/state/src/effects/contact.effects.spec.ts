@@ -1,21 +1,18 @@
 import { TestBed } from '@angular/core/testing';
+import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
   hot,
   cold,
 } from 'jasmine-marbles';
-import {
-  Observable,
-  of,
-} from 'rxjs';
+import { of } from 'rxjs';
 
-import { DaffContactUnion } from '@daffodil/contact';
 import { DaffContactDriver } from '@daffodil/contact/driver';
 import { DaffContactTestingDriverModule } from '@daffodil/contact/driver/testing';
 import {
   DaffContactSubmit,
-  DaffContactSuccessSubmit,
-  DaffContactFailedSubmit,
+  DaffContactSubmitSuccess,
+  DaffContactSubmitFailure,
   DaffContactRetry,
   DaffContactCancel,
 } from '@daffodil/contact/state';
@@ -23,8 +20,8 @@ import {
 import { DaffContactEffects } from './contact.effects';
 
 describe('DaffContactEffects', () => {
-  let actions$: Observable<any>;
-  let effects: DaffContactEffects<DaffContactUnion, any>;
+  let actions$: Actions;
+  let effects: DaffContactEffects;
   const mockForm = { firstName: 'John', lastName: 'Doe' };
   let daffContactDriver;
 
@@ -46,7 +43,7 @@ describe('DaffContactEffects', () => {
     const forumSubmit = new DaffContactSubmit(mockForm);
 
     it('and if the call was successful, it should dispatch a ContactSuccessSubmit', () => {
-      const successAction = new DaffContactSuccessSubmit();
+      const successAction = new DaffContactSubmitSuccess();
       spyOn(daffContactDriver, 'send').and.returnValue(of('mystring'));
 
       actions$ = hot('--a', { a: forumSubmit });
@@ -58,7 +55,7 @@ describe('DaffContactEffects', () => {
       const error = [{ code: 'code', recoverable: false, message: 'Failed to submit' }];
       const response = cold('#', {}, error[0]);
       spyOn(daffContactDriver, 'send').and.returnValue(response);
-      const failedAction = new DaffContactFailedSubmit(error);
+      const failedAction = new DaffContactSubmitFailure(error);
 
       actions$ = hot('--a', { a: forumSubmit });
       expected = cold('--b', { b: failedAction });
@@ -71,7 +68,7 @@ describe('DaffContactEffects', () => {
     const forumSubmit = new DaffContactRetry(mockForm);
 
     it('and if the call was successful, it should dispatch a ContactSuccessSubmit', () => {
-      const successAction = new DaffContactSuccessSubmit();
+      const successAction = new DaffContactSubmitSuccess();
       spyOn(daffContactDriver, 'send').and.returnValue(of('mystring'));
 
       actions$ = hot('--a', { a: forumSubmit });
@@ -83,7 +80,7 @@ describe('DaffContactEffects', () => {
       const error = [{ code: 'code', recoverable: false, message: 'Failed to submit' }];
       const response = cold('#', {}, error[0]);
       spyOn(daffContactDriver, 'send').and.returnValue(response);
-      const failedAction = new DaffContactFailedSubmit(error);
+      const failedAction = new DaffContactSubmitFailure(error);
 
       actions$ = hot('--a', { a: forumSubmit });
       expected = cold('--b', { b: failedAction });
