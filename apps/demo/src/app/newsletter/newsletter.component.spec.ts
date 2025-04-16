@@ -4,6 +4,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 import { DaffContainerModule } from '@daffodil/design/container';
 import {
@@ -52,7 +53,7 @@ describe('NewsletterComponent', () => {
       facade.success$.next(false);
       fixture.detectChanges();
 
-      newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__right');
+      newsletterElement = fixture.debugElement.query(By.css('.demo-newsletter__right'));
     });
 
     it('should render class .demo-newsletter__right', () => {
@@ -114,7 +115,7 @@ describe('NewsletterComponent', () => {
     beforeEach(() => {
       facade.loading$.next(false);
       facade.success$.next(false);
-      facade.error$.next({ code: 'code', message: 'message' });
+      facade.error$.next([{ code: 'code', message: 'message' }]);
       fixture.detectChanges();
 
       newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__retry');
