@@ -5,15 +5,48 @@ on:
     branches:
       - develop
     tags: ["v*"]
-  pull_request:
-    branches:
-      - develop
-
+  workflow_call:
+    inputs:
+      ref: 
+        required: true
+        type: string
+      cache-mode:
+        required: true
+        type: string
+    secrets:
+      NX_KEY:
+        required: true
+      AZURE_STORAGE_CONNECTION_STRING:
+        required: true
 env:
-  AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_CONNECTION_STRING }}
   NX_KEY: ${{ secrets.NX_KEY }}
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20.18.x]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: ${{ inputs.ref && inputs.ref || github.sha }}
+
+      - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
+        with:
+          cache-mode: ${{ inputs.cache-mode }}
+          read-only-azure-connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+          read-write-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
+          event-name: ${{ github.event_name }}
+
+      - uses: graycoreio/github-actions/setup-node@main
+        with:
+          node-version: ${{ matrix.node }}
+          use-stamp-cache: true
+
+      - run: npx nx run-many -t lint
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -23,17 +56,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-
-      - uses: nrwl/nx-set-shas@v3
-        name: Derive appropriate SHAs for base and head for `nx affected` commands
-        with:
-          main-branch-name: 'develop'
+          fetch-depth: 1
+          ref: ${{ inputs.ref && inputs.ref || github.sha }}
 
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
+      
+      - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
+        with:
+          cache-mode: ${{ inputs.cache-mode }}
+          read-only-azure-connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+          read-write-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
+          event-name: ${{ github.event_name }}
 
       - run: npx lerna run build --concurrency=1
 
@@ -54,6 +90,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ inputs.ref && inputs.ref || github.sha }}
           fetch-depth: 0
       - uses: graycoreio/github-actions/setup-node@main
         with:
@@ -84,12 +121,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
+          ref: ${{ inputs.ref && inputs.ref || github.sha }}
 
-      - uses: nrwl/nx-set-shas@v3
-        name: Derive appropriate SHAs for base and head for `nx affected` commands
+      - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
         with:
-          main-branch-name: 'develop'
+          cache-mode: ${{ inputs.cache-mode }}
+          read-only-azure-connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+          read-write-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
+          event-name: ${{ github.event_name }}
 
       - uses: graycoreio/github-actions/setup-node@main
         with:
@@ -130,6 +170,13 @@ jobs:
         node-version: 20.18.x
         use-stamp-cache: true
         registry-url: 'https://registry.npmjs.org'
+
+    - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
+      with:
+        cache-mode: ${{ inputs.cache-mode }}
+        read-only-azure-connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+        read-write-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
+        event-name: ${{ github.event_name }}
 
     - run: npx lerna run build
 

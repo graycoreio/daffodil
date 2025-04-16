@@ -2,7 +2,9 @@ name: Daffodil PR Preview
 
 on:
   workflow_run:
-    workflows: ["Daffodil Build"]
+    workflows: 
+      - Daffodil Build
+      - Daffodil Build PR
     branches-ignore: ["master", "main", "develop"]
     types:
       - completed
@@ -24,7 +26,10 @@ jobs:
   deploy_daffio:
     name: Deploy Daff.io
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success'
+    if: (
+        github.event.workflow_run.event == 'pull_request' || 
+        github.event.workflow_run.event == 'pull_request_target'
+      ) && github.event.workflow_run.conclusion == 'success'
     steps:
     - uses: graycoreio/github-actions/angular-universal-vercel-wflw-run@main
       id: vercel
