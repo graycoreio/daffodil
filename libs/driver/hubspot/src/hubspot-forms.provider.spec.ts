@@ -10,12 +10,8 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import {
-  DaffHubspotFormsService,
-  daffHubspotFormsServiceFactory,
-} from '@daffodil/driver/hubspot';
-
-
+import { daffHubspotFormsServiceFactory } from './hubspot-forms.provider';
+import { DaffHubspotFormsService } from './hubspot-forms.service';
 
 describe('DaffHubspotForms Factory Provider', () => {
   let hubspotService: DaffHubspotFormsService;
