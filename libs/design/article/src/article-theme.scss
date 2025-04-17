@@ -5,104 +5,158 @@
 
 @mixin daff-article-theme($theme) {
 	$primary: core.daff-map-get($theme, primary);
-	$secondary: core.daff-map-get($theme, secondary);
-	$tertiary: core.daff-map-get($theme, tertiary);
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$white: core.daff-map-get($theme, 'core', 'white');
-	$black: core.daff-map-get($theme, 'core', 'black');
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
-	$text-color: theming.daff-illuminate($base-contrast, $neutral, 2);
-	$table-border-color: theming.daff-illuminate($base, $neutral, 2);
+	$link-color-light: theming.daff-color($primary);
+	$link-color-dark: theming.daff-color($primary, 40);
+	$text-color-light: theming.daff-color($neutral, 90);
+	$text-color-dark: theming.daff-color($neutral, 10);
+	$table-border-light: theming.daff-color($neutral, 20);
+	$table-border-dark: theming.daff-color($neutral, 80);
 
 	.daff-article {
-		color: $text-color;
-
-		&__meta {
-			color: theming.daff-illuminate($base-contrast, $neutral, 3);
-		}
-
-		@include stopsArticleCascade(a) {
-			color: theming.daff-color($primary);
-
-			code {
-				background: theming.daff-illuminate($base, $primary, 1);
-				color: theming.daff-illuminate($base-contrast, $primary, 4);
-			}
-		}
-
-		pre {
-			background: theming.daff-illuminate($base, $neutral, 1);
-			border: 1px solid theming.daff-illuminate($base, $neutral, 2);
-			color: $base-contrast;
-
-			code {
-				background: none;
-				border: none;
-			}
-		}
-
-		code {
-			background: rgba(theming.daff-illuminate($base, $neutral, 2), 0.5);
-			color: $base-contrast;
+		@include theming.light($type) {
+			color: $text-color-light;
 
 			@include stopsArticleCascade(a) {
-				color: theming.daff-color($primary, 70);
+				color: $link-color-light;
+				text-decoration-color: $link-color-light;
 			}
-		}
-
-		hr {
-			background: theming.daff-illuminate($base, $neutral, 2);
-		}
-
-		blockquote {
-			background: rgba(theming.daff-color($primary), 0.1);
-			border-left: 4px solid theming.daff-illuminate($base, $primary, 5);
-			color: theming.daff-illuminate($base-contrast, $primary, 1);
 
 			code {
-				background: rgba(theming.daff-color($primary), 0.15);
-				color: $base-contrast;
+				background: rgba(theming.daff-color($neutral, 20), 0.5);
 			}
 
-			@include stopsArticleCascade(a) {
-				color: theming.daff-illuminate($base, $primary, 7);
-			}
+			pre {
+				background: rgba(theming.daff-color($neutral, 20), 0.3);
+				border: 1px solid theming.daff-color($neutral, 20);
 
-			@include stopsArticleCascade(a) {
 				code {
-					background: rgba(theming.daff-color($primary), 0.15);
-					color: theming.daff-illuminate($base-contrast, $primary, 4);
+					background: none;
+					border: none;
+				}
+			}
+
+			hr {
+				background: theming.daff-color($neutral, 20);
+			}
+
+			blockquote {
+				background: rgba(theming.daff-color($primary), 0.1);
+				border-left: 4px solid theming.daff-color($primary, 50);
+				color: theming.daff-color($primary, 100);
+
+				code {
+					background: rgba(theming.daff-color($primary), 0.12);
+					color: theming.daff-color($primary, 100);
+
+					@include stopsArticleCascade(a) {
+						color: theming.daff-color($primary, 70);
+						text-decoration-color: theming.daff-color($primary, 70);
+					}
+				}
+			}
+
+			table {
+				border: 1px solid $table-border-light;
+
+				th {
+					background: theming.daff-color($neutral, 10);
+				}
+
+				th,
+				td {
+					&:not(:last-child) {
+						border-right: 1px solid $table-border-light;
+					}
+				}
+
+				thead {
+					th {
+						border-bottom: 1px solid $table-border-light;
+					}
+				}
+
+				tr {
+					&:not(:last-child) {
+						th,
+						td {
+							border-bottom: 1px solid $table-border-light;
+						}
+					}
 				}
 			}
 		}
 
-		table {
-			border: 1px solid $table-border-color;
+		@include theming.dark($type) {
+			color: $text-color-dark;
 
-			th {
-				background: theming.daff-illuminate($base, $neutral, 1);
+			@include stopsArticleCascade(a) {
+				color: $link-color-dark;
+				text-decoration-color: $link-color-dark;
 			}
 
-			th,
-			td {
-				&:not(:last-child) {
-					border-right: 1px solid $table-border-color;
+			code {
+				background: rgba(theming.daff-color($neutral, 20), 0.15);
+			}
+
+			pre {
+				background: rgba(theming.daff-color($neutral, 20), 0.15);
+				border: 1px solid rgba(theming.daff-color($neutral, 20), 0.15);
+
+				code {
+					background: none;
+					border: none;
 				}
 			}
 
-			thead {
+			hr {
+				background: theming.daff-color($neutral, 80);
+			}
+
+			blockquote {
+				background: rgba(theming.daff-color($primary), 0.12);
+				border-left: 4px solid theming.daff-color($primary, 40);
+				color: theming.daff-color($primary, 10);
+
+				code {
+					background: rgba(theming.daff-color($primary), 0.18);
+					color: theming.daff-color($primary, 10);
+
+					@include stopsArticleCascade(a) {
+						color: theming.daff-color($primary, 40);
+						text-decoration-color: theming.daff-color($primary, 40);
+					}
+				}
+			}
+
+			table {
+				border: 1px solid $table-border-dark;
+
 				th {
-					border-bottom: 1px solid $table-border-color;
+					background: theming.daff-color($neutral, 90);
 				}
-			}
 
-			tr {
-				&:not(:last-child) {
-					th,
-					td {
-						border-bottom: 1px solid $table-border-color;
+				th,
+				td {
+					&:not(:last-child) {
+						border-right: 1px solid $table-border-dark;
+					}
+				}
+
+				thead {
+					th {
+						border-bottom: 1px solid $table-border-dark;
+					}
+				}
+
+				tr {
+					&:not(:last-child) {
+						th,
+						td {
+							border-bottom: 1px solid $table-border-dark;
+						}
 					}
 				}
 			}
