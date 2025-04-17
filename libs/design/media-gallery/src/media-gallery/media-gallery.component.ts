@@ -70,7 +70,7 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   /**
    * The internal ID of the gallery.
    */
-  private _id: string;
+  private _id = 'media-gallery-' + uniqueGalleryId;
 
   /**
    * Custom ID for the media gallery that overrides the auto-generated one. When using this input, it is your responsibility to ensure that the ID is unique.
@@ -138,7 +138,6 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
 
   private _selectedIndex = signal<number | null>(null);
 
-
   private focusSelected() {
     this._thumbnailButtons.get(this._selectedIndex())?.nativeElement.focus();
   }
@@ -161,7 +160,10 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   next(focus: boolean = true) {
     this._selectedIndex.update((curr) => ((curr ?? 0) + 1 + this._thumbnails().length) % this._thumbnails().length);
     this.elementChange.emit(this._selectedIndex());
-    this.focusSelected();
+
+    if(focus) {
+      this.focusSelected();
+    }
   }
 
   /**
@@ -172,7 +174,10 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   previous(focus: boolean = true) {
     this._selectedIndex.update((curr) => ((curr ?? 0) - 1 + this._thumbnails().length) % this._thumbnails().length);
     this.elementChange.emit(this._selectedIndex());
-    this.focusSelected();
+
+    if(focus) {
+      this.focusSelected();
+    }
   }
 
   /**
@@ -183,7 +188,10 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   selectFirst(focus: boolean = true) {
     this._selectedIndex.set(0);
     this.elementChange.emit(this._selectedIndex());
-    this.focusSelected();
+
+    if(focus) {
+      this.focusSelected();
+    }
   }
 
   /**
@@ -194,6 +202,9 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   selectLast(focus: boolean = true) {
     this._selectedIndex.set(this._thumbnails().length - 1);
     this.elementChange.emit(this._selectedIndex());
-    this.focusSelected();
+
+    if(focus) {
+      this.focusSelected();
+    }
   }
 }

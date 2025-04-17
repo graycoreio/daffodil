@@ -16,7 +16,7 @@
 				[selected]="thumbnail === _selectedThumbnail()"
 				attr.aria-label="{{ thumbnail.label ?? 'Gallery Element ' + (index + 1) }}"
 				[attr.aria-selected]="thumbnail === _selectedThumbnail() ? 'true' : 'false'"
-				[attr.aria-controls]="thumbnail.panelId"
+				[attr.aria-controls]="thumbnail.selectedThumbnailId"
 				[attr.tabindex]="thumbnail === _selectedThumbnail() ? 0 : -1"
 				(click)="selectIndex(index)"
 				[attr.id]="thumbnail.id" 
@@ -33,15 +33,15 @@
 		}
 	}
 </div>
-@let el = this._selectedThumbnail();
+@let selectedEl = this._selectedThumbnail();
 <div 
 	class="daff-media-gallery__selected-thumbnail"
 	tabindex="0"
 	#selectedThumbnail
 	role="tabpanel"
-	[attr.id]="el?.panelId">
-		@if(el) {
-			<ng-container *ngTemplateOutlet="el.templateRef"></ng-container>
+	[attr.id]="selectedEl?.selectedThumbnailId">
+		@if(selectedEl) {
+			<ng-container *ngTemplateOutlet="selectedEl.templateRef"></ng-container>
 		}
 		@else {
 			<div class="daff-media-gallery__skeleton-placeholder"></div>
