@@ -17,6 +17,8 @@ describe('DaffioDocsApiMethodBlockComponent', () => {
 
     fixture = TestBed.createComponent(DaffioDocsApiMethodBlockComponent);
     component = fixture.componentInstance;
+    // TODO: actually test when we have doc factories
+    component.method = <any>{ parameterDocs: []};
     fixture.detectChanges();
   });
 

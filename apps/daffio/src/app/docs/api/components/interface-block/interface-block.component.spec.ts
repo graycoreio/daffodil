@@ -17,6 +17,8 @@ describe('DaffioDocsApiInterfaceBlockComponent', () => {
 
     fixture = TestBed.createComponent(DaffioDocsApiInterfaceBlockComponent);
     component = fixture.componentInstance;
+    // TODO: actually test when we have doc factories
+    component.prop = <any>{};
     fixture.detectChanges();
   });
 
