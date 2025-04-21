@@ -22,6 +22,8 @@ import {
 
 import { DaffioDocsDesignComponentContentComponent } from './component-content.component';
 import { DaffioActiveHeaderService } from '../../../../core/dynamic-fragment/service';
+import { DaffioDocsApiDefaultContentComponent } from '../../../api/components/api-default-content/api-default-content.component';
+import { DaffioDocsApiDynamicContentComponentService } from '../../../api/dynamic-content/dynamic-content-component.service';
 import { DaffioDocViewerComponent } from '../../../components/doc-viewer/doc-viewer.component';
 
 @Component({
@@ -52,6 +54,7 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
       ],
       providers: [
         DaffioActiveHeaderService,
+        DaffioDocsApiDynamicContentComponentService,
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
@@ -77,7 +80,8 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
         slug: 'toc',
       }],
       api: {
-        [DaffDocsApiRole.COMPONENT]: ['<div id="api">api</div>'],
+        // TODO: add better test when we have doc factories
+        [DaffDocsApiRole.COMPONENT]: [<any>{}],
       },
       contents: '<div id="contents">contents</div>',
       longDescription: '<div id="longDescription">longDescription</div>',
@@ -125,7 +129,7 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
     });
 
     it('should render the api', () => {
-      expect(fixture.debugElement.query(By.css('#api')).nativeElement.innerText).toEqual('api');
+      expect(fixture.debugElement.query(By.directive(DaffioDocsApiDefaultContentComponent))).toBeDefined();
     });
 
     it('should pass the API toc to the article', () => {
