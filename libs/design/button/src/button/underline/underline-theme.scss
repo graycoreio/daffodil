@@ -68,7 +68,7 @@
 			&[disabled],
 			&.disabled {
 				@include daff-underline-button-theme-variant(
-					theming.daff-illuminate($base, $neutral, 4)
+					theming.daff-color($neutral, 40)
 				);
 			}
 
@@ -131,7 +131,7 @@
 			&[disabled],
 			&.disabled {
 				@include daff-underline-button-theme-variant(
-					theming.daff-illuminate($base, $neutral, 4)
+					theming.daff-color($neutral, 60)
 				);
 			}
 

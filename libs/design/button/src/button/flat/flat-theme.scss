@@ -81,7 +81,7 @@
 
 			&[disabled],
 			&.disabled {
-				color: theming.daff-illuminate($base, $neutral, 5);
+				color: theming.daff-color($neutral, 50);
 
 				&::after {
 					background: transparent;
@@ -164,7 +164,7 @@
 
 			&[disabled],
 			&.disabled {
-				color: theming.daff-illuminate($base, $neutral, 5);
+				color: theming.daff-color($neutral, 50);
 
 				&::after {
 					background: transparent;

@@ -93,30 +93,30 @@
 			&.daff-theme {
 				@include daff-button-theme-variant(
 					$base,
-					theming.daff-illuminate($base, $neutral, 2),
-					theming.daff-illuminate($base, $neutral, 3)
+					theming.daff-color($neutral, 20),
+					theming.daff-color($neutral, 30),
 				);
 			}
 
 			&.daff-theme-contrast {
 				@include daff-button-theme-variant(
 					$base-contrast,
-					theming.daff-illuminate($base-contrast, $neutral, 2),
-					theming.daff-illuminate($base-contrast, $neutral, 3)
+					theming.daff-color($neutral, 90),
+					theming.daff-color($neutral, 80),
 				);
 			}
 
 			&[disabled],
 			&.disabled {
 				@include daff-button-theme-variant(
-					theming.daff-illuminate($base, $neutral, 3),
-					theming.daff-illuminate($base, $neutral, 3),
-					theming.daff-illuminate($base, $neutral, 3),
+					theming.daff-color($neutral, 30),
+					theming.daff-color($neutral, 30),
+					theming.daff-color($neutral, 30),
 				);
-				color: theming.daff-illuminate($base, $neutral, 5);
+				color: theming.daff-color($neutral, 50);
 
 				&:hover {
-					color: theming.daff-illuminate($base, $neutral, 5);
+					color: theming.daff-color($neutral, 50);
 				}
 			}
 
@@ -195,26 +195,31 @@
 			&.daff-theme {
 				@include daff-button-theme-variant(
 					$base,
-					theming.daff-illuminate($base, $neutral, 2),
-					theming.daff-illuminate($base, $neutral, 3)
+					theming.daff-color($neutral, 90),
+					theming.daff-color($neutral, 80),
 				);
 			}
 
 			&.daff-theme-contrast {
 				@include daff-button-theme-variant(
 					$base-contrast,
-					theming.daff-illuminate($base-contrast, $neutral, 2),
-					theming.daff-illuminate($base-contrast, $neutral, 3)
+					theming.daff-color($neutral, 20),
+					theming.daff-color($neutral, 30),
 				);
 			}
 
 			&[disabled],
 			&.disabled {
 				@include daff-button-theme-variant(
-					theming.daff-illuminate($base, $neutral, 3),
-					theming.daff-illuminate($base, $neutral, 3),
-					theming.daff-illuminate($base, $neutral, 3)
+					theming.daff-color($neutral, 70),
+					theming.daff-color($neutral, 70),
+					theming.daff-color($neutral, 70),
 				);
+				color: theming.daff-color($neutral, 50);
+
+				&:hover {
+					color: theming.daff-color($neutral, 50);
+				}
 			}
 
 			&.daff-warn {

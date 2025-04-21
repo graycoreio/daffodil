@@ -35,16 +35,16 @@
 
 	.daff-stroked-button {
 		background: transparent;
-		border: 1px solid theming.daff-illuminate($base, $neutral, 5);
+		border: 1px solid theming.daff-color($neutral, 50);
 		color: currentColor;
 
 		&::after {
-			background: rgba(theming.daff-illuminate($base, $neutral, 5), 0.1);
+			background: rgba(theming.daff-color($neutral, 50), 0.1);
 		}
 
 		&:active {
 			&::after {
-				background: rgba(theming.daff-illuminate($base, $neutral, 5), 0.2);
+				background: rgba(theming.daff-color($neutral, 50), 0.2);
 			}
 		}
 
@@ -86,11 +86,11 @@
 			&[disabled],
 			&.disabled {
 				background-color: transparent;
-				border-color: theming.daff-illuminate($base, $neutral, 3);
-				color: theming.daff-illuminate($base, $neutral, 5);
+				border-color: theming.daff-color($neutral, 30);
+				color: theming.daff-color($neutral, 50);
 
 				&:hover {
-					color: theming.daff-illuminate($base, $neutral, 5);
+					color: theming.daff-color($neutral, 50);
 
 					&::after {
 						background-color: transparent;
@@ -154,11 +154,11 @@
 			&[disabled],
 			&.disabled {
 				background-color: transparent;
-				border-color: theming.daff-illuminate($base, $neutral, 3);
-				color: theming.daff-illuminate($base, $neutral, 5);
+				border-color: theming.daff-color($neutral, 70);
+				color: theming.daff-color($neutral);
 
 				&:hover {
-					color: theming.daff-illuminate($base, $neutral, 5);
+					color: theming.daff-color($neutral);
 
 					&::after {
 						background-color: transparent;
