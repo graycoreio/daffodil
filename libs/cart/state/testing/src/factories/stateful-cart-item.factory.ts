@@ -8,6 +8,10 @@ import {
 } from '@daffodil/core/state';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
+// TODO: rename to have Mock first
+/**
+ * @role mock
+ */
 export class DaffMockStatefulCartItem extends DaffMockCartItem implements DaffOperationEntity<DaffCartItem> {
   daffState = DaffState.Stable;
   daffErrors = [];

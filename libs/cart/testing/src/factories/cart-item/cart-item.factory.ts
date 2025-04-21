@@ -13,6 +13,10 @@ import {
 } from '@daffodil/product';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 
+// TODO: rename to have Mock first
+/**
+ * @role mock
+ */
 export class DaffMockCartItem implements DaffCartItem {
   id = faker.datatype.uuid();
   type = DaffCartItemInputType.Simple;

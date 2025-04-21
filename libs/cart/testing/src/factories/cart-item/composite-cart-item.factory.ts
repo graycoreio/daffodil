@@ -9,6 +9,10 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 import { DaffMockCartItem } from './cart-item.factory';
 
+// TODO: rename to have Mock first
+/**
+ * @role mock
+ */
 export class DaffMockCompositeCartItem extends DaffMockCartItem implements DaffCompositeCartItem {
   type = DaffCartItemInputType.Composite;
   options = [
