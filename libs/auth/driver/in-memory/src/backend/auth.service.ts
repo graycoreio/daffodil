@@ -11,7 +11,7 @@ import { DAFF_AUTH_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 import { DaffInMemoryDbCustomer } from '../models/db-customer.type';
 
 /**
- * @inheritdoc
+ * @inheritdoc DaffInMemorySingleRouteableBackend
  */
 @Injectable({
   providedIn: 'root',

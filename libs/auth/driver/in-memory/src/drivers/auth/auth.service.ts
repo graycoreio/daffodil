@@ -10,7 +10,7 @@ import { DaffInMemoryDriverBase } from '@daffodil/driver/in-memory';
 import { DAFF_AUTH_IN_MEMORY_COLLECTION_NAME } from '../../collection-name.const';
 
 /**
- * @inheritdoc
+ * @inheritdoc DaffAuthServiceInterface
  */
 @Injectable({
   providedIn: 'root',
