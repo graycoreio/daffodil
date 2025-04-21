@@ -1,3 +1,5 @@
+import { DaffDocsRenderedContent } from '../doc/public_api';
+
 /**
  * A usage example.
  */
@@ -16,5 +18,5 @@ export interface DaffDocExample {
    * The body of the example.
    * Can be HTML and should be rendered as such.
    */
-  body: string;
+  body: DaffDocsRenderedContent;
 }
