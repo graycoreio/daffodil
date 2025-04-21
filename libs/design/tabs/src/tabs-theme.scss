@@ -4,27 +4,45 @@
 
 @mixin daff-tabs-theme($theme) {
 	$primary: core.daff-map-get($theme, primary);
-	$secondary: core.daff-map-get($theme, secondary);
-	$tertiary: core.daff-map-get($theme, tertiary);
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$base: core.daff-map-get($theme, 'core', 'base');
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$white: core.daff-map-get($theme, 'core', 'white');
-	$black: core.daff-map-get($theme, 'core', 'black');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
-	.daff-tabs {
-		&__tab-list {
-			&::after {
-				background: theming.daff-illuminate($base, $neutral, 2);
+	@include theming.light($type) {
+		.daff-tabs {
+			&__tab-list {
+				&::after {
+					background: theming.daff-color($neutral, 20);
+				}
+			}
+		}
+
+		.daff-tab-activator {
+			border-bottom: 2px solid theming.daff-color($neutral, 20);
+			color: $base-contrast;
+
+			&.daff-selected {
+				border-bottom: 2px solid theming.daff-color($primary);
 			}
 		}
 	}
 
-	.daff-tab-activator {
-		border-bottom: 2px solid theming.daff-illuminate($base, $neutral, 2);
+	@include theming.dark($type) {
+		.daff-tabs {
+			&__tab-list {
+				&::after {
+					background: theming.daff-color($neutral, 80);
+				}
+			}
+		}
 
-		&.daff-selected {
-			border-bottom: 2px solid theming.daff-color($primary);
+		.daff-tab-activator {
+			border-bottom: 2px solid theming.daff-color($neutral, 80);
+			color: $base-contrast;
+
+			&.daff-selected {
+				border-bottom: 2px solid theming.daff-color($primary);
+			}
 		}
 	}
 }
