@@ -76,6 +76,8 @@ export class DaffLoadAcceptJsFailure implements Action {
 
 /**
  * Triggers the application of an authorize.net payment.
+ *
+ * @role action
  */
 export class DaffAuthorizenetApplyPayment implements DaffPaymentGenerateToken<DaffAuthorizenetPaymentRequest> {
   readonly type = DaffAuthorizeNetActionTypes.ApplyPaymentAction;

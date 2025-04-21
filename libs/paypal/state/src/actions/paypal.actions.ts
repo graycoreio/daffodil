@@ -15,6 +15,9 @@ export enum DaffPaypalActionTypes {
   GeneratePaypalExpressTokenFailureAction = '[@daffodil/paypal] Generate Express Token Failure Action'
 }
 
+/**
+ * @role action
+ */
 export class DaffPaypalApplyPayment<T extends DaffPaypalExpressPaymentRequest = DaffPaypalExpressPaymentRequest> implements DaffPaymentGenerateToken<T> {
   readonly type = DaffPaypalActionTypes.ApplyPaymentAction;
 

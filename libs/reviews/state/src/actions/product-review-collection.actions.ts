@@ -22,6 +22,8 @@ export enum DaffProductReviewsCollectionActionTypes {
 
 /**
  * An action for changing the number of items shown on each page for this collection.
+ *
+ * @role action
  */
 export class DaffReviewsCollectionChangePageSize implements DaffCollectionChangePageSize {
   readonly type = DaffProductReviewsCollectionActionTypes.ChangePageSizeAction;
@@ -33,6 +35,8 @@ export class DaffReviewsCollectionChangePageSize implements DaffCollectionChange
 
 /**
  * An action for changing the current page of items for this collection.
+ *
+ * @role action
  */
 export class DaffReviewsCollectionChangeCurrentPage implements DaffCollectionChangeCurrentPage {
   readonly type = DaffProductReviewsCollectionActionTypes.ChangeCurrentPageAction;
@@ -44,6 +48,8 @@ export class DaffReviewsCollectionChangeCurrentPage implements DaffCollectionCha
 
 /**
  * An action for changing the sorting option for this collection.
+ *
+ * @role action
  */
 export class DaffReviewsCollectionChangeSortingOption implements DaffCollectionChangeSortingOption {
   readonly type = DaffProductReviewsCollectionActionTypes.ChangeSortingAction;
@@ -58,6 +64,8 @@ export class DaffReviewsCollectionChangeSortingOption implements DaffCollectionC
 
 /**
  * An action for filtering the collection by an overall rating value.
+ *
+ * @role action
  */
 export class DaffReviewsCollectionChangeFilter implements DaffCollectionReplaceFilters {
   readonly type = DaffProductReviewsCollectionActionTypes.ChangeFilterAction;

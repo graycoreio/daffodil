@@ -30,6 +30,7 @@ export enum DaffSearchProductCollectionActionTypes {
 
 /**
  * @inheritdoc
+ * @role action
  */
 export class DaffSearchProductCollectionReplaceFilters implements DaffCollectionReplaceFilters {
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductReplaceFiltersAction;
@@ -39,6 +40,7 @@ export class DaffSearchProductCollectionReplaceFilters implements DaffCollection
 
 /**
  * @inheritdoc
+ * @role action
  */
 export class DaffSearchProductCollectionApplyFilters implements DaffCollectionApplyFilters {
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductApplyFiltersAction;
@@ -48,6 +50,7 @@ export class DaffSearchProductCollectionApplyFilters implements DaffCollectionAp
 
 /**
  * @inheritdoc
+ * @role action
  */
 export class DaffSearchProductCollectionRemoveFilters implements DaffCollectionRemoveFilters {
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductRemoveFiltersAction;
@@ -57,6 +60,7 @@ export class DaffSearchProductCollectionRemoveFilters implements DaffCollectionR
 
 /**
  * @inheritdoc
+ * @role action
  */
 export class DaffSearchProductCollectionClearFilters implements DaffCollectionClearFilters {
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductClearFiltersAction;
@@ -64,6 +68,7 @@ export class DaffSearchProductCollectionClearFilters implements DaffCollectionCl
 
 /**
  * @inheritdoc
+ * @role action
  */
 export class DaffSearchProductCollectionToggleFilter implements DaffCollectionToggleFilter {
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductToggleFiltersAction;
@@ -73,6 +78,7 @@ export class DaffSearchProductCollectionToggleFilter implements DaffCollectionTo
 
 /**
  * @inheritdoc
+ * @role action
  */
 export class DaffSearchProductCollectionChangePageSize implements DaffCollectionChangePageSize {
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductChangePageSizeAction;
@@ -82,6 +88,7 @@ export class DaffSearchProductCollectionChangePageSize implements DaffCollection
 
 /**
  * @inheritdoc
+ * @role action
  */
 export class DaffSearchProductCollectionChangeCurrentPage implements DaffCollectionChangeCurrentPage {
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductChangeCurrentPageAction;
@@ -91,6 +98,7 @@ export class DaffSearchProductCollectionChangeCurrentPage implements DaffCollect
 
 /**
  * @inheritdoc
+ * @role action
  */
 export class DaffSearchProductCollectionChangeSortingOption implements DaffCollectionChangeSortingOption {
   readonly type = DaffSearchProductCollectionActionTypes.SearchProductChangeSortingOptionAction;

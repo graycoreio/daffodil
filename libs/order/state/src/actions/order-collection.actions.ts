@@ -23,6 +23,8 @@ export enum DaffOrderCollectionActionTypes {
 
 /**
  * An action for changing the number of items shown on each page for this collection.
+ *
+ * @role action
  */
 export class DaffOrderCollectionChangePageSize implements DaffCollectionChangePageSize {
   readonly type = DaffOrderCollectionActionTypes.ChangePageSizeAction;
@@ -35,6 +37,8 @@ export class DaffOrderCollectionChangePageSize implements DaffCollectionChangePa
 
 /**
  * An action for changing the current page of items for this collection.
+ *
+ * @role action
  */
 export class DaffOrderCollectionChangeCurrentPage implements DaffCollectionChangeCurrentPage {
   readonly type = DaffOrderCollectionActionTypes.ChangeCurrentPageAction;
@@ -47,6 +51,8 @@ export class DaffOrderCollectionChangeCurrentPage implements DaffCollectionChang
 
 /**
  * An action for changing the sorting option for this collection.
+ *
+ * @role action
  */
 export class DaffOrderCollectionChangeSortingOption implements DaffCollectionChangeSortingOption {
   readonly type = DaffOrderCollectionActionTypes.ChangeSortingAction;
@@ -62,6 +68,8 @@ export class DaffOrderCollectionChangeSortingOption implements DaffCollectionCha
 
 /**
  * An action for filtering the collection by an overall rating value.
+ *
+ * @role action
  */
 export class DaffOrderCollectionChangeFilter implements DaffCollectionReplaceFilters {
   readonly type = DaffOrderCollectionActionTypes.ChangeFilterAction;
