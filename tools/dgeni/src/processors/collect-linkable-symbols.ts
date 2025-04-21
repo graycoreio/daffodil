@@ -3,6 +3,8 @@ import {
   Document,
 } from 'dgeni';
 
+import { DaffDocsApiType } from '@daffodil/docs-utils';
+
 import { MARKDOWN_CODE_PROCESSOR_NAME } from './markdown';
 
 export const COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME = 'collectLinkableSymbols';
@@ -34,7 +36,7 @@ export class CollectLinkableSymbolsProcessor implements Processor {
         this.log.warn(this.createDocMessage(`Linkable symbol collision for name ${doc.name}. Existing path: ${CollectLinkableSymbolsProcessor._symbols.get(doc.name)}, new path: ${doc.path}`));
       }
       CollectLinkableSymbolsProcessor._symbols.set(doc.name, doc.path);
-      if (doc.docType !== 'package') {
+      if (doc.docType !== DaffDocsApiType.PACKAGE) {
         const packageName = doc.id.match(/(.*)\/src/)[1];
         if (!CollectLinkableSymbolsProcessor._packages.get(packageName)) {
           CollectLinkableSymbolsProcessor._packages.set(packageName, []);

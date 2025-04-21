@@ -1,5 +1,7 @@
 import { Document } from 'dgeni';
 
+import { DaffDocsApiType } from '@daffodil/docs-utils';
+
 import { FilterableProcessor } from '../../../utils/filterable-processor.type';
 import { isSubpackage } from '../../../utils/package-path';
 
@@ -17,13 +19,13 @@ export class AddSubpackageExportsProcessor implements FilterableProcessor {
   readonly $runAfter = ['docs-processed'];
   readonly $runBefore = ['rendering-docs'];
 
-  docTypes = ['package'];
+  docTypes: Array<string> = [DaffDocsApiType.PACKAGE];
 
   $process(docs: Array<Document>): Array<Document> {
     return docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
         const subPackages = docs.filter((d) =>
-          d.docType === 'package' && isSubpackage(doc, d),
+          d.docType === DaffDocsApiType.PACKAGE && isSubpackage(doc, d),
         );
         doc.exports.push(...subPackages);
         doc.exports.forEach((sub) => sub.parent = doc);

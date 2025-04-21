@@ -1,4 +1,7 @@
-import { DaffDocsApiNavList } from '@daffodil/docs-utils';
+import {
+  DaffDocsApiNavList,
+  DaffDocsApiType,
+} from '@daffodil/docs-utils';
 
 import { GenerateNavListProcessor } from '../../../processors/generateNavList';
 import { DocumentWithDepth } from '../../../processors/packages';
@@ -28,7 +31,7 @@ export const transformApiNavList: GenerateNavListProcessor['transform'] = (docs:
   path: '',
   docType: '',
   children: docs
-    .filter(doc => doc.docType === 'package' && doc.depth === 0)
+    .filter(doc => doc.docType === DaffDocsApiType.PACKAGE && doc.depth === 0)
     // sort alphabetically
     .sort(comparePackage)
     .map(doc => getPackageInfo(doc)),
@@ -39,9 +42,9 @@ export function getPackageInfo(packageDoc): DaffDocsApiNavList {
     ...getExportInfo(packageDoc),
     title: packageDoc.name,
     description: packageDoc.description,
-    docType: 'package',
+    docType: DaffDocsApiType.PACKAGE,
     children: packageDoc.exports
-      .map((doc) => doc.docType === 'package' ? getPackageInfo(doc) : getExportInfo(doc)),
+      .map((doc) => doc.docType === DaffDocsApiType.PACKAGE ? getPackageInfo(doc) : getExportInfo(doc)),
   };
 }
 
@@ -51,7 +54,8 @@ function getExportInfo(exportDoc): DaffDocsApiNavList {
     title: exportDoc.name,
     path: `${exportDoc.path[0] === '/' ? '' : '/'}${exportDoc.path}`,
     docType: getDocType(exportDoc),
-    children: exportDoc.docType === 'package'
+    role: exportDoc.role,
+    children: exportDoc.docType === DaffDocsApiType.PACKAGE
       ? exportDoc.exports
         .map(getExportInfo)
       : [],
@@ -61,7 +65,7 @@ function getExportInfo(exportDoc): DaffDocsApiNavList {
 function getDocType(doc): DaffDocsApiNavList['docType'] {
   // We map `let` and `var` types to `const`
   if (['let', 'var'].indexOf(doc.docType) !== -1) {
-    return 'const';
+    return DaffDocsApiType.CONST;
   }
   return doc.docType;
 }

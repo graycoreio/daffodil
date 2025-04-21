@@ -1,5 +1,7 @@
 import { Document } from 'dgeni';
 
+import { DaffDocsApiType } from '@daffodil/docs-utils';
+
 import { FilterableProcessor } from '../utils/filterable-processor.type';
 
 export interface PathedDocument extends Document {
@@ -19,7 +21,7 @@ export class AbsolutifyPathsProcessor implements FilterableProcessor {
   readonly $runAfter = ['absolutify-paths'];
   readonly $runBefore = ['paths-absolutified'];
 
-  docTypes = ['package'];
+  docTypes: Array<string> = [DaffDocsApiType.PACKAGE];
 
   $process(docs: Array<PathedDocument>): Array<PathedDocument> {
     return docs.map((doc) => {

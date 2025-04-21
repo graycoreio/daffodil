@@ -99,7 +99,7 @@ export class BreadcrumbProcessor implements FilterableProcessor {
   ) {}
 
   private getBreadcrumbs(doc: ParentedDocument & KindedDocument): Array<DaffBreadcrumb> {
-    const segments = (<string>doc.path).split('/');////
+    const segments = (<string>doc.path).split('/');
     const breadcrumbs = segments
       .map((segment, i) => getStaticBreadcrumb(segment, segments.slice(0, i).join('/')))
       .filter((b, i, ary) => !!b && ary.findIndex((e) => e?.label === b.label) === i);
