@@ -13,9 +13,9 @@
 				Usage
 			</daff-tab-label>
 			<daff-tab-panel>
-				<daff-article
+				<div
 					[innerHtml]="doc().contents | safe">
-				</daff-article>
+				</div>
 			</daff-tab-panel>
 		</daff-tab>
 
@@ -24,9 +24,12 @@
 				API
 			</daff-tab-label>
 			<daff-tab-panel>
-				@for (apiDoc of doc().api; track $index) {
-					<section [innerHtml]="apiDoc | safe"></section>
-					<hr>
+				@for (kv of doc().api | keyvalue | daffioDocsDesignApiSortSectionLabels; track kv.key) {
+					<h2 [attr.id]="kv.key">{{getSectionLabel(kv.key)}}</h2>
+					@for (apiDoc of kv.value; track $index) {
+						<ng-template [ngComponentOutlet]="getApiComponent(apiDoc)" [ngComponentOutletInputs]="{doc: apiDoc, child: true}"></ng-template>
+						<hr>
+					}
 				}
 			</daff-tab-panel>
 		</daff-tab>

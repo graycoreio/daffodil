@@ -16,6 +16,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DaffTabsComponent } from '@daffodil/design/tabs';
 import {
   DaffDocKind,
+  DaffDocsApiRole,
   DaffPackageGuideDoc,
 } from '@daffodil/docs-utils';
 
@@ -75,7 +76,9 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
         lvl: 2,
         slug: 'toc',
       }],
-      api: ['<div id="api">api</div>'],
+      api: {
+        [DaffDocsApiRole.COMPONENT]: ['<div id="api">api</div>'],
+      },
       contents: '<div id="contents">contents</div>',
       longDescription: '<div id="longDescription">longDescription</div>',
       breadcrumbs: [],

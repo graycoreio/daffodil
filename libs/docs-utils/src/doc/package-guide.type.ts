@@ -1,5 +1,7 @@
 import { DaffDoc } from './type';
+import { DaffDocsApiRole } from '../api/public_api';
 import { DaffDocTableOfContents } from '../toc/public_api';
+import { DaffApiDoc } from './api/public_api';
 
 /**
  * A guide doc for a package.
@@ -10,9 +12,11 @@ export interface DaffPackageGuideDoc extends DaffDoc {
    */
   symbols: Array<string>;
   /**
-   * A list of rendered API docs.
+   * A list of API docs.
    */
-  api: Array<string>;
+  api: {
+    [key in DaffDocsApiRole]?: Array<DaffApiDoc>;
+  };
   /**
    * A table of contents for the API section.
    */

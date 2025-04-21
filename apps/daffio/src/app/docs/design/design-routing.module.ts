@@ -15,6 +15,7 @@ import {
 import { DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
 import { DaffioDocsDesignComponentOverviewPageComponent } from './pages/components-overview/component-overview.component';
 import { DaffioDocsDesignOverviewPageComponent } from './pages/overview/overview.component';
+import { daffioDocsDesignComponentDocResolver } from './services/component-doc.resolver';
 import { DaffioRoute } from '../../core/router/route.type';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
@@ -45,7 +46,23 @@ export const docsDesignRoutes: Routes = [
       },
       {
         path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT],
-        component: DaffioDocsDesignComponentOverviewPageComponent,
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            component: DaffioDocsDesignComponentOverviewPageComponent,
+          },
+					<DaffioRoute>{
+					  path: '**',
+					  component: DaffioDocsPageComponent,
+					  resolve: {
+					    doc: daffioDocsDesignComponentDocResolver,
+					  },
+					  data: {
+					    sidebarMode: DaffSidebarModeEnum.SideFixed,
+					  },
+					},
+        ],
       },
       <DaffioRoute>{
         path: '**',
