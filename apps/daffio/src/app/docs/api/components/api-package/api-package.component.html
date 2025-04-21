@@ -1,14 +1,14 @@
 <div class="daffio-api-package__wrapper">
   <div class="daffio-api-package__header">
-    <h1 class="daffio-api-package__package-name">{{doc.title}}</h1>
-    @if (doc.description) {
-      <p class="daffio-api-package__package-description">{{doc.description}}</p>
+    <h1 class="daffio-api-package__package-name">{{doc().title}}</h1>
+    @if (doc().description) {
+      <p class="daffio-api-package__package-description">{{doc().description}}</p>
     }
   </div>
-  <daffio-api-list-section [children]="doc.children | apiPackageFilter:true"></daffio-api-list-section>
+  <daffio-api-list-section [children]="doc().children | apiPackageFilter:true"></daffio-api-list-section>
 </div>
 
-@for (package of doc.children | apiPackageFilter; track package.id) {
+@for (package of doc().children | apiPackageFilter; track package.id) {
   <div class="daffio-api-package__wrapper">
     <h2 class="daffio-api-package__subpackage-name">
       <a [routerLink]="package.path">{{package.title}}</a>

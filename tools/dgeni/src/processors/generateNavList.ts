@@ -3,6 +3,12 @@ import {
   Document,
 } from 'dgeni';
 
+import { DaffDocsApiNavList } from '@daffodil/docs-utils';
+
+import { serializeFactory } from '../utils/serialize';
+
+const serializer = serializeFactory<DaffDocsApiNavList>(['children']);
+
 export const GENERATE_NAV_LIST_PROCESSOR_NAME = 'generateNavList';
 
 export class GenerateNavListProcessor implements Processor {
@@ -22,11 +28,12 @@ export class GenerateNavListProcessor implements Processor {
 
   $process(docs: Array<Document>): Array<Document> {
     docs.push({
+      ...this.transform(docs),
+      serializer,
       docType: 'navigation-list',
       template: 'navigation-list.template.json',
       path: this.outputFolder + '/index.json',
       outputPath: this.outputFolder + '/index.json',
-      data: this.transform(docs),
     });
 
     return docs;

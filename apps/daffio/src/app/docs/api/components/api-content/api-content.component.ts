@@ -1,3 +1,4 @@
+import { NgComponentOutlet } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -10,9 +11,9 @@ import {
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
-import { DaffioSafeHtmlPipe } from '../../../../core/html-sanitizer/safe.pipe';
 import { DaffioDocViewerComponent } from '../../../components/doc-viewer/doc-viewer.component';
 import { DaffioDocsDynamicContent } from '../../../dynamic-content/dynamic-content.type';
+import { DaffioDocsApiDynamicContentComponentService } from '../../dynamic-content/dynamic-content-component.service';
 import { DaffioApiPackageComponent } from '../api-package/api-package.component';
 
 @Component({
@@ -22,7 +23,7 @@ import { DaffioApiPackageComponent } from '../api-package/api-package.component'
   imports: [
     DaffioDocViewerComponent,
     DaffioApiPackageComponent,
-    DaffioSafeHtmlPipe,
+    NgComponentOutlet,
   ],
 })
 export class DaffioDocsApiContentComponent implements DaffioDocsDynamicContent<DaffApiDoc> {
@@ -31,4 +32,9 @@ export class DaffioDocsApiContentComponent implements DaffioDocsDynamicContent<D
   readonly isApiPackage = computed(() => this.doc().docType === 'package');
 
   doc = input<DaffApiDoc>();
+  component = computed(() => this.componentService.getComponent(this.doc()));
+
+  constructor(
+    private componentService: DaffioDocsApiDynamicContentComponentService,
+  ) {}
 }

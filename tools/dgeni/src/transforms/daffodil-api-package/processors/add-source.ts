@@ -3,30 +3,26 @@ import type { ClassExportDoc } from 'dgeni-packages/typescript/api-doc-types/Cla
 import type { ConstExportDoc } from 'dgeni-packages/typescript/api-doc-types/ConstExportDoc';
 import type { EnumExportDoc } from 'dgeni-packages/typescript/api-doc-types/EnumExportDoc';
 import type { FunctionExportDoc } from 'dgeni-packages/typescript/api-doc-types/FunctionExportDoc';
-import type { InterfaceExportDoc } from 'dgeni-packages/typescript/api-doc-types/InterfaceExportDoc';
 import type { MemberDoc } from 'dgeni-packages/typescript/api-doc-types/MemberDoc';
 import { MethodMemberDoc } from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
 import { PropertyMemberDoc } from 'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc';
 import type { TypeAliasExportDoc } from 'dgeni-packages/typescript/api-doc-types/TypeAliasExportDoc';
 
+import {
+  DaffApiDoc,
+  DaffApiType,
+  DaffDocsApiClass,
+  DaffDocsApiClassProperty,
+  DaffDocsApiType,
+  DaffDocsApiTypeMethod,
+  DaffDocsApiTypeProperty,
+  DaffDocsTsDocument,
+} from '@daffodil/docs-utils';
+
+import { ROLE_PROCESSOR_NAME } from './role';
 import { MARKDOWN_CODE_PROCESSOR_NAME } from '../../../processors/markdown';
 import { FilterableProcessor } from '../../../utils/filterable-processor.type';
 import { htmlDecodeBrackets } from '../../../utils/html-brackets';
-
-// dgeni does not use `const` for its `docType` class declarations, so they are typed as string
-// explicitly add the correct types here so narrowing will work
-type ApiDocument =
-| (ClassExportDoc & {docType: 'class'})
-| (TypeAliasExportDoc & {docType: 'type-alias'})
-| (InterfaceExportDoc & {docType: 'interface'})
-| (FunctionExportDoc & {docType: 'function'})
-| (ConstExportDoc & {docType: 'const'})
-| (EnumExportDoc & {docType: 'enum'});
-
-type ClassMember =
-| MethodMemberDoc
-| PropertyMemberDoc
-| MemberDoc;
 
 const TAB_SIZE = 2;
 
@@ -45,14 +41,6 @@ const enumBlock = (doc: EnumExportDoc): string => {
   , '\n');
 
   return `enum ${doc.name} {${members}}`;
-};
-
-const interfaceBlock = (doc: InterfaceExportDoc): string => {
-  const members = doc.members.reduce((acc, member) =>
-    `${acc}${tab()}${getMemberModifiers(member)}${member.name}: ${member.type}\n`
-  , '\n');
-
-  return `interface ${doc.name}${doc.typeParams} {${members}}`;
 };
 
 const getParameters = (params: Array<string>): string => {
@@ -76,42 +64,65 @@ const functionBlock = (doc: FunctionExportDoc): string => {
   return `function ${doc.name}${doc.typeParameters}(${getParameters(doc.parameters)})${returnType}`;
 };
 
-const classMember = (doc: ClassMember): string => {
+const typePropertyMember = (doc: DaffDocsApiTypeProperty & PropertyMemberDoc): string => {
   const decorators = doc.decorators?.length > 0
     ? doc.decorators.reduce((acc, decorator) =>
       `${acc}@${decorator.name}() `
     , '')
     : '';
-  if (doc instanceof MethodMemberDoc) {
-    const returnType = doc.type ? `: ${doc.type}` : '';
+  const type = doc.type ? `: ${doc.type}` : '';
+  if ((doc.isGetAccessor || doc.isSetAccessor) && !(doc.isGetAccessor && doc.isSetAccessor)) {
+    let property = decorators;
 
-    if (!returnType) {
-      console.warn(`${doc.id} is missing a return type!`);
+    if (doc.isGetAccessor) {
+      property = `${property ? `${property}\n` : ''}${getMemberModifiers(doc)}get ${doc.name}()${type}`;
+    }
+    if (doc.isSetAccessor) {
+      property = `${property ? `${property}\n` : ''}${getMemberModifiers(doc)}set ${doc.name}(value)${type}`;
     }
 
-    return `${decorators}${getMemberModifiers(doc)}${doc.name}${doc.typeParameters}(${getParameters(doc.parameters)})${returnType}`;
-  } else if (doc instanceof PropertyMemberDoc) {
-    const type = doc.type ? `: ${doc.type}` : '';
-    if (doc.isGetAccessor || doc.isSetAccessor) {
-      let property = decorators;
-
-      if (doc.isGetAccessor) {
-        property = `${property ? `${property}\n` : ''}${getMemberModifiers(doc)}get ${doc.name}()${type}`;
-      }
-      if (doc.isSetAccessor) {
-        property = `${property ? `${property}\n` : ''}${getMemberModifiers(doc)}set ${doc.name}(value)${type}`;
-      }
-
-      return property;
-    }
-
-    return `${decorators}${getMemberModifiers(doc)}${doc.name}${type}`;
+    return property;
   }
 
-  return '';
+  return `${decorators}${getMemberModifiers(doc)}${doc.name}${type}`;
 };
 
-const classBlock = (doc: ClassExportDoc): string => {
+const classPropertyMember = (doc: DaffDocsApiClassProperty & PropertyMemberDoc): string => {
+  const default_ = doc.default ? ` = ${doc.default}` : '';
+  return `${typePropertyMember(doc)}${default_}`;
+};
+
+const typeMethodMember = (doc: DaffDocsApiTypeMethod & MethodMemberDoc): string => {
+  const decorators = doc.decorators?.length > 0
+    ? doc.decorators.reduce((acc, decorator) =>
+      `${acc}@${decorator.name}() `
+    , '')
+    : '';
+  const returnType = doc.type ? `: ${doc.type}` : '';
+
+  if (!returnType) {
+    console.warn(`${doc.id} is missing a return type!`);
+  }
+
+  return `${decorators}${getMemberModifiers(doc)}${doc.name}${doc.typeParameters}(${getParameters(doc.parameters)})${returnType}`;
+};
+
+const interfaceBlock = (doc: DaffApiType): string => {
+  const props = doc?.props.length > 0
+    ? doc.props.reduce((acc, member) =>
+      `${acc}${indent(typePropertyMember(<any>member))}\n`
+    , '\n')
+    : '';
+  const methods = doc?.methods.length > 0
+    ? doc.methods.reduce((acc, member) =>
+      `${acc}${indent(typeMethodMember(<any>member))}\n`
+    , '\n')
+    : '';
+
+  return `interface ${doc.name}${doc.typeParams} {${props}${methods}}`;
+};
+
+const classBlock = (doc: ClassExportDoc & DaffDocsApiClass): string => {
   const decorators = doc.decorators?.length > 0
     ? doc.decorators.reduce((acc, decorator) =>
       `${acc}@${decorator.name}()\n`
@@ -128,48 +139,53 @@ const classBlock = (doc: ClassExportDoc): string => {
     , ' implements ')
     : '';
   const typeParams = doc.typeParams ? `<${doc.typeParams}> ` : '';
-  const members = doc.members.length > 0
-    ? doc.members.reduce((acc, member) =>
-      `${acc}${indent(classMember(member))}\n`
+  const props = doc.props?.length > 0
+    ? doc.props.reduce((acc, member) =>
+      `${acc}${indent(classPropertyMember(<any>member))}\n`
+    , '\n')
+    : '';
+  const methods = doc.methods?.length > 0
+    ? doc.methods.reduce((acc, member) =>
+      `${acc}${indent(typeMethodMember(<any>member))}\n`
     , '\n')
     : '';
 
-  return `${decorators}${doc.isAbstract ? 'abstract ' : ''}class ${doc.name}${typeParams}${parents}${interfaces} {${members}}`;
+  return `${decorators}${doc.isAbstract ? 'abstract ' : ''}class ${doc.name}${typeParams}${parents}${interfaces} {${props}${methods}}`;
 };
 
 const typeAliasBlock = (doc: TypeAliasExportDoc): string =>
   `type ${doc.name}${doc.typeParameters} = ${doc.typeDefinition}`;
 
 const constBlock = (doc: ConstExportDoc): string =>
-  `const ${doc.name}: ${doc.type}`;
+  `const ${doc.name}: ${doc.typeChecker.getTypeOfSymbolAtLocation(doc.symbol, doc.variableDeclaration).symbol?.escapedName || doc.type}`;
 
 export const ADD_SOURCE_NAME = 'addSource';
 
 export class AddSourceProcessor implements FilterableProcessor {
   readonly name = ADD_SOURCE_NAME;
-  readonly $runAfter = ['paths-absolutified'];
+  readonly $runAfter = ['paths-absolutified', ROLE_PROCESSOR_NAME];
   readonly $runBefore = ['rendering-docs', MARKDOWN_CODE_PROCESSOR_NAME];
 
   docTypes = [];
 
-  private getSourceBlock(doc: ApiDocument): string {
+  private getSourceBlock(doc: DaffDocsTsDocument & DaffApiDoc): string {
     switch (doc.docType) {
-      case 'class':
-        return classBlock(doc);
+      case DaffDocsApiType.CLASS:
+        return classBlock(<any>doc);
 
-      case 'type-alias':
+      case DaffDocsApiType.TYPE_ALIAS:
         return typeAliasBlock(doc);
 
-      case 'interface':
-        return interfaceBlock(doc);
+      case DaffDocsApiType.INTERFACE:
+        return interfaceBlock(<any>doc);
 
-      case 'function':
+      case DaffDocsApiType.FUNCTION:
         return functionBlock(doc);
 
-      case 'const':
+      case DaffDocsApiType.CONST:
         return constBlock(doc);
 
-      case 'enum':
+      case DaffDocsApiType.ENUM:
         return enumBlock(doc);
 
       default:

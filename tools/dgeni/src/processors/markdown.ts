@@ -69,7 +69,7 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
   $runAfter = ['paths-computed'];
   $runBefore = ['rendering-docs'];
   docTypes = [];
-  contentKey = 'content';
+  contentKey = 'contents';
 
   constructor(
     private aliasMap,

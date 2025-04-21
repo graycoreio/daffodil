@@ -1,9 +1,0 @@
-{% block header %}
-{$'<h3 id="' + doc.slug + '">' if child else '<h1>'$}{$ doc.name $}{$'</h3>' if child else '</h1>'$}
-{$ doc.description $}
-{% endblock %}
-
-{$ doc.importExample $}
-{$ doc.sourceApiBlock $}
-
-{% block body %}{% endblock %}

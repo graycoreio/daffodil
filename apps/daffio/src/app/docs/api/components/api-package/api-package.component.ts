@@ -1,8 +1,8 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   HostBinding,
+  input,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -34,5 +34,5 @@ export class DaffioApiPackageComponent {
   /**
    * A list of references for API documents.
    */
-  @Input() doc: DaffApiPackageDoc;
+  doc = input<DaffApiPackageDoc>();
 }

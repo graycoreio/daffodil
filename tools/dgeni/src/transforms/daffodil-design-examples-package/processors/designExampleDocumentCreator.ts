@@ -3,7 +3,21 @@ import {
   Document,
 } from 'dgeni';
 
+import { DaffDocsDesignExample } from '@daffodil/docs-utils';
+
+import { serializeFactory } from '../../../utils/serialize';
+
 export const docGroupRegex = /examples\/src\/(.*)\//;
+
+const serializer = serializeFactory<DaffDocsDesignExample>(
+  [
+    'id',
+    'docType',
+    'name',
+    'element',
+    'files',
+  ],
+);
 
 export class DesignExampleDocumentCreatorProcessor implements Processor {
   name = 'examples';
@@ -57,6 +71,7 @@ export class DesignExampleDocumentCreatorProcessor implements Processor {
        */
       if(!designExample){
         designExampleDocs.push({
+          serializer,
           id: doc.docGroup,
           docType: 'design-example',
           name: doc.docGroup,

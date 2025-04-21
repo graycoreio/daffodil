@@ -16,19 +16,15 @@ import {
 } from '../../processors/absolutify-paths';
 import { ADD_KIND_PROCESSOR_PROVIDER } from '../../processors/add-kind';
 import { BREADCRUMB_PROCESSOR_PROVIDER } from '../../processors/breadcrumb';
+import { COLLECT_ROUTABLE_PATHS_PROCESSOR_PROVIDER } from '../../processors/collect-routable-paths';
 import {
   CONVERT_TO_JSON_PROCESSOR_PROVIDER,
   ConvertToJsonProcessor,
 } from '../../processors/convertToJson';
-import {
-  MARKDOWN_CODE_PROCESSOR_PROVIDER,
-  MarkdownCodeProcessor,
-} from '../../processors/markdown';
+import { MARKDOWN_CODE_PROCESSOR_PROVIDER } from '../../processors/markdown';
 import { ID_SANITIZER_PROVIDER } from '../../services/id-sanitizer';
-import { linkSymbols } from '../../utils/link-symbols';
 import {
   PROJECT_ROOT,
-  TEMPLATES_PATH,
   OUTPUT_PATH,
 } from '../config';
 
@@ -44,6 +40,7 @@ export const daffodilBasePackage = new Package('daffodil-base', [
   .processor(...BREADCRUMB_PROCESSOR_PROVIDER)
   .processor(...CONVERT_TO_JSON_PROCESSOR_PROVIDER)
   .processor(...MARKDOWN_CODE_PROCESSOR_PROVIDER)
+  .processor(...COLLECT_ROUTABLE_PATHS_PROCESSOR_PROVIDER)
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   .factory('packageInfo', () => require(path.resolve(PROJECT_ROOT, 'package.json')))
 
@@ -59,41 +56,12 @@ export const daffodilBasePackage = new Package('daffodil-base', [
     writeFilesProcessor.outputFolder = OUTPUT_PATH;
   })
 
-// Configure nunjucks rendering of docs via templates
-  .config((renderDocsProcessor, templateFinder, templateEngine, markdown: MarkdownCodeProcessor) => {
-    // Where to find the templates for the doc rendering
-    templateFinder.templateFolders = [TEMPLATES_PATH];
-
-    // Standard patterns for matching docs to templates
-    templateFinder.templatePatterns = [
-      '${ doc.template }',
-      '${ doc.id }.${ doc.docType }.template.html',
-      '${ doc.id }.template.html',
-      '${ doc.docType }.template.html',
-      '${ doc.id }.${ doc.docType }.template.js',
-      '${ doc.id }.template.js',
-      '${ doc.docType }.template.js',
-      '${ doc.id }.${ doc.docType }.template.json',
-      '${ doc.id }.template.json',
-      '${ doc.docType }.template.json',
-      'common.template.html',
-    ];
-
-    // Nunjucks and Angular conflict in their template bindings so change Nunjucks
-    templateEngine.config.tags = { variableStart: '{$', variableEnd: '$}' };
-    templateEngine.filters.push(
-      {
-        name: 'linkSymbols',
-        process: linkSymbols,
-      },
-      {
-        name: 'markdown',
-        process: (text) => markdown.parse(text),
-      },
-    );
-
-    // helpers are made available to the nunjucks templates
-    renderDocsProcessor.helpers.relativePath = (from, to) => path.relative(from, to);
+  .config((renderDocsProcessor) => {
+    // overwrite
+    renderDocsProcessor.$process = (docs) => docs.map((doc) => {
+      doc.renderedContent ??= '';
+      return doc;
+    });
   })
 
   .config((convertToJson: ConvertToJsonProcessor) => {

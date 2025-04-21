@@ -9,6 +9,7 @@ import {
   DAFF_DOCS_DESIGN_PATH,
   DAFF_DOCS_PATH,
   DaffDocKind,
+  DaffDocsApiType,
 } from '@daffodil/docs-utils';
 
 import { transformApiNavList } from './helpers/generateApiList';
@@ -25,13 +26,18 @@ import {
   IMPORT_EXAMPLE_PROCESSOR_PROVIDER,
   ImportExampleProcessor,
 } from './processors/import-example';
+import { INLINE_TAG_PROCESSOR_PROVIDER } from './processors/inline-tag-processor';
 import { RemoveDuplicatesProcessor } from './processors/remove-duplicates';
+import {
+  ROLE_PROVIDER,
+  RoleProcessor,
+} from './processors/role';
 import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-packages';
 import { AddKindProcessor } from '../../processors/add-kind';
-import { AddInheritedDocsContentProcessor } from '../../processors/addInheritedDocsContent';
 import { BreadcrumbProcessor } from '../../processors/breadcrumb';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 import { COLLECT_LINKABLE_SYMBOLS_PROCESSOR_PROVIDER } from '../../processors/collect-linkable-symbols';
+import { CollectRoutablePathsProcessor } from '../../processors/collect-routable-paths';
 import { CrossEnvSafeNameProcessor } from '../../processors/cross-env-safe-name';
 import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import { FilterOutPrivatePropertiesProcessor } from '../../processors/filterOutPrivateProperties';
@@ -45,7 +51,6 @@ import {
 import { outputPathsConfigurator } from '../../utils/configurator/output';
 import {
   API_SOURCE_PATH,
-  API_TEMPLATES_PATH,
   DESIGN_PATH,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
@@ -67,7 +72,6 @@ export const apiDocsBase = new Package('api-base', [
   .processor(new CleanSelectorsProcessor())
   .processor(new MakeTypesHtmlCompatibleProcessor())
   .processor(new FilterOutPrivatePropertiesProcessor())
-  .processor(new AddInheritedDocsContentProcessor())
   .processor(...PACKAGES_PROCESSOR_PROVIDER)
   .processor(...ADD_PACKAGE_EXPORTS_PROCESSOR_PROVIDER)
   .processor(...ADD_SUBPACKAGE_EXPORTS_PROCESSOR_PROVIDER)
@@ -75,6 +79,8 @@ export const apiDocsBase = new Package('api-base', [
   .processor(...EXAMPLES_PROCESSOR_PROVIDER)
   .processor(...ADD_SOURCE_PROVIDER)
   .processor(...IMPORT_EXAMPLE_PROCESSOR_PROVIDER)
+  .processor(...ROLE_PROVIDER)
+  .processor(...INLINE_TAG_PROCESSOR_PROVIDER)
   .factory('API_DOC_TYPES_TO_RENDER', (EXPORT_DOC_TYPES) => EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe']))
   .config((readFilesProcessor, readTypeScriptModules, tsParser) => {
 
@@ -97,14 +103,18 @@ export const apiDocsBase = new Package('api-base', [
     examples: ExamplesProcessor,
     addSource: AddSourceProcessor,
     importExample: ImportExampleProcessor,
+    role: RoleProcessor,
+    collectRoutablePaths: CollectRoutablePathsProcessor,
   ) => {
     importExample.docTypes.push(...EXPORT_DOC_TYPES);
+    role.docTypes.push(...EXPORT_DOC_TYPES);
     markdown.docTypes.push(...EXPORT_DOC_TYPES);
     examples.docTypes.push(...EXPORT_DOC_TYPES);
     markdown.docTypes.push(...EXPORT_DOC_TYPES);
     addSource.docTypes.push(...EXPORT_DOC_TYPES);
-    addKind.docTypes.push(...EXPORT_DOC_TYPES, 'package', 'module');
-    breadcrumb.docTypes.push(...EXPORT_DOC_TYPES, 'package');
+    addKind.docTypes.push(...EXPORT_DOC_TYPES, DaffDocsApiType.PACKAGE, 'module');
+    collectRoutablePaths.docTypes.push(...EXPORT_DOC_TYPES, DaffDocsApiType.PACKAGE, 'module');
+    breadcrumb.docTypes.push(...EXPORT_DOC_TYPES, DaffDocsApiType.PACKAGE);
     markdown.contentKey = 'description';
 
     addKind.$runAfter.push('readTypeScriptModules');
@@ -118,9 +128,8 @@ export const apiDocsBase = new Package('api-base', [
     });
   })
   .config((parseTagsProcessor: any) => {
-    parseTagsProcessor.tagDefinitions = parseTagsProcessor.tagDefinitions.concat([
+    parseTagsProcessor.tagDefinitions.push(
       { name: 'docs-private' },
-      { name: 'inheritdoc' },
       {
         name: 'example',
         multi: true,
@@ -138,15 +147,43 @@ export const apiDocsBase = new Package('api-base', [
           return value;
         },
       },
-    ]);
+      {
+        name: 'role',
+        multi: false,
+        transforms: (doc: Document, tag: any, value: any) => {
+          doc.role = value;
+
+          return value;
+        },
+      },
+      {
+        name: 'inheritdoc',
+        multi: true,
+        transforms: (doc: Document, tag: any, value: any) => {
+          if (doc.members) {
+            const match = value.match(/^(.*)$/gm)[0];
+            const parent = doc.implementsClauses.find(({ text }) => text === match);
+            (parent ? [parent] : doc.implementsClauses).forEach(i => {//
+              i.doc?.members.forEach(member => {
+                const matchedMember = doc.members.find(m => m.name === member.name);
+                if (matchedMember) {
+                  matchedMember.description = matchedMember.description
+                    ? `${member.description || member.content} ${matchedMember.description}`
+                    : member.description || member.content;
+                }
+              });
+            });
+            doc.description.replace('@inheritdoc');
+          }
+
+          return value;
+        },
+      },
+    );
   })
-  .config((convertToJson: ConvertToJsonProcessor, API_DOC_TYPES_TO_RENDER) => {
-    convertToJson.docTypes = convertToJson.docTypes.concat(API_DOC_TYPES_TO_RENDER);
-    convertToJson.extraFields.push('examples');
-  })
-  .config((templateFinder) => {
-    // Where to find the templates for the API doc rendering
-    templateFinder.templateFolders.unshift(API_TEMPLATES_PATH);
+  .config((convertToJson: ConvertToJsonProcessor) => {
+    convertToJson.$runAfter.push('inlineTagProcessor');
+    // convertToJson.extraFields.push('examples', 'role', 'description', 'importExample', 'sourceApiBlock');
   })
   .config((generateNavList: GenerateNavListProcessor) => {
     generateNavList.transform = transformApiNavList;
@@ -155,7 +192,7 @@ export const apiDocsBase = new Package('api-base', [
 export const apiDocs = outputPathsConfigurator({
   kind: DaffDocKind.API,
   outputPath: DAFF_DOCS_PATH,
-  docTypes: ['package'],
+  docTypes: [DaffDocsApiType.PACKAGE],
 })(new Package(API_PACKAGE_NAME, [apiDocsBase]))
   .config((readTypeScriptModules) => {
     // Specify collections of source files that should contain the documentation to extract
@@ -167,7 +204,7 @@ export const apiDocs = outputPathsConfigurator({
 export const designApiPackage = outputPathsConfigurator({
   kind: DaffDocKind.API,
   outputPath: `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`,
-  docTypes: ['package'],
+  docTypes: [DaffDocsApiType.PACKAGE],
 })(new Package('design-api-docs', [apiDocs]))
   .processor(new RemoveDuplicatesProcessor())
   .config((readTypeScriptModules) => {

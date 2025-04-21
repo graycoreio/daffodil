@@ -24,6 +24,7 @@ import {
 } from '../../processors/add-api-symbols-to-package';
 import { AddKindProcessor } from '../../processors/add-kind';
 import { BreadcrumbProcessor } from '../../processors/breadcrumb';
+import { CollectRoutablePathsProcessor } from '../../processors/collect-routable-paths';
 import { ConvertToJsonProcessor } from '../../processors/convertToJson';
 import { FILTER_NAV_INDEX_PROCESSOR_PROVIDER } from '../../processors/filter-nav-index';
 import {
@@ -44,7 +45,6 @@ import {
   API_SOURCE_PATH,
   DESIGN_PATH,
   DOCS_SOURCE_PATH,
-  GUIDES_TEMPLATES_PATH,
   PROJECT_ROOT,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
@@ -54,19 +54,20 @@ const docTypes = ['guide', 'package-guide'];
 const base = new Package('daffodil-guides-base', [daffodilBasePackage])
   .factory('guideFileReader', guideFileReaderFactory)
   .factory(...INDEX_FILE_READER_PROVIDER)
-  .config((markdown: MarkdownCodeProcessor, addKind: AddKindProcessor, convertToJson, breadcrumb: BreadcrumbProcessor) => {
+  .config((
+    markdown: MarkdownCodeProcessor,
+    addKind: AddKindProcessor,
+    breadcrumb: BreadcrumbProcessor,
+    collectRoutablePaths: CollectRoutablePathsProcessor,
+  ) => {
+    collectRoutablePaths.docTypes.push(...docTypes);
     addKind.docTypes.push(...docTypes);
     markdown.docTypes.push(...docTypes);
     breadcrumb.docTypes.push(...docTypes);
-    convertToJson.docTypes = convertToJson.docTypes.concat(docTypes);
   })
   .config((readFilesProcessor, guideFileReader, indexFileReader) => {
     readFilesProcessor.$enabled = true;
     readFilesProcessor.fileReaders.push(guideFileReader, indexFileReader);
-  })
-  .config((templateFinder) => {
-    // Where to find the templates for the API doc rendering
-    templateFinder.templateFolders.unshift(GUIDES_TEMPLATES_PATH);
   })
   .config((computeIdsProcessor, idSanitizer: IdSanitizer) => {
     computeIdsProcessor.idTemplates.push({

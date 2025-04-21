@@ -8,7 +8,6 @@ import {
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
-import { DesignExampleConvertToJsonProcessor } from './processors/convertToJson';
 import { DesignExampleDocumentCreatorProcessor } from './processors/designExampleDocumentCreator';
 import { DesignExampleFilterProcessor } from './processors/exampleFileCollator';
 import { DesignExampleHighlightCodeProcessor } from './processors/highlightCode';
@@ -16,17 +15,13 @@ import { designExampleReaderFactory } from './reader/example.reader';
 import { AddKindProcessor } from '../../processors/add-kind';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
-import {
-  DESIGN_PATH,
-  TEMPLATES_PATH,
-} from '../config';
+import { DESIGN_PATH } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
 
 const docTypes = ['design-example'];
 
 export const designExamplePackage = new Package('daffodil-design-examples', [daffodilBasePackage])
   .factory('designExampleReader', designExampleReaderFactory)
-  .processor('convertToJson', (log, createDocMessage) =>  new DesignExampleConvertToJsonProcessor(log, createDocMessage))
   .processor(new FilterContainedDocsProcessor())
   .processor(new CleanSelectorsProcessor())
   .processor(new DesignExampleDocumentCreatorProcessor())
@@ -40,8 +35,7 @@ export const designExamplePackage = new Package('daffodil-design-examples', [daf
       { include: ['**/examples/src/*/*.*']},
     ];
   })
-  .config((convertToJson, addKind: AddKindProcessor) => {
-    convertToJson.docTypes.push(...docTypes);
+  .config((addKind: AddKindProcessor) => {
     addKind.docTypes.push(...docTypes);
   })
   .config((computePathsProcessor) => {
@@ -53,10 +47,6 @@ export const designExamplePackage = new Package('daffodil-design-examples', [daf
       },
       outputPathTemplate: '${moduleFolder}.json',
     });
-  })
-  .config((templateFinder) => {
-    // Where to find the templates for the doc rendering
-    templateFinder.templateFolders.unshift(TEMPLATES_PATH + '/design-examples');
   })
   .config((computeIdsProcessor) => {
     computeIdsProcessor.idTemplates.push({

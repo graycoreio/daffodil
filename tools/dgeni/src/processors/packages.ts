@@ -4,11 +4,29 @@ import {
 } from 'dgeni';
 import * as path from 'path';
 
+import {
+  DaffApiPackageDoc,
+  DaffDocsApiType,
+} from '@daffodil/docs-utils';
+
 import { API_SOURCE_PATH } from '../transforms/config';
+import { serializeFactory } from '../utils/serialize';
 
 export interface DocumentWithDepth extends Document {
   depth?: number;
 }
+
+const serializer = serializeFactory<DaffApiPackageDoc>(
+  [
+    'id',
+    'title',
+    'path',
+    'docType',
+    'description',
+    'breadcrumbs',
+    'children',
+  ],
+);
 
 export const PACKAGES_PROCESSOR_NAME = 'packages';
 
@@ -25,7 +43,7 @@ export class PackagesProcessor implements Processor {
           .replace('src/', '')
           .replace('/src', '')
           .replace(/^.*libs\//, '');
-        doc.docType = 'package';
+        doc.docType = DaffDocsApiType.PACKAGE;
         try {
           // eslint-disable-next-line @typescript-eslint/no-require-imports
           const packageJson = require(path.resolve(API_SOURCE_PATH, doc.id, 'package.json'));
@@ -36,6 +54,7 @@ export class PackagesProcessor implements Processor {
         // root packages should have depth of 0
         doc.depth = doc.id.split('/').length - 1;
         doc.aliases?.push(doc.id);
+        doc.serializer = serializer;
       }
       return doc;
     });

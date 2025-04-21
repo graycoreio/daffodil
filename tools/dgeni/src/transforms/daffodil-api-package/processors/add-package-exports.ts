@@ -3,6 +3,8 @@ import {
   Document,
 } from 'dgeni';
 
+import { DaffDocsApiType } from '@daffodil/docs-utils';
+
 import { ADD_SUBPACKAGE_EXPORTS_PROCESSOR_NAME } from './add-subpackage-exports';
 import { BREADCRUMB_PROCESSOR_NAME } from '../../../processors/breadcrumb';
 import { getPackageInfo } from '../helpers/generateApiList';
@@ -17,16 +19,17 @@ export class AddPackageExportsProcessor implements Processor {
   readonly $runAfter = ['docs-processed', ADD_SUBPACKAGE_EXPORTS_PROCESSOR_NAME, BREADCRUMB_PROCESSOR_NAME];
   readonly $runBefore = ['rendering-docs'];
 
-  docTypes = ['package'];
+  docTypes: Array<string> = [DaffDocsApiType.PACKAGE];
 
   $process(docs: Array<Document>): Array<Document> {
     return docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
-        doc.data = {
-          breadcrumbs: doc.breadcrumbs,
-          kind: doc.kind,
-          ...getPackageInfo(doc),
-        };
+        const packageData = getPackageInfo(doc);
+        for (const k in packageData) {
+          if (Object.hasOwn(packageData, k)) {
+            doc[k] = packageData[k];
+          }
+        }
       }
       return doc;
     });

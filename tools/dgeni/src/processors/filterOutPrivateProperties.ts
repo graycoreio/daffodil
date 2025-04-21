@@ -3,26 +3,24 @@ import {
   Document,
 } from 'dgeni';
 
-import { ADD_SOURCE_NAME } from '../transforms/daffodil-api-package/processors/add-source';
+const isPublic = (doc): boolean => !doc.tags.tagsByName.get('docs-private');
 
 /**
  * Filter out properties that are marked as @docs-private
  */
 export class FilterOutPrivatePropertiesProcessor implements Processor {
   name = 'filterOutPrivateProperties';
-  $runAfter = ['docs-processed'];
-  $runBefore = ['rendering-docs', ADD_SOURCE_NAME];
+  $runAfter = ['paths-computed'];
+  $runBefore = ['paths-absolutified'];
 
   $process(docs: Document[]): Document[] {
-    return docs.map(doc => {
-      if (doc.members) {
-        doc.members = filterOutPrivateProperties(doc.members);
-      }
-      return doc;
-    });
+    return docs
+      .filter(isPublic)
+      .map(doc => {
+        if (doc.members) {
+          doc.members = doc.members.filter(isPublic);
+        }
+        return doc;
+      });
   }
-}
-
-function filterOutPrivateProperties(members): any {
-  return members.filter(member => !member.tags.tags.find(tag => tag.tagName ==='docs-private'));
 }

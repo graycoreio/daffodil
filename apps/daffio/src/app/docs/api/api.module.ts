@@ -8,6 +8,7 @@ import { DaffioDocsApiRoutingModule } from './api-routing.module';
 import { provideDaffioDocsApiContentComponent } from './components/api-content/api-content.provider';
 import { DaffioApiListModule } from './components/api-list/api-list.module';
 import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.component';
+import { daffioDocsApiRolesProvider } from './roles/api-roles.provider';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.
   ],
   providers: [
     provideDaffioDocsApiContentComponent(),
+    ...daffioDocsApiRolesProvider(),
   ],
 })
 export class DaffioApiModule {}
