@@ -100,7 +100,7 @@ describe('DaffioApiPackageComponent', () => {
   });
 
   it('should be able to take doc as input', () => {
-    expect(component.doc).toEqual(wrapper.apiListValue);
+    expect(component.doc()).toEqual(wrapper.apiListValue);
   });
 
   describe('for every subpackage in children', () => {
