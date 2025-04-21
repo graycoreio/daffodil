@@ -35,24 +35,47 @@
 	$white: core.daff-map-get($theme, 'core', 'white');
 	$black: core.daff-map-get($theme, 'core', 'black');
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-card,
 	.daff-raised-card,
 	.daff-stroked-card {
-		@include daff-basic-card-theme-variant(
-			theming.daff-illuminate($base, $neutral, 1)
-		);
+		@include theming.light($type) {
+			@include daff-basic-card-theme-variant(theming.daff-color($neutral, 10));
 
-		&.daff-primary {
-			@include daff-basic-card-theme-variant(theming.daff-color($primary));
+			&.daff-primary {
+				@include daff-basic-card-theme-variant(theming.daff-color($primary));
+			}
+
+			&.daff-secondary {
+				@include daff-basic-card-theme-variant(theming.daff-color($secondary));
+			}
+
+			&.daff-tertiary {
+				@include daff-basic-card-theme-variant(theming.daff-color($tertiary));
+			}
 		}
 
-		&.daff-secondary {
-			@include daff-basic-card-theme-variant(theming.daff-color($secondary));
-		}
+		@include theming.dark($type) {
+			@include daff-basic-card-theme-variant(theming.daff-color($neutral, 90));
 
-		&.daff-tertiary {
-			@include daff-basic-card-theme-variant(theming.daff-color($tertiary));
+			&.daff-primary {
+				@include daff-basic-card-theme-variant(
+					theming.daff-color($primary, 60)
+				);
+			}
+
+			&.daff-secondary {
+				@include daff-basic-card-theme-variant(
+					theming.daff-color($secondary, 60)
+				);
+			}
+
+			&.daff-tertiary {
+				@include daff-basic-card-theme-variant(
+					theming.daff-color($tertiary, 60)
+				);
+			}
 		}
 
 		&.daff-theme {
@@ -76,50 +99,100 @@
 		&.daff-card,
 		&.daff-raised-card,
 		&.daff-stroked-card {
-			@include daff-linkable-card-theme-variant(
-				theming.daff-illuminate($base, $neutral, 2)
-			);
-
-			&.daff-primary {
+			@include theming.light($type) {
 				@include daff-linkable-card-theme-variant(
-					theming.daff-color($primary, 70)
+					theming.daff-color($neutral, 20)
 				);
+
+				&.daff-primary {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($primary, 70)
+					);
+				}
+
+				&.daff-secondary {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($secondary, 70)
+					);
+				}
+
+				&.daff-tertiary {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($tertiary, 70)
+					);
+				}
+
+				&.daff-theme {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($neutral, 10)
+					);
+				}
+
+				&.daff-theme-contrast {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($neutral, 90)
+					);
+				}
+
+				&.daff-black {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($neutral, 100)
+					);
+				}
+
+				&.daff-white {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($neutral, 10)
+					);
+				}
 			}
 
-			&.daff-secondary {
+			@include theming.dark($type) {
 				@include daff-linkable-card-theme-variant(
-					theming.daff-color($secondary, 70)
+					theming.daff-color($neutral, 80)
 				);
-			}
 
-			&.daff-tertiary {
-				@include daff-linkable-card-theme-variant(
-					theming.daff-color($tertiary, 70)
-				);
-			}
+				&.daff-primary {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($primary, 70)
+					);
+				}
 
-			&.daff-theme {
-				@include daff-linkable-card-theme-variant(
-					theming.daff-illuminate($base, $neutral, 1)
-				);
-			}
+				&.daff-secondary {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($secondary, 70)
+					);
+				}
 
-			&.daff-theme-contrast {
-				@include daff-linkable-card-theme-variant(
-					theming.daff-illuminate($base-contrast, $neutral, 1)
-				);
-			}
+				&.daff-tertiary {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($tertiary, 70)
+					);
+				}
 
-			&.daff-black {
-				@include daff-linkable-card-theme-variant(
-					theming.daff-color($neutral, 100)
-				);
-			}
+				&.daff-theme {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($neutral, 90)
+					);
+				}
 
-			&.daff-white {
-				@include daff-linkable-card-theme-variant(
-					theming.daff-color($neutral, 10)
-				);
+				&.daff-theme-contrast {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($neutral, 10)
+					);
+				}
+
+				&.daff-black {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($neutral, 100)
+					);
+				}
+
+				&.daff-white {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($neutral, 10)
+					);
+				}
 			}
 		}
 	}
