@@ -26,12 +26,12 @@ import { DaffioDocsService } from '../services/docs.service';
 })
 export class DocsResolver<T extends DaffDoc = DaffDoc>  {
 
-  constructor(private docService: DaffioDocsService<T>, private router: Router) { }
+  constructor(private docService: DaffioDocsService, private router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<T> {
     return this.docService
     //remove any route fragment and initial slash from the route.
-      .get(daffUriTruncateLeadingSlash(daffUriTruncateQueryFragment(state.url)))
+      .get<T>(daffUriTruncateLeadingSlash(daffUriTruncateQueryFragment(state.url)))
       .pipe(
         take(1),
         catchError(() => {

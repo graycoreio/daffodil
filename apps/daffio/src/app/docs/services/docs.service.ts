@@ -19,14 +19,13 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffioDocsService<T extends DaffDoc = DaffDoc> implements DaffioDocsServiceInterface<T> {
-
+export class DaffioDocsService implements DaffioDocsServiceInterface {
   constructor(
     @Inject(DaffioAssetFetchService) private fetchAsset: DaffioAssetFetchServiceInterface,
     @Inject(DAFFIO_DOCS_PATH_TOKEN) private docsPath: string,
   ) {}
 
-  get(path: string): Observable<T> {
+  get<T extends DaffDoc = DaffDoc>(path: string): Observable<T> {
     return this.fetchAsset.fetch<T>(`${this.docsPath}/${crossOsFilename(path)}.json`);
   }
 }
