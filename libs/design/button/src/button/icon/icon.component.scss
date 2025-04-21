@@ -12,6 +12,10 @@
 		line-height: 2rem;
 		height: 2rem;
 		width: 2rem;
+
+		.daff-button__loading {
+			width: 2rem;
+		}
 	}
 
 	&.daff-md {
@@ -19,6 +23,10 @@
 		line-height: 3rem;
 		height: 3rem;
 		width: 3rem;
+
+		.daff-button__loading {
+			width: 3rem;
+		}
 	}
 
 	&.daff-lg {
@@ -26,5 +34,9 @@
 		line-height: 3.5rem;
 		height: 3.5rem;
 		width: 3.5rem;
+
+		.daff-button__loading {
+			width: 3.5rem;
+		}
 	}
 }
