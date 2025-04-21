@@ -9,7 +9,9 @@ import { DaffDriverResponse } from '@daffodil/driver';
  */
 export interface DaffCartServiceInterface<T extends DaffCart = DaffCart> {
   /**
-   * Retrieve a cart
+   * Retrieve a cart.
+   *
+   * @param id The cart ID.
    */
   get(id: T['id']): Observable<DaffDriverResponse<T>>;
 

@@ -15,7 +15,7 @@ export class DaffMagentoCartPaymentTransformer {
   /**
    * Transforms the magento CartPayment from the magento cart query into a DaffCartPaymentMethod.
    *
-   * @param response the response from a magento cart query.
+   * @param responsePayment - the response from a magento cart query.
    */
   transform(responsePayment: MagentoCartPaymentMethod): DaffCartPaymentMethod {
     return responsePayment ? {
