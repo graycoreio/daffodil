@@ -7,3 +7,4 @@ export * from './example/public_api';
 export * from './kind/public_api';
 export * from './nav/public_api';
 export * from './toc/public_api';
+export * from './ts/public_api';
