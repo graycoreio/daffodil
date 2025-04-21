@@ -1,0 +1,14 @@
+<table>
+	<tr>
+		<th>
+			<daffio-docs-member-heading type="property">
+				<div daffioDocsMemberHeadingName>{{ prop.name }}</div>
+				<code class="daffio-docs-api-interface-block__type" [innerHTML]="prop.type | safe"></code>
+			</daffio-docs-member-heading>
+		</th>
+	</tr>
+	
+	<tr>
+		<td [innerHTML]="prop.description | safe"></td>
+	</tr>
+</table>

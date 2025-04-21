@@ -1,0 +1,16 @@
+// stylelint-disable selector-class-pattern
+.daffio-docs-member-heading {
+	$root: &;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+
+	#{$root}__name {
+		border-radius: 0.25rem;
+		font-size: 1rem;
+		font-weight: 500;
+		line-height: 1.5rem;
+		padding: 0.25rem 0.5rem;
+	}
+}

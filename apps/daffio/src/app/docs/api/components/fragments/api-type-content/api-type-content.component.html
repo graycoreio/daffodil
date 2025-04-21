@@ -1,0 +1,33 @@
+<daffio-docs-api-base-content [child]="child()" [doc]="doc()">
+	@if (hasPropsWithDocs()) {
+		@if (child()) {
+			<h4>Properties</h4>
+		} @else {
+			<h2>Properties</h2>
+		}
+		@if (isConcrete()) {
+			<div class="daffio-docs-api-type-content__member-grid">
+				@for (prop of doc().props; track $index) {
+					<daffio-docs-api-property-block [prop]="prop" [child]="child()"></daffio-docs-api-property-block>
+				}
+			</div>
+		} @else {
+			@for (prop of doc().props; track $index) {
+				<daffio-docs-api-interface-block [prop]="prop" [child]="child()"></daffio-docs-api-interface-block>
+			}
+		}
+	}
+	@if (doc().methods.length > 0) {
+		@if (child()) {
+			<h4 class="daffio-docs-api-type-content__heading"><span class="daffio-docs-api-type-content__method-icon">()</span> Methods</h4>
+		} @else {
+			<h2 class="daffio-docs-api-type-content__heading"><span class="daffio-docs-api-type-content__method-icon">()</span> Methods</h2>
+		}
+		<div class="daffio-docs-api-type-content__member-grid">
+			@for (method of doc().methods; track $index) {
+				<daffio-docs-api-method-block [method]="method" [child]="child()"></daffio-docs-api-method-block>
+			}
+		</div>
+	}
+	<ng-content></ng-content>
+</daffio-docs-api-base-content>

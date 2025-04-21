@@ -1,0 +1,23 @@
+<daffio-docs-member-heading type="property">
+	<div daffioDocsMemberHeadingName>{{ prop.name }}</div>
+	<code [innerHTML]="prop.type | safe"></code>
+</daffio-docs-member-heading>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>
+				@if(hasDefault) {
+					<code>{{prop.default}}</code>
+				} @else {
+					–
+				}
+			</td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td [innerHTML]="prop.description | safe"></td>
+		</tr>
+	</tbody>
+</table>

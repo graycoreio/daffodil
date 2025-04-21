@@ -1,0 +1,11 @@
+@use 'theme' as daff-theme;
+
+@mixin daffio-method-block-theme($theme) {
+	$red: daff-theme.daff-map-get($theme, critical);
+
+	.daffio-docs-api-method-block {
+		&__parameters-icon {
+			color: daff-theme.daff-color($red);
+		}
+	}
+}

@@ -1,0 +1,26 @@
+<daffio-docs-api-type-content [child]="child()" [doc]="doc()">
+	@if (doc().inputs.length > 0) {
+		@if (child()) {
+			<h4 class="daffio-docs-api-directive-content__heading"><fa-icon [icon]="faChevronRight" class="daffio-docs-api-directive-content__input-icon"></fa-icon> Inputs</h4>
+		} @else {
+			<h2 class="daffio-docs-api-directive-content__heading"><fa-icon [icon]="faChevronRight" class="daffio-docs-api-directive-content__input-icon"></fa-icon> Inputs</h2>
+		}
+		<div class="daffio-docs-api-directive-content__member-grid">
+			@for (input of doc().inputs; track $index) {
+				<daffio-docs-api-property-block [prop]="input"></daffio-docs-api-property-block>
+			}
+		</div>
+	}
+	@if (doc().outputs.length > 0) {
+		@if (child()) {
+			<h4 class="daffio-docs-api-directive-content__heading"><fa-icon [icon]="faChevronLeft" class="daffio-docs-api-directive-content__output-icon"></fa-icon> Outputs</h4>
+		} @else {
+			<h2 class="daffio-docs-api-directive-content__heading"><fa-icon [icon]="faChevronLeft" class="daffio-docs-api-directive-content__output-icon"></fa-icon> Outputs</h2>
+		}
+		<div class="daffio-docs-api-directive-content__member-grid">
+			@for (output of doc().outputs; track $index) {
+				<daffio-docs-api-property-block [prop]="output"></daffio-docs-api-property-block>
+			}
+		</div>
+	}
+</daffio-docs-api-type-content>

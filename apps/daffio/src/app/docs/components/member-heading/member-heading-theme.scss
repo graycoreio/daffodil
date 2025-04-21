@@ -1,0 +1,57 @@
+@use 'theme' as daff-theme;
+
+// stylelint-disable selector-class-pattern
+@mixin daffio-docs-member-heading-theme($theme) {
+	$primary: daff-theme.daff-map-get(daff-theme.$theme, primary);
+	$secondary: daff-theme.daff-map-get(daff-theme.$theme, secondary);
+	$tertiary: daff-theme.daff-map-get(daff-theme.$theme, tertiary);
+	$type: daff-theme.daff-map-get($theme, 'core', 'type');
+
+	.daffio-docs-member-heading {
+		@include daff-theme.light($type) {
+			&.property {
+				.daffio-docs-member-heading__name {
+					background-color: daff-theme.daff-color($primary, 10);
+					color: daff-theme.daff-color($primary, 80);
+				}
+			}
+
+			&.function {
+				.daffio-docs-member-heading__name {
+					background-color: daff-theme.daff-color($secondary, 10);
+					color: daff-theme.daff-color($secondary, 80);
+				}
+			}
+
+			&.method {
+				.daffio-docs-member-heading__name {
+					background-color: daff-theme.daff-color($tertiary, 10);
+					color: daff-theme.daff-color($tertiary, 80);
+				}
+			}
+		}
+
+		@include daff-theme.dark($type) {
+			&.property {
+				.daffio-docs-member-heading__name {
+					background-color: daff-theme.daff-color($primary, 90);
+					color: daff-theme.daff-color($primary, 20);
+				}
+			}
+
+			&.function {
+				.daffio-docs-member-heading__name {
+					background-color: daff-theme.daff-color($secondary, 90);
+					color: daff-theme.daff-color($secondary, 20);
+				}
+			}
+
+			&.method {
+				.daffio-docs-member-heading__name {
+					background-color: daff-theme.daff-color($tertiary, 90);
+					color: daff-theme.daff-color($tertiary, 20);
+				}
+			}
+		}
+	}
+}

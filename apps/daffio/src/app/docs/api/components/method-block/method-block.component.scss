@@ -1,0 +1,21 @@
+.daffio-docs-api-method-block {
+	&__header {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	&__heading {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	&__description {
+		p {
+			&:last-of-type {
+				margin: 0;
+			}
+		}
+	}
+}

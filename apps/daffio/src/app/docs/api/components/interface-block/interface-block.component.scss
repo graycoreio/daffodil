@@ -1,0 +1,11 @@
+.daffio-docs-api-interface-block {
+	&__header {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	&__type {
+		font-weight: 400;
+	}
+}

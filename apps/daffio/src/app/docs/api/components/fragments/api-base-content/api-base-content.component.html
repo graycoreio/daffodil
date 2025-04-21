@@ -1,0 +1,18 @@
+@if (child()) {
+	<h3 [attr.id]="doc().slug">{{doc().name}}</h3>
+} @else {
+	<h1 [attr.id]="doc().slug">{{doc().name}}</h1>
+}
+<p [innerHTML]="doc().importExample | safe"></p>
+<div [innerHTML]="doc().description | safe"></div>
+<div [innerHTML]="doc().sourceApiBlock | safe"></div>
+<ng-content></ng-content>
+@if (!child()) {
+	@if (doc().examples.length > 0) {
+		<h2 id="examples">Examples</h2>
+	}
+	@for (example of doc().examples; track example.id) {
+		<h3 [attr.id]="example.id">{{example.caption}}</h3>
+		<div [innerHTML]="example.body | safe"></div>
+	}
+}

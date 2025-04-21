@@ -1,0 +1,14 @@
+.daffio-docs-api-type-content {
+	&__member-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		margin: 2rem 0 0;
+	}
+
+	&__heading {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+}

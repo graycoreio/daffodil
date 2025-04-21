@@ -1,0 +1,11 @@
+@use 'theme' as daff-theme;
+
+@mixin daffio-api-type-content-theme($theme) {
+	$tertiary: daff-theme.daff-map-get(daff-theme.$theme, tertiary);
+
+	.daffio-docs-api-type-content {
+		&__method-icon {
+			color: daff-theme.daff-color($tertiary);
+		}
+	}
+}

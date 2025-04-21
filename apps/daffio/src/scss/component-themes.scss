@@ -13,6 +13,10 @@
 @use '../app/core/header/components/header/header-theme' as header;
 @use '../app/docs/components/scroll-to-top/scroll-to-top-theme' as scroll-to-top;
 @use '../app/docs/components/table-of-contents/link/link-theme' as docs-toc-link;
+@use '../app/docs/components/member-heading/member-heading-theme' as member-heading;
+@use '../app/docs/api/components/fragments/api-type-content/api-type-content-theme' as api-type-content;
+@use '../app/docs/api/components/method-block/method-block-theme' as api-method-block;
+@use '../app/docs/api/components/fragments/api-directive-content/api-directive-content-theme' as api-directive-content;
 
 @mixin component-themes($theme) {
 	@include simple-footer.daffio-simple-footer-theme($theme);
@@ -24,10 +28,14 @@
 	@include api-list.daffio-api-list-theme($theme);
 	@include api-list-section.daffio-api-list-section-theme($theme);
 	@include api-package.daffio-api-package-theme($theme);
+	@include member-heading.daffio-docs-member-heading-theme($theme);
 	@include newsletter.daffio-newsletter-theme($theme);
 	@include header.daffio-header-theme($theme);
 	@include marketing-sidebar-footer.daffio-marketing-sidebar-footer-theme($theme);
 	@include docs-sidebar-footer.daffio-docs-sidebar-footer-theme($theme);
 	@include scroll-to-top.daffio-docs-scroll-to-top-theme($theme);
 	@include docs-toc-link.daffio-docs-table-of-contents-link-theme($theme);
+	@include api-type-content.daffio-api-type-content-theme($theme);
+	@include api-method-block.daffio-method-block-theme($theme);
+	@include api-directive-content.daffio-api-directive-content-theme($theme);
 }

@@ -1,0 +1,31 @@
+<div class="daffio-docs-api-method-block__header">
+	<daffio-docs-member-heading type="method">
+		<div daffioDocsMemberHeadingName>{{ method.name }}</div>
+		<code [innerHTML]="method.type | safe"></code>
+	</daffio-docs-member-heading>
+	<div class="daffio-docs-api-method-block__description" [innerHTML]="method.description"></div>
+</div>
+
+@if (method.parameterDocs.length > 0) {
+	<h6 class="daffio-docs-api-method-block__heading"><fa-icon [icon]="faCode" class="daffio-docs-api-method-block__parameters-icon"></fa-icon> Parameters</h6>
+	@for (param of method.parameterDocs; track $index) {
+		<table>
+			<tbody>
+				<tr>
+					<th>Parameter</th>
+					<td><code>{{ param.name }}: <span [innerHTML]="param.type | safe"></span></code></td>
+				</tr>
+				@if (param.defaultValue) {
+					<tr>
+						<th>Default</th>
+						<td>{{ param.defaultValue }}</td>
+					</tr>
+				}
+				<tr>
+					<th>Description</th>
+					<td [innerHTML]="param.description | safe"></td>
+				</tr>
+			</tbody>
+		</table>
+	}
+}
