@@ -1,4 +1,5 @@
 import { DaffNavDoc } from './type';
+import { DaffDocsApiRole } from '../api/public_api';
 
 /**
  * A navigation item for an API doc.
@@ -6,6 +7,7 @@ import { DaffNavDoc } from './type';
 export interface DaffApiNavDoc extends DaffNavDoc {
   path: string;
   docType: string;
+  role?: DaffDocsApiRole;
 }
 
 /**
