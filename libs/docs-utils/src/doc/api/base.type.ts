@@ -18,4 +18,5 @@ export interface DaffApiDocBase extends DaffDoc {
   sourceApiBlock: DaffDocsRenderedContent;
   slug: string;
   name: string;
+  deprecated: string;
 }

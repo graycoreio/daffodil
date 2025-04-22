@@ -19,6 +19,7 @@ export interface DaffDocsApiTypeProperty extends Pick<PropertyMemberDoc, MemberF
   decorators: Array<DaffDocsApiDecorator>;
   description: DaffDocsRenderedContent;
   type: DaffDocsRenderedContent;
+  deprecated: string;
 }
 
 export interface DaffDocsApiTypeMethod extends Pick<MethodMemberDoc, MemberFields | 'typeParameters'> {
@@ -26,6 +27,7 @@ export interface DaffDocsApiTypeMethod extends Pick<MethodMemberDoc, MemberField
   parameterDocs: Array<DaffDocsApiFunctionParam>;
   description: DaffDocsRenderedContent;
   type: DaffDocsRenderedContent;
+  deprecated: string;
 }
 
 export interface DaffDocsApiHeritageInfo extends Pick<HeritageInfo, 'text'> {}

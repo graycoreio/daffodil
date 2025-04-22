@@ -68,6 +68,7 @@ export class RoleProcessor implements FilterableProcessor {
       'sourceApiBlock',
       'slug',
       'name',
+      'deprecated',
     ],
     {
       description: this.markdownSerialize,
@@ -127,6 +128,7 @@ export class RoleProcessor implements FilterableProcessor {
       'isOptional',
       'isGetAccessor',
       'isSetAccessor',
+      'deprecated',
     ],
     {
       decorators: arraySerializer(this.decoratorSerialize),
@@ -156,6 +158,7 @@ export class RoleProcessor implements FilterableProcessor {
       'isOptional',
       'isGetAccessor',
       'isSetAccessor',
+      'deprecated',
     ],
     {
       decorators: arraySerializer(this.decoratorSerialize),
