@@ -13,7 +13,7 @@ import { daffioDocsIndexResolver } from '../index/resolver';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
 
-export const DAFFIO_DOCS_GUIDE_DEFAULT = 'introduction/about';
+export const DAFFIO_DOCS_GUIDE_DEFAULT = 'introduction';
 
 export const guidesRoutes: Routes = [
   <DaffioRoute>{
