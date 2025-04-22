@@ -115,6 +115,7 @@ describe('@daffodil/category/driver/shopify | DaffShopifyCategoryService', () =>
             },
             products: {
               nodes: [],
+              filters: [],
             },
           },
         },
@@ -151,6 +152,7 @@ describe('@daffodil/category/driver/shopify | DaffShopifyCategoryService', () =>
             },
             products: {
               nodes: [],
+              filters: [],
             },
           },
         },

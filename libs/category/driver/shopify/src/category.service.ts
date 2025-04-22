@@ -43,6 +43,7 @@ export class DaffShopifyCategoryService implements DaffCategoryServiceInterface 
           sortKey: shopifyVariables.sortKey,
           reverse: shopifyVariables.reverse,
           filters: shopifyVariables.filters,
+          first: shopifyVariables.first,
         },
       })
       .pipe(
@@ -63,6 +64,7 @@ export class DaffShopifyCategoryService implements DaffCategoryServiceInterface 
           sortKey: shopifyVariables.sortKey,
           reverse: shopifyVariables.reverse,
           filters: shopifyVariables.filters,
+          first: shopifyVariables.first,
         },
       })
       .pipe(

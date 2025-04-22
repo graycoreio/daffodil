@@ -7,7 +7,7 @@ import { ShopifyCategoryUrlVariables } from '../variables.types';
  * GraphQL query object for getting a category (Shopify Collection) by url (handle).
  */
 export const getCategoryByUrl = gql<ShopifyCategoryResponse, ShopifyCategoryUrlVariables>`
-  query GetCategoryByUrl($handle: String!, $reverse: Boolean, $sortKey: ProductCollectionSortKeys, $filters: [ProductFilter!]!) {
+  query GetCategoryByUrl($handle: String!, $reverse: Boolean, $sortKey: ProductCollectionSortKeys, $filters: [ProductFilter!]!, $first: Int) {
     collection(handle: $handle) {
       handle
       id
@@ -19,7 +19,7 @@ export const getCategoryByUrl = gql<ShopifyCategoryResponse, ShopifyCategoryUrlV
         id 
         url 
       } 
-      products(first: 10, reverse: $reverse, sortKey: $sortKey, filters: $filters) {
+      products(first: $first, reverse: $reverse, sortKey: $sortKey, filters: $filters) {
         nodes { 
           handle
           onlineStoreUrl
@@ -44,7 +44,19 @@ export const getCategoryByUrl = gql<ShopifyCategoryResponse, ShopifyCategoryUrlV
               altText 
             } 
           } 
-        } 
+        },
+        filters {
+            id
+            label
+            presentation
+            type
+            values {
+                count
+                id
+                label
+                input
+            }
+        }
       } 
     }
   }

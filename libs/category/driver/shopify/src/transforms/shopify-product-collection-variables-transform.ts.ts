@@ -3,9 +3,9 @@ import {
   DaffCategoryUrlRequest,
 } from '@daffodil/category';
 import { DaffSortDirectionEnum } from '@daffodil/core';
-import { ShopifyProductCollectionSortKeys } from '@daffodil/driver/shopify';
+import { shopifyProductCollectionSortKeyCoercer } from '@daffodil/driver/shopify';
 
-import { shopifyProductFilterRequestTransformer } from './shopify-daff-filter-request-transformer';
+import { shopifyProductFilterRequestsTransformer } from './shopify-daff-filter-requests-transformer';
 import { ShopifyCollectionProductVariables } from '../queries/variables.types';
 
 /**
@@ -15,7 +15,8 @@ import { ShopifyCollectionProductVariables } from '../queries/variables.types';
  * @returns A ShopifyCollectionProductVariables object
  */
 export const shopifyProductCollectionVariablesTransformer = (categoryRequest: DaffCategoryIdRequest | DaffCategoryUrlRequest): ShopifyCollectionProductVariables => ({
-  sortKey: categoryRequest.appliedSortOption ?? ShopifyProductCollectionSortKeys.CollectionDefault,
+  sortKey: shopifyProductCollectionSortKeyCoercer(categoryRequest.appliedSortOption),
   reverse: categoryRequest.appliedSortDirection === DaffSortDirectionEnum.Descending ? true : false,
-  filters: shopifyProductFilterRequestTransformer(categoryRequest.filterRequests),
+  filters: shopifyProductFilterRequestsTransformer(categoryRequest.filterRequests),
+  first: categoryRequest.pageSize,
 });

@@ -21,6 +21,7 @@ class MockShopifyCategory implements ShopifyCategory {
   image = shopifyImageTransformer(this.shopifyImageNodeFactory.create(), 'CollectionImage');
   products = {
     nodes: this.shopifyProductNodeFactory.createMany(),
+    filters: [],
   };
 
   constructor(
