@@ -52,6 +52,7 @@ import { daffodilBasePackage } from '../daffodil-base-package';
 const docTypes = ['guide', 'package-guide'];
 
 const base = new Package('daffodil-guides-base', [daffodilBasePackage])
+  .processor(...FILTER_NAV_INDEX_PROCESSOR_PROVIDER)
   .factory('guideFileReader', guideFileReaderFactory)
   .factory(...INDEX_FILE_READER_PROVIDER)
   .config((
@@ -84,7 +85,20 @@ const base = new Package('daffodil-guides-base', [daffodilBasePackage])
     ];
   })
   .config((generateNavList: GenerateNavListProcessor) => {
-    generateNavList.transform = (docs) => generateNavigationTrieFromDocuments(docs.map(transformGuideDoc), { id: '', title: '', path: '' });
+    generateNavList.transform = (docs) => sortTrie(
+      generateNavigationTrieFromDocuments(
+        docs
+          .filter((doc) => doc.docType !== 'index')
+          .map(transformGuideDoc),
+        { id: '', title: '', path: '' },
+      ),
+      docs.reduce((acc, doc) => {
+        if (doc.docType === 'index') {
+          acc[doc.id] = doc.content;
+        }
+        return acc;
+      }, {}),
+    );
   })
   .config((convertToJson: ConvertToJsonProcessor) => {
     convertToJson.extraFields.push('api', 'apiToc');
@@ -134,7 +148,6 @@ const design = new Package('design-base', [base])
 
 export const designDocsPackage = new Package('design-docs', [design])
   .processor(...GENERATE_NAV_LIST_PROCESSOR_PROVIDER)
-  .processor(...FILTER_NAV_INDEX_PROCESSOR_PROVIDER)
   .processor(...ADD_API_SYMBOLS_TO_PACKAGES_PROCESSOR_PROVIDER)
   .processor(...LONG_DESCRIPTION_PROCESSOR_PROVIDER)
   .config((generateNavList: GenerateNavListProcessor) => {

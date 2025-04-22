@@ -18,6 +18,7 @@ export const inputPathsConfigurator: Configurator<InputPathsConfig> = (config: I
     readFilesProcessor.sourceFiles = [
       { include: [
         '**/*.md',
+        '**/index.json',
       ]},
     ];
   });
