@@ -1,0 +1,15 @@
+@use '../../../../../scss/type-descriptors/mixins' as type-mixin;
+@use 'utilities' as daff;
+
+:host {
+	display: block;
+	border-radius: 0.25rem;
+	font-family: daff.$font-family-mono;
+	font-size: 0.625rem;
+	line-height: 0.875rem;
+	padding: 0.25rem 0.5rem;
+	text-transform: uppercase;
+}
+
+
+

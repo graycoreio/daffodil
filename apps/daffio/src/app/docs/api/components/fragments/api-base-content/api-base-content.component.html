@@ -1,7 +1,17 @@
 @if (child()) {
-	<h3 [attr.id]="doc().slug">{{doc().name}}</h3>
+	<div class="daffio-docs-api-base-content__title">
+		<h3 [attr.id]="doc().slug">{{doc().name}}</h3>
+		@if (doc().deprecated) {
+			<daffio-docs-api-item-label type="deprecated">Deprecated</daffio-docs-api-item-label>
+		}
+	</div>
 } @else {
-	<h1 [attr.id]="doc().slug">{{doc().name}}</h1>
+	<div class="daffio-docs-api-base-content__title">
+		<h1 [attr.id]="doc().slug">{{doc().name}}</h1>
+		@if (doc().deprecated) {
+			<daffio-docs-api-item-label type="deprecated">Deprecated</daffio-docs-api-item-label>
+		}
+	</div>
 }
 <p [innerHTML]="doc().importExample | safe"></p>
 <div [innerHTML]="doc().description | safe"></div>
