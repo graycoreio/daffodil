@@ -9,10 +9,9 @@ import {
 
 
 /**
- * Transforms a ProductNode into a different object.
+ * Transforms a ProductNode into a DaffProduct
  *
- * @param node - ProductNode object
- * @returns A Product object
+ * @param node
  */
 export const daffShopifyProductTransformer = (node: ShopifyProductNode): DaffProduct => ({
   name: node.title,

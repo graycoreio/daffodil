@@ -11,9 +11,8 @@ import {
  *
  * See {@link ShopifyObjectTypes} for more information on the requirements for the type argument.
  *
- * @param node - ShopifyImageNode
- * @param type - string
- * @returns ShopifyImageNode
+ * @param node - default ShopifyImageNode created by factory (id initially left empty)
+ * @param type - name of Shopify image object (e.g. CollectionImage, ProductImage)
  */
 export const shopifyImageTransformer = (node: ShopifyImageNode, type: string): ShopifyImageNode => ({
   id: shopifyIdTransformer(`${faker.number.int({ min: 10000000000 })}`, type),

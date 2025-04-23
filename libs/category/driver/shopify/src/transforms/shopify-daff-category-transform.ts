@@ -10,9 +10,8 @@ import { ShopifyCollectionProductVariables } from '../queries/public_api';
 /**
  * Transforms a {@link ShopifyCategory} into a {@link DaffGetCategoryResponse} object.
  *
- * @param collection - {@link ShopifyCategory} object
- * @param variables - {@link ShopifyCollectionProductVariables} object for sorting and filtering products in the given collection
- * @returns A {@link DaffGetCategoryResponse} object
+ * @param collection
+ * @param variables - variables used in getCategory/getCategoryByUrl request query
  */
 export const daffShopifyCategoryTransformer = (collection: ShopifyCategory, variables: ShopifyCollectionProductVariables): DaffGetCategoryResponse => ({
   products: collection.products.nodes.map(daffShopifyProductTransformer),

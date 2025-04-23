@@ -48,7 +48,7 @@ function transformNumericRangeFilter(shopifyFilter: ShopifyFilter): DaffFilterRa
 }
 
 /**
- * Transforms a Shopify numeric range into a {@link DaffFilterRangeNumeric}.
+ * Transforms a Shopify equals filter into a {@link DaffFilterEqual}.
  */
 function transformEqualsFilter(shopifyResultFilter: ShopifyFilter, shopifyQueryFilters: ShopifyProductFilter[]): DaffFilterEqual {
   return {

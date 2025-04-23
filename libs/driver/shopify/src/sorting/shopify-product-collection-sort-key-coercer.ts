@@ -2,9 +2,6 @@ import { ShopifyProductCollectionSortKeys } from '../codegen/generated-shopify-t
 
 /**
  * Checks if a string is a valid, and coerces it into a {@link ShopifyProductCollectionSortKeys} object, or returns the CollectionDefault sortkey
- *
- * @param sortkey
- * @returns ShopifyProductCollectionSortKeys
  */
 export const shopifyProductCollectionSortKeyCoercer = (sortkey: string): ShopifyProductCollectionSortKeys => {
   const validSortKeys = Object.fromEntries(Object.values(ShopifyProductCollectionSortKeys).map(key => [key, true]));

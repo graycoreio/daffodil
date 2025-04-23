@@ -7,8 +7,8 @@ import { ShopifyProductFilter } from '@daffodil/driver/shopify';
 /**
  * Transforms a {@link DaffFilterRequest} array into a {@link ShopifyProductFilter} object.
  *
- * @param daffFilters - array of {@link DaffFilterRequest} object
- * @returns An array of {@link ShopifyProductFilter} objects
+ * @param daffFilters - array of daffodil filter requests
+ * @returns A corresponding array of shopify-readable filters
  */
 export const shopifyProductFilterRequestsTransformer = (daffFilterRequests: DaffFilterRequest[]): ShopifyProductFilter[] => {
   const result: ShopifyProductFilter[] = [];

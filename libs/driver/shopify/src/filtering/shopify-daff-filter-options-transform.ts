@@ -7,7 +7,7 @@ import {
 } from '../codegen/generated-shopify-types';
 
 /**
- * Transforms a ShopifyFilter['values'] {@link ShopifyFilter} object into a Record<DaffFilterEqualOption['value'], DaffFilterEqualOption> object.
+ * Transforms a ShopifyFilter['values'] {@link ShopifyFilter} object into daffodil-readable filter options
  */
 export const daffShopifyFilterOptionsTransformer = (shopifyFilterValues: ShopifyFilter['values'], appliedFilters: ShopifyProductFilter[]): Record<DaffFilterEqualOption['value'], DaffFilterEqualOption> => {
   const filterOptions: Record<DaffFilterEqualOption['value'], DaffFilterEqualOption> = {};

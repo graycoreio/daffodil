@@ -11,8 +11,8 @@ import { ShopifyCollectionProductVariables } from '../queries/variables.types';
 /**
  * Transforms a categoryRequest into a {@link ShopifyCollectionProductVariables} object.
  *
- * @param categoryRequest - {@link DaffCategoryIdRequest} or {@link DaffCategoryUrlRequest} object
- * @returns A ShopifyCollectionProductVariables object
+ * @param categoryRequest
+ * @returns shopify-readable product collection variables for the Storefront API query
  */
 export const shopifyProductCollectionVariablesTransformer = (categoryRequest: DaffCategoryIdRequest | DaffCategoryUrlRequest): ShopifyCollectionProductVariables => ({
   sortKey: shopifyProductCollectionSortKeyCoercer(categoryRequest.appliedSortOption),
