@@ -1,5 +1,11 @@
 import { gql } from 'apollo-angular';
 
+import {
+  shopifyImageFragment,
+  shopifyProductCoreFragment,
+  shopifyProductPriceRangeFragment,
+} from '@daffodil/driver/shopify';
+
 import { ShopifyProductAllResponse } from '../response.types';
 import { ShopifyProductAllVariables } from '../variables.types';
 
@@ -10,30 +16,19 @@ export const getAllProducts = gql<ShopifyProductAllResponse, ShopifyProductAllVa
 	query GetAllProducts($length: Int) {
 		products(first: $length)  {
 			nodes {
-				handle
-				onlineStoreUrl
-				availableForSale
+				...productCoreFragment
 				priceRange {
-					maxVariantPrice {
-						amount
-						currencyCode
-					}
-					minVariantPrice {
-						amount
-						currencyCode
-					}
+					...productPriceRangeFragment
 				}
-				id
-				title
-				description
 				images(first: 1) {
 					nodes {
-						id
-						url
-						altText
+						...imageFragment
 					}
 				}
 			}
 		}
 	}
+	${shopifyProductCoreFragment}
+	${shopifyProductPriceRangeFragment}
+	${shopifyImageFragment}
 `;

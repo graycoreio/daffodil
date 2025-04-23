@@ -16,7 +16,7 @@ import {
  * @returns ShopifyImageNode
  */
 export const shopifyImageTransformer = (node: ShopifyImageNode, type: string): ShopifyImageNode => ({
-  id: shopifyIdTransformer(`${faker.datatype.number({ min: 10000000000 })}`, type),
+  id: shopifyIdTransformer(`${faker.number.int({ min: 10000000000 })}`, type),
   altText: node.altText,
   url: node.url,
 });

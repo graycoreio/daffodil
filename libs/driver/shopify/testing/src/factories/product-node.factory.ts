@@ -15,7 +15,7 @@ import { ShopifyProductVariantsPriceRangeFactory } from './product-variants-pric
 class MockShopifyProductNode implements ShopifyProductNode {
   availableForSale = faker.datatype.boolean();
   collections = null;
-  compareAtPriceRange = this.shopifyProductPriceRangeFactory.create();
+  compareAtPriceRange = this.shopifyProductVariantsPriceRangeFactory.create();
   createdAt = faker.date.past();
   description = faker.commerce.productDescription();
   descriptionHtml = faker.commerce.productDescription();
@@ -44,6 +44,7 @@ class MockShopifyProductNode implements ShopifyProductNode {
   title = faker.commerce.productName();
   updatedAt = faker.date.past();
   variants = null;
+  adjacentVariants = null;
   vendor = faker.company.name();
 
   constructor(

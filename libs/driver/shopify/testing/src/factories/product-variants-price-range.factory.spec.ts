@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ShopifyProductVariantsPriceRange } from '@daffodil/driver/shopify';
+import { ShopifyProductPriceRange } from '@daffodil/driver/shopify';
 
 import { ShopifyProductVariantsPriceRangeFactory } from './product-variants-price-range.factory';
 
@@ -22,7 +22,7 @@ describe('@daffodil/product/driver/shopify/testing | ShopifyProductVariantsPrice
 
   describe('create', () => {
 
-    let result: ShopifyProductVariantsPriceRange;
+    let result: ShopifyProductPriceRange;
 
     beforeEach(() => {
       result = factory.create();

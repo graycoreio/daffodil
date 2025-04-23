@@ -64,6 +64,7 @@ describe('Driver | Shopify | Product | ProductService', () => {
               onlineStoreUrl: product.canonicalUrl,
               availableForSale: product.in_stock,
               priceRange: {
+                __typename: 'ProductPriceRange',
                 minVariantPrice: {
                   amount: product.price,
                   currencyCode: 'USD',

@@ -15,14 +15,25 @@ import { ShopifyProductNodeFactory } from './product-node.factory';
 class MockShopifyCategory implements ShopifyCategory {
   title = faker.commerce.department();
   handle = shopifyHandleTransformer(faker.commerce.department());
-  id = shopifyIdTransformer(`${faker.datatype.number({ min: 100000000000 })}`, 'Collection');
+  id = shopifyIdTransformer(`${faker.number.int({ min: 100000000000 })}`, 'Collection');
   description = faker.commerce.productDescription();
+  descriptionHtml = faker.commerce.productDescription();
   onlineStoreUrl = faker.internet.domainName();
-  image = shopifyImageTransformer(this.shopifyImageNodeFactory.create(), 'CollectionImage');
+  image = <any>shopifyImageTransformer(this.shopifyImageNodeFactory.create(), 'CollectionImage');
   products = {
+    edges: [],
     nodes: this.shopifyProductNodeFactory.createMany(),
     filters: [],
+    pageInfo: {
+      hasNextPage: false,
+      hasPreviousPage: false,
+    },
   };
+  metafield = null;
+  metafields = [];
+  seo = {};
+  trackingParameters = null;
+  updatedAt = faker.date.past();
 
   constructor(
     protected shopifyProductNodeFactory: ShopifyProductNodeFactory,

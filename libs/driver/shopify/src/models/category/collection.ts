@@ -1,5 +1,3 @@
-import { ShopifyGetACategoryQuery } from '../../codegen/generated-shopify-types';
-
-type ShopifyCollectionType = ShopifyGetACategoryQuery['collection'];
+import { ShopifyCollection as ShopifyCollectionType } from '../../codegen/generated-shopify-types';
 
 export interface ShopifyCollection extends ShopifyCollectionType {};

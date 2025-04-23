@@ -1,5 +1,13 @@
 import { gql } from 'apollo-angular';
 
+import {
+  shopifyCollectionCoreFragment,
+  shopifyCollectionFiltersFragment,
+  shopifyImageFragment,
+  shopifyProductCoreFragment,
+  shopifyProductPriceRangeFragment,
+} from '@daffodil/driver/shopify';
+
 import { ShopifyCategoryResponse } from '../response.types';
 import { ShopifyCategoryIDVariables } from '../variables.types';
 
@@ -9,55 +17,24 @@ import { ShopifyCategoryIDVariables } from '../variables.types';
 export const getCategory = gql<ShopifyCategoryResponse, ShopifyCategoryIDVariables>`
   query GetACategory($id: ID, $reverse: Boolean, $sortKey: ProductCollectionSortKeys, $filters: [ProductFilter!]!, $first: Int) {
     collection(id: $id) {
-      handle
-      id
-      title
-      description
-      onlineStoreUrl
-      image { 
-        altText 
-        id 
-        url 
-      } 
+      ...collectionCoreFragment
+      image {
+        ...imageFragment
+      }
       products(first: $first, reverse: $reverse, sortKey: $sortKey, filters: $filters) { 
         nodes { 
-          handle
-          onlineStoreUrl
-          availableForSale
-          priceRange { 
-            maxVariantPrice { 
-              amount 
-              currencyCode 
-            } 
-            minVariantPrice { 
-              amount 
-              currencyCode 
-            } 
-          } 
-          id
-          title
-          description
-          images(first: 1) { 
-            nodes { 
-              id 
-              url 
-              altText 
-            } 
-          } 
+          ...productCoreFragment
+          ...productPriceRangeFragment
         } 
         filters {
-            id
-            label
-            presentation
-            type
-            values {
-                count
-                id
-                label
-                input
-            }
+          ...collectionFiltersFragment
         }
       } 
     }
   }
+  ${shopifyCollectionCoreFragment}
+  ${shopifyImageFragment}
+  ${shopifyProductCoreFragment}
+  ${shopifyProductPriceRangeFragment}
+  ${shopifyCollectionFiltersFragment}
 `;

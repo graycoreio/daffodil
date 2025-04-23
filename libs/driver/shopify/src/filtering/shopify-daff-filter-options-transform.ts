@@ -1,6 +1,6 @@
 import { DaffFilterEqualOption } from '@daffodil/core';
 
-import { daffShopifyIsFilterApplied } from './daffShopifyIsFilterApplied';
+import { daffShopifyIsFilterApplied } from './shopify-daff-filter-applied-check';
 import {
   ShopifyFilter,
   ShopifyProductFilter,

@@ -19,7 +19,6 @@ import {
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 import {
   ShopifyCategory,
-  ShopifyProductNode as ShopifyProduct,
   shopifyUrlTransformer,
 } from '@daffodil/driver/shopify';
 import { DaffCategoryDriverShopifyCategoryFactory } from '@daffodil/driver/shopify/testing';
@@ -44,7 +43,6 @@ describe('@daffodil/category/driver/shopify | DaffShopifyCategoryService', () =>
   let mockCategoryUrlRequest: DaffCategoryUrlRequest;
   let mockCategory: DaffCategory;
   let mockShopifyCategory: ShopifyCategory;
-  let mockShopifyProduct: ShopifyProduct;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -103,6 +101,7 @@ describe('@daffodil/category/driver/shopify | DaffShopifyCategoryService', () =>
       op.flush({
         data: {
           collection: {
+            __typename: 'Collection',
             handle: '',
             id: mockCategory.id,
             title: mockCategory.name,
@@ -140,6 +139,7 @@ describe('@daffodil/category/driver/shopify | DaffShopifyCategoryService', () =>
       op.flush({
         data: {
           collection: {
+            __typename: 'Collection',
             handle: '',
             id: mockCategory.id,
             title: mockCategory.name,
