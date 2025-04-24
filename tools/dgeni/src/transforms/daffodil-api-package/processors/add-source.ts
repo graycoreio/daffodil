@@ -9,6 +9,7 @@ import { PropertyMemberDoc } from 'dgeni-packages/typescript/api-doc-types/Prope
 import type { TypeAliasExportDoc } from 'dgeni-packages/typescript/api-doc-types/TypeAliasExportDoc';
 
 import {
+  DaffApiDirective,
   DaffApiDoc,
   DaffApiType,
   DaffDocsApiClass,
@@ -122,7 +123,7 @@ const interfaceBlock = (doc: DaffApiType): string => {
   return `interface ${doc.name}${doc.typeParams} {${props}${methods}}`;
 };
 
-const classBlock = (doc: ClassExportDoc & DaffDocsApiClass): string => {
+const classBlock = (doc: ClassExportDoc & (DaffDocsApiClass | DaffApiDirective)): string => {
   const decorators = doc.decorators?.length > 0
     ? doc.decorators.reduce((acc, decorator) =>
       `${acc}@${decorator.name}()\n`
@@ -144,13 +145,23 @@ const classBlock = (doc: ClassExportDoc & DaffDocsApiClass): string => {
       `${acc}${indent(classPropertyMember(<any>member))}\n`
     , '\n')
     : '';
+  const inputs = 'inputs' in doc && doc.inputs?.length > 0
+    ? doc.inputs.reduce((acc, member) =>
+      `${acc}${indent(classPropertyMember(<any>member))}\n`
+    , '\n')
+    : '';
+  const outputs = 'outputs' in doc && doc.outputs?.length > 0
+    ? doc.outputs.reduce((acc, member) =>
+      `${acc}${indent(classPropertyMember(<any>member))}\n`
+    , '\n')
+    : '';
   const methods = doc.methods?.length > 0
     ? doc.methods.reduce((acc, member) =>
       `${acc}${indent(typeMethodMember(<any>member))}\n`
     , '\n')
     : '';
 
-  return `${decorators}${doc.isAbstract ? 'abstract ' : ''}class ${doc.name}${typeParams}${parents}${interfaces} {${props}${methods}}`;
+  return `${decorators}${doc.isAbstract ? 'abstract ' : ''}class ${doc.name}${typeParams}${parents}${interfaces} {${props}${inputs}${outputs}${methods}}`;
 };
 
 const typeAliasBlock = (doc: TypeAliasExportDoc): string =>
