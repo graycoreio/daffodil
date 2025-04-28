@@ -14,6 +14,7 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
 import { DaffDocsDesignGuideNavList } from '@daffodil/docs-utils';
 
+import { DaffioInterceptNavigationDirective } from '../../../../core/router/intercept-navigation.directive';
 import { useDaffioNavList } from '../../../composables/nav-index';
 
 @Component({
@@ -27,6 +28,7 @@ import { useDaffioNavList } from '../../../composables/nav-index';
     DAFF_CARD_COMPONENTS,
     DAFF_HERO_COMPONENTS,
     DAFF_CONTAINER_COMPONENTS,
+    DaffioInterceptNavigationDirective,
   ],
 })
 export class DaffioDocsDesignComponentOverviewPageComponent {

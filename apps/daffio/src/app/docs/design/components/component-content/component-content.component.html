@@ -1,6 +1,6 @@
 <daffio-doc-viewer [breadcrumbs]="doc().breadcrumbs" [toc]="toc()">
 	<h1>{{doc().title}}</h1>
-	<p [innerHtml]="doc().longDescription | safe"></p>
+	<p daffioInterceptNavigation [innerHtml]="doc().longDescription | safe"></p>
 	<daff-tabs
 		[initiallySelected]="USAGE_TAB_ID"
 		[linkMode]="true"
@@ -14,6 +14,7 @@
 			</daff-tab-label>
 			<daff-tab-panel>
 				<div
+					daffioInterceptNavigation
 					[innerHtml]="doc().contents | safe">
 				</div>
 			</daff-tab-panel>

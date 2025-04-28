@@ -10,6 +10,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioSafeHtmlPipe } from '../../../../core/html-sanitizer/safe.pipe';
+import { DaffioInterceptNavigationDirective } from '../../../../core/router/intercept-navigation.directive';
 import { DAFFIO_DOCS_MEMBER_HEADING_COMPONENTS } from '../../../components/member-heading/member-heading';
 
 @Component({
@@ -20,6 +21,7 @@ import { DAFFIO_DOCS_MEMBER_HEADING_COMPONENTS } from '../../../components/membe
   imports: [
     DaffioSafeHtmlPipe,
     DAFFIO_DOCS_MEMBER_HEADING_COMPONENTS,
+    DaffioInterceptNavigationDirective,
   ],
 })
 export class DaffioDocsApiInterfaceBlockComponent {

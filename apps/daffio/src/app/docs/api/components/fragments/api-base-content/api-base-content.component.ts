@@ -10,6 +10,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioSafeHtmlPipe } from '../../../../../core/html-sanitizer/safe.pipe';
+import { DaffioInterceptNavigationDirective } from '../../../../../core/router/intercept-navigation.directive';
 import { DaffioDocsApiDynamicContent } from '../../../dynamic-content/dynamic-content.type';
 import { DaffioDocsApiItemLabelComponent } from '../../api-item-label/api-item-label.component';
 
@@ -21,6 +22,7 @@ import { DaffioDocsApiItemLabelComponent } from '../../api-item-label/api-item-l
   imports: [
     DaffioSafeHtmlPipe,
     DaffioDocsApiItemLabelComponent,
+    DaffioInterceptNavigationDirective,
   ],
 })
 export class DaffioDocsApiBaseContentComponent implements DaffioDocsApiDynamicContent<DaffApiDocBase> {

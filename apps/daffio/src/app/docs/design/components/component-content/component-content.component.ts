@@ -24,6 +24,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioSafeHtmlPipe } from '../../../../core/html-sanitizer/safe.pipe';
+import { DaffioInterceptNavigationDirective } from '../../../../core/router/intercept-navigation.directive';
 import { DaffioDocsApiDynamicContentComponentService } from '../../../api/dynamic-content/dynamic-content-component.service';
 import { DaffioDocViewerComponent } from '../../../components/doc-viewer/doc-viewer.component';
 import { DaffioDocsDynamicContent } from '../../../dynamic-content/dynamic-content.type';
@@ -41,6 +42,7 @@ import { DaffioDocsDesignApiSortSectionLabels } from '../../pipes/sort-api-secti
     KeyValuePipe,
     DaffioDocsDesignApiSortSectionLabels,
     NgComponentOutlet,
+    DaffioInterceptNavigationDirective,
   ],
 })
 export class DaffioDocsDesignComponentContentComponent implements DaffioDocsDynamicContent<DaffPackageGuideDoc> {

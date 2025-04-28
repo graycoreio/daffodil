@@ -1,6 +1,6 @@
 <daffio-docs-member-heading type="property">
 	<div daffioDocsMemberHeadingName>{{ prop.name }}</div>
-	<code [innerHTML]="prop.type | safe"></code>
+	<code daffioInterceptNavigation [innerHTML]="prop.type | safe"></code>
 </daffio-docs-member-heading>
 
 <table>
@@ -17,7 +17,7 @@
 		</tr>
 		<tr>
 			<th>Description</th>
-			<td [innerHTML]="prop.description | safe"></td>
+			<td daffioInterceptNavigation [innerHTML]="prop.description | safe"></td>
 		</tr>
 	</tbody>
 </table>

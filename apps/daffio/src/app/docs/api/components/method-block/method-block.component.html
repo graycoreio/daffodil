@@ -13,7 +13,7 @@
 			<tbody>
 				<tr>
 					<th>Parameter</th>
-					<td><code>{{ param.name }}: <span [innerHTML]="param.type | safe"></span></code></td>
+					<td><code>{{ param.name }}: <span daffioInterceptNavigation [innerHTML]="param.type | safe"></span></code></td>
 				</tr>
 				@if (param.defaultValue) {
 					<tr>
@@ -23,7 +23,7 @@
 				}
 				<tr>
 					<th>Description</th>
-					<td [innerHTML]="param.description | safe"></td>
+					<td daffioInterceptNavigation [innerHTML]="param.description | safe"></td>
 				</tr>
 			</tbody>
 		</table>

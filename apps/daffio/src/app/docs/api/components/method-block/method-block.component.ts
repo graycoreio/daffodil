@@ -10,6 +10,7 @@ import { DaffioSafeHtmlPipe } from 'apps/daffio/src/app/core/html-sanitizer/safe
 
 import { DaffDocsApiTypeMethod } from '@daffodil/docs-utils';
 
+import { DaffioInterceptNavigationDirective } from '../../../../core/router/intercept-navigation.directive';
 import { DaffioDocsMemberHeadingNameDirective } from '../../../components/member-heading/member-heading-name/member-heading-name.directive';
 import { DaffioDocsMemberHeadingComponent } from '../../../components/member-heading/member-heading.component';
 
@@ -24,6 +25,7 @@ import { DaffioDocsMemberHeadingComponent } from '../../../components/member-hea
     DaffioDocsMemberHeadingComponent,
     DaffioDocsMemberHeadingNameDirective,
     FaIconComponent,
+    DaffioInterceptNavigationDirective,
   ],
 })
 export class DaffioDocsApiMethodBlockComponent {

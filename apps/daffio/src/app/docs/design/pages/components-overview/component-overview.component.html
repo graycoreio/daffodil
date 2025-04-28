@@ -12,7 +12,7 @@
         <a daff-card [routerLink]="component.path">
           <h3 daffCardTitle>{{component.title}}</h3>
           <div daffCardContent>
-            <p [innerHTML]="component.description"></p>
+            <p daffioInterceptNavigation [innerHTML]="component.description"></p>
           </div>
         </a>
       }
