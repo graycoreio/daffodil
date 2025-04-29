@@ -12,7 +12,9 @@
 	$primary: daff-theme.daff-map-get($theme, primary);
 	$secondary: daff-theme.daff-map-get($theme, secondary);
 	$tertiary: daff-theme.daff-map-get($theme, tertiary);
-	$critical: daff-theme.daff-map-get($theme, critical);
+	$green: daff-theme.daff-map-get($theme, success);
+	$yellow: daff-theme.daff-map-get($theme, warn);
+	$red: daff-theme.daff-map-get($theme, critical);
 	$base: daff-theme.daff-map-get($theme, 'core', 'base');
 	$base-contrast: daff-theme.daff-map-get(
 		daff-theme.$theme,
@@ -22,49 +24,71 @@
 	$type: daff-theme.daff-map-get($theme, 'core', 'type');
 
 	.daffio-docs-api-item-label {
-		&.class {
-			@include type-theming(daff-theme.daff-color($primary));
-		}
-
-		&.type-alias {
-			@include type-theming(daff-theme.daff-color($secondary));
-		}
-
-		&.interface {
-			@include type-theming(daff-theme.daff-color($tertiary));
-		}
-
-		&.const {
-			@include type-theming(
-				daff-theme.daff-illuminate($base-contrast, $secondary, 3)
-			);
-		}
-
-		&.enum {
-			@include type-theming(
-				daff-theme.daff-illuminate($base-contrast, $primary, 3)
-			);
-		}
-
-		&.package {
-			@include type-theming(
-				daff-theme.daff-illuminate($base-contrast, daff-theme.$daff-yellow, 3)
-			);
-		}
-
-		&.function {
-			@include type-theming(
-				daff-theme.daff-illuminate($base-contrast, $tertiary, 3)
-			);
-		}
-
-		&.deprecated {
-			@include daff-theme.light($type) {
-				@include type-theming(daff-theme.daff-color($critical, 70));
+		@include daff-theme.light($type) {
+			&.class {
+				@include type-theming(daff-theme.daff-color($primary, 70));
 			}
 
-			@include daff-theme.dark($type) {
-				@include type-theming(daff-theme.daff-color($critical, 40), 0.15);
+			&.type-alias {
+				@include type-theming(daff-theme.daff-color($secondary, 70));
+			}
+
+			&.interface {
+				@include type-theming(daff-theme.daff-color($tertiary, 70));
+			}
+
+			&.const {
+				@include type-theming(daff-theme.daff-color($secondary, 90));
+			}
+
+			&.enum {
+				@include type-theming(daff-theme.daff-color($primary, 90));
+			}
+
+			&.package {
+				@include type-theming(daff-theme.daff-color($yellow, 70));
+			}
+
+			&.function {
+				@include type-theming(daff-theme.daff-color($green, 90));
+			}
+
+			&.deprecated {
+				@include type-theming(daff-theme.daff-color($red, 70));
+			}
+		}
+
+		@include daff-theme.dark($type) {
+			&.class {
+				@include type-theming(daff-theme.daff-color($primary, 40));
+			}
+
+			&.type-alias {
+				@include type-theming(daff-theme.daff-color($secondary, 40));
+			}
+
+			&.interface {
+				@include type-theming(daff-theme.daff-color($tertiary, 40));
+			}
+
+			&.const {
+				@include type-theming(daff-theme.daff-color($secondary, 20));
+			}
+
+			&.enum {
+				@include type-theming(daff-theme.daff-color($primary, 20));
+			}
+
+			&.package {
+				@include type-theming(daff-theme.daff-color($yellow, 40));
+			}
+
+			&.function {
+				@include type-theming(daff-theme.daff-color($green, 20));
+			}
+
+			&.deprecated {
+				@include type-theming(daff-theme.daff-color($red, 40), 0.15);
 			}
 		}
 	}
