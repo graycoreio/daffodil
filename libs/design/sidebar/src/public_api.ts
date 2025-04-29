@@ -1,13 +1,12 @@
 export { DaffSidebarModule } from './sidebar.module';
-export * from './service/registration.type';
-export * from './service/sidebar.service';
-export * from './sidebar-viewport/sidebar-viewport.component';
-export * from './sidebar/sidebar.component';
-export * from './sidebar-header/sidebar-header.component';
-export * from './sidebar-footer/sidebar-footer.component';
-export * from './sidebar-header/sidebar-header-title/sidebar-header-title.directive';
-export * from './sidebar-header/sidebar-header-action/sidebar-header-action.directive';
-export * from './sidebar-viewport-backdrop/sidebar-viewport-backdrop.component';
+export { DaffSidebarRegistration } from './service/registration.type';
+export { DaffSidebarService } from './service/sidebar.service';
+export { DaffSidebarViewportComponent } from './sidebar-viewport/sidebar-viewport.component';
+export { DaffSidebarComponent } from './sidebar/sidebar.component';
+export { DaffSidebarHeaderComponent } from './sidebar-header/sidebar-header.component';
+export { DaffSidebarFooterComponent } from './sidebar-footer/sidebar-footer.component';
+export { DaffSidebarHeaderTitleDirective } from './sidebar-header/sidebar-header-title/sidebar-header-title.directive';
+export { DaffSidebarHeaderActionDirective } from './sidebar-header/sidebar-header-action/sidebar-header-action.directive';
 export {
   DaffSidebarMode,
   DaffSidebarModeEnum,
@@ -16,6 +15,6 @@ export {
   DaffSidebarSide,
   DaffSidebarSideEnum,
 } from './helper/sidebar-side';
-export * from './helper/is-docked-mode';
-export * from './helper/is-floating-mode';
+export { daffSidebarIsDockedMode } from './helper/is-docked-mode';
+export { daffSidebarIsFloatingMode } from './helper/is-floating-mode';
 export { DAFF_SIDEBAR_COMPONENTS } from './sidebar';

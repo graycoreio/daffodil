@@ -8,7 +8,6 @@ import { DaffSidebarHeaderActionDirective } from './sidebar-header/sidebar-heade
 import { DaffSidebarHeaderTitleDirective } from './sidebar-header/sidebar-header-title/sidebar-header-title.directive';
 import { DaffSidebarHeaderComponent } from './sidebar-header/sidebar-header.component';
 import { DaffSidebarViewportComponent } from './sidebar-viewport/sidebar-viewport.component';
-import { DaffSidebarViewportBackdropComponent } from './sidebar-viewport-backdrop/sidebar-viewport-backdrop.component';
 
 /**
  * @deprecated in favor of {@link DAFF_SIDEBAR_COMPONENTS}. Deprecated in version 0.78.0. Will be removed in version 1.0.0.
@@ -23,7 +22,6 @@ import { DaffSidebarViewportBackdropComponent } from './sidebar-viewport-backdro
     DaffSidebarFooterComponent,
     DaffSidebarHeaderTitleDirective,
     DaffSidebarHeaderActionDirective,
-    DaffSidebarViewportBackdropComponent,
   ],
   exports: [
     DaffSidebarComponent,
@@ -32,7 +30,6 @@ import { DaffSidebarViewportBackdropComponent } from './sidebar-viewport-backdro
     DaffSidebarFooterComponent,
     DaffSidebarHeaderTitleDirective,
     DaffSidebarHeaderActionDirective,
-    DaffSidebarViewportBackdropComponent,
   ],
 })
 export class DaffSidebarModule { }
