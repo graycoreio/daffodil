@@ -12,4 +12,9 @@
 			margin: 0;
 		}
 	}
+
+	&__label-wrapper {
+		display: flex;
+		gap: 0.25rem;
+	}
 }

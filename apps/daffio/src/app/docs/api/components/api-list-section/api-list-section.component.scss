@@ -1,12 +1,12 @@
 @use '../../../../../scss/type-descriptors/mixins' as type-mixin;
 @use 'utilities' as daff;
 
-$api-list-section-item-border-radius: 4px;
+$api-list-section-item-border-radius: 0.25rem;
 
 :host {
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-gap: 8px 24px;
+	grid-gap: 0.5rem 1.5rem;
 
 	@include daff.breakpoint(tablet) {
 		grid-template-columns: repeat(2, 1fr);
@@ -25,12 +25,12 @@ $api-list-section-item-border-radius: 4px;
 	&__item {
 		display: flex;
 		align-items: center;
-		gap: 16px;
+		gap: 1rem;
 		border-radius: $api-list-section-item-border-radius;
 		font-weight: normal;
 		justify-content: space-between;
 		overflow: hidden;
-		padding: 8px;
+		padding: 0.5rem;
 		position: relative;
 
 		&::after {
@@ -54,10 +54,10 @@ $api-list-section-item-border-radius: 4px;
 		@include daff.text-truncate();
 	}
 
-	&__item-label {
-		@include type-mixin.type-label();
+	&__label-wrapper {
+		display: flex;
 		flex: 0 0 auto;
-		padding: 4px;
+		gap: 0.25rem;
 	}
 
 	&__item-name,

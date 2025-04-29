@@ -5,9 +5,13 @@ import {
   HostBinding,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 import { DaffApiNavDoc } from '@daffodil/docs-utils';
+
+import { DaffioDocsApiItemLabelComponent } from '../api-item-label/api-item-label.component';
 
 @Component({
   selector: 'daffio-api-list-section',
@@ -19,9 +23,12 @@ import { DaffApiNavDoc } from '@daffodil/docs-utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RouterLink,
+    DaffioDocsApiItemLabelComponent,
+    FaIconComponent,
   ],
 })
 export class DaffioApiListSectionComponent {
+  faExclamation = faExclamation;
   @HostBinding('class.daffio-api-list-section') class = true;
 
   /**

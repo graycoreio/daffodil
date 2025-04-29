@@ -1,18 +1,20 @@
-@if (child()) {
-	<div class="daffio-docs-api-base-content__title">
+<div class="daffio-docs-api-base-content__title">
+	@if (child()) {
 		<h3 [attr.id]="doc().slug">{{doc().name}}</h3>
-		@if (doc().deprecated) {
-			<daffio-docs-api-item-label type="deprecated">Deprecated</daffio-docs-api-item-label>
-		}
-	</div>
-} @else {
-	<div class="daffio-docs-api-base-content__title">
+	} @else {
 		<h1 [attr.id]="doc().slug">{{doc().name}}</h1>
+	}
+	<div class="daffio-docs-api-base-content__label-wrapper">
+		@if (!child()) {
+			<daffio-docs-api-item-label [type]="doc().docType">
+				{{ doc().docType }}
+			</daffio-docs-api-item-label>
+		}
 		@if (doc().deprecated) {
 			<daffio-docs-api-item-label type="deprecated">Deprecated</daffio-docs-api-item-label>
 		}
 	</div>
-}
+</div>
 <p [innerHTML]="doc().importExample | safe"></p>
 <div daffioInterceptNavigation [innerHTML]="doc().description | safe"></div>
 <div daffioInterceptNavigation [innerHTML]="doc().sourceApiBlock | safe"></div>
