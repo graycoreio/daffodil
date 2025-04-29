@@ -55,6 +55,7 @@ function getExportInfo(exportDoc): DaffDocsApiNavList {
     path: `${exportDoc.path[0] === '/' ? '' : '/'}${exportDoc.path}`,
     docType: getDocType(exportDoc),
     role: exportDoc.role,
+    deprecated: exportDoc.deprecated,
     children: exportDoc.docType === DaffDocsApiType.PACKAGE
       ? exportDoc.exports
         .map(getExportInfo)
