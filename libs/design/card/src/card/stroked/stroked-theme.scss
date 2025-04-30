@@ -2,6 +2,28 @@
 @use '../../../../scss/core';
 @use '../../../../scss/theming';
 
+@mixin stroked-card-theme-variant($color) {
+	border: 1px solid $color;
+	color: $color;
+}
+
+@mixin linkable-stroked-card-theme-variant($hover-color, $opacity: 0.08) {
+	.daff-card__wrapper {
+		&::after {
+			background: rgba($hover-color, $opacity);
+		}
+	}
+
+	&:hover,
+	&:focus {
+		.daff-card__wrapper {
+			&::after {
+				opacity: 1;
+			}
+		}
+	}
+}
+
 @mixin daff-stroked-card-theme($theme) {
 	$primary: core.daff-map-get($theme, primary);
 	$secondary: core.daff-map-get($theme, secondary);
@@ -11,36 +33,103 @@
 	$white: core.daff-map-get($theme, 'core', 'white');
 	$black: core.daff-map-get($theme, 'core', 'black');
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-stroked-card {
-		border: 1px solid theming.daff-illuminate($base, $neutral, 2);
-
 		&.daff-primary {
-			border: 1px solid theming.daff-illuminate($base-contrast, $primary, 3);
+			@include stroked-card-theme-variant(theming.daff-color($primary));
 		}
 
 		&.daff-secondary {
-			border: 1px solid theming.daff-illuminate($base-contrast, $secondary, 3);
+			@include stroked-card-theme-variant(theming.daff-color($secondary));
 		}
 
 		&.daff-tertiary {
-			border: 1px solid theming.daff-illuminate($base-contrast, $tertiary, 3);
+			@include stroked-card-theme-variant(theming.daff-color($tertiary));
 		}
 
-		&.daff-theme {
-			border: 1px solid theming.daff-illuminate($base, $neutral, 2);
+		&.daff-dark {
+			@include stroked-card-theme-variant(theming.daff-color($neutral, 90));
 		}
 
-		&.daff-theme-contrast {
-			border: 1px solid theming.daff-illuminate($base-contrast, $neutral, 2);
+		&.daff-light {
+			@include stroked-card-theme-variant(theming.daff-color($neutral, 20));
 		}
 
-		&.daff-black {
-			border: 1px solid theming.daff-color($neutral, 90);
+		@include theming.light($type) {
+			@include stroked-card-theme-variant(theming.daff-color($neutral, 20));
+			color: $base-contrast;
+
+			&.daff-theme {
+				@include stroked-card-theme-variant(theming.daff-color($neutral, 20));
+				color: $base-contrast;
+			}
+
+			&.daff-theme-contrast {
+				@include stroked-card-theme-variant(theming.daff-color($neutral, 90));
+			}
 		}
 
-		&.daff-white {
-			border: 1px solid theming.daff-color($neutral, 20);
+		@include theming.dark($type) {
+			@include stroked-card-theme-variant(theming.daff-color($neutral, 90));
+			color: $base-contrast;
+
+			&.daff-theme {
+				@include stroked-card-theme-variant(theming.daff-color($neutral, 90));
+				color: $base-contrast;
+			}
+
+			&.daff-theme-contrast {
+				@include stroked-card-theme-variant(theming.daff-color($neutral, 20));
+			}
+		}
+	}
+
+	a {
+		&.daff-stroked-card {
+			@include theming.light($type) {
+				@include linkable-stroked-card-theme-variant(
+					theming.daff-color($neutral, 20),
+					0.2
+				);
+			}
+
+			@include theming.dark($type) {
+				@include linkable-stroked-card-theme-variant(
+					theming.daff-color($neutral, 90),
+					0.2
+				);
+			}
+
+			&.daff-primary {
+				@include linkable-stroked-card-theme-variant(
+					theming.daff-color($primary)
+				);
+			}
+
+			&.daff-secondary {
+				@include linkable-stroked-card-theme-variant(
+					theming.daff-color($secondary)
+				);
+			}
+
+			&.daff-tertiary {
+				@include linkable-stroked-card-theme-variant(
+					theming.daff-color($tertiary)
+				);
+			}
+
+			&.daff-dark {
+				@include linkable-stroked-card-theme-variant(
+					theming.daff-color($neutral, 90)
+				);
+			}
+
+			&.daff-light {
+				@include linkable-stroked-card-theme-variant(
+					theming.daff-color($neutral, 20)
+				);
+			}
 		}
 	}
 }

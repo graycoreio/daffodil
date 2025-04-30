@@ -42,7 +42,7 @@ export class LinkableCardComponent {
     { value: 'tertiary', label: 'Tertiary' },
     { value: 'theme', label: 'Theme' },
     { value: 'theme-contrast', label: 'Theme Contrast' },
-    { value: 'black', label: 'Black' },
-    { value: 'white', label: 'White' },
+    { value: 'dark', label: 'Dark' },
+    { value: 'light', label: 'Light' },
   ];
 }

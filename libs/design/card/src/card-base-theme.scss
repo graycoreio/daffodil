@@ -38,8 +38,7 @@
 	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-card,
-	.daff-raised-card,
-	.daff-stroked-card {
+	.daff-raised-card {
 		@include theming.light($type) {
 			@include daff-basic-card-theme-variant(theming.daff-color($neutral, 10));
 
@@ -86,19 +85,18 @@
 			@include daff-basic-card-theme-variant($base-contrast);
 		}
 
-		&.daff-black {
-			@include daff-basic-card-theme-variant($black);
+		&.daff-dark {
+			@include daff-basic-card-theme-variant(theming.daff-color($neutral, 90));
 		}
 
-		&.daff-white {
-			@include daff-basic-card-theme-variant($white);
+		&.daff-light {
+			@include daff-basic-card-theme-variant(theming.daff-color($neutral, 10));
 		}
 	}
 
 	a {
 		&.daff-card,
-		&.daff-raised-card,
-		&.daff-stroked-card {
+		&.daff-raised-card {
 			@include theming.light($type) {
 				@include daff-linkable-card-theme-variant(
 					theming.daff-color($neutral, 20)
@@ -130,17 +128,17 @@
 
 				&.daff-theme-contrast {
 					@include daff-linkable-card-theme-variant(
-						theming.daff-color($neutral, 90)
-					);
-				}
-
-				&.daff-black {
-					@include daff-linkable-card-theme-variant(
 						theming.daff-color($neutral, 100)
 					);
 				}
 
-				&.daff-white {
+				&.daff-dark {
+					@include daff-linkable-card-theme-variant(
+						theming.daff-color($neutral, 90)
+					);
+				}
+
+				&.daff-light {
 					@include daff-linkable-card-theme-variant(
 						theming.daff-color($neutral, 10)
 					);
@@ -182,13 +180,13 @@
 					);
 				}
 
-				&.daff-black {
+				&.daff-dark {
 					@include daff-linkable-card-theme-variant(
 						theming.daff-color($neutral, 100)
 					);
 				}
 
-				&.daff-white {
+				&.daff-light {
 					@include daff-linkable-card-theme-variant(
 						theming.daff-color($neutral, 10)
 					);

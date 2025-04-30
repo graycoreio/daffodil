@@ -1,4 +1,4 @@
-<daff-card [color]="colorControl.value">
+<daff-card [color]="cardControl.value">
   <div daffCardTagline>Card Tagline</div>
   <div daffCardTitle>Title</div>
   <div daffCardContent>
@@ -6,6 +6,18 @@
   </div>
 </daff-card>
 
-<select [formControl]="colorControl">
+<select [formControl]="cardControl">
+	<option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</select>
+
+<daff-stroked-card [color]="strokedCardControl.value">
+  <div daffCardTagline>Card Tagline</div>
+  <div daffCardTitle>Title</div>
+  <div daffCardContent>
+    <p>Cards are themable.</p>
+  </div>
+</daff-stroked-card>
+
+<select [formControl]="strokedCardControl">
 	<option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
 </select>
