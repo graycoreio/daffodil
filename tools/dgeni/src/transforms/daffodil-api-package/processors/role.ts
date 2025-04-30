@@ -343,7 +343,7 @@ export class RoleProcessor implements FilterableProcessor {
 
   constant(doc: SerializableDoc & DaffApiConstant & ConstExportDoc): SerializableDoc & DaffApiConstant {
     doc.serializer = this.constSerialize;
-    doc.type = doc.typeChecker.getTypeOfSymbolAtLocation(doc.symbol, doc.variableDeclaration).symbol?.escapedName || doc.type;
+    doc.type = doc.typeChecker.typeToString(doc.typeChecker.getTypeAtLocation(doc.variableDeclaration)) || doc.type;
     return doc;
   };
 

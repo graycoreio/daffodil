@@ -168,7 +168,7 @@ const typeAliasBlock = (doc: TypeAliasExportDoc): string =>
   `type ${doc.name}${doc.typeParameters} = ${doc.typeDefinition}`;
 
 const constBlock = (doc: ConstExportDoc): string =>
-  `const ${doc.name}: ${doc.typeChecker.getTypeOfSymbolAtLocation(doc.symbol, doc.variableDeclaration).symbol?.escapedName || doc.type}`;
+  `const ${doc.name}: ${doc.type}`;
 
 export const ADD_SOURCE_NAME = 'addSource';
 
