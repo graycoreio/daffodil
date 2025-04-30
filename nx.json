@@ -57,7 +57,7 @@
 			"dependsOn": ["build"]
 		},
 		"lint": {
-			"inputs": ["eslint"],
+			"inputs": ["default", "eslint"],
 			"dependsOn": [
 				{
 					"projects": ["@daffodil/eslint-config"],
