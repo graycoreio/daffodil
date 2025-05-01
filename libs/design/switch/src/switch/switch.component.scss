@@ -3,9 +3,8 @@
 
 :host {
 	$root: '.daff-switch';
-	display: block;
-	width: 100%;
-	margin: 0;
+	display: flex;
+	flex-direction: column;
 
 	&.daff-loading {
 		#{$root}__toggle {
@@ -63,7 +62,7 @@
 	}
 
 	&.daff-disabled {
-		opacity: 0.5;
+		opacity: 0.4;
 
 		#{$root}__toggle {
 			cursor: default;

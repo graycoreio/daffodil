@@ -4,27 +4,46 @@
 
 @mixin daff-switch-theme($theme) {
 	$primary: core.daff-map-get($theme, primary);
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 	$white: core.daff-map-get($theme, 'core', 'white');
-	$black: core.daff-map-get($theme, 'core', 'black');
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-switch {
 		&__toggle {
-			background-color: theming.daff-illuminate($base, $neutral, 3);
 			border: 2px solid transparent;
-
-			&:focus-within {
-				border: 2px solid theming.daff-illuminate($base, $neutral, 2);
-			}
 
 			&.daff-checked {
 				background-color: theming.daff-color($primary);
 			}
 
-			&::before {
-				background-color: $base;
+			@include theming.light($type) {
+				background-color: theming.daff-color($neutral, 30);
+
+				&:focus-within {
+					border: 2px solid theming.daff-color($neutral, 20);
+				}
+
+				&::before {
+					background-color: $white;
+				}
+			}
+
+			@include theming.dark($type) {
+				background-color: theming.daff-color($neutral, 80);
+
+				&:focus-within {
+					border: 2px solid theming.daff-color($neutral, 90);
+				}
+
+				&::before {
+					background-color: theming.daff-color($neutral, 40);
+				}
+
+				&.daff-checked {
+					&::before {
+						background-color: $white;
+					}
+				}
 			}
 		}
 	}
