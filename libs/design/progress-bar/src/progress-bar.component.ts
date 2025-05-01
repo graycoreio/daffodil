@@ -17,9 +17,6 @@ import { daffProgressBarAnimation } from './animation/progress-bar-animation';
 
 export const clamp = (number: number, min: number, max: number) => Math.min(Math.max(number, min), max);
 
-/**
- * @inheritdoc
- */
 @Component({
   selector: 'daff-progress-bar',
   templateUrl: './progress-bar.component.html',

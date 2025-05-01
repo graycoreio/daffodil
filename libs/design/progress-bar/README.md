@@ -57,11 +57,9 @@ Indeterminate progress bars should be used when the loading percentage of a task
 <design-land-example-viewer-container example="progress-bar-indeterminate"></design-land-example-viewer-container>
 
 ## Theming
-The progress bar color is defined by using the `color` property. By default, the color is set to `primary`. This can be changed to one of the supported colors.
+Use the `color` property to change the color of a progress bar. The default color is primary.
 
-Supported colors: `primary | secondary | tertiary | theme | theme-contrast | white | black`
-
-> `theme`, `theme-contrast`, `white`, and `black` should be used with caution to ensure that there is sufficient contrast.
+> `theme`, `white`, and `black` should be used with caution to ensure that there is sufficient contrast.
 
 <design-land-example-viewer-container example="progress-bar-themes"></design-land-example-viewer-container>
 
