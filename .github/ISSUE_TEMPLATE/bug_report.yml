@@ -1,0 +1,70 @@
+name: Bug Report or Regression
+description: Create a report to help us fix an issue or regression
+title: 'Title'
+type: 'Bug'
+labels: ['needs triage']
+body:
+  - type: markdown
+    attributes:
+      value:
+        Please add the appropriate package label(s) to indicate which package this feature is related to.
+  - type: checkboxes
+    id: is-regression
+    attributes:
+      label: Is this a regression?
+      description: Did this behavior use to work in the previous version?
+      options:
+        - label: Yes, this behavior used to work in the previous version
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the problem that you're running into.
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Please provide the steps to reproduce, and if possible a minimal demo of the problem.
+      value: |
+        Steps to reproduce:
+        1. 
+        2.
+        3.
+    validations:
+      required: false
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: Describe what the expected behavior is.
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual behavior
+      description: Describe what the actual behavior is.
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attrivbutes:
+      label: Additional context
+      description: Do you have anything to add that doesn't fit in the issue template?
+    validations:
+      required: false
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please provide details about your environment.
+      value: |
+        - Daffodil version:
+        - Angular version:
+        - Browser(s):
+        - Node version: XX  run `node --version`
+        - Operating system:
+    validations:
+      required: false

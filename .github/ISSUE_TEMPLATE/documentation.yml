@@ -1,0 +1,37 @@
+name: Documentation Request
+description: Request documentation or clarification for daff.io/docs
+title: 'Title'
+type: 'Task'
+labels: ['docs']
+body:
+  - type: markdown
+    attributes:
+      value:
+        Use this template if you want to request new documentation or clarification for [daff.io/docs](https://daff.io/docs). Please add the appropriate package label(s) to indicate which package this documentation request is related to.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Provide a clear and concise summary of what documentation needs to be added or changed.
+    validations:
+      required: true
+  - type: input
+    id: affected-documentation-page
+    attributes:
+      label: Affected documentation page
+      description: Insert a link to the affected page on [daff.io/docs](https://daff.io/docs).
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please provide details about your environment.
+      value: |
+        - Daffodil version: X.Y.Z
+        - Angular version: X.Y.Z
+        For tooling issues:
+        - Node version: XX  <!-- run `node --version` -->
+        - Platform:  <!-- Mac, Linux, Windows -->
+    validations:
+      required: false
