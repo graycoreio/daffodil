@@ -50,7 +50,7 @@ body:
       required: true
   - type: textarea
     id: additional-context
-    attrivbutes:
+    attributes:
       label: Additional context
       description: Do you have anything to add that doesn't fit in the issue template?
     validations:
@@ -59,12 +59,12 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: Please provide details about your environment.
+      description: What versions are currently on?
       value: |
         - Daffodil version:
         - Angular version:
         - Browser(s):
-        - Node version: XX  run `node --version`
+        - Node version: run `node --version`
         - Operating system:
     validations:
-      required: false
+      required: true

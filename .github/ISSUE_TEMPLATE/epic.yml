@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value:
-        Please add the appropriate package label(s) to indicate which package this feature is related to, and link all related issues in the sub-issue dropdown.
+        Please add the appropriate package label(s) to indicate which package this epic is related to, and link all related issues in the sub-issue dropdown.
   - type: textarea
     id: summary
     attributes:
@@ -21,19 +21,6 @@ body:
       description: List the key goals or outcomes this epic aims to achieve.
     validations:
       required: true
-  - type: textarea
-    id: environment
-    attributes:
-      label: Environment
-      description: Please provide details about your environment.
-      value: |
-        - Daffodil version:
-        - Angular version:
-        - Browser(s):
-        - Node version: XX  run `node --version`
-        - Operating system:
-    validations:
-      required: false
   - type: textarea
     id: additional-context
     attributes:

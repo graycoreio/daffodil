@@ -28,19 +28,13 @@ body:
       description: If you got this idea from somewhere, please indicate where you got it from.
     validations:
       required: false
-  - type: textarea
-    id: environment
+  - type: input
+    id: daffodil-version
     attributes:
-      label: Environment
-      description: Please provide details about your environment.
-      value: |
-        - Daffodil version:
-        - Angular version:
-        - Browser(s):
-        - Node version: XX  run `node --version`
-        - Operating system:
+      label: Daffodil version
+      description: What Daffodil version are you currently on?
     validations:
-      required: false
+      required: true
   - type: textarea
     id: additional-context
     attrivbutes:
