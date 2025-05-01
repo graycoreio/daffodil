@@ -22,16 +22,10 @@ body:
       description: Insert a link to the affected page on [daff.io/docs](https://daff.io/docs).
     validations:
       required: true
-  - type: textarea
-    id: environment
+  - type: input
+    id: daffodil-version
     attributes:
-      label: Environment
-      description: Please provide details about your environment.
-      value: |
-        - Daffodil version: X.Y.Z
-        - Angular version: X.Y.Z
-        For tooling issues:
-        - Node version: XX  <!-- run `node --version` -->
-        - Platform:  <!-- Mac, Linux, Windows -->
+      label: Daffodil version
+      description: What Daffodil version are you currently on?
     validations:
-      required: false
+      required: true

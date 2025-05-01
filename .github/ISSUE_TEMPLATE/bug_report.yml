@@ -49,13 +49,6 @@ body:
     validations:
       required: true
   - type: textarea
-    id: additional-context
-    attributes:
-      label: Additional context
-      description: Do you have anything to add that doesn't fit in the issue template?
-    validations:
-      required: false
-  - type: textarea
     id: environment
     attributes:
       label: Environment
@@ -68,3 +61,10 @@ body:
         - Operating system:
     validations:
       required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Do you have anything to add that doesn't fit in the issue template?
+    validations:
+      required: false
