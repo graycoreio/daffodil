@@ -1,0 +1,43 @@
+name: Epic
+description: Track a large feature or initiative with multiple related issues.
+title: 'Title'
+type: 'Epic'
+body:
+  - type: markdown
+    attributes:
+      value:
+        Please add the appropriate package label(s) to indicate which package this feature is related to, and link all related issues in the sub-issue dropdown.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Provide a high level overview of the epic. What is the goal or outcome?
+    validations:
+      required: true
+  - type: textarea
+    id: objectives
+    attributes:
+      label: Objectives
+      description: List the key goals or outcomes this epic aims to achieve.
+    validations:
+      required: false
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please provide details about your environment.
+      value: |
+        - Daffodil version:
+        - Angular version:
+        - Browser(s):
+        - Node version: XX  run `node --version`
+        - Operating system:
+    validations:
+      required: false
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Do you have anything to add that doesn't fit in the issue template?
+    validations:
+      required: false
