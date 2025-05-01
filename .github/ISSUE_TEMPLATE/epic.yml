@@ -20,7 +20,7 @@ body:
       label: Objectives
       description: List the key goals or outcomes this epic aims to achieve.
     validations:
-      required: false
+      required: true
   - type: textarea
     id: environment
     attributes:
