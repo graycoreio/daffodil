@@ -2,33 +2,38 @@
 @use '../../scss/core';
 @use '../../scss/theming';
 
+// stylelint-disable selector-class-pattern
 @mixin daff-paginator-theme($theme) {
-	$primary: core.daff-map-get($theme, primary);
-	$secondary: core.daff-map-get($theme, secondary);
-	$tertiary: core.daff-map-get($theme, tertiary);
-	$base: core.daff-map-get($theme, 'core', 'base');
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 	$white: core.daff-map-get($theme, 'core', 'white');
-	$black: core.daff-map-get($theme, 'core', 'black');
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$font-color: core.daff-map-get($theme, 'core', 'font-color');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-paginator {
 		&__previous,
-		&__next {
-			color: $font-color;
+		&__next,
+		&__page-link {
+			color: $base-contrast;
 		}
 
-		&__page-link {
-			color: $font-color;
+		@include theming.light($type) {
+			&__page-link {
+				&:hover,
+				&.selected {
+					&::after {
+						background: theming.daff-color($neutral, 20);
+					}
+				}
+			}
+		}
 
-			// stylelint-disable selector-class-pattern
-			&:hover,
-			&.selected {
-				color: daff-text-contrast(theming.daff-illuminate($base, $neutral, 2));
-
-				&::after {
-					background: theming.daff-illuminate($base, $neutral, 2);
+		@include theming.dark($type) {
+			&__page-link {
+				&:hover,
+				&.selected {
+					&::after {
+						background: theming.daff-color($neutral, 90);
+					}
 				}
 			}
 		}

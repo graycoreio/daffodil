@@ -1,6 +1,6 @@
 @use '../../../scss/interactions';
 
-$border-radius: 4px;
+$border-radius: 0.25rem;
 
 @mixin paginator-controls-base() {
 	@include interactions.clickable;
@@ -15,7 +15,7 @@ $border-radius: 4px;
 
 :host {
 	display: flex;
-	gap: 4px;
+	gap: 0.25rem;
 }
 
 .daff-paginator {
@@ -29,9 +29,9 @@ $border-radius: 4px;
 	&__next {
 		@include interactions.clickable;
 		@include paginator-controls-base();
-		gap: 8px;
+		gap: 0.5rem;
 		height: 2rem;
-		padding: 0 8px;
+		padding: 0 0.5rem;
 
 		&[disabled] {
 			cursor: not-allowed;
@@ -42,7 +42,9 @@ $border-radius: 4px;
 	&__ellipsis {
 		height: 2rem;
 		width: 2rem;
-		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	&__page-link {
@@ -50,7 +52,7 @@ $border-radius: 4px;
 		@include paginator-controls-base();
 		min-width: 2rem;
 		height: 2rem;
-		padding: 0 4px;
+		padding: 0 0.25rem;
 		position: relative;
 
 		span {
