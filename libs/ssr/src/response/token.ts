@@ -12,4 +12,4 @@ export const {
    * Provider for `DAFF_SSR_RESPONSE`.
    */
   provider: provideDaffSsrResponse,
-} = createSingleInjectionToken<DaffSsrResponse>('DAFF_SSR_RESPONSE', { factory: () => new DaffSsrNoopResponse() });
+} = createSingleInjectionToken<DaffSsrResponse>('DAFF_SSR_RESPONSE', { factory: () => new DaffSsrNoopResponse(), providedIn: 'platform' });
