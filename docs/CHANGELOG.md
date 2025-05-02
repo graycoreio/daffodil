@@ -1,5 +1,51 @@
 # Changelog
 
+## [0.83.0](https://github.com/graycoreio/daffodil/compare/v0.82.0...v0.83.0) (2025-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **design:** `DaffSidebarViewportBackdropComponent` has been removed from the public api since it component for internal use only.
+
+### Features
+
+* **daffio,dgeni:** route same origin navigation with angular ([#3648](https://github.com/graycoreio/daffodil/issues/3648)) ([fdf253e](https://github.com/graycoreio/daffodil/commit/fdf253e9929efd365662e8abf352779926053b0f))
+* **daffio:** add `DaffioDocsDesignApiSortSectionLabels` ([#3630](https://github.com/graycoreio/daffodil/issues/3630)) ([fccbe25](https://github.com/graycoreio/daffodil/commit/fccbe259929103771e21d1e31d888b904c78923b))
+* **daffio:** add deprecated label to api list section and docType to api base content ([#3651](https://github.com/graycoreio/daffodil/issues/3651)) ([9ad4490](https://github.com/graycoreio/daffodil/commit/9ad44904ac3bfa4ac9b4e28a89521a483c02de55))
+* **daffio:** add dynamic API components ([#3631](https://github.com/graycoreio/daffodil/issues/3631)) ([1244f49](https://github.com/graycoreio/daffodil/commit/1244f49d2500f6491815dd1561db0b2eb63fa9fa))
+* **daffio:** clean up api item label theming for light and dark modes ([#3650](https://github.com/graycoreio/daffodil/issues/3650)) ([3cb5598](https://github.com/graycoreio/daffodil/commit/3cb559862adb6ceda650cf0a86ab9fca2b3529b7))
+* **daffio:** move generic of docs service to method ([#3632](https://github.com/graycoreio/daffodil/issues/3632)) ([17c521a](https://github.com/graycoreio/daffodil/commit/17c521a95d088538f0479f9cecfe035cb9186848))
+* **design:** remove DaffSidebarViewportBackdropComponent from the public api ([#3656](https://github.com/graycoreio/daffodil/issues/3656)) ([2d4e094](https://github.com/graycoreio/daffodil/commit/2d4e09403eebf623951e51accbaf540e97485bd5))
+* **design:** replace daff-illuminate function in button themes ([#3618](https://github.com/graycoreio/daffodil/issues/3618)) ([acd1bd5](https://github.com/graycoreio/daffodil/commit/acd1bd59f263d0f22610368ab29546b735502bcb))
+* **design:** update accordion theme to support light and dark mode ([#3612](https://github.com/graycoreio/daffodil/issues/3612)) ([618ad41](https://github.com/graycoreio/daffodil/commit/618ad41e881e9a8672e357dc5e7748f09fa1a0a4))
+* **design:** update article theme to support light and dark mode ([#3615](https://github.com/graycoreio/daffodil/issues/3615)) ([7477fc5](https://github.com/graycoreio/daffodil/commit/7477fc5fe477845f2e0a71b5341e920d9874e41e))
+* **design:** update button loading icon sizes ([#3619](https://github.com/graycoreio/daffodil/issues/3619)) ([b03f4c3](https://github.com/graycoreio/daffodil/commit/b03f4c3f4ef0f5816d5b0b9cba1b54a82989a075))
+* **design:** update card theme to support light and dark mode ([#3634](https://github.com/graycoreio/daffodil/issues/3634)) ([43dfe63](https://github.com/graycoreio/daffodil/commit/43dfe63bd429b3cf27fd66273f5e5b8345fb844a))
+* **design:** update notification theme to support light and dark mode ([#3611](https://github.com/graycoreio/daffodil/issues/3611)) ([18b942d](https://github.com/graycoreio/daffodil/commit/18b942d00a79c71c1a86adf950055d465b41254e))
+* **design:** update progress bar theme to support light and dark modes ([#3663](https://github.com/graycoreio/daffodil/issues/3663)) ([bd3a9b9](https://github.com/graycoreio/daffodil/commit/bd3a9b9a4c049d1a9001a22205e7b3d1efb7d3dc))
+* **design:** update switch theme to support light and dark mode ([#3659](https://github.com/graycoreio/daffodil/issues/3659)) ([7465690](https://github.com/graycoreio/daffodil/commit/7465690a752e17ccd093d49a14a31aeca0337bd6))
+* **design:** update tabs component to support light and dark mode ([#3617](https://github.com/graycoreio/daffodil/issues/3617)) ([7c66cd6](https://github.com/graycoreio/daffodil/commit/7c66cd6818b51e6053eac65072a9b7f025686159))
+* **design:** update toast theme to support light and dark mode ([#3603](https://github.com/graycoreio/daffodil/issues/3603)) ([5334c11](https://github.com/graycoreio/daffodil/commit/5334c116612d8f75a85d2ce908cb42e42b37b4ad))
+* **design:** update tree theme to support light and dark mode ([#3602](https://github.com/graycoreio/daffodil/issues/3602)) ([fc75ca2](https://github.com/graycoreio/daffodil/commit/fc75ca24a77c5b34938cc813303f65e55b13e492))
+* **dgeni,daffio:** move docs rendering to daffio ([#3550](https://github.com/graycoreio/daffodil/issues/3550)) ([206e4f8](https://github.com/graycoreio/daffodil/commit/206e4f881edd7e8baf3b26e67a2b670e5b5e579e))
+* **dgeni:** add deprecated field to API doc ([#3543](https://github.com/graycoreio/daffodil/issues/3543)) ([00ed925](https://github.com/graycoreio/daffodil/commit/00ed925b2842bfbe05026ee7b345b00f03f5fa2a))
+* **docs,daffio:** set full API docs in design component doc ([#3635](https://github.com/graycoreio/daffodil/issues/3635)) ([aa764bb](https://github.com/graycoreio/daffodil/commit/aa764bb054eed234ee2be96658c647aca54035cd))
+* **docs,dgeni:** add `deprecated` to API nav list ([#3649](https://github.com/graycoreio/daffodil/issues/3649)) ([f898e43](https://github.com/graycoreio/daffodil/commit/f898e43796f2cf73d5a95a3cfa931baadb150cd8))
+* **docs:** add `DaffDocsRenderedContent` ([#3625](https://github.com/graycoreio/daffodil/issues/3625)) ([e9bb12b](https://github.com/graycoreio/daffodil/commit/e9bb12b826c6a7cf36920fb815c8e0310614c9f8))
+* **docs:** add `role` to API nav doc ([#3629](https://github.com/graycoreio/daffodil/issues/3629)) ([d6a9d98](https://github.com/graycoreio/daffodil/commit/d6a9d9809ec5bc3fad1d4d38868c00217e5ea521))
+* **docs:** add API models and helpers ([#3627](https://github.com/graycoreio/daffodil/issues/3627)) ([1a386d1](https://github.com/graycoreio/daffodil/commit/1a386d12f11c361cc002b9334126d67e14822aca))
+* **docs:** add API role docs ([#3628](https://github.com/graycoreio/daffodil/issues/3628)) ([f99a240](https://github.com/graycoreio/daffodil/commit/f99a240c091bfe6ec705d9ceed649d532f2e4677))
+* **docs:** add design example models ([#3626](https://github.com/graycoreio/daffodil/issues/3626)) ([addba71](https://github.com/graycoreio/daffodil/commit/addba717e6333a6770fcc55b5ad9f264aca82fb1))
+* **docs:** add TS doc models ([#3624](https://github.com/graycoreio/daffodil/issues/3624)) ([743ccde](https://github.com/graycoreio/daffodil/commit/743ccdec1e31dca323ee56213ae42a28119e7a29))
+
+
+### Bug Fixes
+
+* **design:** fix media gallery functions and id bugs ([#3614](https://github.com/graycoreio/daffodil/issues/3614)) ([902a09d](https://github.com/graycoreio/daffodil/commit/902a09dc5125e7f602810794e081e33d453f4aa4))
+* **dgeni:** incorrectly inferred const types ([#3657](https://github.com/graycoreio/daffodil/issues/3657)) ([3672752](https://github.com/graycoreio/daffodil/commit/3672752826db110ac0927d2b21e7ea359f4de5d1))
+* **dgeni:** render inputs and outputs in the source block ([#3647](https://github.com/graycoreio/daffodil/issues/3647)) ([e78100d](https://github.com/graycoreio/daffodil/commit/e78100d2cb681ba4606f6ca9a5eead73ddd5fa81))
+* **ssr:** response token scope ([#3665](https://github.com/graycoreio/daffodil/issues/3665)) ([4538a89](https://github.com/graycoreio/daffodil/commit/4538a8969f08264bdc5676afeaf1cefb206d0465))
+
 ## [0.82.0](https://github.com/graycoreio/daffodil/compare/v0.81.1...v0.82.0) (2025-04-10)
 
 
