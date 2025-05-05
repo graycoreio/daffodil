@@ -4,19 +4,20 @@
 @mixin daff-skeleton-theme($theme) {
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 	$base: core.daff-map-get($theme, 'core', 'base');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-skeleton {
-		&::before,
-		::before {
-			background: theming.daff-illuminate($base, $neutral, 2);
+		@include theming.light($type) {
+			&::before,
+			::before {
+				background: theming.daff-color($neutral, 20);
+			}
 		}
 
-		@keyframes loading {
-			from {
-				opacity: 0.5;
-			}
-			to {
-				opacity: 1;
+		@include theming.dark($type) {
+			&::before,
+			::before {
+				background: theming.daff-color($neutral, 90);
 			}
 		}
 	}
@@ -38,5 +39,14 @@
 		position: absolute;
 		top: 0;
 		left: 0;
+	}
+
+	@keyframes loading {
+		from {
+			opacity: 0.5;
+		}
+		to {
+			opacity: 1;
+		}
 	}
 }
