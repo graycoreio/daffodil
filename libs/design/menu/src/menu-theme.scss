@@ -2,24 +2,43 @@
 @use '../../scss/theming';
 
 @mixin daff-menu-theme($theme) {
-	$white: core.daff-map-get($theme, 'core', 'white');
 	$black: core.daff-map-get($theme, 'core', 'black');
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 	$base: core.daff-map-get($theme, 'core', 'base');
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
-	.daff-menu {
-		background: $base;
-		box-shadow: 0 0 24px rgb($black, 0.12);
+	@include theming.light($type) {
+		.daff-menu {
+			background: $base;
+			box-shadow: 0 0 24px rgb($black, 0.12);
+		}
+
+		.daff-menu-item {
+			background: $base;
+			color: $base-contrast;
+
+			&:hover,
+			&:focus {
+				background: rgba(theming.daff-color($neutral, 20), 0.5);
+			}
+		}
 	}
 
-	.daff-menu-item {
-		background: $base;
-		color: $base-contrast;
+	@include theming.dark($type) {
+		.daff-menu {
+			background: $base;
+			box-shadow: 0 0 24px rgb($black, 0.12);
+		}
 
-		&:hover,
-		&:focus {
-			background: theming.daff-illuminate($base, $neutral, 1);
+		.daff-menu-item {
+			background: $base;
+			color: $base-contrast;
+
+			&:hover,
+			&:focus {
+				background: rgba(theming.daff-color($neutral, 20), 0.08);
+			}
 		}
 	}
 }
