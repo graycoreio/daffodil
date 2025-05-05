@@ -16,22 +16,39 @@
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 	$white: core.daff-map-get($theme, 'core', 'white');
 	$black: core.daff-map-get($theme, 'core', 'black');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-callout {
-		@include daff-callout-theme-variant(
-			theming.daff-illuminate($base, $neutral, 1)
-		);
+		@include theming.light($type) {
+			@include daff-callout-theme-variant(theming.daff-color($neutral, 10));
 
-		&.daff-primary {
-			@include daff-callout-theme-variant(theming.daff-color($primary));
+			&.daff-primary {
+				@include daff-callout-theme-variant(theming.daff-color($primary));
+			}
+
+			&.daff-secondary {
+				@include daff-callout-theme-variant(theming.daff-color($secondary));
+			}
+
+			&.daff-tertiary {
+				@include daff-callout-theme-variant(theming.daff-color($tertiary));
+			}
 		}
 
-		&.daff-secondary {
-			@include daff-callout-theme-variant(theming.daff-color($secondary));
-		}
+		@include theming.dark($type) {
+			@include daff-callout-theme-variant(theming.daff-color($neutral, 90));
 
-		&.daff-tertiary {
-			@include daff-callout-theme-variant(theming.daff-color($tertiary));
+			&.daff-primary {
+				@include daff-callout-theme-variant(theming.daff-color($primary, 60));
+			}
+
+			&.daff-secondary {
+				@include daff-callout-theme-variant(theming.daff-color($secondary, 60));
+			}
+
+			&.daff-tertiary {
+				@include daff-callout-theme-variant(theming.daff-color($tertiary, 60));
+			}
 		}
 
 		&.daff-theme {
