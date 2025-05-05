@@ -7,22 +7,7 @@
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 	$base: core.daff-map-get($theme, 'core', 'base');
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-
-	.daff-list {
-		.daff-list-item {
-			&__content {
-				// stylelint-disable-next-line scss/selector-nest-combinators
-				*:nth-child(1) {
-					color: $base-contrast;
-				}
-
-				// stylelint-disable-next-line scss/selector-nest-combinators
-				*:nth-child(n + 2) {
-					color: theming.daff-illuminate($base-contrast, $neutral, 3);
-				}
-			}
-		}
-	}
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-nav-list {
 		.daff-list-item {
@@ -30,10 +15,21 @@
 				background-color: $base;
 			}
 
-			&:hover,
-			&.active {
-				&::after {
-					background-color: theming.daff-illuminate($base, $neutral, 2);
+			@include theming.light($type) {
+				&:hover,
+				&.active {
+					&::after {
+						background-color: rgba(theming.daff-color($neutral, 20), 0.5);
+					}
+				}
+			}
+
+			@include theming.dark($type) {
+				&:hover,
+				&.active {
+					&::after {
+						background-color: rgba(theming.daff-color($neutral, 20), 0.08);
+					}
 				}
 			}
 		}
