@@ -10,15 +10,24 @@
 	$base: core.daff-map-get($theme, 'core', 'base');
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-form-field {
 		&__control {
 			background: $base;
-			border: 1px solid theming.daff-illuminate($base, $neutral, 6);
-			color: theming.daff-illuminate($base, $neutral, 6);
+
+			@include theming.light($type) {
+				border: 1px solid theming.daff-color($neutral);
+				color: theming.daff-color($neutral);
+			}
+
+			@include theming.dark($type) {
+				border: 1px solid theming.daff-color($neutral, 40);
+				color: theming.daff-color($neutral, 40);
+			}
 
 			&.daff-focused {
-        border: 1px solid theming.daff-color($primary);
+				border: 1px solid theming.daff-color($primary);
 
 				.daff-form-label {
 					color: theming.daff-color($primary);
@@ -36,12 +45,6 @@
 			&.daff-valid {
 				color: $base-contrast;
 			}
-
-      &.daff-disabled {
-				background-color: transparent;
-        border: 1px solid theming.daff-illuminate($base, $neutral, 4);
-        color: theming.daff-illuminate($base, $neutral, 4);
-      }
 		}
 	}
 }

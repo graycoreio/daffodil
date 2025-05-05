@@ -1,7 +1,10 @@
 @use '../../../../scss/theming';
+@use '../../../../scss/core';
 
 @mixin daff-error-message-theme($theme) {
+	$critical: core.daff-map-get($theme, critical);
+
 	.daff-error-message {
-		color: theming.daff-color(theming.$daff-red, 60);
+		color: theming.daff-color($critical);
 	}
 }
