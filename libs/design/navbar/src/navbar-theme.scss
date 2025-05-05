@@ -16,11 +16,16 @@
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 	$white: core.daff-map-get($theme, 'core', 'white');
 	$black: core.daff-map-get($theme, 'core', 'black');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-navbar {
-		@include daff-navbar-theme-variant(
-			theming.daff-illuminate($base, $neutral, 1)
-		);
+		@include theming.light($type) {
+			@include daff-navbar-theme-variant(theming.daff-color($neutral, 10));
+		}
+
+		@include theming.dark($type) {
+			@include daff-navbar-theme-variant(theming.daff-color($neutral, 90));
+		}
 
 		&--raised {
 			box-shadow: 0 4px 10px rgba($black, 0.08);
