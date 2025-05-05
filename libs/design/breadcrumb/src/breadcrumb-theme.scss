@@ -3,11 +3,20 @@
 @use '../../scss/theming';
 
 @mixin daff-breadcrumb-theme($theme) {
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
+	$type: core.daff-map-get($theme, 'core', 'type');
 
 	.daff-breadcrumb__item {
-		color: theming.daff-illuminate($base-contrast, $neutral, 4);
+		a {
+			@include theming.light($type) {
+				color: theming.daff-color($neutral, 80);
+				text-decoration-color: theming.daff-color($neutral, 80);
+			}
+
+			@include theming.dark($type) {
+				color: theming.daff-color($neutral, 30);
+				text-decoration-color: theming.daff-color($neutral, 30);
+			}
+		}
 	}
 }
