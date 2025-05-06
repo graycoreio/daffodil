@@ -74,6 +74,8 @@ export class DaffStatusableDirective implements DaffStatusable {
 
   /**
    * Sets the status on a component.
+   *
+   * Default options are: `info`, `warn`, `critical`, and `success`.
    */
   @Input() status: DaffStatus;
 }

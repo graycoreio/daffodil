@@ -84,6 +84,8 @@ export class DaffSizableDirective<T extends DaffSizeAllType> implements DaffSiza
 
   /**
    * The size of a component.
+   *
+   * Default options are: `xs`, `sm`, `md`, `lg`, and `xl`.
    */
   @Input() size: T;
 

@@ -76,7 +76,9 @@ export class DaffTextAlignableDirective implements DaffTextAlignable, OnChanges 
   }
 
   /**
-   * The text-alignment of a component.
+   * The text alignment of a component.
+   *
+   * Default options are: `left`, `center`, and `right`.
    */
   @Input() textAlignment: DaffTextAlignment;
 
