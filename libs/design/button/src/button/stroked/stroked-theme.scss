@@ -67,11 +67,11 @@
 				);
 			}
 
-			&.daff-black {
+			&.daff-dark {
 				@include daff-stroked-button-theme-variant($black);
 			}
 
-			&.daff-white {
+			&.daff-light {
 				@include daff-stroked-button-theme-variant($white);
 			}
 
@@ -81,22 +81,6 @@
 
 			&.daff-theme-contrast {
 				@include daff-stroked-button-theme-variant($base-contrast);
-			}
-
-			&[disabled],
-			&.disabled {
-				background-color: transparent;
-				border-color: theming.daff-color($neutral, 30);
-				color: theming.daff-color($neutral, 50);
-
-				&:hover {
-					color: theming.daff-color($neutral, 50);
-
-					&::after {
-						background-color: transparent;
-						opacity: 0;
-					}
-				}
 			}
 
 			&.daff-warn {
@@ -135,11 +119,11 @@
 				);
 			}
 
-			&.daff-black {
+			&.daff-dark {
 				@include daff-stroked-button-theme-variant($black);
 			}
 
-			&.daff-white {
+			&.daff-light {
 				@include daff-stroked-button-theme-variant($white);
 			}
 
@@ -149,22 +133,6 @@
 
 			&.daff-theme-contrast {
 				@include daff-stroked-button-theme-variant($base-contrast);
-			}
-
-			&[disabled],
-			&.disabled {
-				background-color: transparent;
-				border-color: theming.daff-color($neutral, 70);
-				color: theming.daff-color($neutral);
-
-				&:hover {
-					color: theming.daff-color($neutral);
-
-					&::after {
-						background-color: transparent;
-						opacity: 0;
-					}
-				}
 			}
 
 			&.daff-warn {

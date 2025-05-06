@@ -59,11 +59,11 @@
 			@include daff-raised-button-theme-variant(theming.daff-color($tertiary));
 		}
 
-		&.daff-black {
+		&.daff-dark {
 			@include daff-raised-button-theme-variant($black);
 		}
 
-		&.daff-white {
+		&.daff-light {
 			@include daff-raised-button-theme-variant($white);
 		}
 

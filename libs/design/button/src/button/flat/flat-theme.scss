@@ -55,13 +55,13 @@
 				);
 			}
 
-			&.daff-black {
+			&.daff-dark {
 				@include daff-flat-button-theme-variant(
 					$black,
 				);
 			}
 
-			&.daff-white {
+			&.daff-light {
 				@include daff-flat-button-theme-variant(
 					$white,
 				);
@@ -77,23 +77,6 @@
 				@include daff-flat-button-theme-variant(
 					$base-contrast,
 				);
-			}
-
-			&[disabled],
-			&.disabled {
-				color: theming.daff-color($neutral, 50);
-
-				&::after {
-					background: transparent;
-				}
-
-				&:hover,
-				&:focus,
-				&:active {
-					&::after {
-						background: transparent;
-					}
-				}
 			}
 
 			&.daff-warn {
@@ -138,13 +121,13 @@
 				);
 			}
 
-			&.daff-black {
+			&.daff-dark {
 				@include daff-flat-button-theme-variant(
 					$black,
 				);
 			}
 
-			&.daff-white {
+			&.daff-light {
 				@include daff-flat-button-theme-variant(
 					$white,
 				);
@@ -160,23 +143,6 @@
 				@include daff-flat-button-theme-variant(
 					$base-contrast,
 				);
-			}
-
-			&[disabled],
-			&.disabled {
-				color: theming.daff-color($neutral, 50);
-
-				&::after {
-					background: transparent;
-				}
-
-				&:hover,
-				&:focus,
-				&:active {
-					&::after {
-						background: transparent;
-					}
-				}
 			}
 
 			&.daff-warn {

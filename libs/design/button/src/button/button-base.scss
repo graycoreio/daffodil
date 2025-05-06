@@ -1,12 +1,22 @@
 @use '../../../scss/interactions';
 @use '../../../scss/typography' as t;
 
+// stylelint-disable selector-class-pattern
 @mixin daff-button-elevated {
-	&.elevated { /* stylelint-disable-line selector-class-pattern */
-		box-shadow: 0 1px 5px -4px rgba(0, 0, 0, 0.5), 0 4px 8px 0 rgba(0, 0, 0, 0.05);
+	&.elevated {
+		box-shadow: 0 1px 5px -4px rgba(0, 0, 0, 0.5),
+			0 4px 8px 0 rgba(0, 0, 0, 0.05);
 
-		&:hover { /* stylelint-disable-line selector-class-pattern */
+		&:hover {
 			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+		}
+
+		&[disabled],
+		&.disabled {
+			&:hover {
+				box-shadow: 0 1px 5px -4px rgba(0, 0, 0, 0.5),
+					0 4px 8px 0 rgba(0, 0, 0, 0.05);
+			}
 		}
 	}
 }
@@ -28,12 +38,13 @@
 	&[disabled],
 	&.disabled {
 		cursor: not-allowed;
+		opacity: 0.5;
 	}
 
 	.daff-button__content,
 	.daff-prefix,
 	.daff-suffix {
-		z-index: 2;
+		z-index: 1;
 	}
 
 	.daff-button__loading {
@@ -56,7 +67,9 @@
 			width: 100%;
 			height: 100%;
 			opacity: 0;
+			pointer-events: none;
 			transition: opacity 300ms;
+			z-index: 0;
 		}
 
 		&:hover,

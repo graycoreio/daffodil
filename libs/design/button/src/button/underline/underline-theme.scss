@@ -49,11 +49,11 @@
 				);
 			}
 
-			&.daff-black {
+			&.daff-dark {
 				@include daff-underline-button-theme-variant($black);
 			}
 
-			&.daff-white {
+			&.daff-light {
 				@include daff-underline-button-theme-variant($white);
 			}
 
@@ -63,13 +63,6 @@
 
 			&.daff-theme-contrast {
 				@include daff-underline-button-theme-variant($base-contrast);
-			}
-
-			&[disabled],
-			&.disabled {
-				@include daff-underline-button-theme-variant(
-					theming.daff-color($neutral, 40)
-				);
 			}
 
 			&.daff-warn {
@@ -112,11 +105,11 @@
 				);
 			}
 
-			&.daff-black {
+			&.daff-dark {
 				@include daff-underline-button-theme-variant($black);
 			}
 
-			&.daff-white {
+			&.daff-light {
 				@include daff-underline-button-theme-variant($white);
 			}
 
@@ -126,13 +119,6 @@
 
 			&.daff-theme-contrast {
 				@include daff-underline-button-theme-variant($base-contrast);
-			}
-
-			&[disabled],
-			&.disabled {
-				@include daff-underline-button-theme-variant(
-					theming.daff-color($neutral, 60)
-				);
 			}
 
 			&.daff-warn {

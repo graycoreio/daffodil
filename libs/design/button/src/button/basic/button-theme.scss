@@ -45,9 +45,9 @@
 	.daff-button {
 		@include theming.light($type) {
 			@include daff-button-theme-variant(
+				theming.daff-color($neutral, 10),
 				theming.daff-color($neutral, 20),
-				theming.daff-color($neutral, 30),
-				theming.daff-color($neutral, 40)
+				theming.daff-color($neutral, 30)
 			);
 
 			&.daff-primary {
@@ -74,17 +74,17 @@
 				);
 			}
 
-			&.daff-black {
+			&.daff-dark {
 				@include daff-button-theme-variant(
-					$black,
+					theming.daff-color($neutral, 100),
 					theming.daff-color($neutral, 90),
 					theming.daff-color($neutral, 80)
 				);
 			}
 
-			&.daff-white {
+			&.daff-light {
 				@include daff-button-theme-variant(
-					$white,
+					theming.daff-color($neutral, 10),
 					theming.daff-color($neutral, 20),
 					theming.daff-color($neutral, 30)
 				);
@@ -94,7 +94,7 @@
 				@include daff-button-theme-variant(
 					$base,
 					theming.daff-color($neutral, 20),
-					theming.daff-color($neutral, 30),
+					theming.daff-color($neutral, 30)
 				);
 			}
 
@@ -102,22 +102,8 @@
 				@include daff-button-theme-variant(
 					$base-contrast,
 					theming.daff-color($neutral, 90),
-					theming.daff-color($neutral, 80),
+					theming.daff-color($neutral, 80)
 				);
-			}
-
-			&[disabled],
-			&.disabled {
-				@include daff-button-theme-variant(
-					theming.daff-color($neutral, 30),
-					theming.daff-color($neutral, 30),
-					theming.daff-color($neutral, 30),
-				);
-				color: theming.daff-color($neutral, 50);
-
-				&:hover {
-					color: theming.daff-color($neutral, 50);
-				}
 			}
 
 			&.daff-warn {
@@ -176,15 +162,15 @@
 				);
 			}
 
-			&.daff-black {
+			&.daff-dark {
 				@include daff-button-theme-variant(
-					$black,
+					theming.daff-color($neutral, 100),
 					theming.daff-color($neutral, 90),
 					theming.daff-color($neutral, 80)
 				);
 			}
 
-			&.daff-white {
+			&.daff-light {
 				@include daff-button-theme-variant(
 					$white,
 					theming.daff-color($neutral, 20),
@@ -196,7 +182,7 @@
 				@include daff-button-theme-variant(
 					$base,
 					theming.daff-color($neutral, 90),
-					theming.daff-color($neutral, 80),
+					theming.daff-color($neutral, 80)
 				);
 			}
 
@@ -204,22 +190,8 @@
 				@include daff-button-theme-variant(
 					$base-contrast,
 					theming.daff-color($neutral, 20),
-					theming.daff-color($neutral, 30),
+					theming.daff-color($neutral, 30)
 				);
-			}
-
-			&[disabled],
-			&.disabled {
-				@include daff-button-theme-variant(
-					theming.daff-color($neutral, 70),
-					theming.daff-color($neutral, 70),
-					theming.daff-color($neutral, 70),
-				);
-				color: theming.daff-color($neutral, 50);
-
-				&:hover {
-					color: theming.daff-color($neutral, 50);
-				}
 			}
 
 			&.daff-warn {
