@@ -9,6 +9,7 @@ import { DaffApiDocBase } from './base.type';
 import { DaffDocsApiFunctionParam } from './function.type';
 import {
   DaffDocsApiDecorator,
+  DaffDocsApiRef,
   DaffDocsApiRole,
 } from '../../api/public_api';
 import { DaffDocsRenderedContent } from '../rendered-content.type';
@@ -20,6 +21,7 @@ export interface DaffDocsApiTypeProperty extends Pick<PropertyMemberDoc, MemberF
   description: DaffDocsRenderedContent;
   type: DaffDocsRenderedContent;
   deprecated: string;
+  inheritedFrom?: DaffDocsApiRef;
 }
 
 export interface DaffDocsApiTypeMethod extends Pick<MethodMemberDoc, MemberFields | 'typeParameters'> {
@@ -28,6 +30,7 @@ export interface DaffDocsApiTypeMethod extends Pick<MethodMemberDoc, MemberField
   description: DaffDocsRenderedContent;
   type: DaffDocsRenderedContent;
   deprecated: string;
+  inheritedFrom?: DaffDocsApiRef;
 }
 
 export interface DaffDocsApiHeritageInfo extends Pick<HeritageInfo, 'text'> {}

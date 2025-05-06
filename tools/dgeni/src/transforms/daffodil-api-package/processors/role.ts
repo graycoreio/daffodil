@@ -27,6 +27,9 @@ import {
   DaffDocsApiTypeProperty,
   daffDocsGetRoleFromTsDoc,
   DaffDocsTsDocument,
+  daffDocsApiParseHostDirective,
+  daffDocsApiParseHostDirectiveField,
+  DaffDocsApiHostDirective,
 } from '@daffodil/docs-utils';
 
 import { InlineTagProcessor } from './inline-tag-processor';
@@ -34,6 +37,7 @@ import {
   MARKDOWN_CODE_PROCESSOR_NAME,
   MarkdownCodeProcessor,
 } from '../../../processors/markdown';
+import { createRef } from '../../../utils/create-ref';
 import { FilterableProcessor } from '../../../utils/filterable-processor.type';
 import { linkSymbols } from '../../../utils/link-symbols';
 import {
@@ -129,6 +133,7 @@ export class RoleProcessor implements FilterableProcessor {
       'isGetAccessor',
       'isSetAccessor',
       'deprecated',
+      'inheritedFrom',
     ],
     {
       decorators: arraySerializer(this.decoratorSerialize),
@@ -159,6 +164,7 @@ export class RoleProcessor implements FilterableProcessor {
       'isGetAccessor',
       'isSetAccessor',
       'deprecated',
+      'inheritedFrom',
     ],
     {
       decorators: arraySerializer(this.decoratorSerialize),
@@ -232,6 +238,7 @@ export class RoleProcessor implements FilterableProcessor {
   readonly directiveSerialize = serializeFactory<DaffApiDirective>(
     [
       'selector',
+      'hostDirectives',
     ],
     {
       inputs: arraySerializer(this.inputSerialize),
@@ -245,6 +252,7 @@ export class RoleProcessor implements FilterableProcessor {
   constructor(
     private markdown: MarkdownCodeProcessor,
     private inlineTagProcessor: InlineTagProcessor,
+    private aliasMap,
   ) {}
 
   $process(docs: Array<Document>): Array<Document> {
@@ -312,9 +320,44 @@ export class RoleProcessor implements FilterableProcessor {
   directive(doc: SerializableDoc & DaffApiDirective & ClassExportDoc): SerializableDoc & DaffApiDirective {
     this.klass(<any>doc);
     doc.serializer = this.directiveSerialize;
+    const directiveArg: any = doc.decorators[0].argumentInfo[0];
     doc.inputs = [];
     doc.outputs = [];
-    doc.selector = doc.decorators[0].argumentInfo[0][0];
+    doc.selector = directiveArg.selector;
+    doc.hostDirectives = (<Array<string>>directiveArg.hostDirectives)
+      ?.map(daffDocsApiParseHostDirective)
+      .map<DaffDocsApiHostDirective>(({ directive, inputs, outputs }) => ({
+        directive: createRef(directive),
+        inputs: inputs ? JSON.parse(inputs.replaceAll('\'', '\"')).map(daffDocsApiParseHostDirectiveField) : [],
+        outputs: outputs ? JSON.parse(outputs.replaceAll('\'', '\"')).map(daffDocsApiParseHostDirectiveField) : [],
+      })) || [];
+    doc.hostDirectives.forEach((hostDirective) => {
+      const directiveDoc = this.aliasMap.getDocs(hostDirective.directive.label)[0];
+      if (directiveDoc) {
+        hostDirective.inputs.forEach((input) => {
+          const parentInput = directiveDoc.members.find((member) => member.name === input.parentField || input.field);
+          if (parentInput) {
+            doc.inputs.push({
+              ...parentInput,
+              name: input.field,
+              required: !parentInput.isOptional,
+              inheritedFrom: hostDirective.directive,
+            });
+          }
+        });
+        hostDirective.outputs.forEach((output) => {
+          const parentOutput = directiveDoc.members.find((member) => member.name === output.parentField || output.field);
+          if (parentOutput) {
+            doc.outputs.push({
+              ...parentOutput,
+              name: output.field,
+              required: !parentOutput.isOptional,
+              inheritedFrom: hostDirective.directive,
+            });
+          }
+        });
+      }
+    });
     // TODO: support signals
     doc.props = doc.props.reduce((acc, prop) => {
       if (prop.decorators?.find(({ name }) => name === 'Input')) {
@@ -446,5 +489,5 @@ export class RoleProcessor implements FilterableProcessor {
 
 export const ROLE_PROVIDER = <const>[
   ROLE_PROCESSOR_NAME,
-  (markdown: MarkdownCodeProcessor, inlineTagProcessorForRealz: InlineTagProcessor) => new RoleProcessor(markdown, inlineTagProcessorForRealz),
+  (markdown: MarkdownCodeProcessor, inlineTagProcessorForRealz: InlineTagProcessor, aliasMap) => new RoleProcessor(markdown, inlineTagProcessorForRealz, aliasMap),
 ];
