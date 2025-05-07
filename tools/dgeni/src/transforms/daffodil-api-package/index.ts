@@ -22,6 +22,7 @@ import {
   ADD_SUBPACKAGE_EXPORTS_PROCESSOR_NAME,
   ADD_SUBPACKAGE_EXPORTS_PROCESSOR_PROVIDER,
 } from './processors/add-subpackage-exports';
+import { HOIST_PRIVATE_PARENTS_PROCESSOR_PROVIDER } from './processors/hoist-private-parents';
 import {
   IMPORT_EXAMPLE_PROCESSOR_PROVIDER,
   ImportExampleProcessor,
@@ -72,6 +73,7 @@ export const apiDocsBase = new Package('api-base', [
   .processor(new CleanSelectorsProcessor())
   .processor(new MakeTypesHtmlCompatibleProcessor())
   .processor(new FilterOutPrivatePropertiesProcessor())
+  .processor(...HOIST_PRIVATE_PARENTS_PROCESSOR_PROVIDER)
   .processor(...PACKAGES_PROCESSOR_PROVIDER)
   .processor(...ADD_PACKAGE_EXPORTS_PROCESSOR_PROVIDER)
   .processor(...ADD_SUBPACKAGE_EXPORTS_PROCESSOR_PROVIDER)

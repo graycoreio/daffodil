@@ -253,6 +253,7 @@ export class RoleProcessor implements FilterableProcessor {
     private markdown: MarkdownCodeProcessor,
     private inlineTagProcessor: InlineTagProcessor,
     private aliasMap,
+    private parseTagsProcessor,
   ) {}
 
   $process(docs: Array<Document>): Array<Document> {
@@ -489,5 +490,5 @@ export class RoleProcessor implements FilterableProcessor {
 
 export const ROLE_PROVIDER = <const>[
   ROLE_PROCESSOR_NAME,
-  (markdown: MarkdownCodeProcessor, inlineTagProcessorForRealz: InlineTagProcessor, aliasMap) => new RoleProcessor(markdown, inlineTagProcessorForRealz, aliasMap),
+  (markdown: MarkdownCodeProcessor, inlineTagProcessorForRealz: InlineTagProcessor, aliasMap, parseTagsProcessor) => new RoleProcessor(markdown, inlineTagProcessorForRealz, aliasMap, parseTagsProcessor),
 ];
