@@ -1,6 +1,7 @@
 import { Document } from 'dgeni';
 import { ClassExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassExportDoc';
 import { HeritageInfo } from 'dgeni-packages/typescript/api-doc-types/ClassLikeExportDoc';
+import { InterfaceExportDoc } from 'dgeni-packages/typescript/api-doc-types/InterfaceExportDoc';
 
 import { DaffDocsApiType } from '@daffodil/docs-utils';
 
@@ -16,7 +17,7 @@ export class HoistPrivateParentsProcessor implements FilterableProcessor {
   readonly $runAfter = ['readTypeScriptModules'];
   readonly $runBefore = ['parsing-tags', 'extracting-tags'];
 
-  docTypes: Array<string> = [DaffDocsApiType.CLASS];
+  docTypes: Array<string> = [DaffDocsApiType.CLASS, DaffDocsApiType.INTERFACE];
 
   constructor(
     private parseTagsProcessor,
@@ -25,9 +26,11 @@ export class HoistPrivateParentsProcessor implements FilterableProcessor {
   $process(docs: Array<Document>): Array<Document> {
     return docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
-        doc.extendsClauses = doc.extendsClauses?.reduce((acc, parent: HeritageInfo) => {
+        const field = DaffDocsApiType.CLASS ? 'extendsClauses' : 'implementsClauses';
+        const DocConstructor = DaffDocsApiType.CLASS ? ClassExportDoc : InterfaceExportDoc;
+        doc[field] = doc[field]?.reduce((acc, parent: HeritageInfo) => {
           if (!parent.doc && parent.symbol?.valueDeclaration) {
-            const parentDoc = new ClassExportDoc(
+            const parentDoc = new DocConstructor(
               doc.host,
               doc.moduleDoc,
               parent.symbol,
