@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,7 +6,6 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffPrefixDirective } from '@daffodil/design';
 import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
 
 @Component({
@@ -16,8 +16,8 @@ import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_NOTIFICATION_COMPONENTS,
-    DaffPrefixDirective,
     FaIconComponent,
+    NgIf,
   ],
 })
 export class DefaultNotificationComponent {

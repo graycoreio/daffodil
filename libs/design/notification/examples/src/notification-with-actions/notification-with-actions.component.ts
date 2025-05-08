@@ -2,10 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffPrefixDirective } from '@daffodil/design';
 import {
   DaffButtonComponent,
   DaffFlatButtonComponent,
@@ -27,10 +26,9 @@ import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_NOTIFICATION_COMPONENTS,
-    FaIconComponent,
+    FontAwesomeModule,
     DaffButtonComponent,
     DaffFlatButtonComponent,
-    DaffPrefixDirective,
   ],
 })
 export class NotificationWithActionsComponent {
