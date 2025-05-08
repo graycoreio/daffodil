@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -6,10 +5,7 @@ import {
   ContentChild,
 } from '@angular/core';
 
-import {
-  DaffPrefixDirective,
-  DaffPrefixSuffixModule,
-} from '@daffodil/design';
+import { DaffPrefixDirective } from '@daffodil/design';
 
 @Component({
   selector: 'a[daff-menu-item]' + ',' +
@@ -17,10 +13,6 @@ import {
   templateUrl: './menu-item.component.html',
   styleUrls: ['./menu-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    NgIf,
-    DaffPrefixSuffixModule,
-  ],
 })
 
 export class DaffMenuItemComponent {
