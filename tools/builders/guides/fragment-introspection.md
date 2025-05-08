@@ -67,7 +67,7 @@ Once the fragment types JSON document has been generated and added to the codeba
 The following example shows a possible Apollo configuration that creates an introspection fragment matcher and loads it into the in-memory cache.
 
 ```typescript
-import { ApolloModule, Apollo } from 'apollo-angular';
+import { provideApollo, Apollo } from 'apollo-angular';
 import { IntrospectionFragmentMatcher, InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 
@@ -83,9 +83,11 @@ const cache = new InMemoryCache({ fragmentMatcher });
   ...,
   imports: [
     ...,
-    ApolloModule,
     HttpLinkModule
-  ]
+  ],
+	providers: [
+		provideApollo(myApolloOptionsFactory)
+	]
 })
 class AppModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {

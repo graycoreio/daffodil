@@ -31,18 +31,20 @@ The Magento driver communicates with the Magento backend through the GraphQL API
 
 To set up in the root component:
 1. Import the `DaffCartMagentoDriverModule` from `@daffodil/cart`
-2. Import `ApolloModule` from `apollo-angular`
-3. Include `DaffCartMagentoDriverModule.forRoot()` and `ApolloModule` in the imports section
+2. Import `provideApollo` from `apollo-angular`
+3. Include `DaffCartMagentoDriverModule.forRoot()` and `provideApollo()`
 
 ```ts
-import { ApolloModule } from 'apollo-angular';
+import { provideApollo } from 'apollo-angular';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart';
 
 @NgModule({
   imports: [
     DaffCartMagentoDriverModule.forRoot(),
-    ApolloModule
-  ]
+  ],
+	providers: [
+		provideApollo(myApolloOptionsFactory)
+	]
 })
 export class AppModule {}
 ```

@@ -38,7 +38,7 @@
     "@ngrx/router-store": "^19.0.0",
     "@ngrx/store": "^19.0.0",
     "angular-in-memory-web-api": "^0.19.0",
-    "apollo-angular": "^8.0.0",
+    "apollo-angular": "^10.0.3",
     "classlist.js": "^1.1.20150312",
     "core-js": "^3.34.0",
     "express": "^4.18.2",

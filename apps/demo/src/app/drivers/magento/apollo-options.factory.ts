@@ -1,3 +1,4 @@
+import { inject } from '@angular/core';
 import {
   InMemoryCache,
   ApolloLink,
@@ -11,10 +12,9 @@ import possibleTypes from './fragmentTypes.json';
 import { environment } from '../../../environments/environment';
 import { MagentoEnvironmentDriverConfiguration } from '../../../environments/environment.interface';
 
-export const demoMagentoApolloOptions = (
-  httpLink: HttpLink,
-  magentoLinkGenerator: DaffMagentoApolloCacheableOperationsLinkGenerator,
-) => {
+export const demoMagentoApolloOptions = () => {
+  const httpLink = inject(HttpLink);
+  const magentoLinkGenerator = inject(DaffMagentoApolloCacheableOperationsLinkGenerator);
   const link = ApolloLink.from([
     onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
