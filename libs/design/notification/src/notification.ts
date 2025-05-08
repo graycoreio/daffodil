@@ -1,5 +1,3 @@
-import { DaffPrefixDirective } from '@daffodil/design';
-
 import { DaffNotificationComponent } from './notification/notification.component';
 import { DaffNotificationActionsDirective } from './notification-actions/notification-actions.directive';
 import { DaffNotificationMessageDirective } from './notification-message/notification-message.directive';
@@ -15,5 +13,4 @@ export const DAFF_NOTIFICATION_COMPONENTS = <const> [
   DaffNotificationMessageDirective,
   DaffNotificationTitleDirective,
   DaffNotificationSubtitleDirective,
-  DaffPrefixDirective,
 ];

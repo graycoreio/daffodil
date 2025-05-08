@@ -48,7 +48,6 @@ enum DaffNotificationOrientationEnum {
   imports: [
     NgIf,
     FaIconComponent,
-    DaffPrefixDirective,
   ],
 })
 export class DaffNotificationComponent {

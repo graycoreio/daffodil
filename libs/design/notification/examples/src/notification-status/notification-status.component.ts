@@ -14,6 +14,7 @@ import {
   faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { DaffPrefixDirective } from '@daffodil/design';
 import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
 
 @Component({
@@ -27,6 +28,7 @@ import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
     NgIf,
     FaIconComponent,
     ReactiveFormsModule,
+    DaffPrefixDirective,
   ],
 })
 export class NotificationStatusComponent {
