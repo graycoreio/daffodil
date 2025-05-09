@@ -79,9 +79,6 @@ export class DaffTreeItemDirective {
    *
    * The CSS class indicating whether or not the tree is `selected`.
    */
-  /**
-   * @docs-private
-   */
   @HostBinding('class.selected') get selectedClass() {
     return this.selected;
   };
@@ -90,9 +87,6 @@ export class DaffTreeItemDirective {
    * @docs-private
    *
    * The CSS class indicating whether or not the tree is `open`.
-   */
-  /**
-   * @docs-private
    */
   @HostBinding('class.open') openClass = false;
 
