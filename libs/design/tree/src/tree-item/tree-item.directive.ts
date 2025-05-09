@@ -72,9 +72,6 @@ export class DaffTreeItemDirective {
    * You can use this to style your templates if you want to
    * use different designs at different depths.
    */
-  /**
-   * @docs-private
-   */
   @HostBinding('style.--depth') depth: number;
 
   /**
