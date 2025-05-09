@@ -52,27 +52,24 @@ export class CustomComponentModule { }
 ## Supported Content Types
 
 ### Icon
-An icon can be used to give a user a brief overview of what the nofication is about. It can be added before the title and subtitle by using the <code>daffPrefix</code> selector.
+An icon can be used to provide users with a quick visual cue about the purpose of a notification. Place the icon before the title and subtitle using the `[daffPrefix]` selector.
 
 ### Title
-Title gives a quick overview of what the notification is about. It can be added by using the `daffNotificationTitle` selector.
+The title provides a quick overview of what the notification's content. Add it using the `[daffNotificationTitle]` selector.
 
 ### Subtitle
-Subtitle provides additional details about the notification that should be limited to one or two sentences. It can be added by using the `daffNotificationSubtitle` selector.
+The subtitle provides additional details about the notification. It should be limited to one or two sentences. Add it using the `[daffNotificationSubtitle]` selector.
 
 ### Actions
-Buttons can be included in notifications to resolve the notification or navigate them to a page with more information. It can be added by using the `daffNotificationActions` selector.
+Buttons can be included in notifications to dismiss them or navigate them to a page with more information. Use the `[daffNotificationActions]` selector to include these actions.
 
 <design-land-example-viewer-container example="notification-with-actions"></design-land-example-viewer-container>
 
 ## Properties
 
-### Statuses
-The status color of a notification can be updated by using the `status` property.
+### Status
+The status property is used to visually distinguish between different notification types. Use the `status` property to set the status.
 
-Supported statuses: `warn | critical | success`
-
-#### Notification with statuses
 <design-land-example-viewer-container example="notification-status"></design-land-example-viewer-container>
 
 ### Orientation
@@ -81,11 +78,13 @@ Orientation dictates how a notification's content is stacked — `vertical` or `
 <design-land-example-viewer-container example="notification-orientations"></design-land-example-viewer-container>
 
 ### Dismissing a notification
-Notifications are not dismissible by default. They typically persist on the page until a user takes action that resolves the notification.
+By default, notifications are not dismissible and remain visible until the user takes an action to resolve them.
 
-The close button is hidden by default but can be visible by setting the `dismissible` property to `true`. It should remain hidden if a notification has critical information for a user to read or interact with.
+To show a close button, set the `dismissible` property to `true`. Avoid making critical notifications dismissible to ensure users can read or interact with the necessary information.
 
 <design-land-example-viewer-container example="dismissible-notification"></design-land-example-viewer-container>
 
 ## Accessibility
-Notifications with a `critical` or `warn` status have a `role="alert"` so that it can be announced by assistive technologies. See [live region roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#4._live_region_roles) for more information. All other notifications have a `role="status"`. Notifications have a `tabindex="0"` so users can discover them while tabbing through a page.
+Notifications with a `critical` or `warn` status have a `role="alert"` so that it can be announced by assistive technologies. See [live region roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#4._live_region_roles) for more information. All other notifications have a `role="status"`.
+
+Notifications have a `tabindex="0"` so users can discover them while tabbing through a page.
