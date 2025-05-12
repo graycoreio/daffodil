@@ -57,7 +57,7 @@ describe('BestSellersComponent', () => {
     stubProducts = productFactory.createMany(2);
 
     fixture = TestBed.createComponent(BestSellersComponent);
-    bestSellersFacade.bestSellers$.next(stubProducts);
+    bestSellersFacade.products$.next(stubProducts);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
