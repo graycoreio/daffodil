@@ -5,7 +5,6 @@ import {
 
 @Directive({
   selector: '[daffFormLabel]',
-  standalone: false,
 })
 export class DaffFormLabelDirective {
   /**
