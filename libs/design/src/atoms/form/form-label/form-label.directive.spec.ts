@@ -13,7 +13,9 @@ import { DaffFormLabelDirective } from './form-label.directive';
 
 @Component({
   template: `<div daffFormLabel>Label</div>`,
-  standalone: false,
+  imports: [
+    DaffFormLabelDirective,
+  ],
 })
 
 class WrapperComponent {}
@@ -25,8 +27,7 @@ describe('@daffodil/design | DaffFormLabelDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffFormLabelDirective,
+      imports: [
         WrapperComponent,
       ],
     })
