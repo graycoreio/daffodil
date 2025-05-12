@@ -9,7 +9,6 @@ import {
   DaffDoc,
   DaffDocKind,
 } from '@daffodil/docs-utils';
-import { DaffRouterActivatedRoute } from '@daffodil/router';
 
 import { DaffioDocsIndexService } from './index.service';
 import {
@@ -37,10 +36,6 @@ describe('DaffioDocsIndexService', () => {
         {
           provide: DaffioAssetFetchService,
           useValue: fetchAssetServiceSpy,
-        },
-        {
-          provide: DaffRouterActivatedRoute,
-          useValue: jasmine.createSpyObj('DaffioAssetFetchService', [], { route$: activatedRouteSpy }),
         },
       ],
     });
