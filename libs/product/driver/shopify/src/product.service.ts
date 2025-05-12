@@ -50,12 +50,6 @@ implements DaffProductServiceInterface {
       );
   }
 
-  // todo: implement getBestSellers
-  // todo: move to separate getBestSellers module
-  getBestSellers(): Observable<DaffProduct[]> {
-    return this.getAll();
-  }
-
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
     return this.apollo
       .query({

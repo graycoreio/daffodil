@@ -9,5 +9,4 @@ export const daffCategoryProductReducers: ActionReducerMap<DaffProductReducersSt
   product: daffCategoryProductReducer,
   productGrid: daffIdentityReducer,
   products: daffIdentityReducer,
-  bestSellers: daffIdentityReducer,
 };

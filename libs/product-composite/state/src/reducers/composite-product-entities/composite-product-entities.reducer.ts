@@ -6,9 +6,7 @@ import {
   DaffProductPageActionTypes,
   DaffProductGridActionTypes,
   DaffProductGridActions,
-  DaffBestSellersActions,
   DaffProductActions,
-  DaffBestSellersActionTypes,
   DaffProductActionTypes,
 } from '@daffodil/product/state';
 import { DaffCompositeProduct } from '@daffodil/product-composite';
@@ -29,11 +27,10 @@ import {
  */
 export function daffCompositeProductEntitiesReducer<T extends DaffProduct, V extends DaffCompositeProduct>(
   state = daffCompositeProductAppliedOptionsEntitiesAdapter().getInitialState(),
-  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffProductPageActions<T> | DaffCompositeProductActions<V>): EntityState<DaffCompositeProductEntity> {
+  action: DaffProductGridActions<T> | DaffProductActions<T> | DaffProductPageActions<T> | DaffCompositeProductActions<V>): EntityState<DaffCompositeProductEntity> {
   const adapter = daffCompositeProductAppliedOptionsEntitiesAdapter();
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
-    case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
       return adapter.upsertProducts(state, ...(<V[]><unknown>action.payload));
 
     case DaffProductActionTypes.ProductLoadSuccessAction:

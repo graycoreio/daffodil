@@ -8,8 +8,6 @@ import {
   DaffProductGridActions,
   DaffProductActionTypes,
   DaffProductActions,
-  DaffBestSellersActionTypes,
-  DaffBestSellersActions,
   DaffProductPageActions,
   DaffProductPageActionTypes,
 } from '../../actions/public_api';
@@ -23,12 +21,10 @@ import {
  */
 export function daffProductEntitiesReducer<T extends DaffProduct>(
   state = daffProductEntitiesAdapter<T>().getInitialState(),
-  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffProductPageActions<T>): EntityState<T> {
+  action: DaffProductGridActions<T> | DaffProductActions<T> | DaffProductPageActions<T>): EntityState<T> {
   const adapter = daffProductEntitiesAdapter<T>();
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
-      return adapter.upsertMany(action.payload, state);
-    case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
       return adapter.upsertMany(action.payload, state);
     case DaffProductPageActionTypes.ProductPageLoadSuccessAction:
     case DaffProductActionTypes.ProductLoadSuccessAction:

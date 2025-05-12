@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { DaffBestSellersEffects } from './effects/best-seller.effects';
 import { DaffProductGridEffects } from './effects/product-grid.effects';
 import { DaffProductPageEffects } from './effects/product-page.effects';
 import { DaffProductEffects } from './effects/product.effects';
@@ -20,7 +19,6 @@ import { DAFF_PRODUCT_STORE_FEATURE_KEY } from './reducers/public_api';
       DaffProductGridEffects,
       DaffProductEffects,
       DaffProductPageEffects,
-      DaffBestSellersEffects,
     ]),
   ],
 })

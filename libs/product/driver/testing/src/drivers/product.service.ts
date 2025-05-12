@@ -41,15 +41,6 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
     ]);
   }
 
-  getBestSellers(): Observable<DaffProduct[]> {
-    return of([
-      this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
-      this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
-      this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
-      this.productFactory.create({ images: this.productImageFactory.createMany(5) }),
-    ]);
-  }
-
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
     return of({
       id: productId,

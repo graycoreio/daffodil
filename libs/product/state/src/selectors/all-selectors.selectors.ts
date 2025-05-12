@@ -1,10 +1,6 @@
 import { DaffProduct } from '@daffodil/product';
 
 import {
-  DaffBestSellersMemoizedSelectors,
-  getDaffBestSellersSelectors,
-} from './best-sellers/best-sellers.selectors';
-import {
   DaffProductPageMemoizedSelectors,
   getDaffProductPageSelectors,
 } from './product/product.selectors';
@@ -26,7 +22,6 @@ import {
  */
 export interface DaffProductAllSelectors<T extends DaffProduct = DaffProduct> extends
   DaffProductPageMemoizedSelectors<T>,
-  DaffBestSellersMemoizedSelectors<T>,
   DaffProductEntitiesMemoizedSelectors<T>,
   DaffProductGridMemoizedSelectors<T>,
   DaffProductFeatureMemoizedSelector<T>
@@ -37,7 +32,6 @@ export interface DaffProductAllSelectors<T extends DaffProduct = DaffProduct> ex
  * Returns {@link DaffProductAllSelectors}.
  */
 export const getDaffProductSelectors = <T extends DaffProduct = DaffProduct>(): DaffProductAllSelectors<T> => ({
-  ...getDaffBestSellersSelectors<T>(),
   ...getDaffProductPageSelectors<T>(),
   ...getDaffProductGridSelectors<T>(),
   ...getDaffProductEntitiesSelectors<T>(),

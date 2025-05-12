@@ -40,10 +40,6 @@ export class DaffInMemoryProductService extends DaffInMemoryDriverBase implement
     return this.http.get<DaffProduct[]>(this.url);
   }
 
-  getBestSellers(): Observable<DaffProduct[]> {
-    return this.http.get<DaffProduct[]>(`${this.url}/best-sellers`);
-  }
-
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
     return this.http.get<DaffProduct>(`${this.url}/${productId}`).pipe(
       map(this.transform),

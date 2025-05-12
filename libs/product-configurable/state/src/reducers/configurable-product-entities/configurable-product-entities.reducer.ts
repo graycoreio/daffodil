@@ -2,8 +2,6 @@ import { EntityState } from '@ngrx/entity';
 
 import { DaffProduct } from '@daffodil/product';
 import {
-  DaffBestSellersActions,
-  DaffBestSellersActionTypes,
   DaffProductActions,
   DaffProductActionTypes,
   DaffProductGridActions,
@@ -29,11 +27,10 @@ import {
  */
 export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V extends DaffConfigurableProduct>(
   state = daffConfigurableProductAppliedAttributesEntitiesAdapter().getInitialState(),
-  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffProductPageActions<T> | DaffConfigurableProductActions<V>): EntityState<DaffConfigurableProductEntity> {
+  action: DaffProductGridActions<T> | DaffProductActions<T> | DaffProductPageActions<T> | DaffConfigurableProductActions<V>): EntityState<DaffConfigurableProductEntity> {
   const adapter = daffConfigurableProductAppliedAttributesEntitiesAdapter();
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
-    case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
       return adapter.upsertProducts(state, ...(<V[]><unknown>action.payload));
 
     case DaffProductActionTypes.ProductLoadSuccessAction:

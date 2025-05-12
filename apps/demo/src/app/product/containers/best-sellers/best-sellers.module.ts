@@ -6,6 +6,8 @@ import { DaffProductStateModule } from '@daffodil/product/state';
 
 import { BestSellersComponent } from './best-sellers.component';
 import { ProductGridModule } from '../../components/product-grid/product-grid.module';
+import { DaffRelatedProductStateModule } from '@daffodil/related-products/state';
+import { DaffUpsellProductStateModule } from '@daffodil/upsell-products/state';
 
 @NgModule({
   imports: [
@@ -13,6 +15,8 @@ import { ProductGridModule } from '../../components/product-grid/product-grid.mo
     DaffLoadingIconModule,
     ProductGridModule,
     DaffProductStateModule,
+		DaffRelatedProductStateModule,
+		DaffUpsellProductStateModule
   ],
   declarations: [
     BestSellersComponent,

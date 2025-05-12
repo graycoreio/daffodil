@@ -93,10 +93,4 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
       map(result => this.magentoProductsTransformer.transformManyMagentoProducts(result.data.products.items, this.config.baseMediaUrl)),
     );
   }
-
-  //todo: add actual getBestSellers apollo call for Magento.
-  //todo: move to a different bestsellers module.
-  getBestSellers(): Observable<DaffProduct[]> {
-    return of(null);
-  }
 }

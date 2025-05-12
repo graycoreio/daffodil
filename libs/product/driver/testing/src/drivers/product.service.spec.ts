@@ -46,16 +46,6 @@ describe('Driver | Testing | Product | ProductService', () => {
     });
   });
 
-  describe('getBestSellers', () => {
-
-    it('should return an array of products with images', () => {
-      productService.getBestSellers().subscribe(products => {
-        expect(isProduct(products[0])).toBeTruthy();
-        expect(products[0].images).toEqual(stubProductImages);
-      });
-    });
-  });
-
   describe('get', () => {
 
     it('should return a driver response with a single product with images', () => {

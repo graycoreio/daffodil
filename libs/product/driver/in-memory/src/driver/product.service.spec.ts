@@ -63,21 +63,6 @@ describe('@daffodil/product/driver/in-memory | ProductService', () => {
     });
   });
 
-  describe('getBestSellers', () => {
-    it('should send a get request and return an array of products', () => {
-      const mockProducts = productFactory.createMany();
-
-      productService.getBestSellers().subscribe(products => {
-        expect(products).toEqual(mockProducts);
-      });
-
-      const req = httpMock.expectOne(`${productService.url}/best-sellers`);
-      expect(req.request.method).toBe('GET');
-
-      req.flush(mockProducts);
-    });
-  });
-
   describe('get | getting a single product', () => {
 
     it('should send a get request', () => {
