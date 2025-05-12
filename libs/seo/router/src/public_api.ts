@@ -8,10 +8,6 @@ export {
   DAFF_SEO_CANONICAL_URL_ROUTER_UPDATES,
   provideDaffCanonicalUrlRouterUpdates,
 } from './canonical/updates.token';
-export {
-  DAFF_SEO_TITLE_ROUTER_UPDATES,
-  provideDaffTitleRouterUpdates,
-} from './title/updates.token';
 export { daffSeoRouterMetaProvider } from './providers/meta-provider';
 export { daffSeoRouterCanonicalProvider } from './providers/canonical-provider';
 export { provideDaffSeoRouterSchema } from './schema/provider';
