@@ -2,7 +2,10 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import {
+  map,
+  Observable,
+} from 'rxjs';
 
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductGridFacade } from '@daffodil/product/state';
@@ -21,8 +24,8 @@ export class BestSellersComponent implements OnInit {
 
   ngOnInit() {
     this.bestSellers$ = this.facade.products$.pipe(
-			map((products) => products.slice(0, 4))
-		);
+      map((products) => products.slice(0, 4)),
+    );
     this.loading$ = this.facade.loading$;
   }
 }

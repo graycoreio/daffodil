@@ -4,10 +4,7 @@ import {
 } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
-import {
-  Observable,
-  of,
-} from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { DaffProduct } from '@daffodil/product';

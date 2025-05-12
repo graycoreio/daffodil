@@ -5,7 +5,6 @@ import {
   DaffProductLoadSuccess,
   DaffProductGridLoadSuccess,
   DaffProductGridReset,
-  DaffBestSellersLoadSuccess,
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -43,28 +42,6 @@ describe('Product | Product Entities Reducer', () => {
       const productGridLoadSuccess = new DaffProductGridLoadSuccess(products);
 
       result = daffProductEntitiesReducer(initialState, productGridLoadSuccess);
-    });
-
-    it('sets expected number of products on state', () => {
-      expect(result.ids.length).toEqual(products.length);
-    });
-
-    it('sets expected product on state', () => {
-      expect(result.entities[products[0].id]).toEqual(products[0]);
-    });
-  });
-
-  describe('when BestSellersLoadSuccessAction is triggered', () => {
-
-    let products: DaffProduct[];
-    let result;
-
-    beforeEach(() => {
-      products = productFactory.createMany(2);
-
-      const bestSellersLoadSuccess = new DaffBestSellersLoadSuccess(products);
-
-      result = daffProductEntitiesReducer(initialState, bestSellersLoadSuccess);
     });
 
     it('sets expected number of products on state', () => {

@@ -4,7 +4,6 @@ import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductLoadSuccess,
   DaffProductGridLoadSuccess,
-  DaffBestSellersLoadSuccess,
   DaffProductPageLoadSuccess,
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
@@ -56,31 +55,6 @@ describe('@daffodil/product-composite/state | daffCompositeProductEntitiesReduce
       const productGridLoadSuccess = new DaffProductGridLoadSuccess(products);
 
       result = daffCompositeProductEntitiesReducer(initialState, productGridLoadSuccess);
-    });
-
-    it('sets a composite product entity for each composite product', () => {
-      expect(result.ids.length).toEqual(compositeProducts.length);
-    });
-  });
-
-  describe('when BestSellersLoadSuccessAction is triggered', () => {
-
-    let products: DaffProduct[];
-    let compositeProducts: DaffCompositeProduct[];
-    let result;
-
-    beforeEach(() => {
-      products = productFactory.createMany(2);
-      compositeProducts = compositeProductFactory.createMany(2);
-
-      products = [
-        ...products,
-        ...compositeProducts,
-      ];
-
-      const bestSellersLoadSuccess = new DaffBestSellersLoadSuccess(products);
-
-      result = daffCompositeProductEntitiesReducer(initialState, bestSellersLoadSuccess);
     });
 
     it('sets a composite product entity for each composite product', () => {

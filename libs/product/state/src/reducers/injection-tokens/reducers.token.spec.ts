@@ -30,7 +30,6 @@ describe('@daffodil/product/state | daffProductProvideExtraReducers', () => {
       product: daffProductReducerInitialState,
       products: daffProductEntitiesAdapter().getInitialState(),
       productGrid: null,
-      bestSellers: null,
     };
     extraReducer = combineReducers<DaffProductReducersState>({
       product: (state, action) => ({
@@ -39,7 +38,6 @@ describe('@daffodil/product/state | daffProductProvideExtraReducers', () => {
       }),
       products: daffIdentityReducer,
       productGrid: daffIdentityReducer,
-      bestSellers: daffIdentityReducer,
     });
 
     TestBed.configureTestingModule({

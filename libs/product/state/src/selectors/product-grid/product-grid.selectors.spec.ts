@@ -12,8 +12,6 @@ import {
   DaffProductLoad,
   DaffProductGridLoadSuccess,
   DaffProductGridReset,
-  DaffBestSellersLoadSuccess,
-  DaffBestSellersReset,
   DaffProductStateRootSlice,
   daffProductReducers,
   DAFF_PRODUCT_STORE_FEATURE_KEY,
@@ -46,9 +44,7 @@ describe('selectProductState', () => {
 
     mockProduct = productFactory.create();
 
-    store.dispatch(new DaffBestSellersReset());
     store.dispatch(new DaffProductGridReset());
-    store.dispatch(new DaffBestSellersLoadSuccess(new Array(mockProduct)));
     store.dispatch(new DaffProductGridLoadSuccess(new Array(mockProduct)));
     store.dispatch(new DaffProductLoad(mockProduct.id));
   });

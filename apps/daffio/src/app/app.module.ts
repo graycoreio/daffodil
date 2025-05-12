@@ -18,9 +18,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { DAFF_THEME_INITIALIZER } from '@daffodil/design';
-import {
-  provideDaffRouterDataServiceConfig,
-} from '@daffodil/router';
+import { provideDaffRouterDataServiceConfig } from '@daffodil/router';
 import { provideDaffSeoRouterSchema } from '@daffodil/seo/router';
 
 import { AppRoutingModule } from './app-routing.module';

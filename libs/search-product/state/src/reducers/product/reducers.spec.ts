@@ -11,6 +11,5 @@ describe('@daffodil/search-product-product/state | daffSearchProductProductReduc
   it('should stub out productGrid and bestSellers with daffIdentityReducer', () => {
     expect(daffSearchProductProductReducers.product).toEqual(daffIdentityReducer);
     expect(daffSearchProductProductReducers.productGrid).toEqual(daffIdentityReducer);
-    expect(daffSearchProductProductReducers.bestSellers).toEqual(daffIdentityReducer);
   });
 });

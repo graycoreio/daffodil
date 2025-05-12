@@ -5,7 +5,6 @@ import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductLoadSuccess,
   DaffProductGridLoadSuccess,
-  DaffBestSellersLoadSuccess,
   DaffProductPageLoadSuccess,
 } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
@@ -60,31 +59,6 @@ describe('@daffodil/product-configurable/state | daffConfigurableProductEntities
       const productGridLoadSuccess = new DaffProductGridLoadSuccess(products);
 
       result = daffConfigurableProductEntitiesReducer(initialState, productGridLoadSuccess);
-    });
-
-    it('sets a configurable product entity for each configurable product', () => {
-      expect(result.ids.length).toEqual(configurableProducts.length);
-    });
-  });
-
-  describe('when BestSellersLoadSuccessAction is triggered', () => {
-
-    let products: DaffProduct[];
-    let configurableProducts: DaffConfigurableProduct[];
-    let result;
-
-    beforeEach(() => {
-      products = productFactory.createMany(2);
-      configurableProducts = configurableProductFactory.createMany(2);
-
-      products = [
-        ...products,
-        ...configurableProducts,
-      ];
-
-      const bestSellersLoadSuccess = new DaffBestSellersLoadSuccess(products);
-
-      result = daffConfigurableProductEntitiesReducer(initialState, bestSellersLoadSuccess);
     });
 
     it('sets a configurable product entity for each configurable product', () => {
