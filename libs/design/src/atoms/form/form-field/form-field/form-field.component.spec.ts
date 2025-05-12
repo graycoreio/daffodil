@@ -10,11 +10,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffFormFieldComponent } from './form-field.component';
-import { DaffErrorMessageComponent } from '../../error-message/error-message.component';
 import { DaffInputComponent } from '../../input/input.component';
+import { DAFF_FORM_FIELD_COMPONENTS } from '../form-field';
 import { DaffFormFieldControl } from '../form-field-control';
 import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
 
@@ -23,7 +22,12 @@ import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
     <input daff-input [formControl]="formControl">
     <daff-error-message></daff-error-message>
   </daff-form-field>`,
-standalone: false })
+imports: [
+  DaffFormFieldComponent,
+  DaffInputComponent,
+  ReactiveFormsModule,
+]})
+
 class WrapperComponent {
   formControl = new UntypedFormControl('', Validators.required);
 }
@@ -38,14 +42,7 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        ReactiveFormsModule,
-        DaffInputComponent,
-        FontAwesomeModule,
-      ],
-      declarations: [
         WrapperComponent,
-        DaffFormFieldComponent,
-        DaffErrorMessageComponent,
       ],
     })
       .compileComponents();
@@ -121,7 +118,9 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
   <daff-form-field>
     <daff-error-message></daff-error-message>
   </daff-form-field>`,
-standalone: false })
+imports: [
+  DAFF_FORM_FIELD_COMPONENTS,
+]})
 
 class WrapperWithoutControlComponent {}
 
@@ -131,12 +130,7 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage Without Control', ()
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        FontAwesomeModule,
-      ],
-      declarations: [
         WrapperWithoutControlComponent,
-        DaffFormFieldComponent,
-        DaffErrorMessageComponent,
       ],
     })
       .compileComponents();

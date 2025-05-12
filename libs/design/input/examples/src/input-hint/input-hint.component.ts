@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import {
-  DaffFormFieldModule,
+  DAFF_FORM_FIELD_COMPONENTS,
   DaffHintComponent,
   DaffInputComponent,
 } from '@daffodil/design';
@@ -19,9 +19,8 @@ import {
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
-    DaffFormFieldModule,
+    DAFF_FORM_FIELD_COMPONENTS,
     DaffInputComponent,
     DaffHintComponent,
   ],

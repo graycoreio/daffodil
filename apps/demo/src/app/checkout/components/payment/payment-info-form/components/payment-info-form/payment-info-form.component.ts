@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {
   DaffInputComponent,
   DaffNativeSelectModule,
-  DaffFormFieldModule,
+  DAFF_FORM_FIELD_COMPONENTS,
 } from '@daffodil/design';
 
 import { PaymentInfoFormGroup } from '../../models/payment-form.type';
@@ -35,7 +35,7 @@ const currentYear = new Date().getFullYear();
     ReactiveFormsModule,
     DaffInputComponent,
     DaffNativeSelectModule,
-    DaffFormFieldModule,
+    DAFF_FORM_FIELD_COMPONENTS,
   ],
 })
 export class DemoCheckoutPaymentInfoFormComponent {

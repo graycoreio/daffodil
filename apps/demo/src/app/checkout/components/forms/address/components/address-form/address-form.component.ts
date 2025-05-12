@@ -16,7 +16,7 @@ import {
 import {
   DaffInputComponent,
   DaffNativeSelectModule,
-  DaffFormFieldModule,
+  DAFF_FORM_FIELD_COMPONENTS,
 } from '@daffodil/design';
 import {
   DaffCountry,
@@ -40,7 +40,7 @@ import { DemoCheckoutAddressFormGroup } from '../../models/address-form.type';
     ReactiveFormsModule,
     DaffInputComponent,
     DaffNativeSelectModule,
-    DaffFormFieldModule,
+    DAFF_FORM_FIELD_COMPONENTS,
     DaffGeographyStateModule,
   ],
 })

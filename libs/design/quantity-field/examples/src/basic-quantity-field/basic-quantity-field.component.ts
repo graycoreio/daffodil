@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 
 import {
-  DaffFormFieldModule,
+  DAFF_FORM_FIELD_COMPONENTS,
   DaffQuantityFieldModule,
 } from '@daffodil/design';
 
@@ -19,7 +19,7 @@ import {
   styleUrls: ['./basic-quantity-field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffFormFieldModule,
+    DAFF_FORM_FIELD_COMPONENTS,
     DaffQuantityFieldModule,
     ReactiveFormsModule,
   ],

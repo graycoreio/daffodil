@@ -1,3 +1,4 @@
 export { DaffFormFieldModule } from './form-field.module';
-export * from './form-field/form-field.component';
+export { DaffFormFieldComponent } from './form-field/form-field.component';
 export { DaffFormFieldControl } from './form-field-control';
+export { DAFF_FORM_FIELD_COMPONENTS } from './form-field';

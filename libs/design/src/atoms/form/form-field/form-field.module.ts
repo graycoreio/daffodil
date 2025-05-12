@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { DaffFormFieldComponent } from './form-field/form-field.component';
@@ -7,8 +6,7 @@ import { DaffFormLabelModule } from '../form-label/form-label.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-
+    DaffFormFieldComponent,
     DaffErrorMessageModule,
     DaffFormLabelModule,
   ],
@@ -16,9 +14,6 @@ import { DaffFormLabelModule } from '../form-label/form-label.module';
     DaffFormFieldComponent,
     DaffErrorMessageModule,
     DaffFormLabelModule,
-  ],
-  declarations: [
-    DaffFormFieldComponent,
   ],
 })
 export class DaffFormFieldModule { }

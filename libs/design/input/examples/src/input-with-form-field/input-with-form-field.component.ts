@@ -9,7 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  DaffFormFieldModule,
+  DAFF_FORM_FIELD_COMPONENTS,
   DaffInputComponent,
   DaffPrefixSuffixModule,
 } from '@daffodil/design';
@@ -24,9 +24,8 @@ import {
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
-    DaffFormFieldModule,
+    DAFF_FORM_FIELD_COMPONENTS,
     DaffInputComponent,
     FaIconComponent,
     DaffPrefixSuffixModule,
