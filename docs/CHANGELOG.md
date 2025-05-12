@@ -1,5 +1,47 @@
 # Changelog
 
+## [0.84.0](https://github.com/graycoreio/daffodil/compare/v0.83.0...v0.84.0) (2025-05-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* **seo:** `DAFF_SEO_TITLE_ROUTER_UPDATES` and `provideDaffTitleRouterUpdates` have been removed. Use native Angular features as a replacement
+* **router,product:** `DaffRouterActivatedRoute` and `provideDaffRouterActivatedRoute` has been removed from the API. The functionality of this service can be replaced with `inject(ChildrenOutletContexts).getContext(PRIMARY_OUTLET).route`. all best sellers features have been removed from `@daffodil/product`. Use `@daffodil/related-products` and `@daffodil/upsell-products` instead.
+* **design:** `DaffPrefixDirective` has been removed from the `DAFF_NOTIFICATION_COMPONENTS` array. To continue using the `daffPrefix` selector for displaying icons, you must now import `DaffPrefixDirective` directly into your custom component.
+* apps using `apollo-angular` should upgrade to v10
+* **design:** `daffPrefixableMixin`, `DaffPrefixable`, `daffSuffixableMixin` and `DaffSuffixable` no longer exist.
+
+### Features
+
+* **daffio:** remove `type-label` mixin in favor of `DaffioDocsApiItemLabelComponent` ([#3667](https://github.com/graycoreio/daffodil/issues/3667)) ([3420320](https://github.com/graycoreio/daffodil/commit/34203202d9059b65af445f7247a90223d1b0dfef))
+* **design:** button theme updates ([#3680](https://github.com/graycoreio/daffodil/issues/3680)) ([2ffb5d3](https://github.com/graycoreio/daffodil/commit/2ffb5d374c7512b4e7f2b69b1c27631bab07a40b))
+* **design:** convert `DaffErrorMessageComponent` to standalone ([#3695](https://github.com/graycoreio/daffodil/issues/3695)) ([1b9848c](https://github.com/graycoreio/daffodil/commit/1b9848c93a13999e251ddf54a7a489ba5cfb7ab0))
+* **design:** convert `DaffFormFieldComponent` to standalone ([#3694](https://github.com/graycoreio/daffodil/issues/3694)) ([4e10047](https://github.com/graycoreio/daffodil/commit/4e100474cc7d1a4339f083dcf3b35d9982cd2299))
+* **design:** convert `DaffFormLabelDirective` to standalone ([#3696](https://github.com/graycoreio/daffodil/issues/3696)) ([86228f6](https://github.com/graycoreio/daffodil/commit/86228f693c00615b29cc3dc0fbd95df40a31ca3b))
+* **design:** convert `DaffInputComponent` to standalone ([#3692](https://github.com/graycoreio/daffodil/issues/3692)) ([5e41e98](https://github.com/graycoreio/daffodil/commit/5e41e989668b3f291b7d5769d762bb1523d251c7))
+* **design:** convert prefix and suffix directives to standalone ([#3384](https://github.com/graycoreio/daffodil/issues/3384)) ([5615fba](https://github.com/graycoreio/daffodil/commit/5615fba4e423bca995b088e96259bdb3f6a410fe))
+* **design:** remove `DaffPrefixDirective` import from `DaffNotificationComponent` and update usage docs ([#3688](https://github.com/graycoreio/daffodil/issues/3688)) ([c1bdc87](https://github.com/graycoreio/daffodil/commit/c1bdc879e2fa00a79ae5fc4587b3aff27f0571aa))
+* **design:** remove `DaffPrefixSuffixModule` import from `DaffMenuItemComponent` ([#3685](https://github.com/graycoreio/daffodil/issues/3685)) ([ce1c315](https://github.com/graycoreio/daffodil/commit/ce1c315041bd7f7274d0e0d37ef95baf60ca3a51))
+* **design:** remove daff-illuminate functions in skeleton theme ([#3677](https://github.com/graycoreio/daffodil/issues/3677)) ([3609050](https://github.com/graycoreio/daffodil/commit/3609050ea149440decd11885334ceec775002a2c))
+* **design:** update `DaffInputComponent` implementation ([#3381](https://github.com/graycoreio/daffodil/issues/3381)) ([8755a98](https://github.com/graycoreio/daffodil/commit/8755a98336b8df6f5ec5bbed0e974bbbe7e7712d))
+* **design:** update breadcrumb theme to include light and dark modes ([#3673](https://github.com/graycoreio/daffodil/issues/3673)) ([e293817](https://github.com/graycoreio/daffodil/commit/e2938174209039f663b79e77750a19dd02d8be87))
+* **design:** update callout theme to include light and dark modes ([#3675](https://github.com/graycoreio/daffodil/issues/3675)) ([ec23673](https://github.com/graycoreio/daffodil/commit/ec2367320d00e3d1afa90fc275ad513d11d00634))
+* **design:** update hero theme to include light and dark modes ([#3674](https://github.com/graycoreio/daffodil/issues/3674)) ([a52d202](https://github.com/graycoreio/daffodil/commit/a52d202f9457e6f0301a2d41e9ee79da53ad6930))
+* **design:** update list theme to include light and dark modes ([#3672](https://github.com/graycoreio/daffodil/issues/3672)) ([00ee21f](https://github.com/graycoreio/daffodil/commit/00ee21fa65631a7e2d9e9382edaf01386fc207df))
+* **design:** update menu theme to include light and dark modes ([#3671](https://github.com/graycoreio/daffodil/issues/3671)) ([4690b2b](https://github.com/graycoreio/daffodil/commit/4690b2b06e3b3a43544ae18f17255be2970c79a7))
+* **design:** update navbar theme to include light and dark modes ([#3670](https://github.com/graycoreio/daffodil/issues/3670)) ([3b0fc5f](https://github.com/graycoreio/daffodil/commit/3b0fc5f7e905c6f23eda690518bd6c971b7dc032))
+* **design:** update paginator theme to support light and dark modes ([#3666](https://github.com/graycoreio/daffodil/issues/3666)) ([54ae66f](https://github.com/graycoreio/daffodil/commit/54ae66f6475a4463569b55ad3f042b17fba2ded9))
+* **dgeni:** hoist private parent members ([#3683](https://github.com/graycoreio/daffodil/issues/3683)) ([7716868](https://github.com/graycoreio/daffodil/commit/7716868f0502805cf4591e07470b7be8181a0170))
+* **docs,dgeni:** add inputs and outputs from host directives ([#3544](https://github.com/graycoreio/daffodil/issues/3544)) ([96ffe71](https://github.com/graycoreio/daffodil/commit/96ffe71428d4378309aa1506d2e33b1ea3382a7f))
+* **router,product:** remove best sellers and `DaffRouterActivatedRoute` ([#3693](https://github.com/graycoreio/daffodil/issues/3693)) ([631af57](https://github.com/graycoreio/daffodil/commit/631af57edd793491c8bebafd4dd55a78e074c6d3))
+* **seo:** remove route title updates ([#3697](https://github.com/graycoreio/daffodil/issues/3697)) ([7fe01e9](https://github.com/graycoreio/daffodil/commit/7fe01e9eeb52f2c9923ebd8e130bc9c51381b155))
+* upgrade `apollo-angular` to v10 ([#3686](https://github.com/graycoreio/daffodil/issues/3686)) ([e51d34a](https://github.com/graycoreio/daffodil/commit/e51d34a50423c63e0b20ef0c5b1bd067fd9f7082))
+
+
+### Bug Fixes
+
+* **daffio:** update styles file to fix mixed declaration breaking change ([#3682](https://github.com/graycoreio/daffodil/issues/3682)) ([f583065](https://github.com/graycoreio/daffodil/commit/f583065f9f8de468100496e29416ab78745b2d37))
+
 ## [0.83.0](https://github.com/graycoreio/daffodil/compare/v0.82.0...v0.83.0) (2025-05-02)
 
 
