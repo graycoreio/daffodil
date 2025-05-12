@@ -14,7 +14,9 @@ import { DaffInputComponent } from './input.component';
 
 @Component({
   template: `<input daff-input>`,
-  standalone: false,
+  imports: [
+    DaffInputComponent,
+  ],
 })
 class WrapperComponent {}
 
@@ -27,8 +29,7 @@ describe('@daffodil/design | DaffInputComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffInputComponent,
+      imports: [
         WrapperComponent,
       ],
     })

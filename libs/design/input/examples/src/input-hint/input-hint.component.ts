@@ -6,7 +6,7 @@ import {
 import {
   DaffFormFieldModule,
   DaffHintComponent,
-  DaffInputModule,
+  DaffInputComponent,
 } from '@daffodil/design';
 
 @Component({
@@ -22,7 +22,7 @@ import {
   standalone: true,
   imports: [
     DaffFormFieldModule,
-    DaffInputModule,
+    DaffInputComponent,
     DaffHintComponent,
   ],
 })

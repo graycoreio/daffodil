@@ -15,7 +15,7 @@ import { DaffAuthorizeNetCreditCard } from '@daffodil/authorizenet';
 import { DaffCartAddress } from '@daffodil/cart';
 import {
   DaffCheckboxModule,
-  DaffInputModule,
+  DaffInputComponent,
   DaffNativeSelectModule,
 } from '@daffodil/design';
 import { DaffButtonComponent } from '@daffodil/design/button';
@@ -34,7 +34,7 @@ import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-i
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DaffInputModule,
+    DaffInputComponent,
     DaffNativeSelectModule,
     DemoCheckoutPaymentInfoFormComponent,
     DaffButtonComponent,

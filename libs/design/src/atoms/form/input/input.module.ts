@@ -1,16 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { DaffInputComponent } from './input.component';
 
+/**
+ * @deprecated in favor of standalone components. Deprecated in version 0.84.0. Will be removed in version 1.0.0.
+ */
 @NgModule({
   imports: [
-    CommonModule,
-  ],
-  exports: [
     DaffInputComponent,
   ],
-  declarations: [
+  exports: [
     DaffInputComponent,
   ],
 })

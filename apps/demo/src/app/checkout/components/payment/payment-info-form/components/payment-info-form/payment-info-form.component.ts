@@ -7,7 +7,7 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 
 import {
-  DaffInputModule,
+  DaffInputComponent,
   DaffNativeSelectModule,
   DaffFormFieldModule,
 } from '@daffodil/design';
@@ -33,7 +33,7 @@ const currentYear = new Date().getFullYear();
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DaffInputModule,
+    DaffInputComponent,
     DaffNativeSelectModule,
     DaffFormFieldModule,
   ],

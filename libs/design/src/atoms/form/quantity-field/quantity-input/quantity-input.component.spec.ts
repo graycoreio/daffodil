@@ -14,10 +14,7 @@ import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 
 import { DaffQuantityInputComponent } from './quantity-input.component';
-import {
-  DaffInputModule,
-  DaffInputComponent,
-} from '../../input/public_api';
+import { DaffInputComponent } from '../../input/input.component';
 
 @Component({
   template: `
@@ -55,8 +52,8 @@ describe('@daffodil/design | DaffQuantityInputComponent', () => {
         WrapperComponent,
       ],
       imports: [
+        DaffInputComponent,
         CommonModule,
-        DaffInputModule,
         ReactiveFormsModule,
       ],
       providers: [

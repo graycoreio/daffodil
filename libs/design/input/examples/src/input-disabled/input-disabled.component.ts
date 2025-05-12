@@ -9,7 +9,7 @@ import {
 
 import {
   DaffFormFieldModule,
-  DaffInputModule,
+  DaffInputComponent,
 } from '@daffodil/design';
 
 @Component({
@@ -26,7 +26,7 @@ import {
   imports: [
     ReactiveFormsModule,
     DaffFormFieldModule,
-    DaffInputModule,
+    DaffInputComponent,
   ],
 })
 export class InputDisabledComponent {

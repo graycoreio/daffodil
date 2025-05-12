@@ -30,7 +30,6 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     { provide: DaffFormFieldControl, useExisting: DaffInputComponent },
   ],
-  standalone: false,
 })
 export class DaffInputComponent extends DaffFormFieldControl<string> implements DaffFormFieldControl<string>, OnInit {
 
@@ -73,6 +72,7 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
     );
   }
 
+  /** @docs-private */
   onFocus() {
     this._elementRef.nativeElement.focus();
   }

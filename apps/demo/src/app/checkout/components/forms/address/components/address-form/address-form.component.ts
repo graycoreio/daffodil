@@ -14,7 +14,7 @@ import {
 } from 'rxjs';
 
 import {
-  DaffInputModule,
+  DaffInputComponent,
   DaffNativeSelectModule,
   DaffFormFieldModule,
 } from '@daffodil/design';
@@ -38,7 +38,7 @@ import { DemoCheckoutAddressFormGroup } from '../../models/address-form.type';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DaffInputModule,
+    DaffInputComponent,
     DaffNativeSelectModule,
     DaffFormFieldModule,
     DaffGeographyStateModule,

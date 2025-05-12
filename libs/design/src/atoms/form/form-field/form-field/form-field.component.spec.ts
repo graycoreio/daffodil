@@ -14,7 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffFormFieldComponent } from './form-field.component';
 import { DaffErrorMessageComponent } from '../../error-message/error-message.component';
-import { DaffInputModule } from '../../input/public_api';
+import { DaffInputComponent } from '../../input/input.component';
 import { DaffFormFieldControl } from '../form-field-control';
 import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
 
@@ -39,7 +39,7 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
-        DaffInputModule,
+        DaffInputComponent,
         FontAwesomeModule,
       ],
       declarations: [

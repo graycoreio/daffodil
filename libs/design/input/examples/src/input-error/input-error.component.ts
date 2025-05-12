@@ -11,7 +11,7 @@ import {
 import {
   DaffFormFieldModule,
   DaffHintComponent,
-  DaffInputModule,
+  DaffInputComponent,
 } from '@daffodil/design';
 
 @Component({
@@ -26,7 +26,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DaffFormFieldModule,
-    DaffInputModule,
+    DaffInputComponent,
     DaffHintComponent,
     ReactiveFormsModule,
   ],

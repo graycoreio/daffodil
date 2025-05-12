@@ -10,7 +10,7 @@ import {
 
 import {
   DaffFormFieldModule,
-  DaffInputModule,
+  DaffInputComponent,
   DaffPrefixSuffixModule,
 } from '@daffodil/design';
 
@@ -27,7 +27,7 @@ import {
   standalone: true,
   imports: [
     DaffFormFieldModule,
-    DaffInputModule,
+    DaffInputComponent,
     FaIconComponent,
     DaffPrefixSuffixModule,
   ],

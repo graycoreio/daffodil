@@ -14,7 +14,7 @@ import { By } from '@angular/platform-browser';
 import { DaffQuantityFieldComponent } from './quantity-field.component';
 import { DaffQuantityInputComponent } from './quantity-input/quantity-input.component';
 import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.component';
-import { DaffInputModule } from '../input/public_api';
+import { DaffInputComponent } from '../input/input.component';
 import { DaffNativeSelectModule } from '../native-select/public_api';
 
 @Component({
@@ -53,7 +53,7 @@ describe('@daffodil/design | DaffQuantityFieldComponent', () => {
       imports: [
         CommonModule,
         DaffNativeSelectModule,
-        DaffInputModule,
+        DaffInputComponent,
         ReactiveFormsModule,
       ],
     })
