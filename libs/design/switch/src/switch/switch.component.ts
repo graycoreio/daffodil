@@ -9,7 +9,6 @@ import {
   Output,
 } from '@angular/core';
 
-import { DaffErrorMessageModule } from '@daffodil/design';
 import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 import {
@@ -35,7 +34,6 @@ let switchUniqueId = 0;
   styleUrls: ['./switch.component.scss'],
   imports: [
     DAFF_LOADING_ICON_COMPONENTS,
-    DaffErrorMessageModule,
   ],
 })
 export class DaffSwitchComponent {

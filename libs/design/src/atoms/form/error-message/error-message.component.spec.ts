@@ -12,7 +12,7 @@ describe('@daffodil/design | DaffErrorMessageComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         DaffErrorMessageComponent,
       ],
     })

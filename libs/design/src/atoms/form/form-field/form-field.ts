@@ -1,7 +1,7 @@
 import { DaffFormFieldComponent } from './form-field/form-field.component';
 import { DaffPrefixDirective } from '../../../core/prefix-suffix/prefix.directive';
 import { DaffSuffixDirective } from '../../../core/prefix-suffix/suffix.directive';
-import { DaffErrorMessageModule } from '../error-message/error-message.module';
+import { DaffErrorMessageComponent } from '../error-message/error-message.component';
 import { DaffFormLabelModule } from '../form-label/form-label.module';
 import { DaffHintComponent } from '../hint/hint.component';
 
@@ -10,7 +10,7 @@ import { DaffHintComponent } from '../hint/hint.component';
  */
 export const DAFF_FORM_FIELD_COMPONENTS = <const> [
   DaffFormFieldComponent,
-  DaffErrorMessageModule,
+  DaffErrorMessageComponent,
   DaffFormLabelModule,
   DaffHintComponent,
   DaffPrefixDirective,
