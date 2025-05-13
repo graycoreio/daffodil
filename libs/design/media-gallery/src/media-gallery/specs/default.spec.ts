@@ -50,8 +50,4 @@ describe('DaffMediaGalleryComponent | Defaults', () => {
       'daff-media-gallery': true,
     }));
   });
-
-  it('should have a role of tablist', () => {
-    expect(component.role).toBe('tablist');
-  });
 });

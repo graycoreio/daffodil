@@ -61,12 +61,6 @@ let uniqueGalleryId = 0;
   ],
 })
 export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.role') role = 'tablist';
-
   /**
    * The internal ID of the gallery.
    */
