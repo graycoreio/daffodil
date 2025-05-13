@@ -9,3 +9,4 @@ export {
   provideDataLayerTracker,
   DataLayerTracker,
 } from './lib/provider-data-layer-tracker';
+export { EcommerceDataLayerImpression } from './lib/layers/ecommerce/impression';
