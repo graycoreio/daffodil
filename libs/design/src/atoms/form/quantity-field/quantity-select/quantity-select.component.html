@@ -3,6 +3,9 @@
   (focus)="onFocus()"
 >
   <option *ngFor="let item of valueArray" [value]="item">{{ item }}</option>
-  <option [value]="max" *ngIf="extendable">{{ max }}+</option>
-  <option [value]="max" *ngIf="!extendable">{{ max }}</option>
+  @if (extendable) {
+    <option [value]="max">{{ max }}+</option>
+  } @else {
+    <option [value]="max">{{ max }}</option>
+  }
 </select>

@@ -28,7 +28,10 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    DaffQuantityInputComponent,
+    DaffQuantitySelectComponent,
+  ],
 })
 export class DaffQuantityFieldComponent extends DaffFormFieldControl<number> implements ControlValueAccessor, DaffFormFieldControl<number> {
 

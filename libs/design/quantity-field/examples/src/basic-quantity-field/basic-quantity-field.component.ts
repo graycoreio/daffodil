@@ -9,7 +9,7 @@ import {
 
 import {
   DAFF_FORM_FIELD_COMPONENTS,
-  DaffQuantityFieldModule,
+  DaffQuantityFieldComponent,
 } from '@daffodil/design';
 
 @Component({
@@ -20,7 +20,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_FORM_FIELD_COMPONENTS,
-    DaffQuantityFieldModule,
+    DaffQuantityFieldComponent,
     ReactiveFormsModule,
   ],
 })

@@ -11,17 +11,21 @@ import {
 import {
   UntypedFormControl,
   NgControl,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { DaffInputComponent } from '../../input/public_api';
+import { DaffInputComponent } from '../../input/input.component';
 
 @Component({
   selector: 'daff-quantity-input',
   templateUrl: './quantity-input.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    DaffInputComponent,
+    ReactiveFormsModule,
+  ],
 })
 export class DaffQuantityInputComponent implements OnInit, OnDestroy {
   @ViewChild(DaffInputComponent) input: DaffInputComponent;

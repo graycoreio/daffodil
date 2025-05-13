@@ -1,29 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { DaffQuantityFieldComponent } from './quantity-field.component';
-import { DaffQuantityInputComponent } from './quantity-input/quantity-input.component';
-import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.component';
-import { DaffInputModule } from '../input/input.module';
-import { DaffNativeSelectModule } from '../native-select/public_api';
 
+/**
+ * @deprecated in favor of standalone components. Deprecated in version 0.84.0. Will be removed in version 1.0.0.
+ */
 @NgModule({
-  declarations: [
-    DaffQuantityFieldComponent,
-    DaffQuantityInputComponent,
-    DaffQuantitySelectComponent,
-  ],
   imports: [
     CommonModule,
-    DaffNativeSelectModule,
-    ReactiveFormsModule,
-    DaffInputModule,
+    DaffQuantityFieldComponent,
   ],
   exports: [
     DaffQuantityFieldComponent,
-    DaffQuantityInputComponent,
-    DaffQuantitySelectComponent,
   ],
 })
 export class DaffQuantityFieldModule { }

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   waitForAsync,
@@ -14,8 +13,6 @@ import { By } from '@angular/platform-browser';
 import { DaffQuantityFieldComponent } from './quantity-field.component';
 import { DaffQuantityInputComponent } from './quantity-input/quantity-input.component';
 import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.component';
-import { DaffInputComponent } from '../input/input.component';
-import { DaffNativeSelectModule } from '../native-select/public_api';
 
 @Component({
   template: `
@@ -26,7 +23,12 @@ import { DaffNativeSelectModule } from '../native-select/public_api';
       [selectMax]="selectMaxValue"
     ></daff-quantity-field>
   `,
-  standalone: false,
+  imports: [
+    DaffQuantityFieldComponent,
+    DaffQuantityInputComponent,
+    DaffQuantitySelectComponent,
+    ReactiveFormsModule,
+  ],
 })
 class WrapperComponent {
   minValue = 0;
@@ -44,17 +46,8 @@ describe('@daffodil/design | DaffQuantityFieldComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-        DaffQuantityFieldComponent,
-        DaffQuantityInputComponent,
-        DaffQuantitySelectComponent,
-      ],
       imports: [
-        CommonModule,
-        DaffNativeSelectModule,
-        DaffInputComponent,
-        ReactiveFormsModule,
+        WrapperComponent,
       ],
     })
       .compileComponents();

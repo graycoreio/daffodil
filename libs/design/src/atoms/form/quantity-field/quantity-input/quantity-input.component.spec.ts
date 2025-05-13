@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   waitForAsync,
@@ -8,7 +7,6 @@ import {
 import {
   UntypedFormControl,
   NgControl,
-  ReactiveFormsModule,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
@@ -23,7 +21,11 @@ import { DaffInputComponent } from '../../input/input.component';
       [max]="maxValue"
     ></daff-quantity-input>
   `,
-  standalone: false,
+  imports: [
+    DaffQuantityInputComponent,
+    DaffInputComponent,
+
+  ],
 })
 class WrapperComponent {
   minValue = 0;
@@ -47,14 +49,8 @@ describe('@daffodil/design | DaffQuantityInputComponent', () => {
     };
 
     TestBed.configureTestingModule({
-      declarations: [
-        DaffQuantityInputComponent,
-        WrapperComponent,
-      ],
       imports: [
-        DaffInputComponent,
-        CommonModule,
-        ReactiveFormsModule,
+        WrapperComponent,
       ],
       providers: [
         {

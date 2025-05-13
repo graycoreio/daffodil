@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   waitForAsync,
@@ -8,7 +7,6 @@ import {
 import {
   NgControl,
   UntypedFormControl,
-  ReactiveFormsModule,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
@@ -27,7 +25,10 @@ import {
       [extendable]="extendableValue"
     ></daff-quantity-select>
   `,
-  standalone: false,
+  imports: [
+    DaffQuantitySelectComponent,
+    DaffNativeSelectModule,
+  ],
 })
 class WrapperComponent {
   minValue = 2;
@@ -52,12 +53,6 @@ describe('@daffodil/design | DaffQuantitySelectComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        CommonModule,
-        DaffNativeSelectModule,
-        ReactiveFormsModule,
-      ],
-      declarations: [
-        DaffQuantitySelectComponent,
         WrapperComponent,
       ],
       providers: [

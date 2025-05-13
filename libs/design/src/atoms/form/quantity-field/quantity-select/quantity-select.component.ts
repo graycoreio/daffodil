@@ -1,13 +1,21 @@
 import {
+  NgFor,
+  NgIf,
+} from '@angular/common';
+import {
   Component,
   Input,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   ViewChild,
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import {
+  NgControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
-import { DaffNativeSelectComponent } from '../../native-select/public_api';
+import { DaffNativeSelectComponent } from '../../native-select/native-select.component';
+import { DaffNativeSelectModule } from '../../native-select/native-select.module';
 
 /**
  * Create an array of numbers from min to max, not including max.
@@ -19,7 +27,12 @@ export const makeValueArray = (min: number, max: number, increment: number) =>
   selector: 'daff-quantity-select',
   templateUrl: './quantity-select.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    DaffNativeSelectModule,
+    ReactiveFormsModule,
+    NgFor,
+    NgIf,
+  ],
 })
 export class DaffQuantitySelectComponent {
 

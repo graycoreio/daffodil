@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffQuantityFieldModule } from '@daffodil/design';
 import { DaffArticleModule } from '@daffodil/design/article';
 
 import { DesignLandQuantityFieldRoutingModule } from './quantity-field-routing.module';
@@ -15,7 +14,6 @@ import { DesignLandExampleViewerModule } from '../core/code-preview/container/ex
   imports: [
     CommonModule,
     DaffArticleModule,
-    DaffQuantityFieldModule,
     DesignLandExampleViewerModule,
     DesignLandQuantityFieldRoutingModule,
   ],
