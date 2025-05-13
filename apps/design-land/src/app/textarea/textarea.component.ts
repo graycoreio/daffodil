@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
 } from '@angular/core';
 
 @Component({
@@ -9,5 +8,6 @@ import {
   templateUrl: './textarea.component.html',
   styleUrls: ['./textarea.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class DesignLandTextareaComponent {}

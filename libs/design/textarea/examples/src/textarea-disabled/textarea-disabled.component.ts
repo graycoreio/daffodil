@@ -2,10 +2,14 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
+import {
+  ReactiveFormsModule,
+  UntypedFormControl,
+} from '@angular/forms';
 
 import {
-  DaffFormFieldModule,
-  DaffTextareaModule,
+  DAFF_FORM_FIELD_COMPONENTS,
+  DaffTextareaComponent,
 } from '@daffodil/design';
 
 @Component({
@@ -18,9 +22,12 @@ import {
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [DaffFormFieldModule, DaffTextareaModule],
+  imports: [
+    DAFF_FORM_FIELD_COMPONENTS,
+    DaffTextareaComponent,
+    ReactiveFormsModule,
+  ],
 })
 export class TextareaDisabledComponent {
-  isDisabled = true;
+  disabled = new UntypedFormControl({ value : '' , disabled: true });
 }

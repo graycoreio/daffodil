@@ -2,8 +2,8 @@
 @use '../../../../scss/theming';
 
 @mixin daff-textarea-theme($theme) {
-	$base: core.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
+	$base: core.daff-map-get($theme, 'core', 'base');
+	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 
 	.daff-textarea {
 		background: $base;

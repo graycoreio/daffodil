@@ -1,14 +1,19 @@
 import {
   Component,
-  Input,
   Optional,
   Self,
   ElementRef,
   HostListener,
   ChangeDetectionStrategy,
   HostBinding,
+  OnInit,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
+import {
+  map,
+  merge,
+  of,
+} from 'rxjs';
 
 import { DaffFormFieldControl } from '../form-field/form-field-control';
 
@@ -26,15 +31,19 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
     { provide: DaffFormFieldControl, useExisting: DaffTextareaComponent },
   ],
 })
-export class DaffTextareaComponent implements DaffFormFieldControl<string> {
+export class DaffTextareaComponent extends DaffFormFieldControl<string> implements DaffFormFieldControl<string>, OnInit {
 
+  /** @docs-private */
+  controlType = 'native-textarea';
+
+  /**
+   * @docs-private
+   */
   @HostBinding('class.daff-textarea') class = true;
 
   /**
-   * Has the form been submitted.
+   * @docs-private
    */
-  @Input() formSubmitted: boolean;
-
   focused = false;
 
   /**
@@ -42,6 +51,7 @@ export class DaffTextareaComponent implements DaffFormFieldControl<string> {
    */
   @HostListener('focus') focus() {
     this.focused = true;
+    this.emitState();
   }
 
   /**
@@ -49,6 +59,7 @@ export class DaffTextareaComponent implements DaffFormFieldControl<string> {
    */
   @HostListener('blur') blur() {
     this.focused = false;
+    this.emitState();
   }
 
   constructor(
@@ -57,12 +68,30 @@ export class DaffTextareaComponent implements DaffFormFieldControl<string> {
      */
     @Optional() @Self() public ngControl: NgControl,
     private _elementRef: ElementRef<HTMLInputElement>,
-  ) {}
+  ) {
+    super(ngControl);
+  }
 
+  /** @docs-private */
+  ngOnInit() {
+    this.stateChanges = merge(
+      this._stateChanges.asObservable(),
+      this.ngControl ? this.ngControl.statusChanges : of(undefined),
+    ).pipe(
+      map(() => this.state),
+    );
+  }
+
+  /**
+   * @docs-private
+   */
   onFocus() {
     this._elementRef.nativeElement.focus();
   }
 
+  /**
+   * @docs-private
+   */
   get value() {
     return this._elementRef.nativeElement.value;
   }

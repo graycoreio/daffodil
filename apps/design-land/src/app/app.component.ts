@@ -28,8 +28,8 @@ import { QUANTITY_FIELD_EXAMPLES } from '@daffodil/design/quantity-field/example
 import { RADIO_EXAMPLES } from '@daffodil/design/radio/examples';
 import { SIDEBAR_EXAMPLES } from '@daffodil/design/sidebar/examples';
 import { SWITCH_EXAMPLES } from '@daffodil/design/switch/examples';
-import { TEXTAREA_EXAMPLES } from '@daffodil/design/textarea/examples';
 import { TABS_EXAMPLES } from '@daffodil/design/tabs/examples';
+import { TEXTAREA_EXAMPLES } from '@daffodil/design/textarea/examples';
 import { TOAST_EXAMPLES } from '@daffodil/design/toast/examples';
 import { TREE_EXAMPLES } from '@daffodil/design/tree/examples';
 

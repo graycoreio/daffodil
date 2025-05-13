@@ -9,8 +9,8 @@ import {
 } from '@angular/forms';
 
 import {
-  DaffFormFieldModule,
-  DaffTextareaModule,
+  DAFF_FORM_FIELD_COMPONENTS,
+  DaffTextareaComponent,
 } from '@daffodil/design';
 
 @Component({
@@ -23,16 +23,14 @@ import {
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
-    DaffFormFieldModule,
-    DaffTextareaModule,
+    DAFF_FORM_FIELD_COMPONENTS,
+    DaffTextareaComponent,
     ReactiveFormsModule,
   ],
 })
 export class TextareaErrorComponent {
-  control: UntypedFormControl = new UntypedFormControl('test@example.com', [
-    Validators.email,
+  control: UntypedFormControl = new UntypedFormControl('', [
     Validators.required,
   ]);
 }

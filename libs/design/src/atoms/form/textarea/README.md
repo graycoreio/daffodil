@@ -1,14 +1,29 @@
 # Textarea
-Textarea is a form control element that can be used in forms.
+The textarea component allows a native HTML textarea element to work with the form field component.
 
-## Examples
-
-### Basic
-A basic textarea without using the `DaffFormFieldComponent`.
+## Overview
+The textarea component has the same functionality as a native HTML `<textarea>` element, with additional custom styling and functionality. It **cannot** be used by itself and must be contained within a [DaffFormFieldComponent](/libs/design/src/atoms/form/form-field/README.md).
 
 <design-land-example-viewer-container example="basic-textarea"></design-land-example-viewer-container>
 
-### With `DaffFormFieldComponent`
-A textarea using `DaffFormField`
+## Usage
+To use textarea, import `DaffTextareaComponent` directly into your custom component:
 
-<design-land-example-viewer-container example="textarea-with-form-field"></design-land-example-viewer-container>
+```ts
+import { DaffTextareaComponent } from '@daffodil/design';
+
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  imports: [
+    DaffTextareaComponent,
+  ],
+})
+export class CustomComponent {}
+```
+
+## Disabled textarea
+<design-land-example-viewer-container example="textarea-disabled"></design-land-example-viewer-container>
+
+## Textarea with an error
+<design-land-example-viewer-container example="textarea-error"></design-land-example-viewer-container>
