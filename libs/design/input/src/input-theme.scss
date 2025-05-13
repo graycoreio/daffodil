@@ -1,5 +1,5 @@
-@use '../../../../scss/core';
-@use '../../../../scss/theming';
+@use '../../scss/core';
+@use '../../scss/theming';
 
 @mixin daff-input-theme($theme) {
 	$base: core.daff-map-get($theme, 'core', 'base');
