@@ -16,11 +16,11 @@ import {
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
+import { DaffFormFieldModule } from '@daffodil/design';
 import {
-  DaffFormFieldModule,
   DaffQuantityFieldComponent,
   DaffQuantityFieldModule,
-} from '@daffodil/design';
+} from '@daffodil/design/quantity-field';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 
 import { CartItemComponent } from './cart-item.component';

@@ -14,8 +14,10 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { DaffNativeSelectComponent } from '../../native-select/native-select.component';
-import { DaffNativeSelectModule } from '../../native-select/native-select.module';
+import {
+  DaffNativeSelectComponent,
+  DaffNativeSelectModule,
+} from '@daffodil/design';
 
 /**
  * Create an array of numbers from min to max, not including max.

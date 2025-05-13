@@ -11,11 +11,12 @@ import {
 import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 
-import { DaffQuantitySelectComponent } from './quantity-select.component';
 import {
   DaffNativeSelectModule,
   DaffNativeSelectComponent,
-} from '../../native-select/public_api';
+} from '@daffodil/design';
+
+import { DaffQuantitySelectComponent } from './quantity-select.component';
 
 @Component({
   template: `

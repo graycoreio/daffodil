@@ -12,7 +12,7 @@ Quantity field is intended for use with cart items and product quantities. The m
 To use form field in a standalone component, import `DaffQuantityFieldComponent` directly into your custom component:
 
 ```ts
-import { DaffQuantityFieldComponent } from '@daffodil/design';
+import { DaffQuantityFieldComponent } from '@daffodil/design/quantity-field';
 
 @Component({
   selector: 'custom-component',
@@ -29,7 +29,7 @@ To use form field in a module, import `DaffQuantityFieldModule` into your custom
 
 ```ts
 import { NgModule } from '@angular/core';
-import { DaffQuantityFieldModule } from '@daffodil/design';
+import { DaffQuantityFieldModule } from '@daffodil/design/quantity-field';
 import { CustomComponent } from './custom.component';
 
 @NgModule({

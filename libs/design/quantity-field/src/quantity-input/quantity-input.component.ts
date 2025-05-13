@@ -16,7 +16,7 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { DaffInputComponent } from '../../input/input.component';
+import { DaffInputComponent } from '@daffodil/design';
 
 @Component({
   selector: 'daff-quantity-input',
