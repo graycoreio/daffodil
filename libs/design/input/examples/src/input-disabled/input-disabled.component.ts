@@ -7,10 +7,8 @@ import {
   UntypedFormControl,
 } from '@angular/forms';
 
-import {
-  DAFF_FORM_FIELD_COMPONENTS,
-  DaffInputComponent,
-} from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
+import { DaffInputComponent } from '@daffodil/design/input';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector

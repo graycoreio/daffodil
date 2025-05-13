@@ -15,7 +15,7 @@ import {
   map,
 } from 'rxjs';
 
-import { DaffFormFieldControl } from '../form-field/form-field-control';
+import { DaffFormFieldControl } from '@daffodil/design';
 
 /**
  * DaffInputComponent provides the same functionality as a native `<input>` and contains custom styling and functionality.

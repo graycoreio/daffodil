@@ -10,7 +10,7 @@ import {
 import { UntypedFormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffInputComponent } from './input.component';
+import { DaffInputComponent } from '@daffodil/design/input';
 
 @Component({
   template: `<input daff-input>`,

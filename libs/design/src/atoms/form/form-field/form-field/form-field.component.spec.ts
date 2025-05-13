@@ -11,8 +11,9 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
+import { DaffInputComponent } from '@daffodil/design/input';
+
 import { DaffFormFieldComponent } from './form-field.component';
-import { DaffInputComponent } from '../../input/input.component';
 import { DAFF_FORM_FIELD_COMPONENTS } from '../form-field';
 import { DaffFormFieldControl } from '../form-field-control';
 import { DaffFormFieldMissingControlMessage } from '../form-field-errors';

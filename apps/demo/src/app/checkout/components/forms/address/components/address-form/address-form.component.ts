@@ -14,10 +14,10 @@ import {
 } from 'rxjs';
 
 import {
-  DaffInputComponent,
   DaffNativeSelectModule,
   DAFF_FORM_FIELD_COMPONENTS,
 } from '@daffodil/design';
+import { DaffInputComponent } from '@daffodil/design/input';
 import {
   DaffCountry,
   DaffSubdivision,

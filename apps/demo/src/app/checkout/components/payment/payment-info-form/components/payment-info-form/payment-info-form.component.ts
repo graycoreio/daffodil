@@ -7,10 +7,10 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 
 import {
-  DaffInputComponent,
   DaffNativeSelectModule,
   DAFF_FORM_FIELD_COMPONENTS,
 } from '@daffodil/design';
+import { DaffInputComponent } from '@daffodil/design/input';
 
 import { PaymentInfoFormGroup } from '../../models/payment-form.type';
 

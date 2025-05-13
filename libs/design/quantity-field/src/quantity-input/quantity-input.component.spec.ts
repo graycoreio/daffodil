@@ -11,7 +11,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 
-import { DaffInputComponent } from '@daffodil/design';
+import { DaffInputComponent } from '@daffodil/design/input';
 
 import { DaffQuantityInputComponent } from './quantity-input.component';
 

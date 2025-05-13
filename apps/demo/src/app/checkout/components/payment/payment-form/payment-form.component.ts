@@ -15,10 +15,10 @@ import { DaffAuthorizeNetCreditCard } from '@daffodil/authorizenet';
 import { DaffCartAddress } from '@daffodil/cart';
 import {
   DaffCheckboxModule,
-  DaffInputComponent,
   DaffNativeSelectModule,
 } from '@daffodil/design';
 import { DaffButtonComponent } from '@daffodil/design/button';
+import { DaffInputComponent } from '@daffodil/design/input';
 
 import { DemoGeographyAddressSummaryComponent } from '../../../../geography/components/address-summary/address-summary.component';
 import { DemoCheckoutAddressFormComponent } from '../../forms/address/components/address-form/address-form.component';

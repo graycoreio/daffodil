@@ -10,9 +10,9 @@ import {
 
 import {
   DAFF_FORM_FIELD_COMPONENTS,
-  DaffInputComponent,
   DaffPrefixSuffixModule,
 } from '@daffodil/design';
+import { DaffInputComponent } from '@daffodil/design/input';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
