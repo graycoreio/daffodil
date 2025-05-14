@@ -1,0 +1,21 @@
+@use '../core/map/map-get/map-get';
+
+// Retrieves a palette from Daffodil's theming options
+@function daff-get-palette($theme, $palette) {
+	@if (
+		$palette != 'primary' and
+		$palette != 'secondary' and
+		$palette != 'tertiary' and
+		$palette != 'informational' and
+		$palette != 'warn' and
+		$palette != 'critical' and
+		$palette != 'success' and
+		$palette != 'neutral'
+	) {
+		@error '' + $palette + ' is not a supported palette in Daffodil theming.';
+	}
+	@if ($palette == 'neutral') {
+		@return map-get.daff-map-get($theme, 'core', $palette);
+	}
+	@return map-get.daff-map-get($theme, $palette);
+}

@@ -1,0 +1,6 @@
+@use '../core/map/map-get/map-get';
+
+// Retrieves the mode from Daffodil's theming options
+@function daff-get-theme-mode($theme) {
+	@return map-get.daff-map-get($theme, 'core', 'type');
+}
