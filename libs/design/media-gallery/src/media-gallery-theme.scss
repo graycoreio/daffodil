@@ -5,7 +5,7 @@
 @mixin daff-media-gallery-theme($theme) {
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 	$white: core.daff-map-get($theme, 'core', 'white');
-	$type: core.daff-map-get($theme, 'core', 'type');
+	$type: core.daff-map-get($theme, 'core', 'mode');
 
 	.daff-media-gallery {
 		$root: &;

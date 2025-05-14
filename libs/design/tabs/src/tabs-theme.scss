@@ -6,7 +6,7 @@
 	$primary: core.daff-map-get($theme, primary);
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$type: core.daff-map-get($theme, 'core', 'type');
+	$type: core.daff-map-get($theme, 'core', 'mode');
 
 	@include theming.light($type) {
 		.daff-tabs {

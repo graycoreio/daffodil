@@ -11,7 +11,7 @@
 	$base: core.daff-map-get($theme, 'core', 'base');
 	$black: core.daff-map-get($theme, 'core', 'black');
 	$white: core.daff-map-get($theme, 'core', 'white');
-	$type: core.daff-map-get($theme, 'core', 'type');
+	$type: core.daff-map-get($theme, 'core', 'mode');
 
 	.daff-toast {
 		@include theming.light($type) {

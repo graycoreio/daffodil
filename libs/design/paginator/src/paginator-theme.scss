@@ -7,7 +7,7 @@
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 	$white: core.daff-map-get($theme, 'core', 'white');
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$type: core.daff-map-get($theme, 'core', 'type');
+	$type: core.daff-map-get($theme, 'core', 'mode');
 
 	.daff-paginator {
 		&__previous,

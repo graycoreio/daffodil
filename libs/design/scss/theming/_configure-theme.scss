@@ -4,7 +4,7 @@
 @use 'get-color';
 
 $daff-light-theme: (
-	'type': 'light',
+	'mode': 'light',
 	'font-color': get-color.daff-color(palette.$daff-neutral, 110),
 	'base': get-color.daff-color(palette.$daff-neutral, 0),
 	'base-contrast': get-color.daff-color(palette.$daff-neutral, 110),
@@ -14,7 +14,7 @@ $daff-light-theme: (
 );
 
 $daff-dark-theme: (
-	'type': 'dark',
+	'mode': 'dark',
 	'font-color': get-color.daff-color(palette.$daff-neutral, 0),
 	'base': get-color.daff-color(palette.$daff-neutral, 100),
 	'base-contrast': get-color.daff-color(palette.$daff-neutral, 0),
@@ -23,7 +23,7 @@ $daff-dark-theme: (
 	'neutral': configure-palette.daff-configure-palette(palette.$daff-neutral, 50),
 );
 
-$supported-theme-types: (
+$supported-theme-modes: (
 	'light': $daff-light-theme,
 	'dark': $daff-dark-theme
 );
@@ -36,31 +36,31 @@ $supported-theme-types: (
 // that can be overriden by using the `daff-configure-theme-status` function.
 //
 // @usage
-// ```
+// ```scss
 // $primary: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
 // $secondary: configure-palette.daff-configure-palette(palette.$daff-purple, 60);
 // $tertiary: configure-palette.daff-configure-palette(palette.$daff-turquoise, 60);
 //
-// $theme: daff-configure-theme($primary, $secondary, $tertiary)
+// $theme: daff-configure-theme($primary, $secondary, $tertiary, 'light');
 // ```
 @function daff-configure-theme(
 	$primary,
 	$secondary,
 	$tertiary,
-	$type: 'light'
+	$mode: 'light'
 ) {
 	$info: null;
 	$warn: null;
 	$critical: null;
 	$success: null;
 
-	@if($type == 'dark') {
+	@if($mode == 'dark') {
 		$info: configure-palette.daff-configure-palette(palette.$daff-neutral, 50);
 		$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 50);
 		$critical: configure-palette.daff-configure-palette(palette.$daff-red, 50);
 		$success: configure-palette.daff-configure-palette(palette.$daff-green, 50);
 	}
-	@if($type == 'light') {
+	@if($mode == 'light') {
 		$info: configure-palette.daff-configure-palette(palette.$daff-neutral, 60);
 		$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 60);
 		$critical: configure-palette.daff-configure-palette(palette.$daff-red, 60);
@@ -75,7 +75,7 @@ $supported-theme-types: (
 		'warn':  $warn,
 		'critical': $critical,
 		'success': $success,
-		'core': daff-build-theme-core($type)
+		'core': daff-build-theme-core($mode)
 	);
 }
 
@@ -111,18 +111,18 @@ $supported-theme-types: (
 //
 // @docs
 //
-// Create a core theme given a theme type
-// $type | ThemeType : "light" | "dark"
+// Retrieves the core theme given a theme mode
+// $mode: "light" | "dark"
 //
 // ```
 // @usage
 // daff-build-theme-core("light")
 // ```
-@function daff-build-theme-core($type: 'light') {
-	$error-msg: 'is not a valid theme type - valid types:';
-	@if (not map.has-key($supported-theme-types, $type)) {
-		@error '`#{$type}` `#{$error-msg}` `#{map-keys($supported-theme-types)}`';
+@function daff-build-theme-core($mode: 'light') {
+	$error-msg: 'is not a valid theme mode - valid modes:';
+	@if (not map.has-key($supported-theme-modes, $mode)) {
+		@error '`#{$mode}` `#{$error-msg}` `#{map-keys($supported-theme-modes)}`';
 	}
 
-	@return map.get($supported-theme-types, $type);
+	@return map.get($supported-theme-modes, $mode);
 }

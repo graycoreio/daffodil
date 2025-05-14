@@ -6,7 +6,7 @@
 	$primary: core.daff-map-get($theme, primary);
 	$white: core.daff-map-get($theme, 'core', 'white');
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$type: core.daff-map-get($theme, 'core', 'type');
+	$type: core.daff-map-get($theme, 'core', 'mode');
 
 	.daff-switch {
 		&__toggle {

@@ -159,7 +159,7 @@ Define your themes by using the `daff-configure-theme` function:
 | `$primary` | Specifies the configured palette to use for your app's primary color.     |
 | `$secondary` | Specifies the configured palette to use for your app's secondary color. |
 | `$tertiary` | Specifies the configured palette to use for your app's tertiary color.   |
-| `$type` | Specifies the type of theme. This can be `light` or `dark`.                  |
+| `$mode` | Specifies the theme mode. This can be `light` or `dark`.                  |
 
 ```scss
 @use '@daffodil/design/scss/theme' as daff-theme;

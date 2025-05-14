@@ -5,7 +5,7 @@
 	$primary: daff-theme.daff-map-get(daff-theme.$theme, primary);
 	$secondary: daff-theme.daff-map-get(daff-theme.$theme, secondary);
 	$tertiary: daff-theme.daff-map-get(daff-theme.$theme, tertiary);
-	$type: daff-theme.daff-map-get($theme, 'core', 'type');
+	$type: daff-theme.daff-map-get($theme, 'core', 'mode');
 
 	.daffio-docs-member-heading {
 		@include daff-theme.light($type) {

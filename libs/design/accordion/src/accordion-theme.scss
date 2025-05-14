@@ -6,7 +6,7 @@
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 	$base: core.daff-map-get($theme, 'core', 'base');
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$type: core.daff-map-get($theme, 'core', 'type');
+	$type: core.daff-map-get($theme, 'core', 'mode');
 
 	.daff-accordion-item {
 		@include theming.light($type) {

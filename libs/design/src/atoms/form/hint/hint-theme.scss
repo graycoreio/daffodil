@@ -3,7 +3,7 @@
 
 @mixin daff-hint-theme($theme) {
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$type: core.daff-map-get($theme, 'core', 'type');
+	$type: core.daff-map-get($theme, 'core', 'mode');
 
 	.daff-hint {
 		@include theming.light($type) {

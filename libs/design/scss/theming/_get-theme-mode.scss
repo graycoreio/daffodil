@@ -5,5 +5,5 @@
 // $mode: daff-get-theme-mode($theme);
 // ```
 @function daff-get-theme-mode($theme) {
-	@return map-get.daff-map-get($theme, 'core', 'type');
+	@return map-get.daff-map-get($theme, 'core', 'mode');
 }

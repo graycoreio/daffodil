@@ -6,7 +6,7 @@
 @mixin daff-article-theme($theme) {
 	$primary: core.daff-map-get($theme, primary);
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$type: core.daff-map-get($theme, 'core', 'type');
+	$type: core.daff-map-get($theme, 'core', 'mode');
 
 	$link-color-light: theming.daff-color($primary);
 	$link-color-dark: theming.daff-color($primary, 40);

@@ -5,9 +5,9 @@
 // ```scss
 // @use 'theme' as daff-theme;
 //
-// $type: daff-theme.daff-map-get($theme, 'core', 'type');
+// $mode: theming.daff-get-theme-mode($theme);
 //
-// @include daff-theme.light($type) {
+// @include daff-theme.light($mode) {
 //   color: blue;
 //
 //   .class {
@@ -28,9 +28,9 @@
 // ```scss
 // @use 'theme' as daff-theme;
 //
-// $type: daff-theme.daff-map-get($theme, 'core', 'type');
+// $mode: theming.daff-get-theme-mode($theme);
 //
-// @include daff-theme.dark($type) {
+// @include daff-theme.dark($mode) {
 //   color: blue;
 //
 //   .class {

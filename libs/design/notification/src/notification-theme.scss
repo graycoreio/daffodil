@@ -15,7 +15,7 @@
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 	$black: core.daff-map-get($theme, 'core', 'black');
 	$white: core.daff-map-get($theme, 'core', 'white');
-	$type: core.daff-map-get($theme, 'core', 'type');
+	$type: core.daff-map-get($theme, 'core', 'mode');
 
 	.daff-notification {
 		@include theming.light($type) {

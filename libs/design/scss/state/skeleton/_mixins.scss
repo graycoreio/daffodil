@@ -4,7 +4,7 @@
 @mixin daff-skeleton-theme($theme) {
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 	$base: core.daff-map-get($theme, 'core', 'base');
-	$type: core.daff-map-get($theme, 'core', 'type');
+	$type: core.daff-map-get($theme, 'core', 'mode');
 
 	.daff-skeleton {
 		@include theming.light($type) {

@@ -10,7 +10,7 @@
 	$base: core.daff-map-get($theme, 'core', 'base');
 	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$type: core.daff-map-get($theme, 'core', 'type');
+	$type: core.daff-map-get($theme, 'core', 'mode');
 
 	.daff-form-field {
 		&__control {

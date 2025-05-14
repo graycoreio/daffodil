@@ -4,7 +4,7 @@
 
 @mixin daff-breadcrumb-theme($theme) {
 	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$type: core.daff-map-get($theme, 'core', 'type');
+	$type: core.daff-map-get($theme, 'core', 'mode');
 
 	.daff-breadcrumb__item {
 		a {

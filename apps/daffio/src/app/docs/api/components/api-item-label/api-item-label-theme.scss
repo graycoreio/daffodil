@@ -21,7 +21,7 @@
 		'core',
 		'base-contrast'
 	);
-	$type: daff-theme.daff-map-get($theme, 'core', 'type');
+	$type: daff-theme.daff-map-get($theme, 'core', 'mode');
 
 	.daffio-docs-api-item-label {
 		@include daff-theme.light($type) {
