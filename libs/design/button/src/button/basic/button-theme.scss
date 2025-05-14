@@ -36,10 +36,10 @@
 	$critical: theming.daff-get-palette($theme, critical);
 	$success: theming.daff-get-palette($theme, success);
 	$neutral: theming.daff-get-palette($theme, neutral);
-	$base: theming.daff-get-core-color($theme, base);
-	$base-contrast: theming.daff-get-core-color($theme, base-contrast);
-	$white: theming.daff-get-core-color($theme, 'white');
-	$black: theming.daff-get-core-color($theme, 'black');
+	$base: theming.daff-get-base-color($theme, base);
+	$base-contrast: theming.daff-get-base-color($theme, base-contrast);
+	$white: theming.daff-get-base-color($theme, 'white');
+	$black: theming.daff-get-base-color($theme, 'black');
 	$mode: theming.daff-get-theme-mode($theme);
 
 	.daff-button {

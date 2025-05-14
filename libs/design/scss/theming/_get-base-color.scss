@@ -1,0 +1,19 @@
+@use '../core/map/map-get/map-get';
+
+// Retrieves a base color from Daffodil's theme configurations.
+// $color must be one of these values: `white`, `black`, `base`, and `base-contrast`.
+// ```scss
+// $base: daff-get-base-color($theme, base);
+// ```
+@function daff-get-base-color($theme, $color) {
+	@if (
+		$color != 'white' and
+		$color != 'black' and
+		$color != base and
+		$color != base-contrast
+	) {
+		@error '' + $color + ' is not supported as part of Daffodil`s core colors.';
+	}
+
+	@return map-get.daff-map-get($theme, 'core', $color);
+}
