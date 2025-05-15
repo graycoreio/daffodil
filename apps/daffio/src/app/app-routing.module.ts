@@ -12,7 +12,11 @@ import { DAFF_NAV_SIDEBAR_REGISTRATION } from './core/nav/sidebar.provider';
 import { DaffioRouterNamedViewsEnum } from './core/router/named-views/models/named-views.enum';
 import { DaffioRoute } from './core/router/route.type';
 import { TemplateComponent } from './core/template/template.component';
-import { daffioDocsRedirectMatcher } from './redirect/docs';
+
+const DOCS_REDIRECTED_ROUTES = [
+  'api',
+  'packages',
+];
 
 export const appRoutes: Routes = [
   <DaffioRoute>{
@@ -50,11 +54,15 @@ export const appRoutes: Routes = [
         path: DAFF_DOCS_PATH,
         loadChildren: () => import('./docs/docs.module').then(m => m.DaffioDocsModule),
       },
-      {
-        matcher: daffioDocsRedirectMatcher,
-        redirectTo: (activatedRoute) =>
-          `/${DAFF_DOCS_PATH}/${activatedRoute.url.join('/')}`,
-      },
+      ...DOCS_REDIRECTED_ROUTES.map((path) => ({
+        path,
+        children: [
+          {
+            path: '**',
+            redirectTo: (activatedRoute) => `/${DAFF_DOCS_PATH}/${path}/${activatedRoute.url.join('/')}`,
+          },
+        ],
+      })),
     ],
   },
   {
