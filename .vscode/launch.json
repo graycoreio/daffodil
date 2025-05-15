@@ -17,6 +17,15 @@
       "name": "Launch Chrome against localhost",
       "url": "http://localhost:4200",
       "webRoot": "${workspaceFolder}"
-    }
+    },
+		{
+      "name": "Daffio SSR",
+      "program": "${workspaceFolder}/dist/apps/daffio/server/server.mjs",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
   ]
 }
