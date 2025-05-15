@@ -1,26 +1,24 @@
-@use 'sass:map';
-@use '../../scss/core';
-@use '../../scss/theming';
+@use '../../scss/theming' as *;
 
 @mixin daff-switch-theme($theme) {
-	$primary: core.daff-map-get($theme, primary);
-	$white: core.daff-map-get($theme, 'core', 'white');
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$primary: daff-get-palette($theme, primary);
+	$white: daff-get-base-color($theme, 'white');
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
 
 	.daff-switch {
 		&__toggle {
 			border: 2px solid transparent;
 
 			&.daff-checked {
-				background-color: theming.daff-color($primary);
+				background-color: daff-color($primary);
 			}
 
-			@include theming.light($type) {
-				background-color: theming.daff-color($neutral, 30);
+			@include light($mode) {
+				background-color: daff-color($neutral, 30);
 
 				&:focus-within {
-					border: 2px solid theming.daff-color($neutral, 20);
+					border: 2px solid daff-color($neutral, 20);
 				}
 
 				&::before {
@@ -28,15 +26,15 @@
 				}
 			}
 
-			@include theming.dark($type) {
-				background-color: theming.daff-color($neutral, 80);
+			@include dark($mode) {
+				background-color: daff-color($neutral, 80);
 
 				&:focus-within {
-					border: 2px solid theming.daff-color($neutral, 90);
+					border: 2px solid daff-color($neutral, 90);
 				}
 
 				&::before {
-					background-color: theming.daff-color($neutral, 40);
+					background-color: daff-color($neutral, 40);
 				}
 
 				&.daff-checked {

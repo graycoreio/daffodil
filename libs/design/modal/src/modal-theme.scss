@@ -1,7 +1,7 @@
-@use '../../scss/core';
+@use '../../scss/theming' as *;
 
 @mixin daff-modal-theme($theme) {
-	$base: core.daff-map-get($theme, 'core', 'base');
+	$base: daff-get-base-color($theme, base);
 
 	.daff-modal {
 		background: $base;

@@ -1,47 +1,45 @@
-@use 'sass:map';
-@use '../../scss/core';
-@use '../../scss/theming';
+@use '../../scss/theming' as *;
 
 @mixin daff-tabs-theme($theme) {
-	$primary: core.daff-map-get($theme, primary);
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$primary: daff-get-palette($theme, primary);
+	$neutral: daff-get-palette($theme, neutral);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$mode: daff-get-theme-mode($theme);
 
-	@include theming.light($type) {
+	@include light($mode) {
 		.daff-tabs {
 			&__tab-list {
 				&::after {
-					background: theming.daff-color($neutral, 20);
+					background: daff-color($neutral, 20);
 				}
 			}
 		}
 
 		.daff-tab-activator {
-			border-bottom: 2px solid theming.daff-color($neutral, 20);
+			border-bottom: 2px solid daff-color($neutral, 20);
 			color: $base-contrast;
 
 			&.daff-selected {
-				border-bottom: 2px solid theming.daff-color($primary);
+				border-bottom: 2px solid daff-color($primary);
 			}
 		}
 	}
 
-	@include theming.dark($type) {
+	@include dark($mode) {
 		.daff-tabs {
 			&__tab-list {
 				&::after {
-					background: theming.daff-color($neutral, 80);
+					background: daff-color($neutral, 80);
 				}
 			}
 		}
 
 		.daff-tab-activator {
-			border-bottom: 2px solid theming.daff-color($neutral, 80);
+			border-bottom: 2px solid daff-color($neutral, 80);
 			color: $base-contrast;
 
 			&.daff-selected {
-				border-bottom: 2px solid theming.daff-color($primary);
+				border-bottom: 2px solid daff-color($primary);
 			}
 		}
 	}

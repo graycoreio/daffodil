@@ -1,21 +1,19 @@
-@use 'sass:map';
-@use '../../scss/core';
-@use '../../scss/theming';
+@use '../../scss/theming' as *;
 
 @mixin daff-breadcrumb-theme($theme) {
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
 
 	.daff-breadcrumb__item {
 		a {
-			@include theming.light($type) {
-				color: theming.daff-color($neutral, 80);
-				text-decoration-color: theming.daff-color($neutral, 80);
+			@include light($mode) {
+				color: daff-color($neutral, 80);
+				text-decoration-color: daff-color($neutral, 80);
 			}
 
-			@include theming.dark($type) {
-				color: theming.daff-color($neutral, 30);
-				text-decoration-color: theming.daff-color($neutral, 30);
+			@include dark($mode) {
+				color: daff-color($neutral, 30);
+				text-decoration-color: daff-color($neutral, 30);
 			}
 		}
 	}

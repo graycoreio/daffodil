@@ -1,112 +1,110 @@
-@use 'sass:map';
-@use '../../scss/core';
-@use '../../scss/theming';
+@use '../../scss/theming' as *;
 
 @mixin daff-toast-theme($theme) {
-	$info: core.daff-map-get($theme, informational);
-	$warn: core.daff-map-get($theme, warn);
-	$critical: core.daff-map-get($theme, critical);
-	$success: core.daff-map-get($theme, success);
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$black: core.daff-map-get($theme, 'core', 'black');
-	$white: core.daff-map-get($theme, 'core', 'white');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$info: daff-get-palette($theme, informational);
+	$warn: daff-get-palette($theme, warn);
+	$critical: daff-get-palette($theme, critical);
+	$success: daff-get-palette($theme, success);
+	$neutral: daff-get-palette($theme, neutral);
+	$base: daff-get-base-color($theme, base);
+	$black: daff-get-base-color($theme, 'black');
+	$white: daff-get-base-color($theme, 'white');
+	$mode: daff-get-theme-mode($theme);
 
 	.daff-toast {
-		@include theming.light($type) {
-			background: theming.daff-color($neutral, 10);
+		@include light($mode) {
+			background: daff-color($neutral, 10);
 			box-shadow: 0 -16px 24px -4px rgba($black, 0.04),
 				0 8px 24px -4px rgba($black, 0.1);
-			color: theming.daff-text-contrast($base);
+			color: daff-text-contrast($base);
 
 			&::before {
-				background: theming.daff-color($neutral, 40);
+				background: daff-color($neutral, 40);
 			}
 
 			&.daff-success {
-				background: theming.daff-color($success, 10);
+				background: daff-color($success, 10);
 				color: $black;
 
 				.daff-prefix {
-					color: theming.daff-color($success);
+					color: daff-color($success);
 				}
 
 				&::before {
-					background: theming.daff-color($success);
+					background: daff-color($success);
 				}
 			}
 
 			&.daff-warn {
-				background: theming.daff-color($warn, 10);
+				background: daff-color($warn, 10);
 				color: $black;
 
 				.daff-prefix {
-					color: theming.daff-color($warn);
+					color: daff-color($warn);
 				}
 
 				&::before {
-					background: theming.daff-color($warn);
+					background: daff-color($warn);
 				}
 			}
 
 			&.daff-critical {
-				background: theming.daff-color($critical, 10);
+				background: daff-color($critical, 10);
 				color: $black;
 
 				.daff-prefix {
-					color: theming.daff-color($critical);
+					color: daff-color($critical);
 				}
 
 				&::before {
-					background: theming.daff-color($critical);
+					background: daff-color($critical);
 				}
 			}
 		}
 
-		@include theming.dark($type) {
-			background: theming.daff-color($neutral, 90);
+		@include dark($mode) {
+			background: daff-color($neutral, 90);
 			box-shadow: 0 -16px 24px -4px rgba($black, 0.04),
 				0 8px 24px -4px rgba($black, 0.1);
-			color: theming.daff-text-contrast($base);
+			color: daff-text-contrast($base);
 
 			&::before {
-				background: theming.daff-color($neutral, 30);
+				background: daff-color($neutral, 30);
 			}
 
 			&.daff-success {
-				background: theming.daff-color($success, 90);
+				background: daff-color($success, 90);
 
 				.daff-prefix {
-					color: theming.daff-color($success, 30);
+					color: daff-color($success, 30);
 				}
 
 				&::before {
-					background: theming.daff-color($success, 30);
+					background: daff-color($success, 30);
 				}
 			}
 
 			&.daff-warn {
-				background: theming.daff-color($warn, 90);
+				background: daff-color($warn, 90);
 
 				.daff-prefix {
-					color: theming.daff-color($warn, 30);
+					color: daff-color($warn, 30);
 				}
 
 				&::before {
-					background: theming.daff-color($warn, 30);
+					background: daff-color($warn, 30);
 				}
 			}
 
 			&.daff-critical {
-				background: theming.daff-color($critical, 90);
+				background: daff-color($critical, 90);
 
 				.daff-prefix {
-					color: theming.daff-color($critical, 30);
+					color: daff-color($critical, 30);
 				}
 
 				&::before {
-					background: theming.daff-color($critical, 30);
+					background: daff-color($critical, 30);
 				}
 			}
 		}

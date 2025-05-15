@@ -1,6 +1,4 @@
-@use 'sass:map';
-@use '../../../../scss/theming';
-@use '../../../../scss/core';
+@use '../../../../scss/theming' as *;
 
 @mixin daff-icon-button-theme-variant(
 	$base-color: currentColor,
@@ -24,193 +22,193 @@
 }
 
 @mixin daff-icon-button-theme($theme) {
-	$primary: core.daff-map-get($theme, primary);
-	$secondary: core.daff-map-get($theme, secondary);
-	$tertiary: core.daff-map-get($theme, tertiary);
-	$info: core.daff-map-get($theme, informational);
-	$warn: core.daff-map-get($theme, warn);
-	$critical: core.daff-map-get($theme, critical);
-	$success: core.daff-map-get($theme, success);
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$white: core.daff-map-get($theme, 'core', 'white');
-	$black: core.daff-map-get($theme, 'core', 'black');
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$primary: daff-get-palette($theme, primary);
+	$secondary: daff-get-palette($theme, secondary);
+	$tertiary: daff-get-palette($theme, tertiary);
+	$info: daff-get-palette($theme, informational);
+	$warn: daff-get-palette($theme, warn);
+	$critical: daff-get-palette($theme, critical);
+	$success: daff-get-palette($theme, success);
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$white: daff-get-base-color($theme, 'white');
+	$black: daff-get-base-color($theme, 'black');
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
 
 	.daff-icon-button {
-		@include theming.light($type) {
+		@include light($mode) {
 			@include daff-icon-button-theme-variant(
-				theming.daff-color($neutral, 50),
-				theming.daff-color($neutral, 60),
-				theming.daff-color($neutral, 70)
+				daff-color($neutral, 50),
+				daff-color($neutral, 60),
+				daff-color($neutral, 70)
 			);
 
 			&.daff-primary {
 				@include daff-icon-button-theme-variant(
-					theming.daff-color($primary),
-					theming.daff-color($primary, 70),
-					theming.daff-color($primary, 80)
+					daff-color($primary),
+					daff-color($primary, 70),
+					daff-color($primary, 80)
 				);
 			}
 
 			&.daff-secondary {
 				@include daff-icon-button-theme-variant(
-					theming.daff-color($secondary),
-					theming.daff-color($secondary, 70),
-					theming.daff-color($secondary, 80)
+					daff-color($secondary),
+					daff-color($secondary, 70),
+					daff-color($secondary, 80)
 				);
 			}
 
 			&.daff-tertiary {
 				@include daff-icon-button-theme-variant(
-					theming.daff-color($tertiary),
-					theming.daff-color($tertiary, 70),
-					theming.daff-color($tertiary, 80)
+					daff-color($tertiary),
+					daff-color($tertiary, 70),
+					daff-color($tertiary, 80)
 				);
 			}
 
 			&.daff-dark {
 				@include daff-icon-button-theme-variant(
 					$black,
-					theming.daff-color($neutral, 90),
-					theming.daff-color($neutral, 80)
+					daff-color($neutral, 90),
+					daff-color($neutral, 80)
 				);
 			}
 
 			&.daff-light {
 				@include daff-icon-button-theme-variant(
 					$white,
-					theming.daff-color($neutral, 20),
-					theming.daff-color($neutral, 30)
+					daff-color($neutral, 20),
+					daff-color($neutral, 30)
 				);
 			}
 
 			&.daff-theme {
 				@include daff-icon-button-theme-variant(
 					$base,
-					theming.daff-color($neutral, 10),
-					theming.daff-color($neutral, 20)
+					daff-color($neutral, 10),
+					daff-color($neutral, 20)
 				);
 			}
 
 			&.daff-theme-contrast {
 				@include daff-icon-button-theme-variant(
 					$base-contrast,
-					theming.daff-color($neutral, 90),
-					theming.daff-color($neutral, 80)
+					daff-color($neutral, 90),
+					daff-color($neutral, 80)
 				);
 			}
 
 			&.daff-warn {
 				@include daff-icon-button-theme-variant(
-					theming.daff-color($warn),
-					theming.daff-color($warn, 70),
-					theming.daff-color($warn, 80)
+					daff-color($warn),
+					daff-color($warn, 70),
+					daff-color($warn, 80)
 				);
 			}
 
 			&.daff-critical {
 				@include daff-icon-button-theme-variant(
-					theming.daff-color($critical),
-					theming.daff-color($critical, 70),
-					theming.daff-color($critical, 80)
+					daff-color($critical),
+					daff-color($critical, 70),
+					daff-color($critical, 80)
 				);
 			}
 
 			&.daff-success {
 				@include daff-icon-button-theme-variant(
-					theming.daff-color($success),
-					theming.daff-color($success, 70),
-					theming.daff-color($success, 80)
+					daff-color($success),
+					daff-color($success, 70),
+					daff-color($success, 80)
 				);
 			}
 		}
 
-		@include theming.dark($type) {
+		@include dark($mode) {
 			@include daff-icon-button-theme-variant(
-				theming.daff-color($neutral, 50),
-				theming.daff-color($neutral, 40),
-				theming.daff-color($neutral, 30)
+				daff-color($neutral, 50),
+				daff-color($neutral, 40),
+				daff-color($neutral, 30)
 			);
 
 			&.daff-primary {
 				@include daff-icon-button-theme-variant(
-					theming.daff-color($primary),
-					theming.daff-color($primary, 40),
-					theming.daff-color($primary, 30)
+					daff-color($primary),
+					daff-color($primary, 40),
+					daff-color($primary, 30)
 				);
 			}
 
 			&.daff-secondary {
 				@include daff-icon-button-theme-variant(
-					theming.daff-color($secondary),
-					theming.daff-color($secondary, 40),
-					theming.daff-color($secondary, 30)
+					daff-color($secondary),
+					daff-color($secondary, 40),
+					daff-color($secondary, 30)
 				);
 			}
 
 			&.daff-tertiary {
 				@include daff-icon-button-theme-variant(
-					theming.daff-color($tertiary),
-					theming.daff-color($tertiary, 40),
-					theming.daff-color($tertiary, 30)
+					daff-color($tertiary),
+					daff-color($tertiary, 40),
+					daff-color($tertiary, 30)
 				);
 			}
 
 			&.daff-dark {
 				@include daff-icon-button-theme-variant(
 					$black,
-					theming.daff-color($neutral, 100),
-					theming.daff-color($neutral, 80)
+					daff-color($neutral, 100),
+					daff-color($neutral, 80)
 				);
 			}
 
 			&.daff-light {
 				@include daff-icon-button-theme-variant(
 					$white,
-					theming.daff-color($neutral, 20),
-					theming.daff-color($neutral, 30)
+					daff-color($neutral, 20),
+					daff-color($neutral, 30)
 				);
 			}
 
 			&.daff-theme {
 				@include daff-icon-button-theme-variant(
 					$base,
-					theming.daff-color($neutral, 100),
-					theming.daff-color($neutral, 80)
+					daff-color($neutral, 100),
+					daff-color($neutral, 80)
 				);
 			}
 
 			&.daff-theme-contrast {
 				@include daff-icon-button-theme-variant(
 					$base-contrast,
-					theming.daff-color($neutral, 20),
-					theming.daff-color($neutral, 30)
+					daff-color($neutral, 20),
+					daff-color($neutral, 30)
 				);
 			}
 
 			&.daff-warn {
 				@include daff-icon-button-theme-variant(
-					theming.daff-color($warn),
-					theming.daff-color($warn, 40),
-					theming.daff-color($warn, 30)
+					daff-color($warn),
+					daff-color($warn, 40),
+					daff-color($warn, 30)
 				);
 			}
 
 			&.daff-critical {
 				@include daff-icon-button-theme-variant(
-					theming.daff-color($critical),
-					theming.daff-color($critical, 40),
-					theming.daff-color($critical, 30)
+					daff-color($critical),
+					daff-color($critical, 40),
+					daff-color($critical, 30)
 				);
 			}
 
 			&.daff-success {
 				@include daff-icon-button-theme-variant(
-					theming.daff-color($success),
-					theming.daff-color($success, 40),
-					theming.daff-color($success, 30)
+					daff-color($success),
+					daff-color($success, 40),
+					daff-color($success, 30)
 				);
 			}
 		}

@@ -1,53 +1,51 @@
-@use 'sass:map';
-@use '../../scss/core';
-@use '../../scss/theming';
+@use '../../scss/theming' as *;
 
 @mixin daff-callout-theme-variant($color) {
 	background: $color;
-	color: theming.daff-text-contrast($color);
+	color: daff-text-contrast($color);
 }
 
 @mixin daff-callout-theme($theme) {
-	$primary: core.daff-map-get($theme, primary);
-	$secondary: core.daff-map-get($theme, secondary);
-	$tertiary: core.daff-map-get($theme, tertiary);
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$white: core.daff-map-get($theme, 'core', 'white');
-	$black: core.daff-map-get($theme, 'core', 'black');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$primary: daff-get-palette($theme, primary);
+	$secondary: daff-get-palette($theme, secondary);
+	$tertiary: daff-get-palette($theme, tertiary);
+	$neutral: daff-get-palette($theme, neutral);
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$white: daff-get-base-color($theme, 'white');
+	$black: daff-get-base-color($theme, 'black');
+	$mode: daff-get-theme-mode($theme);
 
 	.daff-callout {
-		@include theming.light($type) {
-			@include daff-callout-theme-variant(theming.daff-color($neutral, 10));
+		@include light($mode) {
+			@include daff-callout-theme-variant(daff-color($neutral, 10));
 
 			&.daff-primary {
-				@include daff-callout-theme-variant(theming.daff-color($primary));
+				@include daff-callout-theme-variant(daff-color($primary));
 			}
 
 			&.daff-secondary {
-				@include daff-callout-theme-variant(theming.daff-color($secondary));
+				@include daff-callout-theme-variant(daff-color($secondary));
 			}
 
 			&.daff-tertiary {
-				@include daff-callout-theme-variant(theming.daff-color($tertiary));
+				@include daff-callout-theme-variant(daff-color($tertiary));
 			}
 		}
 
-		@include theming.dark($type) {
-			@include daff-callout-theme-variant(theming.daff-color($neutral, 90));
+		@include dark($mode) {
+			@include daff-callout-theme-variant(daff-color($neutral, 90));
 
 			&.daff-primary {
-				@include daff-callout-theme-variant(theming.daff-color($primary, 60));
+				@include daff-callout-theme-variant(daff-color($primary, 60));
 			}
 
 			&.daff-secondary {
-				@include daff-callout-theme-variant(theming.daff-color($secondary, 60));
+				@include daff-callout-theme-variant(daff-color($secondary, 60));
 			}
 
 			&.daff-tertiary {
-				@include daff-callout-theme-variant(theming.daff-color($tertiary, 60));
+				@include daff-callout-theme-variant(daff-color($tertiary, 60));
 			}
 		}
 

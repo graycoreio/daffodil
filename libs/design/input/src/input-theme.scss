@@ -1,9 +1,8 @@
-@use '../../scss/core';
-@use '../../scss/theming';
+@use '../../scss/theming' as *;
 
 @mixin daff-input-theme($theme) {
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
 
 	.daff-input {
 		background: $base;

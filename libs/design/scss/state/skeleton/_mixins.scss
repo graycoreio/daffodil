@@ -1,23 +1,22 @@
-@use '../../core';
-@use '../../theming';
+@use '../../theming' as *;
 
 @mixin daff-skeleton-theme($theme) {
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$neutral: daff-get-palette($theme, neutral);
+	$base: daff-get-base-color($theme, base);
+	$mode: daff-get-theme-mode($theme);
 
 	.daff-skeleton {
-		@include theming.light($type) {
+		@include light($mode) {
 			&::before,
 			::before {
-				background: theming.daff-color($neutral, 20);
+				background: daff-color($neutral, 20);
 			}
 		}
 
-		@include theming.dark($type) {
+		@include dark($mode) {
 			&::before,
 			::before {
-				background: theming.daff-color($neutral, 90);
+				background: daff-color($neutral, 90);
 			}
 		}
 	}

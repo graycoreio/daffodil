@@ -1,31 +1,29 @@
-@use 'sass:map';
-@use '../../scss/theming';
-@use '../../scss/core';
+@use '../../scss/theming' as *;
 
 @mixin daff-media-gallery-theme($theme) {
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$white: core.daff-map-get($theme, 'core', 'white');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$neutral: daff-get-palette($theme, neutral);
+	$white: daff-get-base-color($theme, 'white');
+	$mode: daff-get-theme-mode($theme);
 
 	.daff-media-gallery {
 		$root: &;
 
-		@include theming.light($type) {
+		@include light($mode) {
 			.daff-thumbnail {
-				background: theming.daff-color($neutral, 20);
+				background: daff-color($neutral, 20);
 
 				&.daff-selected {
-					border: 1px solid theming.daff-color($neutral);
+					border: 1px solid daff-color($neutral);
 				}
 			}
 		}
 
-		@include theming.dark($type) {
+		@include dark($mode) {
 			.daff-thumbnail {
-				background: theming.daff-color($neutral, 70);
+				background: daff-color($neutral, 70);
 
 				&.daff-selected {
-					border: 1px solid theming.daff-color($neutral, 30);
+					border: 1px solid daff-color($neutral, 30);
 				}
 			}
 		}

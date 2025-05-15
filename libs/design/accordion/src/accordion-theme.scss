@@ -1,19 +1,17 @@
-@use 'sass:map';
-@use '../../scss/core';
-@use '../../scss/theming';
+@use '../../scss/theming' as *;
 
 @mixin daff-accordion-theme($theme) {
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$neutral: daff-get-palette($theme, neutral);
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$mode: daff-get-theme-mode($theme);
 
 	.daff-accordion-item {
-		@include theming.light($type) {
-			border-top: 1px solid theming.daff-color($neutral, 20);
+		@include light($mode) {
+			border-top: 1px solid daff-color($neutral, 20);
 
 			&:last-child {
-				border-bottom: 1px solid theming.daff-color($neutral, 20);
+				border-bottom: 1px solid daff-color($neutral, 20);
 			}
 
 			.daff-accordion-item__header {
@@ -25,11 +23,11 @@
 			}
 		}
 
-		@include theming.dark($type) {
-			border-top: 1px solid theming.daff-color($neutral, 80);
+		@include dark($mode) {
+			border-top: 1px solid daff-color($neutral, 80);
 
 			&:last-child {
-				border-bottom: 1px solid theming.daff-color($neutral, 80);
+				border-bottom: 1px solid daff-color($neutral, 80);
 			}
 
 			.daff-accordion-item__header {

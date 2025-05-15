@@ -1,91 +1,89 @@
-@use 'sass:map';
-@use '../../scss/core';
-@use '../../scss/theming';
+@use '../../scss/theming' as *;
 
 @mixin daff-notification-theme($theme) {
-	$primary: core.daff-map-get($theme, primary);
-	$secondary: core.daff-map-get($theme, secondary);
-	$tertiary: core.daff-map-get($theme, tertiary);
-	$info: core.daff-map-get($theme, informational);
-	$warn: core.daff-map-get($theme, warn);
-	$critical: core.daff-map-get($theme, critical);
-	$success: core.daff-map-get($theme, success);
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$black: core.daff-map-get($theme, 'core', 'black');
-	$white: core.daff-map-get($theme, 'core', 'white');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$primary: daff-get-palette($theme, primary);
+	$secondary: daff-get-palette($theme, secondary);
+	$tertiary: daff-get-palette($theme, tertiary);
+	$info: daff-get-palette($theme, informational);
+	$warn: daff-get-palette($theme, warn);
+	$critical: daff-get-palette($theme, critical);
+	$success: daff-get-palette($theme, success);
+	$neutral: daff-get-palette($theme, neutral);
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$black: daff-get-base-color($theme, 'black');
+	$white: daff-get-base-color($theme, 'white');
+	$mode: daff-get-theme-mode($theme);
 
 	.daff-notification {
-		@include theming.light($type) {
-			background: theming.daff-color($neutral, 10);
-			border: 1px solid theming.daff-color($neutral, 20);
+		@include light($mode) {
+			background: daff-color($neutral, 10);
+			border: 1px solid daff-color($neutral, 20);
 			color: $black;
 
 			&.daff-success {
-				background: theming.daff-color($success, 10);
-				border: 1px solid theming.daff-color($success, 20);
-				color: theming.daff-text-contrast(theming.daff-color($success, 10));
+				background: daff-color($success, 10);
+				border: 1px solid daff-color($success, 20);
+				color: daff-text-contrast(daff-color($success, 10));
 
 				.daff-prefix {
-					color: theming.daff-color($success, 80);
+					color: daff-color($success, 80);
 				}
 			}
 
 			&.daff-warn {
-				background: theming.daff-color($warn, 10);
-				border: 1px solid theming.daff-color($warn, 20);
-				color: theming.daff-text-contrast(theming.daff-color($warn, 10));
+				background: daff-color($warn, 10);
+				border: 1px solid daff-color($warn, 20);
+				color: daff-text-contrast(daff-color($warn, 10));
 
 				.daff-prefix {
-					color: theming.daff-color($warn, 80);
+					color: daff-color($warn, 80);
 				}
 			}
 
 			&.daff-critical {
-				background: theming.daff-color($critical, 10);
-				border: 1px solid theming.daff-color($critical, 20);
-				color: theming.daff-text-contrast(theming.daff-color($critical, 10));
+				background: daff-color($critical, 10);
+				border: 1px solid daff-color($critical, 20);
+				color: daff-text-contrast(daff-color($critical, 10));
 
 				.daff-prefix {
-					color: theming.daff-color($critical, 80);
+					color: daff-color($critical, 80);
 				}
 			}
 		}
 
-		@include theming.dark($type) {
-			background: theming.daff-color($neutral, 90);
-			border: 1px solid theming.daff-color($neutral, 80);
+		@include dark($mode) {
+			background: daff-color($neutral, 90);
+			border: 1px solid daff-color($neutral, 80);
 			color: $white;
 
 			&.daff-success {
-				background: theming.daff-color($success, 90);
-				border: 1px solid theming.daff-color($success, 80);
-				color: theming.daff-text-contrast(theming.daff-color($success, 90));
+				background: daff-color($success, 90);
+				border: 1px solid daff-color($success, 80);
+				color: daff-text-contrast(daff-color($success, 90));
 
 				.daff-prefix {
-					color: theming.daff-color($success, 30);
+					color: daff-color($success, 30);
 				}
 			}
 
 			&.daff-warn {
-				background: theming.daff-color($warn, 90);
-				border: 1px solid theming.daff-color($warn, 80);
-				color: theming.daff-text-contrast(theming.daff-color($warn, 90));
+				background: daff-color($warn, 90);
+				border: 1px solid daff-color($warn, 80);
+				color: daff-text-contrast(daff-color($warn, 90));
 
 				.daff-prefix {
-					color: theming.daff-color($warn, 30);
+					color: daff-color($warn, 30);
 				}
 			}
 
 			&.daff-critical {
-				background: theming.daff-color($critical, 90);
-				border: 1px solid theming.daff-color($critical, 80);
-				color: theming.daff-text-contrast(theming.daff-color($critical, 90));
+				background: daff-color($critical, 90);
+				border: 1px solid daff-color($critical, 80);
+				color: daff-text-contrast(daff-color($critical, 90));
 
 				.daff-prefix {
-					color: theming.daff-color($critical, 30);
+					color: daff-color($critical, 30);
 				}
 			}
 		}

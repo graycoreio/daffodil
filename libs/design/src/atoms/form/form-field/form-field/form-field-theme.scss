@@ -1,44 +1,42 @@
-@use 'sass:map';
-@use '../../../../../scss/core';
-@use '../../../../../scss/theming';
+@use '../../../../../scss/theming' as *;
 
 @mixin daff-form-field-theme($theme) {
-	$primary: core.daff-map-get($theme, primary);
-	$secondary: core.daff-map-get($theme, secondary);
-	$tertiary: core.daff-map-get($theme, tertiary);
-	$critical: core.daff-map-get($theme, critical);
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$primary: daff-get-palette($theme, primary);
+	$secondary: daff-get-palette($theme, secondary);
+	$tertiary: daff-get-palette($theme, tertiary);
+	$critical: daff-get-palette($theme, critical);
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
 
 	.daff-form-field {
 		&__control {
 			background: $base;
 
-			@include theming.light($type) {
-				border: 1px solid theming.daff-color($neutral);
-				color: theming.daff-color($neutral);
+			@include light($mode) {
+				border: 1px solid daff-color($neutral);
+				color: daff-color($neutral);
 			}
 
-			@include theming.dark($type) {
-				border: 1px solid theming.daff-color($neutral, 40);
-				color: theming.daff-color($neutral, 40);
+			@include dark($mode) {
+				border: 1px solid daff-color($neutral, 40);
+				color: daff-color($neutral, 40);
 			}
 
 			&.daff-focused {
-				border: 1px solid theming.daff-color($primary);
+				border: 1px solid daff-color($primary);
 
 				.daff-form-label {
-					color: theming.daff-color($primary);
+					color: daff-color($primary);
 				}
 			}
 
 			&.daff-error {
-				border: 1px solid theming.daff-color($critical);
+				border: 1px solid daff-color($critical);
 
 				.daff-form-label {
-					color: theming.daff-color($critical);
+					color: daff-color($critical);
 				}
 			}
 

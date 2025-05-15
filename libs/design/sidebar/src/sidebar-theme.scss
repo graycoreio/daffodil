@@ -1,13 +1,12 @@
-@use '../../scss/core';
+@use '../../scss/theming' as *;
 
 @mixin daff-sidebar-theme($theme) {
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$font-color: core.daff-map-get($theme, 'core', 'font-color');
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
 
 	.daff-sidebar {
 		background: $base;
-		color: $font-color;
+		color: $base-contrast;
 	}
 
 	.daff-sidebar-viewport {

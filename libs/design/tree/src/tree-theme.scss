@@ -1,28 +1,26 @@
-@use 'sass:map';
-@use '../../scss/theming';
-@use '../../scss/core';
+@use '../../scss/theming' as *;
 
 @mixin daff-tree-theme($theme) {
-	$primary: core.daff-map-get($theme, primary);
-	$secondary: core.daff-map-get($theme, secondary);
-	$tertiary: core.daff-map-get($theme, tertiary);
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$white: core.daff-map-get($theme, 'core', 'white');
-	$black: core.daff-map-get($theme, 'core', 'black');
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$primary: daff-get-palette($theme, primary);
+	$secondary: daff-get-palette($theme, secondary);
+	$tertiary: daff-get-palette($theme, tertiary);
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$white: daff-get-base-color($theme, 'white');
+	$black: daff-get-base-color($theme, 'black');
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
 
 	// stylelint-disable selector-class-pattern
 	.daff-tree-item {
 		$root: &;
 
-		@include theming.light($type) {
+		@include light($mode) {
 			background-color: $base;
-			color: theming.daff-color($neutral, 90);
+			color: daff-color($neutral, 90);
 
 			&:hover {
-				background-color: theming.daff-color($neutral, 20);
+				background-color: daff-color($neutral, 20);
 			}
 
 			&::after {
@@ -30,21 +28,21 @@
 			}
 
 			&.selected {
-				background-color: theming.daff-color($neutral, 20);
+				background-color: daff-color($neutral, 20);
 				color: $base-contrast;
 
 				&::before {
-					background-color: theming.daff-color($primary);
+					background-color: daff-color($primary);
 				}
 			}
 		}
 
-		@include theming.dark($type) {
+		@include dark($mode) {
 			background-color: $base;
-			color: theming.daff-color($neutral, 20);
+			color: daff-color($neutral, 20);
 
 			&:hover {
-				background-color: theming.daff-color($neutral, 90);
+				background-color: daff-color($neutral, 90);
 			}
 
 			&::after {
@@ -52,11 +50,11 @@
 			}
 
 			&.selected {
-				background-color: theming.daff-color($neutral, 90);
+				background-color: daff-color($neutral, 90);
 				color: $base-contrast;
 
 				&::before {
-					background-color: theming.daff-color($primary);
+					background-color: daff-color($primary);
 				}
 			}
 		}

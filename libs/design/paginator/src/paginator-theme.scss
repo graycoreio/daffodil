@@ -1,13 +1,11 @@
-@use 'sass:map';
-@use '../../scss/core';
-@use '../../scss/theming';
+@use '../../scss/theming' as *;
 
 // stylelint-disable selector-class-pattern
 @mixin daff-paginator-theme($theme) {
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$white: core.daff-map-get($theme, 'core', 'white');
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$white: daff-get-base-color($theme, 'white');
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
 
 	.daff-paginator {
 		&__previous,
@@ -16,23 +14,23 @@
 			color: $base-contrast;
 		}
 
-		@include theming.light($type) {
+		@include light($mode) {
 			&__page-link {
 				&:hover,
 				&.selected {
 					&::after {
-						background: theming.daff-color($neutral, 20);
+						background: daff-color($neutral, 20);
 					}
 				}
 			}
 		}
 
-		@include theming.dark($type) {
+		@include dark($mode) {
 			&__page-link {
 				&:hover,
 				&.selected {
 					&::after {
-						background: theming.daff-color($neutral, 90);
+						background: daff-color($neutral, 90);
 					}
 				}
 			}

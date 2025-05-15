@@ -5,7 +5,7 @@
 // ```scss
 // @use 'theme' as daff-theme;
 //
-// $mode: theming.daff-get-theme-mode($theme);
+// $mode: daff-theme.daff-get-theme-mode($theme);
 //
 // @include daff-theme.light($mode) {
 //   color: blue;
@@ -28,7 +28,7 @@
 // ```scss
 // @use 'theme' as daff-theme;
 //
-// $mode: theming.daff-get-theme-mode($theme);
+// $mode: daff-theme.daff-get-theme-mode($theme);
 //
 // @include daff-theme.dark($mode) {
 //   color: blue;

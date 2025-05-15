@@ -1,6 +1,4 @@
-@use 'sass:map';
-@use '../../../../scss/theming';
-@use '../../../../scss/core';
+@use '../../../../scss/theming' as *;
 
 @mixin daff-stroked-button-theme-variant($base-color) {
 	border: 1px solid $base-color;
@@ -19,51 +17,51 @@
 }
 
 @mixin daff-stroked-button-theme($theme) {
-	$primary: core.daff-map-get($theme, primary);
-	$secondary: core.daff-map-get($theme, secondary);
-	$tertiary: core.daff-map-get($theme, tertiary);
-	$info: core.daff-map-get($theme, informational);
-	$warn: core.daff-map-get($theme, warn);
-	$critical: core.daff-map-get($theme, critical);
-	$success: core.daff-map-get($theme, success);
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$white: core.daff-map-get($theme, 'core', 'white');
-	$black: core.daff-map-get($theme, 'core', 'black');
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-	$type: core.daff-map-get($theme, 'core', 'mode');
+	$primary: daff-get-palette($theme, primary);
+	$secondary: daff-get-palette($theme, secondary);
+	$tertiary: daff-get-palette($theme, tertiary);
+	$info: daff-get-palette($theme, informational);
+	$warn: daff-get-palette($theme, warn);
+	$critical: daff-get-palette($theme, critical);
+	$success: daff-get-palette($theme, success);
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$white: daff-get-base-color($theme, 'white');
+	$black: daff-get-base-color($theme, 'black');
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
 
 	.daff-stroked-button {
 		background: transparent;
-		border: 1px solid theming.daff-color($neutral, 50);
+		border: 1px solid daff-color($neutral, 50);
 		color: currentColor;
 
 		&::after {
-			background: rgba(theming.daff-color($neutral, 50), 0.1);
+			background: rgba(daff-color($neutral, 50), 0.1);
 		}
 
 		&:active {
 			&::after {
-				background: rgba(theming.daff-color($neutral, 50), 0.2);
+				background: rgba(daff-color($neutral, 50), 0.2);
 			}
 		}
 
-		@include theming.light($type) {
+		@include light($mode) {
 			&.daff-primary {
 				@include daff-stroked-button-theme-variant(
-					theming.daff-color($primary)
+					daff-color($primary)
 				);
 			}
 
 			&.daff-secondary {
 				@include daff-stroked-button-theme-variant(
-					theming.daff-color($secondary)
+					daff-color($secondary)
 				);
 			}
 
 			&.daff-tertiary {
 				@include daff-stroked-button-theme-variant(
-					theming.daff-color($tertiary)
+					daff-color($tertiary)
 				);
 			}
 
@@ -84,38 +82,38 @@
 			}
 
 			&.daff-warn {
-				@include daff-stroked-button-theme-variant(theming.daff-color($warn));
+				@include daff-stroked-button-theme-variant(daff-color($warn));
 			}
 
 			&.daff-critical {
 				@include daff-stroked-button-theme-variant(
-					theming.daff-color($critical)
+					daff-color($critical)
 				);
 			}
 
 			&.daff-success {
 				@include daff-stroked-button-theme-variant(
-					theming.daff-color($success)
+					daff-color($success)
 				);
 			}
 		}
 
-		@include theming.dark($type) {
+		@include dark($mode) {
 			&.daff-primary {
 				@include daff-stroked-button-theme-variant(
-					theming.daff-color($primary, 40)
+					daff-color($primary, 40)
 				);
 			}
 
 			&.daff-secondary {
 				@include daff-stroked-button-theme-variant(
-					theming.daff-color($secondary, 40)
+					daff-color($secondary, 40)
 				);
 			}
 
 			&.daff-tertiary {
 				@include daff-stroked-button-theme-variant(
-					theming.daff-color($tertiary, 40)
+					daff-color($tertiary, 40)
 				);
 			}
 
@@ -137,19 +135,19 @@
 
 			&.daff-warn {
 				@include daff-stroked-button-theme-variant(
-					theming.daff-color($warn, 40)
+					daff-color($warn, 40)
 				);
 			}
 
 			&.daff-critical {
 				@include daff-stroked-button-theme-variant(
-					theming.daff-color($critical, 40)
+					daff-color($critical, 40)
 				);
 			}
 
 			&.daff-success {
 				@include daff-stroked-button-theme-variant(
-					theming.daff-color($success, 40)
+					daff-color($success, 40)
 				);
 			}
 		}
