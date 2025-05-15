@@ -6,7 +6,7 @@ import { createSingletonInjectionToken } from '@daffodil/core';
 import { DaffioAssetFetchBrowserService } from './browser.service';
 
 export interface DaffioAssetFetchServiceInterface {
-  fetch<T = unknown>(path: string): Observable<T>;
+  fetch<T = unknown>(path: string, key: string): Observable<T>;
 }
 
 export const {

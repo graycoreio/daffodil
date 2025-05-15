@@ -18,6 +18,7 @@ import { DAFFIO_DOCS_PATH_TOKEN } from '../../services/docs-path.token';
 
 @Injectable()
 export class DaffioDocsDesignIndexService<T extends DaffDocsDesignGuideNavList = DaffDocsDesignGuideNavList> {
+  private readonly _key = `${DAFF_DOCS_DESIGN_PATH}/index`;
 
   constructor(
     @Inject(DaffioAssetFetchService) private fetchAsset: DaffioAssetFetchServiceInterface,
@@ -25,6 +26,6 @@ export class DaffioDocsDesignIndexService<T extends DaffDocsDesignGuideNavList =
   ) {}
 
   getList(): Observable<T> {
-    return this.fetchAsset.fetch<T>(`${this.docsPath}/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/index.json`);
+    return this.fetchAsset.fetch<T>(`${this.docsPath}/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/index.json`, this._key);
   }
 }

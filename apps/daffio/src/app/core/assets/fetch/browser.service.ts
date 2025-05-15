@@ -1,6 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  Injectable,
+  makeStateKey,
+  TransferState,
+} from '@angular/core';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 import { DaffioAssetFetchServiceInterface } from './service.interface';
 
@@ -8,9 +15,14 @@ import { DaffioAssetFetchServiceInterface } from './service.interface';
 export class DaffioAssetFetchBrowserService implements DaffioAssetFetchServiceInterface {
   constructor(
     private http: HttpClient,
+    private transferState: TransferState,
   ) {}
 
-  fetch<T = unknown>(path: string): Observable<T> {
+  fetch<T = unknown>(path: string, key: string): Observable<T> {
+    const stateKey = makeStateKey<T>(key);
+    if (this.transferState.hasKey(stateKey)) {
+      return of(this.transferState.get(stateKey, null));
+    }
     return this.http.get<T>(path.replaceAll('//', '/'));
   }
 }

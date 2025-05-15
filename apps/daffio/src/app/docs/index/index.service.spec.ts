@@ -6,6 +6,8 @@ import {
 } from 'rxjs';
 
 import {
+	DAFF_DOC_KIND_PATH_SEGMENT_MAP,
+	DAFF_DOCS_PATH,
   DaffDoc,
   DaffDocKind,
 } from '@daffodil/docs-utils';
@@ -59,7 +61,7 @@ describe('DaffioDocsIndexService', () => {
 
     service.getListForKind(DaffDocKind.PACKAGE).subscribe((guides) => {
       expect(guides).toEqual(mockGuideList);
-      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio//docs/packages/index.json');
+      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio//docs/packages/index.json', `${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.PACKAGE]}/index`);
       done();
     });
   });

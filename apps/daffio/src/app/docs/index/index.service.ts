@@ -25,6 +25,7 @@ export class DaffioDocsIndexService<T extends DaffDocsNavList = DaffDocsNavList>
   ) {}
 
   getListForKind(kind: DaffDocKind, prefix = DAFF_DOCS_PATH) {
-    return this.fetchAsset.fetch<T>(`${this.docsPath}/${prefix}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/index.json`);
+    const path = `${prefix}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/index`;
+    return this.fetchAsset.fetch<T>(`${this.docsPath}/${path}.json`, path);
   }
 }

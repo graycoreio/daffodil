@@ -26,6 +26,6 @@ export class DaffioDocsService implements DaffioDocsServiceInterface {
   ) {}
 
   get<T extends DaffDoc = DaffDoc>(path: string): Observable<T> {
-    return this.fetchAsset.fetch<T>(`${this.docsPath}/${crossOsFilename(path)}.json`);
+    return this.fetchAsset.fetch<T>(`${this.docsPath}/${crossOsFilename(path)}.json`, path);
   }
 }
