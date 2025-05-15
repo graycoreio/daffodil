@@ -219,6 +219,10 @@
             "ssr": {
               "entry": "apps/daffio/server/server.ts"
             },
+						"prerender": {
+							"routesFile": "dist/docs/renderableRoutes.txt",
+							"discoverRoutes": true
+						},
             "polyfills": [
               "zone.js"
             ],
@@ -403,7 +407,7 @@
                 "dist/design/scss"
               ]
             },
-            "scripts": [],
+            "scripts": []
           },
           "configurations": {
             "production": {
