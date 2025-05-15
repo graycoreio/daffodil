@@ -6,8 +6,8 @@ import {
 } from 'rxjs';
 
 import {
-	DAFF_DOC_KIND_PATH_SEGMENT_MAP,
-	DAFF_DOCS_PATH,
+  DAFF_DOC_KIND_PATH_SEGMENT_MAP,
+  DAFF_DOCS_PATH,
   DaffDoc,
   DaffDocKind,
 } from '@daffodil/docs-utils';
