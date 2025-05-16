@@ -22,6 +22,10 @@ import {
   ADD_SUBPACKAGE_EXPORTS_PROCESSOR_NAME,
   ADD_SUBPACKAGE_EXPORTS_PROCESSOR_PROVIDER,
 } from './processors/add-subpackage-exports';
+import {
+  CANONICAL_PATH_PROCESSOR_PROVIDER,
+  CanonicalPathProcessor,
+} from './processors/canonical-path';
 import { HOIST_PRIVATE_PARENTS_PROCESSOR_PROVIDER } from './processors/hoist-private-parents';
 import {
   IMPORT_EXAMPLE_PROCESSOR_PROVIDER,
@@ -60,6 +64,7 @@ import {
   ExamplesProcessor,
 } from './processors/examples';
 import { ConvertToJsonProcessor } from '../../processors/convertToJson';
+import { getLinkInfo } from '../../services/get-link-info';
 
 const API_PACKAGE_NAME = 'daffodil-api';
 
@@ -83,6 +88,7 @@ export const apiDocsBase = new Package('api-base', [
   .processor(...IMPORT_EXAMPLE_PROCESSOR_PROVIDER)
   .processor(...ROLE_PROVIDER)
   .processor(...INLINE_TAG_PROCESSOR_PROVIDER)
+  .factory(getLinkInfo)
   .factory('API_DOC_TYPES_TO_RENDER', (EXPORT_DOC_TYPES) => EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe']))
   .config((readFilesProcessor, readTypeScriptModules, tsParser) => {
 
@@ -209,6 +215,7 @@ export const designApiPackage = outputPathsConfigurator({
   docTypes: [DaffDocsApiType.PACKAGE],
 })(new Package('design-api-docs', [apiDocs]))
   .processor(new RemoveDuplicatesProcessor())
+  .processor(...CANONICAL_PATH_PROCESSOR_PROVIDER)
   .config((readTypeScriptModules) => {
     readTypeScriptModules.basePath = DESIGN_PATH;
     readTypeScriptModules.sourceFiles = [
@@ -226,4 +233,7 @@ export const designApiPackage = outputPathsConfigurator({
   })
   .config((packages: PackagesProcessor) => {
     packages.nameComputer = (id: string) => `@daffodil/${id === 'design' ? '' : 'design/'}${id}`;
+  })
+  .config((EXPORT_DOC_TYPES, canonicalPath: CanonicalPathProcessor) => {
+    canonicalPath.docTypes.push(...EXPORT_DOC_TYPES);
   });

@@ -13,11 +13,16 @@ export const COLLECT_LINKABLE_SYMBOLS_PROCESSOR_NAME = 'collectLinkableSymbols';
  * Stores a list of symbols and their paths.
  */
 export class CollectLinkableSymbolsProcessor implements Processor {
+  private static readonly _canonical = new Map<string, string>();
   private static readonly _symbols = new Map<string, string>();
   private static readonly _packages = new Map<string, Array<string>>();
 
   public static get symbols(): ReadonlyMap<string, string> {
     return this._symbols;
+  }
+
+  public static get canonical(): ReadonlyMap<string, string> {
+    return this._canonical;
   }
 
   public static get packages(): ReadonlyMap<string, Array<Document>> {
@@ -36,6 +41,9 @@ export class CollectLinkableSymbolsProcessor implements Processor {
         this.log.warn(this.createDocMessage(`Linkable symbol collision for name ${doc.name}. Existing path: ${CollectLinkableSymbolsProcessor._symbols.get(doc.name)}, new path: ${doc.path}`));
       }
       CollectLinkableSymbolsProcessor._symbols.set(doc.name, doc.path);
+      if (doc.canonicalPath) {
+        CollectLinkableSymbolsProcessor._canonical.set(doc.name, doc.canonicalPath);//////
+      }
       if (doc.docType !== DaffDocsApiType.PACKAGE) {
         const packageName = doc.id.match(/(.*)\/src/)[1];
         if (!CollectLinkableSymbolsProcessor._packages.get(packageName)) {
