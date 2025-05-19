@@ -31,5 +31,5 @@ export interface DaffToast extends DaffToastData {
   /**
    * The observable that emits when the toast is closed.
    */
-  dismissalStream: Observable<void | number>;
+  dismissalStream: Observable<void>;
 }
