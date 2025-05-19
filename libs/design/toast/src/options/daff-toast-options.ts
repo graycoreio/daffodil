@@ -3,14 +3,28 @@ import { createConfigInjectionToken } from '@daffodil/core';
 type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 type XOR<T, U> = (T | U) extends Record<string,unknown> ? (Without<T, U> & U) | (Without<U, T> & T) : T | U;
 
-export interface VerticalPositionTypes { vertical: 'top' | 'bottom' };
+export interface DaffToastVerticalPositionInterface { vertical: DaffToastVerticalPosition };
 
-export interface HorizontalPositionTypes { horizontal: 'left' | 'center' | 'right' };
+export interface DaffToastHorizontalPositionInterface { horizontal: DaffToastHorizontalPosition };
 
-export type DaffToastPosition = VerticalPositionTypes & HorizontalPositionTypes;
+export type DaffToastPosition = DaffToastVerticalPositionInterface & DaffToastHorizontalPositionInterface;
+
+/**
+ * The available vertical positions for toasts.
+ */
+export type DaffToastVerticalPosition = 'top' | 'bottom';
+
+/**
+ * The available horizontal positions for toasts.
+ */
+export type DaffToastHorizontalPosition = 'left' | 'center' | 'right';
 
 export interface DaffToastOptions {
+  /**
+   * The position of all toasts.
+   */
   position: DaffToastPosition;
+  /** @docs-private */
   useParent?: boolean;
 }
 

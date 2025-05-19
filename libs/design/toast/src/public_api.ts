@@ -13,3 +13,10 @@ export {
   DaffToastActionButtonSize,
   DaffToastActionButtonType,
 } from './interfaces/toast-action.type';
+
+export {
+  DaffToastOptions,
+  DaffToastPosition,
+  DaffToastVerticalPosition,
+  DaffToastHorizontalPosition,
+} from './options/daff-toast-options';
