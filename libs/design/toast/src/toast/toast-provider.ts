@@ -1,5 +1,10 @@
 import { Provider } from '@angular/core';
 
+import {
+  daffToastDefaultOptions,
+  DaffToastOptions,
+  provideDaffToastOptions,
+} from '../options/daff-toast-options';
 import { DaffToastPositionService } from '../service/position.service';
 import { DaffToastService } from '../service/toast.service';
 
@@ -19,7 +24,8 @@ import { DaffToastService } from '../service/toast.service';
  * export class AppModule {}
  * ```
  */
-export const provideDaffToast = (): Provider[] => [
+export const provideDaffToast = (config: DaffToastOptions = daffToastDefaultOptions): Provider[] => [
   DaffToastService,
   DaffToastPositionService,
+  provideDaffToastOptions(config),
 ];

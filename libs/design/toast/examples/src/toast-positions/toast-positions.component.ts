@@ -1,20 +1,16 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
 } from '@angular/core';
 import {
   FormControl,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { combineLatest } from 'rxjs';
 
 import { DaffButtonComponent } from '@daffodil/design/button';
 import {
   DaffToast,
   DaffToastService,
-  DaffToastPositionService,
-  provideDaffToastOptions,
 } from '@daffodil/design/toast';
 
 @Component({
@@ -27,22 +23,12 @@ import {
     ReactiveFormsModule,
     DaffButtonComponent,
   ],
-  providers: [
-    provideDaffToastOptions({
-      position: {
-        vertical: 'top',
-        horizontal: 'right',
-      },
-      useParent: false,
-    }),
-  ],
 })
-export class ToastPositionsComponent implements OnInit {
+export class ToastPositionsComponent {
   private toast: DaffToast;
 
   constructor(
     private toastService: DaffToastService,
-    private toastPositionService: DaffToastPositionService,
   ) {}
 
   open() {
@@ -57,21 +43,4 @@ export class ToastPositionsComponent implements OnInit {
 
   horizontalControl: FormControl = new FormControl('right');
   verticalControl: FormControl = new FormControl('top');
-
-  /**
-   * @docs-private
-   */
-  ngOnInit() {
-    combineLatest([
-      this.horizontalControl.valueChanges,
-      this.verticalControl.valueChanges,
-    ]).subscribe(([
-      horizontal, vertical,
-    ]) => {
-      this.toastPositionService.setPosition({
-        horizontal,
-        vertical,
-      });
-    });
-  }
 }
