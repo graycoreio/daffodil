@@ -11,6 +11,7 @@ import { DaffButtonComponent } from '@daffodil/design/button';
 import {
   DaffToast,
   DaffToastService,
+  provideDaffToast,
 } from '@daffodil/design/toast';
 
 @Component({
@@ -23,9 +24,19 @@ import {
     ReactiveFormsModule,
     DaffButtonComponent,
   ],
+  providers: [
+    provideDaffToast({
+      position: {
+        vertical: 'top',
+        horizontal: 'center',
+      },
+      useParent: true,
+    }),
+  ],
 })
 export class ToastPositionsComponent {
   private toast: DaffToast;
+  private count = 0;
 
   constructor(
     private toastService: DaffToastService,
@@ -38,9 +49,4 @@ export class ToastPositionsComponent {
       dismissible: true,
     });
   }
-
-  private count = 0;
-
-  horizontalControl: FormControl = new FormControl('right');
-  verticalControl: FormControl = new FormControl('top');
 }
