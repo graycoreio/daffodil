@@ -47,6 +47,6 @@ export class DaffDocsExampleViewerContainer implements OnInit {
   ) {}
 
   ngOnInit() {
-	  this.selectedExample$ = this.codeExamples.get(this.example);
+    this.selectedExample$ = this.codeExamples.get(this.example);
   }
 }
