@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin-custom-rules",
+  "name": "eslint-plugin-daff-docs",
   "version": "0.0.0",
   "main": "index.js",
   "private": true,

@@ -1,6 +1,6 @@
 module.exports = {
   plugins: [
-    'custom-rules',
+    'daff-docs',
   ],
   extends: [
     '../../.eslintrc.js',
@@ -49,7 +49,7 @@ module.exports = {
             style: 'camelCase'
           }
         ],
-        'custom-rules/docs-private-hostbinding-lifecycle': 'error',
+        'daff-docs/docs-private-hostbinding-lifecycle': 'error',
       }
     },
     {

@@ -95,7 +95,7 @@
     "eslint-plugin-modules-newlines": "^0.0.7",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-unused-imports": "^4.1.4",
-    "eslint-plugin-custom-rules": "file:tools/eslint/custom-rules",
+    "eslint-plugin-daff-docs": "file:tools/eslint/daff-docs",
     "gulp": "^4.0.2",
     "gulp-execa": "^1.1.0",
     "gulp-reduce-async": "^1.0.0",
