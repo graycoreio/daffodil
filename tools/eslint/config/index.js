@@ -8,7 +8,6 @@ module.exports = {
     "eslint-plugin-prefer-arrow",
     "@stylistic",
     "eslint-plugin-unused-imports",
-    "custom-rules",
   ],
   extends: [
     "plugin:@typescript-eslint/recommended",

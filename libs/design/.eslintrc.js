@@ -1,5 +1,10 @@
 module.exports = {
-  extends: '../../.eslintrc.js',
+  plugins: [
+    'custom-rules',
+  ],
+  extends: [
+    '../../.eslintrc.js',
+  ],
   ignorePatterns: [
     '!**/*'
   ],
