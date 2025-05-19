@@ -8,9 +8,12 @@ describe('CleanSelectorsProcessor', () => {
     it('should convert that selector into an array of selector options', () => {
       const docs = [
         { decorators: [
-          { argumentInfo: [
-            { selector: `selector1[sub],    \n[selector2]` },
-          ]},
+          {
+            argumentInfo: [
+              { selector: `selector1[sub],    \n[selector2]` },
+            ],
+            name: 'Directive',
+          },
         ]},
       ];
       const expectedSelectors = ['selector1[sub]', '[selector2]'];
@@ -23,9 +26,12 @@ describe('CleanSelectorsProcessor', () => {
     it('should convert that selector into an array of selector options', () => {
       const docs = [
         { decorators: [
-          { argumentInfo: [
-            { selector: 'selector[sub]' },
-          ]},
+          {
+            argumentInfo: [
+              { selector: 'selector[sub]' },
+            ],
+            name: 'Directive',
+          },
         ]},
       ];
       const expectedSelectors = ['selector[sub]'];

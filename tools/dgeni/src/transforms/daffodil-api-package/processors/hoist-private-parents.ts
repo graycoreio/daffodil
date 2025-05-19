@@ -2,6 +2,7 @@ import { Document } from 'dgeni';
 import { ClassExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassExportDoc';
 import { HeritageInfo } from 'dgeni-packages/typescript/api-doc-types/ClassLikeExportDoc';
 import { InterfaceExportDoc } from 'dgeni-packages/typescript/api-doc-types/InterfaceExportDoc';
+import { getDirectiveDecorator } from 'tools/dgeni/src/utils/get-directive-decorator';
 
 import { DaffDocsApiType } from '@daffodil/docs-utils';
 
@@ -37,6 +38,15 @@ export class HoistPrivateParentsProcessor implements FilterableProcessor {
             );
             this.parseTagsProcessor.$process(parentDoc.members);
             doc.members.push(...parentDoc.members);
+            const decorator: any = getDirectiveDecorator(doc);
+            const parentHostDirectives: Array<string> = (<any>getDirectiveDecorator(parentDoc)?.argumentInfo[0])?.hostDirectives;
+            if (parentHostDirectives && decorator?.argumentInfo[0]) {
+              if (decorator.argumentInfo[0].hostDirectives) {
+                decorator.argumentInfo[0].hostDirectives.push(...parentHostDirectives);
+              } else {
+                decorator.argumentInfo[0].hostDirectives = parentHostDirectives;
+              }
+            }
           } else {
             acc.push(parent);
           }

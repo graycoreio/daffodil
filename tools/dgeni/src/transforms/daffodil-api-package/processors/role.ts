@@ -5,6 +5,7 @@ import type { ConstExportDoc } from 'dgeni-packages/typescript/api-doc-types/Con
 import type { FunctionExportDoc } from 'dgeni-packages/typescript/api-doc-types/FunctionExportDoc';
 import { MethodMemberDoc } from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
 import { PropertyMemberDoc } from 'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc';
+import { getDirectiveDecorator } from 'tools/dgeni/src/utils/get-directive-decorator';
 import { TypeFlags } from 'typescript';
 
 import {
@@ -321,7 +322,7 @@ export class RoleProcessor implements FilterableProcessor {
   directive(doc: SerializableDoc & DaffApiDirective & ClassExportDoc): SerializableDoc & DaffApiDirective {
     this.klass(<any>doc);
     doc.serializer = this.directiveSerialize;
-    const directiveArg: any = doc.decorators[0].argumentInfo[0];
+    const directiveArg: any = getDirectiveDecorator(doc).argumentInfo[0];
     doc.inputs = [];
     doc.outputs = [];
     doc.selector = directiveArg.selector;

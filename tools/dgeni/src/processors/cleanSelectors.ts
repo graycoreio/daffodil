@@ -3,6 +3,8 @@ import {
   Document,
 } from 'dgeni';
 
+import { getDirectiveDecorator } from '../utils/get-directive-decorator';
+
 /**
  * Convert selectors with ticks, commas, newlines, spaces, and quotes to a clean array of selector options.
  */
@@ -16,10 +18,9 @@ export class CleanSelectorsProcessor implements Processor {
     const removeQuotes = new RegExp('[^\']*[^\']');
 
     docs
-      .filter(doc => this.hasSelector(doc))
       .forEach(doc => {
-        doc.selectors = doc.decorators[0].argumentInfo[0].selector
-          .match(removeTicks)[0]
+        doc.selectors = this.getSelector(doc)
+          ?.match(removeTicks)[0]
           .match(removeQuotes)[0]
           .split(',')
           .map(selector => selector.trim());
@@ -28,11 +29,7 @@ export class CleanSelectorsProcessor implements Processor {
     return docs;
   }
 
-  private hasSelector(doc) {
-    return (
-      doc.decorators &&
-			doc.decorators[0].argumentInfo.length &&
-			doc.decorators[0].argumentInfo[0].selector
-    );
+  private getSelector(doc) {
+    return (<Record<string, string>>getDirectiveDecorator(doc)?.argumentInfo[0])?.selector;
   }
 }
