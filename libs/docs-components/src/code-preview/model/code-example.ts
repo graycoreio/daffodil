@@ -1,4 +1,4 @@
-import { DaffDocsComponentExample } from '@daffodil/documentation';
+import { DaffDocsComponentExample } from '../../examples/type';
 
 /**
  * Interface representing a file of a component.

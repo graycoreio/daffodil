@@ -7,10 +7,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { DAFF_DOCS_LOCATION } from './docs-location.token';
-import { DaffDocsComponentExamples } from '../../public_api';
+import { DaffDocsComponentExamples } from '../../examples/service';
 import { DaffDocsCodeExample } from '../model/code-example';
 import { DaffExampleDoc } from '../model/doc';
-
 
 /**
  * You can use this service to look up a code example and translate it into

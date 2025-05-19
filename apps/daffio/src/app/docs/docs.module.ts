@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffHeroModule } from '@daffodil/design/hero';
 import {
-  provideDaffDocsDesignExamples,
+  provideDaffDocsExampleComponents,
   provideDaffDocsLocation,
 } from '@daffodil/docs-components';
 
@@ -27,7 +27,7 @@ import { DaffioActiveHeaderService } from '../core/dynamic-fragment/service';
   providers: [
     DaffioDocsIndexService,
     DaffioActiveHeaderService,
-    provideDaffDocsDesignExamples(),
+    provideDaffDocsExampleComponents(),
     provideDaffDocsLocation('/assets/daffio/docs/'),
   ],
 })

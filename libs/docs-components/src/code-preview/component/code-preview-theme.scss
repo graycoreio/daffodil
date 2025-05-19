@@ -2,10 +2,10 @@
 @use 'theme' as daff-theme;
 
 @mixin daff-docs-code-preview-theme($theme) {
-	$neutral: daff-theme.daff-map-deep-get($theme, 'core.neutral');
-	$base: daff-theme.daff-map-deep-get($theme, 'core.base');
-	$primary: map.get(daff-theme.$theme, primary);
-	$font-color: daff-theme.daff-map-deep-get($theme, 'core.font-color');
+	$primary: daff-theme.daff-get-palette($theme, primary);
+	$neutral: daff-theme.daff-get-palette($theme, neutral);
+	$base: daff-theme.daff-get-base-color($theme, base);
+	$base-contrast: daff-theme.daff-get-base-color($theme, base-contrast);
 	$border: 1px solid daff-theme.daff-illuminate($base, $neutral, 2);
 
 	.daff-docs-code-preview {
@@ -20,7 +20,7 @@
 		}
 
 		&__tab {
-			color: $font-color;
+			color: $base-contrast;
 
 			// stylelint-disable selector-class-pattern
 			&.selected {
