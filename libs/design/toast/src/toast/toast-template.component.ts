@@ -28,7 +28,7 @@ import { DaffToast } from '../interfaces/toast';
 import {
   DaffToastOptions,
   DAFF_TOAST_OPTIONS,
-} from '../options/daff-toast-options';
+} from '../interfaces/toast-options';
 import { DaffToastPositionService } from '../service/position.service';
 import { DaffToastActionsDirective } from '../toast-actions/toast-actions.directive';
 import { DaffToastMessageDirective } from '../toast-message/toast-message.directive';

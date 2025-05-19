@@ -17,6 +17,9 @@ export {
 export {
   DaffToastOptions,
   DaffToastPosition,
+} from './interfaces/toast-options';
+
+export {
   DaffToastVerticalPosition,
   DaffToastHorizontalPosition,
-} from './options/daff-toast-options';
+} from './helpers/toast-position';

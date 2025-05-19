@@ -3,7 +3,7 @@ import {
   PositionStrategy,
 } from '@angular/cdk/overlay';
 
-import { DaffToastPosition } from '../options/daff-toast-options';
+import { DaffToastPosition } from '../interfaces/toast-options';
 
 export const createPositionStrategy = (position: DaffToastPosition): PositionStrategy => {
   const strat = new GlobalPositionStrategy();

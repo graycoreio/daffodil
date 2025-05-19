@@ -1,23 +1,22 @@
 import { createConfigInjectionToken } from '@daffodil/core';
 
+import {
+  DaffToastHorizontalPosition,
+  DaffToastVerticalPosition,
+} from '../helpers/toast-position';
+
 type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 type XOR<T, U> = (T | U) extends Record<string,unknown> ? (Without<T, U> & U) | (Without<U, T> & T) : T | U;
 
-export interface DaffToastVerticalPositionInterface { vertical: DaffToastVerticalPosition };
+export interface DaffToastVerticalPositionInterface {
+  vertical: DaffToastVerticalPosition;
+};
 
-export interface DaffToastHorizontalPositionInterface { horizontal: DaffToastHorizontalPosition };
+export interface DaffToastHorizontalPositionInterface {
+  horizontal: DaffToastHorizontalPosition;
+};
 
 export type DaffToastPosition = DaffToastVerticalPositionInterface & DaffToastHorizontalPositionInterface;
-
-/**
- * The available vertical positions for toasts.
- */
-export type DaffToastVerticalPosition = 'top' | 'bottom';
-
-/**
- * The available horizontal positions for toasts.
- */
-export type DaffToastHorizontalPosition = 'left' | 'center' | 'right';
 
 export interface DaffToastOptions {
   /**

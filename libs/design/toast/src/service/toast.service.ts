@@ -43,7 +43,7 @@ import {
 import {
   DAFF_TOAST_OPTIONS,
   DaffToastOptions,
-} from '../options/daff-toast-options';
+} from '../interfaces/toast-options';
 import {
   daffDefaultToastConfiguration,
   DaffToastConfiguration,

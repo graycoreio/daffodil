@@ -4,7 +4,7 @@ import {
   daffToastDefaultOptions,
   DaffToastOptions,
   provideDaffToastOptions,
-} from '../options/daff-toast-options';
+} from '../interfaces/toast-options';
 import { DaffToastPositionService } from '../service/position.service';
 import { DaffToastService } from '../service/toast.service';
 

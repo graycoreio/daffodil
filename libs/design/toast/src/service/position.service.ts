@@ -7,10 +7,10 @@ import {
 import { DaffBreakpoints } from '@daffodil/design';
 
 import {
+  DAFF_TOAST_OPTIONS,
   DaffToastOptions,
   DaffToastPosition,
-  DAFF_TOAST_OPTIONS,
-} from '../options/daff-toast-options';
+} from '../interfaces/toast-options';
 
 @Injectable()
 export class DaffToastPositionService {
