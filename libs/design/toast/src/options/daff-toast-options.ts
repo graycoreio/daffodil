@@ -11,7 +11,7 @@ export type DaffToastPosition = VerticalPositionTypes & HorizontalPositionTypes;
 
 export interface DaffToastOptions {
   position: DaffToastPosition;
-  useParent: boolean;
+  useParent?: boolean;
 }
 
 export const daffToastDefaultOptions: DaffToastOptions = {
