@@ -6,7 +6,7 @@ import { MagentoMoney } from '@daffodil/driver/magento';
 
 export class MockMagentoMoney implements MagentoMoney {
   __typename = 'Money';
-  value = faker.datatype.number({ min: 1, max: 10000 });
+  value = faker.number.int({ min: 1, max: 10000 });
   currency = faker.finance.currencyCode();
 };
 

@@ -5,7 +5,7 @@ import { Image } from '../../interfaces/image';
 
 export class MockImage implements Image {
   label = faker.image.nature();
-  url = faker.image.imageUrl();
+  url = faker.image.url();
 };
 
 @Injectable()

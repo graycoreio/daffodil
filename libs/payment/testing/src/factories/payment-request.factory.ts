@@ -8,7 +8,7 @@ import { DaffPaymentRequest } from '@daffodil/payment';
  * Mock class for {@link DaffPaymentRequest}.
  */
 export class MockPaymentRequest implements DaffPaymentRequest {
-  kind = faker.random.word();
+  kind = faker.lorem.word();
 };
 
 /**

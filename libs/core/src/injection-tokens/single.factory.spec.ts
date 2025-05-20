@@ -11,8 +11,8 @@ describe('@daffodil/core | createSingleInjectionToken', () => {
   let result: DaffSingleInjectionToken<number>;
 
   beforeEach(() => {
-    name = faker.random.word();
-    value = faker.datatype.number();
+    name = faker.lorem.word();
+    value = faker.number.int();
     result = createSingleInjectionToken(name);
   });
 

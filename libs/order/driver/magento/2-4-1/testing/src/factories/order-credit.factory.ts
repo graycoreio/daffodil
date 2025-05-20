@@ -9,7 +9,7 @@ import { MagentoOrderTotalFactory } from './order-total.factory';
 
 export class MockOrderCredit implements MagentoOrderCredit {
   __typename = <const>'CreditMemo';
-  items = this.itemFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
+  items = this.itemFactory.createMany(faker.number.int({ min: 1, max: 3 }));
   total = this.totalFactory.create({
     __typename: 'CreditMemoTotal',
   });

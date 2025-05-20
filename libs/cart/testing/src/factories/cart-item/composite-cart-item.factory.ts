@@ -17,14 +17,14 @@ export class DaffMockCompositeCartItem extends DaffMockCartItem implements DaffC
   type = DaffCartItemInputType.Composite;
   options = [
     {
-      id: faker.datatype.uuid(),
-      option_label: faker.random.word(),
-      value_label: faker.random.word(),
+      id: faker.string.uuid(),
+      option_label: faker.lorem.word(),
+      value_label: faker.lorem.word(),
     },
     {
-      id: faker.datatype.uuid(),
-      option_label: faker.random.word(),
-      value_label: faker.random.word(),
+      id: faker.string.uuid(),
+      option_label: faker.lorem.word(),
+      value_label: faker.lorem.word(),
     },
   ];
 }

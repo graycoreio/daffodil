@@ -18,9 +18,9 @@ export class MockDaffCartTotal implements DaffCartTotal {
     DaffCartTotalTypeEnum.discount,
     DaffCartTotalTypeEnum.shipping,
   ]);
-  value = faker.datatype.number({ min: 0, max: 999999 });
-  label = faker.random.words();
-  order = faker.datatype.number({ min: 0, max: 9 });
+  value = faker.number.int({ min: 0, max: 999999 });
+  label = faker.lorem.words();
+  order = faker.number.int({ min: 0, max: 9 });
 };
 
 @Injectable({

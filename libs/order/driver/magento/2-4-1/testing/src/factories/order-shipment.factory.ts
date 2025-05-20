@@ -22,11 +22,11 @@ export class MockOrderShipment implements MagentoOrderShipment {
   ) {}
 
   private createTracking(): MagentoOrderShipmentTracking[] {
-    return this.trackingFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
+    return this.trackingFactory.createMany(faker.number.int({ min: 1, max: 3 }));
   }
 
   private createItems(): MagentoOrderShipmentItem[] {
-    return this.itemFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
+    return this.itemFactory.createMany(faker.number.int({ min: 1, max: 3 }));
   }
 };
 

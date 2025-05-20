@@ -23,7 +23,7 @@ export class MockMagentoBundledProduct extends MockMagentoCoreProduct implements
   items = this.createBundleItems();
 
   protected createBundleItems(): MagentoBundledProductItem[] {
-    return this.bundleItemFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
+    return this.bundleItemFactory.createMany(faker.number.int({ min: 1, max: 5 }));
   }
 }
 

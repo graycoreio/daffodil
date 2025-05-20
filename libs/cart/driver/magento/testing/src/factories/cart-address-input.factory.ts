@@ -2,16 +2,19 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { MagentoCartAddressInput } from '@daffodil/cart/driver/magento';
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  enforceUnique,
+} from '@daffodil/core/testing';
 
 export class MockMagentoCartAddressInput implements MagentoCartAddressInput {
-  region_id = faker.helpers.unique(faker.datatype.number);
-  country_code = faker.address.countryCode();
-  street = [faker.address.streetAddress()];
+  region_id = enforceUnique(faker.number.int);
+  country_code = faker.location.countryCode();
+  street = [faker.location.streetAddress()];
   company = faker.company.name();
   telephone = faker.phone.number();
-  postcode = faker.address.zipCode();
-  city = faker.address.city();
+  postcode = faker.location.zipCode();
+  city = faker.location.city();
   firstname = faker.name.firstName();
   lastname = faker.name.lastName();
   save_in_address_book = faker.datatype.boolean();

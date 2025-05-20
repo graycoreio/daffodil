@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import { DaffModelFactory, enforceUnique } from '@daffodil/core/testing';
 import { MagentoCustomerAddressFactory } from '@daffodil/customer/driver/magento/testing';
 import {
   MagentoTokenBaseCard,
@@ -10,17 +10,17 @@ import {
 
 export class MockMagentoTokenBaseCard implements MagentoTokenBaseCard {
   __typename = <const>'TokenBaseCard';
-  hash = faker.datatype.uuid();
+  hash = faker.string.uuid();
   address = this.addressFactory.create();
   customer_email = faker.internet.email();
-  customer_id = faker.helpers.unique(faker.datatype.number);
-  method = faker.random.word();
+  customer_id = enforceUnique(faker.number.int);
+  method = faker.lorem.word();
   active = faker.datatype.boolean();
   created_at = faker.date.past().toString();
   updated_at = faker.date.past().toString();
   last_use = faker.date.past().toString();
   expires = faker.date.past().toString();
-  label = faker.random.word();
+  label = faker.lorem.word();
   additional = {
     cc_type: faker.helpers.arrayElement(Object.values(MagentoTokenBaseCardTypeCode)),
     cc_owner: faker.name.fullName(),

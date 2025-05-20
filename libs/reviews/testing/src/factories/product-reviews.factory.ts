@@ -34,7 +34,7 @@ export class MockProductReviews implements DaffProductReviews {
   }
 
   private createReviews(): Record<DaffProductReview['id'], DaffProductReview> {
-    return daffIdentifiableArrayToDict(this.reviewFactory.createMany(faker.datatype.number({ min: 3, max: 15 })));
+    return daffIdentifiableArrayToDict(this.reviewFactory.createMany(faker.number.int({ min: 3, max: 15 })));
   }
 }
 

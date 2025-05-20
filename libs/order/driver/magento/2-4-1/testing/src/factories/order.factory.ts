@@ -14,21 +14,21 @@ import { MagentoOrderTotalFactory } from './order-total.factory';
 
 export class MockOrder implements MagentoOrder {
   __typename = <const>'GraycoreGuestOrder';
-  id = faker.datatype.uuid();
-  number = faker.datatype.uuid();
+  id = faker.string.uuid();
+  number = faker.string.uuid();
   email = faker.internet.email();
   order_date = faker.date.past().toString();
-  status = faker.random.word();
-  carrier = faker.random.word();
-  shipping_method = faker.random.word();
+  status = faker.lorem.word();
+  carrier = faker.lorem.word();
+  shipping_method = faker.lorem.word();
   total = this.totalFactory.create();
-  items = this.itemFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
+  items = this.itemFactory.createMany(faker.number.int({ min: 1, max: 5 }));
   billing_address = this.addressFactory.create();
   shipping_address = this.addressFactory.create();
-  shipments = this.shipmentFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
-  payment_methods = this.paymentFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
-  invoices = this.invoiceFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
-  credit_memos = this.creditFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
+  shipments = this.shipmentFactory.createMany(faker.number.int({ min: 1, max: 3 }));
+  payment_methods = this.paymentFactory.createMany(faker.number.int({ min: 1, max: 3 }));
+  invoices = this.invoiceFactory.createMany(faker.number.int({ min: 1, max: 3 }));
+  credit_memos = this.creditFactory.createMany(faker.number.int({ min: 1, max: 3 }));
 
   constructor(
     private totalFactory: MagentoOrderTotalFactory,

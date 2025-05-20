@@ -12,7 +12,7 @@ import { MagentoMoneyFactory } from './money.factory';
 export class MockMagentoDiscount implements MagentoDiscount {
   __typename = 'Discount';
   amount = this.money();
-  label = faker.random.word();
+  label = faker.lorem.word();
 
   private money(): MagentoMoney {
     return (new MagentoMoneyFactory()).create();

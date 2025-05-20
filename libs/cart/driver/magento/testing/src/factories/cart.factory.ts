@@ -8,7 +8,7 @@ import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 
 export class MockMagentoCart implements MagentoCart {
   __typename = 'Cart';
-  id = faker.datatype.uuid();
+  id = faker.string.uuid();
   prices = {
     __typename: 'CartPrices',
     subtotal_excluding_tax: this.money(),

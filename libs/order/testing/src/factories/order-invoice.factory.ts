@@ -11,8 +11,8 @@ import { DaffOrderShippingMethodFactory } from './order-shipping-rate.factory';
 import { DaffOrderTotalFactory } from './order-total.factory';
 
 export class MockOrderInvoice implements DaffOrderInvoice {
-  items = this.itemFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
-  totals = this.totalFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
+  items = this.itemFactory.createMany(faker.number.int({ min: 1, max: 3 }));
+  totals = this.totalFactory.createMany(faker.number.int({ min: 1, max: 3 }));
   billing_address = this.addressFactory.create();
   shipping_address = this.addressFactory.create();
   payment = this.paymentFactory.create();

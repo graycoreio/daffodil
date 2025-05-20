@@ -8,14 +8,14 @@ import {
 } from '@daffodil/driver/hubspot';
 
 const MockHubspotError = (): HubspotError => ({
-  message: faker.random.words(5),
-  errorType: faker.random.word(),
+  message: faker.lorem.words(5),
+  errorType: faker.lorem.word(),
 });
 
 export class MockHubspotResponse implements HubspotResponse {
   redirectUri? = faker.internet.url();
-  inlineMessage = faker.random.words(5);
-  errors: HubspotError[] = Array(faker.datatype.number({ min: 1, max: 5 })).fill(MockHubspotError);
+  inlineMessage = faker.lorem.words(5);
+  errors: HubspotError[] = Array(faker.number.int({ min: 1, max: 5 })).fill(MockHubspotError);
 }
 
 /**

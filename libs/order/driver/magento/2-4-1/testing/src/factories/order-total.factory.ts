@@ -29,7 +29,7 @@ export class MockOrderTotal implements MagentoOrderTotal {
   }
 
   private createDiscounts(): MagentoDiscount[] {
-    return this.discountFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
+    return this.discountFactory.createMany(faker.number.int({ min: 1, max: 3 }));
   }
 };
 

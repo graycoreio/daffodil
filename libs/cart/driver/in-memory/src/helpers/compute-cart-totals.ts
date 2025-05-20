@@ -7,12 +7,12 @@ import {
 import { DaffProduct } from '@daffodil/product';
 
 export function daffCartInMemoryComputeCartTotals(cart: DaffCart, products: DaffProduct[]): DaffCart {
-  const shipping = cart.shipping_information ? faker.datatype.number({ min: 0, max: 99 }) : 0;
+  const shipping = cart.shipping_information ? faker.number.int({ min: 0, max: 99 }) : 0;
   const subtotalExcludingTax = cart.items?.reduce((acc, { product_id }) =>
     acc + (products.find(({ id }) => id === product_id)?.price || 0),
   0,
   ) || 0;
-  const discount = faker.datatype.number({ min: 0, max: subtotalExcludingTax });
+  const discount = faker.number.int({ min: 0, max: subtotalExcludingTax });
   const subtotalIncludingTax = subtotalExcludingTax + cart.totals[DaffCartTotalTypeEnum.tax].value;
   const subtotalWithDiscountExcludingTax = subtotalExcludingTax - discount;
   const subtotalWithDiscountIncludingTax = subtotalIncludingTax - discount;

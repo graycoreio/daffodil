@@ -7,12 +7,12 @@ import { DaffCountry } from '@daffodil/geography';
 import { DaffSubdivisionFactory } from './subdivision.factory';
 
 export class MockCountry implements DaffCountry {
-  id = faker.datatype.uuid();
-  name = faker.random.word();
-  name_en = faker.random.word();
-  alpha2 = faker.random.alphaNumeric(2);
-  alpha3 = faker.random.alphaNumeric(3);
-  subdivisions = this.subdivisionFactory.createMany(faker.datatype.number({ min: 0, max: 10 }));
+  id = faker.string.uuid();
+  name = faker.lorem.word();
+  name_en = faker.lorem.word();
+  alpha2 = faker.string.alphanumeric(2);
+  alpha3 = faker.string.alphanumeric(3);
+  subdivisions = this.subdivisionFactory.createMany(faker.number.int({ min: 0, max: 10 }));
 
   constructor(
     protected subdivisionFactory: DaffSubdivisionFactory,

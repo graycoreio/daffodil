@@ -6,7 +6,7 @@ import { DaffIdentifiable } from '@daffodil/core';
 import { DaffModelFactory } from './factory';
 
 export class MockDaffIdentifiable implements DaffIdentifiable {
-  id = faker.datatype.uuid();
+  id = faker.string.uuid();
 }
 
 @Injectable({

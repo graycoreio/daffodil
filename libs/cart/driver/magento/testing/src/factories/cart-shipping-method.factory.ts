@@ -7,10 +7,10 @@ import { MagentoMoney } from '@daffodil/driver/magento';
 import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 
 export class MockCartShippingMethod implements MagentoCartShippingMethod {
-  carrier_code = faker.random.word();
-  carrier_title = faker.random.words(2);
-  method_title = faker.random.words(2);
-  method_code = faker.random.word();
+  carrier_code = faker.lorem.word();
+  carrier_title = faker.lorem.words(2);
+  method_title = faker.lorem.words(2);
+  method_code = faker.lorem.word();
   amount = this.money();
 
   private money(): MagentoMoney {

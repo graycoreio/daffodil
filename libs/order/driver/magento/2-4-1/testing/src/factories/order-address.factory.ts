@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import { DaffModelFactory, enforceUnique } from '@daffodil/core/testing';
 import { MagentoOrderAddress } from '@daffodil/order/driver/magento/2-4-1';
 
 export class MockOrderAddress implements MagentoOrderAddress {
   __typename = <const>'OrderAddress';
-  street = [faker.address.street()];
-  city = faker.address.city();
-  region_id = faker.helpers.unique(faker.datatype.number);
-  region_code = faker.address.stateAbbr();
-  postcode = faker.address.zipCode();
-  country = faker.address.countryCode();
-  country_code = faker.address.countryCode();
+  street = [faker.location.street()];
+  city = faker.location.city();
+  region_id = enforceUnique(faker.number.int);
+  region_code = faker.location.state({ abbreviated: true });
+  postcode = faker.location.zipCode();
+  country = faker.location.countryCode();
+  country_code = faker.location.countryCode();
   prefix = faker.name.prefix();
   suffix = faker.name.suffix();
   firstname = faker.name.firstName();

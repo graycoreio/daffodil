@@ -5,7 +5,7 @@ import { DaffCartAddress } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCartAddress implements DaffCartAddress {
-  id = faker.datatype.uuid();
+  id = faker.string.uuid();
   address_type = 'apartment';
   email = 'email@email.com';
   prefix = 'prefix';

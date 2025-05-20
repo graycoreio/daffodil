@@ -14,9 +14,9 @@ const TYPES = [
 ];
 
 class MockMagentoProductFilterTypeField implements MagentoProductFilterTypeField {
-  name = faker.random.word();
+  name = faker.lorem.word();
   type = {
-    name: TYPES[faker.datatype.number({ min: 0, max: TYPES.length - 1 })],
+    name: TYPES[faker.number.int({ min: 0, max: TYPES.length - 1 })],
   };
 }
 

@@ -14,24 +14,24 @@ import {
 } from '@daffodil/order/driver/magento/2-4-1/testing';
 
 export class MockMagentoCustomerOrder implements MagentoCustomerOrder {
-  protected _numberOfSuborders = faker.datatype.number({ min: 1, max: 3 });
+  protected _numberOfSuborders = faker.number.int({ min: 1, max: 3 });
   __typename = <const>'CustomerOrder';
-  id = faker.datatype.uuid();
+  id = faker.string.uuid();
   order_date = faker.date.past().toString();
-  status = faker.random.word();
-  carrier = faker.random.word();
-  number = faker.datatype.uuid();
-  shipping_method = faker.random.word();
+  status = faker.lorem.word();
+  carrier = faker.lorem.word();
+  number = faker.string.uuid();
+  shipping_method = faker.lorem.word();
   total = this.totalFactory.create({
     __typename: 'OrderTotal',
   });
-  items = this.itemFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
+  items = this.itemFactory.createMany(faker.number.int({ min: 1, max: 5 }));
   billing_address = this.addressFactory.create();
   shipping_address = this.addressFactory.create();
   shipments = this.shipmentFactory.createMany(this._numberOfSuborders);
   payment_methods = this.paymentFactory.createMany(this._numberOfSuborders);
   invoices = this.invoiceFactory.createMany(this._numberOfSuborders);
-  credit_memos = this.creditFactory.createMany(faker.datatype.number({ min: 1, max: this._numberOfSuborders }));
+  credit_memos = this.creditFactory.createMany(faker.number.int({ min: 1, max: this._numberOfSuborders }));
 
   constructor(
     protected totalFactory: MagentoOrderTotalFactory,

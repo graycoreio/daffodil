@@ -29,7 +29,7 @@ describe('@daffodil/core | createSingletonInjectionToken', () => {
   let result: DaffSingletonInjectionToken<TestType>;
 
   beforeEach(() => {
-    name = faker.random.word();
+    name = faker.lorem.word();
     value = Test1;
     result = createSingletonInjectionToken(name);
   });
@@ -52,7 +52,7 @@ describe('@daffodil/core | createSingletonInjectionToken | Integration', () => {
   let result: DaffSingletonInjectionToken<TestType>;
 
   beforeEach(() => {
-    name = faker.random.word();
+    name = faker.lorem.word();
     value = Test1;
     result = createSingletonInjectionToken(name);
   });

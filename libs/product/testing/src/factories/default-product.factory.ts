@@ -13,11 +13,11 @@ import { DaffProductImageFactory } from './product-image.factory';
  * Mocked DaffProduct object.
  */
 export class MockProduct implements DaffProduct {
-  private stubPrice = faker.datatype.number({ min: 1, max: 1500 });
-  private stubDiscount = faker.datatype.number({ min: 0, max: this.stubPrice - 1 });
+  private stubPrice = faker.number.int({ min: 1, max: 1500 });
+  private stubDiscount = faker.number.int({ min: 0, max: this.stubPrice - 1 });
 
   type = DaffProductTypeEnum.Simple;
-  id = faker.datatype.uuid();
+  id = faker.string.uuid();
   url = `/${faker.internet.domainWord()}.html`;
   canonicalUrl = faker.internet.url();
   price = this.stubPrice;
@@ -26,7 +26,7 @@ export class MockProduct implements DaffProduct {
     amount: this.stubDiscount,
     percent: Math.floor((this.stubDiscount/this.stubPrice) * 100),
   };
-  images = this.imageFactory.createMany(faker.datatype.number({ min: 1, max: 10 }));
+  images = this.imageFactory.createMany(faker.number.int({ min: 1, max: 10 }));
   thumbnail = this.imageFactory.create();
   name = faker.commerce.productName();
   brand = faker.company.name();

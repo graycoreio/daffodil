@@ -13,16 +13,16 @@ import { MockMagentoProductPreview } from './product-preview.factory';
 export class MockMagentoCoreProduct extends MockMagentoProductPreview implements MagentoProduct {
   __typename = MagentoProductTypeEnum.SimpleProduct;
   canonical_url = faker.internet.url();
-  meta_title = faker.random.word();
-  meta_description = faker.random.words(3);
+  meta_title = faker.lorem.word();
+  meta_description = faker.lorem.words(3);
   stock_status = MagentoProductStockStatusEnum.InStock;
   description = {
     __typename: 'ComplexTextValue',
-    html: faker.random.words(5),
+    html: faker.lorem.words(5),
   };
   short_description = {
     __typename: 'ComplexTextValue',
-    html: faker.random.words(3),
+    html: faker.lorem.words(3),
   };
   media_gallery_entries = [];
 }

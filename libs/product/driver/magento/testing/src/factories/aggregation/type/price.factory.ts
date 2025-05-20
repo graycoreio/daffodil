@@ -11,27 +11,27 @@ class MockMagentoAggregationPrice implements MagentoAggregation {
   __typename = 'Aggregation';
   attribute_code = 'price';
   type = MagentoProductFilterType.Range;
-  count = faker.datatype.number();
+  count = faker.number.int();
   label = 'Price';
   options = [
     {
       value: '0-10',
-      count: faker.datatype.number(),
+      count: faker.number.int(),
       label: '0-10',
     },
     {
       value: '10-20',
-      count: faker.datatype.number(),
+      count: faker.number.int(),
       label: '10-20',
     },
     {
       value: '20-30',
-      count: faker.datatype.number(),
+      count: faker.number.int(),
       label: '20-30',
     },
     {
       value: '30-40',
-      count: faker.datatype.number(),
+      count: faker.number.int(),
       label: '30-40',
     },
   ];

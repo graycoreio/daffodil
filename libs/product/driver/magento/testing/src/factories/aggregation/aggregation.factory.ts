@@ -12,6 +12,6 @@ import { MagentoProductAggregationSelectFactory } from './type/select.factory';
 })
 export class MagentoProductAggregationFactory extends DaffModelFactory<MagentoAggregation> {
   constructor(private selectFactory: MagentoProductAggregationSelectFactory, private priceFactory: MagentoProductAggregationPriceFactory){
-    super(faker.datatype.number({ min: 1, max: 2 }) === 2 ? selectFactory.type : priceFactory.type);
+    super(faker.number.int({ min: 1, max: 2 }) === 2 ? selectFactory.type : priceFactory.type);
   }
 }

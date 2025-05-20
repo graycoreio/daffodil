@@ -9,7 +9,7 @@ import { MagentoOrderItemFactory } from './order-item.factory';
 export class MockOrderCreditItem implements MagentoOrderCreditItem {
   __typename = <const>'CreditMemoItem';
   order_item = this.itemFactory.create();
-  quantity_refunded = faker.datatype.number({ min: 1, max: 100 });
+  quantity_refunded = faker.number.int({ min: 1, max: 100 });
 
   constructor(
     private itemFactory: MagentoOrderItemFactory,

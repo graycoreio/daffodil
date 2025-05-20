@@ -6,8 +6,8 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockAuthResetPasswordInfo implements DaffAuthResetPasswordInfo {
   email = faker.internet.email();
-  password = faker.random.alphaNumeric(16);
-  token = faker.random.alphaNumeric(16);
+  password = faker.string.alphanumeric(16);
+  token = faker.string.alphanumeric(16);
 };
 
 @Injectable({

@@ -10,8 +10,8 @@ import { DaffModelFactory } from '../../factory';
 
 export class MockFilterEqual implements DaffFilterEqual {
   type: DaffFilterType.Equal = DaffFilterType.Equal;
-  label = faker.random.word();
-  name = faker.datatype.uuid();
+  label = faker.lorem.word();
+  name = faker.string.uuid();
   options = {};
 }
 

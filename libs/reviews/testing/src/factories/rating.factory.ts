@@ -8,8 +8,8 @@ import { DaffReviewRating } from '@daffodil/reviews';
  * Mocked {@link DaffReviewRating} object.
  */
 export class MockReviewRating implements DaffReviewRating {
-  value = faker.datatype.number({ min: 1, max: 100 });
-  label = faker.random.word();
+  value = faker.number.int({ min: 1, max: 100 });
+  label = faker.lorem.word();
 }
 
 /**

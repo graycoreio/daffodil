@@ -9,7 +9,7 @@ import { MockDaffPersonalAddress } from '@daffodil/geography/testing';
  * Mock class for {@link DaffCustomerAddress}.
  */
 export class MockDaffCustomerAddress extends MockDaffPersonalAddress implements DaffCustomerAddress {
-  id = faker.datatype.uuid();
+  id = faker.string.uuid();
   defaultBilling = faker.datatype.boolean();
   defaultShipping = faker.datatype.boolean();
 };

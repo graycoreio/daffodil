@@ -10,20 +10,20 @@ import {
 
 export class MockMagentoProductPreview implements MagentoProductPreview {
   __typename = MagentoProductTypeEnum.SimpleProduct;
-  uid = faker.datatype.uuid();
-  url_key = faker.random.alphaNumeric(16);
+  uid = faker.string.uuid();
+  url_key = faker.string.alphanumeric(16);
   url_suffix = '.html';
-  name = faker.random.word();
-  sku = faker.random.alphaNumeric(16);
+  name = faker.lorem.word();
+  sku = faker.string.alphanumeric(16);
   stock_status = MagentoProductStockStatusEnum.InStock;
   image = {
     __typename: 'ProductImage',
-    label: faker.random.words(3),
-    url: faker.image.imageUrl(),
+    label: faker.lorem.words(3),
+    url: faker.image.url(),
   };
   description = {
     __typename: 'ComplexTextValue',
-    html: faker.random.words(5),
+    html: faker.lorem.words(5),
   };
   price_range = {
     __typename: 'PriceRange',
@@ -31,13 +31,13 @@ export class MockMagentoProductPreview implements MagentoProductPreview {
       __typename: 'ProductPrice',
       regular_price: {
         __typename: 'Money',
-        value: faker.datatype.number({ min: 100, max: 1000 }),
+        value: faker.number.int({ min: 100, max: 1000 }),
         currency: null,
       },
       discount: {
         __typename: 'ProductDiscount',
-        amount_off: faker.datatype.number({ min: 1, max: 99 }),
-        percent_off: faker.datatype.number({ min: 1, max: 99 }),
+        amount_off: faker.number.int({ min: 1, max: 99 }),
+        percent_off: faker.number.int({ min: 1, max: 99 }),
       },
     },
   };

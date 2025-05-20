@@ -6,8 +6,8 @@ import { DaffFilterRangeOption } from '@daffodil/core';
 import { DaffModelFactory } from '../../../factory';
 
 export class MockFilterRangeNumericOption implements DaffFilterRangeOption<number> {
-  value = faker.datatype.number({ min: 0, max: 10 });
-  label = faker.random.alpha({ count: 3 });
+  value = faker.number.int({ min: 0, max: 10 });
+  label = faker.string.alpha({ length: 3 });
 }
 
 /**

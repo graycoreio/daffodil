@@ -25,7 +25,7 @@ export class DaffFilterToggleRequestFactory extends DaffModelFactory<DaffFilterT
   create(partial?: Partial<DaffFilterToggleRequest>): DaffFilterToggleRequest {
     return {
       ...new this.type(),
-      ...faker.datatype.number({ min: 1, max: 2 }) === 2 ? this.equalFactory.create() : this.rangeFactory.create(),
+      ...faker.number.int({ min: 1, max: 2 }) === 2 ? this.equalFactory.create() : this.rangeFactory.create(),
     };
   }
 }

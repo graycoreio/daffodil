@@ -6,8 +6,8 @@ import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 
 class MockMagentoSearchResultPageInfo implements MagentoSearchResultPageInfo {
   current_page =  1;
-  page_size = faker.datatype.number(100);
-  total_pages = faker.datatype.number(100);
+  page_size = faker.number.int(100);
+  total_pages = faker.number.int(100);
 }
 
 @Injectable({

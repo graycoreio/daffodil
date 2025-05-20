@@ -6,13 +6,13 @@ import { DaffAddress } from '@daffodil/geography';
 
 
 export class MockDaffAddress implements DaffAddress {
-  street = faker.address.street();
-  street2 = faker.address.secondaryAddress();
-  city = faker.address.city();
-  region = faker.datatype.uuid();
-  region_code = faker.address.stateAbbr();
-  postcode = faker.address.zipCode();
-  country = faker.address.countryCode();
+  street = faker.location.street();
+  street2 = faker.location.secondaryAddress();
+  city = faker.location.city();
+  region = faker.string.uuid();
+  region_code = faker.location.state({ abbreviated: true });
+  postcode = faker.location.zipCode();
+  country = faker.location.countryCode();
 }
 
 @Injectable({

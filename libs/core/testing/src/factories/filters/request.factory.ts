@@ -15,6 +15,6 @@ import { DaffFilterRequestRangeNumericFactory } from './type/range-numeric/reque
 })
 export class DaffFilterRequestFactory extends DaffModelFactory<DaffFilterRequest>{
   constructor(equalFactory: DaffFilterRequestEqualFactory, rangeFactory: DaffFilterRequestRangeNumericFactory){
-    super(faker.datatype.number({ min: 1, max: 2 }) === 2 ? equalFactory.type : rangeFactory.type);
+    super(faker.number.int({ min: 1, max: 2 }) === 2 ? equalFactory.type : rangeFactory.type);
   }
 }

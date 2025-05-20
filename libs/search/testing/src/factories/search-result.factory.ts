@@ -9,7 +9,7 @@ import { DaffSearchResult } from '@daffodil/search';
  */
 export class MockSearchResult implements DaffSearchResult {
   kind = 'Thing';
-  id = faker.datatype.uuid();
+  id = faker.string.uuid();
   url = `/${faker.internet.domainWord()}.html`;
 };
 

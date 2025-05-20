@@ -5,7 +5,7 @@ import { MagentoCartCoupon } from '@daffodil/cart/driver/magento';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockMagentoCartCoupon implements MagentoCartCoupon {
-  code = faker.random.alphaNumeric(20);
+  code = faker.string.alphanumeric(20);
 };
 
 

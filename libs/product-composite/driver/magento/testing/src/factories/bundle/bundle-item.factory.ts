@@ -15,13 +15,13 @@ export class MockMagentoBundledProductItem implements MagentoBundledProductItem 
     private optionFactory: MagentoBundledProductItemOptionFactory,
   ) {}
   required = faker.datatype.boolean();
-  title = faker.random.word();
-  type = faker.random.word();
+  title = faker.lorem.word();
+  type = faker.lorem.word();
   options = this.createOptions();
-  option_id = faker.datatype.number({ min: 1, max: 9999 });
+  option_id = faker.number.int({ min: 1, max: 9999 });
 
   protected createOptions(): MagentoBundledProductItemOption[] {
-    return this.optionFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
+    return this.optionFactory.createMany(faker.number.int({ min: 1, max: 5 }));
   }
 }
 

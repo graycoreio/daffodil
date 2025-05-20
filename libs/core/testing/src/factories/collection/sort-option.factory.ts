@@ -6,8 +6,8 @@ import { DaffSortOption } from '@daffodil/core';
 import { DaffModelFactory } from '../factory';
 
 class MockDaffSortOption implements DaffSortOption {
-  label = faker.random.word();
-  value = faker.random.word();
+  label = faker.lorem.word();
+  value = faker.lorem.word();
 }
 
 @Injectable({

@@ -5,9 +5,9 @@ import { DaffCartCoupon } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockDaffCartCoupon implements DaffCartCoupon {
-  id = faker.datatype.uuid();
-  code = faker.random.alphaNumeric(20);
-  description = faker.random.words(5);
+  id = faker.string.uuid();
+  code = faker.string.alphanumeric(20);
+  description = faker.lorem.words(5);
 };
 
 @Injectable({

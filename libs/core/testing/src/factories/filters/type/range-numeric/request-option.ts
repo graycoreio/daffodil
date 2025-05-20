@@ -6,8 +6,8 @@ import { DaffFilterRangeRequestOption } from '@daffodil/core';
 import { DaffModelFactory } from '../../../factory';
 
 export class MockDaffFilterRangeNumericRequestOption implements DaffFilterRangeRequestOption<number> {
-  min = faker.datatype.number({ min: 0, max: 100 });
-  max = faker.datatype.number({ min: 100, max: 1000 });
+  min = faker.number.int({ min: 0, max: 100 });
+  max = faker.number.int({ min: 100, max: 1000 });
 }
 
 /**

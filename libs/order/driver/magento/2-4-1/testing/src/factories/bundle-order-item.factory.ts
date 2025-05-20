@@ -18,7 +18,7 @@ import { MockOrderItem } from './order-item.factory';
 export class MockBundleOrderItem extends MockOrderItem implements MagentoOrderBundleItem {
   __typename = MagentoOrderItemTypenames.BundleOrderItem;
   type = MagentoOrderItemType.Bundle;
-  bundle_options = this.optionFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
+  bundle_options = this.optionFactory.createMany(faker.number.int({ min: 1, max: 5 }));
 
   constructor(
     private optionFactory: MagentoOrderBundleItemSelectedOptionFactory,

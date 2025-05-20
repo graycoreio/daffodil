@@ -7,9 +7,9 @@ import { DaffModelFactory } from '../../../factory';
 
 export class MockDaffFilterEqualOption implements DaffFilterEqualOption {
   applied = false;
-  value = faker.datatype.uuid();
-  label = faker.random.word();
-  count = faker.datatype.number({ min: 1, max: 1000 });
+  value = faker.string.uuid();
+  label = faker.lorem.word();
+  count = faker.number.int({ min: 1, max: 1000 });
 }
 
 /**

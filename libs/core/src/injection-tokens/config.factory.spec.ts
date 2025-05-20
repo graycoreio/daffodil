@@ -19,13 +19,13 @@ describe('@daffodil/core | createConfigInjectionToken', () => {
   let result: DaffConfigInjectionToken<Config>;
 
   beforeEach(() => {
-    name = faker.random.word();
+    name = faker.lorem.word();
     value = {
-      field: faker.random.word(),
+      field: faker.lorem.word(),
     };
     defaultConfig = {
-      field: faker.random.word(),
-      other: faker.random.word(),
+      field: faker.lorem.word(),
+      other: faker.lorem.word(),
     };
     result = createConfigInjectionToken(defaultConfig, name);
   });

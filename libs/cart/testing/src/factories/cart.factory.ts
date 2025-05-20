@@ -8,7 +8,7 @@ import { DaffCartShippingRateFactory } from './cart-shipping-rate.factory';
 import { DaffCartTotalFactory } from './cart-total.factory';
 
 export class MockCart implements DaffCart {
-  id = faker.datatype.uuid();
+  id = faker.string.uuid();
   coupons = [];
   items = [];
   billing_address = null;

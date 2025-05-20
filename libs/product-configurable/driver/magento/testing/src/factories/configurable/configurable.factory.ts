@@ -11,12 +11,12 @@ import { MagentoConfigurableProduct } from '@daffodil/product-configurable/drive
 
 export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct implements MagentoConfigurableProduct {
 
-  private priceVariant1 = faker.datatype.number({ min: 1, max: 1000 });
-  private discountVariant1 = faker.datatype.number({ min: 0, max: this.priceVariant1 - 1 });
-  private priceVariant2 = faker.datatype.number({ min: 1, max: 1000 });
-  private discountVariant2 = faker.datatype.number({ min: 0, max: this.priceVariant2 - 1 });
-  private priceVariant3 = faker.datatype.number({ min: 1, max: 1000 });
-  private discountVariant3 = faker.datatype.number({ min: 0, max: this.priceVariant3 - 1 });
+  private priceVariant1 = faker.number.int({ min: 1, max: 1000 });
+  private discountVariant1 = faker.number.int({ min: 0, max: this.priceVariant1 - 1 });
+  private priceVariant2 = faker.number.int({ min: 1, max: 1000 });
+  private discountVariant2 = faker.number.int({ min: 0, max: this.priceVariant2 - 1 });
+  private priceVariant3 = faker.number.int({ min: 1, max: 1000 });
+  private discountVariant3 = faker.number.int({ min: 0, max: this.priceVariant3 - 1 });
   __typename = MagentoProductTypeEnum.ConfigurableProduct;
   configurable_options = [
     {
@@ -49,21 +49,21 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
       ],
       product: {
         __typename: MagentoProductTypeEnum.SimpleProduct,
-        uid: faker.datatype.uuid(),
-        url_key: faker.random.alphaNumeric(16),
+        uid: faker.string.uuid(),
+        url_key: faker.string.alphanumeric(16),
         url_suffix: '.html',
-        name: faker.random.word(),
-        sku: faker.random.alphaNumeric(16),
+        name: faker.lorem.word(),
+        sku: faker.string.alphanumeric(16),
         stock_status: MagentoProductStockStatusEnum.InStock,
         image: {
           __typename: 'ProductImage',
-          label: faker.random.words(3),
-          url: faker.image.imageUrl(),
+          label: faker.lorem.words(3),
+          url: faker.image.url(),
         },
         thumbnail: {
           __typename: 'ProductImage',
-          label: faker.random.words(3),
-          url: faker.image.imageUrl(),
+          label: faker.lorem.words(3),
+          url: faker.image.url(),
         },
         price_range: {
           __typename: 'PriceRange',
@@ -92,21 +92,21 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
       ],
       product: {
         __typename: MagentoProductTypeEnum.SimpleProduct,
-        uid: faker.datatype.uuid(),
-        url_key: faker.random.alphaNumeric(16),
+        uid: faker.string.uuid(),
+        url_key: faker.string.alphanumeric(16),
         url_suffix: '.html',
-        name: faker.random.word(),
-        sku: faker.random.alphaNumeric(16),
+        name: faker.lorem.word(),
+        sku: faker.string.alphanumeric(16),
         stock_status: MagentoProductStockStatusEnum.InStock,
         image: {
           __typename: 'ProductImage',
-          label: faker.random.words(3),
-          url: faker.image.imageUrl(),
+          label: faker.lorem.words(3),
+          url: faker.image.url(),
         },
         thumbnail: {
           __typename: 'ProductImage',
-          label: faker.random.words(3),
-          url: faker.image.imageUrl(),
+          label: faker.lorem.words(3),
+          url: faker.image.url(),
         },
         price_range: {
           __typename: 'PriceRange',
@@ -134,21 +134,21 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
       ],
       product: {
         __typename: MagentoProductTypeEnum.SimpleProduct,
-        uid: faker.datatype.uuid(),
-        url_key: faker.random.alphaNumeric(16),
+        uid: faker.string.uuid(),
+        url_key: faker.string.alphanumeric(16),
         url_suffix: '.html',
-        name: faker.random.word(),
-        sku: faker.random.alphaNumeric(16),
+        name: faker.lorem.word(),
+        sku: faker.string.alphanumeric(16),
         stock_status: MagentoProductStockStatusEnum.InStock,
         image: {
           __typename: 'ProductImage',
-          label: faker.random.words(3),
-          url: faker.image.imageUrl(),
+          label: faker.lorem.words(3),
+          url: faker.image.url(),
         },
         thumbnail: {
           __typename: 'ProductImage',
-          label: faker.random.words(3),
-          url: faker.image.imageUrl(),
+          label: faker.lorem.words(3),
+          url: faker.image.url(),
         },
         price_range: {
           __typename: 'PriceRange',

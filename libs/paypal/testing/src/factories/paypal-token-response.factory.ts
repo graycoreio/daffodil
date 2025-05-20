@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffPaypalExpressTokenResponse } from '@daffodil/paypal';
 
 export class MockPaypalTokenResponse implements DaffPaypalExpressTokenResponse {
-  token = faker.random.word();
+  token = faker.lorem.word();
   urls = {
     start: faker.internet.url(),
     edit: faker.internet.url(),

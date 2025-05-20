@@ -9,7 +9,7 @@ import { MagentoOrderItemFactory } from './order-item.factory';
 export class MockOrderInvoiceItem implements MagentoOrderInvoiceItem {
   __typename = <const>'InvoiceItem';
   order_item = this.itemFactory.create();
-  quantity_invoiced = faker.datatype.number({ min: 1, max: 100 });
+  quantity_invoiced = faker.number.int({ min: 1, max: 100 });
 
   constructor(
     private itemFactory: MagentoOrderItemFactory,

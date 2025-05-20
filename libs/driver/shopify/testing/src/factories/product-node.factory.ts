@@ -14,7 +14,7 @@ import { ShopifyProductPriceRangeFactory } from './product-price-range.factory';
 class MockShopifyProductNode implements ShopifyProductNode {
   title = faker.commerce.productName();
   handle = shopifyHandleTransformer(faker.commerce.productName());
-  id = shopifyIdTransformer(`${faker.datatype.number({ min: 100000000000 })}`, 'Product');
+  id = shopifyIdTransformer(`${faker.number.int({ min: 100000000000 })}`, 'Product');
   description = faker.commerce.productDescription();
   onlineStoreUrl = faker.internet.domainName();
   availableForSale = faker.datatype.boolean();

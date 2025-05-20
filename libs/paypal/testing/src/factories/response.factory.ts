@@ -7,7 +7,7 @@ import { DaffPaypalExpressPaymentResponse } from '@daffodil/paypal';
 import { DaffPaypalExpressTokenResponseFactory } from './paypal-token-response.factory';
 
 export class MockDaffPaypalExpressPaymentResponse implements DaffPaypalExpressPaymentResponse {
-  method = faker.random.word();
+  method = faker.lorem.word();
   data = this.createData();
 
   constructor(

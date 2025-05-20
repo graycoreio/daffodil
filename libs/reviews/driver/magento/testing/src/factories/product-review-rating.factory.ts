@@ -6,8 +6,8 @@ import { MagentoProductReviewRating } from '@daffodil/reviews/driver/magento';
 
 export class MockMagentoProductReviewRating implements MagentoProductReviewRating {
   __typename = <const>'ProductReviewRating';
-  name = faker.random.word();
-  value = String(faker.datatype.number({ min: 0, max: 100 }));
+  name = faker.lorem.word();
+  value = String(faker.number.int({ min: 0, max: 100 }));
 }
 
 @Injectable({

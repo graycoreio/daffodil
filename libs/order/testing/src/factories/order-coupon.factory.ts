@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffOrderCoupon } from '@daffodil/order';
 
 export class MockOrderCoupon implements DaffOrderCoupon {
-  code = faker.random.alphaNumeric(10);
+  code = faker.string.alphanumeric(10);
 };
 
 

@@ -5,7 +5,10 @@ import {
   MagentoCartItemTypeEnum,
   MagentoBundleCartItem,
 } from '@daffodil/cart/driver/magento';
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  enforceUnique,
+} from '@daffodil/core/testing';
 
 import { MockMagentoCartItem } from './cart-item.factory';
 
@@ -13,15 +16,15 @@ export class MockMagentoBundleCartItem extends MockMagentoCartItem implements Ma
   __typename = MagentoCartItemTypeEnum.Bundle;
   bundle_options = [
     {
-      id: faker.helpers.unique(faker.datatype.number),
+      id: enforceUnique(faker.number.int),
       type: 'radio',
-      label: faker.random.word(),
-      price: faker.datatype.number({ min: 1, max: 99 }),
+      label: faker.lorem.word(),
+      price: faker.number.int({ min: 1, max: 99 }),
       quantity: 1,
       values: [{
-        id: faker.helpers.unique(faker.datatype.number),
-        label: faker.random.word(),
-        price: faker.datatype.number({ min: 1, max: 99 }),
+        id: enforceUnique(faker.number.int),
+        label: faker.lorem.word(),
+        price: faker.number.int({ min: 1, max: 99 }),
         quantity: 1,
       }],
     },

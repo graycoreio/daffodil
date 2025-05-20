@@ -15,7 +15,7 @@ import {
 export class MockDaffCustomerPaymentAuthorizeNetApplyRequest extends MockDaffCustomerPaymentRequest implements DaffCustomerPaymentAuthorizeNetApplyRequest {
   kind: typeof DAFF_CUSTOMER_PAYMENT_AUTHORIZENET_PAYMENT_KIND = DAFF_CUSTOMER_PAYMENT_AUTHORIZENET_PAYMENT_KIND;
   data = {
-    id: faker.datatype.uuid(),
+    id: faker.string.uuid(),
     securityCode: faker.finance.creditCardCVV(),
   };
 };

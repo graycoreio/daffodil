@@ -5,9 +5,9 @@ import { DaffCategoryBreadcrumb } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCategoryBreadcrumb implements DaffCategoryBreadcrumb {
-  id = faker.datatype.uuid();
+  id = faker.string.uuid();
   name = faker.commerce.productMaterial();
-  level = faker.datatype.number({ min: 1, max: 5 });
+  level = faker.number.int({ min: 1, max: 5 });
   url = faker.commerce.productMaterial();
 }
 

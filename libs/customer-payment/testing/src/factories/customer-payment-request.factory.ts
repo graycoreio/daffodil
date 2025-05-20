@@ -12,7 +12,7 @@ import { MockPaymentRequest } from '@daffodil/payment/testing';
 export class MockDaffCustomerPaymentRequest extends MockPaymentRequest implements DaffCustomerPaymentRequest {
   address = this.addressFactory.create();
   default = faker.datatype.boolean();
-  nickname = faker.random.word();
+  nickname = faker.lorem.word();
   owner = faker.name.fullName();
 
   constructor(

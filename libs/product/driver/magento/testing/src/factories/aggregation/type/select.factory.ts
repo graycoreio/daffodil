@@ -11,23 +11,23 @@ class MockMagentoAggregationSelect implements MagentoAggregation {
   __typename = 'Aggregation';
   attribute_code = 'select';
   type = MagentoProductFilterType.Equal;
-  count = faker.datatype.number();
-  label = faker.random.word();
+  count = faker.number.int();
+  label = faker.lorem.word();
   options =  [
     {
-      count: faker.datatype.number(),
-      label: faker.random.word(),
-      value: faker.datatype.uuid(),
+      count: faker.number.int(),
+      label: faker.lorem.word(),
+      value: faker.string.uuid(),
     },
     {
-      count: faker.datatype.number(),
-      label: faker.random.word(),
-      value: faker.datatype.uuid(),
+      count: faker.number.int(),
+      label: faker.lorem.word(),
+      value: faker.string.uuid(),
     },
     {
-      count: faker.datatype.number(),
-      label: faker.random.word(),
-      value: faker.datatype.uuid(),
+      count: faker.number.int(),
+      label: faker.lorem.word(),
+      value: faker.string.uuid(),
     },
   ];
 }

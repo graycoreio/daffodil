@@ -14,8 +14,8 @@ import {
 import { MockCollection } from './mock-collection.class';
 
 class MockEntity implements DaffIdentifiable {
-  id = faker.datatype.uuid();
-  field = faker.random.word();
+  id = faker.string.uuid();
+  field = faker.lorem.word();
 }
 
 @Injectable()

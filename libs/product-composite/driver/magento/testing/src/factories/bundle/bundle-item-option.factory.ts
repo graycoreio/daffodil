@@ -12,11 +12,11 @@ export class MockMagentoBundledProductItemOption implements MagentoBundledProduc
     private simpleFactory: MagentoSimpleProductFactory,
   ) {}
 
-  uid = faker.datatype.uuid();
-  label = faker.random.word();
-  quantity = faker.datatype.number({ min: 1, max: 20 });
+  uid = faker.string.uuid();
+  label = faker.lorem.word();
+  quantity = faker.number.int({ min: 1, max: 20 });
   is_default = faker.datatype.boolean();
-  position = faker.datatype.number({ min: 1, max: 10 });
+  position = faker.number.int({ min: 1, max: 10 });
   product = this.createProduct();
 
   protected createProduct(): MagentoSimpleProduct {

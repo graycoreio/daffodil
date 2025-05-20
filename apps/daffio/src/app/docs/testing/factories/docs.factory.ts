@@ -9,7 +9,7 @@ import {
 } from '@daffodil/docs-utils';
 
 export class MockDoc implements DaffDoc {
-  id = String(faker.datatype.number(1000));
+  id = String(faker.number.int(1000));
   kind = sample(Object.values(DaffDocKind));
   title = faker.lorem.words();
   contents = faker.lorem.paragraph();
@@ -18,8 +18,8 @@ export class MockDoc implements DaffDoc {
   tableOfContents = [
     {
       content: faker.lorem.paragraph(),
-      lvl: faker.datatype.number(),
-      slug: faker.random.alphaNumeric(),
+      lvl: faker.number.int(),
+      slug: faker.string.alphanumeric(),
     },
   ];
 };

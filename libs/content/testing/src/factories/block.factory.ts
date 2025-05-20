@@ -5,9 +5,9 @@ import { DaffContentBlock } from '@daffodil/content';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockContentBlock implements DaffContentBlock {
-  id = faker.datatype.uuid();
-  title = faker.random.word();
-  content = faker.random.words(5);
+  id = faker.string.uuid();
+  title = faker.lorem.word();
+  content = faker.lorem.words(5);
 };
 
 

@@ -34,7 +34,7 @@ export class MockOrderCollection implements DaffOrderCollection {
   }
 
   private createOrders(): Record<DaffOrder['id'], DaffOrder> {
-    return daffIdentifiableArrayToDict(this.orderFactory.createMany(faker.datatype.number({ min: 3, max: 15 })));
+    return daffIdentifiableArrayToDict(this.orderFactory.createMany(faker.number.int({ min: 3, max: 15 })));
   }
 }
 

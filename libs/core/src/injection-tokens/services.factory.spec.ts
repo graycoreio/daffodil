@@ -38,7 +38,7 @@ describe('@daffodil/core | createServicesInjectionToken', () => {
   let result: DaffServicesInjectionToken<TestType>;
 
   beforeEach(() => {
-    name = faker.random.word();
+    name = faker.lorem.word();
     values = [
       Test1,
       Test2,
@@ -66,7 +66,7 @@ describe('@daffodil/core | createServicesInjectionToken | Integration', () => {
   let result: DaffServicesInjectionToken<TestType>;
 
   beforeEach(() => {
-    name = faker.random.word();
+    name = faker.lorem.word();
     values = [
       Test1,
       Test2,

@@ -11,9 +11,9 @@ import { MagentoProductReviewRatingFactory } from './product-review-rating.facto
 
 export class MockMagentoProductReview implements MagentoProductReview {
   __typename = <const>'ProductReview';
-  summary = faker.random.words(5);
-  text = faker.random.words(15);
-  average_rating = faker.datatype.number({ min: 0, max: 100 });
+  summary = faker.lorem.words(5);
+  text = faker.lorem.words(15);
+  average_rating = faker.number.int({ min: 0, max: 100 });
   created_at = faker.date.past().toISOString();
   nickname = faker.name.firstName();
   ratings_breakdown = this.createRatings();
@@ -23,7 +23,7 @@ export class MockMagentoProductReview implements MagentoProductReview {
   ) {}
 
   private createRatings(): MagentoProductReviewRating[] {
-    return this.ratingFactory.createMany(faker.datatype.number({ min: 3, max: 5 }));
+    return this.ratingFactory.createMany(faker.number.int({ min: 3, max: 5 }));
   }
 }
 

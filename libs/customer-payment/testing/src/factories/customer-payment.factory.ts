@@ -10,10 +10,10 @@ import { MockPaymentResponse } from '@daffodil/payment/testing';
  * Mock class for {@link DaffCustomerPayment}.
  */
 export class MockDaffCustomerPayment extends MockPaymentResponse implements DaffCustomerPayment {
-  id = faker.datatype.uuid();
+  id = faker.string.uuid();
   address = this.addressFactory.create();
   default = faker.datatype.boolean();
-  nickname = faker.random.word();
+  nickname = faker.lorem.word();
   createdAt = faker.date.recent().toISOString();
   owner = faker.name.fullName();
 

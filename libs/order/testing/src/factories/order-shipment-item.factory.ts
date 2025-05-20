@@ -8,7 +8,7 @@ import { DaffOrderItemFactory } from './order-item.factory';
 
 export class MockOrderShipmentItem implements DaffOrderShipmentItem {
   item = this.itemFactory.create();
-  qty = faker.datatype.number({ min: 1, max: 100 });
+  qty = faker.number.int({ min: 1, max: 100 });
 
   constructor(
     private itemFactory: DaffOrderItemFactory,

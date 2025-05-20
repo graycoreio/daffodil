@@ -14,11 +14,11 @@ import { DaffOrderShipmentTrackingFactory } from './order-shipment-tracking.fact
 export class MockOrderShipment implements DaffOrderShipment {
   tracking = this.createTracking();
   items = this.createItems();
-  carrier = faker.random.word();
-  carrier_title = faker.random.word();
-  code = faker.random.word();
-  method = faker.random.word();
-  method_description = faker.random.word();
+  carrier = faker.lorem.word();
+  carrier_title = faker.lorem.word();
+  code = faker.lorem.word();
+  method = faker.lorem.word();
+  method_description = faker.lorem.word();
 
   constructor(
     private trackingFactory: DaffOrderShipmentTrackingFactory,
@@ -26,11 +26,11 @@ export class MockOrderShipment implements DaffOrderShipment {
   ) {}
 
   private createTracking(): DaffOrderShipmentTracking[] {
-    return this.trackingFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
+    return this.trackingFactory.createMany(faker.number.int({ min: 1, max: 3 }));
   }
 
   private createItems(): DaffOrderShipmentItem[] {
-    return this.itemFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
+    return this.itemFactory.createMany(faker.number.int({ min: 1, max: 3 }));
   }
 };
 

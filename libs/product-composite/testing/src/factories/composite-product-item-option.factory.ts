@@ -12,7 +12,7 @@ import { DaffCompositeProductItemOption } from '@daffodil/product-composite';
  * Mocked DaffCompositeProductItemOption object.
  */
 export class MockCompositeProductItemOption extends MockProduct implements DaffCompositeProductItemOption {
-  quantity = faker.datatype.number({ min: 1, max: 9 });
+  quantity = faker.number.int({ min: 1, max: 9 });
   is_default = faker.datatype.boolean();
 }
 

@@ -6,17 +6,17 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 class MockMagentoCategory implements MagentoCategory {
   __typename = 'CategoryTree';
-  uid = faker.random.alphaNumeric(10);
-  url_path = faker.random.word();
+  uid = faker.string.alphanumeric(10);
+  url_path = faker.lorem.word();
   url_suffix = '.html';
   canonical_url = faker.internet.url();
-  name? = faker.random.word();
-  description? = faker.random.words(40);
-  meta_title? = faker.random.words(2);
-  meta_description? = faker.random.words(40);
+  name? = faker.lorem.word();
+  description? = faker.lorem.words(40);
+  meta_title? = faker.lorem.words(2);
+  meta_description? = faker.lorem.words(40);
   breadcrumbs? =  [];
-  level? =  faker.datatype.number(15);
-  children_count? = faker.datatype.number(15);
+  level? =  faker.number.int(15);
+  children_count? = faker.number.int(15);
   products? =  { items: []};
   children?: MagentoCategory[] = [];
 }

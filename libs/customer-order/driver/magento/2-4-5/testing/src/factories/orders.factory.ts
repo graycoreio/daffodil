@@ -22,7 +22,7 @@ export class MockMagentoCustomerOrders implements MagentoCustomerOrders {
   ) {}
 
   private createReviews(): MagentoCustomerOrder[] {
-    return this.orderFactory.createMany(faker.datatype.number({ min: 3, max: 5 }));
+    return this.orderFactory.createMany(faker.number.int({ min: 3, max: 5 }));
   }
 
   private createPageInfo(): MagentoSearchResultPageInfo {

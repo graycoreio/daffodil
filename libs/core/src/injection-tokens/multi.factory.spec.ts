@@ -12,10 +12,10 @@ describe('@daffodil/core | createMultiInjectionToken', () => {
   let result: DaffMultiInjectionToken<number>;
 
   beforeEach(() => {
-    name = faker.random.word();
+    name = faker.lorem.word();
     values = [
-      faker.datatype.number(),
-      faker.datatype.number(),
+      faker.number.int(),
+      faker.number.int(),
     ];
     result = createMultiInjectionToken(name);
   });
@@ -40,10 +40,10 @@ describe('@daffodil/core | createMultiInjectionToken | Integration', () => {
   let result: DaffMultiInjectionToken<number>;
 
   beforeEach(() => {
-    name = faker.random.word();
+    name = faker.lorem.word();
     values = [
-      faker.datatype.number(),
-      faker.datatype.number(),
+      faker.number.int(),
+      faker.number.int(),
     ];
 
     result = createMultiInjectionToken(name);

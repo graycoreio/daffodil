@@ -7,8 +7,8 @@ import { MagentoOrderBundleItemSelectedOption } from '@daffodil/order/driver/mag
 import { MagentoOrderBundleItemSelectedOptionValueFactory } from './bundle-order-item-option-value.factory';
 
 export class MockMagentoOrderBundleItemSelectedOption implements MagentoOrderBundleItemSelectedOption {
-  label = faker.random.word();
-  values = this.valueFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
+  label = faker.lorem.word();
+  values = this.valueFactory.createMany(faker.number.int({ min: 1, max: 5 }));
 
   constructor(
     private valueFactory: MagentoOrderBundleItemSelectedOptionValueFactory,

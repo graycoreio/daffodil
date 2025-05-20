@@ -22,7 +22,7 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService, DaffIn
   customers: Record<DaffInMemoryDbCustomer['email'], DaffInMemoryDbCustomer> = {};
 
   private generateToken(): string {
-    return faker.random.alphaNumeric(16);
+    return faker.string.alphanumeric(16);
   }
 
   createDb() {

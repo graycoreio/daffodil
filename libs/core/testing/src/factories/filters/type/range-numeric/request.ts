@@ -13,7 +13,7 @@ import { DaffModelFactory } from '../../../factory';
 
 export class MockDaffFilterRangeNumericRequest implements DaffFilterRangeNumericRequest {
   type: DaffFilterType.RangeNumeric = DaffFilterType.RangeNumeric;
-  name = faker.random.word();
+  name = faker.lorem.word();
   value: DaffFilterRangeRequestOption<number>;
 }
 

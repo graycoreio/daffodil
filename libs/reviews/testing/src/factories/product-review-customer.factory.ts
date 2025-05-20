@@ -8,7 +8,7 @@ import { DaffProductReviewCustomer } from '@daffodil/reviews';
  * Mocked {@link DaffProductReviewCustomer} object.
  */
 export class MockProductReviewCustomer implements DaffProductReviewCustomer {
-  name = faker.random.word();
+  name = faker.lorem.word();
 }
 
 /**

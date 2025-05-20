@@ -6,7 +6,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockAccountRegistration implements DaffAccountRegistration {
   email = faker.internet.email();
-  password = faker.random.alphaNumeric(16);
+  password = faker.string.alphanumeric(16);
   subscribe = faker.datatype.boolean();
   firstName = faker.name.firstName();
   lastName = faker.name.lastName();

@@ -37,7 +37,7 @@ export class DaffFilterFactory extends DaffModelFactory<DaffFilter>{
         factory = this.rangeFactory;
         break;
       default:
-        factory = faker.datatype.number({ min: 1, max: 2 }) === 2
+        factory = faker.number.int({ min: 1, max: 2 }) === 2
           ? this.equalFactory
           : this.rangeFactory;
         break;

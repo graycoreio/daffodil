@@ -14,10 +14,10 @@ import { DaffFilterRequestFactory } from '../filters/public_api';
  * Mocked {@link DaffCollectionRequest} object.
  */
 export class MockCollectionRequest implements DaffCollectionRequest {
-  currentPage = faker.datatype.number({ min: 1, max: 100 });
+  currentPage = faker.number.int({ min: 1, max: 100 });
   appliedSortDirection = faker.helpers.arrayElement([DaffSortDirectionEnum.Ascending, DaffSortDirectionEnum.Descending]);
-  pageSize = faker.datatype.number({ min: 1, max: 100 });
-  appliedSortOption = faker.random.word();
+  pageSize = faker.number.int({ min: 1, max: 100 });
+  appliedSortOption = faker.lorem.word();
   filterRequests = this.createFilterRequests();
 
   constructor(
@@ -25,7 +25,7 @@ export class MockCollectionRequest implements DaffCollectionRequest {
   ) {}
 
   private createFilterRequests(): DaffFilterRequest[] {
-    return this.filterRequestFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
+    return this.filterRequestFactory.createMany(faker.number.int({ min: 1, max: 5 }));
   }
 }
 

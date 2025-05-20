@@ -15,20 +15,20 @@ import {
 
 export class MockOrderItem implements MagentoOrderItem {
   __typename = MagentoOrderItemTypenames.OrderItem;
-  quantity_canceled = faker.datatype.number({ min: 1, max: 1000 });
-  quantity_invoiced = faker.datatype.number({ min: 1, max: 1000 });
-  quantity_ordered = faker.datatype.number({ min: 1, max: 1000 });
-  quantity_refunded = faker.datatype.number({ min: 1, max: 1000 });
-  quantity_returned = faker.datatype.number({ min: 1, max: 1000 });
-  quantity_shipped = faker.datatype.number({ min: 1, max: 1000 });
-  product_sku = faker.random.alphaNumeric(20);
+  quantity_canceled = faker.number.int({ min: 1, max: 1000 });
+  quantity_invoiced = faker.number.int({ min: 1, max: 1000 });
+  quantity_ordered = faker.number.int({ min: 1, max: 1000 });
+  quantity_refunded = faker.number.int({ min: 1, max: 1000 });
+  quantity_returned = faker.number.int({ min: 1, max: 1000 });
+  quantity_shipped = faker.number.int({ min: 1, max: 1000 });
+  product_sku = faker.string.alphanumeric(20);
   product_type = MagentoOrderItemType.Simple;
   selected_options = [];
   entered_options = [];
-  status = faker.random.word();
+  status = faker.lorem.word();
   product_sale_price = this.moneyFactory.create();
-  product_name = faker.random.word();
-  product_url_key = faker.random.word();
+  product_name = faker.lorem.word();
+  product_url_key = faker.lorem.word();
   discounts = this.createDiscounts();
 
   constructor(
@@ -37,7 +37,7 @@ export class MockOrderItem implements MagentoOrderItem {
   ) {}
 
   private createDiscounts(): MagentoDiscount[] {
-    return this.discountFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
+    return this.discountFactory.createMany(faker.number.int({ min: 1, max: 3 }));
   }
 }
 

@@ -15,12 +15,12 @@ import { DaffReviewRatingFactory } from './rating.factory';
  * Mocked {@link DaffProductReview} object.
  */
 export class MockProductReview implements DaffProductReview {
-  overallRating = faker.datatype.number({ min: 1, max: 100 });
-  id = faker.datatype.uuid();
-  productId = faker.datatype.uuid();
-  createdAt = faker.date.past(10).toISOString();
-  title = faker.random.word();
-  body = faker.random.words(10);
+  overallRating = faker.number.int({ min: 1, max: 100 });
+  id = faker.string.uuid();
+  productId = faker.string.uuid();
+  createdAt = faker.date.past({ years: 10 }).toISOString();
+  title = faker.lorem.word();
+  body = faker.lorem.words(10);
 
   ratings = this.createRatings();
   customer = this.createCustomer();
@@ -31,7 +31,7 @@ export class MockProductReview implements DaffProductReview {
   ) {}
 
   private createRatings(): DaffReviewRating[] {
-    return this.ratingFactory.createMany(faker.datatype.number({ min: 3, max: 5 }));
+    return this.ratingFactory.createMany(faker.number.int({ min: 3, max: 5 }));
   }
 
   private createCustomer(): DaffProductReviewCustomer {

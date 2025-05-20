@@ -50,7 +50,7 @@ implements DaffExternalRouterDriverInterface {
 
     if((typeof this.testingConfiguration[truncatedUrl]) === 'string') {
       return of({
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         url: truncatedUrl,
         type: <string>this.testingConfiguration[truncatedUrl],
         code: 200,

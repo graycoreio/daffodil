@@ -6,8 +6,8 @@ import { MockMagentoCoreProduct } from '@daffodil/product/driver/magento/testing
 import { MagentoReviewedProduct } from '@daffodil/reviews/driver/magento';
 
 export class MockMagentoReviewedProduct extends MockMagentoCoreProduct implements MagentoReviewedProduct {
-  review_count = faker.datatype.number({ min: 0, max: 100 });
-  rating_summary = faker.datatype.number({ min: 0, max: 100 });
+  review_count = faker.number.int({ min: 0, max: 100 });
+  rating_summary = faker.number.int({ min: 0, max: 100 });
 }
 
 @Injectable({

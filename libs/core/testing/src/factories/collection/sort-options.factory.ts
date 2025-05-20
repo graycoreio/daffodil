@@ -18,7 +18,7 @@ class MockDaffSortOptions implements DaffSortOptions {
   ) {}
 
   private createOptions(): DaffSortOption[] {
-    return this.optionFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
+    return this.optionFactory.createMany(faker.number.int({ min: 1, max: 5 }));
   }
 }
 

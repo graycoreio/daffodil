@@ -9,9 +9,9 @@ import {
 } from '@daffodil/driver/shopify';
 
 class MockShopifyProductImageNode implements ShopifyImageNode {
-  id = shopifyIdTransformer(`${faker.datatype.number({ min: 10000000000 })}`, 'ProductImage');
-  url = faker.image.imageUrl();
-  altText = faker.random.words(5);
+  id = shopifyIdTransformer(`${faker.number.int({ min: 10000000000 })}`, 'ProductImage');
+  url = faker.image.url();
+  altText = faker.lorem.words(5);
 }
 
 @Injectable({

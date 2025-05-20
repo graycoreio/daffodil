@@ -22,7 +22,7 @@ class MockMagentoCustomer implements MagentoCustomer {
   ) {}
 
   private createAddresses(): MagentoCustomerAddress[] {
-    return this.addressFactory.createMany(faker.datatype.number({ min: 3, max: 5 }));
+    return this.addressFactory.createMany(faker.number.int({ min: 3, max: 5 }));
   }
 }
 

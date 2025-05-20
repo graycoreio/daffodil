@@ -17,21 +17,21 @@ import { DaffOrderShipmentFactory } from './order-shipment.factory';
 import { DaffOrderTotalFactory } from './order-total.factory';
 
 export class MockOrder implements DaffOrder {
-  id = faker.datatype.uuid();
-  customer_id = faker.datatype.uuid();
+  id = faker.string.uuid();
+  customer_id = faker.string.uuid();
   email = faker.internet.email();
   created_at = faker.date.past().toString();
   updated_at = faker.date.past().toString();
-  status = faker.random.word();
+  status = faker.lorem.word();
   totals = this.createTotals();
-  applied_codes = this.couponFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
-  items = this.itemFactory.createMany(faker.datatype.number({ min: 1, max: 5 }));
-  billing_addresses = this.addressFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
-  shipping_addresses = this.addressFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
-  shipments = this.shipmentFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
+  applied_codes = this.couponFactory.createMany(faker.number.int({ min: 1, max: 3 }));
+  items = this.itemFactory.createMany(faker.number.int({ min: 1, max: 5 }));
+  billing_addresses = this.addressFactory.createMany(faker.number.int({ min: 1, max: 3 }));
+  shipping_addresses = this.addressFactory.createMany(faker.number.int({ min: 1, max: 3 }));
+  shipments = this.shipmentFactory.createMany(faker.number.int({ min: 1, max: 3 }));
   payment = this.paymentFactory.create();
-  invoices = this.invoiceFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
-  credits = this.invoiceFactory.createMany(faker.datatype.number({ min: 1, max: 3 }));
+  invoices = this.invoiceFactory.createMany(faker.number.int({ min: 1, max: 3 }));
+  credits = this.invoiceFactory.createMany(faker.number.int({ min: 1, max: 3 }));
 
   constructor(
     private totalFactory: DaffOrderTotalFactory,

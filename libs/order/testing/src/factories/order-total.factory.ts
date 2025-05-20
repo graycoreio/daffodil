@@ -5,10 +5,10 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffOrderTotal } from '@daffodil/order';
 
 export class MockOrderTotal implements DaffOrderTotal {
-  label = faker.random.word();
-  value = faker.datatype.number({ min: 1, max: 100 });
-  sort_order = faker.datatype.number({ min: 1, max: 100 });
-  type = faker.datatype.uuid();
+  label = faker.lorem.word();
+  value = faker.number.int({ min: 1, max: 100 });
+  sort_order = faker.number.int({ min: 1, max: 100 });
+  type = faker.string.uuid();
 };
 
 @Injectable({

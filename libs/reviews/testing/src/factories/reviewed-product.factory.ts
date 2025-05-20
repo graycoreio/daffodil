@@ -13,8 +13,8 @@ import { DaffReviewedProduct } from '@daffodil/reviews';
  * Mocked {@link DaffReviewedProduct} object.
  */
 export class MockReviewedProduct extends MockProduct implements DaffReviewedProduct {
-  aggregateReview = faker.datatype.number({ min: 1, max: 100 });
-  reviewCount = faker.datatype.number({ min: 1, max: 100 });
+  aggregateReview = faker.number.int({ min: 1, max: 100 });
+  reviewCount = faker.number.int({ min: 1, max: 100 });
 }
 
 /**

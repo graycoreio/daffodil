@@ -5,9 +5,9 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffSubdivision } from '@daffodil/geography';
 
 export class MockSubdivision implements DaffSubdivision {
-  id = faker.datatype.uuid();
-  name = faker.random.word();
-  iso_3166_2 = faker.random.alphaNumeric(2);
+  id = faker.string.uuid();
+  name = faker.lorem.word();
+  iso_3166_2 = faker.string.alphanumeric(2);
 }
 
 @Injectable({

@@ -10,8 +10,8 @@ import { DaffModelFactory } from '../../../factory';
 
 export class MockDaffFilterToggleEqualRequest implements DaffFilterEqualToggleRequest {
   type: DaffFilterType.Equal = DaffFilterType.Equal;
-  name = faker.random.word();
-  value = faker.datatype.uuid();
+  name = faker.lorem.word();
+  value = faker.string.uuid();
 }
 
 /**

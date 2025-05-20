@@ -112,8 +112,8 @@ const productImageUrlsList: string[] = [
  * Mocked DaffProductImage object.
  */
 export class MockProductImage implements DaffProductImage {
-  id = faker.datatype.uuid();
-  url = productImageUrlsList[faker.datatype.number(productImageUrlsList.length-1)];
+  id = faker.string.uuid();
+  url = productImageUrlsList[faker.number.int(productImageUrlsList.length-1)];
   label = faker.lorem.sentence();
 }
 

@@ -5,8 +5,8 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffPaypalExpressPaymentData } from '@daffodil/paypal';
 
 export class MockDaffPaypalExpressPaymentData implements DaffPaypalExpressPaymentData {
-  token = faker.random.word();
-  payerId = faker.datatype.uuid();
+  token = faker.lorem.word();
+  payerId = faker.string.uuid();
 }
 
 @Injectable({

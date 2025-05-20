@@ -13,7 +13,7 @@ import { DaffCompositeProductItemOptionFactory } from './composite-product-item-
  * Mocked DaffCompositeProductItem object.
  */
 export class MockCompositeProductItem implements DaffCompositeProductItem {
-  id = faker.datatype.uuid();
+  id = faker.string.uuid();
   url = `/${faker.internet.domainWord()}.html`;
   required = faker.datatype.boolean();
   title = faker.commerce.productName();

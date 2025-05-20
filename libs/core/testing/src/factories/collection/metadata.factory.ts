@@ -38,8 +38,8 @@ export class MockCollectionMetadata implements DaffCollectionMetadata {
     const _pageInfo = pageInfoFactory.create();
     const _sortFields = sortFieldsFactory.create();
 
-    this.count = faker.datatype.number({ min: 1, max: 1000 });
-    this.ids = new Array(this.count).fill(null).map<string>(() => faker.datatype.uuid());
+    this.count = faker.number.int({ min: 1, max: 1000 });
+    this.ids = new Array(this.count).fill(null).map<string>(() => faker.string.uuid());
 
     this.currentPage = _pageInfo.currentPage;
     this.totalPages = _pageInfo.totalPages;
@@ -48,7 +48,7 @@ export class MockCollectionMetadata implements DaffCollectionMetadata {
     this.appliedSortDirection = _sortFields.appliedSortDirection;
     this.appliedSortOption = _sortFields.appliedSortOption;
     this.sortOptions = _sortFields.sortOptions;
-    this.filters = daffFilterArrayToDict(filterFactory.createMany(faker.datatype.number({ min: 1, max: 5 })));
+    this.filters = daffFilterArrayToDict(filterFactory.createMany(faker.number.int({ min: 1, max: 5 })));
   }
 }
 

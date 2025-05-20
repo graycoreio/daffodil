@@ -13,7 +13,7 @@ import {
 } from '@daffodil/core/testing';
 
 export class MockCategoryPageMetadata extends MockCollectionMetadata implements DaffCategoryPageMetadata {
-  id = faker.datatype.uuid();
+  id = faker.string.uuid();
 }
 
 /**

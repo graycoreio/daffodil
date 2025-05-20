@@ -12,7 +12,7 @@ import { DaffModelFactory } from '../../../factory';
 
 export class MockDaffFilterToggleRangeNumericRequest implements DaffFilterRangeNumericToggleRequest {
   type: DaffFilterType.RangeNumeric = DaffFilterType.RangeNumeric;
-  name = faker.random.word();
+  name = faker.lorem.word();
   value: DaffFilterRangeRequestOption<number>;
 }
 

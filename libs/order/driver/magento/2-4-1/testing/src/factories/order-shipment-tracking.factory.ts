@@ -6,9 +6,9 @@ import { MagentoOrderShipmentTracking } from '@daffodil/order/driver/magento/2-4
 
 export class MockOrderShipmentTracking implements MagentoOrderShipmentTracking {
   __typename = <const>'ShipmentTracking';
-  number = faker.random.alphaNumeric(16);
-  carrier = faker.random.word();
-  title = faker.random.word();
+  number = faker.string.alphanumeric(16);
+  carrier = faker.lorem.word();
+  title = faker.lorem.word();
 };
 
 @Injectable({

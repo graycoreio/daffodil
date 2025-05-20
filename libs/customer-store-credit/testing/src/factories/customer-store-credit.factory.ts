@@ -8,7 +8,7 @@ import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
  * Mock class for {@link DaffCustomerStoreCredit}.
  */
 export class MockDaffCustomerStoreCredit implements DaffCustomerStoreCredit {
-  balance = faker.datatype.number({ min: 0, max: 1000 });
+  balance = faker.number.int({ min: 0, max: 1000 });
 };
 
 /**

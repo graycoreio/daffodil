@@ -22,7 +22,7 @@ export class MockMagentoProductReviews implements MagentoProductReviews {
   ) {}
 
   private createReviews(): MagentoProductReview[] {
-    return this.reviewFactory.createMany(faker.datatype.number({ min: 3, max: 5 }));
+    return this.reviewFactory.createMany(faker.number.int({ min: 3, max: 5 }));
   }
 
   private createPageInfo(): MagentoSearchResultPageInfo {
