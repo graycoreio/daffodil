@@ -1,27 +1,31 @@
 <button #field class="daff-select__field"
+  type="button"
+  role="combobox"
+  aria-haspopup="listbox"
   (click)="toggle($event)"
+  (focus)="focus()"
+  (blur)="blur()"
   [disabled]="disabled"
-  [tabindex]="tabIndex"
   [attr.aria-expanded]="isOpen"
+  [attr.aria-controls]="optionsId"
   (keydown.arrowdown)="selectNext($event)"
   (keydown.arrowup)="selectPrevious($event)"
   (keydown.alt.arrowup)="open()"
   (keydown.alt.arrowdown)="open()"
   (keydown.enter)="toggle($event)"
   (keydown.space)="toggle($event)">
-  <ng-container *ngIf="!value">
-    <ng-content select="label[daffFormLabel]"></ng-content>
-  </ng-container>
-  <div *ngIf="value">
+  @if (value) {
     <ng-container
       [ngTemplateOutlet]="optionTemplate?.templateRef"
       [ngTemplateOutletContext]="{option: value}"><div></div>
     </ng-container>
-  </div>
+  }
 </button>
 <ng-template cdkPortal #optionsTemplate="cdkPortal">
   <div class="daff-select__options" #optionsEl
+    [id]="optionsId"
     tabindex="0"
+    role="listbox"
     [@openSelect]="animationState"
     (@openSelect.done)="animationFinished()"
     (keydown.enter)="selectHighlighted($event)"
@@ -45,4 +49,3 @@
     </div>
   </div>
 </ng-template>
-<ng-content select="daff-error-message"></ng-content>

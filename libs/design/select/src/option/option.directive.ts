@@ -9,7 +9,6 @@ import {
  */
 @Directive({
   selector: '[daffSelectOption]',
-  standalone: true,
 })
 export class DaffSelectOptionDirective {
   constructor(@Optional() public templateRef?: TemplateRef<unknown>) {}

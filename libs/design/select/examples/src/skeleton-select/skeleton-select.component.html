@@ -1,5 +1,7 @@
-<daff-select [options]="options" [formControl]="control" [skeleton]="true">
+<daff-form-field [skeleton]="true">
   <label daffFormLabel>Select an address</label>
-  <ng-template daffSelectOption let-option="option">
-  </ng-template>
-</daff-select>
+  <daff-select [options]="options" [formControl]="control">
+    <ng-template daffSelectOption let-option="option">
+    </ng-template>
+  </daff-select>
+</daff-form-field>

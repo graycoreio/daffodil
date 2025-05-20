@@ -2,10 +2,11 @@
 @use '../../scss/theming';
 @use '../../scss/core';
 
+// stylelint-disable selector-class-pattern
 @mixin daff-select-theme($theme) {
-	$base: core.daff-map-deep-get($theme, 'core.base');
-	$base-contrast: core.daff-map-deep-get($theme, 'core.base-contrast');
-	$neutral: core.daff-map-deep-get($theme, 'core.neutral');
+	$base: core.daff-map-get($theme, 'core', 'base');
+	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
+	$neutral: core.daff-map-get($theme, 'core', 'neutral');
 
 	$border-color: theming.daff-illuminate($base, $neutral, 3);
 
@@ -19,12 +20,10 @@
 		}
 
 		&__field {
-			background-color: $base;
-			border: 1px solid $border-color;
 			color: $base-contrast;
 
-			&:after {
-				border-color: currentColor;
+			&::after {
+				border-color: theming.daff-color($neutral);
 			}
 		}
 
@@ -34,6 +33,10 @@
 			border-left: 1px solid $border-color;
 			border-right: 1px solid $border-color;
 			color: $base-contrast;
+
+			&:first-of-type {
+				border-top: 1px solid $border-color;
+			}
 
 			&:hover,
 			&.highlighted {

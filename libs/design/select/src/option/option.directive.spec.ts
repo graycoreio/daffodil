@@ -19,6 +19,9 @@ import { DaffSelectOptionDirective } from './option.directive';
   template: `
     <div daffSelectOption>Content</div>
   `,
+  imports: [
+    DaffSelectOptionDirective,
+  ],
 })
 class WrapperComponent {}
 
@@ -29,13 +32,10 @@ describe('DaffSelectOptionDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffSelectOptionDirective,
-        WrapperComponent,
-      ],
       imports: [
         CommonModule,
         BrowserModule,
+        WrapperComponent,
       ],
     })
       .compileComponents();
