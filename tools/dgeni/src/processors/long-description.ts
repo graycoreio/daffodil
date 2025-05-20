@@ -18,7 +18,8 @@ export class LongDescriptionProcessor implements FilterableProcessor {
   $process(docs: Array<Document>): Array<Document> {
     return docs.map(doc => {
       if (this.docTypes.includes(doc.docType)) {
-        const match = doc.content.match(/# .*\n+(.*)\n*/);
+        const match = doc.content.match(/# .*\r?\n+(.*)\r?\n*/);
+        console.log(doc);
         doc.longDescription = match[1];
         doc.content = doc.content.replace(match[0], '');
       }
