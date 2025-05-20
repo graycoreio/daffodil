@@ -1,10 +1,4 @@
-<div
-	class="daff-form-field__control"
-	[class.daff-focused]="isFocused"
-	[class.daff-error]="isError"
-	[class.daff-valid]="isValid"
-	[class.daff-filled]="isFilled"
-	[class.daff-disabled]="isDisabled">
+<div class="daff-form-field__control">
 	@if (_prefix) {
 		<ng-content select="[daffPrefix]"></ng-content>
 	}
@@ -19,5 +13,5 @@
 		<ng-content select="[daffSuffix]"></ng-content>
 	}
 </div>
-<ng-content select="daff-error-message"></ng-content>
 <ng-content select="daff-hint"></ng-content>
+<ng-content select="daff-error-message"></ng-content>

@@ -11,36 +11,49 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-form-field {
-		&__control {
-			background: $base;
-
-			@include light($mode) {
+		@include light($mode) {
+			.daff-form-field__control {
 				border: 1px solid daff-color($neutral);
 				color: daff-color($neutral);
 			}
+		}
 
-			@include dark($mode) {
+		@include dark($mode) {
+			.daff-form-field__control {
 				border: 1px solid daff-color($neutral, 40);
 				color: daff-color($neutral, 40);
 			}
+		}
 
-			&.daff-focused {
+		&.daff-focused {
+			.daff-form-field__control {
 				border: 1px solid daff-color($primary);
-
-				.daff-form-label {
-					color: daff-color($primary);
-				}
 			}
+			.daff-form-label {
+				color: daff-color($primary);
+			}
+		}
 
-			&.daff-error {
+		&.daff-error {
+			.daff-form-field__control {
 				border: 1px solid daff-color($critical);
-
-				.daff-form-label {
-					color: daff-color($critical);
-				}
 			}
 
-			&.daff-valid {
+			.daff-form-label {
+				color: daff-color($critical);
+			}
+		}
+
+		&.daff-valid {
+			color: $base-contrast;
+		}
+
+		&__control {
+			background: $base;
+
+			input,
+			textarea,
+			select {
 				color: $base-contrast;
 			}
 		}

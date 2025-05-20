@@ -22,6 +22,10 @@ export abstract class DaffFormFieldControl<T> {
 
   abstract readonly focused: boolean;
 
+  get raised() {
+    return this.focused;
+  };
+
   abstract focus(event?: Event): void;
 
   abstract readonly value: T;

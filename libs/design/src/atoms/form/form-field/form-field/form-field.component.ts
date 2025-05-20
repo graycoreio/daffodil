@@ -11,6 +11,7 @@ import {
 
 import { DaffPrefixDirective } from '../../../../core/prefix-suffix/prefix.directive';
 import { DaffSuffixDirective } from '../../../../core/prefix-suffix/suffix.directive';
+import { DaffSkeletonableDirective } from '../../../../core/skeletonable/skeletonable.directive';
 import { DaffFormFieldControl } from '../form-field-control';
 import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
 
@@ -20,6 +21,12 @@ import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
   styleUrls: ['./form-field.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  hostDirectives: [
+    {
+      directive: DaffSkeletonableDirective,
+      inputs: ['skeleton'],
+    },
+  ],
 })
 export class DaffFormFieldComponent implements AfterContentInit, AfterContentChecked {
   /** @docs-private */
@@ -50,6 +57,13 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   isError = false;
 
   /**
+   * @docs-private
+   */
+  @HostBinding('class.daff-error') get errorClass() {
+    return this.isError;
+  }
+
+  /**
    * Tracking property to keep a record of whether or not the
    * form field contains any user input.
    */
@@ -58,10 +72,24 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   isDisabled = false;
 
   /**
+   * @docs-private
+   */
+  @HostBinding('class.daff-disabled') get disabledClass() {
+    return this.isDisabled;
+  }
+
+  /**
    * Tracking property to keep a record of whether or not the
    * form field should be marked as valid.
    */
   isValid = false;
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.daff-valid') get validClass() {
+    return this.isValid;
+  }
 
   constructor(private cd: ChangeDetectorRef) {}
 
@@ -70,6 +98,20 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    */
   get isFocused() {
     return this._control?.focused;
+  }
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.daff-focused') get focusedClass() {
+    return this.isFocused;
+  }
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.daff-raised') get raisedClass() {
+    return this._control?.raised || this.isFilled;
   }
 
   /**

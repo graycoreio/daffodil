@@ -1,0 +1,15 @@
+<daff-form-field>
+  <label daffFormLabel for="error-input">Password</label>
+  <input daff-input type="text" name="password" [formControl]="control" id="error-input"/>
+  <daff-hint [validated]="!(control.invalid) && control.dirty">
+    @if (!(control.invalid) && control.dirty) {
+      <fa-icon [icon]="faCheck" [fixedWidth]="true" size="xs"></fa-icon>
+    } @else {
+      <fa-icon [icon]="faXmark" [fixedWidth]="true" size="xs"></fa-icon>
+    }
+    Minimum of 8 characters.
+  </daff-hint>
+  @if (control.errors?.required && control.touched) {
+    <daff-error-message>Password is a required field.</daff-error-message>
+  }
+</daff-form-field>

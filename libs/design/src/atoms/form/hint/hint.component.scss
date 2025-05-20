@@ -1,6 +1,8 @@
 @use '../../../../scss/typography' as t;
 
 :host {
-	display: block;
+	display: flex;
+	gap: 0.25rem;
 	font-size: t.$small-font-size;
+	line-height: 1rem;
 }

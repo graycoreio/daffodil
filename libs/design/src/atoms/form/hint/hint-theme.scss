@@ -1,7 +1,9 @@
 @use '../../../../scss/theming' as *;
 
+// stylelint-disable selector-class-pattern
 @mixin daff-hint-theme($theme) {
 	$neutral: daff-get-palette($theme, neutral);
+	$success: daff-get-palette($theme, success);
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-hint {
@@ -11,6 +13,10 @@
 
 		@include dark($mode) {
 			color: daff-color($neutral, 30);
+		}
+
+		&.validated {
+			color: daff-color($success);
 		}
 	}
 }

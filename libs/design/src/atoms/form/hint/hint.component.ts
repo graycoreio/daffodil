@@ -2,6 +2,7 @@ import {
   Component,
   ChangeDetectionStrategy,
   HostBinding,
+  Input,
 } from '@angular/core';
 
 @Component({
@@ -16,4 +17,9 @@ export class DaffHintComponent {
    * @docs-private
    */
   @HostBinding('class.daff-hint') class = true;
+
+  /**
+   * Whether or not the hint has been validated
+   * */
+  @Input() @HostBinding('class.validated') validated = false;
 }
