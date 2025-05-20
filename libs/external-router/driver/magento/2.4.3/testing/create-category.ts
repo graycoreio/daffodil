@@ -8,7 +8,7 @@ import {
 export const createMagentoCategoryRoute = (partial: Partial<MagentoCategoryRoute> = {}): MagentoCategoryRoute =>  ({
   ...{
     redirect_code: 0,
-    relative_url: faker.datatype.string(16),
+    relative_url: faker.string.sample(16),
     type: MagentoUrlRewriteEntityTypeEnum.CATEGORY,
     products: {
       items: [],

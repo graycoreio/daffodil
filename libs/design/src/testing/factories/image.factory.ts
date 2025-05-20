@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import { Image } from '../../interfaces/image';
 
 export class MockImage implements Image {
-  label = faker.image.nature();
+  label = faker.image.urlLoremFlickr({ category: 'nature' }) ;
   url = faker.image.url();
 };
 

@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory, enforceUnique } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  enforceUnique,
+} from '@daffodil/core/testing';
 import { MagentoOrderAddress } from '@daffodil/order/driver/magento/2-4-1';
 
 export class MockOrderAddress implements MagentoOrderAddress {
