@@ -1,5 +1,36 @@
 # Changelog
 
+## [0.85.0](https://github.com/graycoreio/daffodil/compare/v0.84.0...v0.85.0) (2025-05-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **design:** `DaffInputComponent` has been moved to its own package and needs to be imported from `@daffodil/design/input`.
+* **design:** `DaffQuantityFieldComponent` has been moved to its own package and needs to be imported from `@daffodil/design/quantity-field`
+
+### Features
+
+* **daffio:** implement transfer state for asset fetching ([#3718](https://github.com/graycoreio/daffodil/issues/3718)) ([b6d9a81](https://github.com/graycoreio/daffodil/commit/b6d9a818c21b1969f1b315d7091c157a0e1a6ea1))
+* **daffio:** prerender docs and content routes ([#3720](https://github.com/graycoreio/daffodil/issues/3720)) ([1a6ca77](https://github.com/graycoreio/daffodil/commit/1a6ca779956a6058f5b649fc7d600656842f5b0c))
+* **design:** add `EcommerceDataLayerImpression` to the public api ([#3701](https://github.com/graycoreio/daffodil/issues/3701)) ([bb6cc22](https://github.com/graycoreio/daffodil/commit/bb6cc22c626d18c046da9e6fb4f065e8e0c9b689))
+* **design:** add specific theme retrieval functions for Daffodil ([#3707](https://github.com/graycoreio/daffodil/issues/3707)) ([1c6306b](https://github.com/graycoreio/daffodil/commit/1c6306be9e5652148102b79f072920f0c0082647))
+* **design:** convert `DaffQuantityFieldComponent` to standalone ([#3698](https://github.com/graycoreio/daffodil/issues/3698)) ([c800052](https://github.com/graycoreio/daffodil/commit/c800052b5494d81807bee4010c116ff5486dcdab))
+* **design:** delay `0.85.0` deprecations ([#3736](https://github.com/graycoreio/daffodil/issues/3736)) ([28933e4](https://github.com/graycoreio/daffodil/commit/28933e4d54ea7a70b89dad53d8cf25e27b161ee7))
+* **design:** rename `$type` param to `$mode` in `daff-configure-theme` ([#3708](https://github.com/graycoreio/daffodil/issues/3708)) ([38bd4b3](https://github.com/graycoreio/daffodil/commit/38bd4b38bf599a083218bcc87933973f28dac7f4))
+* **design:** shard `DaffInputComponent` ([#3703](https://github.com/graycoreio/daffodil/issues/3703)) ([dc4201e](https://github.com/graycoreio/daffodil/commit/dc4201e315bc89b8b1ba2e8e364f53d87ed8eeff))
+* **design:** shard `DaffQuantityFieldComponent` ([#3700](https://github.com/graycoreio/daffodil/issues/3700)) ([2abaddb](https://github.com/graycoreio/daffodil/commit/2abaddb20f048fb70174e707e5a812f420acc6d9))
+* **design:** update component themes to use new theming functions ([#3714](https://github.com/graycoreio/daffodil/issues/3714)) ([8b9225e](https://github.com/graycoreio/daffodil/commit/8b9225eba2f636a87cd8d165f891a2178f16ae02))
+* **design:** update form field UI to accommodate custom select component ([#3735](https://github.com/graycoreio/daffodil/issues/3735)) ([e91c518](https://github.com/graycoreio/daffodil/commit/e91c518c6f8e5ddade46b2be79d43225add144e7))
+* **dgeni:** implement canonical path for design API docs ([#3724](https://github.com/graycoreio/daffodil/issues/3724)) ([e5eb38f](https://github.com/graycoreio/daffodil/commit/e5eb38f881b2fbbd8d4b8bdb805929ec8235598f))
+* upgrade faker to v9 ([#3734](https://github.com/graycoreio/daffodil/issues/3734)) ([7954a52](https://github.com/graycoreio/daffodil/commit/7954a526600c303691a8e6ebd47ea6fcd1a53c0b))
+
+
+### Bug Fixes
+
+* **daffio:** prerender incompatible legacy redirects ([#3719](https://github.com/graycoreio/daffodil/issues/3719)) ([a653a10](https://github.com/graycoreio/daffodil/commit/a653a10d488dadb33e680fea9e94cfc09ed8a374))
+* **design:** fix media gallery a11y role ([#3702](https://github.com/graycoreio/daffodil/issues/3702)) ([3113992](https://github.com/graycoreio/daffodil/commit/3113992804e15d2ef682e73e0cae194b006fd50b))
+* **dgeni:** parent host directives not hoisted into child ([#3731](https://github.com/graycoreio/daffodil/issues/3731)) ([a5834eb](https://github.com/graycoreio/daffodil/commit/a5834ebca79d4c6bcc799ad658cfdd95374951b9))
+
 ## [0.84.0](https://github.com/graycoreio/daffodil/compare/v0.83.0...v0.84.0) (2025-05-12)
 
 
