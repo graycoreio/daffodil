@@ -4,7 +4,7 @@ export interface AddToCartProduct extends DataLayerProduct {
   quantity: number;
 }
 
-export interface EcommerceDataLayerAddToCart {
+export interface DaffEcommerceDataLayerAddToCart {
   event: 'addToCart';
   ecommerce: {
     add: {

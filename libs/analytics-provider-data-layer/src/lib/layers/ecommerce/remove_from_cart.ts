@@ -4,7 +4,7 @@ export interface RemoveFromCartProduct extends DataLayerProduct {
   quantity: number;
 }
 
-export interface EcommerceDataLayerRemoveFromCart {
+export interface DaffEcommerceDataLayerRemoveFromCart {
   event: 'removeFromCart';
   ecommerce: {
     remove: {

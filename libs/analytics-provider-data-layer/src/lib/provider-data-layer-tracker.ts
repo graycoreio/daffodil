@@ -13,15 +13,15 @@ import {
   observe,
 } from '@daffodil/core';
 
-import { DataLayerItem } from './data-layer';
+import { DaffDataLayerItem } from './data-layer';
 import { DaffAnalyticsDataLayer } from './data-layer.service';
 
-export type DataLayerTracker<T extends DaffAnalyticsEvent> = (
+export type DaffDataLayerTracker<T extends DaffAnalyticsEvent> = (
   action: T
-) => MaybeAsync<DataLayerItem>;
+) => MaybeAsync<DaffDataLayerItem>;
 
-export function provideDataLayerTracker<T extends DaffAnalyticsEvent>(
-  tracker: DataLayerTracker<T>,
+export function provideDaffDataLayerTracker<T extends DaffAnalyticsEvent>(
+  tracker: DaffDataLayerTracker<T>,
 ): FactoryProvider {
   return {
     provide: DaffAnalyticsServices,

@@ -13,8 +13,8 @@ import {
   DaffAnalyticsServices,
 } from '@daffodil/analytics';
 import {
-  DataLayerItem,
-  provideDataLayerTracker,
+  DaffDataLayerItem,
+  provideDaffDataLayerTracker,
 } from '@daffodil/analytics-provider-data-layer';
 
 @Injectable({ providedIn: 'root' })
@@ -63,14 +63,14 @@ describe('@daffodil/analytics-provider-data-layer | Provider Intergration', () =
   });
 
   it('should configure services correctly when the provideDataLayerTracker is provided', () => {
-    const myDataTracker: (action: Action) => DataLayerItem = (action: Action) => null;
+    const myDataTracker: (action: Action) => DaffDataLayerItem = (action: Action) => null;
 
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({}),
         EffectsModule.forRoot(),
         DaffAnalyticsModule.forRoot([
-          provideDataLayerTracker(myDataTracker),
+          provideDaffDataLayerTracker(myDataTracker),
         ]),
       ],
     });

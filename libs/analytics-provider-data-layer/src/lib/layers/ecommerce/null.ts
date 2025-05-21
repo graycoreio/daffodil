@@ -1,3 +1,3 @@
-export interface EcommerceDataLayerNull {
+export interface DaffEcommerceDataLayerNull {
   ecommerce: null;
 }

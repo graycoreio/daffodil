@@ -5,7 +5,7 @@ export interface ProductImpression extends DataLayerProduct{
   position: number;
 }
 
-export interface EcommerceDataLayerImpression {
+export interface DaffEcommerceDataLayerImpression {
   ecommerce: {
     impressions?: ProductImpression[];
   };

@@ -4,7 +4,7 @@ export interface ProductClickImpression extends DataLayerProduct {
   position: number;
 }
 
-export interface EcommerceDataLayerProductClick {
+export interface DaffEcommerceDataLayerProductClick {
   event: 'productClick';
   ecommerce: {
     click: {

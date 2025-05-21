@@ -1,12 +1,12 @@
 export { DaffAnalyticsDataLayer } from './lib/data-layer.service';
 export {
-  DataLayer,
-  DataLayerItem,
+  DaffDataLayer,
+  DaffDataLayerItem,
 } from './lib/data-layer';
-export { EcommerceDataLayer } from './lib/layers/ecommerce';
-export { VirtualPageViewDataLayer } from './lib/layers/pageview';
+export { DaffEcommerceDataLayer } from './lib/layers/ecommerce';
+export { DaffVirtualPageViewDataLayer } from './lib/layers/pageview';
 export {
-  provideDataLayerTracker,
-  DataLayerTracker,
+  provideDaffDataLayerTracker,
+  DaffDataLayerTracker,
 } from './lib/provider-data-layer-tracker';
-export { EcommerceDataLayerImpression } from './lib/layers/ecommerce/impression';
+export { DaffEcommerceDataLayerImpression } from './lib/layers/ecommerce/impression';

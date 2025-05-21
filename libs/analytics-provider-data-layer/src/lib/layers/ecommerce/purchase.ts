@@ -14,7 +14,7 @@ export interface PurchaseActionField {
   coupon: string;
 }
 
-export interface EcommerceDataLayerPurchase {
+export interface DaffEcommerceDataLayerPurchase {
   ecommerce: {
     purchase: {
       actionField: PurchaseActionField;

@@ -4,7 +4,7 @@ export interface CheckoutProduct extends DataLayerProduct {
   quantity: number;
 }
 
-export interface EcommerceDataLayerCheckoutStep {
+export interface DaffEcommerceDataLayerCheckoutStep {
   event: 'checkout';
   ecommerce: {
     checkout: {

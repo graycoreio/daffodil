@@ -5,11 +5,11 @@ import {
 } from '@angular/core';
 
 import {
-  DataLayer,
-  DataLayerItem,
+  DaffDataLayer,
+  DaffDataLayerItem,
 } from './data-layer';
 
-export type WindowWithDataLayer = Window & { dataLayer?: DataLayer };
+export type WindowWithDataLayer = Window & { dataLayer?: DaffDataLayer };
 
 /**
  * A server-side safe dataLayer object that will add elements to the data layer.
@@ -22,7 +22,7 @@ export class DaffAnalyticsDataLayer {
     this._window = this.document.defaultView;
   }
 
-  push(data: DataLayerItem) {
+  push(data: DaffDataLayerItem) {
     if(!data){
       return;
     }

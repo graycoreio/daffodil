@@ -1,4 +1,4 @@
-export interface VirtualPageViewDataLayer {
+export interface DaffVirtualPageViewDataLayer {
   event: string;
   page: {
     path: string;

@@ -1,11 +1,11 @@
-import { EcommerceDataLayer } from './layers/ecommerce';
-import { VirtualPageViewDataLayer } from './layers/pageview';
+import { DaffEcommerceDataLayer } from './layers/ecommerce';
+import { DaffVirtualPageViewDataLayer } from './layers/pageview';
 
-export type DataLayerItem = EcommerceDataLayer | VirtualPageViewDataLayer | null;
+export type DaffDataLayerItem = DaffEcommerceDataLayer | DaffVirtualPageViewDataLayer | null;
 
 /**
  * The data layer.
  *
  * @see https://developers.google.com/analytics/devguides/collection/ua/gtm/enhanced-ecommerce#data-layer
  */
-export type DataLayer = DataLayerItem[];
+export type DaffDataLayer = DaffDataLayerItem[];
