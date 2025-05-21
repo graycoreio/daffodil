@@ -136,7 +136,7 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - run: npx nx run ${{ matrix.package }}:test --parallel=1
+      - run: npx nx run-many -t test -p ${{ matrix.package }} --parallel=1
         name: Test ${{ matrix.package }}
 
   deploy_daffio:
