@@ -5,15 +5,8 @@ Please read the [contributing guidelines here](https://github.com/graycoreio/daf
 
 ## Building the Project
 ### Prerequisites
-* [Angular CLI](https://cli.angular.io/)
-* [Lerna](https://github.com/lerna/lerna)
 * [Node](https://nodejs.org)
 * [Git](https://git-scm.com/)
-
-### Installing Global Dependencies
-```bash
-npm install -g lerna @angular/cli
-```
 
 ## Creating Your Own Fork
 [Fork the Daffodil Repository](https://github.com/graycoreio/daffodil/fork)
@@ -35,21 +28,21 @@ npm install
 You can run a full build that builds all projects and libraries via:
 
 ```bash
-lerna run build
+npx nx run-many -t build
 ```
 
 ### Partial Build
 If you want to build a single project or library, you can run:
 
 ```bash
-lerna run build --scope="@daffodil/{library}"
-lerna run build --scope="@daffodil/{app}"
+npx nx run @daffodil/{library}:build
+npx nx run @daffodil/{app}:build
 ```
 
 For example,
 
 ```bash
-lerna run build --scope="@daffodil/core"
+npx nx run @daffodil/core:build
 ```
 
 ## Running unit tests
@@ -58,15 +51,15 @@ Much like builds, we utilize Lerna and the Angular CLI to run our tests.
 ### Full Test Suite
 To run the full suite
 
-```
-lerna run test
+```bash
+npx nx run-many test
 ```
 
 ### Partial Test Suite
 If you want to run a single project or library's test suite
-```
-ng test libName
-ng test appName
+```bash
+npx ng test libName
+npx ng test appName
 ```
 
 ## Reference

@@ -8,7 +8,7 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "serve": "ng s design-land & lerna run watch --scope='@daffodil/tools-dgeni'",
+    "serve": "ng s design-land & npx nx run @daffodil/tools-dgeni:watch",
     "lint": "cd ../.. && ng lint design-land",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test design-land --watch=false --browsers=ChromeHeadless"

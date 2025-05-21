@@ -5,11 +5,11 @@ Documentation for the `@daffodil` project is generated via [dgeni](https://githu
 ## Generating documentation
 
 ```bash
-lerna run build --scope="@daffodil/tools-dgeni"
+npx nx run @daffodil/tools-dgeni:build
 ```
 
 ## Autogenerating documentation while doing dev work
 
 ```bash
-lerna run watch --scope="@daffodil/tools-dgeni"
+npx nx run @daffodil/tools-dgeni:watch
 ```

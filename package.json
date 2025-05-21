@@ -5,7 +5,7 @@
   "scripts": {
     "release": "cd tools/release; gulp",
     "generate-packages": "cd tools/release; gulp generateReleasablePackages",
-    "publish": "lerna run publish",
+    "publish": "nx run-many -t publish",
     "magento:schema:generate": "NODE_TLS_REJECT_UNAUTHORIZED=0 apollo schema:download --skipSSLValidation --endpoint=https://magento2.test/graphql graphql-schema.json"
   },
   "private": true,
@@ -62,7 +62,6 @@
     "@angular/cli": "^19.2.12",
     "@angular/compiler-cli": "^19.2.11",
     "@angular/language-service": "^19.2.11",
-    "@dotenvx/dotenvx": "^1.40.0",
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/fragment-matcher": "^5.0.0",
     "@graphql-codegen/typescript-apollo-angular": "^4.0.0",
@@ -85,7 +84,6 @@
     "@typescript-eslint/utils": "^8.20.0",
     "dgeni": "^0.4.14",
     "dgeni-packages": "^0.28.4",
-    "dotenv": "^16.4.5",
     "enforce-unique": "^1.3.0",
     "esbuild": "^0.24.0",
     "eslint": "^8.57.0",
@@ -112,7 +110,6 @@
     "karma-coverage-istanbul-reporter": "^3.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.7.0",
-    "lerna": "^8.1.8",
     "markdown-toc": "^1.2.0",
     "marked": "^12.0.2",
     "marked-highlight": "^2.1.1",

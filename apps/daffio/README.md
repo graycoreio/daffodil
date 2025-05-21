@@ -1,13 +1,9 @@
 ## Daff.io
 
-### Prerequisites
-* [Lerna](https://lernajs.io/) - `npm install --g lerna`.
-* [Angular CLI](https://cli.angular.io/) - `npm install -g @angular/cli`
-
 ### Getting Started
 1. Create a `.env` in your working directory with the absolute path to your daffodil project root set to `DAFF_ROOT`, e.g `echo "DAFF_ROOT=/workspace/daffodil" >> .env`
-2. `lerna run build`
-3. `ng serve --project=daffio`
+2. `npx nx run @daffodil/daffio:build`
+3. `npx ng serve daffio`
 4. Navigate to `localhost:4200` in your browser of choice
 
 ### Project Overview

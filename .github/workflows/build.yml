@@ -7,7 +7,7 @@ on:
     tags: ["v*"]
   workflow_call:
     inputs:
-      ref: 
+      ref:
         required: true
         type: string
       cache-mode:
@@ -63,7 +63,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
-      
+
       - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
         with:
           cache-mode: ${{ inputs.cache-mode }}
@@ -71,7 +71,7 @@ jobs:
           read-write-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
           event-name: ${{ github.event_name }}
 
-      - run: npx lerna run build --concurrency=1
+      - run: npx nx run-many -t build --parallel=1
 
       - run: cd dist/apps/daffio && zip -r ../daffio.zip .
 
@@ -104,7 +104,7 @@ jobs:
         id: compute
         shell: bash
         run: |
-          packages=$(npx lerna ls --since=$NX_BASE --all --json | jq '[.[] | .name]' -c)
+          packages=$(npx nx show projects --affected --json)
           echo "packages=$packages" >> ${GITHUB_OUTPUT}
   test:
     name: Test
@@ -136,7 +136,7 @@ jobs:
           node-version: ${{ matrix.node }}
           use-stamp-cache: true
 
-      - run: npx lerna run test --scope="${{ matrix.package }}" --concurrency=1
+      - run: npx nx run ${{ matrix.package }}:test --parallel=1
         name: Test ${{ matrix.package }}
 
   deploy_daffio:
@@ -178,10 +178,10 @@ jobs:
         read-write-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
         event-name: ${{ github.event_name }}
 
-    - run: npx lerna run build
+    - run: npx nx run-many -t build
 
     - uses: graycoreio/github-actions/set-versions-from-root@main
 
-    - run: npx lerna run publish
+    - run: npx nx run-many -t publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
