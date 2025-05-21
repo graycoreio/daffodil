@@ -5,8 +5,6 @@ import type { ConstExportDoc } from 'dgeni-packages/typescript/api-doc-types/Con
 import type { FunctionExportDoc } from 'dgeni-packages/typescript/api-doc-types/FunctionExportDoc';
 import { MethodMemberDoc } from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
 import { PropertyMemberDoc } from 'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc';
-import { getDirectiveDecorator } from 'tools/dgeni/src/utils/get-directive-decorator';
-import { TypeFlags } from 'typescript';
 
 import {
   DaffApiConstant,
@@ -40,6 +38,7 @@ import {
 } from '../../../processors/markdown';
 import { createRef } from '../../../utils/create-ref';
 import { FilterableProcessor } from '../../../utils/filterable-processor.type';
+import { getDirectiveDecorator } from '../../../utils/get-directive-decorator';
 import { linkSymbols } from '../../../utils/link-symbols';
 import {
   serializeFactory,
@@ -47,6 +46,8 @@ import {
   SerializableDoc,
   Serializer,
 } from '../../../utils/serialize';
+import { inferMethodType } from '../../../utils/ts/infer-type/method';
+import { inferPropType } from '../../../utils/ts/infer-type/prop';
 
 export const ROLE_PROCESSOR_NAME = 'role';
 
@@ -276,17 +277,14 @@ export class RoleProcessor implements FilterableProcessor {
     doc.props = <any>doc.members
       ?.filter((member) => member instanceof PropertyMemberDoc)
       .map((prop) => {
-        const inferredType = prop.typeChecker.getTypeAtLocation(prop.declaration);
-        // eslint-disable-next-line no-bitwise
-        prop.type = inferredType.getFlags() & TypeFlags.Any ? prop.type : prop.typeChecker.typeToString(inferredType);
+        prop.type = inferPropType(prop);
         return prop;
       }) || [];
     doc.methods = <any>doc.members
       ?.filter((member) => member instanceof MethodMemberDoc)
       .map((method) => {
         if (!method.type) {
-          const ret = method.typeChecker.getReturnTypeOfSignature(<any>method);
-          method.type = method.typeChecker.typeToString(ret);
+          method.type = inferMethodType(method);
         }
         (<Map<string, Array<{
           name: string;
@@ -341,6 +339,8 @@ export class RoleProcessor implements FilterableProcessor {
           if (parentInput) {
             doc.inputs.push({
               ...parentInput,
+              default: (<any>parentInput).declaration?.initializer?.getText(),
+              type: inferPropType(parentInput),
               name: input.field,
               required: !parentInput.isOptional,
               inheritedFrom: hostDirective.directive,
@@ -352,6 +352,8 @@ export class RoleProcessor implements FilterableProcessor {
           if (parentOutput) {
             doc.outputs.push({
               ...parentOutput,
+              default: (<any>parentOutput).declaration?.initializer?.getText(),
+              type: inferPropType(parentOutput),
               name: output.field,
               required: !parentOutput.isOptional,
               inheritedFrom: hostDirective.directive,
