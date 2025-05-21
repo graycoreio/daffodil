@@ -25,6 +25,7 @@ import {
 import {
   DaffOpenable,
   DaffOpenableDirective,
+  DaffFocusStackService,
 } from '@daffodil/design';
 import { daffFocusableElementsSelector } from '@daffodil/design';
 
@@ -121,6 +122,7 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, Daff
     private _focusTrapFactory: ConfigurableFocusTrapFactory,
     private elementRef: ElementRef<HTMLElement>,
     private openDirective: DaffOpenableDirective,
+    private _focusStack: DaffFocusStackService,
   ) {
     this.openDirective.stateless = false;
   }
@@ -132,6 +134,7 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, Daff
     this._focusTrap = this._focusTrapFactory.create(
       this.elementRef.nativeElement,
     );
+    this._focusStack.push();
   }
 
   /**
@@ -187,6 +190,7 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, Daff
     this.animationCompleted.emit(e);
     if (e.toState === 'closed') {
       this.closedAnimationCompleted.emit(e);
+      this._focusStack.pop();
     }
   }
 
