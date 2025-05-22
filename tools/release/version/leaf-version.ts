@@ -4,7 +4,6 @@ import {
   src,
   dest,
 } from 'gulp';
-import git from 'simple-git';
 import * as through2 from 'through2';
 import * as util from 'util';
 
@@ -167,24 +166,10 @@ function transfomLeafPackage(lib: PackageJson, rootPackage: PackageJson) {
   return lib;
 };
 
-const BRANCHES_TO_IGNORE_DEV_VERSION = [
-  'develop',
-  'master',
-  'main',
-];
-
-const runDevVersionIfNotRelease = async () => {
-  const simpleGit = await git(RELEASE_CONFIG.PROJECT_PATH);
-  const status = await simpleGit.status();
-  if (!status.isClean() || !BRANCHES_TO_IGNORE_DEV_VERSION.includes(status.current)) {
-    await updateLeafPackageVersions(updatePackageVersionWithTimestamp)();
-  }
-};
-
 export const leafVersion = series(
   updateLeafPackageVersions(transfomLeafPackage),
 );
 
 export const devVersion = series(
-  runDevVersionIfNotRelease,
+  updateLeafPackageVersions(updatePackageVersionWithTimestamp),
 );
