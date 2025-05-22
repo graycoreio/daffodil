@@ -4,6 +4,7 @@ import {
   src,
   dest,
 } from 'gulp';
+import git from 'simple-git';
 import * as through2 from 'through2';
 import * as util from 'util';
 
@@ -38,7 +39,7 @@ const updateObjectFromObject = (a: any, b: any): typeof a => ({
 
 export const getRootPackage = (): Promise<PackageJson> => readFile(RELEASE_CONFIG.ROOT_PACKAGE, { encoding: 'utf8' }).then(d => JSON.parse(d));
 
-const updateLeafPackageVersions = async (): Promise<any> => {
+const updateLeafPackageVersions = (transform: (lib: PackageJson, rootPackage: PackageJson) => PackageJson) => async (): Promise<any> => {
   const rootPackage = await getRootPackage();
   await new Promise(resolve =>
     src(RELEASE_CONFIG.DIST + '/*/package.json')
@@ -46,7 +47,7 @@ const updateLeafPackageVersions = async (): Promise<any> => {
         through2.obj((file, _, cb) => {
           if (file.isBuffer()) {
             let data = <PackageJson>JSON.parse(file.contents.toString());
-            data = transfomLeafPackage(data, rootPackage);
+            data = transform(data, rootPackage);
             file.contents = Buffer.from(JSON.stringify(data, null, 2));
           }
           cb(null, file);
@@ -71,6 +72,11 @@ const deleteDevDependencies = (packageObject: PackageJson) => {
  */
 const updatePackageVersion = (lib: PackageJson, rootPackage: PackageJson) => {
   lib.version = rootPackage.version;
+  return lib;
+};
+
+const updatePackageVersionWithTimestamp = (lib: PackageJson, rootPackage: PackageJson) => {
+  lib.version = `${rootPackage.version}-${Date.now()}`;
   return lib;
 };
 
@@ -161,6 +167,24 @@ function transfomLeafPackage(lib: PackageJson, rootPackage: PackageJson) {
   return lib;
 };
 
+const BRANCHES_TO_IGNORE_DEV_VERSION = [
+  'develop',
+  'master',
+  'main',
+];
+
+const runDevVersionIfNotRelease = async () => {
+  const simpleGit = await git(RELEASE_CONFIG.PROJECT_PATH);
+  const status = await simpleGit.status();
+  if (!status.isClean() || !BRANCHES_TO_IGNORE_DEV_VERSION.includes(status.current)) {
+    await updateLeafPackageVersions(updatePackageVersionWithTimestamp)();
+  }
+};
+
 export const leafVersion = series(
-  updateLeafPackageVersions,
+  updateLeafPackageVersions(transfomLeafPackage),
+);
+
+export const devVersion = series(
+  runDevVersionIfNotRelease,
 );
