@@ -3,12 +3,7 @@
 .daff-select {
 	$root: &;
 	display: inline-block;
-	min-width: 15rem;
 	width: 100%;
-
-	.daff-suffix {
-		transition: transform 150ms;
-	}
 
 	&.daff-open {
 		#{$root}__field {
