@@ -537,45 +537,6 @@
         }
       }
     },
-    "analytics-provider-data-layer": {
-      "root": "libs/analytics-provider-data-layer",
-      "sourceRoot": "libs/analytics-provider-data-layer",
-      "projectType": "library",
-      "prefix": "@daffodil",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "libs/analytics-provider-data-layer/tsconfig.lib.json",
-            "project": "libs/analytics-provider-data-layer/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/analytics-provider-data-layer/ng-package.prod.json",
-              "tsConfig": "libs/analytics-provider-data-layer/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/analytics-provider-data-layer/test.ts",
-            "codeCoverage": true,
-            "tsConfig": "libs/analytics-provider-data-layer/tsconfig.spec.json",
-            "karmaConfig": "libs/analytics-provider-data-layer/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/analytics-provider-data-layer/**/*.ts",
-              "libs/analytics-provider-data-layer/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "authorizenet": {
       "root": "libs/authorizenet",
       "sourceRoot": "libs/authorizenet",
