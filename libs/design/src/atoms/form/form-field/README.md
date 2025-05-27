@@ -171,4 +171,3 @@ If a `<daff-form-label>` is not specified, use the `label` element to associate 
 
 ### Error: A DaffFormFieldComponent must contain a DaffFormFieldControl
 This error appears when the `DaffFormFieldComponent` is missing a child control. Since form field is intended to only be used with a child component that implements `DaffFormFieldControl`, this error enforces that constraint at development time. To fix this, make sure that the form field has a child component that implements this interface.
->
