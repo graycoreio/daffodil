@@ -10,6 +10,7 @@ import {
 import { UntypedFormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
+import { DaffFormFieldComponent } from '@daffodil/design';
 import { DaffInputComponent } from '@daffodil/design/input';
 
 @Component({
@@ -31,6 +32,11 @@ describe('@daffodil/design | DaffInputComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         WrapperComponent,
+      ],
+      providers: [
+        {
+          provide: DaffFormFieldComponent,
+        },
       ],
     })
       .compileComponents();

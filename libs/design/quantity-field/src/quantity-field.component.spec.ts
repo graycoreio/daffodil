@@ -10,6 +10,8 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
+import { DaffFormFieldComponent } from '@daffodil/design';
+
 import { DaffQuantityFieldComponent } from './quantity-field.component';
 import { DaffQuantityInputComponent } from './quantity-input/quantity-input.component';
 import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.component';
@@ -48,6 +50,11 @@ describe('@daffodil/design | DaffQuantityFieldComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         WrapperComponent,
+      ],
+      providers: [
+        {
+          provide: DaffFormFieldComponent,
+        },
       ],
     })
       .compileComponents();
