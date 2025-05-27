@@ -20,3 +20,13 @@ yarn add @daffodil/analytics
 
 ## Features
 - ["Opt-in" action tracking](/libs/analytics/guides/configuration.md#configuring-analyzeableactions)
+
+## Data Layer Driver
+
+The data layer driver is now available as a subpackage:
+
+```ts
+import { DaffAnalyticsDataLayer } from '@daffodil/analytics/driver/data-layer';
+```
+
+This replaces the old `@daffodil/analytics-provider-data-layer` package. All functionality is now available under the new subpackage path.
