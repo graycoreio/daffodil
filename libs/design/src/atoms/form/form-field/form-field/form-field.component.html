@@ -3,7 +3,17 @@
 		<ng-content select="[daffPrefix]"></ng-content>
 	}
 	<div class="daff-form-field__form-wrapper">
-		<ng-content select="label[daffFormLabel]"></ng-content>
+		@if (_formLabelDirective) {
+			<ng-content select="label[daffFormLabel]"></ng-content>
+		} @else if(_formFieldLabelDirective) {
+			<label class="daff-form-field__label"
+				[attr.for]="autoLabelId"
+				[attr.id]="customId">
+				<ng-content select="daff-form-label"></ng-content>
+			</label>
+		} @else {
+			<ng-content select="label"></ng-content>
+		}
 		<ng-content></ng-content>
 		@if (isSelectField) {
 			<div class="daff-form-field__icon"></div>
@@ -13,5 +23,17 @@
 		<ng-content select="[daffSuffix]"></ng-content>
 	}
 </div>
-<ng-content select="daff-hint"></ng-content>
-<ng-content select="daff-error-message"></ng-content>
+@if (hasHint()) {
+	<div
+		class="daff-form-field__hint-wrapper"
+		[id]="hintId">
+		<ng-content select="daff-hint"></ng-content>
+	</div>
+}
+@if (hasErrorMessage()) {
+	<div
+		class="daff-form-field__error-wrapper"
+		[id]="errorMessageId">
+		<ng-content select="daff-error-message"></ng-content>
+	</div>
+}

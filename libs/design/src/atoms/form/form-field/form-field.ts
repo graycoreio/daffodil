@@ -4,6 +4,7 @@ import { DaffSuffixDirective } from '../../../core/prefix-suffix/suffix.directiv
 import { DaffErrorMessageComponent } from '../error-message/error-message.component';
 import { DaffFormLabelDirective } from '../form-label/form-label.directive';
 import { DaffHintComponent } from '../hint/hint.component';
+import { DaffFormFieldLabelDirective } from './label/label.directive';
 
 /**
  * @docs-private
@@ -15,4 +16,5 @@ export const DAFF_FORM_FIELD_COMPONENTS = <const> [
   DaffHintComponent,
   DaffPrefixDirective,
   DaffSuffixDirective,
+  DaffFormFieldLabelDirective,
 ];

@@ -2,12 +2,17 @@
 @use '../../../../../scss/state';
 
 .daff-form-field {
-	display: block;
+	$root: &;
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
 	position: relative;
 
-	.daff-hint,
-	.daff-error-message {
-		margin-top: 0.25rem;
+	&__hint-wrapper,
+	&__error-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
 	}
 
 	&__control {
@@ -25,31 +30,6 @@
 			}
 		}
 
-		input,
-		textarea,
-		select {
-			font-size: 1rem;
-			line-height: 1.5rem;
-			padding: 1rem;
-		}
-
-		.daff-form-label {
-			position: absolute;
-			left: 1rem;
-			top: 1.25rem;
-			pointer-events: none;
-			transform-origin: left top;
-			transition: transform 150ms;
-
-			+ {
-				input,
-				textarea,
-				select {
-					padding: 1.5rem 1rem 0.5rem;
-				}
-			}
-		}
-
 		+ {
 			.daff-hint,
 			.daff-error-message {
@@ -58,8 +38,37 @@
 		}
 	}
 
+	input,
+	textarea,
+	select {
+		font-size: 1rem;
+		line-height: 1.5rem;
+		padding: 1rem;
+	}
+
+	label,
+	.daff-form-label,
+	&__label {
+		position: absolute;
+		left: 1rem;
+		top: 1.25rem;
+		pointer-events: none;
+		transform-origin: left top;
+		transition: transform 150ms;
+
+		+ {
+			input,
+			textarea,
+			select {
+				padding: 1.5rem 1rem 0.5rem;
+			}
+		}
+	}
+
 	&.daff-raised {
-		.daff-form-label {
+		label,
+		.daff-form-label,
+		#{$root}__label {
 			transform: translateY(-75%) scale(0.75);
 		}
 
@@ -92,7 +101,7 @@
 	&__form-wrapper {
 		flex-grow: 1;
 		position: relative;
-		// padding: 1.5rem 1rem 0.5rem;
+		overflow: hidden;
 	}
 
 	.daff-prefix {

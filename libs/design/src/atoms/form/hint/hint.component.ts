@@ -19,7 +19,7 @@ export class DaffHintComponent {
   @HostBinding('class.daff-hint') class = true;
 
   /**
-   * Whether or not the hint has been validated
+   * Displays a validated hint UI.
    * */
   @Input() @HostBinding('class.validated') validated = false;
 }

@@ -1,6 +1,6 @@
 <daff-form-field>
-  <label daffFormLabel for="error-input">Password</label>
-  <input daff-input type="text" name="password" [formControl]="control" id="error-input"/>
+  <daff-form-label>Password</daff-form-label>
+  <input daff-input type="text" name="password" [formControl]="control"/>
   <daff-hint [validated]="!(control.invalid) && control.dirty">
     @if (!(control.invalid) && control.dirty) {
       <fa-icon [icon]="faCheck" [fixedWidth]="true" size="xs"></fa-icon>

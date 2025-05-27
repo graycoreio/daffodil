@@ -29,7 +29,10 @@
 			.daff-form-field__control {
 				border: 1px solid daff-color($primary);
 			}
-			.daff-form-label {
+
+			.daff-form-label,
+			label,
+			.daff-form-field__label {
 				color: daff-color($primary);
 			}
 		}
@@ -39,7 +42,9 @@
 				border: 1px solid daff-color($critical);
 			}
 
-			.daff-form-label {
+			.daff-form-label,
+			label,
+			.daff-form-field__label {
 				color: daff-color($critical);
 			}
 		}

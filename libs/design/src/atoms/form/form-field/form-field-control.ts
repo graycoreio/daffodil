@@ -20,7 +20,11 @@ import { DaffFormFieldState } from './form-field-state';
 export abstract class DaffFormFieldControl<T> {
   abstract readonly controlType?: any;
 
+  readonly supportsAutoLabelling?: boolean = true;
+
   abstract readonly focused: boolean;
+
+  readonly id?: string;
 
   get raised() {
     return this.focused;

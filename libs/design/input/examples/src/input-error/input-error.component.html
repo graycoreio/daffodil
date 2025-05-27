@@ -1,6 +1,7 @@
 <daff-form-field>
-  <label daffFormLabel for="error-input">Email</label>
-  <input daff-input type="text" name="email" [formControl]="control" id="error-input"/>
+  <daff-form-label>Email</daff-form-label>
+  <input daff-input type="text" name="email" [formControl]="control"/>
+  <daff-hint>Hint</daff-hint>
   @if (control.errors?.required) {
     <daff-error-message>Email is a required field.</daff-error-message>
   }
