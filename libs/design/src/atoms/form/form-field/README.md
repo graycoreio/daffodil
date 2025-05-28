@@ -4,10 +4,10 @@ Form field is a wrapping component that provides consistent styling and behavior
 ## Overview
 It's used to style certain controls that would otherwise be impossible to style with normal css and organize labels, hints, and error messages alongside their associated form controls.
 
-The following Daffodil Design components are designed to work inside a `<daff-form-field>`:
+The following Daffodil Design components are designed to work inside a form field:
 
-- [DaffInputComponent](/libs/design/input/README.md)
-- [DaffNativeSelectComponent](/libs/design/src/atoms/form/native-select/README.md)
+- [Native Input](/libs/design/input/README.md)
+- [Native Select](/libs/design/src/atoms/form/native-select/README.md)
 
 ## Usage
 
@@ -63,6 +63,18 @@ Use `<daff-form-label>` to help users understand what information to enter into 
 
 > The `DaffFormLabelDirective` (using `daffFormLabel` on `<label>`) is deprecated and will be removed in `v1.0.0`. Use `<daff-form-label>` instead for new implementations.
 
+## Setting a custom ID
+The `id` property allows you to set a custom identifier for the form field. While auto-labelling is supported for native HTML form elements (e.g. `<input>`, `<select>`, and `<textarea>`) to ensure that accessibility is baked into the component, it's recommended to set meaningful, custom IDs that improve accessibility and form management.
+
+```html
+<daff-form-field id="user-email-address">
+  <daff-form-label>Email Address</daff-form-label>
+  <input daff-input type="email" />
+</daff-form-field>
+```
+
+When you set a custom `id`, the `<daff-form-label>` gets a `for` attribute that matches the control's `id`.
+
 ## Hints
 Hints are shown below the form field and are used to provide helpful information that assists users in correctly completing a field.
 
@@ -101,12 +113,14 @@ Error messages are used to display validation errors. They are shown under the f
 ## Icons
 An icon can be shown on either side of the form control by using the `daffPrefix` and `daffSuffix` selectors.
 
+```html
 <daff-form-field>
   <daff-form-label>Search</daff-form-label>
-  <fa-icon [faIcon]="faUser" daffPrefix></fa-icon>
-  <input daff-input />
-  <fa-icon [faIcon]="faUser" daffPrefix></fa-icon>
+  <fa-icon [faIcon]="faSearch" daffPrefix></fa-icon>
+  <input daff-input type="text" />
+  <fa-icon [faIcon]="faArrow" daffSuffix></fa-icon>
 </daff-form-field>
+```
 
 ## Creating a custom form field control
 In addition to the controls that Daffodil Design provides, you can create your own custom control by using the `DaffFormFieldControl` interface.
@@ -127,6 +141,10 @@ In addition to the controls that Daffodil Design provides, you can create your o
 export class CustomControlComponent implements DaffFormFieldControl<any> {}
 ```
 
+## Best practices
+- Always provide labels for accessibility. Use `<daff-form-label>` for the best experience with auto-labelling controls.
+- Set meaningful custom IDs for form fields to improve accessibility and form management.
+
 ## Accessibility
 
 ### Auto-labelling support
@@ -136,7 +154,14 @@ For controls that support auto-labelling, the component automatically:
 - Provides proper ARIA relationships.
 - Warns in development mode if proper labelling is missing.
 
-If a `<daff-form-label>` is not specified, the form field control needs to be labelled via `aria-label`, `aria-labelledby` or `<label for="">`.
+If a `<daff-form-label>` is not specified, use the `label` element to associate text with form elements explicitly. The `for` attribute of the label must exactly match the `id` of the form control.
+
+```html
+<daff-form-field>
+  <label for="first-name">First Name</label>
+  <input type="text" daff-input name="first-name" id="first-name" />
+</daff-form-field>
+```
 
 ### ARIA support
 - `<daff-hint>` and `<daff-error-message>` are linked to the form control via `aria-describedby`.
@@ -145,4 +170,5 @@ If a `<daff-form-label>` is not specified, the form field control needs to be la
 ## Troubleshooting
 
 ### Error: A DaffFormFieldComponent must contain a DaffFormFieldControl
-This error appears when the `DaffFormFieldComponent` is missing a child control. Since form field is intended to only be used with a child component that implements `DaffFormFieldControl`, this error enforces that constraint at development time. To fix this, make sure that the `<daff-form-field>` has a child component that implements this interface.
+This error appears when the `DaffFormFieldComponent` is missing a child control. Since form field is intended to only be used with a child component that implements `DaffFormFieldControl`, this error enforces that constraint at development time. To fix this, make sure that the form field has a child component that implements this interface.
+>
