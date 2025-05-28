@@ -6,10 +6,8 @@ It's used to style certain controls that would otherwise be impossible to style 
 
 The following Daffodil Design components are designed to work inside a `<daff-form-field>`:
 
-- DaffInputComponent (<input daff-input />)
-- DaffSelectComponent (<daff-select></daff-select>)
-- DaffNativeSelectComponent (<select daff-native-select></select>)
-- DaffTextareaComponent (<textarea daff-textarea></textarea>)
+- [DaffInputComponent](/libs/design/input/README.md)
+- [DaffNativeSelectComponent](/libs/design/src/atoms/form/native-select/README.md)
 
 ## Usage
 
@@ -147,11 +145,4 @@ If a `<daff-form-label>` is not specified, the form field control needs to be la
 ## Troubleshooting
 
 ### Error: A DaffFormFieldComponent must contain a DaffFormFieldControl
-This error appears when the `DaffFormFieldComponent` is missing a child control. Since form field is intended to only be used with a child component that implements `DaffFormFieldControl`, this error enforces that constraint at development time. To fix this, make sure that the `<daff-form-field>` has a child component that implements this interface. 
-
-The following Daffodil Design components are designed to work inside a `<daff-form-field>`:
-
-- DaffInputComponent (<input daff-input />)
-- DaffSelectComponent (<daff-select></daff-select>)
-- DaffNativeSelectComponent (<select daff-native-select></select>)
-- DaffTextareaComponent (<textarea daff-textarea></textarea>)
+This error appears when the `DaffFormFieldComponent` is missing a child control. Since form field is intended to only be used with a child component that implements `DaffFormFieldControl`, this error enforces that constraint at development time. To fix this, make sure that the `<daff-form-field>` has a child component that implements this interface.
