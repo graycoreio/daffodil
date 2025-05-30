@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import {
   Component,
   DebugElement,
@@ -9,7 +10,6 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DOCUMENT } from '@angular/common';
 
 import { DaffFocusStackService } from '@daffodil/design';
 
@@ -54,7 +54,7 @@ describe('@daffodil/design/modal | DaffModalComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    focusStackService = TestBed.inject(DaffFocusStackService) as jasmine.SpyObj<DaffFocusStackService>;
+    focusStackService = <jasmine.SpyObj<DaffFocusStackService>>TestBed.inject(DaffFocusStackService);
 
     modalDe = fixture.debugElement.query(By.css('daff-modal'));
     modal = modalDe.componentInstance;
@@ -127,25 +127,25 @@ describe('@daffodil/design/modal | DaffModalComponent', () => {
 
     it('should follow complete user interaction flow: focus → click → modal focused → close → button focused', () => {
       const modalElement = modalDe.nativeElement;
-      
+
       expect(document.activeElement).toBe(activatorButton);
-      
+
       activatorButton.click();
-      
+
       modal.ngAfterViewInit();
-      
+
       expect(modalElement.contains(document.activeElement)).toBe(true);
-      
+
       focusStackService.pop.and.callFake(() => {
         activatorButton.focus();
         return activatorButton;
       });
-      
-      const animationEvent = { toState: 'closed', totalTime: 300 } as any;
+
+      const animationEvent = <any>{ toState: 'closed', totalTime: 300 };
       modal.animationDone(animationEvent);
-      
+
       expect(focusStackService.pop).toHaveBeenCalledTimes(1);
-      
+
       expect(document.activeElement).toBe(activatorButton);
     });
 
