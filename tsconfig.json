@@ -20,12 +20,6 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@daffodil/analytics/driver/data-layer": [
-        "libs/analytics/driver/data-layer"
-      ],
-      "@daffodil/analytics": [
-        "libs/analytics/src"
-      ],
       "@daffodil/*": [
         "dist/*"
       ]
