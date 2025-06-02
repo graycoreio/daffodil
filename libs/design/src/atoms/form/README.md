@@ -22,3 +22,7 @@ import { DaffTextareaComponent } from '@daffodil/design';
 export class CustomComponent {}
 ```
 
+## Examples
+
+### Disabled textarea
+<design-land-example-viewer-container example="basic-textarea"></design-land-example-viewer-container>
