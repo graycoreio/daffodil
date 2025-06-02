@@ -50,5 +50,8 @@ import {
   selector: '[daffSkeletonable]',
 })
 export class DaffSkeletonableDirective {
+  /**
+   * Controls whether the component displays a skeleton loading state.
+   */
   @Input() @HostBinding('class.daff-skeleton') skeleton = false;
 }

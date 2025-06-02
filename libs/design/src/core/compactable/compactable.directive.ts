@@ -53,5 +53,8 @@ import {
   standalone: true,
 })
 export class DaffCompactableDirective {
+  /**
+   * Controls whether the component is compact.
+   */
   @Input() @HostBinding('class.daff-compact') compact = false;
 }

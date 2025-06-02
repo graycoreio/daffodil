@@ -15,7 +15,9 @@ import { DaffSelectable } from '../selectable/selectable';
 })
 
 export class DaffSelectableDirective implements DaffSelectable {
-  /** Whether or not a component implementing the directive is selected */
+  /**
+   * Controls whether the component is selected.
+   */
   @Input() @HostBinding('class.daff-selected') selected = false;
 
   /**

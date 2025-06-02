@@ -63,7 +63,7 @@ import { DaffOpenableStateError } from './utils/state-error';
 })
 
 export class DaffOpenableDirective implements DaffOpenable, OnChanges {
-  /** Whether or not a component implementing the directive is open */
+  /** Controls whether the component is open. */
   @Input() @HostBinding('class.daff-open') open = false;
 
   private _setOpen(v: boolean) {
