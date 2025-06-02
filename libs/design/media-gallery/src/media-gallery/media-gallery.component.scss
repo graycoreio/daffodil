@@ -66,8 +66,8 @@
 		}
 
 		#{$root}__selected-thumbnail {
-			@include state.skeleton-screen(100%, 100%);
 			flex-grow: 1;
+			@include state.skeleton-screen(100%, 100%);
 		}
 
 		#{$root}__skeleton-placeholder {

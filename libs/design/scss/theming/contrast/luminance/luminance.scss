@@ -10,9 +10,9 @@
 // See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 
 @function daff-luminance($color) {
-	$red-index: color.red($color) + 1;
-	$green-index: color.green($color) + 1;
-	$blue-index: color.blue($color) + 1;
+	$red-index: color.channel($color, 'red') + 1;
+	$green-index: color.channel($color, 'green') + 1;
+	$blue-index: color.channel($color, 'blue') + 1;
 
 	$red: list.nth(v.$linear-channel-values, $red-index);
 	$green: list.nth(v.$linear-channel-values, $green-index);

@@ -33,8 +33,8 @@
 	}
 
 	@include stopsArticleCascade(h1) {
-		@include t.headline-lg;
 		word-break: break-all;
+		@include t.headline-lg;
 
 		+ p {
 			@include t.body-md;
