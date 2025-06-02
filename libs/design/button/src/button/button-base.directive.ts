@@ -11,6 +11,7 @@ import {
   DaffColorableDirective,
   DaffPrefixDirective,
   DaffSuffixDirective,
+  DaffDisableableDirective,
 } from '@daffodil/design';
 
 import { DaffButtonSizableDirective } from './button-sizable.directive';
@@ -30,6 +31,10 @@ import { DaffButtonSizableDirective } from './button-sizable.directive';
     {
       directive: DaffColorableDirective,
       inputs: ['color'],
+    },
+    {
+      directive: DaffDisableableDirective,
+      inputs: ['disabled'],
     },
   ],
   host: {
@@ -53,6 +58,7 @@ export class DaffButtonBaseDirective {
 
   constructor(
     private size: DaffButtonSizableDirective,
+    private disabledDirective: DaffDisableableDirective,
   ) {
     /**
      * Sets the default size of a button to medium.
@@ -65,15 +71,13 @@ export class DaffButtonBaseDirective {
    */
   @Input() tabindex = 0;
 
-  private _disabled = false;
-
   /**
    * The disabled state of the button.
    */
   @Input() get disabled() {
-    return this._disabled;
+    return this.disabledDirective.disabled;
   }
   set disabled(value: any) {
-    this._disabled = coerceBooleanProperty(value);
+    this.disabledDirective.disabled = coerceBooleanProperty(value);
   }
 }

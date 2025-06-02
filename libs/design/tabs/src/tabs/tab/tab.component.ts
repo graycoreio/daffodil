@@ -6,6 +6,8 @@ import {
   Input,
 } from '@angular/core';
 
+import { DaffDisableableDirective } from '@daffodil/design';
+
 let tabId = 1;
 
 /**
@@ -37,12 +39,23 @@ let tabId = 1;
       </ng-template>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  hostDirectives: [
+    {
+      directive: DaffDisableableDirective,
+      inputs: ['disabled'],
+    },
+  ],
 })
 export class DaffTabComponent {
+
   /**
+   * @docs-private
+   *
    * Whether the tab is disabled.
    */
-  @Input() disabled = false;
+  get disabled() {
+    return this.disabledDirective.disabled;
+  }
 
   /**
    * @docs-private
@@ -65,7 +78,7 @@ export class DaffTabComponent {
    */
   panelId = 'daff-tab-panel-' + tabId;
 
-  constructor() {
+  constructor(private disabledDirective: DaffDisableableDirective) {
     tabId++;
   }
 }

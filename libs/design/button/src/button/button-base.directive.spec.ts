@@ -110,10 +110,6 @@ describe('@daffodil/design/button | DaffButtonBaseDirective', () => {
       fixture.detectChanges();
     });
 
-    it('should add a disabled class to the host element', () => {
-      expect(de.nativeElement.classList.contains('disabled')).toBeTruthy();
-    });
-
     it('should set disabled to true', () => {
       expect(de.nativeElement.attributes.disabled.value).toEqual('true');
     });

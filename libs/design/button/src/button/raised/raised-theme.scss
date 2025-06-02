@@ -66,7 +66,7 @@
 		}
 
 		&[disabled],
-		&.disabled {
+		&.daff-disabled {
 			@include daff-raised-button-theme-variant(daff-color($neutral, 30));
 			color: daff-color($neutral, 50);
 

@@ -9,6 +9,7 @@ import {
   Output,
 } from '@angular/core';
 
+import { DaffDisableableDirective } from '@daffodil/design';
 import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 import {
@@ -35,16 +36,23 @@ let switchUniqueId = 0;
   imports: [
     DAFF_LOADING_ICON_COMPONENTS,
   ],
+  hostDirectives: [
+    {
+      directive: DaffDisableableDirective,
+      inputs: ['disabled'],
+    },
+  ],
 })
 export class DaffSwitchComponent {
+  constructor(private disabledDirective: DaffDisableableDirective) {}
   /**
    * Whether the switch is disabled and/or loading.
    */
-  @Input() @HostBinding('class.daff-disabled') get disabled() {
-    return this._disabled || this.loading;
+  @Input() get disabled() {
+    return this.disabledDirective.disabled || this.loading;
   }
   set disabled(value: any) {
-    this._disabled = coerceBooleanProperty(value);
+    this.disabledDirective.disabled = coerceBooleanProperty(value);
   }
 
   /**
@@ -87,11 +95,6 @@ export class DaffSwitchComponent {
    * Whether the switch shows an error.
    */
   @Input() error = false;
-
-  /**
-   * @docs-private
-   */
-  _disabled = false;
 
   @HostListener('keydown', ['$event'])
   handleKeydown(event: KeyboardEvent) {

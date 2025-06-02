@@ -43,7 +43,7 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', (
 
 @Component({
   template: `
-    <daff-accordion-item [initiallyExpanded]="initiallyExpandedValue" (toggled)="toggledFunction($event)">
+    <daff-accordion-item [initiallyExpanded]="initiallyExpandedValue" (toggled)="toggledFunction($event)" [disabled]="disabled">
       <h3 daffAccordionItemTitle>Size and Fit</h3>
       <div>no content</div>
     </daff-accordion-item>
@@ -55,6 +55,7 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', (
 class WrapperComponent {
   initiallyExpandedValue: boolean;
   toggledFunction(val: boolean) {};
+  disabled: boolean;
 }
 
 describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () => {
@@ -160,7 +161,7 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
 
   describe('when disabled is set to true on the accordion item', () => {
     beforeEach(() => {
-      daffAccordionItem.disabled = true;
+      wrapper.disabled = true;
       fixture.detectChanges();
     });
 
