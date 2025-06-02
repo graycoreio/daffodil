@@ -22,9 +22,12 @@
 	}
 }
 
-@mixin skeleton-screen($width, $height) {
+@mixin skeleton-screen($width, $height, $border-radius: 0) {
 	display: flex;
 	position: relative;
+	height: $height;
+	width: $width;
+	border-radius: $border-radius;
 
 	&::before {
 		animation-name: loading;

@@ -16,7 +16,9 @@ import { DaffSkeletonableDirective } from './skeletonable.directive';
 		<div daffSkeletonable
 			[skeleton]="skeleton">
 		</div>`,
-  standalone: false,
+  imports: [
+    DaffSkeletonableDirective,
+  ],
 })
 
 class WrapperComponent {
@@ -31,11 +33,8 @@ describe('@daffodil/design | DaffSkeletonableDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-      ],
       imports: [
-        DaffSkeletonableDirective,
+        WrapperComponent,
       ],
     })
       .compileComponents();

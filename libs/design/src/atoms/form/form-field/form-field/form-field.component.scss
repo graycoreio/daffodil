@@ -104,7 +104,7 @@
 	}
 
 	&.daff-skeleton {
-		@include state.skeleton-screen(100%, 3.5rem);
+		@include state.skeleton-screen(100%, 3.5rem, 0.25rem);
 
 		> * {
 			visibility: hidden;

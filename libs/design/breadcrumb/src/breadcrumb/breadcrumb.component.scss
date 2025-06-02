@@ -35,9 +35,8 @@
 	}
 
 	&.daff-skeleton {
-		@include state.skeleton-screen(100%, 24px);
 		max-width: 290px;
-		width: 100%;
+		@include state.skeleton-screen(100%, 1.5rem);
 
 		#{$root}__item {
 			visibility: hidden;

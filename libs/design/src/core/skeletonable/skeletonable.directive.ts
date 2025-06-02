@@ -48,7 +48,6 @@ import {
  */
 @Directive({
   selector: '[daffSkeletonable]',
-  standalone: true,
 })
 export class DaffSkeletonableDirective {
   @Input() @HostBinding('class.daff-skeleton') skeleton = false;
