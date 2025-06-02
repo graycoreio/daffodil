@@ -1,6 +1,6 @@
 <daff-form-field>
-  <label daffFormLabel for="error-textarea">Comments</label>
-  <textarea daff-textarea type="text" placeholder="Comments" name="comments" [formControl]="control" id="error-textarea"></textarea>
+  <daff-form-label for="error-textarea">Comments</daff-form-label>
+  <textarea daff-textarea type="text" placeholder="Comments" name="comments" [formControl]="control"></textarea>
   @if (control.errors?.required) {
     <daff-error-message>Comments is a required field.</daff-error-message>
   }
