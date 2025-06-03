@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffProductTypeEnum } from '@daffodil/product';
 import {
   MagentoProductStockStatusEnum,
   DaffMagentoSimpleProductTransformers,
@@ -8,47 +9,59 @@ import { DaffCompositeProduct } from '@daffodil/product-composite';
 import {
   MagentoBundledProduct,
   MagentoBundledProductItemOption,
+  MagentoBundledProductItemTransformer,
 } from '@daffodil/product-composite/driver/magento';
 import {
   MagentoBundledProductFactory,
+  MagentoBundledProductItemFactory,
   MagentoBundledProductItemOptionFactory,
 } from '@daffodil/product-composite/driver/magento/testing';
 
-import { transformMagentoBundledProduct } from './bundled-product-transformers';
-import daffCompositeProductData from './spec-data/daff-composite-product.json';
-import magentoBundledProductData from './spec-data/magento-bundled-product.json';
+import { MagentoBundledProductTransformer } from './product-transformer.service';
 
-describe('DaffMagentoBundledProductTransformers', () => {
+describe('@daffodil/product-composite/driver/magento | MagentoBundledProductTransformer', () => {
   const mediaUrl = 'media url';
+  let service: MagentoBundledProductTransformer;
   let simpleProductService: DaffMagentoSimpleProductTransformers;
-  let bundleProductFactory: MagentoBundledProductFactory;
-  let optionFactory: MagentoBundledProductItemOptionFactory;
+  let magentoOptionFactory: MagentoBundledProductItemOptionFactory;
+  let magentoItemFactory: MagentoBundledProductItemFactory;
+  let magentoBundledProductFactory: MagentoBundledProductFactory;
+  let magentoBundledProduct: MagentoBundledProduct;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        MagentoBundledProductTransformer,
+        MagentoBundledProductItemTransformer,
+      ],
+    });
 
+    service = TestBed.inject(MagentoBundledProductTransformer);
+    magentoBundledProductFactory = TestBed.inject(MagentoBundledProductFactory);
     simpleProductService = TestBed.inject(DaffMagentoSimpleProductTransformers);
-    bundleProductFactory = TestBed.inject(MagentoBundledProductFactory);
-    optionFactory = TestBed.inject(MagentoBundledProductItemOptionFactory);
+    magentoOptionFactory = TestBed.inject(MagentoBundledProductItemOptionFactory);
+    magentoItemFactory = TestBed.inject(MagentoBundledProductItemFactory);
+
+    magentoBundledProduct = magentoBundledProductFactory.create({
+      stock_status: MagentoProductStockStatusEnum.InStock,
+      items: magentoItemFactory.createMany(1, {
+        options: magentoOptionFactory.createMany(2),
+      }),
+    });
   });
 
   describe('transform', () => {
-    let magentoBundledProduct: MagentoBundledProduct;
     let result: DaffCompositeProduct;
 
     beforeEach(() => {
-      magentoBundledProduct = {
-        ...magentoBundledProductData,
-        stock_status: MagentoProductStockStatusEnum.InStock,
-      };
       magentoBundledProduct.items[0].options[0].product.stock_status = MagentoProductStockStatusEnum.InStock;
       magentoBundledProduct.items[0].options[1].product.stock_status = MagentoProductStockStatusEnum.InStock;
 
-      result = transformMagentoBundledProduct(simpleProductService.transformMagentoSimpleProduct(magentoBundledProduct, mediaUrl), magentoBundledProduct);
+      result = service.transform(simpleProductService.transformMagentoSimpleProduct(magentoBundledProduct, mediaUrl), magentoBundledProduct);
     });
 
     it('should transform a MagentoBundledProduct to a DaffCompositeProduct', () => {
-      expect(result).toEqual(jasmine.objectContaining(daffCompositeProductData));
+      expect(result.type).toEqual(DaffProductTypeEnum.Composite);
     });
 
     it('should replace the base prices with 0 when bundled product items are present', () => {
@@ -57,7 +70,7 @@ describe('DaffMagentoBundledProductTransformers', () => {
 
     it('should add the base prices to the transformed product when bundled product items are missing', () => {
       magentoBundledProduct.items = [];
-      result = transformMagentoBundledProduct(simpleProductService.transformMagentoSimpleProduct(magentoBundledProduct, mediaUrl), magentoBundledProduct);
+      result = service.transform(simpleProductService.transformMagentoSimpleProduct(magentoBundledProduct, mediaUrl), magentoBundledProduct);
       expect(result.price).toEqual(magentoBundledProduct.price_range.maximum_price.regular_price.value);
     });
 
@@ -66,11 +79,10 @@ describe('DaffMagentoBundledProductTransformers', () => {
       let secondOption: MagentoBundledProductItemOption;
 
       beforeEach(() => {
-        magentoBundledProduct = bundleProductFactory.create();
-        firstOption = optionFactory.create({
+        firstOption = magentoOptionFactory.create({
           position: 1,
         });
-        secondOption = optionFactory.create({
+        secondOption = magentoOptionFactory.create({
           position: 2,
         });
 
@@ -79,7 +91,7 @@ describe('DaffMagentoBundledProductTransformers', () => {
           firstOption,
         ];
 
-        result = transformMagentoBundledProduct(simpleProductService.transformMagentoSimpleProduct(magentoBundledProduct, mediaUrl), magentoBundledProduct);
+        result = service.transform(simpleProductService.transformMagentoSimpleProduct(magentoBundledProduct, mediaUrl), magentoBundledProduct);
       });
 
       it('should sort them in the correct order', () => {

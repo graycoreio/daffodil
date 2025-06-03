@@ -2,18 +2,26 @@ import { CommonModule } from '@angular/common';
 import {
   NgModule,
   ModuleWithProviders,
+  inject,
 } from '@angular/core';
 
 import {
-  provideDaffProductMagentoExtraProductTransforms,
   MagentoProductTypeEnum,
-  provideDaffProductMagentoExtraProductFragments,
   provideDaffProductMagentoExtraProductPreviewTransforms,
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS,
+  DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
 } from '@daffodil/product/driver/magento';
 
 import { magentoBundledProductFragment } from './fragments/bundled-product';
-import { MagentoBundledProduct } from './public_api';
-import { transformMagentoBundledProduct } from './transforms/bundled-product-transformers';
+import {
+  DAFF_PRODUCT_COMPOSITE_MAGENTO_EXTRA_ITEM_FRAGMENTS,
+  DAFF_PRODUCT_COMPOSITE_MAGENTO_EXTRA_OPTION_FRAGMENTS,
+} from './injection-tokens/public_api';
+import { MagentoBundledProduct } from './models/public_api';
+import {
+  MagentoBundledProductItemTransformer,
+  MagentoBundledProductTransformer,
+} from './transforms/public_api';
 
 /**
  * A module that provides the product fragment for composite products along with a composite product transformer.
@@ -28,13 +36,27 @@ export class DaffCompositeProductMagentoDriverModule {
     return {
       ngModule: DaffCompositeProductMagentoDriverModule,
       providers: [
-        ...provideDaffProductMagentoExtraProductFragments(magentoBundledProductFragment),
-        ...provideDaffProductMagentoExtraProductTransforms<MagentoBundledProduct>(
-          (daffProduct, magentoProduct) =>
-            magentoProduct.__typename === MagentoProductTypeEnum.BundledProduct
-              ? transformMagentoBundledProduct(daffProduct, magentoProduct)
-              : daffProduct,
-        ),
+        MagentoBundledProductTransformer,
+        MagentoBundledProductItemTransformer,
+        {
+          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
+          useFactory: () => magentoBundledProductFragment(
+            inject(DAFF_PRODUCT_COMPOSITE_MAGENTO_EXTRA_ITEM_FRAGMENTS),
+            inject(DAFF_PRODUCT_COMPOSITE_MAGENTO_EXTRA_OPTION_FRAGMENTS),
+          ),
+          multi: true,
+        },
+        {
+          provide: DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_TRANSFORMS,
+          useFactory: () => {
+            const transformer = inject(MagentoBundledProductTransformer);
+            return (daffProduct, magentoProduct) =>
+              magentoProduct.__typename === MagentoProductTypeEnum.BundledProduct
+                ? transformer.transform(daffProduct, magentoProduct)
+                : daffProduct;
+          },
+          multi: true,
+        },
         // stub out composite fields for a preview
         ...provideDaffProductMagentoExtraProductPreviewTransforms<MagentoBundledProduct>(
           (daffProduct, magentoProduct) =>

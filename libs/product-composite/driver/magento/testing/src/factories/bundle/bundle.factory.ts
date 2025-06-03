@@ -11,7 +11,6 @@ import {
 
 import { MagentoBundledProductItemFactory } from './bundle-item.factory';
 
-
 export class MockMagentoBundledProduct extends MockMagentoCoreProduct implements MagentoBundledProduct {
   constructor(
     private bundleItemFactory: MagentoBundledProductItemFactory,

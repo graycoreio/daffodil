@@ -1,13 +1,23 @@
 import { gql } from 'apollo-angular';
+import { DocumentNode } from 'graphql';
 
-export const magentoBundledProductFragment = gql`
+import {
+  daffBuildFragmentDefinition,
+  daffBuildFragmentNameSpread,
+} from '@daffodil/core/graphql';
+
+export const magentoBundledProductFragment = (extraItemFragments: Array<DocumentNode> = [], extraOptionFragments: Array<DocumentNode> = []) => gql`
 fragment magentoBundledProduct on BundleProduct {
 	items {
+		${daffBuildFragmentNameSpread(...extraItemFragments)}
+
 		option_id
 		required
 		title
 		type
 		options {
+			${daffBuildFragmentNameSpread(...extraOptionFragments)}
+
 			uid
 			is_default
 			label
@@ -31,4 +41,5 @@ fragment magentoBundledProduct on BundleProduct {
 		}
 	}
 }
+${daffBuildFragmentDefinition(...extraItemFragments, ...extraOptionFragments)}
 `;
