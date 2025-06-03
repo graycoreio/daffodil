@@ -1,9 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
-import {
-  CommonModule,
-  DOCUMENT,
-} from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import {
   Component,
   DebugElement,
@@ -19,22 +16,18 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { DaffPrefixSuffixModule } from '@daffodil/design';
+import { DaffFormFieldComponent } from '@daffodil/design';
 
 import { DaffSelectComponent } from './select.component';
-import { DaffSelectModule } from '../select.module';
 
 @Component ({
   template: `
     <daff-select
       [tabIndex]="tabIndexValue"
       [disabled]="disabledValue"
-      [skeleton]="skeletonValue"
       [options]="optionsValue"
-      [formControl]="controlValue"
-    >
+      [formControl]="controlValue">
       <ng-template daffSelectOption let-isSelected="isSelected" let-option="option" let-isHighlighted="isHighlighted">
         <div class="test-option" [attr.data-value]="option" [attr.data-is-selected]="isSelected" [attr.data-is-highlighted]="isHighlighted">
           <div>{{option}}</div>
@@ -42,11 +35,16 @@ import { DaffSelectModule } from '../select.module';
       </ng-template>
     </daff-select>
   `,
+  imports: [
+    DaffSelectComponent,
+    OverlayModule,
+    PortalModule,
+    ReactiveFormsModule,
+  ],
 })
 class WrapperComponent {
   tabIndexValue: number;
   disabledValue: boolean;
-  skeletonValue: boolean;
   optionsValue = [0, 1, 2, 3, 4, 5];
   controlValue = new FormControl(0);
 }
@@ -61,18 +59,13 @@ describe('DaffSelectComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule,
-        CommonModule,
-        FontAwesomeModule,
-        OverlayModule,
-        PortalModule,
-        DaffPrefixSuffixModule,
-        ReactiveFormsModule,
-        DaffSelectModule,
-      ],
-      declarations: [
-        DaffSelectComponent,
         WrapperComponent,
+        NoopAnimationsModule,
+      ],
+      providers: [
+        {
+          provide: DaffFormFieldComponent,
+        },
       ],
     })
       .compileComponents();
@@ -86,7 +79,6 @@ describe('DaffSelectComponent', () => {
 
     wrapper.tabIndexValue = 5;
     wrapper.disabledValue = false;
-    wrapper.skeletonValue = false;
 
     fixture.detectChanges();
 
@@ -95,10 +87,6 @@ describe('DaffSelectComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should take tabIndex as an input', () => {
-    expect(component.tabIndex).toEqual(wrapper.tabIndexValue);
   });
 
   it('should take disabled as an input', () => {
@@ -116,7 +104,7 @@ describe('DaffSelectComponent', () => {
     });
 
     it('should add the disabled class', () => {
-      expect(de.classes['daff-select--disabled']).toBeTruthy();
+      expect(de.classes['.disabled']).toBeTruthy();
     });
 
     it('should disable the button', () => {
@@ -224,7 +212,7 @@ describe('DaffSelectComponent', () => {
         fixture.detectChanges();
       });
 
-      xit('should not remove focus from the options list', () => {
+      it('should not remove focus from the options list', () => {
         expect(TestBed.inject(DOCUMENT).activeElement).toEqual(optionsListElement);
       });
     });

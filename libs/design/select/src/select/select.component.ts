@@ -9,7 +9,6 @@ import {
 } from '@angular/cdk/portal';
 import {
   DOCUMENT,
-  NgFor,
   NgTemplateOutlet,
 } from '@angular/common';
 import {
@@ -78,7 +77,6 @@ let daffSelectOtionsId = 0;
     { provide: DaffFormFieldControl, useExisting: DaffSelectComponent },
   ],
   imports: [
-    NgFor,
     NgTemplateOutlet,
     OverlayModule,
     PortalModule,
@@ -88,6 +86,9 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   /** @docs-private */
   controlType = 'custom-select';
 
+  /**
+   * @docs-private
+   */
   supportsAutoLabelling = false;
 
   private _destroyed = new Subject<boolean>();
@@ -97,10 +98,16 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   private _animationState: DaffSelectAnimationState;
   private _animationFinishCallbackQueue: Array<() => void> = [];
 
+  /**
+   * @docs-private
+   */
   get focused() {
     return this.document.activeElement === this.buttonElement?.nativeElement || this.document.activeElement === this.optionsElement?.nativeElement;
   }
 
+  /**
+   * @docs-private
+   */
   get raised() {
     return this.focused && this.isOpen;
   }
@@ -120,6 +127,9 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   @Input() disabled = false;
   @Input() options: T[] = [];
 
+  /**
+   * @docs-private
+   */
   get isOpen() {
     return this.openDirective.open;
   }
@@ -135,8 +145,6 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   @HostBinding('class.disabled') get disabledClass() {
     return this.ngControl.disabled;
   }
-
-  id = '';
 
   /**
    * @docs-private
@@ -165,12 +173,14 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     this.openDirective.stateless = false;
 
     this.document.addEventListener('keydown', (event) => {
-      if (event.key === 'Tab' && this.openDirective.open) {
+      if (event.key === 'Tab' && this.isOpen) {
         event.preventDefault();
         event.stopPropagation();
+
         this.focusOptionsList();
       }
     });
+
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }
@@ -192,17 +202,25 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   /**
    * @docs-private
    */
-  @ContentChild(DaffSelectOptionDirective)
-  optionTemplate?: DaffSelectOptionDirective;
+  @ContentChild(DaffSelectOptionDirective) optionTemplate?: DaffSelectOptionDirective;
 
+  /**
+   * @docs-private
+   */
   get animationState() {
     return this._animationState;
   }
 
+  /**
+   * @docs-private
+   */
   get value() {
     return this._value;
   }
 
+  /**
+   * @docs-private
+   */
   get highlighted(): number {
     return this._highlighted;
   }
@@ -220,6 +238,9 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     this.buttonElement?.nativeElement.focus();
   }
 
+  /**
+   * @docs-private
+   */
   ngOnDestroy(): void {
     this._destroyed.next(true);
     this._overlay?.dispose();
@@ -228,23 +249,38 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   private onChange(value: T): void {};
   private onTouched(value: T): void {};
 
+  /**
+   * @docs-private
+   */
   writeValue(value: T): void {
     this._value = value;
     this.cd.markForCheck();
   }
 
+  /**
+   * @docs-private
+   */
   registerOnChange(fn: (value: T) => void): void {
     this.onChange = fn;
   }
 
+  /**
+   * @docs-private
+   */
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
+  /**
+   * @docs-private
+   */
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
 
+  /**
+   * @docs-private
+   */
   flushValue() {
     this.ngControl?.control?.setValue(this._value);
   }
@@ -262,25 +298,21 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     this._animationState = getAnimationState(this.openDirective.open);
   }
 
+  /**
+   * @docs-private
+   */
   trackByIndex(index: number) {
     return index;
   }
 
+  /**
+   * @docs-private
+   */
   animationFinished() {
     this._animationFinishCallbackQueue.forEach((cb) => {
       cb();
     });
     this._animationFinishCallbackQueue = [];
-  }
-
-  optionSelected(option: T) {
-    if (this.ngControl?.control) {
-      this.ngControl.control.setValue(option);
-    } else {
-      this.writeValue(option);
-    }
-
-    this.toggle();
   }
 
   /**
@@ -364,19 +396,6 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     }
   }
 
-  toggle(event?: KeyboardEvent | MouseEvent) {
-    event?.stopPropagation();
-
-    if (this.openDirective.open) {
-      this.close();
-    } else {
-      this.open();
-    }
-
-    this._animationState = getAnimationState(this.openDirective.open);
-    this.cd.markForCheck();
-  }
-
   /**
    * Selects the value in a particular position in the options list.
    */
@@ -403,6 +422,8 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
         this.selectValueInPosition(currentIndex + 1);
       }
     }
+
+    this.focus();
   }
 
   /**
@@ -423,6 +444,21 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     } else {
       this.selectValueInPosition(0);
     }
+
+    this.focus();
+  }
+
+  /**
+   * Selects an option.
+   */
+  selectOption(option: T) {
+    if (this.ngControl?.control) {
+      this.ngControl.control.setValue(option);
+    } else {
+      this.writeValue(option);
+    }
+
+    this.close();
   }
 
   /**

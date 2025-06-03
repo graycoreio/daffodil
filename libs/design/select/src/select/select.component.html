@@ -1,19 +1,18 @@
 <button #field class="daff-select__field"
   type="button"
-  role="combobox"
-  aria-haspopup="listbox"
-  (click)="toggle($event)"
+  (click)="open()"
   (focus)="focus()"
   (blur)="blur()"
   [disabled]="disabled"
+  role="combobox"
+  aria-haspopup="listbox"
   [attr.aria-expanded]="isOpen"
   [attr.aria-controls]="optionsId"
   (keydown.arrowdown)="selectNext($event)"
   (keydown.arrowup)="selectPrevious($event)"
   (keydown.alt.arrowup)="open()"
   (keydown.alt.arrowdown)="open()"
-  (keydown.enter)="toggle($event)"
-  (keydown.space)="toggle($event)">
+  (keydown.space)="open()">
   @if (value) {
     <ng-container
       [ngTemplateOutlet]="optionTemplate?.templateRef"
@@ -33,11 +32,11 @@
     (keydown.escape)="close($event)"
     (keydown.arrowdown)="highlightNext($event)"
     (keydown.arrowup)="highlightPrevious($event)">
-    <div class="daff-select__option"
+    @for (option of options; track trackByIndex($index); let i = $index) {
+      <div class="daff-select__option"
       [class.selected]="value === option"
       [class.highlighted]="highlighted === i"
-      *ngFor="let option of options; index as i; trackBy:trackByIndex"
-      (click)="optionSelected(option)">
+      (click)="selectOption(option)">
       <ng-container
         [ngTemplateOutlet]="optionTemplate?.templateRef"
         [ngTemplateOutletContext]="{
@@ -47,5 +46,6 @@
         }">
       </ng-container>
     </div>
+    }
   </div>
 </ng-template>
