@@ -1,14 +1,14 @@
 @use 'sass:map';
-@use 'theme' as daff-theme;
+@use 'theme' as *;
 
 @mixin daffio-docs-table-of-contents-link-theme($theme) {
-	$primary: daff-theme.daff-map-get($theme, primary);
+	$primary: daff-get-palette($theme, primary);
 
 	.daffio-docs-table-of-contents-link {
-		border-left: 0.125rem solid rgba(daff-theme.daff-color($primary), 0);
+		border-left: 0.125rem solid rgba(daff-color($primary), 0);
 
 		&.active {
-			border-left: 0.125rem solid daff-theme.daff-color($primary);
+			border-left: 0.125rem solid daff-color($primary);
 		}
 	}
 }

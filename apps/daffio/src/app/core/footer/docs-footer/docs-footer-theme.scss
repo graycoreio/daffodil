@@ -1,24 +1,24 @@
-@use 'theme' as daff-theme;
+@use 'theme' as *;
 
 @mixin daffio-docs-footer-theme($theme) {
-	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
-	$base: daff-theme.daff-map-get($theme, 'core', 'base');
-	$base-contrast: daff-theme.daff-map-get($theme, 'core', 'base-contrast');
-	$primary: daff-theme.daff-map-get($theme, primary);
+	$neutral: daff-get-palette($theme, neutral);
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$primary: daff-get-palette($theme, primary);
 
 	.daffio-docs-footer {
-		border-top: 1px solid daff-theme.daff-illuminate($base, $neutral, 2);
+		border-top: 1px solid daff-illuminate($base, $neutral, 2);
 
 		&__copyright {
-			color: daff-theme.daff-illuminate($base-contrast, $neutral, 4);
+			color: daff-illuminate($base-contrast, $neutral, 4);
 		}
 
 		&__link {
-			color: daff-theme.daff-text-contrast($base);
+			color: daff-text-contrast($base);
 			transition: color 300ms;
 
 			&:hover {
-				color: daff-theme.daff-color($primary);
+				color: daff-color($primary);
 			}
 		}
 	}

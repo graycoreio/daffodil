@@ -1,16 +1,16 @@
-@use 'theme' as daff-theme;
+@use 'theme' as *;
 
 @mixin daffio-api-directive-content-theme($theme) {
-	$primary: daff-theme.daff-map-get(daff-theme.$theme, primary);
-	$secondary: daff-theme.daff-map-get(daff-theme.$theme, secondary);
+	$primary: daff-get-palette($theme, primary);
+	$secondary: daff-get-palette($theme, secondary);
 
 	.daffio-docs-api-directive-content {
 		&__input-icon {
-			color: daff-theme.daff-color($primary);
+			color: daff-color($primary);
 		}
 
 		&__output-icon {
-			color: daff-theme.daff-color($secondary);
+			color: daff-color($secondary);
 		}
 	}
 }

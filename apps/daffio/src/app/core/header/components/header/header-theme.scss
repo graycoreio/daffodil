@@ -1,22 +1,22 @@
 @use 'sass:map';
-@use 'theme' as daff-theme;
+@use 'theme' as *;
 
 @mixin daffio-header-theme($theme) {
-	$primary: daff-theme.daff-map-get($theme, primary);
-	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
-	$base: daff-theme.daff-map-get($theme, 'core', 'base');
+	$primary: daff-get-palette($theme, primary);
+	$neutral: daff-get-palette($theme, neutral);
+	$base: daff-get-base-color($theme, base);
 
 	.daffio-header {
 		// stylelint-disable selector-class-pattern
 		&.bordered {
 			.daffio-header__navbar {
-				border-bottom: 1px solid daff-theme.daff-illuminate($base, $neutral, 2);
+				border-bottom: 1px solid daff-illuminate($base, $neutral, 2);
 			}
 		}
 	}
 	.daffio-header-item {
 		&.active {
-			color: daff-theme.daff-color($primary);
+			color: daff-color($primary);
 		}
 	}
 }
