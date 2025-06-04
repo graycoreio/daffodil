@@ -2,6 +2,11 @@
 
 `@daffodil/analytics/driver/data-layer` provides a data layer driver for Daffodil Analytics. It enables you to push ecommerce and virtual pageview events to a `dataLayer` array, making it easy to track analytics events in your Angular application.
 
+## Overview
+- Pushes analytics events to a global `dataLayer` array.
+- Supports ecommerce and virtual pageview event types.
+- Designed to be used with the `@daffodil/analytics` event tracking system.
+
 ## Installation
 To install `@daffodil/analytics`, use the following commands in your terminal.
 
@@ -14,12 +19,6 @@ Install with yarn:
 ```bash
 yarn add @daffodil/analytics
 ```
-
-## Overview
-- Pushes analytics events to a global `dataLayer` array.
-- Supports ecommerce and virtual pageview event types.
-- Designed for use with the Daffodil Analytics event tracking system.
-- **Server-side safe:** Can be used with Angular Universal.
 
 ## Usage
 Import the driver and use the provided services and types to push events to the data layer:
