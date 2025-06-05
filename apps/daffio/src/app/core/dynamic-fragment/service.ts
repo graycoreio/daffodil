@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-const HEADER_WITH_ID_SELECTOR = 'h1[id],h2[id],h3[id],h4[id],h5[id]';
+const HEADER_WITH_ID_SELECTOR = 'h1[id],h2[id],h3[id],h4[id],h5[id],[daffioDocsTocHeader][id]';
 /**
  * The height of the nav header, in pixels.
  */
