@@ -1,0 +1,11 @@
+@use 'theme' as *;
+
+@mixin daffio-api-outputs-fragment-theme($theme) {
+	$secondary: daff-get-palette($theme, secondary);
+
+	.daffio-docs-api-outputs-fragment {
+		&__output-icon {
+			color: daff-color($secondary);
+		}
+	}
+}

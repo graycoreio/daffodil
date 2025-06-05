@@ -1,0 +1,18 @@
+@if (hasPropsWithDocs()) {
+	@if (child()) {
+		<h4 daffioDocsTocHeader id="{{doc().slug}}-props" content="Properties" level="4">Properties</h4>
+	} @else {
+		<h2 daffioDocsTocHeader id="props" content="Properties" level="2">Properties</h2>
+	}
+	@if (isConcrete()) {
+		<div class="daffio-docs-api-props-fragment__member-grid">
+			@for (prop of doc().props; track $index) {
+				<daffio-docs-api-property-block [prop]="prop" [child]="child()"></daffio-docs-api-property-block>
+			}
+		</div>
+	} @else {
+		@for (prop of doc().props; track $index) {
+			<daffio-docs-api-interface-block [prop]="prop" [child]="child()"></daffio-docs-api-interface-block>
+		}
+	}
+}

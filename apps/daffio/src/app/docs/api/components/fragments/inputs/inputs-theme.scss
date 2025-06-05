@@ -1,0 +1,11 @@
+@use 'theme' as *;
+
+@mixin daffio-api-inputs-fragment-theme($theme) {
+	$primary: daff-get-palette($theme, primary);
+
+	.daffio-docs-api-inputs-fragment {
+		&__input-icon {
+			color: daff-color($primary);
+		}
+	}
+}

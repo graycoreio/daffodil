@@ -1,9 +1,9 @@
 @use 'theme' as *;
 
-@mixin daffio-api-type-content-theme($theme) {
+@mixin daffio-api-methods-fragment-theme($theme) {
 	$tertiary: daff-get-palette($theme, tertiary);
 
-	.daffio-docs-api-type-content {
+	.daffio-docs-api-methods-fragment {
 		&__method-icon {
 			color: daff-color($tertiary);
 		}

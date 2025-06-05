@@ -1,0 +1,12 @@
+@if (doc().inputs.length > 0) {
+	@if (child()) {
+		<h4 daffioDocsTocHeader content="Inputs" id="{{doc().slug}}-inputs" level="4" class="daffio-docs-api-inputs-fragment__heading"><fa-icon [icon]="faChevronRight" class="daffio-docs-api-inputs-fragment__input-icon"></fa-icon> Inputs</h4>
+	} @else {
+		<h2 daffioDocsTocHeader id="inputs" content="Inputs" level="2" class="daffio-docs-api-inputs-fragment__heading"><fa-icon [icon]="faChevronRight" class="daffio-docs-api-inputs-fragment__input-icon"></fa-icon> Inputs</h2>
+	}
+	<div class="daffio-docs-api-inputs-fragment__member-grid">
+		@for (input of doc().inputs; track $index) {
+			<daffio-docs-api-property-block [prop]="input"></daffio-docs-api-property-block>
+		}
+	</div>
+}

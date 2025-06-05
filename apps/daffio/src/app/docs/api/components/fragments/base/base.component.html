@@ -1,10 +1,10 @@
-<div class="daffio-docs-api-base-content__title">
+<div class="daffio-docs-api-base-fragment__title">
 	@if (child()) {
-		<h3 [attr.id]="doc().slug">{{doc().name}}</h3>
+		<h3 daffioDocsTocHeader [id]="doc().slug" [content]="doc().name" level="3">{{doc().name}}</h3>
 	} @else {
 		<h1 [attr.id]="doc().slug">{{doc().name}}</h1>
 	}
-	<div class="daffio-docs-api-base-content__label-wrapper">
+	<div class="daffio-docs-api-base-fragment__label-wrapper">
 		@if (!child()) {
 			<daffio-docs-api-item-label [type]="doc().docType">
 				{{ doc().docType }}
@@ -18,13 +18,3 @@
 <p [innerHTML]="doc().importExample | safe"></p>
 <div daffioInterceptNavigation [innerHTML]="doc().description | safe"></div>
 <div daffioInterceptNavigation [innerHTML]="doc().sourceApiBlock | safe"></div>
-<ng-content></ng-content>
-@if (!child()) {
-	@if (doc().examples.length > 0) {
-		<h2 id="examples">Examples</h2>
-	}
-	@for (example of doc().examples; track example.id) {
-		<h3 [attr.id]="example.id">{{example.caption}}</h3>
-		<div daffioInterceptNavigation [innerHTML]="example.body | safe"></div>
-	}
-}

@@ -1,0 +1,12 @@
+@if (doc().outputs.length > 0) {
+	@if (child()) {
+		<h4 class="daffio-docs-api-outputs-fragment__heading"><fa-icon [icon]="faChevronLeft" class="daffio-docs-api-outputs-fragment__output-icon"></fa-icon> Outputs</h4>
+	} @else {
+		<h2 class="daffio-docs-api-outputs-fragment__heading"><fa-icon [icon]="faChevronLeft" class="daffio-docs-api-outputs-fragment__output-icon"></fa-icon> Outputs</h2>
+	}
+	<div class="daffio-docs-api-outputs-fragment__member-grid">
+		@for (output of doc().outputs; track $index) {
+			<daffio-docs-api-property-block [prop]="output"></daffio-docs-api-property-block>
+		}
+	</div>
+}

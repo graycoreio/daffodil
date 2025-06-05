@@ -1,0 +1,11 @@
+@if (!child()) {
+	@if (doc().examples.length > 0) {
+		<h2 daffioDocsTocHeader id="examples" content="Examples" level="2">Examples</h2>
+	}
+	@for (example of doc().examples; track example.id) {
+		<h3 [attr.id]="example.id">{{example.caption}}</h3>
+		<div daffioInterceptNavigation [innerHTML]="example.body | safe"></div>
+		<h3 daffioDocsTocHeader [id]="example.id" [content]="example.caption" level="3">{{example.caption}}</h3>
+		<div daffioInterceptNavigation [innerHTML]="example.body | safe"></div>
+	}
+}
