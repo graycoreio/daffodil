@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 
 import {
+  DaffApiDoc,
   DaffDocsApiRole,
   daffDocsApiRoleSort,
 } from '@daffodil/docs-utils';
@@ -14,7 +15,7 @@ import {
   standalone: true,
 })
 export class DaffioDocsDesignApiSortSectionLabels implements PipeTransform {
-  transform(value: Array<KeyValue<DaffDocsApiRole, Array<string>>>) {
+  transform(value: Array<KeyValue<DaffDocsApiRole, Array<DaffApiDoc>>>) {
     return daffDocsApiRoleSort(value.map(({ key }) => key)).map((role) => value.find(({ key }) => key === role));
   }
 }
