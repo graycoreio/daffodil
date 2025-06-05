@@ -45,8 +45,6 @@ import { DaffioDocsDesignApiSortSectionLabels } from '../../pipes/sort-api-secti
     DAFF_ARTICLE_COMPONENTS,
     DaffioDocViewerComponent,
     DaffioSafeHtmlPipe,
-    KeyValuePipe,
-    DaffioDocsDesignApiSortSectionLabels,
     NgComponentOutlet,
     DaffioInterceptNavigationDirective,
     DaffioDocsTocHeaderDirective,
