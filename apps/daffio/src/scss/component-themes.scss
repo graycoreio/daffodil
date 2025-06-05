@@ -14,9 +14,10 @@
 @use '../app/docs/components/scroll-to-top/scroll-to-top-theme' as scroll-to-top;
 @use '../app/docs/components/table-of-contents/link/link-theme' as docs-toc-link;
 @use '../app/docs/components/member-heading/member-heading-theme' as member-heading;
-@use '../app/docs/api/components/fragments/api-type-content/api-type-content-theme' as api-type-content;
+@use '../app/docs/api/components/fragments/methods/methods-theme.scss' as api-methods-fragment;
+@use '../app/docs/api/components/fragments/inputs/inputs-theme.scss' as api-inputs-fragment;
+@use '../app/docs/api/components/fragments/outputs/outputs-theme.scss' as api-outputs-fragment;
 @use '../app/docs/api/components/method-block/method-block-theme' as api-method-block;
-@use '../app/docs/api/components/fragments/api-directive-content/api-directive-content-theme' as api-directive-content;
 @use '../app/docs/api/components/api-item-label/api-item-label-theme' as api-item-label;
 
 @mixin component-themes($theme) {
@@ -36,8 +37,9 @@
 	@include docs-sidebar-footer.daffio-docs-sidebar-footer-theme($theme);
 	@include scroll-to-top.daffio-docs-scroll-to-top-theme($theme);
 	@include docs-toc-link.daffio-docs-table-of-contents-link-theme($theme);
-	@include api-type-content.daffio-api-type-content-theme($theme);
+	@include api-methods-fragment.daffio-api-methods-fragment-theme($theme);
 	@include api-method-block.daffio-method-block-theme($theme);
-	@include api-directive-content.daffio-api-directive-content-theme($theme);
+	@include api-inputs-fragment.daffio-api-inputs-fragment-theme($theme);
+	@include api-outputs-fragment.daffio-api-outputs-fragment-theme($theme);
 	@include api-item-label.daffio-api-item-label-theme($theme);
 }

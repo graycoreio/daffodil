@@ -9,10 +9,12 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { DaffioActiveHeaderService } from 'apps/daffio/src/app/core/dynamic-fragment/service';
 
 import {
   DaffApiNavPackageDoc,
   DaffApiPackageDoc,
+  DaffDocKind,
   DaffDocsGenericNavList,
 } from '@daffodil/docs-utils';
 
@@ -43,6 +45,9 @@ describe('DaffioApiPackageComponent', () => {
         WrapperComponent,
         RouterTestingModule,
       ],
+      providers: [
+        DaffioActiveHeaderService,
+      ],
     })
       .compileComponents();
   }));
@@ -57,6 +62,7 @@ describe('DaffioApiPackageComponent', () => {
       title: 'title',
       description: 'description',
       breadcrumbs: [],
+      kind: DaffDocKind.API,
       children: [
         {
           id: 'name1Component',

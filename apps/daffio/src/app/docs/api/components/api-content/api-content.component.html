@@ -1,7 +1,5 @@
-<daffio-doc-viewer [breadcrumbs]="doc().breadcrumbs" [toc]="doc().tableOfContents || []">
-	@if (isApiPackage()) {
-		<daffio-api-package [doc]="doc()"></daffio-api-package>
-	} @else {
-		<ng-template [ngComponentOutlet]="component()" [ngComponentOutletInputs]="{doc: doc()}"></ng-template>
+<daffio-doc-viewer [breadcrumbs]="doc().breadcrumbs" [toc]="toc()">
+	@for (component of fragments()?.components || []; track $index; let i = $index) {
+		<ng-template [ngComponentOutlet]="component" [ngComponentOutletInputs]="{doc: doc(), toc: fragmentTocs()[i]}"></ng-template>
 	}
 </daffio-doc-viewer>

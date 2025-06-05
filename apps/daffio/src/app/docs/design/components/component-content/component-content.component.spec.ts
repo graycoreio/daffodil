@@ -3,7 +3,11 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { Component } from '@angular/core';
+import {
+  Component,
+  input,
+  WritableSignal,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -17,14 +21,25 @@ import { DaffTabsComponent } from '@daffodil/design/tabs';
 import {
   DaffDocKind,
   DaffDocsApiRole,
+  DaffDocTableOfContents,
   DaffPackageGuideDoc,
 } from '@daffodil/docs-utils';
 
 import { DaffioDocsDesignComponentContentComponent } from './component-content.component';
 import { DaffioActiveHeaderService } from '../../../../core/dynamic-fragment/service';
-import { DaffioDocsApiDefaultContentComponent } from '../../../api/components/api-default-content/api-default-content.component';
-import { DaffioDocsApiDynamicContentComponentService } from '../../../api/dynamic-content/dynamic-content-component.service';
+import { DaffioDocsApiDynamicContentFragmentService } from '../../../api/dynamic-content/fragment.service';
+import { DaffioDocsApiDynamicContentFragment } from '../../../api/dynamic-content/fragment.type';
+import { provideDaffioDocsApiDynamicFragments } from '../../../api/dynamic-content/fragments.token';
 import { DaffioDocViewerComponent } from '../../../components/doc-viewer/doc-viewer.component';
+
+@Component({
+  template: '',
+})
+class TestFragmentComponent implements DaffioDocsApiDynamicContentFragment {
+  toc = input<WritableSignal<DaffDocTableOfContents>>();
+  child = input(false);
+  doc = input();
+}
 
 @Component({
   template: `<daffio-docs-design-component-content
@@ -54,9 +69,15 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
       ],
       providers: [
         DaffioActiveHeaderService,
-        DaffioDocsApiDynamicContentComponentService,
+        DaffioDocsApiDynamicContentFragmentService,
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
+        provideDaffioDocsApiDynamicFragments({
+          role: DaffDocsApiRole.COMPONENT,
+          components: [
+            TestFragmentComponent,
+          ],
+        }),
       ],
     })
       .compileComponents();
@@ -81,7 +102,9 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
       }],
       api: {
         // TODO: add better test when we have doc factories
-        [DaffDocsApiRole.COMPONENT]: [<any>{}],
+        [DaffDocsApiRole.COMPONENT]: [<any>{
+          role: DaffDocsApiRole.COMPONENT,
+        }],
       },
       contents: '<div id="contents">contents</div>',
       longDescription: '<div id="longDescription">longDescription</div>',
@@ -129,11 +152,12 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
     });
 
     it('should render the api', () => {
-      expect(fixture.debugElement.query(By.directive(DaffioDocsApiDefaultContentComponent))).toBeDefined();
+      expect(fixture.debugElement.query(By.directive(TestFragmentComponent)).componentInstance).toBeDefined();
     });
 
-    it('should pass the API toc to the article', () => {
-      expect(articleComponent.toc).toEqual(wrapper.docValue.apiToc);
+    it('should pass the doc to the fragment', () => {
+      const fragment: TestFragmentComponent = fixture.debugElement.query(By.directive(TestFragmentComponent)).componentInstance;
+      expect(fragment.doc()).toEqual(wrapper.docValue.api.component[0]);
     });
   });
 });

@@ -25,10 +25,18 @@
 				API
 			</daff-tab-label>
 			<daff-tab-panel>
-				@for (kv of doc().api | keyvalue | daffioDocsDesignApiSortSectionLabels; track kv.key) {
-					<h2 [attr.id]="kv.key">{{getSectionLabel(kv.key)}}</h2>
-					@for (apiDoc of kv.value; track $index) {
-						<ng-template [ngComponentOutlet]="getApiComponent(apiDoc)" [ngComponentOutletInputs]="{doc: apiDoc, child: true}"></ng-template>
+				@for (kv of sections(); track kv.key) {
+					@let header = kv.key;
+					@let label = getSectionLabel(header);
+					<h2 daffioDocsTocHeader [id]="header" [content]="label" level="2">{{label}}</h2>
+					@for (apiDoc of kv.value; track $index; let docIndex = $index) {
+						@for (component of getApiComponent(apiDoc)?.components || []; track $index; let fragmentIndex = $index) {
+							<ng-template [ngComponentOutlet]="component" [ngComponentOutletInputs]="{
+								doc: apiDoc,
+								child: true,
+								toc: fragmentTocs()[header][docIndex][fragmentIndex]
+							}"></ng-template>
+						}
 						<hr>
 					}
 				}
