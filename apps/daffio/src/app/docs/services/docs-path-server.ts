@@ -24,7 +24,7 @@ const daffioDocsPathServerFactory = () =>
 const daffioDocsPathPrerenderFactory = () =>
   // the SSR runs from the daffio directory and doesn't use dotenv so we rely on cwd
   // devs should have the DAFF_ROOT env var set in their .env
-  !process.env.DAFF_ROOT ? process.cwd() : resolve(process.env.DAFF_ROOT, 'dist');
+  !process.env.DAFF_ROOT ? resolve(process.cwd(), '../../dist') : resolve(process.env.DAFF_ROOT, 'dist');
 
 /**
  * A provider for the docs path for the server.
