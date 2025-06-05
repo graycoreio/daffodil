@@ -33,8 +33,3 @@ import { DaffAnalyticsDataLayer, provideDaffDataLayerTracker } from '@daffodil/a
 })
 export class AppModule {}
 ```
-
-## Exports
-- `DaffAnalyticsDataLayer`: Service for pushing events to the data layer.
-- `provideDaffDataLayerTracker`: Factory provider for integrating with Daffodil Analytics.
-- `DaffDataLayer`, `DaffDataLayerItem`, `DaffEcommerceDataLayer`, `DaffVirtualPageViewDataLayer`, etc.: Types for data layer events.
