@@ -33,7 +33,7 @@
     (keydown.escape)="close($event)"
     (keydown.arrowdown)="highlightNext($event)"
     (keydown.arrowup)="highlightPrevious($event)">
-    @for (option of options; track trackByIndex($index); let i = $index) {
+    @for (option of options; track $index; let i = $index) {
       <div class="daff-select__option"
       [class.selected]="value === option"
       [class.highlighted]="highlighted === i"

@@ -311,13 +311,6 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   /**
    * @docs-private
    */
-  trackByIndex(index: number) {
-    return index;
-  }
-
-  /**
-   * @docs-private
-   */
   animationFinished() {
     this._animationFinishCallbackQueue.forEach((cb) => {
       cb();
@@ -409,7 +402,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   /**
    * Selects the value in a particular position in the options list.
    */
-  selectValueInPosition(position: number) {
+  private selectValueInPosition(position: number) {
     if (position >= 0 && position < this.options.length) {
       this.writeValue(this.options[position]);
     }
