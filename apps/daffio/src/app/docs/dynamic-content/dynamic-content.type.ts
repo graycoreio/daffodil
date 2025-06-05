@@ -1,7 +1,7 @@
 import { InputSignal } from '@angular/core';
 
-import { DaffDoc } from '@daffodil/docs-utils';
+import { DaffBaseDoc } from '@daffodil/docs-utils';
 
-export interface DaffioDocsDynamicContent<T extends DaffDoc = DaffDoc> {
+export interface DaffioDocsDynamicContent<T extends DaffBaseDoc = DaffBaseDoc> {
   doc: InputSignal<T>;
 }
