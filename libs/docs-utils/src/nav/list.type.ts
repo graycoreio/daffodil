@@ -4,7 +4,7 @@ import {
 } from './api.type';
 import { DaffDesignGuideNavDoc } from './design-guide.type';
 import { DaffNavDoc } from './type';
-import { DaffBreadcrumb } from '../breadcrumb/public_api';
+import { DaffBaseDoc } from '../doc/public_api';
 
 /**
  * A list of references for API documents.
@@ -32,7 +32,6 @@ export type DaffDocsApiNavList = DaffDocsGenericNavList<DaffApiNavDoc | DaffApiN
  * An API package doc.
  * This has a structure resembling a navigation index.
  */
-export interface DaffApiPackageDoc extends DaffApiNavPackageDoc {
-  breadcrumbs: Array<DaffBreadcrumb>;
+export interface DaffApiPackageDoc extends DaffApiNavPackageDoc, DaffBaseDoc {
   children: Array<DaffDocsGenericNavList<DaffApiNavDoc | DaffApiNavPackageDoc>>;
 };

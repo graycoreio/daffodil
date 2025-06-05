@@ -1,15 +1,11 @@
-import { DaffBreadcrumb } from '../breadcrumb/public_api';
-import { DaffDocKind } from '../kind/public_api';
-import { DaffDocTableOfContents } from '../toc/public_api';
+import { DaffDocTableOfContents } from '../public_api';
+import { DaffBaseDoc } from './base.type';
+import { DaffDocsRenderedContent } from './rendered-content.type';
 
 /**
- * A basic generated document that represents some piece of documentation.
+ * Represents some piece of documentation with content that can be rendered.
  */
-export interface DaffDoc {
-  id: string;
-  title: string;
-  contents: string;
-  breadcrumbs: Array<DaffBreadcrumb>;
-  kind: DaffDocKind;
+export interface DaffDoc extends DaffBaseDoc {
+  contents: DaffDocsRenderedContent;
   tableOfContents: DaffDocTableOfContents;
 }
