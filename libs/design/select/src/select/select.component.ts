@@ -124,7 +124,12 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     this.emitState();
   }
 
+  /**
+   * @docs-private
+   */
+  _disabled = false;
   @Input() disabled = false;
+
   @Input() options: T[] = [];
 
   /**
@@ -139,11 +144,12 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
    */
   @HostBinding('class.daff-select') class = true;
 
+
   /**
    * @docs-private
    */
   @HostBinding('class.disabled') get disabledClass() {
-    return this.ngControl.disabled;
+    return this.disabled || this._disabled;
   }
 
   /**
@@ -275,7 +281,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
    * @docs-private
    */
   setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this._disabled = isDisabled;
   }
 
   /**
@@ -296,6 +302,10 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
       map(() => this.state),
     );
     this._animationState = getAnimationState(this.openDirective.open);
+
+    // if(this.disabled && this.ngControl) {
+    //   console.warn('You have set');
+    // }
   }
 
   /**
@@ -403,49 +413,8 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     if (position >= 0 && position < this.options.length) {
       this.writeValue(this.options[position]);
     }
+
     this.close();
-  }
-
-  /**
-   * Selects the option in the options list after the currently selected one.
-   * If there is not a currently selected option, selects the first option.
-   */
-  selectNext(event?: KeyboardEvent | MouseEvent) {
-    event?.preventDefault();
-    event?.stopPropagation();
-
-    if (this._value == null) {
-      this.selectValueInPosition(0);
-    } else {
-      const currentIndex = this.options.findIndex((v) => v === this._value);
-      if (currentIndex < this.options.length - 1) {
-        this.selectValueInPosition(currentIndex + 1);
-      }
-    }
-
-    this.focus();
-  }
-
-  /**
-   * Selects the option in the options list before the currently selected one.
-   * If there is not a currently selected option, selects the first option.
-   */
-  selectPrevious(event?: KeyboardEvent | MouseEvent) {
-    event?.preventDefault();
-    event?.stopPropagation();
-
-    if (this._value) {
-      const currentIndex = this.options.findIndex((v) => v === this._value);
-      if (currentIndex > 0) {
-        this.selectValueInPosition(currentIndex - 1);
-      } else {
-        this.selectValueInPosition(0);
-      }
-    } else {
-      this.selectValueInPosition(0);
-    }
-
-    this.focus();
   }
 
   /**
@@ -468,6 +437,8 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     event?.preventDefault();
     event?.stopPropagation();
     this.selectValueInPosition(this._highlighted);
+
+    this.onChange(this._value);
   }
 
   /**
@@ -476,7 +447,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   highlightNext(event?: KeyboardEvent | MouseEvent) {
     event?.preventDefault();
     event?.stopPropagation();
-    this._highlighted = this._highlighted < this.options.length - 1 ? this._highlighted + 1 : this.options.length - 1;
+    this._highlighted = this._highlighted < this.options.length - 1 ? this._highlighted + 1 : 0;
     (<HTMLElement>event?.target).children[this._highlighted].scrollIntoView();
   }
 
@@ -486,7 +457,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   highlightPrevious(event?: KeyboardEvent | MouseEvent) {
     event?.preventDefault();
     event?.stopPropagation();
-    this._highlighted = this._highlighted > 0 ? this._highlighted - 1 : 0;
+    this._highlighted = this._highlighted > 0 ? this._highlighted - 1 : this.options.length - 1;
     (<HTMLElement>event?.target).children[this._highlighted].scrollIntoView();
   }
 }

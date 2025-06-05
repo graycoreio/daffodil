@@ -1,18 +1,19 @@
 <button #field class="daff-select__field"
   type="button"
-  (click)="open()"
+  (click)="open($event)"
   (focus)="focus()"
   (blur)="blur()"
-  [disabled]="disabled"
+  [disabled]="disabled || _disabled"
   role="combobox"
   aria-haspopup="listbox"
   [attr.aria-expanded]="isOpen"
   [attr.aria-controls]="optionsId"
-  (keydown.arrowdown)="selectNext($event)"
-  (keydown.arrowup)="selectPrevious($event)"
-  (keydown.alt.arrowup)="open()"
-  (keydown.alt.arrowdown)="open()"
-  (keydown.space)="open()">
+  (keydown.arrowdown)="open($event)"
+  (keydown.arrowup)="open($event)"
+  (keydown.alt.arrowup)="open($event)"
+  (keydown.alt.arrowdown)="open($event)"
+  (keydown.space)="open($event)"
+  (keydown.enter)="open($event)">
   @if (value) {
     <ng-container
       [ngTemplateOutlet]="optionTemplate?.templateRef"
@@ -37,15 +38,15 @@
       [class.selected]="value === option"
       [class.highlighted]="highlighted === i"
       (click)="selectOption(option)">
-      <ng-container
-        [ngTemplateOutlet]="optionTemplate?.templateRef"
-        [ngTemplateOutletContext]="{
-          isSelected: value === option,
-          isHighlighted: highlighted === i,
-          option
-        }">
-      </ng-container>
-    </div>
+        <ng-container
+          [ngTemplateOutlet]="optionTemplate?.templateRef"
+          [ngTemplateOutletContext]="{
+            isSelected: value === option,
+            isHighlighted: highlighted === i,
+            option
+          }">
+        </ng-container>
+      </div>
     }
   </div>
 </ng-template>
