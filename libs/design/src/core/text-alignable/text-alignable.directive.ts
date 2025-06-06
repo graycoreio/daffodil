@@ -3,6 +3,7 @@ import {
   HostBinding,
   Input,
   OnChanges,
+  OnInit,
   SimpleChanges,
 } from '@angular/core';
 
@@ -11,6 +12,14 @@ import {
   DaffTextAlignment,
   DaffTextAlignmentEnum,
 } from './text-alignable';
+
+const textAlignmentValues = (textAlignment: string) => (<any>Object).values(DaffTextAlignmentEnum).includes(textAlignment);
+
+const validateTextAlignment = (textAlignment: string) => {
+  if (textAlignment !== undefined && !textAlignmentValues(textAlignment)) {
+    console.warn(`'${textAlignment}' is not a valid value of the textAlignment property. The available values are: left, center, or right.`);
+  }
+};
 
 /**
  * `DaffTextAlignableDirective` allows for dynamic text alignment of a component by
@@ -60,9 +69,8 @@ import {
  */
 @Directive({
   selector: '[daffTextAlignable]',
-  standalone: true,
 })
-export class DaffTextAlignableDirective implements DaffTextAlignable, OnChanges {
+export class DaffTextAlignableDirective implements DaffTextAlignable, OnChanges, OnInit {
 
   /**
    * @docs-private
@@ -92,6 +100,17 @@ export class DaffTextAlignableDirective implements DaffTextAlignable, OnChanges 
    */
   ngOnChanges(changes: SimpleChanges) {
     if (!changes.textAlignment?.currentValue) {
+      this.textAlignment = this.defaultAlignment;
+    }
+  }
+
+  /**
+   * @docs-private
+   */
+  ngOnInit() {
+    validateTextAlignment(this.textAlignment);
+
+    if (!this.textAlignment) {
       this.textAlignment = this.defaultAlignment;
     }
   }

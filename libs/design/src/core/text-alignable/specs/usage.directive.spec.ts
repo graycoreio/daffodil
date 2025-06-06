@@ -9,20 +9,24 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffTextAlignment } from './text-alignable';
-import { DaffTextAlignableDirective } from './text-alignable.directive';
+import {
+  DaffTextAlignment,
+  DaffTextAlignableDirective,
+} from '@daffodil/design';
 
 @Component({
   template: `
 		<div daffTextAlignable [textAlignment]="textAlignment"></div>`,
-  standalone: false,
+  imports: [
+    DaffTextAlignableDirective,
+  ],
 })
 
 class WrapperComponent {
   textAlignment: DaffTextAlignment;
 }
 
-describe('@daffodil/design | DaffTextAlignableDirective', () => {
+describe('@daffodil/design | DaffTextAlignableDirective | Usage', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -30,11 +34,8 @@ describe('@daffodil/design | DaffTextAlignableDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-      ],
       imports: [
-        DaffTextAlignableDirective,
+        WrapperComponent,
       ],
     })
       .compileComponents();
