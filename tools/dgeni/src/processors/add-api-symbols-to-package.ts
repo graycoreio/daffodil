@@ -1,14 +1,6 @@
 import { Document } from 'dgeni';
-import { slugify } from 'markdown-toc';
 
-import {
-  DaffApiDoc,
-  daffDocsApiArrayToDict,
-  DaffDocsApiRole,
-  daffDocsApiRoleGetSectionLabel,
-  daffDocsApiRoleSort,
-  DaffDocTableOfContents,
-} from '@daffodil/docs-utils';
+import { daffDocsApiArrayToDict } from '@daffodil/docs-utils';
 
 import { CollectLinkableSymbolsProcessor } from './collect-linkable-symbols';
 import { FilterableProcessor } from '../utils/filterable-processor.type';
@@ -30,18 +22,6 @@ export class AddApiSymbolsToPackagesProcessor implements FilterableProcessor {
         if (exportDocs) {
           doc.symbols = exportDocs?.map((d) => CollectLinkableSymbolsProcessor.symbols.get(d.name));
           const api = daffDocsApiArrayToDict(exportDocs);
-          doc.apiToc = daffDocsApiRoleSort(<Array<DaffDocsApiRole>>Object.keys(api))?.flatMap((role): DaffDocTableOfContents => [
-            {
-              content: daffDocsApiRoleGetSectionLabel(role),
-              lvl: 2,
-              slug: role,
-            },
-            ...api[role].map((apiDoc: Document & DaffApiDoc) => ({
-              content: apiDoc.name,
-              lvl: 3,
-              slug: slugify(apiDoc.name),
-            })),
-          ]);
         }
       }
       return doc;

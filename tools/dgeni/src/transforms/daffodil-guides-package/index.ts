@@ -101,7 +101,7 @@ const base = new Package('daffodil-guides-base', [daffodilBasePackage])
     );
   })
   .config((convertToJson: ConvertToJsonProcessor) => {
-    convertToJson.extraFields.push('api', 'apiToc');
+    convertToJson.extraFields.push('api');
   });
 
 // global

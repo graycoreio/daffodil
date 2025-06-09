@@ -90,11 +90,6 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
       id: 'id',
       title: 'title',
       symbols: [],
-      apiToc: [{
-        content: 'apiToc',
-        lvl: 2,
-        slug: 'apiToc',
-      }],
       tableOfContents: [{
         content: 'toc',
         lvl: 2,
