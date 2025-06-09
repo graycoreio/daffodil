@@ -1,0 +1,27 @@
+@if (doc().parameterDocs?.length > 0) {
+	@if (child()) {
+		<h6 daffioDocsTocHeader id="{{doc().slug}}-params" content="Parameters" level="6" class="daffio-docs-api-params-fragment__heading"><fa-icon [icon]="faCode" class="daffio-docs-api-params-fragment__parameters-icon"></fa-icon>Parameters</h6>
+	} @else {
+		<h4 daffioDocsTocHeader id="params" content="Parameters" level="4" class="daffio-docs-api-params-fragment__heading"><fa-icon [icon]="faCode" class="daffio-docs-api-params-fragment__parameters-icon"></fa-icon>Parameters</h4>
+	}
+	@for (param of doc().parameterDocs; track $index) {
+		<table>
+			<tbody>
+				<tr>
+					<th>Parameter</th>
+					<td><code>{{ param.name }}: <span daffioInterceptNavigation [innerHTML]="param.type | safe"></span></code></td>
+				</tr>
+				@if (param.defaultValue) {
+					<tr>
+						<th>Default</th>
+						<td>{{ param.defaultValue }}</td>
+					</tr>
+				}
+				<tr>
+					<th>Description</th>
+					<td daffioInterceptNavigation [innerHTML]="param.description | safe"></td>
+				</tr>
+			</tbody>
+		</table>
+	}
+}
