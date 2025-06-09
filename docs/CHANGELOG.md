@@ -1,5 +1,36 @@
 # Changelog
 
+## [0.86.0](https://github.com/graycoreio/daffodil/compare/v0.85.0...v0.86.0) (2025-06-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **design:** The `loading` property and its associated UI has been removed because design components should not have state management UI. This will eventually be handled by an ecommerce design package.
+* **analytics:** The package `@daffodil/analytics-provider-data-layer` no longer exists. Users of `@daffodil/analytics-provider-data-layer` package must change their imports to `@daffodil/analytics/driver/data-layer`.
+* **design:** `DaffSkeletonable` has been removed from the public api
+* **design:** move toast position configuration to `provideDaffToast` provider ([#3732](https://github.com/graycoreio/daffodil/issues/3732))
+* **analytics-provider-data-layer:** daff prefix types, classes, and interfaces ([#3745](https://github.com/graycoreio/daffodil/issues/3745))
+
+### Features
+
+* **analytics-provider-data-layer:** daff prefix types, classes, and interfaces ([#3745](https://github.com/graycoreio/daffodil/issues/3745)) ([a85cbdc](https://github.com/graycoreio/daffodil/commit/a85cbdc3c02da67da283b37c869853fba811ff79))
+* **analytics:** move `@daffodil/analytics-provider-data-layer` to `@daffodil/analytics` ([#3747](https://github.com/graycoreio/daffodil/issues/3747)) ([9ddc312](https://github.com/graycoreio/daffodil/commit/9ddc31204d1ae20fc7abd05926ba79f6c9a3918d))
+* **daffio:** update component themes to use new theming functions ([#3762](https://github.com/graycoreio/daffodil/issues/3762)) ([4ee576c](https://github.com/graycoreio/daffodil/commit/4ee576c1aa12f9c174fce5d72655b6d843bafa3c))
+* **daffio:** update subfooter button colors ([#3757](https://github.com/graycoreio/daffodil/issues/3757)) ([5162da0](https://github.com/graycoreio/daffodil/commit/5162da0fb8e6010a23ecd9db2d60ae6396ac2a98))
+* **design:** move toast position configuration to `provideDaffToast` provider ([#3732](https://github.com/graycoreio/daffodil/issues/3732)) ([4933390](https://github.com/graycoreio/daffodil/commit/4933390936a21641e5f7cdc7b1610c4d0881e7b5))
+* **design:** remove loading property from the button components ([#3769](https://github.com/graycoreio/daffodil/issues/3769)) ([b2d4cf0](https://github.com/graycoreio/daffodil/commit/b2d4cf016edf76c8fe39925368135dbfe1383cdb))
+* **design:** remove unnecessary `DaffSkeletonable` interface and update `skeleton-screen` mixin style ([#3754](https://github.com/graycoreio/daffodil/issues/3754)) ([aaf2ce1](https://github.com/graycoreio/daffodil/commit/aaf2ce1f7bb47f3408d112749676b4c6a02fe691))
+* **design:** update form field label implementation and add accessibility features ([#3749](https://github.com/graycoreio/daffodil/issues/3749)) ([7e50772](https://github.com/graycoreio/daffodil/commit/7e50772d6c0082f4a861f6fe8bfaabf303622b33))
+* **product-composite:** add extension points for magento item and option ([#3759](https://github.com/graycoreio/daffodil/issues/3759)) ([25c088c](https://github.com/graycoreio/daffodil/commit/25c088c5f1c7dfe766124ad0fd805cca07182557))
+
+
+### Bug Fixes
+
+* **design:** fix sass breaking changes in design components ([#3755](https://github.com/graycoreio/daffodil/issues/3755)) ([739172c](https://github.com/graycoreio/daffodil/commit/739172ce3130ed9e6462f3996dab0a9a9f4257c4))
+* **design:** set `defaultAlignment` as the `textAlignment` value ([#3767](https://github.com/graycoreio/daffodil/issues/3767)) ([c7c58ff](https://github.com/graycoreio/daffodil/commit/c7c58ff038a121e9218f5a83afdca4db8bc9c2f9))
+* **dgeni:** hoisted host directive fields are not typed correctly ([#3743](https://github.com/graycoreio/daffodil/issues/3743)) ([54bd812](https://github.com/graycoreio/daffodil/commit/54bd81243d51a823b671fe6adae8dca07fd4d8ae))
+* **dgeni:** regex matching on windows ([#3738](https://github.com/graycoreio/daffodil/issues/3738)) ([5dd90c6](https://github.com/graycoreio/daffodil/commit/5dd90c62a65e714857bebf496d50aabda8cfd727))
+
 ## [0.85.0](https://github.com/graycoreio/daffodil/compare/v0.84.0...v0.85.0) (2025-05-20)
 
 
