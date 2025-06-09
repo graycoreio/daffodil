@@ -6,8 +6,6 @@ import {
   Input,
 } from '@angular/core';
 
-import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
-
 import { DaffButtonBaseDirective } from '../button-base.directive';
 
 /**
@@ -35,9 +33,6 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
   styleUrl: './button.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    DAFF_LOADING_ICON_COMPONENTS,
-  ],
 })
 export class DaffButtonComponent extends DaffButtonBaseDirective {
   /**

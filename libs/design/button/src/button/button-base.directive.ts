@@ -33,7 +33,6 @@ import { DaffButtonSizableDirective } from './button-sizable.directive';
       inputs: ['color'],
     },
   ],
-  standalone: true,
 })
 export class DaffButtonBaseDirective {
 
@@ -58,8 +57,6 @@ export class DaffButtonBaseDirective {
     return this.disabled;
   }
 
-  @Input() loading = false;
-
   /**
    * Sets the tabindex. Defaults to 0.
    */
@@ -71,7 +68,7 @@ export class DaffButtonBaseDirective {
    * The disabled state of the button.
    */
   @Input() get disabled() {
-    return this._disabled || this.loading;
+    return this._disabled;
   }
   set disabled(value: any) {
     this._disabled = coerceBooleanProperty(value);

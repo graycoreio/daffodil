@@ -5,8 +5,6 @@ import {
   HostBinding,
 } from '@angular/core';
 
-import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
-
 import { DaffButtonBaseDirective } from '../button-base.directive';
 
 /**
@@ -34,9 +32,6 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
   styleUrl: './flat.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    DAFF_LOADING_ICON_COMPONENTS,
-  ],
 })
 export class DaffFlatButtonComponent
   extends DaffButtonBaseDirective {

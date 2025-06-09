@@ -24,12 +24,12 @@ Button supports five types that change its visual style.
 ### Stroked button
 <design-land-example-viewer-container example="stroked-button"></design-land-example-viewer-container>
 
-> `black`, `white`, and `theme` should be used with caution to ensure that there is sufficient contrast.
+> `dark`, `light`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
 ### Icon button
 <design-land-example-viewer-container example="icon-button"></design-land-example-viewer-container>
 
-> `black`, `white`, and `theme` should be used with caution to ensure that there is sufficient contrast.
+> `dark`, `light`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
 ### Underline button
 <design-land-example-viewer-container example="underline-button"></design-land-example-viewer-container>
@@ -87,7 +87,7 @@ Use the `size` property to specify a button size. Setting this property will cha
 ## Colors
 Use the `color` property to change the color of a button. The default color is light gray.
 
-> For select button types, `black` and `white` should be used on a darker background in order to have sufficient contrast.
+> For select button types, `dark` and `light` should be used on a darker background in order to have sufficient contrast.
 
 ## Status indicators
 Buttons with status indicators can be used to distinguish what type of action it performs and its importance compared to other buttons in the same context. Use the `status` property to change the status.

@@ -13,17 +13,15 @@ import {
   DaffPalette,
   DaffStatus,
 } from '@daffodil/design';
-import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
 
 import { DaffButtonBaseDirective } from './button-base.directive';
 import { DaffButtonSize } from './button-sizable.directive';
 
 @Component({
   template: `
-		<div daffButtonBase [color]="color" [size]="size" [status]="status" [loading]="loading" [tabindex]="tabindex"></div>`,
+		<div daffButtonBase [color]="color" [size]="size" [status]="status" [tabindex]="tabindex"></div>`,
   imports: [
     DaffButtonBaseDirective,
-    DaffLoadingIconComponent,
   ],
 })
 
@@ -31,7 +29,6 @@ class WrapperComponent {
   color: DaffPalette;
   size: DaffButtonSize;
   status: DaffStatus;
-  loading = false;
   tabindex = 0;
 }
 
@@ -104,35 +101,6 @@ describe('@daffodil/design/button | DaffButtonBaseDirective', () => {
   describe('using the tabindex property of a button', () => {
     it('should be able to take `tabindex` as an input', () => {
       expect(directive.tabindex).toEqual(wrapper.tabindex);
-    });
-  });
-
-  describe('using the loading property of a button', () => {
-    it('should be able to take `loading` as an input', () => {
-      expect(directive.loading).toEqual(wrapper.loading);
-    });
-
-    describe('when loading is set to true', () => {
-      beforeEach(() => {
-        wrapper.loading = true;
-        fixture.detectChanges();
-
-      });
-
-      it('should show the <daff-loading-icon>', () => {
-        const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
-
-        expect(loadingIcon).toBeDefined();
-      });
-    });
-
-    it('should show the `.daff-button__content` when loading is set to false', () => {
-      wrapper.loading = false;
-      fixture.detectChanges();
-
-      const buttonContent = fixture.debugElement.query(By.css('.daff-button__content'));
-
-      expect(buttonContent).toBeDefined();
     });
   });
 

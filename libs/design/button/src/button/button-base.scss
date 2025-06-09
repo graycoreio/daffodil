@@ -47,12 +47,6 @@
 		z-index: 1;
 	}
 
-	.daff-button__loading {
-		> * {
-			width: 100%;
-		}
-	}
-
 	.daff-button__content {
 		@include t.text-truncate();
 	}
@@ -87,10 +81,6 @@
 		line-height: 2rem;
 		height: 2rem;
 		padding: 0 1rem;
-
-		.daff-button__loading {
-			width: 1rem;
-		}
 	}
 
 	&.daff-md {
@@ -98,10 +88,6 @@
 		line-height: 3rem;
 		height: 3rem;
 		padding: 0 1.5rem;
-
-		.daff-button__loading {
-			width: 1.5rem;
-		}
 	}
 
 	&.daff-lg {
@@ -109,9 +95,5 @@
 		line-height: 3.5rem;
 		height: 3.5rem;
 		padding: 0 1.5rem;
-
-		.daff-button__loading {
-			width: 2rem;
-		}
 	}
 }
