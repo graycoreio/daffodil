@@ -385,6 +385,16 @@ export class RoleProcessor implements FilterableProcessor {
       const ret = doc.typeChecker.getReturnTypeOfSignature(<any>doc);
       doc.type = doc.typeChecker.typeToString(ret);
     }
+    (<Map<string, Array<{
+      name: string;
+      description: string;
+    }>>>(<any>doc).tags.tagsByName).get('param')?.forEach((tag) => {
+      const param = doc.parameterDocs.find(({ name }) => name === tag.name);
+      if (param && !param.description) {
+        param.description = tag.description;
+      }
+    });
+    this.inlineTagProcessor.$process(doc.parameterDocs);
     return doc;
   };
 
