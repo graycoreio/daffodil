@@ -5,10 +5,12 @@
       <div>Menu</div>
     </button>
 
-    <button class="daffio-doc-viewer__button" (click)="openToc()">
-      <div>On this page</div>
-      <fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
-    </button>
+    @if (toc.length > 0) {
+      <button class="daffio-doc-viewer__button" (click)="openToc()">
+        <div>On this page</div>
+        <fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
+      </button>
+    }
   </div>
   <div class="daffio-doc-viewer__grid">
     <div class="daffio-doc-viewer__content">

@@ -59,9 +59,10 @@
 	&__button {
 		@include daff.clickable();
 		display: flex;
-		gap: 0.5rem;
 		align-items: center;
 		justify-content: center;
+		flex-grow: 1;
+		gap: 0.5rem;
 		background: var(--daff-theme);
 		border: 0;
 		color: var(--daff-theme-contrast);
