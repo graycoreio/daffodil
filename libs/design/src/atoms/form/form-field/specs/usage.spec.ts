@@ -15,19 +15,22 @@ import {
 import { By } from '@angular/platform-browser';
 
 import {
+  DAFF_FORM_FIELD_COMPONENTS,
   DaffFormFieldComponent,
   DaffFormFieldControl,
 } from '@daffodil/design';
 import { DaffInputComponent } from '@daffodil/design/input';
 
+import { DaffFormFieldApperanace } from '../form-field/form-field.component';
+
 @Component({ template: `
-  <daff-form-field [id]="id">
+  <daff-form-field [id]="id" [appearance]="appearance">
     <input daff-input [formControl]="formControl">
     <daff-hint></daff-hint>
     <daff-error-message></daff-error-message>
   </daff-form-field>`,
 imports: [
-  DaffFormFieldComponent,
+  DAFF_FORM_FIELD_COMPONENTS,
   DaffInputComponent,
   ReactiveFormsModule,
 ]})
@@ -35,6 +38,7 @@ imports: [
 class WrapperComponent {
   formControl = new UntypedFormControl('', Validators.required);
   id: string;
+  appearance: DaffFormFieldApperanace = 'fixed';
 }
 
 describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
@@ -69,6 +73,19 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
 
   it('should allow a custom id to be set', () => {
     expect(component.id).toEqual(wrapper.id);
+  });
+
+  describe('setting the appearance of a form field', () => {
+    it('should take appearance as an input', () => {
+      expect(component.appearance).toEqual(wrapper.appearance);
+    });
+
+    it('should add a class of "fluid" to the host element when appearance="fluid"', () => {
+      wrapper.appearance = 'fluid';
+      fixture.detectChanges();
+
+      expect(de.classes['fluid']).toBeTrue();
+    });
   });
 
   describe('error state', () => {
@@ -127,5 +144,72 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
       expect(wrapper.formControl.disabled).toBeFalsy();
       expect(de.nativeElement.classList.contains('daff-disabled')).toEqual(false);
     });
+  });
+
+  it('should not add the `has-prefix` class to the host element if prefix is not used', () => {
+    expect(de.nativeElement.classList.contains('has-prefix')).toEqual(false);
+  });
+
+  it('should not add the `has-suffix` class to the host element if suffix or action is not used', () => {
+    expect(de.nativeElement.classList.contains('has-suffix')).toEqual(false);
+  });
+});
+
+@Component({ template: `
+  <daff-form-field>
+    <div daffPrefix></div>
+    <input daff-input>
+    <div daffSuffix></div>
+    <div daffFormFieldAction></div>
+  </daff-form-field>`,
+imports: [
+  DAFF_FORM_FIELD_COMPONENTS,
+  DaffInputComponent,
+  ReactiveFormsModule,
+]})
+
+class WithPrefixSuffixComponent {
+}
+
+describe('@daffodil/design | DaffFormFieldComponent | Usage - Prefix, Suffix, & Action', () => {
+  let wrapper: WithPrefixSuffixComponent;
+  let component: DaffFormFieldComponent;
+  let fixture: ComponentFixture<WithPrefixSuffixComponent>;
+  let control: DaffFormFieldControl<unknown>;
+  let de: DebugElement;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        WithPrefixSuffixComponent,
+      ],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(WithPrefixSuffixComponent);
+    wrapper = fixture.componentInstance;
+    fixture.detectChanges();
+
+    de = fixture.debugElement.query(By.css('daff-form-field'));
+    component = de.componentInstance;
+    control = component._control;
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should add the `has-prefix` class to the host element when [daffPrefix] is used', () => {
+    expect(de.nativeElement.classList.contains('has-prefix')).toEqual(true);
+  });
+
+  it('should add the `has-suffix` class to the host element when [daffSuffix] is used', () => {
+    expect(de.nativeElement.classList.contains('has-suffix')).toEqual(true);
+  });
+
+  it('should add the `has-suffix` class to the host element when [daffFormFieldAction] is used', () => {
+    expect(de.nativeElement.classList.contains('has-suffix')).toEqual(true);
   });
 });

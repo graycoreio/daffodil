@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   ViewEncapsulation,
@@ -18,11 +19,19 @@ import { DaffSkeletonableDirective } from '../../../../core/skeletonable/skeleto
 import { DaffErrorMessageComponent } from '../../error-message/error-message.component';
 import { DaffFormLabelDirective } from '../../form-label/form-label.directive';
 import { DaffHintComponent } from '../../hint/hint.component';
+import { DaffFormFieldActionDirective } from '../action/action.directive';
 import { DaffFormFieldControl } from '../form-field-control';
 import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
 import { DaffFormFieldLabelDirective } from '../label/label.directive';
 
 let daffFormFieldId = 0;
+
+export type DaffFormFieldApperanace = 'fluid' | 'fixed';
+
+enum DaffFormFieldApperanaceEnum {
+  Fluid = 'fluid',
+  Fixed = 'fixed',
+}
 
 @Component({
   selector: 'daff-form-field',
@@ -30,6 +39,9 @@ let daffFormFieldId = 0;
   styleUrls: ['./form-field.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    NgTemplateOutlet,
+  ],
   hostDirectives: [
     {
       directive: DaffSkeletonableDirective,
@@ -51,8 +63,22 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   /** @docs-private */
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
 
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.has-prefix') get hasPrefixClass() {
+    return this._prefix;
+  }
+
   /** @docs-private */
   @ContentChild(DaffSuffixDirective) _suffix: DaffSuffixDirective;
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.has-suffix') get hasSuffixClass() {
+    return this._suffix || this._action;
+  }
 
   /**
    * @docs-private
@@ -71,6 +97,11 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    * @docs-private
    */
   @ContentChild(DaffFormFieldLabelDirective) _formFieldLabelDirective: DaffFormFieldLabelDirective;
+
+  /**
+   * @docs-private
+   */
+  @ContentChild(DaffFormFieldActionDirective) _action: DaffFormFieldActionDirective;
 
   /**
    * @docs-private
@@ -156,6 +187,38 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    */
   @HostBinding('class.daff-raised') get raisedClass() {
     return this._control?.raised || this.isFilled;
+  }
+
+  private _appearance: DaffFormFieldApperanace = DaffFormFieldApperanaceEnum.Fixed;
+
+  /**
+   * The appearance style of a form field, whether the label is fluid or fixed.
+   */
+  @Input()
+  get appearance() {
+    return this._appearance;
+  }
+
+  set appearance(value: DaffFormFieldApperanace) {
+    if(value === null || value === undefined || <unknown>value === '') {
+      this._appearance = DaffFormFieldApperanaceEnum.Fixed;
+    } else {
+      this._appearance = value;
+    }
+  };
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.fluid') get fluidClass() {
+    return this._appearance === DaffFormFieldApperanaceEnum.Fluid;
+  }
+
+  /**
+   * @docs-private
+   */
+  isFluid() {
+    return this._appearance === DaffFormFieldApperanaceEnum.Fluid;
   }
 
   /**

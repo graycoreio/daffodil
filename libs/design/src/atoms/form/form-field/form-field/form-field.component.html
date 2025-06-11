@@ -1,26 +1,28 @@
-<div class="daff-form-field__control">
-	@if (_prefix) {
-		<ng-content select="[daffPrefix]"></ng-content>
-	}
-	<div class="daff-form-field__form-wrapper">
-		@if (_formLabelDirective) {
-			<ng-content select="label[daffFormLabel]"></ng-content>
-		} @else if(_formFieldLabelDirective) {
-			<label class="daff-form-field__label"
-				[attr.for]="autoLabelId"
-				[attr.id]="customId">
-				<ng-content select="daff-form-label"></ng-content>
-			</label>
-		} @else {
-			<ng-content select="label"></ng-content>
+<ng-content />
+
+@if (!isFluid()) {
+  <ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
+}
+<div class="daff-form-field__wrapper">
+	<div class="daff-form-field__control">
+		@if (_prefix) {
+			<ng-content select="[daffPrefix]"></ng-content>
 		}
-		<ng-content></ng-content>
+		<div class="daff-form-field__inner">
+			@if (isFluid()) {
+				<ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
+			}
+			<ng-content></ng-content>
+		</div>
 		@if (isSelectField) {
 			<div class="daff-form-field__icon"></div>
 		}
+		@if (_suffix) {
+			<ng-content select="[daffSuffix]"></ng-content>
+		}
 	</div>
-  @if (_suffix) {
-		<ng-content select="[daffSuffix]"></ng-content>
+	@if (_action) {
+		<ng-content select="[daffFormFieldAction]"></ng-content>
 	}
 </div>
 @if (hasHint()) {
@@ -37,3 +39,17 @@
 		<ng-content select="daff-error-message"></ng-content>
 	</div>
 }
+
+<ng-template #labelTemplate>
+  @if (_formLabelDirective) {
+    <ng-content select="label[daffFormLabel]"></ng-content>
+  } @else if(_formFieldLabelDirective) {
+    <label class="daff-form-field__label"
+      [attr.for]="autoLabelId"
+      [attr.id]="customId">
+      <ng-content select="daff-form-label"></ng-content>
+    </label>
+  } @else {
+    <ng-content select="label"></ng-content>
+  }
+</ng-template>

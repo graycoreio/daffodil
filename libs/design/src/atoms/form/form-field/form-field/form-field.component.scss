@@ -1,6 +1,7 @@
 @use '../../../../../scss/typography' as t;
 @use '../../../../../scss/state';
 
+// stylelint-disable selector-class-pattern
 .daff-form-field {
 	$root: &;
 	display: flex;
@@ -8,10 +9,27 @@
 	gap: 0.25rem;
 	position: relative;
 
+	&.has-prefix {
+		#{$root}__control {
+			padding-left: 0;
+		}
+	}
+
+	&.has-suffix {
+		#{$root}__control {
+			padding-right: 0;
+		}
+	}
+
 	&__hint-wrapper,
 	&__error-wrapper {
 		display: flex;
 		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	&__wrapper {
+		display: flex;
 		gap: 0.25rem;
 	}
 
@@ -21,12 +39,13 @@
 		border-radius: 0.25rem;
 		font-size: t.$font-size-base;
 		line-height: 1rem;
+		padding: 0 1rem;
 		position: relative;
 		width: 100%;
 
 		* {
 			::-webkit-input-placeholder {
-				opacity: 0;
+				opacity: 1;
 			}
 		}
 
@@ -43,39 +62,65 @@
 	select {
 		font-size: 1rem;
 		line-height: 1.5rem;
-		padding: 1rem;
+		padding: calc(0.75rem - 1px) 0;
 	}
 
-	label,
-	.daff-form-label,
-	&__label {
-		position: absolute;
-		left: 1rem;
-		top: 1.25rem;
-		pointer-events: none;
-		transform-origin: left top;
-		transition: transform 150ms;
-
-		+ {
-			input,
-			textarea,
-			select {
-				padding: 1.5rem 1rem 0.5rem;
+	&.fluid {
+		#{$root}__control {
+			* {
+				::-webkit-input-placeholder {
+					opacity: 0;
+				}
 			}
 		}
-	}
 
-	&.daff-raised {
+		input,
+		textarea,
+		select {
+			font-size: 1rem;
+			line-height: 1.5rem;
+			padding: 1rem 0;
+		}
+
 		label,
 		.daff-form-label,
-		#{$root}__label {
-			transform: translateY(-75%) scale(0.75);
+		.daff-form-field__label {
+			position: absolute;
+			left: 0;
+			top: 1.25rem;
+			pointer-events: none;
+			transform-origin: left top;
+			transition: transform 150ms;
+			overflow: hidden;
+			white-space: nowrap;
+
+			+ {
+				input,
+				textarea,
+				select {
+					padding: calc(1.5rem - 1px) 0 calc(0.5rem - 1px);
+				}
+			}
 		}
 
-		* {
-			::-webkit-input-placeholder {
-				opacity: 1;
+		&.daff-raised {
+			label,
+			.daff-form-label,
+			#{$root}__label {
+				transform: translateY(-75%) scale(0.75);
 			}
+
+			* {
+				::-webkit-input-placeholder {
+					opacity: 1;
+				}
+			}
+		}
+
+		.daff-prefix,
+		.daff-suffix {
+			height: 3rem;
+			min-width: 3rem;
 		}
 	}
 
@@ -98,18 +143,22 @@
 		transition: transform 150ms;
 	}
 
-	&__form-wrapper {
+	&__inner {
 		flex-grow: 1;
 		position: relative;
 		overflow: hidden;
 	}
 
-	.daff-prefix {
-		padding-left: 1rem;
-	}
-
+	.daff-prefix,
 	.daff-suffix {
-		padding-right: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		appearance: none;
+		background: none;
+		border: none;
+		height: calc(3rem - 2px);
+		min-width: calc(3rem - 2px);
 	}
 
 	&.daff-skeleton {

@@ -1,0 +1,8 @@
+<daff-form-field>
+  <fa-icon [icon]="faUser" daffPrefix></fa-icon>
+  <daff-form-label>First Name</daff-form-label>
+  <input daff-input type="text" name="first-name" [(ngModel)]="inputValue" />
+  <button daff-icon-button color="theme-contrast" daffSuffix (click)="clearInput()">
+    <fa-icon [icon]="faCircleXmark"></fa-icon>
+  </button>
+</daff-form-field>

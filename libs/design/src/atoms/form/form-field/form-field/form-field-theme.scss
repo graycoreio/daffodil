@@ -10,10 +10,22 @@
 	$neutral: daff-get-palette($theme, neutral);
 	$mode: daff-get-theme-mode($theme);
 
+	// stylelint-disable selector-class-pattern
 	.daff-form-field {
 		@include light($mode) {
 			.daff-form-field__control {
 				border: 1px solid daff-color($neutral);
+				color: daff-color($neutral);
+
+				* {
+					::-webkit-input-placeholder {
+						color: daff-color($neutral);
+					}
+				}
+			}
+
+			.daff-prefix,
+			.daff-suffix {
 				color: daff-color($neutral);
 			}
 		}
@@ -21,6 +33,17 @@
 		@include dark($mode) {
 			.daff-form-field__control {
 				border: 1px solid daff-color($neutral, 40);
+				color: daff-color($neutral, 40);
+
+				* {
+					::-webkit-input-placeholder {
+						color: daff-color($neutral, 40);
+					}
+				}
+			}
+
+			.daff-prefix,
+			.daff-suffix {
 				color: daff-color($neutral, 40);
 			}
 		}
@@ -30,10 +53,12 @@
 				border: 1px solid daff-color($primary);
 			}
 
-			.daff-form-label,
-			label,
-			.daff-form-field__label {
-				color: daff-color($primary);
+			&.fluid {
+				.daff-form-label,
+				label,
+				.daff-form-field__label {
+					color: daff-color($primary);
+				}
 			}
 		}
 
@@ -42,10 +67,12 @@
 				border: 1px solid daff-color($critical);
 			}
 
-			.daff-form-label,
-			label,
-			.daff-form-field__label {
-				color: daff-color($critical);
+			&.fluid {
+				.daff-form-label,
+				label,
+				.daff-form-field__label {
+					color: daff-color($critical);
+				}
 			}
 		}
 
