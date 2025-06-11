@@ -23,7 +23,6 @@
 
 @mixin daff-button-base {
 	@include interactions.clickable();
-	@include t.text-truncate();
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
