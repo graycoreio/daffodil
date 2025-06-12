@@ -1,5 +1,5 @@
 # Textarea
-The textarea component allows a native HTML textarea element to work with the form field component.
+Textarea allows a native HTML `<textarea>` element to work with the [Form Field](libs/design/src/atoms/form/form-field/README.md) component.
 
 ## Overview
 The textarea component has the same functionality as a native HTML `<textarea>` element, with additional custom styling and functionality. It **cannot** be used by itself and must be contained within a [DaffFormFieldComponent](/libs/design/src/atoms/form/form-field/README.md).
@@ -22,8 +22,7 @@ import { DaffTextareaComponent } from '@daffodil/design';
 export class CustomComponent {}
 ```
 
-## Disabled textarea
-<design-land-example-viewer-container example="textarea-disabled"></design-land-example-viewer-container>
+## Examples
 
-## Textarea with an error
-<design-land-example-viewer-container example="textarea-error"></design-land-example-viewer-container>
+### Disabled textarea
+<design-land-example-viewer-container example="basic-textarea"></design-land-example-viewer-container>
