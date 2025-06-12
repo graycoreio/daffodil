@@ -86,9 +86,13 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
     /** @docs-private */
     @Optional() @Self() public ngControl: NgControl,
     private _elementRef: ElementRef<HTMLInputElement>,
-    private formField: DaffFormFieldComponent,
+    @Optional() private formField: DaffFormFieldComponent,
   ) {
     super(ngControl);
+
+    if(!this.formField) {
+      throw new Error('DaffInputComponent needs to be used with the DaffFormFieldComponent.');
+    }
   }
 
   /**
