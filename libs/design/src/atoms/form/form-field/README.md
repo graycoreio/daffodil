@@ -136,16 +136,6 @@ Use the `[daffPrefix]` and `[daffSuffix]` directives to display leading or trail
 
 <design-land-example-viewer-container example="form-field-with-suffix"></design-land-example-viewer-container>
 
-### Suffix as an action button
-`[daffPrefix]` can also be used as an action button (e.g. submit or clear button).
-
-<design-land-example-viewer-container example="form-field-with-inner-action"></design-land-example-viewer-container>
-
-## Outer action
-An outer action may be used to provide a different visual by using the `[daffFormFieldAction]` selector. This will place the action outside of control UI. Avoid using `[daffFormFieldAction]` with a `fluid` appearance.
-
-<design-land-example-viewer-container example="form-field-with-outer-action"></design-land-example-viewer-container>
-
 ## Creating a custom form field control
 In addition to the controls that Daffodil Design provides, you can create your own custom control by using the `DaffFormFieldControl` interface.
 
