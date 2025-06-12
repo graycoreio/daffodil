@@ -1,6 +1,6 @@
 <ng-content />
 
-@if (!isFluid()) {
+@if (!isFluid) {
   <ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
 }
 <div class="daff-form-field__wrapper">
@@ -9,7 +9,7 @@
 			<ng-content select="[daffPrefix]"></ng-content>
 		}
 		<div class="daff-form-field__inner">
-			@if (isFluid()) {
+			@if (isFluid) {
 				<ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
 			}
 			<ng-content></ng-content>
@@ -20,9 +20,12 @@
 		@if (_suffix) {
 			<ng-content select="[daffSuffix]"></ng-content>
 		}
+		@if (_action && isFluid) {
+			<ng-container *ngTemplateOutlet="actionTemplate"></ng-container>
+		}
 	</div>
-	@if (_action) {
-		<ng-content select="[daffFormFieldAction]"></ng-content>
+	@if ((_action && !isFluid)) {
+		<ng-container *ngTemplateOutlet="actionTemplate"></ng-container>
 	}
 </div>
 @if (hasHint()) {
@@ -39,6 +42,10 @@
 		<ng-content select="daff-error-message"></ng-content>
 	</div>
 }
+
+<ng-template #actionTemplate>
+	<ng-content select="[daffFormFieldAction]"></ng-content>
+</ng-template>
 
 <ng-template #labelTemplate>
   @if (_formLabelDirective) {

@@ -217,7 +217,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   /**
    * @docs-private
    */
-  isFluid() {
+  get isFluid() {
     return this._appearance === DaffFormFieldApperanaceEnum.Fluid;
   }
 
@@ -282,6 +282,12 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
           `Why this matters: Proper labelling ensures assistive technologies can identify form fields correctly.`,
         );
       }
+
+      if(this._suffix && this._action && this.isFluid) {
+        console.warn(
+          `UI consideration for form field with id "${this.id}":\n\n` + `In a fluid appearance, avoid using suffix alongside an action.`,
+        );
+      };
     }
   }
 

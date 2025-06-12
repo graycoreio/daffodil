@@ -1,0 +1,16 @@
+<daff-form-field>
+  <daff-form-label>Email</daff-form-label>
+  <input daff-input type="text" name="email" required />
+  <button daff-button color="theme-contrast" daffFormFieldAction>
+    Submit
+  </button>
+</daff-form-field>
+
+
+<daff-form-field appearance="fluid">
+  <daff-form-label>Email</daff-form-label>
+  <input daff-input type="text" name="email" [(ngModel)]="inputValue" />
+  <button daff-button color="theme-contrast" daffFormFieldAction>
+    Submit
+  </button>
+</daff-form-field>

@@ -10,34 +10,30 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
-import { DaffIconButtonComponent } from '@daffodil/design/button';
+import { DaffButtonComponent } from '@daffodil/design/button';
 import { DaffInputComponent } from '@daffodil/design/input';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'form-field-with-inner-action',
-  templateUrl: './form-field-with-inner-action.component.html',
-  styles: [`
-    daff-form-field {
-      max-width: 320px;
-    }
-  `],
+  selector: 'form-field-with-action',
+  templateUrl: './form-field-with-action.component.html',
+  styleUrl: './form-field-with-action.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_FORM_FIELD_COMPONENTS,
     DaffInputComponent,
     FaIconComponent,
     FormsModule,
-    DaffIconButtonComponent,
+    DaffButtonComponent,
   ],
 })
-export class FormFieldWithInnerActionComponent {
+export class FormFieldWithActionComponent {
   faUser = faUser;
   faCircleXmark = faCircleXmark;
 
   inputValue = '';
 
-  clearInput() {
-    this.inputValue = '';
+  clearInput(): void {
+    this.inputValue = ''; // or this.inputValue = null;
   }
 }

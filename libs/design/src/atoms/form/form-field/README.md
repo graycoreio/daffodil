@@ -118,27 +118,22 @@ Error messages are used to display validation errors. They are shown under the f
 </daff-form-field>
 ```
 
+## Action
+Use the `[daffFormFieldAction]` directive to add an action element to a form field.
+
+- Fluid appearance: The action is positioned within the form control's UI.
+- Fixed appearance: The action is positioned adjacent to the form control's UI.
+
+<design-land-example-viewer-container example="form-field-with-action"></design-land-example-viewer-container>
+
 ## Prefix and suffix
-The `[daffPrefix]` and `[daffSuffix]` directives can be used to display leading or trailing visuals, typically icons, on either side of the form control.
+Use the `[daffPrefix]` and `[daffSuffix]` directives to display leading or trailing visuals, typically icons, on either side of the form control.
 
-```html
-<daff-form-field>
-  <daff-form-label>Search</daff-form-label>
-  <fa-icon [icon]="faSearch" daffPrefix></fa-icon>
-  <input daff-input type="text" />
-  <fa-icon [icon]="faCheck" daffSuffix></fa-icon>
-</daff-form-field>
-```
+> In a fluid appearance, avoid using suffix alongside an action.
 
-### Suffix as an action button
-`[daffPrefix]` can also be used as an action button (e.g. submit or clear button).
+<design-land-example-viewer-container example="form-field-with-prefix"></design-land-example-viewer-container>
 
-<design-land-example-viewer-container example="form-field-with-inner-action"></design-land-example-viewer-container>
-
-## Outer action
-An outer action may be used to provide a different visual by using the `[daffFormFieldAction]` selector. This will place the action outside of control UI. Avoid using `[daffFormFieldAction]` with a `fluid` appearance.
-
-<design-land-example-viewer-container example="form-field-with-outer-action"></design-land-example-viewer-container>
+<design-land-example-viewer-container example="form-field-with-suffix"></design-land-example-viewer-container>
 
 ## Creating a custom form field control
 In addition to the controls that Daffodil Design provides, you can create your own custom control by using the `DaffFormFieldControl` interface.
