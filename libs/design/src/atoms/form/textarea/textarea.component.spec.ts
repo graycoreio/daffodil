@@ -10,15 +10,25 @@ import {
 import { UntypedFormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffTextareaComponent } from '@daffodil/design';
+import {
+  DAFF_FORM_FIELD_COMPONENTS,
+  DaffFormFieldComponent,
+  DaffTextareaComponent,
+} from '@daffodil/design';
 
 @Component({
-  template: `<textarea daff-textarea></textarea>`,
+  template: `
+    <daff-form-field [id]="id">
+      <textarea daff-textarea></textarea>
+    </daff-form-field>`,
   imports: [
     DaffTextareaComponent,
+    DAFF_FORM_FIELD_COMPONENTS,
   ],
 })
-class WrapperComponent {}
+class WrapperComponent {
+  id = 'test';
+}
 
 describe('@daffodil/design | DaffTextareaComponent', () => {
   let wrapper: WrapperComponent;
@@ -49,6 +59,18 @@ describe('@daffodil/design | DaffTextareaComponent', () => {
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
+  });
+
+  describe('when the form field id gets updated', () => {
+    it('should update the input`s id', () => {
+      const formField: DaffFormFieldComponent = fixture.debugElement.query(By.directive(DaffFormFieldComponent)).componentInstance;
+
+      wrapper.id = 'test-2';
+      fixture.detectChanges();
+
+      expect(formField.id).toEqual('test-2');
+      expect(component.internalId).toEqual('test-2');
+    });
   });
 
   describe('onFocus', () => {

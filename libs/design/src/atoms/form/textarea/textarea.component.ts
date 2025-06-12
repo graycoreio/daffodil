@@ -15,6 +15,7 @@ import {
   of,
 } from 'rxjs';
 
+import { DaffFormFieldComponent } from '../form-field/form-field/form-field.component';
 import { DaffFormFieldControl } from '../form-field/form-field-control';
 
 /**
@@ -46,6 +47,17 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
    */
   focused = false;
 
+  private get _id() {
+    return this.formField?.id;
+  };
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('attr.id') get internalId() {
+    return this._id;
+  }
+
   /**
    * @docs-private
    */
@@ -62,12 +74,26 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
     this.emitState();
   }
 
+  /**
+   * @docs-private
+   */
+  @HostBinding('attr.aria-describedby') get ariaDescribedBy() {
+    if(this.formField.hasErrorMessage()) {
+      return this.formField.errorMessageId;
+    } else if(this.formField.hasHint()) {
+      return this.formField.hintId;
+    } else {
+      return null;
+    }
+  }
+
   constructor(
     /**
      * @docs-private
      */
     @Optional() @Self() public ngControl: NgControl,
     private _elementRef: ElementRef<HTMLInputElement>,
+    private formField: DaffFormFieldComponent,
   ) {
     super(ngControl);
   }
