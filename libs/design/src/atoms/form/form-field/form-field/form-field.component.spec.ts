@@ -88,7 +88,7 @@ describe('@daffodil/design/form-field | DaffFormFieldComponent | Defaults', () =
     expect(error.nativeElement.id).toMatch('daff-form-field-[0-9]*-error');
   });
 
-  it('should set fixed as the default appearance', () => {
-    expect(component.appearance).toEqual('fixed');
+  it('should set fluid as the default appearance', () => {
+    expect(component.appearance).toEqual('fluid');
   });
 });

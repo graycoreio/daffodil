@@ -52,10 +52,10 @@ export class CustomComponentModule { }
 > Deprecation notice: This method is deprecated. It's recommended to update all custom components to standalone.
 
 ## Appearances
-Form field supports two `appearances`: `fixed` and `fluid`. It will default to `fixed` if an `appearance` is not specified.
+Form field supports two `appearances`: `fluid` and `fixed`. It will default to `fluid` if an `appearance` is not specified.
 
-- `fixed`: corresponds with a traditional style where the label is positioned outside and above the form control.
 - `fluid`: alternate, stylized UI where the label is placed inside of the form control.
+- `fixed`: corresponds with a traditional style where the label is positioned outside and above the form control.
 
 <design-land-example-viewer-container example="form-field-appearances"></design-land-example-viewer-container>
 

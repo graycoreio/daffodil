@@ -189,7 +189,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
     return this._control?.raised || this.isFilled;
   }
 
-  private _appearance: DaffFormFieldApperanace = DaffFormFieldApperanaceEnum.Fixed;
+  private _appearance: DaffFormFieldApperanace = DaffFormFieldApperanaceEnum.Fluid;
 
   /**
    * The appearance style of a form field, whether the label is fluid or fixed.
@@ -201,7 +201,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
 
   set appearance(value: DaffFormFieldApperanace) {
     if(value === null || value === undefined || <unknown>value === '') {
-      this._appearance = DaffFormFieldApperanaceEnum.Fixed;
+      this._appearance = DaffFormFieldApperanaceEnum.Fluid;
     } else {
       this._appearance = value;
     }
@@ -217,8 +217,15 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   /**
    * @docs-private
    */
-  get isFluid() {
-    return this._appearance === DaffFormFieldApperanaceEnum.Fluid;
+  @HostBinding('class.fixed') get fixedClass() {
+    return this._appearance === DaffFormFieldApperanaceEnum.Fixed;
+  }
+
+  /**
+   * @docs-private
+   */
+  get isFixed() {
+    return this._appearance === DaffFormFieldApperanaceEnum.Fixed;
   }
 
   /**
@@ -283,7 +290,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
         );
       }
 
-      if(this._suffix && this._action && this.isFluid) {
+      if(this._suffix && this._action && !this.isFixed) {
         console.warn(
           `UI consideration for form field with id "${this.id}":\n\n` + `In a fluid appearance, avoid using suffix alongside an action.`,
         );

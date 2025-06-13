@@ -1,6 +1,6 @@
 <ng-content />
 
-@if (!isFluid) {
+@if (isFixed) {
   <ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
 }
 <div class="daff-form-field__wrapper">
@@ -9,7 +9,7 @@
 			<ng-content select="[daffPrefix]"></ng-content>
 		}
 		<div class="daff-form-field__inner">
-			@if (isFluid) {
+			@if (!isFixed) {
 				<ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
 			}
 			<ng-content></ng-content>
@@ -20,11 +20,11 @@
 		@if (_suffix) {
 			<ng-content select="[daffSuffix]"></ng-content>
 		}
-		@if (_action && isFluid) {
+		@if (_action && !isFixed) {
 			<ng-container *ngTemplateOutlet="actionTemplate"></ng-container>
 		}
 	</div>
-	@if ((_action && !isFluid)) {
+	@if ((_action && isFixed)) {
 		<ng-container *ngTemplateOutlet="actionTemplate"></ng-container>
 	}
 </div>

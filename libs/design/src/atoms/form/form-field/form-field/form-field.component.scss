@@ -43,12 +43,6 @@
 		position: relative;
 		width: 100%;
 
-		* {
-			::-webkit-input-placeholder {
-				opacity: 1;
-			}
-		}
-
 		+ {
 			.daff-hint,
 			.daff-error-message {
@@ -57,12 +51,20 @@
 		}
 	}
 
-	input,
-	textarea,
-	select {
-		font-size: 1rem;
-		line-height: 1.5rem;
-		padding: calc(0.75rem - 1px) 0;
+	&.fixed {
+		input,
+		textarea,
+		select {
+			font-size: 1rem;
+			line-height: 1.5rem;
+			padding: calc(0.75rem - 1px) 0;
+
+			* {
+				::-webkit-input-placeholder {
+					opacity: 1;
+				}
+			}
+		}
 	}
 
 	&.fluid {
