@@ -7,8 +7,6 @@ import {
   ChangeDetectionStrategy,
   HostBinding,
   OnInit,
-  OnChanges,
-  SimpleChanges,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import {
@@ -36,7 +34,7 @@ import {
     { provide: DaffFormFieldControl, useExisting: DaffInputComponent },
   ],
 })
-export class DaffInputComponent extends DaffFormFieldControl<string> implements DaffFormFieldControl<string>, OnInit, OnChanges {
+export class DaffInputComponent extends DaffFormFieldControl<string> implements DaffFormFieldControl<string>, OnInit {
 
   /** @docs-private */
   @HostBinding('class.daff-input') class = true;
@@ -54,7 +52,9 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
 
   }
 
-  private _id = '';
+  private get _id() {
+    return this.formField?.id;
+  };
 
   /**
    * @docs-private
@@ -95,17 +95,6 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
     }
   }
 
-  /**
-   * @docs-private
-   */
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.id || changes?.id.currentValue) {
-      this._id = changes.id.currentValue;
-    } else {
-      this._id = this.formField.id;
-    }
-  }
-
   /** @docs-private */
   ngOnInit() {
     this.stateChanges = merge(
@@ -114,7 +103,6 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
     ).pipe(
       map(() => this.state),
     );
-    this._id = this.id ?? this.formField.id;
   }
 
   /** @docs-private */

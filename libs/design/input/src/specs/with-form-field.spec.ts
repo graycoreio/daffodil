@@ -10,17 +10,22 @@ import {
 import { UntypedFormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
+import {
+  DAFF_FORM_FIELD_COMPONENTS,
+  DaffFormFieldComponent,
+} from '@daffodil/design';
 import { DaffInputComponent } from '@daffodil/design/input';
 
 @Component({
-  template: `<daff-form-field><input daff-input></daff-form-field>`,
+  template: `<daff-form-field [id]="id"><input daff-input></daff-form-field>`,
   imports: [
     DaffInputComponent,
     DAFF_FORM_FIELD_COMPONENTS,
   ],
 })
-class WrapperComponent {}
+class WrapperComponent {
+  id = 'test';
+}
 
 describe('@daffodil/design | DaffInputComponent | With Form Field', () => {
   let wrapper: WrapperComponent;
@@ -76,6 +81,18 @@ describe('@daffodil/design | DaffInputComponent | With Form Field', () => {
       componentDE.triggerEventHandler('blur', {});
 
       expect(component.focused).toBe(false);
+    });
+  });
+
+  describe('when the form field id gets updated', () => {
+    it('should update the input`s id', () => {
+      const formField: DaffFormFieldComponent = fixture.debugElement.query(By.directive(DaffFormFieldComponent)).componentInstance;
+
+      wrapper.id = 'test-2';
+      fixture.detectChanges();
+
+      expect(formField.id).toEqual('test-2');
+      expect(component.internalId).toEqual('test-2');
     });
   });
 });
