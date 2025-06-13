@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import {
   Component,
   DebugElement,
@@ -19,7 +18,6 @@ import { DaffModalService } from '../service/modal.service';
     <div class="custom-modal-component">
       <daff-modal></daff-modal>
     </div>`,
-  standalone: true,
   imports: [
     DaffModalComponent,
   ],

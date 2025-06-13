@@ -124,7 +124,7 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, Daff
     private elementRef: ElementRef<HTMLElement>,
     private openDirective: DaffOpenableDirective,
     private _focusStack: DaffFocusStackService,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
   ) {
     this.openDirective.stateless = false;
   }
