@@ -64,7 +64,7 @@ class WrapperComponent {
   disableSecondTab: boolean;
 }
 
-fdescribe('@daffodil/design/tabs | DaffTabsComponent', () => {
+describe('@daffodil/design/tabs | DaffTabsComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffTabsComponent;
