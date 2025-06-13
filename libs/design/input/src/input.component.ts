@@ -1,4 +1,5 @@
 /* eslint-disable quote-props */
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Component,
   Optional,
@@ -6,8 +7,13 @@ import {
   ElementRef,
   ChangeDetectionStrategy,
   OnInit,
+  Input,
+  HostBinding,
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import {
+  NgControl,
+  Validators,
+} from '@angular/forms';
 import {
   merge,
   of,
@@ -62,6 +68,34 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
     } else {
       return null;
     }
+  }
+
+  /**
+   * @docs-private
+   */
+  _required: boolean;
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('required') get requiredAttribute() {
+    return this.required;
+  }
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('attr.aria-required') get ariaRequired() {
+    return this.required;
+  }
+
+  @Input()
+  get required(): boolean {
+
+    return this._required ?? this.ngControl?.control?.hasValidator(Validators.required);
+  }
+  set required(value: boolean) {
+    this._required = coerceBooleanProperty(value);
   }
 
   /** @docs-private */

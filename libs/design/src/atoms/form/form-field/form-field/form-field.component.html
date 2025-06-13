@@ -55,6 +55,9 @@
       [attr.for]="autoLabelId"
       [attr.id]="customId">
       <ng-content select="daff-form-label"></ng-content>
+			@if (_control.required) {
+			<span aria-hidden="true">*</span>
+			}
     </label>
   } @else {
     <ng-content select="label"></ng-content>

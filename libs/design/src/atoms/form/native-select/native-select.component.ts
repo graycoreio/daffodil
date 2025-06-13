@@ -1,3 +1,4 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Component,
   ViewEncapsulation,
@@ -9,7 +10,10 @@ import {
   HostBinding,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import {
+  NgControl,
+  Validators,
+} from '@angular/forms';
 
 import { DaffFormFieldControl } from '../form-field/form-field-control';
 
@@ -43,6 +47,26 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string | num
    */
   @Input() formSubmitted: boolean;
   focused = false;
+
+  /**
+   * @docs-private
+   */
+  _required: boolean;
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('required') get requiredAttribute() {
+    return this.required;
+  }
+
+  @Input()
+  get required(): boolean {
+    return this._required ?? this.ngControl?.control?.hasValidator(Validators.required);
+  }
+  set required(value: boolean) {
+    this._required = coerceBooleanProperty(value);
+  }
 
   /**
    * @docs-private

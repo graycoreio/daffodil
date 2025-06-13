@@ -24,6 +24,8 @@ export abstract class DaffFormFieldControl<T> {
 
   abstract readonly focused: boolean;
 
+  abstract readonly required: boolean;
+
   readonly id?: string;
 
   get raised() {
