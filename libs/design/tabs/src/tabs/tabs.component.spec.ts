@@ -23,7 +23,7 @@ import { DAFF_TABS_COMPONENTS } from '../tabs';
 			[url]="urlValue"
 			(tabChange)="onTabChange($event)"
 		>
-      <daff-tab [disabled]="disableFirstTab">
+      <daff-tab>
         <daff-tab-label>
           Tab 1
         </daff-tab-label>
@@ -32,7 +32,7 @@ import { DAFF_TABS_COMPONENTS } from '../tabs';
         </daff-tab-panel>
       </daff-tab>
 
-      <daff-tab id="tab-2">
+      <daff-tab id="tab-2" [disabled]="disableSecondTab">
         <daff-tab-label>
           Tab 2
         </daff-tab-label>
@@ -61,10 +61,10 @@ class WrapperComponent {
 
   onTabChange: (val: string) => void;
 
-  disableFirstTab: boolean;
+  disableSecondTab: boolean;
 }
 
-describe('@daffodil/design/tabs | DaffTabsComponent', () => {
+fdescribe('@daffodil/design/tabs | DaffTabsComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffTabsComponent;
@@ -238,12 +238,12 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
   it('should skip disabled tabs when navigating', () => {
     component.select(component._tabs.toArray()[0].id);
 
-    wrapper.disableFirstTab = true;
+    wrapper.disableSecondTab = true;
     fixture.detectChanges();
 
     component.next();
 
-    expect(component.selectedTab).toBe(component._tabs.toArray()[1].id);
+    expect(component.selectedTab).toBe(component._tabs.toArray()[2].id);
   });
 
   it('should select the first tab when selectFirst is called', () => {
