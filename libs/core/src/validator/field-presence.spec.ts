@@ -2,13 +2,13 @@ import { validateFieldPresence } from './field-presence';
 
 describe('@daffodil/core | validateFieldPresence', () => {
   let data: {
-    a: string;
-    b?: string;
+    a: boolean;
+    b?: boolean;
   };
 
   beforeEach(() => {
     data = {
-      a: 'a',
+      a: false,
     };
   });
 
