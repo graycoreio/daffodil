@@ -1,3 +1,4 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Component,
   Optional,
@@ -7,8 +8,12 @@ import {
   ChangeDetectionStrategy,
   HostBinding,
   OnInit,
+  Input,
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import {
+  NgControl,
+  Validators,
+} from '@angular/forms';
 import {
   map,
   merge,
@@ -74,6 +79,34 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
   @HostListener('blur') blur() {
     this.focused = false;
     this.emitState();
+  }
+
+  /**
+   * @docs-private
+   */
+  _required: boolean;
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('required') get requiredAttribute() {
+    return this.required;
+  }
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('attr.aria-required') get ariaRequired() {
+    return this.required;
+  }
+
+  @Input()
+  get required(): boolean {
+
+    return this._required ?? this.ngControl?.control?.hasValidator(Validators.required);
+  }
+  set required(value: boolean) {
+    this._required = coerceBooleanProperty(value);
   }
 
   /**

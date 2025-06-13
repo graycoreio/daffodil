@@ -1,3 +1,4 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Overlay,
   OverlayModule,
@@ -30,6 +31,7 @@ import {
 import {
   ControlValueAccessor,
   NgControl,
+  Validators,
 } from '@angular/forms';
 import {
   Subject,
@@ -150,6 +152,34 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
    */
   @HostBinding('class.disabled') get disabledClass() {
     return this.disabled || this._disabled;
+  }
+
+  /**
+   * @docs-private
+   */
+  _required: boolean;
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('required') get requiredAttribute() {
+    return this.required;
+  }
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('attr.aria-required') get ariaRequired() {
+    return this.required;
+  }
+
+  @Input()
+  get required(): boolean {
+
+    return this._required ?? this.ngControl?.control?.hasValidator(Validators.required);
+  }
+  set required(value: boolean) {
+    this._required = coerceBooleanProperty(value);
   }
 
   /**
