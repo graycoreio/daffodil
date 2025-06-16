@@ -1,7 +1,4 @@
-import {
-  coerceBooleanProperty,
-  coerceNumberProperty,
-} from '@angular/cdk/coercion';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   Component,
   Input,
@@ -10,12 +7,10 @@ import {
   Self,
   ViewChild,
   ChangeDetectorRef,
-  HostBinding,
 } from '@angular/core';
 import {
   ControlValueAccessor,
   NgControl,
-  Validators,
 } from '@angular/forms';
 
 import { DaffFormFieldControl } from '@daffodil/design';
@@ -71,27 +66,18 @@ export class DaffQuantityFieldComponent extends DaffFormFieldControl<number> imp
     return !!(this.input?.focused || this.select?.focused);
   }
 
+  /**
+   * @docs-private
+   *
+   * TODO: Update functionality to match other control during refactor.
+   */
   disabled = false;
 
   /**
    * @docs-private
+   * TODO: Update functionality to match other control during refactor.
    */
-  _required: boolean;
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('required') get requiredAttribute() {
-    return this.required;
-  }
-
-  @Input()
-  get required(): boolean {
-    return this._required ?? this.ngControl?.control?.hasValidator(Validators.required);
-  }
-  set required(value: boolean) {
-    this._required = coerceBooleanProperty(value);
-  }
+  required = false;
 
   private _quantity = 1;
   private _inputHasBeenShown = false;

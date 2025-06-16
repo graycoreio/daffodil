@@ -40,6 +40,7 @@ import {
   merge,
   of,
   takeUntil,
+  tap,
 } from 'rxjs';
 
 import {
@@ -126,11 +127,32 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     this.emitState();
   }
 
+  private _disabled = false;
+
+  /**
+   * @docs-private
+   *
+   * Implemented as part of DaffFormFieldControl.
+   */
+  @Input() get disabled() {
+    return this._disabled;
+  }
+  set disabled(value: any) {
+    this._disabled = coerceBooleanProperty(value);
+  }
+
   /**
    * @docs-private
    */
-  _disabled = false;
-  @Input() disabled = false;
+  _required = false;
+
+  @Input()
+  get required(): boolean {
+    return this.ngControl?.control?.hasValidator(Validators.required) ?? this._required;
+  }
+  set required(value: any) {
+    this._required = coerceBooleanProperty(value);
+  }
 
   @Input() options: T[] = [];
 
@@ -145,42 +167,6 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
    * @docs-private
    */
   @HostBinding('class.daff-select') class = true;
-
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.disabled') get disabledClass() {
-    return this.disabled || this._disabled;
-  }
-
-  /**
-   * @docs-private
-   */
-  _required: boolean;
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('required') get requiredAttribute() {
-    return this.required;
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-required') get ariaRequired() {
-    return this.required;
-  }
-
-  @Input()
-  get required(): boolean {
-
-    return this._required ?? this.ngControl?.control?.hasValidator(Validators.required);
-  }
-  set required(value: boolean) {
-    this._required = coerceBooleanProperty(value);
-  }
 
   /**
    * @docs-private
@@ -310,13 +296,6 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   /**
    * @docs-private
    */
-  setDisabledState(isDisabled: boolean): void {
-    this._disabled = isDisabled;
-  }
-
-  /**
-   * @docs-private
-   */
   flushValue() {
     this.ngControl?.control?.setValue(this._value);
   }
@@ -330,6 +309,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
       this.ngControl ? this.ngControl.statusChanges : of(undefined),
     ).pipe(
       map(() => this.state),
+      tap((state) => this._disabled = state.disabled),
     );
     this._animationState = getAnimationState(this.openDirective.open);
   }

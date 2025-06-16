@@ -18,6 +18,7 @@ import {
   merge,
   of,
   map,
+  tap,
 } from 'rxjs';
 
 import {
@@ -50,7 +51,11 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
   /** @docs-private */
   controlType = 'native-input';
 
-  /** @docs-private */
+  /**
+   * @docs-private
+   *
+   * Implemented as part of DaffFormFieldControl.
+   */
   focused = false;
 
   private get _id() {
@@ -62,11 +67,45 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
   /**
    * @docs-private
    */
+  @HostBinding('disabled') get disabledAttribute() {
+    return this.disabled || null;
+  }
+
+  /**
+   * @docs-private
+   *
+   * Implemented as part of DaffFormFieldControl.
+   */
   @Input() get disabled() {
     return this._disabled;
   }
   set disabled(value: any) {
     this._disabled = coerceBooleanProperty(value);
+  }
+
+  /**
+   * @docs-private
+   */
+  _required = false;
+
+  /**
+   * @docs-private
+   *
+   * Implemented as part of DaffFormFieldControl.
+   */
+  @Input()
+  get required(): boolean {
+    return this.ngControl?.control?.hasValidator(Validators.required) ?? this._required;
+  }
+  set required(value: any) {
+    this._required = coerceBooleanProperty(value);
+  }
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('required') get requiredAttribute() {
+    return this.required || null;
   }
 
   /**
@@ -80,36 +119,6 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
     } else {
       return null;
     }
-  }
-
-  /**
-   * @docs-private
-   */
-  _required: boolean;
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('required') get requiredAttribute() {
-    return this.required;
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-required') get ariaRequired() {
-    return this.required;
-  }
-
-  /**
-   * @docs-private
-   */
-  @Input()
-  get required(): boolean {
-    return this._required ?? this.ngControl?.control?.hasValidator(Validators.required);
-  }
-  set required(value: boolean) {
-    this._required = coerceBooleanProperty(value);
   }
 
   /** @docs-private */
@@ -145,6 +154,7 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
       this.ngControl ? this.ngControl.statusChanges : of(undefined),
     ).pipe(
       map(() => this.state),
+      tap((state) => this._disabled = state.disabled),
     );
   }
 

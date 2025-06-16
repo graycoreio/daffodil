@@ -18,6 +18,7 @@ import {
   map,
   merge,
   of,
+  tap,
 } from 'rxjs';
 
 import {
@@ -70,11 +71,45 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
   /**
    * @docs-private
    */
+  @HostBinding('disabled') get disabledAttribute() {
+    return this.disabled || null;
+  }
+
+  /**
+   * @docs-private
+   *
+   * Implemented as part of DaffFormFieldControl.
+   */
   @Input() get disabled() {
     return this._disabled;
   }
   set disabled(value: any) {
     this._disabled = coerceBooleanProperty(value);
+  }
+
+  /**
+   * @docs-private
+   */
+  _required = false;
+
+  /**
+   * @docs-private
+   *
+   * Implemented as part of DaffFormFieldControl.
+   */
+  @Input()
+  get required(): boolean {
+    return this.ngControl?.control?.hasValidator(Validators.required) ?? this._required;
+  }
+  set required(value: any) {
+    this._required = coerceBooleanProperty(value);
+  }
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('required') get requiredAttribute() {
+    return this.required || null;
   }
 
   /**
@@ -91,36 +126,6 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
   @HostListener('blur') blur() {
     this.focused = false;
     this.emitState();
-  }
-
-  /**
-   * @docs-private
-   */
-  _required: boolean;
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('required') get requiredAttribute() {
-    return this.required;
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-required') get ariaRequired() {
-    return this.required;
-  }
-
-  /**
-   * @docs-private
-   */
-  @Input()
-  get required(): boolean {
-    return this._required ?? this.ngControl?.control?.hasValidator(Validators.required);
-  }
-  set required(value: boolean) {
-    this._required = coerceBooleanProperty(value);
   }
 
   /**
@@ -154,6 +159,7 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
       this.ngControl ? this.ngControl.statusChanges : of(undefined),
     ).pipe(
       map(() => this.state),
+      tap((state) => this._disabled = state.disabled),
     );
   }
 

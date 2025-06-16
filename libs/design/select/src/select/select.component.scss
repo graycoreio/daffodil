@@ -14,12 +14,6 @@
 		}
 	}
 
-	&.disabled {
-		#{$root}__field {
-			cursor: not-allowed;
-		}
-	}
-
 	&__field {
 		@include interactions.clickable();
 		appearance: none;
@@ -33,6 +27,10 @@
 		text-align: left;
 		width: 100%;
 		position: relative;
+
+		&[disabled] {
+			cursor: not-allowed;
+		}
 
 		&::after {
 			content: '';

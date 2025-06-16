@@ -103,21 +103,6 @@ describe('DaffSelectComponent', () => {
     expect(component.options).toEqual(wrapper.optionsValue);
   });
 
-  xdescribe('when the component is disabled', () => {
-    beforeEach(() => {
-      wrapper.disabledValue = true;
-      fixture.detectChanges();
-    });
-
-    it('should add the disabled class', () => {
-      expect(de.classes['.disabled']).toBeTruthy();
-    });
-
-    it('should disable the button', () => {
-      expect(buttonElement.disabled).toBeTrue();
-    });
-  });
-
   describe('when the component is open', () => {
     let optionsListElement: HTMLElement;
 
