@@ -26,6 +26,8 @@ export abstract class DaffFormFieldControl<T> {
 
   abstract readonly required: boolean;
 
+  abstract readonly disabled: boolean;
+
   readonly id?: string;
 
   get raised() {
@@ -43,7 +45,7 @@ export abstract class DaffFormFieldControl<T> {
     return {
       focused: this.focused,
       filled: !!this.value,
-      disabled: this.ngControl?.disabled,
+      disabled: this.ngControl?.disabled || this.disabled,
       error: this.ngControl?.errors && (this.ngControl?.dirty || this.ngControl?.touched),
       valid: !this.ngControl?.errors && (this.ngControl?.dirty || this.ngControl?.touched),
     };

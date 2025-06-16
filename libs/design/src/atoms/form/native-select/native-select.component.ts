@@ -60,12 +60,27 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string | num
     return this.required;
   }
 
+  /**
+   * @docs-private
+   */
   @Input()
   get required(): boolean {
     return this._required ?? this.ngControl?.control?.hasValidator(Validators.required);
   }
   set required(value: boolean) {
     this._required = coerceBooleanProperty(value);
+  }
+
+  private _disabled = false;
+
+  /**
+   * @docs-private
+   */
+  @Input() get disabled() {
+    return this._disabled;
+  }
+  set disabled(value: any) {
+    this._disabled = coerceBooleanProperty(value);
   }
 
   /**
