@@ -2,17 +2,25 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffNativeSelectModule } from '@daffodil/design';
+import {
+  DAFF_FORM_FIELD_COMPONENTS,
+  DaffNativeSelectModule,
+} from '@daffodil/design';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'basic-native-select',
   templateUrl: './basic-native-select.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [DaffNativeSelectModule],
+  imports: [
+    DaffNativeSelectModule,
+    DAFF_FORM_FIELD_COMPONENTS,
+    FaIconComponent,
+  ],
 })
 export class BasicNativeSelectComponent {
-
+  faUser = faUser;
 }

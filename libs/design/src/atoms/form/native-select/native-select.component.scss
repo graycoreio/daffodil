@@ -1,13 +1,10 @@
-.daff-native-select {
+:host {
 	appearance: none;
 	background: transparent;
 	background-clip: padding-box;
 	border: 0;
 	box-shadow: none;
-	font-size: 1rem;
-	line-height: 1.5rem;
 	margin: 0;
-	min-width: 45px;
 	width: 100%;
 
 	&:focus {

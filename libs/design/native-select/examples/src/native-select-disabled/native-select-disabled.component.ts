@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import {
-  DaffFormFieldModule,
+  DAFF_FORM_FIELD_COMPONENTS,
   DaffNativeSelectModule,
 } from '@daffodil/design';
 
@@ -18,9 +18,10 @@ import {
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [DaffFormFieldModule, DaffNativeSelectModule],
+  imports: [
+    DAFF_FORM_FIELD_COMPONENTS,
+    DaffNativeSelectModule,
+  ],
 })
 export class NativeSelectDisabledComponent {
-  isDisabled = true;
 }
