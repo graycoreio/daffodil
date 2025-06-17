@@ -64,12 +64,10 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('<daff-notification>', () => {
-    it('should add a class of "daff-notification" to the host element', () => {
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-notification': true,
-      }));
-    });
+  it('should add a class of "daff-notification" to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-notification': true,
+    }));
   });
 
   describe('the dismissible property', () => {

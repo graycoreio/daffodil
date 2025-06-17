@@ -34,5 +34,5 @@ export class NotificationStatusComponent {
   faCheck = faCheck;
   faExclamation = faExclamation;
 
-  statusControl: UntypedFormControl = new UntypedFormControl('success');
+  statusControl: UntypedFormControl = new UntypedFormControl('');
 }

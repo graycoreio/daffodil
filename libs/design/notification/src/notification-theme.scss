@@ -2,8 +2,6 @@
 
 @mixin daff-notification-theme($theme) {
 	$primary: daff-get-palette($theme, primary);
-	$secondary: daff-get-palette($theme, secondary);
-	$tertiary: daff-get-palette($theme, tertiary);
 	$info: daff-get-palette($theme, informational);
 	$warn: daff-get-palette($theme, warn);
 	$critical: daff-get-palette($theme, critical);
@@ -11,20 +9,28 @@
 	$neutral: daff-get-palette($theme, neutral);
 	$base: daff-get-base-color($theme, base);
 	$base-contrast: daff-get-base-color($theme, base-contrast);
-	$black: daff-get-base-color($theme, 'black');
-	$white: daff-get-base-color($theme, 'white');
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-notification {
 		@include light($mode) {
 			background: daff-color($neutral, 10);
 			border: 1px solid daff-color($neutral, 20);
-			color: $black;
+			color: $base-contrast;
+
+			&.daff-info {
+				background: daff-color($primary, 10);
+				border: 1px solid daff-color($primary, 20);
+				color: $base-contrast;
+
+				.daff-prefix {
+					color: daff-color($primary, 80);
+				}
+			}
 
 			&.daff-success {
 				background: daff-color($success, 10);
 				border: 1px solid daff-color($success, 20);
-				color: daff-text-contrast(daff-color($success, 10));
+				color: $base-contrast;
 
 				.daff-prefix {
 					color: daff-color($success, 80);
@@ -34,7 +40,7 @@
 			&.daff-warn {
 				background: daff-color($warn, 10);
 				border: 1px solid daff-color($warn, 20);
-				color: daff-text-contrast(daff-color($warn, 10));
+				color: $base-contrast;
 
 				.daff-prefix {
 					color: daff-color($warn, 80);
@@ -44,7 +50,7 @@
 			&.daff-critical {
 				background: daff-color($critical, 10);
 				border: 1px solid daff-color($critical, 20);
-				color: daff-text-contrast(daff-color($critical, 10));
+				color: $base-contrast;
 
 				.daff-prefix {
 					color: daff-color($critical, 80);
@@ -55,12 +61,22 @@
 		@include dark($mode) {
 			background: daff-color($neutral, 90);
 			border: 1px solid daff-color($neutral, 80);
-			color: $white;
+			color: $base-contrast;
+
+			&.daff-info {
+				background: daff-color($primary, 100);
+				border: 1px solid daff-color($primary, 90);
+				color: $base-contrast;
+
+				.daff-prefix {
+					color: daff-color($primary, 30);
+				}
+			}
 
 			&.daff-success {
-				background: daff-color($success, 90);
-				border: 1px solid daff-color($success, 80);
-				color: daff-text-contrast(daff-color($success, 90));
+				background: daff-color($success, 100);
+				border: 1px solid daff-color($success, 90);
+				color: $base-contrast;
 
 				.daff-prefix {
 					color: daff-color($success, 30);
@@ -68,9 +84,9 @@
 			}
 
 			&.daff-warn {
-				background: daff-color($warn, 90);
-				border: 1px solid daff-color($warn, 80);
-				color: daff-text-contrast(daff-color($warn, 90));
+				background: daff-color($warn, 100);
+				border: 1px solid daff-color($warn, 90);
+				color: $base-contrast;
 
 				.daff-prefix {
 					color: daff-color($warn, 30);
@@ -78,9 +94,9 @@
 			}
 
 			&.daff-critical {
-				background: daff-color($critical, 90);
-				border: 1px solid daff-color($critical, 80);
-				color: daff-text-contrast(daff-color($critical, 90));
+				background: daff-color($critical, 100);
+				border: 1px solid daff-color($critical, 90);
+				color: $base-contrast;
 
 				.daff-prefix {
 					color: daff-color($critical, 30);
