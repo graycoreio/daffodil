@@ -2,6 +2,10 @@ import {
   Directive,
   HostBinding,
   Input,
+  isDevMode,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
 } from '@angular/core';
 
 import {
@@ -9,6 +13,19 @@ import {
   DaffStatusEnum,
   DaffStatusable,
 } from './statusable';
+
+const statusValues = (status: string) => (<any>Object).values(DaffStatusEnum).includes(status);
+
+const validateStatus = (status: string) => {
+  if(isDevMode()) {
+    if (status !== undefined && !statusValues(status)) {
+      console.warn(
+        `'${status}' is not a valid value of the status property.\n\n` +
+      `The available values are: info, warn, critical, or success.`,
+      );
+    }
+  }
+};
 
 /**
  * `DaffStatusableDirective` allows a component to conditionally apply status-specific
@@ -55,9 +72,8 @@ import {
  */
 @Directive({
   selector: '[daffStatusable]',
-  standalone: true,
 })
-export class DaffStatusableDirective implements DaffStatusable {
+export class DaffStatusableDirective implements DaffStatusable, OnChanges, OnInit {
 
   /**
    * Dynamically sets the CSS classes based on the status.
@@ -75,8 +91,40 @@ export class DaffStatusableDirective implements DaffStatusable {
   /**
    * Sets the status on a component.
    *
-   * Default options are: `info`, `warn`, `critical`, and `success`.
+   * Options are: `info`, `warn`, `critical`, and `success`.
    */
   @Input() status: DaffStatus;
+
+  /**
+   * Sets a default status.
+   *
+   * @example
+   * ```ts
+   * constructor(private statusDirective: DaffStatusableDirective) {
+   *  this.statusDirective.defaultStatus = 'info';
+   * }
+   * ```
+   */
+  defaultStatus: DaffStatus;
+
+  /**
+   * @docs-private
+   */
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes.status.currentValue) {
+      this.status = this.defaultStatus;
+    }
+  }
+
+  /**
+   * @docs-private
+   */
+  ngOnInit() {
+    validateStatus(this.status);
+
+    if (this.status !== this.defaultStatus && this.defaultStatus) {
+      this.status = this.defaultStatus;
+    }
+  }
 }
 
