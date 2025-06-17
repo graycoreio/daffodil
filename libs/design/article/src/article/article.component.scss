@@ -37,20 +37,30 @@
 		@include t.headline-lg;
 
 		+ p {
-			@include t.body-md;
+			font-size: 1.125rem;
+			line-height: 1.5rem;
 			font-weight: 400;
 
 			code {
 				font-size: 1rem;
 				line-height: 1rem;
 			}
+
+			@include layout.breakpoint(tablet) {
+				@include t.body-md;
+			}
 		}
 	}
 
 	@include stopsArticleCascade(h2) {
-		font-size: 2rem;
-		line-height: 2.5rem;
+		font-size: 1.75rem;
+		line-height: 2rem;
 		margin-top: 2.5rem;
+
+		@include layout.breakpoint(tablet) {
+			font-size: 2rem;
+			line-height: 2.5rem;
+		}
 	}
 
 	@include stopsArticleCascade(h3) {
@@ -127,7 +137,11 @@
 	blockquote {
 		border-radius: 0.25rem;
 		margin: 1.5rem 0;
-		padding: 1rem 1.5rem;
+		padding: 1rem;
+
+		@include layout.breakpoint(tablet) {
+			padding: 1rem 1.5rem;
+		}
 
 		&:last-child {
 			margin-bottom: 0;
@@ -149,10 +163,10 @@
 	table {
 		display: table;
 		border-collapse: separate;
-    border-spacing: 0;
+		border-spacing: 0;
 		border-radius: 0.25rem;
 		font-size: 1rem;
-    line-height: 1.25rem;
+		line-height: 1.25rem;
 		margin: 1.5rem 0;
 		overflow: hidden;
 
