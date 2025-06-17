@@ -55,8 +55,15 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   @HostBinding('class.daff-form-field') class = true;
 
   /** @docs-private */
-  get isSelectField(): boolean {
-    return this._control.controlType === 'native-select';
+  get isSelectField() {
+    return this._control.controlType === 'native-select' || this._control.controlType === 'custom-select';
+  }
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('class.is-select') get selectClass() {
+    return this.isSelectField;
   }
 
   constructor(private cd: ChangeDetectorRef, public elementRef: ElementRef) {}

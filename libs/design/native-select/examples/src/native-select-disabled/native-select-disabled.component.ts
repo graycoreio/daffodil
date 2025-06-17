@@ -14,7 +14,7 @@ import {
   templateUrl: './native-select-disabled.component.html',
   styles: [`
     daff-form-field {
-      max-width: 320px;
+      max-width: 25rem;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,

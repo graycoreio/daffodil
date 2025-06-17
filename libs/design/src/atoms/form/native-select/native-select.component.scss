@@ -1,4 +1,7 @@
+@use '../../../../scss/typography' as t;
+
 :host {
+	@include t.text-truncate();
 	appearance: none;
 	background: transparent;
 	background-clip: padding-box;

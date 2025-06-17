@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,9 +18,7 @@ import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';
   selector: 'select-with-error',
   templateUrl: './select-with-error.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
-    NgIf,
     ReactiveFormsModule,
     DAFF_SELECT_COMPONENTS,
     DAFF_FORM_FIELD_COMPONENTS,

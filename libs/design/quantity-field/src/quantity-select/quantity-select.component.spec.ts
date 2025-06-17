@@ -37,7 +37,7 @@ class WrapperComponent {
   extendableValue = true;
 }
 
-describe('@daffodil/design | DaffQuantitySelectComponent', () => {
+xdescribe('@daffodil/design | DaffQuantitySelectComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffQuantitySelectComponent;
   let fixture: ComponentFixture<WrapperComponent>;

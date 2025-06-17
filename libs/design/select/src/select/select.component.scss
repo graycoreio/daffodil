@@ -5,12 +5,9 @@
 	display: inline-block;
 	width: 100%;
 
-	&.daff-open {
+	&.disabled {
 		#{$root}__field {
-			&::after {
-				top: 56%;
-				transform: translateY(-50%) rotate(225deg);
-			}
+			cursor: not-allowed;
 		}
 	}
 
@@ -28,24 +25,6 @@
 		text-align: left;
 		width: 100%;
 		position: relative;
-
-		&[disabled] {
-			cursor: not-allowed;
-		}
-
-		&::after {
-			content: '';
-			position: absolute;
-			top: 48%;
-			right: 2px;
-			display: inline-block;
-			border-right: 2px solid currentColor;
-			border-bottom: 2px solid currentColor;
-			width: 0.5rem;
-			height: 0.5rem;
-			transform: translateY(-50%) rotate(45deg);
-			transition: transform 150ms;
-		}
 	}
 
 	&__options {

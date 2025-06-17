@@ -1,5 +1,5 @@
 <daff-form-field>
-  <label daffFormLabel>Select an address</label>
+  <daff-form-label>Select an address</daff-form-label>
   <daff-select [options]="options" [formControl]="control">
     <ng-template daffSelectOption let-option="option">
       <div>{{option.name}}</div>
@@ -7,5 +7,7 @@
       <div>{{option.city}}, {{option.state}} {{option.postcode}}</div>
     </ng-template>
   </daff-select>
-  <daff-error-message *ngIf="control.invalid">This field is required</daff-error-message>
+  @if (control.invalid) {
+    <daff-error-message>This field is required</daff-error-message>
+  }
 </daff-form-field>

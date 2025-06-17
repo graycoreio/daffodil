@@ -18,6 +18,9 @@ import {
 import { DaffFormFieldComponent } from '../form-field/form-field/form-field.component';
 import { DaffFormFieldControl } from '../form-field/form-field-control';
 
+/**
+ * DaffNativeSelectComponent provides the same functionality as a native `<select>` and contains custom styling and functionality.
+ */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'select[daff-native-select]',
@@ -34,6 +37,8 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
 export class DaffNativeSelectComponent extends DaffFormFieldControl<string> implements DaffFormFieldControl<string>, OnInit {
   /**
    * @docs-private
+   *
+   * Implemented as part of DaffFormFieldControl.
    */
   controlType = 'native-select';
 
@@ -44,10 +49,17 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
 
   /**
    * @docs-private
+   *
+   * Implemented as part of DaffFormFieldControl.
    */
   focused = false;
 
-  private _id = '';
+  /**
+   * Implemented as part of DaffFormFieldControl.
+   */
+  private get _id() {
+    return this.formField?.id;
+  };
 
   /**
    * @docs-private
@@ -123,10 +135,16 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
     );
   }
 
+  /**
+   * @docs-private
+   */
   onFocus() {
     this._elementRef.nativeElement.focus();
   }
 
+  /**
+   * @docs-private
+   */
   get value() {
     return this._elementRef.nativeElement.value;
   }

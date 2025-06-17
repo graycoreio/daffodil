@@ -15,6 +15,11 @@ import {
   selector: 'basic-native-select',
   templateUrl: './basic-native-select.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: `
+    daff-form-field {
+      max-width: 25rem;
+    }
+  `,
   imports: [
     DaffNativeSelectModule,
     DAFF_FORM_FIELD_COMPONENTS,

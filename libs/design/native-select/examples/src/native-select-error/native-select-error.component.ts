@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 
 import {
-  DaffFormFieldModule,
+  DAFF_FORM_FIELD_COMPONENTS,
   DaffNativeSelectModule,
 } from '@daffodil/design';
 
@@ -19,20 +19,19 @@ import {
   templateUrl: './native-select-error.component.html',
   styles: [`
     daff-form-field {
-      max-width: 320px;
+      max-width: 25rem;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
-    DaffFormFieldModule,
+    DAFF_FORM_FIELD_COMPONENTS,
     DaffNativeSelectModule,
     ReactiveFormsModule,
   ],
 })
 export class NativeSelectErrorComponent {
-  control: UntypedFormControl = new UntypedFormControl('', [
-    Validators.email,
+  control = new UntypedFormControl('valid', [
     Validators.required,
+    Validators.pattern('valid'),
   ]);
 }
