@@ -10,20 +10,18 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffFocusStackService } from '@daffodil/design';
-
 import {
   DaffModalComponent,
   DaffModalService,
-} from '../public_api';
+} from '@daffodil/design/modal';
 
 @Component({
-  template: '<p>test</p>',
+  template: '<div>Modal content</div>',
 })
-class MyComponent {}
+class ModalContentComponent {}
 
 @Component({
   template: `<button id="activator" (click)="openModal()">Open Modal</button>`,
-  standalone: true,
   imports: [
     DaffModalComponent,
   ],
@@ -33,21 +31,18 @@ class MyComponent {}
 })
 class WrapperComponent {
   _modal: DaffModalComponent;
-  constructor(private modal: DaffModalService) {
-
-  }
+  constructor(private modal: DaffModalService) {}
 
   openModal() {
-    this._modal = this.modal.open(MyComponent);
+    this._modal = this.modal.open(ModalContentComponent);
   }
-
 
   closeModal() {
     this.modal.close(this._modal);
   }
 }
 
-describe('@daffodil/design/modal | DaffModalComponent', () => {
+describe('@daffodil/design/modal | DaffModalComponent | Focus Management', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let focusStackService: DaffFocusStackService;
@@ -86,25 +81,27 @@ describe('@daffodil/design/modal | DaffModalComponent', () => {
 
     it('should push the activator to the focus stack when modal opens', () => {
       expect(focusStackService.length()).toEqual(0);
-      console.log(document.activeElement);
       activatorButton.click();
+
       expect(focusStackService.length()).toEqual(1);
       expect(document.activeElement).not.toEqual(activatorButton);
     });
 
     it('should follow complete user interaction flow: focus → click → modal focused → close → button focused', async () => {
       expect(focusStackService.length()).toEqual(0);
-      console.log(document.activeElement);
       activatorButton.click();
+
       expect(focusStackService.length()).toEqual(1);
       expect(document.activeElement).not.toEqual(activatorButton);
 
       const modalElement = TestBed.inject(DOCUMENT).querySelector('daff-modal');
       const debugModal = getDebugNode(modalElement);
       const modal: DaffModalComponent = debugModal.componentInstance;
+
       expect(modalElement.contains(document.activeElement)).toBe(true);
       wrapper.closeModal();
       fixture.detectChanges();
+
       modal.closedAnimationCompleted.subscribe(() => {
         expect(focusStackService.length()).toEqual(0);
         expect(document.activeElement).toEqual(activatorButton);
