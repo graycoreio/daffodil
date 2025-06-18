@@ -15,8 +15,10 @@ import {
   of,
 } from 'rxjs';
 
-import { DaffFormFieldComponent } from '../form-field/form-field/form-field.component';
-import { DaffFormFieldControl } from '../form-field/form-field-control';
+import {
+  DaffFormFieldComponent,
+  DaffFormFieldControl,
+} from '@daffodil/design';
 
 /**
  * DaffTextareaComponent provides the same functionality as a native `<textarea>` and contains custom styling and functionality.

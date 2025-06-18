@@ -8,10 +8,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import {
-  DAFF_FORM_FIELD_COMPONENTS,
-  DaffTextareaComponent,
-} from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
+import { DaffTextareaComponent } from '@daffodil/design/textarea';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
