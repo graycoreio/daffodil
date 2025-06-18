@@ -9,54 +9,10 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffStatus } from './statusable';
-import { DaffStatusableDirective } from './statusable.directive';
-
-@Component({
-  template: `
-		<div daffStatusable></div>`,
-  imports: [
-    DaffStatusableDirective,
-  ],
-})
-
-class NoStatusWrapperComponent {
-  status: DaffStatus;
-}
-
-describe('@daffodil/design | DaffStatusableDirective | Defaults', () => {
-  let wrapper: NoStatusWrapperComponent;
-  let de: DebugElement;
-  let fixture: ComponentFixture<NoStatusWrapperComponent>;
-  let directive: DaffStatusableDirective;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        NoStatusWrapperComponent,
-      ],
-    })
-      .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NoStatusWrapperComponent);
-    wrapper = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css('[daffStatusable]'));
-
-    directive = de.injector.get(DaffStatusableDirective);
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(wrapper).toBeTruthy();
-    expect(directive).toBeTruthy();
-  });
-
-  it('should set status to defaultStatus when no status is provided', () => {
-    expect(directive.status).toEqual(directive.defaultStatus);
-  });
-});
+import {
+  DaffStatus,
+  DaffStatusableDirective,
+} from '@daffodil/design';
 
 @Component({
   template: `
@@ -68,9 +24,6 @@ describe('@daffodil/design | DaffStatusableDirective | Defaults', () => {
 
 class WrapperComponent {
   status: DaffStatus;
-  constructor(public statusDirective: DaffStatusableDirective) {
-    this.statusDirective.defaultStatus = 'info';
-  }
 }
 
 describe('@daffodil/design | DaffStatusableDirective | Usage', () => {
@@ -104,12 +57,6 @@ describe('@daffodil/design | DaffStatusableDirective | Usage', () => {
 
   it('should take status as an input', () => {
     expect(directive.status).toEqual(wrapper.status);
-  });
-
-  describe('if a defaultStatus is defined', () => {
-    it('should set the status to the defaultStatus', () => {
-      expect(directive.status).toEqual('info');
-    });
   });
 
   it('should add a class of .daff-info to the host element if status is set to info', () => {
