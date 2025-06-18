@@ -13,10 +13,8 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import {
-  DAFF_FORM_FIELD_COMPONENTS,
-  DaffTextareaComponent,
-} from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
+import { DaffTextareaComponent } from '@daffodil/design/textarea';
 
 @Component({
   template:`
@@ -34,7 +32,7 @@ class WrapperComponent {
   disabledValue: boolean | string;
 }
 
-describe('@daffodil/design | DaffTextareaComponent | Static Disabled Attribute', () => {
+describe('@daffodil/design/textarea | DaffTextareaComponent | Static Disabled Attribute', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffTextareaComponent;
@@ -113,7 +111,7 @@ class FormsWrapperComponent {
   message: UntypedFormControl = new UntypedFormControl({ value: '', disabled: true });
 }
 
-describe('@daffodil/design | DaffTextareaComponent | Reactive Forms Disabled State', () => {
+describe('@daffodil/design/textarea | DaffTextareaComponent | Reactive Forms Disabled State', () => {
   let wrapper: FormsWrapperComponent;
   let fixture: ComponentFixture<FormsWrapperComponent>;
   let componentDE: DebugElement;

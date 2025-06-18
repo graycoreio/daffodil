@@ -17,8 +17,8 @@ import { By } from '@angular/platform-browser';
 import {
   DAFF_FORM_FIELD_COMPONENTS,
   DaffFormFieldComponent,
-  DaffTextareaComponent,
 } from '@daffodil/design';
+import { DaffTextareaComponent } from '@daffodil/design/textarea';
 
 @Component({
   template:`
@@ -36,7 +36,7 @@ class WrapperComponent {
   requiredValue: boolean | string;
 }
 
-describe('@daffodil/design | DaffTextareaComponent | Static Required Attribute', () => {
+describe('@daffodil/design/textarea | DaffTextareaComponent | Static Required Attribute', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffTextareaComponent;
@@ -125,7 +125,7 @@ class FormsWrapperComponent {
   message: UntypedFormControl = new UntypedFormControl('', [Validators.required]);
 }
 
-describe('@daffodil/design | DaffTextareaComponent | Reactive Forms Required State', () => {
+describe('@daffodil/design/textarea | DaffTextareaComponent | Reactive Forms Required State', () => {
   let wrapper: FormsWrapperComponent;
   let fixture: ComponentFixture<FormsWrapperComponent>;
   let componentDE: DebugElement;
