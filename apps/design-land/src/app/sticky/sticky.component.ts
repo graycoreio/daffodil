@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   styleUrl: './sticky.component.scss',
   standalone: false,
 })
-export class DesignLandStickyComponent {} 
+export class DesignLandStickyComponent {}

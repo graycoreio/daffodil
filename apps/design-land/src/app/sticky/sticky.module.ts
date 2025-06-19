@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { DaffStickyTrackerDirective } from '@daffodil/design';
 
+import { DesignLandStickyRoutingModule } from './sticky-routing.module';
+import { DesignLandStickyComponent } from './sticky.component';
 import { DesignLandArticleEncapsulatedModule } from '../core/article-encapsulated/article-encapsulated.module';
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
-import { DesignLandStickyComponent } from './sticky.component';
-import { DesignLandStickyRoutingModule } from './sticky-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,4 +21,4 @@ import { DesignLandStickyRoutingModule } from './sticky-routing.module';
     DesignLandStickyRoutingModule,
   ],
 })
-export class DesignLandStickyModule { } 
+export class DesignLandStickyModule { }
