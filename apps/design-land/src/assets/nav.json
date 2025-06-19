@@ -237,6 +237,13 @@
           "data": {}
         },
         {
+          "title": "Sticky Tracker",
+          "url": "sticky",
+          "id": "sticky",
+          "items": [],
+          "data": {}
+        },
+        {
           "title": "Switch",
           "url": "switch",
           "id": "switch",
