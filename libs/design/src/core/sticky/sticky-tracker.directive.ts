@@ -48,10 +48,39 @@ export class DaffStickyTrackerDirective implements AfterViewInit, OnDestroy {
     }
   }
 
+  private findScrollableParent(element: HTMLElement): HTMLElement | null {
+    let parent = element.parentElement;
+
+    while (parent && parent !== this.document.body) {
+      const computedStyle = this.document.defaultView?.getComputedStyle(parent);
+      const overflow = computedStyle?.overflow || '';
+      const overflowY = computedStyle?.overflowY || '';
+      const overflowX = computedStyle?.overflowX || '';
+
+      if (
+        overflow === 'auto' ||
+        overflow === 'scroll' ||
+        overflowY === 'auto' ||
+        overflowY === 'scroll' ||
+        overflowX === 'auto' ||
+        overflowX === 'scroll'
+      ) {
+        return parent;
+      }
+
+      parent = parent.parentElement;
+    }
+
+    return null;
+  }
+
   private createObserver(): void {
+    const scrollableParent = this.findScrollableParent(this.elementRef.nativeElement);
+
     this.observer = new IntersectionObserver(
-      ([entry]) => {
-        const shouldBePinned = entry.intersectionRatio < 1;
+      ([entry]) => {  
+        const shouldBePinned = entry.intersectionRatio < 1 &&
+                              entry.boundingClientRect.top <= (entry.rootBounds?.top || 0);
 
         if (this.lastPinnedState !== shouldBePinned) {
           if (this.debounceTimeout) {
@@ -70,7 +99,8 @@ export class DaffStickyTrackerDirective implements AfterViewInit, OnDestroy {
         }
       },
       {
-        threshold: [1],
+        root: scrollableParent,
+        threshold: [0, 1],
         rootMargin: '-1px 0px 0px 0px',
       },
     );
