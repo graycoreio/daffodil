@@ -78,7 +78,7 @@ export class DaffStickyTrackerDirective implements AfterViewInit, OnDestroy {
     const scrollableParent = this.findScrollableParent(this.elementRef.nativeElement);
 
     this.observer = new IntersectionObserver(
-      ([entry]) => {  
+      ([entry]) => {
         const shouldBePinned = entry.intersectionRatio < 1 &&
                               entry.boundingClientRect.top <= (entry.rootBounds?.top || 0);
 
