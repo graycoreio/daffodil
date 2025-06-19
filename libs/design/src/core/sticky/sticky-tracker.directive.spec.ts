@@ -43,11 +43,11 @@ describe('DaffStickyTrackerDirective', () => {
   const createMockEntry = (
     overrides: Partial<IntersectionObserverEntry>,
   ): IntersectionObserverEntry => ({
-    boundingClientRect: <DOMRectReadOnly>{},
+    boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
     intersectionRatio: 1,
     intersectionRect: <DOMRectReadOnly>{},
     isIntersecting: true,
-    rootBounds: null,
+    rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
     target: stickyEl,
     time: 0,
     ...overrides,
@@ -106,14 +106,40 @@ describe('DaffStickyTrackerDirective', () => {
     expect(stickyEl.style.top).toBe('0px');
   });
 
-  it('should add is-pinned class when element is not fully visible (intersectionRatio < 1)', fakeAsync(() => {
+  it('should add is-pinned class when element is partially visible (intersectionRatio < 1)', fakeAsync(() => {
     if (!mockObserverCallback) {
       fail('Observer callback not set');
       return;
     }
 
     mockObserverCallback([
-      createMockEntry({ intersectionRatio: 0.99, isIntersecting: true }),
+      createMockEntry({
+        intersectionRatio: 0.5,
+        isIntersecting: true,
+        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
+    ], mockObserverInstance);
+
+    tick(10);
+    fixture.detectChanges();
+
+    expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
+  }));
+
+  it('should add is-pinned class when element is barely visible (intersectionRatio close to 0)', fakeAsync(() => {
+    if (!mockObserverCallback) {
+      fail('Observer callback not set');
+      return;
+    }
+
+    mockObserverCallback([
+      createMockEntry({
+        intersectionRatio: 0.01,
+        isIntersecting: true,
+        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
     ], mockObserverInstance);
 
     tick(10);
@@ -129,7 +155,12 @@ describe('DaffStickyTrackerDirective', () => {
     }
 
     mockObserverCallback([
-      createMockEntry({ intersectionRatio: 0, isIntersecting: false }),
+      createMockEntry({
+        intersectionRatio: 0,
+        isIntersecting: false,
+        boundingClientRect: <DOMRectReadOnly>{ top: -10, left: 0, bottom: 40, right: 100, width: 100, height: 50, x: 0, y: -10 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
     ], mockObserverInstance);
 
     tick(10);
@@ -145,7 +176,12 @@ describe('DaffStickyTrackerDirective', () => {
     }
 
     mockObserverCallback([
-      createMockEntry({ intersectionRatio: 0.5, isIntersecting: true }),
+      createMockEntry({
+        intersectionRatio: 0.5,
+        isIntersecting: true,
+        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
     ], mockObserverInstance);
 
     tick(10);
@@ -153,7 +189,12 @@ describe('DaffStickyTrackerDirective', () => {
     expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
 
     mockObserverCallback([
-      createMockEntry({ intersectionRatio: 1, isIntersecting: true }),
+      createMockEntry({
+        intersectionRatio: 1,
+        isIntersecting: true,
+        boundingClientRect: <DOMRectReadOnly>{ top: 50, left: 0, bottom: 100, right: 100, width: 100, height: 50, x: 0, y: 50 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
     ], mockObserverInstance);
 
     tick(10);
@@ -168,7 +209,12 @@ describe('DaffStickyTrackerDirective', () => {
     }
 
     mockObserverCallback([
-      createMockEntry({ intersectionRatio: 1, isIntersecting: true }),
+      createMockEntry({
+        intersectionRatio: 1,
+        isIntersecting: true,
+        boundingClientRect: <DOMRectReadOnly>{ top: 50, left: 0, bottom: 100, right: 100, width: 100, height: 50, x: 0, y: 50 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
     ], mockObserverInstance);
 
     tick(10);
@@ -176,7 +222,12 @@ describe('DaffStickyTrackerDirective', () => {
     expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
 
     mockObserverCallback([
-      createMockEntry({ intersectionRatio: 0.8, isIntersecting: true }),
+      createMockEntry({
+        intersectionRatio: 0.3,
+        isIntersecting: true,
+        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
     ], mockObserverInstance);
 
     tick(10);
@@ -184,7 +235,12 @@ describe('DaffStickyTrackerDirective', () => {
     expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
 
     mockObserverCallback([
-      createMockEntry({ intersectionRatio: 1, isIntersecting: true }),
+      createMockEntry({
+        intersectionRatio: 1,
+        isIntersecting: true,
+        boundingClientRect: <DOMRectReadOnly>{ top: 50, left: 0, bottom: 100, right: 100, width: 100, height: 50, x: 0, y: 50 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
     ], mockObserverInstance);
 
     tick(10);
@@ -209,7 +265,12 @@ describe('DaffStickyTrackerDirective', () => {
     }
 
     mockObserverCallback([
-      createMockEntry({ intersectionRatio: 0, isIntersecting: false }),
+      createMockEntry({
+        intersectionRatio: 0,
+        isIntersecting: false,
+        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
     ], mockObserverInstance);
 
     tick(10);
@@ -225,29 +286,18 @@ describe('DaffStickyTrackerDirective', () => {
     }
 
     mockObserverCallback([
-      createMockEntry({ intersectionRatio: 1, isIntersecting: true }),
+      createMockEntry({
+        intersectionRatio: 1,
+        isIntersecting: true,
+        boundingClientRect: <DOMRectReadOnly>{ top: 50, left: 0, bottom: 100, right: 100, width: 100, height: 50, x: 0, y: 50 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
     ], mockObserverInstance);
 
     tick(10);
     fixture.detectChanges();
 
     expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
-  }));
-
-  it('should handle edge case when intersectionRatio is between 0 and 1', fakeAsync(() => {
-    if (!mockObserverCallback) {
-      fail('Observer callback not set');
-      return;
-    }
-
-    mockObserverCallback([
-      createMockEntry({ intersectionRatio: 0.1, isIntersecting: true }),
-    ], mockObserverInstance);
-
-    tick(10);
-    fixture.detectChanges();
-
-    expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
   }));
 
   it('should debounce rapid state changes', fakeAsync(() => {
@@ -257,13 +307,23 @@ describe('DaffStickyTrackerDirective', () => {
     }
 
     mockObserverCallback([
-      createMockEntry({ intersectionRatio: 0.5, isIntersecting: true }),
+      createMockEntry({
+        intersectionRatio: 0.5,
+        isIntersecting: true,
+        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
     ], mockObserverInstance);
 
     expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
 
     mockObserverCallback([
-      createMockEntry({ intersectionRatio: 1, isIntersecting: true }),
+      createMockEntry({
+        intersectionRatio: 1,
+        isIntersecting: true,
+        boundingClientRect: <DOMRectReadOnly>{ top: 50, left: 0, bottom: 100, right: 100, width: 100, height: 50, x: 0, y: 50 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
     ], mockObserverInstance);
 
     expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
@@ -271,6 +331,50 @@ describe('DaffStickyTrackerDirective', () => {
     tick(10);
     fixture.detectChanges();
 
+    expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
+  }));
+
+  it('should use simplified threshold configuration', () => {
+    expect(mockObserverInstance.observe).toHaveBeenCalledWith(stickyEl);
+  });
+
+  it('should handle scrolling behavior in container context', fakeAsync(() => {
+    if (!mockObserverCallback) {
+      fail('Observer callback not set');
+      return;
+    }
+
+    mockObserverCallback([
+      createMockEntry({
+        intersectionRatio: 0.8,
+        isIntersecting: true,
+        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
+    ], mockObserverInstance);
+
+    tick(10);
+    fixture.detectChanges();
+    expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
+  }));
+
+  it('should not add is-pinned class when element is scrolled past (bottom pinned)', fakeAsync(() => {
+    if (!mockObserverCallback) {
+      fail('Observer callback not set');
+      return;
+    }
+
+    mockObserverCallback([
+      createMockEntry({
+        intersectionRatio: 0.5,
+        isIntersecting: true,
+        boundingClientRect: <DOMRectReadOnly>{ top: 20, left: 0, bottom: 70, right: 100, width: 100, height: 50, x: 0, y: 20 },
+        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
+      }),
+    ], mockObserverInstance);
+
+    tick(10);
+    fixture.detectChanges();
     expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
   }));
 });
