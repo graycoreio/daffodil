@@ -8,6 +8,7 @@ export const DAFF_DGENI_EXCLUDED_PACKAGES = <const>[
   'docs-components',
   'docs-utils',
   'theme-switch',
+  'dgeni',
 ];
 
 /**

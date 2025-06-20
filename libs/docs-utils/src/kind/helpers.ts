@@ -6,7 +6,7 @@ const DOC_KIND_REGEX = {
   [DaffDocKind.GUIDE]: /\/docs\/guides\/(?<path>.+)\.md/,
   [DaffDocKind.EXPLANATION]: /\/docs\/explanations\/(?<path>.+)\.md/,
   [DaffDocKind.COMPONENT]: /\/libs\/design\/(?<path>.+)\/README\.md/,
-  [DaffDocKind.PACKAGE]: /\/libs\/(?<path>.+)\.md/,
+  [DaffDocKind.PACKAGE]: /\/(libs|tools)\/(?<path>.+)\.md/,
   [DaffDocKind.API]: /\/libs\/(?<path>.+)\.ts/,
 };
 

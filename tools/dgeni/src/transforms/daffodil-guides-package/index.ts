@@ -42,7 +42,6 @@ import { pathsConfigurator } from '../../utils/configurator/path';
 import { generateNavigationTrieFromDocuments } from '../../utils/navigation-trie';
 import { sortTrie } from '../../utils/trie-sort';
 import {
-  API_SOURCE_PATH,
   DESIGN_PATH,
   DOCS_SOURCE_PATH,
   PROJECT_ROOT,
@@ -111,14 +110,19 @@ export const packageDocsPackage = outputPathsConfigurator({
   docTypes,
 })(new Package('daffodil-package-docs', [base]))
   .config((readFilesProcessor) => {
-    readFilesProcessor.basePath = API_SOURCE_PATH;
+    readFilesProcessor.basePath = PROJECT_ROOT;
     readFilesProcessor.sourceFiles = [
-      { include: [
-        `${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}*/**/README.md`,
-        `${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/guides/**/*.md`,
-        `${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/guides/**/index.json`,
-      ]},
-    ];
+      'libs',
+      'tools',
+    ].map((basePath) => ({
+      basePath,
+      include: [
+        // TODO: remove extra path prefix when dgeni is fixed
+        `${basePath}/${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}*/**/README.md`,
+        `${basePath}/${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/guides/**/*.md`,
+        `${basePath}/${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/guides/**/index.json`,
+      ],
+    }));
   });
 
 export const guideDocsPackage = pathsConfigurator({
