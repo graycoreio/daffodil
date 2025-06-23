@@ -163,13 +163,6 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, Daff
   attachContent(portal: ComponentPortal<any>): any {
     const attachContent = this._portalOutlet.attachComponentPortal(portal);
 
-    // When a component is created to inject content into the modal, it can
-    // interfere with the display styles applied to the modal's header, content,
-    // and action sections. By setting `display: contents;` on the custom
-    // component, it is visually removed from the UI, allowing the content
-    // within it to inherit the modal's styles.
-    attachContent.location.nativeElement.style.display = 'contents';
-
     return attachContent;
   }
 
