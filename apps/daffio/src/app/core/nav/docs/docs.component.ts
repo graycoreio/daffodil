@@ -20,6 +20,7 @@ import { DaffIconButtonComponent } from '@daffodil/design/button';
 import { DaffRouterDataService } from '@daffodil/router';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
+import { DaffioDocsSearchButtonComponent } from '../../../docs//search/components/search-button/search-button.component';
 import { DaffioHeaderComponent } from '../../header/components/header/header.component';
 import { DaffioHeaderItemDirective } from '../../header/components/header-item/header-item.directive';
 import { DaffioRoute } from '../../router/route.type';
@@ -41,6 +42,7 @@ import { DaffioNavLink } from '../link/type';
     DaffIconButtonComponent,
     FaIconComponent,
     AsyncPipe,
+    DaffioDocsSearchButtonComponent,
   ],
 })
 export class DaffioDocsNavContainer implements OnInit {

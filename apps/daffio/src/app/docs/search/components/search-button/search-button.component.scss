@@ -1,0 +1,26 @@
+@use 'utilities' as daff;
+
+.daffio-docs-search-button {
+	@include daff.clickable();
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	appearance: none;
+	border: none;
+	border-radius: 0.25rem;
+	font-size: daff.$font-size-sm;
+	padding: 0.75rem;
+	width: 16rem;
+
+	&__kbd {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0.25rem;
+		font-size: 0.75rem;
+		line-height: 1rem;
+		height: 1rem;
+		width: 1rem;
+		box-sizing: border-box;
+	}
+}

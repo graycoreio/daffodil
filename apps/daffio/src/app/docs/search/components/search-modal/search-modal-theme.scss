@@ -1,0 +1,41 @@
+@use 'theme' as *;
+
+@mixin daffio-docs-search-modal-theme($theme) {
+	$neutral: daff-get-palette($theme, neutral);
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$mode: daff-get-theme-mode($theme);
+
+	:host {
+		@include light($mode) {
+			border: 1px solid daff-color($neutral, 20);
+		}
+
+		@include dark($mode) {
+			background: daff-color($neutral, 90);
+			color: daff-color($neutral, 40);
+
+			&__kbd {
+				border: 1px solid daff-color($neutral, 40);
+			}
+		}
+	}
+
+	.daffio-docs-search-results {
+		&__item {
+			&.active {
+				background: daff-color($neutral, 10);
+			}
+
+			a {
+				&:hover {
+					background: daff-color($neutral, 10);
+				}
+			}
+		}
+
+		&__category {
+			color: daff-color($neutral, 70);
+		}
+	}
+}

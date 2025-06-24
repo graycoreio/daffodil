@@ -14,7 +14,7 @@
 				color: currentColor;
 				font-size: daff.$font-size-base;
 				font-weight: 500;
-				line-height: 64px;
+				line-height: 4rem;
 				padding: 0 1rem;
 				position: relative;
 				text-decoration: none;
@@ -36,15 +36,11 @@
 	}
 
 	&__left {
-		gap: 32px;
+		gap: 2rem;
 	}
 
-	&__theme-toggle {
-		margin-right: 0.25rem;
-
-		@include daff.breakpoint(big-tablet) {
-			margin-right: 0;
-		}
+	&__right {
+		gap: 1rem;
 	}
 
 	&__menu {
@@ -54,7 +50,7 @@
 		@include daff.breakpoint(big-tablet) {
 			display: flex;
 			align-items: center;
-			gap: 16px;
+			gap: 1rem;
 		}
 	}
 
@@ -68,10 +64,10 @@
 	}
 
 	&__logo {
-		width: 128px;
+		width: 8rem;
 
 		@include daff.breakpoint(mobile) {
-			width: 160px;
+			width: 10rem;
 		}
 	}
 

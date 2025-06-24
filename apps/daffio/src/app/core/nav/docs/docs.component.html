@@ -2,7 +2,6 @@
   <a routerLink="/" daffio-logo>
     <daff-branding-logo type="full"></daff-branding-logo>
   </a>
-  <daff-theme-switch-button theme-toggle></daff-theme-switch-button>
   @for (link of links$ | async; track $index) {
     <ng-container daffioHeaderItem>
       @if (link.external) {
@@ -12,6 +11,8 @@
       }
     </ng-container>
   }
+  <daffio-docs-search-button></daffio-docs-search-button>
+  <daff-theme-switch-button theme-toggle></daff-theme-switch-button>
   <button daff-icon-button color="theme-contrast" aria-label="Open Navigation Sidebar"
     sidebar-button
     (click)="openSidebar()">
