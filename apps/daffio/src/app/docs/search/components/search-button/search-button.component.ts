@@ -3,11 +3,13 @@ import {
   Component,
   DestroyRef,
   HostListener,
+  Input,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
+import { DaffIconButtonComponent } from '@daffodil/design/button';
 import {
   DaffModalComponent,
   DaffModalService,
@@ -22,6 +24,7 @@ import { DaffioDocsSearchModalComponent } from '../search-modal/search-modal.com
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FaIconComponent,
+    DaffIconButtonComponent,
   ],
   providers: [
     DaffModalService,
@@ -32,6 +35,8 @@ export class DaffioDocsSearchButtonComponent {
   faSearch = faSearch;
 
   modal: DaffModalComponent;
+
+  @Input() icon = false;
 
   constructor(private modalService: DaffModalService, private destroyRef: DestroyRef) {}
 
