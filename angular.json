@@ -220,7 +220,6 @@
               "entry": "apps/daffio/server/server.ts"
             },
 						"prerender": {
-							"routesFile": "dist/docs/renderableRoutes.txt",
 							"discoverRoutes": true
 						},
             "polyfills": [

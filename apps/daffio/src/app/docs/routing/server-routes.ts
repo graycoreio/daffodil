@@ -7,10 +7,10 @@ import {
 export const daffioDocsServerRoutes = (parent: string): Array<ServerRoute> => [
   {
     path: parent,
-    renderMode: RenderMode.Prerender,
+    renderMode: RenderMode.Server,
   },
   {
     path: `${parent}/**`,
-    renderMode: RenderMode.Prerender,
+    renderMode: RenderMode.Server,
   },
 ];
