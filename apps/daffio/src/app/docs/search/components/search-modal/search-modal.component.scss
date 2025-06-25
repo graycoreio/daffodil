@@ -9,10 +9,23 @@
 	}
 }
 
-.daffio-docs-search-modal {
-	&__results-list {
-		height: 50vh;
-		overflow-y: scroll;
+.daffio-docs-search-history {
+	display: block;
+
+	&__title {
+		font-size: daff.$font-size-sm;
+		font-weight: 500;
+		line-height: 1rem;
+		margin: 1rem 0 0 1rem;
+	}
+
+	&__list {
+		display: block;
+		list-style: none;
+		margin: 0;
+		padding: 1rem 0;
+		max-height: 50vh;
+		overflow-y: auto;
 	}
 }
 
@@ -22,7 +35,7 @@
 	margin: 0;
 	padding: 1rem 0;
 	max-height: 50vh;
-	overflow-y: scroll;
+	overflow-y: auto;
 
 	&__item {
 		margin: 0;
@@ -45,5 +58,10 @@
 
 	&__category {
 		font-size: daff.$font-size-sm;
+	}
+
+	&__start-screen,
+	&__no-results {
+		padding: 0 1rem;
 	}
 }

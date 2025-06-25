@@ -1,5 +1,28 @@
 <daffio-docs-search-field></daffio-docs-search-field>
-<!-- <daffio-docs-search-history></daffio-docs-search-history> -->
+<div class="daffio-docs-search-history"> <!-- remove search history once user starts typing and display the search results instead -->
+	<div class="daffio-docs-search-history__title">
+		Recent
+	</div>
+	<ul class="daffio-docs-search-history__list" role="listbox">
+		<li daffioDocsSearchResultItem class="daffio-docs-search-results__item">
+		<a href="/">
+			<div class="daffio-docs-search-results__icon-and-result">
+				<fa-icon [icon]="faClockRotateLeft" [fixedWidth]="true"></fa-icon>
+				<span class="daffio-docs-search-results__result">Recent search</span>
+			</div>
+			<span class="daffio-docs-search-results__category">API Reference</span>
+		</a>
+	</li>
+	</ul>
+</div>
+<div class="daffio-docs-search-results">
+	<div class="daffio-docs-search-results__start-screen">
+		Start typing to see results
+	</div>
+	<div class="daffio-docs-search-results__no-results">
+		No results found
+	</div>
+</div>
 <ul class="daffio-docs-search-results" role="listbox">
 	<li daffioDocsSearchResultItem class="daffio-docs-search-results__item">
 		<a href="/">

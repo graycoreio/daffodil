@@ -37,5 +37,10 @@
 		&__category {
 			color: daff-color($neutral, 70);
 		}
+
+		&__start-screen,
+		&__no-results {
+			color: daff-color($neutral);
+		}
 	}
 }

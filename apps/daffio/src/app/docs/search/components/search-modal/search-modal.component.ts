@@ -9,7 +9,10 @@ import {
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faFileLines } from '@fortawesome/free-regular-svg-icons';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
+import {
+  faClockRotateLeft,
+  faGear,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { DaffioDocsSearchResultItemDirective } from '../../directives/search-result-item/search-result-item.directive';
 import { DaffioDocsSearchFieldComponent } from '../search-field/search-field.component';
@@ -31,6 +34,7 @@ import { DaffioDocsSearchFooterComponent } from '../search-footer/search-footer.
 export class DaffioDocsSearchModalComponent implements AfterViewInit {
   faFileLines = faFileLines;
   faGear = faGear;
+  faClockRotateLeft = faClockRotateLeft;
 
   @HostBinding('class.daffio-docs-search-modal') class = true;
 
