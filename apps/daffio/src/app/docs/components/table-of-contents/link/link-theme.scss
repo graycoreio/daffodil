@@ -2,13 +2,35 @@
 @use 'theme' as *;
 
 @mixin daffio-docs-table-of-contents-link-theme($theme) {
+	$neutral: daff-get-palette($theme, neutral);
 	$primary: daff-get-palette($theme, primary);
+	$mode: daff-get-theme-mode($theme);
 
 	.daffio-docs-table-of-contents-link {
-		border-left: 0.125rem solid rgba(daff-color($primary), 0);
+		@include light($mode) {
+			color: daff-color($neutral, 80);
+
+			&:hover {
+				color: daff-color($neutral, 90);
+			}
+		}
+
+		@include dark($mode) {
+			color: daff-color($neutral, 40);
+
+			&:hover {
+				color: daff-color($neutral, 30);
+			}
+		}
+
+		&::before {
+			background: rgba(daff-color($primary), 0);
+		}
 
 		&.active {
-			border-left: 0.125rem solid daff-color($primary);
+			&::before {
+				background: daff-color($primary);
+			}
 		}
 	}
 }

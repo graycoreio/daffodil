@@ -1,33 +1,14 @@
 @use 'utilities' as daff;
 
-:host {
-	position: fixed;
-	bottom: 3rem;
-	right: 3rem;
-}
-
 .daffio-docs-scroll-to-top {
 	&__button {
 		@include daff.clickable();
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 		appearance: none;
+		background: none;
 		border: none;
 		position: relative;
-		height: 3rem;
-		width: 3rem;
-		border-radius: 50%;
-
-		&::after {
-			content: '';
-			position: absolute;
-			top: 55%;
-			left: 38%;
-			display: inline-block;
-			border-right: 2px solid currentColor;
-			border-bottom: 2px solid currentColor;
-			width: 0.75rem;
-			height: 0.75rem;
-			transform: translateY(-50%) rotate(225deg);
-			transition: transform 150ms;
-		}
 	}
 }

@@ -1,4 +1,8 @@
-<button *ngIf="showButton"
+@if (showButton) {
+	<button
 	class="daffio-docs-scroll-to-top__button"
-	(click)="scrollToTop()"
-	aria-label="Back to Top"></button>
+	(click)="scrollToTop()">
+		Back to top
+		<fa-icon [icon]="faArrowUp" size="sm" [fixedWidth]="true"></fa-icon>
+	</button>
+}

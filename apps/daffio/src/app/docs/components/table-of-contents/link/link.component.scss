@@ -2,9 +2,9 @@
 
 // stylelint-disable selector-class-pattern
 :host {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
+	display: block;
+	max-height: 75vh;
+	overflow-y: scroll;
 
 	&.in-sidebar {
 		.daffio-docs-table-of-contents-link {
@@ -22,8 +22,17 @@
 	line-height: 1.25rem;
 	text-decoration: none;
 	position: relative;
-	padding: 0 0 0 0.5rem;
-	margin: 0 0 0 -0.625rem;
+	padding: 0.25rem 0 0.25rem 0.5rem;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0.25rem;
+		bottom: 0;
+		left: 0;
+		width: 0.125rem;
+		height: 1.25rem;
+	}
 
 	&.active {
 		font-weight: 500;
@@ -34,10 +43,10 @@
 	}
 
 	&.level-3 {
-		padding: 0 0 0 1.5rem;
+		padding: 0.25rem 0 0.25rem 1.5rem;
 	}
 
 	&.level-4 {
-		padding: 0 0 0 2.5rem;
+		padding: 0.25rem 0 0.25rem 2.5rem;
 	}
 }

@@ -8,6 +8,7 @@ import { DaffListModule } from '@daffodil/design/list';
 
 import { DaffioDocsTableOfContentsLinkComponent } from './link/link.component';
 import { DaffioDocsTableOfContentsComponent } from './table-of-contents.component';
+import { DaffioDocsScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { DaffioDocsTableOfContentsComponent } from './table-of-contents.componen
     RouterModule,
     DaffAccordionModule,
     DaffioDocsTableOfContentsLinkComponent,
+    DaffioDocsScrollToTopComponent,
   ],
 })
 export class DaffioDocsTableOfContentsModule { }

@@ -17,7 +17,6 @@ import { map } from 'rxjs/operators';
 
 import { DaffDoc } from '@daffodil/docs-utils';
 
-import { DaffioDocsScrollToTopComponent } from '../../components/scroll-to-top/scroll-to-top.component';
 import { DaffioDocsDynamicContentComponentService } from '../../dynamic-content/dynamic-content-component.service';
 import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.type';
 
@@ -29,7 +28,6 @@ import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.
     AsyncPipe,
     RouterModule,
     NgComponentOutlet,
-    DaffioDocsScrollToTopComponent,
   ],
   providers: [
     DaffioDocsDynamicContentComponentService,

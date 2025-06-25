@@ -5,14 +5,19 @@
 }
 
 .daffio-docs-table-of-contents {
-	max-height: 100vh;
+	max-height: calc(100vh - var(--daff-sidebar-side-fixed-top-shift) - 6rem);
 	position: sticky;
-	top: calc(var(--daff-sidebar-side-fixed-top-shift) + 96px);
+	top: 6rem;
 	max-width: 15rem;
 	width: 100%;
 
 	&__title {
-		font-weight: bold;
+		font-weight: 500;
 		margin: 0 0 1.5rem;
+	}
+
+	&__scroll-to-top {
+		display: block;
+		margin: 1rem 0 0;
 	}
 }
