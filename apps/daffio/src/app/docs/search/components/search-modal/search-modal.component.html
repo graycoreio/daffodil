@@ -15,6 +15,7 @@
 	</li>
 	</ul>
 </div>
+
 <div class="daffio-docs-search-results">
 	<div class="daffio-docs-search-results__start-screen">
 		Start typing to see results
@@ -23,11 +24,12 @@
 		No results found
 	</div>
 </div>
+
 <ul class="daffio-docs-search-results" role="listbox">
 	<li daffioDocsSearchResultItem class="daffio-docs-search-results__item">
 		<a href="/">
 			<div class="daffio-docs-search-results__icon-and-result">
-				<fa-icon [icon]="faGear" [fixedWidth]="true"></fa-icon>
+				<fa-icon [icon]="faGear" [fixedWidth]="true"></fa-icon> <!-- icon changes depending on what type it is. e.g. api, guides, etc. -->
 				<span class="daffio-docs-search-results__result">Search result</span>
 			</div>
 			<span class="daffio-docs-search-results__category">API Reference</span>
