@@ -43,6 +43,7 @@
 
 		a {
 			display: flex;
+			align-items: center;
 			justify-content: space-between;
 			gap: 1rem;
 			margin: 0;
@@ -53,11 +54,16 @@
 
 	&__icon-and-result {
 		display: flex;
-		gap: 1rem;
+		gap: 0.5rem;
+
+		@include daff.breakpoint(tablet) {
+			gap: 1rem;
+		}
 	}
 
 	&__category {
 		font-size: daff.$font-size-sm;
+		line-height: 1rem;
 	}
 
 	&__start-screen,
