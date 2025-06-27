@@ -236,7 +236,7 @@
                 "output": "/assets/daff-branding/"
               },
               {
-                "glob": "**/*",
+                "glob": "!(search-index)/**/*",
                 "input": "dist/docs",
                 "output": "/assets/daffio/docs"
               }

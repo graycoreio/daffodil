@@ -32,6 +32,10 @@ import {
   GenerateNavListProcessor,
 } from '../../processors/generateNavList';
 import {
+  INDEXABLE_PROCESSOR_PROVIDER,
+  IndexableProcessor,
+} from '../../processors/indexable';
+import {
   LONG_DESCRIPTION_PROCESSOR_PROVIDER,
   LongDescriptionProcessor,
 } from '../../processors/long-description';
@@ -52,6 +56,7 @@ const docTypes = ['guide', 'package-guide'];
 
 const base = new Package('daffodil-guides-base', [daffodilBasePackage])
   .processor(...FILTER_NAV_INDEX_PROCESSOR_PROVIDER)
+  .processor(...INDEXABLE_PROCESSOR_PROVIDER)
   .factory('guideFileReader', guideFileReaderFactory)
   .factory(...INDEX_FILE_READER_PROVIDER)
   .config((
@@ -68,6 +73,9 @@ const base = new Package('daffodil-guides-base', [daffodilBasePackage])
   .config((readFilesProcessor, guideFileReader, indexFileReader) => {
     readFilesProcessor.$enabled = true;
     readFilesProcessor.fileReaders.push(guideFileReader, indexFileReader);
+  })
+  .config((indexable: IndexableProcessor) => {
+    indexable.docTypes.push('guide');
   })
   .config((computeIdsProcessor, idSanitizer: IdSanitizer) => {
     computeIdsProcessor.idTemplates.push({

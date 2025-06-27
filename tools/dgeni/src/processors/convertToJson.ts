@@ -5,7 +5,14 @@ import {
 
 import { DaffDoc } from '@daffodil/docs-utils';
 
-import { Serializer } from '../utils/serialize';
+import {
+  IndexableDoc,
+  Indexer,
+} from '../utils/indexable';
+import {
+  SerializableDoc,
+  Serializer,
+} from '../utils/serialize';
 
 export const CONVERT_TO_JSON_PROCESSOR_NAME = 'convertToJson';
 
@@ -18,6 +25,16 @@ const defaultSerializer: Serializer<DaffDoc> = (doc: DaffDoc & Document): DaffDo
   breadcrumbs: doc.breadcrumbs || [],
 });
 
+export const defaultIndexer: Indexer<DaffDoc> = (doc: DaffDoc & Document) => ({
+  doc: {
+    id: doc.path,
+    kind: doc.kind,
+    title: doc.title || doc.vFile?.title || doc.name || '',
+    contents: doc.renderedContent || doc.contents || '',
+  },
+  extraIndices: [],
+});
+
 export class ConvertToJsonProcessor implements Processor {
   readonly name = CONVERT_TO_JSON_PROCESSOR_NAME;
   readonly $runAfter = ['docs-rendered'];
@@ -28,10 +45,10 @@ export class ConvertToJsonProcessor implements Processor {
    */
   extraFields = [];
 
-  constructor(public log, public createDocMessage) {}
+  constructor(public log, public createDocMessage, public computePathsProcessor, public computeIdsProcessor) {}
 
-  $process(docs: Document[]) {
-    docs.forEach((doc) => {
+  $process(docs: Array<SerializableDoc & IndexableDoc & Document>) {
+    const dooks = docs.reduce((acc, doc) => {
       const serializedDoc = (doc.serializer || defaultSerializer)(doc);
 
       if (!serializedDoc.title && !serializedDoc.name) {
@@ -39,17 +56,43 @@ export class ConvertToJsonProcessor implements Processor {
       }
 
       doc.renderedContent = JSON.stringify({
-        ...this.extraFields.reduce((acc, field) => {
-          acc[field] = doc[field];
-          return acc;
+        ...this.extraFields.reduce((extras, field) => {
+          extras[field] = doc[field];
+          return extras;
         }, {}),
         ...serializedDoc,
       }, null, 2);
-    });
+
+      acc.push(doc);
+
+      if (doc.indexer) {
+        const { doc: indexedDoc, extraIndices } = doc.indexer(doc);
+        const indexedDocs = [
+          {
+            ...indexedDoc,
+            docType: 'searchIndex',
+            renderedContent: JSON.stringify(indexedDoc),
+          },
+          ...extraIndices.map((d) => ({
+            ...d,
+            docType: 'searchIndex',
+            renderedContent: JSON.stringify(d),
+          })),
+        ];
+        this.computeIdsProcessor.$process(indexedDocs);
+        this.computePathsProcessor.$process(indexedDocs);
+
+        acc.push(...indexedDocs);
+      }
+
+      return acc;
+    }, []);
+
+    return dooks;//
   }
 };
 
 export const CONVERT_TO_JSON_PROCESSOR_PROVIDER = <const>[
   CONVERT_TO_JSON_PROCESSOR_NAME,
-  (log, createDocMessage) => new ConvertToJsonProcessor(log, createDocMessage),
+  (log, createDocMessage, computePathsProcessor, computeIdsProcessor) => new ConvertToJsonProcessor(log, createDocMessage, computePathsProcessor, computeIdsProcessor),
 ];

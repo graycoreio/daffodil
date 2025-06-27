@@ -11,6 +11,7 @@ import {
   GENERATE_NAV_LIST_PROCESSOR_PROVIDER,
   GenerateNavListProcessor,
 } from '../../processors/generateNavList';
+import { API_SOURCE_PATH } from '../../transforms/config';
 
 export interface OutputPathsConfig {
   kind: DaffDocKind;
@@ -25,12 +26,22 @@ export const outputPathsConfigurator: Configurator<OutputPathsConfig> = (config:
     generateNavList.outputFolder = `${config.outputPath}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[config.kind]}`;
   })
   .config((computePathsProcessor) => {
-    computePathsProcessor.pathTemplates.push({
-      docTypes: config.docTypes,
-      getPath: (doc) => {
-        doc.moduleFolder = `${config.outputPath}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[config.kind]}/${doc.id}`;
-        return doc.moduleFolder;
+    computePathsProcessor.pathTemplates.push(
+      {
+        docTypes: config.docTypes,
+        getPath: (doc) => {
+          doc.moduleFolder = `${config.outputPath}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[config.kind]}/${doc.id.replace(API_SOURCE_PATH, '')}`;
+          return doc.moduleFolder;
+        },
+        outputPathTemplate: '${moduleFolder}.json',
       },
-      outputPathTemplate: '${moduleFolder}.json',
-    });
+      {
+        docTypes: ['searchIndex'],
+        getPath: (doc) => {
+          doc.moduleFolder = `${config.outputPath}/search-index/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[config.kind]}/${doc.id.replace(API_SOURCE_PATH, '')}`;
+          return doc.moduleFolder;
+        },
+        outputPathTemplate: '${moduleFolder}.json',
+      },
+    );
   });

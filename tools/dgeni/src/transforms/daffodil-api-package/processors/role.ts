@@ -29,6 +29,7 @@ import {
   daffDocsApiParseHostDirective,
   daffDocsApiParseHostDirectiveField,
   DaffDocsApiHostDirective,
+  DaffDocExample,
 } from '@daffodil/docs-utils';
 
 import { InlineTagProcessor } from './inline-tag-processor';
@@ -39,6 +40,10 @@ import {
 import { createRef } from '../../../utils/create-ref';
 import { FilterableProcessor } from '../../../utils/filterable-processor.type';
 import { getDirectiveDecorator } from '../../../utils/get-directive-decorator';
+import {
+  IndexableDoc,
+  indexerFactory,
+} from '../../../utils/indexable';
 import { linkSymbols } from '../../../utils/link-symbols';
 import {
   serializeFactory,
@@ -79,6 +84,30 @@ export class RoleProcessor implements FilterableProcessor {
     {
       description: this.markdownSerialize,
     },
+  );
+
+  readonly examplesSearchIndexer = indexerFactory<DaffDocExample>(
+    [
+      'id',
+      'caption',
+    ],
+  );
+
+  readonly baseSearchIndexer = indexerFactory<DaffApiDocBase>(
+    [
+      'id',
+      'title',
+      'kind',
+      'docType',
+      'role',
+      'examples',
+      'slug',
+      'name',
+      'description',
+    ],
+    // {
+    //   examples: extraIndexer(this.examplesSearchIndexer),
+    // },
   );
 
   readonly decoratorSerialize = serializeFactory<DaffDocsApiDecorator>(
@@ -144,6 +173,14 @@ export class RoleProcessor implements FilterableProcessor {
     },
   );
 
+  readonly memberSearchIndex = indexerFactory<DaffDocsApiTypeProperty | DaffDocsApiClassProperty | DaffDocsApiTypeMethod>(
+    [
+      'name',
+      'description',
+      'aliases',
+    ],
+  );
+
   readonly classPropSerialize = serializeFactory<DaffDocsApiClassProperty>(
     [
       'default',
@@ -190,6 +227,17 @@ export class RoleProcessor implements FilterableProcessor {
     },
     [
       this.baseSerialize,
+    ],
+  );
+
+  readonly typeSearchIndex = indexerFactory<DaffApiType>(
+    [],
+    {
+      // props: extraIndexer(this.memberSearchIndex),
+      // methods: <Indexer<DaffDocsApiTypeMethod[]>>extraIndexer(this.memberSearchIndex),
+    },
+    [
+      this.baseSearchIndexer,
     ],
   );
 
@@ -251,6 +299,20 @@ export class RoleProcessor implements FilterableProcessor {
     ],
   );
 
+  readonly directiveSearchIndex = indexerFactory<DaffApiDirective>(
+    [
+      'selector',
+      'hostDirectives',
+    ],
+    {
+      // inputs: <Indexer<DaffApiDirectiveInputDoc[]>>extraIndexer(this.memberSearchIndex),
+      // outputs: extraIndexer(this.memberSearchIndex),
+    },
+    [
+      this.typeSearchIndex,
+    ],
+  );
+
   constructor(
     private markdown: MarkdownCodeProcessor,
     private inlineTagProcessor: InlineTagProcessor,
@@ -271,8 +333,9 @@ export class RoleProcessor implements FilterableProcessor {
   }
 
 
-  type(doc: SerializableDoc & DaffApiType & ClassLikeExportDoc): SerializableDoc & DaffApiType {
+  type(doc: SerializableDoc & IndexableDoc & DaffApiType & ClassLikeExportDoc): SerializableDoc & IndexableDoc & DaffApiType {
     doc.serializer = this.typeSerialize;
+    doc.indexer = this.typeSearchIndex;
     this.inlineTagProcessor.$process(doc.members || []);
     doc.props = <any>doc.members
       ?.filter((member) => member instanceof PropertyMemberDoc)
@@ -301,25 +364,28 @@ export class RoleProcessor implements FilterableProcessor {
     return doc;
   };
 
-  klass(doc: SerializableDoc & DaffDocsApiClass & ClassExportDoc): SerializableDoc & DaffDocsApiClass {
+  klass(doc: SerializableDoc & IndexableDoc & DaffDocsApiClass & ClassExportDoc): SerializableDoc & IndexableDoc & DaffDocsApiClass {
     this.type(doc);
     doc.serializer = this.classSerialize;
+    doc.indexer = this.typeSearchIndex;
     doc.props.forEach((prop) => {
       prop.default = (<any>prop).declaration?.initializer?.getText();
     });
     return doc;
   };
 
-  service(doc: SerializableDoc & DaffApiService & ClassExportDoc): SerializableDoc & DaffApiService {
+  service(doc: SerializableDoc & IndexableDoc & DaffApiService & ClassExportDoc): SerializableDoc & IndexableDoc & DaffApiService {
     this.klass(doc);
     doc.serializer = this.serviceSerialize;
+    doc.indexer = this.typeSearchIndex;
     doc.providedIn = doc.decorators.find(({ name }) => name === 'Injectable').argumentInfo[0]?.['providedIn'] || '';
     return doc;
   };
 
-  directive(doc: SerializableDoc & DaffApiDirective & ClassExportDoc): SerializableDoc & DaffApiDirective {
+  directive(doc: SerializableDoc & IndexableDoc & DaffApiDirective & ClassExportDoc): SerializableDoc & IndexableDoc & DaffApiDirective {
     this.klass(<any>doc);
     doc.serializer = this.directiveSerialize;
+    doc.indexer = this.directiveSearchIndex;
     const directiveArg: any = getDirectiveDecorator(doc).argumentInfo[0];
     doc.inputs = [];
     doc.outputs = [];
@@ -379,8 +445,9 @@ export class RoleProcessor implements FilterableProcessor {
     return doc;
   };
 
-  func(doc: SerializableDoc & DaffDocsApiFunction & FunctionExportDoc): SerializableDoc & DaffDocsApiFunction {
+  func(doc: SerializableDoc & IndexableDoc & DaffDocsApiFunction & FunctionExportDoc): SerializableDoc & IndexableDoc & DaffDocsApiFunction {
     doc.serializer = this.functionSerialize;
+    doc.indexer = this.baseSearchIndexer;
     if (!doc.type) {
       const ret = doc.typeChecker.getReturnTypeOfSignature(<any>doc);
       doc.type = doc.typeChecker.typeToString(ret);
@@ -398,13 +465,14 @@ export class RoleProcessor implements FilterableProcessor {
     return doc;
   };
 
-  constant(doc: SerializableDoc & DaffApiConstant & ConstExportDoc): SerializableDoc & DaffApiConstant {
+  constant(doc: SerializableDoc & IndexableDoc & DaffApiConstant & ConstExportDoc): SerializableDoc & IndexableDoc & DaffApiConstant {
     doc.serializer = this.constSerialize;
+    doc.indexer = this.baseSearchIndexer;
     doc.type = doc.typeChecker.typeToString(doc.typeChecker.getTypeAtLocation(doc.variableDeclaration)) || doc.type;
     return doc;
   };
 
-  addFields(doc: SerializableDoc & DaffApiDoc & DaffDocsTsDocument): SerializableDoc & DaffApiDoc {
+  addFields(doc: SerializableDoc & IndexableDoc & DaffApiDoc & DaffDocsTsDocument): SerializableDoc & IndexableDoc & DaffApiDoc {
     switch (doc.role) {
       case DaffDocsApiRole.COMPONENT:
         this.directive(<any>doc);
