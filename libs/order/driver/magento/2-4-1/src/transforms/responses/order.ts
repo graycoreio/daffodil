@@ -20,16 +20,6 @@ import {
   DaffOrderCoupon,
 } from '@daffodil/order';
 
-import { MagentoOrderCredit } from '../../models/responses/order-credit';
-import { MagentoOrderCreditItem } from '../../models/responses/order-credit-item';
-import { MagentoOrderInvoiceItem } from '../../models/responses/order-invoice-item';
-import {
-  MagentoOrderBundleItem,
-  MagentoOrderBundleItemSelectedOption,
-  MagentoOrderItemOption,
-  MagentoOrderItemType,
-} from '../../models/responses/order-item';
-import { MagentoOrderTotal } from '../../models/responses/order-total';
 import {
   MagentoOrder,
   MagentoOrderItem,
@@ -39,6 +29,14 @@ import {
   MagentoOrderShipmentTracking,
   MagentoOrderPayment,
   MagentoOrderInvoice,
+  MagentoOrderBundleItem,
+  MagentoOrderBundleItemSelectedOption,
+  MagentoOrderCredit,
+  MagentoOrderCreditItem,
+  MagentoOrderInvoiceItem,
+  MagentoOrderItemOption,
+  MagentoOrderItemType,
+  MagentoOrderTotal,
 } from '../../models/responses/public_api';
 
 export function daffMagentoTransformTotals(totals: MagentoOrderTotal): DaffOrderTotal[] {

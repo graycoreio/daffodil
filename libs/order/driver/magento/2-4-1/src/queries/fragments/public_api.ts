@@ -8,3 +8,4 @@ export { orderShipmentItemFragment } from './order-shipment-item';
 export { orderShipmentTrackingFragment } from './order-shipment-tracking';
 export { orderCreditFragment } from './order-credit';
 export { orderTotalFragment } from './order-total';
+export * from './extra-order.token';

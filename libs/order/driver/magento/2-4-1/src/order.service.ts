@@ -28,12 +28,13 @@ import {
 } from '@daffodil/order/driver';
 
 import { transformMagentoOrderError } from './errors/transform';
-import { DaffMagentoExtraOrderFragments } from './injection-tokens/public_api';
 import {
+  DaffMagentoExtraOrderFragments,
   getGuestOrders,
   MagentoGetGuestOrdersResponse,
 } from './queries/public_api';
-import { daffMagentoTransformOrder } from './transforms/responses/order';
+import { MagentoOrderTransform } from './transforms/responses/public_api';
+import { MAGENTO_ORDER_TRANSFORM } from './transforms/responses/token';
 import { validateGetOrdersResponse } from './validators/public_api';
 
 /**
@@ -48,6 +49,7 @@ export class DaffOrderMagentoService implements DaffOrderServiceInterface {
   constructor(
     private apollo: Apollo,
     @Inject(DaffMagentoExtraOrderFragments) public extraOrderFragments: DocumentNode[],
+    @Inject(MAGENTO_ORDER_TRANSFORM) private transform: MagentoOrderTransform,
   ) {}
 
   list(cartId?: DaffCart['id']): Observable<DaffOrderCollection> {
@@ -58,7 +60,7 @@ export class DaffOrderMagentoService implements DaffOrderServiceInterface {
       },
     }).pipe(
       map(validateGetOrdersResponse),
-      map(result => result.data.graycoreGuestOrders.items.map(daffMagentoTransformOrder)),
+      map(result => result.data.graycoreGuestOrders.items.map(this.transform)),
       map(orders => ({
         data: daffIdentifiableArrayToDict(orders),
         metadata: {
