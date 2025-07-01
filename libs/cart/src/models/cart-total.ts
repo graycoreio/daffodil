@@ -30,7 +30,7 @@ export interface DaffCartTotal {
   /**
    * The type of the total.
    */
-  name: DaffCartTotalTypeEnum;
+  name: DaffCartTotalTypeEnum | string;
 
   /**
    * The position in the totals list in which this total should be displayed.
