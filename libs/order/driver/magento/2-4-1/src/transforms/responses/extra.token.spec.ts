@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoOrderExtraTransform } from '@daffodil/order/driver/magento';
+import { MagentoOrderExtraTransform } from '@daffodil/order/driver/magento/2-4-1';
 
 import {
   provideMagentoOrderExtraTransforms,

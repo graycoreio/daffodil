@@ -6,8 +6,8 @@ import {
   MagentoOrderTransform,
   provideMagentoOrderExtraTransforms,
   MagentoOrder,
-} from '@daffodil/order/driver/magento';
-import { MagentoOrderFactory } from '@daffodil/order/driver/magento/testing';
+} from '@daffodil/order/driver/magento/2-4-1';
+import { MagentoOrderFactory } from '@daffodil/order/driver/magento/2-4-1/testing';
 
 import { MAGENTO_ORDER_TRANSFORM } from './token';
 
@@ -41,10 +41,10 @@ describe('@daffodil/order/driver/magento | MAGENTO_ORDER_TRANSFORM', () => {
     orderTransform = TestBed.inject(MAGENTO_ORDER_TRANSFORM);
 
     magentoOrder = magentoOrderFactory.create();
-    result = orderTransform(magentoOrder, 'test');
+    result = orderTransform(magentoOrder);
   });
 
   it('should run the standard transform first, followed by the injected transforms', () => {
-    expect(result.id).toEqual(`${magentoOrder.sku} transform 1 transform 2`);
+    expect(result.id).toEqual(`${magentoOrder.number} transform 1 transform 2`);
   });
 });
