@@ -9,11 +9,6 @@ import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/mage
 import { DAFF_MAGENTO_GET_FILTER_TYPES_QUERY_NAME } from '@daffodil/product/driver/magento';
 
 import { DaffMagentoCategoryService } from './category.service';
-import { MAGENTO_CATEGORY_CONFIG_DEFAULT } from './config/default';
-import {
-  DaffCategoryMagentoDriverConfig,
-  provideMagentoCategoryConfig,
-} from './interfaces/public_api';
 import {
   DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME,
   DAFF_MAGENTO_RESOLVE_CATEGORY_URL_QUERY_NAME,
@@ -33,7 +28,7 @@ import { DaffMagentoCategoryTransformerService } from './transformers/category-t
   ],
 })
 export class DaffCategoryMagentoDriverModule {
-  static forRoot(config: DaffCategoryMagentoDriverConfig = MAGENTO_CATEGORY_CONFIG_DEFAULT): ModuleWithProviders<DaffCategoryMagentoDriverModule> {
+  static forRoot(): ModuleWithProviders<DaffCategoryMagentoDriverModule> {
     return {
       ngModule: DaffCategoryMagentoDriverModule,
       providers: [
@@ -47,7 +42,6 @@ export class DaffCategoryMagentoDriverModule {
           DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME,
           DAFF_MAGENTO_RESOLVE_CATEGORY_URL_QUERY_NAME,
         ),
-        provideMagentoCategoryConfig(config),
       ],
     };
   }

@@ -1,4 +1,5 @@
 import { DaffProductDriverErrorCodes } from './codes.enum';
+import { DaffProductInvalidAPIResponseError } from './invalid-api-response';
 import { DaffProductNotFoundError } from './product-not-found';
 
 /**
@@ -6,4 +7,5 @@ import { DaffProductNotFoundError } from './product-not-found';
  */
 export const DaffProductDriverErrorMap = {
   [DaffProductDriverErrorCodes.PRODUCT_NOT_FOUND]: DaffProductNotFoundError,
+  [DaffProductDriverErrorCodes.INVALID_API_RESPONSE]: DaffProductInvalidAPIResponseError,
 };

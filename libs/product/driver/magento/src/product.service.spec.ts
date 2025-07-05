@@ -19,7 +19,7 @@ import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing'
 
 import { DaffMagentoProductService } from './product.service';
 
-describe('Product | Magento | ProductService', () => {
+describe('@daffodil/product/driver/magento | DaffMagentoProductService', () => {
   let service: DaffMagentoProductService;
   let controller: ApolloTestingController;
   let magentoSimpleProductFactory: MagentoProductFactory;
@@ -106,7 +106,7 @@ describe('Product | Magento | ProductService', () => {
     let result: Observable<DaffProductDriverResponse>;
 
     beforeEach(() => {
-      url = '/path/to/TESTING_URL?with=query#fragment';
+      url = '/path/to/TESTING_URL.html?with=query#fragment';
       result = service.getByUrl(url);
     });
 
@@ -135,7 +135,7 @@ describe('Product | Magento | ProductService', () => {
 
       const op = controller.expectOne(addTypenameToDocument(getProductByUrl()));
 
-      expect(op.operation.variables.url).toEqual('TESTING_URL');
+      expect(op.operation.variables.url).toEqual('TESTING_URL.html');
     });
   });
 });

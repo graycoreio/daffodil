@@ -7,6 +7,10 @@ import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import {
+  daffUriTruncateLeadingPathSegments,
+  daffUriTruncateQueryFragment,
+} from '@daffodil/core/routing';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductDriverResponse,
@@ -27,7 +31,10 @@ import {
 import { MagentoGetProductResponse } from './models/public_api';
 import { getAllProducts } from './queries/get-all-products';
 import { getProduct } from './queries/get-product';
-import { getProductByUrl } from './queries/get-product-by-url';
+import {
+  getProductByUrl,
+  magentoProductGetByUrlValidator,
+} from './queries/public_api';
 import { DaffMagentoProductsTransformer } from './transforms/product-transformers';
 
 /**
@@ -65,17 +72,18 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   }
 
   getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse> {
-    return this.apollo.query<MagentoGetProductResponse>({
+    return this.apollo.query({
       query: getProductByUrl([
         ...this.extraPreviewFragments,
         ...this.extraFragments,
         ...this.extraPageFragments,
       ]),
       variables: {
-        url: this.config.urlTruncationStrategy(url),
+        url: daffUriTruncateLeadingPathSegments(daffUriTruncateQueryFragment(url)),
       },
     }).pipe(
-      map(result => this.responseTransform(result.data.products.items[0], this.config.baseMediaUrl)),
+      map(magentoProductGetByUrlValidator),
+      map(result => this.responseTransform(result.data.route, this.config.baseMediaUrl)),
     );
   }
 

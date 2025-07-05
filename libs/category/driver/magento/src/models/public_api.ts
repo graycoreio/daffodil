@@ -7,4 +7,3 @@ export { MagentoGetCategoryAndProductsRequest } from './requests/get-products-by
 export { MagentoCustomMetadataAttribute } from './requests/custom-metadata-attribute';
 export { MagentoGetCategoryAndProductsResponse } from './get-category-and-products.interface';
 export { MagentoCategoryUrlResolver } from './url-resolver';
-export { MagentoCategoryUrlResolverResponse } from './url-resolver-response';

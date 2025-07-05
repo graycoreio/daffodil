@@ -15,7 +15,7 @@ import {
 import { DaffMagentoProductService } from './product.service';
 import { DAFF_MAGENTO_GET_ALL_PRODUCTS_QUERY_NAME } from './queries/get-all-products';
 import { DAFF_MAGENTO_GET_A_PRODUCT_QUERY_NAME } from './queries/get-product';
-import { DAFF_MAGENTO_GET_A_PRODUCT_BY_URL_QUERY_NAME } from './queries/get-product-by-url';
+import { DAFF_MAGENTO_GET_A_PRODUCT_BY_URL_QUERY_NAME } from './queries/get-product-by-url/query';
 
 /**
  * A module that provides the {@link DaffProductDriver} and {@link DaffProductMagentoDriverConfig} as the {@link DaffMagentoProductService} and

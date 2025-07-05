@@ -25,6 +25,7 @@ import {
   daffApplyRequestsToFilters,
   DaffFilterRequest,
 } from '@daffodil/core';
+import { daffUriTruncateQueryFragment } from '@daffodil/core/routing';
 import {
   DaffProductMagentoDriverConfig,
   DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS,
@@ -37,16 +38,12 @@ import {
 
 import { MAGENTO_CATEGORY_EXTRA_FRAGMENTS } from './fragments/public_api';
 import {
-  MAGENTO_CATEGORY_CONFIG_TOKEN,
-  DaffCategoryMagentoDriverConfig,
-} from './interfaces/public_api';
-import {
   MagentoGetCategoryAndProductsRequest,
   MagentoGetCategoryAndProductsResponse,
-  MagentoCategoryUrlResolverResponse,
   MagentoCompleteCategoryResponse,
 } from './models/public_api';
 import {
+  magentoCategoryGetByUrlValidator,
   MagentoGetCategoryAndProductsQuery,
   MagentoResolveCategoryUrl,
 } from './queries/public_api';
@@ -78,7 +75,6 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     private apollo: Apollo,
     private magentoCategoryResponseTransformer: DaffMagentoCategoryResponseTransformService,
     private magentoAppliedFiltersTransformer: DaffMagentoAppliedFiltersTransformService,
-    @Inject(MAGENTO_CATEGORY_CONFIG_TOKEN) private config: DaffCategoryMagentoDriverConfig,
     @Inject(MAGENTO_PRODUCT_CONFIG_TOKEN) private productConfig: DaffProductMagentoDriverConfig,
     @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_FRAGMENTS) private extraProductFragments: DocumentNode[],
     @Inject(DAFF_PRODUCT_MAGENTO_EXTRA_PRODUCT_PREVIEW_FRAGMENTS) private extraProductPreviewFragments: DocumentNode[],
@@ -111,12 +107,14 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 
   getByUrl(categoryRequest: DaffCategoryUrlRequest): Observable<DaffGetCategoryResponse> {
     return combineLatest([
-      this.apollo.query<MagentoCategoryUrlResolverResponse>({
+      this.apollo.query({
         query: MagentoResolveCategoryUrl,
         variables: {
-          url: categoryRequest.url,
+          url: daffUriTruncateQueryFragment(categoryRequest.url),
         },
-      }),
+      }).pipe(
+        map(magentoCategoryGetByUrlValidator),
+      ),
       this.apollo.query<MagentoProductGetFilterTypesResponse>({
         query: MagentoProductGetFilterTypes,
       }),
