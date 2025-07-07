@@ -2,6 +2,7 @@ import {
   Directive,
   HostBinding,
   Input,
+  isDevMode,
   OnChanges,
   OnInit,
   SimpleChanges,
@@ -16,8 +17,10 @@ import {
 const textAlignmentValues = (textAlignment: string) => (<any>Object).values(DaffTextAlignmentEnum).includes(textAlignment);
 
 const validateTextAlignment = (textAlignment: string) => {
-  if (textAlignment !== undefined && !textAlignmentValues(textAlignment)) {
-    console.warn(`'${textAlignment}' is not a valid value of the textAlignment property. The available values are: left, center, or right.`);
+  if(isDevMode()) {
+    if(textAlignment !== undefined && !textAlignmentValues(textAlignment)) {
+      console.warn(`'${textAlignment}' is not a valid value of the textAlignment property. The available values are: left, center, or right.`);
+    }
   }
 };
 

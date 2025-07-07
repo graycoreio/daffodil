@@ -2,6 +2,7 @@ import {
   Directive,
   HostBinding,
   Input,
+  isDevMode,
   OnChanges,
   OnInit,
   SimpleChanges,
@@ -16,8 +17,10 @@ import {
 const colorInPalette = (color: string) => (<any>Object).values(DaffPaletteEnum).includes(color);
 
 const validateColor = (color: string) => {
-  if (color !== undefined && !colorInPalette(color)) {
-    console.warn(color + ' is not a valid color in DaffPalette');
+  if(isDevMode()) {
+    if(color !== undefined && !colorInPalette(color)) {
+      console.warn(color + ' is not a valid color in DaffPalette');
+    }
   }
 };
 

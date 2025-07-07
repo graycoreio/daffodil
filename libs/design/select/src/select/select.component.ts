@@ -302,10 +302,6 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
       map(() => this.state),
     );
     this._animationState = getAnimationState(this.openDirective.open);
-
-    // if(this.disabled && this.ngControl) {
-    //   console.warn('You have set');
-    // }
   }
 
   /**
