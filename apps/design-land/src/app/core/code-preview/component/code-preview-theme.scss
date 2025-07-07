@@ -1,26 +1,42 @@
 @use 'sass:map';
 @use 'theme' as daff-theme;
 
+// stylelint-disable selector-class-pattern
 @mixin code-preview-theme($theme) {
-	$neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');
-	$base: daff-theme.daff-map-get($theme, 'core', 'base');
-	$primary: daff-theme.daff-map-get(daff-theme.$theme, primary);
-	$font-color: daff-theme.daff-map-get($theme, 'core', 'font-color');
-	$border: 1px solid daff-theme.daff-illuminate($base, $neutral, 2);
+	$neutral: daff-theme.daff-get-palette($theme, neutral);
+	$base-contrast: daff-theme.daff-get-base-color($theme, base-contrast);
+	$primary: daff-theme.daff-get-palette($theme, primary);
+	$mode: daff-theme.daff-get-theme-mode($theme);
+	$border-light: 1px solid daff-theme.daff-color($neutral, 20);
+	$border-dark: 1px solid daff-theme.daff-color($neutral, 80);
 
 	.design-land-code-preview {
-		&__content {
-			border: $border;
-			border-bottom: 0;
+		@include daff-theme.light($mode) {
+			&__content {
+				border: $border-light;
+				border-bottom: 0;
+			}
+
+			&__tab-wrapper {
+				border-left: $border-light;
+				border-right: $border-light;
+			}
 		}
 
-		&__tab-wrapper {
-			border-left: $border;
-			border-right: $border;
+		@include daff-theme.dark($mode) {
+			&__content {
+				border: $border-dark;
+				border-bottom: 0;
+			}
+
+			&__tab-wrapper {
+				border-left: $border-dark;
+				border-right: $border-dark;
+			}
 		}
 
 		&__tab {
-			color: $font-color;
+			color: $base-contrast;
 
 			&.selected {
 				border-bottom: 2px solid daff-theme.daff-color($primary);

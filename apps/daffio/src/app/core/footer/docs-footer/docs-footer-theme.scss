@@ -2,23 +2,40 @@
 
 @mixin daffio-docs-footer-theme($theme) {
 	$neutral: daff-get-palette($theme, neutral);
-	$base: daff-get-base-color($theme, base);
 	$base-contrast: daff-get-base-color($theme, base-contrast);
 	$primary: daff-get-palette($theme, primary);
+	$mode: daff-get-theme-mode($theme);
 
 	.daffio-docs-footer {
-		border-top: 1px solid daff-illuminate($base, $neutral, 2);
+		@include light($mode) {
+			border-top: 1px solid daff-color($neutral, 20);
 
-		&__copyright {
-			color: daff-illuminate($base-contrast, $neutral, 4);
+			&__copyright {
+				color: daff-color($neutral, 70);
+			}
+
+			&__link {
+				color: $base-contrast;
+
+				&:hover {
+					color: daff-color($primary);
+				}
+			}
 		}
 
-		&__link {
-			color: daff-text-contrast($base);
-			transition: color 300ms;
+		@include dark($mode) {
+			border-top: 1px solid daff-color($neutral, 80);
 
-			&:hover {
-				color: daff-color($primary);
+			&__copyright {
+				color: daff-color($neutral, 30);
+			}
+
+			&__link {
+				color: $base-contrast;
+
+				&:hover {
+					color: daff-color($primary, 40);
+				}
 			}
 		}
 	}

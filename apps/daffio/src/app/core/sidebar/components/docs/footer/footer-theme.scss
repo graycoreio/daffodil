@@ -1,15 +1,25 @@
 @use 'sass:map';
-@use 'theme' as daff-theme;
+@use 'theme' as *;
 
 @mixin daffio-docs-sidebar-footer-theme($theme) {
-	$neutral: daff-theme.daff-get-palette($theme, neutral);
-	$base: daff-theme.daff-get-base-color($theme, base);
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
 
 	.daffio-docs-sidebar-footer {
-		border-top: 1px solid daff-theme.daff-illuminate($base, $neutral, 2);
+		@include light($mode) {
+			border-top: 1px solid daff-color($neutral, 20);
 
-		&::after {
-			background: daff-theme.daff-illuminate($base, $neutral, 2);
+			&::after {
+				background: daff-color($neutral, 20);
+			}
+		}
+
+		@include dark($mode) {
+			border-top: 1px solid daff-color($neutral, 90);
+
+			&::after {
+				background: daff-color($neutral, 90);
+			}
 		}
 	}
 }

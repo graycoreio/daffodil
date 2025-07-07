@@ -4,6 +4,8 @@
 @use 'sass:meta';
 @use '../contrast/luminance/luminance';
 
+// @deprecated Deprecated in version 0.87.0. Will be removed in version 0.90.0.
+//
 // @docs
 // Take a numeric map and sort it.
 //

@@ -3,15 +3,23 @@
 
 @mixin daffio-marketing-sidebar-footer-theme($theme) {
 	$neutral: daff-get-palette($theme, neutral);
-	$base: daff-get-base-color($theme, base);
-	$base-contrast: daff-get-base-color($theme, base-contrast);
-	$primary: daff-get-palette($theme, primary);
+	$mode: daff-get-theme-mode($theme);
 
 	.daffio-marketing-sidebar-footer {
-		background: daff-illuminate($base, $neutral, 2);
+		@include light($mode) {
+			background: daff-color($neutral, 20);
 
-		&:hover {
-			background: daff-illuminate($base, $neutral, 3);
+			&:hover {
+				background: daff-color($neutral, 30);
+			}
+		}
+
+		@include dark($mode) {
+			background: daff-color($neutral, 90);
+
+			&:hover {
+				background: daff-color($neutral, 80);
+			}
 		}
 	}
 }

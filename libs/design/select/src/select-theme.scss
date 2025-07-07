@@ -1,21 +1,66 @@
 @use 'sass:map';
-@use '../../scss/theming';
+@use '../../scss/theming' as *;
 @use '../../scss/core';
 
 // stylelint-disable selector-class-pattern
 @mixin daff-select-theme($theme) {
-	$base: core.daff-map-get($theme, 'core', 'base');
-	$base-contrast: core.daff-map-get($theme, 'core', 'base-contrast');
-	$neutral: core.daff-map-get($theme, 'core', 'neutral');
-
-	$border-color: theming.daff-illuminate($base, $neutral, 3);
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
+	$border-color-light: daff-color($neutral, 30);
+	$border-color-dark: daff-color($neutral, 70);
 
 	.daff-select {
 		$root: '.daff-select';
 
-		&.disabled {
-			#{$root}__field {
-				color: theming.daff-illuminate($base, $neutral, 5);
+		@include light($mode) {
+			&.disabled {
+				#{$root}__field {
+					color: daff-color($neutral, 50);
+				}
+			}
+
+			&__option {
+				background-color: $base;
+				border-bottom: 1px solid $border-color-light;
+				border-left: 1px solid $border-color-light;
+				border-right: 1px solid $border-color-light;
+				color: $base-contrast;
+
+				&:first-of-type {
+					border-top: 1px solid $border-color-light;
+				}
+
+				&:hover,
+				&.highlighted {
+					background-color: daff-color($neutral, 10);
+				}
+			}
+		}
+
+		@include dark($mode) {
+			&.disabled {
+				#{$root}__field {
+					color: daff-color($neutral, 70);
+				}
+			}
+
+			&__option {
+				background-color: $base;
+				border-bottom: 1px solid $border-color-dark;
+				border-left: 1px solid $border-color-dark;
+				border-right: 1px solid $border-color-dark;
+				color: $base-contrast;
+
+				&:first-of-type {
+					border-top: 1px solid $border-color-dark;
+				}
+
+				&:hover,
+				&.highlighted {
+					background-color: daff-color($neutral, 90);
+				}
 			}
 		}
 
@@ -23,24 +68,7 @@
 			color: $base-contrast;
 
 			&::after {
-				border-color: theming.daff-color($neutral);
-			}
-		}
-
-		&__option {
-			background-color: $base;
-			border-bottom: 1px solid $border-color;
-			border-left: 1px solid $border-color;
-			border-right: 1px solid $border-color;
-			color: $base-contrast;
-
-			&:first-of-type {
-				border-top: 1px solid $border-color;
-			}
-
-			&:hover,
-			&.highlighted {
-				background-color: theming.daff-illuminate($base, $neutral, 1);
+				border-color: daff-color($neutral);
 			}
 		}
 	}

@@ -42,7 +42,7 @@
 
 	.daff-raised-button {
 		@include daff-raised-button-theme-variant(
-			daff-illuminate($base, $neutral, 2)
+			daff-color($neutral, 20)
 		);
 
 		&.daff-primary {
@@ -76,9 +76,9 @@
 		&[disabled],
 		&.disabled {
 			@include daff-raised-button-theme-variant(
-				daff-illuminate($base, $neutral, 3)
+				daff-color($neutral, 30)
 			);
-			color: daff-illuminate($base, $neutral, 5);
+			color: daff-color($neutral, 50);
 
 			&::after {
 				box-shadow: none;
