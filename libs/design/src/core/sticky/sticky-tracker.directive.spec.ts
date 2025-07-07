@@ -469,7 +469,7 @@ describe('DaffStickyTrackerDirective', () => {
     it('should handle missing document.defaultView gracefully', () => {
       const originalDefaultView = document.defaultView;
 
-      try { 
+      try {
         Object.defineProperty(document, 'defaultView', {
           value: null,
           writable: true,
