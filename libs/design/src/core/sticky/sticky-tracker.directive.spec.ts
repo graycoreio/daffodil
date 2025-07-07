@@ -9,7 +9,6 @@ import {
   fakeAsync,
   tick,
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { DaffStickyTrackerDirective } from './sticky-tracker.directive';
 
@@ -17,30 +16,67 @@ import { DaffStickyTrackerDirective } from './sticky-tracker.directive';
   standalone: true,
   imports: [DaffStickyTrackerDirective],
   template: `
-    <div style="height: 200vh;">
+    <div #container style="height: 200vh;">
       <div #sticky
            daffStickyTracker
            style="position: sticky; top: 0; height: 50px; background: red;">
-        Sticky Element
+        Top Sticky Element
       </div>
       <div style="height: 100vh;">Content below</div>
     </div>
   `,
 })
-class TestComponent {
+class TopStickyTestComponent {
   @ViewChild('sticky', { static: true }) sticky!: ElementRef<HTMLElement>;
+  @ViewChild('container', { static: true }) container!: ElementRef<HTMLElement>;
+}
+
+@Component({
+  standalone: true,
+  imports: [DaffStickyTrackerDirective],
+  template: `
+    <div #container style="height: 200vh;">
+      <div style="height: 100vh;">Content above</div>
+      <div #sticky
+           daffStickyTracker
+           style="position: sticky; bottom: 0; height: 50px; background: blue;">
+        Bottom Sticky Element
+      </div>
+      <div style="height: 100vh;">Content below</div>
+    </div>
+  `,
+})
+class BottomStickyTestComponent {
+  @ViewChild('sticky', { static: true }) sticky!: ElementRef<HTMLElement>;
+  @ViewChild('container', { static: true }) container!: ElementRef<HTMLElement>;
+}
+
+@Component({
+  standalone: true,
+  imports: [DaffStickyTrackerDirective],
+  template: `
+    <div #container style="height: 200vh;">
+      <div style="height: 100vh;">Content above</div>
+      <div #sticky
+           daffStickyTracker
+           style="position: sticky; bottom: 0; height: 50px; background: green;">
+        Bottom Sticky Last Child
+      </div>
+    </div>
+  `,
+})
+class BottomStickyLastChildTestComponent {
+  @ViewChild('sticky', { static: true }) sticky!: ElementRef<HTMLElement>;
+  @ViewChild('container', { static: true }) container!: ElementRef<HTMLElement>;
 }
 
 describe('DaffStickyTrackerDirective', () => {
-  let fixture: ComponentFixture<TestComponent>;
-  let component: TestComponent;
-  let stickyEl: HTMLElement;
-  let directiveInstance: DaffStickyTrackerDirective;
   let mockObserverCallback: IntersectionObserverCallback | undefined;
   let mockObserverInstance: jasmine.SpyObj<IntersectionObserver>;
   let originalIntersectionObserver: any;
 
   const createMockEntry = (
+    target: Element,
     overrides: Partial<IntersectionObserverEntry>,
   ): IntersectionObserverEntry => ({
     boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
@@ -48,12 +84,12 @@ describe('DaffStickyTrackerDirective', () => {
     intersectionRect: <DOMRectReadOnly>{},
     isIntersecting: true,
     rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-    target: stickyEl,
+    target,
     time: 0,
     ...overrides,
   });
 
-  beforeEach(async () => {
+  beforeEach(() => {
     originalIntersectionObserver = (<any>globalThis).IntersectionObserver;
 
     mockObserverInstance = jasmine.createSpyObj('IntersectionObserver', [
@@ -71,310 +107,329 @@ describe('DaffStickyTrackerDirective', () => {
     };
 
     (<any>globalThis).IntersectionObserver = MockIntersectionObserver;
-
-    await TestBed.configureTestingModule({
-      imports: [TestComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
-
-    fixture.detectChanges();
-
-    const directiveDebugEl = fixture.debugElement.query(By.directive(DaffStickyTrackerDirective));
-    directiveInstance = directiveDebugEl.injector.get(DaffStickyTrackerDirective);
-    stickyEl = directiveDebugEl.nativeElement;
-
-    await fixture.whenStable();
   });
 
   afterEach(() => {
     (<any>globalThis).IntersectionObserver = originalIntersectionObserver;
   });
 
-  it('should create the directive', () => {
-    expect(directiveInstance).toBeTruthy();
-    expect(stickyEl).toBeTruthy();
+  describe('Top Sticky Behavior', () => {
+    let fixture: ComponentFixture<TopStickyTestComponent>;
+    let component: TopStickyTestComponent;
+    let stickyEl: HTMLElement;
+    let containerEl: HTMLElement;
+    let sentinelEl: HTMLElement;
+
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [TopStickyTestComponent],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(TopStickyTestComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+
+      stickyEl = component.sticky.nativeElement;
+      containerEl = component.container.nativeElement;
+
+      const children = Array.from(containerEl.children);
+      const stickyIndex = children.indexOf(stickyEl);
+      sentinelEl = <HTMLElement>children[stickyIndex - 1];
+
+      await fixture.whenStable();
+    });
+
+    it('should create the directive and setup sticky positioning', () => {
+      expect(stickyEl).toBeTruthy();
+      expect(stickyEl.style.position).toBe('sticky');
+      expect(stickyEl.style.top).toBe('0px');
+    });
+
+    it('should create sentinel element before sticky element', () => {
+      expect(sentinelEl).toBeTruthy();
+      expect(sentinelEl.style.opacity).toBe('0');
+      expect(sentinelEl.style.width).toBe('1px');
+      expect(sentinelEl.style.height).toBe('1px');
+
+      const children = Array.from(containerEl.children);
+      const stickyIndex = children.indexOf(stickyEl);
+      const sentinelIndex = children.indexOf(sentinelEl);
+      expect(sentinelIndex).toBeLessThan(stickyIndex);
+    });
+
+    it('should observe the sentinel element', () => {
+      expect(mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
+    });
+
+    it('should add is-pinned class when sentinel is not intersecting (sticky element is pinned)', fakeAsync(() => {
+      if (!mockObserverCallback) {
+        fail('Observer callback not set');
+        return;
+      }
+
+      mockObserverCallback([
+        createMockEntry(sentinelEl, {
+          isIntersecting: false,
+        }),
+      ], mockObserverInstance);
+
+      tick(10);
+      fixture.detectChanges();
+
+      expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
+    }));
+
+    it('should remove is-pinned class when sentinel is intersecting (sticky element is unpinned)', fakeAsync(() => {
+      if (!mockObserverCallback) {
+        fail('Observer callback not set');
+        return;
+      }
+
+      mockObserverCallback([
+        createMockEntry(sentinelEl, {
+          isIntersecting: false,
+        }),
+      ], mockObserverInstance);
+
+      tick(10);
+      fixture.detectChanges();
+      expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
+
+      mockObserverCallback([
+        createMockEntry(sentinelEl, {
+          isIntersecting: true,
+        }),
+      ], mockObserverInstance);
+
+      tick(10);
+      fixture.detectChanges();
+      expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
+    }));
   });
 
-  it('should create IntersectionObserver on init', () => {
-    expect(mockObserverInstance.observe).toHaveBeenCalledWith(stickyEl);
+  describe('Bottom Sticky Behavior', () => {
+    let fixture: ComponentFixture<BottomStickyTestComponent>;
+    let component: BottomStickyTestComponent;
+    let stickyEl: HTMLElement;
+    let containerEl: HTMLElement;
+    let sentinelEl: HTMLElement;
+
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [BottomStickyTestComponent],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(BottomStickyTestComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+
+      stickyEl = component.sticky.nativeElement;
+      containerEl = component.container.nativeElement;
+
+      const children = Array.from(containerEl.children);
+      const stickyIndex = children.indexOf(stickyEl);
+      sentinelEl = <HTMLElement>children[stickyIndex + 1];
+
+      await fixture.whenStable();
+    });
+
+    it('should setup bottom sticky positioning', () => {
+      expect(stickyEl.style.position).toBe('sticky');
+      expect(stickyEl.style.bottom).toBe('0px');
+    });
+
+    it('should create sentinel element after sticky element for bottom sticky', () => {
+      expect(sentinelEl).toBeTruthy();
+
+      const children = Array.from(containerEl.children);
+      const stickyIndex = children.indexOf(stickyEl);
+      const sentinelIndex = children.indexOf(sentinelEl);
+      expect(sentinelIndex).toBeGreaterThan(stickyIndex);
+    });
+
+    it('should allow immediate pinned state for bottom sticky elements', fakeAsync(() => {
+      if (!mockObserverCallback) {
+        fail('Observer callback not set');
+        return;
+      }
+
+      mockObserverCallback([
+        createMockEntry(sentinelEl, {
+          isIntersecting: false,
+        }),
+      ], mockObserverInstance);
+
+      tick(10);
+      fixture.detectChanges();
+
+      expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
+    }));
   });
 
-  it('should set up sticky element with position sticky and appropriate top value', () => {
-    expect(stickyEl.style.position).toBe('sticky');
-    expect(stickyEl.style.top).toBe('0px');
+  describe('Bottom Sticky Last Child Behavior', () => {
+    let fixture: ComponentFixture<BottomStickyLastChildTestComponent>;
+    let component: BottomStickyLastChildTestComponent;
+    let stickyEl: HTMLElement;
+    let containerEl: HTMLElement;
+    let sentinelEl: HTMLElement;
+
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [BottomStickyLastChildTestComponent],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(BottomStickyLastChildTestComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+
+      stickyEl = component.sticky.nativeElement;
+      containerEl = component.container.nativeElement;
+
+      const children = Array.from(containerEl.children);
+      const stickyIndex = children.indexOf(stickyEl);
+      sentinelEl = <HTMLElement>children[stickyIndex + 1];
+
+      await fixture.whenStable();
+    });
+
+    it('should create sentinel after sticky element (consistent with standard bottom sticky)', () => {
+      expect(sentinelEl).toBeTruthy();
+
+      const children = Array.from(containerEl.children);
+      const stickyIndex = children.indexOf(stickyEl);
+      const sentinelIndex = children.indexOf(sentinelEl);
+      expect(sentinelIndex).toBeGreaterThan(stickyIndex);
+    });
+
+    it('should allow immediate pinned state (consistent behavior with standard bottom sticky)', fakeAsync(() => {
+      if (!mockObserverCallback) {
+        fail('Observer callback not set');
+        return;
+      }
+
+      mockObserverCallback([
+        createMockEntry(sentinelEl, {
+          isIntersecting: false,
+        }),
+      ], mockObserverInstance);
+
+      tick(10);
+      fixture.detectChanges();
+
+      expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
+    }));
   });
 
-  it('should add is-pinned class when element is partially visible (intersectionRatio < 1)', fakeAsync(() => {
-    if (!mockObserverCallback) {
-      fail('Observer callback not set');
-      return;
-    }
+  describe('General Behavior', () => {
+    let fixture: ComponentFixture<TopStickyTestComponent>;
+    let component: TopStickyTestComponent;
+    let stickyEl: HTMLElement;
+    let containerEl: HTMLElement;
+    let sentinelEl: HTMLElement;
 
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 0.5,
-        isIntersecting: true,
-        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [TopStickyTestComponent],
+      }).compileComponents();
 
-    tick(10);
-    fixture.detectChanges();
+      fixture = TestBed.createComponent(TopStickyTestComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
 
-    expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
-  }));
+      stickyEl = component.sticky.nativeElement;
+      containerEl = component.container.nativeElement;
 
-  it('should add is-pinned class when element is barely visible (intersectionRatio close to 0)', fakeAsync(() => {
-    if (!mockObserverCallback) {
-      fail('Observer callback not set');
-      return;
-    }
+      const children = Array.from(containerEl.children);
+      const stickyIndex = children.indexOf(stickyEl);
+      sentinelEl = <HTMLElement>children[stickyIndex - 1];
 
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 0.01,
-        isIntersecting: true,
-        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
+      await fixture.whenStable();
+    });
 
-    tick(10);
-    fixture.detectChanges();
+    it('should handle multiple state changes correctly', fakeAsync(() => {
+      if (!mockObserverCallback) {
+        fail('Observer callback not set');
+        return;
+      }
 
-    expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
-  }));
+      mockObserverCallback([
+        createMockEntry(sentinelEl, {
+          isIntersecting: true,
+        }),
+      ], mockObserverInstance);
 
-  it('should add is-pinned class when element is completely out of view', fakeAsync(() => {
-    if (!mockObserverCallback) {
-      fail('Observer callback not set');
-      return;
-    }
+      tick(10);
+      fixture.detectChanges();
+      expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
 
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 0,
-        isIntersecting: false,
-        boundingClientRect: <DOMRectReadOnly>{ top: -10, left: 0, bottom: 40, right: 100, width: 100, height: 50, x: 0, y: -10 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
+      mockObserverCallback([
+        createMockEntry(sentinelEl, {
+          isIntersecting: false,
+        }),
+      ], mockObserverInstance);
 
-    tick(10);
-    fixture.detectChanges();
+      tick(10);
+      fixture.detectChanges();
+      expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
 
-    expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
-  }));
+      mockObserverCallback([
+        createMockEntry(sentinelEl, {
+          isIntersecting: true,
+        }),
+      ], mockObserverInstance);
 
-  it('should remove is-pinned class when element is fully visible (intersectionRatio = 1)', fakeAsync(() => {
-    if (!mockObserverCallback) {
-      fail('Observer callback not set');
-      return;
-    }
+      tick(10);
+      fixture.detectChanges();
+      expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
+    }));
 
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 0.5,
-        isIntersecting: true,
-        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
+    it('should debounce rapid state changes', fakeAsync(() => {
+      if (!mockObserverCallback) {
+        fail('Observer callback not set');
+        return;
+      }
 
-    tick(10);
-    fixture.detectChanges();
-    expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
+      mockObserverCallback([
+        createMockEntry(sentinelEl, {
+          isIntersecting: false,
+        }),
+      ], mockObserverInstance);
 
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 1,
-        isIntersecting: true,
-        boundingClientRect: <DOMRectReadOnly>{ top: 50, left: 0, bottom: 100, right: 100, width: 100, height: 50, x: 0, y: 50 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
+      expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
 
-    tick(10);
-    fixture.detectChanges();
-    expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
-  }));
+      mockObserverCallback([
+        createMockEntry(sentinelEl, {
+          isIntersecting: true,
+        }),
+      ], mockObserverInstance);
 
-  it('should handle multiple state changes correctly', fakeAsync(() => {
-    if (!mockObserverCallback) {
-      fail('Observer callback not set');
-      return;
-    }
+      expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
 
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 1,
-        isIntersecting: true,
-        boundingClientRect: <DOMRectReadOnly>{ top: 50, left: 0, bottom: 100, right: 100, width: 100, height: 50, x: 0, y: 50 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
+      tick(10);
+      fixture.detectChanges();
 
-    tick(10);
-    fixture.detectChanges();
-    expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
+      expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
+    }));
 
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 0.3,
-        isIntersecting: true,
-        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
+    it('should cleanup observer on destroy', fakeAsync(() => {
+      expect(mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
+      expect(mockObserverInstance.unobserve).not.toHaveBeenCalledWith(sentinelEl);
 
-    tick(10);
-    fixture.detectChanges();
-    expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
+      fixture.destroy();
+      tick(10);
 
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 1,
-        isIntersecting: true,
-        boundingClientRect: <DOMRectReadOnly>{ top: 50, left: 0, bottom: 100, right: 100, width: 100, height: 50, x: 0, y: 50 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
+      expect(mockObserverInstance.unobserve).toHaveBeenCalledWith(sentinelEl);
+      expect(mockObserverInstance.disconnect).toHaveBeenCalledWith();
+    }));
 
-    tick(10);
-    fixture.detectChanges();
-    expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
-  }));
+    it('should remove sentinel element on destroy', () => {
+      const initialChildCount = containerEl.children.length;
+      expect(containerEl.contains(sentinelEl)).toBeTrue();
 
-  it('should cleanup observer on destroy', fakeAsync(() => {
-    expect(mockObserverInstance.observe).toHaveBeenCalledWith(stickyEl);
-    expect(mockObserverInstance.unobserve).not.toHaveBeenCalledWith(stickyEl);
+      fixture.destroy();
 
-    fixture.destroy();
-    tick(10);
-    expect(mockObserverInstance.unobserve).toHaveBeenCalledWith(stickyEl);
-    expect(mockObserverInstance.disconnect).toHaveBeenCalledWith();
-  }));
-
-  it('should handle edge case when intersectionRatio is exactly 0', fakeAsync(() => {
-    if (!mockObserverCallback) {
-      fail('Observer callback not set');
-      return;
-    }
-
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 0,
-        isIntersecting: false,
-        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
-
-    tick(10);
-    fixture.detectChanges();
-
-    expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
-  }));
-
-  it('should handle edge case when intersectionRatio is exactly 1', fakeAsync(() => {
-    if (!mockObserverCallback) {
-      fail('Observer callback not set');
-      return;
-    }
-
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 1,
-        isIntersecting: true,
-        boundingClientRect: <DOMRectReadOnly>{ top: 50, left: 0, bottom: 100, right: 100, width: 100, height: 50, x: 0, y: 50 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
-
-    tick(10);
-    fixture.detectChanges();
-
-    expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
-  }));
-
-  it('should debounce rapid state changes', fakeAsync(() => {
-    if (!mockObserverCallback) {
-      fail('Observer callback not set');
-      return;
-    }
-
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 0.5,
-        isIntersecting: true,
-        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
-
-    expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
-
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 1,
-        isIntersecting: true,
-        boundingClientRect: <DOMRectReadOnly>{ top: 50, left: 0, bottom: 100, right: 100, width: 100, height: 50, x: 0, y: 50 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
-
-    expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
-
-    tick(10);
-    fixture.detectChanges();
-
-    expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
-  }));
-
-  it('should use simplified threshold configuration', () => {
-    expect(mockObserverInstance.observe).toHaveBeenCalledWith(stickyEl);
+      expect(containerEl.children.length).toBeLessThan(initialChildCount);
+      expect(containerEl.contains(sentinelEl)).toBeFalse();
+    });
   });
-
-  it('should handle scrolling behavior in container context', fakeAsync(() => {
-    if (!mockObserverCallback) {
-      fail('Observer callback not set');
-      return;
-    }
-
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 0.8,
-        isIntersecting: true,
-        boundingClientRect: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 50, right: 100, width: 100, height: 50, x: 0, y: 0 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
-
-    tick(10);
-    fixture.detectChanges();
-    expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
-  }));
-
-  it('should not add is-pinned class when element is scrolled past (bottom pinned)', fakeAsync(() => {
-    if (!mockObserverCallback) {
-      fail('Observer callback not set');
-      return;
-    }
-
-    mockObserverCallback([
-      createMockEntry({
-        intersectionRatio: 0.5,
-        isIntersecting: true,
-        boundingClientRect: <DOMRectReadOnly>{ top: 20, left: 0, bottom: 70, right: 100, width: 100, height: 50, x: 0, y: 20 },
-        rootBounds: <DOMRectReadOnly>{ top: 0, left: 0, bottom: 300, right: 100, width: 100, height: 300, x: 0, y: 0 },
-      }),
-    ], mockObserverInstance);
-
-    tick(10);
-    fixture.detectChanges();
-    expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
-  }));
 });
