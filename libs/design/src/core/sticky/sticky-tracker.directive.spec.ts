@@ -12,6 +12,8 @@ import {
 
 import { DaffStickyTrackerDirective } from './sticky-tracker.directive';
 
+const DEBOUNCE_TIMEOUT = 10;
+
 @Component({
   standalone: true,
   imports: [DaffStickyTrackerDirective],
@@ -70,6 +72,81 @@ class BottomStickyLastChildTestComponent {
   @ViewChild('container', { static: true }) container!: ElementRef<HTMLElement>;
 }
 
+@Component({
+  standalone: true,
+  imports: [DaffStickyTrackerDirective],
+  template: `
+    <div #container style="height: 200vh; overflow-y: auto;">
+      <div style="height: 100vh;">Content above</div>
+      <div #sticky
+           daffStickyTracker
+           style="position: sticky; top: 0; height: 50px; background: purple;">
+        Scrollable Container Sticky Element
+      </div>
+      <div style="height: 100vh;">Content below</div>
+    </div>
+  `,
+})
+class ScrollableContainerTestComponent {
+  @ViewChild('sticky', { static: true }) sticky!: ElementRef<HTMLElement>;
+  @ViewChild('container', { static: true }) container!: ElementRef<HTMLElement>;
+}
+
+@Component({
+  standalone: true,
+  imports: [DaffStickyTrackerDirective],
+  template: `
+    <div #container style="height: 200vh;">
+      <div #sticky1
+           daffStickyTracker
+           style="position: sticky; top: 0; height: 50px; background: red;">
+        First Sticky Element
+      </div>
+      <div style="height: 50vh;">Content between</div>
+      <div #sticky2
+           daffStickyTracker
+           style="position: sticky; top: 60px; height: 50px; background: blue;">
+        Second Sticky Element
+      </div>
+      <div style="height: 100vh;">Content below</div>
+    </div>
+  `,
+})
+class MultipleStickyTestComponent {
+  @ViewChild('sticky1', { static: true }) sticky1!: ElementRef<HTMLElement>;
+  @ViewChild('sticky2', { static: true }) sticky2!: ElementRef<HTMLElement>;
+  @ViewChild('container', { static: true }) container!: ElementRef<HTMLElement>;
+}
+
+@Component({
+  standalone: true,
+  imports: [DaffStickyTrackerDirective],
+  template: `
+    <div #container style="height: 200vh;">
+      <div #sticky
+           daffStickyTracker
+           style="position: sticky; top: 0; height: 50px; background: orange;">
+        Pre-styled Sticky Element
+      </div>
+      <div style="height: 100vh;">Content below</div>
+    </div>
+  `,
+})
+class PreStyledStickyTestComponent {
+  @ViewChild('sticky', { static: true }) sticky!: ElementRef<HTMLElement>;
+  @ViewChild('container', { static: true }) container!: ElementRef<HTMLElement>;
+}
+
+@Component({
+  standalone: true,
+  template: `
+    <div daffStickyTracker style="position: sticky; top: 0;">
+      Orphaned Sticky Element
+    </div>
+  `,
+})
+class OrphanedStickyTestComponent {}
+
 describe('DaffStickyTrackerDirective', () => {
   let mockObserverCallback: IntersectionObserverCallback | undefined;
   let mockObserverInstance: jasmine.SpyObj<IntersectionObserver>;
@@ -88,6 +165,35 @@ describe('DaffStickyTrackerDirective', () => {
     time: 0,
     ...overrides,
   });
+
+  const findSentinelElement = (containerEl: HTMLElement, stickyEl: HTMLElement, isBottomSticky: boolean): HTMLElement => {
+    const potentialSentinels = Array.from(containerEl.querySelectorAll('div')).filter(el => {
+      const htmlEl = <HTMLElement>el;
+      return htmlEl !== stickyEl &&
+             htmlEl.style.width === '1px' &&
+             htmlEl.style.height === '1px' &&
+             htmlEl.style.opacity === '0';
+    });
+
+    if (potentialSentinels.length === 0) {
+      throw new Error('Sentinel element not found');
+    }
+
+    const children = Array.from(containerEl.children);
+    const stickyIndex = children.indexOf(stickyEl);
+
+    for (const sentinel of potentialSentinels) {
+      const sentinelIndex = children.indexOf(sentinel);
+      if (isBottomSticky && sentinelIndex > stickyIndex) {
+        return <HTMLElement>sentinel;
+      }
+      if (!isBottomSticky && sentinelIndex < stickyIndex) {
+        return <HTMLElement>sentinel;
+      }
+    }
+
+    throw new Error(`Sentinel element not found in expected position for ${isBottomSticky ? 'bottom' : 'top'} sticky`);
+  };
 
   beforeEach(() => {
     originalIntersectionObserver = (<any>globalThis).IntersectionObserver;
@@ -131,10 +237,7 @@ describe('DaffStickyTrackerDirective', () => {
 
       stickyEl = component.sticky.nativeElement;
       containerEl = component.container.nativeElement;
-
-      const children = Array.from(containerEl.children);
-      const stickyIndex = children.indexOf(stickyEl);
-      sentinelEl = <HTMLElement>children[stickyIndex - 1];
+      sentinelEl = findSentinelElement(containerEl, stickyEl, false);
 
       await fixture.whenStable();
     });
@@ -173,7 +276,7 @@ describe('DaffStickyTrackerDirective', () => {
         }),
       ], mockObserverInstance);
 
-      tick(10);
+      tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
 
       expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
@@ -191,7 +294,7 @@ describe('DaffStickyTrackerDirective', () => {
         }),
       ], mockObserverInstance);
 
-      tick(10);
+      tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
       expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
 
@@ -201,7 +304,7 @@ describe('DaffStickyTrackerDirective', () => {
         }),
       ], mockObserverInstance);
 
-      tick(10);
+      tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
       expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
     }));
@@ -225,10 +328,7 @@ describe('DaffStickyTrackerDirective', () => {
 
       stickyEl = component.sticky.nativeElement;
       containerEl = component.container.nativeElement;
-
-      const children = Array.from(containerEl.children);
-      const stickyIndex = children.indexOf(stickyEl);
-      sentinelEl = <HTMLElement>children[stickyIndex + 1];
+      sentinelEl = findSentinelElement(containerEl, stickyEl, true);
 
       await fixture.whenStable();
     });
@@ -259,7 +359,7 @@ describe('DaffStickyTrackerDirective', () => {
         }),
       ], mockObserverInstance);
 
-      tick(10);
+      tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
 
       expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
@@ -284,10 +384,7 @@ describe('DaffStickyTrackerDirective', () => {
 
       stickyEl = component.sticky.nativeElement;
       containerEl = component.container.nativeElement;
-
-      const children = Array.from(containerEl.children);
-      const stickyIndex = children.indexOf(stickyEl);
-      sentinelEl = <HTMLElement>children[stickyIndex + 1];
+      sentinelEl = findSentinelElement(containerEl, stickyEl, true);
 
       await fixture.whenStable();
     });
@@ -313,11 +410,201 @@ describe('DaffStickyTrackerDirective', () => {
         }),
       ], mockObserverInstance);
 
-      tick(10);
+      tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
 
       expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
     }));
+  });
+
+  describe('Performance Optimizations', () => {
+    let fixture: ComponentFixture<TopStickyTestComponent>;
+    let getComputedStyleSpy: jasmine.Spy;
+
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [TopStickyTestComponent],
+      }).compileComponents();
+
+      if (document.defaultView) {
+        getComputedStyleSpy = spyOn(document.defaultView, 'getComputedStyle').and.callThrough();
+      }
+    });
+
+    it('should batch getComputedStyle calls to minimize forced reflows', () => {
+      fixture = TestBed.createComponent(TopStickyTestComponent);
+      const callCountBefore = getComputedStyleSpy.calls.count();
+
+      fixture.detectChanges();
+
+      const callCountAfter = getComputedStyleSpy.calls.count();
+      const totalCalls = callCountAfter - callCountBefore;
+
+      expect(totalCalls).toBeGreaterThan(0);
+      expect(totalCalls).toBeLessThan(10);
+    });
+
+    it('should not call getComputedStyle multiple times for the same element during initialization', () => {
+      fixture = TestBed.createComponent(TopStickyTestComponent);
+      const stickyEl = fixture.componentInstance.sticky.nativeElement;
+
+      getComputedStyleSpy.calls.reset();
+      fixture.detectChanges();
+
+      const stickyElementCalls = getComputedStyleSpy.calls.all().filter(call =>
+        call.args[0] === stickyEl,
+      ).length;
+
+      expect(stickyElementCalls).toBe(1);
+    });
+  });
+
+  describe('Error Handling', () => {
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [TopStickyTestComponent],
+      }).compileComponents();
+    });
+
+    it('should handle missing document.defaultView gracefully', () => {
+      const originalDefaultView = document.defaultView;
+
+      try { 
+        Object.defineProperty(document, 'defaultView', {
+          value: null,
+          writable: true,
+          configurable: true,
+        });
+
+        expect(() => {
+          const fixture = TestBed.createComponent(TopStickyTestComponent);
+          fixture.detectChanges();
+        }).toThrowError('DaffStickyTracker: Document default view is not available');
+      } finally {
+        Object.defineProperty(document, 'defaultView', {
+          value: originalDefaultView,
+          writable: true,
+          configurable: true,
+        });
+      }
+    });
+  });
+
+  describe('Edge Cases and Integration Tests', () => {
+    describe('Scrollable Container Support', () => {
+      let fixture: ComponentFixture<ScrollableContainerTestComponent>;
+      let component: ScrollableContainerTestComponent;
+      let stickyEl: HTMLElement;
+      let containerEl: HTMLElement;
+      let sentinelEl: HTMLElement;
+
+      beforeEach(async () => {
+        await TestBed.configureTestingModule({
+          imports: [ScrollableContainerTestComponent],
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(ScrollableContainerTestComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+
+        stickyEl = component.sticky.nativeElement;
+        containerEl = component.container.nativeElement;
+        sentinelEl = findSentinelElement(containerEl, stickyEl, false);
+
+        await fixture.whenStable();
+      });
+
+      it('should work with custom scrollable containers', () => {
+        expect(stickyEl).toBeTruthy();
+        expect(containerEl.style.overflowY).toBe('auto');
+        expect(sentinelEl).toBeTruthy();
+        expect(mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
+      });
+
+      it('should use scrollable container as intersection root', () => {
+        expect(stickyEl).toBeTruthy();
+        expect(sentinelEl).toBeTruthy();
+        expect(mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
+
+        expect(containerEl.style.overflowY).toBe('auto');
+      });
+    });
+
+    describe('Multiple Sticky Elements', () => {
+      let fixture: ComponentFixture<MultipleStickyTestComponent>;
+      let component: MultipleStickyTestComponent;
+      let sticky1El: HTMLElement;
+      let sticky2El: HTMLElement;
+      let containerEl: HTMLElement;
+
+      beforeEach(async () => {
+        await TestBed.configureTestingModule({
+          imports: [MultipleStickyTestComponent],
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(MultipleStickyTestComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+
+        sticky1El = component.sticky1.nativeElement;
+        sticky2El = component.sticky2.nativeElement;
+        containerEl = component.container.nativeElement;
+
+        await fixture.whenStable();
+      });
+
+      it('should handle multiple sticky elements independently', () => {
+        expect(sticky1El.style.position).toBe('sticky');
+        expect(sticky1El.style.top).toBe('0px');
+
+        expect(sticky2El.style.position).toBe('sticky');
+        expect(sticky2El.style.top).toBe('60px');
+
+        const sentinels = Array.from(containerEl.querySelectorAll('div')).filter(el => {
+          const htmlEl = <HTMLElement>el;
+          return htmlEl.style.width === '1px' &&
+                 htmlEl.style.height === '1px' &&
+                 htmlEl.style.opacity === '0';
+        });
+
+        expect(sentinels.length).toBe(2);
+      });
+
+      it('should observe both sentinel elements', () => {
+        expect(mockObserverInstance.observe).toHaveBeenCalledTimes(2);
+      });
+    });
+
+    describe('Pre-styled Elements', () => {
+      let fixture: ComponentFixture<PreStyledStickyTestComponent>;
+      let component: PreStyledStickyTestComponent;
+      let stickyEl: HTMLElement;
+
+      beforeEach(async () => {
+        await TestBed.configureTestingModule({
+          imports: [PreStyledStickyTestComponent],
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(PreStyledStickyTestComponent);
+        component = fixture.componentInstance;
+
+        stickyEl = component.sticky.nativeElement;
+        stickyEl.style.position = 'sticky';
+        stickyEl.style.top = '10px';
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+      });
+
+      it('should respect existing sticky positioning', () => {
+        expect(stickyEl.style.position).toBe('sticky');
+        expect(stickyEl.style.top).toBe('10px');
+      });
+
+      it('should not override existing position styles', () => {
+        expect(stickyEl.style.top).not.toBe('0px');
+      });
+    });
   });
 
   describe('General Behavior', () => {
@@ -338,10 +625,7 @@ describe('DaffStickyTrackerDirective', () => {
 
       stickyEl = component.sticky.nativeElement;
       containerEl = component.container.nativeElement;
-
-      const children = Array.from(containerEl.children);
-      const stickyIndex = children.indexOf(stickyEl);
-      sentinelEl = <HTMLElement>children[stickyIndex - 1];
+      sentinelEl = findSentinelElement(containerEl, stickyEl, false);
 
       await fixture.whenStable();
     });
@@ -358,7 +642,7 @@ describe('DaffStickyTrackerDirective', () => {
         }),
       ], mockObserverInstance);
 
-      tick(10);
+      tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
       expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
 
@@ -368,7 +652,7 @@ describe('DaffStickyTrackerDirective', () => {
         }),
       ], mockObserverInstance);
 
-      tick(10);
+      tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
       expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
 
@@ -378,7 +662,7 @@ describe('DaffStickyTrackerDirective', () => {
         }),
       ], mockObserverInstance);
 
-      tick(10);
+      tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
       expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
     }));
@@ -405,7 +689,7 @@ describe('DaffStickyTrackerDirective', () => {
 
       expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
 
-      tick(10);
+      tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
 
       expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
@@ -416,7 +700,7 @@ describe('DaffStickyTrackerDirective', () => {
       expect(mockObserverInstance.unobserve).not.toHaveBeenCalledWith(sentinelEl);
 
       fixture.destroy();
-      tick(10);
+      tick(DEBOUNCE_TIMEOUT);
 
       expect(mockObserverInstance.unobserve).toHaveBeenCalledWith(sentinelEl);
       expect(mockObserverInstance.disconnect).toHaveBeenCalledWith();
