@@ -135,7 +135,7 @@ describe('@daffodil/product/driver/magento | DaffMagentoProductService', () => {
 
       const op = controller.expectOne(addTypenameToDocument(getProductByUrl()));
 
-      expect(op.operation.variables.url).toEqual('TESTING_URL.html');
+      expect(op.operation.variables.url).toEqual('/path/to/TESTING_URL.html');
     });
   });
 });
