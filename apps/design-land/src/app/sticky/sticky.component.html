@@ -4,8 +4,8 @@
 <h2>Overview</h2>
 <p>Sticky tracking is often used to provide visual feedback when an element becomes pinned during scrolling. The directive supports automatic setup and cleanup of intersection observers.</p>
 
-<h3>Basic sticky tracker</h3>
-<p>The directive automatically sets up sticky positioning and tracks when the element becomes pinned.</p>
+<h3>Sticky tracker examples</h3>
+<p>The directive automatically sets up sticky positioning and tracks when the element becomes pinned. It supports both top and bottom positioning for various use cases like headers, navigation bars, and action footers.</p> 
 
 <design-land-article-encapsulated>
   <design-land-example-viewer-container example="basic-sticky"></design-land-example-viewer-container>
@@ -14,15 +14,29 @@
 <h3>Implementation Details</h3>
 <p>Add the <code>daffStickyTracker</code> directive to any element that should be tracked:</p>
 
-<pre><code>&lt;div daffStickyTracker class="my-sticky-element"&gt;
+<pre><code>&lt;!-- Stick to top (default) --&gt;
+&lt;div daffStickyTracker class="my-sticky-element"&gt;
   Sticky content
+&lt;/div&gt;
+
+&lt;!-- Stick to top explicitly --&gt;
+&lt;div daffStickyTracker style="top: 0" class="my-sticky-element"&gt;
+  Sticky header
+&lt;/div&gt;
+
+&lt;!-- Stick to bottom --&gt;
+&lt;div daffStickyTracker style="bottom: 0" class="my-sticky-element"&gt;
+  Sticky footer
 &lt;/div&gt;</code></pre>
 
 <h3>Features</h3>
 <p>The directive automatically:</p>
 <ul>
   <li>Sets <code>position: sticky</code> if not already set</li>
-  <li>Sets <code>top: 0</code> if no top value is specified</li>
+  <li>Detects if <code>top</code> is set → sticks to the top</li>
+  <li>Detects if <code>bottom</code> is set → sticks to the bottom</li>
+  <li>Prioritizes <code>top</code> over <code>bottom</code> when both are set (following CSS behavior)</li>
+  <li>Sets <code>top: 0</code> if no positioning value is specified (defaults to top)</li>
   <li>Uses <code>IntersectionObserver</code> to detect when the element becomes pinned</li>
   <li>Adds the <code>is-pinned</code> class when the element sticks</li>
   <li>Removes the class when the element is no longer sticky</li>
@@ -38,4 +52,4 @@
 &#125;</code></pre>
 
 <h3>Accessibility</h3>
-<p>The sticky tracker directive is purely visual and does not affect accessibility. However, when using sticky elements for navigation or important content, ensure proper ARIA labels and focus management are maintained.</p> 
+<p>The sticky tracker directive is purely visual and does not affect accessibility. However, when using sticky elements for navigation or important content, ensure proper ARIA labels and focus management are maintained.</p>  
