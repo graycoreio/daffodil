@@ -7,10 +7,7 @@ import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import {
-  daffUriTruncateLeadingPathSegments,
-  daffUriTruncateQueryFragment,
-} from '@daffodil/core/routing';
+import { daffUriTruncateQueryFragment } from '@daffodil/core/routing';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductDriverResponse,
@@ -79,7 +76,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
         ...this.extraPageFragments,
       ]),
       variables: {
-        url: daffUriTruncateLeadingPathSegments(daffUriTruncateQueryFragment(url)),
+        url: daffUriTruncateQueryFragment(url),
       },
     }).pipe(
       map(magentoProductGetByUrlValidator),
