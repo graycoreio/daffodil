@@ -36,10 +36,15 @@ import { DaffButtonSizableDirective } from './button-sizable.directive';
 })
 export class DaffButtonBaseDirective {
 
-  @ContentChild(DaffPrefixDirective, { static: true })
-  _prefix: DaffPrefixDirective;
-  @ContentChild(DaffSuffixDirective, { static: true })
-  _suffix: DaffSuffixDirective;
+  /**
+   * @docs-private
+   */
+  @ContentChild(DaffPrefixDirective, { static: true }) _prefix: DaffPrefixDirective;
+
+  /**
+   * @docs-private
+   */
+  @ContentChild(DaffSuffixDirective, { static: true }) _suffix: DaffSuffixDirective;
 
   constructor(
     private size: DaffButtonSizableDirective,
@@ -51,18 +56,19 @@ export class DaffButtonBaseDirective {
   }
 
   /**
+   * Sets the tabindex.
+   */
+  @Input() tabindex = 0;
+
+  private _disabled = false;
+
+  /**
    * @docs-private
    */
   @HostBinding('class.disabled') get disabledClass() {
     return this.disabled;
   }
 
-  /**
-   * Sets the tabindex. Defaults to 0.
-   */
-  @Input() tabindex = 0;
-
-  private _disabled = false;
 
   /**
    * The disabled state of the button.
