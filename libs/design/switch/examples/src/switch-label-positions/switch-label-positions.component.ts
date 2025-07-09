@@ -21,12 +21,12 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
 })
 export class SwitchLabelPositionsComponent {
   labelSwitchExample = new UntypedFormControl();
-  labelPositionControl: UntypedFormControl = new UntypedFormControl('daff-left');
+  labelPositionControl: UntypedFormControl = new UntypedFormControl('left');
 
   options = [
-    { value: 'daff-left', label: 'Left' },
-    { value: 'daff-right', label: 'Right' },
-    { value: 'daff-top', label: 'Top' },
-    { value: 'daff-bottom', label: 'Bottom' },
+    { value: 'left', label: 'Left' },
+    { value: 'right', label: 'Right' },
+    { value: 'top', label: 'Top' },
+    { value: 'bottom', label: 'Bottom' },
   ];
 }

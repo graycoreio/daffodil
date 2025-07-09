@@ -13,14 +13,5 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
   imports: [
     DAFF_SWITCH_COMPONENTS,
   ],
-  styles: [`
-    :host {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  `],
 })
-export class DisabledSwitchComponent {
-  checked = false;
-  disabled = true;
-}
+export class DisabledSwitchComponent {}

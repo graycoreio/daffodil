@@ -4,10 +4,12 @@ A switch allows users to toggle the state of a single setting.
 ## Overview
 Switches provide a way to toggle between two states with a visual indicator of the current state. A label can be positioned on the left, right, top, or bottom of the switch. The switch can be set to a disabled state, display a loading indicator, or show a custom error message.
 
+<design-land-example-viewer-container example="basic-switch"></design-land-example-viewer-container>
+
 ## Usage
 
 ### Within a standalone component
-To use a switch in a standalone component, import `DAFF_SWITCH_COMPONENTS` directly into your custom component:
+To use switch, import `DAFF_SWITCH_COMPONENTS` directly into your custom component:
 
 ```ts
 import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
@@ -22,41 +24,31 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
 export class CustomComponent {}
 ```
 
-## Examples
+## Sizes
+A small switch variant is available for dense layouts. Use the `size="sm"` property to render a more compact version of a switch.
 
-### Basic Switch
-A basic switch can be toggled by setting the `checked` property to `true` or `false`. By default, this is set to `false`.
+<design-land-example-viewer-container example="switch-sizes"></design-land-example-viewer-container>
 
-<design-land-example-viewer-container example="basic-switch"></design-land-example-viewer-container>
-
-### Disabled Switch
-A switch with the `disabled` property will be non-interactive.
+## Disable a switch
+Use the `disabled` property on switch to make it non-interactive.
 
 <design-land-example-viewer-container example="disabled-switch"></design-land-example-viewer-container>
 
-### Loading Switch
-A switch can display a loading state by setting `loading` to `true`. This will also disable the switch.
-
-<design-land-example-viewer-container example="loading-switch"></design-land-example-viewer-container>
-
-### Switch with Error
-An error message can be displayed by setting `error` to `true` and including a `daff-error-message` to show the message text.
-
-<design-land-example-viewer-container example="switch-error"></design-land-example-viewer-container>
-
-### Changing Label Position
-The label position can be changed by setting the `labelPosition` property. The default position is `left`.
-
-Supported positions: `left | right | top | bottom`
+## Label positions
+Use the `labelPosition` property to control the visual relationship between the switch and its label. By default, labels appear to the left of the switch control.
 
 <design-land-example-viewer-container example="switch-label-positions"></design-land-example-viewer-container>
 
-
 ## Accessibility
-Switches follow the [ARIA Switch design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/switch/).
+Switch follows the [ARIA Switch design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/switch/).
 
-### Keyboard Interactions
+- The switch control is implemented as a `<button>` element with a role of `switch`.
+- `aria-checked` is used to indicate the switch's on/off state.
+- Links the switch to its label `id` using `aria-labelledby`.
+
+### Keyboard interactions
 | Key | Action |
 | --- | ------ |
-| Space |  Toggles the switch to the opposite state. |
-| Tab |  Moves to next component on the page. |
+| Space |  Changes the switch's state between on and off. |
+| Enter |  Changes the switch's state between on and off. |
+| Tab |  Moves focus to the next tabbable element on the page. |

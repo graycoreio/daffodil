@@ -1,45 +1,53 @@
 @use '../../scss/theming' as *;
 
+// stylelint-disable selector-class-pattern
 @mixin daff-switch-theme($theme) {
 	$primary: daff-get-palette($theme, primary);
 	$white: daff-get-base-color($theme, 'white');
 	$neutral: daff-get-palette($theme, neutral);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-switch {
-		&__toggle {
-			border: 2px solid transparent;
+		$root: '.daff-switch';
 
-			&.daff-checked {
+		&__label {
+			color: $base-contrast;
+		}
+
+		&.checked {
+			#{$root}__toggle {
 				background-color: daff-color($primary);
 			}
+		}
 
-			@include light($mode) {
+		@include light($mode) {
+			&__toggle {
 				background-color: daff-color($neutral, 30);
-
-				&:focus-within {
-					border: 2px solid daff-color($neutral, 20);
-				}
 
 				&::before {
 					background-color: $white;
 				}
-			}
 
-			@include dark($mode) {
-				background-color: daff-color($neutral, 80);
-
-				&:focus-within {
-					border: 2px solid daff-color($neutral, 90);
+				&:focus {
+					&::after {
+						outline: 2px solid rgba($base-contrast, 0.08);
+					}
 				}
+			}
+		}
+
+		@include dark($mode) {
+			&__toggle {
+				background-color: daff-color($neutral, 70);
 
 				&::before {
-					background-color: daff-color($neutral, 40);
+					background-color: $white;
 				}
 
-				&.daff-checked {
-					&::before {
-						background-color: $white;
+				&:focus {
+					&::after {
+						outline: 2px solid rgba($base-contrast, 0.15);
 					}
 				}
 			}
