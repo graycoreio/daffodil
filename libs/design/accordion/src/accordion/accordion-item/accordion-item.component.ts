@@ -20,7 +20,15 @@ let daffAccordionItemContentId = 0;
 
 /**
  * The wrapper for the title and content. It handles the expansion and collapse of the inner content when clicked.
- * All `daff-accordion-item`s should be grouped inside the `daff-accordion` component.
+ * All `<daff-accordion-item>`s should be grouped inside a `<daff-accordion>`.
+ *
+ * @example
+ * ```html
+ *  <daff-accordion-item>
+ *    <div daffAccordionItemTitle>Title</div>
+ *    <div>Accordion content</div>
+ *  </daff-accordion-item>
+ * ```
  */
 @Component({
   selector: 'daff-accordion-item',
@@ -54,7 +62,7 @@ export class DaffAccordionItemComponent implements OnInit, DaffOpenable {
   @Input() contentId: string = 'daff-accordion-item-content' + '-' + ++daffAccordionItemContentId;
 
   /**
-   * Whether or not the item is initially opened by default.
+   * Whether or not an accordion item is initially expanded by default.
    */
   @Input() initiallyExpanded = false;
 

@@ -7,6 +7,20 @@ import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
 /**
  * A wrapper for grouping accordion items.
+ *
+ * @example
+ * ```html
+ * <daff-accordion>
+ *  <daff-accordion-item>
+ *    <div daffAccordionItemTitle>Title</div>
+ *    <div>Expandable content</div>
+ *  </daff-accordion-item>
+ *  <daff-accordion-item>
+ *    <div daffAccordionItemTitle>Title</div>
+ *    <div>Expandable content</div>
+ *  </daff-accordion-item>
+ * </daff-accordion>
+ * ```
  */
 @Component({
   selector: 'daff-accordion',
