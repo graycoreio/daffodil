@@ -1,8 +1,8 @@
 # Accordion
-An accordion is a group of vertically stacked headings that allow users to toggle the visibility of related content. It helps reduce scrolling by hiding non-essential information until it’s needed.
+An accordion is a group of vertically stacked headings that allow users to toggle the visibility of related content.
 
 ## Overview
-Use accordions to organize content into collapsible sections. This is especially useful for long pages where not all information needs to be visible at once.
+Accordions helps reduce scrolling by hiding non-essential information until it’s needed. Use it to organize content into collapsible sections. This is especially useful for long pages where not all information needs to be visible at once.
 
 <design-land-example-viewer-container example="basic-accordion"></design-land-example-viewer-container>
 
@@ -27,9 +27,9 @@ An accordion is composed of the following:
 
 - **`<daff-accordion>`**: Groups accordion items.
 - **`<daff-accordion-item>`**: Contains the title and collapsible content. Handles expansion and collapse on user interaction.
-- **`[daffAccordionItemTitle]`**: Used to provide a high level overview of the content.
+- **`[daffAccordionItemTitle]`**: Used to provide a high level overview of the panel content.
 
-Any content placed inside `<daff-accordion-item>` (but outside the title) is shown or hidden based on user interaction.
+Content inside `<daff-accordion-item>` (excluding the title) is part of the panel content that is shown or hidden when the item is toggled.
 
 ```html
 <daff-accordion>

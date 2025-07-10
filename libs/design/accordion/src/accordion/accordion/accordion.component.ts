@@ -6,7 +6,7 @@ import {
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
 /**
- * A wrapper for grouping accordion items.
+ * Groups accordion items.
  *
  * @example
  * ```html

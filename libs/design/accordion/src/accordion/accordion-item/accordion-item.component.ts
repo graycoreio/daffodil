@@ -19,8 +19,7 @@ let daffAccordionItemId = 0;
 let daffAccordionItemContentId = 0;
 
 /**
- * The wrapper for the title and content. It handles the expansion and collapse of the inner content when clicked.
- * All `<daff-accordion-item>`s should be grouped inside a `<daff-accordion>`.
+ * Contains the title and collapsible content. Handles expansion and collapse on user interaction. All `<daff-accordion-item>`s should be grouped inside a `<daff-accordion>`.
  *
  * @example
  * ```html
