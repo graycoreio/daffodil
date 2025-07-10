@@ -18,6 +18,21 @@ import {
 
 import { DaffBreadcrumbItemDirective } from '../breadcrumb-item/breadcrumb-item.directive';
 
+/**
+ * Groups breadcrumb items. Must be applied to a native `<ol>` element.
+ *
+ * @example
+ * ```html
+ * <ol daff-breadcrumb>
+ *  <li daffBreadcrumbItem>
+ *    <a routerLink="/">Home</a>
+ *  </li>
+ *  <li daffBreacrumbItem>
+ *    <span>Current page</span>
+ *  </li>
+ * </ol>
+ * ```
+ */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'ol[daff-breadcrumb]',

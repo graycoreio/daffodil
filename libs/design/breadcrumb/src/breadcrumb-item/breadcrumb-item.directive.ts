@@ -4,6 +4,16 @@ import {
   HostBinding,
 } from '@angular/core';
 
+/**
+ * Represents each individual breadcrumb item. Must be used on a `<li>` element.
+ *
+ * @example
+ * ```html
+ * <li daffBreadcrumbItem>
+ *  <a routerLink="/">Link</a>
+ * </li>
+ * ```
+ */
 @Directive({
   selector: 'li[daffBreadcrumbItem]',
 })
