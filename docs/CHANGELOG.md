@@ -1,5 +1,45 @@
 # Changelog
 
+## [0.87.0](https://github.com/graycoreio/daffodil/compare/v0.86.0...v0.87.0) (2025-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **design, daffio:** The `daff-illuminate` function has been deprecated and will be removed in version 0.90.0. Update usage of the function with the `light` and `dark` mixins.
+* **design:** `DaffTextareaComponent` has been moved to its own package and needs to be imported from `@daffodil/design/textarea`.
+
+### Features
+
+* **cart:** widen cart total name type ([#3813](https://github.com/graycoreio/daffodil/issues/3813)) ([09f275b](https://github.com/graycoreio/daffodil/commit/09f275b7c7bb28a29c25f9a105a044daaca2206e))
+* **core:** add `HTML` type ([#3778](https://github.com/graycoreio/daffodil/issues/3778)) ([fb4844d](https://github.com/graycoreio/daffodil/commit/fb4844d1e24289e9ff588cf83a2bc602c0baa647))
+* **core:** add graphql validator type and helper ([#3781](https://github.com/graycoreio/daffodil/issues/3781)) ([5ad2e0e](https://github.com/graycoreio/daffodil/commit/5ad2e0e54778f65af38f4433dfba43049758f536))
+* **daffio:** move scroll to top button to table of contents ([#3801](https://github.com/graycoreio/daffodil/issues/3801)) ([e954a1d](https://github.com/graycoreio/daffodil/commit/e954a1dd738a29983b0c7afbb9489f245a3db3c5))
+* **daffio:** render ToC from page contents ([#3637](https://github.com/graycoreio/daffodil/issues/3637)) ([4602e2a](https://github.com/graycoreio/daffodil/commit/4602e2aba414c0b274f6f0727e2b03fa842fabff))
+* **design, daffio:** deprecate `daff-illuminate` function and replace usage with light and dark mixins ([#3815](https://github.com/graycoreio/daffodil/issues/3815)) ([30733b4](https://github.com/graycoreio/daffodil/commit/30733b4188fd4b8d8d7046bc757e640e981aa486))
+* **design:** add `defaultStatus` as a property in DaffStatusableDirective ([#3788](https://github.com/graycoreio/daffodil/issues/3788)) ([9ad3c35](https://github.com/graycoreio/daffodil/commit/9ad3c353ba6e5076f2447f55e1bd9ea16427dc03))
+* **design:** add `info` as a status option in DaffNotificationComponent ([#3787](https://github.com/graycoreio/daffodil/issues/3787)) ([2d73e2d](https://github.com/graycoreio/daffodil/commit/2d73e2dcc2afe16346769a2204203cc9d457904f))
+* **design:** add accessibility considerations to `DaffTextareaComponent` ([#3780](https://github.com/graycoreio/daffodil/issues/3780)) ([c30b308](https://github.com/graycoreio/daffodil/commit/c30b3081c8f61a0048cb6c34a8ad2256e3fdcb9e))
+* **design:** add array imports for each button type and update docs ([#3820](https://github.com/graycoreio/daffodil/issues/3820)) ([1f62c72](https://github.com/graycoreio/daffodil/commit/1f62c7236c27f90e3113497a469d01b007c2422e))
+* **design:** clean up article styles ([#3786](https://github.com/graycoreio/daffodil/issues/3786)) ([fa1df00](https://github.com/graycoreio/daffodil/commit/fa1df00a3508637738c7faf0e3e8f509b121a85e))
+* **design:** create `DaffTextareaComponent` ([#3382](https://github.com/graycoreio/daffodil/issues/3382)) ([7d15a3f](https://github.com/graycoreio/daffodil/commit/7d15a3f2e87586a21337760106e014ac884d7a98))
+* **design:** create select component ([#2458](https://github.com/graycoreio/daffodil/issues/2458)) ([d6d2fb3](https://github.com/graycoreio/daffodil/commit/d6d2fb3cc3b019d56de416c09c63e4bfc89d2b78))
+* **design:** only show console warnings in dev mode for design components ([#3816](https://github.com/graycoreio/daffodil/issues/3816)) ([b19d4fa](https://github.com/graycoreio/daffodil/commit/b19d4faa21e9bdf48d196fa240f1243da6a16a09))
+* **design:** remove extra text-truncate style in button ([#3774](https://github.com/graycoreio/daffodil/issues/3774)) ([7d2ff57](https://github.com/graycoreio/daffodil/commit/7d2ff57d517dd54b2ee670671100ef669cc47ddc))
+* **design:** shard `DaffTextareaComponent` ([#3789](https://github.com/graycoreio/daffodil/issues/3789)) ([404e5b2](https://github.com/graycoreio/daffodil/commit/404e5b28420c7a7b558e0cae4b18dccedc757608))
+* **design:** throw an error if the `DaffInputComponent` is not used with the `DaffFormFieldComponent` ([#3779](https://github.com/graycoreio/daffodil/issues/3779)) ([200dfcf](https://github.com/graycoreio/daffodil/commit/200dfcf29fa84dcf93093536c8183ad205adfb2e))
+* **design:** update form field UI to support actions and add fluid appearance ([#3773](https://github.com/graycoreio/daffodil/issues/3773)) ([2283bba](https://github.com/graycoreio/daffodil/commit/2283bbabc3dc5ae191bd078fcb7c235fe6e04460))
+* **design:** update modal styles so a custom width can be set on the attached modal content component ([#3798](https://github.com/graycoreio/daffodil/issues/3798)) ([69283f8](https://github.com/graycoreio/daffodil/commit/69283f8ad5ba01bc9582c7f98bbac9b9e13479f5))
+* **dgeni:** generate search index ([#3809](https://github.com/graycoreio/daffodil/issues/3809)) ([a512232](https://github.com/graycoreio/daffodil/commit/a5122320df148635dc185ce41d2c52bc0d7fe4e0))
+* **dgeni:** include tools in package guide generation ([#3792](https://github.com/graycoreio/daffodil/issues/3792)) ([22bea32](https://github.com/graycoreio/daffodil/commit/22bea32f55b13663de48f578774fb720eabc67ca))
+* **order:** support extra transforms in magento driver ([#3814](https://github.com/graycoreio/daffodil/issues/3814)) ([7ba0b0c](https://github.com/graycoreio/daffodil/commit/7ba0b0c47d6d594b27ba91cef41318a407c72c59))
+
+
+### Bug Fixes
+
+* **daffio:** outputs ToC label ([#3791](https://github.com/graycoreio/daffodil/issues/3791)) ([649a429](https://github.com/graycoreio/daffodil/commit/649a4294e195908cf44125ddc4aeebd300736e1e))
+* **design:** fix input id not updating when form field's id changes ([#3784](https://github.com/graycoreio/daffodil/issues/3784)) ([9a8d19c](https://github.com/graycoreio/daffodil/commit/9a8d19c9f20365de30e218358f3bd9660fcf2de4))
+* **design:** return focus to activator after modal is closed ([#3741](https://github.com/graycoreio/daffodil/issues/3741)) ([b2f71bb](https://github.com/graycoreio/daffodil/commit/b2f71bbae5a7d65fb74bf2e86b0bf6721ea584d4))
+
 ## [0.86.0](https://github.com/graycoreio/daffodil/compare/v0.85.0...v0.86.0) (2025-06-09)
 
 
