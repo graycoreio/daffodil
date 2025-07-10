@@ -1,8 +1,8 @@
 # Breadcrumb
-Breadcrumb is a secondary navigation pattern that shows users their current location within a website or application’s hierarchy. It helps users understand the page's context and navigate to parent levels with ease.
+Breadcrumb is a secondary navigation pattern that shows users their current location within a website or application’s hierarchy.
 
 ## Overview
-Breadcrumbs visually represent the navigational structure of a site or app. Each breadcrumb item corresponds to a level in the hierarchy, with the last item indicating the current page or context.
+Breadcrumbs visually represent the navigational structure of a site or app and helps users navigate to parent levels with ease. Each breadcrumb item corresponds to a level in the hierarchy, with the last item indicating the current page or context.
 
 <design-land-example-viewer-container example="basic-breadcrumb"></design-land-example-viewer-container>
 
