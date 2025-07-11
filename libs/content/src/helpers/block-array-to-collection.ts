@@ -6,4 +6,4 @@ import {
 } from '../models/public_api';
 
 export const daffContentBlockArrayToCollection = <T extends DaffContentBlock = DaffContentBlock>(ary: T[]): DaffContentBlockCollection =>
-  daffArrayToDict<T>(ary, block => block.id);
+  daffArrayToDict<T, DaffContentBlock['id']>(ary, block => block.id);
