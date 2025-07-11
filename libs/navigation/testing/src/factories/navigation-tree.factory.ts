@@ -4,57 +4,29 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffNavigationTree } from '@daffodil/navigation';
 
+
 const randomUrl = () => (new URL(faker.internet.url())).pathname;
 
 export class MockNavigationTree implements DaffNavigationTree {
   id = faker.string.uuid();
-  name = '';
+  name = faker.commerce.department();
   url = randomUrl();
   total_products = faker.number.int({ min: 1, max: 10 });
-  children = [...Array(faker.number.int({ min:1, max:3 }))].map(() => this.fakeTree(3));
-  children_count = 0;
-  breadcrumbs = [];
+  breadcrumbs = [{
+    id: faker.string.uuid(),
+    name: '',
+    level: 1,
+    url: faker.commerce.productMaterial(),
+  }];
 
-  private fakeTree(depth: number = 0): DaffNavigationTree {
-    const children = depth !== 0
-      ? [...Array(faker.number.int({ min:1, max:3 }))].map(() => this.fakeTree(depth - 1))
-      : [];
+  children_count: DaffNavigationTree['children_count'];
+  children: DaffNavigationTree['children'];
 
-    if (depth <= 0) {
-      const id = faker.string.uuid();
-
-      return {
-        id,
-        url: randomUrl(),
-        name: faker.commerce.department(),
-        total_products: faker.number.int({ min: 1, max: 20 }),
-        children: [],
-        children_count: 0,
-        breadcrumbs: [{
-          id,
-          name: '',
-          level: 1,
-          url: faker.commerce.productMaterial(),
-        }],
-      };
-    } else {
-      const id = faker.string.uuid();
-
-      return {
-        id,
-        url: randomUrl(),
-        name: faker.commerce.department(),
-        total_products: faker.number.int({ min: 1, max: 20 }),
-        children,
-        children_count: children.length,
-        breadcrumbs: [{
-          id,
-          name: '',
-          level: 1,
-          url: faker.commerce.productMaterial(),
-        }],
-      };
-    }
+  constructor(
+    depth: number = 3,
+  ) {
+    this.children = depth <= 0 ? [] : [...Array(faker.number.int({ min:1, max:3 }))].map(() => new MockNavigationTree(depth - 1));
+    this.children_count = this.children.length;
   }
 }
 
