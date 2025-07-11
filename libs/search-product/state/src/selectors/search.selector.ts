@@ -21,12 +21,12 @@ export interface DaffSearchProductSelectors {
   /**
    * Select the product search result IDs from the main search state.
    */
-  selectProductResultIds: MemoizedSelector<DaffSearchProductStateRootSlice, DaffSearchProductResult['id'][]>;
+  selectProductResultIds: MemoizedSelector<DaffSearchProductStateRootSlice, Array<DaffSearchProductResult['id']>>;
 
   /**
    * Select the product search results from the main product state.
    */
-  selectProductResults: MemoizedSelector<DaffSearchProductStateRootSlice, DaffProduct[]>;
+  selectProductResults: MemoizedSelector<DaffSearchProductStateRootSlice, Array<DaffSearchProductResult>>;
 }
 
 export const daffSearchProductCreateSelectors = (
@@ -39,10 +39,20 @@ export const daffSearchProductCreateSelectors = (
     state => state[DAFF_SEARCH_PRODUCT_RESULT_KIND] || [],
   );
 
-  const selectProductResults = createSelector<DaffSearchProductStateRootSlice, [string[], Dictionary<DaffProduct>], DaffProduct[]>(
+  const selectProductResults = createSelector<DaffSearchProductStateRootSlice, [string[], Dictionary<DaffProduct>], Array<DaffSearchProductResult>>(
     selectProductResultIds,
     selectProductEntities,
-    (resultIds, products) => resultIds.map(id => products[id]).filter(product => !!product),
+    (resultIds, products) => resultIds.reduce<Array<DaffSearchProductResult>>((acc, id) => {
+      const product = products[id];
+      if (product) {
+        acc.push({
+          ...product,
+          kind: DAFF_SEARCH_PRODUCT_RESULT_KIND,
+        });
+      }
+
+      return acc;
+    }, []),
   );
 
   return {

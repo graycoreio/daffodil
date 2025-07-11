@@ -5,17 +5,18 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffProduct } from '@daffodil/product';
+import { DaffSearchProductResult } from '@daffodil/search-product';
 
 import { DaffSearchProductFacadeInterface } from './search-facade.interface';
 import { DaffSearchProductStateRootSlice } from '../../reducers/public_api';
 import { DaffSearchProductSelectors } from '../../selectors/public_api';
 
+
 /**
  * @inheritdoc
  */
 export abstract class DaffSearchProductFacade implements DaffSearchProductFacadeInterface {
-  productResults$: Observable<DaffProduct[]>;
+  productResults$: Observable<Array<DaffSearchProductResult>>;
 
   constructor(
     private store: Store<DaffSearchProductStateRootSlice>,
