@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 
-import { DaffState } from '@daffodil/core/state';
+import {
+  DaffOperationEntity,
+  DaffState,
+} from '@daffodil/core/state';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
+import { DaffCustomerPayment } from '@daffodil/customer-payment';
 import { DaffCustomerPaymentEntity } from '@daffodil/customer-payment/state';
 import { MockDaffCustomerPayment } from '@daffodil/customer-payment/testing';
 
@@ -26,5 +30,12 @@ export class DaffCustomerPaymentEntityFactory extends DaffModelFactory<DaffCusto
     addressFactory: DaffCustomerAddressFactory,
   ) {
     super(MockDaffCustomerPaymentEntity, addressFactory);
+  }
+
+  override create<T extends DaffCustomerPayment = DaffCustomerPayment>(partial?: Partial<DaffCustomerPaymentEntity> & Exclude<T, DaffOperationEntity>): DaffCustomerPaymentEntity<T> {
+    return {
+      ...super.create(),
+      ...partial,
+    };
   }
 }
