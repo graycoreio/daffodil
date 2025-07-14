@@ -107,6 +107,8 @@
 }
 
 .basic-sticky__footer {
+  position: sticky;
+  bottom: 0;
   padding: 16px 20px;
   background: #ff9800;
   color: white;
