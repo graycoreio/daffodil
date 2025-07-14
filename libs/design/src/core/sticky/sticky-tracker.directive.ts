@@ -2,125 +2,70 @@ import { DOCUMENT } from '@angular/common';
 import {
   Directive,
   ElementRef,
-  NgZone,
   OnDestroy,
-  AfterViewInit,
   Renderer2,
   Inject,
+  Input,
+  afterNextRender,
+  AfterRenderPhase,
 } from '@angular/core';
-
-interface ComputedStylesData {
-  stickyElementStyle: CSSStyleDeclaration;
-  parentElements: HTMLElement[];
-  parentStyles: CSSStyleDeclaration[];
-}
 
 @Directive({
   selector: '[daffStickyTracker]',
 })
-export class DaffStickyTrackerDirective implements AfterViewInit, OnDestroy {
+export class DaffStickyTrackerDirective implements OnDestroy {
+  @Input() sticky: 'top' | 'bottom' | undefined = undefined;
+
   private sentinelObserver?: IntersectionObserver;
   private readonly className = 'is-pinned';
   private lastPinnedState: boolean | null = null;
   private debounceTimeout?: number;
-  private isBottomSticky = false;
-  private stickyPosition = '0';
   private sentinelElement?: HTMLElement;
+  private idleCallbackId?: number;
 
   constructor(
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly renderer: Renderer2,
-    private readonly ngZone: NgZone,
     @Inject(DOCUMENT) private readonly document: Document,
-  ) {}
-
-  /**
-   * @docs-private
-   */
-  ngAfterViewInit(): void {
-    this.ngZone.runOutsideAngular(() => {
-      const computedStylesData = this.gatherComputedStyles();
-
-      this.setupStickyElement(computedStylesData.stickyElementStyle);
+  ) {
+    afterNextRender(() => {
       this.createSentinel();
-      this.createSentinelObserver(computedStylesData);
-    });
+    }, { phase: AfterRenderPhase.Write });
+
+    afterNextRender(() => {
+      this.scheduleObserverCreation();
+    }, { phase: AfterRenderPhase.Read });
   }
 
-  private gatherComputedStyles(): ComputedStylesData {
-    const stickyElement = this.elementRef.nativeElement;
+  private get isBottomSticky(): boolean {
+    return this.sticky === 'bottom';
+  }
+
+  private scheduleObserverCreation(): void {
     const defaultView = this.document.defaultView;
 
-    if (!defaultView) {
-      throw new Error('DaffStickyTracker: Document default view is not available');
-    }
-
-    const stickyElementStyle = defaultView.getComputedStyle(stickyElement);
-
-    const parentElements: HTMLElement[] = [];
-    const parentStyles: CSSStyleDeclaration[] = [];
-
-    let parent = stickyElement.parentElement;
-    while (parent && parent !== this.document.body) {
-      parentElements.push(parent);
-      parentStyles.push(defaultView.getComputedStyle(parent));
-      parent = parent.parentElement;
-    }
-
-    return {
-      stickyElementStyle,
-      parentElements,
-      parentStyles,
-    };
-  }
-
-  private setupStickyElement(computedStyle: CSSStyleDeclaration): void {
-    const element = this.elementRef.nativeElement;
-
-    const hasTop = element.style.top || (computedStyle.top && computedStyle.top !== 'auto');
-    const hasBottom = element.style.bottom || (computedStyle.bottom && computedStyle.bottom !== 'auto');
-
-    if (hasTop) {
-      this.isBottomSticky = false;
-      this.stickyPosition = element.style.top || computedStyle.top || '0';
-
-      if (computedStyle.position !== 'sticky') {
-        this.renderer.setStyle(element, 'position', 'sticky');
-      }
-      if (!element.style.top && (!computedStyle.top || computedStyle.top === 'auto')) {
-        this.renderer.setStyle(element, 'top', this.stickyPosition);
-      }
-    } else if (hasBottom) {
-      this.isBottomSticky = true;
-      this.stickyPosition = element.style.bottom || computedStyle.bottom || '0';
-
-      if (computedStyle.position !== 'sticky') {
-        this.renderer.setStyle(element, 'position', 'sticky');
-      }
-      if (!element.style.bottom && (!computedStyle.bottom || computedStyle.bottom === 'auto')) {
-        this.renderer.setStyle(element, 'bottom', this.stickyPosition);
-      }
+    if (defaultView?.requestIdleCallback) {
+      this.idleCallbackId = defaultView.requestIdleCallback(() => {
+        this.createSentinelObserver();
+      });
     } else {
-      this.isBottomSticky = false;
-      this.stickyPosition = '0';
-
-      if (computedStyle.position !== 'sticky') {
-        this.renderer.setStyle(element, 'position', 'sticky');
-      }
-      this.renderer.setStyle(element, 'top', this.stickyPosition);
+      this.idleCallbackId = defaultView?.setTimeout(() => {
+        this.createSentinelObserver();
+      }, 0);
     }
   }
 
-  private findScrollableParent(
-    parentElements: HTMLElement[],
-    parentStyles: CSSStyleDeclaration[],
-  ): HTMLElement | null {
-    for (let i = 0; i < parentElements.length; i++) {
-      const overflowY = parentStyles[i]?.overflowY || '';
+  private findScrollableParent(): HTMLElement | null {
+    let parent = this.elementRef.nativeElement.parentElement;
+
+    while (parent && parent !== this.document.body) {
+      const computedStyle = this.document.defaultView?.getComputedStyle(parent);
+      const overflowY = computedStyle?.overflowY;
 
       if (overflowY === 'auto' || overflowY === 'scroll') {
-        return parentElements[i];
+        return parent;
       }
+      parent = parent.parentElement;
     }
 
     return null;
@@ -162,8 +107,8 @@ export class DaffStickyTrackerDirective implements AfterViewInit, OnDestroy {
     }
   }
 
-  private createSentinelObserver(computedStylesData: ComputedStylesData): void {
-    const scrollableParent = this.findScrollableParent(computedStylesData.parentElements, computedStylesData.parentStyles);
+  private createSentinelObserver(): void {
+    const scrollableParent = this.findScrollableParent();
     const stickyElement = this.elementRef.nativeElement;
 
     this.sentinelObserver = new IntersectionObserver(
@@ -176,13 +121,11 @@ export class DaffStickyTrackerDirective implements AfterViewInit, OnDestroy {
           }
 
           this.debounceTimeout = this.document.defaultView?.setTimeout(() => {
-            this.ngZone.run(() => {
-              if (shouldBePinned) {
-                this.renderer.addClass(stickyElement, this.className);
-              } else {
-                this.renderer.removeClass(stickyElement, this.className);
-              }
-            });
+            if (shouldBePinned) {
+              this.renderer.addClass(stickyElement, this.className);
+            } else {
+              this.renderer.removeClass(stickyElement, this.className);
+            }
             this.lastPinnedState = shouldBePinned;
           }, 5);
         }
@@ -200,6 +143,15 @@ export class DaffStickyTrackerDirective implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this.idleCallbackId !== undefined) {
+      const defaultView = this.document.defaultView;
+      if (defaultView?.cancelIdleCallback) {
+        defaultView.cancelIdleCallback(this.idleCallbackId);
+      } else {
+        defaultView?.clearTimeout(this.idleCallbackId);
+      }
+    }
+
     if (this.debounceTimeout) {
       clearTimeout(this.debounceTimeout);
     }
