@@ -47,6 +47,8 @@ export abstract class DaffModelFactory<T extends Record<string, any>, Klass exte
     this._instantiationArgs = args;
   }
 
+  create<R extends T = T>(partial: Partial<T> & T extends R ? Partial<T> : R): T & R;
+  create(partial?: Partial<T>): T;
   create(partial: Partial<T> = {}): T {
     if (!this.type) {
       throw new Error('`type` is required if `create` is not overriden.');

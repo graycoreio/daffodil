@@ -13,6 +13,11 @@ class TestMockModel {
   }
 }
 
+interface TestExtension extends TestMockModel {
+  someNewField: number;
+}
+
+
 @Injectable({
   providedIn: 'root',
 })
@@ -50,17 +55,23 @@ describe('@daffodil/core/testing | DaffModelFactory', () => {
     });
 
     describe('when a partial is passed', () => {
+      let extension: TestExtension;
       let newField: string;
 
       beforeEach(() => {
         newField = 'newfield';
-        result = factory.create({
+        extension = factory.create({
           field: newField,
+          someNewField: 5,
         });
       });
 
       it('should preferentially set fields from the partial', () => {
-        expect(result.field).toEqual(newField);
+        expect(extension.field).toEqual(newField);
+      });
+
+      it('should allow new fields to be added', () => {
+        expect(extension.someNewField).toEqual(5);
       });
     });
 
