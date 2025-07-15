@@ -5,7 +5,7 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
+import { DAFF_NAV_LIST_COMPONENTS } from '@daffodil/design/list';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -13,7 +13,7 @@ import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
   templateUrl: './nav-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DAFF_LIST_COMPONENTS,
+    DAFF_NAV_LIST_COMPONENTS,
     FaIconComponent,
   ],
 })

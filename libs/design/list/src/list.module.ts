@@ -5,6 +5,7 @@ import { DaffPrefixSuffixModule } from '@daffodil/design';
 
 import { DaffListComponent } from './list/list.component';
 import { DaffListItemComponent } from './list-item/list-item.component';
+import { DaffNavListComponent } from './nav-list/nav-list.component';
 
 /**
  * @deprecated in favor of {@link DAFF_LIST_COMPONENTS}. Deprecated in version 0.78.0. Will be removed in version 1.0.0.
@@ -13,10 +14,12 @@ import { DaffListItemComponent } from './list-item/list-item.component';
   imports: [
     CommonModule,
     DaffListComponent,
+    DaffNavListComponent,
     DaffListItemComponent,
   ],
   exports: [
     DaffListComponent,
+    DaffNavListComponent,
     DaffListItemComponent,
     DaffPrefixSuffixModule,
   ],

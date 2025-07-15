@@ -1,0 +1,40 @@
+@use '../../scss/typography' as t;
+
+@mixin daff-list-base() {
+	$root: &;
+	display: block;
+	margin: 0;
+	padding: 0;
+
+	.daff-list-item {
+		$root: &;
+		display: flex;
+		gap: 1rem;
+		padding: 0.75rem 1rem;
+
+		&__content {
+			font-size: t.$normal-font-size;
+			flex-grow: 1;
+
+			> * {
+				margin: 0;
+				padding: 0;
+			}
+		}
+
+		&__title {
+			font-size: t.$normal-font-size;
+			font-weight: 600;
+			line-height: 1.5rem;
+			margin: 0;
+			padding: 0;
+		}
+
+		.daff-prefix,
+		.daff-suffix {
+			display: flex;
+			align-items: center;
+			z-index: 2;
+		}
+	}
+}

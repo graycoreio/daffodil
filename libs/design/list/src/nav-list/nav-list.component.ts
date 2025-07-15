@@ -8,18 +8,20 @@ import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
 /* eslint-disable quote-props */
 @Component({
-  selector: 'daff-list',
+  selector: 'daff-nav-list',
   template: '<ng-content></ng-content>',
-  styleUrls: ['./list.component.scss'],
+  styleUrl: './nav-list.component.scss',
   host: {
-    'class': 'daff-list',
-    'role': 'list',
+    'class': 'daff-nav-list',
+    'role': 'navigation',
   },
-  hostDirectives: [{
-    directive: DaffArticleEncapsulatedDirective,
-  }],
+  hostDirectives: [
+    {
+      directive: DaffArticleEncapsulatedDirective,
+    },
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class DaffListComponent { }
+export class DaffNavListComponent {}

@@ -7,6 +7,11 @@
 	$base-contrast: daff-get-base-color($theme, base-contrast);
 	$mode: daff-get-theme-mode($theme);
 
+	.daff-list,
+	.daff-nav-list {
+		color: $base-contrast;
+	}
+
 	.daff-nav-list {
 		.daff-list-item {
 			&::after {
