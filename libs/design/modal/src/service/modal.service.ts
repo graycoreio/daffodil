@@ -11,6 +11,7 @@ import {
   ComponentRef,
   Injector,
 } from '@angular/core';
+import { take } from 'rxjs/operators';
 
 import { DaffModal } from '../modal/modal';
 import { DaffModalConfiguration } from '../modal/modal-config';
@@ -107,7 +108,9 @@ export class DaffModalService {
     const modal = this._modals.get(component);
 
     modal.overlay.detachBackdrop();
-    component.closedAnimationCompleted.subscribe(
+    component.closedAnimationCompleted$.pipe(
+      take(1),
+    ).subscribe(
       (e: AnimationEvent) => this._removeModal(modal),
     );
   }

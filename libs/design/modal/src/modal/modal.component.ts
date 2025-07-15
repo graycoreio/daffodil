@@ -21,7 +21,9 @@ import {
   AfterViewInit,
   ViewEncapsulation,
   ChangeDetectorRef,
+  OnDestroy,
 } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import {
   DaffOpenable,
@@ -50,7 +52,7 @@ import { DaffModalService } from '../service/modal.service';
     OverlayModule,
   ],
 })
-export class DaffModalComponent implements AfterContentInit, AfterViewInit, DaffOpenable {
+export class DaffModalComponent implements AfterContentInit, AfterViewInit, OnDestroy, DaffOpenable {
   /**
    * Sets a class of .daff-modal to the host element.
    */
@@ -102,11 +104,14 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, Daff
   animationCompleted: EventEmitter<any> = new EventEmitter<any>();
 
   /**
-   * Event fired when the close animation is completed.
+   * Private subject for closed animation completion events.
    */
-  closedAnimationCompleted: EventEmitter<any> = new EventEmitter<
-    any
-  >();
+  private _closedAnimationCompleted = new Subject<AnimationEvent>();
+
+  /**
+   * Observable that emits when the close animation is completed.
+   */
+  readonly closedAnimationCompleted$ = this._closedAnimationCompleted.asObservable();
 
   /**
    * @docs-private
@@ -185,7 +190,8 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, Daff
     this.animationCompleted.emit(e);
     if (e.toState === 'closed') {
       this._focusStack.pop();
-      this.closedAnimationCompleted.emit(e);
+      this._closedAnimationCompleted.next(e);
+      this._closedAnimationCompleted.complete();
     }
   }
 
@@ -215,5 +221,12 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, Daff
   toggle() {
     this.openDirective.toggle();
     this.changeDetector.markForCheck();
+  }
+
+  /**
+   * @docs-private
+   */
+  ngOnDestroy() {
+    this._closedAnimationCompleted.complete();
   }
 }
