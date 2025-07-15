@@ -20,6 +20,7 @@ import {
   templateUrl: './list-item.component.html',
   host: {
     'class': 'daff-list-item',
+    '[class.active]': 'active',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
