@@ -55,8 +55,6 @@ class BottomStickyTestComponent {
   @ViewChild('container', { static: true }) container!: ElementRef<HTMLElement>;
 }
 
-
-
 @Component({
   standalone: true,
   imports: [DaffStickyTrackerDirective],
@@ -78,19 +76,21 @@ class ScrollableContainerTestComponent {
   @ViewChild('container', { static: true }) container!: ElementRef<HTMLElement>;
 }
 
-
-
-
+interface TestContext {
+  mockObserverCallback?: IntersectionObserverCallback;
+  mockObserverInstance: jasmine.SpyObj<IntersectionObserver>;
+  idleCallbacks: (() => void)[];
+  mockRequestIdleCallback: jasmine.Spy;
+  mockCancelIdleCallback: jasmine.Spy;
+  originalIntersectionObserver: any;
+  originalRequestIdleCallback: any;
+  originalCancelIdleCallback: any;
+  mockSetTimeout?: jasmine.Spy;
+  originalSetTimeout?: any;
+}
 
 describe('DaffStickyTrackerDirective', () => {
-  let mockObserverCallback: IntersectionObserverCallback | undefined;
-  let mockObserverInstance: jasmine.SpyObj<IntersectionObserver>;
-  let originalIntersectionObserver: any;
-  let mockRequestIdleCallback: jasmine.Spy;
-  let mockCancelIdleCallback: jasmine.Spy;
-  let originalRequestIdleCallback: any;
-  let originalCancelIdleCallback: any;
-  let idleCallbacks: (() => void)[] = [];
+  let testContext: TestContext;
 
   const createMockEntry = (
     target: Element,
@@ -136,54 +136,65 @@ describe('DaffStickyTrackerDirective', () => {
   };
 
   const triggerIdleCallbacks = () => {
-    const callbacks = [...idleCallbacks];
-    idleCallbacks = [];
+    const callbacks = [...testContext.idleCallbacks];
+    testContext.idleCallbacks = [];
     callbacks.forEach(callback => callback());
   };
 
   beforeEach(() => {
-    originalIntersectionObserver = (<any>globalThis).IntersectionObserver;
-    originalRequestIdleCallback = (<any>globalThis).requestIdleCallback;
-    originalCancelIdleCallback = (<any>globalThis).cancelIdleCallback;
+    const originalIntersectionObserver = (<any>globalThis).IntersectionObserver;
+    const originalRequestIdleCallback = (<any>globalThis).requestIdleCallback;
+    const originalCancelIdleCallback = (<any>globalThis).cancelIdleCallback;
 
-    idleCallbacks = [];
+    testContext = {
+      mockObserverCallback: undefined,
+      mockObserverInstance: jasmine.createSpyObj('IntersectionObserver', [
+        'observe',
+        'unobserve',
+        'disconnect',
+      ]),
+      idleCallbacks: [],
+      originalIntersectionObserver,
+      originalRequestIdleCallback,
+      originalCancelIdleCallback,
+      mockRequestIdleCallback: jasmine.createSpy('requestIdleCallback'),
+      mockCancelIdleCallback: jasmine.createSpy('cancelIdleCallback'),
+    };
 
-    mockObserverInstance = jasmine.createSpyObj('IntersectionObserver', [
-      'observe',
-      'unobserve',
-      'disconnect',
-    ]);
+    testContext.mockRequestIdleCallback.and.callFake((callback: () => void) => {
+      testContext.idleCallbacks.push(callback);
+      return testContext.idleCallbacks.length;
+    });
+
+    testContext.mockCancelIdleCallback.and.callFake((id: number) => {
+      if (id > 0 && id <= testContext.idleCallbacks.length) {
+        testContext.idleCallbacks[id - 1] = () => {};
+      }
+    });
 
     const MockIntersectionObserver = function(this: any, callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {
-      mockObserverCallback = callback;
-      this.observe = mockObserverInstance.observe;
-      this.unobserve = mockObserverInstance.unobserve;
-      this.disconnect = mockObserverInstance.disconnect;
+      testContext.mockObserverCallback = callback;
+      this.observe = testContext.mockObserverInstance.observe;
+      this.unobserve = testContext.mockObserverInstance.unobserve;
+      this.disconnect = testContext.mockObserverInstance.disconnect;
       return this;
     };
 
     (<any>globalThis).IntersectionObserver = MockIntersectionObserver;
-
-    mockRequestIdleCallback = jasmine.createSpy('requestIdleCallback').and.callFake((callback: () => void) => {
-      idleCallbacks.push(callback);
-      return idleCallbacks.length;
-    });
-
-    mockCancelIdleCallback = jasmine.createSpy('cancelIdleCallback').and.callFake((id: number) => {
-      if (id > 0 && id <= idleCallbacks.length) {
-        idleCallbacks[id - 1] = () => {};
-      }
-    });
-
-    (<any>globalThis).requestIdleCallback = mockRequestIdleCallback;
-    (<any>globalThis).cancelIdleCallback = mockCancelIdleCallback;
+    (<any>globalThis).requestIdleCallback = testContext.mockRequestIdleCallback;
+    (<any>globalThis).cancelIdleCallback = testContext.mockCancelIdleCallback;
   });
 
   afterEach(() => {
-    (<any>globalThis).IntersectionObserver = originalIntersectionObserver;
-    (<any>globalThis).requestIdleCallback = originalRequestIdleCallback;
-    (<any>globalThis).cancelIdleCallback = originalCancelIdleCallback;
-    idleCallbacks = [];
+    testContext.idleCallbacks = [];
+
+    (<any>globalThis).IntersectionObserver = testContext.originalIntersectionObserver;
+    (<any>globalThis).requestIdleCallback = testContext.originalRequestIdleCallback;
+    (<any>globalThis).cancelIdleCallback = testContext.originalCancelIdleCallback;
+
+    if (testContext.originalSetTimeout) {
+      (<any>globalThis).setTimeout = testContext.originalSetTimeout;
+    }
   });
 
   describe('Top Sticky Behavior', () => {
@@ -212,8 +223,6 @@ describe('DaffStickyTrackerDirective', () => {
       sentinelEl = findSentinelElement(containerEl, stickyEl, false);
     });
 
-
-
     it('should create sentinel element before sticky element', () => {
       expect(sentinelEl).toBeTruthy();
       expect(sentinelEl.style.opacity).toBe('0');
@@ -227,24 +236,24 @@ describe('DaffStickyTrackerDirective', () => {
     });
 
     it('should use requestIdleCallback for observer creation', () => {
-      expect(mockRequestIdleCallback).toHaveBeenCalledWith(jasmine.any(Function));
+      expect(testContext.mockRequestIdleCallback).toHaveBeenCalledWith(jasmine.any(Function));
     });
 
     it('should observe the sentinel element after idle callback', () => {
-      expect(mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
+      expect(testContext.mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
     });
 
     it('should add is-pinned class when sentinel is not intersecting (sticky element is pinned)', fakeAsync(() => {
-      if (!mockObserverCallback) {
+      if (!testContext.mockObserverCallback) {
         fail('Observer callback not set');
         return;
       }
 
-      mockObserverCallback([
+      testContext.mockObserverCallback([
         createMockEntry(sentinelEl, {
           isIntersecting: false,
         }),
-      ], mockObserverInstance);
+      ], testContext.mockObserverInstance);
 
       tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
@@ -253,26 +262,26 @@ describe('DaffStickyTrackerDirective', () => {
     }));
 
     it('should remove is-pinned class when sentinel is intersecting (sticky element is unpinned)', fakeAsync(() => {
-      if (!mockObserverCallback) {
+      if (!testContext.mockObserverCallback) {
         fail('Observer callback not set');
         return;
       }
 
-      mockObserverCallback([
+      testContext.mockObserverCallback([
         createMockEntry(sentinelEl, {
           isIntersecting: false,
         }),
-      ], mockObserverInstance);
+      ], testContext.mockObserverInstance);
 
       tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
       expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
 
-      mockObserverCallback([
+      testContext.mockObserverCallback([
         createMockEntry(sentinelEl, {
           isIntersecting: true,
         }),
-      ], mockObserverInstance);
+      ], testContext.mockObserverInstance);
 
       tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
@@ -305,8 +314,6 @@ describe('DaffStickyTrackerDirective', () => {
       sentinelEl = findSentinelElement(containerEl, stickyEl, true);
     });
 
-
-
     it('should create sentinel element after sticky element for bottom sticky', () => {
       expect(sentinelEl).toBeTruthy();
 
@@ -317,16 +324,16 @@ describe('DaffStickyTrackerDirective', () => {
     });
 
     it('should allow immediate pinned state for bottom sticky elements', fakeAsync(() => {
-      if (!mockObserverCallback) {
+      if (!testContext.mockObserverCallback) {
         fail('Observer callback not set');
         return;
       }
 
-      mockObserverCallback([
+      testContext.mockObserverCallback([
         createMockEntry(sentinelEl, {
           isIntersecting: false,
         }),
-      ], mockObserverInstance);
+      ], testContext.mockObserverInstance);
 
       tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
@@ -334,8 +341,6 @@ describe('DaffStickyTrackerDirective', () => {
       expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
     }));
   });
-
-
 
   describe('Scrollable Container Support', () => {
     let fixture: ComponentFixture<ScrollableContainerTestComponent>;
@@ -366,21 +371,17 @@ describe('DaffStickyTrackerDirective', () => {
       expect(stickyEl).toBeTruthy();
       expect(containerEl.style.overflowY).toBe('auto');
       expect(sentinelEl).toBeTruthy();
-      expect(mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
+      expect(testContext.mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
     });
 
     it('should use scrollable container as intersection root', () => {
       expect(stickyEl).toBeTruthy();
       expect(sentinelEl).toBeTruthy();
-      expect(mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
+      expect(testContext.mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
 
       expect(containerEl.style.overflowY).toBe('auto');
     });
   });
-
-
-
-
 
   describe('General Behavior', () => {
     let fixture: ComponentFixture<TopStickyTestComponent>;
@@ -408,36 +409,36 @@ describe('DaffStickyTrackerDirective', () => {
     });
 
     it('should handle multiple state changes correctly', fakeAsync(() => {
-      if (!mockObserverCallback) {
+      if (!testContext.mockObserverCallback) {
         fail('Observer callback not set');
         return;
       }
 
-      mockObserverCallback([
+      testContext.mockObserverCallback([
         createMockEntry(sentinelEl, {
           isIntersecting: true,
         }),
-      ], mockObserverInstance);
+      ], testContext.mockObserverInstance);
 
       tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
       expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
 
-      mockObserverCallback([
+      testContext.mockObserverCallback([
         createMockEntry(sentinelEl, {
           isIntersecting: false,
         }),
-      ], mockObserverInstance);
+      ], testContext.mockObserverInstance);
 
       tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
       expect(stickyEl.classList.contains('is-pinned')).toBeTrue();
 
-      mockObserverCallback([
+      testContext.mockObserverCallback([
         createMockEntry(sentinelEl, {
           isIntersecting: true,
         }),
-      ], mockObserverInstance);
+      ], testContext.mockObserverInstance);
 
       tick(DEBOUNCE_TIMEOUT);
       fixture.detectChanges();
@@ -445,24 +446,24 @@ describe('DaffStickyTrackerDirective', () => {
     }));
 
     it('should debounce rapid state changes', fakeAsync(() => {
-      if (!mockObserverCallback) {
+      if (!testContext.mockObserverCallback) {
         fail('Observer callback not set');
         return;
       }
 
-      mockObserverCallback([
+      testContext.mockObserverCallback([
         createMockEntry(sentinelEl, {
           isIntersecting: false,
         }),
-      ], mockObserverInstance);
+      ], testContext.mockObserverInstance);
 
       expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
 
-      mockObserverCallback([
+      testContext.mockObserverCallback([
         createMockEntry(sentinelEl, {
           isIntersecting: true,
         }),
-      ], mockObserverInstance);
+      ], testContext.mockObserverInstance);
 
       expect(stickyEl.classList.contains('is-pinned')).toBeFalse();
 
@@ -473,19 +474,19 @@ describe('DaffStickyTrackerDirective', () => {
     }));
 
     it('should cleanup observer on destroy', fakeAsync(() => {
-      expect(mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
-      expect(mockObserverInstance.unobserve).not.toHaveBeenCalledWith(sentinelEl);
+      expect(testContext.mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
+      expect(testContext.mockObserverInstance.unobserve).not.toHaveBeenCalledWith(sentinelEl);
 
       fixture.destroy();
       tick(DEBOUNCE_TIMEOUT);
 
-      expect(mockObserverInstance.unobserve).toHaveBeenCalledWith(sentinelEl);
-      expect(mockObserverInstance.disconnect).toHaveBeenCalledWith();
+      expect(testContext.mockObserverInstance.unobserve).toHaveBeenCalledWith(sentinelEl);
+      expect(testContext.mockObserverInstance.disconnect).toHaveBeenCalledWith();
     }));
 
     it('should cancel idle callback on destroy', () => {
       fixture.destroy();
-      expect(mockCancelIdleCallback).toHaveBeenCalledWith(jasmine.any(Number));
+      expect(testContext.mockCancelIdleCallback).toHaveBeenCalledWith(jasmine.any(Number));
     });
 
     it('should remove sentinel element on destroy', () => {
@@ -505,20 +506,21 @@ describe('DaffStickyTrackerDirective', () => {
     let stickyEl: HTMLElement;
     let containerEl: HTMLElement;
     let sentinelEl: HTMLElement;
-    let mockSetTimeout: jasmine.Spy;
 
     beforeEach(async () => {
+      testContext.originalSetTimeout = (<any>globalThis).setTimeout;
+
       (<any>globalThis).requestIdleCallback = undefined;
       (<any>globalThis).cancelIdleCallback = undefined;
 
-      mockSetTimeout = jasmine.createSpy('setTimeout').and.callFake((callback: () => void, delay: number) => {
+      testContext.mockSetTimeout = jasmine.createSpy('setTimeout').and.callFake((callback: () => void, delay: number) => {
         if (delay === 0) {
-          idleCallbacks.push(callback);
+          testContext.idleCallbacks.push(callback);
         }
-        return idleCallbacks.length;
+        return testContext.idleCallbacks.length;
       });
 
-      (<any>globalThis).setTimeout = mockSetTimeout;
+      (<any>globalThis).setTimeout = testContext.mockSetTimeout;
 
       await TestBed.configureTestingModule({
         imports: [TopStickyTestComponent],
@@ -538,8 +540,8 @@ describe('DaffStickyTrackerDirective', () => {
     });
 
     it('should use setTimeout fallback when requestIdleCallback is not available', () => {
-      expect(mockSetTimeout).toHaveBeenCalledWith(jasmine.any(Function), 0);
-      expect(mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
+      expect(testContext.mockSetTimeout).toHaveBeenCalledWith(jasmine.any(Function), 0);
+      expect(testContext.mockObserverInstance.observe).toHaveBeenCalledWith(sentinelEl);
     });
   });
 });
