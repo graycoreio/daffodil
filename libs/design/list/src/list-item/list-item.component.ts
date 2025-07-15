@@ -7,10 +7,7 @@ import {
   Input,
 } from '@angular/core';
 
-import {
-  DaffPrefixDirective,
-  DaffSuffixDirective,
-} from '@daffodil/design';
+import { DaffPrefixDirective } from '@daffodil/design';
 
 /* eslint-disable quote-props */
 @Component({
@@ -33,10 +30,6 @@ export class DaffListItemComponent {
    * @docs-private
    */
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
-  /**
-   * @docs-private
-   */
-  @ContentChild(DaffSuffixDirective) _suffix: DaffSuffixDirective;
 
   constructor(private elementRef: ElementRef) {}
 
@@ -46,7 +39,7 @@ export class DaffListItemComponent {
    * @docs-private
    */
   @HostBinding('attr.role') get role() {
-    return this._isAnchor ? 'navigation' : 'listitem';
+    return this._isAnchor ? null : 'listitem';
   };
 
   private get _isAnchor() {

@@ -1,7 +1,7 @@
 @use '../../../scss/typography' as t;
 @use '../../../scss/interactions';
 @use '../../../scss/layout';
-@use '../list-item-base' as base;
+@use '../list-base' as base;
 
 .daff-nav-list {
 	@include base.daff-list-base();

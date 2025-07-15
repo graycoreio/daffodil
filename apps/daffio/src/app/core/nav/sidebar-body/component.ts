@@ -10,7 +10,7 @@ import {
   Observable,
 } from 'rxjs';
 
-import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
+import { DAFF_NAV_LIST_COMPONENTS } from '@daffodil/design/list';
 import { DaffRouterDataService } from '@daffodil/router';
 
 import { DaffioRouteWithNavLinks } from '../link/route.type';
@@ -22,7 +22,7 @@ import { DaffioNavLink } from '../link/type';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AsyncPipe,
-    DAFF_LIST_COMPONENTS,
+    DAFF_NAV_LIST_COMPONENTS,
     RouterLink,
   ],
 })

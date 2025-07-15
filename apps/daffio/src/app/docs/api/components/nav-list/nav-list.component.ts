@@ -8,7 +8,7 @@ import {
   RouterLinkActive,
 } from '@angular/router';
 
-import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
+import { DAFF_NAV_LIST_COMPONENTS } from '@daffodil/design/list';
 import { DaffDocsApiNavList } from '@daffodil/docs-utils';
 
 const DEFAULT_ROUTER_LINK_ACTIVE_CONFIG: RouterLinkActive['routerLinkActiveOptions'] = {
@@ -22,7 +22,7 @@ const DEFAULT_ROUTER_LINK_ACTIVE_CONFIG: RouterLinkActive['routerLinkActiveOptio
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RouterLink,
-    DAFF_LIST_COMPONENTS,
+    DAFF_NAV_LIST_COMPONENTS,
     RouterLinkActive,
   ],
 })

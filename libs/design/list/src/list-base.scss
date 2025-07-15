@@ -30,11 +30,11 @@
 			padding: 0;
 		}
 
-		.daff-prefix,
-		.daff-suffix {
+		.daff-prefix {
 			display: flex;
 			align-items: center;
-			z-index: 2;
+			height: 1.5rem;
+			width: 1.5rem;
 		}
 	}
 }
