@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.87.1](https://github.com/graycoreio/daffodil/compare/v0.87.0...v0.87.1) (2025-07-15)
+
+
+### Features
+
+* **core:** make `daffFilterArrayToDict` generic ([#3824](https://github.com/graycoreio/daffodil/issues/3824)) ([55ce87f](https://github.com/graycoreio/daffodil/commit/55ce87f0cd91b17b3433ad188caa0db6eabc77cd))
+* **core:** strongly type extensions in factory partials ([#3828](https://github.com/graycoreio/daffodil/issues/3828)) ([e234000](https://github.com/graycoreio/daffodil/commit/e234000711ff622bef82b0a25569dc51bf372ec6))
+* **customer-payment:** allow extensions to factory model ([#3829](https://github.com/graycoreio/daffodil/issues/3829)) ([767c83f](https://github.com/graycoreio/daffodil/commit/767c83f428eb0e36db7860276c5bf5225e448f50))
+* **navigation:** move tree generation to mock constructor ([#3827](https://github.com/graycoreio/daffodil/issues/3827)) ([d5da624](https://github.com/graycoreio/daffodil/commit/d5da624874c4ed1c259ad18e4c721fd8cbca0b44))
+* **navigation:** widen the magento transform type ([#3826](https://github.com/graycoreio/daffodil/issues/3826)) ([83e24d2](https://github.com/graycoreio/daffodil/commit/83e24d25816b78f2ab2944660b86df18e05ec2c8))
+* **search-product:** return `DaffSearchProductResult` from state ([#3830](https://github.com/graycoreio/daffodil/issues/3830)) ([3b3a1b0](https://github.com/graycoreio/daffodil/commit/3b3a1b075ee96d0843581915829bc7560f299461))
+
 ## [0.87.0](https://github.com/graycoreio/daffodil/compare/v0.86.0...v0.87.0) (2025-07-10)
 
 
