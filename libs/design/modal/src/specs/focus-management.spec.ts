@@ -102,7 +102,7 @@ describe('@daffodil/design/modal | DaffModalComponent | Focus Management', () =>
       wrapper.closeModal();
       fixture.detectChanges();
 
-      modal.closedAnimationCompleted.subscribe(() => {
+      modal.closedAnimationCompleted$.subscribe(() => {
         expect(focusStackService.length()).toEqual(0);
         expect(document.activeElement).toEqual(activatorButton);
       });
