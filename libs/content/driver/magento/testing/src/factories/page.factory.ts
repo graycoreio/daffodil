@@ -6,6 +6,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockMagentoCmsPage implements MagentoCmsPage {
   __typename = <const>'CmsPage';
+  type = <const>'CMS_PAGE';
   identifier = faker.string.uuid();
   title = faker.lorem.word();
   content = faker.lorem.words(5);

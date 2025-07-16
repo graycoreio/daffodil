@@ -16,14 +16,14 @@ describe('@daffodil/content/driver/magento | validateMagentoContentGetPageRespon
 
     response = {
       data: {
-        cmsPage: factory.create(),
+        route: factory.create(),
       },
       loading: null,
       networkStatus: null,
     };
   });
 
-  describe('when the response has a content list defined', () => {
+  describe('when the response has a content page defined', () => {
     it('should return the response and not throw an error', () => {
       const result = validator(response);
 
@@ -33,7 +33,7 @@ describe('@daffodil/content/driver/magento | validateMagentoContentGetPageRespon
 
   describe('when the response does not have a page defined', () => {
     beforeEach(() => {
-      response.data.cmsPage = null;
+      response.data.route = null;
     });
 
     it('should throw a DaffContentInvalidAPIResponseError', () => {
@@ -43,7 +43,7 @@ describe('@daffodil/content/driver/magento | validateMagentoContentGetPageRespon
 
   describe('when the response has an content without a title', () => {
     beforeEach(() => {
-      response.data.cmsPage.title = null;
+      delete response.data.route.title;
     });
 
     it('should throw a DaffContentInvalidAPIResponseError', () => {

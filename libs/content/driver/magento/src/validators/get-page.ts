@@ -8,7 +8,7 @@ import { MagentoContentGetPageResponse } from '../queries/public_api';
 
 export const validateMagentoContentGetPageResponse: GraphQlApolloValidator<MagentoContentGetPageResponse> = (response: ApolloQueryResult<MagentoContentGetPageResponse>) => {
   if (response.data?.route?.type === 'CMS_PAGE') {
-    if (validateFieldPresence<any>(response.data?.route, 'content', 'title', 'identifier')) {
+    if (validateFieldPresence<any>(response.data.route, 'content', 'title', 'identifier')) {
       return response;
     } else {
       throw new DaffContentInvalidAPIResponseError('The page response does not contain required fields.');
