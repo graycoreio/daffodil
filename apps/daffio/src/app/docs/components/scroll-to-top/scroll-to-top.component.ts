@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { debounce } from '@daffodil/core';
 
 @Component({
   selector: 'daffio-docs-scroll-to-top',
@@ -25,6 +26,7 @@ export class DaffioDocsScrollToTopComponent {
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
   @HostListener('document:scroll')
+  @debounce()
   onScroll() {
     const currentScrollPosition = this.document.documentElement.scrollTop || this.document.body.scrollTop;
 
