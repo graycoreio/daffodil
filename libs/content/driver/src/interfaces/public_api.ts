@@ -3,3 +3,4 @@ export {
   DaffContentDriver,
   provideDaffContentDriver,
 } from './service.interface';
+export * from './page.interface';

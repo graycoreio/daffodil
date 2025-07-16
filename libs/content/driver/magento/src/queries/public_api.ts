@@ -1,4 +1,5 @@
 export * from './fragments/public_api';
+export * from './get-page/public_api';
 
 export {
   getCmsBlocks,

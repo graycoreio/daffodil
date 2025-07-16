@@ -4,10 +4,17 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffContentDriver } from '@daffodil/content/driver';
-import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento';
+import {
+  provideDaffContentDriver,
+  provideDaffContentPageDriver,
+} from '@daffodil/content/driver';
+import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/magento';
 
-import { MAGENTO_CONTENT_GET_BLOCKS_QUERY_NAME } from './queries/public_api';
+import { MagentoContentPageService } from './page.service';
+import {
+  MAGENTO_CONTENT_GET_BLOCKS_QUERY_NAME,
+  MAGENTO_CONTENT_GET_PAGE_QUERY_NAME,
+} from './queries/public_api';
 import { MagentoContentService } from './service';
 
 @NgModule({
@@ -21,7 +28,8 @@ export class DaffContentMagentoDriverModule {
       ngModule: DaffContentMagentoDriverModule,
       providers: [
         provideDaffContentDriver(MagentoContentService),
-        provideDaffMagentoCacheableOperation(MAGENTO_CONTENT_GET_BLOCKS_QUERY_NAME),
+        provideDaffContentPageDriver(MagentoContentPageService),
+        provideManyDaffMagentoCacheableOperations(MAGENTO_CONTENT_GET_BLOCKS_QUERY_NAME, MAGENTO_CONTENT_GET_PAGE_QUERY_NAME),
       ],
     };
   }

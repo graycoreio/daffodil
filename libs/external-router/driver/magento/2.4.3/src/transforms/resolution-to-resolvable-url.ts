@@ -13,17 +13,21 @@ import { transformSchema } from './schema/transform-schema';
 
 export const transformResolutionToResolvableUrlv243 = (
   resolution: MagentoRoute,
-): DaffExternallyResolvableUrl  => (resolution && (resolution.type === 'CATEGORY' || resolution.type ==='PRODUCT') ? {
-  id: resolution.uid,
-  url: daffUriTruncateLeadingSlash(daffUriTruncateQueryFragment(resolution.relative_url)),
-  type: resolution.type,
-  code: magentoTransformRedirectToHttpCode(resolution.redirect_code),
-  data: {
-    canonical_url: resolution?.canonical_url,
-    title: resolution.meta_title ?? resolution.name ?? '',
-    meta_description: resolution.meta_description,
-    schema: {
-      ...transformSchema(resolution),
+): DaffExternallyResolvableUrl  => resolution?.type && resolution.type !== 'UNKNOWN'
+  ? {
+    id: resolution.type === 'CMS_PAGE' ? resolution.identifier : resolution.uid,
+    url: daffUriTruncateLeadingSlash(daffUriTruncateQueryFragment(resolution.relative_url)),
+    type: resolution.type,
+    code: magentoTransformRedirectToHttpCode(resolution.redirect_code),
+    data: {
+      canonical_url: resolution.type === 'CMS_PAGE' ? resolution.url_key : resolution.canonical_url,
+      title: resolution.type === 'CMS_PAGE'
+        ? resolution.meta_title ?? resolution.title ?? ''
+        : resolution.meta_title ?? resolution.name ?? '',
+      meta_description: resolution.meta_description,
+      schema: {
+        ...transformSchema(resolution),
+      },
     },
-  },
-} : DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION);
+  }
+  : DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION;

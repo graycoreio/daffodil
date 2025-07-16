@@ -12,6 +12,14 @@ export const MagentoResolveUrlv243 = gql`
 			relative_url
 			redirect_code
 			type
+			... on CmsPage {
+				identifier
+				title
+				content
+				meta_description
+				meta_title
+				url_key
+			}
 			... on CategoryInterface {
 				uid
 				name

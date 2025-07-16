@@ -27,5 +27,4 @@ export const transformClientUrls = <T extends MagentoRoute>(route: T, origin: st
     default:
       return route;
   }
-  return route;
 };
