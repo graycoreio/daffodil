@@ -24,12 +24,9 @@ class WrapperComponent {}
 
 describe('@daffodil/design/list | DaffListItemComponent', () => {
   let wrapper: WrapperComponent;
-  let de: DebugElement;
-  let fixture: ComponentFixture<WrapperComponent>;
   let itemDE: DebugElement;
+  let fixture: ComponentFixture<WrapperComponent>;
   let anchorDE: DebugElement;
-  let listItem: DaffListItemComponent;
-  let anchorListItem: DaffListItemComponent;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -42,8 +39,9 @@ describe('@daffodil/design/list | DaffListItemComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    de = fixture.debugElement.query(By.css('daff-list-item'));
-    wrapper = de.componentInstance;
+    itemDE = fixture.debugElement.query(By.css('daff-list-item'));
+    wrapper = itemDE.componentInstance;
+    anchorDE = fixture.debugElement.query(By.css('a[daff-list-item]'));
     fixture.detectChanges();
   });
 
@@ -51,34 +49,21 @@ describe('@daffodil/design/list | DaffListItemComponent', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('<daff-list-item>', () => {
-    beforeEach(() => {
-      itemDE = fixture.debugElement.query(By.css('daff-list-item'));
-      anchorDE = fixture.debugElement.query(By.css('a[daff-list-item]'));
-      listItem = itemDE.componentInstance;
-      anchorListItem = anchorDE.componentInstance;
-    });
+  it('should add a class of "daff-list-item" to the host element', () => {
+    expect(itemDE.classes).toEqual(jasmine.objectContaining({
+      'daff-list-item': true,
+    }));
 
-    it('should add a class of "daff-list-item" to the host element', () => {
-      expect(itemDE.classes).toEqual(jasmine.objectContaining({
-        'daff-list-item': true,
-      }));
+    expect(anchorDE.classes).toEqual(jasmine.objectContaining({
+      'daff-list-item': true,
+    }));
+  });
 
-      expect(anchorDE.classes).toEqual(jasmine.objectContaining({
-        'daff-list-item': true,
-      }));
-    });
+  it('should have a role of listitem if it is used without an anchor element', () => {
+    expect(itemDE.nativeElement.role).toBe('listitem');
+  });
 
-    describe('if it is used without an anchor element', () => {
-      it('should have a role of listitem', () => {
-        expect(listItem.role).toBe('listitem');
-      });
-    });
-
-    describe('if it is used with an anchor element', () => {
-      it('should not have a role applied', () => {
-        expect(anchorListItem.role).toBe(null);
-      });
-    });
+  it('should not have a role applied if it is used with an anchor element', () => {
+    expect(anchorDE.nativeElement.role).toBe(null);
   });
 });

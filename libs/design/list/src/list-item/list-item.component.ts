@@ -1,7 +1,6 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  HostBinding,
   ContentChild,
   ElementRef,
   Input,
@@ -18,13 +17,14 @@ import { DaffPrefixDirective } from '@daffodil/design';
   host: {
     'class': 'daff-list-item',
     '[class.active]': 'active',
+    '[attr.role]': 'this._isAnchor ? null : "listitem"',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class DaffListItemComponent {
-  /** Whether or not the header item is active */
-  @Input() @HostBinding('class.active') active = false;
+  /** Whether an item in a `<daff-nav-list>` is the currently active item. */
+  @Input() active = false;
 
   /**
    * @docs-private
@@ -32,15 +32,6 @@ export class DaffListItemComponent {
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
 
   constructor(private elementRef: ElementRef) {}
-
-  /**
-   * Sets the role for a regular `<daff-list-item>` to listitem and an `a[daff-list-item]` to navigation.
-   *
-   * @docs-private
-   */
-  @HostBinding('attr.role') get role() {
-    return this._isAnchor ? null : 'listitem';
-  };
 
   private get _isAnchor() {
     return this.elementRef.nativeElement.nodeName.toLowerCase() === 'a';

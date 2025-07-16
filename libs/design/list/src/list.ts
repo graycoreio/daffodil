@@ -1,7 +1,4 @@
-import {
-  DaffPrefixDirective,
-  DaffSuffixDirective,
-} from '@daffodil/design';
+import { DaffPrefixDirective } from '@daffodil/design';
 
 import { DaffListComponent } from './list/list.component';
 import { DaffListItemComponent } from './list-item/list-item.component';
@@ -16,7 +13,6 @@ export const DAFF_LIST_COMPONENTS = <const> [
   DaffListItemComponent,
   DaffListItemTitleDirective,
   DaffPrefixDirective,
-  DaffSuffixDirective,
 ];
 
 /**
@@ -27,5 +23,4 @@ export const DAFF_NAV_LIST_COMPONENTS = <const> [
   DaffListItemComponent,
   DaffListItemTitleDirective,
   DaffPrefixDirective,
-  DaffSuffixDirective,
 ];
