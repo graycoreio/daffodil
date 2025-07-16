@@ -5,6 +5,7 @@ export { Constructable } from './constructable/constructable';
 
 export * from './base64/public_api';
 export * from './collection/public_api';
+export * from './decorators/public_api';
 export * from './errors/public_api';
 export * from './filterable/public_api';
 export * from './filters/public_api';
