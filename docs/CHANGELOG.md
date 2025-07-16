@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.87.2](https://github.com/graycoreio/daffodil/compare/v0.87.1...v0.87.2) (2025-07-16)
+
+
+### Features
+
+* **category,product:** resolve entity with `route` query ([#3777](https://github.com/graycoreio/daffodil/issues/3777)) ([9324259](https://github.com/graycoreio/daffodil/commit/9324259031070ae0de2e378e2b865afcaf99bf75))
+* **content:** add support for CMS pages ([#3835](https://github.com/graycoreio/daffodil/issues/3835)) ([f75a48f](https://github.com/graycoreio/daffodil/commit/f75a48f2f8fe029ad4e4d1aaabb2846528ec7f9f))
+
 ## [0.87.1](https://github.com/graycoreio/daffodil/compare/v0.87.0...v0.87.1) (2025-07-15)
 
 
