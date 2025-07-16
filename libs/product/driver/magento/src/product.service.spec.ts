@@ -122,10 +122,7 @@ describe('@daffodil/product/driver/magento | DaffMagentoProductService', () => {
 
       op.flush({
         data: {
-          products: {
-            __typename: 'Products',
-            items: [stubSimpleProduct],
-          },
+          route: stubSimpleProduct,
         },
       });
     });
