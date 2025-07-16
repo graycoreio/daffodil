@@ -8,14 +8,14 @@ describe('debounce decorator', () => {
   beforeEach(() => {
     mockMethod = jasmine.createSpy('mockMethod');
     pendingTimeouts = [];
-    
+
     class TestClass {
-      @debounce(200) 
+      @debounce(200)
       debouncedMethod(...args: any[]) {
         mockMethod(...args);
       }
 
-      @debounce(500) 
+      @debounce(500)
       quickDefaultMethod(...args: any[]) {
         mockMethod(...args);
       }
@@ -30,42 +30,42 @@ describe('debounce decorator', () => {
   });
 
   const setTestTimeout = (callback: () => void, delay: number): number => {
-    const timeoutId = setTimeout(callback, delay) as any;
+    const timeoutId = <any>setTimeout(callback, delay);
     pendingTimeouts.push(timeoutId);
     return timeoutId;
   };
 
   it('should delay method execution', (done) => {
     testClass.debouncedMethod('test');
-    
+
     expect(mockMethod).not.toHaveBeenCalled();
-    
+
     setTestTimeout(() => {
       expect(mockMethod).toHaveBeenCalledWith('test');
       expect(mockMethod).toHaveBeenCalledTimes(1);
       done();
-    }, 400); 
+    }, 400);
   });
 
   it('should debounce multiple rapid calls', (done) => {
     testClass.debouncedMethod('call1');
     testClass.debouncedMethod('call2');
     testClass.debouncedMethod('call3');
-    
+
     expect(mockMethod).not.toHaveBeenCalled();
-    
+
     setTestTimeout(() => {
       expect(mockMethod).toHaveBeenCalledWith('call3');
       expect(mockMethod).toHaveBeenCalledTimes(1);
       done();
-    }, 400); 
+    }, 400);
   });
 
   it('should preserve method context', (done) => {
     class ContextTest {
       value = 'context-value';
 
-      @debounce(100) 
+      @debounce(100)
       testContext() {
         mockMethod(this.value);
       }
@@ -77,7 +77,7 @@ describe('debounce decorator', () => {
     setTestTimeout(() => {
       expect(mockMethod).toHaveBeenCalledWith('context-value');
       done();
-    }, 300); 
+    }, 300);
   });
 
   it('should use default delay when no parameter provided', (done) => {
@@ -91,12 +91,12 @@ describe('debounce decorator', () => {
       expect(mockMethod).toHaveBeenCalledWith('default-test');
       expect(mockMethod).toHaveBeenCalledTimes(1);
       done();
-    }, 800); 
+    }, 800);
   });
 
   it('should cancel previous timeout when called again', (done) => {
     testClass.debouncedMethod('first');
-    
+
     setTestTimeout(() => {
       testClass.debouncedMethod('second');
     }, 100);
@@ -109,6 +109,6 @@ describe('debounce decorator', () => {
       expect(mockMethod).toHaveBeenCalledWith('second');
       expect(mockMethod).toHaveBeenCalledTimes(1);
       done();
-    }, 500); 
+    }, 500);
   });
-}); 
+});
