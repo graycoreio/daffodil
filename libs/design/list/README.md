@@ -1,10 +1,22 @@
 # List
-List is a flexible component that can be used to display a series of content. It can be modified to support a range of content types.
+List is a stylized container used to vertically group a series of related content.
+
+## Overview
+List supports two main variants:
+
+| Attribute | Description |
+| --------- | ----------- |
+| `daff-list` | A standard list used for grouping generic content. |
+| `daff-nav-list` | A navigation list intended for use with anchor elements (`<a>`). |
 
 ## Usage
 
 ### Within a standalone component
-To use list in a standalone component, import `DAFF_LIST_COMPONENTS` directly into your custom component:
+To use list in a standalone component, import each list type directly into your custom component.
+
+Available imports:
+- `DAFF_LIST_COMPONENTS`
+- `DAFF_NAV_LIST_COMPONENTS`
 
 ```ts
 import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
@@ -43,22 +55,40 @@ export class CustomComponentModule { }
 
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
-## Basic List
-A `<daff-list>` consists of multiple `<daff-list-item>`s.
+## Anatomy
+A list consists of multiple `daff-list-item` elements.
 
-<design-land-example-viewer-container example="basic-list"></design-land-example-viewer-container>
+```html
+<daff-list>
+  <daff-list-item></daff-list-item>
+  <daff-list-item></daff-list-item>
+  <daff-list-item></daff-list-item>
+</daff-list>
+```
 
-## Navigation List
-Use `<daff-nav-list>` for navigation lists. `<daff-list-item>` should be directly added to an anchor tag.
+```html
+<daff-nav-list>
+  <a href="/" daff-list-item></a>
+  <a href="/" daff-list-item></a>
+  <a href="/" daff-list-item></a>
+</daff-nav-list>
+```
 
-<design-land-example-viewer-container example="nav-list"></design-land-example-viewer-container>
+### Icon support
+Use the `[daffPrefix]` directive to display a leading visual icon to a list item.
 
-## Multi-line List
-For lists that have multiple lines per item, wrap each line appropriately with a heading or paragraph tag.
+<design-land-example-viewer-container example="icon-list"></design-land-example-viewer-container>
+
+### Multi-line lists
+For list items that contain multiple lines of text, use the `[daffListItemTitle]` directive to identify the primary title. Additional supporting content can be added using `<div>` or `<p>` elements.
 
 <design-land-example-viewer-container example="multiline-list"></design-land-example-viewer-container>
 
-## List with Icons
-To add an icon to a list item, use the `daffPrefix` or `daffSuffix` attributes for the appropriate placements.
+## Accessibility
+By default, list includes appropriate ARIA roles by default to support screen readers and provide an accessible experience.
 
-<design-land-example-viewer-container example="icon-list"></design-land-example-viewer-container>
+- `<daff-list>` is assigned `role="list"` to identify a list of items.
+- `<daff-list-item>` within a `<daff-list>` is assigned `role="listitem"` to identify a list item contained inside the list.
+- `<daff-nav-list>`is assigned `role="navigation"` to indicate that the list is used for navigation.
+
+> Always provide an accessible label for `<daff-nav-list>` via `aria-label` or `aria-labelledby` to describe its purpose (e.g. `"Footer links"` or `"Sidebar links"`).

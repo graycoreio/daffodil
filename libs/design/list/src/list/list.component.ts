@@ -7,6 +7,17 @@ import {
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
 /* eslint-disable quote-props */
+/**
+ * A standard list used for grouping generic content.
+ *
+ * @example
+ * ```html
+ * <daff-list>
+ *  <daff-list-item>List item</daff-list-item>
+ *  <daff-list-item>List item</daff-list-item>
+ * </daff-list>
+ * ```
+ */
 @Component({
   selector: 'daff-list',
   template: '<ng-content></ng-content>',

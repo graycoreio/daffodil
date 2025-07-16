@@ -9,6 +9,15 @@ import {
 import { DaffPrefixDirective } from '@daffodil/design';
 
 /* eslint-disable quote-props */
+/**
+ * Individual items within a list.
+ *
+ * @example
+ * ```html
+ * <daff-list-item>Standard list item</daff-list-item>
+ * <a href="/" daff-list-item> Linked list item</a>
+ * ```
+ */
 @Component({
   selector:
     'daff-list-item' + ',' +
