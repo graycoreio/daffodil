@@ -6,7 +6,6 @@ import {
 } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { TestBed } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
@@ -34,7 +33,6 @@ describe('@daffodil/design/toast | DaffToastService', () => {
         FontAwesomeModule,
         PortalModule,
         OverlayModule,
-        NoopAnimationsModule,
 
         DaffToastComponent,
         DaffToastActionsDirective,

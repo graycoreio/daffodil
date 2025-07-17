@@ -1,10 +1,4 @@
 import {
-  animate,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
-import {
   NgFor,
   NgTemplateOutlet,
   SlicePipe,
@@ -42,7 +36,7 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
       [toast]="item"
       [status]="item.status ?? null"
       (closeToast)="item.dismiss()"
-      [@slideIn]="slideAnimation"
+      [class]="'slide-in-' + getAnimationDirection()"
       [attr.role]="item.actions ? 'alertdialog' : 'status'"
       [attr.aria-labelledby]="item.actions ? item.title : undefined"
       [attr.aria-describedby]="item.actions ? item.message : undefined">
@@ -110,19 +104,6 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
       }
     </ng-template>
   `,
-  animations: [
-    trigger('slideIn', [
-      transition(':enter', [
-        style({ opacity: '0', transform: 'translate({{startX}}, {{startY}})' }),
-        animate('300ms ease-out', style({ opacity: '1', transform: 'translate({{endX}}, {{endY}})' })),
-      ], { params: {
-        startX: '0',
-        startY: '0',
-        endX: '0',
-        endY: '0',
-      } }),
-    ]),
-  ],
   imports: [
     DAFF_BUTTON_COMPONENTS,
     DaffToastComponent,
@@ -153,52 +134,22 @@ export class DaffToastTemplateComponent {
     this.closeToast.emit();
   }
 
-  get slideAnimation(): any {
-    switch (this.toastPosition.config.horizontal + '-' + this.toastPosition.config.vertical) {
+  getAnimationDirection(): string {
+    const position = this.toastPosition.config.horizontal + '-' + this.toastPosition.config.vertical;
+
+    switch (position) {
       case 'left-top':
       case 'left-bottom':
-        return {
-          value: 0,
-          params: {
-            startX: '-100%',
-            endX: '0',
-            startY: '0',
-            endY: '0',
-          },
-        };
+        return 'left';
       case 'right-top':
       case 'right-bottom':
-        return {
-          value: 0,
-          params: {
-            startX: '100%',
-            endX: '0',
-            startY: '0',
-            endY: '0',
-          },
-        };
-
+        return 'right';
       case 'center-top':
-        return {
-          value: 0,
-          params: {
-            startX: '0',
-            endX: '0',
-            startY: '-100%',
-            endY: '0',
-          },
-        };
-
+        return 'top';
       case 'center-bottom':
-        return {
-          value: 0,
-          params: {
-            startX: '0',
-            endX: '0',
-            startY: '100%',
-            endY: '0',
-          },
-        };
+        return 'bottom';
+      default:
+        return 'left';
     }
   }
 

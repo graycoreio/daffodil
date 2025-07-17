@@ -3,6 +3,7 @@
 
 $-multiple-toast-margin: 0.75rem;
 
+// stylelint-disable selector-class-pattern
 .daff-toast {
 	$root: &;
 	display: flex;
@@ -90,5 +91,57 @@ $-multiple-toast-margin: 0.75rem;
 		gap: 0.5rem;
 		min-height: 3rem;
 		padding: 0 1rem 1rem;
+	}
+
+	@keyframes slideInLeft {
+		from {
+			transform: translateX(-100%);
+		}
+		to {
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes slideInRight {
+		from {
+			transform: translateX(100%);
+		}
+		to {
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes slideInTop {
+		from {
+			transform: translateY(-100%);
+		}
+		to {
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes slideInBottom {
+		from {
+			transform: translateY(100%);
+		}
+		to {
+			transform: translateY(0);
+		}
+	}
+
+	&.slide-in-left {
+		animation: slideInLeft 300ms ease-out;
+	}
+
+	&.slide-in-right {
+		animation: slideInRight 300ms ease-out;
+	}
+
+	&.slide-in-top {
+		animation: slideInTop 300ms ease-out;
+	}
+
+	&.slide-in-bottom {
+		animation: slideInBottom 300ms ease-out;
 	}
 }

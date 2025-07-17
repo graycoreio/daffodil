@@ -226,9 +226,6 @@ export class DaffToastService implements OnDestroy {
     this._toasts = this._toasts.filter(m => m !== toast);
     this._template.instance.items = [...this._toasts];
 
-    // This currently overrides the ":leave" animation as we currently
-    // remove the animating element immediately after there are no more toasts,
-    // without waiting for the animation to complete.
     if(this._toasts.length === 0) {
       this._overlayRef.dispose();
       this._template.destroy();
