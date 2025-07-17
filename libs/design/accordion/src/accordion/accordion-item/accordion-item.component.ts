@@ -35,7 +35,6 @@ let daffAccordionItemContentId = 0;
   styleUrls: ['./accordion-item.component.scss'],
   hostDirectives: [{
     directive: DaffOpenableDirective,
-    inputs: ['open'],
     outputs: ['toggled'],
   }],
   encapsulation: ViewEncapsulation.None,
