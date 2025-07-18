@@ -18,7 +18,7 @@ import { DaffProgressBarComponent } from './progress-bar.component';
 
 @Component({
   template: `
-  <daff-progress-bar [color]="color" [percentage]="percentage" (finished)="onAnimationComplete()">
+  <daff-progress-bar [color]="color" [percentage]="percentage" (finished)="onTransitionEnd()">
   </daff-progress-bar>
   `,
   imports: [
@@ -28,7 +28,7 @@ import { DaffProgressBarComponent } from './progress-bar.component';
 class WrapperComponent {
   color: DaffPalette;
   percentage: number;
-  onAnimationComplete(): void {};
+  onTransitionEnd(): void {};
 }
 
 describe('DaffProgressBarComponent', () => {
@@ -79,12 +79,22 @@ describe('DaffProgressBarComponent', () => {
    */
   it('should emit `finished` when the progress bar is filled and the animation is complete', fakeAsync(() => {
     wrapper.percentage = 100;
-    spyOn(wrapper, 'onAnimationComplete');
+    spyOn(wrapper, 'onTransitionEnd');
+
+    fixture.detectChanges();
+
+    const determinateBar = fixture.debugElement.query(By.css('.determinate-bar'));
+    const transitionEvent = new TransitionEvent('transitionend', {
+      propertyName: 'transform',
+      elapsedTime: 1,
+    });
+
+    determinateBar.nativeElement.dispatchEvent(transitionEvent);
 
     fixture.detectChanges();
     flush();
 
-    expect(wrapper.onAnimationComplete).toHaveBeenCalledTimes(1);
+    expect(wrapper.onTransitionEnd).toHaveBeenCalledTimes(1);
   }));
 
   it('should be unfilled by default', () => {

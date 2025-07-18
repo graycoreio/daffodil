@@ -26,6 +26,10 @@ $height: 4px;
 		width: 100%;
 		transform: scaleX(0);
 		transform-origin: 0 center;
+
+		&.determinate-bar {
+			transition: transform 100ms ease-in-out;
+		}
 	}
 
 	// stylelint-disable selector-class-pattern
