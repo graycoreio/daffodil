@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import {
   DaffCartPlaceOrder,
   DaffCartOrderReducerState,
@@ -30,7 +32,9 @@ import {
   DaffCartShippingInformationUpdateSuccess,
   DaffCartShippingInformationActionTypes,
   DaffCartShippingInformationDeleteSuccess,
+  DaffCartPlaceOrderFailureFromOutOfStockProduct,
 } from '@daffodil/cart/state';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 import {
   DaffState,
   DaffStateError,
@@ -110,6 +114,35 @@ describe('@daffodil/cart/state | daffCartOrderReducer', () => {
       };
 
       const cartPlaceOrderFailure = new DaffCartPlaceOrderFailure([error]);
+
+      result = reducer(state, cartPlaceOrderFailure);
+    });
+
+    it('should indicate that the place order operation is not in progress', () => {
+      expect(result.loading).toEqual(DaffState.Stable);
+    });
+
+    it('should set the action errors in state', () => {
+      expect(result.errors).toEqual([error]);
+    });
+  });
+
+  describe('when CartPlaceOrderFailureFromOutOfStockProductAction is triggered', () => {
+    const error: DaffStateError = { code: 'error code', message: 'error message' };
+    let result;
+    let state: DaffCartOrderReducerState;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        loading: DaffState.Resolving,
+        errors: [
+          ...initialState.errors,
+          error,
+        ],
+      };
+
+      const cartPlaceOrderFailure = new DaffCartPlaceOrderFailureFromOutOfStockProduct([error], TestBed.inject(DaffCartFactory).create());
 
       result = reducer(state, cartPlaceOrderFailure);
     });

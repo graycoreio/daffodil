@@ -43,6 +43,7 @@ export function daffCartOrderReducer<T extends DaffCartOrderResult = DaffCartOrd
         cartOrderResult: action.payload,
       };
 
+    case DaffCartOrderActionTypes.CartPlaceOrderFailureFromOutOfStockProductAction:
     case DaffCartOrderActionTypes.CartPlaceOrderFailureAction:
       return {
         ...state,

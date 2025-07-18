@@ -18,6 +18,8 @@ import {
 import {
   DaffCartOrderServiceInterface,
   DaffCartOrderDriver,
+  DaffCartDriverResolveService,
+  DaffProductOutOfStockError,
 } from '@daffodil/cart/driver';
 import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 import {
@@ -26,6 +28,7 @@ import {
   DaffCartPlaceOrderSuccess,
   DaffCartPlaceOrderFailure,
   DaffCartCreate,
+  DaffCartPlaceOrderFailureFromOutOfStockProduct,
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
@@ -55,6 +58,7 @@ describe('@daffodil/cart/state | DaffCartOrderEffects', () => {
 
   let driverPlaceOrderSpy: jasmine.Spy<DaffCartOrderServiceInterface['placeOrder']>;
   let getCartIdSpy: jasmine.Spy<DaffCartStorageService['getCartId']>;
+  let getCartSpy: jasmine.SpyObj<DaffCartDriverResolveService>;
 
   const cartStorageFailureAction = new DaffCartStorageFailure([daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.'))]);
   const throwStorageError = () => {
@@ -62,6 +66,8 @@ describe('@daffodil/cart/state | DaffCartOrderEffects', () => {
   };
 
   beforeEach(() => {
+    getCartSpy = jasmine.createSpyObj('DaffCartDriverResolveService', ['getCartIdOrFail', 'getCartOrFail']);
+
     TestBed.configureTestingModule({
       imports: [
         DaffTestingCartDriverModule.forRoot(),
@@ -69,6 +75,10 @@ describe('@daffodil/cart/state | DaffCartOrderEffects', () => {
       providers: [
         DaffCartOrderEffects,
         provideMockActions(() => actions$),
+        {
+          provide: DaffCartDriverResolveService,
+          useValue: getCartSpy,
+        },
       ],
     });
 
@@ -85,6 +95,11 @@ describe('@daffodil/cart/state | DaffCartOrderEffects', () => {
     driverPlaceOrderSpy = spyOn(cartOrderDriver, 'placeOrder');
     getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
     getCartIdSpy.and.returnValue(mockCart.id);
+    getCartSpy.getCartIdOrFail.and.returnValue(of(mockCart.id));
+    getCartSpy.getCartOrFail.and.returnValue(of({
+      errors: [],
+      response: mockCart,
+    }));
   });
 
   it('should be created', () => {
@@ -129,9 +144,79 @@ describe('@daffodil/cart/state | DaffCartOrderEffects', () => {
       });
     });
 
+    describe('and the call to CartOrderService fails due to a product out of stock error', () => {
+      let error: DaffStateError;
+
+      beforeEach(() => {
+        error = daffTransformErrorToStateError(new DaffProductOutOfStockError('Product out of stock'));
+        const response = cold('#', {}, error);
+
+        driverPlaceOrderSpy.and.returnValue(response);
+        actions$ = hot('--a', { a: cartPlaceOrderAction });
+      });
+
+      it('should try to resolve the cart', () => {
+        expect(effects.placeOrder$).toBeObservable(cold('--b', { b: jasmine.anything() }));
+        expect(getCartSpy.getCartOrFail).toHaveBeenCalledWith();
+      });
+
+      describe('when the resolve cart is successful', () => {
+        beforeEach(() => {
+          const failureFromOoSAction = new DaffCartPlaceOrderFailureFromOutOfStockProduct([error], mockCart);
+
+          getCartSpy.getCartOrFail.and.returnValue(of({
+            errors: [],
+            response: mockCart,
+          }));
+          actions$ = hot('--a', { a: cartPlaceOrderAction });
+          expected = cold('--b', { b: failureFromOoSAction });
+        });
+
+        it('should dispatch a DaffCartPlaceOrderFailureFromOutOfStockProduct action', () => {
+          expect(effects.placeOrder$).toBeObservable(expected);
+        });
+      });
+
+      describe('and the resolve cart driver call has errors', () => {
+        beforeEach(() => {
+          const cartResolveError: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to get cart' };
+          const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure([error, cartResolveError]);
+
+          getCartSpy.getCartOrFail.and.returnValue(of({
+            errors: [<any>cartResolveError],
+            response: mockCart,
+          }));
+          actions$ = hot('--a', { a: cartPlaceOrderAction });
+          expected = cold('--b', { b: cartPlaceOrderFailureAction });
+        });
+
+        it('should dispatch a CartPlaceOrderFailure action', () => {
+          expect(effects.placeOrder$).toBeObservable(expected);
+        });
+      });
+
+      describe('and the resolve cart fails', () => {
+        beforeEach(() => {
+          const cartResolveError: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to get cart' };
+          const response = cold('#', {}, cartResolveError);
+          const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure([error, cartResolveError]);
+
+          getCartSpy.getCartOrFail.and.returnValue(response);
+          actions$ = hot('--a', { a: cartPlaceOrderAction });
+          expected = cold('--b', { b: cartPlaceOrderFailureAction });
+        });
+
+        it('should dispatch a CartPlaceOrderFailure action', () => {
+          expect(effects.placeOrder$).toBeObservable(expected);
+        });
+      });
+    });
+
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
-        getCartIdSpy.and.callFake(throwStorageError);
+        const cartResolveError = new DaffStorageServiceError('An error occurred during storage.');
+        const response = cold('#', {}, cartResolveError);
+        getCartSpy.getCartIdOrFail.and.returnValue(response);
 
         actions$ = hot('--a', { a: cartPlaceOrderAction });
         expected = cold('--b', { b: cartStorageFailureAction });

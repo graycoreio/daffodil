@@ -2,6 +2,7 @@ import { DaffCartAddressActionTypes } from './cart-address.actions';
 import { DaffCartBillingAddressActionTypes } from './cart-billing-address.actions';
 import { DaffCartCouponActionTypes } from './cart-coupon.actions';
 import { DaffCartItemActionTypes } from './cart-item.actions';
+import { daffCartPlaceOrderFailureFromOutOfStockProductCartRetreivalInjection } from './cart-order.actions';
 import { DaffCartPaymentActionTypes } from './cart-payment.actions';
 import { DaffCartShippingAddressActionTypes } from './cart-shipping-address.actions';
 import { DaffCartShippingInformationActionTypes } from './cart-shipping-information.actions';
@@ -69,4 +70,5 @@ export const daffCartRetrivalActions: DaffCartRetrievalActionInjection[] = [
   {
     type: DaffCartShippingInformationActionTypes.CartShippingInformationDeleteSuccessAction,
   },
+  daffCartPlaceOrderFailureFromOutOfStockProductCartRetreivalInjection,
 ];
