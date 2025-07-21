@@ -18,6 +18,9 @@
       "@daffodil/design/assets": [
         "libs/design/assets/src"
       ],
+      "@daffodil/design/breadcrumb": [
+        "libs/design/breadcrumb/src"
+      ],
       "@daffodil/design/button": [
         "libs/design/button/src"
       ],
@@ -33,6 +36,9 @@
       "@daffodil/design/container": [
         "libs/design/container/src"
       ],
+      "@daffodil/design/form-field": [
+        "libs/design/form-field/src"
+      ],
       "@daffodil/design/guides": [
         "libs/design/guides/src"
       ],
@@ -45,14 +51,14 @@
       "@daffodil/design/input": [
         "libs/design/input/src"
       ],
-      "@daffodil/design/link": [
-        "libs/design/link/src"
+      "@daffodil/design/link-set": [
+        "libs/design/link-set/src"
       ],
       "@daffodil/design/list": [
         "libs/design/list/src"
       ],
-      "@daffodil/design/loading": [
-        "libs/design/loading/src"
+      "@daffodil/design/loading-icon": [
+        "libs/design/loading-icon/src"
       ],
       "@daffodil/design/media-gallery": [
         "libs/design/media-gallery/src"
@@ -72,11 +78,11 @@
       "@daffodil/design/paginator": [
         "libs/design/paginator/src"
       ],
-      "@daffodil/design/progress": [
-        "libs/design/progress/src"
+      "@daffodil/design/progress-bar": [
+        "libs/design/progress-bar/src"
       ],
-      "@daffodil/design/quantity": [
-        "libs/design/quantity/src"
+      "@daffodil/design/quantity-field": [
+        "libs/design/quantity-field/src"
       ],
       "@daffodil/design/radio": [
         "libs/design/radio/src"
@@ -84,14 +90,23 @@
       "@daffodil/design/scss": [
         "libs/design/scss/src"
       ],
+      "@daffodil/design/select": [
+        "libs/design/select/src"
+      ],
       "@daffodil/design/sidebar": [
         "libs/design/sidebar/src"
       ],
       "@daffodil/design/switch": [
         "libs/design/switch/src"
       ],
+       "@daffodil/design/tabs": [
+        "libs/design/tabs/src"
+      ],
       "@daffodil/design/text-snippet": [
         "libs/design/text-snippet/src"
+      ],
+      "@daffodil/design/textarea": [
+        "libs/design/textarea/src"
       ],
       "@daffodil/design/toast": [
         "libs/design/toast/src"
