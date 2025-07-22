@@ -12,9 +12,7 @@ import {
  */
 export type DaffButtonSize = DaffSizeSmallType | DaffSizeMediumType | DaffSizeLargeType;
 
-@Directive({
-  standalone: true,
-})
+@Directive({})
 
 export class DaffButtonSizableDirective extends DaffSizableDirective<DaffButtonSize> {}
 

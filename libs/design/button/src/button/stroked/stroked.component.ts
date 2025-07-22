@@ -2,7 +2,6 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  HostBinding,
   Input,
 } from '@angular/core';
 
@@ -26,24 +25,22 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
  * </a>
  * ```
  */
+/* eslint-disable quote-props */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[daff-stroked-button]' + ',' + 'a[daff-stroked-button]',
   templateUrl: '../button-base.component.html',
   styleUrl: './stroked.component.scss',
+  host: {
+    'class': 'daff-stroked-button',
+    '[class.elevated]': 'elevated',
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffStrokedButtonComponent
-  extends DaffButtonBaseDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-stroked-button') class = true;
-
+export class DaffStrokedButtonComponent extends DaffButtonBaseDirective {
   /**
    * Whether or not the button displays a shadow.
    */
-  @Input() @HostBinding('class.elevated') elevated = false;
+  @Input() elevated = false;
 }

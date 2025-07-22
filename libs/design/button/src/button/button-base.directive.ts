@@ -1,6 +1,5 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  HostBinding,
   Input,
   Directive,
   ContentChild,
@@ -33,6 +32,12 @@ import { DaffButtonSizableDirective } from './button-sizable.directive';
       inputs: ['color'],
     },
   ],
+  host: {
+    '[class.disabled]': 'disabled',
+    '[attr.disabled]': 'disabled ? true : null',
+    '[attr.aria-disabled]': 'disabled ? true : null',
+    '[attr.tabindex]': 'disabled ? -1 : this.tabindex',
+  },
 })
 export class DaffButtonBaseDirective {
 
@@ -63,14 +68,6 @@ export class DaffButtonBaseDirective {
   private _disabled = false;
 
   /**
-   * @docs-private
-   */
-  @HostBinding('class.disabled') get disabledClass() {
-    return this.disabled;
-  }
-
-
-  /**
    * The disabled state of the button.
    */
   @Input() get disabled() {
@@ -78,28 +75,5 @@ export class DaffButtonBaseDirective {
   }
   set disabled(value: any) {
     this._disabled = coerceBooleanProperty(value);
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.disabled') get disabledAttribute() {
-    return this.disabled ? true : null;
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-disabled') get ariaDisabled() {
-    return this.disabled ? true : null;
-  }
-
-  /**
-   * @docs-private
-   *
-   * Set the `tabindex` to -1 if the button is disabled.
-   */
-  @HostBinding('attr.tabindex') get tabIndexAttribute() {
-    return this.disabled ? -1 : this.tabindex;
   }
 }

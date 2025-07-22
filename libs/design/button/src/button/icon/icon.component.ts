@@ -2,7 +2,6 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  HostBinding,
 } from '@angular/core';
 
 import { DaffButtonBaseDirective } from '../button-base.directive';
@@ -21,19 +20,17 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
  * </a>
  * ```
  */
+/* eslint-disable quote-props */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[daff-icon-button]' + ',' + 'a[daff-icon-button]',
   templateUrl: '../button-base.component.html',
   styleUrl: './icon.component.scss',
+  host: {
+    'class': 'daff-icon-button',
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffIconButtonComponent
-  extends DaffButtonBaseDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-icon-button') class = true;
+export class DaffIconButtonComponent extends DaffButtonBaseDirective {
 }

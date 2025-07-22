@@ -2,7 +2,6 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  HostBinding,
   Input,
 } from '@angular/core';
 
@@ -26,22 +25,22 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
  * </a>
  * ```
  */
+/* eslint-disable quote-props */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[daff-button]' + ',' + 'a[daff-button]',
   templateUrl: '../button-base.component.html',
   styleUrl: './button.component.scss',
+  host: {
+    'class': 'daff-button',
+    '[class.elevated]': 'elevated',
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffButtonComponent extends DaffButtonBaseDirective {
   /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-button') class = true;
-
-  /**
    * Whether or not the button displays a shadow.
    */
-  @Input() @HostBinding('class.elevated') elevated = false;
+  @Input() elevated = false;
 }

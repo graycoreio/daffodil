@@ -2,7 +2,6 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  HostBinding,
 } from '@angular/core';
 
 import { DaffButtonBaseDirective } from '../button-base.directive';
@@ -25,19 +24,16 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
  * </a>
  * ```
  */
+/* eslint-disable quote-props */
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
+  /* eslint-disable-next-line @angular-eslint/component-selector */
   selector: 'button[daff-underline-button]' + ',' + 'a[daff-underline-button]',
   templateUrl: '../button-base.component.html',
   styleUrl: './underline.component.scss',
+  host: {
+    'class': 'daff-underline-button',
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffUnderlineButtonComponent
-  extends DaffButtonBaseDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-underline-button') class = true;
-}
+export class DaffUnderlineButtonComponent extends DaffButtonBaseDirective {}
