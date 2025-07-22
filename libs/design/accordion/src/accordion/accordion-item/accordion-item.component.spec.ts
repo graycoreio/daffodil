@@ -8,7 +8,6 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffAccordionItemComponent } from './accordion-item.component';
 
@@ -19,7 +18,6 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', (
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule,
         DaffAccordionItemComponent,
       ],
     })
@@ -35,10 +33,6 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', (
 
   it('should set initiallyExpanded to false by default', () => {
     expect(component.initiallyExpanded).toEqual(false);
-  });
-
-  it('should set _animationState to void by default', () => {
-    expect(component._animationState).toEqual('void');
   });
 
   it('should be collapsed by default', () => {
@@ -73,7 +67,6 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule,
         WrapperComponent,
       ],
     })
@@ -162,14 +155,6 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
       daffAccordionItem.toggle();
 
       expect(wrapper.toggledFunction).toHaveBeenCalledWith(true);
-    });
-
-    it('should toggle _animationState between void and open', () =>  {
-      daffAccordionItem.toggle();
-      expect(daffAccordionItem._animationState).toEqual('open');
-
-      daffAccordionItem.toggle();
-      expect(daffAccordionItem._animationState).toEqual('void');
     });
   });
 

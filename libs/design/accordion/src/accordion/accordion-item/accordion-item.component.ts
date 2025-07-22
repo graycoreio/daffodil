@@ -12,8 +12,6 @@ import {
   DaffOpenableDirective,
 } from '@daffodil/design';
 
-import { daffAccordionAnimations } from '../animation/accordion-animation';
-import { getAnimationState } from '../animation/accordion-animation-state';
 
 let daffAccordionItemId = 0;
 let daffAccordionItemContentId = 0;
@@ -39,9 +37,6 @@ let daffAccordionItemContentId = 0;
   }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    daffAccordionAnimations.openAccordion,
-  ],
 })
 export class DaffAccordionItemComponent implements OnInit, DaffOpenable {
   /**
@@ -69,11 +64,6 @@ export class DaffAccordionItemComponent implements OnInit, DaffOpenable {
    */
   @Input() disabled = false;
 
-  /**
-   * @docs-private
-   */
-  _animationState: string;
-
   constructor(private openDirective: DaffOpenableDirective) {
     this.openDirective.stateless = false;
   }
@@ -83,7 +73,6 @@ export class DaffAccordionItemComponent implements OnInit, DaffOpenable {
    */
   ngOnInit() {
     this.openDirective.open = this.initiallyExpanded ? this.initiallyExpanded : this.openDirective.open;
-    this._animationState = getAnimationState(this.openDirective.open);
   }
 
   /**
@@ -112,6 +101,5 @@ export class DaffAccordionItemComponent implements OnInit, DaffOpenable {
    */
   toggle() {
     this.openDirective.toggle();
-    this._animationState = getAnimationState(this.openDirective.open);
   }
 }

@@ -7,8 +7,6 @@
   [attr.aria-disabled]="disabled">
   <ng-content select="[daffAccordionItemTitle]"></ng-content>
 </button>
-<div [@openAccordion]="_animationState" [id]="contentId" [attr.aria-labelledby]="itemId" role="region">
-  <div class="daff-accordion-item__content">
+<div class="daff-accordion-item__content" [id]="contentId" [attr.aria-labelledby]="itemId" role="region">
     <ng-content></ng-content>
-  </div>
 </div>

@@ -46,6 +46,13 @@
 				transform: translateY(-50%) rotate(225deg);
 			}
 		}
+
+		#{$root}__content {
+			height: auto;
+			opacity: 1;
+			padding: 0 1rem 1rem;
+			visibility: visible;
+		}
 	}
 
 	&__title {
@@ -59,7 +66,10 @@
 	}
 
 	&__content {
-		padding: 0 1rem 1rem;
+		height: 0;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 150ms ease-in;
 
 		> p {
 			margin: 0 0 1rem;
