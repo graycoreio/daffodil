@@ -1,8 +1,8 @@
+/* eslint-disable quote-props */
 import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  HostBinding,
 } from '@angular/core';
 
 import {
@@ -37,15 +37,12 @@ import {
       inputs: ['color'],
     },
   ],
-  standalone: true,
+  host: {
+    'class': 'daff-hero',
+  },
 })
 export class DaffHeroComponent {
   constructor(private textAlignable: DaffTextAlignableDirective) {
     this.textAlignable.defaultAlignment = 'left';
   }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-hero') class = true;
 }

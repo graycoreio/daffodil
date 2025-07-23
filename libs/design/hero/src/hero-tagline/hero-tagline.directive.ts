@@ -1,17 +1,11 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+/* eslint-disable quote-props */
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[daffHeroTagline]',
-  standalone: true,
+  host: {
+    'class': 'daff-hero__tagline',
+  },
 })
 
-export class DaffHeroTaglineDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-hero__tagline') class = true;
-}
+export class DaffHeroTaglineDirective {}

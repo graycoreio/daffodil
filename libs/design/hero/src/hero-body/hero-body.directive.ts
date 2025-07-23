@@ -1,17 +1,11 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+/* eslint-disable quote-props */
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[daffHeroBody]',
-  standalone: true,
+  host: {
+    'class': 'daff-hero__body',
+  },
 })
 
-export class DaffHeroBodyDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-hero__body') class = true;
-}
+export class DaffHeroBodyDirective {}

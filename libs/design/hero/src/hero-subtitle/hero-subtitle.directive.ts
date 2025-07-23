@@ -1,17 +1,11 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+/* eslint-disable quote-props */
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[daffHeroSubtitle]',
-  standalone: true,
+  host: {
+    'class': 'daff-hero__subtitle',
+  },
 })
 
-export class DaffHeroSubtitleDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-hero__subtitle') class = true;
-}
+export class DaffHeroSubtitleDirective {}
