@@ -5,7 +5,6 @@ import {
   EventEmitter,
   OnInit,
   Output,
-  HostBinding,
 } from '@angular/core';
 import {
   DomSanitizer,
@@ -46,9 +45,11 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
       inputs: ['skeleton'],
     },
   ],
+  host: {
+    '[style.max-width]': 'width + "px"',
+  },
 })
 export class DaffImageComponent implements OnInit {
-
   private _src: string;
 
   /**
@@ -139,12 +140,5 @@ export class DaffImageComponent implements OnInit {
    */
   get _aspectRatio(): SafeStyle {
     return this.sanitizer.bypassSecurityTrustStyle(this.width + ' / ' + this.height);
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('style.max-width') get maxWidth(): string {
-    return this.width + 'px';
   }
 }
