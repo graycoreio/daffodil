@@ -1,8 +1,8 @@
+/* eslint-disable quote-props */
 import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  HostBinding,
 } from '@angular/core';
 
 import {
@@ -22,7 +22,6 @@ import {
   selector: 'daff-callout',
   template: '<ng-content></ng-content>',
   styleUrls: ['./callout.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   hostDirectives: [
     { directive: DaffArticleEncapsulatedDirective },
     { directive: DaffManageContainerLayoutDirective },
@@ -39,16 +38,14 @@ import {
       inputs: ['color'],
     },
   ],
+  host: {
+    'class': 'daff-callout',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
+  encapsulation: ViewEncapsulation.None,
 })
 export class DaffCalloutComponent {
   constructor(private textAlignable: DaffTextAlignableDirective) {
     this.textAlignable.defaultAlignment = 'left';
   }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-callout') class = true;
 }

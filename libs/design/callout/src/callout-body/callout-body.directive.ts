@@ -1,17 +1,11 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+/* eslint-disable quote-props */
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[daffCalloutBody]',
-  standalone: true,
+  host: {
+    'class': 'daff-callout__body',
+  },
 })
 
-export class DaffCalloutBodyDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-callout__body') class = true;
-}
+export class DaffCalloutBodyDirective {}

@@ -1,17 +1,11 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+/* eslint-disable quote-props */
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[daffCalloutIcon]',
-  standalone: true,
+  host: {
+    'class': 'daff-callout__icon',
+  },
 })
 
-export class DaffCalloutIconDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-callout__icon') class = true;
-}
+export class DaffCalloutIconDirective {}

@@ -1,17 +1,10 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[daffCalloutSubtitle]',
-  standalone: true,
+  host: {
+    class: 'daff-callout__subtitle',
+  },
 })
 
-export class DaffCalloutSubtitleDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-callout__subtitle') class = true;
-}
+export class DaffCalloutSubtitleDirective {}
