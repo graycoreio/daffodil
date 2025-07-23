@@ -1,7 +1,7 @@
+/* eslint-disable quote-props */
 import {
   ChangeDetectorRef,
   Directive,
-  HostBinding,
 } from '@angular/core';
 
 /**
@@ -16,27 +16,13 @@ import {
  */
 @Directive({
   selector: 'li[daffBreadcrumbItem]',
+  host: {
+    'class': 'daff-breadcrumb__item',
+    '[class.active]': '_active',
+    '[attr.aria-current]': '_active ? "page" : null',
+  },
 })
 export class DaffBreadcrumbItemDirective {
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-breadcrumb__item') class = true;
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.active') get activeClass() {
-    return this._active;
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-current') get ariaCurrent() {
-    return this._active ? 'page' : null;
-  }
-
   private _active = false;
 
   constructor( private cdRef: ChangeDetectorRef ) {}

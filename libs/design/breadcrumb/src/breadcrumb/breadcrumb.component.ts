@@ -1,7 +1,7 @@
+/* eslint-disable quote-props */
 import {
   Component,
   ChangeDetectionStrategy,
-  HostBinding,
   ViewEncapsulation,
   ContentChildren,
   QueryList,
@@ -45,6 +45,9 @@ import { DaffBreadcrumbItemDirective } from '../breadcrumb-item/breadcrumb-item.
       inputs: ['skeleton'],
     },
   ],
+  host: {
+    'class': 'daff-breadcrumb',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -52,10 +55,6 @@ import { DaffBreadcrumbItemDirective } from '../breadcrumb-item/breadcrumb-item.
 export class DaffBreadcrumbComponent implements AfterContentInit {
 
   constructor(private destroyRef: DestroyRef) {}
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-breadcrumb') class = true;
 
   /**
    * @docs-private
