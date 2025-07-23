@@ -1,7 +1,7 @@
+/* eslint-disable quote-props */
 import {
   Component,
   ChangeDetectionStrategy,
-  HostBinding,
 } from '@angular/core';
 
 import { DaffSizableDirective } from '@daffodil/design';
@@ -20,11 +20,8 @@ import { DaffSizableDirective } from '@daffodil/design';
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
+  host: {
+    'class': 'daff-container',
+  },
 })
-export class DaffContainerComponent {
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-container') class = true;
-}
+export class DaffContainerComponent {}
