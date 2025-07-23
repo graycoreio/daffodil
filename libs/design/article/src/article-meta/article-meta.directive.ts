@@ -1,16 +1,10 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+/* eslint-disable quote-props */
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[daffArticleMeta]',
-  standalone: true,
+  host: {
+    'class': 'daff-article__meta',
+  },
 })
-export class DaffArticleMetaDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-article__meta') class = true;
-}
+export class DaffArticleMetaDirective {}
