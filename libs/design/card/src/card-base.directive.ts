@@ -1,7 +1,6 @@
 import {
   Input,
   Directive,
-  HostBinding,
 } from '@angular/core';
 
 import {
@@ -27,6 +26,10 @@ export enum DaffCardOrientationEnum {
       inputs: ['color'],
     },
   ],
+  host: {
+    '[class.vertical]': 'orientation === "vertical"',
+    '[class.horizontal]': 'orientation === "horizontal"',
+  },
 })
 export class DaffCardBaseDirective {
   private _orientation: DaffCardOrientation = DaffCardOrientationEnum.Vertical;
@@ -43,18 +46,4 @@ export class DaffCardBaseDirective {
       this._orientation = value;
     }
   };
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.vertical') get verticalClass() {
-    return this.orientation === DaffCardOrientationEnum.Vertical;
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.horizontal') get horizontalClass() {
-    return this.orientation === DaffCardOrientationEnum.Horizontal;
-  }
 }

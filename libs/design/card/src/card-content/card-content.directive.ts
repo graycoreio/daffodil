@@ -1,16 +1,10 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+/* eslint-disable quote-props */
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[daffCardContent]',
-  standalone: true,
+  host: {
+    'class': 'daff-card__content',
+  },
 })
-export class DaffCardContentDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-card__content') class = true;
-}
+export class DaffCardContentDirective {}

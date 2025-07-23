@@ -1,8 +1,8 @@
+/* eslint-disable quote-props */
 import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  HostBinding,
 } from '@angular/core';
 
 import { DaffCardBaseDirective } from '../../card-base.directive';
@@ -13,13 +13,11 @@ import { DaffCardBaseDirective } from '../../card-base.directive';
     'a[daff-stroked-card]',
   templateUrl: '../../card-base.component.html',
   styleUrls: ['./stroked.component.scss'],
+  host: {
+    'class': 'daff-stroked-card',
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class DaffStrokedCardComponent extends DaffCardBaseDirective {
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-stroked-card') class = true;
-}
+export class DaffStrokedCardComponent extends DaffCardBaseDirective {}
