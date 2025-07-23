@@ -1,4 +1,5 @@
 import { Package } from 'dgeni';
+import * as path from 'path';
 
 import {
   DaffDocKind,
@@ -11,7 +12,7 @@ import {
   GENERATE_NAV_LIST_PROCESSOR_PROVIDER,
   GenerateNavListProcessor,
 } from '../../processors/generateNavList';
-import { API_SOURCE_PATH } from '../../transforms/config';
+import { API_SOURCE_PATH, DESIGN_PATH } from '../../transforms/config';
 
 export interface OutputPathsConfig {
   kind: DaffDocKind;
@@ -30,7 +31,13 @@ export const outputPathsConfigurator: Configurator<OutputPathsConfig> = (config:
       {
         docTypes: config.docTypes,
         getPath: (doc) => {
-          doc.moduleFolder = `${config.outputPath}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[config.kind]}/${doc.id.replace(API_SOURCE_PATH, '')}`;
+          if (config.kind === DaffDocKind.GUIDE || config.kind === DaffDocKind.EXPLANATION) {
+            doc.moduleFolder = `${config.outputPath}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[config.kind]}/${doc.id}`;
+          } else {
+            const basePath = config.kind === DaffDocKind.COMPONENT ? DESIGN_PATH : API_SOURCE_PATH;
+            const relativePath = path.relative(basePath, doc.id);
+            doc.moduleFolder = `${config.outputPath}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[config.kind]}/${relativePath}`;
+          }
           return doc.moduleFolder;
         },
         outputPathTemplate: '${moduleFolder}.json',
@@ -38,7 +45,13 @@ export const outputPathsConfigurator: Configurator<OutputPathsConfig> = (config:
       {
         docTypes: ['searchIndex'],
         getPath: (doc) => {
-          doc.moduleFolder = `${config.outputPath}/search-index/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[config.kind]}/${doc.id.replace(API_SOURCE_PATH, '')}`;
+          if (config.kind === DaffDocKind.GUIDE || config.kind === DaffDocKind.EXPLANATION) {
+            doc.moduleFolder = `${config.outputPath}/search-index/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[config.kind]}/${doc.id}`;
+          } else {
+            const basePath = config.kind === DaffDocKind.COMPONENT ? DESIGN_PATH : API_SOURCE_PATH;
+            const relativePath = path.relative(basePath, doc.id);
+            doc.moduleFolder = `${config.outputPath}/search-index/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[config.kind]}/${relativePath}`;
+          }
           return doc.moduleFolder;
         },
         outputPathTemplate: '${moduleFolder}.json',
