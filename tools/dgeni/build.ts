@@ -16,7 +16,7 @@ import { daffodilRoutesPackage } from './src/transforms/daffodil-routes-package'
 
 rimraf('../../dist/docs/*', { glob: true }).then(() => {
   new Dgeni([apiDocs]).generate().then(() => {
-    // base docs 
+    // base docs
     const runBaseDocsSequentially = async () => {
       if (process.platform === 'win32') {
         // Sequential execution on Windows
@@ -46,7 +46,7 @@ rimraf('../../dist/docs/*', { glob: true }).then(() => {
         ]);
       }
     };
-    
+
     runBaseDocsSequentially().then(() => {
       // design docs
       // run them after base docs so that config between shared processors does not conflict
@@ -72,9 +72,9 @@ rimraf('../../dist/docs/*', { glob: true }).then(() => {
             })]);
           }
         };
-        
+
         await runDesignDocsSequentially();
-        
+
         new Dgeni([daffodilRoutesPackage]).generate().catch((err) => {
           console.log(err);
           process.exit(1);

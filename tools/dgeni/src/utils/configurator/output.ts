@@ -12,7 +12,10 @@ import {
   GENERATE_NAV_LIST_PROCESSOR_PROVIDER,
   GenerateNavListProcessor,
 } from '../../processors/generateNavList';
-import { API_SOURCE_PATH, DESIGN_PATH } from '../../transforms/config';
+import {
+  API_SOURCE_PATH,
+  DESIGN_PATH,
+} from '../../transforms/config';
 
 export interface OutputPathsConfig {
   kind: DaffDocKind;
