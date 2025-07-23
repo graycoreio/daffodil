@@ -1,7 +1,5 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+/* eslint-disable quote-props */
+import { Directive } from '@angular/core';
 
 /**
  * Used to provide a high level overview of the panel content. It should be wrapped by a `<daff-accordion-item>`.
@@ -13,11 +11,8 @@ import {
  */
 @Directive({
   selector: '[daffAccordionItemTitle]',
+  host: {
+    'class': 'daff-accordion-item__title',
+  },
 })
-export class DaffAccordionItemTitleDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-accordion-item__title') class = true;
-}
+export class DaffAccordionItemTitleDirective {}
