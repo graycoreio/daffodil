@@ -6,7 +6,7 @@ import { DaffioEnvironment } from './type';
 
 export const environment: DaffioEnvironment = {
   production: false,
-  docsPath: '../../dist/apps/daffio/browser/assets/daffio/',
+  docsPath: 'dist/apps/daffio/browser/assets/daffio/',
 };
 
 /*
