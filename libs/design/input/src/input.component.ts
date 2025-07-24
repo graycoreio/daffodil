@@ -1,11 +1,10 @@
+/* eslint-disable quote-props */
 import {
   Component,
   Optional,
   Self,
   ElementRef,
-  HostListener,
   ChangeDetectionStrategy,
-  HostBinding,
   OnInit,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
@@ -33,24 +32,20 @@ import {
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     { provide: DaffFormFieldControl, useExisting: DaffInputComponent },
   ],
+  host: {
+    'class': 'daff-input',
+    '(focus)': 'focus()',
+    '(blur)': 'blur()',
+    '[attr.id]': '_id',
+    '[attr.aria-describedby]': 'ariaDescribedBy',
+  },
 })
 export class DaffInputComponent extends DaffFormFieldControl<string> implements DaffFormFieldControl<string>, OnInit {
-
-  /** @docs-private */
-  @HostBinding('class.daff-input') class = true;
-
   /** @docs-private */
   controlType = 'native-input';
 
   /** @docs-private */
   focused = false;
-
-  /** @docs-private */
-  @HostListener('focus') focus() {
-    this.focused = true;
-    this.emitState();
-
-  }
 
   private get _id() {
     return this.formField?.id;
@@ -59,14 +54,7 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
   /**
    * @docs-private
    */
-  @HostBinding('attr.id') get internalId() {
-    return this._id;
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-describedby') get ariaDescribedBy() {
+  get ariaDescribedBy() {
     if(this.formField.hasErrorMessage()) {
       return this.formField.errorMessageId;
     } else if(this.formField.hasHint()) {
@@ -77,7 +65,14 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
   }
 
   /** @docs-private */
-  @HostListener('blur') blur() {
+  focus() {
+    this.focused = true;
+    this.emitState();
+
+  }
+
+  /** @docs-private */
+  blur() {
     this.focused = false;
     this.emitState();
   }
@@ -103,11 +98,6 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
     ).pipe(
       map(() => this.state),
     );
-  }
-
-  /** @docs-private */
-  onFocus() {
-    this._elementRef.nativeElement.focus();
   }
 
   /** @docs-private */

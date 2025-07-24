@@ -58,16 +58,6 @@ describe('@daffodil/design | DaffInputComponent | With Form Field', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('onFocus', () => {
-    it('should call focus on the native element', () => {
-      spyOn(componentDE.nativeElement, 'focus');
-
-      component.onFocus();
-
-      expect(componentDE.nativeElement.focus).toHaveBeenCalledWith();
-    });
-  });
-
   describe('when [daff-input] is focused', () => {
     it('should set focused to true', () => {
       componentDE.triggerEventHandler('focus', {});
@@ -92,7 +82,7 @@ describe('@daffodil/design | DaffInputComponent | With Form Field', () => {
       fixture.detectChanges();
 
       expect(formField.id).toEqual('test-2');
-      expect(component.internalId).toEqual('test-2');
+      expect(componentDE.attributes.id).toEqual('test-2');
     });
   });
 });
