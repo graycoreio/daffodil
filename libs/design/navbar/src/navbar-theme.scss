@@ -5,6 +5,7 @@
 	color: daff-text-contrast($color);
 }
 
+// stylelint-disable selector-class-pattern
 @mixin daff-navbar-theme($theme) {
 	$primary: daff-get-palette($theme, primary);
 	$secondary: daff-get-palette($theme, secondary);
@@ -25,7 +26,7 @@
 			@include daff-navbar-theme-variant(daff-color($neutral, 90));
 		}
 
-		&--raised {
+		&.raised {
 			box-shadow: 0 4px 10px rgba($black, 0.08);
 		}
 

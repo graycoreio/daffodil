@@ -1,7 +1,7 @@
+/* eslint-disable quote-props */
 import {
   Component,
   Input,
-  HostBinding,
   ChangeDetectionStrategy,
 } from '@angular/core';
 
@@ -22,22 +22,12 @@ import {
       inputs: ['color'],
     },
   ],
+  host: {
+    'class': 'daff-navbar',
+    '[class.raised]': 'raised',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class DaffNavbarComponent {
-
   @Input() raised = false;
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-navbar--raised') get raisedClass() {
-    return this.raised;
-  };
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-navbar') hostClass = true;
 }

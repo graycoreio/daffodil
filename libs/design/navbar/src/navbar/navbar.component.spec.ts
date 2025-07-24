@@ -66,11 +66,11 @@ describe('@daffodil/design/navbar | DaffNavbarComponent', () => {
   });
 
   describe('using the raised property of navbar', () => {
-    it('should add a class of "daff-navbar--raised" to the host element', () => {
+    it('should add a class of "raised" to the host element', () => {
       wrapper.raised = true;
       fixture.detectChanges();
 
-      expect(de.componentInstance.raisedClass).toEqual(true);
+      expect(de.nativeElement.classList.contains('raised')).toEqual(true);
     });
   });
 });
