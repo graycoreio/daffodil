@@ -1,7 +1,6 @@
+/* eslint-disable quote-props */
 import {
   Directive,
-  HostBinding,
-  HostListener,
   Optional,
 } from '@angular/core';
 
@@ -16,7 +15,10 @@ import { DaffModalService } from '../service/modal.service';
  */
 @Directive({
   selector: 'button[daffModalClose]',
-  standalone: true,
+  host: {
+    'type': 'button',
+    '(click)': 'onClick($event)',
+  },
 })
 
 export class DaffModalCloseDirective {
@@ -26,20 +28,11 @@ export class DaffModalCloseDirective {
   ) {}
 
   /**
-   * Event fired when the button the directive is attached to is clicked. This is used to close a modal.
+   * @docs-private
    */
-  @HostListener('click')
-  _onCloseModal(event: MouseEvent) {
+  onClick(event: MouseEvent) {
     if(this.modal) {
       this.modalService.close(this.modal);
     }
   }
-
-  /**
-   * Sets the button type attribute to button.
-   */
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.type') typeAttribute = 'button';
 }

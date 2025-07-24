@@ -1,8 +1,7 @@
-import { NgIf } from '@angular/common';
+/* eslint-disable quote-props */
 import {
   Component,
   ViewEncapsulation,
-  HostBinding,
   ChangeDetectionStrategy,
   Input,
 } from '@angular/core';
@@ -18,8 +17,10 @@ import { DaffModalCloseDirective } from '../modal-close/modal-close.directive';
   templateUrl: './modal-header.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'class': 'daff-modal-header',
+  },
   imports: [
-    NgIf,
     DaffIconButtonComponent,
     FaIconComponent,
     DaffModalCloseDirective,
@@ -27,11 +28,6 @@ import { DaffModalCloseDirective } from '../modal-close/modal-close.directive';
 })
 export class DaffModalHeaderComponent {
   faXmark = faXmark;
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-modal-header') class = true;
 
   /**
    * Whether or not a modal is dismissible.

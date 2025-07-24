@@ -31,7 +31,7 @@ describe('@daffodil/design/modal | DaffModalComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let modal: DaffModalComponent;
-  let modalDe: DebugElement;
+  let de: DebugElement;
 
   beforeEach(waitForAsync(() => {
 
@@ -47,8 +47,8 @@ describe('@daffodil/design/modal | DaffModalComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    modalDe = fixture.debugElement.query(By.css('daff-modal'));
-    modal = modalDe.componentInstance;
+    de = fixture.debugElement.query(By.css('daff-modal'));
+    modal = de.componentInstance;
     fixture.detectChanges();
   });
 
@@ -57,16 +57,16 @@ describe('@daffodil/design/modal | DaffModalComponent', () => {
   });
 
   it('should add a class of "daff-modal" to the host element', () => {
-    expect(modalDe.classes).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-modal': true,
     }));
   });
 
   it('should have a role of dialog on the host element', () => {
-    expect(modal.role).toBe('dialog');
+    expect(de.attributes.role).toBe('dialog');
   });
 
   it('should set aria-modal to true on the host element', () => {
-    expect(modalDe.attributes['aria-modal']).toEqual('true');
+    expect(de.attributes['aria-modal']).toEqual('true');
   });
 });

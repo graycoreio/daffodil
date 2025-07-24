@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 import { AnimationEvent } from '@angular/animations';
 import {
   ConfigurableFocusTrap,
@@ -44,6 +45,13 @@ import { DaffModalService } from '../service/modal.service';
     directive: DaffOpenableDirective,
     outputs: ['toggled'],
   }],
+  host: {
+    'class': 'daff-modal',
+    'role': 'dialog',
+    'aria-modal': 'true',
+    '[attr.aria-labelledby]': 'ariaLabelledBy',
+    '(keydown.escape)': 'onEscape()',
+  },
   animations: [daffFadeAnimations.fade],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -53,41 +61,9 @@ import { DaffModalService } from '../service/modal.service';
   ],
 })
 export class DaffModalComponent implements AfterContentInit, AfterViewInit, OnDestroy, DaffOpenable {
-  /**
-   * Sets a class of .daff-modal to the host element.
-   */
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-modal') modalClass = true;
-
-  /**
-   * Sets the role to dialog.
-   */
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.role') role = 'dialog';
-
-  /**
-   * Sets aria-modal to true.
-   */
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-modal') ariaModal = true;
-
   private _ariaLabelledBy = null;
 
-  /**
-   * The aria-labelledby for the modal. This is set by the id of
-   * {@link DaffModalTitleDirective} when it is used.
-   *
-   */
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-labelledby') get ariaLabelledBy() {
+  get ariaLabelledBy() {
     return this._ariaLabelledBy;
   } set ariaLabelledBy(value: string) {
     this._ariaLabelledBy = value;
@@ -116,7 +92,6 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, OnDe
   /**
    * @docs-private
    */
-  @HostListener('keydown.escape')
   onEscape() {
     this.modalService.close(this);
   }
@@ -156,7 +131,7 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, OnDe
       focusableChild.focus();
     } else {
       // There's a timing condition when computing HostBindings afterContentInit
-      // so to allow the menu to be focused, we manually set the tabindex.
+      // so to allow the modal to be focused, we manually set the tabindex.
       this.elementRef.nativeElement.tabIndex = 0;
       (<HTMLElement>this.elementRef.nativeElement).focus();
     }

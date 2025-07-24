@@ -1,6 +1,5 @@
 import {
   Directive,
-  HostBinding,
   Optional,
 } from '@angular/core';
 
@@ -13,26 +12,14 @@ let modalTitleId = 0;
  */
 @Directive({
   selector: '[daffModalTitle]',
-  standalone: true,
+  host: {
+    class: 'daff-modal-title',
+    '[attr.id]': '_id',
+  },
 })
 
 export class DaffModalTitleDirective {
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-modal-title') class = true;
-
   private _id = '';
-
-  /**
-   * The html `id` of the modal title.
-   */
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.id') get uniqueId() {
-    return this._id;
-  }
 
   constructor(@Optional() private modal: DaffModalComponent) {
     modalTitleId++;
@@ -43,7 +30,7 @@ export class DaffModalTitleDirective {
      * Sets the ariaLabelledBy of the modal to the id of the modal title.
      */
     if(this.modal) {
-      this.modal.ariaLabelledBy = this.uniqueId;
+      this.modal.ariaLabelledBy = this._id;
     }
   }
 }
