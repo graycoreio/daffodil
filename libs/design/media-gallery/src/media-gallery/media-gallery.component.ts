@@ -1,7 +1,7 @@
+/* eslint-disable quote-props */
 import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
-  HostBinding,
   ChangeDetectionStrategy,
   Input,
   QueryList,
@@ -54,6 +54,10 @@ let uniqueGalleryId = 0;
       inputs: ['skeleton'],
     },
   ],
+  host: {
+    'class': 'daff-media-gallery',
+    '[attr.id]': 'id',
+  },
   imports: [
     DaffThumbnailDirective,
     NgTemplateOutlet,
@@ -69,7 +73,6 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   /**
    * Custom ID for the media gallery that overrides the auto-generated one. When using this input, it is your responsibility to ensure that the ID is unique.
    */
-  @HostBinding('attr.id')
   @Input()
   get id() {
     return this._id;
@@ -80,13 +83,6 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
     }
     this._id = val;
   };
-
-  /**
-   * @docs-private
-   *
-   * Adds a class for styling the media gallery
-   */
-  @HostBinding('class.daff-media-gallery') private class = true;
 
   /**
    * An event indicating that the selected media gallery element has changed.
