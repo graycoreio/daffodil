@@ -1,8 +1,6 @@
 import {
   ChangeDetectorRef,
   Directive,
-  HostBinding,
-  HostListener,
   Input,
   OnDestroy,
   TemplateRef,
@@ -18,19 +16,14 @@ import { DaffMenuService } from '../services/menu.service';
 
 @Directive({
   selector: '[daffMenuActivator]',
-  standalone: true,
+  host: {
+    '(click)': 'onClick($event)',
+  },
 })
 export class DaffMenuActivatorDirective implements OnDestroy {
 
   private _destroyed$ = new Subject<boolean>();
   private _open: boolean;
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.open') get openClass() {
-    return this._open;
-  }
 
   @Input() daffMenuActivator: Type<unknown> | TemplateRef<unknown>;
 
@@ -56,8 +49,10 @@ export class DaffMenuActivatorDirective implements OnDestroy {
     this.viewContainerRef.element.nativeElement.focus();
   }
 
-  @HostListener('click', ['$event'])
-  openMenu(event) {
+  /**
+   * @docs-private
+   */
+  onClick(event: MouseEvent) {
     event.preventDefault();
     this.service.open(this.viewContainerRef, this.daffMenuActivator);
   }

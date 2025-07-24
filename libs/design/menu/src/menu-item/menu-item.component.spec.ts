@@ -70,6 +70,6 @@ describe('@daffodil/design/menu | DaffMenuItemComponent', () => {
   });
 
   it('should have a role of menuitem', () => {
-    expect(component.role).toBe('menuitem');
+    expect(de.nativeElement.getAttribute('role')).toBe('menuitem');
   });
 });

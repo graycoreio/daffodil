@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 import {
   ConfigurableFocusTrapFactory,
   ConfigurableFocusTrap,
@@ -8,7 +9,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostBinding,
   NgZone,
 } from '@angular/core';
 import {
@@ -23,27 +23,19 @@ import { DaffMenuService } from '../services/menu.service';
 
 @Component({
   selector: 'daff-menu',
-  template: '<ng-content select="[daff-menu-item]"></ng-content>',
-  styleUrls: ['./menu.component.scss'],
+  templateUrl: './menu.component.html',
+  styleUrl: './menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'class': 'daff-menu',
+    'tabindex': '0',
+    'role': 'menu',
+  },
   imports: [
     DaffMenuItemComponent,
   ],
 })
 export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-menu') class = true;
-  /**
-   * @docs-private
-   */
-  @HostBinding('tabindex') tabindex = 0;
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.role') role = 'menu';
-
   private _focusTrap: ConfigurableFocusTrap;
 
   constructor(

@@ -67,12 +67,4 @@ describe('@daffodil/design/menu | DaffMenuActivatorDirective', () => {
     activator.focus();
     expect(document.activeElement).toEqual(de.nativeElement);
   });
-
-  it('should be marked `open` when the menu is open', () => {
-    const menuService = TestBed.inject(DaffMenuService);
-    (<BehaviorSubject<boolean>>menuService.open$).next(true);
-    fixture.detectChanges();
-    const activator = de.injector.get(DaffMenuActivatorDirective);
-    expect(activator.openClass).toBeTrue();
-  });
 });

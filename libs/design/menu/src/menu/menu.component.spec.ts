@@ -74,6 +74,6 @@ describe('@daffodil/design/menu | DaffMenuComponent', () => {
   });
 
   it('should have a role of menu', () => {
-    expect(component.role).toBe('menu');
+    expect(de.nativeElement.getAttribute('role')).toBe('menu');
   });
 });
