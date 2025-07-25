@@ -1,13 +1,13 @@
+import { Component } from '@angular/core';
+import { fakeAsync, tick } from '@angular/core/testing';
 import { debounce } from './debounce.decorator';
 
 describe('debounce decorator', () => {
   let mockMethod: jasmine.Spy;
   let testClass: any;
-  let pendingTimeouts: number[] = [];
 
   beforeEach(() => {
     mockMethod = jasmine.createSpy('mockMethod');
-    pendingTimeouts = [];
 
     class TestClass {
       @debounce(200)
@@ -24,44 +24,29 @@ describe('debounce decorator', () => {
     testClass = new TestClass();
   });
 
-  afterEach(() => {
-    pendingTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
-    pendingTimeouts = [];
-  });
-
-  const setTestTimeout = (callback: () => void, delay: number): number => {
-    const timeoutId = <any>setTimeout(callback, delay);
-    pendingTimeouts.push(timeoutId);
-    return timeoutId;
-  };
-
-  it('should delay method execution', (done) => {
+  it('should delay method execution', fakeAsync(() => {
     testClass.debouncedMethod('test');
 
     expect(mockMethod).not.toHaveBeenCalled();
 
-    setTestTimeout(() => {
-      expect(mockMethod).toHaveBeenCalledWith('test');
-      expect(mockMethod).toHaveBeenCalledTimes(1);
-      done();
-    }, 400);
-  });
+    tick(200);
+    expect(mockMethod).toHaveBeenCalledWith('test');
+    expect(mockMethod).toHaveBeenCalledTimes(1);
+  }));
 
-  it('should debounce multiple rapid calls', (done) => {
+  it('should debounce multiple rapid calls', fakeAsync(() => {
     testClass.debouncedMethod('call1');
     testClass.debouncedMethod('call2');
     testClass.debouncedMethod('call3');
 
     expect(mockMethod).not.toHaveBeenCalled();
 
-    setTestTimeout(() => {
-      expect(mockMethod).toHaveBeenCalledWith('call3');
-      expect(mockMethod).toHaveBeenCalledTimes(1);
-      done();
-    }, 400);
-  });
+    tick(200);
+    expect(mockMethod).toHaveBeenCalledWith('call3');
+    expect(mockMethod).toHaveBeenCalledTimes(1);
+  }));
 
-  it('should preserve method context', (done) => {
+  it('should preserve method context', fakeAsync(() => {
     class ContextTest {
       value = 'context-value';
 
@@ -74,41 +59,122 @@ describe('debounce decorator', () => {
     const instance = new ContextTest();
     instance.testContext();
 
-    setTestTimeout(() => {
-      expect(mockMethod).toHaveBeenCalledWith('context-value');
-      done();
-    }, 300);
-  });
+    tick(100);
+    expect(mockMethod).toHaveBeenCalledWith('context-value');
+  }));
 
-  it('should use default delay when no parameter provided', (done) => {
+  it('should use default delay when no parameter provided', fakeAsync(() => {
     testClass.quickDefaultMethod('default-test');
 
-    setTestTimeout(() => {
-      expect(mockMethod).not.toHaveBeenCalled();
-    }, 300);
+    tick(300);
+    expect(mockMethod).not.toHaveBeenCalled();
 
-    setTestTimeout(() => {
-      expect(mockMethod).toHaveBeenCalledWith('default-test');
-      expect(mockMethod).toHaveBeenCalledTimes(1);
-      done();
-    }, 800);
-  });
+    tick(200);
+    expect(mockMethod).toHaveBeenCalledWith('default-test');
+    expect(mockMethod).toHaveBeenCalledTimes(1);
+  }));
 
-  it('should cancel previous timeout when called again', (done) => {
+  it('should cancel previous timeout when called again', fakeAsync(() => {
     testClass.debouncedMethod('first');
 
-    setTestTimeout(() => {
-      testClass.debouncedMethod('second');
-    }, 100);
+    tick(100);
+    testClass.debouncedMethod('second');
 
-    setTestTimeout(() => {
-      expect(mockMethod).not.toHaveBeenCalled();
-    }, 250);
+    tick(150);
+    expect(mockMethod).not.toHaveBeenCalled();
 
-    setTestTimeout(() => {
-      expect(mockMethod).toHaveBeenCalledWith('second');
-      expect(mockMethod).toHaveBeenCalledTimes(1);
-      done();
-    }, 500);
+    tick(50);
+    expect(mockMethod).toHaveBeenCalledWith('second');
+    expect(mockMethod).toHaveBeenCalledTimes(1);
+  }));
+
+  describe('Angular Component host properties integration', () => {
+    it('should work with @Component host properties for event handlers', fakeAsync(() => {
+      let clickSpy = jasmine.createSpy('clickSpy');
+      let hoverSpy = jasmine.createSpy('hoverSpy');
+
+      @Component({
+        selector: 'test-component',
+        template: '<div>Test Component</div>',
+        host: {
+          /* eslint-disable quote-props */
+          '(click)': 'onDebouncedClick($event)',
+          '(mouseover)': 'onDebouncedHover($event)',
+          /* eslint-enable quote-props */
+        },
+      })
+      class TestComponent {
+        @debounce(300)
+        onDebouncedClick(event: Event) {
+          clickSpy(event);
+        }
+
+        @debounce(150)
+        onDebouncedHover(event: Event) {
+          hoverSpy(event);
+        }
+      }
+
+      const component = new TestComponent();
+      const mockEvent = new Event('click');
+
+      component.onDebouncedClick(mockEvent);
+      component.onDebouncedClick(mockEvent);
+      component.onDebouncedClick(mockEvent);
+
+      expect(clickSpy).not.toHaveBeenCalled();
+
+      tick(300);
+      expect(clickSpy).toHaveBeenCalledWith(mockEvent);
+      expect(clickSpy).toHaveBeenCalledTimes(1);
+
+      const mockHoverEvent = new Event('mouseover');
+      component.onDebouncedHover(mockHoverEvent);
+
+      tick(150);
+      expect(hoverSpy).toHaveBeenCalledWith(mockHoverEvent);
+      expect(hoverSpy).toHaveBeenCalledTimes(1);
+    }));
+
+    it('should work with @Component host properties for bindings', fakeAsync(() => {
+      let updateClassSpy = jasmine.createSpy('updateClassSpy');
+
+      @Component({
+        selector: 'test-dynamic-component',
+        template: '<div>Dynamic Component</div>',
+        host: {
+          /* eslint-disable quote-props */
+          '[class.active]': 'isActive',
+          '(window:resize)': 'onDebouncedResize($event)',
+          /* eslint-enable quote-props */
+        },
+      })
+      class TestDynamicComponent {
+        isActive = false;
+
+        @debounce(250)
+        onDebouncedResize(event: Event) {
+          this.isActive = true;
+          updateClassSpy(event);
+        }
+      }
+
+      const component = new TestDynamicComponent();
+      const mockResizeEvent = new Event('resize');
+
+      expect(component.isActive).toBe(false);
+
+      component.onDebouncedResize(mockResizeEvent);
+      component.onDebouncedResize(mockResizeEvent);
+      component.onDebouncedResize(mockResizeEvent);
+
+      expect(updateClassSpy).not.toHaveBeenCalled();
+      expect(component.isActive).toBe(false);
+
+      tick(250);
+      expect(updateClassSpy).toHaveBeenCalledWith(mockResizeEvent);
+      expect(updateClassSpy).toHaveBeenCalledTimes(1);
+      expect(component.isActive).toBe(true);
+    }));
   });
 });
