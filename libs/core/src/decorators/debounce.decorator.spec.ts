@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { fakeAsync, tick } from '@angular/core/testing';
+import {
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
+
 import { debounce } from './debounce.decorator';
 
 describe('debounce decorator', () => {
@@ -90,11 +94,11 @@ describe('debounce decorator', () => {
 
   describe('Angular Component host properties integration', () => {
     it('should work with @Component host properties for event handlers', fakeAsync(() => {
-      let clickSpy = jasmine.createSpy('clickSpy');
-      let hoverSpy = jasmine.createSpy('hoverSpy');
+      const clickSpy = jasmine.createSpy('clickSpy');
+      const hoverSpy = jasmine.createSpy('hoverSpy');
 
       @Component({
-        selector: 'test-component',
+        selector: 'lib-test-component',
         template: '<div>Test Component</div>',
         host: {
           /* eslint-disable quote-props */
@@ -137,10 +141,10 @@ describe('debounce decorator', () => {
     }));
 
     it('should work with @Component host properties for bindings', fakeAsync(() => {
-      let updateClassSpy = jasmine.createSpy('updateClassSpy');
+      const updateClassSpy = jasmine.createSpy('updateClassSpy');
 
       @Component({
-        selector: 'test-dynamic-component',
+        selector: 'lib-test-dynamic-component',
         template: '<div>Dynamic Component</div>',
         host: {
           /* eslint-disable quote-props */
