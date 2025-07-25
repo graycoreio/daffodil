@@ -1,4 +1,4 @@
-export const debounce = (delay: number = 5000): MethodDecorator => (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): PropertyDescriptor => {
+export const debounce = (delay: number = 100): MethodDecorator => (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): PropertyDescriptor => {
   const originalMethod = descriptor.value;
   let timeoutId: any = null;
 
