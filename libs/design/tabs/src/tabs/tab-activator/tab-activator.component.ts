@@ -1,7 +1,6 @@
+/* eslint-disable quote-props */
 import {
-  HostBinding,
   Input,
-  OnInit,
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
@@ -22,47 +21,35 @@ import { DaffSelectableDirective } from '@daffodil/design';
       inputs: ['selected'],
     },
   ],
+  host: {
+    'class': 'daff-tab-activator',
+    'role': 'tab',
+    '[attr.aria-selected]': 'ariaSelected',
+    '[attr.tabindex]': 'tabIndex',
+    '[attr.id]': 'tabActivatorId',
+    '[attr.aria-controls]': 'panelId',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class DaffTabActivatorComponent implements OnInit {
+export class DaffTabActivatorComponent {
   /**
    * @docs-private
-   */
-  @HostBinding('class.daff-tab-activator') class = true;
-
-  /**
-   * Sets the `role` to tab.
-   */
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.role') role = 'tab';
-
-  /**
+   *
    * Sets `aria-selected` to true if the component is selected and false if it's not selected.
    */
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-selected') get ariaSelected() {
+  get ariaSelected() {
     return this.selectableDirective.selected ? true :  false;
   }
 
   /**
+   * @docs-private
+   *
    * Sets `tabindex` to `0` if the component is selected and `-1` if it's not selected.
    */
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.tabindex') get tabIndex() {
+  get tabIndex() {
     return this.selectableDirective.selected ? '0' :  '-1';
   }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-controls') ariaControls = '';
 
   constructor(
     private el: ElementRef,
@@ -73,22 +60,12 @@ export class DaffTabActivatorComponent implements OnInit {
   /**
    * The html id of the tab activator component
    */
-  @Input() @HostBinding('attr.id') tabActivatorId = '';
+  @Input() tabActivatorId = '';
 
   @Input() panelId = '';
 
   /**
-   * @docs-private
-   */
-  ngOnInit() {
-    /**
-     * Sets the value of `panelId` to the `ariaControls` property
-     */
-    this.ariaControls = this.panelId;
-  }
-
-  /**
-   * Sets focus to the native element of the component
+   * Sets focus to the native element of the component.
    */
   focus() {
     this.el.nativeElement.focus();

@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 import {
   Location,
   NgTemplateOutlet,
@@ -60,6 +61,9 @@ import { DaffTabLabelComponent } from './tab-label/tab-label.component';
   styleUrl: './tabs.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'class': 'daff-tabs',
+  },
   imports: [
     NgTemplateOutlet,
     RouterLink,
@@ -69,11 +73,6 @@ import { DaffTabLabelComponent } from './tab-label/tab-label.component';
 })
 
 export class DaffTabsComponent implements AfterContentInit, OnInit {
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-tabs') private class = true;
-
   /**
    * @docs-private
    *

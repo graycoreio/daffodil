@@ -61,7 +61,7 @@ describe('@daffodil/design/tabs | DaffTabActivatorComponent', () => {
   });
 
   it('should set the role to tab', () => {
-    expect(component.role).toBe('tab');
+    expect(de.attributes.role).toBe('tab');
   });
 
   it('should take panelId as an input', () => {
@@ -99,9 +99,7 @@ describe('@daffodil/design/tabs | DaffTabActivatorComponent', () => {
   });
 
   it('should assign the value of panelId to ariaControls', () => {
-    component.ngOnInit();
-
-    expect(component.ariaControls).toBe(component.panelId);
+    expect(de.attributes['aria-controls']).toBe(component.panelId);
   });
 
   describe('tabActivatorId', () => {

@@ -68,11 +68,11 @@ describe('@daffodil/design/tabs | DaffTabPanelComponent', () => {
   });
 
   it('should set the role to tabpanel', () => {
-    expect(component.role).toBe('tabpanel');
+    expect(de.attributes.role).toBe('tabpanel');
   });
 
   it('should set the tabindex to 0', () => {
-    expect(component.tabIndex).toBe('0');
+    expect(de.attributes.tabindex).toBe('0');
   });
 
   it('should assign the `ariaLabelledBy` value to the `aria-labelledby` attribute', () => {
