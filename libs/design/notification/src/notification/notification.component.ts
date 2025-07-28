@@ -1,8 +1,7 @@
-import { NgIf } from '@angular/common';
+/* eslint-disable quote-props */
 import {
   Component,
   Input,
-  HostBinding,
   ContentChild,
   ViewEncapsulation,
   ChangeDetectionStrategy,
@@ -43,58 +42,63 @@ enum DaffNotificationOrientationEnum {
       inputs: ['status'],
     },
   ],
+  host: {
+    'class': 'daff-notification',
+    '[class.vertical]': 'verticalOrientation',
+    '[class.horizontal]': 'horizontalOrientation',
+    '[class.dismissible]': 'dismissible',
+    'tabindex': '0',
+    '[attr.role]': 'role',
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    NgIf,
     FaIconComponent,
     DaffPrefixDirective,
   ],
 })
 export class DaffNotificationComponent {
+  /**
+   * @docs-private
+   */
   faTimes = faTimes;
 
+  /**
+   * @docs-private
+   */
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
 
+  /**
+   * @docs-private
+   */
   @ContentChild(DaffNotificationActionsDirective) _actions: DaffNotificationActionsDirective;
 
   /**
    * @docs-private
-   */
-  @HostBinding('class.daff-notification') class = true;
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.tabindex') tabindex = '0';
-
-  /**
+   *
    * Sets role to alert when `status="warn"` or `status="critical"`.
    * Sets role to status on all other instances.
    */
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.role') get role() {
+  get role() {
     return this.statusDirective.status === DaffStatusEnum.Warn || this.statusDirective.status === DaffStatusEnum.Critical ? 'alert' : 'status';
   };
 
   /**
    * @docs-private
    */
-  @HostBinding('class.vertical') get verticalOrientation() {
+  get verticalOrientation() {
     return this.orientation === DaffNotificationOrientationEnum.Vertical;
   }
 
   /**
    * @docs-private
    */
-  @HostBinding('class.horizontal') get horizontalOrientation() {
+  get horizontalOrientation() {
     return this.orientation === DaffNotificationOrientationEnum.Horizontal;
   }
 
   /** Whether or not a notification is closable */
-  @Input() @HostBinding('class.dismissible') dismissible = false;
+  @Input() dismissible = false;
 
   constructor(private statusDirective: DaffStatusableDirective) {}
 

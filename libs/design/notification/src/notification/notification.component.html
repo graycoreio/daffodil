@@ -6,10 +6,12 @@
     <ng-content select="[daffNotificationTitle]"></ng-content>
     <ng-content select="[daffNotificationSubtitle]"></ng-content>
   </div>
-  <ng-container *ngIf="_actions">
+  @if (_actions) {
     <ng-content select="[daffNotificationActions]"></ng-content>
-  </ng-container>
+  }
 </div>
-<button class="daff-notification__close-icon" *ngIf="dismissible" (click)="onCloseNotification($event)">
-  <fa-icon [icon]="faTimes" [fixedWidth]="true"></fa-icon>
-</button>
+@if (dismissible) {
+  <button class="daff-notification__close-icon" (click)="onCloseNotification($event)">
+    <fa-icon [icon]="faTimes" [fixedWidth]="true"></fa-icon>
+  </button>
+}

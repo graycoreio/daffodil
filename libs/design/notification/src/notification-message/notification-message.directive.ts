@@ -1,17 +1,11 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+/* eslint-disable quote-props */
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[daffNotificationMessage]',
-  standalone: true,
+  host: {
+    'class': 'daff-notification__message',
+  },
 })
 
-export class DaffNotificationMessageDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-notification__message') class = true;
-}
+export class DaffNotificationMessageDirective {}
