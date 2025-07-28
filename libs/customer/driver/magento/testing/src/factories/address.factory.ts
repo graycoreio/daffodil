@@ -21,8 +21,8 @@ export class MockMagentoCustomerAddress implements MagentoCustomerAddress {
   telephone = faker.phone.number();
   postcode = faker.location.zipCode();
   city = faker.location.city();
-  firstname = faker.name.firstName();
-  lastname = faker.name.lastName();
+  firstname = faker.person.firstName();
+  lastname = faker.person.lastName();
   email = faker.internet.email();
   default_billing = faker.datatype.boolean();
   default_shipping = faker.datatype.boolean();

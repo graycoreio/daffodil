@@ -16,11 +16,11 @@ export class MockOrderAddress implements MagentoOrderAddress {
   postcode = faker.location.zipCode();
   country = faker.location.countryCode();
   country_code = faker.location.countryCode();
-  prefix = faker.name.prefix();
-  suffix = faker.name.suffix();
-  firstname = faker.name.firstName();
-  middlename = faker.name.firstName();
-  lastname = faker.name.lastName();
+  prefix = faker.person.prefix();
+  suffix = faker.person.suffix();
+  firstname = faker.person.firstName();
+  middlename = faker.person.firstName();
+  lastname = faker.person.lastName();
   telephone = faker.phone.number();
   fax = faker.phone.number();
   company = faker.company.name();

@@ -12,8 +12,8 @@ import { MagentoCustomerAddressFactory } from './address.factory';
 class MockMagentoCustomer implements MagentoCustomer {
   __typename = <const>'Customer';
   email = faker.internet.email();
-  firstname = faker.name.firstName();
-  lastname = faker.name.lastName();
+  firstname = faker.person.firstName();
+  lastname = faker.person.lastName();
   is_subscribed = faker.datatype.boolean();
   addresses = this.createAddresses();
 

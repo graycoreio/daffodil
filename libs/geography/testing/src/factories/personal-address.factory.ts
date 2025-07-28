@@ -7,11 +7,11 @@ import { DaffPersonalAddress } from '@daffodil/geography';
 import { MockDaffAddress } from './address.factory';
 
 export class MockDaffPersonalAddress extends MockDaffAddress implements DaffPersonalAddress {
-  prefix = faker.name.prefix();
-  suffix = faker.name.suffix();
-  firstname = faker.name.firstName();
-  middlename = faker.name.firstName();
-  lastname = faker.name.lastName();
+  prefix = faker.person.prefix();
+  suffix = faker.person.suffix();
+  firstname = faker.person.firstName();
+  middlename = faker.person.firstName();
+  lastname = faker.person.lastName();
   email = faker.internet.email();
   telephone = faker.phone.number();
 }
