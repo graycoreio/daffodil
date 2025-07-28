@@ -284,7 +284,7 @@ export function daffMagentoTransformOrder(order: MagentoOrder): DaffOrder {
     shipments: order.shipments.map(shipment => daffMagentoTransformShipment(shipment, order)),
     payment: daffMagentoTransformPayment(order.payment_methods[0], order),
     // TODO: find out if the index is the correct payment for invoice
-    invoices: order.invoices.map((invoice, index) => daffMagentoTransformInvoice(invoice, order, order.payment_methods[index])),
+    invoices: order.invoices.map((invoice) => daffMagentoTransformInvoice(invoice, order, order.payment_methods[0])),
     credits: order.credit_memos.map(credit => daffMagentoTransformCredit(credit, order)),
   };
 }
