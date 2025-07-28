@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 import {
   NgFor,
   NgIf,
@@ -7,7 +8,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  HostBinding,
   ElementRef,
   OnChanges,
   ChangeDetectionStrategy,
@@ -34,6 +34,10 @@ const visiblePageRange = 2;
   styleUrls: ['./paginator.component.scss'],
   templateUrl: './paginator.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'class': 'daff-paginator',
+    'role': 'navigation',
+  },
   imports: [
     FaIconComponent,
     RouterModule,
@@ -42,16 +46,6 @@ const visiblePageRange = 2;
   ],
 })
 export class DaffPaginatorComponent implements OnChanges {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-paginator') class = true;
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.role') role = 'navigation';
-
   /**
    * @docs-private
    */
@@ -179,7 +173,6 @@ export class DaffPaginatorComponent implements OnChanges {
    * Emits a pageNumber to notifyPageChange Output.
    *
    * @docs-private
-   * @param pageNumber a page number
    */
   _onNotifyPageChange(pageNumber: number) {
     this.notifyPageChange.emit(pageNumber);
@@ -189,7 +182,6 @@ export class DaffPaginatorComponent implements OnChanges {
    * A simple function that determines if the given page number is the current page number.
    *
    * @docs-private
-   * @param page a page number
    */
   _isSelected(page: number): boolean {
     return page === this.currentPage;
@@ -200,7 +192,6 @@ export class DaffPaginatorComponent implements OnChanges {
    * so the paginator retains the same total width at the extreme page numbers (1 and numberOfPages).
    *
    * @docs-private
-   * @param pageNumber page number to check.
    */
   _showNumber(pageNumber: number): boolean {
     return Math.abs(this.currentPage - pageNumber) < visiblePageRange
