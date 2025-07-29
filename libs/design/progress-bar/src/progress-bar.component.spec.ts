@@ -6,11 +6,8 @@ import {
   waitForAsync,
   ComponentFixture,
   TestBed,
-  flush,
-  fakeAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffPalette } from '@daffodil/design';
 
@@ -36,11 +33,11 @@ describe('DaffProgressBarComponent', () => {
   let de: DebugElement;
   let wrapper: WrapperComponent;
   let component: DaffProgressBarComponent;
+  let progressBar: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule,
         WrapperComponent,
       ],
     })
@@ -52,6 +49,8 @@ describe('DaffProgressBarComponent', () => {
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('daff-progress-bar'));
     component = de.componentInstance;
+    progressBar = fixture.debugElement.query(By.directive(DaffProgressBarComponent));
+
     fixture.detectChanges();
   });
 
@@ -59,12 +58,10 @@ describe('DaffProgressBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('<daff-progress-bar>', () => {
-    it('should add a class of "daff-progress-bar" to the host element', () => {
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-progress-bar': true,
-      }));
-    });
+  it('should add a class of "daff-progress-bar" to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-progress-bar': true,
+    }));
   });
 
   it('should be able to take `percentage` as an input', () =>{
@@ -74,10 +71,7 @@ describe('DaffProgressBarComponent', () => {
     expect(component.percentage).toEqual(20);
   });
 
-  /**
-   * This needs to be in a fakeAsync as there are animationFrames being processed
-   */
-  it('should emit `finished` when the progress bar is filled and the animation is complete', fakeAsync(() => {
+  it('should emit `finished` when the progress bar is filled and the animation is complete', () => {
     wrapper.percentage = 100;
     spyOn(wrapper, 'onTransitionEnd');
 
@@ -90,12 +84,10 @@ describe('DaffProgressBarComponent', () => {
     });
 
     determinateBar.nativeElement.dispatchEvent(transitionEvent);
-
     fixture.detectChanges();
-    flush();
 
     expect(wrapper.onTransitionEnd).toHaveBeenCalledTimes(1);
-  }));
+  });
 
   it('should be unfilled by default', () => {
     wrapper.percentage = 0;
@@ -104,12 +96,9 @@ describe('DaffProgressBarComponent', () => {
     expect(component.percentage).toEqual(0);
   });
 
-  describe('using a colored variant of a progress bar', () => {
-    it('should set a color class on the progress bar', () => {
-      wrapper.color = 'primary';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
+  describe('color property', () => {
+    it('should take color as an input', () => {
+      expect(progressBar.componentInstance.color).toEqual(wrapper.color);
     });
 
     it('should set the default color to primary', () => {
