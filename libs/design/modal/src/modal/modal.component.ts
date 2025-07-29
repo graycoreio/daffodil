@@ -30,8 +30,8 @@ import {
   DaffOpenable,
   DaffOpenableDirective,
   DaffFocusStackService,
+  daffFocusableElementsSelector,
 } from '@daffodil/design';
-import { daffFocusableElementsSelector } from '@daffodil/design';
 
 import { daffFadeAnimations } from '../animations/modal-animation';
 import { getAnimationState } from '../animations/modal-animation-state';

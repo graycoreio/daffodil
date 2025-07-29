@@ -8,8 +8,6 @@ import {
 import {
   DaffColorableDirective,
   DaffCompactableDirective,
-} from '@daffodil/design';
-import {
   DaffArticleEncapsulatedDirective,
   DaffManageContainerLayoutDirective,
   DaffTextAlignableDirective,

@@ -1,6 +1,8 @@
 import { DOCUMENT } from '@angular/common';
-import { Component } from '@angular/core';
-import { getDebugNode } from '@angular/core';
+import {
+  Component,
+  getDebugNode,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
