@@ -127,31 +127,26 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     this.emitState();
   }
 
-  private _disabled = false;
+  /**
+   * @docs-private
+   *
+   * Implemented as part of DaffFormFieldControl.
+   */
+  @Input({ transform: coerceBooleanProperty }) disabled = false;
+
+  private _required = false;
 
   /**
    * @docs-private
    *
    * Implemented as part of DaffFormFieldControl.
    */
-  @Input() get disabled() {
-    return this._disabled;
-  }
-  set disabled(value: any) {
-    this._disabled = coerceBooleanProperty(value);
-  }
-
-  /**
-   * @docs-private
-   */
-  _required = false;
-
-  @Input()
+  @Input({ transform: coerceBooleanProperty })
   get required(): boolean {
     return this.ngControl?.control?.hasValidator(Validators.required) ?? this._required;
   }
-  set required(value: any) {
-    this._required = coerceBooleanProperty(value);
+  set required(value: boolean) {
+    this._required = value;
   }
 
   @Input() options: T[] = [];
@@ -309,7 +304,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
       this.ngControl ? this.ngControl.statusChanges : of(undefined),
     ).pipe(
       map(() => this.state),
-      tap((state) => this._disabled = state.disabled),
+      tap((state) => this.disabled = state.disabled),
     );
     this._animationState = getAnimationState(this.openDirective.open);
   }

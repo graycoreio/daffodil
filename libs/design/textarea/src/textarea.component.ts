@@ -66,8 +66,6 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
     return this._id;
   }
 
-  private _disabled = false;
-
   /**
    * @docs-private
    */
@@ -80,29 +78,21 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
    *
    * Implemented as part of DaffFormFieldControl.
    */
-  @Input() get disabled() {
-    return this._disabled;
-  }
-  set disabled(value: any) {
-    this._disabled = coerceBooleanProperty(value);
-  }
+  @Input({ transform: coerceBooleanProperty }) disabled = false;
 
-  /**
-   * @docs-private
-   */
-  _required = false;
+  private _required = false;
 
   /**
    * @docs-private
    *
    * Implemented as part of DaffFormFieldControl.
    */
-  @Input()
+  @Input({ transform: coerceBooleanProperty })
   get required(): boolean {
     return this.ngControl?.control?.hasValidator(Validators.required) ?? this._required;
   }
-  set required(value: any) {
-    this._required = coerceBooleanProperty(value);
+  set required(value: boolean) {
+    this._required = value;
   }
 
   /**
@@ -159,7 +149,7 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
       this.ngControl ? this.ngControl.statusChanges : of(undefined),
     ).pipe(
       map(() => this.state),
-      tap((state) => this._disabled = state.disabled),
+      tap((state) => this.disabled = state.disabled),
     );
   }
 
