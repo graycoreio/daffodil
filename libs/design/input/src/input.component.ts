@@ -69,7 +69,7 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
    */
   @Input({ transform: coerceBooleanProperty }) disabled = false;
 
-    /**
+  /**
    * @docs-private
    */
   @HostBinding('disabled') get disabledAttribute() {
