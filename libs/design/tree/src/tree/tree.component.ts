@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 import {
   NgFor,
   NgTemplateOutlet,
@@ -6,7 +7,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  HostBinding,
   Input,
   OnChanges,
   OnInit,
@@ -59,20 +59,15 @@ import { hydrateTree } from '../utils/hydrate-tree';
   hostDirectives: [{
     directive: DaffArticleEncapsulatedDirective,
   }],
+  host: {
+    'class': 'daff-tree',
+  },
   imports: [
     NgFor,
     NgTemplateOutlet,
   ],
 })
 export class DaffTreeComponent implements OnInit, OnChanges {
-
-  /**
-   * The css class of the daff-tree.
-   *
-   * @docs-private
-   */
-  @HostBinding('class.daff-tree') class = true;
-
   /**
    * The rendering mode for nodes in the tree.
    *

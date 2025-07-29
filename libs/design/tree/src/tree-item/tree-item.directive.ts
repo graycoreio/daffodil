@@ -1,8 +1,7 @@
+/* eslint-disable quote-props */
 import { DOCUMENT } from '@angular/common';
 import {
   Directive,
-  HostBinding,
-  HostListener,
   Inject,
   Input,
 } from '@angular/core';
@@ -32,68 +31,45 @@ import { DaffTreeFlatNode } from '../utils/flatten-tree';
  */
 @Directive({
   selector: '[daffTreeItem]',
-  standalone: true,
+  host: {
+    'class': 'daff-tree-item',
+    '[class.selected]': 'selected',
+    '[class.parent]': 'isParent',
+    '[class.open]': 'open',
+    '[attr.id]': 'id',
+    '[attr.aria-expanded]': 'ariaExpanded',
+    '[style.--depth]': 'depth',
+    '(keydown.escape)': 'onEscape()',
+    '(click)': 'onClick()',
+  },
 })
 export class DaffTreeItemDirective {
-
-  /**
-   * The css class of the tree item.
-   *
-   * @docs-private
-   */
-  @HostBinding('class.daff-tree-item') class = true;
-
-  /**
-   * The css class of a DaffTreeItemDirective that has children.
-   *
-   * @docs-private
-   */
-  @HostBinding('class.parent') classParent = false;
+  private isParent = false;
 
   /**
    * The html `id` of the tree item. This is derived from the {@link DaffTreeData}.
    *
-   * @docs-private
    */
-  @HostBinding('attr.id') id;
+  private id: string;
 
   /**
    * Accessibility property, notifying users about whether
    * or not the tree item is open.
-   *
-   * @docs-private
    */
-  @HostBinding('attr.aria-expanded') ariaExpanded: string;
+  private ariaExpanded: string;
 
   /**
-   * @docs-private
-   *
-   * A css variable indicating the depth of the tree.
-   * You can use this to style your templates if you want to
-   * use different designs at different depths.
+   * A property indicating the depth of the tree.
    */
-  @HostBinding('style.--depth') depth: number;
+  private depth: number;
 
   /**
-   * @docs-private
-   *
-   * The CSS class indicating whether or not the tree is `selected`.
+   * Indicates whether or not the tree is `open`.
    */
-  @HostBinding('class.selected') get selectedClass() {
-    return this.selected;
-  };
-
-  /**
-   * @docs-private
-   *
-   * The CSS class indicating whether or not the tree is `open`.
-   */
-  @HostBinding('class.open') openClass = false;
+  private open = false;
 
   /**
    * The {@link DaffTreeFlatNode} associated with this specific tree item.
-   *
-   * @docs-private
    */
   private _node: DaffTreeFlatNode;
 
@@ -108,8 +84,8 @@ export class DaffTreeItemDirective {
     this._node = val;
     this.id = 'tree-' + this._node.id;
     this.depth = this._node.level;
-    this.classParent = this._node.hasChildren;
-    this.openClass = this._node._treeRef.open;
+    this.isParent = this._node.hasChildren;
+    this.open = this._node._treeRef.open;
 
     if(this._node.hasChildren) {
       this.ariaExpanded = this._node._treeRef.open ? 'true' : 'false';
@@ -130,7 +106,6 @@ export class DaffTreeItemDirective {
   /**
    * @docs-private
    */
-  @HostListener('keydown.escape')
   onEscape() {
     this.toggleParent(this.node);
   }
@@ -138,7 +113,6 @@ export class DaffTreeItemDirective {
   /**
    * @docs-private
    */
-  @HostListener('click')
   onClick() {
     if(this.node.hasChildren) {
       this.toggleTree(this.node);

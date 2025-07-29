@@ -26,6 +26,7 @@ class WrapperComponent {
 describe('@daffodil/design/tree | DaffTreeComponent | Simple', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
+  let el: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -39,6 +40,7 @@ describe('@daffodil/design/tree | DaffTreeComponent | Simple', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
+    el = fixture.nativeElement.querySelector('ul[daff-tree]');
     fixture.detectChanges();
   });
 
@@ -47,12 +49,15 @@ describe('@daffodil/design/tree | DaffTreeComponent | Simple', () => {
   });
 
   it('should render nothing', () => {
-    expect(fixture.debugElement.nativeElement.innerHTML).toContain(`<ul daff-tree="" class="daff-ae daff-tree"`);
+    expect(el).toBeTruthy();
+    expect(el.children.length).toBe(0);
   });
 
-  it('should render nothing when data is provided with no templates', () => {
+  it('should render nothing within the tree when data is provided with no templates', () => {
     wrapper.data = { title: '', url: '', id: '', items: [], data: {}};
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.innerHTML).toContain(`<ul daff-tree="" class="daff-ae daff-tree"`);
+
+    expect(el).toBeTruthy();
+    expect(el.children.length).toBe(0);
   });
 });
