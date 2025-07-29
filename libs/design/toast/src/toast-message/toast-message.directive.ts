@@ -1,15 +1,11 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+/* eslint-disable quote-props */
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[daffToastMessage]',
+  host: {
+    'class': 'daff-toast__message',
+  },
 })
 
-export class DaffToastMessageDirective {
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-toast__message') class = true;
-}
+export class DaffToastMessageDirective {}

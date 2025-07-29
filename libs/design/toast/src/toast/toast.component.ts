@@ -1,18 +1,16 @@
+/* eslint-disable quote-props */
 import {
   ConfigurableFocusTrap,
   ConfigurableFocusTrapFactory,
 } from '@angular/cdk/a11y';
-import { NgIf } from '@angular/common';
 import {
   Component,
   ElementRef,
-  HostBinding,
   ContentChild,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   AfterViewInit,
   AfterContentInit,
-  HostListener,
   Input,
   OnDestroy,
 } from '@angular/core';
@@ -45,34 +43,29 @@ import { DaffToastActionsDirective } from '../toast-actions/toast-actions.direct
       inputs: ['status'],
     },
   ],
+  host: {
+    'class': 'daff-toast',
+    '(keydown.escape)': 'onEscape()',
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    NgIf,
-  ],
 })
 export class DaffToastComponent implements AfterContentInit, AfterViewInit, OnDestroy {
-  /** @docs-private */
-  @HostBinding('class.daff-toast') class = true;
+  /**
+   * @docs-private
+   */
+  @ContentChild(DaffToastActionsDirective) _actions: DaffToastActionsDirective;
 
   /**
    * @docs-private
    */
-  @ContentChild(DaffToastActionsDirective)
-  _actions: DaffToastActionsDirective;
-
-  /**
-   * @docs-private
-   */
-  @ContentChild(DaffPrefixDirective)
-  _prefix: DaffPrefixDirective;
+  @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
 
   @Input() toast: DaffToast;
 
   /**
    * @docs-private
    */
-  @HostListener('keydown.escape')
   onEscape() {
     this.toast.dismiss();
   }
