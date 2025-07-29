@@ -1,15 +1,10 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+/* eslint-disable quote-props */
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[daffProgressBarLabel]',
-  standalone: true,
+  host: {
+    'class': 'daff-progress-bar__label',
+  },
 })
-export class DaffProgressBarLabelDirective {
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-progress-bar__label') class = true;
-}
+export class DaffProgressBarLabelDirective {}

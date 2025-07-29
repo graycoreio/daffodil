@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Component,
@@ -5,7 +6,6 @@ import {
   ChangeDetectionStrategy,
   Output,
   EventEmitter,
-  HostBinding,
   ChangeDetectorRef,
 } from '@angular/core';
 
@@ -24,50 +24,17 @@ export const clamp = (value: number, min: number, max: number) => Math.min(Math.
       inputs: ['color'],
     },
   ],
+  host: {
+    'class': 'daff-progress-bar',
+    '[class.indeterminate]': 'indeterminate',
+    'role': 'progressbar',
+    '[attr.aria-label]': 'indeterminate ? "loading" : null',
+    '[attr.aria-valuemin]': '0',
+    '[attr.aria-valuemax]': '100',
+    '[attr.aria-valuenow]': 'indeterminate ? null : percentage',
+  },
 })
 export class DaffProgressBarComponent {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-progress-bar') class = true;
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.indeterminate') get indeterminateClass() {
-    return this._indeterminate;
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('role') get role() {
-    return 'progressbar';
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-label') get ariaLabel() {
-    return this._indeterminate ? 'loading' : null;
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-valuemin') ariaValueMin = '0';
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-valuemax') ariaValueMax = '100';
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-valuenow') get ariaValueNow() {
-    return this.percentage;
-  }
-
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
     private colorable: DaffColorableDirective,
@@ -76,7 +43,6 @@ export class DaffProgressBarComponent {
   }
 
   private _percentage = 0;
-  private _indeterminate = false;
 
   /**
    * Sets the percentage completion of the progression,
@@ -96,12 +62,7 @@ export class DaffProgressBarComponent {
    *
    * See: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress
    **/
-  @Input() get indeterminate() {
-    return this._indeterminate;
-  }
-  set indeterminate(value: any) {
-    this._indeterminate = coerceBooleanProperty(value);
-  }
+  @Input({ transform: coerceBooleanProperty }) indeterminate = false;
 
   /**
    * @docs-private
