@@ -16,11 +16,14 @@ import {
 import { DaffSwitchLabelPosition } from '../label-position';
 import { DaffSwitchSize } from '../switch.component';
 
-@Component({ template: `
-  <daff-switch [size]="size" [labelPosition]="labelPosition" [checked]="checked">Wifi</daff-switch>`,
-imports: [
-  DAFF_SWITCH_COMPONENTS,
-]})
+@Component({
+  template: `
+    <daff-switch [size]="size" [labelPosition]="labelPosition" [checked]="checked">Wifi</daff-switch>
+  `,
+  imports: [
+    DAFF_SWITCH_COMPONENTS,
+  ],
+})
 
 class WrapperComponent {
   size: DaffSwitchSize;

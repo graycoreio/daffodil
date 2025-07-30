@@ -14,11 +14,14 @@ import {
 } from '@daffodil/design/switch';
 
 
-@Component({ template: `
-  <daff-switch>Wifi</daff-switch>`,
-imports: [
-  DAFF_SWITCH_COMPONENTS,
-]})
+@Component({
+  template: `
+    <daff-switch>Wifi</daff-switch>
+  `,
+  imports: [
+    DAFF_SWITCH_COMPONENTS,
+  ],
+})
 
 class WrapperComponent {}
 
