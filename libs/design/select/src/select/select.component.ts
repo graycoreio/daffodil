@@ -1,4 +1,3 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Overlay,
   OverlayModule,
@@ -27,6 +26,7 @@ import {
   ContentChild,
   ViewChild,
   OnDestroy,
+  booleanAttribute,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -132,7 +132,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
    *
    * Implemented as part of DaffFormFieldControl.
    */
-  @Input({ transform: coerceBooleanProperty }) disabled = false;
+  @Input({ transform: booleanAttribute }) disabled = false;
 
   private _required = false;
 
@@ -141,7 +141,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
    *
    * Implemented as part of DaffFormFieldControl.
    */
-  @Input({ transform: coerceBooleanProperty })
+  @Input({ transform: booleanAttribute })
   get required(): boolean {
     return this.ngControl?.control?.hasValidator(Validators.required) ?? this._required;
   }

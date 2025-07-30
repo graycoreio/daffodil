@@ -1,4 +1,3 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Component,
   Optional,
@@ -9,6 +8,7 @@ import {
   HostBinding,
   OnInit,
   Input,
+  booleanAttribute,
 } from '@angular/core';
 import {
   NgControl,
@@ -78,7 +78,7 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
    *
    * Implemented as part of DaffFormFieldControl.
    */
-  @Input({ transform: coerceBooleanProperty }) disabled = false;
+  @Input({ transform: booleanAttribute }) disabled = false;
 
   private _required = false;
 
@@ -87,7 +87,7 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
    *
    * Implemented as part of DaffFormFieldControl.
    */
-  @Input({ transform: coerceBooleanProperty })
+  @Input({ transform: booleanAttribute })
   get required(): boolean {
     return this.ngControl?.control?.hasValidator(Validators.required) ?? this._required;
   }

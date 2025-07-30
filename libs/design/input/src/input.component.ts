@@ -1,5 +1,4 @@
 /* eslint-disable quote-props */
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Component,
   Optional,
@@ -9,6 +8,7 @@ import {
   OnInit,
   Input,
   HostBinding,
+  booleanAttribute,
 } from '@angular/core';
 import {
   NgControl,
@@ -67,7 +67,7 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
    *
    * Implemented as part of DaffFormFieldControl.
    */
-  @Input({ transform: coerceBooleanProperty }) disabled = false;
+  @Input({ transform: booleanAttribute }) disabled = false;
 
   /**
    * @docs-private
@@ -84,7 +84,7 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
    *
    * Implemented as part of DaffFormFieldControl.
    */
-  @Input({ transform: coerceBooleanProperty })
+  @Input({ transform: booleanAttribute })
   get required(): boolean {
     return this.ngControl?.control?.hasValidator(Validators.required) ?? this._required;
   }
