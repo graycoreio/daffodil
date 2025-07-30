@@ -14,7 +14,19 @@ import {
 } from '@daffodil/design';
 
 /**
- * @inheritdoc
+ * Callout is a versatile, pre-styled container used to highlight
+ * key pieces of content in a visually distinct way.
+ *
+ * @example
+ * ```html
+ * <daff-callout>
+ *   <div daffCalloutIcon></div>
+ *   <div daffCalloutTagline></div>
+ *   <h2 daffCalloutTitle></h2>
+ *   <p daffCalloutSubtitle></p>
+ *   <div daffCalloutBody></div>
+ * </daff-callout>
+ * ```
  */
 @Component({
   selector: 'daff-callout',

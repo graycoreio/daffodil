@@ -1,13 +1,19 @@
 # Callout
-Callout is a versatile component that can be used to easily highlight a piece of content.
+Callout is a versatile, pre-styled container used to highlight key pieces of content in a visually distinct way.
 
 ## Overview
-Callouts can be used multiple times on a page. It's a flexible and extensible component that includes pre-styled content containers. It can be used alongside a product list to highlight a set of products, quickly lay out an accordion, showcase a set of features, etc.
+Callouts can be used multiple times on a page and are flexible enough to support various content arrangements. They are ideal for:
+
+- Highlighting a set of products alongside a product list.
+- Displaying feature overviews or promotional content.
+- Structuring elements such as accordions or other grouped content.
+
+Callouts include built-in containers for icons, taglines, titles, subtitles, and custom body content, making it both powerful and easy to extend.
 
 ## Usage
 
 ### Within a standalone component
-To use callout in a standalone component, import `DAFF_CALLOUT_COMPONENTS` directly into your custom component:
+To use the callout components, import `DAFF_CALLOUT_COMPONENTS` into your custom component:
 
 ```ts
 import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
@@ -46,52 +52,44 @@ export class CustomComponentModule { }
 
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
+## Anatomy
+A callout is composed of the following containers, projected in the order listed:
 
-## Supported Content Types
-A `<daff-callout>` supports transclusion of any content and includes stylized `icon`, `tagline`, `title`, `subtitle`, and `body` content containers.
+- **`<daff-callout>`**: Parent container that supports content projection and includes structural styling.
+- **`[daffCalloutIcon]`**: Displays a visual or branding element. Avoid using this for interactive or actionable icons.
+- **`[daffCalloutTagline]`**: Short, memorable phrase that complements the title and provides quick context.
+- **`[daffCalloutTitle]`**: Defines the primary title, applied to a heading tag (`<h*>`).
+- **`[daffCalloutSubtitle]`**: Secondary descriptive text displayed beneath the title.
+- **`[daffCalloutBody]`**: Flexible wrapper for custom or additional components. It's unstyled except for spacing and should only be used once per callout.
 
-### Icon
-`[daffCalloutIcon]` is intended for visual or branding reinforcement. It should not be used for actionable icons.
+```html
+<daff-callout>
+  <div daffCalloutIcon></div>
+  <div daffCalloutTagline></div>
+  <h2 daffCalloutTitle></h2>
+  <p daffCalloutSubtitle></p>
+  <div daffCalloutBody></div>
+</daff-callout>
+```
 
-### Tagline
-Callout taglines are used by adding `[daffCalloutTagline]` to a `<p>` tag. It's intended to supplement the title by providing a short, memorable description.
-
-### Title
-Callout titles are used by adding `[daffCalloutTitle]` to a `<h*>` tag.
-
-### Subtitle
-Callout subtitles are used by adding `[daffCalloutSubtitle]` to a `<p>` tag.
-
-### Body
-`[daffCalloutBody]` is a wrapper container that can be used to place all additional components and content within a `<daff-callout>` and should only be used once. The body container allows for a ton of control and customization because it's not affected by any of callout's properties and only serves as a wrapping and spacing container.
-
-## Theming
-The default background color of a callout is light gray, but it can be updated to one of the supported colors by using the `color` property.
-
-Supported colors: `primary | secondary | tertiary | black | white | theme | theme-contrast`
+## Colors
+Use the `color` property to change the background of a callout.
 
 <design-land-example-viewer-container example="callout-theming"></design-land-example-viewer-container>
 
-## Text Alignment
-Align callout-specific text with the `textAlignment` property. `textAlignment` will not cascade the alignment styles down to `[daffCalloutBody]` or any additional components or elements that is placed inside of a callout. `textAlignment` is set to `left` by default.
-
-Supported alignments: `left | center | right`
+## Text alignment
+Control callout-specific text alignment with the `textAlignment` property. It defaults to `left` and **does not** affect `[daffCalloutBody]` content or nested elements.
 
 <design-land-example-viewer-container example="callout-text-alignment"></design-land-example-viewer-container>
 
-## Compact Callouts
-Callouts are available in a `compact` mode, which decreases the overall padding of the callout container to suit UIs that require less negative space. To enable the mode, set the `compact` property on `<daff-callout>`.
+## Compact
+Use the `compact` property on callout to reduce padding and suit UIs with tighter spacing requirements.
 
 <design-land-example-viewer-container example="compact-callout"></design-land-example-viewer-container>
 
-## Gridded Callouts
-Callouts are flexible enough to support grids within them.
+## Examples
 
-### Callout with Two Columns
+### Callout with two columns
+Callouts are flexible enough to support custom grid layouts for more complex arrangements:
+
 <design-land-example-viewer-container example="callout-with-grid"></design-land-example-viewer-container>
-
-## Layout
-The `layout` property is deprecated and replaced by the [`textAlignment`](#text-alignment) property.
-
-## Size
-The `size` property is deprecated and replaced by the [`compact`](#compact-callouts) property.
