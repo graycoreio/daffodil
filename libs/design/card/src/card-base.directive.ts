@@ -8,14 +8,10 @@ import {
   DaffColorableDirective,
 } from '@daffodil/design';
 
-/**
- * This attribute determines what orientation the the card contents are stacked.
- */
-export type DaffCardOrientation = 'vertical' | 'horizontal';
-export enum DaffCardOrientationEnum {
-  Vertical = 'vertical',
-  Horizontal = 'horizontal',
-}
+import {
+  DaffCardOrientation,
+  DaffCardOrientationEnum,
+} from './helpers/card-orientation';
 
 @Directive({
   selector: '[daffCardBase]',
@@ -29,21 +25,18 @@ export enum DaffCardOrientationEnum {
   host: {
     '[class.vertical]': 'orientation === "vertical"',
     '[class.horizontal]': 'orientation === "horizontal"',
+    '[class.elevated]': 'elevated',
   },
 })
 export class DaffCardBaseDirective {
-  private _orientation: DaffCardOrientation = DaffCardOrientationEnum.Vertical;
+  /**
+   * The orientation of a card.
+   */
+  @Input({ transform: (value: DaffCardOrientation | null | undefined) => value || DaffCardOrientationEnum.Vertical })
+  orientation: DaffCardOrientation = DaffCardOrientationEnum.Vertical;
 
-  @Input()
-  get orientation() {
-    return this._orientation;
-  }
-
-  set orientation(value: DaffCardOrientation) {
-    if(value === null || value === undefined || <unknown>value === '') {
-      this._orientation = DaffCardOrientationEnum.Vertical;
-    } else {
-      this._orientation = value;
-    }
-  };
+  /**
+   * Whether or not a card displays a shadow.
+   */
+  @Input() elevated = false;
 }

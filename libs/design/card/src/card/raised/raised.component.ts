@@ -7,6 +7,9 @@ import {
 
 import { DaffCardBaseDirective } from '../../card-base.directive';
 
+/**
+ * @deprecated
+ */
 @Component({
   selector:
     'daff-raised-card' + ',' +

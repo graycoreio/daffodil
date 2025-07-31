@@ -11,14 +11,11 @@ import { By } from '@angular/platform-browser';
 
 import { DaffPalette } from '@daffodil/design';
 
-import {
-  DaffCardBaseDirective,
-  DaffCardOrientation,
-} from './card-base.directive';
+import { DaffCardBaseDirective } from './card-base.directive';
 
 @Component({
   template: `
-		<div daffCardBase [color]="color" [orientation]="orientation"></div>`,
+		<div daffCardBase [color]="color" [orientation]="orientation" [elevated]="elevated"></div>`,
   imports: [
     DaffCardBaseDirective,
   ],
@@ -26,7 +23,8 @@ import {
 
 class WrapperComponent {
   color: DaffPalette;
-  orientation: DaffCardOrientation;
+  orientation: string;
+  elevated: boolean;
 }
 
 describe('@daffodil/design/card | DaffCardBaseDirective', () => {
@@ -77,29 +75,52 @@ describe('@daffodil/design/card | DaffCardBaseDirective', () => {
       expect(directive.orientation).toEqual('vertical');
     });
 
-    it('should add the class of the defined orientation to the host element', () => {
+    it('should add a class of "vertical" to the host element when orientation="vertical"', () => {
       wrapper.orientation = 'vertical';
       fixture.detectChanges();
 
-      expect(de.nativeElement.classList.contains('vertical')).toEqual(true);
+      expect(de.nativeElement.classList.contains('vertical')).toBeTruthy();
     });
 
-    describe('when orientation="vertical"', () => {
-      it('should add a class of "vertical" to the host element', () => {
-        wrapper.orientation = 'vertical';
-        fixture.detectChanges();
+    it('should add a class of "horizontal" to the host element when orientation="horizontal"', () => {
+      wrapper.orientation = 'horizontal';
+      fixture.detectChanges();
 
-        expect(de.nativeElement.classList.contains('vertical')).toBeTruthy();
-      });
+      expect(de.nativeElement.classList.contains('horizontal')).toBeTruthy();
     });
 
-    describe('when orientation="horizontal"', () => {
-      it('should add a class of "horizontal" to the host element', () => {
-        wrapper.orientation = 'horizontal';
-        fixture.detectChanges();
+    it('should set orientation to vertical when given null', () => {
+      wrapper.orientation = null;
+      fixture.detectChanges();
 
-        expect(de.nativeElement.classList.contains('horizontal')).toBeTruthy();
-      });
+      expect(de.nativeElement.classList.contains('vertical')).toBeTruthy();
+    });
+
+    it('should set orientation to vertical when given undefined', () => {
+      wrapper.orientation = undefined;
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('vertical')).toBeTruthy();
+    });
+
+    it('should set orientation to vertical when given an empty string', () => {
+      wrapper.orientation = '';
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('vertical')).toBeTruthy();
+    });
+  });
+
+  describe('elevated property', () => {
+    it('should be able to take `elevated` as an input', () => {
+      expect(directive.elevated).toEqual(wrapper.elevated);
+    });
+
+    it('should add a class of "elevated" to the host element when elevated is true', () => {
+      wrapper.elevated = true;
+      fixture.detectChanges();
+
+      expect(de.classes['elevated']).toBeTrue();
     });
   });
 });

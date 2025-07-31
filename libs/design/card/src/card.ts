@@ -23,6 +23,7 @@ export const DAFF_CARD_COMPONENTS = <const> [
 
 /**
  * @docs-private
+ * @deprecated
  */
 export const DAFF_RAISED_CARD_COMPONENTS = <const> [
   DaffRaisedCardComponent,
