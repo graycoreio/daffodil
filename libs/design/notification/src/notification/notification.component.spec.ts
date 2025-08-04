@@ -11,10 +11,8 @@ import { By } from '@angular/platform-browser';
 
 import { DaffStatus } from '@daffodil/design';
 
-import {
-  DaffNotificationComponent,
-  DaffNotificationOrientation,
-} from './notification.component';
+import { DaffNotificationComponent } from './notification.component';
+import { DaffNotificationOrientation } from '../helpers/notification-orientation';
 
 @Component ({
   template: `

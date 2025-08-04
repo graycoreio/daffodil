@@ -18,18 +18,29 @@ import {
   DaffStatusEnum,
 } from '@daffodil/design';
 
+import {
+  DaffNotificationOrientation,
+  DaffNotificationOrientationEnum,
+} from '../helpers/notification-orientation';
 import { DaffNotificationActionsDirective } from '../notification-actions/notification-actions.directive';
 
-export type DaffNotificationOrientation = 'horizontal' | 'vertical';
-
-enum DaffNotificationOrientationEnum {
-  Horizontal = 'horizontal',
-  Vertical = 'vertical',
-}
-
 /**
- * DaffNotificationComponent provides a way to display and communicate
- * information related to user actions within a page's content.
+ * Notifications provide contextual feedback or information related to user actions within a page's content.
+ *
+ * Use [Toast](/libs/design/toast/README.md) for app-level alerts.
+ *
+ * @example
+ * ```html
+ * <daff-notification>
+ *  <fa-icon daffPrefix [icon]="faExclamation"></fa-icon>
+ *  <div daffNotificationTitle>Payment Failed</div>
+ *  <div daffNotificationMessage>We were unable to process your payment for order #12345. Please update your payment details and try again.</div>
+ *  <div daffNotificationActions>
+ *    <button daff-button>Update payment</button>
+ *    <button daff-button>Contact support</button>
+ *  </div>
+ * </daff-notification>
+ * ```
  */
 @Component({
   selector: 'daff-notification',
@@ -44,8 +55,8 @@ enum DaffNotificationOrientationEnum {
   ],
   host: {
     'class': 'daff-notification',
-    '[class.vertical]': 'verticalOrientation',
-    '[class.horizontal]': 'horizontalOrientation',
+    '[class.vertical]': 'orientation === "vertical"',
+    '[class.horizontal]': 'orientation === "horizontal"',
     '[class.dismissible]': 'dismissible',
     'tabindex': '0',
     '[attr.role]': 'role',
@@ -83,45 +94,29 @@ export class DaffNotificationComponent {
     return this.statusDirective.status === DaffStatusEnum.Warn || this.statusDirective.status === DaffStatusEnum.Critical ? 'alert' : 'status';
   };
 
-  /**
-   * @docs-private
+  /** Whether the notification can be dismissed by the user.
+   * Displays a close icon if `true`.
    */
-  get verticalOrientation() {
-    return this.orientation === DaffNotificationOrientationEnum.Vertical;
-  }
-
-  /**
-   * @docs-private
-   */
-  get horizontalOrientation() {
-    return this.orientation === DaffNotificationOrientationEnum.Horizontal;
-  }
-
-  /** Whether or not a notification is closable */
   @Input() dismissible = false;
 
   constructor(private statusDirective: DaffStatusableDirective) {}
 
-  private _orientation: DaffNotificationOrientation = DaffNotificationOrientationEnum.Vertical;
-
-  @Input()
-  get orientation() {
-    return this._orientation;
-  }
-
-  set orientation(value: DaffNotificationOrientation) {
-    if(value === null || value === undefined || <unknown>value === '') {
-      this._orientation = DaffNotificationOrientationEnum.Vertical;
-    } else {
-      this._orientation = value;
-    }
-  };
+  /**
+   * The orientation of a notification.
+   */
+  @Input({ transform: (value: DaffNotificationOrientation | null | undefined) => value || DaffNotificationOrientationEnum.Vertical })
+  orientation: DaffNotificationOrientation = 'vertical';
 
   /**
-   * Output event triggered when the close icon is clicked.
+   * Emits when the notification is closed.
    */
   @Output() closeNotification: EventEmitter<void> = new EventEmitter();
 
+  /**
+   * @docs-private
+   *
+   * Internal handler for the close icon click.
+   */
   onCloseNotification(event: Event) {
     this.closeNotification.emit();
   }
