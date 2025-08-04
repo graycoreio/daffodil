@@ -6,7 +6,7 @@ import {
 
 import { debounce } from './debounce.decorator';
 
-describe('debounce decorator', () => {
+describe('@daffodil/core | debounce', () => {
   let mockMethod: jasmine.Spy;
   let testClass: any;
 
