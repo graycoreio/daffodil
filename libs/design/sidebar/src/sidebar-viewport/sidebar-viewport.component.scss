@@ -80,7 +80,7 @@
 
 		&:not(:empty) {
 			~ #{$root}__content {
-				margin-top: var(--daff-sidebar-side-fixed-top-shift);
+				margin-top: var(--daff-sidebar-side-fixed-top-shift, 64px);
 			}
 		}
 	}

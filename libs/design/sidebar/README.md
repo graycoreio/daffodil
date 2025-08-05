@@ -1,8 +1,10 @@
 # Sidebar
-Sidebar is a component used to display additional information to the side of a page that may be fixed or collapsible.
+Sidebar is a component used to display additional information alongside a page.
 
 ## Overview
-Sidebars are often used for navigation, but it's built to be flexible and extensible so that it can be used for any content. Sidebar supports a header and footer component with minimal default styling.
+Sidebars are commonly used for navigation but are flexible enough to display any type of content. They include optional header and footer components with minimal styling. They can be fixed or collapsible and support multiple modes and positions.
+
+<design-land-example-viewer-container example="basic-sidebar"></design-land-example-viewer-container>
 
 ## Usage
 
@@ -47,21 +49,34 @@ export class CustomComponentModule { }
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
 ### Required imports
-The `BrowserAnimationsModule` or `NoopAnimationsModule` must be imported in the particular Angular `@NgModule` the sidebar is used in for the sidebar to render and work properly.
+The `@angular/platform-browser/animations` `BrowserAnimationsModule` or `NoopAnimationsModule` must be imported in your application module for the sidebar to render and function properly. Without one of these imports, the sidebar component will not initialize correctly.
 
-## Basic sidebar
-The default setting for sidebar is `mode="side"` and `side="left"`.
+```ts
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-<design-land-example-viewer-container example="basic-sidebar"></design-land-example-viewer-container>
+@NgModule({
+  imports: [
+    BrowserAnimationsModule,
+  ],
+})
+export class CustomComponentModule {}
+```
 
-## Implementing the main and sidebar content
-The main and sidebar content should be placed inside of the `<daff-sidebar-viewport>`. The sidebar content should be placed inside of the `<daff-sidebar>`.
+## Anatomy
+`<daff-sidebar>` is placed inside a `<daff-sidebar-viewport>` alongside the page content. It optionally supports:
 
-> The sidebar viewport should only ever be used once in an application, but it's possible for there to be multiple sidebars of many modes at the same time.
+**Header**\
+Contains an optional title (`[daffSidebarHeaderTitle]`), an optional dismiss button, and a slot for custom content. Use `<daff-sidebar-header>`.
 
-A viewport navigation can either be:
+**Footer**\
+A fixed container anchored to the bottom of the sidebar, often used for persistent actions or controls. Use `<daff-sidebar-footer>`.
 
-- Placed alongside the `<daff-sidebar>` using the `[daff-sidebar-viewport-nav]` selector.
+> `<daff-sidebar-viewport>` should only be used once per application, but multiple sidebars of different modes can exist within it.
+
+## Navigation placement
+A viewport navigation can be placed either:
+
+- Alongside the sidebar, using the `[daff-sidebar-viewport-nav]` selector:
 
 ```html
 <daff-sidebar-viewport (backdropClicked)="toggleOpen()">
@@ -79,7 +94,7 @@ A viewport navigation can either be:
 </daff-sidebar-viewport>
 ```
 
-- Placed inside of the viewport content by **omitting** the `[daff-sidebar-viewport-nav]` selector from the nav component.
+- Inside the viewport content by **omitting** the `[daff-sidebar-viewport-nav]` selector:
 
 ```html
 <daff-sidebar-viewport (backdropClicked)="toggleOpen()">
@@ -97,59 +112,48 @@ A viewport navigation can either be:
 </daff-sidebar-viewport>
 ```
 
-## Header and footer
-The `<daff-sidebar-header>` includes optional title (`[daffSidebarHeaderTitle]`) and action (`[daffSidebarHeaderAction]`) selectors, and a slot to render custom content. The action selector should be used along with the `<daff-icon-button>` (view [Button Documentation](/libs/design/button/README.md)) to make sure that the action is positioned correctly and it passes WCAG guidelines.
-
-The `<daff-sidebar-footer>` is a "holder" component with minimal default styling. Its main purpose is to position the footer at the bottom of the sidebar, allowing the sidebar's content to overflow and scroll while ensuring that the footer remains constantly visible.
-
-Both the header and footer are optional components that will not render in the DOM if they are not used.
-
 ## Closing a sidebar
-A sidebar can be closed by clicking on the backdrop, using the escape key, or clicking on the close button in the sidebar header.
-
-> Note:  The close button is hidden by default. To make it visible, set the `dismissible` property on the sidebar header to `true`.
+A sidebar can be closed by:
+- Clicking on the backdrop
+- Pressing the `ESC` key
+- Clicking the close button (requires `dismissible="true"` on the sidebar header)
 
 ## Modes
-A sidebar can be rendered four different ways by using the `mode` property. If `mode` is not specified, `side` is used by default.
+Use the `mode` property to control how the sidebar is displayed:
 
-| Mode       | Description                                                                                          |
-| ---------- | ---------------------------------------------------------------------------------------------------- |
-| side       | Displays the sidebar alongside the main content.                                                              |
-| side-fixed | Displays the sidebar alongside the content, but the sidebar remains fixed in place and scrolls independently from the content.                  |
-| over       | The sidebar slides over the main content when open, temporarily covering part of the content when active.          |
-| under      | The sidebar remains fixed in place while the main content slides over it when the sidebar is closed. |
+| Mode       | Description |
+| ---------- | ----------- |
+| `side` (default) | Displays the sidebar alongside the main content. |
+| `side-fixed` | Displays the sidebar alongside the content but remains fixed in place, scrolling independently from the content. |
+| `over` | Slides over the main content, temporarily covering it when active. |
+| `under` | Sits beneath the main content, which slides over the sidebar when closed. |
 
-### Over sidebar
-<design-land-example-viewer-container example="over-sidebar"></design-land-example-viewer-container>
+**Over and under sidebars**
+<design-land-example-viewer-container example="over-and-under-sidebars"></design-land-example-viewer-container>
 
-### Under sidebar
-<design-land-example-viewer-container example="under-sidebar"></design-land-example-viewer-container>
+**Side fixed sidebar**
+<design-land-example-viewer-container example="side-fixed-sidebar"></design-land-example-viewer-container>
 
-### Two fixed sidebars on either side
+**Two fixed sidebars on either side**
 <design-land-example-viewer-container example="two-fixed-sidebars-either-side"></design-land-example-viewer-container>
 
-### Fixed and over sidebar
+**Fixed and over sidebar**
 <design-land-example-viewer-container example="fixed-and-over-sidebar"></design-land-example-viewer-container>
 
 ## Sides
-A sidebar can be positioned on either side of a screen by using the `side` property. If `side` is not specificed, `left` is used by default.
+Use the `side` property to control the placement of the sidebar:
 
-| Side  | Description                                    |
-| ----- | ---------------------------------------------- |
-| left  | Places sidebar on the left side of the screen  |
-| right | Places sidebar on the right side of the screen |
+| Side  | Description |
+| ----- | ----------- |
+| `left` (default) | Places the sidebar on the left side of the screen.  |
+| `right` | Places the sidebar on the right side of the screen. |
 
-## Custom styles
+<design-land-example-viewer-container example="sidebar-sides"></design-land-example-viewer-container>
 
-#### Setting a sidebar's width
-The default size of a sidebar is `240px`. The `--daff-sidebar-left-width` and `--daff-sidebar-right-width` variables can be used to change the width of a left or right sidebar. These variables need to be defined on `<daff-sidebar-viewport>` or on the shadow DOM.
+## Customizations
 
-`custom-sidebar-viewport.html`
-```html
-<daff-sidebar-viewport>
-	<daff-sidebar></daff-sidebar>
-</daff-sidebar-viewport>
-```
+### Sidebar width
+The default width is `240px`. Override it with:
 
 ```scss
 :host {
@@ -158,35 +162,26 @@ The default size of a sidebar is `240px`. The `--daff-sidebar-left-width` and `-
 }
 ```
 
-or:
-
-```scss
-daff-sidebar-viewport {
-	--daff-sidebar-left-width: 288px;
-	--daff-sidebar-right-width: 288px;
-}
-```
-
-## Changing a side- fixed sidebar's top offset position
-The default offset position of a sidebar is `0px`. The `--daff-sidebar-side-fixed-top-shift` variable can be used to adjust the top offset position for a primary sidebar and its viewport content.
+### Side fixed mode's top offset position
+The default offset for a `side-fixed` sidebar is `64px` (matching the [Navbar](/libs/design/navbar/README.md)'s height). Override it with:
 
 ```scss
 body {
-	--daff-sidebar-side-fixed-top-shift: 64px;
+	--daff-sidebar-side-fixed-top-shift: 72px;
 }
 ```
 
-## Examples
-#### Over and under sidebars
-<design-land-example-viewer-container example="over-and-under-sidebars"></design-land-example-viewer-container>
-
-### Side fixed sidebar
-<design-land-example-viewer-container example="side-fixed-sidebar"></design-land-example-viewer-container>
-
 ## Accessibility
-A meaningful `role` should be set on all sidebars depending on how they are used.
+- Apply a meaningful `role` (e.g., navigation) to describe the sidebar’s purpose.
+- When no title or header is present, use an `aria-label` to provide context.
 
-When a sidebar header is not used or there is no title for the sidebar, a meaningful `aria-label` should be set to describe the sidebar.
+### Focus management
+Focus trapping is automatically applied for `over` and `under` modes and turned off for `side` and `side-fixed` modes. When opened, the first tabbable element in the sidebar receives focus. When closed, focus returns to the previously focused element.
 
-### Focus
-Focus trapping is enabled for `over` and `under` modes, and disabled for `side` and `side-fixed` modes. When a sidebar is opened, the first tabbable element within the sidebar will receive focus. When a sidebar is closed, the element that was focused before the sidebar was opened will be re-focused.
+## Deprecations
+`[daffSidebarHeaderAction]` has been deprecated in favor of the `dismissible` property. Replace `[daffSidebarHeaderAction]` with `<daff-sidebar-header [dismissible]="true">`
+
+```html
+<daff-sidebar-header [dismissible]="true">
+</daff-sidebar-header>
+```

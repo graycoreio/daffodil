@@ -25,8 +25,8 @@ $default-sidebar-width: 15rem;
 		position: fixed;
 		bottom: 0;
 		z-index: variables.$daff-sidebar-sidebar-side-fixed-z-index;
-		top: var(--daff-sidebar-side-fixed-top-shift);
-		height: calc(100dvh - var(--daff-sidebar-side-fixed-top-shift));
+		top: var(--daff-sidebar-side-fixed-top-shift, 64px);
+		height: calc(100dvh - var(--daff-sidebar-side-fixed-top-shift, 64px));
 
 		&.left {
 			left: 0;

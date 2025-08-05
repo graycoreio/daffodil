@@ -1,5 +1,5 @@
 <daff-sidebar-viewport (backdropClicked)="closeSidebar()">
-  <daff-sidebar class="over-sidebar" [mode]="modeControl.value" side="left" [open]="open" (escapePressed)="closeSidebar()">
+  <daff-sidebar class="over-sidebar" mode="over" [side]="sideControl.value" [open]="open" (escapePressed)="closeSidebar()">
     <daff-sidebar-header [dismissible]="true" (closeSidebar)="closeSidebar()">
       <div daffSidebarHeaderTitle>Title</div>
     </daff-sidebar-header>
@@ -14,10 +14,10 @@
   </daff-sidebar>
   <div class="over-and-under-sidebars__body-content">
     <div class="over-and-under-sidebars__options-container">
-      <div class="over-and-under-sidebars__option-text">Mode:</div>
-      <select [formControl]="modeControl">
-        <option value="over">Over</option>
-        <option value="under">Under</option>
+      <div class="over-and-under-sidebars__option-text">Side:</div>
+      <select [formControl]="sideControl">
+        <option value="left">Left</option>
+        <option value="right">Right</option>
       </select>
     </div>
 

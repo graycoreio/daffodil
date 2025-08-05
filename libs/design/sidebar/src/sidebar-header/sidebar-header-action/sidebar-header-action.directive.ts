@@ -3,6 +3,9 @@ import {
   HostBinding,
 } from '@angular/core';
 
+/**
+ * @deprecated in favor of the `dismissible` property on `DaffSidebarHeaderComponent`.
+ */
 @Directive({
   selector: '[daffSidebarHeaderAction]',
   standalone: true,

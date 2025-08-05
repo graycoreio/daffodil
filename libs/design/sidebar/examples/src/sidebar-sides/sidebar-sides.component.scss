@@ -1,0 +1,16 @@
+daff-sidebar-viewport {
+	height: 288px;
+}
+
+.over-and-under-sidebars {
+	&__options-container {
+		display: flex;
+		gap: 8px;
+		margin: 0 0 16px;
+	}
+
+	&__footer,
+	&__sidebar-content {
+		padding: 16px;
+	}
+}

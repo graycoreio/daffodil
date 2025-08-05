@@ -17,9 +17,9 @@ import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'over-and-under-sidebars',
-  templateUrl: './over-and-under-sidebars.component.html',
-  styleUrls: ['over-and-under-sidebars.component.scss'],
+  selector: 'sidebar-sides',
+  templateUrl: './sidebar-sides.component.html',
+  styleUrls: ['sidebar-sides.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_SIDEBAR_COMPONENTS,
@@ -29,12 +29,12 @@ import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
     DaffIconButtonComponent,
   ],
 })
-export class OverandUnderSidebarsComponent {
+export class SidebarSidesComponent {
   faTimes = faTimes;
 
   open = false;
 
-  modeControl: FormControl = new FormControl('over');
+  sideControl: FormControl = new FormControl('left');
 
   openSidebar() {
     this.open = !this.open;
