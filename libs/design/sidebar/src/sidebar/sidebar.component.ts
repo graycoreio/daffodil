@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 import { AnimationEvent } from '@angular/animations';
 import {
   ConfigurableFocusTrap,
@@ -55,24 +56,20 @@ import { DaffSidebarSide } from '../helper/sidebar-side';
     inputs: ['open'],
     outputs: ['toggled'],
   }],
+  host: {
+    'class': 'daff-sidebar',
+    '[class.side]': 'mode === "side"',
+    '[class.over]': 'mode === "over"',
+    '[class.under]': 'mode === "under"',
+    '[class.side-fixed]': 'mode === "side-fixed"',
+    '[class.left]': 'side === "left"',
+    '[class.right]': 'side === "right"',
+  },
   animations: [
     daffSidebarAnimations.transformSidebar,
   ],
 })
 export class DaffSidebarComponent implements DaffOpenable {
-  /**
-   * @docs-private
-   *
-   * The CSS classes set.
-   */
-  @HostBinding('class') get classes() {
-    return {
-      'daff-sidebar': true,
-      [this.side]: true,
-      [this.mode]: true,
-    };
-  };
-
   /**
    * @docs-private
    *

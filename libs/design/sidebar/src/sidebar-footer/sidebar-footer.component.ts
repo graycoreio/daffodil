@@ -1,6 +1,6 @@
+/* eslint-disable quote-props */
 import {
   Component,
-  HostBinding,
   ChangeDetectionStrategy,
 } from '@angular/core';
 
@@ -17,10 +17,9 @@ import {
   template: '<ng-content></ng-content>',
   styleUrls: ['./sidebar-footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'class': 'daff-sidebar-footer',
+  },
 })
 export class DaffSidebarFooterComponent {
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-sidebar-footer') class = true;
 }

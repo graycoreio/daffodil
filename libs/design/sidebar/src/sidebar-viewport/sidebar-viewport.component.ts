@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 import { AnimationEvent } from '@angular/animations';
 import {
   Component,
@@ -10,7 +11,6 @@ import {
   AfterContentChecked,
   ElementRef,
   Input,
-  HostBinding,
   Inject,
   SkipSelf,
   Optional,
@@ -75,35 +75,18 @@ import { DaffSidebarViewportBackdropComponent } from '../sidebar-viewport-backdr
       useFactory: daffSidebarViewportScrollFactory,
     },
   ],
+  host: {
+    'class': 'daff-sidebar-viewport',
+    '[class.beside]': 'navPlacement === "beside"',
+    '[class.above]': 'navPlacement === "above"',
+    '[class.pad-left]': '_isPaddedLeft',
+    '[class.pad-right]': '_isPaddedRight',
+  },
   imports: [
     DaffSidebarViewportBackdropComponent,
   ],
 })
 export class DaffSidebarViewportComponent implements AfterContentChecked, OnDestroy {
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-sidebar-viewport') hostClass = true;
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class') get classes() {
-    return {
-      'daff-sidebar-viewport': true,
-      [this.navPlacement]: true,
-      'pad-left': this._isPaddedLeft,
-      'pad-right': this._isPaddedRight,
-    };
-  };
-
-  /**
-   * @docs-private
-   */
-  get isNavOnSide() {
-    return this.navPlacement === DaffNavPlacementEnum.BESIDE;
-  }
-
   /**
    * @docs-private
    */

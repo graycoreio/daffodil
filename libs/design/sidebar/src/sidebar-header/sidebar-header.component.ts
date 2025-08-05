@@ -1,7 +1,7 @@
+/* eslint-disable quote-props */
 import { NgIf } from '@angular/common';
 import {
   Component,
-  HostBinding,
   ChangeDetectionStrategy,
   ViewEncapsulation,
   Input,
@@ -26,6 +26,10 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./sidebar-header.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'class': 'daff-sidebar-header',
+    '[class.dismissible]': 'dismissible',
+  },
   imports: [
     FaIconComponent,
     NgIf,
@@ -37,13 +41,8 @@ export class DaffSidebarHeaderComponent {
    */
   faTimes = faTimes;
 
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-sidebar-header') class = true;
-
   /** Whether or not a sidebar header should display the close icon. */
-  @Input() @HostBinding('class.dismissible') dismissible = false;
+  @Input() dismissible = false;
 
   /**
    * Output event triggered when the close icon is clicked.
