@@ -1,5 +1,4 @@
 /* eslint-disable quote-props */
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Component,
   Input,
@@ -7,6 +6,7 @@ import {
   Output,
   EventEmitter,
   ChangeDetectorRef,
+  booleanAttribute,
 } from '@angular/core';
 
 import { DaffColorableDirective } from '@daffodil/design';
@@ -62,7 +62,7 @@ export class DaffProgressBarComponent {
    *
    * See: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress
    **/
-  @Input({ transform: coerceBooleanProperty }) indeterminate = false;
+  @Input({ transform: booleanAttribute }) indeterminate = false;
 
   /**
    * @docs-private
