@@ -1,6 +1,6 @@
 @if (doc().outputs.length > 0) {
 	@if (child()) {
-		<h4 daffioDocsTocHeader id="outputs" content="Outputs" level="4" class="daffio-docs-api-outputs-fragment__heading"><fa-icon [icon]="faChevronLeft" class="daffio-docs-api-outputs-fragment__output-icon"></fa-icon> Outputs</h4>
+		<h4 daffioDocsTocHeader id="{{doc().slug}}-outputs" content="Outputs" level="4" class="daffio-docs-api-outputs-fragment__heading"><fa-icon [icon]="faChevronLeft" class="daffio-docs-api-outputs-fragment__output-icon"></fa-icon> Outputs</h4>
 	} @else {
 		<h2 daffioDocsTocHeader id="outputs" content="Outputs" level="2" class="daffio-docs-api-outputs-fragment__heading"><fa-icon [icon]="faChevronLeft" class="daffio-docs-api-outputs-fragment__output-icon"></fa-icon> Outputs</h2>
 	}
