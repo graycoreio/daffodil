@@ -37,7 +37,9 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
     markedHighlight({
       highlight: (code, lang, info) => {
         const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-        return linkSymbols(hljs.highlight(code, { language }).value);
+        return lang === 'ts' || lang === 'typescript'
+					? linkSymbols(hljs.highlight(code, { language }).value)
+					: hljs.highlight(code, { language }).value
       },
     }),
     {
