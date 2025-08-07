@@ -27,13 +27,19 @@ export class DaffioActiveHeaderService {
     this.document.addEventListener('scroll', () => {
       if (!this._ticking) {
         this.document.defaultView.requestAnimationFrame(() => {
-          const fragment = [...document.querySelectorAll(HEADER_WITH_ID_SELECTOR)].find(el => {
+					const headers = [...document.querySelectorAll(HEADER_WITH_ID_SELECTOR)]
+					const onScreenHeaderIndex = headers.findIndex(el => {
             const rect = el.getBoundingClientRect();
-            return rect.top >= NAV_HEADER_OFFSET && rect.bottom >= 0;
-          })?.getAttribute('id');
-          if (fragment) {
-            this._fragment.next(fragment);
-          }
+            return rect.bottom >= 0
+          })
+					// if the topmost visible header is within the "top of the screen" (or just the first header in the DOM)
+					// use that header as the active fragment
+					// if not, use the header just above the topmost visible one
+          const fragment = onScreenHeaderIndex === 0 || headers[onScreenHeaderIndex].getBoundingClientRect().top <= (NAV_HEADER_OFFSET * 1.5)
+						? headers[onScreenHeaderIndex]?.getAttribute('id')
+						: headers[onScreenHeaderIndex - 1]?.getAttribute('id')
+
+					this._fragment.next(fragment);
           this._ticking = false;
         });
 
