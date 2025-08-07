@@ -74,7 +74,7 @@ rimraf('../../dist/docs/*', { glob: true }).then(() => {
         };
 
         await runDesignDocsSequentially();
-  
+
         new Dgeni([daffodilRoutesPackage]).generate().catch((err) => {
           console.log(err);
           process.exit(1);
