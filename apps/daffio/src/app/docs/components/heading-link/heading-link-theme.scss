@@ -1,0 +1,23 @@
+@use 'theme' as *;
+
+@mixin daffio-docs-heading-link-theme($theme) {
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
+
+	.daffio-docs-heading-link {
+		color: $base-contrast;
+
+		@include light($mode) {
+			.daffio-docs-heading-link__icon {
+				color: daff-color($neutral, 70);
+			}
+		}
+
+		@include dark($mode) {
+			.daffio-docs-heading-link__icon {
+				color: daff-color($neutral, 30);
+			}
+		}
+	}
+}

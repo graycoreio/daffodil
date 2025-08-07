@@ -18,6 +18,7 @@
 @use '../app/docs/api/components/fragments/outputs/outputs-theme.scss' as api-outputs-fragment;
 @use '../app/docs/api/components/method-block/method-block-theme' as api-method-block;
 @use '../app/docs/api/components/api-item-label/api-item-label-theme' as api-item-label;
+@use '../app/docs/components/heading-link/heading-link-theme' as docs-heading-link;
 
 @mixin component-themes($theme) {
 	@include simple-footer.daffio-simple-footer-theme($theme);
@@ -40,4 +41,5 @@
 	@include api-inputs-fragment.daffio-api-inputs-fragment-theme($theme);
 	@include api-outputs-fragment.daffio-api-outputs-fragment-theme($theme);
 	@include api-item-label.daffio-api-item-label-theme($theme);
+	@include docs-heading-link.daffio-docs-heading-link-theme($theme);
 }

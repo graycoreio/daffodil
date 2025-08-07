@@ -1,6 +1,10 @@
 @if (doc().inputs.length > 0) {
 	@if (child()) {
-		<h4 daffioDocsTocHeader content="Inputs" id="{{doc().slug}}-inputs" level="4" class="daffio-docs-api-inputs-fragment__heading"><fa-icon [icon]="faChevronRight" class="daffio-docs-api-inputs-fragment__input-icon"></fa-icon> Inputs</h4>
+		<h4 daffioDocsTocHeader content="Inputs" id="{{doc().slug}}-inputs" level="4" class="daffio-docs-api-inputs-fragment__heading">
+			<daffio-docs-heading-link>
+				<fa-icon [icon]="faChevronRight" class="daffio-docs-api-inputs-fragment__input-icon"></fa-icon> Inputs
+			</daffio-docs-heading-link>
+		</h4>
 	} @else {
 		<h2 daffioDocsTocHeader id="inputs" content="Inputs" level="2" class="daffio-docs-api-inputs-fragment__heading"><fa-icon [icon]="faChevronRight" class="daffio-docs-api-inputs-fragment__input-icon"></fa-icon> Inputs</h2>
 	}
