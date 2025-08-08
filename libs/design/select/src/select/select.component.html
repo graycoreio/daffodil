@@ -17,7 +17,13 @@
   @if (value) {
     <ng-container
       [ngTemplateOutlet]="optionTemplate?.templateRef"
-      [ngTemplateOutletContext]="{option: value}"><div></div>
+      [ngTemplateOutletContext]="
+      {
+        option: value,
+        isSelected: true,
+        isHighlighted: true,
+      }
+      "><div></div>
     </ng-container>
   }
 </button>
@@ -26,8 +32,6 @@
     [id]="optionsId"
     tabindex="0"
     role="listbox"
-    [@openSelect]="animationState"
-    (@openSelect.done)="animationFinished()"
     (keydown.enter)="selectHighlighted($event)"
     (keydown.space)="selectHighlighted($event)"
     (keydown.escape)="close($event)"

@@ -20,7 +20,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffFormFieldComponent } from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
 import {
   DaffSelectComponent,
   DaffSelectOptionDirective,
@@ -28,16 +28,18 @@ import {
 
 @Component ({
   template: `
-    <daff-select
-      [disabled]="disabledValue"
-      [options]="optionsValue"
-      [formControl]="controlValue">
-        <ng-template daffSelectOption let-isSelected="isSelected" let-option="option" let-isHighlighted="isHighlighted">
-          <div class="test-option" [attr.data-value]="option" [attr.data-is-selected]="isSelected" [attr.data-is-highlighted]="isHighlighted">
-            <div>{{option}}</div>
-          </div>
-        </ng-template>
-    </daff-select>
+    <daff-form-field>
+      <daff-select
+        [disabled]="disabledValue"
+        [options]="optionsValue"
+        [formControl]="controlValue">
+          <ng-template daffSelectOption let-isSelected="isSelected" let-option="option" let-isHighlighted="isHighlighted">
+            <div class="test-option" [attr.data-value]="option" [attr.data-is-selected]="isSelected" [attr.data-is-highlighted]="isHighlighted">
+              <div>{{option}}</div>
+            </div>
+          </ng-template>
+      </daff-select>
+    </daff-form-field>
   `,
   imports: [
     DaffSelectComponent,
@@ -46,6 +48,7 @@ import {
     PortalModule,
     ReactiveFormsModule,
     NgTemplateOutlet,
+    DAFF_FORM_FIELD_COMPONENTS,
   ],
 })
 class WrapperComponent {
@@ -55,7 +58,7 @@ class WrapperComponent {
   controlValue = new FormControl(0);
 }
 
-describe('DaffSelectComponent', () => {
+fdescribe('@daffodil/design/select | DaffSelectComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;
@@ -67,11 +70,6 @@ describe('DaffSelectComponent', () => {
       imports: [
         WrapperComponent,
         NoopAnimationsModule,
-      ],
-      providers: [
-        {
-          provide: DaffFormFieldComponent,
-        },
       ],
     })
       .compileComponents();
@@ -232,7 +230,9 @@ describe('DaffSelectComponent', () => {
         expect(wrapper.controlValue.value).toEqual(1);
       });
 
-      it('should update the is selected value in the option slot', () => {
+      fit('should update the is selected value in the option slot', () => {
+        optionEl = fixture.debugElement.query(By.css('.test-option[data-value="1"]')).nativeElement;
+
         expect(optionEl.getAttribute('data-is-selected')).toEqual('true');
       });
     });

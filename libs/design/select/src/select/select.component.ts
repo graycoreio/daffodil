@@ -49,9 +49,6 @@ import {
   DaffOpenableDirective,
 } from '@daffodil/design';
 
-import { daffSelectAnimations } from '../animation/select-animation';
-import { getAnimationState } from '../animation/select-animation-state';
-import { DaffSelectAnimationState } from '../animation/state.enum';
 import { DaffSelectOptionDirective } from '../option/option.directive';
 
 let daffSelectOtionsId = 0;
@@ -67,9 +64,6 @@ let daffSelectOtionsId = 0;
   styleUrls: ['./select.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    daffSelectAnimations.openSelect,
-  ],
   hostDirectives: [
     {
       directive: DaffOpenableDirective,
@@ -98,8 +92,6 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   private _overlay: OverlayRef;
   private _value = null;
   private _highlighted = 0;
-  private _animationState: DaffSelectAnimationState;
-  private _animationFinishCallbackQueue: Array<() => void> = [];
 
   /**
    * @docs-private
@@ -182,6 +174,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     private overlay: Overlay,
     private openDirective: DaffOpenableDirective,
     @Optional() private formField: DaffFormFieldComponent,
+    public elementRef: ElementRef<HTMLElement>,
   ) {
     super(ngControl);
 
@@ -224,13 +217,6 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
    * @docs-private
    */
   @ContentChild(DaffSelectOptionDirective) optionTemplate?: DaffSelectOptionDirective;
-
-  /**
-   * @docs-private
-   */
-  get animationState() {
-    return this._animationState;
-  }
 
   /**
    * @docs-private
@@ -310,17 +296,6 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
       map(() => this.state),
       tap((state) => this.disabled = state.disabled),
     );
-    this._animationState = getAnimationState(this.openDirective.open);
-  }
-
-  /**
-   * @docs-private
-   */
-  animationFinished() {
-    this._animationFinishCallbackQueue.forEach((cb) => {
-      cb();
-    });
-    this._animationFinishCallbackQueue = [];
   }
 
   /**
@@ -332,23 +307,22 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
 
     if (!this.openDirective.open) {
       this.openDirective.open = true;
-      this._animationState = getAnimationState(this.openDirective.open);
+
       if (this._value) {
         this._highlighted = this.options.findIndex((v) => v === this._value);
       }
-
-      // Get the width of the button element to use for the overlay
-      const buttonWidth = this.buttonElement.nativeElement.getBoundingClientRect().width;
+      const formFieldEl = <HTMLElement>this.elementRef.nativeElement.closest('daff-form-field');
+      const formFieldWidth = formFieldEl?.getBoundingClientRect().width ?? this.buttonElement.nativeElement.getBoundingClientRect().width;
 
       this._overlay = this.overlay.create({
         hasBackdrop: true,
         backdropClass: 'cdk-overlay-transparent-backdrop',
         scrollStrategy: this.overlay.scrollStrategies.block(),
         disposeOnNavigation: true,
-        width: `${buttonWidth}px`, // Set the exact width of the button element
+        width: `${formFieldWidth}px`,
         positionStrategy: this.overlay
           .position()
-          .flexibleConnectedTo(this.buttonElement)
+          .flexibleConnectedTo(formFieldEl)
           .withPositions([
             {
               originX: 'start',
@@ -366,20 +340,19 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
             },
           ]),
       });
+
       this._overlay.attachments().pipe(
         takeUntil(this._destroyed),
         delay(0),
       ).subscribe(() => {
         this.focusOptionsList();
       });
+
       this._overlay.attach(this.optionsTemplatePortal);
 
       this._overlay.backdropClick().pipe(
         takeUntil(this._destroyed),
-      ).subscribe(() => {
-        this.close();
-      });
-
+      ).subscribe(() => this.close());
       this.cd.markForCheck();
     }
   }
@@ -393,14 +366,10 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
 
     if (this.openDirective.open) {
       this.openDirective.open = false;
-      this._animationState = getAnimationState(this.openDirective.open);
       this.cd.markForCheck();
-      // do we actually have to dispose and recreate the overlay every time we want to close the dropdown?
-      this._animationFinishCallbackQueue.push(() => {
-        this._overlay?.dispose();
-        this._overlay = null;
-        this.focusButton();
-      });
+      this._overlay?.dispose();
+      this._overlay = null;
+      this.focusButton();
     }
   }
 

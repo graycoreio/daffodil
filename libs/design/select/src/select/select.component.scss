@@ -23,7 +23,8 @@
 		line-height: 1.25rem;
 		min-height: 3.5rem;
 		margin: 0;
-		padding: 1.5rem 1rem 0.5rem;
+		outline: none;
+		padding: 1.5rem 0 0.5rem;
 		text-align: left;
 		width: 100%;
 		position: relative;
@@ -36,7 +37,7 @@
 			content: '';
 			position: absolute;
 			top: 48%;
-			right: 1rem;
+			right: 2px;
 			display: inline-block;
 			border-right: 2px solid currentColor;
 			border-bottom: 2px solid currentColor;
