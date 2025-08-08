@@ -1,0 +1,37 @@
+{
+  "name": "@daffodil/docs",
+	"private": true,
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/docs"]
+      }
+    }
+  },
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Provides utils for docs generation.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "scripts": {
+    "build": "ng build docs --configuration production",
+    "lint": "cd ../.. && ng lint docs",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test docs --watch=false --browsers=ChromeHeadless",
+    "publish": "cd ../../dist/docs && npm publish --access=public"
+  },
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER"
+  }
+}
