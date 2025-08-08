@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  input,
   ViewEncapsulation,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -25,4 +26,6 @@ import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 })
 export class DaffioDocsHeadingLinkComponent {
   faLink = faLink;
+
+  fragment = input.required<string>();
 }

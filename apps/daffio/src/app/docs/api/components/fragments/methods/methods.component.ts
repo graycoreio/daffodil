@@ -13,6 +13,7 @@ import {
   DaffDocTableOfContents,
 } from '@daffodil/docs-utils';
 
+import { DaffioDocsHeadingLinkComponent } from '../../../../components/heading-link/heading-link.component';
 import { DaffioDocsTocHeaderDirective } from '../../../../toc/header.directive';
 import { DaffioDocsApiDynamicContentFragment } from '../../../dynamic-content/fragment.type';
 import { DaffioDocsApiMethodBlockComponent } from '../../method-block/method-block.component';
@@ -25,6 +26,7 @@ import { DaffioDocsApiMethodBlockComponent } from '../../method-block/method-blo
   imports: [
     DaffioDocsApiMethodBlockComponent,
     DaffioDocsTocHeaderDirective,
+    DaffioDocsHeadingLinkComponent,
   ],
 })
 export class DaffioDocsApiMethodsFragmentComponent implements DaffioDocsApiDynamicContentFragment<DaffApiType> {

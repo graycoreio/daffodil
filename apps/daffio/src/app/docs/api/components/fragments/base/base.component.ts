@@ -15,6 +15,7 @@ import {
 
 import { DaffioSafeHtmlPipe } from '../../../../../core/html-sanitizer/safe.pipe';
 import { DaffioInterceptNavigationDirective } from '../../../../../core/router/intercept-navigation.directive';
+import { DaffioDocsHeadingLinkComponent } from '../../../../components/heading-link/heading-link.component';
 import { DaffioDocsTocHeaderDirective } from '../../../../toc/header.directive';
 import { DaffioDocsApiDynamicContentFragment } from '../../../dynamic-content/fragment.type';
 import { DaffioDocsApiItemLabelComponent } from '../../api-item-label/api-item-label.component';
@@ -29,6 +30,7 @@ import { DaffioDocsApiItemLabelComponent } from '../../api-item-label/api-item-l
     DaffioDocsApiItemLabelComponent,
     DaffioInterceptNavigationDirective,
     DaffioDocsTocHeaderDirective,
+    DaffioDocsHeadingLinkComponent,
   ],
 })
 export class DaffioDocsApiBaseFragmentComponent implements DaffioDocsApiDynamicContentFragment<DaffApiDocBase> {

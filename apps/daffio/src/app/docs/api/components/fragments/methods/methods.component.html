@@ -1,8 +1,16 @@
 @if (doc().methods.length > 0) {
 	@if (child()) {
-		<h4 daffioDocsTocHeader id="{{doc().slug}}-methods" content="Methods" level="4" class="daffio-docs-api-methods-fragment__heading"><span class="daffio-docs-api-methods-fragment__method-icon">()</span> Methods</h4>
+		<h4 daffioDocsTocHeader id="{{doc().slug}}-methods" content="Methods" level="4" class="daffio-docs-api-methods-fragment__heading">
+			<daffio-docs-heading-link [fragment]="`${doc().slug}-methods`">
+				<span class="daffio-docs-api-methods-fragment__method-icon">()</span> Methods
+			</daffio-docs-heading-link>
+		</h4>
 	} @else {
-		<h2 daffioDocsTocHeader id="methods" content="Methods" level="2" class="daffio-docs-api-methods-fragment__heading"><span class="daffio-docs-api-methods-fragment__method-icon">()</span> Methods</h2>
+		<h2 daffioDocsTocHeader id="methods" content="Methods" level="2" class="daffio-docs-api-methods-fragment__heading">
+			<daffio-docs-heading-link [fragment]="'methods'">
+				<span class="daffio-docs-api-methods-fragment__method-icon">()</span> Methods
+			</daffio-docs-heading-link>
+		</h2>
 	}
 	<div class="daffio-docs-api-methods-fragment__member-grid">
 		@for (method of doc().methods; track $index) {

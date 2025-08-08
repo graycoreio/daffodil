@@ -1,8 +1,16 @@
 @if (doc().parameterDocs?.length > 0) {
 	@if (child()) {
-		<h6 daffioDocsTocHeader id="{{doc().slug}}-params" content="Parameters" level="6" class="daffio-docs-api-params-fragment__heading"><fa-icon [icon]="faCode" class="daffio-docs-api-params-fragment__parameters-icon"></fa-icon>Parameters</h6>
+		<h6 daffioDocsTocHeader id="{{doc().slug}}-params" content="Parameters" level="6" class="daffio-docs-api-params-fragment__heading">
+			<daffio-docs-heading-link [fragment]="`${doc().slug}-params`">
+				<fa-icon [icon]="faCode" class="daffio-docs-api-params-fragment__parameters-icon"></fa-icon>Parameters
+			</daffio-docs-heading-link>
+		</h6>
 	} @else {
-		<h4 daffioDocsTocHeader id="params" content="Parameters" level="4" class="daffio-docs-api-params-fragment__heading"><fa-icon [icon]="faCode" class="daffio-docs-api-params-fragment__parameters-icon"></fa-icon>Parameters</h4>
+		<h4 daffioDocsTocHeader id="params" content="Parameters" level="4" class="daffio-docs-api-params-fragment__heading">
+			<daffio-docs-heading-link [fragment]="'params'">
+				<fa-icon [icon]="faCode" class="daffio-docs-api-params-fragment__parameters-icon"></fa-icon>Parameters
+			</daffio-docs-heading-link>
+		</h4>
 	}
 	@for (param of doc().parameterDocs; track $index) {
 		<table>

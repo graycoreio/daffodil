@@ -1,6 +1,10 @@
 @if (!child()) {
 	@if (doc().examples.length > 0) {
-		<h2 daffioDocsTocHeader id="examples" content="Examples" level="2">Examples</h2>
+		<h2 daffioDocsTocHeader id="examples" content="Examples" level="2">
+			<daffio-docs-heading-link [fragment]="'examples'">
+				Examples
+			</daffio-docs-heading-link>
+		</h2>
 	}
 	@for (example of doc().examples; track example.id) {
 		<h3 [attr.id]="example.id">{{example.caption}}</h3>

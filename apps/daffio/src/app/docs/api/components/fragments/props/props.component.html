@@ -1,8 +1,16 @@
 @if (hasPropsWithDocs()) {
 	@if (child()) {
-		<h4 daffioDocsTocHeader id="{{doc().slug}}-props" content="Properties" level="4">Properties</h4>
+		<h4 daffioDocsTocHeader id="{{doc().slug}}-props" content="Properties" level="4">
+			<daffio-docs-heading-link [fragment]="`${doc().slug}-props`">
+				Properties
+			</daffio-docs-heading-link>
+		</h4>
 	} @else {
-		<h2 daffioDocsTocHeader id="props" content="Properties" level="2">Properties</h2>
+		<h2 daffioDocsTocHeader id="props" content="Properties" level="2">
+			<daffio-docs-heading-link [fragment]="'props'">
+				Properties
+			</daffio-docs-heading-link>
+		</h2>
 	}
 	@if (isConcrete()) {
 		<div class="daffio-docs-api-props-fragment__member-grid">

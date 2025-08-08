@@ -7,6 +7,7 @@ import {
   viewChildren,
   WritableSignal,
 } from '@angular/core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faCode } from '@fortawesome/free-solid-svg-icons';
 import { DaffioSafeHtmlPipe } from 'apps/daffio/src/app/core/html-sanitizer/safe.pipe';
 
@@ -16,6 +17,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioInterceptNavigationDirective } from '../../../../../core/router/intercept-navigation.directive';
+import { DaffioDocsHeadingLinkComponent } from '../../../../components/heading-link/heading-link.component';
 import { DaffioDocsTocHeaderDirective } from '../../../../toc/header.directive';
 import { DaffioDocsApiDynamicContentFragment } from '../../../dynamic-content/fragment.type';
 
@@ -25,9 +27,11 @@ import { DaffioDocsApiDynamicContentFragment } from '../../../dynamic-content/fr
   styleUrl: './params.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    FaIconComponent,
     DaffioDocsTocHeaderDirective,
     DaffioInterceptNavigationDirective,
     DaffioSafeHtmlPipe,
+    DaffioDocsHeadingLinkComponent,
   ],
 })
 export class DaffioDocsApiParamsFragmentComponent implements DaffioDocsApiDynamicContentFragment<DaffDocsApiFunction> {

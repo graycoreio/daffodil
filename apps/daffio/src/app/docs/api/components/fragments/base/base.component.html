@@ -1,6 +1,10 @@
 <div class="daffio-docs-api-base-fragment__title">
 	@if (child()) {
-		<h3 daffioDocsTocHeader [id]="doc().slug" [content]="doc().name" level="3">{{doc().name}}</h3>
+		<h3 daffioDocsTocHeader [id]="doc().slug" [content]="doc().name" level="3">
+			<daffio-docs-heading-link [fragment]="doc().slug">
+				{{doc().name}}
+			</daffio-docs-heading-link>
+		</h3>
 	} @else {
 		<h1 [attr.id]="doc().slug">{{doc().name}}</h1>
 	}
