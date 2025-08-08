@@ -1,3 +1,3 @@
 describe('@daffodil/docs | remove me', () => {
-	it('should be removed', () => {})
-})
+  it('should be removed', () => {});
+});
