@@ -410,11 +410,8 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
    * Selects an option.
    */
   selectOption(option: T) {
-    if (this.ngControl?.control) {
-      this.ngControl.control.setValue(option);
-    } else {
-      this.writeValue(option);
-    }
+    this._value = option;
+    this.onChange(this._value);
 
     this.close();
   }
