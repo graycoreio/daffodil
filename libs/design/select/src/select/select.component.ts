@@ -170,9 +170,13 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     @Optional() @Self() public ngControl: NgControl,
     private overlay: Overlay,
     private openDirective: DaffOpenableDirective,
-    private formField: DaffFormFieldComponent,
+    @Optional() private formField: DaffFormFieldComponent,
   ) {
     super(ngControl);
+
+    if(!this.formField) {
+      throw new Error('DaffSelectComponent needs to be used with the DaffFormFieldComponent.');
+    }
 
     this.ariaLabelledBy = this.formField.id;
 
