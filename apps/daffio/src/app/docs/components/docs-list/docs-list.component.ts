@@ -25,7 +25,10 @@ import {
 import { DaffDocsNavList } from '@daffodil/docs-utils';
 
 const DEFAULT_ROUTER_LINK_ACTIVE_CONFIG: RouterLinkActive['routerLinkActiveOptions'] = {
-  exact: true,
+  fragment: 'ignored',
+  paths: 'exact',
+  queryParams: 'ignored',
+  matrixParams: 'subset',
 };
 
 const visit = (guide: DaffDocsNavList): DaffTreeData<unknown> => ({

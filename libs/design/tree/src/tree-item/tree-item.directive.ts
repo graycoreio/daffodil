@@ -1,10 +1,9 @@
-/* eslint-disable quote-props */
-import { DOCUMENT } from '@angular/common';
 import {
   Directive,
-  Inject,
   Input,
 } from '@angular/core';
+
+import { collect } from '@daffodil/core';
 
 import { DaffTreeNotifierService } from '../tree/tree-notifier.service';
 import { DaffTreeFlatNode } from '../utils/flatten-tree';
@@ -32,7 +31,7 @@ import { DaffTreeFlatNode } from '../utils/flatten-tree';
 @Directive({
   selector: '[daffTreeItem]',
   host: {
-    'class': 'daff-tree-item',
+    class: 'daff-tree-item',
     '[class.selected]': 'selected',
     '[class.parent]': 'isParent',
     '[class.open]': 'open',
@@ -99,7 +98,6 @@ export class DaffTreeItemDirective {
   @Input() selected = false;
 
   constructor(
-    @Inject(DOCUMENT) private document: any,
     private treeNotifier: DaffTreeNotifierService,
   ) {}
 
@@ -107,38 +105,46 @@ export class DaffTreeItemDirective {
    * @docs-private
    */
   onEscape() {
-    this.toggleParent(this.node);
+    this.toggleParent();
   }
 
   /**
    * @docs-private
    */
   onClick() {
-    if(this.node.hasChildren) {
-      this.toggleTree(this.node);
+    if (this.node.hasChildren) {
+      this.toggleTree();
     }
+  }
+
+  /**
+   * Opens parent and parent of parent all the way to the root of the tree.
+   */
+  openAncestors() {
+    collect(this._node._treeRef, (node) => [node.parent], this._node.level).forEach((node) => node.open = true);
     this.treeNotifier.notify();
   }
 
   /**
    * Toggle the open state of the tree's parent.
    */
-  toggleParent(node: DaffTreeFlatNode) {
-    if(node._treeRef?.parent.parent === undefined) {
+  toggleParent() {
+    if (this.node._treeRef?.parent.parent === undefined) {
       return;
     }
-    node._treeRef.parent.open = !node._treeRef.parent.open;
-    (<Document>this.document).getElementById('tree-' + node._treeRef.parent.id).focus();
+    this.node._treeRef.parent.open = !this.node._treeRef.parent.open;
+    this.treeNotifier.notify();
   }
 
   /**
    * Toggle the open state of this specific subtree tree.
    */
-  toggleTree(node: DaffTreeFlatNode) {
-    if(node._treeRef.open === false) {
-      node._treeRef.open = true;
+  toggleTree() {
+    if (this.node._treeRef.open === false) {
+      this.node._treeRef.open = true;
     } else {
-      node._treeRef.open = false;
+      this.node._treeRef.open = false;
     }
+    this.treeNotifier.notify();
   }
 }
