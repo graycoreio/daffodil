@@ -367,6 +367,8 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     if (this.openDirective.open) {
       this.openDirective.open = false;
       this.cd.markForCheck();
+
+      // do we actually have to dispose and recreate the overlay every time we want to close the dropdown?
       this._overlay?.dispose();
       this._overlay = null;
       this.focusButton();
