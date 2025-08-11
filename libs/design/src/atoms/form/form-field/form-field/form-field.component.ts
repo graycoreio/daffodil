@@ -11,6 +11,7 @@ import {
   Input,
   AfterViewInit,
   isDevMode,
+  ElementRef,
 } from '@angular/core';
 
 import { DaffPrefixDirective } from '../../../../core/prefix-suffix/prefix.directive';
@@ -58,7 +59,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
     return this._control.controlType === 'native-select';
   }
 
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef, public elementRef: ElementRef) {}
 
   /** @docs-private */
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;

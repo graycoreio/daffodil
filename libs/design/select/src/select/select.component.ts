@@ -174,7 +174,6 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     private overlay: Overlay,
     private openDirective: DaffOpenableDirective,
     @Optional() private formField: DaffFormFieldComponent,
-    public elementRef: ElementRef<HTMLElement>,
   ) {
     super(ngControl);
 
@@ -311,8 +310,9 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
       if (this._value) {
         this._highlighted = this.options.findIndex((v) => v === this._value);
       }
-      const formFieldEl = <HTMLElement>this.elementRef.nativeElement.closest('daff-form-field');
-      const formFieldWidth = formFieldEl?.getBoundingClientRect().width ?? this.buttonElement.nativeElement.getBoundingClientRect().width;
+
+      const formFieldEl = this.formField.elementRef.nativeElement;
+      const formFieldWidth = formFieldEl.getBoundingClientRect().width;
 
       this._overlay = this.overlay.create({
         hasBackdrop: true,
