@@ -1,3 +1,4 @@
+import { BasicHeroComponent } from './basic-hero/basic-hero.component';
 import { CompactHeroComponent } from './compact-hero/compact-hero.component';
 import { HeroTextAlignmentComponent } from './hero-text-alignment/hero-text-alignment.component';
 import { HeroThemingComponent } from './hero-theming/hero-theming.component';
@@ -8,4 +9,5 @@ export const HERO_EXAMPLES = [
   HeroTextAlignmentComponent,
   HeroWithGridComponent,
   CompactHeroComponent,
+  BasicHeroComponent,
 ];
