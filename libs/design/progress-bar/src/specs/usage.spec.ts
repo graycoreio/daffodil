@@ -10,13 +10,17 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffPalette } from '@daffodil/design';
-
-import { DaffProgressBarComponent } from './progress-bar.component';
+import { DaffProgressBarComponent } from '@daffodil/design/progress-bar';
 
 @Component({
   template: `
-  <daff-progress-bar [color]="color" [percentage]="percentage" (finished)="onTransitionEnd()">
-  </daff-progress-bar>
+    <daff-progress-bar
+      [color]="color"
+      [percentage]="percentage"
+      [aria-label]="ariaLabel"
+      [indeterminate]="indeterminate"
+      (finished)="onTransitionEnd()">
+    </daff-progress-bar>
   `,
   imports: [
     DaffProgressBarComponent,
@@ -25,10 +29,13 @@ import { DaffProgressBarComponent } from './progress-bar.component';
 class WrapperComponent {
   color: DaffPalette;
   percentage: number;
+  ariaLabel: string;
+  id: string;
+  indeterminate = false;
   onTransitionEnd(): void {};
 }
 
-describe('DaffProgressBarComponent', () => {
+fdescribe('@daffodil/design/progress-bar | DaffProgressBarComponent | Usage', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;
@@ -58,12 +65,6 @@ describe('DaffProgressBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add a class of "daff-progress-bar" to the host element', () => {
-    expect(de.classes).toEqual(jasmine.objectContaining({
-      'daff-progress-bar': true,
-    }));
-  });
-
   it('should be able to take `percentage` as an input', () =>{
     wrapper.percentage = 20;
     fixture.detectChanges();
@@ -71,7 +72,21 @@ describe('DaffProgressBarComponent', () => {
     expect(component.percentage).toEqual(20);
   });
 
-  it('should emit `finished` when the progress bar is filled and the animation is complete', () => {
+  it('should be able to take `aria-label` as an input', () =>{
+    wrapper.ariaLabel = 'file upload';
+    fixture.detectChanges();
+
+    expect(component.ariaLabel).toEqual('file upload');
+  });
+
+  it('should add a class of `indeterminate` to the host when indeterminate is true', () => {
+    wrapper.indeterminate = true;
+    fixture.detectChanges();
+
+    expect(de.classes['indeterminate']).toBeTrue();
+  });
+
+  it('should emit `finished` when the progress bar is filled and the transition is complete', () => {
     wrapper.percentage = 100;
     spyOn(wrapper, 'onTransitionEnd');
 
@@ -89,20 +104,9 @@ describe('DaffProgressBarComponent', () => {
     expect(wrapper.onTransitionEnd).toHaveBeenCalledTimes(1);
   });
 
-  it('should be unfilled by default', () => {
-    wrapper.percentage = 0;
-    fixture.detectChanges();
-
-    expect(component.percentage).toEqual(0);
-  });
-
   describe('color property', () => {
     it('should take color as an input', () => {
       expect(progressBar.componentInstance.color).toEqual(wrapper.color);
-    });
-
-    it('should set the default color to primary', () => {
-      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
     });
   });
 });

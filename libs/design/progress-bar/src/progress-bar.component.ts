@@ -1,4 +1,3 @@
-/* eslint-disable quote-props */
 import {
   Component,
   Input,
@@ -7,12 +6,27 @@ import {
   EventEmitter,
   ChangeDetectorRef,
   booleanAttribute,
+  ContentChild,
 } from '@angular/core';
 
 import { DaffColorableDirective } from '@daffodil/design';
 
+import { DaffProgressBarLabelDirective } from './progress-bar-label/progress-bar-label.directive';
+
 export const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
+let daffProgressBarId = 0;
+
+/**
+ * A progress bar provides visual feedback about the duration or progress of a task or operation.
+ *
+ * @usage
+ * ```html
+ * <daff-progress-bar>
+ *  <daff-progress-bar-label>File upload</daff-progress-bar-label>
+ * </daff-progress-bar>
+ * ```
+ */
 @Component({
   selector: 'daff-progress-bar',
   templateUrl: './progress-bar.component.html',
@@ -25,13 +39,8 @@ export const clamp = (value: number, min: number, max: number) => Math.min(Math.
     },
   ],
   host: {
-    'class': 'daff-progress-bar',
+    class: 'daff-progress-bar',
     '[class.indeterminate]': 'indeterminate',
-    'role': 'progressbar',
-    '[attr.aria-label]': 'indeterminate ? "loading" : null',
-    '[attr.aria-valuemin]': '0',
-    '[attr.aria-valuemax]': '100',
-    '[attr.aria-valuenow]': 'indeterminate ? null : percentage',
   },
 })
 export class DaffProgressBarComponent {
@@ -45,6 +54,11 @@ export class DaffProgressBarComponent {
   private _percentage = 0;
 
   /**
+   * @docs-private
+   */
+  @ContentChild(DaffProgressBarLabelDirective) _label: DaffProgressBarLabelDirective;
+
+  /**
    * Sets the percentage completion of the progression,
    * expressed as a whole number between 0 and 100.
    */
@@ -55,6 +69,34 @@ export class DaffProgressBarComponent {
     this._percentage = clamp(val, 0, 100);
     this._changeDetectorRef.markForCheck();
   }
+
+  /**
+   * @docs-private
+   */
+  get ariaValueNow() {
+    return this.indeterminate ? null : this.percentage;
+  }
+
+  /**
+   * @docs-private
+   */
+  get ariaLabelledBy() {
+    if(!this.ariaLabel && this.id) {
+      return this.id;
+    }
+  }
+
+  /**
+   * @docs-private
+   *
+   * The unique id of the progress bar.
+   */
+  id = 'daff-progress-bar-' + ++daffProgressBarId;
+
+  /**
+   * An `aria-label` for the progress bar.
+   */
+  @Input('aria-label') ariaLabel = '';
 
   /**
    * Property to set the animation of a progress bar to
