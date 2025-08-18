@@ -61,7 +61,7 @@ Form field supports two `appearances`: `fluid` and `fixed`. It will default to `
 <design-land-example-viewer-container example="form-field-appearances"></design-land-example-viewer-container>
 
 ## Labels
-Use `<daff-form-label>` to help users understand what information to enter into a form control. Form fields should always have labels. If a form control is marked as disabled, an asterisk will be attached to the label to indicate that it's a required field.
+Use `<daff-form-label>` to help users understand what information to enter into a form control. Form fields should always have labels. If a form control is marked as required, an asterisk will be attached to the label to indicate that it's a required field.
 
 ```html
 <daff-form-field>
