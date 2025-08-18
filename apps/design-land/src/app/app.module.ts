@@ -21,7 +21,9 @@ import { DesignLandAppRoutingModule } from './app-routing.module';
 import { DesignLandAppComponent } from './app.component';
 import { DesignLandNavModule } from './core/nav/nav.module';
 import { DesignLandTemplateModule } from './core/template/template.module';
+import { DynamicFormRendererComponent } from './dynamic-form/dynamic-form';
 import { DesignLandSwitchModule } from './switch/switch.module';
+import { DemoFormComponent } from './dynamic-form/dynamic-form-demo';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,7 @@ import { DesignLandSwitchModule } from './switch/switch.module';
   imports: [
     // why does OverlayModule have to be in root?
     OverlayModule,
-
+    DemoFormComponent,
     BrowserModule,
     BrowserAnimationsModule,
     DesignLandAppRoutingModule,
