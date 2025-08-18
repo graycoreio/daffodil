@@ -35,7 +35,7 @@ class WrapperComponent {
   onTransitionEnd(): void {};
 }
 
-fdescribe('@daffodil/design/progress-bar | DaffProgressBarComponent | Usage', () => {
+describe('@daffodil/design/progress-bar | DaffProgressBarComponent | Usage', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;
