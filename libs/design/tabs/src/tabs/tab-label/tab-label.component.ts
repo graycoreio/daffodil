@@ -11,9 +11,9 @@ import {
 } from '@daffodil/design';
 
 /**
- * DaffTabLabelComponent is used to display the label of a tab panel. Labels may optionally contain a `daffPrefix` or `daffSuffix` to add icons or badges.
+ * Tab label is the clicakble label that activates its corresponding tab panel. Labels can contain text, icons, or both.
  *
- * @example Basic structure of tab label
+ * @example
  * ```html
  * <daff-tab-label>
  *  <div daffPrefix></div>
@@ -34,6 +34,9 @@ import {
   ],
 })
 export class DaffTabLabelComponent {
+  /**
+   * @docs-private
+   */
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
 
   /**

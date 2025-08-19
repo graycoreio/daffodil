@@ -29,9 +29,9 @@ import { DaffTabActivatorComponent } from './tab-activator/tab-activator.compone
 import { DaffTabLabelComponent } from './tab-label/tab-label.component';
 
 /**
- * Tabs provide a way to navigate between panels that display related content.
+ * Tabs provide a way to navigate between panels that display related content without leaving the page.
  *
- * @example Basic use of the tabs component
+ * @example
  * ```html
  * <daff-tabs aria-label="List of tabs">
  * 	<daff-tab>
@@ -86,16 +86,14 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
   @Input() initiallySelected: string = null;
 
   /**
-   * aria-label for the tab.
-   */
-  /**
    * @docs-private
+   *
+   * aria-label for the tab.
    */
   @HostBinding('attr.aria-label') private externalAriaLabel = null;
 
   /**
-   * @docs-private
-   *
+   * `aria-label` to label the tablist.
    */
   @Input('aria-label') ariaLabel = '';
 
