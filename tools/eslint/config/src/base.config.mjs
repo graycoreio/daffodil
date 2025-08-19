@@ -4,7 +4,6 @@ import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import stylisticPlugin from '@stylistic/eslint-plugin'
 import unusedImportsPlugin from 'eslint-plugin-unused-imports';
-import jasminePlugin from 'eslint-plugin-jasmine';
 import modulesNewLinePlugin from 'eslint-plugin-modules-newlines';
 
 export const baseEslintConfig = defineConfig([
@@ -13,14 +12,12 @@ export const baseEslintConfig = defineConfig([
     extends: [
       eslint.configs.recommended,
       importPlugin.flatConfigs.recommended,
-      jasminePlugin.configs.recommended,
     ],
     plugins: {
       jsdoc: jsdocPlugin,
       '@stylistic': stylisticPlugin,
       'unused-imports': unusedImportsPlugin,
       'modules-newlines': modulesNewLinePlugin,
-      'jasmine': jasminePlugin,
     },
     rules: {
       "@stylistic/indent": [

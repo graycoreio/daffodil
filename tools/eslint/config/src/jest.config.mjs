@@ -8,6 +8,7 @@ export const jestEslintConfig = defineConfig([
 		files: ['**/*.spec.ts'],
 		extends: [
 			importPlugin.flatConfigs.typescript,
+			jasminePlugin.configs.recommended,
 		],
 		plugins: {
 			jasmine: jasminePlugin,
