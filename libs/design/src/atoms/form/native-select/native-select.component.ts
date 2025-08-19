@@ -3,16 +3,21 @@ import {
   Optional,
   Self,
   ElementRef,
-  HostListener,
-  HostBinding,
   ChangeDetectionStrategy,
   OnInit,
+  Input,
+  booleanAttribute,
+  HostBinding,
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import {
+  NgControl,
+  Validators,
+} from '@angular/forms';
 import {
   map,
   merge,
   of,
+  tap,
 } from 'rxjs';
 
 import { DaffFormFieldComponent } from '../form-field/form-field/form-field.component';
@@ -31,6 +36,13 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
 
     { provide: DaffFormFieldControl, useExisting: DaffNativeSelectComponent },
   ],
+  host: {
+    class: 'daff-native-select',
+    '(focus)': 'focus()',
+    '(blur)': 'blur()',
+    '[attr.id]': '_id()',
+    '[attr.aria-describedby]': 'ariaDescribedBy()',
+  },
   standalone: false,
 })
 
@@ -44,11 +56,6 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
 
   /**
    * @docs-private
-   */
-  @HostBinding('class.daff-native-select') class = true;
-
-  /**
-   * @docs-private
    *
    * Implemented as part of DaffFormFieldControl.
    */
@@ -57,21 +64,14 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
   /**
    * Implemented as part of DaffFormFieldControl.
    */
-  private get _id() {
+  private _id() {
     return this.formField?.id;
   };
 
   /**
    * @docs-private
    */
-  @HostBinding('attr.id') get internalId() {
-    return this._id;
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-describedby') get ariaDescribedBy() {
+  ariaDescribedBy() {
     if(this.formField.hasErrorMessage()) {
       return this.formField.errorMessageId;
     } else if(this.formField.hasHint()) {
@@ -84,20 +84,43 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
   /**
    * @docs-private
    *
-   * TODO: Update functionality to match other control during refactor.
+   * Implemented as part of DaffFormFieldControl.
    */
-  disabled = false;
-
-  /**
-   * @docs-private
-   * TODO: Update functionality to match other control during refactor.
-   */
-  required = false;
+  @Input({ transform: booleanAttribute }) disabled = false;
 
   /**
    * @docs-private
    */
-  @HostListener('focus') focus() {
+  @HostBinding('disabled') get disabledAttribute() {
+    return this.disabled || null;
+  }
+
+  private _required = false;
+
+  /**
+   * @docs-private
+   *
+   * Implemented as part of DaffFormFieldControl.
+   */
+  @Input({ transform: booleanAttribute })
+  get required(): boolean {
+    return this.ngControl?.control?.hasValidator(Validators.required) ?? this._required;
+  }
+  set required(value: boolean) {
+    this._required = value;
+  }
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('required') get requiredAttribute() {
+    return this.required || null;
+  }
+
+  /**
+   * @docs-private
+   */
+  focus() {
     this.focused = true;
     this.emitState();
   }
@@ -105,7 +128,7 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
   /**
    * @docs-private
    */
-  @HostListener('blur') blur() {
+  blur() {
     this.focused = false;
     this.emitState();
   }
@@ -132,14 +155,8 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
       this.ngControl ? this.ngControl.statusChanges : of(undefined),
     ).pipe(
       map(() => this.state),
+      tap((state) => this.disabled = state.disabled),
     );
-  }
-
-  /**
-   * @docs-private
-   */
-  onFocus() {
-    this._elementRef.nativeElement.focus();
   }
 
   /**

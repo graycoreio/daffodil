@@ -11,8 +11,8 @@ import { UntypedFormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import {
+  DAFF_FORM_FIELD_COMPONENTS,
   DaffFormFieldComponent,
-  DaffFormFieldModule,
   DaffNativeSelectComponent,
 } from '@daffodil/design';
 
@@ -43,7 +43,7 @@ describe('@daffodil/design | DaffNativeSelectComponent | With Form Field', () =>
         DaffNativeSelectComponent,
       ],
       imports: [
-        DaffFormFieldModule,
+        DAFF_FORM_FIELD_COMPONENTS,
       ],
     })
       .compileComponents();
@@ -69,16 +69,17 @@ describe('@daffodil/design | DaffNativeSelectComponent | With Form Field', () =>
     expect(component.controlType).toEqual('native-select');
   });
 
-  describe('onFocus', () => {
-    it('should call focus on the native element', () => {
-      spyOn(componentDE.nativeElement, 'focus');
+  it('should set the native select id to the form field id', () => {
+    expect(componentDE.attributes.id).toEqual(formField.id);
+  });
 
-      component.onFocus();
 
-      expect(componentDE.nativeElement.focus).toHaveBeenCalledWith();
-    });
+  it('should set required to false', () => {
+    expect(component.required).toBe(false);
+  });
 
-    it('should set focused to true when [daff-native-select] is focused', () => {
+  describe('when [daff-native-select] is focused', () => {
+    it('should set focused to true', () => {
       componentDE.triggerEventHandler('focus', {});
 
       expect(component.focused).toBe(true);
@@ -99,7 +100,7 @@ describe('@daffodil/design | DaffNativeSelectComponent | With Form Field', () =>
       fixture.detectChanges();
 
       expect(formField.id).toEqual('test-2');
-      expect(component.internalId).toEqual('test-2');
+      expect(componentDE.attributes.id).toEqual('test-2');
     });
   });
 });
