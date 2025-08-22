@@ -64,7 +64,7 @@ const runDesignDocsSequentially = async () => {
       new Dgeni([designExamplePackage]).generate().catch((err) => {
         console.log(err);
         process.exit(1);
-      })
+      }),
     ]);
   }
 };
