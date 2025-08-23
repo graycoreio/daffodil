@@ -164,13 +164,13 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
         const testScheduler = new TestScheduler((actual, expected) => {
           expect(actual).toEqual(expected);
         });
-        
+
         setupLoginDriver(testScheduler, true);
         setupStorageService(true);
-        
+
         const expectedAction = new DaffAuthLoginSuccess(mockAuth);
         testEffectWithMarbles(effects.login$, mockAuthLoginAction, expectedAction, testScheduler);
-        
+
         expect(setAuthTokenSpy).toHaveBeenCalledWith(mockAuth.token);
       });
     });
@@ -180,17 +180,17 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
         const testScheduler = new TestScheduler((actual, expected) => {
           expect(actual).toEqual(expected);
         });
-        
+
         const storageError = new DaffStorageServiceError('Storage of auth token has failed.');
         setupLoginDriver(testScheduler, true);
         setupStorageService(false, storageError);
-        
+
         const expectedAction = new DaffAuthLoginFailure({
-          code: 'DAFF_STORAGE_FAILURE', 
-          recoverable: false, 
+          code: 'DAFF_STORAGE_FAILURE',
+          recoverable: false,
           message: 'Storage of auth token has failed.',
         });
-        
+
         testEffectWithMarbles(effects.login$, mockAuthLoginAction, expectedAction, testScheduler);
       });
     });
@@ -200,15 +200,15 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
         const testScheduler = new TestScheduler((actual, expected) => {
           expect(actual).toEqual(expected);
         });
-        
+
         const serverSideError = new DaffServerSideStorageError('Server side');
         setupLoginDriver(testScheduler, true);
         setupStorageService(false, serverSideError);
-        
+
         const expectedAction = new DaffAuthServerSide(
           daffTransformErrorToStateError(serverSideError),
         );
-        
+
         testEffectWithMarbles(effects.login$, mockAuthLoginAction, expectedAction, testScheduler);
       });
     });
@@ -218,14 +218,14 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
         const testScheduler = new TestScheduler((actual, expected) => {
           expect(actual).toEqual(expected);
         });
-        
+
         const authError = new DaffAuthenticationFailedError('Failed to log in');
         setupLoginDriver(testScheduler, false, authError);
-        
+
         const expectedAction = new DaffAuthLoginFailure(
           daffTransformErrorToStateError(authError),
         );
-        
+
         testEffectWithMarbles(effects.login$, mockAuthLoginAction, expectedAction, testScheduler);
       });
     });
@@ -239,9 +239,9 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
         const testScheduler = new TestScheduler((actual, expected) => {
           expect(actual).toEqual(expected);
         });
-        
+
         setupLogoutDriver(testScheduler, true);
-        
+
         const expectedAction = new DaffAuthLogoutSuccess();
         testEffectWithMarbles(effects.logout$, mockAuthLogoutAction, expectedAction, testScheduler);
       });
@@ -252,14 +252,14 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
         const testScheduler = new TestScheduler((actual, expected) => {
           expect(actual).toEqual(expected);
         });
-        
+
         const apiError = new DaffAuthInvalidAPIResponseError('Failed to log out');
         setupLogoutDriver(testScheduler, false, apiError);
-        
+
         const expectedAction = new DaffAuthLogoutFailure(
           daffTransformErrorToStateError(apiError),
         );
-        
+
         testEffectWithMarbles(effects.logout$, mockAuthLogoutAction, expectedAction, testScheduler);
       });
     });
