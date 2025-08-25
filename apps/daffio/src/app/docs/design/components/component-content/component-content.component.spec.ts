@@ -89,6 +89,7 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
     wrapper.docValue = {
       id: 'id',
       title: 'title',
+      path: 'path',
       symbols: [],
       tableOfContents: [{
         content: 'toc',
