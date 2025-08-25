@@ -13,6 +13,8 @@ export class MockDoc implements DaffDoc {
   kind = sample(Object.values(DaffDocKind));
   title = faker.lorem.words();
   contents = faker.lorem.paragraph();
+  path = `/api/packages/${faker.lorem.slug()}`;
+
   // TODO: implement child models
   breadcrumbs = [];
   tableOfContents = [
