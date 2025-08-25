@@ -1,5 +1,6 @@
 export { crossOsFilename } from './cross-os-filename';
 export * from './path';
+export * from './item.type';
 
 export * from './api/public_api';
 export * from './breadcrumb/public_api';

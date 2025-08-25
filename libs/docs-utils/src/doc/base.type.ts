@@ -9,4 +9,5 @@ export interface DaffBaseDoc {
   title: string;
   breadcrumbs: Array<DaffBreadcrumb>;
   kind: DaffDocKind;
+  path: string;
 }

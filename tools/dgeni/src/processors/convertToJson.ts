@@ -23,6 +23,7 @@ const defaultSerializer: Serializer<DaffDoc> = (doc: DaffDoc & Document): DaffDo
   contents: doc.renderedContent || doc.contents || '',
   tableOfContents: doc.tableOfContents,
   breadcrumbs: doc.breadcrumbs || [],
+  path: doc.path || '',
 });
 
 export const defaultIndexer: Indexer<DaffDoc> = (doc: DaffDoc & Document) => ({

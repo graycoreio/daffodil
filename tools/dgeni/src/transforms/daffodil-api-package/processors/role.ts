@@ -80,6 +80,7 @@ export class RoleProcessor implements FilterableProcessor {
       'slug',
       'name',
       'deprecated',
+      'path',
     ],
     {
       description: this.markdownSerialize,
