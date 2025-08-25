@@ -58,7 +58,7 @@ class WrapperComponent {
   controlValue = new FormControl(0);
 }
 
-fdescribe('@daffodil/design/select | DaffSelectComponent', () => {
+describe('@daffodil/design/select | DaffSelectComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;
