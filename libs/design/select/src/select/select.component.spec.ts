@@ -230,7 +230,7 @@ describe('@daffodil/design/select | DaffSelectComponent', () => {
         expect(wrapper.controlValue.value).toEqual(1);
       });
 
-      fit('should update the is selected value in the option slot', () => {
+      it('should update the is selected value in the option slot', () => {
         optionEl = fixture.debugElement.query(By.css('.test-option[data-value="1"]')).nativeElement;
 
         expect(optionEl.getAttribute('data-is-selected')).toEqual('true');
