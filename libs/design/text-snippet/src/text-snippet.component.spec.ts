@@ -9,24 +9,24 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffButtonModule } from '@daffodil/design/button';
+import { DAFF_UNDERLINE_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 import { DaffTextSnippetComponent } from './text-snippet.component';
 
 @Component({
   template: '<daff-text-snippet [condensed]="condensed" [html]="html">content</daff-text-snippet>',
   imports: [
-    DaffButtonModule,
+    DAFF_UNDERLINE_BUTTON_COMPONENTS,
     DaffTextSnippetComponent,
   ],
 })
 
 class WrapperComponent {
-  condensed = true;
+  condensed: boolean;
   html = '';
 }
 
-describe('DaffTextSnippetComponent', () => {
+describe('@daffodil/design/text-snippet | DaffTextSnippetComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapper: WrapperComponent;
   let component: DaffTextSnippetComponent;
@@ -89,10 +89,32 @@ describe('DaffTextSnippetComponent', () => {
     expect(contentHolder).toBeFalsy();
   });
 
+  describe('condensed property', () => {
+    it('should set condensed to true by default', () => {
+      expect(component.condensed).toEqual(true);
+    });
+  });
+
   it('should apply a `condensed` class to the content when `condensed` is true', () => {
     wrapper.condensed = true;
     fixture.detectChanges();
 
     expect(componentDe.query(By.css('.daff-text-snippet__content')).classes.condensed).toBeTruthy();
+  });
+
+  it('should set aria-expanded to true when text snippet is not condensed', () => {
+    const toggle = fixture.debugElement.query(By.css('.daff-text-snippet__toggle')).nativeElement;
+    wrapper.condensed = false;
+    fixture.detectChanges();
+
+    expect(toggle.attributes['aria-expanded'].value).toEqual('true');
+  });
+
+  it('should set aria-expanded to false when text snippet is condensed', () => {
+    const toggle = fixture.debugElement.query(By.css('.daff-text-snippet__toggle')).nativeElement;
+    wrapper.condensed = true;
+    fixture.detectChanges();
+
+    expect(toggle.attributes['aria-expanded'].value).toEqual('false');
   });
 });

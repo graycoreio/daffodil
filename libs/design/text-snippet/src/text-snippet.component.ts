@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import {
   Component,
   Input,
@@ -9,7 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DAFF_UNDERLINE_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
   selector: 'daff-text-snippet',
@@ -17,21 +16,36 @@ import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
   styleUrls: ['./text-snippet.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    NgIf,
-    DAFF_BUTTON_COMPONENTS,
+    DAFF_UNDERLINE_BUTTON_COMPONENTS,
   ],
 })
 export class DaffTextSnippetComponent {
 
   /**
-   * A property to track whether or not the component
-   * should render a condensed version of the content.
+   * Whether or not the component should render a condensed version of the content.
    */
   @Input() condensed = true;
 
+  /**
+   * The HTML content to render inside the snippet.
+   */
   @Input() html = '';
 
+  /**
+   * @docs-private
+   */
+  ariaExpanded() {
+    return !this.condensed ? true : false;
+  }
+
+  /**
+   * @docs-private
+   */
   @ViewChild('contentEl', { read: ElementRef }) contentRef: ElementRef;
+
+  /**
+   * @docs-private
+   */
   @ViewChild('htmlEl', { read: ElementRef }) htmlRef: ElementRef;
 
   /**
@@ -40,6 +54,9 @@ export class DaffTextSnippetComponent {
   // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() toggle: EventEmitter<boolean> = new EventEmitter();
 
+  /**
+   * @docs-private
+   */
   toggleSnippet() {
     this.condensed = !this.condensed;
     this.toggle.emit(this.condensed);
