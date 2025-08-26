@@ -19,14 +19,14 @@
 
 	&__check-icon {
 		margin-right: 15px;
-		font-size: $medium-font-size;
+		font-size: $font-size-md;
 	}
 
 	&__close {
 		position: absolute;
 		top: 15px;
 		right: 25px;
-		font-size: $medium-font-size;
+		font-size: $font-size-md;
 		@include clickable();
 	}
 
@@ -45,7 +45,7 @@
 		}
 
 		> * {
-			font-size: $medium-font-size;
+			font-size: $font-size-md;
 			flex: 1;
 		}
 	}

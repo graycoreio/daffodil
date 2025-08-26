@@ -34,7 +34,7 @@
 
 	&__note {
 		text-align: center;
-		font-size: $small-font-size;
+		font-size: $font-size-sm;
 
 		@include breakpoint(big-tablet) {
 			text-align: left;

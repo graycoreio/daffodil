@@ -1,7 +1,7 @@
 @use 'utilities' as *;
 
 .demo-checkout-billing-summary {
-	font-size: $small-font-size;
+	font-size: $font-size-sm;
 
 	&__title {
 		font-weight: bold;

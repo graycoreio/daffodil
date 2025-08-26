@@ -17,19 +17,19 @@
 
 	&__name {
 		@include clickable();
-		font-size: $medium-font-size;
+		font-size: $font-size-md;
 		font-weight: bold;
 		margin-bottom: 5px;
 	}
 
 	&__price {
-		font-size: $medium-font-size;
+		font-size: $font-size-md;
 		color: demo-theme.daff-color(demo-theme.$secondary);
 		margin-bottom: 15px;
 	}
 
 	&__info {
-		font-size: $small-font-size;
+		font-size: $font-size-sm;
 		line-height: 1.25rem;
 	}
 }

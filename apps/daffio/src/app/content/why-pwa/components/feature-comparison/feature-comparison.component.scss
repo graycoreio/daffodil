@@ -21,14 +21,14 @@
 
 		@include daff.breakpoint(tablet) {
 			padding: 25px 5px;
-			font-size: daff.$small-font-size;
+			font-size: daff.$font-size-sm;
 		}
 	}
 
 	&__cell {
 		@include comparison-cell();
 		align-items: center;
-		font-size: daff.$small-font-size;
+		font-size: daff.$font-size-sm;
 		padding: 10px 15px;
 
 		@include daff.breakpoint(tablet) {

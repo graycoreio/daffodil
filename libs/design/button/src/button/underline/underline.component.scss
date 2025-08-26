@@ -45,19 +45,19 @@
 	}
 
 	&.daff-sm {
-		font-size: t.$small-font-size;
+		font-size: t.$font-size-sm;
 		height: 1.25rem;
 		padding: 0 0 0.25rem;
 	}
 
 	&.daff-md {
-		font-size: t.$normal-font-size;
+		font-size: t.$font-size-base;
 		height: 1.5rem;
 		padding: 0 0 0.25rem;
 	}
 
 	&.daff-lg {
-		font-size: t.$medium-font-size;
+		font-size: t.$font-size-md;
 		height: 1.75rem;
 		padding: 0 0 0.5rem;
 	}

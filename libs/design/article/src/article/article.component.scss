@@ -100,7 +100,7 @@
 	pre {
 		display: block;
 		border-radius: 0.25rem;
-		font-size: t.$small-font-size;
+		font-size: t.$font-size-sm;
 		line-height: 1.5rem;
 		margin: 1.5rem 0;
 		padding: 1.5rem;
@@ -119,13 +119,13 @@
 
 	code {
 		border-radius: 0.25rem;
-		font-size: t.$small-font-size;
+		font-size: t.$font-size-sm;
 		line-height: 1rem;
 		padding: 0.125rem 0.25rem;
 	}
 
 	&__meta {
-		font-size: t.$small-font-size;
+		font-size: t.$font-size-sm;
 	}
 
 	hr {

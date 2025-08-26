@@ -12,7 +12,7 @@
 			@include daff.breakpoint(big-tablet) {
 				display: block;
 				color: currentColor;
-				font-size: daff.$normal-font-size;
+				font-size: daff.$font-size-base;
 				font-weight: 500;
 				line-height: 64px;
 				padding: 0 1rem;

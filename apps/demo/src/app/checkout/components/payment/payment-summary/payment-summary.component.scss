@@ -1,7 +1,7 @@
 @use 'utilities' as *;
 
 .demo-checkout-payment-summary {
-	font-size: $small-font-size;
+	font-size: $font-size-sm;
 	display: grid;
 	grid-template-columns: 4fr 1fr;
 	grid-template-areas:
