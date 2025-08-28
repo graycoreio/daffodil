@@ -1,15 +1,21 @@
 @use 'sass:map';
 @use 'variables' as v;
 
-//
-// Take a the list of breakpoints and retrieves the defined point.
-// If an invalid breakpoint is defined, it will display a warning.
-//
-// @usage
-// ```
-// @include layout.breakpoint(mobile) {}
-// ```
-//
+/// Applies styles at a specific breakpoint defined by `$breakpoints`.
+///
+/// This mixin looks up the breakpoint in the `$breakpoints` map and wraps
+/// the content in a min-width media query. If an invalid breakpoint is defined,
+/// it will display a warning.
+///
+/// @group Layout
+///
+/// @param {String} $point — The name of the breakpoint (e.g., `mobile`, `tablet`, `desktop`).
+///
+/// @example scss
+/// 	@include breakpoint(tablet) {
+///   	// styles for tablet and up
+/// 	}
+///
 @mixin breakpoint($point) {
 	@if not map.has-key($map: v.$breakpoints, $key: $point) {
 		@warn 'breakpoint(): "#{$key}" is not defined in your $breakpoints setting.';

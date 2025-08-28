@@ -1,15 +1,17 @@
-// @docs
-//
-// Forces a line of text to ellipsis once it reaches the
-// width of its container. It should only be used if the element
-// is `display: block` or `display: inline-block`.
-// @usage
-// ```scss
-// @use '@daffodil/design/scss/typography;'
-//
-// @include typography.text-truncate();
-// ```
-
+/// Forces a single line of text to truncate with an ellipsis
+/// when it exceeds its container's width.
+///
+/// This mixin should only be applied to elements with
+/// `display: block;` or `display: inline-block;`.
+///
+/// @group Typography
+///
+/// @example scss
+/// @use '@daffodil/design/scss/typography';
+///
+/// .component {
+/// 	@include typography.text-truncate();
+/// }
 @mixin text-truncate() {
 	display: block;
 	overflow: hidden;

@@ -1,15 +1,22 @@
 @use 'sass:map';
 @use 'get-color';
 
-// @docs
-//
-// Configures the default color of a palette. It will set the
-// "default" to 60 if $hue isn't specified.
-//
-// @usage
-// ```scss
-// daff-configure-palette($daff-yellow, 50);
-// ```
+/// Configures a color palette by assigning a default hue.
+///
+/// This function takes a color palette and sets a specific hue
+/// as the palette’s default color. The palette can then be used
+/// to configure themes by setting them as primary, secondary, or tertiary colors.
+///
+/// @group Theming
+///
+/// @param {Map} $color-palette — A color palette map (e.g., `$daff-blue`, `$daff-purple`).
+/// @param {Number} $hue [60] — The hue value from the palette to assign as the default.
+///
+/// @example scss
+/// 	@use '@daffodil/design/scss/theme' as daff-theme;
+///
+/// 	$primary: daff-theme.daff-configure-palette(daff-theme.$daff-blue, 50);
+///
 @function daff-configure-palette($color-palette, $hue: 60) {
 	@return map.merge(
 		$color-palette,

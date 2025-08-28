@@ -1,43 +1,52 @@
-//
-// Apply styles only in light mode.
-//
-// @usage
-// ```scss
-// @use 'theme' as daff-theme;
-//
-// $mode: daff-theme.daff-get-theme-mode($theme);
-//
-// @include daff-theme.light($mode) {
-//   color: blue;
-//
-//   .class {
-//      background: white;
-//	 }
-// }
-// ```
+/// A mixin to apply styles to `light` mode.
+/// It's useful for defining styles that should only appear in light mode.
+///
+/// @group Theming
+///
+/// @param {String} $mode — The mode created with the `daff-get-theme-mode` function.
+///
+/// @example scss
+/// @use '@daffodil/design/scss/theme' as daff-theme;
+///
+/// @mixin custom-content-theme($theme) {
+/// 	$mode: daff-theme.daff-get-theme-mode($theme);
+///
+/// 	@include daff-theme.light($mode) {
+/// 		color: blue;
+///
+///   	.class {
+///   		background: white;
+///			}
+///	 	}
+/// }
+///
 @mixin light($mode) {
 	@if $mode == 'light' {
 		@content;
 	}
 }
 
-//
-// Apply styles only in dark mode.
-//
-// @usage
-// ```scss
-// @use 'theme' as daff-theme;
-//
-// $mode: daff-theme.daff-get-theme-mode($theme);
-//
-// @include daff-theme.dark($mode) {
-//   color: blue;
-//
-//   .class {
-//      background: white;
-//	 }
-// }
-// ```
+/// This mixin applies its content only when the theme mode is `dark`.
+/// It's useful for defining styles that should only appear in dark mode.
+///
+/// @group Theming
+///
+/// @param {String} $mode — The mode created with the `daff-get-theme-mode` function.
+///
+/// @example scss
+/// 	@use '@daffodil/design/scss/theme' as daff-theme;
+///
+/// 	@mixin custom-content-theme($theme) {
+/// 		$mode: daff-theme.daff-get-theme-mode($theme);
+///
+/// 		@include daff-theme.dark($mode) {
+/// 			color: white;
+///
+///   		.class {
+///   			background: blue;
+///				}
+///	 		}
+/// 	}
 @mixin dark($mode) {
 	@if $mode == 'dark' {
 		@content;

@@ -1,8 +1,22 @@
 @use 'sass:math';
 @use '../luminance/luminance';
 
-// Calculate the contrast ratio between two colors.
-// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+/// Calculates the contrast ratio between two colors.
+///
+/// This function calculates the contrast ratio between a background and
+/// foreground color using the WCAG 2.0 formula. Contrast ratios are
+/// important for accessibility and help ensure that text and UI elements
+/// are legible against their backgrounds.
+///
+/// See [WCAG 2.0 Contrast Ratio (G17)](https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests)
+/// for more information.
+///
+/// @group Theming
+///
+/// @param {Color} $back — The background color.
+/// @param {Color} $front — The foreground (text or element) color.
+/// @return {Number} The contrast ratio between the two colors.
+///
 @function daff-contrast-ratio($back, $front) {
 	$back-lum: luminance.daff-luminance($back) + 0.05;
 	$fore-lum: luminance.daff-luminance($front) + 0.05;

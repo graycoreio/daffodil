@@ -1,12 +1,31 @@
 @use '../core/map/map-get/map-get';
 
-// Retrieves a specific color palette from Daffodil's theme configurations.
-// $palette must be one of these values:
-// `primary`, `secondary`, `tertiary`, `informational`, `warn`, `critical`, `success`, and `neutral`.
-//
-// ```scss
-// $primary: daff-get-palette($theme, primary);
-// ```
+/// Retrieves a specific color palette from a configured theme.
+///
+/// If you are not using Daffodil's default theme, a theme **must** be
+/// created with `daff-configure-theme` before this function can be used.
+/// See the [customize your own theme](daff.io/docs/design/theming/customize-your-own-theme)
+/// guide for more information.
+///
+/// @group Theming
+///
+/// @param {Map} $theme — A theme map created with with `daff-configure-theme` function.
+/// @param {Map} $palette — The palette being retrieved.
+/// Supported values: `primary`, `secondary`, `tertiary`, `informational`, `warn`, `critical`, `success`, or `neutral`.
+///
+/// @throws Will throw an error if `$palette` is not a supported value in Daffodil's theme configurations.
+///
+/// @example scss
+/// 	@use '@daffodil/design/scss/theme' as daff-theme;
+///
+/// 	@mixin custom-content-theme($theme) {
+/// 		$primary: daff-get-palette($theme, primary);
+///
+///			.custom-content {
+/// 			color: daff-color($primary);
+///			}
+/// 	}
+///
 @function daff-get-palette($theme, $palette) {
 	@if (
 		$palette != primary and

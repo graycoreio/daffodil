@@ -2,21 +2,25 @@
 @use '../../get-color';
 @use '../../color-palettes' as palette;
 
-// @docs
-//
-// Given a color, get the font color that would be
-// easily visible on top of that color
-//
-// For an interesting read, see more about the topic:
-// https://robots.thoughtbot.com/closer-look-color-lightness
-//
-// Based on the code outlined by Sergio Gomes here:
-// https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
-//
-// @usage
-// ```
-// daff-text-contrast("#777777")
-// ```
+/// Determines the color to use against the initial given color.
+/// It returns the one that provides the higher contrast, ensuring better readability.
+/// By default, the function tests against `$black` (#000`, and `$white` (#fff).
+///
+/// @group Theming
+///
+/// @param {Color} $color — The color to test against.
+///
+/// For an interesting read, see more about the topic:
+/// https:///robots.thoughtbot.com/closer-look-color-lightness
+///
+/// Based on the code outlined by
+/// [Sergio Gomes](https://sgom.es/posts/2016-12-21-using-sass-to-automatically-pick-text-colors/).
+///
+/// @example scss
+/// 	.heading {
+/// 		color: daff-text-contrast(#000);
+/// 	}
+///
 @function daff-text-contrast(
 	$color,
 	$black: get-color.daff-color(palette.$daff-neutral, 110),

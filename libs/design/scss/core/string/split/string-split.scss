@@ -1,14 +1,11 @@
 @use 'sass:string';
 @use 'sass:list';
 
-//
-// @docs
-// @private
-// Splits a string into an array based on a separator
-// Remember, string arrays begin at 1 in SASS.
-//
-// @returns comma-list
-//
+/// @access private
+///
+/// Splits a string into an array based on a separator
+/// Remember, string arrays begin at 1 in SASS.
+///
 @function daff-string-split($string, $separator) {
 	$list: ();
 	$index: string.index($string, $separator);

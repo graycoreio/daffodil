@@ -2,13 +2,14 @@
 @use 'sass:list';
 @use 'variables' as v;
 
-// Calculate the luminance of a color.
-// Luminance is defined as a decimal value between 0 and 1
-// with "0" corresponding to "no brightness"
-// and "1" corresponding to "full brightness".
-//
-// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
-
+/// Calculates the luminance of a color.
+/// Luminance is defined as a decimal value between 0 and 1,
+/// with "0" corresponding to "no brightness"
+/// and "1" corresponding to "full brightness".
+///
+/// See [WCAG 2.0 Contrast Ratio (G17)](https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests)
+/// for more information.
+///
 @function daff-luminance($color) {
 	$red-index: color.channel($color, 'red') + 1;
 	$green-index: color.channel($color, 'green') + 1;

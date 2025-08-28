@@ -1,8 +1,13 @@
-//
-// @docs
-//
-// Sensible breakpoints to be used for layouts and interfaces.
-// These breakpoints are based on common devices viewport widths.
+/// Defines sensible breakpoints for layouts and interfaces.
+/// These breakpoints correspond to common device viewport widths,
+/// making it easier to apply responsive styles consistently across devices.
+///
+/// @group Layout
+///
+/// @example scss
+/// 	@include breakpoint(tablet) {
+///   	// styles for tablet and up
+/// 	}
 $breakpoints: (
 	desktop: 1920px,
 	laptop: 1440px,

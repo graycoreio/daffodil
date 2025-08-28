@@ -1,5 +1,6 @@
 @use '../../theming' as *;
 
+/// @access private
 @mixin daff-skeleton-theme($theme) {
 	$neutral: daff-get-palette($theme, neutral);
 	$base: daff-get-base-color($theme, base);
@@ -22,6 +23,17 @@
 	}
 }
 
+/// Creates a skeleton screen placeholder with a shimmering loading effect.
+///
+/// @group State
+///
+/// @param {Number} $width — The width of the skeleton element.
+/// @param {Number} $height — The width of the skeleton element.
+/// @param {Number} $border-radius — Optional border radius for rounded UI. Defaults to 0.
+///
+///	@example scss
+/// 	@include skeleton-screen(10rem, 2rem, 0.25rem);
+///
 @mixin skeleton-screen($width, $height, $border-radius: 0) {
 	display: flex;
 	position: relative;

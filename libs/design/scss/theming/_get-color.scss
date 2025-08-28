@@ -1,14 +1,19 @@
 @use 'sass:map';
 
-//
-// Takes a color palette and retrieves the hue from the palette
-// If no color is selected, it will retrieve the default
-// color from the palette
-//
-// @usage
-// ```
-// daff-color($daff-yellow, 60);
-// ```
+/// Retrieves a color from a palette by hue.
+///
+/// @group Theming
+///
+/// @param {Map} $palette — The palette color palette to retrieve a color from.
+/// @param {Number} $color — The hue to select.
+///
+/// @throws Will throw an error if `$color` does not exist in `$palette`.
+///
+/// @example scss
+/// 	.custom-content {
+/// 		color: daff-color($primary, 80);
+/// 	}
+///
 @function daff-color($palette, $color: 'default') {
 	@if (not(map.has-key($palette, $color))) {
 		@error 'Color: `#{$color}` does not exist in palette';

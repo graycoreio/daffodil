@@ -28,21 +28,19 @@ $supported-theme-modes: (
 	'dark': $daff-dark-theme
 );
 
-
-// @docs
-//
-// Create a theme object given some initial settings.
-// Sets light and dark mode defaults for `$info`, `$warn`, `$critical`, and `$success`
-// that can be overriden by using the `daff-configure-theme-status` function.
-//
-// @usage
-// ```scss
-// $primary: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
-// $secondary: configure-palette.daff-configure-palette(palette.$daff-purple, 60);
-// $tertiary: configure-palette.daff-configure-palette(palette.$daff-turquoise, 60);
-//
-// $theme: daff-configure-theme($primary, $secondary, $tertiary, 'light');
-// ```
+/// Create a theme object given some initial settings.
+///
+/// Sets light and dark mode defaults for `$info`, `$warn`, `$critical`, and `$success`
+/// that can be overriden by using the `daff-configure-theme-status` function.
+///
+/// @group Theming
+///
+/// @example scss
+/// 	$primary: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
+/// 	$secondary: configure-palette.daff-configure-palette(palette.$daff-purple, 60);
+/// 	$tertiary: configure-palette.daff-configure-palette(palette.$daff-turquoise, 60);
+/// 	$theme: daff-configure-theme($primary, $secondary, $tertiary, 'light');
+///
 @function daff-configure-theme(
 	$primary,
 	$secondary,
@@ -79,19 +77,17 @@ $supported-theme-modes: (
 	);
 }
 
-// @docs
-//
-// Create a status theme object given some initial settings.
-//
-// @usage
-// ```
-// $info: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
-// $warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 60);
-// $critical: configure-palette.daff-configure-palette(palette.$daff-red, 60);
-// $success: configure-palette.daff-configure-palette(palette.$daff-green, 60);
-//
-// $theme: daff-configure-theme-status($info, $warn, $critical, $success);
-// ```
+/// Create a status theme object given some initial settings.
+///
+/// @group Theming
+///
+/// @example scss
+/// 	$info: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
+/// 	$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 60);
+/// 	$critical: configure-palette.daff-configure-palette(palette.$daff-red, 60);
+/// 	$success: configure-palette.daff-configure-palette(palette.$daff-green, 60);
+/// 	$theme: daff-configure-theme-status($info, $warn, $critical, $success);
+///
 @function daff-configure-theme-status(
 	$theme,
 	$warn,
@@ -108,16 +104,11 @@ $supported-theme-modes: (
 	));
 }
 
-//
-// @docs
-//
-// Retrieves the core theme given a theme mode
-// $mode: "light" | "dark"
-//
-// ```
-// @usage
-// daff-build-theme-core("light")
-// ```
+/// @access private
+///
+/// Retrieves the core theme given a theme mode
+/// $mode: "light" | "dark"
+///
 @function daff-build-theme-core($mode: 'light') {
 	$error-msg: 'is not a valid theme mode - valid modes:';
 	@if (not map.has-key($supported-theme-modes, $mode)) {

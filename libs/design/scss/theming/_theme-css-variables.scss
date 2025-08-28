@@ -3,9 +3,9 @@
 @use '../core';
 @use '../theming' as *;
 
-// @docs
-//
-// Global theme tokens
+/// Global theme tokens
+///
+/// @group Theming
 @mixin daff-root-theme-tokens($theme) {
 	$base: daff-get-base-color($theme, base);
 	$base-contrast: daff-get-base-color($theme, base-contrast);

@@ -4,14 +4,13 @@
 @use 'sass:meta';
 @use '../contrast/luminance/luminance';
 
-// @deprecated Deprecated in version 0.87.0. Will be removed in version 0.90.0.
-//
-// @docs
-// Take a numeric map and sort it.
-//
-// https://gist.github.com/Jakobud/a0ac11e80a1de453cd86f0d3fc0a1410
-// Credit to: https://gist.github.com/iamandrewluca
-//
+/// @deprecated Deprecated in version 0.87.0. Will be removed in version 0.90.0.
+///
+/// Take a numeric map and sort it.
+///
+/// https://gist.github.com/Jakobud/a0ac11e80a1de453cd86f0d3fc0a1410
+/// Credit to: https://gist.github.com/iamandrewluca
+///
 @function _daff-illuminate-sort($map) {
 	// Transform map to zipped list
 	$keys: ();

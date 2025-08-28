@@ -1,9 +1,26 @@
 @use '../core/map/map-get/map-get';
 
-// Retrieves the mode from Daffodil's theme configurations.
-// ```scss
-// $mode: daff-get-theme-mode($theme);
-// ```
+/// Retrieves the mode (`light` or `dark`) from a configured theme created with `daff-configure-theme`.
+/// It should only be used if your app supports **both light and dark themes**.
+///
+/// If you are not using Daffodil's default theme, a theme **must** be
+/// created with `daff-configure-theme` before this function can be used.
+///
+/// See the [customize your own theme](daff.io/docs/design/theming/customize-your-own-theme)
+/// guide for more information.
+///
+/// @group Theming
+///
+/// @param {Map} $theme — A theme map created with the `daff-configure-theme` function.
+///
+/// @example scss
+/// 	@use '@daffodil/design/scss/theme' as daff-theme;
+///
+/// 	@mixin custom-content-theme($theme) {
+/// 		$mode: daff-get-theme-mode($theme);
+/// 	}
+///
+
 @function daff-get-theme-mode($theme) {
 	@return map-get.daff-map-get($theme, 'core', 'mode');
 }

@@ -1,10 +1,26 @@
 @use '../core/map/map-get/map-get';
 
-// Retrieves a base color from Daffodil's theme configurations.
-// $color must be one of these values: `white`, `black`, `base`, and `base-contrast`.
-// ```scss
-// $base: daff-get-base-color($theme, base);
-// ```
+/// Retrieves a core base color from a configured theme.
+///
+/// If you are not using Daffodil's default theme, a theme **must** be
+/// created with `daff-configure-theme` before this function can be used.
+/// See the [customize your own theme](daff.io/docs/design/theming/customize-your-own-theme)
+/// guide for more information.
+///
+/// @group Theming
+///
+/// @param {Map} $theme — A theme map created with the `daff-configure-theme` function.
+/// @param {String} $color — The core color to retrieve. Supported colors: `white`, `black`, `base`, or `base-contrast`.
+///
+/// @throws Will throw an error if `$color` is not supported as part of Daffodil's core colors.
+///
+/// @example scss
+/// 	@use '@daffodil/design/scss/theme' as daff-theme;
+///
+/// 	@mixin custom-content-theme($theme) {
+/// 		$base: daff-theme.daff-get-base-color($theme, base);
+/// 	}
+///
 @function daff-get-base-color($theme, $color) {
 	@if (
 		$color != 'white' and
