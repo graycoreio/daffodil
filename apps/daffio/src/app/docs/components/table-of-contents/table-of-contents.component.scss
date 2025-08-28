@@ -5,7 +5,6 @@
 }
 
 .daffio-docs-table-of-contents {
-	max-height: calc(100vh - var(--daff-sidebar-side-fixed-top-shift) - 6rem);
 	position: sticky;
 	top: 6rem;
 	max-width: 15rem;

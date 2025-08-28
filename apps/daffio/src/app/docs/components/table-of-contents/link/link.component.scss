@@ -3,8 +3,8 @@
 // stylelint-disable selector-class-pattern
 :host {
 	display: block;
-	max-height: 75vh;
-	overflow-y: scroll;
+	max-height: calc(100vh - var(--daff-sidebar-side-fixed-top-shift) - 9rem);
+	overflow-y: auto;
 
 	&.in-sidebar {
 		.daffio-docs-table-of-contents-link {
