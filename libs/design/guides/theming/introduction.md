@@ -23,4 +23,4 @@ Add it to your `styles.scss` file to apply styles globally:
 To learn more about theming, see:
 
 - [Light and dark modes](/libs/design/guides/theming/modes.md)
-- [Customize your own theme](/libs.design/guide/theming/custom-theme.md)
+- [Customize your own theme](/libs/design/guides/theming/customize-your-own-theme.md)
