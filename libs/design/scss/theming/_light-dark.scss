@@ -6,19 +6,19 @@
 /// @param {String} $mode — The mode created with the `daff-get-theme-mode` function.
 ///
 /// @example scss
-/// @use '@daffodil/design/scss/theme' as daff-theme;
+/// 	@use '@daffodil/design/scss/theme' as daff-theme;
 ///
-/// @mixin custom-content-theme($theme) {
-/// 	$mode: daff-theme.daff-get-theme-mode($theme);
+/// 	@mixin custom-content-theme($theme) {
+/// 		$mode: daff-theme.daff-get-theme-mode($theme);
 ///
-/// 	@include daff-theme.light($mode) {
-/// 		color: blue;
+/// 		@include daff-theme.light($mode) {
+/// 			color: blue;
 ///
-///   	.class {
-///   		background: white;
-///			}
-///	 	}
-/// }
+///   		.class {
+///   			background: white;
+///				}
+///	 		}
+/// 	}
 ///
 @mixin light($mode) {
 	@if $mode == 'light' {

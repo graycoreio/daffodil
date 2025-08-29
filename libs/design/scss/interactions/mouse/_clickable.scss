@@ -3,7 +3,7 @@
 /// @group Interactions
 ///
 /// @example scss
-/// @include clickable();
+/// 	@include clickable();
 @mixin clickable() {
 	// stylelint-disable daffodil/no-direct-cursor-pointer
 	cursor: pointer;

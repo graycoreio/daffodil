@@ -7,11 +7,11 @@
 /// @group Typography
 ///
 /// @example scss
-/// @use '@daffodil/design/scss/typography';
+/// 	@use '@daffodil/design/scss/typography';
 ///
-/// .component {
-/// 	@include typography.text-truncate();
-/// }
+/// 	.component {
+/// 		@include typography.text-truncate();
+/// 	}
 @mixin text-truncate() {
 	display: block;
 	overflow: hidden;
