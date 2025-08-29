@@ -7,7 +7,6 @@ import {
   OnInit,
   Input,
   booleanAttribute,
-  HostBinding,
 } from '@angular/core';
 import {
   NgControl,
@@ -40,8 +39,10 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
     class: 'daff-native-select',
     '(focus)': 'focus()',
     '(blur)': 'blur()',
-    '[attr.id]': '_id()',
-    '[attr.aria-describedby]': 'ariaDescribedBy()',
+    '[attr.id]': '_id',
+    '[attr.aria-describedby]': 'ariaDescribedBy',
+    '[disabled]': 'disabledAttribute',
+    '[required]': 'requiredAttribute',
   },
   standalone: false,
 })
@@ -64,14 +65,14 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
   /**
    * Implemented as part of DaffFormFieldControl.
    */
-  private _id() {
+  private get _id() {
     return this.formField?.id;
   };
 
   /**
    * @docs-private
    */
-  ariaDescribedBy() {
+  get ariaDescribedBy() {
     if(this.formField.hasErrorMessage()) {
       return this.formField.errorMessageId;
     } else if(this.formField.hasHint()) {
@@ -91,7 +92,7 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
   /**
    * @docs-private
    */
-  @HostBinding('disabled') get disabledAttribute() {
+  get disabledAttribute() {
     return this.disabled || null;
   }
 
@@ -113,7 +114,7 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
   /**
    * @docs-private
    */
-  @HostBinding('required') get requiredAttribute() {
+  get requiredAttribute() {
     return this.required || null;
   }
 
