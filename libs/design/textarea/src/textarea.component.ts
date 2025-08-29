@@ -3,9 +3,7 @@ import {
   Optional,
   Self,
   ElementRef,
-  HostListener,
   ChangeDetectionStrategy,
-  HostBinding,
   OnInit,
   Input,
   booleanAttribute,
@@ -39,16 +37,19 @@ import {
 
     { provide: DaffFormFieldControl, useExisting: DaffTextareaComponent },
   ],
+  host: {
+    class: 'daff-textarea',
+    '[attr.id]': 'internalId',
+    '[disabled]': 'disabledAttribute',
+    '[required]': 'requiredAttribute',
+    '(focus)': 'focus()',
+    '(blur)': 'blur()',
+    '[attr.aria-describedby]': 'ariaDescribedBy',
+  },
 })
 export class DaffTextareaComponent extends DaffFormFieldControl<string> implements DaffFormFieldControl<string>, OnInit {
-
   /** @docs-private */
   controlType = 'native-textarea';
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-textarea') class = true;
 
   /**
    * @docs-private
@@ -62,14 +63,14 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
   /**
    * @docs-private
    */
-  @HostBinding('attr.id') get internalId() {
+  get internalId() {
     return this._id;
   }
 
   /**
    * @docs-private
    */
-  @HostBinding('disabled') get disabledAttribute() {
+  get disabledAttribute() {
     return this.disabled || null;
   }
 
@@ -98,14 +99,14 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
   /**
    * @docs-private
    */
-  @HostBinding('required') get requiredAttribute() {
+  get requiredAttribute() {
     return this.required || null;
   }
 
   /**
    * @docs-private
    */
-  @HostListener('focus') focus() {
+  focus() {
     this.focused = true;
     this.emitState();
   }
@@ -113,7 +114,7 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
   /**
    * @docs-private
    */
-  @HostListener('blur') blur() {
+  blur() {
     this.focused = false;
     this.emitState(true);
   }
@@ -121,7 +122,7 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
   /**
    * @docs-private
    */
-  @HostBinding('attr.aria-describedby') get ariaDescribedBy() {
+  get ariaDescribedBy() {
     if(this.formField.hasErrorMessage()) {
       return this.formField.errorMessageId;
     } else if(this.formField.hasHint()) {
