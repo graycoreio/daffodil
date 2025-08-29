@@ -12,7 +12,9 @@
 /// @param {String} $point — The name of the breakpoint (e.g., `mobile`, `tablet`, `desktop`).
 ///
 /// @example scss
-/// 	@include breakpoint(tablet) {
+/// 	@use '@daffodil/design/scss/utilities';
+///
+/// 	@include utilities.breakpoint(tablet) {
 ///   	// styles for tablet and up
 /// 	}
 ///
