@@ -23,7 +23,10 @@ export interface DaffToastOptions {
    * The position of all toasts.
    */
   position: DaffToastPosition;
-  /** @docs-private */
+
+  /**
+   * @docs-private
+   */
   useParent?: boolean;
 }
 
@@ -40,11 +43,3 @@ const result = createConfigInjectionToken<DaffToastOptions>(daffToastDefaultOpti
 export const provideDaffToastOptions = result.provider;
 
 export const DAFF_TOAST_OPTIONS = result.token;
-
-// export const {
-//   token: DAFF_TOAST_OPTIONS,
-//   /**
-//    * Provider function for {@link DAFF_TOAST_OPTIONS}.
-//    */
-//   provider: provideDaffToastOptions,
-// } = createConfigInjectionToken<DaffToastOptions>(daffToastDefaultOptions, 'DAFF_TOAST_OPTIONS');

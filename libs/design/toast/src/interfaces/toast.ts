@@ -4,24 +4,39 @@ import { DaffStatus } from '@daffodil/design';
 
 import { DaffToastAction } from './toast-action';
 
-/** Possible data that can be shown on a toast */
+/**
+ * Data that defines the content and behavior of a toast.
+ */
 export interface DaffToastData {
-  /** A title that provides a quick oveview of the toast. */
+  /**
+   * The primary text that summarizes the purpose of the toast.
+   */
   title: string;
 
-  /** A short message used to provide additional details about the toast. */
+  /**
+   * Provides additional details or context about the toast.
+   */
   message?: string;
 
-  /** Sets a status on the toast. */
+  /**
+   * The visual status of the toast.
+   */
   status?: DaffStatus;
 
-  /** Used to display actions in the toast. */
+  /**
+   * Used to display actionable buttons related to the toast.
+   */
   actions?: DaffToastAction[];
 
-  /** Whether or not the toast is dismissible. */
+  /**
+   * Whether the toast can be manually dismissed with a close button.
+   */
   dismissible?: boolean;
 }
 
+/**
+ * A toast instance.
+ */
 export interface DaffToast extends DaffToastData {
   /**
    * Closes the toast.
@@ -29,7 +44,7 @@ export interface DaffToast extends DaffToastData {
   dismiss: () => void;
 
   /**
-   * The observable that emits when the toast is closed.
+   * Emits when the toast has been closed.
    */
   dismissalStream: Observable<void>;
 }

@@ -11,8 +11,7 @@ import {
 } from './toast-action.type';
 
 /**
- * The configurations for an action button rendered inside a toast
- * displayed using the {@link DaffButtonComponent}.
+ * Configuration for an action button inside a toast. Actions are rendered using {@link DaffButtonComponent}.
  */
 export interface DaffToastAction {
   /**
@@ -28,14 +27,14 @@ export interface DaffToastAction {
   content: string;
 
   /**
-   * The size of the button.
+   * The button size.
    *
    * Matches one of the predefined sizes supported by {@link DaffButtonComponent}.
    */
   size?: DaffToastActionButtonSize;
 
   /**
-   * The color of the button.
+   * The button color.
    *
    * Do not use both `color` and `status` simultaneously.
    */
@@ -54,7 +53,7 @@ export interface DaffToastAction {
   data?: Record<string, any>;
 
   /**
-   * An event emitter that fires when the action is triggered.
+   * Emits when the action is triggered.
    */
   eventEmitter?: EventEmitter<DaffToastAction>;
 }
