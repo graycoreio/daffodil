@@ -1,9 +1,9 @@
 @use 'theme' as *;
 
-@mixin daffio-method-block-theme($theme) {
+@mixin daffio-api-params-fragment-theme($theme) {
 	$red: daff-get-palette($theme, critical);
 
-	.daffio-docs-api-method-block {
+	.daffio-docs-api-params-fragment {
 		&__parameters-icon {
 			color: daff-color($red);
 		}

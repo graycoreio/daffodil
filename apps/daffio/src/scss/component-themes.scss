@@ -14,6 +14,7 @@
 @use '../app/docs/components/table-of-contents/link/link-theme' as docs-toc-link;
 @use '../app/docs/components/member-heading/member-heading-theme' as member-heading;
 @use '../app/docs/api/components/fragments/methods/methods-theme.scss' as api-methods-fragment;
+@use '../app/docs/api/components/fragments/params/params-theme.scss' as api-params-fragment;
 @use '../app/docs/api/components/fragments/inputs/inputs-theme.scss' as api-inputs-fragment;
 @use '../app/docs/api/components/fragments/outputs/outputs-theme.scss' as api-outputs-fragment;
 @use '../app/docs/api/components/method-block/method-block-theme' as api-method-block;
@@ -37,6 +38,7 @@
 	@include scroll-to-top.daffio-docs-scroll-to-top-theme($theme);
 	@include docs-toc-link.daffio-docs-table-of-contents-link-theme($theme);
 	@include api-methods-fragment.daffio-api-methods-fragment-theme($theme);
+	@include api-params-fragment.daffio-api-params-fragment-theme($theme);
 	@include api-method-block.daffio-method-block-theme($theme);
 	@include api-inputs-fragment.daffio-api-inputs-fragment-theme($theme);
 	@include api-outputs-fragment.daffio-api-outputs-fragment-theme($theme);
