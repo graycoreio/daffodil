@@ -61,7 +61,14 @@ export abstract class DaffFormFieldControl<T> {
 
   stateChanges: Observable<DaffFormFieldState>;
 
-  emitState() {
+  emitState(deferred = false) {
+    if(deferred) {
+      Promise.resolve().then(() => {
+        this._stateChanges.next(this.state);
+      });
+      return;
+    }
+
     this._stateChanges.next(this.state);
   }
 };

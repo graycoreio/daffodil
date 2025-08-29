@@ -115,8 +115,8 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
 
   /** @docs-private */
   blur() {
-    (<HTMLElement>this.buttonElement?.nativeElement)?.blur();
-    this.emitState();
+    this.onTouched();
+    this.emitState(true);
   }
 
   /**
@@ -253,7 +253,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
   }
 
   private onChange(value: T): void {};
-  private onTouched(value: T): void {};
+  private onTouched(): void {};
 
   /**
    * @docs-private

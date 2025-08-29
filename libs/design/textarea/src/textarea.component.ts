@@ -115,7 +115,7 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
    */
   @HostListener('blur') blur() {
     this.focused = false;
-    this.emitState();
+    this.emitState(true);
   }
 
   /**

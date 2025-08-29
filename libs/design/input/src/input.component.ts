@@ -122,7 +122,7 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
   /** @docs-private */
   blur() {
     this.focused = false;
-    this.emitState();
+    this.emitState(true);
   }
 
   constructor(
