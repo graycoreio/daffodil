@@ -130,7 +130,7 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
    */
   blur() {
     this.focused = false;
-    this.emitState();
+    this.emitState(true);
   }
 
   constructor(
