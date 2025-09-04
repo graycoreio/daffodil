@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/daffodil",
-  "version": "0.87.2",
+  "version": "0.88.0",
   "license": "MIT",
   "scripts": {
     "build:dev": "nx run-many -t build && cd tools/release && gulp devVersion",
