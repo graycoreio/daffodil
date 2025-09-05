@@ -1,5 +1,77 @@
 # Changelog
 
+## [0.88.0](https://github.com/graycoreio/daffodil/compare/v0.87.2...v0.88.0) (2025-09-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **router-store,core:** `daffRouterStateNavigatedClearErrorsReducer`, `daffRouterStateNavigatedClearEntityErrorsReducerFactory` are now a part of the `@daffodil/router-store` package.
+* **driver:** Any code that relies on DaffInMemoryBackendDelegate must now also inject the DaffInMemoryDriverConfig as a constructor arg.
+* **design:** add required and disabled property to form field ([#3782](https://github.com/graycoreio/daffodil/issues/3782))
+* **design:** Label changed from using directive `<label daffProgressBarLabel>` to a `<daff-progress-bar-label>` element. Update existing usages accordingly.
+* **design:** DaffSelectComponent is required to be used with the DaffFormFieldComponent.
+* **design:** `DaffSidebarHeaderActionDirective` has been deprecated. Use `<daff-sidebar-header [dismissible]="true">` instead.
+* **design:** `DaffNotificationSubtitleDirective` has been deprecated. Use `DaffNotificationMessageDirective` instead.
+* **design:** `DaffRaisedCardComponent` has been deprecated in favor of the elevated property. Replace `<daff-raised-card>` with `<daff-card [elevated]="true">`.
+* **tools-eslint:** upgrade to eslint 9 ([#3846](https://github.com/graycoreio/daffodil/issues/3846))
+* **design:** allow individual list type imports and add a title directive for multiline lists ([#3832](https://github.com/graycoreio/daffodil/issues/3832))
+
+### Features
+
+* **cart:** reload cart when place order fails due to product OoS ([#3847](https://github.com/graycoreio/daffodil/issues/3847)) ([cc126d6](https://github.com/graycoreio/daffodil/commit/cc126d63ef55e141739c3e9cdd2f2d3336e48d19))
+* **commerce:** add configurable Magento endpoint to demo ([8e62b7d](https://github.com/graycoreio/daffodil/commit/8e62b7d6d72d6224616bc3527fc386cbe3ac1191))
+* **commerce:** add loading and error states to the product-list ([79b92be](https://github.com/graycoreio/daffodil/commit/79b92bec812913c4eaf4774d13418702be7003c7))
+* **commerce:** add new @daffodil/commerce package! ([b6a83ee](https://github.com/graycoreio/daffodil/commit/b6a83eea7753bb4afb5160b26eea340d75509021))
+* **commerce:** automatically bump version with release-please ([8790118](https://github.com/graycoreio/daffodil/commit/8790118c83479138bc92ff5a7cff99d75ac54d4b))
+* **core:** add debounce decorator ([#3868](https://github.com/graycoreio/daffodil/issues/3868)) ([6f1ec7a](https://github.com/graycoreio/daffodil/commit/6f1ec7aff46f4fbc7aab7870f101e88d1686d705))
+* **core:** widen constructable type slightly ([#3914](https://github.com/graycoreio/daffodil/issues/3914)) ([073e788](https://github.com/graycoreio/daffodil/commit/073e78850febb36ed0b4eab4575b1fc2c6e2ad02))
+* **daffio:** activate ToC link when header is at the top ([#3896](https://github.com/graycoreio/daffodil/issues/3896)) ([35e3011](https://github.com/graycoreio/daffodil/commit/35e3011dc56db8c41899cfa28c418989a6c02340))
+* **daffio:** add `[@debounce](https://github.com/debounce)` decorator to `DaffioDocsScrollToTopComponent` ([#3837](https://github.com/graycoreio/daffodil/issues/3837)) ([337bd20](https://github.com/graycoreio/daffodil/commit/337bd20a8d680330cff7e6e21de538c9ba767915))
+* **daffio:** create and implement doc heading component ([#3897](https://github.com/graycoreio/daffodil/issues/3897)) ([1ea4162](https://github.com/graycoreio/daffodil/commit/1ea416294a8954f73c6d25911c6977a3a78a0e2d))
+* **daffio:** update height and scroll style in table of contents ([#3920](https://github.com/graycoreio/daffodil/issues/3920)) ([17f2777](https://github.com/graycoreio/daffodil/commit/17f277795ca4c5fedf2bf8668d9ff534353c38b9))
+* **daffio:** update parameters and method block style ([#3930](https://github.com/graycoreio/daffodil/issues/3930)) ([aee104c](https://github.com/graycoreio/daffodil/commit/aee104ca6dbc3b074f575d766a70813706a24f82))
+* **design, daffio, demo:** replace deprecated typography variables with new ones ([#3917](https://github.com/graycoreio/daffodil/issues/3917)) ([8f7f2dc](https://github.com/graycoreio/daffodil/commit/8f7f2dc3fb0f14e15395deb26e89123c6d6ca3e8))
+* **design:** add `elevated` property to card and deprecate `DaffRaisedCardComponent` ([#3882](https://github.com/graycoreio/daffodil/issues/3882)) ([ce78c47](https://github.com/graycoreio/daffodil/commit/ce78c477da42e8b02f642238e46167503e2d4a78))
+* **design:** add accessibility features to text snippet component and update docs ([#3916](https://github.com/graycoreio/daffodil/issues/3916)) ([2da5b4f](https://github.com/graycoreio/daffodil/commit/2da5b4f35bdb92f0822f9b36b3ffeb84c4a8ef68))
+* **design:** add required and disabled property to form field ([#3782](https://github.com/graycoreio/daffodil/issues/3782)) ([d99e1bd](https://github.com/graycoreio/daffodil/commit/d99e1bd12932daf9b867914d55c577137f6838f3))
+* **design:** allow individual list type imports and add a title directive for multiline lists ([#3832](https://github.com/graycoreio/daffodil/issues/3832)) ([14adffd](https://github.com/graycoreio/daffodil/commit/14adffd5a5c6b394e066ff6bb7aca0e97e900ba4))
+* **design:** create a DaffStickyTracker to track when an element is pinned ([#3785](https://github.com/graycoreio/daffodil/issues/3785)) ([e00f451](https://github.com/graycoreio/daffodil/commit/e00f4517c8c686e0f02888c6dd294055b500b991))
+* **design:** deprecate `DaffNotificationSubtitleDirective` in favor of `DaffNotificationMessageDirective` ([#3883](https://github.com/graycoreio/daffodil/issues/3883)) ([ecf8e61](https://github.com/graycoreio/daffodil/commit/ecf8e618e4e789f98a48fab26f4f7df9e1bd2bcf))
+* **design:** deprecate `DaffSidebarHeaderActionDirective` in favor of the `dismissible` property ([#3886](https://github.com/graycoreio/daffodil/issues/3886)) ([5c855c0](https://github.com/graycoreio/daffodil/commit/5c855c0558aefb0f506da989082a2e8d24d56595))
+* **design:** remove open input from accordion item ([#3842](https://github.com/graycoreio/daffodil/issues/3842)) ([5542bd5](https://github.com/graycoreio/daffodil/commit/5542bd57730877c595e1dac45c3203dceee86a0f))
+* **design:** remove usage of `@angular/animations` from `DaffSelectComponent` ([#3902](https://github.com/graycoreio/daffodil/issues/3902)) ([008e947](https://github.com/graycoreio/daffodil/commit/008e947ce60b76f3cca310470a2dbc7cd4181cb9))
+* **design:** throw error when DaffFormFieldComponent is not used with DaffSelectComponent ([#3901](https://github.com/graycoreio/daffodil/issues/3901)) ([c823e15](https://github.com/graycoreio/daffodil/commit/c823e157a83047a0950f8afa05f23f60ac9b8476))
+* **design:** update label support and accessibility features in the progress bar component ([#3905](https://github.com/graycoreio/daffodil/issues/3905)) ([ab5dc14](https://github.com/graycoreio/daffodil/commit/ab5dc1468994f05e344d33454ce56feb6609796d))
+* **design:** update toast to use native CSS animations instead of `@angular/animations` ([#3843](https://github.com/graycoreio/daffodil/issues/3843)) ([de3c1b9](https://github.com/graycoreio/daffodil/commit/de3c1b9baffbde052495dda66da0d71ceea8be26))
+* **dev-tools:** add new dev-tools package ([2f93d28](https://github.com/graycoreio/daffodil/commit/2f93d28f4fefadae01a2ed95ac3991ffddd01881))
+* **dev-tools:** rework to make drivers more configurable ([e2e23b9](https://github.com/graycoreio/daffodil/commit/e2e23b93bd0ffb163597117cfe922cad0474852d))
+* **docs,daffio:** add `path` to doc ([#3915](https://github.com/graycoreio/daffodil/issues/3915)) ([62748a6](https://github.com/graycoreio/daffodil/commit/62748a69c5a1d9a863c054069b17ca29a95e9a6a))
+* **docs:** add docs package ([#3898](https://github.com/graycoreio/daffodil/issues/3898)) ([7518b6a](https://github.com/graycoreio/daffodil/commit/7518b6abfb7d2d398712b09339aed12e8a3e0c3d))
+* **driver:** add provideMagentoDriver to replace DaffDriverMagentoModule ([90746ec](https://github.com/graycoreio/daffodil/commit/90746ecc03883490b9780dbf452e6fad427ff02b))
+* **driver:** allow in-memory api to pass-through unhandled requests ([3dbb59e](https://github.com/graycoreio/daffodil/commit/3dbb59e6426c39ab831d60115fc574bce5907a1d))
+* **driver:** allow magento endpoint to be computed via function or injection token ([3c10337](https://github.com/graycoreio/daffodil/commit/3c103373ef087f941ddc56355c7fe300fdfea86c))
+* **driver:** introduce new provideDaffInMemoryDriver provider ([11edbbb](https://github.com/graycoreio/daffodil/commit/11edbbbd72c19bd36f7f6275ce2fd9fd954c6f39))
+* **product:** add provideDaffProductInMemoryDriver provider ([6d617de](https://github.com/graycoreio/daffodil/commit/6d617def7c0750ff7f2d10273672782559ee213d))
+* **product:** appropriately inject InMemoryBackendConfig ([853b10e](https://github.com/graycoreio/daffodil/commit/853b10ea4b05aeaad131d16abce102e55278b87d))
+* **product:** replace package photography with assets.daff.io ([c2c2ac1](https://github.com/graycoreio/daffodil/commit/c2c2ac18f1922410031c5364a9dc9fee01bec72e))
+* **router-store,core:** extract routing reducers to @daffodil/router-store ([a8ac4a4](https://github.com/graycoreio/daffodil/commit/a8ac4a482a93aec8542e1ec985d0cc197bac94e9))
+* **tools-eslint:** add jasmine recommendations to jest config ([#3908](https://github.com/graycoreio/daffodil/issues/3908)) ([1bdb012](https://github.com/graycoreio/daffodil/commit/1bdb012e7c59d3a3594dd16c19e587e935e98a98))
+* **tools-eslint:** upgrade to eslint 9 ([#3846](https://github.com/graycoreio/daffodil/issues/3846)) ([79b09aa](https://github.com/graycoreio/daffodil/commit/79b09aaf0fb791a19c0de9474c6da3129fedab47))
+
+
+### Bug Fixes
+
+* **cart:** adjust DaffInMemoryBackendCartRootService for DaffInMemoryBackendDelegate config usage ([101d66d](https://github.com/graycoreio/daffodil/commit/101d66d8394277784fbdc0dce88a334b546a5536))
+* **core:** add missing enforce-unique package dependency ([bf01b71](https://github.com/graycoreio/daffodil/commit/bf01b7135ebb7affc539f4a3cb684f9b318f43d8))
+* **daffio:** all outputs active in ToC ([#3889](https://github.com/graycoreio/daffodil/issues/3889)) ([7b415bb](https://github.com/graycoreio/daffodil/commit/7b415bb6d2f081b1b104ac564461692d122c8ffc))
+* **daffio:** update docsPath to remove '../../' in dev environment configuration ([#3860](https://github.com/graycoreio/daffodil/issues/3860)) ([c0977c1](https://github.com/graycoreio/daffodil/commit/c0977c1ad9f42196efd4d57e2fd7708be84ad939))
+* **design:** add deferred option to emitState method in the form field control ([#3923](https://github.com/graycoreio/daffodil/issues/3923)) ([66587e8](https://github.com/graycoreio/daffodil/commit/66587e8f8a11a9653cb51423b5d676442a9351a7))
+* **design:** call CVA methods for selectOption in DaffSelectComponent ([#3900](https://github.com/graycoreio/daffodil/issues/3900)) ([1499a59](https://github.com/graycoreio/daffodil/commit/1499a59432b83929e83ccbcbd52981392058892a))
+* **design:** replace `coerceBooleanProperty` with `booleanAttribute` for progress bar's indeterminate input transform ([#3887](https://github.com/graycoreio/daffodil/issues/3887)) ([b1042d1](https://github.com/graycoreio/daffodil/commit/b1042d112da6fda04b9a2fa44afff98a2c3783f3))
+* **design:** update tsconfig with missing components ([#3848](https://github.com/graycoreio/daffodil/issues/3848)) ([311b032](https://github.com/graycoreio/daffodil/commit/311b0322c72ee5d3270f52d3b6d698b6f7832c4b))
+* **dgeni:** API symbols are linked in html code blocks ([#3890](https://github.com/graycoreio/daffodil/issues/3890)) ([117d7c3](https://github.com/graycoreio/daffodil/commit/117d7c3ae012925e953abdf49f14bac5ef321ce9))
+* **order:** prevent throw when the number of invoices and number of payments mismatch ([#3871](https://github.com/graycoreio/daffodil/issues/3871)) ([f1fd514](https://github.com/graycoreio/daffodil/commit/f1fd5142ed22ae93e4effb47f6f27fbc35cf3db5))
+
 ## [0.87.2](https://github.com/graycoreio/daffodil/compare/v0.87.1...v0.87.2) (2025-07-16)
 
 
