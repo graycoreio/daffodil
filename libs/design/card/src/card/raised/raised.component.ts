@@ -8,7 +8,7 @@ import {
 import { DaffCardBaseDirective } from '../../card-base.directive';
 
 /**
- * @deprecated
+ * @deprecated Deprecated in version 0.88.0. Will be removed in version 0.91.0.
  */
 @Component({
   selector:

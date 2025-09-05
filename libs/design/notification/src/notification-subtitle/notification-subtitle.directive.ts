@@ -2,7 +2,7 @@
 import { Directive } from '@angular/core';
 
 /**
- * @deprecated in favor of DaffNotificationMessageDirective.
+ * @deprecated in favor of DaffNotificationMessageDirective. Deprecated in version 0.88.0. Will be removed in version 0.91.0.
  */
 @Directive({
   selector: '[daffNotificationSubtitle]',
