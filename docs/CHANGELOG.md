@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.88.1](https://github.com/graycoreio/daffodil/compare/v0.88.0...v0.88.1) (2025-09-08)
+
+
+### Bug Fixes
+
+* **eslint:** remove unused eslint-plugin-prefer-arrow ([b9f7a48](https://github.com/graycoreio/daffodil/commit/b9f7a48b60ee233b77cda73bcfaf23e34739cbca))
+
 ## [0.88.0](https://github.com/graycoreio/daffodil/compare/v0.87.2...v0.88.0) (2025-09-05)
 
 
