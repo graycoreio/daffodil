@@ -1,13 +1,23 @@
 # Accordion
-An accordion is a group of vertically stacked headings that allow users to toggle the visibility of related content.
+An accordion is a group of vertically stacked, collapsible sections that allow users to toggle the visibility of related content.
 
 ## Overview
-Accordions helps reduce scrolling by hiding non-essential information until it’s needed. Use it to organize content into collapsible sections. This is especially useful for long pages where not all information needs to be visible at once.
+Accordions help reduce scrolling by hiding non-essential information until it's needed. They organize content into collapsible sections, making it easier for users to find and focus on information relevant to them. This is especially useful for long pages where not all information needs to be visible at once.
 
 <design-land-example-viewer-container example="basic-accordion"></design-land-example-viewer-container>
 
+## Best practices
+
+**When to use**
+- To organize related information
+- To shorten pages and reduce scrolling when screen space is limited and content is not crucial to read
+
+**When not to use**
+- When most users will need to see all content anyway
+- The content is very short and hiding it adds unnecessary complexity (use [list](/libs/design/list/README.md) instead)
+
 ## Usage
-To use the accordion components, import `DAFF_ACCORDION_COMPONENTS` into your custom component:
+To use accordion, import `DAFF_ACCORDION_COMPONENTS` directly into your custom component:
 
 ```ts
 import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
@@ -23,14 +33,21 @@ export class CustomComponent {}
 ```
 
 ## Anatomy
-An accordion is composed of the following:
+An accordion consists of the following components:
 
-- **`<daff-accordion>`**: Groups accordion items.
-- **`<daff-accordion-item>`**: Contains the title and collapsible content. Handles expansion and collapse on user interaction.
-- **`[daffAccordionItemTitle]`**: Used to provide a high level overview of the panel content.
+### Container
+**`<daff-accordion>`**: The wrapper component that groups all accordion items together.
 
-Content inside `<daff-accordion-item>` (excluding the title) is part of the panel content that is shown or hidden when the item is toggled.
+### Item
+**`<daff-accordion-item>`**: Individual collapsible section containing a title and content. Handles expansion and collapse on user interaction.
 
+### Title
+**`[daffAccordionItemTitle]`**: The clickable header that toggles the accordion item's visibility.
+
+### Content
+Content placed inside `<daff-accordion-item>` (excluding the title) forms the collapsible panel content that is shown or hidden when toggled.
+
+### Basic structure
 ```html
 <daff-accordion>
  <daff-accordion-item>
@@ -40,12 +57,14 @@ Content inside `<daff-accordion-item>` (excluding the title) is part of the pane
 </daff-accordion>
 ```
 
-## Expand an item by default
+## Features
+
+### Expand an item by default
 Use the `initiallyExpanded` property on the accordion item to have an item open by default.
 
 <design-land-example-viewer-container example="initially-expanded-accordion"></design-land-example-viewer-container>
 
-## Disable an accordion item
+### Disable an accordion item
 Use the `disabled` property on the accordion item to disable and prevent it from being expanded or collapsed.
 
 <design-land-example-viewer-container example="disabled-accordion"></design-land-example-viewer-container>

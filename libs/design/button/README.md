@@ -12,6 +12,11 @@ Button supports five variants that change its visual style, each applied as an a
 | `daff-stroked-button` | Rectangular button with oultline, no background color |
 | `daff-underline-button` | Text button with underline styling |
 
+Native `<button>` or `<a>` elements should always be used in order to provide an easy, accessible experience for users.
+
+- Use `<a>` for navigation to new pages or different sections.
+- Use `<button>` for actions performed within the same page.
+
 **Basic button**
 <design-land-example-viewer-container example="basic-button"></design-land-example-viewer-container>
 
@@ -30,12 +35,6 @@ Button supports five variants that change its visual style, each applied as an a
 
 **Underline button**
 <design-land-example-viewer-container example="underline-button"></design-land-example-viewer-container>
-
-## When to use
-Native `<button>` or `<a>` elements should always be used in order to provide an easy, accessible experience for users.
-
-- Use `<a>` for navigation to new pages or different sections.
-- Use `<button>` for actions performed within the same page.
 
 ## Usage
 

@@ -2,9 +2,16 @@
 A progress bar provides visual feedback about the duration or progress of a task or operation.
 
 ## Overview
-Progress bars can be **determinate** (percentage known) or **indeterminate** (percentage unknown).
+Progress bars help users understand the status of ongoing processes or tasks. They can display either determinate progress (when the percentage is known) or indeterminate progress (when the percentage is unknown or cannot be calculated).
 
 <design-land-example-viewer-container example="progress-bar-default"></design-land-example-viewer-container>
+
+## Best practices
+
+**When to use**
+- Showing the status of file uploads or downloads
+- Indicating completion of multi-step processes
+- Displaying loading states for time-consuming operations
 
 ## Usage
 
@@ -48,10 +55,23 @@ export class CustomComponentModule { }
 
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
-## Label
-Use `<daff-progress-bar-label>` to help users understand what the progress represents. The label is automatically associated with the progress bar for accessibility via `aria-labelledby`.
+## Anatomy
+A progress bar consists of the following components:
 
-If no label is provided, add an `aria-label` to `<daff-progress-bar>` to ensure an accessible experience.
+### Container
+**`<daff-progress-bar>`**: The main progress bar component that displays the progress indicator.
+
+### Label
+**`<daff-progress-bar-label>`**: Label that helps users understand what the progress represents. The label is automatically associated with the progress bar for accessibility.
+
+### Basic structure
+```html
+<daff-progress-bar>
+  <daff-progress-bar-label>File upload</daff-progress-bar-label>
+</daff-progress-bar>
+```
+
+If a label is not provided, add an `aria-label` to `<daff-progress-bar>` to ensure an accessible experience.
 
 ## Types
 
@@ -63,7 +83,9 @@ Use indeterminate progress bars when when the percentage of completion is unknow
 
 <design-land-example-viewer-container example="progress-bar-indeterminate"></design-land-example-viewer-container>
 
-## Colors
+## Features
+
+### Colors
 The default color is `primary`. Use the `color` property to change a progress bar's color.
 
 > `theme`, `white`, and `black` should be used with caution to ensure that there is sufficient contrast.
@@ -71,13 +93,16 @@ The default color is `primary`. Use the `color` property to change a progress ba
 <design-land-example-viewer-container example="progress-bar-themes"></design-land-example-viewer-container>
 
 ## Accessibility
-Progress bar implements the ARIA `role="progressbar"` pattern:
+Progress bar implements the ARIA `role="progressbar"` pattern.
 
-- `aria-valuemin="0"` and `aria-valuemax="100"` are set by default.
-- `aria-valuenow` reflects the current progress value (not relevant for indeterminate mode).
-- `aria-labelledby` links the progress bar track to `<daff-progress-bar-label>` when present.
+### Daffodil provides
+- `role="progressbar"` on the progress element
+- `aria-valuemin="0"` and `aria-valuemax="100"` set by default
+- `aria-valuenow` reflecting current progress (for determinate mode)
+- `aria-labelledby` automatically linking to `<daff-progress-bar-label>` when present
 
-**Best practice:** Always provide an accessible label via `<daff-progress-bar-label>` or `aria-label` so users know what the progress represents.
+### Developer responsibilities
+- Always provide a label via `<daff-progress-bar-label>` or `aria-label`
 
 ```html
 <daff-progress-bar>

@@ -1,10 +1,17 @@
 # Sidebar
-Sidebar is a component used to display additional information alongside a page.
+A sidebar is a component used to display additional information alongside a page.
 
 ## Overview
-Sidebars are commonly used for navigation but are flexible enough to display any type of content. They include optional header and footer components with minimal styling. They can be fixed or collapsible and support multiple modes and positions.
+Sidebars provide a flexible way to display additional content alongside the main page content. While commonly used for navigation, they can accommodate any type of content. Sidebars support multiple display modes, positions, and include optional header and footer components with minimal styling.
 
 <design-land-example-viewer-container example="basic-sidebar"></design-land-example-viewer-container>
+
+## Best practices
+
+**When to use**
+- Creating navigation menus
+- Displaying supplementary information related to the main content
+- Providing contextual tools or controls for the current view
 
 ## Usage
 
@@ -63,20 +70,46 @@ export class CustomComponentModule {}
 ```
 
 ## Anatomy
-`<daff-sidebar>` is placed inside a `<daff-sidebar-viewport>` alongside the page content. It optionally supports:
+A sidebar consists of the following components:
 
-**Header**\
-Contains an optional title (`[daffSidebarHeaderTitle]`), an optional dismiss button, and a slot for custom content. Use `<daff-sidebar-header>`.
+### Viewport
+**`<daff-sidebar-viewport>`**: The container that manages nav positioning and backdrop interactions. It should only be used once per application, but multiple sidebars of different modes can exist within it.
 
-**Footer**\
-A fixed container anchored to the bottom of the sidebar, often used for persistent actions or controls. Use `<daff-sidebar-footer>`.
+### Container
+**`<daff-sidebar>`**: The main sidebar component that holds all sidebar content.
 
-> `<daff-sidebar-viewport>` should only be used once per application, but multiple sidebars of different modes can exist within it.
+### Header
+**`<daff-sidebar-header>`**: Optional header container that can include a title (`[daffSidebarHeaderTitle]`), dismiss button, and custom content.
 
-## Navigation placement
+### Footer
+**`<daff-sidebar-footer>`**: Optional fixed container anchored to the bottom of the sidebar, often used for persistent actions or controls.
+
+### Basic structure
+```html
+<daff-sidebar-viewport (backdropClicked)="closeSidebar()">
+  <daff-sidebar>
+    <daff-sidebar-header>
+      <div daffSidebarHeaderTitle>Sidebar Title</div>
+    </daff-sidebar-header>
+    <div class="sidebar-content">
+      Sidebar content
+    </div>
+    <daff-sidebar-footer>
+      Footer content
+    </daff-sidebar-footer>
+  </daff-sidebar>
+  <div class="page-content">
+    Page content
+  </div>
+</daff-sidebar-viewport>
+```
+
+## Features
+
+### Navigation placement
 A viewport navigation can be placed either:
 
-- Alongside the sidebar, using the `[daff-sidebar-viewport-nav]` selector:
+- Alongside the sidebar, using the `[daff-sidebar-viewport-nav]` element:
 
 ```html
 <daff-sidebar-viewport (backdropClicked)="toggleOpen()">
@@ -94,7 +127,7 @@ A viewport navigation can be placed either:
 </daff-sidebar-viewport>
 ```
 
-- Inside the viewport content by **omitting** the `[daff-sidebar-viewport-nav]` selector:
+- Inside the viewport content by **omitting** the `[daff-sidebar-viewport-nav]` element:
 
 ```html
 <daff-sidebar-viewport (backdropClicked)="toggleOpen()">
@@ -112,13 +145,13 @@ A viewport navigation can be placed either:
 </daff-sidebar-viewport>
 ```
 
-## Closing a sidebar
+### Closing a sidebar
 A sidebar can be closed by:
 - Clicking on the backdrop
 - Pressing the `ESC` key
 - Clicking the close button (requires `dismissible="true"` on the sidebar header)
 
-## Modes
+### Modes
 Use the `mode` property to control how the sidebar is displayed:
 
 | Mode       | Description |
@@ -140,7 +173,7 @@ Use the `mode` property to control how the sidebar is displayed:
 **Fixed and over sidebar**
 <design-land-example-viewer-container example="fixed-and-over-sidebar"></design-land-example-viewer-container>
 
-## Sides
+### Sides
 Use the `side` property to control the placement of the sidebar:
 
 | Side  | Description |
@@ -172,11 +205,15 @@ body {
 ```
 
 ## Accessibility
-- Apply a meaningful `role` (e.g., navigation) to describe the sidebar’s purpose.
-- When no title or header is present, use an `aria-label` to provide context.
 
-### Focus management
-Focus trapping is automatically applied for `over` and `under` modes and turned off for `side` and `side-fixed` modes. When opened, the first tabbable element in the sidebar receives focus. When closed, focus returns to the previously focused element.
+### Daffodil provides
+- Automatic focus trapping for `over` and `under` modes (disabled for `side` and `side-fixed` modes)
+- Focus moves to the first tabbable element when sidebar opens
+- Focus returns to the previously focused element when sidebar closes
+
+### Developer responsibilities
+- Apply a meaningful `role` attribute (e.g., `role="navigation"`) to describe the sidebar's purpose
+- Provide an `aria-label` when no title or header is present
 
 ## Deprecations
 `[daffSidebarHeaderAction]` has been deprecated in favor of the `dismissible` property. Replace `[daffSidebarHeaderAction]` with `<daff-sidebar-header [dismissible]="true">`

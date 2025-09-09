@@ -1,14 +1,18 @@
 # Callout
-Callout is a versatile, pre-styled container used to highlight key pieces of content in a visually distinct way.
+A callout is a versatile, pre-styled container used to highlight key pieces of content in a visually distinct way.
 
 ## Overview
-Callouts can be used multiple times on a page and are flexible enough to support various content arrangements. They are ideal for:
+Callouts help draw attention to important information and can be used multiple times on a page. They're flexible enough to support various content arrangements and include built-in containers for icons, taglines, titles, subtitles, and custom body content.
 
-- Highlighting a set of products alongside a product list.
-- Displaying feature overviews or promotional content.
-- Structuring elements such as accordions or other grouped content.
+<design-land-example-viewer-container example="basic-callout"></design-land-example-viewer-container>
 
-Callouts include built-in containers for icons, taglines, titles, subtitles, and custom body content, making it both powerful and easy to extend.
+## Best practices
+
+**When to use**
+- Highlighting promotional content or special offers
+- Featuring product collections or categories
+- Creating visually distinct content sections
+- Displaying feature overviews or benefits
 
 ## Usage
 
@@ -53,36 +57,54 @@ export class CustomComponentModule { }
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
 ## Anatomy
-A callout is composed of the following containers, projected in the order listed:
+A callout consists of the following components, displayed in the order listed:
 
-- **`<daff-callout>`**: Parent container that supports content projection and includes structural styling.
-- **`[daffCalloutIcon]`**: Displays a visual or branding element. Avoid using this for interactive or actionable icons.
-- **`[daffCalloutTagline]`**: Short, memorable phrase that complements the title and provides quick context.
-- **`[daffCalloutTitle]`**: Defines the primary title, applied to a heading tag (`<h*>`).
-- **`[daffCalloutSubtitle]`**: Secondary descriptive text displayed beneath the title.
-- **`[daffCalloutBody]`**: Flexible wrapper for custom or additional components. It's unstyled except for spacing and should only be used once per callout.
+### Container
+**`<daff-callout>`**: The main wrapper that holds all callout content.
 
+### Icon
+**`[daffCalloutIcon]`**: Displays a visual or branding element. Avoid using for interactive or actionable icons.
+
+### Tagline
+**`[daffCalloutTagline]`**: Short, memorable phrase that provides quick context.
+
+### Title
+**`[daffCalloutTitle]`**: The primary heading text. Applied to heading elements (`<h1>`, `<h2>`, etc.).
+
+### Subtitle
+**`[daffCalloutSubtitle]`**: Secondary descriptive text displayed beneath the title.
+
+### Body
+**`[daffCalloutBody]`**: Flexible container for additional content. It's unstyled except for spaicng and should only be used once per callout.
+
+### Basic structure
 ```html
 <daff-callout>
-  <div daffCalloutIcon></div>
-  <div daffCalloutTagline></div>
-  <h2 daffCalloutTitle></h2>
-  <p daffCalloutSubtitle></p>
-  <div daffCalloutBody></div>
+  <div daffCalloutIcon>
+    <fa-icon [icon]="faExclamation"></fa-icon>
+  </div>
+  <div daffCalloutTagline>Limited Time Offer</div>
+  <h2 daffCalloutTitle>Special Sale</h2>
+  <p daffCalloutSubtitle>Save up to 50% on selected items</p>
+  <div daffCalloutBody>
+    <button daff-button>Shop Now</button>
+  </div>
 </daff-callout>
 ```
 
-## Colors
+## Features
+
+### Colors
 Use the `color` property to change the background of a callout.
 
 <design-land-example-viewer-container example="callout-theming"></design-land-example-viewer-container>
 
-## Text alignment
+### Text alignment
 Control callout-specific text alignment with the `textAlignment` property. It defaults to `left` and **does not** affect `[daffCalloutBody]` content or nested elements.
 
 <design-land-example-viewer-container example="callout-text-alignment"></design-land-example-viewer-container>
 
-## Compact
+### Compact
 Use the `compact` property on callout to reduce padding and suit UIs with tighter spacing requirements.
 
 <design-land-example-viewer-container example="compact-callout"></design-land-example-viewer-container>

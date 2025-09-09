@@ -1,12 +1,19 @@
 # Notification
-Notifications provide contextual feedback or information related to user actions within a page's content.
+A notification provides contextual feedback or information related to user actions within a page's content.
 
 ## Overview
-Notifications are used to display short messages that are closely associated with nearby content or actions. They're often used to confirm an action, display warnings, or provide contextual information.
+Notifications display short messages that are closely associated with nearby content or actions. They're commonly used to confirm actions, display warnings, or provide contextual information within a specific area of the page.
 
 Notifications should not be used to display app-level alerts. For global messages, use the [Toast](/libs/design/toast/README.md) component.
 
 <design-land-example-viewer-container example="default-notification"></design-land-example-viewer-container>
+
+## Best practices
+
+**When to use**
+- Confirming user actions within a specific page area
+- Displaying warnings or alerts related to nearby content
+- Providing contextual feedback for forms or operations
 
 ## Usage
 
@@ -51,20 +58,24 @@ export class CustomComponentModule { }
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
 ## Anatomy
-A notification is composed of the following, projected in the order listed:
+A notification consists of the following components, displayed in the order listed:
 
-**Icon**\
-Use the `[daffPrefix]` selector to add a decorative icon that provides a quick visual cue about the notification’s purpose.
+### Container
+**`<daff-notification>`**: The wrapper component that contains all notification content.
 
-**Title**\
-The primary text summarizing the notification. Use the `[daffNotificationTitle]` selector.
+### Icon
+Use the `[daffPrefix]` element to add a decorative icon that provides a quick visual cue about the notification's purpose.
 
-**Message**\
-Provides additional details or context. Use the `[daffNotificationMessage]` selector. Keep this brief—ideally one to two short sentences.
+### Title
+**`[daffNotificationTitle]`**: The primary text summarizing the notification.
 
-**Actions**\
-Include actionable buttons related to the notification (e.g., dismiss, navigate) by using the `[daffNotificationActions]` selector. **A maximum of two buttons is recommended** to keep the notification concise.
+### Message
+**`[daffNotificationMessage]`**: Provides additional details or context. Keep this brief—ideally one to two short sentences.
 
+### Actions
+**`[daffNotificationActions]`**: Include actionable buttons related to the notification (e.g., dismiss, navigate). A maximum of two buttons is recommended to keep the notification concise.
+
+### Basic structure
 ```html
 <daff-notification>
   <fa-icon daffPrefix></fa-icon>
@@ -77,17 +88,19 @@ Include actionable buttons related to the notification (e.g., dismiss, navigate)
 </daff-notification>
 ```
 
-## Status
+## Features
+
+### Status
 Use the `status` property to visually differentiate between notification types such as `info`, `warn`, `critical`, or `success`.
 
 <design-land-example-viewer-container example="notification-status"></design-land-example-viewer-container>
 
-## Orientation
+### Orientation
 Use the `orientation` property to stack notification content either `vertical` (default) or `horizontal`.
 
 <design-land-example-viewer-container example="notification-orientations"></design-land-example-viewer-container>
 
-## Dismissing a notification
+### Dismissing a notification
 Notifications are persistent by default. To display a close button, set the `dismissible` property to `true`.
 
 > Avoid making critical notifications dismissible to ensure users can read or interact with the necessary information.

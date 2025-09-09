@@ -1,5 +1,5 @@
 # List
-List is a stylized container used to vertically group a series of related content.
+A list is a stylized container used to vertically group a series of related content.
 
 ## Overview
 List supports two main variants:
@@ -56,31 +56,42 @@ export class CustomComponentModule { }
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
 ## Anatomy
-A list consists of multiple `daff-list-item` elements.
+A list consists of the following components:
 
+### Container
+**`<daff-list>`**: A standard list wrapper used for grouping generic content items.
+
+**`<daff-nav-list>`**: A navigation list container intended for use with anchor elements (`<a>`).
+
+### Item
+**`<daff-list-item>`**: Individual list items that contain the content for each row in the list.
+
+### Basic structure
 ```html
 <daff-list>
-  <daff-list-item></daff-list-item>
-  <daff-list-item></daff-list-item>
-  <daff-list-item></daff-list-item>
+  <daff-list-item>Content item</daff-list-item>
+  <daff-list-item>Content item</daff-list-item>
+  <daff-list-item>Content item</daff-list-item>
 </daff-list>
 ```
 
 ```html
 <daff-nav-list>
-  <a href="/" daff-list-item></a>
-  <a href="/" daff-list-item></a>
-  <a href="/" daff-list-item></a>
+  <a href="/" daff-list-item>Navigation link</a>
+  <a href="/" daff-list-item>Navigation link</a>
+  <a href="/" daff-list-item>Navigation link</a>
 </daff-nav-list>
 ```
 
+## Features
+
 ### Icon support
-Use the `[daffPrefix]` directive to display a leading visual icon to a list item.
+Use the `[daffPrefix]` element to display a leading visual icon for a list item.
 
 <design-land-example-viewer-container example="icon-list"></design-land-example-viewer-container>
 
 ### Multi-line lists
-For list items that contain multiple lines of text, use the `[daffListItemTitle]` directive to identify the primary title. Additional supporting content can be added using `<div>` or `<p>` elements.
+For list items that contain multiple lines of text, use the `[daffListItemTitle]` element to identify the primary title. Additional supporting content can be added using `<div>` or `<p>` elements.
 
 <design-land-example-viewer-container example="multiline-list"></design-land-example-viewer-container>
 

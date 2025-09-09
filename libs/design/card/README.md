@@ -1,14 +1,21 @@
 # Card
-Cards are flexible content containers used to group related information and actions about a single subject.
+A card is a flexible content container used to group related information and actions about a single subject.
 
 ## Overview
-Daffodil provides two card styles: **default (filled)** and **stroked**. Cards can include images, text, lists, actions, or even other components.
+Cards help organize and present information in a clear and visually appealing way. There are two styles: **default (filled)** and **stroked**, and can include images, text, lists, actions, or even other components.
 
 **Default (filled) card**
 <design-land-example-viewer-container example="basic-card"></design-land-example-viewer-container>
 
 **Stroked card**
 <design-land-example-viewer-container example="stroked-card"></design-land-example-viewer-container>
+
+## Best practices
+
+**When to use**
+- Displaying collections of related content (products, articles, etc.)
+- Presenting information that users need to compare
+- Showing preview information that links to more detail
 
 ## Usage
 
@@ -58,42 +65,63 @@ export class CustomComponentModule { }
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
 ## Anatomy
-Cards include minimally styled content containers for common patterns. Each container is optional but is projected in the order listed below:
+A card consists of the following components, displayed in the order listed:
 
-- **`[daffCardImage]`**: Displays an image.
-- **`[daffCardIcon]`**: Displays a visual or branding element. Avoid using this for interactive or actionable icons.
-- **`[daffCardTagline]`**: Short, memorable phrase that complements the title and provides quick context.
-- **`[daffCardTitle]`**: The primary heading of the card.
-- **`[daffCardContent]`**: A flexible wrapper for text, components, or custom layouts. It's unstyled except for spacing and should only be used once per card.
-- **`[daffCardActions]`**: A container for buttons or calls-to-action, always positioned to the bottom of the card.
+### Container
+**`<daff-card>`** or **`<daff-stroked-card>`**: The main wrapper that holds all card content.
 
+### Image
+**`[daffCardImage]`**: Image element at the top of the card.
+
+### Icon
+**`[daffCardIcon]`**: Displays a visual or branding element. Avoid using for interactive icons.
+
+### Tagline
+**`[daffCardTagline]`**: Short phrase that provides quick context.
+
+### Title
+**`[daffCardTitle]`**: The primary heading of the card.
+
+### Content
+**`[daffCardContent]`**: Flexible container for body text or custom content. It's unstyled except for spacing and should only be used once per card.
+
+### Actions
+**`[daffCardActions]`**: Container for buttons or links, positioned at the bottom.
+
+### Basic structure
 ```html
 <daff-card>
-	<img daffCardImage src="/" alt="image caption" >
-  <div daffCardIcon></div>
-  <div daffCardTagline>Card tagline</div>
-  <h4 daffCardTitle>Card title</h4>
-	<div daffCardContent>Detailed information about the subject of the card.</div>
+  <img daffCardImage src="/product.jpg" alt="Product image">
+  <div daffCardIcon>
+    <fa-icon [icon]="faStar"></fa-icon>
+  </div>
+  <div daffCardTagline>New Arrival</div>
+  <h4 daffCardTitle>Product Name</h4>
+  <div daffCardContent>
+    <p>Product description and details.</p>
+  </div>
   <div daffCardActions>
-    <button>Card link</button>
-    <button>Another card link</button>
+    <button>View Details</button>
+    <button>Add to Cart</button>
   </div>
 </daff-card>
 ```
 
-## Interactive card
+## Features
+
+### Interactive card
 An interactive card turns the entire card into a clickable area that navigates to another page or view. This is useful for cards representing products, articles, or other resources where selecting the card should take the user to another page or section.
 
 To create an interactive card, apply the component selector to an `<a>` element. All card styles support interactive behavior.
 
 <design-land-example-viewer-container example="linkable-card"></design-land-example-viewer-container>
 
-## Elevation
+### Elevation
 Use the `elevated` property to add shadows to cards.
 
 <design-land-example-viewer-container example="elevated-card"></design-land-example-viewer-container>
 
-## Orientation
+### Orientation
 Use the `orientation` property to stack card content either `vertical` (default) or `horizontal`. Horizontal cards automatically switch to vertical on smaller screens.
 
 <design-land-example-viewer-container example="card-orientation"></design-land-example-viewer-container>

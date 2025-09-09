@@ -1,15 +1,19 @@
-# Text snippet
-Text snippet is used to display a section of text, with the ability to show or hide content beyond one line of text. 
+# Text Snippet
+A text snippet is used to display a section of text with the ability to show or hide content beyond one line of text.
 
 ## Overview
-Text snippet is useful for showing previews of long content while allowing the user to expand and read the full text. It can be used to truncate long text blocks such as product descriptions, reviews, or articles. By default, the condensed mode is displayed with a toggle button to expand or collapse the full text.
+Text snippets provide a way to show previews of long content while allowing users to expand and read the full text when needed. They help condense screen space by truncating long text blocks such as product descriptions, reviews, or articles. By default, content is displayed in condensed mode with a toggle button to expand or collapse the full text.
 
 <design-land-example-viewer-container example="basic-text-snippet"></design-land-example-viewer-container>
 
-## Usage
+## Best practices
 
-### Within a standalone component
-To use a text snippet in a standalone component, import `DaffTextSnippetComponent` directly into your custom component:
+**When to use**
+- Displaying long content that might overwhelm the interface
+- Providing previews of product descriptions, reviews, or articles
+
+## Usage
+To use text snippet, import `DaffTextSnippetComponent` directly into your custom component:
 
 ```ts
 import { DaffTextSnippetComponent } from '@daffodil/design/text-snippet';

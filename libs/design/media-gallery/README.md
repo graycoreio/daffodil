@@ -1,10 +1,20 @@
-# Media gallery
+# Media Gallery
 A media gallery displays a group of thumbnails in a gallery format, allowing users to preview and select different media.
 
 ## Overview
-Use a media gallery to showcase multiple images or other media related to a single product or topic. Thumbnails are interactive and update the primary display when selected.
+Media galleries are ideal for showcasing multiple images or other media related to a single product or topic. They provide an interactive way to browse through content with thumbnail previews that update the primary display when selected.
 
 <design-land-example-viewer-container example="basic-media-gallery"></design-land-example-viewer-container>
+
+## Best practices
+
+**When to use**
+- Showcasing multiple related images for a product or topic
+- Providing an interactive way to browse through visual content
+
+**When not to use**
+- You only have one image (use an [Image](/libs/design/image/README.md) instead)
+- The images are unrelated to each other
 
 ## Usage
 
@@ -49,8 +59,15 @@ export class CustomComponentModule { }
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
 ## Anatomy
-Use the `[daffThumbnail]` **structural directive** to define a thumbnail in the gallery. Thumbnails can contain any content type, not just images.
+A media gallery consists of the following components:
 
+### Container
+**`<daff-media-gallery>`**: The wrapper component that contains all thumbnails and manages the display area.
+
+### Thumbnail
+**`[daffThumbnail]`**: A **structural directive** that defines both the preview image and the content to display when selected. Thumbnails can contain any content type, not just images.
+
+### Basic structure
 ```html
 <daff-media-gallery>
   <ng-template daffThumbnail thumbnailSrc="/thumbnail-path.jpg" label="Your description">
@@ -59,6 +76,7 @@ Use the `[daffThumbnail]` **structural directive** to define a thumbnail in the 
 </daff-media-gallery>
 ```
 
+## Thumbnail configuration
 - `thumbnailSrc` is used for the preview image rendered in the thumbnail strip.
 - The content inside the template will be shown as the primary view when selected.
 - You must include the full content for each thumbnail inside the template, even if it appears to duplicate the thumbnail image since this is what renders in the main display area when selected.
@@ -69,7 +87,6 @@ Use the `[daffThumbnail]` **structural directive** to define a thumbnail in the 
 > Never use `[daffThumbnail]` as a standalone element. It must be placed within a `<daff-media-gallery>`. 
 
 <design-land-example-viewer-container example="media-gallery-with-video"></design-land-example-viewer-container>
-
 
 ## Aspect ratio
 Use a consistent aspect ratio across all content to avoid layout shifts. Mismatched content sizes can cause the primary content area to shift as different thumbnails are selected.
