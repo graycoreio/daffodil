@@ -4,7 +4,6 @@ import {
   TestBed,
   waitForAsync,
 } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffioHomeViewComponent } from './home-view.component';
 
@@ -14,12 +13,7 @@ describe('DaffioHomeViewComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-      ],
-      declarations: [
-        DaffioHomeViewComponent,
-      ],
+      imports: [DaffioHomeViewComponent],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
       ],

@@ -13,7 +13,7 @@ import { DaffioHomeCalloutPwaComponent } from './home-callout-pwa.component';
 
 @Component({
   template: `<daffio-home-callout-pwa></daffio-home-callout-pwa>`,
-  standalone: false,
+  imports: [DaffioHomeCalloutPwaComponent],
 })
 class WrapperComponent {}
 
@@ -25,10 +25,7 @@ describe('DaffioHomeCalloutPwaComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-        DaffioHomeCalloutPwaComponent,
-      ],
+      imports: [WrapperComponent],
     })
       .compileComponents();
   }));

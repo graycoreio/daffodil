@@ -13,7 +13,9 @@ import { DaffioHomeCalloutPlatformsComponent } from './home-callout-platforms.co
 
 @Component({
   template: `<daffio-home-callout-platforms></daffio-home-callout-platforms>`,
-  standalone: false,
+  imports: [
+    DaffioHomeCalloutPlatformsComponent,
+  ],
 })
 class WrapperComponent {}
 
@@ -25,10 +27,7 @@ describe('DaffioHomeCalloutPlatformsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-        DaffioHomeCalloutPlatformsComponent,
-      ],
+      imports: [WrapperComponent],
     })
       .compileComponents();
   }));

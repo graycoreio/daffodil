@@ -13,7 +13,7 @@ import { DaffioHomeHeroComponent } from './home-hero.component';
 
 @Component({
   template: `<daffio-home-hero></daffio-home-hero>`,
-  standalone: false,
+  imports: [DaffioHomeHeroComponent],
 })
 class WrapperComponent {}
 
@@ -25,10 +25,7 @@ describe('DaffioHomeHeroComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-        DaffioHomeHeroComponent,
-      ],
+      imports: [WrapperComponent],
     })
       .compileComponents();
   }));
