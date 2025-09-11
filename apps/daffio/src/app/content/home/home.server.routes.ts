@@ -1,11 +1,6 @@
-import {
-  RenderMode,
-  ServerRoute,
-} from '@angular/ssr';
+import { RenderMode } from '@angular/ssr';
 
-export const homepageServerRoutes = (parent: string): Array<ServerRoute> => [
-  {
-    path: parent,
-    renderMode: RenderMode.Prerender,
-  },
-];
+export const homeServerRoute: { path: string; renderMode: RenderMode.Prerender} = {
+  path: '',
+  renderMode: RenderMode.Prerender,
+};
