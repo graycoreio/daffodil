@@ -1,24 +1,29 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   HostBinding,
+  input,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { DaffDocsApiNavList } from '@daffodil/docs-utils';
+
+import { DaffioApiPackageFilterPipe } from '../../pipes/packge-filter.pipe';
+import { DaffioApiListSectionComponent } from '../api-list-section/api-list-section.component';
 
 @Component({
   selector: 'daffio-api-list',
   templateUrl: './api-list.component.html',
   styleUrls: ['./api-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    RouterLink,
+    DaffioApiListSectionComponent,
+    DaffioApiPackageFilterPipe,
+  ],
 })
 export class DaffioApiListComponent {
   @HostBinding('class.daffio-api-list') class = true;
 
-  /**
-   * A list of references for API documents.
-   */
-  @Input() apiList: DaffDocsApiNavList;
+  apiList = input<DaffDocsApiNavList>();
 }

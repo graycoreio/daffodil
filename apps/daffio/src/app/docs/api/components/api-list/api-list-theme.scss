@@ -17,6 +17,10 @@
 		}
 
 		@include light($mode) {
+			&__package-wrapper {
+				border-bottom: 1px solid daff-color($neutral, 20);
+			}
+
 			&__package-name {
 				a {
 					&:hover {
@@ -27,6 +31,10 @@
 		}
 
 		@include dark($mode) {
+			&__package-wrapper {
+				border-bottom: 1px solid daff-color($neutral, 80);
+			}
+
 			&__package-name {
 				a {
 					&:hover {

@@ -3,7 +3,6 @@
 :host {
 	display: flex;
 	flex-direction: column;
-	gap: 48px;
 
 	a {
 		text-decoration: none;
@@ -11,21 +10,27 @@
 }
 
 .daffio-api-list {
+	&__package-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		padding: 4rem 0;
+
+		&:first-of-type {
+			padding-top: 0;
+		}
+	}
+
 	&__package {
 		display: flex;
 		flex-direction: column;
-		gap: 24px;
+		gap: 1rem;
 	}
 
 	&__package-name {
-		font-size: 1.125rem;
+		font-size: 1.25rem;
 		font-weight: 600;
-		line-height: 1.375rem;
-
-		@include daff.breakpoint(mobile) {
-			font-size: 1.25rem;
-			line-height: 1.75rem;
-		}
+		line-height: 1.75rem;
 
 		> * {
 			@include daff.text-truncate();
@@ -34,5 +39,12 @@
 				display: inline;
 			}
 		}
+	}
+
+	&__subpackage-name {
+		font-size: 1rem;
+		font-weight: 600;
+		line-height: 1.25rem;
+		@include daff.text-truncate();
 	}
 }

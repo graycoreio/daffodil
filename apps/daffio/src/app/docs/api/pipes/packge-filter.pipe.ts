@@ -12,7 +12,6 @@ import { DaffApiDoc } from '@daffodil/docs-utils';
  */
 @Pipe({
   name: 'apiPackageFilter',
-  standalone: true,
 })
 export class DaffioApiPackageFilterPipe implements PipeTransform {
   transform(docs: Array<DaffApiDoc>, exclude = false) {

@@ -10,9 +10,9 @@ import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 import { DAFF_ARTICLE_COMPONENTS } from '@daffodil/design/article';
 import { DaffApiPackageDoc } from '@daffodil/docs-utils';
 
-import { DaffioApiPackageFilterPipe } from './not-packages.pipe';
 import { DaffioDocViewerComponent } from '../../../components/doc-viewer/doc-viewer.component';
 import { DaffioDocsDynamicContent } from '../../../dynamic-content/dynamic-content.type';
+import { DaffioApiPackageFilterPipe } from '../../pipes/packge-filter.pipe';
 import { DaffioApiListSectionComponent } from '../api-list-section/api-list-section.component';
 
 @Component({

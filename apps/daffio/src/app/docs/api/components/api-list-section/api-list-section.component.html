@@ -1,4 +1,4 @@
-@for (childDoc of children; track childDoc.id) {
+@for (childDoc of children(); track childDoc.id) {
   <a [routerLink]="childDoc.path" class="daffio-api-list-section__item" >
     <div class="daffio-api-list-section__item-name">{{ childDoc.title }}</div>
     <div class="daffio-api-list-section__label-wrapper">

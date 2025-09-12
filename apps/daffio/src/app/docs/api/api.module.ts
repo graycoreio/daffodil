@@ -6,7 +6,7 @@ import { DaffContainerModule } from '@daffodil/design/container';
 
 import { DaffioDocsApiRoutingModule } from './api-routing.module';
 import { provideDaffioDocsApiContentComponent } from './components/api-content/api-content.provider';
-import { DaffioApiListModule } from './components/api-list/api-list.module';
+import { DaffioApiListComponent } from './components/api-list/api-list.component';
 import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.component';
 import { daffioDocsApiRolesProvider } from './roles/api-roles.provider';
 
@@ -15,7 +15,7 @@ import { daffioDocsApiRolesProvider } from './roles/api-roles.provider';
     CommonModule,
     DaffArticleModule,
     DaffioDocsApiRoutingModule,
-    DaffioApiListModule,
+    DaffioApiListComponent,
 
     DaffContainerModule,
   ],

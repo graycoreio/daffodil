@@ -1,8 +1,8 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   HostBinding,
+  input,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -34,5 +34,5 @@ export class DaffioApiListSectionComponent {
   /**
    * A list of references for API documents.
    */
-  @Input() children: Array<DaffApiNavDoc>;
+  children = input<Array<DaffApiNavDoc>>();
 }

@@ -1,6 +1,20 @@
-<div *ngFor="let doc of apiList.children" class="daffio-api-list__package">
-  <h2 class="daffio-api-list__package-name">
-    <a [routerLink]="doc.path">{{ doc.title }}</a>
-  </h2>
-  <daffio-api-list-section [children]="doc.children"></daffio-api-list-section>
-</div>
+@for (doc of apiList().children; track doc.title) {
+  <div class="daffio-api-list__package-wrapper">
+    <div class="daffio-api-list__package">
+      <h2 class="daffio-api-list__package-name">
+        <a [routerLink]="doc.path">{{ doc.title }}</a>
+      </h2>
+      @if ((doc.children | apiPackageFilter: true).length) {
+        <daffio-api-list-section [children]="doc.children | apiPackageFilter: true"></daffio-api-list-section>
+      }
+    </div>
+    @if ((doc.children | apiPackageFilter).length) {
+      <div class="daffio-api-list__package">
+        <h3 class="daffio-api-list__subpackage-name">
+          Subpackages
+        </h3>
+        <daffio-api-list-section [children]="doc.children | apiPackageFilter"></daffio-api-list-section>
+      </div>
+    }
+  </div>
+}
