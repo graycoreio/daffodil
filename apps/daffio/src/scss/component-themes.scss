@@ -46,12 +46,9 @@
 	@include api-inputs-fragment.daffio-api-inputs-fragment-theme($theme);
 	@include api-outputs-fragment.daffio-api-outputs-fragment-theme($theme);
 	@include api-item-label.daffio-api-item-label-theme($theme);
-<<<<<<< HEAD
 	@include docs-heading-link.daffio-docs-heading-link-theme($theme);
-=======
 	@include docs-search-button.daffio-docs-search-button-theme($theme);
 	@include docs-search-field.daffio-docs-search-field-theme($theme);
 	@include docs-search-footer.daffio-docs-search-footer-theme($theme);
 	@include docs-search-modal.daffio-docs-search-modal-theme($theme);
->>>>>>> feat(daffio): add search feature
 }
