@@ -9,7 +9,10 @@ import {
   faDiscord,
 } from '@fortawesome/free-brands-svg-icons';
 
-import { DaffCopyrightModule } from '@daffodil/branding';
+import {
+  DAFF_BRANDING_CONSTANTS,
+  DaffCopyrightModule,
+} from '@daffodil/branding';
 import { DaffManageContainerLayoutDirective } from '@daffodil/design';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
@@ -32,7 +35,7 @@ export class DaffioDocsFooterComponent {
   @HostBinding('class.daffio-docs-footer') class = true;
 
   links: any[] = [
-    { path: 'DAFF_BRANDING_CONSTANTS.DISCORD_URL', title: 'Support' },
+    { path: DAFF_BRANDING_CONSTANTS.DISCORD_URL, title: 'Support' },
     { path: 'https://github.com/graycoreio/daffodil/blob/develop/CONTRIBUTING.md', title: 'Contributing' },
     { path: 'https://github.com/sponsors/graycoreio', title: 'Sponsor' },
     { path: 'https://github.com/graycoreio/daffodil/issues', title: 'Report an issue' },
