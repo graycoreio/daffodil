@@ -66,16 +66,16 @@ describe('DaffioApiListSectionComponent', () => {
   });
 
   it('should be able to take children as input', () => {
-    expect(component.children).toEqual(wrapper.apiListValue);
+    expect(component.children()).toEqual(wrapper.apiListValue);
   });
 
   it('should render a link for every doc in children', () => {
-    expect(links.length).toEqual(component.children.length);
+    expect(links.length).toEqual(component.children().length);
   });
 
   describe('on link', () => {
     it('should set routerLink', () => {
-      expect(links[0].attributes['ng-reflect-router-link']).toEqual(component.children[0].path);
+      expect(links[0].attributes['ng-reflect-router-link']).toEqual(component.children()[0].path);
     });
   });
 });

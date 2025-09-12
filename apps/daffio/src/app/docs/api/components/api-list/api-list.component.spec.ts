@@ -19,7 +19,11 @@ import { DaffioApiListSectionComponent } from '../api-list-section/api-list-sect
 
 @Component({
   template: '<daffio-api-list [apiList]="apiListValue"></daffio-api-list>',
-  standalone: false,
+  imports: [
+    DaffioApiListComponent,
+    DaffioApiListSectionComponent,
+
+  ],
 })
 class WrapperComponent {
   apiListValue: DaffDocsApiNavList = {
@@ -65,11 +69,7 @@ describe('DaffioApiListComponent', () => {
       imports: [
         RouterTestingModule,
         DaffContainerModule,
-        DaffioApiListSectionComponent,
-      ],
-      declarations: [
         WrapperComponent,
-        DaffioApiListComponent,
       ],
     })
       .compileComponents();
@@ -89,7 +89,7 @@ describe('DaffioApiListComponent', () => {
   });
 
   it('should be able to take apiList as input', () => {
-    expect(component.apiList).toEqual(wrapper.apiListValue);
+    expect(component.apiList()).toEqual(wrapper.apiListValue);
   });
 
   it('should render a link for every doc in apiList', () => {
