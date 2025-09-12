@@ -45,7 +45,7 @@ export class DaffioDocsSearchButtonComponent {
       DaffioDocsSearchModalComponent,
       { ariaLabelledBy: 'Search docs' },
     );
-    this.modal.closedAnimationCompleted.pipe(
+    this.modal.closedAnimationCompleted$.pipe(
       takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.modal = undefined;
