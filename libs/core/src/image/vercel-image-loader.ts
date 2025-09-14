@@ -24,7 +24,7 @@ export interface VercelAssetsConfig {
 
 /**
  * Creates a Vercel image loader function that optimizes images through Vercel's image optimization service.
- * 
+ *
  * @param domain The domain to match against image URLs for transformation
  * @param configuration Configuration options for image optimization
  * @returns An image loader function that transforms URLs for Vercel image optimization
@@ -46,7 +46,7 @@ export const createVercelImageLoader = (domain: string, configuration: VercelAss
 
 /**
  * Provides a Vercel image loader as an Angular environment provider.
- * 
+ *
  * @param domain The domain to match against image URLs for transformation
  * @param configuration Configuration options for image optimization
  * @returns Environment providers array containing the Vercel image loader
