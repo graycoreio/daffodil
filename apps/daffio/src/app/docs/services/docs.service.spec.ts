@@ -43,7 +43,7 @@ describe('DaffioDocsService', () => {
 
     service.get('docs/my/path').subscribe((apiDoc) => {
       expect(apiDoc).toEqual(doc);
-      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio//docs/my/path.json', 'docs/my/path');
+      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/my/path.json', 'my/path');
       done();
     });
   });

@@ -47,7 +47,7 @@ describe('DaffioDocsDesignIndexService', () => {
 
     service.getList().subscribe((guides) => {
       expect(guides).toEqual(mockGuideList);
-      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio//docs/design/index.json', `${DAFF_DOCS_DESIGN_PATH}/index`);
+      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/design/index.json', `design/index`);
       done();
     });
   });
