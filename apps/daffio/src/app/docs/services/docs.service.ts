@@ -11,6 +11,7 @@ import {
 
 import { DAFFIO_DOCS_PATH_TOKEN } from './docs-path.token';
 import { DaffioDocsServiceInterface } from './docs-service.interface';
+import { getSafePath } from './safe-path';
 import {
   DaffioAssetFetchService,
   DaffioAssetFetchServiceInterface,
@@ -26,6 +27,7 @@ export class DaffioDocsService implements DaffioDocsServiceInterface {
   ) {}
 
   get<T extends DaffDoc = DaffDoc>(path: string): Observable<T> {
+    path = getSafePath(path);
     return this.fetchAsset.fetch<T>(`${this.docsPath}/${crossOsFilename(path)}.json`, path);
   }
 }

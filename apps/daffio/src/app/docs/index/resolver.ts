@@ -10,4 +10,4 @@ import { DaffioDocsIndexService } from './index.service';
 import { DaffioRoute } from '../../core/router/route.type';
 
 export const daffioDocsIndexResolver: ResolveFn<DaffDocsNavList> = (route: ActivatedRouteSnapshot) =>
-  inject(DaffioDocsIndexService).getListForKind((<DaffioRoute['data']>route.data).docKind, (<DaffioRoute['data']>route.data).docPrefix);
+  inject(DaffioDocsIndexService).getListForKind((<DaffioRoute['data']>route.data).docKind);

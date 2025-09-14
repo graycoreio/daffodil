@@ -1,30 +1,30 @@
-import { isPlatformServer } from '@angular/common';
+import { Provider } from '@angular/core';
 import {
-  inject,
-  PLATFORM_ID,
-  Provider,
-  REQUEST,
-} from '@angular/core';
-import { resolve } from 'path';
+  resolve,
+  dirname,
+  join,
+} from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { DAFFIO_DOCS_PATH_TOKEN } from './docs-path.token';
-import { environment } from '../../../environments/environment';
 
-/**
- * The path on the server to the docs folder.
- */
-const daffioDocsPathServerFactory = () =>
-  // the SSR runs from the daffio directory and doesn't use dotenv so we rely on cwd
-  // devs should have the DAFF_ROOT env var set in their .env
-  resolve(!process.env.DAFF_ROOT ? process.cwd() : resolve(process.env.DAFF_ROOT, 'dist/apps/daffio'), environment.docsPath);
+export const isAngularDevServer = () => import.meta.url.includes('.angular');
 
-/**
- * The path on the compile machine to the docs folder.
- */
-const daffioDocsPathPrerenderFactory = () =>
-  // the SSR runs from the daffio directory and doesn't use dotenv so we rely on cwd
-  // devs should have the DAFF_ROOT env var set in their .env
-  !process.env.DAFF_ROOT ? resolve(process.cwd(), '../../dist') : resolve(process.env.DAFF_ROOT, 'dist');
+export const findProjectRoot = (fileUrl: string = import.meta.url) => {
+  let current = dirname(fileURLToPath(fileUrl));
+
+  while(current !== dirname(current)) {
+    const angularCacheFolder = join(dirname(current),'.angular');
+    if(angularCacheFolder === current) {
+      console.log(dirname(current));
+      return dirname(current);
+    }
+
+    current = dirname(current);
+  }
+
+  throw new Error('No project root found, does the .angular folder exist');
+};
 
 /**
  * A provider for the docs path for the server.
@@ -33,10 +33,12 @@ export function provideServerDocsPath(): Provider {
   return {
     provide: DAFFIO_DOCS_PATH_TOKEN,
     useFactory: () => {
-      // if we're on the server but we don't have access to the SSR request
-      // then we must be in prerender
-      const isPrerender = isPlatformServer(inject(PLATFORM_ID)) && !inject(REQUEST);
-      return isPrerender ? daffioDocsPathPrerenderFactory() : daffioDocsPathServerFactory();
+      if(isAngularDevServer()) {
+        return resolve(findProjectRoot(import.meta.url), 'dist/docs');
+      }
+      //This works so long as chunks are located in the same folder as the default Angular `server.mjs`.
+      //If these move, we'll get missing files.
+      return resolve(dirname(fileURLToPath(import.meta.url)), '../browser/assets/daffio/docs');
     },
   };
 };

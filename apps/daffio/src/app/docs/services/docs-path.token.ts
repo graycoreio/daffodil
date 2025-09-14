@@ -6,4 +6,4 @@ export const {
    * Provider function for {@link DAFFIO_DOCS_PATH_TOKEN}.
    */
   provider: provideDaffioDocsPath,
-} = createSingleInjectionToken<string>('DAFFIO_DOCS_PATH_TOKEN', { factory: () => '/assets/daffio/' });
+} = createSingleInjectionToken<string>('DAFFIO_DOCS_PATH_TOKEN', { factory: () => '/assets/daffio/docs' });

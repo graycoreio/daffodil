@@ -28,7 +28,6 @@ export const docsDesignRoutes: Routes = [
       index: daffioDocsDesignIndexResolver,
     },
     data: {
-      docPrefix: `${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`,
       daffioSidebars: {
         [DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION.id]: DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION,
       },

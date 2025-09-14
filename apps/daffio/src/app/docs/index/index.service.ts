@@ -5,7 +5,6 @@ import {
 
 import {
   DAFF_DOC_KIND_PATH_SEGMENT_MAP,
-  DAFF_DOCS_PATH,
   DaffDocKind,
   DaffDocsNavList,
 } from '@daffodil/docs-utils';
@@ -24,8 +23,8 @@ export class DaffioDocsIndexService<T extends DaffDocsNavList = DaffDocsNavList>
     @Inject(DAFFIO_DOCS_PATH_TOKEN) private docsPath: string,
   ) {}
 
-  getListForKind(kind: DaffDocKind, prefix = DAFF_DOCS_PATH) {
-    const path = `${prefix}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/index`;
+  getListForKind(kind: DaffDocKind) {
+    const path = `${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/index`;
     return this.fetchAsset.fetch<T>(`${this.docsPath}/${path}.json`, path);
   }
 }
