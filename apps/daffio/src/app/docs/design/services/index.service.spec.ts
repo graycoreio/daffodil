@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
+import { DaffDocFactory } from '@daffodil/docs/testing';
 import { DaffDoc } from '@daffodil/docs-utils';
 
 import { DaffioDocsDesignIndexService } from './index.service';
@@ -8,7 +9,6 @@ import {
   DaffioAssetFetchServiceInterface,
   DaffioAssetFetchService,
 } from '../../../core/assets/fetch/service.interface';
-import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
 import { mockPackages } from '../../testing/factories/packages-list.factory';
 
 describe('DaffioDocsDesignIndexService', () => {
@@ -32,7 +32,7 @@ describe('DaffioDocsDesignIndexService', () => {
 
     service = TestBed.inject(DaffioDocsDesignIndexService);
 
-    doc = TestBed.inject(DaffioDocsFactory).create();
+    doc = TestBed.inject(DaffDocFactory).create();
   });
 
   it('should be created', () => {

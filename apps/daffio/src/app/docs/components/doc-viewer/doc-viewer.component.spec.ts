@@ -15,7 +15,6 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioDocViewerComponent } from './doc-viewer.component';
-import { DaffioDocsFactory } from '../../testing/factories/docs.factory';
 import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
 
 @Component({
@@ -36,7 +35,6 @@ describe('DaffioDocViewerComponent', () => {
   let component: DaffioDocViewerComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapper: WrapperComponent;
-  const docFactory = new DaffioDocsFactory();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

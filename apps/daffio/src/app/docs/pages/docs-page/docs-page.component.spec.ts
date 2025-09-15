@@ -14,10 +14,10 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
 
+import { DaffDocFactory } from '@daffodil/docs/testing';
 import { DaffDoc } from '@daffodil/docs-utils';
 
 import { DaffioDocsPageComponent } from './docs-page.component';
-import { DaffioDocsFactory } from '../../../docs/testing/factories/docs.factory';
 import { DaffioDocsDynamicContentComponentService } from '../../dynamic-content/dynamic-content-component.service';
 import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.type';
 
@@ -33,7 +33,8 @@ class MockContentComponent implements DaffioDocsDynamicContent {
 describe('DaffioDocsPageComponent', () => {
   let component: DaffioDocsPageComponent;
   let fixture: ComponentFixture<DaffioDocsPageComponent>;
-  const doc: DaffDoc = new DaffioDocsFactory().create();
+  let docFactory: DaffDocFactory;
+  let doc: DaffDoc;
   const stubActivatedRoute = {
     data: new BehaviorSubject({}),
   };
@@ -71,6 +72,10 @@ describe('DaffioDocsPageComponent', () => {
         },
       )
       .compileComponents();
+
+    docFactory = TestBed.inject(DaffDocFactory);
+
+    doc = docFactory.create();
 
     componentServiceSpy.getComponent.and.returnValue(MockContentComponent);
     fixture = TestBed.createComponent(DaffioDocsPageComponent);

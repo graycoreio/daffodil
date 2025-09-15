@@ -5,6 +5,7 @@ import {
   of,
 } from 'rxjs';
 
+import { DaffDocFactory } from '@daffodil/docs/testing';
 import {
   DaffDoc,
   DaffDocKind,
@@ -16,7 +17,6 @@ import {
   DaffioAssetFetchServiceInterface,
 } from '../../core/assets/fetch/service.interface';
 import { DaffioRoute } from '../../core/router/route.type';
-import { DaffioDocsFactory } from '../testing/factories/docs.factory';
 import { mockPackages } from '../testing/factories/packages-list.factory';
 
 describe('DaffioDocsIndexService', () => {
@@ -42,7 +42,7 @@ describe('DaffioDocsIndexService', () => {
 
     service = TestBed.inject(DaffioDocsIndexService);
 
-    doc = TestBed.inject(DaffioDocsFactory).create();
+    doc = TestBed.inject(DaffDocFactory).create();
   });
 
   it('should be created', () => {

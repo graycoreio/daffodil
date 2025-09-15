@@ -28,9 +28,11 @@
   "peerDependencies": {
     "@angular/common": "0.0.0-PLACEHOLDER",
     "@angular/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/core": "0.0.0-PLACEHOLDER"
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/docs-utils": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
-    "@daffodil/core": "0.0.0-PLACEHOLDER"
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/docs-utils": "0.0.0-PLACEHOLDER"
   }
 }
