@@ -1,10 +1,8 @@
-# Essentials
-
-## Overview
+# Overview
 
 Daffodil consists of a few different layers, each which are appropriate for different use cases.
 
-#### Driver
+## Driver
 The driver layer is the most powerful layer. It interacts with external platforms and structures data into Daffodil's specific model format. This enables a single frontend application to interface with multiple platforms without dealing with the differences or intricacies of each of those platforms.
 
 Driver usage is straightforward; simply call a method on the driver class and use the result! Nearly all driver methods return an [`Observable`](https://rxjs.dev/api/index/class/Observable) to encapsulate the async behavior of network requests.
@@ -30,7 +28,7 @@ class AppComponent implements OnInit {
 }
 ```
 
-#### State
+## State
 The state layer builds upon the driver layer to provide app-wide redux state. Driver operations are triggered by dispatching actions and results (or the errors) are selectable from state. Daffodil abstracts both of these features in *facades*.
 
 State usage is more complex than driver but offers more advanced capabilities like loading states and error handling.
