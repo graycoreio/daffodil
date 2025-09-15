@@ -14,7 +14,7 @@ import {
 } from './src/transforms/daffodil-guides-package';
 import { daffodilRoutesPackage } from './src/transforms/daffodil-routes-package';
 
-rimraf('../../dist/docs/*', { glob: true }).then(() => {
+rimraf('../../dist/docs-assets/*', { glob: true }).then(() => {
   new Dgeni([apiDocs]).generate().then(() => {
     // base docs
     Promise.all([

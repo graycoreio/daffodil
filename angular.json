@@ -238,7 +238,7 @@
               },
               {
                 "glob": "!(search-index)/**/*",
-                "input": "dist/docs",
+                "input": "dist/docs-assets/docs",
                 "output": "/assets/daffio/docs"
               }
             ],

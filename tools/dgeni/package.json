@@ -21,7 +21,7 @@
           "sharedGlobals",
           "docs"
         ],
-        "outputs": ["{workspaceRoot}/dist/docs"]
+        "outputs": ["{workspaceRoot}/dist/docs-assets"]
       }
     }
   },
