@@ -7,8 +7,6 @@ import {
 import { DaffSidebarModeEnum } from '@daffodil/design/sidebar';
 import {
   DAFF_DOC_KIND_PATH_SEGMENT_MAP,
-  DAFF_DOCS_DESIGN_PATH,
-  DAFF_DOCS_PATH,
   DaffDocKind,
 } from '@daffodil/docs-utils';
 

@@ -4,11 +4,7 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import {
-  DAFF_DOCS_DESIGN_PATH,
-  DAFF_DOCS_PATH,
-  DaffDocsDesignGuideNavList,
-} from '@daffodil/docs-utils';
+import { DaffDocsDesignGuideNavList } from '@daffodil/docs-utils';
 
 import {
   DaffioAssetFetchService,
