@@ -28,6 +28,8 @@ class AppComponent implements OnInit {
 }
 ```
 
+See [drivers](/docs/guides/essentials/drivers.md) for more information.
+
 ## State
 The state layer builds upon the driver layer to provide app-wide redux state. Driver operations are triggered by dispatching actions and results (or the errors) are selectable from state. Daffodil abstracts both of these features in *facades*.
 
