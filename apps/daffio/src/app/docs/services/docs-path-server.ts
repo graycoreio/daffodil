@@ -16,7 +16,6 @@ export const findProjectRoot = (fileUrl: string = import.meta.url) => {
   while(current !== dirname(current)) {
     const angularCacheFolder = join(dirname(current),'.angular');
     if(angularCacheFolder === current) {
-      console.log(dirname(current));
       return dirname(current);
     }
 
