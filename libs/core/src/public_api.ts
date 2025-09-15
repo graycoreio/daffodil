@@ -2,7 +2,7 @@ export { DaffLocatable } from './locateable/locateable.interface';
 export { DaffCanonicallyLocatable } from './canonically-locateable/canonically-locateable.interface';
 
 export { Constructable } from './constructable/constructable';
-
+export { provideVercelImageLoader } from './image/vercel-image-loader';
 export * from './base64/public_api';
 export * from './collection/public_api';
 export * from './decorators/public_api';
