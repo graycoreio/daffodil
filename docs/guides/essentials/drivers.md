@@ -2,56 +2,56 @@
 
 Drivers are the backbone of Daffodil's flexible architecture, acting as bridges between your Angular application and various ecommerce backends. They provide a consistent interface for interacting with different platforms while abstracting away platform-specific implementation details.
 
-## What are Drivers?
+## Overview
 
 Drivers implement standardized service interfaces that allow Daffodil to communicate with different ecommerce platforms in a unified way. Instead of writing platform-specific code throughout your application, you interact with drivers through consistent TypeScript interfaces. This promotes:
 
 - **Platform flexibility**: Switch between backends without changing your application code
-- **Development efficiency**: Mock backends for rapid prototyping and testing  
+- **Development efficiency**: Mock backends for rapid prototyping and testing
 - **Maintainability**: Centralized platform-specific logic in dedicated driver packages
 - **Scalability**: Support for multiple backends simultaneously through federated drivers
 
-## Driver Architecture
+[See drivers in action!](https://demo.daff.io)
 
-### Service Interfaces
+## Driver architecture
 
-Each Daffodil feature domain (product, cart, auth, etc.) defines a service interface that drivers must implement. For example:
+### Service interfaces
 
-```typescript
+Each feature domain (e.g. product, cart, auth) defines a service interface that drivers must implement:
+
+```ts
 // Product driver interface
 export interface DaffProductServiceInterface<T extends DaffProduct = DaffProduct> {
-	getAll(): Observable<T[]>;
-	get(productId: T['id']): Observable<DaffProductDriverResponse<T>>;
-	getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse<T>>;
+  getAll(): Observable<T[]>;
+  get(productId: T['id']): Observable<DaffProductDriverResponse<T>>;
+  getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse<T>>;
 }
 
 // Cart driver interface  
 export interface DaffCartServiceInterface<T extends DaffCart = DaffCart> {
-	get(id: T['id']): Observable<DaffDriverResponse<T>>;
-	create(): Observable<{id: T['id']}>;
-	clear(id: T['id']): Observable<Partial<T>>;
-	merge(guestCart: T['id'], customerCart?: T['id']): Observable<DaffDriverResponse<T>>;
+  get(id: T['id']): Observable<DaffDriverResponse<T>>;
+  create(): Observable<{id: T['id']}>;
+  clear(id: T['id']): Observable<Partial<T>>;
+  merge(guestCart: T['id'], customerCart?: T['id']): Observable<DaffDriverResponse<T>>;
 }
 ```
 
-:::info
-Feature domains generally correspond to packages like `@daffodil/auth`, and `@daffodil/cart`.
-:::
+> Feature domains correspond to packages like `@daffodil/auth` and `@daffodil/cart`.
 
 ### Providers
 
 Drivers are provided to your application using Angular providers:
 
-```typescript
+```ts
 import { ApplicationConfig } from '@angular/core';
 import { provideMagentoDriver } from '@daffodil/driver/magento';
 import { provideDaffProductMagentoDriver } from '@daffodil/product/driver/magento';
 
 export const appConfig: ApplicationConfig = {
-	providers: [
-		provideMagentoDriver(),
-		provideDaffProductMagentoDriver(),
-	]
+  providers: [
+    provideMagentoDriver(),
+    provideDaffProductMagentoDriver(),
+  ]
 };
 ```
 
@@ -66,112 +66,103 @@ export class ProductListComponent implements OnInit {
 }
 ```
 
-### Driver Implementations
+### Driver implementations
 
-Each package separately defines what drivers it currently has available. At the moment, we currently provide full coverage for the following platforms:
+Each package separately defines what drivers it currently has available.
 
-- [Adobe Commerce](https://business.adobe.com/products/commerce.html)/[Magento](https://magento-opensource.com/)/[MageOS](https://mage-os.org/)
-- In-memory: Mock drivers with fake data for development and testing (great for preview environments!)
+**Full support:**
+- [Adobe Commerce](https://business.adobe.com/products/commerce.html) / [Magento](https://magento-opensource.com/) / [MageOS](https://mage-os.org/)
+- In-memory: Mock drivers with fake data for development and testing
 - Testing: Specialized drivers for unit and integration testing
 
-We have partial support for:
+**Partial support:**
+- [**Shopify**](https://www.shopify.com/): GraphQL Storefront API drivers for Shopify backends
 
-- [**Shopify**](https://www.shopify.com/): GraphQl Storefront API drivers for Shopify backends
-
-Native drivers maintained by the Daffodil team are included via subpackages of the relevant feature domain. For example, `@daffodil/product` contains:
-
+Drivers maintained by the Daffodil team are included as subpackages of feature domains. For example, `@daffodil/product` contains:
 - `@daffodil/product/driver/magento`
 - `@daffodil/product/driver/in-memory`
-- `@daffodil/product/driver/testing`
 - `@daffodil/product/driver/shopify`
 
 
-## Setting Up Drivers
+## Setting up drivers
 
-### Basic Setup
+1. Install the driver package
 
-1. **Install the driver package:**
 ```bash
 npm install @daffodil/product --save
 ```
 
-2. **Configure the driver providers in your app config:**
-```typescript
+2. Configure the driver providers in your app config:
+```ts
 import { ApplicationConfig } from '@angular/core';
 import { provideMagentoDriver } from '@daffodil/driver/magento';
 import { provideDaffProductMagentoDriver } from '@daffodil/product/driver/magento';
 
 export const appConfig: ApplicationConfig = {
-	providers: [
-		provideMagentoDriver(),
-		provideDaffProductMagentoDriver(),
-	]
+  providers: [
+    provideMagentoDriver(),
+    provideDaffProductMagentoDriver(),
+  ]
 };
 ```
 
-3. **Inject and use the driver:**
+3. Inject and use the driver:
 ```ts
 import { DaffProductDriver, DaffProductServiceInterface } from '@daffodil/product';
 
 @Component({...})
 export class ProductComponent {
-	constructor(
-		@Inject(DaffProductDriver) private productDriver: DaffProductServiceInterface
-	) {}
+  constructor(
+    @Inject(DaffProductDriver) private productDriver: DaffProductServiceInterface
+  ) {}
 
-	loadProduct(id: string) {
-		return this.productDriver.get(id);
-	}
+  loadProduct(id: string) {
+    return this.productDriver.get(id);
+  }
 }
 ```
 
-## Best Practices
+## Best practices
 
-### Single Driver per Domain
-Generally, you will only one driver per domain (product, cart, etc.) and typically the same platform is used across all domains to avoid conflicts and confusion. However, this is not mandatory, as is apparent in the [Daffodil driver switching demo](https://demo.daff.io). 
+##### Single driver per domain
+Generally, you will only use one driver per domain (e.g. product, cart, etc.). Typically the same platform is used across all domains to avoid conflicts. However, this is not mandatory. See the [driver switching demo](https://demo.daff.io) for multi-platform examples. 
 
-### Environment-Based Configuration
+##### Environment-based configuration
 Use environment variables to configure different drivers for different environments:
 
-```typescript
+```ts
 import { ApplicationConfig, EnvironmentProviders } from '@angular/core';
 import { environment } from '../environments/environment';
 import { provideDaffProductMagentoDriver } from '@daffodil/product/driver/magento';
 import { provideDaffProductInMemoryDriver } from '@daffodil/product/driver/in-memory';
 
 const driverProviders: EnvironmentProviders[] = environment.production
-	? provideDaffProductMagentoDriver()
-	: provideDaffProductInMemoryDriver();
+  ? provideDaffProductMagentoDriver()
+  : provideDaffProductInMemoryDriver();
 
 export const appConfig: ApplicationConfig = {
-	providers: [
-		...driverProviders,
-		// other providers
-	]
+  providers: [
+    ...driverProviders,
+    // other providers
+  ]
 };
 ```
 
-### Testing with Mock Drivers
-Use testing drivers for unit tests:
+##### Testing with mock drivers
+Use testing drivers in unit tests:
 
-```typescript
+```ts
 import { provideDaffProductTestingDriver } from '@daffodil/product/driver/testing';
 
 beforeEach(() => {
-	TestBed.configureTestingModule({
-		providers: [
-			provideDaffProductTestingDriver()
-		]
-	});
+  TestBed.configureTestingModule({
+    providers: [
+      provideDaffProductTestingDriver()
+    ]
+  });
 });
 ```
 
-
-## Related Resources
-
-- [Daffodil Demo](https://demo.daff.io) - See drivers in action
-- [Product Driver Documentation](docs/packages/product/drivers)
-
 ## Contributing
 
-We strongly encourage you contribute new drivers or improve existing ones. If there's a platform that you would like to see open an issue. If you are willing to contribute a driver see the [Contributing Guidelines](./CONTRIBUTING.md).
+We strongly encourage you to contribute new drivers or improve existing ones. If there's a platform that you would like to see supported, please [open an issue](https://github.com/graycoreio/daffodil/issues/new/choose). If you are willing to contribute a driver, see the [contributing guidelines](https://github.com/graycoreio/daffodil/blob/develop/CONTRIBUTING.md).

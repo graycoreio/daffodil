@@ -1,50 +1,48 @@
-# Getting started
+# Getting Started
 
-Daffodil was developed so you can get started without connecting to a platform. This means that you can start building your storefront without even *knowing* which platform(s) you're ultimately going to use.
+This guide covers installing a small sample of Daffodil's components into a new or existing Angular application. Daffodil enables you to build storefronts without immediately connecting to a platform. Start developing without committing to a specific ecommerce backend.
 
-This guide will walk you through installing a small sample of Daffodil's components into a fresh or existing Angular application.
+## Demo
 
-## Play around
-
-If you'd just like to see what you're going to get at the end, [check out our demo](https://demo.daff.io)!.
+[View the live demo](https://demo.daff.io) to see Daffodil in action.
 
 ## Set up a new project locally
 
-To begin, if you're starting a new storefront, you'll most likely want to create a local project so that you can use tooling such as [`git`](https://git-scm.com/).
-
+If you're starting a new storefront, you'll most likely want to create a local project so that you can use tooling such as [Git](https://git-scm.com/).
 
 ### Prerequisites
 
-- [Node](https://angular.dev/reference/versions)
+- [Node.js](https://angular.dev/reference/versions)
 - [Angular 19](https://angular.dev/installation)
-- Text editor - We recommend [Visual Studio Code](https://code.visualstudio.com/)
-- Terminal - Required for running Angular CLI commands - We recommend using WSL on Windows, but you can use Powershell too.
+- Text editor — We recommend [Visual Studio Code](https://code.visualstudio.com/)
+- Terminal — Required for Angular CLI commands
 
+### Create a new Angular project
 
-
-## Setting up Angular
-
-We'll start by setting up [Angular](https://angular.dev/). [You can follow along with the Angular guide to set up Angular](https://angular.dev/installation#instructions), or you can use this abbreviated guide:
+Create a new Angular project with your desired project name:
 
 ```bash
-# You can accept all the default settings.
-npx @angular/cli@19 new my-project 
+npx @angular/cli@19 new my-project
+```
 
+If you don't have any preferences, just hit the enter key to take the default options and continue with the setup.
+
+In your terminal, switch to your new Angular project:
+
+```bash
 cd my-project
 ```
 
-## Setting up Daffodil
+### Install Daffodil
 
-Since Daffodil requires no server-side components by default, you can simply install the `@daffodil/commerce` package to get up and running quickly.
+Daffodil requires no server-side components by default. Simply install the commerce package to get up and running quickly:
 
 ```bash
-## You can accept the default selected
 npx ng add @daffodil/commerce
 ```
 
-## Running your project
-
-All of your dependencies should be installed at this point (which you can verify by checking for the existence of a node_modules folder in your project), so you can start your project by running the command:
+### Run your new project locally
+All dependencies should be installed at this point, so you can start your project by running the command:
 
 ```bash
 npm start
@@ -59,18 +57,10 @@ NOTE: Raw file sizes do not reflect development server per-request transformatio
  ➜ press h + enter to show help
 ```
 
-And now you can visit the path in `Local` (e.g., http://localhost:4200) to see your application.
+Visit the path in `Local` (e.g., http://localhost:4200) to see your application.
 
+## Next steps
 
-## Next Steps
-
-Now that you've created your Angular app, installed Daffodil, and started your application, you're free to explore the Daffodil ecosystem. If you want to get a deeper understanding of what a driver is, browse the [driver](./drivers) guide. If you want to add additional features to your store, take a look at our [package list](/docs/packages) to see what features we offer. If you're lost, feel free to ask a question in the [`help` channel on Discord](https://discord.gg/BdaJVZ53sR).
-
-
-
-
-
-
-
-
-
+- [Understanding drivers](./essentials/drivers): Learn how drivers abstract platform differences
+- [Browse packages](/docs/packages): Add features to your store
+- [Get help on Discord](https://discord.gg/BdaJVZ53sR): Ask questions in the help channel
