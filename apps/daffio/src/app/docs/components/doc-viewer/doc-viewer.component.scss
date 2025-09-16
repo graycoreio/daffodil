@@ -10,21 +10,25 @@
 
 		@include daff.breakpoint(small-laptop) {
 			display: flex;
-			justify-content: space-between;
 			gap: 4rem;
 			padding: 3rem;
 		}
 
 		@include daff.breakpoint(desktop) {
 			padding: 3rem 0;
+			gap: 8rem;
 		}
 	}
 
 	&__content {
 		display: flex;
 		flex-direction: column;
-		flex-basis: 100%;
 		gap: 1.5rem;
+		width: 100%;
+
+		@include daff.breakpoint(small-laptop) {
+			min-width: 40rem;
+		}
 	}
 
 	&__table-of-contents {
@@ -32,7 +36,9 @@
 
 		@include daff.breakpoint(small-laptop) {
 			display: block;
-			flex: 1 0 15rem;
+			flex-grow: 1;
+			max-width: 15rem;
+			width: 100%;
 		}
 	}
 

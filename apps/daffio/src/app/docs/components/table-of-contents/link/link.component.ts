@@ -2,7 +2,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
   Input,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -17,6 +16,10 @@ import { DaffioActiveHeaderService } from '../../../../core/dynamic-fragment/ser
   templateUrl: './link.component.html',
   styleUrl: 'link.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'daffio-docs-table-of-contents-link',
+    '[class.in-sidebar]': 'inSidebar',
+  },
   imports: [
     LetDirective,
     RouterLink,
@@ -27,7 +30,7 @@ export class DaffioDocsTableOfContentsLinkComponent {
    * The doc to render
    */
   @Input() tableOfContents: DaffDocTableOfContents;
-  @Input() @HostBinding('class.in-sidebar') inSidebar = false;
+  @Input() inSidebar = false;
 
   constructor(
     public activeHeaderService: DaffioActiveHeaderService,
