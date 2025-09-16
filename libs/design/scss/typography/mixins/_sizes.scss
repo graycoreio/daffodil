@@ -3,7 +3,7 @@
 
 @mixin headline-xl() {
 	font-size: 2.5rem;
-	font-weight: bold;
+	font-weight: 600;
 	line-height: 2.75rem;
 
 	@include layout.breakpoint(tablet) {
@@ -14,7 +14,7 @@
 
 @mixin headline-lg() {
 	font-size: 2rem;
-	font-weight: bold;
+	font-weight: 600;
 	line-height: 2.25rem;
 
 	@include layout.breakpoint(tablet) {
@@ -25,7 +25,7 @@
 
 @mixin headline-md() {
 	font-size: 1.5rem;
-	font-weight: bold;
+	font-weight: 600;
 	line-height: 1.75rem;
 
 	@include layout.breakpoint(tablet) {
@@ -36,7 +36,7 @@
 
 @mixin headline-sm() {
 	font-size: 1.25rem;
-	font-weight: bold;
+	font-weight: 600;
 	line-height: 1.5rem;
 
 	@include layout.breakpoint(tablet) {

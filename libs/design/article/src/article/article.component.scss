@@ -7,7 +7,7 @@
 	overflow: hidden;
 
 	@include stopsArticleCascade(a) {
-		font-weight: 600;
+		font-weight: 500;
 		text-decoration: none;
 
 		&:hover {
@@ -22,6 +22,7 @@
 	}
 
 	@include stopsArticleCascade(h1, h2, h3, h4, h5, h6) {
+		font-weight: 600;
 		margin-bottom: 1rem;
 		word-wrap: break-word;
 
@@ -94,25 +95,22 @@
 	}
 
 	strong {
-		font-weight: bold;
+		font-weight: 600;
 	}
 
 	pre {
-		display: block;
 		border-radius: 0.25rem;
 		font-size: t.$font-size-sm;
 		line-height: 1.5rem;
 		margin: 1.5rem 0;
 		padding: 1.5rem;
-		overflow: auto;
-		white-space: pre-wrap;
+		overflow-x: auto;
 
 		&:last-child {
 			margin-bottom: 0;
 		}
 
 		code {
-			display: block;
 			padding: 0;
 		}
 	}
