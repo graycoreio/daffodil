@@ -1,0 +1,41 @@
+name: Upload Search Index
+
+on:
+  push:
+    tags: ["v*"]
+  schedule:
+    - cron: 0 4 * * *
+
+env:
+  NX_KEY: ${{ secrets.NX_KEY }}
+
+jobs:
+  algolia:
+    name: Upload Algolia Index
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: ${{ github.event_name == 'push' && github.event.ref || github.sha }}
+
+      - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
+        with:
+          cache-mode: 'read-only'
+          read-only-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
+          read-write-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
+          event-name: ${{ github.event_name }}
+
+      - uses: graycoreio/github-actions/setup-node@main
+        with:
+          node-version: 20.18.x
+          use-stamp-cache: true
+
+      - run: npx nx run tools-dgeni:build
+
+      - uses: graycoreio/github-actions/upload-algolia-index@main
+        with:
+          appId: ${{ secrets.ALGOLIA_APP_ID }}
+          apiKey: ${{ secrets.ALGOLIA_API_KEY }}
+          indexName: ${{ github.event_name == 'push' && vars.ALGOLIA_PROD_INDEX || vars.ALGOLIA_NEXT_INDEX }}
+          dir: ${{ github.workspace }}/dist/docs-assets/docs/search-index
