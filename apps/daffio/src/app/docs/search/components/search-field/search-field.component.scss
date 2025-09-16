@@ -15,5 +15,9 @@
 		outline: none;
 		margin: 0;
 		padding: 1.25rem 1rem;
+
+		&::-webkit-search-cancel-button {
+			display: none;
+		}
 	}
 }
