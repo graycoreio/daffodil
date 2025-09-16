@@ -124,10 +124,10 @@ export class ProductComponent {
 
 ## Best practices
 
-##### Single driver per domain
+### Single driver per domain
 Generally, you will only use one driver per domain (e.g. product, cart, etc.). Typically the same platform is used across all domains to avoid conflicts. However, this is not mandatory. See the [driver switching demo](https://demo.daff.io) for multi-platform examples. 
 
-##### Environment-based configuration
+### Environment-based configuration
 Use environment variables to configure different drivers for different environments:
 
 ```ts
@@ -148,7 +148,7 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-##### Testing with mock drivers
+### Testing with mock drivers
 Use testing drivers in unit tests:
 
 ```ts
