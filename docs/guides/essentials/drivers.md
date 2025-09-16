@@ -149,19 +149,8 @@ export const appConfig: ApplicationConfig = {
 ```
 
 ### Testing with mock drivers
-Use testing drivers in unit tests:
 
-```ts
-import { provideDaffProductTestingDriver } from '@daffodil/product/driver/testing';
-
-beforeEach(() => {
-  TestBed.configureTestingModule({
-    providers: [
-      provideDaffProductTestingDriver()
-    ]
-  });
-});
-```
+Support for testing with mock drivers is coming soon. Check our [GitHub](https://github.com/graycoreio/daffodil) for updates on availability.
 
 ## Contributing
 
