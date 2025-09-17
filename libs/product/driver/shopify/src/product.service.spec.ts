@@ -62,6 +62,10 @@ describe('Driver | Shopify | Product | ProductService', () => {
               onlineStoreUrl: product.canonicalUrl,
               availableForSale: product.in_stock,
               priceRange: {
+                minVariantPrice: {
+                  amount: product.price,
+                  currencyCode: 'USD',
+                },
                 maxVariantPrice: {
                   amount: product.price,
                   currencyCode: 'USD',
@@ -100,20 +104,26 @@ describe('Driver | Shopify | Product | ProductService', () => {
 
       op.flush({
         data: {
-          handle: '',
-          id: product.id,
-          title: product.name,
-          description: product.description,
-          availableForSale: product.in_stock,
-          onlineStoreUrl: product.canonicalUrl,
-          priceRange: {
-            maxVariantPrice: {
-              amount: product.price,
-              currencyCode: 'USD',
+          product: {
+            handle: '',
+            id: product.id,
+            title: product.name,
+            description: product.description,
+            availableForSale: product.in_stock,
+            onlineStoreUrl: product.canonicalUrl,
+            priceRange: {
+              minVariantPrice: {
+                amount: product.price,
+                currencyCode: 'USD',
+              },
+              maxVariantPrice: {
+                amount: product.price,
+                currencyCode: 'USD',
+              },
             },
-          },
-          images: {
-            nodes: [],
+            images: {
+              nodes: [],
+            },
           },
         },
       });
@@ -139,20 +149,26 @@ describe('Driver | Shopify | Product | ProductService', () => {
 
       op.flush({
         data: {
-          handle: '',
-          id: product.id,
-          title: product.name,
-          description: product.description,
-          availableForSale: product.in_stock,
-          onlineStoreUrl: product.canonicalUrl,
-          priceRange: {
-            maxVariantPrice: {
-              amount: product.price,
-              currencyCode: 'USD',
+          product: {
+            handle: '',
+            id: product.id,
+            title: product.name,
+            description: product.description,
+            availableForSale: product.in_stock,
+            onlineStoreUrl: product.canonicalUrl,
+            priceRange: {
+              minVariantPrice: {
+                amount: product.price,
+                currencyCode: 'USD',
+              },
+              maxVariantPrice: {
+                amount: product.price,
+                currencyCode: 'USD',
+              },
             },
-          },
-          images: {
-            nodes: [],
+            images: {
+              nodes: [],
+            },
           },
         },
       });

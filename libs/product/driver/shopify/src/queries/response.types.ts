@@ -7,4 +7,6 @@ export interface ShopifyProductAllResponse {
   products?: ShopifyProductGraph;
 }
 
-export interface ShopifyProductSingleResponse extends ShopifyProductNode {};
+export interface ShopifyProductSingleResponse {
+  product: ShopifyProductNode;
+};

@@ -58,7 +58,7 @@ implements DaffProductServiceInterface {
       })
       .pipe(
         map((result) => {
-          const productNode = result.data;
+          const productNode = result.data.product;
           return {
             id: productNode.id,
             products: [daffShopifyProductTransformer(productNode)],
@@ -75,7 +75,7 @@ implements DaffProductServiceInterface {
       })
       .pipe(
         map((result) => {
-          const productNode = result.data;
+          const productNode = result.data.product;
           return {
             id: productNode.id,
             products: [daffShopifyProductTransformer(productNode)],
