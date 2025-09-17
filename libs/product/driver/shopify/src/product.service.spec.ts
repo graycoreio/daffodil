@@ -4,9 +4,11 @@ import {
   ApolloTestingController,
 } from 'apollo-angular/testing';
 
-import { shopifyUrlTransformer } from '@daffodil/driver/shopify';
+import {
+  APOLLO_CLIENT_NAME,
+  shopifyUrlTransformer,
+} from '@daffodil/driver/shopify';
 import { DaffProductFactory } from '@daffodil/product/testing';
-
 
 import { DaffShopifyProductService } from './product.service';
 import {
@@ -23,7 +25,7 @@ describe('Driver | Shopify | Product | ProductService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule,
+        ApolloTestingModule.withClients([APOLLO_CLIENT_NAME]),
       ],
       providers: [
         DaffShopifyProductService,

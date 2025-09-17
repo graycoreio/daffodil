@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import {
   shopifyIdTransformer,
   shopifyUrlTransformer,
+  APOLLO_CLIENT_NAME,
 } from '@daffodil/driver/shopify';
 import { DaffProduct } from '@daffodil/product';
 import {
@@ -19,7 +20,6 @@ import {
   getProductByUrl,
 } from './queries/public_api';
 import { daffShopifyProductTransformer } from './transforms/public_api';
-
 /**
  * A service for getting DaffProducts {@link DaffProduct} from apollo shopify product requests.
  *
@@ -35,7 +35,7 @@ implements DaffProductServiceInterface {
   constructor(private apollo: Apollo) {}
 
   getAll(): Observable<DaffProduct[]> {
-    return this.apollo
+    return this.apollo.use(APOLLO_CLIENT_NAME)
       .query({
         query: getAllProducts,
         variables: {
@@ -51,7 +51,7 @@ implements DaffProductServiceInterface {
   }
 
   get(productId: DaffProduct['id']): Observable<DaffProductDriverResponse> {
-    return this.apollo
+    return this.apollo.use(APOLLO_CLIENT_NAME)
       .query({
         query: getProduct,
         variables: { id: shopifyIdTransformer(productId, 'Product') },
@@ -68,7 +68,7 @@ implements DaffProductServiceInterface {
   }
 
   getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse> {
-    return this.apollo
+    return this.apollo.use(APOLLO_CLIENT_NAME)
       .query({
         query: getProductByUrl,
         variables: { handle: shopifyUrlTransformer(url) },

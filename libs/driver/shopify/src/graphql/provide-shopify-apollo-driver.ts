@@ -1,12 +1,13 @@
 import { InMemoryCache } from '@apollo/client/cache';
 import { from } from '@apollo/client/core';
-import { provideApollo } from 'apollo-angular';
+import { provideNamedApollo } from 'apollo-angular';
 
 import {
   createErrorLink,
   createAuthLink,
   createHttpLink,
 } from './apollo-links/public_api';
+import { APOLLO_CLIENT_NAME } from './client-name';
 
 /**
  * Provides an Apollo client configuration for Shopify's Storefront API.
@@ -19,13 +20,15 @@ import {
  */
 export function provideShopifyApolloDriver(domain: string, accessToken: string) {
   const shopifyStorefrontAPIEndpoint = `${domain}/api/2025-01/graphql.json`;
-  return provideApollo(() => ({
-    link: from([
-      createErrorLink(),
-      createAuthLink(accessToken),
-      createHttpLink(shopifyStorefrontAPIEndpoint),
-    ]),
-    cache: new InMemoryCache(),
+  return provideNamedApollo(() => ({
+    [APOLLO_CLIENT_NAME]: {
+      link: from([
+        createErrorLink(),
+        createAuthLink(accessToken),
+        createHttpLink(shopifyStorefrontAPIEndpoint),
+      ]),
+      cache: new InMemoryCache(),
+    },
   }));
 
 }
