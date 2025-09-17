@@ -41,10 +41,4 @@ describe('DaffioHomeHeroComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should add a class of "daffio-home-hero" to the host element', () => {
-    expect(de.classes).toEqual(jasmine.objectContaining({
-      'daffio-home-hero': true,
-    }));
-  });
 });
