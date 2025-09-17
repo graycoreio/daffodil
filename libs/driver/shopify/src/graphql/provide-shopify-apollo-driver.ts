@@ -11,6 +11,8 @@ import {
 /**
  * Provides an Apollo client configuration for Shopify's Storefront API.
  *
+ * @deprecated, prefer using provideShopifyDriver
+ *
  * @param domain - The Shopify store domain (e.g. "https://daffodil-demo-alpha.myshopify.com")
  * @param accessToken - The Shopify Storefront API access token.
  * @returns An Apollo client provider configured with a Shopify store domain and Storefront API access token.
