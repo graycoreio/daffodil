@@ -6,7 +6,7 @@ Daffodil is an Angular-based framework for building complex ecommerce storefront
 
 Switch between ecommerce backends with minimal code changes. Daffodil's driver architecture abstracts platform differences, allowing you to change entire (or partial) ecommerce features to another platform by changing only a few lines of code. [View the demo to see Daffodil in action](https://demo.daff.io)!
 
-### Magento configuration
+For example, you could be on [Magento](https://business.adobe.com/products/commerce.html):
 
 ```ts
 import { ApplicationConfig } from '@angular/core';
@@ -21,9 +21,20 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-### Shopify support
+and switch over to [Shopify](https://www.shopify.com/) with just two lines of code:
 
-Shopify driver support is coming soon. Check our [GitHub](https://github.com/graycoreio/daffodil) for updates on availability.
+```ts
+import { ApplicationConfig } from '@angular/core';
+import { provideShopifyDriver } from '@daffodil/driver/shopify';
+import { provideDaffProductShopifyDriver } from '@daffodil/product/driver/shopify';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideShopifyDriver(config),
+    provideDaffProductShopifyDriver(),
+  ]
+};
+```
 
 ## Core features
 
