@@ -9,6 +9,8 @@ import { provideDaffProductShopifyDriver } from './provider';
 
 /**
  * A module that provides the {@link DaffProductDriver} as the {@link DaffShopifyProductService}.
+ *
+ * @deprecated Use {@link provideDaffProductShopifyDriver} instead.
  */
 @NgModule({
   imports: [
