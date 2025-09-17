@@ -2,66 +2,45 @@
 
 :host {
 	display: block;
-	overflow: hidden;
-
-	@include daff.breakpoint(big-tablet) {
-		height: calc(100vh - 64px);
-	}
-
-	@include daff.breakpoint(desktop) {
-		height: 80vh;
-	}
 }
 
 .daffio-home-hero {
-	&__grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-areas:
-			'content';
-		position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-position: bottom center;
+	background-size: cover;
 
-		@include daff.breakpoint(big-tablet) {
-			grid-template-columns: 560px 1fr;
-			grid-template-areas:
-				'content illustration';
-			grid-gap: 48px;
-		}
-
-		@include daff.breakpoint(small-laptop) {
-			grid-template-columns: 560px 1fr;
-			grid-template-areas:
-				'content illustration';
-			grid-gap: 48px;
-		}
-	}
-
-	&__content {
-		grid-area: content;
-		align-self: center;
-		z-index: 2;
-	}
-
-	&__illustration {
-		display: none;
-		grid-area: illustration;
-
-		@include daff.breakpoint(big-tablet) {
-			display: block;
-			position: absolute;
-			right: -288px;
-			top: -40px;
-			width: 736px;
-		}
-
-		@include daff.breakpoint(desktop) {
-			top: -60px;
-		}
+	@include daff.breakpoint(big-tablet) {
+		height: 80vh;
 	}
 
 	&__actions {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 8px;
+		justify-content: center;
+		gap: 0.5rem;
+	}
+
+	&__subtitle-focus {
+		font-weight: 600;
+	}
+
+	&__code-copy {
+		@include daff.clickable();
+		appearance: none;
+		backdrop-filter: blur(0.5rem);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		font-size: daff.$font-size-sm;
+		border-radius: 2rem;
+		margin: 3rem auto 0;
+		padding: 0.5rem 1rem;
+
+		@include daff.breakpoint(tablet) {
+			padding: 1rem 1.5rem;
+		}
 	}
 }

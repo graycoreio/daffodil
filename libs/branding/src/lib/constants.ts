@@ -6,4 +6,5 @@
 export const DAFF_BRANDING_CONSTANTS = {
   DISCORD_URL: 'https://discord.gg/BdaJVZ53sR',
   REPO_URL: 'https://github.com/graycoreio/daffodil',
+  DEMO_URL: 'https://demo.daff.io',
 };

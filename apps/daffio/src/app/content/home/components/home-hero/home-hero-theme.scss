@@ -1,0 +1,33 @@
+@use 'theme' as *;
+
+@mixin daffio-home-hero-theme($theme) {
+	$primary: daff-get-palette($theme, primary);
+	$secondary: daff-get-palette($theme, secondary);
+	$tertiary: daff-get-palette($theme, tertiary);
+	$neutral: daff-get-palette($theme, neutral);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$white: daff-get-base-color($theme, 'white');
+	$mode: daff-get-theme-mode($theme);
+
+	.daffio-home-hero {
+		@include light($mode) {
+			background: url('/assets/hero-bg.svg');
+
+			&__code-copy {
+				background-color: rgba(daff-color($primary, 20), 0.3);
+				border: 1px solid rgba(daff-color($primary, 20), 0.5);
+				color: daff-color($primary, 100);
+			}
+		};
+
+		@include dark($mode) {
+			background: url('/assets/hero-bg-dark.svg');
+
+			&__code-copy {
+				background-color: rgba(daff-color($primary, 40), 0.3);
+				border: 1px solid rgba(daff-color($primary, 40), 0.5);
+				color: daff-color($primary, 10);
+			}
+		}
+	}
+}

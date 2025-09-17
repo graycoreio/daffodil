@@ -1,26 +1,22 @@
-<daff-hero color="theme">
+<daff-hero textAlignment="center" class="daffio-home-hero">
   <daff-container size="md">
-    <div class="daffio-home-hero__grid">
-      <div class="daffio-home-hero__content">
-        <p daffHeroTagline>
-          Introducing Daffodil
-        </p>
-        <h1 daffHeroTitle>
-          Headless ecommerce for the future
-        </h1>
-        <h2 daffHeroSubtitle>
-          Build your store with ease and flexibility &mdash; take advantage of the cutting edge with Angular, Redux and Progressive Web Apps.
-        </h2>
-        <div daffHeroBody>
-          <div class="daffio-home-hero__actions">
-            <a [href]="repoLink" target="_blank" daff-button color="primary">Build with Daffodil</a>
-            <a [href]="discordLink" target="_blank" daff-stroked-button color="theme-contrast">Join the community</a>
-          </div>
-        </div>
+    <h1 daffHeroTitle>
+      Build a storefront that connects to <i>any</i> ecommerce platform
+    </h1>
+    <h2 daffHeroSubtitle>
+      Daffodil is an Angular-based frontend framework that provides the driver architecture to build, scale, and switch backends for a <span class="daffio-home-hero__subtitle-focus">faster and more adaptable</span> ecommerce storefront.
+    </h2>
+    <div daffHeroBody>
+      <div class="daffio-home-hero__actions">
+        <a [href]="repoLink" target="_blank" daff-button color="primary">Get Started</a>
+        <a [href]="demoLink" target="_blank" daff-stroked-button color="theme-contrast">See a Demo</a>
       </div>
-      <div class="daffio-home-hero__illustration">
-        <daff-image src="/assets/pwa-illustration.svg" alt="A person browsing a PWA ecommerce website on their phone" width="820" height="750"></daff-image>
-      </div>
+      <button class="daffio-home-hero__code-copy"
+        [cdkCopyToClipboard]="command"
+        (cdkCopyToClipboardCopied)="onCopySuccess($event)">
+        <code>npx ng add &#64;daffodil/commerce</code>
+        <fa-icon [icon]="icon"></fa-icon>
+      </button>
     </div>
   </daff-container>
 </daff-hero>

@@ -8,6 +8,12 @@
 	$base: daff-get-base-color($theme, base);
 	$mode: daff-get-theme-mode($theme);
 
+	.daffio-header {
+		&__navbar {
+			background: rgba($base, 0.5);
+		}
+	}
+
 	@include light($mode) {
 		.daffio-header {
 			&.bordered {

@@ -1,3 +1,4 @@
+@use '../app/content/home//components//home-hero/home-hero-theme' as home-hero;
 @use '../app/content/why-pwa/components/feature-comparison/feature-comparison-theme' as feature-comparison;
 @use '../app/core/footer/simple-footer/simple-footer-theme' as simple-footer;
 @use '../app/core/footer/docs-footer/docs-footer-theme' as docs-footer;
@@ -22,6 +23,8 @@
 @use '../app/docs/components/heading-link/heading-link-theme' as docs-heading-link;
 
 @mixin component-themes($theme) {
+	@include home-hero.daffio-home-hero-theme($theme);
+
 	@include simple-footer.daffio-simple-footer-theme($theme);
 	@include docs-footer.daffio-docs-footer-theme($theme);
 	@include footer.daffio-footer-theme($theme);
