@@ -4,6 +4,7 @@ import type { ClassLikeExportDoc } from 'dgeni-packages/typescript/api-doc-types
 import type { ConstExportDoc } from 'dgeni-packages/typescript/api-doc-types/ConstExportDoc';
 import type { FunctionExportDoc } from 'dgeni-packages/typescript/api-doc-types/FunctionExportDoc';
 import { MethodMemberDoc } from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
+import { ParameterDoc } from 'dgeni-packages/typescript/api-doc-types/ParameterDoc';
 import { PropertyMemberDoc } from 'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc';
 
 import {
@@ -132,6 +133,7 @@ export class RoleProcessor implements FilterableProcessor {
       'defaultValue',
       'isOptional',
       'isRestParam',
+      'anchor',
     ],
     {
       type: this.symbolSerialize,
@@ -166,6 +168,7 @@ export class RoleProcessor implements FilterableProcessor {
       'isSetAccessor',
       'deprecated',
       'inheritedFrom',
+      'anchor',
     ],
     {
       decorators: arraySerializer(this.decoratorSerialize),
@@ -205,6 +208,7 @@ export class RoleProcessor implements FilterableProcessor {
       'isSetAccessor',
       'deprecated',
       'inheritedFrom',
+      'anchor',
     ],
     {
       decorators: arraySerializer(this.decoratorSerialize),
@@ -342,7 +346,10 @@ export class RoleProcessor implements FilterableProcessor {
       ?.filter((member) => member instanceof PropertyMemberDoc)
       .map((prop) => {
         prop.type = inferPropType(prop);
-        return prop;
+        return {
+          ...prop,
+          anchor: `${prop.containerDoc.name}.${prop.anchor}`,
+        };
       }) || [];
     doc.methods = <any>doc.members
       ?.filter((member) => member instanceof MethodMemberDoc)
@@ -360,7 +367,10 @@ export class RoleProcessor implements FilterableProcessor {
           }
         });
         this.inlineTagProcessor.$process(method.parameterDocs);
-        return method;
+        return {
+          ...method,
+          anchor: `${method.containerDoc.name}.${method.anchor}`,
+        };
       }) || [];
     return doc;
   };
@@ -411,6 +421,7 @@ export class RoleProcessor implements FilterableProcessor {
               name: input.field,
               required: !parentInput.isOptional,
               inheritedFrom: hostDirective.directive,
+              anchor: `${doc.name}.${parentInput.anchor}`,
             });
           }
         });
@@ -424,6 +435,7 @@ export class RoleProcessor implements FilterableProcessor {
               name: output.field,
               required: !parentOutput.isOptional,
               inheritedFrom: hostDirective.directive,
+              anchor: `${doc.name}.${parentOutput.anchor}`,
             });
           }
         });
@@ -446,7 +458,7 @@ export class RoleProcessor implements FilterableProcessor {
     return doc;
   };
 
-  func(doc: SerializableDoc & IndexableDoc & DaffDocsApiFunction & FunctionExportDoc): SerializableDoc & IndexableDoc & DaffDocsApiFunction {
+  func(doc: SerializableDoc & IndexableDoc & {parameterDocs: Array<DaffDocsApiFunctionParam & ParameterDoc>} & FunctionExportDoc & DaffDocsApiFunction): SerializableDoc & IndexableDoc & DaffDocsApiFunction {
     doc.serializer = this.functionSerialize;
     doc.indexer = this.baseSearchIndexer;
     if (!doc.type) {
@@ -461,6 +473,9 @@ export class RoleProcessor implements FilterableProcessor {
       if (param && !param.description) {
         param.description = tag.description;
       }
+    });
+    doc.parameterDocs.forEach((param) => {
+      param.anchor = `${doc.name}~${param.name}`;
     });
     this.inlineTagProcessor.$process(doc.parameterDocs);
     return doc;

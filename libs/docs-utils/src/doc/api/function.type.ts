@@ -7,6 +7,7 @@ import { DaffApiDocBase } from './base.type';
 export interface DaffDocsApiFunctionParam extends Pick<ParameterDoc, 'name' | 'defaultValue' | 'isOptional' | 'isRestParam'> {
   type: DaffDocsRenderedContent;
   description: DaffDocsRenderedContent;
+  anchor: string;
 }
 
 export interface DaffDocsApiFunction extends DaffApiDocBase, Pick<FunctionExportDoc, 'typeParameters'> {

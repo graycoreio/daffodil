@@ -14,7 +14,7 @@ import {
 } from '../../api/public_api';
 import { DaffDocsRenderedContent } from '../rendered-content.type';
 
-type MemberFields = 'name' | 'accessibility' | 'aliases' | 'isAbstract' | 'isStatic' | 'isReadonly' | 'isOptional' | 'isGetAccessor' | 'isSetAccessor';
+type MemberFields = 'name' | 'accessibility' | 'aliases' | 'isAbstract' | 'isStatic' | 'isReadonly' | 'isOptional' | 'isGetAccessor' | 'isSetAccessor' | 'anchor';
 
 export interface DaffDocsApiTypeProperty extends Pick<PropertyMemberDoc, MemberFields> {
   decorators: Array<DaffDocsApiDecorator>;

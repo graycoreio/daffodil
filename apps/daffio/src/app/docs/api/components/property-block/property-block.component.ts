@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostBinding,
   Input,
 } from '@angular/core';
 
@@ -29,6 +30,11 @@ export class DaffioDocsApiPropertyBlockComponent {
   @Input() child = false;
 
   @Input() hasDefaults = true;
+
+  @HostBinding('id')
+  get id(): string {
+    return this.prop.anchor;
+  }
 
   get hasDefault() {
     return 'default' in this.prop;

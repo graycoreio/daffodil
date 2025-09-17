@@ -13,7 +13,7 @@
 		</h4>
 	}
 	@for (param of doc().parameterDocs; track $index) {
-		<table>
+		<table [id]="param.anchor">
 			<tbody>
 				<tr>
 					<th>Parameter</th>

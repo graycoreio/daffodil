@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostBinding,
   Input,
 } from '@angular/core';
 
@@ -27,4 +28,9 @@ import { DAFFIO_DOCS_MEMBER_HEADING_COMPONENTS } from '../../../components/membe
 export class DaffioDocsApiInterfaceBlockComponent {
   @Input() prop: DaffDocsApiTypeProperty | DaffDocsApiClassProperty;
   @Input() child = false;
+
+  @HostBinding('id')
+  get id(): string {
+    return this.prop.anchor;
+  }
 }

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostBinding,
   Input,
   ViewEncapsulation,
 } from '@angular/core';
@@ -29,7 +30,13 @@ import { DaffioDocsMemberHeadingComponent } from '../../../components/member-hea
   ],
 })
 export class DaffioDocsApiMethodBlockComponent {
-  faCode = faCode;
+  readonly faCode = faCode;
+
   @Input() method: DaffDocsApiTypeMethod;
   @Input() child = false;
+
+  @HostBinding('id')
+  get id(): string {
+    return this.method.anchor;
+  }
 }
