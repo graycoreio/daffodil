@@ -6,7 +6,7 @@ import { DaffPersonalAddress } from '@daffodil/geography';
  */
 export interface DaffCartAddress extends DaffPersonalAddress, DaffIdentifiable {
   /**
-   * @deprecated This property will be removed in version 0.92
+   * @deprecated
    * The type of the address: billing or shipping.
    */
   address_type: string;
