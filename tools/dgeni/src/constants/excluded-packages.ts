@@ -6,6 +6,7 @@ export const DAFF_DGENI_EXCLUDED_PACKAGES = <const>[
   'design',
   'documentation',
   'docs-components',
+  'docs',
   'docs-utils',
   'theme-switch',
   'dgeni',
