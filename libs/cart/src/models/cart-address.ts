@@ -6,8 +6,8 @@ import { DaffPersonalAddress } from '@daffodil/geography';
  */
 export interface DaffCartAddress extends DaffPersonalAddress, DaffIdentifiable {
   /**
+   * @deprecated
    * The type of the address: billing or shipping.
    */
-  // TODO: change to an enum
   address_type: string;
 }
