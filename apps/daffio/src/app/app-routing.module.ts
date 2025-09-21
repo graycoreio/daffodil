@@ -14,6 +14,7 @@ import { DAFF_NAV_SIDEBAR_REGISTRATION } from './core/nav/sidebar.provider';
 import { DaffioRouterNamedViewsEnum } from './core/router/named-views/models/named-views.enum';
 import { DaffioRoute } from './core/router/route.type';
 import { TemplateComponent } from './core/template/template.component';
+
 const DOCS_REDIRECTED_ROUTES = [
   'api',
   'packages',
