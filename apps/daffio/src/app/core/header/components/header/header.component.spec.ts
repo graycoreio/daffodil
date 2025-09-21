@@ -16,8 +16,6 @@ describe('DaffioHeaderComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffNavbarModule,
-      ],
-      declarations: [
         DaffioHeaderComponent,
       ],
     })

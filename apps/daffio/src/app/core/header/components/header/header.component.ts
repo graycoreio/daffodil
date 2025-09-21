@@ -5,12 +5,19 @@ import {
   Input,
 } from '@angular/core';
 
+import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffNavbarModule } from '@daffodil/design/navbar';
+
 @Component({
   selector: 'daffio-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  standalone: true,
+  imports: [
+    DaffNavbarModule,
+    DaffContainerModule,
+  ],
 })
 
 export class DaffioHeaderComponent {

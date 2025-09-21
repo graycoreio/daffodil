@@ -6,7 +6,7 @@ import {
 
 @Directive({
   selector: '[daffioHeaderItem]',
-  standalone: false,
+  standalone: true,
 })
 export class DaffioHeaderItemDirective {
   @HostBinding('class.daffio-header-item') class = true;
