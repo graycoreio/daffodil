@@ -26,9 +26,11 @@ describe('DaffioWhyPwaOverviewComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffioWhyPwaOverviewComponent,
+      ],
       declarations: [
         WrapperComponent,
-        DaffioWhyPwaOverviewComponent,
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
