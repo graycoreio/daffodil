@@ -3,19 +3,31 @@ import {
   Component,
   HostBinding,
 } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faGithub,
   faDiscord,
 } from '@fortawesome/free-brands-svg-icons';
 
-import { DAFF_BRANDING_CONSTANTS } from '@daffodil/branding';
+import {
+  DAFF_BRANDING_CONSTANTS,
+  DaffCopyrightModule,
+  DaffLogoModule,
+} from '@daffodil/branding';
+import { DaffContainerModule } from '@daffodil/design/container';
 
 @Component({
   selector: 'daffio-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  standalone: true,
+  imports: [
+    FontAwesomeModule,
+    DaffContainerModule,
+    DaffLogoModule,
+    DaffCopyrightModule,
+  ],
 })
 export class DaffioFooterComponent {
 

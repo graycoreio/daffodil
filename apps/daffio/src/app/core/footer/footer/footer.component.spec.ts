@@ -35,9 +35,9 @@ describe('DaffioFooterComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
-        DaffioFooterComponent,
       ],
       imports: [
+        DaffioFooterComponent,
         RouterTestingModule,
         DaffContainerModule,
         DaffLogoModule,
