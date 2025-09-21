@@ -25,9 +25,11 @@ describe('DaffioWhyPwaHeroComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffioWhyPwaHeroComponent,
+      ],
       declarations: [
         WrapperComponent,
-        DaffioWhyPwaHeroComponent,
       ],
     })
       .compileComponents();
