@@ -14,11 +14,9 @@ describe('DaffioSubFooterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffioSubFooterComponent,
-      ],
       imports: [
         RouterTestingModule,
+        DaffioSubFooterComponent,
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
