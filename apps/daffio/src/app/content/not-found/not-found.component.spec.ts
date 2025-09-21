@@ -16,8 +16,6 @@ describe('DaffioNotFoundComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-      ],
-      declarations: [
         DaffioNotFoundComponent,
       ],
       schemas: [
