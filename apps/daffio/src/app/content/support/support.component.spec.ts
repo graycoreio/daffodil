@@ -16,8 +16,6 @@ describe('DaffioSupportComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-      ],
-      declarations: [
         DaffioSupportComponent,
       ],
       schemas: [

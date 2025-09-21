@@ -42,7 +42,10 @@ export const appRoutes: Routes = [
         children: [
           homeRoute,
           { path: 'why-pwa', loadChildren: () => import('./content/why-pwa/why-pwa.module').then(m => m.DaffioWhyPwaModule) },
-          { path: 'support', loadChildren: () => import('./content/support/support.module').then(m => m.DaffioSupportModule) },
+          { path: 'support', loadComponent: () => import('./content/support/support.component').then(m => m.DaffioSupportComponent), data: {
+            title: 'Support',
+            description: 'Want to work with us? Fill out the contact form and we will reach out shortly!',
+          }},
           { path: '404', loadComponent: () => import('./content/not-found/not-found.component').then(c => c.DaffioNotFoundComponent), data: {
             title: '404 Error',
             description: 'Oops! The page you were looking for doesn’t exist. You may have mistyped the address or the page may have moved.',
