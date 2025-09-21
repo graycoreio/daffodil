@@ -4,14 +4,14 @@ import { RouterModule } from '@angular/router';
 
 import { DaffioMarketingFooterComponent } from './marketing-footer.component';
 import { DaffioFooterComponentModule } from '../footer/footer.module';
-import { DaffioSubFooterComponentModule } from '../sub-footer/sub-footer.module';
+import { DaffioSubFooterComponent } from '../sub-footer/sub-footer.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
 
-    DaffioSubFooterComponentModule,
+    DaffioSubFooterComponent,
     DaffioFooterComponentModule,
   ],
   declarations: [
