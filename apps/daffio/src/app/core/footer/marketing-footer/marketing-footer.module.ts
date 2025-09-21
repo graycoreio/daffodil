@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { DaffioMarketingFooterComponent } from './marketing-footer.component';
-import { DaffioFooterComponentModule } from '../footer/footer.module';
+import { DaffioFooterComponent } from '../footer/footer.component';
 import { DaffioSubFooterComponentModule } from '../sub-footer/sub-footer.module';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { DaffioSubFooterComponentModule } from '../sub-footer/sub-footer.module'
     RouterModule,
 
     DaffioSubFooterComponentModule,
-    DaffioFooterComponentModule,
+    DaffioFooterComponent,
   ],
   declarations: [
     DaffioMarketingFooterComponent,
