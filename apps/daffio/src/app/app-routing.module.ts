@@ -41,7 +41,7 @@ export const appRoutes: Routes = [
         path: '',
         children: [
           homeRoute,
-          { path: 'why-pwa', loadChildren: () => import('./content/why-pwa/why-pwa.module').then(m => m.DaffioWhyPwaModule) },
+          { path: 'why-pwa', loadComponent: () => import('./content/why-pwa/why-pwa-view.component').then(m => m.DaffioWhyPwaViewComponent) },
           { path: 'support', loadComponent: () => import('./content/support/support.component').then(m => m.DaffioSupportComponent), data: {
             title: 'Support',
             description: 'Want to work with us? Fill out the contact form and we will reach out shortly!',

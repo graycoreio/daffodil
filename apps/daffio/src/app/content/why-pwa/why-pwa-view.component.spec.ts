@@ -16,8 +16,6 @@ describe('DaffioWhyPwaViewComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-      ],
-      declarations: [
         DaffioWhyPwaViewComponent,
       ],
       schemas: [
