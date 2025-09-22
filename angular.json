@@ -395,7 +395,7 @@
               "apps/design-land/src/assets",
               {
                 "glob": "**/*",
-                "input": "dist/docs/",
+                "input": "dist/docs-assets/docs",
                 "output": "/assets/"
               }
             ],
