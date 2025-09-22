@@ -9,6 +9,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostBinding,
+  Input,
   NgZone,
 } from '@angular/core';
 import {
@@ -21,13 +23,15 @@ import { daffFocusableElementsSelector } from '@daffodil/design';
 import { DaffMenuItemComponent } from '../menu-item/menu-item.component';
 import { DaffMenuService } from '../services/menu.service';
 
+let uniqueMenuId = 0;
+
 @Component({
   selector: 'daff-menu',
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'daff-menu',
+    class: 'daff-menu',
     'tabindex': '0',
     'role': 'menu',
   },
@@ -36,6 +40,20 @@ import { DaffMenuService } from '../services/menu.service';
   ],
 })
 export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
+  private _id = null;
+
+  /**
+   * The id of a menu that can be set by the user. It must be unique.
+   */
+  @Input() id = null;
+
+  /**
+   * @docs-private
+   */
+  @HostBinding('attr.id') get uniqueId() {
+    return this.id || this._id;
+  }
+
   private _focusTrap: ConfigurableFocusTrap;
 
   constructor(
@@ -61,6 +79,10 @@ export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
           }),
         );
     });
+
+    uniqueMenuId++;
+
+    this._id = 'daff-menu-' + uniqueMenuId;
   }
 
   /**

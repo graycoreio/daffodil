@@ -9,7 +9,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffMenuActivatorDirective } from './menu-activator.component';
+import { DaffMenuActivatorDirective } from './menu-activator.directive';
 import { DaffMenuComponent } from '../menu/menu.component';
 import { DaffMenuService } from '../services/menu.service';
 import { provideTestMenuService } from '../testing/dummy-service';

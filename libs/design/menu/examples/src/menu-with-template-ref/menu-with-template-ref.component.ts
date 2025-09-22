@@ -11,25 +11,24 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  DaffComponentWithMenu,
   DaffMenuComponent,
   DaffMenuModule,
 } from '@daffodil/design/menu';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'menu-content',
-  templateUrl: './menu-content.component.html',
+  selector: 'menu-with-template-ref',
+  templateUrl: './menu-with-template-ref.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffMenuModule,
     FaIconComponent,
+    DaffMenuModule,
   ],
 })
-export class MenuContentComponent implements DaffComponentWithMenu {
+export class MenuWithTemplateRefComponent {
+  @ViewChild('menu', { read: DaffMenuComponent, static: true }) menu;
+
   faUser = faUser;
   faInfo = faInfo;
   faEnvelope = faEnvelope;
-
-  @ViewChild(DaffMenuComponent, { read: DaffMenuComponent, static: true }) menu;
 }

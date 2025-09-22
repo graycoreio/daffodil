@@ -12,7 +12,6 @@ import {
   Injector,
   TemplateRef,
   Type,
-  ViewContainerRef,
 } from '@angular/core';
 import {
   BehaviorSubject,
@@ -22,7 +21,9 @@ import {
 
 import { DaffLazyComponent } from '@daffodil/design';
 
+import { DaffComponentWithMenu } from '../component-with-menu';
 import { daffMenuCreateOverlay } from '../helpers/public_api';
+import { DaffMenuActivatorDirective } from '../menu-activator/menu-activator.directive';
 
 export interface DaffActivatedMenu {
   el: ElementRef;
@@ -34,31 +35,35 @@ export type DaffMenuSlot = TemplateRef<unknown> | DaffLazyComponent | Type<unkno
 @Injectable()
 export class DaffMenuService {
   protected _overlay: OverlayRef | null;
-  private _activator: ViewContainerRef;
+  private _activator: DaffMenuActivatorDirective;
 
-  private $_open: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public open$: Observable<boolean> = this.$_open.asObservable();
+  private _open$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public open$: Observable<boolean> = this._open$.asObservable();
 
   constructor(
     protected overlay: Overlay,
     private injector: Injector,
   ) {}
 
-  protected async _createOverlay(activatorElement: ViewContainerRef, component: DaffMenuSlot) {
+  protected async _createOverlay(activatorElement: DaffMenuActivatorDirective, component: DaffMenuSlot) {
     if (!this._overlay) {
-      this._overlay = daffMenuCreateOverlay(this.overlay, activatorElement.element);
+      this._overlay = daffMenuCreateOverlay(this.overlay, activatorElement.viewContainerRef.element);
       if(typeof component === 'object' && (<DaffLazyComponent>component)?.import) {
         component = await (<DaffLazyComponent>component).import();
       }
 
       if(component instanceof Type) {
-        this._overlay.attach(new ComponentPortal(<Type<unknown>>component, null, this.injector));
+        const portal = new ComponentPortal(<Type<DaffComponentWithMenu>>component);
+        const attach = this._overlay.attach(portal);
+
       } else if (component instanceof TemplateRef) {
-        this._overlay.attach(new TemplatePortal(component, activatorElement, null, this.injector));
+        const portal = new TemplatePortal(component, activatorElement.viewContainerRef);
+        const attach = this._overlay.attach(portal);
       }
 
+
       this._overlay.backdropClick().pipe(
-        map(() => this._destroyOverlay()),
+        map(() => this.close()),
       ).subscribe();
     }
   }
@@ -73,13 +78,13 @@ export class DaffMenuService {
 
   close() {
     this._destroyOverlay();
-    this.$_open.next(false);
-    this._activator.element.nativeElement.focus();
+    this._open$.next(false);
+    this._activator.viewContainerRef.element.nativeElement.focus();
   }
 
-  open(activator: ViewContainerRef, component: DaffMenuSlot) {
+  open(activator: DaffMenuActivatorDirective, component: DaffMenuSlot) {
     this._createOverlay(activator, component);
     this._activator = activator;
-    this.$_open.next(true);
+    this._open$.next(true);
   }
 }

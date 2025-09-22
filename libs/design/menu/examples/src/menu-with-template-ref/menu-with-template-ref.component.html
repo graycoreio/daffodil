@@ -1,0 +1,15 @@
+<button daff-button color="theme" [daffMenuActivator]="menu">
+	Menu
+</button>
+
+  <daff-menu id="test" #menu>
+    <a href="#" daff-menu-item>
+      <fa-icon [icon]="faUser" [fixedWidth]="true"></fa-icon> My Account
+    </a>
+    <a href="#" daff-menu-item>
+      <fa-icon [icon]="faInfo" [fixedWidth]="true"></fa-icon> Help
+    </a>
+    <button daff-menu-item>
+      <fa-icon [icon]="faEnvelope" [fixedWidth]="true"></fa-icon> Contact Us
+    </button>
+  </daff-menu>

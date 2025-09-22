@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
   Directive,
+  HostBinding,
   Input,
   OnDestroy,
   TemplateRef,
@@ -12,12 +13,15 @@ import {
   takeUntil,
 } from 'rxjs';
 
+import { DaffComponentWithMenu } from '../component-with-menu';
 import { DaffMenuService } from '../services/menu.service';
 
 @Directive({
   selector: '[daffMenuActivator]',
   host: {
     '(click)': 'onClick($event)',
+    '[attr.aria-haspopup]': 'menu',
+    '[attr.aria-expanded]': 'ariaExpanded',
   },
 })
 export class DaffMenuActivatorDirective implements OnDestroy {
@@ -25,11 +29,15 @@ export class DaffMenuActivatorDirective implements OnDestroy {
   private _destroyed$ = new Subject<boolean>();
   private _open: boolean;
 
-  @Input() daffMenuActivator: Type<unknown> | TemplateRef<unknown>;
+  get ariaExpanded() {
+    return this._open ? 'true' : 'false';
+  }
+
+  @Input() daffMenuActivator: Type<DaffComponentWithMenu> | TemplateRef<unknown>;
 
   constructor(
     private service: DaffMenuService,
-    private viewContainerRef: ViewContainerRef,
+    public viewContainerRef: ViewContainerRef,
     private cdRef: ChangeDetectorRef,
   ) {
     this.service.open$.pipe(
@@ -49,11 +57,8 @@ export class DaffMenuActivatorDirective implements OnDestroy {
     this.viewContainerRef.element.nativeElement.focus();
   }
 
-  /**
-   * @docs-private
-   */
   onClick(event: MouseEvent) {
-    event.preventDefault();
-    this.service.open(this.viewContainerRef, this.daffMenuActivator);
+	  event.preventDefault();
+	  this.service.open(this, this.daffMenuActivator);
   }
 }
