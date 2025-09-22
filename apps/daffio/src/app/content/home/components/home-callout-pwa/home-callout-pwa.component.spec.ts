@@ -8,6 +8,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
 
 import { DaffioHomeCalloutPwaComponent } from './home-callout-pwa.component';
 
@@ -25,7 +26,12 @@ describe('DaffioHomeCalloutPwaComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [WrapperComponent],
+      imports: [
+        WrapperComponent,
+      ],
+      providers: [
+        provideRouter([]),
+      ],
     })
       .compileComponents();
   }));

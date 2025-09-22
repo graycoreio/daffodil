@@ -1,9 +1,9 @@
-import { CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
   waitForAsync,
 } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { DaffioHomeViewComponent } from './home-view.component';
 
@@ -13,9 +13,11 @@ describe('DaffioHomeViewComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [DaffioHomeViewComponent],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
+      imports: [
+        DaffioHomeViewComponent,
+      ],
+      providers: [
+        provideRouter([]),
       ],
     })
       .compileComponents();
