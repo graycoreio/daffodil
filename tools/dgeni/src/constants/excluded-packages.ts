@@ -1,9 +1,10 @@
-import {
-  readdirSync,
-  readFileSync,
-  statSync,
-} from 'fs';
+import * as fs from 'fs';
 import * as path from 'path';
+
+import {
+  API_SOURCE_PATH,
+  TOOLS_SOURCE_PATH,
+} from '../transforms/config';
 
 /**
  * Base static list of packages to be left out of API/doc generation.
@@ -20,43 +21,29 @@ const STATIC_EXCLUDED = <const>[
 ];
 
 /**
- * Resolve workspace root from this file location.
- */
-const PROJECT_ROOT = path.resolve(__dirname, '../../../..');
-
-/**
  * Read package.json files under a folder (e.g., libs or tools) and collect
  * package names that are marked as private.
  */
-function getPrivatePackageNames(folder: 'libs' | 'tools'): string[] {
-  const base = path.resolve(PROJECT_ROOT, folder);
-  const names: string[] = [];
-  try {
-    const entries = readdirSync(base, { withFileTypes: true });
-    entries.forEach((entry) => {
-      if (!entry.isDirectory()) {
-        return;
-      }
-      const pkgDir = path.join(base, entry.name);
-      const pkgJsonPath = path.join(pkgDir, 'package.json');
-      try {
-        // Only consider direct child packages with a package.json
-        if (statSync(pkgJsonPath).isFile()) {
-          const pkg = <{ name?: string; private?: boolean }>JSON.parse(readFileSync(pkgJsonPath, 'utf8'));
-          if (pkg?.private) {
-            // Use the folder name as the exclusion key to match glob segments
-            names.push(entry.name);
-          }
+const getPrivatePackageNames = (folder: string): Array<string> => {
+  const entries = fs.readdirSync(folder, { withFileTypes: true });
+  return entries.reduce((acc, entry) => {
+    if (!entry.isDirectory()) {
+      return acc;
+    }
+    const pkgJsonPath = path.join(folder, entry.name, 'package.json');
+    try {
+      if (fs.statSync(pkgJsonPath).isFile()) {
+        const pkg = <{ name?: string; private?: boolean }>JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
+        if (pkg?.private) {
+          acc.push(entry.name);
         }
-      } catch {
-        // ignore missing files or JSON errors in non-package folders
       }
-    });
-  } catch {
-    // folder missing, ignore
-  }
-  return names;
-}
+      return acc;
+    } catch {
+      return acc;
+    }
+  }, []);
+};
 
 /**
  * Combined set of excluded package names: static list plus any workspace
@@ -64,8 +51,8 @@ function getPrivatePackageNames(folder: 'libs' | 'tools'): string[] {
  */
 export const DAFF_DGENI_EXCLUDED_PACKAGES = Array.from(new Set([
   ...STATIC_EXCLUDED,
-  ...getPrivatePackageNames('libs'),
-  ...getPrivatePackageNames('tools'),
+  ...getPrivatePackageNames(API_SOURCE_PATH),
+  ...getPrivatePackageNames(TOOLS_SOURCE_PATH),
 ]));
 
 /**
