@@ -3,6 +3,7 @@ import {
   Component,
   HostBinding,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
@@ -19,6 +20,7 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
     DAFF_CARD_COMPONENTS,
     DAFF_CONTAINER_COMPONENTS,
     DAFF_BUTTON_COMPONENTS,
+    RouterLink,
   ],
 })
 
