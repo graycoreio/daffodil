@@ -35,6 +35,14 @@ export class DaffMenuActivatorDirective implements OnDestroy {
 
   @Input() daffMenuActivator: Type<DaffComponentWithMenu> | TemplateRef<unknown>;
 
+  _ariaControls = null;
+
+  @HostBinding('attr.aria-controls') get ariaControls() {
+    return this._ariaControls;
+  } set ariaControls(value: string) {
+    this._ariaControls = value;
+  }
+
   constructor(
     private service: DaffMenuService,
     public viewContainerRef: ViewContainerRef,

@@ -56,9 +56,15 @@ export class DaffMenuService {
         const portal = new ComponentPortal(<Type<DaffComponentWithMenu>>component);
         const attach = this._overlay.attach(portal);
 
+        activatorElement.ariaControls = attach.instance.menu.uniqueId;
+
       } else if (component instanceof TemplateRef) {
         const portal = new TemplatePortal(component, activatorElement.viewContainerRef);
         const attach = this._overlay.attach(portal);
+
+        console.log(component);
+        console.log(attach);
+        console.log(portal);
       }
 
 
@@ -80,6 +86,7 @@ export class DaffMenuService {
     this._destroyOverlay();
     this._open$.next(false);
     this._activator.viewContainerRef.element.nativeElement.focus();
+    this._activator.ariaControls = null;
   }
 
   open(activator: DaffMenuActivatorDirective, component: DaffMenuSlot) {
