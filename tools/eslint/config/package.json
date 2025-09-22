@@ -20,7 +20,7 @@
   },
   "scripts": {
     "publish": "cd ../../../dist/eslint-config; npm publish --access=public",
-    "build": "shx rm -rf ../../../dist/eslint-config && shx mkdir -p ../../../dist/eslint-config && shx cp -r . ../../../dist/eslint-config"
+    "build": "rm -rf ../../../dist/eslint-config && shx mkdir -p ../../../dist/eslint-config && shx cp -r . ../../../dist/eslint-config"
   },
   "nx": {
     "targets": {
