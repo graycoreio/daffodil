@@ -21,8 +21,7 @@ import {
 } from 'rxjs';
 
 import { DaffLazyComponent } from '@daffodil/design';
-
-import { daffMenuCreateOverlay } from '../helpers/public_api';
+import { daffMenuCreateOverlay } from '@daffodil/design/menu';
 
 export interface DaffActivatedMenu {
   el: ElementRef;
