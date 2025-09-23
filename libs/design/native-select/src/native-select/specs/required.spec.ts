@@ -17,8 +17,8 @@ import { By } from '@angular/platform-browser';
 import {
   DAFF_FORM_FIELD_COMPONENTS,
   DaffFormFieldComponent,
-  DaffNativeSelectComponent,
 } from '@daffodil/design';
+import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 
 @Component({
   template:`
@@ -27,7 +27,10 @@ import {
       <select daff-native-select [required]="requiredValue"></select>
     </daff-form-field>
   `,
-  standalone: false,
+  imports: [
+    DAFF_FORM_FIELD_COMPONENTS,
+    DaffNativeSelectComponent,
+  ],
 })
 class WrapperComponent {
   requiredValue: boolean | string;
@@ -42,12 +45,8 @@ describe('@daffodil/design | DaffNativeSelectComponent | Static Required Attribu
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-        DaffNativeSelectComponent,
-      ],
       imports: [
-        DAFF_FORM_FIELD_COMPONENTS,
+        WrapperComponent,
       ],
     })
       .compileComponents();
@@ -116,7 +115,11 @@ describe('@daffodil/design | DaffNativeSelectComponent | Static Required Attribu
       <select daff-native-select [formControl]="control"></select>
     </daff-form-field>
   `,
-  standalone: false,
+  imports: [
+    DAFF_FORM_FIELD_COMPONENTS,
+    DaffNativeSelectComponent,
+    ReactiveFormsModule,
+  ],
 })
 class FormsWrapperComponent {
   control: UntypedFormControl = new UntypedFormControl('', [Validators.required]);
@@ -130,13 +133,8 @@ describe('@daffodil/design | DaffNativeSelectComponent | Reactive Forms Required
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        FormsWrapperComponent,
-        DaffNativeSelectComponent,
-      ],
       imports: [
-        DAFF_FORM_FIELD_COMPONENTS,
-        ReactiveFormsModule,
+        FormsWrapperComponent,
       ],
     })
       .compileComponents();

@@ -13,8 +13,8 @@ import { By } from '@angular/platform-browser';
 import {
   DAFF_FORM_FIELD_COMPONENTS,
   DaffFormFieldComponent,
-  DaffNativeSelectComponent,
 } from '@daffodil/design';
+import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 
 @Component({
   template: `
@@ -22,7 +22,10 @@ import {
       <select daff-native-select></select>
     </daff-form-field>
   `,
-  standalone: false,
+  imports: [
+    DAFF_FORM_FIELD_COMPONENTS,
+    DaffNativeSelectComponent,
+  ],
 })
 class WrapperComponent {
   id = 'test';
@@ -38,12 +41,8 @@ describe('@daffodil/design | DaffNativeSelectComponent | With Form Field', () =>
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-        DaffNativeSelectComponent,
-      ],
       imports: [
-        DAFF_FORM_FIELD_COMPONENTS,
+        WrapperComponent,
       ],
     })
       .compileComponents();
