@@ -140,6 +140,7 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
      */
     @Optional() @Self() public ngControl: NgControl,
     private _elementRef: ElementRef<HTMLInputElement>,
+    // @Optional is intentional so that we can control the error message thrown when the DaffFormFieldComponent is not used.
     @Optional() private formField: DaffFormFieldComponent,
   ) {
     super(ngControl);
