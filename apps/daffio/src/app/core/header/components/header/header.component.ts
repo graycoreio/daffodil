@@ -7,8 +7,6 @@ import {
 
 import { DaffNavbarModule } from '@daffodil/design/navbar';
 
-import { DaffioHeaderItemDirective } from '../header-item/header-item.directive';
-
 @Component({
   selector: 'daffio-header',
   templateUrl: './header.component.html',
@@ -16,7 +14,6 @@ import { DaffioHeaderItemDirective } from '../header-item/header-item.directive'
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DaffNavbarModule,
-    DaffioHeaderItemDirective,
   ],
 })
 
