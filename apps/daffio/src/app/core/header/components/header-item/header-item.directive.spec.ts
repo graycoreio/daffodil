@@ -28,8 +28,10 @@ describe('DaffioHeaderItemDirective', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffioHeaderItemDirective,
         WrapperComponent,
+      ],
+      imports: [
+        DaffioHeaderItemDirective,
       ],
     })
       .compileComponents();
