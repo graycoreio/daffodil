@@ -26,7 +26,7 @@ import { DaffioAppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { DaffioMarketingFooterComponent } from './core/footer/marketing-footer/marketing-footer.component';
 import { daffioRouterDataServiceConfig } from './core/router/data-service-config';
-import { DaffioSidebarHeaderComponentModule } from './core/sidebar/components/sidebar-header/sidebar-header.module';
+import { DaffioSidebarHeaderComponent } from './core/sidebar/components/sidebar-header/sidebar-header.component';
 import { TemplateModule } from './core/template/template.module';
 
 @NgModule({
@@ -42,7 +42,7 @@ import { TemplateModule } from './core/template/template.module';
     StoreModule.forRoot({}),
     EffectsModule.forRoot(),
     AppRoutingModule,
-    DaffioSidebarHeaderComponentModule,
+    DaffioSidebarHeaderComponent,
     DaffioMarketingFooterComponent,
     //Make sure this loads after Router and Store
     StoreRouterConnectingModule.forRoot({ serializer: FullRouterStateSerializer,
