@@ -10,6 +10,9 @@
 /// See [WCAG 2.0 Contrast Ratio (G17)](https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests)
 /// for more information.
 ///
+///	@example scss
+/// 	@include daff-luminance(#efefef);
+///
 @function daff-luminance($color) {
 	$red-index: color.channel($color, 'red') + 1;
 	$green-index: color.channel($color, 'green') + 1;
