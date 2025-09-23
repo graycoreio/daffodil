@@ -24,6 +24,7 @@ import { DaffRouterDataService } from '@daffodil/router';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
 
 import { DaffioHeaderComponent } from '../../header/components/header/header.component';
+import { DaffioHeaderItemDirective } from '../../header/components/header-item/header-item.directive';
 import { DaffioRoute } from '../../router/route.type';
 import { DaffioSidebarService } from '../../sidebar/services/sidebar.service';
 import { DAFFIO_NAV_SIDEBAR_ID } from '../header/sidebar-id';
@@ -35,6 +36,7 @@ import { DaffioNavLink } from '../link/type';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DaffioHeaderComponent,
+    DaffioHeaderItemDirective,
     RouterLink,
     RouterLinkActive,
     DaffLogoModule,
