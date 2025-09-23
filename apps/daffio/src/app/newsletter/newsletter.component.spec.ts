@@ -12,7 +12,7 @@ describe('DaffioNewsletterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         DaffioNewsletterComponent,
       ],
     })
