@@ -11,10 +11,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 
-import {
-  DaffNativeSelectModule,
-  DaffNativeSelectComponent,
-} from '@daffodil/design';
+import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 
 import { DaffQuantitySelectComponent } from './quantity-select.component';
 
@@ -28,7 +25,7 @@ import { DaffQuantitySelectComponent } from './quantity-select.component';
   `,
   imports: [
     DaffQuantitySelectComponent,
-    DaffNativeSelectModule,
+    DaffNativeSelectComponent,
   ],
 })
 class WrapperComponent {

@@ -7,7 +7,6 @@ export * from './atoms/form/core/public_api';
 export * from './atoms/form/form-field/public_api';
 export * from './atoms/form/error-message/public_api';
 export * from './atoms/form/hint/public_api';
-export * from './atoms/form/native-select/public_api';
 export * from './atoms/form/checkbox/public_api';
 export * from './atoms/form/radio/public_api';
 export * from './atoms/form/form-label/public_api';

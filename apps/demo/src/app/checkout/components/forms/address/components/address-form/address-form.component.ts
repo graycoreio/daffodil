@@ -13,11 +13,9 @@ import {
   takeUntil,
 } from 'rxjs';
 
-import {
-  DaffNativeSelectModule,
-  DAFF_FORM_FIELD_COMPONENTS,
-} from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
 import { DaffInputComponent } from '@daffodil/design/input';
+import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 import {
   DaffCountry,
   DaffSubdivision,
@@ -39,7 +37,7 @@ import { DemoCheckoutAddressFormGroup } from '../../models/address-form.type';
     CommonModule,
     ReactiveFormsModule,
     DaffInputComponent,
-    DaffNativeSelectModule,
+    DaffNativeSelectComponent,
     DAFF_FORM_FIELD_COMPONENTS,
     DaffGeographyStateModule,
   ],

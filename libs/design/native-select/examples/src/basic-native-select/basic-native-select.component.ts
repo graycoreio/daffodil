@@ -5,10 +5,8 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-import {
-  DAFF_FORM_FIELD_COMPONENTS,
-  DaffNativeSelectModule,
-} from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
+import { DAFF_NATIVE_SELECT_COMPONENTS } from '@daffodil/design/native-select';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -21,7 +19,7 @@ import {
     }
   `,
   imports: [
-    DaffNativeSelectModule,
+    DAFF_NATIVE_SELECT_COMPONENTS,
     DAFF_FORM_FIELD_COMPONENTS,
     FaIconComponent,
   ],

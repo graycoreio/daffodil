@@ -3,10 +3,8 @@ import {
   Component,
 } from '@angular/core';
 
-import {
-  DAFF_FORM_FIELD_COMPONENTS,
-  DaffNativeSelectModule,
-} from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
+import { DAFF_NATIVE_SELECT_COMPONENTS } from '@daffodil/design/native-select';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -20,7 +18,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_FORM_FIELD_COMPONENTS,
-    DaffNativeSelectModule,
+    DAFF_NATIVE_SELECT_COMPONENTS,
   ],
 })
 export class NativeSelectDisabledComponent {

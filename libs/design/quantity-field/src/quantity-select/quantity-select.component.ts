@@ -14,10 +14,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import {
-  DaffNativeSelectComponent,
-  DaffNativeSelectModule,
-} from '@daffodil/design';
+import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 
 /**
  * Create an array of numbers from min to max, not including max.
@@ -30,7 +27,7 @@ export const makeValueArray = (min: number, max: number, increment: number) =>
   templateUrl: './quantity-select.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffNativeSelectModule,
+    DaffNativeSelectComponent,
     ReactiveFormsModule,
     NgFor,
     NgIf,

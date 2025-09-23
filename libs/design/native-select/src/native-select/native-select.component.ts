@@ -19,8 +19,10 @@ import {
   tap,
 } from 'rxjs';
 
-import { DaffFormFieldComponent } from '../form-field/form-field/form-field.component';
-import { DaffFormFieldControl } from '../form-field/form-field-control';
+import {
+  DaffFormFieldComponent,
+  DaffFormFieldControl,
+} from '@daffodil/design';
 
 /**
  * DaffNativeSelectComponent provides the same functionality as a native `<select>` and contains custom styling and functionality.
@@ -44,7 +46,6 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
     '[disabled]': 'disabledAttribute',
     '[required]': 'requiredAttribute',
   },
-  standalone: false,
 })
 
 export class DaffNativeSelectComponent extends DaffFormFieldControl<string> implements DaffFormFieldControl<string>, OnInit {

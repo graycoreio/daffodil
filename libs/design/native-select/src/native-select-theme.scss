@@ -1,4 +1,4 @@
-@use '../../../../scss/theming' as *;
+@use '../../scss/theming' as *;
 
 @mixin daff-native-select-theme($theme) {
 	$base: daff-get-base-color($theme, base);

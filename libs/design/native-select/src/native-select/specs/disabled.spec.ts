@@ -13,10 +13,7 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import {
-  DAFF_FORM_FIELD_COMPONENTS,
-  DaffNativeSelectComponent,
-} from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
 
 @Component({
   template:`
@@ -30,7 +27,10 @@ import {
       </select>
     </daff-form-field>
   `,
-  standalone: false,
+  imports: [
+    DAFF_FORM_FIELD_COMPONENTS,
+    DaffNativeSelectComponent,
+  ],
 })
 class WrapperComponent {
   disabledValue: boolean | string;
@@ -44,12 +44,8 @@ describe('@daffodil/design | DaffNativeSelectComponent | Static Disabled Attribu
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-        DaffNativeSelectComponent,
-      ],
       imports: [
-        DAFF_FORM_FIELD_COMPONENTS,
+        WrapperComponent,
       ],
     })
       .compileComponents();
