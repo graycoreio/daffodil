@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { DaffioWhyPwaViewModule } from './view/why-pwa-view.modules';
+import { DaffioWhyPwaViewComponent } from './view/why-pwa-view.component';
 import { DaffioWhyPwaRoutingModule } from './why-pwa-routing.module';
 import { TemplateModule } from '../../core/template/template.module';
 
@@ -16,7 +16,7 @@ import { TemplateModule } from '../../core/template/template.module';
     TemplateModule,
 
     DaffioWhyPwaRoutingModule,
-    DaffioWhyPwaViewModule,
+    DaffioWhyPwaViewComponent,
   ],
 })
 export class DaffioWhyPwaModule { }

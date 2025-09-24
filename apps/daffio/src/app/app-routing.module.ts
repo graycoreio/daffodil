@@ -43,7 +43,7 @@ export const appRoutes: Routes = [
         path: '',
         children: [
           homeRoute,
-          { path: 'why-pwa', loadChildren: () => import('./content/why-pwa/why-pwa.module').then(m => m.DaffioWhyPwaModule) },
+          { path: 'why-pwa', loadComponent: () => import('./content/why-pwa/view/why-pwa-view.component').then(c => c.DaffioWhyPwaViewComponent) },
           ...notFoundRoute,
           ...supportRoute,
         ],
