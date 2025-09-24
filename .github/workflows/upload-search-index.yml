@@ -28,7 +28,7 @@ jobs:
 
       - uses: graycoreio/github-actions/setup-node@main
         with:
-          node-version: 20.18.x
+          node-version: 20.19.x
           use-stamp-cache: true
 
       - run: npx nx run tools-dgeni:build
