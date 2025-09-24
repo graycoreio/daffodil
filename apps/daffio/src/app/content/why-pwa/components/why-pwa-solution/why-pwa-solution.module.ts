@@ -7,7 +7,7 @@ import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffListModule } from '@daffodil/design/list';
 
 import { DaffioWhyPwaSolutionComponent } from './why-pwa-solution.component';
-import { DaffioFeatureComparisonModule } from '../feature-comparison/feature-comparison.module';
+import { DaffioFeatureComparisonComponent } from '../feature-comparison/feature-comparison.component';
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import { DaffioFeatureComparisonModule } from '../feature-comparison/feature-com
     DaffContainerModule,
     DaffCalloutModule,
     DaffListModule,
-    DaffioFeatureComparisonModule,
+    DaffioFeatureComparisonComponent,
   ],
   exports: [
     DaffioWhyPwaSolutionComponent,
