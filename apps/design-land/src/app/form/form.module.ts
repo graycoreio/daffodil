@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DaffFormFieldModule } from '@daffodil/design/form-field';
 import { DaffButtonModule } from '@daffodil/design/button';
+import { DaffFormFieldModule } from '@daffodil/design/form-field';
 import { DaffInputModule } from '@daffodil/design/input';
 
 import { DesignLandFormRoutingModule } from './form-routing.module';

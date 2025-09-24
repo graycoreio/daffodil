@@ -13,9 +13,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffFormFieldModule } from '@daffodil/design/form-field';
 import { DaffAccordionModule } from '@daffodil/design/accordion';
 import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffFormFieldModule } from '@daffodil/design/form-field';
 import { DaffQuantityFieldModule } from '@daffodil/design/quantity-field';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
