@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { DaffioWhyPwaViewComponent } from './why-pwa-view.component';
-import { DaffioWhyPwaExamplesComponentModule } from '../components/why-pwa-examples/why-pwa-examples.module';
+import { DaffioWhyPwaExamplesComponent } from '../components/why-pwa-examples/why-pwa-examples.component';
 import { DaffioWhyPwaHeroComponentModule } from '../components/why-pwa-hero/why-pwa-hero.module';
 import { DaffioWhyPwaOverviewComponentModule } from '../components/why-pwa-overview/why-pwa-overview.module';
 import { DaffioWhyPwaSolutionComponentModule } from '../components/why-pwa-solution/why-pwa-solution.module';
@@ -17,7 +17,7 @@ import { DaffioWhyPwaStatsComponentModule } from '../components/why-pwa-stats/wh
     DaffioWhyPwaHeroComponentModule,
     DaffioWhyPwaOverviewComponentModule,
     DaffioWhyPwaStatsComponentModule,
-    DaffioWhyPwaExamplesComponentModule,
+    DaffioWhyPwaExamplesComponent,
     DaffioWhyPwaSolutionComponentModule,
   ],
   declarations: [
