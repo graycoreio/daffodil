@@ -18,8 +18,6 @@ describe('DaffioFeatureComparisonComponent', () => {
       imports: [
         RouterTestingModule,
         FontAwesomeModule,
-      ],
-      declarations: [
         DaffioFeatureComparisonComponent,
       ],
       schemas: [
