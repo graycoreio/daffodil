@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faCheck,
   faTimes,
@@ -12,7 +13,9 @@ import {
   templateUrl: './feature-comparison.component.html',
   styleUrls: ['./feature-comparison.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    FontAwesomeModule,
+  ],
 })
 export class DaffioFeatureComparisonComponent {
   faCheck = faCheck;
