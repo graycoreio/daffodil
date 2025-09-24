@@ -14,7 +14,7 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DaffSelectComponent } from '@daffodil/design/select';
 
 @Component({

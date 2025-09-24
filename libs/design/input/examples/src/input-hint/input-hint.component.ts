@@ -3,10 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import {
-  DAFF_FORM_FIELD_COMPONENTS,
-  DaffHintComponent,
-} from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DaffInputComponent } from '@daffodil/design/input';
 
 @Component({
@@ -22,7 +19,6 @@ import { DaffInputComponent } from '@daffodil/design/input';
   imports: [
     DAFF_FORM_FIELD_COMPONENTS,
     DaffInputComponent,
-    DaffHintComponent,
   ],
 })
 export class InputHintComponent {

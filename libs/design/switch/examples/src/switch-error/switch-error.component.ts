@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { DaffErrorMessageComponent } from '@daffodil/design/form-field';
 import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -13,6 +14,7 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
   imports: [
     DAFF_SWITCH_COMPONENTS,
     ReactiveFormsModule,
+    DaffErrorMessageComponent,
   ],
   styles: [`
     :host {

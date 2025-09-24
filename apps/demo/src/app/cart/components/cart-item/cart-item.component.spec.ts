@@ -16,7 +16,7 @@ import {
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
-import { DaffFormFieldModule } from '@daffodil/design';
+import { DaffFormFieldModule } from '@daffodil/design/form-field';
 import {
   DaffQuantityFieldComponent,
   DaffQuantityFieldModule,

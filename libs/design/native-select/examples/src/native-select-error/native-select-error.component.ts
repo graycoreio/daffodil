@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DAFF_NATIVE_SELECT_COMPONENTS } from '@daffodil/design/native-select';
 
 @Component({

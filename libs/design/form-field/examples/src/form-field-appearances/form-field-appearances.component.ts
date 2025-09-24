@@ -7,7 +7,7 @@ import {
   faEye,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DaffInputComponent } from '@daffodil/design/input';
 
 @Component({

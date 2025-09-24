@@ -6,7 +6,7 @@ import {
 
 import { DaffErrorMessageComponent } from './error-message.component';
 
-describe('@daffodil/design | DaffErrorMessageComponent', () => {
+describe('@daffodil/design/form-field | DaffErrorMessageComponent', () => {
   let fixture: ComponentFixture<DaffErrorMessageComponent>;
   let component: DaffErrorMessageComponent;
 

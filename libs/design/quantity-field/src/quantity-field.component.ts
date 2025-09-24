@@ -13,7 +13,7 @@ import {
   NgControl,
 } from '@angular/forms';
 
-import { DaffFormFieldControl } from '@daffodil/design';
+import { DaffFormFieldControl } from '@daffodil/design/form-field';
 
 import { DaffQuantityInputComponent } from './quantity-input/quantity-input.component';
 import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.component';

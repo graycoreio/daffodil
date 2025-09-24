@@ -14,15 +14,17 @@ import {
   ElementRef,
 } from '@angular/core';
 
-import { DaffPrefixDirective } from '../../../../core/prefix-suffix/prefix.directive';
-import { DaffSuffixDirective } from '../../../../core/prefix-suffix/suffix.directive';
-import { DaffSkeletonableDirective } from '../../../../core/skeletonable/skeletonable.directive';
-import { DaffErrorMessageComponent } from '../../error-message/error-message.component';
-import { DaffFormLabelDirective } from '../../form-label/form-label.directive';
-import { DaffHintComponent } from '../../hint/hint.component';
+import {
+  DaffPrefixDirective,
+  DaffSuffixDirective,
+  DaffSkeletonableDirective,
+  DaffFormLabelDirective,
+} from '@daffodil/design';
+
 import { DaffFormFieldActionDirective } from '../action/action.directive';
+import { DaffErrorMessageComponent } from '../error-message/error-message.component';
 import { DaffFormFieldControl } from '../form-field-control';
-import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
+import { DaffHintComponent } from '../hint/hint.component';
 import { DaffFormFieldLabelDirective } from '../label/label.directive';
 
 let daffFormFieldId = 0;
@@ -33,6 +35,8 @@ enum DaffFormFieldApperanaceEnum {
   Fluid = 'fluid',
   Fixed = 'fixed',
 }
+
+export const DaffFormFieldMissingControlMessage = 'A DaffFormFieldComponent must contain a DaffFormFieldControl';
 
 @Component({
   selector: 'daff-form-field',

@@ -22,7 +22,7 @@ import {
 import {
   DaffFormFieldComponent,
   DaffFormFieldControl,
-} from '@daffodil/design';
+} from '@daffodil/design/form-field';
 
 /**
  * DaffTextareaComponent provides the same functionality as a native `<textarea>` and contains custom styling and functionality.

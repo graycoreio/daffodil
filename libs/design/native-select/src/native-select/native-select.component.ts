@@ -22,7 +22,7 @@ import {
 import {
   DaffFormFieldComponent,
   DaffFormFieldControl,
-} from '@daffodil/design';
+} from '@daffodil/design/form-field';
 
 /**
  * DaffNativeSelectComponent provides the same functionality as a native `<select>` and contains custom styling and functionality.

@@ -17,7 +17,7 @@ import { By } from '@angular/platform-browser';
 import {
   DAFF_FORM_FIELD_COMPONENTS,
   DaffFormFieldComponent,
-} from '@daffodil/design';
+} from '@daffodil/design/form-field';
 import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 
 @Component({

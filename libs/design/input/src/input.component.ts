@@ -24,7 +24,7 @@ import {
 import {
   DaffFormFieldComponent,
   DaffFormFieldControl,
-} from '@daffodil/design';
+} from '@daffodil/design/form-field';
 
 /**
  * DaffInputComponent provides the same functionality as a native `<input>` and contains custom styling and functionality.

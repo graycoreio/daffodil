@@ -17,7 +17,7 @@ import { By } from '@angular/platform-browser';
 import {
   DAFF_FORM_FIELD_COMPONENTS,
   DaffFormFieldComponent,
-} from '@daffodil/design';
+} from '@daffodil/design/form-field';
 import { DaffTextareaComponent } from '@daffodil/design/textarea';
 
 @Component({

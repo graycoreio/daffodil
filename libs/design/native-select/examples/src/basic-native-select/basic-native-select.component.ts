@@ -5,7 +5,7 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DAFF_NATIVE_SELECT_COMPONENTS } from '@daffodil/design/native-select';
 
 @Component({

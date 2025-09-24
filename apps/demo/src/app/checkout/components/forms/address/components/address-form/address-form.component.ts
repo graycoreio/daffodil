@@ -13,7 +13,7 @@ import {
   takeUntil,
 } from 'rxjs';
 
-import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DaffInputComponent } from '@daffodil/design/input';
 import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 import {

@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffFormFieldComponent } from '@daffodil/design';
+import { DaffFormFieldComponent } from '@daffodil/design/form-field';
 
 import { DaffQuantityFieldComponent } from './quantity-field.component';
 import { DaffQuantityInputComponent } from './quantity-input/quantity-input.component';

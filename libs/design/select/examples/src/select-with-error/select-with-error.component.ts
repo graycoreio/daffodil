@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
 
 import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';

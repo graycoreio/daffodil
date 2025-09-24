@@ -6,7 +6,7 @@ import {
 } from '@angular/core/testing';
 
 import { DAFF_FORM_FIELD_COMPONENTS } from '../form-field';
-import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
+import { DaffFormFieldMissingControlMessage } from '../form-field/form-field.component';
 
 @Component({ template: `
   <daff-form-field>

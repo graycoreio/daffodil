@@ -13,7 +13,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffFormFieldModule } from '@daffodil/design';
+import { DaffFormFieldModule } from '@daffodil/design/form-field';
 import { DaffAccordionModule } from '@daffodil/design/accordion';
 import { DaffContainerModule } from '@daffodil/design/container';
 import { DaffQuantityFieldModule } from '@daffodil/design/quantity-field';

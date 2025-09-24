@@ -42,11 +42,11 @@ import {
   tap,
 } from 'rxjs';
 
+import { DaffOpenableDirective } from '@daffodil/design';
 import {
   DaffFormFieldComponent,
   DaffFormFieldControl,
-  DaffOpenableDirective,
-} from '@daffodil/design';
+} from '@daffodil/design/form-field';
 
 import { DaffSelectOptionDirective } from '../option/option.directive';
 

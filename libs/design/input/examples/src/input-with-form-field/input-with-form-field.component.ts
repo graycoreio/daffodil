@@ -8,10 +8,7 @@ import {
   faCircleXmark,
 } from '@fortawesome/free-solid-svg-icons';
 
-import {
-  DAFF_FORM_FIELD_COMPONENTS,
-  DaffPrefixSuffixModule,
-} from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DaffInputComponent } from '@daffodil/design/input';
 
 @Component({
@@ -28,7 +25,6 @@ import { DaffInputComponent } from '@daffodil/design/input';
     DAFF_FORM_FIELD_COMPONENTS,
     DaffInputComponent,
     FaIconComponent,
-    DaffPrefixSuffixModule,
   ],
 })
 export class InputWithFormFieldComponent {

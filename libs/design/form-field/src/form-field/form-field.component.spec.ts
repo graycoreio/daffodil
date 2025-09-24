@@ -16,7 +16,7 @@ import {
   DAFF_FORM_FIELD_COMPONENTS,
   DaffFormFieldComponent,
   DaffFormFieldControl,
-} from '@daffodil/design';
+} from '@daffodil/design/form-field';
 import { DaffInputComponent } from '@daffodil/design/input';
 
 @Component({ template: `

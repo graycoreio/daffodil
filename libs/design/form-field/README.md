@@ -1,4 +1,4 @@
-# Form field
+# Form Field
 Form field is a wrapping component that provides consistent styling and behavior for form control elements.
 
 ## Overview
@@ -7,7 +7,7 @@ It's used to style certain controls that would otherwise be impossible to style 
 The following Daffodil Design components are designed to work inside a form field:
 
 - [Native Input](/libs/design/input/README.md)
-- [Native Select](/libs/design/src/atoms/form/native-select/README.md)
+- [Native Select](/libs/design/native-select/README.md)
 - [Native Textarea](/libs/design/textarea/README.md)
 
 ## Usage
@@ -16,7 +16,7 @@ The following Daffodil Design components are designed to work inside a form fiel
 To use form field in a standalone component, import `DAFF_FORM_FIELD_COMPONENTS` directly into your custom component:
 
 ```ts
-import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 
 @Component({
   selector: 'custom-component',
@@ -33,7 +33,7 @@ To use form field in a module, import `DaffFormFieldModule` into your custom mod
 
 ```ts
 import { NgModule } from '@angular/core';
-import { DaffFormFieldModule } from '@daffodil/design';
+import { DaffFormFieldModule } from '@daffodil/design/form-field';
 import { CustomComponent } from './custom.component';
 
 @NgModule({
