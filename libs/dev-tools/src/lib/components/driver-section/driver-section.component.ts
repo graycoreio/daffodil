@@ -69,14 +69,7 @@ export class DaffDriverSectionComponent implements OnInit {
   onApplyChanges() {
     if (this.selectedDriver) {
       // Store the configuration
-      this.configService.storeDriverConfiguration(this.driver.name, this.selectedDriver.id, this.propertyValues);
-
-      // Update the current driver
-      this.applyChanges.emit({
-        driverName: this.driver.name,
-        newDriverId: this.selectedDriver.id,
-        properties: { ...this.propertyValues },
-      });
+      this.configService.applyDriverConfiguration(this.driver.name, this.selectedDriver.id, this.propertyValues);
     }
   }
 

@@ -36,14 +36,10 @@
 
         <div class="drivers-container">
           @for (driver of drivers; track driver.name) {
-            <daff-driver-section
-              [driver]="driver"
-              (applyChanges)="onApplyChanges($event)"
-              (resetToDefault)="onResetToDefault($event)">
-            </daff-driver-section>
+            <daff-driver-section [driver]="driver"></daff-driver-section>
           }
         </div>
-      } @else {
+      } @else { 
         <div class="drivers-explanation">
           <p>Drivers enable your Daffodil application to connect to different eCommerce backends like Magento, Shopify, or custom APIs. Configure your dev tools to start switching between data sources.</p>
         </div>

@@ -23,7 +23,6 @@ export { DAFF_DEV_TOOLS_CONFIG };
  */
 @Injectable()
 export class DaffDevToolsConfigService {
-  private readonly _drivers = new BehaviorSubject<DaffDriverConfig[]>([]);
   private readonly _config = new BehaviorSubject<DaffDevToolsConfig>({
     drivers: [],
     enabled: true,
@@ -35,20 +34,23 @@ export class DaffDevToolsConfigService {
   }
 
   /**
-   * Observable of all registered driver configurations
-   */
-  readonly drivers$: Observable<DaffDriverConfig[]> = this._drivers.asObservable();
-
-  /**
    * Observable of the complete dev tools configuration
    */
   readonly config$: Observable<DaffDevToolsConfig> = this._config.asObservable();
 
   /**
+   * Observable of all registered driver configurations
+   */
+  readonly drivers$: Observable<DaffDriverConfig[]> = this.config$.pipe(
+    map(config => config.drivers),
+  );
+
+
+  /**
    * Get current driver configurations
    */
   getDrivers(): DaffDriverConfig[] {
-    return this._drivers.value;
+    return this._config.value.drivers;
   }
 
   /**
@@ -68,27 +70,14 @@ export class DaffDevToolsConfigService {
   }
 
   /**
-   * Update a specific driver configuration
-   */
-  updateDriver(name: string, updates: Partial<DaffDriverConfig>): void {
-    const currentDrivers = this._drivers.value;
-    const driverIndex = currentDrivers.findIndex(d => d.name === name);
-
-    if (driverIndex >= 0) {
-      currentDrivers[driverIndex] = { ...currentDrivers[driverIndex], ...updates };
-      this._drivers.next([...currentDrivers]);
-      this.updateConfigDrivers();
-    }
-  }
-
-  /**
    * Store the current configuration for a specific driver
    * @param driverName The name of the driver section
    * @param driverId The ID of the specific driver to store config for
    * @param properties The properties to store
    */
-  storeDriverConfiguration(driverName: string, driverId: string, properties: Record<string, any>): void {
-    const currentDrivers = this._drivers.value;
+  applyDriverConfiguration(driverName: string, driverId: string, properties: Record<string, any>): void {
+    const currentConfig = this._config.value;
+    const currentDrivers = [...currentConfig.drivers];
     const driverIndex = currentDrivers.findIndex(d => d.name === driverName);
 
     if (driverIndex >= 0) {
@@ -98,11 +87,14 @@ export class DaffDevToolsConfigService {
 
       currentDrivers[driverIndex] = {
         ...driver,
+        currentDriver: driverId,
         storedConfigurations: storedConfigs,
       };
 
-      this._drivers.next([...currentDrivers]);
-      this.updateConfigDrivers();
+      this._config.next({
+        ...currentConfig,
+        drivers: currentDrivers,
+      });
     }
   }
 
@@ -113,30 +105,8 @@ export class DaffDevToolsConfigService {
    * @returns The stored configuration or undefined if not found
    */
   getStoredDriverConfiguration(driverName: string, driverId: string): Record<string, any> | undefined {
-    const driver = this._drivers.value.find(d => d.name === driverName);
+    const driver = this._config.value.drivers.find(d => d.name === driverName);
     return driver?.storedConfigurations?.[driverId];
-  }
-
-  /**
-   * Switch to a different driver and restore its configuration
-   * @param driverName The name of the driver section
-   * @param newDriverId The ID of the driver to switch to
-   */
-  switchDriver(driverName: string, newDriverId: string): void {
-    const currentDrivers = this._drivers.value;
-    const driverIndex = currentDrivers.findIndex(d => d.name === driverName);
-
-    if (driverIndex >= 0) {
-      const driver = currentDrivers[driverIndex];
-
-      currentDrivers[driverIndex] = {
-        ...driver,
-        currentDriver: newDriverId,
-      };
-
-      this._drivers.next([...currentDrivers]);
-      this.updateConfigDrivers();
-    }
   }
 
   /**
@@ -145,7 +115,7 @@ export class DaffDevToolsConfigService {
    * @returns The selected driver or null if not found
    */
   getSelectedDriver(driverName: string): DaffDevToolsDriver | null {
-    const driver = this._drivers.value.find(d => d.name === driverName);
+    const driver = this._config.value.drivers.find(d => d.name === driverName);
     if (!driver) {
       return null;
     }
@@ -160,7 +130,7 @@ export class DaffDevToolsConfigService {
    * @returns Property values for the driver
    */
   getDriverPropertyValues(driverName: string, driverId: string): Record<string, any> {
-    const driver = this._drivers.value.find(d => d.name === driverName);
+    const driver = this._config.value.drivers.find(d => d.name === driverName);
     if (!driver) {
       return {};
     }
@@ -176,7 +146,7 @@ export class DaffDevToolsConfigService {
    * @returns Property values for the current driver
    */
   initializeDriverProperties(driverName: string): Record<string, any> {
-    const driver = this._drivers.value.find(d => d.name === driverName);
+    const driver = this._config.value.drivers.find(d => d.name === driverName);
     if (!driver) {
       return {};
     }
@@ -191,7 +161,7 @@ export class DaffDevToolsConfigService {
    * @returns The default property values
    */
   resetDriverToDefaults(driverName: string, driverId: string): Record<string, any> {
-    const driver = this._drivers.value.find(d => d.name === driverName);
+    const driver = this._config.value.drivers.find(d => d.name === driverName);
     if (!driver) {
       return {};
     }
@@ -209,35 +179,9 @@ export class DaffDevToolsConfigService {
     }
 
     // Store the default values
-    this.storeDriverConfiguration(driverName, driverId, defaultValues);
+    this.applyDriverConfiguration(driverName, driverId, defaultValues);
 
     return defaultValues;
-  }
-
-  /**
-   * Handle driver change, storing current config and loading new one
-   * @param driverName The name of the driver section
-   * @param previousDriverId The ID of the previous driver (to save its config)
-   * @param newDriverId The ID of the new driver
-   * @param currentPropertyValues The current property values to save
-   * @returns Property values for the new driver
-   */
-  handleDriverChange(
-    driverName: string,
-    previousDriverId: string | null,
-    newDriverId: string,
-    currentPropertyValues: Record<string, any>,
-  ): Record<string, any> {
-    // Store current configuration if there was a previous driver
-    if (previousDriverId) {
-      this.storeDriverConfiguration(driverName, previousDriverId, currentPropertyValues);
-    }
-
-    // Switch to the new driver
-    this.switchDriver(driverName, newDriverId);
-
-    // Return property values for the new driver
-    return this.getDriverPropertyValues(driverName, newDriverId);
   }
 
   /**
@@ -247,20 +191,6 @@ export class DaffDevToolsConfigService {
     const currentConfig = this._config.value;
     const newConfig = { ...currentConfig, ...config };
     this._config.next(newConfig);
-
-    if (config.drivers) {
-      this._drivers.next([...config.drivers]);
-    }
   }
 
-  /**
-   * Update the drivers in the main config when drivers array changes
-   */
-  private updateConfigDrivers(): void {
-    const currentConfig = this._config.value;
-    this._config.next({
-      ...currentConfig,
-      drivers: this._drivers.value,
-    });
-  }
 }

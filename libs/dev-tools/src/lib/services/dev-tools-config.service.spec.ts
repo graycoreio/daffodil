@@ -99,7 +99,7 @@ describe('DaffDevToolsConfigService', () => {
 
           // Update the driver configuration
           setTimeout(() => {
-            service.updateDriver('Test Driver', { currentDriver: 'driver2' });
+            service.applyDriverConfiguration('Test Driver', 'driver2', {});
           }, 0);
         } else if (emissionCount === 2) {
           // Second emission - after update
@@ -132,22 +132,11 @@ describe('DaffDevToolsConfigService', () => {
     });
   });
 
-  describe('switchDriver', () => {
-    it('should update the current driver', (done) => {
-      service.switchDriver('Test Driver', 'driver2');
-
-      service.getDriverConfig('Test Driver').subscribe(driver => {
-        expect(driver?.currentDriver).toBe('driver2');
-        done();
-      });
-    });
-  });
-
-  describe('storeDriverConfiguration', () => {
+  describe('applyDriverConfiguration', () => {
     it('should store new configuration for a driver', (done) => {
       const newConfig = { prop1: 'updated value' };
 
-      service.storeDriverConfiguration('Test Driver', 'driver1', newConfig);
+      service.applyDriverConfiguration('Test Driver', 'driver1', newConfig);
 
       service.getDriverConfig('Test Driver').subscribe(driver => {
         expect(driver?.storedConfigurations?.['driver1']).toEqual(newConfig);
@@ -161,18 +150,12 @@ describe('DaffDevToolsConfigService', () => {
       const props = service.initializeDriverProperties('Test Driver');
       expect(props).toEqual({ prop1: 'default1' });
     });
-
-    it('should return properties for switched driver', () => {
-      service.switchDriver('Test Driver', 'driver2');
-      const props = service.initializeDriverProperties('Test Driver');
-      expect(props).toEqual({ prop2: 'default2' });
-    });
   });
 
   describe('resetDriverToDefaults', () => {
     it('should reset driver to default values', () => {
       // First, modify the stored configuration
-      service.storeDriverConfiguration('Test Driver', 'driver1', { prop1: 'modified' });
+      service.applyDriverConfiguration('Test Driver', 'driver1', { prop1: 'modified' });
 
       // Then reset to defaults
       const defaults = service.resetDriverToDefaults('Test Driver', 'driver1');
@@ -182,42 +165,6 @@ describe('DaffDevToolsConfigService', () => {
       // Verify it was stored
       const stored = service.getDriverPropertyValues('Test Driver', 'driver1');
       expect(stored).toEqual({ prop1: 'default1' });
-    });
-  });
-
-  describe('handleDriverChange', () => {
-    it('should store current config, switch driver, and return new config', () => {
-      const currentValues = { prop1: 'modified value' };
-
-      const newValues = service.handleDriverChange(
-        'Test Driver',
-        'driver1',
-        'driver2',
-        currentValues,
-      );
-
-      // Should return driver2's configuration
-      expect(newValues).toEqual({ prop2: 'default2' });
-
-      // Should have stored driver1's modified configuration
-      const storedDriver1 = service.getDriverPropertyValues('Test Driver', 'driver1');
-      expect(storedDriver1).toEqual(currentValues);
-
-      // Should have switched to driver2
-      const drivers = service.getDrivers();
-      const testDriver = drivers.find(d => d.name === 'Test Driver');
-      expect(testDriver?.currentDriver).toBe('driver2');
-    });
-
-    it('should handle null previous driver', () => {
-      const newValues = service.handleDriverChange(
-        'Test Driver',
-        null,
-        'driver2',
-        {},
-      );
-
-      expect(newValues).toEqual({ prop2: 'default2' });
     });
   });
 
@@ -233,16 +180,6 @@ describe('DaffDevToolsConfigService', () => {
     it('should return null for non-existent driver section', () => {
       const selected = service.getSelectedDriver('Non-existent');
       expect(selected).toBeNull();
-    });
-
-    it('should return updated driver after switch', () => {
-      service.switchDriver('Test Driver', 'driver2');
-
-      const selected = service.getSelectedDriver('Test Driver');
-
-      expect(selected).toBeDefined();
-      expect(selected?.id).toBe('driver2');
-      expect(selected?.name).toBe('Driver 2');
     });
   });
 });
