@@ -1,13 +1,7 @@
 import { Document } from 'dgeni';
-import hljs from 'highlight.js';
-import bash from 'highlight.js/lib/languages/bash';
-import graphql from 'highlight.js/lib/languages/graphql';
-import scss from 'highlight.js/lib/languages/scss';
-import typescript from 'highlight.js/lib/languages/typescript';
-import xml from 'highlight.js/lib/languages/xml';
 import { slugify } from 'markdown-toc';
 import { Marked } from 'marked';
-import { markedHighlight } from 'marked-highlight';
+import { highlightCodeInline, highlightCodeSync } from '../utils/shiki-highlighter';
 
 import {
   DaffDocExample,
@@ -16,14 +10,6 @@ import {
 
 import { FilterableProcessor } from '../utils/filterable-processor.type';
 import { linkSymbols } from '../utils/link-symbols';
-
-hljs.registerLanguage('typescript', typescript);
-hljs.registerLanguage('ts', typescript);
-hljs.registerLanguage('xml', xml);
-hljs.registerLanguage('scss', scss);
-hljs.registerLanguage('bash', bash);
-hljs.registerLanguage('graphql', graphql);
-hljs.registerLanguage('gql', graphql);
 
 export const MARKDOWN_CODE_PROCESSOR_NAME = 'markdown';
 
@@ -34,14 +20,6 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
    */
   private headingList: Array<string> = [];
   private marked = new Marked(
-    markedHighlight({
-      highlight: (code, lang, info) => {
-        const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-        return lang === 'ts' || lang === 'typescript'
-          ? linkSymbols(hljs.highlight(code, { language }).value)
-          : hljs.highlight(code, { language }).value;
-      },
-    }),
     {
       walkTokens: (token) => {
         switch (token.type) {
@@ -77,31 +55,109 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
     private aliasMap,
   ) {}
 
-  $process(docs: Document[]) {
-    return docs.map((doc) => {
+  async $process(docs: Document[]): Promise<Document[]> {
+    const processedDocs = [];
+
+    for (const doc of docs) {
       if (this.docTypes.includes(doc.docType)) {
-        doc[this.contentKey] = this.parse(typeof doc.description === 'undefined' ? doc.content : doc.description);
+        doc[this.contentKey] = await this.parseAsync(typeof doc.description === 'undefined' ? doc.content : doc.description);
+
         if (doc.examples) {
-          doc.examples = (<Array<DaffDocExample>>doc.examples).map((example) => ({
-            ...example,
-            body: this.parse(example.body),
-          }));
+          const processedExamples = [];
+          for (const example of <Array<DaffDocExample>>doc.examples) {
+            const processedExample = {
+              ...example,
+              body: await this.parseAsync(example.body),
+            };
+            processedExamples.push(processedExample);
+          }
+          doc.examples = processedExamples;
         }
+
         if (doc.longDescription) {
-          doc.longDescription = this.parse(doc.longDescription).replaceAll(/(^<p>)|(<\/p>(\n)*$)/gm, '');
+          const parsedLongDescription = await this.parseAsync(doc.longDescription);
+          doc.longDescription = parsedLongDescription.replaceAll(/(^<p>)|(<\/p>(\n)*$)/gm, '');
         }
+
         doc.slug = slugify(doc.name || doc.title);
+
         if (doc.sourceApiBlock) {
-          doc.sourceApiBlock = this.parse(`\`\`\`ts\n${doc.sourceApiBlock}\n\`\`\``);
+          doc.sourceApiBlock = await this.parseAsync(`\`\`\`ts\n${doc.sourceApiBlock}\n\`\`\``);
         }
-      };
-      return doc;
-    });
+      }
+      processedDocs.push(doc);
+    }
+
+    return processedDocs;
   }
 
   parse(text: string): string {
     this.headingList = [];
-    return <string>this.marked.parse(text);
+
+    // Handle code blocks with Shiki highlighting (synchronous using cache)
+    const codeBlockRegex = /```(\w+)?\n([\s\S]*?)```/g;
+    let processedText = text;
+
+    processedText = processedText.replace(codeBlockRegex, (fullMatch, lang = 'plaintext', code) => {
+      const highlightedCode = this.highlightCodeBlock(code, lang);
+      const processedCode = (lang === 'ts' || lang === 'typescript')
+        ? linkSymbols(highlightedCode)
+        : highlightedCode;
+
+      return highlightedCode
+        ? `<pre><code class="language-${lang}">${processedCode}</code></pre>`
+        : `<pre><code class="language-${lang}">${code}</code></pre>`;
+    });
+
+    return <string>this.marked.parse(processedText);
+  }
+
+  async parseAsync(text: string): Promise<string> {
+    this.headingList = [];
+
+    // Handle code blocks with Shiki highlighting (async version)
+    const codeBlockRegex = /```(\w+)?\n([\s\S]*?)```/g;
+    let processedText = text;
+    const codeBlocks: Array<{ original: string; processed: string }> = [];
+
+    let match;
+    while ((match = codeBlockRegex.exec(text)) !== null) {
+      const [fullMatch, lang = 'plaintext', code] = match;
+      try {
+        const highlightedCode = await highlightCodeInline(code, lang);
+        const processedCode = (lang === 'ts' || lang === 'typescript')
+          ? linkSymbols(highlightedCode)
+          : highlightedCode;
+
+        codeBlocks.push({
+          original: fullMatch,
+          processed: `<pre><code class="language-${lang}">${processedCode}</code></pre>`,
+        });
+      } catch (error) {
+        console.warn(`Failed to highlight code block for language '${lang}':`, error);
+        // Keep original code block if highlighting fails
+        codeBlocks.push({
+          original: fullMatch,
+          processed: `<pre><code class="language-${lang}">${code}</code></pre>`,
+        });
+      }
+    }
+
+    // Replace code blocks with highlighted versions
+    for (const { original, processed } of codeBlocks) {
+      processedText = processedText.replace(original, processed);
+    }
+
+    return <string>this.marked.parse(processedText);
+  }
+
+  private highlightCodeBlock(code: string, language: string): string {
+    try {
+      return highlightCodeSync(code, language);
+    } catch (error) {
+      console.warn(`Failed to highlight code block synchronously for language '${language}':`, error);
+      return code;
+    }
   }
 };
 

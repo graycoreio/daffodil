@@ -1,11 +1,8 @@
 import { Document } from 'dgeni';
-import hljs from 'highlight.js';
-import typescript from 'highlight.js/lib/languages/typescript';
+import { highlightCodeInline } from '../../../utils/shiki-highlighter';
 
 import { MarkdownCodeProcessor } from '../../../processors/markdown';
 import { FilterableProcessor } from '../../../utils/filterable-processor.type';
-
-hljs.registerLanguage('typescript', typescript);
 
 export const IMPORT_EXAMPLE_PROCESSOR_NAME = 'importExample';
 
@@ -23,13 +20,25 @@ export class ImportExampleProcessor implements FilterableProcessor {
     private markdown: MarkdownCodeProcessor,
   ) {}
 
-  $process(docs: Array<Document>): Array<Document> {
-    return docs.map((doc) => {
+  async $process(docs: Array<Document>): Promise<Array<Document>> {
+    const processedDocs = [];
+
+    for (const doc of docs) {
       if (this.docTypes.includes(doc.docType)) {
-        doc.importExample = `<code>${hljs.highlight(`import { ${doc.name} } from '${doc.parent.name}'`, { language: 'typescript' }).value}</code>`;
+        try {
+          const importCode = `import { ${doc.name} } from '${doc.parent.name}'`;
+          const highlightedCode = await highlightCodeInline(importCode, 'typescript');
+          doc.importExample = `<code>${highlightedCode}</code>`;
+        } catch (error) {
+          console.warn(`Failed to highlight import example for ${doc.name}:`, error);
+          // Fallback to plain code if highlighting fails
+          doc.importExample = `<code>import { ${doc.name} } from '${doc.parent.name}'</code>`;
+        }
       }
-      return doc;
-    });
+      processedDocs.push(doc);
+    }
+
+    return processedDocs;
   }
 }
 

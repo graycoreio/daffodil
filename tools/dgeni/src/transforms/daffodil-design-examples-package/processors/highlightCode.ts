@@ -2,15 +2,7 @@ import {
   Processor,
   Document,
 } from 'dgeni';
-import hljs from 'highlight.js';
-import scss from 'highlight.js/lib/languages/scss';
-import typescript from 'highlight.js/lib/languages/typescript';
-import xml from 'highlight.js/lib/languages/xml';
-
-hljs.registerLanguage('typescript', typescript);
-hljs.registerLanguage('xml', xml);
-hljs.registerLanguage('scss', scss);
-
+import { highlightCodeInline } from '../../../utils/shiki-highlighter';
 
 export class DesignExampleHighlightCodeProcessor implements Processor {
   name = 'highlightCode';
@@ -20,12 +12,17 @@ export class DesignExampleHighlightCodeProcessor implements Processor {
 
   constructor() {}
 
-  $process(docs: Document[]) {
-    docs.map(
-      d => d.files.map(
-        (file) => file.content =
-          hljs.highlight(file.language, file.content).value,
-      ),
-    );
+  async $process(docs: Document[]): Promise<Document[]> {
+    for (const doc of docs) {
+      for (const file of doc.files) {
+        try {
+          file.content = await highlightCodeInline(file.content, file.language);
+        } catch (error) {
+          console.warn(`Failed to highlight code for language '${file.language}':`, error);
+          // Keep original content if highlighting fails
+        }
+      }
+    }
+    return docs;
   }
 };
