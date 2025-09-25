@@ -1,0 +1,19 @@
+<daff-tag *ngIf="!hiddenTags['warn']" status="warn" dismissible (closeTag)="hideTag('warn')">
+  <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
+  <div>Warn</div>
+</daff-tag>
+
+<daff-tag *ngIf="!hiddenTags['success']" status="success" dismissible (closeTag)="hideTag('success')">
+  <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
+  <div>Success</div>
+</daff-tag>
+
+<daff-tag *ngIf="!hiddenTags['critical']" status="critical" dismissible (closeTag)="hideTag('critical')">
+  <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
+  <div>Critical</div>
+</daff-tag>
+
+<daff-tag *ngIf="!hiddenTags['info']" status="info" dismissible (closeTag)="hideTag('info')">
+  <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
+  <div>Info</div>
+</daff-tag>

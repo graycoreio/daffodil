@@ -33,6 +33,7 @@ import { SIDEBAR_EXAMPLES } from '@daffodil/design/sidebar/examples';
 import { STICKY_EXAMPLES } from '@daffodil/design/sticky/examples';
 import { SWITCH_EXAMPLES } from '@daffodil/design/switch/examples';
 import { TABS_EXAMPLES } from '@daffodil/design/tabs/examples';
+import { TAG_EXAMPLES } from '@daffodil/design/tag/examples';
 import { TEXTAREA_EXAMPLES } from '@daffodil/design/textarea/examples';
 import { TOAST_EXAMPLES } from '@daffodil/design/toast/examples';
 import { TREE_EXAMPLES } from '@daffodil/design/tree/examples';
@@ -53,6 +54,7 @@ export class DesignLandAppComponent {
     [
       ...ARTICLE_EXAMPLES,
       ...ACCORDION_EXAMPLES,
+      ...TAG_EXAMPLES,
       ...BREADCRUMB_EXAMPLES,
       ...BUTTON_EXAMPLES,
       ...RADIO_EXAMPLES,
@@ -81,8 +83,8 @@ export class DesignLandAppComponent {
       ...SWITCH_EXAMPLES,
       ...TOAST_EXAMPLES,
       ...TEXTAREA_EXAMPLES,
-      ...TREE_EXAMPLES,
       ...TABS_EXAMPLES,
+      ...TREE_EXAMPLES,
     ].map((componentExample) => createCustomElementFromExample(componentExample, injector))
       .map((customElement) => {
         // Register the custom element with the browser.

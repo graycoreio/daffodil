@@ -107,6 +107,13 @@
           "id": "radio",
           "items": [],
           "data": {}
+        },
+        {
+          "title": "Tag",
+          "url": "tag",
+          "id": "tag",
+          "items": [],
+          "data": {}
         }
       ],
       "data": {}

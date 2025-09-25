@@ -26,6 +26,7 @@
 @use '../button/src/button/stroked/stroked-theme' as stroked-button;
 @use '../button/src/button/underline/underline-theme' as underline-button;
 @use '../article/src/article-theme' as article;
+@use '../tag/src/tag-theme' as tag;
 @use '../form-field/src/error-message/error-message-theme' as error-message;
 @use '../form-field/src/hint/hint-theme' as hint;
 @use '../form-field/src/form-field-theme' as form-field;
@@ -71,6 +72,7 @@
 
 	@include accordion.daff-accordion-theme($theme);
 	@include article.daff-article-theme($theme);
+	@include tag.daff-tag-theme($theme);
 	@include breadcrumb.daff-breadcrumb-theme($theme);
 
 	@include button.daff-button-theme($theme);

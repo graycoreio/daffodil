@@ -14,6 +14,7 @@ export const appRoutes: Routes = [
       { path: '', pathMatch: 'full', loadChildren: () => import('./foundations/color/color.module').then(m => m.DesignLandColorModule) },
       { path: 'accordion', loadChildren: () => import('./accordion/accordion.module').then(m => m.DesignLandAccordionModule) },
       { path: 'article', loadChildren: () => import('./article/article.module').then(m => m.DesignLandArticleModule) },
+      { path: 'tag', loadChildren: () => import('./tag/tag.module').then(m => m.DesignLandTagModule) },
       { path: 'button', loadChildren: () => import('./button/button.module').then(m => m.DesignLandButtonModule) },
       { path: 'callout', loadChildren: () => import('./callout/callout.module').then(m => m.DesignLandCalloutModule) },
       { path: 'card', loadChildren: () => import('./card/card.module').then(m => m.DesignLandCardModule) },

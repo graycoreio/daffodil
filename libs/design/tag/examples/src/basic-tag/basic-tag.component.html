@@ -1,0 +1,14 @@
+<daff-tag *ngIf="!hiddenTags['default']" dismissible (closeTag)="hideTag('default')">
+  <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
+  <div>Default</div>
+</daff-tag>
+
+<daff-tag>
+  <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
+  <div>Non-Dismissible</div>
+</daff-tag>
+
+<daff-tag *ngIf="!hiddenTags['disabled']" dismissible (closeTag)="hideTag('disabled')" disabled>
+  <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
+  <div>Disabled</div>
+</daff-tag>

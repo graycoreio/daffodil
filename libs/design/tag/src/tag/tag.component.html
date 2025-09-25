@@ -1,0 +1,11 @@
+@if (_prefix) {
+  <ng-content select="[daffPrefix]"></ng-content>
+}
+<div class="daff-tag__label">
+  <ng-content></ng-content>
+</div>
+@if (dismissible) {
+  <button class="daff-tag__close-icon" (click)="onCloseTag($event)">
+    <fa-icon [icon]="faTimes"></fa-icon>
+  </button>
+}
