@@ -7,6 +7,8 @@ import {
 import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 import { TemplateComponent } from './template.component';
 
@@ -21,6 +23,8 @@ describe('TemplateComponent', () => {
       imports: [
         RouterTestingModule,
         TemplateComponent,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
       ],
       providers: [
         provideRouter([]),
