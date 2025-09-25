@@ -20,8 +20,6 @@ describe('TemplateComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-      ],
-      declarations: [
         TemplateComponent,
       ],
       providers: [
