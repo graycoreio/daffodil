@@ -5,6 +5,7 @@ import {
   type ThemeInput,
 } from 'shiki';
 
+// Shiki configuration for documentation generation
 /**
  * Supported languages for syntax highlighting.
  * Maps language aliases to their canonical names in Shiki.
