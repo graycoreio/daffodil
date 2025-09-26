@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import {
+  DaffFilterEqualRequest,
   DaffFilterRequest,
   DaffFilterType,
 } from '@daffodil/core';
@@ -55,7 +56,7 @@ export class MagentoProductAppliedFiltersTransformService {
   /**
    * Returns an array for Equal type and a string for Match type.
    */
-  private getFilterValue(type: DaffFilterType, value: DaffFilterRequest['value']): string | string[] {
+  private getFilterValue(type: DaffFilterType, value: DaffFilterEqualRequest['value']): string | string[] {
     return type === DaffFilterType.Equal ? value : value[0];
   }
 
