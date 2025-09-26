@@ -1,13 +1,17 @@
+import { EntityAdapter } from '@ngrx/entity';
 import {
   createSelector,
   defaultMemoize,
   MemoizedSelector,
 } from '@ngrx/store';
-import type { EntitySelectors } from 'node_modules/@ngrx/entity/src/models';
 
 import { DaffIdentifiable } from '@daffodil/core';
 
 import { DaffOperationEntity } from './type';
+
+// ngrx does not export EntitySelectors so we gotta do this nonsense
+const giveMeType = <T, V>(adapter: EntityAdapter<T>) => adapter.getSelectors<V>((state) => ({ ids: [], entities: {}}));
+type EntitySelectors<T, V> = ReturnType<typeof giveMeType<T, V>>;
 
 /**
  * Selectors for an operation state.
