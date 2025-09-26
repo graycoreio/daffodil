@@ -21,11 +21,23 @@ Install with yarn:
 yarn add @daffodil/external-router
 ```
 
+## Getting Started
+
+See the [usage guide](/libs/external-router/guides/usage.md) for a step-by-step walkthrough of setting up external routing in your application.
+
+## Configuration
+
+Configure the external router behavior with custom options. See the [configuration guide](/libs/external-router/guides/configuration.md) for available options.
+
 ## Drivers
 
 We provide a driver interface along with a few pre-fabricated drivers for you to simply drop into your app and get started with external route resolution.
 
-- [Customize your own driver](/libs/external-router/guides/drivers/custom.md)
-- [In-Memory](/libs/external-router/guides/drivers/in-memory.md)
-- [Magento](/libs/external-router/guides/drivers/magento.md)
-- [Testing](/libs/external-router/guides/drivers/testing.md)
+- [Custom Driver](/libs/external-router/guides/drivers/custom.md) - Create your own driver for any external system
+- [In-Memory Driver](/libs/external-router/guides/drivers/in-memory.md) - Store routes in memory for development
+- [Magento Driver](/libs/external-router/guides/drivers/magento.md) - Integration with Magento 2 URL resolution
+- [Testing Driver](/libs/external-router/guides/drivers/testing.md) - Mock driver for unit testing
+
+## Testing
+
+Learn how to test your external router configuration and route guards. See the [testing guide](/libs/external-router/guides/testing.md) for examples and best practices.

@@ -1,97 +1,153 @@
 # Usage
 
-## Getting started
-Add `provideExternalRouter` to the `providers` of your `appConfig` or `AppModule`.
+This guide walks you through setting up `@daffodil/external-router` to enable dynamic route resolution from external systems in your Angular application.
+
+## Quick Start
+
+### Installation
+
+First, install the package:
+
+```bash
+npm install @daffodil/external-router --save
+```
+
+### Basic Setup
+
+Add `provideExternalRouter` to your application configuration:
 
 ```ts
 import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
 import { provideExternalRouter } from '@daffodil/external-router';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
-    provideClientHydration(),
-    provideExternalRouter(),
-  ],
+	providers: [
+		provideClientHydration(),
+		provideRouter(routes),
+		provideExternalRouter(),
+	],
 };
 ```
 
-## Configurations
+### Configure a Driver
 
-1. Configure your [driver of choice](/libs/external-router/README.md#drivers). This example uses the [testing driver](/libs/external-router/guides/driver/testing.md):
+Choose and configure a driver based on your needs. This example uses the testing driver for development, but you should use the driver which matches your platform requirements:
 
 ```ts
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { DaffExternalRouterDriverTestingModule } from '@daffodil/external-router/driver/testing';
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideExternalRouter } from '@daffodil/external-router';
+import { provideDaffExternalRouterTestingDriver } from '@daffodil/external-router/driver/testing';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
-    provideClientHydration(),
-    provideExternalRouter(),
-    provideDaffExternalRouterTestingDriver({
-      'test-page': 'TEST_TYPE',
-      'other-page': 'OTHER_TYPE',
-      'another-page': 'OTHER_TYPE',
-    }),
-  ],
+	providers: [
+		provideClientHydration(),
+		provideRouter(routes),
+		provideExternalRouter(),
+		provideDaffExternalRouterTestingDriver({
+			'products/shirts': 'PRODUCT_CATEGORY',
+			'products/pants': 'PRODUCT_CATEGORY',
+			'about-us': 'CMS_PAGE',
+			contact: 'CMS_PAGE',
+		}),
+	],
 };
 ```
 
-2. Configure your routes to use the `daffExternalMatcherTypeGuard`:
+### Define Route Handlers
+
+Configure your Angular routes with `canMatch` to handle different external route types:
 
 ```ts
 import { Routes } from '@angular/router';
-
 import { daffExternalMatcherTypeGuard } from '@daffodil/external-router/routing';
 
 export const routes: Routes = [
-  {
-    path: '',
-    pathMatch: 'full',
-    component: HomeComponent,
-  },
-  {
-    path: '**',
-    component: TestComponent,
-    canMatch: [daffExternalMatcherTypeGuard('TEST_TYPE')],
-  },
-  {
-    path: '**',
-    component: OtherTypeComponent,
-    canMatch: [daffExternalMatcherTypeGuard('OTHER_TYPE')],
-  },
+	// Static routes take precedence
+	{
+		path: '',
+		pathMatch: 'full',
+		component: HomeComponent,
+	},
+
+	// External routes handled by type
+	{
+		path: '**',
+		component: ProductCategoryComponent,
+		canMatch: [daffExternalMatcherTypeGuard('PRODUCT_CATEGORY')],
+	},
+	{
+		path: '**',
+		component: CmsPageComponent,
+		canMatch: [daffExternalMatcherTypeGuard('CMS_PAGE')],
+	},
+
+	// Fallback for unresolved routes
+	{
+		path: '**',
+		component: NotFoundComponent,
+	},
 ];
 ```
 
-> You can use whatever type values you would like, just ensure they match the types set in `provideDaffExternalRouterTestingDriver`.
+> **Important:**
+>
+> - Static routes are evaluated first
+> - External routes use `path: '**'` with `canMatch` guards
+> - Order matters - more specific types should come first
+> - Always include a fallback route at the end
 
-> These components are also just examples, so you can replace them with whatever components you want.
+### Step 5: Use in Templates
 
-3. Add links to your `AppComponent`:
-
-```ts
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    RouterLink
-  ],
-})
-export class AppComponent {}
-```
+Navigate to external routes using standard Angular router directives:
 
 ```html
-<ul>
-  <li><a routerLink="/">Home</a></li>
-  <li><a routerLink="/test-page">Test</a></li>
-  <li><a routerLink="/other-page">Other Type</a></li>
-  <li><a routerLink="/another-page">Other Type (another)</a></li>
-</ul>
+<!-- app.component.html -->
+<nav>
+	<a routerLink="/">Home</a>
+	<a routerLink="/products/shirts">Shirts</a>
+	<a routerLink="/products/pants">Pants</a>
+	<a routerLink="/about-us">About</a>
+	<a routerLink="/contact">Contact</a>
+	<a routerLink="/cart">Cart</a>
+</nav>
+
 <router-outlet></router-outlet>
 ```
 
-4. Serve your app. You can now navigate to `"/test-page"`, `"/other-page"`, and `"/another-page"` as if it was defined in your Angular routes.
+```ts
+// Or navigate programmatically
+constructor(private router: Router) {}
+
+navigateToProduct() {
+  this.router.navigate(['/products/shirts']);
+}
+```
+
+## Advanced Configuration
+
+See the [configuration guide](/libs/external-router/guides/configuration.md) for all available options.
+
+### Production Setup
+
+For production environments, you'll typically use a driver that connects to your backend:
+
+```ts
+// Example with Magento
+import { provideDaffMagentoExternalRouterDriver } from '@daffodil/external-router/driver/magento';
+
+export const appConfig: ApplicationConfig = {
+	providers: [
+		provideRouter(routes),
+		provideExternalRouter(),
+		provideDaffMagentoExternalRouterDriver(),
+	],
+};
+```
+
+## Next Steps
+
+- [Configure external router options](/libs/external-router/guides/configuration.md)
+- [Create a custom driver](/libs/external-router/guides/drivers/custom.md)
+- [Test your configuration](/libs/external-router/guides/testing.md)
