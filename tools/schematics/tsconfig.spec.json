@@ -2,8 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/spec",
-    "module": "nodenext",
-    "target": "es2022",
+		"module": "commonjs",
+		"moduleResolution": "node",
     "types": [
       "jasmine",
       "node"

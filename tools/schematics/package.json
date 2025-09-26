@@ -27,7 +27,7 @@
     "build": "tsc -p tsconfig.json && cp collection.json ../../dist/commerce/ && cp ng-add/schema.json ../../dist/commerce/ng-add/ && cp -r ng-add/files ../../dist/commerce/ng-add/ && cp package.json ../../dist/commerce/ && cp README.md ../../dist/commerce/",
     "pack": "cd ../../dist/commerce/ && rm -f dist/commerce/*.tgz && npm pack",
     "publish": "cd ../../dist/commerce && npm publish --access=public",
-    "test": "ts-node -P tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
+    "test": "ts-node --compiler-options '{\"module\":\"commonjs\"}' -P tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
   },
   "dependencies": {
     "@angular-devkit/core": "^19.2.12",
