@@ -31,10 +31,10 @@ import {
   daffDocsApiParseHostDirectiveField,
   DaffDocsApiHostDirective,
   DaffDocExample,
+  DaffDoc,
 } from '@daffodil/docs-utils';
 
 import { InlineTagProcessor } from './inline-tag-processor';
-import { defaultIndexer } from '../../../processors/convertToJson';
 import {
   MARKDOWN_CODE_PROCESSOR_NAME,
   MarkdownCodeProcessor,
@@ -44,6 +44,7 @@ import { FilterableProcessor } from '../../../utils/filterable-processor.type';
 import { getDirectiveDecorator } from '../../../utils/get-directive-decorator';
 import {
   IndexableDoc,
+  Indexer,
   indexerFactory,
 } from '../../../utils/indexable';
 import { linkSymbols } from '../../../utils/link-symbols';
@@ -96,18 +97,28 @@ export class RoleProcessor implements FilterableProcessor {
     ],
   );
 
+  readonly defaultIndexer: Indexer<DaffDoc> = (doc: DaffDoc & Document) => ({
+    doc: {
+      id: doc.path,
+      kind: doc.kind,
+      title: doc.title || doc.vFile?.title || doc.name || '',
+    },
+    extraIndices: [],
+  });
+
   readonly baseSearchIndexer = indexerFactory<DaffApiDocBase>(
     [
       'docType',
       'role',
-      'examples',
+      // TODO: expose examples as child docs
+      // 'examples',
       'slug',
       'name',
       'description',
     ],
     {},
     [
-      defaultIndexer,
+      this.defaultIndexer,
     ],
   );
 
