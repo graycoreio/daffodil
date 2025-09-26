@@ -13,6 +13,7 @@ export const magentoNavigationGetRootCategoryIdQuery = gql<MagentoNavgiationGetR
   query ${MAGENTO_NAVIGATION_GET_ROOT_CATEGORY_ID_QUERY_NAME} {
     storeConfig {
       root_category_uid
+      store_code
     }
   }
 `;
