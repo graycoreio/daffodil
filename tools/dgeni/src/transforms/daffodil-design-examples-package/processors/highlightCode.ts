@@ -2,14 +2,26 @@ import {
   Processor,
   Document,
 } from 'dgeni';
-import hljs from 'highlight.js';
-import scss from 'highlight.js/lib/languages/scss';
-import typescript from 'highlight.js/lib/languages/typescript';
-import xml from 'highlight.js/lib/languages/xml';
+import { createHighlighter } from 'shiki';
 
-hljs.registerLanguage('typescript', typescript);
-hljs.registerLanguage('xml', xml);
-hljs.registerLanguage('scss', scss);
+let highlighter: any = null;
+
+async function getHighlighter() {
+  if (!highlighter) {
+    highlighter = await createHighlighter({
+      themes: ['light-plus'],
+      langs: []
+    });
+
+    // Load languages lazily
+    await Promise.all([
+      highlighter.loadLanguage('typescript'),
+      highlighter.loadLanguage('xml'),
+      highlighter.loadLanguage('scss')
+    ]);
+  }
+  return highlighter;
+}
 
 
 export class DesignExampleHighlightCodeProcessor implements Processor {
@@ -20,12 +32,25 @@ export class DesignExampleHighlightCodeProcessor implements Processor {
 
   constructor() {}
 
-  $process(docs: Document[]) {
+  async $process(docs: Document[]): Promise<Document[]> {
+    const shiki = await getHighlighter();
     docs.map(
       d => d.files.map(
-        (file) => file.content =
-          hljs.highlight(file.language, file.content).value,
+        (file) => {
+          try {
+            file.content = shiki.codeToHtml(file.content, {
+              lang: file.language || 'text',
+              theme: 'light-plus'
+            });
+          } catch (error) {
+            file.content = shiki.codeToHtml(file.content, {
+              lang: 'text',
+              theme: 'light-plus'
+            });
+          }
+        },
       ),
     );
+    return docs;
   }
 };

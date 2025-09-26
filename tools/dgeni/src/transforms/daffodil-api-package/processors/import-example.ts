@@ -1,11 +1,23 @@
 import { Document } from 'dgeni';
-import hljs from 'highlight.js';
-import typescript from 'highlight.js/lib/languages/typescript';
+import { createHighlighter } from 'shiki';
 
 import { MarkdownCodeProcessor } from '../../../processors/markdown';
 import { FilterableProcessor } from '../../../utils/filterable-processor.type';
 
-hljs.registerLanguage('typescript', typescript);
+let highlighter: any = null;
+
+async function getHighlighter() {
+  if (!highlighter) {
+    highlighter = await createHighlighter({
+      themes: ['light-plus'],
+      langs: []
+    });
+
+    // Load only TypeScript
+    await highlighter.loadLanguage('typescript');
+  }
+  return highlighter;
+}
 
 export const IMPORT_EXAMPLE_PROCESSOR_NAME = 'importExample';
 
@@ -23,10 +35,16 @@ export class ImportExampleProcessor implements FilterableProcessor {
     private markdown: MarkdownCodeProcessor,
   ) {}
 
-  $process(docs: Array<Document>): Array<Document> {
+  async $process(docs: Array<Document>): Promise<Array<Document>> {
+    const shiki = await getHighlighter();
     return docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
-        doc.importExample = `<code>${hljs.highlight(`import { ${doc.name} } from '${doc.parent.name}'`, { language: 'typescript' }).value}</code>`;
+        const highlighted = shiki.codeToHtml(`import { ${doc.name} } from '${doc.parent.name}'`, {
+          lang: 'typescript',
+          theme: 'light-plus'
+        });
+        const content = highlighted.replace(/<pre[^>]*><code[^>]*>/, '').replace(/<\/code><\/pre>/, '');
+        doc.importExample = `<code>${content}</code>`;
       }
       return doc;
     });

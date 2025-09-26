@@ -1,13 +1,7 @@
 import { Document } from 'dgeni';
-import hljs from 'highlight.js';
-import bash from 'highlight.js/lib/languages/bash';
-import graphql from 'highlight.js/lib/languages/graphql';
-import scss from 'highlight.js/lib/languages/scss';
-import typescript from 'highlight.js/lib/languages/typescript';
-import xml from 'highlight.js/lib/languages/xml';
+import { createHighlighter } from 'shiki';
 import { slugify } from 'markdown-toc';
 import { Marked } from 'marked';
-import { markedHighlight } from 'marked-highlight';
 
 import {
   DaffDocExample,
@@ -17,13 +11,29 @@ import {
 import { FilterableProcessor } from '../utils/filterable-processor.type';
 import { linkSymbols } from '../utils/link-symbols';
 
-hljs.registerLanguage('typescript', typescript);
-hljs.registerLanguage('ts', typescript);
-hljs.registerLanguage('xml', xml);
-hljs.registerLanguage('scss', scss);
-hljs.registerLanguage('bash', bash);
-hljs.registerLanguage('graphql', graphql);
-hljs.registerLanguage('gql', graphql);
+let highlighter: any = null;
+
+async function getHighlighter() {
+  if (!highlighter) {
+    highlighter = await createHighlighter({
+      themes: ['light-plus'],
+      langs: []
+    });
+
+    // Load languages lazily only when needed
+    await Promise.all([
+      highlighter.loadLanguage('typescript'),
+      highlighter.loadLanguage('javascript'),
+      highlighter.loadLanguage('xml'),
+      highlighter.loadLanguage('html'),
+      highlighter.loadLanguage('scss'),
+      highlighter.loadLanguage('css'),
+      highlighter.loadLanguage('bash'),
+      highlighter.loadLanguage('graphql')
+    ]);
+  }
+  return highlighter;
+}
 
 export const MARKDOWN_CODE_PROCESSOR_NAME = 'markdown';
 
@@ -33,39 +43,56 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
    * Needed so that `slugify` can generate unique slugs.
    */
   private headingList: Array<string> = [];
-  private marked = new Marked(
-    markedHighlight({
-      highlight: (code, lang, info) => {
-        const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-        return lang === 'ts' || lang === 'typescript'
-          ? linkSymbols(hljs.highlight(code, { language }).value)
-          : hljs.highlight(code, { language }).value;
-      },
-    }),
-    {
-      walkTokens: (token) => {
-        switch (token.type) {
-          case 'link':
-            const [link, anchor] = token.href.split('#');
-            const alias = this.aliasMap.getDocs(link)[0];
-            token.href = `${alias?.path || daffDocsGetLinkUrl(token.href)}${anchor ? `#${anchor}` : ''}`;
-            break;
+  private marked: any = null;
 
-          default:
-            break;
-        }
-      },
-      renderer: {
-        heading: (text: string, level: number, raw: string) => {
-          const count = this.headingList.filter((heading) => heading === raw).length;
-          this.headingList.push(raw);
-          return `<h${level} id="${slugify(raw, count > 0 ? { num: count } : undefined)}">${text}</h${level}>`;
+  private async getMarked() {
+    if (!this.marked) {
+      const shiki = await getHighlighter();
+      this.marked = new Marked({
+        walkTokens: (token) => {
+          switch (token.type) {
+            case 'link':
+              const [link, anchor] = token.href.split('#');
+              const alias = this.aliasMap.getDocs(link)[0];
+              token.href = `${alias?.path || daffDocsGetLinkUrl(token.href)}${anchor ? `#${anchor}` : ''}`;
+              break;
+
+            default:
+              break;
+          }
         },
-        codespan: (text: string): string | false =>
-          `<code>${linkSymbols(text)}</code>`,
-      },
-    },
-  );
+        renderer: {
+          heading: (text: string, level: number, raw: string) => {
+            const count = this.headingList.filter((heading) => heading === raw).length;
+            this.headingList.push(raw);
+            return `<h${level} id="${slugify(raw, count > 0 ? { num: count } : undefined)}">${text}</h${level}>`;
+          },
+          codespan: (text: string): string | false =>
+            `<code>${linkSymbols(text)}</code>`,
+          code: (code: string, language?: string) => {
+            try {
+              const supportedLangs = ['typescript', 'ts', 'javascript', 'js', 'xml', 'html', 'scss', 'css', 'bash', 'sh', 'graphql', 'gql'];
+              const lang = supportedLangs.includes(language || '') ? (language === 'ts' ? 'typescript' : language === 'gql' ? 'graphql' : language === 'sh' ? 'bash' : language === 'js' ? 'javascript' : language) : 'text';
+              const highlighted = shiki.codeToHtml(code, {
+                lang: lang || 'text',
+                theme: 'light-plus'
+              });
+              return language === 'ts' || language === 'typescript'
+                ? linkSymbols(highlighted)
+                : highlighted;
+            } catch (error) {
+              const fallbackHighlighted = shiki.codeToHtml(code, {
+                lang: 'text',
+                theme: 'light-plus'
+              });
+              return fallbackHighlighted;
+            }
+          }
+        },
+      });
+    }
+    return this.marked;
+  }
 
   name = MARKDOWN_CODE_PROCESSOR_NAME;
   $runAfter = ['paths-computed'];
@@ -77,31 +104,34 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
     private aliasMap,
   ) {}
 
-  $process(docs: Document[]) {
-    return docs.map((doc) => {
+  async $process(docs: Document[]): Promise<Document[]> {
+    const processedDocs = [];
+    for (const doc of docs) {
       if (this.docTypes.includes(doc.docType)) {
-        doc[this.contentKey] = this.parse(typeof doc.description === 'undefined' ? doc.content : doc.description);
+        doc[this.contentKey] = await this.parse(typeof doc.description === 'undefined' ? doc.content : doc.description);
         if (doc.examples) {
-          doc.examples = (<Array<DaffDocExample>>doc.examples).map((example) => ({
+          doc.examples = await Promise.all((<Array<DaffDocExample>>doc.examples).map(async (example) => ({
             ...example,
-            body: this.parse(example.body),
-          }));
+            body: await this.parse(example.body),
+          })));
         }
         if (doc.longDescription) {
-          doc.longDescription = this.parse(doc.longDescription).replaceAll(/(^<p>)|(<\/p>(\n)*$)/gm, '');
+          doc.longDescription = (await this.parse(doc.longDescription)).replaceAll(/(^<p>)|(<\/p>(\n)*$)/gm, '');
         }
         doc.slug = slugify(doc.name || doc.title);
         if (doc.sourceApiBlock) {
-          doc.sourceApiBlock = this.parse(`\`\`\`ts\n${doc.sourceApiBlock}\n\`\`\``);
+          doc.sourceApiBlock = await this.parse(`\`\`\`ts\n${doc.sourceApiBlock}\n\`\`\``);
         }
-      };
-      return doc;
-    });
+      }
+      processedDocs.push(doc);
+    }
+    return processedDocs;
   }
 
-  parse(text: string): string {
+  async parse(text: string): Promise<string> {
     this.headingList = [];
-    return <string>this.marked.parse(text);
+    const marked = await this.getMarked();
+    return <string>marked.parse(text);
   }
 };
 

@@ -12,7 +12,6 @@
 	background: var(--daff-base-bg);
 	color: var(--daff-base-text);
 
-	@include meta.load-css('highlight.js/scss/a11y-light');
 
 	@include branding.daff-branding-theme(daff-theme.$theme);
 	@include daff-theme.daff-component-themes(daff-theme.$theme);
@@ -23,7 +22,6 @@
 	background: var(--daff-base-bg);
 	color: var(--daff-base-text);
 
-	@include meta.load-css('highlight.js/scss/a11y-dark');
 
 	@include branding.daff-branding-theme(daff-theme.$theme-dark);
 	@include daff-theme.daff-component-themes(daff-theme.$theme-dark);

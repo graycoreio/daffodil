@@ -10,7 +10,6 @@
 	background: var(--daff-base-bg);
 	color: var(--daff-base-text);
 
-	@include meta.load-css('highlight.js/scss/a11y-light');
 
 	@include daff-theme.daff-component-themes(daff-theme.$theme);
 	@include dl-components.component-themes(daff-theme.$theme);
@@ -20,7 +19,6 @@
 	background: var(--daff-base-bg);
 	color: var(--daff-base-text);
 
-	@include meta.load-css('highlight.js/scss/a11y-dark');
 
 	@include daff-theme.daff-component-themes(daff-theme.$theme-dark);
 	@include dl-components.component-themes(daff-theme.$theme-dark);
