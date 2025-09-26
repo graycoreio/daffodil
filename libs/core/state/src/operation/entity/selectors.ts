@@ -1,9 +1,9 @@
-import type { EntitySelectors } from '@ngrx/entity/src/models';
 import {
   createSelector,
   defaultMemoize,
   MemoizedSelector,
 } from '@ngrx/store';
+import type { EntitySelectors } from 'node_modules/@ngrx/entity/src/models';
 
 import { DaffIdentifiable } from '@daffodil/core';
 

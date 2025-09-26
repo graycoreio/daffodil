@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "../../dist/commerce",
     "rootDir": ".",
-    "module": "commonjs",
+    "module": "node16",
+		"moduleResolution": "node16",
     "target": "es2022",
     "lib": ["es2022"],
     "declaration": true,

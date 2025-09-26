@@ -4,7 +4,6 @@
     "outDir": "../../out-tsc/lib",
     "declarationMap": true,
     "module": "es2015",
-    "moduleResolution": "node",
     "declaration": true,
     "sourceMap": true,
     "inlineSources": true,

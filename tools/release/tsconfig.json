@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "../dist/out-tsc/tools",
     "rootDir": ".",
-    "module": "commonjs",
+    "module": "node16",
+		"moduleResolution": "node16",
     "target": "esnext",
     "types": [
       "jasmine",

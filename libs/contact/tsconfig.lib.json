@@ -3,7 +3,6 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/lib",
     "declarationMap": true,
-    "moduleResolution": "node",
     "declaration": true,
     "inlineSources": true,
     "emitDecoratorMetadata": true,
