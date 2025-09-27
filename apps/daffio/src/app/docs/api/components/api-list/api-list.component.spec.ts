@@ -99,7 +99,7 @@ describe('DaffioApiListComponent', () => {
   describe('on link', () => {
     it('should set routerLink', () => {
       wrapper.apiListValue.children.forEach((doc, i) => {
-        expect(links[i].attributes['ng-reflect-router-link']).toEqual(<any>doc.path);
+        expect(links[i].attributes['href'].slice(1)).toEqual(<any>doc.path);
       });
     });
   });

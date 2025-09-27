@@ -75,7 +75,7 @@ describe('DaffioApiListSectionComponent', () => {
 
   describe('on link', () => {
     it('should set routerLink', () => {
-      expect(links[0].attributes['ng-reflect-router-link']).toEqual(component.children()[0].path);
+      expect(links[0].attributes['href'].slice(1)).toEqual(component.children()[0].path);
     });
   });
 });

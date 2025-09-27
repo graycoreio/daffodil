@@ -119,7 +119,7 @@ describe('DaffioApiPackageComponent', () => {
     it('should render a link with the title', () => {
       packageLinks.forEach((de, i) => {
         expect(de.nativeElement.innerText).toEqual(subpackages[i].title);
-        expect(de.attributes['ng-reflect-router-link']).toEqual(subpackages[i].path);
+        expect(de.attributes['href'].slice(1)).toEqual(subpackages[i].path);
       });
     });
 

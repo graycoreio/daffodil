@@ -53,7 +53,7 @@ describe('@daffodil/paypal/routing | DaffPaypalExpressRedirectEffects', () => {
     let paypalLoadAction: DaffGeneratePaypalExpressTokenSuccess;
 
     beforeEach(() => {
-      window.location = <Location>{};
+      window.location = <string & Location>{};
       paypalLoadAction = new DaffGeneratePaypalExpressTokenSuccess(paypalTokenResponse);
       actions$ = hot('--a', { a: paypalLoadAction });
       expected = cold('---');

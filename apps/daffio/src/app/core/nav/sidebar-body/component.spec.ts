@@ -60,7 +60,7 @@ describe('DaffioNavSidebarBodyComponent', () => {
 
   it('should render the links', () => {
     fixture.debugElement.queryAll(By.css('a[daffioHeaderItem]')).forEach((de, i) => {
-      expect(de.attributes['ng-reflect-router-link']).toEqual(links[i].url);
+      expect(de.attributes['href'].slice(1)).toEqual(links[i].url);
       expect(de.nativeElement.innerText).toEqual(links[i].title);
     });
   });

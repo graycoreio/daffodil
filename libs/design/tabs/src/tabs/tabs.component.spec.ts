@@ -121,7 +121,7 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
     it('should render the tabs as anchors with the current path', () => {
       fixture.debugElement.queryAll(By.directive(DaffTabActivatorComponent)).forEach((tab) => {
         expect((<HTMLAnchorElement>tab.nativeElement).tagName).toEqual('A');
-        expect((<HTMLAnchorElement>tab.nativeElement).attributes.getNamedItem('ng-reflect-router-link').value).toEqual(path);
+        expect(tab.attributes['href'].slice(1)).toContain(path);
       });
     });
 
@@ -165,7 +165,7 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
 
       it('should use that value as the router link', () => {
         fixture.debugElement.queryAll(By.directive(DaffTabActivatorComponent)).forEach((tab) => {
-          expect((<HTMLAnchorElement>tab.nativeElement).attributes.getNamedItem('ng-reflect-router-link').value).toEqual(wrapper.urlValue);
+          expect(tab.attributes['href'].slice(1)).toContain(wrapper.urlValue);
         });
       });
     });
