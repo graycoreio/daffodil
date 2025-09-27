@@ -60,9 +60,9 @@ describe('ng-add schematic - module-based apps', () => {
       expect(routingModuleExists).toBe(true);
     });
 
-    it('should add providers to app.module.ts', async () => {
+    it('should add providers to app-module.ts', async () => {
       const tree = await runner.runSchematic('ng-add', defaultOptions, appTree);
-      const appModuleContent = tree.readContent('/projects/test-app/src/app/app.module.ts');
+      const appModuleContent = tree.readContent('/projects/test-app/src/app/app-module.ts');
 
       expect(appModuleContent).toContain('provideHttpClient()');
       expect(appModuleContent).toContain('provideDaffInMemoryDriver({ apiBase: \'daff-in-memory-web-api\', passThroughUnknownRequests: true})');
@@ -72,18 +72,18 @@ describe('ng-add schematic - module-based apps', () => {
 
     it('should generate properly formatted providers without syntax errors', async () => {
       const tree = await runner.runSchematic('ng-add', defaultOptions, appTree);
-      const appModuleContent = tree.readContent('/projects/test-app/src/app/app.module.ts');
+      const appModuleContent = tree.readContent('/projects/test-app/src/app/app-module.ts');
 
       // Verify no malformed provider strings
       expect(appModuleContent).not.toContain('Map, Map, Map');
       expect(appModuleContent).not.toContain('Driver,');
       expect(appModuleContent).not.toContain(',,'); // No double commas
-      
+
       // Verify proper formatting of complex provider
       expect(appModuleContent).toContain('provideDaffDevTools({');
       expect(appModuleContent).toContain('startCollapsed: false');
       expect(appModuleContent).toContain('withDriverConfig({');
-      
+
       // Verify all driver configurations are properly structured
       expect(appModuleContent).toContain('id: \'in-memory\'');
       expect(appModuleContent).toContain('id: \'magento\'');

@@ -43,8 +43,8 @@ describe('ng-add schematic - standalone apps', () => {
   });
 
   it('should detect standalone application correctly', async () => {
-    // Verify that app.module.ts does not exist in standalone app
-    expect(standaloneAppTree.exists('/projects/test-app/src/app/app.module.ts')).toBe(false);
+    // Verify that app-module.ts does not exist in standalone app
+    expect(standaloneAppTree.exists('/projects/test-app/src/app/app-module.ts')).toBe(false);
     expect(standaloneAppTree.exists('/projects/test-app/src/app/app.config.ts')).toBe(true);
   });
 
@@ -79,12 +79,12 @@ describe('ng-add schematic - standalone apps', () => {
     const tree = await runner.runSchematic('ng-add', defaultOptions, standaloneAppTree);
 
     // Original Angular standalone files should still exist
-    expect(tree.exists('/projects/test-app/src/app/app.component.ts')).toBe(true);
+    expect(tree.exists('/projects/test-app/src/app/app.ts')).toBe(true);
     expect(tree.exists('/projects/test-app/src/app/app.config.ts')).toBe(true);
     expect(tree.exists('/projects/test-app/src/main.ts')).toBe(true);
 
     // Module file should not be created
-    expect(tree.exists('/projects/test-app/src/app/app.module.ts')).toBe(false);
+    expect(tree.exists('/projects/test-app/src/app/app-module.ts')).toBe(false);
   });
 
   it('should configure provideDaffDevTools with correct structure', async () => {
@@ -130,7 +130,7 @@ describe('ng-add schematic - standalone apps', () => {
     const appConfigContent = tree.readContent('/projects/test-app/src/app/app.config.ts');
 
     // Verify specific import statements are properly formed
-    expect(appConfigContent).toContain('import { ApplicationConfig, provideZoneChangeDetection } from \'@angular/core\';');
+    expect(appConfigContent).toContain('import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from \'@angular/core\';');
     expect(appConfigContent).toContain('import { provideHttpClient } from \'@angular/common/http\';');
     expect(appConfigContent).toContain('import { provideDaffDevTools } from \'@daffodil/dev-tools\';');
     expect(appConfigContent).toContain('import { withDriverConfig } from \'@daffodil/dev-tools\';');

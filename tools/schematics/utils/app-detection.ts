@@ -6,7 +6,7 @@ import { Tree } from '@angular-devkit/schematics';
  * This function checks for the presence of specific files and patterns to distinguish
  * between module-based and standalone Angular applications:
  *
- * 1. If `app.module.ts` exists, it's a module-based app
+ * 1. If `app-module.ts` exists, it's a module-based app
  * 2. If `app.config.ts` exists, it's a standalone app
  * 3. If `main.ts` contains `bootstrapApplication`, it's a standalone app
  *
@@ -15,11 +15,11 @@ import { Tree } from '@angular-devkit/schematics';
  * @returns `true` if the app uses standalone architecture, `false` if module-based
  */
 export function isStandaloneApp(tree: Tree, project: any): boolean {
-  const appModulePath = `${project.sourceRoot}/app/app.module.ts`;
+  const appModulePath = `${project.sourceRoot}/app/app-module.ts`;
   const appConfigPath = `${project.sourceRoot}/app/app.config.ts`;
   const mainPath = `${project.sourceRoot}/main.ts`;
 
-  // Check if app.module.ts exists
+  // Check if app-module.ts exists
   if (tree.exists(appModulePath)) {
     return false; // Module-based app
   }

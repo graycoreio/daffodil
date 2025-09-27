@@ -7,7 +7,7 @@ import { addProvidersToModule } from '../../../utils';
 import { NgAddOptions } from '../../schema';
 
 export const addCoreImports = (_options: NgAddOptions, project: any): Rule => (tree: Tree) => {
-  const appModulePath = `${project.sourceRoot}/app/app.module.ts`;
+  const appModulePath = `${project.sourceRoot}/app/app-module.ts`;
 
   const coreProviders = [
     'provideHttpClient()',
@@ -15,11 +15,11 @@ export const addCoreImports = (_options: NgAddOptions, project: any): Rule => (t
     'provideDaffProductInMemoryDriver()',
     `provideDaffDevTools({
         startCollapsed: false
-      }, 
-      withDriverConfig({ 
-        name: '@daffodil/product/driver', 
-        status: 'connected', 
-        currentDriver: 'in-memory', 
+      },
+      withDriverConfig({
+        name: '@daffodil/product/driver',
+        status: 'connected',
+        currentDriver: 'in-memory',
         availableDrivers: [
           {
             id: 'in-memory',
@@ -47,7 +47,7 @@ export const addCoreImports = (_options: NgAddOptions, project: any): Rule => (t
               ['endpoint', { type: 'input', id: 'endpoint', label: 'Endpoint', placeholder: "https://myshop.myshopify.com/api/2025-07/graphql.json" }],
             ]),
           },
-        ] 
+        ]
       })
       )`,
     'provideMagentoDriver(DEMO_MAGENTO_ENDPOINT_SWITCH)',

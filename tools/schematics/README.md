@@ -41,7 +41,7 @@ ng add @daffodil/ecommerce --backend=magento --features=cart,product-catalog,des
 ### Available Features
 
 - `cart`: Shopping cart functionality with state management
-- `product-catalog`: Product listing and details with state management  
+- `product-catalog`: Product listing and details with state management
 - `customer-auth`: Customer authentication and account management
 - `search`: Product search capabilities
 - `checkout`: Checkout process and order management
@@ -52,7 +52,7 @@ ng add @daffodil/ecommerce --backend=magento --features=cart,product-catalog,des
 This schematic will:
 
 1. **Add Dependencies**: Install necessary Daffodil packages based on selected features
-2. **Configure Modules**: Add feature modules to your app.module.ts
+2. **Configure Modules**: Add feature modules to your app-module.ts
 3. **Setup State Management**: Configure NgRx stores for selected features
 4. **Add Components**: Create basic component templates for selected features
 5. **Configure Environment**: Setup environment configuration for your chosen backend
@@ -63,7 +63,7 @@ This schematic will:
 After running `ng add @daffodil/ecommerce` with cart and product-catalog features:
 
 - Dependencies like `@daffodil/cart`, `@daffodil/product`, and `@ngrx/store` will be added
-- Your `app.module.ts` will import `DaffCartStateModule` and `DaffProductStateModule`
+- Your `app-module.ts` will import `DaffCartStateModule` and `DaffProductStateModule`
 - A basic `ProductListComponent` will be generated
 - Environment configuration will be setup for your chosen backend
 

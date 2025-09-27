@@ -85,7 +85,7 @@ describe('Utils', () => {
       tree.create('src/main.ts', `
         import { bootstrapApplication } from '@angular/platform-browser';
         import { AppComponent } from './app/app.component';
-        
+
         bootstrapApplication(AppComponent);
       `);
 
@@ -94,9 +94,9 @@ describe('Utils', () => {
       expect(result).toBe(true);
     });
 
-    it('should return false when only app.module.ts exists', () => {
+    it('should return false when only app-module.ts exists', () => {
       const tree = Tree.empty();
-      tree.create('src/app/app.module.ts', `
+      tree.create('src/app/app-module.ts', `
         import { NgModule } from '@angular/core';
         @NgModule({})
         export class AppModule {}
@@ -109,8 +109,8 @@ describe('Utils', () => {
   });
 
   describe('addImportsToModule', () => {
-    it('should add imports to app.module.ts', () => {
-      const modulePath = '/projects/test-app/src/app/app.module.ts';
+    it('should add imports to app-module.ts', () => {
+      const modulePath = '/projects/test-app/src/app/app-module.ts';
       const imports = ['DaffCoreModule', 'DaffCartStateModule'];
 
       const result = addImportsToModule(moduleAppTree, modulePath, imports);
