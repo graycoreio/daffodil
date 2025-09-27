@@ -5,15 +5,12 @@ import { RouterModule } from '@angular/router';
 
 import { DaffioWhyPwaViewComponent } from './view/why-pwa-view.component';
 import { DaffioWhyPwaRoutingModule } from './why-pwa-routing.module';
-import { TemplateComponent } from '../../core/template/template.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
-
-    TemplateComponent,
 
     DaffioWhyPwaRoutingModule,
     DaffioWhyPwaViewComponent,
