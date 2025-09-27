@@ -1,9 +1,10 @@
-import { DOCUMENT } from '@angular/common';
+
 import {
   Injectable,
   Inject,
   Renderer2,
   RendererFactory2,
+  DOCUMENT,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 

@@ -1,7 +1,8 @@
-import { DOCUMENT } from '@angular/common';
+
 import {
   Injectable,
   Inject,
+  DOCUMENT,
 } from '@angular/core';
 import {
   Observable,

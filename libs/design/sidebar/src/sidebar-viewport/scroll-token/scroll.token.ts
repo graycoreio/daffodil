@@ -1,7 +1,8 @@
-import { DOCUMENT } from '@angular/common';
+
 import {
   ElementRef,
   inject,
+  DOCUMENT,
 } from '@angular/core';
 
 import { createSingleInjectionToken } from '@daffodil/core';

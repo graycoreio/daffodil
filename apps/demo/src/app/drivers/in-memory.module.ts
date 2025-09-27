@@ -6,8 +6,10 @@ import {
 import { DaffAuthInMemoryDriverModule } from '@daffodil/auth/driver/in-memory';
 import { DaffAuthorizeNetInMemoryDriverModule } from '@daffodil/authorizenet/driver/in-memory';
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
-import { DaffCategoryInMemoryDriverModule } from '@daffodil/category/driver/in-memory';
-import { DaffInMemoryBackendCategoryService } from '@daffodil/category/driver/in-memory';
+import {
+  DaffCategoryInMemoryDriverModule ,
+  DaffInMemoryBackendCategoryService,
+} from '@daffodil/category/driver/in-memory';
 import { DaffInMemoryDriverModule } from '@daffodil/driver/in-memory';
 import { provideDaffExternalRouterInMemoryDriver } from '@daffodil/external-router/driver/in-memory';
 import { DaffGeographyInMemoryDriverModule } from '@daffodil/geography/driver/in-memory';

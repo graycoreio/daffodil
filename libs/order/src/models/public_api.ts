@@ -13,7 +13,10 @@ export {
   DaffConfigurableOrderItem,
   DaffConfigurableOrderItemAttribute,
 } from './configurable-order-item';
-export { DaffOrderPayment } from './order-payment';
+export {
+  DaffOrderPayment,
+  DaffOrderCreditCardPayment,
+} from './order-payment';
 export { DaffOrderShipmentItem } from './order-shipment-item';
 export { DaffOrderShipmentTracking } from './order-shipment-tracking';
 export { DaffOrderShipment } from './order-shipment';

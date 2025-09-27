@@ -1,5 +1,7 @@
-import { DaffLocatable } from '@daffodil/core';
-import { DaffCollectionRequest } from '@daffodil/core';
+import {
+  DaffLocatable ,
+  DaffCollectionRequest,
+} from '@daffodil/core';
 
 import { DaffCategory } from './category';
 
@@ -8,7 +10,7 @@ import { DaffCategory } from './category';
  */
 export enum DaffCategoryRequestKind {
   URL = 'URL',
-  // eslint-disable-next-line @typescript-eslint/no-shadow
+
   ID = 'ID'
 }
 

@@ -4,8 +4,7 @@ import {
   DaffFilter,
   daffFilterArrayToDict,
   DaffSortDirectionEnum,
-} from '@daffodil/core';
-import {
+
   DaffCollectionRequest,
   DaffCollectionMetadata,
 } from '@daffodil/core';

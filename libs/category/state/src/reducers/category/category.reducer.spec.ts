@@ -26,8 +26,8 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
-import { DaffSortDirectionEnum } from '@daffodil/core';
 import {
+  DaffSortDirectionEnum ,
   DaffFilterEqual,
   DaffFilterEqualOption,
   DaffFilterRangeNumeric,

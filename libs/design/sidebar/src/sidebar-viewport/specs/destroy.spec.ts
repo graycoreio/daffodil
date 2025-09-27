@@ -1,6 +1,8 @@
 import { A11yModule } from '@angular/cdk/a11y';
-import { DOCUMENT } from '@angular/common';
-import { Component } from '@angular/core';
+import {
+  Component,
+  DOCUMENT,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,

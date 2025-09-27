@@ -1,7 +1,8 @@
-import { DOCUMENT } from '@angular/common';
+
 import {
   Component,
   getDebugNode,
+  DOCUMENT,
 } from '@angular/core';
 import {
   waitForAsync,

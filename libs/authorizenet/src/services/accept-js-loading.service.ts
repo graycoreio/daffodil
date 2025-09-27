@@ -1,7 +1,8 @@
-import { DOCUMENT } from '@angular/common';
+
 import {
   Inject,
   Injectable,
+  DOCUMENT,
 } from '@angular/core';
 
 import { DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION } from './accept-js-production.token';

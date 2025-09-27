@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { provideServerRendering } from '@angular/platform-server';
-
-
+import { provideServerRendering } from '@angular/ssr';
 
 import { DaffioAppComponent } from './app.component';
 import { AppModule } from './app.module';

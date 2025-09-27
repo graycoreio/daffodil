@@ -1,5 +1,7 @@
-import { DaffFilterEqual } from '../../../../../filterable/public_api';
-import { DaffFilterEqualToggleRequest } from '../../../../../filterable/public_api';
+import {
+  DaffFilterEqual ,
+  DaffFilterEqualToggleRequest,
+} from '../../../../../filterable/public_api';
 
 /**
  * Oscillates the applied state of the matching filter options of a {@link DaffFilterEqual}

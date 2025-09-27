@@ -5,8 +5,10 @@ import {
   throwError,
 } from 'rxjs';
 
-import { DaffExternalScriptServiceInterface } from '@daffodil/core/external-script';
-import { DaffExternalScript } from '@daffodil/core/external-script';
+import {
+  DaffExternalScriptServiceInterface ,
+  DaffExternalScript,
+} from '@daffodil/core/external-script';
 
 import { TestScripts } from './constants';
 

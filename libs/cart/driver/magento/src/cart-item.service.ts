@@ -45,8 +45,8 @@ import {
   listCartItems,
   removeCartItem,
   updateCartItem,
+  MagentoUpdateCartItemResponse,
 } from './queries/public_api';
-import { MagentoUpdateCartItemResponse } from './queries/public_api';
 import {
   transformCompositeCartItem,
   transformSimpleCartItem,

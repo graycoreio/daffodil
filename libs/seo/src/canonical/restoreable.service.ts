@@ -1,7 +1,8 @@
-import { DOCUMENT } from '@angular/common';
+
 import {
   Inject,
   Injectable,
+  DOCUMENT,
 } from '@angular/core';
 
 import { DaffSeoRestoreableServiceInterface } from '../models/public_api';

@@ -5,8 +5,7 @@ import {
   DaffFilters,
   DaffSortDirectionEnum,
   DaffSortOption,
-} from '@daffodil/core';
-import {
+
   DaffCollectionMetadata,
   DaffCollectionRequest,
 } from '@daffodil/core';

@@ -73,8 +73,8 @@ import {
   DaffState,
   daffComposeReducers,
   daffIdentityReducer,
+  DaffStateError,
 } from '@daffodil/core/state';
-import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartFacade } from './cart.facade';
 

@@ -15,8 +15,8 @@ import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 
-import { DaffSortDirectionEnum } from '@daffodil/core';
 import {
+  DaffSortDirectionEnum ,
   DaffCollectionRequest,
   daffFilterArrayToDict,
   DaffFilterRequest,
@@ -27,8 +27,7 @@ import {
   DaffCollectionChangePageSize,
   DaffCollectionChangeCurrentPage,
   DaffCollectionChangeSortingOption,
-} from '@daffodil/core/state';
-import {
+
   DaffCollectionApplyFilters,
   DaffCollectionClearFilters,
   DaffCollectionRemoveFilters,

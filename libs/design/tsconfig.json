@@ -100,7 +100,7 @@
       "@daffodil/design/switch": [
         "libs/design/switch/src"
       ],
-       "@daffodil/design/tabs": [
+			"@daffodil/design/tabs": [
         "libs/design/tabs/src"
       ],
       "@daffodil/design/text-snippet": [

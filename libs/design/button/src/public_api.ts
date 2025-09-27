@@ -14,3 +14,7 @@ export { DaffRaisedButtonComponent } from './button/raised/raised.component';
 export { DaffStrokedButtonComponent } from './button/stroked/stroked.component';
 export { DaffUnderlineButtonComponent } from './button/underline/underline.component';
 export { DaffIconButtonComponent } from './button/icon/icon.component';
+export {
+  DaffButtonSizableDirective,
+  DaffButtonSize,
+} from './button/button-sizable.directive';

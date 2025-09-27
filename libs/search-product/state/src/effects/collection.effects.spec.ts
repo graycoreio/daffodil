@@ -45,8 +45,10 @@ import {
   DaffSearchStateTestingModule,
   MockDaffSearchFacade,
 } from '@daffodil/search/state/testing';
-import { DaffSearchProductDriverResponse } from '@daffodil/search-product/driver';
-import { DaffSearchProductDriverInterface } from '@daffodil/search-product/driver';
+import {
+  DaffSearchProductDriverResponse ,
+  DaffSearchProductDriverInterface,
+} from '@daffodil/search-product/driver';
 import { DaffSearchProductTestingDriverModule } from '@daffodil/search-product/driver/testing';
 import { DaffSearchProductCollectionActionTypes } from '@daffodil/search-product/state';
 import { DaffSearchProductStateTestingModule } from '@daffodil/search-product/state/testing';

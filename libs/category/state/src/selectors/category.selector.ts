@@ -12,8 +12,10 @@ import {
 import { DaffProduct } from '@daffodil/product';
 import { getDaffProductSelectors } from '@daffodil/product/state';
 
-import { DaffCategoryEntitiesMemoizedSelectors } from './category-entities/category-entities.selector';
-import { getDaffCategoryEntitiesSelectors } from './category-entities/category-entities.selector';
+import {
+  DaffCategoryEntitiesMemoizedSelectors ,
+  getDaffCategoryEntitiesSelectors,
+} from './category-entities/category-entities.selector';
 import {
   DaffCategoryFeatureMemoizedSelectors,
   getDaffCategoryFeatureSelector,

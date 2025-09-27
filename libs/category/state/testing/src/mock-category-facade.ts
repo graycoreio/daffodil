@@ -3,8 +3,10 @@ import { Action } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffCategory } from '@daffodil/category';
-import { DaffCategoryFacadeInterface } from '@daffodil/category/state';
-import { DaffCategoryReducerState } from '@daffodil/category/state';
+import {
+  DaffCategoryFacadeInterface ,
+  DaffCategoryReducerState,
+} from '@daffodil/category/state';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 

@@ -6,8 +6,10 @@ import {
 } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 
-import { DaffContactRequest } from '@daffodil/contact/driver';
-import { DaffContactResponse } from '@daffodil/contact/driver';
+import {
+  DaffContactRequest ,
+  DaffContactResponse,
+} from '@daffodil/contact/driver';
 import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 
 import { DAFF_CONTACT_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';

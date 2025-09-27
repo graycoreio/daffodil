@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffFilterRangeNumericRequest } from '@daffodil/core';
-import { DaffFilterType } from '@daffodil/core';
+import {
+  DaffFilterRangeNumericRequest ,
+  DaffFilterType,
+} from '@daffodil/core';
 
 import { DaffFilterRequestRangeNumericFactory } from './request';
 

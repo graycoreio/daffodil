@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffFilterRangeNumericToggleRequest } from '@daffodil/core';
-import { DaffFilterType } from '@daffodil/core';
+import {
+  DaffFilterRangeNumericToggleRequest ,
+  DaffFilterType,
+} from '@daffodil/core';
 
 import { DaffFilterToggleRequestRangeNumericFactory } from './toggle-request';
 

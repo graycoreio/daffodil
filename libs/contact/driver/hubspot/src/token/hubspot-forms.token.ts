@@ -1,6 +1,9 @@
-import { DOCUMENT } from '@angular/common';
+
 import { HttpClient } from '@angular/common/http';
-import { inject } from '@angular/core';
+import {
+  inject,
+  DOCUMENT,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 

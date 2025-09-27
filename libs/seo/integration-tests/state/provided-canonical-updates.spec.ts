@@ -1,8 +1,9 @@
 /* eslint-disable no-restricted-globals */
-import { DOCUMENT } from '@angular/common';
+
 import {
   Injectable,
   Component,
+  DOCUMENT,
 } from '@angular/core';
 import {
   TestBed,

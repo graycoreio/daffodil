@@ -4,7 +4,6 @@ import {
   ConfigurableFocusTrap,
   ConfigurableFocusTrapFactory,
 } from '@angular/cdk/a11y';
-import { DOCUMENT } from '@angular/common';
 import {
   Component,
   NgZone,
@@ -16,6 +15,7 @@ import {
   Input,
   HostListener,
   Inject,
+  DOCUMENT,
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';

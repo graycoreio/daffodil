@@ -6,8 +6,7 @@ import {
   DaffModelFactory,
   DaffNumericallyPaginableFactory,
   DaffSortableFactory,
-} from '@daffodil/core/testing';
-import {
+
   DaffFilterFactory,
   MockCollectionMetadata,
 } from '@daffodil/core/testing';

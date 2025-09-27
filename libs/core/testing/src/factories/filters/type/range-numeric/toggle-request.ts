@@ -4,8 +4,8 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import {
   DaffFilterRangeNumericToggleRequest,
   DaffFilterRangeRequestOption,
+  DaffFilterType,
 } from '@daffodil/core';
-import { DaffFilterType } from '@daffodil/core';
 
 import { DaffFilterRangeNumericRequestOptionFactory } from './request-option';
 import { DaffModelFactory } from '../../../factory';

@@ -1,15 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffSortDirectionEnum } from '@daffodil/core';
-import { DaffCollectionMetadata } from '@daffodil/core';
-import { DaffFilterType } from '@daffodil/core';
+import {
+  DaffSortDirectionEnum ,
+  DaffCollectionMetadata ,
+  DaffFilterType,
+} from '@daffodil/core';
 import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/testing';
 import {
   MagentoProduct,
   MagentoProductSortFields,
+  MagentoAggregation,
 } from '@daffodil/product/driver/magento';
-import { MagentoAggregation } from '@daffodil/product/driver/magento';
 import {
   MagentoProductAggregationSelectFactory,
   MagentoProductAggregationPriceFactory,

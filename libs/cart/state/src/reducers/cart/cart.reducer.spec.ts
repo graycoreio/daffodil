@@ -26,8 +26,8 @@ import {
 } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffStorageServiceError } from '@daffodil/core';
-import { DaffState } from '@daffodil/core/state';
 import {
+  DaffState ,
   DaffStateError,
   daffTransformErrorToStateError,
 } from '@daffodil/core/state';

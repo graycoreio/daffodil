@@ -1,6 +1,8 @@
-import { DaffSortDirectionEnum } from '@daffodil/core';
-import { DaffCollectionMetadata } from '@daffodil/core';
-import { daffFilterArrayToDict } from '@daffodil/core';
+import {
+  DaffSortDirectionEnum ,
+  DaffCollectionMetadata ,
+  daffFilterArrayToDict,
+} from '@daffodil/core';
 import { MagentoSearchResultPageInfo } from '@daffodil/driver/magento';
 
 import { magentoProductTransformAggregate } from './aggregate/public_api';

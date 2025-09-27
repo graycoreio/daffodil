@@ -7,10 +7,7 @@ import {
   PortalModule,
   TemplatePortal,
 } from '@angular/cdk/portal';
-import {
-  DOCUMENT,
-  NgTemplateOutlet,
-} from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -26,6 +23,7 @@ import {
   ViewChild,
   OnDestroy,
   booleanAttribute,
+  DOCUMENT,
 } from '@angular/core';
 import {
   ControlValueAccessor,

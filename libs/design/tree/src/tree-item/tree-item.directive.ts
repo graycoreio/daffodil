@@ -1,9 +1,10 @@
 /* eslint-disable quote-props */
-import { DOCUMENT } from '@angular/common';
+
 import {
   Directive,
   Inject,
   Input,
+  DOCUMENT,
 } from '@angular/core';
 
 import { DaffTreeNotifierService } from '../tree/tree-notifier.service';

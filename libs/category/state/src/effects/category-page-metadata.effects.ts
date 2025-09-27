@@ -26,8 +26,8 @@ import {
   DaffGetCategoryResponse,
   DaffCategoryRequestKind,
   DaffCategoryIdRequest,
+  DaffCategoryPageMetadata,
 } from '@daffodil/category';
-import { DaffCategoryPageMetadata } from '@daffodil/category';
 import {
   DaffCategoryDriver,
   DaffCategoryServiceInterface,

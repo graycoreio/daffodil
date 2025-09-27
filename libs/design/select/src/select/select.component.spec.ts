@@ -1,12 +1,10 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
-import {
-  DOCUMENT,
-  NgTemplateOutlet,
-} from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   DebugElement,
+  DOCUMENT,
 } from '@angular/core';
 import {
   waitForAsync,

@@ -101,10 +101,8 @@ describe('@daffodil/core | debounce', () => {
         selector: 'lib-test-component',
         template: '<div>Test Component</div>',
         host: {
-          /* eslint-disable quote-props */
           '(click)': 'onDebouncedClick($event)',
           '(mouseover)': 'onDebouncedHover($event)',
-          /* eslint-enable quote-props */
         },
       })
       class TestComponent {
@@ -147,10 +145,10 @@ describe('@daffodil/core | debounce', () => {
         selector: 'lib-test-dynamic-component',
         template: '<div>Dynamic Component</div>',
         host: {
-          /* eslint-disable quote-props */
+
           '[class.active]': 'isActive',
           '(window:resize)': 'onDebouncedResize($event)',
-          /* eslint-enable quote-props */
+
         },
       })
       class TestDynamicComponent {

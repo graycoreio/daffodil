@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "../dist/out-tsc/tools",
     "rootDir": ".",
+    "moduleResolution": "node",
     "module": "commonjs",
 		"moduleResolution": "node",
     "target": "es5",

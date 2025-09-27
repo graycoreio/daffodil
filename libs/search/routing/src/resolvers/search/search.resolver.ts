@@ -22,8 +22,8 @@ import {
 import {
   DaffSearchLoad,
   DaffSearchStateRootSlice,
+  DaffSearchActionTypes,
 } from '@daffodil/search/state';
-import { DaffSearchActionTypes } from '@daffodil/search/state';
 
 import { DaffSearchRoutingOptionBuilder } from '../../injection-tokens/public_api';
 import { DAFF_SEARCH_ROUTING_OPTIONS_BUILDER } from '../../injection-tokens/search-options/builder.token';

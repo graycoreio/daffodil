@@ -29,9 +29,9 @@ import {
 import {
   DaffCompositeProductApplyOption,
   daffCompositeProductReducers,
+  DaffCompositeProductStateRootSlice ,
+  DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY,
 } from '@daffodil/product-composite/state';
-import { DaffCompositeProductStateRootSlice } from '@daffodil/product-composite/state';
-import { DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY } from '@daffodil/product-composite/state';
 import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing';
 
 import { getDaffCompositeProductPriceSelectors } from './composite-product.selectors';

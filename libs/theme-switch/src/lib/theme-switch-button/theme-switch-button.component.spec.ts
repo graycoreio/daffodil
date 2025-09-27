@@ -102,7 +102,7 @@ describe('DaffThemeSwitchButtonComponent', () => {
 
       it('should show the sun icon', () => {
         const el: FaIconComponent = fixture.debugElement.query(By.css('fa-icon')).componentInstance;
-        expect(el.icon).toEqual(faSun);
+        expect(el.icon()).toEqual(faSun);
       });
     });
 
@@ -114,7 +114,7 @@ describe('DaffThemeSwitchButtonComponent', () => {
 
       it('should show the moon icon', () => {
         const el: FaIconComponent = fixture.debugElement.query(By.css('fa-icon')).componentInstance;
-        expect(el.icon).toEqual(faMoon);
+        expect(el.icon()).toEqual(faMoon);
       });
     });
   });

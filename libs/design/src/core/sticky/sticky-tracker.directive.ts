@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+
 import {
   Directive,
   ElementRef,
@@ -7,7 +7,7 @@ import {
   Inject,
   Input,
   afterNextRender,
-  AfterRenderPhase,
+  DOCUMENT,
 } from '@angular/core';
 
 @Directive({
@@ -28,13 +28,17 @@ export class DaffStickyTrackerDirective implements OnDestroy {
     private readonly renderer: Renderer2,
     @Inject(DOCUMENT) private readonly document: Document,
   ) {
-    afterNextRender(() => {
-      this.createSentinel();
-    }, { phase: AfterRenderPhase.Write });
+    afterNextRender({
+      write: () => {
+        this.createSentinel();
+      },
+    });
 
-    afterNextRender(() => {
-      this.scheduleObserverCreation();
-    }, { phase: AfterRenderPhase.Read });
+    afterNextRender({
+      read: () => {
+        this.scheduleObserverCreation();
+      },
+    });
   }
 
   private get isBottomSticky(): boolean {

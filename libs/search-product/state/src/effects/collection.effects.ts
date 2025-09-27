@@ -19,15 +19,15 @@ import {
   withLatestFrom,
 } from 'rxjs/operators';
 
-import { DaffError } from '@daffodil/core';
 import {
+  DaffError ,
   DaffCollectionRequest,
   daffCollectionBuildRequestFromMetadata,
 } from '@daffodil/core';
 import { ErrorTransformer } from '@daffodil/core/state';
 import { DaffSearchDriver } from '@daffodil/search/driver';
-import { DAFF_SEARCH_ERROR_MATCHER } from '@daffodil/search/state';
 import {
+  DAFF_SEARCH_ERROR_MATCHER ,
   DaffSearchPageFacade,
   DaffSearchLoadFailure,
   DaffSearchLoadSuccess,

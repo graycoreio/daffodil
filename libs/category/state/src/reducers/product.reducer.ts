@@ -14,8 +14,10 @@ import {
   DaffCategoryPageProductCollectionActionTypes,
   DaffCategoryPageProductCollectionActions,
 } from '../actions/category-page-filter.actions';
-import { DaffCategoryPageActions } from '../actions/category-page.actions';
-import { DaffCategoryPageActionTypes } from '../actions/category-page.actions';
+import {
+  DaffCategoryPageActions ,
+  DaffCategoryPageActionTypes,
+} from '../actions/category-page.actions';
 import { DaffCategoryActions } from '../actions/category.actions';
 
 /**

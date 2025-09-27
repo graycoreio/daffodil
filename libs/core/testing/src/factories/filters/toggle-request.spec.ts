@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffFilterToggleRequest } from '@daffodil/core';
-import { DaffFilterType } from '@daffodil/core';
+import {
+  DaffFilterToggleRequest ,
+  DaffFilterType,
+} from '@daffodil/core';
 
 import { DaffFilterToggleRequestFactory } from './toggle-request';
 

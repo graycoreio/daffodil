@@ -22,8 +22,8 @@ import {
 import {
   MagentoProductAggregationSelectFactory,
   MagentoProductAggregationPriceFactory,
+  MagentoProductFactory,
 } from '@daffodil/product/driver/magento/testing';
-import { MagentoProductFactory } from '@daffodil/product/driver/magento/testing';
 
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
 

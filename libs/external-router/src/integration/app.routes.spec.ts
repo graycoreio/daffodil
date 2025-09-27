@@ -1,8 +1,10 @@
 import { provideLocationMocks } from '@angular/common/testing';
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
-import { Router } from '@angular/router';
+import {
+  provideRouter ,
+  Router,
+} from '@angular/router';
 
 import { provideExternalRouter } from '@daffodil/external-router';
 import { provideDaffExternalRouterTestingDriver } from '@daffodil/external-router/driver/testing';

@@ -26,7 +26,7 @@ import { DaffRouterNamedViewService } from '../service/named-view.service';
  * according to the {@link DaffRouteWithNamedViews} type.
  */
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
+
   selector: '[daffRouterNamedViewOutlet]',
   standalone: false,
 })

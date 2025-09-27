@@ -7,8 +7,10 @@ import { DaffCompositeProduct } from '@daffodil/product-composite';
 import { DaffCompositeProductEntity } from '@daffodil/product-composite/state';
 import { DaffCompositeProductFactory } from '@daffodil/product-composite/testing';
 
-import { daffCompositeProductAppliedOptionsEntitiesAdapter } from './composite-product-entities-reducer-adapter';
-import { DaffCompositeProductAppliedOptionsEntitiesAdapter } from './composite-product-entities-reducer-adapter';
+import {
+  daffCompositeProductAppliedOptionsEntitiesAdapter ,
+  DaffCompositeProductAppliedOptionsEntitiesAdapter,
+} from './composite-product-entities-reducer-adapter';
 
 describe('@daffodil/product-composite/state | DaffCompositeProductAppliedOptionsEntitiesAdapter', () => {
   let adapter: DaffCompositeProductAppliedOptionsEntitiesAdapter;

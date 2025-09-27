@@ -11,8 +11,8 @@ import { Action } from '@ngrx/store';
 import {
   EMPTY,
   of,
+  Observable,
 } from 'rxjs';
-import { Observable } from 'rxjs';
 import {
   switchMap,
   map,
