@@ -4,12 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
-import { provideDaffNavigationDriver } from '@daffodil/navigation/driver';
+import { provideDaffNavigationInMemoryDriver } from './provider';
 
-import { DaffInMemoryBackendNavigationService } from './backend/navigation.service';
-import { DaffInMemoryNavigationService } from './navigation.service';
-
+/**
+ * @deprecated
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -20,8 +19,7 @@ export class DaffNavigationInMemoryDriverModule {
     return {
       ngModule: DaffNavigationInMemoryDriverModule,
       providers: [
-        provideDaffNavigationDriver(DaffInMemoryNavigationService),
-        provideDaffInMemoryBackends(DaffInMemoryBackendNavigationService),
+        provideDaffNavigationInMemoryDriver(),
       ],
     };
   }
