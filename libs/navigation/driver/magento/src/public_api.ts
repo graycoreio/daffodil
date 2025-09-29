@@ -5,3 +5,5 @@ export * from './queries/public_api';
 export * from './config/public_api';
 export * from './models/public_api';
 export * from './transforms/public_api';
+
+export { provideDaffNavigationMagentoDriver } from './provider';
