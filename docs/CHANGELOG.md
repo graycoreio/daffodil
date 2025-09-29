@@ -1,5 +1,57 @@
 # Changelog
 
+## [0.89.0](https://github.com/graycoreio/daffodil/compare/v0.88.1...v0.89.0) (2025-09-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* Angular has been upgraded to v20
+* **design:** Form field components have been moved to its own package and need to be imported from `@daffodil/design/form-field`.
+* **design:** `DaffNativeSelectComponent` has been moved to its own package and needs to be imported from `@daffodil/design/native-select`
+* **design:** `daffMenuCreateOverlay` is no longer part of the public api.
+
+### Features
+
+* **cart:** deprecate `address_type` for `DaffCartAddress` ([#3969](https://github.com/graycoreio/daffodil/issues/3969)) ([04aba4b](https://github.com/graycoreio/daffodil/commit/04aba4b17966146ea0556c6bd9cefaebc846e48c))
+* **core:** add new vercel image loader for dynamically resizing asse… ([#3946](https://github.com/graycoreio/daffodil/issues/3946)) ([cc76a5d](https://github.com/graycoreio/daffodil/commit/cc76a5dd33f5ce308a8f035e38fe2ba7393be574))
+* **core:** export provideVercelImageLoader ([#3950](https://github.com/graycoreio/daffodil/issues/3950)) ([47caec9](https://github.com/graycoreio/daffodil/commit/47caec99c1c7b5d9cad538399f1ce03461241231))
+* **daffio,branding:** update marketing home hero design ([#3967](https://github.com/graycoreio/daffodil/issues/3967)) ([9e65d46](https://github.com/graycoreio/daffodil/commit/9e65d4621610988b1c63895e224e32f76734af62))
+* **daffio:** clean up API reference page UI ([#3942](https://github.com/graycoreio/daffodil/issues/3942)) ([ec10a52](https://github.com/graycoreio/daffodil/commit/ec10a52aad54c4899e75f4f0195060eaa5a16ae4))
+* **daffio:** set widths on doc viewer grid content ([#3954](https://github.com/graycoreio/daffodil/issues/3954)) ([d7129a2](https://github.com/graycoreio/daffodil/commit/d7129a26dfd2833176553721fbd79396ef728916))
+* **design:** create native select component ([#3383](https://github.com/graycoreio/daffodil/issues/3383)) ([fae81df](https://github.com/graycoreio/daffodil/commit/fae81dfa564e80c248d31d5a69fc3e402ef57233))
+* **design:** shard and convert `DaffNativeSelectComponent` to standalone ([#4005](https://github.com/graycoreio/daffodil/issues/4005)) ([7375abe](https://github.com/graycoreio/daffodil/commit/7375abea04d6accb49ad3c588a36c8600a4a21b5))
+* **design:** shard form field component ([#4012](https://github.com/graycoreio/daffodil/issues/4012)) ([e3c2499](https://github.com/graycoreio/daffodil/commit/e3c2499c517d4907780d84a2b294e7414084660a))
+* **design:** update article and headline styles ([#3955](https://github.com/graycoreio/daffodil/issues/3955)) ([741d9b1](https://github.com/graycoreio/daffodil/commit/741d9b1b494f4119b2803cf1daef21b327848bb3))
+* **dev-tools:** add link to drivers guides ([d7f674b](https://github.com/graycoreio/daffodil/commit/d7f674b0558b5be1f4befd243ea5eae08322b16b))
+* **dev-tools:** remove unused registerDriver function ([308eb0d](https://github.com/graycoreio/daffodil/commit/308eb0d96e340b1468f7c6a129a086ec588dc2d8))
+* **dev-tools:** remove unused status on DaffDriverConfig ([cf1b9e8](https://github.com/graycoreio/daffodil/commit/cf1b9e8b0415d205736d1ace848efa45962151d3))
+* **dev-tools:** rework driver configuration storage for persistent driver configurations ([fede6b7](https://github.com/graycoreio/daffodil/commit/fede6b7dc46431ca549f36b1e1a625e37357eae7))
+* **dev-tools:** rework ui ([350560e](https://github.com/graycoreio/daffodil/commit/350560eff1b4bdaba20efdc0381e034d88dc3202))
+* **dgeni:** skip private packages during docs generation ([c943c01](https://github.com/graycoreio/daffodil/commit/c943c0140849c01eddbd75d065dd8fb05b55dd4a))
+* **docs-utils:** add doc model factories ([#3907](https://github.com/graycoreio/daffodil/issues/3907)) ([cfec8df](https://github.com/graycoreio/daffodil/commit/cfec8dfd05c959ef7aab463d7095a951d3277e82))
+* **docs,dgeni,.daffio:** add anchors to API members ([#3965](https://github.com/graycoreio/daffodil/issues/3965)) ([2bd213b](https://github.com/graycoreio/daffodil/commit/2bd213bc066a3019a40b2f7b840bead08b99be49))
+* **docs:** remove server routing causing 404 on homepage ([37a0d28](https://github.com/graycoreio/daffodil/commit/37a0d28859d7593ea2327f6fbecf3b033d3b8521))
+* **driver:** deprecate provideShopifyApolloDriver in favor of provideShopifyDriver ([#3964](https://github.com/graycoreio/daffodil/issues/3964)) ([5b1d0d2](https://github.com/graycoreio/daffodil/commit/5b1d0d26db37483612c0f455689e4275a5ba2c08))
+* **product:** create provideDaffProductShopifyDriver ([#3962](https://github.com/graycoreio/daffodil/issues/3962)) ([6be30b0](https://github.com/graycoreio/daffodil/commit/6be30b078df3950a435a3470e6f6ce63cffd9619))
+* **shopify,product:** use named apollo client ([#3963](https://github.com/graycoreio/daffodil/issues/3963)) ([743910d](https://github.com/graycoreio/daffodil/commit/743910d2a2a8c2f9a20d32211982b0bcfe14fc9f))
+* upgrade to Angular 20 ([#4013](https://github.com/graycoreio/daffodil/issues/4013)) ([9965d8e](https://github.com/graycoreio/daffodil/commit/9965d8e1e390faf3a4515de07821d9ed4b23025f))
+
+
+### Bug Fixes
+
+* **daffio,tools-dgeni:** stop @daffodil/docs clobbering dgeni output ([#3951](https://github.com/graycoreio/daffodil/issues/3951)) ([7ecbe2d](https://github.com/graycoreio/daffodil/commit/7ecbe2d0dd92656b082c9270f977b3e3c4885682))
+* **daffio:** fix docs footer support link ([#3944](https://github.com/graycoreio/daffodil/issues/3944)) ([da04a04](https://github.com/graycoreio/daffodil/commit/da04a04e4415876efad9a2f727b8dfbb6a9bab8f))
+* **daffio:** reconfigure how docs are loaded for ssr ([#3947](https://github.com/graycoreio/daffodil/issues/3947)) ([baa203a](https://github.com/graycoreio/daffodil/commit/baa203a3fe3364f06ad70e691b0657e5d49d930a))
+* **dgeni:** API search index docs have extra content ([#4019](https://github.com/graycoreio/daffodil/issues/4019)) ([966fd04](https://github.com/graycoreio/daffodil/commit/966fd04a0889775ebcd70b8145a471bba8d70303))
+* **dgeni:** API search indices don't get `id` set to `path` ([#3960](https://github.com/graycoreio/daffodil/issues/3960)) ([85d5234](https://github.com/graycoreio/daffodil/commit/85d5234f4091b45fd87e53dcbe7d70fdb7dc252d))
+* **product:** correct getByUrl and get for shopify ([#3966](https://github.com/graycoreio/daffodil/issues/3966)) ([0b70a62](https://github.com/graycoreio/daffodil/commit/0b70a62dc8a6c598f963a42612e39535b9f24d1f))
+* **product:** incorrect type in `MagentoProductAppliedFiltersTransformService` ([#4018](https://github.com/graycoreio/daffodil/issues/4018)) ([296c10c](https://github.com/graycoreio/daffodil/commit/296c10c8fb669dc56735ace2cba34b4272e25b5d))
+
+
+### Code Refactoring
+
+* **design:** remove `daffMenuCreateOverlay` from the public api ([#3997](https://github.com/graycoreio/daffodil/issues/3997)) ([8154e16](https://github.com/graycoreio/daffodil/commit/8154e16e8fda0bf3a4873c32ec35a324aa4122c1))
+
 ## [0.88.1](https://github.com/graycoreio/daffodil/compare/v0.88.0...v0.88.1) (2025-09-08)
 
 
