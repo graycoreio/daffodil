@@ -43,4 +43,5 @@
 	@include api-outputs-fragment.daffio-api-outputs-fragment-theme($theme);
 	@include api-item-label.daffio-api-item-label-theme($theme);
 	@include docs-heading-link.daffio-docs-heading-link-theme($theme);
+	@include docs-heading-link.daffio-docs-heading-markdown-link-theme($theme);
 }

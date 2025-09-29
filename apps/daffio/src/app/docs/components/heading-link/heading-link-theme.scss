@@ -21,3 +21,57 @@
 		}
 	}
 }
+
+@mixin daffio-docs-heading-markdown-link-theme($theme) {
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
+
+	.daffio-markdown-heading {
+		position: relative;
+		.daffio-markdown-heading-link {
+			opacity: 0;
+			transition: opacity 0.2s ease;
+			text-decoration: none;
+			color: $base-contrast;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			display: inline-flex;
+			align-items: center;
+			padding: 0.25rem;
+
+			&:hover {
+				opacity: 1;
+			}
+
+			.daffio-docs-heading-link__icon {
+				margin-left: 0.25rem;
+				flex-shrink: 0;
+				width: 12px;
+				height: 12px;
+
+				@include light($mode) {
+					color: daff-color($neutral, 70);
+				}
+
+				@include dark($mode) {
+					color: daff-color($neutral, 30);
+				}
+			}
+		}
+
+		&:hover .daffio-markdown-heading-link {
+			opacity: 1;
+		}
+
+		.daffio-markdown-heading-link.copied .daffio-docs-heading-link__icon {
+			animation: pulse 0.5s ease-in-out;
+		}
+
+		@keyframes pulse {
+			0%, 100% { transform: scale(1); }
+			50% { transform: scale(1.2); }
+		}
+	}
+}
