@@ -101,7 +101,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
 
   /**
    * @docs-private
-   * @deprecated Deprecated in version 0.86.0. Will be removed in v1.0.0.
+   * @deprecated Deprecated in version 0.86.0. Will be removed in v1.0.0. Deprecated in version 0.89.0. Will be removed in version 0.92.0.
    */
   @ContentChild(DaffFormLabelDirective) _formLabelDirective: DaffFormLabelDirective;
 
