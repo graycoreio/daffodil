@@ -1,19 +1,19 @@
 # Shopify
 
-The `@daffodil/navigation` Shopify driver provides the connections between your storefront's navigation menus and your underlying Shopify store, using the Shopify Storefront API to retrieve collection-based navigation structures.
+The `@daffodil/navigation` Shopify driver connects your storefront's navigation menus to your Shopify store using the Shopify Storefront API to retrieve collection-based navigation structures.
 
 ## Features
 
-- **Collection-based Navigation**: Builds navigation trees from Shopify collections
-- **GraphQL Integration**: Uses Shopify's Storefront API for efficient data fetching
+- **Collection-based navigation**: Builds navigation trees from Shopify collections
+- **GraphQL integration**: Uses [Shopify Storefront API](https://shopify.dev/docs/api/storefront) for efficient data fetching
 
 ## Prerequisites
 
 Before using the Shopify navigation driver, ensure you have:
 
-1. A Shopify store with the Storefront API enabled
-2. A valid Storefront API access token
-3. Collections configured in your Shopify admin
+- A Shopify store with Storefront API enabled
+- A valid Storefront API access token
+- Collections configured in your Shopify admin
 
 ## Usage
 
