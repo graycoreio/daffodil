@@ -10,14 +10,13 @@ import { DAFF_TAG_COMPONENTS } from '@daffodil/design/tag';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'sizeable-tag',
-  templateUrl: './sizeable-tag.component.html',
+  selector: 'disabled-tag',
+  templateUrl: './disabled-tag.component.html',
   styles: [`
     :host {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      align-items: center;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,14 +26,11 @@ import { DAFF_TAG_COMPONENTS } from '@daffodil/design/tag';
     NgIf,
   ],
 })
-export class SizeableTagComponent {
+export class DisabledTagComponent {
   faCircleCheck = faCircleCheck;
 
   hiddenTags: { [key: string]: boolean } = {
-    default: false,
-    sm: false,
-    md: false,
-    lg: false,
+    disabled: false,
   };
   hideTag(tagId: string) {
     this.hiddenTags[tagId] = true;

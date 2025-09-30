@@ -5,7 +5,7 @@
   <ng-content></ng-content>
 </div>
 @if (dismissible) {
-  <button class="daff-tag__close-icon" (click)="onCloseTag($event)">
+  <button class="daff-tag__close-icon" (click)="onCloseTag($event)" aria-label="Dismiss" [attr.tabindex]="disabled ? -1 : null">
     <fa-icon [icon]="faTimes"></fa-icon>
   </button>
 }

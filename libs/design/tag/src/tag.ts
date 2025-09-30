@@ -1,6 +1,6 @@
 import { DaffPrefixDirective } from '@daffodil/design';
 
-import { DaffTagSizableDirective } from './tag/tag-sizeable';
+import { DaffTagSizableDirective } from './tag/tag-sizeable.directive';
 import { DaffTagComponent } from './tag/tag.component';
 
 /**

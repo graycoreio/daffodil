@@ -9,10 +9,6 @@
 	$critical: daff-get-palette($theme, critical);
 	$success: daff-get-palette($theme, success);
 	$neutral: daff-get-palette($theme, neutral);
-	$base: daff-get-base-color($theme, base);
-	$base-contrast: daff-get-base-color($theme, base-contrast);
-	$white: daff-get-base-color($theme, 'white');
-	$black: daff-get-base-color($theme, 'black');
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-tag {
@@ -77,21 +73,21 @@
 		}
 
 		@include dark($mode) {
-			background: daff-color($neutral, 110);
+			background: daff-color($neutral, 90);
 			color: daff-color($neutral, 20);
 
 			&.daff-primary {
-				background: daff-color($primary, 70);
+				background: daff-color($primary, 90);
 				color: daff-color($primary, 10);
 			}
 
 			&.daff-secondary {
-				background: daff-color($secondary, 70);
+				background: daff-color($secondary, 90);
 				color: daff-color($secondary, 10);
 			}
 
 			&.daff-tertiary {
-				background: daff-color($tertiary, 70);
+				background: daff-color($tertiary, 90);
 				color: daff-color($tertiary, 10);
 			}
 
@@ -116,17 +112,17 @@
 			}
 
 			&.daff-warn {
-				background: daff-color($warn, 70);
+				background: daff-color($warn, 90);
 				color: daff-color($warn, 10);
 			}
 
 			&.daff-success {
-				background: daff-color($success, 70);
+				background: daff-color($success, 90);
 				color: daff-color($success, 10);
 			}
 
 			&.daff-critical {
-				background: daff-color($critical, 70);
+				background: daff-color($critical, 90);
 				color: daff-color($critical, 10);
 			}
 
