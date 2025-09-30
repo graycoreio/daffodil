@@ -142,6 +142,7 @@ describe('@daffodil/navigation/driver/magento | DaffMagentoNavigationService', (
       rootIdOp.flushData({
         storeConfig: {
           root_category_uid: navigation.id,
+          store_code: 'default',
         },
       });
 
