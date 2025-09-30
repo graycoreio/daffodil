@@ -1,10 +1,13 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import {
   APP_ID,
+  Inject,
   NgModule,
+  PLATFORM_ID,
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +31,7 @@ import { DaffioMarketingFooterComponent } from './core/footer/marketing-footer/m
 import { daffioRouterDataServiceConfig } from './core/router/data-service-config';
 import { DaffioSidebarHeaderComponent } from './core/sidebar/components/sidebar-header/sidebar-header.component';
 import { TemplateModule } from './core/template/template.module';
+import { CeDaffioHeading } from './docs/custom-elements/heading/ce-heading.ce';
 
 @NgModule({
   declarations: [
@@ -70,4 +74,14 @@ import { TemplateModule } from './core/template/template.module';
     provideDaffRouterDataServiceConfig(daffioRouterDataServiceConfig),
   ],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
+      if (!customElements.get('ce-daffio-heading')) {
+        customElements.define('ce-daffio-heading', CeDaffioHeading);
+      }
+    }
+  }
+}
