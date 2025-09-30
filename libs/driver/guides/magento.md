@@ -23,7 +23,37 @@ Under the hood, this packages configures the Apollo GraphQl client to optimally 
 
 ### A note on CORS
 
-You probably do not want/need CORS in production. CORS is great for development, but it is a major performance and security risk in production environments. [Kristof Ringleff](https://www.linkedin.com/in/kristofringleff?originalSubdomain=nz) from [Fooman](https://fooman.com/) has [a wonderful article outlining why you should not use CORS in production](https://fooman.com/blog/magento-2-graphql-getting-off-cors.html). It's worth your, and your customer's time, to make sure that you have understood this.
+There's an easy way to setup CORS for Magento 2 with the [`graycoreio/magento2-cors`](https://github.com/graycoreio/magento2-cors) package. You can use the following configuration inside your `env.php`:
+
+```php
+<?php
+
+return [
+    ...otherConfig,
+    'system' => [
+        'default' => [
+            'web' => [
+                'graphql' => [
+                    'cors_max_age' => 86400,
+                    'cors_allow_credentials' => 1,
+                    'cors_allowed_methods' => 'POST, OPTIONS, GET',
+                    'cors_expose_headers' => 'X-Magento-Cache-Id',
+                    'cors_allowed_headers' =>
+                        'Content-Currency, Store, X-Magento-Cache-Id, X-Captcha, Content-Type, Authorization, DNT, TE',
+                    // Daffodil
+                    'cors_allowed_origins' => 'https://your-storefront-url.com,http://localhost:4200'
+                    // Any
+                    'cors_allowed_origins' => '*'
+                ]
+            ]
+        ]
+    ]
+];
+```
+
+You can also setup CORS using Fastly, Varnish, Nginx, or any other tool that interacts with the HTTP Response. 
+
+However, you probably do not want/need CORS in production. CORS is great for development, but it is a major performance and security risk in production environments. [Kristof Ringleff](https://www.linkedin.com/in/kristofringleff?originalSubdomain=nz) from [Fooman](https://fooman.com/) has [a wonderful article outlining why you should not use CORS in production](https://fooman.com/blog/magento-2-graphql-getting-off-cors.html). It's worth your time to make sure that you have understood this.
 
 ## Common Issues
 
@@ -32,5 +62,5 @@ If you receive errors about GraphQL not being available, ensure that:
 - Your Magento instance has GraphQL enabled
 - The `/graphql` endpoint is accessible
 - Your store is running a supported (by Adobe) Magento version
-- You have the CORS Module installed.
+- You have not installed [`graycoreio/magento2-cors`](https://github.com/graycoreio/magento2-cors).
 
