@@ -22,7 +22,7 @@ import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
 
 import { DaffInMemoryBackendAuthService } from './auth.service';
 
-describe('DaffAuthInMemoryBackend | Integration', () => {
+describe('@daffodil/auth/driver/in-memory | DaffInMemoryBackendAuthService | Integration', () => {
   let httpClient;
 
   const registrationFactory = new DaffAccountRegistrationFactory();

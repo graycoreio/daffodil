@@ -8,7 +8,7 @@ import {
   DAFF_AUTH_EXTRA_REDUCERS,
 } from './extra.token';
 
-describe('daffAuthProvideExtraReducers', () => {
+describe('@daffodil/auth/state | daffAuthProvideExtraReducers', () => {
   let reducers: ActionReducer<DaffAuthFeatureState>[];
   let result: ActionReducer<DaffAuthFeatureState>[];
 

@@ -5,7 +5,7 @@ import { DaffAuthTokenFactory } from '@daffodil/auth/testing';
 
 import { DaffMagentoAuthTransformerService } from './auth-transformer.service';
 
-describe('DaffMagentoAuthTransformerService', () => {
+describe('@daffodil/auth/driver/magento | DaffMagentoAuthTransformerService', () => {
   let service: DaffMagentoAuthTransformerService;
 
   const authTokenFactory = new DaffAuthTokenFactory();

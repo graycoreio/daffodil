@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffAuthStorageService } from './auth-storage.service';
 
-describe('DaffAuthStorageService', () => {
+describe('@daffodil/auth | DaffAuthStorageService', () => {
   let service: DaffAuthStorageService;
 
   beforeEach(() => {

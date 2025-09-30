@@ -21,7 +21,7 @@ import {
   DaffResetPasswordLanding,
 } from '../../public_api';
 
-describe('DaffAuthResetPasswordFacade', () => {
+describe('@daffodil/auth/state | DaffAuthResetPasswordFacade', () => {
   let store: Store<any>;
   let facade: DaffAuthResetPasswordFacade;
   let resetInfoFactory: DaffAuthResetPasswordInfoFactory;

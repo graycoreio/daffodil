@@ -11,7 +11,7 @@ import { DaffStateError } from '@daffodil/core/state';
 import { daffAuthProvideExtraReducers } from './extra.token';
 import { DAFF_AUTH_REDUCERS } from './reducers.token';
 
-describe('daffAuthProvideExtraReducers', () => {
+describe('@daffodil/auth/state | daffAuthProvideExtraReducers', () => {
   let extraReducer: ActionReducer<DaffAuthFeatureState>;
   let reducer: ActionReducer<DaffAuthFeatureState>;
   let result: DaffAuthFeatureState;
