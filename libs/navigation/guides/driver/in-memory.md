@@ -4,11 +4,11 @@ The `@daffodil/navigation` in-memory driver provides randomly generated menus fo
 
 ## Features
 
-- The in-memory driver uses Angular's `angular-in-memory-web-api` under the hood
-- Random data is generated using the `@daffodil/navigation/testing` factories
-- The driver is intended for development and testing only - use appropriate production drivers for production environments
-- Navigation trees are cached in memory and persist until refresh.
-- [Custom Seed Data](#custom-seed-data) can be provided for more persistent behavior.
+- Uses Angular's `angular-in-memory-web-api` under the hood
+- Generates random data using `@daffodil/navigation/testing` factories
+- Intended for development and testing only — use appropriate drivers for production environments
+- Caches navigation trees in memory until page refresh
+- Supports [custom seed data](/libs/navigation/guides/driver/in-memory.md#custom-seed-data) for persistent behavior
 
 ## Basic Usage
 
