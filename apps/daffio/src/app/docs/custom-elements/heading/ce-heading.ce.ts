@@ -19,7 +19,7 @@ export class CeDaffioHeading extends HTMLElement {
         align-items: baseline;
       }
       ::slotted(h1), ::slotted(h2), ::slotted(h3), ::slotted(h4) {
-        margin: 0;  // Reset if needed
+        margin: 0;
       }
       .daffio-markdown-heading-link {
         opacity: 0;
