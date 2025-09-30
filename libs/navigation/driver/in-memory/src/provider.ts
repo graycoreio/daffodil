@@ -26,7 +26,7 @@ import { DaffInMemoryBackendNavigationService } from './public_api';
  * };
  * ```
  */
-export const provideDaffNavigationInMemoryDriver = (): Provider | EnvironmentProviders[] => [
+export const provideDaffNavigationInMemoryDriver = (): (Provider | EnvironmentProviders)[] => [
   provideDaffNavigationDriver(DaffInMemoryNavigationService),
   makeEnvironmentProviders(provideDaffInMemoryBackends(DaffInMemoryBackendNavigationService)),
 ];
