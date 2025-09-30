@@ -1,6 +1,6 @@
 # In Memory
 
-The `@daffodil/navigation` In-Memory driver provides randomly generated menus that your application can use as necessary to render trees of navigational elements. This driver is particularly useful for development, testing, and prototyping scenarios where you don't have a backend navigation service available.
+The `@daffodil/navigation` in-memory driver provides randomly generated menus for rendering navigational element trees. This driver is useful for development, testing, and prototyping when a backend navigation service is unavailable.
 
 ## Features
 
