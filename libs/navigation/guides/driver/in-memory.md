@@ -10,7 +10,7 @@ The `@daffodil/navigation` in-memory driver provides randomly generated menus fo
 - Caches navigation trees in memory until page refresh
 - Supports [custom seed data](/libs/navigation/guides/driver/in-memory.md#custom-seed-data) for persistent behavior
 
-## Basic Usage
+## Basic usage
 
 The recommended approach for modern Angular applications is to use the standalone provider function:
 
@@ -31,9 +31,9 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-## Custom Seed Data
+## Custom seed data
 
-By default, the in-memory driver generates random navigation data using the `DaffNavigationTreeFactory`. However, you can provide your own custom navigation tree data:
+By default, the in-memory driver generates random navigation data using `DaffNavigationTreeFactory`. You can also provide your own custom navigation tree data:
 
 ```ts
 import { ApplicationConfig } from '@angular/core';
@@ -97,11 +97,11 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-## Common Use Cases
+## Common use cases
 
-### Development Environment
+### Development environment
 
-Use the in-memory driver during development to work without a backend:
+Use the in-memory driver to develop without a backend:
 
 ```ts
 import { environment } from './environments/environment';
