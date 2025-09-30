@@ -2,7 +2,7 @@
 
 The `@daffodil/driver` package provides core driver interfaces, models, and utilities for integrating Daffodil with various ecommerce platforms.
 
-## Available Drivers
+## Available drivers
 
 - **[Magento/MageOS](./guides/magento.md)** - GraphQL integration with Magento 2.x and MageOS platforms
 - **Shopify** - GraphQL integration with Shopify Storefront API
