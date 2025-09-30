@@ -18,7 +18,7 @@
 				border: 1px solid rgba(daff-color($primary, 20), 0.5);
 				color: daff-color($primary, 100);
 			}
-		};
+		}
 
 		@include dark($mode) {
 			background: url('/assets/hero-bg-dark.svg');

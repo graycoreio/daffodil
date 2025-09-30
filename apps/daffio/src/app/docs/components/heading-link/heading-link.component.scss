@@ -1,8 +1,8 @@
 .daffio-docs-heading-link {
 	$root: &;
 	display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+	flex-wrap: wrap;
+	gap: 0.75rem;
 	text-decoration: none;
 
 	#{$root}__icon {
