@@ -4,11 +4,11 @@ The `@daffodil/driver` package provides core driver interfaces, models, and util
 
 ## Available drivers
 
-- **[Magento/MageOS](./guides/magento.md)** - GraphQL integration with Magento 2.x and MageOS platforms
+- **[Magento/MageOS](/libs/driver/guides/magento.md)** - GraphQL integration with Magento 2.x and MageOS
 - **Shopify** - GraphQL integration with Shopify Storefront API
-- **In-Memory** - Mock driver for testing and development with fake data
+- **In-Memory** - Mock driver with fake data for testing and development
 
-## What's Included
+## What's included
 
 This package contains:
 - Driver interface definitions and models
