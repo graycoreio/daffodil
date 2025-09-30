@@ -1,10 +1,13 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import {
   APP_ID,
+  Inject,
   NgModule,
+  PLATFORM_ID,
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -72,4 +75,14 @@ import { TemplateComponent } from './core/template/template.component';
     provideDaffioSidebarFeature(),
   ],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
+      if (!customElements.get('ce-daffio-heading')) {
+        customElements.define('ce-daffio-heading', CeDaffioHeading);
+      }
+    }
+  }
+}
