@@ -19,9 +19,10 @@
 - [ ] Other (please describe)
 
 ## Current behavior
-<!-- Describe the current behavior or link to relevant issue -->
+<!-- Describe the current behavior and link to relevant issue -->
 
-Fixes: #
+Fixes: # <!-- Closes issue on merge -->
+Part of: # <!-- Keeps issue open -->
 
 ## New behavior
 <!-- Describe the changes -->
