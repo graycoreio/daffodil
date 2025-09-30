@@ -21,7 +21,8 @@
 		],
 		"eslint": [
 			"{workspaceRoot}/.eslintrc.js",
-			"{workspaceRoot}/tools/eslint/config/index.js"
+			"{workspaceRoot}/tools/eslint/config/index.js",
+			"{workspaceRoot}/.stylelintrc"
 		],
 		"docs": [
 			"{workspaceRoot}/**/*.md",

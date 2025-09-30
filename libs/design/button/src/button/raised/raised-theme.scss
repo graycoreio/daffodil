@@ -1,17 +1,11 @@
 @use '../../../../scss/theming' as *;
 
 @mixin daff-raised-button-theme-variant($base-color) {
-	@if daff-contrast-ratio(
-			$base-color,
-			daff-text-contrast($base-color)
-		) < 4.5 {
+	@if daff-contrast-ratio($base-color, daff-text-contrast($base-color)) < 4.5 {
 		@error 'Button Initial State: ' + map.get(a11y.$wcag-aa-errors, 'text-contrast');
 	}
 
-	@if daff-contrast-ratio(
-			$base-color,
-			daff-text-contrast($base-color)
-		) < 4.5 {
+	@if daff-contrast-ratio($base-color, daff-text-contrast($base-color)) < 4.5 {
 		@error 'Button Hover State: ' + map.get(a11y.$wcag-aa-errors, 'text-contrast');
 	}
 
@@ -41,9 +35,7 @@
 	$neutral: daff-get-palette($theme, neutral);
 
 	.daff-raised-button {
-		@include daff-raised-button-theme-variant(
-			daff-color($neutral, 20)
-		);
+		@include daff-raised-button-theme-variant(daff-color($neutral, 20));
 
 		&.daff-primary {
 			@include daff-raised-button-theme-variant(daff-color($primary));
@@ -75,9 +67,7 @@
 
 		&[disabled],
 		&.disabled {
-			@include daff-raised-button-theme-variant(
-				daff-color($neutral, 30)
-			);
+			@include daff-raised-button-theme-variant(daff-color($neutral, 30));
 			color: daff-color($neutral, 50);
 
 			&::after {

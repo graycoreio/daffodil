@@ -13,9 +13,9 @@
 // @throws error
 @function daff-map-get($map, $keys...) {
 	@each $key in $keys {
-    @if not map.has-key($map, $key) {
-      @return error-to-string.error-to-string("The map doesn't contain the $key: `#{$key}`'");
-    }
+		@if not map.has-key($map, $key) {
+			@return error-to-string.error-to-string("The map doesn't contain the $key: `#{$key}`'");
+		}
 		$map: map.get($map, $key);
 	}
 
