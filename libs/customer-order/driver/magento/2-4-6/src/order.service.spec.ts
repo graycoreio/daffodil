@@ -24,8 +24,8 @@ import {
   MagentoGetCustomerOrdersResponse,
 } from '@daffodil/customer-order/driver/magento/2-4-6';
 import { MagentoCustomerOrdersFactory } from '@daffodil/customer-order/driver/magento/2-4-6/testing';
+import { MagentoSortEnum } from '@daffodil/driver/magento';
 import {
-  MagentoSortEnum ,
   DaffDriverMagentoError,
   schema,
 } from '@daffodil/driver/magento';
@@ -134,7 +134,7 @@ describe('@daffodil/customer-order/driver/magento/2-4-6 | DaffCustomerOrderMagen
           });
 
           const op = controller.expectOne(addTypenameToDocument(getCustomerOrders()));
-          console.log(op);
+
           expect(op.operation.variables.sort.sort_direction).toEqual(MagentoSortEnum.DESC);
           expect(op.operation.variables.sort.sort_field).toEqual(MagentoCustomerOrderSortableField.CREATED_AT);
 

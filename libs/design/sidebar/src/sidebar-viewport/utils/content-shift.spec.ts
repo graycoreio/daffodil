@@ -68,7 +68,7 @@ describe('@daffodil/design | sidebar-viewport | sidebarViewportContentShift', ()
     sidebarCombinations.forEach((el) => {
       wrapper.sidebars = el.sidebars;
       fixture.detectChanges();
-      console.log('test');
+
       expect(sidebarViewportContentShift(wrapper.sidebarComponents)).toEqual(el.shift);
     });
   });
