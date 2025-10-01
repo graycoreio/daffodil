@@ -1,5 +1,5 @@
 <daff-nav-list>
-  @for (link of links$ | async; track $index) {
+    @for (let link of links$ | async) {
     <ng-container daff-list-item>
       @if (link.external) {
         <a daff-list-item [href]="link.url" target="_blank">{{link.title}}</a>
@@ -7,5 +7,5 @@
         <a daff-list-item [routerLink]="link.url">{{ link.title }}</a>
       }
     </ng-container>
-  }
+    }
 </daff-nav-list>
