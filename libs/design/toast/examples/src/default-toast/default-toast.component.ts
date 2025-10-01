@@ -47,6 +47,7 @@ export class DefaultToastComponent implements OnInit {
    */
   ngOnInit() {
     this.update.subscribe(() => {
+      // eslint-disable-next-line no-console
       console.log('test');
     });
 
