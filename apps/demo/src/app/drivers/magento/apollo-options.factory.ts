@@ -19,13 +19,13 @@ export const demoMagentoApolloOptions = () => {
     onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
         graphQLErrors.map(({ message, locations, path }) =>
-          console.log(
+          console.error(
             `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
           ),
         );
       }
       if (networkError) {
-        console.log(`[Network error]: ${networkError}`);
+        console.error(`[Network error]: ${networkError}`);
       }
     }),
     magentoLinkGenerator.getLink(),

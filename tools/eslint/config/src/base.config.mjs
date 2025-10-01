@@ -142,7 +142,6 @@ export const baseEslintConfig = defineConfig([
             "group",
             "groupCollapsed",
             "groupEnd",
-            "log",
             "profile",
             "profileEnd",
             "table",

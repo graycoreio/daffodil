@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class PrintOrderSummaryComponent{
 
-  printOrderSummary() {
-    console.log('print order summary');
-  }
+  // To-Do: update functionality
+  printOrderSummary() {}
 }
