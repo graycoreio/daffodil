@@ -6,9 +6,11 @@ import {
 import {
   APP_ID,
   Inject,
+  Injector,
   NgModule,
   PLATFORM_ID,
 } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -78,10 +80,12 @@ import { TemplateComponent } from './core/template/template.component';
 export class AppModule {
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
+    private injector: Injector,
   ) {
     if (isPlatformBrowser(this.platformId)) {
-      if (!customElements.get('ce-daffio-heading')) {
-        customElements.define('ce-daffio-heading', CeDaffioHeading);
+      if (!customElements.get('daffio-ce-heading')) {
+        const heading = createCustomElement(MarkdownHeadingComponent, { injector: this.injector });
+        customElements.define('daffio-ce-heading', heading);
       }
     }
   }
