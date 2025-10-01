@@ -11,7 +11,7 @@ import { By } from '@angular/platform-browser';
 
 import { DaffStatus } from '@daffodil/design';
 
-import { DaffTagSize } from './tag-sizeable.directive';
+import { DaffTagSize } from './tag-sizable.directive';
 import { DaffTagComponent } from './tag.component';
 
 @Component({

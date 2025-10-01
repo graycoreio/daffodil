@@ -18,7 +18,7 @@ import {
   DaffStatusableDirective,
 } from '@daffodil/design';
 
-import { DaffTagSizableDirective } from './tag-sizeable.directive';
+import { DaffTagSizableDirective } from './tag-sizable.directive';
 
 /**
  * Contains the tag content: checkmark icon, label, and delete button.
@@ -58,7 +58,6 @@ import { DaffTagSizableDirective } from './tag-sizeable.directive';
     '[attr.aria-disabled]': 'disabled ? true : null',
     '[disabled]': 'disabled',
     '[class.dismissible]': 'dismissible',
-    '[attr.tabindex]': 'disabled ? -1 : this.tabindex',
   },
   imports: [
     FaIconComponent,

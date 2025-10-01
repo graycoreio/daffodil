@@ -68,4 +68,9 @@
 		color: currentColor;
 		margin: 0;
 	}
+
+	&[disabled] &__close-icon,
+	&.disabled &__close-icon {
+		cursor: not-allowed;
+	}
 }

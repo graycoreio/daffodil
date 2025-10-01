@@ -1,19 +1,19 @@
-<daff-tag *ngIf="!hiddenTags['default']" dismissible (closeTag)="hideTag('default')">
+<daff-tag>
   <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
   Default
 </daff-tag>
 
-<daff-tag *ngIf="!hiddenTags['sm']" size="sm" dismissible (closeTag)="hideTag('sm')">
+<daff-tag size="sm">
   <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
   Small
 </daff-tag>
 
-<daff-tag *ngIf="!hiddenTags['md']" size="md" dismissible (closeTag)="hideTag('md')">
+<daff-tag size="md">
   <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
   Medium
 </daff-tag>
 
-<daff-tag *ngIf="!hiddenTags['lg']" size="lg" dismissible (closeTag)="hideTag('lg')">
+<daff-tag size="lg">
   <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
   Large
 </daff-tag>

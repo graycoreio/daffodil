@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,19 +23,8 @@ import { DAFF_TAG_COMPONENTS } from '@daffodil/design/tag';
   imports: [
     DAFF_TAG_COMPONENTS,
     FaIconComponent,
-    NgIf,
   ],
 })
 export class SizeableTagComponent {
   faCircleCheck = faCircleCheck;
-
-  hiddenTags: { [key: string]: boolean } = {
-    default: false,
-    sm: false,
-    md: false,
-    lg: false,
-  };
-  hideTag(tagId: string) {
-    this.hiddenTags[tagId] = true;
-  }
 }
