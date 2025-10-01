@@ -5,7 +5,6 @@ import {
   ContentChild,
   AfterContentInit,
   AfterContentChecked,
-  HostBinding,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   Input,
@@ -47,6 +46,19 @@ export const DaffFormFieldMissingControlMessage = 'A DaffFormFieldComponent must
   imports: [
     NgTemplateOutlet,
   ],
+  host: {
+    class: 'daff-form-field',
+    '[class.is-select]': 'isSelectField',
+    '[class.has-prefix]': '_prefix',
+    '[class.has-suffix]': '_suffix || action',
+    '[class.daff-error]': 'isError',
+    '[class.daff-disabled]': 'isDisabled',
+    '[class.daff-valid]': 'isValid',
+    '[class.daff-focused]': 'isFocused',
+    '[class.daff-raised]': 'isRaised',
+    '[class.fluid]': 'appearance === "fluid"',
+    '[class.fixed]': 'appearance === "fixed"',
+  },
   hostDirectives: [
     {
       directive: DaffSkeletonableDirective,
@@ -56,18 +68,8 @@ export const DaffFormFieldMissingControlMessage = 'A DaffFormFieldComponent must
 })
 export class DaffFormFieldComponent implements AfterContentInit, AfterContentChecked, AfterViewInit {
   /** @docs-private */
-  @HostBinding('class.daff-form-field') class = true;
-
-  /** @docs-private */
   get isSelectField() {
     return this._control.controlType === 'native-select' || this._control.controlType === 'custom-select';
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.is-select') get selectClass() {
-    return this.isSelectField;
   }
 
   constructor(private cd: ChangeDetectorRef, public elementRef: ElementRef) {}
@@ -75,22 +77,8 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   /** @docs-private */
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
 
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.has-prefix') get hasPrefixClass() {
-    return this._prefix;
-  }
-
   /** @docs-private */
   @ContentChild(DaffSuffixDirective) _suffix: DaffSuffixDirective;
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.has-suffix') get hasSuffixClass() {
-    return this._suffix || this._action;
-  }
 
   /**
    * @docs-private
@@ -135,13 +123,6 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
 
   /**
    * @docs-private
-   */
-  @HostBinding('class.daff-error') get errorClass() {
-    return this.isError;
-  }
-
-  /**
-   * @docs-private
    *
    * Tracking property to keep a record of whether or not the
    * form field contains any user input.
@@ -158,25 +139,11 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
 
   /**
    * @docs-private
-   */
-  @HostBinding('class.daff-disabled') get disabledClass() {
-    return this.isDisabled;
-  }
-
-  /**
-   * @docs-private
    *
    * Tracking property to keep a record of whether or not the
    * form field should be marked as valid.
    */
   isValid = false;
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-valid') get validClass() {
-    return this.isValid;
-  }
 
   /**
    * @docs-private
@@ -190,14 +157,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   /**
    * @docs-private
    */
-  @HostBinding('class.daff-focused') get focusedClass() {
-    return this.isFocused;
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-raised') get raisedClass() {
+  get isRaised() {
     return this._control?.raised || this.isFilled;
   }
 
@@ -222,20 +182,6 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   /**
    * @docs-private
    */
-  @HostBinding('class.fluid') get fluidClass() {
-    return this._appearance === DaffFormFieldApperanaceEnum.Fluid;
-  }
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.fixed') get fixedClass() {
-    return this._appearance === DaffFormFieldApperanaceEnum.Fixed;
-  }
-
-  /**
-   * @docs-private
-   */
   get isFixed() {
     return this._appearance === DaffFormFieldApperanaceEnum.Fixed;
   }
@@ -251,7 +197,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   /**
    * @docs-private
    */
-  hasHint(): boolean {
+  hasHint() {
     return this._hint ? true : false;
   }
 
@@ -263,7 +209,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   /**
    * @docs-private
    */
-  hasErrorMessage(): boolean {
+  hasErrorMessage() {
     return this._error ? true : false;
   }
 
