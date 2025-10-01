@@ -3,6 +3,7 @@ import {
   Component,
   HostBinding,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,6 +15,7 @@ import { DaffIconButtonComponent } from '@daffodil/design/button';
   styleUrl: './search-field.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    FormsModule,
     FaIconComponent,
     DaffIconButtonComponent,
   ],
@@ -21,10 +23,11 @@ import { DaffIconButtonComponent } from '@daffodil/design/button';
 
 export class DaffioDocsSearchFieldComponent {
   faTimes = faTimes;
+  searchInput = '';
 
   @HostBinding('class.daffio-docs-search-field') private class = true;
 
-  inputValue = '';
-
-  clearField() {}
+  clearField() {
+    this.searchInput = '';
+  }
 }

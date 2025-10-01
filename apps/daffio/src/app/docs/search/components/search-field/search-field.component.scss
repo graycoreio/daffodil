@@ -17,7 +17,8 @@
 		padding: 1.25rem 1rem;
 
 		&::-webkit-search-cancel-button {
-			display: none;
+			-webkit-appearance: none;
+ 			appearance: none;
 		}
 	}
 }

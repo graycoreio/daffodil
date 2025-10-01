@@ -1,7 +1,9 @@
-<input class="daffio-docs-search-field__input" type="search" placeholder="Search documentation" name="search-documentation" />
-<button daff-icon-button color="theme-contrast"
-  class="daffio-docs-search-field__clear-button"
-  aria-label="Clear the search field"
-  (click)="clearField()">
-    <fa-icon [icon]="faTimes" aria-hidden="true"></fa-icon>
-</button>
+<input class="daffio-docs-search-field__input" type="search" placeholder="Search documentation" name="search-documentation" id="search-input" [(ngModel)]="searchInput" />
+@if (searchInput) {
+  <button daff-icon-button color="theme-contrast"
+    class="daffio-docs-search-field__clear-button"
+    aria-label="Clear the search field"
+    (click)="clearField()">
+      <fa-icon [icon]="faTimes" aria-hidden="true"></fa-icon>
+  </button>
+}
