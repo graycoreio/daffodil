@@ -6,7 +6,7 @@ import {
 
 import { DaffCopyrightComponent } from './copyright.component';
 
-describe('DaffCopyrightComponent', () => {
+describe('@daffodil/branding | DaffCopyrightComponent', () => {
   let component: DaffCopyrightComponent;
   let fixture: ComponentFixture<DaffCopyrightComponent>;
 

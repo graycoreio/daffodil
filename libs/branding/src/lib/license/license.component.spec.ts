@@ -6,7 +6,7 @@ import {
 
 import { DaffLicenseComponent } from './license.component';
 
-describe('DaffLicenseComponent', () => {
+describe('@daffodil/branding | DaffLicenseComponent', () => {
   let component: DaffLicenseComponent;
   let fixture: ComponentFixture<DaffLicenseComponent>;
 

@@ -17,7 +17,7 @@ import { DaffLogoComponent } from './logo.component';
 })
 class WrapperComponent {}
 
-describe('DaffLogoComponent', () => {
+describe('@daffodil/branding | DaffLogoComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffLogoComponent;
   let de: DebugElement;
