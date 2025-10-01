@@ -5,7 +5,7 @@ import { DAFF_AUTHORIZENET_ACCEPT_JS_PRODUCTION } from '@daffodil/authorizenet';
 
 import { DaffAcceptJsLoadingService } from './accept-js-loading.service';
 
-describe('DaffAcceptJsLoadingService', () => {
+describe('@daffodil/authorizenet | DaffAcceptJsLoadingService', () => {
   let service: DaffAcceptJsLoadingService;
   let production: boolean;
 

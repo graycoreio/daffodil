@@ -62,7 +62,7 @@ class MockError extends DaffInheritableError implements DaffError {
   }
 }
 
-describe('DaffAuthorizeNetEffects', () => {
+describe('@daffodil/authorizenet/state | DaffAuthorizeNetEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffAuthorizeNetEffects;
   const paymentTokenRequest: DaffAuthorizeNetTokenRequest = {

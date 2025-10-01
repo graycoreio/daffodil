@@ -10,7 +10,7 @@ import {
   transformMagentoAuthorizeNetResponse,
 } from './authorize-net-transformer';
 
-describe('AuthorizeNet | Drivers | Magento | Transformers', () => {
+describe('@daffodil/authorizenet/driver | Transformers', () => {
   const stubCreditCard: DaffAuthorizeNetCreditCard = {
     cardnumber: 'cardnumber',
     month: 'month',

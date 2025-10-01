@@ -4,7 +4,7 @@ import { DAFF_IN_MEMORY_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/
 
 import { DaffInMemoryBackendAuthorizenetService } from './authorize-net.service';
 
-describe('Driver | InMemory | Authorizenet | DaffInMemoryBackendAuthorizenetService', () => {
+describe('@daffodil/authorizenet/driver | DaffInMemoryBackendAuthorizenetService', () => {
   let authorizenetBackend: DaffInMemoryBackendAuthorizenetService;
 
   beforeEach(() => {

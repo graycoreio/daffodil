@@ -19,7 +19,7 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffAuthorizeNetFacade } from './authorize-net.facade';
 
-describe('DaffAuthorizeNetFacade', () => {
+describe('@daffodil/authorizenet/state | DaffAuthorizeNetFacade', () => {
   let store: Store<DaffAuthorizeNetStateRootSlice>;
   let facade: DaffAuthorizeNetFacade;
   let mockError: DaffStateError;

@@ -20,7 +20,7 @@ import { DaffStateError } from '@daffodil/core/state';
 
 import { daffAuthorizeNetSelectors } from './authorize-net.selector';
 
-describe('DaffAuthorizeNetSelectors', () => {
+describe('@daffodil/authorizenet/state | DaffAuthorizeNetSelectors', () => {
 
   let store: Store<DaffAuthorizeNetStateRootSlice>;
   let mockError: DaffStateError;
