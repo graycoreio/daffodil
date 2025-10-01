@@ -6,5 +6,9 @@
 	(load)="load()">
 </daff-image>
 
-<p *ngIf="!loaded">I am not loaded!</p>
-<p *ngIf="loaded">I am loaded!</p>
+@if (!loaded) {
+  <p>I am not loaded!</p>
+}
+@if (loaded) {
+  <p>I am loaded!</p>
+}
