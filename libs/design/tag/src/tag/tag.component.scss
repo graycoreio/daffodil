@@ -44,6 +44,7 @@
 
 
 .daff-tag {
+	$root: &;
 	@include daff-tag-sizes();
 	display: inline-flex;
 	align-items: center;
@@ -56,6 +57,10 @@
 	&.disabled {
 		cursor: not-allowed;
 		opacity: 0.5;
+
+		#{$root}__close-icon {
+			cursor: not-allowed;
+		}
 	}
 
 	&__close-icon {
@@ -67,10 +72,5 @@
 		position: relative;
 		color: currentColor;
 		margin: 0;
-	}
-
-	&[disabled] &__close-icon,
-	&.disabled &__close-icon {
-		cursor: not-allowed;
 	}
 }
