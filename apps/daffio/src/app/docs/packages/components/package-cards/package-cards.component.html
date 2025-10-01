@@ -1,4 +1,8 @@
-<a daff-card color="theme" *ngFor="let package of packagesList" [routerLink]="package.path">
-	<div daffCardTitle>{{ package.title }}</div>
-	<div daffCardContent *ngIf="package.description">{{ package.description }}</div>
-</a>
+@for (let package of packagesList) {
+	<a daff-card color="theme" [routerLink]="package.path">
+		<div daffCardTitle>{{ package.title }}</div>
+		@if (package.description) {
+			<div daffCardContent>{{ package.description }}</div>
+		}
+	</a>
+}
