@@ -1,43 +1,48 @@
 import {
+  Inject,
+  Injectable,
+} from '@angular/core';
+
+import {
   DaffProductTypeEnum,
-  DaffProductDiscount,
   DaffProduct,
 } from '@daffodil/product';
-import {
-  MagentoProduct,
-  MagentoProductStockStatusEnum,
-} from '@daffodil/product/driver/magento';
 import {
   DaffConfigurableProduct,
   DaffConfigurableProductAttribute,
   DaffConfigurableProductOptionValue,
-  DaffConfigurableProductVariant,
-  DaffProductVariantAttributesDictionary,
 } from '@daffodil/product-configurable';
 
+import { DAFF_PRODUCT_CONFIGURABLE_MAGENTO_VARIANT_TRANSFORM } from '../injection-tokens/transforms/variant/token';
+import { MagentoConfigurableProductVariantTransform } from '../interfaces/public_api';
 import {
-  MagentoConfigurableAttributeOption,
   MagentoConfigurableProduct,
   MagentoConfigurableProductOption,
   MagentoConfigurableProductOptionsValue,
-  MagentoConfigurableProductVariant,
 } from '../models/configurable-product';
 
-/**
- * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.
- *
- * @param response the response from a magento product query.
- */
-export function transformMagentoConfigurableProduct(
-  daffProduct: DaffProduct,
-  { configurable_options, variants }: MagentoConfigurableProduct,
-): DaffConfigurableProduct {
-  return {
-    ...daffProduct,
-    type: DaffProductTypeEnum.Configurable,
-    configurableAttributes: configurable_options.map(transformOption),
-    variants: variants.map(transformVariant),
-  };
+@Injectable()
+export class MagentoConfigurableProductTransformer {
+  constructor(
+    @Inject(DAFF_PRODUCT_CONFIGURABLE_MAGENTO_VARIANT_TRANSFORM) private variantTransform: MagentoConfigurableProductVariantTransform,
+  ) {}
+
+  /**
+   * Transforms the magento MagentoProduct from the magento product query into a DaffProduct.
+   *
+   * @param response the response from a magento product query.
+   */
+  transform(
+    daffProduct: DaffProduct,
+    { configurable_options, variants }: MagentoConfigurableProduct,
+  ): DaffConfigurableProduct {
+    return {
+      ...daffProduct,
+      type: DaffProductTypeEnum.Configurable,
+      configurableAttributes: configurable_options.map(transformOption),
+      variants: variants.map((variant) => this.variantTransform(variant)),
+    };
+  }
 }
 
 export function transformOption(option: MagentoConfigurableProductOption): DaffConfigurableProductAttribute {
@@ -54,52 +59,4 @@ export function transformOptionValue(value: MagentoConfigurableProductOptionsVal
     value: value.value_index.toString(),
     label: value.label,
   };
-}
-
-export function transformVariant(variant: MagentoConfigurableProductVariant): DaffConfigurableProductVariant {
-  return {
-    id: variant.product.sku,
-    appliedAttributes: transformVariantAttributes(variant.attributes),
-    price: getPrice(variant.product),
-    discount: getDiscount(variant.product),
-    image: {
-      id: '0',
-      url: variant.product.image.url,
-      label: variant.product.image.label,
-    },
-    in_stock: variant.product.stock_status === MagentoProductStockStatusEnum.InStock,
-  };
-}
-
-export function transformVariantAttributes(attributes: MagentoConfigurableAttributeOption[]): DaffProductVariantAttributesDictionary {
-  let appliedAttributes: DaffProductVariantAttributesDictionary = {};
-  attributes.forEach(attribute => {
-    appliedAttributes = {
-      ...appliedAttributes,
-      [attribute.code]: attribute.value_index.toString(),
-    };
-  });
-
-  return appliedAttributes;
-}
-
-/**
- * A function for null checking an object.
- */
-function getPrice(product: MagentoProduct): number {
-  return product.price_range &&
-		product.price_range.maximum_price &&
-		product.price_range.maximum_price.regular_price &&
-		product.price_range.maximum_price.regular_price.value !== null
-    ? product.price_range.maximum_price.regular_price.value : null;
-}
-
-function getDiscount(product: MagentoProduct): DaffProductDiscount {
-  return product.price_range &&
-		product.price_range.maximum_price &&
-		product.price_range.maximum_price.discount
-    ? {
-      amount: product.price_range.maximum_price.discount.amount_off,
-      percent: product.price_range.maximum_price.discount.percent_off,
-    } : { amount: null, percent: null };
 }
