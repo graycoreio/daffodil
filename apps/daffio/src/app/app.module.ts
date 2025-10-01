@@ -6,9 +6,11 @@ import {
 import {
   APP_ID,
   Inject,
+  Injector,
   NgModule,
   PLATFORM_ID,
 } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -31,7 +33,7 @@ import { DaffioMarketingFooterComponent } from './core/footer/marketing-footer/m
 import { daffioRouterDataServiceConfig } from './core/router/data-service-config';
 import { DaffioSidebarHeaderComponent } from './core/sidebar/components/sidebar-header/sidebar-header.component';
 import { TemplateModule } from './core/template/template.module';
-import { CeDaffioHeading } from './docs/custom-elements/heading/ce-heading.ce';
+import { MarkdownHeadingComponent } from './docs/components/heading/heading.component';
 
 @NgModule({
   declarations: [
@@ -77,10 +79,12 @@ import { CeDaffioHeading } from './docs/custom-elements/heading/ce-heading.ce';
 export class AppModule {
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
+    private injector: Injector,
   ) {
     if (isPlatformBrowser(this.platformId)) {
-      if (!customElements.get('ce-daffio-heading')) {
-        customElements.define('ce-daffio-heading', CeDaffioHeading);
+      if (!customElements.get('daffio-ce-heading')) {
+        const heading = createCustomElement(MarkdownHeadingComponent, { injector: this.injector });
+        customElements.define('daffio-ce-heading', heading);
       }
     }
   }
