@@ -20,6 +20,8 @@ import {
   DaffFormFieldControl,
 } from '@daffodil/design/form-field';
 import { DaffInputComponent } from '@daffodil/design/input';
+import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
+import { DaffSelectComponent } from '@daffodil/design/select';
 
 import { DaffFormFieldApperanace } from '../form-field/form-field.component';
 
@@ -153,6 +155,42 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
     });
   });
 
+  describe('focused state', () => {
+    it('should set the `daff-focused` class on the host element when the child control is focused', () => {
+      control.focus();
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-focused')).toEqual(true);
+    });
+
+    it('should not set the `daff-focused` class on the host element when the child control is not focused', () => {
+      expect(de.nativeElement.classList.contains('daff-focused')).toEqual(false);
+    });
+  });
+
+  describe('raised state', () => {
+    it('should set the `daff-raised` class on the host element when the child control is focused', () => {
+      control.focus();
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-raised')).toEqual(true);
+    });
+
+    it('should set the `daff-raised` class on the host element when the child control is filled', () => {
+      wrapper.formControl.setValue('Some Value');
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-raised')).toEqual(true);
+    });
+
+    it('should not set the `daff-raised` class on the host element when the child control is neither focused nor filled', () => {
+      wrapper.formControl.setValue('');
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-raised')).toEqual(false);
+    });
+  });
+
   it('should not add the `has-prefix` class to the host element if prefix is not used', () => {
     expect(de.nativeElement.classList.contains('has-prefix')).toEqual(false);
   });
@@ -182,7 +220,6 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage - Prefix, Suffix, & 
   let wrapper: WithPrefixSuffixComponent;
   let component: DaffFormFieldComponent;
   let fixture: ComponentFixture<WithPrefixSuffixComponent>;
-  let control: DaffFormFieldControl<unknown>;
   let de: DebugElement;
 
   beforeEach(waitForAsync(() => {
@@ -201,7 +238,6 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage - Prefix, Suffix, & 
 
     de = fixture.debugElement.query(By.css('daff-form-field'));
     component = de.componentInstance;
-    control = component._control;
   });
 
   it('should create', () => {
@@ -218,5 +254,76 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage - Prefix, Suffix, & 
 
   it('should add the `has-suffix` class to the host element when [daffFormFieldAction] is used', () => {
     expect(de.nativeElement.classList.contains('has-suffix')).toEqual(true);
+  });
+});
+
+@Component({
+  template: `
+    <daff-form-field>
+      <select daff-native-select></select>
+    </daff-form-field>`,
+  selector: 'daff-native-select-test',
+  imports: [
+    DAFF_FORM_FIELD_COMPONENTS,
+    DaffNativeSelectComponent,
+    ReactiveFormsModule,
+  ],
+})
+
+class WithNativeSelectComponent {}
+
+@Component({
+  template: `
+    <daff-form-field>
+      <daff-select></daff-select>
+    </daff-form-field>`,
+  selector: 'daff-custom-select-test',
+  imports: [
+    DAFF_FORM_FIELD_COMPONENTS,
+    DaffSelectComponent,
+    ReactiveFormsModule,
+  ],
+})
+
+class WithCustomSelectComponent {}
+
+@Component({
+  template: `
+    <daff-native-select-test></daff-native-select-test>
+    <daff-custom-select-test></daff-custom-select-test>
+  `,
+  imports: [
+    WithNativeSelectComponent,
+    WithCustomSelectComponent,
+  ],
+})
+
+class SelectWrapperComponent {}
+
+describe('@daffodil/design | DaffFormFieldComponent | Usage - Select Controls', () => {
+  let wrapper: SelectWrapperComponent;
+  let fixture: ComponentFixture<SelectWrapperComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SelectWrapperComponent,
+      ],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(SelectWrapperComponent);
+    wrapper = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(wrapper).toBeTruthy();
+  });
+
+  it('should add a class of "is-select" to both native and custom select form fields', () => {
+    expect(fixture.debugElement.queryAll(By.css('.is-select')).length).toEqual(2);
   });
 });
