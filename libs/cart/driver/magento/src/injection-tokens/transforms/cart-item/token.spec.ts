@@ -7,7 +7,7 @@ import {
   DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS,
 } from './token';
 
-describe('provideDaffCartMagentoCartItemTransforms', () => {
+describe('@daffodil/cart/driver/magento | provideDaffCartMagentoCartItemTransforms', () => {
   let transforms: DaffCartMagentoCartItemTransform[];
   let result: DaffCartMagentoCartItemTransform[];
 

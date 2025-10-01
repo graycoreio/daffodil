@@ -11,7 +11,7 @@ import { daffAdd } from '@daffodil/core';
 
 import { transformCartTotals } from './cart-totals-transformer';
 
-describe('transformCartTotals', () => {
+describe('@daffodil/cart/driver/magento | transformCartTotals', () => {
   let magentoShippingAddressFactory: MagentoShippingAddressFactory;
   let magentoShippingMethodFactory: MagentoCartShippingMethodFactory;
 

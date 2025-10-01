@@ -78,7 +78,7 @@ import {
 
 import { DaffCartFacade } from './cart.facade';
 
-describe('DaffCartFacade', () => {
+describe('@daffodil/cart/state | DaffCartFacade', () => {
   let store: Store<DaffCartStateRootSlice>;
   let facade: DaffCartFacade;
   let cartFactory: DaffCartFactory;

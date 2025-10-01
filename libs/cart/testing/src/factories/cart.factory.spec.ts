@@ -4,7 +4,7 @@ import { DaffCart } from '@daffodil/cart';
 
 import { DaffCartFactory } from './cart.factory';
 
-describe('Cart | Testing | Factories | DaffCartFactory', () => {
+describe('@daffodil/cart/testing | DaffCartFactory', () => {
 
   let cartFactory: DaffCartFactory;
 

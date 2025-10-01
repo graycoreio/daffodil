@@ -4,7 +4,7 @@ import { MagentoShippingAddress } from '@daffodil/cart/driver/magento';
 
 import { MagentoShippingAddressFactory } from './shipping-address.factory';
 
-describe('Cart | Testing | Factories | ShippingAddressFactory', () => {
+describe('@daffodil/cart/driver/magento/testing | MagentoShippingAddressFactory', () => {
   let factory: MagentoShippingAddressFactory;
 
   beforeEach(() => {

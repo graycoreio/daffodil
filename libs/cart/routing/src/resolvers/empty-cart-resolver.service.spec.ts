@@ -27,7 +27,7 @@ import {
 
 import { DaffEmptyCartResolver } from './empty-cart-resolver.service';
 
-describe('DaffEmptyCartResolver', () => {
+describe('@daffodil/cart/routing | DaffEmptyCartResolver', () => {
   const actions$: Observable<any> = null;
   let emptyCartResolver: DaffEmptyCartResolver;
   let store: Store<any>;

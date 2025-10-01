@@ -4,7 +4,7 @@ import { MagentoBundleCartItemFactory } from '@daffodil/cart/driver/magento/test
 
 import { transformMagentoBundleCartItem } from './bundle-cart-item-transformer';
 
-describe('transformMagentoBundleCartItem', () => {
+describe('@daffodil/cart/driver/magento | transformMagentoBundleCartItem', () => {
   let stubMagentoBundleCartItem: MagentoBundleCartItem;
   let transformedCartItem: DaffCompositeCartItem;
 

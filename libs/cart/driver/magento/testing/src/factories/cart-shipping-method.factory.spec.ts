@@ -4,7 +4,7 @@ import { MagentoCartShippingMethod } from '@daffodil/cart/driver/magento';
 
 import { MagentoCartShippingMethodFactory } from './cart-shipping-method.factory';
 
-describe('Cart | Testing | Factories | CartShippingMethodFactory', () => {
+describe('@daffodil/cart/driver/magento/testing | MagentoCartShippingMethodFactory', () => {
   let factory: MagentoCartShippingMethodFactory;
 
   beforeEach(() => {

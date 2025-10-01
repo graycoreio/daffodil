@@ -4,7 +4,7 @@ import { MagentoCartPaymentMethod } from '@daffodil/cart/driver/magento';
 
 import { MagentoCartPaymentMethodFactory } from './cart-payment-method.factory';
 
-describe('Cart | Testing | Factories | CartPaymentMethodFactory', () => {
+describe('@daffodil/cart/driver/magento/testing | MagentoCartPaymentMethodFactory', () => {
   let factory: MagentoCartPaymentMethodFactory;
 
   beforeEach(() => {

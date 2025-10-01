@@ -12,7 +12,7 @@ import {
 
 import { DaffTestingCartCouponService } from './cart-coupon.service';
 
-describe('Driver | Testing | Cart | CartCouponService', () => {
+describe('@daffodil/cart/driver/testing | DaffTestingCartCouponService', () => {
   let service: DaffTestingCartCouponService;
   let cartFactory: DaffCartFactory;
   let cartCouponFactory: DaffCartCouponFactory;

@@ -12,7 +12,7 @@ import {
 
 import { DaffTestingCartBillingAddressService } from './cart-billing-address.service';
 
-describe('Driver | Testing | Cart | CartBillingAddressService', () => {
+describe('@daffodil/cart/driver/testing | DaffTestingCartBillingAddressService', () => {
   let service: DaffTestingCartBillingAddressService;
   let cartFactory: DaffCartFactory;
   let cartAddressFactory: DaffCartAddressFactory;

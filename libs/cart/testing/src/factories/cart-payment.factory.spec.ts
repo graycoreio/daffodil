@@ -4,7 +4,7 @@ import { DaffCartPaymentMethod } from '@daffodil/cart';
 
 import { DaffCartPaymentFactory } from './cart-payment.factory';
 
-describe('Cart | Testing | Factories | CartPaymentFactory', () => {
+describe('@daffodil/cart/testing | DaffCartPaymentFactory', () => {
 
   let cartPaymentFactory: DaffCartPaymentFactory;
 
