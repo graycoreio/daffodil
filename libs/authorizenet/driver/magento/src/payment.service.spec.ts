@@ -16,7 +16,7 @@ import { MagentoAuthorizeNetPayment } from '@daffodil/authorizenet/driver/magent
 
 import { DaffMagentoAuthorizeNetService } from './authorize-net.service';
 
-describe('@daffodil/authorizenet/driver | DaffMagentoAuthorizeNetService', () => {
+describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService', () => {
   let service: DaffMagentoAuthorizeNetService;
 
   let acceptSpy: jasmine.Spy;

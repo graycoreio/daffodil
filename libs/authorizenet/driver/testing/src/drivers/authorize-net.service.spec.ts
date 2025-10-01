@@ -3,7 +3,7 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffTestingAuthorizeNetService } from './authorize-net.service';
 
-describe('@daffodil/authorizenet/driver | AuthorizeNetService', () => {
+describe('@daffodil/authorizenet/driver/testing | AuthorizeNetService', () => {
   let service: DaffTestingAuthorizeNetService;
 
   beforeEach(() => {
