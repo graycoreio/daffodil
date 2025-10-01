@@ -3,11 +3,11 @@ import { gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 
 import {
-  provideDaffProductConfigurableMagentoExtraItemFragments,
-  DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_ITEM_FRAGMENTS,
+  provideDaffProductConfigurableMagentoExtraVariantFragments,
+  DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_VARIANT_FRAGMENTS,
 } from './variant.token';
 
-describe('@daffodil/product-configurable/driver/magento | provideDaffProductConfigurableMagentoExtraItemFragments', () => {
+describe('@daffodil/product-configurable/driver/magento | provideDaffProductConfigurableMagentoExtraVariantFragments', () => {
   let fragments: DocumentNode[];
   let result: DocumentNode[];
 
@@ -27,11 +27,11 @@ describe('@daffodil/product-configurable/driver/magento | provideDaffProductConf
 
     TestBed.configureTestingModule({
       providers: [
-        ...provideDaffProductConfigurableMagentoExtraItemFragments(...fragments),
+        ...provideDaffProductConfigurableMagentoExtraVariantFragments(...fragments),
       ],
     });
 
-    result = TestBed.inject(DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_ITEM_FRAGMENTS);
+    result = TestBed.inject(DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_VARIANT_FRAGMENTS);
   });
 
   it('should provide the fragments to the token', () => {

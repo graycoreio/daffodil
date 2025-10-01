@@ -14,21 +14,21 @@ export const {
    * Apps using this token should therefore increase the query complexity limit
    * to accommodate the extra complexity contributed by the provided fragments.
    */
-  token: DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_ITEM_FRAGMENTS,
+  token: DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_VARIANT_FRAGMENTS,
 
   /**
    * Provides extra GraphQL fragments for the Magento product driver.
    *
-   * See {@link DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_ITEM_FRAGMENTS}.
+   * See {@link DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_VARIANT_FRAGMENTS}.
    *
    * @example
    * ```ts
    * providers: [
-   *   ...provideDaffProductConfigurableMagentoExtraItemFragments(
+   *   ...provideDaffProductConfigurableMagentoExtraVariantFragments(
    *     myExtraProductFragment
    *   )
    * ]
    * ```
    */
-  provider: provideDaffProductConfigurableMagentoExtraItemFragments,
-} = createMultiInjectionToken<DocumentNode>('DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_ITEM_FRAGMENTS');
+  provider: provideDaffProductConfigurableMagentoExtraVariantFragments,
+} = createMultiInjectionToken<DocumentNode>('DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_VARIANT_FRAGMENTS');

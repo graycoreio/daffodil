@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffConfigurableProductVariant } from '@daffodil/product-configurable';
 import {
-  provideDaffProductConfigurableMagentoExtraItemTransforms,
+  provideDaffProductConfigurableMagentoExtraVariantTransforms,
   MagentoConfigurableProductVariant,
   MagentoConfigurableProductVariantExtraTransform,
   MagentoConfigurableProductVariantTransform,
@@ -33,7 +33,7 @@ describe('@daffodil/product/driver/magento | DAFF_PRODUCT_CONFIGURABLE_MAGENTO_V
 
     TestBed.configureTestingModule({
       providers: [
-        ...provideDaffProductConfigurableMagentoExtraItemTransforms(...transforms),
+        ...provideDaffProductConfigurableMagentoExtraVariantTransforms(...transforms),
       ],
     });
 

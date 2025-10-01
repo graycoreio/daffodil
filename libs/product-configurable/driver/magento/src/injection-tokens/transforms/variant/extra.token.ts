@@ -8,8 +8,8 @@ import { MagentoConfigurableProductVariant } from '../../../models/public_api';
 
 const {
   /**
-   * A multi-provider injection token for providing extra transform logic in the Product Magento driver.
-   * It is run after the standard transforms for each product preview and passed both the current transformed Daffodil product and the Magento product.
+   * A multi-provider injection token for providing extra transform logic in `@daffodil/product-configurable/driver/magento`.
+   * It is run after the standard transforms for each product preview and passed both the current transformed Daffodil configurable product variant and the Magento configurable product variant.
    *
    * See {@link MagentoConfigurableProductVariant} for more info.
    */
@@ -18,20 +18,20 @@ const {
 } = createMultiInjectionToken<MagentoConfigurableProductVariantExtraTransform>('DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_VARIANT_TRANSFORMS');
 
 /**
- * Provides extra product preview transforms for the Magento product driver.
+ * Provides extra configurable product variant transforms for `@daffodil/product-configurable/driver/magento`.
  *
  * See {@link DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_VARIANT_TRANSFORMS}.
  *
  * @example
  * ```ts
  * providers: [
- *   ...provideDaffProductConfigurableMagentoExtraItemTransforms(
+ *   ...provideDaffProductConfigurableMagentoExtraVariantTransforms(
  *     myExtraProductTransform
  *   )
  * ]
  * ```
  */
-export function provideDaffProductConfigurableMagentoExtraItemTransforms<T extends MagentoConfigurableProductVariant = MagentoConfigurableProductVariant, V extends DaffConfigurableProductVariant = DaffConfigurableProductVariant>(...transforms: MagentoConfigurableProductVariantExtraTransform<T, V>[]): Provider[] {
+export function provideDaffProductConfigurableMagentoExtraVariantTransforms<T extends MagentoConfigurableProductVariant = MagentoConfigurableProductVariant, V extends DaffConfigurableProductVariant = DaffConfigurableProductVariant>(...transforms: MagentoConfigurableProductVariantExtraTransform<T, V>[]): Provider[] {
   return provider<MagentoConfigurableProductVariantExtraTransform<T, V>>(...transforms);
 }
 
