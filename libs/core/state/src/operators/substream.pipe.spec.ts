@@ -10,7 +10,7 @@ import {
   substream,
 } from './substream.pipe';
 
-describe('Core | Operators | Substream', () => {
+describe('@daffodil/core/state | substream', () => {
   let action1: Action;
   let action2: Action;
   let action3: Action;

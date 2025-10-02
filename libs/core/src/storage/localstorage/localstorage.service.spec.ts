@@ -7,7 +7,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffLocalStorageService } from './localstorage.service';
 
-describe('DaffLocalStorageService', () => {
+describe('@daffodil/core | DaffLocalStorageService', () => {
   describe('On the server', () => {
     beforeEach(() =>
       TestBed.configureTestingModule({

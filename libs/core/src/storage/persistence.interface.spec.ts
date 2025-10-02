@@ -6,7 +6,7 @@ import {
   DaffPersistenceService,
 } from './persistence.interface';
 
-describe('DaffPersistenceServiceToken', () => {
+describe('@daffodil/core | DaffPersistenceServiceToken', () => {
   let defaultPersistenceService: DaffPersistenceService;
 
   beforeEach(() => {

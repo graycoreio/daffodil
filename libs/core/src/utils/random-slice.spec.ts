@@ -1,6 +1,6 @@
 import { randomSlice } from './random-slice';
 
-describe('Core | Utils | random-slice', () => {
+describe('@daffodil/core | randomSlice', () => {
 
   it('should return an empty array if given an empty array', () => {
     const initialArray = [];

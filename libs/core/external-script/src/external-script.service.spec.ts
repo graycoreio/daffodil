@@ -14,7 +14,7 @@ export const FAKE_DOCUMENT = <Document>{
   },
 };
 
-describe('DaffExternalScriptService', () => {
+describe('@daffodil/core/external-script | DaffExternalScriptService', () => {
   let service: DaffExternalScriptService;
   let testScheduler: TestScheduler;
 
