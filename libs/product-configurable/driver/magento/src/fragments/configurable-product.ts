@@ -1,6 +1,12 @@
 import { gql } from 'apollo-angular';
+import { DocumentNode } from 'graphql';
 
-export const magentoConfigurableProductFragment = gql`
+import {
+  daffBuildFragmentDefinition,
+  daffBuildFragmentNameSpread,
+} from '@daffodil/core/graphql';
+
+export const magentoConfigurableProductFragment = (extraVariantFragments: Array<DocumentNode> = []) => gql`
   fragment magentoConfigurableProduct on ConfigurableProduct {
 		configurable_options {
 			attribute_code
@@ -12,6 +18,7 @@ export const magentoConfigurableProductFragment = gql`
 			}
 		}
 		variants {
+			${daffBuildFragmentNameSpread(...extraVariantFragments)}
 			attributes {
 				code
 				value_index
@@ -38,4 +45,5 @@ export const magentoConfigurableProductFragment = gql`
 			}
 		}
   }
+${daffBuildFragmentDefinition(...extraVariantFragments)}
 `;
