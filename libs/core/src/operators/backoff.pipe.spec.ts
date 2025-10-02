@@ -11,7 +11,7 @@ import { TestScheduler } from 'rxjs/testing';
 
 import { backoff } from './backoff.pipe';
 
-describe('Core | Operators | Backoff', () => {
+describe('@daffodil/core | backoff', () => {
   let testScheduler: TestScheduler;
 
   beforeEach(() => {

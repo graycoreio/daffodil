@@ -6,7 +6,7 @@ import {
   daffPrecision,
 } from './long-arithmetic';
 
-describe('Core | Utils | Long Arithmetic', () => {
+describe('@daffodil/core | Long Arithmetic', () => {
 
   const testEdgeCases = [];
   const specialCases  = [[], [1]];

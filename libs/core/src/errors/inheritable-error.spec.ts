@@ -2,7 +2,7 @@ import { DaffInheritableError } from './inheritable-error';
 
 class MockError extends DaffInheritableError {}
 
-describe('Core | Error | DaffInheritableError', () => {
+describe('@daffodil/core | DaffInheritableError', () => {
   let mockError: MockError;
 
   beforeEach(() => {
