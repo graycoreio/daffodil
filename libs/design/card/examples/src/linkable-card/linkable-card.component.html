@@ -13,7 +13,9 @@
 </a>
 
 <select [formControl]="basicColorControl">
-	<option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+	@for (let option of options) {
+		<option [value]="option.value">{{ option.label }}</option>
+	}
 </select>
 
 <a daff-raised-card href="https://www.basel.com/en/attractions/basel-exhibition-centre-f45d5dd6f0" target="_blank" [color]="raisedColorControl.value">
@@ -31,7 +33,9 @@
 </a>
 
 <select [formControl]="raisedColorControl">
-	<option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+	@for (let option of options) {
+		<option [value]="option.value">{{ option.label }}</option>
+	}
 </select>
 
 <a daff-stroked-card href="https://www.basel.com/en/attractions/basel-exhibition-centre-f45d5dd6f0" target="_blank" [color]="strokedColorControl.value">
@@ -49,5 +53,7 @@
 </a>
 
 <select [formControl]="strokedColorControl">
-	<option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+	@for (let option of options) {
+		<option [value]="option.value">{{ option.label }}</option>
+	}
 </select>

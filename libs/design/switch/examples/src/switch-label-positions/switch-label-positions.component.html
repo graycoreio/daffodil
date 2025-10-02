@@ -1,5 +1,7 @@
 <daff-switch [labelPosition]="labelPositionControl.value" [formControl]="labelSwitchExample" ngDefaultControl>Label</daff-switch>
 
 <select [formControl]="labelPositionControl">
-  <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+  @for (let option of options) {
+    <option [value]="option.value">{{ option.label }}</option>
+  }
 </select>
