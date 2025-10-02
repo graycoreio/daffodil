@@ -25,6 +25,10 @@
 		text-align: left;
 		width: 100%;
 		position: relative;
+
+		&[disabled] {
+			cursor: not-allowed;
+		}
 	}
 
 	&__options {
