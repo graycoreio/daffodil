@@ -29,7 +29,7 @@ import {
 
 import { getDaffCategoryPageSelectors } from './category-page.selector';
 
-describe('DaffCategoryPageSelectors', () => {
+describe('@daffodil/category/state | DaffCategoryPageSelectors', () => {
 
   let store: Store<DaffCategoryStateRootSlice>;
   let categoryFactory: DaffCategoryFactory;

@@ -49,7 +49,7 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffCategoryPageEffects } from './category-page.effects';
 
-describe('DaffCategoryPageEffects', () => {
+describe('@daffodil/category/state | DaffCategoryPageEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCategoryPageEffects<DaffCategory, DaffProduct>;
   let stubCategory: DaffCategory;

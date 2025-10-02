@@ -6,7 +6,7 @@ import {
 import { daffCategoryReducers } from './category-reducers';
 import { daffCategoryPageMetadataReducer } from './page-metadata/reducer';
 
-describe('selectCategoryState', () => {
+describe('@daffodil/category/state | selectCategoryState', () => {
 
   it('should return a reducer map with CategoryReducer', () => {
     expect(daffCategoryReducers.category).toEqual(daffCategoryReducer);

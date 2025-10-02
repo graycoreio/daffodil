@@ -58,7 +58,7 @@ import { DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER } from '../../injection-tokens/re
 })
 class TestComponent {}
 
-describe('DaffCategoryPageUrlResolver', () => {
+describe('@daffodil/category/routing | DaffCategoryPageUrlResolver', () => {
   const actions$: Observable<any> = null;
   let categoryResolver: DaffCategoryPageUrlResolver;
   let store: Store<DaffCategoryReducersState>;

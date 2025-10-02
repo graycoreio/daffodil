@@ -4,7 +4,7 @@ import { DaffCategoryPageMetadata } from '@daffodil/category';
 
 import { DaffCategoryPageMetadataFactory } from './category-page-metadata.factory';
 
-describe('Category | Testing | Factories | DaffCategoryPageMetadataFactory', () => {
+describe('@daffodil/category/testing | DaffCategoryPageMetadataFactory', () => {
 
   let categoryPageMetadataFactory;
 
