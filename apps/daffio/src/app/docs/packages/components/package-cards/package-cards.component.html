@@ -1,4 +1,4 @@
-@for (package of packagesList; track package) {
+@for (let package of packagesList) {
 	<a daff-card color="theme" [routerLink]="package.path">
 		<div daffCardTitle>{{ package.title }}</div>
 		@if (package.description) {

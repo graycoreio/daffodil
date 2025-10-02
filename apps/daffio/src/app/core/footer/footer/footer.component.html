@@ -1,7 +1,7 @@
 <daff-container size="md">
   <div class="daffio-footer__grid">
     <div class="daffio-footer__menu">
-      @for (link of links; track link) {
+      @for (let link of links) {
         <a routerLink="{{ link.path }}" class="daffio-footer__link">{{ link.title }}</a>
       }
       <a class="daffio-footer__link" href="https://github.com/sponsors/graycoreio" target="_blank" rel="noopener noreferrer">Sponsor</a>
@@ -10,7 +10,7 @@
       <daff-branding-logo type="icon"></daff-branding-logo>
     </a>
     <div class="daffio-footer__social">
-      @for (socialLink of socialLinks; track socialLink) {
+      @for (let socialLink of socialLinks) {
         <a [href]="socialLink.link" target="_blank" rel="noopener noreferrer" class="daffio-footer__link">
           <fa-icon [icon]="socialLink.icon" attr.aria-label="{{socialLink.title}} Logo"></fa-icon> <span>{{socialLink.title}}</span>
         </a>
