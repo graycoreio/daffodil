@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { DaffRadioRegistry } from './radio-registry';
 import { DaffRadioModule } from '../radio.module';
 
-describe('DaffRadioRegistry', () => {
+describe('@daffodil/design/radio | DaffRadioRegistry', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [
       DaffRadioModule,

@@ -8,10 +8,8 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { DaffCartShippingRate } from '@daffodil/cart';
-import {
-  DaffErrorStateMatcher,
-  DaffRadioModule,
-} from '@daffodil/design';
+import { DaffErrorStateMatcher } from '@daffodil/design';
+import { DAFF_RADIO_COMPONENTS } from '@daffodil/design/radio';
 
 import { DemoCheckoutShippingFormGroup } from '../../models/shipping-form.type';
 
@@ -22,7 +20,7 @@ import { DemoCheckoutShippingFormGroup } from '../../models/shipping-form.type';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DaffRadioModule,
+    DAFF_RADIO_COMPONENTS,
   ],
 })
 export class DemoCheckoutShippingOptionsComponent implements OnInit, DoCheck {

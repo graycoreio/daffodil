@@ -10,7 +10,7 @@ import {
   ControlValueAccessor,
 } from '@angular/forms';
 
-import { DaffRadioComponent } from '../radio.component';
+import { DaffRadioComponent } from '../radio/radio.component';
 import { DaffRadioRegistry } from '../registry/radio-registry';
 
 /**
@@ -19,7 +19,6 @@ import { DaffRadioRegistry } from '../registry/radio-registry';
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'daff-radio[ngModel], daff-radio[formControl], daff-radio[formControlName]',
-  standalone: false,
 })
 export class DaffRadioControlValueAccessorDirective implements OnInit, ControlValueAccessor {
   _onChange: () => void;
@@ -49,8 +48,10 @@ export class DaffRadioControlValueAccessorDirective implements OnInit, ControlVa
    * @docs-private
    */
   ngOnInit(): void {
-    this.writeValue(this._control.value);
-    this._registry.add(this._control, this);
+    if (this._control) {
+      this.writeValue(this._control.value);
+      this._registry.add(this._control, this);
+    }
 
     this._radio.selectionChange.subscribe(
       value => value ? this._onChange() : null,

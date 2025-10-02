@@ -12,12 +12,11 @@ import {
 import { DaffRadioSetComponent } from '../radio-set/radio-set.component';
 
 let radioUniqueId = 0;
-@Component({
 
+@Component({
   selector: 'daff-radio',
-  templateUrl: './radio.html',
+  templateUrl: './radio.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class DaffRadioComponent implements OnInit {
 

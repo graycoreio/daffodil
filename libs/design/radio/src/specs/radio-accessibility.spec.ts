@@ -7,45 +7,44 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffRadioComponent } from '../radio.component';
-import { DaffRadioModule } from '../radio.module';
-
+import { DaffRadioComponent } from '@daffodil/design/radio';
 
 @Component({
   template: `
     <daff-radio name="test" value="testValue" aria-labelledby="user" aria-label="test"></daff-radio>
   `,
-  standalone: false,
-})
-class RadioWrapperComponent { }
-describe('DaffRadio Accessibility', () => {
-  let radioWrapper: RadioWrapperComponent;
+  imports: [
+    DaffRadioComponent,
+    ReactiveFormsModule,
 
+  ],
+})
+
+class WrapperComponent { }
+
+describe('@daffodil/design/radio | DaffRadioComponent | Accessibility', () => {
+  let fixture: ComponentFixture<WrapperComponent>;
+  let wrapper: WrapperComponent;
   let component: DaffRadioComponent;
 
-  let fixture: ComponentFixture<RadioWrapperComponent>;
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        RadioWrapperComponent,
-      ],
       imports: [
-        ReactiveFormsModule,
-        DaffRadioModule,
+        WrapperComponent,
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RadioWrapperComponent);
-    radioWrapper = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     component = fixture.debugElement.query(By.css('daff-radio')).componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(radioWrapper).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   it('should have a role of radio', () => {

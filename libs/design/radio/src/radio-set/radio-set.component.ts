@@ -9,7 +9,6 @@ import {
   selector: 'daff-radio-set',
   templateUrl: './radio-set.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class DaffRadioSetComponent {
 
