@@ -19,7 +19,7 @@ import {
 
 import { DaffContactEffects } from './contact.effects';
 
-describe('DaffContactEffects', () => {
+describe('@daffodil/contact/state | DaffContactEffects', () => {
   let actions$: Actions;
   let effects: DaffContactEffects;
   const mockForm = { firstName: 'John', lastName: 'Doe' };
