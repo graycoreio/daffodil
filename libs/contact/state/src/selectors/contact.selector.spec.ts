@@ -16,7 +16,7 @@ import {
 import { selectDaffContactSuccess } from './contact.selector';
 import { daffContactReducerInitialState } from '../reducers/contact.reducer';
 
-describe('the contact selectors', () => {
+describe('@daffodil/contact/state | the contact selectors', () => {
 
   let store: Store<DaffContactStateRootSlice>;
   let mockContactState: DaffContactState;

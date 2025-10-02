@@ -18,7 +18,7 @@ import { HubspotResponse } from '@daffodil/driver/hubspot';
 
 const stubHubspotResponse: HubspotResponse = { inlineMessage: 'Success!', errors: []};
 
-describe('DaffContactHubspotDriver', () => {
+describe('@daffodil/contact | DaffContactHubspotDriver', () => {
   let service: DaffContactServiceInterface;
   let httpMock: HttpTestingController;
 

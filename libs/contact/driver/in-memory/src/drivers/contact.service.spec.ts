@@ -13,7 +13,7 @@ import { DaffContactUnion } from '@daffodil/contact';
 
 import { DaffInMemoryContactService } from './contact.service';
 
-describe('The DaffInMemoryContactService', () => {
+describe('@daffodil/contact/driver/in-memory | The DaffInMemoryContactService', () => {
   let contactService;
   let httpMock: HttpTestingController;
 
