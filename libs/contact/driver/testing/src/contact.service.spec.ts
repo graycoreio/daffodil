@@ -3,7 +3,7 @@ import { TestScheduler } from 'rxjs/testing';
 
 import { DaffTestingContactService } from './contact.service';
 
-describe('@daffodil/contact/driver | The DaffTestingContactService', () => {
+describe('@daffodil/contact/driver/testing | DaffTestingContactService', () => {
   let service: DaffTestingContactService;
 
   beforeEach(() => {

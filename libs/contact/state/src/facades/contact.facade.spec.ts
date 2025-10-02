@@ -16,7 +16,7 @@ import {
 
 import { DaffContactFacade } from './contact.facade';
 
-describe('@daffodil/contact/state | the DaffContactFacade', () => {
+describe('@daffodil/contact/state | DaffContactFacade', () => {
   let store: Store<DaffContactStateRootSlice>;
   let facade: DaffContactFacade;
 

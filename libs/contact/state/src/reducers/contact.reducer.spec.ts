@@ -13,7 +13,7 @@ import {
   daffContactReducerInitialState as initialState,
 } from './contact.reducer';
 
-describe('@daffodil/contact/state | the contact reducer', () => {
+describe('@daffodil/contact/state | Reducers', () => {
   it('should create an initial state', () => {
     const action = <any>{};
     expect(reducer(undefined, action)).toEqual(initialState);
