@@ -5,7 +5,7 @@ import { DaffCustomerFactory } from '@daffodil/customer/testing';
 
 import { DaffCustomerTestingDriver } from './customer.service';
 
-describe('@daffodil/driver/testing | DaffCustomerTestingDriver', () => {
+describe('@daffodil/customer/driver/testing | DaffCustomerTestingDriver', () => {
   let service: DaffCustomerTestingDriver;
   let customerFactory: DaffCustomerFactory;
 
