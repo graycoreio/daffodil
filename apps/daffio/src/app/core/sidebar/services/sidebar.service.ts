@@ -2,14 +2,15 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   Inject,
   Injectable,
+  isDevMode,
 } from '@angular/core';
+import { combineLatest } from 'rxjs';
 import {
-  combineLatest,
   distinctUntilChanged,
   filter,
   map,
   startWith,
-} from 'rxjs';
+} from 'rxjs/operators';
 
 import {
   DaffBreakpoints,
@@ -64,7 +65,17 @@ export class DaffioSidebarService extends DaffSidebarService {
     ),
   ]).pipe(
     distinctUntilChanged(),
-    map(([id, sidebars]) => sidebars[id]),
+    map(([id, sidebars]) => {
+      if(!sidebars?.[id] && isDevMode()) {
+        console.warn(
+          `Possible missing sidebar registration for ID: "${id}". ` +
+          `Available sidebar IDs: [${Object.keys(sidebars || {}).join(', ')}]. ` +
+          `Ensure the route data includes this sidebar ID in the daffioSidebars configuration.`,
+        );
+      }
+      return sidebars?.[id] ?? undefined;
+    }),
+
   );
 
   constructor(

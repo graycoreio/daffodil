@@ -1,16 +1,15 @@
-import {
-  CUSTOM_ELEMENTS_SCHEMA,
-  DebugElement,
-} from '@angular/core';
+import { DebugElement } from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
   waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { TemplateComponent } from './template.component';
+
 
 describe('TemplateComponent', () => {
   let component: TemplateComponent;
@@ -19,14 +18,14 @@ describe('TemplateComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-      ],
       imports: [
         RouterTestingModule,
       ],
       declarations: [
         TemplateComponent,
+      ],
+      providers: [
+        provideRouter([]),
       ],
     })
       .compileComponents();

@@ -1,5 +1,9 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import {
+  AsyncPipe,
+  NgComponentOutlet,
+} from '@angular/common';
+import {
   ChangeDetectionStrategy,
   Component,
   Inject,
@@ -25,8 +29,10 @@ import {
   SERVER_SAFE_BREAKPOINT_OBSERVER,
 } from '@daffodil/design';
 import {
+  DaffSidebarComponent,
   daffSidebarIsFloatingMode,
   DaffSidebarModeEnum,
+  DaffSidebarViewportComponent,
 } from '@daffodil/design/sidebar';
 
 import { DaffioSidebarRegistration } from '../../interfaces/registration.type';
@@ -37,7 +43,12 @@ import { DaffioSidebarService } from '../../services/sidebar.service';
   templateUrl: './sidebar-viewport.component.html',
   styleUrls: ['./sidebar-viewport.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    DaffSidebarViewportComponent,
+    DaffSidebarComponent,
+    AsyncPipe,
+    NgComponentOutlet,
+  ],
 })
 export class DaffioSidebarViewportContainer implements OnInit {
   showSidebar: Signal<boolean>;
