@@ -8,14 +8,17 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { DaffRadioModule } from '@daffodil/design';
+import { DAFF_RADIO_COMPONENTS } from '@daffodil/design/radio';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'basic-radio',
   templateUrl: './basic-radio.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DaffRadioModule, ReactiveFormsModule],
+  imports: [
+    DAFF_RADIO_COMPONENTS,
+    ReactiveFormsModule,
+  ],
 })
 export class BasicRadioComponent {
   radioGroup = new UntypedFormGroup({
