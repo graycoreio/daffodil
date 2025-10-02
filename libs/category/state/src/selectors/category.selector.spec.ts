@@ -33,7 +33,7 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { getDaffCategorySelectors } from './category.selector';
 
-describe('DaffCategorySelectors', () => {
+describe('@daffodil/category/state | DaffCategorySelectors', () => {
 
   let store: Store<DaffCategoryStateRootSlice>;
 

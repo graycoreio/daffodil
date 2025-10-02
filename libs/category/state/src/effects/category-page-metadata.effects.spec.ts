@@ -64,7 +64,7 @@ class MockError extends DaffInheritableError implements DaffError {
   }
 }
 
-describe('DaffCategoryPageMetadataEffects', () => {
+describe('@daffodil/category/state | DaffCategoryPageMetadataEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCategoryPageMetadataEffects<DaffCategory, DaffProduct>;
   let daffCategoryDriver: DaffCategoryServiceInterface;

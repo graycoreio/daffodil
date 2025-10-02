@@ -8,7 +8,7 @@ import {
 } from './builders.token';
 
 
-describe('provideDaffCategoryRoutingRequestBuilders', () => {
+describe('@daffodil/category/routing | provideDaffCategoryRoutingRequestBuilders', () => {
   let builders: DaffCategoryRoutingRequestBuilder[];
   let result: DaffCategoryRoutingRequestBuilder[];
 

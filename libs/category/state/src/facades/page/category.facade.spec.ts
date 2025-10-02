@@ -39,7 +39,7 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffCategoryFacade } from './category.facade';
 
-describe('DaffCategoryFacade', () => {
+describe('@daffodil/category/state | DaffCategoryFacade', () => {
   let store: Store<DaffCategoryStateRootSlice>;
   let facade: DaffCategoryFacade<DaffCategory, DaffProduct>;
   let categoryFactory: DaffCategoryFactory;

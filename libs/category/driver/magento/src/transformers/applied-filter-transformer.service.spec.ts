@@ -15,7 +15,7 @@ import {
 
 import { DaffMagentoAppliedFiltersTransformService } from './applied-filter-transformer.service';
 
-describe('DaffMagentoAppliedFiltersTransformService', () => {
+describe('@daffodil/category/driver/magento | DaffMagentoAppliedFiltersTransformService', () => {
   let rangeFilterRequestFactory: DaffFilterRequestRangeNumericFactory;
   let equalFilterRequestFactory: DaffFilterRequestEqualFactory;
   let service: DaffMagentoAppliedFiltersTransformService;
