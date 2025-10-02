@@ -21,7 +21,7 @@ import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
 
 import { daffCustomerAddressGetSelectors } from './selector';
 
-describe('@daffodil/address/state | daffCustomerAddressGetSelectors', () => {
+describe('@daffodil/customer/state | daffCustomerAddressGetSelectors', () => {
   let store: Store<DaffCustomerStateRootSlice>;
   let addressFactory: DaffCustomerAddressFactory;
 
