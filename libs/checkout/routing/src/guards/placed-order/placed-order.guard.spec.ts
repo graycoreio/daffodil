@@ -25,7 +25,7 @@ import { DaffOrderFactory } from '@daffodil/order/testing';
 import { DaffCheckoutPlacedOrderGuardRedirectUrl } from './placed-order-guard-redirect.token';
 import { DaffCheckoutPlacedOrderGuard } from './placed-order.guard';
 
-describe('DaffCheckoutPlacedOrderGuard', () => {
+describe('@daffodil/checkout/routing | DaffCheckoutPlacedOrderGuard', () => {
   let service: DaffCheckoutPlacedOrderGuard;
   let store: Store<any>;
   let router: Router;
