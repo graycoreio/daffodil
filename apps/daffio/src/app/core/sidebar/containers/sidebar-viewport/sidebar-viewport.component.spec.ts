@@ -14,8 +14,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { LetDirective } from '@ngrx/component';
+import { provideRouter } from '@angular/router';
 import { provideMockStore } from '@ngrx/store/testing';
 import { BehaviorSubject } from 'rxjs';
 
@@ -23,17 +22,15 @@ import {
   DaffSidebarViewportComponent,
   DaffSidebarComponent,
   DaffSidebarModeEnum,
-  DAFF_SIDEBAR_COMPONENTS,
-  DaffSidebarModule,
 } from '@daffodil/design/sidebar';
 
 import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
 import { DaffioSidebarRegistration } from '../../interfaces/registration.type';
 import { DaffioSidebarService } from '../../services/sidebar.service';
 
+
 @Component({
   template: '',
-  standalone: false,
 })
 class TestComponent {}
 
@@ -64,18 +61,13 @@ describe('DaffioSidebarViewportContainer', () => {
     );
 
     TestBed.configureTestingModule({
-      declarations: [
-        DaffioSidebarViewportContainer,
-        TestComponent,
-      ],
       imports: [
-        DAFF_SIDEBAR_COMPONENTS,
-        RouterTestingModule,
+        TestComponent,
+        DaffioSidebarViewportContainer,
         NoopAnimationsModule,
-        DaffSidebarModule,
-        LetDirective,
       ],
       providers: [
+        provideRouter([]),
         {
           provide: DaffioSidebarService,
           useValue: sidebarServiceSpy,

@@ -27,6 +27,7 @@ import { environment } from '../environments/environment';
 import { DaffioMarketingFooterComponent } from './core/footer/marketing-footer/marketing-footer.component';
 import { daffioRouterDataServiceConfig } from './core/router/data-service-config';
 import { DaffioSidebarHeaderComponent } from './core/sidebar/components/sidebar-header/sidebar-header.component';
+import { provideDaffioSidebarFeature } from './core/sidebar/provider';
 import { TemplateModule } from './core/template/template.module';
 
 @NgModule({
@@ -68,6 +69,7 @@ import { TemplateModule } from './core/template/template.module';
     provideDaffSeoRouterSchema(),
     provideHttpClient(withInterceptorsFromDi()),
     provideDaffRouterDataServiceConfig(daffioRouterDataServiceConfig),
+    provideDaffioSidebarFeature(),
   ],
 })
 export class AppModule {}

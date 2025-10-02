@@ -6,14 +6,14 @@ import { RouterModule } from '@angular/router';
 import { DaffRouterNamedViewOutletModule } from '@daffodil/router';
 
 import { TemplateComponent } from './template.component';
-import { DaffioSidebarModule } from '../sidebar/sidebar.module';
+import { DaffioSidebarViewportContainer } from '../sidebar/containers/sidebar-viewport/sidebar-viewport.component';
 
 @NgModule({
   imports: [
     RouterModule,
     CommonModule,
-    DaffioSidebarModule,
     DaffRouterNamedViewOutletModule,
+    DaffioSidebarViewportContainer,
   ],
   declarations: [
     TemplateComponent,
