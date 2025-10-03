@@ -51,7 +51,7 @@
 		}
 	}
 
-	&.is-select {
+	&.is-native-select {
 		#{$root}__control {
 			&::after {
 				content: '';
@@ -59,8 +59,8 @@
 				top: 48%;
 				right: 1rem;
 				display: inline-block;
-				border-right: 2px solid currentColor;
-				border-bottom: 2px solid currentColor;
+				border-right: 0.125rem solid currentColor;
+				border-bottom: 0.125rem solid currentColor;
 				width: 0.5rem;
 				height: 0.5rem;
 				transform: translateY(-50%) rotate(45deg);
