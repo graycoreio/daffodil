@@ -7,9 +7,9 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DAFF_BRANDING_CONSTANTS } from '@daffodil/branding';
-import { DaffButtonModule } from '@daffodil/design/button';
-import { DaffCalloutModule } from '@daffodil/design/callout';
-import { DaffContainerModule } from '@daffodil/design/container';
+import { DAFF_BASIC_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
 
 
@@ -22,9 +22,9 @@ import { DaffContainerModule } from '@daffodil/design/container';
   standalone: true,
   imports: [
     FontAwesomeModule,
-    DaffCalloutModule,
-    DaffContainerModule,
-    DaffButtonModule,
+    DAFF_CALLOUT_COMPONENTS,
+    DAFF_CONTAINER_COMPONENTS,
+    DAFF_BASIC_BUTTON_COMPONENTS,
   ],
 })
 export class DaffioSubFooterComponent {
