@@ -5,7 +5,7 @@ import {
   Input,
 } from '@angular/core';
 
-import { DaffNavbarModule } from '@daffodil/design/navbar';
+import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
 
 @Component({
   selector: 'daffio-header',
@@ -13,7 +13,7 @@ import { DaffNavbarModule } from '@daffodil/design/navbar';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffNavbarModule,
+    DAFF_NAVBAR_COMPONENTS,
   ],
 })
 

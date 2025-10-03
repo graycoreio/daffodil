@@ -4,7 +4,7 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 
-import { DaffNavbarModule } from '@daffodil/design/navbar';
+import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
 
 import { DaffioHeaderComponent } from './header.component';
 
@@ -15,7 +15,7 @@ describe('DaffioHeaderComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffNavbarModule,
+        DAFF_NAVBAR_COMPONENTS,
         DaffioHeaderComponent,
       ],
     })
