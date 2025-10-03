@@ -9,9 +9,9 @@ import {
   faFileAlt,
 } from '@fortawesome/free-regular-svg-icons';
 
-import { DaffCalloutModule } from '@daffodil/design/callout';
-import { DaffCardModule } from '@daffodil/design/card';
-import { DaffContainerModule } from '@daffodil/design/container';
+import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
+import { DAFF_CARD_COMPONENTS } from '@daffodil/design/card';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
 @Component({
   selector: 'daffio-why-pwa-stats',
@@ -19,9 +19,9 @@ import { DaffContainerModule } from '@daffodil/design/container';
   styleUrls: ['./why-pwa-stats.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffContainerModule,
-    DaffCalloutModule,
-    DaffCardModule,
+    DAFF_CONTAINER_COMPONENTS,
+    DAFF_CALLOUT_COMPONENTS,
+    DAFF_CARD_COMPONENTS,
     FontAwesomeModule,
   ],
 })
