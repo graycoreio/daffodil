@@ -118,7 +118,7 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
 
   describe('valid state', () => {
     it('should set the `daff-valid` class on the host element when the child control is valid', () => {
-      wrapper.formControl.markAsTouched();
+      wrapper.formControl.markAsDirty();
       wrapper.formControl.setValue('Something Valid');
       fixture.detectChanges();
 
