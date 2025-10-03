@@ -1,0 +1,66 @@
+@use 'true' as *;
+@use './max-contrast' as *;
+@use '../../../core/error/error-to-string';
+
+@include describe('daff-max-contrast') {
+	$white: #ffffff;
+	$black: #000000;
+	$red: #ff0000;
+	$blue: #0000ff;
+	$gray: #808080;
+	$light-gray: #cccccc;
+	$dark-gray: #333333;
+
+	$single-color-list: ($white);
+	$two-color-list: ($white, $black);
+	$multiple-color-list: ($red, $blue, $gray, $light-gray, $dark-gray);
+	$empty-list: ();
+
+	@include error-to-string.set-use-string(true);
+
+	@include it('returns the contrast ratio for single color') {
+		@include assert-equal(daff-max-contrast($black, $single-color-list), 21);
+	}
+
+	@include it('returns the highest contrast ratio from two colors') {
+		@include assert-equal(daff-max-contrast($black, $two-color-list), 21);
+		@include assert-equal(daff-max-contrast($white, $two-color-list), 21);
+	}
+
+	@include it('returns the highest contrast ratio from multiple colors') {
+		$black-result: daff-max-contrast($black, $multiple-color-list);
+		@include assert-true($black-result >= 9.53 and $black-result <= 9.55,
+		'Expected contrast ratio around 9.54, got #{$black-result}');
+
+		$white-result: daff-max-contrast($white, $multiple-color-list);
+		@include assert-true($white-result >= 12.62 and $white-result <= 12.64,
+		'Expected contrast ratio around 12.63, got #{$white-result}');
+	}
+
+	@include it('returns consistent results regardless of list order') {
+		$reordered-list: ($dark-gray, $light-gray, $gray, $blue, $red);
+		@include assert-equal(
+			daff-max-contrast($black, $multiple-color-list),
+			daff-max-contrast($black, $reordered-list)
+		);
+	}
+
+	@include it('works with different reference colors') {
+		$red-result: daff-max-contrast($red, ($white, $black, $blue));
+		@include assert-true($red-result >= 5.24 and $red-result <= 5.26,
+		'Expected contrast ratio around 5.25, got #{$red-result}');
+
+		$blue-result: daff-max-contrast($blue, ($white, $black, $red));
+		@include assert-true($blue-result >= 8.58 and $blue-result <= 8.6,
+		'Expected contrast ratio around 8.59, got #{$blue-result}');
+	}
+
+	@include it('errors when given an empty color list') {
+		@include assert-equal(
+			daff-max-contrast($black, $empty-list),
+			'Error: Attempting to calculate the max contrast between $reference-color and an empty list of colors'
+		);
+	}
+
+	@include error-to-string.set-use-string(false);
+}

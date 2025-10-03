@@ -1,0 +1,38 @@
+@use 'sass:list';
+@use '../contrast-ratio/contrast-ratio.scss' as cr;
+@use '../../../core/error/error-to-string';
+
+/// Returns the color from a list of colors that has the highest contrast ratio with a reference color.
+/// If the list is empty, an error is thrown. If the list has one color, that color is returned.
+/// Uses the cr.daff-contrast-ratio function to calculate contrast ratios.
+///
+/// @group Theming
+///
+/// @param {Color} $reference-color
+/// @param {List} $colors — A list of colors to compare against the reference color
+/// @return {Number} The highest contrast ratio between the reference color and the color list
+///
+@function daff-max-contrast(
+	$reference-color,
+	$colors: ()
+) {
+	@if(list.length($colors) == 0) {
+		@return error-to-string.error-to-string('Error: Attempting to calculate the max contrast between $reference-color and an empty list of colors');
+	}
+	@else if(list.length($colors) == 1) {
+		@return cr.daff-contrast-ratio($reference-color, list.nth($colors, 1));
+	}
+	@else {
+		$max-contrast: -1;
+
+		@each $color in $colors {
+			$current-contrast: cr.daff-contrast-ratio($reference-color, $color);
+
+			@if($current-contrast > $max-contrast) {
+				$max-contrast: $current-contrast;
+			}
+		}
+
+		@return $max-contrast;
+	}
+}
