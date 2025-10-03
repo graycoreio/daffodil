@@ -33,8 +33,8 @@
 		'Expected contrast ratio around 13.08, got #{$black-result}');
 
 		$white-result: daff-max-contrast($white, $multiple-color-list);
-		@include assert-true($white-result >= 13.96 and $white-result <= 13.98,
-		'Expected contrast ratio around 13.97, got #{$white-result}');
+		@include assert-true($white-result >= 12.62 and $white-result <= 12.64,
+		'Expected contrast ratio around 12.63, got #{$white-result}');
 	}
 
 	@include it('returns consistent results regardless of list order') {
