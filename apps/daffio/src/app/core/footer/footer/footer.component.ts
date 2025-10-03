@@ -16,7 +16,7 @@ import {
   DaffCopyrightModule,
   DaffLogoModule,
 } from '@daffodil/branding';
-import { DaffContainerModule } from '@daffodil/design/container';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
 @Component({
   selector: 'daffio-footer',
@@ -25,7 +25,7 @@ import { DaffContainerModule } from '@daffodil/design/container';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FontAwesomeModule,
-    DaffContainerModule,
+    DAFF_CONTAINER_COMPONENTS,
     DaffLogoModule,
     DaffCopyrightModule,
     NgFor,
