@@ -1,3 +1,4 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -13,9 +14,11 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import {
   Observable,
   map,
+  startWith,
 } from 'rxjs';
 
 import { DaffLogoModule } from '@daffodil/branding';
+import { DaffBreakpoints } from '@daffodil/design';
 import { DaffIconButtonComponent } from '@daffodil/design/button';
 import { DaffRouterDataService } from '@daffodil/router';
 import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
@@ -49,15 +52,21 @@ export class DaffioDocsNavContainer implements OnInit {
   faBars = faBars;
 
   links$: Observable<Array<DaffioNavLink>>;
+  isBigTablet$: Observable<boolean>;
 
   constructor(
     private routerData: DaffRouterDataService<DaffioRoute['data']>,
     private sidebarService: DaffioSidebarService,
+    private breakpointObserver: BreakpointObserver,
   ) {}
 
   ngOnInit(): void {
     this.links$ = this.routerData.data$.pipe(
       map((data) => data.daffioNavLinks),
+    );
+    this.isBigTablet$ = this.breakpointObserver.observe(DaffBreakpoints.BIG_TABLET).pipe(
+      startWith({ matches: true }),
+      map((result) => result?.matches),
     );
   }
 
