@@ -17,7 +17,9 @@
 	$colors: ()
 ) {
 	@if(list.length($colors) == 0) {
-		@return error-to-string.error-to-string('Error: Attempting to calculate the max contrast between $reference-color and an empty list of colors');
+		@return error-to-string.error-to-string(
+			'Error: Attempting to calculate the max contrast between $reference-color and an empty list of colors'
+		);
 	}
 	@else if(list.length($colors) == 1) {
 		@return cr.daff-contrast-ratio($reference-color, list.nth($colors, 1));

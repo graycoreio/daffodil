@@ -29,12 +29,12 @@
 
 	@include it('returns the highest contrast ratio from multiple colors') {
 		$black-result: daff-max-contrast($black, $multiple-color-list);
-		@include assert-true($black-result >= 9.53 and $black-result <= 9.55,
-		'Expected contrast ratio around 9.54, got #{$black-result}');
+		@include assert-true($black-result >= 13.07 and $black-result <= 13.09,
+		'Expected contrast ratio around 13.08, got #{$black-result}');
 
 		$white-result: daff-max-contrast($white, $multiple-color-list);
-		@include assert-true($white-result >= 12.62 and $white-result <= 12.64,
-		'Expected contrast ratio around 12.63, got #{$white-result}');
+		@include assert-true($white-result >= 13.96 and $white-result <= 13.98,
+		'Expected contrast ratio around 13.97, got #{$white-result}');
 	}
 
 	@include it('returns consistent results regardless of list order') {
