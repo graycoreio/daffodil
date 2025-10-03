@@ -6,10 +6,7 @@ import {
 } from '@ngrx/store';
 
 import { daffSubtract } from '@daffodil/core';
-import {
-  DaffProductTypeEnum,
-  DaffProduct,
-} from '@daffodil/product';
+import { DaffProductTypeEnum } from '@daffodil/product';
 import { getDaffProductEntitiesSelectors } from '@daffodil/product/state';
 import {
   DaffConfigurableProductVariant,
@@ -24,7 +21,7 @@ import { getDaffConfigurableProductEntitiesSelectors } from '../configurable-pro
 /**
  * An interface describing all selectors unique to configurable products including ranged pricing, configurable attributes, and product variants.
  */
-export interface DaffConfigurableProductMemoizedSelectors<T extends DaffProduct = DaffProduct> {
+export interface DaffConfigurableProductMemoizedSelectors<T extends DaffConfigurableProduct = DaffConfigurableProduct> {
   /**
    * Selects all possible attributes of a configurable product.
    *
@@ -36,13 +33,13 @@ export interface DaffConfigurableProductMemoizedSelectors<T extends DaffProduct 
    *
    * @param productId the id of the configurable product.
    */
-  selectAllConfigurableProductVariants: (productId: T['id']) => MemoizedSelector<DaffConfigurableProductStateRootSlice<T>, DaffConfigurableProductVariant[]>;
+  selectAllConfigurableProductVariants: (productId: T['id']) => MemoizedSelector<DaffConfigurableProductStateRootSlice<T>, Array<T['variants'][number]>>;
   /**
    * Selects the configurable product variants that match the currently applied attributes.
    *
    * @param productId the id of the configurable product.
    */
-  selectMatchingConfigurableProductVariants: (productId: T['id']) => MemoizedSelector<DaffConfigurableProductStateRootSlice<T>, DaffConfigurableProductVariant[]>;
+  selectMatchingConfigurableProductVariants: (productId: T['id']) => MemoizedSelector<DaffConfigurableProductStateRootSlice<T>, Array<T['variants'][number]>>;
   /**
    * Selects all prices for the configurable product variants that match the currently applied attributes.
    *
@@ -114,7 +111,7 @@ export interface DaffConfigurableProductMemoizedSelectors<T extends DaffProduct 
   selectSelectableConfigurableProductAttributes: (productId: T['id']) => MemoizedSelector<DaffConfigurableProductStateRootSlice<T>, Dictionary<string[]>>;
 }
 
-const createConfigurableProductSelectors = <T extends DaffProduct = DaffProduct>(): DaffConfigurableProductMemoizedSelectors<T> => {
+const createConfigurableProductSelectors = <T extends DaffConfigurableProduct = DaffConfigurableProduct>(): DaffConfigurableProductMemoizedSelectors<T> => {
 
   const {
     selectConfigurableProductAppliedAttributes,
@@ -124,47 +121,47 @@ const createConfigurableProductSelectors = <T extends DaffProduct = DaffProduct>
     selectProduct,
   } = getDaffProductEntitiesSelectors<T>();
 
-  const selectAllConfigurableProductVariants = defaultMemoize((productId: T['id']) => createSelector<DaffConfigurableProductStateRootSlice<T>, [T], DaffConfigurableProductVariant[]>(
+  const selectAllConfigurableProductVariants = defaultMemoize((productId: T['id']) => createSelector<DaffConfigurableProductStateRootSlice<T>, [T], Array<T['variants'][number]>>(
     selectProduct(productId),
     (product: T) => {
       if(!product || product.type !== DaffProductTypeEnum.Configurable) {
         return [];
       }
-      return (<DaffConfigurableProduct><any>product).variants;
+      return product.variants;
     },
   )).memoized;
 
-  const selectMatchingConfigurableProductVariants = defaultMemoize((productId: T['id']) => createSelector<DaffConfigurableProductStateRootSlice<T>, [T, DaffConfigurableProductEntityAttribute[]], DaffConfigurableProductVariant[]>(
+  const selectMatchingConfigurableProductVariants = defaultMemoize((productId: T['id']) => createSelector<DaffConfigurableProductStateRootSlice<T>, [T, DaffConfigurableProductEntityAttribute[]], Array<T['variants'][number]>>(
     selectProduct(productId),
     selectConfigurableProductAppliedAttributes(productId),
     (product: T, appliedAttributes) => {
       if(!product || product.type !== DaffProductTypeEnum.Configurable) {
         return [];
       }
-      return (<DaffConfigurableProduct><any>product).variants.filter(variant => isVariantAvailable(appliedAttributes, variant));
+      return product.variants.filter(variant => isVariantAvailable(appliedAttributes, variant));
     },
   )).memoized;
 
   const selectConfigurableProductPrices = defaultMemoize((productId: T['id']) => createSelector(
     selectMatchingConfigurableProductVariants(productId),
-    (variants: DaffConfigurableProductVariant[]) => variants.map(variant => variant.price),
+    (variants: Array<T['variants'][number]>) => variants.map(variant => variant.price),
   )).memoized;
 
   const selectConfigurableProductDiscountedPrices = defaultMemoize((productId: T['id']) => createSelector(
     selectMatchingConfigurableProductVariants(productId),
-    (variants: DaffConfigurableProductVariant[]) => variants.map(variant =>
+    (variants: Array<T['variants'][number]>) => variants.map(variant =>
       variant.discount ? daffSubtract(variant.price, variant.discount.amount) : variant.price,
     ),
   )).memoized;
 
   const selectConfigurableProductPercentDiscounts = defaultMemoize((productId: T['id']) => createSelector(
     selectMatchingConfigurableProductVariants(productId),
-    (variants: DaffConfigurableProductVariant[]) => variants.map(variant => variant.discount?.percent),
+    (variants: Array<T['variants'][number]>) => variants.map(variant => variant.discount?.percent),
   )).memoized;
 
   const selectConfigurableProductHasDiscount = defaultMemoize((productId: T['id']) => createSelector(
     selectMatchingConfigurableProductVariants(productId),
-    (variants: DaffConfigurableProductVariant[]) => variants.reduce((acc, variant) =>
+    (variants: Array<T['variants'][number]>) => variants.reduce((acc, variant) =>
       acc || (variant.discount?.amount > 0), false,
     ),
   )).memoized;
@@ -211,7 +208,7 @@ const createConfigurableProductSelectors = <T extends DaffProduct = DaffProduct>
       if(product.type !== DaffProductTypeEnum.Configurable) {
         return {};
       }
-      return (<DaffConfigurableProduct><any>product).configurableAttributes.reduce((acc, attribute) => ({
+      return product.configurableAttributes.reduce((acc, attribute) => ({
         ...acc,
         [attribute.code]: attribute.values.map(value => value.value),
       }), {});
@@ -226,24 +223,24 @@ const createConfigurableProductSelectors = <T extends DaffProduct = DaffProduct>
         return {};
       }
 
-      const selectableAttributes = initializeSelectableAttributes((<DaffConfigurableProduct><any>product).configurableAttributes);
+      const selectableAttributes = initializeSelectableAttributes(product.configurableAttributes);
 
       // Set which values of applied attribute codes should be set as selectable based on the order that they were selected
       const matchedVariants = appliedAttributes.reduce((matchingVariants, appliedAttribute, i) => {
         const filteredVariants = matchingVariants.filter(variant => isVariantAvailable(appliedAttributes.slice(0, i), variant));
 
-        selectableAttributes[appliedAttribute.code] = getSelectableAttributesFromVariants(selectableAttributes, filteredVariants, appliedAttribute.code);
+        selectableAttributes[appliedAttribute.code] = getSelectableAttributesFromVariants<T>(selectableAttributes, filteredVariants, appliedAttribute.code);
 
         return filteredVariants;
-      }, (<DaffConfigurableProduct><any>product).variants).filter(variant =>
+      }, product.variants).filter(variant =>
         isVariantAvailable(appliedAttributes, variant),
       );
 
       // Set which values of the unapplied attribute codes should be set as selectable based on the matching variants of all
       // applied attributes.
-      (<DaffConfigurableProduct><any>product).configurableAttributes.forEach(attribute => {
+      product.configurableAttributes.forEach(attribute => {
         if (!selectableAttributes[attribute.code].length) {
-          selectableAttributes[attribute.code] = getSelectableAttributesFromVariants(selectableAttributes, matchedVariants, attribute.code);
+          selectableAttributes[attribute.code] = getSelectableAttributesFromVariants<T>(selectableAttributes, matchedVariants, attribute.code);
         }
       });
 
@@ -270,7 +267,7 @@ const createConfigurableProductSelectors = <T extends DaffProduct = DaffProduct>
   };
 };
 
-function getSelectableAttributesFromVariants(selectableAttributes: Dictionary<string[]>, variants: DaffConfigurableProductVariant[], code: string) {
+function getSelectableAttributesFromVariants<T extends DaffConfigurableProduct = DaffConfigurableProduct>(selectableAttributes: Dictionary<string[]>, variants: Array<T['variants'][number]>, code: string) {
   return variants.reduce((selectedAttributes, variant) =>
     isVariantAttributeMarkedAsSelectable(selectedAttributes, variant.appliedAttributes[code])
       ? selectedAttributes
@@ -288,7 +285,7 @@ function getSelectableAttributesFromVariants(selectableAttributes: Dictionary<st
  */
 export const getDaffConfigurableProductSelectors = (() => {
   let cache;
-  return <T extends DaffProduct = DaffProduct>(): DaffConfigurableProductMemoizedSelectors<T> => cache = cache
+  return <T extends DaffConfigurableProduct = DaffConfigurableProduct>(): DaffConfigurableProductMemoizedSelectors<T> => cache = cache
     ? cache
     : createConfigurableProductSelectors();
 })();

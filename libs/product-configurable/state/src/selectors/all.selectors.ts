@@ -1,4 +1,5 @@
-import { DaffProduct } from '@daffodil/product';
+
+import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 
 import {
   DaffConfigurableProductMemoizedSelectors,
@@ -13,10 +14,11 @@ import {
   DaffConfigurableProductFeatureMemoizedSelector,
 } from './feature.selector';
 
+
 /**
  * An interface for all selectors in the configurable product feature area.
  */
-export interface DaffConfigurableProductAllSelectors<T extends DaffProduct = DaffProduct> extends
+export interface DaffConfigurableProductAllSelectors<T extends DaffConfigurableProduct = DaffConfigurableProduct> extends
   DaffConfigurableProductEntitiesMemoizedSelectors<T>,
   DaffConfigurableProductMemoizedSelectors<T>,
   DaffConfigurableProductFeatureMemoizedSelector
@@ -26,7 +28,7 @@ export interface DaffConfigurableProductAllSelectors<T extends DaffProduct = Daf
  * A function that returns all selectors in the configurable product feature area.
  * Returns {@link DaffConfigurableProductAllSelectors}.
  */
-export const getDaffConfigurableProductAllSelectors = <T extends DaffProduct>(): DaffConfigurableProductAllSelectors<T> => ({
+export const getDaffConfigurableProductAllSelectors = <T extends DaffConfigurableProduct = DaffConfigurableProduct>(): DaffConfigurableProductAllSelectors<T> => ({
   ...getDaffConfigurableProductEntitiesSelectors<T>(),
   ...getDaffConfigurableProductSelectors<T>(),
   ...getDaffConfigurableProductFeatureSelector(),
