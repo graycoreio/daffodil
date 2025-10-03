@@ -48,7 +48,7 @@ export const DaffFormFieldMissingControlMessage = 'A DaffFormFieldComponent must
   ],
   host: {
     class: 'daff-form-field',
-    '[class.is-select]': 'isSelectField',
+    '[class.is-native-select]': 'isNativeSelect',
     '[class.has-prefix]': '_prefix',
     '[class.has-suffix]': '_suffix || action',
     '[class.daff-error]': 'isError',
@@ -68,8 +68,8 @@ export const DaffFormFieldMissingControlMessage = 'A DaffFormFieldComponent must
 })
 export class DaffFormFieldComponent implements AfterContentInit, AfterContentChecked, AfterViewInit {
   /** @docs-private */
-  get isSelectField() {
-    return this._control.controlType === 'native-select' || this._control.controlType === 'custom-select';
+  get isNativeSelect() {
+    return this._control.controlType === 'native-select';
   }
 
   constructor(private cd: ChangeDetectorRef, public elementRef: ElementRef) {}
