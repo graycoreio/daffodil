@@ -4,9 +4,9 @@ import {
   HostBinding,
 } from '@angular/core';
 
-import { DaffButtonModule } from '@daffodil/design/button';
-import { DaffContainerModule } from '@daffodil/design/container';
-import { DaffHeroModule } from '@daffodil/design/hero';
+import { DAFF_BASIC_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
+import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
 
 @Component({
   selector: 'daffio-why-pwa-hero',
@@ -14,9 +14,9 @@ import { DaffHeroModule } from '@daffodil/design/hero';
   styleUrls: ['./why-pwa-hero.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffContainerModule,
-    DaffHeroModule,
-    DaffButtonModule,
+    DAFF_CONTAINER_COMPONENTS,
+    DAFF_HERO_COMPONENTS,
+    DAFF_BASIC_BUTTON_COMPONENTS,
   ],
 })
 

@@ -4,9 +4,9 @@ import {
   HostBinding,
 } from '@angular/core';
 
-import { DaffCalloutModule } from '@daffodil/design/callout';
-import { DaffContainerModule } from '@daffodil/design/container';
-import { DaffListModule } from '@daffodil/design/list';
+import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
+import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
 
 import { DaffioFeatureComparisonComponent } from '../feature-comparison/feature-comparison.component';
 
@@ -16,9 +16,9 @@ import { DaffioFeatureComparisonComponent } from '../feature-comparison/feature-
   styleUrls: ['./why-pwa-solution.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffContainerModule,
-    DaffCalloutModule,
-    DaffListModule,
+    DAFF_CONTAINER_COMPONENTS,
+    DAFF_CALLOUT_COMPONENTS,
+    DAFF_LIST_COMPONENTS,
     DaffioFeatureComparisonComponent,
   ],
 })
