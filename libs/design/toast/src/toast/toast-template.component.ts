@@ -52,7 +52,7 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
           <button daff-icon-button color="theme-contrast"
             aria-label="Close"
             [attr.aria-hidden]="item.actions ? undefined : true"
-            (click)="onCloseToast(item.dismiss())">
+            (click)="item.dismiss()">
             <fa-icon [icon]="faTimes" [fixedWidth]="true"></fa-icon>
           </button>
         }
