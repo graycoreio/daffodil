@@ -1,4 +1,7 @@
-import { NgTemplateOutlet, SlicePipe } from '@angular/common';
+import {
+  NgTemplateOutlet,
+  SlicePipe,
+} from '@angular/common';
 import {
   Input,
   ChangeDetectionStrategy,
@@ -55,7 +58,7 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
         }
       </daff-toast>
     }
-    
+
     <ng-template #button let-action="action" let-item="item">
       @switch (action.type) {
         @case ('stroked') {
