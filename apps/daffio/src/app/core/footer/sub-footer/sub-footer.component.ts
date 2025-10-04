@@ -7,9 +7,15 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DAFF_BRANDING_CONSTANTS } from '@daffodil/branding';
+<<<<<<< Updated upstream
 import { DAFF_BASIC_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
+=======
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffCalloutModule } from '@daffodil/design/callout';
+import { DaffContainerModule } from '@daffodil/design/container';
+>>>>>>> Stashed changes
 
 
 
@@ -22,9 +28,15 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
   standalone: true,
   imports: [
     FontAwesomeModule,
+<<<<<<< Updated upstream
     DAFF_CALLOUT_COMPONENTS,
     DAFF_CONTAINER_COMPONENTS,
     DAFF_BASIC_BUTTON_COMPONENTS,
+=======
+    DaffCalloutModule,
+    DaffContainerModule,
+    DAFF_BUTTON_COMPONENTS,
+>>>>>>> Stashed changes
   ],
 })
 export class DaffioSubFooterComponent {
