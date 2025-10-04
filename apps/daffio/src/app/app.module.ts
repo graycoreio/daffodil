@@ -1,16 +1,11 @@
-import { isPlatformBrowser } from '@angular/common';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import {
   APP_ID,
-  Inject,
-  Injector,
   NgModule,
-  PLATFORM_ID,
 } from '@angular/core';
-import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -30,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DaffioAppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { DaffioMarketingFooterComponent } from './core/footer/marketing-footer/marketing-footer.component';
+import { provideDaffCustomElements } from './core/providers/custom-elements-provider';
 import { daffioRouterDataServiceConfig } from './core/router/data-service-config';
 import { DaffioSidebarHeaderComponent } from './core/sidebar/components/sidebar-header/sidebar-header.component';
 import { provideDaffioSidebarFeature } from './core/sidebar/provider';
@@ -71,22 +67,11 @@ import { TemplateComponent } from './core/template/template.component';
       provide: APP_ID,
       useValue: 'serverApp',
     },
+    provideDaffCustomElements(),
     provideDaffSeoRouterSchema(),
     provideHttpClient(withInterceptorsFromDi()),
     provideDaffRouterDataServiceConfig(daffioRouterDataServiceConfig),
     provideDaffioSidebarFeature(),
   ],
 })
-export class AppModule {
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: object,
-    private injector: Injector,
-  ) {
-    if (isPlatformBrowser(this.platformId)) {
-      if (!customElements.get('daffio-ce-heading')) {
-        const heading = createCustomElement(MarkdownHeadingComponent, { injector: this.injector });
-        customElements.define('daffio-ce-heading', heading);
-      }
-    }
-  }
-}
+export class AppModule {}
