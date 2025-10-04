@@ -8,6 +8,8 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 
+export type HeadingSize = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
 @Component({
   selector: 'daffio-ce-heading',
   templateUrl: './heading.component.html',
@@ -19,7 +21,7 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 })
 export class MarkdownHeadingComponent implements AfterViewInit {
   faLink = faLink;
-  @Input() size = 'h1';
+  @Input() size: HeadingSize = 'h1';
   @Input() slug = '';
 
   iconColor = 'dimgrey';
