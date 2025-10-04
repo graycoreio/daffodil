@@ -13,8 +13,10 @@ import { DaffRouterNamedViewOutletDirective } from './outlet.directive';
 
 @Component({
   template: `
-    <ng-container *ngIf="view" [daffRouterNamedViewOutlet]="view"></ng-container>
-  `,
+    @if (view) {
+      <ng-container [daffRouterNamedViewOutlet]="view"></ng-container>
+    }
+    `,
   standalone: false,
 })
 class WrapperComponent {
