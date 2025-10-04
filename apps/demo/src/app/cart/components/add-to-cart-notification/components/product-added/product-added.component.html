@@ -1,16 +1,20 @@
-<div class="demo-product-added" *ngIf="product">
-  <img *ngIf="product.images" src="{{product.images[0].url}}">
-  <div class="demo-product-added__description">
-    <div class="demo-product-added__name">{{product.name}}</div>
-    <div class="demo-product-added__price">${{product.price}}</div>
-    <div class="demo-product-added__info">
-      Color: White (HC)
-    </div>
-    <div class="demo-product-added__info">
-      Size: 5 (HC)
-    </div>
-    <div class="demo-product-added__info">
-      Qty: {{qty}}
+@if (product) {
+  <div class="demo-product-added">
+    @if (product.images) {
+      <img src="{{product.images[0].url}}">
+    }
+    <div class="demo-product-added__description">
+      <div class="demo-product-added__name">{{product.name}}</div>
+      <div class="demo-product-added__price">${{product.price}}</div>
+      <div class="demo-product-added__info">
+        Color: White (HC)
+      </div>
+      <div class="demo-product-added__info">
+        Size: 5 (HC)
+      </div>
+      <div class="demo-product-added__info">
+        Qty: {{qty}}
+      </div>
     </div>
   </div>
-</div>
+}

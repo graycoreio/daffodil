@@ -1,5 +1,4 @@
 
-import { CommonModule } from '@angular/common';
 import {
   Component,
   Input,
@@ -29,7 +28,6 @@ const currentYear = new Date().getFullYear();
   templateUrl: './payment-info-form.component.html',
   styleUrls: ['./payment-info-form.component.scss'],
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     DaffInputComponent,
     DaffNativeSelectComponent,

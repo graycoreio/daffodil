@@ -1,11 +1,15 @@
 <daff-container size="md">
   <div class="demo-footer">
-    <daff-list type="link" class="demo-footer__links" *ngFor="let linkset of links">
-      <h3 daffListSubheader>{{ linkset.title }}</h3>
-      <daff-list-item *ngFor="let link of linkset.links">
-        <a routerLink="{{ link.path }}">{{ link.title }}</a>
-      </daff-list-item>
-    </daff-list>
+    @for (linkset of links; track linkset) {
+      <daff-list type="link" class="demo-footer__links">
+        <h3 daffListSubheader>{{ linkset.title }}</h3>
+        @for (link of linkset.links; track link) {
+          <daff-list-item>
+            <a routerLink="{{ link.path }}">{{ link.title }}</a>
+          </daff-list-item>
+        }
+      </daff-list>
+    }
     <div class="demo-footer__social">
       <a daff-icon-button color="black" href="#" target="_blank" rel="noopener noreferrer"><fa-icon [icon]="faTwitter"></fa-icon></a>
       <a daff-icon-button color="black" href="#" target="_blank" rel="noopener noreferrer"><fa-icon [icon]="faFacebookF"></fa-icon></a>
