@@ -1,8 +1,6 @@
 import {
   Component,
-  ElementRef,
   Input,
-  AfterViewInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -19,21 +17,12 @@ export type HeadingSize = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
     FaIconComponent,
   ],
 })
-export class MarkdownHeadingComponent implements AfterViewInit {
+export class MarkdownHeadingComponent {
   faLink = faLink;
   @Input() size: HeadingSize = 'h1';
   @Input() slug = '';
 
-  iconColor = 'dimgrey';
-
-  constructor(private el: ElementRef) {}
-
-  ngAfterViewInit() {
-    const heading = this.el.nativeElement.querySelector('h1, h2, h3, h4, h5, h6');
-    if (heading) {
-      heading.classList.add('daffio-ce-heading');
-    }
-  }
+  constructor() {}
 
   onAnchorClick(event: Event) {
     event.preventDefault();
