@@ -1,39 +1,27 @@
 :host {
-	$root: &;
-
 	display: inline-flex;
 	align-items: baseline;
 	position: relative;
 
-	::ng-deep {
-		.daffio-heading-link {
-			display: inline-flex;
-			align-items: center;
-			margin-inline: 5px;
-			text-decoration: none;
-			color: inherit;
-			opacity: 0;
-			transition: opacity 0.2s ease;
+	.daffio-ce-heading {
+		display: inline-flex;
+		align-items: center;
 
-			&__icon {
-				margin-left: 0.25rem;
-				flex-shrink: 0;
-			}
+		&__icon {
+			margin-left: 0.25rem;
+			flex-shrink: 0;
+			opacity: 0;
+			transition: opacity 0.2s ease-in-out;
 
 			&.copied {
-				&__icon {
-					color: #28a745;
-					animation: pulse 0.5s ease-in-out;
-				}
+				animation: pulse 0.5s ease-in-out;
 			}
 		}
 	}
 
 	&:hover {
-		::ng-deep {
-			.daffio-heading-link {
-				opacity: 1;
-			}
+		.daffio-ce-heading__icon {
+			opacity: 1;
 		}
 	}
 }

@@ -41,8 +41,9 @@ export class MarkdownHeadingComponent implements AfterViewInit {
     const deepUrl = `${baseUrl}#${this.slug}`;
     navigator.clipboard.writeText(deepUrl).then(() => {
       const link = (<HTMLElement>event.target).closest('a');
-      link?.classList.add('copied');
-      setTimeout(() => link?.classList.remove('copied'), 1500);
+      const icon = link?.querySelector('.daffio-ce-heading__icon');
+      icon?.classList.add('copied');
+      setTimeout(() => icon?.classList.remove('copied'), 1500);
     }).catch(err => console.error('Copy failed:', err));
   }
 }
