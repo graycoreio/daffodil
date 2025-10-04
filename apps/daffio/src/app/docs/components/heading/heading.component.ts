@@ -5,14 +5,20 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'daffio-ce-heading',
   templateUrl: './heading.component.html',
   styleUrls: ['./heading.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    FaIconComponent,
+  ],
 })
 export class MarkdownHeadingComponent implements AfterViewInit {
+  faLink = faLink;
   @Input() size = 'h1';
   @Input() slug = '';
 
