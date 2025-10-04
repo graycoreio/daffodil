@@ -40,6 +40,7 @@ export class DaffioFooterComponent {
     { path: '/why-pwa', title: 'Why PWA' },
     { path: '/docs', title: 'Docs' },
     { path: '/support', title: 'Support' },
+    { path: '/sitemap.xml', title: 'Sitemap'},
   ];
 
   socialLinks: any[] = [

@@ -28,6 +28,50 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
+  // Sitemap endpoint
+  server.get('/sitemap.xml', (req, res) => {
+    const currentDate = new Date().toISOString().split('T')[0];
+    const baseUrl = 'https://next.daff.io';
+
+    // Static routes
+    const staticUrls = [
+      { loc: '/', lastmod: currentDate, changefreq: 'weekly', priority: 1.0 },
+      { loc: '/why-pwa', lastmod: currentDate, changefreq: 'monthly', priority: 0.8 },
+      { loc: '/support', lastmod: currentDate, changefreq: 'monthly', priority: 0.7 },
+    ];
+
+    // Documentation routes
+    const docUrls = [
+      { loc: '/docs', lastmod: currentDate, changefreq: 'weekly', priority: 0.9 },
+      { loc: '/docs/guides', lastmod: currentDate, changefreq: 'weekly', priority: 0.8 },
+      { loc: '/docs/api', lastmod: currentDate, changefreq: 'weekly', priority: 0.8 },
+      { loc: '/docs/packages', lastmod: currentDate, changefreq: 'weekly', priority: 0.8 },
+      { loc: '/docs/design', lastmod: currentDate, changefreq: 'weekly', priority: 0.8 },
+    ];
+
+    const urls = [...staticUrls, ...docUrls];
+
+    const urlEntries = urls
+      .map(url => {
+        const lastmod = url.lastmod ? `\n    <lastmod>${url.lastmod}</lastmod>` : '';
+        const changefreq = url.changefreq ? `\n    <changefreq>${url.changefreq}</changefreq>` : '';
+        const priority = url.priority !== undefined ? `\n    <priority>${url.priority}</priority>` : '';
+
+        return `  <url>
+    <loc>${baseUrl}${url.loc}</loc>${lastmod}${changefreq}${priority}
+  </url>`;
+      })
+      .join('\n');
+
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urlEntries}
+</urlset>`;
+
+    res.header('Content-Type', 'application/xml');
+    res.send(sitemap);
+  });
+
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
