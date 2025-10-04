@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +17,6 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
   imports: [
     DAFF_CONTAINER_COMPONENTS,
     ReactiveFormsModule,
-    NgFor,
   ],
 })
 export class ContainerSizesComponent {

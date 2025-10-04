@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,7 +22,6 @@ import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
   imports: [
     DAFF_LOADING_ICON_COMPONENTS,
     ReactiveFormsModule,
-    NgFor,
   ],
 })
 export class LoadingIconColorComponent {

@@ -9,9 +9,11 @@
   </daff-select>
 </daff-form-field>
 
-<div class="default-select__selected-value" *ngIf="control.value">
-  Selected Address:
-  <div>{{control.value.name}}</div>
-  <div>{{control.value.street}}</div>
-  <div>{{control.value.city}}, {{control.value.state}} {{control.value.postcode}}</div>
-</div>
+@if (control.value) {
+  <div class="default-select__selected-value">
+    Selected Address:
+    <div>{{control.value.name}}</div>
+    <div>{{control.value.street}}</div>
+    <div>{{control.value.city}}, {{control.value.state}} {{control.value.postcode}}</div>
+  </div>
+}

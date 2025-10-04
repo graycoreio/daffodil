@@ -1,8 +1,4 @@
-import {
-  NgFor,
-  NgTemplateOutlet,
-  SlicePipe,
-} from '@angular/common';
+import { NgTemplateOutlet, SlicePipe } from '@angular/common';
 import {
   Input,
   ChangeDetectionStrategy,
@@ -31,34 +27,35 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <daff-toast
-      *ngFor="let item of items | slice:0:3"
-      [toast]="item"
-      [status]="item.status ?? null"
-      (closeToast)="item.dismiss()"
-      [class]="'slide-in-' + getAnimationDirection()"
-      [attr.role]="item.actions ? 'alertdialog' : 'status'"
-      [attr.aria-labelledby]="item.actions ? item.title : undefined"
-      [attr.aria-describedby]="item.actions ? item.message : undefined">
-      <div daffToastTitle>{{ item.title }}</div>
-      <div daffToastMessage>{{ item.message }}</div>
-      @if (item.actions) {
-        <div daffToastActions>
-          @for (action of item.actions; track action) {
-            <ng-container *ngTemplateOutlet="button;context:{ action, item }"></ng-container>
-          }
-        </div>
-      }
-      @if (item.dismissible) {
-        <button daff-icon-button color="theme-contrast"
-          aria-label="Close"
-          [attr.aria-hidden]="item.actions ? undefined : true"
-          (click)="onCloseToast(item.dismiss())">
+    @for (item of items | slice:0:3; track item) {
+      <daff-toast
+        [toast]="item"
+        [status]="item.status ?? null"
+        (closeToast)="item.dismiss()"
+        [class]="'slide-in-' + getAnimationDirection()"
+        [attr.role]="item.actions ? 'alertdialog' : 'status'"
+        [attr.aria-labelledby]="item.actions ? item.title : undefined"
+        [attr.aria-describedby]="item.actions ? item.message : undefined">
+        <div daffToastTitle>{{ item.title }}</div>
+        <div daffToastMessage>{{ item.message }}</div>
+        @if (item.actions) {
+          <div daffToastActions>
+            @for (action of item.actions; track action) {
+              <ng-container *ngTemplateOutlet="button;context:{ action, item }"></ng-container>
+            }
+          </div>
+        }
+        @if (item.dismissible) {
+          <button daff-icon-button color="theme-contrast"
+            aria-label="Close"
+            [attr.aria-hidden]="item.actions ? undefined : true"
+            (click)="onCloseToast(item.dismiss())">
             <fa-icon [icon]="faTimes" [fixedWidth]="true"></fa-icon>
-        </button>
-      }
-    </daff-toast>
-
+          </button>
+        }
+      </daff-toast>
+    }
+    
     <ng-template #button let-action="action" let-item="item">
       @switch (action.type) {
         @case ('stroked') {
@@ -68,7 +65,7 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
             [size]="action.size"
             [attr.aria-label]="action.content"
             (click)="action.eventEmitter?.emit({ event: $event, action})">
-              {{ action.content }}
+            {{ action.content }}
           </button>
         }
         @case ('flat') {
@@ -78,7 +75,7 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
             [size]="action.size"
             [attr.aria-label]="action.content"
             (click)="action.eventEmitter?.emit({ event: $event, action})">
-              {{ action.content }}
+            {{ action.content }}
           </button>
         }
         @case ('underline') {
@@ -88,7 +85,7 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
             [size]="action.size"
             [attr.aria-label]="action.content"
             (click)="action.eventEmitter?.emit({ event: $event, action})">
-              {{ action.content }}
+            {{ action.content }}
           </button>
         }
         @default {
@@ -98,12 +95,12 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
             [size]="action.size"
             [attr.aria-label]="action.content"
             (click)="action.eventEmitter?.emit({ event: $event, action})">
-              {{ action.content }}
+            {{ action.content }}
           </button>
         }
       }
     </ng-template>
-  `,
+    `,
   imports: [
     DAFF_BUTTON_COMPONENTS,
     DaffToastComponent,
@@ -111,7 +108,6 @@ import { DaffToastTitleDirective } from '../toast-title/toast-title.directive';
     DaffToastTitleDirective,
     DaffToastMessageDirective,
     FaIconComponent,
-    NgFor,
     SlicePipe,
     NgTemplateOutlet,
   ],

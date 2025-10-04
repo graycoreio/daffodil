@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +23,6 @@ import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
     FaIconComponent,
     DaffButtonComponent,
     ReactiveFormsModule,
-    NgFor,
   ],
 })
 export class CalloutThemingComponent {

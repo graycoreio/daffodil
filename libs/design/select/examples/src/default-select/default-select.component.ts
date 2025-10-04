@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,7 +21,6 @@ import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    NgIf,
     DAFF_SELECT_COMPONENTS,
     DAFF_FORM_FIELD_COMPONENTS,
   ],

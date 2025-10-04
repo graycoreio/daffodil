@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,7 +21,6 @@ import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
   imports: [
     DAFF_NOTIFICATION_COMPONENTS,
     FaIconComponent,
-    NgIf,
   ],
 })
 export class DismissibleNotificationComponent {

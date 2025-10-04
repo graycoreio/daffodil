@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +23,6 @@ import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_NOTIFICATION_COMPONENTS,
-    NgIf,
     FaIconComponent,
     ReactiveFormsModule,
   ],

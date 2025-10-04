@@ -1,9 +1,5 @@
 /* eslint-disable quote-props */
 import {
-  NgFor,
-  NgIf,
-} from '@angular/common';
-import {
   Component,
   Input,
   Output,
@@ -41,8 +37,6 @@ const visiblePageRange = 2;
   imports: [
     FaIconComponent,
     RouterModule,
-    NgIf,
-    NgFor,
   ],
 })
 export class DaffPaginatorComponent implements OnChanges {
