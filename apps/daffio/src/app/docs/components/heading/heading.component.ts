@@ -17,7 +17,7 @@ export type HeadingSize = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
     FaIconComponent,
   ],
 })
-export class MarkdownHeadingComponent {
+export class DaffioDocsHeadingComponent {
   faLink = faLink;
   @Input() size: HeadingSize = 'h1';
   @Input() slug = '';
