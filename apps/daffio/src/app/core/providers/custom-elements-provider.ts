@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 
-import { MarkdownHeadingComponent } from '../../docs/components/heading/heading.component';
+import { DaffioDocsHeadingComponent } from '../../docs/components/heading/heading.component';
 
 interface CustomElementConfig {
   tagName: string;
@@ -17,7 +17,7 @@ interface CustomElementConfig {
 }
 
 const CUSTOM_ELEMENTS: CustomElementConfig[] = [
-  { tagName: 'daffio-ce-heading', component: MarkdownHeadingComponent },
+  { tagName: 'daffio-ce-heading', component: DaffioDocsHeadingComponent },
 ];
 
 /**
