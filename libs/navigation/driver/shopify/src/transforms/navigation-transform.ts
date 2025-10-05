@@ -1,26 +1,9 @@
 import {
+  getShopifyRoutePath,
   Menu,
   MenuItem,
-  Collection,
 } from '@daffodil/driver/shopify';
 import { DaffNavigationTree } from '@daffodil/navigation';
-
-/**
- * Extracts the path from a full URL, returning just the path with a leading slash.
- */
-const extractPathFromUrl = (url: string | null): string => {
-  if (!url) {
-    return '';
-  }
-
-  try {
-    const urlObj = new URL(url);
-    return urlObj.pathname;
-  } catch {
-    // If URL parsing fails, assume it's already a path
-    return url.startsWith('/') ? url : `/${url}`;
-  }
-};
 
 /**
  * Transforms a Shopify menu item to a DaffNavigationTree recursively.
@@ -28,8 +11,8 @@ const extractPathFromUrl = (url: string | null): string => {
 export const transformShopifyMenuItemToNavTree = (item: MenuItem): DaffNavigationTree => ({
   id: item.id,
   name: item.title,
-  url: extractPathFromUrl(item.url),
   breadcrumbs: [],
+  url: getShopifyRoutePath(item.type, item.resource?.handle),
   children: item.items?.map((subItem: MenuItem) => transformShopifyMenuItemToNavTree(subItem)) || [],
 });
 
