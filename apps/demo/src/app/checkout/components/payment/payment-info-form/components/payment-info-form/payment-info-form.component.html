@@ -12,9 +12,13 @@
       [formControl]="formGroup.controls.month"
     >
       <option [value]="''">Month</option>
-      <option *ngFor="let month of monthSelectValues" [value]="month.value">{{month.label}}</option>
+      @for (month of monthSelectValues; track month) {
+        <option [value]="month.value">{{month.label}}</option>
+      }
     </select>
-    <daff-error-message *ngIf="formGroup.controls.month.errors && formGroup.controls.month.touched">This field is required.</daff-error-message>
+    @if (formGroup.controls.month.errors && formGroup.controls.month.touched) {
+      <daff-error-message>This field is required.</daff-error-message>
+    }
   </daff-form-field>
   <daff-form-field class="demo-payment-info-form__year">
     <select daff-native-select
@@ -22,9 +26,13 @@
       [formControl]="formGroup.controls.year"
     >
       <option [value]="''">Year</option>
-      <option *ngFor="let year of yearSelectValues" [value]="year.value">{{year.label}}</option>
+      @for (year of yearSelectValues; track year) {
+        <option [value]="year.value">{{year.label}}</option>
+      }
     </select>
-    <daff-error-message *ngIf="formGroup.controls.year.errors && formGroup.controls.year.touched">This field is required.</daff-error-message>
+    @if (formGroup.controls.year.errors && formGroup.controls.year.touched) {
+      <daff-error-message>This field is required.</daff-error-message>
+    }
   </daff-form-field>
   <daff-form-field class="demo-payment-info-form__security-code">
     <input daff-input type="text" class="demo-payment-info-form__security-code"

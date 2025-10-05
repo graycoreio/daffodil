@@ -1,9 +1,13 @@
 <div class="demo-cart-summary">
-  <div class="demo-cart-summary__header" *ngIf="title">
-    <span class="demo-cart-summary__title">{{title}}</span>
-    <span class="demo-cart-summary__edit-cart"><a (click)="navigateToCart()">Edit Cart</a></span>
-  </div>
+  @if (title) {
+    <div class="demo-cart-summary__header">
+      <span class="demo-cart-summary__title">{{title}}</span>
+      <span class="demo-cart-summary__edit-cart"><a (click)="navigateToCart()">Edit Cart</a></span>
+    </div>
+  }
   <div class="demo-cart-summary__minicart">
-    <demo-minicart-item *ngFor="let item of cart.items" [item]="item"></demo-minicart-item>
+    @for (item of cart.items; track item) {
+      <demo-minicart-item [item]="item"></demo-minicart-item>
+    }
   </div>
 </div>
