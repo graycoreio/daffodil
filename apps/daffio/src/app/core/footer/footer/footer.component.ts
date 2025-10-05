@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,7 +27,6 @@ import { DaffContainerModule } from '@daffodil/design/container';
     DaffContainerModule,
     DaffLogoModule,
     DaffCopyrightModule,
-    NgFor,
     RouterLink,
   ],
 })
