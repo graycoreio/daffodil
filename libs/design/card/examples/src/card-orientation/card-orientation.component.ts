@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,7 +25,6 @@ import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
     FaIconComponent,
     DaffButtonComponent,
     ReactiveFormsModule,
-    NgFor,
   ],
 })
 export class CardOrientationComponent {

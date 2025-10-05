@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +17,6 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
   imports: [
     DAFF_SWITCH_COMPONENTS,
     ReactiveFormsModule,
-    NgFor,
   ],
 })
 export class SwitchLabelPositionsComponent {

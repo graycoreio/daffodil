@@ -1,5 +1,4 @@
 /* eslint-disable quote-props */
-import { NgIf } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -32,7 +31,6 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
   },
   imports: [
     FaIconComponent,
-    NgIf,
   ],
 })
 export class DaffSidebarHeaderComponent {

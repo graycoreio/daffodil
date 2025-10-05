@@ -1,8 +1,4 @@
 import {
-  NgFor,
-  NgIf,
-} from '@angular/common';
-import {
   Component,
   Input,
   ChangeDetectionStrategy,
@@ -29,8 +25,6 @@ export const makeValueArray = (min: number, max: number, increment: number) =>
   imports: [
     DaffNativeSelectComponent,
     ReactiveFormsModule,
-    NgFor,
-    NgIf,
   ],
 })
 export class DaffQuantitySelectComponent {

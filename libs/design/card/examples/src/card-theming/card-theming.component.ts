@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,7 +26,6 @@ import {
     DAFF_CARD_COMPONENTS,
     DAFF_STROKED_CARD_COMPONENTS,
     ReactiveFormsModule,
-    NgFor,
   ],
 })
 export class CardThemingComponent {

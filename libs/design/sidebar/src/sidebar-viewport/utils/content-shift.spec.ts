@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import {
   Component,
   Input,
@@ -17,10 +16,11 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 @Component({
   template: `
-    <daff-sidebar *ngFor="let sidebar of sidebars" [side]="sidebar.side" [mode]="sidebar.mode" [open]="sidebar.open"></daff-sidebar>
-  `,
+    @for (sidebar of sidebars; track sidebar) {
+      <daff-sidebar [side]="sidebar.side" [mode]="sidebar.mode" [open]="sidebar.open"></daff-sidebar>
+    }
+    `,
   imports: [
-    NgFor,
     DaffSidebarComponent,
   ],
 })

@@ -1,16 +1,24 @@
 <daff-notification [status]="statusControl.value">
-	<fa-icon *ngIf="statusControl.value === 'info' || statusControl.value === ''" daffPrefix [icon]="faCheck" [fixedWidth]="true"></fa-icon>
-	<fa-icon *ngIf="statusControl.value === 'success'" daffPrefix [icon]="faCheck" [fixedWidth]="true"></fa-icon>
-	<fa-icon *ngIf="statusControl.value === 'warn'" daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
-	<fa-icon *ngIf="statusControl.value === 'critical'" daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
-	<div daffNotificationTitle>Title</div>
-	<div daffNotificationMessage>Additional details about this notification.</div>
+  @if (statusControl.value === 'info' || statusControl.value === '') {
+    <fa-icon daffPrefix [icon]="faCheck" [fixedWidth]="true"></fa-icon>
+  }
+  @if (statusControl.value === 'success') {
+    <fa-icon daffPrefix [icon]="faCheck" [fixedWidth]="true"></fa-icon>
+  }
+  @if (statusControl.value === 'warn') {
+    <fa-icon daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
+  }
+  @if (statusControl.value === 'critical') {
+    <fa-icon daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
+  }
+  <div daffNotificationTitle>Title</div>
+  <div daffNotificationMessage>Additional details about this notification.</div>
 </daff-notification>
 
 <select [formControl]="statusControl">
-	<option value="">Default</option>
-	<option value="info">Informational</option>
-	<option value="success">Success</option>
-	<option value="warn">Warn</option>
-	<option value="critical">Critical</option>
+  <option value="">Default</option>
+  <option value="info">Informational</option>
+  <option value="success">Success</option>
+  <option value="warn">Warn</option>
+  <option value="critical">Critical</option>
 </select>

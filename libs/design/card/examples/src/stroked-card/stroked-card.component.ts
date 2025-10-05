@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,7 +20,6 @@ import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
     DAFF_STROKED_CARD_COMPONENTS,
     DAFF_IMAGE_COMPONENTS,
     ReactiveFormsModule,
-    NgFor,
   ],
 })
 export class StrokedCardComponent {

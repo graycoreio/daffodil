@@ -1,8 +1,5 @@
 /* eslint-disable quote-props */
-import {
-  NgFor,
-  NgTemplateOutlet,
-} from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -63,7 +60,6 @@ import { hydrateTree } from '../utils/hydrate-tree';
     'class': 'daff-tree',
   },
   imports: [
-    NgFor,
     NgTemplateOutlet,
   ],
 })

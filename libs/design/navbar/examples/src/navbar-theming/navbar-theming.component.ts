@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,7 +20,6 @@ import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
     DAFF_NAVBAR_COMPONENTS,
     DaffButtonComponent,
     ReactiveFormsModule,
-    NgFor,
   ],
 })
 export class NavbarThemingComponent {
