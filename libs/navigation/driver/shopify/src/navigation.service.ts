@@ -15,10 +15,7 @@ import {
   ShopifyNavigationDriverConfig,
 } from './config/public_api';
 import { getCollectionMenuQuery } from './query/get-collection-menu';
-import {
-  transformShopifyMenuToNavTree,
-  transformShopifyCollectionToNavItem,
-} from './transforms/navigation-transform';
+import { transformShopifyMenuToNavTree } from './transforms/navigation-transform';
 
 /**
  * A service for retrieving navigation data from Shopify collections.
@@ -54,20 +51,13 @@ export class DaffShopifyNavigationService implements DaffNavigationServiceInterf
       );
   }
 
+  /**
+   * @inheritdoc
+   *
+   * This method will likely be removed in a later version.
+   */
   get(categoryId: string): Observable<DaffNavigationTree> {
-    return this.apollo.use(APOLLO_CLIENT_NAME)
-      .query({
-        query: getCollectionQuery,
-        variables: {
-          id: categoryId,
-        },
-      })
-      .pipe(
-        map((result: any) => {
-          const collection = result.data?.collection;
-          return transformShopifyCollectionToNavItem(collection);
-        }),
-      );
+    return this.getTree();
   }
 
 }

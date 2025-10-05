@@ -55,15 +55,3 @@ export const transformShopifyMenuToNavTree = (menu: Menu | null): DaffNavigation
     children: menu.items?.map((item: MenuItem) => transformShopifyMenuItemToNavTree(item)) || [],
   };
 };
-
-
-/**
- * Transforms a Shopify collection to a DaffNavigationTree.
- */
-export const transformShopifyCollectionToNavItem = (collection: Collection): DaffNavigationTree => ({
-  id: collection.id,
-  name: collection.title,
-  url: `/collections/${collection.handle}`,
-  breadcrumbs: [],
-  children: [],
-});
