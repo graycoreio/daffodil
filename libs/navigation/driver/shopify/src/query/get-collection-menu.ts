@@ -1,35 +1,19 @@
 import { gql } from 'apollo-angular';
+import { DocumentNode } from 'graphql';
 
-export const getCollectionMenuQuery = gql`
-  query GetCollectionMenu($handle: String!) {
-    menu(handle: $handle) {
-      id
-      title
-      items {
+import { getMenuItemFragment } from './fragment/menu-item';
+
+export function getCollectionMenuQuery(depth: number = 3): DocumentNode {
+  return gql`
+    query GetCollectionMenu($handle: String!) {
+      menu(handle: $handle) {
         id
         title
-        url
         items {
-          id
-          title
-          url
-          items {
-            id
-            title
-            url
-          }
+          ...recursiveMenuItem
         }
       }
     }
-  }
-`;
-
-export const getCollectionQuery = gql`
-  query GetCollection($id: ID!) {
-    collection(id: $id) {
-      id
-      title
-      handle
-    }
-  }
-`;
+    ${getMenuItemFragment(depth)}
+  `;
+}

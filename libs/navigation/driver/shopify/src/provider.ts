@@ -6,6 +6,11 @@ import {
 
 import { provideDaffNavigationDriver } from '@daffodil/navigation/driver';
 
+import {
+  provideShopifyNavigationDriverConfig,
+  SHOPIFY_NAVIGATION_DRIVER_CONFIG_DEFAULT,
+  ShopifyNavigationDriverConfig,
+} from './config/public_api';
 import { DaffShopifyNavigationService } from './navigation.service';
 
 /**
@@ -24,7 +29,8 @@ import { DaffShopifyNavigationService } from './navigation.service';
  * };
  * ```
  */
-export const provideDaffNavigationShopifyDriver = (): (Provider | EnvironmentProviders)[] => [
+export const provideDaffNavigationShopifyDriver = (config: ShopifyNavigationDriverConfig = SHOPIFY_NAVIGATION_DRIVER_CONFIG_DEFAULT): (Provider | EnvironmentProviders)[] => [
   makeEnvironmentProviders([DaffShopifyNavigationService]),
   provideDaffNavigationDriver(DaffShopifyNavigationService),
+  provideShopifyNavigationDriverConfig(config),
 ];

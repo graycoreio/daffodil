@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -8,9 +11,10 @@ import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationServiceInterface } from '@daffodil/navigation/driver';
 
 import {
-  getCollectionMenuQuery,
-  getCollectionQuery,
-} from './query/get-collection-menu';
+  SHOPIFY_NAVIGATION_DRIVER_CONFIG,
+  ShopifyNavigationDriverConfig,
+} from './config/public_api';
+import { getCollectionMenuQuery } from './query/get-collection-menu';
 import {
   transformShopifyMenuToNavTree,
   transformShopifyCollectionToNavItem,
@@ -26,12 +30,15 @@ import {
 })
 export class DaffShopifyNavigationService implements DaffNavigationServiceInterface<DaffNavigationTree> {
 
-  constructor(private apollo: Apollo) {}
+  constructor(
+    private apollo: Apollo,
+    @Inject(SHOPIFY_NAVIGATION_DRIVER_CONFIG) private config: ShopifyNavigationDriverConfig,
+  ) {}
 
   getTree(): Observable<DaffNavigationTree> {
     return this.apollo.use(APOLLO_CLIENT_NAME)
       .query({
-        query: getCollectionMenuQuery,
+        query: getCollectionMenuQuery(this.config.navigationTreeQueryDepth),
         variables: {
           handle: 'collections',
         },
@@ -39,6 +46,9 @@ export class DaffShopifyNavigationService implements DaffNavigationServiceInterf
       .pipe(
         map((result: any) => {
           const menu = result.data?.menu;
+          /**
+           * TODO standardize along with @daffodil/navigation error handling
+           */
           return transformShopifyMenuToNavTree(menu);
         }),
       );
