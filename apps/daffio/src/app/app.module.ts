@@ -28,7 +28,7 @@ import { DaffioMarketingFooterComponent } from './core/footer/marketing-footer/m
 import { daffioRouterDataServiceConfig } from './core/router/data-service-config';
 import { DaffioSidebarHeaderComponent } from './core/sidebar/components/sidebar-header/sidebar-header.component';
 import { provideDaffioSidebarFeature } from './core/sidebar/provider';
-import { TemplateModule } from './core/template/template.module';
+import { TemplateComponent } from './core/template/template.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,7 @@ import { TemplateModule } from './core/template/template.module';
       logOnly: environment.production, // Restrict extension to log-only mode
       connectInZone: true,
     }),
-    TemplateModule,
+    TemplateComponent,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
