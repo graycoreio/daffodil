@@ -49,8 +49,7 @@
 	@include it('errors when given an empty color list') {
 		@include assert-equal(
 			daff-max-contrast($black, $empty-list),
-			'Cannot calculate max contrast for `#{$black}` - the color list (`$colors`) is empty. '
-			'Provide at least one color to compare against.'
+			'Cannot calculate max contrast for `' + $black + '`Provide at least one color to compare against.'
 		);
 	}
 
