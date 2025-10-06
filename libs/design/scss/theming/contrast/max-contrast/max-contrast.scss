@@ -17,8 +17,8 @@
 ) {
 	@if(list.length($colors) == 0) {
 		@return error-to-string.error-to-string(
-			'Cannot calculate max contrast for `#{$reference-color}` - the color list (`$colors`) is empty. 
-			Provide at least one color to compare against.'
+			'Cannot calculate max contrast for `#{$reference-color}` - the color list (`$colors`) is empty. ' +
+			'Provide at least one color to compare against.'
 		);
 	}
 	@else if(list.length($colors) == 1) {
