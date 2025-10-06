@@ -231,7 +231,6 @@
               "apps/daffio/src/favicon.ico",
               "apps/daffio/src/assets",
               "apps/daffio/src/manifest.json",
-              "apps/daffio/src/robots.txt",
               {
                 "glob": "**/*",
                 "input": "libs/branding/src/assets/",

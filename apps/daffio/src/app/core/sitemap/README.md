@@ -158,10 +158,6 @@ getDocsRoutes(): SitemapUrl[] {
 
 ## SEO Files
 
-### robots.txt
-
-Located at `apps/daffio/src/robots.txt`:
-
 ```
 User-agent: *
 Allow: /
@@ -201,7 +197,6 @@ curl http://localhost:4000/sitemap.xml
 After deploying to production:
 
 1. ✅ Verify sitemap is accessible at `https://next.daff.io/sitemap.xml`
-2. ✅ Verify robots.txt is accessible at `https://next.daff.io/robots.txt`
 3. ✅ Submit sitemap to [Google Search Console](https://search.google.com/search-console)
 4. ✅ Submit sitemap to [Bing Webmaster Tools](https://www.bing.com/webmasters)
 5. ✅ Monitor indexing status in search console
