@@ -23,7 +23,7 @@ describe('@daffodil/driver/shopify | getShopifyRoutePath', () => {
     });
 
     it('should throw for empty string type', () => {
-      expect(() => getShopifyRoutePath('', 'some-handle')).toThrow('Resource type cannot be empty');
+      expect(() => getShopifyRoutePath('', 'some-handle')).toThrowError('Type cannot be empty');
     });
 
     it('should handle handles with special characters', () => {
