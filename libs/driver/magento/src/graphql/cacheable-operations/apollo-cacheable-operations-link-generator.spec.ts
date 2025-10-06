@@ -48,7 +48,6 @@ describe('Driver | Magento | GraphQL | DaffMagentoApolloCacheableOperationsLinkG
       apollo.query({ query: cacheableQuery }).subscribe();
       operation = controller.expectOne(cacheableQuery).operation;
       operation.operationName = 'CacheableOperationName';
-      console.log(operation);
       service.getLink().request(operation, <NextLink><unknown>jasmine.createSpy);
 
       expect(operation.getContext().method).toEqual('GET');
