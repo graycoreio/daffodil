@@ -22,7 +22,7 @@
 		);
 	}
 	@else if(list.length($colors) == 1) {
-		@return cr.daff-contrast-ratio($reference-color, list.nth($colors, 1));
+		@return list.nth($colors, 1);
 	}
 	@else {
 		$max-contrast: -1;
