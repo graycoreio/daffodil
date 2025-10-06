@@ -25,6 +25,8 @@
     }
   },
   "scripts": {
+    "generate:sitemap": "node scripts/generate-sitemap.js",
+    "prebuild": "npm run generate:sitemap",
     "build": "ng build daffio --configuration production",
     "test": "ng test daffio --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint daffio && npm run lint:scss",
