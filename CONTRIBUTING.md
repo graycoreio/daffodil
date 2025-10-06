@@ -113,7 +113,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 > [!CAUTION]
 > Please read this carefully.
 
-We encourage developers that use AI to contribute to Daffodil. Daffodil's codebase is large, contains thousands of commits, many complicated ideals and concepts -- many of which are likely foreign to you. We're very glad that you're able to further engage with the codebase through AI where you wouldn't have been able to before. However, just like before AI, the same concepts apply: 
+We encourage developers that use AI to contribute to Daffodil. Daffodil's codebase is large, contains thousands of commits, and many complicated ideas and concepts — many of which are likely foreign to you. We're very glad that new contributors able to further engage with the codebase through AI where they would not have been able to before. However, just like before AI, the same concepts apply: 
 
 1. Don't be lazy. We have to read your code. 
 2. Don't be lazy. We have to read your code in the future.
