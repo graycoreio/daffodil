@@ -1,9 +1,6 @@
 import { gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 
-
-
-
 /**
  * A menu item fragment with no nested children.
  */
