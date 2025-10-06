@@ -5,6 +5,7 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { EffectsModule } from '@ngrx/effects';
@@ -28,6 +29,7 @@ describe('TemplateComponent', () => {
       ],
       providers: [
         provideRouter([]),
+        provideAnimations(),
       ],
     })
       .compileComponents();
