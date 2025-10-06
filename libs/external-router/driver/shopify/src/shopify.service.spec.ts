@@ -176,10 +176,10 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
 
           expectObservable(service.resolve('/products/category/subcategory/product')).toBe(expected, {
             a: {
-              id: 'null',
-              url: '/products/category/subcategory/product',
+              id: null,
+              url: null,
               code: 404,
-              type: 'UNKNOWN',
+              type: null,
             },
           });
         });
