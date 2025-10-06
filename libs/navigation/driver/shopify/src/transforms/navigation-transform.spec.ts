@@ -1,14 +1,12 @@
 import {
   Menu,
   MenuItem,
-  Collection,
   MenuItemType,
 } from '@daffodil/driver/shopify';
 
 import {
   transformShopifyMenuToNavTree,
   transformShopifyMenuItemToNavTree,
-  transformShopifyCollectionToNavItem,
 } from './navigation-transform';
 
 describe('Shopify Navigation Transforms', () => {
@@ -74,7 +72,12 @@ describe('Shopify Navigation Transforms', () => {
             items: [],
             tags: [],
             type: MenuItemType.Collection,
-            resource: null,
+            resource: <any>{
+              __typename: 'Collection',
+              id: 'asdasdasdasd',
+              metafields: [],
+              handle: 'category-1',
+            },
             resourceId: null,
           },
           {
@@ -91,13 +94,23 @@ describe('Shopify Navigation Transforms', () => {
                 items: [],
                 tags: [],
                 type: MenuItemType.Collection,
-                resource: null,
+                resource: <any>{
+                  __typename: 'Collection',
+                  id: 'asdasdasdasd',
+                  metafields: [],
+                  handle: 'subcategory-1',
+                },
                 resourceId: null,
               },
             ],
             tags: [],
             type: MenuItemType.Collection,
-            resource: null,
+            resource: <any>{
+              __typename: 'Collection',
+              id: 'asdasdasdasd',
+              metafields: [],
+              handle: 'category-2',
+            },
             resourceId: null,
           },
         ],
@@ -148,7 +161,12 @@ describe('Shopify Navigation Transforms', () => {
         items: [],
         tags: [],
         type: MenuItemType.Collection,
-        resource: null,
+        resource: <any>{
+          __typename: 'Collection',
+          id: 'collection-id',
+          metafields: [],
+          handle: 'category-1',
+        },
         resourceId: null,
       };
 
@@ -184,19 +202,34 @@ describe('Shopify Navigation Transforms', () => {
                 items: [],
                 tags: [],
                 type: MenuItemType.Collection,
-                resource: null,
+                resource: <any>{
+                  __typename: 'Collection',
+                  id: 'collection-id-3',
+                  metafields: [],
+                  handle: 'sub-subcategory-1',
+                },
                 resourceId: null,
               },
             ],
             tags: [],
             type: MenuItemType.Collection,
-            resource: null,
+            resource: <any>{
+              __typename: 'Collection',
+              id: 'collection-id-2',
+              metafields: [],
+              handle: 'subcategory-1',
+            },
             resourceId: null,
           },
         ],
         tags: [],
         type: MenuItemType.Collection,
-        resource: null,
+        resource: <any>{
+          __typename: 'Collection',
+          id: 'collection-id-1',
+          metafields: [],
+          handle: 'category-1',
+        },
         resourceId: null,
       };
 
@@ -227,16 +260,21 @@ describe('Shopify Navigation Transforms', () => {
       });
     });
 
-    it('should handle items with null url', () => {
+    it('should handle items with products', () => {
       const item: MenuItem = {
         __typename: 'MenuItem',
         id: 'item-1',
-        title: 'Category 1',
+        title: 'Product 1',
         url: null,
         items: [],
         tags: [],
-        type: MenuItemType.Collection,
-        resource: null,
+        type: MenuItemType.Product,
+        resource: <any>{
+          __typename: 'Product',
+          id: 'product-id',
+          metafields: [],
+          handle: 'awesome-product',
+        },
         resourceId: null,
       };
 
@@ -244,23 +282,27 @@ describe('Shopify Navigation Transforms', () => {
 
       expect(result).toEqual({
         id: 'item-1',
-        name: 'Category 1',
-        url: '',
+        name: 'Product 1',
+        url: '/products/awesome-product',
         breadcrumbs: [],
         children: [],
       });
     });
 
-    it('should extract path from full Shopify URL', () => {
+    it('should handle pages', () => {
       const item: MenuItem = {
         __typename: 'MenuItem',
         id: 'item-1',
-        title: 'Category 1',
-        url: 'https://my-store.myshopify.com/collections/category-1',
+        title: 'About Us',
+        url: 'https://my-store.myshopify.com/pages/about-us',
         items: [],
         tags: [],
-        type: MenuItemType.Collection,
-        resource: null,
+        type: MenuItemType.Page,
+        resource: <any>{
+          __typename: 'Page',
+          id: 'page-id',
+          handle: 'about-us',
+        },
         resourceId: null,
       };
 
@@ -268,23 +310,26 @@ describe('Shopify Navigation Transforms', () => {
 
       expect(result).toEqual({
         id: 'item-1',
-        name: 'Category 1',
-        url: '/collections/category-1',
+        name: 'About Us',
+        url: '/pages/about-us',
         breadcrumbs: [],
         children: [],
       });
     });
 
-    it('should handle relative URLs by adding leading slash', () => {
+    it('should handle unknown types with pluralization', () => {
       const item: MenuItem = {
         __typename: 'MenuItem',
         id: 'item-1',
-        title: 'Category 1',
-        url: 'collections/category-1',
+        title: 'Blog Post',
         items: [],
         tags: [],
-        type: MenuItemType.Collection,
-        resource: null,
+        type: MenuItemType.Article,
+        resource: <any>{
+          __typename: 'Article',
+          id: 'article-id',
+          handle: 'my-blog-post',
+        },
         resourceId: null,
       };
 
@@ -292,78 +337,8 @@ describe('Shopify Navigation Transforms', () => {
 
       expect(result).toEqual({
         id: 'item-1',
-        name: 'Category 1',
-        url: '/collections/category-1',
-        breadcrumbs: [],
-        children: [],
-      });
-    });
-  });
-
-  describe('transformShopifyCollectionToNavItem', () => {
-    it('should transform a collection to a navigation item', () => {
-      const collection: Collection = {
-        __typename: 'Collection',
-        id: 'collection-1',
-        title: 'Collection Title',
-        handle: 'collection-handle',
-        description: '',
-        descriptionHtml: '',
-        image: null,
-        metafield: null,
-        metafields: [],
-        onlineStoreUrl: null,
-        products: {
-          edges: [],
-          nodes: [],
-          filters: [],
-          pageInfo: { hasNextPage: false, hasPreviousPage: false },
-        },
-        seo: { title: null, description: null },
-        trackingParameters: null,
-        updatedAt: '2023-01-01T00:00:00Z',
-      };
-
-      const result = transformShopifyCollectionToNavItem(collection);
-
-      expect(result).toEqual({
-        id: 'collection-1',
-        name: 'Collection Title',
-        url: '/collections/collection-handle',
-        breadcrumbs: [],
-        children: [],
-      });
-    });
-
-    it('should handle collection with special characters in handle', () => {
-      const collection: Collection = {
-        __typename: 'Collection',
-        id: 'collection-2',
-        title: 'Special & Collection',
-        handle: 'special-collection-123',
-        description: '',
-        descriptionHtml: '',
-        image: null,
-        metafield: null,
-        metafields: [],
-        onlineStoreUrl: null,
-        products: {
-          edges: [],
-          nodes: [],
-          filters: [],
-          pageInfo: { hasNextPage: false, hasPreviousPage: false },
-        },
-        seo: { title: null, description: null },
-        trackingParameters: null,
-        updatedAt: '2023-01-01T00:00:00Z',
-      };
-
-      const result = transformShopifyCollectionToNavItem(collection);
-
-      expect(result).toEqual({
-        id: 'collection-2',
-        name: 'Special & Collection',
-        url: '/collections/special-collection-123',
+        name: 'Blog Post',
+        url: '/articles/my-blog-post',
         breadcrumbs: [],
         children: [],
       });
