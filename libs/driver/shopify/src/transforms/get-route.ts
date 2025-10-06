@@ -1,3 +1,5 @@
+import { MenuItemType } from '../codegen/generated-shopify-types';
+
 /**
  * Generates a route path based on the Shopify resource type and handle.
  *
@@ -12,11 +14,11 @@ export const getShopifyRoutePath = (type: string, handle: string) => {
   }
 
   switch(type){
-    case 'COLLECTION':
+    case MenuItemType.Collection:
       return `/collections/${handle}`;
-    case 'PRODUCT':
+    case MenuItemType.Product:
       return `/products/${handle}`;
-    case 'PAGE':
+    case MenuItemType.Page:
       return `/pages/${handle}`;
     default:
       return `/${type.toLowerCase()}s/${handle}`;
