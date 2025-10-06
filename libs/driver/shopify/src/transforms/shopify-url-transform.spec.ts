@@ -34,6 +34,7 @@ describe('@daffodil/driver/shopify | shopifyUrlTransformer', () => {
       expect(shopifyUrlTransformer('my-product.html')).toEqual('my-product');
     });
 
+    //TODO(damienwebdev): this case is a mistake. Shopify does allow this behavior.
     it('should handle URLs with trailing slash', () => {
       expect(shopifyUrlTransformer('/products/my-product/')).toEqual('');
     });
