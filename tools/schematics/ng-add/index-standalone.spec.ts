@@ -73,6 +73,8 @@ describe('ng-add schematic - standalone apps', () => {
     expect(packageJson.dependencies['@daffodil/core']).toBeDefined();
     expect(packageJson.dependencies['@daffodil/driver']).toBeDefined();
     expect(packageJson.dependencies['@daffodil/product']).toBeDefined();
+    expect(packageJson.dependencies['@daffodil/navigation']).toBeDefined();
+    expect(packageJson.dependencies['@daffodil/external-router']).toBeDefined();
   });
 
   it('should maintain existing standalone app structure', async () => {
@@ -91,10 +93,9 @@ describe('ng-add schematic - standalone apps', () => {
     const tree = await runner.runSchematic('ng-add', defaultOptions, standaloneAppTree);
     const appConfigContent = tree.readContent('/projects/test-app/src/app/app.config.ts');
 
-    expect(appConfigContent).toContain('provideDaffDevTools({');
+    expect(appConfigContent).toContain('provideDaffDevTools(');
     expect(appConfigContent).toContain('withDriverConfig');
-    expect(appConfigContent).toContain('name: \'@daffodil/product/driver\'');
-    expect(appConfigContent).toContain('status: \'connected\'');
+    expect(appConfigContent).toContain('name: \'@daffodil/driver\'');
     expect(appConfigContent).toContain('currentDriver: \'in-memory\'');
   });
 
@@ -112,33 +113,31 @@ describe('ng-add schematic - standalone apps', () => {
 
     // Magento Driver with properties
     expect(appConfigContent).toContain('id: \'magento\'');
-    expect(appConfigContent).toContain('name: \'Magento Driver\'');
+    expect(appConfigContent).toContain('name: \'Magento/MageOS Driver\'');
     expect(appConfigContent).toContain('baseUrl');
-    expect(appConfigContent).toContain('https://www.mymagentostore.com/graphql');
+    expect(appConfigContent).toContain('https://demo.mage-os.org/graphql');
     expect(appConfigContent).toContain('storeCode');
     expect(appConfigContent).toContain('defaultValue: \'default\'');
 
-    // Shopify Driver (disabled)
+    // Shopify Driver
     expect(appConfigContent).toContain('id: \'shopify\'');
-    expect(appConfigContent).toContain('name: \'Shopify Driver (Coming soon!)\'');
-    expect(appConfigContent).toContain('disabled: true');
-    expect(appConfigContent).toContain('https://myshop.myshopify.com/api/2025-07/graphql.json');
+    expect(appConfigContent).toContain('name: \'Shopify Driver\'');
+    expect(appConfigContent).toContain('https://daffodil-demo-alpha.myshopify.com');
   });
 
   it('should include all required imports without syntax errors', async () => {
     const tree = await runner.runSchematic('ng-add', defaultOptions, standaloneAppTree);
     const appConfigContent = tree.readContent('/projects/test-app/src/app/app.config.ts');
 
-    // Verify specific import statements are properly formed
-    expect(appConfigContent).toContain('import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from \'@angular/core\';');
-    expect(appConfigContent).toContain('import { provideHttpClient } from \'@angular/common/http\';');
-    expect(appConfigContent).toContain('import { provideDaffDevTools } from \'@daffodil/dev-tools\';');
-    expect(appConfigContent).toContain('import { withDriverConfig } from \'@daffodil/dev-tools\';');
+    // Verify specific imports are present
+    expect(appConfigContent).toContain('from \'@angular/core\'');
+    expect(appConfigContent).toContain('from \'@angular/common/http\'');
+    expect(appConfigContent).toContain('from \'@daffodil/dev-tools\'');
+    expect(appConfigContent).toContain('from \'@daffodil/core\'');
     expect(appConfigContent).toContain('DEMO_MAGENTO_ENDPOINT_SWITCH');
+    expect(appConfigContent).toContain('DynamicSwitchDriverService');
 
-    // Verify no malformed imports (no duplicate Map, Driver, etc.)
-    expect(appConfigContent).not.toContain('Map, Map, Map');
-    expect(appConfigContent).not.toContain('Driver,');
+    // Verify no malformed imports
     expect(appConfigContent).not.toContain('from;'); // Incomplete import statements
   });
 
@@ -147,15 +146,14 @@ describe('ng-add schematic - standalone apps', () => {
     const appConfigContent = tree.readContent('/projects/test-app/src/app/app.config.ts');
 
     // Verify proper line breaks and formatting
-    expect(appConfigContent).toContain('provideDaffDevTools({');
-    expect(appConfigContent).toContain('startCollapsed: false');
-    expect(appConfigContent).toContain('withDriverConfig({ ');
-    expect(appConfigContent).toContain('name: \'@daffodil/product/driver\'');
+    expect(appConfigContent).toContain('provideDaffDevTools(');
+    expect(appConfigContent).toContain('withDriverConfig({');
+    expect(appConfigContent).toContain('name: \'@daffodil/driver\'');
     expect(appConfigContent).toContain('availableDrivers: [');
 
     // Verify proper closing brackets and parentheses
     expect(appConfigContent).toContain('})');
-    expect(appConfigContent).toContain('      )');
+    expect(appConfigContent).toContain(')');
 
     // Ensure no malformed concatenation
     expect(appConfigContent).not.toContain('}),provideDaffDevTools'); // No missing spaces

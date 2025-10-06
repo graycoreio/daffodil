@@ -16,6 +16,43 @@
       "type": "boolean",
       "description": "Skip updating package.json dependencies",
       "default": false
+    },
+    "isNewProject": {
+      "type": "boolean",
+      "description": "Is this a new Angular project?",
+      "x-prompt": "Is this a new Angular project?"
+    },
+    "driver": {
+      "type": "string",
+      "description": "Which driver do you want to use?",
+      "enum": [
+        "magento",
+        "shopify",
+        "in-memory",
+        "demo"
+      ],
+      "x-prompt": {
+        "message": "Which driver do you want to use?",
+        "type": "list",
+        "items": [
+          {
+            "value": "magento",
+            "label": "Magento"
+          },
+          {
+            "value": "shopify",
+            "label": "Shopify"
+          },
+          {
+            "value": "in-memory",
+            "label": "In-Memory (for testing)"
+          },
+          {
+            "value": "demo",
+            "label": "Demo (Swapping between drivers)"
+          }
+        ]
+      }
     }
   }
 }

@@ -1,0 +1,89 @@
+import {
+  Injectable,
+  inject,
+} from '@angular/core';
+import {
+  Observable,
+  Subject,<% if (driver === 'demo') { %>
+  merge,
+  EMPTY,<% } %>
+} from 'rxjs';
+import {
+  map,
+  startWith,
+  catchError,
+  switchMap,<% if (driver === 'demo') { %>
+  filter,
+  distinctUntilChanged,<% } %>
+} from 'rxjs/operators';
+<% if (driver === 'demo') { %>
+import {
+  DaffDevToolsConfigService,
+  DaffDriverConfig,
+} from '@daffodil/dev-tools';
+<% } %>import { DaffNavigationTree } from '@daffodil/navigation';
+import {
+  DaffNavigationDriver,
+  DaffNavigationServiceInterface,
+} from '@daffodil/navigation/driver';
+
+export interface NavigationState {
+  data: DaffNavigationTree | null;
+  error: any;
+  loading: boolean;
+}
+
+@Injectable()
+export class NavigationStateService {
+  private navigationDriver: DaffNavigationServiceInterface<DaffNavigationTree> = inject(DaffNavigationDriver);
+  private retryTrigger$ = new Subject<void>();
+  <% if (driver === 'demo') { %>
+  private devToolsConfig = inject(DaffDevToolsConfigService, { optional: true });
+  <% } %>
+  
+  readonly state$: Observable<NavigationState> = this.createStateObservable();
+
+  <% if (driver === 'demo') { %>
+  private createStateObservable(): Observable<NavigationState> {
+    const driverChanges$ = this.devToolsConfig
+      ? this.devToolsConfig.getDriverConfig('@daffodil/driver').pipe(
+        filter((config): config is DaffDriverConfig => !!config),
+        distinctUntilChanged((a, b) => a.currentDriver === b.currentDriver),
+      )
+      : EMPTY;
+
+    const triggers$ = merge(
+      driverChanges$,
+      this.retryTrigger$,
+    );
+
+    return triggers$.pipe(
+      switchMap(() =>
+        this.navigationDriver.getTree().pipe(
+          map((navigationTree) => ({ data: navigationTree, error: null, loading: false })),
+          catchError((error) => [{ data: null, error, loading: false }]),
+          startWith({ data: null, error: null, loading: true }),
+        ),
+      ),
+    );
+  }
+
+  <% } else { %>
+  private createStateObservable(): Observable<NavigationState> {
+    return this.retryTrigger$.pipe(
+      startWith(undefined),
+      switchMap(() =>
+        this.navigationDriver.getTree().pipe(
+          map((navigationTree) => ({ data: navigationTree, error: null, loading: false })),
+          catchError((error) => [{ data: null, error, loading: false }]),
+          startWith({ data: null, error: null, loading: true }),
+        ),
+      ),
+    );
+  }
+  <% } %>
+
+  retry(): void {
+    this.retryTrigger$.next();
+  }
+}

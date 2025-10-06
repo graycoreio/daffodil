@@ -34,7 +34,7 @@ describe('Utils', () => {
       };
 
       const rule = addDependenciesToPackageJson(options);
-      const resultTree = rule(tree, <any>{}) as UnitTestTree;
+      const resultTree = <UnitTestTree>rule(tree, <any>{});
       const packageJson = JSON.parse(resultTree.readContent('/package.json'));
 
       expect(packageJson.dependencies['@daffodil/core']).toBeDefined();

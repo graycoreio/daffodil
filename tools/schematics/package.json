@@ -30,18 +30,18 @@
     "test": "ts-node --compiler-options '{\"module\":\"commonjs\"}' -P tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
   },
   "dependencies": {
-    "@angular-devkit/core": "^19.2.12",
-    "@angular-devkit/schematics": "^19.2.12",
-    "@schematics/angular": "^19.2.12",
-    "typescript": "~5.5.4"
+    "@angular-devkit/core": "0.0.0-PLACEHOLDER",
+    "@angular-devkit/schematics": "0.0.0-PLACEHOLDER",
+    "@schematics/angular": "0.0.0-PLACEHOLDER",
+    "typescript": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
-    "@angular-devkit/schematics-cli": "^19.2.12"
+    "@angular-devkit/schematics-cli": "0.0.0-PLACEHOLDER"
   },
   "peerDependencies": {
-    "@angular/core": "^19.0.0",
-    "@angular/common": "^19.0.0",
-    "@angular/router": "^19.0.0"
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/router": "0.0.0-PLACEHOLDER"
   },
   "repository": {
     "type": "git",

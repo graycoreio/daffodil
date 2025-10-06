@@ -14,7 +14,7 @@
     "types": ["node"]
   },
   "include": [
-    "**/*.ts",
+    "**/*.ts", "ng-add/files/app/daff/navigation/components/state/navigation.state.ts.template",
   ],
   "exclude": [
     "**/*.spec.ts",

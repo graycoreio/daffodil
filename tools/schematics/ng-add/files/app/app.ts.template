@@ -1,0 +1,22 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  signal,
+} from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { NavigationComponent } from './daff/navigation/components/navigation.component';
+
+<% if (driver === 'demo') { %>
+import { DaffDebugBarComponent } from '@daffodil/dev-tools';
+<% } %>
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet, NavigationComponent<% if (driver === 'demo') { %>, DaffDebugBarComponent<% } %>],
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class App {
+  protected readonly title = signal('ng20-app');
+}

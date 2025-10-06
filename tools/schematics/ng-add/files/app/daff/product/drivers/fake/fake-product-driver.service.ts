@@ -16,23 +16,31 @@ import { transformFakeProduct } from './transform';
   providedIn: 'root',
 })
 export class FakeProductDriverService implements DaffProductServiceInterface {
-  readonly url: string = 'https://fakestoreapi.com/';
+  readonly url: string = 'https://fakestoreapi.com';
 
   constructor(private client: HttpClient) { }
 
   getAll(): Observable<DaffProduct[]> {
-    return this.client.get<FakeProduct[]>(this.url + 'products').pipe(
+    return this.client.get<FakeProduct[]>(this.url + '/products').pipe(
       map((fakeProducts: FakeProduct[]): DaffProduct[] => fakeProducts.map(transformFakeProduct)),
     );
   }
 
-  getBestSellers(): Observable<DaffProduct[]> {
-    throw new Error('Method not implemented.');
-  }
   get(productId: string): Observable<DaffProductDriverResponse<DaffProduct>> {
-    throw new Error('Method not implemented.');
+    return this.client.get<FakeProduct>(`${this.url}/products/${productId}`).pipe(
+      map((fakeProduct: FakeProduct): DaffProductDriverResponse<DaffProduct> => {
+        const transformedProduct = transformFakeProduct(fakeProduct);
+        return {
+          id: transformedProduct.id,
+          products: [transformedProduct],
+        };
+      }),
+    );
   }
+
   getByUrl(url: string): Observable<DaffProductDriverResponse<DaffProduct>> {
-    throw new Error('Method not implemented.');
+    // Extract product ID from URL that begins with /product or product
+    const productId = url.replace(/^\/?product\/?/, '');
+    return this.get(productId);
   }
 }
