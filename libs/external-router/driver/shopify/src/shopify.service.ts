@@ -10,7 +10,10 @@ import {
   daffUriTruncateLeadingSlash,
 } from '@daffodil/core/routing';
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
-import { DaffExternalRouterDriverInterface } from '@daffodil/external-router/driver';
+import {
+  DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION,
+  DaffExternalRouterDriverInterface,
+} from '@daffodil/external-router/driver';
 
 @Injectable({
   providedIn:'root',
@@ -28,11 +31,6 @@ export class DaffShopifyExternalRouterDriver implements DaffExternalRouterDriver
       });
     }
 
-    return of({
-      id: 'null',
-      url: (new URL('https://www.example.com' + url)).pathname,
-      code: 404,
-      type: 'UNKNOWN',
-    });
+    return of(DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION);
   }
 }
