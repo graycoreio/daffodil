@@ -25,6 +25,9 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
+			"env": {
+				"PORT": "4200"
+			},
       "type": "node"
     },
   ]
