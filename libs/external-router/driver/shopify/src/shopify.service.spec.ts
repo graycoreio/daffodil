@@ -194,10 +194,10 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
 
           expectObservable(service.resolve('/collections/summer-sale')).toBe(expected, {
             a: {
-              id: 'null',
-              url: '/collections/summer-sale',
+              id: null,
+              url: null,
               code: 404,
-              type: 'UNKNOWN',
+              type: null,
             },
           });
         });
@@ -210,10 +210,10 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
 
           expectObservable(service.resolve('/')).toBe(expected, {
             a: {
-              id: 'null',
-              url: '/',
+              id: null,
+              url: null,
               code: 404,
-              type: 'UNKNOWN',
+              type: null,
             },
           });
         });
@@ -226,10 +226,10 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
 
           expectObservable(service.resolve('')).toBe(expected, {
             a: {
-              id: 'null',
-              url: '/',
+              id: null,
+              url: null,
               code: 404,
-              type: 'UNKNOWN',
+              type: null,
             },
           });
         });
@@ -242,10 +242,10 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
 
           expectObservable(service.resolve('/pages/about')).toBe(expected, {
             a: {
-              id: 'null',
-              url: '/pages/about',
+              id: null,
+              url: null,
               code: 404,
-              type: 'UNKNOWN',
+              type: null,
             },
           });
         });
@@ -258,10 +258,10 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
 
           expectObservable(service.resolve('/blogs/news')).toBe(expected, {
             a: {
-              id: 'null',
-              url: '/blogs/news',
+              id: null,
+              url: null,
               code: 404,
-              type: 'UNKNOWN',
+              type: null,
             },
           });
         });
@@ -274,10 +274,10 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
 
           expectObservable(service.resolve('/product/my-item')).toBe(expected, {
             a: {
-              id: 'null',
-              url: '/product/my-item',
+              id: null,
+              url: null,
               code: 404,
-              type: 'UNKNOWN',
+              type: null,
             },
           });
         });
@@ -290,10 +290,10 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
 
           expectObservable(service.resolve('/products')).toBe(expected, {
             a: {
-              id: 'null',
-              url: '/products',
+              id: null,
+              url: null,
               code: 404,
-              type: 'UNKNOWN',
+              type: null,
             },
           });
         });
@@ -306,10 +306,10 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
 
           expectObservable(service.resolve('/products/')).toBe(expected, {
             a: {
-              id: 'null',
-              url: '/products/',
+              id: null,
+              url: null,
               code: 404,
-              type: 'UNKNOWN',
+              type: null,
             },
           });
         });
