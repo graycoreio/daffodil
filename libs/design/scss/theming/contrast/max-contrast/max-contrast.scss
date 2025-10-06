@@ -9,7 +9,7 @@
 ///
 /// @param {Color} $reference-color
 /// @param {List} $colors — A list of colors to compare against the reference color
-/// @return {Number} The highest contrast ratio between the reference color and the color list
+/// @return {Color} The color with the highest contrast ratio between the reference color and the color list
 ///
 @function daff-max-contrast(
 	$reference-color,
@@ -17,7 +17,8 @@
 ) {
 	@if(list.length($colors) == 0) {
 		@return error-to-string.error-to-string(
-			'Cannot calculate max contrast for `#{$reference-color}` - the color list (`$colors`) is empty. Provide at least one color to compare against.'
+			'Cannot calculate max contrast for `#{$reference-color}` - the color list (`$colors`) is empty. '
+			'Provide at least one color to compare against.'
 		);
 	}
 	@else if(list.length($colors) == 1) {
@@ -25,12 +26,14 @@
 	}
 	@else {
 		$max-contrast: -1;
+		$max-contrast-color: null;
 
 		@each $color in $colors {
 			$current-contrast: cr.daff-contrast-ratio($reference-color, $color);
 
 			@if($current-contrast > $max-contrast) {
 				$max-contrast: $current-contrast;
+				$max-contrast-color: $color;
 			}
 		}
 
