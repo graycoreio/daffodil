@@ -1,12 +1,12 @@
 # Shopify
 
-The `@daffodil/external-router` Shopify driver provides URL resolution for Shopify-style routes, enabling your application to handle Shopify's standard URL patterns for products and other resources.
+The `@daffodil/external-router` Shopify driver provides URL resolution for Shopify routes, enabling your application to handle Shopify's URL patterns for products and other resources.
 
 ## Features
 
-- **Product URL Resolution**: Automatically resolves `/products/{slug}` patterns
-- **File Extension Handling**: Supports SEO-friendly URLs with extensions (e.g., `.html`)
-- **Flexible Slug Formats**: Handles dashes, underscores, and alphanumeric slugs
+- **Product URL resolution**: Automatically resolves `/products/{slug}` patterns
+- **File extension handling**: Supports SEO-friendly URLs with extensions (e.g., `.html`)
+- **Flexible slug formats**: Handles dashes, underscores, and alphanumeric characters
 
 ## Usage
 
@@ -27,9 +27,9 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-## Supported URL Patterns
+## Supported URL patterns
 
-### Product Routes
+### Product routes
 
 The driver recognizes and resolves the following product URL patterns:
 
@@ -41,7 +41,7 @@ The driver recognizes and resolves the following product URL patterns:
 
 The driver extracts the product slug (without file extension) as the resource ID and returns a successful resolution (200 status) for matching patterns.
 
-### Unsupported Routes
+### Unsupported routes
 
 The following URL patterns are not currently supported and will return 404:
 
