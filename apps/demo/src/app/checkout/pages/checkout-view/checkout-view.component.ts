@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -48,7 +47,6 @@ import {
   templateUrl: './checkout-view.component.html',
   styleUrls: ['./checkout-view.component.scss'],
   imports: [
-    CommonModule,
     LetDirective,
     DAFF_CONTAINER_COMPONENTS,
     DAFF_LOADING_ICON_COMPONENTS,

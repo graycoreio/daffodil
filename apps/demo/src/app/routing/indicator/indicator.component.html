@@ -1,1 +1,1 @@
-<daff-progress-bar *ngIf="show" [percentage]="routingPercentage" (finished)="handleFullProgressIndicator()"></daff-progress-bar>
+@if (show) {<daff-progress-bar [percentage]="routingPercentage" (finished)="handleFullProgressIndicator()"></daff-progress-bar>}

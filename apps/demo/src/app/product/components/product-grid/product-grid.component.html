@@ -1,1 +1,3 @@
-<demo-product-card *ngFor="let product of products" [product]="product"></demo-product-card>
+@for (product of products; track product) {
+  <demo-product-card [product]="product"></demo-product-card>
+}
