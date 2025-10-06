@@ -1,4 +1,7 @@
-import { ShopifyProductNode } from '@daffodil/driver/shopify';
+import {
+  SHOPIFY_ROUTE_PREFIXES,
+  ShopifyProductNode,
+} from '@daffodil/driver/shopify';
 import {
   DaffProduct,
   DaffProductTypeEnum,
@@ -24,7 +27,7 @@ export const daffShopifyProductTransformer = (node: ShopifyProductNode): DaffPro
     id: node.images.nodes[0]?.id,
   },
   id: node.id,
-  url: `/${node.handle}`,
+  url: `/${SHOPIFY_ROUTE_PREFIXES.PRODUCTS}/${node.handle}`,
   type: DaffProductTypeEnum.Simple,
   price: node.priceRange.maxVariantPrice.amount,
   in_stock: node.availableForSale,

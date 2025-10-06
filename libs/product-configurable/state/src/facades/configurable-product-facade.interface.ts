@@ -3,16 +3,13 @@ import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { DaffStoreFacade } from '@daffodil/core/state';
-import {
-  DaffConfigurableProduct,
-  DaffConfigurableProductVariant,
-} from '@daffodil/product-configurable';
+import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 
 /**
  * An interface for a facade that accesses configurable product state.
  * Exposes many parts of the state for easy access and allows dispatching of actions.
  */
-export interface DaffConfigurableProductFacadeInterface extends DaffStoreFacade<Action> {
+export interface DaffConfigurableProductFacadeInterface<T extends DaffConfigurableProduct = DaffConfigurableProduct> extends DaffStoreFacade<Action> {
 
   /**
    * All attributes of a configurable product.
@@ -26,7 +23,7 @@ export interface DaffConfigurableProductFacadeInterface extends DaffStoreFacade<
    *
    * @param id the id of the configurable product.
    */
-  getAllVariants(id: DaffConfigurableProduct['id']): Observable<DaffConfigurableProductVariant[]>;
+  getAllVariants(id: DaffConfigurableProduct['id']): Observable<Array<T['variants'][number]>>;
 
   /**
    * The applied attributes of a configurable product.
@@ -104,5 +101,5 @@ export interface DaffConfigurableProductFacadeInterface extends DaffStoreFacade<
    *
    * @param id the id of the configurable product.
    */
-  getMatchingVariants(id: DaffConfigurableProduct['id']): Observable<DaffConfigurableProductVariant[]>;
+  getMatchingVariants(id: DaffConfigurableProduct['id']): Observable<Array<T['variants'][number]>>;
 }

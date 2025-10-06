@@ -7,9 +7,8 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffProduct } from '@daffodil/product';
 import { DaffProductStateRootSlice } from '@daffodil/product/state';
-import { DaffConfigurableProductVariant } from '@daffodil/product-configurable';
+import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 
 import { DaffConfigurableProductFacadeInterface } from './configurable-product-facade.interface';
 import { getDaffConfigurableProductAllSelectors } from '../selectors/public_api';
@@ -23,7 +22,7 @@ import { getDaffConfigurableProductAllSelectors } from '../selectors/public_api'
 @Injectable({
   providedIn: 'root',
 })
-export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> implements DaffConfigurableProductFacadeInterface {
+export class DaffConfigurableProductFacade<T extends DaffConfigurableProduct = DaffConfigurableProduct> implements DaffConfigurableProductFacadeInterface<T> {
 
   configurableProductSelectors = getDaffConfigurableProductAllSelectors<T>();
 
@@ -33,7 +32,7 @@ export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> 
     return this.store.pipe(select(this.configurableProductSelectors.selectAllConfigurableProductAttributes(id)));
   }
 
-  getAllVariants(id: T['id']): Observable<DaffConfigurableProductVariant[]> {
+  getAllVariants(id: T['id']): Observable<Array<T['variants'][number]>> {
     return this.store.pipe(select(this.configurableProductSelectors.selectAllConfigurableProductVariants(id)));
   }
 
@@ -77,7 +76,7 @@ export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> 
     return this.store.pipe(select(this.configurableProductSelectors.selectSelectableConfigurableProductAttributes(id)));
   }
 
-  getMatchingVariants(id: T['id']): Observable<DaffConfigurableProductVariant[]> {
+  getMatchingVariants(id: T['id']): Observable<Array<T['variants'][number]>> {
     return this.store.pipe(select(this.configurableProductSelectors.selectMatchingConfigurableProductVariants(id)));
   }
 

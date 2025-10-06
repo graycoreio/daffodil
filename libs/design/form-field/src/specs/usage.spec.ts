@@ -21,7 +21,6 @@ import {
 } from '@daffodil/design/form-field';
 import { DaffInputComponent } from '@daffodil/design/input';
 import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
-import { DaffSelectComponent } from '@daffodil/design/select';
 
 import { DaffFormFieldApperanace } from '../form-field/form-field.component';
 
@@ -119,7 +118,7 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
 
   describe('valid state', () => {
     it('should set the `daff-valid` class on the host element when the child control is valid', () => {
-      wrapper.formControl.markAsTouched();
+      wrapper.formControl.markAsDirty();
       wrapper.formControl.setValue('Something Valid');
       fixture.detectChanges();
 
@@ -262,7 +261,6 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage - Prefix, Suffix, & 
     <daff-form-field>
       <select daff-native-select></select>
     </daff-form-field>`,
-  selector: 'daff-native-select-test',
   imports: [
     DAFF_FORM_FIELD_COMPONENTS,
     DaffNativeSelectComponent,
@@ -270,52 +268,26 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage - Prefix, Suffix, & 
   ],
 })
 
-class WithNativeSelectComponent {}
+class NativeSelectWrapper {}
 
-@Component({
-  template: `
-    <daff-form-field>
-      <daff-select></daff-select>
-    </daff-form-field>`,
-  selector: 'daff-custom-select-test',
-  imports: [
-    DAFF_FORM_FIELD_COMPONENTS,
-    DaffSelectComponent,
-    ReactiveFormsModule,
-  ],
-})
-
-class WithCustomSelectComponent {}
-
-@Component({
-  template: `
-    <daff-native-select-test></daff-native-select-test>
-    <daff-custom-select-test></daff-custom-select-test>
-  `,
-  imports: [
-    WithNativeSelectComponent,
-    WithCustomSelectComponent,
-  ],
-})
-
-class SelectWrapperComponent {}
-
-describe('@daffodil/design | DaffFormFieldComponent | Usage - Select Controls', () => {
-  let wrapper: SelectWrapperComponent;
-  let fixture: ComponentFixture<SelectWrapperComponent>;
+describe('@daffodil/design | DaffFormFieldComponent | Usage - Native Select Control', () => {
+  let wrapper: NativeSelectWrapper;
+  let fixture: ComponentFixture<NativeSelectWrapper>;
+  let de: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        SelectWrapperComponent,
+        NativeSelectWrapper,
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SelectWrapperComponent);
+    fixture = TestBed.createComponent(NativeSelectWrapper);
     wrapper = fixture.componentInstance;
+    de = fixture.debugElement.query(By.css('daff-form-field'));
     fixture.detectChanges();
   });
 
@@ -323,7 +295,7 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage - Select Controls', 
     expect(wrapper).toBeTruthy();
   });
 
-  it('should add a class of "is-select" to both native and custom select form fields', () => {
-    expect(fixture.debugElement.queryAll(By.css('.is-select')).length).toEqual(2);
+  it('should add a class of "is-native-select" to a native select control', () => {
+    expect(de.nativeElement.classList.contains('is-native-select')).toEqual(true);
   });
 });
