@@ -12,9 +12,9 @@
 /// @return {Color} The color with the highest contrast ratio between the reference color and the color list
 ///
 /// @example scss
-/// 	.body {
-/// 		background: daff-color($neutral, 10);
-/// 		color: daff-max-contrast(daff-color($neutral, 10), (daff-color($primary, 20), daff-color($secondary, 40)));
+/// 	.card {
+/// 		background: daff-color($primary, 30);
+/// 		border-color: daff-max-contrast(daff-color($primary, 30), (daff-color($secondary, 70), daff-color($accent, 50)));
 /// 	}
 ///
 @function daff-max-contrast(
