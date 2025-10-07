@@ -100,14 +100,17 @@ describe('@daffodil/design/modal | DaffModalService', () => {
       expect(overlayContainerElement.textContent).toContain('It works!');
     });
 
-    it('should close any previously opened modals', () => {
+    it('should close any previously opened modals', fakeAsync(() => {
       modalService.open(DynamicComponent);
       modalService.open(DynamicComponent);
+
+      fixture.detectChanges();
+      flush();
 
       expect(
         overlayContainerElement.querySelectorAll('daff-dynamic-component').length,
       ).toEqual(1);
-    });
+    }));
 
     it('should close all modals except the last one opened', fakeAsync(() => {
       modalService.open(DynamicComponent);

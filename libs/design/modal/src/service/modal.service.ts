@@ -73,16 +73,16 @@ export class DaffModalService {
     modal.overlay.dispose();
   }
 
-  private _removeAllModals(): void {
+  private _closeAllModals(): void {
     const modals = Array.from(this._modals.values());
-    modals.forEach((modal) => this._removeModal(modal));
+    modals.forEach((modal) => this.close(modal.modal.instance));
   }
 
   open(
     component: Type<any>,
     configuration?: Partial<DaffModalConfiguration>,
   ): DaffModalComponent {
-    this._removeAllModals();
+    this._closeAllModals();
     const config = { ...this.defaultConfiguration, ...configuration };
     const _ref = this._createOverlayRef();
     const _modal = this._attachModal(_ref);
