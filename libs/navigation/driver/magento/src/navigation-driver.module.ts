@@ -11,7 +11,7 @@ import {
 import { provideDaffNavigationMagentoDriver } from './provider';
 
 /**
- * @deprecated
+ * @deprecated Deprecated in version 0.90.0. Will be removed in version 0.93.0.
  */
 @NgModule({
   imports: [
