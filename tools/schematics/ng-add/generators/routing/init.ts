@@ -4,7 +4,6 @@ import {
   Tree,
 } from '@angular-devkit/schematics';
 
-import { updateModuleRouting } from './module';
 import { updateStandaloneRouting } from './standalone';
 import { isStandaloneApp } from '../../../utils/app-detection';
 import { NgAddOptions } from '../../schema';
@@ -21,9 +20,9 @@ import { NgAddOptions } from '../../schema';
 export const initAppRouting = (_options: NgAddOptions, project: any): Rule => (tree: Tree, context: SchematicContext) => {
   const isStandalone = isStandaloneApp(tree, project);
 
-  if (isStandalone) {
-    return updateStandaloneRouting(`${project.sourceRoot}/app/app.routes.ts`)(tree, context);
-  } else {
-    return updateModuleRouting(`${project.sourceRoot}/app/app-routing.module.ts`)(tree, context);
+  if (!isStandalone) {
+    throw new Error('The @daffodil/commerce schematic only supports standalone applications.');
   }
+
+  return updateStandaloneRouting(`${project.sourceRoot}/app/app.routes.ts`)(tree, context);
 };

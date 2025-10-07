@@ -10,14 +10,7 @@ export const DEMO_MAGENTO_ENDPOINT_SWITCH = new InjectionToken<string | UriFunct
   factory: () =>{
     const devTools = inject(DaffDevToolsConfigService);
 
-    return () => {
-      const config = devTools.getDriverConfig('@daffodil/product/driver');
-      let endpoint = '';
-      config.subscribe((data) => {
-        endpoint = data?.currentDriver.properties['baseUrl'] ?? endpoint;
-      });
-      return endpoint;
-    };
+    return () => devTools.getStoredDriverConfiguration('@daffodil/driver','magento')?.['baseUrl'] ?? '';
   },
   providedIn: 'root',
 });

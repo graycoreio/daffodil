@@ -1,20 +1,35 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { catchError, map, startWith } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
-import { DaffProductDriver, DaffProductServiceInterface } from '@daffodil/product/driver';
+import {
+  AsyncPipe,
+  CurrencyPipe,
+  NgOptimizedImage,
+} from '@angular/common';
+import {
+  Component,
+  inject,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import {
+  ProductListStateService,
+  ProductListState,
+} from './state/product-list.state';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CurrencyPipe, AsyncPipe, NgOptimizedImage, RouterLink],
+  providers: [ProductListStateService],
   template: `
     <div class="merchandise-section">
       <div class="section-header">
         <h1>Merchandise</h1>
       </div>
-      
-      @if (products$ | async; as state) {
+
+      @if (state$ | async; as state) {
         @if (state.error) {
           <div class="error-container">
             <div class="error-icon">⚠️</div>
@@ -30,26 +45,34 @@ import { DaffProductDriver, DaffProductServiceInterface } from '@daffodil/produc
           </div>
         } @else {
           <div class="product-grid">
-            @for (item of state.data; track item.id) {
-              <div class="product-card">
+            @for (item of state.data; track item.id; let i = $index) {
+              <a [routerLink]="item.url" [queryParams]="{key: 'test'}" class="product-card">
                 <div class="product-image-container">
-                  <img 
+                  <div style="position: relative;
+    aspect-ratio: 1;
+    display:flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center"
+    >
+    <img
                     class="product-image"
-                    [src]="item.thumbnail.url"
+                    [ngSrc]="item.thumbnail.url"
                     [alt]="item.thumbnail.label"
-                    loading="lazy"
+                    [priority]="i < 4"
+                    [loading]="i < 4 ? undefined : 'lazy'"
+                    fill
                   />
+    </div>
                 </div>
                 <div class="product-info">
                   <h3 class="product-name">{{ item.name }}</h3>
-                  <span class="product-category">MERCHANDISE</span>
+                  <span class="product-category">{{ item.brand }}</span>
                   <div class="price-container">
-                    <span class="current-price">\${{ item.price }}</span>
-                    <span class="original-price">\${{ (item.price * 1.25).toFixed(2) }}</span>
-                    <span class="discount">20% OFF</span>
+                    <span class="current-price">{{ (item.price || 0) | currency }}</span>
                   </div>
                 </div>
-              </div>
+              </a>
             }
           </div>
         }
@@ -70,7 +93,7 @@ import { DaffProductDriver, DaffProductServiceInterface } from '@daffodil/produc
       --purple-500: #6a57ff;
       --purple-600: #5845e6;
       --teal-600: #00835f;
-      
+
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
@@ -110,6 +133,9 @@ import { DaffProductDriver, DaffProductServiceInterface } from '@daffodil/produc
       overflow: hidden;
       transition: transform 0.2s ease;
       border: 1px solid var(--gray-200);
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
 
     .product-card:hover {
@@ -118,6 +144,7 @@ import { DaffProductDriver, DaffProductServiceInterface } from '@daffodil/produc
 
     .product-image-container {
       aspect-ratio: 1;
+      position: relative;
       background: var(--gray-100);
       display: flex;
       align-items: center;
@@ -184,16 +211,16 @@ import { DaffProductDriver, DaffProductServiceInterface } from '@daffodil/produc
       .merchandise-section {
         padding: 1rem;
       }
-      
+
       h1 {
         font-size: 1.5rem;
       }
-      
+
       .product-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 0.75rem;
       }
-      
+
       .section-header {
         margin-bottom: 1rem;
       }
@@ -263,28 +290,20 @@ import { DaffProductDriver, DaffProductServiceInterface } from '@daffodil/produc
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-  `]
+  `],
 })
 export class ProductListComponent implements OnInit {
-  products$!: Observable<{ data: any[]; error: any; loading: boolean }>;
+  state$!: Observable<ProductListState>;
 
-  private productDriver: DaffProductServiceInterface = inject(DaffProductDriver);
+  private stateService = inject(ProductListStateService);
 
   constructor() { }
 
   ngOnInit(): void {
-    this.products$ = this.productDriver.getAll().pipe(
-      map((products) => ({ data: products, error: null, loading: false })),
-      catchError((error) => of({ data: [], error, loading: false })),
-      startWith({ data: [], error: null, loading: true })
-    );
+    this.state$ = this.stateService.state$;
   }
 
   retry() {
-    this.products$ = this.productDriver.getAll().pipe(
-      map((products) => ({ data: products, error: null, loading: false })),
-      catchError((error) => of({ data: [], error, loading: false })),
-      startWith({ data: [], error: null, loading: true })
-    );
+    this.stateService.retry();
   }
 }

@@ -3,108 +3,6 @@ import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeSc
 import { insertImport } from '@schematics/angular/utility/ast-utils';
 import { InsertChange } from '@schematics/angular/utility/change';
 
-export function addImportsToModule(tree: Tree, modulePath: string, imports: string[]): Tree {
-  const moduleSource = tree.read(modulePath);
-  if (!moduleSource) {
-    throw new Error(`Module file ${modulePath} not found`);
-  }
-
-  const sourceText = moduleSource.toString();
-  const source = ts.createSourceFile(modulePath, sourceText, ts.ScriptTarget.Latest, true);
-
-  const changes: InsertChange[] = [];
-
-  imports.forEach(importName => {
-    const packageName = getPackageForImport(importName);
-    const change = insertImport(source, modulePath, importName, packageName);
-    if (change instanceof InsertChange) {
-      changes.push(change);
-    }
-  });
-
-  // Apply changes to the file
-  let updatedContent = sourceText;
-  changes.reverse().forEach(change => {
-    updatedContent = updatedContent.slice(0, change.pos) + change.toAdd + updatedContent.slice(change.pos);
-  });
-
-  tree.overwrite(modulePath, updatedContent);
-  return tree;
-}
-
-export function addProvidersToModule(tree: Tree, modulePath: string, providers: string[]): Tree {
-  const moduleSource = tree.read(modulePath);
-  if (!moduleSource) {
-    throw new Error(`Module file ${modulePath} not found`);
-  }
-
-  const sourceText = moduleSource.toString();
-  const source = ts.createSourceFile(modulePath, sourceText, ts.ScriptTarget.Latest, true);
-
-  // Add import statements for providers
-  const importChanges: InsertChange[] = [];
-  providers.forEach(provider => {
-    const providerNames = extractProviderNames(provider);
-    providerNames.forEach(providerName => {
-      const packageName = getPackageForProvider(providerName);
-      const change = insertImport(source, modulePath, providerName, packageName);
-      if (change instanceof InsertChange) {
-        importChanges.push(change);
-      }
-    });
-  });
-
-  // Apply import changes
-  let updatedContent = sourceText;
-  importChanges.reverse().forEach(change => {
-    updatedContent = updatedContent.slice(0, change.pos) + change.toAdd + updatedContent.slice(change.pos);
-  });
-
-  // Add providers to the providers array in @NgModule decorator
-  if (updatedContent.includes('providers: [')) {
-    const providersStart = updatedContent.indexOf('providers: [');
-    const bracketStart = providersStart + 'providers: ['.length;
-
-    // Find the matching closing bracket
-    let bracketCount = 1;
-    let bracketEnd = bracketStart;
-    for (let i = bracketStart; i < updatedContent.length && bracketCount > 0; i++) {
-      if (updatedContent[i] === '[') {
-        bracketCount++;
-      }
-      if (updatedContent[i] === ']') {
-        bracketCount--;
-      }
-      if (bracketCount === 0) {
-        bracketEnd = i;
-        break;
-      }
-    }
-
-    const existingProviders = updatedContent.substring(bracketStart, bracketEnd).trim();
-    let newProviders;
-    if (existingProviders) {
-      const cleanExisting = existingProviders.replace(/,\s*$/, '');
-      newProviders = `${cleanExisting},\n    ${providers.join(',\n    ')}`;
-    } else {
-      newProviders = `\n    ${providers.join(',\n    ')}\n  `;
-    }
-
-    updatedContent = updatedContent.substring(0, bracketStart) + newProviders + updatedContent.substring(bracketEnd);
-  } else {
-    // Add providers array if it doesn't exist in @NgModule
-    const ngModuleRegex = /(@NgModule\s*\(\s*{[^}]*)(}\s*\))/s;
-    const match = updatedContent.match(ngModuleRegex);
-    if (match) {
-      const providersArray = `providers: [\n    ${providers.join(',\n    ')}\n  ],\n  `;
-      updatedContent = updatedContent.replace(ngModuleRegex, `$1${providersArray}$2`);
-    }
-  }
-
-  tree.overwrite(modulePath, updatedContent);
-  return tree;
-}
-
 export function addProvidersToStandaloneApp(tree: Tree, project: any, providers: string[]): Tree {
   const appConfigPath = `${project.sourceRoot}/app/app.config.ts`;
   const mainPath = `${project.sourceRoot}/main.ts`;
@@ -131,6 +29,11 @@ export function addProvidersToStandaloneApp(tree: Tree, project: any, providers:
   // Add import statements
   const importChanges: InsertChange[] = [];
   providers.forEach(provider => {
+    // Skip empty strings used for spacing
+    if (!provider || provider.trim() === '') {
+      return;
+    }
+
     const providerNames = extractProviderNames(provider);
     providerNames.forEach(providerName => {
       const packageName = getPackageForProvider(providerName);
@@ -142,17 +45,41 @@ export function addProvidersToStandaloneApp(tree: Tree, project: any, providers:
 
     // Add DynamicSwitchDriverService import when using provideDaffProductDriver
     if (provider.includes('provideDaffProductDriver')) {
-      const driverChange = insertImport(source, configPath, 'DynamicSwitchDriverService', './daff/product/drivers/demo/dynamic/dynamic-switch.service');
+      const driverChange = insertImport(source, configPath, 'DynamicSwitchDriverService', './daff/product/drivers/dynamic/dynamic-switch.service');
       if (driverChange instanceof InsertChange) {
         importChanges.push(driverChange);
       }
     }
 
+    // Add DynamicSwitchNavigationService import when using provideDaffNavigationDriver
+    if (provider.includes('provideDaffNavigationDriver')) {
+      const navDriverChange = insertImport(source, configPath, 'DynamicSwitchNavigationService', './daff/navigation/drivers/dynamic/dynamic-switch.service');
+      if (navDriverChange instanceof InsertChange) {
+        importChanges.push(navDriverChange);
+      }
+    }
+
+    // Add DynamicExternalRouterDriver import when using provideDaffExternalRouterDriver
+    if (provider.includes('provideDaffExternalRouterDriver')) {
+      const routerDriverChange = insertImport(source, configPath, 'DynamicExternalRouterDriver', './daff/external-router/drivers/dynamic');
+      if (routerDriverChange instanceof InsertChange) {
+        importChanges.push(routerDriverChange);
+      }
+    }
+
     // Add DEMO_MAGENTO_ENDPOINT_SWITCH import when using provideMagentoDriver
     if (provider.includes('DEMO_MAGENTO_ENDPOINT_SWITCH')) {
-      const endpointChange = insertImport(source, configPath, 'DEMO_MAGENTO_ENDPOINT_SWITCH', './daff/product/drivers/demo/magento/endpoint-switch.token');
+      const endpointChange = insertImport(source, configPath, 'DEMO_MAGENTO_ENDPOINT_SWITCH', './daff/driver/magento/endpoint-switch.token');
       if (endpointChange instanceof InsertChange) {
         importChanges.push(endpointChange);
+      }
+    }
+
+    // Add DEMO_SHOPIFY_ENDPOINT_SWITCH import when using provideShopifyDriver
+    if (provider.includes('DEMO_SHOPIFY_ENDPOINT_SWITCH')) {
+      const shopifyEndpointChange = insertImport(source, configPath, 'DEMO_SHOPIFY_ENDPOINT_SWITCH', './daff/driver/shopify/endpoint-switch');
+      if (shopifyEndpointChange instanceof InsertChange) {
+        importChanges.push(shopifyEndpointChange);
       }
     }
 
@@ -172,12 +99,14 @@ export function addProvidersToStandaloneApp(tree: Tree, project: any, providers:
   });
 
   // Add providers to the providers array
-  const providersToAdd = providers.map(provider => {
-    if (provider.includes('Module')) {
-      return `importProvidersFrom(${provider})`;
-    }
-    return provider;
-  });
+  const providersToAdd = providers
+    .filter(provider => provider && provider.trim() !== '')
+    .map(provider => {
+      if (provider.includes('Module')) {
+        return `importProvidersFrom(${provider})`;
+      }
+      return provider;
+    });
 
   // Find and update the providers array
   if (updatedContent.includes('providers: [')) {
@@ -268,15 +197,34 @@ function getPackageForProvider(providerName: string): string {
     provideStoreDevtools: '@ngrx/store-devtools',
     provideRouter: '@angular/router',
     provideHttpClient: '@angular/common/http',
+    provideVercelImageLoader: '@daffodil/core',
     provideDaffInMemoryBackends: '@daffodil/driver/in-memory',
     provideDaffInMemoryDriverConfig: '@daffodil/driver/in-memory',
     provideDaffInMemoryDriver: '@daffodil/driver/in-memory',
     provideDaffProductDriver: '@daffodil/product/driver',
     provideDaffProductInMemoryDriver: '@daffodil/product/driver/in-memory',
+    DaffProductInMemoryDriver: '@daffodil/product/driver/in-memory',
     provideDaffDevTools: '@daffodil/dev-tools',
     withDriverConfig: '@daffodil/dev-tools',
     provideMagentoDriver: '@daffodil/driver/magento',
     provideDaffProductMagentoDriver: '@daffodil/product/driver/magento',
+    DaffProductMagentoDriver: '@daffodil/product/driver/magento',
+    provideShopifyDriver: '@daffodil/driver/shopify',
+    provideDaffProductShopifyDriver: '@daffodil/product/driver/shopify',
+    DaffProductShopifyDriver: '@daffodil/product/driver/shopify',
+    provideDaffNavigationInMemoryDriver: '@daffodil/navigation/driver/in-memory',
+    DaffNavigationInMemoryDriver: '@daffodil/navigation/driver/in-memory',
+    provideDaffNavigationMagentoDriver: '@daffodil/navigation/driver/magento',
+    DaffNavigationMagentoDriver: '@daffodil/navigation/driver/magento',
+    provideDaffNavigationShopifyDriver: '@daffodil/navigation/driver/shopify',
+    DaffNavigationShopifyDriver: '@daffodil/navigation/driver/shopify',
+    provideDaffNavigationDriver: '@daffodil/navigation/driver',
+    provideExternalRouter: '@daffodil/external-router',
+    provideDaffExternalRouterMagentoDriver: '@daffodil/external-router/driver/magento/2.4.3',
+    DaffExternalRouterMagentoDriver: '@daffodil/external-router/driver/magento/2.4.3',
+    provideDaffExternalRouterShopifyDriver: '@daffodil/external-router/driver/shopify',
+    DaffExternalRouterShopifyDriver: '@daffodil/external-router/driver/shopify',
+    provideDaffExternalRouterDriver: '@daffodil/external-router/driver',
   };
 
   return providerMap[providerName] || '@angular/core';

@@ -13,7 +13,7 @@ If you're starting a new storefront, you'll most likely want to create a local p
 ### Prerequisites
 
 - [Node.js](https://angular.dev/reference/versions)
-- [Angular 19](https://angular.dev/installation)
+- [Angular 20](https://angular.dev/installation)
 - Text editor — We recommend [Visual Studio Code](https://code.visualstudio.com/)
 - Terminal — Required for Angular CLI commands
 
@@ -22,7 +22,7 @@ If you're starting a new storefront, you'll most likely want to create a local p
 Create a new Angular project with your desired project name:
 
 ```bash
-npx @angular/cli@19 new my-project
+npx @angular/cli@20 new my-project --style=scss --routing=true
 ```
 
 If you don't have any preferences, just hit the enter key to take the default options and continue with the setup.

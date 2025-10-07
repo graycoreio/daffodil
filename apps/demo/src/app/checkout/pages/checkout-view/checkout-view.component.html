@@ -12,71 +12,73 @@
 } as vm">
   <daff-container size="md">
     @if (vm.loading) {
-      <daff-loading-icon *ngIf="vm.loading" class="demo-checkout__loading-icon"></daff-loading-icon>
+      @if (vm.loading) {
+        <daff-loading-icon class="demo-checkout__loading-icon"></daff-loading-icon>
+      }
     } @else {
-      <div class="demo-checkout" *ngIf="vm.loading === false">
-        <daff-accordion class="demo-checkout__mobile-cart">
-          <daff-accordion-item [initiallyExpanded]="false">
-            <h3 daffAccordionItemTitle>Cart Summary ({{vm.cart?.items.length || 0}})</h3>
-            <demo-cart-summary-wrapper [cart]="vm.cart" [loading]="vm.loading"></demo-cart-summary-wrapper>
-          </daff-accordion-item>
-        </daff-accordion>
-
-        <div>
-          <div class="demo-checkout__address">
-            @if (vm.stepCompletion[DemoCheckoutStep.ADDRESS]) {
-              <demo-checkout-shipping-address-summary
-                [shippingAddress]="vm.shippingAddress"
-              ></demo-checkout-shipping-address-summary>
-            } @else if (vm.currentStep === DemoCheckoutStep.ADDRESS) {
-              <demo-checkout-shipping-address-form
-                [shippingAddress]="vm.shippingAddress"
-                (submitted)="onUpdateShippingAddress($event)"
-              ></demo-checkout-shipping-address-form>
-            }
+      @if (vm.loading === false) {
+        <div class="demo-checkout">
+          <daff-accordion class="demo-checkout__mobile-cart">
+            <daff-accordion-item [initiallyExpanded]="false">
+              <h3 daffAccordionItemTitle>Cart Summary ({{vm.cart?.items.length || 0}})</h3>
+              <demo-cart-summary-wrapper [cart]="vm.cart" [loading]="vm.loading"></demo-cart-summary-wrapper>
+            </daff-accordion-item>
+          </daff-accordion>
+          <div>
+            <div class="demo-checkout__address">
+              @if (vm.stepCompletion[DemoCheckoutStep.ADDRESS]) {
+                <demo-checkout-shipping-address-summary
+                  [shippingAddress]="vm.shippingAddress"
+                ></demo-checkout-shipping-address-summary>
+              } @else if (vm.currentStep === DemoCheckoutStep.ADDRESS) {
+                <demo-checkout-shipping-address-form
+                  [shippingAddress]="vm.shippingAddress"
+                  (submitted)="onUpdateShippingAddress($event)"
+                ></demo-checkout-shipping-address-form>
+              }
+            </div>
+            <div class="demo-checkout__shipping">
+              @if (vm.stepCompletion[DemoCheckoutStep.SHIPPING]) {
+                <demo-checkout-shipping-summary
+                  [selectedShippingOption]="vm.selectedShippingOption"
+                ></demo-checkout-shipping-summary>
+              } @else if (vm.currentStep === DemoCheckoutStep.SHIPPING) {
+                <demo-checkout-shipping-form
+                  [selectedOption]="vm.selectedShippingOption"
+                  [options]="vm.shippingOptions"
+                  (submitted)="onUpdateShipping($event)"
+                ></demo-checkout-shipping-form>
+              }
+            </div>
+            <div class="demo-checkout__payment">
+              @if (vm.stepCompletion[DemoCheckoutStep.BILLING]) {
+                <demo-checkout-payment-summary
+                  [paymentInfo]="vm.paymentInfo"
+                ></demo-checkout-payment-summary>
+                <demo-checkout-billing-summary
+                  [billingAddress]="vm.billingAddress"
+                  [billingAddressIsShippingAddress]="vm.isBillingSameAsShipping"
+                ></demo-checkout-billing-summary>
+              } @else if (vm.currentStep === DemoCheckoutStep.BILLING) {
+                <demo-checkout-payment-form
+                  [paymentInfo]="vm.paymentInfo"
+                  [billingAddress]="vm.billingAddress"
+                  [shippingAddress]="vm.shippingAddress"
+                  [billingAddressIsShippingAddress]="vm.isBillingSameAsShipping"
+                  (submitted)="onUpdatePayment($event)"
+                ></demo-checkout-payment-form>
+              }
+            </div>
           </div>
-          <div class="demo-checkout__shipping">
-            @if (vm.stepCompletion[DemoCheckoutStep.SHIPPING]) {
-              <demo-checkout-shipping-summary
-                [selectedShippingOption]="vm.selectedShippingOption"
-              ></demo-checkout-shipping-summary>
-            } @else if (vm.currentStep === DemoCheckoutStep.SHIPPING) {
-              <demo-checkout-shipping-form
-                [selectedOption]="vm.selectedShippingOption"
-                [options]="vm.shippingOptions"
-                (submitted)="onUpdateShipping($event)"
-              ></demo-checkout-shipping-form>
-            }
-          </div>
-          <div class="demo-checkout__payment">
-            @if (vm.stepCompletion[DemoCheckoutStep.BILLING]) {
-              <demo-checkout-payment-summary
-                [paymentInfo]="vm.paymentInfo"
-              ></demo-checkout-payment-summary>
-              <demo-checkout-billing-summary
-                [billingAddress]="vm.billingAddress"
-                [billingAddressIsShippingAddress]="vm.isBillingSameAsShipping"
-              ></demo-checkout-billing-summary>
-            } @else if (vm.currentStep === DemoCheckoutStep.BILLING) {
-              <demo-checkout-payment-form
-                [paymentInfo]="vm.paymentInfo"
-                [billingAddress]="vm.billingAddress"
-                [shippingAddress]="vm.shippingAddress"
-                [billingAddressIsShippingAddress]="vm.isBillingSameAsShipping"
-                (submitted)="onUpdatePayment($event)"
-              ></demo-checkout-payment-form>
-            }
+          <div class="demo-checkout__cart">
+            <div class="demo-checkout__desktop-cart">
+              <demo-cart-summary-wrapper [cartTitle]="'CART SUMMARY'" [cart]="vm.cart" [loading]="vm.loading">
+                <demo-place-order></demo-place-order>
+              </demo-cart-summary-wrapper>
+            </div>
           </div>
         </div>
-
-        <div class="demo-checkout__cart">
-          <div class="demo-checkout__desktop-cart">
-            <demo-cart-summary-wrapper [cartTitle]="'CART SUMMARY'" [cart]="vm.cart" [loading]="vm.loading">
-              <demo-place-order></demo-place-order>
-            </demo-cart-summary-wrapper>
-          </div>
-        </div>
-      </div>
+      }
     }
   </daff-container>
 </ng-container>

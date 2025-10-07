@@ -9,23 +9,33 @@
       </div>
     </div>
     <div>
-      <div class="demo-newsletter__right" *ngIf="(success$ | async) === false && (hasError$ | async) === false && (loading$ | async) === false">
-        <ng-container *ngIf="email.invalid && email.dirty">Please enter a valid email</ng-container>
-        <input daff-input type="text" class="demo-newsletter__input" placeholder="Email" name="email" [formControl]="email"
-          required email />
-        <button type="submit" daff-button color="secondary" class="demo-newsletter__button"
+      @if ((success$ | async) === false && (hasError$ | async) === false && (loading$ | async) === false) {
+        <div class="demo-newsletter__right">
+          @if (email.invalid && email.dirty) {
+            Please enter a valid email
+          }
+          <input daff-input type="text" class="demo-newsletter__input" placeholder="Email" name="email" [formControl]="email"
+            required email />
+          <button type="submit" daff-button color="secondary" class="demo-newsletter__button"
           (click)='onNewsletterSubmit()'>Sign Up</button>
-      </div>
-      <div class="demo-newsletter__retry" *ngIf="(hasError$ | async) && (loading$| async) === false && (success$ | async) === false">
-        Error
-        <button type="submit" daff-button color="secondary" class="demo-newsletter__button"
+        </div>
+      }
+      @if ((hasError$ | async) && (loading$| async) === false && (success$ | async) === false) {
+        <div class="demo-newsletter__retry">
+          Error
+          <button type="submit" daff-button color="secondary" class="demo-newsletter__button"
           (click)='onNewsletterRetry()'>Retry</button>
-      </div>
-      <div class="demo-newsletter__loading" *ngIf="(loading$| async)"> Loading
-        <button type="cancel" daff-button color="secondary" class="demo-newsletter__button"
+        </div>
+      }
+      @if ((loading$| async)) {
+        <div class="demo-newsletter__loading"> Loading
+          <button type="cancel" daff-button color="secondary" class="demo-newsletter__button"
           (click)='onNewsletterCancel()'>Cancel</button>
-      </div>
-      <div class="demo-newsletter__success" *ngIf="success$ | async"> Success </div>
+        </div>
+      }
+      @if (success$ | async) {
+        <div class="demo-newsletter__success"> Success </div>
+      }
     </div>
   </div>
 </daff-container>

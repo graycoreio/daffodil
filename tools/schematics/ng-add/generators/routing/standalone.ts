@@ -14,34 +14,28 @@ export function updateStandaloneRouting(routingFilePath: string): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const routingSource = tree.read(routingFilePath);
 
-    if (!routingSource) {
-      // Create standalone routes file
-      const routingContent = `import { Routes } from '@angular/router';
+    // Create standalone routes file
+    const routingContent = `import { Routes } from '@angular/router';
+import { daffExternalMatcherTypeGuard } from '@daffodil/external-router/routing';
+import { ProductPageComponent } from './daff/product/components/product-page/product-page.component';
+import { productResolver } from './daff/product/resolvers/product.resolver';
 
 export const routes: Routes = [
-  { path: '', loadComponent: () => import('./daff/product/components/product-list/product-list.component').then(m => m.ProductListComponent) },
-];`;
+  { path: '', loadComponent: () => import('./daff/pages/home/home.component').then(m => m.HomeComponent) },
+  {
+    path: '**',
+    component: ProductPageComponent,
+    canMatch: [daffExternalMatcherTypeGuard('PRODUCT')],
+    resolve: { product: productResolver }
+  },
+  { path: '**', loadComponent: () => import('./daff/pages/not-found/not-found.component').then(m => m.NotFoundComponent) }
+];
+`;
 
+    if (!routingSource) {
       tree.create(routingFilePath, routingContent);
     } else {
-      // File exists, append routes
-      const sourceText = routingSource.toString();
-      const routesToAdd = `  { path: '', loadComponent: () => import('./daff/product/components/product-list/product-list.component').then(m => m.ProductListComponent) },`;
-
-      // Find the routes array and add new routes
-      const exportRoutesPattern = /(export const routes:\s*Routes\s*=\s*\[)([\s\S]*?)(\];)/;
-
-      if (exportRoutesPattern.test(sourceText)) {
-        const updatedContent = sourceText.replace(exportRoutesPattern, (_, start, existing, end) => {
-          const existingRoutes = existing.trim();
-          const newRoutes = existingRoutes
-            ? `${existing.trimEnd()},\n${routesToAdd}\n`
-            : `\n${routesToAdd}\n`;
-          return `${start}${newRoutes}${end}`;
-        });
-
-        tree.overwrite(routingFilePath, updatedContent);
-      }
+      tree.overwrite(routingFilePath, routingContent);
     }
 
     return tree;

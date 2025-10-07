@@ -5,8 +5,11 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 import { TemplateComponent } from './template.component';
 
@@ -20,12 +23,13 @@ describe('TemplateComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-      ],
-      declarations: [
         TemplateComponent,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
       ],
       providers: [
         provideRouter([]),
+        provideAnimations(),
       ],
     })
       .compileComponents();
