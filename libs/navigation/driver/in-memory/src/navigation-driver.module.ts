@@ -7,7 +7,7 @@ import {
 import { provideDaffNavigationInMemoryDriver } from './provider';
 
 /**
- * @deprecated in favor of {@link provideDaffNavigationInMemoryDriver}
+ * @deprecated in favor of {@link provideDaffNavigationInMemoryDriver} Deprecated in version 0.90.0. Will be removed in version 0.93.0.
  */
 @NgModule({
   imports: [
