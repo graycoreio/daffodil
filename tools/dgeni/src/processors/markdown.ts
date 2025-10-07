@@ -57,9 +57,14 @@ export class MarkdownCodeProcessor implements FilterableProcessor {
       },
       renderer: {
         heading: (text: string, level: number, raw: string) => {
-          const count = this.headingList.filter((heading) => heading === raw).length;
+          const heading = `h${level}`;
+          const count = this.headingList.filter((headingItem) => headingItem === raw).length;
+          const slug = slugify(raw, count > 0 ? { num: count } : undefined);
           this.headingList.push(raw);
-          return `<h${level} id="${slugify(raw, count > 0 ? { num: count } : undefined)}">${text}</h${level}>`;
+          if (level >= 2 && level <= 4) {
+            return `<daffio-ce-heading size="${heading}" slug="${slug}"><${heading} id="${slug}" class="daffio-ce-heading">${text}</${heading}></daffio-ce-heading>`;
+          }
+          return `<${heading} id="${slug}">${text}</${heading}>`;
         },
         codespan: (text: string): string | false =>
           `<code>${linkSymbols(text)}</code>`,

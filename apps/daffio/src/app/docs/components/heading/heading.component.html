@@ -1,0 +1,9 @@
+<ng-content></ng-content>
+<a
+	class="daffio-ce-heading"
+	[href]="'#' + slug"
+	aria-label="Copy link to section"
+	(click)="onAnchorClick($event)"
+>
+	<fa-icon [icon]="faLink" size="sm" class="daffio-ce-heading__icon"></fa-icon>
+</a>

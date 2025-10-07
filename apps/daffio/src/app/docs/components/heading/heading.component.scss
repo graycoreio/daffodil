@@ -1,0 +1,37 @@
+:host {
+	display: inline-flex;
+	align-items: baseline;
+	position: relative;
+
+	.daffio-ce-heading {
+		display: inline-flex;
+		align-items: center;
+
+		&__icon {
+			margin-left: 0.25rem;
+			flex-shrink: 0;
+			opacity: 0;
+			transition: opacity 0.2s ease-in-out;
+
+			&.copied {
+				animation: pulse 0.5s ease-in-out;
+			}
+		}
+	}
+
+	&:hover {
+		.daffio-ce-heading__icon {
+			opacity: 1;
+		}
+	}
+}
+
+@keyframes pulse {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+}
