@@ -1,0 +1,28 @@
+@use './get-base-color' as *;
+
+/// Returns a light and dark color.
+///
+/// If you are not using Daffodil's default theme, a theme **must** be
+/// created with `daff-configure-theme` before this function can be used.
+/// See the [customize your own theme](daff.io/docs/design/theming/customize-your-own-theme)
+/// guide for more information.
+///
+/// @group Theming
+///
+/// @param {Map} $theme — A theme map created with the `daff-configure-theme` function.
+///
+/// @return {List} — Returns a list of colors
+///
+/// @example scss
+/// 	@use '@daffodil/design/scss/theme' as daff-theme;
+///
+/// 	@mixin custom-content-theme($theme) {
+/// 		$availableColors: daff-theme.daff-get-font-colors($theme);
+/// 	}
+///
+@function daff-get-font-colors($theme) {
+	@return (
+		daff-get-base-color($theme, 'white'),
+		daff-get-base-color($theme, 'black')
+	);
+}
