@@ -16,23 +16,30 @@ import { DaffModalComponent } from '../../modal/modal.component';
 import { DaffModalService } from '../modal.service';
 
 @Component({
+  selector: 'daff-dynamic-component',
   template: `
 		<p>It works!</p>
 	`,
-  standalone: true,
 })
 class DynamicComponent {}
 
+@Component({
+  selector: 'daff-dynamic-component-two',
+  template: `
+		<p>It works!</p>
+	`,
+})
+class DynamicTwoComponent {}
 
 @Component({
   template: '',
-  standalone: true,
 })
 class WrapperComponent {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }
 
 describe('@daffodil/design/modal | DaffModalService', () => {
+  let modalService: DaffModalService;
   let service: DaffModalService;
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
@@ -43,10 +50,10 @@ describe('@daffodil/design/modal | DaffModalService', () => {
     TestBed.configureTestingModule({
       imports: [
         DynamicComponent,
+        DynamicTwoComponent,
         DaffModalComponent,
         NoopAnimationsModule,
         WrapperComponent,
-
       ],
       providers: [
         DaffModalService,
@@ -61,6 +68,7 @@ describe('@daffodil/design/modal | DaffModalService', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     fixture.detectChanges();
     wrapper = fixture.componentInstance;
+    modalService = TestBed.inject(DaffModalService);
   });
 
   it('should be created', () => {
@@ -88,6 +96,33 @@ describe('@daffodil/design/modal | DaffModalService', () => {
       expect(count).toEqual(1);
       expect(overlayContainerElement.textContent).toContain('It works!');
     });
+
+    it('should close any previously opened modals', fakeAsync(() => {
+      modalService.open(DynamicComponent);
+      modalService.open(DynamicComponent);
+
+      fixture.detectChanges();
+      flush();
+
+      expect(
+        overlayContainerElement.querySelectorAll('daff-dynamic-component').length,
+      ).toEqual(1);
+    }));
+
+    it('should close all modals except the last one opened', fakeAsync(() => {
+      modalService.open(DynamicComponent);
+      modalService.open(DynamicTwoComponent);
+
+      fixture.detectChanges();
+      flush();
+
+      expect(
+        overlayContainerElement.querySelector('daff-dynamic-component-two'),
+      ).toBeDefined();
+      expect(
+        overlayContainerElement.querySelector('daff-dynamic-component'),
+      ).toBeNull();
+    }));
   });
 
   describe('the default configuration', () => {
