@@ -12,10 +12,10 @@
 			flex-shrink: 0;
 			opacity: 0;
 			transition: opacity 0.2s ease-in-out;
+		}
 
-			&.copied {
-				animation: pulse 0.5s ease-in-out;
-			}
+		&__copied {
+			animation: pulse 0.5s ease-in-out;
 		}
 	}
 

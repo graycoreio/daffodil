@@ -9,21 +9,22 @@
 	.daffio-ce-heading {
 		color: $base-contrast;
 
-		&__icon {
-			@include light($mode) {
+		@include light($mode) {
+			&__icon {
 				color: daff-color($neutral, 70);
+			}
+			&__copied {
+				color: daff-color($success, 50);
+			}
+		}
 
-				&.copied {
-					color: daff-color($success, 50);
-				}
+		@include dark($mode) {
+			&__icon {
+				color: daff-color($neutral, 30);
 			}
 
-			@include dark($mode) {
-				color: daff-color($neutral, 30);
-
-				&.copied {
-					color: daff-color($success, 20);
-				}
+			&__copied {
+				color: daff-color($success, 20);
 			}
 		}
 	}

@@ -31,8 +31,8 @@ export class DaffioDocsHeadingComponent {
     navigator.clipboard.writeText(deepUrl).then(() => {
       const link = (<HTMLElement>event.target).closest('a');
       const icon = link?.querySelector('.daffio-ce-heading__icon');
-      icon?.classList.add('copied');
-      setTimeout(() => icon?.classList.remove('copied'), 1500);
+      icon?.classList.add('daffio-ce-heading__copied');
+      setTimeout(() => icon?.classList.remove('daffio-ce-heading__copied'), 1500);
     }).catch(err => console.error('Copy failed:', err));
   }
 }
