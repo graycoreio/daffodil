@@ -27,4 +27,11 @@ describe('@daffodil/design/tree - DaffTreeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('trackByTreeElement', () => {
+    it('should return the id of the element', () => {
+      const mockElement = { id: 'test-id', title: 'Test Title' };
+      expect(component.trackByTreeElement(0, mockElement)).toBe('test-id');
+    });
+  });
 });

@@ -141,7 +141,7 @@ export class DaffTreeComponent implements OnInit, OnChanges {
    * The track-by function used to reduce tree-item re-renders
    */
   trackByTreeElement(index: number, el: any): any {
-    return el.title;
+    return el.id;
   }
 
   /**
