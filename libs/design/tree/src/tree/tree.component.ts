@@ -137,15 +137,6 @@ export class DaffTreeComponent implements OnInit, OnChanges {
 
   /**
    * @docs-private
-   *
-   * The track-by function used to reduce tree-item re-renders
-   */
-  trackByTreeElement(index: number, el: any): any {
-    return el.id;
-  }
-
-  /**
-   * @docs-private
    */
   ngOnInit(): void {
     this.notifier.notice$.subscribe(() => {
