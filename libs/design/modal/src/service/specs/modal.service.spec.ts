@@ -20,7 +20,6 @@ import { DaffModalService } from '../modal.service';
   template: `
 		<p>It works!</p>
 	`,
-  standalone: true,
 })
 class DynamicComponent {}
 
@@ -29,13 +28,11 @@ class DynamicComponent {}
   template: `
 		<p>It works!</p>
 	`,
-  standalone: true,
 })
 class DynamicTwoComponent {}
 
 @Component({
   template: '',
-  standalone: true,
 })
 class WrapperComponent {
   constructor(public viewContainerRef: ViewContainerRef) {}
