@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   Input,
@@ -18,7 +17,6 @@ import { DemoCheckoutShippingFormGroup } from '../../models/shipping-form.type';
   templateUrl: './shipping-options.component.html',
   styleUrls: ['./shipping-options.component.scss'],
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     DAFF_RADIO_COMPONENTS,
   ],

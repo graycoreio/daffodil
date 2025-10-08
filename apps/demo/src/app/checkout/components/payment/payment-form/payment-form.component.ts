@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -29,7 +28,6 @@ import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-i
   templateUrl: './payment-form.component.html',
   styleUrls: ['./payment-form.component.scss'],
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     DaffInputComponent,
     DemoCheckoutPaymentInfoFormComponent,

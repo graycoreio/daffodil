@@ -5,7 +5,9 @@
       name="firstname"
       [formControl]="formGroup.controls.firstname"
     />
-    <daff-error-message *ngIf="formGroup.controls.firstname.errors && formGroup.controls.firstname.touched">This field is required.</daff-error-message>
+    @if (formGroup.controls.firstname.errors && formGroup.controls.firstname.touched) {
+      <daff-error-message>This field is required.</daff-error-message>
+    }
   </daff-form-field>
   <daff-form-field class="demo-checkout-address-form__last-name">
     <input daff-input type="text"
@@ -13,7 +15,9 @@
       name="lastname"
       [formControl]="formGroup.controls.lastname"
     />
-    <daff-error-message *ngIf="formGroup.controls.lastname.errors && formGroup.controls.lastname.touched">This field is required.</daff-error-message>
+    @if (formGroup.controls.lastname.errors && formGroup.controls.lastname.touched) {
+      <daff-error-message>This field is required.</daff-error-message>
+    }
   </daff-form-field>
   <daff-form-field class="demo-checkout-address-form__street">
     <input daff-input type="text"
@@ -21,7 +25,9 @@
       name="street"
       [formControl]="formGroup.controls.street"
     />
-      <daff-error-message *ngIf="formGroup.controls.street.errors && formGroup.controls.street.touched">This field is required.</daff-error-message>
+    @if (formGroup.controls.street.errors && formGroup.controls.street.touched) {
+      <daff-error-message>This field is required.</daff-error-message>
+    }
   </daff-form-field>
   <daff-form-field class="demo-checkout-address-form__city">
     <input daff-input type="text"
@@ -29,7 +35,9 @@
       name="city"
       [formControl]="formGroup.controls.city"
     />
-    <daff-error-message *ngIf="formGroup.controls.city.errors && formGroup.controls.city.touched">This field is required.</daff-error-message>
+    @if (formGroup.controls.city.errors && formGroup.controls.city.touched) {
+      <daff-error-message>This field is required.</daff-error-message>
+    }
   </daff-form-field>
   <daff-form-field class="demo-checkout-address-form__country">
     <select daff-native-select
@@ -41,7 +49,9 @@
         <option [value]="country.id">{{country.name}}</option>
       }
     </select>
-    <daff-error-message *ngIf="formGroup.controls.region.errors && formGroup.controls.region.touched">This field is required.</daff-error-message>
+    @if (formGroup.controls.region.errors && formGroup.controls.region.touched) {
+      <daff-error-message>This field is required.</daff-error-message>
+    }
   </daff-form-field>
   <daff-form-field class="demo-checkout-address-form__state">
     <select daff-native-select
@@ -53,7 +63,9 @@
         <option [value]="state.id">{{state.name}}</option>
       }
     </select>
-    <daff-error-message *ngIf="formGroup.controls.region.errors && formGroup.controls.region.touched">This field is required.</daff-error-message>
+    @if (formGroup.controls.region.errors && formGroup.controls.region.touched) {
+      <daff-error-message>This field is required.</daff-error-message>
+    }
   </daff-form-field>
   <daff-form-field class="demo-checkout-address-form__postcode">
     <input daff-input type="text"
@@ -61,8 +73,10 @@
       name="postcode"
       [formControl]="formGroup.controls.postcode"
     />
-    <daff-error-message *ngIf="formGroup.controls.postcode.errors && formGroup.controls.postcode.touched">This field is required.</daff-error-message>
-    </daff-form-field>
+    @if (formGroup.controls.postcode.errors && formGroup.controls.postcode.touched) {
+      <daff-error-message>This field is required.</daff-error-message>
+    }
+  </daff-form-field>
   <daff-form-field class="demo-checkout-address-form__telephone">
     <input daff-input type="text"
       placeholder="Phone Number"
