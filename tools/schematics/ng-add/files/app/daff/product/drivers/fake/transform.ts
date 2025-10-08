@@ -21,6 +21,10 @@ export const transformFakeProduct = (product: FakeProduct): DaffProduct => ({
     url: product.image,
   },
   type: DaffProductTypeEnum.Simple,
-  url: `/product/${product.id}`,
+  url: '/product/' + product.id.toString(),
   price: product.price,
+  description: product.description,
+  brand: product.category,
+  meta_title: product.title,
+  meta_description: product.description,
 });

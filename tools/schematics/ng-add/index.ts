@@ -6,17 +6,30 @@ import {
 } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
+import chalk from 'chalk';
 
-import { isStandaloneApp } from '../utils';
 import { addDependenciesToPackageJson } from './generators/dependencies';
 import { initAppProviders } from './generators/providers/init';
 import { initAppRouting } from './generators/routing/init';
 import { addTemplateFiles } from './generators/template-setup';
-import { addDebugBarToAppTemplate } from './generators/templates/add-debug-bar';
 import { NgAddOptions } from './schema';
 
 export function ngAdd(options: NgAddOptions): Rule {
   return async (tree: Tree, context: SchematicContext) => {
+    // If this is not a new project, stop processing
+    if (options.isNewProject === false) {
+      context.logger.warn(
+        [
+          '',
+          chalk.yellow.bold('[WARN] ') +
+          chalk.yellow('`@daffodil/commerce` does not currently support setting up an existing project.'),
+          chalk.yellow('       It is designed to be used on a new Angular application.'),
+          '',
+        ].join('\n'),
+      );
+      return (sourceTree: Tree) => sourceTree;
+    }
+
     const workspace = await getWorkspace(tree);
     const project = workspace.projects.get(options.project || <string>workspace.extensions.defaultProject);
 
@@ -25,7 +38,6 @@ export function ngAdd(options: NgAddOptions): Rule {
     }
 
     const rules: Rule[] = [];
-    const isStandalone = isStandaloneApp(tree, project);
 
     // Add dependencies to package.json
     if (!options.skipPackageJson) {
@@ -40,9 +52,6 @@ export function ngAdd(options: NgAddOptions): Rule {
 
     // Add template files for demo components
     rules.push(addTemplateFiles(options, project));
-
-    // Add debug bar to app component template
-    rules.push(addDebugBarToAppTemplate(options, project));
 
     // Schedule package installation
     if (!options.skipPackageJson) {

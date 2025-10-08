@@ -1,0 +1,57 @@
+@use 'true' as *;
+@use './max-contrast' as *;
+@use '../../../core/error/error-to-string';
+
+@include describe('daff-max-contrast') {
+	$white: #ffffff;
+	$black: #000000;
+	$red: #ff0000;
+	$blue: #0000ff;
+	$gray: #808080;
+	$light-gray: #cccccc;
+	$dark-gray: #333333;
+
+	$single-color-list: ($white);
+	$two-color-list: ($white, $black);
+	$multiple-color-list: ($red, $blue, $gray, $light-gray, $dark-gray);
+	$empty-list: ();
+
+	@include error-to-string.set-use-string(true);
+
+	@include it('returns the contrast ratio for single color') {
+		@include assert-equal(daff-max-contrast($black, $single-color-list), white);
+	}
+
+	@include it('returns the highest contrast ratio from two colors') {
+		@include assert-equal(daff-max-contrast($black, $two-color-list), white);
+		@include assert-equal(daff-max-contrast($white, $two-color-list), black);
+	}
+
+	@include it('returns the highest contrast ratio from multiple colors') {
+		@include assert-equal(daff-max-contrast($black, $multiple-color-list), $light-gray);
+
+		@include assert-equal(daff-max-contrast($white, $multiple-color-list), $dark-gray);
+	}
+
+	@include it('returns consistent results regardless of list order') {
+		$reordered-list: ($dark-gray, $light-gray, $gray, $blue, $red);
+		@include assert-equal(
+			daff-max-contrast($black, $multiple-color-list),
+			daff-max-contrast($black, $reordered-list)
+		);
+	}
+
+	@include it('works with different reference colors') {
+		@include assert-equal(daff-max-contrast($red, ($white, $black, $blue)), black);
+		@include assert-equal(daff-max-contrast($blue, ($white, $black, $red)), white);
+	}
+
+	@include it('errors when given an empty color list') {
+		@include assert-equal(
+			daff-max-contrast($black, $empty-list),
+			'Cannot calculate max contrast for `' + $black + '`Provide at least one color to compare against.'
+		);
+	}
+
+	@include error-to-string.set-use-string(false);
+}

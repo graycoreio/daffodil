@@ -1,5 +1,42 @@
 # Changelog
 
+## [0.90.0](https://github.com/graycoreio/daffodil/compare/v0.89.0...v0.90.0) (2025-10-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **design:** Radio components have been moved to their own package and need to be imported from `@daffodil/design/radio`.
+
+### Features
+
+* **commerce:** rework and add navigation support ([a63497a](https://github.com/graycoreio/daffodil/commit/a63497ae5f6b1f3366071706e47739bc0ddce250))
+* **core:** add `DaffMemoryStorageService` to public api [#4054](https://github.com/graycoreio/daffodil/issues/4054) ([bc01144](https://github.com/graycoreio/daffodil/commit/bc01144ba0ca5a9ecfb9c7cfb1feffa2703077f9))
+* **deps:** pin rxjs to ^v7.0.0 ([#4100](https://github.com/graycoreio/daffodil/issues/4100)) ([f12a201](https://github.com/graycoreio/daffodil/commit/f12a20130aa51e8f03f91918e8d18e932c425f9c))
+* **design:** create `daff-max-contrast` function ([#4081](https://github.com/graycoreio/daffodil/issues/4081)) ([7cc225a](https://github.com/graycoreio/daffodil/commit/7cc225a83a848ae073d6c084fc40a4ac2afff16e))
+* **design:** create `DaffTagComponent` ([#4007](https://github.com/graycoreio/daffodil/issues/4007)) ([834ed92](https://github.com/graycoreio/daffodil/commit/834ed920737a35f22690ccde0452fb2e81b8ce40))
+* **design:** shard and convert radio components to standalone ([#4069](https://github.com/graycoreio/daffodil/issues/4069)) ([d13ccee](https://github.com/graycoreio/daffodil/commit/d13ccee65154866ab9c3e08e31abe1588ee04337))
+* **design:** update native and custom select arrow UI ([#4092](https://github.com/graycoreio/daffodil/issues/4092)) ([0ffcad6](https://github.com/graycoreio/daffodil/commit/0ffcad61ce67db11de7139f41337ed8cdd7afb3d))
+* **dev-tools:** remove extraneous methods ([#4029](https://github.com/graycoreio/daffodil/issues/4029)) ([9fdfd32](https://github.com/graycoreio/daffodil/commit/9fdfd32ce042078902c229a6e5546e2d4604ead6))
+* **driver:** allow shopify config as injection token ([#4041](https://github.com/graycoreio/daffodil/issues/4041)) ([0659522](https://github.com/graycoreio/daffodil/commit/0659522068087680d1bf16c15408a52899c8097a))
+* **driver:** expose shopify route prefixes ([#4040](https://github.com/graycoreio/daffodil/issues/4040)) ([a51dbef](https://github.com/graycoreio/daffodil/commit/a51dbefb717343a8da4620c09f282819515e8072))
+* **external-router:** add initial shopify driver ([#4043](https://github.com/graycoreio/daffodil/issues/4043)) ([c190e01](https://github.com/graycoreio/daffodil/commit/c190e01cb99d671402c739d55ba929c0f9339e5c))
+* **navigation:** add provideDaffNavigationMagentoDriver ([#4028](https://github.com/graycoreio/daffodil/issues/4028)) ([93c2a5f](https://github.com/graycoreio/daffodil/commit/93c2a5f9164fa85829257435680ca9950dd0e76b))
+* **navigation:** add shopify driver ([#4030](https://github.com/graycoreio/daffodil/issues/4030)) ([f70249e](https://github.com/graycoreio/daffodil/commit/f70249ef23d9d7868151ed9fe9383771b900e367))
+* **navigation:** create provideDaffNavigationInMemoryDriver ([#4031](https://github.com/graycoreio/daffodil/issues/4031)) ([eed59d9](https://github.com/graycoreio/daffodil/commit/eed59d96126b28af17bb022c58e10d0c49982824))
+* **product-configurable:** add magento driver extensions for variants ([#4051](https://github.com/graycoreio/daffodil/issues/4051)) ([e2d2e98](https://github.com/graycoreio/daffodil/commit/e2d2e98b0142d900175adf4b69b07bb53c9775b1))
+* **product-configurable:** use child field of generic in selectors ([#4056](https://github.com/graycoreio/daffodil/issues/4056)) ([fae4b5d](https://github.com/graycoreio/daffodil/commit/fae4b5d167a35b6174acfeddd02f370ce5d1b9a1))
+* **product:** use route prefixes to calculate shopify url ([#4042](https://github.com/graycoreio/daffodil/issues/4042)) ([2e060af](https://github.com/graycoreio/daffodil/commit/2e060afd0fba45725c87e28a40707ce37e0e73fd))
+
+
+### Bug Fixes
+
+* **analytics:** mark analytics/driver as a public package ([#4112](https://github.com/graycoreio/daffodil/issues/4112)) ([8775835](https://github.com/graycoreio/daffodil/commit/87758350c0fda447dcde9320a7eadf7f2e67b8b5))
+* **design:** add blur event to select's button field ([#4077](https://github.com/graycoreio/daffodil/issues/4077)) ([6a0beb4](https://github.com/graycoreio/daffodil/commit/6a0beb4a0914380a7fad57da544c44677565010b))
+* **design:** remove `ngControl.touched` from valid state in `DaffFormFieldState` ([#4078](https://github.com/graycoreio/daffodil/issues/4078)) ([15e6940](https://github.com/graycoreio/daffodil/commit/15e6940ecafffe93bcdc785aff0047ca624d980e))
+* **design:** set cursor to not-allowed when select is disabled ([#4080](https://github.com/graycoreio/daffodil/issues/4080)) ([661f151](https://github.com/graycoreio/daffodil/commit/661f1513ed81d813f94dcaebded63bb9edfb3057))
+* **dev-tools:** update discord url ([#4038](https://github.com/graycoreio/daffodil/issues/4038)) ([98b94db](https://github.com/graycoreio/daffodil/commit/98b94db71f5e1288322104419d4214ac97fe11ec))
+* **navigation:** add store code to Magento navigation query ([#4032](https://github.com/graycoreio/daffodil/issues/4032)) ([20753b2](https://github.com/graycoreio/daffodil/commit/20753b2f6c59a8142edd017f12052d6c30c370c3))
+
 ## [0.89.0](https://github.com/graycoreio/daffodil/compare/v0.88.1...v0.89.0) (2025-09-29)
 
 

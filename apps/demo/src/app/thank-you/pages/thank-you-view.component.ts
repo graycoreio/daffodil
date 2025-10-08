@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -21,7 +20,6 @@ import { ThankYouComponent } from '../components/thank-you/thank-you.component';
   templateUrl: './thank-you-view.component.html',
   styleUrls: ['./thank-you-view.component.scss'],
   imports: [
-    CommonModule,
     LetDirective,
     ThankYouComponent,
     DAFF_CONTAINER_COMPONENTS,

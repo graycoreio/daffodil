@@ -1,12 +1,14 @@
 import { Tree } from '@angular-devkit/schematics';
-import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
+import {
+  SchematicTestRunner,
+  UnitTestTree,
+} from '@angular-devkit/schematics/testing';
 import { Schema as ApplicationOptions } from '@schematics/angular/application/schema';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
 import * as path from 'path';
 
 import {
   isStandaloneApp,
-  addImportsToModule,
   addProvidersToStandaloneApp,
   addDependenciesToPackageJson,
 } from './index';
@@ -108,27 +110,6 @@ describe('Utils', () => {
     });
   });
 
-  describe('addImportsToModule', () => {
-    it('should add imports to app-module.ts', () => {
-      const modulePath = '/projects/test-app/src/app/app-module.ts';
-      const imports = ['DaffCoreModule', 'DaffCartStateModule'];
-
-      const result = addImportsToModule(moduleAppTree, modulePath, imports);
-      const moduleContent = result.read(modulePath)?.toString() || '';
-
-      expect(moduleContent).toContain('import { DaffCoreModule }');
-      expect(moduleContent).toContain('import { DaffCartStateModule }');
-    });
-
-    it('should throw error when module file does not exist', () => {
-      const modulePath = '/projects/test-app/src/app/non-existent.module.ts';
-      const imports = ['DaffCoreModule'];
-
-      expect(() => {
-        addImportsToModule(moduleAppTree, modulePath, imports);
-      }).toThrowError(/Module file.*not found/);
-    });
-  });
 
   describe('addProvidersToStandaloneApp', () => {
     it('should add providers to app.config.ts', () => {
@@ -209,8 +190,8 @@ describe('Utils', () => {
       };
 
       const rule = addDependenciesToPackageJson(options);
-      const result = rule(moduleAppTree, {} as any);
-      const packageJson = JSON.parse((result as Tree).read('/package.json')?.toString() || '{}');
+      const result = <Tree>rule(moduleAppTree, <any>{});
+      const packageJson = JSON.parse(result.read('/package.json')?.toString() || '{}');
 
       expect(packageJson.dependencies['@daffodil/core']).toBeDefined();
       expect(packageJson.dependencies['@daffodil/driver']).toBeDefined();
@@ -223,8 +204,8 @@ describe('Utils', () => {
       };
 
       const rule = addDependenciesToPackageJson(options);
-      const result = rule(moduleAppTree, {} as any);
-      const packageJson = JSON.parse((result as Tree).read('/package.json')?.toString() || '{}');
+      const result = <Tree>rule(moduleAppTree, <any>{});
+      const packageJson = JSON.parse(result.read('/package.json')?.toString() || '{}');
 
       expect(packageJson.dependencies['@daffodil/product']).toBeDefined();
     });
@@ -236,8 +217,8 @@ describe('Utils', () => {
       };
 
       const rule = addDependenciesToPackageJson(options);
-      const result = rule(moduleAppTree, {} as any);
-      const packageJson = JSON.parse((result as Tree).read('/package.json')?.toString() || '{}');
+      const result = <Tree>rule(moduleAppTree, <any>{});
+      const packageJson = JSON.parse(result.read('/package.json')?.toString() || '{}');
 
       expect(packageJson.dependencies['@daffodil/product']).toBeDefined();
     });
@@ -249,8 +230,8 @@ describe('Utils', () => {
       };
 
       const rule = addDependenciesToPackageJson(options);
-      const result = rule(moduleAppTree, {} as any);
-      const packageJson = JSON.parse((result as Tree).read('/package.json')?.toString() || '{}');
+      const result = <Tree>rule(moduleAppTree, <any>{});
+      const packageJson = JSON.parse(result.read('/package.json')?.toString() || '{}');
 
       expect(packageJson.dependencies['@daffodil/product']).toBeDefined();
     });
@@ -262,8 +243,8 @@ describe('Utils', () => {
       };
 
       const rule = addDependenciesToPackageJson(options);
-      const result = rule(moduleAppTree, {} as any);
-      const packageJson = JSON.parse((result as Tree).read('/package.json')?.toString() || '{}');
+      const result = <Tree>rule(moduleAppTree, <any>{});
+      const packageJson = JSON.parse(result.read('/package.json')?.toString() || '{}');
 
       expect(packageJson.dependencies['@daffodil/product']).toBeDefined();
     });

@@ -1,35 +1,37 @@
 <daff-container size="lg">
-  <div class="demo-product" *ngIf="product">
-    <div class="demo-product__image-gallery">
-      <demo-image-gallery-container [images]="product.images"></demo-image-gallery-container>
-    </div>
-    <div class="demo-product__info">
-      <h2 class="demo-product__brand">{{product.brand}}</h2>
-      <h1 class="demo-product__name">{{product.name}}</h1>
-      <div class="demo-product__price">${{product.price}}</div>
-    </div>
-    <div class="demo-product__details">
-      <div class="demo-product__qty">
-        <span>Quantity</span>
-        <daff-form-field>
-          <daff-quantity-field
-            [formControl]="quantity"
-            name="quantity"
-            [id]="quantityId">
-          </daff-quantity-field>
-        </daff-form-field>
+  @if (product) {
+    <div class="demo-product">
+      <div class="demo-product__image-gallery">
+        <demo-image-gallery-container [images]="product.images"></demo-image-gallery-container>
       </div>
-      <div class="demo-product__button">
-        <ng-content></ng-content>
+      <div class="demo-product__info">
+        <h2 class="demo-product__brand">{{product.brand}}</h2>
+        <h1 class="demo-product__name">{{product.name}}</h1>
+        <div class="demo-product__price">${{product.price}}</div>
       </div>
-      <div class="demo-product__accordion">
-        <daff-accordion>
-          <daff-accordion-item initiallyExpanded="true">
-            <h3 daffAccordionItemTitle>Details</h3>
-            <div [innerHtml]="product.description"></div>
-          </daff-accordion-item>
-        </daff-accordion>
+      <div class="demo-product__details">
+        <div class="demo-product__qty">
+          <span>Quantity</span>
+          <daff-form-field>
+            <daff-quantity-field
+              [formControl]="quantity"
+              name="quantity"
+              [id]="quantityId">
+            </daff-quantity-field>
+          </daff-form-field>
+        </div>
+        <div class="demo-product__button">
+          <ng-content></ng-content>
+        </div>
+        <div class="demo-product__accordion">
+          <daff-accordion>
+            <daff-accordion-item initiallyExpanded="true">
+              <h3 daffAccordionItemTitle>Details</h3>
+              <div [innerHtml]="product.description"></div>
+            </daff-accordion-item>
+          </daff-accordion>
+        </div>
       </div>
     </div>
-  </div>
+  }
 </daff-container>
