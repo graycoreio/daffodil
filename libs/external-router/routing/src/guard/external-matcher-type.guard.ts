@@ -36,7 +36,6 @@ export const daffExternalMatcherTypeGuard = (type: string) => (route: DaffRouteW
   const config: DaffExternalRouterConfiguration = inject(DAFF_EXTERNAL_ROUTER_CONFIG);
   return inject(DaffExternalRouterDriver).resolve(daffConvertToPath(segments)).pipe(
     map(processRedirects),
-    // 👇 FIX: Check for server errors and throw them so they can be caught below.
     tap(response => {
       if (response.code >= 500) {
         throw response;
