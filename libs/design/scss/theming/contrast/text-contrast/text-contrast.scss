@@ -10,7 +10,7 @@
 /// @group Theming
 ///
 /// @param {Color} $reference-color — The color to test against.
-/// @param {Map} $theme — The theme map to pull `$black` and `$white` from.
+/// @param {Map} $theme — Optional. The theme map to pull `$black` and `$white` from.
 /// @return {Color} Either `$black` or `$white`, whichever has the highest contrast ratio against the reference color.
 ///
 /// For an interesting read, see more about the topic:
@@ -25,14 +25,18 @@
 /// 		color: daff-text-contrast(daff-color($primary, 80), $theme);
 /// 	}
 ///
+$default-theme: (
+	'black': get-color.daff-color(palette.$daff-neutral, 110),
+	'white': get-color.daff-color(palette.$daff-neutral, 0)
+);
 @function daff-text-contrast(
 	$reference-color,
-	$theme
+	$theme: $default-theme
 ) {
 	$theme-font-colors: fc.daff-get-font-colors($theme);
-	$default-black: get-color.daff-color(palette.$daff-neutral, 110);
-	$default-white: get-color.daff-color(palette.$daff-neutral, 10);
-	$black: if(list.nth($theme-font-colors, 2) == null, $default-black, list.nth($theme-font-colors, 2));
-	$white: if(list.nth($theme-font-colors, 1) == null, $default-white, list.nth($theme-font-colors, 1));
+	// $black: if(list.nth($theme-font-colors, 2) == null, $default-black, list.nth($theme-font-colors, 2));
+	// $white: if(list.nth($theme-font-colors, 1) == null, $default-white, list.nth($theme-font-colors, 1));
+	$black: list.nth($theme-font-colors, 2);
+	$white: list.nth($theme-font-colors, 1);
 	@return mc.daff-max-contrast($reference-color, ($black, $white));
 }

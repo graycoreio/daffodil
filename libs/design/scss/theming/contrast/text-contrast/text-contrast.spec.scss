@@ -48,4 +48,10 @@
 		@include assert-equal(daff-text-contrast($light-gray, $dark-theme), $black);
 		@include assert-equal(daff-text-contrast($yellow, $dark-theme), $black);
 	}
+
+	@include it('returns a text color given only a reference color but no theme') {
+		@include assert-equal(daff-text-contrast($black), $white);
+		@include assert-equal(daff-text-contrast($dark-gray), $white);
+		@include assert-equal(daff-text-contrast($light-gray), $black);
+	}
 }
