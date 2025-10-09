@@ -32,99 +32,103 @@
     tabindex="0"
     attr.aria-label="Go to Page 1 of {{_paginatorId}} Paginator"
     (click)="_onNotifyPageChange(1)">
-    <span>1</span>
+      <span>1</span>
   </button>
 }
+
 @if (linkMode) {
   <a class="daff-paginator__page-link"
     [routerLink]="url"
     [queryParams]="_buildPageQueryParams(1)"
     queryParamsHandling="merge"
     [class.selected]="_isSelected(1)"
-    attr.aria-label="Go to Page 1 of {{_paginatorId}} Paginator"
-    ><span>1</span></a>
-  }
+    attr.aria-label="Go to Page 1 of {{_paginatorId}} Paginator">
+      <span>1</span>
+  </a>
+}
 
-  @if (_showFirstEllipsis) {
-    <span class="daff-paginator__ellipsis">...</span>
-  }
+@if (_showFirstEllipsis) {
+  <span class="daff-paginator__ellipsis">...</span>
+}
 
-  @for (pageNumber of _numberOfPagesArray; track pageNumber) {
-    @if (_showNumber(pageNumber)) {
-      @if (!linkMode) {
-        <button type="button" class="daff-paginator__page-link"
-          [class.selected]="_isSelected(pageNumber)"
-          [attr.data-page-number]="pageNumber"
-          tabindex="0"
-          attr.aria-label="Go to Page {{pageNumber}} of {{_paginatorId}} Paginator"
-          aria-current="_isSelected(pageNumber)"
-          (click)="_onNotifyPageChange(pageNumber)">
+@for (pageNumber of _numberOfPagesArray; track pageNumber) {
+  @if (_showNumber(pageNumber)) {
+    @if (!linkMode) {
+      <button type="button" class="daff-paginator__page-link"
+        [class.selected]="_isSelected(pageNumber)"
+        [attr.data-page-number]="pageNumber"
+        tabindex="0"
+        attr.aria-label="Go to Page {{pageNumber}} of {{_paginatorId}} Paginator"
+        aria-current="_isSelected(pageNumber)"
+        (click)="_onNotifyPageChange(pageNumber)">
+        <span>{{ pageNumber }}</span>
+      </button>
+    }
+    @if (linkMode) {
+      <a class="daff-paginator__page-link"
+        [attr.data-page-number]="pageNumber"
+        [routerLink]="url"
+        [queryParams]="_buildPageQueryParams(pageNumber)"
+        queryParamsHandling="merge"
+        [class.selected]="_isSelected(pageNumber)"
+        attr.aria-label="Go to Page {{pageNumber}} of {{_paginatorId}} Paginator">
           <span>{{ pageNumber }}</span>
-        </button>
-      }
-      @if (linkMode) {
-        <a class="daff-paginator__page-link"
-          [attr.data-page-number]="pageNumber"
-          [routerLink]="url"
-          [queryParams]="_buildPageQueryParams(pageNumber)"
-          queryParamsHandling="merge"
-          [class.selected]="_isSelected(pageNumber)"
-          attr.aria-label="Go to Page {{pageNumber}} of {{_paginatorId}} Paginator"
-          ><span>{{ pageNumber }}</span></a>
-        }
-      }
+      </a>
     }
+  }
+}
 
-    @if (_showLastEllipsis) {
-      <span class="daff-paginator__ellipsis">...</span>
-    }
+@if (_showLastEllipsis) {
+  <span class="daff-paginator__ellipsis">...</span>
+}
 
-    @if (!(numberOfPages < 2)) {
-      @if (!linkMode) {
-        <button type="button" class="daff-paginator__page-link"
-          [class.selected]="_isSelected(numberOfPages)"
-          tabindex="0"
-          attr.aria-label="Go To Page {{numberOfPages}} of {{_paginatorId}} Paginator"
-          (click)="_onNotifyPageChange(numberOfPages)"
-          >
-          <span>{{ numberOfPages }}</span>
-        </button>
-      }
-      @if (linkMode) {
-        <a class="daff-paginator__page-link"
-          [routerLink]="url"
-          [queryParams]="_buildPageQueryParams(numberOfPages)"
-          queryParamsHandling="merge"
-          [class.selected]="_isSelected(numberOfPages)"
-          attr.aria-label="Go to Page {{numberOfPages}} of {{_paginatorId}} Paginator"
-          ><span>{{ numberOfPages }}</span></a>
-        }
-      }
+@if (!(numberOfPages < 2)) {
+  @if (!linkMode) {
+    <button type="button" class="daff-paginator__page-link"
+      [class.selected]="_isSelected(numberOfPages)"
+      tabindex="0"
+      attr.aria-label="Go To Page {{numberOfPages}} of {{_paginatorId}} Paginator"
+      (click)="_onNotifyPageChange(numberOfPages)">
+        <span>{{ numberOfPages }}</span>
+    </button>
+  }
+  @if (linkMode) {
+    <a class="daff-paginator__page-link"
+      [routerLink]="url"
+      [queryParams]="_buildPageQueryParams(numberOfPages)"
+      queryParamsHandling="merge"
+      [class.selected]="_isSelected(numberOfPages)"
+      attr.aria-label="Go to Page {{numberOfPages}} of {{_paginatorId}} Paginator">
+        <span>{{ numberOfPages }}</span>
+    </a>
+  }
+}
 
-      @if (!linkMode) {
-        <button class="daff-paginator__next"
-          [disabled]="_disableNext"
-          tabindex="0"
-          attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
-          (click)="_onNotifyNextPageChange()">
-          Next <fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
-        </button>
-      }
-      @if (linkMode) {
-        @if (!_disableNext) {
-          <a class="daff-paginator__next"
-            [routerLink]="url"
-            attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
-            queryParamsHandling="merge"
-            [queryParams]="_buildPageQueryParams(currentPage + 1)">
-            <span>Next</span><fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
-          </a>
-        }
-        @if (_disableNext) {
-          <span class="daff-paginator__next disabled"
-            attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
-            [attr.disabled]="true">
-            <span>Next</span><fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
-          </span>
-        }
-      }
+@if (!linkMode) {
+  <button class="daff-paginator__next"
+    [disabled]="_disableNext"
+    tabindex="0"
+    attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
+    (click)="_onNotifyNextPageChange()">
+    Next <fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
+  </button>
+}
+@if (linkMode) {
+  @if (!_disableNext) {
+    <a class="daff-paginator__next"
+      [routerLink]="url"
+      attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
+      queryParamsHandling="merge"
+      [queryParams]="_buildPageQueryParams(currentPage + 1)">
+      <span>Next</span><fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
+    </a>
+  }
+
+  @if (_disableNext) {
+    <span class="daff-paginator__next disabled"
+      attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
+      [attr.disabled]="true">
+      <span>Next</span><fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
+    </span>
+  }
+}
