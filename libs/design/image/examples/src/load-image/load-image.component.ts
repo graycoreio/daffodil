@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,7 +12,6 @@ import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_IMAGE_COMPONENTS,
-    NgIf,
   ],
 })
 export class LoadImageComponent {

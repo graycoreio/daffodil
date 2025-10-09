@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,7 +27,6 @@ import {
   styleUrl: './tab-label.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    NgIf,
     DaffPrefixDirective,
     DaffSuffixDirective,
   ],

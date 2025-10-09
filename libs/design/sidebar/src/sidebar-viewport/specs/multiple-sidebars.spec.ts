@@ -16,7 +16,9 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 @Component({
   template: `
 		<daff-sidebar-viewport>
-			<daff-sidebar *ngFor="let sidebar of sidebars" [side]="sidebar[1]" [mode]="sidebar[0]"></daff-sidebar>
+		  @for (sidebar of sidebars; track sidebar) {
+		    <daff-sidebar [side]="sidebar[1]" [mode]="sidebar[0]"></daff-sidebar>
+		  }
 		</daff-sidebar-viewport>
 		`,
   imports: [
