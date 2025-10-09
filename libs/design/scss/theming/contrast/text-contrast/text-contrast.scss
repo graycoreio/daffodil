@@ -27,7 +27,7 @@
 ///
 @function daff-text-contrast(
 	$reference-color,
-	$theme
+	$theme: null
 ) {
 	@if ($theme == null) {
 		$default-black: get-color.daff-color(palette.$daff-neutral, 110);
