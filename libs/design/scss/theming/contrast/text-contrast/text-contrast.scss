@@ -29,9 +29,9 @@
 	$reference-color,
 	$theme
 ) {
-	$default-black: get-color.daff-color(palette.$daff-neutral, 110);
-	$default-white: get-color.daff-color(palette.$daff-neutral, 0);
 	@if ($theme == null) {
+		$default-black: get-color.daff-color(palette.$daff-neutral, 110);
+		$default-white: get-color.daff-color(palette.$daff-neutral, 0);
 		@return mc.daff-max-contrast($reference-color, ($default-black, $default-white));
 	}
 	$theme-font-colors: fc.daff-get-font-colors($theme);
