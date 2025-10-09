@@ -1,10 +1,10 @@
 .daffio-ce-heading {
-	&__anchor {
+	.daffio-ce-heading__anchor {
 		display: flex;
 		align-items: center;
-		text-decoration: none !important;
-		text-decoration-color: unset !important;
-		color: unset !important;
+		text-decoration: none;
+		text-decoration-color: unset;
+		color: unset;
 	}
 
 	&__icon {
