@@ -1,14 +1,17 @@
+@use 'sass:list';
 @use '../max-contrast/max-contrast.scss' as mc;
+@use '../_get-font-color' as fc;
 @use '../../get-color';
 @use '../../color-palettes' as palette;
 
 /// Determines the color to use against the initial given color.
 /// It returns the one that provides the higher contrast, ensuring better readability.
-/// By default, the function tests against `$black` (#000`, and `$white` (#fff).
 ///
 /// @group Theming
 ///
-/// @param {Color} $color — The color to test against.
+/// @param {Color} $reference-color — The color to test against.
+/// @param {Map} $theme — The theme map to pull `$black` and `$white` from.
+/// @return {Color} Either `$black` or `$white`, whichever has the highest contrast ratio against the reference color.
 ///
 /// For an interesting read, see more about the topic:
 /// https:///robots.thoughtbot.com/closer-look-color-lightness
@@ -18,14 +21,18 @@
 ///
 /// @example scss
 /// 	.body {
-/// 		background: #000;
-/// 		color: daff-text-contrast(#000);
+/// 		background: daff-color($primary, 80);
+/// 		color: daff-text-contrast(daff-color($primary, 80), $theme);
 /// 	}
 ///
 @function daff-text-contrast(
-	$color,
-	$black: get-color.daff-color(palette.$daff-neutral, 110),
-	$white: get-color.daff-color(palette.$daff-neutral, 10),
+	$reference-color,
+	$theme
 ) {
-	@return mc.daff-max-contrast($color, ($black, $white));
+	$theme-font-colors: fc.daff-get-font-colors($theme);
+	$default-black: get-color.daff-color(palette.$daff-neutral, 110);
+	$default-white: get-color.daff-color(palette.$daff-neutral, 10);
+	$black: if(list.nth($theme-font-colors, 2) == null, $default-black, list.nth($theme-font-colors, 2));
+	$white: if(list.nth($theme-font-colors, 1) == null, $default-white, list.nth($theme-font-colors, 1));
+	@return mc.daff-max-contrast($reference-color, ($black, $white));
 }
