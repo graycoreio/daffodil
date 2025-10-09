@@ -25,24 +25,18 @@
 /// 		color: daff-text-contrast(daff-color($primary, 80), $theme);
 /// 	}
 ///
-$default-black: get-color.daff-color(palette.$daff-neutral, 110);
-$default-white: get-color.daff-color(palette.$daff-neutral, 0);
 
-$default-theme: (
-	'core': (
-		'black': $default-black,
-		'white': $default-white,
-		'base': $default-white,
-		'base-contrast': $default-black
-	)
-);
+
 
 @function daff-text-contrast(
 	$reference-color,
-	$theme: $default-theme
+	$theme
 ) {
+	$default-black: get-color.daff-color(palette.$daff-neutral, 110);
+	$default-white: get-color.daff-color(palette.$daff-neutral, 0);
+	@if ($theme == null) {
+		@return mc.daff-max-contrast($reference-color, ($default-black, $default-white));
+	}
 	$theme-font-colors: fc.daff-get-font-colors($theme);
-	$black: list.nth($theme-font-colors, 2);
-	$white: list.nth($theme-font-colors, 1);
-	@return mc.daff-max-contrast($reference-color, ($black, $white));
+	@return mc.daff-max-contrast($reference-color, $theme-font-colors);
 }
