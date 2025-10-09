@@ -1,6 +1,6 @@
 @use 'sass:list';
 @use '../max-contrast/max-contrast.scss' as mc;
-@use '../_get-font-color' as fc;
+@use '../../get-font-colors' as fc;
 @use '../../get-color';
 @use '../../color-palettes' as palette;
 

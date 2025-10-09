@@ -2,40 +2,50 @@
 @use './text-contrast' as *;
 @use '../../get-color';
 @use '../../color-palettes' as palette;
+@use '../../configure-palette';
+@use '../../configure-theme' as ct;
 
 @include describe('daff-text-contrast') {
-	$white: #ffffff;
-	$black: #000000;
-	$red: #ff0000;
-	$blue: #0000ff;
-	$gray: #808080;
-	$light-gray: #cccccc;
-	$dark-gray: #333333;
-	$green: #00ff00;
-	$yellow: #ffff00;
-	$default-black: get-color.daff-color(palette.$daff-neutral, 110);
-	$default-white: get-color.daff-color(palette.$daff-neutral, 10);
+	$light-theme: ct.daff-configure-theme(
+		configure-palette.daff-configure-palette(palette.$daff-blue, 60),
+		configure-palette.daff-configure-palette(palette.$daff-purple, 60),
+		configure-palette.daff-configure-palette(palette.$daff-turquoise, 60),
+		'light'
+	);
+	$dark-theme: ct.daff-configure-theme(
+		configure-palette.daff-configure-palette(palette.$daff-blue, 60),
+		configure-palette.daff-configure-palette(palette.$daff-purple, 60),
+		configure-palette.daff-configure-palette(palette.$daff-turquoise, 60),
+		'dark'
+	);
+	$white: get-color.daff-color(palette.$daff-neutral, 0);
+	$black: get-color.daff-color(palette.$daff-neutral, 110);
+	$dark-gray: get-color.daff-color(palette.$daff-neutral, 80);
+	$light-gray: get-color.daff-color(palette.$daff-neutral, 20);
+	$blue: get-color.daff-color(palette.$daff-blue, 60);
+	$yellow: get-color.daff-color(palette.$daff-yellow, 60);
 
-	@include it('returns white for dark colors') {
-		@include assert-equal(daff-text-contrast($black), $default-white);
-		@include assert-equal(daff-text-contrast($dark-gray), $default-white);
-		@include assert-equal(daff-text-contrast($blue), $default-white);
+	@include it('returns white for dark reference colors in light theme') {
+		@include assert-equal(daff-text-contrast($black, $light-theme), $white);
+		@include assert-equal(daff-text-contrast($dark-gray, $light-theme), $white);
+		@include assert-equal(daff-text-contrast($blue, $light-theme), $white);
 	}
 
-	@include it('returns black for light colors') {
-		@include assert-equal(daff-text-contrast($white), $default-black);
-		@include assert-equal(daff-text-contrast($light-gray), $default-black);
-		@include assert-equal(daff-text-contrast($yellow), $default-black);
+	@include it('returns black for light reference colors in light theme') {
+		@include assert-equal(daff-text-contrast($white, $light-theme), $black);
+		@include assert-equal(daff-text-contrast($light-gray, $light-theme), $black);
+		@include assert-equal(daff-text-contrast($yellow, $light-theme), $black);
 	}
 
-	@include it('returns appropriate contrast for medium colors') {
-		@include assert-equal(daff-text-contrast($red), $default-white);
-		@include assert-equal(daff-text-contrast($green), $default-black);
-		@include assert-equal(daff-text-contrast($gray), $default-white);
+	@include it('returns white for dark reference colors in dark theme') {
+		@include assert-equal(daff-text-contrast($black, $dark-theme), $white);
+		@include assert-equal(daff-text-contrast($dark-gray, $dark-theme), $white);
+		@include assert-equal(daff-text-contrast($blue, $dark-theme), $white);
 	}
 
-	@include it('accepts custom black and white colors') {
-		@include assert-equal(daff-text-contrast($white, $red, $blue), $red);
-		@include assert-equal(daff-text-contrast($black, $red, $blue), $blue);
+	@include it('returns black for light reference colors in dark theme') {
+		@include assert-equal(daff-text-contrast($white, $dark-theme), $black);
+		@include assert-equal(daff-text-contrast($light-gray, $dark-theme), $black);
+		@include assert-equal(daff-text-contrast($yellow, $dark-theme), $black);
 	}
 }
