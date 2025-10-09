@@ -1,9 +1,43 @@
-<ng-content></ng-content>
-<a
-	class="daffio-ce-heading"
-	[href]="'#' + slug"
-	aria-label="Copy link to section"
-	(click)="onAnchorClick($event)"
->
-	<fa-icon [icon]="faLink" size="sm" class="daffio-ce-heading__icon"></fa-icon>
-</a>
+@switch(size) {
+	@case('h1') {
+		<h1 id="{{slug}}" class="daffio-ce-heading">
+			<ng-container *ngTemplateOutlet="anchorTemplate"></ng-container>
+		</h1>
+	}
+	@case('h2') {
+		<h2 id="{{slug}}" class="daffio-ce-heading">
+			<ng-container *ngTemplateOutlet="anchorTemplate"></ng-container>
+		</h2>
+	}
+	@case('h3') {
+		<h3 id="{{slug}}" class="daffio-ce-heading">
+			<ng-container *ngTemplateOutlet="anchorTemplate"></ng-container>
+		</h3>
+	}
+	@case('h4') {
+		<h4 id="{{slug}}" class="daffio-ce-heading">
+			<ng-container *ngTemplateOutlet="anchorTemplate"></ng-container>
+		</h4>
+	}
+	@case('h5') {
+		<h5 id="{{slug}}" class="daffio-ce-heading">
+			<ng-container *ngTemplateOutlet="anchorTemplate"></ng-container>
+		</h5>
+	}
+	@case('h6') {
+		<h6 id="{{slug}}" class="daffio-ce-heading">
+			<ng-container *ngTemplateOutlet="anchorTemplate"></ng-container>
+		</h6>
+	}
+	@default {
+		<h2 id="{{slug}}" class="daffio-ce-heading">
+			<ng-container *ngTemplateOutlet="anchorTemplate"></ng-container>
+		</h2>
+	}
+}
+<ng-template #anchorTemplate>
+	<a class="daffio-ce-heading__anchor" [href]="'#' + slug" aria-label="Copy link to section" (click)="onAnchorClick($event)">
+		<span>{{text}}</span>
+		<fa-icon [icon]="faLink" size="2xs" class="daffio-ce-heading__icon"></fa-icon>
+	</a>
+</ng-template>

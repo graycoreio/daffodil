@@ -1,22 +1,20 @@
-:host {
-	display: inline-flex;
-	align-items: baseline;
-	position: relative;
-
-	.daffio-ce-heading {
-		display: inline-flex;
+.daffio-ce-heading {
+	&__anchor {
+		display: flex;
 		align-items: center;
+		text-decoration: none !important;
+		text-decoration-color: unset !important;
+		color: unset !important;
+	}
 
-		&__icon {
-			margin-left: 0.25rem;
-			flex-shrink: 0;
-			opacity: 0;
-			transition: opacity 0.2s ease-in-out;
-		}
+	&__icon {
+		margin-left: 0.25rem;
+		opacity: 0;
+		transition: opacity 0.2s ease-in-out;
+	}
 
-		&__copied {
-			animation: pulse 0.5s ease-in-out;
-		}
+	&__copied {
+		animation: pulse 0.5s ease-in-out;
 	}
 
 	&:hover {
