@@ -16,9 +16,7 @@ import {
   DaffExternallyResolvableUrl,
   DaffExternalRouterNotFoundError,
 } from '@daffodil/external-router';
-import {
-  DaffExternalRouterDriverInterface,
-} from '@daffodil/external-router/driver';
+import { DaffExternalRouterDriverInterface } from '@daffodil/external-router/driver';
 
 import {
   DaffExternalRouterDriverInMemoryConfig,

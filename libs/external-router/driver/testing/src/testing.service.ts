@@ -13,8 +13,8 @@ import {
   daffUriTruncateLeadingSlash,
   daffUriTruncateQueryFragment,
 } from '@daffodil/core/routing';
-import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 import {
+  DaffExternallyResolvableUrl,
   DaffExternalRouterClientError,
   DaffExternalRouterNotFoundError,
   DaffExternalRouterServerError,

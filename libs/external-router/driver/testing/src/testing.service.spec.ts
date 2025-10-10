@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { TestScheduler } from 'rxjs/testing';
 
+import { DaffExternalRouterNotFoundError } from '@daffodil/external-router';
+
 import { DaffExternalRouterDriverTestingConfig } from './config';
 import { DaffExternalRouterDriverTestingModule } from './testing.module';
 import { DaffExternalRouterTestingDriver } from './testing.service';
-import { DaffExternalRouterNotFoundError } from '@daffodil/external-router';
 
 describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDriver', () => {
   let service: DaffExternalRouterTestingDriver;
