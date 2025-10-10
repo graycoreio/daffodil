@@ -36,11 +36,6 @@ export const daffExternalMatcherTypeGuard = (type: string) => (route: DaffRouteW
   const config: DaffExternalRouterConfiguration = inject(DAFF_EXTERNAL_ROUTER_CONFIG);
   return inject(DaffExternalRouterDriver).resolve(daffConvertToPath(segments)).pipe(
     map(processRedirects),
-    tap(response => {
-      if (response.code >= 500) {
-        throw response;
-      }
-    }),
     map((r) => ({ result: r, isMatch: type === r.type })),
     tap((r) => {
       if(r.isMatch) {
@@ -68,5 +63,6 @@ export const daffExternalMatcherTypeGuard = (type: string) => (route: DaffRouteW
     }),
     //Otherwise something went horribly wrong and we need to bail out.
     catchError(() => of(router.parseUrl(config.failedResolutionPath))),
+    catchError(() => of(false)),
   );
 };
