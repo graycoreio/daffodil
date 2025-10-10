@@ -8,8 +8,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { DaffCheckboxModule } from '@daffodil/design';
 import { DaffButtonComponent } from '@daffodil/design/button';
+import { DaffCheckboxModule } from '@daffodil/design/checkbox';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector

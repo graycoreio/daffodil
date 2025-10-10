@@ -12,8 +12,8 @@ import {
 
 import { DaffAuthorizeNetCreditCard } from '@daffodil/authorizenet';
 import { DaffCartAddress } from '@daffodil/cart';
-import { DaffCheckboxModule } from '@daffodil/design';
 import { DaffButtonComponent } from '@daffodil/design/button';
+import { DaffCheckboxModule } from '@daffodil/design/checkbox';
 import { DaffInputComponent } from '@daffodil/design/input';
 
 import { DemoGeographyAddressSummaryComponent } from '../../../../geography/components/address-summary/address-summary.component';

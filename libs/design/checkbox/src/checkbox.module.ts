@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DaffCheckboxComponent } from './checkbox.component';
+import { DaffCheckboxComponent } from './checkbox/checkbox.component';
+import { DaffCheckboxSetComponent } from './checkbox-set/checkbox-set.component';
 import { DaffCheckboxControlValueAccessorDirective } from './cva/checkbox-cva.directive';
-import { DaffCheckboxSetComponent } from '../checkbox-set/checkbox-set.component';
 
 @NgModule({
   exports: [
@@ -11,13 +11,11 @@ import { DaffCheckboxSetComponent } from '../checkbox-set/checkbox-set.component
     DaffCheckboxSetComponent,
     DaffCheckboxControlValueAccessorDirective,
   ],
-  declarations: [
+  imports: [
+    CommonModule,
     DaffCheckboxComponent,
     DaffCheckboxSetComponent,
     DaffCheckboxControlValueAccessorDirective,
-  ],
-  imports: [
-    CommonModule,
   ],
   providers: [
     DaffCheckboxSetComponent,
