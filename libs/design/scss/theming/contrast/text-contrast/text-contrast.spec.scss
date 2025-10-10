@@ -1,0 +1,57 @@
+@use 'true' as *;
+@use './text-contrast' as *;
+@use '../../get-color';
+@use '../../color-palettes' as palette;
+@use '../../configure-palette';
+@use '../../configure-theme' as ct;
+
+@include describe('daff-text-contrast') {
+	$light-theme: ct.daff-configure-theme(
+		configure-palette.daff-configure-palette(palette.$daff-blue, 60),
+		configure-palette.daff-configure-palette(palette.$daff-purple, 60),
+		configure-palette.daff-configure-palette(palette.$daff-turquoise, 60),
+		'light'
+	);
+	$dark-theme: ct.daff-configure-theme(
+		configure-palette.daff-configure-palette(palette.$daff-blue, 60),
+		configure-palette.daff-configure-palette(palette.$daff-purple, 60),
+		configure-palette.daff-configure-palette(palette.$daff-turquoise, 60),
+		'dark'
+	);
+	$white: get-color.daff-color(palette.$daff-neutral, 0);
+	$black: get-color.daff-color(palette.$daff-neutral, 110);
+	$dark-gray: get-color.daff-color(palette.$daff-neutral, 80);
+	$light-gray: get-color.daff-color(palette.$daff-neutral, 20);
+	$blue: get-color.daff-color(palette.$daff-blue, 60);
+	$yellow: get-color.daff-color(palette.$daff-yellow, 60);
+
+	@include it('returns white for dark reference colors in light theme') {
+		@include assert-equal(daff-text-contrast($black, $light-theme), $white);
+		@include assert-equal(daff-text-contrast($dark-gray, $light-theme), $white);
+		@include assert-equal(daff-text-contrast($blue, $light-theme), $white);
+	}
+
+	@include it('returns black for light reference colors in light theme') {
+		@include assert-equal(daff-text-contrast($white, $light-theme), $black);
+		@include assert-equal(daff-text-contrast($light-gray, $light-theme), $black);
+		@include assert-equal(daff-text-contrast($yellow, $light-theme), $black);
+	}
+
+	@include it('returns white for dark reference colors in dark theme') {
+		@include assert-equal(daff-text-contrast($black, $dark-theme), $white);
+		@include assert-equal(daff-text-contrast($dark-gray, $dark-theme), $white);
+		@include assert-equal(daff-text-contrast($blue, $dark-theme), $white);
+	}
+
+	@include it('returns black for light reference colors in dark theme') {
+		@include assert-equal(daff-text-contrast($white, $dark-theme), $black);
+		@include assert-equal(daff-text-contrast($light-gray, $dark-theme), $black);
+		@include assert-equal(daff-text-contrast($yellow, $dark-theme), $black);
+	}
+
+	@include it('returns a text color given only a reference color but no theme') {
+		@include assert-equal(daff-text-contrast($black), $white);
+		@include assert-equal(daff-text-contrast($dark-gray), $white);
+		@include assert-equal(daff-text-contrast($light-gray), $black);
+	}
+}

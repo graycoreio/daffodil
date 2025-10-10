@@ -1,14 +1,17 @@
-@use '../contrast-ratio/contrast-ratio' as cr;
+@use 'sass:list';
+@use '../max-contrast/max-contrast' as mc;
+@use '../../get-font-colors' as fc;
 @use '../../get-color';
 @use '../../color-palettes' as palette;
 
 /// Determines the color to use against the initial given color.
 /// It returns the one that provides the higher contrast, ensuring better readability.
-/// By default, the function tests against `$black` (#000`, and `$white` (#fff).
 ///
 /// @group Theming
 ///
-/// @param {Color} $color — The color to test against.
+/// @param {Color} $reference-color — The color to test against.
+/// @param {Map} $theme — Optional. The theme map to pull `$black` and `$white` from.
+/// @return {Color} Either `$black` or `$white`, whichever has the highest contrast ratio against the reference color.
 ///
 /// For an interesting read, see more about the topic:
 /// https:///robots.thoughtbot.com/closer-look-color-lightness
@@ -17,22 +20,25 @@
 /// [Sergio Gomes](https://sgom.es/posts/2016-12-21-using-sass-to-automatically-pick-text-colors/).
 ///
 /// @example scss
-/// 	.heading {
-/// 		color: daff-text-contrast(#000);
+/// 	.body {
+/// 		background: daff-color($primary, 80);
+/// 		color: daff-text-contrast(daff-color($primary, 80), $theme);
+/// 	}
+/// @example scss
+/// 	.body {
+/// 		background: daff-color($primary, 80);
+/// 		color: daff-text-contrast(daff-color($primary, 80));
 /// 	}
 ///
 @function daff-text-contrast(
-	$color,
-	$black: get-color.daff-color(palette.$daff-neutral, 110),
-	$white: palette.$daff-white
+	$reference-color,
+	$theme: null
 ) {
-	$light-contrast: cr.daff-contrast-ratio($color, $white);
-	$dark-contrast: cr.daff-contrast-ratio($color, $black);
-
-	@if ($light-contrast > $dark-contrast) {
-		@return $white;
+	@if ($theme == null) {
+		$default-black: get-color.daff-color(palette.$daff-neutral, 110);
+		$default-white: get-color.daff-color(palette.$daff-neutral, 0);
+		@return mc.daff-max-contrast($reference-color, ($default-black, $default-white));
 	}
-	@else {
-		@return $black;
-	}
+	$theme-font-colors: fc.daff-get-font-colors($theme);
+	@return mc.daff-max-contrast($reference-color, $theme-font-colors);
 }
