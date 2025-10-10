@@ -5,16 +5,19 @@ import {
 import {
   Observable,
   of,
+  throwError,
 } from 'rxjs';
 
 import {
   daffUriTruncateLeadingSlash,
   daffUriTruncateQueryFragment,
 } from '@daffodil/core/routing';
-import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
+import {
+  DaffExternallyResolvableUrl,
+  DaffExternalRouterNotFoundError,
+} from '@daffodil/external-router';
 import {
   DaffExternalRouterDriverInterface,
-  DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION,
 } from '@daffodil/external-router/driver';
 
 import {
@@ -44,9 +47,13 @@ implements DaffExternalRouterDriverInterface {
     const truncatedUrl = daffUriTruncateQueryFragment(url);
     const resolvedUrl = this.configuration.resolver(truncatedUrl);
 
-    return of(resolvedUrl?.url ? {
+    if (!resolvedUrl?.url) {
+      return throwError(() => new DaffExternalRouterNotFoundError());
+    }
+
+    return of({
       ...resolvedUrl,
       url: daffUriTruncateLeadingSlash(resolvedUrl.url),
-    } : DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION);
+    });
   }
 }

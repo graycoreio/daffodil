@@ -6,7 +6,10 @@ import {
 import { TestScheduler } from 'rxjs/testing';
 
 import { ID } from '@daffodil/core';
-import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
+import {
+  DaffExternallyResolvableUrl,
+  DaffExternalRouterNotFoundError,
+} from '@daffodil/external-router';
 import {
   MagentoUrlRewriteEntityTypeEnum,
   MagentoUrlResolverResponse,
@@ -93,12 +96,15 @@ describe('@daffodil/external-router/driver/magento/2-4-1 | DaffExternalRouterMag
       });
     });
 
-    it('should return a DaffExternallyResolvableUrl with a code of 404 when Magento returns null', done => {
+    it('should throw a DaffExternalRouterNotFoundError when Magento returns null', done => {
       setupTest();
 
-      service.resolve(requestUrl).subscribe(result => {
-        expect(result.code).toEqual(404);
-        done();
+      service.resolve(requestUrl).subscribe({
+        next: () => done.fail('Expected resolve to error for null response'),
+        error: (err) => {
+          expect(err).toEqual(jasmine.any(DaffExternalRouterNotFoundError));
+          done();
+        },
       });
 
       const op = controller.expectOne(MagentoResolveUrlv241);

@@ -10,3 +10,4 @@ export {
 export * from './model/public_api';
 
 export { provideExternalRouter } from './provide-external-router';
+export * from './errors';
