@@ -10,11 +10,11 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
+import { DaffButtonComponent } from '@daffodil/design/button';
 import {
   DaffCheckboxSetComponent,
   DaffCheckboxModule,
-} from '@daffodil/design';
-import { DaffButtonComponent } from '@daffodil/design/button';
+} from '@daffodil/design/checkbox';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector

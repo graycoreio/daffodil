@@ -7,37 +7,36 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffCheckboxComponent } from '../checkbox.component';
-import { DaffCheckboxModule } from '../checkbox.module';
+import {
+  DAFF_CHECKBOX_COMPONENTS,
+  DaffCheckboxComponent,
+} from '@daffodil/design/checkbox';
 
 @Component({
   template: `
-    <daff-checkbox aria-label='testLabel' aria-labelledby='testParent'></daff-checkbox>
+    <daff-checkbox aria-label="testLabel" aria-labelledby="testParent"></daff-checkbox>
   `,
-  standalone: false,
+  imports: [
+    DAFF_CHECKBOX_COMPONENTS,
+    ReactiveFormsModule,
+  ],
 })
-class CheckboxWrapperComponent { }
+class WrapperComponent { }
 
-describe('DaffCheckbox Accessibility', () => {
-  let checkboxWrapper: CheckboxWrapperComponent;
-
+describe('@daffodil/design/checkbox | Accessibility', () => {
+  let wrapper: WrapperComponent;
   let component: DaffCheckboxComponent;
-
-  let fixture: ComponentFixture<CheckboxWrapperComponent>;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CheckboxWrapperComponent,
-      ],
       imports: [
-        ReactiveFormsModule,
-        DaffCheckboxModule,
+        WrapperComponent,
       ],
     })
       .compileComponents();
-    fixture = TestBed.createComponent(CheckboxWrapperComponent);
-    checkboxWrapper = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     component = fixture.debugElement.query(By.css('daff-checkbox')).componentInstance;
     fixture.detectChanges();
   }));
@@ -54,7 +53,7 @@ describe('DaffCheckbox Accessibility', () => {
     expect(component.label).toBe('testLabel');
   });
 
-  it('should have a aria-labeledby', () => {
+  it('should have a aria-labelledby', () => {
     expect(component.labeledBy).toBe('testParent');
   });
 
