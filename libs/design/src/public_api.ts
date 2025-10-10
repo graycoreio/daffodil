@@ -3,7 +3,7 @@
  */
 
 // Atoms
-export * from './atoms/form/core/public_api';
+export * from './core/error-state-matcher/public_api';
 export * from './atoms/form/checkbox/public_api';
 export * from './atoms/form/form-label/public_api';
 
