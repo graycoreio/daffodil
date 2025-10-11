@@ -9,26 +9,28 @@
 @use 'daff-branding-theme' as branding;
 
 .daff-theme-light {
-	background: var(--daff-base-bg);
-	color: var(--daff-base-text);
+  background: var(--daff-base-bg);
+  color: var(--daff-base-text);
 
-	@include meta.load-css('highlight.js/scss/a11y-light');
+  @include meta.load-css('libs/utils/shiki-theme-light');
 
-	@include branding.daff-branding-theme(daff-theme.$theme);
-	@include daff-theme.daff-component-themes(daff-theme.$theme);
-	@include daffio-components.component-themes(daff-theme.$theme);
+  @include branding.daff-branding-theme(daff-theme.$theme);
+  @include daff-theme.daff-component-themes(daff-theme.$theme);
+  @include daffio-components.component-themes(daff-theme.$theme);
 }
 
 .daff-theme-dark {
-	background: var(--daff-base-bg);
-	color: var(--daff-base-text);
+  background: var(--daff-base-bg);
+  color: var(--daff-base-text);
 
-	@include meta.load-css('highlight.js/scss/a11y-dark');
+  @include meta.load-css('libs/utils/shiki-theme-dark');
 
-	@include branding.daff-branding-theme(daff-theme.$theme-dark);
-	@include daff-theme.daff-component-themes(daff-theme.$theme-dark);
-	@include daffio-components.component-themes(daff-theme.$theme-dark);
+  @include branding.daff-branding-theme(daff-theme.$theme-dark);
+  @include daff-theme.daff-component-themes(daff-theme.$theme-dark);
+  @include daffio-components.component-themes(daff-theme.$theme-dark);
 }
+
+
 
 body {
 	--daff-sidebar-side-fixed-top-shift: 64px;

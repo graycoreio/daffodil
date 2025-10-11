@@ -1,0 +1,65 @@
+/**
+ * Shiki Light Theme (replaces highlight.js a11y-light)
+ * You can tweak the colors to match your brand or component theme.
+ */
+
+pre.shiki,
+code.shiki {
+  background-color: #fafafa;
+  color: #24292e;
+  border-radius: 6px;
+  padding: 1rem;
+  font-family: 'Fira Code', monospace;
+  overflow-x: auto;
+}
+
+.shiki span.comment,
+.shiki span.prolog,
+.shiki span.doctype,
+.shiki span.cdata {
+  color: #6a737d;
+}
+
+.shiki span.punctuation,
+.shiki span.operator {
+  color: #24292e;
+}
+
+.shiki span.namespace {
+  opacity: 0.7;
+}
+
+.shiki span.property,
+.shiki span.tag,
+.shiki span.constant,
+.shiki span.symbol,
+.shiki span.deleted {
+  color: #d73a49;
+}
+
+.shiki span.boolean,
+.shiki span.number {
+  color: #005cc5;
+}
+
+.shiki span.selector,
+.shiki span.attr-name,
+.shiki span.string,
+.shiki span.char,
+.shiki span.builtin,
+.shiki span.inserted {
+  color: #22863a;
+}
+
+.shiki span.variable {
+  color: #e36209;
+}
+
+.shiki span.function,
+.shiki span.class-name {
+  color: #6f42c1;
+}
+
+.shiki span.keyword {
+  color: #d73a49;
+}

@@ -46,6 +46,7 @@
     "graphql": "^16.10.0",
     "modern-normalize": "^3.0.1",
     "rxjs": "^7.0.0",
+    "shiki": "^3.13.0",
     "tslib": "^2.3.0",
     "web-animations-js": "^2.3.2",
     "webfontloader": "^1.6.28",
