@@ -57,6 +57,28 @@ $supported-theme-modes: (
 ///     'secondary': $secondary,
 ///     'tertiary': $tertiary
 ///   ));
+/// @example scss
+/// 	$primary: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
+/// 	$secondary: configure-palette.daff-configure-palette(palette.$daff-purple, 60);
+/// 	$tertiary: configure-palette.daff-configure-palette(palette.$daff-turquoise, 60);
+/// 	$info: configure-palette.daff-configure-palette(palette.$daff-neutral, 70);
+/// 	$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 70);
+/// 	$critical: configure-palette.daff-configure-palette(palette.$daff-red, 70);
+/// 	$success: configure-palette.daff-configure-palette(palette.$daff-green, 70);
+/// 	$font-color-light: get-color.daff-color(palette.$daff-neutral, 10);
+/// 	$font-color-dark: get-color.daff-color(palette.$daff-neutral, 100);
+/// 	$theme: daff-create-theme((
+/// 	 'mode': 'dark',
+/// 	 'primary': $primary,
+/// 	 'secondary': $secondary,
+/// 	 'tertiary': $tertiary,
+/// 	 'info': $info,
+/// 	 'warn': $warn,
+/// 	 'critical': $critical,
+/// 	 'success': $success,
+/// 	 'font-color-light': $font-color-light,
+/// 	 'font-color-dark': $font-color-dark
+///  	));
 ///
 @function daff-create-theme($config) {
 	$mode: map.get($config, 'mode');
