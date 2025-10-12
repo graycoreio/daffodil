@@ -29,7 +29,8 @@
 	);
 	$daff-dark-theme: (
 		'mode': 'dark',
-		'font-color': get-color.daff-color(palette.$daff-neutral, 0),
+		'font-color-light': get-color.daff-color(palette.$daff-neutral, 0),
+		'font-color-dark': get-color.daff-color(palette.$daff-neutral, 110),
 		'base': get-color.daff-color(palette.$daff-neutral, 100),
 		'base-contrast': get-color.daff-color(palette.$daff-neutral, 0),
 		'white': get-color.daff-color(palette.$daff-neutral, 0),
@@ -45,9 +46,9 @@
 		);
 		$theme: daff-create-theme($config);
 
-		@include assert-equal(map.get-key($theme, 'primary'), $primary);
-		@include assert-equal(map.get-key($theme, 'secondary'), $secondary);
-		@include assert-equal(map.get-key($theme, 'tertiary'), $tertiary);
+		@include assert-equal(map.get($theme, 'primary'), $primary);
+		@include assert-equal(map.get($theme, 'secondary'), $secondary);
+		@include assert-equal(map.get($theme, 'tertiary'), $tertiary);
 		@include assert-true(map.has-key($theme, 'core'));
 
 		$core: map.get($theme, 'core');
@@ -62,9 +63,9 @@
 			'tertiary': $tertiary
 		);
 		$theme: daff-create-theme($config);
-		@include assert-equal(map.get-key($theme, 'primary'), $primary);
-		@include assert-equal(map.get-key($theme, 'secondary'), $secondary);
-		@include assert-equal(map.get-key($theme, 'tertiary'), $tertiary);
+		@include assert-equal(map.get($theme, 'primary'), $primary);
+		@include assert-equal(map.get($theme, 'secondary'), $secondary);
+		@include assert-equal(map.get($theme, 'tertiary'), $tertiary);
 		@include assert-true(map.has-key($theme, 'core'));
 
 		$core: map.get($theme, 'core');
@@ -87,13 +88,13 @@
 		);
 		$theme: daff-create-theme($config);
 
-		@include assert-equal(map.get-key($theme, 'primary'), $primary);
-		@include assert-equal(map.get-key($theme, 'secondary'), $secondary);
-		@include assert-equal(map.get-key($theme, 'tertiary'), $tertiary);
-		@include assert-equal(map.get-key($theme, 'informational'), $info);
-		@include assert-equal(map.get-key($theme, 'warn'), $warn);
-		@include assert-equal(map.get-key($theme, 'critical'), $critical);
-		@include assert-equal(map.get-key($theme, 'success'), $success);
+		@include assert-equal(map.get($theme, 'primary'), $primary);
+		@include assert-equal(map.get($theme, 'secondary'), $secondary);
+		@include assert-equal(map.get($theme, 'tertiary'), $tertiary);
+		@include assert-equal(map.get($theme, 'info'), $info);
+		@include assert-equal(map.get($theme, 'warn'), $warn);
+		@include assert-equal(map.get($theme, 'critical'), $critical);
+		@include assert-equal(map.get($theme, 'success'), $success);
 
 		@include assert-true(map.has-key($theme, 'core'));
 		$core: map.get($theme, 'core');
@@ -114,9 +115,9 @@
 		);
 		$theme: daff-create-theme($config);
 
-		@include assert-equal(map.get-key($theme, 'informational'), map.get($default-daff-light-theme, 'informational'));
-		@include assert-equal(map.get-key($theme, 'warn'), map.get($default-daff-light-theme, 'warn'));
-		@include assert-equal(map.get-key($theme, 'critical'), map.get($default-daff-light-theme, 'critical'));
-		@include assert-equal(map.get-key($theme, 'success'), map.get($default-daff-light-theme, 'success'));
+		@include assert-equal(map.get($theme, 'info'), configure-palette.daff-configure-palette(palette.$daff-neutral, 60));
+		@include assert-equal(map.get($theme, 'warn'), configure-palette.daff-configure-palette(palette.$daff-bronze, 60));
+		@include assert-equal(map.get($theme, 'critical'), configure-palette.daff-configure-palette(palette.$daff-red, 60));
+		@include assert-equal(map.get($theme, 'success'), configure-palette.daff-configure-palette(palette.$daff-green, 60));
 	}
 }
