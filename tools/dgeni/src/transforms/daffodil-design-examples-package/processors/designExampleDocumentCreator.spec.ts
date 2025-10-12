@@ -16,7 +16,7 @@ describe('DesignExampleDocumentCreatorProcessor', () => {
   it('should set the docGroup based upon the folder in which the example exists', () => {
     const doc = {
       fileInfo: {
-        relativePath: 'accordion/examples/src/basic-accordion/basic-accordion.component.html',
+        relativePath: 'design-example/accordion/src/basic-accordion/basic-accordion.component.html',
       },
     };
     const result = processor.$process([doc]);
