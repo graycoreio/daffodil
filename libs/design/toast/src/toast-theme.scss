@@ -1,7 +1,7 @@
 @use '../../scss/theming' as *;
 
 @mixin daff-toast-theme($theme) {
-	$info: daff-get-palette($theme, informational);
+	$info: daff-get-palette($theme, info);
 	$warn: daff-get-palette($theme, warn);
 	$critical: daff-get-palette($theme, critical);
 	$success: daff-get-palette($theme, success);

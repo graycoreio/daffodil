@@ -11,7 +11,7 @@
 ///
 /// @param {Map} $theme — A theme map created with with `daff-create-theme` function.
 /// @param {Map} $palette — The palette being retrieved.
-/// Supported values: `primary`, `secondary`, `tertiary`, `informational`, `warn`, `critical`, `success`, or `neutral`.
+/// Supported values: `primary`, `secondary`, `tertiary`, `info`, `warn`, `critical`, `success`, or `neutral`.
 ///
 /// @throws Will throw an error if `$palette` is not a supported value in Daffodil's theme configurations.
 ///
@@ -31,7 +31,7 @@
 		$palette != primary and
 		$palette != secondary and
 		$palette != tertiary and
-		$palette != informational and
+		$palette != info and
 		$palette != warn and
 		$palette != critical and
 		$palette != success and

@@ -11,7 +11,7 @@ export interface DaffStatusable {
 
 /**
  * The `DaffStatus` type defines the possible status values that a component can have.
- * - 'info': Indicatea an informational status.
+ * - 'info': Indicates an informational status.
  * - 'warn': Indicates a warning status.
  * - 'critical': Indicates a critical or error status.
  * - 'success': Indicates a success status.

@@ -2,7 +2,7 @@
 
 @mixin daff-notification-theme($theme) {
 	$primary: daff-get-palette($theme, primary);
-	$info: daff-get-palette($theme, informational);
+	$info: daff-get-palette($theme, info);
 	$warn: daff-get-palette($theme, warn);
 	$critical: daff-get-palette($theme, critical);
 	$success: daff-get-palette($theme, success);
