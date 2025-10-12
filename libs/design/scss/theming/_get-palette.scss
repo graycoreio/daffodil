@@ -3,13 +3,13 @@
 /// Retrieves a specific color palette from a configured theme.
 ///
 /// If you are not using Daffodil's default theme, a theme **must** be
-/// created with `daff-configure-theme` before this function can be used.
+/// created with `daff-create-theme` before this function can be used.
 /// See the [customize your own theme](daff.io/docs/design/theming/customize-your-own-theme)
 /// guide for more information.
 ///
 /// @group Theming
 ///
-/// @param {Map} $theme — A theme map created with with `daff-configure-theme` function.
+/// @param {Map} $theme — A theme map created with with `daff-create-theme` function.
 /// @param {Map} $palette — The palette being retrieved.
 /// Supported values: `primary`, `secondary`, `tertiary`, `informational`, `warn`, `critical`, `success`, or `neutral`.
 ///

@@ -1,5 +1,5 @@
 @use 'configure-palette';
-@use 'configure-theme';
+@use 'create-theme';
 @use 'color-palettes' as palette;
 @use '../core';
 
@@ -7,22 +7,16 @@ $primary: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
 $secondary: configure-palette.daff-configure-palette(palette.$daff-purple, 60);
 $tertiary: configure-palette.daff-configure-palette(palette.$daff-turquoise, 60);
 
-$theme: configure-theme.daff-configure-theme(
-	$primary,
-	$secondary,
-	$tertiary,
-	'light'
+$theme: create-theme.daff-create-theme(
+	('primary': $primary, 'secondary': $secondary, 'tertiary': $tertiary, 'mode': 'light')
 );
 
 $primary-dark: configure-palette.daff-configure-palette(palette.$daff-blue, 50);
 $secondary-dark: configure-palette.daff-configure-palette(palette.$daff-purple, 50);
 $tertiary-dark: configure-palette.daff-configure-palette(palette.$daff-turquoise, 50);
 
-$theme-dark: configure-theme.daff-configure-theme(
-	$primary-dark,
-	$secondary-dark,
-	$tertiary-dark,
-	'dark'
+$theme-dark: create-theme.daff-create-theme(
+	('primary': $primary-dark, 'secondary': $secondary-dark, 'tertiary': $tertiary-dark, 'mode': 'dark')
 );
 
 $black: core.daff-map-get($theme, 'core', 'black');

@@ -42,7 +42,7 @@ $app-tertiary-dark: daff-theme.daff-configure-palette(palette.$app-purple, 50);
 ```
 
 ## Define themes
-Use the `daff-configure-theme` function to to define light and dark themes.
+Use the `daff-create-theme` function to to define light and dark themes.
 
 | Argument | Description                              |
 | -------- | ---------------------------------------- |
@@ -59,13 +59,17 @@ $app-primary: daff-theme.daff-configure-palette(palette.$app-blue, 60);
 $app-secondary: daff-theme.daff-configure-palette(palette.$app-green, 60);
 $app-tertiary: daff-theme.daff-configure-palette(palette.$app-purple, 60);
 
-$theme: daff-theme.daff-configure-theme($app-primary, $app-secondary, $app-tertiary, 'light');
+$theme: daff-theme.daff-create-theme(
+  ('primary': $app-primary, 'secondary': $app-secondary, 'tertiary': $app-tertiary, 'mode': 'light')
+);
 
 $app-primary-dark: daff-theme.daff-configure-palette(palette.$app-blue, 50);
 $app-secondary-dark: daff-theme.daff-configure-palette(palette.$app-green, 50);
 $app-tertiary-dark: daff-theme.daff-configure-palette(palette.$app-purple, 50);
 
-$theme-dark: daff-theme.daff-configure-theme($app-primary-dark, $app-secondary-dark, $app-tertiary-dark, 'dark');
+$theme-dark: daff-theme.daff-create-theme(
+  ('primary': $app-primary-dark, 'secondary': $app-secondary-dark, 'tertiary': $app-tertiary-dark, 'mode': 'light')
+);
 ```
 
 ## Apply themes

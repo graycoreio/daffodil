@@ -116,7 +116,7 @@ $supported-theme-modes: (
 		'primary': $primary,
 		'secondary': $secondary,
 		'tertiary': $tertiary,
-		'info': map.get($status-theme, 'informational'),
+		'info': map.get($status-theme, 'info'),
 		'warn': map.get($status-theme, 'warn'),
 		'critical': map.get($status-theme, 'critical'),
 		'success': map.get($status-theme, 'success'),
@@ -169,7 +169,7 @@ $supported-theme-modes: (
 	@if ($info == null and $mode == 'light') {
 		$info: configure-palette.daff-configure-palette(palette.$daff-neutral, 60);
 	}
-	@return ('success': $success, 'warn': $warn, 'critical': $critical, 'informational': $info);
+	@return ('success': $success, 'warn': $warn, 'critical': $critical, 'info': $info);
 }
 
 /// @access private

@@ -3,20 +3,20 @@
 @use '../../get-color';
 @use '../../color-palettes' as palette;
 @use '../../configure-palette';
-@use '../../configure-theme' as ct;
+@use '../../create-theme' as ct;
 
 @include describe('daff-text-contrast') {
-	$light-theme: ct.daff-configure-theme(
-		configure-palette.daff-configure-palette(palette.$daff-blue, 60),
-		configure-palette.daff-configure-palette(palette.$daff-purple, 60),
-		configure-palette.daff-configure-palette(palette.$daff-turquoise, 60),
-		'light'
+	$light-theme: ct.daff-create-theme(
+		('mode': 'light',
+		'primary': configure-palette.daff-configure-palette(palette.$daff-blue, 60),
+		'secondary': configure-palette.daff-configure-palette(palette.$daff-purple, 60),
+		'tertiary': configure-palette.daff-configure-palette(palette.$daff-turquoise, 60))
 	);
-	$dark-theme: ct.daff-configure-theme(
-		configure-palette.daff-configure-palette(palette.$daff-blue, 60),
-		configure-palette.daff-configure-palette(palette.$daff-purple, 60),
-		configure-palette.daff-configure-palette(palette.$daff-turquoise, 60),
-		'dark'
+	$dark-theme: ct.daff-create-theme(
+		('mode': 'dark',
+		'primary': configure-palette.daff-configure-palette(palette.$daff-blue, 60),
+		'secondary': configure-palette.daff-configure-palette(palette.$daff-purple, 60),
+		'tertiary': configure-palette.daff-configure-palette(palette.$daff-turquoise, 60))
 	);
 	$white: get-color.daff-color(palette.$daff-neutral, 0);
 	$black: get-color.daff-color(palette.$daff-neutral, 110);
