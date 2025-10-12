@@ -1,0 +1,122 @@
+@use 'true' as *;
+@use './create-theme' as *;
+@use './color-palettes' as palette;
+@use './get-color';
+@use './configure-palette';
+@use 'sass:map';
+
+@include describe('daff-create-theme') {
+	$primary: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
+	$secondary: configure-palette.daff-configure-palette(palette.$daff-purple, 60);
+	$tertiary: configure-palette.daff-configure-palette(palette.$daff-turquoise, 60);
+	$neutral: configure-palette.daff-configure-palette(palette.$daff-neutral, 50);
+	$info: configure-palette.daff-configure-palette(palette.$daff-blue, 40);
+	$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 40);
+	$critical: configure-palette.daff-configure-palette(palette.$daff-red, 40);
+	$success: configure-palette.daff-configure-palette(palette.$daff-green, 40);
+	$font-light: get-color.daff-color(palette.$daff-neutral, 10);
+	$font-dark: get-color.daff-color(palette.$daff-neutral, 100);
+
+	$default-daff-light-theme: (
+		'mode': 'light',
+		'font-color-light': get-color.daff-color(palette.$daff-neutral, 0),
+		'font-color-dark': get-color.daff-color(palette.$daff-neutral, 110),
+		'base': get-color.daff-color(palette.$daff-neutral, 0),
+		'base-contrast': get-color.daff-color(palette.$daff-neutral, 110),
+		'white': get-color.daff-color(palette.$daff-neutral, 0),
+		'black': get-color.daff-color(palette.$daff-neutral, 110),
+		'neutral': configure-palette.daff-configure-palette(palette.$daff-neutral, 60),
+	);
+	$daff-dark-theme: (
+		'mode': 'dark',
+		'font-color': get-color.daff-color(palette.$daff-neutral, 0),
+		'base': get-color.daff-color(palette.$daff-neutral, 100),
+		'base-contrast': get-color.daff-color(palette.$daff-neutral, 0),
+		'white': get-color.daff-color(palette.$daff-neutral, 0),
+		'black': get-color.daff-color(palette.$daff-neutral, 110),
+		'neutral': configure-palette.daff-configure-palette(palette.$daff-neutral, 50),
+	);
+
+	@include it('creates a light theme with only required parameters') {
+		$config: (
+			'primary': $primary,
+			'secondary': $secondary,
+			'tertiary': $tertiary
+		);
+		$theme: daff-create-theme($config);
+
+		@include assert-equal(map.get-key($theme, 'primary'), $primary);
+		@include assert-equal(map.get-key($theme, 'secondary'), $secondary);
+		@include assert-equal(map.get-key($theme, 'tertiary'), $tertiary);
+		@include assert-true(map.has-key($theme, 'core'));
+
+		$core: map.get($theme, 'core');
+		@include assert-equal($core, $default-daff-light-theme);
+	}
+
+	@include it('creates a dark theme when mode is specified') {
+		$config: (
+			'mode': 'dark',
+			'primary': $primary,
+			'secondary': $secondary,
+			'tertiary': $tertiary
+		);
+		$theme: daff-create-theme($config);
+		@include assert-equal(map.get-key($theme, 'primary'), $primary);
+		@include assert-equal(map.get-key($theme, 'secondary'), $secondary);
+		@include assert-equal(map.get-key($theme, 'tertiary'), $tertiary);
+		@include assert-true(map.has-key($theme, 'core'));
+
+		$core: map.get($theme, 'core');
+		@include assert-equal($core, $daff-dark-theme);
+	}
+
+	@include it('creates a theme with all optional parameters') {
+		$config: (
+			'mode': 'light',
+			'primary': $primary,
+			'secondary': $secondary,
+			'tertiary': $tertiary,
+			'neutral': $neutral,
+			'info': $info,
+			'warn': $warn,
+			'critical': $critical,
+			'success': $success,
+			'font-color-light': $font-light,
+			'font-color-dark': $font-dark
+		);
+		$theme: daff-create-theme($config);
+
+		@include assert-equal(map.get-key($theme, 'primary'), $primary);
+		@include assert-equal(map.get-key($theme, 'secondary'), $secondary);
+		@include assert-equal(map.get-key($theme, 'tertiary'), $tertiary);
+		@include assert-equal(map.get-key($theme, 'informational'), $info);
+		@include assert-equal(map.get-key($theme, 'warn'), $warn);
+		@include assert-equal(map.get-key($theme, 'critical'), $critical);
+		@include assert-equal(map.get-key($theme, 'success'), $success);
+
+		@include assert-true(map.has-key($theme, 'core'));
+		$core: map.get($theme, 'core');
+		$expected-core: map.merge($default-daff-light-theme, (
+			'neutral': $neutral,
+			'font-color-light': $font-light,
+			'font-color-dark': $font-dark
+		));
+		@include assert-equal($core, $expected-core);
+	}
+
+	@include it('provides default status colors when not specified') {
+		$config: (
+			'mode': 'light',
+			'primary': $primary,
+			'secondary': $secondary,
+			'tertiary': $tertiary
+		);
+		$theme: daff-create-theme($config);
+
+		@include assert-equal(map.get-key($theme, 'informational'), map.get($default-daff-light-theme, 'informational'));
+		@include assert-equal(map.get-key($theme, 'warn'), map.get($default-daff-light-theme, 'warn'));
+		@include assert-equal(map.get-key($theme, 'critical'), map.get($default-daff-light-theme, 'critical'));
+		@include assert-equal(map.get-key($theme, 'success'), map.get($default-daff-light-theme, 'success'));
+	}
+}
