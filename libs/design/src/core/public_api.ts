@@ -18,3 +18,4 @@ export * from './sizable/public_api';
 export * from './openable/public_api';
 export * from './selectable/public_api';
 export * from './sticky/public_api';
+export * from '../core/error-state-matcher/public_api';
