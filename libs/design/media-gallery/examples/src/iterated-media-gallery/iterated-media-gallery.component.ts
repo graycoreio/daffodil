@@ -20,19 +20,27 @@ export class IteratedMediaGalleryComponent {
   elements = [
     {
       type: 'image',
-      src: 'https://images.unsplash.com/photo-1587324438673-56c78a866b15?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1600&q=80',
-      thumbnail: 'https://images.unsplash.com/photo-1587324438673-56c78a866b15?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=80&q=80',
-      alt: 'Lemons',
-      width: 946,
-      height: 946,
+      src: 'https://assets.daff.io/elegant_gold_soap.png',
+      thumbnail: 'https://assets.daff.io/elegant_gold_soap.png',
+      alt: 'Elegant Gold Soap T-Shirt',
+      width: 934,
+      height: 934,
     },
     {
       type: 'image',
-      src: 'https://images.unsplash.com/photo-1607344635159-59930e3330b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&fit=crop&w=1600',
-      thumbnail: 'https://images.unsplash.com/photo-1607344635159-59930e3330b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&fit=crop&w=80',
-      alt: 'Lemons',
-      width: 946,
-      height: 946,
+      src: 'https://assets.daff.io/elegant_plastic_gloves.png',
+      thumbnail: 'https://assets.daff.io/elegant_plastic_gloves.png',
+      alt: 'Elegant Plastic Gloves T-Shirt',
+      width: 622,
+      height: 934,
+    },
+    {
+      type: 'image',
+      src: 'https://assets.daff.io/ergonomic_bronze_pants.png',
+      thumbnail: 'https://assets.daff.io/ergonomic_bronze_pants.png',
+      alt: 'Ergonomic Bronze Pants T-Shirt',
+      width: 934,
+      height: 934,
     },
   ];
 }
