@@ -12,7 +12,7 @@ import { By } from '@angular/platform-browser';
 import { DaffImageComponent } from './image.component';
 
 @Component({
-  template: `<daff-image [src]="src" [alt]="alt" [width]="width" [height]="height" [skeleton]="skeleton"></daff-image>`,
+  template: `<daff-image [src]="src" [alt]="alt" [width]="width" [height]="height" [skeleton]="skeleton" [priority]="priority"></daff-image>`,
   imports: [
     DaffImageComponent,
   ],
@@ -24,6 +24,7 @@ class WrapperComponent {
   width = 100;
   height = 100;
   skeleton = false;
+  priority = false;
 }
 
 describe('@daffodil/design/image | DaffImageComponent', () => {
@@ -31,7 +32,6 @@ describe('@daffodil/design/image | DaffImageComponent', () => {
   let component: DaffImageComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
-  let imageDE: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -46,7 +46,6 @@ describe('@daffodil/design/image | DaffImageComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('daff-image'));
-    imageDE = fixture.debugElement.query(By.css('.daff-image'));
     component = de.componentInstance;
 
     fixture.detectChanges();
@@ -91,6 +90,13 @@ describe('@daffodil/design/image | DaffImageComponent', () => {
     expect(de.nativeElement.classList.contains('daff-skeleton')).toEqual(true);
   });
 
+  it('should take priority as an input', () => {
+    wrapper.priority = true;
+    fixture.detectChanges();
+
+    expect(component.priority()).toEqual(true);
+  });
+
   it('should throw an error when src is invalid', () => {
     wrapper.src = '';
     expect(() => fixture.detectChanges()).toThrowError(/src/);
@@ -117,7 +123,7 @@ describe('@daffodil/design/image | DaffImageComponent', () => {
 
     fixture.detectChanges();
 
-    expect(imageDE.styles['aspect-ratio']).toEqual('300 / 100');
+    expect(de.styles['aspect-ratio']).toEqual('300 / 100');
   });
 
   it('sets `max-width` on the host element based on the width', () => {

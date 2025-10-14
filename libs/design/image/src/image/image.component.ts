@@ -6,6 +6,7 @@ import {
   EventEmitter,
   OnInit,
   Output,
+  input,
 } from '@angular/core';
 import {
   DomSanitizer,
@@ -110,6 +111,12 @@ export class DaffImageComponent implements OnInit {
     this._height = value;
     validateProperty(this, 'height');
   }
+
+  /**
+   * Whether the image should be treated as a priority image for loading.
+   * Priority images are loaded eagerly and not lazy-loaded.
+   */
+  priority = input(false);
 
   /**
    * Emits when the image has loaded.
