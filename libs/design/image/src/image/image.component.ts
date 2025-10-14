@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -47,7 +48,11 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
   ],
   host: {
     '[style.max-width]': 'width + "px"',
+    '[style.aspect-ratio]': '_aspectRatio',
   },
+  imports: [
+    NgOptimizedImage,
+  ],
 })
 export class DaffImageComponent implements OnInit {
   private _src: string;
