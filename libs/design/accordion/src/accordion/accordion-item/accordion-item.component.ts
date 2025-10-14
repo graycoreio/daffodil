@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import {
+  DaffDisableableDirective,
   DaffOpenable,
   DaffOpenableDirective,
 } from '@daffodil/design';
@@ -31,10 +32,16 @@ let daffAccordionItemContentId = 0;
   selector: 'daff-accordion-item',
   templateUrl: './accordion-item.component.html',
   styleUrls: ['./accordion-item.component.scss'],
-  hostDirectives: [{
-    directive: DaffOpenableDirective,
-    outputs: ['toggled'],
-  }],
+  hostDirectives: [
+    {
+      directive: DaffOpenableDirective,
+      outputs: ['toggled'],
+    },
+    {
+      directive: DaffDisableableDirective,
+      inputs: ['disabled'],
+    },
+  ],
   host: {
     'class': 'daff-accordion-item',
   },
@@ -58,11 +65,18 @@ export class DaffAccordionItemComponent implements OnInit, DaffOpenable {
   @Input() initiallyExpanded = false;
 
   /**
-   * Disables an accordion item and prevents it from being expanded or collapsed.
+   * @docs-private
+   *
+   * Internal function to access the disabled property of the DaffDisableableDirective
    */
-  @Input() disabled = false;
+  get disabled() {
+    return this.disabledDirective.disabled;
+  }
 
-  constructor(private openDirective: DaffOpenableDirective) {
+  constructor(
+    private openDirective: DaffOpenableDirective,
+    private disabledDirective: DaffDisableableDirective,
+  ) {
     this.openDirective.stateless = false;
   }
 

@@ -32,7 +32,7 @@ import { DAFF_TABS_COMPONENTS } from '../tabs';
         </daff-tab-panel>
       </daff-tab>
 
-      <daff-tab id="tab-2">
+      <daff-tab id="tab-2" [disabled]="disableSecondTab">
         <daff-tab-label>
           Tab 2
         </daff-tab-label>
@@ -60,6 +60,8 @@ class WrapperComponent {
   urlValue: string;
 
   onTabChange: (val: string) => void;
+
+  disableSecondTab: boolean;
 }
 
 describe('@daffodil/design/tabs | DaffTabsComponent', () => {
@@ -236,8 +238,7 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
   it('should skip disabled tabs when navigating', () => {
     component.select(component._tabs.toArray()[0].id);
 
-    const tab = component._tabs.toArray()[1];
-    tab.disabled = true;
+    wrapper.disableSecondTab = true;
     fixture.detectChanges();
 
     component.next();
