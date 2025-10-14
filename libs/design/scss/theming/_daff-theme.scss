@@ -1,5 +1,5 @@
 @use 'configure-palette';
-@use 'create-theme';
+@use './create-theme/create-theme';
 @use 'color-palettes' as palette;
 @use '../core';
 
