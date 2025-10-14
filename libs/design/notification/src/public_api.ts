@@ -5,7 +5,3 @@ export { DaffNotificationTitleDirective } from './notification-title/notificatio
 export { DaffNotificationSubtitleDirective } from './notification-subtitle/notification-subtitle.directive';
 export { DaffNotificationMessageDirective } from './notification-message/notification-message.directive';
 export { DAFF_NOTIFICATION_COMPONENTS } from './notification';
-export {
-  DaffNotificationOrientation,
-  DaffNotificationOrientationEnum,
-} from './helpers/notification-orientation';

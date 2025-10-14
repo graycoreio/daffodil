@@ -9,10 +9,12 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffStatus } from '@daffodil/design';
+import {
+  DaffOrientation,
+  DaffStatus,
+} from '@daffodil/design';
 
 import { DaffNotificationComponent } from './notification.component';
-import { DaffNotificationOrientation } from '../helpers/notification-orientation';
 
 @Component ({
   template: `
@@ -30,7 +32,7 @@ import { DaffNotificationOrientation } from '../helpers/notification-orientation
 
 class WrapperComponent {
   status: DaffStatus;
-  orientation: DaffNotificationOrientation = 'vertical';
+  orientation: DaffOrientation;
   dismissible = false;
   closeNotificationFunction = () => {};
 }
@@ -134,32 +136,8 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
     expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
   });
 
-  describe('setting the orientation of a notification', () => {
-    it('should take orientation as an input', () => {
-      expect(component.orientation).toEqual(wrapper.orientation);
-    });
-
-    it('should set the default orientation to `vertical`', () => {
-      expect(component.orientation).toEqual('vertical');
-    });
-
-    describe('when orientation="horizontal"', () => {
-      it('should add a class of "horizontal" to the host element', () => {
-        wrapper.orientation = 'horizontal';
-        fixture.detectChanges();
-
-        expect(de.classes.horizontal).toBeTrue();
-      });
-    });
-
-    describe('when orientation="vertical"', () => {
-      it('should add a class of "vertical" to the host element', () => {
-        wrapper.orientation = 'vertical';
-        fixture.detectChanges();
-
-        expect(de.classes.vertical).toBeTrue();
-      });
-    });
+  it('should set the default orientation to `vertical`', () => {
+    expect(de.nativeElement.classList.contains('daff-vertical')).toEqual(true);
   });
 
   describe('when the close icon button is clicked', () => {

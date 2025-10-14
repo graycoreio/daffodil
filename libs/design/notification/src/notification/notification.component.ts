@@ -13,15 +13,12 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import {
   DaffArticleEncapsulatedDirective,
+  DaffOrientableDirective,
   DaffPrefixDirective,
   DaffStatusableDirective,
   DaffStatusEnum,
 } from '@daffodil/design';
 
-import {
-  DaffNotificationOrientation,
-  DaffNotificationOrientationEnum,
-} from '../helpers/notification-orientation';
 import { DaffNotificationActionsDirective } from '../notification-actions/notification-actions.directive';
 
 /**
@@ -52,11 +49,13 @@ import { DaffNotificationActionsDirective } from '../notification-actions/notifi
       directive: DaffStatusableDirective,
       inputs: ['status'],
     },
+    {
+      directive: DaffOrientableDirective,
+      inputs: ['orientation'],
+    },
   ],
   host: {
     'class': 'daff-notification',
-    '[class.vertical]': 'orientation === "vertical"',
-    '[class.horizontal]': 'orientation === "horizontal"',
     '[class.dismissible]': 'dismissible',
     'tabindex': '0',
     '[attr.role]': 'role',
@@ -99,13 +98,12 @@ export class DaffNotificationComponent {
    */
   @Input() dismissible = false;
 
-  constructor(private statusDirective: DaffStatusableDirective) {}
-
-  /**
-   * The orientation of a notification.
-   */
-  @Input({ transform: (value: DaffNotificationOrientation | null | undefined) => value || DaffNotificationOrientationEnum.Vertical })
-  orientation: DaffNotificationOrientation = 'vertical';
+  constructor(
+    private statusDirective: DaffStatusableDirective,
+    private orientation: DaffOrientableDirective,
+  ) {
+    this.orientation.defaultOrientation = 'vertical';
+  }
 
   /**
    * Emits when the notification is closed.

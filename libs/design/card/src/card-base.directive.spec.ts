@@ -63,52 +63,8 @@ describe('@daffodil/design/card | DaffCardBaseDirective', () => {
     });
   });
 
-  it('should take orientation as an input', () => {
-    wrapper.orientation = 'vertical';
-    fixture.detectChanges();
-
-    expect(directive.orientation).toEqual('vertical');
-  });
-
-  describe('using the orientation property of a card', () => {
-    it('should set the default orientation to vertical', () => {
-      expect(directive.orientation).toEqual('vertical');
-    });
-
-    it('should add a class of "vertical" to the host element when orientation="vertical"', () => {
-      wrapper.orientation = 'vertical';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('vertical')).toBeTruthy();
-    });
-
-    it('should add a class of "horizontal" to the host element when orientation="horizontal"', () => {
-      wrapper.orientation = 'horizontal';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('horizontal')).toBeTruthy();
-    });
-
-    it('should set orientation to vertical when given null', () => {
-      wrapper.orientation = null;
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('vertical')).toBeTruthy();
-    });
-
-    it('should set orientation to vertical when given undefined', () => {
-      wrapper.orientation = undefined;
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('vertical')).toBeTruthy();
-    });
-
-    it('should set orientation to vertical when given an empty string', () => {
-      wrapper.orientation = '';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('vertical')).toBeTruthy();
-    });
+  it('should set the default orientation to `vertical`', () => {
+    expect(de.nativeElement.classList.contains('daff-vertical')).toEqual(true);
   });
 
   describe('elevated property', () => {
