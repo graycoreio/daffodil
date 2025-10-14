@@ -1,4 +1,6 @@
+@use 'sass:list';
 @use 'sass:map';
+@use 'sass:meta';
 @use 'configure-palette';
 @use 'color-palettes' as palette;
 @use 'get-color';
@@ -30,7 +32,12 @@ $supported-theme-modes: (
 	'dark': $daff-dark-theme
 );
 
-/// Create a theme object given a map of theme configuration options.
+/// Creates a theme with:
+/// - Required palettes: `primary`, `secondary`, `tertiary`
+/// - Optional palettes: `neutral`, `informational`, `warn`, `critical`, and `success`.
+/// - Optional colors: `font-color-light` and `font-color-dark`.
+///
+/// Defaults for optional palettes and colors are provided based on the theme mode.
 ///
 /// @group Theming
 ///
@@ -39,13 +46,13 @@ $supported-theme-modes: (
 /// @param {Map} $config.primary - Primary color palette (required)
 /// @param {Map} $config.secondary - Secondary color palette (required)
 /// @param {Map} $config.tertiary - Tertiary color palette (required)
-/// @param {Map} $config.neutral - Neutral color palette (optional)
-/// @param {Map} $config.info - Informational color palette (optional)
-/// @param {Map} $config.warn - Warning color palette (optional)
-/// @param {Map} $config.critical - Critical/error color palette (optional)
-/// @param {Map} $config.success - Success color palette (optional)
-/// @param {Color} $config.font-color-light - Light font color (optional)
-/// @param {Color} $config.font-color-dark - Dark font color (optional)
+/// @param {Map} $config.neutral - Neutral color palette (optional, defaults provided)
+/// @param {Map} $config.informational - Informational color palette (optional, defaults provided)
+/// @param {Map} $config.warn - Warning color palette (optional, defaults provided)
+/// @param {Map} $config.critical - Critical/error color palette (optional, defaults provided)
+/// @param {Map} $config.success - Success color palette (optional, defaults provided)
+/// @param {Color} $config.font-color-light - Light font color (optional, defaults provided)
+/// @param {Color} $config.font-color-dark - Dark font color (optional, defaults provided)
 ///
 /// @example scss
 /// 	$primary: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
@@ -61,23 +68,23 @@ $supported-theme-modes: (
 /// 	$primary: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
 /// 	$secondary: configure-palette.daff-configure-palette(palette.$daff-purple, 60);
 /// 	$tertiary: configure-palette.daff-configure-palette(palette.$daff-turquoise, 60);
-/// 	$info: configure-palette.daff-configure-palette(palette.$daff-neutral, 70);
+/// 	$informational: configure-palette.daff-configure-palette(palette.$daff-neutral, 70);
 /// 	$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 70);
 /// 	$critical: configure-palette.daff-configure-palette(palette.$daff-red, 70);
 /// 	$success: configure-palette.daff-configure-palette(palette.$daff-green, 70);
 /// 	$font-color-light: get-color.daff-color(palette.$daff-neutral, 10);
 /// 	$font-color-dark: get-color.daff-color(palette.$daff-neutral, 100);
 /// 	$theme: daff-create-theme((
-/// 	 'mode': 'dark',
-/// 	 'primary': $primary,
-/// 	 'secondary': $secondary,
-/// 	 'tertiary': $tertiary,
-/// 	 'info': $info,
-/// 	 'warn': $warn,
-/// 	 'critical': $critical,
-/// 	 'success': $success,
-/// 	 'font-color-light': $font-color-light,
-/// 	 'font-color-dark': $font-color-dark
+/// 		'mode': 'dark',
+/// 		'primary': $primary,
+/// 		'secondary': $secondary,
+/// 		'tertiary': $tertiary,
+/// 		'informational': $informational,
+/// 		'warn': $warn,
+/// 		'critical': $critical,
+/// 		'success': $success,
+/// 		'font-color-light': $font-color-light,
+/// 		'font-color-dark': $font-color-dark
 ///  	));
 ///
 @function daff-create-theme($config) {
@@ -86,7 +93,7 @@ $supported-theme-modes: (
 	$secondary: map.get($config, 'secondary');
 	$tertiary: map.get($config, 'tertiary');
 	$neutral: map.get($config, 'neutral');
-	$info: map.get($config, 'info');
+	$informational: map.get($config, 'informational');
 	$warn: map.get($config, 'warn');
 	$critical: map.get($config, 'critical');
 	$success: map.get($config, 'success');
@@ -94,29 +101,21 @@ $supported-theme-modes: (
 	$font-color-dark: map.get($config, 'font-color-dark');
 
 	$mode: if($mode == null, 'light', $mode);
-	@if $primary == null {
-		@error 'Primary color palette is required in daff-create-theme';
-	}
-	@if $secondary == null {
-		@error 'Secondary color palette is required in daff-create-theme';
-	}
-	@if $tertiary == null {
-		@error 'Tertiary color palette is required in daff-create-theme';
-	}
+	$verify: daff-verify-config($config);
 
 	$status-theme: daff-configure-theme-status(
 		$mode,
 		$warn,
 		$critical,
 		$success,
-		$info
+		$informational
 	);
 
 	@return (
 		'primary': $primary,
 		'secondary': $secondary,
 		'tertiary': $tertiary,
-		'info': map.get($status-theme, 'info'),
+		'informational': map.get($status-theme, 'informational'),
 		'warn': map.get($status-theme, 'warn'),
 		'critical': map.get($status-theme, 'critical'),
 		'success': map.get($status-theme, 'success'),
@@ -131,7 +130,7 @@ $supported-theme-modes: (
 /// @param {Color|null} $warn - Warning color palette
 /// @param {Color|null} $critical - Critical/error color palette
 /// @param {Color|null} $success - Success color palette
-/// @param {Color|null} $info - Informational color palette
+/// @param {Color|null} $informational - Informational color palette
 /// @return {Map} Map containing status color configurations
 ///
 @function daff-configure-theme-status(
@@ -139,37 +138,26 @@ $supported-theme-modes: (
 	$warn,
 	$critical,
 	$success,
-	$info
+	$informational
 ) {
 	$error-msg: 'is not a valid theme mode - valid modes:';
 	@if (not map.has-key($supported-theme-modes, $mode)) {
 		@error '`#{$mode}` `#{$error-msg}` `#{map-keys($supported-theme-modes)}`';
 	}
-	@if ($warn == null and $mode == 'dark') {
-		$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 50);
+	$default-hue: if($mode == 'dark', 50, 60);
+	@if ($warn == null) {
+		$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, $default-hue);
 	}
-	@if ($critical == null and $mode == 'dark') {
-		$critical: configure-palette.daff-configure-palette(palette.$daff-red, 50);
+	@if ($critical == null) {
+		$critical: configure-palette.daff-configure-palette(palette.$daff-red, $default-hue);
 	}
-	@if ($success == null and $mode == 'dark') {
-		$success: configure-palette.daff-configure-palette(palette.$daff-green, 50);
+	@if ($success == null) {
+		$success: configure-palette.daff-configure-palette(palette.$daff-green, $default-hue);
 	}
-	@if ($info == null and $mode == 'dark') {
-		$info: configure-palette.daff-configure-palette(palette.$daff-neutral, 50);
+	@if ($informational == null) {
+		$informational: configure-palette.daff-configure-palette(palette.$daff-neutral, $default-hue);
 	}
-	@if ($warn == null and $mode == 'light') {
-		$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 60);
-	}
-	@if ($critical == null and $mode == 'light') {
-		$critical: configure-palette.daff-configure-palette(palette.$daff-red, 60);
-	}
-	@if ($success == null and $mode == 'light') {
-		$success: configure-palette.daff-configure-palette(palette.$daff-green, 60);
-	}
-	@if ($info == null and $mode == 'light') {
-		$info: configure-palette.daff-configure-palette(palette.$daff-neutral, 60);
-	}
-	@return ('success': $success, 'warn': $warn, 'critical': $critical, 'info': $info);
+	@return ('success': $success, 'warn': $warn, 'critical': $critical, 'informational': $informational);
 }
 
 /// @access private
@@ -193,4 +181,83 @@ $supported-theme-modes: (
 		'font-color-dark': if($font-color-dark != null, $font-color-dark, map.get($core, 'font-color-dark')),
 	));
 	@return $core;
+}
+
+/// @access private
+/// Validates the configuration map for theme creation
+///
+/// @param {Map} $config - The theme configuration map to validate
+/// @return {Boolean} True if the configuration is valid
+/// @throws Will throw an error if the configuration is invalid
+///
+@function daff-verify-config($config) {
+	$required-keys: ('mode', 'primary', 'secondary', 'tertiary');
+	$valid-keys: (
+		'mode',
+		'primary',
+		'secondary',
+		'tertiary',
+		'neutral',
+		'informational',
+		'warn',
+		'critical',
+		'success',
+		'font-color-light',
+		'font-color-dark'
+	);
+	@each $key in $required-keys {
+		@if not map.has-key($config, $key) {
+			@error 'The `#{$key}` key is required.';
+		}
+	}
+	@each $key in map.keys($config) {
+		@if not list.index($valid-keys, $key) {
+			@error 'The `#{$key}` key is not valid.';
+		}
+		$value: map.get($config, $key);
+		@if $key == 'mode' {
+			$error-msg: 'is not a valid theme mode - valid modes:';
+			@if (not map.has-key($supported-theme-modes, $value)) {
+				@error '`#{$value}` `#{$error-msg}` `#{map-keys($supported-theme-modes)}`';
+			}
+		} @else if $key == 'font-color-light' or $key == 'font-color-dark' {
+			@if not daff-is-valid-color($value) {
+				@error 'The `#{$key}` key must be a valid color value.';
+			}
+		} @else {
+			@if not daff-is-valid-palette($value) {
+				@error 'The `#{$key}` key must be a valid color palette.';
+			}
+		}
+	}
+	@return true;
+}
+
+/// @access private
+/// Checks if a value is a properly configured color palette map
+///
+/// @param {Any} $value - The palette to check
+/// @return {Boolean} True if the value is a valid configured palette, false otherwise
+///
+@function daff-is-valid-palette($value) {
+	@if meta.type-of($value) != 'map' {
+		@return false;
+	}
+	@if not map.has-key($value, 'default') or not daff-is-valid-color(map.get($value, 'default')) {
+		@return false;
+	}
+	@return true;
+}
+
+/// @access private
+/// Checks if a value is a color
+///
+/// @param {Any} $value - The value to check
+/// @return {Boolean} True if the value is a valid color, false otherwise
+///
+@function daff-is-valid-color($value) {
+	@if meta.type-of($value) != 'color' {
+		@return false;
+	}
+	@return true;
 }

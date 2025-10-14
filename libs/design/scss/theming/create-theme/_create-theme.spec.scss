@@ -10,7 +10,7 @@
 	$secondary: configure-palette.daff-configure-palette(palette.$daff-purple, 60);
 	$tertiary: configure-palette.daff-configure-palette(palette.$daff-turquoise, 60);
 	$neutral: configure-palette.daff-configure-palette(palette.$daff-neutral, 50);
-	$info: configure-palette.daff-configure-palette(palette.$daff-blue, 40);
+	$informational: configure-palette.daff-configure-palette(palette.$daff-blue, 40);
 	$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 40);
 	$critical: configure-palette.daff-configure-palette(palette.$daff-red, 40);
 	$success: configure-palette.daff-configure-palette(palette.$daff-green, 40);
@@ -79,7 +79,7 @@
 			'secondary': $secondary,
 			'tertiary': $tertiary,
 			'neutral': $neutral,
-			'info': $info,
+			'informational': $informational,
 			'warn': $warn,
 			'critical': $critical,
 			'success': $success,
@@ -91,7 +91,7 @@
 		@include assert-equal(map.get($theme, 'primary'), $primary);
 		@include assert-equal(map.get($theme, 'secondary'), $secondary);
 		@include assert-equal(map.get($theme, 'tertiary'), $tertiary);
-		@include assert-equal(map.get($theme, 'info'), $info);
+		@include assert-equal(map.get($theme, 'informational'), $informational);
 		@include assert-equal(map.get($theme, 'warn'), $warn);
 		@include assert-equal(map.get($theme, 'critical'), $critical);
 		@include assert-equal(map.get($theme, 'success'), $success);
@@ -115,7 +115,9 @@
 		);
 		$theme: daff-create-theme($config);
 
-		@include assert-equal(map.get($theme, 'info'), configure-palette.daff-configure-palette(palette.$daff-neutral, 60));
+		@include assert-equal(
+			map.get($theme, 'informational'), configure-palette.daff-configure-palette(palette.$daff-neutral, 60)
+		);
 		@include assert-equal(map.get($theme, 'warn'), configure-palette.daff-configure-palette(palette.$daff-bronze, 60));
 		@include assert-equal(map.get($theme, 'critical'), configure-palette.daff-configure-palette(palette.$daff-red, 60));
 		@include assert-equal(map.get($theme, 'success'), configure-palette.daff-configure-palette(palette.$daff-green, 60));

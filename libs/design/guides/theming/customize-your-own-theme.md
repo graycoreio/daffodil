@@ -42,14 +42,32 @@ $app-tertiary-dark: daff-theme.daff-configure-palette(palette.$app-purple, 50);
 ```
 
 ## Define themes
-Use the `daff-create-theme` function to to define light and dark themes.
+Use the `daff-create-theme` function to define light and dark themes. This function accepts a single map parameter with configuration options.
 
-| Argument | Description                              |
-| -------- | ---------------------------------------- |
-| `$primary` |The configured primary palette.         |
-| `$secondary` | The configured secondary palette.    |
-| `$tertiary` | The configured tertiary palette.      |
-| `$mode` | The theme mode, either `light` or `dark`. |
+| Parameter | Description |
+| -------- | ----------- |
+| `$config` | A map containing theme configuration |
+
+### Required keys in the configuration map:
+
+| Key | Description |
+| -------- | ----------- |
+| `'primary'` | The configured primary palette (required) |
+| `'secondary'` | The configured secondary palette (required) |
+| `'tertiary'` | The configured tertiary palette (required) |
+
+### Optional keys in the configuration map:
+
+| Key | Description |
+| -------- | ----------- |
+| `'mode'` | Theme mode ('light' or 'dark'). Defaults to 'light' if not provided |
+| `'neutral'` | The neutral color palette (optional) |
+| `'info'` | The informational color palette (optional) |
+| `'warn'` | The warning color palette (optional) |
+| `'critical'` | The critical/error color palette (optional) |
+| `'success'` | The success color palette (optional) |
+| `'font-color-light'` | The light font color (optional) |
+| `'font-color-dark'` | The dark font color (optional) |
 
 ```scss
 @use '@daffodil/design/scss/theme' as daff-theme;
@@ -59,17 +77,31 @@ $app-primary: daff-theme.daff-configure-palette(palette.$app-blue, 60);
 $app-secondary: daff-theme.daff-configure-palette(palette.$app-green, 60);
 $app-tertiary: daff-theme.daff-configure-palette(palette.$app-purple, 60);
 
-$theme: daff-theme.daff-create-theme(
-  ('primary': $app-primary, 'secondary': $app-secondary, 'tertiary': $app-tertiary, 'mode': 'light')
-);
+// Create light theme with required parameters
+$theme: daff-theme.daff-create-theme((
+  'primary': $app-primary,
+  'secondary': $app-secondary,
+  'tertiary': $app-tertiary,
+  'mode': 'light'
+));
 
 $app-primary-dark: daff-theme.daff-configure-palette(palette.$app-blue, 50);
 $app-secondary-dark: daff-theme.daff-configure-palette(palette.$app-green, 50);
 $app-tertiary-dark: daff-theme.daff-configure-palette(palette.$app-purple, 50);
 
-$theme-dark: daff-theme.daff-create-theme(
-  ('primary': $app-primary-dark, 'secondary': $app-secondary-dark, 'tertiary': $app-tertiary-dark, 'mode': 'light')
-);
+// Create dark theme with additional optional parameters
+$theme-dark: daff-theme.daff-create-theme((
+  'primary': $app-primary-dark,
+  'secondary': $app-secondary-dark,
+  'tertiary': $app-tertiary-dark,
+  'mode': 'dark',
+  'info': daff-theme.daff-configure-palette(palette.$app-blue, 40),
+  'warn': daff-theme.daff-configure-palette(palette.$app-orange, 40),
+  'critical': daff-theme.daff-configure-palette(palette.$app-red, 40),
+  'success': daff-theme.daff-configure-palette(palette.$app-green, 40),
+  'font-color-light': daff-theme.daff-color(palette.$app-neutral, 10),
+  'font-color-dark': daff-theme.daff-color(palette.$app-neutral, 100)
+));
 ```
 
 ## Apply themes
