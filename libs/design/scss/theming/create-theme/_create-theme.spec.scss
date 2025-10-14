@@ -1,8 +1,8 @@
 @use 'true' as *;
 @use './create-theme' as *;
-@use './color-palettes' as palette;
-@use './get-color';
-@use './configure-palette';
+@use '../color-palettes' as palette;
+@use '../get-color';
+@use '../configure-palette';
 @use 'sass:map';
 
 @include describe('daff-create-theme') {

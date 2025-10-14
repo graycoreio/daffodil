@@ -3,7 +3,7 @@
 @use '../../get-color';
 @use '../../color-palettes' as palette;
 @use '../../configure-palette';
-@use '../../create-theme' as ct;
+@use '../../create-theme/create-theme' as ct;
 
 @include describe('daff-text-contrast') {
 	$light-theme: ct.daff-create-theme(

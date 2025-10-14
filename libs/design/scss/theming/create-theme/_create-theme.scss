@@ -1,9 +1,9 @@
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:meta';
-@use 'configure-palette';
-@use 'color-palettes' as palette;
-@use 'get-color';
+@use '../configure-palette';
+@use '../color-palettes' as palette;
+@use '../get-color';
 
 $daff-light-theme: (
 	'mode': 'light',
@@ -88,6 +88,8 @@ $supported-theme-modes: (
 ///  	));
 ///
 @function daff-create-theme($config) {
+	$verify: daff-verify-config($config);
+
 	$mode: map.get($config, 'mode');
 	$primary: map.get($config, 'primary');
 	$secondary: map.get($config, 'secondary');
@@ -101,7 +103,6 @@ $supported-theme-modes: (
 	$font-color-dark: map.get($config, 'font-color-dark');
 
 	$mode: if($mode == null, 'light', $mode);
-	$verify: daff-verify-config($config);
 
 	$status-theme: daff-configure-theme-status(
 		$mode,
@@ -142,7 +143,7 @@ $supported-theme-modes: (
 ) {
 	$error-msg: 'is not a valid theme mode - valid modes:';
 	@if (not map.has-key($supported-theme-modes, $mode)) {
-		@error '`#{$mode}` `#{$error-msg}` `#{map-keys($supported-theme-modes)}`';
+		@error '`#{$mode}` #{$error-msg} #{map-keys($supported-theme-modes)}';
 	}
 	$default-hue: if($mode == 'dark', 50, 60);
 	@if ($warn == null) {
@@ -172,7 +173,7 @@ $supported-theme-modes: (
 @function daff-build-theme-core($mode, $neutral, $font-color-light, $font-color-dark) {
 	$error-msg: 'is not a valid theme mode - valid modes:';
 	@if (not map.has-key($supported-theme-modes, $mode)) {
-		@error '`#{$mode}` `#{$error-msg}` `#{map-keys($supported-theme-modes)}`';
+		@error '`#{$mode}` #{$error-msg} #{map-keys($supported-theme-modes)}';
 	}
 	$core: map.get($supported-theme-modes, $mode);
 	$core: map.merge($core, (
@@ -191,7 +192,7 @@ $supported-theme-modes: (
 /// @throws Will throw an error if the configuration is invalid
 ///
 @function daff-verify-config($config) {
-	$required-keys: ('mode', 'primary', 'secondary', 'tertiary');
+	$required-keys: ('primary', 'secondary', 'tertiary');
 	$valid-keys: (
 		'mode',
 		'primary',
@@ -218,7 +219,7 @@ $supported-theme-modes: (
 		@if $key == 'mode' {
 			$error-msg: 'is not a valid theme mode - valid modes:';
 			@if (not map.has-key($supported-theme-modes, $value)) {
-				@error '`#{$value}` `#{$error-msg}` `#{map-keys($supported-theme-modes)}`';
+				@error '`#{$value}` #{$error-msg} #{map-keys($supported-theme-modes)}';
 			}
 		} @else if $key == 'font-color-light' or $key == 'font-color-dark' {
 			@if not daff-is-valid-color($value) {
