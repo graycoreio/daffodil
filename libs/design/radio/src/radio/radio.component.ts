@@ -17,13 +17,14 @@ let radioUniqueId = 0;
   templateUrl: './radio.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'role': 'radio',
+    role: 'radio',
     '[class.focused]': 'focused',
     '[class.disabled]': 'disabled',
     '(focus)': 'onFocus()',
     '(blur)': 'onBlur()',
-  }
+  },
 })
+
 export class DaffRadioComponent implements OnInit {
 
   /**

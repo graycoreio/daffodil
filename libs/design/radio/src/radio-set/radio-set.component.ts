@@ -9,9 +9,10 @@ import {
   templateUrl: './radio-set.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'role': 'radiogroup',
-  }
+    role: 'radiogroup',
+  },
 })
+
 export class DaffRadioSetComponent {
 
   @Input() name: string;
