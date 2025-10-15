@@ -48,7 +48,7 @@ describe('@daffodil/design/radio | DaffRadioComponent | Accessibility', () => {
   });
 
   it('should have a role of radio', () => {
-    expect(component.role).toBe('radio');
+    expect(fixture.debugElement.nativeElement.getAttribute('role')).toBe('radio');
   });
 
   it('should take `label` as an input', () => {
