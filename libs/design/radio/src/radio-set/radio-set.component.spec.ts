@@ -69,11 +69,8 @@ describe('@daffodil/design/radio | DaffRadioSetComponent | Defaults', () => {
   });
 
   it('should have a role of radiogroup', () => {
-    fixture.detectChanges(); 
-    
-    // Check the host element's 'role' attribute (defined in the 'host' property)
+    fixture.detectChanges();
     const roleAttribute = de.nativeElement.getAttribute('role');
-    
     expect(roleAttribute).toBe('radiogroup');
   });
 });
