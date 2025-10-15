@@ -48,10 +48,10 @@ describe('@daffodil/design/radio | DaffRadioComponent | Accessibility', () => {
   });
 
   it('should have a role of radio', () => {
-   fixture.detectChanges();
-   const radioDebugElement = fixture.debugElement.query(By.css('daff-radio'));
-   const roleAttribute = radioDebugElement.nativeElement.getAttribute('role');
-   expect(roleAttribute).toBe('radio');
+    fixture.detectChanges();
+    const radioDebugElement = fixture.debugElement.query(By.css('daff-radio'));
+    const roleAttribute = radioDebugElement.nativeElement.getAttribute('role');
+    expect(roleAttribute).toBe('radio');
   });
 
   it('should take `label` as an input', () => {
