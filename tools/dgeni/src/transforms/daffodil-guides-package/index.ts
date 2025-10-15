@@ -174,13 +174,13 @@ export const designDocsPackage = new Package('design-docs', [design])
       },
       outputPathTemplate: '${moduleFolder}.json',
     }, {
-			docTypes: ['searchIndex'],
-			getPath: (doc) => {
-				doc.moduleFolder = `${DAFF_DOCS_PATH}/search-index/${DAFF_DOCS_DESIGN_PATH}/${doc.id}`;
-				return doc.moduleFolder;
-			},
-			outputPathTemplate: '${moduleFolder}.json',
-		});
+      docTypes: ['searchIndex'],
+      getPath: (doc) => {
+        doc.moduleFolder = `${DAFF_DOCS_PATH}/search-index/${DAFF_DOCS_DESIGN_PATH}/${doc.id}`;
+        return doc.moduleFolder;
+      },
+      outputPathTemplate: '${moduleFolder}.json',
+    });
   })
   .config((computeIdsProcessor, idSanitizer: IdSanitizer) => {
     computeIdsProcessor.idTemplates.push({

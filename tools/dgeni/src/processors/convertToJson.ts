@@ -56,7 +56,7 @@ export class ConvertToJsonProcessor implements Processor {
         this.log.warn(this.createDocMessage('Title property expected', doc));
       }
 
-			if (doc.indexer) {
+      if (doc.indexer) {
         const { doc: indexedDoc, extraIndices } = doc.indexer(doc);
         const indexedDocs = [
           {
