@@ -44,7 +44,7 @@ describe('@daffodil/design/radio | DaffRadioComponent | Accessibility', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css('daff-radio')); 
+    de = fixture.debugElement.query(By.css('daff-radio'));
     component = de.componentInstance;
     radioInputDe = de.query(By.css('input[type="radio"]'));
     fixture.detectChanges();
@@ -56,7 +56,7 @@ describe('@daffodil/design/radio | DaffRadioComponent | Accessibility', () => {
 
   it('should have a role of radio', () => {
     const roleAttribute = radioInputDe.nativeElement.getAttribute('role');
-    expect(roleAttribute).toBe('radio'); 
+    expect(roleAttribute).toBe('radio');
   });
 
   it('should take `label` as an input', () => {
