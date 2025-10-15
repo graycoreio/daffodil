@@ -6,12 +6,8 @@ import {
 import {
   DaffArticleEncapsulatedDirective,
   DaffColorableDirective,
+  DaffOrientableDirective,
 } from '@daffodil/design';
-
-import {
-  DaffCardOrientation,
-  DaffCardOrientationEnum,
-} from './helpers/card-orientation';
 
 @Directive({
   selector: '[daffCardBase]',
@@ -21,22 +17,22 @@ import {
       directive: DaffColorableDirective,
       inputs: ['color'],
     },
+    {
+      directive: DaffOrientableDirective,
+      inputs: ['orientation'],
+    },
   ],
   host: {
-    '[class.vertical]': 'orientation === "vertical"',
-    '[class.horizontal]': 'orientation === "horizontal"',
     '[class.elevated]': 'elevated',
   },
 })
 export class DaffCardBaseDirective {
   /**
-   * The orientation of a card.
-   */
-  @Input({ transform: (value: DaffCardOrientation | null | undefined) => value || DaffCardOrientationEnum.Vertical })
-  orientation: DaffCardOrientation = DaffCardOrientationEnum.Vertical;
-
-  /**
    * Whether or not a card displays a shadow.
    */
   @Input() elevated = false;
+
+  constructor(private orientation: DaffOrientableDirective) {
+    this.orientation.defaultOrientation = 'vertical';
+  }
 }

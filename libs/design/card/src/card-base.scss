@@ -32,7 +32,7 @@ $card-inner-border-radius: calc(#{$card-border-radius} - 1px);
 		}
 	}
 
-	&.vertical {
+	&.daff-vertical {
 		flex-direction: column;
 
 		.daff-card__image {
@@ -44,7 +44,7 @@ $card-inner-border-radius: calc(#{$card-border-radius} - 1px);
 		}
 	}
 
-	&.horizontal {
+	&.daff-horizontal {
 		flex-wrap: wrap;
 
 		@include layout.breakpoint(mobile) {
