@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
 import {
   ComponentFixture,
   waitForAsync,
@@ -26,6 +29,8 @@ describe('@daffodil/design/radio | DaffRadioComponent | Accessibility', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapper: WrapperComponent;
   let component: DaffRadioComponent;
+  let de: DebugElement;
+  let radioInputDe: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -39,7 +44,9 @@ describe('@daffodil/design/radio | DaffRadioComponent | Accessibility', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    component = fixture.debugElement.query(By.css('daff-radio')).componentInstance;
+    de = fixture.debugElement.query(By.css('daff-radio')); 
+    component = de.componentInstance;
+    radioInputDe = de.query(By.css('input[type="radio"]'));
     fixture.detectChanges();
   });
 
@@ -48,10 +55,8 @@ describe('@daffodil/design/radio | DaffRadioComponent | Accessibility', () => {
   });
 
   it('should have a role of radio', () => {
-    fixture.detectChanges();
-    const radioDebugElement = fixture.debugElement.query(By.css('daff-radio'));
-    const roleAttribute = radioDebugElement.nativeElement.getAttribute('role');
-    expect(roleAttribute).toBe('radio');
+    const roleAttribute = radioInputDe.nativeElement.getAttribute('role');
+    expect(roleAttribute).toBe('radio'); 
   });
 
   it('should take `label` as an input', () => {
