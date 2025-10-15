@@ -75,7 +75,7 @@ const base = new Package('daffodil-guides-base', [daffodilBasePackage])
     readFilesProcessor.fileReaders.push(guideFileReader, indexFileReader);
   })
   .config((indexable: IndexableProcessor) => {
-    indexable.docTypes.push('guide');
+    indexable.docTypes.push('guide', 'package-guide');
   })
   .config((computeIdsProcessor, idSanitizer: IdSanitizer) => {
     computeIdsProcessor.idTemplates.push({
@@ -173,7 +173,14 @@ export const designDocsPackage = new Package('design-docs', [design])
         return doc.moduleFolder;
       },
       outputPathTemplate: '${moduleFolder}.json',
-    });
+    }, {
+			docTypes: ['searchIndex'],
+			getPath: (doc) => {
+				doc.moduleFolder = `${DAFF_DOCS_PATH}/search-index/${DAFF_DOCS_DESIGN_PATH}/${doc.id}`;
+				return doc.moduleFolder;
+			},
+			outputPathTemplate: '${moduleFolder}.json',
+		});
   })
   .config((computeIdsProcessor, idSanitizer: IdSanitizer) => {
     computeIdsProcessor.idTemplates.push({

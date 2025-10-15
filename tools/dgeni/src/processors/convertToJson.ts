@@ -56,17 +56,7 @@ export class ConvertToJsonProcessor implements Processor {
         this.log.warn(this.createDocMessage('Title property expected', doc));
       }
 
-      doc.renderedContent = JSON.stringify({
-        ...this.extraFields.reduce((extras, field) => {
-          extras[field] = doc[field];
-          return extras;
-        }, {}),
-        ...serializedDoc,
-      }, null, 2);
-
-      acc.push(doc);
-
-      if (doc.indexer) {
+			if (doc.indexer) {
         const { doc: indexedDoc, extraIndices } = doc.indexer(doc);
         const indexedDocs = [
           {
@@ -86,10 +76,20 @@ export class ConvertToJsonProcessor implements Processor {
         acc.push(...indexedDocs);
       }
 
+      doc.renderedContent = JSON.stringify({
+        ...this.extraFields.reduce((extras, field) => {
+          extras[field] = doc[field];
+          return extras;
+        }, {}),
+        ...serializedDoc,
+      }, null, 2);
+
+      acc.push(doc);
+
       return acc;
     }, []);
 
-    return dooks;//
+    return dooks;
   }
 };
 
