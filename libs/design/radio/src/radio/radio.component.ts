@@ -20,8 +20,6 @@ let radioUniqueId = 0;
     role: 'radio',
     '[class.focused]': 'focused',
     '[class.disabled]': 'disabled',
-    '(focus)': 'onFocus()',
-    '(blur)': 'onBlur()',
   },
 })
 
