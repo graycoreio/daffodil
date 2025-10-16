@@ -4,7 +4,12 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
-import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
+import {
+  DaffExternallyResolvableUrl,
+  DaffExternalRouterClientError,
+  DaffExternalRouterNotFoundError,
+  DaffExternalRouterServerError,
+} from '@daffodil/external-router';
 import { DaffExternalRouterDriverInterface } from '@daffodil/external-router/driver';
 import { MagentoUrlResolverResponse } from '@daffodil/external-router/driver/magento';
 
@@ -35,6 +40,23 @@ implements DaffExternalRouterDriverInterface {
           url,
         },
       })
-      .pipe(map(response => transformResolutionToResolvableUrlv242(response.data.urlResolver)));
+      .pipe(
+        map(response => transformResolutionToResolvableUrlv242(response.data.urlResolver)),
+        map((resolution) => {
+          if (!resolution || resolution.code === 404) {
+            throw new DaffExternalRouterNotFoundError();
+          }
+
+          if (resolution.code >= 400 && resolution.code < 500) {
+            throw new DaffExternalRouterClientError();
+          }
+
+          if (resolution.code >= 500) {
+            throw new DaffExternalRouterServerError();
+          }
+
+          return resolution;
+        }),
+      );
   }
 }

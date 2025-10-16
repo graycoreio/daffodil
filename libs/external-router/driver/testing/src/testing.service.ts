@@ -6,17 +6,20 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import {
   Observable,
   of,
+  throwError,
 } from 'rxjs';
 
 import {
   daffUriTruncateLeadingSlash,
   daffUriTruncateQueryFragment,
 } from '@daffodil/core/routing';
-import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 import {
-  DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION,
-  DaffExternalRouterDriverInterface,
-} from '@daffodil/external-router/driver';
+  DaffExternallyResolvableUrl,
+  DaffExternalRouterClientError,
+  DaffExternalRouterNotFoundError,
+  DaffExternalRouterServerError,
+} from '@daffodil/external-router';
+import { DaffExternalRouterDriverInterface } from '@daffodil/external-router/driver';
 
 import {
   DaffExternalRouterDriverTestingConfig,
@@ -44,19 +47,33 @@ implements DaffExternalRouterDriverInterface {
   resolve(url: string): Observable<DaffExternallyResolvableUrl> {
     const truncatedUrl = daffUriTruncateLeadingSlash(daffUriTruncateQueryFragment(url));
 
-    if (!this.testingConfiguration[truncatedUrl]) {
-      return of(DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION);
+    const configuredResolution = this.testingConfiguration[truncatedUrl];
+
+    if (!configuredResolution) {
+      return throwError(() => new DaffExternalRouterNotFoundError());
     }
 
-    if((typeof this.testingConfiguration[truncatedUrl]) === 'string') {
-      return of({
+    const resolution: DaffExternallyResolvableUrl = typeof configuredResolution === 'string'
+      ? {
         id: faker.string.uuid(),
         url: truncatedUrl,
-        type: <string>this.testingConfiguration[truncatedUrl],
+        type: configuredResolution,
         code: 200,
-      });
+      }
+      : configuredResolution;
+
+    if (resolution.code === 404) {
+      return throwError(() => new DaffExternalRouterNotFoundError());
     }
 
-    return of(<DaffExternallyResolvableUrl>this.testingConfiguration[truncatedUrl]);
+    if (resolution.code >= 400 && resolution.code < 500) {
+      return throwError(() => new DaffExternalRouterClientError());
+    }
+
+    if (resolution.code >= 500) {
+      return throwError(() => new DaffExternalRouterServerError());
+    }
+
+    return of(resolution);
   }
 }

@@ -23,7 +23,6 @@ import { DaffExternalRouterNotFoundError } from '../errors/not-found-error';
 import { DaffExternalRouterPermanentRedirectError } from '../errors/permanent-redirect';
 import { DaffExternalRouterTemporaryRedirectError } from '../errors/temporary-redirect';
 import { daffConvertToPath } from '../helper/convert-to-path';
-import { processErrors } from '../processors/process-errors';
 import { processRedirects } from '../processors/process-redirect';
 
 /**
@@ -36,7 +35,6 @@ export const daffExternalMatcherTypeGuard = (type: string) => (route: DaffRouteW
   const router = inject(Router);
   const config: DaffExternalRouterConfiguration = inject(DAFF_EXTERNAL_ROUTER_CONFIG);
   return inject(DaffExternalRouterDriver).resolve(daffConvertToPath(segments)).pipe(
-    map(processErrors),
     map(processRedirects),
     map((r) => ({ result: r, isMatch: type === r.type })),
     tap((r) => {
@@ -64,9 +62,7 @@ export const daffExternalMatcherTypeGuard = (type: string) => (route: DaffRouteW
       return of(false);
     }),
     //Otherwise something went horribly wrong and we need to bail out.
-    catchError((error) => of(router.parseUrl(config.failedResolutionPath))),
+    catchError(() => of(router.parseUrl(config.failedResolutionPath))),
     catchError(() => of(false)),
   );
 };
-
-

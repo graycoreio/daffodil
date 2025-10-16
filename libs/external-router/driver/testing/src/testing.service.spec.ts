@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { TestScheduler } from 'rxjs/testing';
 
+import { DaffExternalRouterNotFoundError } from '@daffodil/external-router';
+
 import { DaffExternalRouterDriverTestingConfig } from './config';
 import { DaffExternalRouterDriverTestingModule } from './testing.module';
 import { DaffExternalRouterTestingDriver } from './testing.service';
-import { DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION } from '../../src/not-found-resolution';
 
 describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDriver', () => {
   let service: DaffExternalRouterTestingDriver;
@@ -44,15 +45,16 @@ describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDr
     });
   });
 
-  it('should return a 404 result if the route lookup fails', () => {
+  it('should throw a not found error if the route lookup fails', () => {
     setupTest();
     scheduler.run(helpers => {
       const { expectObservable } = helpers;
-      const expected = '(a|)';
+      const expected = '#';
 
       expectObservable(service.resolve('/test')).toBe(
         expected,
-        { a: DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION },
+        undefined,
+        new DaffExternalRouterNotFoundError(),
       );
     });
   });
