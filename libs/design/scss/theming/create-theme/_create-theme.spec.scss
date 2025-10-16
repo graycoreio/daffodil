@@ -14,13 +14,11 @@
 	$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 40);
 	$critical: configure-palette.daff-configure-palette(palette.$daff-red, 40);
 	$success: configure-palette.daff-configure-palette(palette.$daff-green, 40);
-	$font-light: get-color.daff-color(palette.$daff-neutral, 10);
-	$font-dark: get-color.daff-color(palette.$daff-neutral, 100);
+	$text-color-inverse: get-color.daff-color(palette.$daff-neutral, 10);
+	$text-color-default: get-color.daff-color(palette.$daff-neutral, 100);
 
 	$default-daff-light-theme: (
 		'mode': 'light',
-		'font-color-light': get-color.daff-color(palette.$daff-neutral, 0),
-		'font-color-dark': get-color.daff-color(palette.$daff-neutral, 110),
 		'base': get-color.daff-color(palette.$daff-neutral, 0),
 		'base-contrast': get-color.daff-color(palette.$daff-neutral, 110),
 		'white': get-color.daff-color(palette.$daff-neutral, 0),
@@ -29,8 +27,6 @@
 	);
 	$daff-dark-theme: (
 		'mode': 'dark',
-		'font-color-light': get-color.daff-color(palette.$daff-neutral, 0),
-		'font-color-dark': get-color.daff-color(palette.$daff-neutral, 110),
 		'base': get-color.daff-color(palette.$daff-neutral, 100),
 		'base-contrast': get-color.daff-color(palette.$daff-neutral, 0),
 		'white': get-color.daff-color(palette.$daff-neutral, 0),
@@ -83,8 +79,8 @@
 			'warn': $warn,
 			'critical': $critical,
 			'success': $success,
-			'font-color-light': $font-light,
-			'font-color-dark': $font-dark
+			'text-color-inverse': $text-color-inverse,
+			'text-color-default': $text-color-default
 		);
 		$theme: daff-create-theme($config);
 
@@ -95,13 +91,14 @@
 		@include assert-equal(map.get($theme, 'warn'), $warn);
 		@include assert-equal(map.get($theme, 'critical'), $critical);
 		@include assert-equal(map.get($theme, 'success'), $success);
+		@include assert-equal(map.get($theme, 'text-color-default'), $text-color-default);
+		@include assert-equal(map.get($theme, 'text-color-inverse'), $text-color-inverse);
+		@include assert-equal(map.get($theme, 'neutral'), $neutral);
 
 		@include assert-true(map.has-key($theme, 'core'));
 		$core: map.get($theme, 'core');
 		$expected-core: map.merge($default-daff-light-theme, (
 			'neutral': $neutral,
-			'font-color-light': $font-light,
-			'font-color-dark': $font-dark
 		));
 		@include assert-equal($core, $expected-core);
 	}

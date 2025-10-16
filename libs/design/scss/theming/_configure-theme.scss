@@ -28,10 +28,10 @@ $supported-theme-modes: (
 	'dark': $daff-dark-theme
 );
 
-/// Deprecated: Use `daff-create-theme` instead.
+/// @deprecated Use `daff-create-theme` instead.
 /// Create a theme object given some initial settings.
 ///
-/// Sets light and dark mode defaults for `$informational`, `$warn`, `$critical`, and `$success`
+/// Sets light and dark mode defaults for `$info`, `$warn`, `$critical`, and `$success`
 /// that can be overriden by using the `daff-configure-theme-status` function.
 ///
 /// @group Theming
@@ -48,19 +48,19 @@ $supported-theme-modes: (
 	$tertiary,
 	$mode: 'light'
 ) {
-	$informational: null;
+	$info: null;
 	$warn: null;
 	$critical: null;
 	$success: null;
 
 	@if($mode == 'dark') {
-		$informational: configure-palette.daff-configure-palette(palette.$daff-neutral, 50);
+		$info: configure-palette.daff-configure-palette(palette.$daff-neutral, 50);
 		$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 50);
 		$critical: configure-palette.daff-configure-palette(palette.$daff-red, 50);
 		$success: configure-palette.daff-configure-palette(palette.$daff-green, 50);
 	}
 	@if($mode == 'light') {
-		$informational: configure-palette.daff-configure-palette(palette.$daff-neutral, 60);
+		$info: configure-palette.daff-configure-palette(palette.$daff-neutral, 60);
 		$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 60);
 		$critical: configure-palette.daff-configure-palette(palette.$daff-red, 60);
 		$success: configure-palette.daff-configure-palette(palette.$daff-green, 60);
@@ -70,7 +70,7 @@ $supported-theme-modes: (
 		'primary': $primary,
 		'secondary': $secondary,
 		'tertiary': $tertiary,
-		'informational': $informational,
+		'informational': $info,
 		'warn':  $warn,
 		'critical': $critical,
 		'success': $success,
@@ -83,25 +83,25 @@ $supported-theme-modes: (
 /// @group Theming
 ///
 /// @example scss
-/// 	$informational: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
+/// 	$info: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
 /// 	$warn: configure-palette.daff-configure-palette(palette.$daff-bronze, 60);
 /// 	$critical: configure-palette.daff-configure-palette(palette.$daff-red, 60);
 /// 	$success: configure-palette.daff-configure-palette(palette.$daff-green, 60);
-/// 	$theme: daff-configure-theme-status($informational, $warn, $critical, $success);
+/// 	$theme: daff-configure-theme-status($info, $warn, $critical, $success);
 ///
 @function daff-configure-theme-status(
 	$theme,
 	$warn,
 	$critical,
 	$success,
-	$informational,
+	$info,
 ) {
 	@debug $theme;
 	@return map.merge($theme, (
 		'warn':  $warn,
 		'critical': $critical,
 		'success': $success,
-		'informational': $informational,
+		'informational': $info,
 	));
 }
 
