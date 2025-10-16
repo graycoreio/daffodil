@@ -38,4 +38,5 @@ jobs:
           appId: ${{ secrets.ALGOLIA_APP_ID }}
           apiKey: ${{ secrets.ALGOLIA_API_KEY }}
           indexName: ${{ github.event_name == 'push' && vars.ALGOLIA_PROD_INDEX || vars.ALGOLIA_NEXT_INDEX }}
-          dir: ${{ github.workspace }}/dist/docs-assets/docs/search-index
+          dir: ${{ github.workspace }}/dist/docs-assets/docs
+          glob: '**/search-index/**/*'
