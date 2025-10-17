@@ -30,7 +30,6 @@ describe('@daffodil/design/radio | DaffRadioComponent | Accessibility', () => {
   let wrapper: WrapperComponent;
   let component: DaffRadioComponent;
   let de: DebugElement;
-  let radioInputDe: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
