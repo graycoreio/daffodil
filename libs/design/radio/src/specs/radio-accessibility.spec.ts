@@ -46,7 +46,6 @@ describe('@daffodil/design/radio | DaffRadioComponent | Accessibility', () => {
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('daff-radio'));
     component = de.componentInstance;
-    radioInputDe = de.query(By.css('input[type="radio"]'));
     fixture.detectChanges();
   });
 

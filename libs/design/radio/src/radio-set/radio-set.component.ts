@@ -19,9 +19,4 @@ export class DaffRadioSetComponent {
 
   constructor() { }
 
-  /**
-   * @docs-private
-   */
-  readonly role = 'radiogroup';
-
 }
