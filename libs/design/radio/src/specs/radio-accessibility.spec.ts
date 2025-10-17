@@ -54,7 +54,7 @@ describe('@daffodil/design/radio | DaffRadioComponent | Accessibility', () => {
   });
 
   it('should have a role of radio', () => {
-    const roleAttribute = radioInputDe.nativeElement.getAttribute('role');
+    const roleAttribute = de.nativeElement.getAttribute('role');
     expect(roleAttribute).toBe('radio');
   });
 
