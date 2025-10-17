@@ -3,9 +3,10 @@
 @forward 'contrast';
 @forward 'illuminate/illuminate';
 @forward 'configure-palette';
-@forward 'configure-theme';
+@forward 'create-theme/create-theme';
 @forward 'light-dark';
 @forward 'daff-theme';
 @forward 'get-palette';
 @forward 'get-base-color';
 @forward 'get-theme-mode';
+@forward 'configure-theme' show daff-configure-theme;

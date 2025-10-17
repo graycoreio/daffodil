@@ -3,13 +3,13 @@
 /// Returns a light and dark color.
 ///
 /// If you are not using Daffodil's default theme, a theme **must** be
-/// created with `daff-configure-theme` before this function can be used.
+/// created with `daff-create-theme` before this function can be used.
 /// See the [customize your own theme](daff.io/docs/design/theming/customize-your-own-theme)
 /// guide for more information.
 ///
 /// @group Theming
 ///
-/// @param {Map} $theme — A theme map created with the `daff-configure-theme` function.
+/// @param {Map} $theme — A theme map created with the `daff-create-theme` function.
 ///
 /// @return {List} — Returns a list of colors
 ///

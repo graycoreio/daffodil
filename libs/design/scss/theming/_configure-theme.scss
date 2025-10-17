@@ -28,6 +28,7 @@ $supported-theme-modes: (
 	'dark': $daff-dark-theme
 );
 
+/// @deprecated Use `daff-create-theme` instead.
 /// Create a theme object given some initial settings.
 ///
 /// Sets light and dark mode defaults for `$info`, `$warn`, `$critical`, and `$success`

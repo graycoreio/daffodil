@@ -5,13 +5,17 @@ $primary: daff-theme.daff-configure-palette(daff-theme.$daff-blue, 60);
 $secondary: daff-theme.daff-configure-palette(daff-theme.$daff-purple, 60);
 $tertiary: daff-theme.daff-configure-palette(daff-theme.$daff-turquoise, 60);
 
-$theme: daff-theme.daff-configure-theme($primary, $secondary, $tertiary, 'light');
+$theme: daff-theme.daff-create-theme(
+	('primary': $primary, 'secondary': $secondary, 'tertiary': $tertiary, 'mode': 'light')
+);
 
 $primary-dark: daff-theme.daff-configure-palette(daff-theme.$daff-blue, 50);
 $secondary-dark: daff-theme.daff-configure-palette(daff-theme.$daff-purple, 50);
 $tertiary-dark: daff-theme.daff-configure-palette(daff-theme.$daff-turquoise, 50);
 
-$theme-dark: daff-theme.daff-configure-theme($primary-dark, $secondary-dark, $tertiary-dark, 'dark');
+$theme-dark: daff-theme.daff-create-theme(
+	('primary': $primary-dark, 'secondary': $secondary-dark, 'tertiary': $tertiary-dark, 'mode': 'dark')
+);
 
 $black: daff-theme.daff-map-get($theme, 'core', 'black');
 $white: daff-theme.daff-map-get($theme, 'core', 'white');

@@ -25,8 +25,8 @@ Use the `daff-configure-palette` function to configure each palette and set a de
 
 | Argument         | Description                                                                    |
 | ---------------- | ------------------------------------------------------------------------------ |
-| `$color-palette` | The Sass map of colors to use (e.g., $app-blue).                               |
-| `$hue`           | 	The hue number to select from the palette. Defaults to `60`.                  |
+| `$color-palette` | The Sass map of colors to use (e.g., $app-blue).                              |
+| `$hue`           | The hue number to select from the palette. Defaults to `60`.                  |
 
 ```scss
 @use '@daffodil/design/scss/theme' as daff-theme;
@@ -42,14 +42,34 @@ $app-tertiary-dark: daff-theme.daff-configure-palette(palette.$app-purple, 50);
 ```
 
 ## Define themes
-Use the `daff-configure-theme` function to to define light and dark themes.
+Use the `daff-create-theme` function to define light and dark themes. This function accepts a single map parameter with configuration options.
 
-| Argument | Description                              |
-| -------- | ---------------------------------------- |
-| `$primary` |The configured primary palette.         |
-| `$secondary` | The configured secondary palette.    |
-| `$tertiary` | The configured tertiary palette.      |
-| `$mode` | The theme mode, either `light` or `dark`. |
+| Parameter | Description |
+| -------- | ----------- |
+| `$config` | A map containing theme configuration |
+
+**Required keys in the configuration map:**
+
+| Key | Description |
+| -------- | ----------- |
+| `'primary'` | The configured primary palette |
+| `'secondary'` | The configured secondary palette |
+| `'tertiary'` | The configured tertiary palette |
+
+**Optional keys in the configuration map:**
+
+| Key | Description |
+| -------- | ----------- |
+| `'mode'` | Theme mode (`light` or `dark`). Defaults to `light` if not provided |
+| `'neutral'` | The neutral color palette |
+| `'info'` | The informational color palette |
+| `'warn'` | The warning color palette |
+| `'critical'` | The critical/error color palette |
+| `'success'` | The success color palette |
+| `'text-color-default'` | The default text color |
+| `'text-color-inverse'` | The inverse text color |
+
+**Example with required parameters only:**
 
 ```scss
 @use '@daffodil/design/scss/theme' as daff-theme;
@@ -59,13 +79,36 @@ $app-primary: daff-theme.daff-configure-palette(palette.$app-blue, 60);
 $app-secondary: daff-theme.daff-configure-palette(palette.$app-green, 60);
 $app-tertiary: daff-theme.daff-configure-palette(palette.$app-purple, 60);
 
-$theme: daff-theme.daff-configure-theme($app-primary, $app-secondary, $app-tertiary, 'light');
+$theme: daff-theme.daff-create-theme((
+  'mode': 'light'
+  'primary': $app-primary,
+  'secondary': $app-secondary,
+  'tertiary': $app-tertiary,
+));
+```
 
-$app-primary-dark: daff-theme.daff-configure-palette(palette.$app-blue, 50);
-$app-secondary-dark: daff-theme.daff-configure-palette(palette.$app-green, 50);
-$app-tertiary-dark: daff-theme.daff-configure-palette(palette.$app-purple, 50);
+**Example with optional parameters:**
 
-$theme-dark: daff-theme.daff-configure-theme($app-primary-dark, $app-secondary-dark, $app-tertiary-dark, 'dark');
+```scss
+@use '@daffodil/design/scss/theme' as daff-theme;
+@use 'app-color-palettes' as palette; // your palettes file
+
+$app-primary: daff-theme.daff-configure-palette(palette.$app-blue, 60);
+$app-secondary: daff-theme.daff-configure-palette(palette.$app-green, 60);
+$app-tertiary: daff-theme.daff-configure-palette(palette.$app-purple, 60);
+
+$theme: daff-theme.daff-create-theme((
+  'mode': 'light',
+  'primary': $app-primary,
+  'secondary': $app-secondary,
+  'tertiary': $app-tertiary,
+  'informational': daff-theme.daff-configure-palette(palette.$app-blue, 40),
+  'warn': daff-theme.daff-configure-palette(palette.$app-orange, 40),
+  'critical': daff-theme.daff-configure-palette(palette.$app-red, 40),
+  'success': daff-theme.daff-configure-palette(palette.$app-green, 40),
+  'text-color-default': daff-theme.daff-color(palette.$app-neutral, 10),
+  'text-color-inverse': daff-theme.daff-color(palette.$app-neutral, 100)
+));
 ```
 
 ## Apply themes
