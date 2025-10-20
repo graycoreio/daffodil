@@ -1,4 +1,6 @@
-@use './get-base-color' as *;
+@use 'sass:map';
+@use 'sass:list';
+@use '../get-base-color' as *;
 
 /// Returns a light and dark color.
 ///
@@ -21,6 +23,12 @@
 /// 	}
 ///
 @function daff-get-font-colors($theme) {
+	@if (map.get($theme, 'text-color-default')) {
+		@return (
+			map.get($theme, 'text-color-default'),
+			map.get($theme, 'text-color-inverse')
+		);
+	}
 	@return (
 		daff-get-base-color($theme, 'white'),
 		daff-get-base-color($theme, 'black')
