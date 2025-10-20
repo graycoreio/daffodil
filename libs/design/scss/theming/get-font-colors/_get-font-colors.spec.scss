@@ -63,7 +63,7 @@
 		@include assert-equal(list.nth($colors, 2), $default-dark);
 	}
 
-	@include it('falls back to base colors when argument is a theme map created with daff-configure-theme') {
+	@include it('returns base colors when theme map is created with daff-configure-theme instead of daff-create-theme') {
 		$theme: ct.daff-configure-theme($primary, $secondary, $tertiary, 'light');
 		$colors: daff-get-font-colors($theme);
 		@include assert-equal(list.nth($colors, 1), $white);
