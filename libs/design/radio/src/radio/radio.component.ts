@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   Input,
-  HostBinding,
   ChangeDetectionStrategy,
   Optional,
   Output,
@@ -17,25 +16,14 @@ let radioUniqueId = 0;
   selector: 'daff-radio',
   templateUrl: './radio.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    role: 'radio',
+    '[class.focused]': 'focused',
+    '[class.disabled]': 'disabled',
+  },
 })
-export class DaffRadioComponent implements OnInit {
 
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.role') role = 'radio';
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.focused') get focusClass() {
-    return this.focused === true;
-  };
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.disabled') get disabledClass() {
-    return this.disabled === true;
-  };
+export class DaffRadioComponent implements OnInit {
 
   /**
    * @docs-private
