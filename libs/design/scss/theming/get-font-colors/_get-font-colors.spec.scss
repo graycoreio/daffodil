@@ -6,7 +6,8 @@
 @use '../configure-palette';
 @use '../get-color';
 @use '../get-base-color' as *;
-@use './get-font-colors' as fc;
+@use './get-font-colors' as *;
+@use '../configure-theme' as ct;
 
 @include describe('daff-get-font-colors') {
 	$primary: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
@@ -29,7 +30,7 @@
 		);
 		$theme: daff-create-theme($config);
 
-		$colors: fc.daff-get-font-colors($theme);
+		$colors: daff-get-font-colors($theme);
 		@include assert-equal(list.nth($colors, 1), $font-dark);
 		@include assert-equal(list.nth($colors, 2), $font-light);
 	}
@@ -42,7 +43,7 @@
 		);
 		$theme: daff-create-theme($config);
 
-		$colors: fc.daff-get-font-colors($theme);
+		$colors: daff-get-font-colors($theme);
 		@include assert-equal(list.nth($colors, 1), $default-dark);
 		@include assert-equal(list.nth($colors, 2), $default-light);
 	}
@@ -57,19 +58,14 @@
 		);
 		$theme: daff-create-theme($config);
 
-		$colors: fc.daff-get-font-colors($theme);
+		$colors: daff-get-font-colors($theme);
 		@include assert-equal(list.nth($colors, 1), $font-light);
 		@include assert-equal(list.nth($colors, 2), $default-dark);
 	}
 
-	@include it('falls back to base colors when argument is not a theme map created with daff-create-theme') {
-		$config: (
-			'primary': $primary,
-			'secondary': $secondary,
-			'tertiary': $tertiary
-		);
-
-		$colors: fc.daff-get-font-colors($theme);
+	@include it('falls back to base colors when argument is a theme map created with daff-configure-theme') {
+		$theme: ct.daff-configure-theme($primary, $secondary, $tertiary, 'light');
+		$colors: daff-get-font-colors($theme);
 		@include assert-equal(list.nth($colors, 1), $white);
 		@include assert-equal(list.nth($colors, 2), $black);
 	}
