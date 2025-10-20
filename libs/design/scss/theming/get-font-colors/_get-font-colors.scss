@@ -1,5 +1,6 @@
 @use 'sass:map';
-@use './get-base-color' as *;
+@use 'sass:list';
+@use '../get-base-color' as *;
 
 /// Returns a light and dark color.
 ///

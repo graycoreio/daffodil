@@ -1,0 +1,76 @@
+@use 'true' as *;
+@use 'sass:list';
+@use 'sass:map';
+@use '../create-theme' as *;
+@use '../color-palettes' as palette;
+@use '../configure-palette';
+@use '../get-color';
+@use '../get-base-color' as *;
+@use './get-font-colors' as fc;
+
+@include describe('daff-get-font-colors') {
+	$primary: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
+	$secondary: configure-palette.daff-configure-palette(palette.$daff-purple, 60);
+	$tertiary: configure-palette.daff-configure-palette(palette.$daff-turquoise, 60);
+	$font-light: get-color.daff-color(palette.$daff-neutral, 10);
+	$font-dark: get-color.daff-color(palette.$daff-neutral, 100);
+	$default-dark: get-color.daff-color(palette.$daff-neutral, 110);
+	$default-light: get-color.daff-color(palette.$daff-neutral, 0);
+	$white: get-color.daff-color(palette.$daff-neutral, 0);
+	$black: get-color.daff-color(palette.$daff-neutral, 110);
+
+	@include it('returns theme text colors when provided') {
+		$config: (
+			'primary': $primary,
+			'secondary': $secondary,
+			'tertiary': $tertiary,
+			'text-color-default': $font-dark,
+			'text-color-inverse': $font-light
+		);
+		$theme: daff-create-theme($config);
+
+		$colors: fc.daff-get-font-colors($theme);
+		@include assert-equal(list.nth($colors, 1), $font-dark);
+		@include assert-equal(list.nth($colors, 2), $font-light);
+	}
+
+	@include it('falls back to default text colors when no explicit text colors') {
+		$config: (
+			'primary': $primary,
+			'secondary': $secondary,
+			'tertiary': $tertiary
+		);
+		$theme: daff-create-theme($config);
+
+		$colors: fc.daff-get-font-colors($theme);
+		@include assert-equal(list.nth($colors, 1), $default-dark);
+		@include assert-equal(list.nth($colors, 2), $default-light);
+	}
+
+	@include it('works when theme provides only one of the text colors') {
+		$config: (
+			'mode': 'dark',
+			'primary': $primary,
+			'secondary': $secondary,
+			'tertiary': $tertiary,
+			'text-color-default': $font-light
+		);
+		$theme: daff-create-theme($config);
+
+		$colors: fc.daff-get-font-colors($theme);
+		@include assert-equal(list.nth($colors, 1), $font-light);
+		@include assert-equal(list.nth($colors, 2), $default-dark);
+	}
+
+	@include it('falls back to base colors when argument is not a theme map created with daff-create-theme') {
+		$config: (
+			'primary': $primary,
+			'secondary': $secondary,
+			'tertiary': $tertiary
+		);
+
+		$colors: fc.daff-get-font-colors($theme);
+		@include assert-equal(list.nth($colors, 1), $white);
+		@include assert-equal(list.nth($colors, 2), $black);
+	}
+}
