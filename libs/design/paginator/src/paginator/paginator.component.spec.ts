@@ -31,7 +31,6 @@ class TestComponent {}
 @Component({
   template: `
     <daff-paginator
-      aria-label="id"
       [numberOfPages]="numberOfPagesValue"
       [currentPage]="currentPageValue"
       [linkMode]="linkModeValue"
@@ -119,10 +118,6 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
 
   it('should be able to take numberOfPages as input', () => {
     expect(component.numberOfPages).toEqual(wrapper.numberOfPagesValue);
-  });
-
-  it('should set _paginatorId from the aria-label of the host element', () => {
-    expect(component._paginatorId).toEqual('id');
   });
 
   it('should show page numbers within one of the current page', () => {

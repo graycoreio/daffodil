@@ -4,7 +4,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  ElementRef,
   OnChanges,
   ChangeDetectionStrategy,
 } from '@angular/core';
@@ -48,16 +47,6 @@ export class DaffPaginatorComponent implements OnChanges {
    * @docs-private
    */
   faChevronLeft = faChevronLeft;
-
-  /**
-   * @docs-private
-   */
-  _paginatorId: string;
-
-  constructor(private elementRef: ElementRef) {
-    const ariaLabel = elementRef.nativeElement.attributes['aria-label'];
-    this._paginatorId = ariaLabel ? ariaLabel.nodeValue : null;
-  }
 
   /**
    * The total number of pages the paginator tracks. This number can change dynamically, but the end user is responsible for keeping numberOfPages
