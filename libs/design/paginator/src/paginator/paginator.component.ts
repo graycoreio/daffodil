@@ -6,7 +6,7 @@ import {
   EventEmitter,
   OnChanges,
   ChangeDetectionStrategy,
-	HostBinding,
+  HostBinding,
 } from '@angular/core';
 import {
   Params,
@@ -79,7 +79,7 @@ export class DaffPaginatorComponent implements OnChanges {
   /**
    * The aria label.
    */
-	@HostBinding('attr.aria-label')
+  @HostBinding('attr.aria-label')
   @Input() ariaLabel: string;
 
   /**

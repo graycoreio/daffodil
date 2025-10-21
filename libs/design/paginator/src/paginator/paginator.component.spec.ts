@@ -127,11 +127,11 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
     expect(component.ariaLabel).toEqual(wrapper.ariaLabelValue);
   });
 
-	it('should set the ariaLabel input to the aria label DOM attr', () => {
-		wrapper.ariaLabelValue = 'ariaLabel'
-		fixture.detectChanges()
-		expect((<HTMLElement>de.nativeElement).getAttribute('aria-label')).toEqual(wrapper.ariaLabelValue)
-	})
+  it('should set the ariaLabel input to the aria label DOM attr', () => {
+    wrapper.ariaLabelValue = 'ariaLabel';
+    fixture.detectChanges();
+    expect((<HTMLElement>de.nativeElement).getAttribute('aria-label')).toEqual(wrapper.ariaLabelValue);
+  });
 
   it('should show page numbers within one of the current page', () => {
     const paginatorText = fixture.debugElement.query(By.css('daff-paginator')).nativeElement.innerText;
