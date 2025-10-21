@@ -31,9 +31,7 @@ class TestComponent {}
 @Component({
   template: `
     <daff-paginator
-      aria-label="id"
       [numberOfPages]="numberOfPagesValue"
-      [ariaLabel]="ariaLabelValue"
       [currentPage]="currentPageValue"
       [linkMode]="linkModeValue"
       [url]="urlValue"
@@ -45,7 +43,6 @@ class TestComponent {}
 })
 
 class WrapperComponent {
-  ariaLabelValue = '';
   numberOfPagesValue = 20;
   currentPageValue = 2;
   linkModeValue = false;
@@ -121,16 +118,6 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
 
   it('should be able to take numberOfPages as input', () => {
     expect(component.numberOfPages).toEqual(wrapper.numberOfPagesValue);
-  });
-
-  it('should be able to take ariaLabel as input', () => {
-    expect(component.ariaLabel).toEqual(wrapper.ariaLabelValue);
-  });
-
-  it('should set the ariaLabel input to the aria label DOM attr', () => {
-    wrapper.ariaLabelValue = 'ariaLabel';
-    fixture.detectChanges();
-    expect((<HTMLElement>de.nativeElement).getAttribute('aria-label')).toEqual(wrapper.ariaLabelValue);
   });
 
   it('should show page numbers within one of the current page', () => {

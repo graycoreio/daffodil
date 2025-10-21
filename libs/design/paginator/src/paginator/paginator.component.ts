@@ -6,7 +6,6 @@ import {
   EventEmitter,
   OnChanges,
   ChangeDetectionStrategy,
-  HostBinding,
 } from '@angular/core';
 import {
   Params,
@@ -75,12 +74,6 @@ export class DaffPaginatorComponent implements OnChanges {
    * The query param to which the paginator component will set the current page value in link mode.
    */
   @Input() queryParam = 'page';
-
-  /**
-   * The aria label.
-   */
-  @HostBinding('attr.aria-label')
-  @Input() ariaLabel: string;
 
   /**
    * @docs-private
