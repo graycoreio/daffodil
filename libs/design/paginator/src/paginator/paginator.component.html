@@ -2,7 +2,7 @@
   <button type="button" class="daff-paginator__previous"
     [disabled]="_disablePrev"
     tabindex="0"
-    attr.aria-label="Go to Previous Page of {{_paginatorId}} Paginator"
+    attr.aria-label="Go to Previous Page of {{ariaLabel}} Paginator"
     (click)="_onNotifyPrevPageChange()">
     <fa-icon [icon]="faChevronLeft" size="sm"></fa-icon> Previous
   </button>
@@ -10,7 +10,7 @@
 @if (linkMode) {
   @if (!_disablePrev) {
     <a class="daff-paginator__previous"
-      attr.aria-label="Go to Previous Page of {{_paginatorId}} Paginator"
+      attr.aria-label="Go to Previous Page of {{ariaLabel}} Paginator"
       [routerLink]="url"
       queryParamsHandling="merge"
       [queryParams]="_buildPageQueryParams(currentPage - 1)">
@@ -19,7 +19,7 @@
   }
   @if (_disablePrev) {
     <span class="daff-paginator__previous disabled"
-      attr.aria-label="Go to Previous Page of {{_paginatorId}} Paginator"
+      attr.aria-label="Go to Previous Page of {{ariaLabel}} Paginator"
       [attr.disabled]="true">
       <fa-icon [icon]="faChevronLeft" size="sm"></fa-icon><span>Previous</span>
     </span>
@@ -30,7 +30,7 @@
   <button type="button" class="daff-paginator__page-link"
     [class.selected]="_isSelected(1)"
     tabindex="0"
-    attr.aria-label="Go to Page 1 of {{_paginatorId}} Paginator"
+    attr.aria-label="Go to Page 1 of {{ariaLabel}} Paginator"
     (click)="_onNotifyPageChange(1)">
       <span>1</span>
   </button>
@@ -42,7 +42,7 @@
     [queryParams]="_buildPageQueryParams(1)"
     queryParamsHandling="merge"
     [class.selected]="_isSelected(1)"
-    attr.aria-label="Go to Page 1 of {{_paginatorId}} Paginator">
+    attr.aria-label="Go to Page 1 of {{ariaLabel}} Paginator">
       <span>1</span>
   </a>
 }
@@ -58,7 +58,7 @@
         [class.selected]="_isSelected(pageNumber)"
         [attr.data-page-number]="pageNumber"
         tabindex="0"
-        attr.aria-label="Go to Page {{pageNumber}} of {{_paginatorId}} Paginator"
+        attr.aria-label="Go to Page {{pageNumber}} of {{ariaLabel}} Paginator"
         aria-current="_isSelected(pageNumber)"
         (click)="_onNotifyPageChange(pageNumber)">
         <span>{{ pageNumber }}</span>
@@ -71,7 +71,7 @@
         [queryParams]="_buildPageQueryParams(pageNumber)"
         queryParamsHandling="merge"
         [class.selected]="_isSelected(pageNumber)"
-        attr.aria-label="Go to Page {{pageNumber}} of {{_paginatorId}} Paginator">
+        attr.aria-label="Go to Page {{pageNumber}} of {{ariaLabel}} Paginator">
           <span>{{ pageNumber }}</span>
       </a>
     }
@@ -87,7 +87,7 @@
     <button type="button" class="daff-paginator__page-link"
       [class.selected]="_isSelected(numberOfPages)"
       tabindex="0"
-      attr.aria-label="Go To Page {{numberOfPages}} of {{_paginatorId}} Paginator"
+      attr.aria-label="Go To Page {{numberOfPages}} of {{ariaLabel}} Paginator"
       (click)="_onNotifyPageChange(numberOfPages)">
         <span>{{ numberOfPages }}</span>
     </button>
@@ -98,7 +98,7 @@
       [queryParams]="_buildPageQueryParams(numberOfPages)"
       queryParamsHandling="merge"
       [class.selected]="_isSelected(numberOfPages)"
-      attr.aria-label="Go to Page {{numberOfPages}} of {{_paginatorId}} Paginator">
+      attr.aria-label="Go to Page {{numberOfPages}} of {{ariaLabel}} Paginator">
         <span>{{ numberOfPages }}</span>
     </a>
   }
@@ -108,7 +108,7 @@
   <button class="daff-paginator__next"
     [disabled]="_disableNext"
     tabindex="0"
-    attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
+    attr.aria-label="Go to Next Page of {{ariaLabel}} Paginator"
     (click)="_onNotifyNextPageChange()">
     Next <fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
   </button>
@@ -117,7 +117,7 @@
   @if (!_disableNext) {
     <a class="daff-paginator__next"
       [routerLink]="url"
-      attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
+      attr.aria-label="Go to Next Page of {{ariaLabel}} Paginator"
       queryParamsHandling="merge"
       [queryParams]="_buildPageQueryParams(currentPage + 1)">
       <span>Next</span><fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
@@ -126,7 +126,7 @@
 
   @if (_disableNext) {
     <span class="daff-paginator__next disabled"
-      attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
+      attr.aria-label="Go to Next Page of {{ariaLabel}} Paginator"
       [attr.disabled]="true">
       <span>Next</span><fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
     </span>

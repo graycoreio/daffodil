@@ -33,6 +33,7 @@ class TestComponent {}
     <daff-paginator
       aria-label="id"
       [numberOfPages]="numberOfPagesValue"
+      [ariaLabel]="ariaLabelValue"
       [currentPage]="currentPageValue"
       [linkMode]="linkModeValue"
       [url]="urlValue"
@@ -44,6 +45,7 @@ class TestComponent {}
 })
 
 class WrapperComponent {
+  ariaLabelValue = '';
   numberOfPagesValue = 20;
   currentPageValue = 2;
   linkModeValue = false;
@@ -121,8 +123,8 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
     expect(component.numberOfPages).toEqual(wrapper.numberOfPagesValue);
   });
 
-  it('should set _paginatorId from the aria-label of the host element', () => {
-    expect(component._paginatorId).toEqual('id');
+  it('should be able to take ariaLabel as input', () => {
+    expect(component.ariaLabel).toEqual(wrapper.ariaLabelValue);
   });
 
   it('should show page numbers within one of the current page', () => {

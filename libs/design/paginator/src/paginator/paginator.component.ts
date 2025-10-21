@@ -4,7 +4,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  ElementRef,
   OnChanges,
   ChangeDetectionStrategy,
 } from '@angular/core';
@@ -50,16 +49,6 @@ export class DaffPaginatorComponent implements OnChanges {
   faChevronLeft = faChevronLeft;
 
   /**
-   * @docs-private
-   */
-  _paginatorId: string;
-
-  constructor(private elementRef: ElementRef) {
-    const ariaLabel = elementRef.nativeElement.attributes['aria-label'];
-    this._paginatorId = ariaLabel ? ariaLabel.nodeValue : null;
-  }
-
-  /**
    * The total number of pages the paginator tracks. This number can change dynamically, but the end user is responsible for keeping numberOfPages
    * and currentPage in sync. For example, if the numberOfPages is dynamically changed to a value less than the currentPage, the paginator will break.
    */
@@ -85,6 +74,11 @@ export class DaffPaginatorComponent implements OnChanges {
    * The query param to which the paginator component will set the current page value in link mode.
    */
   @Input() queryParam = 'page';
+
+  /**
+   * The aria label.
+   */
+  @Input() ariaLabel: string;
 
   /**
    * @docs-private
