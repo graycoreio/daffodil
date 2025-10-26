@@ -1,6 +1,9 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   inject,
   Injectable,
+  PLATFORM_ID,
+  TransferState,
 } from '@angular/core';
 import {
   InMemoryDbService,
@@ -16,6 +19,7 @@ import { DaffProduct } from '@daffodil/product';
 import { DaffProductExtensionFactory } from '@daffodil/product/testing';
 
 import { DAFF_PRODUCT_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
+import { TRANSFER_STATE_KEY } from './transfer-state-key';
 /**
  * An in-memory service that stubs out the backend services for getting products.
  *
@@ -38,10 +42,23 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService, Daf
     return this._products;
   };
 
+  transferState = inject(TransferState);
+
+  platform = inject(PLATFORM_ID);
+
   productFactory = inject(DaffProductExtensionFactory);
 
   constructor(){
-    this._products = this.productFactory.createMany(35);
+    if(isPlatformBrowser(this.platform)) {
+      this._products = JSON.parse(
+        this.transferState.get(
+          TRANSFER_STATE_KEY,
+          { data: JSON.stringify(this.productFactory.createMany(35)) },
+        ).data,
+      );
+    } else {
+      this.transferState.set(TRANSFER_STATE_KEY, { data: JSON.stringify(this._products) });
+    }
   }
 
   /**
