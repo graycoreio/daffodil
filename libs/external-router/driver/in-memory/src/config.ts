@@ -1,7 +1,11 @@
-import { createConfigInjectionToken } from '@daffodil/core';
-import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
-import { DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION } from '@daffodil/external-router/driver';
+import { inject } from '@angular/core';
 
+import { createConfigInjectionToken } from '@daffodil/core';
+import {
+  DAFF_INMEMORY_ROUTABLE_OBJECTS,
+  DaffInMemoryRoutableObjects,
+} from '@daffodil/driver/in-memory';
+import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 /**
  * A lookup for a URL.
  * Returns an {@link DaffExternallyResolvableUrl} or
@@ -16,10 +20,6 @@ export interface DaffExternalRouterDriverInMemoryConfig {
   resolver: DaffExternalRouterDriverInMemoryResolver;
 }
 
-const defaultConfig: DaffExternalRouterDriverInMemoryConfig = {
-  resolver: () => DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION,
-};
-
 export const {
   /**
    * The token used by Daffodil to hold the driver's configuration.
@@ -31,4 +31,19 @@ export const {
    * Provider function for {@link DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG}.
    */
   provider: provideDaffExternalRouterDriverInMemoryConfig,
-} = createConfigInjectionToken<DaffExternalRouterDriverInMemoryConfig>(defaultConfig, 'DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG');
+} = createConfigInjectionToken<DaffExternalRouterDriverInMemoryConfig>(undefined, 'DAFF_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG', {
+  factory: () => ({
+    resolver: (url: string): DaffExternallyResolvableUrl => {
+      const ROUTEABLE_OBJECTS: DaffInMemoryRoutableObjects = inject(DAFF_INMEMORY_ROUTABLE_OBJECTS);
+      if(!ROUTEABLE_OBJECTS.has(url)) {
+        return null;
+      }
+      return {
+        id: ROUTEABLE_OBJECTS.get(url).url,
+        code: 200,
+        type: ROUTEABLE_OBJECTS.get(url).type,
+        url: ROUTEABLE_OBJECTS.get(url).url,
+      };
+    },
+  }),
+});
