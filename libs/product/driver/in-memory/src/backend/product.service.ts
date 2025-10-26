@@ -1,20 +1,21 @@
-import { Injectable } from '@angular/core';
+import {
+  inject,
+  Injectable,
+} from '@angular/core';
 import {
   InMemoryDbService,
   RequestInfoUtilities,
   ParsedRequestUrl,
+  RequestInfo,
   STATUS,
 } from 'angular-in-memory-web-api';
 
+import { daffUriTruncateLeadingSlash } from '@daffodil/core/routing';
 import { DaffInMemorySingleRouteableBackend } from '@daffodil/driver/in-memory';
 import { DaffProduct } from '@daffodil/product';
-import {
-  DaffProductImageFactory,
-  DaffProductExtensionFactory,
-} from '@daffodil/product/testing';
+import { DaffProductExtensionFactory } from '@daffodil/product/testing';
 
 import { DAFF_PRODUCT_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
-
 /**
  * An in-memory service that stubs out the backend services for getting products.
  *
@@ -37,46 +38,10 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService, Daf
     return this._products;
   };
 
-  constructor(
-    private productFactory: DaffProductExtensionFactory,
-    private productImageFactory: DaffProductImageFactory) {
-    this._products = [
-      '1001',
-      '1002',
-      '1003',
-      '1004',
-      '1005',
-      '1006',
-      '1007',
-      '1008',
-      '1009',
-      '1010',
-      '1011',
-      '1012',
-      '1013',
-      '1014',
-      '1015',
-      '1016',
-      '1017',
-      '1018',
-      '1019',
-      '1020',
-      '1021',
-      '1022',
-      '1023',
-      '1024',
-      '1025',
-      '1026',
-      '1027',
-      '1028',
-      '1029',
-      '1030',
-      '1031',
-      '1032',
-      '1033',
-      '1034',
-      '1035',
-    ].map(id => this.productFactory.create({ id, url: `/${id}` }));
+  productFactory = inject(DaffProductExtensionFactory);
+
+  constructor(){
+    this._products = this.productFactory.createMany(35);
   }
 
   /**
@@ -109,14 +74,19 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService, Daf
    * @param reqInfo request object
    * @returns An http response object
    */
-  get(reqInfo: any) {
-    if (reqInfo.id === 'best-sellers') {
+  get(reqInfo: RequestInfo) {
+    if(reqInfo.id?.includes('.html')) {
+      const product =  this._products.find((p) => daffUriTruncateLeadingSlash(p.url)  === reqInfo.id);
+
+      if(!product) {
+        return undefined;
+      }
+
       return reqInfo.utils.createResponse$(() => ({
-        body: this._products.slice(0,4),
+        body: product,
         status: STATUS.OK,
       }));
     }
-
     return undefined;
   }
 }

@@ -10,6 +10,7 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { daffUriTruncateLeadingSlash } from '@daffodil/core/routing';
 import { DaffInMemoryDriverBase } from '@daffodil/driver/in-memory';
 import { DaffProduct } from '@daffodil/product';
 import {
@@ -48,7 +49,7 @@ export class DaffInMemoryProductService extends DaffInMemoryDriverBase implement
   }
 
   getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse> {
-    return this.http.get<DaffProduct>(`${this.url}${url}`).pipe(
+    return this.http.get<DaffProduct>(`${this.url}/${daffUriTruncateLeadingSlash(url)}`).pipe(
       map(this.transform),
     );
   }
