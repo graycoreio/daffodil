@@ -3,9 +3,12 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffButtonModule } from '@daffodil/design/button';
-import { DaffContainerModule } from '@daffodil/design/container';
-import { DaffHeroModule } from '@daffodil/design/hero';
+import {
+  DAFF_BASIC_BUTTON_COMPONENTS,
+  DAFF_STROKED_BUTTON_COMPONENTS,
+} from '@daffodil/design/button';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
+import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
 
 @Component({
   selector: 'daffio-support',
@@ -14,9 +17,10 @@ import { DaffHeroModule } from '@daffodil/design/hero';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    DaffHeroModule,
-    DaffContainerModule,
-    DaffButtonModule,
+    DAFF_HERO_COMPONENTS,
+    DAFF_CONTAINER_COMPONENTS,
+    DAFF_BASIC_BUTTON_COMPONENTS,
+    DAFF_STROKED_BUTTON_COMPONENTS,
   ],
 })
 export class DaffioSupportComponent {}
