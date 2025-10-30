@@ -19,4 +19,4 @@ export interface DaffInMemoryRoutableObject {
  * A map of URL paths to their corresponding routable objects.
  * The key is the URL path.
  */
-export type DaffInMemoryRoutableObjects = Map<string, DaffInMemoryRoutableObject>;
+export type DaffInMemoryRoutableObjects = ReadonlyMap<string, DaffInMemoryRoutableObject>;
