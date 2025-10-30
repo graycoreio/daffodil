@@ -15,7 +15,7 @@ import {
   DaffLogoModule,
   DaffCopyrightModule,
 } from '@daffodil/branding';
-import { DaffContainerModule } from '@daffodil/design/container';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
 import { DaffioFooterComponent } from './footer.component';
 
@@ -39,7 +39,7 @@ describe('DaffioFooterComponent', () => {
       imports: [
         DaffioFooterComponent,
         RouterTestingModule,
-        DaffContainerModule,
+        DAFF_CONTAINER_COMPONENTS,
         DaffLogoModule,
         DaffCopyrightModule,
         FontAwesomeModule,
