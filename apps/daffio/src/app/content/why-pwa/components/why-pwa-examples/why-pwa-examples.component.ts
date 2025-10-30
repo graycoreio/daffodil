@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
-import { DAFF_CARD_COMPONENTS } from '@daffodil/design/card';
+import { DAFF_STROKED_CARD_COMPONENTS } from '@daffodil/design/card';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
 @Component({
@@ -16,7 +16,7 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
   imports: [
     DAFF_CONTAINER_COMPONENTS,
     DAFF_CALLOUT_COMPONENTS,
-    DAFF_CARD_COMPONENTS,
+    DAFF_STROKED_CARD_COMPONENTS,
   ],
 })
 
