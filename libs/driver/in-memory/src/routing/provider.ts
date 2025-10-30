@@ -12,7 +12,7 @@ import {
 
 /**
  * A function that returns an array of entities with URL properties.
- * Used to provide routable objects to the in-memory routing system.
+ * Used to provide routable in-memory object information to the routing system.
  */
 export type DaffInMemoryRoutableObjectsResolver = () => Array<{ url: string }>;
 
@@ -25,8 +25,11 @@ export type DaffInMemoryRoutableObjectsResolver = () => Array<{ url: string }>;
  *
  * @docs-private
  */
-const DAFF_INMEMORY_ROUTABLE_OBJECTS_RESOLVER = new InjectionToken<{ type: string; resolver: InjectionToken<DaffInMemoryRoutableObjectsResolver> }>(
-  'DAFF_INMEMORY_ROUTABLE_OBJECTS_RESOLVER',
+const DAFF_INMEMORY_ROUTABLE_OBJECTS_RESOLVER = new InjectionToken<{ type: string; resolver: DaffInMemoryRoutableObjectsResolver }[]>(
+  'DAFF_INMEMORY_ROUTABLE_OBJECTS_RESOLVER', {
+    providedIn: 'root',
+    factory: () => [],
+  },
 );
 
 /**
@@ -50,9 +53,8 @@ export const DAFF_INMEMORY_ROUTABLE_OBJECTS = new InjectionToken<DaffInMemoryRou
         throw new Error('DAFF_INMEMORY_ROUTABLE_OBJECTS_RESOLVER must be an array');
       }
 
-      resolvers.forEach((entry: { type: string; resolver: InjectionToken<DaffInMemoryRoutableObjectsResolver> }) => {
-        const resolverFn = inject(entry.resolver);
-        const entities = resolverFn();
+      resolvers.forEach((entry) => {
+        const entities = entry.resolver();
         entities.forEach(entity => {
           if (map.has(entity.url)) {
             const existing = map.get(entity.url);
@@ -76,30 +78,27 @@ export const DAFF_INMEMORY_ROUTABLE_OBJECTS = new InjectionToken<DaffInMemoryRou
  * Registers routable objects from an in-memory driver with the routing system.
  *
  * This function allows in-memory drivers to provide their entities (with URL properties)
- * to enable automatic URL resolution. Each driver creates an injection token that returns
- * a function providing its entities, then calls this function to register those entities
- * with a type identifier.
+ * to enable automatic URL resolution. Each driver provides a resolver function that
+ * returns its entities with URL properties, along with a type identifier.
+ *
+ * The resolver function runs in an injection context, which means you can use Angular's
+ * `inject()` function within it to access services and dependencies.
  *
  * @param type - The type identifier for these routable objects (e.g., "PRODUCTS")
- * @param resolver - An injection token that provides a DaffInMemoryRoutableObjectsResolver function
+ * @param resolver - A function that returns an array of entities with URL properties.
+ *                   This function runs in an injection context, allowing use of `inject()`.
  * @returns Environment providers that register the routable objects
  *
  * @usageNotes
  *
  * ### Basic Usage
  *
- * In your driver package, create an injection token:
+ * In your driver package, create a resolver function:
  *
  * ```typescript
- * export const DAFF_PRODUCT_INMEMORY_ROUTABLE_OBJECTS = new InjectionToken<DaffInMemoryRoutableObjectsResolver>(
- *   'DAFF_PRODUCT_INMEMORY_ROUTABLE_OBJECTS',
- *   {
- *     factory: () => {
- *       const service = inject(DaffInMemoryBackendProductService);
- *       return () => service.products;
- *     }
- *   }
- * );
+ * const productResolver = (): Array<{ url: string }> => {
+ *   return inject(DaffInMemoryBackendProductService).products.map((p) => ({ url: p.url }));
+ * };
  * ```
  *
  * Then in your app configuration:
@@ -107,14 +106,14 @@ export const DAFF_INMEMORY_ROUTABLE_OBJECTS = new InjectionToken<DaffInMemoryRou
  * ```typescript
  * export const appConfig: ApplicationConfig = {
  *   providers: [
- *     provideDaffInMemoryRoutableObjects("PRODUCTS", DAFF_PRODUCT_INMEMORY_ROUTABLE_OBJECTS),
+ *     provideDaffInMemoryRoutableObjects("PRODUCTS", productResolver),
  *   ]
  * };
  * ```
  */
 export const provideDaffInMemoryRoutableObjects = (
   type: string,
-  resolver: InjectionToken<DaffInMemoryRoutableObjectsResolver>,
+  resolver: DaffInMemoryRoutableObjectsResolver,
 ): EnvironmentProviders => makeEnvironmentProviders([
   {
     provide: DAFF_INMEMORY_ROUTABLE_OBJECTS_RESOLVER,
