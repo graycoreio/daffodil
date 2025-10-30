@@ -4,9 +4,9 @@ import {
   HostBinding,
 } from '@angular/core';
 
-import { DaffCalloutModule } from '@daffodil/design/callout';
-import { DaffCardModule } from '@daffodil/design/card';
-import { DaffContainerModule } from '@daffodil/design/container';
+import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
+import { DAFF_STROKED_CARD_COMPONENTS } from '@daffodil/design/card';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
 @Component({
   selector: 'daffio-why-pwa-examples',
@@ -14,9 +14,9 @@ import { DaffContainerModule } from '@daffodil/design/container';
   styleUrls: ['./why-pwa-examples.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffContainerModule,
-    DaffCalloutModule,
-    DaffCardModule,
+    DAFF_CONTAINER_COMPONENTS,
+    DAFF_CALLOUT_COMPONENTS,
+    DAFF_STROKED_CARD_COMPONENTS,
   ],
 })
 
