@@ -3,7 +3,6 @@
  */
 
 // Atoms
-export * from './atoms/form/core/public_api';
 export * from './atoms/form/form-label/public_api';
 
 // Core
