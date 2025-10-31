@@ -25,7 +25,7 @@ export class CustomComponent {}
 ```
 
 ## Anatomy
-Select must be used inside a `daff-form-field` to enable proper state management and provide enhanced UI features such as hints, error messages, prefixes, and suffixes. The form field component also ensures accessibility compliance. For more details, see the [form field](/libs/design/form-field/README.md) documentation.
+Select must be used inside a `<daff-form-field>` to enable proper state management and provide enhanced UI features such as hints, error messages, prefixes, and suffixes. The form field component also ensures accessibility compliance. For more details, see the [form field](/libs/design/form-field/README.md) documentation.
 
 ### Basic structure
 Use `daffSelectOption` to render a list of options in the select panel:
@@ -52,7 +52,7 @@ Select follows the [Combobox WAI-ARIA design pattern](https://www.w3.org/WAI/ARI
 - `aria-expanded` state management
 
 ### Developer responsibilities
-- Provide an accessible label by adding `<daff-form-label>` inside of `<daff-form-field>`
+- Always provide labels for accessibility. Use `<daff-form-label>` within `<daff-form-field>` for the best experience with auto-labelling controls.
 
 ### Keyboard interactions
 **When select panel is closed:**
