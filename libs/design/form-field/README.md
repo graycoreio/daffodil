@@ -9,6 +9,7 @@ The following Daffodil Design components are designed to work inside a form fiel
 - [Native Input](/libs/design/input/README.md)
 - [Native Select](/libs/design/native-select/README.md)
 - [Native Textarea](/libs/design/textarea/README.md)
+- [Custom Select](/libs/design/select/README.md)
 
 ## Usage
 
