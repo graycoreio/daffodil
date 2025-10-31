@@ -42,14 +42,18 @@ describe('Driver | InMemory | Product | DaffInMemoryBackendProductService', () =
 
   describe('get', () => {
 
-    describe('when reqInfo.id is "best-sellers"', () => {
+    describe('when reqInfo.id contains ".html" and matches a product URL', () => {
 
       let reqInfoStub;
       let result;
+      let testProduct;
 
       beforeEach(() => {
+        testProduct = productTestingService.products[0];
+        const productUrl = testProduct.url.startsWith('/') ? testProduct.url.slice(1) : testProduct.url;
+
         reqInfoStub = {
-          id: 'best-sellers',
+          id: productUrl,
           utils: {
             createResponse$: (func) => func(),
           },
@@ -58,9 +62,51 @@ describe('Driver | InMemory | Product | DaffInMemoryBackendProductService', () =
         result = productTestingService.get(reqInfoStub);
       });
 
-      it('should return an Array of 4 products', () => {
-        expect(result.body).toEqual(jasmine.any(Array));
-        expect(result.body.length).toEqual(4);
+      it('should return the matching product', () => {
+        expect(result.body).toEqual(testProduct);
+        expect(result.status).toEqual(200);
+      });
+    });
+
+    describe('when reqInfo.id contains ".html" but does not match any product URL', () => {
+
+      let reqInfoStub;
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub = {
+          id: 'non-existent-product.html',
+          utils: {
+            createResponse$: (func) => func(),
+          },
+        };
+
+        result = productTestingService.get(reqInfoStub);
+      });
+
+      it('should return undefined', () => {
+        expect(result).toBeUndefined();
+      });
+    });
+
+    describe('when reqInfo.id does not contain ".html"', () => {
+
+      let reqInfoStub;
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub = {
+          id: 'some-id',
+          utils: {
+            createResponse$: (func) => func(),
+          },
+        };
+
+        result = productTestingService.get(reqInfoStub);
+      });
+
+      it('should return undefined', () => {
+        expect(result).toBeUndefined();
       });
     });
   });
