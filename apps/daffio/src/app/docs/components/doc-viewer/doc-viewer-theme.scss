@@ -1,0 +1,36 @@
+@use 'theme' as *;
+
+@mixin daffio-doc-viewer-theme($theme) {
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
+
+	.daffio-doc-viewer {
+		@include light($mode) {
+			&__toc-links {
+				border-top: 1px solid daff-color($neutral, 30);
+			}
+
+			&__edit-button {
+				color: daff-color($neutral, 80);
+
+				&:hover {
+					color: daff-color($neutral, 90);
+				}
+			}
+		}
+
+		@include dark($mode) {
+			&__toc-links {
+				border-top: 1px solid daff-color($neutral, 70);
+			}
+
+			&__edit-button {
+				color: daff-color($neutral, 40);
+
+				&:hover {
+					color: daff-color($neutral, 30);
+				}
+			}
+		}
+	}
+}

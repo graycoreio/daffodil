@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use 'theme' as *;
 
-@mixin daffio-docs-table-of-contents-link-theme($theme) {
+@mixin daffio-docs-table-of-contents-theme($theme) {
 	$neutral: daff-get-palette($theme, neutral);
 	$primary: daff-get-palette($theme, primary);
 	$mode: daff-get-theme-mode($theme);

@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffioDocsTableOfContentsLinkComponent } from '../../components/table-of-contents/link/link.component';
+import { DaffioDocsTableOfContentsComponent } from '../../components/table-of-contents/table-of-contents.component';
 import { DaffioDocsTocService } from '../../toc/toc.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { DaffioDocsTocService } from '../../toc/toc.service';
   styleUrl: './toc-sidebar-content.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffioDocsTableOfContentsLinkComponent,
+    DaffioDocsTableOfContentsComponent,
   ],
 })
 export class DaffioDocsTocSidebarContentContainer {

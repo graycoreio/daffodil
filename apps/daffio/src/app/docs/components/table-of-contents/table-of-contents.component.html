@@ -1,7 +1,11 @@
-<aside class="daffio-docs-table-of-contents">
-	<div class="daffio-docs-table-of-contents__title">
-		On this page
-	</div>
-	<daffio-docs-table-of-contents-link [tableOfContents]="tableOfContents"></daffio-docs-table-of-contents-link>
-	<daffio-docs-scroll-to-top class="daffio-docs-table-of-contents__scroll-to-top"></daffio-docs-scroll-to-top>
-</aside>
+<ng-container *ngrxLet="activeHeaderService.fragment$; let fragment">
+	@for (entry of tableOfContents; track entry.slug) {
+		<a
+			class="daffio-docs-table-of-contents-link level-{{entry.lvl}}"
+			routerLink="./"
+			queryParamsHandling="merge"
+			[fragment]="entry.slug"
+			[class.active]="fragment === entry.slug"
+		>{{ entry.content }}</a>
+	}
+</ng-container>

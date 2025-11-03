@@ -34,11 +34,19 @@
       </daff-article>
     </div>
     @if (toc.length > 0) {
-      <daffio-docs-table-of-contents
-        class="daffio-doc-viewer__table-of-contents"
-        [tableOfContents]="toc">
-      </daffio-docs-table-of-contents>
+      <aside class="daffio-doc-viewer__aside-wrapper">
+        <div class="daffio-doc-viewer__aside-title">
+          On this page
+        </div>
+        <daffio-docs-table-of-contents class="daffio-doc-viewer__toc" [tableOfContents]="toc"></daffio-docs-table-of-contents>
+        <div class="daffio-doc-viewer__toc-links">
+          <a class="daffio-doc-viewer__edit-button" [attr.href]="editLink()" target="_blank">
+            Edit this page on GitHub
+            <fa-icon [icon]="faArrowUpRightFromSquare" size="xs"></fa-icon>
+          </a>
+          <daffio-docs-scroll-to-top class="daffio-doc-viewer__scroll-to-top"></daffio-docs-scroll-to-top>
+        </div>
+      </aside>
     }
-		<a class="daffio-doc-viewer__edit_button" [attr.href]="editLink()">Edit this page on github</a>
   </div>
 </daff-container>
