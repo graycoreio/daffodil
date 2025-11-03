@@ -24,8 +24,8 @@ import {
   MagentoGetCustomerOrdersResponse,
 } from '@daffodil/customer-order/driver/magento/2-4-6';
 import { MagentoCustomerOrdersFactory } from '@daffodil/customer-order/driver/magento/2-4-6/testing';
-import { MagentoSortEnum } from '@daffodil/driver/magento';
 import {
+  MagentoSortEnum ,
   DaffDriverMagentoError,
   schema,
 } from '@daffodil/driver/magento';
