@@ -15,12 +15,14 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioDocViewerComponent } from './doc-viewer.component';
+import { DaffioActiveHeaderService } from '../../../core/dynamic-fragment/service';
 import { DaffioDocsTableOfContentsComponent } from '../table-of-contents/table-of-contents.component';
 
 @Component({
   template: `<daffio-doc-viewer
 		[toc]="tocValue"
 		[breadcrumbs]="breadcrumbsValue"
+		[sourcePath]="sourcePathValue"
 	></daffio-doc-viewer>`,
   imports: [
     DaffioDocViewerComponent,
@@ -29,6 +31,7 @@ import { DaffioDocsTableOfContentsComponent } from '../table-of-contents/table-o
 class WrapperComponent {
   tocValue: DaffDocTableOfContents;
   breadcrumbsValue: Array<DaffBreadcrumb>;
+  sourcePathValue: string;
 }
 
 describe('DaffioDocViewerComponent', () => {
@@ -46,6 +49,7 @@ describe('DaffioDocViewerComponent', () => {
       ],
       providers: [
         provideMockStore(),
+        DaffioActiveHeaderService,
       ],
     })
       .compileComponents();
@@ -54,8 +58,13 @@ describe('DaffioDocViewerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    wrapper.tocValue = [];
+    wrapper.tocValue = [{
+      content: 'content',
+      lvl: 1,
+      slug: 'slug',
+    }];
     wrapper.breadcrumbsValue = [];
+    wrapper.sourcePathValue = 'sourcePath';
     fixture.detectChanges();
 
     component = fixture.debugElement.query(By.directive(DaffioDocViewerComponent)).componentInstance;
@@ -71,5 +80,20 @@ describe('DaffioDocViewerComponent', () => {
 
   it('should take breadcrumbs as an input', () => {
     expect(component.breadcrumbs).toEqual(wrapper.breadcrumbsValue);
+  });
+
+  it('should take sourcePath as an input', () => {
+    expect(component.sourcePath()).toEqual(wrapper.sourcePathValue);
+  });
+
+  it('should render the edit link when sourcePath is defined', () => {
+    const el: HTMLAnchorElement = fixture.debugElement.query(By.css('.daffio-doc-viewer__edit-button')).nativeElement;
+    expect(el.href).toContain(wrapper.sourcePathValue);
+  });
+
+  it('should not render the edit link when sourcePath is undefined', () => {
+    wrapper.sourcePathValue = '';
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('.daffio-doc-viewer__edit-button'))).toBeFalsy();
   });
 });

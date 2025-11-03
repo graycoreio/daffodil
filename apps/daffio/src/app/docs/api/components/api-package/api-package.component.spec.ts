@@ -59,6 +59,7 @@ describe('DaffioApiPackageComponent', () => {
       id: 'Root',
       path: 'path',
       docType: 'package',
+      sourcePath: 'sourcePath',
       title: 'title',
       description: 'description',
       breadcrumbs: [],

@@ -40,10 +40,12 @@
         </div>
         <daffio-docs-table-of-contents class="daffio-doc-viewer__toc" [tableOfContents]="toc"></daffio-docs-table-of-contents>
         <div class="daffio-doc-viewer__toc-links">
-          <a class="daffio-doc-viewer__edit-button" [attr.href]="editLink()" target="_blank">
-            Edit this page on GitHub
-            <fa-icon [icon]="faArrowUpRightFromSquare" size="xs"></fa-icon>
-          </a>
+					@if (sourcePath()) {
+						<a class="daffio-doc-viewer__edit-button" [attr.href]="editLink()" target="_blank">
+							Edit this page on GitHub
+							<fa-icon [icon]="faArrowUpRightFromSquare" size="xs"></fa-icon>
+						</a>
+					}
           <daffio-docs-scroll-to-top class="daffio-doc-viewer__scroll-to-top"></daffio-docs-scroll-to-top>
         </div>
       </aside>
