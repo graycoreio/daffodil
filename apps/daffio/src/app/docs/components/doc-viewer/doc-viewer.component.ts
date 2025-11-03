@@ -2,6 +2,8 @@ import {
   Component,
   ChangeDetectionStrategy,
   Input,
+  input,
+  computed,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -22,6 +24,8 @@ import { DaffioSidebarService } from '../../../core/sidebar/services/sidebar.ser
 import { DAFFIO_DOCS_LIST_SIDEBAR_ID } from '../../containers/docs-list/sidebar.provider';
 import { DAFFIO_DOCS_TOC_SIDEBAR_ID } from '../../containers/toc-sidebar-content/sidebar.provider';
 import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
+
+const GITHUB_LINK = 'https://github.com/graycoreio/daffodil/blob/develop';
 
 @Component({
   selector: 'daffio-doc-viewer',
@@ -47,6 +51,9 @@ export class DaffioDocViewerComponent {
 
   @Input() toc: DaffDocTableOfContents = [];
   @Input() breadcrumbs: Array<DaffBreadcrumb> = [];
+  sourcePath = input.required<string>();
+
+  readonly editLink = computed(() => `${GITHUB_LINK}${this.sourcePath()}`);
 
   open() {
     this.sidebarService.open(DAFFIO_DOCS_LIST_SIDEBAR_ID);

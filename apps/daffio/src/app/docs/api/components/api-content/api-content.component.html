@@ -1,4 +1,4 @@
-<daffio-doc-viewer [breadcrumbs]="doc().breadcrumbs" [toc]="toc()">
+<daffio-doc-viewer [breadcrumbs]="doc().breadcrumbs" [toc]="toc()" [sourcePath]="doc().sourcePath">
 	@for (component of fragments()?.components || []; track $index; let i = $index) {
 		<ng-template [ngComponentOutlet]="component" [ngComponentOutletInputs]="{doc: doc(), toc: fragmentTocs()[i]}"></ng-template>
 	}

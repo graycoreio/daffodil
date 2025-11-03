@@ -10,4 +10,9 @@ export interface DaffBaseDoc {
   breadcrumbs: Array<DaffBreadcrumb>;
   kind: DaffDocKind;
   path: string;
+  /**
+   * The path to the source file for this doc, relative to the repo root.
+   * The path will start with a leading slash.
+   */
+  sourcePath: string;
 }

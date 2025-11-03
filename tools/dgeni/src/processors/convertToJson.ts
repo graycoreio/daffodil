@@ -5,6 +5,7 @@ import {
 
 import { DaffDoc } from '@daffodil/docs-utils';
 
+import { PROJECT_ROOT } from '../transforms/config';
 import {
   IndexableDoc,
   Indexer,
@@ -24,6 +25,7 @@ const defaultSerializer: Serializer<DaffDoc> = (doc: DaffDoc & Document): DaffDo
   tableOfContents: doc.tableOfContents,
   breadcrumbs: doc.breadcrumbs || [],
   path: doc.path || '',
+  sourcePath: doc.fileInfo.filePath?.replace(PROJECT_ROOT, '') || '',
 });
 
 export const defaultIndexer: Indexer<DaffDoc> = (doc: DaffDoc & Document) => ({

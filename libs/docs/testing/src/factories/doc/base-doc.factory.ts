@@ -19,6 +19,7 @@ export class MockBaseDoc implements DaffBaseDoc {
   breadcrumbs = this.breadcrumbFactory.createMany(faker.number.int({ min: 1, max: 4 }));
   kind = sample(Object.values(DaffDocKind));
   path = `/api/packages/${faker.lorem.slug()}`;
+  sourcePath = faker.system.filePath();
 
   constructor(
     protected breadcrumbFactory: DaffBreadcrumbFactory,
