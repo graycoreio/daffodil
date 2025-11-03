@@ -1,5 +1,4 @@
 /* eslint-disable quote-props */
-import { AnimationEvent } from '@angular/animations';
 import {
   ConfigurableFocusTrap,
   ConfigurableFocusTrapFactory,
@@ -12,19 +11,18 @@ import {
 } from '@angular/cdk/portal';
 import {
   Component,
-  EventEmitter,
-  HostBinding,
   ChangeDetectionStrategy,
   ViewChild,
-  HostListener,
   ElementRef,
   AfterContentInit,
   AfterViewInit,
   ViewEncapsulation,
   ChangeDetectorRef,
   OnDestroy,
+  signal,
 } from '@angular/core';
 import { Subject } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 import {
   DaffOpenable,
@@ -33,8 +31,6 @@ import {
   daffFocusableElementsSelector,
 } from '@daffodil/design';
 
-import { daffFadeAnimations } from '../animations/modal-animation';
-import { getAnimationState } from '../animations/modal-animation-state';
 import { DaffModalService } from '../service/modal.service';
 
 @Component({
@@ -51,8 +47,9 @@ import { DaffModalService } from '../service/modal.service';
     'aria-modal': 'true',
     '[attr.aria-labelledby]': 'ariaLabelledBy',
     '(keydown.escape)': 'onEscape()',
+    '[animate.enter]': '"opening"',
+    '[class.closing]': 'closing()',
   },
-  animations: [daffFadeAnimations.fade],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   imports: [
@@ -61,8 +58,15 @@ import { DaffModalService } from '../service/modal.service';
   ],
 })
 export class DaffModalComponent implements AfterContentInit, AfterViewInit, OnDestroy, DaffOpenable {
+  private closing = signal(false);
+
   private _ariaLabelledBy = null;
 
+  /**
+   * @docs-private
+   *
+   * By default, the `aria-labelledby` of the modal is set to the `id` of the modal title.
+   */
   get ariaLabelledBy() {
     return this._ariaLabelledBy;
   } set ariaLabelledBy(value: string) {
@@ -70,24 +74,21 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, OnDe
   }
 
   /**
+   * @docs-private
+   *
    * The CDK Portal outlet used to portal content into the modal.
    */
   @ViewChild(CdkPortalOutlet, { static: true }) private _portalOutlet: CdkPortalOutlet;
 
   /**
-   * Event fired when the close animation is completed.
-   */
-  animationCompleted: EventEmitter<any> = new EventEmitter<any>();
-
-  /**
    * Private subject for closed animation completion events.
    */
-  private _closedAnimationCompleted = new Subject<AnimationEvent>();
+  private _closedAnimationCompleted = new Subject<boolean>();
 
   /**
    * Observable that emits when the close animation is completed.
    */
-  readonly closedAnimationCompleted$ = this._closedAnimationCompleted.asObservable();
+  readonly closedAnimationCompleted$ = this._closedAnimationCompleted.asObservable().pipe(delay(300));
 
   /**
    * @docs-private
@@ -138,6 +139,8 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, OnDe
   }
 
   /**
+   * @docs-private
+   *
    * Helper method to attach portable content to modal.
    */
   attachContent(portal: ComponentPortal<any>): any {
@@ -146,36 +149,17 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, OnDe
     return attachContent;
   }
 
-  /** Animation hook that controls the entrance and exit animations of the modal. */
   /**
-   * @docs-private
+   * Tracks the open state of the modal.
    */
-  @HostBinding('@fade') get fadeState(): string {
-    return getAnimationState(this.openDirective.open);
-  }
-
-  /**
-   * Animation event that can used to hook into when
-   * animations are fully completed. We use this in the DaffModalService
-   * to determine when to actually remove the dynamically rendered element from the DOM
-   * so that the animation does not clip as the element is removed.
-   */
-  @HostListener('@fade.done', ['$event'])
-  animationDone(e: AnimationEvent) {
-    this.animationCompleted.emit(e);
-    if (e.toState === 'closed') {
-      this._focusStack.pop();
-      this._closedAnimationCompleted.next(e);
-      this._closedAnimationCompleted.complete();
-    }
-  }
-
   get open() {
     return this.openDirective.open;
   }
 
   /**
-   * Reveals the modal
+   * @docs-private
+   *
+   * Reveals the modal.
    */
   reveal() {
     this.openDirective.reveal();
@@ -183,15 +167,24 @@ export class DaffModalComponent implements AfterContentInit, AfterViewInit, OnDe
   }
 
   /**
-   * Hides the modal
+   * @docs-private
+   *
+   * Hides the modal.
    */
   hide() {
     this.openDirective.hide();
+    this.closing.set(true);
+    this._closedAnimationCompleted.next(true);
+    this._focusTrap?.destroy();
+    this._focusStack.pop();
+
     this.changeDetector.markForCheck();
   }
 
   /**
-   * Toggles the visibility of the modal
+   * @docs-private
+   *
+   * Toggles the visibility of the modal.
    */
   toggle() {
     this.openDirective.toggle();

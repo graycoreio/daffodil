@@ -8,7 +8,6 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffModalComponent } from './modal.component';
 import { DaffModalService } from '../service/modal.service';
@@ -37,7 +36,6 @@ describe('@daffodil/design/modal | DaffModalComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule,
         WrapperComponent,
       ],
     })

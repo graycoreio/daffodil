@@ -1,4 +1,3 @@
-import { AnimationEvent } from '@angular/animations';
 import {
   OverlayRef,
   Overlay,
@@ -110,14 +109,16 @@ export class DaffModalService {
   }
 
   close(component: DaffModalComponent): void {
-    component.hide();
     const modal = this._modals.get(component);
 
     modal.overlay.detachBackdrop();
     component.closedAnimationCompleted$.pipe(
       take(1),
     ).subscribe(
-      (e: AnimationEvent) => this._removeModal(modal),
+      () => this._removeModal(modal),
     );
+
+    component.hide();
+
   }
 }
