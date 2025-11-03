@@ -15,7 +15,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioDocViewerComponent } from './doc-viewer.component';
-import { DaffioDocsTableOfContentsModule } from '../table-of-contents/table-of-contents.module';
+import { DaffioDocsTableOfContentsComponent } from '../table-of-contents/table-of-contents.component';
 
 @Component({
   template: `<daffio-doc-viewer
@@ -41,7 +41,7 @@ describe('DaffioDocViewerComponent', () => {
       imports: [
         RouterTestingModule,
         DAFF_ARTICLE_COMPONENTS,
-        DaffioDocsTableOfContentsModule,
+        DaffioDocsTableOfContentsComponent,
         WrapperComponent,
       ],
       providers: [
