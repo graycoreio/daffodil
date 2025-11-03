@@ -2,6 +2,7 @@
 @use '../../../scss/layout';
 
 // stylelint-disable no-duplicate-selectors
+// stylelint-disable selector-class-pattern
 .daff-modal {
 	display: flex;
 	flex-direction: column;
@@ -11,6 +12,35 @@
 	max-width: 90vw;
 	overflow: hidden;
 	z-index: 3;
+
+	&.opening {
+		animation: opening 300ms;
+	}
+
+	@keyframes opening {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
+		}
+	}
+
+	&.closing {
+		opacity: 0;
+		animation: closing 300ms;
+	}
+
+	@keyframes closing {
+		from {
+			opacity: 1;
+		}
+
+		to {
+			opacity: 0;
+		}
+	}
 
 	@include layout.breakpoint(mobile) {
 		max-height: 80vh;
@@ -56,7 +86,6 @@
 		top: 12px;
 	}
 }
-
 
 .daff-modal-content {
 	display: block;

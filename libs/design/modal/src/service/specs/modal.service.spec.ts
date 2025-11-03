@@ -9,6 +9,7 @@ import {
   ComponentFixture,
   flush,
   fakeAsync,
+  tick,
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -102,6 +103,7 @@ describe('@daffodil/design/modal | DaffModalService', () => {
       modalService.open(DynamicComponent);
 
       fixture.detectChanges();
+      tick(300);
       flush();
 
       expect(
@@ -114,6 +116,7 @@ describe('@daffodil/design/modal | DaffModalService', () => {
       modalService.open(DynamicTwoComponent);
 
       fixture.detectChanges();
+      tick(300);
       flush();
 
       expect(
@@ -135,6 +138,7 @@ describe('@daffodil/design/modal | DaffModalService', () => {
 
       backdrop.click();
       fixture.detectChanges();
+      tick(300);
       flush();
 
       expect(overlayContainerElement.textContent).not.toContain('It works!');
