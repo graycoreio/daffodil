@@ -56,6 +56,7 @@ import {
 } from '../../../utils/serialize';
 import { inferMethodType } from '../../../utils/ts/infer-type/method';
 import { inferPropType } from '../../../utils/ts/infer-type/prop';
+import { PROJECT_ROOT } from '../../config';
 
 export const ROLE_PROCESSOR_NAME = 'role';
 
@@ -68,6 +69,9 @@ export class RoleProcessor implements FilterableProcessor {
   readonly symbolSerialize: Serializer<string> = linkSymbols;
   readonly markdownSerialize: Serializer<string> = (str: string): string => str ? this.markdown.parse(str) : '';
 
+  readonly fundamentalSerialize = (doc) => ({
+    sourcePath: doc.fileInfo.filePath?.replace(PROJECT_ROOT, '') || '',
+  });
   readonly baseSerialize = serializeFactory<DaffApiDocBase>(
     [
       'id',
@@ -88,6 +92,9 @@ export class RoleProcessor implements FilterableProcessor {
     {
       description: this.markdownSerialize,
     },
+    [
+      this.fundamentalSerialize,
+    ],
   );
 
   readonly examplesSearchIndexer = indexerFactory<DaffDocExample>(

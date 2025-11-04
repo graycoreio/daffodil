@@ -1,4 +1,4 @@
-<daffio-doc-viewer [breadcrumbs]="doc().breadcrumbs" [toc]="toc()">
+<daffio-doc-viewer [breadcrumbs]="doc().breadcrumbs" [toc]="toc()" [sourcePath]="sourcePath()">
 	<h1>{{doc().title}}</h1>
 	<p daffioInterceptNavigation [innerHtml]="doc().longDescription | safe"></p>
 	<daff-tabs

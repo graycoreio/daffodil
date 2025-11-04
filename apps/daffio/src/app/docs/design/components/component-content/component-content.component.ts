@@ -94,6 +94,16 @@ export class DaffioDocsDesignComponentContentComponent implements DaffioDocsDyna
         return this.doc().tableOfContents;
     }
   });
+  readonly sourcePath = computed(() => {
+    switch (this._tab()) {
+      case this.USAGE_TAB_ID:
+        return this.doc().sourcePath;
+
+      case this.API_TAB_ID:
+      default:
+        return null;
+    }
+  });
 
   constructor(
     private fragmentsService: DaffioDocsApiDynamicContentFragmentService,
