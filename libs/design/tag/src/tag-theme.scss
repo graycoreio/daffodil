@@ -9,12 +9,14 @@
 	$critical: daff-get-palette($theme, critical);
 	$success: daff-get-palette($theme, success);
 	$neutral: daff-get-palette($theme, neutral);
+	$black: daff-get-base-color($theme, 'black');
+	$white: daff-get-base-color($theme, 'white');
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-tag {
 		@include light($mode) {
 			background: daff-color($neutral, 20);
-			color: daff-color($neutral, 110);
+			color: $black;
 
 			&.daff-primary {
 				background: daff-color($primary, 10);
@@ -42,13 +44,13 @@
 			}
 
 			&.daff-theme {
-				background: daff-color($neutral, 0);
-				color: daff-color($neutral, 110);
+				background: $white;
+				color: $black;
 			}
 
 			&.daff-theme-contrast {
-				background: daff-color($neutral, 110);
-				color: daff-color($neutral, 0);
+				background: $black;
+				color: $white;
 			}
 
 			&.daff-warn {
@@ -102,13 +104,13 @@
 			}
 
 			&.daff-theme {
-				background: daff-color($neutral, 110);
-				color: daff-color($neutral, 0);
+				background: $black;
+				color: $white;
 			}
 
 			&.daff-theme-contrast {
-				background: daff-color($neutral, 0);
-				color: daff-color($neutral, 110);
+				background: $white;
+				color: $black;
 			}
 
 			&.daff-warn {

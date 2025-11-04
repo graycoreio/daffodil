@@ -7,18 +7,18 @@
 
 $daff-light-theme: (
 	'mode': 'light',
-	'base': get-color.daff-color(palette.$daff-neutral, 0),
-	'base-contrast': get-color.daff-color(palette.$daff-neutral, 110),
-	'white': get-color.daff-color(palette.$daff-neutral, 0),
-	'black': get-color.daff-color(palette.$daff-neutral, 110),
+	'base': palette.$white,
+	'base-contrast': palette.$black,
+	'white': palette.$white,
+	'black': palette.$black,
 );
 
 $daff-dark-theme: (
 	'mode': 'dark',
 	'base': get-color.daff-color(palette.$daff-neutral, 100),
-	'base-contrast': get-color.daff-color(palette.$daff-neutral, 0),
-	'white': get-color.daff-color(palette.$daff-neutral, 0),
-	'black': get-color.daff-color(palette.$daff-neutral, 110),
+	'base-contrast': palette.$white,
+	'white': palette.$white,
+	'black': palette.$black,
 );
 
 $supported-theme-modes: (
@@ -143,8 +143,8 @@ $supported-theme-modes: (
 	$text-color-default,
 	$text-color-inverse
 ) {
-	$dark: get-color.daff-color(palette.$daff-neutral, 110);
-	$light: get-color.daff-color(palette.$daff-neutral, 0);
+	$dark: palette.$black;
+	$light: palette.$white;
 
 	@if ($text-color-default == null) {
 		$text-color-default: if($mode == 'light', $dark, $light);

@@ -9,6 +9,4 @@ $theme: daff-theme.daff-create-theme(
 	('primary': $primary, 'secondary': $secondary, 'tertiary': $tertiary, 'mode': 'light')
 );
 
-$black: daff-theme.daff-map-get($theme, 'core', 'black');
-$white: daff-theme.daff-map-get($theme, 'core', 'white');
 $neutral: daff-theme.daff-map-get($theme, 'core', 'neutral');

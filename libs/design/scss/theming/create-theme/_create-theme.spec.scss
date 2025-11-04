@@ -19,18 +19,18 @@
 
 	$default-daff-light-theme: (
 		'mode': 'light',
-		'base': get-color.daff-color(palette.$daff-neutral, 0),
-		'base-contrast': get-color.daff-color(palette.$daff-neutral, 110),
-		'white': get-color.daff-color(palette.$daff-neutral, 0),
-		'black': get-color.daff-color(palette.$daff-neutral, 110),
+		'base': palette.$white,
+		'base-contrast': palette.$black,
+		'white': palette.$white,
+		'black': palette.$black,
 		'neutral': configure-palette.daff-configure-palette(palette.$daff-neutral, 60),
 	);
 	$daff-dark-theme: (
 		'mode': 'dark',
 		'base': get-color.daff-color(palette.$daff-neutral, 100),
-		'base-contrast': get-color.daff-color(palette.$daff-neutral, 0),
-		'white': get-color.daff-color(palette.$daff-neutral, 0),
-		'black': get-color.daff-color(palette.$daff-neutral, 110),
+		'base-contrast': palette.$white,
+		'white': palette.$white,
+		'black': palette.$black,
 		'neutral': configure-palette.daff-configure-palette(palette.$daff-neutral, 50),
 	);
 

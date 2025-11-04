@@ -9,7 +9,7 @@
 		@error 'Button Hover State: ' + map.get(a11y.$wcag-aa-errors, 'text-contrast');
 	}
 
-	$black: daff-color($daff-neutral, 110);
+	$black: daff-get-base-color($theme, 'black');
 	background-color: $base-color;
 	border: 1px solid $base-color;
 	box-shadow: 0 1px 5px -4px rgba($black, 0.5), 0 4px 8px 0 rgba($black, 0.05);
