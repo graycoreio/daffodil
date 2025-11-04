@@ -220,9 +220,7 @@
             "ssr": {
               "entry": "apps/daffio/server/server.ts"
             },
-						"prerender": {
-							"discoverRoutes": true
-						},
+						"outputMode": "server",
             "polyfills": [
               "zone.js"
             ],

@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
-import { provideServerRendering } from '@angular/ssr';
+import {
+  provideServerRendering,
+  withRoutes,
+} from '@angular/ssr';
 
 import { DaffioAppComponent } from './app.component';
 import { AppModule } from './app.module';
+import { serverRoutes } from './app.server.routes';
 import { DaffioAssetFetchServerService } from './core/assets/fetch/server.service';
 import { provideDaffioAssetFetchService } from './core/assets/fetch/service.interface';
 import { provideServerDocsPath } from './docs/services/docs-path-server';
@@ -13,7 +17,7 @@ import { provideServerDocsPath } from './docs/services/docs-path-server';
   ],
   bootstrap: [DaffioAppComponent],
   providers: [
-    provideServerRendering(),
+    provideServerRendering(withRoutes(serverRoutes)),
     provideServerDocsPath(),
     provideDaffioAssetFetchService(DaffioAssetFetchServerService),
   ],
