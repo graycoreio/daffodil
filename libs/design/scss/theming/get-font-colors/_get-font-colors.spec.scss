@@ -15,10 +15,10 @@
 	$tertiary: configure-palette.daff-configure-palette(palette.$daff-turquoise, 60);
 	$font-light: get-color.daff-color(palette.$daff-neutral, 10);
 	$font-dark: get-color.daff-color(palette.$daff-neutral, 100);
-	$default-dark: get-color.daff-color(palette.$daff-neutral, 110);
-	$default-light: get-color.daff-color(palette.$daff-neutral, 0);
-	$white: get-color.daff-color(palette.$daff-neutral, 0);
-	$black: get-color.daff-color(palette.$daff-neutral, 110);
+	$default-dark: palette.$black;
+	$default-light: palette.$white;
+	$white: palette.$white;
+	$black: palette.$black;
 
 	@include it('returns theme text colors when provided') {
 		$config: (

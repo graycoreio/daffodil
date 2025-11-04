@@ -1,5 +1,7 @@
 // Base colors
-$daff-white: #ffffff;
+$white: #ffffff;
+$black: #070707;
+// need to deprecate
 $error: #dd0000;
 
 // 60 apart passes AAA level for any size text (except for 10/70)
@@ -101,7 +103,6 @@ $daff-green: (
 );
 
 $daff-neutral: (
-	0: #ffffff,
 	10: #fafafa,
 	20: #e8e8e8,
 	30: #d3d3d3,
@@ -111,6 +112,5 @@ $daff-neutral: (
 	70: #5e5e5e,
 	80: #474747,
 	90: #323232,
-	100: #1a1a1a,
-	110: #070707
+	100: #1a1a1a
 );

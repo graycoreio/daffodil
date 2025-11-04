@@ -18,8 +18,8 @@
 		'secondary': configure-palette.daff-configure-palette(palette.$daff-purple, 60),
 		'tertiary': configure-palette.daff-configure-palette(palette.$daff-turquoise, 60))
 	);
-	$white: get-color.daff-color(palette.$daff-neutral, 0);
-	$black: get-color.daff-color(palette.$daff-neutral, 110);
+	$white: palette.$white;
+	$black: palette.$black;
 	$dark-gray: get-color.daff-color(palette.$daff-neutral, 80);
 	$light-gray: get-color.daff-color(palette.$daff-neutral, 20);
 	$blue: get-color.daff-color(palette.$daff-blue, 60);
