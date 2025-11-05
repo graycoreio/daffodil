@@ -14,12 +14,12 @@ import {
   DaffOrientationEnum,
 } from './orientable';
 
-const orientationtValues = (orientationt: string) => (<any>Object).values(DaffOrientationEnum).includes(orientationt);
+const orientationValues = (orientation: string) => (<any>Object).values(DaffOrientationEnum).includes(orientation);
 
-const validateOrientation = (orientationt: string) => {
+const validateOrientation = (orientation: string) => {
   if(isDevMode()) {
-    if(orientationt !== undefined && !orientationtValues(orientationt)) {
-      console.warn(`'${orientationt}' is not a valid value of the orientationt property. The available values are: left, center, or right.`);
+    if(orientation !== undefined && !orientationValues(orientation)) {
+      console.warn(`'${orientation}' is not a valid value of the orientation property. The available values are: left, center, or right.`);
     }
   }
 };
@@ -84,7 +84,7 @@ export class DaffOrientableDirective implements DaffOrientable, OnChanges, OnIni
    *
    * Options are: `horizontal` and `vertical`.
    */
-  @Input() orientation: DaffOrientation = 'vertical';
+  @Input() orientation: DaffOrientation;
 
   /**
    * Sets a default orientation.
@@ -95,11 +95,11 @@ export class DaffOrientableDirective implements DaffOrientable, OnChanges, OnIni
    * @docs-private
    */
   ngOnInit() {
-    validateOrientation(this.orientation);
-
-    if (this.orientation !== this.defaultOrientation && this.defaultOrientation) {
+    if (this.defaultOrientation && !this.orientation) {
       this.orientation = this.defaultOrientation;
     }
+
+    validateOrientation(this.orientation);
   }
 
   /**
