@@ -122,7 +122,7 @@ Below is a table of currently available Daffodil packages.
 
 [contributing]: CONTRIBUTING.md
 [quickstart]: https://www.daff.io/docs/guides/getting-started
-[drivers]: https://www.daff.io/docs/guides/drivers
+[drivers]: https://www.daff.io/docs/guides/essentials/drivers
 [demo]: https://demo.daff.io
 [changelog]: CHANGELOG.md
 [documentation]: https://www.daff.io/docs/guides/introduction
