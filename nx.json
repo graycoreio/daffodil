@@ -63,7 +63,10 @@
 			"dependsOn": ["^build"]
 		},
 		"test": {
-			"inputs": ["default"],
+			"inputs": [
+				"default",
+				"sharedGlobals"
+			],
 			"dependsOn": ["build"]
 		},
 		"lint": {

@@ -1,0 +1,26 @@
+{
+  "name": "@daffodil/storefront",
+  "version": "0.0.0-PLACEHOLDER",
+  "private": true,
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/storefront"]
+      }
+    }
+  },
+  "scripts": {
+    "build": "ng build storefront --configuration production",
+    "lint": "cd ../.. && ng lint storefront",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test storefront --watch=false --browsers=ChromeHeadless"
+  },
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
