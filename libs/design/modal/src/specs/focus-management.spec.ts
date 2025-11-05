@@ -10,7 +10,6 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffFocusStackService } from '@daffodil/design';
 import {
@@ -54,7 +53,6 @@ describe('@daffodil/design/modal | DaffModalComponent | Focus Management', () =>
 
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule,
         WrapperComponent,
       ],
     })
