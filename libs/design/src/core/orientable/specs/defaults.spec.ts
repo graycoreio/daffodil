@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
-import {
-  DaffOrientation,
-  DaffOrientableDirective,
-} from '@daffodil/design';
+import { DaffOrientableDirective } from '@daffodil/design';
 
 @Component({
-  template: '',
+  template: `<div>Test</div>`,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'custom-component',
   hostDirectives: [
@@ -21,45 +22,79 @@ import {
     },
   ],
 })
-
-class WrapperComponent {
-  orientationValue: DaffOrientation;
-
-  constructor(private orientation: DaffOrientableDirective) {
-    this.orientation.defaultOrientation = 'vertical';
+class TestComponent {
+  constructor(public orientationDirective: DaffOrientableDirective) {
+    this.orientationDirective.defaultOrientation = 'vertical';
   }
 }
 
-describe('@daffodil/design | DaffOrientableDirective | Default Defined', () => {
-  let wrapper: WrapperComponent;
-  let fixture: ComponentFixture<WrapperComponent>;
-  let directive: DaffOrientableDirective;
+describe('@daffodil/design | DaffOrientableDirective | Default Status Behavior', () => {
+  describe('when only defaultOrientation is set', () => {
+    let component: TestComponent;
+    let fixture: ComponentFixture<TestComponent>;
+    let directive: DaffOrientableDirective;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        WrapperComponent,
-      ],
-    })
-      .compileComponents();
-  }));
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          TestComponent,
+        ],
+      })
+        .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(WrapperComponent);
-    wrapper = fixture.componentInstance;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestComponent);
+      component = fixture.componentInstance;
+      directive = fixture.debugElement.injector.get(DaffOrientableDirective);
+      fixture.detectChanges();
+    });
 
-    directive = fixture.debugElement.injector.get(DaffOrientableDirective);
-    fixture.detectChanges();
-  });
+    it('should create', () => {
+      expect(component).toBeTruthy();
+      expect(directive).toBeTruthy();
+    });
 
-  it('should create', () => {
-    expect(wrapper).toBeTruthy();
-    expect(directive).toBeTruthy();
-  });
-
-  describe('if a defaultOrientation is defined', () => {
     it('should set the orientation to the defaultOrientation', () => {
       expect(directive.orientation).toEqual('vertical');
+    });
+  });
+
+  describe('when defaultOrientation is set but orientation input is provided', () => {
+    @Component({
+      template: `<custom-component orientation="horizontal"></custom-component>`,
+      imports: [
+        TestComponent,
+      ],
+    })
+    class WrapperComponent {}
+
+    let wrapper: WrapperComponent;
+    let de: DebugElement;
+    let fixture: ComponentFixture<WrapperComponent>;
+
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          WrapperComponent,
+        ],
+      })
+        .compileComponents();
+    }));
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(WrapperComponent);
+      de = fixture.debugElement.query(By.css('custom-component'));
+      wrapper = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(wrapper).toBeTruthy();
+    });
+
+    it('should set the orientation to the user provided value', () => {
+      expect(de.nativeElement.classList.contains('daff-horizontal')).toBeTruthy();
     });
   });
 });
