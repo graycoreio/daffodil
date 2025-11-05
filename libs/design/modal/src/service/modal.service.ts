@@ -2,6 +2,7 @@ import {
   OverlayRef,
   Overlay,
   GlobalPositionStrategy,
+  PositionStrategy,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
@@ -13,7 +14,10 @@ import {
 import { take } from 'rxjs/operators';
 
 import { DaffModal } from '../modal/modal';
-import { DaffModalConfiguration } from '../modal/modal-config';
+import {
+  DaffModalConfiguration,
+  DaffModalPosition,
+} from '../modal/modal-config';
 import { DaffModalComponent } from '../modal/modal.component';
 
 @Injectable()
@@ -50,12 +54,27 @@ export class DaffModalService {
     modal.instance.attachContent(new ComponentPortal(component));
   }
 
-  private _createOverlayRef(): OverlayRef {
+  private _createPositionStrategy(position?: DaffModalPosition): PositionStrategy {
+    // Horizontal position is always center
+    const strategy = new GlobalPositionStrategy().centerHorizontally();
+
+    // Handle vertical positioning
+    if (position?.vertical === 'top') {
+      strategy.top(position.offsetTop ?? '15vh');
+    } else {
+      // Default to center
+      strategy.centerVertically();
+    }
+
+    return strategy;
+  }
+
+  private _createOverlayRef(config?: Partial<DaffModalConfiguration>): OverlayRef {
+    const positionStrategy = this._createPositionStrategy(config?.position);
+
     return this.overlay.create({
       hasBackdrop: true,
-      positionStrategy: new GlobalPositionStrategy()
-        .centerHorizontally()
-        .centerVertically(),
+      positionStrategy,
       scrollStrategy: this.overlay.scrollStrategies.block(),
     });
   }
@@ -83,7 +102,7 @@ export class DaffModalService {
   ): DaffModalComponent {
     this._closeAllModals();
     const config = { ...this.defaultConfiguration, ...configuration };
-    const _ref = this._createOverlayRef();
+    const _ref = this._createOverlayRef(config);
     const _modal = this._attachModal(_ref);
     const _attachedModal = this._attachModalContent(component, _modal);
 
