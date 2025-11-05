@@ -122,7 +122,7 @@ export class DaffStatusableDirective implements DaffStatusable, OnChanges, OnIni
   ngOnInit() {
     validateStatus(this.status);
 
-    if (this.status !== this.defaultStatus && this.defaultStatus) {
+    if (this.defaultStatus && !this.status) {
       this.status = this.defaultStatus;
     }
   }
