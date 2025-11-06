@@ -2318,7 +2318,8 @@
             "lintFilePatterns": [
               "libs/storefront/**/*.ts",
               "libs/storefront/**/*.html"
-            ]
+            ],
+            "eslintConfig": "libs/storefront/eslint.config.mjs"
           }
         }
       }

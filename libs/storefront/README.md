@@ -10,12 +10,12 @@ To install `@daffodil/storefront`, use the following commands in your terminal.
 
 Install with npm:
 
-```
+```bash
 npm install @daffodil/storefront --save
 ```
 
 Install with yarn:
 
-```
+```bash
 yarn add @daffodil/storefront
 ```
