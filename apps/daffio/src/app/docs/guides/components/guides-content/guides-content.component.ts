@@ -6,7 +6,6 @@ import {
   inject,
   ElementRef,
   afterRenderEffect,
-  DestroyRef,
   ViewContainerRef,
 } from '@angular/core';
 
@@ -37,17 +36,12 @@ export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicConten
   doc = input<DaffDoc>();
 
   private elementRef = inject(ElementRef<HTMLElement>);
-  private destroyRef = inject(DestroyRef);
   private viewContainerRef = inject(ViewContainerRef);
 
   constructor(
     private tocRegistry: DaffioDocsTocService,
     private copyButtonService: CodeBlockCopyButtonService,
   ) {
-    this.destroyRef.onDestroy(() => {
-      this.copyButtonService.cleanup();
-    });
-
     effect((onCleanup) => {
       this.tocRegistry.set(this.doc().tableOfContents);
       onCleanup(() => {
@@ -56,9 +50,13 @@ export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicConten
     });
 
     afterRenderEffect({
-      write: () => {
+      write: (onCleanup) => {
         this.doc();
         this.copyButtonService.addCopyButtonsToCodeBlocks(this.elementRef.nativeElement, this.viewContainerRef);
+
+        onCleanup(() => {
+          this.copyButtonService.cleanup();
+        });
       },
     });
   }
