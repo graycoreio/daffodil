@@ -5,3 +5,4 @@ export * from './parse-host-directive-field';
 export * from './ref.type';
 export * from './role/public_api';
 export * from './type.enum';
+export * from './get-package-from-id';

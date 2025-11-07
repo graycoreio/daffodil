@@ -19,4 +19,5 @@ export interface DaffApiDocBase extends DaffDoc {
   slug: string;
   name: string;
   deprecated: string;
+  package: string;
 }
