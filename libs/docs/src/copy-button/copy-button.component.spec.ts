@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import {
   ComponentFixture,
   TestBed,
@@ -7,33 +6,28 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffDocsCopyButtonComponent } from './copy-button/copy-button.component';
+import { DaffDocsCopyButtonComponent } from './copy-button.component';
 
 describe('@daffodil/docs | DaffDocsCopyButtonComponent', () => {
   let component: DaffDocsCopyButtonComponent;
   let fixture: ComponentFixture<DaffDocsCopyButtonComponent>;
   let button: HTMLButtonElement;
-  let mockDocument: Document;
   let writeTextSpy: jasmine.Spy;
 
   beforeEach(async () => {
     writeTextSpy = jasmine.createSpy('writeText').and.resolveTo();
-    mockDocument = <any>{
-      defaultView: {
-        navigator: {
-          clipboard: {
-            writeText: writeTextSpy,
-          },
-        },
-      },
-    };
 
     await TestBed.configureTestingModule({
       imports: [DaffDocsCopyButtonComponent],
-      providers: [
-        { provide: DOCUMENT, useValue: mockDocument },
-      ],
     }).compileComponents();
+
+    Object.defineProperty(navigator, 'clipboard', {
+      value: {
+        writeText: writeTextSpy,
+      },
+      writable: true,
+      configurable: true,
+    });
 
     fixture = TestBed.createComponent(DaffDocsCopyButtonComponent);
     component = fixture.componentInstance;
@@ -67,12 +61,12 @@ describe('@daffodil/docs | DaffDocsCopyButtonComponent', () => {
       expect(component['copied']()).toBe(true);
     }));
 
-    it('should reset copied state after 2 seconds', fakeAsync(() => {
+    it('should reset copied state after 1.5 seconds', fakeAsync(() => {
       component.copyToClipboard();
       tick();
       expect(component['copied']()).toBe(true);
 
-      tick(2000);
+      tick(1500);
       expect(component['copied']()).toBe(false);
     }));
 

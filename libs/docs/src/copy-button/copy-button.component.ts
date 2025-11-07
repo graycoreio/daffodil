@@ -37,7 +37,7 @@ import { DaffIconButtonComponent } from '@daffodil/design/button';
 })
 export class DaffDocsCopyButtonComponent implements OnDestroy {
   private document = inject(DOCUMENT);
-  private timeoutId?: number;
+  private timeoutId?: ReturnType<typeof setTimeout>;
 
   // Content to be copied to clipboard
   content = input.required<string>();
