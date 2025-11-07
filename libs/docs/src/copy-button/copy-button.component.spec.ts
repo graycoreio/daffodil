@@ -7,7 +7,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffDocsCopyButtonComponent } from './copy-button.component';
+import { DaffDocsCopyButtonComponent } from './copy-button/copy-button.component';
 
 describe('@daffodil/docs | DaffDocsCopyButtonComponent', () => {
   let component: DaffDocsCopyButtonComponent;
