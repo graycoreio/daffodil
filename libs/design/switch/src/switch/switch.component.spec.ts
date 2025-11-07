@@ -64,7 +64,7 @@ describe('@daffodil/design/switch | DaffSwitchComponent | Defaults', () => {
   });
 
   it('should have a generated id for the switch control', () => {
-    expect(component.toggleId).toMatch('daff-switch-[0-9]*');
+    expect(component.id).toMatch('daff-switch-[0-9]*');
   });
 
   it('should set `left` as the default labelPosition', () => {
