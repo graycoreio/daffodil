@@ -55,9 +55,11 @@ export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicConten
       });
     });
 
-    afterRenderEffect(() => {
-      this.doc();
-      this.addCopyButtonsToCodeBlocks();
+    afterRenderEffect({
+      write: () => {
+        this.doc();
+        this.addCopyButtonsToCodeBlocks();
+      },
     });
   }
 
