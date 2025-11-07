@@ -1,0 +1,20 @@
+.daff-docs-copy-button {
+	opacity: 0.7;
+	transition: opacity 200ms ease-in-out;
+
+	&:hover {
+		opacity: 1;
+	}
+
+	&:focus {
+		opacity: 1;
+	}
+
+	// Positioning variant
+	// &.daff-positioned-top-right {
+	// 	position: absolute;
+	// 	top: 0.3rem;
+	// 	right: 0.3rem;
+	// 	z-index: 1;
+	// }
+}

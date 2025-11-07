@@ -1,0 +1,13 @@
+<button
+  daff-icon-button
+  size="sm"
+  type="button"
+  [attr.aria-label]="copied() ? 'Copied to clipboard' : 'Copy to clipboard'"
+  (click)="copyToClipboard()"
+  class="daff-docs-copy-button">
+  @if (copied()) {
+    <fa-icon [icon]="faCheck" />
+  } @else {
+    <fa-icon [icon]="faCopy" />
+  }
+</button>

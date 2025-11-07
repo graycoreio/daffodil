@@ -5,6 +5,7 @@ import {
   effect,
 } from '@angular/core';
 
+import { DaffDocsCopyCodeBlockDirective } from '@daffodil/docs';
 import {
   DaffDoc,
   DaffDocKind,
@@ -22,6 +23,7 @@ import { DaffioDocsTocService } from '../../../toc/toc.service';
   imports: [
     DaffioDocViewerComponent,
     DaffioSafeHtmlPipe,
+    DaffDocsCopyCodeBlockDirective,
   ],
 })
 export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicContent<DaffDoc> {

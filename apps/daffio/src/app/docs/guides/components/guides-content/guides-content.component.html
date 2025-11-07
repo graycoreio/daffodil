@@ -1,3 +1,3 @@
 <daffio-doc-viewer [breadcrumbs]="doc().breadcrumbs" [toc]="doc().tableOfContents" [sourcePath]="doc().sourcePath">
-	<div [innerHTML]="doc().contents | safe"></div>
+	<div daffDocsCopyCodeBlock [innerHTML]="doc().contents | safe"></div>
 </daffio-doc-viewer>
