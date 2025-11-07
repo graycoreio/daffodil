@@ -5,6 +5,7 @@ import {
   input,
   signal,
   inject,
+  OnDestroy,
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
@@ -34,10 +35,11 @@ import { DaffIconButtonComponent } from '@daffodil/design/button';
     FaIconComponent,
   ],
 })
-export class DaffDocsCopyButtonComponent {
+export class DaffDocsCopyButtonComponent implements OnDestroy {
   private document = inject(DOCUMENT);
+  private timeoutId?: number;
 
-  // Code snippet to copy
+  // Content to be copied to clipboard
   content = input.required<string>();
 
   protected copied = signal(false);
@@ -45,15 +47,21 @@ export class DaffDocsCopyButtonComponent {
   protected readonly faCopy = faCopy; // default copy icon
   protected readonly faCheck = faCheck; // check icon for copied state
 
+  ngOnDestroy() {
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  }
+
   async copyToClipboard(): Promise<void> {
     try {
-      // Write code snippet to clipboard
+      // Write content to clipboard
       await this.document.defaultView?.navigator.clipboard.writeText(this.content());
       this.copied.set(true);
 
-      setTimeout(() => {
+      this.timeoutId = setTimeout(() => {
         this.copied.set(false);
-      }, 1500); // resets copied state after 1.5 seconds
+      }, 1500);
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }

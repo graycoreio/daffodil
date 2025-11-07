@@ -4,11 +4,12 @@ import {
   input,
   effect,
   inject,
-  ViewContainerRef,
   ComponentRef,
   Renderer2,
   ElementRef,
   afterRenderEffect,
+  DestroyRef,
+  ViewContainerRef,
 } from '@angular/core';
 
 import { DaffDocsCopyButtonComponent } from '@daffodil/docs';
@@ -38,17 +39,21 @@ export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicConten
 
   private elementRef = inject(ElementRef<HTMLElement>);
   private renderer = inject(Renderer2);
+  private destroyRef = inject(DestroyRef);
   private viewContainerRef = inject(ViewContainerRef);
   private buttonRefs: Array<ComponentRef<DaffDocsCopyButtonComponent>> = [];
 
   constructor(
     private tocRegistry: DaffioDocsTocService,
   ) {
+    this.destroyRef.onDestroy(() => {
+      this.cleanupButtons();
+    });
+
     effect((onCleanup) => {
       this.tocRegistry.set(this.doc().tableOfContents);
       onCleanup(() => {
         this.tocRegistry.set([]);
-        this.cleanupButtons();
       });
     });
 
@@ -84,11 +89,10 @@ export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicConten
 
       const buttonElement = buttonRef.location.nativeElement;
 
-      // this.renderer.addClass(buttonElement, 'daff-positioned-top-right');
-      this.renderer.setStyle(buttonElement, 'position', 'absolute');
-      this.renderer.setStyle(buttonElement, 'top', '0.5rem');
-      this.renderer.setStyle(buttonElement, 'right', '0.5rem');
-      this.renderer.setStyle(buttonElement, 'z-index', '1');
+      const innerButton = buttonElement.querySelector('button');
+      if (innerButton) {
+        this.renderer.addClass(innerButton, 'daff-copy-code-block');
+      }
 
       // Add copy button to the code block
       this.renderer.appendChild(pre, buttonElement);

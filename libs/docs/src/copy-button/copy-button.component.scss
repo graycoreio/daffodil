@@ -10,11 +10,11 @@
 		opacity: 1;
 	}
 
-	// Positioning variant
-	// &.daff-positioned-top-right {
-	// 	position: absolute;
-	// 	top: 0.3rem;
-	// 	right: 0.3rem;
-	// 	z-index: 1;
-	// }
+	// Positioning variant for when button is in code blocks
+	&.daff-copy-code-block {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
+		z-index: 1;
+	}
 }
