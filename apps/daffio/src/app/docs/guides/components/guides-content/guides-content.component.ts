@@ -5,7 +5,6 @@ import {
   effect,
   inject,
   ComponentRef,
-  Renderer2,
   ElementRef,
   afterRenderEffect,
   DestroyRef,
@@ -38,7 +37,6 @@ export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicConten
   doc = input<DaffDoc>();
 
   private elementRef = inject(ElementRef<HTMLElement>);
-  private renderer = inject(Renderer2);
   private destroyRef = inject(DestroyRef);
   private viewContainerRef = inject(ViewContainerRef);
   private buttonRefs: Array<ComponentRef<DaffDocsCopyButtonComponent>> = [];
@@ -79,7 +77,7 @@ export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicConten
 
       const textContent = code.textContent || '';
 
-      this.renderer.setStyle(pre, 'position', 'relative');
+      pre.style.position = 'relative';
 
       // Create the copy button component
       const buttonRef = this.viewContainerRef.createComponent(DaffDocsCopyButtonComponent);
@@ -91,11 +89,11 @@ export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicConten
 
       const innerButton = buttonElement.querySelector('button');
       if (innerButton) {
-        this.renderer.addClass(innerButton, 'daff-copy-code-block');
+        innerButton.classList.add('daff-copy-code-block');
       }
 
       // Add copy button to the code block
-      this.renderer.appendChild(pre, buttonElement);
+      pre.appendChild(buttonElement);
 
       this.buttonRefs.push(buttonRef);
     });

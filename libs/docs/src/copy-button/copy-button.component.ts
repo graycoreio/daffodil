@@ -1,10 +1,8 @@
-import { DOCUMENT } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
   input,
   signal,
-  inject,
   OnDestroy,
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -36,7 +34,6 @@ import { DaffIconButtonComponent } from '@daffodil/design/button';
   ],
 })
 export class DaffDocsCopyButtonComponent implements OnDestroy {
-  private document = inject(DOCUMENT);
   private timeoutId?: ReturnType<typeof setTimeout>;
 
   // Content to be copied to clipboard
@@ -56,7 +53,7 @@ export class DaffDocsCopyButtonComponent implements OnDestroy {
   async copyToClipboard(): Promise<void> {
     try {
       // Write content to clipboard
-      await this.document.defaultView?.navigator.clipboard.writeText(this.content());
+      await navigator.clipboard.writeText(this.content());
       this.copied.set(true);
 
       this.timeoutId = setTimeout(() => {
