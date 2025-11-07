@@ -13,6 +13,10 @@ import {
 } from '@daffodil/docs-utils';
 
 import { transformApiNavList } from './helpers/generateApiList';
+import {
+  ADD_PACKAGE_PROCESSOR_PROVIDER,
+  AddPackageProcessor,
+} from './processors/add-package';
 import { ADD_PACKAGE_EXPORTS_PROCESSOR_PROVIDER } from './processors/add-package-exports';
 import {
   ADD_SOURCE_PROVIDER,
@@ -80,6 +84,7 @@ export const apiDocsBase = new Package('api-base', [
   .processor(new FilterOutPrivatePropertiesProcessor())
   .processor(...HOIST_PRIVATE_PARENTS_PROCESSOR_PROVIDER)
   .processor(...PACKAGES_PROCESSOR_PROVIDER)
+  .processor(...ADD_PACKAGE_PROCESSOR_PROVIDER)
   .processor(...ADD_PACKAGE_EXPORTS_PROCESSOR_PROVIDER)
   .processor(...ADD_SUBPACKAGE_EXPORTS_PROCESSOR_PROVIDER)
   .processor(...COLLECT_LINKABLE_SYMBOLS_PROCESSOR_PROVIDER)
@@ -113,6 +118,7 @@ export const apiDocsBase = new Package('api-base', [
     importExample: ImportExampleProcessor,
     role: RoleProcessor,
     collectRoutablePaths: CollectRoutablePathsProcessor,
+    addPackage: AddPackageProcessor,
   ) => {
     importExample.docTypes.push(...EXPORT_DOC_TYPES);
     role.docTypes.push(...EXPORT_DOC_TYPES);
@@ -120,6 +126,7 @@ export const apiDocsBase = new Package('api-base', [
     examples.docTypes.push(...EXPORT_DOC_TYPES);
     markdown.docTypes.push(...EXPORT_DOC_TYPES);
     addSource.docTypes.push(...EXPORT_DOC_TYPES);
+    addPackage.docTypes.push(...EXPORT_DOC_TYPES);
     addKind.docTypes.push(...EXPORT_DOC_TYPES, DaffDocsApiType.PACKAGE, 'module');
     collectRoutablePaths.docTypes.push(...EXPORT_DOC_TYPES, DaffDocsApiType.PACKAGE, 'module');
     breadcrumb.docTypes.push(...EXPORT_DOC_TYPES, DaffDocsApiType.PACKAGE);
