@@ -49,6 +49,6 @@ Switch follows the [ARIA Switch design pattern](https://www.w3.org/WAI/ARIA/apg/
 ### Keyboard interactions
 | Key | Action |
 | --- | ------ |
+| Tab |  Moves focus to or away from the switch control. |
 | Space |  Changes the switch's state between on and off. |
 | Enter |  Changes the switch's state between on and off. |
-| Tab |  Moves focus to the next tabbable element on the page. |
