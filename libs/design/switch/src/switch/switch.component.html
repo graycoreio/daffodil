@@ -1,4 +1,4 @@
-<label class="daff-switch__label" [id]="labelId" [for]="toggleId">
+<label class="daff-switch__label" [id]="labelId" [for]="id">
   <ng-content></ng-content>
 </label>
 
@@ -9,5 +9,5 @@
   [attr.disabled]="disabled ? '' : null"
   [attr.aria-checked]="checked ? true : false"
   [attr.aria-labelledby]="labelId"
-  [attr.id]="toggleId">
+  [attr.id]="id">
 </button>
