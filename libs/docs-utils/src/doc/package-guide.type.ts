@@ -20,4 +20,9 @@ export interface DaffPackageGuideDoc extends DaffDoc {
    * A description of the package. This is renderable HTML.
    */
   longDescription: string;
+
+  /**
+   * The package that contains this guide.
+   */
+  package: string;
 }
