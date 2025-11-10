@@ -27,7 +27,9 @@ import { DaffIconButtonComponent } from '@daffodil/design/button';
   templateUrl: './copy-button.component.html',
   styleUrls: ['./copy-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
+  host: {
+    '[attr.aria-label]': 'copied() ? "Copied to clipboard" : "Copy to clipboard"',
+  },
   imports: [
     DaffIconButtonComponent,
     FaIconComponent,

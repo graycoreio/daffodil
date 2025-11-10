@@ -7,7 +7,7 @@ import {
 import { DaffDocsCopyButtonComponent } from '../copy-button/copy-button.component';
 
 @Injectable()
-export class CodeBlockCopyButtonService {
+export class DaffDocsCodeBlockCopyButtonService {
   private buttonRefs: Array<ComponentRef<DaffDocsCopyButtonComponent>> = [];
 
   /**
@@ -29,23 +29,14 @@ export class CodeBlockCopyButtonService {
 
       const textContent = code.textContent || '';
 
-      pre.style.position = 'relative';
-
       // Create the copy button component
       const buttonRef = viewContainerRef.createComponent(DaffDocsCopyButtonComponent);
 
       // Pass the code snippet to the button
       buttonRef.setInput('content', textContent);
 
-      const buttonElement = buttonRef.location.nativeElement;
-
-      const innerButton = buttonElement.querySelector('button');
-      if (innerButton) {
-        innerButton.classList.add('daff-copy-code-block');
-      }
-
       // Add copy button to the code block
-      pre.appendChild(buttonElement);
+      pre.appendChild(buttonRef.location.nativeElement);
 
       this.buttonRefs.push(buttonRef);
     });

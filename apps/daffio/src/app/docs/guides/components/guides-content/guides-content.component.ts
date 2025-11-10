@@ -9,7 +9,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 
-import { CodeBlockCopyButtonService } from '@daffodil/docs';
+import { DaffDocsCodeBlockCopyButtonService } from '@daffodil/docs';
 import {
   DaffDoc,
   DaffDocKind,
@@ -24,7 +24,7 @@ import { DaffioDocsTocService } from '../../../toc/toc.service';
   selector: 'daffio-docs-guides-content',
   templateUrl: './guides-content.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [CodeBlockCopyButtonService],
+  providers: [DaffDocsCodeBlockCopyButtonService],
   imports: [
     DaffioDocViewerComponent,
     DaffioSafeHtmlPipe,
@@ -35,13 +35,13 @@ export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicConten
 
   doc = input<DaffDoc>();
 
-  private elementRef = inject(ElementRef<HTMLElement>);
-  private viewContainerRef = inject(ViewContainerRef);
-
   constructor(
     private tocRegistry: DaffioDocsTocService,
-    private copyButtonService: CodeBlockCopyButtonService,
+    private copyButtonService: DaffDocsCodeBlockCopyButtonService,
   ) {
+    const elementRef = inject(ElementRef<HTMLElement>);
+    const viewContainerRef = inject(ViewContainerRef);
+
     effect((onCleanup) => {
       this.tocRegistry.set(this.doc().tableOfContents);
       onCleanup(() => {
@@ -52,7 +52,7 @@ export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicConten
     afterRenderEffect({
       write: (onCleanup) => {
         this.doc();
-        this.copyButtonService.addCopyButtonsToCodeBlocks(this.elementRef.nativeElement, this.viewContainerRef);
+        this.copyButtonService.addCopyButtonsToCodeBlocks(elementRef.nativeElement, viewContainerRef);
 
         onCleanup(() => {
           this.copyButtonService.cleanup();
