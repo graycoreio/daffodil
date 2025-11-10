@@ -235,4 +235,17 @@ export class DaffCheckboxComponent {
    * @docs-private
    */
   errorMessageId = this.id + '-error';
+
+  /**
+   * @docs-private
+   */
+  get ariaDescribedBy() {
+    if(this.hasErrorMessage()) {
+      return this.errorMessageId;
+    } else if(this.hasHint()) {
+      return this.hintId;
+    } else {
+      return null;
+    }
+  }
 }

@@ -7,17 +7,21 @@
 <div class="daff-checkbox-set__wrapper">
 <ng-content></ng-content>
 </div>
-@if (hasHint()) {
-	<div
-		class="daff-checkbox-set__hint-wrapper"
-		[id]="hintId">
-		<ng-content select="daff-hint"></ng-content>
-	</div>
-}
-@if (hasErrorMessage()) {
-	<div
-		class="daff-checkbox-set__error-wrapper"
-		[id]="errorMessageId">
-		<ng-content select="daff-error-message"></ng-content>
+@if (hasHint() || hasErrorMessage()) {
+	<div class="daff-checkbox-set__hint-and-error">
+		@if (hasHint()) {
+			<div
+				class="daff-checkbox-set__hint-wrapper"
+				[id]="hintId">
+				<ng-content select="daff-hint"></ng-content>
+			</div>
+		}
+		@if (hasErrorMessage()) {
+			<div
+				class="daff-checkbox-set__error-wrapper"
+				[id]="errorMessageId">
+				<ng-content select="daff-error-message"></ng-content>
+			</div>
+		}
 	</div>
 }

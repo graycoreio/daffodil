@@ -7,6 +7,9 @@
 		[attr.value]="value"
 		[attr.name]="name"
 		[attr.disabled] = "disabled ? '' : null" 
+		[attr.aria-required]="required"
+		[attr.aria-describedby]="ariaDescribedBy"
+		[attr.aria-checked]="checked"
 		(change)="_onChange($event)"
 		(blur)="onBlur()"
 		(focus)="onFocus()"
@@ -21,17 +24,21 @@
 		}
 	</span>
 </label>
-@if (hasHint()) {
-	<div
-		class="daff-checkbox__hint-wrapper"
-		[id]="hintId">
-		<ng-content select="daff-hint"></ng-content>
-	</div>
-}
-@if (!hasCheckboxSet && hasErrorMessage()) {
-	<div
-		class="daff-checkbox__error-wrapper"
-		[id]="errorMessageId">
-		<ng-content select="daff-error-message"></ng-content>
+@if (!hasCheckboxSet && (hasHint() || hasErrorMessage())) {
+	<div class="daff-checkbox__hint-and-error">
+		@if (hasHint()) {
+			<div
+				class="daff-checkbox__hint-wrapper"
+				[id]="hintId">
+				<ng-content select="daff-hint"></ng-content>
+			</div>
+		}
+		@if (hasErrorMessage()) {
+			<div
+				class="daff-checkbox__error-wrapper"
+				[id]="errorMessageId">
+				<ng-content select="daff-error-message"></ng-content>
+			</div>
+		}
 	</div>
 }

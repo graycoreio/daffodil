@@ -2,7 +2,10 @@
 
 .daff-checkbox {
 	$root: &;
-	display: block;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	gap: 0.5rem;
 
 	&.daff-disabled {
 		#{$root}__label {
@@ -36,7 +39,12 @@
 		display: flex;
 	}
 
-	&__hint-wrapper {
-		padding: 0.25rem 0 0 1.75rem;
+	&__hint-and-error {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-start;
+		gap: 0.25rem;
+		padding: 0 0 0 1.75rem;
 	}
 }

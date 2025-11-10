@@ -30,6 +30,7 @@ let uniqueCheckboxSetId = 0;
     class: 'daff-checkbox-set',
     role: 'group',
     '[attr.aria-labelledby]': 'id',
+    '[attr.aria-describedby]': 'ariaDescribedBy',
   },
   hostDirectives: [
     {
@@ -118,4 +119,17 @@ export class DaffCheckboxSetComponent {
    * @docs-private
    */
   errorMessageId = this.id + '-error';
+
+  /**
+   * @docs-private
+   */
+  get ariaDescribedBy() {
+    if(this.hasErrorMessage()) {
+      return this.errorMessageId;
+    } else if(this.hasHint()) {
+      return this.hintId;
+    } else {
+      return null;
+    }
+  }
 }
