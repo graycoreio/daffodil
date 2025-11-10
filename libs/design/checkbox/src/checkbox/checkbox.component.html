@@ -1,14 +1,37 @@
-<input #inputElement
-type="checkbox"
-[attr.aria-label]="label"
-[attr.aria-labelledby]="labeledBy"
-[attr.checked]="checked ? '' : null"
-[attr.id] = "id"
-[attr.value]="value"
-[attr.name]="name"
-[attr.disabled] = "disabled ? '' : null" 
-(change)="_onChange($event)"
-(blur)="onBlur()"
-(focus)="onFocus()"
-/>
-<label [attr.for]="id"><ng-content></ng-content></label>
+<label [attr.for]="id" class="daff-checkbox__label">
+	<input #inputElement
+		type="checkbox"
+		class="cdk-visually-hidden"
+		[attr.checked]="checked ? '' : null"
+		[attr.id] = "id"
+		[attr.value]="value"
+		[attr.name]="name"
+		[attr.disabled] = "disabled ? '' : null" 
+		(change)="_onChange($event)"
+		(blur)="onBlur()"
+		(focus)="onFocus()"
+	/>
+	@if (checked) {
+		<fa-icon [icon]="faCheck" size="xs" class="daff-checkbox__check-icon"></fa-icon>
+	}
+	<span class="daff-checkbox__label-text">
+		<ng-content></ng-content>
+		@if (!hasCheckboxSet && required) {
+			<span aria-hidden="true">*</span>
+		}
+	</span>
+</label>
+@if (hasHint()) {
+	<div
+		class="daff-checkbox__hint-wrapper"
+		[id]="hintId">
+		<ng-content select="daff-hint"></ng-content>
+	</div>
+}
+@if (!hasCheckboxSet && hasErrorMessage()) {
+	<div
+		class="daff-checkbox__error-wrapper"
+		[id]="errorMessageId">
+		<ng-content select="daff-error-message"></ng-content>
+	</div>
+}

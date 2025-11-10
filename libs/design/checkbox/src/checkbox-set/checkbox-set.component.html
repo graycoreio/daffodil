@@ -1,1 +1,23 @@
+<div class="daff-checkbox-set__label" [attr.id]="id">
+	<ng-content select="daff-checkbox-set-label"></ng-content>
+	@if (required) {
+		<span aria-hidden="true">*</span>
+	}
+</div>
+<div class="daff-checkbox-set__wrapper">
 <ng-content></ng-content>
+</div>
+@if (hasHint()) {
+	<div
+		class="daff-checkbox-set__hint-wrapper"
+		[id]="hintId">
+		<ng-content select="daff-hint"></ng-content>
+	</div>
+}
+@if (hasErrorMessage()) {
+	<div
+		class="daff-checkbox-set__error-wrapper"
+		[id]="errorMessageId">
+		<ng-content select="daff-error-message"></ng-content>
+	</div>
+}

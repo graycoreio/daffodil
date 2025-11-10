@@ -7,21 +7,29 @@ import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffCheckboxComponent } from '@daffodil/design/checkbox';
+import {
+  DAFF_CHECKBOX_COMPONENTS,
+  DaffCheckboxComponent,
+} from '@daffodil/design/checkbox';
 
 @Component({
   template: `
-    <daff-checkbox value="testValue"></daff-checkbox>
+    <daff-checkbox [value]="value" [name]="name">
+      Terms and conditions
+      <daff-hint>Hint</daff-hint>
+      <daff-error-message>Error</daff-error-message>
+    </daff-checkbox>
   `,
   imports: [
-    DaffCheckboxComponent,
-    ReactiveFormsModule,
+    DAFF_CHECKBOX_COMPONENTS,
   ],
 })
-class WrapperComponent { }
+class WrapperComponent {
+  value: string;
+  name: string;
+}
 
 describe('@daffodil/design/checkbox | DaffCheckboxComponent | Defaults', () => {
   let wrapper: WrapperComponent;
@@ -50,11 +58,27 @@ describe('@daffodil/design/checkbox | DaffCheckboxComponent | Defaults', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should take a value as an input', () => {
-    expect(component.value).toEqual('testValue');
+  it('should take value as an input', () => {
+    expect(component.value).toEqual(wrapper.value);
+  });
+
+  it('should take name as an input', () => {
+    expect(component.name).toEqual(wrapper.name);
   });
 
   it('should have a generated id', () => {
     expect(component.id).toMatch('daff-checkbox-[0-9]*');
+  });
+
+  it('should have a generated id for the hint', () => {
+    const hint = fixture.debugElement.query(By.css('.daff-checkbox__hint-wrapper'));
+
+    expect(hint.nativeElement.id).toMatch('daff-checkbox-[0-9]*-hint');
+  });
+
+  it('should have a generated id for the error message', () => {
+    const error = fixture.debugElement.query(By.css('.daff-checkbox__error-wrapper'));
+
+    expect(error.nativeElement.id).toMatch('daff-checkbox-[0-9]*-error');
   });
 });
