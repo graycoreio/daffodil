@@ -38,6 +38,7 @@ export class MockPackageGuideDoc extends MockDoc implements DaffPackageGuideDoc 
   }, <Record<DaffDocsApiRole, any[]>>{});
 
   longDescription = `<h2>Overview</h2><p>${faker.lorem.paragraph()}</p><h3>Features</h3><ul><li>${faker.lorem.sentence()}</li><li>${faker.lorem.sentence()}</li><li>${faker.lorem.sentence()}</li></ul><p>${faker.lorem.paragraph()}</p>`;
+  package = `@daffodil/${faker.commerce.department()}`;
 
   constructor(
     breadcrumbFactory: DaffBreadcrumbFactory,

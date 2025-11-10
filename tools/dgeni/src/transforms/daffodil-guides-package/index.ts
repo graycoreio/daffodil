@@ -51,6 +51,10 @@ import {
   PROJECT_ROOT,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
+import {
+  ADD_PACKAGE_TO_GUIDE_PROCESSOR_PROVIDER,
+  AddPackageToGuideProcessor,
+} from './processors/add-package-to-guide';
 
 const docTypes = ['guide', 'package-guide'];
 
@@ -131,6 +135,12 @@ export const packageDocsPackage = outputPathsConfigurator({
         `${basePath}/${DAFF_DGENI_EXCLUDED_PACKAGES_REGEX}/guides/**/index.json`,
       ],
     }));
+  })
+  .processor(...ADD_PACKAGE_TO_GUIDE_PROCESSOR_PROVIDER)
+  .config((
+    addPackageToGuide: AddPackageToGuideProcessor,
+  ) => {
+    addPackageToGuide.docTypes.push(...docTypes);
   });
 
 export const guideDocsPackage = pathsConfigurator({
