@@ -43,7 +43,7 @@ describe('@daffodil/docs | DaffDocsCodeBlockCopyButtonService', () => {
       expect(createComponentSpy).toHaveBeenCalledTimes(2);
     });
 
-    it('should append button to pre element', () => {
+    it('should create wrapper and append button to it', () => {
       let callCount = 0;
       mockViewContainerRef.createComponent.and.callFake(() => {
         const buttonElement = document.createElement('button');
@@ -58,10 +58,12 @@ describe('@daffodil/docs | DaffDocsCodeBlockCopyButtonService', () => {
 
       service.addCopyButtonsToCodeBlocks(hostElement, mockViewContainerRef);
 
-      const preElements = hostElement.querySelectorAll('pre');
-      expect(preElements.length).toBe(2);
-      expect(preElements[0].querySelector('button')).toBeTruthy();
-      expect(preElements[1].querySelector('button')).toBeTruthy();
+      const wrappers = hostElement.querySelectorAll('.daff-code-block-wrapper');
+      expect(wrappers.length).toBe(2);
+      expect(wrappers[0].querySelector('pre')).toBeTruthy();
+      expect(wrappers[0].querySelector('button')).toBeTruthy();
+      expect(wrappers[1].querySelector('pre')).toBeTruthy();
+      expect(wrappers[1].querySelector('button')).toBeTruthy();
     });
 
     it('should skip pre elements without code', () => {
@@ -70,22 +72,6 @@ describe('@daffodil/docs | DaffDocsCodeBlockCopyButtonService', () => {
       service.addCopyButtonsToCodeBlocks(hostElement, mockViewContainerRef);
 
       expect(mockViewContainerRef.createComponent).not.toHaveBeenCalled();
-    });
-
-    it('should set pre position to relative', () => {
-      mockViewContainerRef.createComponent.and.returnValue(<any>{
-        setInput: jasmine.createSpy('setInput'),
-        location: {
-          nativeElement: document.createElement('div'),
-        },
-      });
-
-      service.addCopyButtonsToCodeBlocks(hostElement, mockViewContainerRef);
-
-      const preElements = hostElement.querySelectorAll('pre');
-      preElements.forEach((pre: HTMLPreElement) => {
-        expect(pre.style.position).toBe('relative');
-      });
     });
   });
 

@@ -11,7 +11,7 @@ import { DaffDocsCopyButtonComponent } from './copy-button.component';
 describe('@daffodil/docs | DaffDocsCopyButtonComponent', () => {
   let component: DaffDocsCopyButtonComponent;
   let fixture: ComponentFixture<DaffDocsCopyButtonComponent>;
-  let button: HTMLButtonElement;
+  let copyButton: HTMLElement;
   let writeTextSpy: jasmine.Spy;
 
   beforeEach(async () => {
@@ -33,7 +33,7 @@ describe('@daffodil/docs | DaffDocsCopyButtonComponent', () => {
     component = fixture.componentInstance;
     fixture.componentRef.setInput('content', 'test content');
     fixture.detectChanges();
-    button = fixture.debugElement.query(By.css('button')).nativeElement;
+    copyButton = fixture.nativeElement;
   });
 
   it('should create', () => {
@@ -41,7 +41,7 @@ describe('@daffodil/docs | DaffDocsCopyButtonComponent', () => {
   });
 
   it('should have an aria-label for accessibility', () => {
-    expect(button.getAttribute('aria-label')).toBe('Copy to clipboard');
+    expect(copyButton.getAttribute('aria-label')).toBe('Copy to clipboard');
   });
 
   it('should display copy icon by default', () => {
@@ -74,7 +74,7 @@ describe('@daffodil/docs | DaffDocsCopyButtonComponent', () => {
       component.copyToClipboard();
       tick();
       fixture.detectChanges();
-      expect(button.getAttribute('aria-label')).toBe('Copied to clipboard');
+      expect(copyButton.getAttribute('aria-label')).toBe('Copied to clipboard');
     }));
   });
 
