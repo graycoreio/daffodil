@@ -13,6 +13,16 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'switch-label-positions',
   templateUrl: './switch-label-positions.component.html',
+  styles: [
+    `
+      :host {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_SWITCH_COMPONENTS,

@@ -7,6 +7,7 @@
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
+	@include interactions.clickable();
 
 	&.left {
 		flex-direction: row;
@@ -18,30 +19,33 @@
 
 	&.top {
 		flex-direction: column;
-
-		#{$root}__toggle {
-			margin-left: -0.125rem;
-		}
 	}
 
 	&.bottom {
 		flex-direction: column-reverse;
 	}
 
+	&.left,
+	&.right {
+		justify-content: space-between;
+		width: fit-content;
+	}
+
 	&.top,
 	&.bottom {
 		align-items: flex-start;
-
-		#{$root}__toggle {
-			margin-left: -0.25rem;
-		}
 	}
 
 	&.daff-disabled {
 		opacity: 0.5;
+		cursor: not-allowed;
+
+		#{$root}__label {
+			cursor: not-allowed;
+		}
 
 		#{$root}__toggle {
-			cursor: default;
+			cursor: not-allowed;
 		}
 	}
 
@@ -79,6 +83,7 @@
 	$root: &;
 
 	&__label {
+		@include interactions.clickable();
 		font-size: 1rem;
 		line-height: 1rem;
 	}
