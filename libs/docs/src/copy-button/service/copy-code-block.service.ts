@@ -29,14 +29,22 @@ export class DaffDocsCodeBlockCopyButtonService {
 
       const textContent = code.textContent || '';
 
+      // Create a wrapper for positioning the copy button
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('daff-code-block-wrapper');
+      wrapper.style.position = 'relative';
+
+      pre.parentNode?.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+
       // Create the copy button component
       const buttonRef = viewContainerRef.createComponent(DaffDocsCopyButtonComponent);
 
       // Pass the code snippet to the button
       buttonRef.setInput('content', textContent);
 
-      // Add copy button to the code block
-      pre.appendChild(buttonRef.location.nativeElement);
+      // Add copy button to the wrapper
+      wrapper.appendChild(buttonRef.location.nativeElement);
 
       this.buttonRefs.push(buttonRef);
     });
