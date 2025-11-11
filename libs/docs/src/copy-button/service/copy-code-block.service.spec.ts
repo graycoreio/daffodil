@@ -58,12 +58,15 @@ describe('@daffodil/docs | DaffDocsCodeBlockCopyButtonService', () => {
 
       service.addCopyButtonsToCodeBlocks(hostElement, mockViewContainerRef);
 
-      const wrappers = hostElement.querySelectorAll('.daff-code-block-wrapper');
-      expect(wrappers.length).toBe(2);
-      expect(wrappers[0].querySelector('pre')).toBeTruthy();
-      expect(wrappers[0].querySelector('button')).toBeTruthy();
-      expect(wrappers[1].querySelector('pre')).toBeTruthy();
-      expect(wrappers[1].querySelector('button')).toBeTruthy();
+      const directChildren = Array.from(hostElement.children);
+      expect(directChildren.length).toBe(2);
+      expect(directChildren[0].tagName).toBe('DIV');
+      expect(directChildren[1].tagName).toBe('DIV');
+
+      expect(directChildren[0].querySelector('pre')).toBeTruthy();
+      expect(directChildren[0].querySelector('button')).toBeTruthy();
+      expect(directChildren[1].querySelector('pre')).toBeTruthy();
+      expect(directChildren[1].querySelector('button')).toBeTruthy();
     });
 
     it('should skip pre elements without code', () => {
