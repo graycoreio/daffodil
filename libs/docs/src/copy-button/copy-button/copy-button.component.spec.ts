@@ -11,7 +11,7 @@ import { DaffDocsCopyButtonComponent } from './copy-button.component';
 describe('@daffodil/docs | DaffDocsCopyButtonComponent', () => {
   let component: DaffDocsCopyButtonComponent;
   let fixture: ComponentFixture<DaffDocsCopyButtonComponent>;
-  let copyButton: HTMLElement;
+  let copyButton: HTMLButtonElement;
   let writeTextSpy: jasmine.Spy;
 
   beforeEach(async () => {
@@ -33,7 +33,7 @@ describe('@daffodil/docs | DaffDocsCopyButtonComponent', () => {
     component = fixture.componentInstance;
     fixture.componentRef.setInput('content', 'test content');
     fixture.detectChanges();
-    copyButton = fixture.nativeElement;
+    copyButton = fixture.debugElement.query(By.css('button')).nativeElement;
   });
 
   it('should create', () => {
