@@ -91,6 +91,7 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
       title: 'title',
       path: 'path',
       sourcePath: 'sourcePath',
+      package: 'package',
       symbols: [],
       tableOfContents: [{
         content: 'toc',
