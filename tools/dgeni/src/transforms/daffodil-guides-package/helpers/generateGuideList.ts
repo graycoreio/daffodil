@@ -13,7 +13,7 @@ export const transformGuideDoc = (doc: Document): DaffNavDoc => ({
   path: doc.path,
 });
 
-export const transformDesignGuideDoc = (doc: Document): DaffDesignGuideNavDoc => doc.id === 'README' ?
+export const transformDesignGuideDoc = (doc: Document): DaffDesignGuideNavDoc => doc.id === 'README' || doc.id === 'overview' ?
   {
     id: 'overview',
     title: 'Overview',

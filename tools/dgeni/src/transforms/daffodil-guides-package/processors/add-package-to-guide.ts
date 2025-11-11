@@ -31,10 +31,14 @@ export class AddPackageToGuideProcessor implements FilterableProcessor {
   $process(docs: Array<Document>): Array<Document> {
     return docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
-        const pkg = doc.fileInfo.relativePath.split('/')[0];
+        const [pkg, filename] = doc.fileInfo.relativePath.split('/');
         if (pkg) {
           doc.indexer = indexer;
           doc.package = `@daffodil/${pkg}`;
+          if (filename === 'README.md') {
+            doc.id = 'overview';
+            doc.title = 'Overview';
+          }
         }
       }
       return doc;
