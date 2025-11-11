@@ -164,7 +164,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   private _appearance: DaffFormFieldApperanace = DaffFormFieldApperanaceEnum.Fluid;
 
   /**
-   * The appearance style of a form field, whether the label is fluid or fixed.
+   * The appearance style of a form field, whether the label is `fluid` or `fixed`.
    */
   @Input()
   get appearance() {
