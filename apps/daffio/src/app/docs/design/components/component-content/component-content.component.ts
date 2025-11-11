@@ -57,11 +57,12 @@ import { DaffioDocsDesignApiSortSectionLabels } from '../../pipes/sort-api-secti
 export class DaffioDocsDesignComponentContentComponent implements DaffioDocsDynamicContent<DaffPackageGuideDoc> {
   static readonly kind = DaffDocKind.COMPONENT;
 
-  private readonly _tab = signal<string>('');
-  private readonly viewHeaders = viewChildren(DaffioDocsTocHeaderDirective);
-
   readonly USAGE_TAB_ID = 'usage-tab';
   readonly API_TAB_ID = 'api-tab';
+
+  private readonly _tab = signal<string>(this.USAGE_TAB_ID);
+  private readonly viewHeaders = viewChildren(DaffioDocsTocHeaderDirective);
+
   readonly getSectionLabel = daffDocsApiRoleGetSectionLabel;
 
   readonly sections = computed(() => this.sortSections.transform(<any>this.keyValue.transform(this.doc().api)));
