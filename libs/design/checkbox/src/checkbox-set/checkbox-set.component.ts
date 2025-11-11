@@ -76,6 +76,7 @@ export class DaffCheckboxSetComponent {
 
   /**
    * Whether the checkbox set is required.
+   *
    * Can be set explicitly via input, or automatically set to true if any checkbox within the set is required.
    */
   @Input({ transform: booleanAttribute })

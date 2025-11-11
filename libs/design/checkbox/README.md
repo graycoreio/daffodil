@@ -6,8 +6,8 @@ Users can select zero, one, or any number of checkboxes. They can be used standa
 
 The following components are available for checkboxes:
 
-- **<daff-checkbox>**: Individual checkbox
-- **<daff-checkbox-set>**: Container for grouping related checkboxes
+- **`<daff-checkbox>`**: Individual checkbox
+- **`<daff-checkbox-set>`**: Container for grouping related checkboxes
 
 ## Usage
 
@@ -51,7 +51,9 @@ export class CustomComponentModule { }
 
 > Deprecation notice: This method is deprecated. It's recommended to update all custom components to standalone.
 
-## Basic checkbox
+## Anatomy
+
+### Checkbox
 A basic checkbox allows users to make a selection. Place the label text as content inside of `<daff-checkbox>`.
 
 ```html
@@ -60,10 +62,10 @@ A basic checkbox allows users to make a selection. Place the label text as conte
 </daff-checkbox>
 ```
 
-## Checkbox Set
-Use `<daff-checkbox-set>` to group related checkboxes together. This provides consistent styling and helps organize multiple checkbox options under a common label.
+### Checkbox Set
+Group related checkboxes together using `<daff-checkbox-set>` for better organization and accessibility. This provides consistent styling and helps organize multiple checkbox options under a common label.
 
-### Checkbox set label
+#### Label
 Use `<daff-checkbox-set-label>` to provide a descriptive label for the checkbox set. This helps users understand what the group of checkboxes represents.
 
 ```html
@@ -80,10 +82,10 @@ Use the `orientation` property to stack checkboxes either `vertical` (default) o
 
 ```html
 <daff-checkbox-set orientation="horizontal">
-  <daff-checkbox-set-label>Select options</daff-checkbox-set-label>
-  <daff-checkbox value="option1">Option 1</daff-checkbox>
-  <daff-checkbox value="option2">Option 2</daff-checkbox>
-  <daff-checkbox value="option3">Option 3</daff-checkbox>
+  <daff-checkbox-set-label>Preferences</daff-checkbox-set-label>
+  <daff-checkbox value="email">Email notifications</daff-checkbox>
+  <daff-checkbox value="sms">SMS notifications</daff-checkbox>
+  <daff-checkbox value="push">Push notifications</daff-checkbox>
 </daff-checkbox-set>
 ```
 
@@ -180,26 +182,19 @@ For checkbox sets:
 
 <design-land-example-viewer-container example="checkbox-set-with-error"></design-land-example-viewer-container>
 
-## Best practices
-- Always provide clear, descriptive labels for checkboxes to help users understand what they're selecting.
-- Group related checkboxes together using `<daff-checkbox-set>` for better organization and accessibility.
-- Use hints to provide additional context or instructions when needed.
-- Mark checkboxes as required when user input is mandatory.
-- Set meaningful custom IDs for checkboxes to improve accessibility and form management.
-
 ## Accessibility
 Checkbox implements the [Checkbox WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/).
 
-### What Daffodil provides
-- Each `<daff-checkbox>` has `role="checkbox"` with proper `aria-checked` state
-- Checkbox sets have `role="group"` with `aria-labelledby` pointing to the label
-- Labels are automatically associated with controls using `for` and `id` attributes
-- `<daff-hint>` and `<daff-error-message>` are linked via `aria-describedby`
+### Daffodil provides
+- Each `<daff-checkbox>` has `role="checkbox"` with proper `aria-checked` state.
+- Checkbox sets have `role="group"` with `aria-labelledby` pointing to the label.
+- Labels are automatically associated with controls using `for` and `id` attributes.
+- `<daff-hint>` and `<daff-error-message>` are linked via `aria-describedby`.
 
 ### Developer responsibilities
-- Always provide a label for each checkbox by placing text content inside `<daff-checkbox>`
-- Use `<daff-checkbox-set-label>` to label checkbox groups
-- If `<daff-checkbox-set-label>` is not provided, set an `id` to link it with the set's `aria-labelledby`
+Always provide clear, descriptive labels by placing text content inside `<daff-checkbox>` to help users understand what they're selecting.
+- Use `<daff-checkbox-set-label>` to label checkbox groups.
+- If `<daff-checkbox-set-label>` is not provided, set an `id` to link it with the set's `aria-labelledby`.
 
 ### Keyboard interaction
 | Key | Action |
