@@ -27,9 +27,6 @@ import { DaffIconButtonComponent } from '@daffodil/design/button';
   templateUrl: './copy-button.component.html',
   styleUrls: ['./copy-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[attr.aria-label]': 'copied() ? "Copied to clipboard" : "Copy to clipboard"',
-  },
   imports: [
     DaffIconButtonComponent,
     FaIconComponent,
@@ -64,5 +61,9 @@ export class DaffDocsCopyButtonComponent implements OnDestroy {
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
+  }
+
+  get ariaLabel() {
+    return this.copied() ? 'Copied to clipboard' : 'Copy to clipboard';
   }
 }

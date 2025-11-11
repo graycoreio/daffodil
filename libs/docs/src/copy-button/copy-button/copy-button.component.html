@@ -2,6 +2,7 @@
   daff-icon-button
   size="sm"
   type="button"
+  [attr.aria-label]="ariaLabel"
   (click)="copyToClipboard()">
   @if (copied()) {
     <fa-icon [icon]="faCheck" />

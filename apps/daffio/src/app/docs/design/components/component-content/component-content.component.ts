@@ -130,6 +130,7 @@ export class DaffioDocsDesignComponentContentComponent implements DaffioDocsDyna
 
     afterRenderEffect({
       write: (onCleanup) => {
+        this._tab();
         this.doc();
         this.copyButtonService.addCopyButtonsToCodeBlocks(elementRef.nativeElement, viewContainerRef);
 
