@@ -1,7 +1,7 @@
 import {
-  Menu,
-  MenuItem,
-  MenuItemType,
+  ShopifyMenu,
+  ShopifyMenuItem,
+  ShopifyMenuItemType,
 } from '@daffodil/driver/shopify';
 
 import {
@@ -36,10 +36,10 @@ describe('Shopify Navigation Transforms', () => {
     });
 
     it('should transform a simple menu without items', () => {
-      const menu: Menu = {
+      const menu: ShopifyMenu = {
         __typename: 'Menu',
         id: 'menu-1',
-        title: 'Main Menu',
+        title: 'Main ShopifyMenu',
         handle: 'main-menu',
         items: [],
         itemsCount: 0,
@@ -49,7 +49,7 @@ describe('Shopify Navigation Transforms', () => {
 
       expect(result).toEqual({
         id: 'menu-1',
-        name: 'Main Menu',
+        name: 'Main ShopifyMenu',
         url: '/',
         breadcrumbs: [],
         children: [],
@@ -57,10 +57,10 @@ describe('Shopify Navigation Transforms', () => {
     });
 
     it('should transform a menu with items', () => {
-      const menu: Menu = {
+      const menu: ShopifyMenu = {
         __typename: 'Menu',
         id: 'menu-1',
-        title: 'Main Menu',
+        title: 'Main ShopifyMenu',
         handle: 'main-menu',
         itemsCount: 2,
         items: [
@@ -71,7 +71,7 @@ describe('Shopify Navigation Transforms', () => {
             url: '/collections/category-1',
             items: [],
             tags: [],
-            type: MenuItemType.Collection,
+            type: ShopifyMenuItemType.Collection,
             resource: <any>{
               __typename: 'Collection',
               id: 'asdasdasdasd',
@@ -93,7 +93,7 @@ describe('Shopify Navigation Transforms', () => {
                 url: '/collections/subcategory-1',
                 items: [],
                 tags: [],
-                type: MenuItemType.Collection,
+                type: ShopifyMenuItemType.Collection,
                 resource: <any>{
                   __typename: 'Collection',
                   id: 'asdasdasdasd',
@@ -104,7 +104,7 @@ describe('Shopify Navigation Transforms', () => {
               },
             ],
             tags: [],
-            type: MenuItemType.Collection,
+            type: ShopifyMenuItemType.Collection,
             resource: <any>{
               __typename: 'Collection',
               id: 'asdasdasdasd',
@@ -120,7 +120,7 @@ describe('Shopify Navigation Transforms', () => {
 
       expect(result).toEqual({
         id: 'menu-1',
-        name: 'Main Menu',
+        name: 'Main ShopifyMenu',
         url: '/',
         breadcrumbs: [],
         children: [
@@ -153,14 +153,14 @@ describe('Shopify Navigation Transforms', () => {
 
   describe('transformShopifyMenuItemToNavTree', () => {
     it('should transform a simple menu item without children', () => {
-      const item: MenuItem = {
+      const item: ShopifyMenuItem = {
         __typename: 'MenuItem',
         id: 'item-1',
         title: 'Category 1',
         url: '/collections/category-1',
         items: [],
         tags: [],
-        type: MenuItemType.Collection,
+        type: ShopifyMenuItemType.Collection,
         resource: <any>{
           __typename: 'Collection',
           id: 'collection-id',
@@ -182,7 +182,7 @@ describe('Shopify Navigation Transforms', () => {
     });
 
     it('should transform a menu item with nested children', () => {
-      const item: MenuItem = {
+      const item: ShopifyMenuItem = {
         __typename: 'MenuItem',
         id: 'item-1',
         title: 'Category 1',
@@ -201,7 +201,7 @@ describe('Shopify Navigation Transforms', () => {
                 url: '/collections/sub-subcategory-1',
                 items: [],
                 tags: [],
-                type: MenuItemType.Collection,
+                type: ShopifyMenuItemType.Collection,
                 resource: <any>{
                   __typename: 'Collection',
                   id: 'collection-id-3',
@@ -212,7 +212,7 @@ describe('Shopify Navigation Transforms', () => {
               },
             ],
             tags: [],
-            type: MenuItemType.Collection,
+            type: ShopifyMenuItemType.Collection,
             resource: <any>{
               __typename: 'Collection',
               id: 'collection-id-2',
@@ -223,7 +223,7 @@ describe('Shopify Navigation Transforms', () => {
           },
         ],
         tags: [],
-        type: MenuItemType.Collection,
+        type: ShopifyMenuItemType.Collection,
         resource: <any>{
           __typename: 'Collection',
           id: 'collection-id-1',
@@ -261,14 +261,14 @@ describe('Shopify Navigation Transforms', () => {
     });
 
     it('should handle items with products', () => {
-      const item: MenuItem = {
+      const item: ShopifyMenuItem = {
         __typename: 'MenuItem',
         id: 'item-1',
         title: 'Product 1',
         url: null,
         items: [],
         tags: [],
-        type: MenuItemType.Product,
+        type: ShopifyMenuItemType.Product,
         resource: <any>{
           __typename: 'Product',
           id: 'product-id',
@@ -290,14 +290,14 @@ describe('Shopify Navigation Transforms', () => {
     });
 
     it('should handle pages', () => {
-      const item: MenuItem = {
+      const item: ShopifyMenuItem = {
         __typename: 'MenuItem',
         id: 'item-1',
         title: 'About Us',
         url: 'https://my-store.myshopify.com/pages/about-us',
         items: [],
         tags: [],
-        type: MenuItemType.Page,
+        type: ShopifyMenuItemType.Page,
         resource: <any>{
           __typename: 'Page',
           id: 'page-id',
@@ -318,13 +318,13 @@ describe('Shopify Navigation Transforms', () => {
     });
 
     it('should handle unknown types with pluralization', () => {
-      const item: MenuItem = {
+      const item: ShopifyMenuItem = {
         __typename: 'MenuItem',
         id: 'item-1',
         title: 'Blog Post',
         items: [],
         tags: [],
-        type: MenuItemType.Article,
+        type: ShopifyMenuItemType.Article,
         resource: <any>{
           __typename: 'Article',
           id: 'article-id',
