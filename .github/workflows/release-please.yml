@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [20.19.x]
+        node: [22.21.x]
     steps:
       - uses: google-github-actions/release-please-action@v3
         with:
