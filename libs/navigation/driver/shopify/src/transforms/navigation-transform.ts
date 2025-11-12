@@ -1,25 +1,25 @@
 import {
   getShopifyRoutePath,
-  Menu,
-  MenuItem,
+  ShopifyMenu,
+  ShopifyMenuItem,
 } from '@daffodil/driver/shopify';
 import { DaffNavigationTree } from '@daffodil/navigation';
 
 /**
  * Transforms a Shopify menu item to a DaffNavigationTree recursively.
  */
-export const transformShopifyMenuItemToNavTree = (item: MenuItem): DaffNavigationTree => ({
+export const transformShopifyMenuItemToNavTree = (item: ShopifyMenuItem): DaffNavigationTree => ({
   id: item.id,
   name: item.title,
   breadcrumbs: [],
   url: getShopifyRoutePath(item.type, item.resource?.handle),
-  children: item.items?.map((subItem: MenuItem) => transformShopifyMenuItemToNavTree(subItem)) || [],
+  children: item.items?.map((subItem: ShopifyMenuItem) => transformShopifyMenuItemToNavTree(subItem)) || [],
 });
 
 /**
  * Transforms a Shopify menu to a DaffNavigationTree.
  */
-export const transformShopifyMenuToNavTree = (menu: Menu | null): DaffNavigationTree => {
+export const transformShopifyMenuToNavTree = (menu: ShopifyMenu | null): DaffNavigationTree => {
   if (!menu) {
     return {
       id: 'root',
@@ -35,6 +35,6 @@ export const transformShopifyMenuToNavTree = (menu: Menu | null): DaffNavigation
     name: menu.title,
     url: '/',
     breadcrumbs: [],
-    children: menu.items?.map((item: MenuItem) => transformShopifyMenuItemToNavTree(item)) || [],
+    children: menu.items?.map((item: ShopifyMenuItem) => transformShopifyMenuItemToNavTree(item)) || [],
   };
 };
