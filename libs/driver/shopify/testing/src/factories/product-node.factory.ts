@@ -12,14 +12,31 @@ import { ShopifyProductImagesFactory } from './product-images.factory';
 import { ShopifyProductPriceRangeFactory } from './product-price-range.factory';
 
 class MockShopifyProductNode implements ShopifyProductNode {
-  title = faker.commerce.productName();
+  availableForSale = faker.datatype.boolean();
+  collections = null;
+  compareAtPriceRange = this.shopifyProductPriceRangeFactory.create();
+  createdAt = faker.date.past();
+  description = faker.commerce.productDescription();
+  descriptionHtml = faker.commerce.productDescription();
   handle = shopifyHandleTransformer(faker.commerce.productName());
   id = shopifyIdTransformer(`${faker.number.int({ min: 100000000000 })}`, 'Product');
-  description = faker.commerce.productDescription();
-  onlineStoreUrl = faker.internet.domainName();
-  availableForSale = faker.datatype.boolean();
-  priceRange = this.shopifyProductPriceRangeFactory.create();
   images = this.shopifyProductImagesFactory.create();
+  isGiftCard = faker.datatype.boolean();
+  media = null;
+  metafields = [];
+  onlineStoreUrl = faker.internet.domainName();
+  options = [];
+  priceRange = this.shopifyProductPriceRangeFactory.create();
+  productType = faker.commerce.productMaterial();
+  publishedAt = faker.date.past();
+  requiresSellingPlan = faker.datatype.boolean();
+  sellingPlanGroups = null;
+  seo = {};
+  tags = [];
+  title = faker.commerce.productName();
+  updatedAt = faker.date.past();
+  variants = null;
+  vendor = faker.company.name();
 
   constructor(
     protected shopifyProductPriceRangeFactory: ShopifyProductPriceRangeFactory,

@@ -12,6 +12,9 @@ class MockShopifyProductImageNode implements ShopifyImageNode {
   id = shopifyIdTransformer(`${faker.number.int({ min: 10000000000 })}`, 'ProductImage');
   url = faker.image.url();
   altText = faker.lorem.words(5);
+  originalSrc = faker.image.url();
+  src = faker.image.url();
+  transformedSrc = faker.image.url();
 }
 
 @Injectable({
