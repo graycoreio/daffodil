@@ -1,7 +1,5 @@
 <daff-form-field>
   <daff-form-label>Comments</daff-form-label>
   <textarea daff-textarea placeholder="Comments" name="comments" [formControl]="control"></textarea>
-  @if (control.errors?.required) {
-    <daff-error-message>Comments is a required field.</daff-error-message>
-  }
+  <daff-hint>Keep it under 300 characters.</daff-hint>
 </daff-form-field>

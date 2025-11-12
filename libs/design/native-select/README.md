@@ -1,25 +1,62 @@
-# Native select
-The native select component allows a native HTML select element to work with the form field component.
+# Native Select
+Native select works alongside the HTML select element, with additional custom styling and functionality.
 
 ## Overview
-The native select component has the same functionality as a native HTML `<select>` element, with additional custom styling and functionality. It **cannot** be used by itself and must be contained within a [DaffFormFieldComponent](/libs/design/src/atoms/form/form-field/README.md).
+Native select has the same functionality as a native HTML select element, with additional custom styling and functionality. It **cannot** be used by itself and must be contained within a [form field](/libs/design/form-field/README.md).
 
-<design-land-example-viewer-container example="default-select"></design-land-example-viewer-container>
+<design-land-example-viewer-container example="basic-native-select"></design-land-example-viewer-container>
 
-## Examples
+## Usage
+To use native select, import `DAFF_NATIVE_SELECT_COMPONENTS` directly into your custom component:
 
-### Disabled select
-<design-land-example-viewer-container example="disabled-select"></design-land-example-viewer-container>
+```ts
+import { DAFF_NATIVE_SELECT_COMPONENTS } from '@daffodil/design/native-select';
 
-### Select with error messages
-The select in this example uses the `ReactiveFormsModule` to display errors.
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  imports: [
+    DAFF_NATIVE_SELECT_COMPONENTS,
+  ],
+})
+export class CustomComponent {}
+```
 
-<design-land-example-viewer-container example="select-with-error"></design-land-example-viewer-container>
+## Anatomy
+Native select must be used inside `<daff-form-field>` to enable proper state management and provide enhanced UI features such as hints, error messages, prefixes, and suffixes. The form field component also ensures accessibility compliance. For more details, see the [form field documentation](/libs/design/form-field/README.md).
 
-### Select with hint
-The select in this example has a hint.
+### Basic structure
+```html
+<daff-form-field>
+  <daff-form-label>Sort By</daff-form-label>
+  <select daff-native-select>
+    <option value="price-low-high">Price: Low to High</option>
+    <option value="price-high-low">Price: High to Low</option>
+    <option value="newest">Newest Arrivals</option>
+  </select>
+</daff-form-field>
+```
 
-<design-land-example-viewer-container example="select-with-hint"></design-land-example-viewer-container>
+## States
 
-### Loading select
-<design-land-example-viewer-container example="skeleton-select"></design-land-example-viewer-container>
+### Disabled
+Native select can be disabled in two ways: using Angular's reactive forms with `FormControl` or with the native HTML `disabled` attribute.
+
+<design-land-example-viewer-container example="native-select-disabled"></design-land-example-viewer-container>
+
+### Error
+Native select supports validation and error messages through Angular's form validation system. Use `<daff-error-message>` within the form field to display context-specific error messages. Error messages automatically appear when the select is invalid and has been touched or submitted.
+
+<design-land-example-viewer-container example="native-select-error"></design-land-example-viewer-container>
+
+Multiple error messages can be displayed conditionally based on the type of validation error. The form field component handles the styling and positioning of error messages.
+
+## Hints
+Hints provide additional context or instructions to help users complete the select field correctly. Use `<daff-hint>` within the form field to display helpful information below the select. Unlike error messages, hints are always visible and provide guidance rather than validation feedback.
+
+<design-land-example-viewer-container example="native-select-hint"></design-land-example-viewer-container>
+
+## Accessibility
+When `<daff-form-label>` is used within `<daff-form-field>`, the label automatically associates with the select using the `for` and `id` attributes.
+
+If a `<daff-form-label>` is not specified, use the `<label>` element to associate text with form elements explicitly. The `for` attribute of the label must exactly match the `id` of the form control.

@@ -1,0 +1,11 @@
+<daff-form-field>
+  <daff-form-label>Select billing address</daff-form-label>
+  <daff-select [options]="options" [formControl]="control">
+    <ng-template daffSelectOption let-option="option">
+      <div>{{option.name}}</div>
+      <div>{{option.street}}</div>
+      <div>{{option.city}}, {{option.state}} {{option.postcode}}</div>
+    </ng-template>
+  </daff-select>
+  <daff-hint>Your billing address doesn't need to match your shipping address</daff-hint>
+</daff-form-field>
