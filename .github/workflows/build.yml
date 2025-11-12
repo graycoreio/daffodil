@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [20.19.x]
+        node: [22.21.x]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [20.19.x]
+        node: [22.21.x]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -94,7 +94,7 @@ jobs:
           fetch-depth: 0
       - uses: graycoreio/github-actions/setup-node@main
         with:
-          node-version: '20.19.x'
+          node-version: '22.21.x'
           use-stamp-cache: true
       - uses: nrwl/nx-set-shas@v3
         name: Derive appropriate SHAs for base and head for `nx affected` commands
@@ -114,7 +114,7 @@ jobs:
       fail-fast: false
       matrix:
         package: ${{ fromJSON(needs.compute_packages.outputs.packages) }}
-        node: [20.19.x]
+        node: [22.21.x]
     needs:
       - compute_packages
       - build
@@ -151,7 +151,7 @@ jobs:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG: ${{ secrets.VERCEL_ORG }}
     with:
-      artifact: daffio-20.19.x
+      artifact: daffio-22.21.x
       artifact-zip-name: daffio.zip
 
   publish:
@@ -169,7 +169,7 @@ jobs:
 
     - uses: graycoreio/github-actions/setup-node@main
       with:
-        node-version: 20.19.x
+        node-version: 22.21.x
         use-stamp-cache: true
         registry-url: 'https://registry.npmjs.org'
 
