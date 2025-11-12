@@ -51,7 +51,9 @@ import { CustomComponent } from './custom.component';
 export class CustomComponentModule { }
 ```
 
-> Deprecation notice: This method is deprecated. It's recommended to update all custom components to standalone.
+> **Warning**
+>
+> This method is deprecated. It's recommended to update all custom components to standalone.
 
 ## Anatomy
 
@@ -65,7 +67,9 @@ Use `<daff-form-label>` to help users understand what information to enter into 
 </daff-form-field>
 ```
 
-> Deprecation notice: The `DaffFormLabelDirective` (using `daffFormLabel` on `<label>`) is deprecated and will be removed in `v1.0.0`. Use `<daff-form-label>` instead for new implementations.
+> **Warning**
+>
+> The `DaffFormLabelDirective` (using `daffFormLabel` on `<label>`) is deprecated and will be removed in `v1.0.0`. Use `<daff-form-label>` instead for new implementations.
 
 ### Hints
 Hints are shown below the form field and are used to provide helpful information that assists users in correctly completing a field.
@@ -112,6 +116,8 @@ Use the `[daffFormFieldAction]` element to add an action element to a form field
 ### Prefix and suffix
 Use the `[daffPrefix]` and `[daffSuffix]` elements to display leading or trailing visuals, typically icons, on either side of the form control.
 
+> **Note**
+>
 > In a fluid appearance, avoid using suffix alongside an action.
 
 <design-land-example-viewer-container example="form-field-with-prefix"></design-land-example-viewer-container>
@@ -136,6 +142,8 @@ Form fields automatically generate IDs to handle accessibility. You can override
 </daff-form-field>
 ```
 
+> **Note**
+>
 > When you provide a custom `id`, the `<daff-form-label>` automatically gets the correct `for` attribute that matches the control's `id`.
 
 ## Creating a custom form field control
@@ -169,7 +177,9 @@ export class CustomControlComponent implements DaffFormFieldControl<any> {}
 - `<daff-error-message>` is set to `aria-live="polite"` by default so that assistive technology only announce errors when they appear.
 - For controls that support auto-labelling, the component automatically associates labels with controls using `for` and `id` attributes.
 
-> Note: If a `<daff-form-label>` is not specified, use the `<label>` element to associate text with form elements explicitly. The `for` attribute of the label must exactly match the `id` of the form control.
+> **Note**
+>
+> If a `<daff-form-label>` is not specified, use the `<label>` element to associate text with form elements explicitly. The `for` attribute of the label must exactly match the `id` of the form control.
 
 ```html
 <daff-form-field>
