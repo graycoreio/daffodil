@@ -15,7 +15,7 @@
     "build": "tsc",
     "lint": "eslint",
     "lint:fix": "npm run lint -- --fix",
-    "test": "ts-node --project tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
+    "test": "NODE_OPTIONS=\"--no-experimental-strip-types\" ts-node --project tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
   },
   "nx": {
     "targets": {
