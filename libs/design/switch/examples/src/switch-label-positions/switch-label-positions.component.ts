@@ -13,6 +13,16 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'switch-label-positions',
   templateUrl: './switch-label-positions.component.html',
+  styles: [
+    `
+      :host {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_SWITCH_COMPONENTS,
@@ -21,12 +31,12 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
 })
 export class SwitchLabelPositionsComponent {
   labelSwitchExample = new UntypedFormControl();
-  labelPositionControl: UntypedFormControl = new UntypedFormControl('daff-left');
+  labelPositionControl: UntypedFormControl = new UntypedFormControl('left');
 
   options = [
-    { value: 'daff-left', label: 'Left' },
-    { value: 'daff-right', label: 'Right' },
-    { value: 'daff-top', label: 'Top' },
-    { value: 'daff-bottom', label: 'Bottom' },
+    { value: 'left', label: 'Left' },
+    { value: 'right', label: 'Right' },
+    { value: 'top', label: 'Top' },
+    { value: 'bottom', label: 'Bottom' },
   ];
 }

@@ -15,15 +15,5 @@ import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
     DAFF_SWITCH_COMPONENTS,
     ReactiveFormsModule,
   ],
-  styles: [`
-    :host {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  `],
 })
-export class BasicSwitchComponent {
-  checked = false;
-  disabled = false;
-  loading = true;
-}
+export class BasicSwitchComponent {}

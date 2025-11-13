@@ -1,24 +1,13 @@
-<div class="daff-switch__wrapper">
-  <label class="daff-switch__label" [attr.for]="id">
-    <ng-content></ng-content>
-  </label>
-  <label class="daff-switch__toggle" 
-    [class.daff-checked]="checked">
-    @if (loading) {
-      <daff-loading-icon class="daff-switch__loading"></daff-loading-icon>
-    }
-    <input 
-      type="checkbox" 
-      role="switch" 
-      [attr.disabled] = "disabled ? '' : null" 
-      [checked]="checked"
-      (change)="onToggle()"
-      [attr.aria-label]="ariaLabel"
-      [attr.aria-checked]="checked ? true : false"
-      [attr.id]="id"
-    />    
-  </label>
-</div>
-@if (error) {
-  <ng-content select="daff-error-message"></ng-content>
-}
+<label class="daff-switch__label" [id]="labelId" [for]="id">
+  <ng-content></ng-content>
+</label>
+
+<button class="daff-switch__toggle"
+  type="button"
+  role="switch"
+  (click)="onToggle()"
+  [attr.disabled]="disabled ? '' : null"
+  [attr.aria-checked]="checked ? true : false"
+  [attr.aria-labelledby]="labelId"
+  [attr.id]="id">
+</button>
