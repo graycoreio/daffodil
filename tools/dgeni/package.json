@@ -7,7 +7,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "watch": "ts-node-dev --watch='../../libs/**/*' --respawn --debounce 100 -r tsconfig-paths/register build",
-    "test": "ts-node -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
+    "test": "NODE_OPTIONS=\"--no-experimental-strip-types\" ts-node -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
     "test:watch": "ts-node-dev --respawn --debounce 100 -r tsconfig-paths/register ../../node_modules/.bin/jasmine --config=jasmine.json"
   },
   "nx": {
