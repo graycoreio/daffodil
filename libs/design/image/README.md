@@ -1,15 +1,14 @@
 # Image
-Image utilizes the native HTML `<img>` element to display responsive images on a page and prevent content jumping while images are loading. 
+Image has built-in performance and accessibility optimizations that allow users to easily display responsive images.
 
 ## Overview
-`<daff-image>` is an opinionated version that encourages friendly end-user usage.
+Image builds on Angular's [`NgOptimizedImage`](https://angular.dev/guide/image-optimization) to provide responsive images with stable layouts out of the box. It helps to avoid common image-related performance and accessibility issues by:
 
-<design-land-example-viewer-container example="load-image"></design-land-example-viewer-container>
+- Preventing layout shift with required `width` and `height` attributes
+- Ensuring accessibility by requiring descriptive `alt` text
+- Maintaining proper aspect ratios for responsive designs
 
-## Attributes
-The `src`, `width`, `height`, and `alt` attributes must be defined. An error will be thrown any of these attributes are missing.
-
-`width` and `height` are required to calculate the aspect ratio of an image, used for the [aspect ratio padding trick](https://css-tricks.com/aspect-ratio-boxes/) that helps to prevent content jumping while images are loading. The `width` and `height` values are rendered as pixels.
+<design-land-example-viewer-container example="basic-image"></design-land-example-viewer-container>
 
 ## Usage
 
@@ -17,6 +16,7 @@ The `src`, `width`, `height`, and `alt` attributes must be defined. An error wil
 To use image in a standalone component, import `DAFF_IMAGE_COMPONENTS` directly into your custom component:
 
 ```ts
+import { Component } from '@angular/core';
 import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
 
 @Component({
@@ -38,7 +38,7 @@ import { DaffImageModule } from '@daffodil/design/image';
 import { CustomComponent } from './custom.component';
 
 @NgModule({
-	declarations: [
+  declarations: [
     CustomComponent,
   ],
   exports: [
@@ -51,21 +51,29 @@ import { CustomComponent } from './custom.component';
 export class CustomComponentModule { }
 ```
 
+> **Warning**
+>
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
-## Errors
+## Required attributes
+All four of the following attributes are required and will throw an error if missing:
 
-**DaffImageComponent must have a defined src attribute.**
-This error appears when `<daff-image>` is missing a `src` attribute.
+| Attribute | Description |
+| --------- | ----------- |
+| `src` | The image source URL |
+| `alt` | Alternative text describing the image |
+| `width` | The intrinsic width of the image in pixels |
+| `height` | The intrinsic height of the image in pixels |
 
-**DaffImageComponent must have a defined alt attribute.**
-This error appears when `<daff-image>` is missing an `alt` attribute. The `alt` tag specifies an alternate text for an image.
+## Features
 
-**DaffImageComponent must have a defined width attribute.**
-This error appears when `<daff-image>` is missing a `width` attribute. The width must be defined in order to correctly calculate the aspect ratio of the image.
+## Skeleton screen
+Use the `skeleton` property to display a placeholder skeleton screen that helps reduce load-time frustration.
 
-**DaffImageComponent must have a defined height attribute.**
-This error appears when `<daff-image>` is missing a `height` attribute. The height must be defined in order to correctly calculate the aspect ratio of the image.
+<design-land-example-viewer-container example="skeleton-image"></design-land-example-viewer-container>
 
-## Accessbility
-Images should be given a meaningful description using the native `alt` attribute to ensure an accessible experience by default. An error will be thrown if the `alt` attribute is missing.
+## Priority loading
+Use the `priority` property to mark an image as a priority for loading. Priority images are loaded eagerly and not lazy-loaded.
+
+## Accessibility
+Provide concise, meaningful descriptions that convey the content and purpose of the image by using the `alt` attribute. An error will be thrown if `alt` is missing.
