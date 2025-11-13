@@ -21,7 +21,9 @@ import { DaffioApiListComponent } from '../../components/api-list/api-list.compo
 @Component({
   template: '',
   selector: 'daffio-api-list',
-  standalone: false,
+  imports: [
+    DaffioApiListPageComponent,
+  ],
 })
 class MockDaffioApiListComponent {
   @Input() apiList: DaffDocsApiNavList[] = [];
@@ -61,10 +63,7 @@ describe('DaffioApiListPageComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-      ],
-      declarations: [
         MockDaffioApiListComponent,
-        DaffioApiListPageComponent,
       ],
       providers: [
         {

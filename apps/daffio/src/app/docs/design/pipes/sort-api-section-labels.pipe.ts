@@ -12,7 +12,6 @@ import {
 
 @Pipe({
   name: 'daffioDocsDesignApiSortSectionLabels',
-  standalone: true,
 })
 export class DaffioDocsDesignApiSortSectionLabels implements PipeTransform {
   transform(value: Array<KeyValue<DaffDocsApiRole, Array<DaffApiDoc>>>) {

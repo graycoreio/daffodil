@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,14 +11,21 @@ import {
   Observable,
 } from 'rxjs';
 
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 import { DaffDocsApiNavList } from '@daffodil/docs-utils';
+
+import { DaffioApiListComponent } from '../../components/api-list/api-list.component';
 
 @Component({
   selector: 'daffio-api-list-page',
   templateUrl: './api-list-page.component.html',
   styleUrls: ['./api-list-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    DAFF_CONTAINER_COMPONENTS,
+    DaffioApiListComponent,
+    AsyncPipe,
+  ],
 })
 export class DaffioApiListPageComponent implements OnInit {
   /**
