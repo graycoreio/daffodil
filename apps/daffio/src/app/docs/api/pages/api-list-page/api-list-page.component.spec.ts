@@ -1,7 +1,5 @@
-import {
-  Component,
-  Input,
-} from '@angular/core';
+
+
 import {
   ComponentFixture,
   TestBed,
@@ -9,7 +7,6 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffDocsApiNavList } from '@daffodil/docs-utils';
@@ -17,17 +14,6 @@ import { DaffDocsApiNavList } from '@daffodil/docs-utils';
 import { DaffioApiListPageComponent } from './api-list-page.component';
 import { DaffioRoute } from '../../../../core/router/route.type';
 import { DaffioApiListComponent } from '../../components/api-list/api-list.component';
-
-@Component({
-  template: '',
-  selector: 'daffio-api-list',
-  imports: [
-    DaffioApiListPageComponent,
-  ],
-})
-class MockDaffioApiListComponent {
-  @Input() apiList: DaffDocsApiNavList[] = [];
-}
 
 describe('DaffioApiListPageComponent', () => {
   let component: DaffioApiListPageComponent;
@@ -61,10 +47,6 @@ describe('DaffioApiListPageComponent', () => {
     dataSpy = new BehaviorSubject({});
 
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        MockDaffioApiListComponent,
-      ],
       providers: [
         {
           provide: ActivatedRoute,
@@ -95,8 +77,8 @@ describe('DaffioApiListPageComponent', () => {
       apiListComponent = fixture.debugElement.query(By.css('daffio-api-list')).componentInstance;
     });
 
-    it('should pass data down from `apiList$', () => {
-      expect(apiListComponent.apiList).toEqual(stubDocsList);
+    it('should pass data down from `apiList$`', () => {
+      expect(apiListComponent.apiList()).toEqual(stubDocsList);
     });
   });
 });
