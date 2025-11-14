@@ -5,6 +5,7 @@ import {
 
 import { DaffioHomeCalloutPlatformsComponent } from '../components/home-callout-platforms/home-callout-platforms.component';
 import { DaffioHomeCalloutPwaComponent } from '../components/home-callout-pwa/home-callout-pwa.component';
+import { DaffioHomeCalloutSponsorsComponent } from '../components/home-callout-sponsors/home-callout-sponsors.component';
 import { DaffioHomeHeroComponent } from '../components/home-hero/home-hero.component';
 
 @Component({
@@ -16,6 +17,7 @@ import { DaffioHomeHeroComponent } from '../components/home-hero/home-hero.compo
     DaffioHomeHeroComponent,
     DaffioHomeCalloutPwaComponent,
     DaffioHomeCalloutPlatformsComponent,
+    DaffioHomeCalloutSponsorsComponent,
   ],
 })
 export class DaffioHomeViewComponent {}
