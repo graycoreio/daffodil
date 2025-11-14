@@ -20,9 +20,11 @@
 @use '../app/docs/api/components/api-item-label/api-item-label-theme' as api-item-label;
 @use '../app/docs/components/heading-link/heading-link-theme' as docs-heading-link;
 @use '../app/docs/components/doc-viewer/doc-viewer-theme' as doc-viewer;
+@use '../app/content/home/components/home-callout-sponsors/home-callout-sponsors-theme' as home-callout-sponsors;
 
 @mixin component-themes($theme) {
 	@include home-hero.daffio-home-hero-theme($theme);
+	@include home-callout-sponsors.daffio-home-callout-sponsors-theme($theme);
 
 	@include docs-footer.daffio-docs-footer-theme($theme);
 	@include footer.daffio-footer-theme($theme);

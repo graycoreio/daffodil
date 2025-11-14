@@ -1,0 +1,26 @@
+@use 'utilities' as daff;
+
+.daffio-home-callout-sponsors {
+	&__logo-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	&__logo,
+	&__link {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-width: 14rem;
+		padding: 2rem;
+		border-radius: 0.25rem;
+	}
+
+	&__link {
+		@include daff.clickable();
+		font-weight: 500;
+		text-decoration: none;
+	}
+}
