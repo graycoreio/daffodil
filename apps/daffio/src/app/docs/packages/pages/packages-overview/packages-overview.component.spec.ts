@@ -13,11 +13,9 @@ describe('DaffioPackagesOverviewPageComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DaffioPackagesOverviewPageComponent,
-      ],
       imports: [
         RouterTestingModule,
+        DaffioPackagesOverviewPageComponent,
       ],
     })
       .compileComponents();

@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +11,10 @@ import {
 import { DaffDocsNavList } from '@daffodil/docs-utils';
 
 import { useDaffioNavList } from '../../../composables/nav-index';
-import { DaffioPackage } from '../../components/package-cards/package-cards.component';
+import {
+  DaffioDocsPackageCardsComponent,
+  DaffioPackage,
+} from '../../components/package-cards/package-cards.component';
 
 function getPath(doc: DaffDocsNavList): string {
   return doc.path || doc.children?.[0].path || '';
@@ -20,7 +24,10 @@ function getPath(doc: DaffDocsNavList): string {
   selector: 'daffio-docs-package-cards-container',
   templateUrl: './package-cards.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [
+    DaffioDocsPackageCardsComponent,
+    AsyncPipe,
+  ],
 })
 export class DaffioDocsPackageCardsContainer {
   packagesList$: Observable<Array<DaffioPackage>> = useDaffioNavList().list.pipe(

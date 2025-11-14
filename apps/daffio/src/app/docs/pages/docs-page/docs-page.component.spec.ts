@@ -24,7 +24,6 @@ import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.
 @Component({
   selector: 'daffio-mock-content',
   template: '',
-  standalone: true,
 })
 class MockContentComponent implements DaffioDocsDynamicContent {
   doc = input<DaffDoc>();
