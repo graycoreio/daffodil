@@ -30,7 +30,7 @@ export default defineConfig([
 				'error',
 				{
 					type: 'attribute',
-					prefix: 'daff-sf',
+					prefix: 'daffSf',
 					style: 'camelCase'
 				}
 			],
@@ -57,7 +57,7 @@ export default defineConfig([
 				'error',
 				{
 					type: 'attribute',
-					prefix: 'daff-sf',
+					prefix: 'daffSf',
 					style: 'camelCase'
 				}
 			],
