@@ -1052,6 +1052,50 @@
         }
       }
     },
+     "design-examples": {
+      "projectType": "library",
+      "root": "libs/design-examples",
+      "sourceRoot": "libs/design-examples",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "libs/design-examples/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/design-examples/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/design-examples/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "libs/design-examples/tsconfig.spec.json",
+            "karmaConfig": "tools/karma/karma.conf.js",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/design-examples/**/*.ts",
+              "libs/design-examples/**/*.html"
+            ],
+            "eslintConfig": "libs/design-examples/eslint.config.mjs"
+          }
+        }
+      }
+    },
     "branding": {
       "root": "libs/branding",
       "sourceRoot": "libs/branding",
