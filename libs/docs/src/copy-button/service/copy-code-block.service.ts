@@ -35,6 +35,11 @@ export class DaffDocsCodeBlockCopyButtonService {
         return;
       }
 
+      // Skip if nocopy attribute is present
+      if (pre.hasAttribute('nocopy')) {
+        return;
+      }
+
       const textContent = code.textContent || '';
 
       const originalParent = pre.parentNode;
