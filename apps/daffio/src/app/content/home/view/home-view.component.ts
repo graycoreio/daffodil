@@ -3,8 +3,8 @@ import {
   Component,
 } from '@angular/core';
 
+import { DaffioHomeCalloutCommerceComponent } from '../components/home-callout-commerce/home-callout-commerce.component';
 import { DaffioHomeCalloutPlatformsComponent } from '../components/home-callout-platforms/home-callout-platforms.component';
-import { DaffioHomeCalloutPwaComponent } from '../components/home-callout-pwa/home-callout-pwa.component';
 import { DaffioHomeCalloutSponsorsComponent } from '../components/home-callout-sponsors/home-callout-sponsors.component';
 import { DaffioHomeHeroComponent } from '../components/home-hero/home-hero.component';
 
@@ -15,9 +15,9 @@ import { DaffioHomeHeroComponent } from '../components/home-hero/home-hero.compo
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DaffioHomeHeroComponent,
-    DaffioHomeCalloutPwaComponent,
     DaffioHomeCalloutPlatformsComponent,
     DaffioHomeCalloutSponsorsComponent,
+    DaffioHomeCalloutCommerceComponent,
   ],
 })
 export class DaffioHomeViewComponent {}

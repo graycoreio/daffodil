@@ -33,9 +33,9 @@ export const appRoutes: Routes = [
         [DAFF_NAV_SIDEBAR_REGISTRATION.id]: DAFF_NAV_SIDEBAR_REGISTRATION,
       },
       daffioNavLinks: [
-        { url: '/why-pwa', title: 'Why PWA' },
         { url: '/docs', title: 'Docs' },
         { url: 'https://github.com/sponsors/graycoreio', title: 'Sponsor', external: true },
+        { url: 'https://github.com/graycoreio/daffodil/blob/develop/CONTRIBUTING.md', title: 'Contribute', external: true },
       ],
     },
     children: [
