@@ -6,9 +6,17 @@ import {
 
 import { DaffDocsCopyButtonComponent } from '../copy-button/copy-button.component';
 
+interface ButtonWrapper {
+  buttonRef: ComponentRef<DaffDocsCopyButtonComponent>;
+  wrapper: HTMLElement;
+  preElement: HTMLPreElement;
+  originalParent: Node | null;
+  nextSibling: Node | null;
+}
+
 @Injectable()
 export class DaffDocsCodeBlockCopyButtonService {
-  private buttonRefs: Array<ComponentRef<DaffDocsCopyButtonComponent>> = [];
+  private buttonWrappers: Array<ButtonWrapper> = [];
 
   /**
    * Finds all code blocks and adds copy buttons to them
@@ -29,6 +37,9 @@ export class DaffDocsCodeBlockCopyButtonService {
 
       const textContent = code.textContent || '';
 
+      const originalParent = pre.parentNode;
+      const nextSibling = pre.nextSibling;
+
       // Create a wrapper for positioning the copy button
       const wrapper = document.createElement('div');
       wrapper.style.position = 'relative';
@@ -45,15 +56,35 @@ export class DaffDocsCodeBlockCopyButtonService {
       // Add copy button to the wrapper
       wrapper.appendChild(buttonRef.location.nativeElement);
 
-      this.buttonRefs.push(buttonRef);
+      this.buttonWrappers.push({
+        buttonRef,
+        wrapper,
+        preElement: pre,
+        originalParent,
+        nextSibling,
+      });
     });
   }
 
   /**
-   * Cleanup copy button references
+   * Cleanup copy button references and wrapper elements
    */
   cleanup(): void {
-    this.buttonRefs.forEach(ref => ref.destroy());
-    this.buttonRefs = [];
+    this.buttonWrappers.forEach(({ buttonRef, wrapper, preElement, originalParent, nextSibling }) => {
+      buttonRef.destroy();
+
+      // Restore the pre element to its original position
+      if (originalParent) {
+        if (nextSibling) {
+          originalParent.insertBefore(preElement, nextSibling);
+        } else {
+          originalParent.appendChild(preElement);
+        }
+      }
+
+      // Remove the wrapper element
+      wrapper.remove();
+    });
+    this.buttonWrappers = [];
   }
 }
