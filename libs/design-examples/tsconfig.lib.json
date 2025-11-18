@@ -3,7 +3,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/lib",
+    "outDir": "../../dist/out-tsc/libs/design-examples",
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
