@@ -1,0 +1,30 @@
+<daff-callout color="theme">
+  <daff-container size="md">
+    <div class="daffio-home-callout-commerce__grid">
+      <div class="daffio-home-callout-commerce__content">
+        <div daffCalloutTagline>
+          Get started in seconds
+        </div>
+        <h3 daffCalloutTitle>
+          Build only what you need.
+        </h3>
+        <p daffCalloutSubtitle>
+          Choose your backend, pick your features, and start selling.
+        </p>
+        <div daffCalloutBody>
+          <button class="daffio-home-callout-commerce__code-copy"
+            [cdkCopyToClipboard]="command"
+            (cdkCopyToClipboardCopied)="onCopySuccess($event)">
+            <code>npx ng add &#64;daffodil/commerce</code>
+            <fa-icon [icon]="icon"></fa-icon>
+        </button>
+        </div>
+      </div>
+      <div class="daffio-home-callout-commerce__video-wrapper">
+        <video class="daffio-home-callout-commerce__video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+          <source src="https://assets.daff.io/commerce-install.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </daff-container>
+</daff-callout>

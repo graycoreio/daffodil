@@ -1,0 +1,39 @@
+@use 'theme' as *;
+
+@mixin daffio-home-callout-commerce-theme($theme) {
+	$primary: daff-get-palette($theme, primary);
+	$secondary: daff-get-palette($theme, secondary);
+	$tertiary: daff-get-palette($theme, tertiary);
+	$neutral: daff-get-palette($theme, neutral);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$black: daff-get-base-color($theme, 'black');
+	$white: daff-get-base-color($theme, 'white');
+	$mode: daff-get-theme-mode($theme);
+
+	.daffio-home-callout-commerce {
+		@include light($mode) {
+			&__video {
+				box-shadow: 0 0 1.5rem 0 rgba($black, 0.4);
+			}
+
+			&__code-copy {
+				background-color: rgba(daff-color($primary, 20), 0.3);
+				border: 1px solid rgba(daff-color($primary, 20), 0.5);
+				color: daff-color($primary, 100);
+			}
+		}
+
+		@include dark($mode) {
+			&__video {
+				border: thin solid daff-color($neutral, 80);
+				box-shadow: 0 0 1.5rem 0 rgba($black, 0.2);
+			}
+
+			&__code-copy {
+				background-color: rgba(daff-color($primary, 40), 0.3);
+				border: 1px solid rgba(daff-color($primary, 40), 0.5);
+				color: daff-color($primary, 10);
+			}
+		}
+	}
+}

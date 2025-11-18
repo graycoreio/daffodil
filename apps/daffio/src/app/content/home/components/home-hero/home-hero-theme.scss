@@ -12,22 +12,10 @@
 	.daffio-home-hero {
 		@include light($mode) {
 			background: url('/assets/hero-bg.svg');
-
-			&__code-copy {
-				background-color: rgba(daff-color($primary, 20), 0.3);
-				border: 1px solid rgba(daff-color($primary, 20), 0.5);
-				color: daff-color($primary, 100);
-			}
 		}
 
 		@include dark($mode) {
 			background: url('/assets/hero-bg-dark.svg');
-
-			&__code-copy {
-				background-color: rgba(daff-color($primary, 40), 0.3);
-				border: 1px solid rgba(daff-color($primary, 40), 0.5);
-				color: daff-color($primary, 10);
-			}
 		}
 	}
 }

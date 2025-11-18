@@ -1,7 +1,7 @@
 <daff-hero textAlignment="center" class="daffio-home-hero">
   <daff-container size="md">
     <h1 daffHeroTitle>
-      Build a storefront that connects to <i>any</i> ecommerce platform
+      One storefront. <i>Any</i> backend.
     </h1>
     <h2 daffHeroSubtitle>
       Daffodil is an Angular-based frontend framework that provides the driver architecture to build, scale, and switch backends for a <span class="daffio-home-hero__subtitle-focus">faster and more adaptable</span> ecommerce storefront.
@@ -11,12 +11,6 @@
         <a [href]="repoLink" target="_blank" daff-button color="primary">Get Started</a>
         <a [href]="demoLink" target="_blank" daff-stroked-button color="theme-contrast">See a Demo</a>
       </div>
-      <button class="daffio-home-hero__code-copy"
-        [cdkCopyToClipboard]="command"
-        (cdkCopyToClipboardCopied)="onCopySuccess($event)">
-        <code>npx ng add &#64;daffodil/commerce</code>
-        <fa-icon [icon]="icon"></fa-icon>
-      </button>
     </div>
   </daff-container>
 </daff-hero>

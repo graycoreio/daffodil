@@ -35,7 +35,6 @@ export class DaffioFooterComponent {
   @HostBinding('class.daffio-footer') class = true;
 
   links: any[] = [
-    { path: '/why-pwa', title: 'Why PWA' },
     { path: '/docs', title: 'Docs' },
     { path: '/support', title: 'Support' },
   ];

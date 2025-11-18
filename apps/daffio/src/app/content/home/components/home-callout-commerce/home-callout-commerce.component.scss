@@ -1,0 +1,35 @@
+@use 'utilities' as daff;
+
+.daffio-home-callout-commerce {
+	&__grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 4rem;
+
+		@include daff.breakpoint(big-tablet) {
+			grid-template-columns: 25rem 1fr;
+		}
+	}
+
+	&__video {
+		width: 100%;
+		border-radius: 0.5rem;
+	}
+
+	&__code-copy {
+		@include daff.clickable();
+		appearance: none;
+		backdrop-filter: blur(0.5rem);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		font-size: daff.$font-size-sm;
+		border-radius: 2rem;
+		padding: 0.5rem 1rem;
+
+		@include daff.breakpoint(tablet) {
+			padding: 1rem 1.5rem;
+		}
+	}
+}
