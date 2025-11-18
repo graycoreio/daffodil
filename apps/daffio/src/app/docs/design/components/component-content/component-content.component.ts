@@ -3,19 +3,15 @@ import {
   NgComponentOutlet,
 } from '@angular/common';
 import {
-  afterRenderEffect,
   ChangeDetectionStrategy,
   Component,
   computed,
   effect,
-  ElementRef,
-  inject,
   input,
   Signal,
   signal,
   viewChild,
   viewChildren,
-  ViewContainerRef,
 } from '@angular/core';
 
 import { DAFF_ARTICLE_COMPONENTS } from '@daffodil/design/article';
@@ -23,7 +19,6 @@ import {
   DAFF_TABS_COMPONENTS,
   DaffTabsComponent,
 } from '@daffodil/design/tabs';
-import { DaffDocsCodeBlockCopyButtonService } from '@daffodil/docs';
 import {
   DaffApiDoc,
   DaffDocKind,
@@ -58,7 +53,6 @@ import { DaffioDocsDesignApiSortSectionLabels } from '../../pipes/sort-api-secti
   providers: [
     KeyValuePipe,
     DaffioDocsDesignApiSortSectionLabels,
-    DaffDocsCodeBlockCopyButtonService,
   ],
 })
 export class DaffioDocsDesignComponentContentComponent implements DaffioDocsDynamicContent<DaffPackageGuideDoc> {
@@ -118,26 +112,10 @@ export class DaffioDocsDesignComponentContentComponent implements DaffioDocsDyna
     private tocRegistry: DaffioDocsTocService,
     private keyValue: KeyValuePipe,
     private sortSections: DaffioDocsDesignApiSortSectionLabels,
-    private copyButtonService: DaffDocsCodeBlockCopyButtonService,
   ) {
-    const elementRef = inject(ElementRef<HTMLElement>);
-    const viewContainerRef = inject(ViewContainerRef);
-
     effect((onCleanup) => {
       this.tocRegistry.set(this.toc());
       onCleanup(() => this.tocRegistry.set([]));
-    });
-
-    afterRenderEffect({
-      write: (onCleanup) => {
-        this._tab();
-        this.doc();
-        this.copyButtonService.addCopyButtonsToCodeBlocks(elementRef.nativeElement, viewContainerRef);
-
-        onCleanup(() => {
-          this.copyButtonService.cleanup();
-        });
-      },
     });
   }
 

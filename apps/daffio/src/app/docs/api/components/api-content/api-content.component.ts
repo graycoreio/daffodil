@@ -6,13 +6,8 @@ import {
   computed,
   signal,
   effect,
-  inject,
-  ViewContainerRef,
-  ElementRef,
-  afterRenderEffect,
 } from '@angular/core';
 
-import { DaffDocsCodeBlockCopyButtonService } from '@daffodil/docs';
 import {
   DaffApiDoc,
   DaffDocKind,
@@ -28,7 +23,6 @@ import { DaffioDocsApiDynamicContentFragmentService } from '../../dynamic-conten
   selector: 'daffio-docs-api-content',
   templateUrl: './api-content.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DaffDocsCodeBlockCopyButtonService],
   imports: [
     DaffioDocViewerComponent,
     NgComponentOutlet,
@@ -45,25 +39,10 @@ export class DaffioDocsApiContentComponent implements DaffioDocsDynamicContent<D
   constructor(
     private fragmentsService: DaffioDocsApiDynamicContentFragmentService,
     private tocRegistry: DaffioDocsTocService,
-    private copyButtonService: DaffDocsCodeBlockCopyButtonService,
   ) {
-    const elementRef = inject(ElementRef<HTMLElement>);
-    const viewContainerRef = inject(ViewContainerRef);
-
     effect((onCleanup) => {
       this.tocRegistry.set(this.toc());
       onCleanup(() => this.tocRegistry.set([]));
-    });
-
-    afterRenderEffect({
-      write: (onCleanup) => {
-        this.doc();
-        this.copyButtonService.addCopyButtonsToCodeBlocks(elementRef.nativeElement, viewContainerRef);
-
-        onCleanup(() => {
-          this.copyButtonService.cleanup();
-        });
-      },
     });
   }
 }
