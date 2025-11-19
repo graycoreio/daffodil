@@ -4,7 +4,7 @@ import {
   Component,
   effect,
   signal,
-  ViewChild,
+  viewChild,
   ElementRef,
   AfterViewInit,
 } from '@angular/core';
@@ -34,7 +34,7 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 })
 
 export class DaffioHomeCalloutCommerceComponent implements AfterViewInit {
-  @ViewChild('commerceVideo') videoRef!: ElementRef<HTMLVideoElement>;
+  videoRef = viewChild<ElementRef<HTMLVideoElement>>('commerceVideo');
 
   readonly command = 'npx ng add @daffodil/commerce';
 
@@ -65,7 +65,7 @@ export class DaffioHomeCalloutCommerceComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const media = this.videoRef?.nativeElement;
+    const media = this.videoRef()?.nativeElement;
     if (media) {
       media.muted = true;
       media.play().catch(() => {});
