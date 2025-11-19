@@ -19,7 +19,10 @@ export class DaffDocsCodeBlockCopyButtonService {
   private buttonWrappers: Array<ButtonWrapper> = [];
 
   /**
-   * Finds all code blocks and adds copy buttons to them
+   * Finds all code blocks and adds copy buttons to them.
+   * Skips code blocks with the `nocopy` attribute.
+   * @param hostElement - The host element to search for code blocks.
+   * @param viewContainerRef - The view container to create the copy button components.
    */
   addCopyButtonsToCodeBlocks(
     hostElement: HTMLElement,
