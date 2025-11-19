@@ -1,0 +1,58 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+} from '@angular/core';
+
+import { DaffButtonComponent } from '@daffodil/design/button';
+import {
+  DaffToast,
+  DaffToastAction,
+  DaffToastService,
+} from '@daffodil/design/toast';
+
+@Component({
+  selector: 'default-toast-example',
+  templateUrl: './default-toast.component.html',
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DaffButtonComponent,
+  ],
+})
+export class DefaultToastExampleComponent implements OnInit {
+  private toast: DaffToast;
+
+  constructor(private toastService: DaffToastService) {}
+
+  update = new EventEmitter<DaffToastAction>();
+
+  closeToast = new EventEmitter<DaffToastAction>();
+
+  open() {
+    this.toast = this.toastService.open({
+      title: 'Update Available' + ' ' + this.count++,
+      message: 'A new version of this page is available.',
+      actions: [
+        { content: 'Update', color: 'theme-contrast', size: 'sm', eventEmitter: this.update },
+        { content: 'Remind me later', type: 'flat', size: 'sm', eventEmitter: this.closeToast },
+      ],
+    });
+  }
+
+  /**
+   * @docs-private
+   */
+  ngOnInit() {
+    this.update.subscribe(() => {
+      // handle updates
+    });
+
+    this.closeToast.subscribe(() => {
+      this.toastService.close(this.toast);
+    });
+  }
+
+  private count = 0;
+}

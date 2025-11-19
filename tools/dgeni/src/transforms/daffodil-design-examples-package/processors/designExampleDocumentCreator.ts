@@ -7,7 +7,7 @@ import { DaffDocsDesignExample } from '@daffodil/docs-utils';
 
 import { serializeFactory } from '../../../utils/serialize';
 
-export const docGroupRegex = /examples\/src\/(.*)\//;
+export const docGroupRegex = /(.*)\/src\/([^\/]+)\//;
 
 const serializer = serializeFactory<DaffDocsDesignExample>(
   [
@@ -50,7 +50,9 @@ export class DesignExampleDocumentCreatorProcessor implements Processor {
     const match = path.match(docGroupRegex);
 
     if(match){
-      return match[1];
+      // match[1] is the component name (e.g., 'button')
+      // match[2] is the example name (e.g., 'basic-button')
+      return match[2];
     }
   }
 
@@ -75,7 +77,7 @@ export class DesignExampleDocumentCreatorProcessor implements Processor {
           id: doc.docGroup,
           docType: 'design-example',
           name: doc.docGroup,
-          element: doc.docGroup,
+          element: doc.docGroup + '-example',
           files: [this.convertDocToDesignExampleFile(doc)],
         });
       } else {

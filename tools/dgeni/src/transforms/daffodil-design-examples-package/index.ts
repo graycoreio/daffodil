@@ -15,7 +15,7 @@ import { designExampleReaderFactory } from './reader/example.reader';
 import { AddKindProcessor } from '../../processors/add-kind';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
-import { DESIGN_PATH } from '../config';
+import { DESIGN_EXAMPLES_PATH } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
 
 const docTypes = ['design-example'];
@@ -30,9 +30,9 @@ export const designExamplePackage = new Package('daffodil-design-examples', [daf
   .config((readFilesProcessor, designExampleReader) => {
     readFilesProcessor.$enabled = true;
     readFilesProcessor.fileReaders.push(designExampleReader);
-    readFilesProcessor.basePath = DESIGN_PATH;
+    readFilesProcessor.basePath = DESIGN_EXAMPLES_PATH;
     readFilesProcessor.sourceFiles = [
-      { include: ['**/examples/src/*/*.*']},
+      { include: ['*/src/*/*.*']},
     ];
   })
   .config((addKind: AddKindProcessor) => {
