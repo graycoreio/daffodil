@@ -34,7 +34,7 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 })
 
 export class DaffioHomeCalloutCommerceComponent implements AfterViewInit {
-  @ViewChild('commerceVideo') videoRef: ElementRef<HTMLVideoElement>;
+  @ViewChild('commerceVideo') videoRef!: ElementRef<HTMLVideoElement>;
 
   readonly command = 'npx ng add @daffodil/commerce';
 
@@ -68,7 +68,7 @@ export class DaffioHomeCalloutCommerceComponent implements AfterViewInit {
     const media = this.videoRef?.nativeElement;
     if (media) {
       media.muted = true;
-      media.play();
+      media.play().catch(() => {});
     }
   }
 }
