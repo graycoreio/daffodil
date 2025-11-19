@@ -4,6 +4,9 @@ import {
   Component,
   effect,
   signal,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
@@ -30,7 +33,9 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
   ],
 })
 
-export class DaffioHomeCalloutCommerceComponent {
+export class DaffioHomeCalloutCommerceComponent implements AfterViewInit {
+  @ViewChild('commerceVideo') videoRef: ElementRef<HTMLVideoElement>;
+
   readonly command = 'npx ng add @daffodil/commerce';
 
   isCopied = signal(false);
@@ -56,6 +61,14 @@ export class DaffioHomeCalloutCommerceComponent {
         clearTimeout(this.timeoutId);
       }
       this.isCopied.set(true);
+    }
+  }
+
+  ngAfterViewInit(): void {
+    const media = this.videoRef?.nativeElement;
+    if (media) {
+      media.muted = true;
+      media.play();
     }
   }
 }
