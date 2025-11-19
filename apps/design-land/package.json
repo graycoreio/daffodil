@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@daffodil/design": "0.0.0-PLACEHOLDER",
+    "@daffodil/design-examples": "0.0.0-PLACEHOLDER",
     "@daffodil/tools-dgeni": "0.0.0-PLACEHOLDER"
   }
 }
