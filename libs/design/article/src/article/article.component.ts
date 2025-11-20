@@ -1,12 +1,13 @@
 /* eslint-disable quote-props */
+import { DOCUMENT } from '@angular/common';
 import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ElementRef,
   ViewContainerRef,
-  afterRenderEffect,
   inject,
+  DestroyRef,
 } from '@angular/core';
 
 import { DaffDocsCodeBlockCopyButtonService } from '@daffodil/docs';
@@ -32,15 +33,46 @@ export class DaffArticleComponent {
   ) {
     const elementRef = inject(ElementRef<HTMLElement>);
     const viewContainerRef = inject(ViewContainerRef);
+    const document = inject(DOCUMENT);
 
-    afterRenderEffect({
-      write: (onCleanup) => {
-        this.copyButtonService.addCopyButtonsToCodeBlocks(elementRef.nativeElement, viewContainerRef);
+    let observer: MutationObserver | null = null;
 
-        onCleanup(() => {
-          this.copyButtonService.cleanup();
-        });
-      },
+    if (
+      document?.defaultView &&
+      typeof document.defaultView.MutationObserver !== 'undefined'
+    ) {
+      observer = new document.defaultView.MutationObserver(mutations => {
+        let buttonsAdded = false;
+        for (const mutation of mutations) {
+          if (
+            mutation.type === 'childList' &&
+            mutation.target instanceof document.defaultView.HTMLDivElement &&
+            mutation.target.classList.contains('daff-docs-copy-button-wrapper')
+          ) {
+            buttonsAdded = true;
+            break;
+          }
+        }
+        if (!buttonsAdded) {
+          this.copyButtonService.addCopyButtonsToCodeBlocks(elementRef.nativeElement, viewContainerRef);
+        }
+      });
+      observer.observe(elementRef.nativeElement, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+      });
+    }
+
+    // Clean up observer and copy buttons when component is destroyed
+    const destroyRef = inject(DestroyRef);
+    destroyRef.onDestroy(() => {
+      if (observer) {
+        observer.disconnect();
+        observer = null;
+      }
+      this.copyButtonService.cleanup();
     });
   }
 }
+

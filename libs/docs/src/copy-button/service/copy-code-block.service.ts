@@ -50,6 +50,7 @@ export class DaffDocsCodeBlockCopyButtonService {
 
       // Create a wrapper for positioning the copy button
       const wrapper = document.createElement('div');
+      wrapper.classList.add('daff-docs-copy-button-wrapper');
       wrapper.style.position = 'relative';
 
       pre.parentNode?.insertBefore(wrapper, pre);
@@ -83,7 +84,7 @@ export class DaffDocsCodeBlockCopyButtonService {
 
       // Restore the pre element to its original position
       if (originalParent) {
-        if (nextSibling) {
+        if (nextSibling && nextSibling.parentNode === originalParent) {
           originalParent.insertBefore(preElement, nextSibling);
         } else {
           originalParent.appendChild(preElement);
