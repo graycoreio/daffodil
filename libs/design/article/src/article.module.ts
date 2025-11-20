@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { DaffArticleComponent } from './article/article.component';
+import { DaffArticleCopyButtonComponent } from './article-copy-button/copy-button/copy-button.component';
 import { DaffArticleMetaDirective } from './article-meta/article-meta.directive';
 
 /**
@@ -11,10 +12,12 @@ import { DaffArticleMetaDirective } from './article-meta/article-meta.directive'
   imports: [
     CommonModule,
     DaffArticleComponent,
+    DaffArticleCopyButtonComponent,
     DaffArticleMetaDirective,
   ],
   exports: [
     DaffArticleComponent,
+    DaffArticleCopyButtonComponent,
     DaffArticleMetaDirective,
   ],
 })

@@ -14,16 +14,16 @@ import {
 import { DaffIconButtonComponent } from '@daffodil/design/button';
 
 /**
- * DaffDocsCopyButtonComponent is a button that copies text content to the clipboard.
+ * DaffArticleCopyButtonComponent is a button that copies text content to the clipboard.
  * It provides visual feedback by changing the icon when content is successfully copied.
  *
  * @example
  * ```html
- * <daff-docs-copy-button [content]="codeSnippet" />
+ * <daff-article-copy-button [content]="codeSnippet" />
  * ```
  */
 @Component({
-  selector: 'daff-docs-copy-button',
+  selector: 'daff-article-copy-button',
   templateUrl: './copy-button.component.html',
   styleUrls: ['./copy-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,7 +32,7 @@ import { DaffIconButtonComponent } from '@daffodil/design/button';
     FaIconComponent,
   ],
 })
-export class DaffDocsCopyButtonComponent implements OnDestroy {
+export class DaffArticleCopyButtonComponent implements OnDestroy {
   private timeoutId?: ReturnType<typeof setTimeout>;
 
   // Content to be copied to clipboard

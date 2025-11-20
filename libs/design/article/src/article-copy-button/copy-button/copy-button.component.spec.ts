@@ -6,11 +6,11 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffDocsCopyButtonComponent } from './copy-button.component';
+import { DaffArticleCopyButtonComponent } from './copy-button.component';
 
-describe('@daffodil/docs | DaffDocsCopyButtonComponent', () => {
-  let component: DaffDocsCopyButtonComponent;
-  let fixture: ComponentFixture<DaffDocsCopyButtonComponent>;
+describe('@daffodil/docs | DaffArticleCopyButtonComponent', () => {
+  let component: DaffArticleCopyButtonComponent;
+  let fixture: ComponentFixture<DaffArticleCopyButtonComponent>;
   let copyButton: HTMLButtonElement;
   let writeTextSpy: jasmine.Spy;
 
@@ -18,7 +18,7 @@ describe('@daffodil/docs | DaffDocsCopyButtonComponent', () => {
     writeTextSpy = jasmine.createSpy('writeText').and.resolveTo();
 
     await TestBed.configureTestingModule({
-      imports: [DaffDocsCopyButtonComponent],
+      imports: [DaffArticleCopyButtonComponent],
     }).compileComponents();
 
     Object.defineProperty(navigator, 'clipboard', {
@@ -29,7 +29,7 @@ describe('@daffodil/docs | DaffDocsCopyButtonComponent', () => {
       configurable: true,
     });
 
-    fixture = TestBed.createComponent(DaffDocsCopyButtonComponent);
+    fixture = TestBed.createComponent(DaffArticleCopyButtonComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('content', 'test content');
     fixture.detectChanges();

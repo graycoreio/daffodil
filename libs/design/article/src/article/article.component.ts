@@ -10,7 +10,7 @@ import {
   DestroyRef,
 } from '@angular/core';
 
-import { DaffDocsCodeBlockCopyButtonService } from '@daffodil/docs';
+import { DaffArticleCopyButtonService } from '../article-copy-button/service/copy-button.service';
 
 /**
  * A component for creating articles within your page.
@@ -25,11 +25,11 @@ import { DaffDocsCodeBlockCopyButtonService } from '@daffodil/docs';
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DaffDocsCodeBlockCopyButtonService],
+  providers: [DaffArticleCopyButtonService],
 })
 export class DaffArticleComponent {
   constructor(
-    private copyButtonService: DaffDocsCodeBlockCopyButtonService,
+    private copyButtonService: DaffArticleCopyButtonService,
   ) {
     const elementRef = inject(ElementRef<HTMLElement>);
     const viewContainerRef = inject(ViewContainerRef);
@@ -47,7 +47,7 @@ export class DaffArticleComponent {
           if (
             mutation.type === 'childList' &&
             mutation.target instanceof document.defaultView.HTMLDivElement &&
-            mutation.target.classList.contains('daff-docs-copy-button-wrapper')
+            mutation.target.classList.contains('daff-article-copy-button-wrapper')
           ) {
             buttonsAdded = true;
             break;

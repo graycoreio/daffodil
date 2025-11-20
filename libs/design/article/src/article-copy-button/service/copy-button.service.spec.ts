@@ -1,10 +1,10 @@
 import { ViewContainerRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { DaffDocsCodeBlockCopyButtonService } from './copy-code-block.service';
+import { DaffArticleCopyButtonService } from './copy-button.service';
 
-describe('@daffodil/docs | DaffDocsCodeBlockCopyButtonService', () => {
-  let service: DaffDocsCodeBlockCopyButtonService;
+describe('@daffodil/docs | DaffArticleCopyButtonService', () => {
+  let service: DaffArticleCopyButtonService;
   let mockViewContainerRef: jasmine.SpyObj<ViewContainerRef>;
   let hostElement: HTMLElement;
 
@@ -12,10 +12,10 @@ describe('@daffodil/docs | DaffDocsCodeBlockCopyButtonService', () => {
     mockViewContainerRef = jasmine.createSpyObj('ViewContainerRef', ['createComponent']);
 
     TestBed.configureTestingModule({
-      providers: [DaffDocsCodeBlockCopyButtonService],
+      providers: [DaffArticleCopyButtonService],
     });
 
-    service = TestBed.inject(DaffDocsCodeBlockCopyButtonService);
+    service = TestBed.inject(DaffArticleCopyButtonService);
 
     // Create a test host element with code blocks
     hostElement = document.createElement('div');

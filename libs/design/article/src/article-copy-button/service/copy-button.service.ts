@@ -4,10 +4,10 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 
-import { DaffDocsCopyButtonComponent } from '../copy-button/copy-button.component';
+import { DaffArticleCopyButtonComponent } from '../copy-button/copy-button.component';
 
 interface ButtonWrapper {
-  buttonRef: ComponentRef<DaffDocsCopyButtonComponent>;
+  buttonRef: ComponentRef<DaffArticleCopyButtonComponent>;
   wrapper: HTMLElement;
   preElement: HTMLPreElement;
   originalParent: Node | null;
@@ -15,7 +15,7 @@ interface ButtonWrapper {
 }
 
 @Injectable()
-export class DaffDocsCodeBlockCopyButtonService {
+export class DaffArticleCopyButtonService {
   private buttonWrappers: Array<ButtonWrapper> = [];
 
   /**
@@ -50,14 +50,14 @@ export class DaffDocsCodeBlockCopyButtonService {
 
       // Create a wrapper for positioning the copy button
       const wrapper = document.createElement('div');
-      wrapper.classList.add('daff-docs-copy-button-wrapper');
+      wrapper.classList.add('daff-article-copy-button-wrapper');
       wrapper.style.position = 'relative';
 
       pre.parentNode?.insertBefore(wrapper, pre);
       wrapper.appendChild(pre);
 
       // Create the copy button component
-      const buttonRef = viewContainerRef.createComponent(DaffDocsCopyButtonComponent);
+      const buttonRef = viewContainerRef.createComponent(DaffArticleCopyButtonComponent);
 
       // Pass the code snippet to the button
       buttonRef.setInput('content', textContent);
