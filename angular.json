@@ -2327,7 +2327,7 @@
     "storefront": {
       "projectType": "library",
       "root": "libs/storefront",
-      "sourceRoot": "libs/storefront/src",
+      "sourceRoot": "libs/storefront",
       "prefix": "lib",
       "architect": {
         "build": {
