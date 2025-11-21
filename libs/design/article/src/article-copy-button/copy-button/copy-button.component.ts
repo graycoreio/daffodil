@@ -11,8 +11,6 @@ import {
   faCopy,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffIconButtonComponent } from '@daffodil/design/button';
-
 /**
  * DaffArticleCopyButtonComponent is a button that copies text content to the clipboard.
  * It provides visual feedback by changing the icon when content is successfully copied.
@@ -28,7 +26,6 @@ import { DaffIconButtonComponent } from '@daffodil/design/button';
   styleUrls: ['./copy-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffIconButtonComponent,
     FaIconComponent,
   ],
 })

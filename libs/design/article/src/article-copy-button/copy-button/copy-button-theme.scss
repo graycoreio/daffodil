@@ -11,10 +11,10 @@
 	.daff-article-copy-button__icon {
 		@include light($mode) {
 			color: daff-color($neutral, 50);
-			background-color: daff-color($neutral, 20);
+			background-color: daff-color($neutral, 10);
 
 			&:hover {
-				background-color: daff-color($neutral, 30);
+				background-color: daff-color($neutral, 20);
 			}
 		}
 
