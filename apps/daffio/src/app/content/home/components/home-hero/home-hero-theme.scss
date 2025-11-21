@@ -17,5 +17,18 @@
 		@include dark($mode) {
 			background: url('/assets/hero-bg-dark.svg');
 		}
+
+		&__gradient-text {
+			background: linear-gradient(
+				to bottom right,
+				daff-color($primary),
+				daff-color($secondary, 40),
+				daff-color($tertiary, 30)
+			);
+			background-clip: text;
+			color: transparent;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
 	}
 }
