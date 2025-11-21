@@ -17,10 +17,19 @@
   },
   "peerDependencies": {
     "@angular/common": "0.0.0-PLACEHOLDER",
-    "@angular/core": "0.0.0-PLACEHOLDER"
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/design": "0.0.0-PLACEHOLDER"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "devDependencies": {
+    "@daffodil/design": "0.0.0-PLACEHOLDER"
+  },
+  "exports": {
+    "./scss/theme": {
+      "sass": "./scss/theme.scss"
+    }
+  }
 }
