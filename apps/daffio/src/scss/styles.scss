@@ -4,6 +4,7 @@
 @use 'global';
 @use 'theme' as daff-theme;
 @use './component-themes' as daffio-components;
+@use '@daffodil/storefront/scss/theme' as storefront;
 
 // @daffodil/branding
 @use 'daff-branding-theme' as branding;
@@ -17,6 +18,7 @@
 	@include branding.daff-branding-theme(daff-theme.$theme);
 	@include daff-theme.daff-component-themes(daff-theme.$theme);
 	@include daffio-components.component-themes(daff-theme.$theme);
+	@include storefront.daff-sf-component-themes(daff-theme.$theme);
 }
 
 .daff-theme-dark {
@@ -28,6 +30,7 @@
 	@include branding.daff-branding-theme(daff-theme.$theme-dark);
 	@include daff-theme.daff-component-themes(daff-theme.$theme-dark);
 	@include daffio-components.component-themes(daff-theme.$theme-dark);
+	@include storefront.daff-sf-component-themes(daff-theme.$theme-dark);
 }
 
 body {

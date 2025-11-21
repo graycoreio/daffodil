@@ -1,0 +1,21 @@
+<div class="daff-sf-carousel__heading">
+  <ng-content select="[daffSfCarouselTitle]"></ng-content>
+	<div class="daff-sf-carousel__nav">
+		<button class="daff-sf-carousel__button" aria-hidden="true" tabindex="-1" (click)="swiperRef.slidePrev()" [disabled]="swiperRef?.isBeginning">
+			<fa-icon [icon]="faChevronLeft"></fa-icon>
+		</button>
+		<button class="daff-sf-carousel__button" aria-hidden="true" tabindex="-1" (click)="swiperRef.slideNext()" [disabled]="swiperRef?.isEnd">
+			<fa-icon [icon]="faChevronRight"></fa-icon>
+		</button>
+	</div>
+</div>
+
+<swiper-container init="false" #swiperElement>
+	@for (item of items(); track item) {
+		  <swiper-slide>
+				<ng-container
+					*ngTemplateOutlet="item">
+				</ng-container>
+			</swiper-slide>
+	}
+</swiper-container>

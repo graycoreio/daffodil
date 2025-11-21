@@ -10,5 +10,25 @@
       <daff-image src="/assets/magento-monotone-logo.svg" alt="Magento Logo" width="300" height="83"></daff-image>
       <daff-image src="/assets/shopify-monotone-logo.svg" alt="Shopify Logo" width="300" height="86"></daff-image>
     </div>
+
+    <div>
+      <daff-sf-carousel [options]="options">
+        <div daffSfCarouselTitle>Carousel Title</div>
+        @for(slide of [1,2,3,4,5,6]; track carouselItemId) {
+          <ng-template daffSfCarouselItem >
+            <daff-card class="docs-card">
+              <div daffCardHeader>Header {{slide}}</div>
+              <div daffCardTitle>Title</div>
+              <div daffCardContent>
+                <p>Card content text that is relevant to the title and builds context about an image that may be added
+                  to the card.</p>
+                <p>Card content with multiple paragraphs.</p>
+              </div>
+              <div daffCardActions><button daff-button type="button" color="primary">Button Text {{slide}}</button></div>
+            </daff-card>
+          </ng-template>
+        }
+      </daff-sf-carousel>
+    </div>
   </daff-container>
 </daff-callout>
