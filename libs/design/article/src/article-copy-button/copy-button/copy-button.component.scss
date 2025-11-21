@@ -1,7 +1,24 @@
+@use '../../../../scss/interactions';
+
 :host {
 	display: block;
 	position: absolute;
 	top: 0.5rem;
 	right: 0.5rem;
 	z-index: 1;
+}
+
+.daff-article-copy-button__icon {
+	@include interactions.clickable();
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	appearance: none;
+	border: 1px solid;
+	position: relative;
+	border-radius: 0.25rem;
+	padding: 0.1rem;
+	transition: background-color 0.3;
+	height: 1.8rem;
+	width: 1.8rem;
 }
