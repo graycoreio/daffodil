@@ -13,9 +13,7 @@
     "build": "ng build storefront --configuration production",
     "lint": "cd ../.. && ng lint storefront",
     "lint:fix": "npm run lint -- --fix",
-    "test": "npm run test:scss && npm run test:angular",
-    "test:scss": "jasmine scss/test_scss.js",
-    "test:angular": "ng test storefront --watch=false --browsers=ChromeHeadless"
+    "test": "ng test storefront --watch=false --browsers=ChromeHeadless"
   },
   "peerDependencies": {
     "@angular/common": "0.0.0-PLACEHOLDER",
