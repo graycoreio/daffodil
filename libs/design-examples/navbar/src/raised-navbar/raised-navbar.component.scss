@@ -1,0 +1,13 @@
+.daff-raised-navbar {
+	justify-content: space-between;
+
+	&__links {
+		> * {
+			font-size: 1.125rem;
+			font-weight: bold;
+			padding: 0 16px;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
+	}
+}

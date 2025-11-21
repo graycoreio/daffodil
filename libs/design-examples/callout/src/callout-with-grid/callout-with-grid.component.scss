@@ -1,0 +1,57 @@
+@use '@daffodil/design/scss/utilities' as *;
+
+.daff-callout-with-grid {
+	&__grid {
+		// stylelint-disable-next-line scss/comment-no-loud
+		/* autoprefixer grid: autoplace */
+		display: grid;
+		grid-template:
+			'image'
+			'content' / 1fr;
+		grid-gap: 24px;
+
+		@include breakpoint(tablet) {
+			grid-template:
+				'image content' / 1fr 1fr;
+			grid-gap: 48px;
+		}
+	}
+
+	&__image {
+		grid-area: image;
+	}
+
+	&__content-wrapper {
+		grid-area: content;
+	}
+
+	&__actions {
+		display: flex;
+		flex-direction: column;
+
+		@include breakpoint(mobile) {
+			flex-direction: row;
+			align-items: center;
+		}
+	}
+
+	&__daffodil-action {
+		margin: 0 0 24px;
+
+		@include breakpoint(mobile) {
+			margin: 0 24px 0 0;
+		}
+	}
+
+	&__icon {
+		display: flex;
+		background: rgba(var(--daff-theme-rgb), 0.2);
+		border-radius: 50%;
+		color: var(--daff-theme-contrast-rgb);
+		width: 48px;
+		height: 48px;
+		justify-content: center;
+		align-items: center;
+		padding: 12px 0;
+	}
+}

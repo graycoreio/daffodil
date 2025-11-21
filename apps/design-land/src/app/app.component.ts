@@ -4,39 +4,39 @@ import {
   ComponentFactoryResolver,
 } from '@angular/core';
 
-import { ACCORDION_EXAMPLES } from '@daffodil/design/accordion/examples';
-import { ARTICLE_EXAMPLES } from '@daffodil/design/article/examples';
-import { BREADCRUMB_EXAMPLES } from '@daffodil/design/breadcrumb/examples';
-import { BUTTON_EXAMPLES } from '@daffodil/design/button/examples';
-import { CALLOUT_EXAMPLES } from '@daffodil/design/callout/examples';
-import { CARD_EXAMPLES } from '@daffodil/design/card/examples';
-import { CHECKBOX_EXAMPLES } from '@daffodil/design/checkbox/examples';
-import { CONTAINER_EXAMPLES } from '@daffodil/design/container/examples';
-import { FORM_FIELD_EXAMPLES } from '@daffodil/design/form-field/examples';
-import { HERO_EXAMPLES } from '@daffodil/design/hero/examples';
-import { IMAGE_EXAMPLES } from '@daffodil/design/image/examples';
-import { INPUT_EXAMPLES } from '@daffodil/design/input/examples';
-import { LIST_EXAMPLES } from '@daffodil/design/list/examples';
-import { LOADING_ICON_EXAMPLES } from '@daffodil/design/loading-icon/examples';
-import { MEDIA_GALLERY_EXAMPLES } from '@daffodil/design/media-gallery/examples';
-import { MENU_EXAMPLES } from '@daffodil/design/menu/examples';
-import { MODAL_EXAMPLES } from '@daffodil/design/modal/examples';
-import { NATIVE_SELECT_EXAMPLES } from '@daffodil/design/native-select/examples';
-import { NAVBAR_EXAMPLES } from '@daffodil/design/navbar/examples';
-import { NOTIFICATION_EXAMPLES } from '@daffodil/design/notification/examples';
-import { PAGINATOR_EXAMPLES } from '@daffodil/design/paginator/examples';
-import { PROGRESS_BAR_EXAMPLES } from '@daffodil/design/progress-bar/examples';
-import { QUANTITY_FIELD_EXAMPLES } from '@daffodil/design/quantity-field/examples';
-import { RADIO_EXAMPLES } from '@daffodil/design/radio/examples';
-import { SELECT_EXAMPLES } from '@daffodil/design/select/examples';
-import { SIDEBAR_EXAMPLES } from '@daffodil/design/sidebar/examples';
-import { STICKY_EXAMPLES } from '@daffodil/design/sticky/examples';
-import { SWITCH_EXAMPLES } from '@daffodil/design/switch/examples';
-import { TABS_EXAMPLES } from '@daffodil/design/tabs/examples';
-import { TAG_EXAMPLES } from '@daffodil/design/tag/examples';
-import { TEXTAREA_EXAMPLES } from '@daffodil/design/textarea/examples';
-import { TOAST_EXAMPLES } from '@daffodil/design/toast/examples';
-import { TREE_EXAMPLES } from '@daffodil/design/tree/examples';
+import { ACCORDION_EXAMPLES } from '@daffodil/design-examples/accordion';
+import { ARTICLE_EXAMPLES } from '@daffodil/design-examples/article';
+import { BREADCRUMB_EXAMPLES } from '@daffodil/design-examples/breadcrumb';
+import { BUTTON_EXAMPLES } from '@daffodil/design-examples/button';
+import { CALLOUT_EXAMPLES } from '@daffodil/design-examples/callout';
+import { CARD_EXAMPLES } from '@daffodil/design-examples/card';
+import { CHECKBOX_EXAMPLES } from '@daffodil/design-examples/checkbox';
+import { CONTAINER_EXAMPLES } from '@daffodil/design-examples/container';
+import { FORM_FIELD_EXAMPLES } from '@daffodil/design-examples/form-field';
+import { HERO_EXAMPLES } from '@daffodil/design-examples/hero';
+import { IMAGE_EXAMPLES } from '@daffodil/design-examples/image';
+import { INPUT_EXAMPLES } from '@daffodil/design-examples/input';
+import { LIST_EXAMPLES } from '@daffodil/design-examples/list';
+import { LOADING_ICON_EXAMPLES } from '@daffodil/design-examples/loading-icon';
+import { MEDIA_GALLERY_EXAMPLES } from '@daffodil/design-examples/media-gallery';
+import { MENU_EXAMPLES } from '@daffodil/design-examples/menu';
+import { MODAL_EXAMPLES } from '@daffodil/design-examples/modal';
+import { NATIVE_SELECT_EXAMPLES } from '@daffodil/design-examples/native-select';
+import { NAVBAR_EXAMPLES } from '@daffodil/design-examples/navbar';
+import { NOTIFICATION_EXAMPLES } from '@daffodil/design-examples/notification';
+import { PAGINATOR_EXAMPLES } from '@daffodil/design-examples/paginator';
+import { PROGRESS_BAR_EXAMPLES } from '@daffodil/design-examples/progress-bar';
+import { QUANTITY_FIELD_EXAMPLES } from '@daffodil/design-examples/quantity-field';
+import { RADIO_EXAMPLES } from '@daffodil/design-examples/radio';
+import { SELECT_EXAMPLES } from '@daffodil/design-examples/select';
+import { SIDEBAR_EXAMPLES } from '@daffodil/design-examples/sidebar';
+import { STICKY_EXAMPLES } from '@daffodil/design-examples/sticky';
+import { SWITCH_EXAMPLES } from '@daffodil/design-examples/switch';
+import { TABS_EXAMPLES } from '@daffodil/design-examples/tabs';
+import { TAG_EXAMPLES } from '@daffodil/design-examples/tag';
+import { TEXTAREA_EXAMPLES } from '@daffodil/design-examples/textarea';
+import { TOAST_EXAMPLES } from '@daffodil/design-examples/toast';
+import { TREE_EXAMPLES } from '@daffodil/design-examples/tree';
 
 import { createCustomElementFromExample } from './core/elements/create-element-from-example';
 
@@ -52,8 +52,8 @@ export class DesignLandAppComponent {
     private componentFactoryResolver: ComponentFactoryResolver,
   ) {
     [
-      ...ARTICLE_EXAMPLES,
       ...ACCORDION_EXAMPLES,
+      ...ARTICLE_EXAMPLES,
       ...TAG_EXAMPLES,
       ...BREADCRUMB_EXAMPLES,
       ...BUTTON_EXAMPLES,
@@ -89,7 +89,7 @@ export class DesignLandAppComponent {
       .map((customElement) => {
         // Register the custom element with the browser.
         customElements.define(
-          this.componentFactoryResolver.resolveComponentFactory(customElement.class).selector + '-example',
+          this.componentFactoryResolver.resolveComponentFactory(customElement.class).selector,
           customElement.element,
         );
       });
