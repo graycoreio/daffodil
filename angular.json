@@ -1733,7 +1733,7 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "libs/content/test.ts",
             "tsConfig": "libs/content/tsconfig.spec.json",

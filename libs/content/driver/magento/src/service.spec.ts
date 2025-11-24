@@ -80,7 +80,7 @@ describe('@daffodil/content/driver/magento | MagentoContentService', () => {
         it('should throw a DaffContentInvalidAPIResponseError', done => {
           service.getBlocks(blockId).pipe(
             catchError(err => {
-              expect(err).toEqual(jasmine.any(DaffContentInvalidAPIResponseError));
+              expect(err instanceof DaffContentInvalidAPIResponseError).toEqual(true);
               done();
               return [];
             }),
@@ -114,7 +114,7 @@ describe('@daffodil/content/driver/magento | MagentoContentService', () => {
       it('should throw a DaffContentNotFoundError', done => {
         service.getBlocks(blockId).pipe(
           catchError(err => {
-            expect(err).toEqual(jasmine.any(DaffContentNotFoundError));
+            expect(err instanceof DaffContentNotFoundError).toEqual(true);
             done();
             return [];
           }),
