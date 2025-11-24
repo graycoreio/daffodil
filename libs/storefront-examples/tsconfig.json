@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.json",
+  "files": [],
+  "include": [],
+  "compilerOptions": {
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/storefront-examples": [
+        "libs/storefront-examples/src"
+      ],
+    }
+  },
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
+}
