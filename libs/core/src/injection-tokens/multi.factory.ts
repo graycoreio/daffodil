@@ -31,9 +31,15 @@ export const createMultiInjectionToken = <T = unknown>(
     useValue: value,
     multi: true,
   }));
+  const factoryProvider = <R extends T = T>(...factories: Array<() => R>) => factories.map((factory) => ({
+    provide: token,
+    useFactory: factory,
+    multi: true,
+  }));
 
   return {
     token,
     provider,
+    factoryProvider,
   };
 };

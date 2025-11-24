@@ -1,4 +1,5 @@
 import {
+  FactoryProvider,
   InjectionToken,
   ValueProvider,
 } from '@angular/core';
@@ -16,4 +17,9 @@ export interface DaffSingleInjectionToken<T = unknown> {
    * A helper function to provide a value to the token.
    */
   provider: <R extends T = T>(value: R) => ValueProvider;
+
+  /**
+   * A helper function to provide factories to the token.
+   */
+  factoryProvider: <R extends T = T>(factory: () => R) => FactoryProvider;
 }
