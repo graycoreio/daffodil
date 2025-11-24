@@ -139,38 +139,6 @@ const cardSchema: DaffContentComponentSchema = {
 };
 ```
 
-### Registering Components
-
-Components must be registered to be rendered.
-
-> If the component is not registered, a `br` will be rendered where that component is supposed to be.
-
-```typescript
-
-import {
-  ApplicationConfig,
-} from '@angular/core';
-import { provideDynamicComponent } from '@daffodil/content';
-
-import { ProductCardComponent } from './product-card.component';
-import { CardComponent } from './card.component';
-
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideDynamicComponent({
-      componentType: ProductCardComponent,
-      name: 'ProductCardComponent',
-      description: 'Component for wrapping and styling content',
-    }),
-    provideDynamicComponent({
-      componentType: CardComponent,
-      name: 'CardComponent',
-      description: 'Component for wrapping and styling content',
-    }),
-  ],
-};
-```
-
 ## Complex Example
 
 Here's a complete example combining all schema types to create a product feature section:
