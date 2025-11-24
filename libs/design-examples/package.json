@@ -12,8 +12,7 @@
   "scripts": {
     "build": "ng build design-examples --configuration production",
     "lint": "cd ../.. && ng lint design-examples",
-    "lint:fix": "npm run lint -- --fix",
-    "test": "ng test design-examples --watch=false --browsers=ChromeHeadless"
+    "lint:fix": "npm run lint -- --fix"
   },
   "peerDependencies": {
     "@angular/common": "0.0.0-PLACEHOLDER",
