@@ -1,0 +1,5 @@
+@use '../carousel/src/carousel-theme' as carousel;
+
+@mixin daff-sf-component-themes($theme) {
+	@include carousel.daff-sf-carousel-theme($theme);
+}

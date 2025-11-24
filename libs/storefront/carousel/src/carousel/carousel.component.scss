@@ -1,0 +1,59 @@
+@use 'swiper/swiper';
+@use 'swiper/modules/a11y';
+@use 'swiper/modules/keyboard';
+@use '@daffodil/design/scss/utilities' as *;
+
+// stylelint-disable selector-class-pattern
+swiper-container {
+	&:not(.swiper-initialized) {
+		display: flex;
+		overflow: hidden;
+		gap: 0.5rem;
+	}
+}
+
+swiper-slide {
+	display: inline-block;
+	width: max-content;
+}
+
+.daff-sf-carousel {
+	display: block;
+
+	&__heading {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 0 0 1.5rem;
+	}
+
+	&__nav {
+		display: flex;
+		align-items: center;
+	}
+
+	&__button {
+		@include clickable();
+		display: inline-block;
+		appearance: none;
+		background: none;
+		border: 0;
+		flex-shrink: 0;
+		font-size: 1rem;
+		font-weight: 500;
+		height: 2.5rem;
+		width: 2.5rem;
+		line-height: 2.5rem;
+		padding: 0;
+		position: relative;
+		text-align: center;
+		text-decoration: none;
+		vertical-align: baseline;
+		box-sizing: border-box;
+
+		&[disabled] {
+			cursor: not-allowed;
+			pointer-events: none;
+		}
+	}
+}

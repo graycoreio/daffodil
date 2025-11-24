@@ -1,0 +1,54 @@
+@use '@daffodil/design/scss/theme' as *;
+
+@mixin daff-sf-carousel-theme($theme) {
+	$neutral: daff-get-palette($theme, neutral);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$mode: daff-get-theme-mode($theme);
+
+	@include light($mode) {
+		.daff-sf-carousel {
+			&__button {
+				color: $base-contrast;
+
+				&:hover {
+					color: daff-color($neutral, 80);
+				}
+
+				&[disabled] {
+					color: daff-color($neutral, 40);
+					cursor: not-allowed;
+					transform: none;
+					pointer-events: none;
+
+					&:hover,
+					&:focus,
+					&:active {
+						color: daff-color($neutral, 40);
+					}
+				}
+			}
+		}
+	}
+
+	@include dark($mode) {
+		.daff-sf-carousel {
+			&__button {
+				color: $base-contrast;
+
+				&:hover {
+					color: daff-color($neutral, 30);
+				}
+
+				&[disabled] {
+					color: daff-color($neutral, 50);
+
+					&:hover,
+					&:focus,
+					&:active {
+						color: daff-color($neutral, 50);
+					}
+				}
+			}
+		}
+	}
+}
