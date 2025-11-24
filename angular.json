@@ -1052,7 +1052,7 @@
         }
       }
     },
-     "design-examples": {
+    "design-examples": {
       "projectType": "library",
       "root": "libs/design-examples",
       "sourceRoot": "libs/design-examples",
@@ -2364,6 +2364,39 @@
               "libs/storefront/**/*.html"
             ],
             "eslintConfig": "libs/storefront/eslint.config.mjs"
+          }
+        }
+      }
+    },
+    "storefront-examples": {
+      "projectType": "library",
+      "root": "libs/storefront-examples",
+      "sourceRoot": "libs/storefront-examples",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "libs/storefront-examples/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/storefront-examples/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/storefront-examples/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/storefront-examples/**/*.ts",
+              "libs/storefront-examples/**/*.html"
+            ],
+            "eslintConfig": "libs/storefront-examples/eslint.config.mjs"
           }
         }
       }
