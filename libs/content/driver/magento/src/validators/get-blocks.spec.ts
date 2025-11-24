@@ -34,7 +34,7 @@ describe('@daffodil/content/driver/magento | validateGetBlocksResponse', () => {
     });
 
     it('should throw a DaffContentInvalidAPIResponseError', () => {
-      expect(() => validator(response)).toThrow(jasmine.any(DaffContentInvalidAPIResponseError));
+      expect(() => validator(response)).toThrowError(DaffContentInvalidAPIResponseError);
     });
   });
 
@@ -44,7 +44,7 @@ describe('@daffodil/content/driver/magento | validateGetBlocksResponse', () => {
     });
 
     it('should throw a DaffContentInvalidAPIResponseError', () => {
-      expect(() => validator(response)).toThrow(jasmine.any(DaffContentInvalidAPIResponseError));
+      expect(() => validator(response)).toThrowError(DaffContentInvalidAPIResponseError);
     });
   });
 });
