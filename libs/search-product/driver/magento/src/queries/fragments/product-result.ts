@@ -3,6 +3,7 @@ import { gql } from 'apollo-angular';
 export const magentoProductSearchResultFragment = gql`
   fragment magentoProductSearchResult on ProductInterface {
     __typename
+		uid
 		url_key
     url_suffix
 		name

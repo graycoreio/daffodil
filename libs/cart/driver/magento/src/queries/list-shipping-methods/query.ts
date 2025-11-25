@@ -17,6 +17,7 @@ export const listShippingMethods = (extraCartFragments: DocumentNode[] = []) => 
     cart(cart_id: $cartId) {
       id
       shipping_addresses {
+				street
         available_shipping_methods {
           ...availableShippingMethod
         }
