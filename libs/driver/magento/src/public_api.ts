@@ -4,6 +4,7 @@ export {
 } from './schema/schema';
 export { provideMagentoDriver } from './provider';
 
+export * from './features/public_api';
 export * from './errors/public_api';
 export * from './models/public_api';
 export * from './graphql/public_api';
