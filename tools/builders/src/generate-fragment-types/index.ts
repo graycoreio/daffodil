@@ -1,16 +1,21 @@
-import { BuilderContext, BuilderOutput, createBuilder } from '@angular-devkit/architect';
+import {
+  BuilderContext,
+  BuilderOutput,
+  createBuilder,
+} from '@angular-devkit/architect';
 import { JsonObject } from '@angular-devkit/core';
 import { generate } from '@graphql-codegen/cli';
+import { join } from 'node:path';
 
 interface Options extends JsonObject {
   url: string;
   path: string;
 }
 
-const success = () => ({success: true});
+const success = () => ({ success: true });
 const failure = error => ({
   success: false,
-  error
+  error,
 });
 const noopPromise: Promise<{success: boolean}> = Promise.resolve(success());
 
@@ -23,9 +28,9 @@ function generateFragmentTypesBuilder(
   return options.url && options.path ? generate({
     schema: options.url,
     generates: {
-      [options.path]: {
-        plugins: ['fragment-matcher']
-      }
-    }
+      [join(context.workspaceRoot, options.path)]: {
+        plugins: ['fragment-matcher'],
+      },
+    },
   }).then(success, failure) : noopPromise;
 }

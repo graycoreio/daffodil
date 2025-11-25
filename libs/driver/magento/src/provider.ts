@@ -15,9 +15,9 @@ import { provideApollo } from 'apollo-angular';
 import { provideDaffDriverHttpClientCacheService } from '@daffodil/driver';
 
 import { createHttpLink } from './apollo/create-http-link';
-import { MAGENTO_POSSIBLE_TYPES } from './apollo/possible-types';
 import typePolicies from './apollo/type-policies';
 import { DaffDriverHttpClientCacheMagentoService } from './graphql/cache.service';
+import { MAGENTO_POSSIBLE_TYPES } from './schema/schema';
 
 export interface DaffMagentoDriverConfig {
   possibleTypes: PossibleTypesMap;
@@ -32,7 +32,7 @@ export interface DaffMagentoDriverConfig {
  * @param endpoint - The Magento store domain (e.g. "https://www.my-store.com/graphql") or an injection token for a string or function that returns a string
  */
 export function provideMagentoDriver(endpoint: string | InjectionToken<string | UriFunction>, options: DaffMagentoDriverConfig = {
-  possibleTypes: MAGENTO_POSSIBLE_TYPES,
+  possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
   typePolicies,
 }): Provider[] {
   return [
