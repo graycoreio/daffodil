@@ -19,6 +19,9 @@ import { DAFF_AUTHORIZE_NET_REDUCERS } from './reducers/token/reducers.token';
     StoreModule.forFeature(DAFF_AUTHORIZENET_STORE_FEATURE_KEY, DAFF_AUTHORIZE_NET_REDUCERS),
     EffectsModule.forFeature([DaffAuthorizeNetEffects]),
   ],
+  providers: [
+    provideDaffAuthorizeNetStateConfig(daffAuthorizeNetStateDefaultConfig),
+  ],
 })
 export class DaffAuthorizeNetStateModule {
   static withConfig(config: Partial<DaffAuthorizeNetStateConfig> = {}): ModuleWithProviders<DaffAuthorizeNetStateModule> {
