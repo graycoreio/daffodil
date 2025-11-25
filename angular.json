@@ -1005,6 +1005,13 @@
             ],
             "eslintConfig": "libs/driver/eslint.config.mjs"
           }
+        },
+				"generateFragmentTypes": {
+          "builder": "@daffodil/builders:generateFragmentTypes",
+          "options": {
+            "url": "https://demo.mage-os.org/graphql",
+            "path": "libs/driver/magento/src/schema/introspection.json"
+          }
         }
       }
     },

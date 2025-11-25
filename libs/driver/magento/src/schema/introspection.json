@@ -1,90 +1,133 @@
 {
   "possibleTypes": {
+    "AggregationOptionInterface": [
+      "AggregationOption"
+    ],
+    "AttributeSelectedOptionInterface": [
+      "AttributeSelectedOption"
+    ],
+    "AttributeValueInterface": [
+      "AttributeSelectedOptions",
+      "AttributeValue"
+    ],
     "CartAddressInterface": [
       "BillingCartAddress",
       "ShippingCartAddress"
     ],
     "CartItemInterface": [
-      "SimpleCartItem",
-      "VirtualCartItem",
-      "DownloadableCartItem",
       "BundleCartItem",
-      "ConfigurableCartItem"
-    ],
-    "ProductInterface": [
-      "VirtualProduct",
-      "SimpleProduct",
-      "DownloadableProduct",
-      "BundleProduct",
-      "GroupedProduct",
-      "ConfigurableProduct"
+      "ConfigurableCartItem",
+      "DownloadableCartItem",
+      "SimpleCartItem",
+      "VirtualCartItem"
     ],
     "CategoryInterface": [
       "CategoryTree"
     ],
-    "MediaGalleryInterface": [
-      "ProductImage",
-      "ProductVideo"
-    ],
-    "ProductLinksInterface": [
-      "ProductLinks"
-    ],
     "CreditMemoItemInterface": [
-      "DownloadableCreditMemoItem",
       "BundleCreditMemoItem",
-      "CreditMemoItem"
+      "CreditMemoItem",
+      "DownloadableCreditMemoItem"
     ],
-    "OrderItemInterface": [
-      "DownloadableOrderItem",
-      "BundleOrderItem",
-      "OrderItem"
+    "CustomAttributeMetadataInterface": [
+      "AttributeMetadata",
+      "CatalogAttributeMetadata",
+      "CustomerAttributeMetadata"
+    ],
+    "CustomAttributeOptionInterface": [
+      "AttributeOptionMetadata"
+    ],
+    "CustomizableOptionInterface": [
+      "CustomizableAreaOption",
+      "CustomizableCheckboxOption",
+      "CustomizableDateOption",
+      "CustomizableDropDownOption",
+      "CustomizableFieldOption",
+      "CustomizableFileOption",
+      "CustomizableMultipleOption",
+      "CustomizableRadioOption"
+    ],
+    "CustomizableProductInterface": [
+      "BundleProduct",
+      "ConfigurableProduct",
+      "DownloadableProduct",
+      "SimpleProduct",
+      "VirtualProduct"
+    ],
+    "Error": [
+      "CartUserInputError",
+      "InsufficientStockError"
+    ],
+    "ErrorInterface": [
+      "InternalError",
+      "NoSuchEntityUidError"
     ],
     "InvoiceItemInterface": [
-      "DownloadableInvoiceItem",
       "BundleInvoiceItem",
+      "DownloadableInvoiceItem",
       "InvoiceItem"
-    ],
-    "ShipmentItemInterface": [
-      "BundleShipmentItem",
-      "ShipmentItem"
-    ],
-    "AggregationOptionInterface": [
-      "AggregationOption"
     ],
     "LayerFilterItemInterface": [
       "LayerFilterItem",
       "SwatchLayerFilterItem"
     ],
+    "MediaGalleryInterface": [
+      "ProductImage",
+      "ProductVideo"
+    ],
+    "OrderItemInterface": [
+      "BundleOrderItem",
+      "ConfigurableOrderItem",
+      "DownloadableOrderItem",
+      "OrderItem"
+    ],
     "PhysicalProductInterface": [
-      "SimpleProduct",
       "BundleProduct",
+      "ConfigurableProduct",
       "GroupedProduct",
-      "ConfigurableProduct"
+      "SimpleProduct"
     ],
-    "CustomizableOptionInterface": [
-      "CustomizableAreaOption",
-      "CustomizableDateOption",
-      "CustomizableDropDownOption",
-      "CustomizableMultipleOption",
-      "CustomizableFieldOption",
-      "CustomizableFileOption",
-      "CustomizableRadioOption",
-      "CustomizableCheckboxOption"
-    ],
-    "CustomizableProductInterface": [
-      "VirtualProduct",
-      "SimpleProduct",
-      "DownloadableProduct",
+    "ProductInterface": [
       "BundleProduct",
-      "ConfigurableProduct"
+      "ConfigurableProduct",
+      "DownloadableProduct",
+      "GroupedProduct",
+      "SimpleProduct",
+      "VirtualProduct"
+    ],
+    "ProductLinksInterface": [
+      "ProductLinks"
+    ],
+    "RoutableInterface": [
+      "BundleProduct",
+      "CategoryTree",
+      "CmsPage",
+      "ConfigurableProduct",
+      "DownloadableProduct",
+      "GroupedProduct",
+      "RoutableUrl",
+      "SimpleProduct",
+      "VirtualProduct"
+    ],
+    "ShipmentItemInterface": [
+      "BundleShipmentItem",
+      "ShipmentItem"
     ],
     "SwatchDataInterface": [
+      "ColorSwatchData",
       "ImageSwatchData",
-      "TextSwatchData",
-      "ColorSwatchData"
+      "TextSwatchData"
     ],
     "SwatchLayerFilterItemInterface": [
       "SwatchLayerFilterItem"
+    ],
+    "WishlistItemInterface": [
+      "BundleWishlistItem",
+      "ConfigurableWishlistItem",
+      "DownloadableWishlistItem",
+      "GroupedProductWishlistItem",
+      "SimpleWishlistItem",
+      "VirtualWishlistItem"
     ]
   }
 }

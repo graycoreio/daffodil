@@ -77,6 +77,14 @@
 					"target": "build"
 				}
 			]
+		},
+		"generateFragmentTypes": {
+			"dependsOn": [
+				{
+					"projects": ["@daffodil/builders"],
+					"target": "build"
+				}
+			]
 		}
 	}
 }
