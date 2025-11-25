@@ -1,8 +1,4 @@
-import { NgModule } from '@angular/core';
-import {
-  Routes,
-  RouterModule,
-} from '@angular/router';
+import { Routes } from '@angular/router';
 
 import {
   DAFF_DOC_KIND_PATH_SEGMENT_MAP,
@@ -12,16 +8,22 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
+import { DaffioDocsIndexService } from './index/index.service';
 import { DaffioDocsFooterComponent } from '../core/footer/docs-footer/docs-footer.component';
 import { DaffioDocsNavContainer } from '../core/nav/docs/docs.component';
 import { DAFF_DOCS_NAV_SIDEBAR_REGISTRATION } from '../core/nav/docs-sidebar.provider';
 import { DaffioRouterNamedViewsEnum } from '../core/router/named-views/models/named-views.enum';
 import { DaffioRoute } from '../core/router/route.type';
 import { DAFFIO_DOCS_TOC_SIDEBAR_REGISTRATION } from './containers/toc-sidebar-content/sidebar.provider';
+import { DaffioActiveHeaderService } from '../core/dynamic-fragment/service';
 
-export const docsRoutes: Routes = [
+export default <Routes>[
   <DaffioRoute>{
     path: '',
+    providers: [
+      DaffioDocsIndexService,
+      DaffioActiveHeaderService,
+    ],
     data: {
       daffNamedViews: {
         [DaffioRouterNamedViewsEnum.NAV]: DaffioDocsNavContainer,
@@ -42,19 +44,19 @@ export const docsRoutes: Routes = [
     children: [
       {
         path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.PACKAGE],
-        loadChildren: () => import('./packages/packages.module').then(m => m.DaffioPackagesModule),
+        loadChildren: () => import('./packages/packages.routes'),
       },
       {
         path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.GUIDE],
-        loadChildren: () => import('./guides/guides.module').then(m => m.DaffioGuidesModule),
+        loadChildren: () => import('./guides/guides.routes'),
       },
       {
         path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.API],
-        loadChildren: () => import('./api/api.module').then(m => m.DaffioApiModule),
+        loadChildren: () => import('./api/api.routes'),
       },
       {
         path: DAFF_DOCS_DESIGN_PATH,
-        loadChildren: () => import('./design/design.module').then(m => m.DaffioDocsDesignModule),
+        loadChildren: () => import('./design/design.routes'),
       },
       {
         path: '',
@@ -64,13 +66,3 @@ export const docsRoutes: Routes = [
     ],
   },
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forChild(docsRoutes),
-  ],
-  exports: [
-    RouterModule,
-  ],
-})
-export class DaffioDocsRoutingModule { }

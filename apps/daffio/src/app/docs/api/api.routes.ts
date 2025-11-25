@@ -1,8 +1,4 @@
-import { NgModule } from '@angular/core';
-import {
-  Routes,
-  RouterModule,
-} from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { DaffDocKind } from '@daffodil/docs-utils';
 
@@ -13,10 +9,16 @@ import { daffioDocsIndexResolver } from '../index/resolver';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
 import { DAFFIO_API_NAV_LIST_SIDEBAR_REGISTRATION } from './sidebar/provider';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
+import { provideDaffioDocsApiContentComponent } from './components/api-content/api-content.provider';
+import { daffioDocsApiRolesProvider } from './roles/api-roles.provider';
 
-export const apiRoutes: Routes = [
+export default <Routes>[
   <DaffioRoute>{
     path: '',
+    providers: [
+      provideDaffioDocsApiContentComponent(),
+      ...daffioDocsApiRolesProvider(),
+    ],
     data: {
       docKind: DaffDocKind.API,
       daffioSidebars: {
@@ -44,13 +46,3 @@ export const apiRoutes: Routes = [
     ],
   },
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forChild(apiRoutes),
-  ],
-  exports: [
-    RouterModule,
-  ],
-})
-export class DaffioDocsApiRoutingModule {}

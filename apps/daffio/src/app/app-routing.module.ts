@@ -55,7 +55,7 @@ export const appRoutes: Routes = [
       },
       {
         path: DAFF_DOCS_PATH,
-        loadChildren: () => import('./docs/docs.module').then(m => m.DaffioDocsModule),
+        loadChildren: () => import('./docs/docs.routes'),
       },
       ...DOCS_REDIRECTED_ROUTES.map((path) => ({
         path,

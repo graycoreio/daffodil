@@ -1,24 +1,25 @@
-import { NgModule } from '@angular/core';
-import {
-  Routes,
-  RouterModule,
-} from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { DaffSidebarModeEnum } from '@daffodil/design/sidebar';
 import { DaffDocKind } from '@daffodil/docs-utils';
 
-import { DaffioPackagesOverviewPageComponent } from './pages/packages-overview/packages-overview.component';
+import { provideDaffioDocsGuidesContentComponent } from './components/guides-content/guides-content.provider';
 import { DaffioRoute } from '../../core/router/route.type';
 import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from '../containers/docs-list/sidebar.provider';
 import { daffioDocsIndexResolver } from '../index/resolver';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
 
-export const packagesRoutes: Routes = [
+export const DAFFIO_DOCS_GUIDE_DEFAULT = 'introduction';
+
+export default <Routes>[
   <DaffioRoute>{
     path: '',
+    providers: [
+      provideDaffioDocsGuidesContentComponent(),
+    ],
     data: {
-      docKind: DaffDocKind.PACKAGE,
+      docKind: DaffDocKind.GUIDE,
     },
     resolve: {
       index: daffioDocsIndexResolver,
@@ -27,7 +28,7 @@ export const packagesRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: DaffioPackagesOverviewPageComponent,
+        redirectTo: DAFFIO_DOCS_GUIDE_DEFAULT,
       },
       <DaffioRoute>{
         path: '**',
@@ -36,20 +37,10 @@ export const packagesRoutes: Routes = [
           doc: DocsResolver,
         },
         data: {
-          daffioDockedSidebar: DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION.id,
           sidebarMode: DaffSidebarModeEnum.SideFixed,
+          daffioDockedSidebar: DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION.id,
         },
       },
     ],
   },
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forChild(packagesRoutes),
-  ],
-  exports: [
-    RouterModule,
-  ],
-})
-export class DaffioPackagesRoutingModule { }

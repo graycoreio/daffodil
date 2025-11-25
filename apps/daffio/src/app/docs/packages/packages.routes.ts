@@ -1,25 +1,24 @@
-import { NgModule } from '@angular/core';
-import {
-  Routes,
-  RouterModule,
-} from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { DaffSidebarModeEnum } from '@daffodil/design/sidebar';
 import { DaffDocKind } from '@daffodil/docs-utils';
 
+import { provideDaffioDocsPackagesContentComponent } from './components/packages-content/packages-content.provider';
+import { DaffioPackagesOverviewPageComponent } from './pages/packages-overview/packages-overview.component';
 import { DaffioRoute } from '../../core/router/route.type';
 import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from '../containers/docs-list/sidebar.provider';
 import { daffioDocsIndexResolver } from '../index/resolver';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
 
-export const DAFFIO_DOCS_GUIDE_DEFAULT = 'introduction';
-
-export const guidesRoutes: Routes = [
+export default <Routes>[
   <DaffioRoute>{
     path: '',
+    providers: [
+      provideDaffioDocsPackagesContentComponent(),
+    ],
     data: {
-      docKind: DaffDocKind.GUIDE,
+      docKind: DaffDocKind.PACKAGE,
     },
     resolve: {
       index: daffioDocsIndexResolver,
@@ -28,7 +27,7 @@ export const guidesRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: DAFFIO_DOCS_GUIDE_DEFAULT,
+        component: DaffioPackagesOverviewPageComponent,
       },
       <DaffioRoute>{
         path: '**',
@@ -37,20 +36,10 @@ export const guidesRoutes: Routes = [
           doc: DocsResolver,
         },
         data: {
-          sidebarMode: DaffSidebarModeEnum.SideFixed,
           daffioDockedSidebar: DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION.id,
+          sidebarMode: DaffSidebarModeEnum.SideFixed,
         },
       },
     ],
   },
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forChild(guidesRoutes),
-  ],
-  exports: [
-    RouterModule,
-  ],
-})
-export class DaffioGuidesRoutingModule { }
