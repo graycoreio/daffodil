@@ -6,7 +6,7 @@ Simply stated, this schema corresponds to a JSON-structure representing HTML.
 
 ## Overview
 
-A content schema is a tree structure defined by the type `DaffContentSchema` where each node can be one of three types:
+A content schema is a static tree structure defined by the type `DaffContentSchema` where each node can be one of three types:
 
 - [**Text Schema**](#text-schema): Represents text nodes
 - [**Element Schema**](#element-schema): Represents HTML elements with attributes and styles
@@ -90,6 +90,8 @@ const heroSchema: DaffContentElementSchema = {
 ## Component Schema
 
 `DaffContentComponentSchema` allow you to render Angular components dynamically with specified inputs.
+
+> Schema is designed static. Inputs, as defined by schema, are static properties. Schema does not support functions or callbacks. Downstream schema renderers should be designed so that changes to schema trigger re-renders.
 
 ### Example: Component with Inputs
 
