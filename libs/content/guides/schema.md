@@ -30,7 +30,7 @@ interface DaffTextSchema {
 ```typescript
 const textSchema: DaffTextSchema = {
   type: 'textSchema',
-  text: 'This is a paragraph of text.'
+  text: 'This is some text.'
 };
 ```
 
