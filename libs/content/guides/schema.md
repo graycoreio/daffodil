@@ -16,15 +16,6 @@ A content schema is a tree structure defined by the type `DaffContentSchema` whe
 
 Text schemas represent simple text nodes.
 
-### Interface
-
-```typescript
-interface DaffTextSchema {
-  type: 'textSchema';
-  text: string;
-}
-```
-
 ### Example
 
 ```typescript
