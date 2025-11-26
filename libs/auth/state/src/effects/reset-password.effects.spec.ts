@@ -1,13 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
+import { Action } from '@ngrx/store';
 import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffAuthResetPasswordInfo,
@@ -38,6 +36,21 @@ import {
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 
 import { DaffAuthResetPasswordEffects } from './reset-password.effects';
+
+interface ResetPasswordTestState {
+  isAutoLoginTrue: boolean;
+  didPasswordResetSucceed: boolean;
+  didTokenStorageSucceed?: boolean;
+  whatErrorWasThrown?: DaffStorageServiceError;
+  whatActionWasReturned?: Action;
+  whatOtherActionWasReturned?: Action;
+};
+
+interface SendResetEmailTestState {
+  wasOperationSuccessful: boolean;
+  whatActionWasReturned: Action;
+  whatErrorWasThrown?: DaffStorageServiceError;
+};
 
 describe('@daffodil/auth/state | DaffAuthResetPasswordEffects', () => {
   let actions$: Observable<any>;
@@ -85,152 +98,129 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordEffects', () => {
   });
 
   describe('resetPassword$', () => {
-    let expected;
-    let mockAuthResetPasswordAction: DaffResetPassword;
+    it('should compute the next action correctly', () => {
+      const testStates: ResetPasswordTestState[] = [
+        {
+          isAutoLoginTrue: true,
+          didPasswordResetSucceed: true,
+          didTokenStorageSucceed: true,
+          whatActionWasReturned: new DaffResetPasswordSuccess(token),
+        },
+        {
+          isAutoLoginTrue: true,
+          didPasswordResetSucceed: true,
+          didTokenStorageSucceed: false,
+          whatErrorWasThrown: new DaffServerSideStorageError('Server side'),
+          whatActionWasReturned: new DaffResetPasswordFailure(daffTransformErrorToStateError(
+            new DaffServerSideStorageError('Server side'),
+          )),
+          whatOtherActionWasReturned: new DaffAuthServerSide(daffTransformErrorToStateError(
+            new DaffServerSideStorageError('Server side'),
+          )),
+        },
+        {
+          isAutoLoginTrue: true,
+          didPasswordResetSucceed: true,
+          didTokenStorageSucceed: false,
+          whatErrorWasThrown: new DaffStorageServiceError('Storage error'),
+          whatActionWasReturned: new DaffResetPasswordFailure(daffTransformErrorToStateError(
+            new DaffStorageServiceError('Storage error'),
+          )),
+          whatOtherActionWasReturned: new DaffAuthStorageFailure(daffTransformErrorToStateError(
+            new DaffStorageServiceError('Storage error'),
+          )),
+        },
+        {
+          isAutoLoginTrue: true,
+          didPasswordResetSucceed: false,
+          whatErrorWasThrown: new DaffAuthenticationFailedError('Failed to reset password'),
+          whatActionWasReturned: new DaffResetPasswordFailure(daffTransformErrorToStateError(
+            new DaffAuthenticationFailedError('Failed to reset password'),
+          )),
+        },
+        {
+          isAutoLoginTrue: false,
+          didPasswordResetSucceed: true,
+          whatActionWasReturned: new DaffResetPasswordSuccess(),
+        },
+        {
+          isAutoLoginTrue: false,
+          didPasswordResetSucceed: false,
+          whatErrorWasThrown: new DaffAuthenticationFailedError('Failed to reset password'),
+          whatActionWasReturned: new DaffResetPasswordFailure(daffTransformErrorToStateError(
+            new DaffAuthenticationFailedError('Failed to reset password'),
+          )),
+        },
+      ];
 
-    describe('when autoLogin is true', () => {
-      beforeEach(() => {
-        mockAuthResetPasswordAction = new DaffResetPassword(mockResetInfo, true);
-        actions$ = hot('--a', { a: mockAuthResetPasswordAction });
-      });
-
-      describe('and the resetPassword is successful', () => {
-        beforeEach(() => {
-          daffResetPasswordDriver.resetPassword.and.returnValue(of(token));
+      testStates.forEach((el) => {
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
         });
-
-        describe('and setToken is successful', () => {
-          beforeEach(() => {
-            const mockAuthResetPasswordSuccessAction = new DaffResetPasswordSuccess(token);
-
-            expected = cold('--a', { a: mockAuthResetPasswordSuccessAction });
-          });
-
-          it('should notify state that the resetPassword was successful', () => {
-            expect(effects.resetPassword$).toBeObservable(expected);
-          });
-
-          it('should store the auth token', () => {
-            expect(effects.resetPassword$).toBeObservable(expected);
-            expect(setAuthTokenSpy).toHaveBeenCalledWith(token);
-          });
-        });
-
-        describe('and the storage service throws a server side error', () => {
-          beforeEach(() => {
-            const error = new DaffServerSideStorageError('Server side');
-            const serverSideAction = new DaffAuthServerSide(daffTransformErrorToStateError(error));
-            const mockAuthResetPasswordFailureAction = new DaffResetPasswordFailure(daffTransformErrorToStateError(error));
-            setAuthTokenSpy.and.throwError(error);
-            expected = cold('--(ab)', { a: serverSideAction, b: mockAuthResetPasswordFailureAction });
-          });
-
-          it('should dispatch a server side action', () => {
-            expect(effects.resetPassword$).toBeObservable(expected);
-          });
-        });
-
-        describe('and the storage service throws a storage error', () => {
-          beforeEach(() => {
-            const error = new DaffStorageServiceError('Storage error');
-            const storageAction = new DaffAuthStorageFailure(daffTransformErrorToStateError(error));
-            const mockAuthResetPasswordFailureAction = new DaffResetPasswordFailure(daffTransformErrorToStateError(error));
-            setAuthTokenSpy.and.throwError(error);
-            expected = cold('--(ab)', { a: storageAction, b: mockAuthResetPasswordFailureAction });
-          });
-
-          it('should dispatch a server side action', () => {
-            expect(effects.resetPassword$).toBeObservable(expected);
-          });
-        });
-      });
-
-      describe('and the resetPassword fails', () => {
-        beforeEach(() => {
-          const error = new DaffAuthenticationFailedError('Failed to reset password');
-          const response = cold('#', {}, error);
-          daffResetPasswordDriver.resetPassword.and.returnValue(response);
-          const mockAuthResetPasswordFailureAction = new DaffResetPasswordFailure(daffTransformErrorToStateError(error));
-
-          actions$ = hot('--a', { a: mockAuthResetPasswordAction });
-          expected = cold('--b', { b: mockAuthResetPasswordFailureAction });
-        });
-
-        it('should notify state that the resetPassword failed', () => {
-          expect(effects.resetPassword$).toBeObservable(expected);
-        });
-      });
-    });
-
-    describe('when autoLogin is false', () => {
-      beforeEach(() => {
-        mockAuthResetPasswordAction = new DaffResetPassword(mockResetInfo, false);
-      });
-
-      describe('and the resetPassword is successful', () => {
-        beforeEach(() => {
-          daffResetPasswordDriver.resetPasswordOnly.and.returnValue(of(undefined));
-          const mockAuthResetPasswordSuccessAction = new DaffResetPasswordSuccess();
-
-          actions$ = hot('--a', { a: mockAuthResetPasswordAction });
-          expected = cold('--b', { b: mockAuthResetPasswordSuccessAction });
-        });
-
-        it('should notify state that the resetPassword was successful', () => {
-          expect(effects.resetPassword$).toBeObservable(expected);
-        });
-      });
-
-      describe('and the resetPassword fails', () => {
-        beforeEach(() => {
-          const error = new DaffAuthenticationFailedError('Failed to reset password');
-          const response = cold('#', {}, error);
-          daffResetPasswordDriver.resetPasswordOnly.and.returnValue(response);
-          const mockAuthResetPasswordFailureAction = new DaffResetPasswordFailure(daffTransformErrorToStateError(error));
-
-          actions$ = hot('--a', { a: mockAuthResetPasswordAction });
-          expected = cold('--b', { b: mockAuthResetPasswordFailureAction });
-        });
-
-        it('should notify state that the resetPassword failed', () => {
-          expect(effects.resetPassword$).toBeObservable(expected);
+        testScheduler.run(helpers => {
+          const mockAuthResetPasswordAction = new DaffResetPassword(mockResetInfo, el.isAutoLoginTrue);
+          actions$ = helpers.hot('--a', { a: mockAuthResetPasswordAction });
+          if (el.didPasswordResetSucceed) {
+            if (el.isAutoLoginTrue) {
+              daffResetPasswordDriver.resetPassword.and.returnValue(of(token));
+            } else {
+              daffResetPasswordDriver.resetPasswordOnly.and.returnValue(of(undefined));
+            }
+            if (el.whatErrorWasThrown) {
+              setAuthTokenSpy.and.throwError(el.whatErrorWasThrown);
+            } else {
+              setAuthTokenSpy.and.returnValue(undefined);
+            }
+          } else {
+            if (el.isAutoLoginTrue) {
+              daffResetPasswordDriver.resetPassword.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+            } else {
+              daffResetPasswordDriver.resetPasswordOnly.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+            }
+          }
+          if (el.didPasswordResetSucceed && el.whatErrorWasThrown){
+            helpers.expectObservable(effects.resetPassword$).toBe('--(ab)', { a: el.whatOtherActionWasReturned, b: el.whatActionWasReturned });
+          } else {
+            helpers.expectObservable(effects.resetPassword$).toBe('--b', { b: el.whatActionWasReturned });
+          }
         });
       });
     });
   });
 
+
   describe('sendResetEmail$ | when the user registers an account', () => {
-    let expected;
+    it('should compute the next action correctly', () => {
+      const testStates: SendResetEmailTestState[] = [
+        {
+          wasOperationSuccessful: true,
+          whatActionWasReturned: new DaffSendResetEmailSuccess(),
+        },
+        {
+          wasOperationSuccessful: false,
+          whatActionWasReturned: new DaffSendResetEmailFailure(daffTransformErrorToStateError(
+            new DaffAuthInvalidAPIResponseError('Failed to register a new user'),
+          )),
+          whatErrorWasThrown: new DaffAuthInvalidAPIResponseError('Failed to register a new user'),
+        },
+      ];
 
-    const mockAuthSendResetEmailAction = new DaffSendResetEmail(email);
+      testStates.forEach((el) => {
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const mockAuthSendResetEmailAction = new DaffSendResetEmail(email);
+          actions$ = helpers.hot('--a', { a: mockAuthSendResetEmailAction });
 
-    describe('and the operation is successful', () => {
-      beforeEach(() => {
-        daffResetPasswordDriver.sendResetEmail.and.returnValue(of(undefined));
-        const mockAuthSendResetEmailSuccessAction = new DaffSendResetEmailSuccess();
+          if(el.whatErrorWasThrown) {
+            daffResetPasswordDriver.sendResetEmail.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+          } else {
+            daffResetPasswordDriver.sendResetEmail.and.returnValue(of(undefined));
+          }
 
-        actions$ = hot('--a', { a: mockAuthSendResetEmailAction });
-        expected = cold('--b', { b: mockAuthSendResetEmailSuccessAction });
-      });
-
-      it('should notify state that the operation succeeded', () => {
-        expect(effects.sendResetEmail$).toBeObservable(expected);
-      });
-    });
-
-    describe('and the operation fails', () => {
-      beforeEach(() => {
-        const error = new DaffAuthInvalidAPIResponseError('Failed to register a new user');
-        const response = cold('#', {}, error);
-        daffResetPasswordDriver.sendResetEmail.and.returnValue(response);
-        const mockAuthResetPasswordFailureAction = new DaffSendResetEmailFailure(daffTransformErrorToStateError(error));
-
-        actions$ = hot('--a', { a: mockAuthSendResetEmailAction });
-        expected = cold('--b', { b: mockAuthResetPasswordFailureAction });
-      });
-
-      it('should notify state that the operation failed', () => {
-        expect(effects.sendResetEmail$).toBeObservable(expected);
+          helpers.expectObservable(effects.sendResetEmail$).toBe('--b', { b: el.whatActionWasReturned });
+        });
       });
     });
   });
