@@ -129,6 +129,7 @@ export const addCoreProvidersToStandalone = (options: NgAddOptions, project: any
       'provideDaffInMemoryDriver({ apiBase: \'daff-in-memory-web-api\', passThroughUnknownRequests: true })',
       'provideDaffProductInMemoryDriver()',
       'provideDaffNavigationInMemoryDriver()',
+      'provideDaffExternalRouterInMemoryDriver()',
       '',
     );
   }

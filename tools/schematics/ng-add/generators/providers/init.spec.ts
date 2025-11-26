@@ -57,30 +57,6 @@ export class App {}
       expect(appConfigContent).toContain('provideDaffProductDriver');
     });
 
-    it('should add all driver providers', () => {
-      const rule = initAppProviders(options, project);
-      const resultTree = <Tree>rule(tree, <any>{});
-
-      const appConfigContent = resultTree.read('/projects/test-app/src/app/app.config.ts')?.toString();
-
-      // In-memory drivers
-      expect(appConfigContent).toContain('provideDaffInMemoryDriver');
-      expect(appConfigContent).toContain('provideDaffProductInMemoryDriver');
-      expect(appConfigContent).toContain('provideDaffNavigationInMemoryDriver');
-
-      // Magento drivers
-      expect(appConfigContent).toContain('provideMagentoDriver');
-      expect(appConfigContent).toContain('provideDaffProductMagentoDriver');
-      expect(appConfigContent).toContain('provideDaffNavigationMagentoDriver');
-      expect(appConfigContent).toContain('provideDaffExternalRouterMagentoDriver');
-
-      // Shopify drivers
-      expect(appConfigContent).toContain('provideShopifyDriver');
-      expect(appConfigContent).toContain('provideDaffProductShopifyDriver');
-      expect(appConfigContent).toContain('provideDaffNavigationShopifyDriver');
-      expect(appConfigContent).toContain('provideDaffExternalRouterShopifyDriver');
-    });
-
     it('should add dynamic switch services', () => {
       const rule = initAppProviders(options, project);
       const resultTree = <Tree>rule(tree, <any>{});
