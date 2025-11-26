@@ -3,7 +3,7 @@
     "target": "ES2020",
     "module": "commonjs",
     "lib": ["ES2020", "DOM"],
-    "outDir": "./dist",
+    "outDir": "../../dist/sassdoc",
     "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
@@ -21,14 +21,20 @@
     "noImplicitOverride": true,
     "allowSyntheticDefaultImports": true,
     "typeRoots": ["./node_modules/@types", "../../node_modules/@types"],
-    "types": ["node"]
+    "types": ["node"],
+		"paths": {
+      "@daffodil/*": [
+        "../../dist/*"
+      ]
+    }
   },
   "include": [
-    "*.ts",
+    "src/**/*.ts",
     "*.d.ts"
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+		"*.spec.ts"
   ]
-} 
+}

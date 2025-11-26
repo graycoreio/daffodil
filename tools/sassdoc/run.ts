@@ -1,9 +1,11 @@
-// @ts-ignore
-import config from './sassdoc.config';
-import { processSassDoc } from './build';
-import { SassDocConfig } from './sassdoc.config';
 import * as fs from 'fs';
 import * as path from 'path';
+
+import config from './sassdoc.config';
+import {
+  SassDocConfig,
+  processSassDoc,
+} from './src';
 
 interface RunOptions {
   outputDir?: string;
@@ -12,14 +14,15 @@ interface RunOptions {
 
 async function runSassDocBuild(customConfig?: Partial<SassDocConfig>, options: RunOptions = {}): Promise<void> {
   try {
-  
+
     const finalConfig: SassDocConfig = { ...config, ...customConfig };
-    
+
     const {
-      outputDir = '../../dist/docs',
-      outputFilename = 'sassdoc-output',
+      outputDir = '../../dist/docs-assets/sassdoc',
+      outputFilename = 'output',
     } = options;
 
+    // eslint-disable-next-line no-console
     console.log('Sources:', finalConfig.src);
 
     const result = await processSassDoc(finalConfig);
@@ -31,6 +34,7 @@ async function runSassDocBuild(customConfig?: Partial<SassDocConfig>, options: R
 
     const jsonFile = path.resolve(fullOutputDir, `${outputFilename}.json`);
     fs.writeFileSync(jsonFile, JSON.stringify(result.data, null, 2), 'utf8');
+    // eslint-disable-next-line no-console
     console.log('JSON output saved to:', jsonFile);
 
   } catch (error) {
@@ -43,4 +47,7 @@ if (require.main === module) {
   runSassDocBuild();
 }
 
-export { runSassDocBuild, RunOptions };
+export {
+  runSassDocBuild,
+  RunOptions,
+};

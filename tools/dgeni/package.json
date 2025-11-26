@@ -21,11 +21,12 @@
           "sharedGlobals",
           "docs"
         ],
-        "outputs": ["{workspaceRoot}/dist/docs-assets"]
+        "outputs": ["{workspaceRoot}/dist/docs-assets/docs"]
       }
     }
   },
   "devDependencies": {
-    "@daffodil/docs-utils": "0.0.0-PLACEHOLDER"
+    "@daffodil/docs-utils": "0.0.0-PLACEHOLDER",
+    "@daffodil/tools-sassdoc": "0.0.0-PLACEHOLDER"
   }
 }

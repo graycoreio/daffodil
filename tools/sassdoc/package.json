@@ -3,13 +3,32 @@
   "private": true,
   "version": "0.0.0-PLACEHOLDER",
   "scripts": {
-    "build": "npx tsx run.ts",
-    "watch": "nodemon --watch '../../libs/design/**/*.scss' --exec 'npm run build'"
+    "build": "tsx run.ts",
+    "watch": "nodemon --watch '../../libs/design/**/*.scss' --exec 'npm run build'",
+		"lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+		"test": "tsx src/value-parser.spec.ts"
   },
   "devDependencies": {
     "@types/node": "^20.19.9",
+    "@daffodil/docs-utils": "0.0.0-PLACEHOLDER",
     "nodemon": "^3.0.0",
     "tsx": "^4.20.3",
     "typescript": "^5.0.0"
+  },
+	"nx": {
+    "targets": {
+      "build": {
+        "inputs": [
+					"default",
+          "^default",
+          "notSpec",
+          "^notSpec",
+          "sharedGlobals",
+					"{workspaceRoot}/libs/design/scss/**/*.scss"
+        ],
+        "outputs": ["{workspaceRoot}/dist/docs-assets/sassdoc/*"]
+      }
+    }
   }
 }
