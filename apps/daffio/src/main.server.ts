@@ -1,12 +1,12 @@
-import { enableProdMode } from '@angular/core';
+import {
+  BootstrapContext,
+  bootstrapApplication,
+} from '@angular/platform-browser';
 
-import { environment } from './environments/environment';
+import { DaffioAppComponent } from './app/app.component';
+import { config } from './app/app.config.server';
 
-if (environment.production) {
-  enableProdMode();
-}
+const bootstrap = (context: BootstrapContext) =>
+  bootstrapApplication(DaffioAppComponent, config, context);
 
-export {
-  AppServerModule,
-  AppServerModule as default,
-} from './app/app.server.module';
+export default bootstrap;

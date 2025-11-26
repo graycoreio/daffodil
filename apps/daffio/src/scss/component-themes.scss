@@ -1,6 +1,5 @@
 @use '../app/content/home/components/home-hero/home-hero-theme' as home-hero;
 @use '../app/content/home//components/home-callout-commerce/home-callout-commerce-theme' as home-callout-commerce;
-@use '../app/content/why-pwa/components/feature-comparison/feature-comparison-theme' as feature-comparison;
 @use '../app/core/footer/docs-footer/docs-footer-theme' as docs-footer;
 @use '../app/core/footer/footer/footer-theme' as footer;
 @use '../app/core/footer/sub-footer/sub-footer-theme' as sub-footer;
@@ -31,7 +30,6 @@
 	@include docs-footer.daffio-docs-footer-theme($theme);
 	@include footer.daffio-footer-theme($theme);
 	@include sub-footer.daffio-sub-footer-theme($theme);
-	@include feature-comparison.daffio-feature-comparison-theme($theme);
 	@include api-list.daffio-api-list-theme($theme);
 	@include api-list-section.daffio-api-list-section-theme($theme);
 	@include api-package.daffio-api-package-theme($theme);

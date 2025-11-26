@@ -1,21 +1,20 @@
-import { NgModule } from '@angular/core';
+import {
+  mergeApplicationConfig,
+  ApplicationConfig,
+} from '@angular/core';
 import { provideServerRendering } from '@angular/ssr';
 
-import { DaffioAppComponent } from './app.component';
-import { AppModule } from './app.module';
+import { appConfig } from './app.config';
 import { DaffioAssetFetchServerService } from './core/assets/fetch/server.service';
 import { provideDaffioAssetFetchService } from './core/assets/fetch/service.interface';
 import { provideServerDocsPath } from './docs/services/docs-path-server';
 
-@NgModule({
-  imports: [
-    AppModule,
-  ],
-  bootstrap: [DaffioAppComponent],
+const serverConfig: ApplicationConfig = {
   providers: [
     provideServerRendering(),
     provideServerDocsPath(),
     provideDaffioAssetFetchService(DaffioAssetFetchServerService),
   ],
-})
-export class AppServerModule {}
+};
+
+export const config = mergeApplicationConfig(appConfig, serverConfig);
