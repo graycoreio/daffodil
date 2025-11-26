@@ -3,10 +3,8 @@
   "private": true,
   "version": "0.0.0-PLACEHOLDER",
   "scripts": {
-    "build": "npx tsx build.ts",
-    "watch": "nodemon --watch '../../libs/design/**/*.scss' --exec 'npm run build'",
-    "test": "npx tsx build.ts --test",
-    "parse-values": "npx tsx value-parser.ts ../../dist/docs/sassdoc-test-output.json"
+    "build": "npx tsx run.ts",
+    "watch": "nodemon --watch '../../libs/design/**/*.scss' --exec 'npm run build'"
   },
   "devDependencies": {
     "@types/node": "^20.19.9",
