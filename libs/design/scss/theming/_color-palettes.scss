@@ -1,12 +1,47 @@
 // Base colors
+/// @group color-palettes
+/// Pure white color used as a base color throughout the design system.
+/// @type Color
+/// @example scss - Basic usage
+///   .my-component {
+///     background-color: $white;
+///   }
 $white: #ffffff;
+/// @group color-palettes
+/// Black color used as a base color throughout the design system.
+/// @type Color
+/// @example scss - Basic usage
+///   .my-component {
+///     background-color: $black;
+///   }
 $black: #070707;
 // need to deprecate
+/// @group color-palettes
+/// Error color for indicating validation errors and critical states.
+/// @type Color
+/// @example scss - Error styling
+///   .error-message {
+///     color: $error;
+///   }
 $error: #dd0000;
 
-// 60 apart passes AAA level for any size text (except for 10/70)
-// 50 apart passes AA level for any size text (except for 10/60)
-
+/// @group color-palettes
+/// Primary blue color palette with 10 shades from light to dark.
+/// Color contrast levels: 60 apart passes AAA level for any size text (except for 10/70),
+/// 50 apart passes AA level for any size text (except for 10/60).
+/// @type Map
+/// @example scss - Using different shades
+///   .light-blue { background-color: map-get($daff-blue, 10); }
+///   .medium-blue { background-color: map-get($daff-blue, 50); }
+///   .dark-blue { background-color: map-get($daff-blue, 100); }
+/// @example scss - Creating gradients
+///   .blue-gradient {
+///     background: linear-gradient(
+///       to right,
+///       map-get($daff-blue, 20),
+///       map-get($daff-blue, 80)
+///     );
+///   }
 $daff-blue: (
 	10: #ebf1ff,
 	20: #c4d8ff,
@@ -20,8 +55,26 @@ $daff-blue: (
 	100: #000033
 );
 
+/// @group color-palettes
+/// Primary brand color palette, aliased to blue for consistency.
+/// @type Map
+/// @example scss - Using primary colors
+///   .primary-button {
+///     background-color: map-get($daff-primary, 60);
+///     color: map-get($daff-primary, 10);
+///   }
 $daff-primary: $daff-blue;
 
+/// @group color-palettes
+/// Secondary purple color palette with 10 shades for accent and secondary elements.
+/// @type Map
+/// @example scss - Purple accent elements
+///   .accent-border {
+///     border-color: map-get($daff-purple, 50);
+///   }
+///   .purple-text {
+///     color: map-get($daff-purple, 70);
+///   }
 $daff-purple: (
 	10: #ebebff,
 	20: #d4d3ff,
@@ -35,8 +88,28 @@ $daff-purple: (
 	100: #110033
 );
 
+/// @group color-palettes
+/// Accent color palette, aliased to purple for design consistency.
+/// @type Map
+/// @example scss - Accent highlights
+///   .highlight {
+///     background-color: map-get($daff-accent, 30);
+///   }
 $daff-accent: $daff-purple;
 
+/// @group color-palettes
+/// Turquoise color palette with 10 shades, ideal for success states and positive feedback.
+/// @type Map
+/// @example scss - Success states
+///   .success-message {
+///     background-color: map-get($daff-turquoise, 20);
+///     border-color: map-get($daff-turquoise, 60);
+///   }
+/// @example scss - Call-to-action elements
+///   .cta-button {
+///     background-color: map-get($daff-turquoise, 50);
+///     color: map-get($daff-turquoise, 10);
+///   }
 $daff-turquoise: (
 	10: #d6fcea,
 	20: #9dfbd3,
@@ -50,6 +123,18 @@ $daff-turquoise: (
 	100: #082218
 );
 
+/// @group color-palettes
+/// Yellow color palette with 10 shades for warnings and attention-grabbing elements.
+/// @type Map
+/// @example scss - Warning states
+///   .warning-banner {
+///     background-color: map-get($daff-yellow, 20);
+///     border-color: map-get($daff-yellow, 60);
+///   }
+/// @example scss - Highlight text
+///   .highlighted-text {
+///     background-color: map-get($daff-yellow, 30);
+///   }
 $daff-yellow: (
 	10: #fffaeb,
 	20: #fff1c2,
@@ -63,6 +148,19 @@ $daff-yellow: (
 	100: #7a5e00
 );
 
+/// @group color-palettes
+/// Red color palette with 10 shades for errors, warnings, and critical states.
+/// @type Map
+/// @example scss - Error states
+///   .error-input {
+///     border-color: map-get($daff-red, 60);
+///     background-color: map-get($daff-red, 10);
+///   }
+/// @example scss - Destructive actions
+///   .delete-button {
+///     background-color: map-get($daff-red, 60);
+///     color: map-get($daff-red, 10);
+///   }
 $daff-red: (
 	10: #fcf1f1,
 	20: #fae0e0,
@@ -76,6 +174,19 @@ $daff-red: (
 	100: #3f0809,
 );
 
+/// @group color-palettes
+/// Bronze color palette with 10 shades for warm, earthy design elements.
+/// @type Map
+/// @example scss - Warm accents
+///   .bronze-card {
+///     background-color: map-get($daff-bronze, 20);
+///     border-color: map-get($daff-bronze, 50);
+///   }
+/// @example scss - Premium elements
+///   .premium-badge {
+///     background-color: map-get($daff-bronze, 60);
+///     color: map-get($daff-bronze, 10);
+///   }
 $daff-bronze: (
 	10: #fcf2eb,
 	20: #f7dac6,
@@ -89,6 +200,18 @@ $daff-bronze: (
 	100: #1a0f00,
 );
 
+/// @group color-palettes
+/// Green color palette with 10 shades for success states and positive feedback.
+/// @type Map
+/// @example scss - Success indicators
+///   .success-alert {
+///     background-color: map-get($daff-green, 20);
+///     color: map-get($daff-green, 80);
+///   }
+/// @example scss - Valid input states
+///   .valid-input {
+///     border-color: map-get($daff-green, 50);
+///   }
 $daff-green: (
 	10: #d1fbd6,
 	20: #97f8a5,
@@ -102,6 +225,21 @@ $daff-green: (
 	100: #07230d,
 );
 
+/// @group color-palettes
+/// Neutral grayscale palette with 11 shades from pure white to near black.
+/// Essential for text, backgrounds, borders, and general UI elements.
+/// @type Map
+/// @example scss - Text hierarchy
+///   .primary-text { color: map-get($daff-neutral, 100); }
+///   .secondary-text { color: map-get($daff-neutral, 70); }
+///   .disabled-text { color: map-get($daff-neutral, 50); }
+/// @example scss - Background layers
+///   .page-background { background-color: map-get($daff-neutral, 0); }
+///   .card-background { background-color: map-get($daff-neutral, 10); }
+///   .section-background { background-color: map-get($daff-neutral, 20); }
+/// @example scss - Borders and dividers
+///   .divider { border-color: map-get($daff-neutral, 30); }
+///   .input-border { border-color: map-get($daff-neutral, 40); }
 $daff-neutral: (
 	10: #fafafa,
 	20: #e8e8e8,
