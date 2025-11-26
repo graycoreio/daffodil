@@ -2,7 +2,7 @@
   "plugins": [
     "stylelint-selector-bem-pattern",
     "@stylistic/stylelint-plugin",
-    "./custom-stylelint-plugins/no-direct-cursor-pointer"
+    "./tools/stylelint/no-direct-cursor-pointer"
   ],
   "extends": "stylelint-config-recommended-scss",
   "rules": {
