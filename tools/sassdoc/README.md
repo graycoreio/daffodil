@@ -40,6 +40,20 @@ This will:
 - Generate HTML documentation in `dist/docs/sass-docs/`
 - Exclude test files (`*.spec.scss`)
 
+### Viewing the Documentation Website
+
+After building, you can view the generated documentation website:
+
+```bash
+# Build the documentation
+npx nx run @daffodil/tools-sassdoc:build
+
+# Serve the documentation website
+npx http-server dist/docs/sass-docs -p 8000
+```
+
+Then visit **http://localhost:8000** in your browser to explore the documentation.
+
 ## SassDoc Comment Format
 
 **Important:** SassDoc only works with triple-slash comments (`///`). Regular double-slash comments (`//`) are completely ignored.
