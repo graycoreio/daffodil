@@ -5,9 +5,10 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 
 import { DaffioAppComponent } from './app.component';
+
 
 describe('DaffioAppComponent', () => {
   let fixture: ComponentFixture<DaffioAppComponent>;
@@ -19,10 +20,10 @@ describe('DaffioAppComponent', () => {
         CUSTOM_ELEMENTS_SCHEMA,
       ],
       imports: [
-        RouterTestingModule,
-      ],
-      declarations: [
         DaffioAppComponent,
+      ],
+      providers: [
+        provideRouter([]),
       ],
     }).compileComponents();
   }));
