@@ -3,11 +3,17 @@
   "private": true,
   "version": "0.0.0-PLACEHOLDER",
   "scripts": {
-    "build": "node build.js",
+    "build": "ts-node build.ts",
     "watch": "nodemon --watch '../../libs/design/**/*.scss' --exec 'npm run build'",
-    "test": "node build.js --test"
+    "test": "ts-node build.ts --test"
   },
   "devDependencies": {
-    "nodemon": "^3.0.0"
+    "nodemon": "^3.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "dependencies": {
+    "sassdoc": "^2.7.2"
   }
 } 
