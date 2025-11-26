@@ -198,8 +198,6 @@ class SassValueParser {
       
       fs.writeFileSync(outputPath, JSON.stringify(enhancedData, null, 2), 'utf8');
       
-      console.log(`Enhanced SassDoc output written to: ${outputPath}`);
-      
       const parsedItems = enhancedData.filter(item => 
         item.context?.type === 'map'
       );
