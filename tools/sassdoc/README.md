@@ -27,6 +27,13 @@ This will:
 - Create a JSON output file at `dist/docs/sassdoc-test-output.json`
 - Show count of documented items found
 
+To run the development server, run:
+```bash
+npx http-server dist/docs/sass-docs-test -p 8000
+```
+
+Then visit **http://localhost:8000**
+
 ### Production Mode (All Files)
 
 To run SassDoc on all SCSS files in the design system:
