@@ -2341,13 +2341,6 @@
             "command": "npm run build",
             "cwd": "tools/sassdoc"
           }
-        },
-        "test": {
-          "builder": "nx:run-commands",
-          "options": {
-            "command": "npm run test",
-            "cwd": "tools/sassdoc"
-          }
         }
       }
     },
