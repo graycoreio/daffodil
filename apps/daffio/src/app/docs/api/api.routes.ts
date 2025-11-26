@@ -1,0 +1,48 @@
+import { Routes } from '@angular/router';
+
+import { DaffDocKind } from '@daffodil/docs-utils';
+
+import { DaffioApiListPageComponent } from './pages/api-list-page/api-list-page.component';
+import { DaffioRoute } from '../../core/router/route.type';
+import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from '../containers/docs-list/sidebar.provider';
+import { daffioDocsIndexResolver } from '../index/resolver';
+import { DocsResolver } from '../resolvers/docs-resolver.service';
+import { DAFFIO_API_NAV_LIST_SIDEBAR_REGISTRATION } from './sidebar/provider';
+import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
+import { provideDaffioDocsApiContentComponent } from './components/api-content/api-content.provider';
+import { daffioDocsApiRolesProvider } from './roles/api-roles.provider';
+
+export const daffioDocsApiRoutes = <Routes> [
+  <DaffioRoute>{
+    path: '',
+    providers: [
+      provideDaffioDocsApiContentComponent(),
+      ...daffioDocsApiRolesProvider(),
+    ],
+    data: {
+      docKind: DaffDocKind.API,
+      daffioSidebars: {
+        [DAFFIO_API_NAV_LIST_SIDEBAR_REGISTRATION.id]: DAFFIO_API_NAV_LIST_SIDEBAR_REGISTRATION,
+      },
+    },
+    resolve: {
+      index: daffioDocsIndexResolver,
+    },
+    children: [
+      {
+        path: '',
+        component: DaffioApiListPageComponent,
+      },
+      {
+        path: '**',
+        component: DaffioDocsPageComponent,
+        resolve: {
+          doc: DocsResolver,
+        },
+        data: {
+          daffioDockedSidebar: DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION.id,
+        },
+      },
+    ],
+  },
+];

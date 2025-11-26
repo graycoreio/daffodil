@@ -68,7 +68,7 @@ export class DaffioHomeCalloutCommerceComponent implements AfterViewInit {
     const media = this.videoRef()?.nativeElement;
     if (media) {
       media.muted = true;
-      media.play().catch(() => {});
+      media.play?.().catch(() => {});
     }
   }
 }
