@@ -18,7 +18,7 @@ npm install
 To test SassDoc on a single file (currently set to `_font-weight.scss`):
 
 ```bash
-npm run build:test
+npm run test
 ```
 
 This will:
