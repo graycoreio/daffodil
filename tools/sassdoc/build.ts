@@ -62,6 +62,22 @@ async function buildSassDoc(): Promise<void> {
       
       await sassdoc(finalConfig.src, finalConfig);
     } else {
+      const data: SassDocItem[] = await sassdoc.parse(finalConfig.src, { verbose: true });
+      console.log('Found', data.length, 'documented items');
+      
+      const jsonFile: string = path.resolve(__dirname, '../../dist/docs/sassdoc-output.json');
+      const jsonDir: string = path.dirname(jsonFile);
+      
+      if (!fs.existsSync(jsonDir)) {
+        fs.mkdirSync(jsonDir, { recursive: true });
+      }
+      
+      fs.writeFileSync(jsonFile, JSON.stringify(data, null, 2), 'utf8');
+      console.log('Raw JSON output saved to:', jsonFile);
+      
+      const parser = new SassValueParser();
+      parser.processSassDocOutput(jsonFile, jsonFile);
+      
       await sassdoc(finalConfig.src, finalConfig);
     }
     
