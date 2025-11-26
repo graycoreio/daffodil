@@ -32,19 +32,6 @@ This will:
 To run SassDoc on all SCSS files in the design system:
 
 ```bash
-npm run build
-```
-
-This will:
-- Parse all SCSS files in `libs/design/scss/`
-- Generate HTML documentation in `dist/docs/sass-docs/`
-- Exclude test files (`*.spec.scss`)
-
-### Viewing the Documentation Website
-
-After building, you can view the generated documentation website:
-
-```bash
 # Build the documentation
 npx nx run @daffodil/tools-sassdoc:build
 
@@ -52,7 +39,7 @@ npx nx run @daffodil/tools-sassdoc:build
 npx http-server dist/docs/sass-docs -p 8000
 ```
 
-Then visit **http://localhost:8000** in your browser to explore the documentation.
+Then visit **http://localhost:8000**
 
 ## SassDoc Comment Format
 
