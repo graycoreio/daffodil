@@ -211,7 +211,7 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular/build:application",
           "options": {
             "outputPath": "dist/apps/daffio",
             "index": "apps/daffio/src/index.html",
@@ -220,9 +220,7 @@
             "ssr": {
               "entry": "apps/daffio/server/server.ts"
             },
-						"prerender": {
-							"discoverRoutes": true
-						},
+            "outputMode": "server",
             "polyfills": [
               "zone.js"
             ],
