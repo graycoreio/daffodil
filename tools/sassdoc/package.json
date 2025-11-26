@@ -8,9 +8,9 @@
     "test": "ts-node build.ts --test"
   },
   "devDependencies": {
+    "@types/node": "^20.19.9",
     "nodemon": "^3.0.0",
     "ts-node": "^10.9.0",
-    "typescript": "^5.0.0",
-    "@types/node": "^20.0.0"
+    "typescript": "^5.0.0"
   }
-} 
+}
