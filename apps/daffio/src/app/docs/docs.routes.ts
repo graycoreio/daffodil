@@ -17,7 +17,7 @@ import { DaffioRoute } from '../core/router/route.type';
 import { DAFFIO_DOCS_TOC_SIDEBAR_REGISTRATION } from './containers/toc-sidebar-content/sidebar.provider';
 import { DaffioActiveHeaderService } from '../core/dynamic-fragment/service';
 
-export default <Routes>[
+export const daffioDocsRoutes = <Routes> [
   <DaffioRoute>{
     path: '',
     providers: [
@@ -44,19 +44,19 @@ export default <Routes>[
     children: [
       {
         path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.PACKAGE],
-        loadChildren: () => import('./packages/packages.routes'),
+        loadChildren: () => import('./packages/packages.routes').then(r => r.daffioDocsPackagesRoutes),
       },
       {
         path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.GUIDE],
-        loadChildren: () => import('./guides/guides.routes'),
+        loadChildren: () => import('./guides/guides.routes').then(r => r.daffioDocsGuidesRoutes),
       },
       {
         path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.API],
-        loadChildren: () => import('./api/api.routes'),
+        loadChildren: () => import('./api/api.routes').then(r => r.daffioDocsApiRoutes),
       },
       {
         path: DAFF_DOCS_DESIGN_PATH,
-        loadChildren: () => import('./design/design.routes'),
+        loadChildren: () => import('./design/design.routes').then(r => r.daffioDocsDesignRoutes),
       },
       {
         path: '',

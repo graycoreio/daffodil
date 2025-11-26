@@ -43,7 +43,6 @@ export const appRoutes: Routes = [
         path: '',
         children: [
           homeRoute,
-          { path: 'why-pwa', loadComponent: () => import('./content/why-pwa/view/why-pwa-view.component').then(c => c.DaffioWhyPwaViewComponent) },
           ...notFoundRoute,
           ...supportRoute,
         ],
@@ -55,7 +54,7 @@ export const appRoutes: Routes = [
       },
       {
         path: DAFF_DOCS_PATH,
-        loadChildren: () => import('./docs/docs.routes'),
+        loadChildren: () => import('./docs/docs.routes').then(r => r.daffioDocsRoutes),
       },
       ...DOCS_REDIRECTED_ROUTES.map((path) => ({
         path,

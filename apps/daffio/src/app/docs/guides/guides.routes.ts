@@ -12,7 +12,7 @@ import { DocsResolver } from '../resolvers/docs-resolver.service';
 
 export const DAFFIO_DOCS_GUIDE_DEFAULT = 'introduction';
 
-export default <Routes>[
+export const daffioDocsGuidesRoutes = <Routes> [
   <DaffioRoute>{
     path: '',
     providers: [

@@ -19,7 +19,7 @@ import { DaffioDocsDesignIndexService } from './services/index.service';
 import { daffioDocsApiRolesProvider } from '../api/roles/api-roles.provider';
 import { provideDaffioDocsPackagesContentComponent } from '../packages/components/packages-content/packages-content.provider';
 
-export default <Routes>[
+export const daffioDocsDesignRoutes = <Routes> [
   <DaffioRoute>{
     path: '',
     providers: [
@@ -38,10 +38,6 @@ export default <Routes>[
       daffioDockedSidebar: DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION.id,
     },
     children: [
-      {
-        path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.API],
-        loadChildren: () => import('../api/api.routes'),
-      },
       {
         path: '',
         pathMatch: 'full',

@@ -11,7 +11,7 @@ import { daffioDocsIndexResolver } from '../index/resolver';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
 
-export default <Routes>[
+export const daffioDocsPackagesRoutes = <Routes> [
   <DaffioRoute>{
     path: '',
     providers: [

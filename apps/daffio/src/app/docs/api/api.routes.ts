@@ -12,7 +12,7 @@ import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component'
 import { provideDaffioDocsApiContentComponent } from './components/api-content/api-content.provider';
 import { daffioDocsApiRolesProvider } from './roles/api-roles.provider';
 
-export default <Routes>[
+export const daffioDocsApiRoutes = <Routes> [
   <DaffioRoute>{
     path: '',
     providers: [
