@@ -59,21 +59,21 @@
 	}
 
 	&.dismissible {
-		&.horizontal {
+		&.daff-horizontal {
 			#{$root}__actions {
 				padding: 0.5rem 0;
 			}
 		}
 	}
 
-	&.vertical {
+	&.daff-vertical {
 		#{$root}__body {
 			flex-direction: column;
 			gap: 1rem;
 		}
 	}
 
-	&.horizontal {
+	&.daff-horizontal {
 		.daff-prefix {
 			padding: 0.75rem 0 0.75rem 1rem;
 		}
