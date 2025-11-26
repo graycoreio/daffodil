@@ -1,6 +1,7 @@
 // @ts-ignore
 import sassdoc = require('sassdoc');
 import config from './sassdoc.config';
+import { SassValueParser } from './value-parser';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -30,7 +31,7 @@ async function buildSassDoc(): Promise<void> {
     let finalConfig: SassDocConfig = { ...config };
     
     if (isTestMode) {
-      finalConfig.src = ['../../libs/design/scss/typography/mixins/_font-weight.scss'];
+      finalConfig.src = ['../../libs/design/scss/theming/_color-palettes.scss'];
       finalConfig.dest = '../../dist/docs/sass-docs-test';
       console.log('Running SassDoc in test mode');
     } else {
@@ -55,6 +56,9 @@ async function buildSassDoc(): Promise<void> {
       
       fs.writeFileSync(jsonFile, JSON.stringify(data, null, 2), 'utf8');
       console.log('Raw JSON output saved to:', jsonFile);
+      
+      const parser = new SassValueParser();
+      parser.processSassDocOutput(jsonFile, jsonFile);
       
       await sassdoc(finalConfig.src, finalConfig);
     } else {
