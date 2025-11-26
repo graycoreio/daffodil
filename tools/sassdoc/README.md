@@ -1,8 +1,8 @@
-# SassDoc for Daffodil
+# SassDoc JSON Extractor for Daffodil
 
-This directory contains the SassDoc configuration and build tools for generating documentation from Daffodil's SCSS files.
+This directory contains tools for extracting and processing Sass documentation from Daffodil's SCSS files into structured JSON format.
 
-## How to Run the Parser
+## How to Run
 
 ### Prerequisites
 
@@ -13,40 +13,23 @@ cd tools/sassdoc
 npm install
 ```
 
-### Test Mode (Single File)
-
-To test SassDoc on a single file (currently set to `_font-weight.scss`):
+To extract Sass documentation as JSON:
 
 ```bash
-npm run test
+npm run build
 ```
 
 This will:
-- Parse only the test file (`libs/design/scss/typography/mixins/_font-weight.scss`)
-- Generate HTML documentation in `dist/docs/sass-docs-test/`
-- Create a JSON output file at `dist/docs/sassdoc-test-output.json`
-- Show count of documented items found
+- Parse SCSS files and extract documented items
+- Generate a JSON file at `dist/docs/sassdoc-output.json`
 
-To run the development server, run:
-```bash
-npx http-server dist/docs/sass-docs-test -p 8000
+## Edit the path in `sassdoc.config.ts`
+
+```typescript
+const customConfig: SassDocConfig = {
+  src: ['path/to/your/scss/**/*.scss'],
+};
 ```
-
-Then visit **http://localhost:8000**
-
-### Production Mode (All Files)
-
-To run SassDoc on all SCSS files in the design system:
-
-```bash
-# Build the documentation
-npx nx run @daffodil/tools-sassdoc:build
-
-# Serve the documentation website
-npx http-server dist/docs/sass-docs -p 8000
-```
-
-Then visit **http://localhost:8000**
 
 ## SassDoc Comment Format
 
@@ -54,7 +37,7 @@ Then visit **http://localhost:8000**
 
 ### Example
 
-See [libs/design/scss/typography/mixins/_font-weight.scss](../../libs/design/scss/typography/mixins/_font-weight.scss) for a working example of properly formatted SassDoc comments.
+See [libs/design/scss/theming/_color-palettes.scss](../../libs/design/scss/theming/_color-palettes.scss) for a working example of properly formatted SassDoc comments.
 
 ### Available Annotations
 
