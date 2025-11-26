@@ -1,4 +1,4 @@
-interface SassDocConfig {
+export interface SassDocConfig {
   src: string[];
   dest: string;
   theme: string;
@@ -15,8 +15,7 @@ interface SassDocConfig {
 
 const config: SassDocConfig = {
   src: [
-    '../../libs/design/scss/**/*.scss',
-    '!../../libs/design/scss/**/*.spec.scss'
+    '../../libs/design/scss/theming/_color-palettes.scss'
   ],
   dest: '../../dist/docs/sass-docs',
   theme: 'default',
