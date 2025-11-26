@@ -32,6 +32,7 @@ import { provideDaffSeoRouterSchema } from '@daffodil/seo/router';
 import { appRoutes } from './app.routes';
 import { environment } from '../environments/environment';
 import { daffioRouterDataServiceConfig } from './core/router/data-service-config';
+import { provideScrollOffset } from './core/scrolling/provide-scroll-offset';
 import { provideDaffioSidebarFeature } from './core/sidebar/provider';
 
 export const appConfig: ApplicationConfig = {
@@ -79,5 +80,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     provideDaffRouterDataServiceConfig(daffioRouterDataServiceConfig),
     provideDaffioSidebarFeature(),
+    provideScrollOffset(),
   ],
 };
