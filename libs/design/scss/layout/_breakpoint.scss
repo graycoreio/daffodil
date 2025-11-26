@@ -20,7 +20,7 @@
 ///
 @mixin breakpoint($point) {
 	@if not map.has-key($map: v.$breakpoints, $key: $point) {
-		@warn 'breakpoint(): "#{$key}" is not defined in your $breakpoints setting.';
+		@warn 'breakpoint(): "#{$point}" is not defined in the $breakpoints map.';
 	}
 
 	@media (min-width: map.get(v.$breakpoints, $point)) {
