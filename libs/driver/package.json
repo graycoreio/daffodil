@@ -24,6 +24,7 @@
     "lint": "cd ../.. && ng lint driver",
     "lint:fix": "npm run lint -- --fix",
     "publish": "cd ../../dist/driver && npm publish --access=public",
+		"generateFragmentTypes": "ng run driver:generateFragmentTypes",
 		"shopify:codegen:generate": "graphql-codegen -c shopify-codegen.config.ts"
   },
   "homepage": "https://github.com/graycoreio/daffodil",

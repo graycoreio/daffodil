@@ -8,6 +8,7 @@ import {
 
 export const magentoBundledProductFragment = (extraItemFragments: Array<DocumentNode> = [], extraOptionFragments: Array<DocumentNode> = []) => gql`
 fragment magentoBundledProduct on BundleProduct {
+	uid
 	items {
 		${daffBuildFragmentNameSpread(...extraItemFragments)}
 

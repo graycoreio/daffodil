@@ -1,4 +1,7 @@
-export { schema } from './schema/schema';
+export {
+  MAGENTO_POSSIBLE_TYPES,
+  schema,
+} from './schema/schema';
 export { provideMagentoDriver } from './provider';
 
 export * from './errors/public_api';

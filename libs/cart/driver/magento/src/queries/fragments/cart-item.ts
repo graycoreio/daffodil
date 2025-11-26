@@ -5,6 +5,7 @@ import { magentoMoneyFragment } from '@daffodil/driver/magento';
 export const cartItemProductFragment = gql`
   fragment cartItemProduct on ProductInterface {
     id
+		uid
 		name
     sku
     url_key
@@ -21,6 +22,7 @@ export const cartItemFragment = gql`
   fragment cartItem on CartItemInterface {
 		__typename
     id
+		uid
     product {
       ...cartItemProduct
     }

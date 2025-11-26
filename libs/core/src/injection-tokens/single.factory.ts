@@ -20,9 +20,14 @@ export const createSingleInjectionToken = <T = unknown>(
     provide: token,
     useValue: value,
   });
+  const factoryProvider = <R extends T = T>(factory: () => R) => ({
+    provide: token,
+    useFactory: factory,
+  });
 
   return {
     token,
     provider,
+    factoryProvider,
   };
 };
