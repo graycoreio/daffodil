@@ -19,12 +19,14 @@ import {
   DaffSkeletonableDirective,
   DaffFormLabelDirective,
 } from '@daffodil/design';
+import {
+  DaffErrorMessageComponent,
+  DaffHintComponent,
+  DaffFormFieldLabelDirective,
+} from '@daffodil/design/form';
 
 import { DaffFormFieldActionDirective } from '../action/action.directive';
-import { DaffErrorMessageComponent } from '../error-message/error-message.component';
 import { DaffFormFieldControl } from '../form-field-control';
-import { DaffHintComponent } from '../hint/hint.component';
-import { DaffFormFieldLabelDirective } from '../label/label.directive';
 
 let daffFormFieldId = 0;
 

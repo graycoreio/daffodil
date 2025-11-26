@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DaffErrorMessageComponent } from '@daffodil/design/form-field';
+import { DaffErrorMessageComponent } from '@daffodil/design/form';
 import { DAFF_SWITCH_COMPONENTS } from '@daffodil/design/switch';
 
 @Component({
