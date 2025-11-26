@@ -124,6 +124,7 @@
     "prettier": "1.18.2",
     "rimraf": "^5.0.7",
     "sass-true": "^9.0.0",
+    "sassdoc": "^2.7.2",
     "shx": "^0.3.4",
     "simple-git": "^3.27.0",
     "standard-version": "^9.5.0",
