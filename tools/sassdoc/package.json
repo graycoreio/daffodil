@@ -1,0 +1,14 @@
+{
+  "name": "@daffodil/tools-sassdoc",
+  "private": true,
+  "version": "0.0.0-PLACEHOLDER",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "nodemon --watch '../../libs/design/**/*.scss' --exec 'npm run build'",
+    "test": "node build.js --test"
+  },
+  "devDependencies": {
+    "sassdoc": "^2.7.2",
+    "nodemon": "^3.0.0"
+  }
+} 

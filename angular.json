@@ -2327,6 +2327,26 @@
               "libs/dev-tools/**/*.ts",
               "libs/dev-tools/**/*.html"
             ]
+					}
+				}
+			}
+		},
+    "@daffodil/tools-sassdoc": {
+      "root": "tools/sassdoc",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "nx:run-commands",
+          "options": {
+            "command": "npm run build",
+            "cwd": "tools/sassdoc"
+          }
+        },
+        "test": {
+          "builder": "nx:run-commands",
+          "options": {
+            "command": "npm run test",
+            "cwd": "tools/sassdoc"
           }
         }
       }
@@ -2444,7 +2464,6 @@
   },
   "cli": {
     "warnings": {
-      "typescriptMismatch": false,
       "versionMismatch": false
     },
     "analytics": "9aa4e2b6-eeb2-4505-a992-92a57813f5ea"
