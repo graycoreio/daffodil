@@ -2229,7 +2229,12 @@
           "options": {
             "main": "libs/docs/test.ts",
             "tsConfig": "libs/docs/tsconfig.spec.json",
-            "karmaConfig": "libs/docs/karma.conf.js"
+            "karmaConfig": "libs/docs/karma.conf.js",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "dist/design/scss"
+              ]
+            }
           }
         },
         "lint": {
