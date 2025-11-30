@@ -1,0 +1,108 @@
+<!-- Chat Sidebar -->
+@if (sidebarVisible()) {
+  <chat-sidebar
+    [chatHistory]="displayChatHistory()"
+    [isLoading]="isGenerating()"
+    [error]="error()"
+    (promptSubmit)="onPromptSubmit($event)"
+    (stopGeneration)="onStopGeneration()"
+    (schemaRestore)="onSchemaRestore($event)"
+  />
+}
+
+<!-- Preview Panel -->
+<div class="preview-panel">
+    <div class="preview-header">
+      <div class="tabs">
+        <button
+          type="button"
+          class="tab"
+          [class.active]="activeTab() === 'interact'"
+          (click)="setActiveTab('interact')"
+        >
+          Interact
+        </button>
+        <button
+          type="button"
+          class="tab"
+          [class.active]="activeTab() === 'schema'"
+          (click)="setActiveTab('schema')"
+        >
+          Schema
+        </button>
+        <button
+          type="button"
+          class="tab"
+          [class.active]="activeTab() === 'components'"
+          (click)="setActiveTab('components')"
+        >
+          Available Components
+        </button>
+      </div>
+      <div class="toolbar-actions">
+        <button type="button" class="sidebar-toggle-btn" (click)="toggleSidebar()" [title]="sidebarVisible() ? 'Hide Sidebar' : 'Show Sidebar'">
+          {{ sidebarVisible() ? 'Hide Sidebar' : 'Show Sidebar' }}
+        </button>
+        @if (activeTab() === 'interact') {
+          <div class="viewport-selector">
+            <button
+              type="button"
+              class="viewport-btn"
+              [class.active]="viewportMode() === 'desktop'"
+              (click)="setViewportMode('desktop')"
+              title="Desktop"
+            >
+              Desktop
+            </button>
+            <button
+              type="button"
+              class="viewport-btn"
+              [class.active]="viewportMode() === 'tablet'"
+              (click)="setViewportMode('tablet')"
+              title="Tablet"
+            >
+              Tablet
+            </button>
+            <button
+              type="button"
+              class="viewport-btn"
+              [class.active]="viewportMode() === 'mobile'"
+              (click)="setViewportMode('mobile')"
+              title="Mobile"
+            >
+              Mobile
+            </button>
+          </div>
+        }
+        <button type="button" class="fullscreen-btn" (click)="toggleFullscreen()" [title]="fullscreen() ? 'Exit Fullscreen' : 'Enter Fullscreen'">
+          {{ fullscreen() ? 'Exit Fullscreen' : 'Fullscreen' }}
+        </button>
+      </div>
+    </div>
+
+    <div class="preview-content" [attr.data-viewport]="activeTab() === 'interact' ? viewportMode() : null">
+      @if (activeTab() === 'interact') {
+        @if (schema()) {
+          <editable-renderer [schema]="schema()" (schemaUpdate)="onSchemaUpdate($event)" />
+        } @else {
+          <div class="empty-state">
+            <div class="empty-state-content">
+              <div class="logo-container">
+                <img
+                  src="https://www.daff.io/assets/appicons/icon-512x512.png"
+                  alt="Daffodil"
+                  class="logo"
+                />
+              </div>
+              <h3 class="empty-title">No Content Yet</h3>
+              <p class="empty-message">Start a conversation in the chat to generate your page</p>
+            </div>
+          </div>
+        }
+      } @else if (activeTab() === 'schema') {
+        <schema-view [schema]="schema()" (schemaUpdate)="onSchemaUpdate($event)" />
+      } @else if (activeTab() === 'components') {
+        <components-list />
+      }
+    </div>
+  </div>

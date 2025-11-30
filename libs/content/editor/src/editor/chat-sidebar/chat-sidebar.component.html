@@ -1,0 +1,65 @@
+<div class="chat-sidebar">
+  <div class="chat-history" #chatHistoryEl>
+    @for (message of chatHistory(); track $index) {
+      <div class="chat-message" [class.user-message]="message.type === 'user'" [class.system-message]="message.type === 'system'">
+        <div class="message-content">{{ message.message }}</div>
+        @if (message.schema) {
+          <button type="button" class="restore-button" (click)="onRestoreSchema(message.schema)" title="Restore this version">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8C3 5.24 5.24 3 8 3C9.66 3 11.14 3.86 12 5.17V3H13V7H9V6H11.5C10.84 4.75 9.53 4 8 4C5.79 4 4 5.79 4 8C4 10.21 5.79 12 8 12C9.68 12 11.12 10.97 11.71 9.5H12.76C12.13 11.53 10.23 13 8 13C5.24 13 3 10.76 3 8Z" fill="currentColor"/>
+            </svg>
+          </button>
+        }
+      </div>
+    }
+    @if (error()) {
+      <div class="chat-message error-message">
+        <div class="message-content">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 1C4.13 1 1 4.13 1 8C1 11.87 4.13 15 8 15C11.87 15 15 11.87 15 8C15 4.13 11.87 1 8 1ZM8.75 11.25H7.25V9.75H8.75V11.25ZM8.75 8.25H7.25V4.75H8.75V8.25Z" fill="currentColor"/>
+          </svg>
+          <span>{{ error() }}</span>
+        </div>
+      </div>
+    }
+    @if (isLoading()) {
+      <div class="chat-message loading-message">
+        <div class="message-content">
+          <span class="thinking-text">Thinking...</span>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="chat-input-container">
+    <input
+      #textarea
+      type="text"
+      class="chat-input"
+      placeholder="Create a landing page for a coffee shop..."
+      [(ngModel)]="currentPrompt"
+      (keydown.enter)="onSubmitPrompt($event)"
+    />
+    <div class="chat-toolbar">
+      @if (isLoading()) {
+        <button type="button" class="toolbar-button stop-button" (click)="onStopGeneration()" title="Stop generating">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="5" y="5" width="6" height="6" fill="currentColor" rx="1"/>
+          </svg>
+        </button>
+      } @else {
+        <button
+          type="button"
+          class="toolbar-button submit-button"
+          (click)="onSubmitPrompt()"
+          [disabled]="!currentPrompt().trim()"
+          title="Send message"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 12V4M8 4L5 7M8 4L11 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      }
+    </div>
+  </div>
+</div>

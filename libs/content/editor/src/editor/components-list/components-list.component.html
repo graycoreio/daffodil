@@ -1,0 +1,16 @@
+<div class="components-container">
+  @if (components.length === 0) {
+    <div class="empty-components">
+      <p>No components available</p>
+    </div>
+  } @else {
+    <div class="components-grid">
+      @for (component of components; track component.name) {
+        <div class="component-card">
+          <h3 class="component-name">{{ component.name }}</h3>
+          <p class="component-description">{{ component.description }}</p>
+        </div>
+      }
+    </div>
+  }
+</div>
