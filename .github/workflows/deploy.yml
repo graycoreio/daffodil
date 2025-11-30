@@ -35,14 +35,15 @@ jobs:
         name: Unzip internal artifact zip
         if: inputs.artifact-zip-name
 
-      - uses: graycoreio/github-actions/angular-universal-vercel@main
+      - uses: graycoreio/github-actions/angular-universal-vercel@v2.3.0
         id: vercel-deploy
         with:
           prod: true
           vercel_token: ${{ secrets.VERCEL_TOKEN }}
           vercel_org: ${{ secrets.VERCEL_ORG }}
           vercel_project_id: ${{ secrets.VERCEL_NEXT_PROJECT_ID }}
-          ng_version: '17'
+          ng_version: '20'
+          ng_ssr_engine: 'AngularNodeAppEngine'
 
   production:
     name: 'Production'
@@ -60,11 +61,12 @@ jobs:
         name: Unzip internal artifact zip
         if: inputs.artifact-zip-name
 
-      - uses: graycoreio/github-actions/angular-universal-vercel@main
+      - uses: graycoreio/github-actions/angular-universal-vercel@v2.3.0
         id: vercel-deploy
         with:
           prod: true
           vercel_token: ${{ secrets.VERCEL_TOKEN }}
           vercel_org: ${{ secrets.VERCEL_ORG }}
           vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
-          ng_version: '17'
+          ng_version: '20'
+          ng_ssr_engine: 'AngularNodeAppEngine'
