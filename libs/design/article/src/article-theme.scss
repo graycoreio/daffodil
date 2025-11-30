@@ -38,9 +38,9 @@
 
 			&__copy-button {
 				color: daff-color($neutral, 50);
-				background-color: daff-color($neutral, 10);
+				background: none;
 				&:hover {
-					background-color: daff-color($neutral, 20);
+					color: daff-color($neutral, 60);
 				}
 			}
 
@@ -119,9 +119,9 @@
 
 			&__copy-button {
 				color: daff-color($neutral, 50);
-				background-color: daff-color($neutral, 80);
+				background: none;
 				&:hover {
-					background-color: daff-color($neutral, 70);
+					color: daff-color($neutral, 40);
 				}
 			}
 

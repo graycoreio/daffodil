@@ -3,8 +3,8 @@
 :host {
 	display: block;
 	position: absolute;
-	top: 0.5rem;
-	right: 0.5rem;
+	top: 0.2rem;
+	right: 0.2rem;
 	z-index: 1;
 }
 
@@ -14,11 +14,11 @@
 	justify-content: center;
 	align-items: center;
 	appearance: none;
-	border: 1px solid;
+	border: none;
 	position: relative;
 	border-radius: 0.25rem;
 	padding: 0.1rem;
-	transition: background-color 0.3;
-	height: 1.8rem;
-	width: 1.8rem;
+	transition: color 0.3;
+	height: 1.4rem;
+	width: 1.4rem;
 }
