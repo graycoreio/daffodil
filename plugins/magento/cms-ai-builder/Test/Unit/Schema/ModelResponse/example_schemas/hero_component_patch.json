@@ -1,0 +1,35 @@
+{
+  "reply": "Added a hero component with centered text",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "",
+      "value": {
+        "type": "componentSchema",
+        "name": "DaffHeroComponent",
+        "inputs": {
+          "textAlignment": "center",
+          "compact": false,
+          "color": "primary"
+        },
+        "children": [
+          {
+            "type": "elementSchema",
+            "element": "h1",
+            "children": [
+              {
+                "type": "textSchema",
+                "text": "Welcome to our site"
+              }
+            ],
+            "styles": {
+              "base": {},
+              "breakpoints": {}
+            }
+          }
+        ]
+      },
+      "from": ""
+    }
+  ]
+}

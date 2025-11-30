@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright © Graycore. All rights reserved.
+ */
+?>
+<script>
+window.CmsAiBuilderUrl = '<?= $escaper->escapeUrl($block->getUrl('CmsAiBuilder/generate/index')) ?>';
+window.CmsAiBuilderAssetsPath = '<?= $escaper->escapeUrl($block->getViewFileUrl('Graycore_CmsAiBuilder::js/admin-preview')) ?>';
+window.CmsAiBuilderConfig = {
+    polyfillsScript: '<?= $escaper->escapeJs($block->getPolyfillsScriptPath()) ?>',
+    mainScript: '<?= $escaper->escapeJs($block->getMainScriptPath()) ?>'
+};
+
+// Configure Monaco environment for web workers
+window.MonacoEnvironment = {
+  getWorkerUrl: (_moduleId, label) => {
+    if (label === 'json') {
+      return window.CmsAiBuilderAssetsPath + '/browser/assets/monaco/min/vs/assets/json.worker-DghZTZS7.js';
+    }
+    return window.CmsAiBuilderAssetsPath + '/browser/assets/monaco/min/vs/assets/editor.worker-DM0G1eFj.js';
+  },
+};
+</script>

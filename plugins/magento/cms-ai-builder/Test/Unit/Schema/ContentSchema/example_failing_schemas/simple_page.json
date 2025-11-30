@@ -1,0 +1,21 @@
+{
+  "type": "elementSchema",
+  "element": "div",
+  "styles": {
+    "base": {
+      "padding": "20px",
+      "maxWidth": "800px",
+      "margin": "0 auto"
+    }
+  },
+  "children": [
+    {
+      "type": "componentSchema",
+      "name": "DaffHeroComponent",
+      "inputs": {
+        "headline": "Hello from Daffodil"
+      },
+      "children": []
+    }
+  ]
+}

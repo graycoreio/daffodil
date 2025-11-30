@@ -1,0 +1,50 @@
+{
+  "type": "elementSchema",
+  "element": "div",
+  "styles": {
+    "base": {
+      "padding": "20px"
+    },
+    "breakpoints": {}
+  },
+  "children": [
+    {
+      "type": "elementSchema",
+      "element": "section",
+      "children": [
+        {
+          "type": "elementSchema",
+          "element": "h2",
+          "children": [
+            {
+              "type": "textSchema",
+              "text": "Section Title"
+            }
+          ],
+          "styles": {
+            "base": {},
+            "breakpoints": {}
+          }
+        },
+        {
+          "type": "elementSchema",
+          "element": "p",
+          "children": [
+            {
+              "type": "textSchema",
+              "text": "Paragraph content with nested structure."
+            }
+          ],
+          "styles": {
+            "base": {},
+            "breakpoints": {}
+          }
+        }
+      ],
+      "styles": {
+        "base": {},
+        "breakpoints": {}
+      }
+    }
+  ]
+}

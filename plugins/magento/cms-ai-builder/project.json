@@ -1,0 +1,7 @@
+{
+	"name": "@daffodil/magento2-cms-ai-builder",
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "plugins/magento/cms-ai-builder",
+	"projectType": "library",
+	"targets": {}
+}

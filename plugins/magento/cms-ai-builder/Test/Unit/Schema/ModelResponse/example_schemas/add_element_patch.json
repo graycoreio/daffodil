@@ -1,0 +1,24 @@
+{
+  "reply": "Added a new paragraph",
+  "patch": [
+    {
+      "op": "add",
+      "path": "/children/-",
+      "value": {
+        "type": "elementSchema",
+        "element": "p",
+        "children": [
+          {
+            "type": "textSchema",
+            "text": "New paragraph content"
+          }
+        ],
+        "styles": {
+          "base": {},
+          "breakpoints": {}
+        }
+      },
+      "from": ""
+    }
+  ]
+}

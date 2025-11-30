@@ -1,0 +1,25 @@
+{
+  "type": "componentSchema",
+  "name": "DaffHeroComponent",
+  "inputs": {
+    "textAlignment": "center",
+    "compact": false,
+    "color": "primary"
+  },
+  "children": [
+    {
+      "type": "elementSchema",
+      "element": "h1",
+      "children": [
+        {
+          "type": "textSchema",
+          "text": "Welcome"
+        }
+      ],
+      "styles": {
+        "base": {},
+        "breakpoints": {}
+      }
+    }
+  ]
+}

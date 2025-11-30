@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="ai_cms_builder" sortOrder="15">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <label translate="true">AI Content Builder</label>
+        </settings>
+        <container name="ai_builder_fullpage" template="Graycore_CmsAiBuilder/form/fullpage-builder">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Graycore_CmsAiBuilder/js/form/fullpage-builder</item>
+                </item>
+            </argument>
+        </container>
+        <field name="ai_schema_json" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <dataScope>ai_schema_json</dataScope>
+            </settings>
+        </field>
+        <field name="ai_conversation_history" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <dataScope>ai_conversation_history</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>

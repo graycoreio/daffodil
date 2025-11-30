@@ -1,0 +1,11 @@
+{
+  "reply": "Removed the third item",
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/children/2",
+      "value": null,
+      "from": ""
+    }
+  ]
+}

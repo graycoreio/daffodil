@@ -1,0 +1,26 @@
+{
+  "type": "elementSchema",
+  "element": "div",
+  "styles": {
+    "base": {
+      "display": "grid",
+      "gridTemplateColumns": "1fr",
+      "gridGap": "24px",
+      "marginTop": "48px"
+    },
+    "breakpoints": {
+      "(min-width: 768px)": {
+        "gridTemplateColumns": "repeat(2, 1fr)"
+      },
+      "(min-width: 1200px)": {
+        "gridTemplateColumns": "repeat(3, 1fr)"
+      }
+    }
+  },
+  "children": [
+    {
+      "type": "textSchema",
+      "text": "Responsive grid layout"
+    }
+  ]
+}

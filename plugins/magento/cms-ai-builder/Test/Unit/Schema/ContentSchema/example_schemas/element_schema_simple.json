@@ -1,0 +1,9 @@
+{
+  "type": "elementSchema",
+  "element": "div",
+  "children": [],
+  "styles": {
+    "base": {},
+    "breakpoints": {}
+  }
+}

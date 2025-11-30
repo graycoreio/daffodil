@@ -1,0 +1,22 @@
+{
+  "op": "replace",
+  "path": "/children/3/styles",
+  "value": {
+    "base": {
+      "display": "flex",
+      "align-items": "center",
+      "justify-content": "center",
+      "min-height": "44vh",
+      "padding": "40px 20px",
+      "background": "linear-gradient(180deg, rgba(255,142,75,1) 0%, rgba(255,94,98,1) 50%, rgba(123,47,174,1) 100%)",
+      "color": "#ffffff"
+    },
+    "breakpoints": {
+      "(min-width: 768px)": {
+        "padding": "60px 20px",
+        "min-height": "50vh"
+      }
+    }
+  },
+  "from": ""
+}

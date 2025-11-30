@@ -1,0 +1,11 @@
+{
+  "reply": "Changed the heading text",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/children/0/children/0/text",
+      "value": "Updated heading text",
+      "from": ""
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+    "cms_page_ai": {
+        "column": {
+            "page_id": true,
+            "ai_prompt": true,
+            "ai_schema_json": true,
+            "ai_conversation_history": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "CMS_PAGE_AI_PAGE_ID_CMS_PAGE_PAGE_ID": true
+        }
+    }
+}

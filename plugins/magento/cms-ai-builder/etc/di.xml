@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Graycore\CmsAiBuilder\Api\PatchGeneratorInterface"
+                type="Graycore\CmsAiBuilder\Model\Api\PatchGeneratorApi"/>
+    <preference for="Graycore\CmsAiBuilder\Api\PageAiRepositoryInterface"
+                type="Graycore\CmsAiBuilder\Model\PageAiRepository"/>
+    <preference for="Graycore\CmsAiBuilder\Api\Data\PageAiInterface"
+                type="Graycore\CmsAiBuilder\Model\PageAi"/>
+
+    <type name="Magento\Cms\Api\PageRepositoryInterface">
+        <plugin name="graycore_cms_ai_builder_page_repository"
+                type="Graycore\CmsAiBuilder\Plugin\PageRepositoryPlugin"
+                sortOrder="10"/>
+    </type>
+</config>

@@ -1,0 +1,18 @@
+{
+  "type": "elementSchema",
+  "element": "h1",
+  "styles": {
+    "base": {
+      "fontSize": "2rem",
+      "color": "#333",
+      "margin": "0 0 16px"
+    },
+    "breakpoints": {}
+  },
+  "children": [
+    {
+      "type": "textSchema",
+      "text": "Styled Heading"
+    }
+  ]
+}

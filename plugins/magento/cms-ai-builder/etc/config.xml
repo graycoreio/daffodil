@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <ai_cms_builder>
+            <general>
+                <enabled>0</enabled>
+                <openai_model>gpt-5-nano</openai_model>
+            </general>
+            <component_registry>
+                <registry_json><![CDATA[{"components": []}]]></registry_json>
+            </component_registry>
+            <editor_customization>
+                <!--
+                    Custom editor script paths for overriding the default Angular editor.
+
+                    To use your own editor implementation, create a config.xml in your module:
+
+                    <config>
+                        <default>
+                            <ai_cms_builder>
+                                <editor_customization>
+                                    <custom_polyfills_script>Vendor_Module/js/custom-editor/polyfills.js</custom_polyfills_script>
+                                    <custom_main_script>Vendor_Module/js/custom-editor/main.js</custom_main_script>
+                                </editor_customization>
+                            </ai_cms_builder>
+                        </default>
+                    </config>
+
+                    Your custom scripts should:
+                    1. Define an <ai-editor> custom element
+                    2. Support properties: schema, chatHistory, fullscreen
+                    3. Dispatch events: fullscreenChange, schemaUpdate, prompt
+                -->
+                <custom_polyfills_script>Graycore_CmsAiBuilder/js/admin-preview/browser/polyfills-SCHOHYNV.js</custom_polyfills_script>
+                <custom_main_script>Graycore_CmsAiBuilder/js/admin-preview/browser/main-JRVU2SV6.js</custom_main_script>
+            </editor_customization>
+        </ai_cms_builder>
+    </default>
+</config>

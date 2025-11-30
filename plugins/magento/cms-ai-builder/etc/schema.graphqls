@@ -1,0 +1,5 @@
+# Copyright © Graycore. All rights reserved.
+
+type CmsPage {
+    content_schema_json: String @doc(description: "The AI-generated schema in JSON format for rendering dynamic content") @resolver(class: "Graycore\\CmsAiBuilder\\Model\\Resolver\\ContentSchema")
+}

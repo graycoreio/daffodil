@@ -1,0 +1,67 @@
+{
+    "name": "graycore/magento2-cms-ai-builder",
+    "description": "A Magento 2 module that extends the CMS page editor with AI-powered content generation and visual preview capabilities.",
+    "type": "magento2-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Damien Retzinger",
+            "email": "damienwebdev@gmail.com"
+        }
+    ],
+    "scripts": {
+        "lint": "phpcs",
+        "lint:fix": "phpcbf",
+        "test": "phpunit",
+        "test:unit": "phpunit --testsuite='Graycore CmsAiBuilder Unit Tests'"
+    },
+    "archive": {
+        "exclude": [
+            "/vendor",
+            "/docs",
+            "/Test",
+            "README.md"
+        ]
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Graycore\\CmsAiBuilder\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "magento/*": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "platform": {
+            "ext-bcmath": "8.2",
+            "ext-gd": "8.2"
+        }
+    },
+    "require": {
+        "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
+        "magento/framework": "^102.0 || ^103.0",
+        "magento/module-backend": "^102.0 || ^103.0",
+        "magento/module-cms": "^104.0 || ^105.0",
+        "magento/module-cms-graph-ql": "^100.4",
+        "magento/module-config": "^101.2",
+        "magento/module-store": "^101.1",
+        "magento/module-ui": "^101.2",
+        "php-jsonpatch/php-jsonpatch": "^4.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "magento/magento-coding-standard": "^38.0",
+        "justinrainbow/json-schema": "^6.6"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://mirror.mage-os.org/"
+        }
+    ]
+}

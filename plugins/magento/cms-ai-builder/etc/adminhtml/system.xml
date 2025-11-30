@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="Graycore" translate="label" sortOrder="400">
+            <label>Graycore</label>
+        </tab>
+        <section id="ai_cms_builder" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>AI CMS Builder</label>
+            <tab>Graycore</tab>
+            <resource>Graycore_CmsAiBuilder::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable AI CMS Builder</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="openai_api_key" translate="label comment" type="obscure" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>OpenAI API Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <comment>Enter your OpenAI API key for schema generation</comment>
+                </field>
+                <field id="openai_model" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>OpenAI Model</label>
+                    <source_model>Graycore\CmsAiBuilder\Model\Config\Source\OpenAiModel</source_model>
+                    <comment>Select the OpenAI model to use for schema generation</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

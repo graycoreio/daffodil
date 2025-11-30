@@ -1,0 +1,61 @@
+{
+  "type": "elementSchema",
+  "element": "div",
+  "styles": {
+    "base": {
+      "padding": "40px",
+      "maxWidth": "800px",
+      "margin": "0 auto"
+    }
+  },
+  "children": [
+    {
+      "type": "elementSchema",
+      "element": "h1",
+      "styles": {
+        "base": {
+          "fontSize": "2rem",
+          "margin": "0 0 16px"
+        }
+      },
+      "children": [
+        {
+          "type": "textSchema",
+          "text": "Welcome to v8"
+        }
+      ]
+    },
+    {
+      "type": "elementSchema",
+      "element": "p",
+      "styles": {
+        "base": {
+          "fontSize": "1rem",
+          "margin": "0 0 12px"
+        }
+      },
+      "children": [
+        {
+          "type": "textSchema",
+          "text": "This is a redesigned starter page for v8."
+        }
+      ]
+    },
+    {
+      "type": "elementSchema",
+      "element": "a",
+      "styles": {
+        "base": {
+          "color": "#1a0dab",
+          "textDecoration": "underline"
+        }
+      },
+      "children": [
+        {
+          "type": "textSchema",
+          "text": "Learn more"
+        }
+      ]
+    }
+  ]
+}

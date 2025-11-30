@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="cms_page_ai" resource="default" engine="innodb" comment="CMS Page AI Builder Data">
+        <column xsi:type="smallint" name="page_id" unsigned="false" nullable="false" comment="CMS Page ID"/>
+        <column xsi:type="longtext" name="ai_schema_json" nullable="true" comment="AI Generated Schema JSON"/>
+        <column xsi:type="longtext" name="ai_conversation_history" nullable="true" comment="AI Conversation History JSON"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="page_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="CMS_PAGE_AI_PAGE_ID_CMS_PAGE_PAGE_ID"
+                    table="cms_page_ai" column="page_id" referenceTable="cms_page"
+                    referenceColumn="page_id" onDelete="CASCADE"/>
+    </table>
+</schema>
