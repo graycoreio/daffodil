@@ -50,7 +50,7 @@ export class DaffArticleCopyButtonService {
 
       // Create a wrapper for positioning the copy button
       const wrapper = document.createElement('div');
-      wrapper.classList.add('daff-article-copy-button-wrapper');
+      wrapper.classList.add('daff-article__copy-button-wrapper');
       wrapper.style.position = 'relative';
 
       pre.parentNode?.insertBefore(wrapper, pre);

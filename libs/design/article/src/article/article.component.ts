@@ -47,9 +47,9 @@ export class DaffArticleComponent {
           if (
             mutation.type === 'childList' &&
             (mutation.target instanceof document.defaultView.HTMLDivElement &&
-            mutation.target.classList.contains('daff-article-copy-button-wrapper')) ||
+            mutation.target.classList.contains('daff-article__copy-button-wrapper')) ||
             (mutation.target instanceof document.defaultView.HTMLElement &&
-            mutation.target.classList.contains('daff-article-copy-button__icon'))
+            mutation.target.classList.contains('daff-article__copy-button'))
           ) {
             buttonsAdded = true;
             break;
