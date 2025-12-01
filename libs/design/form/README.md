@@ -1,197 +1,75 @@
-# Form Field
-Form field is a wrapping component that provides consistent styling and behavior for form control elements.
+# Form
+Form provides components for building accessible and well-structured forms, including error messages, hints, and labels for form-related content.
 
 ## Overview
-It's used to style certain controls that would otherwise be impossible to style with normal CSS and organize labels, hints, and error messages alongside their associated form controls.
+This package includes reusable form components that help create consistent and accessible form experiences:
 
-The following Daffodil Design components are designed to work inside a form field:
+- **Labels** (`<daff-form-label>`): Accessible labels for form controls
+- **Hints** (`<daff-hint>`): Helpful information and validation hints
+- **Error Messages** (`<daff-error-message>`): Validation error messages for form controls
 
-- [Native Input](/libs/design/input/README.md)
-- [Native Select](/libs/design/native-select/README.md)
-- [Native Textarea](/libs/design/textarea/README.md)
-- [Custom Select](/libs/design/select/README.md)
+These components can be used independently or within a [form field](/libs/design/form-field/README.md) to organize and style form-related content consistently.
 
 ## Usage
-
-### Within a standalone component
-To use form field in a standalone component, import `DAFF_FORM_FIELD_COMPONENTS` directly into your custom component:
+To use form, import `DAFF_FORM_HELPER_COMPONENTS` directly into your custom component:
 
 ```ts
-import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
+import { DAFF_FORM_HELPER_COMPONENTS } from '@daffodil/design/form';
 
 @Component({
   selector: 'custom-component',
   templateUrl: './custom-component.component.html',
   imports: [
-    DAFF_FORM_FIELD_COMPONENTS,
+    DAFF_FORM_HELPER_COMPONENTS,
   ],
 })
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use form field in a module, import `DaffFormFieldModule` into your custom module:
+### Labels
+Labels help users understand what information to enter into a form control. Use `<daff-form-label>` to create accessible labels for form controls.
 
-```ts
-import { NgModule } from '@angular/core';
-import { DaffFormFieldModule } from '@daffodil/design/form-field';
-import { CustomComponent } from './custom.component';
-
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffFormFieldModule,
-  ],
-})
-export class CustomComponentModule { }
+```html
+<daff-form-label>First Name</daff-form-label>
 ```
 
-> **Warning**
->
-> This method is deprecated. It's recommended to update all custom components to standalone.
-
-## Anatomy
-
-### Labels
-Use `<daff-form-label>` to help users understand what information to enter into a form control. Form fields should always have labels. If a form control is marked as required, an asterisk will be attached to the label to indicate that it's a required field.
+When used within a [form field](/libs/design/form-field/README.md), the label is automatically associated with the form control for accessibility. If a form control is marked as required, an asterisk will be attached to the label to indicate that it's a required field.
 
 ```html
 <daff-form-field>
-  <daff-form-label>First Name</daff-form-label>
-  <input daff-input type="text" name="first-name" required />
+  <daff-form-label>Email Address</daff-form-label>
+  <input daff-input type="email" name="email" required />
 </daff-form-field>
 ```
-
-> **Warning**
->
-> The `DaffFormLabelDirective` (using `daffFormLabel` on `<label>`) is deprecated and will be removed in `v1.0.0`. Use `<daff-form-label>` instead for new implementations.
 
 ### Hints
-Hints are shown below the form field and are used to provide helpful information that assists users in correctly completing a field.
+Hints can be used to provide helpful information that assists users in correctly completing a field.
 
 ```html
-<daff-form-field>
-  <daff-form-label>Password</daff-form-label>
-  <input daff-input type="text" name="password" />
-  <daff-hint>Password must have 8 characters.</daff-hint>
-</daff-form-field>
+<daff-hint>Password must have 8 characters.</daff-hint>
 ```
 
 Use the `validated` property to show hints with validation styling:
 
 ```html
-<daff-form-field>
-  <daff-form-label>Password</daff-form-label>
-  <input daff-input type="text" name="password" />
-  <daff-hint [validated]="isControlValid">Password must have 8 characters.</daff-hint>
-</daff-form-field>
+<daff-hint [validated]="isControlValid">Password must have 8 characters.</daff-hint>
 ```
 
 ### Errors
-Error messages are used to display validation errors. They are shown under the form field and are placed last if hints are also used.
+Error messages can be used to display validation errors.
 
 ```html
-<daff-form-field>
-  <daff-form-label>Email*</daff-form-label>
-  <input daff-input type="text" name="email" />
-  @if (control.errors?.required) {
-    <daff-error-message>Email is a required field.</daff-error-message>
-  }
-</daff-form-field>
+@if (control.errors?.required) {
+  <daff-error-message>Email is a required field.</daff-error-message>
+}
 ```
-
-### Action
-Use the `[daffFormFieldAction]` element to add an action element to a form field.
-
-- Fluid appearance: The action is positioned within the form control's UI.
-- Fixed appearance: The action is positioned adjacent to the form control's UI.
-
-<design-land-example-viewer-container example="form-field-with-action"></design-land-example-viewer-container>
-
-### Prefix and suffix
-Use the `[daffPrefix]` and `[daffSuffix]` elements to display leading or trailing visuals, typically icons, on either side of the form control.
-
-> **Note**
->
-> In a fluid appearance, avoid using suffix alongside an action.
-
-<design-land-example-viewer-container example="form-field-with-prefix"></design-land-example-viewer-container>
-
-<design-land-example-viewer-container example="form-field-with-suffix"></design-land-example-viewer-container>
-
-## Appearances
-Form field supports two `appearances`: `fluid` and `fixed`. It will default to `fluid` if an `appearance` is not specified.
-
-- `fluid`: alternate, stylized UI where the label is placed inside of the form control.
-- `fixed`: corresponds with a traditional style where the label is positioned outside and above the form control.
-
-<design-land-example-viewer-container example="form-field-appearances"></design-land-example-viewer-container>
-
-## Setting a custom ID
-Form fields automatically generate IDs to handle accessibility. You can override this by setting a custom `id` on the form field when needed for specific labeling requirements.
-
-```html
-<daff-form-field id="user-email-address">
-  <daff-form-label>Email Address</daff-form-label>
-  <input daff-input type="email" />
-</daff-form-field>
-```
-
-> **Note**
->
-> When you provide a custom `id`, the `<daff-form-label>` automatically gets the correct `for` attribute that matches the control's `id`.
-
-## Creating a custom form field control
-In addition to the controls that Daffodil Design provides, you can create your own custom control by using the `DaffFormFieldControl` interface.
-
-1. Your control component must implement the `DaffFormFieldControl` interface.
-2. Provide the appropriate dependency key for the `DaffFormFieldComponent` to hook into. You can do this by adding the key to the `providers` key of your component:
-
-```ts
-@Component({
-  selector: 'custom-control-component',
-  providers: [
-    {
-      provide: DaffFormFieldControl,
-      useExisting: CustomControlComponent
-    }
-  ],
-})
-export class CustomControlComponent implements DaffFormFieldControl<any> {}
-```
-
-## Best practices
-- Always provide labels for accessibility. Use `<daff-form-label>` for the best experience with auto-labelling controls.
-- Set meaningful custom IDs for form fields to improve accessibility and form management.
 
 ## Accessibility
+These components include built-in accessibility features:
+- `<daff-error-message>` is set to `aria-live="polite"` by default so assistive technology only announce errors when they appear
 
-### Daffodil provides
+When used with a [form field](/libs/design/form-field/README.md):
+- `<daff-form-label>` automatically associates with form controls
+- `<daff-hint>` and `<daff-error-message>` are linked to form controls via `aria-describedby`
 
-- `<daff-hint>` and `<daff-error-message>` are linked to the form control via `aria-describedby`.
-- `<daff-error-message>` is set to `aria-live="polite"` by default so that assistive technology only announce errors when they appear.
-- For controls that support auto-labelling, the component automatically associates labels with controls using `for` and `id` attributes.
-
-> **Note**
->
-> If a `<daff-form-label>` is not specified, use the `<label>` element to associate text with form elements explicitly. The `for` attribute of the label must exactly match the `id` of the form control.
-
-```html
-<daff-form-field>
-  <label for="first-name">First Name</label>
-  <input type="text" daff-input name="first-name" id="first-name" />
-</daff-form-field>
-```
-
-### Developer responsibilities
-- Always provide labels for accessibility. Use `<daff-form-label>` within `<daff-form-field>` for the best experience with auto-labelling controls.
-
-## Troubleshooting
-
-### Error: A DaffFormFieldComponent must contain a DaffFormFieldControl
-This error appears when the `DaffFormFieldComponent` is missing a child control. Since form field is intended to only be used with a child component that implements `DaffFormFieldControl`, this error enforces that constraint at development time. To fix this, make sure that the form field has a child component that implements this interface.
+For complete accessibility information and best practices, refer to the [form field accessibility documentation](/libs/design/form-field/README.md#accessibility).
