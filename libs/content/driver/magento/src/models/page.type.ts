@@ -3,6 +3,7 @@ export interface MagentoCmsPage {
   type?: 'CMS_PAGE';
   content?: string;
   content_heading?: string;
+  content_schema_json?: string;
   identifier?: string;
   meta_description?: string;
   meta_keywords?: string;

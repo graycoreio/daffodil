@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { MagentoCmsPage } from '@daffodil/content/driver/magento';
+import { DaffContentSchemaPageFactory } from '@daffodil/content/testing';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockMagentoCmsPage implements MagentoCmsPage {
@@ -18,7 +19,17 @@ export class MockMagentoCmsPage implements MagentoCmsPage {
   providedIn: 'root',
 })
 export class MagentoCmsPageFactory extends DaffModelFactory<MagentoCmsPage> {
-  constructor() {
+  constructor(
+    private schemaPageFactory: DaffContentSchemaPageFactory,
+  ) {
     super(MockMagentoCmsPage);
+  }
+
+  create(partial: Partial<MagentoCmsPage> = {}): MagentoCmsPage {
+    return {
+      ...super.create(partial),
+      content_schema_json: JSON.stringify(this.schemaPageFactory.create().schema),
+      ...partial,
+    };
   }
 }
