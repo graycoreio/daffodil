@@ -55,6 +55,11 @@ import {
 @Component({
   selector: 'daff-schema-renderer',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: `
+  :host {
+    display:block;
+    container-type: inline-size;
+  }`,
   template: '',
   imports: [],
 })
@@ -188,12 +193,6 @@ export class DaffContentSchemaRenderer {
         // Set any attributes requested.
         for (const key of Object.keys(schema.attributes ?? {})) {
           element.setAttribute(key, schema.attributes[key]);
-        }
-
-        // Force target="_blank" on all anchor tags
-        if (schema.element === 'a') {
-          element.setAttribute('target', '_blank');
-          element.setAttribute('rel', 'noopener noreferrer');
         }
 
         if (schema.children) {

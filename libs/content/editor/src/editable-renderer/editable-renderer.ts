@@ -47,6 +47,7 @@ import {
   styles: [`
     :host {
       display:block;
+      container-type: inline-size;
       width: 100%;
     }
   `],

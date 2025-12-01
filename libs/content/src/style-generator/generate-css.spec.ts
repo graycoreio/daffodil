@@ -48,7 +48,7 @@ describe('@daffodil/content | generateCSS', () => {
     it('should generate container query CSS', () => {
       const result = generateCSS('test-class', {
         breakpoints: {
-          '(min-width: 768px': { color: 'blue' },
+          '(min-width: 768px)': { color: 'blue' },
         },
       });
       expect(result).toContain('@container (min-width: 768px)');
@@ -57,7 +57,7 @@ describe('@daffodil/content | generateCSS', () => {
     it('should include the class selector within the container query', () => {
       const result = generateCSS('test-class', {
         breakpoints: {
-          '(min-width: 768px': { color: 'blue' },
+          '(min-width: 768px)': { color: 'blue' },
         },
       });
       expect(result).toContain('.test-class');
@@ -66,7 +66,7 @@ describe('@daffodil/content | generateCSS', () => {
     it('should include the breakpoint styles', () => {
       const result = generateCSS('test-class', {
         breakpoints: {
-          '(min-width: 768px': { color: 'blue' },
+          '(min-width: 768px)': { color: 'blue' },
         },
       });
       expect(result).toContain('color: blue;');
@@ -75,7 +75,7 @@ describe('@daffodil/content | generateCSS', () => {
     it('should add px suffix to numeric values in breakpoints', () => {
       const result = generateCSS('test-class', {
         breakpoints: {
-          '(min-width: 768px': { padding: 20 },
+          '(min-width: 768px)': { padding: 20 },
         },
       });
       expect(result).toContain('padding: 20px;');
@@ -84,7 +84,7 @@ describe('@daffodil/content | generateCSS', () => {
     it('should not add px suffix to unitless properties in breakpoints', () => {
       const result = generateCSS('test-class', {
         breakpoints: {
-          '(min-width: 768px': { 'z-index': 10 },
+          '(min-width: 768px)': { 'z-index': 10 },
         },
       });
       expect(result).toContain('z-index: 10;');
@@ -93,8 +93,8 @@ describe('@daffodil/content | generateCSS', () => {
     it('should handle multiple breakpoints', () => {
       const result = generateCSS('test-class', {
         breakpoints: {
-          '(min-width: 768px': { color: 'blue' },
-          '(min-width: 1024px': { color: 'green' },
+          '(min-width: 768px)': { color: 'blue' },
+          '(min-width: 1024px)': { color: 'green' },
         },
       });
       expect(result).toContain('@container (min-width: 768px)');
@@ -109,7 +109,7 @@ describe('@daffodil/content | generateCSS', () => {
       const result = generateCSS('test-class', {
         base: { color: 'red' },
         breakpoints: {
-          '(min-width: 768px': { color: 'blue' },
+          '(min-width: 768px)': { color: 'blue' },
         },
       });
       expect(result).toContain('.test-class {\n');
@@ -131,7 +131,7 @@ describe('@daffodil/content | generateCSS', () => {
       const result = generateCSS('test-class', {
         base: undefined,
         breakpoints: {
-          '(min-width: 768px': { color: 'blue' },
+          '(min-width: 768px)': { color: 'blue' },
         },
       });
       expect(result).not.toContain('.test-class {\n  color');

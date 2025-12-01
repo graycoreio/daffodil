@@ -22,7 +22,7 @@ export const generateCSS = (
   if (styles.breakpoints) {
     for (const [mediaQuery, breakpointStyles] of Object.entries(styles.breakpoints)) {
       // Convert media query to container query
-      css += `\n@container ${mediaQuery}) {\n`;
+      css += `\n@container ${mediaQuery} {\n`;
 
       css += `  .${className} {\n`;
       css += Object.entries(breakpointStyles)
