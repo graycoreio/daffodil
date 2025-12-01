@@ -8,9 +8,29 @@
     <preference for="Graycore\CmsAiBuilder\Api\Data\PageAiInterface"
                 type="Graycore\CmsAiBuilder\Model\PageAi"/>
 
-    <type name="Magento\Cms\Api\PageRepositoryInterface">
-        <plugin name="graycore_cms_ai_builder_page_repository"
-                type="Graycore\CmsAiBuilder\Plugin\PageRepositoryPlugin"
+    <!-- EntityManager extensions for loading/saving AI data with CMS pages -->
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Magento\Cms\Api\Data\PageInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="aiDataReader" xsi:type="string">Graycore\CmsAiBuilder\Model\ResourceModel\Page\Relation\Ai\ReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="aiDataCreator" xsi:type="string">Graycore\CmsAiBuilder\Model\ResourceModel\Page\Relation\Ai\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="aiDataUpdater" xsi:type="string">Graycore\CmsAiBuilder\Model\ResourceModel\Page\Relation\Ai\SaveHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Plugin to add AI data to GraphQL responses -->
+    <type name="Magento\CmsGraphQl\Model\Resolver\DataProvider\Page">
+        <plugin name="graycore_cms_ai_builder_graphql_page_data"
+                type="Graycore\CmsAiBuilder\Plugin\CmsGraphQlPageDataProviderPlugin"
                 sortOrder="10"/>
     </type>
 </config>

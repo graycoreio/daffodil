@@ -12,6 +12,8 @@ A Magento 2 module that extends the CMS page editor with AI-powered content gene
   <a href="https://www.daff.io/"><strong>daff.io</strong></a>
   | 
   <a href="https://www.youtube.com/watch?v=LcudrwsT_gk"><strong>Youtube Demo</strong></a>
+  | 
+  <a href="https://www.youtube.com/watch?v=LcudrwsT_gk"><strong>Daffodil Demo</strong></a>
 </p>
 
 > [!WARNING]
@@ -88,3 +90,7 @@ These are problems that I know exist, and would really love help with:
 - [ ] The DB performance of the PageAiRepository is absolutely atrocious (like 15 reads and 2 saves per chat).
 - [ ] It doesn't generate links, buttons, or forms fields. 
 - [ ] The styles of the Magento admin panel bleed into the page's design.
+
+## License
+
+See [LICENSE](./LICENSE)

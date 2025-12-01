@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
-    <extension_attributes for="Magento\Cms\Api\Data\PageInterface">
-        <attribute code="ai_prompt" type="string"/>
-        <attribute code="ai_schema_json" type="string"/>
-        <attribute code="ai_conversation_history" type="string"/>
-    </extension_attributes>
-</config>
