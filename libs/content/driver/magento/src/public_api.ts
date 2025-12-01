@@ -5,3 +5,4 @@ export * from './queries/public_api';
 
 export { MagentoContentService } from './service';
 export { DaffContentMagentoDriverModule } from './driver.module';
+export { provideDaffContentMagentoDriver } from './provider';
