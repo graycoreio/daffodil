@@ -1,1 +1,2 @@
-export * from './page.resolver';
+export { daffContentPageHtmlResolver } from './page-html.resolver';
+

@@ -1,11 +1,11 @@
-import { DaffContentPage } from '@daffodil/content';
+import { DaffContentHtmlPage } from '@daffodil/content';
 
 import { MagentoCmsPage } from '../../models/public_api';
 
 /**
  * Transforms the {@link MagentoCmsPage} from the magento CMS page query into a {@link DaffContentPage}.
  */
-export function magentoContentPageTransform(page: MagentoCmsPage): DaffContentPage {
+export function magentoContentPageTransform(page: MagentoCmsPage): DaffContentHtmlPage {
   return {
     id: page.identifier,
     title: page.title,

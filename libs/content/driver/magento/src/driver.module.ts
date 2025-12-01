@@ -6,7 +6,7 @@ import {
 
 import {
   provideDaffContentDriver,
-  provideDaffContentPageDriver,
+  provideDaffContentHtmlPageDriver,
 } from '@daffodil/content/driver';
 import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/magento';
 
@@ -28,7 +28,7 @@ export class DaffContentMagentoDriverModule {
       ngModule: DaffContentMagentoDriverModule,
       providers: [
         provideDaffContentDriver(MagentoContentService),
-        provideDaffContentPageDriver(MagentoContentPageService),
+        provideDaffContentHtmlPageDriver(MagentoContentPageService),
         provideManyDaffMagentoCacheableOperations(MAGENTO_CONTENT_GET_BLOCKS_QUERY_NAME, MAGENTO_CONTENT_GET_PAGE_QUERY_NAME),
       ],
     };

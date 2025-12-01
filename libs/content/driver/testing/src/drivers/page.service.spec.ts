@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
 
 import { DaffContentPage } from '@daffodil/content';
-import { DaffContentPageFactory } from '@daffodil/content/testing';
+import { DaffContentHtmlPageFactory } from '@daffodil/content/testing';
 
 import { DaffContentPageTestingService } from './page.service';
 
@@ -11,9 +11,9 @@ describe('@daffodil/content/driver/testing | DaffContentPageTestingService', () 
 
   let contentCreateSpy: jasmine.Spy;
   let contentCreateManySpy: jasmine.Spy;
-  let contentFactoryService: DaffContentPageFactory;
+  let contentFactoryService: DaffContentHtmlPageFactory;
 
-  let contentFactory: DaffContentPageFactory;
+  let contentFactory: DaffContentHtmlPageFactory;
 
   let mockPage: DaffContentPage;
   let contentId: DaffContentPage['id'];
@@ -26,9 +26,9 @@ describe('@daffodil/content/driver/testing | DaffContentPageTestingService', () 
     });
 
     service = TestBed.inject(DaffContentPageTestingService);
-    contentFactoryService = TestBed.inject(DaffContentPageFactory);
+    contentFactoryService = TestBed.inject(DaffContentHtmlPageFactory);
 
-    contentFactory = new DaffContentPageFactory();
+    contentFactory = new DaffContentHtmlPageFactory();
 
     mockPage = contentFactory.create();
     contentId = mockPage.id;

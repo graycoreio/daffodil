@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffContentPage } from '@daffodil/content';
+import { DaffContentHtmlPage } from '@daffodil/content';
 
-import { DaffContentPageFactory } from './page.factory';
+import { DaffContentHtmlPageFactory } from './html-page.factory';
 
 describe('@daffodil/content/testing | DaffContentPageFactory', () => {
-  let factory: DaffContentPageFactory;
+  let factory: DaffContentHtmlPageFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffContentPageFactory],
+      providers: [DaffContentHtmlPageFactory],
     });
 
-    factory = TestBed.inject(DaffContentPageFactory);
+    factory = TestBed.inject(DaffContentHtmlPageFactory);
   });
 
   it('should be created', () => {
@@ -20,7 +20,7 @@ describe('@daffodil/content/testing | DaffContentPageFactory', () => {
   });
 
   describe('create', () => {
-    let result: DaffContentPage;
+    let result: DaffContentHtmlPage;
 
     beforeEach(() => {
       result = factory.create();

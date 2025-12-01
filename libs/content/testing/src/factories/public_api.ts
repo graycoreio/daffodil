@@ -1,2 +1,2 @@
 export { DaffContentBlockFactory } from './block.factory';
-export { DaffContentPageFactory } from './page.factory';
+export { DaffContentHtmlPageFactory } from './html-page.factory';

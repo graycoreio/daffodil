@@ -3,4 +3,9 @@ export {
   DaffContentDriver,
   provideDaffContentDriver,
 } from './service.interface';
-export * from './page.interface';
+export {
+  DaffContentPageHtmlServiceInterface,
+  DaffContentPageHtmlDriver,
+  provideDaffContentHtmlPageDriver,
+} from './page-html.interface';
+

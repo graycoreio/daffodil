@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 
-import { DaffContentPage } from '@daffodil/content';
-import { DaffContentPageServiceInterface } from '@daffodil/content/driver';
-import { DaffContentPageFactory } from '@daffodil/content/testing';
+import { DaffContentHtmlPage } from '@daffodil/content';
+import { DaffContentPageHtmlServiceInterface } from '@daffodil/content/driver';
+import { DaffContentHtmlPageFactory } from '@daffodil/content/testing';
 
 /**
  * @inheritdoc
@@ -11,12 +11,12 @@ import { DaffContentPageFactory } from '@daffodil/content/testing';
 @Injectable({
   providedIn: 'root',
 })
-export class DaffContentPageTestingService implements DaffContentPageServiceInterface {
+export class DaffContentPageTestingService implements DaffContentPageHtmlServiceInterface {
   constructor(
-    private blockFactory: DaffContentPageFactory,
+    private pageFactory: DaffContentHtmlPageFactory,
   ) {}
 
-  get(id: DaffContentPage['id']) {
-    return of(this.blockFactory.create({ id }));
+  get(id: DaffContentHtmlPage['id']) {
+    return of(this.pageFactory.create({ id }));
   }
 }

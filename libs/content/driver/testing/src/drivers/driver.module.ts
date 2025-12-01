@@ -6,7 +6,7 @@ import {
 
 import {
   provideDaffContentDriver,
-  provideDaffContentPageDriver,
+  provideDaffContentHtmlPageDriver,
 } from '@daffodil/content/driver';
 
 import { DaffContentPageTestingService } from './page.service';
@@ -23,7 +23,7 @@ export class DaffContentTestingDriverModule {
       ngModule: DaffContentTestingDriverModule,
       providers: [
         provideDaffContentDriver(DaffTestingContentService),
-        provideDaffContentPageDriver(DaffContentPageTestingService),
+        provideDaffContentHtmlPageDriver(DaffContentPageTestingService),
       ],
     };
   }

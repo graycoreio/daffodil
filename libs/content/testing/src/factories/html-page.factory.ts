@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffContentPage } from '@daffodil/content';
+import { DaffContentHtmlPage } from '@daffodil/content';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
-export class MockContentPage implements DaffContentPage {
+export class MockContentHtmlPage implements DaffContentHtmlPage {
   id = faker.string.uuid();
   title = faker.lorem.word();
   htmlContent = faker.lorem.words(5);
@@ -15,8 +15,8 @@ export class MockContentPage implements DaffContentPage {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffContentPageFactory extends DaffModelFactory<DaffContentPage>{
+export class DaffContentHtmlPageFactory extends DaffModelFactory<DaffContentHtmlPage>{
   constructor() {
-    super(MockContentPage);
+    super(MockContentHtmlPage);
   }
 }

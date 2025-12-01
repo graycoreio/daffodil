@@ -6,8 +6,8 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-import { DaffContentPage } from '@daffodil/content';
-import { DaffContentPageServiceInterface } from '@daffodil/content/driver';
+import { DaffContentHtmlPage } from '@daffodil/content';
+import { DaffContentPageHtmlServiceInterface } from '@daffodil/content/driver';
 import {
   daffUriTruncateFileExtension,
   daffUriTruncateQueryFragment,
@@ -26,12 +26,12 @@ import { validateMagentoContentGetPageResponse } from './validators/public_api';
 @Injectable({
   providedIn: 'root',
 })
-export class MagentoContentPageService implements DaffContentPageServiceInterface {
+export class MagentoContentPageService implements DaffContentPageHtmlServiceInterface<DaffContentHtmlPage> {
   constructor(
     private apollo: Apollo,
   ) {}
 
-  get(id: DaffContentPage['id']) {
+  get(id: DaffContentHtmlPage['id']) {
     return this.apollo.query({
       query: getCmsPage(),
       variables: {

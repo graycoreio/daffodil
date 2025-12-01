@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffContentPage } from '@daffodil/content';
+import { DaffContentHtmlPage } from '@daffodil/content';
 import { MagentoCmsPage } from '@daffodil/content/driver/magento';
 import { MagentoCmsPageFactory } from '@daffodil/content/driver/magento/testing';
 
@@ -18,7 +18,7 @@ describe('@daffodil/content/driver/magento | magentoContentPageTransform', () =>
   });
 
   describe('magentoContentPageTransform | transforming a magento content into a daff content', () => {
-    let result: DaffContentPage;
+    let result: DaffContentHtmlPage;
 
     beforeEach(() => {
       result = magentoContentPageTransform(mockMagentoPage);

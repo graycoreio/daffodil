@@ -6,7 +6,7 @@ import {
 /**
  * The content for a static webpage.
  */
-export interface DaffContentPage extends DaffIdentifiable {
+export interface DaffContentHtmlPage extends DaffIdentifiable {
   /**
    * The human-readable title for this page.
    */
