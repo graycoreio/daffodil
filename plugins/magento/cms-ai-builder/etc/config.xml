@@ -33,7 +33,7 @@
                     3. Dispatch events: fullscreenChange, schemaUpdate, prompt
                 -->
                 <custom_polyfills_script>Graycore_CmsAiBuilder/js/admin-preview/browser/polyfills-SCHOHYNV.js</custom_polyfills_script>
-                <custom_main_script>Graycore_CmsAiBuilder/js/admin-preview/browser/main-JRVU2SV6.js</custom_main_script>
+                <custom_main_script>Graycore_CmsAiBuilder/js/admin-preview/browser/main-CDUPXUOH.js</custom_main_script>
             </editor_customization>
         </ai_cms_builder>
     </default>
