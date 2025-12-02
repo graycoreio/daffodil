@@ -4,28 +4,22 @@
  */
 declare(strict_types=1);
 
-namespace Graycore\CmsAiBuilder\Service;
+namespace Graycore\CmsAiBuilder\Model\Data;
 
-class GenerateSchemaResult
+use Graycore\CmsAiBuilder\Api\Result\GenerateSchemaResultInterface;
+
+class GenerateSchemaResult implements GenerateSchemaResultInterface
 {
     /**
-     * @param array $schema ViewSchema containing 'reply' and 'schema'
+     * @param string $reply The reply from the model.
+     * @param array $schema The schema.
      * @param array $conversationHistory Array of ChatMessage objects
      */
     public function __construct(
+        private readonly string $reply,
         private readonly array $schema,
         private readonly array $conversationHistory
     ) {
-    }
-
-    /**
-     * Get the ViewSchema (contains 'reply' and 'schema' keys)
-     *
-     * @return array
-     */
-    public function getSchema(): array
-    {
-        return $this->schema;
     }
 
     /**
@@ -35,7 +29,7 @@ class GenerateSchemaResult
      */
     public function getReply(): string
     {
-        return $this->schema['reply'] ?? '';
+        return $this->reply ?? '';
     }
 
     /**
@@ -43,9 +37,9 @@ class GenerateSchemaResult
      *
      * @return array|null
      */
-    public function getDynamicSchema(): ?array
+    public function getSchema(): ?array
     {
-        return $this->schema['schema'] ?? null;
+        return $this->schema ?? null;
     }
 
     /**

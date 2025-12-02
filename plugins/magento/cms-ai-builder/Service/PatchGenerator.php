@@ -6,7 +6,9 @@ declare(strict_types=1);
 
 namespace Graycore\CmsAiBuilder\Service;
 
+use Graycore\CmsAiBuilder\Api\Result\GenerateSchemaResultInterface;
 use Graycore\CmsAiBuilder\Helper\Config;
+use Graycore\CmsAiBuilder\Model\Data\GenerateSchemaResult;
 use Magento\Framework\Serialize\Serializer\Json;
 use Psr\Log\LoggerInterface;
 
@@ -32,15 +34,9 @@ class PatchGenerator
 
     /**
      * Generate JSON Patch from user prompt using OpenAI
-     *
-     * @param string $prompt
-     * @param string $schema
-     * @param array|null $conversationHistory
-     * @param int|null $storeId
-     * @return GenerateSchemaResult
      * @throws \Exception
      */
-    public function generateSchema(string $prompt, string | null $schema, ?array $conversationHistory = null, ?int $storeId = null): GenerateSchemaResult
+    public function generateSchema(string $prompt, string | null $schema, ?array $conversationHistory = null, ?int $storeId = null): GenerateSchemaResultInterface
     {
         $componentRegistry = $this->config->getComponentRegistryForPrompt($storeId);
         $systemPrompt = $this->prompt->getSystemPrompt($componentRegistry);
@@ -94,12 +90,6 @@ class PatchGenerator
             // Apply JSON Patch to current schema
             $patchedSchema = $this->patchApplier->applyPatch($schema, $patchResponse['patch']);
 
-            // Build the ViewSchema response (with patched schema)
-            $viewSchema = [
-                'reply' => $patchResponse['reply'],
-                'schema' => $patchedSchema
-            ];
-
             // Build updated conversation history in ChatMessage format
             // Store full schemas in history, not patches
             $updatedHistory = $conversationHistory ?? [];
@@ -114,7 +104,7 @@ class PatchGenerator
                 'schema' => $patchedSchema
             ];
 
-            return new GenerateSchemaResult($viewSchema, $updatedHistory);
+            return new GenerateSchemaResult($patchResponse['reply'], $patchedSchema, $updatedHistory);
 
         } catch (\Exception $e) {
             $this->logger->error('Failed to generate schema: ' . $e->getMessage());

@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Copyright © Graycore. All rights reserved.
  */
+
 declare(strict_types=1);
 
 namespace Graycore\CmsAiBuilder\Controller\Adminhtml\Generate;
@@ -101,10 +103,9 @@ class Index extends Action implements HttpPostActionInterface
 
             return $resultJson->setData([
                 'success' => true,
-                'schema' => $result->getDynamicSchema(),
+                'schema' => $result->getSchema(),
                 'conversationHistory' => $result->getConversationHistory()
             ]);
-
         } catch (\Exception $e) {
             return $resultJson->setData([
                 'success' => false,
