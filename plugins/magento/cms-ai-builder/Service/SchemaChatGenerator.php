@@ -1,18 +1,21 @@
 <?php
+
 /**
  * Copyright © Graycore. All rights reserved.
  */
+
 declare(strict_types=1);
 
 namespace Graycore\CmsAiBuilder\Service;
 
 use Graycore\CmsAiBuilder\Api\Result\GenerateSchemaResultInterface;
+use Graycore\CmsAiBuilder\Api\SchemaChatGeneratorInterface;
 use Graycore\CmsAiBuilder\Helper\Config;
 use Graycore\CmsAiBuilder\Model\Data\GenerateSchemaResult;
 use Magento\Framework\Serialize\Serializer\Json;
 use Psr\Log\LoggerInterface;
 
-class PatchGenerator
+class SchemaChatGenerator implements SchemaChatGeneratorInterface
 {
     /**
      * @param Config $config
@@ -29,19 +32,18 @@ class PatchGenerator
         private readonly Prompt $prompt,
         private readonly PatchApplier $patchApplier,
         private readonly ModelService $modelService
-    ) {
-    }
+    ) {}
 
     /**
      * Generate JSON Patch from user prompt using OpenAI
      * @throws \Exception
      */
-    public function generateSchema(string $prompt, string | null $schema, ?array $conversationHistory = null, ?int $storeId = null): GenerateSchemaResultInterface
+    public function generate(string $prompt, string | null $schema, ?array $conversationHistory = null, ?int $storeId = null): GenerateSchemaResultInterface
     {
         $componentRegistry = $this->config->getComponentRegistryForPrompt($storeId);
         $systemPrompt = $this->prompt->getSystemPrompt($componentRegistry);
 
-        if(!$schema || $schema === '[]') {
+        if (!$schema || $schema === '[]') {
             $schema = '{}';
         }
 
@@ -105,7 +107,6 @@ class PatchGenerator
             ];
 
             return new GenerateSchemaResult($patchResponse['reply'], $patchedSchema, $updatedHistory);
-
         } catch (\Exception $e) {
             $this->logger->error('Failed to generate schema: ' . $e->getMessage());
             throw $e;

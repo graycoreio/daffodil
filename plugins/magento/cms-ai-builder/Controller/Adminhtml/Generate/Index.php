@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Graycore\CmsAiBuilder\Controller\Adminhtml\Generate;
 
+use Graycore\CmsAiBuilder\Api\SchemaChatGeneratorInterface;
 use Graycore\CmsAiBuilder\Service\PatchGenerator;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -33,7 +34,7 @@ class Index extends Action implements HttpPostActionInterface
     public function __construct(
         Context $context,
         private readonly JsonFactory $resultJsonFactory,
-        private readonly PatchGenerator $patchGenerator,
+        private readonly SchemaChatGeneratorInterface $schemaChatGenerator,
         private readonly PageRepositoryInterface $pageRepository,
         private readonly Json $json
     ) {
@@ -93,7 +94,7 @@ class Index extends Action implements HttpPostActionInterface
             }
 
             // Generate schema with conversation history
-            $result = $this->patchGenerator->generateSchema($prompt, $schema, $storedConversationHistory);
+            $result = $this->schemaChatGenerator->generate($prompt, $schema, $storedConversationHistory);
 
             // Save conversation history to database if page exists
             if ($pageId && isset($page)) {

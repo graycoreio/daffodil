@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Graycore\CmsAiBuilder\Api\PatchGeneratorInterface"
-                type="Graycore\CmsAiBuilder\Model\Api\PatchGeneratorApi"/>
+    <preference for="Graycore\CmsAiBuilder\Api\SchemaChatGeneratorInterface"
+                type="Graycore\CmsAiBuilder\Service\SchemaChatGenerator"/>
 
     <!-- EntityManager extensions for loading/saving AI data with CMS pages -->
     <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
