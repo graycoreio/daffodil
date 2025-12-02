@@ -60,7 +60,6 @@ NOTE: Raw file sizes do not reflect development server per-request transformatio
 Visit the path in `Local` (e.g., http://localhost:4200) to see your application.
 
 ## Next steps
-
-- [Understanding drivers](./essentials/drivers): Learn how drivers abstract platform differences
+- [Understanding drivers](/docs/guides/essentials/drivers.md): Learn how drivers abstract platform differences
 - [Browse packages](/docs/packages): Add features to your store
 - [Get help on Discord](https://discord.gg/BdaJVZ53sR): Ask questions in the help channel
