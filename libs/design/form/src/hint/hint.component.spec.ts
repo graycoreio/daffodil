@@ -21,7 +21,7 @@ import { DaffHintComponent } from './hint.component';
 
 class WrapperComponent {}
 
-describe('@daffodil/design | DaffHintComponent', () => {
+describe('@daffodil/design/form | DaffHintComponent', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

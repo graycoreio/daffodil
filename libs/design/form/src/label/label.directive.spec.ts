@@ -19,7 +19,7 @@ import { DaffFormFieldLabelDirective } from './label.directive';
 
 class WrapperComponent {}
 
-describe('@daffodil/design | DaffFormFieldLabelDirective', () => {
+describe('@daffodil/design/form | DaffFormFieldLabelDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;

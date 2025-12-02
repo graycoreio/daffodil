@@ -1,7 +1,6 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  HostBinding,
   Input,
 } from '@angular/core';
 
@@ -10,16 +9,14 @@ import {
   template: '<ng-content></ng-content>',
   styleUrls: ['./hint.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
+  host: {
+    class: 'daff-hint',
+    '[class.validated]': 'validated',
+  },
 })
 export class DaffHintComponent {
   /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-hint') class = true;
-
-  /**
    * Displays a validated hint UI.
    * */
-  @Input() @HostBinding('class.validated') validated = false;
+  @Input() validated = false;
 }

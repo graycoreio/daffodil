@@ -37,6 +37,9 @@
       "@daffodil/design/container": [
         "libs/design/container/src"
       ],
+      "@daffodil/design/form": [
+        "libs/design/form/src"
+      ],
       "@daffodil/design/form-field": [
         "libs/design/form-field/src"
       ],
