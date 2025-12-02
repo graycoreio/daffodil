@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Graycore\CmsAiBuilder\Service\Schema\ComponentSchema">
+        <arguments>
+            <argument name="components" xsi:type="array">
+                <item name="DaffHeroComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\DaffHeroComponent</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

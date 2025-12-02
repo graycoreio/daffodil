@@ -1,0 +1,25 @@
+{
+    "name": "graycore/magento2-cms-ai-daff-components",
+    "description": "Daffodil component schemas for the Graycore CMS AI Builder module.",
+    "type": "magento2-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Damien Retzinger",
+            "email": "damienwebdev@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Graycore\\CmsAiDaffComponents\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    },
+    "require": {
+        "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
+        "graycore/magento2-cms-ai-builder": "*"
+    }
+}
