@@ -1,0 +1,27 @@
+@use '../../scss/theming' as *;
+
+// stylelint-disable selector-class-pattern
+@mixin daff-radio-theme($theme) {
+	$neutral: daff-get-palette($theme, neutral);
+	$primary: daff-get-palette($theme, primary);
+	$mode: daff-get-theme-mode($theme);
+
+	.daff-radio {
+		$root: '.daff-radio';
+
+		#{$root}__outer-circle {
+			border: 1px solid daff-color($neutral, 90);
+		}
+
+		#{$root}__inner-circle {
+			background-color: daff-color($neutral, 90);
+		}
+
+		&.focused {
+			#{$root}__outer-circle {
+				outline: 2px solid daff-color($primary);
+				outline-offset: 1.5px;
+			}
+		}
+	}
+}

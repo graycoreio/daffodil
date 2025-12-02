@@ -1,14 +1,18 @@
-<input type="radio" 
-[attr.checked]="checked ? '' : null" 
-[attr.id]="id" 
-[attr.name]="name" 
-[attr.aria-label]="label"
-[attr.aria-labelledby]="labelledby"
-[attr.value]="value"
-[attr.disabled] = "disabled ? '' : null" 
-(change)="onChange()"
-(blur)="onBlur()"
-(focus)="onFocus()"/>
-<label [attr.for]="id">
+<label class="daff-radio__wrapper" [attr.for]="id()">
+  <input type="radio"
+    class="cdk-visually-hidden"
+    [attr.checked]="checked() ? '' : null" 
+    [attr.id]="id()" 
+    [attr.name]="_name()" 
+    [attr.value]="value()"
+    [attr.disabled] = "disabled() ? '' : null"
+    [tabindex]="_tabIndex()" 
+    (change)="onChange($event)"
+    (blur)="onBlur()"
+    (focus)="onFocus()" />
+  <div class="daff-radio__circle">
+    <span class="daff-radio__outer-circle"></span>
+    <span class="daff-radio__inner-circle"></span>
+  </div>
   <ng-content></ng-content>
 </label>

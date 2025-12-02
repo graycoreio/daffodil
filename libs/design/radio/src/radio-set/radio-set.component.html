@@ -1,1 +1,6 @@
-<ng-content></ng-content>
+<label class="daff-radio-set__label" [id]="id()">
+	<ng-content></ng-content>
+</label>
+<div class="daff-radio-set__wrapper" role="radiogroup" [attr.aria-labelledby]="id()">
+	<ng-content select="daff-radio"></ng-content>
+</div>

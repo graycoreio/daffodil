@@ -45,6 +45,7 @@
 @use '../navbar/src/navbar-theme' as navbar;
 @use '../notification/src/notification-theme' as notification;
 @use '../paginator/src/paginator-theme' as paginator;
+@use '../radio/src/radio-theme' as radio;
 @use '../select/src/select-theme' as select;
 @use '../sidebar/src/sidebar-theme' as sidebar;
 @use '../switch/src/switch-theme' as switch;
@@ -92,6 +93,7 @@
 	@include hint.daff-hint-theme($theme);
 	@include select.daff-select-theme($theme);
 	@include native-select.daff-native-select-theme($theme);
+	@include radio.daff-radio-theme($theme);
 
 	@include loading-icon.daff-loading-icon-theme($theme);
 	@include progress-bar.daff-progress-bar-theme($theme);

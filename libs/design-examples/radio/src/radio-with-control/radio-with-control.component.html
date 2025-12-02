@@ -1,8 +1,6 @@
-<daff-radio-set name="cctype" value="visa" (valueChange)="update($event)">
+<daff-radio-set [formControl]="ccType" name="cctype">
   Card Type
   <daff-radio value="visa">Visa</daff-radio>
   <daff-radio value="mastercard">MasterCard</daff-radio>
   <daff-radio value="amex">American Express</daff-radio>
 </daff-radio-set>
-
-<div>Selected value: {{ value }}</div>

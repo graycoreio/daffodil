@@ -1,0 +1,31 @@
+@use '../../../scss/typography' as t;
+
+:host {
+	$root: '.daff-radio-set';
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	#{$root}__label {
+		font-size: t.$font-size-base;
+		font-weight: 500;
+	}
+
+	#{$root}__wrapper {
+		display: flex;
+	}
+
+	&.horizontal {
+		#{$root}__wrapper {
+			flex-direction: row;
+			gap: 1rem;
+		}
+	}
+
+	&.vertical {
+		#{$root}__wrapper {
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+	}
+}

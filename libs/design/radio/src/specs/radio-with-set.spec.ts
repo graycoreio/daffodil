@@ -5,7 +5,6 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import {
-  UntypedFormGroup,
   UntypedFormControl,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -18,10 +17,10 @@ import {
 
 @Component({
   template: `
-    <daff-radio-set [formGroup]="radioGroup" name="fruit">
-      <daff-radio formControlName="fruit" value="apple">Apple</daff-radio>
-      <daff-radio formControlName="fruit" value="grape">Grape</daff-radio>
-      <daff-radio formControlName="fruit" value="peach">Peach</daff-radio>
+    <daff-radio-set [formControl]="fruits" name="fruits">
+      <daff-radio value="apple">Apple</daff-radio>
+      <daff-radio value="grape">Grape</daff-radio>
+      <daff-radio value="peach">Peach</daff-radio>
     </daff-radio-set>
   `,
   imports: [
@@ -30,10 +29,7 @@ import {
   ],
 })
 class WrapperComponent {
-  radioGroup = new UntypedFormGroup({
-    fruit: new UntypedFormControl(),
-  });
-
+  fruits = new UntypedFormControl();
 }
 describe('@daffodil/design/radio | DaffRadioComponent With DaffRadioSetComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
@@ -61,6 +57,105 @@ describe('@daffodil/design/radio | DaffRadioComponent With DaffRadioSetComponent
   });
 
   it('should get its name from the parent <daff-radio-set>', () => {
-    expect(component.name).toEqual('fruit');
+    expect(component._name()).toEqual('fruits');
+  });
+
+  it('should get its tabIndex from the parent <daff-radio-set>', () => {
+    expect(component._tabIndex()).toBe(0);
+  });
+
+  it('should be disabled when the parent <daff-radio-set> is disabled', () => {
+    wrapper.fruits.disable();
+    fixture.detectChanges();
+    expect(component.disabled()).toBe(true);
+  });
+});
+
+@Component({
+  template: `
+    <daff-radio-set [formControl]="fruits" name="fruits" [tabIndex]="-1">
+      <daff-radio value="apple">Apple</daff-radio>
+      <daff-radio value="peach">Peach</daff-radio>
+    </daff-radio-set>
+  `,
+  imports: [
+    DAFF_RADIO_COMPONENTS,
+    ReactiveFormsModule,
+  ],
+})
+class CustomTabIndexWrapperComponent {
+  fruits = new UntypedFormControl();
+}
+
+describe('@daffodil/design/radio | DaffRadioComponent With DaffRadioSetComponent | Custom TabIndex', () => {
+  let fixture: ComponentFixture<CustomTabIndexWrapperComponent>;
+  let wrapper: CustomTabIndexWrapperComponent;
+  let component: DaffRadioComponent;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        CustomTabIndexWrapperComponent,
+      ],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(CustomTabIndexWrapperComponent);
+    wrapper = fixture.componentInstance;
+    component = fixture.debugElement.query(By.css('daff-radio')).componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should get the tabIndex from the parent <daff-radio-set>', () => {
+    expect(component._tabIndex()).toBe(-1);
+  });
+
+  it('should apply the custom tabIndex to the input element', () => {
+    const inputElement = fixture.debugElement.query(By.css('input[type="radio"]')).nativeElement;
+    expect(inputElement.tabIndex).toBe(-1);
+  });
+});
+
+@Component({
+  template: `
+    <daff-radio-set [formControl]="fruits" name="fruits" value="apple">
+      <daff-radio value="apple">Apple</daff-radio>
+      <daff-radio value="peach">Peach</daff-radio>
+    </daff-radio-set>
+  `,
+  imports: [
+    DAFF_RADIO_COMPONENTS,
+    ReactiveFormsModule,
+  ],
+})
+class ValueWrapperComponent {
+  fruits = new UntypedFormControl();
+}
+
+describe('@daffodil/design/radio | DaffRadioComponent With DaffRadioSetComponent | Value', () => {
+  let fixture: ComponentFixture<ValueWrapperComponent>;
+  let wrapper: ValueWrapperComponent;
+  let component: DaffRadioComponent;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        ValueWrapperComponent,
+      ],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ValueWrapperComponent);
+    wrapper = fixture.componentInstance;
+    component = fixture.debugElement.query(By.css('daff-radio')).componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should get the value from the parent <daff-radio-set>', () => {
+    expect(component.value()).toBe('apple');
   });
 });
