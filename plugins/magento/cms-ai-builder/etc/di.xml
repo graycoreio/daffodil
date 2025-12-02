@@ -4,6 +4,13 @@
     <preference for="Graycore\CmsAiBuilder\Api\SchemaChatGeneratorInterface"
                 type="Graycore\CmsAiBuilder\Service\SchemaChatGenerator"/>
 
+    <type name="Graycore\CmsAiBuilder\Service\Schema\ComponentSchema">
+        <arguments>
+            <argument name="components" xsi:type="array">
+            </argument>
+        </arguments>
+    </type>
+
     <!-- EntityManager extensions for loading/saving AI data with CMS pages -->
     <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
         <arguments>
