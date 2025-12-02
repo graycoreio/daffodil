@@ -8,6 +8,7 @@ namespace Graycore\CmsAiBuilder\Test\Unit\Schema\ContentSchema;
 
 use Graycore\CmsAiBuilder\Service\Schema\ComponentSchema;
 use Graycore\CmsAiBuilder\Service\Schema\JsonPatchResponseSchema;
+use Graycore\CmsAiBuilder\Test\Unit\Fixtures\DaffHeroComponentFixture;
 use JsonSchema\Validator;
 use PHPUnit\Framework\TestCase;
 
@@ -19,7 +20,9 @@ class ContentSchemaTest extends TestCase
 
     public function setUp(): void
     {
-        $componentSchema = new ComponentSchema();
+        $componentSchema = new ComponentSchema([
+            'DaffHeroComponentSchema' => new DaffHeroComponentFixture()
+        ]);
         $this->schema = new JsonPatchResponseSchema($componentSchema);
         $this->validator = new Validator();
 
