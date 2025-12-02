@@ -7,9 +7,6 @@
                 <enabled>0</enabled>
                 <openai_model>gpt-5-nano</openai_model>
             </general>
-            <component_registry>
-                <registry_json><![CDATA[{"components": []}]]></registry_json>
-            </component_registry>
             <editor_customization>
                 <!--
                     Custom editor script paths for overriding the default Angular editor.

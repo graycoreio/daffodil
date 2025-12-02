@@ -26,7 +26,6 @@ class SchemaChatGenerator implements SchemaChatGeneratorInterface
      * @param ModelService $modelService
      */
     public function __construct(
-        private readonly Config $config,
         private readonly Json $json,
         private readonly LoggerInterface $logger,
         private readonly Prompt $prompt,
@@ -40,8 +39,7 @@ class SchemaChatGenerator implements SchemaChatGeneratorInterface
      */
     public function generate(string $prompt, string | null $schema, ?array $conversationHistory = null, ?int $storeId = null): GenerateSchemaResultInterface
     {
-        $componentRegistry = $this->config->getComponentRegistryForPrompt($storeId);
-        $systemPrompt = $this->prompt->getSystemPrompt($componentRegistry);
+        $systemPrompt = $this->prompt->getSystemPrompt();
 
         if (!$schema || $schema === '[]') {
             $schema = '{}';

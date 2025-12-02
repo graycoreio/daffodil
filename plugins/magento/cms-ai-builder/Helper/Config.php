@@ -75,44 +75,6 @@ class Config extends AbstractHelper
     }
 
     /**
-     * Get component registry as array
-     *
-     * @param int|null $storeId
-     * @return array
-     */
-    public function getComponentRegistry(?int $storeId = null): array
-    {
-        $registryJson = $this->scopeConfig->getValue(
-            self::XML_PATH_COMPONENT_REGISTRY,
-            ScopeInterface::SCOPE_STORE,
-            $storeId
-        );
-
-        if (!$registryJson) {
-            return [];
-        }
-
-        try {
-            return json_decode($registryJson, true, 512, JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
-            $this->_logger->error('Failed to decode component registry JSON: ' . $e->getMessage());
-            return [];
-        }
-    }
-
-    /**
-     * Get component registry as JSON string for system prompt
-     *
-     * @param int|null $storeId
-     * @return string
-     */
-    public function getComponentRegistryForPrompt(?int $storeId = null): string
-    {
-        $registry = $this->getComponentRegistry($storeId);
-        return json_encode($registry, JSON_PRETTY_PRINT);
-    }
-
-    /**
      * Get custom polyfills script path or default
      *
      * @param int|null $storeId

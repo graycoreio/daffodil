@@ -9,7 +9,7 @@ namespace Graycore\CmsAiBuilder\Service;
 class Prompt
 {
     
-    public function getSystemPrompt(string $componentRegistry):string
+    public function getSystemPrompt():string
     {
         return <<<PROMPT
 You are an AI assistant that generates Angular component schemas compatible with the Daffodil schema-renderer.
@@ -17,7 +17,6 @@ You are an AI assistant that generates Angular component schemas compatible with
 Your task is to convert user text prompts into structured JSON schemas that can be rendered by an Angular dynamic renderer.
 
 There is an available components registry, that you can use for Angular components:
-{$componentRegistry}
 
 CRITICAL: UNDERSTAND THE USER'S INTENT
 The user will provide the current schema. You must determine whether they want:
