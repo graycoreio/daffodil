@@ -8,7 +8,6 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffMenuComponent } from '../menu/menu.component';
 import { provideTestMenuService } from '../testing/dummy-service';
@@ -30,7 +29,6 @@ describe('@daffodil/design/menu | DaffMenuComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule,
         WrapperComponent,
       ],
       providers: [
