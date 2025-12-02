@@ -95,7 +95,7 @@ export class DaffTreeItemDirective {
 
   /**
    * Whether or not the tree item is the currently active item.
-   * Note that there is no requirement there there only be one active item at a time.
+   * Note that there is no requirement that there only be one active item at a time.
    */
   @Input() selected = false;
 

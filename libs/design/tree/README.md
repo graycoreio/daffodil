@@ -1,20 +1,15 @@
 # Tree
-Trees are used to visualize hierarchial information. They are often used to display navigational structures like nested lists of links.
+Trees display hierarchical information in a nested, expandable format.
 
 ## Overview
-The `DaffTreeComponent` renders a tree structure. Typically, this is a structure of `<a>` and `<button>` elements that allow users to either navigate to a page, or explore the tree to find an item inside the tree that they want to navigate to.
+Trees help users navigate complex structures by organizing content into parent and child relationships. They're commonly used for navigation menus, file browsers, and category lists. For flat lists without nested content, use the [navigation list](/libs/design/list/README.md) instead.
 
-Instead of defining a recursive tree structure of components, which is often prohibitively slow when rendering large trees, the `DaffTreeComponent` renders a flattened tree, using padding to indicate the nesting level of the tree elements.
-
-Generally, tree usage consists of taking existing tree data, converting it to the `DaffTreeData` format, setting the `tree` input on the `DaffTreeComponent`, and providing templates for the cases where the tree element has children or not.
-
-<design-land-example-viewer-container example="basic-tree">
-</design-land-example-viewer-container>
+<design-land-example-viewer-container example="basic-tree"></design-land-example-viewer-container>
 
 ## Usage
 
 ### Within a standalone component
-To use sidebar in a standalone component, import `DAFF_TREE_COMPONENTS` directly into your custom component:
+To use tree in a standalone component, import `DAFF_TREE_COMPONENTS` directly into your custom component:
 
 ```ts
 import { DAFF_TREE_COMPONENTS } from '@daffodil/design/tree';
@@ -30,7 +25,7 @@ export class CustomComponent {}
 ```
 
 ### Within a module (deprecated)
-To use sidebar in a module, import `DaffTreeModule` into your custom module:
+To use tree in a module, import `DaffTreeModule` into your custom module:
 
 ```ts
 import { NgModule } from '@angular/core';
@@ -38,7 +33,7 @@ import { DaffTreeModule } from '@daffodil/design/tree';
 import { CustomComponent } from './custom.component';
 
 @NgModule({
-	declarations: [
+  declarations: [
     CustomComponent,
   ],
   exports: [
@@ -51,23 +46,45 @@ import { CustomComponent } from './custom.component';
 export class CustomComponentModule { }
 ```
 
+> **Warning**
+>
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
-## Features
-The `DaffTreeComponent` controls the rendering of the structure of the tree and provides template slots so that you can control the ultimate UI rendered for each node.
+## Anatomy
+A tree consists of the following parts:
 
-Currently, we support two kind of templates: `daffTreeItemWithChildrenTpl` and `daffTreeItemTpl`. These templates allow you to control the content of each tree node. In the case of `daffTreeItemWithChildrenTpl`, a `click` handler will be automatically applied (along with an icon indicating the expanded state) to the template to allow users to automatically open and close the node.
+### Container
+`<daff-tree>`: The main wrapper that holds the tree and accepts your data.
 
+### Tree item
+`[daffTreeItem]`: Added to links or buttons inside your templates to connect them to the tree.
+
+### Node templates
+Define how each item in the tree looks:
+
+- `#daffTreeItemWithChildrenTpl`: For items that can expand to show children. Click handling and icons are added automatically.
+- `#daffTreeItemTpl`: For items at the end of a branch with no children.
+
+### Basic structure
 ```html
-<ng-template #daffTreeItemWithChildrenTpl let-node>
-  <button daffTreeItem [node]="node">{{ node.title }} </button>
-</ng-template>
+<daff-tree [tree]="treeData">
+  <ng-template #daffTreeItemWithChildrenTpl let-node>
+    <button daffTreeItem [node]="node">{{ node.title }}</button>
+  </ng-template>
 
-<ng-template #daffTreeItemTpl let-node>
-  <a daffTreeItem [node]="node" [routerLink]="node.url">{{ node.title }}</a>
-</ng-template>
+  <ng-template #daffTreeItemTpl let-node>
+    <a daffTreeItem [node]="node" [routerLink]="node.url">{{ node.title }}</a>
+  </ng-template>
+</daff-tree>
 ```
 
 ## Accessibility
+The tree follows the [disclosure navigation menu](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/) pattern rather than the [tree view](https://www.w3.org/WAI/ARIA/apg/patterns/treeview/) pattern.
 
-The `DaffTreeComponent` follows the specification for a [disclosure navigation menu](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/) instead of a [tree view](https://www.w3.org/WAI/ARIA/apg/patterns/treeview/).
+### Daffodil provides
+- Unique `id` automatically assigned to each tree item
+- `aria-expanded` indicating whether a parent item is open or closed
+
+### Developer responsibilities
+- Use links (`<a>`) for navigation and buttons (`<button>`) for expanding sections
+- Write clear, descriptive text for each tree item
