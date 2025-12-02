@@ -7,8 +7,7 @@
             "DaffContentSchema": {
                 "anyOf": [
                     {"$ref": "#/$defs/DaffTextSchema"},
-                    {"$ref": "#/$defs/DaffContentElementSchema"},
-                    {"$ref": "#/$defs/DaffContentComponentSchema"}
+                    {"$ref": "#/$defs/DaffContentElementSchema"}
                 ]
             },
             "DaffTextSchema": {
@@ -37,9 +36,6 @@
                 },
                 "required": ["type", "element", "children", "styles"],
                 "additionalProperties": false
-            },
-            "DaffContentComponentSchema": {
-                "anyOf": []
             },
             "CssStyleObject": {
                 "type": "object",

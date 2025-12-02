@@ -22,13 +22,21 @@ class JsonPatchResponseSchema
      */
     public function getDaffContentSchemaDefinitions(): array
     {
-        return [
+        $componentSchemas = $this->componentSchema->getSchemas();
+        $hasComponents = count($componentSchemas) > 0;
+
+        $daffContentSchemaAnyOf = [
+            ['$ref' => '#/$defs/DaffTextSchema'],
+            ['$ref' => '#/$defs/DaffContentElementSchema']
+        ];
+
+        if ($hasComponents) {
+            $daffContentSchemaAnyOf[] = ['$ref' => '#/$defs/DaffContentComponentSchema'];
+        }
+
+        $definitions = [
             'DaffContentSchema' => [
-                'anyOf' => [
-                    ['$ref' => '#/$defs/DaffTextSchema'],
-                    ['$ref' => '#/$defs/DaffContentElementSchema'],
-                    ['$ref' => '#/$defs/DaffContentComponentSchema']
-                ]
+                'anyOf' => $daffContentSchemaAnyOf
             ],
             'DaffTextSchema' => [
                 'type' => 'object',
@@ -56,14 +64,20 @@ class JsonPatchResponseSchema
                 ],
                 'required' => ['type', 'element', 'children', 'styles'],
                 'additionalProperties' => false
-            ],
-            'DaffContentComponentSchema' => [
+            ]
+        ];
+
+        if ($hasComponents) {
+            $definitions['DaffContentComponentSchema'] = [
                 'anyOf' => array_map(
                     fn($schemaName) => ['$ref' => "#/\$defs/{$schemaName}"],
-                    array_keys($this->componentSchema->getSchemas())
+                    array_keys($componentSchemas)
                 )
-            ]
-        ] + $this->componentSchema->getSchemas();
+            ];
+            $definitions = $definitions + $componentSchemas;
+        }
+
+        return $definitions;
     }
 
     /**
