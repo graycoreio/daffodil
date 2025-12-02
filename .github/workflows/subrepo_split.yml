@@ -1,0 +1,32 @@
+name: Subrepo Split
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - "plugins/magento/cms-ai-builder/**"
+      - ".github/workflows/subrepo_split.yml"
+
+jobs:
+  split:
+    name: Split cms-ai-builder
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GRAYCORE_SUBREPO_SPLIT_TOKEN }}
+
+      - name: Install git-filter-repo
+        run: pip install git-filter-repo
+
+      - name: Rewrite history
+        run: |
+          git filter-repo --subdirectory-filter plugins/magento/cms-ai-builder --force
+
+      - name: Push to target repo
+        run: |
+          git remote add subrepo https://github.com/graycoreio/magento2-cms-ai-builder.git
+          git push subrepo HEAD:main --force
+
