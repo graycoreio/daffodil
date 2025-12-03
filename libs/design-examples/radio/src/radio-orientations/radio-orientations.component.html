@@ -1,0 +1,12 @@
+<daff-radio-set [orientation]="orientationControl.value" [formControl]="giftWrap" name="giftwrap">
+  <daff-form-label>Gift Wrapping</daff-form-label>
+  <daff-radio value="none">None</daff-radio>
+  <daff-radio value="standard">Standard</daff-radio>
+  <daff-radio value="premium">Premium</daff-radio>
+</daff-radio-set>
+
+<select [formControl]="orientationControl">
+  @for (option of options; track option) {
+    <option [value]="option.value">{{ option.label }}</option>
+  }
+</select>
