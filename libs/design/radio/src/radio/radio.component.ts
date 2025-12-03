@@ -13,6 +13,8 @@ import { DaffRadioSetComponent } from '../radio-set/radio-set.component';
 
 let radioUniqueId = 0;
 
+export const DaffRadioMissingSetMessage = `DaffRadioComponent must be wrapped in a DaffRadioSetComponent.`;
+
 @Component({
   selector: 'daff-radio',
   templateUrl: './radio.component.html',
@@ -86,7 +88,7 @@ export class DaffRadioComponent {
     });
 
     if(!this.radioSet) {
-      throw new Error('DaffRadioComponent needs to be used with DaffRadioSetComponent.');
+      throw new Error(DaffRadioMissingSetMessage);
     }
   }
 

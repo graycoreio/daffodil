@@ -6,6 +6,8 @@ import {
 
 import { DaffRadioComponent } from '@daffodil/design/radio';
 
+import { DaffRadioMissingSetMessage } from './radio.component';
+
 @Component({
   template: `
       <daff-radio value="apple">Apple</daff-radio>
@@ -29,6 +31,6 @@ describe('@daffodil/design/radio | DaffRadioComponent Without DaffRadioSetCompon
   }));
 
   it('should create', () => {
-    expect(() => TestBed.createComponent(WrapperComponent)).toThrowError('DaffRadioComponent needs to be used with DaffRadioSetComponent.');
+    expect(() => TestBed.createComponent(WrapperComponent)).toThrowError(DaffRadioMissingSetMessage);
   });
 });
