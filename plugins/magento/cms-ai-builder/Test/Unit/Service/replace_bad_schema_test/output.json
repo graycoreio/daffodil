@@ -15,7 +15,7 @@
               "text": "WaveRider Surf Shop"
             }
           ],
-          "styles": []
+          "styles": {}
         },
         {
           "type": "elementSchema",
@@ -26,7 +26,7 @@
               "text": "Premium gear and boards for every wave rider."
             }
           ],
-          "styles": []
+          "styles": {}
         },
         {
           "type": "elementSchema",
@@ -79,7 +79,7 @@
               "text": "What we offer"
             }
           ],
-          "styles": []
+          "styles": {}
         },
         {
           "type": "elementSchema",
@@ -560,5 +560,5 @@
       }
     }
   ],
-  "styles": []
+  "styles": {}
 }

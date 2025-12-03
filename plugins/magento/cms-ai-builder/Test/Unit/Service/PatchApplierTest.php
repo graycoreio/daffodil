@@ -7,6 +7,7 @@ declare(strict_types=1);
 namespace Graycore\CmsAiBuilder\Test\Unit\Service;
 
 use Graycore\CmsAiBuilder\Service\PatchApplier;
+use Graycore\CmsAiBuilder\Service\Schema\JsonObjectNormalizer;
 use Magento\Framework\Serialize\Serializer\Json;
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +24,8 @@ class PatchApplierTest extends TestCase
     protected function setUp(): void
     {
         $json = new Json();
-        $this->patchApplier = new PatchApplier($json);
+        $normalizer = new JsonObjectNormalizer();
+        $this->patchApplier = new PatchApplier($json, $normalizer);
     }
 
     /**
@@ -68,7 +70,9 @@ class PatchApplierTest extends TestCase
 
         $result = $this->patchApplier->applyPatch($input, $patchData);
 
-        $expected = json_decode($expectedOutput, true);
-        $this->assertEquals($expected, $result);
+        // Compare as JSON strings to handle stdClass vs array differences for empty objects
+        $resultJson = json_encode($result, JSON_PRETTY_PRINT);
+        $expectedJson = json_encode(json_decode($expectedOutput), JSON_PRETTY_PRINT);
+        $this->assertJsonStringEqualsJsonString($expectedJson, $resultJson);
     }
 }

@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 namespace Graycore\CmsAiBuilder\Service;
 
+use Graycore\CmsAiBuilder\Service\Schema\JsonObjectNormalizer;
 use Magento\Framework\Serialize\Serializer\Json;
 use Rs\Json\Patch;
 
@@ -13,9 +14,11 @@ class PatchApplier
 {
     /**
      * @param Json $json
+     * @param JsonObjectNormalizer $normalizer
      */
     public function __construct(
-        private readonly Json $json
+        private readonly Json $json,
+        private readonly JsonObjectNormalizer $normalizer
     ) {
     }
 
@@ -31,7 +34,7 @@ class PatchApplier
     {
         try {
             if(!count($patchOperations)) {
-                return $this->json->unserialize($schema);
+                return $this->normalizer->normalize($this->json->unserialize($schema));
             }
 
             // Handle root replacement separately as Rs\Json\Patch doesn't support empty path
@@ -40,7 +43,7 @@ class PatchApplier
                 && $patchOperations[0]['op'] === 'replace'
                 && $patchOperations[0]['path'] === ''
             ) {
-                return $patchOperations[0]['value'];
+                return $this->normalizer->normalize($patchOperations[0]['value']);
             }
 
             $patch = new Patch(
@@ -49,7 +52,7 @@ class PatchApplier
             );
 
             $patchedSchemaJson = $patch->apply();
-            return $this->json->unserialize($patchedSchemaJson);
+            return $this->normalizer->normalize($this->json->unserialize($patchedSchemaJson));
         } catch (\Exception $e) {
             throw new \Exception('Failed to apply patch: ' . $e->getMessage(), 0, $e);
         }
