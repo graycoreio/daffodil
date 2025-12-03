@@ -36,7 +36,6 @@ import { DaffioDocsTocHeaderDirective } from '../../../toc/header.directive';
 import { DaffioDocsTocService } from '../../../toc/toc.service';
 import { DaffioDocsDesignApiSortSectionLabels } from '../../pipes/sort-api-section-labels.pipe';
 
-
 @Component({
   selector: 'daffio-docs-design-component-content',
   templateUrl: './component-content.component.html',

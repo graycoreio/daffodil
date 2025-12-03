@@ -34,9 +34,7 @@ export class DaffioDocsGuidesContentComponent implements DaffioDocsDynamicConten
   ) {
     effect((onCleanup) => {
       this.tocRegistry.set(this.doc().tableOfContents);
-      onCleanup(() => {
-        this.tocRegistry.set([]);
-      });
+      onCleanup(() => this.tocRegistry.set([]));
     });
   }
 }
