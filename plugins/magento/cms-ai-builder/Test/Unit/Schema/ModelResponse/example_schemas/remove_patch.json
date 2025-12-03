@@ -3,9 +3,7 @@
   "patch": [
     {
       "op": "remove",
-      "path": "/children/2",
-      "value": null,
-      "from": ""
+      "path": "/children/2"
     }
   ]
 }

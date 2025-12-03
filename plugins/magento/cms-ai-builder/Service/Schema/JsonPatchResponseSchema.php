@@ -148,27 +148,68 @@ class JsonPatchResponseSchema
                         'description' => 'Array of JSON Patch operations (RFC 6902)',
                         'items' => [
                             'type' => 'object',
-                            'properties' => [
-                                'op' => [
-                                    'type' => 'string',
-                                    'enum' => ['add', 'remove', 'replace', 'move', 'copy', 'test'],
-                                    'description' => 'The operation to perform'
+                            'anyOf' => [
+                                // Add
+                                [
+                                    'additionalProperties' => false,
+                                    'required' => ['op', 'value', 'path'],
+                                    'properties' => [
+                                        'op' => ['type' => 'string', 'const' => 'add'],
+                                        'value' => ['$ref' => '#/$defs/JsonValue'],
+                                        'path' => ['type' => 'string'],
+                                    ],
                                 ],
-                                'path' => [
-                                    'type' => 'string',
-                                    'description' => 'JSON Pointer to the target location'
+                                // Replace
+                                [
+                                    'additionalProperties' => false,
+                                    'required' => ['op', 'value', 'path'],
+                                    'properties' => [
+                                        'op' => ['type' => 'string', 'const' => 'replace'],
+                                        'value' => ['$ref' => '#/$defs/JsonValue'],
+                                        'path' => ['type' => 'string'],
+                                    ],
                                 ],
-                                'value' => [
-                                    '$ref' => '#/$defs/JsonValue'
+                                // Remove
+                                [
+                                    'additionalProperties' => false,
+                                    'required' => ['op', 'path'],
+                                    'properties' => [
+                                        'op' => ['type' => 'string', 'const' => 'remove'],
+                                        'path' => ['type' => 'string'],
+                                    ],
                                 ],
-                                'from' => [
-                                    'type' => 'string',
-                                    'description' => 'JSON Pointer to source location (required for move and copy operations, empty string for others)'
-                                ]
+                                // Copy  
+                                [
+                                    'additionalProperties' => false,
+                                    'required' => ['op', 'from', 'path'],
+                                    'properties' => [
+                                        'op' => ['type' => 'string', 'const' => 'copy'],
+                                        'from' => ['type' => 'string', 'minLength' => 1],
+                                        'path' => ['type' => 'string'],
+                                    ],
+                                ],
+                                // Move
+                                [
+                                    'additionalProperties' => false,
+                                    'required' => ['op', 'from', 'path'],
+                                    'properties' => [
+                                        'op' => ['type' => 'string', 'const' => 'move'],
+                                        'from' => ['type' => 'string', 'minLength' => 1],
+                                        'path' => ['type' => 'string'],
+                                    ],
+                                ],
+                                // Test
+                                [
+                                    'additionalProperties' => false,
+                                    'required' => ['op', 'value', 'path'],
+                                    'properties' => [
+                                        'op' => ['type' => 'string', 'const' => 'test'],
+                                        'value' => ['$ref' => '#/$defs/JsonValue'],
+                                        'path' => ['type' => 'string', 'minLength' => 1],
+                                    ],
+                                ],
                             ],
-                            'required' => ['op', 'path', 'value', 'from'],
-                            'additionalProperties' => false
-                        ]
+                        ],
                     ]
                 ],
                 'required' => ['reply', 'patch'],

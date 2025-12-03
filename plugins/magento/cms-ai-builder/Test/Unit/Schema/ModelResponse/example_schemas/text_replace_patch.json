@@ -4,8 +4,7 @@
     {
       "op": "replace",
       "path": "/children/0/children/0/text",
-      "value": "Updated heading text",
-      "from": ""
+      "value": "Updated heading text"
     }
   ]
 }
