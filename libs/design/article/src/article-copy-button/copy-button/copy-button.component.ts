@@ -1,9 +1,11 @@
 import {
   Component,
+  NgZone,
   ChangeDetectionStrategy,
   input,
   signal,
   OnDestroy,
+  inject,
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
@@ -39,6 +41,7 @@ export class DaffArticleCopyButtonComponent implements OnDestroy {
 
   protected readonly faCopy = faCopy; // default copy icon
   protected readonly faCheck = faCheck; // check icon for copied state
+  private _ngZone = inject(NgZone);
 
   ngOnDestroy() {
     if (this.timeoutId) {
@@ -52,9 +55,11 @@ export class DaffArticleCopyButtonComponent implements OnDestroy {
       await navigator.clipboard.writeText(this.content());
       this.copied.set(true);
 
-      this.timeoutId = setTimeout(() => {
-        this.copied.set(false);
-      }, 1500);
+      this._ngZone.runOutsideAngular(() => {
+        this.timeoutId = setTimeout(() => {
+          this._ngZone.run(() => this.copied.set(false));
+        }, 1500);
+      });
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
