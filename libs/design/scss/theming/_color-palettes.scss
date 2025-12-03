@@ -1,28 +1,14 @@
+////
+/// @group color-palettes
+////
+
 // Base colors
-/// @group color-palettes
-/// Pure white color used as a base color throughout the design system.
-/// @type Color
-/// @example scss - Basic usage
-///   .my-component {
-///     background-color: $white;
-///   }
+/// @access private
 $white: #ffffff;
-/// @group color-palettes
-/// Black color used as a base color throughout the design system.
-/// @type Color
-/// @example scss - Basic usage
-///   .my-component {
-///     background-color: $black;
-///   }
+/// @access private
 $black: #070707;
 // need to deprecate
-/// @group color-palettes
-/// Error color for indicating validation errors and critical states.
-/// @type Color
-/// @example scss - Error styling
-///   .error-message {
-///     color: $error;
-///   }
+/// @access private
 $error: #dd0000;
 
 /// @access private
