@@ -8,29 +8,25 @@ declare(strict_types=1);
 
 namespace Graycore\CmsAiBuilder\Service;
 
+use Graycore\CmsAiBuilder\Api\LlmModelInterface;
 use Graycore\CmsAiBuilder\Api\Result\GenerateSchemaResultInterface;
 use Graycore\CmsAiBuilder\Api\SchemaChatGeneratorInterface;
 use Graycore\CmsAiBuilder\Helper\Config;
-use Graycore\CmsAiBuilder\Model\Data\GenerateSchemaResult;
+use Graycore\CmsAiBuilder\Service\Data\GenerateSchemaResult;
+use Graycore\CmsAiBuilder\Service\Schema\JsonPatchResponseSchema;
 use Magento\Framework\Serialize\Serializer\Json;
 use Psr\Log\LoggerInterface;
 
 class SchemaChatGenerator implements SchemaChatGeneratorInterface
 {
-    /**
-     * @param Config $config
-     * @param Json $json
-     * @param LoggerInterface $logger
-     * @param Prompt $prompt
-     * @param PatchApplier $patchApplier
-     * @param ModelService $modelService
-     */
     public function __construct(
+        private readonly Config $config,
         private readonly Json $json,
         private readonly LoggerInterface $logger,
         private readonly Prompt $prompt,
         private readonly PatchApplier $patchApplier,
-        private readonly ModelService $modelService
+        private readonly LlmModelInterface $llmModel,
+        private readonly JsonPatchResponseSchema $responseSchema
     ) {}
 
     /**
@@ -39,6 +35,10 @@ class SchemaChatGenerator implements SchemaChatGeneratorInterface
      */
     public function generate(string $prompt, string | null $schema, ?array $conversationHistory = null, ?int $storeId = null): GenerateSchemaResultInterface
     {
+        if (!$this->config->isEnabled($storeId)) {
+            throw new \Exception('AI CMS Builder is not enabled');
+        }
+
         $systemPrompt = $this->prompt->getSystemPrompt();
 
         if (!$schema || $schema === '[]') {
@@ -75,20 +75,11 @@ class SchemaChatGenerator implements SchemaChatGeneratorInterface
         ];
 
         try {
-            // Call the model service to get patch response
-            $patchResponse = $this->modelService->callModel($messages, $storeId);
-
-            // Validate response structure
-            if (!isset($patchResponse['patch'])) {
-                throw new \Exception('Invalid response format: missing patch');
-            }
-
-            if (!isset($patchResponse['reply'])) {
-                throw new \Exception('Invalid response format: missing reply');
-            }
+            // Call the LLM to get patch response
+            $llmResult = $this->llmModel->call($this->responseSchema->getSchema(), $messages);
 
             // Apply JSON Patch to current schema
-            $patchedSchema = $this->patchApplier->applyPatch($schema, $patchResponse['patch']);
+            $patchedSchema = $this->patchApplier->applyPatch($schema, $llmResult->getPatch());
 
             // Build updated conversation history in ChatMessage format
             // Store full schemas in history, not patches
@@ -100,11 +91,11 @@ class SchemaChatGenerator implements SchemaChatGeneratorInterface
             ];
             $updatedHistory[] = [
                 'type' => 'system',
-                'message' => $patchResponse['reply'],
+                'message' => $llmResult->getReply(),
                 'schema' => $patchedSchema
             ];
 
-            return new GenerateSchemaResult($patchResponse['reply'], $patchedSchema, $updatedHistory);
+            return new GenerateSchemaResult($llmResult->getReply(), $patchedSchema, $updatedHistory);
         } catch (\Exception $e) {
             $this->logger->error('Failed to generate schema: ' . $e->getMessage());
             throw $e;

@@ -4,7 +4,7 @@
  */
 declare(strict_types=1);
 
-namespace Graycore\CmsAiBuilder\Model\Data;
+namespace Graycore\CmsAiBuilder\Service\Data;
 
 use Graycore\CmsAiBuilder\Api\Result\GenerateSchemaResultInterface;
 
