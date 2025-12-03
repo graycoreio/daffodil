@@ -65,7 +65,7 @@ describe('@daffodil/docs-components | DaffDocsColorPalettesComponent', () => {
   it('should a palette for each color', () => {
     wrapper.itemsValue.slice(0, 2).forEach((color) => {
       const palette = fixture.debugElement.query(By.css(`.daff-docs-color__palette.daff-docs-color__brand-${color.context.name.toLowerCase()}`));
-      expect(palette).toBeDefined();
+      expect(palette).toBeTruthy();
       if (color.context.parsedValue.type === DaffDocsSassType.MAP) {
         Object.keys(color.context.parsedValue.parsed).forEach((shade) => {
           expect((<HTMLElement>palette.nativeElement).innerHTML).toContain(shade);

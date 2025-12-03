@@ -30,7 +30,6 @@ export class DaffDocsColorPalettesComponent {
 
   readonly items = input.required<Array<DaffDocsSassItem>>();
   readonly palettes = computed(() =>
-  // TODO: filter by group when bug is fixed
-    this.items().filter((item) => item.file.name.includes('color-palettes')),
+    this.items().filter((item) => item.group.includes('color-palettes')),
   );
 }
