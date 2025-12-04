@@ -1,0 +1,21 @@
+{
+  "reply": "Replaced the root container with a root array of the two DaffHeroComponent nodes so the heroes are siblings (no containing div).",
+  "patch": [
+    {
+      "op": "replace",
+      "value": {
+        "0": {
+          "type": "componentSchema",
+          "name": "DaffHeroComponent",
+          "inputs": "PLACEHOLDER"
+        },
+        "1": {
+          "type": "componentSchema",
+          "name": "DaffHeroComponent",
+          "inputs": "PLACEHOLDER"
+        }
+      },
+      "path": ""
+    }
+  ]
+}

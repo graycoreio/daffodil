@@ -131,9 +131,7 @@ class JsonPatchResponseSchema
                                 ['type' => 'boolean'],
                                 ['type' => 'null'],
                                 ['$ref' => '#/$defs/DaffContentSchema'],
-                                ['$ref' => '#/$defs/StylesObject'],
-                                ['$ref' => '#/$defs/BreakpointsObject'],
-                                ['$ref' => '#/$defs/CssStyleObject']
+                                ['$ref' => '#/$defs/StylesObject']
                             ]
                         ]
                     ]

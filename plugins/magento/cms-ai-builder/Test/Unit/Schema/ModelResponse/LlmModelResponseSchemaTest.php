@@ -27,11 +27,11 @@ class LlmModelResponseSchemaTest extends TestCase
     }
 
     /**
-     * Data provider for test responses
+     * Data provider for valid test responses
      *
      * @return array<string, array{name: string, response: array}>
      */
-    public static function responseProvider(): array
+    public static function validResponseProvider(): array
     {
         $examplesDir = __DIR__ . '/example_schemas';
 
@@ -51,6 +51,23 @@ class LlmModelResponseSchemaTest extends TestCase
             'remove_patch' => [
                 'name' => 'Remove Patch',
                 'response' => self::loadSchema("{$examplesDir}/remove_patch.json")
+            ]
+        ];
+    }
+
+    /**
+     * Data provider for invalid test responses that should fail validation
+     *
+     * @return array<string, array{name: string, response: array}>
+     */
+    public static function invalidResponseProvider(): array
+    {
+        $examplesDir = __DIR__ . '/example_schemas';
+
+        return [
+            'bad_component_patch_format' => [
+                'name' => 'Bad Hero Patch Format - object with numeric keys instead of array',
+                'response' => self::loadSchema("{$examplesDir}/bad_component_patch_format.json")
             ]
         ];
     }
@@ -76,11 +93,11 @@ class LlmModelResponseSchemaTest extends TestCase
     }
 
     /**
-     * Test response validation with data provider
+     * Test valid responses pass validation
      *
-     * @dataProvider responseProvider
+     * @dataProvider validResponseProvider
      */
-    public function testResponseValidation(string $name, string $response): void
+    public function testValidResponsesPassValidation(string $name, string $response): void
     {
         $responseObject = json_decode($response);
         $this->validator->validate($responseObject, $this->schema->getSchema()['schema']);
@@ -93,6 +110,24 @@ class LlmModelResponseSchemaTest extends TestCase
             $this->validator->reset();
             $this->fail("Content schema validation failed for: {$name}. Errors: $errors");
         }
+    }
 
+    /**
+     * Test invalid responses fail validation
+     *
+     * @dataProvider invalidResponseProvider
+     */
+    public function testInvalidResponsesFailValidation(string $name, string $response): void
+    {
+        $responseObject = json_decode($response);
+        $this->validator->validate($responseObject, $this->schema->getSchema()['schema']);
+
+        if ($this->validator->isValid()) {
+            $this->validator->reset();
+            $this->fail("Schema validation should have failed for: {$name}");
+        } else {
+            $this->validator->reset();
+            $this->assertTrue(true, "Correctly rejected invalid schema: {$name}");
+        }
     }
 }

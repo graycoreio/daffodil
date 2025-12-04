@@ -109,6 +109,12 @@ class ContentSchemaTest extends TestCase
                 'content' => self::loadSchema("{$examplesDir}/simple_page.json"),
                 'schemaType' => 'DaffContentElementSchema',
                 'expectedError' => 'The property headline is not defined and the definition does not allow additional properties'
+            ],
+            'invalid_hero_inputs_key' => [
+                'name' => 'Hero with invalid inputs key (string)',
+                'content' => self::loadSchema("{$examplesDir}/invalid_hero_inputs_key.json"),
+                'schemaType' => 'DaffContentElementSchema',
+                'expectedError' => 'Array value found, but an object is required'
             ]
         ];
     }
