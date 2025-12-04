@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Graycore\CmsAiDaffComponents\Service\Schema\Component;
+namespace Graycore\CmsAiDaffComponents\Components;
 
 use Graycore\CmsAiBuilder\Api\ComponentInterface;
 
