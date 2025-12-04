@@ -5,6 +5,7 @@
         <arguments>
             <argument name="components" xsi:type="array">
                 <item name="DaffHeroComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\DaffHeroComponent</item>
+                <item name="DaffArticleComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\DaffArticleComponent</item>
             </argument>
         </arguments>
     </type>
