@@ -23,17 +23,12 @@ class DaffArticleComponent implements ComponentInterface
             'properties' => [
                 'type' => ['type' => 'string', 'const' => 'componentSchema'],
                 'name' => ['type' => 'string', 'const' => 'DaffArticleComponent'],
-                'inputs' => [
-                    'type' => 'object',
-                    'properties' => [],
-                    'additionalProperties' => false
-                ],
                 'children' => [
                     'type' => 'array',
                     'items' => ['$ref' => '#/$defs/DaffContentSchema']
                 ]
             ],
-            'required' => ['type', 'name', 'inputs', 'children'],
+            'required' => ['type', 'name', 'children'],
             'additionalProperties' => false
         ];
     }
