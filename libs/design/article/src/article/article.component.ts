@@ -1,5 +1,4 @@
 /* eslint-disable quote-props */
-import { DOCUMENT } from '@angular/common';
 import {
   Component,
   ViewEncapsulation,
@@ -8,6 +7,7 @@ import {
   ViewContainerRef,
   inject,
   DestroyRef,
+  afterEveryRender,
 } from '@angular/core';
 
 import { DaffArticleCopyButtonService } from '../article-copy-button/service/copy-button.service';
@@ -33,48 +33,16 @@ export class DaffArticleComponent {
   ) {
     const elementRef = inject(ElementRef<HTMLElement>);
     const viewContainerRef = inject(ViewContainerRef);
-    const document = inject(DOCUMENT);
 
-    let observer: MutationObserver | null = null;
+    afterEveryRender({
+      write: () => {
+        this.copyButtonService.addCopyButtonsToCodeBlocks(elementRef.nativeElement, viewContainerRef);
+      },
+    });
 
-    if (
-      document?.defaultView &&
-      typeof document.defaultView.MutationObserver !== 'undefined'
-    ) {
-      observer = new document.defaultView.MutationObserver(mutations => {
-        let buttonsAdded = false;
-        for (const mutation of mutations) {
-          if (
-            mutation.type === 'childList' &&
-            (mutation.target instanceof document.defaultView.HTMLDivElement &&
-            mutation.target.classList.contains('daff-article__copy-button-wrapper')) ||
-            (mutation.target instanceof document.defaultView.HTMLElement &&
-            mutation.target.classList.contains('daff-article__copy-button'))
-          ) {
-            buttonsAdded = true;
-            break;
-          }
-        }
-        if (!buttonsAdded) {
-          this.copyButtonService.addCopyButtonsToCodeBlocks(elementRef.nativeElement, viewContainerRef);
-        }
-      });
-      observer.observe(elementRef.nativeElement, {
-        childList: true,
-        subtree: true,
-        characterData: true,
-      });
-    }
-
-    // Clean up observer and copy buttons when component is destroyed
     const destroyRef = inject(DestroyRef);
     destroyRef.onDestroy(() => {
-      if (observer) {
-        observer.disconnect();
-        observer = null;
-      }
       this.copyButtonService.cleanup();
     });
   }
 }
-

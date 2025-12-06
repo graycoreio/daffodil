@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffArticleCopyButtonService } from './copy-button.service';
 
-describe('@daffodil/docs | DaffArticleCopyButtonService', () => {
+describe('@daffodil/design/article | DaffArticleCopyButtonService', () => {
   let service: DaffArticleCopyButtonService;
   let mockViewContainerRef: jasmine.SpyObj<ViewContainerRef>;
   let hostElement: HTMLElement;
@@ -34,7 +34,7 @@ describe('@daffodil/docs | DaffArticleCopyButtonService', () => {
       const createComponentSpy = mockViewContainerRef.createComponent.and.returnValue(<any>{
         setInput: jasmine.createSpy('setInput'),
         location: {
-          nativeElement: document.createElement('div'),
+          nativeElement: document.createElement('daff-article-copy-button'),
         },
       });
 
@@ -43,10 +43,10 @@ describe('@daffodil/docs | DaffArticleCopyButtonService', () => {
       expect(createComponentSpy).toHaveBeenCalledTimes(2);
     });
 
-    it('should create wrapper and append button to it', () => {
+    it('should insert button into pre before code element', () => {
       let callCount = 0;
       mockViewContainerRef.createComponent.and.callFake(() => {
-        const buttonElement = document.createElement('button');
+        const buttonElement = document.createElement('daff-article-copy-button');
         buttonElement.id = `button-${callCount++}`;
         return <any>{
           setInput: jasmine.createSpy('setInput'),
@@ -58,15 +58,17 @@ describe('@daffodil/docs | DaffArticleCopyButtonService', () => {
 
       service.addCopyButtonsToCodeBlocks(hostElement, mockViewContainerRef);
 
-      const directChildren = Array.from(hostElement.children);
-      expect(directChildren.length).toBe(2);
-      expect(directChildren[0].tagName).toBe('DIV');
-      expect(directChildren[1].tagName).toBe('DIV');
+      const preElements = hostElement.querySelectorAll('pre');
+      expect(preElements.length).toBe(2);
 
-      expect(directChildren[0].querySelector('pre')).toBeTruthy();
-      expect(directChildren[0].querySelector('button')).toBeTruthy();
-      expect(directChildren[1].querySelector('pre')).toBeTruthy();
-      expect(directChildren[1].querySelector('button')).toBeTruthy();
+      preElements.forEach((pre) => {
+        const button = pre.querySelector('daff-article-copy-button');
+        const code = pre.querySelector('code');
+        expect(button).toBeTruthy();
+        expect(code).toBeTruthy();
+        // Button should be before code
+        expect(button.nextElementSibling).toBe(code);
+      });
     });
 
     it('should skip pre elements without code', () => {
@@ -76,6 +78,28 @@ describe('@daffodil/docs | DaffArticleCopyButtonService', () => {
 
       expect(mockViewContainerRef.createComponent).not.toHaveBeenCalled();
     });
+
+    it('should skip pre elements with nocopy attribute', () => {
+      hostElement.innerHTML = '<pre nocopy><code>const x = 1;</code></pre>';
+
+      service.addCopyButtonsToCodeBlocks(hostElement, mockViewContainerRef);
+
+      expect(mockViewContainerRef.createComponent).not.toHaveBeenCalled();
+    });
+
+    it('should skip pre elements that already have a copy button', () => {
+      mockViewContainerRef.createComponent.and.callFake(() => (<any>{
+        setInput: jasmine.createSpy('setInput'),
+        location: {
+          nativeElement: document.createElement('daff-article-copy-button'),
+        },
+      }));
+
+      service.addCopyButtonsToCodeBlocks(hostElement, mockViewContainerRef);
+      service.addCopyButtonsToCodeBlocks(hostElement, mockViewContainerRef);
+
+      expect(mockViewContainerRef.createComponent).toHaveBeenCalledTimes(2);
+    });
   });
 
   describe('cleanup', () => {
@@ -83,7 +107,7 @@ describe('@daffodil/docs | DaffArticleCopyButtonService', () => {
       const mockButtonRef = {
         setInput: jasmine.createSpy('setInput'),
         location: {
-          nativeElement: document.createElement('div'),
+          nativeElement: document.createElement('daff-article-copy-button'),
         },
         destroy: jasmine.createSpy('destroy'),
       };

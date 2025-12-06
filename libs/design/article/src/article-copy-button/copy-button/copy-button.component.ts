@@ -13,6 +13,8 @@ import {
   faCopy,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { DAFF_ICON_BUTTON_COMPONENTS } from '@daffodil/design/button';
+
 /**
  * DaffArticleCopyButtonComponent is a button that copies text content to the clipboard.
  * It provides visual feedback by changing the icon when content is successfully copied.
@@ -29,6 +31,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FaIconComponent,
+    DAFF_ICON_BUTTON_COMPONENTS,
   ],
 })
 export class DaffArticleCopyButtonComponent implements OnDestroy {
@@ -54,7 +57,7 @@ export class DaffArticleCopyButtonComponent implements OnDestroy {
       // Write content to clipboard
       await navigator.clipboard.writeText(this.content());
       this.copied.set(true);
-
+      clearTimeout(this.timeoutId);
       this._ngZone.runOutsideAngular(() => {
         this.timeoutId = setTimeout(() => {
           this._ngZone.run(() => this.copied.set(false));

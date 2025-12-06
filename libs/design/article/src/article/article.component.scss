@@ -100,18 +100,23 @@
 
 	pre {
 		border-radius: 0.25rem;
-		font-size: t.$font-size-sm;
-		line-height: 1.5rem;
-		margin: 1.5rem 0;
-		padding: 1.5rem;
-		overflow-x: auto;
+		overflow: hidden;
+		position: relative;
 
 		&:last-child {
 			margin-bottom: 0;
 		}
 
 		code {
-			padding: 0;
+			white-space: pre;
+			-webkit-overflow-scrolling: touch;
+			overflow-x: auto;
+			display: block;
+			max-width: 100%;
+			min-width: 100px;
+			font-size: t.$font-size-sm;
+			padding: 1.5rem;
+			line-height: 1.5rem;
 		}
 	}
 

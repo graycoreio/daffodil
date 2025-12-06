@@ -6,17 +6,14 @@ import {
 
 import { DaffArticleCopyButtonComponent } from '../copy-button/copy-button.component';
 
-interface ButtonWrapper {
+interface ButtonEntry {
   buttonRef: ComponentRef<DaffArticleCopyButtonComponent>;
-  wrapper: HTMLElement;
   preElement: HTMLPreElement;
-  originalParent: Node | null;
-  nextSibling: Node | null;
 }
 
 @Injectable()
 export class DaffArticleCopyButtonService {
-  private buttonWrappers: Array<ButtonWrapper> = [];
+  private buttons: Array<ButtonEntry> = [];
 
   /**
    * Finds all code blocks and adds copy buttons to them.
@@ -28,8 +25,6 @@ export class DaffArticleCopyButtonService {
     hostElement: HTMLElement,
     viewContainerRef: ViewContainerRef,
   ): void {
-    this.cleanup();
-
     const codeBlocks = hostElement.querySelectorAll('pre');
 
     codeBlocks.forEach((pre: HTMLPreElement) => {
@@ -43,57 +38,34 @@ export class DaffArticleCopyButtonService {
         return;
       }
 
+      // Skip if already has a copy button
+      if (pre.querySelector('daff-article-copy-button')) {
+        return;
+      }
+
       const textContent = code.textContent || '';
-
-      const originalParent = pre.parentNode;
-      const nextSibling = pre.nextSibling;
-
-      // Create a wrapper for positioning the copy button
-      const wrapper = document.createElement('div');
-      wrapper.classList.add('daff-article__copy-button-wrapper');
-      wrapper.style.position = 'relative';
-
-      pre.parentNode?.insertBefore(wrapper, pre);
-      wrapper.appendChild(pre);
 
       // Create the copy button component
       const buttonRef = viewContainerRef.createComponent(DaffArticleCopyButtonComponent);
-
-      // Pass the code snippet to the button
       buttonRef.setInput('content', textContent);
 
-      // Add copy button to the wrapper
-      wrapper.appendChild(buttonRef.location.nativeElement);
+      // Insert button into pre before the code element
+      pre.insertBefore(buttonRef.location.nativeElement, code);
 
-      this.buttonWrappers.push({
+      this.buttons.push({
         buttonRef,
-        wrapper,
         preElement: pre,
-        originalParent,
-        nextSibling,
       });
     });
   }
 
   /**
-   * Cleanup copy button references and wrapper elements
+   * Cleanup copy button references
    */
   cleanup(): void {
-    this.buttonWrappers.forEach(({ buttonRef, wrapper, preElement, originalParent, nextSibling }) => {
+    this.buttons.forEach(({ buttonRef }) => {
       buttonRef.destroy();
-
-      // Restore the pre element to its original position
-      if (originalParent) {
-        if (nextSibling && nextSibling.parentNode === originalParent) {
-          originalParent.insertBefore(preElement, nextSibling);
-        } else {
-          originalParent.appendChild(preElement);
-        }
-      }
-
-      // Remove the wrapper element
-      wrapper.remove();
     });
-    this.buttonWrappers = [];
+    this.buttons = [];
   }
 }

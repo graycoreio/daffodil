@@ -7,18 +7,3 @@
 	right: 0.2rem;
 	z-index: 1;
 }
-
-.daff-article__copy-button {
-	@include interactions.clickable();
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	appearance: none;
-	border: none;
-	position: relative;
-	border-radius: 0.25rem;
-	padding: 0.1rem;
-	transition: color 0.3;
-	height: 1.4rem;
-	width: 1.4rem;
-}
