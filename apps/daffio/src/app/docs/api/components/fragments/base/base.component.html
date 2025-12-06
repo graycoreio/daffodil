@@ -11,7 +11,7 @@
 	<div class="daffio-docs-api-base-fragment__label-wrapper">
 		@if (!child()) {
 			<daffio-docs-api-item-label [type]="doc().docType">
-				{{ doc().docType }}
+				{{ doc().role | daffDocsApiRoleTagLabel }}
 			</daffio-docs-api-item-label>
 		}
 		@if (doc().deprecated) {

@@ -8,6 +8,7 @@ import {
   effect,
 } from '@angular/core';
 
+import { DaffDocsApiRoleTagLabelPipe } from '@daffodil/docs';
 import {
   DaffApiDocBase,
   DaffDocTableOfContents,
@@ -27,6 +28,7 @@ import { DaffioDocsApiItemLabelComponent } from '../../api-item-label/api-item-l
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DaffioSafeHtmlPipe,
+    DaffDocsApiRoleTagLabelPipe,
     DaffioDocsApiItemLabelComponent,
     DaffioInterceptNavigationDirective,
     DaffioDocsTocHeaderDirective,

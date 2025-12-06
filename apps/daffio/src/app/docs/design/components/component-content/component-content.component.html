@@ -27,7 +27,7 @@
 			<daff-tab-panel>
 				@for (kv of sections(); track kv.key) {
 					@let header = kv.key;
-					@let label = getSectionLabel(header);
+					@let label = header | daffDocsApiRoleSectionLabel;
 					<h2 daffioDocsTocHeader [id]="header" [content]="label" level="2">{{label}}</h2>
 					@for (apiDoc of kv.value; track $index; let docIndex = $index) {
 						@for (component of getApiComponent(apiDoc)?.components || []; track $index; let fragmentIndex = $index) {

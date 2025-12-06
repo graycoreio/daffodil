@@ -19,10 +19,10 @@ import {
   DAFF_TABS_COMPONENTS,
   DaffTabsComponent,
 } from '@daffodil/design/tabs';
+import { DaffDocsApiRoleSectionLabelPipe } from '@daffodil/docs';
 import {
   DaffApiDoc,
   DaffDocKind,
-  daffDocsApiRoleGetSectionLabel,
   DaffDocTableOfContents,
   DaffPackageGuideDoc,
 } from '@daffodil/docs-utils';
@@ -48,6 +48,7 @@ import { DaffioDocsDesignApiSortSectionLabels } from '../../pipes/sort-api-secti
     NgComponentOutlet,
     DaffioInterceptNavigationDirective,
     DaffioDocsTocHeaderDirective,
+    DaffDocsApiRoleSectionLabelPipe,
   ],
   providers: [
     KeyValuePipe,
@@ -62,8 +63,6 @@ export class DaffioDocsDesignComponentContentComponent implements DaffioDocsDyna
 
   private readonly _tab = signal<string>(this.USAGE_TAB_ID);
   private readonly viewHeaders = viewChildren(DaffioDocsTocHeaderDirective);
-
-  readonly getSectionLabel = daffDocsApiRoleGetSectionLabel;
 
   readonly sections = computed(() => this.sortSections.transform(<any>this.keyValue.transform(this.doc().api)));
   readonly fragmentTocs = computed<{
