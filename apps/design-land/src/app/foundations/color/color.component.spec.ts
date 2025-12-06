@@ -1,4 +1,9 @@
 import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import {
   waitForAsync,
   ComponentFixture,
   TestBed,
@@ -14,6 +19,10 @@ describe('DesignLandColorComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DesignLandColorComponent,
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     })
       .compileComponents();

@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/design": "0.0.0-PLACEHOLDER",
     "@daffodil/docs-utils": "0.0.0-PLACEHOLDER"
   }
 }
