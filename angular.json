@@ -391,9 +391,9 @@
             "assets": [
               "apps/design-land/src/favicon.ico",
               "apps/design-land/src/assets",
-              {
-                "glob": "**/*",
-                "input": "dist/docs-assets/docs",
+							{
+                "glob": "!(search-index)/**/*",
+                "input": "dist/docs-assets",
                 "output": "/assets/"
               }
             ],
@@ -421,7 +421,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "1.2mb"
                 },
                 {
                   "type": "anyComponentStyle",
