@@ -33,11 +33,11 @@ export function provideServerDocsPath(): Provider {
     provide: DAFFIO_DOCS_PATH_TOKEN,
     useFactory: () => {
       if(isAngularDevServer()) {
-        return resolve(findProjectRoot(import.meta.url), 'dist/docs-assets/docs');
+        return resolve(findProjectRoot(import.meta.url), 'dist/docs-assets');
       }
       //This works so long as chunks are located in the same folder as the default Angular `server.mjs`.
       //If these move, we'll get missing files.
-      return resolve(dirname(fileURLToPath(import.meta.url)), '../browser/assets/daffio/docs');
+      return resolve(dirname(fileURLToPath(import.meta.url)), '../browser/assets/daffio');
     },
   };
 };

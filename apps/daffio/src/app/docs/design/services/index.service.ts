@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 import {
   DAFF_DOCS_DESIGN_PATH,
+  DAFF_DOCS_PATH,
   DaffDocsDesignGuideNavList,
 } from '@daffodil/docs-utils';
 
@@ -25,6 +26,6 @@ export class DaffioDocsDesignIndexService<T extends DaffDocsDesignGuideNavList =
   ) {}
 
   getList(): Observable<T> {
-    return this.fetchAsset.fetch<T>(`${this.docsPath}/${DAFF_DOCS_DESIGN_PATH}/index.json`, this._key);
+    return this.fetchAsset.fetch<T>(`${this.docsPath}/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/index.json`, this._key);
   }
 }

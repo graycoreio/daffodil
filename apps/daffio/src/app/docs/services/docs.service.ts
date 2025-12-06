@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 import {
   crossOsFilename,
+  DAFF_DOCS_PATH,
   DaffDoc,
 } from '@daffodil/docs-utils';
 
@@ -28,6 +29,6 @@ export class DaffioDocsService implements DaffioDocsServiceInterface {
 
   get<T extends DaffDoc = DaffDoc>(path: string): Observable<T> {
     path = getSafePath(path);
-    return this.fetchAsset.fetch<T>(`${this.docsPath}/${crossOsFilename(path)}.json`, path);
+    return this.fetchAsset.fetch<T>(`${this.docsPath}/${DAFF_DOCS_PATH}/${crossOsFilename(path)}.json`, path);
   }
 }
