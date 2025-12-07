@@ -232,6 +232,7 @@ export const designApiPackage = outputPathsConfigurator({
       // including them first ensures that they are treated as relative paths
       // this will unfortunately create duplicate docs so they must be removed
       'loading-icon/src/index.ts',
+      'form/src/index.ts',
       'media-gallery/src/index.ts',
       //
       '*/src/index.ts',
