@@ -11,12 +11,14 @@ import {
 
 import { DaffContentSchema } from '@daffodil/content';
 
+import { DaffContentChatMessage } from './chat-sidebar/chat-message';
 import { ChatSidebarComponent } from './chat-sidebar/chat-sidebar.component';
 import { ComponentsListComponent } from './components-list/components-list.component';
 import { PromptOutput } from './prompt';
+import { DaffEditorRendererConfig } from './renderer-config';
 import { SchemaViewComponent } from './schema-view/schema-view.component';
 import { EditableRenderer } from '../editable-renderer/editable-renderer';
-import { DaffContentChatMessage } from './chat-sidebar/chat-message';
+import { DaffIframeRenderer } from '../iframe-renderer/iframe-renderer.component';
 
 /**
  * An AI-powered visual editor component for editing {@link DaffContentSchema} content.
@@ -44,7 +46,7 @@ import { DaffContentChatMessage } from './chat-sidebar/chat-message';
  */
 @Component({
   selector: 'daff-ai-editor',
-  imports: [ChatSidebarComponent, EditableRenderer, ComponentsListComponent, SchemaViewComponent],
+  imports: [ChatSidebarComponent, EditableRenderer, DaffIframeRenderer, ComponentsListComponent, SchemaViewComponent],
   templateUrl: './ai-editor.component.html',
   styleUrl: './ai-editor.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -74,6 +76,13 @@ export class DaffAiEditorComponent {
    * Whether the AI is currently generating a response.
    */
   isGenerating = input<boolean>(false);
+
+  /**
+   * Optional configuration for the iframe-based renderer.
+   * When provided, the editor uses an iframe for CSS isolation.
+   * When not provided, uses inline rendering (default behavior).
+   */
+  rendererConfig = input<DaffEditorRendererConfig | null>(null);
 
   /**
    * Emits when the schema is updated, either via inline editing or AI generation.

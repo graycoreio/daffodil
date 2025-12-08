@@ -270,4 +270,58 @@ describe('@daffodil/content/editor | DaffAiEditorComponent', () => {
       expect(component.optimisticMessages()).toEqual([]);
     }));
   });
+
+  describe('renderer selection', () => {
+    it('should show empty state when neither rendererConfig nor schema is provided', () => {
+      fixture.detectChanges();
+
+      const iframeRenderer = fixture.nativeElement.querySelector('daff-iframe-renderer');
+      const editableRenderer = fixture.nativeElement.querySelector('daff-content-editable-renderer');
+      const emptyState = fixture.nativeElement.querySelector('.empty-state');
+
+      expect(iframeRenderer).toBeFalsy();
+      expect(editableRenderer).toBeFalsy();
+      expect(emptyState).toBeTruthy();
+    });
+
+    it('should show editable renderer when schema is provided but rendererConfig is not', fakeAsync(() => {
+      const schema: DaffContentSchema = { type: 'textSchema', text: 'Test' };
+      fixture.componentRef.setInput('schema', schema);
+      fixture.detectChanges();
+
+      const iframeRenderer = fixture.nativeElement.querySelector('daff-iframe-renderer');
+      const editableRenderer = fixture.nativeElement.querySelector('daff-content-editable-renderer');
+      const emptyState = fixture.nativeElement.querySelector('.empty-state');
+
+      expect(iframeRenderer).toBeFalsy();
+      expect(editableRenderer).toBeTruthy();
+      expect(emptyState).toBeFalsy();
+    }));
+
+    it('should show empty state when rendererConfig is provided but schema is not', fakeAsync(() => {
+      fixture.componentRef.setInput('rendererConfig', { url: '/test-renderer' });
+      fixture.detectChanges();
+
+      const iframeRenderer = fixture.nativeElement.querySelector('daff-iframe-renderer');
+      const editableRenderer = fixture.nativeElement.querySelector('daff-content-editable-renderer');
+      const emptyState = fixture.nativeElement.querySelector('.empty-state');
+
+      expect(iframeRenderer).toBeFalsy();
+      expect(editableRenderer).toBeFalsy();
+      expect(emptyState).toBeTruthy();
+    }));
+
+    it('should prefer iframe renderer over editable renderer when both rendererConfig and schema are provided', fakeAsync(() => {
+      const schema: DaffContentSchema = { type: 'textSchema', text: 'Test' };
+      fixture.componentRef.setInput('rendererConfig', { url: '/test-renderer' });
+      fixture.componentRef.setInput('schema', schema);
+      fixture.detectChanges();
+
+      const iframeRenderer = fixture.nativeElement.querySelector('daff-iframe-renderer');
+      const editableRenderer = fixture.nativeElement.querySelector('daff-content-editable-renderer');
+
+      expect(iframeRenderer).toBeTruthy();
+      expect(editableRenderer).toBeFalsy();
+    }));
+  });
 });

@@ -82,8 +82,18 @@
 
     <div class="preview-content" [attr.data-viewport]="activeTab() === 'interact' ? viewportMode() : null">
       @if (activeTab() === 'interact') {
-        @if (schema()) {
-          <editable-renderer [schema]="schema()" (schemaUpdate)="onSchemaUpdate($event)" />
+        @if (schema() && rendererConfig(); as config) {
+          <!-- Iframe-based renderer for CSS isolation -->
+          <daff-iframe-renderer
+            [rendererUrl]="config.url"
+            [mode]="config.mode ?? 'csr'"
+            [schema]="schema()"
+            [formFields]="config.formFields ?? {}"
+            (schemaUpdate)="onSchemaUpdate($event)"
+          />
+        } @else if (schema()) {
+          <!-- Inline renderer (development mode) -->
+          <daff-content-editable-renderer [schema]="schema()" (schemaUpdate)="onSchemaUpdate($event)" />
         } @else {
           <div class="empty-state">
             <div class="empty-state-content">
