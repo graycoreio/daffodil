@@ -4,8 +4,18 @@
     <type name="Graycore\CmsAiBuilder\Service\Schema\ComponentSchema">
         <arguments>
             <argument name="components" xsi:type="array">
-                <item name="DaffHeroComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\DaffHeroComponent</item>
+                <item name="DaffAccordionComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\Accordion\DaffAccordionComponent</item>
+                <item name="DaffAccordionItemComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\Accordion\DaffAccordionItemComponent</item>
                 <item name="DaffArticleComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\DaffArticleComponent</item>
+                <item name="DaffCalloutComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\DaffCalloutComponent</item>
+                <item name="DaffCardComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\DaffCardComponent</item>
+                <item name="DaffContainerComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\DaffContainerComponent</item>
+                <item name="DaffHeroComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\DaffHeroComponent</item>
+                <item name="DaffImageComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\DaffImageComponent</item>
+                <item name="DaffListComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\List\DaffListComponent</item>
+                <item name="DaffListItemComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\List\DaffListItemComponent</item>
+                <item name="DaffTagComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\DaffTagComponent</item>
+                <item name="DaffYoutubePlayerComponentSchema" xsi:type="object">Graycore\CmsAiDaffComponents\Components\DaffYoutubePlayerComponent</item>
             </argument>
         </arguments>
     </type>
