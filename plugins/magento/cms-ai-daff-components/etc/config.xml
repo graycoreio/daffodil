@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <ai_cms_builder>
+            <editor_customization>
+                <custom_polyfills_script>Graycore_CmsAiDaffComponents/js/editor/browser/polyfills-SCHOHYNV.js</custom_polyfills_script>
+                <custom_main_script>Graycore_CmsAiDaffComponents/js/editor/browser/main-GBH6LULE.js</custom_main_script>
+                <renderer_url>admin</renderer_url>
+                <renderer_mode>csr</renderer_mode>
+            </editor_customization>
+        </ai_cms_builder>
+    </default>
+</config>

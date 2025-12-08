@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+    Renderer page layout - minimal layout for iframe embedding.
+    This page hosts the Angular daff-design-renderer app inside an iframe.
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="admin-blank"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!-- <css src="Graycore_CmsAiDaffComponents::js/admin-renderer/browser/styles-MCD5XXCU.css"/> -->
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="ai_cms_builder_renderer" remove="true"/>
+            <block class="Magento\Backend\Block\Template"
+                   name="ai_cms_builder_daff_renderer"
+                   template="Graycore_CmsAiDaffComponents::renderer.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

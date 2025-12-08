@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright © Graycore. All rights reserved.
+ */
+
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<!-- Angular Renderer App Root -->
+<app-root></app-root>
+
+<?php
+
+$chunkPreloadJs = $block->getViewFileUrl('Graycore_CmsAiDaffComponents::js/renderer/browser/chunk-CTCDRK6I.js');
+$polyfillsUrl = $block->getViewFileUrl('Graycore_CmsAiDaffComponents::js/renderer/browser/polyfills-SCHOHYNV.js');
+$mainScriptUrl= $block->getViewFileUrl('Graycore_CmsAiDaffComponents::js/renderer/browser/main-E3LT4OZN.js');
+?>
+
+<link rel="modulepreload" href="<?= $escaper->escapeUrl($chunkPreloadJs) ?>">
+<script type="module" src="<?= $escaper->escapeUrl($polyfillsUrl) ?>"></script>
+<script type="module" src="<?= $escaper->escapeUrl($mainScriptUrl) ?>"></script>
+
+
+
