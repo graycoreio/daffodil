@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="admin-blank"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <remove src="css/styles-old.css"/>
+        <remove src="css/styles.css"/>
+        <remove src="jquery/jstree/themes/default/style.css"/>
+        <remove src="jquery/uppy/dist/uppy-custom.css"/>
+        <remove src="requirejs/require.js"/>
+    </head>
+    <body>
+        <referenceContainer name="require.js" remove="true"/>
+        <referenceContainer name="backend.page" remove="true"/>
+        <referenceContainer name="menu.wrapper" remove="true"/>
+        <referenceContainer name="content">
+            <block class="Graycore\CmsAiBuilder\Block\Adminhtml\Renderers\IdentityRenderer"
+                   name="ai_cms_builder_renderer"
+                   template="Graycore_CmsAiBuilder::renderers/identity.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

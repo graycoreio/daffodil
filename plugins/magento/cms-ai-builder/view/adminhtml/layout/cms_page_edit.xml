@@ -2,6 +2,13 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="Graycore_CmsAiBuilder::js/admin-preview/browser/styles-MCD5XXCU.css"/>
+        <css src="Graycore_CmsAiBuilder::js/editor/browser/styles-MCD5XXCU.css"/>
     </head>
+    <body>
+        <referenceContainer name="js">
+            <block class="Graycore\CmsAiBuilder\Block\Adminhtml\Editor"
+                   template="Graycore_CmsAiBuilder::editor-config.phtml"
+                   name="ai_cms_builder_js_config"/>
+        </referenceContainer>
+    </body>
 </page>

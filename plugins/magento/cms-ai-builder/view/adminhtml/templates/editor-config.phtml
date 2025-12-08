@@ -2,13 +2,18 @@
 /**
  * Copyright © Graycore. All rights reserved.
  */
+
+/** @var \Graycore\CmsAiBuilder\Block\Adminhtml\Editor $block */
+/** @var \Magento\Framework\Escaper $escaper */
 ?>
 <script>
 window.CmsAiBuilderUrl = '<?= $escaper->escapeUrl($block->getUrl('CmsAiBuilder/generate/index')) ?>';
-window.CmsAiBuilderAssetsPath = '<?= $escaper->escapeUrl($block->getViewFileUrl('Graycore_CmsAiBuilder::js/admin-preview')) ?>';
+window.CmsAiRendererUrl = '<?= $escaper->escapeUrl($block->getUrl('CmsAiBuilder/renderer/index')) ?>';
+window.CmsAiBuilderAssetsPath = '<?= $escaper->escapeUrl($block->getViewFileUrl('Graycore_CmsAiBuilder::js/editor')) ?>';
 window.CmsAiBuilderConfig = {
     polyfillsScript: '<?= $escaper->escapeJs($block->getPolyfillsScriptPath()) ?>',
-    mainScript: '<?= $escaper->escapeJs($block->getMainScriptPath()) ?>'
+    mainScript: '<?= $escaper->escapeJs($block->getMainScriptPath()) ?>',
+    rendererConfig: <?= /* @noEscape */ $block->getRendererConfigJson() ?>
 };
 
 // Configure Monaco environment for web workers

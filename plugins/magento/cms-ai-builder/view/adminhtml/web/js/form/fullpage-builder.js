@@ -94,6 +94,8 @@ define([
                     self.editor.addEventListener('prompt', function (event) {
                         self.handlePrompt(event);
                     });
+
+                    self.editor.rendererConfig = window.CmsAiBuilderConfig.rendererConfig;
                 }
             }, 100);
 

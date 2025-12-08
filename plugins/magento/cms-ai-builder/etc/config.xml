@@ -26,11 +26,35 @@
 
                     Your custom scripts should:
                     1. Define an <ai-editor> custom element
-                    2. Support properties: schema, chatHistory, fullscreen
+                    2. Support properties: schema, chatHistory, fullscreen, rendererConfig
                     3. Dispatch events: fullscreenChange, schemaUpdate, prompt
                 -->
-                <custom_polyfills_script>Graycore_CmsAiBuilder/js/admin-preview/browser/polyfills-SCHOHYNV.js</custom_polyfills_script>
-                <custom_main_script>Graycore_CmsAiBuilder/js/admin-preview/browser/main-UDOOOO6W.js</custom_main_script>
+                <custom_polyfills_script>Graycore_CmsAiBuilder/js/editor/browser/polyfills-SCHOHYNV.js</custom_polyfills_script>
+                <custom_main_script>Graycore_CmsAiBuilder/js/editor/browser/main-3PIPVN5I.js</custom_main_script>
+                <!--
+                    URL for the iframe-based renderer (for CSS isolation).
+
+                    The renderer URL points to a page that:
+                    1. Listens for postMessage events with { type: 'setSchema', schema: ... }
+                    2. Renders the schema content with inline editing support
+                    3. Sends { type: 'schemaUpdate', schema: ... } when content is edited
+                    4. Sends { type: 'ready' } when loaded and ready to receive messages
+
+                    Values:
+                    - "admin" (default): Uses the built-in admin renderer page at CmsAiBuilder/renderer/index
+                    - Empty: Disables iframe rendering (uses inline rendering, no CSS isolation)
+                -->
+                <renderer_url>admin</renderer_url>
+                <!--
+                    Renderer communication mode.
+
+                    Values:
+                    - "csr" (default): Client-side rendering. Dynamic updates via JavaScript postMessage API.
+                      Supports inline editing. Requires JavaScript in the renderer page.
+                    - "ssr": Server-side rendering. Schema POSTed as JSON via hidden form.
+                      Page reloads on changes. Preview only (no inline editing). Pure PHP rendering.
+                -->
+                <renderer_mode>ssr</renderer_mode>
             </editor_customization>
         </ai_cms_builder>
     </default>

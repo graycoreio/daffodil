@@ -16,9 +16,10 @@ class Config extends AbstractHelper
     public const XML_PATH_ENABLED = 'ai_cms_builder/general/enabled';
     public const XML_PATH_OPENAI_API_KEY = 'ai_cms_builder/general/openai_api_key';
     public const XML_PATH_OPENAI_MODEL = 'ai_cms_builder/general/openai_model';
-    public const XML_PATH_COMPONENT_REGISTRY = 'ai_cms_builder/component_registry/registry_json';
     public const XML_PATH_CUSTOM_POLYFILLS_SCRIPT = 'ai_cms_builder/editor_customization/custom_polyfills_script';
     public const XML_PATH_CUSTOM_MAIN_SCRIPT = 'ai_cms_builder/editor_customization/custom_main_script';
+    public const XML_PATH_RENDERER_URL = 'ai_cms_builder/editor_customization/renderer_url';
+    public const XML_PATH_RENDERER_MODE = 'ai_cms_builder/editor_customization/renderer_mode';
 
     /**
      * @param Context $context
@@ -106,5 +107,37 @@ class Config extends AbstractHelper
         );
 
         return $customPath;
+    }
+
+    /**
+     * Get renderer URL for iframe-based rendering
+     *
+     * @param int|null $storeId
+     * @return string|null
+     */
+    public function getRendererUrl(?int $storeId = null): ?string
+    {
+        return $this->scopeConfig->getValue(
+            self::XML_PATH_RENDERER_URL,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
+    }
+
+    /**
+     * Get renderer mode (csr or ssr)
+     *
+     * @param int|null $storeId
+     * @return string
+     */
+    public function getRendererMode(?int $storeId = null): string
+    {
+        $mode = $this->scopeConfig->getValue(
+            self::XML_PATH_RENDERER_MODE,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
+
+        return $mode ?: 'csr';
     }
 }
