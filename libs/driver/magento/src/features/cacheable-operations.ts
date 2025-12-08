@@ -1,3 +1,5 @@
+import { makeEnvironmentProviders } from '@angular/core';
+
 import { MagentoDriverFeatureKind } from './kind.enum';
 import { makeMagentoDriverFeature } from './make-feature';
 import { MagentoDriverFeature } from './type';
@@ -11,5 +13,5 @@ import {
  */
 export const withDaffMagentoCacheableOperations = (...extraOperations: Array<string>): MagentoDriverFeature => makeMagentoDriverFeature(MagentoDriverFeatureKind.CacheableOperations, [
   provideDaffMagentoApolloCacheableOperations(),
-  ...provideManyDaffMagentoCacheableOperations(...extraOperations),
+  makeEnvironmentProviders(provideManyDaffMagentoCacheableOperations(...extraOperations)),
 ]);
