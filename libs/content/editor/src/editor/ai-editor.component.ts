@@ -17,7 +17,7 @@ import { ComponentsListComponent } from './components-list/components-list.compo
 import { PromptOutput } from './prompt';
 import { DaffEditorRendererConfig } from './renderer-config';
 import { SchemaViewComponent } from './schema-view/schema-view.component';
-import { EditableRenderer } from '../editable-renderer/editable-renderer';
+import { DaffContentEditableRenderer } from '../editable-renderer/editable-renderer';
 import { DaffIframeRenderer } from '../iframe-renderer/iframe-renderer.component';
 
 /**
@@ -46,7 +46,7 @@ import { DaffIframeRenderer } from '../iframe-renderer/iframe-renderer.component
  */
 @Component({
   selector: 'daff-ai-editor',
-  imports: [ChatSidebarComponent, EditableRenderer, DaffIframeRenderer, ComponentsListComponent, SchemaViewComponent],
+  imports: [ChatSidebarComponent, DaffContentEditableRenderer, DaffIframeRenderer, ComponentsListComponent, SchemaViewComponent],
   templateUrl: './ai-editor.component.html',
   styleUrl: './ai-editor.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

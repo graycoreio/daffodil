@@ -16,7 +16,7 @@ import {
   provideDynamicComponent,
 } from '@daffodil/content';
 
-import { EditableRenderer } from './editable-renderer';
+import { DaffContentEditableRenderer } from './editable-renderer';
 
 @Component({
   selector: 'test-component',
@@ -27,13 +27,13 @@ class TestComponent {
   readonly testInput = input<string>();
 }
 
-describe('@daffodil/content/editor | EditableRenderer', () => {
-  let component: EditableRenderer;
-  let fixture: ComponentFixture<EditableRenderer>;
+describe('@daffodil/content/editor | DaffContentEditableRenderer', () => {
+  let component: DaffContentEditableRenderer;
+  let fixture: ComponentFixture<DaffContentEditableRenderer>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditableRenderer],
+      imports: [DaffContentEditableRenderer],
       providers: [
         provideDynamicComponent({
           componentType: TestComponent,
@@ -42,7 +42,7 @@ describe('@daffodil/content/editor | EditableRenderer', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(EditableRenderer);
+    fixture = TestBed.createComponent(DaffContentEditableRenderer);
     component = fixture.componentInstance;
   });
 

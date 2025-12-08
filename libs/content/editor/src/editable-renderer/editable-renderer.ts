@@ -42,7 +42,7 @@ import {
  * ```
  */
 @Component({
-  selector: 'editable-renderer',
+  selector: 'daff-content-editable-renderer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [`
     :host {
@@ -54,7 +54,7 @@ import {
   template: '',
   imports: [],
 })
-export class EditableRenderer {
+export class DaffContentEditableRenderer {
   /**
    * The content schema to render.
    * Can be an element, component, or text schema node.
