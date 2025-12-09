@@ -28,7 +28,7 @@ export class DaffDocsColorPalettesComponent {
   readonly COLOR = DaffDocsSassType.COLOR;
   readonly MAP = DaffDocsSassType.MAP;
 
-  readonly items = input.required<Array<DaffDocsSassItem>>();
+  readonly items = input<Array<DaffDocsSassItem>>([]);
   readonly palettes = computed(() =>
     this.items().filter((item) => item.group.includes('color-palettes')),
   );
