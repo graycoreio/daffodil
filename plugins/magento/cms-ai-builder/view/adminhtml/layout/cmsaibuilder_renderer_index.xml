@@ -14,7 +14,7 @@
         <referenceContainer name="backend.page" remove="true"/>
         <referenceContainer name="menu.wrapper" remove="true"/>
         <referenceContainer name="content">
-            <block class="Graycore\CmsAiBuilder\Block\Adminhtml\Renderers\IdentityRenderer"
+            <block class="Graycore\CmsAiBuilder\Block\Adminhtml\Renderers\NativeRenderer"
                    name="ai_cms_builder_renderer"
                    template="Graycore_CmsAiBuilder::renderers/identity.phtml"/>
         </referenceContainer>
