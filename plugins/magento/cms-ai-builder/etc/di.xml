@@ -5,6 +5,8 @@
                 type="Graycore\CmsAiBuilder\Service\SchemaChatGenerator"/>
     <preference for="Graycore\CmsAiBuilder\Api\LlmModelInterface"
                 type="Graycore\CmsAiBuilder\Service\Llm\OpenAi"/>
+    <preference for="Graycore\CmsAiBuilder\Api\RendererInterface"
+                type="Graycore\CmsAiBuilder\Block\Renderer"/>
 
     <type name="Graycore\CmsAiBuilder\Service\Schema\ComponentSchema">
         <arguments>

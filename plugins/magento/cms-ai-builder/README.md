@@ -3,18 +3,7 @@
 A Magento 2 module that extends the CMS page editor with AI-powered content generation and visual preview capabilities.
 
 > [!IMPORTANT]  
-> This does not allow you to change the content in Luma/Hyva/Native Magento theme. Do not expect to just open up a page in the admin panel, generate a result, hit save, and expect to go to your Magento frontend and see what the model generated. This extension generates a new schema property `ai_schema_json` that's available on given page. This schema will need to be converted into an associated Magento template. I don't use Luma/Hyva/Native Magento frontend, so someone else will have to tackle this task.
-> HELP IS WANTED HERE. I WANT TO SUPPORT THIS, BUT I DONT HAVE THE TIME TO BUILD THIS.
-
-![An image of the editor in the Magento admin panel](guides/assets/editor-in-ui.webp)
-
-<p align="center">
-  <a href="https://www.daff.io/"><strong>daff.io</strong></a>
-  | 
-  <a href="https://www.youtube.com/watch?v=LcudrwsT_gk"><strong>Youtube Demo</strong></a>
-  | 
-  <a href="https://www.youtube.com/watch?v=LcudrwsT_gk"><strong>Daffodil Demo</strong></a>
-</p>
+> The native renderer for Luma/Hyva themes is poorly test. Please help me test it and find bugs.
 
 > [!WARNING]
 > **This package is highly experimental and NOT production-ready.**
@@ -27,13 +16,24 @@ A Magento 2 module that extends the CMS page editor with AI-powered content gene
 >
 > **Use at your own risk.** This package is intended for testing, evaluation, and development purposes only. Do not use in production environments or with critical data.
 
+
+![An image of the editor in the Magento admin panel](guides/assets/editor-in-ui.webp)
+
+<p align="center">
+  <a href="https://www.daff.io/"><strong>daff.io</strong></a>
+  | 
+  <a href="https://www.youtube.com/watch?v=LcudrwsT_gk"><strong>Youtube Demo</strong></a>
+  | 
+  <a href="https://www.youtube.com/watch?v=LcudrwsT_gk"><strong>Daffodil Demo</strong></a>
+</p>
+
 ## Overview
 
 This module adds an AI-powered visual editor to Magento 2's CMS pages, allowing content managers to:
 
 - Generate page schemas from text prompts using OpenAI
 - Preview content in real-time using an Angular-based renderer
-- Store and serve dynamic content via GraphQL
+- Store and serve dynamic content via GraphQL and standard theme like Luma
 
 ## Features
 
@@ -86,10 +86,7 @@ These are problems that I know exist, and would really love help with:
 - [ ] The model's responses are fairly slow (high latency)
 - [ ] When I'm interacting with the model, if I cancel a request the whole UI freezes (this is a side effect of Magento's session-locking=, try `disable_locking`)
     - [ ] When I save a page while the model is responding, the UI waits to save until the model has finished its last response.
-- [ ] This doesn't support the native Magento frontend, only GraphQl.
-- [ ] The DB performance of the PageAiRepository is absolutely atrocious (like 15 reads and 2 saves per chat).
 - [ ] It doesn't generate links, buttons, or forms fields. 
-- [ ] The styles of the Magento admin panel bleed into the page's design.
 
 ## License
 
