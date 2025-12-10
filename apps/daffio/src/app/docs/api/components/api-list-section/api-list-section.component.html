@@ -3,17 +3,17 @@
     <div class="daffio-api-list-section__item-name">{{ childDoc.title }}</div>
     <div class="daffio-api-list-section__label-wrapper">
       <daffio-docs-api-item-label
-      [type]="childDoc.docType"
-      class="daffio-api-list-section__item-label">
-      {{ childDoc.docType }}
-    </daffio-docs-api-item-label>
-    @if(childDoc.deprecated) {
-      <daffio-docs-api-item-label
-        type="deprecated"
-        class="daffio-api-list-section__item-label">
-          <fa-icon [icon]="faExclamation"></fa-icon>
-      </daffio-docs-api-item-label>
-    }
+				[type]="childDoc.docType"
+				class="daffio-api-list-section__item-label">
+				{{ (childDoc.role | daffDocsApiRoleTagLabel) || childDoc.docType }}
+			</daffio-docs-api-item-label>
+			@if (childDoc.deprecated) {
+				<daffio-docs-api-item-label
+					type="deprecated"
+					class="daffio-api-list-section__item-label">
+						<fa-icon [icon]="faExclamation"></fa-icon>
+				</daffio-docs-api-item-label>
+			}
     </div>
   </a>
 }
