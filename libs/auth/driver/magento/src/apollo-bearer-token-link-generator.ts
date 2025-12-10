@@ -1,8 +1,44 @@
-import { Injectable } from '@angular/core';
+import {
+  inject,
+  Injectable,
+  makeEnvironmentProviders,
+} from '@angular/core';
 import { ApolloLink } from '@apollo/client/core';
 
 import { DaffAuthStorageService } from '@daffodil/auth';
-import { DaffApolloLinkGenerator } from '@daffodil/core/graphql';
+import {
+  DaffApolloLinkGenerator,
+  provideDaffApolloHeaderProviders,
+} from '@daffodil/core/graphql';
+import {
+  makeMagentoDriverFeature,
+  MagentoDriverFeature,
+} from '@daffodil/driver/magento';
+
+export function withMagentoAuthApolloBearerToken(): MagentoDriverFeature {
+  return makeMagentoDriverFeature('MagentoAuthApolloBearerToken', [
+    provideMagentoAuthApolloBearerToken(),
+  ]);
+}
+
+export function provideMagentoAuthApolloBearerToken() {
+  return makeEnvironmentProviders([
+    provideDaffApolloHeaderProviders(() => {
+      const storage = inject(DaffAuthStorageService);
+      let token = null;
+
+      try {
+        token = storage.getAuthToken();
+      } catch(e){}
+
+      return token
+        ? {
+          authorization: `Bearer ${token}`,
+        }
+        : {};
+    }),
+  ]);
+}
 
 /**
  * A service that will convert cacheable apollo operations into a format that Magento will understand as cacheable.
