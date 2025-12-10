@@ -1,9 +1,7 @@
-@use '../../../../scss/interactions';
-
 :host {
 	display: block;
 	position: absolute;
-	top: 0.2rem;
-	right: 0.2rem;
+	top: 0.25rem;
+	right: 0.25rem;
 	z-index: 1;
 }

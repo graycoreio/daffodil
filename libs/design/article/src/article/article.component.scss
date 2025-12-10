@@ -100,7 +100,6 @@
 
 	pre {
 		border-radius: 0.25rem;
-		overflow: hidden;
 		position: relative;
 
 		&:last-child {
@@ -108,15 +107,11 @@
 		}
 
 		code {
-			white-space: pre;
-			-webkit-overflow-scrolling: touch;
-			overflow-x: auto;
 			display: block;
-			max-width: 100%;
-			min-width: 100px;
-			font-size: t.$font-size-sm;
-			padding: 1.5rem;
 			line-height: 1.5rem;
+			font-size: t.$font-size-sm;
+			overflow-x: auto;
+			padding: 1.5rem;
 		}
 	}
 

@@ -37,11 +37,8 @@
 			}
 
 			&__copy-button {
-				color: daff-color($neutral, 50);
-				background: none;
-				&:hover {
-					color: daff-color($neutral, 60);
-				}
+				background: daff-color($neutral, 10);
+				border: 1px solid daff-color($neutral, 20);
 			}
 
 			hr {
@@ -118,11 +115,8 @@
 			}
 
 			&__copy-button {
-				color: daff-color($neutral, 50);
-				background: none;
-				&:hover {
-					color: daff-color($neutral, 40);
-				}
+				background: daff-color($neutral, 90);
+				border: 1px solid daff-color($neutral, 80);
 			}
 
 			hr {
