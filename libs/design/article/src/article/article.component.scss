@@ -100,18 +100,18 @@
 
 	pre {
 		border-radius: 0.25rem;
-		font-size: t.$font-size-sm;
-		line-height: 1.5rem;
-		margin: 1.5rem 0;
-		padding: 1.5rem;
-		overflow-x: auto;
+		position: relative;
 
 		&:last-child {
 			margin-bottom: 0;
 		}
 
 		code {
-			padding: 0;
+			display: block;
+			line-height: 1.5rem;
+			font-size: t.$font-size-sm;
+			overflow-x: auto;
+			padding: 1.5rem;
 		}
 	}
 

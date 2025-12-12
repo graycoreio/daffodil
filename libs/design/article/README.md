@@ -31,7 +31,7 @@ The link style in an article uses the default browser link style.
 <design-land-example-viewer-container example="article-ol"></design-land-example-viewer-container>
 
 ### Code
-These are styles for inline and multiline blocks of code.
+These are styles for inline and multiline blocks of code. By default, a copy button is added to all code blocks. Disable this by adding a `nocopy` attribute to the `pre` element.
 
 #### Inline code
 <design-land-example-viewer-container example="article-code-inline"></design-land-example-viewer-container>

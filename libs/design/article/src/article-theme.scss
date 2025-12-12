@@ -36,6 +36,11 @@
 				}
 			}
 
+			&__copy-button {
+				background: daff-color($neutral, 10);
+				border: 1px solid daff-color($neutral, 20);
+			}
+
 			hr {
 				background: daff-color($neutral, 20);
 			}
@@ -107,6 +112,11 @@
 					background: none;
 					border: none;
 				}
+			}
+
+			&__copy-button {
+				background: daff-color($neutral, 90);
+				border: 1px solid daff-color($neutral, 80);
 			}
 
 			hr {

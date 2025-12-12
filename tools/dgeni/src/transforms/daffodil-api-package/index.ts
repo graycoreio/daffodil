@@ -231,6 +231,7 @@ export const designApiPackage = outputPathsConfigurator({
       // their entry here, TS will incorrectly map the path as absolute
       // including them first ensures that they are treated as relative paths
       // this will unfortunately create duplicate docs so they must be removed
+      'button/src/index.ts',
       'loading-icon/src/index.ts',
       'form/src/index.ts',
       'media-gallery/src/index.ts',
