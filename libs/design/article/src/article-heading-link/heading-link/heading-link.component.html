@@ -1,0 +1,12 @@
+<div class="daff-article__heading-link">
+	<a class="daff-article__heading-link__anchor" routerLink="." [fragment]="fragment()" queryParamsHandling="preserve">
+		{{ label() }}
+	</a>
+	<button daffIconButton class="daff-article__heading-link__button" size="sm" [attr.aria-label]="ariaLabel" (click)="copyLink()">
+		@if (copied()) {
+			<fa-icon [icon]="faCheck" size="sm" />
+		} @else {
+			<fa-icon [icon]="faLink" size="sm" />
+		}
+	</button>
+</div>
