@@ -14,7 +14,6 @@ import {
   DaffDocTableOfContents,
 } from '@daffodil/docs-utils';
 
-import { DaffioDocsHeadingLinkComponent } from '../../../../components/heading-link/heading-link.component';
 import { DaffioDocsTocHeaderDirective } from '../../../../toc/header.directive';
 import { DaffioDocsApiDynamicContentFragment } from '../../../dynamic-content/fragment.type';
 import { DaffioDocsApiInterfaceBlockComponent } from '../../interface-block/interface-block.component';
@@ -29,7 +28,6 @@ import { DaffioDocsApiPropertyBlockComponent } from '../../property-block/proper
     DaffioDocsApiPropertyBlockComponent,
     DaffioDocsApiInterfaceBlockComponent,
     DaffioDocsTocHeaderDirective,
-    DaffioDocsHeadingLinkComponent,
   ],
 })
 export class DaffioDocsApiPropsFragmentComponent implements DaffioDocsApiDynamicContentFragment<DaffApiType> {

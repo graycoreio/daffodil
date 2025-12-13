@@ -17,7 +17,6 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioInterceptNavigationDirective } from '../../../../../core/router/intercept-navigation.directive';
-import { DaffioDocsHeadingLinkComponent } from '../../../../components/heading-link/heading-link.component';
 import { DaffioDocsTocHeaderDirective } from '../../../../toc/header.directive';
 import { DaffioDocsApiDynamicContentFragment } from '../../../dynamic-content/fragment.type';
 
@@ -31,7 +30,6 @@ import { DaffioDocsApiDynamicContentFragment } from '../../../dynamic-content/fr
     DaffioDocsTocHeaderDirective,
     DaffioInterceptNavigationDirective,
     DaffioSafeHtmlPipe,
-    DaffioDocsHeadingLinkComponent,
   ],
 })
 export class DaffioDocsApiParamsFragmentComponent implements DaffioDocsApiDynamicContentFragment<DaffDocsApiFunction> {
