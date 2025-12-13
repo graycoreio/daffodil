@@ -68,17 +68,9 @@ export class DaffArticleHeadingLinkComponent implements OnDestroy {
     }
 
     try {
-      // Create URL tree with current route and fragment
-      const urlTree = this._router.createUrlTree(['.'], {
-        fragment: this.fragment(),
-        queryParamsHandling: 'preserve',
-        relativeTo: this._router.routerState.root,
-      });
-
-      // Serialize to get the path, then construct full URL
-      const path = this._router.serializeUrl(urlTree);
-      const origin = this._document.defaultView?.location.origin || '';
-      const fullUrl = `${origin}${path}`;
+      // Get the URL to fragment
+      const currentUrl = this._router.url.split('#')[0]; // Remove existing fragment if any
+      const fullUrl = `${this._document.defaultView?.location.origin || ''}${currentUrl}#${this.fragment()}`;
 
       // Write full URL to clipboard
       await navigator.clipboard.writeText(fullUrl);
