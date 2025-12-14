@@ -7,7 +7,8 @@ Article can be used on any content page that displays large blocks of text-drive
 ## Supported elements
 
 ### Headings
-All <h2>, <h3>, <h4> headings have an anchor link that directs users to that heading on click and a copy button that copies the heading URL to clipboard on click by default. Disable this by adding a `nolink` attribute to the heading element.
+All `<h2>`, `<h3>`, `<h4>` headings have an anchor link that directs users to that heading on click and a copy button that copies the heading URL to clipboard on click by default. Disable this by adding a `nolink` attribute to the heading element.
+
 <design-land-example-viewer-container example="article-headings"></design-land-example-viewer-container>
 
 ### Article Meta
