@@ -31,6 +31,11 @@ export class DaffArticleHeadingLinkService {
         return;
       }
 
+      // Skip if nolink attribute is present
+      if (heading.hasAttribute('nolink')) {
+        return;
+      }
+
       const textContent = heading.textContent?.trim() || '';
       const fragment = heading.id || this.generateFragment(textContent);
 
