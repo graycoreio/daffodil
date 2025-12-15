@@ -1,0 +1,37 @@
+name: Check Magento Plugins
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - develop
+    paths:
+      - "plugins/magento/**"
+      - ".github/workflows/build_magento_plugins.yml"
+  pull_request:
+    branches:
+      - develop
+    paths:
+      - "plugins/magento/**"
+      - ".github/workflows/build_magento_plugins.yml"
+
+jobs:
+  compute_matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.supported-version.outputs.matrix }}
+    steps:
+      - uses: graycoreio/github-actions-magento2/supported-version@main
+        id: supported-version
+        with:
+          include_services: true
+
+  check-cms-ai-builder:
+    needs: compute_matrix
+    uses: graycoreio/github-actions-magento2/.github/workflows/check-extension.yaml@main
+    with:
+      matrix: ${{ needs.compute_matrix.outputs.matrix }}
+      fail-fast: false
+      path: plugins/magento/cms-ai-builder
+    secrets:
+      composer_auth: ${{ secrets.COMPOSER_AUTH }}
