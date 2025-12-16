@@ -18,14 +18,12 @@ interface SchemaChatGeneratorInterface
      * @param string $prompt
      * @param string|null $schema
      * @param array|null $conversationHistory
-     * @param int|null $storeId
      * @return GenerateSchemaResultInterface
      * @throws \Exception
      */
     public function generate(
         string $prompt,
         ?string $schema,
-        ?array $conversationHistory = null,
-        ?int $storeId = null
+        ?array $conversationHistory = null
     ): GenerateSchemaResultInterface;
 }

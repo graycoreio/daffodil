@@ -11,7 +11,6 @@ namespace Graycore\CmsAiBuilder\Service;
 use Graycore\CmsAiBuilder\Api\LlmModelInterface;
 use Graycore\CmsAiBuilder\Api\Result\GenerateSchemaResultInterface;
 use Graycore\CmsAiBuilder\Api\SchemaChatGeneratorInterface;
-use Graycore\CmsAiBuilder\Helper\Config;
 use Graycore\CmsAiBuilder\Service\Data\GenerateSchemaResult;
 use Graycore\CmsAiBuilder\Service\Schema\JsonPatchResponseSchema;
 use Magento\Framework\Serialize\Serializer\Json;
@@ -20,7 +19,6 @@ use Psr\Log\LoggerInterface;
 class SchemaChatGenerator implements SchemaChatGeneratorInterface
 {
     /**
-     * @param Config $config
      * @param Json $json
      * @param LoggerInterface $logger
      * @param Prompt $prompt
@@ -29,7 +27,6 @@ class SchemaChatGenerator implements SchemaChatGeneratorInterface
      * @param JsonPatchResponseSchema $responseSchema
      */
     public function __construct(
-        private readonly Config $config,
         private readonly Json $json,
         private readonly LoggerInterface $logger,
         private readonly Prompt $prompt,
@@ -45,20 +42,14 @@ class SchemaChatGenerator implements SchemaChatGeneratorInterface
      * @param string $prompt
      * @param string|null $schema
      * @param array|null $conversationHistory
-     * @param int|null $storeId
      * @return GenerateSchemaResultInterface
      * @throws \Exception
      */
     public function generate(
         string $prompt,
         ?string $schema,
-        ?array $conversationHistory = null,
-        ?int $storeId = null
+        ?array $conversationHistory = null
     ): GenerateSchemaResultInterface {
-        if (!$this->config->isEnabled($storeId)) {
-            throw new \Exception('AI CMS Builder is not enabled');
-        }
-
         $systemPrompt = $this->prompt->getSystemPrompt();
 
         if (!$schema || $schema === '[]') {

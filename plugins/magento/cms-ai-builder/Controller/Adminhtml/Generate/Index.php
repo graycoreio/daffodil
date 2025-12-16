@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Graycore\CmsAiBuilder\Controller\Adminhtml\Generate;
 
 use Graycore\CmsAiBuilder\Api\SchemaChatGeneratorInterface;
+use Graycore\CmsAiBuilder\Helper\Config;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Cms\Api\PageRepositoryInterface;
@@ -29,13 +30,15 @@ class Index extends Action implements HttpPostActionInterface
      * @param SchemaChatGeneratorInterface $schemaChatGenerator
      * @param PageRepositoryInterface $pageRepository
      * @param Json $json
+     * @param Config $config
      */
     public function __construct(
         Context $context,
         private readonly JsonFactory $resultJsonFactory,
         private readonly SchemaChatGeneratorInterface $schemaChatGenerator,
         private readonly PageRepositoryInterface $pageRepository,
-        private readonly Json $json
+        private readonly Json $json,
+        private readonly Config $config
     ) {
         parent::__construct($context);
     }
@@ -46,6 +49,13 @@ class Index extends Action implements HttpPostActionInterface
     public function execute()
     {
         $resultJson = $this->resultJsonFactory->create();
+
+        if (!$this->config->isEnabled()) {
+            return $resultJson->setData([
+                'success' => false,
+                'error' => 'AI CMS Builder is not enabled'
+            ]);
+        }
 
         try {
             $request = $this->getRequest();

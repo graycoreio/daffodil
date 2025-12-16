@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Graycore\CmsAiBuilder\Controller\Adminhtml\Renderer;
 
+use Graycore\CmsAiBuilder\Helper\Config;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\Controller\Result\RawFactory;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
-use Magento\Framework\View\Result\Page;
 
 /**
  * Admin controller for the standalone design renderer page.
@@ -40,10 +42,14 @@ class Index extends Action implements HttpPostActionInterface, HttpGetActionInte
     /**
      * @param Context $context
      * @param PageFactory $resultPageFactory
+     * @param RawFactory $resultRawFactory
+     * @param Config $config
      */
     public function __construct(
         Context $context,
-        private readonly PageFactory $resultPageFactory
+        private readonly PageFactory $resultPageFactory,
+        private readonly RawFactory $resultRawFactory,
+        private readonly Config $config
     ) {
         parent::__construct($context);
     }
@@ -51,8 +57,14 @@ class Index extends Action implements HttpPostActionInterface, HttpGetActionInte
     /**
      * Execute action and render the renderer page
      */
-    public function execute(): Page
+    public function execute(): ResultInterface
     {
+        if (!$this->config->isEnabled()) {
+            $result = $this->resultRawFactory->create();
+            $result->setContents('AI CMS Builder is not enabled');
+            return $result;
+        }
+
         return $this->resultPageFactory->create();
     }
 }
