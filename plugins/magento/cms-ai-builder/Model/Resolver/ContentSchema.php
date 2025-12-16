@@ -22,8 +22,8 @@ class ContentSchema implements ResolverInterface
         Field $field,
         $context,
         ResolveInfo $info,
-        array $value = null,
-        array $args = null
+        ?array $value = null,
+        ?array $args = null
     ) {
         if (!isset($value['ai_schema_json']) || empty($value['ai_schema_json'])) {
             return null;
