@@ -1,16 +1,15 @@
 <?xml version="1.0"?>
-<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Graycore_CmsAiBuilder">
-    <description>Magento 2 Coding Standard for Graycore CmsAiBuilder Module</description>
+<ruleset>
+    <description>PHP CodeSniffer configuration for Graycore Daffodil module</description>
+
+    <!-- Scan these files/directories -->
+    <file>.</file>
+
+    <!-- Exclude paths -->
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>node_modules/*</exclude-pattern>
+    <exclude-pattern>view/adminhtml/web/js/editor/browser/</exclude-pattern>
 
     <!-- Use Magento2 coding standard -->
     <rule ref="Magento2"/>
-
-    <!-- Paths to check -->
-    <file>.</file>
-
-    <!-- Exclude patterns -->
-    <exclude-pattern>*/vendor/*</exclude-pattern>
-    <exclude-pattern>*/view/adminhtml/web/js/admin-preview/*</exclude-pattern>
-    <exclude-pattern>view/adminhtml/web/js/admin-preview/*</exclude-pattern>
-    <exclude-pattern>./view/adminhtml/web/js/admin-preview/*</exclude-pattern>
 </ruleset>
