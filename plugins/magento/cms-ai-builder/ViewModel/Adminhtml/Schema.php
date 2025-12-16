@@ -11,6 +11,9 @@ use Magento\Framework\View\Element\Block\ArgumentInterface;
 
 class Schema implements ArgumentInterface
 {
+    /**
+     * @param Http $request
+     */
     public function __construct(
         private readonly Http $request
     ) {

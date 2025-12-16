@@ -33,7 +33,7 @@ class PatchApplier
     public function applyPatch(string $schema, array $patchOperations): array
     {
         try {
-            if(!count($patchOperations)) {
+            if (!count($patchOperations)) {
                 return $this->normalizer->normalize($this->json->unserialize($schema));
             }
 

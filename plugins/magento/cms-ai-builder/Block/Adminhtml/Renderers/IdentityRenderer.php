@@ -12,6 +12,11 @@ use Magento\Backend\Block\Template\Context;
 
 class IdentityRenderer extends Template
 {
+    /**
+     * @param Context $context
+     * @param Schema $schema
+     * @param array $data
+     */
     public function __construct(
         Context $context,
         private readonly Schema $schema,

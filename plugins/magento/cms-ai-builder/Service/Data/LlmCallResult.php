@@ -10,25 +10,29 @@ use Graycore\CmsAiBuilder\Api\Result\LlmCallResultInterface;
 
 class LlmCallResult implements LlmCallResultInterface
 {
-	public function __construct(
-		private readonly string $reply,
-		private readonly array $patch
-	) {
-	}
+    /**
+     * @param string $reply
+     * @param array $patch
+     */
+    public function __construct(
+        private readonly string $reply,
+        private readonly array $patch
+    ) {
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function getReply(): string
-	{
-		return $this->reply;
-	}
+    /**
+     * @inheritdoc
+     */
+    public function getReply(): string
+    {
+        return $this->reply;
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function getPatch(): array
-	{
-		return $this->patch;
-	}
+    /**
+     * @inheritdoc
+     */
+    public function getPatch(): array
+    {
+        return $this->patch;
+    }
 }

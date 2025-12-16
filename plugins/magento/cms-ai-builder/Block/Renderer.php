@@ -9,126 +9,167 @@ declare(strict_types=1);
 namespace Graycore\CmsAiBuilder\Block;
 
 use Graycore\CmsAiBuilder\Api\RendererInterface;
+use Magento\Framework\Escaper;
 
 class Renderer implements RendererInterface
 {
-	private $css = '';
-	private $elementCount = 0;
+    /**
+     * @var string
+     */
+    private $css = '';
 
-	/**
-	 * Render JSON content to HTML
-	 *
-	 * @param string $json
-	 * @return string
-	 */
-	public function render(array $data): string
-	{
-		// Check if $data is the schema itself
-		if (isset($data['type']) && ($data['type'] === 'elementSchema' || $data['type'] === 'textSchema')) {
-			$schema = $data;
-		} else {
-			// Find the last item with a schema in the array
-			$schema = null;
-			if (is_array($data)) {
-				foreach (array_reverse($data) as $item) {
-					if (isset($item['schema']) && !empty($item['schema']) && is_array($item['schema'])) {
-						$schema = $item['schema'];
-						break;
-					}
-				}
-			}
-		}
+    /**
+     * @var int
+     */
+    private $elementCount = 0;
 
-		if (!$schema) {
-			return '';
-		}
+    /**
+     * @param Escaper $escaper
+     */
+    public function __construct(
+        private readonly Escaper $escaper
+    ) {
+    }
 
-		$this->css = '';
-		$this->elementCount = 0;
+    /**
+     * Render JSON content to HTML
+     *
+     * @param array $data
+     * @return string
+     */
+    public function render(array $data): string
+    {
+        // Check if $data is the schema itself
+        if (isset($data['type']) && ($data['type'] === 'elementSchema' || $data['type'] === 'textSchema')) {
+            $schema = $data;
+        } else {
+            // Find the last item with a schema in the array
+            $schema = null;
+            if (is_array($data)) {
+                foreach (array_reverse($data) as $item) {
+                    if (isset($item['schema']) && !empty($item['schema']) && is_array($item['schema'])) {
+                        $schema = $item['schema'];
+                        break;
+                    }
+                }
+            }
+        }
 
-		$html = $this->renderNode($schema);
+        if (!$schema) {
+            return '';
+        }
 
-		$styleBlock = '';
-		if ($this->css) {
-			$styleBlock = "<style>{$this->css}</style>";
-		}
+        $this->css = '';
+        $this->elementCount = 0;
 
-		return $styleBlock . $html;
-	}
+        $html = $this->renderNode($schema);
 
-	private function renderNode($node)
-	{
-		if (!isset($node['type'])) {
-			return '';
-		}
+        $styleBlock = '';
+        if ($this->css) {
+            $styleBlock = "<style>{$this->css}</style>";
+        }
 
-		if ($node['type'] === 'textSchema') {
-			return htmlspecialchars($node['text'] ?? '');
-		}
+        return $styleBlock . $html;
+    }
 
-		if ($node['type'] === 'elementSchema') {
-			$tag = htmlspecialchars($node['element'] ?? 'div');
-			$attributes = $this->renderAttributes($node['attributes'] ?? []);
+    /**
+     * Render a node to HTML
+     *
+     * @param array $node
+     * @return string
+     */
+    private function renderNode($node)
+    {
+        if (!isset($node['type'])) {
+            return '';
+        }
 
-			$className = '';
-			if (isset($node['styles']) && !empty($node['styles'])) {
-				$className = 'ai-el-' . (++$this->elementCount);
-				$this->processStyles($className, $node['styles']);
-				$attributes .= ' class="' . $className . '"';
-			}
+        if ($node['type'] === 'textSchema') {
+            return $this->escaper->escapeHtml($node['text'] ?? '');
+        }
 
-			$html = "<{$tag}{$attributes}>";
+        if ($node['type'] === 'elementSchema') {
+            $tag = $this->escaper->escapeHtml($node['element'] ?? 'div');
+            $attributes = $this->renderAttributes($node['attributes'] ?? []);
 
-			if (isset($node['children']) && is_array($node['children'])) {
-				foreach ($node['children'] as $child) {
-					$html .= $this->renderNode($child);
-				}
-			}
+            $className = '';
+            if (isset($node['styles']) && !empty($node['styles'])) {
+                $className = 'ai-el-' . (++$this->elementCount);
+                $this->processStyles($className, $node['styles']);
+                $attributes .= ' class="' . $className . '"';
+            }
 
-			$html .= "</{$tag}>";
-			return $html;
-		}
+            $html = "<{$tag}{$attributes}>";
 
-		return '';
-	}
+            if (isset($node['children']) && is_array($node['children'])) {
+                foreach ($node['children'] as $child) {
+                    $html .= $this->renderNode($child);
+                }
+            }
 
-	private function renderAttributes($attributes)
-	{
-		$html = '';
-		foreach ($attributes as $key => $value) {
-			$html .= ' ' . htmlspecialchars($key) . '="' . htmlspecialchars($value) . '"';
-		}
-		return $html;
-	}
+            $html .= "</{$tag}>";
+            return $html;
+        }
 
-	private function processStyles($className, $styles)
-	{
-		// Base styles
-		if (isset($styles['base']) && is_array($styles['base'])) {
-			$cssProps = $this->buildCssProperties($styles['base']);
-			if ($cssProps) {
-				$this->css .= ".{$className} { {$cssProps} }\n";
-			}
-		}
+        return '';
+    }
 
-		// Breakpoints
-		if (isset($styles['breakpoints']) && is_array($styles['breakpoints'])) {
-			foreach ($styles['breakpoints'] as $mediaQuery => $props) {
-				$cssProps = $this->buildCssProperties($props);
-				if ($cssProps) {
-					$this->css .= "@media {$mediaQuery} { .{$className} { {$cssProps} } }\n";
-				}
-			}
-		}
-	}
+    /**
+     * Render attributes to HTML string
+     *
+     * @param array $attributes
+     * @return string
+     */
+    private function renderAttributes($attributes)
+    {
+        $html = '';
+        foreach ($attributes as $key => $value) {
+            $html .= ' ' . $this->escaper->escapeHtml($key) . '="' . $this->escaper->escapeHtml($value) . '"';
+        }
+        return $html;
+    }
 
-	private function buildCssProperties($props)
-	{
-		$css = '';
-		foreach ($props as $prop => $val) {
-			// Basic sanitization could be added here
-			$css .= "{$prop}: {$val}; ";
-		}
-		return trim($css);
-	}
+    /**
+     * Process styles and add to CSS
+     *
+     * @param string $className
+     * @param array $styles
+     * @return void
+     */
+    private function processStyles($className, $styles)
+    {
+        // Base styles
+        if (isset($styles['base']) && is_array($styles['base'])) {
+            $cssProps = $this->buildCssProperties($styles['base']);
+            if ($cssProps) {
+                $this->css .= ".{$className} { {$cssProps} }\n";
+            }
+        }
+
+        // Breakpoints
+        if (isset($styles['breakpoints']) && is_array($styles['breakpoints'])) {
+            foreach ($styles['breakpoints'] as $mediaQuery => $props) {
+                $cssProps = $this->buildCssProperties($props);
+                if ($cssProps) {
+                    $this->css .= "@media {$mediaQuery} { .{$className} { {$cssProps} } }\n";
+                }
+            }
+        }
+    }
+
+    /**
+     * Build CSS properties string
+     *
+     * @param array $props
+     * @return string
+     */
+    private function buildCssProperties($props)
+    {
+        $css = '';
+        foreach ($props as $prop => $val) {
+            // Basic sanitization could be added here
+            $css .= "{$prop}: {$val}; ";
+        }
+        return trim($css);
+    }
 }

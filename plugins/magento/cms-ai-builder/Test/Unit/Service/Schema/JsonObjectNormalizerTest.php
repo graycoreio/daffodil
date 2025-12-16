@@ -12,6 +12,9 @@ use stdClass;
 
 class JsonObjectNormalizerTest extends TestCase
 {
+    /**
+     * @var JsonObjectNormalizer
+     */
     private JsonObjectNormalizer $normalizer;
 
     protected function setUp(): void
@@ -137,6 +140,7 @@ class JsonObjectNormalizerTest extends TestCase
         $result = $this->normalizer->normalize($input);
         $json = json_encode($result);
 
+        // phpcs:ignore Generic.Files.LineLength.TooLong
         $expected = '{"type":"elementSchema","element":"div","attributes":{},"children":[],"styles":{"base":{},"breakpoints":{}}}';
         $this->assertEquals($expected, $json);
     }

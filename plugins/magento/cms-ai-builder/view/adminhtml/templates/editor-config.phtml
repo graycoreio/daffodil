@@ -7,9 +7,10 @@
 /** @var \Magento\Framework\Escaper $escaper */
 ?>
 <script>
+<?php $assetsPath = $block->getViewFileUrl('Graycore_CmsAiBuilder::js/editor'); ?>
 window.CmsAiBuilderUrl = '<?= $escaper->escapeUrl($block->getUrl('CmsAiBuilder/generate/index')) ?>';
 window.CmsAiRendererUrl = '<?= $escaper->escapeUrl($block->getUrl('CmsAiBuilder/renderer/index')) ?>';
-window.CmsAiBuilderAssetsPath = '<?= $escaper->escapeUrl($block->getViewFileUrl('Graycore_CmsAiBuilder::js/editor')) ?>';
+window.CmsAiBuilderAssetsPath = '<?= $escaper->escapeUrl($assetsPath) ?>';
 window.CmsAiBuilderConfig = {
     polyfillsScript: '<?= $escaper->escapeJs($block->getPolyfillsScriptPath()) ?>',
     mainScript: '<?= $escaper->escapeJs($block->getMainScriptPath()) ?>',

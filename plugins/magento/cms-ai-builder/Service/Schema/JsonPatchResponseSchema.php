@@ -11,6 +11,9 @@ namespace Graycore\CmsAiBuilder\Service\Schema;
  */
 class JsonPatchResponseSchema
 {
+    /**
+     * @param ComponentSchema $componentSchema
+     */
     public function __construct(
         private readonly ComponentSchema $componentSchema
     ) {
@@ -97,7 +100,8 @@ class JsonPatchResponseSchema
                     [
                         'CssStyleObject' => [
                             'type' => 'object',
-                            'description' => 'CSS styles as key-value pairs (e.g. {"margin": "10px", "display": "flex"}).',
+                            'description' =>
+                                'CSS styles as key-value pairs (e.g. {"margin": "10px", "display": "flex"}).',
                             'properties' => (object)[],
                             'required' => [],
                             'additionalProperties' => [
@@ -176,7 +180,7 @@ class JsonPatchResponseSchema
                                         'path' => ['type' => 'string'],
                                     ],
                                 ],
-                                // Copy  
+                                // Copy
                                 [
                                     'additionalProperties' => false,
                                     'required' => ['op', 'from', 'path'],

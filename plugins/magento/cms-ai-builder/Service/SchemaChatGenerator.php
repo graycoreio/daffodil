@@ -19,6 +19,15 @@ use Psr\Log\LoggerInterface;
 
 class SchemaChatGenerator implements SchemaChatGeneratorInterface
 {
+    /**
+     * @param Config $config
+     * @param Json $json
+     * @param LoggerInterface $logger
+     * @param Prompt $prompt
+     * @param PatchApplier $patchApplier
+     * @param LlmModelInterface $llmModel
+     * @param JsonPatchResponseSchema $responseSchema
+     */
     public function __construct(
         private readonly Config $config,
         private readonly Json $json,
@@ -27,14 +36,25 @@ class SchemaChatGenerator implements SchemaChatGeneratorInterface
         private readonly PatchApplier $patchApplier,
         private readonly LlmModelInterface $llmModel,
         private readonly JsonPatchResponseSchema $responseSchema
-    ) {}
+    ) {
+    }
 
     /**
      * Generate JSON Patch from user prompt using OpenAI
+     *
+     * @param string $prompt
+     * @param string|null $schema
+     * @param array|null $conversationHistory
+     * @param int|null $storeId
+     * @return GenerateSchemaResultInterface
      * @throws \Exception
      */
-    public function generate(string $prompt, string | null $schema, ?array $conversationHistory = null, ?int $storeId = null): GenerateSchemaResultInterface
-    {
+    public function generate(
+        string $prompt,
+        ?string $schema,
+        ?array $conversationHistory = null,
+        ?int $storeId = null
+    ): GenerateSchemaResultInterface {
         if (!$this->config->isEnabled($storeId)) {
             throw new \Exception('AI CMS Builder is not enabled');
         }
@@ -71,7 +91,8 @@ class SchemaChatGenerator implements SchemaChatGeneratorInterface
         // Add current user prompt with schema context
         $messages[] = [
             'role' => 'user',
-            'content' => $prompt . "\n\n---\nCURRENT SCHEMA (preserve this unless the request requires changes):\n" . $schema,
+            'content' => $prompt .
+                "\n\n---\nCURRENT SCHEMA (preserve this unless the request requires changes):\n" . $schema,
         ];
 
         try {

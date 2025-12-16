@@ -12,9 +12,20 @@ use Graycore\CmsAiBuilder\Api\Result\GenerateSchemaResultInterface;
 
 interface SchemaChatGeneratorInterface
 {
-	/**
-	 * Generate JSON Patch from user prompt using OpenAI
-	 * @throws \Exception
-	 */
-	public function generate(string $prompt, string | null $schema, ?array $conversationHistory = null, ?int $storeId = null): GenerateSchemaResultInterface;
+    /**
+     * Generate JSON Patch from user prompt
+     *
+     * @param string $prompt
+     * @param string|null $schema
+     * @param array|null $conversationHistory
+     * @param int|null $storeId
+     * @return GenerateSchemaResultInterface
+     * @throws \Exception
+     */
+    public function generate(
+        string $prompt,
+        ?string $schema,
+        ?array $conversationHistory = null,
+        ?int $storeId = null
+    ): GenerateSchemaResultInterface;
 }

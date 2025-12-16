@@ -14,8 +14,19 @@ use PHPUnit\Framework\TestCase;
 
 class ContentSchemaTest extends TestCase
 {
+    /**
+     * @var JsonPatchResponseSchema
+     */
     private JsonPatchResponseSchema $schema;
+
+    /**
+     * @var Validator
+     */
     private Validator $validator;
+
+    /**
+     * @var array
+     */
     private array $contentSchemaDefinition;
 
     public function setUp(): void
@@ -108,7 +119,7 @@ class ContentSchemaTest extends TestCase
                 'name' => 'Hero with invalid input (headline)',
                 'content' => self::loadSchema("{$examplesDir}/simple_page.json"),
                 'schemaType' => 'DaffContentElementSchema',
-                'expectedError' => 'The property headline is not defined and the definition does not allow additional properties'
+                'expectedError' => 'The property headline is not defined'
             ],
             'invalid_hero_inputs_key' => [
                 'name' => 'Hero with invalid inputs key (string)',
@@ -162,8 +173,12 @@ class ContentSchemaTest extends TestCase
      *
      * @dataProvider failingContentSchemaProvider
      */
-    public function testFailingContentSchemaValidation(string $name, string $content, string $schemaType, string $expectedError): void
-    {
+    public function testFailingContentSchemaValidation(
+        string $name,
+        string $content,
+        string $schemaType,
+        string $expectedError
+    ): void {
         // Get the specific schema definition
         if (!isset($this->contentSchemaDefinition[$schemaType])) {
             $this->fail("Schema type '{$schemaType}' not found in definitions");
@@ -201,14 +216,14 @@ class ContentSchemaTest extends TestCase
         }
 
        // Check that ONE of the errors is about the expected property
-       $foundExpectedError = false;
-       foreach ($errors as $error) {
-           if (stripos($error['property'], $expectedError) !== false ||
+        $foundExpectedError = false;
+        foreach ($errors as $error) {
+            if (stripos($error['property'], $expectedError) !== false ||
                stripos($error['message'], $expectedError) !== false) {
-               $foundExpectedError = true;
-               break;
-           }
-       }
+                $foundExpectedError = true;
+                break;
+            }
+        }
 
         if (!$foundExpectedError) {
             $errors = json_encode($this->validator->getErrors(), JSON_PRETTY_PRINT);

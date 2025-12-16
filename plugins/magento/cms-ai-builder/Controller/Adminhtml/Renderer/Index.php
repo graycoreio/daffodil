@@ -37,6 +37,10 @@ class Index extends Action implements HttpPostActionInterface, HttpGetActionInte
      */
     public const ADMIN_RESOURCE = 'Magento_Cms::page';
 
+    /**
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     */
     public function __construct(
         Context $context,
         private readonly PageFactory $resultPageFactory

@@ -2,14 +2,19 @@
 /**
  * Copyright © Graycore. All rights reserved.
  */
+// phpcs:disable Generic.Files.LineLength
 declare(strict_types=1);
 
 namespace Graycore\CmsAiBuilder\Service;
 
 class Prompt
 {
-    
-    public function getSystemPrompt():string
+    /**
+     * Get system prompt for AI
+     *
+     * @return string
+     */
+    public function getSystemPrompt(): string
     {
         return <<<PROMPT
 You are an AI assistant that generates Angular component schemas compatible with the Daffodil schema-renderer.

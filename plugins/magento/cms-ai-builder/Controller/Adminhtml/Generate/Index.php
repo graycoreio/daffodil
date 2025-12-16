@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Graycore\CmsAiBuilder\Controller\Adminhtml\Generate;
 
 use Graycore\CmsAiBuilder\Api\SchemaChatGeneratorInterface;
-use Graycore\CmsAiBuilder\Service\PatchGenerator;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Cms\Api\PageRepositoryInterface;
@@ -27,7 +26,7 @@ class Index extends Action implements HttpPostActionInterface
     /**
      * @param Context $context
      * @param JsonFactory $resultJsonFactory
-     * @param PatchGenerator $patchGenerator
+     * @param SchemaChatGeneratorInterface $schemaChatGenerator
      * @param PageRepositoryInterface $pageRepository
      * @param Json $json
      */
@@ -77,9 +76,9 @@ class Index extends Action implements HttpPostActionInterface
                             $storedConversationHistory = null;
                         }
                     }
+                // phpcs:ignore Magento2.CodeAnalysis.EmptyBlock
                 } catch (\Exception $e) {
                     // Page not found, fall through to use request history
-                    // phpcs:ignore Magento2.CodeAnalysis.EmptyBlock
                 }
             }
 

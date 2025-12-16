@@ -14,7 +14,14 @@ use PHPUnit\Framework\TestCase;
 
 class LlmModelResponseSchemaTest extends TestCase
 {
+    /**
+     * @var JsonPatchResponseSchema
+     */
     private JsonPatchResponseSchema $schema;
+
+    /**
+     * @var Validator
+     */
     private Validator $validator;
 
     public function setUp(): void

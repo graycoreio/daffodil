@@ -13,11 +13,14 @@ use Magento\Backend\Block\Template;
 class NoopRenderer extends Template
 {
     /**
+     * Return empty string for no-op rendering
+     *
      * @param string $alias
      * @param boolean $useCache
      * @return string
      */
-    public function getChildHtml($alias = '', $useCache = true) {
+    public function getChildHtml($alias = '', $useCache = true)
+    {
         return '';
     }
 }

@@ -15,26 +15,32 @@ use Magento\Backend\Block\Template\Context;
 
 class NativeRenderer extends Template
 {
-	public function __construct(
-		Context $context,
-		private readonly Schema $schema,
-		private readonly RendererInterface $renderer,
-		array $data = [],
-	) {
-		parent::__construct($context, $data);
-	}
+    /**
+     * @param Context $context
+     * @param Schema $schema
+     * @param RendererInterface $renderer
+     * @param array $data
+     */
+    public function __construct(
+        Context $context,
+        private readonly Schema $schema,
+        private readonly RendererInterface $renderer,
+        array $data = [],
+    ) {
+        parent::__construct($context, $data);
+    }
 
-	/**
-	 * @inheritDoc
-	 */
-	public function getChildHtml($alias = '', $useCache = true)
-	{
-		$schema = $this->schema->getSchema();
+    /**
+     * @inheritDoc
+     */
+    public function getChildHtml($alias = '', $useCache = true)
+    {
+        $schema = $this->schema->getSchema();
 
-		if ($schema === null) {
-			return '';
-		}
+        if ($schema === null) {
+            return '';
+        }
 
-		return $this->renderer->render($schema);
-	}
+        return $this->renderer->render($schema);
+    }
 }

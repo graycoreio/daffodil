@@ -12,8 +12,12 @@ use Graycore\CmsAiBuilder\Api\Result\LlmCallResultInterface;
 
 interface LlmModelInterface
 {
-	/**
-	 * Get the JSON schema definition for this component
-	 */
-	public function call(array $schema, array $messages): LlmCallResultInterface;
+    /**
+     * Call the LLM model with schema and messages
+     *
+     * @param array $schema
+     * @param array $messages
+     * @return LlmCallResultInterface
+     */
+    public function call(array $schema, array $messages): LlmCallResultInterface;
 }
