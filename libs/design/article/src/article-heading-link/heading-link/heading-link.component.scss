@@ -1,25 +1,22 @@
-.daff-article__heading-link {
-	$root: &;
+:host {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.6rem;
+	align-items: center;
 
-	#{$root}__anchor {
+	&:hover {
+		.daff-article-heading-link__button {
+			opacity: 1;
+		}
+	}
+}
+
+.daff-article-heading-link {
+	&__anchor {
 		text-decoration: none;
 	}
 
-	#{$root}__button {
-		visibility: hidden;
+	&__button {
 		opacity: 0;
 		transition: opacity 200ms ease;
-		background-color: transparent;
-		border: none;
-	}
-
-	&:hover {
-		#{$root}__button {
-			visibility: visible;
-			opacity: 1;
-		}
 	}
 }

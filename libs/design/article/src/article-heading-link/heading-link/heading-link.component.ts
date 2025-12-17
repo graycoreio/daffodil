@@ -11,7 +11,6 @@ import {
   OnDestroy,
   signal,
   PLATFORM_ID,
-  ViewEncapsulation,
 } from '@angular/core';
 import {
   Router,
@@ -31,7 +30,6 @@ import { DAFF_ICON_BUTTON_COMPONENTS } from '@daffodil/design/button';
   templateUrl: './heading-link.component.html',
   styleUrl: './heading-link.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
   hostDirectives: [
     { directive: DaffArticleEncapsulatedDirective },
   ],
