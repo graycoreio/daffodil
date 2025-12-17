@@ -1,0 +1,13 @@
+<daff-checkbox-set [orientation]="orientationControl.value">
+  <daff-checkbox-set-label>Sizes</daff-checkbox-set-label>
+  <daff-checkbox>Extra small</daff-checkbox>
+  <daff-checkbox>Small</daff-checkbox>
+  <daff-checkbox>Medium</daff-checkbox>
+  <daff-checkbox>Large</daff-checkbox>
+</daff-checkbox-set>
+
+<select [formControl]="orientationControl">
+   @for (option of options; track option) {
+    <option [value]="option.value">{{ option.label }}</option>
+  }
+</select>

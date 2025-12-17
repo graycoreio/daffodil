@@ -5,16 +5,14 @@ import {
 import {
   ReactiveFormsModule,
   UntypedFormControl,
-  UntypedFormGroup,
-  Validators,
 } from '@angular/forms';
 
 import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_CHECKBOX_COMPONENTS } from '@daffodil/design/checkbox';
 
 @Component({
-  selector: 'checkbox-set-example',
-  templateUrl: './checkbox-set.component.html',
+  selector: 'checkbox-set-orientations',
+  templateUrl: './checkbox-set-orientations.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
@@ -22,10 +20,12 @@ import { DAFF_CHECKBOX_COMPONENTS } from '@daffodil/design/checkbox';
     DAFF_CHECKBOX_COMPONENTS,
   ],
 })
-export class CheckboxSetExampleComponent {
-  choices = new UntypedFormGroup({
-    choiceOne: new UntypedFormControl('', Validators.required),
-    choiceTwo: new UntypedFormControl('', Validators.required),
-    choiceThree: new UntypedFormControl('', Validators.required),
-  });
+export class CheckboxSetOrientationsExampleComponent {
+  orientationControl: UntypedFormControl = new UntypedFormControl('');
+
+  options = [
+    { value: '', label: 'Default' },
+    { value: 'vertical', label: 'Vertical' },
+    { value: 'horizontal', label: 'Horizontal' },
+  ];
 }

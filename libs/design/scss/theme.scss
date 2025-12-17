@@ -35,6 +35,7 @@
 @use '../accordion/src/accordion-theme' as accordion;
 @use '../callout/src/callout-theme' as callout;
 @use '../card/src/card-base-theme' as card-base;
+@use '../checkbox/src/checkbox-theme' as checkbox;
 @use '../card/src/card/raised/raised-theme' as raised-card;
 @use '../card/src/card/stroked/stroked-theme' as stroked-card;
 @use '../hero/src/hero-theme' as hero;
@@ -92,6 +93,7 @@
 	@include hint.daff-hint-theme($theme);
 	@include select.daff-select-theme($theme);
 	@include native-select.daff-native-select-theme($theme);
+	@include checkbox.daff-checkbox-theme($theme);
 
 	@include loading-icon.daff-loading-icon-theme($theme);
 	@include progress-bar.daff-progress-bar-theme($theme);

@@ -1,7 +1,6 @@
 import {
   Component,
-  ViewChild,
-  OnInit,
+  DebugElement,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -11,7 +10,7 @@ import {
 import {
   UntypedFormControl,
   ReactiveFormsModule,
-  UntypedFormArray,
+  UntypedFormGroup,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
@@ -22,10 +21,12 @@ import {
 
 @Component({
   template: `
-    <daff-checkbox-set name="example" [formArray]="checkboxArray">
-      <daff-checkbox [formControl]="checkboxArray.at(0)" value="option1">Option 1 </daff-checkbox>
-      <daff-checkbox [formControl]="checkboxArray.at(1)" value="option2">Option 2 </daff-checkbox>
-      <daff-checkbox [formControl]="checkboxArray.at(2)" value="option3">Option 3 </daff-checkbox>
+    <daff-checkbox-set [formGroup]="example">
+      <daff-checkbox formControlName="choiceOne">Choice 1 </daff-checkbox>
+      <daff-checkbox formControlName="choiceTwo">Choice 2 </daff-checkbox>
+      <daff-checkbox formControlName="choiceThree">Choice 3 </daff-checkbox>
+      <daff-hint>Hint</daff-hint>
+      <daff-error-message>Error</daff-error-message>
     </daff-checkbox-set>
   `,
   imports: [
@@ -33,28 +34,18 @@ import {
     ReactiveFormsModule,
   ],
 })
-class WrapperComponent implements OnInit {
-  @ViewChild(DaffCheckboxSetComponent)
-  private checkboxSet: DaffCheckboxSetComponent;
-  checkboxArray = new UntypedFormArray([new UntypedFormControl(), new UntypedFormControl(), new UntypedFormControl()]);
-
-
-  selectedValues = [];
-
-  /**
-   * @docs-private
-   */
-  ngOnInit() {
-    this.checkboxArray.setValue([false, true, true]);
-  }
-  displayList() {
-    this.selectedValues = this.checkboxSet.getValues();
-  }
+class WrapperComponent {
+  example = new UntypedFormGroup({
+    choiceOne: new UntypedFormControl(''),
+    choiceTwo: new UntypedFormControl(''),
+    choiceThree: new UntypedFormControl(''),
+  });
 }
 
-describe('@daffodil/design/checkbox | DaffCheckboxSetComponent', () => {
+describe('@daffodil/design/checkbox | DaffCheckboxSetComponent | Defaults', () => {
   let component: DaffCheckboxSetComponent;
   let fixture: ComponentFixture<WrapperComponent>;
+  let de: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -67,7 +58,8 @@ describe('@daffodil/design/checkbox | DaffCheckboxSetComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    component = fixture.debugElement.query(By.css('daff-checkbox-set')).componentInstance;
+    de = fixture.debugElement.query(By.css('daff-checkbox-set'));
+    component = de.componentInstance;
     fixture.detectChanges();
   });
 
@@ -75,11 +67,33 @@ describe('@daffodil/design/checkbox | DaffCheckboxSetComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should take a name as an input', () => {
-    expect(component.name).toBe('example');
+  it('should add a class of "daff-checkbox-set" to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-checkbox-set': true,
+    }));
   });
 
-  it('should return a list of selected values', () => {
-    expect(component.getValues()).toEqual(['option2', 'option3']);
+  it('should have a role of group', () => {
+    expect(de.nativeElement.getAttribute('role')).toBe('group');
+  });
+
+  it('should have a generated id', () => {
+    expect(component.id).toMatch('daff-checkbox-set-[0-9]*');
+  });
+
+  it('should set the aria-labelledby to the id', () => {
+    expect(de.nativeElement.getAttribute('aria-labelledby')).toEqual(component.id);
+  });
+
+  it('should have a generated id for the hint', () => {
+    const hint = fixture.debugElement.query(By.css('.daff-checkbox-set__hint-wrapper'));
+
+    expect(hint.nativeElement.id).toMatch('daff-checkbox-set-[0-9]*-hint');
+  });
+
+  it('should have a generated id for the error message', () => {
+    const error = fixture.debugElement.query(By.css('.daff-checkbox-set__error-wrapper'));
+
+    expect(error.nativeElement.id).toMatch('daff-checkbox-set-[0-9]*-error');
   });
 });

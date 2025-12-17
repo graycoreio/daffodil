@@ -13,8 +13,8 @@ import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_CHECKBOX_COMPONENTS } from '@daffodil/design/checkbox';
 
 @Component({
-  selector: 'checkbox-set-example',
-  templateUrl: './checkbox-set.component.html',
+  selector: 'checkbox-set-with-error',
+  templateUrl: './checkbox-set-with-error.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
@@ -22,7 +22,7 @@ import { DAFF_CHECKBOX_COMPONENTS } from '@daffodil/design/checkbox';
     DAFF_CHECKBOX_COMPONENTS,
   ],
 })
-export class CheckboxSetExampleComponent {
+export class CheckboxSetWithErrorExampleComponent {
   choices = new UntypedFormGroup({
     choiceOne: new UntypedFormControl('', Validators.required),
     choiceTwo: new UntypedFormControl('', Validators.required),
