@@ -90,8 +90,6 @@ export class DaffStatusableDirective implements DaffStatusable, OnChanges, OnIni
 
   /**
    * Sets the status on a component.
-   *
-   * Options are: `info`, `warn`, `critical`, and `success`.
    */
   @Input() status: DaffStatus;
 

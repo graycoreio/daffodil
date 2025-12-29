@@ -88,8 +88,6 @@ export class DaffTextAlignableDirective implements DaffTextAlignable, OnChanges,
 
   /**
    * The text alignment of the component.
-   *
-   * Options are: `left`, `center`, and `right`.
    */
   @Input() textAlignment: DaffTextAlignment;
 
