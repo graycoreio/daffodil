@@ -4,6 +4,7 @@ import {
   DAFF_DOC_KIND_PATH_SEGMENT_MAP,
   DAFF_DOCS_DESIGN_PATH,
   DAFF_DOCS_PATH,
+  DAFF_DOCS_STOREFRONT_PATH,
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
@@ -49,6 +50,7 @@ import {
   DESIGN_PATH,
   DOCS_SOURCE_PATH,
   PROJECT_ROOT,
+  STOREFRONT_PATH,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
 import {
@@ -248,4 +250,90 @@ export const designExplanationsPackage = pathsConfigurator({
   inputPathBase: DESIGN_PATH,
   docTypes,
 })(new Package('design-explanations', [design]));
+//
+
+// storefront
+const storefront = new Package('storefront-base', [base])
+  .factory('guideFileReader', designGuideFileReaderFactory);
+
+export const storefrontDocsPackage = new Package('storefront-docs', [storefront])
+  .processor(...GENERATE_NAV_LIST_PROCESSOR_PROVIDER)
+  .processor(...ADD_API_SYMBOLS_TO_PACKAGES_PROCESSOR_PROVIDER)
+  .processor(...LONG_DESCRIPTION_PROCESSOR_PROVIDER)
+  .config((generateNavList: GenerateNavListProcessor) => {
+    generateNavList.outputFolder = `${DAFF_DOCS_PATH}/${DAFF_DOCS_STOREFRONT_PATH}`;
+  })
+  .config((computePathsProcessor) => {
+    computePathsProcessor.pathTemplates.push({
+      docTypes,
+      getPath: (doc) => {
+        doc.moduleFolder = `${DAFF_DOCS_PATH}/${DAFF_DOCS_STOREFRONT_PATH}/${doc.id}`;
+        return doc.moduleFolder;
+      },
+      outputPathTemplate: '${moduleFolder}.json',
+    }, {
+      docTypes: ['searchIndex'],
+      getPath: (doc) => {
+        doc.moduleFolder = `${DAFF_DOCS_PATH}/search-index/${DAFF_DOCS_STOREFRONT_PATH}/${doc.id}`;
+        return doc.moduleFolder;
+      },
+      outputPathTemplate: '${moduleFolder}.json',
+    });
+  })
+  .config((computeIdsProcessor, idSanitizer: IdSanitizer) => {
+    computeIdsProcessor.idTemplates.push({
+      docTypes: ['package-guide'],
+      getId: (doc) => `components/${idSanitizer.sanitize(doc.fileInfo.relativePath)}`,
+      getAliases: (doc) => [doc.id],
+    });
+  })
+  .config((addApiSymbolsToPackages: AddApiSymbolsToPackagesProcessor, longDescription: LongDescriptionProcessor) => {
+    longDescription.docTypes.push('package-guide');
+    addApiSymbolsToPackages.docTypes.push('package-guide');
+    addApiSymbolsToPackages.lookup = (doc) => doc.id.replace('components/', '');
+  })
+  .config((readFilesProcessor) => {
+    readFilesProcessor.basePath = STOREFRONT_PATH;
+    readFilesProcessor.sourceFiles = [
+      { include: ['**/*.md', '**/index.json']},
+    ];
+  })
+  .config((convertToJson: ConvertToJsonProcessor) => {
+    convertToJson.extraFields.push('longDescription', 'symbols');
+  })
+  .config((absolutifyPaths: AbsolutifyPathsProcessor) => {
+    absolutifyPaths.docTypes = docTypes;
+  })
+  .config((generateNavList: GenerateNavListProcessor) => {
+    generateNavList.transform = (docs) => sortTrie(
+      generateNavigationTrieFromDocuments([
+        {
+          id: 'components',
+          title: 'Components',
+          path: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_STOREFRONT_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT]}`,
+          description: '',
+        },
+        ...docs
+          .filter((doc) => doc.docType !== 'index')
+          .map(transformDesignGuideDoc),
+      ], {
+        id: '',
+        title: '',
+        path: '',
+      }),
+      docs.reduce((acc, doc) => {
+        if (doc.docType === 'index') {
+          acc[doc.id] = doc.content;
+        }
+        return acc;
+      }, {}),
+    );
+  });
+
+export const storefrontExplanationsPackage = pathsConfigurator({
+  kind: DaffDocKind.EXPLANATION,
+  outputPath: `${DAFF_DOCS_PATH}/${DAFF_DOCS_STOREFRONT_PATH}`,
+  inputPathBase: STOREFRONT_PATH,
+  docTypes,
+})(new Package('storefront-explanations', [storefront]));
 //

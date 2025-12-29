@@ -24,6 +24,7 @@ export class CanonicalPathProcessor implements FilterableProcessor {
   readonly $runAfter = ['paths-computed'];
   readonly $runBefore = ['absolutify-paths'];
 
+  section = DAFF_DOCS_DESIGN_PATH;
   docTypes: Array<string> = [];
 
   $process(docs: Array<Document>): Array<Document> {
@@ -31,7 +32,7 @@ export class CanonicalPathProcessor implements FilterableProcessor {
       if (this.docTypes.includes(doc.docType)) {
         const mod = doc.originalModule.match(/(.+)\/src\/.+/)?.[1];
         if (mod) {
-          doc.canonicalPath = `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT]}/${mod}?tab=api-tab#${slugify(doc.name)}`;
+          doc.canonicalPath = `/${DAFF_DOCS_PATH}/${this.section}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT]}/${mod}?tab=api-tab#${slugify(doc.name)}`;
         }
       }
       return doc;

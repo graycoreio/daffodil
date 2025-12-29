@@ -1,5 +1,9 @@
 export { crossOsFilename } from './cross-os-filename';
-export * from './path';
+export {
+  DAFF_DOCS_DESIGN_PATH,
+  DAFF_DOCS_PATH,
+  DAFF_DOCS_STOREFRONT_PATH,
+} from './path';
 export * from './item.type';
 
 export * from './api/public_api';

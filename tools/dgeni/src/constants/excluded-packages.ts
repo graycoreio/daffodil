@@ -11,6 +11,7 @@ import {
  * These are always excluded regardless of private flags.
  */
 const STATIC_EXCLUDED = <const>[
+  'storefront',
   'design',
   'dgeni',
 ];

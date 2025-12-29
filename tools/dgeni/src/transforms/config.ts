@@ -5,14 +5,15 @@ export const PROJECT_ROOT = resolve(__dirname, '../../../..');
 export const DGENI_DIR = resolve(__dirname, '../../');
 export const DAFFIO_PATH = resolve(PROJECT_ROOT, 'apps/daffio');
 export const DESIGN_LAND_PATH = resolve(PROJECT_ROOT, 'apps/design-land');
-export const DESIGN_PATH = resolve(PROJECT_ROOT, 'libs/design');
-export const DESIGN_EXAMPLES_PATH = resolve(PROJECT_ROOT, 'libs/design-examples');
 export const SRC_PATH = resolve(DAFFIO_PATH, 'src');
 export const DIST_PATH = resolve(PROJECT_ROOT, 'dist');
 export const OUTPUT_PATH = resolve(DIST_PATH, 'docs-assets');
 export const API_SOURCE_PATH = resolve(PROJECT_ROOT, 'libs');
 export const DOCS_SOURCE_PATH = resolve(PROJECT_ROOT, 'docs');
 export const TOOLS_SOURCE_PATH = resolve(PROJECT_ROOT, 'tools');
+export const DESIGN_PATH = resolve(API_SOURCE_PATH, 'design');
+export const STOREFRONT_PATH = resolve(API_SOURCE_PATH, 'storefront');
+export const DESIGN_EXAMPLES_PATH = resolve(API_SOURCE_PATH, 'design-examples');
 
 export const requireFolder = (dirname, folderPath) => {
   const absolutePath = resolve(dirname, folderPath);

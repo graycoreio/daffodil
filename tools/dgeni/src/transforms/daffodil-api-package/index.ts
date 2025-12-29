@@ -8,6 +8,7 @@ import typescriptPackage from 'dgeni-packages/typescript';
 import {
   DAFF_DOCS_DESIGN_PATH,
   DAFF_DOCS_PATH,
+  DAFF_DOCS_STOREFRONT_PATH,
   DaffDocKind,
   DaffDocsApiType,
 } from '@daffodil/docs-utils';
@@ -61,6 +62,7 @@ import { outputPathsConfigurator } from '../../utils/configurator/output';
 import {
   API_SOURCE_PATH,
   DESIGN_PATH,
+  STOREFRONT_PATH,
 } from '../config';
 import { daffodilBasePackage } from '../daffodil-base-package';
 import {
@@ -245,4 +247,31 @@ export const designApiPackage = outputPathsConfigurator({
   })
   .config((EXPORT_DOC_TYPES, canonicalPath: CanonicalPathProcessor) => {
     canonicalPath.docTypes.push(...EXPORT_DOC_TYPES);
+  });
+
+export const storefrontApiPackage = outputPathsConfigurator({
+  kind: DaffDocKind.API,
+  outputPath: `${DAFF_DOCS_PATH}/${DAFF_DOCS_STOREFRONT_PATH}`,
+  docTypes: [DaffDocsApiType.PACKAGE],
+})(new Package('storefront-api-docs', [apiDocs]))
+  .processor(...CANONICAL_PATH_PROCESSOR_PROVIDER)
+  .config((readTypeScriptModules) => {
+    readTypeScriptModules.basePath = STOREFRONT_PATH;
+    readTypeScriptModules.sourceFiles = [
+      // TS will walk entire dep tree to find file paths
+      // since these two packages are loaded by other packages before
+      // their entry here, TS will incorrectly map the path as absolute
+      // including them first ensures that they are treated as relative paths
+      // this will unfortunately create duplicate docs so they must be removed
+      //
+      '*/src/index.ts',
+      'src/index.ts',
+    ];
+  })
+  .config((packages: PackagesProcessor) => {
+    packages.nameComputer = (id: string) => `@daffodil/${id === 'storefront' ? '' : 'storefront/'}${id}`;
+  })
+  .config((EXPORT_DOC_TYPES, canonicalPath: CanonicalPathProcessor) => {
+    canonicalPath.docTypes.push(...EXPORT_DOC_TYPES);
+    canonicalPath.section = DAFF_DOCS_STOREFRONT_PATH;
   });

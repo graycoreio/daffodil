@@ -4,6 +4,7 @@ import {
   DAFF_DOC_KIND_PATH_SEGMENT_MAP,
   DAFF_DOCS_DESIGN_PATH,
   DAFF_DOCS_PATH,
+  DAFF_DOCS_STOREFRONT_PATH,
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
@@ -16,6 +17,7 @@ import { DaffioRouterNamedViewsEnum } from '../core/router/named-views/models/na
 import { DaffioRoute } from '../core/router/route.type';
 import { DAFFIO_DOCS_TOC_SIDEBAR_REGISTRATION } from './containers/toc-sidebar-content/sidebar.provider';
 import { DaffioActiveHeaderService } from '../core/dynamic-fragment/service';
+import { provideDaffioDocsDesignSection } from './design/services/index.service';
 
 export const daffioDocsRoutes = <Routes> [
   <DaffioRoute>{
@@ -56,6 +58,13 @@ export const daffioDocsRoutes = <Routes> [
       },
       {
         path: DAFF_DOCS_DESIGN_PATH,
+        loadChildren: () => import('./design/design.routes').then(r => r.daffioDocsDesignRoutes),
+      },
+      {
+        path: DAFF_DOCS_STOREFRONT_PATH,
+        providers: [
+          provideDaffioDocsDesignSection(DAFF_DOCS_STOREFRONT_PATH),
+        ],
         loadChildren: () => import('./design/design.routes').then(r => r.daffioDocsDesignRoutes),
       },
       {
