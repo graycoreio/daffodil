@@ -112,8 +112,6 @@ export class DaffColorableDirective implements DaffColorable, OnChanges, OnInit 
 
   /**
    * Sets the color on a component.
-   *
-   * Default options are: `primary`, `secondary`, `tertiary`, `light`, `dark`, `theme`, and `theme-contrast`.
    */
   @Input() color: DaffPalette;
 

@@ -64,7 +64,6 @@ import {
  */
 @Directive({
   selector: '[daffSizable]',
-  standalone: true,
 })
 export class DaffSizableDirective<T extends DaffSizeAllType> implements DaffSizable<T>, OnChanges, OnInit {
 
@@ -84,8 +83,6 @@ export class DaffSizableDirective<T extends DaffSizeAllType> implements DaffSiza
 
   /**
    * The size of the component.
-   *
-   * Options are: `xs`, `sm`, `md`, `lg`, and `xl`.
    */
   @Input() size: T;
 
