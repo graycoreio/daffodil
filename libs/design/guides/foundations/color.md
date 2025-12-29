@@ -6,7 +6,7 @@ Daffodil Design's default theme features three core palettes that defines Daffod
 
 Each palette consists of a collection of [perceptually uniform colors](https://programmingdesignsystems.com/color/perceptually-uniform-color-spaces/) with consistent contrast ratios, enhancing accessibility and usability across the design system. Check out the default Daffodil Design palettes [here](https://github.com/graycoreio/daffodil/blob/develop/libs/design/scss/theming/_color-palettes.scss).
 
-For guidance on how to set up your theme with customized palettes, see theming's [create custom palettes](/libs/design/guides/theming.md#create-custom-palettes) guide.
+For guidance on how to set up your theme with customized palettes, see theming's [create custom palettes](/libs/design/guides/theming/customize-your-own-theme.md#create-custom-palettes) guide.
 
 ## Accessibility
 We are committed to complying with the [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG/). The design system is built to meet these guidelines automatically. If you choose to identify your own color palettes outside of Daffodil's colors, please make sure to choose primary, secondary, tertiary, and extended colors that will pass the guidelines. Ensure there is sufficient color contrast between elements so that people who are visually impaired can see and use your products.
