@@ -59,38 +59,38 @@ describe('@daffodil/design | DaffStatusableDirective | Usage', () => {
     expect(directive.status).toEqual(wrapper.status);
   });
 
-  it('should add a class of .daff-info to the host element if status is set to info', () => {
+  it('should add a class of ".daff-info" to the host element if status is set to info', () => {
     wrapper.status = 'info';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-info': true,
     }));
   });
 
-  it('should add a class of .daff-warn to the host element if status is set to warn', () => {
+  it('should add a class of ".daff-warn" to the host element if status is set to warn', () => {
     wrapper.status = 'warn';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-warn': true,
     }));
   });
 
-  it('should add a class of .daff-critical to the host element if status is set to critical', () => {
+  it('should add a class of ".daff-critical" to the host element if status is set to critical', () => {
     wrapper.status = 'critical';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-critical': true,
     }));
   });
 
-  it('should add a class of .daff-success to the host element if status is set to success', () => {
+  it('should add a class of ".daff-success" to the host element if status is set to success', () => {
     wrapper.status = 'success';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-success': true,
     }));
   });

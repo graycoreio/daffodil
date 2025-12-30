@@ -15,7 +15,6 @@ import { DaffOpenableStateError } from '../utils/state-error';
   template: '',
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'stateful-component',
-  standalone: true,
   hostDirectives: [
     {
       directive: DaffOpenableDirective,

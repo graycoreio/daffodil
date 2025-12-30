@@ -17,7 +17,9 @@ import { DaffOpenableDirective } from './openable.directive';
 			(toggled)="toggledFunction($event)"
       [open]="open">
 		</div>`,
-  standalone: false,
+  imports: [
+    DaffOpenableDirective,
+  ],
 })
 
 class WrapperComponent {
@@ -33,11 +35,8 @@ describe('@daffodil/design | DaffOpenableDirective | Default as Stateless', () =
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-      ],
       imports: [
-        DaffOpenableDirective,
+        WrapperComponent,
       ],
     })
       .compileComponents();

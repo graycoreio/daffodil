@@ -2,7 +2,6 @@ import {
   ChangeDetectorRef,
   Directive,
   EventEmitter,
-  HostBinding,
   Input,
   Output,
 } from '@angular/core';
@@ -11,22 +10,27 @@ import { DaffSelectable } from '../selectable/selectable';
 
 @Directive({
   selector: '[daffSelected]',
-  standalone: true,
+  host: {
+    '[class.daff-selected]': 'selected',
+  },
 })
 
 export class DaffSelectableDirective implements DaffSelectable {
   /**
    * Controls whether the component is selected.
    */
-  @Input() @HostBinding('class.daff-selected') selected = false;
+  @Input() selected = false;
 
   /**
-   * An event that fires after the media element becomes selected.
+   * An event that fires after the component becomes selected.
    */
   @Output() becameSelected: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private cd: ChangeDetectorRef) {}
 
+  /**
+   * Selects the component and emits the `becameSelected` event.
+   */
   select() {
     this.selected = true;
     this.becameSelected.emit();
@@ -34,6 +38,9 @@ export class DaffSelectableDirective implements DaffSelectable {
     return this;
   }
 
+  /**
+   * Deselects the component.
+   */
   deselect() {
     this.selected = false;
     this.cd.markForCheck();

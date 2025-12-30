@@ -1,6 +1,5 @@
 import {
   Directive,
-  HostBinding,
   Input,
   isDevMode,
   OnChanges,
@@ -89,27 +88,19 @@ const validateColor = (color: string) => {
  */
 @Directive({
   selector: '[daffColorable]',
+  host: {
+    '[class.daff-primary]': 'color === "primary"',
+    '[class.daff-secondary]': 'color === "secondary"',
+    '[class.daff-tertiary]': 'color === "tertiary"',
+    '[class.daff-light]': 'color === "light"',
+    '[class.daff-dark]': 'color === "dark"',
+    '[class.daff-theme]': 'color === "theme"',
+    '[class.daff-theme-contrast]': 'color === "theme-contrast"',
+    '[class.daff-black]': 'color === "black"',
+    '[class.daff-white]': 'color === "white"',
+  },
 })
 export class DaffColorableDirective implements DaffColorable, OnChanges, OnInit {
-
-  /**
-   * Dynamically sets the CSS classes based on the color.
-   * @docs-private
-   */
-  @HostBinding('class') get class() {
-    return {
-      'daff-primary': this.color === DaffPaletteEnum.Primary,
-      'daff-secondary': this.color === DaffPaletteEnum.Secondary,
-      'daff-tertiary': this.color === DaffPaletteEnum.Tertiary,
-      'daff-light': this.color === DaffPaletteEnum.Light,
-      'daff-dark': this.color === DaffPaletteEnum.Dark,
-      'daff-theme': this.color === DaffPaletteEnum.Theme,
-      'daff-theme-contrast': this.color === DaffPaletteEnum.ThemeContrast,
-      'daff-black': this.color === DaffPaletteEnum.Black,
-      'daff-white': this.color === DaffPaletteEnum.White,
-    };
-  }
-
   /**
    * Sets the color on a component.
    */
@@ -117,6 +108,13 @@ export class DaffColorableDirective implements DaffColorable, OnChanges, OnInit 
 
   /**
    * Sets a default color.
+   *
+   * @example
+   * ```ts
+   * constructor(private colorableDirective: DaffColorableDirective) {
+   *  this.colorableDirective.defaultColor = 'theme';
+   * }
+   * ```
    */
   defaultColor: DaffPalette;
 

@@ -1,7 +1,4 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+import { Directive } from '@angular/core';
 
 /**
  * `DaffManageContainerLayoutDirective` gives a component the ability to manage a `DaffContainerComponent`'s layout.
@@ -45,7 +42,6 @@ import {
  *
  * ```ts
  * @Component({
- *  standalone: true,
  *  selector: 'my-custom-component',
  *  template: 'my-custom-component.html',
  *  hostDirectives: [{ directive: DaffManageContainerLayoutDirective }],
@@ -64,11 +60,8 @@ import {
 
 @Directive({
   selector: '[daffManageContainerLayout]',
-  standalone: true,
+  host: {
+    class: 'daff-manage-container-layout',
+  },
 })
-export class DaffManageContainerLayoutDirective {
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-manage-container-layout') class = true;
-}
+export class DaffManageContainerLayoutDirective {}

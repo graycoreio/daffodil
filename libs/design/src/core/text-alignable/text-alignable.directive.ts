@@ -1,6 +1,5 @@
 import {
   Directive,
-  HostBinding,
   Input,
   isDevMode,
   OnChanges,
@@ -49,7 +48,6 @@ const validateTextAlignment = (textAlignment: string) => {
  *
  * ```ts
  * @Component({
- *  standalone: true,
  *  selector: 'custom-component',
  *  template: 'custom-component.html',
  *  hostDirectives: [
@@ -72,19 +70,13 @@ const validateTextAlignment = (textAlignment: string) => {
  */
 @Directive({
   selector: '[daffTextAlignable]',
+  host: {
+    '[class.daff-left]': 'textAlignment === "left"',
+    '[class.daff-center]': 'textAlignment === "center"',
+    '[class.daff-right]': 'textAlignment === "right"',
+  },
 })
 export class DaffTextAlignableDirective implements DaffTextAlignable, OnChanges, OnInit {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class') get class() {
-    return {
-      'daff-left': this.textAlignment === DaffTextAlignmentEnum.Left,
-      'daff-center': this.textAlignment === DaffTextAlignmentEnum.Center,
-      'daff-right': this.textAlignment === DaffTextAlignmentEnum.Right,
-    };
-  }
 
   /**
    * The text alignment of the component.
@@ -92,7 +84,14 @@ export class DaffTextAlignableDirective implements DaffTextAlignable, OnChanges,
   @Input() textAlignment: DaffTextAlignment;
 
   /**
-   * Sets a default alignment when no text alignment is provided.
+   * Sets a default alignment.
+   *
+   * @example
+   * ```ts
+   * constructor(private textAligmentDirective: DaffTextAlignableDirective) {
+   *  this.textAligmentDirective.defaultAlignent = 'left';
+   * }
+   * ```
    */
   public defaultAlignment: DaffTextAlignment;
 

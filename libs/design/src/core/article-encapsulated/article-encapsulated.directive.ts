@@ -1,7 +1,4 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+import { Directive } from '@angular/core';
 
 /**
  * `DaffArticleEncapsulatedDirective` is used to encapsulate custom components within an article,
@@ -17,7 +14,6 @@ import {
  *
  * ```ts
  * @Component({
- *  standalone: true,
  *  selector: 'custom-component',
  *  template: 'custom-component.html',
  *  hostDirectives: [{ directive: DaffArticleEncapsulatedDirective }],
@@ -29,11 +25,8 @@ import {
  */
 @Directive({
   selector: '[daffArticleEncapsulated]',
-  standalone: true,
+  host: {
+    class: 'daff-ae',
+  },
 })
-export class DaffArticleEncapsulatedDirective {
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-ae') class = true;
-}
+export class DaffArticleEncapsulatedDirective {}

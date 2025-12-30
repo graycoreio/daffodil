@@ -14,7 +14,9 @@ import { DaffCompactableDirective } from './compactable.directive';
 @Component({
   template: `
 		<div daffCompactable [compact]="compact"></div>`,
-  standalone: false,
+  imports: [
+    DaffCompactableDirective,
+  ],
 })
 
 class WrapperComponent {
@@ -29,11 +31,8 @@ describe('@daffodil/design | DaffCompactableDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-      ],
       imports: [
-        DaffCompactableDirective,
+        WrapperComponent,
       ],
     })
       .compileComponents();

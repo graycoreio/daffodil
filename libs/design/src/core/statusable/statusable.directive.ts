@@ -1,6 +1,5 @@
 import {
   Directive,
-  HostBinding,
   Input,
   isDevMode,
   OnChanges,
@@ -42,7 +41,6 @@ const validateStatus = (status: string) => {
  *
  * ```ts
  * @Component({
- *  standalone: true,
  *  selector: 'custom-component',
  *  template: 'custom-component.html',
  *  hostDirectives: [
@@ -72,22 +70,14 @@ const validateStatus = (status: string) => {
  */
 @Directive({
   selector: '[daffStatusable]',
+  host: {
+    '[class.daff-info]': 'status === "info"',
+    '[class.daff-warn]': 'status === "warn"',
+    '[class.daff-critical]': 'status === "critical"',
+    '[class.daff-success]': 'status === "success"',
+  },
 })
 export class DaffStatusableDirective implements DaffStatusable, OnChanges, OnInit {
-
-  /**
-   * Dynamically sets the CSS classes based on the status.
-   * @docs-private
-   */
-  @HostBinding('class') get class() {
-    return {
-      'daff-info': this.status === DaffStatusEnum.Info,
-      'daff-warn': this.status === DaffStatusEnum.Warn,
-      'daff-critical': this.status === DaffStatusEnum.Critical,
-      'daff-success': this.status === DaffStatusEnum.Success,
-    };
-  }
-
   /**
    * Sets the status on a component.
    */

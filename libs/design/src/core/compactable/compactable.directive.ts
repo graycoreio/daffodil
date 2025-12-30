@@ -1,6 +1,5 @@
 import {
   Directive,
-  HostBinding,
   Input,
 } from '@angular/core';
 
@@ -22,7 +21,6 @@ import {
  *
  * ```ts
  * @Component({
- *  standalone: true,
  *  selector: 'custom-component',
  *  template: 'custom-component.html',
  *  hostDirectives: [
@@ -50,11 +48,13 @@ import {
  */
 @Directive({
   selector: '[daffCompactable]',
-  standalone: true,
+  host: {
+    '[class.daff-compact]': 'compact',
+  },
 })
 export class DaffCompactableDirective {
   /**
    * Controls whether the component is compact.
    */
-  @Input() @HostBinding('class.daff-compact') compact = false;
+  @Input() compact = false;
 }

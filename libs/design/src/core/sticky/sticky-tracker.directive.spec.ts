@@ -10,24 +10,25 @@ import {
   tick,
 } from '@angular/core/testing';
 
-import { DaffStickyTrackerDirective } from './sticky-tracker.directive';
+import { DaffStickyTrackerDirective } from '@daffodil/design';
 
 const DEBOUNCE_TIMEOUT = 5;
 
 @Component({
-  standalone: true,
-  imports: [DaffStickyTrackerDirective],
   template: `
     <div #container style="height: 200vh;">
       <div #sticky
-           daffStickyTracker
-           sticky="top"
-           style="position: sticky; top: 0; height: 50px; background: red;">
-        Top Sticky Element
+        daffStickyTracker
+        sticky="top"
+        style="position: sticky; top: 0; height: 50px; background: red;">
+          Top Sticky Element
       </div>
       <div style="height: 100vh;">Content below</div>
     </div>
   `,
+  imports: [
+    DaffStickyTrackerDirective,
+  ],
 })
 class TopStickyTestComponent {
   @ViewChild('sticky', { static: true }) sticky!: ElementRef<HTMLElement>;
@@ -35,20 +36,21 @@ class TopStickyTestComponent {
 }
 
 @Component({
-  standalone: true,
-  imports: [DaffStickyTrackerDirective],
   template: `
     <div #container style="height: 200vh;">
       <div style="height: 100vh;">Content above</div>
       <div #sticky
-           daffStickyTracker
-           sticky="bottom"
-           style="position: sticky; bottom: 0; height: 50px; background: blue;">
-        Bottom Sticky Element
+        daffStickyTracker
+        sticky="bottom"
+        style="position: sticky; bottom: 0; height: 50px; background: blue;">
+          Bottom Sticky Element
       </div>
       <div style="height: 100vh;">Content below</div>
     </div>
   `,
+  imports: [
+    DaffStickyTrackerDirective,
+  ],
 })
 class BottomStickyTestComponent {
   @ViewChild('sticky', { static: true }) sticky!: ElementRef<HTMLElement>;
@@ -56,20 +58,21 @@ class BottomStickyTestComponent {
 }
 
 @Component({
-  standalone: true,
-  imports: [DaffStickyTrackerDirective],
   template: `
     <div #container style="height: 200vh; overflow-y: auto;">
       <div style="height: 100vh;">Content above</div>
       <div #sticky
-           daffStickyTracker
-           sticky="top"
-           style="position: sticky; top: 0; height: 50px; background: purple;">
-        Scrollable Container Sticky Element
+        daffStickyTracker
+        sticky="top"
+        style="position: sticky; top: 0; height: 50px; background: purple;">
+          Scrollable Container Sticky Element
       </div>
       <div style="height: 100vh;">Content below</div>
     </div>
   `,
+  imports: [
+    DaffStickyTrackerDirective,
+  ],
 })
 class ScrollableContainerTestComponent {
   @ViewChild('sticky', { static: true }) sticky!: ElementRef<HTMLElement>;

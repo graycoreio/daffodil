@@ -9,13 +9,17 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffPalette } from './colorable';
-import { DaffColorableDirective } from './colorable.directive';
+import {
+  DaffColorableDirective,
+  DaffPalette,
+} from '@daffodil/design';
 
 @Component({
   template: `
 		<div daffColorable [color]="color"></div>`,
-  standalone: false,
+  imports: [
+    DaffColorableDirective,
+  ],
 })
 
 class WrapperComponent {
@@ -30,11 +34,8 @@ describe('@daffodil/design | DaffColorableDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-      ],
       imports: [
-        DaffColorableDirective,
+        WrapperComponent,
       ],
     })
       .compileComponents();
@@ -62,7 +63,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     wrapper.color = 'primary';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-primary': true,
     }));
   });
@@ -71,7 +72,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     wrapper.color = 'secondary';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-secondary': true,
     }));
   });
@@ -80,7 +81,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     wrapper.color = 'tertiary';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-tertiary': true,
     }));
   });
@@ -89,7 +90,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     wrapper.color = 'black';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-black': true,
     }));
   });
@@ -98,7 +99,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     wrapper.color = 'white';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-white': true,
     }));
   });
@@ -107,7 +108,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     wrapper.color = 'light';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-light': true,
     }));
   });
@@ -116,7 +117,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     wrapper.color = 'dark';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-dark': true,
     }));
   });
@@ -125,7 +126,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     wrapper.color = 'theme';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-theme': true,
     }));
   });
@@ -134,7 +135,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
     wrapper.color = 'theme-contrast';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-theme-contrast': true,
     }));
   });

@@ -17,7 +17,9 @@ import {
 @Component({
   template: `
 		<div daffOrientable [orientation]="orientation"></div>`,
-  standalone: false,
+  imports: [
+    DaffOrientableDirective,
+  ],
 })
 
 class WrapperComponent {
@@ -32,11 +34,8 @@ describe('@daffodil/design | DaffOrientableDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-      ],
       imports: [
-        DaffOrientableDirective,
+        WrapperComponent,
       ],
     })
       .compileComponents();
@@ -64,7 +63,7 @@ describe('@daffodil/design | DaffOrientableDirective', () => {
     wrapper.orientation = 'horizontal';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-horizontal': true,
     }));
   });
@@ -73,7 +72,7 @@ describe('@daffodil/design | DaffOrientableDirective', () => {
     wrapper.orientation = 'vertical';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-vertical': true,
     }));
   });

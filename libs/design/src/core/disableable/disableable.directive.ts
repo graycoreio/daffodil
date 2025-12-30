@@ -1,6 +1,5 @@
 import {
   Directive,
-  HostBinding,
   Input,
 } from '@angular/core';
 
@@ -22,7 +21,6 @@ import {
  *
  * ```ts
  * @Component({
- *  standalone: true,
  *  selector: 'custom-component',
  *  template: 'custom-component.html',
  *  hostDirectives: [
@@ -49,7 +47,10 @@ import {
  */
 @Directive({
   selector: '[daffDisableable]',
+  host: {
+    '[class.daff-disabled]': 'disabled',
+  },
 })
 export class DaffDisableableDirective {
-  @Input() @HostBinding('class.daff-disabled') disabled = false;
+  @Input() disabled = false;
 }
