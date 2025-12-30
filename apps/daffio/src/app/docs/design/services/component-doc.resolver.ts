@@ -44,9 +44,6 @@ export const daffioDocsDesignComponentDocResolver: ResolveFn<DaffPackageGuideDoc
         ),
       ),
       take(1),
-      catchError((err) => {
-        debugger;
-        return of(new RedirectCommand(router.parseUrl('/404'), { skipLocationChange: true }));
-      }),
+      catchError((err) => of(new RedirectCommand(router.parseUrl('/404'), { skipLocationChange: true }))),
     );
 };
