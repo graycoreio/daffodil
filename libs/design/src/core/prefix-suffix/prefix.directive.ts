@@ -1,20 +1,13 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+import { Directive } from '@angular/core';
 
 /**
- *
- * Prefix can be used to place content before another piece of content in components like
- * `daff-form-field`, `daff-solo-field`, and `daff-list`.
+ * DaffPrefixDirective can be used to place content before another piece of content
+ * in components like `DaffFormFieldComponent` or `DaffListComponent`.
  */
 @Directive({
   selector: '[daffPrefix]',
+  host: {
+    class: 'daff-prefix',
+  },
 })
-export class DaffPrefixDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-prefix') class = true;
-}
+export class DaffPrefixDirective {}
