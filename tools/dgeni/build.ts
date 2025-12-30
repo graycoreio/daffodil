@@ -6,7 +6,10 @@ import {
   designApiPackage,
   storefrontApiPackage,
 } from './src/transforms/daffodil-api-package';
-import { designExamplePackage } from './src/transforms/daffodil-design-examples-package';
+import {
+  designExamplePackage,
+  storefrontExamplePackage,
+} from './src/transforms/daffodil-design-examples-package';
 import {
   packageDocsPackage,
   guideDocsPackage,
@@ -38,6 +41,7 @@ async function build() {
       new Dgeni([designDocsPackage]).generate(),
       new Dgeni([storefrontDocsPackage]).generate(),
       new Dgeni([designExamplePackage]).generate(),
+      new Dgeni([storefrontExamplePackage]).generate(),
     ]);
     await new Dgeni([daffodilRoutesPackage]).generate();
   } catch (error) {

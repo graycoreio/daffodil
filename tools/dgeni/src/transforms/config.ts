@@ -12,8 +12,9 @@ export const API_SOURCE_PATH = resolve(PROJECT_ROOT, 'libs');
 export const DOCS_SOURCE_PATH = resolve(PROJECT_ROOT, 'docs');
 export const TOOLS_SOURCE_PATH = resolve(PROJECT_ROOT, 'tools');
 export const DESIGN_PATH = resolve(API_SOURCE_PATH, 'design');
-export const STOREFRONT_PATH = resolve(API_SOURCE_PATH, 'storefront');
 export const DESIGN_EXAMPLES_PATH = resolve(API_SOURCE_PATH, 'design-examples');
+export const STOREFRONT_PATH = resolve(API_SOURCE_PATH, 'storefront');
+export const STOREFRONT_EXAMPLES_PATH = resolve(API_SOURCE_PATH, 'storefront-examples');
 
 export const requireFolder = (dirname, folderPath) => {
   const absolutePath = resolve(dirname, folderPath);
