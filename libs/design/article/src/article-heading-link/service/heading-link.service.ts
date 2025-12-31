@@ -25,6 +25,7 @@ export class DaffArticleHeadingLinkService {
     viewContainerRef: ViewContainerRef,
   ): void {
     const headings = hostElement.querySelectorAll('h2, h3, h4');
+    const encapsulatedElements = Array.from(hostElement.querySelectorAll('.daff-ae'));
 
     headings.forEach((heading: HTMLHeadingElement) => {
       if (heading.querySelector('daff-article-heading-link')) {
@@ -33,6 +34,11 @@ export class DaffArticleHeadingLinkService {
 
       // Skip if nolink attribute is present
       if (heading.hasAttribute('nolink')) {
+        return;
+      }
+
+      // Skip if inside an article-encapsulated component
+      if (encapsulatedElements.some(ee => ee.contains(heading))) {
         return;
       }
 

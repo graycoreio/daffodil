@@ -126,6 +126,29 @@ describe('DaffArticleHeadingLinkService', () => {
 
       expect(mockViewContainerRef.createComponent).toHaveBeenCalledTimes(2);
     });
+
+    it('should skip headings inside article-encapsulated elements', () => {
+      hostElement.innerHTML = `
+        <h2>Should get link</h2>
+        <div class="daff-ae">
+          <h3>Should be skipped</h3>
+          <div>
+            <h4>Should be skipped</h4>
+          </div>
+        </div>
+        <h2>Should also get link</h2>
+      `;
+
+      mockViewContainerRef.createComponent.and.returnValue(<any>{
+        setInput: jasmine.createSpy('setInput'),
+        location: {
+          nativeElement: document.createElement('daff-article-heading-link'),
+        },
+      });
+
+      service.addLinksToHeadings(hostElement, mockViewContainerRef);
+      expect(mockViewContainerRef.createComponent).toHaveBeenCalledTimes(2);
+    });
   });
 
   describe('cleanup', () => {
