@@ -1,20 +1,13 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+import { Directive } from '@angular/core';
 
 /**
- *
- * Prefix can be used to place content after another piece of content in components like
- * `daff-form-field`, `daff-solo-field`, and `daff-list`.
+ * DaffSuffixDirective can be used to place content after another piece of content
+ * in components like `DaffFormFieldComponent` or `DaffListComponent`.
  */
 @Directive({
   selector: '[daffSuffix]',
+  host: {
+    class: 'daff-suffix',
+  },
 })
-export class DaffSuffixDirective {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class.daff-suffix') class = true;
-}
+export class DaffSuffixDirective { }

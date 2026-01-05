@@ -10,7 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
   DaffFocusStackService,
-  DaffPrefixSuffixModule,
+  DAFF_PREFIX_SUFFIX_DIRECTIVES,
 } from '@daffodil/design';
 
 import { DaffToastPositionService } from './position.service';
@@ -29,7 +29,7 @@ describe('@daffodil/design/toast | DaffToastService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffPrefixSuffixModule,
+        DAFF_PREFIX_SUFFIX_DIRECTIVES,
         FontAwesomeModule,
         PortalModule,
         OverlayModule,

@@ -5,7 +5,7 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffPrefixSuffixModule } from '@daffodil/design';
+import { DAFF_PREFIX_SUFFIX_DIRECTIVES } from '@daffodil/design';
 import { DAFF_TABS_COMPONENTS } from '@daffodil/design/tabs';
 
 @Component({
@@ -15,7 +15,7 @@ import { DAFF_TABS_COMPONENTS } from '@daffodil/design/tabs';
   imports: [
     DAFF_TABS_COMPONENTS,
     FaIconComponent,
-    DaffPrefixSuffixModule,
+    DAFF_PREFIX_SUFFIX_DIRECTIVES,
   ],
 })
 export class DisabledTabsExampleComponent {

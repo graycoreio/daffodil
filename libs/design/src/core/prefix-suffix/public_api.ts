@@ -1,3 +1,4 @@
 export * from './prefix-suffix.module';
-export * from './prefix.directive';
-export * from './suffix.directive';
+export { DaffPrefixDirective } from './prefix.directive';
+export { DaffSuffixDirective } from './suffix.directive';
+export { DAFF_PREFIX_SUFFIX_DIRECTIVES } from './prefix-suffix';
