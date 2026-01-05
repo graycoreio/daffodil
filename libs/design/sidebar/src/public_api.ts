@@ -6,7 +6,6 @@ export { DaffSidebarComponent } from './sidebar/sidebar.component';
 export { DaffSidebarHeaderComponent } from './sidebar-header/sidebar-header.component';
 export { DaffSidebarFooterComponent } from './sidebar-footer/sidebar-footer.component';
 export { DaffSidebarHeaderTitleDirective } from './sidebar-header/sidebar-header-title/sidebar-header-title.directive';
-export { DaffSidebarHeaderActionDirective } from './sidebar-header/sidebar-header-action/sidebar-header-action.directive';
 export {
   DaffSidebarMode,
   DaffSidebarModeEnum,

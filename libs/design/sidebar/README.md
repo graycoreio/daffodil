@@ -214,11 +214,3 @@ body {
 ### Developer responsibilities
 - Apply a meaningful `role` attribute (e.g., `role="navigation"`) to describe the sidebar's purpose
 - Provide an `aria-label` when no title or header is present
-
-## Deprecations
-`[daffSidebarHeaderAction]` has been deprecated in favor of the `dismissible` property. Replace `[daffSidebarHeaderAction]` with `<daff-sidebar-header [dismissible]="true">`
-
-```html
-<daff-sidebar-header [dismissible]="true">
-</daff-sidebar-header>
-```

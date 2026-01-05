@@ -21,7 +21,7 @@
 <pre><code>&lt;daff-sidebar-viewport (backdropClicked)="toggleOpen()"&gt;
   &lt;nav daff-sidebar-viewport-nav daff-navbar&gt;
     Nav content
-  &lt;/nav&gt;    
+  &lt;/nav&gt;
   &lt;daff-sidebar mode="over" [open]="open"&gt;
     &lt;div class="sidebar-content"&gt;
       Sidebar content
@@ -39,7 +39,7 @@
 <pre><code>&lt;daff-sidebar-viewport (backdropClicked)="toggleOpen()"&gt;
   &lt;nav daff-navbar&gt;
     Nav content
-  &lt;/nav&gt;    
+  &lt;/nav&gt;
   &lt;daff-sidebar mode="over" [open]="open"&gt;
     &lt;div class="sidebar-content"&gt;
       Sidebar content
@@ -54,7 +54,7 @@
 <p>The <code>BrowserAnimationsModule</code> or <code>NoopAnimationsModule</code> must be imported in the particular Angular <code>&#64;NgModule</code> the sidebar is used in for the sidebar to render and work properly.</p>
 
 <h3>Header and footer</h3>
-<p>The <code>&lt;daff-sidebar-header&gt;</code> includes optional title (<code>[daffSidebarHeaderTitle]</code>) and action (<code>[daffSidebarHeaderAction]</code>) selectors, and a slot to render custom content. The action selector should be used along with the <code>&lt;daff-icon-button&gt;</code> (view <a routerLink="/button">Button Documentation</a>) to make sure that the action is positioned correctly and it passes WCAG guidelines.</p>
+<p>The <code>&lt;daff-sidebar-header&gt;</code> includes an optional title (<code>[daffSidebarHeaderTitle]</code>) selector and a slot to render custom content. The action selector should be used along with the <code>&lt;daff-icon-button&gt;</code> (view <a routerLink="/button">Button Documentation</a>) to make sure that the action is positioned correctly and it passes WCAG guidelines.</p>
 
 <p>The <code>&lt;daff-sidebar-footer&gt;</code> is a "holder" component with minimal default styling. Its main purpose is to position the footer at the bottom of the sidebar, allowing the sidebar's content to overflow and scroll while ensuring that the footer remains constantly visible.</p>
 
