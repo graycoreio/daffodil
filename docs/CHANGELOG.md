@@ -1,5 +1,131 @@
 # Changelog
 
+## [0.91.0](https://github.com/graycoreio/daffodil/compare/v0.90.0...v0.91.0) (2026-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **driver:** `DaffDriverMagentoModule` has been removed. Use `provideMagentoDriver` instead.
+* **design:** `DaffSidebarHeaderActionDirective` has been removed. Use the `dismissible` property of `DaffSidebarHeaderComponent` instead.
+* **design:** `DaffNotificationSubtitleDirective` has been removed. Use the `DaffNotificationMessageDirective` instead.
+* **design:** `DaffRaisedCardComponent` has been removed. Use the `elevated` property of `daff-card` instead.
+* **design:** move hint, error message, and label to a `@daffodil/design/form` package ([#4230](https://github.com/graycoreio/daffodil/issues/4230))
+* **content:** Many interfaces have changed. DaffContentPage -> DaffContentHtmlPage, DaffContentPageServiceInterface -> DaffContentPageHtmlServiceInterface, provideDaffContentPageDriver -> provideDaffContentHtmlPageDriver, daffContentPageResolver -> daffContentPageHtmlResolver, DaffContentPageFactory -> DaffContentHtmlPageFactory
+* **design-examples, design, design-land:** If you're using the design examples in your app (you probably aren't) you should now import them from `@daffodil/design-examples`.
+* **design:** refactor switch component ([#3818](https://github.com/graycoreio/daffodil/issues/3818))
+* **driver:** 
+* **design:** The 0 and 110 hues have been removed from the $daff-neutral palette.
+* **external-router:** Drivers will now directly throw errors in response to platform responses where they wouldn't previously. Direct driver dependents should adjust driver calls to better handle these errors.
+* **design:** Checkbox components have been moved to their own package and need to be imported from `@daffodil/design/checkbox`.
+* **design:** Modal behavior now restricts to a single open modal at any time. When a new modal is opened, any previously open modal will be automatically closed. Previously, multiple modals could be stacked and displayed simultaneously.
+
+### Features
+
+* **auth:** add `withMagentoAuthApolloBearerToken` ([#4252](https://github.com/graycoreio/daffodil/issues/4252)) ([d9b76a9](https://github.com/graycoreio/daffodil/commit/d9b76a9b9d7879dee99142988177566862a5eb56))
+* **content:** add iframe renderer ([36b0718](https://github.com/graycoreio/daffodil/commit/36b071818e9ba25e9c33dd55e2adeb7fc76fa2a1))
+* **content:** add new daffContentPageSchemaResolver ([3b74199](https://github.com/graycoreio/daffodil/commit/3b74199e74236207b5ce181f3f427f2e38cb3f9a))
+* **content:** add schema driver for magento ([198bef6](https://github.com/graycoreio/daffodil/commit/198bef64e0236bdb9a7fa4941b98fcaa3cc6fac4))
+* **content:** add style generator utilities for content editing ([#4211](https://github.com/graycoreio/daffodil/issues/4211)) ([5649d7e](https://github.com/graycoreio/daffodil/commit/5649d7efbe40faa771af4a240237fdff98c2a77c))
+* **content:** add visual ai content schema editor ([347b973](https://github.com/graycoreio/daffodil/commit/347b9739318780bb52053de698fbf534c30a6826))
+* **content:** adjust renderer and css generation to properly use [@container](https://github.com/container) queries ([3549586](https://github.com/graycoreio/daffodil/commit/3549586a4eba87995fb0c9f2b97f52930b213e41))
+* **content:** create provideDaffContentMagentoDriver ([f673816](https://github.com/graycoreio/daffodil/commit/f673816cce074a64fea3a6b4d97b970a809a92a8))
+* **content:** create schema renderer ([8f18996](https://github.com/graycoreio/daffodil/commit/8f18996df09ba77f1cadf85c4994f79393d3dc20))
+* **content:** expose DaffContentEditableRenderer as standalone component ([49bb0b9](https://github.com/graycoreio/daffodil/commit/49bb0b9009dd8f823910e69c1105aee0651a478d))
+* **content:** expose providers for making components schema-renderable ([#4210](https://github.com/graycoreio/daffodil/issues/4210)) ([28b4210](https://github.com/graycoreio/daffodil/commit/28b42106146e4510553d8fb7d897f4db9a9f397b))
+* **content:** introduce new page schema driver ([def075c](https://github.com/graycoreio/daffodil/commit/def075c8a9700ce32369bfb159e062c35419908a))
+* **content:** introduce schema types ([#4209](https://github.com/graycoreio/daffodil/issues/4209)) ([47b792a](https://github.com/graycoreio/daffodil/commit/47b792a088674773eb4a90787273e6164b8c94ff))
+* **content:** rename DaffContentPage to DaffContentHtmlPage ([72d3da0](https://github.com/graycoreio/daffodil/commit/72d3da0367ef0d4c3775457fdba53659ec8f8805))
+* **content:** use iframe renderer inside editor ([370a2fb](https://github.com/graycoreio/daffodil/commit/370a2fbae9e26bf2a28bfd3bc2457f609ab96d5f))
+* **core:** add factory providers to injection token factories ([#4217](https://github.com/graycoreio/daffodil/issues/4217)) ([1228a09](https://github.com/graycoreio/daffodil/commit/1228a099585e4363b856106f105f244f1218b483))
+* **core:** add providers for apollo request handlers and headers ([#4218](https://github.com/graycoreio/daffodil/issues/4218)) ([b9c861d](https://github.com/graycoreio/daffodil/commit/b9c861da6cb40d06938f4dff1f968acffbd2de4e))
+* **daffio:** add sponsors to home page ([#4194](https://github.com/graycoreio/daffodil/issues/4194)) ([a46aa91](https://github.com/graycoreio/daffodil/commit/a46aa91772fd29b9672b101667baf5972d0d8081))
+* **daffio:** convert all modules to standalone ([#4215](https://github.com/graycoreio/daffodil/issues/4215)) ([99dc925](https://github.com/graycoreio/daffodil/commit/99dc925263e03df1212ce9e5623816dbf57530af))
+* **daffio:** enforce home page commerce video to autoplay ([#4199](https://github.com/graycoreio/daffodil/issues/4199)) ([2860f45](https://github.com/graycoreio/daffodil/commit/2860f45c1234770fbe6c5278eb8570cc279389f6))
+* **daffio:** remove `docs` from docs path token ([#4241](https://github.com/graycoreio/daffodil/issues/4241)) ([9088371](https://github.com/graycoreio/daffodil/commit/9088371c6542a74f9ec0712012477e35af2e6c34))
+* **daffio:** update home hero title ([#4205](https://github.com/graycoreio/daffodil/issues/4205)) ([c3131bb](https://github.com/graycoreio/daffodil/commit/c3131bb33a2134cc2317fd341ec58f0759e8b162))
+* **daffio:** update marketing pages ([#4198](https://github.com/graycoreio/daffodil/issues/4198)) ([1b0c038](https://github.com/graycoreio/daffodil/commit/1b0c03814ed38e6c8a4c1451fc7b38a26a1b3d54))
+* **design-examples, design, design-land:** move design examples to `@daffodil/design-examples` package ([#4200](https://github.com/graycoreio/daffodil/issues/4200)) ([b24706b](https://github.com/graycoreio/daffodil/commit/b24706bdb9a66e3e6c987dcfdad8990a6e9e9f3d))
+* **design-examples:** init new design-examples package ([#4197](https://github.com/graycoreio/daffodil/issues/4197)) ([2d782c7](https://github.com/graycoreio/daffodil/commit/2d782c74800357d6caf5543c1e985204646bbb0a))
+* **design-examples:** remove test script ([#4206](https://github.com/graycoreio/daffodil/issues/4206)) ([5f3c233](https://github.com/graycoreio/daffodil/commit/5f3c2337c2c2d0f49e48a3b5a44e51d1f8fad072))
+* **design:** `daff-get-font-colors` can retrieve theme font colors ([#4141](https://github.com/graycoreio/daffodil/issues/4141)) ([89c9c9b](https://github.com/graycoreio/daffodil/commit/89c9c9b49bcab7167b2183357d0984b7e6e71082))
+* **design:** allow modal's vertical position to be configurable ([#4162](https://github.com/graycoreio/daffodil/issues/4162)) ([c5c08d3](https://github.com/graycoreio/daffodil/commit/c5c08d357a1a279f8a52b3955c3e3da7d3a64517))
+* **design:** automatically add copy button to article code blocks ([#4176](https://github.com/graycoreio/daffodil/issues/4176)) ([cedb550](https://github.com/graycoreio/daffodil/commit/cedb5500c9682bd525a471240e4415687f604b36))
+* **design:** create `daff-create-theme` function ([#4132](https://github.com/graycoreio/daffodil/issues/4132)) ([263d13d](https://github.com/graycoreio/daffodil/commit/263d13d41d4e8ca29bf28038bd541f207c743033))
+* **design:** create `daff-get-font-colors` function ([#4118](https://github.com/graycoreio/daffodil/issues/4118)) ([b6aca33](https://github.com/graycoreio/daffodil/commit/b6aca33f54a283c54ef202d6a7e90924f1a6cd0d))
+* **design:** create `DaffDisableableDirective` ([#3753](https://github.com/graycoreio/daffodil/issues/3753)) ([d5c9fb7](https://github.com/graycoreio/daffodil/commit/d5c9fb7fd2308999db206922babd9e2953794256))
+* **design:** create `DaffOrientableDirective` and update implementations in design components ([#4133](https://github.com/graycoreio/daffodil/issues/4133)) ([e8c217e](https://github.com/graycoreio/daffodil/commit/e8c217e14b56e907b37e6dc6f7030a76fa96739c))
+* **design:** deprecate `DaffPrefixSuffixModule` and add component array option ([#4273](https://github.com/graycoreio/daffodil/issues/4273)) ([7e79665](https://github.com/graycoreio/daffodil/commit/7e79665aeed39446273369fb49139b1dc550cd24))
+* **design:** move hint, error message, and label to a `@daffodil/design/form` package ([#4230](https://github.com/graycoreio/daffodil/issues/4230)) ([ebfe38f](https://github.com/graycoreio/daffodil/commit/ebfe38fd8303d01f1ca3086496535f15a732d282))
+* **design:** move host decorators to host properties in core components ([#4272](https://github.com/graycoreio/daffodil/issues/4272)) ([69fbc83](https://github.com/graycoreio/daffodil/commit/69fbc83cc030cd3b643e6256115f0a6f76318622))
+* **design:** only allow one modal to be open at a time ([#4110](https://github.com/graycoreio/daffodil/issues/4110)) ([68c36e5](https://github.com/graycoreio/daffodil/commit/68c36e5309f1cd7c43815b2dc8149a7930617d78))
+* **design:** refactor switch component ([#3818](https://github.com/graycoreio/daffodil/issues/3818)) ([5282b3e](https://github.com/graycoreio/daffodil/commit/5282b3ef52d4e91d06434743e66ad4e127af489b))
+* **design:** remove `DaffNotificationSubtitleDirective` ([#4271](https://github.com/graycoreio/daffodil/issues/4271)) ([77403f7](https://github.com/graycoreio/daffodil/commit/77403f79da8ae1e123f7cc6f658f9f6b40426ba2))
+* **design:** remove `DaffRaisedCardComponent` ([#4271](https://github.com/graycoreio/daffodil/issues/4271)) ([b220165](https://github.com/graycoreio/daffodil/commit/b2201654a1c2c2c4339fe60a03a4a089cca1365d))
+* **design:** remove `DaffSidebarHeaderActionDirective` ([#4271](https://github.com/graycoreio/daffodil/issues/4271)) ([a966178](https://github.com/graycoreio/daffodil/commit/a96617893b5976818aeac5280491e4fe78a77c26))
+* **design:** remove 0 and 110 from neutral palette ([#3761](https://github.com/graycoreio/daffodil/issues/3761)) ([b08cc48](https://github.com/graycoreio/daffodil/commit/b08cc48e289b89371c97740e5ea4ca3ddfe7d028))
+* **design:** shard and convert checkbox components to standalone ([#4127](https://github.com/graycoreio/daffodil/issues/4127)) ([e7fc3bd](https://github.com/graycoreio/daffodil/commit/e7fc3bd30ca3f33f31694c4e74c2f0facd3939c8))
+* **design:** update `daff-text-contrast` function ([#4122](https://github.com/graycoreio/daffodil/issues/4122)) ([4559ebd](https://github.com/graycoreio/daffodil/commit/4559ebd9599dfd03cd6f5167c5d6fbaf3169f80a))
+* **design:** update `DaffImageComponent` to use `NgOptimizedImage` ([#4134](https://github.com/graycoreio/daffodil/issues/4134)) ([9478a45](https://github.com/graycoreio/daffodil/commit/9478a45bd27109a19446eb274ca81a95b4478747))
+* **dgeni,docs:** add `package` to package guide ([#4179](https://github.com/graycoreio/daffodil/issues/4179)) ([ac63184](https://github.com/graycoreio/daffodil/commit/ac63184721a671512bba9e7e0908ab016dcf0e6f))
+* **docs,daffio:** use role labels in API tags ([#4244](https://github.com/graycoreio/daffodil/issues/4244)) ([39b82d4](https://github.com/graycoreio/daffodil/commit/39b82d422b132708bc20ec2667a09520f53c3053))
+* **docs,dgeni,daffio:** add edit button to docs pages ([#4137](https://github.com/graycoreio/daffodil/issues/4137)) ([4b5be2d](https://github.com/graycoreio/daffodil/commit/4b5be2d11798cc556a9901af376f08e82270371f))
+* **docs,dgeni:** add `package` to API docs ([#4178](https://github.com/graycoreio/daffodil/issues/4178)) ([933b6c9](https://github.com/graycoreio/daffodil/commit/933b6c938f65e13b91d4337d2e1b44ba6c4ad723))
+* **docs,dgeni:** set root package guides title to overview ([#4181](https://github.com/graycoreio/daffodil/issues/4181)) ([3339515](https://github.com/graycoreio/daffodil/commit/33395157c9028b4c0d1e8cbe2e043b12afeb4079))
+* **docs:** add color palette component ([#4238](https://github.com/graycoreio/daffodil/issues/4238)) ([22b4938](https://github.com/graycoreio/daffodil/commit/22b4938ab047479b63c72e4fdbf490924dc9fbc7))
+* **driver,builders:** generate new possible types ([#4216](https://github.com/graycoreio/daffodil/issues/4216)) ([8efbe50](https://github.com/graycoreio/daffodil/commit/8efbe509c54fb807406adc00ade7c60ed3603272))
+* **driver:** add magento cache feature providers ([#4222](https://github.com/graycoreio/daffodil/issues/4222)) ([6781768](https://github.com/graycoreio/daffodil/commit/6781768d41661bfdc08813a922e2a01e91fbdd22))
+* **driver:** add magento driver features ([#4224](https://github.com/graycoreio/daffodil/issues/4224)) ([dd8cb5b](https://github.com/graycoreio/daffodil/commit/dd8cb5b653ea30f7af490ec671a3d38fef59f5fb))
+* **driver:** add routable objects system for in-memory drivers ([#4144](https://github.com/graycoreio/daffodil/issues/4144)) ([c212f46](https://github.com/graycoreio/daffodil/commit/c212f46ea991e4de9b4af0119d1f3f7f4a098b6b))
+* **driver:** prefix shopify generated types ([#4175](https://github.com/graycoreio/daffodil/issues/4175)) ([6faa41f](https://github.com/graycoreio/daffodil/commit/6faa41f3bfb6ffc753a4faf6131da51522b3ac02))
+* **driver:** remove `DaffDriverMagentoModule` ([#4271](https://github.com/graycoreio/daffodil/issues/4271)) ([d58a932](https://github.com/graycoreio/daffodil/commit/d58a932107d1def0fecd020636e5449593848b5e))
+* **external-router:** remove unnecessary `processErrors` function ([#4117](https://github.com/graycoreio/daffodil/issues/4117)) ([5bb0976](https://github.com/graycoreio/daffodil/commit/5bb0976ba63553964afc8403e2d64b9e2ee3d37e))
+* hoist module disable into controllers ([#4261](https://github.com/graycoreio/daffodil/issues/4261)) ([29521ad](https://github.com/graycoreio/daffodil/commit/29521ad52e1f84a5e6340ababdc22cc179fe2782))
+* **plugins/magento/cms-ai-builder:** add new iframe rendering pipeline ([a6fc724](https://github.com/graycoreio/daffodil/commit/a6fc7249a65252699126327945bc87bedec1a601))
+* **plugins/magento/cms-ai-builder:** classify known exceptions ([#4261](https://github.com/graycoreio/daffodil/issues/4261)) ([a91a033](https://github.com/graycoreio/daffodil/commit/a91a033475b42869e59b93e6e109d64fed3aa412))
+* **plugins/magento/cms-ai-builder:** init package ([7fba53a](https://github.com/graycoreio/daffodil/commit/7fba53a6b17a347be05a6240a44764d00e76b86b))
+* **plugins/magento/cms-ai-builder:** iron out patch type ([a87cae7](https://github.com/graycoreio/daffodil/commit/a87cae74eb186da6ebe38544203f328495d33f52))
+* **plugins/magento/cms-ai-builder:** normalize json for php handling of empty assoc arrays ([584997c](https://github.com/graycoreio/daffodil/commit/584997ce0abb28a00901a9318e9691fc463031ca))
+* **plugins/magento/cms-ai-builder:** prevent bad interpretations of components ([7beebc4](https://github.com/graycoreio/daffodil/commit/7beebc49cb87fade74c1110a8944ae82c80f166f))
+* **plugins/magento/cms-ai-builder:** rebuild editor with DaffArticleComponent ([3fa7ed0](https://github.com/graycoreio/daffodil/commit/3fa7ed053920cbb75efe59ac46f7a5cc20e0301c))
+* **plugins/magento/cms-ai-builder:** standardize llm call/response format ([31d5046](https://github.com/graycoreio/daffodil/commit/31d5046a1f8e566d61c34df41ec119b49947f2e9))
+* **plugins/magento/cms-ai-builder:** update editor version ([960cb43](https://github.com/graycoreio/daffodil/commit/960cb4375e53aa96f8e4b8a34f2840482bd7fc2c))
+* **plugins/magento/cms-ai-builder:** use EntityManager APIs for getting/saving page data. ([d6edd88](https://github.com/graycoreio/daffodil/commit/d6edd881a0cc9a6f226e399fb1647f97ecaa9c2d))
+* **plugins/magento/cms-ai-builder:** use new renderer in admin panel ([#4247](https://github.com/graycoreio/daffodil/issues/4247)) ([0f3df47](https://github.com/graycoreio/daffodil/commit/0f3df47d8be5c813c7dea0e6eea60bcabd27afdc))
+* **plugins/magento/cms-ai-daff-components:** add all compatible @daffodil/design components ([1a2d0b3](https://github.com/graycoreio/daffodil/commit/1a2d0b3aa58c201eacefb106330438771466d2a7))
+* **plugins/magento/cms-ai-daff-components:** add support for daff-article ([b6a4fac](https://github.com/graycoreio/daffodil/commit/b6a4facfaddcce82a0e3584df71f02b9c8555d3c))
+* **plugins/magento/cms-ai-daff-components:** extract all daffodil specific features to separate package ([ab334b3](https://github.com/graycoreio/daffodil/commit/ab334b38119babd47437ec808102164acab09eef))
+* **plugins/magento/cms-ai-daff-components:** init new package ([b488193](https://github.com/graycoreio/daffodil/commit/b488193ba8d756faf6719e84073e95bac4bce87a))
+* **product:** register products as routable objects for automatic URL resolution ([#4146](https://github.com/graycoreio/daffodil/issues/4146)) ([aebfad1](https://github.com/graycoreio/daffodil/commit/aebfad10ea5de1a5bfca11df2b46e181f04edba0))
+* **storefront-examples:** init new storefront-examples package ([#4207](https://github.com/graycoreio/daffodil/issues/4207)) ([8e6b8c7](https://github.com/graycoreio/daffodil/commit/8e6b8c7a87d3a6197b47f849a845ead466f197c1))
+* **storefront:** create carousel component ([#4204](https://github.com/graycoreio/daffodil/issues/4204)) ([e158195](https://github.com/graycoreio/daffodil/commit/e158195bddc2c78d3903fa580beb2996b4bb92a1))
+* **storefront:** init new storefront package ([#4173](https://github.com/graycoreio/daffodil/issues/4173)) ([7322867](https://github.com/graycoreio/daffodil/commit/732286712f422736b683d9f4f294025128ba2a1a))
+* **storefront:** update storefront configs ([#4203](https://github.com/graycoreio/daffodil/issues/4203)) ([337d946](https://github.com/graycoreio/daffodil/commit/337d946ef05700765bd73b4a4e11a6b740dedfe1))
+* **tools:** add SassDocs tool for documentation generation ([#3841](https://github.com/graycoreio/daffodil/issues/3841)) ([a6f30b8](https://github.com/graycoreio/daffodil/commit/a6f30b827a3ada35129966f1282df6a95794abf3))
+
+
+### Bug Fixes
+
+* **authorizenet:** default state config not provided ([#4220](https://github.com/graycoreio/daffodil/issues/4220)) ([7b81ca8](https://github.com/graycoreio/daffodil/commit/7b81ca8deefface695aec73b22473084223923c2))
+* **commerce:** add missing provideDaffExternalRouterInMemoryDriver ([1c0ea4b](https://github.com/graycoreio/daffodil/commit/1c0ea4b47afe872949e1d0a25fb31b81e560360c))
+* **daffio:** edit button initially doesn't appear on usage tab ([#4183](https://github.com/graycoreio/daffodil/issues/4183)) ([a3e036b](https://github.com/graycoreio/daffodil/commit/a3e036be236c401d05e997031db7d8f2091dc49c))
+* **daffio:** fix wrong link in getting started doc ([#4231](https://github.com/graycoreio/daffodil/issues/4231)) ([6ba3940](https://github.com/graycoreio/daffodil/commit/6ba39404fd9033792f674cda55be34523cb2cf2d))
+* **design:** correct `DaffOrientableDirective` orientation input handling ([#4169](https://github.com/graycoreio/daffodil/issues/4169)) ([ac89962](https://github.com/graycoreio/daffodil/commit/ac89962eb9c576cbffa8458e872942328bcace75))
+* **design:** correct `DaffStatusableDirective` default status logic ([#4171](https://github.com/graycoreio/daffodil/issues/4171)) ([319041f](https://github.com/graycoreio/daffodil/commit/319041f23d92584e41ee380db48278e2c8938e86))
+* **design:** fix duplicate track keys in DaffTreeComponent by using unique node IDs ([#4115](https://github.com/graycoreio/daffodil/issues/4115)) ([2f849d7](https://github.com/graycoreio/daffodil/commit/2f849d7417e574ebe2a2c177411b51234a0ee9a5))
+* **design:** fix form imports in form field ([#4236](https://github.com/graycoreio/daffodil/issues/4236)) ([06061ab](https://github.com/graycoreio/daffodil/commit/06061ab1f3a0fbc9688ccab882f89a5b0c7844a7))
+* **design:** fix orientable class names in notification component ([#4229](https://github.com/graycoreio/daffodil/issues/4229)) ([6f68bb9](https://github.com/graycoreio/daffodil/commit/6f68bb982a24739cdc7940e9c6cfe1cae5c545d5))
+* **design:** paginator is hydration incompatible ([#4142](https://github.com/graycoreio/daffodil/issues/4142)) ([85c449d](https://github.com/graycoreio/daffodil/commit/85c449ddabeef8087da5e5b97486984a9b63ee80))
+* **dgeni:** design search index not generated or uploaded ([#4136](https://github.com/graycoreio/daffodil/issues/4136)) ([ce18be2](https://github.com/graycoreio/daffodil/commit/ce18be2dfa43b08eb0597104769beb612ba74e0b))
+* magento drivers not querying key fields ([#4223](https://github.com/graycoreio/daffodil/issues/4223)) ([c3bfccf](https://github.com/graycoreio/daffodil/commit/c3bfccfddb6901af46d13916f682fe736b4077d0))
+* **plugins/magento/cms-ai-builder:** correct ContentSchema compilation error on 8.4 ([#4261](https://github.com/graycoreio/daffodil/issues/4261)) ([2c3da47](https://github.com/graycoreio/daffodil/commit/2c3da47e02e77599ccd4e36ab8c4c3384eb68ea5))
+* **plugins/magento/cms-ai-daff-components:** drastically simplify prompt ([f0fa760](https://github.com/graycoreio/daffodil/commit/f0fa760c93510aabbd8b3ce8393eb82458dbe962))
+* **plugins/magento/cms-ai-daff-components:** fix bad namespace ([875e778](https://github.com/graycoreio/daffodil/commit/875e778ee871c54b7e74172b8a95e842e8aa5c10))
+* **plugins/magento/cms-ai-daff-components:** remove unused article input schema ([8bb64ff](https://github.com/graycoreio/daffodil/commit/8bb64ff8afd455493c95c5ae5bc96bfc8334ae22))
+* prevent errors when components are empty ([261f2e3](https://github.com/graycoreio/daffodil/commit/261f2e3b5d297bb8bf8772dc4e06a81eaa3f21e2))
+* **product:** getByUrl on DaffInMemoryProductService works with urls ([#4147](https://github.com/graycoreio/daffodil/issues/4147)) ([a29cdab](https://github.com/graycoreio/daffodil/commit/a29cdab625a7f2a08c4349ffda0c3ec6ff76270c))
+* tests fail on node 22 ([#4188](https://github.com/graycoreio/daffodil/issues/4188)) ([92fb925](https://github.com/graycoreio/daffodil/commit/92fb9253545a9defbaa4f98e2f639442cca99bb0))
+* **tools-dgeni:** form API symbols not being generated ([#4245](https://github.com/graycoreio/daffodil/issues/4245)) ([45a9359](https://github.com/graycoreio/daffodil/commit/45a9359833635f40537cf99f1b59ef30e4378d1f))
+
 ## [0.90.0](https://github.com/graycoreio/daffodil/compare/v0.89.0...v0.90.0) (2025-10-07)
 
 
