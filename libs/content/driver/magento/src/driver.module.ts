@@ -7,7 +7,7 @@ import {
 import { provideDaffContentMagentoDriver } from './provider';
 
 /**
- * @deprecated
+ * @deprecated Deprecated in version 0.91.0. Will be removed in version 0.94.0.
  */
 @NgModule({
   imports: [

@@ -45,7 +45,7 @@ export const provideDaffMagentoCacheHeader = () => makeEnvironmentProviders([
  * on a response, if there was a response with that header set.
  *
  * @inheritdoc
- * @deprecated Prefer using {@link provideDaffMagentoCacheHeader} instead.
+ * @deprecated Prefer using {@link provideDaffMagentoCacheHeader} instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
  */
 @Injectable({
   providedIn: 'root',
