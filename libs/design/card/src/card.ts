@@ -1,5 +1,4 @@
 import { DaffCardComponent } from './card/basic/basic.component';
-import { DaffRaisedCardComponent } from './card/raised/raised.component';
 import { DaffStrokedCardComponent } from './card/stroked/stroked.component';
 import { DaffCardActionsDirective } from './card-actions/card-actions.directive';
 import { DaffCardContentDirective } from './card-content/card-content.directive';
@@ -13,20 +12,6 @@ import { DaffCardTitleDirective } from './card-title/card-title.directive';
  */
 export const DAFF_CARD_COMPONENTS = <const> [
   DaffCardComponent,
-  DaffCardIconDirective,
-  DaffCardImageDirective,
-  DaffCardTaglineDirective,
-  DaffCardTitleDirective,
-  DaffCardContentDirective,
-  DaffCardActionsDirective,
-];
-
-/**
- * @docs-private
- * @deprecated Deprecated in version 0.88.0. Will be removed in version 0.91.0.
- */
-export const DAFF_RAISED_CARD_COMPONENTS = <const> [
-  DaffRaisedCardComponent,
   DaffCardIconDirective,
   DaffCardImageDirective,
   DaffCardTaglineDirective,
@@ -53,7 +38,6 @@ export const DAFF_STROKED_CARD_COMPONENTS = <const> [
  */
 export const DAFF_ALL_CARD_COMPONENTS = <const> [
   DaffCardComponent,
-  DaffRaisedCardComponent,
   DaffStrokedCardComponent,
   DaffCardIconDirective,
   DaffCardImageDirective,

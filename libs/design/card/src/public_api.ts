@@ -1,6 +1,5 @@
 export { DaffCardModule } from './card.module';
 export { DAFF_CARD_COMPONENTS } from './card';
-export { DAFF_RAISED_CARD_COMPONENTS } from './card';
 export { DAFF_STROKED_CARD_COMPONENTS } from './card';
 export { DAFF_ALL_CARD_COMPONENTS } from './card';
 export { DaffCardComponent } from './card/basic/basic.component';
@@ -11,4 +10,3 @@ export { DaffCardTaglineDirective } from './card-tagline/card-tagline.directive'
 export { DaffCardTitleDirective } from './card-title/card-title.directive';
 export { DaffCardContentDirective } from './card-content/card-content.directive';
 export { DaffCardActionsDirective } from './card-actions/card-actions.directive';
-export * from './card/raised/raised.component';

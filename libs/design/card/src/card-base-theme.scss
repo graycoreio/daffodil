@@ -42,8 +42,7 @@
 		}
 	}
 
-	.daff-card,
-	.daff-raised-card {
+	.daff-card {
 		@include light($mode) {
 			@include daff-basic-card-theme-variant(daff-color($neutral, 10));
 
@@ -106,8 +105,7 @@
 			}
 		}
 
-		&.daff-card,
-		&.daff-raised-card {
+		&.daff-card {
 			@include light($mode) {
 				@include daff-linkable-card-theme-variant(daff-color($neutral, 20));
 

@@ -35,7 +35,6 @@
 @use '../accordion/src/accordion-theme' as accordion;
 @use '../callout/src/callout-theme' as callout;
 @use '../card/src/card-base-theme' as card-base;
-@use '../card/src/card/raised/raised-theme' as raised-card;
 @use '../card/src/card/stroked/stroked-theme' as stroked-card;
 @use '../hero/src/hero-theme' as hero;
 @use '../list/src/list-theme' as list;
@@ -84,7 +83,6 @@
 
 	@include callout.daff-callout-theme($theme);
 	@include card-base.daff-card-base-theme($theme);
-	@include raised-card.daff-raised-card-theme($theme);
 	@include stroked-card.daff-stroked-card-theme($theme);
 
 	@include form-field.daff-form-field-theme($theme);

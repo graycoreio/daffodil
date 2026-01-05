@@ -130,11 +130,3 @@ Use the `orientation` property to stack card content either `vertical` (default)
 Cards default to a light gray background. Use the `color` property to change a card's color.
 
 <design-land-example-viewer-container example="card-theming"></design-land-example-viewer-container>
-
-## Deprecations
-The raised card style has been deprecated in favor of the `elevated` property. Replace `<daff-raised-card>` with `<daff-card [elevated]="true">`
-
-```html
-<daff-card [elevated]="true">
-</daff-card>
-```

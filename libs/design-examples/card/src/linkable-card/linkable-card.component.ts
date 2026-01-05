@@ -9,7 +9,6 @@ import {
 
 import {
   DAFF_CARD_COMPONENTS,
-  DAFF_RAISED_CARD_COMPONENTS,
   DAFF_STROKED_CARD_COMPONENTS,
 } from '@daffodil/design/card';
 import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
@@ -21,7 +20,6 @@ import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_CARD_COMPONENTS,
-    DAFF_RAISED_CARD_COMPONENTS,
     DAFF_STROKED_CARD_COMPONENTS,
     DAFF_IMAGE_COMPONENTS,
     ReactiveFormsModule,
