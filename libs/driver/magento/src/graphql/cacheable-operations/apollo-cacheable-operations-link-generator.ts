@@ -32,7 +32,7 @@ export const provideDaffMagentoApolloCacheableOperations = () => makeEnvironment
  * A service that will convert cacheable apollo operations into a format that Magento will understand as cacheable.
  *
  * @inheritdoc
- * @deprecated Prefer using {@link provideDaffMagentoApolloCacheableOperations} instead.
+ * @deprecated Prefer using {@link provideDaffMagentoApolloCacheableOperations} instead. Deprecated in version 0.91.0. Will be removed in version 0.94.0.
  */
 @Injectable({
   providedIn: 'root',
