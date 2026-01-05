@@ -9,13 +9,17 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffSizeAllType } from './sizable';
-import { DaffSizableDirective } from './sizable.directive';
+import {
+  DaffSizableDirective,
+  DaffSizeAllType,
+} from '@daffodil/design';
 
 @Component({
   template: `
 		<div daffSizable [size]="size"></div>`,
-  standalone: false,
+  imports: [
+    DaffSizableDirective,
+  ],
 })
 
 class WrapperComponent {
@@ -30,11 +34,8 @@ describe('@daffodil/design | DaffSizableDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-      ],
       imports: [
-        DaffSizableDirective,
+        WrapperComponent,
       ],
     })
       .compileComponents();
@@ -58,47 +59,47 @@ describe('@daffodil/design | DaffSizableDirective', () => {
     expect(directive.size).toEqual(wrapper.size);
   });
 
-  it('should add a class of .daff-xs to the host element if size is set to xs', () => {
+  it('should add a class of ".daff-xs" to the host element if size is set to xs', () => {
     wrapper.size = 'xs';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-xs': true,
     }));
   });
 
-  it('should add a class of .daff-sm to the host element if size is set to sm', () => {
+  it('should add a class of ".daff-sm" to the host element if size is set to sm', () => {
     wrapper.size = 'sm';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-sm': true,
     }));
   });
 
-  it('should add a class of .daff-md to the host element if size is set to md', () => {
+  it('should add a class of ".daff-md" to the host element if size is set to md', () => {
     wrapper.size = 'md';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-md': true,
     }));
   });
 
-  it('should add a class of .daff-lg to the host element if size is set to lg', () => {
+  it('should add a class of ".daff-lg" to the host element if size is set to lg', () => {
     wrapper.size = 'lg';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-lg': true,
     }));
   });
 
-  it('should add a class of .daff-xl to the host element if size is set to xl', () => {
+  it('should add a class of ".daff-xl" to the host element if size is set to xl', () => {
     wrapper.size = 'xl';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-xl': true,
     }));
   });

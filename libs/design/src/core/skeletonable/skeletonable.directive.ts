@@ -1,6 +1,5 @@
 import {
   Directive,
-  HostBinding,
   Input,
 } from '@angular/core';
 
@@ -22,7 +21,6 @@ import {
  *
  * ```ts
  * @Component({
- *  standalone: true,
  *  selector: 'custom-component',
  *  template: 'custom-component.html',
  *  hostDirectives: [
@@ -48,10 +46,13 @@ import {
  */
 @Directive({
   selector: '[daffSkeletonable]',
+  host: {
+    '[class.daff-skeleton]': 'skeleton',
+  },
 })
 export class DaffSkeletonableDirective {
   /**
    * Controls whether the component displays a skeleton loading state.
    */
-  @Input() @HostBinding('class.daff-skeleton') skeleton = false;
+  @Input() skeleton = false;
 }

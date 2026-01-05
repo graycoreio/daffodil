@@ -13,7 +13,6 @@ import { DaffOpenableDirective } from '../openable.directive';
 		<p>Hello stateful!</p>
 		`,
   selector: 'daff-stateful',
-  standalone: true,
   hostDirectives: [
     {
       directive: DaffOpenableDirective,
@@ -37,7 +36,6 @@ class StatefulComponent {
 		<p>Hello stateless!</p>
 		`,
   selector: 'daff-stateless',
-  standalone: true,
   hostDirectives: [
     {
       directive: DaffOpenableDirective,

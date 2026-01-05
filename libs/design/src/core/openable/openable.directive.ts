@@ -1,7 +1,6 @@
 import {
   Directive,
   EventEmitter,
-  HostBinding,
   Input,
   OnChanges,
   Output,
@@ -59,12 +58,14 @@ import { DaffOpenableStateError } from './utils/state-error';
  */
 @Directive({
   selector: '[daffOpenable]',
-  standalone: true,
+  host: {
+    '[class.daff-open]': 'open',
+  },
 })
 
 export class DaffOpenableDirective implements DaffOpenable, OnChanges {
   /** Controls whether the component is open. */
-  @Input() @HostBinding('class.daff-open') open = false;
+  @Input() open = false;
 
   private _setOpen(v: boolean) {
     if(!this.stateless) {

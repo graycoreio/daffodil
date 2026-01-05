@@ -1,6 +1,5 @@
 import {
   Directive,
-  HostBinding,
   Input,
   OnChanges,
   OnInit,
@@ -9,7 +8,6 @@ import {
 
 import {
   DaffSizable,
-  DaffSizableEnum,
   DaffSizeAllType,
 } from './sizable';
 
@@ -64,30 +62,29 @@ import {
  */
 @Directive({
   selector: '[daffSizable]',
+  host: {
+    '[class.daff-xs]': 'size === "xs"',
+    '[class.daff-sm]': 'size === "sm"',
+    '[class.daff-md]': 'size === "md"',
+    '[class.daff-lg]': 'size === "lg"',
+    '[class.daff-xl]': 'size === "xl"',
+  },
 })
 export class DaffSizableDirective<T extends DaffSizeAllType> implements DaffSizable<T>, OnChanges, OnInit {
-
-  /**
-   * Dynamically sets the CSS classes based on the size.
-   * @docs-private
-   */
-  @HostBinding('class') get class() {
-    return {
-      'daff-xs': this.size === DaffSizableEnum.XSmall,
-      'daff-sm': this.size === DaffSizableEnum.Small,
-      'daff-md': this.size === DaffSizableEnum.Medium,
-      'daff-lg': this.size === DaffSizableEnum.Large,
-      'daff-xl': this.size === DaffSizableEnum.XLarge,
-    };
-  }
-
   /**
    * The size of the component.
    */
   @Input() size: T;
 
   /**
-   * Sets a default size when no size is provided.
+   * Sets a default size.
+   *
+   * @example
+   * ```ts
+   * constructor(private sizableDirective: DaffSizableDirective) {
+   *  this.sizableDirective.defaultSize = 'md';
+   * }
+   * ```
    */
   public defaultSize: T;
 

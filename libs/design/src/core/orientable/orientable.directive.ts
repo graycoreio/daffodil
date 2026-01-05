@@ -1,6 +1,5 @@
 import {
   Directive,
-  HostBinding,
   Input,
   isDevMode,
   OnChanges,
@@ -42,7 +41,6 @@ const validateOrientation = (orientation: string) => {
  *
  * ```ts
  * @Component({
- *  standalone: true,
  *  selector: 'custom-component',
  *  template: 'custom-component.html',
  *  hostDirectives: [
@@ -66,19 +64,12 @@ const validateOrientation = (orientation: string) => {
  */
 @Directive({
   selector: '[daffOrientable]',
+  host: {
+    '[class.daff-horizontal]': 'orientation === "horizontal"',
+    '[class.daff-vertical]': 'orientation === "vertical"',
+  },
 })
 export class DaffOrientableDirective implements DaffOrientable, OnChanges, OnInit {
-
-  /**
-   * @docs-private
-   */
-  @HostBinding('class') get class() {
-    return {
-      'daff-horizontal': this.orientation === DaffOrientationEnum.Horizontal,
-      'daff-vertical': this.orientation === DaffOrientationEnum.Vertical,
-    };
-  }
-
   /**
    * The orientation of the component.
    *
@@ -88,6 +79,13 @@ export class DaffOrientableDirective implements DaffOrientable, OnChanges, OnIni
 
   /**
    * Sets a default orientation.
+   *
+   * @example
+   * ```ts
+   * constructor(private orientableDirective: DaffOrientableDirective) {
+   *  this.orientableDirective.defaultOrientation = 'horizontal';
+   * }
+   * ```
    */
   public defaultOrientation: DaffOrientation;
 

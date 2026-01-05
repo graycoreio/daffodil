@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffSelectableDirective } from './selectable.directive';
+import { DaffSelectableDirective } from '@daffodil/design';
 
 @Component({
   template: `
@@ -17,7 +17,9 @@ import { DaffSelectableDirective } from './selectable.directive';
       (becameSelected)="becameSelectedFunction($event)"
       [selected]="selected">
 		</div>`,
-  standalone: false,
+  imports: [
+    DaffSelectableDirective,
+  ],
 })
 
 class WrapperComponent {
@@ -33,11 +35,8 @@ describe('@daffodil/design | DaffSelectableDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-      ],
       imports: [
-        DaffSelectableDirective,
+        WrapperComponent,
       ],
     })
       .compileComponents();

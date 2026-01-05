@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffSkeletonableDirective } from './skeletonable.directive';
+import { DaffSkeletonableDirective } from '@daffodil/design';
 
 @Component({
   template: `

@@ -59,29 +59,29 @@ describe('@daffodil/design | DaffTextAlignableDirective | Usage', () => {
     expect(directive.textAlignment).toEqual(wrapper.textAlignment);
   });
 
-  it('should add a class of .daff-left to the host element if textAlignment is set to left', () => {
+  it('should add a class of ".daff-left" to the host element if textAlignment is set to left', () => {
     wrapper.textAlignment = 'left';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-left': true,
     }));
   });
 
-  it('should add a class of .daff-center to the host element if textAlignment is set to center', () => {
+  it('should add a class of ".daff-center" to the host element if textAlignment is set to center', () => {
     wrapper.textAlignment = 'center';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-center': true,
     }));
   });
 
-  it('should add a class of .daff-right to the host element if textAlignment is set to right', () => {
+  it('should add a class of ".daff-right" to the host element if textAlignment is set to right', () => {
     wrapper.textAlignment = 'right';
     fixture.detectChanges();
 
-    expect(directive.class).toEqual(jasmine.objectContaining({
+    expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-right': true,
     }));
   });

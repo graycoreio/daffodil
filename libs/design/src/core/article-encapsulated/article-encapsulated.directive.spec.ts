@@ -9,12 +9,14 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffArticleEncapsulatedDirective } from './article-encapsulated.directive';
+import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
 @Component({
   template: `
 		<div daffArticleEncapsulated></div>`,
-  standalone: false,
+  imports: [
+    DaffArticleEncapsulatedDirective,
+  ],
 })
 
 class WrapperComponent {}
@@ -27,11 +29,8 @@ describe('@daffodil/design | DaffArticleEncapsulatedDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WrapperComponent,
-      ],
       imports: [
-        DaffArticleEncapsulatedDirective,
+        WrapperComponent,
       ],
     })
       .compileComponents();
