@@ -100,6 +100,29 @@ describe('@daffodil/design/article | DaffArticleCopyButtonService', () => {
 
       expect(mockViewContainerRef.createComponent).toHaveBeenCalledTimes(2);
     });
+
+    it('should skip pre elements inside article-encapsulated elements', () => {
+      hostElement.innerHTML = `
+        <pre><code>Should get button</code></pre>
+        <div class="daff-ae">
+          <pre><code>Should be skipped</code></pre>
+          <div>
+            <pre><code>Should be skipped</code></pre>
+          </div>
+        </div>
+        <pre><code>Should also get button</code></pre>
+      `;
+
+      mockViewContainerRef.createComponent.and.returnValue(<any>{
+        setInput: jasmine.createSpy('setInput'),
+        location: {
+          nativeElement: document.createElement('daff-article-copy-button'),
+        },
+      });
+
+      service.addCopyButtonsToCodeBlocks(hostElement, mockViewContainerRef);
+      expect(mockViewContainerRef.createComponent).toHaveBeenCalledTimes(2);
+    });
   });
 
   describe('cleanup', () => {
