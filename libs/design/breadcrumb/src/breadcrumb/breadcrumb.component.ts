@@ -1,4 +1,5 @@
 /* eslint-disable quote-props */
+import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -7,6 +8,10 @@ import {
   QueryList,
   AfterContentInit,
   DestroyRef,
+  ViewChild,
+  contentChildren,
+  computed,
+  TemplateRef,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -14,9 +19,12 @@ import {
   DaffArticleEncapsulatedDirective,
   DaffSkeletonableDirective,
 } from '@daffodil/design';
+import { DaffMenuModule } from '@daffodil/design/menu';
 
 
-import { DaffBreadcrumbItemDirective } from '../breadcrumb-item/breadcrumb-item.directive';
+import { DaffBreadcrumbRender } from './breadcrumb-render.type';
+import { toRenderType } from './to-render-type';
+import { DaffBreadcrumbItemComponent } from '../breadcrumb-item/breadcrumb-item.component';
 
 /**
  * Groups breadcrumb items. Must be applied to a native `<ol>` element.
@@ -50,6 +58,10 @@ import { DaffBreadcrumbItemDirective } from '../breadcrumb-item/breadcrumb-item.
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  imports: [
+    DaffMenuModule,
+    NgTemplateOutlet,
+  ],
 })
 
 export class DaffBreadcrumbComponent implements AfterContentInit {
@@ -59,7 +71,55 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
   /**
    * @docs-private
    */
-  @ContentChildren(DaffBreadcrumbItemDirective) breadcrumbItems!: QueryList<DaffBreadcrumbItemDirective>;
+  @ContentChildren(DaffBreadcrumbItemComponent) breadcrumbItems!: QueryList<DaffBreadcrumbItemComponent>;
+
+  /**
+   * @docs-private
+   */
+  @ViewChild('fullMenu', { static: true }) fullMenu: TemplateRef<unknown>;
+
+  /**
+   * @docs-private
+   */
+  @ViewChild('partialMenu', { static: true }) partialMenu: TemplateRef<unknown>;
+
+  /**
+   * @docs-private
+   */
+  _breadcrumbItems = contentChildren(DaffBreadcrumbItemComponent);
+
+  _computedBreadcrumbItems = computed(() => {
+    const items = this._breadcrumbItems();
+
+    return items.reduce<DaffBreadcrumbRender[]>((acc, item, index) => {
+      const res = toRenderType(item, items.length, index);
+      if(Array.isArray(res)) {
+        return [...acc, ...res];
+      } else {
+        return [...acc,  res];
+      }
+    }, []);
+  });
+
+  _partialMenuItems = computed(() => {
+    const items = this._breadcrumbItems();
+    const res = items.reduce<DaffBreadcrumbItemComponent[]>((acc, item, index) => {
+      if(items.length > 5
+          && (index !== 0 && index !== 1)
+          && (index !== items.length - 1 && index !== items.length - 2)
+      ) {
+        return [...acc, item];
+      } else {
+        return acc;
+      }
+    }, []);
+    return res;
+  });
+
+  _fullMenuItems = computed(() => {
+    const items = this._breadcrumbItems();
+    return items.slice(0, items.length - 1);
+  });
 
   /**
    * @docs-private

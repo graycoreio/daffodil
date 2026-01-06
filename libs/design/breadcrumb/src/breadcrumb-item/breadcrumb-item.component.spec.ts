@@ -9,21 +9,21 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffBreadcrumbItemDirective } from './breadcrumb-item.directive';
+import { DaffBreadcrumbItemComponent } from './breadcrumb-item.component';
 
 @Component({
   template: `<li daffBreadcrumbItem>Breadcrumb Item</li>`,
   imports: [
-    DaffBreadcrumbItemDirective,
+    DaffBreadcrumbItemComponent,
   ],
 })
 class WrapperComponent {}
 
-describe('@daffodil/design/breadcrumb | DaffBreadcrumbItemDirective', () => {
+describe('@daffodil/design/breadcrumb | DaffBreadcrumbItemComponent', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
-  let directive: DaffBreadcrumbItemDirective;
+  let directive: DaffBreadcrumbItemComponent;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -38,7 +38,7 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbItemDirective', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('[daffBreadcrumbItem]'));
-    directive = de.injector.get(DaffBreadcrumbItemDirective);
+    directive = de.injector.get(DaffBreadcrumbItemComponent);
     fixture.detectChanges();
   });
 
