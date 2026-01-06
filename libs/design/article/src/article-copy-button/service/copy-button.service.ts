@@ -26,6 +26,7 @@ export class DaffArticleCopyButtonService {
     viewContainerRef: ViewContainerRef,
   ): void {
     const codeBlocks = hostElement.querySelectorAll('pre');
+    const encapsulatedElements = Array.from(hostElement.querySelectorAll('.daff-ae'));
 
     codeBlocks.forEach((pre: HTMLPreElement) => {
       const code = pre.querySelector('code');
@@ -35,6 +36,11 @@ export class DaffArticleCopyButtonService {
 
       // Skip if nocopy attribute is present
       if (pre.hasAttribute('nocopy')) {
+        return;
+      }
+
+      // Skip if inside an article-encapsulated component
+      if (encapsulatedElements.some(ee => ee.contains(pre))) {
         return;
       }
 
