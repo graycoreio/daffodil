@@ -18,7 +18,6 @@
 @use '../app/docs/api/components/fragments/outputs/outputs-theme.scss' as api-outputs-fragment;
 @use '../app/docs/api/components/method-block/method-block-theme' as api-method-block;
 @use '../app/docs/api/components/api-item-label/api-item-label-theme' as api-item-label;
-@use '../app/docs/components/heading-link/heading-link-theme' as docs-heading-link;
 @use '../app/docs/components/doc-viewer/doc-viewer-theme' as doc-viewer;
 @use '../app/content/home/components/home-callout-sponsors/home-callout-sponsors-theme' as home-callout-sponsors;
 
@@ -45,6 +44,5 @@
 	@include api-inputs-fragment.daffio-api-inputs-fragment-theme($theme);
 	@include api-outputs-fragment.daffio-api-outputs-fragment-theme($theme);
 	@include api-item-label.daffio-api-item-label-theme($theme);
-	@include docs-heading-link.daffio-docs-heading-link-theme($theme);
 	@include doc-viewer.daffio-doc-viewer-theme($theme);
 }

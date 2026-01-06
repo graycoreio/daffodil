@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 
 import { DaffArticleCopyButtonService } from '../article-copy-button/service/copy-button.service';
+import { DaffArticleHeadingLinkService } from '../article-heading-link/service/heading-link.service';
 
 /**
  * A component for creating articles within your page.
@@ -25,11 +26,12 @@ import { DaffArticleCopyButtonService } from '../article-copy-button/service/cop
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DaffArticleCopyButtonService],
+  providers: [DaffArticleCopyButtonService, DaffArticleHeadingLinkService],
 })
 export class DaffArticleComponent {
   constructor(
     private copyButtonService: DaffArticleCopyButtonService,
+    private headingLinkService: DaffArticleHeadingLinkService,
   ) {
     const elementRef = inject(ElementRef<HTMLElement>);
     const viewContainerRef = inject(ViewContainerRef);
@@ -37,12 +39,14 @@ export class DaffArticleComponent {
     afterEveryRender({
       write: () => {
         this.copyButtonService.addCopyButtonsToCodeBlocks(elementRef.nativeElement, viewContainerRef);
+        this.headingLinkService.addLinksToHeadings(elementRef.nativeElement, viewContainerRef);
       },
     });
 
     const destroyRef = inject(DestroyRef);
     destroyRef.onDestroy(() => {
       this.copyButtonService.cleanup();
+      this.headingLinkService.cleanup();
     });
   }
 }

@@ -1,0 +1,23 @@
+:host {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem;
+
+	&:hover {
+		.daff-article-heading-link__button {
+			opacity: 1;
+		}
+	}
+}
+
+.daff-article-heading-link {
+	&__anchor {
+		text-decoration: none;
+	}
+
+	&__button {
+		opacity: 0;
+		transition: opacity 200ms ease;
+	}
+}
