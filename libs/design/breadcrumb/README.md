@@ -85,6 +85,7 @@ Breadcrumb follows the [Breadcrumb WAI-ARIA design pattern](https://www.w3.org/W
 ### Daffodil provides
 - `aria-current="page"` automatically applied to the last breadcrumb item
 - Enforces semantic HTML structure (requires `<ol>` and `<li>` elements)
+- Truncates breadcrumbs into an overflow menu on mobile and when more than five items are present on desktop
 
 ### Developer responsibilities
 - Wrap the breadcrumb in a `<nav>` element with a descriptive `aria-label`
