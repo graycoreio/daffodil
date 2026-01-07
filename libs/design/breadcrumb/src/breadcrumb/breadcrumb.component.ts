@@ -104,7 +104,7 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
   _partialMenuItems = computed(() => {
     const items = this._breadcrumbItems();
     const res = items.reduce<DaffBreadcrumbItemComponent[]>((acc, item, index) => {
-      if(items.length > 5
+      if(items.length >= 5
           && (index !== 0 && index !== 1)
           && (index !== items.length - 1 && index !== items.length - 2)
       ) {
