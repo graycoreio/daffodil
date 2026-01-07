@@ -18,7 +18,25 @@ Menus appear when users interact with a menu activator button. Use menus for sec
 - There are only one or two actions (consider using buttons instead)
 
 ## Usage
-To use menu, import `DaffMenuModule` into your custom module:
+
+### Within a standalone component
+To use menu in a standalone component, import `DAFF_MENU_COMPONENTS` directly into your custom component:
+
+```ts
+import { DAFF_MENU_COMPONENTS } from '@daffodil/design/menu';
+
+@Component({
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  imports: [
+    DAFF_MENU_COMPONENTS,
+  ],
+})
+export class CustomComponent {}
+```
+
+### Within a module (deprecated)
+To use menu in a module, import `DaffMenuModule` into your custom module:
 
 ```ts
 import { NgModule } from '@angular/core';
@@ -38,6 +56,8 @@ import { CustomComponent } from './custom.component';
 })
 export class CustomComponentModule { }
 ```
+
+> This method is deprecated. It's recommended to update all custom components to standalone.
 
 ## Anatomy
 A menu component consists of the following parts:

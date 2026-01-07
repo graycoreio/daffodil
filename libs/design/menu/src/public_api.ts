@@ -3,3 +3,4 @@ export { DaffMenuActivatorDirective } from './menu-activator/menu-activator.comp
 export { DaffMenuModule } from './menu.module';
 export { DaffMenuComponent } from './menu/menu.component';
 export { DaffMenuItemComponent } from './menu-item/menu-item.component';
+export { DAFF_MENU_COMPONENTS } from './menu';

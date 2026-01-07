@@ -8,7 +8,7 @@
 			[class.on-mobile]="breadcrumbItem.target === 'full'"
 			[class.on-desktop]="breadcrumbItem.target === 'partial'"
 			[daffMenuActivator]="breadcrumbItem.target === 'full' ? fullMenu : partialMenu">
-				<button class="daff-breadcrumb__menu-activator">...</button>
+			<button class="daff-breadcrumb__menu-activator">...</button>
 		</li>
 	}
 }
@@ -17,7 +17,7 @@
 	<daff-menu>
 		@for (breadcrumbItem of _fullMenuItems(); track breadcrumbItem; let index = $index) {
 			<button daff-menu-item>
-				<ng-container *ngTemplateOutlet="breadcrumbItem.itemRef"></ng-container>
+				<ng-container [ngTemplateOutlet]="breadcrumbItem.itemRef"></ng-container>
 			</button>
 		}
 	</daff-menu>	
@@ -27,7 +27,7 @@
 	<daff-menu>
 		@for (breadcrumbItem of _partialMenuItems(); track breadcrumbItem; let index = $index) {
 			<button daff-menu-item>
-				<ng-container *ngTemplateOutlet="breadcrumbItem.itemRef"></ng-container>
+				<ng-container [ngTemplateOutlet]="breadcrumbItem.itemRef"></ng-container>
 			</button>
 		}
 	</daff-menu>	

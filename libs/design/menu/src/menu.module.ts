@@ -9,6 +9,9 @@ import { DaffMenuActivatorDirective } from './menu-activator/menu-activator.comp
 import { DaffMenuItemComponent } from './menu-item/menu-item.component';
 import { DaffMenuService } from './services/menu.service';
 
+/**
+ * @deprecated in favor of {@link DAFF_MENU_COMPONENTS}
+ */
 @NgModule({
   imports: [
     CommonModule,

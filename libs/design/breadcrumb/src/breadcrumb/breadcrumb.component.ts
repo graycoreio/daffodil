@@ -19,7 +19,10 @@ import {
   DaffArticleEncapsulatedDirective,
   DaffSkeletonableDirective,
 } from '@daffodil/design';
-import { DaffMenuModule } from '@daffodil/design/menu';
+import {
+  DAFF_MENU_COMPONENTS,
+  DaffMenuService,
+} from '@daffodil/design/menu';
 
 import { DaffBreadcrumbItemComponent } from '../breadcrumb-item/breadcrumb-item.component';
 import { DaffBreadcrumbRender } from '../breadcrumb-render/breadcrumb-render.type';
@@ -58,9 +61,10 @@ import { toRenderType } from '../breadcrumb-render/to-render-type';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   imports: [
-    DaffMenuModule,
+    DAFF_MENU_COMPONENTS,
     NgTemplateOutlet,
   ],
+  providers: [DaffMenuService],
 })
 
 export class DaffBreadcrumbComponent implements AfterContentInit {
