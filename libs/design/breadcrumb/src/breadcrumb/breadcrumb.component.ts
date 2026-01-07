@@ -21,10 +21,9 @@ import {
 } from '@daffodil/design';
 import { DaffMenuModule } from '@daffodil/design/menu';
 
-
-import { DaffBreadcrumbRender } from './breadcrumb-render.type';
-import { toRenderType } from './to-render-type';
 import { DaffBreadcrumbItemComponent } from '../breadcrumb-item/breadcrumb-item.component';
+import { DaffBreadcrumbRender } from '../breadcrumb-render/breadcrumb-render.type';
+import { toRenderType } from '../breadcrumb-render/to-render-type';
 
 /**
  * Groups breadcrumb items. Must be applied to a native `<ol>` element.
