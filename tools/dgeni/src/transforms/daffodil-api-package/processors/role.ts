@@ -424,42 +424,9 @@ export class RoleProcessor implements FilterableProcessor {
       ?.map(daffDocsApiParseHostDirective)
       .map<DaffDocsApiHostDirective>(({ directive, inputs, outputs }) => ({
         directive: createRef(directive),
-        inputs: inputs ? JSON.parse(inputs.replaceAll('\'', '\"')).map(daffDocsApiParseHostDirectiveField) : [],
-        outputs: outputs ? JSON.parse(outputs.replaceAll('\'', '\"')).map(daffDocsApiParseHostDirectiveField) : [],
+        inputs: inputs ? JSON.parse(inputs.replaceAll('\'', '"')).map(daffDocsApiParseHostDirectiveField) : [],
+        outputs: outputs ? JSON.parse(outputs.replaceAll('\'', '"')).map(daffDocsApiParseHostDirectiveField) : [],
       })) || [];
-    doc.hostDirectives.forEach((hostDirective) => {
-      const directiveDoc = this.aliasMap.getDocs(hostDirective.directive.label)[0];
-      if (directiveDoc) {
-        hostDirective.inputs.forEach((input) => {
-          const parentInput = directiveDoc.members.find((member) => member.name === input.parentField || input.field);
-          if (parentInput) {
-            doc.inputs.push({
-              ...parentInput,
-              default: (<any>parentInput).declaration?.initializer?.getText(),
-              type: inferPropType(parentInput),
-              name: input.field,
-              required: !parentInput.isOptional,
-              inheritedFrom: hostDirective.directive,
-              anchor: `${doc.name}.${parentInput.anchor}`,
-            });
-          }
-        });
-        hostDirective.outputs.forEach((output) => {
-          const parentOutput = directiveDoc.members.find((member) => member.name === output.parentField || output.field);
-          if (parentOutput) {
-            doc.outputs.push({
-              ...parentOutput,
-              default: (<any>parentOutput).declaration?.initializer?.getText(),
-              type: inferPropType(parentOutput),
-              name: output.field,
-              required: !parentOutput.isOptional,
-              inheritedFrom: hostDirective.directive,
-              anchor: `${doc.name}.${parentOutput.anchor}`,
-            });
-          }
-        });
-      }
-    });
     // TODO: support signals
     doc.props = doc.props.reduce((acc, prop) => {
       if (prop.decorators?.find(({ name }) => name === 'Input')) {
