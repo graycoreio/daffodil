@@ -1,4 +1,5 @@
 import { Document } from 'dgeni';
+import { isClassDeclaration } from 'dgeni-packages/node_modules/typescript';
 import { ClassExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassExportDoc';
 import {
   ClassLikeExportDoc,
@@ -35,12 +36,27 @@ export class HoistPrivateParentsProcessor implements FilterableProcessor {
 
   docTypes: Array<string> = [DaffDocsApiType.CLASS, DaffDocsApiType.INTERFACE];
   isPublicApi = (member: MemberDoc): boolean => !member.content.includes('@docs-private') && member.accessibility === 'public';
-  transformMember = (member: MemberDoc, doc: Document, ref: DaffDocsApiRef) => {
-    (<any>member).default = (<any>member).declaration?.initializer?.getText();
-    (<any>member).type = member instanceof PropertyMemberDoc ? inferPropType(member) : inferMethodType(<MethodMemberDoc>member);
-    (<any>member).required = !member.isOptional;
-    (<any>member).inheritedFrom = ref;
-    (<any>member).anchor = `${doc.name}.${member.anchor}`;
+  transformMember = (member: MemberDoc, doc: Document, container: ClassLikeExportDoc, ref: DaffDocsApiRef) => {
+    if (
+    // if the inheritance source has not been processed
+    // we have to process
+      !(<any>member).inheritedFrom
+				// if the member has a type param of the parent as its type
+				// we should reprocess the member in the context of this type
+				|| container.extendsClauses.find((parent) =>
+				  parent.symbol.declarations.find((d) =>
+				    isClassDeclaration(d) && d.typeParameters?.find((tp) =>
+				      tp.getFirstToken().getText() === member.type,
+				    ),
+				  ),
+				)
+    ) {
+      (<any>member).default = (<any>member).declaration?.initializer?.getText();
+      (<any>member).type = member instanceof PropertyMemberDoc ? inferPropType(member, container.declaration) : inferMethodType(<MethodMemberDoc>member);
+      (<any>member).required = !member.isOptional;
+      (<any>member).inheritedFrom = ref;
+      (<any>member).anchor = `${doc.name}.${member.anchor}`;
+    }
     return member;
   };
 
@@ -71,7 +87,7 @@ export class HoistPrivateParentsProcessor implements FilterableProcessor {
             members.push(
               ...parentDoc.members
                 .filter(this.isPublicApi)
-                .map((member) => this.transformMember(member, doc, { label: parentDoc.name, path: parentDoc.path })),
+                .map((member) => this.transformMember(member, doc, parentDoc, { label: parentDoc.name, path: parentDoc.path })),
               ...visit(parentDoc),
             );
           });
@@ -98,7 +114,7 @@ export class HoistPrivateParentsProcessor implements FilterableProcessor {
                         	&& (inputs.find((input) => input.field === member.name || input.parentField === member.name)
 													|| outputs.find((output) => output.field === member.name || output.parentField === member.name)),
                       )
-                      .map((member) => this.transformMember(member, doc, directive)),
+                      .map((member) => this.transformMember(member, doc, directiveDoc, directive)),
                   );
                 }
               });
@@ -106,7 +122,7 @@ export class HoistPrivateParentsProcessor implements FilterableProcessor {
           return members;
         };
         doc.members.push(...visit(doc));
-        this.parseTagsProcessor.$process(doc.members);
+        this.parseTagsProcessor.$process(doc.members);//
       }
       return doc;
     });

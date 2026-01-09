@@ -363,8 +363,10 @@ export class RoleProcessor implements FilterableProcessor {
     this.inlineTagProcessor.$process(doc.members || []);
     doc.props = <any>doc.members
       ?.filter((member) => member instanceof PropertyMemberDoc)
-      .map((prop) => {
-        prop.type = inferPropType(prop);
+      .map((prop: PropertyMemberDoc & DaffDocsApiTypeProperty) => {
+        if (!prop.inheritedFrom) {
+          prop.type = inferPropType(prop);
+        }
         return {
           ...prop,
           anchor: `${prop.containerDoc.name}.${prop.anchor}`,
