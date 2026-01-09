@@ -89,10 +89,16 @@ export class HoistPrivateParentsProcessor implements FilterableProcessor {
                 const directiveDoc = this.aliasMap.getDocs(directive.label)[0] || docs.find(({ name }) => name === directive.label);
                 if (directiveDoc) {
                   members.push(
-                    ...directiveDoc.members
-                      .filter((member) => (inputs.includes(member.name) || outputs.includes(member.name)) && this.isPublicApi(member))
+                    ...[
+                      ...directiveDoc.members,
+                      ...visit(directiveDoc),
+                    ]
+                      .filter((member) =>
+                        this.isPublicApi(member)
+                        	&& (inputs.find((input) => input.field === member.name || input.parentField === member.name)
+													|| outputs.find((output) => output.field === member.name || output.parentField === member.name)),
+                      )
                       .map((member) => this.transformMember(member, doc, directive)),
-                    ...visit(directiveDoc),
                   );
                 }
               });
