@@ -7,7 +7,6 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { BehaviorSubject } from 'rxjs';
 
 import { DaffMenuActivatorDirective } from './menu-activator.component';
 import { DaffMenuComponent } from '../menu/menu.component';
@@ -52,19 +51,23 @@ describe('@daffodil/design/menu | DaffMenuActivatorDirective', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should have set aria-haspopup to menu', () => {
+    expect(de.nativeElement.getAttribute('aria-haspopup')).toBe('menu');
+  });
+
   it('should open the menu when the button is clicked', () => {
     const menuService = TestBed.inject(DaffMenuService);
-    (<BehaviorSubject<boolean>>menuService.open$).next(false);
-    expect((<BehaviorSubject<boolean>>menuService.open$).value).toEqual(false);
-    const event = new MouseEvent('click',{});
-    de.nativeElement.dispatchEvent(event);
-    expect((<BehaviorSubject<boolean>>menuService.open$).value).toEqual(true);
+    spyOn(menuService, 'open');
+
+    de.nativeElement.click();
+
+    expect(menuService.open).toHaveBeenCalled();
   });
 
   it('should focus the button when focus is called', () => {
-    expect(document.activeElement).not.toEqual(de.nativeElement);
     const activator = de.injector.get(DaffMenuActivatorDirective);
     activator.focus();
+
     expect(document.activeElement).toEqual(de.nativeElement);
   });
 });

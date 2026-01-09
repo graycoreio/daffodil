@@ -44,6 +44,9 @@ export class DaffMenuService {
     private injector: Injector,
   ) {}
 
+  /**
+   * @docs-private
+   */
   protected async _createOverlay(activatorElement: ViewContainerRef, component: DaffMenuSlot) {
     if (!this._overlay) {
       this._overlay = daffMenuCreateOverlay(this.overlay, activatorElement.element);
