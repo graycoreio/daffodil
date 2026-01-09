@@ -1,4 +1,5 @@
 /* eslint-disable quote-props */
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
@@ -12,12 +13,14 @@ import {
   contentChildren,
   computed,
   TemplateRef,
+  signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import {
   DaffArticleEncapsulatedDirective,
   DaffSkeletonableDirective,
+  DaffBreakpoints,
 } from '@daffodil/design';
 import {
   DAFF_MENU_COMPONENTS,
@@ -69,7 +72,15 @@ import { toRenderType } from '../breadcrumb-render/to-render-type';
 
 export class DaffBreadcrumbComponent implements AfterContentInit {
 
-  constructor(private destroyRef: DestroyRef) {}
+  constructor(
+    private destroyRef: DestroyRef,
+    private breakpointObserver: BreakpointObserver,
+  ) {}
+
+  /**
+   * @docs-private
+   */
+  _isMobile = signal(false);
 
   /**
    * @docs-private
@@ -92,6 +103,8 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
   _breadcrumbItems = contentChildren(DaffBreadcrumbItemComponent);
 
   _computedBreadcrumbItems = computed(() => {
+    this._isMobile(); // signal rerenders breadcrumb on viewport change
+
     const items = this._breadcrumbItems();
 
     return items.reduce<DaffBreadcrumbRender[]>((acc, item, index) => {
@@ -133,6 +146,13 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
     this.breadcrumbItems.changes
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.updateActiveState());
+
+    this.breakpointObserver
+      .observe([DaffBreakpoints.MOBILE])
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(result => {
+        this._isMobile.set(!result.matches);
+      });
   }
 
   private updateActiveState() {
