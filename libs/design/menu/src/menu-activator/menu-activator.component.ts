@@ -14,10 +14,22 @@ import {
 
 import { DaffMenuService } from '../services/menu.service';
 
+/**
+ * Directive that triggers the menu to open/close. Applied to the button that activates the menu.
+ *
+ * @example
+ * ```html
+ * <button daffMenuActivator>
+ * Open Menu
+ * </button>
+ * ```
+ */
 @Directive({
   selector: '[daffMenuActivator]',
   host: {
     '(click)': 'onClick($event)',
+    'aria-haspopup': 'menu',
+    '[attr.aria-expanded]': 'ariaExpanded',
   },
 })
 export class DaffMenuActivatorDirective implements OnDestroy {
@@ -26,6 +38,13 @@ export class DaffMenuActivatorDirective implements OnDestroy {
   private _open: boolean;
 
   @Input() daffMenuActivator: Type<unknown> | TemplateRef<unknown>;
+
+  /**
+   * @docs-private
+   */
+  get ariaExpanded() {
+    return this._open ? 'true' : 'false';
+  }
 
   constructor(
     private service: DaffMenuService,
@@ -40,6 +59,9 @@ export class DaffMenuActivatorDirective implements OnDestroy {
     });
   }
 
+  /**
+   * @docs-private
+   */
   ngOnDestroy(): void {
     this._destroyed$.next(true);
     this._destroyed$.complete();

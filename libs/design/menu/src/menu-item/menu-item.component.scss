@@ -4,19 +4,13 @@
 	@include interactions.clickable();
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 0.5rem;
+	font-size: 1rem;
+	line-height: 1.25rem;
 	border: none;
-	border-radius: 4px;
+	border-radius: 0.25rem;
 	margin: 0;
-	padding: 12px 16px;
+	padding: 0.75rem 1rem;
 	text-decoration: none;
 	width: 100%;
-}
-
-.daff-menu-item {
-	&__content {
-		font-size: 1rem;
-		line-height: 1.25rem;
-		text-align: left;
-	}
 }
