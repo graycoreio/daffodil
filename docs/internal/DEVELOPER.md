@@ -36,10 +36,7 @@ npx nx run-many -t build
 If you want to build a single project or library, you can run:
 
 ```bash
-npx nx run @daffodil/{library}:build
-```
-```bash
-npx nx run @daffodil/{app}:build
+npx nx run @daffodil/[library/app]:build
 ```
 
 For example,
@@ -60,6 +57,7 @@ npx nx run-many -t test
 
 ### Partial Test Suite
 If you want to run a single project or library's test suite
+
 ```bash
 npx ng test [libName/appName]
 ```
