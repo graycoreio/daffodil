@@ -43,7 +43,7 @@ export class HoistPrivateParentsProcessor implements FilterableProcessor {
       !(<any>member).inheritedFrom
 				// if the member has a type param of the parent as its type
 				// we should reprocess the member in the context of this type
-				|| container.extendsClauses.find((parent) =>
+				|| container.extendsClauses?.find((parent) =>
 				  parent.symbol.declarations.find((d) =>
 				    isClassDeclaration(d) && d.typeParameters?.find((tp) =>
 				      tp.getFirstToken().getText() === member.type,
@@ -121,8 +121,13 @@ export class HoistPrivateParentsProcessor implements FilterableProcessor {
           }
           return members;
         };
-        doc.members.push(...visit(doc));
-        this.parseTagsProcessor.$process(doc.members);//
+        doc.members = [
+          ...doc.members,
+          ...visit(doc),
+        ]
+          .filter(this.isPublicApi)
+          .map((member) => this.transformMember(member, doc, doc, member.inheritedFrom));
+        this.parseTagsProcessor.$process(doc.members);
       }
       return doc;
     });
