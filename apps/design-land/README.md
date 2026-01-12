@@ -3,5 +3,5 @@
 ## Writing Documentation
 
 ```bash
-npx nx run @daffodil/design-land:serve
+npx ng serve design-land
 ```

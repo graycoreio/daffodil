@@ -21,8 +21,9 @@ git checkout -b new-branch
 
 ### Installing Dependencies
 ```bash
-npm install
+npm ci
 ```
+Please don't run `npm install` as that will modify package-lock.json.
 
 ### Full Build
 You can run a full build that builds all projects and libraries via:
@@ -36,6 +37,8 @@ If you want to build a single project or library, you can run:
 
 ```bash
 npx nx run @daffodil/{library}:build
+```
+```bash
 npx nx run @daffodil/{app}:build
 ```
 
@@ -52,14 +55,16 @@ Much like builds, we utilize Lerna and the Angular CLI to run our tests.
 To run the full suite
 
 ```bash
-npx nx run-many test
+npx nx run-many -t test
 ```
 
 ### Partial Test Suite
 If you want to run a single project or library's test suite
 ```bash
-npx ng test libName
-npx ng test appName
+npx ng test {libName}
+```
+```bash
+npx ng test {appName}
 ```
 
 ## Reference
@@ -67,7 +72,7 @@ You can read more about each library and it's build/testing process in the readm
 
 ### Apps
 * [daff.io](../../apps/daffio/README.md)
-* [demo](../../apps/daffio/README.md)
+* [demo](../../apps/demo/README.md)
 * [design-land](../../apps/design-land/README.md)
 
 ### Libraries
