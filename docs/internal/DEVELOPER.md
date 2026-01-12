@@ -61,10 +61,7 @@ npx nx run-many -t test
 ### Partial Test Suite
 If you want to run a single project or library's test suite
 ```bash
-npx ng test {libName}
-```
-```bash
-npx ng test {appName}
+npx ng test [libName/appName]
 ```
 
 ## Reference
