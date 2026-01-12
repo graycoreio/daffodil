@@ -23,7 +23,7 @@ git checkout -b new-branch
 ```bash
 npm ci
 ```
-Please don't run `npm install` as that will modify package-lock.json.
+> Don't run `npm install` as that will modify the `package-lock.json` file.
 
 ### Full Build
 You can run a full build that builds all projects and libraries via:
