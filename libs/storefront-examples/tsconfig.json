@@ -10,6 +10,9 @@
       "@daffodil/storefront-examples": [
         "libs/storefront-examples/src"
       ],
+      "@daffodil/storefront-examples/carousel": [
+        "libs/storefront-examples/carousel/src"
+      ],
     }
   },
   "references": [
