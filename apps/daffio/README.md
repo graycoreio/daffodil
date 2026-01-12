@@ -1,7 +1,7 @@
 ## Daff.io
 
 ### Getting Started
-1. Create a `.env` in your working directory with the absolute path to your daffodil project root set to `DAFF_ROOT`, for example:
+1. Create a `.env` in your working directory with the absolute path to your daffodil project root set to `DAFF_ROOT`. For example:
 ```bash
 echo "DAFF_ROOT=/workspace/daffodil" >> .env
 ```
