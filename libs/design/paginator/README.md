@@ -60,6 +60,11 @@ export class CustomComponentModule { }
 >
 > This method is deprecated. It's recommended to update all custom components to standalone.
 
+## Basic structure
+```html
+<daff-paginator aria-label="Search results page"></daff-paginator>
+```
+
 ## Features
 
 ### Truncation
