@@ -9,7 +9,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import {
-  transformDesignGuideDoc,
+  transformDesignGuideDocFactory,
   transformGuideDoc,
 } from './helpers/generateGuideList';
 import {
@@ -229,7 +229,7 @@ export const designDocsPackage = new Package('design-docs', [design])
         },
         ...docs
           .filter((doc) => doc.docType !== 'index')
-          .map(transformDesignGuideDoc),
+          .map(transformDesignGuideDocFactory(DAFF_DOCS_DESIGN_PATH)),
       ], {
         id: '',
         title: '',
@@ -315,7 +315,7 @@ export const storefrontDocsPackage = new Package('storefront-docs', [storefront]
         },
         ...docs
           .filter((doc) => doc.docType !== 'index')
-          .map(transformDesignGuideDoc),
+          .map(transformDesignGuideDocFactory(DAFF_DOCS_STOREFRONT_PATH)),
       ], {
         id: '',
         title: '',

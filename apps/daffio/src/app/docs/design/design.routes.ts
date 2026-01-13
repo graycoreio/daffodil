@@ -9,21 +9,20 @@ import {
 import { provideDaffioDocsDesignComponentContentComponent } from './components/component-content/component-content.provider';
 import { DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
 import { DaffioDocsDesignComponentOverviewPageComponent } from './pages/components-overview/component-overview.component';
-import { DaffioDocsDesignOverviewPageComponent } from './pages/overview/overview.component';
 import { daffioDocsDesignComponentDocResolver } from './services/component-doc.resolver';
 import { DaffioRoute } from '../../core/router/route.type';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
 import { daffioDocsDesignIndexResolver } from './services/index.resolver';
-import { DaffioDocsDesignIndexService } from './services/index.service';
+import { provideDaffioDocsDesignIndexService } from './services/index.service';
 import { daffioDocsApiRolesProvider } from '../api/roles/api-roles.provider';
 import { provideDaffioDocsPackagesContentComponent } from '../packages/components/packages-content/packages-content.provider';
 
-export const daffioDocsDesignRoutes = <Routes> [
+export const daffioDocsDesignRoutesFactory = (section: string, ...extraRoutes: Routes) => <Routes> [
   <DaffioRoute>{
     path: '',
     providers: [
-      DaffioDocsDesignIndexService,
+      provideDaffioDocsDesignIndexService(section),
       provideDaffioDocsDesignComponentContentComponent(),
       provideDaffioDocsPackagesContentComponent(),
       ...daffioDocsApiRolesProvider(),
@@ -38,11 +37,7 @@ export const daffioDocsDesignRoutes = <Routes> [
       daffioDockedSidebar: DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION.id,
     },
     children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        component: DaffioDocsDesignOverviewPageComponent,
-      },
+      ...extraRoutes,
       {
         path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT],
         children: [

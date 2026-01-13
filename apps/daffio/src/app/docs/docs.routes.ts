@@ -13,11 +13,13 @@ import { DaffioDocsIndexService } from './index/index.service';
 import { DaffioDocsFooterComponent } from '../core/footer/docs-footer/docs-footer.component';
 import { DaffioDocsNavContainer } from '../core/nav/docs/docs.component';
 import { DAFF_DOCS_NAV_SIDEBAR_REGISTRATION } from '../core/nav/docs-sidebar.provider';
+import { DaffioDocsDesignOverviewPageComponent } from './design/pages/overview/overview.component';
 import { DaffioRouterNamedViewsEnum } from '../core/router/named-views/models/named-views.enum';
 import { DaffioRoute } from '../core/router/route.type';
 import { DAFFIO_DOCS_TOC_SIDEBAR_REGISTRATION } from './containers/toc-sidebar-content/sidebar.provider';
 import { DaffioActiveHeaderService } from '../core/dynamic-fragment/service';
 import { provideDaffioDocsDesignSection } from './design/services/index.service';
+import { DaffioDocsStorefrontOverviewPageComponent } from './storefront/pages/overview/overview.component';
 
 export const daffioDocsRoutes = <Routes> [
   <DaffioRoute>{
@@ -58,14 +60,28 @@ export const daffioDocsRoutes = <Routes> [
       },
       {
         path: DAFF_DOCS_DESIGN_PATH,
-        loadChildren: () => import('./design/design.routes').then(r => r.daffioDocsDesignRoutes),
+        loadChildren: () => import('./design/design.routes').then(r => r.daffioDocsDesignRoutesFactory(
+          DAFF_DOCS_DESIGN_PATH,
+          {
+            path: '',
+            pathMatch: 'full',
+            component: DaffioDocsDesignOverviewPageComponent,
+          },
+        )),
       },
       {
         path: DAFF_DOCS_STOREFRONT_PATH,
         providers: [
           provideDaffioDocsDesignSection(DAFF_DOCS_STOREFRONT_PATH),
         ],
-        loadChildren: () => import('./design/design.routes').then(r => r.daffioDocsDesignRoutes),
+        loadChildren: () => import('./design/design.routes').then(r => r.daffioDocsDesignRoutesFactory(
+          DAFF_DOCS_STOREFRONT_PATH,
+          {
+            path: '',
+            pathMatch: 'full',
+            component: DaffioDocsStorefrontOverviewPageComponent,
+          },
+        )),
       },
       {
         path: '',

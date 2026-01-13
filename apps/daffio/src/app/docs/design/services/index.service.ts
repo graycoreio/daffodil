@@ -1,6 +1,8 @@
 import {
+  EnvironmentProviders,
   Inject,
   Injectable,
+  makeEnvironmentProviders,
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -36,3 +38,8 @@ export class DaffioDocsDesignIndexService<T extends DaffDocsDesignGuideNavList =
     return this.fetchAsset.fetch<T>(`${this.docsPath}/${DAFF_DOCS_PATH}/${this.section}/index.json`, this._key);
   }
 }
+
+export const provideDaffioDocsDesignIndexService = (section: string): EnvironmentProviders => makeEnvironmentProviders([
+  DaffioDocsDesignIndexService,
+  provideDaffioDocsDesignSection(section),
+]);
