@@ -1,9 +1,18 @@
 ## Daff.io
 
 ### Getting Started
-1. Create a `.env` in your working directory with the absolute path to your daffodil project root set to `DAFF_ROOT`, e.g `echo "DAFF_ROOT=/workspace/daffodil" >> .env`
-2. `npx nx run @daffodil/daffio:build`
-3. `npx ng serve daffio`
+1. Create a `.env` in your working directory with the absolute path to your daffodil project root set to `DAFF_ROOT`. For example:
+```bash
+echo "DAFF_ROOT=/workspace/daffodil" >> .env
+```
+2. Build the daffio app:
+```bash 
+npx nx run @daffodil/daffio:build
+```
+3. Serve app:
+```bash 
+npx ng serve daffio
+```
 4. Navigate to `localhost:4200` in your browser of choice
 
 ### Project Overview
@@ -18,6 +27,6 @@ For this reason, we have opted to create a secondary project `daffio-dev` which 
 
 You can run this project via:
 
-```
+```bash
 ng serve --project=daffio-dev
 ```
