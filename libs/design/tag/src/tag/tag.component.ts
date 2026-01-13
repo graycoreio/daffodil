@@ -25,7 +25,7 @@ import { DaffTagSizableDirective } from './tag-sizable.directive';
  *
  * @example
  * ```html
- *  <daff-tag dismissible (closeTag)="onCloseTag()">
+ *  <daff-tag [dismissible]="true" (closeTag)="onCloseTag()">
  *    <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
  *    <div>Label</div>
  *  </daff-tag>
