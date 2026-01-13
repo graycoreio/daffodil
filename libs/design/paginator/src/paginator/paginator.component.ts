@@ -49,8 +49,10 @@ export class DaffPaginatorComponent implements OnChanges {
   faChevronLeft = faChevronLeft;
 
   /**
-   * The total number of pages the paginator tracks. This number can change dynamically, but the end user is responsible for keeping numberOfPages
-   * and currentPage in sync. For example, if the numberOfPages is dynamically changed to a value less than the currentPage, the paginator will break.
+   * The total number of pages the paginator tracks. This number can change dynamically, but the end user is responsible for keeping `numberOfPages`
+   * and `currentPage` in sync.
+   *
+   * For example, if the `numberOfPages` is dynamically changed to a value less than the `currentPage`, the paginator will break.
    */
   @Input() numberOfPages: number;
 
