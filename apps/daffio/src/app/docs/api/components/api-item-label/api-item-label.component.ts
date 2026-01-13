@@ -5,18 +5,9 @@ import {
   Input,
 } from '@angular/core';
 
-export type DaffioDocsApiItemLabelType = 'class' | 'type-alias' | 'interface' | 'const' | 'enum' | 'package' | 'function' | 'deprecated';
+import { DaffDocsApiRole } from '@daffodil/docs-utils';
 
-export enum DaffioDocsApiItemLabelTypeEnum {
-  Class = 'class',
-  TypeAlias = 'type-alias',
-  Interface = 'interface',
-  Const = 'const',
-  Enum = 'enum',
-  Package = 'package',
-  Function = 'function',
-  Deprecated = 'deprecated',
-}
+export type DaffioDocsApiItemLabelType = `${DaffDocsApiRole}` | 'package' | 'deprecated';
 
 @Component({
   selector: 'daffio-docs-api-item-label',
@@ -29,17 +20,9 @@ export class DaffioDocsApiItemLabelComponent {
 
   @HostBinding('class.daffio-docs-api-item-label') hostClass = true;
 
-  /* eslint-disable quote-props */
   @HostBinding('class') get class() {
     return {
-      'class': this.type === DaffioDocsApiItemLabelTypeEnum.Class,
-      'type-alias': this.type === DaffioDocsApiItemLabelTypeEnum.TypeAlias,
-      'interface': this.type === DaffioDocsApiItemLabelTypeEnum.Interface,
-      'const': this.type === DaffioDocsApiItemLabelTypeEnum.Const,
-      'enum': this.type === DaffioDocsApiItemLabelTypeEnum.Enum,
-      'package': this.type === DaffioDocsApiItemLabelTypeEnum.Package,
-      'function': this.type === DaffioDocsApiItemLabelTypeEnum.Function,
-      'deprecated': this.type === DaffioDocsApiItemLabelTypeEnum.Deprecated,
+      [this.type]: true,
     };
   }
 }
