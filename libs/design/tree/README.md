@@ -56,14 +56,14 @@ A tree consists of the following parts:
 ### Container
 `<daff-tree>`: The main wrapper that holds the tree and accepts your data.
 
-### Tree item
-`[daffTreeItem]`: Added to links or buttons inside your templates to connect them to the tree.
-
 ### Node templates
-Define how each item in the tree looks:
+Define how each tree item looks:
 
 - `#daffTreeItemWithChildrenTpl`: For items that can expand to show children. Click handling and icons are added automatically.
 - `#daffTreeItemTpl`: For items at the end of a branch with no children.
+
+### Tree item
+`[daffTreeItem]`: Added to links or buttons inside your templates to connect them to the tree.
 
 ### Basic structure
 ```html
