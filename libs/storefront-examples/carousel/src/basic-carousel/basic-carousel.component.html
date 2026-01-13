@@ -1,0 +1,18 @@
+<daff-sf-carousel>
+	@for (slide of [1,2,3,4,5,6]; track slide) {
+		<ng-template daffSfCarouselItem>
+			<daff-card>
+				<div daffCardHeader>Header {{slide}}</div>
+				<div daffCardTitle>Title</div>
+				<div daffCardContent>
+					<p>Card content text that is relevant to the title and builds context about an image that may be added
+						to the card.</p>
+					<p>Card content with multiple paragraphs.</p>
+				</div>
+				<div daffCardActions>
+					<button daff-button type="button" color="primary">Button Text {{slide}}</button>
+				</div>
+			</daff-card>
+		</ng-template>
+	}
+</daff-sf-carousel>
