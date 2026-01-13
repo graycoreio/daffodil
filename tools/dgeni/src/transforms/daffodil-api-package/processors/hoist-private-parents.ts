@@ -125,7 +125,8 @@ export class HoistPrivateParentsProcessor implements FilterableProcessor {
           ...doc.members,
           ...visit(doc),
         ]
-          .filter(this.isPublicApi)
+        // ensure uniqueness, preferring own members and check if doc should be in public API
+          .filter((member, i, ary) => ary.findIndex((m) => m.name === member.name) === i && this.isPublicApi(member))
           .map((member) => this.transformMember(member, doc, doc, member.inheritedFrom));
         this.parseTagsProcessor.$process(doc.members);
       }
