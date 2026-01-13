@@ -24,8 +24,8 @@ export class CustomComponent {}
 The carousel uses [Swiper](https://swiperjs.com) under the hood. For complete API documentation, refer to the Swiper documentation. Some inputs have been limited to provide better control over the UI and keep the carousel's API smaller.
 
 ### Basic structure
-``` html
-<daff-sf-carousel [options]="options">
+```html
+<daff-sf-carousel>
 	<ng-template daffSfCarouselItem *ngFor="let slide of [1,2,3,4,5,6]">
 		<daff-card class="docs-card">
 			<div daffCardHeader>Header {{slide}}</div>
