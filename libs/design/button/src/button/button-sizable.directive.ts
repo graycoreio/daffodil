@@ -14,5 +14,10 @@ export type DaffButtonSize = DaffSizeSmallType | DaffSizeMediumType | DaffSizeLa
 
 @Directive({})
 
-export class DaffButtonSizableDirective extends DaffSizableDirective<DaffButtonSize> {}
+export class DaffButtonSizableDirective extends DaffSizableDirective<DaffButtonSize> {
+  /**
+   * @docs-private
+   */
+  defaultSize: DaffButtonSize;
+}
 
