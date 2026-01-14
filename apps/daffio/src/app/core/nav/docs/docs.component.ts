@@ -3,11 +3,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
+  Type,
 } from '@angular/core';
-import {
-  RouterLink,
-  RouterLinkActive,
-} from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -25,6 +23,8 @@ import { DaffioHeaderItemDirective } from '../../header/components/header-item/h
 import { DaffioRoute } from '../../router/route.type';
 import { DaffioSidebarService } from '../../sidebar/services/sidebar.service';
 import { DAFFIO_NAV_SIDEBAR_ID } from '../header/sidebar-id';
+import { DaffioNavLinkDynamicComponent } from '../link/dynamic-component.type';
+import { DaffioNavLinkComponent } from '../link/link.component';
 import { DaffioNavLink } from '../link/type';
 
 @Component({
@@ -35,18 +35,18 @@ import { DaffioNavLink } from '../link/type';
     DaffioHeaderComponent,
     DaffioHeaderItemDirective,
     RouterLink,
-    RouterLinkActive,
     DaffLogoModule,
     DaffThemeSwitchButtonModule,
     DaffIconButtonComponent,
     FaIconComponent,
     AsyncPipe,
+    DaffioNavLinkComponent,
   ],
 })
 export class DaffioDocsNavContainer implements OnInit {
   faBars = faBars;
 
-  links$: Observable<Array<DaffioNavLink>>;
+  links$: Observable<Array<DaffioNavLink | Type<DaffioNavLinkDynamicComponent>>>;
 
   constructor(
     private routerData: DaffRouterDataService<DaffioRoute['data']>,

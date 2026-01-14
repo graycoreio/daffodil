@@ -3,8 +3,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
+  Type,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import {
   map,
   Observable,
@@ -13,6 +13,8 @@ import {
 import { DAFF_NAV_LIST_COMPONENTS } from '@daffodil/design/list';
 import { DaffRouterDataService } from '@daffodil/router';
 
+import { DaffioNavLinkDynamicComponent } from '../link/dynamic-component.type';
+import { DaffioNavLinkComponent } from '../link/link.component';
 import { DaffioRouteWithNavLinks } from '../link/route.type';
 import { DaffioNavLink } from '../link/type';
 
@@ -23,11 +25,11 @@ import { DaffioNavLink } from '../link/type';
   imports: [
     AsyncPipe,
     DAFF_NAV_LIST_COMPONENTS,
-    RouterLink,
+    DaffioNavLinkComponent,
   ],
 })
 export class DaffioNavSidebarBodyComponent implements OnInit {
-  links$: Observable<Array<DaffioNavLink>>;
+  links$: Observable<Array<DaffioNavLink | Type<DaffioNavLinkDynamicComponent>>>;
 
   constructor(
     private routerData: DaffRouterDataService<DaffioRouteWithNavLinks['data']>,
