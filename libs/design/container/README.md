@@ -1,32 +1,14 @@
 # Container
-Container is a basic structural element that restricts page content to a specific maximum width.
+Container is a structural element that restricts content to a maximum width.
 
 ## Overview
 Container comes with pre-defined sizes that work well with common breakpoints. It's not responsible for providing padding or margin.
 
-## Size
-The size of a container can be defined by using the `size` property. There is no default size set.
-
-Supported sizes: `xs | sm | md | lg | xl`
-
-| Description | Max Width | Value  |
-| ----------- | --------- | ------ |
-| Extra Small | 640px     | xs     |
-| Small       | 800px     | sm     |
-| Medium      | 1040px    | md     |
-| Large       | 1340px    | lg     |
-| Extra Large | 1920px    | xl     |
-
-<design-land-example-viewer-container example="container-sizes"></design-land-example-viewer-container>
-
-
 ## Usage
-
 ### Within a standalone component
 To use container in a standalone component, import `DAFF_CONTAINER_COMPONENTS` directly into your custom component:
 
 ```ts
-
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
 @Component({
@@ -40,11 +22,11 @@ export class CustomComponent {}
 ```
 
 ### Within a module (deprecated)
-To use container in a module, import `DaffCalloutModule` into your custom module:
+To use container in a module, import `DaffContainerModule` into your custom module:
 
 ```ts
 import { NgModule } from '@angular/core';
-import { DaffCalloutModule } from '@daffodil/design/container';
+import { DaffContainerModule } from '@daffodil/design/container';
 import { CustomComponent } from './custom.component';
 
 @NgModule({
@@ -55,10 +37,23 @@ import { CustomComponent } from './custom.component';
     CustomComponent,
   ],
   imports: [
-    DaffCalloutModule,
+    DaffContainerModule,
   ],
 })
 export class CustomComponentModule { }
 ```
 
+> **Warning**
+>
 > This method is deprecated. It's recommended to update all custom components to standalone.
+
+## Sizes
+Set a size on container using the `size` property. There is no default size.
+
+| Size        | Max Width |
+| ----------- | --------- |
+| `xs`        | 640px     |
+| `sm`        | 800px     |
+| `md`        | 1040px    |
+| `lg`        | 1340px    |
+| `xl`        | 1920px    |
