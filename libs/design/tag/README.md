@@ -1,20 +1,12 @@
 # Tag
-Tags are compact visual indicators used to display short pieces of information, such as status, categories, or labels. They typically contain an icon, text label, and optionally a delete button for removable items.
+Tags are compact visual indicators used to display short pieces of information such as status, categories, or labels.
 
 ## Overview
 Tag supports flexible content projection to allow for various combinations of icons, labels, and interactive elements within a consistent container.
 
-| Attribute | Description |
-| --------- | ----------- |
-| `daff-tag` | Flexible tag container that can contain an icon, a label, and a dismiss button |
-
-
-**Basic tag**
 <design-land-example-viewer-container example="basic-tag"></design-land-example-viewer-container>
 
 ## Usage
-
-### Within a standalone component
 To use tag in a standalone component, import `DAFF_TAG_COMPONENTS` directly into your custom component.
 
 ```ts
@@ -31,10 +23,10 @@ export class CustomComponent {}
 ```
 
 ## Anatomy
-Tags should always have a label, unless you are only using an icon that is universally understood and accessible.
+Tags should always include a text label unless the icon is universally understood and accessible.
 
-### Icon support
-An icon can be rendered within the tag using the `daffPrefix` directive.
+### Icon
+Use the `[daffPrefix]` element to display a leading visual icon for a tag.
 
 ```html
 <daff-tag>
@@ -43,45 +35,47 @@ An icon can be rendered within the tag using the `daffPrefix` directive.
 </daff-tag>
 ```
 
-### Dismissible support
-A tag can be made dismissible by setting the `dismissible` property to `true`. This displays a close button that emits a `closeTag` event when clicked.
+## Features
+
+### Dismissible tag
+Set `dismissible` to `true` to display a close button. The button emits a `closeTag` event when clicked.
 
 ```html
-<daff-tag dismissible (closeTag)="onCloseTag()">
+<daff-tag [dismissible]="true" (closeTag)="onCloseTag()">
   <fa-icon [icon]="faCircleCheck" daffPrefix></fa-icon>
   <div>Tag label</div>
 </daff-tag>
 ```
 
-### Disabled state
-Tags can be disabled by setting the `disabled` property to `true`. Disabled tags cannot be dismissed.
+### Disabled
+Set `disabled` to `true` to disable the tag. Disabled tags cannot be dismissed.
 
 ```html
-<daff-tag dismissible disabled>
+<daff-tag [disabled]="true">
   <fa-icon [icon]="faCircleCheck" daffPrefix></fa-icon>
   <div>Disabled tag</div>
 </daff-tag>
 ```
 
 ## Sizes
-Use the `size` property to control tag dimensions. The default size is `md`. Supported sizes: `sm`, `md`, `lg`.
+Use the `size` property to control tag dimensions. Supported sizes: `sm`, `md` (default), `lg`.
 
-<design-land-example-viewer-container example="sizeable-tag"></design-land-example-viewer-container>
+<design-land-example-viewer-container example="sizable-tag"></design-land-example-viewer-container>
 
 ## Colors
 Use the `color` property to change the color of a tag. Supported colors: `primary`, `secondary`, `tertiary`, `dark`, `light`, `theme`, `theme-contrast`.
 
-> Note: `dark`, `light`, and `theme` should be used on appropriate backgrounds for sufficient contrast.
-
 <design-land-example-viewer-container example="colorable-tag"></design-land-example-viewer-container>
 
-## Status indicators
-Status indicators help users understand the type of information a tag represents and its importance relative to other tags in the same context. Use the `status` property to convey different semantic meanings. Supported status: `warn`, `critical`, `info`, `success`.
+## Status
+Use the `status` property to convey semantic meaning. Supported statuses: `warn`, `critical`, `info`, `success`.
 
 <design-land-example-viewer-container example="statusable-tag"></design-land-example-viewer-container>
 
 ## Accessibility
-Daffodil uses semantic HTML elements and proper ARIA attributes to ensure an accessible experience by default.
+No additional accessibility annotations are needed.
 
-- The close button supports the `disabled` state with appropriate `aria-disabled` attributes
-- Use appropriate contrast ratios for text and background colors
+### Keyboard interactions
+Default tags are not interactive and do not receive focus.
+
+Dismissible tags include a focusable close button that can be activated with `Enter` or `Space`.
