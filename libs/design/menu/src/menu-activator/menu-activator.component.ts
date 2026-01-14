@@ -37,6 +37,7 @@ export class DaffMenuActivatorDirective implements OnDestroy {
   private _destroyed$ = new Subject<boolean>();
   private _open: boolean;
 
+  /** @docs-private */
   @Input() daffMenuActivator: Type<unknown> | TemplateRef<unknown>;
 
   /**
@@ -67,6 +68,9 @@ export class DaffMenuActivatorDirective implements OnDestroy {
     this._destroyed$.complete();
   }
 
+  /**
+   * @docs-private
+   */
   focus() {
     this.viewContainerRef.element.nativeElement.focus();
   }

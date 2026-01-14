@@ -66,6 +66,9 @@ export class DaffMenuService {
     }
   }
 
+  /**
+   * @docs-private
+   */
   protected _destroyOverlay() {
     if (this._overlay) {
       this._overlay.detach();
