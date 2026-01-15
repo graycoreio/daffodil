@@ -10,6 +10,10 @@
 			display: none;
 
 			@include daff.breakpoint(big-tablet) {
+				@include daff.clickable();
+				appearance: none;
+				background: none;
+				border: none;
 				display: block;
 				color: currentColor;
 				font-size: daff.$font-size-base;

@@ -1,11 +1,4 @@
-@switch (type()) {
-	@case ('list') {
-		<button daff-list-item [daffMenuActivator]="designMenu">Design</button>
-	}
-	@case ('header') {
-		<button daffioHeaderItem [daffMenuActivator]="designMenu">Design</button>
-	}
-}
+<button daffioHeaderItem [daffMenuActivator]="designMenu">Design</button>
 
 <ng-template #designMenu>
   <daff-menu>
