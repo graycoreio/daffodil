@@ -13,6 +13,7 @@ import { DaffioDocsIndexService } from './index/index.service';
 import { DaffioDocsFooterComponent } from '../core/footer/docs-footer/docs-footer.component';
 import { DaffioDocsNavContainer } from '../core/nav/docs/docs.component';
 import { DAFF_DOCS_NAV_SIDEBAR_REGISTRATION } from '../core/nav/docs-sidebar.provider';
+import { DaffioDocsDesignNavLinkComponent } from './design/components/nav-link/nav-link.component';
 import { DaffioDocsDesignOverviewPageComponent } from './design/pages/overview/overview.component';
 import { DaffioRouterNamedViewsEnum } from '../core/router/named-views/models/named-views.enum';
 import { DaffioRoute } from '../core/router/route.type';
@@ -36,7 +37,7 @@ export const daffioDocsRoutes = <Routes> [
       daffioNavLinks: [
         { url: `/${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.GUIDE]}`, title: 'Guides' },
         { url: `/${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.PACKAGE]}`, title: 'Packages' },
-        { url: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}`, title: 'Design' },
+        DaffioDocsDesignNavLinkComponent,
         { url: `/${DAFF_DOCS_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.API]}`, title: 'API Reference' },
       ],
       daffioSidebars: {
