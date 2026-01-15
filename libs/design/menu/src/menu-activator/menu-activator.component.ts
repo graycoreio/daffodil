@@ -15,12 +15,12 @@ import {
 import { DaffMenuService } from '../services/menu.service';
 
 /**
- * Directive that triggers the menu to open/close. Applied to the button that activates the menu.
+ * Directive that triggers the menu to open/close. Applied to the button that activates the menu. The selector doubles as an input for the menu content to display.
  *
  * @example
  * ```html
- * <button daffMenuActivator>
- * Open Menu
+ * <button [daffMenuActivator]="menu">
+ *   Open Menu
  * </button>
  * ```
  */
@@ -37,7 +37,9 @@ export class DaffMenuActivatorDirective implements OnDestroy {
   private _destroyed$ = new Subject<boolean>();
   private _open: boolean;
 
-  /** @docs-private */
+  /**
+   * The menu content to display when activated.
+   */
   @Input() daffMenuActivator: Type<unknown> | TemplateRef<unknown>;
 
   /**
