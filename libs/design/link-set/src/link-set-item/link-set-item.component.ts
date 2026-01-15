@@ -5,6 +5,9 @@ import {
   HostBinding,
 } from '@angular/core';
 
+/**
+ * @deprecated
+ */
 @Component ({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'a[daff-link-set-item]',

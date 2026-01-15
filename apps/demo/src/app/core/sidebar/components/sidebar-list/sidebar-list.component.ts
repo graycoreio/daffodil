@@ -1,9 +1,22 @@
 import {
   Component,
   Input,
+  OnChanges,
 } from '@angular/core';
 
+import {
+  daffTransformTree,
+  DaffTreeData,
+} from '@daffodil/design/tree';
 import { DaffNavigationTree } from '@daffodil/navigation';
+
+const transformNavigationTree = (node: DaffNavigationTree): DaffTreeData<unknown> => ({
+  id: node.id,
+  title: node.name,
+  url: node.url,
+  items: [],
+  data: {},
+});
 
 @Component({
   selector: 'demo-sidebar-list',
@@ -11,12 +24,14 @@ import { DaffNavigationTree } from '@daffodil/navigation';
   styleUrls: ['./sidebar-list.component.scss'],
   standalone: false,
 })
-export class SidebarListComponent {
+export class SidebarListComponent implements OnChanges {
   @Input() tree: DaffNavigationTree;
 
-  @Input() level = 0;
+  treeData: DaffTreeData<unknown>;
 
-  get nextLevel() {
-    return this.level + 1;
+  ngOnChanges(): void {
+    if (this.tree) {
+      this.treeData = daffTransformTree(this.tree, transformNavigationTree, 'children');
+    }
   }
 }

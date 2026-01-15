@@ -4,6 +4,8 @@ import {
 } from '@angular/core';
 
 /**
+ * @deprecated
+ *
  * A directive for adding a subheading to a daff-link-set.
  */
 @Directive({

@@ -1,27 +1,10 @@
-@if (level === 0) {
-  @for (child of tree.children; track child) {
-    <demo-sidebar-list [tree]="child" [level]="nextLevel">
-    </demo-sidebar-list>
-  }
-}
-
-@if (level > 0) {
-  <daff-link-set class="demo-sidebar-list__level-{{ level }}">
-    @if (level === 1) {
-      <a [routerLink]="tree.url" daffLinkSetHeading daff-link-set-item>
-        {{ tree.name }}
-      </a>
-    }
-    @for (child of tree.children; track child) {
-      @if (child.children?.length > 0) {
-        <a [routerLink]="child.url" daffLinkSetSubheading
-          daff-link-set-item>{{ child.name }}</a>
-        <demo-sidebar-list [tree]="child" [level]="nextLevel"></demo-sidebar-list>
-      }
-      @if (!child.children?.length) {
-        <a [routerLink]="child.url"
-          daff-link-set-item>{{ child.name }}</a>
-      }
-    }
-  </daff-link-set>
+@if (treeData) {
+  <ul daff-tree [tree]="treeData">
+    <ng-template #daffTreeItemWithChildrenTpl let-node>
+      <button daffTreeItem [node]="node">{{ node.title }}</button>
+    </ng-template>
+    <ng-template #daffTreeItemTpl let-node>
+      <a daffTreeItem [node]="node" [routerLink]="node.url">{{ node.title }}</a>
+    </ng-template>
+  </ul>
 }

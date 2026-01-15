@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { DaffLinkSetModule } from '@daffodil/design/link-set';
+import { DaffTreeModule } from '@daffodil/design/tree';
 import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffSidebarModule } from '@daffodil/design/sidebar';
 import { DaffNavigationStateModule } from '@daffodil/navigation/state';
@@ -21,7 +21,7 @@ import { DemoSidebarStateModule } from './sidebar.state.module';
     DaffSidebarModule,
     FontAwesomeModule,
     DaffNavigationStateModule,
-    DaffLinkSetModule,
+    DaffTreeModule,
     DaffLoadingIconModule,
   ],
   declarations: [

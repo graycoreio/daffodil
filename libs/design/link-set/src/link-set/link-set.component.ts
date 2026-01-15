@@ -8,6 +8,8 @@ import {
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
 /**
+ * @deprecated
+ *
  * DaffLinkSetComponent is a component for displaying a two or more links.
  */
 @Component({
