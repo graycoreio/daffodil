@@ -5,6 +5,7 @@ import {
 
 import { GenerateNavListProcessor } from '../../../processors/generateNavList';
 import { DocumentWithDepth } from '../../../processors/packages';
+import { isPublic } from '../../../utils/is-public';
 
 const comparePackage = (aDoc: {name: string}, bDoc: {name: string}): -1 | 0 | 1 => {
   const a = aDoc.name.split('/');
@@ -31,7 +32,7 @@ export const transformApiNavList: GenerateNavListProcessor['transform'] = (docs:
   path: '',
   docType: '',
   children: docs
-    .filter(doc => doc.docType === DaffDocsApiType.PACKAGE && doc.depth === 0)
+    .filter(doc => doc.docType === DaffDocsApiType.PACKAGE && doc.depth === 0)//
     // sort alphabetically
     .sort(comparePackage)
     .map(doc => getPackageInfo(doc)),
@@ -44,6 +45,7 @@ export function getPackageInfo(packageDoc): DaffDocsApiNavList {
     description: packageDoc.description,
     docType: DaffDocsApiType.PACKAGE,
     children: packageDoc.exports
+      .filter(isPublic)
       .map((doc) => doc.docType === DaffDocsApiType.PACKAGE ? getPackageInfo(doc) : getExportInfo(doc)),
   };
 }
