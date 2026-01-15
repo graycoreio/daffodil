@@ -43,7 +43,7 @@ export class CustomComponentModule { }
 A menu component consists of the following parts:
 
 ### Menu Activator
-**`[daffMenuActivator]`**: A directive attached to a button that triggers the menu to open.
+**`[daffMenuActivator]`**: A directive attached to a button that triggers the menu to open. The selector doubles as an input for the menu content to display.
 
 ### Menu
 **`<daff-menu>`**: The container component that holds menu items.
