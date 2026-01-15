@@ -3,7 +3,7 @@ import {
   Document,
 } from 'dgeni';
 
-const isPublic = (doc): boolean => !doc.tags.tagsByName.get('docs-private');
+import { isPublic } from '../utils/is-public';
 
 /**
  * Filter out properties that are marked as @docs-private
