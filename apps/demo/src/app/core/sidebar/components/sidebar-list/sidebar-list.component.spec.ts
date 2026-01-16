@@ -10,7 +10,10 @@ import {
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffLinkSetModule } from '@daffodil/design/link-set';
+import {
+  DaffTreeComponent,
+  DaffTreeModule,
+} from '@daffodil/design/tree';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
@@ -22,21 +25,21 @@ import { SidebarListComponent } from './sidebar-list.component';
 })
 class WrapperComponent {
   tree: DaffNavigationTree;
-  closeFunction() {};
 }
 
 describe('SidebarListComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let rootSidebarListComponent: SidebarListComponent;
-  let rootSidebarListDe: DebugElement;
+  let component: SidebarListComponent;
+  let de: DebugElement;
+  let tree: DaffNavigationTree;
   const navigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffLinkSetModule,
         RouterTestingModule,
+        DaffTreeModule,
       ],
       declarations: [
         WrapperComponent,
@@ -49,38 +52,35 @@ describe('SidebarListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    wrapper.tree = navigationTreeFactory.create();
+    tree = navigationTreeFactory.create();
+    wrapper.tree = tree;
     fixture.detectChanges();
-    rootSidebarListDe = fixture.debugElement.query(By.css('demo-sidebar-list'));
-    rootSidebarListComponent = rootSidebarListDe.componentInstance;
+    de = fixture.debugElement.query(By.css('demo-sidebar-list'));
+    component = de.componentInstance;
   });
 
   it('should create', () => {
-    expect(rootSidebarListComponent).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
   it('should take tree as input', () => {
-    expect(rootSidebarListComponent.tree).toEqual(wrapper.tree);
+    expect(component.tree).toEqual(wrapper.tree);
   });
 
-  describe('rendering the root of the tree', () => {
-    it('should only exactly the children `demo-sidebar-list` of the root ', () => {
-      expect(rootSidebarListDe.children.length).toEqual(wrapper.tree.children.length);
-    });
+  it('should transform the navigation tree to DaffTreeData', () => {
+    expect(component.treeData).toBeTruthy();
+    expect(component.treeData.title).toEqual(tree.name);
+    expect(component.treeData.url).toEqual(tree.url);
+    expect(component.treeData.id).toEqual(tree.id);
   });
 
-  describe('rendering children of the root of the tree', () => {
-    it('should set level equal to `1` on the children lists', () => {
-      expect(rootSidebarListDe.children.length).toBeTruthy();
-      const child = rootSidebarListDe.query(By.css('demo-sidebar-list'));
-      expect(child.componentInstance.level).toEqual(1);
-    });
+  it('should render a daff-tree', () => {
+    const daffTree = de.query(By.directive(DaffTreeComponent));
+    expect(daffTree).toBeTruthy();
   });
 
-  describe('rendering grandchildren of the root of the tree', () => {
-    it('should set level equal to `2` on the grandchild lists', () => {
-      const grandChildDe = rootSidebarListDe.query(By.css('demo-sidebar-list')).query(By.css('demo-sidebar-list'));
-      expect(grandChildDe.componentInstance.level).toEqual(2);
-    });
+  it('should pass the transformed tree data to daff-tree', () => {
+    const daffTree = de.query(By.directive(DaffTreeComponent));
+    expect(daffTree.componentInstance.tree).toEqual(component.treeData);
   });
 });
