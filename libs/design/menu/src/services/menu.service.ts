@@ -61,7 +61,7 @@ export class DaffMenuService {
       }
 
       this._overlay.backdropClick().pipe(
-        map(() => this._destroyOverlay()),
+        map(() => this.close()),
       ).subscribe();
     }
   }
