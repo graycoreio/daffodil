@@ -10,6 +10,7 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffMenuItemComponent } from './menu-item.component';
+import { provideTestMenuService } from '../testing/dummy-service';
 
 @Component({
   template: `
@@ -35,6 +36,9 @@ describe('@daffodil/design/menu | DaffMenuItemComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         WrapperComponent,
+      ],
+      providers: [
+        provideTestMenuService(),
       ],
     })
       .compileComponents();
