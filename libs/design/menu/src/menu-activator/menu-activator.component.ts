@@ -3,6 +3,7 @@ import {
   Directive,
   Input,
   OnDestroy,
+  signal,
   TemplateRef,
   Type,
   ViewContainerRef,
@@ -31,11 +32,13 @@ import { DaffMenuService } from '../services/menu.service';
     'aria-haspopup': 'menu',
     '[attr.aria-expanded]': 'ariaExpanded',
   },
+  exportAs: 'daffMenuActivator',
 })
 export class DaffMenuActivatorDirective implements OnDestroy {
 
   private _destroyed$ = new Subject<boolean>();
   private _open: boolean;
+  readonly isOpen = signal(false);
 
   /**
    * The menu content to display when activated.
@@ -58,6 +61,7 @@ export class DaffMenuActivatorDirective implements OnDestroy {
       takeUntil(this._destroyed$),
     ).subscribe((val: boolean) => {
       this._open = val;
+      this.isOpen.set(this._open);
       this.cdRef.markForCheck();
     });
   }
