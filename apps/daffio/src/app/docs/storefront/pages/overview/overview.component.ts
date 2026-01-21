@@ -11,7 +11,6 @@ import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
 @Component({
   selector: 'daffio-docs-storefront-overview',
   templateUrl: './overview.component.html',
-  styleUrl: './overview.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_CONTAINER_COMPONENTS,
