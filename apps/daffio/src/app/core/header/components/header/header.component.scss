@@ -14,7 +14,10 @@
 				appearance: none;
 				background: none;
 				border: none;
-				display: block;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 0.5rem;
 				color: currentColor;
 				font-size: daff.$font-size-base;
 				font-weight: 500;

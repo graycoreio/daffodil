@@ -10,6 +10,7 @@ import { DaffMenuModule } from '@daffodil/design/menu';
 @Component({
   selector: 'daffio-docs-design-nav-menu',
   templateUrl: './nav-menu.component.html',
+  styleUrl: './nav-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DaffioHeaderItemDirective,
