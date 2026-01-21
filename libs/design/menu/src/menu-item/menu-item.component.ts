@@ -9,6 +9,8 @@ import {
 
 import { DaffPrefixDirective } from '@daffodil/design';
 
+import { DaffMenuService } from '../services/menu.service';
+
 /**
  * Individual clickable items within the menu. Applied to `<button>` or `<a>` elements.
  *
@@ -23,10 +25,11 @@ import { DaffPrefixDirective } from '@daffodil/design';
     'a[daff-menu-item]' + ',' +
     'button[daff-menu-item]',
   templateUrl: './menu-item.component.html',
-  styleUrls: ['./menu-item.component.scss'],
+  styleUrl: './menu-item.component.scss',
   host: {
     'class': 'daff-menu-item',
     'role': 'menuitem',
+    '(click)': 'onClick()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -37,7 +40,17 @@ export class DaffMenuItemComponent implements FocusableOption {
    */
   @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
 
-  constructor(private _elementRef: ElementRef<HTMLElement>) {}
+  constructor(
+    private _elementRef: ElementRef<HTMLElement>,
+    private _menuService: DaffMenuService,
+  ) {}
+
+  /**
+   * @docs-private
+   */
+  onClick() {
+    this._menuService.close();
+  }
 
   /**
    * Focus the menu item.
