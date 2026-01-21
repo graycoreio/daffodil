@@ -78,6 +78,26 @@ Use the `[daffPrefix]` directive to add a decorative icon before the menu item c
 </ng-template>
 ```
 
+## Features
+
+### Accessing menu state
+The menu activator provides an `isOpen` property that tracks whether the menu is currently open or closed. Use this to update your UI based on the menu state, such as changing icons or styling.
+
+<design-land-example-viewer-container example="menu-with-icon-toggle"></design-land-example-viewer-container>
+
+```html
+<button [daffMenuActivator]="menuContent" #menu="daffMenuActivator">
+  Options
+  <fa-icon [icon]="menu.isOpen() ? faChevronUp : faChevronDown"></fa-icon>
+</button>
+
+<ng-template #menuContent>
+  <daff-menu>
+    <button daff-menu-item>Menu Item</button>
+  </daff-menu>
+</ng-template>
+```
+
 ## Accessibility
 Menu follows the [Menu and Menubar WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
 
