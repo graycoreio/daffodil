@@ -24,7 +24,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffDocItemFactory extends DaffModelFactory<DaffDocsItem> {
+export class DaffDocsItemFactory extends DaffModelFactory<DaffDocsItem> {
   constructor(
     private docFactory: DaffDocFactory,
     private packageGuideDoc: DaffPackageGuideDocFactory,
