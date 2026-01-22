@@ -14,7 +14,7 @@ export const {
    * Provider function for {@link DAFF_EXTERNAL_ROUTER_CONFIG}.
    */
   provider: provideDaffExternalRouterConfig,
-} = createConfigInjectionToken<DaffExternalRouterConfiguration>(daffExternalRouterConfigurationDefault, 'DAFF_EXTERNAL_ROUTER_CONFIG');
+} = createConfigInjectionToken<DaffExternalRouterConfiguration, typeof daffExternalRouterConfigurationDefault>(daffExternalRouterConfigurationDefault, 'DAFF_EXTERNAL_ROUTER_CONFIG');
 
 /**
  * The configuration object for the external router package.

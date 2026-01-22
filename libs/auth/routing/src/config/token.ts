@@ -12,4 +12,4 @@ export const {
    * Provider function for {@link DAFF_AUTH_ROUTING_CONFIG}.
    */
   provider: provideDaffAuthRoutingConfig,
-} = createConfigInjectionToken<DaffAuthRoutingConfig>(DAFF_AUTH_ROUTING_CONFIG_DEFAULT, 'DAFF_AUTH_ROUTING_CONFIG');
+} = createConfigInjectionToken<DaffAuthRoutingConfig, typeof DAFF_AUTH_ROUTING_CONFIG_DEFAULT>(DAFF_AUTH_ROUTING_CONFIG_DEFAULT, 'DAFF_AUTH_ROUTING_CONFIG');
