@@ -12,6 +12,7 @@ import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 import { DaffDocsApiRoleTagLabelPipe } from '@daffodil/docs';
 import { DaffApiNavDoc } from '@daffodil/docs-utils';
 
+import { DaffioDocsApiGroupByRolePipe } from './group-by-role.pipe';
 import { DaffioDocsApiItemLabelComponent } from '../api-item-label/api-item-label.component';
 
 @Component({
@@ -27,6 +28,7 @@ import { DaffioDocsApiItemLabelComponent } from '../api-item-label/api-item-labe
     DaffioDocsApiItemLabelComponent,
     FaIconComponent,
     DaffDocsApiRoleTagLabelPipe,
+    DaffioDocsApiGroupByRolePipe,
   ],
 })
 export class DaffioApiListSectionComponent {

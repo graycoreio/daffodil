@@ -1,9 +1,9 @@
-@for (childDoc of children(); track childDoc.id) {
+@for (childDoc of children() | daffioDocsApiRoleGroup; track childDoc.id) {
   <a [routerLink]="childDoc.path" class="daffio-api-list-section__item" >
     <div class="daffio-api-list-section__item-name">{{ childDoc.title }}</div>
     <div class="daffio-api-list-section__label-wrapper">
       <daffio-docs-api-item-label
-				[type]="childDoc.docType"
+				[type]="((childDoc.role | daffDocsApiRoleTagLabel) || childDoc.docType).toLowerCase()"
 				class="daffio-api-list-section__item-label">
 				{{ (childDoc.role | daffDocsApiRoleTagLabel) || childDoc.docType }}
 			</daffio-docs-api-item-label>

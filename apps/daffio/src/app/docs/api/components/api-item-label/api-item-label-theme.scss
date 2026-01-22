@@ -3,7 +3,7 @@
 @use 'utilities' as daff;
 
 // stylelint-disable selector-class-pattern
-@mixin type-theming($color, $opacity: 0.1) {
+@mixin type-theming($color, $opacity: 0.05) {
 	background: rgba($color, $opacity);
 	color: $color;
 }
@@ -15,38 +15,99 @@
 	$green: daff-get-palette($theme, success);
 	$yellow: daff-get-palette($theme, warn);
 	$red: daff-get-palette($theme, critical);
-	$base: daff-get-base-color($theme, base);
-	$base-contrast: daff-get-base-color($theme, base-contrast);
 	$mode: daff-get-theme-mode($theme);
 
 	.daffio-docs-api-item-label {
 		@include light($mode) {
-			&.class {
-				@include type-theming(daff-color($primary, 70));
-			}
-
-			&.type-alias {
-				@include type-theming(daff-color($secondary, 70));
-			}
-
-			&.interface {
-				@include type-theming(daff-color($tertiary, 70));
-			}
-
-			&.const {
-				@include type-theming(daff-color($secondary, 90));
-			}
-
-			&.enum {
+			// Angular Framework
+			&.component {
 				@include type-theming(daff-color($primary, 90));
 			}
 
-			&.package {
-				@include type-theming(daff-color($yellow, 70));
+			&.directive {
+				@include type-theming(daff-color($primary, 80));
 			}
 
-			&.function {
+			&.pipe {
+				@include type-theming(daff-color($primary));
+			}
+
+			&.service {
+				@include type-theming(daff-color($primary, 70));
+			}
+
+			&.module {
+				@include type-theming(daff-color($secondary));
+			}
+
+			&.guard {
+				@include type-theming(daff-color($secondary, 80));
+			}
+
+			&.resolver {
+				@include type-theming(daff-color($secondary, 100));
+			}
+
+			// Redux / State Management
+			&.reducer {
+				@include type-theming(daff-color($tertiary));
+			}
+
+			&.action {
+				@include type-theming(daff-color($tertiary, 70));
+			}
+
+			&.facade {
+				@include type-theming(daff-color($tertiary, 100));
+			}
+
+			&.selector {
+				@include type-theming(daff-color($tertiary, 80));
+			}
+
+			// DI & Providers
+			&.provider {
+				@include type-theming(daff-color($secondary, 70));
+			}
+
+			&.token {
+				@include type-theming(daff-color($secondary, 90));
+			}
+
+			// RxJS
+			&.operator {
+				@include type-theming(daff-color($yellow, 80));
+			}
+
+			// Types & Constants
+			&.error {
+				@include type-theming(daff-color($red, 90));
+			}
+
+			&.type {
+				@include type-theming(daff-color($yellow, 90));
+			}
+
+			&.constant {
 				@include type-theming(daff-color($green, 90));
+			}
+
+			&.helper {
+				@include type-theming(daff-color($yellow, 100));
+			}
+
+			// Testing
+			&.model-factory {
+				@include type-theming(daff-color($green, 70));
+			}
+
+			&.mock {
+				@include type-theming(daff-color($green, 80));
+			}
+
+			// Meta
+			&.package {
+				@include type-theming(daff-color($yellow, 70));
 			}
 
 			&.deprecated {
@@ -55,36 +116,99 @@
 		}
 
 		@include dark($mode) {
-			&.class {
-				@include type-theming(daff-color($primary, 40));
+			// Angular Framework
+			&.component {
+				@include type-theming(daff-color($primary, 10), 0.1);
 			}
 
-			&.type-alias {
-				@include type-theming(daff-color($secondary, 40));
+			&.directive {
+				@include type-theming(daff-color($primary, 20), 0.1);
 			}
 
-			&.interface {
-				@include type-theming(daff-color($tertiary, 40));
+			&.pipe {
+				@include type-theming(daff-color($primary, 50), 0.1);
 			}
 
-			&.const {
-				@include type-theming(daff-color($secondary, 20));
+			&.service {
+				@include type-theming(daff-color($primary, 30), 0.1);
 			}
 
-			&.enum {
-				@include type-theming(daff-color($primary, 20));
+			&.module {
+				@include type-theming(daff-color($secondary, 50), 0.1);
 			}
 
+			&.guard {
+				@include type-theming(daff-color($secondary, 30), 0.1);
+			}
+
+			&.resolver {
+				@include type-theming(daff-color($secondary, 10), 0.1);
+			}
+
+			// Redux / State Management
+			&.reducer {
+				@include type-theming(daff-color($tertiary, 50), 0.1);
+			}
+
+			&.action {
+				@include type-theming(daff-color($tertiary, 30), 0.1);
+			}
+
+			&.facade {
+				@include type-theming(daff-color($tertiary, 10), 0.1);
+			}
+
+			&.selector {
+				@include type-theming(daff-color($tertiary, 20), 0.1);
+			}
+
+			// DI & Providers
+			&.provider {
+				@include type-theming(daff-color($secondary, 30), 0.1);
+			}
+
+			&.token {
+				@include type-theming(daff-color($secondary, 10), 0.1);
+			}
+
+			// RxJS
+			&.operator {
+				@include type-theming(daff-color($yellow, 20), 0.1);
+			}
+
+			// Types & Constants
+			&.error {
+				@include type-theming(daff-color($red, 20), 0.1);
+			}
+
+			&.type {
+				@include type-theming(daff-color($yellow, 20), 0.1);
+			}
+
+			&.constant {
+				@include type-theming(daff-color($green, 20), 0.1);
+			}
+
+			&.helper {
+				@include type-theming(daff-color($yellow, 10), 0.1);
+			}
+
+			// Testing
+			&.model-factory {
+				@include type-theming(daff-color($green, 30), 0.1);
+			}
+
+			&.mock {
+				@include type-theming(daff-color($green, 20), 0.1);
+			}
+
+			// Meta
 			&.package {
-				@include type-theming(daff-color($yellow, 40));
-			}
-
-			&.function {
-				@include type-theming(daff-color($green, 20));
+				@include type-theming(daff-color($yellow, 30), 0.1);
 			}
 
 			&.deprecated {
-				@include type-theming(daff-color($red, 40), 0.15);
+				@include type-theming(daff-color($red, 30), 0.15);
 			}
 		}
 	}

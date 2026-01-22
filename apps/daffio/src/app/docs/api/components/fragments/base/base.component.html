@@ -8,7 +8,7 @@
 	}
 	<div class="daffio-docs-api-base-fragment__label-wrapper">
 		@if (!child()) {
-			<daffio-docs-api-item-label [type]="doc().docType">
+			<daffio-docs-api-item-label [type]="(doc().role | daffDocsApiRoleTagLabel).toLowerCase()">
 				{{ doc().role | daffDocsApiRoleTagLabel }}
 			</daffio-docs-api-item-label>
 		}

@@ -1,6 +1,6 @@
 import { DaffDocsApiRole } from './enum';
 
-const ORDER = [
+export const DAFF_DOCS_API_ROLE_SORT_ORDER = [
   DaffDocsApiRole.COMPONENT,
   DaffDocsApiRole.DIRECTIVE,
   DaffDocsApiRole.PIPE,
@@ -27,7 +27,7 @@ const ORDER = [
 /**
  * Sorts roles based on a predefined order.
  */
-export const daffDocsApiRoleSort = (roles: Array<DaffDocsApiRole>, order = ORDER): Array<DaffDocsApiRole> =>
+export const daffDocsApiRoleSort = (roles: Array<DaffDocsApiRole>, order = DAFF_DOCS_API_ROLE_SORT_ORDER): Array<DaffDocsApiRole> =>
   roles.sort((a, b) => {
     const aIndex = order.indexOf(a);
     const bIndex = order.indexOf(b);
