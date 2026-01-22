@@ -1,9 +1,5 @@
 export { collect } from './collect';
-export { daffAdd } from './long-arithmetic';
 export { daffArrayToDict } from './array-to-dict';
-export { daffDivide } from './long-arithmetic';
-export { daffMultiply } from './long-arithmetic';
-export { daffSubtract } from './long-arithmetic';
 export { randomSlice } from './random-slice';
 export { randomSubset } from './random-subset';
 export { range } from './range';
@@ -14,3 +10,4 @@ export { unique } from './unique';
 export * from './long-arithmetic';
 export * from './identity';
 export * from './observe';
+export * from './group';
