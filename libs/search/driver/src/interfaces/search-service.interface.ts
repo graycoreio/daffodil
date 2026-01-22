@@ -1,6 +1,9 @@
 import { Observable } from 'rxjs';
 
-import { createSingletonInjectionToken } from '@daffodil/core';
+import {
+  createSingletonInjectionToken,
+  DaffCollectionRequest,
+} from '@daffodil/core';
 import {
   DaffSearchResult,
   DaffSearchResultCollection,
@@ -22,7 +25,7 @@ export const {
 /**
  * The options for making a search.
  */
-export interface DaffSearchDriverOptions {
+export interface DaffSearchDriverOptions extends DaffCollectionRequest {
   /**
    * The number of results to request from the platform.
    *
