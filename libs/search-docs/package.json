@@ -1,0 +1,52 @@
+{
+  "name": "@daffodil/search-docs",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/search-docs"]
+      }
+    }
+  },
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Interfaces built for daffodil/state",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "publishConfig": {
+    "directory": "../../dist/search-docs"
+  },
+  "scripts": {
+    "build": "ng build search-docs --configuration production",
+    "lint": "cd ../.. && ng lint search-docs",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "ng test search-docs --watch=false --browsers=ChromeHeadless",
+    "publish": "cd ../../dist/search-docs && npm publish --access=public"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/docs": "0.0.0-PLACEHOLDER",
+    "@daffodil/search": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "@apollo/client": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "apollo-angular": "0.0.0-PLACEHOLDER",
+    "@faker-js/faker": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/docs": "0.0.0-PLACEHOLDER",
+    "@daffodil/search": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
+  }
+}
