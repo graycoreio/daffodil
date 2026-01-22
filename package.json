@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@algolia/client-search": "^5.35.0",
     "@angular/animations": "^20.0.0",
     "@angular/cdk": "^20.0.0",
     "@angular/common": "^20.0.0",
