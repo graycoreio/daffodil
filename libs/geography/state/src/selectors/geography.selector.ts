@@ -1,6 +1,7 @@
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffStateError } from '@daffodil/core/state';
@@ -40,8 +41,4 @@ const createGeographySelectors = <T extends DaffCountry = DaffCountry>() => {
   };
 };
 
-export const getGeographySelectors = (() => {
-  let cache;
-  return <T extends DaffCountry = DaffCountry>(): DaffGeographySelectors =>
-    cache = cache || createGeographySelectors<T>();
-})();
+export const getGeographySelectors: <T extends DaffCountry = DaffCountry>() => DaffGeographySelectors = defaultMemoize(<T extends DaffCountry = DaffCountry>() => createGeographySelectors<T>()).memoized;

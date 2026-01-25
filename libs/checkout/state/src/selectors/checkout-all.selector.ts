@@ -1,3 +1,5 @@
+import { defaultMemoize } from '@ngrx/store';
+
 import { DaffOrder } from '@daffodil/order';
 
 import {
@@ -10,10 +12,6 @@ export type DaffCheckoutSelectors<T extends DaffOrder = DaffOrder> = DaffCheckou
 /**
  * Gets all of `@daffodil/checkout/state` selectors.
  */
-export const getDaffCheckoutSelectors = (() => {
-  let cache;
-  return <T extends DaffOrder = DaffOrder>(): DaffCheckoutSelectors<T> =>
-    cache = cache || {
-      ...getCheckoutPlacedOrderSelectors<T>(),
-    };
-})();
+export const getDaffCheckoutSelectors: <T extends DaffOrder = DaffOrder>() => DaffCheckoutSelectors<T> = defaultMemoize(<T extends DaffOrder = DaffOrder>() => ({
+  ...getCheckoutPlacedOrderSelectors<T>(),
+})).memoized;

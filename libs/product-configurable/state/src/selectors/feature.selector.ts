@@ -1,6 +1,7 @@
 import {
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -18,9 +19,4 @@ export interface DaffConfigurableProductFeatureMemoizedSelector {
 /**
  * A function that returns a selector for the entire configurable product feature state.
  */
-export const getDaffConfigurableProductFeatureSelector = (() => {
-  let cache;
-  return (): DaffConfigurableProductFeatureMemoizedSelector => cache = cache
-    ? cache
-    : { selectConfigurableProductState: createFeatureSelector<DaffConfigurableProductReducersState>(DAFF_CONFIGURABLE_PRODUCT_STORE_FEATURE_KEY) };
-})();
+export const getDaffConfigurableProductFeatureSelector: () => DaffConfigurableProductFeatureMemoizedSelector = defaultMemoize(() => ({ selectConfigurableProductState: createFeatureSelector<DaffConfigurableProductReducersState>(DAFF_CONFIGURABLE_PRODUCT_STORE_FEATURE_KEY) })).memoized;

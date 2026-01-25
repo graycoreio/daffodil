@@ -1,6 +1,7 @@
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -89,12 +90,10 @@ const createCartOrderSelectors = <
   };
 };
 
-export const getCartOrderSelectors = (() => {
-  let cache;
-  return <
-    T extends DaffCart = DaffCart,
-    V extends DaffCartOrderResult = DaffCartOrderResult,
-  >(): DaffCartOrderMemoizedSelectors<T, V> => cache = cache
-    ? cache
-    : createCartOrderSelectors<T, V>();
-})();
+export const getCartOrderSelectors: <
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+>() => DaffCartOrderMemoizedSelectors<T, V> = defaultMemoize(<
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+>() => createCartOrderSelectors<T, V>()).memoized;

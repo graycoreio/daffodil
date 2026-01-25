@@ -95,9 +95,4 @@ const createProductReviewEntitiesSelectors = <T extends DaffProductReview = Daff
 /**
  * A function that returns all selectors related to product review entities.
  */
-export const getDaffProductReviewEntitiesSelectors = (() => {
-  let cache;
-  return <T extends DaffProductReview = DaffProductReview>(): DaffProductReviewEntitiesMemoizedSelectors<T> => cache = cache
-    ? cache
-    : createProductReviewEntitiesSelectors<T>();
-})();
+export const getDaffProductReviewEntitiesSelectors: <T extends DaffProductReview = DaffProductReview>() => DaffProductReviewEntitiesMemoizedSelectors<T> = defaultMemoize(<T extends DaffProductReview = DaffProductReview>() => createProductReviewEntitiesSelectors<T>()).memoized;

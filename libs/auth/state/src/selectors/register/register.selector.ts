@@ -1,6 +1,7 @@
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -30,8 +31,4 @@ const createRegisterSelectors = () => {
   };
 };
 
-export const daffAuthRegisterSelectorFactory = (() => {
-  let cache;
-  return (): DaffAuthRegisterSelectors =>
-    cache = cache || createRegisterSelectors();
-})();
+export const daffAuthRegisterSelectorFactory: () => DaffAuthRegisterSelectors = defaultMemoize(() => createRegisterSelectors()).memoized;

@@ -1,6 +1,7 @@
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -56,9 +57,5 @@ const daffCustomerPaymentCreateSelectors = <T extends DaffCustomerPayment = Daff
   };
 };
 
-export const daffCustomerPaymentGetSelectors = (() => {
-  let cache;
-  return <T extends DaffCustomerPayment = DaffCustomerPayment>(): DaffCustomerPaymentSelectors<T> =>
-    cache = cache || daffCustomerPaymentCreateSelectors<T>();
-})();
+export const daffCustomerPaymentGetSelectors: <T extends DaffCustomerPayment = DaffCustomerPayment>() => DaffCustomerPaymentSelectors<T> = defaultMemoize(<T extends DaffCustomerPayment = DaffCustomerPayment>() => daffCustomerPaymentCreateSelectors<T>()).memoized;
 

@@ -2,6 +2,7 @@ import {
   createSelector,
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffStateError } from '@daffodil/core/state';
@@ -56,9 +57,4 @@ const createPaypalSelectors = (): DaffPaypalMemoizedSelectors => {
   };
 };
 
-export const getDaffPaypalSelectors = (() => {
-  let cache;
-  return (): DaffPaypalMemoizedSelectors => cache = cache
-    ? cache
-    : createPaypalSelectors();
-})();
+export const getDaffPaypalSelectors: () => DaffPaypalMemoizedSelectors = defaultMemoize(() => createPaypalSelectors()).memoized;

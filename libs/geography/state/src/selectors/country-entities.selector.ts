@@ -82,9 +82,5 @@ const createCountryEntitySelectors = <T extends DaffCountry = DaffCountry>() => 
   };
 };
 
-export const getDaffCountryEntitySelectors = (() => {
-  let cache;
-  return <T extends DaffCountry>(): DaffCountryEntitySelectors<T> =>
-    cache = cache || createCountryEntitySelectors<T>();
-})();
+export const getDaffCountryEntitySelectors: <T extends DaffCountry>() => DaffCountryEntitySelectors<T> = defaultMemoize(<T extends DaffCountry>() => createCountryEntitySelectors<T>()).memoized;
 

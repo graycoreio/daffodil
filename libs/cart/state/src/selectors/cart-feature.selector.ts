@@ -1,6 +1,7 @@
 import {
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -21,15 +22,13 @@ export interface DaffCartFeatureMemoizedSelectors<
   selectCartFeatureState: MemoizedSelector<DaffCartStateRootSlice<T, V>, DaffCartReducersState<T, V>>;
 }
 
-export const getDaffCartFeatureSelector = (() => {
-  let cache;
-  return <
-    T extends DaffCart = DaffCart,
-    V extends DaffCartOrderResult = DaffCartOrderResult,
-  >(): DaffCartFeatureMemoizedSelectors<T, V> => cache = cache
-    ? cache
-    : {
-      selectCartFeatureState:
-        createFeatureSelector<DaffCartStateRootSlice<T, V>, DaffCartReducersState<T, V>>(DAFF_CART_STORE_FEATURE_KEY),
-    };
-})();
+export const getDaffCartFeatureSelector: <
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+>() => DaffCartFeatureMemoizedSelectors<T, V> = defaultMemoize(<
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+>() => ({
+  selectCartFeatureState:
+    createFeatureSelector<DaffCartStateRootSlice<T, V>, DaffCartReducersState<T, V>>(DAFF_CART_STORE_FEATURE_KEY),
+})).memoized;

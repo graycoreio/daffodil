@@ -1,6 +1,7 @@
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { getDaffCartSelectors } from '@daffodil/cart/state';
@@ -47,8 +48,4 @@ const createCheckoutPlacedOrderSelectors = <T extends DaffOrder = DaffOrder>(): 
 /**
  * Gets the placed order selectors.
  */
-export const getCheckoutPlacedOrderSelectors = (() => {
-  let cache;
-  return <T extends DaffOrder = DaffOrder>(): DaffCheckoutPlacedOrderSelectors<T> =>
-    cache = cache || createCheckoutPlacedOrderSelectors<T>();
-})();
+export const getCheckoutPlacedOrderSelectors: <T extends DaffOrder = DaffOrder>() => DaffCheckoutPlacedOrderSelectors<T> = defaultMemoize(<T extends DaffOrder = DaffOrder>() => createCheckoutPlacedOrderSelectors<T>()).memoized;

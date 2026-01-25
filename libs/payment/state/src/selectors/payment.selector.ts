@@ -1,6 +1,7 @@
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffStateError } from '@daffodil/core/state';
@@ -49,9 +50,5 @@ const daffPaymentCreateSelectors = () => {
 };
 
 
-export const daffPaymentGetSelectors = (() => {
-  let cache;
-  return (): DaffPaymentSelectors =>
-    cache = cache || daffPaymentCreateSelectors();
-})();
+export const daffPaymentGetSelectors: () => DaffPaymentSelectors = defaultMemoize(() => daffPaymentCreateSelectors()).memoized;
 

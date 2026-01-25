@@ -1,3 +1,5 @@
+import { defaultMemoize } from '@ngrx/store';
+
 import { DaffOrder } from '@daffodil/order';
 
 import {
@@ -18,12 +20,8 @@ export interface DaffOrderAllSelectors<T extends DaffOrder = DaffOrder> extends
   DaffOrderSelectors<T>,
   DaffOrderFeatureSelector<T> {}
 
-export const getDaffOrderSelectors = (() => {
-  let cache;
-  return <T extends DaffOrder = DaffOrder>(): DaffOrderAllSelectors<T> =>
-    cache = cache || {
-      ...getOrderSelectors<T>(),
-      ...getDaffOrderEntitySelectors<T>(),
-      ...getDaffOrderReducersStateSelector<T>(),
-    };
-})();
+export const getDaffOrderSelectors: <T extends DaffOrder = DaffOrder>() => DaffOrderAllSelectors<T> = defaultMemoize(<T extends DaffOrder = DaffOrder>() => ({
+  ...getOrderSelectors<T>(),
+  ...getDaffOrderEntitySelectors<T>(),
+  ...getDaffOrderReducersStateSelector<T>(),
+})).memoized;

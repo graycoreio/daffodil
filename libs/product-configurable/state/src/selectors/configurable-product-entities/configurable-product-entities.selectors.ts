@@ -108,9 +108,4 @@ const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends D
  * A function that returns all selectors related to configurable product applied attributes.
  * Returns {@link DaffConfigurableProductEntitiesMemoizedSelectors}.
  */
-export const getDaffConfigurableProductEntitiesSelectors = (() => {
-  let cache;
-  return <T extends DaffProduct>(): DaffConfigurableProductEntitiesMemoizedSelectors<T> => cache = cache
-    ? cache
-    : createConfigurableProductAppliedAttributesEntitiesSelectors<T>();
-})();
+export const getDaffConfigurableProductEntitiesSelectors: <T extends DaffProduct>() => DaffConfigurableProductEntitiesMemoizedSelectors<T> = defaultMemoize(<T extends DaffProduct>() => createConfigurableProductAppliedAttributesEntitiesSelectors<T>()).memoized;

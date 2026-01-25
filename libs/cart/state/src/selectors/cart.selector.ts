@@ -1,3 +1,5 @@
+import { defaultMemoize } from '@ngrx/store';
+
 import {
   DaffCart,
   DaffCartOrderResult,
@@ -38,12 +40,10 @@ const createCartSelectors = <
   ...getDaffCartItemEntitiesSelectors<T, V>(),
 });
 
-export const getDaffCartSelectors = (() => {
-  let cache;
-  return <
-    T extends DaffCart = DaffCart,
-    V extends DaffCartOrderResult = DaffCartOrderResult,
-  >(): DaffCartMemoizedSelectors<T, V> => cache = cache
-    ? cache
-    : createCartSelectors<T, V>();
-})();
+export const getDaffCartSelectors: <
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+>() => DaffCartMemoizedSelectors<T, V> = defaultMemoize(<
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+>() => createCartSelectors<T, V>()).memoized;

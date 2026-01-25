@@ -1,6 +1,7 @@
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffProduct } from '@daffodil/product';
@@ -51,9 +52,4 @@ const createProductGridSelectors = <T extends DaffProduct>(): DaffProductGridMem
  * A function that returns all selectors related to loading a grid of products.
  * Returns {@link DaffProductGridMemoizedSelectors}.
  */
-export const getDaffProductGridSelectors = (() => {
-  let cache;
-  return <T extends DaffProduct>(): DaffProductGridMemoizedSelectors<T> => cache = cache
-    ? cache
-    : createProductGridSelectors<T>();
-})();
+export const getDaffProductGridSelectors: <T extends DaffProduct>() => DaffProductGridMemoizedSelectors<T> = defaultMemoize(<T extends DaffProduct>() => createProductGridSelectors<T>()).memoized;

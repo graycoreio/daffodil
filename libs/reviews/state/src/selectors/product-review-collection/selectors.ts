@@ -1,4 +1,7 @@
-import { createSelector } from '@ngrx/store';
+import {
+  createSelector,
+  defaultMemoize,
+} from '@ngrx/store';
 
 import {
   DaffCollectionMemoizedSelectors,
@@ -20,8 +23,4 @@ const selectProductReviewsCollectionState = createSelector(
   state => state.productReviewsCollection,
 );
 
-export const getDaffProductReviewsCollectionSelectors = (() => {
-  let cache;
-  return (): DaffProductReviewsCollectionMemoizedSelectors =>
-    cache = cache || daffCollectionSelectorFactory<DaffReviewsStateRootSlice, DaffProductReviews['metadata']>(selectProductReviewsCollectionState);
-})();
+export const getDaffProductReviewsCollectionSelectors: () => DaffProductReviewsCollectionMemoizedSelectors = defaultMemoize(() => daffCollectionSelectorFactory<DaffReviewsStateRootSlice, DaffProductReviews['metadata']>(selectProductReviewsCollectionState)).memoized;

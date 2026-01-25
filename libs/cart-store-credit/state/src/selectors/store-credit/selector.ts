@@ -1,4 +1,7 @@
-import { createSelector } from '@ngrx/store';
+import {
+  createSelector,
+  defaultMemoize,
+} from '@ngrx/store';
 
 import {
   daffOperationStateSelectorFactory,
@@ -29,9 +32,5 @@ const daffCartStoreCreditCreateSelectors = (): DaffCartStoreCreditSelectors => {
   return daffOperationStateSelectorFactory(selectCustomerStoreCreditState);
 };
 
-export const daffCartStoreCreditGetSelectors = (() => {
-  let cache;
-  return (): DaffCartStoreCreditSelectors =>
-    cache = cache || daffCartStoreCreditCreateSelectors();
-})();
+export const daffCartStoreCreditGetSelectors: () => DaffCartStoreCreditSelectors = defaultMemoize(() => daffCartStoreCreditCreateSelectors()).memoized;
 

@@ -167,12 +167,7 @@ const createCompositeProductSelectors = <T extends DaffProduct>(): DaffComposite
  *
  * Returns {@link DaffCompositeProductMemoizedSelectors}.
  */
-export const getDaffCompositeProductPriceSelectors = (() => {
-  let cache;
-  return <T extends DaffProduct = DaffProduct>(): DaffCompositeProductMemoizedSelectors<T> => cache = cache
-    ? cache
-    : createCompositeProductSelectors<T>();
-})();
+export const getDaffCompositeProductPriceSelectors: <T extends DaffProduct = DaffProduct>() => DaffCompositeProductMemoizedSelectors<T> = defaultMemoize(<T extends DaffProduct = DaffProduct>() => createCompositeProductSelectors<T>()).memoized;
 
 /**
  * The minimum price of an item is zero if the item is optional.

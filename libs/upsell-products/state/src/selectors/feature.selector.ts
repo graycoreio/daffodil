@@ -1,6 +1,7 @@
 import {
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffProduct } from '@daffodil/product';
@@ -21,9 +22,4 @@ export interface DaffUpsellProductsFeatureMemoizedSelector<T extends DaffProduct
 /**
  * A function that returns a selector for the entire upsell products feature state.
  */
-export const getDaffUpsellProductsFeatureSelector = (() => {
-  let cache;
-  return <T extends DaffProduct>(): DaffUpsellProductsFeatureMemoizedSelector<T> => cache = cache
-    ? cache
-    : { selectUpsellProductsState: createFeatureSelector<DaffUpsellProductsReducersState>(DAFF_UPSELL_PRODUCTS_STORE_FEATURE_KEY) };
-})();
+export const getDaffUpsellProductsFeatureSelector: <T extends DaffProduct>() => DaffUpsellProductsFeatureMemoizedSelector<T> = defaultMemoize(<T extends DaffProduct>() => ({ selectUpsellProductsState: createFeatureSelector<DaffUpsellProductsReducersState>(DAFF_UPSELL_PRODUCTS_STORE_FEATURE_KEY) })).memoized;

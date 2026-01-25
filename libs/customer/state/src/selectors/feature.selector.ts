@@ -1,6 +1,7 @@
 import {
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -24,10 +25,6 @@ export interface DaffCustomerFeatureSelector<
   selectCustomerFeatureState: MemoizedSelector<DaffCustomerStateRootSlice<TCustomer, TAddress>, DaffCustomerReducersState<TCustomer, TAddress>>;
 }
 
-export const getDaffCustomerReducersStateSelector = (() => {
-  let cache;
-  return <TCustomer extends DaffCustomer = DaffCustomer, TAddress extends DaffCustomerAddress = DaffCustomerAddress>(): DaffCustomerFeatureSelector<TCustomer, TAddress> =>
-    cache = cache || {
-      selectCustomerFeatureState: createFeatureSelector<DaffCustomerReducersState<TCustomer, TAddress>>(DAFF_CUSTOMER_STORE_FEATURE_KEY),
-    };
-})();
+export const getDaffCustomerReducersStateSelector: <TCustomer extends DaffCustomer = DaffCustomer, TAddress extends DaffCustomerAddress = DaffCustomerAddress>() => DaffCustomerFeatureSelector<TCustomer, TAddress> = defaultMemoize(<TCustomer extends DaffCustomer = DaffCustomer, TAddress extends DaffCustomerAddress = DaffCustomerAddress>() => ({
+  selectCustomerFeatureState: createFeatureSelector<DaffCustomerReducersState<TCustomer, TAddress>>(DAFF_CUSTOMER_STORE_FEATURE_KEY),
+})).memoized;

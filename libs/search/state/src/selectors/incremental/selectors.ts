@@ -1,4 +1,7 @@
-import { createSelector } from '@ngrx/store';
+import {
+  createSelector,
+  defaultMemoize,
+} from '@ngrx/store';
 
 import { DaffSearchResult } from '@daffodil/search';
 
@@ -14,8 +17,4 @@ const selectIncrementalState = createSelector(
   state => state.incremental,
 );
 
-export const daffSearchGetIncrementalSelectors = (() => {
-  let cache;
-  return <T extends DaffSearchResult = DaffSearchResult>(): DaffSearchSelectors<T> =>
-    cache = cache || daffSearchCreateSearchSelectors<T>(selectIncrementalState);
-})();
+export const daffSearchGetIncrementalSelectors: <T extends DaffSearchResult = DaffSearchResult>() => DaffSearchSelectors<T> = defaultMemoize(<T extends DaffSearchResult = DaffSearchResult>() => daffSearchCreateSearchSelectors<T>(selectIncrementalState)).memoized;

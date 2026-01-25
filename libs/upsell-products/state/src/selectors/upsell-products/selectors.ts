@@ -2,6 +2,7 @@ import { Dictionary } from '@ngrx/entity';
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffProduct } from '@daffodil/product';
@@ -62,9 +63,4 @@ const createUpsellProductSelectors = <T extends DaffProduct = DaffProduct>(): Da
  * A function that returns all selectors of upsell products for the current product page.
  * Returns {@link DaffUpsellProductsMemoizedSelectors}.
  */
-export const getDaffUpsellProductsPageSelectors = (() => {
-  let cache;
-  return <T extends DaffProduct>(): DaffUpsellProductsMemoizedSelectors<T> => cache = cache
-    ? cache
-    : createUpsellProductSelectors<T>();
-})();
+export const getDaffUpsellProductsPageSelectors: <T extends DaffProduct>() => DaffUpsellProductsMemoizedSelectors<T> = defaultMemoize(<T extends DaffProduct>() => createUpsellProductSelectors<T>()).memoized;
