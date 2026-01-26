@@ -4,6 +4,11 @@
       "implementation": "./generate-fragment-types",
       "schema": "./generate-fragment-types/schema.json",
       "description": "Generates GraphQL fragment type data."
+    },
+		"generateSitemap": {
+      "implementation": "./generate-sitemap",
+      "schema": "./generate-sitemap/schema.json",
+      "description": "Generates an XML sitemap from a list of routes."
     }
   }
 }
