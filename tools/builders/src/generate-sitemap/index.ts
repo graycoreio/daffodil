@@ -56,13 +56,13 @@ export default createBuilder(async (
   context: BuilderContext,
 ): Promise<BuilderOutput> => {
   context.reportRunning();
+  await mkdir(join(context.workspaceRoot, options.output), { recursive: true });
   const base = `${options.domain}${options.baseUrl || ''}`;
   for (const name in options.sitemaps) {
     if (!Object.hasOwn(options.sitemaps, name)) {
       continue;
     }
 
-    await mkdir(join(context.workspaceRoot, options.output), { recursive: true });
     const sitemap = options.sitemaps[name];
     if ('prerenderedRoutes' in sitemap) {
       try {
