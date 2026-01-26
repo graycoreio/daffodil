@@ -1,3 +1,5 @@
+import { defaultMemoize } from '@ngrx/store';
+
 import { DaffCountry } from '@daffodil/geography';
 
 import {
@@ -18,12 +20,8 @@ export interface DaffGeographyAllSelectors<T extends DaffCountry = DaffCountry> 
   DaffGeographySelectors,
   DaffGeographyFeatureSelector<T> {}
 
-export const getDaffGeographySelectors = (() => {
-  let cache;
-  return <T extends DaffCountry = DaffCountry>(): DaffGeographyAllSelectors<T> =>
-    cache = cache || {
-      ...getGeographySelectors<T>(),
-      ...getDaffCountryEntitySelectors<T>(),
-      ...getDaffGeographyFeatureStateSelector<T>(),
-    };
-})();
+export const getDaffGeographySelectors: <T extends DaffCountry = DaffCountry>() => DaffGeographyAllSelectors<T> = defaultMemoize(<T extends DaffCountry = DaffCountry>() => ({
+  ...getGeographySelectors<T>(),
+  ...getDaffCountryEntitySelectors<T>(),
+  ...getDaffGeographyFeatureStateSelector<T>(),
+})).memoized;

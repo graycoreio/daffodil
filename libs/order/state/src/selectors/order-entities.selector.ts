@@ -252,9 +252,5 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
   };
 };
 
-export const getDaffOrderEntitySelectors = (() => {
-  let cache;
-  return <T extends DaffOrder = DaffOrder>(): DaffOrderEntitySelectors<T> =>
-    cache = cache || createOrderEntitySelectors<T>();
-})();
+export const getDaffOrderEntitySelectors: <T extends DaffOrder = DaffOrder>() => DaffOrderEntitySelectors<T> = defaultMemoize(<T extends DaffOrder = DaffOrder>() => createOrderEntitySelectors<T>()).memoized;
 

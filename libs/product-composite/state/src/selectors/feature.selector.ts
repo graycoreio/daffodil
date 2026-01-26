@@ -1,6 +1,7 @@
 import {
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffCompositeProductReducersState } from '../reducers/composite-product-reducers-state.interface';
@@ -16,9 +17,4 @@ export interface DaffCompositeProductFeatureMemoizedSelector {
 /**
  * A function that returns a selector for the composite product feature state.
  */
-export const getDaffCompositeProductFeatureSelector = (() => {
-  let cache;
-  return (): DaffCompositeProductFeatureMemoizedSelector => cache = cache
-    ? cache
-    : { selectCompositeProductState: createFeatureSelector<DaffCompositeProductReducersState>(DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY) };
-})();
+export const getDaffCompositeProductFeatureSelector: () => DaffCompositeProductFeatureMemoizedSelector = defaultMemoize(() => ({ selectCompositeProductState: createFeatureSelector<DaffCompositeProductReducersState>(DAFF_COMPOSITE_PRODUCT_STORE_FEATURE_KEY) })).memoized;

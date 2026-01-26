@@ -1,6 +1,7 @@
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -45,9 +46,5 @@ const daffCustomerStoreCreditCreateSelectors = <T extends DaffCustomerStoreCredi
   };
 };
 
-export const daffCustomerStoreCreditGetSelectors = (() => {
-  let cache;
-  return <T extends DaffCustomerStoreCredit = DaffCustomerStoreCredit>(): DaffCustomerStoreCreditSelectors<T> =>
-    cache = cache || daffCustomerStoreCreditCreateSelectors<T>();
-})();
+export const daffCustomerStoreCreditGetSelectors: <T extends DaffCustomerStoreCredit = DaffCustomerStoreCredit>() => DaffCustomerStoreCreditSelectors<T> = defaultMemoize(<T extends DaffCustomerStoreCredit = DaffCustomerStoreCredit>() => daffCustomerStoreCreditCreateSelectors<T>()).memoized;
 

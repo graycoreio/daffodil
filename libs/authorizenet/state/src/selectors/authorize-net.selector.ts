@@ -2,6 +2,7 @@ import {
   createSelector,
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffStateError } from '@daffodil/core/state';
@@ -80,9 +81,4 @@ const createAuthorizeNetSelectors = (): DaffAuthorizeNetMemoizedSelectors => {
   };
 };
 
-export const daffAuthorizeNetSelectors = (() => {
-  let cache;
-  return (): DaffAuthorizeNetMemoizedSelectors => cache = cache
-    ? cache
-    : createAuthorizeNetSelectors();
-})();
+export const daffAuthorizeNetSelectors: () => DaffAuthorizeNetMemoizedSelectors = defaultMemoize(() => createAuthorizeNetSelectors()).memoized;

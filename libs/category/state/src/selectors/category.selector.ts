@@ -129,12 +129,10 @@ const createCategorySelectors = <V extends DaffGenericCategory<V>, W extends Daf
 /**
  * A function that returns all combinatoric category selectors.
  */
-export const getDaffCategorySelectors = (() => {
-  let cache;
-  return <
-    V extends DaffGenericCategory<V> = DaffCategory,
-    W extends DaffProduct = DaffProduct
-  >(): DaffCategoryMemoizedSelectors<V, W> => cache = cache
-    ? cache
-    : createCategorySelectors<V, W>();
-})();
+export const getDaffCategorySelectors: <
+  V extends DaffGenericCategory<V> = DaffCategory,
+  W extends DaffProduct = DaffProduct
+>() => DaffCategoryMemoizedSelectors<V, W> = defaultMemoize(<
+  V extends DaffGenericCategory<V> = DaffCategory,
+  W extends DaffProduct = DaffProduct
+>() => createCategorySelectors<V, W>()).memoized;

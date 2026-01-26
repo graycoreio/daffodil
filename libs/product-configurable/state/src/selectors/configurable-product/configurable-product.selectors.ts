@@ -283,12 +283,7 @@ function getSelectableAttributesFromVariants<T extends DaffConfigurableProduct =
  * A function that returns all configurable product selectors.
  * Returns {@link DaffConfigurableProductMemoizedSelectors}.
  */
-export const getDaffConfigurableProductSelectors = (() => {
-  let cache;
-  return <T extends DaffConfigurableProduct = DaffConfigurableProduct>(): DaffConfigurableProductMemoizedSelectors<T> => cache = cache
-    ? cache
-    : createConfigurableProductSelectors();
-})();
+export const getDaffConfigurableProductSelectors: <T extends DaffConfigurableProduct = DaffConfigurableProduct>() => DaffConfigurableProductMemoizedSelectors<T> = defaultMemoize(<T extends DaffConfigurableProduct = DaffConfigurableProduct>() => createConfigurableProductSelectors()).memoized;
 
 function isVariantAvailable(
   appliedAttributes: DaffConfigurableProductEntityAttribute[],

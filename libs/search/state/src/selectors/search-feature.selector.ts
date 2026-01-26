@@ -1,6 +1,7 @@
 import {
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffSearchResult } from '@daffodil/search';
@@ -18,10 +19,6 @@ export interface DaffSearchFeatureSelector<T extends DaffSearchResult = DaffSear
   selectSearchFeatureState: MemoizedSelector<DaffSearchStateRootSlice<T>, DaffSearchReducersState<T>>;
 }
 
-export const getDaffSearchReducersStateSelector = (() => {
-  let cache;
-  return <T extends DaffSearchResult = DaffSearchResult>(): DaffSearchFeatureSelector<T> =>
-    cache = cache || {
-      selectSearchFeatureState: createFeatureSelector<DaffSearchReducersState<T>>(DAFF_SEARCH_STORE_FEATURE_KEY),
-    };
-})();
+export const getDaffSearchReducersStateSelector: <T extends DaffSearchResult = DaffSearchResult>() => DaffSearchFeatureSelector<T> = defaultMemoize(<T extends DaffSearchResult = DaffSearchResult>() => ({
+  selectSearchFeatureState: createFeatureSelector<DaffSearchReducersState<T>>(DAFF_SEARCH_STORE_FEATURE_KEY),
+})).memoized;

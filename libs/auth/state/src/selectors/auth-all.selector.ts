@@ -1,4 +1,7 @@
-import { MemoizedSelector } from '@ngrx/store';
+import {
+  MemoizedSelector,
+  defaultMemoize,
+} from '@ngrx/store';
 
 import {
   daffAuthSelectorFactory,
@@ -27,14 +30,10 @@ export interface DaffAuthSelectors extends
   selectAuthFeatureState: MemoizedSelector<Record<string, any>, DaffAuthFeatureState>;
 }
 
-export const getDaffAuthSelectors = (() => {
-  let cache;
-  return (): DaffAuthSelectors =>
-    cache = cache || {
-      ...daffAuthSelectorFactory(),
-      ...daffAuthLoginSelectorFactory(),
-      ...daffAuthRegisterSelectorFactory(),
-      ...daffAuthResetPasswordSelectorFactory(),
-      selectAuthFeatureState: getDaffAuthFeatureStateSelector(),
-    };
-})();
+export const getDaffAuthSelectors: () => DaffAuthSelectors = defaultMemoize(() => ({
+  ...daffAuthSelectorFactory(),
+  ...daffAuthLoginSelectorFactory(),
+  ...daffAuthRegisterSelectorFactory(),
+  ...daffAuthResetPasswordSelectorFactory(),
+  selectAuthFeatureState: getDaffAuthFeatureStateSelector(),
+})).memoized;

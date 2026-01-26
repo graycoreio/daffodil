@@ -137,9 +137,4 @@ const createCompositeProductAppliedOptionsEntitiesSelectors = <T extends DaffPro
  * A function that returns all selectors related to composite product applied option entities.
  * Returns {@link DaffCompositeProductEntitiesMemoizedSelectors}.
  */
-export const getDaffCompositeProductEntitiesSelectors = (() => {
-  let cache;
-  return <T extends DaffProduct>(): DaffCompositeProductEntitiesMemoizedSelectors<T> => cache = cache
-    ? cache
-    : createCompositeProductAppliedOptionsEntitiesSelectors<T>();
-})();
+export const getDaffCompositeProductEntitiesSelectors: <T extends DaffProduct>() => DaffCompositeProductEntitiesMemoizedSelectors<T> = defaultMemoize(<T extends DaffProduct>() => createCompositeProductAppliedOptionsEntitiesSelectors<T>()).memoized;

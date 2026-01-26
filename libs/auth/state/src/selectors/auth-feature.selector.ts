@@ -1,6 +1,7 @@
 import {
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -11,8 +12,4 @@ import {
 /**
  * Feature State Selector
  */
-export const getDaffAuthFeatureStateSelector = (() => {
-  let cache;
-  return (): MemoizedSelector<Record<string, any>, DaffAuthFeatureState> =>
-    cache = cache || createFeatureSelector<DaffAuthFeatureState>(DAFF_AUTH_STORE_FEATURE_KEY);
-})();
+export const getDaffAuthFeatureStateSelector: () => MemoizedSelector<Record<string, any>, DaffAuthFeatureState> = defaultMemoize(() => createFeatureSelector<DaffAuthFeatureState>(DAFF_AUTH_STORE_FEATURE_KEY)).memoized;

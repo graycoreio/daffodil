@@ -1,4 +1,7 @@
-import { createSelector } from '@ngrx/store';
+import {
+  createSelector,
+  defaultMemoize,
+} from '@ngrx/store';
 
 import { DaffCategoryPageMetadata } from '@daffodil/category';
 import {
@@ -20,8 +23,4 @@ const selectCategoryProductCollectionState = createSelector(
   state => state.pageMetadata,
 );
 
-export const getCategoryProductCollectionSelectors = (() => {
-  let cache;
-  return (): DaffCategoryPageProductCollectionSelectors =>
-    cache = cache || daffCollectionSelectorFactory<DaffCategoryStateRootSlice, DaffCategoryPageMetadata>(selectCategoryProductCollectionState);
-})();
+export const getCategoryProductCollectionSelectors: () => DaffCategoryPageProductCollectionSelectors = defaultMemoize(() => daffCollectionSelectorFactory<DaffCategoryStateRootSlice, DaffCategoryPageMetadata>(selectCategoryProductCollectionState)).memoized;

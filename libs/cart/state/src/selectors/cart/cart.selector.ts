@@ -2,6 +2,7 @@ import {
   createSelector,
   MemoizedSelector,
   DefaultProjectorFn,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -557,12 +558,10 @@ const createCartSelectors = <
   };
 };
 
-export const getCartSelectors = (() => {
-  let cache;
-  return <
-    T extends DaffCart = DaffCart,
-    V extends DaffCartOrderResult = DaffCartOrderResult,
-  >(): DaffCartStateMemoizedSelectors<T> => cache = cache
-    ? cache
-    : createCartSelectors<T, V>();
-})();
+export const getCartSelectors: <
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+>() => DaffCartStateMemoizedSelectors<T> = defaultMemoize(<
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+>() => createCartSelectors<T, V>()).memoized;

@@ -1,6 +1,7 @@
 import {
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffProduct } from '@daffodil/product';
@@ -21,9 +22,4 @@ export interface DaffRelatedProductsFeatureMemoizedSelector<T extends DaffProduc
 /**
  * A function that returns a selector for the entire related products feature state.
  */
-export const getDaffRelatedProductsFeatureSelector = (() => {
-  let cache;
-  return <T extends DaffProduct>(): DaffRelatedProductsFeatureMemoizedSelector<T> => cache = cache
-    ? cache
-    : { selectRelatedProductsState: createFeatureSelector<DaffRelatedProductsReducersState>(DAFF_RELATED_PRODUCTS_STORE_FEATURE_KEY) };
-})();
+export const getDaffRelatedProductsFeatureSelector: <T extends DaffProduct>() => DaffRelatedProductsFeatureMemoizedSelector<T> = defaultMemoize(<T extends DaffProduct>() => ({ selectRelatedProductsState: createFeatureSelector<DaffRelatedProductsReducersState>(DAFF_RELATED_PRODUCTS_STORE_FEATURE_KEY) })).memoized;

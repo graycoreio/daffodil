@@ -1,6 +1,7 @@
 import {
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffCustomerPayment } from '@daffodil/customer-payment';
@@ -20,10 +21,6 @@ export interface DaffCustomerPaymentFeatureSelector<
   selectCustomerPaymentFeatureState: MemoizedSelector<DaffCustomerPaymentStateRootSlice<TPayment>, DaffCustomerPaymentReducersState<TPayment>>;
 }
 
-export const getDaffCustomerPaymentReducersStateSelector = (() => {
-  let cache;
-  return <TPayment extends DaffCustomerPayment = DaffCustomerPayment>(): DaffCustomerPaymentFeatureSelector<TPayment> =>
-    cache = cache || {
-      selectCustomerPaymentFeatureState: createFeatureSelector<DaffCustomerPaymentReducersState<TPayment>>(DAFF_CUSTOMER_PAYMENT_STORE_FEATURE_KEY),
-    };
-})();
+export const getDaffCustomerPaymentReducersStateSelector: <TPayment extends DaffCustomerPayment = DaffCustomerPayment>() => DaffCustomerPaymentFeatureSelector<TPayment> = defaultMemoize(<TPayment extends DaffCustomerPayment = DaffCustomerPayment>() => ({
+  selectCustomerPaymentFeatureState: createFeatureSelector<DaffCustomerPaymentReducersState<TPayment>>(DAFF_CUSTOMER_PAYMENT_STORE_FEATURE_KEY),
+})).memoized;

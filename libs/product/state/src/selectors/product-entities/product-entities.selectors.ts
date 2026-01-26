@@ -179,9 +179,4 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 /**
  * A function that returns all selectors related to product entities and simple product prices.
  */
-export const getDaffProductEntitiesSelectors = (() => {
-  let cache;
-  return <T extends DaffProduct>(): DaffProductEntitiesMemoizedSelectors<T> => cache = cache
-    ? cache
-    : createProductEntitiesSelectors<T>();
-})();
+export const getDaffProductEntitiesSelectors: <T extends DaffProduct>() => DaffProductEntitiesMemoizedSelectors<T> = defaultMemoize(<T extends DaffProduct>() => createProductEntitiesSelectors<T>()).memoized;

@@ -1,6 +1,7 @@
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffAuthResetPasswordInfo } from '@daffodil/auth';
@@ -38,8 +39,4 @@ const createResetPasswordSelectors = (): DaffAuthResetPasswordSelectors => {
   };
 };
 
-export const daffAuthResetPasswordSelectorFactory = (() => {
-  let cache;
-  return (): DaffAuthResetPasswordSelectors =>
-    cache = cache || createResetPasswordSelectors();
-})();
+export const daffAuthResetPasswordSelectorFactory: () => DaffAuthResetPasswordSelectors = defaultMemoize(() => createResetPasswordSelectors()).memoized;

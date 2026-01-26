@@ -1,6 +1,7 @@
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffStateError } from '@daffodil/core/state';
@@ -83,9 +84,4 @@ const createProductPageSelectors = <T extends DaffProductReview = DaffProductRev
  * A function that returns all selectors related to the product page.
  * Returns {@link DaffProductPageMemoizedSelectors}.
  */
-export const getDaffProductPageReviewsSelectors = (() => {
-  let cache;
-  return <T extends DaffProductReview = DaffProductReview>(): DaffProductPageReviewsMemoizedSelectors<T> => cache = cache
-    ? cache
-    : createProductPageSelectors<T>();
-})();
+export const getDaffProductPageReviewsSelectors: <T extends DaffProductReview = DaffProductReview>() => DaffProductPageReviewsMemoizedSelectors<T> = defaultMemoize(<T extends DaffProductReview = DaffProductReview>() => createProductPageSelectors<T>()).memoized;

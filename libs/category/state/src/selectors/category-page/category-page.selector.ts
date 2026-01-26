@@ -1,6 +1,7 @@
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -86,9 +87,4 @@ const createCategoryPageSelectors = <V extends DaffGenericCategory<V>>(): DaffCa
  * A function that returns all selectors related to the category page metadata, category loading, and errors.
  * Returns {@link DaffCategoryPageMemoizedSelectors}.
  */
-export const getDaffCategoryPageSelectors = (() => {
-  let cache;
-  return <V extends DaffGenericCategory<V>>(): DaffCategoryPageMemoizedSelectors<V> => cache = cache
-    ? cache
-    : createCategoryPageSelectors<V>();
-})();
+export const getDaffCategoryPageSelectors: <V extends DaffGenericCategory<V>>() => DaffCategoryPageMemoizedSelectors<V> = defaultMemoize(<V extends DaffGenericCategory<V>>() => createCategoryPageSelectors<V>()).memoized;

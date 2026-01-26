@@ -1,6 +1,7 @@
 import {
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -16,10 +17,6 @@ export interface DaffPaymentFeatureSelector {
   selectPaymentFeatureState: MemoizedSelector<DaffPaymentStateRootSlice, DaffPaymentReducersState>;
 }
 
-export const getDaffPaymentReducersStateSelector = (() => {
-  let cache;
-  return (): DaffPaymentFeatureSelector =>
-    cache = cache || {
-      selectPaymentFeatureState: createFeatureSelector<DaffPaymentReducersState>(DAFF_PAYMENT_STORE_FEATURE_KEY),
-    };
-})();
+export const getDaffPaymentReducersStateSelector: () => DaffPaymentFeatureSelector = defaultMemoize(() => ({
+  selectPaymentFeatureState: createFeatureSelector<DaffPaymentReducersState>(DAFF_PAYMENT_STORE_FEATURE_KEY),
+})).memoized;

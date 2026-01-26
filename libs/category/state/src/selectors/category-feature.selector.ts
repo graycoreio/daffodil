@@ -1,6 +1,7 @@
 import {
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -26,9 +27,4 @@ export interface DaffCategoryFeatureMemoizedSelectors<
 /**
  * A function that returns a selector for the entire category feature state.
  */
-export const getDaffCategoryFeatureSelector = (() => {
-  let cache;
-  return <V extends DaffGenericCategory<V>>(): DaffCategoryFeatureMemoizedSelectors<V> => cache = cache
-    ? cache
-    : { selectCategoryFeatureState: createFeatureSelector<DaffCategoryStateRootSlice<V>,DaffCategoryReducersState<V>>(DAFF_CATEGORY_STORE_FEATURE_KEY) };
-})();
+export const getDaffCategoryFeatureSelector: <V extends DaffGenericCategory<V>>() => DaffCategoryFeatureMemoizedSelectors<V> = defaultMemoize(<V extends DaffGenericCategory<V>>() => ({ selectCategoryFeatureState: createFeatureSelector<DaffCategoryStateRootSlice<V>,DaffCategoryReducersState<V>>(DAFF_CATEGORY_STORE_FEATURE_KEY) })).memoized;

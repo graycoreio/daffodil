@@ -1,6 +1,7 @@
 import {
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -16,10 +17,6 @@ export interface DaffCartStoreCreditFeatureSelector {
   selectCustomerStoreCreditFeatureState: MemoizedSelector<DaffCartStoreCreditStateRootSlice, DaffCartStoreCreditReducersState>;
 }
 
-export const getDaffCartStoreCreditReducersStateSelector = (() => {
-  let cache;
-  return (): DaffCartStoreCreditFeatureSelector =>
-    cache = cache || {
-      selectCustomerStoreCreditFeatureState: createFeatureSelector<DaffCartStoreCreditReducersState>(DAFF_CART_STORE_CREDIT_STORE_FEATURE_KEY),
-    };
-})();
+export const getDaffCartStoreCreditReducersStateSelector: () => DaffCartStoreCreditFeatureSelector = defaultMemoize(() => ({
+  selectCustomerStoreCreditFeatureState: createFeatureSelector<DaffCartStoreCreditReducersState>(DAFF_CART_STORE_CREDIT_STORE_FEATURE_KEY),
+})).memoized;

@@ -176,12 +176,10 @@ const createCartItemEntitiesSelectors = <
   };
 };
 
-export const getDaffCartItemEntitiesSelectors = (() => {
-  let cache;
-  return <
-    T extends DaffCart = DaffCart,
-    V extends DaffCartOrderResult = DaffCartOrderResult,
-  >(): DaffCartItemEntitiesMemoizedSelectors<T, V> => cache = cache
-    ? cache
-    : createCartItemEntitiesSelectors<T, V>();
-})();
+export const getDaffCartItemEntitiesSelectors: <
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+>() => DaffCartItemEntitiesMemoizedSelectors<T, V> = defaultMemoize(<
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+>() => createCartItemEntitiesSelectors<T, V>()).memoized;

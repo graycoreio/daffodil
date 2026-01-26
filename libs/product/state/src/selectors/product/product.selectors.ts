@@ -1,6 +1,7 @@
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -68,9 +69,4 @@ const createProductPageSelectors = <T extends DaffProduct = DaffProduct>(): Daff
  * A function that returns all selectors related to the product page.
  * Returns {@link DaffProductPageMemoizedSelectors}.
  */
-export const getDaffProductPageSelectors = (() => {
-  let cache;
-  return <T extends DaffProduct>(): DaffProductPageMemoizedSelectors<T> => cache = cache
-    ? cache
-    : createProductPageSelectors<T>();
-})();
+export const getDaffProductPageSelectors: <T extends DaffProduct>() => DaffProductPageMemoizedSelectors<T> = defaultMemoize(<T extends DaffProduct>() => createProductPageSelectors<T>()).memoized;

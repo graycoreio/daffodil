@@ -1,6 +1,7 @@
 import {
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -16,10 +17,6 @@ export interface DaffSearchProductFeatureSelector {
   selectSearchProductFeatureState: MemoizedSelector<DaffSearchProductStateRootSlice, DaffSearchProductReducersState>;
 }
 
-export const getDaffSearchProductReducersStateSelector = (() => {
-  let cache;
-  return (): DaffSearchProductFeatureSelector =>
-    cache = cache || {
-      selectSearchProductFeatureState: createFeatureSelector<DaffSearchProductReducersState>(DAFF_SEARCH_PRODUCT_STORE_FEATURE_KEY),
-    };
-})();
+export const getDaffSearchProductReducersStateSelector: () => DaffSearchProductFeatureSelector = defaultMemoize(() => ({
+  selectSearchProductFeatureState: createFeatureSelector<DaffSearchProductReducersState>(DAFF_SEARCH_PRODUCT_STORE_FEATURE_KEY),
+})).memoized;

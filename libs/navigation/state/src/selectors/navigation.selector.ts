@@ -2,6 +2,7 @@ import {
   createSelector,
   createFeatureSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import { DaffStateError } from '@daffodil/core/state';
@@ -55,9 +56,4 @@ const createNavigationFeatureSelectors = <T extends DaffGenericNavigationTree<T>
   };
 };
 
-export const getDaffNavigationSelectors = (() => {
-  let cache;
-  return <T extends DaffGenericNavigationTree<T>>(): DaffNavigationMemoizedSelectors<T> => cache = cache
-    ? cache
-    : createNavigationFeatureSelectors<T>();
-})();
+export const getDaffNavigationSelectors: <T extends DaffGenericNavigationTree<T>>() => DaffNavigationMemoizedSelectors<T> = defaultMemoize(<T extends DaffGenericNavigationTree<T>>() => createNavigationFeatureSelectors<T>()).memoized;

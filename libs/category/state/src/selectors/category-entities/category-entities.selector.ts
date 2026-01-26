@@ -5,6 +5,7 @@ import {
 import {
   createSelector,
   MemoizedSelector,
+  defaultMemoize,
 } from '@ngrx/store';
 
 import {
@@ -85,9 +86,4 @@ const createCategoryFeatureSelectors = <V extends DaffGenericCategory<V>>(): Daf
 /**
  * A function that returns all selectors related to category entities.
  */
-export const getDaffCategoryEntitiesSelectors = (() => {
-  let cache;
-  return <V extends DaffGenericCategory<V>>(): DaffCategoryEntitiesMemoizedSelectors<V> => cache = cache
-    ? cache
-    : createCategoryFeatureSelectors<V>();
-})();
+export const getDaffCategoryEntitiesSelectors: <V extends DaffGenericCategory<V>>() => DaffCategoryEntitiesMemoizedSelectors<V> = defaultMemoize(<V extends DaffGenericCategory<V>>() => createCategoryFeatureSelectors<V>()).memoized;
