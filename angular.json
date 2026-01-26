@@ -368,6 +368,26 @@
               "serverTarget": "daffio:server:production"
             }
           }
+        },
+				"generateSitemap": {
+          "builder": "@daffodil/builders:generateSitemap",
+          "options": {
+            "domain": "https://next.daff.io",
+						"output": "dist/apps/daffio/browser/",
+						"sitemaps": {
+							"dynamic-sitemap": {
+								"routes": "dist/docs-assets/docs/renderableRoutes.txt"
+							},
+							"static-sitemap": {
+								"prerenderedRoutes": "dist/apps/daffio/prerendered-routes.json"
+							}
+						}
+          },
+          "configurations": {
+						"production": {
+              "domain": "https://www.daff.io"
+            }
+          }
         }
       }
     },

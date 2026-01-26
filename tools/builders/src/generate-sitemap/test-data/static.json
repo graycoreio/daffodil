@@ -1,0 +1,7 @@
+{
+	"routes": {
+		"/static1": {},
+		"/static1/nested": {},
+		"/static2/nested": {}
+	}
+}

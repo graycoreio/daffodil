@@ -18,21 +18,40 @@
           "notIndex",
           "^notIndex",
           "sharedGlobals",
-          "docs"
+          "docs",
+					{
+						"env": "NG_BUILD_ENV"
+					}
         ],
-        "outputs": ["{workspaceRoot}/dist/apps/daffio"]
-      }
+        "outputs": ["{workspaceRoot}/dist/apps/daffio"],
+				"dependsOn": [
+					"^build",
+					{
+						"projects": ["@daffodil/builders"],
+						"target": "build"
+					}
+				]
+      },
+			"generateSitemap": {
+				"dependsOn": [
+					{
+						"projects": ["@daffodil/builders"],
+						"target": "build"
+					}
+				]
+			}
     }
   },
   "scripts": {
-    "build": "ng build daffio --configuration production",
+    "build": "ng build daffio --configuration ${NG_BUILD_ENV:-production} && npm run generateSitemap",
     "test": "ng test daffio --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint daffio && npm run lint:scss",
     "lint:scss": "stylelint '**/*.scss'",
     "lint:fix": "ng lint daffio --fix",
     "lint:scss:fix": "ng run lint:scss -- --fix",
     "dev:ssr": "ng run daffio:serve-ssr",
-    "serve:ssr": "node ../../dist/apps/daffio/server/server.mjs"
+    "serve:ssr": "node ../../dist/apps/daffio/server/server.mjs",
+		"generateSitemap": "ng run daffio:generateSitemap:${NG_BUILD_ENV:-production}"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "description": "A documentation site for the daffodil project",
