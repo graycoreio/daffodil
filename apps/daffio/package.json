@@ -23,15 +23,22 @@
 						"env": "NG_BUILD_ENV"
 					}
         ],
-        "outputs": ["{workspaceRoot}/dist/apps/daffio"]
+        "outputs": ["{workspaceRoot}/dist/apps/daffio"],
+				"dependsOn": [
+					"^build",
+					{
+						"projects": ["@daffodil/builders"],
+						"target": "build"
+					}
+				]
       },
 			"generateSitemap": {
 				"dependsOn": [
-				{
-					"projects": ["@daffodil/builders"],
-					"target": "build"
-				}
-			]
+					{
+						"projects": ["@daffodil/builders"],
+						"target": "build"
+					}
+				]
 			}
     }
   },
