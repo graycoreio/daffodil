@@ -7,14 +7,10 @@ import { JsonObject } from '@angular-devkit/core';
 import {
   readFile,
   writeFile,
+  mkdir,
 } from 'node:fs/promises';
-import {
-  resolve,
-  join,
-} from 'node:path';
+import { join } from 'node:path';
 import { create } from 'xmlbuilder2';
-
-const PROJECT_ROOT = resolve(__dirname, '../../../..');
 
 interface RoutesSitemap extends JsonObject {
   routes: string;
@@ -66,11 +62,12 @@ export default createBuilder(async (
       continue;
     }
 
+    await mkdir(join(context.workspaceRoot, options.output), { recursive: true });
     const sitemap = options.sitemaps[name];
     if ('prerenderedRoutes' in sitemap) {
       try {
-        const routes = Object.keys(JSON.parse(await readFile(join(PROJECT_ROOT, <string>sitemap.prerenderedRoutes), 'utf-8')).routes);
-        const outputPath = join(PROJECT_ROOT, options.output, `${name}.xml`);
+        const routes = Object.keys(JSON.parse(await readFile(join(context.workspaceRoot, <string>sitemap.prerenderedRoutes), 'utf-8')).routes);
+        const outputPath = join(context.workspaceRoot, options.output, `${name}.xml`);
         context.reportStatus(`Found ${routes.length} routes for ${name} sitemap`);
         await writeFile(outputPath, createSitemap(routes, base));
         context.reportStatus(`Wrote ${name} sitemap to disk at ${outputPath}`);
@@ -79,9 +76,9 @@ export default createBuilder(async (
       }
     } else {
       try {
-        const file = await readFile(join(PROJECT_ROOT, sitemap.routes), 'utf-8');
+        const file = await readFile(join(context.workspaceRoot, sitemap.routes), 'utf-8');
         const routes = file.split('\n').filter(route => route.trim().length > 0);
-        const outputPath = join(PROJECT_ROOT, options.output, `${name}.xml`);
+        const outputPath = join(context.workspaceRoot, options.output, `${name}.xml`);
         context.reportStatus(`Found ${routes.length} routes for ${name} sitemap`);
         await writeFile(outputPath, createSitemap(routes, base));
         context.reportStatus(`Wrote ${name} sitemap to disk at ${outputPath}`);
@@ -90,7 +87,7 @@ export default createBuilder(async (
       }
     }
   }
-  const output = join(PROJECT_ROOT, options.output, 'sitemap.xml');
+  const output = join(context.workspaceRoot, options.output, 'sitemap.xml');
   await writeFile(output, createSitemapIndex(Object.keys(options.sitemaps), base));
   context.reportStatus(`Wrote sitemap index to disk at ${output}`);
 
