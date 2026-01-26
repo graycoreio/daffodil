@@ -57,7 +57,14 @@ export default createBuilder(async (
 ): Promise<BuilderOutput> => {
   context.reportRunning();
   await mkdir(join(context.workspaceRoot, options.output), { recursive: true });
+
   const base = `${options.domain}${options.baseUrl || ''}`;
+  try {
+    new URL(base);
+  } catch (error) {
+    return failure(`${base} is not a valid URL`);
+  }
+
   for (const name in options.sitemaps) {
     if (!Object.hasOwn(options.sitemaps, name)) {
       continue;
