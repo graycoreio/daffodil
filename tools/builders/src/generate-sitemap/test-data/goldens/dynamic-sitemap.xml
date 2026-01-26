@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://domain.test/dynamic-route1</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://domain.test/dynamic-route1/nested</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://domain.test/dynamic-route2/nested</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>

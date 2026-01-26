@@ -9,6 +9,7 @@
     "build:copy-package": "shx cp package.json ../../dist/builders/package.json",
     "build:copy-static": "npm run build:copy-schema && npm run build:copy-builders && npm run build:copy-package",
     "build": "tsc && npm run build:copy-static",
+    "test": "tsx ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
     "postbuild": "shx mkdir -p ../../node_modules/@daffodil/builders && shx cp -r ../../dist/builders/* ../../node_modules/@daffodil/builders"
   }
 }

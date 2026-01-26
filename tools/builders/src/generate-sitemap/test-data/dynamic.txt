@@ -1,0 +1,3 @@
+/dynamic-route1
+/dynamic-route1/nested
+/dynamic-route2/nested
