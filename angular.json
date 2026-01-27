@@ -408,7 +408,8 @@
           "configurations": {
 						"production": {
               "domain": "https://www.daff.io"
-            }
+            },
+						"next": {}
           }
         }
       }
