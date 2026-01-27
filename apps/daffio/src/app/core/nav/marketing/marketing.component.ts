@@ -1,8 +1,12 @@
-import { AsyncPipe } from '@angular/common';
+import {
+  AsyncPipe,
+  NgComponentOutlet,
+} from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
+  Type,
 } from '@angular/core';
 import {
   RouterLink,
@@ -27,6 +31,7 @@ import { DaffioHeaderComponent } from '../../header/components/header/header.com
 import { DaffioHeaderItemDirective } from '../../header/components/header-item/header-item.directive';
 import { DaffioRoute } from '../../router/route.type';
 import { DaffioSidebarService } from '../../sidebar/services/sidebar.service';
+import { isComponent } from '../../utils/is-component';
 import { DAFFIO_NAV_SIDEBAR_ID } from '../header/sidebar-id';
 import { DaffioNavLink } from '../link/type';
 
@@ -38,19 +43,21 @@ import { DaffioNavLink } from '../link/type';
     DaffioHeaderComponent,
     DaffioHeaderItemDirective,
     RouterLink,
-    RouterLinkActive,
     DaffLogoModule,
     DaffThemeSwitchButtonModule,
     DaffButtonComponent,
     DaffIconButtonComponent,
     FaIconComponent,
     AsyncPipe,
+    NgComponentOutlet,
+    RouterLinkActive,
   ],
 })
 export class DaffioMarketingNavContainer implements OnInit {
+  readonly isComponent = isComponent;
   faBars = faBars;
 
-  links$: Observable<Array<DaffioNavLink>>;
+  links$: Observable<Array<DaffioNavLink | Type<unknown>>>;
 
   constructor(
     private routerData: DaffRouterDataService<DaffioRoute['data']>,

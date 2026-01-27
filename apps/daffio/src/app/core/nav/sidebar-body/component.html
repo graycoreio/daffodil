@@ -1,11 +1,14 @@
-<daff-nav-list>
-  @for (link of links$ | async; track $index) {
-    <ng-container daff-list-item>
-      @if (link.external) {
-        <a daff-list-item [href]="link.url" target="_blank">{{link.title}}</a>
+@if (tree$ | async; as tree) {
+  <ul daff-tree [tree]="tree">
+    <ng-template #daffTreeItemWithChildrenTpl let-node>
+      <button daffTreeItem [node]="node">{{ node.title }}</button>
+    </ng-template>
+    <ng-template #daffTreeItemTpl let-node>
+      @if (node.data?.external) {
+        <a daffTreeItem [node]="node" [href]="node.url" target="_blank">{{ node.title }}</a>
       } @else {
-        <a daff-list-item [routerLink]="link.url">{{ link.title }}</a>
+        <a daffTreeItem [node]="node" [routerLink]="node.url">{{ node.title }}</a>
       }
-    </ng-container>
-  }
-</daff-nav-list>
+    </ng-template>
+  </ul>
+}

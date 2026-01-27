@@ -42,10 +42,11 @@ export class CollectLinkableSymbolsProcessor implements Processor {
       }
       CollectLinkableSymbolsProcessor._symbols.set(doc.name, doc.path);
       if (doc.canonicalPath) {
-        CollectLinkableSymbolsProcessor._canonical.set(doc.name, doc.canonicalPath);//////
+        CollectLinkableSymbolsProcessor._canonical.set(doc.name, doc.canonicalPath);
       }
       if (doc.docType !== DaffDocsApiType.PACKAGE) {
-        const packageName = doc.id.match(/(.*)\/src/)[1];
+        const m = doc.id.match(/(.*)\/src/);
+        const packageName = m[1];
         if (!CollectLinkableSymbolsProcessor._packages.get(packageName)) {
           CollectLinkableSymbolsProcessor._packages.set(packageName, []);
         }

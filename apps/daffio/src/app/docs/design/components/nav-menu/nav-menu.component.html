@@ -1,0 +1,12 @@
+<button class="daffio-docs-design-nav-menu" daffioHeaderItem [daffMenuActivator]="designMenu" #activator="daffMenuActivator">Design <span class="daffio-docs-design-nav-menu__icon" [class.open]="activator.isOpen()"></span></button>
+
+<ng-template #designMenu>
+  <daff-menu>
+    <a routerLink="/docs/design" daff-menu-item>
+      Components
+		</a>
+    <a routerLink="/docs/storefront" daff-menu-item>
+      Storefront UI
+		</a>
+  </daff-menu>
+</ng-template>
