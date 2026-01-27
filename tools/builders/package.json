@@ -11,5 +11,12 @@
     "build": "tsc && npm run build:copy-static",
     "test": "tsx ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
     "postbuild": "shx mkdir -p ../../node_modules/@daffodil/builders && shx cp -r ../../dist/builders/* ../../node_modules/@daffodil/builders"
-  }
+  },
+	"nx": {
+		"targets": {
+			"build": {
+        "outputs": ["{workspaceRoot}/dist/builders"]
+			}
+		}
+	}
 }
