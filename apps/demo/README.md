@@ -9,6 +9,12 @@ npx nx run @daffodil/demo:build
 ```bash
 npx ng serve demo
 ```
+
+If you're using a dev container, you'll need to run:
+```bash
+npx ng serve demo --host 0.0.0.0
+```
+
 3. Navigate to `localhost:4200` in your browser of choice
 
 #### Running with Magento
