@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -6,12 +7,21 @@ import { Observable } from 'rxjs';
 
 import { DaffCategory } from '@daffodil/category';
 import { DaffCategoryFacade } from '@daffodil/category/state';
+import { DaffContainerComponent } from '@daffodil/design/container';
+import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
+
+import { ProductGridModule } from '../../../product/components/product-grid/product-grid.module';
 
 @Component({
   selector: 'demo-category-view',
   templateUrl: './category-view.component.html',
-  standalone: false,
+  imports: [
+    AsyncPipe,
+    DaffContainerComponent,
+    DaffLoadingIconComponent,
+    ProductGridModule,
+  ],
 })
 export class CategoryViewComponent implements OnInit {
   category$: Observable<DaffCategory>;

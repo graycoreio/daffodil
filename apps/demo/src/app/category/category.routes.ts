@@ -1,21 +1,23 @@
-import { NgModule } from '@angular/core';
-import {
-  RouterModule,
-  Routes,
-} from '@angular/router';
+import { importProvidersFrom } from '@angular/core';
+import { Routes } from '@angular/router';
 
 import {
   DaffCategoryPageIdResolver,
   DaffCategoryPageUrlResolver,
-  DaffCategoryRoutingModule,
 } from '@daffodil/category/routing';
+import { DaffCategoryStateModule } from '@daffodil/category/state';
 
 import { CategoryViewComponent } from './pages/category-view/category-view.component';
 
-const routes: Routes = [
+export const demoCategoryRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
+    providers: [
+      importProvidersFrom(DaffCategoryStateModule),
+      DaffCategoryPageIdResolver,
+      DaffCategoryPageUrlResolver,
+    ],
     children: [
       {
         path: ':id',
@@ -34,14 +36,3 @@ const routes: Routes = [
     ],
   },
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forChild(routes),
-    DaffCategoryRoutingModule,
-  ],
-  exports: [
-    RouterModule,
-  ],
-})
-export class CategoryRoutingModule { }

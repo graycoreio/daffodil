@@ -23,7 +23,6 @@ import { DaffPaymentStateModule } from '@daffodil/payment/state';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemoCartRootModule } from './cart/cart-root.module';
-import { CategoryModule } from './category/category.module';
 import { DemoCheckoutStepActionTypes } from './checkout/actions/checkout-step.actions';
 import { TemplateModule } from './core/template/template/template.module';
 import { DemoDriverModule } from './drivers/driver.module';
@@ -53,7 +52,6 @@ import { environment } from '../environments/environment';
     DemoRoutingComponentModule,
     DemoCartRootModule,
     ProductModule,
-    CategoryModule,
     TemplateModule,
     NotFoundModule,
     DaffAuthorizeNetPaymentStateModule,
