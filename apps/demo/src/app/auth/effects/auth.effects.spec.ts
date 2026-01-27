@@ -3,8 +3,10 @@ import {
   TestBed,
   waitForAsync,
 } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import {
+  Router,
+  provideRouter,
+} from '@angular/router';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
   hot,
@@ -32,12 +34,10 @@ describe('DemoAuthEffects', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-      ],
       providers: [
         DemoAuthEffects,
         provideMockActions(() => actions$),
+        provideRouter([]),
       ],
     });
 
