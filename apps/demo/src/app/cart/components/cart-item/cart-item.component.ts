@@ -5,6 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import {
+  ReactiveFormsModule,
   UntypedFormBuilder,
   UntypedFormControl,
 } from '@angular/forms';
@@ -19,12 +20,18 @@ import {
   DaffBase64Service,
   DaffBase64ServiceToken,
 } from '@daffodil/core';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
+import { DaffQuantityFieldComponent } from '@daffodil/design/quantity-field';
 
 @Component({
   selector: 'demo-cart-item',
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.scss'],
-  standalone: false,
+  imports: [
+    ReactiveFormsModule,
+    DAFF_FORM_FIELD_COMPONENTS,
+    DaffQuantityFieldComponent,
+  ],
 })
 export class CartItemComponent implements OnInit {
 

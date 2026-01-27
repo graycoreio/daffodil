@@ -8,6 +8,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import {
   DaffCart,
@@ -22,7 +23,7 @@ import { CartItemsComponent } from './cart-items.component';
 
 @Component({
   template: '<demo-cart-items [cart]="cartValue"></demo-cart-items>',
-  standalone: false,
+  imports: [CartItemsComponent],
 })
 class WrapperComponent {
   cartValue: DaffCart;
@@ -30,7 +31,6 @@ class WrapperComponent {
 
 @Component({
   selector: 'demo-cart-item', template: '',
-  standalone: false,
 })
 class MockCartItemComponent {
   @Input() item: DaffCartItem;
@@ -47,10 +47,13 @@ describe('CartItemsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         CartItemsComponent,
         WrapperComponent,
         MockCartItemComponent,
+      ],
+      providers: [
+        provideMockStore({}),
       ],
     })
       .compileComponents();

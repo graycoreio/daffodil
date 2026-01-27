@@ -6,11 +6,15 @@ import { Router } from '@angular/router';
 
 import { DaffCart } from '@daffodil/cart';
 
+import { MiniCartItemComponent } from '../minicart-item/minicart-item.component';
+
 @Component({
   selector: 'demo-cart-summary',
   templateUrl: './cart-summary.component.html',
   styleUrls: ['./cart-summary.component.scss'],
-  standalone: false,
+  imports: [
+    MiniCartItemComponent,
+  ],
 })
 export class CartSummaryComponent {
 

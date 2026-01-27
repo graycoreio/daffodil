@@ -12,7 +12,7 @@ import { ViewCartDirective } from './view-cart.directive';
 
 @Component({
   template: '<div demoViewCart></div>',
-  standalone: false,
+  imports: [ViewCartDirective],
 })
 class WrapperComponent {}
 
@@ -25,8 +25,6 @@ describe('ViewCartDirective', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-      ],
-      declarations: [
         ViewCartDirective,
         WrapperComponent,
       ],

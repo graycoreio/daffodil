@@ -9,7 +9,6 @@ import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { DemoCheckoutStateModule } from './checkout-state.module';
 import { PlaceOrderModule } from './components/place-order/place-order.module';
-import { CartSummaryWrapperModule } from '../cart/components/cart-summary-wrapper/cart-summary-wrapper.module';
 
 @NgModule({
   imports: [
@@ -17,7 +16,6 @@ import { CartSummaryWrapperModule } from '../cart/components/cart-summary-wrappe
     DaffCartStateModule,
     DaffLoadingIconModule,
     DemoCheckoutStateModule,
-    CartSummaryWrapperModule,
     PlaceOrderModule,
     DaffAccordionModule,
     DaffContainerModule,

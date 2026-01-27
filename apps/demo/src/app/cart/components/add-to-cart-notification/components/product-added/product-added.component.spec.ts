@@ -18,7 +18,7 @@ const stubQty = 1;
 
 @Component({
   template: '<demo-product-added [qty]="qtyValue" [product]="productValue"></demo-product-added>',
-  standalone: false,
+  imports: [ProductAddedComponent],
 })
 class WrapperComponent {
   qtyValue: number = stubQty;
@@ -36,7 +36,7 @@ describe('ProductAddedComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         WrapperComponent,
         ProductAddedComponent,
       ],

@@ -34,7 +34,7 @@ import {
   daffComposeReducers,
   daffIdentityReducer,
 } from '@daffodil/core/state';
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
+import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductLoadSuccess,
@@ -53,13 +53,12 @@ import * as fromAddToCartNotification from '../../reducers/index';
 
 @Component({
   template: '<demo-add-to-cart-notification></demo-add-to-cart-notification>',
-  standalone: false,
+  imports: [AddToCartNotificationComponent],
 })
 class WrapperComponent {}
 
 @Component({
   selector: 'demo-product-added', template: '',
-  standalone: false,
 })
 class MockProductAddedComponent {
   @Input() product: DaffProduct;
@@ -99,10 +98,8 @@ describe('AddToCartNotificationComponent', () => {
           [DAFF_PRODUCT_STORE_FEATURE_KEY]: combineReducers(daffProductReducers),
         }),
         NoopAnimationsModule,
-        DaffLoadingIconModule,
+        DAFF_LOADING_ICON_COMPONENTS,
         FontAwesomeModule,
-      ],
-      declarations: [
         WrapperComponent,
         AddToCartNotificationComponent,
         MockProductAddedComponent,

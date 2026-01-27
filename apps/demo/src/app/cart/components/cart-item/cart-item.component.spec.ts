@@ -16,7 +16,8 @@ import {
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
-import { DaffFormFieldModule } from '@daffodil/design/form-field';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
+import { DaffQuantityFieldComponent } from '@daffodil/design/quantity-field';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { DaffSfQuantityFieldComponent } from '@daffodil/storefront/quantity-field';
 
@@ -24,7 +25,7 @@ import { CartItemComponent } from './cart-item.component';
 
 @Component({
   template: '<demo-cart-item [item]="cartItemValue"></demo-cart-item>',
-  standalone: false,
+  imports: [CartItemComponent],
 })
 class WrapperComponent {
   cartItemValue: DaffCartItem;
@@ -47,10 +48,8 @@ describe('CartItemComponent', () => {
         RouterTestingModule,
         DaffCartStateTestingModule,
         ReactiveFormsModule,
-        DaffFormFieldModule,
-        DaffSfQuantityFieldComponent,
-      ],
-      declarations: [
+        DAFF_FORM_FIELD_COMPONENTS,
+        DaffQuantityFieldComponent,
         CartItemComponent,
         WrapperComponent,
       ],

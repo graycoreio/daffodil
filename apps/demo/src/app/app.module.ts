@@ -19,7 +19,6 @@ import { DaffPaymentStateModule } from '@daffodil/payment/state';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DemoCartRootModule } from './cart/cart-root.module';
 import { environment } from '../environments/environment';
 import { DemoCheckoutStepActionTypes } from './checkout/actions/checkout-step.actions';
 import { TemplateModule } from './core/template/template/template.module';
@@ -45,7 +44,6 @@ import { DemoIndicatorComponent } from './routing/indicator/indicator.component'
 
     AppRoutingModule,
     DemoIndicatorComponent,
-    DemoCartRootModule,
     TemplateModule,
     DaffAuthorizeNetPaymentStateModule,
     DaffAuthorizeNetStateModule,

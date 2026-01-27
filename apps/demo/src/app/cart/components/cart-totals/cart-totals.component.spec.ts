@@ -20,11 +20,11 @@ import {
 } from '@daffodil/cart/testing';
 
 import { CartTotalsComponent } from './cart-totals.component';
-import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
+import { CartTotalsItemComponent } from '../cart-totals-item/cart-totals-item.component';
 
 @Component({
   template: '<demo-cart-totals [cart]="cartValue"></demo-cart-totals>',
-  standalone: false,
+  imports: [CartTotalsComponent],
 })
 class WrapperComponent {
   @Input() cartValue: DaffCart;
@@ -42,12 +42,10 @@ describe('CartTotalsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         WrapperComponent,
         CartTotalsComponent,
-      ],
-      imports: [
-        CartTotalsItemModule,
+        CartTotalsItemComponent,
       ],
       providers: [
         CurrencyPipe,

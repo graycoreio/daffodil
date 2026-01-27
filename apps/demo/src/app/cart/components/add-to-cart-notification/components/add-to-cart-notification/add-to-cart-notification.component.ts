@@ -1,7 +1,9 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
 } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faCheck,
   faTimes,
@@ -14,21 +16,33 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { DaffCartItem } from '@daffodil/cart';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductStateRootSlice,
   getDaffProductSelectors,
 } from '@daffodil/product/state';
 
+import { ProceedToCheckoutDirective } from '../../../proceed-to-checkout/proceed-to-checkout.directive';
+import { ViewCartDirective } from '../../../view-cart/view-cart.directive';
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
 import * as fromDemoAddToCartNotification from '../../reducers/index';
-
+import { ProductAddedComponent } from '../product-added/product-added.component';
 
 @Component({
   selector: 'demo-add-to-cart-notification',
   templateUrl: './add-to-cart-notification.component.html',
   styleUrls: ['./add-to-cart-notification.component.scss'],
-  standalone: false,
+  imports: [
+    AsyncPipe,
+    ViewCartDirective,
+    ProceedToCheckoutDirective,
+    ProductAddedComponent,
+    DAFF_LOADING_ICON_COMPONENTS,
+    DAFF_BUTTON_COMPONENTS,
+    FontAwesomeModule,
+  ],
 })
 export class AddToCartNotificationComponent implements OnInit {
   faCheck = faCheck;

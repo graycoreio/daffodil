@@ -13,7 +13,7 @@ import { CartItemCountComponent } from './cart-item-count.component';
 
 @Component({
   template: '<demo-cart-item-count [itemCount]="itemCountValue"></demo-cart-item-count>',
-  standalone: false,
+  imports: [CartItemCountComponent],
 })
 class WrapperComponent {
   itemCountValue = 0;
@@ -27,7 +27,7 @@ describe('CartItemCount', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         WrapperComponent,
         CartItemCountComponent,
       ],
