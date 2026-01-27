@@ -13,6 +13,12 @@ npx nx run @daffodil/daffio:build
 ```bash 
 npx ng serve daffio
 ```
+
+If you're using a dev container, you'll need to run:
+```bash
+npx ng serve daffio --host 0.0.0.0
+```
+
 4. Navigate to `localhost:4200` in your browser of choice
 
 ### Project Overview
