@@ -12,8 +12,8 @@ import {
   MockDaffCategoryFacade,
 } from '@daffodil/category/state/testing';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
-import { DaffContainerModule } from '@daffodil/design/container';
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
+import { DaffContainerComponent } from '@daffodil/design/container';
+import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductFactory,
@@ -37,12 +37,10 @@ describe('CategoryViewComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CategoryViewComponent,
-      ],
       imports: [
-        DaffContainerModule,
-        DaffLoadingIconModule,
+        CategoryViewComponent,
+        DaffContainerComponent,
+        DaffLoadingIconComponent,
         ProductGridModule,
         DaffCategoryStateTestingModule,
         DaffProductTestingModule,

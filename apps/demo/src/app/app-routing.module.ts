@@ -35,7 +35,7 @@ export const appRoutes: Routes = [
       },
       {
         path: 'category',
-        loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),
+        loadChildren: () => import('./category/category.routes').then(m => m.demoCategoryRoutes),
       },
       {
         path: 'checkout',
@@ -53,7 +53,7 @@ export const appRoutes: Routes = [
       {
         path: '**',
         canMatch: [daffExternalMatcherTypeGuard('CATEGORY')],
-        loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),
+        loadChildren: () => import('./category/category.routes').then(r => r.demoCategoryRoutes),
       },
     ],
   },
