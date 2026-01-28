@@ -15,11 +15,11 @@ describe('@daffodil/builders | generateSitemap', () => {
     registry.addPostTransform(schema.transforms.addUndefinedDefaults);
     // TestingArchitectHost() takes workspace and current directories.
     // Since we don't use those, both are the same in this case.
-    architectHost = new TestingArchitectHost(WORKSPACE_ROOT, '@daffodil/builders');
+    architectHost = new TestingArchitectHost(WORKSPACE_ROOT);
     architect = new Architect(architectHost, registry);
     // This will either take a Node package name, or a path to the directory
     // for the package.json file.
-    await architectHost.addBuilderFromPackage('@daffodil/builders');
+    await architectHost.addBuilderFromPackage(join(WORKSPACE_ROOT, 'dist', 'builders'));
   });
 
   it('processes multiple sitemaps', async () => {
