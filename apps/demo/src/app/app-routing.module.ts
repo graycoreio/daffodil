@@ -53,7 +53,7 @@ export const appRoutes: Routes = [
       {
         path: '**',
         canMatch: [daffExternalMatcherTypeGuard('CATEGORY')],
-        loadChildren: () => import('./category/category.routes').then(m => m.demoCategoryRoutes),
+        loadChildren: () => import('./category/category.routes').then(r => r.demoCategoryRoutes),
       },
     ],
   },
