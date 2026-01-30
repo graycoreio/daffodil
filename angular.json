@@ -61,8 +61,8 @@
               "sourceMap": true,
               "fileReplacements": [
                 {
-                  "replace": "apps/demo/src/app/drivers/driver.module.ts",
-                  "with": "apps/demo/src/app/drivers/in-memory.module.ts"
+                  "replace": "apps/demo/src/app/drivers/driver.providers.ts",
+                  "with": "apps/demo/src/app/drivers/in-memory.providers.ts"
                 }
               ]
             },
@@ -86,8 +86,8 @@
                   "with": "apps/demo/src/environments/environment.prod.ts"
                 },
                 {
-                  "replace": "apps/demo/src/app/drivers/driver.module.ts",
-                  "with": "apps/demo/src/app/drivers/in-memory.module.ts"
+                  "replace": "apps/demo/src/app/drivers/driver.providers.ts",
+                  "with": "apps/demo/src/app/drivers/in-memory.providers.ts"
                 }
               ]
             },
@@ -98,8 +98,8 @@
                   "with": "apps/demo/src/environments/environment.magento.ts"
                 },
                 {
-                  "replace": "apps/demo/src/app/drivers/driver.module.ts",
-                  "with": "apps/demo/src/app/drivers/magento.module.ts"
+                  "replace": "apps/demo/src/app/drivers/driver.providers.ts",
+                  "with": "apps/demo/src/app/drivers/magento.providers.ts"
                 }
               ]
             },
@@ -110,8 +110,8 @@
                   "with": "apps/demo/src/environments/environment.venia.ts"
                 },
                 {
-                  "replace": "apps/demo/src/app/drivers/driver.module.ts",
-                  "with": "apps/demo/src/app/drivers/magento.module.ts"
+                  "replace": "apps/demo/src/app/drivers/driver.providers.ts",
+                  "with": "apps/demo/src/app/drivers/magento.providers.ts"
                 }
               ]
             },
@@ -122,8 +122,8 @@
                   "with": "apps/demo/src/environments/environment.shopify.ts"
                 },
                 {
-                  "replace": "apps/demo/src/app/drivers/driver.module.ts",
-                  "with": "apps/demo/src/app/drivers/shopify.module.ts"
+                  "replace": "apps/demo/src/app/drivers/driver.providers.ts",
+                  "with": "apps/demo/src/app/drivers/shopify.providers.ts"
                 }
               ]
             }

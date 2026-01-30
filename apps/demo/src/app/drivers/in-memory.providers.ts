@@ -1,6 +1,6 @@
 import {
-  NgModule,
   inject,
+  importProvidersFrom,
 } from '@angular/core';
 
 import { DaffAuthInMemoryDriverModule } from '@daffodil/auth/driver/in-memory';
@@ -24,8 +24,8 @@ import { DaffConfigurableProductInMemoryDriverModule } from '@daffodil/product-c
 
 import { DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG } from './in-memory/external-router.config.token';
 
-@NgModule({
-  imports: [
+export const provideDemoDrivers = () => [
+  importProvidersFrom(
     DaffInMemoryDriverModule.forRoot(),
     DaffAuthorizeNetInMemoryDriverModule.forRoot(),
     DaffAuthInMemoryDriverModule.forRoot(),
@@ -37,16 +37,13 @@ import { DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG } from './in-memory/extern
     DaffNewsletterInMemoryDriverModule.forRoot(),
     DaffGeographyInMemoryDriverModule.forRoot(),
     DaffCategoryInMemoryDriverModule.forRoot(),
-  ],
-  providers: [
-    provideDaffExternalRouterInMemoryDriver(DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG),
-    {
-      provide: DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER,
-      useFactory: () => {
-        const categoryBackend = inject(DaffInMemoryBackendCategoryService);
-        return () => categoryBackend.categories[0];
-      },
+  ),
+  provideDaffExternalRouterInMemoryDriver(DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG),
+  {
+    provide: DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER,
+    useFactory: () => {
+      const categoryBackend = inject(DaffInMemoryBackendCategoryService);
+      return () => categoryBackend.categories[0];
     },
-  ],
-})
-export class DemoDriverModule { }
+  },
+];

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { provideApollo } from 'apollo-angular';
 
 import { DaffAuthMagentoDriverModule } from '@daffodil/auth/driver/magento';
@@ -15,9 +15,8 @@ import { demoMagentoApolloOptions } from './magento/apollo-options.factory';
 import { environment } from '../../environments/environment';
 import { MagentoEnvironmentDriverConfiguration } from '../../environments/environment.interface';
 
-@NgModule({
-  imports: [
-    //Magento
+export const provideDemoDrivers = () => [
+  importProvidersFrom(
     DaffAuthMagentoDriverModule.forRoot(),
     DaffProductMagentoDriverModule.forRoot({
       baseMediaUrl: 'https://magento2.test/media/',
@@ -28,10 +27,7 @@ import { MagentoEnvironmentDriverConfiguration } from '../../environments/enviro
     DaffGeographyMagentoDriverModule.forRoot(),
     DaffCategoryMagentoDriverModule.forRoot(),
     DaffMagentoAuthorizeNetDriverModule.forRoot((<MagentoEnvironmentDriverConfiguration>environment.driver).anetConfig),
-  ],
-  providers: [
-    provideApollo(demoMagentoApolloOptions),
-    provideDaffExternalRouterMagentoDriver(),
-  ],
-})
-export class DemoDriverModule {}
+  ),
+  provideApollo(demoMagentoApolloOptions),
+  provideDaffExternalRouterMagentoDriver(),
+];
