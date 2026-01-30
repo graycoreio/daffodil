@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { DaffButtonModule } from '@daffodil/design/button';
 
 import { CartSidebarComponent } from './cart-sidebar.component';
-import { HelpBoxModule } from '../../../misc/help-box/help-box.module';
+import { HelpBoxComponent } from '../../../misc/help-box/help-box.component';
 import { CartTotalsModule } from '../cart-totals/cart-totals.module';
 import { ProceedToCheckoutModule } from '../proceed-to-checkout/proceed-to-checkout.module';
 
@@ -14,7 +14,7 @@ import { ProceedToCheckoutModule } from '../proceed-to-checkout/proceed-to-check
     CartTotalsModule,
     ProceedToCheckoutModule,
     DaffButtonModule,
-    HelpBoxModule,
+    HelpBoxComponent,
   ],
   declarations: [
     CartSidebarComponent,

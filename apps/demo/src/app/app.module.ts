@@ -27,7 +27,6 @@ import { environment } from '../environments/environment';
 import { DemoCheckoutStepActionTypes } from './checkout/actions/checkout-step.actions';
 import { TemplateModule } from './core/template/template/template.module';
 import { DemoDriverModule } from './drivers/driver.module';
-import { NotFoundModule } from './misc/not-found/not-found.module';
 import { DemoIndicatorComponent } from './routing/indicator/indicator.component';
 
 @NgModule({
@@ -51,7 +50,6 @@ import { DemoIndicatorComponent } from './routing/indicator/indicator.component'
     DemoIndicatorComponent,
     DemoCartRootModule,
     TemplateModule,
-    NotFoundModule,
     DaffAuthorizeNetPaymentStateModule,
     DaffAuthorizeNetStateModule,
     DaffPaymentStateModule,

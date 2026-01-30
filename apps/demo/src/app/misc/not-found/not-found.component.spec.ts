@@ -10,10 +10,11 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { NotFoundComponent } from './not-found.component';
+import { BestSellersModule } from '../../product/containers/best-sellers/best-sellers.module';
 
 @Component({
-  selector: 'demo-best-sellers', template: '',
-  standalone: false,
+  selector: 'demo-best-sellers',
+  template: '',
 })
 class MockBestSellersComponent {}
 
@@ -24,11 +25,18 @@ describe('NotFoundComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         NotFoundComponent,
-        MockBestSellersComponent,
       ],
     })
+      .overrideComponent(NotFoundComponent, {
+        remove: {
+          imports: [BestSellersModule],
+        },
+        add: {
+          imports: [MockBestSellersComponent],
+        },
+      })
       .compileComponents();
   }));
 
