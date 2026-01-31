@@ -30,6 +30,7 @@ import { NotFoundModule } from './misc/not-found/not-found.module';
 import { ProductModule } from './product/product.module';
 import { DemoRoutingComponentModule } from './routing/routing-component.module';
 import { environment } from '../environments/environment';
+import { provideDemoNewsletterState } from './newsletter/newsletter-state.provider';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { environment } from '../environments/environment';
       },
     ),
     provideRouterStore(),
+    provideDemoNewsletterState(),
     // network providers
     provideHttpClient(withInterceptorsFromDi()),
     // this must be after http client! ^

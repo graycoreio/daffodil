@@ -6,7 +6,7 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffContainerComponent } from '@daffodil/design/container';
 import {
   DaffNewsletterStateTestingModule,
   MockDaffNewsletterFacade,
@@ -21,11 +21,9 @@ describe('NewsletterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        NewsletterComponent,
-      ],
       imports: [
-        DaffContainerModule,
+        NewsletterComponent,
+        DaffContainerComponent,
         ReactiveFormsModule,
         DaffNewsletterStateTestingModule,
       ],

@@ -1,14 +1,20 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
 } from '@angular/core';
 import {
+  ReactiveFormsModule,
   UntypedFormControl,
   Validators,
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { DaffButtonComponent } from '@daffodil/design/button';
+import { DaffContainerComponent } from '@daffodil/design/container';
+import { DaffFormFieldComponent } from '@daffodil/design/form-field';
+import { DaffInputComponent } from '@daffodil/design/input';
 import { DaffNewsletterSubmission } from '@daffodil/newsletter';
 import {
   DaffNewsletterFacade,
@@ -21,7 +27,14 @@ import {
   selector: 'demo-newsletter',
   templateUrl: './newsletter.component.html',
   styleUrls: ['./newsletter.component.scss'],
-  standalone: false,
+  imports: [
+    AsyncPipe,
+    ReactiveFormsModule,
+    DaffInputComponent,
+    DaffButtonComponent,
+    DaffContainerComponent,
+    DaffFormFieldComponent,
+  ],
 })
 export class NewsletterComponent implements OnInit {
 
