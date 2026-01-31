@@ -11,13 +11,16 @@ import {
   DaffCartItemInput,
   DaffCartItemInputType,
 } from '@daffodil/cart';
+import { DaffButtonComponent } from '@daffodil/design/button';
 
 @Component({
   selector: 'demo-add-to-cart',
   templateUrl: './add-to-cart.component.html',
   styleUrls: ['./add-to-cart.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  standalone: false,
+  imports: [
+    DaffButtonComponent,
+  ],
 })
 export class AddToCartComponent {
   @HostBinding('class.demo-add-to-cart') class = true;

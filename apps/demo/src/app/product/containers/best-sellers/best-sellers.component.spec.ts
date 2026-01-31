@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
+import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductStateTestingModule,
@@ -18,11 +18,11 @@ import {
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { BestSellersComponent } from './best-sellers.component';
+import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
 
 @Component({
   selector: 'demo-product-grid',
   template: '',
-  standalone: false,
 })
 class MockProductGridComponent {
   @Input() products: DaffProduct[];
@@ -39,14 +39,15 @@ describe('BestSellersComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffLoadingIconModule,
+        BestSellersComponent,
+        DaffLoadingIconComponent,
         DaffProductStateTestingModule,
       ],
-      declarations: [
-        BestSellersComponent,
-        MockProductGridComponent,
-      ],
     })
+      .overrideComponent(BestSellersComponent, {
+        remove: { imports: [ProductGridComponent]},
+        add: { imports: [MockProductGridComponent]},
+      })
       .compileComponents();
   }));
 

@@ -2,6 +2,7 @@ import {
   Component,
   Input,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { DaffProduct } from '@daffodil/product';
 
@@ -9,7 +10,9 @@ import { DaffProduct } from '@daffodil/product';
   selector: 'demo-product-card',
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
-  standalone: false,
+  imports: [
+    RouterLink,
+  ],
 })
 export class ProductCardComponent {
 

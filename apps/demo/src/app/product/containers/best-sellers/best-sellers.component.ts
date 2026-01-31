@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -7,14 +8,29 @@ import {
   Observable,
 } from 'rxjs';
 
+import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
-import { DaffProductGridFacade } from '@daffodil/product/state';
+import {
+  DaffProductGridFacade,
+  DaffProductStateModule,
+} from '@daffodil/product/state';
+import { DaffRelatedProductStateModule } from '@daffodil/related-products/state';
+import { DaffUpsellProductStateModule } from '@daffodil/upsell-products/state';
+
+import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
 
 @Component({
   selector: 'demo-best-sellers',
   templateUrl: './best-sellers.component.html',
   styleUrls: ['./best-sellers.component.scss'],
-  standalone: false,
+  imports: [
+    AsyncPipe,
+    DaffLoadingIconComponent,
+    ProductGridComponent,
+    DaffProductStateModule,
+    DaffRelatedProductStateModule,
+    DaffUpsellProductStateModule,
+  ],
 })
 export class BestSellersComponent implements OnInit {
   bestSellers$: Observable<DaffProduct[]>;

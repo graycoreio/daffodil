@@ -11,7 +11,7 @@ import { DaffContainerComponent } from '@daffodil/design/container';
 import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 
-import { ProductGridModule } from '../../../product/components/product-grid/product-grid.module';
+import { ProductGridComponent } from '../../../product/components/product-grid/product-grid.component';
 
 @Component({
   selector: 'demo-category-view',
@@ -20,7 +20,7 @@ import { ProductGridModule } from '../../../product/components/product-grid/prod
     AsyncPipe,
     DaffContainerComponent,
     DaffLoadingIconComponent,
-    ProductGridModule,
+    ProductGridComponent,
   ],
 })
 export class CategoryViewComponent implements OnInit {

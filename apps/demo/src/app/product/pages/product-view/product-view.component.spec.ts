@@ -12,7 +12,6 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffCartItemInputType } from '@daffodil/cart';
 import { DaffCartItemAdd } from '@daffodil/cart/state';
@@ -20,7 +19,6 @@ import {
   DaffCartStateTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductLoad } from '@daffodil/product/state';
 import {
@@ -38,7 +36,6 @@ import { ProductComponent } from '../../components/product/product.component';
   selector: 'demo-product',
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None,
-  standalone: false,
 })
 class MockProductComponent {
   @Input() product: DaffProduct;
@@ -47,8 +44,8 @@ class MockProductComponent {
 }
 
 @Component({
-  selector: 'demo-add-to-cart', template: '',
-  standalone: false,
+  selector: 'demo-add-to-cart',
+  template: '',
 })
 class MockAddToCartComponent {
   @Input() additive: any;
@@ -72,20 +69,18 @@ describe('ProductViewComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-        DaffLoadingIconModule,
         DaffCartStateTestingModule,
         DaffProductStateTestingModule,
-      ],
-      declarations: [
         ProductViewComponent,
-        MockProductComponent,
-        MockAddToCartComponent,
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRoute },
       ],
     })
+      .overrideComponent(ProductViewComponent, {
+        remove: { imports: [ProductComponent, AddToCartComponent]},
+        add: { imports: [MockProductComponent, MockAddToCartComponent]},
+      })
       .compileComponents();
   }));
 

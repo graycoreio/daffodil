@@ -9,22 +9,24 @@ import {
 } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import {
+  provideRouter,
+  Router,
+} from '@angular/router';
 
-import { DaffAccordionModule } from '@daffodil/design/accordion';
-import { DaffContainerModule } from '@daffodil/design/container';
-import { DaffFormFieldModule } from '@daffodil/design/form-field';
-import { DaffQuantityFieldModule } from '@daffodil/design/quantity-field';
+import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
+import { DaffContainerComponent } from '@daffodil/design/container';
+import { DaffFormFieldComponent } from '@daffodil/design/form-field';
+import { DaffQuantityFieldComponent } from '@daffodil/design/quantity-field';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { ProductComponent } from './product.component';
+import { ImageGalleryModule } from '../../../core/image-gallery/image-gallery.module';
 
 @Component({
   template: '<demo-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></demo-product>',
-  standalone: false,
+  imports: [ProductComponent],
 })
 class WrapperComponent {
   productValue: DaffProduct;
@@ -33,8 +35,8 @@ class WrapperComponent {
 }
 
 @Component({
-  selector: 'demo-image-gallery-container', template: '',
-  standalone: false,
+  selector: 'demo-image-gallery-container',
+  template: '',
 })
 class MockImageGalleryContainer {
   @Input() images;
@@ -51,20 +53,21 @@ describe('ProductComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         ReactiveFormsModule,
-        DaffContainerModule,
-        DaffAccordionModule,
-        DaffQuantityFieldModule,
-        NoopAnimationsModule,
-        DaffFormFieldModule,
-      ],
-      declarations: [
-        ProductComponent,
+        DaffContainerComponent,
+        DAFF_ACCORDION_COMPONENTS,
+        DaffQuantityFieldComponent,
+        DaffFormFieldComponent,
         WrapperComponent,
-        MockImageGalleryContainer,
+      ],
+      providers: [
+        provideRouter([]),
       ],
     })
+      .overrideComponent(ProductComponent, {
+        remove: { imports: [ImageGalleryModule]},
+        add: { imports: [MockImageGalleryContainer]},
+      })
       .compileComponents();
   }));
 

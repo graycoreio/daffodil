@@ -13,18 +13,19 @@ import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { ProductGridComponent } from './product-grid.component';
+import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
   template: '<demo-product-grid [products]="productsValue"></demo-product-grid>',
-  standalone: false,
+  imports: [ProductGridComponent],
 })
 class WrapperComponent {
   productsValue: DaffProduct[];
 }
 
 @Component({
-  selector: 'demo-product-card', template: '',
-  standalone: false,
+  selector: 'demo-product-card',
+  template: '',
 })
 class MockProductCardComponent {
   @Input() product: DaffProduct;
@@ -38,12 +39,14 @@ describe('ProductGridComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        MockProductCardComponent,
-        ProductGridComponent,
+      imports: [
         WrapperComponent,
       ],
     })
+      .overrideComponent(ProductGridComponent, {
+        remove: { imports: [ProductCardComponent]},
+        add: { imports: [MockProductCardComponent]},
+      })
       .compileComponents();
   }));
 
