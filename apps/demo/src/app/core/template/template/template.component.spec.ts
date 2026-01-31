@@ -14,13 +14,16 @@ describe('TemplateComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         TemplateComponent,
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
       ],
     })
+      .overrideComponent(TemplateComponent, {
+        set: { imports: [], schemas: [CUSTOM_ELEMENTS_SCHEMA]},
+      })
       .compileComponents();
   }));
 

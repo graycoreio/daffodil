@@ -21,7 +21,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { DemoCheckoutStepActionTypes } from './checkout/actions/checkout-step.actions';
-import { TemplateModule } from './core/template/template/template.module';
 import { provideDemoDrivers } from './drivers/driver.providers';
 import { DemoIndicatorComponent } from './routing/indicator/indicator.component';
 
@@ -44,7 +43,6 @@ import { DemoIndicatorComponent } from './routing/indicator/indicator.component'
 
     AppRoutingModule,
     DemoIndicatorComponent,
-    TemplateModule,
     DaffAuthorizeNetPaymentStateModule,
     DaffAuthorizeNetStateModule,
     DaffPaymentStateModule,

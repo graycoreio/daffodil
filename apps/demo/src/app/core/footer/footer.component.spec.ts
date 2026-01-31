@@ -4,11 +4,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
-import { DaffContainerModule } from '@daffodil/design/container';
-import { DaffListModule } from '@daffodil/design/list';
+import { provideRouter } from '@angular/router';
 
 import { FooterComponent } from './footer.component';
 
@@ -18,14 +14,11 @@ describe('FooterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         FooterComponent,
       ],
-      imports: [
-        RouterTestingModule,
-        DaffContainerModule,
-        DaffListModule,
-        FontAwesomeModule,
+      providers: [
+        provideRouter([]),
       ],
     })
       .compileComponents();

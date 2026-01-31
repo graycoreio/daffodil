@@ -11,6 +11,8 @@ import {
   DaffProductPageUrlResolver,
 } from '@daffodil/product/routing';
 
+import { provideDemoImageGalleryState } from './core/image-gallery/image-gallery-state.provider';
+import { provideDemoSidebarState } from './core/sidebar/sidebar-state.provider';
 import { TemplateComponent } from './core/template/template/template.component';
 import { NotFoundComponent } from './misc/not-found/not-found.component';
 import { ProductGridViewComponent } from './product/pages/product-grid-view/product-grid-view.component';
@@ -23,7 +25,13 @@ export const appRoutes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: '', component: TemplateComponent, children: [
+    path: '',
+    component: TemplateComponent,
+    providers: [
+      provideDemoSidebarState(),
+      provideDemoImageGalleryState(),
+    ],
+    children: [
       { path: 'product-grid', component: ProductGridViewComponent },
       { path: 'cart',       loadChildren: () => import('./cart/cart.routes').then(m => m.demoCartRoutes) },
       {

@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -8,6 +9,9 @@ import {
 } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
+import { DaffNavigationStateModule } from '@daffodil/navigation/state';
+
 import {
   ToggleSidebar,
   CloseSidebar,
@@ -15,11 +19,17 @@ import {
   SetSidebarState,
 } from '../../actions/sidebar.actions';
 import * as fromDemoSidebar from '../../reducers/index';
+import { SidebarContainer } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'demo-sidebar-viewport-container',
   templateUrl: './sidebar-viewport.component.html',
-  standalone: false,
+  imports: [
+    AsyncPipe,
+    DAFF_SIDEBAR_COMPONENTS,
+    SidebarContainer,
+    DaffNavigationStateModule,
+  ],
 })
 export class SidebarViewportContainer implements OnInit {
 

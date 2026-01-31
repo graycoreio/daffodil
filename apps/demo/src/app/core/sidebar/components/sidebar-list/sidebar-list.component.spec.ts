@@ -8,12 +8,9 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 
-import {
-  DaffTreeComponent,
-  DaffTreeModule,
-} from '@daffodil/design/tree';
+import { DaffTreeComponent } from '@daffodil/design/tree';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
@@ -21,7 +18,9 @@ import { SidebarListComponent } from './sidebar-list.component';
 
 @Component({
   template: '<demo-sidebar-list [tree]="tree"></demo-sidebar-list>',
-  standalone: false,
+  imports: [
+    SidebarListComponent,
+  ],
 })
 class WrapperComponent {
   tree: DaffNavigationTree;
@@ -38,12 +37,10 @@ describe('SidebarListComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-        DaffTreeModule,
-      ],
-      declarations: [
         WrapperComponent,
-        SidebarListComponent,
+      ],
+      providers: [
+        provideRouter([]),
       ],
     })
       .compileComponents();

@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { DaffNavbarComponent } from '@daffodil/design/navbar';
+
 @Component({
   selector: 'demo-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  standalone: false,
+  imports: [
+    DaffNavbarComponent,
+  ],
 })
 export class DemoHeaderComponent {
 

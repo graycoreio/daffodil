@@ -1,22 +1,18 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { provideRouter } from '@angular/router';
 import {
   StoreModule,
   Store,
 } from '@ngrx/store';
 
 import { DemoHeaderContainer } from './header.component';
-import { LogoModule } from '../../../logo/logo.module';
 import { ToggleSidebar } from '../../../sidebar/actions/sidebar.actions';
 import * as fromSidebar from '../../../sidebar/reducers/index';
-import { DemoHeaderComponent } from '../../components/header/header.component';
 
 describe('DemoHeaderContainer', () => {
   let component: DemoHeaderContainer;
@@ -28,16 +24,10 @@ describe('DemoHeaderContainer', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({}),
-        RouterTestingModule,
-        LogoModule,
-        FontAwesomeModule,
-      ],
-      declarations: [
         DemoHeaderContainer,
-        DemoHeaderComponent,
       ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
+      providers: [
+        provideRouter([]),
       ],
     })
       .compileComponents();
