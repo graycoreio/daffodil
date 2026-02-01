@@ -11,11 +11,14 @@ import { By } from '@angular/platform-browser';
 
 import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
+import { DaffProductStateModule } from '@daffodil/product/state';
 import {
   DaffProductStateTestingModule,
   MockDaffProductGridFacade,
 } from '@daffodil/product/state/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffRelatedProductStateModule } from '@daffodil/related-products/state';
+import { DaffUpsellProductStateModule } from '@daffodil/upsell-products/state';
 
 import { BestSellersComponent } from './best-sellers.component';
 import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
@@ -45,7 +48,14 @@ describe('BestSellersComponent', () => {
       ],
     })
       .overrideComponent(BestSellersComponent, {
-        remove: { imports: [ProductGridComponent]},
+        remove: {
+          imports: [
+            ProductGridComponent,
+            DaffProductStateModule,
+            DaffRelatedProductStateModule,
+            DaffUpsellProductStateModule,
+          ],
+        },
         add: { imports: [MockProductGridComponent]},
       })
       .compileComponents();

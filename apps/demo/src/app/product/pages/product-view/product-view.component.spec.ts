@@ -14,13 +14,19 @@ import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 import { DaffCartItemInputType } from '@daffodil/cart';
-import { DaffCartItemAdd } from '@daffodil/cart/state';
+import {
+  DaffCartItemAdd,
+  DaffCartStateModule,
+} from '@daffodil/cart/state';
 import {
   DaffCartStateTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import { DaffProduct } from '@daffodil/product';
-import { DaffProductLoad } from '@daffodil/product/state';
+import {
+  DaffProductLoad,
+  DaffProductStateModule,
+} from '@daffodil/product/state';
 import {
   DaffProductStateTestingModule,
   MockDaffProductPageFacade,
@@ -78,7 +84,14 @@ describe('ProductViewComponent', () => {
       ],
     })
       .overrideComponent(ProductViewComponent, {
-        remove: { imports: [ProductComponent, AddToCartComponent]},
+        remove: {
+          imports: [
+            ProductComponent,
+            AddToCartComponent,
+            DaffProductStateModule,
+            DaffCartStateModule,
+          ],
+        },
         add: { imports: [MockProductComponent, MockAddToCartComponent]},
       })
       .compileComponents();

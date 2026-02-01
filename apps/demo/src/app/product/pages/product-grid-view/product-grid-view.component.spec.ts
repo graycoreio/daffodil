@@ -5,6 +5,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { DaffProductStateModule } from '@daffodil/product/state';
 import {
   DaffProductStateTestingModule,
   MockDaffProductGridFacade,
@@ -26,6 +27,11 @@ describe('ProductGridViewComponent', () => {
         DaffProductStateTestingModule,
       ],
     })
+      .overrideComponent(ProductGridViewComponent, {
+        remove: {
+          imports: [DaffProductStateModule],
+        },
+      })
       .compileComponents();
   }));
 
