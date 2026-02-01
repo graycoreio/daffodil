@@ -6,7 +6,7 @@ import {
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
-import { DemoRoutingComponentModule } from './routing/routing-component.module';
+import { DemoIndicatorComponent } from './routing/indicator/indicator.component';
 
 @Component({
   selector: 'demo-product-grid-view', template: '',
@@ -19,7 +19,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DemoRoutingComponentModule,
+        DemoIndicatorComponent,
       ],
       declarations: [
         AppComponent,

@@ -28,8 +28,8 @@ import { TemplateModule } from './core/template/template/template.module';
 import { DemoDriverModule } from './drivers/driver.module';
 import { NotFoundModule } from './misc/not-found/not-found.module';
 import { ProductModule } from './product/product.module';
-import { DemoRoutingComponentModule } from './routing/routing-component.module';
 import { environment } from '../environments/environment';
+import { DemoIndicatorComponent } from './routing/indicator/indicator.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import { environment } from '../environments/environment';
     }),
 
     AppRoutingModule,
-    DemoRoutingComponentModule,
+    DemoIndicatorComponent,
     DemoCartRootModule,
     ProductModule,
     TemplateModule,
