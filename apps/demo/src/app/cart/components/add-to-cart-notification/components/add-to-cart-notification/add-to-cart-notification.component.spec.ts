@@ -9,8 +9,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import {
   StoreModule,
   combineReducers,
@@ -34,7 +33,6 @@ import {
   daffComposeReducers,
   daffIdentityReducer,
 } from '@daffodil/core/state';
-import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductLoadSuccess,
@@ -50,6 +48,7 @@ import {
   OpenAddToCartNotification,
 } from '../../actions/add-to-cart-notification.actions';
 import * as fromAddToCartNotification from '../../reducers/index';
+import { ProductAddedComponent } from '../product-added/product-added.component';
 
 @Component({
   template: '<demo-add-to-cart-notification></demo-add-to-cart-notification>',
@@ -97,17 +96,23 @@ describe('AddToCartNotificationComponent', () => {
           ]),
           [DAFF_PRODUCT_STORE_FEATURE_KEY]: combineReducers(daffProductReducers),
         }),
-        NoopAnimationsModule,
-        DAFF_LOADING_ICON_COMPONENTS,
-        FontAwesomeModule,
         WrapperComponent,
-        AddToCartNotificationComponent,
-        MockProductAddedComponent,
       ],
       schemas: [
         NO_ERRORS_SCHEMA,
       ],
+      providers: [
+        provideNoopAnimations(),
+      ],
     })
+      .overrideComponent(WrapperComponent, {
+        remove: {
+          imports: [ProductAddedComponent],
+        },
+        add: {
+          imports: [MockProductAddedComponent],
+        },
+      })
       .compileComponents();
   }));
 

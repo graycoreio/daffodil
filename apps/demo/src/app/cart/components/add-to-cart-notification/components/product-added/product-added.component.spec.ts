@@ -38,7 +38,6 @@ describe('ProductAddedComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         WrapperComponent,
-        ProductAddedComponent,
       ],
     })
       .compileComponents();

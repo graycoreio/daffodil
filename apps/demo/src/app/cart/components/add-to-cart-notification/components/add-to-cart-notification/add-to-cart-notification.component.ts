@@ -3,7 +3,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   faCheck,
   faTimes,
@@ -16,8 +16,11 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { DaffCartItem } from '@daffodil/cart';
-import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
-import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
+import {
+  DaffButtonComponent,
+  DaffIconButtonComponent,
+} from '@daffodil/design/button';
+import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductStateRootSlice,
@@ -39,9 +42,10 @@ import { ProductAddedComponent } from '../product-added/product-added.component'
     ViewCartDirective,
     ProceedToCheckoutDirective,
     ProductAddedComponent,
-    DAFF_LOADING_ICON_COMPONENTS,
-    DAFF_BUTTON_COMPONENTS,
-    FontAwesomeModule,
+    DaffLoadingIconComponent,
+    DaffButtonComponent,
+    DaffIconButtonComponent,
+    FaIconComponent,
   ],
 })
 export class AddToCartNotificationComponent implements OnInit {
