@@ -35,11 +35,11 @@ export const appRoutes: Routes = [
       },
       {
         path: 'category',
-        loadChildren: () => import('./category/category.routes').then(m => m.demoCategoryRoutes),
+        loadChildren: () => import('./category/category.routes').then(r => r.demoCategoryRoutes),
       },
       {
         path: 'checkout',
-        loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule),
+        loadChildren: () => import('./checkout/checkout.routes').then(r => r.demoCheckoutRoutes),
       },
       { path: '404', component: NotFoundComponent },
       {

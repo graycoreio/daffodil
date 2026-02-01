@@ -1,29 +1,33 @@
 import {
-  NgModule,
+  importProvidersFrom,
   inject,
 } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  RouterModule,
-  RouterStateSnapshot,
   Routes,
+  RouterStateSnapshot,
 } from '@angular/router';
 
 import {
   DaffCartInStockItemsGuard,
   DaffCartItemsGuard,
-  DaffCartRoutingModule,
   DaffResolveCartGuard,
+  DaffCartRoutingModule,
 } from '@daffodil/cart/routing';
 import { daffRouterComposeGuards } from '@daffodil/router';
 
+import { provideDemoCheckoutState } from './checkout-state.provider';
 import { DemoCheckoutViewComponent } from './pages/checkout-view/checkout-view.component';
 import { ThankYouViewComponent } from '../thank-you/pages/thank-you-view.component';
 
-const routes: Routes = [
+export const demoCheckoutRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
+    providers: [
+      provideDemoCheckoutState(),
+      importProvidersFrom(DaffCartRoutingModule),
+    ],
     children: [
       { path: '', component: DemoCheckoutViewComponent },
       { path: 'thank-you', component: ThankYouViewComponent },
@@ -44,14 +48,3 @@ const routes: Routes = [
     ],
   },
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forChild(routes),
-    DaffCartRoutingModule,
-  ],
-  exports: [
-    RouterModule,
-  ],
-})
-export class CheckoutRoutingModule { }
