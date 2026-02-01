@@ -1,6 +1,7 @@
 import {
   inject,
   importProvidersFrom,
+  makeEnvironmentProviders,
 } from '@angular/core';
 
 import { DaffAuthInMemoryDriverModule } from '@daffodil/auth/driver/in-memory';
@@ -25,25 +26,27 @@ import { DaffConfigurableProductInMemoryDriverModule } from '@daffodil/product-c
 import { DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG } from './in-memory/external-router.config.token';
 
 export const provideDemoDrivers = () => [
-  importProvidersFrom(
-    DaffInMemoryDriverModule.forRoot(),
-    DaffAuthorizeNetInMemoryDriverModule.forRoot(),
-    DaffAuthInMemoryDriverModule.forRoot(),
-    DaffProductInMemoryDriverModule.forRoot(),
-    DaffCompositeProductInMemoryDriverModule.forRoot(),
-    DaffConfigurableProductInMemoryDriverModule.forRoot(),
-    DaffCartInMemoryDriverModule.forRoot(),
-    DaffNavigationInMemoryDriverModule.forRoot(),
-    DaffNewsletterInMemoryDriverModule.forRoot(),
-    DaffGeographyInMemoryDriverModule.forRoot(),
-    DaffCategoryInMemoryDriverModule.forRoot(),
-  ),
-  provideDaffExternalRouterInMemoryDriver(DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG),
-  {
-    provide: DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER,
-    useFactory: () => {
-      const categoryBackend = inject(DaffInMemoryBackendCategoryService);
-      return () => categoryBackend.categories[0];
+  makeEnvironmentProviders([
+    importProvidersFrom(
+      DaffInMemoryDriverModule.forRoot(),
+      DaffAuthorizeNetInMemoryDriverModule.forRoot(),
+      DaffAuthInMemoryDriverModule.forRoot(),
+      DaffProductInMemoryDriverModule.forRoot(),
+      DaffCompositeProductInMemoryDriverModule.forRoot(),
+      DaffConfigurableProductInMemoryDriverModule.forRoot(),
+      DaffCartInMemoryDriverModule.forRoot(),
+      DaffNavigationInMemoryDriverModule.forRoot(),
+      DaffNewsletterInMemoryDriverModule.forRoot(),
+      DaffGeographyInMemoryDriverModule.forRoot(),
+      DaffCategoryInMemoryDriverModule.forRoot(),
+    ),
+    provideDaffExternalRouterInMemoryDriver(DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG),
+    {
+      provide: DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER,
+      useFactory: () => {
+        const categoryBackend = inject(DaffInMemoryBackendCategoryService);
+        return () => categoryBackend.categories[0];
+      },
     },
-  },
+  ]),
 ];
