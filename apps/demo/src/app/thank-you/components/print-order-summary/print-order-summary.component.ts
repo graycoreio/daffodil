@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 
+import { DaffButtonComponent } from '@daffodil/design/button';
+
 @Component({
   selector: 'demo-print-order-summary',
   templateUrl: './print-order-summary.component.html',
-  standalone: false,
+  imports: [
+    DaffButtonComponent,
+  ],
 })
 export class PrintOrderSummaryComponent{
 

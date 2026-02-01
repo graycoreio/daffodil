@@ -12,7 +12,7 @@ describe('PrintOrderSummaryComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrintOrderSummaryComponent ],
+      imports: [ PrintOrderSummaryComponent ],
     })
       .compileComponents();
   }));
