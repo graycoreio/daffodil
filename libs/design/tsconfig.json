@@ -91,6 +91,9 @@
       "@daffodil/design/radio": [
         "libs/design/radio/src"
       ],
+      "@daffodil/design/spinner": [
+        "libs/design/spinner/src"
+      ],
       "@daffodil/design/scss": [
         "libs/design/scss/src"
       ],
