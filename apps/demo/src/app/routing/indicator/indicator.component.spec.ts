@@ -5,17 +5,15 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import {
   Event,
   Router,
   NavigationStart,
   NavigationEnd,
 } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Subject } from 'rxjs';
 
-import { DaffProgressBarModule } from '@daffodil/design/progress-bar';
 
 import { DemoIndicatorComponent } from './indicator.component';
 
@@ -31,15 +29,11 @@ describe('DemoIndicatorComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports:[
-        NoopAnimationsModule,
-        RouterTestingModule,
-        DaffProgressBarModule,
-      ],
-      declarations: [
+      imports: [
         DemoIndicatorComponent,
       ],
       providers: [
+        provideNoopAnimations(),
         { provide: Router, useExisting: MockRouter },
       ],
     })

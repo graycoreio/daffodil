@@ -12,13 +12,17 @@ import {
   tap,
 } from 'rxjs/operators';
 
+import { DaffProgressBarComponent } from '@daffodil/design/progress-bar';
+
 import { RouterPercentEnum } from '../router-percent-enum';
 
 
 @Component({
   selector: 'demo-routing-indicator',
   templateUrl: './indicator.component.html',
-  standalone: false,
+  imports: [
+    DaffProgressBarComponent,
+  ],
 })
 export class DemoIndicatorComponent implements OnInit {
 
