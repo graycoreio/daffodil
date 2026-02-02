@@ -1,0 +1,49 @@
+// stylelint-disable unit-allowed-list
+:host {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.25rem;
+
+	&.daff-xs {
+		.daff-spinner {
+			&__track,
+			&__path {
+				stroke-width: 1.5;
+			}
+		}
+	}
+
+	&.daff-xl {
+		.daff-spinner {
+			&__track,
+			&__path {
+				stroke-width: 2.5;
+			}
+		}
+	}
+}
+
+.daff-spinner {
+	&__svg {
+		display: block;
+	}
+
+	&__track {
+		stroke-opacity: 0.25;
+		stroke-width: 2;
+	}
+
+	&__path {
+		stroke-width: 2;
+		stroke-linecap: round;
+		animation: spinner-rotation 1s cubic-bezier(0, 0, 1, 1) infinite;
+		transform-origin: center;
+	}
+}
+
+@keyframes spinner-rotation {
+	to {
+		transform: rotate(1turn);
+	}
+}
