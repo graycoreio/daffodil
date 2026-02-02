@@ -85,6 +85,9 @@
       "@daffodil/design-examples/select": [
         "libs/design-examples/select/src"
       ],
+      "@daffodil/design-examples/spinner": [
+        "libs/design-examples/spinner/src"
+      ],
       "@daffodil/design-examples/sidebar": [
         "libs/design-examples/sidebar/src"
       ],
