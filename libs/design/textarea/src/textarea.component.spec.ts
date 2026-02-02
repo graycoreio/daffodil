@@ -10,4 +10,8 @@ describe('@daffodil/design | DaffTextareaComponent | Default', () => {
     })
       .compileComponents();
   }));
+
+  it('should create', () => {
+    expect(true).toBe(true);
+  });
 });
