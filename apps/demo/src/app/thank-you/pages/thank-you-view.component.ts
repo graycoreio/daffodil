@@ -19,7 +19,6 @@ import { ThankYouComponent } from '../components/thank-you/thank-you.component';
 @Component({
   templateUrl: './thank-you-view.component.html',
   styleUrls: ['./thank-you-view.component.scss'],
-  standalone: true,
   imports: [
     LetDirective,
     ThankYouComponent,
