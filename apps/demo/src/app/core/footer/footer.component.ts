@@ -7,7 +7,7 @@ import {
   faInstagram,
 } from '@fortawesome/free-brands-svg-icons';
 
-import { DaffIconButtonComponent } from '@daffodil/design/button';
+import { DAFF_ICON_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DaffContainerComponent } from '@daffodil/design/container';
 import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
 
@@ -18,7 +18,7 @@ import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
   imports: [
     RouterModule,
     DAFF_LIST_COMPONENTS,
-    DaffIconButtonComponent,
+    DAFF_ICON_BUTTON_COMPONENTS,
     DaffContainerComponent,
     FaIconComponent,
   ],
