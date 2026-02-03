@@ -22,6 +22,10 @@ env:
   NX_KEY: ${{ secrets.NX_KEY }}
   NG_BUILD_ENV: ${{ github.event_name == 'push' && github.ref_type == 'tag' && 'production' || 'next' }}
 
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+
 jobs:
   lint:
     name: Lint
@@ -187,5 +191,3 @@ jobs:
 
     - run: npx nx run-many -t publish
       if: startsWith(github.ref, 'refs/tags/v') && github.event_name == 'push'
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
