@@ -7,7 +7,7 @@ import {
 import { DaffCart } from '@daffodil/cart';
 import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
-import { HelpBoxModule } from '../../../misc/help-box/help-box.module';
+import { HelpBoxComponent } from '../../../misc/help-box/help-box.component';
 import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
 import { CartTotalsComponent } from '../cart-totals/cart-totals.component';
 
@@ -20,7 +20,7 @@ import { CartTotalsComponent } from '../cart-totals/cart-totals.component';
     CartSummaryComponent,
     CartTotalsComponent,
     DAFF_LOADING_ICON_COMPONENTS,
-    HelpBoxModule,
+    HelpBoxComponent,
   ],
 })
 export class CartSummaryWrapperComponent {

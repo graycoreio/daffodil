@@ -17,8 +17,8 @@ import { switchMap } from 'rxjs/operators';
 
 import { DaffCartItem } from '@daffodil/cart';
 import {
-  DaffButtonComponent,
-  DaffIconButtonComponent,
+  DAFF_BASIC_BUTTON_COMPONENTS,
+  DAFF_ICON_BUTTON_COMPONENTS,
 } from '@daffodil/design/button';
 import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
@@ -43,8 +43,8 @@ import { ProductAddedComponent } from '../product-added/product-added.component'
     ProceedToCheckoutDirective,
     ProductAddedComponent,
     DaffLoadingIconComponent,
-    DaffButtonComponent,
-    DaffIconButtonComponent,
+    DAFF_BASIC_BUTTON_COMPONENTS,
+    DAFF_ICON_BUTTON_COMPONENTS,
     FaIconComponent,
   ],
 })
