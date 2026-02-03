@@ -46,6 +46,7 @@
 @use '../paginator/src/paginator-theme' as paginator;
 @use '../select/src/select-theme' as select;
 @use '../sidebar/src/sidebar-theme' as sidebar;
+@use '../spinner/src/spinner-theme' as spinner;
 @use '../switch/src/switch-theme' as switch;
 @use '../progress-bar/src/progress-bar-theme' as progress-bar;
 @use '../scss/state/skeleton/mixins' as skeleton;
@@ -91,7 +92,7 @@
 	@include select.daff-select-theme($theme);
 	@include native-select.daff-native-select-theme($theme);
 
-	@include loading-icon.daff-loading-icon-theme($theme);
+	@include spinner.daff-spinner-theme($theme);
 	@include progress-bar.daff-progress-bar-theme($theme);
 
 	@include accordion.daff-accordion-theme($theme);
@@ -99,7 +100,10 @@
 	@include callout.daff-callout-theme($theme);
 	@include hero.daff-hero-theme($theme);
 	@include list.daff-list-theme($theme);
+
+	// deprecated
 	@include loading-icon.daff-loading-icon-theme($theme);
+
 	@include media-gallery.daff-media-gallery-theme($theme);
 	@include menu.daff-menu-theme($theme);
 	@include modal.daff-modal-theme($theme);

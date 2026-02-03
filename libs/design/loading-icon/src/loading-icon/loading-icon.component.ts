@@ -7,7 +7,7 @@ import {
 import { DaffColorableDirective } from '@daffodil/design';
 
 /**
- * @inheritdoc
+ * @deprecated in favor of `DaffSpinnerComponent`. Deprecated in version 0.91.1. Will be removed in version 0.94.0.
  */
 @Component({
   selector: 'daff-loading-icon',
