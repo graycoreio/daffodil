@@ -23,7 +23,7 @@ import { DaffSpinnerLabelDirective } from './spinner-label/spinner-label.directi
   host: {
     class: 'daff-spinner',
     role: 'status',
-    '[attr.aria-label]': 'ariaLabel',
+    '[attr.aria-label]': '_ariaLabel',
   },
   hostDirectives: [
     {
@@ -54,14 +54,14 @@ export class DaffSpinnerComponent {
   /**
    * The `aria-label` for the spinner. Defaults to "loading".
    */
-  'aria-label' = input('loading');
+  ariaLabel = input('loading', { alias: 'aria-label' });
 
   /**
    * @docs-private
    */
-  get ariaLabel() {
+  get _ariaLabel() {
     if (!this._label) {
-      return this['aria-label']();
+      return this.ariaLabel();
     }
   }
 
