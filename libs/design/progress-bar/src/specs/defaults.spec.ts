@@ -9,7 +9,10 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffProgressBarComponent } from '@daffodil/design/progress-bar';
+import {
+  DaffProgressBarComponent,
+  DaffProgressBarLabelDirective,
+} from '@daffodil/design/progress-bar';
 
 @Component({
   template: `
@@ -19,6 +22,7 @@ import { DaffProgressBarComponent } from '@daffodil/design/progress-bar';
   `,
   imports: [
     DaffProgressBarComponent,
+    DaffProgressBarLabelDirective,
   ],
 })
 class WrapperComponent {}

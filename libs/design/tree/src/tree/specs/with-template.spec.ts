@@ -9,6 +9,7 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffTreeData } from '../../interfaces/tree-data';
+import { DaffTreeItemDirective } from '../../tree-item/tree-item.directive';
 import { DaffTreeComponent } from '../tree.component';
 
 @Component({
@@ -25,6 +26,7 @@ import { DaffTreeComponent } from '../tree.component';
   `,
   imports: [
     DaffTreeComponent,
+    DaffTreeItemDirective,
   ],
 })
 class WrapperComponent {
