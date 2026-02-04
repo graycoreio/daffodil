@@ -5,14 +5,14 @@ import {
 
 import { DaffOrder } from '@daffodil/order';
 
-import { PrintOrderSummaryModule } from '../print-order-summary/print-order-summary.module';
+import { PrintOrderSummaryComponent } from '../print-order-summary/print-order-summary.component';
 
 @Component({
   selector: 'demo-thank-you',
   templateUrl: './thank-you.component.html',
   styleUrls: ['./thank-you.component.scss'],
   imports: [
-    PrintOrderSummaryModule,
+    PrintOrderSummaryComponent,
   ],
 })
 export class ThankYouComponent {
