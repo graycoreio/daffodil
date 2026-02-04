@@ -1,63 +1,45 @@
 import {
-  Component,
-  Input,
-} from '@angular/core';
-import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
-import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
-import { DaffProductStateModule } from '@daffodil/product/state';
+import { DaffProductTestingDriverModule } from '@daffodil/product/driver/testing';
 import {
   DaffProductStateTestingModule,
   MockDaffProductGridFacade,
 } from '@daffodil/product/state/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
-import { DaffRelatedProductStateModule } from '@daffodil/related-products/state';
-import { DaffUpsellProductStateModule } from '@daffodil/upsell-products/state';
 
 import { BestSellersComponent } from './best-sellers.component';
 import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
-
-@Component({
-  selector: 'demo-product-grid',
-  template: '',
-})
-class MockProductGridComponent {
-  @Input() products: DaffProduct[];
-}
 
 describe('BestSellersComponent', () => {
   let productFactory: DaffProductFactory;
   let component: BestSellersComponent;
   let fixture: ComponentFixture<BestSellersComponent>;
   let bestSellersFacade: MockDaffProductGridFacade;
-  let productGridComponent: MockProductGridComponent;
+  let productGridComponent: ProductGridComponent;
   let stubProducts: DaffProduct[];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         BestSellersComponent,
-        DaffLoadingIconComponent,
         DaffProductStateTestingModule,
+        DaffProductTestingDriverModule.forRoot(),
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
+      ],
+      providers: [
+        provideRouter([]),
       ],
     })
-      .overrideComponent(BestSellersComponent, {
-        remove: {
-          imports: [
-            ProductGridComponent,
-            DaffProductStateModule,
-            DaffRelatedProductStateModule,
-            DaffUpsellProductStateModule,
-          ],
-        },
-        add: { imports: [MockProductGridComponent]},
-      })
       .compileComponents();
   }));
 

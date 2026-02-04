@@ -8,12 +8,12 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
 
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { ProductGridComponent } from './product-grid.component';
-import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
   template: '<demo-product-grid [products]="productsValue"></demo-product-grid>',
@@ -42,11 +42,10 @@ describe('ProductGridComponent', () => {
       imports: [
         WrapperComponent,
       ],
+      providers: [
+        provideRouter([]),
+      ],
     })
-      .overrideComponent(ProductGridComponent, {
-        remove: { imports: [ProductCardComponent]},
-        add: { imports: [MockProductCardComponent]},
-      })
       .compileComponents();
   }));
 

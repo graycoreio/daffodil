@@ -1,32 +1,22 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  ViewEncapsulation,
-} from '@angular/core';
-import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 import { DaffCartItemInputType } from '@daffodil/cart';
-import {
-  DaffCartItemAdd,
-  DaffCartStateModule,
-} from '@daffodil/cart/state';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
+import { DaffCartItemAdd } from '@daffodil/cart/state';
 import {
   DaffCartStateTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
-import { DaffProduct } from '@daffodil/product';
-import {
-  DaffProductLoad,
-  DaffProductStateModule,
-} from '@daffodil/product/state';
+import { DaffProductTestingDriverModule } from '@daffodil/product/driver/testing';
+import { DaffProductLoad } from '@daffodil/product/state';
 import {
   DaffProductStateTestingModule,
   MockDaffProductPageFacade,
@@ -37,27 +27,6 @@ import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
 import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
 import { ProductComponent } from '../../components/product/product.component';
-
-@Component({
-  selector: 'demo-product',
-  template: '<ng-content></ng-content>',
-  encapsulation: ViewEncapsulation.None,
-})
-class MockProductComponent {
-  @Input() product: DaffProduct;
-  @Input() qty: number;
-  @Output() updateQty: EventEmitter<any> = new EventEmitter();
-}
-
-@Component({
-  selector: 'demo-add-to-cart',
-  template: '',
-})
-class MockAddToCartComponent {
-  @Input() additive: any;
-  @Input() qty: number;
-  @Output() addToCart: EventEmitter<any> = new EventEmitter();
-}
 
 describe('ProductViewComponent', () => {
   let productFactory: DaffProductFactory;
@@ -77,23 +46,16 @@ describe('ProductViewComponent', () => {
       imports: [
         DaffCartStateTestingModule,
         DaffProductStateTestingModule,
+        DaffProductTestingDriverModule.forRoot(),
+        DaffTestingCartDriverModule.forRoot(),
         ProductViewComponent,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRoute },
       ],
     })
-      .overrideComponent(ProductViewComponent, {
-        remove: {
-          imports: [
-            ProductComponent,
-            AddToCartComponent,
-            DaffProductStateModule,
-            DaffCartStateModule,
-          ],
-        },
-        add: { imports: [MockProductComponent, MockAddToCartComponent]},
-      })
       .compileComponents();
   }));
 
@@ -108,6 +70,7 @@ describe('ProductViewComponent', () => {
     component = fixture.componentInstance;
     activatedRoute.setParamMap({ id: idParam });
 
+    facade.product$.next(mockProduct);
     fixture.detectChanges();
 
     productComponent = fixture.debugElement.query(By.css('demo-product')).componentInstance;
@@ -193,8 +156,6 @@ describe('ProductViewComponent', () => {
 
   describe('when loading$ is true', () => {
     let productElement;
-
-
 
     beforeEach(() => {
       facade.loading$.next(true);

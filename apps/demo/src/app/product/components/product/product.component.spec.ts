@@ -13,6 +13,7 @@ import {
   provideRouter,
   Router,
 } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
 
 import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
 import { DaffContainerComponent } from '@daffodil/design/container';
@@ -22,7 +23,6 @@ import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { ProductComponent } from './product.component';
-import { ImageGalleryModule } from '../../../core/image-gallery/image-gallery.module';
 
 @Component({
   template: '<demo-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></demo-product>',
@@ -59,15 +59,12 @@ describe('ProductComponent', () => {
         DaffQuantityFieldComponent,
         DaffFormFieldComponent,
         WrapperComponent,
+        StoreModule.forRoot({}),
       ],
       providers: [
         provideRouter([]),
       ],
     })
-      .overrideComponent(ProductComponent, {
-        remove: { imports: [ImageGalleryModule]},
-        add: { imports: [MockImageGalleryContainer]},
-      })
       .compileComponents();
   }));
 
