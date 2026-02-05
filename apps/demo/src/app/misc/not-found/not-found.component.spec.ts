@@ -1,21 +1,19 @@
-import {
-  Component,
-  DebugElement,
-} from '@angular/core';
+import { DebugElement } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+
+import { DaffProductTestingDriverModule } from '@daffodil/product/driver/testing';
+import { DaffProductStateTestingModule } from '@daffodil/product/state/testing';
 
 import { NotFoundComponent } from './not-found.component';
 
-@Component({
-  selector: 'demo-best-sellers', template: '',
-  standalone: false,
-})
-class MockBestSellersComponent {}
 
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;
@@ -24,9 +22,15 @@ describe('NotFoundComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         NotFoundComponent,
-        MockBestSellersComponent,
+        DaffProductStateTestingModule,
+        DaffProductTestingDriverModule.forRoot(),
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
+      ],
+      providers: [
+        provideRouter([]),
       ],
     })
       .compileComponents();

@@ -12,7 +12,9 @@ describe('HelpBoxComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ HelpBoxComponent ],
+      imports: [
+        HelpBoxComponent,
+      ],
     })
       .compileComponents();
   }));
