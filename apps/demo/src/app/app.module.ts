@@ -23,12 +23,11 @@ import { DaffPaymentStateModule } from '@daffodil/payment/state';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemoCartRootModule } from './cart/cart-root.module';
+import { environment } from '../environments/environment';
 import { DemoCheckoutStepActionTypes } from './checkout/actions/checkout-step.actions';
 import { TemplateModule } from './core/template/template/template.module';
 import { DemoDriverModule } from './drivers/driver.module';
 import { NotFoundModule } from './misc/not-found/not-found.module';
-import { ProductModule } from './product/product.module';
-import { environment } from '../environments/environment';
 import { DemoIndicatorComponent } from './routing/indicator/indicator.component';
 
 @NgModule({
@@ -51,7 +50,6 @@ import { DemoIndicatorComponent } from './routing/indicator/indicator.component'
     AppRoutingModule,
     DemoIndicatorComponent,
     DemoCartRootModule,
-    ProductModule,
     TemplateModule,
     NotFoundModule,
     DaffAuthorizeNetPaymentStateModule,

@@ -8,6 +8,7 @@ import {
   Inject,
 } from '@angular/core';
 import {
+  ReactiveFormsModule,
   UntypedFormBuilder,
   UntypedFormControl,
 } from '@angular/forms';
@@ -17,14 +18,27 @@ import {
   DaffBase64Service,
   DaffBase64ServiceToken,
 } from '@daffodil/core';
+import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
+import { DaffContainerComponent } from '@daffodil/design/container';
+import { DaffFormFieldComponent } from '@daffodil/design/form-field';
+import { DaffQuantityFieldComponent } from '@daffodil/design/quantity-field';
 import { DaffProduct } from '@daffodil/product';
+
+import { ImageGalleryModule } from '../../../core/image-gallery/image-gallery.module';
 
 @Component({
   selector: 'demo-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  standalone: false,
+  imports: [
+    ReactiveFormsModule,
+    DAFF_ACCORDION_COMPONENTS,
+    DaffContainerComponent,
+    DaffFormFieldComponent,
+    DaffQuantityFieldComponent,
+    ImageGalleryModule,
+  ],
 })
 export class ProductComponent implements OnInit {
   @Input() product: DaffProduct;

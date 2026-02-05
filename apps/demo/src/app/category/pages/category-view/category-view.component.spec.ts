@@ -22,7 +22,6 @@ import {
 
 import { CategoryViewComponent } from './category-view.component';
 import { ProductGridComponent } from '../../../product/components/product-grid/product-grid.component';
-import { ProductGridModule } from '../../../product/components/product-grid/product-grid.module';
 
 describe('CategoryViewComponent', () => {
   let categoryFactory: DaffCategoryFactory;
@@ -41,7 +40,7 @@ describe('CategoryViewComponent', () => {
         CategoryViewComponent,
         DaffContainerComponent,
         DaffLoadingIconComponent,
-        ProductGridModule,
+        ProductGridComponent,
         DaffCategoryStateTestingModule,
         DaffProductTestingModule,
       ],

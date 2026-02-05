@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -17,17 +18,30 @@ import { DaffCartItemInput } from '@daffodil/cart';
 import {
   DaffCartFacade,
   DaffCartItemAdd,
+  DaffCartStateModule,
 } from '@daffodil/cart/state';
+import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductPageFacade,
   DaffProductLoad,
+  DaffProductStateModule,
 } from '@daffodil/product/state';
+
+import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
+import { ProductComponent } from '../../components/product/product.component';
 
 @Component({
   selector: 'demo-product-view',
   templateUrl: './product-view.component.html',
-  standalone: false,
+  imports: [
+    AsyncPipe,
+    DaffLoadingIconComponent,
+    ProductComponent,
+    AddToCartComponent,
+    DaffProductStateModule,
+    DaffCartStateModule,
+  ],
 })
 export class ProductViewComponent implements OnInit {
 

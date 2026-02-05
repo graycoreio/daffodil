@@ -5,7 +5,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 
 import { DaffCartItemInputType } from '@daffodil/cart';
 
@@ -13,7 +13,7 @@ import { AddToCartComponent } from './add-to-cart.component';
 
 @Component({
   template: '<demo-add-to-cart (addToCart)="eventCatcher()" [additive]="additiveValue" [qty]="qtyValue"></demo-add-to-cart>',
-  standalone: false,
+  imports: [AddToCartComponent],
 })
 class WrapperComponent {
   additiveValue = 'additiveValue';
@@ -29,11 +29,10 @@ describe('AddToCartComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-      ],
-      declarations: [
         WrapperComponent,
-        AddToCartComponent,
+      ],
+      providers: [
+        provideRouter([]),
       ],
     })
       .compileComponents();

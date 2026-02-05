@@ -1,27 +1,21 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  ViewEncapsulation,
-} from '@angular/core';
-import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 import { DaffCartItemInputType } from '@daffodil/cart';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 import { DaffCartItemAdd } from '@daffodil/cart/state';
 import {
   DaffCartStateTestingModule,
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
-import { DaffProduct } from '@daffodil/product';
+import { DaffProductTestingDriverModule } from '@daffodil/product/driver/testing';
 import { DaffProductLoad } from '@daffodil/product/state';
 import {
   DaffProductStateTestingModule,
@@ -33,28 +27,6 @@ import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
 import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
 import { ProductComponent } from '../../components/product/product.component';
-
-@Component({
-  selector: 'demo-product',
-  template: '<ng-content></ng-content>',
-  encapsulation: ViewEncapsulation.None,
-  standalone: false,
-})
-class MockProductComponent {
-  @Input() product: DaffProduct;
-  @Input() qty: number;
-  @Output() updateQty: EventEmitter<any> = new EventEmitter();
-}
-
-@Component({
-  selector: 'demo-add-to-cart', template: '',
-  standalone: false,
-})
-class MockAddToCartComponent {
-  @Input() additive: any;
-  @Input() qty: number;
-  @Output() addToCart: EventEmitter<any> = new EventEmitter();
-}
 
 describe('ProductViewComponent', () => {
   let productFactory: DaffProductFactory;
@@ -72,15 +44,13 @@ describe('ProductViewComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-        DaffLoadingIconModule,
         DaffCartStateTestingModule,
         DaffProductStateTestingModule,
-      ],
-      declarations: [
+        DaffProductTestingDriverModule.forRoot(),
+        DaffTestingCartDriverModule.forRoot(),
         ProductViewComponent,
-        MockProductComponent,
-        MockAddToCartComponent,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRoute },
@@ -100,6 +70,7 @@ describe('ProductViewComponent', () => {
     component = fixture.componentInstance;
     activatedRoute.setParamMap({ id: idParam });
 
+    facade.product$.next(mockProduct);
     fixture.detectChanges();
 
     productComponent = fixture.debugElement.query(By.css('demo-product')).componentInstance;
@@ -185,8 +156,6 @@ describe('ProductViewComponent', () => {
 
   describe('when loading$ is true', () => {
     let productElement;
-
-
 
     beforeEach(() => {
       facade.loading$.next(true);

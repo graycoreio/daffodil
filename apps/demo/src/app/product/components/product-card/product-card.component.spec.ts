@@ -5,8 +5,10 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import {
+  provideRouter,
+  Router,
+} from '@angular/router';
 
 import { DaffProduct } from '@daffodil/product';
 import {
@@ -18,7 +20,7 @@ import { ProductCardComponent } from './product-card.component';
 
 @Component({
   template: '<demo-product-card [product]="productValue"></demo-product-card>',
-  standalone: false,
+  imports: [ProductCardComponent],
 })
 class WrapperComponent {
   productValue: DaffProduct;
@@ -36,11 +38,10 @@ describe('ProductCardComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-      ],
-      declarations: [
-        ProductCardComponent,
         WrapperComponent,
+      ],
+      providers: [
+        provideRouter([]),
       ],
     })
       .compileComponents();

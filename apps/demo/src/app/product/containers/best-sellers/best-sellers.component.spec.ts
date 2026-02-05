@@ -1,16 +1,15 @@
 import {
-  Component,
-  Input,
-} from '@angular/core';
-import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
+import { DaffProductTestingDriverModule } from '@daffodil/product/driver/testing';
 import {
   DaffProductStateTestingModule,
   MockDaffProductGridFacade,
@@ -18,33 +17,27 @@ import {
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { BestSellersComponent } from './best-sellers.component';
-
-@Component({
-  selector: 'demo-product-grid',
-  template: '',
-  standalone: false,
-})
-class MockProductGridComponent {
-  @Input() products: DaffProduct[];
-}
+import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
 
 describe('BestSellersComponent', () => {
   let productFactory: DaffProductFactory;
   let component: BestSellersComponent;
   let fixture: ComponentFixture<BestSellersComponent>;
   let bestSellersFacade: MockDaffProductGridFacade;
-  let productGridComponent: MockProductGridComponent;
+  let productGridComponent: ProductGridComponent;
   let stubProducts: DaffProduct[];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffLoadingIconModule,
-        DaffProductStateTestingModule,
-      ],
-      declarations: [
         BestSellersComponent,
-        MockProductGridComponent,
+        DaffProductStateTestingModule,
+        DaffProductTestingDriverModule.forRoot(),
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
+      ],
+      providers: [
+        provideRouter([]),
       ],
     })
       .compileComponents();

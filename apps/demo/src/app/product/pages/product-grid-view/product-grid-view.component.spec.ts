@@ -4,9 +4,10 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
-import { DaffContainerModule } from '@daffodil/design/container';
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
+import { DaffProductTestingDriverModule } from '@daffodil/product/driver/testing';
 import {
   DaffProductStateTestingModule,
   MockDaffProductGridFacade,
@@ -14,7 +15,7 @@ import {
 
 import { ProductGridViewComponent } from './product-grid-view.component';
 import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
-import { ProductGridModule } from '../../components/product-grid/product-grid.module';
+
 
 describe('ProductGridViewComponent', () => {
   let component: ProductGridViewComponent;
@@ -24,14 +25,12 @@ describe('ProductGridViewComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        ProductGridViewComponent,
-      ],
       imports: [
-        DaffContainerModule,
-        DaffLoadingIconModule,
-        ProductGridModule,
+        ProductGridViewComponent,
         DaffProductStateTestingModule,
+        DaffProductTestingDriverModule.forRoot(),
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
       ],
     })
       .compileComponents();

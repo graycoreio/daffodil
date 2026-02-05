@@ -1,19 +1,31 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { DaffContainerComponent } from '@daffodil/design/container';
+import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridFacade,
   DaffProductGridLoad,
+  DaffProductStateModule,
 } from '@daffodil/product/state';
+
+import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
 
 @Component({
   selector: 'demo-product-grid-view',
   templateUrl: './product-grid-view.component.html',
-  standalone: false,
+  imports: [
+    AsyncPipe,
+    DaffLoadingIconComponent,
+    ProductGridComponent,
+    DaffContainerComponent,
+    DaffProductStateModule,
+  ],
 })
 export class ProductGridViewComponent implements OnInit {
 
