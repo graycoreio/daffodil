@@ -1,22 +1,19 @@
-import {
-  Component,
-  DebugElement,
-} from '@angular/core';
+import { DebugElement } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+
+import { DaffProductTestingDriverModule } from '@daffodil/product/driver/testing';
+import { DaffProductStateTestingModule } from '@daffodil/product/state/testing';
 
 import { NotFoundComponent } from './not-found.component';
-import { BestSellersModule } from '../../product/containers/best-sellers/best-sellers.module';
 
-@Component({
-  selector: 'demo-best-sellers',
-  template: '',
-})
-class MockBestSellersComponent {}
 
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;
@@ -27,16 +24,15 @@ describe('NotFoundComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NotFoundComponent,
+        DaffProductStateTestingModule,
+        DaffProductTestingDriverModule.forRoot(),
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
+      ],
+      providers: [
+        provideRouter([]),
       ],
     })
-      .overrideComponent(NotFoundComponent, {
-        remove: {
-          imports: [BestSellersModule],
-        },
-        add: {
-          imports: [MockBestSellersComponent],
-        },
-      })
       .compileComponents();
   }));
 
