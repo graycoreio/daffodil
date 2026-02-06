@@ -1,8 +1,4 @@
-import {
-  Component,
-  Input,
-  NO_ERRORS_SCHEMA,
-} from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -50,23 +46,8 @@ import {
 import * as fromAddToCartNotification from '../../reducers/index';
 import { ProductAddedComponent } from '../product-added/product-added.component';
 
-@Component({
-  template: '<demo-add-to-cart-notification></demo-add-to-cart-notification>',
-  imports: [AddToCartNotificationComponent],
-})
-class WrapperComponent {}
-
-@Component({
-  selector: 'demo-product-added', template: '',
-})
-class MockProductAddedComponent {
-  @Input() product: DaffProduct;
-  @Input() qty: number;
-}
-
 describe('AddToCartNotificationComponent', () => {
-  let wrapper: WrapperComponent;
-  let fixture: ComponentFixture<WrapperComponent>;
+  let fixture: ComponentFixture<AddToCartNotificationComponent>;
   let store: Store<{
     demoAddToCartNotification: fromAddToCartNotification.State;
     cart: DaffCartReducersState;
@@ -76,7 +57,7 @@ describe('AddToCartNotificationComponent', () => {
   let cartFactory: DaffCartFactory;
 
   let addToCartNotification: AddToCartNotificationComponent;
-  let productAdded: MockProductAddedComponent;
+  let productAdded: ProductAddedComponent;
   let stubProduct: DaffProduct;
   let productAddPayload;
   let stubCart: DaffCart;
@@ -96,7 +77,7 @@ describe('AddToCartNotificationComponent', () => {
           ]),
           [DAFF_PRODUCT_STORE_FEATURE_KEY]: combineReducers(daffProductReducers),
         }),
-        WrapperComponent,
+        AddToCartNotificationComponent,
       ],
       schemas: [
         NO_ERRORS_SCHEMA,
@@ -105,14 +86,6 @@ describe('AddToCartNotificationComponent', () => {
         provideNoopAnimations(),
       ],
     })
-      .overrideComponent(WrapperComponent, {
-        remove: {
-          imports: [ProductAddedComponent],
-        },
-        add: {
-          imports: [MockProductAddedComponent],
-        },
-      })
       .compileComponents();
   }));
 
@@ -124,13 +97,11 @@ describe('AddToCartNotificationComponent', () => {
     productAddPayload = { productId: stubProduct.id, qty: 1 };
     stubCart = cartFactory.create();
 
-    fixture = TestBed.createComponent(WrapperComponent);
-    wrapper = fixture.componentInstance;
+    fixture = TestBed.createComponent(AddToCartNotificationComponent);
+    addToCartNotification = fixture.componentInstance;
     store = TestBed.inject(Store);
 
     fixture.detectChanges();
-
-    addToCartNotification = fixture.debugElement.query(By.css('demo-add-to-cart-notification')).componentInstance;
   });
 
 
