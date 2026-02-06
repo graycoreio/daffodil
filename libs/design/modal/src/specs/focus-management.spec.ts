@@ -14,6 +14,7 @@ import { By } from '@angular/platform-browser';
 import { DaffFocusStackService } from '@daffodil/design';
 import {
   DaffModalComponent,
+  DaffModalRef,
   DaffModalService,
 } from '@daffodil/design/modal';
 
@@ -32,7 +33,7 @@ class ModalContentComponent {}
   ],
 })
 class WrapperComponent {
-  _modal: DaffModalComponent;
+  _modal: DaffModalRef;
   constructor(private modal: DaffModalService) {}
 
   openModal() {
@@ -40,7 +41,7 @@ class WrapperComponent {
   }
 
   closeModal() {
-    this.modal.close(this._modal);
+    this._modal.close();
   }
 }
 

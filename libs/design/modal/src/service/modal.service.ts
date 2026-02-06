@@ -13,7 +13,10 @@ import {
 } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-import { DaffModal } from '../modal/modal';
+import {
+  DaffModal,
+  DaffModalRef,
+} from '../modal/interfaces/modal';
 import {
   DaffModalConfiguration,
   DaffModalPosition,
@@ -99,7 +102,7 @@ export class DaffModalService {
   open(
     component: Type<any>,
     configuration?: Partial<DaffModalConfiguration>,
-  ): DaffModalComponent {
+  ): DaffModalRef {
     this._closeAllModals();
     const config = { ...this.defaultConfiguration, ...configuration };
     const _ref = this._createOverlayRef(config);
@@ -124,7 +127,11 @@ export class DaffModalService {
           ? config.onBackdropClicked()
           : this.close(modal.modal.instance),
       );
-    return modal.modal.instance;
+
+    return {
+      close: () => this.close(modal.modal.instance),
+      afterClosed: modal.modal.instance.closedAnimationCompleted$,
+    };
   }
 
   close(component: DaffModalComponent): void {
