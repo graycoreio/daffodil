@@ -13,10 +13,8 @@ import {
 } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-import {
-  DaffModal,
-  DaffModalRef,
-} from '../modal/interfaces/modal';
+import { DaffModal } from '../modal/interfaces/modal';
+import { DaffModalRef } from '../modal/interfaces/modal-ref';
 import {
   DaffModalConfiguration,
   DaffModalPosition,
