@@ -9,19 +9,17 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffPalette } from '@daffodil/design';
-
-import { DaffNavbarComponent } from './navbar.component';
+import { DaffNavbarComponent } from '@daffodil/design/navbar';
 
 @Component({
-  template: '<nav daff-navbar [color]="color" [raised]="raised"></ nav>',
+  template: '<nav daff-navbar [elevated]="elevated" [blurred]="blurred"></ nav>',
   imports: [
     DaffNavbarComponent,
   ],
 })
 class WrapperComponent {
-  color: DaffPalette;
-  raised = false;
+  elevated = false;
+  blurred = false;
 }
 
 describe('@daffodil/design/navbar | DaffNavbarComponent', () => {
@@ -53,24 +51,17 @@ describe('@daffodil/design/navbar | DaffNavbarComponent', () => {
     expect(de.nativeElement.classList.contains('daff-navbar')).toBeTruthy();
   });
 
-  describe('using the color property of navbar', () => {
-    it('should set a color class on the navbar', () => {
-      wrapper.color = 'primary';
-      fixture.detectChanges();
-      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
-    });
+  it('should add a class of "elevated" to the host element when elevated is true', () => {
+    wrapper.elevated = true;
+    fixture.detectChanges();
 
-    it('should not set a default color', () => {
-      expect(de.componentInstance.color).toBeUndefined();
-    });
+    expect(de.nativeElement.classList.contains('elevated')).toEqual(true);
   });
 
-  describe('using the raised property of navbar', () => {
-    it('should add a class of "raised" to the host element', () => {
-      wrapper.raised = true;
-      fixture.detectChanges();
+  it('should add a class of "blurred" to the host element when blurred is true', () => {
+    wrapper.blurred = true;
+    fixture.detectChanges();
 
-      expect(de.nativeElement.classList.contains('raised')).toEqual(true);
-    });
+    expect(de.nativeElement.classList.contains('blurred')).toEqual(true);
   });
 });
