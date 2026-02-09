@@ -22,7 +22,7 @@ import {
 import { DaffLogoModule } from '@daffodil/branding';
 import { DaffIconButtonComponent } from '@daffodil/design/button';
 import { DaffRouterDataService } from '@daffodil/router';
-import { DaffThemeSwitchButtonModule } from '@daffodil/theme-switch';
+import { DaffSfThemeToggleComponent } from '@daffodil/storefront/theme-toggle';
 
 import { DaffioHeaderComponent } from '../../header/components/header/header.component';
 import { DaffioHeaderItemDirective } from '../../header/components/header-item/header-item.directive';
@@ -41,12 +41,12 @@ import { DaffioNavLink } from '../link/type';
     DaffioHeaderItemDirective,
     RouterLink,
     DaffLogoModule,
-    DaffThemeSwitchButtonModule,
     DaffIconButtonComponent,
     FaIconComponent,
     AsyncPipe,
     NgComponentOutlet,
     RouterLinkActive,
+    DaffSfThemeToggleComponent,
   ],
 })
 export class DaffioDocsNavContainer implements OnInit {

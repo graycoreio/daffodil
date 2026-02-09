@@ -1,8 +1,10 @@
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
 } from '@angular/core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   faMoon,
   faSun,
@@ -15,34 +17,45 @@ import {
   DaffTheme,
   DaffThemingService,
 } from '@daffodil/design';
+import { DaffIconButtonComponent } from '@daffodil/design/button';
 
-export const DAFFIO_THEME_SWITCH_TO_LIGHT_LABEL = 'Enable light mode';
-export const DAFFIO_THEME_SWITCH_TO_DARK_LABEL = 'Enable dark mode';
+export const TOGGLE_TO_LIGHT_LABEL = 'Switch to light mode';
+export const TOGGLE_TO_DARK_LABEL = 'Switch to dark mode';
 
 @Component({
-  selector: 'daff-theme-switch-button',
-  templateUrl: './theme-switch-button.component.html',
+  selector: 'daff-sf-theme-toggle',
+  templateUrl: './theme-toggle.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  host: {
+    'aria-live': 'polite',
+  },
+  imports: [
+    AsyncPipe,
+    FaIconComponent,
+    DaffIconButtonComponent,
+  ],
 })
-export class DaffThemeSwitchButtonComponent implements OnInit {
+export class DaffSfThemeToggleComponent implements OnInit {
   theme$: Observable<DaffTheme>;
   ariaLabel$: Observable<string>;
   icon$: Observable<IconDefinition>;
 
   constructor(private themeService: DaffThemingService) { }
 
+  /**
+   * @docs-private
+   */
   ngOnInit() {
     this.theme$ = this.themeService.getTheme();
     this.ariaLabel$ = this.theme$.pipe(
-      map((theme) => theme === DaffTheme.Light ? DAFFIO_THEME_SWITCH_TO_DARK_LABEL : DAFFIO_THEME_SWITCH_TO_LIGHT_LABEL),
+      map((theme) => theme === DaffTheme.Light ? TOGGLE_TO_DARK_LABEL : TOGGLE_TO_LIGHT_LABEL),
     );
     this.icon$ = this.theme$.pipe(
       map((theme) => theme === DaffTheme.Light ? faMoon : faSun),
     );
   }
 
-  onButtonClick() {
+  toggleTheme() {
     this.themeService.switchTheme();
   }
 }

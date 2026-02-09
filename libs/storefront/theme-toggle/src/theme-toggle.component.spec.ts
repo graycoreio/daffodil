@@ -19,16 +19,16 @@ import {
   DaffTheme,
   DaffThemingService,
 } from '@daffodil/design';
+import { DaffSfThemeToggleComponent } from '@daffodil/storefront/theme-toggle';
 
 import {
-  DaffThemeSwitchButtonComponent,
-  DAFFIO_THEME_SWITCH_TO_DARK_LABEL,
-  DAFFIO_THEME_SWITCH_TO_LIGHT_LABEL,
-} from './theme-switch-button.component';
+  TOGGLE_TO_DARK_LABEL,
+  TOGGLE_TO_LIGHT_LABEL,
+} from './theme-toggle.component';
 
-describe('DaffThemeSwitchButtonComponent', () => {
-  let component: DaffThemeSwitchButtonComponent;
-  let fixture: ComponentFixture<DaffThemeSwitchButtonComponent>;
+describe('DaffSfThemeToggleComponent', () => {
+  let component: DaffSfThemeToggleComponent;
+  let fixture: ComponentFixture<DaffSfThemeToggleComponent>;
 
   let themeService: jasmine.SpyObj<DaffThemingService>;
   let theme$: BehaviorSubject<DaffTheme>;
@@ -43,7 +43,7 @@ describe('DaffThemeSwitchButtonComponent', () => {
         FontAwesomeModule,
       ],
       declarations: [
-        DaffThemeSwitchButtonComponent,
+        DaffSfThemeToggleComponent,
       ],
       providers: [
         {
@@ -58,7 +58,7 @@ describe('DaffThemeSwitchButtonComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffThemeSwitchButtonComponent);
+    fixture = TestBed.createComponent(DaffSfThemeToggleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -76,7 +76,7 @@ describe('DaffThemeSwitchButtonComponent', () => {
 
       it('should show the switch to light label', () => {
         const el: HTMLButtonElement = fixture.debugElement.query(By.css('button')).nativeElement;
-        expect(el.attributes.getNamedItem('aria-label').value).toEqual(DAFFIO_THEME_SWITCH_TO_LIGHT_LABEL);
+        expect(el.attributes.getNamedItem('aria-label').value).toEqual(TOGGLE_TO_LIGHT_LABEL);
       });
     });
 
@@ -88,7 +88,7 @@ describe('DaffThemeSwitchButtonComponent', () => {
 
       it('should show the switch to dark label', () => {
         const el: HTMLButtonElement = fixture.debugElement.query(By.css('button')).nativeElement;
-        expect(el.attributes.getNamedItem('aria-label').value).toEqual(DAFFIO_THEME_SWITCH_TO_DARK_LABEL);
+        expect(el.attributes.getNamedItem('aria-label').value).toEqual(TOGGLE_TO_DARK_LABEL);
       });
     });
   });
@@ -120,7 +120,7 @@ describe('DaffThemeSwitchButtonComponent', () => {
   });
 
   it('should switch the theme when clicked', () => {
-    component.onButtonClick();
+    component.toggleTheme();
     expect(themeService.switchTheme).toHaveBeenCalledWith();
   });
 });
