@@ -20,4 +20,6 @@ import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
 export class DaffioHeaderComponent {
   @HostBinding('class.daffio-header') class = true;
   @Input() @HostBinding('class.bordered') bordered = false;
+  @Input() blurred = false;
+  @Input() elevated = false;
 }

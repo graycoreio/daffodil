@@ -1,61 +1,19 @@
 @use '../../scss/theming' as *;
 
-@mixin daff-navbar-theme-variant($color) {
-	background: $color;
-	color: daff-text-contrast($color);
-}
-
 // stylelint-disable selector-class-pattern
 @mixin daff-navbar-theme($theme) {
-	$primary: daff-get-palette($theme, primary);
-	$secondary: daff-get-palette($theme, secondary);
-	$tertiary: daff-get-palette($theme, tertiary);
-	$neutral: daff-get-palette($theme, neutral);
 	$base: daff-get-base-color($theme, base);
-	$base-contrast: daff-get-base-color($theme, base-contrast);
-	$white: daff-get-base-color($theme, 'white');
 	$black: daff-get-base-color($theme, 'black');
-	$mode: daff-get-theme-mode($theme);
 
 	.daff-navbar {
-		@include light($mode) {
-			@include daff-navbar-theme-variant(daff-color($neutral, 10));
+		background: $base;
+
+		&.blurred {
+			background: rgba($base, 0.5);
 		}
 
-		@include dark($mode) {
-			@include daff-navbar-theme-variant(daff-color($neutral, 90));
-		}
-
-		&.raised {
+		&.elevated {
 			box-shadow: 0 4px 10px rgba($black, 0.08);
-		}
-
-		&.daff-primary {
-			@include daff-navbar-theme-variant(daff-color($primary));
-		}
-
-		&.daff-secondary {
-			@include daff-navbar-theme-variant(daff-color($secondary));
-		}
-
-		&.daff-tertiary {
-			@include daff-navbar-theme-variant(daff-color($tertiary));
-		}
-
-		&.daff-black {
-			@include daff-navbar-theme-variant($black);
-		}
-
-		&.daff-white {
-			@include daff-navbar-theme-variant($white);
-		}
-
-		&.daff-theme {
-			@include daff-navbar-theme-variant($base);
-		}
-
-		&.daff-theme-contrast {
-			@include daff-navbar-theme-variant($base-contrast);
 		}
 	}
 }
