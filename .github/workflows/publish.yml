@@ -3,7 +3,7 @@ name: Publish Release
 on:
   workflow_run:
     workflows:
-      - CI
+      - Daffodil Build
     types:
       - completed
   workflow_call:
