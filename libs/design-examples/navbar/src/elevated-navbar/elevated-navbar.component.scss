@@ -1,11 +1,11 @@
-.daff-raised-navbar {
+.daff-elevated-navbar {
 	justify-content: space-between;
 
 	&__links {
 		> * {
 			font-size: 1.125rem;
 			font-weight: bold;
-			padding: 0 16px;
+			padding: 0 1rem;
 			text-decoration: none;
 			text-transform: uppercase;
 		}

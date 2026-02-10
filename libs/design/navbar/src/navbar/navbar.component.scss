@@ -1,7 +1,12 @@
+// stylelint-disable selector-class-pattern
 :host {
 	display: flex;
 	align-items: center;
 	height: 64px;
 	width: 100%;
 	padding: 0 1rem;
+
+	&.blurred {
+		backdrop-filter: blur(0.5rem);
+	}
 }
