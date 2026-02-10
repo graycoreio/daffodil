@@ -1,0 +1,60 @@
+name: Publish Release
+
+on:
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
+  workflow_call:
+    inputs:
+      ref:
+        required: true
+        type: string
+      cache-mode:
+        required: true
+        type: string
+    secrets:
+      AZURE_STORAGE_CONNECTION_STRING:
+        required: true
+      AZURE_NX_CACHE_READWRITE_CONNECTION_STRING:
+        required: true
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
+jobs:
+  publish:
+    name: Publish
+    if: |
+      (github.event.workflow_run.conclusion == 'success') ||
+      (github.event_name == 'workflow_call' && startsWith(inputs.ref, 'refs/heads/release-please--branches--'))
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref && inputs.ref || github.event.workflow_run.ref }}
+          fetch-depth: 1
+
+      - uses: graycoreio/github-actions/setup-node@main
+        with:
+          node-version: 22.21.x
+          use-stamp-cache: true
+          registry-url: 'https://registry.npmjs.org'
+
+      - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
+        with:
+          cache-mode: ${{ inputs.cache-mode }}
+          read-only-azure-connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+          read-write-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
+          event-name: ${{ github.event_name }}
+
+      - run: npx nx run-many -t build
+
+      - uses: graycoreio/github-actions/set-versions-from-root@main
+
+      # - run: npx nx run-many -t publish
+      #   if: >
+      #     github.event.workflow_run.conclusion == 'success' &&
+      #     startsWith(github.event.workflow_run.ref, 'refs/tags/v')

@@ -154,39 +154,3 @@ jobs:
     with:
       artifact: daffio-22.21.x
       artifact-zip-name: daffio.zip
-
-  publish:
-    permissions:
-      id-token: write  # Required for OIDC
-      contents: read
-    name: Publish
-    runs-on: ubuntu-latest
-    if: |
-      startsWith(github.ref, 'refs/tags/v') && github.event_name == 'push' ||
-      (github.event_name == 'workflow_call' && startsWith(inputs.ref, 'refs/heads/release-please--branches--'))
-    needs:
-      - build
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 1
-
-    - uses: graycoreio/github-actions/setup-node@main
-      with:
-        node-version: 22.21.x
-        use-stamp-cache: true
-        registry-url: 'https://registry.npmjs.org'
-
-    - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
-      with:
-        cache-mode: ${{ inputs.cache-mode }}
-        read-only-azure-connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
-        read-write-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
-        event-name: ${{ github.event_name }}
-
-    - run: npx nx run-many -t build
-
-    - uses: graycoreio/github-actions/set-versions-from-root@main
-
-    - run: npx nx run-many -t publish
-      if: startsWith(github.ref, 'refs/tags/v') && github.event_name == 'push'
