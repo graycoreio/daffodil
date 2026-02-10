@@ -6,19 +6,7 @@ on:
       - Daffodil Build
     types:
       - completed
-  workflow_call:
-    inputs:
-      ref:
-        required: true
-        type: string
-      cache-mode:
-        required: true
-        type: string
-    secrets:
-      AZURE_STORAGE_CONNECTION_STRING:
-        required: true
-      AZURE_NX_CACHE_READWRITE_CONNECTION_STRING:
-        required: true
+  workflow_dispatch:
 
 permissions:
   id-token: write # Required for OIDC
@@ -30,12 +18,12 @@ jobs:
     name: Publish
     if: |
       (github.event.workflow_run.conclusion == 'success') ||
-      (github.event_name == 'workflow_call' && startsWith(inputs.ref, 'refs/heads/release-please--branches--'))
+      (github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/tags/v'))
 
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: ${{ inputs.ref && inputs.ref || github.event.workflow_run.ref }}
+          ref: ${{ github.event.workflow_run.ref || github.ref }}
           fetch-depth: 1
 
       - uses: graycoreio/github-actions/setup-node@main
@@ -46,7 +34,7 @@ jobs:
 
       - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
         with:
-          cache-mode: ${{ inputs.cache-mode }}
+          cache-mode: read-only
           read-only-azure-connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
           read-write-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
           event-name: ${{ github.event_name }}
