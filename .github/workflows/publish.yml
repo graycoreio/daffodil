@@ -8,6 +8,10 @@ on:
       - completed
   workflow_dispatch:
 
+env:
+  NX_KEY: ${{ secrets.NX_KEY }}
+  NG_BUILD_ENV: production
+
 permissions:
   id-token: write # Required for OIDC
   contents: read
