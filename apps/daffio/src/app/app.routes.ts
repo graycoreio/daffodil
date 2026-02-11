@@ -7,7 +7,7 @@ import { notFoundRoute } from './content/not-found/not-found.route';
 import { supportRoute } from './content/support/support.route';
 import { DaffioMarketingFooterComponent } from './core/footer/marketing-footer/marketing-footer.component';
 import { DaffioMarketingNavContainer } from './core/nav/marketing/marketing.component';
-import { DAFF_NAV_SIDEBAR_REGISTRATION } from './core/nav/sidebar.provider';
+import { DAFF_MARKETING_NAV_SIDEBAR_REGISTRATION } from './core/nav/marketing-sidebar.provider';
 import { DaffioRouterNamedViewsEnum } from './core/router/named-views/models/named-views.enum';
 import { DaffioRoute } from './core/router/route.type';
 import { TemplateComponent } from './core/template/template.component';
@@ -26,7 +26,7 @@ export const appRoutes: Routes = [
 	      [DaffioRouterNamedViewsEnum.NAV]: DaffioMarketingNavContainer,
 	    },
 	    daffioSidebars: {
-	      [DAFF_NAV_SIDEBAR_REGISTRATION.id]: DAFF_NAV_SIDEBAR_REGISTRATION,
+	      [DAFF_MARKETING_NAV_SIDEBAR_REGISTRATION.id]: DAFF_MARKETING_NAV_SIDEBAR_REGISTRATION,
 	    },
 	    daffioNavLinks: [
 	      { url: '/docs', title: 'Docs' },
