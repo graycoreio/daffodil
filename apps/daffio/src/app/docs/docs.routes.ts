@@ -10,6 +10,7 @@ import {
 
 import { DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
 import { DaffioDocsIndexService } from './index/index.service';
+import { DaffioActiveHeaderService } from '../core/dynamic-fragment/service';
 import { DaffioDocsFooterComponent } from '../core/footer/docs-footer/docs-footer.component';
 import { DaffioDocsNavContainer } from '../core/nav/docs/docs.component';
 import { DAFF_DOCS_NAV_SIDEBAR_REGISTRATION } from '../core/nav/docs-sidebar.provider';
@@ -17,8 +18,6 @@ import { DaffioDocsDesignNavMenuComponent } from './design/components/nav-menu/n
 import { DaffioDocsDesignOverviewPageComponent } from './design/pages/overview/overview.component';
 import { DaffioRouterNamedViewsEnum } from '../core/router/named-views/models/named-views.enum';
 import { DaffioRoute } from '../core/router/route.type';
-import { DAFFIO_DOCS_TOC_SIDEBAR_REGISTRATION } from './containers/toc-sidebar-content/sidebar.provider';
-import { DaffioActiveHeaderService } from '../core/dynamic-fragment/service';
 import { provideDaffioDocsDesignSection } from './design/services/index.service';
 import { DaffioDocsStorefrontOverviewPageComponent } from './storefront/pages/overview/overview.component';
 
@@ -43,7 +42,6 @@ export const daffioDocsRoutes = <Routes> [
       daffioSidebars: {
         [DAFF_DOCS_NAV_SIDEBAR_REGISTRATION.id]: DAFF_DOCS_NAV_SIDEBAR_REGISTRATION,
         [DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION.id]: DAFFIO_DOCS_LIST_SIDEBAR_REGISTRATION,
-        [DAFFIO_DOCS_TOC_SIDEBAR_REGISTRATION.id]: DAFFIO_DOCS_TOC_SIDEBAR_REGISTRATION,
       },
     },
     children: [

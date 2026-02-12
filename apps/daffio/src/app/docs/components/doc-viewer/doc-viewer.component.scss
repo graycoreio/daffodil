@@ -1,5 +1,6 @@
 @use 'utilities' as daff;
 
+// stylelint-disable selector-class-pattern
 :host {
 	display: block;
 }
@@ -102,5 +103,20 @@
 		border: 0;
 		color: var(--daff-theme-contrast);
 		padding: 1rem 1.5rem;
+	}
+
+	&__button-icon {
+		content: '';
+		display: inline-block;
+		border-right: 0.125rem solid currentColor;
+		border-bottom: 0.125rem solid currentColor;
+		width: 0.5rem;
+		height: 0.5rem;
+		transform: rotate(45deg);
+		transition: transform 150ms;
+
+		&.open {
+			transform: translateY(40%) rotate(225deg);
+		}
 	}
 }
