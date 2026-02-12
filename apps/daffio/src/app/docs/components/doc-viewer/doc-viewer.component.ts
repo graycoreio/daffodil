@@ -10,12 +10,13 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   faArrowUpRightFromSquare,
   faBars,
-  faChevronRight,
+  faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { DAFF_ARTICLE_COMPONENTS } from '@daffodil/design/article';
 import { DAFF_BREADCRUMB_COMPONENTS } from '@daffodil/design/breadcrumb';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
+import { DaffMenuModule } from '@daffodil/design/menu';
 import {
   DaffBreadcrumb,
   DaffDocTableOfContents,
@@ -23,7 +24,6 @@ import {
 
 import { DaffioSidebarService } from '../../../core/sidebar/services/sidebar.service';
 import { DAFFIO_DOCS_LIST_SIDEBAR_ID } from '../../containers/docs-list/sidebar.provider';
-import { DAFFIO_DOCS_TOC_SIDEBAR_ID } from '../../containers/toc-sidebar-content/sidebar.provider';
 import { DaffioDocsScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { DaffioDocsTableOfContentsComponent } from '../table-of-contents/table-of-contents.component';
 
@@ -40,13 +40,14 @@ const GITHUB_LINK = 'https://github.com/graycoreio/daffodil/blob/develop';
     DAFF_BREADCRUMB_COMPONENTS,
     DAFF_ARTICLE_COMPONENTS,
     FaIconComponent,
+    DaffMenuModule,
     DaffioDocsScrollToTopComponent,
     DaffioDocsTableOfContentsComponent,
   ],
 })
 export class DaffioDocViewerComponent {
   faBars = faBars;
-  faChevronRight = faChevronRight;
+  faChevronDown = faChevronDown;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 
   constructor(
@@ -61,9 +62,5 @@ export class DaffioDocViewerComponent {
 
   open() {
     this.sidebarService.open(DAFFIO_DOCS_LIST_SIDEBAR_ID);
-  }
-
-  openToc() {
-    this.sidebarService.open(DAFFIO_DOCS_TOC_SIDEBAR_ID);
   }
 }

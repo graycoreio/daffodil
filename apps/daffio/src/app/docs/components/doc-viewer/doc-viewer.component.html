@@ -6,10 +6,21 @@
     </button>
 
     @if (toc.length > 0) {
-      <button class="daffio-doc-viewer__button" (click)="openToc()">
+      <button class="daffio-doc-viewer__button" [daffMenuActivator]="tocMenu">
         <div>On this page</div>
-        <fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
+        <fa-icon [icon]="faChevronDown" size="sm"></fa-icon>
       </button>
+      <ng-template #tocMenu>
+        <daff-menu aria-label="Table of Contents">
+          @for (entry of toc; track entry.slug) {
+            <a daff-menu-item
+              routerLink="./"
+              queryParamsHandling="merge"
+              [fragment]="entry.slug">
+              {{ entry.content }}</a>
+          }
+        </daff-menu>
+      </ng-template>
     }
   </div>
   <div class="daffio-doc-viewer__grid">
