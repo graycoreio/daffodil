@@ -16,7 +16,10 @@ import {
 import { DAFF_ARTICLE_COMPONENTS } from '@daffodil/design/article';
 import { DAFF_BREADCRUMB_COMPONENTS } from '@daffodil/design/breadcrumb';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
-import { DaffMenuModule } from '@daffodil/design/menu';
+import {
+  DaffMenuModule,
+  DaffMenuService,
+} from '@daffodil/design/menu';
 import {
   DaffBreadcrumb,
   DaffDocTableOfContents,
@@ -43,6 +46,9 @@ const GITHUB_LINK = 'https://github.com/graycoreio/daffodil/blob/develop';
     DaffMenuModule,
     DaffioDocsScrollToTopComponent,
     DaffioDocsTableOfContentsComponent,
+  ],
+  providers: [
+    DaffMenuService,
   ],
 })
 export class DaffioDocViewerComponent {
