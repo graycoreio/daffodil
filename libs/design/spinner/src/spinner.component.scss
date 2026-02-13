@@ -30,11 +30,13 @@
 	}
 
 	&__track {
+		stroke: currentColor;
 		stroke-opacity: 0.25;
 		stroke-width: 2;
 	}
 
 	&__path {
+		stroke: currentColor;
 		stroke-width: 2;
 		stroke-linecap: round;
 		animation: spinner-rotation 1s cubic-bezier(0, 0, 1, 1) infinite;
