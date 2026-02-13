@@ -29,18 +29,8 @@
 	$base-contrast: daff-get-base-color($theme, base-contrast);
 	$white: daff-get-base-color($theme, 'white');
 	$black: daff-get-base-color($theme, 'black');
-	$neutral: daff-get-palette($theme, neutral);
-	$mode: daff-get-theme-mode($theme);
 
 	.daff-spinner {
-		@include light($mode) {
-			@include daff-spinner-light-variant(daff-color($neutral));
-		}
-
-		@include dark($mode) {
-			@include daff-spinner-dark-variant(daff-color($neutral, 40));
-		}
-
 		&.daff-primary {
 			@include daff-spinner-light-variant(daff-color($primary));
 		}
