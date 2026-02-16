@@ -2,7 +2,7 @@
 Buttons make actions apparent to users and can navigate to different pages or perform actions. They can display text, icons, or both.
 
 ## Overview
-Button supports five variants that change its visual style, each applied as an attribute:
+Button supports four variants that change its visual style, each applied as an attribute:
 
 | Attribute | Description |
 | --------- | ----------- |
@@ -10,7 +10,6 @@ Button supports five variants that change its visual style, each applied as an a
 | `daff-flat-button`| Rectangular button with no outline or background color |
 | `daff-icon-button` | Icon only button used with icon fonts |
 | `daff-stroked-button` | Rectangular button with oultline, no background color |
-| `daff-underline-button` | Text button with underline styling |
 
 Native `<button>` or `<a>` elements should always be used in order to provide an easy, accessible experience for users.
 
@@ -33,9 +32,6 @@ Native `<button>` or `<a>` elements should always be used in order to provide an
 
 > `dark`, `light`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
-**Underline button**
-<design-land-example-viewer-container example="underline-button"></design-land-example-viewer-container>
-
 ## Usage
 
 ### Within a standalone component
@@ -46,7 +42,6 @@ Available imports:
 - `DAFF_FLAT_BUTTON_COMPONENTS`
 - `DAFF_ICON_BUTTON_COMPONENTS`
 - `DAFF_STROKED_BUTTON_COMPONENTS`
-- `DAFF_UNDERLINE_BUTTON_COMPONENTS`
 - `DAFF_BUTTON_COMPONENTS` (all types)
 
 ```ts
@@ -107,7 +102,7 @@ An icon can be rendered on either side of the button text content with the `daff
 ## Sizes
 Use the `size` property to control button dimensions. The default size is `md`.
 
-<design-land-example-viewer-container example="sizeable-button"></design-land-example-viewer-container>
+<design-land-example-viewer-container example="sizable-button"></design-land-example-viewer-container>
 
 ## Colors
 Use the `color` property to change the color of a button.
@@ -132,3 +127,7 @@ Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible 
 - Use `<a>` for navigation to new pages or different sections.
 - Use `<button>` for actions performed within the same page.
 - Icon only buttons (`<daff-icon-button>`) need to be given meaningful labels using `aria-label` or `aria-labelledby`.
+
+## Deprecations
+- `<daff-raised-button>` is deprecated and will be removed in v1.0.0. Use the `elevated` property instead.
+- `<daff-underline-button>` is deprecated will be removed in v1.0.0.

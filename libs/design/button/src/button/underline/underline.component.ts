@@ -7,6 +7,8 @@ import {
 import { DaffButtonBaseDirective } from '../button-base.directive';
 
 /**
+ * @deprecated Deprecated in version 0.92.0. Will be removed in version 1.0.0.
+ *
  * DaffUnderlineButtonComponent is a borderless button with a custom underline style.
  *
  * @example Underline button
