@@ -5,13 +5,13 @@
     <ng-content></ng-content>
   </div>
 }
-<button daff-underline-button color="theme-contrast"
+<button
   class="daff-text-snippet__toggle"
   [attr.aria-expanded]="ariaExpanded()"
   (click)="toggleSnippet()">
     @if (condensed) {
-      Show More
+      Show more
     } @else {
-      Show Less
+      Show less
     }
 </button>

@@ -8,16 +8,14 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { DAFF_UNDERLINE_BUTTON_COMPONENTS } from '@daffodil/design/button';
-
 @Component({
   selector: 'daff-text-snippet',
   templateUrl: './text-snippet.component.html',
   styleUrls: ['./text-snippet.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    DAFF_UNDERLINE_BUTTON_COMPONENTS,
-  ],
+  host: {
+    class: 'daff-text-snippet',
+  },
 })
 export class DaffTextSnippetComponent {
 
