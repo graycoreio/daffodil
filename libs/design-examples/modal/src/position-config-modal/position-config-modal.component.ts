@@ -25,7 +25,7 @@ import { PositionConfigModalContentExampleComponent } from './modal-content.comp
   ],
 })
 export class PositionConfigModalExampleComponent {
-  modal: DaffModalRef;
+  modal: DaffModalRef<PositionConfigModalContentExampleComponent>;
 
   constructor(private modalService: DaffModalService) {}
 

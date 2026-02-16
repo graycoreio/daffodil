@@ -33,7 +33,7 @@ class ModalContentComponent {}
   ],
 })
 class WrapperComponent {
-  _modal: DaffModalRef;
+  _modal: DaffModalRef<ModalContentComponent>;
   constructor(private modal: DaffModalService) {}
 
   openModal() {

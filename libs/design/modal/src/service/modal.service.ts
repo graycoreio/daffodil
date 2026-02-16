@@ -48,11 +48,11 @@ export class DaffModalService {
     return modal;
   }
 
-  private _attachModalContent(
-    component: Type<any>,
+  private _attachModalContent<T>(
+    component: Type<T>,
     modal: ComponentRef<DaffModalComponent>,
-  ): void {
-    modal.instance.attachContent(new ComponentPortal(component));
+  ): ComponentRef<T> {
+    return modal.instance.attachContent(new ComponentPortal(component));
   }
 
   private _createPositionStrategy(position?: DaffModalPosition): PositionStrategy {
@@ -97,15 +97,15 @@ export class DaffModalService {
     modals.forEach((modal) => this.close(modal.modal.instance));
   }
 
-  open(
-    component: Type<any>,
+  open<T>(
+    component: Type<T>,
     configuration?: Partial<DaffModalConfiguration>,
-  ): DaffModalRef {
+  ): DaffModalRef<T> {
     this._closeAllModals();
     const config = { ...this.defaultConfiguration, ...configuration };
     const _ref = this._createOverlayRef(config);
     const _modal = this._attachModal(_ref);
-    const _attachedModal = this._attachModalContent(component, _modal);
+    const _contentRef = this._attachModalContent(component, _modal);
 
     if (configuration?.ariaLabelledBy) {
       _modal.instance.ariaLabelledBy = configuration.ariaLabelledBy;
@@ -127,6 +127,7 @@ export class DaffModalService {
       );
 
     return {
+      instance: _contentRef.instance,
       close: () => this.close(modal.modal.instance),
       afterClosed: modal.modal.instance.closedAnimationCompleted$,
     };

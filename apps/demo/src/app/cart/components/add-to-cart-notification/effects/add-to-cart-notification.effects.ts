@@ -25,7 +25,7 @@ import { AddToCartNotificationComponent } from '../components/add-to-cart-notifi
 
 @Injectable()
 export class AddToCartNotificationEffects {
-  private notification: DaffModalRef;
+  private notification: DaffModalRef<AddToCartNotificationComponent>;
 
   constructor(
     private actions$: Actions,

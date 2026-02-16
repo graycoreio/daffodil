@@ -3,7 +3,12 @@ import { Observable } from 'rxjs';
 /**
  * Reference to modal instance.
  */
-export interface DaffModalRef {
+export interface DaffModalRef<T> {
+  /**
+   * The component instance inside the modal.
+   */
+  instance: T;
+
   /**
    * Closes the modal.
    */

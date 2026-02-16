@@ -25,7 +25,7 @@ import { BasicModalContentExampleComponent } from './modal-content.component';
   ],
 })
 export class BasicModalExampleComponent {
-  modal: DaffModalRef;
+  modal: DaffModalRef<BasicModalContentExampleComponent>;
 
   constructor(private modalService: DaffModalService) {}
 
