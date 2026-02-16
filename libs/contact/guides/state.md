@@ -2,7 +2,7 @@
 `@daffodil/contact/state` provides a fully featured state library to streamline the management of contact form submissions and driver interaction.
 
 ## Overview
-The facade is an abstraction that provides all the functionality needed for standard use. It's the recommended way to interact with the Daffodil state layer.
+This package provides a `DaffContactFacade` that abstracts the complexities of the library into one place. This facade handles sending your contact form to your application's backend and can also be utilized to build your UI with behaviors common to a contact form.
 
 ## Set up the root component
 1. Import the `DaffContactStateModule` in the root component.
@@ -21,8 +21,6 @@ export class AppModule {}
 ```
 
 ## Using the facade
-The `DaffContactStateModule` provides a `DaffContactFacade` that wraps the complexities of the state library into one place. This facade handles submitting contact forms to your backend and can also be used to build UI with behaviors common to a contact form.
-
 To inject the facade inside a component, include an instance of `DaffContactFacade` in the component's constructor.
 
 ```ts
@@ -34,11 +32,11 @@ export class ContactComponent {
 }
 ```
 
-Once the `DaffContactFacade` has been set up in the component, it can be used to manage contact form submissions. To perform operations, pass actions to the `DaffContactFacade#dispatch` method. Various submission properties and a list of errors are available on the contact facade as observable streams.
+Once the `DaffContactFacade` has been set up in the component, it can be used to manage contact form submissions.
 
-## Facade API
+## Observable streams
 
-The `DaffContactFacade` provides the following observable streams:
+The `DaffContactFacade` provides the following observable streams to enhance your application's UI:
 
 | Observable | Type | Description |
 | ---------- | ---- | ----------- |
@@ -46,17 +44,47 @@ The `DaffContactFacade` provides the following observable streams:
 | `error$` | `Observable<DaffStateError[]>` | An array of submission errors |
 | `loading$` | `Observable<boolean>` | Whether a submission is currently in progress |
 
+Sample usage:
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { DaffContactFacade } from '@daffodil/contact/state';
+import { DaffStateError } from '@daffodil/core/state';
+
+export class ContactComponent implements OnInit {
+  success$: Observable<boolean>;
+  error$: Observable<DaffStateError[]>;
+  loading$: Observable<boolean>;
+
+  constructor(public contactFacade: DaffContactFacade) {}
+
+  ngOnInit() {
+    this.success$ = this.contactFacade.success$;
+    this.error$ = this.contactFacade.error$;
+    this.loading$ = this.contactFacade.loading$;
+  }
+}
+```
+
 ## Actions
 
-Actions are dispatched to the store to trigger state changes. Use the facade's `dispatch` method to dispatch actions.
+Actions are dispatched to the store to trigger state changes. Once the `DaffContactFacade` has been set up in your component, use the `dispatch()` method to dispatch actions.
 
 ### DaffContactSubmit
-Submits a contact form to the backend.
+Submits a contact form to the backend. The `DaffContactFacade` is built generically, so you can create your own submission object that represents your app's contact form.
 
 ```ts
 import { DaffContactSubmit } from '@daffodil/contact/state';
 
-const payload = {
+interface ContactFormData {
+  email: string;
+  name?: string;
+  message?: string;
+}
+
+const payload: ContactFormData = {
   email: 'customer@example.com',
   name: 'John Doe',
   message: 'I have a question about your products.'
@@ -148,7 +176,11 @@ store.select(selectDaffContactLoading);
 
 ## Example
 
-The following example illustrates a complete contact form component using the facade.
+The following example illustrates a complete contact form component using the facade, including:
+- Setting up a reactive form with validation
+- Subscribing to the facade's observable streams
+- Dispatching submit and reset actions
+- Showing loading, success, and error states in the UI
 
 ### Component
 
@@ -240,9 +272,3 @@ export class ContactFormComponent implements OnInit {
   </div>
 </form>
 ```
-
-This example demonstrates:
-- Setting up a reactive form with validation
-- Subscribing to the facade's observable streams
-- Dispatching submit and reset actions
-- Showing loading, success, and error states in the UI

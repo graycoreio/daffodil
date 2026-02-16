@@ -10,7 +10,7 @@ The testing module provides a `MockDaffContactFacade` that can be used in place 
 A testing module that provides the `MockDaffContactFacade` in place of the real facade.
 
 ### MockDaffContactFacade
-A mock implementation of `DaffContactFacadeInterface` where all observable streams are `BehaviorSubject`s. This allows you to control the emitted values during tests using the `next` method.
+A mock implementation of `DaffContactFacadeInterface` where all observable streams are of type `BehaviorSubject`. This allows you to control the emitted values during tests using the `next` method.
 
 **Properties:**
 - `success$: BehaviorSubject<boolean>` - Controls the success state
