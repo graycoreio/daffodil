@@ -7,5 +7,4 @@ export { RaisedButtonExampleComponent } from './raised-button/raised-button.comp
 export { SizeableButtonExampleComponent } from './sizable-button/sizable-button.component';
 export { StatusableButtonExampleComponent } from './statusable-button/statusable-button.component';
 export { StrokedButtonExampleComponent } from './stroked-button/stroked-button.component';
-export { UnderlineButtonExampleComponent } from './underline-button/underline-button.component';
 export { ElevatedButtonExampleComponent } from './elevated-button/elevated-button.component';
