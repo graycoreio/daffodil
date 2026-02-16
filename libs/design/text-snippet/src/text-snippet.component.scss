@@ -1,3 +1,5 @@
+@use '../../scss/interactions';
+
 @mixin line-clamp() {
 	display: -webkit-box; // stylelint-disable-line value-no-vendor-prefix
 	line-clamp: 1;
@@ -41,5 +43,16 @@
 			@include line-clamp();
 			width: 100%;
 		}
+	}
+
+	&__toggle {
+		@include interactions.clickable();
+		appearance: none;
+		background: none;
+		border-left-style: none;
+		border-right-style: none;
+		border-top-style: none;
+		margin: 0;
+		padding: 0;
 	}
 }

@@ -51,6 +51,7 @@
 @use '../progress-bar/src/progress-bar-theme' as progress-bar;
 @use '../scss/state/skeleton/mixins' as skeleton;
 @use '../tabs/src/tabs-theme' as tabs;
+@use '../text-snippet//src/text-snippet-theme' as text-snippet;
 @use '../tree/src/tree-theme' as tree;
 @use '../toast/src/toast-theme' as toast;
 
@@ -114,6 +115,7 @@
 	@include sidebar.daff-sidebar-theme($theme);
 	@include switch.daff-switch-theme($theme);
 	@include tabs.daff-tabs-theme($theme);
+	@include text-snippet.daff-text-snippet-theme($theme);
 	@include toast.daff-toast-theme($theme);
 	@include tree.daff-tree-theme($theme);
 }

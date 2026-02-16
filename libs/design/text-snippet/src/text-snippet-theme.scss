@@ -1,0 +1,12 @@
+@use '../../scss/theming' as *;
+
+@mixin daff-text-snippet-theme($theme) {
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+
+	.daff-text-snippet {
+		&__toggle {
+			border-bottom: thin solid $base-contrast;
+			color: $base-contrast;
+		}
+	}
+}
