@@ -5,7 +5,7 @@ import {
 
 import { DaffButtonComponent } from '@daffodil/design/button';
 import {
-  DaffModalComponent,
+  DaffModalRef,
   DAFF_MODAL_COMPONENTS,
   DaffModalService,
 } from '@daffodil/design/modal';
@@ -25,7 +25,7 @@ import { PositionConfigModalContentExampleComponent } from './modal-content.comp
   ],
 })
 export class PositionConfigModalExampleComponent {
-  modal: DaffModalComponent;
+  modal: DaffModalRef<PositionConfigModalContentExampleComponent>;
 
   constructor(private modalService: DaffModalService) {}
 

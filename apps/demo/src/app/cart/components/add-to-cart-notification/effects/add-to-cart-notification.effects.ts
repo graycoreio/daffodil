@@ -13,7 +13,7 @@ import {
 import { DaffCartActionTypes } from '@daffodil/cart/state';
 import {
   DaffModalService,
-  DaffModalComponent,
+  DaffModalRef,
 } from '@daffodil/design/modal';
 
 import {
@@ -25,7 +25,7 @@ import { AddToCartNotificationComponent } from '../components/add-to-cart-notifi
 
 @Injectable()
 export class AddToCartNotificationEffects {
-  private notification: DaffModalComponent;
+  private notification: DaffModalRef<AddToCartNotificationComponent>;
 
   constructor(
     private actions$: Actions,
@@ -54,7 +54,7 @@ export class AddToCartNotificationEffects {
   closeModal$ = createEffect(() => this.actions$.pipe(
     ofType(AddToCartNotificationActionTypes.CloseAddToCartNotificationAction),
     map((action) => {
-      this.daffModalService.close(this.notification);
+      this.notification.close();
     }),
   ), { dispatch: false });
 }
