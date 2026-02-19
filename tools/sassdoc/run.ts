@@ -14,10 +14,6 @@ interface RunOptions {
   outputDir?: string;
 }
 
-const addItemToMap = (item: DaffDocsSassItem, group: string, map: Map<string | null, Array<DaffDocsSassItem>>) => {
-
-};
-
 async function runSassDocBuild(customConfig?: Partial<SassDocConfig>, options: RunOptions = {}): Promise<void> {
   try {
 
