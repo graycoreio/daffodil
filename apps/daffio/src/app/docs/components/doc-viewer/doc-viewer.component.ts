@@ -4,6 +4,7 @@ import {
   Input,
   input,
   computed,
+  inject,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -56,12 +57,11 @@ export class DaffioDocViewerComponent {
   faChevronDown = faChevronDown;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 
-  constructor(
-    private sidebarService: DaffioSidebarService,
-  ) {}
+  private sidebarService = inject(DaffioSidebarService);
 
   @Input() toc: DaffDocTableOfContents = [];
   @Input() breadcrumbs: Array<DaffBreadcrumb> = [];
+
   sourcePath = input.required<string>();
 
   readonly editLink = computed(() => `${GITHUB_LINK}${this.sourcePath()}`);
