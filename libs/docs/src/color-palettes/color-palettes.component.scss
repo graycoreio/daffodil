@@ -3,24 +3,15 @@
 .daff-docs-color {
 	&__grid {
 		display: grid;
-		grid-gap: 24px;
+		grid-gap: 1.5rem;
 		grid-template-columns: 1fr;
-		grid-template-areas:
-			'primary'
-			'secondary'
-			'tertiary';
 
 		@include daff.breakpoint(tablet) {
 			grid-template-columns: repeat(2, 1fr);
-			grid-template-areas:
-				'primary   secondary'
-				'tertiary  .';
 		}
 
 		@include daff.breakpoint(big-tablet) {
 			grid-template-columns: repeat(3, 1fr);
-			grid-template-areas:
-				'primary secondary tertiary';
 		}
 	}
 
@@ -31,17 +22,17 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: 0 16px;
+			padding: 0 1rem;
 			height: 3rem;
 
 			&:first-child {
-				border-top-left-radius: 8px;
-				border-top-right-radius: 8px;
+				border-top-left-radius: 0.5rem;
+				border-top-right-radius: 0.5rem;
 			}
 
 			&:last-child {
-				border-bottom-left-radius: 8px;
-				border-bottom-right-radius: 8px;
+				border-bottom-left-radius: 0.5rem;
+				border-bottom-right-radius: 0.5rem;
 			}
 
 			&:nth-child(6) {

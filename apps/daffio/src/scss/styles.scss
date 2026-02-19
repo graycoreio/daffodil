@@ -8,6 +8,9 @@
 // @daffodil/branding
 @use 'daff-branding-theme' as branding;
 
+// @daffodil/docs
+@use 'daff-docs-theme' as docs;
+
 .daff-theme-light {
 	background: var(--daff-base-bg);
 	color: var(--daff-base-text);
@@ -17,6 +20,7 @@
 	@include branding.daff-branding-theme(daff-theme.$theme);
 	@include daff-theme.daff-component-themes(daff-theme.$theme);
 	@include daffio-components.component-themes(daff-theme.$theme);
+	@include docs.daff-docs-component-themes(daff-theme.$theme);
 }
 
 .daff-theme-dark {
@@ -28,6 +32,7 @@
 	@include branding.daff-branding-theme(daff-theme.$theme-dark);
 	@include daff-theme.daff-component-themes(daff-theme.$theme-dark);
 	@include daffio-components.component-themes(daff-theme.$theme-dark);
+	@include docs.daff-docs-component-themes(daff-theme.$theme-dark);
 }
 
 body {

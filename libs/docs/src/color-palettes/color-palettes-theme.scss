@@ -1,0 +1,16 @@
+@use 'theme' as *;
+
+@mixin daff-docs-color-palettes-theme($theme) {
+	$black: daff-get-base-color($theme, 'black');
+	$white: daff-get-base-color($theme, 'white');
+
+	.daff-docs-color {
+		&__palette {
+			> * {
+				&:nth-child(n + 6) {
+					color: $white;
+				}
+			}
+		}
+	}
+}

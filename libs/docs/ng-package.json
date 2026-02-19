@@ -6,5 +6,8 @@
 		"styleIncludePaths": [
 			"../../dist/design/scss"
 		]
-  }
+  },
+  "assets": [
+    "**/!(*.component)*.scss"
+  ]
 }

@@ -1,0 +1,5 @@
+@use '../color-palettes/color-palettes-theme' as color-palettes;
+
+@mixin daff-docs-component-themes($theme) {
+	@include color-palettes.daff-docs-color-palettes-theme($theme);
+}
