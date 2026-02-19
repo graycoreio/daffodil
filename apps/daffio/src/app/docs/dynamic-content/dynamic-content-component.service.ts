@@ -31,6 +31,11 @@ export class DaffioDocsDynamicContentComponentService<T extends DaffDoc = DaffDo
 
   getComponent(doc: T): Type<DaffioDocsDynamicContent<T>> {
     const injection = this._map[doc.kind];
+
+    if(!injection) {
+      return DaffioDocsDefaultContentComponent<T>;
+    }
+
     const component = DAFFIO_DOCS_DYNAMIC_CONTENT_COMPONENT_INJECTION_GETTER_KEY in injection
       ? runInInjectionContext(this.injector, injection[DAFFIO_DOCS_DYNAMIC_CONTENT_COMPONENT_INJECTION_GETTER_KEY](doc))
       : injection;
