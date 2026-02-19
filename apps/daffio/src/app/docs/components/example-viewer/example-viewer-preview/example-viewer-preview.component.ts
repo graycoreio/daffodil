@@ -14,6 +14,12 @@ import {
   faTabletScreenButton,
 } from '@fortawesome/free-solid-svg-icons';
 
+export enum DaffioExampleViewerViewportOption {
+  DESKTOP = 'desktop',
+  TABLET = 'tablet',
+  MOBILE = 'mobile'
+}
+
 @Component({
   selector: 'daffio-example-viewer-preview',
   templateUrl: './example-viewer-preview.component.html',
@@ -29,17 +35,17 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioExampleViewerPreviewComponent {
-  viewportOptions = [
-    { value: 'desktop', label: 'Toggle full screen', icon: faDesktop },
-    { value: 'tablet', label: 'Toggle tablet view', icon: faTabletScreenButton },
-    { value: 'mobile', label: 'Toggle mobile view', icon: faMobileScreenButton },
+  readonly viewportOptions = [
+    { value: DaffioExampleViewerViewportOption.DESKTOP, label: 'Toggle full screen', icon: faDesktop },
+    { value: DaffioExampleViewerViewportOption.TABLET, label: 'Toggle tablet view', icon: faTabletScreenButton },
+    { value: DaffioExampleViewerViewportOption.MOBILE, label: 'Toggle mobile view', icon: faMobileScreenButton },
   ];
 
   exampleComponent = input.required<Type<unknown>>();
 
   simple = input(false);
 
-  viewport = signal<'desktop' | 'tablet' | 'mobile'>('desktop');
+  viewport = signal<DaffioExampleViewerViewportOption>(DaffioExampleViewerViewportOption.DESKTOP);
 
-  viewportClass = computed(() => this.viewport() !== 'desktop' ? this.viewport() : '');
+  viewportClass = computed(() => this.viewport() !== DaffioExampleViewerViewportOption.DESKTOP ? this.viewport() : '');
 }
