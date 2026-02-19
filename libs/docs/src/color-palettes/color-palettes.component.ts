@@ -36,12 +36,12 @@ export class DaffDocsColorPalettesComponent {
   /**
    * The sass documentation items to display.
    */
-  readonly items = input.required<Array<DaffDocsSassItem>>();
+  readonly items = input<Array<DaffDocsSassItem>>([]);
 
   /**
    * Computed list of items filtered to only include color palettes.
    */
   readonly palettes = computed(() =>
-    this.items()?.filter((item) => item.group.includes('color-palettes')),
+    this.items().filter((item) => item.group.includes('color-palettes')),
   );
 }

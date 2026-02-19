@@ -21,7 +21,7 @@ import { DaffioColorPaletteService } from './service/palettes.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [DaffDocsColorPalettesComponent, AsyncPipe],
   template: `
-		<daff-docs-color-palettes [items]="colorPalettes$ | async"></daff-docs-color-palettes>
+		<daff-docs-color-palettes [items]="(colorPalettes$ | async) || []"></daff-docs-color-palettes>
 	`,
 })
 export class DaffioColorPalettesComponent implements OnInit {
