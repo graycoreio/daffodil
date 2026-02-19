@@ -1,4 +1,3 @@
-import { NgComponentOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -8,18 +7,30 @@ import {
   Type,
 } from '@angular/core';
 
+import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
+
 import { CONTENT_COMPONENT_MAP } from './example-components-map';
+import { DaffioExampleViewerCodeComponent } from './example-viewer-code/example-viewer-code.component';
+import { DaffioExampleViewerPreviewComponent } from './example-viewer-preview/example-viewer-preview.component';
 
 /**
  * A component that dynamically loads and renders example components.
  */
 @Component({
-  template: `
-	 	<div class="example-viewer">
-      <ng-container *ngComponentOutlet="exampleComponent" />
-    </div>
-	`,
-  imports: [NgComponentOutlet],
+  selector: 'daffio-example-viewer',
+  templateUrl: './example-viewer.component.html',
+  styleUrl: './example-viewer.component.scss',
+  host: {
+    class: 'daffio-example-viewer',
+    '[class.simple]': 'simple',
+  },
+  hostDirectives: [{
+    directive: DaffArticleEncapsulatedDirective,
+  }],
+  imports: [
+    DaffioExampleViewerPreviewComponent,
+    DaffioExampleViewerCodeComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioExampleViewerComponent {

@@ -11,7 +11,6 @@ import { DaffioExampleViewerComponent } from './example-viewer.component';
 
 @Component({
   template: `<p>Mock Example Component</p>`,
-  standalone: true,
 })
 class MockExampleComponent {}
 

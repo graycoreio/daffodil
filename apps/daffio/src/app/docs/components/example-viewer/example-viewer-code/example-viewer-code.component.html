@@ -1,0 +1,21 @@
+<div class="daffio-example-viewer-code__nav">
+	<div class="daffio-example-viewer-code__file-type">
+		<button class="daffio-example-viewer-code__tab">
+			HTML
+		</button>
+		<button class="daffio-example-viewer-code__tab">
+			JS
+		</button>
+	</div>
+	<button class="daffio-example-viewer-code__copy-button" (click)="copyCode()">
+		<fa-icon [icon]="copyIcon"></fa-icon>
+	</button>
+</div>
+<pre class="daffio-example-viewer-code__code-block" [class.full-code]="fullCode"><code #codeEl></code></pre>
+<button (click)="toggleFullCode()" class="daffio-example-viewer-code__toggle-button" [class.full-code]="fullCode">
+	@if (!fullCode) {
+		Show full code <fa-icon [icon]="faChevronDown" size="xs"></fa-icon>
+	} @else {
+		Collapse code <fa-icon [icon]="faChevronUp" size="xs"></fa-icon>
+	}
+</button>
