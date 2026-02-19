@@ -16,9 +16,7 @@
 <ng-template #fullMenu>
 	<daff-menu>
 		@for (breadcrumbItem of _fullMenuItems(); track breadcrumbItem; let index = $index) {
-			<button daff-menu-item>
-				<ng-container [ngTemplateOutlet]="breadcrumbItem.itemRef"></ng-container>
-			</button>
+			<ng-container daffBreadcrumbMenuItem [ngTemplateOutlet]="breadcrumbItem.itemRef"></ng-container>
 		}
 	</daff-menu>	
 </ng-template>
@@ -26,9 +24,7 @@
 <ng-template #partialMenu>
 	<daff-menu>
 		@for (breadcrumbItem of _partialMenuItems(); track breadcrumbItem; let index = $index) {
-			<button daff-menu-item>
-				<ng-container [ngTemplateOutlet]="breadcrumbItem.itemRef"></ng-container>
-			</button>
+			<ng-container daffBreadcrumbMenuItem [ngTemplateOutlet]="breadcrumbItem.itemRef"></ng-container>
 		}
 	</daff-menu>	
 </ng-template>

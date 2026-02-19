@@ -28,6 +28,7 @@ import {
 } from '@daffodil/design/menu';
 
 import { DaffBreadcrumbItemComponent } from '../breadcrumb-item/breadcrumb-item.component';
+import { DaffBreadcrumbMenuItemDirective } from '../breadcrumb-menu-item/breadcrumb-menu-item.directive';
 import { DaffBreadcrumbRender } from '../breadcrumb-render/breadcrumb-render.type';
 import { toRenderType } from '../breadcrumb-render/to-render-type';
 
@@ -66,6 +67,7 @@ import { toRenderType } from '../breadcrumb-render/to-render-type';
   imports: [
     DAFF_MENU_COMPONENTS,
     NgTemplateOutlet,
+    DaffBreadcrumbMenuItemDirective,
   ],
   providers: [DaffMenuService],
 })

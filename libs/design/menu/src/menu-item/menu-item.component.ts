@@ -9,6 +9,7 @@ import {
 
 import { DaffPrefixDirective } from '@daffodil/design';
 
+import { DAFF_MENU_ITEM_TOKEN } from './menu-item.token';
 import { DaffMenuService } from '../services/menu.service';
 
 /**
@@ -25,13 +26,13 @@ import { DaffMenuService } from '../services/menu.service';
     'a[daff-menu-item]' + ',' +
     'button[daff-menu-item]',
   templateUrl: './menu-item.component.html',
-  styleUrl: './menu-item.component.scss',
   host: {
     'class': 'daff-menu-item',
     'role': 'menuitem',
     '(click)': 'onClick()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: DAFF_MENU_ITEM_TOKEN, useExisting: DaffMenuItemComponent }],
 })
 
 export class DaffMenuItemComponent implements FocusableOption {
