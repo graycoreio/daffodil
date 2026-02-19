@@ -26,7 +26,7 @@ import { DaffDocsColorPalettesComponent } from './color-palettes.component';
   ],
 })
 class WrapperComponent {
-  itemsValue: Array<DaffDocsSassItem> = [];
+  itemsValue: Array<DaffDocsSassItem> | undefined = [];
 }
 
 describe('@daffodil/docs-components | DaffDocsColorPalettesComponent', () => {
@@ -62,7 +62,12 @@ describe('@daffodil/docs-components | DaffDocsColorPalettesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should a palette for each color', () => {
+  it('should render a palette for each color', () => {
+    if(!wrapper.itemsValue) {
+      console.error('Test misconfiguration.');
+      fail();
+      return;
+    }
     wrapper.itemsValue.slice(0, 2).forEach((color) => {
       const palette = fixture.debugElement.query(By.css(`.daff-docs-color__palette.daff-docs-color__brand-${color.context.name.toLowerCase()}`));
       expect(palette).toBeTruthy();
@@ -72,5 +77,10 @@ describe('@daffodil/docs-components | DaffDocsColorPalettesComponent', () => {
         });
       }
     });
+  });
+
+  it('should not throw an error when items is undefined', () => {
+    wrapper.itemsValue = undefined;
+    expect(() => fixture.detectChanges()).not.toThrow();
   });
 });

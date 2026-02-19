@@ -1,9 +1,9 @@
 import { KeyValuePipe } from '@angular/common';
 import {
-  Component,
   ChangeDetectionStrategy,
-  input,
+  Component,
   computed,
+  input,
 } from '@angular/core';
 
 import {
@@ -13,6 +13,11 @@ import {
 
 import { DaffDocsPaletteShadeSortPipe } from './shade-sort.pipe';
 
+/**
+ * A component that displays color palettes from sass documentation items.
+ * Filters the provided items to only show those belonging to the 'color-palettes' group
+ * and renders them with their shades.
+ */
 @Component({
   selector: 'daff-docs-color-palettes',
   templateUrl: './color-palettes.component.html',
@@ -28,8 +33,15 @@ export class DaffDocsColorPalettesComponent {
   readonly COLOR = DaffDocsSassType.COLOR;
   readonly MAP = DaffDocsSassType.MAP;
 
+  /**
+   * The sass documentation items to display.
+   */
   readonly items = input.required<Array<DaffDocsSassItem>>();
+
+  /**
+   * Computed list of items filtered to only include color palettes.
+   */
   readonly palettes = computed(() =>
-    this.items().filter((item) => item.group.includes('color-palettes')),
+    this.items()?.filter((item) => item.group.includes('color-palettes')),
   );
 }
