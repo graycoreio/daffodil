@@ -57,10 +57,12 @@ export class DaffioDocRendererComponent {
 
     for (const placeholder of examplePlaceholders) {
       const contentExampleId = placeholder.getAttribute('example');
+      const simple = placeholder.getAttribute('simple');
       const exampleRef = this.viewContainerRef.createComponent(DaffioExampleViewerComponent, {
         environmentInjector: this.environmentInjector,
       });
       exampleRef.setInput('example', contentExampleId);
+      exampleRef.setInput('simple', simple !== null);
       placeholder.parentElement.replaceChild(exampleRef.location.nativeElement, placeholder);
       exampleRef.instance.render();
     }
