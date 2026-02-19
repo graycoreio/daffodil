@@ -6,8 +6,8 @@ import {
 
 import { DaffDoc } from '@daffodil/docs-utils';
 
-import { DaffioSafeHtmlPipe } from '../../../core/html-sanitizer/safe.pipe';
 import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.type';
+import { DaffioDocRendererComponent } from '../doc-renderer/doc-renderer.component';
 import { DaffioDocViewerComponent } from '../doc-viewer/doc-viewer.component';
 
 @Component({
@@ -16,7 +16,7 @@ import { DaffioDocViewerComponent } from '../doc-viewer/doc-viewer.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DaffioDocViewerComponent,
-    DaffioSafeHtmlPipe,
+    DaffioDocRendererComponent,
   ],
 })
 export class DaffioDocsDefaultContentComponent<T extends DaffDoc = DaffDoc> implements DaffioDocsDynamicContent<T> {
