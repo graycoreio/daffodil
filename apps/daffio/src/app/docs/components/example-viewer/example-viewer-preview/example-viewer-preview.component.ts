@@ -20,6 +20,7 @@ import {
   styleUrl: './example-viewer-preview.component.scss',
   host: {
     class: 'daffio-example-viewer-preview',
+    '[class.simple]': 'simple()',
   },
   imports: [
     NgComponentOutlet,
@@ -35,6 +36,8 @@ export class DaffioExampleViewerPreviewComponent {
   ];
 
   exampleComponent = input.required<Type<unknown>>();
+
+  simple = input(false);
 
   viewport = signal<'desktop' | 'tablet' | 'mobile'>('desktop');
 

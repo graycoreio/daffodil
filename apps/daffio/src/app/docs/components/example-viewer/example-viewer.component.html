@@ -1,2 +1,4 @@
-<daffio-example-viewer-preview [exampleComponent]="exampleComponent"></daffio-example-viewer-preview>
-<daffio-example-viewer-code></daffio-example-viewer-code>
+<daffio-example-viewer-preview [exampleComponent]="exampleComponent" [simple]="simple()"></daffio-example-viewer-preview>
+@if (!simple()) {
+	<daffio-example-viewer-code></daffio-example-viewer-code>
+}

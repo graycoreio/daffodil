@@ -22,7 +22,7 @@ import { DaffioExampleViewerPreviewComponent } from './example-viewer-preview/ex
   styleUrl: './example-viewer.component.scss',
   host: {
     class: 'daffio-example-viewer',
-    '[class.simple]': 'simple',
+    '[class.simple]': 'simple()',
   },
   hostDirectives: [{
     directive: DaffArticleEncapsulatedDirective,
@@ -34,6 +34,8 @@ import { DaffioExampleViewerPreviewComponent } from './example-viewer-preview/ex
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioExampleViewerComponent {
+  simple = input(false);
+
   /**
    * The identifier of the example component to render.
    * Must match a key in {@link CONTENT_COMPONENT_MAP}.

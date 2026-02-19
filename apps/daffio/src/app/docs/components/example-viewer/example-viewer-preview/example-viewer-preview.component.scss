@@ -15,6 +15,12 @@ $border-radius: 0.5rem;
 	@include daff.breakpoint(mobile) {
 		padding: 2rem;
 	}
+
+	&.simple {
+		display: block;
+		padding: 0;
+		border-radius: 0;
+	}
 }
 
 .daffio-example-viewer-preview {
