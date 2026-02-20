@@ -8,6 +8,7 @@ import {
 
 import { provideDaffioDocsDesignComponentContentComponent } from './components/component-content/component-content.provider';
 import { DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
+import { provideDaffioDesignExamplesContent } from './examples/content.provider';
 import { DaffioDocsDesignComponentOverviewPageComponent } from './pages/components-overview/component-overview.component';
 import { daffioDocsDesignComponentDocResolver } from './services/component-doc.resolver';
 import { DaffioRoute } from '../../core/router/route.type';
@@ -24,6 +25,7 @@ export const daffioDocsDesignRoutesFactory = (section: string, ...extraRoutes: R
       provideDaffioDocsDesignIndexService(section),
       provideDaffioDocsDesignComponentContentComponent(),
       ...daffioDocsApiRolesProvider(),
+      provideDaffioDesignExamplesContent(),
     ],
     resolve: {
       index: daffioDocsDesignIndexResolver,
