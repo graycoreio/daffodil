@@ -3,3 +3,4 @@ export { CalloutTextAlignmentExampleComponent } from './callout-text-alignment/c
 export { CalloutWithGridExampleComponent } from './callout-with-grid/callout-with-grid.component';
 export { CompactCalloutExampleComponent } from './compact-callout/compact-callout.component';
 export { CALLOUT_EXAMPLES } from './examples';
+export { provideDaffDesignCalloutExamplesContent } from './provider';

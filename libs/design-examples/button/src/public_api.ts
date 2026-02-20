@@ -8,3 +8,4 @@ export { SizeableButtonExampleComponent } from './sizable-button/sizable-button.
 export { StatusableButtonExampleComponent } from './statusable-button/statusable-button.component';
 export { StrokedButtonExampleComponent } from './stroked-button/stroked-button.component';
 export { ElevatedButtonExampleComponent } from './elevated-button/elevated-button.component';
+export { provideDaffDesignButtonExamplesContent } from './provider';

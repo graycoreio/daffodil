@@ -9,3 +9,4 @@ export { ArticleBlockquoteExampleComponent } from './article-blockquote/article-
 export { ArticleTableExampleComponent } from './article-table/article-table.component';
 
 export { ARTICLE_EXAMPLES } from './examples';
+export { provideDaffDesignArticleExamplesContent } from './provider';

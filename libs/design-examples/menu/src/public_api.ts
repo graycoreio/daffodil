@@ -5,3 +5,4 @@ export const MENU_EXAMPLES = [
   BasicMenuExampleComponent,
   MenuWithIconToggleExampleComponent,
 ];
+export { provideDaffDesignMenuExamplesContent } from './provider';

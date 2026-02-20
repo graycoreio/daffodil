@@ -5,3 +5,4 @@ export { MismatchedSizesMediaGalleryExampleComponent } from './mismatched-sizes-
 export { SkeletonMediaGalleryExampleComponent } from './skeleton-media-gallery/skeleton-media-gallery.component';
 export { IteratedMediaGalleryExampleComponent } from './iterated-media-gallery/iterated-media-gallery.component';
 export { MediaGalleryWithVideoExampleComponent } from './media-gallery-with-video/media-gallery-with-video.component';
+export { provideDaffDesignMediaGalleryExamplesContent } from './provider';

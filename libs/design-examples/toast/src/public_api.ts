@@ -9,3 +9,4 @@ export const TOAST_EXAMPLES = [
   CustomDurationToastExampleComponent,
   DismissibleToastExampleComponent,
 ];
+export { provideDaffDesignToastExamplesContent } from './provider';

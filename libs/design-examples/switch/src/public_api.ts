@@ -5,3 +5,4 @@ export { DisabledSwitchExampleComponent } from './disabled-switch/disabled-switc
 export { SwitchLabelPositionsExampleComponent } from './switch-label-positions/switch-label-positions.component';
 export { SwitchSizesExampleComponent } from './switch-sizes/switch-sizes.component';
 export { CheckedSwitchExampleComponent } from './checked-switch/checked-switch.component';
+export { provideDaffDesignSwitchExamplesContent } from './provider';

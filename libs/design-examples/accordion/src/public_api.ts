@@ -2,3 +2,4 @@ export { BasicAccordionExampleComponent } from './basic-accordion/basic-accordio
 export { InitiallyExpandedAccordionExampleComponent } from './initially-expanded-accordion/initially-expanded-accordion.component';
 export { DisabledAccordionExampleComponent } from './disabled-accordion/disabled-accordion.component';
 export { ACCORDION_EXAMPLES } from './examples';
+export { provideDaffDesignAccordionExamplesContent } from './provider';
