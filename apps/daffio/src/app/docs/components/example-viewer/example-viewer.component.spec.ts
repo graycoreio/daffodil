@@ -6,7 +6,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { CONTENT_COMPONENT_MAP } from './example-components-map';
+import { DAFFIO_EXAMPLES_CONTENT_COMPONENT_MAP } from './example-components-map.token';
 import { DaffioExampleViewerComponent } from './example-viewer.component';
 
 @Component({
@@ -30,7 +30,7 @@ describe('@daffodil/daffio | DaffioExampleViewerComponent', () => {
       ],
       providers: [
         {
-          provide: CONTENT_COMPONENT_MAP,
+          provide: DAFFIO_EXAMPLES_CONTENT_COMPONENT_MAP,
           useValue: mockComponentMap,
         },
       ],
