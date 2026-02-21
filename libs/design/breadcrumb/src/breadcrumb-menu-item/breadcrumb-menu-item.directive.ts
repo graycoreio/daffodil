@@ -6,7 +6,10 @@ import {
   OnDestroy,
 } from '@angular/core';
 
-import { DAFF_MENU_ITEM_TOKEN } from '@daffodil/design/menu';
+import {
+  DAFF_MENU_ITEM_TOKEN,
+  DaffMenuService,
+} from '@daffodil/design/menu';
 
 /**
  * @docs-private
@@ -27,8 +30,12 @@ import { DAFF_MENU_ITEM_TOKEN } from '@daffodil/design/menu';
 })
 export class DaffBreadcrumbMenuItemDirective implements FocusableOption, AfterViewInit, OnDestroy {
   private _focusableElement: HTMLElement | null = null;
+  private _clickHandler = () => this._menuService.close();
 
-  constructor(private _elementRef: ElementRef) {}
+  constructor(
+    private _elementRef: ElementRef,
+    private _menuService: DaffMenuService,
+  ) {}
 
   /**
    * @docs-private
@@ -36,6 +43,7 @@ export class DaffBreadcrumbMenuItemDirective implements FocusableOption, AfterVi
   ngAfterViewInit() {
     this._focusableElement = this._findFocusableElement();
     this._focusableElement?.classList.add('daff-menu-item'); // For styling
+    this._focusableElement?.addEventListener('click', this._clickHandler);
   }
 
   focus() {
@@ -51,6 +59,7 @@ export class DaffBreadcrumbMenuItemDirective implements FocusableOption, AfterVi
   }
 
   ngOnDestroy() {
+    this._focusableElement?.removeEventListener('click', this._clickHandler);
     this._focusableElement?.classList.remove('daff-menu-item');
   }
 }
