@@ -1,17 +1,21 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   inject,
   input,
+  Resource,
+  resource,
   Type,
 } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
+import { DaffDocsDesignExample } from '@daffodil/docs-utils';
 
 import { DAFFIO_EXAMPLES_CONTENT_COMPONENT_MAP } from './example-components-map.token';
 import { DaffioExampleViewerCodeComponent } from './example-viewer-code/example-viewer-code.component';
 import { DaffioExampleViewerPreviewComponent } from './example-viewer-preview/example-viewer-preview.component';
+import { DaffioDocsService } from '../../services/docs.service';
 
 /**
  * A component that dynamically loads and renders example components.
@@ -34,6 +38,9 @@ import { DaffioExampleViewerPreviewComponent } from './example-viewer-preview/ex
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioExampleViewerComponent {
+  private readonly docsService = inject(DaffioDocsService);
+  private readonly components = inject(DAFFIO_EXAMPLES_CONTENT_COMPONENT_MAP);
+
   /**
    * Whether to show the source files.
    */
@@ -45,20 +52,19 @@ export class DaffioExampleViewerComponent {
    */
   example = input.required<string>();
 
-  components = inject(DAFFIO_EXAMPLES_CONTENT_COMPONENT_MAP);
-
-  private cdRef = inject(ChangeDetectorRef);
+  /**
+   * The source files of the example.
+   */
+  readonly sourceFiles: Resource<DaffDocsDesignExample> = rxResource({
+    params: () => ({ path: `docs/design/examples/${this.example()}` }),
+    stream: ({ params }) => this.docsService.get<any>(params.path),
+  });
 
   /**
    * The dynamically loaded component type to render.
    */
-  exampleComponent: Type<unknown>;
-
-  /**
-   * Render the currently configured example component
-   */
-  async render() {
-    this.exampleComponent = await this.components.get(this.example())?.();
-    this.cdRef.markForCheck();
-  }
+  readonly exampleComponent: Resource<Type<unknown>> = resource({
+    params: () => ({ example: this.example() }),
+    loader: ({ params }) => this.components.get(params.example)?.(),
+  });
 }

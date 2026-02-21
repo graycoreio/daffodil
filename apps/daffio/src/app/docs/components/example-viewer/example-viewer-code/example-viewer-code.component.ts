@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   ElementRef,
   inject,
+  input,
   NgZone,
   OnDestroy,
   signal,
@@ -15,6 +17,10 @@ import {
   faChevronUp,
   faCopy,
 } from '@fortawesome/free-solid-svg-icons';
+
+import { DaffDocsDesignExample } from '@daffodil/docs-utils';
+
+type Tab = 'script' | 'template';
 
 @Component({
   selector: 'daffio-example-viewer-code',
@@ -29,21 +35,37 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioExampleViewerCodeComponent implements OnDestroy {
-  faChevronDown = faChevronDown;
-  faChevronUp = faChevronUp;
-  faCopy = faCopy;
-  faCheck = faCheck;
-
-  fullCode = false;
-
-  toggleFullCode() {
-    this.fullCode = !this.fullCode;
-  }
-
-  codeEl = viewChild<ElementRef<HTMLElement>>('codeEl');
-  copied = signal(false);
+  private readonly ngZone = inject(NgZone);
   private copyTimeoutId?: ReturnType<typeof setTimeout>;
-  private ngZone = inject(NgZone);
+
+  readonly faChevronDown = faChevronDown;
+  readonly faChevronUp = faChevronUp;
+  readonly faCopy = faCopy;
+  readonly faCheck = faCheck;
+
+  readonly codeEl = viewChild<ElementRef<HTMLElement>>('codeEl');
+  readonly copied = signal(false);
+  readonly fullCode = signal(false);
+  readonly tab = signal<Tab>('template');
+
+  source = input.required<DaffDocsDesignExample>();
+
+  readonly templateSource = computed(() =>
+    this.source()?.files.find(({ name }) => name.endsWith('.html')),
+  );
+  readonly scriptSource = computed(() =>
+    this.source()?.files.find(({ name }) => name.endsWith('.ts')),
+  );
+  readonly visibleCode = computed(() => {
+    switch (this.tab()) {
+      case 'template':
+        return this.templateSource();
+
+      case 'script':
+      default:
+        return this.scriptSource();
+    }
+  });
 
   get copyIcon() {
     return this.copied() ? faCheck : faCopy;
@@ -63,6 +85,10 @@ export class DaffioExampleViewerCodeComponent implements OnDestroy {
     } catch (err) {
       console.error('Failed to copy code: ', err);
     }
+  }
+
+  toggleFullCode() {
+    this.fullCode.update((val) => !val);
   }
 
   ngOnDestroy() {

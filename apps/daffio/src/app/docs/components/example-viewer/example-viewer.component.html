@@ -1,4 +1,6 @@
-<daffio-example-viewer-preview [exampleComponent]="exampleComponent" [simple]="simple()"></daffio-example-viewer-preview>
-@if (!simple()) {
-	<daffio-example-viewer-code></daffio-example-viewer-code>
+@if (exampleComponent.hasValue() && sourceFiles.hasValue()) {
+	<daffio-example-viewer-preview [exampleComponent]="exampleComponent.value()" [simple]="simple()"></daffio-example-viewer-preview>
+	@if (!simple()) {
+		<daffio-example-viewer-code [source]="sourceFiles.value()"></daffio-example-viewer-code>
+	}
 }

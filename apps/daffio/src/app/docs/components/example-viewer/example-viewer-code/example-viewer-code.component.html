@@ -1,9 +1,9 @@
 <div class="daffio-example-viewer-code__nav">
 	<div class="daffio-example-viewer-code__file-type">
-		<button class="daffio-example-viewer-code__tab">
+		<button class="daffio-example-viewer-code__tab" (click)="tab.set('template')">
 			HTML
 		</button>
-		<button class="daffio-example-viewer-code__tab">
+		<button class="daffio-example-viewer-code__tab" (click)="tab.set('script')">
 			JS
 		</button>
 	</div>
@@ -11,11 +11,11 @@
 		<fa-icon [icon]="copyIcon"></fa-icon>
 	</button>
 </div>
-<pre class="daffio-example-viewer-code__code-block" [class.full-code]="fullCode"><code #codeEl></code></pre>
-<button (click)="toggleFullCode()" class="daffio-example-viewer-code__toggle-button" [class.full-code]="fullCode">
-	@if (!fullCode) {
-		Show full code <fa-icon [icon]="faChevronDown" size="xs"></fa-icon>
-	} @else {
+<pre class="daffio-example-viewer-code__code-block" [class.full-code]="fullCode()"><code #codeEl [innerHTML]="visibleCode().content"></code></pre>
+<button (click)="toggleFullCode()" class="daffio-example-viewer-code__toggle-button" [class.full-code]="fullCode()">
+	@if (fullCode()) {
 		Collapse code <fa-icon [icon]="faChevronUp" size="xs"></fa-icon>
+	} @else {
+		Show full code <fa-icon [icon]="faChevronDown" size="xs"></fa-icon>
 	}
 </button>
