@@ -6,6 +6,8 @@ import {
   EnvironmentInjector,
   inject,
   input,
+  inputBinding,
+  untracked,
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
@@ -43,7 +45,11 @@ export class DaffioDocRendererComponent {
 
   constructor() {
     effect(() => {
-      this.content().nativeElement.innerHTML = this.contents();
+      const contents = this.contents();
+      // if we track `this.content` then this will infinitely recurse
+      untracked(() => {
+        this.content().nativeElement.innerHTML = contents;
+      });
       this.renderExamples();
     });
   }
@@ -60,11 +66,12 @@ export class DaffioDocRendererComponent {
       const simple = placeholder.getAttribute('simple');
       const exampleRef = this.viewContainerRef.createComponent(DaffioExampleViewerComponent, {
         environmentInjector: this.environmentInjector,
+        bindings: [
+          inputBinding('example', () => contentExampleId),
+          inputBinding('simple', () => simple !== null),
+        ],
       });
-      exampleRef.setInput('example', contentExampleId);
-      exampleRef.setInput('simple', simple !== null);
       placeholder.parentElement.replaceChild(exampleRef.location.nativeElement, placeholder);
-      exampleRef.instance.render();
     }
   }
 }
