@@ -47,7 +47,7 @@ import { DaffMenuService } from '../services/menu.service';
   styleUrls: [
     './menu.component.scss',
   ],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None, // Required to allow breadcrumb items to take on `.daff-menu-item` styles
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'daff-menu',
@@ -61,10 +61,13 @@ import { DaffMenuService } from '../services/menu.service';
 })
 export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
   private _focusTrap: ConfigurableFocusTrap;
-  private _keyManager: FocusKeyManager<unknown>;
+  private _keyManager: FocusKeyManager<unknown>; // Matches any component or directive that provides `DAFF_MENU_ITEM_TOKEN`, not just `DaffMenuItemComponent`.
 
   /**
    * @docs-private
+   *
+   * Content children that provide `DAFF_MENU_ITEM_TOKEN` are treated as menu items.
+   * This includes both `daff-menu-item` components and any custom directives that also provide the token.
    */
   @ContentChildren(DAFF_MENU_ITEM_TOKEN) private _items: QueryList<FocusableOption>;
 
