@@ -42,6 +42,6 @@ export class DaffDocsColorPalettesComponent {
    * Computed list of items filtered to only include color palettes.
    */
   readonly palettes = computed(() =>
-    this.items().filter((item) => item.group.includes('color-palettes')),
+    this.items()?.filter((item) => item.group.includes('color-palettes')),
   );
 }

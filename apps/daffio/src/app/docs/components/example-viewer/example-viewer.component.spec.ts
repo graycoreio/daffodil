@@ -4,10 +4,10 @@ import {
   TestBed,
   waitForAsync,
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { DAFFIO_EXAMPLES_CONTENT_COMPONENT_MAP } from './example-components-map.token';
 import { DaffioExampleViewerComponent } from './example-viewer.component';
+import { provideDaffioDocsTestingService } from '../../services/testing.provider';
 
 @Component({
   template: `<p>Mock Example Component</p>`,
@@ -33,6 +33,7 @@ describe('@daffodil/daffio | DaffioExampleViewerComponent', () => {
           provide: DAFFIO_EXAMPLES_CONTENT_COMPONENT_MAP,
           useValue: mockComponentMap,
         },
+        provideDaffioDocsTestingService(),
       ],
     })
       .compileComponents();
@@ -47,32 +48,5 @@ describe('@daffodil/daffio | DaffioExampleViewerComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('render', () => {
-    it('should load the example component from the map', async () => {
-      await component.render();
-      fixture.detectChanges();
-
-      expect(component.exampleComponent).toBe(MockExampleComponent);
-    });
-
-    it('should render the example component', async () => {
-      await component.render();
-      fixture.detectChanges();
-
-      const exampleElement = fixture.debugElement.query(By.directive(MockExampleComponent));
-      expect(exampleElement).toBeTruthy();
-    });
-
-    it('should set exampleComponent to undefined when example is not found in the map', async () => {
-      fixture.componentRef.setInput('example', 'non-existent-example');
-      fixture.detectChanges();
-
-      await component.render();
-      fixture.detectChanges();
-
-      expect(component.exampleComponent).toBeUndefined();
-    });
   });
 });

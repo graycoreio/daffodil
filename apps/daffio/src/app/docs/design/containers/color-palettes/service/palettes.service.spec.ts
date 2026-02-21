@@ -45,7 +45,7 @@ describe('@daffodil/daffio | DaffioColorPaletteService', () => {
         expect(resp).toEqual(mockSassItems);
         expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith(
           `/assets/daffio/${DOCS_LOCATION}.json`,
-          'DOCS_LOCATION',
+          DOCS_LOCATION,
         );
         done();
       });

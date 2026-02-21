@@ -6,6 +6,7 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffioDocRendererComponent } from './doc-renderer.component';
+import { provideDaffioDocsTestingService } from '../../services/testing.provider';
 import { DaffioExampleViewerComponent } from '../example-viewer/example-viewer.component';
 
 describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
@@ -16,6 +17,9 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffioDocRendererComponent,
+      ],
+      providers: [
+        provideDaffioDocsTestingService(),
       ],
     })
       .compileComponents();
@@ -64,7 +68,7 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
     it('should replace multiple example placeholders', () => {
       const contentWithExamples = `
         <design-land-example-viewer-container example="example-1"></design-land-example-viewer-container>
-        <design-land-example-viewer-container example="example-2"></design-land-example-viewer-container>
+        <design-land-example-viewer-container example="example-2" simple></design-land-example-viewer-container>
       `;
       fixture.componentRef.setInput('contents', contentWithExamples);
       fixture.detectChanges();
@@ -73,6 +77,7 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
       expect(exampleViewers.length).toBe(2);
       expect(exampleViewers[0].componentInstance.example()).toBe('example-1');
       expect(exampleViewers[1].componentInstance.example()).toBe('example-2');
+      expect(exampleViewers[1].componentInstance.simple()).toBeTrue();
     });
   });
 });
