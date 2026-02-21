@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   Directive,
   ElementRef,
+  OnDestroy,
 } from '@angular/core';
 
 import { DAFF_MENU_ITEM_TOKEN } from '@daffodil/design/menu';
@@ -24,7 +25,7 @@ import { DAFF_MENU_ITEM_TOKEN } from '@daffodil/design/menu';
   },
   providers: [{ provide: DAFF_MENU_ITEM_TOKEN, useExisting: DaffBreadcrumbMenuItemDirective }],
 })
-export class DaffBreadcrumbMenuItemDirective implements FocusableOption, AfterViewInit {
+export class DaffBreadcrumbMenuItemDirective implements FocusableOption, AfterViewInit, OnDestroy {
   private _focusableElement: HTMLElement | null = null;
 
   constructor(private _elementRef: ElementRef) {}
@@ -47,5 +48,9 @@ export class DaffBreadcrumbMenuItemDirective implements FocusableOption, AfterVi
       node = node.nextSibling;
     }
     return node;
+  }
+
+  ngOnDestroy() {
+    this._focusableElement?.classList.remove('daff-menu-item');
   }
 }
