@@ -19,7 +19,10 @@ import {
   map,
 } from 'rxjs';
 
-import { DaffLogoModule } from '@daffodil/branding';
+import {
+  DAFF_BRANDING_CONSTANTS,
+  DaffLogoModule,
+} from '@daffodil/branding';
 import {
   DaffButtonComponent,
   DaffIconButtonComponent,
@@ -56,6 +59,7 @@ import { DaffioNavLink } from '../link/type';
 export class DaffioMarketingNavContainer implements OnInit {
   readonly isComponent = isComponent;
   faBars = faBars;
+  docsLink = DAFF_BRANDING_CONSTANTS.DOCS_URL;
 
   links$: Observable<Array<DaffioNavLink | Type<unknown>>>;
 

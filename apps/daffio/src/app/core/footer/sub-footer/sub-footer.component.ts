@@ -4,6 +4,7 @@ import {
   HostBinding,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DAFF_BRANDING_CONSTANTS } from '@daffodil/branding';
@@ -22,6 +23,7 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
+    RouterLink,
     FontAwesomeModule,
     DAFF_CALLOUT_COMPONENTS,
     DAFF_CONTAINER_COMPONENTS,
@@ -32,6 +34,6 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 export class DaffioSubFooterComponent {
   @HostBinding('class.daffio-sub-footer') class = true;
 
-  repoLink = DAFF_BRANDING_CONSTANTS.REPO_URL;
+  docsLink = DAFF_BRANDING_CONSTANTS.DOCS_INTRO_URL;
   discordLink = DAFF_BRANDING_CONSTANTS.DISCORD_URL;
 }
