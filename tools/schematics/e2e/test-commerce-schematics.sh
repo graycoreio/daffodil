@@ -95,18 +95,14 @@ rm -rf "$WORK_DIR"
 mkdir -p "$WORK_DIR"
 
 # --- Base App A: standalone with app.config.ts (default Angular 20 app) ---
-echo "--- Creating standalone base app (App A) ---"
+echo "--- Creating standalone base app ---"
 cd "$WORK_DIR"
 npx -y @angular/cli@20 new "$APP_NAME" \
   --style=scss \
   --skip-tests \
   --defaults
 
-APP_A_DIR="$WORK_DIR/$APP_NAME"
-cd "$APP_A_DIR"
-
-# Install the commerce tarball via npm
-npm install "$TARBALL"
+STANDALONE_APP_DIR="$WORK_DIR/$APP_NAME"
 
 # --- Base App B: module-based app (for case 6) ---
 needs_case_6=false
@@ -117,19 +113,15 @@ for c in "${CASES[@]}"; do
   fi
 done
 
-APP_B_DIR="$WORK_DIR/${APP_NAME}-module"
+MODULE_APP_DIR="$WORK_DIR/${APP_NAME}-module"
 if [[ "$needs_case_6" == "true" ]]; then
-  echo "--- Creating module-based base app (App B) ---"
-  cd "$WORK_DIR"
-  npx -y @angular/cli@20 new "${APP_NAME}-module" \
-    --style=scss \
-    --skip-tests \
-    --defaults
-
-  cd "$APP_B_DIR"
+  echo "--- Creating module-based base app ---"
+  echo "Copying standalone base app to module-based app directory"
+  cp -a "$STANDALONE_APP_DIR" "$MODULE_APP_DIR"
 
   # Create an app-module.ts to trigger module-based detection
-  cat > "src/app/app-module.ts" <<'APPMOD'
+  echo "Creating app-module.ts to trigger module-based detection"
+  cat > "$MODULE_APP_DIR/src/app/app-module.ts" <<'APPMOD'
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
@@ -142,9 +134,18 @@ import { AppComponent } from './app.component';
 export class AppModule {}
 APPMOD
 
+  # Install the commerce tarball into module-based app
+  echo "- Installing commerce tarball into module-based base app (npm)..."
+  cd "$MODULE_APP_DIR"
   npm install "$TARBALL"
-
 fi
+
+echo ""
+
+# Install the commerce tarball into standalone app
+echo "- Installing commerce tarball into standalone base app (npm)..."
+cd "$STANDALONE_APP_DIR"
+npm install "$TARBALL"
 
 # ============================================================
 # Phase 3: Run test cases
@@ -160,7 +161,7 @@ for case_num in "${CASES[@]}"; do
     1)
       # Driver: demo, standalone, app.config.ts
       desc="driver=demo (standalone, app.config.ts)"
-      copy_base_app "$APP_A_DIR" "$WORK_DIR/case-1"
+      copy_base_app "$STANDALONE_APP_DIR" "$WORK_DIR/case-1"
       raise_budget
       if run_ng_add "demo" && npx ng build 2>&1; then
         report_result "$case_num" "$desc" "pass"
@@ -172,7 +173,7 @@ for case_num in "${CASES[@]}"; do
     2)
       # Driver: magento, standalone, app.config.ts
       desc="driver=magento (standalone, app.config.ts)"
-      copy_base_app "$APP_A_DIR" "$WORK_DIR/case-2"
+      copy_base_app "$STANDALONE_APP_DIR" "$WORK_DIR/case-2"
       if run_ng_add "magento" && npx ng build 2>&1; then
         report_result "$case_num" "$desc" "pass"
       else
@@ -183,7 +184,7 @@ for case_num in "${CASES[@]}"; do
     3)
       # Driver: shopify, standalone, app.config.ts
       desc="driver=shopify (standalone, app.config.ts)"
-      copy_base_app "$APP_A_DIR" "$WORK_DIR/case-3"
+      copy_base_app "$STANDALONE_APP_DIR" "$WORK_DIR/case-3"
       if run_ng_add "shopify" && npx ng build 2>&1; then
         report_result "$case_num" "$desc" "pass"
       else
@@ -194,7 +195,7 @@ for case_num in "${CASES[@]}"; do
     4)
       # Driver: in-memory, standalone, app.config.ts
       desc="driver=in-memory (standalone, app.config.ts)"
-      copy_base_app "$APP_A_DIR" "$WORK_DIR/case-4"
+      copy_base_app "$STANDALONE_APP_DIR" "$WORK_DIR/case-4"
       if run_ng_add "in-memory" && npx ng build 2>&1; then
         report_result "$case_num" "$desc" "pass"
       else
@@ -206,7 +207,7 @@ for case_num in "${CASES[@]}"; do
       # --skip-package-json: schematic generates code without adding deps or running npm install.
       # Only verify the schematic completes without error (no build check since deps aren't installed).
       desc="driver=demo, --skip-package-json (schematic-only)"
-      copy_base_app "$APP_A_DIR" "$WORK_DIR/case-5"
+      copy_base_app "$STANDALONE_APP_DIR" "$WORK_DIR/case-5"
       if CI=true npx ng generate @daffodil/commerce:ng-add \
            --driver="demo" --is-new-project --skip-package-json --defaults 2>&1; then
         report_result "$case_num" "$desc" "pass"
@@ -218,7 +219,7 @@ for case_num in "${CASES[@]}"; do
     6)
       # Module-based app: should be rejected with error
       desc="module-based app rejection"
-      copy_base_app "$APP_B_DIR" "$WORK_DIR/case-6"
+      copy_base_app "$MODULE_APP_DIR" "$WORK_DIR/case-6"
       # We expect ng add to fail when run from module-based apps
       if run_ng_add "demo" 2>&1; then
         report_result "$case_num" "$desc" "fail"
@@ -230,7 +231,7 @@ for case_num in "${CASES[@]}"; do
     7)
       # Standalone with main.ts only (no app.config.ts) - fallback config path
       desc="standalone, main.ts fallback (no app.config.ts)"
-      copy_base_app "$APP_A_DIR" "$WORK_DIR/case-7"
+      copy_base_app "$STANDALONE_APP_DIR" "$WORK_DIR/case-7"
 
       # Move app config into main.ts and delete app.config.ts
       cat > "src/main.ts" <<'MAIN'
