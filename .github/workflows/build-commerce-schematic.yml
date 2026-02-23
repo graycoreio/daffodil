@@ -1,4 +1,4 @@
-name: Build Commerce Schematic
+name: Daffodil Build Schematic
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   e2e:
-    name: Commerce Schematics E2E
+    name: Build Commerce Schematics
     runs-on: ubuntu-latest
     strategy:
       matrix:
