@@ -8,11 +8,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-import {
-  DaffPrefixDirective,
-  DaffSuffixDirective,
-} from '@daffodil/design';
-import { DaffFlatButtonComponent } from '@daffodil/design/button';
+import { DAFF_FLAT_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
   selector: 'flat-button-example',
@@ -26,9 +22,7 @@ import { DaffFlatButtonComponent } from '@daffodil/design/button';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffFlatButtonComponent,
-    DaffPrefixDirective,
-    DaffSuffixDirective,
+    DAFF_FLAT_BUTTON_COMPONENTS,
     FaIconComponent,
   ],
 })

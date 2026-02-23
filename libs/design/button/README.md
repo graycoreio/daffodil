@@ -95,31 +95,38 @@ An icon can be rendered on either side of the button text content with the `daff
 
 <button daff-button>
   Button label
-  <fa-icon [faIcon]="faArrowRight" daffPrefix></fa-icon>
+  <fa-icon [faIcon]="faArrowRight" daffSuffix></fa-icon>
 </button>
 ```
 
-## Sizes
+## Features
+
+### Sizes
 Use the `size` property to control button dimensions. The default size is `md`.
 
-<design-land-example-viewer-container example="sizable-button"></design-land-example-viewer-container>
+<design-land-example-viewer-container example="button-sizes"></design-land-example-viewer-container>
 
-## Colors
+### Colors
 Use the `color` property to change the color of a button.
 
 > Note: `dark`, `light`, and `theme` should be used on appropriate backgrounds for sufficient contrast.
 
-## Status indicators
-Status indicators help users understand the type of action a button performs and its importance relative to other buttons in the same context. Use the `status` property to convey different semantic meanings.
-
-<design-land-example-viewer-container example="statusable-button"></design-land-example-viewer-container>
-
-## Elevation
+### Elevation
 Add shadows to buttons with the `elevated` property.
 
 > Note: The `elevated` property is not supported for flat, icon, and underline buttons.
 
 <design-land-example-viewer-container example="elevated-button"></design-land-example-viewer-container>
+
+### Loading
+Use the `loading` property to indicate that an action is being processed. When `loading` is set to `true`, the button displays a spinner.
+
+<design-land-example-viewer-container example="loading-button"></design-land-example-viewer-container>
+
+### Status indicators
+Status indicators help users understand the type of action a button performs and its importance relative to other buttons in the same context. Use the `status` property to convey different semantic meanings.
+
+<design-land-example-viewer-container example="statusable-button"></design-land-example-viewer-container>
 
 ## Accessbility
 Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible experience by default.
@@ -130,4 +137,4 @@ Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible 
 
 ## Deprecations
 - `<daff-raised-button>` is deprecated and will be removed in v1.0.0. Use the `elevated` property instead.
-- `<daff-underline-button>` is deprecated will be removed in v1.0.0.
+- `<daff-underline-button>` is deprecated and will be removed in v1.0.0.

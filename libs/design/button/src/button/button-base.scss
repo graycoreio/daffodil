@@ -49,6 +49,19 @@
 	.daff-button__content {
 		@include t.text-truncate();
 	}
+
+	&.daff-loading {
+		.daff-button__content,
+		.daff-prefix,
+		.daff-suffix {
+			opacity: 0;
+		}
+
+		.daff-button__loading {
+			z-index: 5;
+			position: absolute;
+		}
+	}
 }
 
 @mixin daff-button-background($border-radius) {
@@ -63,12 +76,12 @@
 			pointer-events: none;
 			transition: opacity 300ms;
 			z-index: 0;
-		}
 
-		&:hover,
-		&:active {
-			&::after {
-				opacity: 1;
+			&:hover,
+			&:active {
+				&::after {
+					opacity: 1;
+				}
 			}
 		}
 	}

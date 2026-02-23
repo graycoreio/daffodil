@@ -8,11 +8,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-import {
-  DaffPrefixDirective,
-  DaffSuffixDirective,
-} from '@daffodil/design';
-import { DaffButtonComponent } from '@daffodil/design/button';
+import { DAFF_BASIC_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
   selector: 'basic-button-example',
@@ -26,9 +22,7 @@ import { DaffButtonComponent } from '@daffodil/design/button';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffButtonComponent,
-    DaffPrefixDirective,
-    DaffSuffixDirective,
+    DAFF_BASIC_BUTTON_COMPONENTS,
     FaIconComponent,
   ],
 })
