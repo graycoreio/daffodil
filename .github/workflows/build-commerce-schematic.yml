@@ -1,0 +1,28 @@
+name: Build Commerce Schematic
+
+on:
+  pull_request:
+    branches:
+      - develop
+    paths:
+      - 'tools/schematics/**'
+
+jobs:
+  e2e:
+    name: Commerce Schematics E2E
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [22.21.x]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: graycoreio/github-actions/setup-node@main
+        with:
+          node-version: ${{ matrix.node }}
+          use-stamp-cache: true
+
+      - name: Run Commerce Schematic tests
+        run: bash tools/schematics/e2e/test-commerce-schematics.sh
