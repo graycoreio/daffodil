@@ -62,6 +62,10 @@
 			font-size: 2rem;
 			line-height: 2.5rem;
 		}
+
+		&:first-child {
+			margin-top: 0;
+		}
 	}
 
 	@include stopsArticleCascade(h3) {
