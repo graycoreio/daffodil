@@ -114,10 +114,10 @@
 			pointer-events: none;
 			transform-origin: left top;
 			transition: transform 150ms;
-			overflow: hidden;
 			white-space: nowrap;
 
-			+ {
+			+,
+			~ * {
 				input,
 				textarea,
 				select {
