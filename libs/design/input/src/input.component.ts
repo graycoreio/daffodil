@@ -41,8 +41,8 @@ import {
   ],
   host: {
     'class': 'daff-input',
-    '(focus)': 'focus()',
-    '(blur)': 'blur()',
+    '(focus)': '_handleFocus()',
+    '(blur)': '_handleBlur()',
     '[attr.id]': '_id',
     '[attr.aria-describedby]': 'ariaDescribedBy',
   },
@@ -112,15 +112,19 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
     }
   }
 
-  /** @docs-private */
   focus() {
+    this._elementRef.nativeElement.focus();
+  }
+
+  /** @docs-private */
+  _handleFocus() {
     this.focused = true;
     this.emitState();
 
   }
 
   /** @docs-private */
-  blur() {
+  _handleBlur() {
     this.focused = false;
     this.emitState(true);
   }
