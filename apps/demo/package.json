@@ -48,6 +48,7 @@
     "@daffodil/product-configurable": "0.0.0-PLACEHOLDER",
     "@daffodil/router": "0.0.0-PLACEHOLDER",
     "@daffodil/related-products": "0.0.0-PLACEHOLDER",
+    "@daffodil/storefront": "0.0.0-PLACEHOLDER",
     "@daffodil/upsell-products": "0.0.0-PLACEHOLDER"
   }
 }

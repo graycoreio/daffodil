@@ -1,0 +1,159 @@
+import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  UntypedFormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { By } from '@angular/platform-browser';
+
+import { DaffFormFieldComponent } from '@daffodil/design/form-field';
+import { DaffSfQuantityFieldComponent } from '@daffodil/storefront/quantity-field';
+
+import { DaffSfQuantityInputComponent } from './quantity-input/quantity-input.component';
+import { DaffSfQuantitySelectComponent } from './quantity-select/quantity-select.component';
+
+@Component({
+  template: `
+    <daff-sf-quantity-field
+      [formControl]="formControl"
+      [min]="minValue"
+      [max]="maxValue"
+      [selectMax]="selectMaxValue"
+    ></daff-sf-quantity-field>
+  `,
+  imports: [
+    DaffSfQuantityFieldComponent,
+    DaffSfQuantityInputComponent,
+    DaffSfQuantitySelectComponent,
+    ReactiveFormsModule,
+  ],
+})
+class WrapperComponent {
+  minValue = 0;
+  maxValue = 50;
+  selectMaxValue = 10;
+  formControl = new UntypedFormControl(1);
+}
+
+describe('@daffodil/storefront/quantity-field | DaffSfQuantityFieldComponent', () => {
+  let wrapper: WrapperComponent;
+  let component: DaffSfQuantityFieldComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
+
+  let selectComponent: DaffSfQuantitySelectComponent;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        WrapperComponent,
+      ],
+      providers: [
+        {
+          provide: DaffFormFieldComponent,
+        },
+      ],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
+    fixture.detectChanges();
+
+    component = fixture.debugElement.query(By.css('daff-sf-quantity-field')).componentInstance;
+    selectComponent = fixture.debugElement.query(By.css('daff-sf-quantity-select')).componentInstance;
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  describe('on <daff-sf-quantity-select>', () => {
+    it('should set the select max prop to selectMax', () => {
+      expect(selectComponent.max).toEqual(wrapper.selectMaxValue);
+    });
+
+    it('should set the select extendable prop to true', () => {
+      expect(selectComponent.extendable).toBeTrue();
+    });
+
+    describe('when the max value is less than selectMax', () => {
+      beforeEach(() => {
+        wrapper.maxValue = 5;
+        fixture.detectChanges();
+      });
+
+      it('should set the select max prop to max', () => {
+        expect(selectComponent.max).toEqual(wrapper.maxValue);
+      });
+
+      it('should set the select extendable prop to false', () => {
+        expect(selectComponent.extendable).toBeFalse();
+      });
+    });
+  });
+
+  describe('when the input value exceeds the selectMax value', () => {
+
+    beforeEach(() => {
+      const el: HTMLSelectElement = fixture.debugElement.query(By.css('daff-sf-quantity-select select')).nativeElement;
+      wrapper.formControl.patchValue(11);
+
+      fixture.detectChanges();
+    });
+
+    it('should render the quantity input', () => {
+      const el = fixture.debugElement.query(By.css('daff-sf-quantity-input'));
+
+      expect(el).toBeTruthy();
+    });
+
+    it('should not render the quantity select', () => {
+      const el = fixture.debugElement.query(By.css('daff-sf-quantity-select'));
+      expect(el).toBeFalsy();
+    });
+
+    describe('and the input is focused', () => {
+      beforeEach(() => {
+        const inputElement: HTMLInputElement = fixture.debugElement.query(By.css('daff-sf-quantity-input input')).nativeElement;
+        inputElement.dispatchEvent(new FocusEvent('focus'));
+        fixture.detectChanges();
+      });
+
+      it('should be focused', () => {
+        expect(component.focused).toBeTrue();
+      });
+    });
+
+    describe('and the input is not focused', () => {
+      it('should not be focused', () => {
+        expect(component.focused).toBeFalse();
+      });
+    });
+  });
+
+  describe('when the select value is less than the selectMax value', () => {
+    describe('and the select is focused', () => {
+      beforeEach(() => {
+        const selectElement: HTMLSelectElement = fixture.debugElement.query(By.css('daff-sf-quantity-select select')).nativeElement;
+        selectElement.dispatchEvent(new FocusEvent('focus'));
+        fixture.detectChanges();
+      });
+
+      it('should be focused', () => {
+        expect(component.focused).toBeTrue();
+      });
+    });
+
+    describe('and the select is not focused', () => {
+      it('should not be focused', () => {
+        expect(component.focused).toBeUndefined();
+      });
+    });
+  });
+});

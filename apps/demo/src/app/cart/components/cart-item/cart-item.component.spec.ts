@@ -17,14 +17,10 @@ import {
 } from '@daffodil/cart/state/testing';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
 import { DaffFormFieldModule } from '@daffodil/design/form-field';
-import {
-  DaffQuantityFieldComponent,
-  DaffQuantityFieldModule,
-} from '@daffodil/design/quantity-field';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
+import { DaffSfQuantityFieldComponent } from '@daffodil/storefront/quantity-field';
 
 import { CartItemComponent } from './cart-item.component';
-
 
 @Component({
   template: '<demo-cart-item [item]="cartItemValue"></demo-cart-item>',
@@ -38,7 +34,7 @@ describe('CartItemComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let cartItemComponent;
-  let quantityFieldComponent: DaffQuantityFieldComponent;
+  let quantityFieldComponent: DaffSfQuantityFieldComponent;
   let router: Router;
   let cartItemFactory: DaffCartItemFactory;
   let productImageFactory: DaffProductImageFactory;
@@ -49,10 +45,10 @@ describe('CartItemComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffQuantityFieldModule,
         DaffCartStateTestingModule,
         ReactiveFormsModule,
         DaffFormFieldModule,
+        DaffSfQuantityFieldComponent,
       ],
       declarations: [
         CartItemComponent,
@@ -75,7 +71,7 @@ describe('CartItemComponent', () => {
 
     wrapper.cartItemValue = mockCartItem;
     cartItemComponent = fixture.debugElement.query(By.css('demo-cart-item'));
-    quantityFieldComponent = fixture.debugElement.query(By.css('daff-quantity-field')).componentInstance;
+    quantityFieldComponent = fixture.debugElement.query(By.css('daff-sf-quantity-field')).componentInstance;
 
     fixture.detectChanges();
   });
@@ -88,7 +84,7 @@ describe('CartItemComponent', () => {
     expect(cartItemComponent.componentInstance.item).toEqual(mockCartItem);
   });
 
-  it('renders a <daff-quantity-field>', () => {
+  it('renders a <daff-sf-quantity-field>', () => {
     expect(quantityFieldComponent).not.toBeNull();
   });
 

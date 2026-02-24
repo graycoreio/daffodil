@@ -18,9 +18,9 @@ import { StoreModule } from '@ngrx/store';
 import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
 import { DaffContainerComponent } from '@daffodil/design/container';
 import { DaffFormFieldComponent } from '@daffodil/design/form-field';
-import { DaffQuantityFieldComponent } from '@daffodil/design/quantity-field';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffSfQuantityFieldComponent } from '@daffodil/storefront/quantity-field';
 
 import { ProductComponent } from './product.component';
 
@@ -56,8 +56,8 @@ describe('ProductComponent', () => {
         ReactiveFormsModule,
         DaffContainerComponent,
         DAFF_ACCORDION_COMPONENTS,
-        DaffQuantityFieldComponent,
         DaffFormFieldComponent,
+        DaffSfQuantityFieldComponent,
         WrapperComponent,
         StoreModule.forRoot({}),
       ],

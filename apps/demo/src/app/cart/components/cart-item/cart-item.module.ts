@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { DaffFormFieldModule } from '@daffodil/design/form-field';
-import { DaffQuantityFieldModule } from '@daffodil/design/quantity-field';
+import { DaffSfQuantityFieldComponent } from '@daffodil/storefront/quantity-field';
 
 import { CartItemComponent } from './cart-item.component';
 
@@ -12,7 +12,7 @@ import { CartItemComponent } from './cart-item.component';
     CommonModule,
     ReactiveFormsModule,
     DaffFormFieldModule,
-    DaffQuantityFieldModule,
+    DaffSfQuantityFieldComponent,
   ],
   declarations: [
     CartItemComponent,
