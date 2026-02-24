@@ -13,7 +13,7 @@ import { EMPTY } from 'rxjs';
 
 import { DaffArticleHeadingLinkComponent } from './heading-link.component';
 
-describe('DaffArticleHeadingLinkComponent', () => {
+describe('@daffodil/design/article | DaffArticleHeadingLinkComponent', () => {
   let component: DaffArticleHeadingLinkComponent;
   let fixture: ComponentFixture<DaffArticleHeadingLinkComponent>;
   let button: HTMLButtonElement;

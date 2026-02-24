@@ -8,7 +8,7 @@ import { By } from '@angular/platform-browser';
 
 import { DaffArticleCopyButtonComponent } from './copy-button.component';
 
-describe('@daffodil/docs | DaffArticleCopyButtonComponent', () => {
+describe('@daffodil/design/article | DaffArticleCopyButtonComponent', () => {
   let component: DaffArticleCopyButtonComponent;
   let fixture: ComponentFixture<DaffArticleCopyButtonComponent>;
   let copyButton: HTMLButtonElement;

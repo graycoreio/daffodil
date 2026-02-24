@@ -90,6 +90,12 @@
 					}
 				}
 			}
+
+			.daff-article-heading-link {
+				&__button {
+					color: daff-color($neutral, 70);
+				}
+			}
 		}
 
 		@include dark($mode) {
@@ -166,6 +172,12 @@
 							border-bottom: 1px solid $table-border-dark;
 						}
 					}
+				}
+			}
+
+			.daff-article-heading-link {
+				&__button {
+					color: daff-color($neutral, 30);
 				}
 			}
 		}

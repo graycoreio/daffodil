@@ -27,7 +27,7 @@ import { DAFF_ICON_BUTTON_COMPONENTS } from '@daffodil/design/button';
 @Component({
   selector: 'daff-article-copy-button',
   templateUrl: './copy-button.component.html',
-  styleUrls: ['./copy-button.component.scss'],
+  styleUrl: './copy-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FaIconComponent,

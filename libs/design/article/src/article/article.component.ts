@@ -1,4 +1,3 @@
-/* eslint-disable quote-props */
 import {
   Component,
   ViewEncapsulation,
@@ -19,14 +18,17 @@ import { DaffArticleHeadingLinkService } from '../article-heading-link/service/h
 @Component({
   selector: 'daff-article',
   template: '<ng-content></ng-content>',
-  styleUrls: ['./article.component.scss'],
+  styleUrl: './article.component.scss',
   host: {
-    'class': 'daff-article',
-    'role': 'article',
+    class: 'daff-article',
+    role: 'article',
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DaffArticleCopyButtonService, DaffArticleHeadingLinkService],
+  providers: [
+    DaffArticleCopyButtonService,
+    DaffArticleHeadingLinkService,
+  ],
 })
 export class DaffArticleComponent {
   constructor(
