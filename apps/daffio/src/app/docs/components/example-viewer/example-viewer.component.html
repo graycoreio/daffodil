@@ -1,6 +1,6 @@
-@if (exampleComponent.hasValue() && sourceFiles.hasValue()) {
+@if (exampleComponent.hasValue()) {
 	<daffio-example-viewer-preview [exampleComponent]="exampleComponent.value()" [simple]="simple()"></daffio-example-viewer-preview>
-	@if (!simple()) {
+	@if (!simple() && sourceFiles.hasValue()) {
 		<daffio-example-viewer-code [source]="sourceFiles.value()"></daffio-example-viewer-code>
 	}
 }
