@@ -39,8 +39,8 @@ import {
   ],
   host: {
     class: 'daff-native-select',
-    '(focus)': 'focus()',
-    '(blur)': 'blur()',
+    '(focus)': '_handleFocus()',
+    '(blur)': '_handleBlur()',
     '[attr.id]': '_id',
     '[attr.aria-describedby]': 'ariaDescribedBy',
     '[disabled]': 'disabledAttribute',
@@ -70,6 +70,22 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
     return this.formField?.id;
   };
 
+  constructor(
+    /**
+     * @docs-private
+     */
+    @Optional() @Self() public ngControl: NgControl,
+    private _elementRef: ElementRef<HTMLInputElement>,
+    // @Optional is intentional so that we can control the error message thrown when the DaffFormFieldComponent is not used.
+    @Optional() private formField: DaffFormFieldComponent,
+  ) {
+    super(ngControl);
+
+    if(!this.formField) {
+      throw new Error('DaffNativeSelectComponent needs to be used with the DaffFormFieldComponent.');
+    }
+  }
+
   /**
    * @docs-private
    */
@@ -94,6 +110,9 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
    * @docs-private
    */
   get disabledAttribute() {
+    if (this.ngControl) {
+      return null;
+    }
     return this.disabled || null;
   }
 
@@ -119,10 +138,14 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
     return this.required || null;
   }
 
+  focus() {
+    this._elementRef.nativeElement.focus();
+  }
+
   /**
    * @docs-private
    */
-  focus() {
+  _handleFocus() {
     this.focused = true;
     this.emitState();
   }
@@ -130,25 +153,9 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
   /**
    * @docs-private
    */
-  blur() {
+  _handleBlur() {
     this.focused = false;
     this.emitState(true);
-  }
-
-  constructor(
-    /**
-     * @docs-private
-     */
-    @Optional() @Self() public ngControl: NgControl,
-    private _elementRef: ElementRef<HTMLInputElement>,
-    // @Optional is intentional so that we can control the error message thrown when the DaffFormFieldComponent is not used.
-    @Optional() private formField: DaffFormFieldComponent,
-  ) {
-    super(ngControl);
-
-    if(!this.formField) {
-      throw new Error('DaffNativeSelectComponent needs to be used with the DaffFormFieldComponent.');
-    }
   }
 
   /** @docs-private */
