@@ -4,10 +4,30 @@
 	$black: daff-get-base-color($theme, 'black');
 	$white: daff-get-base-color($theme, 'white');
 
-	.daff-docs-color {
-		&__palette {
+	.daff-docs-color-palette {
+		color: $black;
+
+		> * {
+			&:nth-child(n + 7) {
+				color: $white;
+			}
+		}
+
+		&__name {
+			color: $white;
+		}
+
+		&__brand-daff-yellow {
+			.daff-docs-color-palette__name {
+				color: $black;
+			}
+
 			> * {
-				&:nth-child(n + 6) {
+				&:nth-child(n + 7) {
+					color: $black;
+				}
+
+				&:last-child {
 					color: $white;
 				}
 			}

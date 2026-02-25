@@ -23,14 +23,12 @@ import { DaffDocsPaletteShadeSortPipe } from './shade-sort.pipe';
   templateUrl: './color-palettes.component.html',
   styleUrls: ['./color-palettes.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     KeyValuePipe,
     DaffDocsPaletteShadeSortPipe,
   ],
 })
 export class DaffDocsColorPalettesComponent {
-  readonly COLOR = DaffDocsSassType.COLOR;
   readonly MAP = DaffDocsSassType.MAP;
 
   /**

@@ -1,25 +1,13 @@
-<div class="daff-docs-color__grid">
-  @for (palette of palettes(); track palette.context.name) {
-    <div class="daff-docs-color__palette daff-docs-color__brand-{{palette.context.name.toLowerCase()}}">
-			<div>{{palette.context.name}}</div>
-			@switch (palette.context.parsedValue.type) {
-				@case (COLOR) {
-					<div style="background-color: {{palette.context.parsedValue.parsed}};">
-						<span class="daff-docs-color__hex">{{palette.context.parsedValue.raw}}</span>
-						<span class="daff-docs-color__hue">{{palette.context.parsedValue.parsed}}</span>
-					</div>
-				}
-				@case (MAP) {
-					@if (palette.context.parsedValue.parsed) {
-						@for (shade of palette.context.parsedValue.parsed | keyvalue | daffDocsPaletteShadeSort; track shade.key) {
-							<div style="background-color: {{shade.value}};">
-								<span class="daff-docs-color__hex">{{shade.key}}</span>
-								<span class="daff-docs-color__hue">{{shade.value}}</span>
-							</div>
-						}
-					}
-				}
+@for (palette of palettes(); track palette.context.name) {
+	@if (palette.context.parsedValue.type === MAP && palette.context.parsedValue.parsed) {
+		<div class="daff-docs-color-palette daff-docs-color-palette__brand-{{palette.context.name.toLowerCase()}}">
+			<div class="daff-docs-color-palette__name" style="background-color: {{palette.context.parsedValue.parsed['60']}};">{{palette.context.name}}</div>
+			@for (shade of palette.context.parsedValue.parsed | keyvalue | daffDocsPaletteShadeSort; track shade.key) {
+				<div style="background-color: {{shade.value}};">
+					<span class="daff-docs-color-palette__hex">{{shade.key}}</span>
+					<span class="daff-docs-color-palette__hue">{{shade.value}}</span>
+				</div>
 			}
-    </div>
-  }
-</div>
+		</div>
+	}
+}

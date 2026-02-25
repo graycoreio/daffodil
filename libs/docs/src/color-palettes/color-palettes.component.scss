@@ -1,48 +1,46 @@
 @use 'utilities' as daff;
 
-.daff-docs-color {
-	&__grid {
-		display: grid;
-		grid-gap: 1.5rem;
-		grid-template-columns: 1fr;
+:host {
+	display: grid;
+	grid-gap: 1.5rem;
+	grid-template-columns: 1fr;
 
-		@include daff.breakpoint(tablet) {
-			grid-template-columns: repeat(2, 1fr);
+	@include daff.breakpoint(tablet) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include daff.breakpoint(big-tablet) {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.daff-docs-color-palette {
+	display: block;
+
+	> * {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 1rem;
+		height: 3rem;
+
+		&:first-child {
+			border-top-left-radius: 0.5rem;
+			border-top-right-radius: 0.5rem;
 		}
 
-		@include daff.breakpoint(big-tablet) {
-			grid-template-columns: repeat(3, 1fr);
+		&:last-child {
+			border-bottom-left-radius: 0.5rem;
+			border-bottom-right-radius: 0.5rem;
+		}
+
+		&:nth-child(6) {
+			height: 4rem;
 		}
 	}
 
-	&__palette {
-		display: block;
-
-		> * {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			padding: 0 1rem;
-			height: 3rem;
-
-			&:first-child {
-				border-top-left-radius: 0.5rem;
-				border-top-right-radius: 0.5rem;
-			}
-
-			&:last-child {
-				border-bottom-left-radius: 0.5rem;
-				border-bottom-right-radius: 0.5rem;
-			}
-
-			&:nth-child(6) {
-				height: 4rem;
-			}
-		}
-
-		&__brand-yellow {
-			grid-area: brand-yellow;
-		}
+	&__brand-yellow {
+		grid-area: brand-yellow;
 	}
 
 	&__hue {
