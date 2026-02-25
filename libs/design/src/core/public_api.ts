@@ -21,4 +21,3 @@ export * from './selectable/public_api';
 export * from './sticky/public_api';
 export * from './disableable/public_api';
 export * from './loadable/public_api';
-export * from './error-state-matcher/public_api';

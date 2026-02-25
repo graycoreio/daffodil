@@ -96,7 +96,6 @@ describe('DemoCheckoutShippingOptionsComponent', () => {
 
       it('should set errorState to false', () => {
         shippingOptionsComponent.group.controls['id'].setValue('valid');
-        shippingOptionsComponent.ngDoCheck();
 
         expect(shippingOptionsComponent.errorState).toBeFalsy();
       });
