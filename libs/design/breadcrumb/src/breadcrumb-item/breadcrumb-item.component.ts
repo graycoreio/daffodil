@@ -41,7 +41,10 @@ export class DaffBreadcrumbItemComponent {
    */
   @ViewChild('item', { read: TemplateRef, static: true }) itemRef: TemplateRef<any>;
 
-  private _active = false;
+  /**
+   * @docs-private
+   */
+  _active = false;
 
   constructor( private cdRef: ChangeDetectorRef ) {}
 

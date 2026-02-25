@@ -1,6 +1,7 @@
 @for (breadcrumbItem of _computedBreadcrumbItems(); track breadcrumbItem; let index = $index) {
 	@if (breadcrumbItem.type === 'breadcrumb') {
-		<li class="daff-breadcrumb__item">
+		<li class="daff-breadcrumb__item"
+			[class.active]="breadcrumbItem.item._active">
 			<ng-container *ngTemplateOutlet="breadcrumbItem.item.itemRef"></ng-container>
 		</li>
 	} @else {

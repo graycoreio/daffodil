@@ -103,7 +103,7 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbComponent', () => {
   });
 
   beforeEach(() => {
-    spyOn(DaffBreadcrumbItemComponent.prototype, 'setActive');
+    spyOn(DaffBreadcrumbItemComponent.prototype, 'setActive').and.callThrough();
   });
 
   it('should create', () => {
@@ -153,6 +153,18 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbComponent', () => {
       const allBreadcrumbItems = breadcrumbComponent._breadcrumbItems();
       expect(fullMenuItems.length).toBe(3);
       expect(fullMenuItems).toEqual(allBreadcrumbItems.slice(0, allBreadcrumbItems.length - 1));
+    });
+
+    it('should have the active class only on the last breadcrumb item', () => {
+      const items = breadcrumbComponent._breadcrumbItems();
+      const nonLastItems = items.slice(0, items.length - 1);
+      const lastItem = items[items.length - 1];
+
+      nonLastItems.forEach(item => {
+        expect(item._active).toBe(false);
+      });
+
+      expect(lastItem._active).toBe(true);
     });
   });
 
