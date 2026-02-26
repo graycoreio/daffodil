@@ -8,22 +8,22 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import {
-  UntypedFormGroup,
   UntypedFormControl,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DAFF_RADIO_COMPONENTS } from '@daffodil/design/radio';
-
-import { DaffRadioSetComponent } from './radio-set.component';
+import {
+  DAFF_RADIO_COMPONENTS,
+  DaffRadioSetComponent,
+} from '@daffodil/design/radio';
 
 @Component({
   template: `
-    <daff-radio-set [formGroup]="radioGroup" name="fruit">
-      <daff-radio formControlName="fruit" value="apple">Apple</daff-radio>
-      <daff-radio formControlName="fruit" value="grape">Grape</daff-radio>
-      <daff-radio formControlName="fruit" value="peach">Peach</daff-radio>
+    <daff-radio-set [formControl]="fruits" name="fruit">
+      <daff-radio value="apple">Apple</daff-radio>
+      <daff-radio value="grape">Grape</daff-radio>
+      <daff-radio value="peach">Peach</daff-radio>
     </daff-radio-set>
   `,
   imports: [
@@ -32,9 +32,7 @@ import { DaffRadioSetComponent } from './radio-set.component';
   ],
 })
 class WrapperComponent {
-  radioGroup = new UntypedFormGroup({
-    fruit: new UntypedFormControl(),
-  });
+  fruits = new UntypedFormControl();
 }
 
 describe('@daffodil/design/radio | DaffRadioSetComponent | Defaults', () => {
@@ -65,11 +63,10 @@ describe('@daffodil/design/radio | DaffRadioSetComponent | Defaults', () => {
   });
 
   it('should take a name as an input', () => {
-    expect(component.name).toBe('fruit');
+    expect(component.name()).toBe('fruit');
   });
 
   it('should have a role of radiogroup', () => {
-    const roleAttribute = de.nativeElement.getAttribute('role');
-    expect(roleAttribute).toBe('radiogroup');
+    expect(de.nativeElement.getAttribute('role')).toBe('radiogroup');
   });
 });

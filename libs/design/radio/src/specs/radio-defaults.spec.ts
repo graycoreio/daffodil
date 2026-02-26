@@ -3,38 +3,42 @@ import {
   DebugElement,
 } from '@angular/core';
 import {
-  ComponentFixture,
   waitForAsync,
+  ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffRadioComponent } from '@daffodil/design/radio';
+import {
+  DAFF_RADIO_COMPONENTS,
+  DaffRadioComponent,
+} from '@daffodil/design/radio';
 
 @Component({
   template: `
-    <daff-radio name="test" value="testValue" aria-labelledby="user" aria-label="test"></daff-radio>
+    <daff-radio-set>
+      <daff-radio value="visa">Visa</daff-radio>
+      <daff-radio value="mastercard">MasterCard</daff-radio>
+    </daff-radio-set>
   `,
   imports: [
-    DaffRadioComponent,
-    ReactiveFormsModule,
-
+    DAFF_RADIO_COMPONENTS,
   ],
 })
-
 class WrapperComponent { }
 
-describe('@daffodil/design/radio | DaffRadioComponent | Accessibility', () => {
-  let fixture: ComponentFixture<WrapperComponent>;
+describe('@daffodil/design/radio | DaffRadioComponent | Defaults', () => {
   let wrapper: WrapperComponent;
   let component: DaffRadioComponent;
   let de: DebugElement;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         WrapperComponent,
+        ReactiveFormsModule,
       ],
     })
       .compileComponents();
@@ -53,15 +57,14 @@ describe('@daffodil/design/radio | DaffRadioComponent | Accessibility', () => {
   });
 
   it('should have a role of radio', () => {
-    const roleAttribute = de.nativeElement.getAttribute('role');
-    expect(roleAttribute).toBe('radio');
+    expect(de.nativeElement.getAttribute('role')).toBe('radio');
   });
 
-  it('should take `label` as an input', () => {
-    expect(component.label).toBe('test');
+  it('should take a value as an input', () => {
+    expect(component.value()).toEqual('visa');
   });
 
-  it('should take `aria-labelledby` as an input', () => {
-    expect(component.labelledby).toBe('user');
+  it('should have a generated id', () => {
+    expect(component.id()).toMatch('daff-radio-[0-9]*');
   });
 });

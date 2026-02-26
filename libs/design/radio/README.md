@@ -1,8 +1,8 @@
 # Radio
-Radio is used to select a single value from a selection of values.
+Radio allows users to select a single value from a group of options.
 
 ## Overview
-It can be hooked into Angular's `FormControl` to accomodate custom functionality. The `DaffRadioSetComponent` serves as a wrapper around a logical group of radios to provide styling.
+Use radio when you need users to pick exactly one option from a visible list of choices. Radio buttons are ideal when users need to see and compare all available options at once. It **cannot** be used by itself and must be contained within a `<daff-radio-set>`.
 
 <design-land-example-viewer-container example="basic-radio"></design-land-example-viewer-container>
 
@@ -46,7 +46,44 @@ import { CustomComponent } from './custom.component';
 export class CustomComponentModule { }
 ```
 
-> Deprecation notice: This method is deprecated. It's recommended to update all custom components to standalone.
+> **Warning**
+>
+> This method is deprecated. It's recommended to update all custom components to standalone.
+
+## Anatomy
+Radio must be used inside `<daff-radio-set>` to enable proper state management and grouping. The radio set component manages the selected value and handles the shared `name` attribute for the group.
+
+### Basic structure
+Use `<daff-radio-set>` to group related radio buttons and `<daff-radio>` for individual options:
+
+```html
+<daff-radio-set name="cardType" value="visa">
+  Card Type
+  <daff-radio value="visa">Visa</daff-radio>
+  <daff-radio value="mastercard">MasterCard</daff-radio>
+  <daff-radio value="amex">American Express</daff-radio>
+</daff-radio-set>
+```
+
+## Reactive forms
+Radio can be used with Angular's reactive forms by binding a `FormControl` to the radio set:
+
+<design-land-example-viewer-container example="radio-with-control"></design-land-example-viewer-container>
 
 ## Accessibility
-Radio uses native `<input>` HTML elements to ensure an accesible experience by default. It supports inputs to customize the experience for accessibility by allowing native input for `aria-label` and `aria-labelledby`.
+Radio follows the [Radio Group WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/). It uses native `<input type="radio">` elements to ensure an accessible experience by default.
+
+### Daffodil provides
+- Native radio button semantics with proper grouping
+- `aria-labelledby` on the `radiogroup` associated with the `<daff-form-label>`
+
+### Developer responsibilities
+- Always provide a visible label for the radio set using `<daff-form-label>`
+- Ensure each radio option has descriptive label text
+
+### Keyboard interactions
+| Key | Action |
+| --- | ------ |
+| `Tab` | Move focus to the radio group |
+| `Up Arrow` / `Left Arrow` | Move focus to and select the previous option |
+| `Down Arrow` / `Right Arrow` | Move focus to and select the next option |

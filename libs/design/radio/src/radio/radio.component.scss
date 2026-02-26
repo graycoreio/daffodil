@@ -1,0 +1,59 @@
+@use '../../../scss/interactions';
+// stylelint-disable selector-class-pattern
+@mixin radio-circle {
+	position: absolute;
+	border-radius: 50%;
+	height: 1.25rem;
+	width: 1.25rem;
+	left: 0;
+	top: 0;
+}
+
+:host {
+	$root: '.daff-radio';
+	position: relative;
+	display: flex;
+
+	&.disabled,
+	&[disabled] {
+		opacity: 0.5;
+
+		#{$root}__wrapper {
+			cursor: not-allowed;
+		}
+	}
+
+	&.checked {
+		#{$root}__inner-circle {
+			transform: scale(0.6);
+		}
+	}
+
+	#{$root}__wrapper {
+		@include interactions.clickable();
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex-wrap: nowrap;
+	}
+
+	#{$root}__circle {
+		display: inline-block;
+		position: relative;
+		flex-shrink: 0;
+		height: 1.25rem;
+		width: 1.25rem;
+	}
+
+	#{$root}__outer-circle {
+		@include radio-circle();
+		transition: border 150ms;
+		box-sizing: border-box;
+	}
+
+	#{$root}__inner-circle {
+		@include radio-circle();
+		transform: scale(0);
+		transition: transform 150ms;
+	}
+}
