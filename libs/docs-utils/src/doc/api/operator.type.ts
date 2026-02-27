@@ -1,7 +1,6 @@
-import { DaffApiDocBase } from './base.type';
 import { DaffDocsApiFunction } from './function.type';
 import { DaffDocsApiRole } from '../../api/public_api';
 
-export interface DaffApiOperatorDoc extends DaffDocsApiFunction, DaffApiDocBase {
+export interface DaffApiOperatorDoc extends DaffDocsApiFunction {
   role: DaffDocsApiRole.OPERATOR;
 }

@@ -1,66 +1,15 @@
 import { Injectable } from '@angular/core';
-import { faker } from '@faker-js/faker/locale/en_US';
 
+import { sample } from '@daffodil/core';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import {
+  DaffApiResolverDoc,
   DaffDocsApiRole,
   DaffDocsApiType,
-  DaffDocKind,
 } from '@daffodil/docs-utils';
 
-/**
- * Mock DaffApiResolverDoc object.
- */
-export class MockDaffApiResolverDoc {
-
-  id = faker.string.uuid();
-  title = faker.lorem.words(3);
-  breadcrumbs = [];
-  kind = DaffDocKind.API;
-  contents = faker.lorem.paragraphs(2);
-  tableOfContents = [];
-  docType = DaffDocsApiType.CLASS;
-  role = <DaffDocsApiRole.RESOLVER>DaffDocsApiRole.RESOLVER;
-  examples = [];
-  description = faker.lorem.paragraph();
-  importExample = `import { ${faker.lorem.word()} } from '@daffodil/${faker.lorem.word()}';`;
-  sourceApiBlock = faker.lorem.paragraph();
-  slug = faker.helpers.slugify(faker.lorem.words(2));
-  name = faker.helpers.arrayElement([
-    'DaffCartResolver',
-    'DaffProductResolver',
-    'DaffCustomerResolver',
-    'DaffOrderResolver',
-  ]);
-  deprecated = faker.datatype.boolean() ? faker.lorem.sentence() : '';
-  typeParams = '';
-  props = [];
-  methods = [];
-  decorators = [];
-  extendsClauses = [];
-  implementsClauses = [];
-
-  isAbstract = false;
-  constructorDoc = {
-    name: 'constructor',
-    accessibility: 'public',
-    aliases: [],
-    isAbstract: false,
-    isStatic: false,
-    isReadonly: false,
-    isOptional: false,
-    isGetAccessor: false,
-    isSetAccessor: false,
-    typeParameters: '',
-    decorators: [],
-    parameterDocs: [],
-    description: 'Constructor for the resolver',
-    type: 'void',
-    deprecated: '',
-  };
-
-  providedIn = faker.helpers.arrayElement(['root', 'platform', 'any']);
-}
+import { DaffDocsApiFunctionFactory } from './function.factory';
+import { DaffApiServiceDocFactory } from './service-doc.factory';
 
 /**
  * Factory for creating DaffApiResolverDoc objects.
@@ -68,8 +17,64 @@ export class MockDaffApiResolverDoc {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffApiResolverDocFactory extends DaffModelFactory<any, typeof MockDaffApiResolverDoc> {
-  constructor() {
-    super(MockDaffApiResolverDoc);
+export class DaffApiResolverDocFactory extends DaffModelFactory<DaffApiResolverDoc> {
+  constructor(
+    private classFactory: DaffApiServiceDocFactory,
+    private functionFactory: DaffDocsApiFunctionFactory,
+  ) {
+    super();
+  }
+
+  override create<R extends Extract<DaffApiResolverDoc, {docType: DaffDocsApiType.CLASS}> = Extract<DaffApiResolverDoc, {docType: DaffDocsApiType.CLASS}>>(
+    partial: Partial<Extract<DaffApiResolverDoc, {docType: DaffDocsApiType.CLASS}>> & Extract<DaffApiResolverDoc, {docType: DaffDocsApiType.CLASS}> extends R
+      ? Partial<Extract<DaffApiResolverDoc, {docType: DaffDocsApiType.CLASS}>>
+      : R
+  ): Extract<DaffApiResolverDoc, {docType: DaffDocsApiType.CLASS}> & R;
+  override create<R extends Extract<DaffApiResolverDoc, {docType: DaffDocsApiType.FUNCTION}> = Extract<DaffApiResolverDoc, {docType: DaffDocsApiType.FUNCTION}>>(
+    partial: Partial<Extract<DaffApiResolverDoc, {docType: DaffDocsApiType.FUNCTION}>> & Extract<DaffApiResolverDoc, {docType: DaffDocsApiType.FUNCTION}> extends R
+      ? Partial<Extract<DaffApiResolverDoc, {docType: DaffDocsApiType.FUNCTION}>>
+      : R
+  ): Extract<DaffApiResolverDoc, {docType: DaffDocsApiType.FUNCTION}> & R;
+  override create<R extends DaffApiResolverDoc = DaffApiResolverDoc>(
+    partial: Partial<DaffApiResolverDoc> & DaffApiResolverDoc extends R
+      ? Partial<DaffApiResolverDoc>
+      : R,
+  ): DaffApiResolverDoc & R;
+  override create(partial?: Partial<DaffApiResolverDoc>): DaffApiResolverDoc;
+  override create(partial: Partial<DaffApiResolverDoc> = {}): DaffApiResolverDoc {
+    if (!partial) {
+      return {
+        ...sample([
+          {
+            ...this.classFactory.create(),
+            docType: DaffDocsApiType.CLASS,
+          },
+          {
+            ...this.functionFactory.create(),
+            docType: DaffDocsApiType.FUNCTION,
+          },
+        ]),
+        role: DaffDocsApiRole.RESOLVER,
+      };
+    }
+    switch (partial.docType) {
+      case DaffDocsApiType.CLASS:
+        return {
+          ...this.classFactory.create(),
+          ...partial,
+          role: DaffDocsApiRole.RESOLVER,
+          docType: DaffDocsApiType.CLASS,
+        };
+
+      case DaffDocsApiType.FUNCTION:
+        return {
+          ...this.functionFactory.create(partial),
+          role: DaffDocsApiRole.RESOLVER,
+          docType: DaffDocsApiType.FUNCTION,
+        };
+
+      default:
+        throw new TypeError('DaffApiResolverDocFactory requires that partials narrow the union type by specifying `docType`');
+    }
   }
 }

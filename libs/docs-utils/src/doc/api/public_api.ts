@@ -1,23 +1,48 @@
-export * from './action.type';
-export * from './base.type';
-export * from './class.type';
-export * from './component.type';
-export * from './constant.type';
-export * from './directive.type';
-export * from './doc.type';
-export * from './error.type';
-export * from './facade.type';
-export * from './function.type';
-export * from './guard.type';
-export * from './mock.type';
-export * from './model-factory.type';
-export * from './module.type';
-export * from './operator.type';
-export * from './pipe.type';
-export * from './provider.type';
-export * from './reducer.type';
-export * from './resolver.type';
-export * from './selector.type';
-export * from './service.type';
-export * from './token.type';
-export * from './type.type';
+export { DaffApiActionDoc } from './action.type';
+export { DaffApiDocBase } from './base.type';
+export {
+  DaffDocsApiClass,
+  DaffDocsApiClassProperty,
+} from './class.type';
+export { DaffApiComponentDoc } from './component.type';
+export {
+  DaffApiConstant,
+  DaffApiConstantDoc,
+} from './constant.type';
+export {
+  DaffApiDirective,
+  DaffApiDirectiveDoc,
+  DaffApiDirectiveInputDoc,
+  DaffDocsApiHostDirective,
+  DaffDocsApiHostDirectiveInheritedField,
+} from './directive.type';
+export { DaffApiDoc } from './doc.type';
+export { DaffApiErrorDoc } from './error.type';
+export { DaffApiHelperDoc } from './helper.type';
+export { DaffApiFacadeDoc } from './facade.type';
+export {
+  DaffDocsApiFunction,
+  DaffDocsApiFunctionParam,
+} from './function.type';
+export { DaffApiGuardDoc } from './guard.type';
+export { DaffApiMockDoc } from './mock.type';
+export { DaffApiModelFactoryDoc } from './model-factory.type';
+export { DaffApiModuleDoc } from './module.type';
+export { DaffApiOperatorDoc } from './operator.type';
+export { DaffApiPipeDoc } from './pipe.type';
+export { DaffApiProviderDoc } from './provider.type';
+export { DaffApiReducerDoc } from './reducer.type';
+export { DaffApiResolverDoc } from './resolver.type';
+export { DaffApiSelectorDoc } from './selector.type';
+export {
+  DaffApiService,
+  DaffApiServiceDoc,
+} from './service.type';
+export { DaffApiTokenDoc } from './token.type';
+export {
+  DaffApiType,
+  DaffApiTypeDoc,
+  DaffDocsApiHeritageInfo,
+  DaffDocsApiTypeMethod,
+  DaffDocsApiTypeProperty,
+} from './type.type';

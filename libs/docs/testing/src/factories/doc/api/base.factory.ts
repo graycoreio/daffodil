@@ -9,14 +9,14 @@ import {
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
+import { DaffBreadcrumbFactory } from '../../nav/public_api';
+import { MockBaseDoc } from '../base-doc.factory';
+
 /**
  * Mock DaffApiDocBase object.
  */
-export class MockDaffApiDocBase implements DaffApiDocBase {
-  id = faker.string.uuid();
-  title = faker.lorem.words(3);
-  breadcrumbs = [];
-  kind = DaffDocKind.API;
+export class MockDaffApiDocBase extends MockBaseDoc implements DaffApiDocBase {
+  override kind = DaffDocKind.API;
   contents = faker.lorem.paragraphs(2);
   tableOfContents = [];
   docType = faker.helpers.arrayElement(Object.values(DaffDocsApiType));
@@ -32,9 +32,7 @@ export class MockDaffApiDocBase implements DaffApiDocBase {
     `Daff${faker.helpers.arrayElement(['Component', 'Service', 'Interface', 'Type'])}`,
   ]);
   deprecated = faker.datatype.boolean() ? faker.lorem.sentence() : '';
-
-
-
+  package = `@daffodil/${faker.lorem.word()}`;
 }
 
 /**
@@ -44,7 +42,9 @@ export class MockDaffApiDocBase implements DaffApiDocBase {
   providedIn: 'root',
 })
 export class DaffApiDocBaseFactory extends DaffModelFactory<DaffApiDocBase, typeof MockDaffApiDocBase> {
-  constructor() {
-    super(MockDaffApiDocBase);
+  constructor(
+    breadcrumbFactory: DaffBreadcrumbFactory,
+  ) {
+    super(MockDaffApiDocBase, breadcrumbFactory);
   }
 }

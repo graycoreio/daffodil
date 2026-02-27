@@ -5,56 +5,23 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   DaffApiReducerDoc,
   DaffDocsApiRole,
-  DaffDocsApiType,
-  DaffDocKind,
 } from '@daffodil/docs-utils';
+
+import { DaffDocsApiFunctionParamFactory } from './function-param.factory';
+import { MockDaffDocsApiFunction } from './function.factory';
+import { DaffBreadcrumbFactory } from '../../nav/public_api';
 
 /**
  * Mock DaffApiReducerDoc object.
  */
-export class MockDaffApiReducerDoc implements DaffApiReducerDoc {
-
-  id = faker.string.uuid();
-  title = faker.lorem.words(3);
-  breadcrumbs = [];
-  kind = DaffDocKind.API;
-  contents = faker.lorem.paragraphs(2);
-  tableOfContents = [];
-  docType = DaffDocsApiType.FUNCTION;
-  role = <DaffDocsApiRole.REDUCER>DaffDocsApiRole.REDUCER;
-  examples = [];
-  description = faker.lorem.paragraph();
-  importExample = `import { ${faker.lorem.word()} } from '@daffodil/${faker.lorem.word()}';`;
-  sourceApiBlock = faker.lorem.paragraph();
-  slug = faker.helpers.slugify(faker.lorem.words(2));
-  name = faker.helpers.arrayElement([
+export class MockDaffApiReducerDoc extends MockDaffDocsApiFunction implements DaffApiReducerDoc {
+  override role: DaffDocsApiRole.REDUCER = DaffDocsApiRole.REDUCER;
+  override name = faker.helpers.arrayElement([
     'daffCartReducer',
     'daffProductReducer',
     'daffCustomerReducer',
     'daffOrderReducer',
   ]);
-  deprecated = faker.datatype.boolean() ? faker.lorem.sentence() : '';
-
-  typeParameters = '';
-  parameterDocs = [
-    {
-      name: 'state',
-      defaultValue: '',
-      isOptional: false,
-      isRestParam: false,
-      type: 'State',
-      description: 'The current state',
-    },
-    {
-      name: 'action',
-      defaultValue: '',
-      isOptional: false,
-      isRestParam: false,
-      type: 'Action',
-      description: 'The action to process',
-    },
-  ];
-  type = 'State';
 }
 
 /**
@@ -64,7 +31,14 @@ export class MockDaffApiReducerDoc implements DaffApiReducerDoc {
   providedIn: 'root',
 })
 export class DaffApiReducerDocFactory extends DaffModelFactory<DaffApiReducerDoc, typeof MockDaffApiReducerDoc> {
-  constructor() {
-    super(MockDaffApiReducerDoc);
+  constructor(
+    breadcrumbFactory: DaffBreadcrumbFactory,
+    paramFactory: DaffDocsApiFunctionParamFactory,
+  ) {
+    super(
+      MockDaffApiReducerDoc,
+      breadcrumbFactory,
+      paramFactory,
+    );
   }
 }

@@ -1,6 +1,6 @@
-import { DaffApiType } from './type.type';
+import { DaffApiService } from './service.type';
 import { DaffDocsApiRole } from '../../api/public_api';
 
-export interface DaffApiFacadeDoc extends DaffApiType {
+export interface DaffApiFacadeDoc extends DaffApiService {
   role: DaffDocsApiRole.FACADE;
 }

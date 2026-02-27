@@ -1,64 +1,15 @@
 import { Injectable } from '@angular/core';
-import { faker } from '@faker-js/faker/locale/en_US';
 
+import { sample } from '@daffodil/core';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import {
+  DaffApiGuardDoc,
   DaffDocsApiRole,
   DaffDocsApiType,
-  DaffDocKind,
 } from '@daffodil/docs-utils';
 
-/**
- * Mock DaffApiGuardDoc object.
- */
-export class MockDaffApiGuardDoc {
-  id = faker.string.uuid();
-  title = faker.lorem.words(3);
-  breadcrumbs = [];
-  kind = DaffDocKind.API;
-  contents = faker.lorem.paragraphs(2);
-  tableOfContents = [];
-  docType = DaffDocsApiType.CLASS;
-  role = <DaffDocsApiRole.GUARD>DaffDocsApiRole.GUARD;
-  examples = [];
-  description = faker.lorem.paragraph();
-  importExample = `import { ${faker.lorem.word()} } from '@daffodil/${faker.lorem.word()}';`;
-  sourceApiBlock = faker.lorem.paragraph();
-  slug = faker.helpers.slugify(faker.lorem.words(2));
-  name = faker.helpers.arrayElement([
-    'DaffAuthGuard',
-    'DaffCartGuard',
-    'DaffCustomerGuard',
-    'DaffAdminGuard',
-  ]);
-  deprecated = faker.datatype.boolean() ? faker.lorem.sentence() : '';
-
-  typeParams = '';
-  props = [];
-  methods = [];
-  decorators = [];
-  extendsClauses = [];
-  implementsClauses = [];
-
-  isAbstract = false;
-  constructorDoc = {
-    name: 'constructor',
-    accessibility: 'public',
-    aliases: [],
-    isAbstract: false,
-    isStatic: false,
-    isReadonly: false,
-    isOptional: false,
-    isGetAccessor: false,
-    isSetAccessor: false,
-    typeParameters: '',
-    decorators: [],
-    parameterDocs: [],
-    description: 'Constructor for the guard',
-    type: 'void',
-    deprecated: '',
-  };
-}
+import { DaffDocsApiFunctionFactory } from './function.factory';
+import { DaffApiServiceDocFactory } from './service-doc.factory';
 
 /**
  * Factory for creating DaffApiGuardDoc objects.
@@ -66,8 +17,64 @@ export class MockDaffApiGuardDoc {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffApiGuardDocFactory extends DaffModelFactory<any, typeof MockDaffApiGuardDoc> {
-  constructor() {
-    super(MockDaffApiGuardDoc);
+export class DaffApiGuardDocFactory extends DaffModelFactory<DaffApiGuardDoc> {
+  constructor(
+    private classFactory: DaffApiServiceDocFactory,
+    private functionFactory: DaffDocsApiFunctionFactory,
+  ) {
+    super();
+  }
+
+  override create<R extends Extract<DaffApiGuardDoc, {docType: DaffDocsApiType.CLASS}> = Extract<DaffApiGuardDoc, {docType: DaffDocsApiType.CLASS}>>(
+    partial: Partial<Extract<DaffApiGuardDoc, {docType: DaffDocsApiType.CLASS}>> & Extract<DaffApiGuardDoc, {docType: DaffDocsApiType.CLASS}> extends R
+      ? Partial<Extract<DaffApiGuardDoc, {docType: DaffDocsApiType.CLASS}>>
+      : R
+  ): Extract<DaffApiGuardDoc, {docType: DaffDocsApiType.CLASS}> & R;
+  override create<R extends Extract<DaffApiGuardDoc, {docType: DaffDocsApiType.FUNCTION}> = Extract<DaffApiGuardDoc, {docType: DaffDocsApiType.FUNCTION}>>(
+    partial: Partial<Extract<DaffApiGuardDoc, {docType: DaffDocsApiType.FUNCTION}>> & Extract<DaffApiGuardDoc, {docType: DaffDocsApiType.FUNCTION}> extends R
+      ? Partial<Extract<DaffApiGuardDoc, {docType: DaffDocsApiType.FUNCTION}>>
+      : R
+  ): Extract<DaffApiGuardDoc, {docType: DaffDocsApiType.FUNCTION}> & R;
+  override create<R extends DaffApiGuardDoc = DaffApiGuardDoc>(
+    partial: Partial<DaffApiGuardDoc> & DaffApiGuardDoc extends R
+      ? Partial<DaffApiGuardDoc>
+      : R,
+  ): DaffApiGuardDoc & R;
+  override create(partial?: Partial<DaffApiGuardDoc>): DaffApiGuardDoc;
+  override create(partial: Partial<DaffApiGuardDoc> = {}): DaffApiGuardDoc {
+    if (!partial) {
+      return {
+        ...sample([
+          {
+            ...this.classFactory.create(),
+            docType: DaffDocsApiType.CLASS,
+          },
+          {
+            ...this.functionFactory.create(),
+            docType: DaffDocsApiType.FUNCTION,
+          },
+        ]),
+        role: DaffDocsApiRole.GUARD,
+      };
+    }
+    switch (partial.docType) {
+      case DaffDocsApiType.CLASS:
+        return {
+          ...this.classFactory.create(),
+          ...partial,
+          role: DaffDocsApiRole.GUARD,
+          docType: DaffDocsApiType.CLASS,
+        };
+
+      case DaffDocsApiType.FUNCTION:
+        return {
+          ...this.functionFactory.create(partial),
+          role: DaffDocsApiRole.GUARD,
+          docType: DaffDocsApiType.FUNCTION,
+        };
+
+      default:
+        throw new TypeError('DaffApiGuardDocFactory requires that partials narrow the union type by specifying `docType`');
+    }
   }
 }

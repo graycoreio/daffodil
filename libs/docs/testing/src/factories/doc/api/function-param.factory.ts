@@ -9,6 +9,7 @@ import { DaffDocsApiFunctionParam } from '@daffodil/docs-utils';
  */
 export class MockDaffDocsApiFunctionParam implements DaffDocsApiFunctionParam {
   name = faker.hacker.noun();
+  anchor = faker.hacker.noun();
   defaultValue = faker.datatype.boolean() ? faker.lorem.word() : '';
   isOptional = faker.datatype.boolean();
   isRestParam = faker.datatype.boolean();

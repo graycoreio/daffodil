@@ -5,41 +5,21 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   DaffApiActionDoc,
   DaffDocsApiRole,
-  DaffDocsApiType,
-  DaffDocKind,
 } from '@daffodil/docs-utils';
+
+import { MockDaffApiType } from './public_api';
+import {
+  DaffBreadcrumbFactory,
+  DaffDocsApiDecoratorFactory,
+} from '../../public_api';
+import { DaffDocsApiTypeMethodFactory } from './type/method.factory';
+import { DaffDocsApiTypePropertyFactory } from './type/prop.factory';
 
 /**
  * Mock DaffApiActionDoc object.
  */
-export class MockDaffApiActionDoc implements DaffApiActionDoc {
-  id = faker.string.uuid();
-  title = faker.lorem.words(3);
-  breadcrumbs = [];
-  kind = DaffDocKind.API;
-  contents = faker.lorem.paragraphs(2);
-  tableOfContents = [];
-  docType = DaffDocsApiType.CLASS;
-  role = <DaffDocsApiRole.ACTION>DaffDocsApiRole.ACTION;
-  examples = [];
-  description = faker.lorem.paragraph();
-  importExample = `import { ${faker.lorem.word()} } from '@daffodil/${faker.lorem.word()}';`;
-  sourceApiBlock = faker.lorem.paragraph();
-  slug = faker.helpers.slugify(faker.lorem.words(2));
-  name = faker.helpers.arrayElement([
-    'LoadItemsAction',
-    'SaveItemAction',
-    'DeleteItemAction',
-    'UpdateItemAction',
-  ]);
-  deprecated = faker.datatype.boolean() ? faker.lorem.sentence() : '';
-
-  typeParams = '';
-  props = [];
-  methods = [];
-  decorators = [];
-  extendsClauses = [];
-  implementsClauses = [];
+export class MockDaffApiActionDoc extends MockDaffApiType implements DaffApiActionDoc {
+  override role: DaffDocsApiRole.ACTION = DaffDocsApiRole.ACTION;
 
   type = faker.helpers.arrayElement([
     '[Action] Load Items',
@@ -61,7 +41,18 @@ export class MockDaffApiActionDoc implements DaffApiActionDoc {
   providedIn: 'root',
 })
 export class DaffApiActionDocFactory extends DaffModelFactory<DaffApiActionDoc, typeof MockDaffApiActionDoc> {
-  constructor() {
-    super(MockDaffApiActionDoc);
+  constructor(
+    breadcrumbFactory: DaffBreadcrumbFactory,
+    decoratorFactory: DaffDocsApiDecoratorFactory,
+    propFactory: DaffDocsApiTypePropertyFactory,
+    methodFactory: DaffDocsApiTypeMethodFactory,
+  ) {
+    super(
+      MockDaffApiActionDoc,
+      breadcrumbFactory,
+      decoratorFactory,
+      propFactory,
+      methodFactory,
+    );
   }
 }

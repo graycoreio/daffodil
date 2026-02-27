@@ -1,10 +1,10 @@
-import { DaffApiType } from './type.type';
+import { DaffDocsApiClass } from './class.type';
 import {
   DaffDocsApiRef,
   DaffDocsApiRole,
 } from '../../api/public_api';
 
-export interface DaffApiMockDoc extends DaffApiType {
+export interface DaffApiMockDoc extends DaffDocsApiClass {
   role: DaffDocsApiRole.MOCK;
   model: DaffDocsApiRef;
 }

@@ -5,60 +5,25 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   DaffApiModelFactoryDoc,
   DaffDocsApiRole,
-  DaffDocsApiType,
-  DaffDocKind,
 } from '@daffodil/docs-utils';
+
+import { DaffDocsApiClassPropertyFactory } from './class-prop.factory';
+import { DaffDocsApiDecoratorFactory } from './decorator.factory';
+import { MockDaffApiService } from './service-doc.factory';
+import { DaffDocsApiTypeMethodFactory } from './type/method.factory';
+import { DaffBreadcrumbFactory } from '../../nav/public_api';
 
 /**
  * Mock DaffApiModelFactoryDoc object.
  */
-export class MockDaffApiModelFactoryDoc implements DaffApiModelFactoryDoc {
-  id = faker.string.uuid();
-  title = faker.lorem.words(3);
-  breadcrumbs = [];
-  kind = DaffDocKind.API;
-  contents = faker.lorem.paragraphs(2);
-  tableOfContents = [];
-  docType = DaffDocsApiType.CLASS;
-  role = <DaffDocsApiRole.MODEL_FACTORY>DaffDocsApiRole.MODEL_FACTORY;
-  examples = [];
-  description = faker.lorem.paragraph();
-  importExample = `import { ${faker.lorem.word()} } from '@daffodil/${faker.lorem.word()}';`;
-  sourceApiBlock = faker.lorem.paragraph();
-  slug = faker.helpers.slugify(faker.lorem.words(2));
-  name = faker.helpers.arrayElement([
+export class MockDaffApiModelFactoryDoc extends MockDaffApiService implements DaffApiModelFactoryDoc {
+  override role: DaffDocsApiRole.MODEL_FACTORY = DaffDocsApiRole.MODEL_FACTORY;
+  override name = faker.helpers.arrayElement([
     'DaffCartFactory',
     'DaffProductFactory',
     'DaffCustomerFactory',
     'DaffOrderFactory',
   ]);
-  deprecated = faker.datatype.boolean() ? faker.lorem.sentence() : '';
-
-  typeParams = '';
-  props = [];
-  methods = [];
-  decorators = [];
-  extendsClauses = [];
-  implementsClauses = [];
-
-  isAbstract = false;
-  constructorDoc = {
-    name: 'constructor',
-    accessibility: 'public',
-    aliases: [],
-    isAbstract: false,
-    isStatic: false,
-    isReadonly: false,
-    isOptional: false,
-    isGetAccessor: false,
-    isSetAccessor: false,
-    typeParameters: '',
-    decorators: [],
-    parameterDocs: [],
-    description: 'Constructor for the factory',
-    type: 'void',
-    deprecated: '',
-  };
   model = {
     label: faker.helpers.arrayElement(['DaffCart', 'DaffProduct', 'DaffCustomer', 'DaffOrder']),
     path: `/${faker.helpers.slugify(faker.lorem.words(2))}`,
@@ -72,7 +37,18 @@ export class MockDaffApiModelFactoryDoc implements DaffApiModelFactoryDoc {
   providedIn: 'root',
 })
 export class DaffApiModelFactoryDocFactory extends DaffModelFactory<DaffApiModelFactoryDoc, typeof MockDaffApiModelFactoryDoc> {
-  constructor() {
-    super(MockDaffApiModelFactoryDoc);
+  constructor(
+    breadcrumbFactory: DaffBreadcrumbFactory,
+    decoratorFactory: DaffDocsApiDecoratorFactory,
+    propFactory: DaffDocsApiClassPropertyFactory,
+    methodFactory: DaffDocsApiTypeMethodFactory,
+  ) {
+    super(
+      MockDaffApiModelFactoryDoc,
+      breadcrumbFactory,
+      decoratorFactory,
+      propFactory,
+      methodFactory,
+    );
   }
 }
