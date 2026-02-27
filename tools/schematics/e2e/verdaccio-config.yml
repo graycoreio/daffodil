@@ -1,0 +1,21 @@
+storage: /tmp/verdaccio-storage
+auth:
+  htpasswd:
+    file: /tmp/verdaccio-htpasswd
+    max_users: 100
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+packages:
+  '@daffodil/*':
+    access: $all
+    publish: $all
+  '**':
+    access: $all
+    proxy: npmjs
+server:
+  keepAliveTimeout: 60
+log:
+  type: stdout
+  format: pretty
+  level: warn

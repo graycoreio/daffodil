@@ -7,13 +7,24 @@ on:
     paths:
       - 'tools/schematics/**'
 
+env:
+  WORK_DIR: /tmp/daffodil-commerce-test
+  VERDACCIO_STORAGE: /tmp/verdaccio-storage
+  TEST_VERSION: 0.0.0-test.${{ github.run_id }}
+  REGISTRY_PORT: 4873
+  VERDACCIO_CONFIG: tools/schematics/e2e/verdaccio-config.yml
+  DAFFODIL_PACKAGES: >-
+    core
+    driver
+    product
+    dev-tools
+    navigation
+    external-router
+
 jobs:
-  e2e:
-    name: Build Commerce Schematics
+  setup:
+    name: Build
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [22.21.x]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -21,8 +32,244 @@ jobs:
 
       - uses: graycoreio/github-actions/setup-node@main
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 22.21.x
           use-stamp-cache: true
 
-      - name: Run Commerce Schematic tests
+      - name: Start Verdaccio
+        uses: ./.github/actions/start-verdaccio
+        with:
+          port: ${{ env.REGISTRY_PORT }}
+          config: ${{ env.VERDACCIO_CONFIG }}
+          storage: ${{ env.VERDACCIO_STORAGE }}
+
+      - name: Set test version
+        run: |
+          npm version "${{ env.TEST_VERSION }}" --no-git-tag-version
+          sed -i "s/version = '.*'/version = '${{ env.TEST_VERSION }}'/" \
+            tools/schematics/ng-add/generators/version.ts
+
+      - name: Build @daffodil/* packages
+        run: |
+          npx nx run-many -t build \
+            --projects=@daffodil/core,@daffodil/driver,@daffodil/product,@daffodil/dev-tools,@daffodil/navigation,@daffodil/external-router
+          cd tools/schematics && npm run build
+
+      - uses: graycoreio/github-actions/set-versions-from-root@main
+
+      - name: Publish @daffodil/* packages to Verdaccio
+        run: |
+          for pkg in ${{ env.DAFFODIL_PACKAGES }}; do
+            echo "--- Publishing @daffodil/$pkg ---"
+            cd "${{ github.workspace }}/dist/$pkg"
+            npm publish --ignore-scripts
+          done
+
+          echo "--- Publishing @daffodil/commerce ---"
+          cd "${{ github.workspace }}/dist/commerce"
+          npm publish --ignore-scripts
+
+      - name: Scaffold base apps
         run: bash tools/schematics/e2e/test-commerce-schematics.sh
+
+      - name: Cache base apps and Verdaccio storage
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ${{ env.WORK_DIR }}
+            ${{ env.VERDACCIO_STORAGE }}
+          key: commerce-test-${{ github.run_id }}
+
+  test:
+    name: "${{ matrix.name }}"
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: demo-driver
+            driver: demo
+            base: scss
+            app_type: standalone
+            routing: true
+            skip_package_json: false
+            succeed: true
+            build: true
+
+          - name: magento-driver
+            driver: magento
+            base: scss
+            app_type: standalone
+            routing: true
+            skip_package_json: false
+            succeed: true
+            build: true
+
+          - name: shopify-driver
+            driver: shopify
+            base: scss
+            app_type: standalone
+            routing: true
+            skip_package_json: false
+            succeed: true
+            build: true
+
+          - name: in-memory-driver
+            driver: in-memory
+            base: scss
+            app_type: standalone
+            routing: true
+            skip_package_json: false
+            succeed: true
+            build: true
+
+          - name: skip-package-json
+            driver: in-memory
+            base: scss
+            app_type: standalone
+            routing: true
+            skip_package_json: true
+            succeed: true
+            build: false
+
+          - name: module-app-rejection
+            driver: in-memory
+            base: scss
+            app_type: module
+            routing: true
+            skip_package_json: false
+            succeed: false
+            build: false
+
+          - name: main-ts-fallback
+            driver: in-memory
+            base: scss
+            app_type: main-ts-fallback
+            routing: true
+            skip_package_json: false
+            succeed: true
+            build: true
+
+          - name: css-style-failure
+            driver: in-memory
+            base: css
+            app_type: standalone
+            routing: true
+            skip_package_json: false
+            succeed: false
+            build: true
+
+          - name: no-app-routes
+            driver: in-memory
+            base: scss
+            app_type: standalone
+            routing: false
+            skip_package_json: false
+            succeed: true
+            build: true
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.21.x
+
+      - name: Restore base apps and Verdaccio storage
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            ${{ env.WORK_DIR }}
+            ${{ env.VERDACCIO_STORAGE }}
+          key: commerce-test-${{ github.run_id }}
+
+      - name: Start Verdaccio
+        uses: ./.github/actions/start-verdaccio
+        with:
+          port: ${{ env.REGISTRY_PORT }}
+          config: ${{ env.VERDACCIO_CONFIG }}
+          storage: ${{ env.VERDACCIO_STORAGE }}
+
+      - name: Copy base app
+        run: |
+          BASE_APP="${{ env.WORK_DIR }}/test-daff-app"
+          if [ "${{ matrix.base }}" = "css" ]; then
+            BASE_APP="${{ env.WORK_DIR }}/test-daff-app-css"
+          fi
+          TEST_DIR="${{ env.WORK_DIR }}/test-${{ matrix.name }}"
+          rm -rf "$TEST_DIR"
+          cp -a "$BASE_APP" "$TEST_DIR"
+
+      - name: Apply app modifications
+        working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
+        run: |
+          if [ "${{ matrix.app_type }}" = "module" ]; then
+          cat > "src/app/app-module.ts" <<'APPMOD'
+          import { NgModule } from '@angular/core';
+          import { BrowserModule } from '@angular/platform-browser';
+          import { AppComponent } from './app.component';
+
+          @NgModule({
+            declarations: [AppComponent],
+            imports: [BrowserModule],
+            bootstrap: [AppComponent]
+          })
+          export class AppModule {}
+          APPMOD
+          fi
+
+          if [ "${{ matrix.app_type }}" = "main-ts-fallback" ]; then
+          cat > "src/main.ts" <<'MAIN'
+          import { bootstrapApplication } from '@angular/platform-browser';
+          import { App } from './app/app';
+
+          bootstrapApplication(App, {
+            providers: []
+          });
+          MAIN
+          rm -f "src/app/app.config.ts"
+          fi
+
+          if [ "${{ matrix.routing }}" = "false" ]; then
+          rm -f "src/app/app.routes.ts"
+          fi
+
+      - name: Generate schematic
+        working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
+        run: |
+          EXTRA_FLAGS=""
+          if [ "${{ matrix.skip_package_json }}" = "true" ]; then
+            EXTRA_FLAGS="--skip-package-json"
+          fi
+
+          if [ "${{ matrix.succeed }}" = "true" ] || [ "${{ matrix.build }}" = "true" ]; then
+            CI=true npx ng generate @daffodil/commerce:ng-add \
+              --driver="${{ matrix.driver }}" \
+              --is-new-project \
+              --defaults \
+              $EXTRA_FLAGS
+          else
+            ! CI=true npx ng generate @daffodil/commerce:ng-add \
+              --driver="${{ matrix.driver }}" \
+              --is-new-project \
+              --defaults \
+              $EXTRA_FLAGS
+          fi
+
+      - name: Raise budget
+        if: matrix.driver == 'demo'
+        working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
+        run: |
+          sed -i 's/"maximumWarning": "[^"]*"/"maximumWarning": "2mb"/; s/"maximumError": "[^"]*"/"maximumError": "3mb"/' angular.json
+
+      - name: Run ng build
+        if: matrix.build
+        working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
+        run: |
+          if [ "${{ matrix.succeed }}" = "true" ]; then
+            npx ng build
+          else
+            ! npx ng build
+          fi
