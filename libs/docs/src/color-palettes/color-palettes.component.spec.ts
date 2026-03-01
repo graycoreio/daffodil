@@ -8,7 +8,8 @@ import { By } from '@angular/platform-browser';
 
 import {
   DaffDocsSassItemFactory,
-  provideDaffDocsSassFactories,
+  DaffDocsSassParsedPaletteFactory,
+  provideDaffDocsSassParsedValueFactories,
 } from '@daffodil/docs/testing';
 import {
   DaffDocsSassItem,
@@ -41,7 +42,9 @@ describe('@daffodil/docs-components | DaffDocsColorPalettesComponent', () => {
         WrapperComponent,
       ],
       providers: [
-        provideDaffDocsSassFactories(),
+        provideDaffDocsSassParsedValueFactories<DaffDocsSassParsedPaletteFactory>(
+          DaffDocsSassParsedPaletteFactory,
+        ),
       ],
     })
       .compileComponents();
@@ -69,7 +72,7 @@ describe('@daffodil/docs-components | DaffDocsColorPalettesComponent', () => {
       return;
     }
     wrapper.itemsValue.slice(0, 2).forEach((color) => {
-      const palette = fixture.debugElement.query(By.css(`.daff-docs-color__palette.daff-docs-color__brand-${color.context.name.toLowerCase()}`));
+      const palette = fixture.debugElement.query(By.css(`.daff-docs-color-palette.daff-docs-color-palette__brand-${color.context.name.toLowerCase()}`));
       expect(palette).toBeTruthy();
       if (color.context.parsedValue.type === DaffDocsSassType.MAP) {
         Object.keys(color.context.parsedValue.parsed).forEach((shade) => {
