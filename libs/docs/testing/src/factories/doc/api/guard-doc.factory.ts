@@ -42,7 +42,7 @@ export class DaffApiGuardDocFactory extends DaffModelFactory<DaffApiGuardDoc> {
   ): DaffApiGuardDoc & R;
   override create(partial?: Partial<DaffApiGuardDoc>): DaffApiGuardDoc;
   override create(partial: Partial<DaffApiGuardDoc> = {}): DaffApiGuardDoc {
-    if (!partial) {
+    if (!partial.docType) {
       return {
         ...sample([
           {
@@ -74,7 +74,7 @@ export class DaffApiGuardDocFactory extends DaffModelFactory<DaffApiGuardDoc> {
         };
 
       default:
-        throw new TypeError('DaffApiGuardDocFactory requires that partials narrow the union type by specifying `docType`');
+        throw new TypeError('DaffApiGuardDocFactory requires that partials narrow the union type by specifying `docType` to class or function');
     }
   }
 }

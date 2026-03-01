@@ -42,7 +42,7 @@ export class DaffApiHelperDocFactory extends DaffModelFactory<DaffApiHelperDoc> 
   ): DaffApiHelperDoc & R;
   override create<R extends DaffApiHelperDoc = DaffApiHelperDoc>(partial?: Partial<DaffApiHelperDoc>): DaffApiHelperDoc & R;
   override create<R extends DaffApiHelperDoc = DaffApiHelperDoc>(partial: Partial<DaffApiHelperDoc> = {}): DaffApiHelperDoc & R {
-    if (!partial) {
+    if (!partial.docType) {
       return {
         ...sample([
           {

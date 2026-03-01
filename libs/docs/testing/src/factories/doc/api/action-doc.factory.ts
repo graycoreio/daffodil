@@ -7,13 +7,11 @@ import {
   DaffDocsApiRole,
 } from '@daffodil/docs-utils';
 
-import { MockDaffApiType } from './public_api';
-import {
-  DaffBreadcrumbFactory,
-  DaffDocsApiDecoratorFactory,
-} from '../../public_api';
+import { DaffDocsApiDecoratorFactory } from './decorator.factory';
+import { MockDaffApiType } from './type/doc.factory';
 import { DaffDocsApiTypeMethodFactory } from './type/method.factory';
 import { DaffDocsApiTypePropertyFactory } from './type/prop.factory';
+import { DaffBreadcrumbFactory } from '../../nav/public_api';
 
 /**
  * Mock DaffApiActionDoc object.

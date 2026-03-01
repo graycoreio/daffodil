@@ -5,6 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   DaffApiDoc,
   DaffDocsApiRole,
+  DaffDocsApiType,
 } from '@daffodil/docs-utils';
 
 import { DaffApiActionDocFactory } from './action-doc.factory';
@@ -111,10 +112,22 @@ export class DaffApiDocFactory extends DaffModelFactory<DaffApiDoc> {
         return this.apiFacadeDocFactory.create(partial);
 
       case DaffDocsApiRole.GUARD:
-        return this.apiGuardDocFactory.create(partial);
+        return this.apiGuardDocFactory.create({
+          docType: faker.helpers.arrayElement([
+            DaffDocsApiType.CLASS,
+            DaffDocsApiType.FUNCTION,
+          ]),
+          ...partial,
+        });
 
       case DaffDocsApiRole.HELPER:
-        return this.apiHelperDocFactory.create(partial);
+        return this.apiHelperDocFactory.create({
+          docType: faker.helpers.arrayElement([
+            DaffDocsApiType.CLASS,
+            DaffDocsApiType.FUNCTION,
+          ]),
+          ...partial,
+        });
 
       case DaffDocsApiRole.MOCK:
         return this.apiMockDocFactory.create(partial);
@@ -138,7 +151,13 @@ export class DaffApiDocFactory extends DaffModelFactory<DaffApiDoc> {
         return this.apiReducerDocFactory.create(partial);
 
       case DaffDocsApiRole.RESOLVER:
-        return this.apiResolverDocFactory.create(partial);
+        return this.apiResolverDocFactory.create({
+          docType: faker.helpers.arrayElement([
+            DaffDocsApiType.CLASS,
+            DaffDocsApiType.FUNCTION,
+          ]),
+          ...partial,
+        });
 
       case DaffDocsApiRole.SELECTOR:
         return this.apiSelectorDocFactory.create(partial);

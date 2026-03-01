@@ -42,7 +42,7 @@ export class DaffApiResolverDocFactory extends DaffModelFactory<DaffApiResolverD
   ): DaffApiResolverDoc & R;
   override create(partial?: Partial<DaffApiResolverDoc>): DaffApiResolverDoc;
   override create(partial: Partial<DaffApiResolverDoc> = {}): DaffApiResolverDoc {
-    if (!partial) {
+    if (!partial.docType) {
       return {
         ...sample([
           {
