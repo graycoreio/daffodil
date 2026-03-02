@@ -1,9 +1,0 @@
-<div #content class="design-land-code-preview__content"></div>
-@if (example) {
-  <div class="design-land-code-preview__tab-wrapper">
-    @for (file of example.files; track file) {
-      <button class="design-land-code-preview__tab" [class.selected]="exampleFile === file" (click)="exampleFile = file">{{ file.language }}</button>
-    }
-  </div>
-  <pre class="design-land-code-preview__code-block"><code [class]="'hljs' + ' ' +exampleFile.language" [innerHtml]="exampleFile.content"></code></pre>
-}
