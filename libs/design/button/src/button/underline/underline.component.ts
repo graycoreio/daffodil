@@ -4,6 +4,8 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 
+import { DaffSpinnerComponent } from '@daffodil/design/spinner';
+
 import { DaffButtonBaseDirective } from '../button-base.directive';
 
 /**
@@ -36,5 +38,8 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DaffSpinnerComponent,
+  ],
 })
 export class DaffUnderlineButtonComponent extends DaffButtonBaseDirective {}

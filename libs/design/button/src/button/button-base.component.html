@@ -1,7 +1,12 @@
 @if (_prefix) {
   <ng-content select="[daffPrefix]"></ng-content>
 }
-<span class="daff-button__content"><ng-content></ng-content></span>
+@if (loading) {
+  <daff-spinner class="daff-button__loading" [size]="buttonSize"></daff-spinner>
+}
+<span class="daff-button__content">
+  <ng-content></ng-content>
+</span>
 @if (_suffix) {
   <ng-content select="[daffSuffix]"></ng-content>
 }

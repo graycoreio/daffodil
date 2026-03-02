@@ -8,15 +8,15 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
-  selector: 'sizable-button-example',
-  templateUrl: './sizable-button.component.html',
-  styleUrls: ['./sizable-button.component.scss'],
+  selector: 'button-sizes-example',
+  templateUrl: './button-sizes.component.html',
+  styleUrls: ['./button-sizes.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_BUTTON_COMPONENTS,
     FaIconComponent,
   ],
 })
-export class SizeableButtonExampleComponent {
+export class ButtonSizesExampleComponent {
   faPlus = faPlus;
 }

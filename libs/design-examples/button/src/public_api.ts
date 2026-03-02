@@ -1,11 +1,14 @@
 export { BUTTON_EXAMPLES } from './examples';
 
+export { provideDaffDesignButtonExamplesContent } from './provider';
 export { BasicButtonExampleComponent } from './basic-button/basic-button.component';
+export { ElevatedButtonExampleComponent } from './elevated-button/elevated-button.component';
 export { FlatButtonExampleComponent } from './flat-button/flat-button.component';
 export { IconButtonExampleComponent } from './icon-button/icon-button.component';
-export { RaisedButtonExampleComponent } from './raised-button/raised-button.component';
-export { SizeableButtonExampleComponent } from './sizable-button/sizable-button.component';
 export { StatusableButtonExampleComponent } from './statusable-button/statusable-button.component';
 export { StrokedButtonExampleComponent } from './stroked-button/stroked-button.component';
-export { ElevatedButtonExampleComponent } from './elevated-button/elevated-button.component';
-export { provideDaffDesignButtonExamplesContent } from './provider';
+export { ButtonSizesExampleComponent } from './button-sizes/button-sizes.component';
+export { LoadingButtonExampleComponent } from './loading-button/loading-button.component';
+export { DisabledButtonExampleComponent } from './disabled-button/disabled-button.component';
+export { ButtonWithPrefixExampleComponent } from './button-with-prefix/button-with-prefix.component';
+export { ButtonWithSuffixExampleComponent } from './button-with-suffix/button-with-suffix.component';

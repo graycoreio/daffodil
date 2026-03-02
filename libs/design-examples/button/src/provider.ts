@@ -20,20 +20,32 @@ export const provideDaffDesignButtonExamplesContent = () => makeEnvironmentProvi
     component: () => import('./icon-button/icon-button.component').then(c => c.IconButtonExampleComponent),
   },
   {
-    id: 'raised-button',
-    component: () => import('./raised-button/raised-button.component').then(c => c.RaisedButtonExampleComponent),
-  },
-  {
-    id: 'sizable-button',
-    component: () => import('./sizable-button/sizable-button.component').then(c => c.SizeableButtonExampleComponent),
-  },
-  {
     id: 'statusable-button',
     component: () => import('./statusable-button/statusable-button.component').then(c => c.StatusableButtonExampleComponent),
   },
   {
     id: 'stroked-button',
     component: () => import('./stroked-button/stroked-button.component').then(c => c.StrokedButtonExampleComponent),
+  },
+  {
+    id: 'button-sizes',
+    component: () => import('./button-sizes/button-sizes.component').then(c => c.ButtonSizesExampleComponent),
+  },
+  {
+    id: 'loading-button',
+    component: () => import('./loading-button/loading-button.component').then(c => c.LoadingButtonExampleComponent),
+  },
+  {
+    id: 'disabled-button',
+    component: () => import('./disabled-button/disabled-button.component').then(c => c.DisabledButtonExampleComponent),
+  },
+  {
+    id: 'button-with-prefix',
+    component: () => import('./button-with-prefix/button-with-prefix.component').then(c => c.ButtonWithPrefixExampleComponent),
+  },
+  {
+    id: 'button-with-suffix',
+    component: () => import('./button-with-suffix/button-with-suffix.component').then(c => c.ButtonWithSuffixExampleComponent),
   },
 ));
 

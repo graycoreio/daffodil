@@ -10,13 +10,7 @@ import { DaffIconButtonComponent } from '@daffodil/design/button';
 @Component({
   selector: 'icon-button-example',
   templateUrl: './icon-button.component.html',
-  styles: [`
-    :host {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-  `],
+  styleUrl: './icon-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DaffIconButtonComponent,

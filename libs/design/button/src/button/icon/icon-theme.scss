@@ -7,12 +7,14 @@
 ) {
 	color: $base-color;
 
-	&:hover {
-		color: $hover-color;
-		@if $base-color == currentColor {
-			opacity: 0.8;
-		} @else {
-			opacity: 1;
+	&:not(&[disabled], &.daff-disabled) {
+		&:hover {
+			color: $hover-color;
+			@if $base-color == currentColor {
+				opacity: 0.8;
+			} @else {
+				opacity: 1;
+			}
 		}
 	}
 

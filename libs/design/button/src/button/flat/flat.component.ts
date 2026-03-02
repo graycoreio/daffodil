@@ -4,6 +4,8 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 
+import { DaffSpinnerComponent } from '@daffodil/design/spinner';
+
 import { DaffButtonBaseDirective } from '../button-base.directive';
 
 /**
@@ -24,16 +26,17 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
  * </a>
  * ```
  */
-/* eslint-disable quote-props */
 @Component({
-
   selector: 'button[daff-flat-button]' + ',' + 'a[daff-flat-button]',
   templateUrl: '../button-base.component.html',
   styleUrl: './flat.component.scss',
   host: {
-    'class': 'daff-flat-button',
+    class: 'daff-flat-button',
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DaffSpinnerComponent,
+  ],
 })
 export class DaffFlatButtonComponent extends DaffButtonBaseDirective {}

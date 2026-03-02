@@ -12,6 +12,7 @@ import {
   DaffPrefixDirective,
   DaffSuffixDirective,
   DaffDisableableDirective,
+  DaffLoadableDirective,
 } from '@daffodil/design';
 
 import { DaffButtonSizableDirective } from './button-sizable.directive';
@@ -36,9 +37,12 @@ import { DaffButtonSizableDirective } from './button-sizable.directive';
       directive: DaffDisableableDirective,
       inputs: ['disabled'],
     },
+    {
+      directive: DaffLoadableDirective,
+      inputs: ['loading'],
+    },
   ],
   host: {
-    '[class.disabled]': 'disabled',
     '[attr.disabled]': 'disabled ? true : null',
     '[attr.aria-disabled]': 'disabled ? true : null',
     '[attr.tabindex]': 'disabled ? -1 : this.tabindex',
@@ -57,13 +61,14 @@ export class DaffButtonBaseDirective {
   @ContentChild(DaffSuffixDirective, { static: true }) _suffix: DaffSuffixDirective;
 
   constructor(
-    private size: DaffButtonSizableDirective,
+    private buttonSizable: DaffButtonSizableDirective,
     private disabledDirective: DaffDisableableDirective,
+    private loadingDirective: DaffLoadableDirective,
   ) {
     /**
      * Sets the default size of a button to medium.
      */
-    this.size.defaultSize = 'md';
+    this.buttonSizable.defaultSize = 'md';
   }
 
   /**
@@ -80,4 +85,23 @@ export class DaffButtonBaseDirective {
   set disabled(value: any) {
     this.disabledDirective.disabled = coerceBooleanProperty(value);
   }
+
+  /**
+   * @docs-private
+   *
+   * Internal function to access the loading property of the DaffLoadableDirective
+   */
+  get loading() {
+    return this.loadingDirective.loading;
+  }
+
+  /**
+   * @docs-private
+   *
+   * Internal function to access the size property of the DaffButtonSizableDirective
+   */
+  get buttonSize() {
+    return this.buttonSizable.size;
+  }
+
 }

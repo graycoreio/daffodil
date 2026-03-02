@@ -8,27 +8,15 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-import {
-  DaffPrefixDirective,
-  DaffSuffixDirective,
-} from '@daffodil/design';
-import { DaffStrokedButtonComponent } from '@daffodil/design/button';
+import { DAFF_STROKED_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
   selector: 'stroked-button-example',
   templateUrl: './stroked-button.component.html',
-  styles: [`
-    :host {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-  `],
+  styleUrl: './stroked-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffStrokedButtonComponent,
-    DaffPrefixDirective,
-    DaffSuffixDirective,
+    DAFF_STROKED_BUTTON_COMPONENTS,
     FaIconComponent,
   ],
 })
