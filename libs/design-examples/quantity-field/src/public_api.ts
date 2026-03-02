@@ -9,3 +9,4 @@ export const QUANTITY_FIELD_EXAMPLES = [
   DisabledQuantityFieldExampleComponent,
   SelectMaxQuantityFieldExampleComponent,
 ];
+export { provideDaffDesignQuantityFieldExamplesContent } from './provider';

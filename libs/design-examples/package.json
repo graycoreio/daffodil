@@ -20,7 +20,8 @@
     "@daffodil/design": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
-    "@daffodil/design": "0.0.0-PLACEHOLDER"
+    "@daffodil/design": "0.0.0-PLACEHOLDER",
+    "@daffodil/docs": "0.0.0-PLACEHOLDER"
   },
   "dependencies": {
     "tslib": "^2.3.0"

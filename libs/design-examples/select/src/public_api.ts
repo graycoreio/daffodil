@@ -11,3 +11,4 @@ export const SELECT_EXAMPLES = [
   SelectWithErrorExampleComponent,
   SelectWithHintExampleComponent,
 ];
+export { provideDaffDesignSelectExamplesContent } from './provider';

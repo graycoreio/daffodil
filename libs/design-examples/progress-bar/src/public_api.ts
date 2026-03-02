@@ -7,3 +7,4 @@ export const PROGRESS_BAR_EXAMPLES = [
   ProgressBarIndeterminateExampleComponent,
   ProgressBarThemesExampleComponent,
 ];
+export { provideDaffDesignProgressBarExamplesContent } from './provider';

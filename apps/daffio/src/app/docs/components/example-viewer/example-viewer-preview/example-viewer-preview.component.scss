@@ -1,0 +1,64 @@
+@use 'utilities' as daff;
+
+$border-radius: 0.5rem;
+
+// stylelint-disable selector-class-pattern
+:host {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+	padding: 1rem;
+	border-bottom-left-radius: inherit;
+	border-bottom-right-radius: inherit;
+
+	@include daff.breakpoint(mobile) {
+		padding: 2rem;
+	}
+
+	&.simple {
+		display: block;
+		padding: 0;
+		border-radius: 0;
+	}
+}
+
+.daffio-example-viewer-preview {
+	&__nav {
+		display: flex;
+		gap: 1rem;
+	}
+
+	&__viewport-wrapper {
+		display: flex;
+		justify-content: center;
+		border-radius: 2rem;
+		padding: 0 0.25rem;
+	}
+
+	&__viewport-option {
+		@include daff.clickable();
+		appearance: none;
+		border: none;
+		background: none;
+		color: currentColor;
+		padding: 0.5rem;
+	}
+
+	&__content {
+		display: block;
+		margin: 0 auto;
+
+		&.desktop {
+			max-width: 100%;
+		}
+
+		&.tablet {
+			max-width: 768px;
+		}
+
+		&.mobile {
+			max-width: 480px;
+		}
+	}
+}

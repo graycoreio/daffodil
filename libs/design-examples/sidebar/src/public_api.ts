@@ -11,3 +11,4 @@ export const SIDEBAR_EXAMPLES = [
   SidebarWithStickyContentExampleComponent,
   SidebarSidesExampleComponent,
 ];
+export { provideDaffDesignSidebarExamplesContent } from './provider';

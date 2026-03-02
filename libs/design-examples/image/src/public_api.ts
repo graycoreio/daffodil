@@ -7,3 +7,4 @@ export const IMAGE_EXAMPLES = [
   LoadImageExampleComponent,
   SkeletonImageExampleComponent,
 ];
+export { provideDaffDesignImageExamplesContent } from './provider';

@@ -3,3 +3,4 @@ import { BasicStickyExampleComponent } from './basic-sticky/basic-sticky.compone
 export const STICKY_EXAMPLES = [
   BasicStickyExampleComponent,
 ];
+export { provideDaffDesignStickyExamplesContent } from './provider';

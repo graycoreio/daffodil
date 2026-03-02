@@ -4,3 +4,4 @@ export { IconListExampleComponent } from './icon-list/icon-list.component';
 export { MultilineListExampleComponent } from './multiline-list/multiline-list.component';
 
 export { LIST_EXAMPLES } from './examples';
+export { provideDaffDesignListExamplesContent } from './provider';

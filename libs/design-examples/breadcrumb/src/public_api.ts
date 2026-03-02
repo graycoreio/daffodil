@@ -5,3 +5,4 @@ export const BREADCRUMB_EXAMPLES = [
   BasicBreadcrumbExampleComponent,
   IteratedBreadcrumbExampleComponent,
 ];
+export { provideDaffDesignBreadcrumbExamplesContent } from './provider';

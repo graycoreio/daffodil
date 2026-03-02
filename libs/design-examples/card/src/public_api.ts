@@ -13,3 +13,4 @@ export const CARD_EXAMPLES = [
   StrokedCardExampleComponent,
   CardOrientationExampleComponent,
 ];
+export { provideDaffDesignCardExamplesContent } from './provider';

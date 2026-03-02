@@ -9,3 +9,4 @@ export const NOTIFICATION_EXAMPLES = [
   NotificationOrientationsExampleComponent,
   NotificationStatusExampleComponent,
 ];
+export { provideDaffDesignNotificationExamplesContent } from './provider';

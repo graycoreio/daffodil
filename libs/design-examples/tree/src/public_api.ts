@@ -5,3 +5,4 @@ export const TREE_EXAMPLES = [
   BasicTreeExampleComponent,
   DeepTreeExampleComponent,
 ];
+export { provideDaffDesignTreeExamplesContent } from './provider';

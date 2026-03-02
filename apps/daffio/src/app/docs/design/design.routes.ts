@@ -8,6 +8,7 @@ import {
 
 import { provideDaffioDocsDesignComponentContentComponent } from './components/component-content/component-content.provider';
 import { DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
+import { provideDaffioDesignExamplesContent } from './examples/content.provider';
 import { DaffioDocsDesignComponentOverviewPageComponent } from './pages/components-overview/component-overview.component';
 import { daffioDocsDesignComponentDocResolver } from './services/component-doc.resolver';
 import { DaffioRoute } from '../../core/router/route.type';
@@ -16,7 +17,6 @@ import { DocsResolver } from '../resolvers/docs-resolver.service';
 import { daffioDocsDesignIndexResolver } from './services/index.resolver';
 import { provideDaffioDocsDesignIndexService } from './services/index.service';
 import { daffioDocsApiRolesProvider } from '../api/roles/api-roles.provider';
-import { provideDaffioDocsPackagesContentComponent } from '../packages/components/packages-content/packages-content.provider';
 
 export const daffioDocsDesignRoutesFactory = (section: string, ...extraRoutes: Routes) => <Routes> [
   <DaffioRoute>{
@@ -24,8 +24,8 @@ export const daffioDocsDesignRoutesFactory = (section: string, ...extraRoutes: R
     providers: [
       provideDaffioDocsDesignIndexService(section),
       provideDaffioDocsDesignComponentContentComponent(),
-      provideDaffioDocsPackagesContentComponent(),
       ...daffioDocsApiRolesProvider(),
+      provideDaffioDesignExamplesContent(),
     ],
     resolve: {
       index: daffioDocsDesignIndexResolver,

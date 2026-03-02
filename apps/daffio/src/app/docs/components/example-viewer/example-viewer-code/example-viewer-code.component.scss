@@ -1,0 +1,76 @@
+@use 'utilities' as daff;
+
+// stylelint-disable selector-class-pattern
+:host {
+	display: block;
+	border-bottom-left-radius: inherit;
+	border-bottom-right-radius: inherit;
+
+	pre {
+		border: none;
+	}
+}
+
+.daffio-example-viewer-code {
+	&__code-block {
+		border-radius: 0;
+		max-height: 8rem;
+		margin: 0;
+		border: none;
+		overflow: hidden;
+
+		&.full-code {
+			max-height: 100%;
+		}
+	}
+
+	&__tab {
+		@include daff.clickable();
+		appearance: none;
+		border: none;
+		background: none;
+		color: currentColor;
+		font-size: 0.875rem;
+		line-height: 1rem;
+		font-weight: 500;
+		padding: 0.75rem 1rem;
+		text-transform: uppercase;
+	}
+
+	&__nav {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	&__toggle-button {
+		@include daff.clickable();
+		display: flex;
+		justify-content: center;
+		gap: 0.25rem;
+		appearance: none;
+		border: none;
+		color: currentColor;
+		font-size: 0.875rem;
+		line-height: 1rem;
+		font-weight: 500;
+		width: 100%;
+		padding: 0.5rem 1rem;
+		border-bottom-left-radius: inherit;
+		border-bottom-right-radius: inherit;
+	}
+
+	&__copy-button {
+		@include daff.clickable();
+		display: flex;
+		gap: 0.25rem;
+		appearance: none;
+		background: none;
+		border: none;
+		color: currentColor;
+		font-size: 0.875rem;
+		line-height: 1rem;
+		font-weight: 500;
+		padding: 0.75rem 1rem;
+	}
+}

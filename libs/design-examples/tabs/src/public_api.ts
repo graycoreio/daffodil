@@ -11,3 +11,4 @@ export const TABS_EXAMPLES = [
   CustomSelectTabsExampleComponent,
   LinkTabsExampleComponent,
 ];
+export { provideDaffDesignTabsExamplesContent } from './provider';

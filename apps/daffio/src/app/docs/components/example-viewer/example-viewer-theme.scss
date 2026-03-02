@@ -1,0 +1,74 @@
+@use 'theme' as *;
+
+// stylelint-disable selector-class-pattern
+@mixin daffio-docs-example-viewer-theme($theme) {
+	$primary: daff-get-palette($theme, primary);
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
+
+	.daffio-example-viewer {
+		@include light($mode) {
+			border: 1px solid daff-color($neutral, 20);
+		}
+
+		@include dark($mode) {
+			border: 1px solid daff-color($neutral, 80);
+		}
+	}
+
+	.daffio-example-viewer-code {
+		@include light($mode) {
+			&__nav {
+				background: daff-color($neutral, 10);
+				border-bottom: 1px solid daff-color($neutral, 20);
+				border-top: 1px solid daff-color($neutral, 20);
+			}
+
+			&__toggle-button {
+				background: daff-color($neutral, 10);
+			}
+		}
+
+		@include dark($mode) {
+			&__nav {
+				background: daff-color($neutral, 90);
+				border-bottom: 1px solid daff-color($neutral, 80);
+				border-top: 1px solid daff-color($neutral, 80);
+			}
+
+			&__toggle-button {
+				background: daff-color($neutral, 100);
+
+				&.full-code {
+					background: daff-color($neutral, 90);
+				}
+			}
+		}
+
+		&__code-block {
+			mask: linear-gradient(
+				to bottom,
+				daff-color($neutral, 90) 25%,
+				transparent
+			);
+
+			&.full-code {
+				mask: initial;
+			}
+		}
+	}
+
+	.daffio-example-viewer-preview {
+		@include light($mode) {
+			&__viewport-wrapper {
+				border: 1px solid daff-color($neutral, 20);
+			}
+
+			&__viewport-option {
+				&.selected {
+					color: daff-color($primary);
+				}
+			}
+		}
+	}
+}

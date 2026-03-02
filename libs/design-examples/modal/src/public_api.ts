@@ -5,3 +5,4 @@ export const MODAL_EXAMPLES = [
   BasicModalExampleComponent,
   PositionConfigModalExampleComponent,
 ];
+export { provideDaffDesignModalExamplesContent } from './provider';
