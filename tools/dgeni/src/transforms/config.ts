@@ -4,7 +4,6 @@ import { resolve } from 'path';
 export const PROJECT_ROOT = resolve(__dirname, '../../../..');
 export const DGENI_DIR = resolve(__dirname, '../../');
 export const DAFFIO_PATH = resolve(PROJECT_ROOT, 'apps/daffio');
-export const DESIGN_LAND_PATH = resolve(PROJECT_ROOT, 'apps/design-land');
 export const SRC_PATH = resolve(DAFFIO_PATH, 'src');
 export const DIST_PATH = resolve(PROJECT_ROOT, 'dist');
 export const OUTPUT_PATH = resolve(DIST_PATH, 'docs-assets');

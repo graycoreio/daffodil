@@ -68,7 +68,6 @@ You can read more about each library and it's build/testing process in the readm
 ### Apps
 * [daff.io](../../apps/daffio/README.md)
 * [demo](../../apps/demo/README.md)
-* [design-land](../../apps/design-land/README.md)
 
 ### Libraries
 * [core](../../libs/core/README.md)
