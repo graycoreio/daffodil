@@ -20,10 +20,6 @@ export const provideDaffDesignButtonExamplesContent = () => makeEnvironmentProvi
     component: () => import('./icon-button/icon-button.component').then(c => c.IconButtonExampleComponent),
   },
   {
-    id: 'raised-button',
-    component: () => import('./raised-button/raised-button.component').then(c => c.RaisedButtonExampleComponent),
-  },
-  {
     id: 'statusable-button',
     component: () => import('./statusable-button/statusable-button.component').then(c => c.StatusableButtonExampleComponent),
   },
@@ -46,6 +42,10 @@ export const provideDaffDesignButtonExamplesContent = () => makeEnvironmentProvi
   {
     id: 'button-with-prefix',
     component: () => import('./button-with-prefix/button-with-prefix.component').then(c => c.ButtonWithPrefixExampleComponent),
+  },
+  {
+    id: 'button-with-suffix',
+    component: () => import('./button-with-suffix/button-with-suffix.component').then(c => c.ButtonWithSuffixExampleComponent),
   },
 ));
 

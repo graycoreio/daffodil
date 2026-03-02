@@ -5,14 +5,12 @@ import { ElevatedButtonExampleComponent } from './elevated-button/elevated-butto
 import { FlatButtonExampleComponent } from './flat-button/flat-button.component';
 import { IconButtonExampleComponent } from './icon-button/icon-button.component';
 import { LoadingButtonExampleComponent } from './loading-button/loading-button.component';
-import { RaisedButtonExampleComponent } from './raised-button/raised-button.component';
 import { StatusableButtonExampleComponent } from './statusable-button/statusable-button.component';
 import { StrokedButtonExampleComponent } from './stroked-button/stroked-button.component';
 
 export const BUTTON_EXAMPLES = [
   BasicButtonExampleComponent,
   IconButtonExampleComponent,
-  RaisedButtonExampleComponent,
   ButtonSizesExampleComponent,
   StatusableButtonExampleComponent,
   StrokedButtonExampleComponent,

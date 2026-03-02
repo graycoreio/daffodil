@@ -13,13 +13,7 @@ import { DAFF_STROKED_BUTTON_COMPONENTS } from '@daffodil/design/button';
 @Component({
   selector: 'stroked-button-example',
   templateUrl: './stroked-button.component.html',
-  styles: [`
-    :host {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-  `],
+  styleUrl: './stroked-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_STROKED_BUTTON_COMPONENTS,

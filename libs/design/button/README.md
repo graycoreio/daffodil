@@ -87,17 +87,9 @@ Buttons should always have a label, unless you are only using an icon that is un
 ### Icon support
 An icon can be rendered on either side of the button text content with the `daffPrefix` and `daffSuffix` selectors. Avoid using both simultaneously.
 
-```html
-<button daff-button>
-  <fa-icon [faIcon]="faUser" daffPrefix></fa-icon>
-  Button label
-</button>
+<design-land-example-viewer-container example="button-with-prefix"></design-land-example-viewer-container>
 
-<button daff-button>
-  Button label
-  <fa-icon [faIcon]="faArrowRight" daffSuffix></fa-icon>
-</button>
-```
+<design-land-example-viewer-container example="button-with-suffix"></design-land-example-viewer-container>
 
 ## Features
 
