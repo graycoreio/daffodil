@@ -37,7 +37,7 @@ class WrapperComponent {
     DaffBreadcrumbItemComponent,
   ],
 })
-class WrapperComponentWith4Items {}
+class WrapperComponentWithFourItems {}
 
 @Component({
   template: `
@@ -54,7 +54,7 @@ class WrapperComponentWith4Items {}
     DaffBreadcrumbItemComponent,
   ],
 })
-class WrapperComponentWith5Items {}
+class WrapperComponentWithFiveItems {}
 
 @Component({
   template: `
@@ -73,7 +73,7 @@ class WrapperComponentWith5Items {}
     DaffBreadcrumbItemComponent,
   ],
 })
-class WrapperComponentWith7Items {}
+class WrapperComponentWithSevenItems {}
 
 describe('@daffodil/design/breadcrumb | DaffBreadcrumbComponent', () => {
   let wrapper: WrapperComponent;
@@ -85,9 +85,9 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         WrapperComponent,
-        WrapperComponentWith4Items,
-        WrapperComponentWith5Items,
-        WrapperComponentWith7Items,
+        WrapperComponentWithFourItems,
+        WrapperComponentWithFiveItems,
+        WrapperComponentWithSevenItems,
       ],
     })
       .compileComponents();
@@ -124,12 +124,12 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbComponent', () => {
   });
 
   describe('when less than 5 breadcrumb items', () => {
-    let fixture4: ComponentFixture<WrapperComponentWith4Items>;
+    let fixture4: ComponentFixture<WrapperComponentWithFourItems>;
     let breadcrumbComponent: DaffBreadcrumbComponent;
     let de4: DebugElement;
 
     beforeEach(() => {
-      fixture4 = TestBed.createComponent(WrapperComponentWith4Items);
+      fixture4 = TestBed.createComponent(WrapperComponentWithFourItems);
       de4 = fixture4.debugElement.query(By.css('ol[daff-breadcrumb]'));
       breadcrumbComponent = de4.componentInstance;
       fixture4.detectChanges();
@@ -140,8 +140,8 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbComponent', () => {
       expect(breadcrumbItems.length).toBe(4);
     });
 
-    it('should compute 5 breadcrumb items', () => {
-      expect(breadcrumbComponent._computedBreadcrumbItems().length).toBe(5);
+    it('should compute 4 breadcrumb items', () => {
+      expect(breadcrumbComponent._computedBreadcrumbItems().length).toBe(4);
     });
 
     it('partial menu should be empty', () => {
@@ -169,19 +169,19 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbComponent', () => {
   });
 
   describe('when exactly 5 breadcrumb items', () => {
-    let fixture5: ComponentFixture<WrapperComponentWith5Items>;
+    let fixture5: ComponentFixture<WrapperComponentWithFiveItems>;
     let breadcrumbComponent: DaffBreadcrumbComponent;
     let de5: DebugElement;
 
     beforeEach(() => {
-      fixture5 = TestBed.createComponent(WrapperComponentWith5Items);
+      fixture5 = TestBed.createComponent(WrapperComponentWithFiveItems);
       de5 = fixture5.debugElement.query(By.css('ol[daff-breadcrumb]'));
       breadcrumbComponent = de5.componentInstance;
       fixture5.detectChanges();
     });
 
-    it('should compute 6 breadcrumb items', () => {
-      expect(breadcrumbComponent._computedBreadcrumbItems().length).toBe(6);
+    it('should compute 5 breadcrumb items', () => {
+      expect(breadcrumbComponent._computedBreadcrumbItems().length).toBe(5);
     });
 
     it('partial menu should contain all items except first 2 and last 2', () => {
@@ -198,19 +198,19 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbComponent', () => {
   });
 
   describe('when more than 5 breadcrumb items', () => {
-    let fixture7: ComponentFixture<WrapperComponentWith7Items>;
+    let fixture7: ComponentFixture<WrapperComponentWithSevenItems>;
     let breadcrumbComponent: DaffBreadcrumbComponent;
     let de7: DebugElement;
 
     beforeEach(() => {
-      fixture7 = TestBed.createComponent(WrapperComponentWith7Items);
+      fixture7 = TestBed.createComponent(WrapperComponentWithSevenItems);
       de7 = fixture7.debugElement.query(By.css('ol[daff-breadcrumb]'));
       breadcrumbComponent = de7.componentInstance;
       fixture7.detectChanges();
     });
 
-    it('should compute 6 breadcrumb items', () => {
-      expect(breadcrumbComponent._computedBreadcrumbItems().length).toBe(6);
+    it('should compute 5 breadcrumb items', () => {
+      expect(breadcrumbComponent._computedBreadcrumbItems().length).toBe(5);
     });
 
     it('partial menu should contain all items except first 2 and last 2', () => {
