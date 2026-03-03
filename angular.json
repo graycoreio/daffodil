@@ -1058,46 +1058,6 @@
         }
       }
     },
-    "theme-switch": {
-      "root": "libs/theme-switch",
-      "sourceRoot": "libs/theme-switch",
-      "projectType": "library",
-      "prefix": "daff-theme-switch",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "libs/theme-switch/tsconfig.lib.json",
-            "project": "libs/theme-switch/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/theme-switch/ng-package.prod.json",
-              "tsConfig": "libs/theme-switch/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/theme-switch/src/test.ts",
-            "codeCoverage": true,
-            "tsConfig": "libs/theme-switch/tsconfig.spec.json",
-            "karmaConfig": "libs/theme-switch/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/theme-switch/**/*.ts",
-              "libs/theme-switch/**/*.html"
-            ],
-            "eslintConfig": "libs/theme-switch/eslint.config.mjs"
-          }
-        }
-      }
-    },
     "navigation": {
       "root": "libs/navigation",
       "sourceRoot": "libs/navigation",

@@ -34,65 +34,22 @@ import { DAFF_THEME_INITIALIZER } from '@daffodil/design';
 class AppModule {}
 ```
 
-## Configure a theme switch button
-Use `DaffThemingService` and `DaffTheme` to create a button that toggles between light and dark modes.
-
-```html
-<button type="button" (click)="onButtonClick()" [attr.aria-label]="ariaLabel$ | async">
-	<fa-icon [icon]="icon$ | async"></fa-icon>
-</button>
-```
+## Configure a theme toggle
+Use the [theme toggle](/libs/storefront/theme-toggle/README.md) component from `@daffodil/storefront/theme-toggle` to add a button that toggles between light and dark modes.
 
 ```ts
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-} from '@angular/core';
-import {
-  faMoon,
-  faSun,
-  IconDefinition,
-	FaIconComponent,
-} from '@fortawesome/free-solid-svg-icons';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import {
-  DaffTheme,
-  DaffThemingService,
-} from '@daffodil/design';
-
-export const THEME_SWITCH_TO_LIGHT_LABEL = 'Enable light mode';
-export const THEME_SWITCH_TO_DARK_LABEL = 'Enable dark mode';
+import { DaffSfThemeToggleComponent } from '@daffodil/storefront/theme-toggle';
 
 @Component({
-  selector: 'theme-switch-button',
-  templateUrl: './theme-switch-button.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [
-		FaIconComponent,
-	],
+  selector: 'custom-component',
+  templateUrl: './custom-component.component.html',
+  imports: [
+    DaffSfThemeToggleComponent,
+  ],
 })
-export class ThemeSwitchButtonComponent implements OnInit {
-  theme$: Observable<DaffTheme>;
-  ariaLabel$: Observable<string>;
-  icon$: Observable<IconDefinition>;
+export class CustomComponent {}
+```
 
-  constructor(private themeService: DaffThemingService) { }
-
-  ngOnInit() {
-    this.theme$ = this.themeService.getTheme();
-    this.ariaLabel$ = this.theme$.pipe(
-      map((theme) => theme === DaffTheme.Light ? THEME_SWITCH_TO_DARK_LABEL : THEME_SWITCH_TO_LIGHT_LABEL),
-    );
-    this.icon$ = this.theme$.pipe(
-      map((theme) => theme === DaffTheme.Light ? faMoon : faSun),
-    );
-  }
-
-  onButtonClick() {
-    this.themeService.switchTheme();
-  }
-}
+```html
+<daff-sf-theme-toggle></daff-sf-theme-toggle>
 ```

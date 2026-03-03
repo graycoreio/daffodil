@@ -13,6 +13,9 @@
       "@daffodil/storefront-examples/carousel": [
         "libs/storefront-examples/carousel/src"
       ],
+      "@daffodil/storefront-examples/theme-toggle": [
+        "libs/storefront-examples/theme-toggle/src"
+      ],
     }
   },
   "references": [
