@@ -4,7 +4,7 @@ A callout is a versatile, pre-styled container used to highlight key pieces of c
 ## Overview
 Callouts help draw attention to important information and can be used multiple times on a page. They're flexible enough to support various content arrangements and include built-in containers for icons, taglines, titles, subtitles, and custom body content.
 
-<design-land-example-viewer-container example="basic-callout"></design-land-example-viewer-container>
+<daffio-example-viewer example="basic-callout"></daffio-example-viewer>
 
 ## Best practices
 
@@ -97,21 +97,21 @@ A callout consists of the following components, displayed in the order listed:
 ### Colors
 Use the `color` property to change the background of a callout.
 
-<design-land-example-viewer-container example="callout-theming"></design-land-example-viewer-container>
+<daffio-example-viewer example="callout-theming"></daffio-example-viewer>
 
 ### Text alignment
 Control callout-specific text alignment with the `textAlignment` property. It defaults to `left` and **does not** affect `[daffCalloutBody]` content or nested elements.
 
-<design-land-example-viewer-container example="callout-text-alignment"></design-land-example-viewer-container>
+<daffio-example-viewer example="callout-text-alignment"></daffio-example-viewer>
 
 ### Compact
 Use the `compact` property on callout to reduce padding and suit UIs with tighter spacing requirements.
 
-<design-land-example-viewer-container example="compact-callout"></design-land-example-viewer-container>
+<daffio-example-viewer example="compact-callout"></daffio-example-viewer>
 
 ## Examples
 
 ### Callout with two columns
 Callouts are flexible enough to support custom grid layouts for more complex arrangements:
 
-<design-land-example-viewer-container example="callout-with-grid"></design-land-example-viewer-container>
+<daffio-example-viewer example="callout-with-grid"></daffio-example-viewer>

@@ -5,10 +5,10 @@ A card is a flexible content container used to group related information and act
 Cards help organize and present information in a clear and visually appealing way. There are two styles: **default (filled)** and **stroked**, and can include images, text, lists, actions, or even other components.
 
 **Default (filled) card**
-<design-land-example-viewer-container example="basic-card"></design-land-example-viewer-container>
+<daffio-example-viewer example="basic-card"></daffio-example-viewer>
 
 **Stroked card**
-<design-land-example-viewer-container example="stroked-card"></design-land-example-viewer-container>
+<daffio-example-viewer example="stroked-card"></daffio-example-viewer>
 
 ## Best practices
 
@@ -114,19 +114,19 @@ An interactive card turns the entire card into a clickable area that navigates t
 
 To create an interactive card, apply the component selector to an `<a>` element. All card styles support interactive behavior.
 
-<design-land-example-viewer-container example="linkable-card"></design-land-example-viewer-container>
+<daffio-example-viewer example="linkable-card"></daffio-example-viewer>
 
 ### Elevation
 Use the `elevated` property to add shadows to cards.
 
-<design-land-example-viewer-container example="elevated-card"></design-land-example-viewer-container>
+<daffio-example-viewer example="elevated-card"></daffio-example-viewer>
 
 ### Orientation
 Use the `orientation` property to stack card content either `vertical` (default) or `horizontal`. Horizontal cards automatically switch to vertical on smaller screens.
 
-<design-land-example-viewer-container example="card-orientation"></design-land-example-viewer-container>
+<daffio-example-viewer example="card-orientation"></daffio-example-viewer>
 
 ### Colors
 Cards default to a light gray background. Use the `color` property to change a card's color.
 
-<design-land-example-viewer-container example="card-theming"></design-land-example-viewer-container>
+<daffio-example-viewer example="card-theming"></daffio-example-viewer>

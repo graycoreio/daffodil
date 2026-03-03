@@ -4,7 +4,7 @@ A hero is a top-level container designed to be large and captivating, typically 
 ## Overview
 Heroes are the first visual element users see on a page and are intended to make a bold statement. They're flexible and extensible, including pre-styled content containers for common layouts such as titles, subtitles, taglines, and body content. Heroes should only be used once per page.
 
-<design-land-example-viewer-container example="basic-hero"></design-land-example-viewer-container>
+<daffio-example-viewer example="basic-hero"></daffio-example-viewer>
 
 ## Best practices
 
@@ -103,21 +103,21 @@ A hero consists of the following components, displayed in the order listed:
 ### Colors
 Use the `color` property to change the background of a hero.
 
-<design-land-example-viewer-container example="hero-theming"></design-land-example-viewer-container>
+<daffio-example-viewer example="hero-theming"></daffio-example-viewer>
 
 ### Text alignment
 Control hero-specific text alignment with the `textAlignment` property. It defaults to `left` and **does not** affect `[daffHeroBody]` content or nested elements.
 
-<design-land-example-viewer-container example="hero-text-alignment"></design-land-example-viewer-container>
+<daffio-example-viewer example="hero-text-alignment"></daffio-example-viewer>
 
 ### Compact
 Use the `compact` property on hero to reduce padding and suit UIs with tighter spacing requirements.
 
-<design-land-example-viewer-container example="compact-hero"></design-land-example-viewer-container>
+<daffio-example-viewer example="compact-hero"></daffio-example-viewer>
 
 ## Examples
 
 ### Hero with two columns
 Heroes are flexible enough to support custom grid layouts for more complex arrangements:
 
-<design-land-example-viewer-container example="hero-with-grid"></design-land-example-viewer-container>
+<daffio-example-viewer example="hero-with-grid"></daffio-example-viewer>

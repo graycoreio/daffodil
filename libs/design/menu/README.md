@@ -4,7 +4,7 @@ A menu is a floating panel that displays a list of actions or navigational items
 ## Overview
 Menus appear when users interact with a menu activator button. Use menus for secondary actions or options that don't require immediate access.
 
-<design-land-example-viewer-container example="basic-menu"></design-land-example-viewer-container>
+<daffio-example-viewer example="basic-menu"></daffio-example-viewer>
 
 ## Best practices
 
@@ -83,7 +83,7 @@ Use the `[daffPrefix]` directive to add a decorative icon before the menu item c
 ### Accessing menu state
 The menu activator provides an `isOpen` property that tracks whether the menu is currently open or closed. Use this to update your UI based on the menu state, such as changing icons or styling.
 
-<design-land-example-viewer-container example="menu-with-icon-toggle"></design-land-example-viewer-container>
+<daffio-example-viewer example="menu-with-icon-toggle"></daffio-example-viewer>
 
 ```html
 <button [daffMenuActivator]="menuContent" #menu="daffMenuActivator">

@@ -53,23 +53,23 @@ export class CustomComponentModule { }
 ### Meta
 Meta displays article metadata such as author name and date. It's a custom directive, not a native element selector. To use it, add `daffArticleMeta` to a paragraph (`<p>`).
 
-<design-land-example-viewer-container example="article-meta"></design-land-example-viewer-container>
+<daffio-example-viewer example="article-meta"></daffio-example-viewer>
 
 ## Features
 
 ### Heading anchor
 `<h2>`, `<h3>`, and `<h4>` headings include an anchor link that directs users to that section and a copy button that copies the heading URL to the clipboard. To disable this, add a `nolink` attribute to the heading element.
 
-<design-land-example-viewer-container example="article-headings"></design-land-example-viewer-container>
+<daffio-example-viewer example="article-headings"></daffio-example-viewer>
 
 ### Code copy
 Code blocks include a copy button by default. To disable this, add a `nocopy` attribute to the `pre` element.
 
 #### Inline code
-<design-land-example-viewer-container example="article-code-inline"></design-land-example-viewer-container>
+<daffio-example-viewer example="article-code-inline"></daffio-example-viewer>
 
 #### Code blocks
-<design-land-example-viewer-container example="article-code-block"></design-land-example-viewer-container>
+<daffio-example-viewer example="article-code-block"></daffio-example-viewer>
 
 ### Encapsulation
 Articles support custom components like [accordion](/libs/design/accordion/README.md), [hero](/libs/design/hero/README.md), or [callout](/libs/design/callout/README.md). Unlike typical HTML elements (`<p>`, `<ol>`, `<ul>`, etc), these components must be style encapsulated to prevent article styles from bleeding into their content.
@@ -94,18 +94,18 @@ For custom components, use the `DaffArticleEncapsulatedDirective` to prevent art
 ## Styled HTML elements
 
 ### Table
-<design-land-example-viewer-container example="article-table"></design-land-example-viewer-container>
+<daffio-example-viewer example="article-table"></daffio-example-viewer>
 
 ### Lists
 
 #### Unordered list
-<design-land-example-viewer-container example="article-ul"></design-land-example-viewer-container>
+<daffio-example-viewer example="article-ul"></daffio-example-viewer>
 
 #### Ordered list
-<design-land-example-viewer-container example="article-ol"></design-land-example-viewer-container>
+<daffio-example-viewer example="article-ol"></daffio-example-viewer>
 
 ### Horizontal rules
-<design-land-example-viewer-container example="article-hr"></design-land-example-viewer-container>
+<daffio-example-viewer example="article-hr"></daffio-example-viewer>
 
 ### Blockquote
-<design-land-example-viewer-container example="article-blockquote"></design-land-example-viewer-container>
+<daffio-example-viewer example="article-blockquote"></daffio-example-viewer>

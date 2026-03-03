@@ -88,12 +88,12 @@ A list consists of the following components:
 ### Icon support
 Use the `[daffPrefix]` element to display a leading visual icon for a list item.
 
-<design-land-example-viewer-container example="icon-list"></design-land-example-viewer-container>
+<daffio-example-viewer example="icon-list"></daffio-example-viewer>
 
 ### Multi-line lists
 For list items that contain multiple lines of text, use the `[daffListItemTitle]` element to identify the primary title. Additional supporting content can be added using `<div>` or `<p>` elements.
 
-<design-land-example-viewer-container example="multiline-list"></design-land-example-viewer-container>
+<daffio-example-viewer example="multiline-list"></daffio-example-viewer>
 
 ## Accessibility
 By default, list includes appropriate ARIA roles by default to support screen readers and provide an accessible experience.

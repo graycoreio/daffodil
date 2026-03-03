@@ -4,7 +4,7 @@ A text snippet is used to display a section of text with the ability to show or 
 ## Overview
 Text snippets provide a way to show previews of long content while allowing users to expand and read the full text when needed. They help condense screen space by truncating long text blocks such as product descriptions, reviews, or articles. By default, content is displayed in condensed mode with a toggle button to expand or collapse the full text.
 
-<design-land-example-viewer-container example="basic-text-snippet"></design-land-example-viewer-container>
+<daffio-example-viewer example="basic-text-snippet"></daffio-example-viewer>
 
 ## Best practices
 

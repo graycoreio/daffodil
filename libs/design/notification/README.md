@@ -6,7 +6,7 @@ Notifications display short messages that are closely associated with nearby con
 
 Notifications should not be used to display app-level alerts. For global messages, use the [Toast](/libs/design/toast/README.md) component.
 
-<design-land-example-viewer-container example="default-notification"></design-land-example-viewer-container>
+<daffio-example-viewer example="default-notification"></daffio-example-viewer>
 
 ## Best practices
 
@@ -93,19 +93,19 @@ Use the `[daffPrefix]` element to add a decorative icon that provides a quick vi
 ### Status
 Use the `status` property to visually differentiate between notification types such as `info`, `warn`, `critical`, or `success`.
 
-<design-land-example-viewer-container example="notification-status"></design-land-example-viewer-container>
+<daffio-example-viewer example="notification-status"></daffio-example-viewer>
 
 ### Orientation
 Use the `orientation` property to stack notification content either `vertical` (default) or `horizontal`.
 
-<design-land-example-viewer-container example="notification-orientations"></design-land-example-viewer-container>
+<daffio-example-viewer example="notification-orientations"></daffio-example-viewer>
 
 ### Dismissing a notification
 Notifications are persistent by default. To display a close button, set the `dismissible` property to `true`.
 
 > Avoid making critical notifications dismissible to ensure users can read or interact with the necessary information.
 
-<design-land-example-viewer-container example="dismissible-notification"></design-land-example-viewer-container>
+<daffio-example-viewer example="dismissible-notification"></daffio-example-viewer>
 
 ## Accessibility
 **Live region roles:**
