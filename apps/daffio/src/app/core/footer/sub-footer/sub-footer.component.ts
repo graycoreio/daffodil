@@ -14,6 +14,7 @@ import {
 } from '@daffodil/design/button';
 import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
+import { DAFF_DOCS_PATH } from '@daffodil/docs-utils';
 
 @Component({
   selector: 'daffio-sub-footer',
@@ -34,6 +35,6 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 export class DaffioSubFooterComponent {
   @HostBinding('class.daffio-sub-footer') class = true;
 
-  docsLink = DAFF_BRANDING_CONSTANTS.DOCS_INTRO_URL;
+  docsLink = DAFF_DOCS_PATH;
   discordLink = DAFF_BRANDING_CONSTANTS.DISCORD_URL;
 }

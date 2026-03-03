@@ -8,6 +8,7 @@ import { DAFF_BRANDING_CONSTANTS } from '@daffodil/branding';
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
+import { DAFF_DOCS_PATH } from '@daffodil/docs-utils';
 
 @Component({
   selector: 'daffio-home-hero',
@@ -23,6 +24,6 @@ import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
 })
 
 export class DaffioHomeHeroComponent {
-  docsLink = DAFF_BRANDING_CONSTANTS.DOCS_URL;
+  docsLink = DAFF_DOCS_PATH;
   demoLink = DAFF_BRANDING_CONSTANTS.DEMO_URL;
 }

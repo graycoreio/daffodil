@@ -19,14 +19,12 @@ import {
   map,
 } from 'rxjs';
 
-import {
-  DAFF_BRANDING_CONSTANTS,
-  DaffLogoModule,
-} from '@daffodil/branding';
+import { DaffLogoModule } from '@daffodil/branding';
 import {
   DaffButtonComponent,
   DaffIconButtonComponent,
 } from '@daffodil/design/button';
+import { DAFF_DOCS_PATH } from '@daffodil/docs-utils';
 import { DaffRouterDataService } from '@daffodil/router';
 import { DaffSfThemeToggleComponent } from '@daffodil/storefront/theme-toggle';
 
@@ -59,7 +57,7 @@ import { DaffioNavLink } from '../link/type';
 export class DaffioMarketingNavContainer implements OnInit {
   readonly isComponent = isComponent;
   faBars = faBars;
-  docsLink = DAFF_BRANDING_CONSTANTS.DOCS_URL;
+  docsLink = DAFF_DOCS_PATH;
 
   links$: Observable<Array<DaffioNavLink | Type<unknown>>>;
 
