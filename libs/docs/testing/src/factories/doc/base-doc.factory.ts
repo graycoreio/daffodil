@@ -2,9 +2,13 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { sample } from '@daffodil/core';
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import {
   DaffBaseDoc,
+  DaffBreadcrumb,
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
@@ -22,7 +26,7 @@ export class MockBaseDoc implements DaffBaseDoc {
   sourcePath = faker.system.filePath();
 
   constructor(
-    protected breadcrumbFactory: DaffBreadcrumbFactory,
+    protected breadcrumbFactory: IDaffModelFactory<DaffBreadcrumb>,
   ) {}
 }
 

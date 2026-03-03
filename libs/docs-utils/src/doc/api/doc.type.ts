@@ -20,23 +20,23 @@ import { DaffApiTokenDoc } from './token.type';
 import { DaffApiTypeDoc } from './type.type';
 
 export type DaffApiDoc =
-| DaffApiComponentDoc
-| DaffApiDirectiveDoc
-| DaffApiPipeDoc
-| DaffApiServiceDoc
-| DaffApiModuleDoc
-| DaffApiGuardDoc
-| DaffApiResolverDoc
-| DaffApiReducerDoc
 | DaffApiActionDoc
-| DaffApiFacadeDoc
-| DaffApiSelectorDoc
-| DaffApiProviderDoc
-| DaffApiOperatorDoc
-| DaffApiErrorDoc
-| DaffApiTokenDoc
-| DaffApiTypeDoc
+| DaffApiComponentDoc
 | DaffApiConstantDoc
+| DaffApiDirectiveDoc
+| DaffApiErrorDoc
+| DaffApiFacadeDoc
+| DaffApiGuardDoc
 | DaffApiHelperDoc
+| DaffApiMockDoc
 | DaffApiModelFactoryDoc
-| DaffApiMockDoc;
+| DaffApiModuleDoc
+| DaffApiOperatorDoc
+| DaffApiPipeDoc
+| DaffApiProviderDoc
+| DaffApiReducerDoc
+| DaffApiResolverDoc
+| DaffApiSelectorDoc
+| DaffApiServiceDoc
+| DaffApiTokenDoc
+| DaffApiTypeDoc;

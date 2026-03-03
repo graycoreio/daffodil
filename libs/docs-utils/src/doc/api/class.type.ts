@@ -5,6 +5,7 @@ import {
   DaffDocsApiTypeMethod,
   DaffDocsApiTypeProperty,
 } from './type.type';
+import { DaffDocsApiType } from '../../api/public_api';
 
 export interface DaffDocsApiClassProperty extends DaffDocsApiTypeProperty {
   /**
@@ -15,4 +16,5 @@ export interface DaffDocsApiClassProperty extends DaffDocsApiTypeProperty {
 
 export interface DaffDocsApiClass extends DaffApiType<DaffDocsApiClassProperty>, Pick<ClassExportDoc, 'isAbstract'> {
   constructorDoc: DaffDocsApiTypeMethod;
+  docType: DaffDocsApiType.CLASS;
 }

@@ -3,6 +3,7 @@ import type { ParameterDoc } from 'dgeni-packages/typescript/api-doc-types/Param
 
 import { DaffDocsRenderedContent } from '../rendered-content.type';
 import { DaffApiDocBase } from './base.type';
+import { DaffDocsApiType } from '../../api/public_api';
 
 export interface DaffDocsApiFunctionParam extends Pick<ParameterDoc, 'name' | 'defaultValue' | 'isOptional' | 'isRestParam'> {
   type: DaffDocsRenderedContent;
@@ -12,6 +13,6 @@ export interface DaffDocsApiFunctionParam extends Pick<ParameterDoc, 'name' | 'd
 
 export interface DaffDocsApiFunction extends DaffApiDocBase, Pick<FunctionExportDoc, 'typeParameters'> {
   parameterDocs: Array<DaffDocsApiFunctionParam>;
-  description: DaffDocsRenderedContent;
   type: DaffDocsRenderedContent;
+  docType: DaffDocsApiType.FUNCTION;
 }

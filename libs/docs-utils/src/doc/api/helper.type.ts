@@ -7,7 +7,7 @@ import {
 } from '../../api/public_api';
 
 /**
- * An API doc base for doc roles that are types.
+ * A somewhat catch-all type for doc roles that are helpers.
  */
 export type DaffApiHelperDoc = DaffApiDocBase & ((DaffDocsApiClass & {
   docType: DaffDocsApiType.CLASS;
