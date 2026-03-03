@@ -1,14 +1,6 @@
-import { BasicTabsExampleComponent } from './basic-tabs/basic-tabs.component';
-import { CustomSelectTabsExampleComponent } from './custom-select-tabs/custom-select-tabs.component';
-import { DisabledTabsExampleComponent } from './disabled-tabs/disabled-tabs.component';
-import { InitiallySelectTabExampleComponent } from './initially-select-tab/initially-select-tab.component';
-import { LinkTabsExampleComponent } from './link-tabs/link-tabs.component';
-
-export const TABS_EXAMPLES = [
-  BasicTabsExampleComponent,
-  DisabledTabsExampleComponent,
-  InitiallySelectTabExampleComponent,
-  CustomSelectTabsExampleComponent,
-  LinkTabsExampleComponent,
-];
+export { BasicTabsExampleComponent } from './basic-tabs/basic-tabs.component';
+export { CustomSelectTabsExampleComponent } from './custom-select-tabs/custom-select-tabs.component';
+export { DisabledTabsExampleComponent } from './disabled-tabs/disabled-tabs.component';
+export { InitiallySelectTabExampleComponent } from './initially-select-tab/initially-select-tab.component';
+export { LinkTabsExampleComponent } from './link-tabs/link-tabs.component';
 export { provideDaffDesignTabsExamplesContent } from './provider';

@@ -1,14 +1,6 @@
-import { BasicSidebarExampleComponent } from './basic-sidebar/basic-sidebar.component';
-import { OverandUnderSidebarsExampleComponent } from './over-and-under-sidebars/over-and-under-sidebars.component';
-import { SideFixedSidebarExampleComponent } from './side-fixed-sidebar/side-fixed-sidebar.component';
-import { SidebarSidesExampleComponent } from './sidebar-sides/sidebar-sides.component';
-import { SidebarWithStickyContentExampleComponent } from './sidebar-with-sticky-content/sidebar-with-sticky-content.component';
-
-export const SIDEBAR_EXAMPLES = [
-  BasicSidebarExampleComponent,
-  OverandUnderSidebarsExampleComponent,
-  SideFixedSidebarExampleComponent,
-  SidebarWithStickyContentExampleComponent,
-  SidebarSidesExampleComponent,
-];
+export { BasicSidebarExampleComponent } from './basic-sidebar/basic-sidebar.component';
+export { OverandUnderSidebarsExampleComponent } from './over-and-under-sidebars/over-and-under-sidebars.component';
+export { SideFixedSidebarExampleComponent } from './side-fixed-sidebar/side-fixed-sidebar.component';
+export { SidebarSidesExampleComponent } from './sidebar-sides/sidebar-sides.component';
+export { SidebarWithStickyContentExampleComponent } from './sidebar-with-sticky-content/sidebar-with-sticky-content.component';
 export { provideDaffDesignSidebarExamplesContent } from './provider';

@@ -1,5 +1,3 @@
-export { BUTTON_EXAMPLES } from './examples';
-
 export { provideDaffDesignButtonExamplesContent } from './provider';
 export { BasicButtonExampleComponent } from './basic-button/basic-button.component';
 export { ElevatedButtonExampleComponent } from './elevated-button/elevated-button.component';

@@ -1,6 +1,2 @@
-import { BasicStickyExampleComponent } from './basic-sticky/basic-sticky.component';
-
-export const STICKY_EXAMPLES = [
-  BasicStickyExampleComponent,
-];
+export { BasicStickyExampleComponent } from './basic-sticky/basic-sticky.component';
 export { provideDaffDesignStickyExamplesContent } from './provider';

@@ -1,5 +1,3 @@
-export { TAG_EXAMPLES } from './examples';
-
 export { BasicTagExampleComponent } from './basic-tag/basic-tag.component';
 export { DisabledTagExampleComponent } from './disabled-tag/disabled-tag.component';
 export { DismissibleTagExampleComponent } from './dismissible-tag/dismissible-tag.component';
