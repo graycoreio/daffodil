@@ -29,13 +29,15 @@ export const appRoutes: Routes = [
     component: TemplateComponent,
     providers: [
       provideDemoSidebarState(),
-      provideDemoImageGalleryState(),
     ],
     children: [
       { path: 'product-grid', component: ProductGridViewComponent },
       { path: 'cart',       loadChildren: () => import('./cart/cart.routes').then(m => m.demoCartRoutes) },
       {
         path: 'product/:id',
+        providers: [
+          provideDemoImageGalleryState(),
+        ],
         component: ProductViewComponent,
         resolve: {
           product: DaffProductPageIdResolver,
@@ -53,6 +55,9 @@ export const appRoutes: Routes = [
       {
         path: '**',
         canMatch: [daffExternalMatcherTypeGuard('PRODUCT')],
+        providers: [
+          provideDemoImageGalleryState(),
+        ],
         component: ProductViewComponent,
         resolve: {
           product: DaffProductPageUrlResolver,
