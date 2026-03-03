@@ -1,3 +1,3 @@
-<button type="button" daff-icon-button color="theme-contrast" (click)="toggleTheme()" [attr.aria-label]="ariaLabel$ | async">
-  <fa-icon [icon]="icon$ | async"></fa-icon>
+<button type="button" daff-icon-button color="theme-contrast" (click)="toggleTheme()" [attr.aria-label]="ariaLabel()">
+  <fa-icon [icon]="icon()"></fa-icon>
 </button>

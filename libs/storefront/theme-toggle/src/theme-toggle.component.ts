@@ -1,17 +1,14 @@
-import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
+  computed,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   faMoon,
   faSun,
-  IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import {
   DaffTheme,
@@ -19,9 +16,15 @@ import {
 } from '@daffodil/design';
 import { DaffIconButtonComponent } from '@daffodil/design/button';
 
+/** @docs-private */
 export const TOGGLE_TO_LIGHT_LABEL = 'Switch to light mode';
+/** @docs-private */
 export const TOGGLE_TO_DARK_LABEL = 'Switch to dark mode';
 
+/**
+ * DaffSfThemeToggleComponent renders a button that toggles the active
+ * theme between light and dark.
+ */
 @Component({
   selector: 'daff-sf-theme-toggle',
   templateUrl: './theme-toggle.component.html',
@@ -30,31 +33,23 @@ export const TOGGLE_TO_DARK_LABEL = 'Switch to dark mode';
     'aria-live': 'polite',
   },
   imports: [
-    AsyncPipe,
     FaIconComponent,
     DaffIconButtonComponent,
   ],
 })
-export class DaffSfThemeToggleComponent implements OnInit {
-  theme$: Observable<DaffTheme>;
-  ariaLabel$: Observable<string>;
-  icon$: Observable<IconDefinition>;
+export class DaffSfThemeToggleComponent {
+  /** @docs-private */
+  theme = toSignal(this.themeService.getTheme());
+
+  /** @docs-private */
+  ariaLabel = computed(() => this.theme() === DaffTheme.Light ? TOGGLE_TO_DARK_LABEL : TOGGLE_TO_LIGHT_LABEL);
+
+  /** @docs-private */
+  icon = computed(() => this.theme() === DaffTheme.Light ? faMoon : faSun);
 
   constructor(private themeService: DaffThemingService) { }
 
-  /**
-   * @docs-private
-   */
-  ngOnInit() {
-    this.theme$ = this.themeService.getTheme();
-    this.ariaLabel$ = this.theme$.pipe(
-      map((theme) => theme === DaffTheme.Light ? TOGGLE_TO_DARK_LABEL : TOGGLE_TO_LIGHT_LABEL),
-    );
-    this.icon$ = this.theme$.pipe(
-      map((theme) => theme === DaffTheme.Light ? faMoon : faSun),
-    );
-  }
-
+  /** @docs-private */
   toggleTheme() {
     this.themeService.switchTheme();
   }

@@ -35,7 +35,7 @@ class AppModule {}
 ```
 
 ## Configure a theme toggle
-Use the `DaffSfThemeToggleComponent` from `@daffodil/storefront/theme-toggle` to add a button that toggles between light and dark modes.
+Use the [theme toggle](/libs/storefront/theme-toggle/README.md) component from `@daffodil/storefront/theme-toggle` to add a button that toggles between light and dark modes.
 
 ```ts
 import { DaffSfThemeToggleComponent } from '@daffodil/storefront/theme-toggle';
