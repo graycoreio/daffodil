@@ -1,6 +1,7 @@
 import {
-  NgModule,
   inject,
+  importProvidersFrom,
+  makeEnvironmentProviders,
 } from '@angular/core';
 
 import { DaffAuthInMemoryDriverModule } from '@daffodil/auth/driver/in-memory';
@@ -24,21 +25,21 @@ import { DaffConfigurableProductInMemoryDriverModule } from '@daffodil/product-c
 
 import { DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG } from './in-memory/external-router.config.token';
 
-@NgModule({
-  imports: [
-    DaffInMemoryDriverModule.forRoot(),
-    DaffAuthorizeNetInMemoryDriverModule.forRoot(),
-    DaffAuthInMemoryDriverModule.forRoot(),
-    DaffProductInMemoryDriverModule.forRoot(),
-    DaffCompositeProductInMemoryDriverModule.forRoot(),
-    DaffConfigurableProductInMemoryDriverModule.forRoot(),
-    DaffCartInMemoryDriverModule.forRoot(),
-    DaffNavigationInMemoryDriverModule.forRoot(),
-    DaffNewsletterInMemoryDriverModule.forRoot(),
-    DaffGeographyInMemoryDriverModule.forRoot(),
-    DaffCategoryInMemoryDriverModule.forRoot(),
-  ],
-  providers: [
+export const provideDemoDrivers = () => [
+  makeEnvironmentProviders([
+    importProvidersFrom(
+      DaffInMemoryDriverModule.forRoot(),
+      DaffAuthorizeNetInMemoryDriverModule.forRoot(),
+      DaffAuthInMemoryDriverModule.forRoot(),
+      DaffProductInMemoryDriverModule.forRoot(),
+      DaffCompositeProductInMemoryDriverModule.forRoot(),
+      DaffConfigurableProductInMemoryDriverModule.forRoot(),
+      DaffCartInMemoryDriverModule.forRoot(),
+      DaffNavigationInMemoryDriverModule.forRoot(),
+      DaffNewsletterInMemoryDriverModule.forRoot(),
+      DaffGeographyInMemoryDriverModule.forRoot(),
+      DaffCategoryInMemoryDriverModule.forRoot(),
+    ),
     provideDaffExternalRouterInMemoryDriver(DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG),
     {
       provide: DAFF_NAVIGATION_IN_MEMORY_SEED_DATA_PROVIDER,
@@ -47,6 +48,5 @@ import { DEMO_EXTERNAL_ROUTER_DRIVER_IN_MEMORY_CONFIG } from './in-memory/extern
         return () => categoryBackend.categories[0];
       },
     },
-  ],
-})
-export class DemoDriverModule { }
+  ]),
+];

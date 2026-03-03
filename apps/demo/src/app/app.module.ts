@@ -2,10 +2,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-import {
-  importProvidersFrom,
-  NgModule,
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
@@ -26,7 +23,7 @@ import { DemoCartRootModule } from './cart/cart-root.module';
 import { environment } from '../environments/environment';
 import { DemoCheckoutStepActionTypes } from './checkout/actions/checkout-step.actions';
 import { TemplateModule } from './core/template/template/template.module';
-import { DemoDriverModule } from './drivers/driver.module';
+import { provideDemoDrivers } from './drivers/driver.providers';
 import { DemoIndicatorComponent } from './routing/indicator/indicator.component';
 
 @NgModule({
@@ -76,7 +73,7 @@ import { DemoIndicatorComponent } from './routing/indicator/indicator.component'
     // importing modules. therefore, the in memory web API
     // will not be able override the HTTP client backend
     // when imported as a module
-    importProvidersFrom(DemoDriverModule),
+    provideDemoDrivers(),
     //
   ],
   bootstrap: [AppComponent],

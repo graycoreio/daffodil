@@ -1,4 +1,7 @@
-import { NgModule } from '@angular/core';
+import {
+  importProvidersFrom,
+  makeEnvironmentProviders,
+} from '@angular/core';
 
 import { DaffAuthorizeNetInMemoryDriverModule } from '@daffodil/authorizenet/driver/in-memory';
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
@@ -19,19 +22,18 @@ import { ShopifyEnviromentDriverConfiguration } from '../../environments/environ
 const domain = (<ShopifyEnviromentDriverConfiguration>environment.driver).domain;
 const accessToken = (<ShopifyEnviromentDriverConfiguration>environment.driver).publicAccessToken;
 
-@NgModule({
-  imports: [
-    DaffInMemoryDriverModule.forRoot(),
-    DaffProductShopifyDriverModule.forRoot(),
-    DaffCartInMemoryDriverModule.forRoot(),
-    DaffNewsletterInMemoryDriverModule.forRoot(),
-    DaffCategoryInMemoryDriverModule.forRoot(),
-    DaffNavigationInMemoryDriverModule.forRoot(),
-    DaffAuthorizeNetInMemoryDriverModule.forRoot(),
-  ],
-  providers: [
+export const provideDemoDrivers = () => [
+  makeEnvironmentProviders([
+    importProvidersFrom(
+      DaffInMemoryDriverModule.forRoot(),
+      DaffProductShopifyDriverModule.forRoot(),
+      DaffCartInMemoryDriverModule.forRoot(),
+      DaffNewsletterInMemoryDriverModule.forRoot(),
+      DaffCategoryInMemoryDriverModule.forRoot(),
+      DaffNavigationInMemoryDriverModule.forRoot(),
+      DaffAuthorizeNetInMemoryDriverModule.forRoot(),
+    ),
     provideDaffProductExtraFactoryTypes(DaffDefaultProductFactory),
     provideShopifyApolloDriver(domain, accessToken),
-  ],
-})
-export class DemoDriverModule {}
+  ]),
+];
