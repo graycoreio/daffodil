@@ -1,11 +1,14 @@
-import { DAFF_DOCS_DESIGN_PATH } from '../path';
+import {
+  DAFF_DOCS_DESIGN_PATH,
+  DAFF_DOCS_STOREFRONT_PATH,
+} from '../path';
 import { DaffDocKind } from './enum';
 import { DAFF_DOC_KIND_PATH_SEGMENT_MAP } from './path-segment-map';
 
 const DOC_KIND_REGEX = {
   [DaffDocKind.GUIDE]: /\/docs\/guides\/(?<path>.+)\.md/,
   [DaffDocKind.EXPLANATION]: /\/docs\/explanations\/(?<path>.+)\.md/,
-  [DaffDocKind.COMPONENT]: /\/libs\/(design|storefront)\/(?<path>.+)\/README\.md/,
+  [DaffDocKind.COMPONENT]: /\/libs\/(?<section>design|storefront)\/(?<path>.+)\/README\.md/,
   [DaffDocKind.PACKAGE]: /\/(libs|tools)\/(?<path>.+)\.md/,
   [DaffDocKind.API]: /\/libs\/(?<path>.+)\.ts/,
 };
@@ -40,7 +43,7 @@ export const daffDocsGetLinkUrl = (path: string): string => {
       return `/docs/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/${matchPath}`;
 
     case DaffDocKind.COMPONENT:
-      return `/docs/${DAFF_DOCS_DESIGN_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/${matchPath}`;
+      return `/docs/${match.groups.section === 'design' ? DAFF_DOCS_DESIGN_PATH : DAFF_DOCS_STOREFRONT_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/${matchPath}`;
 
     case DaffDocKind.PACKAGE:
       return `/docs/packages/${matchPath}`;
