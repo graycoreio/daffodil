@@ -24,6 +24,7 @@ import {
   DaffButtonComponent,
   DaffIconButtonComponent,
 } from '@daffodil/design/button';
+import { DAFF_DOCS_PATH } from '@daffodil/docs-utils';
 import { DaffRouterDataService } from '@daffodil/router';
 import { DaffSfThemeToggleComponent } from '@daffodil/storefront/theme-toggle';
 
@@ -56,6 +57,7 @@ import { DaffioNavLink } from '../link/type';
 export class DaffioMarketingNavContainer implements OnInit {
   readonly isComponent = isComponent;
   faBars = faBars;
+  docsLink = DAFF_DOCS_PATH;
 
   links$: Observable<Array<DaffioNavLink | Type<unknown>>>;
 
