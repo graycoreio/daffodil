@@ -17,18 +17,18 @@ Native `<button>` or `<a>` elements should always be used in order to provide an
 - Use `<button>` for actions performed within the same page.
 
 **Basic button**
-<design-land-example-viewer-container example="basic-button"></design-land-example-viewer-container>
+<daffio-example-viewer example="basic-button"></daffio-example-viewer>
 
 **Flat button**
-<design-land-example-viewer-container example="flat-button"></design-land-example-viewer-container>
+<daffio-example-viewer example="flat-button"></daffio-example-viewer>
 
 **Stroked button**
-<design-land-example-viewer-container example="stroked-button"></design-land-example-viewer-container>
+<daffio-example-viewer example="stroked-button"></daffio-example-viewer>
 
 > `dark`, `light`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
 **Icon button**
-<design-land-example-viewer-container example="icon-button"></design-land-example-viewer-container>
+<daffio-example-viewer example="icon-button"></daffio-example-viewer>
 
 > `dark`, `light`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
@@ -96,19 +96,24 @@ An icon can be rendered on either side of the button text content with the `daff
 ### Sizes
 Use the `size` property to control button dimensions. The default size is `md`.
 
-<design-land-example-viewer-container example="button-sizes"></design-land-example-viewer-container>
+<daffio-example-viewer example="button-sizes"></daffio-example-viewer>
 
 ### Colors
 Use the `color` property to change the color of a button.
 
 > Note: `dark`, `light`, and `theme` should be used on appropriate backgrounds for sufficient contrast.
 
-### Elevation
+## Status indicators
+Status indicators help users understand the type of action a button performs and its importance relative to other buttons in the same context. Use the `status` property to convey different semantic meanings.
+
+<daffio-example-viewer example="statusable-button"></daffio-example-viewer>
+
+## Elevation
 Add shadows to buttons with the `elevated` property.
 
 > Note: The `elevated` property is not supported for flat, icon, and underline buttons.
 
-<design-land-example-viewer-container example="elevated-button"></design-land-example-viewer-container>
+<daffio-example-viewer example="elevated-button"></daffio-example-viewer>
 
 ### Loading
 Use the `loading` property to indicate that an action is being processed. When `loading` is set to `true`, the button displays a spinner.

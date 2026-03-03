@@ -111,7 +111,7 @@ Use the `[daffFormFieldAction]` element to add an action element to a form field
 - Fluid appearance: The action is positioned within the form control's UI.
 - Fixed appearance: The action is positioned adjacent to the form control's UI.
 
-<design-land-example-viewer-container example="form-field-with-action"></design-land-example-viewer-container>
+<daffio-example-viewer example="form-field-with-action"></daffio-example-viewer>
 
 ### Prefix and suffix
 Use the `[daffPrefix]` and `[daffSuffix]` elements to display leading or trailing visuals, typically icons, on either side of the form control.
@@ -120,9 +120,9 @@ Use the `[daffPrefix]` and `[daffSuffix]` elements to display leading or trailin
 >
 > In a fluid appearance, avoid using suffix alongside an action.
 
-<design-land-example-viewer-container example="form-field-with-prefix"></design-land-example-viewer-container>
+<daffio-example-viewer example="form-field-with-prefix"></daffio-example-viewer>
 
-<design-land-example-viewer-container example="form-field-with-suffix"></design-land-example-viewer-container>
+<daffio-example-viewer example="form-field-with-suffix"></daffio-example-viewer>
 
 ## Appearances
 Form field supports two `appearances`: `fluid` and `fixed`. It will default to `fluid` if an `appearance` is not specified.
@@ -130,7 +130,7 @@ Form field supports two `appearances`: `fluid` and `fixed`. It will default to `
 - `fluid`: alternate, stylized UI where the label is placed inside of the form control.
 - `fixed`: corresponds with a traditional style where the label is positioned outside and above the form control.
 
-<design-land-example-viewer-container example="form-field-appearances"></design-land-example-viewer-container>
+<daffio-example-viewer example="form-field-appearances"></daffio-example-viewer>
 
 ## Setting a custom ID
 Form fields automatically generate IDs to handle accessibility. You can override this by setting a custom `id` on the form field when needed for specific labeling requirements.

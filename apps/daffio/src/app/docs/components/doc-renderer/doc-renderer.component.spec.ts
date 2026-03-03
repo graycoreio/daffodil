@@ -48,7 +48,7 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
 
   describe('when contents contains example placeholders', () => {
     it('should replace placeholders with example viewer components', () => {
-      const contentWithExample = '<design-land-example-viewer-container example="test-example"></design-land-example-viewer-container>';
+      const contentWithExample = '<daffio-example-viewer example="test-example"></daffio-example-viewer>';
       fixture.componentRef.setInput('contents', contentWithExample);
       fixture.detectChanges();
 
@@ -57,7 +57,7 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
     });
 
     it('should pass the example attribute to the example viewer', () => {
-      const contentWithExample = '<design-land-example-viewer-container example="my-example-id"></design-land-example-viewer-container>';
+      const contentWithExample = '<daffio-example-viewer example="my-example-id"></daffio-example-viewer>';
       fixture.componentRef.setInput('contents', contentWithExample);
       fixture.detectChanges();
 
@@ -67,8 +67,8 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
 
     it('should replace multiple example placeholders', () => {
       const contentWithExamples = `
-        <design-land-example-viewer-container example="example-1"></design-land-example-viewer-container>
-        <design-land-example-viewer-container example="example-2" simple></design-land-example-viewer-container>
+        <daffio-example-viewer example="example-1"></daffio-example-viewer>
+        <daffio-example-viewer example="example-2" simple></daffio-example-viewer>
       `;
       fixture.componentRef.setInput('contents', contentWithExamples);
       fixture.detectChanges();

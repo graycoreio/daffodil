@@ -4,7 +4,7 @@ Radio is used to select a single value from a selection of values.
 ## Overview
 It can be hooked into Angular's `FormControl` to accomodate custom functionality. The `DaffRadioSetComponent` serves as a wrapper around a logical group of radios to provide styling.
 
-<design-land-example-viewer-container example="basic-radio"></design-land-example-viewer-container>
+<daffio-example-viewer example="basic-radio"></daffio-example-viewer>
 
 ## Usage
 

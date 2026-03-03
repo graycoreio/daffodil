@@ -6,7 +6,7 @@ Toasts communicate updates about actions or events that require attention but ar
 
 For short messages tied to page-level content or actions, use the [Notification](/libs/design/notification/README.md) component.
 
-<design-land-example-viewer-container example="default-toast"></design-land-example-viewer-container>
+<daffio-example-viewer example="default-toast"></daffio-example-viewer>
 
 ## Usage
 Add `provideDaffToast()` to the root provider of your application to enable toast functionality:
@@ -58,14 +58,14 @@ By default, toasts without actions dismiss automatically after `5000ms`. Toasts 
 
 > Actionable toasts should remain persistent. If a duration is required, make sure it is long enough for users to engage with the actions.
 
-<design-land-example-viewer-container example="toast-with-custom-duration"></design-land-example-viewer-container>
+<daffio-example-viewer example="toast-with-custom-duration"></daffio-example-viewer>
 
 ### Close button
 The close button is hidden by default. When a toast contains actions, the `dismissible` property is ignored.
 
 For non-actionable toasts, the close button can be displayed by setting `dismissible: true`.
 
-<design-land-example-viewer-container example="dismissible-toast"></design-land-example-viewer-container>
+<daffio-example-viewer example="dismissible-toast"></daffio-example-viewer>
 
 ## Stacking
 A maximum of three toasts can be displayed at once. Toasts stack vertically with the most recent toast at the top.
@@ -73,7 +73,7 @@ A maximum of three toasts can be displayed at once. Toasts stack vertically with
 ## Statuses
 Toast status can be set when opening a toast through the `DaffToastService` by using a `DaffStatus` value.
 
-<design-land-example-viewer-container example="toast-status"></design-land-example-viewer-container>
+<daffio-example-viewer example="toast-status"></daffio-example-viewer>
 
 ## Positions
 On desktop, toasts appear in the top-right corner by default.
