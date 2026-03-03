@@ -7,9 +7,8 @@
   </select>
   <daff-hint>Hint goes here.</daff-hint>
   @if (control.errors?.required) {
-    <daff-error-message>This is a required field.</daff-error-message>
-  }
-  @if (control.hasError('pattern')) {
-    <daff-error-message>Your selection is invalid.</daff-error-message>
+  <daff-error-message>This is a required field.</daff-error-message>
+  } @if (control.hasError('pattern')) {
+  <daff-error-message>Your selection is invalid.</daff-error-message>
   }
 </daff-form-field>

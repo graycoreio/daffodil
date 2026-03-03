@@ -1,1 +1,13 @@
-<button daff-button color="theme" [daffMenuActivator]="menuContent" #activator="daffMenuActivator">Design <fa-icon daffSuffix size="sm" [icon]="activator.isOpen() ? faChevronUp : faChevronDown"></fa-icon></button>
+<button
+  daff-button
+  color="theme"
+  [daffMenuActivator]="menuContent"
+  #activator="daffMenuActivator"
+>
+  Design
+  <fa-icon
+    daffSuffix
+    size="sm"
+    [icon]="activator.isOpen() ? faChevronUp : faChevronDown"
+  ></fa-icon>
+</button>

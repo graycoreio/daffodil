@@ -1,14 +1,14 @@
 <daff-image
   src="https://assets.daff.io/ergonomic_bronze_pants.png"
-	alt="Ergonomic Bronze Pants T-Shirt"
-	[width]="934"
-	[height]="934"
-  (load)="load()">
+  alt="Ergonomic Bronze Pants T-Shirt"
+  [width]="934"
+  [height]="934"
+  (load)="load()"
+>
 </daff-image>
 
 @if (!loaded) {
-  <p>I am not loaded!</p>
-}
-@if (loaded) {
-  <p>I am loaded!</p>
+<p>I am not loaded!</p>
+} @if (loaded) {
+<p>I am loaded!</p>
 }

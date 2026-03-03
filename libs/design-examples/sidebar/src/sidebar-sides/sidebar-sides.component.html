@@ -1,5 +1,11 @@
 <daff-sidebar-viewport (backdropClicked)="closeSidebar()">
-  <daff-sidebar class="over-sidebar" mode="over" [side]="sideControl.value" [open]="open" (escapePressed)="closeSidebar()">
+  <daff-sidebar
+    class="over-sidebar"
+    mode="over"
+    [side]="sideControl.value"
+    [open]="open"
+    (escapePressed)="closeSidebar()"
+  >
     <daff-sidebar-header [dismissible]="true" (closeSidebar)="closeSidebar()">
       <div daffSidebarHeaderTitle>Title</div>
     </daff-sidebar-header>
