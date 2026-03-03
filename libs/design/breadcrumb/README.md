@@ -79,13 +79,17 @@ A breadcrumb consists of the following components:
 </ol>
 ```
 
+## Features
+
+### Truncation
+Breadcrumbs are automatically truncated into an overflow menu on mobile viewports. On desktop, truncation occurs when more than five items are present.
+
 ## Accessibility
 Breadcrumb follows the [Breadcrumb WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/).
 
 ### Daffodil provides
 - `aria-current="page"` automatically applied to the last breadcrumb item
 - Enforces semantic HTML structure (requires `<ol>` and `<li>` elements)
-- Truncates breadcrumbs into an overflow menu on mobile and when more than five items are present on desktop
 
 ### Developer responsibilities
 - Wrap the breadcrumb in a `<nav>` element with a descriptive `aria-label`
