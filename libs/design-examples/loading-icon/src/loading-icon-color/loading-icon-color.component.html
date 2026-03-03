@@ -2,6 +2,6 @@
 
 <select [formControl]="colorControl">
   @for (option of options; track option) {
-    <option [value]="option.value">{{ option.label }}</option>
+  <option [value]="option.value">{{ option.label }}</option>
   }
 </select>

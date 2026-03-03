@@ -4,4 +4,4 @@
     "entryFile": "src/index.ts",
     "styleIncludePaths": ["../../src/scss"]
   }
-} 
+}

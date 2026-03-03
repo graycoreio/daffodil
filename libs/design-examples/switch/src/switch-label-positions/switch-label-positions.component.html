@@ -1,7 +1,12 @@
-<daff-switch [labelPosition]="labelPositionControl.value" [formControl]="labelSwitchExample" ngDefaultControl>Label</daff-switch>
+<daff-switch
+  [labelPosition]="labelPositionControl.value"
+  [formControl]="labelSwitchExample"
+  ngDefaultControl
+  >Label</daff-switch
+>
 
 <select [formControl]="labelPositionControl">
   @for (option of options; track option) {
-    <option [value]="option.value">{{ option.label }}</option>
+  <option [value]="option.value">{{ option.label }}</option>
   }
 </select>

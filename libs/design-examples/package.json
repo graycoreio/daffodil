@@ -5,7 +5,9 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/design-examples"]
+        "outputs": [
+          "{workspaceRoot}/dist/design-examples"
+        ]
       }
     }
   },

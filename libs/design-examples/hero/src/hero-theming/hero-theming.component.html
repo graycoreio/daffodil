@@ -1,25 +1,31 @@
 <daff-hero [color]="colorControl.value">
-	<div class="daff-hero-theming__icon" daffHeroIcon>
-		<fa-icon [icon]="faMobile"></fa-icon>
-	</div>
-	<p daffHeroTagline>Frontend framework for ecommerce PWAs</p>
-	<h1 daffHeroTitle>Daffodil: The next great leap in ecommerce.</h1>
-	<h2 daffHeroSubtitle>
-		<p>Daffodil provides everything you need to create powerful and flexible ecommerce experiences.</p>
-		<p>With Daffodil, ambitious businesses are able to achieve more while minimizing development and maintenance costs.</p>
-	</h2>
-	<div daffHeroBody>
-		<a href="https://www.daff.io" target="_blank" daff-button>Get Started</a>
-	</div>
+  <div class="daff-hero-theming__icon" daffHeroIcon>
+    <fa-icon [icon]="faMobile"></fa-icon>
+  </div>
+  <p daffHeroTagline>Frontend framework for ecommerce PWAs</p>
+  <h1 daffHeroTitle>Daffodil: The next great leap in ecommerce.</h1>
+  <h2 daffHeroSubtitle>
+    <p>
+      Daffodil provides everything you need to create powerful and flexible
+      ecommerce experiences.
+    </p>
+    <p>
+      With Daffodil, ambitious businesses are able to achieve more while
+      minimizing development and maintenance costs.
+    </p>
+  </h2>
+  <div daffHeroBody>
+    <a href="https://www.daff.io" target="_blank" daff-button>Get Started</a>
+  </div>
 </daff-hero>
 
 <select [formControl]="colorControl">
-	<option value="">Default</option>
-	<option value="primary">Primary</option>
-	<option value="secondary">Secondary</option>
-	<option value="tertiary">Tertiary</option>
-	<option value="white">White</option>
-	<option value="black">Black</option>
-	<option value="theme">Theme</option>
-	<option value="theme-contrast">Theme Contrast</option>
+  <option value="">Default</option>
+  <option value="primary">Primary</option>
+  <option value="secondary">Secondary</option>
+  <option value="tertiary">Tertiary</option>
+  <option value="white">White</option>
+  <option value="black">Black</option>
+  <option value="theme">Theme</option>
+  <option value="theme-contrast">Theme Contrast</option>
 </select>
