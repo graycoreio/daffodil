@@ -260,14 +260,13 @@ jobs:
           fi
 
           if [ "${{ matrix.succeed }}" = "true" ] || [ "${{ matrix.build }}" = "true" ]; then
-          # @daffodil/commerce package installed when scaffolding base apps
-            CI=true npx ng generate @daffodil/commerce:ng-add \
+            CI=true npx ng add @daffodil/commerce@${{ env.TEST_VERSION }} \
               --driver="${{ matrix.driver }}" \
               --is-new-project \
               --defaults \
               $EXTRA_FLAGS
           else
-            ! CI=true npx ng generate @daffodil/commerce:ng-add \
+            ! CI=true npx ng add @daffodil/commerce@${{ env.TEST_VERSION }} \
               --driver="${{ matrix.driver }}" \
               --is-new-project \
               --defaults \
