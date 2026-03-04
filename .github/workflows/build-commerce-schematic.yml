@@ -200,7 +200,7 @@ jobs:
         run: |
           VERDACCIO_CONTAINER=$(docker ps --filter "ancestor=verdaccio/verdaccio" --format "{{.ID}}")
           npx wait-on http://localhost:${{ env.REGISTRY_PORT }}/-/ping --timeout 30000
-          docker exec --user root ${VERDACCIO_CONTAINER} sh -c 'mkdir -p /verdaccio/storage/data && touch /verdaccio/storage/htpasswd && chmod -R 777 /verdaccio/storage'
+          docker exec --user root ${VERDACCIO_CONTAINER} sh -c 'mkdir -p /verdaccio/storage/data && chmod -R 777 /verdaccio/storage'
           sudo chown -R $USER ${{ env.VERDACCIO_STORAGE }}/data
 
       - name: Restore base apps and Verdaccio storage
@@ -229,6 +229,8 @@ jobs:
       - name: Configure test app npmrc
         run: |
           REGISTRY_URL="http://localhost:${{ env.REGISTRY_PORT }}"
+          VERDACCIO_CONTAINER=$(docker ps --filter "ancestor=verdaccio/verdaccio" --format "{{.ID}}")
+          docker exec --user root ${VERDACCIO_CONTAINER} sh -c 'touch /verdaccio/storage/htpasswd && chmod -R 777 /verdaccio/storage'
           RESPONSE=$(curl -s -X PUT ${REGISTRY_URL}/-/user/org.couchdb.user:ci \
             -H "Content-Type: application/json" \
             -d '{"name":"ci","password":"ci-password","type":"user"}')
