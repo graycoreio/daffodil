@@ -48,5 +48,19 @@ echo "--- Installing @daffodil/commerce into css base app ---"
 cd "$WORK_DIR/${APP_NAME}-css"
 npm install @daffodil/commerce
 
+# --- Module Base App ---
+echo ""
+echo "=== Creating module base app ==="
+cd "$WORK_DIR"
+npx -y @angular/cli@20 new "${APP_NAME}-module" \
+  --style=scss \
+  --skip-tests \
+  --standalone=false \
+  --defaults
+
+echo "--- Installing @daffodil/commerce into module base app ---"
+cd "$WORK_DIR/${APP_NAME}-module"
+npm install @daffodil/commerce
+
 echo ""
 echo "=== Base apps scaffolded in $WORK_DIR ==="
