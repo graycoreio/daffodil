@@ -196,18 +196,6 @@ jobs:
             ${{ env.VERDACCIO_STORAGE }}/data
           key: commerce-test-${{ github.run_id }}
 
-      - name: Configure npmrc
-        run: |
-          REGISTRY_URL="http://localhost:${{ env.REGISTRY_PORT }}"
-          RESPONSE=$(curl -s -X PUT ${REGISTRY_URL}/-/user/org.couchdb.user:ci \
-            -H "Content-Type: application/json" \
-            -d '{"name":"ci","password":"ci-password","type":"user"}')
-          echo "Verdaccio auth response: $RESPONSE"
-          TOKEN=$(echo "$RESPONSE" | node -e "process.stdin.resume();process.stdin.on('data',d=>console.log(JSON.parse(d).token))")
-          if [ -z "$TOKEN" ]; then echo "ERROR: Failed to obtain Verdaccio token" && exit 1; fi
-          echo "@daffodil:registry=${REGISTRY_URL}" >> "$HOME/.npmrc"
-          echo "//localhost:${{ env.REGISTRY_PORT }}/:_authToken=${TOKEN}" >> "$HOME/.npmrc"
-
       - name: Copy base app
         run: |
           if [ "${{ matrix.base }}" = "scss-standalone" ]; then
@@ -222,6 +210,19 @@ jobs:
           TEST_DIR="${{ env.WORK_DIR }}/test-${{ matrix.name }}"
           rm -rf "$TEST_DIR"
           cp -a "$BASE_APP" "$TEST_DIR"
+
+      - name: Configure test app npmrc
+        run: |
+          REGISTRY_URL="http://localhost:${{ env.REGISTRY_PORT }}"
+          RESPONSE=$(curl -s -X PUT ${REGISTRY_URL}/-/user/org.couchdb.user:ci \
+            -H "Content-Type: application/json" \
+            -d '{"name":"ci","password":"ci-password","type":"user"}')
+          echo "Verdaccio auth response: $RESPONSE"
+          TOKEN=$(echo "$RESPONSE" | node -e "process.stdin.resume();process.stdin.on('data',d=>console.log(JSON.parse(d).token))")
+          if [ -z "$TOKEN" ]; then echo "ERROR: Failed to obtain Verdaccio token" && exit 1; fi
+          NPMRC="${{ env.WORK_DIR }}/test-${{ matrix.name }}/.npmrc"
+          echo "@daffodil:registry=${REGISTRY_URL}" >> "$NPMRC"
+          echo "//localhost:${{ env.REGISTRY_PORT }}/:_authToken=${TOKEN}" >> "$NPMRC"
 
       - name: Apply app modifications
         working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
