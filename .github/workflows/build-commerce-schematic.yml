@@ -255,6 +255,7 @@ jobs:
             --driver="${{ matrix.driver }}" \
             --is-new-project \
             --defaults \
+            --skip-confirmation \
             $EXTRA_FLAGS
 
       - name: Raise budget
