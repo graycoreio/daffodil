@@ -105,7 +105,6 @@ jobs:
             routing: true
             skip_package_json: false
             succeed: true
-            build: true
 
           - name: magento-driver
             driver: magento
@@ -113,7 +112,6 @@ jobs:
             routing: true
             skip_package_json: false
             succeed: true
-            build: true
 
           - name: shopify-driver
             driver: shopify
@@ -121,7 +119,6 @@ jobs:
             routing: true
             skip_package_json: false
             succeed: true
-            build: true
 
           - name: in-memory-driver
             driver: in-memory
@@ -129,7 +126,6 @@ jobs:
             routing: true
             skip_package_json: false
             succeed: true
-            build: true
 
           - name: skip-package-json
             driver: in-memory
@@ -137,7 +133,7 @@ jobs:
             routing: true
             skip_package_json: true
             succeed: true
-            build: false
+            skip-build: true # package.json modifications are required to build
 
           - name: module-app-rejection
             driver: in-memory
@@ -145,7 +141,6 @@ jobs:
             routing: true
             skip_package_json: false
             succeed: false
-            build: false
 
           - name: main-ts-fallback
             driver: in-memory
@@ -154,7 +149,6 @@ jobs:
             routing: true
             skip_package_json: false
             succeed: true
-            build: true
 
           - name: css-style-failure
             driver: in-memory
@@ -162,7 +156,6 @@ jobs:
             routing: true
             skip_package_json: false
             succeed: false
-            build: true
 
           - name: no-app-routes
             driver: in-memory
@@ -170,16 +163,14 @@ jobs:
             routing: false
             skip_package_json: false
             succeed: true
-            build: true
 
           - name: node-24-failure
             driver: in-memory
             base: scss-standalone
             routing: true
             skip_package_json: false
-            node-version: 24.x
+            node-version: 24.x # custom node version, or else defaults to env.NODE_VERSION
             succeed: false
-            build: true
 
     steps:
       - uses: actions/checkout@v6
@@ -251,7 +242,8 @@ jobs:
           rm -f "src/app/app.routes.ts"
           fi
 
-      - name: Generate schematic
+      - name: Add schematic
+        continue-on-error: ${{ !matrix.succeed }}
         working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
         run: |
           EXTRA_FLAGS=""
@@ -259,19 +251,11 @@ jobs:
             EXTRA_FLAGS="--skip-package-json"
           fi
 
-          if [ "${{ matrix.succeed }}" = "true" ] || [ "${{ matrix.build }}" = "true" ]; then
-            CI=true npx ng add @daffodil/commerce@${{ env.TEST_VERSION }} \
-              --driver="${{ matrix.driver }}" \
-              --is-new-project \
-              --defaults \
-              $EXTRA_FLAGS
-          else
-            ! CI=true npx ng add @daffodil/commerce@${{ env.TEST_VERSION }} \
-              --driver="${{ matrix.driver }}" \
-              --is-new-project \
-              --defaults \
-              $EXTRA_FLAGS
-          fi
+          CI=true npx ng add @daffodil/commerce@${{ env.TEST_VERSION }} \
+            --driver="${{ matrix.driver }}" \
+            --is-new-project \
+            --defaults \
+            $EXTRA_FLAGS
 
       - name: Raise budget
         if: matrix.driver == 'demo'
@@ -280,7 +264,7 @@ jobs:
           sed -i 's/"maximumWarning": "[^"]*"/"maximumWarning": "2mb"/; s/"maximumError": "[^"]*"/"maximumError": "3mb"/' angular.json
 
       - name: Run ng build
-        if: matrix.build
+        if: matrix.skip-build != true
         working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
         run: |
           if [ "${{ matrix.succeed }}" = "true" ]; then
