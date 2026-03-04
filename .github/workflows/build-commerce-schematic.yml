@@ -69,15 +69,8 @@ jobs:
 
       - name: Publish @daffodil/* packages to Verdaccio
         run: |
-          for pkg in $(echo "${{ steps.schematic-daff-deps.outputs.packages }}" | tr ',' '\n' | sed 's|@daffodil/||'); do
-            echo "--- Publishing @daffodil/$pkg ---"
-            cd "${{ github.workspace }}/dist/$pkg"
-            npm publish --ignore-scripts
-          done
-
-          echo "--- Publishing @daffodil/commerce ---"
-          cd "${{ github.workspace }}/dist/commerce"
-          npm publish --ignore-scripts
+          npx nx run-many -t publish \
+            --projects="${{ steps.schematic-daff-deps.outputs.packages }},@daffodil/commerce"
 
       - name: Scaffold base apps
         run: bash tools/schematics/e2e/test-commerce-schematics.sh
