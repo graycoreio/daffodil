@@ -12,13 +12,6 @@ env:
   VERDACCIO_STORAGE: /tmp/verdaccio-storage
   TEST_VERSION: 0.0.0-test.${{ github.run_id }}
   REGISTRY_PORT: 4873
-  DAFFODIL_PACKAGES: >-
-    core
-    driver
-    product
-    dev-tools
-    navigation
-    external-router
 
 jobs:
   setup:
@@ -61,17 +54,22 @@ jobs:
           sed -i "s/version = '.*'/version = '${{ env.TEST_VERSION }}'/" \
             tools/schematics/ng-add/generators/version.ts
 
+      - name: Extract schematic daffodil dependencies
+        id: schematic-daff-deps
+        run: |
+          PACKAGES=$(grep -oP "(?<=name: ')@daffodil/[^']+" tools/schematics/ng-add/generators/dependencies.ts | paste -sd ',')
+          echo "packages=${PACKAGES}" >> "$GITHUB_OUTPUT"
+
       - name: Build @daffodil/* packages
         run: |
-          npx nx run-many -t build \
-            --projects=@daffodil/core,@daffodil/driver,@daffodil/product,@daffodil/dev-tools,@daffodil/navigation,@daffodil/external-router
+          npx nx run-many -t build --projects="${{ steps.schematic-daff-deps.outputs.packages }}"
           cd tools/schematics && npm run build
 
       - uses: graycoreio/github-actions/set-versions-from-root@main
 
       - name: Publish @daffodil/* packages to Verdaccio
         run: |
-          for pkg in ${{ env.DAFFODIL_PACKAGES }}; do
+          for pkg in $(echo "${{ steps.schematic-daff-deps.outputs.packages }}" | tr ',' '\n' | sed 's|@daffodil/||'); do
             echo "--- Publishing @daffodil/$pkg ---"
             cd "${{ github.workspace }}/dist/$pkg"
             npm publish --ignore-scripts
