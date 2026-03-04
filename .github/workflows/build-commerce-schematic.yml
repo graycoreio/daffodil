@@ -104,43 +104,48 @@ jobs:
             base: scss-standalone
             routing: true
             skip_package_json: false
-            succeed: true
+            ng-add-succeed: true
+            build-succeed: true
 
           - name: magento-driver
             driver: magento
             base: scss-standalone
             routing: true
             skip_package_json: false
-            succeed: true
+            ng-add-succeed: true
+            build-succeed: true
 
           - name: shopify-driver
             driver: shopify
             base: scss-standalone
             routing: true
             skip_package_json: false
-            succeed: true
+            ng-add-succeed: true
+            build-succeed: true
 
           - name: in-memory-driver
             driver: in-memory
             base: scss-standalone
             routing: true
             skip_package_json: false
-            succeed: true
+            ng-add-succeed: true
+            build-succeed: true
 
           - name: skip-package-json
             driver: in-memory
             base: scss-standalone
             routing: true
             skip_package_json: true
-            succeed: true
-            skip-build: true # package.json modifications are required to build
+            ng-add-succeed: true
+            build-succeed: false
 
           - name: module-app-rejection
             driver: in-memory
             base: scss-module
             routing: true
             skip_package_json: false
-            succeed: false
+            ng-add-succeed: false
+            build-succeed: true # builds base app without daffodil
 
           - name: main-ts-fallback
             driver: in-memory
@@ -148,21 +153,24 @@ jobs:
             app_type: main-ts-fallback
             routing: true
             skip_package_json: false
-            succeed: true
+            ng-add-succeed: true
+            build-succeed: true
 
           - name: css-style-failure
             driver: in-memory
             base: css-standalone
             routing: true
             skip_package_json: false
-            succeed: false
+            ng-add-succeed: false
+            build-succeed: false
 
           - name: no-app-routes
             driver: in-memory
             base: scss-standalone
             routing: false
             skip_package_json: false
-            succeed: true
+            ng-add-succeed: true
+            build-succeed: true
 
           - name: node-24-failure
             driver: in-memory
@@ -170,7 +178,8 @@ jobs:
             routing: true
             skip_package_json: false
             node-version: 24.x # custom node version, or else defaults to env.NODE_VERSION
-            succeed: false
+            ng-add-succeed: false
+            build-succeed: false
 
     steps:
       - uses: actions/checkout@v6
@@ -178,8 +187,14 @@ jobs:
           fetch-depth: 1
 
       - uses: graycoreio/github-actions/setup-node@main
+        if: ${{ !matrix.node-version }}
         with:
-          node-version: ${{ matrix.node-version || env.NODE_VERSION }}
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/setup-node@v4
+        if: ${{ matrix.node-version }}
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: Prepare Verdaccio storage for cache restore
         run: |
@@ -244,7 +259,7 @@ jobs:
           fi
 
       - name: Add schematic
-        continue-on-error: ${{ !matrix.succeed }}
+        continue-on-error: ${{ !matrix.ng-add-succeed }}
         working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
         run: |
           EXTRA_FLAGS=""
@@ -266,11 +281,7 @@ jobs:
           sed -i 's/"maximumWarning": "[^"]*"/"maximumWarning": "2mb"/; s/"maximumError": "[^"]*"/"maximumError": "3mb"/' angular.json
 
       - name: Run ng build
-        if: matrix.skip-build != true
+        continue-on-error: ${{ !matrix.build-succeed }}
         working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
         run: |
-          if [ "${{ matrix.succeed }}" = "true" ]; then
-            npx ng build
-          else
-            ! npx ng build
-          fi
+          npx ng build
