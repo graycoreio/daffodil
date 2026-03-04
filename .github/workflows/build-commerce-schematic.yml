@@ -172,29 +172,14 @@ jobs:
             ng-add-succeed: true
             build-succeed: true
 
-          - name: node-24-failure
-            driver: in-memory
-            base: scss-standalone
-            routing: true
-            skip_package_json: false
-            node-version: 24.x # custom node version, or else defaults to env.NODE_VERSION
-            ng-add-succeed: false
-            build-succeed: false
-
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 1
 
       - uses: graycoreio/github-actions/setup-node@main
-        if: ${{ !matrix.node-version }}
         with:
           node-version: ${{ env.NODE_VERSION }}
-
-      - uses: actions/setup-node@v4
-        if: ${{ matrix.node-version }}
-        with:
-          node-version: ${{ matrix.node-version }}
 
       - name: Prepare Verdaccio storage for cache restore
         run: |
@@ -261,7 +246,6 @@ jobs:
           fi
 
       - name: Add schematic
-        continue-on-error: ${{ !matrix.ng-add-succeed }}
         working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
         run: |
           EXTRA_FLAGS=""
@@ -274,7 +258,13 @@ jobs:
             --is-new-project \
             --defaults \
             --skip-confirmation \
-            $EXTRA_FLAGS
+            $EXTRA_FLAGS && NG_ADD_RESULT="success" || NG_ADD_RESULT="failure"
+
+          if [ "${{ matrix.ng-add-succeed }}" = "true" ] && [ "$NG_ADD_RESULT" != "success" ]; then
+            echo "ERROR: ng add was expected to succeed but failed" && exit 1
+          elif [ "${{ matrix.ng-add-succeed }}" = "false" ] && [ "$NG_ADD_RESULT" != "failure" ]; then
+            echo "ERROR: ng add was expected to fail but succeeded" && exit 1
+          fi
 
       - name: Raise budget
         if: matrix.driver == 'demo'
@@ -283,7 +273,12 @@ jobs:
           sed -i 's/"maximumWarning": "[^"]*"/"maximumWarning": "2mb"/; s/"maximumError": "[^"]*"/"maximumError": "3mb"/' angular.json
 
       - name: Run ng build
-        continue-on-error: ${{ !matrix.build-succeed }}
         working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
         run: |
-          npx ng build
+          npx ng build && BUILD_RESULT="success" || BUILD_RESULT="failure"
+
+          if [ "${{ matrix.build-succeed }}" = "true" ] && [ "$BUILD_RESULT" != "success" ]; then
+            echo "ERROR: ng build was expected to succeed but failed" && exit 1
+          elif [ "${{ matrix.build-succeed }}" = "false" ] && [ "$BUILD_RESULT" != "failure" ]; then
+            echo "ERROR: ng build was expected to fail but succeeded" && exit 1
+          fi
