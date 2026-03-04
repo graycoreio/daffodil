@@ -47,5 +47,5 @@ export class DaffioExampleViewerPreviewComponent {
 
   viewport = signal<DaffioExampleViewerViewportOption>(DaffioExampleViewerViewportOption.DESKTOP);
 
-  viewportClass = computed(() => this.viewport() !== DaffioExampleViewerViewportOption.DESKTOP ? this.viewport() : '');
+  viewportClass = computed(() => this.viewport());
 }
