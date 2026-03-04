@@ -12,6 +12,7 @@ env:
   VERDACCIO_STORAGE: /tmp/verdaccio-storage
   TEST_VERSION: 0.0.0-test.${{ github.run_id }}
   REGISTRY_PORT: 4873
+  NODE_VERSION: 22.21.x
 
 jobs:
   setup:
@@ -31,7 +32,7 @@ jobs:
 
       - uses: graycoreio/github-actions/setup-node@main
         with:
-          node-version: 22.21.x
+          node-version: ${{ env.NODE_VERSION }}
           use-stamp-cache: true
 
       - name: Configure Verdaccio
@@ -179,6 +180,16 @@ jobs:
             succeed: true
             build: true
 
+          - name: node-24-failure
+            driver: in-memory
+            base: scss
+            app_type: standalone
+            routing: true
+            skip_package_json: false
+            node-version: 24.x
+            succeed: false
+            build: true
+
     steps:
       - uses: actions/checkout@v6
         with:
@@ -186,7 +197,7 @@ jobs:
 
       - uses: graycoreio/github-actions/setup-node@main
         with:
-          node-version: 22.21.x
+          node-version: ${{ matrix.node-version || env.NODE_VERSION }}
 
       - name: Prepare Verdaccio storage for cache restore
         run: |
