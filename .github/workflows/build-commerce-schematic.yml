@@ -12,7 +12,6 @@ env:
   VERDACCIO_STORAGE: /tmp/verdaccio-storage
   TEST_VERSION: 0.0.0-test.${{ github.run_id }}
   REGISTRY_PORT: 4873
-  VERDACCIO_CONFIG: tools/schematics/e2e/verdaccio-config.yml
   DAFFODIL_PACKAGES: >-
     core
     driver
@@ -25,6 +24,13 @@ jobs:
   setup:
     name: Build
     runs-on: ubuntu-latest
+    services:
+      verdaccio:
+        image: verdaccio/verdaccio
+        ports:
+          - 4873:4873
+        volumes:
+          - /tmp/verdaccio-storage:/verdaccio/storage
     steps:
       - uses: actions/checkout@v6
         with:
@@ -35,12 +41,19 @@ jobs:
           node-version: 22.21.x
           use-stamp-cache: true
 
-      - name: Start Verdaccio
-        uses: ./.github/actions/start-verdaccio
-        with:
-          port: ${{ env.REGISTRY_PORT }}
-          config: ${{ env.VERDACCIO_CONFIG }}
-          storage: ${{ env.VERDACCIO_STORAGE }}
+      - name: Configure Verdaccio
+        run: |
+          REGISTRY_URL="http://localhost:${{ env.REGISTRY_PORT }}"
+          VERDACCIO_CONTAINER=$(docker ps --filter "ancestor=verdaccio/verdaccio" --format "{{.ID}}")
+          npx wait-on ${REGISTRY_URL}/-/ping --timeout 30000
+          docker exec --user root ${VERDACCIO_CONTAINER} sh -c 'mkdir -p /verdaccio/storage/data && touch /verdaccio/storage/htpasswd && chmod -R 777 /verdaccio/storage'
+          RESPONSE=$(curl -s -X PUT ${REGISTRY_URL}/-/user/org.couchdb.user:ci \
+            -H "Content-Type: application/json" \
+            -d '{"name":"ci","password":"ci-password","type":"user"}')
+          TOKEN=$(echo "$RESPONSE" | node -e "process.stdin.resume();process.stdin.on('data',d=>console.log(JSON.parse(d).token))")
+          if [ -z "$TOKEN" ]; then echo "ERROR: Failed to obtain Verdaccio token. Response: $RESPONSE" && exit 1; fi
+          echo "@daffodil:registry=${REGISTRY_URL}" >> "$HOME/.npmrc"
+          echo "//localhost:${{ env.REGISTRY_PORT }}/:_authToken=${TOKEN}" >> "$HOME/.npmrc"
 
       - name: Set test version
         run: |
@@ -76,13 +89,20 @@ jobs:
         with:
           path: |
             ${{ env.WORK_DIR }}
-            ${{ env.VERDACCIO_STORAGE }}
+            ${{ env.VERDACCIO_STORAGE }}/data
           key: commerce-test-${{ github.run_id }}
 
   test:
     name: "${{ matrix.name }}"
     needs: setup
     runs-on: ubuntu-latest
+    services:
+      verdaccio:
+        image: verdaccio/verdaccio
+        ports:
+          - 4873:4873
+        volumes:
+          - /tmp/verdaccio-storage:/verdaccio/storage
     strategy:
       fail-fast: false
       matrix:
@@ -177,20 +197,32 @@ jobs:
         with:
           node-version: 22.21.x
 
+      - name: Prepare Verdaccio storage for cache restore
+        run: |
+          VERDACCIO_CONTAINER=$(docker ps --filter "ancestor=verdaccio/verdaccio" --format "{{.ID}}")
+          npx wait-on http://localhost:${{ env.REGISTRY_PORT }}/-/ping --timeout 30000
+          docker exec --user root ${VERDACCIO_CONTAINER} sh -c 'mkdir -p /verdaccio/storage/data && touch /verdaccio/storage/htpasswd && chmod -R 777 /verdaccio/storage'
+          sudo chown -R $USER ${{ env.VERDACCIO_STORAGE }}/data
+
       - name: Restore base apps and Verdaccio storage
         uses: actions/cache/restore@v4
         with:
           path: |
             ${{ env.WORK_DIR }}
-            ${{ env.VERDACCIO_STORAGE }}
+            ${{ env.VERDACCIO_STORAGE }}/data
           key: commerce-test-${{ github.run_id }}
 
-      - name: Start Verdaccio
-        uses: ./.github/actions/start-verdaccio
-        with:
-          port: ${{ env.REGISTRY_PORT }}
-          config: ${{ env.VERDACCIO_CONFIG }}
-          storage: ${{ env.VERDACCIO_STORAGE }}
+      - name: Configure npmrc
+        run: |
+          REGISTRY_URL="http://localhost:${{ env.REGISTRY_PORT }}"
+          RESPONSE=$(curl -s -X PUT ${REGISTRY_URL}/-/user/org.couchdb.user:ci \
+            -H "Content-Type: application/json" \
+            -d '{"name":"ci","password":"ci-password","type":"user"}')
+          echo "Verdaccio auth response: $RESPONSE"
+          TOKEN=$(echo "$RESPONSE" | node -e "process.stdin.resume();process.stdin.on('data',d=>console.log(JSON.parse(d).token))")
+          if [ -z "$TOKEN" ]; then echo "ERROR: Failed to obtain Verdaccio token" && exit 1; fi
+          echo "@daffodil:registry=${REGISTRY_URL}" >> "$HOME/.npmrc"
+          echo "//localhost:${{ env.REGISTRY_PORT }}/:_authToken=${TOKEN}" >> "$HOME/.npmrc"
 
       - name: Copy base app
         run: |
@@ -245,6 +277,7 @@ jobs:
           fi
 
           if [ "${{ matrix.succeed }}" = "true" ] || [ "${{ matrix.build }}" = "true" ]; then
+          # @daffodil/commerce package installed when scaffolding base apps
             CI=true npx ng generate @daffodil/commerce:ng-add \
               --driver="${{ matrix.driver }}" \
               --is-new-project \
