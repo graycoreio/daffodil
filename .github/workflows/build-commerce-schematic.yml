@@ -161,7 +161,7 @@ jobs:
             base: css-standalone
             routing: true
             skip_package_json: false
-            ng-add-succeed: false
+            ng-add-succeed: true
             build-succeed: false
 
           - name: no-app-routes
