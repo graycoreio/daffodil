@@ -93,22 +93,12 @@ An icon can be rendered on either side of the button text content with the `daff
 
 ## Features
 
-### Sizes
-Use the `size` property to control button dimensions. The default size is `md`.
-
-<daffio-example-viewer example="button-sizes"></daffio-example-viewer>
-
 ### Colors
 Use the `color` property to change the color of a button.
 
 > Note: `dark`, `light`, and `theme` should be used on appropriate backgrounds for sufficient contrast.
 
-## Status indicators
-Status indicators help users understand the type of action a button performs and its importance relative to other buttons in the same context. Use the `status` property to convey different semantic meanings.
-
-<daffio-example-viewer example="statusable-button"></daffio-example-viewer>
-
-## Elevation
+### Elevation
 Add shadows to buttons with the `elevated` property.
 
 > Note: The `elevated` property is not supported for flat, icon, and underline buttons.
@@ -118,12 +108,17 @@ Add shadows to buttons with the `elevated` property.
 ### Loading
 Use the `loading` property to indicate that an action is being processed. When `loading` is set to `true`, the button displays a spinner.
 
-<design-land-example-viewer-container example="loading-button"></design-land-example-viewer-container>
+<daffio-example-viewer example="loading-button"></daffio-example-viewer>
+
+### Sizes
+Use the `size` property to control button dimensions. The default size is `md`.
+
+<daffio-example-viewer example="button-sizes"></daffio-example-viewer>
 
 ### Status indicators
 Status indicators help users understand the type of action a button performs and its importance relative to other buttons in the same context. Use the `status` property to convey different semantic meanings.
 
-<design-land-example-viewer-container example="statusable-button"></design-land-example-viewer-container>
+<daffio-example-viewer example="statusable-button"></daffio-example-viewer>
 
 ## Accessbility
 Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible experience by default.
