@@ -82,6 +82,8 @@ jobs:
           path: |
             ${{ env.WORK_DIR }}
             ${{ env.VERDACCIO_STORAGE }}/data
+            ${{ env.VERDACCIO_STORAGE }}/htpasswd
+            ~/.npmrc
           key: commerce-test-${{ github.run_id }}
 
   test:
@@ -186,7 +188,7 @@ jobs:
           VERDACCIO_CONTAINER=$(docker ps --filter "ancestor=verdaccio/verdaccio" --format "{{.ID}}")
           npx wait-on http://localhost:${{ env.REGISTRY_PORT }}/-/ping --timeout 30000
           docker exec --user root ${VERDACCIO_CONTAINER} sh -c 'mkdir -p /verdaccio/storage/data && chmod -R 777 /verdaccio/storage'
-          sudo chown -R $USER ${{ env.VERDACCIO_STORAGE }}/data
+          sudo chown -R $USER ${{ env.VERDACCIO_STORAGE }}
 
       - name: Restore base apps and Verdaccio storage
         uses: actions/cache/restore@v4
@@ -194,6 +196,8 @@ jobs:
           path: |
             ${{ env.WORK_DIR }}
             ${{ env.VERDACCIO_STORAGE }}/data
+            ${{ env.VERDACCIO_STORAGE }}/htpasswd
+            ~/.npmrc
           key: commerce-test-${{ github.run_id }}
 
       - name: Copy base app
@@ -213,18 +217,9 @@ jobs:
 
       - name: Configure test app npmrc
         run: |
-          REGISTRY_URL="http://localhost:${{ env.REGISTRY_PORT }}"
           VERDACCIO_CONTAINER=$(docker ps --filter "ancestor=verdaccio/verdaccio" --format "{{.ID}}")
-          docker exec --user root ${VERDACCIO_CONTAINER} sh -c 'touch /verdaccio/storage/htpasswd && chmod -R 777 /verdaccio/storage'
-          RESPONSE=$(curl -s -X PUT ${REGISTRY_URL}/-/user/org.couchdb.user:ci \
-            -H "Content-Type: application/json" \
-            -d '{"name":"ci","password":"ci-password","type":"user"}')
-          echo "Verdaccio auth response: $RESPONSE"
-          TOKEN=$(echo "$RESPONSE" | node -e "process.stdin.resume();process.stdin.on('data',d=>console.log(JSON.parse(d).token))")
-          if [ -z "$TOKEN" ]; then echo "ERROR: Failed to obtain Verdaccio token" && exit 1; fi
-          NPMRC="${{ env.WORK_DIR }}/test-${{ matrix.name }}/.npmrc"
-          echo "@daffodil:registry=${REGISTRY_URL}" >> "$NPMRC"
-          echo "//localhost:${{ env.REGISTRY_PORT }}/:_authToken=${TOKEN}" >> "$NPMRC"
+          docker exec --user root ${VERDACCIO_CONTAINER} sh -c 'chmod -R 777 /verdaccio/storage'
+          cp "$HOME/.npmrc" "${{ env.WORK_DIR }}/test-${{ matrix.name }}/.npmrc"
 
       - name: Apply app modifications
         working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
