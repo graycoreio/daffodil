@@ -209,7 +209,7 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbComponent', () => {
       fixture7.detectChanges();
     });
 
-    it('should compute 5 breadcrumb items', () => {
+    it('should compute the first 2 and last 2 breadcrumb items and an ellipsis', () => {
       expect(breadcrumbComponent._computedBreadcrumbItems().length).toBe(5);
     });
 
