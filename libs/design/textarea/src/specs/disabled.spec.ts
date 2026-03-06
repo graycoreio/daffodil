@@ -139,6 +139,10 @@ describe('@daffodil/design/textarea | DaffTextareaComponent | Reactive Forms Dis
     it('should set disabled to true', () => {
       expect(component.disabled).toEqual(true);
     });
+
+    it('should set the disabled attribute on the host element', () => {
+      expect(componentDE.nativeElement.disabled).toEqual(true);
+    });
   });
 
   describe('when the form control is no longer disabled', () =>{
@@ -147,6 +151,13 @@ describe('@daffodil/design/textarea | DaffTextareaComponent | Reactive Forms Dis
       fixture.detectChanges();
 
       expect(component.disabled).toEqual(false);
+    });
+
+    it('should remove the disabled attribute from the host element', () => {
+      wrapper.message.enable();
+      fixture.detectChanges();
+
+      expect(componentDE.nativeElement.disabled).toEqual(false);
     });
   });
 });
