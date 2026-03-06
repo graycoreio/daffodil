@@ -60,10 +60,6 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbMenuItemDirective', () => 
     expect(directive).toBeTruthy();
   });
 
-  it('should add a class of "daff-breadcrumb-menu-item" to the host element', () => {
-    expect(de.classes['daff-breadcrumb-menu-item']).toBeTrue();
-  });
-
   it('should provide DAFF_MENU_ITEM_TOKEN', () => {
     expect(de.injector.get(DAFF_MENU_ITEM_TOKEN)).toBe(directive);
   });

@@ -92,18 +92,21 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
   /**
    * @docs-private
    */
-  @ViewChild('fullMenu', { static: true }) fullMenu: TemplateRef<unknown>;
+  @ViewChild('mobileMenu', { static: true }) fullMenu: TemplateRef<unknown>;
 
   /**
    * @docs-private
    */
-  @ViewChild('partialMenu', { static: true }) partialMenu: TemplateRef<unknown>;
+  @ViewChild('desktopMenu', { static: true }) partialMenu: TemplateRef<unknown>;
 
   /**
    * @docs-private
    */
   _breadcrumbItems = contentChildren(DaffBreadcrumbItemComponent);
 
+  /**
+   * @docs-private
+   */
   _computedBreadcrumbItems = computed(() => {
     this._isMobile(); // signal rerenders breadcrumb on viewport change
 
@@ -119,7 +122,10 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
     }, []);
   });
 
-  _partialMenuItems = computed(() => {
+  /**
+   * @docs-private
+   */
+  _desktopMenuItems = computed(() => {
     const items = this._breadcrumbItems();
     const res = items.reduce<DaffBreadcrumbItemComponent[]>((acc, item, index) => {
       if(items.length >= 5
@@ -134,7 +140,10 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
     return res;
   });
 
-  _fullMenuItems = computed(() => {
+  /**
+   * @docs-private
+   */
+  _mobileMenuItems = computed(() => {
     const items = this._breadcrumbItems();
     return items.slice(0, items.length - 1);
   });

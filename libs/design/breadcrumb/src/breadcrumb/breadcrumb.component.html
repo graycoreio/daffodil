@@ -6,25 +6,25 @@
 		</li>
 	} @else {
 		<li class="daff-breadcrumb__item"
-			[class.on-mobile]="breadcrumbItem.target === 'full'"
-			[class.on-desktop]="breadcrumbItem.target === 'partial'"
-			[daffMenuActivator]="breadcrumbItem.target === 'full' ? fullMenu : partialMenu">
+			[class.on-mobile]="breadcrumbItem.target === 'mobileMenu'"
+			[class.on-desktop]="breadcrumbItem.target === 'desktopMenu'"
+			[daffMenuActivator]="breadcrumbItem.target === 'mobileMenu' ? mobileMenu : desktopMenu">
 			<button class="daff-breadcrumb__menu-activator">...</button>
 		</li>
 	}
 }
 
-<ng-template #fullMenu>
+<ng-template #mobileMenu>
 	<daff-menu>
-		@for (breadcrumbItem of _fullMenuItems(); track breadcrumbItem; let index = $index) {
+		@for (breadcrumbItem of _mobileMenuItems(); track breadcrumbItem; let index = $index) {
 			<ng-container daffBreadcrumbMenuItem [ngTemplateOutlet]="breadcrumbItem.itemRef"></ng-container>
 		}
 	</daff-menu>	
 </ng-template>
 
-<ng-template #partialMenu>
+<ng-template #desktopMenu>
 	<daff-menu>
-		@for (breadcrumbItem of _partialMenuItems(); track breadcrumbItem; let index = $index) {
+		@for (breadcrumbItem of _desktopMenuItems(); track breadcrumbItem; let index = $index) {
 			<ng-container daffBreadcrumbMenuItem [ngTemplateOutlet]="breadcrumbItem.itemRef"></ng-container>
 		}
 	</daff-menu>	

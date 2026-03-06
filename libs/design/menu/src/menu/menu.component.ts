@@ -44,9 +44,7 @@ import { DaffMenuService } from '../services/menu.service';
 @Component({
   selector: 'daff-menu',
   templateUrl: './menu.component.html',
-  styleUrls: [
-    './menu.component.scss',
-  ],
+  styleUrl: './menu.component.scss',
   encapsulation: ViewEncapsulation.None, // Required to allow breadcrumb items to take on `.daff-menu-item` styles
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

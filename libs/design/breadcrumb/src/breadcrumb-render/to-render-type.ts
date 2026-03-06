@@ -4,7 +4,7 @@ import { DaffBreadcrumbRender } from './breadcrumb-render.type';
 export const toRenderType = (item: DaffBreadcrumbItemComponent, length: number, index: number): DaffBreadcrumbRender | DaffBreadcrumbRender[] => {
   if(index === 0) {
     return [
-      { type: 'menu', target: 'full' },
+      { type: 'menu', target: 'mobileMenu' },
       { item, type: 'breadcrumb' },
     ];
   }
@@ -17,7 +17,7 @@ export const toRenderType = (item: DaffBreadcrumbItemComponent, length: number, 
       case length - 2:
         return { item, type: 'breadcrumb' };
       case 2:
-        return { type: 'menu', target: 'partial' };
+        return { type: 'menu', target: 'desktopMenu' };
       default:
         return [];
     }

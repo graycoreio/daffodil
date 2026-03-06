@@ -16,16 +16,9 @@ import {
  *
  * Applied to an `ng-container` that projects breadcrumb item templates into `daff-menu`,
  * allowing breadcrumb items to take on `daff-menu-item` styling and behavior.
- *
- * Provides {@link DAFF_MENU_ITEM_TOKEN} so that `DaffMenuComponent` can discover
- * the component as a menu item. Also adds the `daff-menu-item` class for styling and
- * implements `focus()` for keyboard navigation.
  */
 @Directive({
   selector: '[daffBreadcrumbMenuItem]',
-  host: {
-    class: 'daff-breadcrumb-menu-item',
-  },
   providers: [{ provide: DAFF_MENU_ITEM_TOKEN, useExisting: DaffBreadcrumbMenuItemDirective }],
 })
 export class DaffBreadcrumbMenuItemDirective implements FocusableOption, AfterViewInit, OnDestroy {

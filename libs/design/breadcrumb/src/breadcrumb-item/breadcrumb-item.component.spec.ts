@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffBreadcrumbItemComponent } from './breadcrumb-item.component';
+import { DaffBreadcrumbItemComponent } from '@daffodil/design/breadcrumb';
 
 @Component({
   template: `<li daffBreadcrumbItem>Breadcrumb Item</li>`,
@@ -23,7 +23,7 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbItemComponent', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
-  let directive: DaffBreadcrumbItemComponent;
+  let component: DaffBreadcrumbItemComponent;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -38,7 +38,7 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbItemComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('[daffBreadcrumbItem]'));
-    directive = de.injector.get(DaffBreadcrumbItemComponent);
+    component = de.injector.get(DaffBreadcrumbItemComponent);
     fixture.detectChanges();
   });
 
@@ -53,7 +53,7 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbItemComponent', () => {
   });
 
   it('should set aria-current="page" when active', () => {
-    directive.setActive(true);
+    component.setActive(true);
     fixture.detectChanges();
 
     expect(de.nativeElement.getAttribute('aria-current')).toBe('page');
@@ -61,7 +61,7 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbItemComponent', () => {
   });
 
   it('should have a class of ".active" when active', () => {
-    directive.setActive(true);
+    component.setActive(true);
     fixture.detectChanges();
 
     expect(de.nativeElement.classList).toContain('active');

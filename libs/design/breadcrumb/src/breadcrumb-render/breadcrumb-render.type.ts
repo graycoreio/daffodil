@@ -1,13 +1,13 @@
 import { DaffBreadcrumbItemComponent } from '../public_api';
 
-export interface DaffBreadcrumbRenderCrumb {
+export interface DaffBreadcrumbRenderItem {
   item: DaffBreadcrumbItemComponent;
   type: 'breadcrumb';
 }
 
 export interface DaffBreadcrumbRenderMenu {
   type: 'menu';
-  target: 'full' | 'partial';
+  target: 'mobileMenu' | 'desktopMenu';
 }
 
-export type DaffBreadcrumbRender = DaffBreadcrumbRenderCrumb | DaffBreadcrumbRenderMenu;
+export type DaffBreadcrumbRender = DaffBreadcrumbRenderItem | DaffBreadcrumbRenderMenu;
