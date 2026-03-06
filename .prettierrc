@@ -1,4 +1,13 @@
 {
   "singleQuote": true,
-  "trailingComma": "all"
+  "useTabs": true,
+  "trailingComma": "all",
+  "overrides": [
+    {                                                            
+      "files": "libs/{storefront,design}-examples/**/*.html",
+      "options": {
+        "useTabs": false
+      }
+    }
+  ]
 }
