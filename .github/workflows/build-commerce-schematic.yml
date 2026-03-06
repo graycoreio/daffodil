@@ -169,7 +169,7 @@ jobs:
 
       - name: Add schematic
         id: ng-add
-        continue-on-error: ${{ matrix.ng-add-succeed == false }}
+        continue-on-error: ${{ matrix.ng-add-succeed != null && matrix.ng-add-succeed == false }}
         working-directory: ${{ steps.test-dir.outputs.path }}
         run: |
           EXTRA_FLAGS=""
@@ -192,16 +192,16 @@ jobs:
 
       - name: Run ng build
         id: ng-build
-        continue-on-error: ${{ matrix.build-succeed == false }}
+        continue-on-error: ${{ matrix.build-succeed != null && matrix.build-succeed == false }}
         working-directory: ${{ steps.test-dir.outputs.path }}
         run: npx ng build
 
       - name: Verify ng add failed
-        if: matrix.ng-add-succeed == false && steps.ng-add.outcome != 'failure'
+        if: matrix.ng-add-succeed != null && matrix.ng-add-succeed == false && steps.ng-add.outcome != 'failure'
         run: |
           echo "ERROR: ng add was expected to fail but succeeded" && exit 1
 
       - name: Verify ng build failed
-        if: matrix.build-succeed == false && steps.ng-build.outcome != 'failure'
+        if: matrix.build-succeed != null && matrix.build-succeed == false && steps.ng-build.outcome != 'failure'
         run: |
           echo "ERROR: ng build was expected to fail but succeeded" && exit 1
