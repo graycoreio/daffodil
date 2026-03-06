@@ -14,7 +14,8 @@ env:
   TEST_VERSION: 0.0.0-test.${{ github.run_id }}
   REGISTRY_PORT: 4873
   NODE_VERSION: 22.21.x
-
+  NX_KEY: ${{ secrets.NX_KEY }}
+  AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
 jobs:
   test:
     name: "${{ matrix.name }}"
