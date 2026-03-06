@@ -1,5 +1,5 @@
 @use 'demo-theme';
-@use 'utilities' as *;
+@use '@daffodil/design/scss/utilities' as *;
 
 .demo-cart-item {
 	display: grid;
