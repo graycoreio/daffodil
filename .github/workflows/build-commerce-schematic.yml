@@ -18,7 +18,6 @@ env:
 jobs:
   test:
     name: "${{ matrix.name }}"
-    needs: setup
     runs-on: ubuntu-latest
     services:
       verdaccio:
