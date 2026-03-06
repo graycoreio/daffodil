@@ -36,7 +36,7 @@
 	}
 
 	&__left,
-	&__desktop {
+	&__desktop-right {
 		display: flex;
 		align-items: center;
 	}
@@ -46,12 +46,12 @@
 		width: 100%;
 	}
 
-	&__desktop {
+	&__desktop-right {
 		display: none;
 
 		@include daff.breakpoint(big-tablet) {
 			display: flex;
-			gap: 1rem;
+			gap: 0.5rem;
 		}
 	}
 
@@ -84,7 +84,7 @@
 		}
 	}
 
-	&__mobile {
+	&__mobile-right {
 		display: flex;
 		margin-right: -0.8125rem;
 
