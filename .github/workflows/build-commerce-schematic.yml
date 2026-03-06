@@ -41,25 +41,35 @@ jobs:
         routing: [true]
         include:
           - name: skip-package-json
+            angular_version: "^20"
             driver: in-memory
+            base: scss-standalone
             skip_package_json: true
+            routing: true
             build-succeed: false
 
           - name: module-app-rejection
+            angular_version: "^20"
             driver: in-memory
             base: scss-module
+            skip_package_json: false
+            routing: true
             ng-add-succeed: false
 
           - name: css-style-failure
+            angular_version: "^20"
             driver: in-memory
             base: css-standalone
+            skip_package_json: false
+            routing: true
             build-succeed: false
 
           - name: no-app-routes
+            angular_version: "^20"
             driver: in-memory
+            base: scss-standalone
+            skip_package_json: false
             routing: false
-            ng-add-succeed: true
-            build-succeed: true
 
     steps:
       - uses: actions/checkout@v6
