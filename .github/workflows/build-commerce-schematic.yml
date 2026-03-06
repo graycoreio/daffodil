@@ -15,7 +15,6 @@ env:
   REGISTRY_PORT: 4873
   NODE_VERSION: 22.21.x
   NX_KEY: ${{ secrets.NX_KEY }}
-  AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
 
 jobs:
   test:
@@ -80,6 +79,12 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           use-stamp-cache: true
+
+      - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
+        with:
+          cache-mode: read-only
+          read-only-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
+          event-name: 'manual-setup'
 
       - name: Authenticate with Verdaccio
         run: |
