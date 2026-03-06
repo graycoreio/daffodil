@@ -2,7 +2,7 @@ import { makeEnvironmentProviders } from '@angular/core';
 
 import { provideDaffDocsExampleContent } from '@daffodil/docs';
 
-export const provideDaffDesignQuantityFieldExamplesContent = () => makeEnvironmentProviders(provideDaffDocsExampleContent(
+export const provideDaffStorefrontQuantityFieldExamplesContent = () => makeEnvironmentProviders(provideDaffDocsExampleContent(
   {
     id: 'basic-quantity-field',
     component: () => import('./basic-quantity-field/basic-quantity-field.component').then(c => c.BasicQuantityFieldExampleComponent),

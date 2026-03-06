@@ -1,0 +1,12 @@
+<daff-form-field>
+  <daff-form-label>Quantity</daff-form-label>
+  <daff-sf-quantity-field
+    [formControl]="control"
+    [min]="5"
+    [max]="50"
+  ></daff-sf-quantity-field>
+</daff-form-field>
+
+<p>
+  Control Value: {{control.value}}
+</p>

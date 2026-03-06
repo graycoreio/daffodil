@@ -21,8 +21,8 @@ import {
 import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
 import { DaffContainerComponent } from '@daffodil/design/container';
 import { DaffFormFieldComponent } from '@daffodil/design/form-field';
-import { DaffQuantityFieldComponent } from '@daffodil/design/quantity-field';
 import { DaffProduct } from '@daffodil/product';
+import { DaffSfQuantityFieldComponent } from '@daffodil/storefront/quantity-field';
 
 import { ImageGalleryModule } from '../../../core/image-gallery/image-gallery.module';
 
@@ -36,7 +36,7 @@ import { ImageGalleryModule } from '../../../core/image-gallery/image-gallery.mo
     DAFF_ACCORDION_COMPONENTS,
     DaffContainerComponent,
     DaffFormFieldComponent,
-    DaffQuantityFieldComponent,
+    DaffSfQuantityFieldComponent,
     ImageGalleryModule,
   ],
 })

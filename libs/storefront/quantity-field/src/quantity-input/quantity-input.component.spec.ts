@@ -1,0 +1,155 @@
+import { Component } from '@angular/core';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import {
+  UntypedFormControl,
+  NgControl,
+} from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { Subject } from 'rxjs';
+
+import { DaffFormFieldComponent } from '@daffodil/design/form-field';
+import { DaffInputComponent } from '@daffodil/design/input';
+
+import { DaffSfQuantityInputComponent } from './quantity-input.component';
+
+@Component({
+  template: `
+    <daff-sf-quantity-input
+      [min]="minValue"
+      [max]="maxValue"
+    ></daff-sf-quantity-input>
+  `,
+  imports: [
+    DaffSfQuantityInputComponent,
+    DaffInputComponent,
+  ],
+})
+class WrapperComponent {
+  minValue = 0;
+  maxValue = 50;
+}
+
+describe('@daffodil/storefront/quantity-field | DaffSfQuantityInputComponent', () => {
+  let wrapper: WrapperComponent;
+  let component: DaffSfQuantityInputComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
+  let inputComponent: DaffInputComponent;
+
+  let control;
+
+  beforeEach(waitForAsync(() => {
+    control = {
+      statusChanges: new Subject(),
+      disabled: false,
+      control: new UntypedFormControl(1),
+      value: null,
+    };
+
+    TestBed.configureTestingModule({
+      imports: [
+        WrapperComponent,
+      ],
+      providers: [
+        {
+          provide: NgControl,
+          useValue: control,
+        },
+        {
+          provide: DaffFormFieldComponent,
+        },
+      ],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
+    fixture.detectChanges();
+
+    component = fixture.debugElement.query(By.css('daff-sf-quantity-input')).componentInstance;
+    inputComponent = fixture.debugElement.query(By.css('[daff-input]')).componentInstance;
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  describe('when the form control is disabled', () => {
+    beforeEach(() => {
+      control.disabled = true;
+      control.statusChanges.next(true);
+      fixture.detectChanges();
+    });
+
+    it('should disable the input', () => {
+      expect(component._inputControl.disabled).toBeTrue();
+    });
+  });
+
+  describe('when the component is destroyed', () => {
+    beforeEach(() => {
+      component.ngOnDestroy();
+    });
+
+    describe('and when the form control is disabled', () => {
+      beforeEach(() => {
+        control.disabled = true;
+        control.statusChanges.next(true);
+        fixture.detectChanges();
+      });
+
+      it('should not disable the input', () => {
+        expect(component._inputControl.disabled).toBeFalse();
+      });
+    });
+  });
+
+  describe('when the form control is enabled', () => {
+    beforeEach(() => {
+      control.disabled = false;
+      control.statusChanges.next(true);
+      fixture.detectChanges();
+    });
+
+    it('should enable the input', () => {
+      expect(component._inputControl.disabled).toBeFalse();
+    });
+  });
+
+  describe('when the component is focused', () => {
+    it('should focus the input component', () => {
+      const spy = spyOn(inputComponent, 'focus');
+      component.focus();
+      fixture.detectChanges();
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('when the component value is set to a value greater than max', () => {
+    beforeEach(() => {
+      component.value = wrapper.maxValue + 5;
+      fixture.detectChanges();
+    });
+
+    it('should set the value to max', () => {
+      expect(component.value).toEqual(wrapper.maxValue);
+    });
+  });
+
+  describe('when the component value is set to a non-integer value', () => {
+    beforeEach(() => {
+      component.value = 5.5;
+      fixture.detectChanges();
+    });
+
+    it('should set the value to the nearest integer', () => {
+      expect(component.value).toEqual(6);
+    });
+  });
+});

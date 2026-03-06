@@ -1,0 +1,22 @@
+@if (_showSelectField()) {
+  <daff-sf-quantity-select
+    [min]="min()"
+    [max]="_maxFloor"
+    [quantity]="quantity()"
+    [disabled]="disabled"
+    [extendable]="max() > selectMax()"
+    (focusChange)="_onChildFocus()"
+    (blurChange)="_onChildBlur()"
+    (valueChange)="_onChildValueChange($event)">
+  </daff-sf-quantity-select>
+}
+@if (_showInputField()) {
+  <daff-sf-quantity-input
+    [min]="min()"
+    [max]="max()"
+    [quantity]="quantity()"
+    (focusChange)="_onChildFocus()"
+    (blurChange)="_onChildBlur()"
+    (valueChange)="_onChildValueChange($event)">
+  </daff-sf-quantity-input>
+}

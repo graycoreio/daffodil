@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 
 import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
-import { DaffQuantityFieldComponent } from '@daffodil/design/quantity-field';
+import { DAFF_SF_QUANTITY_FIELD_COMPONENTS } from '@daffodil/storefront/quantity-field';
 
 @Component({
   selector: 'disabled-quantity-field-example',
@@ -16,7 +16,7 @@ import { DaffQuantityFieldComponent } from '@daffodil/design/quantity-field';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_FORM_FIELD_COMPONENTS,
-    DaffQuantityFieldComponent,
+    DAFF_SF_QUANTITY_FIELD_COMPONENTS,
     ReactiveFormsModule,
   ],
 })

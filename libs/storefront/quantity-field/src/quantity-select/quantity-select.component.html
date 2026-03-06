@@ -1,0 +1,15 @@
+<select daff-native-select
+  [formControl]="_selectControl"
+  (focus)="focusChange.emit()" 
+  (blur)="blurChange.emit()"
+  (change)="onValueChange($event)"
+>
+  @for (item of valueArray(); track item) {
+    <option [value]="item">{{ item }}</option>
+  }
+  @if (extendable()) {
+    <option [value]="max()">{{ max() }}+</option>
+  } @else {
+    <option [value]="max()">{{ max() }}</option>
+  }
+</select>

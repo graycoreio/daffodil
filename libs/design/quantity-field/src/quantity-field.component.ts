@@ -18,6 +18,9 @@ import { DaffFormFieldControl } from '@daffodil/design/form-field';
 import { DaffQuantityInputComponent } from './quantity-input/quantity-input.component';
 import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.component';
 
+/**
+ * @deprecated in favor of DaffSfQuantityFieldComponent. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
+ */
 @Component({
   selector: 'daff-quantity-field',
   templateUrl: './quantity-field.component.html',
