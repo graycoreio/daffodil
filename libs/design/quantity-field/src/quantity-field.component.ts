@@ -19,7 +19,7 @@ import { DaffQuantityInputComponent } from './quantity-input/quantity-input.comp
 import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.component';
 
 /**
- * @deprecated in favor of DaffSfQuantityFieldComponent. Deprecated in version 0.92.0. Will be removed in version 1.0.0.
+ * @deprecated in favor of DaffSfQuantityFieldComponent. Deprecated in version 0.92.0. Will be removed in version 0.95.0.
  */
 @Component({
   selector: 'daff-quantity-field',
