@@ -149,7 +149,8 @@ jobs:
 
       - name: Publish @daffodil/* packages to Verdaccio
         run: |
-          npx nx run -t publish \
+          npx nx run-many \
+            -t publish \
             --projects="${{ steps.daff-deps.outputs.packages }},@daffodil/commerce"
 
       - name: Compute test directory
