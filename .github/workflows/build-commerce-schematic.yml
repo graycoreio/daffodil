@@ -128,8 +128,9 @@ jobs:
       - name: Compute test directory
         id: test-dir
         run: |
-          echo "name=test-${{ matrix.name }}" >> "$GITHUB_OUTPUT"
-          echo "path=${{ env.WORK_DIR }}/test-${{ matrix.name }}" >> "$GITHUB_OUTPUT"
+          DIR_NAME="test-${{ matrix.name || matrix.driver }}"
+          echo "name=${DIR_NAME}" >> "$GITHUB_OUTPUT"
+          echo "path=${{ env.WORK_DIR }}/${DIR_NAME}" >> "$GITHUB_OUTPUT"
 
       - name: Restore cached base app
         id: cache-base-app
