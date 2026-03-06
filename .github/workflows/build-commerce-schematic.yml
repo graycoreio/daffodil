@@ -96,14 +96,19 @@ jobs:
           echo "@daffodil:registry=${REGISTRY_URL}" >> "$HOME/.npmrc"
           echo "//localhost:${{ env.REGISTRY_PORT }}/:_authToken=${TOKEN}" >> "$HOME/.npmrc"
 
-      - name: Set test version
+
+      - name: Set test version for commerce package
         run: |
-          npm version "${{ env.TEST_VERSION }}" --no-git-tag-version
           sed -i "s/version = '.*'/version = '${{ env.TEST_VERSION }}'/" \
             tools/schematics/ng-add/generators/version.ts
 
       - name: Build @daffodil/* packages
         run: npx nx run @daffodil/commerce:build
+
+      # Set root version AFTER building so that package.json/package-lock.json
+      # changes don't invalidate the NX remote cache
+      - name: Set test version in root
+        run: npm version "${{ env.TEST_VERSION }}" --no-git-tag-version
 
       - uses: graycoreio/github-actions/set-versions-from-root@main
 
