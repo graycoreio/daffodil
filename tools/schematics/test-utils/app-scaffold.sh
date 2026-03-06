@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# ============================================================
-# Scaffold base Angular apps for @daffodil/commerce e2e tests.
+# =========================================================================
+# Scaffold base Angular apps for @daffodil/commerce Github Action workflow.
 #
 # Called by the GitHub Actions setup job. Creates base apps
 # for use by the test matrix jobs.
@@ -11,7 +11,7 @@ set -euo pipefail
 #   $WORK_DIR/test-daff-app        (scss standalone base app)
 #   $WORK_DIR/test-daff-app-css    (css standalone base app)
 #   $WORK_DIR/test-daff-app-module (scss module base app)
-# ============================================================
+# =========================================================================
 
 WORK_DIR="${WORK_DIR:-/tmp/daffodil-commerce-test}"
 APP_NAME="test-daff-app"

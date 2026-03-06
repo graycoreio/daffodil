@@ -74,7 +74,7 @@ jobs:
             --projects="${{ steps.schematic-daff-deps.outputs.packages }},@daffodil/commerce"
 
       - name: Scaffold base apps
-        run: bash tools/schematics/e2e/test-commerce-schematics.sh
+        run: bash tools/schematics/test-utils/app-scaffold.sh
 
       - name: Cache base apps and Verdaccio storage
         uses: actions/cache/save@v4
