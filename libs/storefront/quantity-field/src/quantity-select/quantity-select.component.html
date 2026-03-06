@@ -4,7 +4,7 @@
   (blur)="blurChange.emit()"
   (change)="onValueChange($event)"
 >
-  @for (item of valueArray; track item) {
+  @for (item of valueArray(); track item) {
     <option [value]="item">{{ item }}</option>
   }
   @if (extendable()) {

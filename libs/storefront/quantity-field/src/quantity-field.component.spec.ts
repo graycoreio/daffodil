@@ -75,11 +75,11 @@ describe('@daffodil/storefront/quantity-field | DaffSfQuantityFieldComponent', (
 
   describe('on <daff-sf-quantity-select>', () => {
     it('should set the select max prop to selectMax', () => {
-      expect(selectComponent.max).toEqual(wrapper.selectMaxValue);
+      expect(selectComponent.max()).toEqual(wrapper.selectMaxValue);
     });
 
     it('should set the select extendable prop to true', () => {
-      expect(selectComponent.extendable).toBeTrue();
+      expect(selectComponent.extendable()).toBeTrue();
     });
 
     describe('when the max value is less than selectMax', () => {
@@ -89,11 +89,11 @@ describe('@daffodil/storefront/quantity-field | DaffSfQuantityFieldComponent', (
       });
 
       it('should set the select max prop to max', () => {
-        expect(selectComponent.max).toEqual(wrapper.maxValue);
+        expect(selectComponent.max()).toEqual(wrapper.maxValue);
       });
 
       it('should set the select extendable prop to false', () => {
-        expect(selectComponent.extendable).toBeFalse();
+        expect(selectComponent.extendable()).toBeFalse();
       });
     });
   });

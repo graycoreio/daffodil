@@ -16,10 +16,6 @@ export const provideDaffStorefrontQuantityFieldExamplesContent = () => makeEnvir
     component: () => import('./disabled-quantity-field/disabled-quantity-field.component').then(c => c.DisabledQuantityFieldExampleComponent),
   },
   {
-    id: 'quantity-field-no-control',
-    component: () => import('./quantity-field-no-control/quantity-field-no-control.component').then(c => c.QuantityFieldNoControlExampleComponent),
-  },
-  {
     id: 'select-max-quantity-field',
     component: () => import('./select-max-quantity-field/select-max-quantity-field.component').then(c => c.SelectMaxQuantityFieldExampleComponent),
   },

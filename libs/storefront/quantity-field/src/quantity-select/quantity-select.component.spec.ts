@@ -4,13 +4,9 @@ import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import {
-  NgControl,
-  UntypedFormControl,
-} from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { Subject } from 'rxjs';
 
+import { DaffFormFieldComponent } from '@daffodil/design/form-field';
 import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 
 import { DaffSfQuantitySelectComponent } from './quantity-select.component';
@@ -21,17 +17,20 @@ import { DaffSfQuantitySelectComponent } from './quantity-select.component';
       [min]="minValue"
       [max]="maxValue"
       [extendable]="extendableValue"
+      [quantity]="quantity"
+      [disabled]="disabled"
     ></daff-sf-quantity-select>
   `,
   imports: [
     DaffSfQuantitySelectComponent,
-    DaffNativeSelectComponent,
   ],
 })
 class WrapperComponent {
   minValue = 2;
   maxValue = 7;
   extendableValue = true;
+  quantity = 1;
+  disabled;
 }
 
 describe('@daffodil/storefront/quantity-field | DaffSfQuantitySelectComponent', () => {
@@ -39,24 +38,15 @@ describe('@daffodil/storefront/quantity-field | DaffSfQuantitySelectComponent', 
   let component: DaffSfQuantitySelectComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let selectComponent: DaffNativeSelectComponent;
-  let control;
 
   beforeEach(waitForAsync(() => {
-    control = {
-      statusChanges: new Subject(),
-      disabled: false,
-      control: new UntypedFormControl(1),
-      value: null,
-    };
-
     TestBed.configureTestingModule({
       imports: [
         WrapperComponent,
       ],
       providers: [
         {
-          provide: NgControl,
-          useValue: control,
+          provide: DaffFormFieldComponent,
         },
       ],
     })
@@ -104,17 +94,16 @@ describe('@daffodil/storefront/quantity-field | DaffSfQuantitySelectComponent', 
     });
   });
 
-  describe('when a value is set on the component', () => {
-    let value;
 
+
+  describe('when a value is set on the component', () => {
     beforeEach(() => {
-      value = 5;
-      component.value = value;
+      wrapper.quantity = 5;
       fixture.detectChanges();
     });
 
-    it('should set that value on the form control', () => {
-      expect(control.control.value).toEqual(value);
+    it('should set that quantity on the form control', () => {
+      expect(component._selectControl.value).toEqual(wrapper.quantity);
     });
   });
 
@@ -126,5 +115,41 @@ describe('@daffodil/storefront/quantity-field | DaffSfQuantitySelectComponent', 
 
       expect(spy).toHaveBeenCalledTimes(1);
     });
+  });
+
+  it('should set disabled on the native select when disabled', () => {
+    wrapper.disabled = true;
+    fixture.detectChanges();
+
+    const selectEl: HTMLSelectElement = fixture.debugElement.query(By.css('select[daff-native-select]')).nativeElement;
+    expect(selectEl.disabled).toBeTrue();
+  });
+
+  describe('when user changes the value', () => {
+    it('should output a value', () => {
+      const spy = spyOn(component.valueChange, 'emit');
+      const selectDe = fixture.debugElement.query(By.css('select[daff-native-select]'));
+
+      selectDe.nativeElement.value = '4';
+      selectDe.triggerEventHandler('change', { target: selectDe.nativeElement });
+
+      expect(spy).toHaveBeenCalledWith(4);
+    });
+  });
+
+  it('should allow min to be changed', () => {
+    wrapper.minValue = 3;
+    fixture.detectChanges();
+
+    const optionTexts = fixture.debugElement.queryAll(By.css('select option')).map(el => el.nativeElement.innerText);
+    expect(optionTexts[0]).toEqual('3');
+  });
+
+  it('should allow max to be changed', () => {
+    wrapper.maxValue = 5;
+    fixture.detectChanges();
+
+    const optionTexts = fixture.debugElement.queryAll(By.css('select option')).map(el => el.nativeElement.innerText);
+    expect(optionTexts[optionTexts.length - 1]).toEqual('5+');
   });
 });

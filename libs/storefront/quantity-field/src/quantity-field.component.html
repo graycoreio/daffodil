@@ -2,6 +2,8 @@
   <daff-sf-quantity-select
     [min]="min()"
     [max]="_maxFloor"
+    [quantity]="quantity()"
+    [disabled]="disabled"
     [extendable]="max() > selectMax()"
     (focusChange)="_onChildFocus()"
     (blurChange)="_onChildBlur()"

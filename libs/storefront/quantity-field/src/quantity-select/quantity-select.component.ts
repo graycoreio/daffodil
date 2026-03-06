@@ -2,26 +2,22 @@ import { coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   Component,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   ViewChild,
-  OnInit,
-  OnDestroy,
-  Optional,
   input,
   output,
+  effect,
+  computed,
 } from '@angular/core';
 import {
-  NgControl,
   ReactiveFormsModule,
   UntypedFormControl,
 } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
-import { DaffFormFieldControl } from '@daffodil/design/form-field';
 import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 
 /**
+ * @docs-private
+ *
  * Create an array of numbers from min to max, not including max.
  */
 export const makeValueArray = (min: number, max: number, increment: number) =>
@@ -36,7 +32,7 @@ export const makeValueArray = (min: number, max: number, increment: number) =>
     ReactiveFormsModule,
   ],
 })
-export class DaffSfQuantitySelectComponent implements OnInit, OnDestroy {
+export class DaffSfQuantitySelectComponent {
   @ViewChild(DaffNativeSelectComponent) select: DaffNativeSelectComponent;
 
   /**
@@ -46,8 +42,6 @@ export class DaffSfQuantitySelectComponent implements OnInit, OnDestroy {
    * Instead, we listen for the change event and manually patch form control values.
    */
   _selectControl = new UntypedFormControl();
-
-  _destroyed = new Subject();
 
   /**
    * The minimum number selectable. Defaults to 1.
@@ -80,42 +74,29 @@ export class DaffSfQuantitySelectComponent implements OnInit, OnDestroy {
    */
   valueChange = output<number>();
 
-  /**
-   * The amount to increment between "min" and "max".
-   */
-  private increment = 1;
+  quantity = input();
 
-  get value(): number {
-    return this.formFieldControl.value;
-  }
-  set value(value: number) {
-    this.formFieldControl.ngControl?.control.patchValue(value);
-    this._selectControl.patchValue(value);
-    this.changeDetectorRef.markForCheck();
-  }
+  disabled = input();
 
-  constructor(
-    @Optional() public ngControl: NgControl,
-    private changeDetectorRef: ChangeDetectorRef,
-    private formFieldControl: DaffFormFieldControl<number>,
-  ) {}
+  constructor() {
+    effect(() => {
+      const value = this.quantity();
+      this._selectControl.patchValue(value);
+    });
 
-  /**
-   * @docs-private
-   */
-  ngOnInit() {
-    this._selectControl.patchValue(this.formFieldControl.value);
-    this.setSelectDisabled();
-    this.formFieldControl.stateChanges.pipe(
-      takeUntil(this._destroyed),
-    ).subscribe(() => {
-      this.setSelectDisabled();
+    effect(() => {
+      if(this.disabled()) {
+        this._selectControl.disable();
+      } else {
+        this._selectControl.enable();
+      }
     });
   }
 
-  ngOnDestroy() {
-    this._destroyed.next(true);
-  }
+  /**
+   * An input for easily making options for the `select`.
+   */
+  valueArray = computed(() => makeValueArray(this.min(), this.max(), 1));
 
   get focused() {
     return this.select?.focused;
@@ -134,22 +115,6 @@ export class DaffSfQuantitySelectComponent implements OnInit, OnDestroy {
   onValueChange(event: Event) {
     const val = coerceNumberProperty((<HTMLSelectElement>event.target).value);
 
-    this.value = val;
-
     this.valueChange.emit(val);
-  }
-
-  /**
-   * A helper function for easily making options for the `select`.
-   */
-  get valueArray() {
-    return makeValueArray(this.min(), this.max(), this.increment);
-  }
-
-  private setSelectDisabled() {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    this.formFieldControl.disabled
-      ? this._selectControl.disable()
-      : this._selectControl.enable();
   }
 }
