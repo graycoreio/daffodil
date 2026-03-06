@@ -146,8 +146,8 @@ describe('@daffodil/design | DaffNativeSelectComponent | Reactive Forms Disabled
       expect(component.disabled).toEqual(true);
     });
 
-    it('should set disabledAttribute to true', () => {
-      expect(component.disabledAttribute).toEqual(true);
+    it('should set the disabled attribute native select element', () => {
+      expect(componentDE.nativeElement.getAttribute('disabled')).not.toBeNull();
     });
   });
 
@@ -159,11 +159,11 @@ describe('@daffodil/design | DaffNativeSelectComponent | Reactive Forms Disabled
       expect(component.disabled).toEqual(false);
     });
 
-    it('should remove the disabled attribute from the host element', () => {
+    it('should remove the disabled attribute from the native select element', () => {
       wrapper.control.enable();
       fixture.detectChanges();
 
-      expect(component.disabledAttribute).toBeFalsy();
+      expect(componentDE.nativeElement.getAttribute('disabled')).toBeNull();
     });
   });
 });

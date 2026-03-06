@@ -140,8 +140,8 @@ describe('@daffodil/design/input | DaffInputComponent | Reactive Forms Disabled 
       expect(component.disabled).toEqual(true);
     });
 
-    it('should set disabledAttribute to true', () => {
-      expect(component.disabledAttribute).toEqual(true);
+    it('should set the disabled attribute native input element', () => {
+      expect(componentDE.nativeElement.getAttribute('disabled')).not.toBeNull();
     });
   });
 
@@ -153,11 +153,11 @@ describe('@daffodil/design/input | DaffInputComponent | Reactive Forms Disabled 
       expect(component.disabled).toEqual(false);
     });
 
-    it('should remove the disabled attribute from the host element', () => {
+    it('should remove the disabled attribute from the native input element', () => {
       wrapper.email.enable();
       fixture.detectChanges();
 
-      expect(component.disabledAttribute).toBeFalsy();
+      expect(componentDE.nativeElement.getAttribute('disabled')).toBeNull();
     });
   });
 });
