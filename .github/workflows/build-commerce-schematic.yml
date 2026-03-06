@@ -19,6 +19,7 @@ env:
 
 jobs:
   test:
+    name: "${{ matrix.name || matrix.driver }} (@angular${{ matrix.angular_version }})"
     runs-on: ubuntu-latest
     services:
       verdaccio:
