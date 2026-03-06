@@ -69,17 +69,21 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
 
   /**
    * @docs-private
-   */
-  get disabledAttribute() {
-    return this.disabled || null;
-  }
-
-  /**
-   * @docs-private
    *
    * Implemented as part of DaffFormFieldControl.
    */
   @Input({ transform: booleanAttribute }) disabled = false;
+
+  /**
+   * @docs-private
+   */
+  get disabledAttribute() {
+    if (this.ngControl) {
+      return this.ngControl.disabled;
+    }
+
+    return this.disabled || null;
+  }
 
   private _required = false;
 
