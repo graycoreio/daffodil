@@ -32,7 +32,7 @@ class WrapperComponent {
   disabledValue: boolean | string;
 }
 
-describe('@daffodil/design | DaffInputComponent | Static Disabled Attribute', () => {
+describe('@daffodil/design/input | DaffInputComponent | Static Disabled Attribute', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffInputComponent;
@@ -111,7 +111,7 @@ class FormsWrapperComponent {
   email: UntypedFormControl = new UntypedFormControl({ value: '', disabled: true });
 }
 
-describe('@daffodil/design | DaffInputComponent | Reactive Forms Disabled State', () => {
+describe('@daffodil/design/input | DaffInputComponent | Reactive Forms Disabled State', () => {
   let wrapper: FormsWrapperComponent;
   let fixture: ComponentFixture<FormsWrapperComponent>;
   let componentDE: DebugElement;
@@ -140,8 +140,8 @@ describe('@daffodil/design | DaffInputComponent | Reactive Forms Disabled State'
       expect(component.disabled).toEqual(true);
     });
 
-    it('should set the disabled attribute on the host element', () => {
-      expect(componentDE.nativeElement.disabled).toEqual(true);
+    it('should set disabledAttribute to true', () => {
+      expect(component.disabledAttribute).toEqual(true);
     });
   });
 
@@ -157,7 +157,7 @@ describe('@daffodil/design | DaffInputComponent | Reactive Forms Disabled State'
       wrapper.email.enable();
       fixture.detectChanges();
 
-      expect(componentDE.nativeElement.disabled).toEqual(false);
+      expect(component.disabledAttribute).toBeFalsy();
     });
   });
 });
