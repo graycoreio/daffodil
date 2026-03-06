@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "prebuild": "rm -rf ../../dist/commerce/*",
-    "build": "tsc -p tsconfig.json && cp collection.json ../../dist/commerce/ && cp ng-add/schema.json ../../dist/commerce/ng-add/ && cp -r ng-add/files ../../dist/commerce/ng-add/ && cp package.json ../../dist/commerce/ && cp README.md ../../dist/commerce/",
+    "build": "bash scripts/build.sh",
     "pack": "cd ../../dist/commerce/ && rm -f dist/commerce/*.tgz && npm pack",
     "publish": "cd ../../dist/commerce && npm publish --access=public",
     "test": "NODE_OPTIONS=\"--no-experimental-strip-types\" ts-node --compiler-options '{\"module\":\"commonjs\"}' -P tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
@@ -36,7 +36,13 @@
     "typescript": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
-    "@angular-devkit/schematics-cli": "0.0.0-PLACEHOLDER"
+    "@angular-devkit/schematics-cli": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/dev-tools": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "@daffodil/external-router": "0.0.0-PLACEHOLDER",
+    "@daffodil/navigation": "0.0.0-PLACEHOLDER",
+    "@daffodil/product": "0.0.0-PLACEHOLDER"
   },
   "peerDependencies": {
     "@angular/core": "0.0.0-PLACEHOLDER",

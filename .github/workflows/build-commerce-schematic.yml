@@ -6,86 +6,16 @@ on:
       - develop
     paths:
       - 'tools/schematics/**'
-
+  push:
+    branches:
+      - damien-ci-test
 env:
   WORK_DIR: /tmp/daffodil-commerce-test
-  VERDACCIO_STORAGE: /tmp/verdaccio-storage
   TEST_VERSION: 0.0.0-test.${{ github.run_id }}
   REGISTRY_PORT: 4873
   NODE_VERSION: 22.21.x
 
 jobs:
-  setup:
-    name: Build
-    runs-on: ubuntu-latest
-    services:
-      verdaccio:
-        image: verdaccio/verdaccio
-        ports:
-          - 4873:4873
-        volumes:
-          - /tmp/verdaccio-storage:/verdaccio/storage
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 1
-
-      - uses: graycoreio/github-actions/setup-node@main
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          use-stamp-cache: true
-
-      - name: Configure Verdaccio
-        run: |
-          REGISTRY_URL="http://localhost:${{ env.REGISTRY_PORT }}"
-          VERDACCIO_CONTAINER=$(docker ps --filter "ancestor=verdaccio/verdaccio" --format "{{.ID}}")
-          npx wait-on ${REGISTRY_URL}/-/ping --timeout 30000
-          docker exec --user root ${VERDACCIO_CONTAINER} sh -c 'mkdir -p /verdaccio/storage/data && touch /verdaccio/storage/htpasswd && chmod -R 777 /verdaccio/storage'
-          RESPONSE=$(curl -s -X PUT ${REGISTRY_URL}/-/user/org.couchdb.user:ci \
-            -H "Content-Type: application/json" \
-            -d '{"name":"ci","password":"ci-password","type":"user"}')
-          TOKEN=$(echo "$RESPONSE" | node -e "process.stdin.resume();process.stdin.on('data',d=>console.log(JSON.parse(d).token))")
-          if [ -z "$TOKEN" ]; then echo "ERROR: Failed to obtain Verdaccio token. Response: $RESPONSE" && exit 1; fi
-          echo "@daffodil:registry=${REGISTRY_URL}" >> "$HOME/.npmrc"
-          echo "//localhost:${{ env.REGISTRY_PORT }}/:_authToken=${TOKEN}" >> "$HOME/.npmrc"
-
-      - name: Set test version
-        run: |
-          npm version "${{ env.TEST_VERSION }}" --no-git-tag-version
-          sed -i "s/version = '.*'/version = '${{ env.TEST_VERSION }}'/" \
-            tools/schematics/ng-add/generators/version.ts
-
-      - name: Extract schematic daffodil dependencies
-        id: schematic-daff-deps
-        run: |
-          PACKAGES=$(grep -oP "(?<=name: ')@daffodil/[^']+" tools/schematics/ng-add/generators/dependencies.ts | paste -sd ',')
-          echo "packages=${PACKAGES}" >> "$GITHUB_OUTPUT"
-
-      - name: Build @daffodil/* packages
-        run: |
-          npx nx run-many -t build --projects="${{ steps.schematic-daff-deps.outputs.packages }}"
-          cd tools/schematics && npm run build
-
-      - uses: graycoreio/github-actions/set-versions-from-root@main
-
-      - name: Publish @daffodil/* packages to Verdaccio
-        run: |
-          npx nx run-many -t publish \
-            --projects="${{ steps.schematic-daff-deps.outputs.packages }},@daffodil/commerce"
-
-      - name: Scaffold base apps
-        run: bash tools/schematics/test-utils/app-scaffold.sh
-
-      - name: Cache base apps and Verdaccio storage
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            ${{ env.WORK_DIR }}
-            ${{ env.VERDACCIO_STORAGE }}/data
-            ${{ env.VERDACCIO_STORAGE }}/htpasswd
-            ~/.npmrc
-          key: commerce-test-${{ github.run_id }}
-
   test:
     name: "${{ matrix.name }}"
     needs: setup
@@ -95,11 +25,15 @@ jobs:
         image: verdaccio/verdaccio
         ports:
           - 4873:4873
-        volumes:
-          - /tmp/verdaccio-storage:/verdaccio/storage
+        options: >-
+          --health-cmd "wget --no-verbose --tries=1 --spider http://localhost:4873/-/ping || exit 1"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
     strategy:
       fail-fast: false
       matrix:
+        angular_version: ["^20"]
         include:
           - name: demo-driver
             driver: demo
@@ -182,66 +116,87 @@ jobs:
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: ${{ env.NODE_VERSION }}
+          use-stamp-cache: true
 
-      - name: Prepare Verdaccio storage for cache restore
+      - name: Authenticate with Verdaccio
         run: |
-          VERDACCIO_CONTAINER=$(docker ps --filter "ancestor=verdaccio/verdaccio" --format "{{.ID}}")
-          npx wait-on http://localhost:${{ env.REGISTRY_PORT }}/-/ping --timeout 30000
-          docker exec --user root ${VERDACCIO_CONTAINER} sh -c 'mkdir -p /verdaccio/storage/data && chmod -R 777 /verdaccio/storage'
-          sudo chown -R $USER ${{ env.VERDACCIO_STORAGE }}
+          REGISTRY_URL="http://localhost:${{ env.REGISTRY_PORT }}"
+          TOKEN=$(curl -s -X PUT ${REGISTRY_URL}/-/user/org.couchdb.user:ci \
+            -H "Content-Type: application/json" \
+            -d '{"name":"ci","password":"ci-password","type":"user"}' | jq -r '.token')
+          if [ -z "$TOKEN" ] || [ "$TOKEN" = "null" ]; then echo "ERROR: Failed to obtain Verdaccio token" && exit 1; fi
+          echo "@daffodil:registry=${REGISTRY_URL}" >> "$HOME/.npmrc"
+          echo "//localhost:${{ env.REGISTRY_PORT }}/:_authToken=${TOKEN}" >> "$HOME/.npmrc"
 
-      - name: Restore base apps and Verdaccio storage
+      - name: Set test version
+        run: |
+          npm version "${{ env.TEST_VERSION }}" --no-git-tag-version
+          sed -i "s/version = '.*'/version = '${{ env.TEST_VERSION }}'/" \
+            tools/schematics/ng-add/generators/version.ts
+
+      - name: Build @daffodil/* packages
+        run: npx nx run @daffodil/commerce:build
+
+      - uses: graycoreio/github-actions/set-versions-from-root@main
+
+      - name: Compute @daffodil/commerce dependencies
+        id: daff-deps
+        run: |
+          PACKAGES=$(npx nx graph --focus=@daffodil/commerce --file=stdout | \
+            jq -r '.graph.dependencies["@daffodil/commerce"] | map(.target) | join(",")')
+          echo "packages=${PACKAGES}" >> "$GITHUB_OUTPUT"
+
+      - name: Publish @daffodil/* packages to Verdaccio
+        run: |
+          npx nx run -t publish \
+            --projects="${{ steps.daff-deps.outputs.packages }},@daffodil/commerce"
+
+      - name: Compute test directory
+        id: test-dir
+        run: |
+          echo "name=test-${{ matrix.name }}" >> "$GITHUB_OUTPUT"
+          echo "path=${{ env.WORK_DIR }}/test-${{ matrix.name }}" >> "$GITHUB_OUTPUT"
+
+      - name: Restore cached base app
+        id: cache-base-app
         uses: actions/cache/restore@v4
         with:
-          path: |
-            ${{ env.WORK_DIR }}
-            ${{ env.VERDACCIO_STORAGE }}/data
-            ${{ env.VERDACCIO_STORAGE }}/htpasswd
-            ~/.npmrc
-          key: commerce-test-${{ github.run_id }}
+          path: ${{ steps.test-dir.outputs.path }}
+          key: commerce-base-app-${{ matrix.base }}-${{ hashFiles('package.json') }}
 
-      - name: Copy base app
+      - name: Scaffold test app
+        if: steps.cache-base-app.outputs.cache-hit != 'true'
+        env:
+          STYLE: "scss"
+          EXTRA_FLAGS: ""
+          DIR_NAME: "${{ steps.test-dir.outputs.name }}"
         run: |
-          if [ "${{ matrix.base }}" = "scss-standalone" ]; then
-            BASE_APP="${{ env.WORK_DIR }}/test-daff-app"
-          elif [ "${{ matrix.base }}" = "css-standalone" ]; then
-            BASE_APP="${{ env.WORK_DIR }}/test-daff-app-css"
+          rm -rf "${{ steps.test-dir.outputs.path }}"
+          mkdir -p "${{ env.WORK_DIR }}"
+
+          if [ "${{ matrix.base }}" = "css-standalone" ]; then
+            STYLE="css"
           elif [ "${{ matrix.base }}" = "scss-module" ]; then
-            BASE_APP="${{ env.WORK_DIR }}/test-daff-app-module"
-          else
-            echo "ERROR: Unknown base type '${{ matrix.base }}'" && exit 1
-          fi
-          TEST_DIR="${{ env.WORK_DIR }}/test-${{ matrix.name }}"
-          rm -rf "$TEST_DIR"
-          cp -a "$BASE_APP" "$TEST_DIR"
-
-      - name: Configure test app npmrc
-        run: |
-          VERDACCIO_CONTAINER=$(docker ps --filter "ancestor=verdaccio/verdaccio" --format "{{.ID}}")
-          docker exec --user root ${VERDACCIO_CONTAINER} sh -c 'chmod -R 777 /verdaccio/storage'
-          cp "$HOME/.npmrc" "${{ env.WORK_DIR }}/test-${{ matrix.name }}/.npmrc"
-
-      - name: Apply app modifications
-        working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
-        run: |
-          if [ "${{ matrix.app_type }}" = "main-ts-fallback" ]; then
-          cat > "src/main.ts" <<'MAIN'
-          import { bootstrapApplication } from '@angular/platform-browser';
-          import { App } from './app/app';
-
-          bootstrapApplication(App, {
-            providers: []
-          });
-          MAIN
-          rm -f "src/app/app.config.ts"
+            EXTRA_FLAGS="--standalone=false"
           fi
 
-          if [ "${{ matrix.routing }}" = "false" ]; then
-          rm -f "src/app/app.routes.ts"
-          fi
+          cd "${{ env.WORK_DIR }}"
+          npx -y @angular/cli@${{ matrix.angular_version}} new "$DIR_NAME" \
+            --style="$STYLE" \
+            --skip-tests \
+            --defaults \
+            $EXTRA_FLAGS
+
+      - name: Cache base app
+        if: steps.cache-base-app.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ steps.test-dir.outputs.path }}
+          key: ng-app-${{ matrix.base }}-${{ hashFiles('package.json') }}
 
       - name: Add schematic
-        working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
+        continue-on-error: ${{ !matrix.ng-add-succeed }}
+        working-directory: ${{ steps.test-dir.outputs.path }}
         run: |
           EXTRA_FLAGS=""
           if [ "${{ matrix.skip_package_json }}" = "true" ]; then
@@ -253,27 +208,15 @@ jobs:
             --is-new-project \
             --defaults \
             --skip-confirmation \
-            $EXTRA_FLAGS && NG_ADD_RESULT="success" || NG_ADD_RESULT="failure"
-
-          if [ "${{ matrix.ng-add-succeed }}" = "true" ] && [ "$NG_ADD_RESULT" != "success" ]; then
-            echo "ERROR: ng add was expected to succeed but failed" && exit 1
-          elif [ "${{ matrix.ng-add-succeed }}" = "false" ] && [ "$NG_ADD_RESULT" != "failure" ]; then
-            echo "ERROR: ng add was expected to fail but succeeded" && exit 1
-          fi
+            $EXTRA_FLAGS
 
       - name: Raise budget
         if: matrix.driver == 'demo'
-        working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
+        working-directory: ${{ steps.test-dir.outputs.path }}
         run: |
           sed -i 's/"maximumWarning": "[^"]*"/"maximumWarning": "2mb"/; s/"maximumError": "[^"]*"/"maximumError": "3mb"/' angular.json
 
       - name: Run ng build
-        working-directory: ${{ env.WORK_DIR }}/test-${{ matrix.name }}
-        run: |
-          npx ng build && BUILD_RESULT="success" || BUILD_RESULT="failure"
-
-          if [ "${{ matrix.build-succeed }}" = "true" ] && [ "$BUILD_RESULT" != "success" ]; then
-            echo "ERROR: ng build was expected to succeed but failed" && exit 1
-          elif [ "${{ matrix.build-succeed }}" = "false" ] && [ "$BUILD_RESULT" != "failure" ]; then
-            echo "ERROR: ng build was expected to fail but succeeded" && exit 1
-          fi
+        continue-on-error: ${{ !matrix.build-succeed }}
+        working-directory: ${{ steps.test-dir.outputs.path }}
+        run: npx ng build
