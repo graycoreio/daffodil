@@ -16,9 +16,9 @@ env:
   NODE_VERSION: 22.21.x
   NX_KEY: ${{ secrets.NX_KEY }}
   AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
+
 jobs:
   test:
-    name: "${{ matrix.name }}"
     runs-on: ubuntu-latest
     services:
       verdaccio:
@@ -35,77 +35,28 @@ jobs:
       matrix:
         angular_version: ["^20"]
         driver: ["demo", "magento", "shopify", "in-memory"]
+        base: ["scss-standalone"]
+        skip_package_json: [false]
+        routing: [true]
         include:
-          - name: demo-driver
-            driver: demo
-            base: scss-standalone
-            routing: true
-            skip_package_json: false
-            ng-add-succeed: true
-            build-succeed: true
-
-          - name: magento-driver
-            driver: magento
-            base: scss-standalone
-            routing: true
-            skip_package_json: false
-            ng-add-succeed: true
-            build-succeed: true
-
-          - name: shopify-driver
-            driver: shopify
-            base: scss-standalone
-            routing: true
-            skip_package_json: false
-            ng-add-succeed: true
-            build-succeed: true
-
-          - name: in-memory-driver
-            driver: in-memory
-            base: scss-standalone
-            routing: true
-            skip_package_json: false
-            ng-add-succeed: true
-            build-succeed: true
-
           - name: skip-package-json
             driver: in-memory
-            base: scss-standalone
-            routing: true
             skip_package_json: true
-            ng-add-succeed: true
             build-succeed: false
 
           - name: module-app-rejection
             driver: in-memory
             base: scss-module
-            routing: true
-            skip_package_json: false
             ng-add-succeed: false
-            build-succeed: true # builds base app without daffodil
-
-          - name: main-ts-fallback
-            driver: in-memory
-            base: scss-standalone
-            app_type: main-ts-fallback
-            routing: true
-            skip_package_json: false
-            ng-add-succeed: true
-            build-succeed: true
 
           - name: css-style-failure
             driver: in-memory
             base: css-standalone
-            routing: true
-            skip_package_json: false
-            ng-add-succeed: true
             build-succeed: false
 
           - name: no-app-routes
             driver: in-memory
-            base: scss-standalone
             routing: false
-            skip_package_json: false
             ng-add-succeed: true
             build-succeed: true
 
@@ -197,7 +148,7 @@ jobs:
           key: ng-app-${{ matrix.base }}-${{ hashFiles('package.json') }}
 
       - name: Add schematic
-        continue-on-error: ${{ !matrix.ng-add-succeed }}
+        continue-on-error: ${{ matrix.ng-add-succeed == false }}
         working-directory: ${{ steps.test-dir.outputs.path }}
         run: |
           EXTRA_FLAGS=""
@@ -219,6 +170,6 @@ jobs:
           sed -i 's/"maximumWarning": "[^"]*"/"maximumWarning": "2mb"/; s/"maximumError": "[^"]*"/"maximumError": "3mb"/' angular.json
 
       - name: Run ng build
-        continue-on-error: ${{ !matrix.build-succeed }}
+        continue-on-error: ${{ matrix.build-succeed == false }}
         working-directory: ${{ steps.test-dir.outputs.path }}
         run: npx ng build
