@@ -65,9 +65,10 @@
     "@daffodil/design": "0.0.0-PLACEHOLDER",
     "@daffodil/design-examples": "0.0.0-PLACEHOLDER",
     "@daffodil/docs": "0.0.0-PLACEHOLDER",
-    "@daffodil/docs-utils": "0.0.0-PLACEHOLDER",
     "@daffodil/router": "0.0.0-PLACEHOLDER",
     "@daffodil/seo": "0.0.0-PLACEHOLDER",
+    "@daffodil/search": "0.0.0-PLACEHOLDER",
+    "@daffodil/search-docs": "0.0.0-PLACEHOLDER",
     "@daffodil/tools-dgeni": "0.0.0-PLACEHOLDER",
     "@daffodil/storefront": "0.0.0-PLACEHOLDER",
     "@ngrx/component": "0.0.0-PLACEHOLDER"

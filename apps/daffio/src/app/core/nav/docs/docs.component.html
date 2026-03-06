@@ -1,3 +1,4 @@
+@let isBigTablet = isBigTablet$ | async;
 <daffio-header [bordered]="true">
   <a routerLink="/" daffio-logo>
     <daff-branding-logo type="full"></daff-branding-logo>
@@ -12,7 +13,17 @@
       <a daffioHeaderItem [routerLink]="link.url" [active]="rla.isActive" routerLinkActive #rla="routerLinkActive">{{link.title}}</a>
     }
   }
-  <button daff-icon-button color="theme-contrast" aria-label="Open Navigation Sidebar"
+	@if (isBigTablet) {
+		<daffio-docs-search-button></daffio-docs-search-button>
+	} @else {
+		<daffio-docs-search-button search-mobile [icon]="true"></daffio-docs-search-button>
+	}
+	@if (isBigTablet) {
+		<daff-theme-switch-button></daff-theme-switch-button>
+	} @else {
+		<daff-theme-switch-button theme-toggle-mobile></daff-theme-switch-button>
+	}
+  <button daff-icon-button color="theme-contrast" aria-label="Open nav sidebar"
     sidebar-button
     (click)="openSidebar()">
     <fa-icon [icon]="faBars"></fa-icon>

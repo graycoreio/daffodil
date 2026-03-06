@@ -1,0 +1,11 @@
+@use 'utilities' as daff;
+
+.daffio-header {
+	&__get-started-button {
+		display: none;
+
+		@include daff.breakpoint(big-tablet) {
+			display: flex;
+		}
+	}
+}

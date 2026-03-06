@@ -21,7 +21,7 @@
 				color: currentColor;
 				font-size: daff.$font-size-base;
 				font-weight: 500;
-				line-height: 64px;
+				line-height: 4rem;
 				padding: 0 1rem;
 				position: relative;
 				text-decoration: none;
@@ -36,31 +36,34 @@
 	}
 
 	&__left,
-	&__right {
+	&__desktop {
 		display: flex;
 		align-items: center;
 	}
 
 	&__left {
-		gap: 32px;
+		gap: 2rem;
+		width: 100%;
 	}
 
-	&__theme-toggle {
-		margin-right: 0.25rem;
+	&__desktop {
+		display: none;
 
 		@include daff.breakpoint(big-tablet) {
-			margin-right: 0;
+			display: flex;
+			gap: 1rem;
 		}
 	}
 
 	&__menu {
+		display: none;
 		margin: 0;
 		padding: 0;
 
 		@include daff.breakpoint(big-tablet) {
 			display: flex;
 			align-items: center;
-			gap: 16px;
+			gap: 1rem;
 		}
 	}
 
@@ -74,14 +77,14 @@
 	}
 
 	&__logo {
-		width: 128px;
+		width: 8rem;
 
 		@include daff.breakpoint(mobile) {
-			width: 160px;
+			width: 10rem;
 		}
 	}
 
-	&__bars {
+	&__mobile {
 		display: flex;
 		margin-right: -0.8125rem;
 

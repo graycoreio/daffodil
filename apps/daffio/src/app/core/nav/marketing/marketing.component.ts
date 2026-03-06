@@ -39,6 +39,7 @@ import { DaffioNavLink } from '../link/type';
 @Component({
   selector: 'daffio-nav-marketing-container',
   templateUrl: './marketing.component.html',
+  styleUrl: './marketing.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DaffioHeaderComponent,

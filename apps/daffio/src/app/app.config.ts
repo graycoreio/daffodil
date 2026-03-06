@@ -27,6 +27,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { DAFF_THEME_INITIALIZER } from '@daffodil/design';
 import { provideDaffRouterDataServiceConfig } from '@daffodil/router';
+import { DaffSearchIncrementalStateModule } from '@daffodil/search/state';
+import { DaffSearchDocsStateModule } from '@daffodil/search-docs/state';
 import { provideDaffSeoRouterSchema } from '@daffodil/seo/router';
 
 import { appRoutes } from './app.routes';
@@ -34,6 +36,8 @@ import { environment } from '../environments/environment';
 import { daffioRouterDataServiceConfig } from './core/router/data-service-config';
 import { provideScrollOffset } from './core/scrolling/provide-scroll-offset';
 import { provideDaffioSidebarFeature } from './core/sidebar/provider';
+import { provideDaffioDocsSearchStoreResult } from './docs/search/state/provider';
+import { provideDaffioAlgolia } from './drivers/algolia.provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -59,6 +63,8 @@ export const appConfig: ApplicationConfig = {
         connectInZone: true,
       }),
       ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+      DaffSearchDocsStateModule,
+      DaffSearchIncrementalStateModule.withConfig(),
     ),
     provideRouter(
       appRoutes,
@@ -81,5 +87,7 @@ export const appConfig: ApplicationConfig = {
     provideDaffRouterDataServiceConfig(daffioRouterDataServiceConfig),
     provideDaffioSidebarFeature(),
     provideScrollOffset(),
+    provideDaffioAlgolia(),
+    provideDaffioDocsSearchStoreResult(),
   ],
 };

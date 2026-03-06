@@ -1,0 +1,25 @@
+:host {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.daffio-docs-search-field {
+	&__input {
+		appearance: none;
+		background: none;
+		border: none;
+		color: currentColor;
+		font-size: 1rem;
+		line-height: 1.5rem;
+		flex-grow: 1;
+		outline: none;
+		margin: 0;
+		padding: 1.25rem 1rem;
+
+		&::-webkit-search-cancel-button {
+			-webkit-appearance: none;
+			appearance: none;
+		}
+	}
+}
