@@ -44,6 +44,7 @@ import {
     '(focus)': '_handleFocus()',
     '(blur)': '_handleBlur()',
     '[attr.id]': '_id',
+    '[disabled]': 'disabledAttribute',
     '[attr.aria-describedby]': 'ariaDescribedBy',
   },
 })
@@ -72,7 +73,11 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
   /**
    * @docs-private
    */
-  @HostBinding('disabled') get disabledAttribute() {
+  get disabledAttribute() {
+    if (this.ngControl) {
+      return this.ngControl.disabled;
+    }
+
     return this.disabled || null;
   }
 

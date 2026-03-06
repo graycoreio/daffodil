@@ -111,8 +111,9 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
    */
   get disabledAttribute() {
     if (this.ngControl) {
-      return null;
+      return this.ngControl.disabled;
     }
+
     return this.disabled || null;
   }
 

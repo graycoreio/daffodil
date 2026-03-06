@@ -32,7 +32,7 @@ class WrapperComponent {
   disabledValue: boolean | string;
 }
 
-describe('@daffodil/design | DaffInputComponent | Static Disabled Attribute', () => {
+describe('@daffodil/design/input | DaffInputComponent | Static Disabled Attribute', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffInputComponent;
@@ -111,7 +111,7 @@ class FormsWrapperComponent {
   email: UntypedFormControl = new UntypedFormControl({ value: '', disabled: true });
 }
 
-describe('@daffodil/design | DaffInputComponent | Reactive Forms Disabled State', () => {
+describe('@daffodil/design/input | DaffInputComponent | Reactive Forms Disabled State', () => {
   let wrapper: FormsWrapperComponent;
   let fixture: ComponentFixture<FormsWrapperComponent>;
   let componentDE: DebugElement;
@@ -139,6 +139,10 @@ describe('@daffodil/design | DaffInputComponent | Reactive Forms Disabled State'
     it('should set disabled to true', () => {
       expect(component.disabled).toEqual(true);
     });
+
+    it('should set the disabled attribute native input element', () => {
+      expect(componentDE.nativeElement.getAttribute('disabled')).not.toBeNull();
+    });
   });
 
   describe('when the form control is no longer disabled', () =>{
@@ -147,6 +151,13 @@ describe('@daffodil/design | DaffInputComponent | Reactive Forms Disabled State'
       fixture.detectChanges();
 
       expect(component.disabled).toEqual(false);
+    });
+
+    it('should remove the disabled attribute from the native input element', () => {
+      wrapper.email.enable();
+      fixture.detectChanges();
+
+      expect(componentDE.nativeElement.getAttribute('disabled')).toBeNull();
     });
   });
 });
