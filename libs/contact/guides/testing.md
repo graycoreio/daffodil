@@ -65,8 +65,10 @@ import { hot } from 'jasmine-marbles';
 import {
   DaffContactFacade,
   DaffContactSubmit,
+} from '@daffodil/contact/state';
+import {
   DaffContactStateTestingModule,
-  MockDaffContactFacade
+  MockDaffContactFacade,
 } from '@daffodil/contact/state/testing';
 
 describe('ContactFormComponent', () => {
