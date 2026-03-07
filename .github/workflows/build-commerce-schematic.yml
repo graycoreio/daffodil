@@ -205,11 +205,15 @@ jobs:
         run: npx ng build
 
       - name: Verify ng add failed
-        if: matrix.ng-add-succeed == false && steps.ng-add.outcome != 'failure'
+        if: matrix.ng-add-succeed == false 
         run: |
-          echo "ERROR: ng add was expected to fail but succeeded" && exit 1
+          if [ "${{ steps.ng-add.outcome }}" != "failure" ]; then
+           echo "ERROR: ng add was expected to fail but succeeded" && exit 1
+          fi
 
       - name: Verify ng build failed
-        if: matrix.build-succeed == false && steps.ng-build.outcome != 'failure'
+        if: matrix.build-succeed == false
         run: |
-          echo "ERROR: ng build was expected to fail but succeeded" && exit 1
+          if [ "${{ steps.ng-build.outcome }}" != "failure" ]; then
+            echo "ERROR: ng build was expected to fail but succeeded" && exit 1
+          fi
