@@ -173,7 +173,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: ${{ steps.test-dir.outputs.path }}
-          key: ng-app-${{ matrix.base }}-${{ hashFiles('package.json') }}
+          key: commerce-base-app-${{ matrix.base }}-${{ hashFiles('package.json') }}
 
       - name: Add schematic
         id: ng-add
