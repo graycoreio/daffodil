@@ -143,7 +143,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: ${{ steps.test-dir.outputs.path }}
-          key: commerce-base-app-${{ matrix.base }}-${{ hashFiles('package.json') }}
+          key: commerce-base-app-${{ matrix.base }}-${{ matrix.angular_version }}
 
       - name: Scaffold test app
         if: steps.cache-base-app.outputs.cache-hit != 'true'
@@ -173,7 +173,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: ${{ steps.test-dir.outputs.path }}
-          key: commerce-base-app-${{ matrix.base }}-${{ hashFiles('package.json') }}
+          key: commerce-base-app-${{ matrix.base }}-${{ matrix.angular_version }}
 
       - name: Add schematic
         id: ng-add
