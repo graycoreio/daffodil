@@ -84,6 +84,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           use-stamp-cache: true
+          working-directory: ${{ github.workspace }}
 
       - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
         with:
