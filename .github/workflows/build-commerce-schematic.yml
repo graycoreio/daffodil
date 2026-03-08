@@ -66,7 +66,7 @@ jobs:
             ng-add-succeed: true
             build-succeed: false
 
-          - name: no-app-routes
+          - name: no-app-routing
             angular_version: "^20"
             driver: in-memory
             base: scss-standalone
@@ -143,7 +143,8 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: ${{ steps.test-dir.outputs.path }}
-          key: commerce-base-app-${{ matrix.base }}-${{ matrix.angular_version }}
+          key: commerce-base-app-${{ matrix.base }}-${{ matrix.angular_version }}${{ !matrix.routing && '-norouting' || '' }}
+
 
       - name: Scaffold test app
         if: steps.cache-base-app.outputs.cache-hit != 'true'
@@ -160,6 +161,9 @@ jobs:
           elif [ "${{ matrix.base }}" = "scss-module" ]; then
             EXTRA_FLAGS="--standalone=false"
           fi
+          if [ "${{ matrix.routing }}" = "false" ]; then
+            EXTRA_FLAGS="$EXTRA_FLAGS --routing=false"
+          fi
 
           cd "${{ env.WORK_DIR }}"
           npx -y @angular/cli@${{ matrix.angular_version}} new "$DIR_NAME" \
@@ -173,7 +177,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: ${{ steps.test-dir.outputs.path }}
-          key: commerce-base-app-${{ matrix.base }}-${{ matrix.angular_version }}
+          key: commerce-base-app-${{ matrix.base }}-${{ matrix.angular_version }}${{ !matrix.routing && '-norouting' || '' }}
 
       - name: Add schematic
         id: ng-add
