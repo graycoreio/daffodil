@@ -7,7 +7,10 @@ inputs:
     description: "Newline-separated list of changed file paths"
   angular-versions:
     required: true
-    description: "JSON array of Angular version constraints (e.g. '[\"^19\", \"^20\"]')"
+    description: "Comma-separated Angular version constraints (e.g. '^19,^20')"
+  node-versions:
+    required: true
+    description: "Comma-separated Node.js versions (e.g. '22.21.x,20.x')"
 outputs:
   matrix:
     value: ${{ steps.compute.outputs.matrix }}

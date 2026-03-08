@@ -9,8 +9,9 @@ import { derivePathConfig } from './path-config';
 const repoRoot = join(__dirname, '..', '..', '..', '..');
 const config = derivePathConfig(repoRoot);
 const changedFiles = (process.env['INPUT_CHANGED-FILES'] || '').split('\n');
-const angularVersions: string[] = JSON.parse(process.env['INPUT_ANGULAR-VERSIONS'] || '[]');
-const matrix = computeMatrix(changedFiles, config, angularVersions);
+const nodeVersions = (process.env['INPUT_NODE-VERSIONS'] || '').split(',').filter(Boolean);
+const angularVersions = (process.env['INPUT_ANGULAR-VERSIONS'] || '').split(',').filter(Boolean);
+const matrix = computeMatrix(changedFiles, config, nodeVersions, angularVersions);
 const json = JSON.stringify(matrix);
 
 const outputFile = process.env.GITHUB_OUTPUT;

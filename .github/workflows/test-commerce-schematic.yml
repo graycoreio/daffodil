@@ -1,15 +1,31 @@
 name: Daffodil Build Schematic
 
 on:
-  pull_request:
-    branches:
-      - develop
+  workflow_call:
+    inputs:
+      ref:
+        required: false
+        type: string
+      node-versions:
+        required: false
+        type: string
+        default: '22.21.x'
+        description: "Comma-separated Node.js versions (e.g. '22.21.x,20.x')"
+      angular-versions:
+        required: false
+        type: string
+        default: '^20'
+        description: "Comma-separated Angular version constraints (e.g. '^19,^20')"
+    secrets:
+      NX_KEY:
+        required: true
+      AZURE_NX_CACHE_READONLY_CONNECTION_STRING:
+        required: true
 
 env:
   WORK_DIR: /tmp/daffodil-commerce-test
   TEST_VERSION: 0.0.0-test.${{ github.run_id }}
   REGISTRY_PORT: 4873
-  NODE_VERSION: 22.21.x
   NX_KEY: ${{ secrets.NX_KEY }}
 
 jobs:
@@ -22,9 +38,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          fetch-depth: 0
+          fetch-depth: 100
+          ref: ${{ inputs.ref && inputs.ref || github.sha }}
 
       - name: Get changed files
+        if: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
         id: changed
         run: |
           FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
@@ -38,7 +56,8 @@ jobs:
         id: matrix
         with:
           changed-files: ${{ steps.changed.outputs.files }}
-          angular-versions: '["^20"]'
+          angular-versions: ${{ inputs.angular-versions }}
+          node-versions: ${{ inputs.node-versions }}
 
   test:
     name: "${{ matrix.name || matrix.driver }} (@angular${{ matrix.angular_version }})"
@@ -64,10 +83,11 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 1
+          ref: ${{ inputs.ref && inputs.ref || github.sha }}
 
       - uses: graycoreio/github-actions/setup-node@main
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ matrix.node_version }}
           use-stamp-cache: true
           working-directory: ${{ github.workspace }}
 
@@ -194,7 +214,7 @@ jobs:
         run: npx ng build
 
       - name: Verify ng add failed
-        if: matrix.ng-add-succeed == false 
+        if: matrix.ng-add-succeed == false
         run: |
           if [ "${{ steps.ng-add.outcome }}" != "failure" ]; then
            echo "ERROR: ng add was expected to fail but succeeded" && exit 1

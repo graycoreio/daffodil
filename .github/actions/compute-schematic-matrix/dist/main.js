@@ -93,9 +93,9 @@ var derivePathConfig = (repoRoot2) => {
 };
 
 // .github/actions/compute-schematic-matrix/src/compute-matrix.ts
-var ANGULAR_VERSION = "^20";
-var driverEntry = (driver) => ({
-  angular_version: ANGULAR_VERSION,
+var driverEntry = (nodeVersion, angularVersion, driver) => ({
+  node_version: nodeVersion,
+  angular_version: angularVersion,
   driver,
   base: "scss-standalone",
   skip_package_json: false,
@@ -103,21 +103,21 @@ var driverEntry = (driver) => ({
   "ng-add-succeed": true,
   "build-succeed": true
 });
-var namedEntry = (name, overrides) => ({
-  ...driverEntry("in-memory"),
-  name,
-  ...overrides
-});
-var computeMatrix = (changedFiles2, config2) => {
-  const flags = classifyChanges(changedFiles2, config2);
+var computeMatrixForVersion = (flags, config2, nodeVersion, angularVersion) => {
   const include = [];
+  const entry = (driver) => driverEntry(nodeVersion, angularVersion, driver);
+  const namedEntry = (name, overrides) => ({
+    ...entry("in-memory"),
+    name,
+    ...overrides
+  });
   const anyDriverChanged = Object.values(flags.drivers).some(Boolean);
   if (flags.shared || flags.demoOnly || anyDriverChanged) {
-    include.push(driverEntry(DEMO_DRIVER));
+    include.push(entry(DEMO_DRIVER));
   }
   for (const driverName of Object.keys(config2.drivers)) {
     if (flags.shared || flags.drivers[driverName]) {
-      include.push(driverEntry(driverName));
+      include.push(entry(driverName));
     }
   }
   if (flags.shared || flags.drivers["in-memory"]) {
@@ -130,12 +130,27 @@ var computeMatrix = (changedFiles2, config2) => {
   }
   return include;
 };
+var computeMatrix = (changedFiles2, config2, nodeVersions2, angularVersions2) => {
+  const hasChangedFiles = changedFiles2.some((f) => f.length > 0);
+  const flags = hasChangedFiles ? classifyChanges(changedFiles2, config2) : {
+    shared: true,
+    demoOnly: true,
+    drivers: Object.fromEntries(Object.keys(config2.drivers).map((d) => [d, true]))
+  };
+  return nodeVersions2.flatMap(
+    (node) => angularVersions2.flatMap(
+      (angular) => computeMatrixForVersion(flags, config2, node, angular)
+    )
+  );
+};
 
 // .github/actions/compute-schematic-matrix/src/main.ts
 var repoRoot = (0, import_path2.join)(__dirname, "..", "..", "..", "..");
 var config = derivePathConfig(repoRoot);
 var changedFiles = (process.env["INPUT_CHANGED-FILES"] || "").split("\n");
-var matrix = computeMatrix(changedFiles, config);
+var nodeVersions = (process.env["INPUT_NODE-VERSIONS"] || "").split(",").filter(Boolean);
+var angularVersions = (process.env["INPUT_ANGULAR-VERSIONS"] || "").split(",").filter(Boolean);
+var matrix = computeMatrix(changedFiles, config, nodeVersions, angularVersions);
 var json = JSON.stringify(matrix);
 var outputFile = process.env.GITHUB_OUTPUT;
 if (outputFile) {

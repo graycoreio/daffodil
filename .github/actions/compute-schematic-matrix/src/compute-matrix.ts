@@ -12,6 +12,10 @@ import {
  */
 export interface MatrixEntry {
   /**
+   * Node.js version for the test runner (e.g. `"22.21.x"`).
+   */
+  node_version: string;
+  /**
    * Angular version constraint passed to `ng new` (e.g. `"^20"`).
    */
   angular_version: string;
@@ -45,7 +49,8 @@ export interface MatrixEntry {
   name?: string;
 }
 
-const driverEntry = (angularVersion: string, driver: string): MatrixEntry => ({
+const driverEntry = (nodeVersion: string, angularVersion: string, driver: string): MatrixEntry => ({
+  node_version: nodeVersion,
   angular_version: angularVersion,
   driver,
   base: 'scss-standalone',
@@ -55,10 +60,10 @@ const driverEntry = (angularVersion: string, driver: string): MatrixEntry => ({
   'build-succeed': true,
 });
 
-const computeMatrixForVersion = (flags: ReturnType<typeof classifyChanges>, config: PackagePathConfig, angularVersion: string): MatrixEntry[] => {
+const computeMatrixForVersion = (flags: ReturnType<typeof classifyChanges>, config: PackagePathConfig, nodeVersion: string, angularVersion: string): MatrixEntry[] => {
   const include: MatrixEntry[] = [];
 
-  const entry = (driver: string) => driverEntry(angularVersion, driver);
+  const entry = (driver: string) => driverEntry(nodeVersion, angularVersion, driver);
   const namedEntry = (name: string, overrides: Partial<MatrixEntry>): MatrixEntry => ({
     ...entry('in-memory'),
     name,
@@ -94,8 +99,22 @@ const computeMatrixForVersion = (flags: ReturnType<typeof classifyChanges>, conf
   return include;
 };
 
-export const computeMatrix = (changedFiles: string[], config: PackagePathConfig, angularVersions: string[]): MatrixEntry[] => {
-  const flags = classifyChanges(changedFiles, config);
-  return angularVersions.flatMap((version) => computeMatrixForVersion(flags, config, version));
+export const computeMatrix = (changedFiles: string[], config: PackagePathConfig, nodeVersions: string[], angularVersions: string[]): MatrixEntry[] => {
+  const hasChangedFiles = changedFiles.some((f) => f.length > 0);
+
+  // No changed files means full matrix (e.g. develop builds)
+  const flags = hasChangedFiles
+    ? classifyChanges(changedFiles, config)
+    : {
+      shared: true,
+      demoOnly: true,
+      drivers: Object.fromEntries(Object.keys(config.drivers).map((d) => [d, true])),
+    };
+
+  return nodeVersions.flatMap((node) =>
+    angularVersions.flatMap((angular) =>
+      computeMatrixForVersion(flags, config, node, angular),
+    ),
+  );
 };
 
