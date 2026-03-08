@@ -1,0 +1,21 @@
+name: "Compute Schematic Matrix"
+author: "Graycore"
+description: "Computes the build-commerce-schematic matrix based on changed files. See .github/docs/commerce-schematic-trigger-map.md"
+inputs:
+  changed-files:
+    required: true
+    description: "Newline-separated list of changed file paths"
+  angular-versions:
+    required: true
+    description: "JSON array of Angular version constraints (e.g. '[\"^19\", \"^20\"]')"
+outputs:
+  matrix:
+    value: ${{ steps.compute.outputs.matrix }}
+    description: "JSON array of matrix include entries"
+  has-entries:
+    value: ${{ steps.compute.outputs.has-entries }}
+    description: "'true' if the matrix has at least one entry"
+
+runs:
+  using: "node24"
+  main: "dist/main.js"

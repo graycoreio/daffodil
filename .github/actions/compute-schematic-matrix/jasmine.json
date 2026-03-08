@@ -1,0 +1,8 @@
+{
+  "spec_dir": ".github/actions/compute-schematic-matrix/dist",
+  "spec_files": [
+    "**/*[sS]pec.js"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": false
+}

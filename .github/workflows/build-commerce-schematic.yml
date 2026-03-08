@@ -4,8 +4,6 @@ on:
   pull_request:
     branches:
       - develop
-    paths:
-      - 'tools/schematics/**'
 
 env:
   WORK_DIR: /tmp/daffodil-commerce-test
@@ -15,8 +13,37 @@ env:
   NX_KEY: ${{ secrets.NX_KEY }}
 
 jobs:
+  compute-matrix:
+    name: Compute Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+      has-entries: ${{ steps.matrix.outputs.has-entries }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed
+        run: |
+          FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          {
+            echo "files<<EOF"
+            echo "$FILES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - uses: ./.github/actions/compute-schematic-matrix
+        id: matrix
+        with:
+          changed-files: ${{ steps.changed.outputs.files }}
+          angular-versions: '["^20"]'
+
   test:
     name: "${{ matrix.name || matrix.driver }} (@angular${{ matrix.angular_version }})"
+    needs: compute-matrix
+    if: needs.compute-matrix.outputs.has-entries == 'true'
     runs-on: ubuntu-latest
     services:
       verdaccio:
@@ -31,49 +58,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        angular_version: ["^20"]
-        driver: ["demo", "magento", "shopify", "in-memory"]
-        base: ["scss-standalone"]
-        skip_package_json: [false]
-        routing: [true]
-        ng-add-succeed: [true]
-        build-succeed: [true]
-        include:
-          - name: skip-package-json
-            angular_version: "^20"
-            driver: in-memory
-            base: scss-standalone
-            skip_package_json: true
-            routing: true
-            ng-add-succeed: true
-            build-succeed: false
-
-          - name: module-app-rejection
-            angular_version: "^20"
-            driver: in-memory
-            base: scss-module
-            skip_package_json: false
-            routing: true
-            ng-add-succeed: false
-            build-succeed: true
-
-          - name: css-style-failure
-            angular_version: "^20"
-            driver: in-memory
-            base: css-standalone
-            skip_package_json: false
-            routing: true
-            ng-add-succeed: true
-            build-succeed: false
-
-          - name: no-app-routing
-            angular_version: "^20"
-            driver: in-memory
-            base: scss-standalone
-            skip_package_json: false
-            routing: false
-            ng-add-succeed: true
-            build-succeed: true
+        include: ${{ fromJson(needs.compute-matrix.outputs.matrix) }}
 
     steps:
       - uses: actions/checkout@v6
