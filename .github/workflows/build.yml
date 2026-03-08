@@ -140,6 +140,19 @@ jobs:
       - run: npx nx run-many -t test -p ${{ matrix.package }} --parallel=1
         name: Test ${{ matrix.package }}
 
+  test-commerce-schematic:
+    name: Test Commerce Schematic
+    needs:
+      - build
+    uses: ./.github/workflows/test-commerce-schematic.yml
+    with:
+      ref: ${{ inputs.ref && inputs.ref || github.sha }}
+      node-versions: '22.21.x'
+      angular-versions: '^20'
+    secrets:
+      NX_KEY: ${{ secrets.NX_KEY }}
+      AZURE_NX_CACHE_READONLY_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+
   deploy_daffio:
     name: Deploy Daff.io
     needs:

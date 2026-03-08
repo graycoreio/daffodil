@@ -1,0 +1,228 @@
+name: Daffodil Build Schematic
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        required: false
+        type: string
+      node-versions:
+        required: false
+        type: string
+        default: '22.21.x'
+        description: "Comma-separated Node.js versions (e.g. '22.21.x,20.x')"
+      angular-versions:
+        required: false
+        type: string
+        default: '^20'
+        description: "Comma-separated Angular version constraints (e.g. '^19,^20')"
+    secrets:
+      NX_KEY:
+        required: true
+      AZURE_NX_CACHE_READONLY_CONNECTION_STRING:
+        required: true
+
+env:
+  WORK_DIR: /tmp/daffodil-commerce-test
+  TEST_VERSION: 0.0.0-test.${{ github.run_id }}
+  REGISTRY_PORT: 4873
+  NX_KEY: ${{ secrets.NX_KEY }}
+
+jobs:
+  compute-matrix:
+    name: Compute Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+      has-entries: ${{ steps.matrix.outputs.has-entries }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 100
+          ref: ${{ inputs.ref && inputs.ref || github.sha }}
+
+      - name: Get changed files
+        if: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
+        id: changed
+        run: |
+          FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          {
+            echo "files<<EOF"
+            echo "$FILES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - uses: ./.github/actions/compute-schematic-matrix
+        id: matrix
+        with:
+          changed-files: ${{ steps.changed.outputs.files }}
+          angular-versions: ${{ inputs.angular-versions }}
+          node-versions: ${{ inputs.node-versions }}
+
+  test:
+    name: "${{ matrix.name || matrix.driver }} (@angular${{ matrix.angular_version }})"
+    needs: compute-matrix
+    if: needs.compute-matrix.outputs.has-entries == 'true'
+    runs-on: ubuntu-latest
+    services:
+      verdaccio:
+        image: verdaccio/verdaccio
+        ports:
+          - 4873:4873
+        options: >-
+          --health-cmd "node -e \"require('http').get('http://localhost:4873/-/ping',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))\""
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJson(needs.compute-matrix.outputs.matrix) }}
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+          ref: ${{ inputs.ref && inputs.ref || github.sha }}
+
+      - uses: graycoreio/github-actions/setup-node@main
+        with:
+          node-version: ${{ matrix.node_version }}
+          use-stamp-cache: true
+          working-directory: ${{ github.workspace }}
+
+      - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
+        with:
+          cache-mode: read-only
+          read-only-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
+          event-name: 'manual-setup'
+
+      - name: Authenticate with Verdaccio
+        run: |
+          REGISTRY_URL="http://localhost:${{ env.REGISTRY_PORT }}"
+          TOKEN=$(curl -s -X PUT ${REGISTRY_URL}/-/user/org.couchdb.user:ci \
+            -H "Content-Type: application/json" \
+            -d '{"name":"ci","password":"ci-password","type":"user"}' | jq -r '.token')
+          if [ -z "$TOKEN" ] || [ "$TOKEN" = "null" ]; then echo "ERROR: Failed to obtain Verdaccio token" && exit 1; fi
+          echo "@daffodil:registry=${REGISTRY_URL}" >> "$HOME/.npmrc"
+          echo "//localhost:${{ env.REGISTRY_PORT }}/:_authToken=${TOKEN}" >> "$HOME/.npmrc"
+
+
+      - name: Set test version for commerce package
+        run: |
+          sed -i "s/version = '.*'/version = '${{ env.TEST_VERSION }}'/" \
+            tools/schematics/ng-add/generators/version.ts
+
+      - name: Build @daffodil/* packages
+        run: npx nx run @daffodil/commerce:build
+
+      # Set root version AFTER building so that package.json/package-lock.json
+      # changes don't invalidate the NX remote cache
+      - name: Set test version in root
+        run: npm version "${{ env.TEST_VERSION }}" --no-git-tag-version
+
+      - uses: graycoreio/github-actions/set-versions-from-root@main
+
+      - name: Compute @daffodil/commerce dependencies
+        id: daff-deps
+        run: |
+          PACKAGES=$(npx nx graph --focus=@daffodil/commerce --file=stdout | \
+            jq -r '.graph.dependencies["@daffodil/commerce"] | map(.target) | join(",")')
+          echo "packages=${PACKAGES}" >> "$GITHUB_OUTPUT"
+
+      - name: Publish @daffodil/* packages to Verdaccio
+        run: |
+          npx nx run-many \
+            -t publish \
+            --projects="${{ steps.daff-deps.outputs.packages }},@daffodil/commerce"
+
+      - name: Compute test directory
+        id: test-dir
+        run: |
+          DIR_NAME="test-${{ matrix.name || matrix.driver }}"
+          echo "name=${DIR_NAME}" >> "$GITHUB_OUTPUT"
+          echo "path=${{ env.WORK_DIR }}/${DIR_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: Restore cached base app
+        id: cache-base-app
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ steps.test-dir.outputs.path }}
+          key: commerce-base-app-${{ matrix.base }}-${{ matrix.angular_version }}${{ !matrix.routing && '-norouting' || '' }}
+
+
+      - name: Scaffold test app
+        if: steps.cache-base-app.outputs.cache-hit != 'true'
+        env:
+          STYLE: "scss"
+          EXTRA_FLAGS: ""
+          DIR_NAME: "${{ steps.test-dir.outputs.name }}"
+        run: |
+          rm -rf "${{ steps.test-dir.outputs.path }}"
+          mkdir -p "${{ env.WORK_DIR }}"
+
+          if [ "${{ matrix.base }}" = "css-standalone" ]; then
+            STYLE="css"
+          elif [ "${{ matrix.base }}" = "scss-module" ]; then
+            EXTRA_FLAGS="--standalone=false"
+          fi
+          if [ "${{ matrix.routing }}" = "false" ]; then
+            EXTRA_FLAGS="$EXTRA_FLAGS --routing=false"
+          fi
+
+          cd "${{ env.WORK_DIR }}"
+          npx -y @angular/cli@${{ matrix.angular_version}} new "$DIR_NAME" \
+            --style="$STYLE" \
+            --skip-tests \
+            --defaults \
+            $EXTRA_FLAGS
+
+      - name: Cache base app
+        if: steps.cache-base-app.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ steps.test-dir.outputs.path }}
+          key: commerce-base-app-${{ matrix.base }}-${{ matrix.angular_version }}${{ !matrix.routing && '-norouting' || '' }}
+
+      - name: Add schematic
+        id: ng-add
+        continue-on-error: ${{ matrix.ng-add-succeed == false }}
+        working-directory: ${{ steps.test-dir.outputs.path }}
+        run: |
+          EXTRA_FLAGS=""
+          if [ "${{ matrix.skip_package_json }}" = "true" ]; then
+            EXTRA_FLAGS="--skip-package-json"
+          fi
+
+          CI=true npx ng add @daffodil/commerce@${{ env.TEST_VERSION }} \
+            --driver="${{ matrix.driver }}" \
+            --is-new-project \
+            --defaults \
+            --skip-confirmation \
+            $EXTRA_FLAGS
+
+      - name: Raise budget
+        if: matrix.driver == 'demo'
+        working-directory: ${{ steps.test-dir.outputs.path }}
+        run: |
+          sed -i 's/"maximumWarning": "[^"]*"/"maximumWarning": "2mb"/; s/"maximumError": "[^"]*"/"maximumError": "3mb"/' angular.json
+
+      - name: Run ng build
+        id: ng-build
+        continue-on-error: ${{ matrix.build-succeed == false }}
+        working-directory: ${{ steps.test-dir.outputs.path }}
+        run: npx ng build
+
+      - name: Verify ng add failed
+        if: matrix.ng-add-succeed == false
+        run: |
+          if [ "${{ steps.ng-add.outcome }}" != "failure" ]; then
+           echo "ERROR: ng add was expected to fail but succeeded" && exit 1
+          fi
+
+      - name: Verify ng build failed
+        if: matrix.build-succeed == false
+        run: |
+          if [ "${{ steps.ng-build.outcome }}" != "failure" ]; then
+            echo "ERROR: ng build was expected to fail but succeeded" && exit 1
+          fi

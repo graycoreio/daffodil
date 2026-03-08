@@ -8,12 +8,14 @@ export function addProvidersToStandaloneApp(tree: Tree, project: any, providers:
   const mainPath = `${project.sourceRoot}/main.ts`;
 
   let configPath = '';
+  let localImportPrefix = '.';
 
   // Determine which file to modify
   if (tree.exists(appConfigPath)) {
     configPath = appConfigPath;
   } else if (tree.exists(mainPath)) {
     configPath = mainPath;
+    localImportPrefix = './app';
   } else {
     throw new Error('No app.config.ts or main.ts found for standalone app');
   }
@@ -45,7 +47,7 @@ export function addProvidersToStandaloneApp(tree: Tree, project: any, providers:
 
     // Add DynamicSwitchDriverService import when using provideDaffProductDriver
     if (provider.includes('provideDaffProductDriver')) {
-      const driverChange = insertImport(source, configPath, 'DynamicSwitchDriverService', './daff/product/drivers/dynamic/dynamic-switch.service');
+      const driverChange = insertImport(source, configPath, 'DynamicSwitchDriverService', `${localImportPrefix}/daff/product/drivers/dynamic/dynamic-switch.service`);
       if (driverChange instanceof InsertChange) {
         importChanges.push(driverChange);
       }
@@ -53,7 +55,7 @@ export function addProvidersToStandaloneApp(tree: Tree, project: any, providers:
 
     // Add DynamicSwitchNavigationService import when using provideDaffNavigationDriver
     if (provider.includes('provideDaffNavigationDriver')) {
-      const navDriverChange = insertImport(source, configPath, 'DynamicSwitchNavigationService', './daff/navigation/drivers/dynamic/dynamic-switch.service');
+      const navDriverChange = insertImport(source, configPath, 'DynamicSwitchNavigationService', `${localImportPrefix}/daff/navigation/drivers/dynamic/dynamic-switch.service`);
       if (navDriverChange instanceof InsertChange) {
         importChanges.push(navDriverChange);
       }
@@ -61,7 +63,7 @@ export function addProvidersToStandaloneApp(tree: Tree, project: any, providers:
 
     // Add DynamicExternalRouterDriver import when using provideDaffExternalRouterDriver
     if (provider.includes('provideDaffExternalRouterDriver')) {
-      const routerDriverChange = insertImport(source, configPath, 'DynamicExternalRouterDriver', './daff/external-router/drivers/dynamic');
+      const routerDriverChange = insertImport(source, configPath, 'DynamicExternalRouterDriver', `${localImportPrefix}/daff/external-router/drivers/dynamic`);
       if (routerDriverChange instanceof InsertChange) {
         importChanges.push(routerDriverChange);
       }
@@ -69,7 +71,7 @@ export function addProvidersToStandaloneApp(tree: Tree, project: any, providers:
 
     // Add DEMO_MAGENTO_ENDPOINT_SWITCH import when using provideMagentoDriver
     if (provider.includes('DEMO_MAGENTO_ENDPOINT_SWITCH')) {
-      const endpointChange = insertImport(source, configPath, 'DEMO_MAGENTO_ENDPOINT_SWITCH', './daff/driver/magento/endpoint-switch.token');
+      const endpointChange = insertImport(source, configPath, 'DEMO_MAGENTO_ENDPOINT_SWITCH', `${localImportPrefix}/daff/driver/magento/endpoint-switch.token`);
       if (endpointChange instanceof InsertChange) {
         importChanges.push(endpointChange);
       }
@@ -77,7 +79,7 @@ export function addProvidersToStandaloneApp(tree: Tree, project: any, providers:
 
     // Add DEMO_SHOPIFY_ENDPOINT_SWITCH import when using provideShopifyDriver
     if (provider.includes('DEMO_SHOPIFY_ENDPOINT_SWITCH')) {
-      const shopifyEndpointChange = insertImport(source, configPath, 'DEMO_SHOPIFY_ENDPOINT_SWITCH', './daff/driver/shopify/endpoint-switch');
+      const shopifyEndpointChange = insertImport(source, configPath, 'DEMO_SHOPIFY_ENDPOINT_SWITCH', `${localImportPrefix}/daff/driver/shopify/endpoint-switch`);
       if (shopifyEndpointChange instanceof InsertChange) {
         importChanges.push(shopifyEndpointChange);
       }
@@ -93,10 +95,17 @@ export function addProvidersToStandaloneApp(tree: Tree, project: any, providers:
   });
 
   // Apply import changes
-  let updatedContent = sourceText;
-  importChanges.reverse().forEach(change => {
-    updatedContent = updatedContent.slice(0, change.pos) + change.toAdd + updatedContent.slice(change.pos);
+  const recorder = tree.beginUpdate(configPath);
+  importChanges.forEach(change => {
+    recorder.insertLeft(change.pos, change.toAdd);
   });
+  tree.commitUpdate(recorder);
+
+  const updatedSource = tree.read(configPath);
+  if (!updatedSource) {
+    throw new Error(`Config file ${configPath} not found after update`);
+  }
+  let updatedContent = updatedSource.toString();
 
   // Add providers to the providers array
   const providersToAdd = providers
@@ -220,6 +229,7 @@ function getPackageForProvider(providerName: string): string {
     DaffNavigationShopifyDriver: '@daffodil/navigation/driver/shopify',
     provideDaffNavigationDriver: '@daffodil/navigation/driver',
     provideExternalRouter: '@daffodil/external-router',
+    provideDaffExternalRouterInMemoryDriver: '@daffodil/external-router/driver/in-memory',
     provideDaffExternalRouterMagentoDriver: '@daffodil/external-router/driver/magento/2.4.3',
     DaffExternalRouterMagentoDriver: '@daffodil/external-router/driver/magento/2.4.3',
     provideDaffExternalRouterShopifyDriver: '@daffodil/external-router/driver/shopify',
