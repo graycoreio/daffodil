@@ -41,6 +41,9 @@ jobs:
           fetch-depth: 100
           ref: ${{ inputs.ref && inputs.ref || github.sha }}
 
+      - run: git fetch origin ${{ github.base_ref }}
+        if: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
+
       - name: Get changed files
         if: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
         id: changed
