@@ -7,9 +7,10 @@
 	} @else {
 		<li class="daff-breadcrumb__item"
 			[class.on-mobile]="breadcrumbItem.target === 'mobileMenu'"
-			[class.on-desktop]="breadcrumbItem.target === 'desktopMenu'"
-			[daffMenuActivator]="breadcrumbItem.target === 'mobileMenu' ? mobileMenu : desktopMenu">
-			<button class="daff-breadcrumb__menu-activator">...</button>
+			[class.on-desktop]="breadcrumbItem.target === 'desktopMenu'">
+			<button class="daff-breadcrumb__menu-activator"
+				[daffMenuActivator]="breadcrumbItem.target === 'mobileMenu' ? mobileMenu : desktopMenu"
+				aria-label="Show more breadcrumb items">...</button>
 		</li>
 	}
 }

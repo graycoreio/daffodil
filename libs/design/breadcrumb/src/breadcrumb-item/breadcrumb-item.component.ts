@@ -30,7 +30,6 @@ import { DAFF_MENU_ITEM_TOKEN } from '@daffodil/design/menu';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'class': 'daff-breadcrumb__item',
-    '[class.active]': '_active',
     '[attr.aria-current]': '_active ? "page" : null',
   },
   providers: [{ provide: DAFF_MENU_ITEM_TOKEN, useExisting: DaffBreadcrumbItemComponent }],

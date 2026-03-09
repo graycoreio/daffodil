@@ -57,13 +57,5 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbItemComponent', () => {
     fixture.detectChanges();
 
     expect(de.nativeElement.getAttribute('aria-current')).toBe('page');
-    expect(de.nativeElement.classList).toContain('active');
-  });
-
-  it('should have a class of ".active" when active', () => {
-    component.setActive(true);
-    fixture.detectChanges();
-
-    expect(de.nativeElement.classList).toContain('active');
   });
 });
