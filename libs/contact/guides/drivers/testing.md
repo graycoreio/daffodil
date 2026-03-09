@@ -1,4 +1,4 @@
-# Testing driver
+# Testing
 The testing driver is a no-op driver intended for use in unit tests. It always returns a successful response with a short delay, without making any real HTTP requests.
 
 > Note: Use `DaffContactTestingDriverModule` for driver-level unit tests (e.g. testing effects). For component-level tests that use the facade, use [`MockDaffContactFacade`](/libs/contact/guides/testing.md) from `@daffodil/contact/state/testing` instead.
