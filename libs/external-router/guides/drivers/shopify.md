@@ -12,18 +12,19 @@ The `@daffodil/external-router` Shopify driver provides URL resolution for Shopi
 
 ```ts
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
+
 import { provideExternalRouter } from '@daffodil/external-router';
 import { provideDaffExternalRouterShopifyDriver } from '@daffodil/external-router/driver/shopify';
 
 export const appConfig: ApplicationConfig = {
-	providers: [
-		provideRouter(routes),
-		provideClientHydration(),
-		provideExternalRouter(),
-		provideDaffExternalRouterShopifyDriver(),
-	],
+  providers: [
+    provideClientHydration(),
+    provideRouter(routes),
+    provideExternalRouter(),
+    provideDaffExternalRouterShopifyDriver(),
+  ],
 };
 ```
 
