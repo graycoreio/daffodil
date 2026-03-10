@@ -27,15 +27,19 @@ As such, most recent versions of Magento should use the driver version which fir
 To use the Magento driver for external router with the latest version of Magento:
 
 ```ts
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
+import { provideClientHydration } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
+
+import { provideExternalRouter } from '@daffodil/external-router';
 import { provideDaffExternalRouterMagentoDriver } from '@daffodil/external-router/driver/magento/2.4.3';
 
 export const appConfig: ApplicationConfig = {
-	providers: [
-		provideRouter(routes),
-		provideClientHydration(),
-		provideExternalRouter(),
-		provideDaffExternalRouterMagentoDriver(),
-	],
+  providers: [
+    provideRouter(routes),
+    provideClientHydration(),
+    provideExternalRouter(),
+    provideDaffExternalRouterMagentoDriver(),
+  ],
 };
 ```
