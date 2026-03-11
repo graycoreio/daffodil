@@ -1,0 +1,70 @@
+@use 'utilities' as daff;
+@use '../scss/color-strip' as strip;
+
+:host {
+	display: block;
+}
+
+.daffio-color-palette-generator {
+	&__toolbar {
+		margin-bottom: 1.25rem;
+	}
+
+	&__palettes {
+		display: grid;
+		grid-gap: 1.25rem;
+		grid-template-columns: 1fr;
+
+		@include daff.breakpoint(tablet) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	&__input-row {
+		display: flex;
+		align-items: center;
+		gap: 0.625rem;
+		margin-bottom: 0.5rem;
+	}
+
+	&__meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.875rem;
+		margin-bottom: 0.625rem;
+	}
+
+	&__meta-item {
+		font-size: 0.625rem;
+		display: flex;
+		gap: 0.25rem;
+	}
+
+	&__meta-key {
+		color: var(--daff-theme-gray);
+		font-weight: 600;
+		text-transform: uppercase;
+	}
+
+	&__meta-val {
+		font-weight: 700;
+	}
+
+	&__strip {
+		@include strip.color-strip-container;
+		margin-bottom: 0.75rem;
+	}
+
+	&__row {
+		@include strip.color-strip-row;
+
+		&--original {
+			outline: 0.0625rem solid currentColor;
+			outline-offset: -0.0625rem;
+		}
+	}
+
+	&__hex {
+		@include strip.color-strip-hex;
+	}
+}

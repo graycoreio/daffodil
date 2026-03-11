@@ -10,6 +10,13 @@ For guidance on how to set up your theme with customized palettes, see theming's
 
 <daffio-example-viewer example="color-palettes" simple></daffio-example-viewer>
 
+## Color palette generator
+Use this generator to create your own color palettes based on a single input color. The generator uses the HSLuv color space to provide perceptually uniform and user-friendly colour representation. 
+
+You can then customize your theme with the generated palette by following the [create custom palettes](/libs/design/guides/theming/customize-your-own-theme.md#create-custom-palettes) guide.
+
+<daffio-example-viewer example="color-palette-generator" simple><daffio-example-viewer>
+
 ## Accessibility
 We are committed to complying with the [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG/). The design system is built to meet these guidelines automatically. If you choose to identify your own color palettes outside of Daffodil's colors, please make sure to choose primary, secondary, tertiary, and extended colors that will pass the guidelines. Ensure there is sufficient color contrast between elements so that people who are visually impaired can see and use your products.
 
