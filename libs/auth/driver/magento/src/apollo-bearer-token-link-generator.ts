@@ -15,7 +15,7 @@ import {
   MagentoDriverFeature,
 } from '@daffodil/driver/magento';
 
-export function withMagentoAuthApolloBearerToken(): MagentoDriverFeature {
+export function withAuth(): MagentoDriverFeature {
   return makeMagentoDriverFeature('MagentoAuthApolloBearerToken', [
     provideMagentoAuthApolloBearerToken(),
   ]);

@@ -8,7 +8,7 @@ export { DaffMagentoAuthTransformerService } from './transforms/auth-transformer
 
 export {
   MagentoAuthApolloBearerTokenLinkGenerator,
-  withMagentoAuthApolloBearerToken,
+  withAuth,
   provideMagentoAuthApolloBearerToken,
 } from './apollo-bearer-token-link-generator';
 
