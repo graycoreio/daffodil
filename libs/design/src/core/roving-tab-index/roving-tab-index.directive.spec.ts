@@ -114,7 +114,7 @@ describe('@daffodil/design | DaffRovingTabIndexDirective', () => {
 @Component({
   template: `
 		<div rtiBoundary="group">
-			<div [rti]="rtiValue"></div>
+			<div data-sut [rti]="rtiValue"></div>
 		</div>
 	`,
   imports: [
@@ -152,10 +152,11 @@ describe('@daffodil/design | DaffRovingTabIndexDirective | In Group', () => {
     fixture = TestBed.createComponent(WrapperInGroupComponent);
     wrapper = fixture.componentInstance;
     fixture.detectChanges();
-    directive = fixture.debugElement.query(By.directive(DaffRovingTabIndexDirective)).injector.get(DaffRovingTabIndexDirective);
+    directive = fixture.debugElement.query(By.css('[data-sut]')).injector.get(DaffRovingTabIndexDirective);
   });
 
   it('should default the group to the parent', () => {
+    fixture.detectChanges();
     expect(directive.group()).toEqual('group');
   });
 
