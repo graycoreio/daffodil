@@ -40,12 +40,8 @@ export const provideDaffDesignButtonExamplesContent = () => makeEnvironmentProvi
     component: () => import('./disabled-button/disabled-button.component').then(c => c.DisabledButtonExampleComponent),
   },
   {
-    id: 'button-with-prefix',
-    component: () => import('./button-with-prefix/button-with-prefix.component').then(c => c.ButtonWithPrefixExampleComponent),
-  },
-  {
-    id: 'button-with-suffix',
-    component: () => import('./button-with-suffix/button-with-suffix.component').then(c => c.ButtonWithSuffixExampleComponent),
+    id: 'button-with-icon',
+    component: () => import('./button-with-icon/button-with-icon.component').then(c => c.ButtonWithIconExampleComponent),
   },
 ));
 

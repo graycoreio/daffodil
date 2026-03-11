@@ -87,9 +87,7 @@ Buttons should always have a label, unless you are only using an icon that is un
 ### Icon support
 An icon can be rendered on either side of the button text content with the `daffPrefix` and `daffSuffix` selectors. Avoid using both simultaneously.
 
-<design-land-example-viewer-container example="button-with-prefix"></design-land-example-viewer-container>
-
-<design-land-example-viewer-container example="button-with-suffix"></design-land-example-viewer-container>
+<daffio-example-viewer example="button-with-icon"></daffio-example-viewer>
 
 ## Features
 
@@ -105,11 +103,6 @@ Add shadows to buttons with the `elevated` property.
 
 <daffio-example-viewer example="elevated-button"></daffio-example-viewer>
 
-### Loading
-Use the `loading` property to indicate that an action is being processed. When `loading` is set to `true`, the button displays a spinner.
-
-<daffio-example-viewer example="loading-button"></daffio-example-viewer>
-
 ### Sizes
 Use the `size` property to control button dimensions. The default size is `md`.
 
@@ -119,6 +112,18 @@ Use the `size` property to control button dimensions. The default size is `md`.
 Status indicators help users understand the type of action a button performs and its importance relative to other buttons in the same context. Use the `status` property to convey different semantic meanings.
 
 <daffio-example-viewer example="statusable-button"></daffio-example-viewer>
+
+## States
+
+### Disabled
+Use the `disabled` property to disable a button that shouldn't be actionable. The button will appear faded and won't respond to user interaction.
+
+<daffio-example-viewer example="disabled-button"></daffio-example-viewer>
+
+### Loading
+Use the `loading` property to indicate that an action is being processed. When `loading` is set to `true`, the button displays a spinner.
+
+<daffio-example-viewer example="loading-button"></daffio-example-viewer>
 
 ## Accessbility
 Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible experience by default.

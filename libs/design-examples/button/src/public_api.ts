@@ -8,5 +8,4 @@ export { StrokedButtonExampleComponent } from './stroked-button/stroked-button.c
 export { ButtonSizesExampleComponent } from './button-sizes/button-sizes.component';
 export { LoadingButtonExampleComponent } from './loading-button/loading-button.component';
 export { DisabledButtonExampleComponent } from './disabled-button/disabled-button.component';
-export { ButtonWithPrefixExampleComponent } from './button-with-prefix/button-with-prefix.component';
-export { ButtonWithSuffixExampleComponent } from './button-with-suffix/button-with-suffix.component';
+export { ButtonWithIconExampleComponent } from './button-with-icon/button-with-icon.component';
