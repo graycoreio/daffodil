@@ -1,1 +1,1 @@
-export { ROVING_TAB_INDEX_EXAMPLES } from './examples';
+export { provideDaffDesignRtiExamplesContent } from './provider';
