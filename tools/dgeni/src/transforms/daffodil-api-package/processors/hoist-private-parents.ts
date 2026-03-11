@@ -96,8 +96,8 @@ export class HoistPrivateParentsProcessor implements FilterableProcessor {
           if (decorator?.argumentInfo[0].hostDirectives) {
             (<Array<string>>decorator.argumentInfo[0].hostDirectives)
               ?.map(daffDocsApiParseHostDirective)
-              .map<DaffDocsApiHostDirective>(({ directive, inputs, outputs }) => ({
-                directive: createRef(directive),
+              .map<DaffDocsApiHostDirective>(({ directive, inputs, outputs, type }) => ({
+                directive: createRef(directive || type),
                 inputs: inputs ? JSON.parse(inputs.replaceAll('\'', '"')).map(daffDocsApiParseHostDirectiveField) : [],
                 outputs: outputs ? JSON.parse(outputs.replaceAll('\'', '"')).map(daffDocsApiParseHostDirectiveField) : [],
               }))
