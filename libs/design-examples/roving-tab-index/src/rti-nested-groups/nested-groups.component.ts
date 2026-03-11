@@ -3,7 +3,10 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffRovingTabIndexDirective } from '@daffodil/design/roving-tab-index';
+import {
+  DaffRovingTabIndexBoundaryDirective,
+  DaffRovingTabIndexDirective,
+} from '@daffodil/design/roving-tab-index';
 
 @Component({
   selector: 'rti-nested-groups-example',
@@ -11,6 +14,7 @@ import { DaffRovingTabIndexDirective } from '@daffodil/design/roving-tab-index';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DaffRovingTabIndexDirective,
+    DaffRovingTabIndexBoundaryDirective,
   ],
 })
 export class NestedGroupsRtiExampleComponent {}

@@ -17,16 +17,18 @@ export class DaffRovingTabIndexService {
   constructor(
     @Inject(DOCUMENT) private document: Document,
   ) {
-    this.document.addEventListener('keydown', this.onKeydown.bind(this));
+    // this.document.addEventListener('keydown', this.onKeydown.bind(this));
   }
 
   enter(group: string) {
-    this._hierarchy.push(group);
-    this._group.set(group);
-    const el = this.document.querySelector<HTMLElement>(`[data-rti="${group}"]`);
-    if (el) {
-      (<HTMLElement>this.document.activeElement).blur();
-      el.focus();
+    if (this._group() !== group) {
+      this._hierarchy.push(group);
+      this._group.set(group);
+      const el = this.document.querySelector<HTMLElement>(`[data-rti="${group}"]`);
+      if (el) {
+        (<HTMLElement>this.document.activeElement).blur();
+        el.focus();
+      }
     }
   }
 
@@ -45,25 +47,28 @@ export class DaffRovingTabIndexService {
     }
   }
 
+  next() {
+    this._changeFocus();
+  }
+
+  previous() {
+    this._changeFocus(true);
+  }
+
+  private _changeFocus(up = false) {
+    if (this._group()) {
+      const ary = Array.from(this.document.querySelectorAll<HTMLElement>(`[data-rti="${this._group()}"]`));
+      const index = ary.findIndex((el) => el === this.document.activeElement);
+      (<HTMLElement>this.document.activeElement).blur();
+      (up
+        ? ary[index === 0 ? ary.length - 1 : index - 1]
+        : ary[index === ary.length - 1 ? 0 : index + 1]).focus();
+    }
+  }
+
   onKeydown(evt: Event) {
     if ('key' in evt) {
       switch ((<KeyboardEvent>evt).key) {
-        case 'Tab':
-          evt.preventDefault();
-          if (this._group()) {
-            this.leave();
-          }
-          // eslint-disable-next-line no-constant-condition
-          if (true) {
-            const ary = Array.from(this.document.querySelectorAll<HTMLElement>(this._group() ? '[data-rti-boundary]' : '[data-rti=""]'));
-            const index = ary.findIndex(this._group() ? (el) => el.getAttribute('data-rti-boundary') === this._group() : (el) => el === this.document.activeElement);
-            (<HTMLElement>this.document.activeElement).blur();
-            ((<KeyboardEvent>evt).shiftKey
-              ? ary[index === 0 ? ary.length - 1 : index - 1]
-              : ary[index === ary.length - 1 ? 0 : index + 1]).focus();
-          }
-          break;
-
         case 'ArrowUp':
         case 'ArrowDown':
           if (this._group()) {
