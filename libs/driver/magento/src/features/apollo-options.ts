@@ -20,6 +20,10 @@ export const {
    * A provider for {@link DAFF_DRIVER_MAGENTO_EXTRA_APOLLO_OPTIONS}.
    */
   provider: provideDaffDriverMagentoExtraApolloOptions,
+  /**
+   * A factory provider for {@link DAFF_DRIVER_MAGENTO_EXTRA_APOLLO_OPTIONS}.
+   */
+  factoryProvider: provideDaffDriverMagentoExtraApolloOptionsFactory,
 } = createSingleInjectionToken<DaffDriverMagentoExtraApolloOptions>('DAFF_DRIVER_MAGENTO_EXTRA_APOLLO_OPTIONS', {
   factory: () => ({}),
 });

@@ -3,6 +3,7 @@ export {
   DaffDriverMagentoExtraApolloOptions,
   withDaffDriverMagentoExtraApolloOptions,
   provideDaffDriverMagentoExtraApolloOptions,
+  provideDaffDriverMagentoExtraApolloOptionsFactory,
 } from './apollo-options';
 export { withDaffMagentoCacheHeader } from './cache-header';
 export { withDaffMagentoCacheableOperations } from './cacheable-operations';
