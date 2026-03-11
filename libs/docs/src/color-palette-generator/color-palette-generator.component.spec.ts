@@ -111,12 +111,12 @@ describe('@daffodil/docs | DaffDocsColorPaletteGeneratorComponent', () => {
     });
 
     it('should render palette strips', () => {
-      const strips = fixture.debugElement.queryAll(By.css('.daffio-color-palette-generator__strip'));
+      const strips = fixture.debugElement.queryAll(By.css('.daff-docs-color-palette-generator__strip'));
       expect(strips.length).toBe(1);
     });
 
     it('should render color rows inside the strip', () => {
-      const rows = fixture.debugElement.queryAll(By.css('.daffio-color-palette-generator__row'));
+      const rows = fixture.debugElement.queryAll(By.css('.daff-docs-color-palette-generator__row'));
       expect(rows.length).toEqual(10);
     });
 

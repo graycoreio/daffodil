@@ -33,7 +33,7 @@ let nextId = 0;
   templateUrl: './color-palette-generator.component.html',
   styleUrl: './color-palette-generator.component.scss',
   host: {
-    class: 'daffio-color-palette-generator',
+    class: 'daff-docs-color-palette-generator',
   },
   imports: [CommonModule, ReactiveFormsModule, FaIconComponent, DAFF_BUTTON_COMPONENTS, DAFF_CONTAINER_COMPONENTS, DAFF_FORM_FIELD_COMPONENTS, DAFF_FORM_HELPER_COMPONENTS, DaffInputComponent, DAFF_TAG_COMPONENTS],
   changeDetection: ChangeDetectionStrategy.OnPush,

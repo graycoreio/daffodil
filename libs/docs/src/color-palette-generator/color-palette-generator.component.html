@@ -1,14 +1,14 @@
-<div class="daffio-color-palette-generator__toolbar">
+<div class="daff-docs-color-palette-generator__toolbar">
   <button daff-stroked-button color="primary" (click)="addPalette()" type="button" size="sm">
     + Add palette
   </button>
 </div>
 
-<div class="daffio-color-palette-generator__palettes">
+<div class="daff-docs-color-palette-generator__palettes">
   @for (palette of palettes(); track palette.id) {
-    <daff-container class="daffio-color-palette-generator__card">
-      <div class="daffio-color-palette-generator__input-row">
-        <daff-form-field class="daffio-color-palette-generator__form-field">
+    <daff-container class="daff-docs-color-palette-generator__card">
+      <div class="daff-docs-color-palette-generator__input-row">
+        <daff-form-field class="daff-docs-color-palette-generator__form-field">
           <fa-icon [icon]="faPalette" daffPrefix></fa-icon>
           <input daff-input type="text" placeholder="#EFEFEF" [formControl]="palette.hexColorControl" spellcheck="false" maxlength="7" />
           @if (palette.hexColorControl.dirty && palette.hexColorControl.hasError('color')) {
@@ -27,35 +27,35 @@
       </div>
 
       @if (palette.hexColorControl.valid) {
-        <div class="daffio-color-palette-generator__meta">
-          <span class="daffio-color-palette-generator__meta-item">
-            <span class="daffio-color-palette-generator__meta-key">Hue</span>
-            <span class="daffio-color-palette-generator__meta-val">{{ palette.hue | number:'1.1-1' }}°</span>
+        <div class="daff-docs-color-palette-generator__meta">
+          <span class="daff-docs-color-palette-generator__meta-item">
+            <span class="daff-docs-color-palette-generator__meta-key">Hue</span>
+            <span class="daff-docs-color-palette-generator__meta-val">{{ palette.hue | number:'1.1-1' }}°</span>
           </span>
-          <span class="daffio-color-palette-generator__meta-item">
-            <span class="daffio-color-palette-generator__meta-key">Saturation</span>
-            <span class="daffio-color-palette-generator__meta-val">{{ palette.saturation | number:'1.1-1' }}%</span>
+          <span class="daff-docs-color-palette-generator__meta-item">
+            <span class="daff-docs-color-palette-generator__meta-key">Saturation</span>
+            <span class="daff-docs-color-palette-generator__meta-val">{{ palette.saturation | number:'1.1-1' }}%</span>
           </span>
-          <span class="daffio-color-palette-generator__meta-item">
-            <span class="daffio-color-palette-generator__meta-key">Luminance</span>
-            <span class="daffio-color-palette-generator__meta-val">{{ palette.hexColorLuminance }}%</span>
+          <span class="daff-docs-color-palette-generator__meta-item">
+            <span class="daff-docs-color-palette-generator__meta-key">Luminance</span>
+            <span class="daff-docs-color-palette-generator__meta-val">{{ palette.hexColorLuminance }}%</span>
           </span>
         </div>
       }
 
-      <div class="daffio-color-palette-generator__strip">
+      <div class="daff-docs-color-palette-generator__strip">
         @for (color of palette.colors; track color.daffIncrement) {
           <div
-            class="daffio-color-palette-generator__row"
-            [class.daffio-color-palette-generator__row--original]="color.originalColor"
+            class="daff-docs-color-palette-generator__row"
+            [class.daff-docs-color-palette-generator__row--original]="color.originalColor"
             [style.background]="color.hex"
             [style.color]="color.luminance_rounded < 50 ? '#fff' : '#000'"
           >
-            <span class="daffio-color-palette-generator__step">
+            <span class="daff-docs-color-palette-generator__step">
               {{ color.daffIncrement }}
-              <span class="daffio-color-palette-generator__step-lum">({{ color.luminance_rounded }})</span>
+              <span class="daff-docs-color-palette-generator__step-lum">({{ color.luminance_rounded }})</span>
             </span>
-            <span class="daffio-color-palette-generator__hex">{{ color.hex }}</span>
+            <span class="daff-docs-color-palette-generator__hex">{{ color.hex }}</span>
           </div>
         }
       </div>
