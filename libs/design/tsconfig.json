@@ -91,6 +91,9 @@
       "@daffodil/design/radio": [
         "libs/design/radio/src"
       ],
+      "@daffodil/design/roving-tab-index": [
+        "libs/design/roving-tab-index/src"
+      ],
       "@daffodil/design/spinner": [
         "libs/design/spinner/src"
       ],
