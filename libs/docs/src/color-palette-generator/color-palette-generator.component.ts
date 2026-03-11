@@ -35,7 +35,17 @@ let nextId = 0;
   host: {
     class: 'daff-docs-color-palette-generator',
   },
-  imports: [CommonModule, ReactiveFormsModule, FaIconComponent, DAFF_BUTTON_COMPONENTS, DAFF_CONTAINER_COMPONENTS, DAFF_FORM_FIELD_COMPONENTS, DAFF_FORM_HELPER_COMPONENTS, DaffInputComponent, DAFF_TAG_COMPONENTS],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FaIconComponent,
+    DAFF_BUTTON_COMPONENTS,
+    DAFF_CONTAINER_COMPONENTS,
+    DAFF_FORM_FIELD_COMPONENTS,
+    DAFF_FORM_HELPER_COMPONENTS,
+    DaffInputComponent,
+    DAFF_TAG_COMPONENTS,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffDocsColorPaletteGeneratorComponent implements OnInit {
