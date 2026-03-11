@@ -143,7 +143,9 @@ export const addCoreProvidersToStandalone = (options: NgAddOptions, project: any
 
   if(driver === 'magento') {
     coreProviders.push(
-      'provideMagentoDriver("https://demo.mage-os.org/graphql")',
+      `provideMagentoDriver({
+				uri: "https://demo.mage-os.org/graphql"
+			})`,
     );
   }
 
