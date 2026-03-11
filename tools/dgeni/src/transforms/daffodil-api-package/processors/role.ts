@@ -424,8 +424,8 @@ export class RoleProcessor implements FilterableProcessor {
     doc.selector = directiveArg.selector;
     doc.hostDirectives = (<Array<string>>directiveArg.hostDirectives)
       ?.map(daffDocsApiParseHostDirective)
-      .map<DaffDocsApiHostDirective>(({ directive, inputs, outputs }) => ({
-        directive: createRef(directive),
+      .map<DaffDocsApiHostDirective>(({ directive, inputs, outputs, type }) => ({
+        directive: createRef(directive || type),
         inputs: inputs ? JSON.parse(inputs.replaceAll('\'', '"')).map(daffDocsApiParseHostDirectiveField) : [],
         outputs: outputs ? JSON.parse(outputs.replaceAll('\'', '"')).map(daffDocsApiParseHostDirectiveField) : [],
       })) || [];
