@@ -5,8 +5,7 @@ export {
   provideDaffDriverMagentoExtraApolloOptions,
   provideDaffDriverMagentoExtraApolloOptionsFactory,
 } from './apollo-options';
-export { withDaffMagentoCacheHeader } from './cache-header';
-export { withDaffMagentoCacheableOperations } from './cacheable-operations';
+export { withOperationCache } from './cacheable-operations';
 export {
   DAFF_DRIVER_MAGENTO_ERROR_HANDLER,
   withDaffDriverMagentoErrorHandler,

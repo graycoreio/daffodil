@@ -11,7 +11,7 @@ import {
 /**
  * A {@link provideMagentoDriver} feature that sets up {@link provideDaffMagentoApolloCacheableOperations}.
  */
-export const withDaffMagentoCacheableOperations = (...extraOperations: Array<string>): MagentoDriverFeature => makeMagentoDriverFeature(MagentoDriverFeatureKind.CacheableOperations, [
+export const withOperationCache = (...extraOperations: Array<string>): MagentoDriverFeature => makeMagentoDriverFeature(MagentoDriverFeatureKind.CacheableOperations, [
   provideDaffMagentoApolloCacheableOperations(),
   makeEnvironmentProviders(provideManyDaffMagentoCacheableOperations(...extraOperations)),
 ]);

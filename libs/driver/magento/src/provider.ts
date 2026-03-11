@@ -29,6 +29,10 @@ import {
   provideDaffDriverMagentoTransferState,
 } from './features/public_api';
 import { DaffDriverHttpClientCacheMagentoService } from './graphql/cache.service';
+import {
+  provideDaffMagentoApolloCacheableOperations,
+  provideDaffMagentoCacheHeader,
+} from './graphql/public_api';
 import { MAGENTO_POSSIBLE_TYPES } from './schema/schema';
 
 export interface DaffMagentoDriverConfig extends HttpOptions {
@@ -62,6 +66,10 @@ export function provideMagentoDriver(options: DaffMagentoDriverConfig | Injectio
       cache,
     })),
     provideDaffDriverHttpClientCacheService(DaffDriverHttpClientCacheMagentoService),
+
+    // enable caching by default
+    provideDaffMagentoApolloCacheableOperations(),
+    provideDaffMagentoCacheHeader(),
   ];
 
   if (features.find(({ ɵkind }) => ɵkind === MagentoDriverFeatureKind.TransferState)) {
