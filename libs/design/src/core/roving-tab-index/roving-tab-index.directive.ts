@@ -3,7 +3,6 @@ import {
   Directive,
   input,
   Optional,
-  signal,
   SkipSelf,
 } from '@angular/core';
 
@@ -19,51 +18,39 @@ import { DaffRovingTabIndexService } from './roving-tab-index-group.service';
     '(keydown.escape)': 'leaveGroup($event)',
     '(keydown.arrowup)': 'previous($event)',
     '(keydown.arrowdown)': 'next($event)',
-    '(focus)': 'onFocus()',
-    '(blur)': 'onBlur()',
   },
 })
 export class DaffRovingTabIndexDirective {
-  private readonly _focused = signal(false);
-
   /**
    * Allows the RTI group to be overriden.
-   * By default it will be the nearest ancestor with an `rtiBoundary` defined.
+   * By default it will be the nearest ancestor or the default root group if no boundary ancestor exists.
    * @see {@link DaffRovingTabIndexBoundaryDirective}.
    */
-  readonly rti = input<string>();
-  readonly group = computed(() => this.parent?.rtiBoundary() || '');
+  readonly rti = input<string>('');
+  readonly group = computed(() => this.rti() || this.parent?.effectiveBoundary() || '');
   readonly tabindex = computed(() =>
-    this.groupService.group() === this.group()
+    this.service.group() === this.group()
       ? 0
       : -1,
   );
 
   constructor(
-    private groupService: DaffRovingTabIndexService,
+    private service: DaffRovingTabIndexService,
     @Optional() @SkipSelf() private parent: DaffRovingTabIndexBoundaryDirective,
   ) {}
 
   leaveGroup(evt: Event) {
     evt.stopPropagation();
-    this.groupService.leave();
+    this.service.leave();
   }
 
   next(evt: Event) {
     evt.stopPropagation();
-    this.groupService.next();
+    this.service.next();
   }
 
   previous(evt: Event) {
     evt.stopPropagation();
-    this.groupService.previous();
-  }
-
-  onFocus() {
-    this._focused.set(true);
-  }
-
-  onBlur() {
-    this._focused.set(false);
+    this.service.previous();
   }
 }
