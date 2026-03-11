@@ -20,3 +20,4 @@ export * from './selectable/public_api';
 export * from './sticky/public_api';
 export * from './disableable/public_api';
 export * from './loadable/public_api';
+export * from './roving-tab-index/public_api';

@@ -6,7 +6,7 @@ import {
 import {
   DaffRovingTabIndexBoundaryDirective,
   DaffRovingTabIndexDirective,
-} from '@daffodil/design/roving-tab-index';
+} from '@daffodil/design';
 
 @Component({
   selector: 'rti-nested-groups-example',
