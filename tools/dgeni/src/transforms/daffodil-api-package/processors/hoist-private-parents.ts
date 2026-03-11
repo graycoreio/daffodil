@@ -102,7 +102,7 @@ export class HoistPrivateParentsProcessor implements FilterableProcessor {
                 outputs: outputs ? JSON.parse(outputs.replaceAll('\'', '"')).map(daffDocsApiParseHostDirectiveField) : [],
               }))
               .forEach(({ directive, inputs, outputs }) => {
-                const directiveDoc = this.aliasMap.getDocs(directive.label)[0] || docs.find(({ name }) => name === directive.label);
+                const directiveDoc = this.aliasMap.getDocs(directive.label || '')[0] || docs.find(({ name }) => name === directive.label);
                 if (directiveDoc) {
                   members.push(
                     ...[
