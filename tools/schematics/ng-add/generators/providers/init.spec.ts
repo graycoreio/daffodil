@@ -83,7 +83,7 @@ export class App {}
 
       const appConfigContent = resultTree.read('/projects/test-app/src/app/app.config.ts')?.toString();
 
-      expect(appConfigContent).toContain('DEMO_MAGENTO_ENDPOINT_SWITCH');
+      expect(appConfigContent).toContain('DEMO_MAGENTO_DRIVER_CONFIG');
       expect(appConfigContent).toContain('DEMO_SHOPIFY_ENDPOINT_SWITCH');
     });
   });

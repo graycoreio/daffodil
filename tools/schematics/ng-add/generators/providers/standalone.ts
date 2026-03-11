@@ -137,7 +137,7 @@ export const addCoreProvidersToStandalone = (options: NgAddOptions, project: any
   // Magento providers
   if(driver === 'demo') {
     coreProviders.push(
-      'provideMagentoDriver(DEMO_MAGENTO_ENDPOINT_SWITCH)',
+      'provideMagentoDriver(DEMO_MAGENTO_DRIVER_CONFIG)',
     );
   }
 
