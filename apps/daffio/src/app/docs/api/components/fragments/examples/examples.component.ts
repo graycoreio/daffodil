@@ -29,6 +29,8 @@ import { DaffioDocsApiDynamicContentFragment } from '../../../dynamic-content/fr
   ],
 })
 export class DaffioDocsApiExamplesFragmentComponent implements DaffioDocsApiDynamicContentFragment<DaffApiDocBase> {
+  static readonly shouldRender = (doc: DaffApiDocBase) => doc.examples.length > 0;
+
   private readonly viewHeaders = viewChildren(DaffioDocsTocHeaderDirective);
   private readonly _toc = computed(() => this.viewHeaders().reduce((toc, directive) => {
     toc.push(directive.entry());

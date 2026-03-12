@@ -34,6 +34,8 @@ import { DaffioDocsApiItemLabelComponent } from '../../api-item-label/api-item-l
   ],
 })
 export class DaffioDocsApiBaseFragmentComponent implements DaffioDocsApiDynamicContentFragment<DaffApiDocBase> {
+  static readonly shouldRender = (doc: DaffApiDocBase) => true;
+
   private readonly viewHeaders = viewChildren(DaffioDocsTocHeaderDirective);
   private readonly _toc = computed(() => this.viewHeaders().reduce((toc, directive) => {
     toc.push(directive.entry());
