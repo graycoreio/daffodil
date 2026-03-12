@@ -431,12 +431,12 @@ export class RoleProcessor implements FilterableProcessor {
       })) || [];
     // TODO: support signals
     doc.props = doc.props.reduce((acc, prop) => {
-      if (prop.decorators?.find(({ name }) => name === 'Input')) {
+      if (prop.decorators?.find(({ name }) => name === 'Input') || prop.type.startsWith('InputSignal')) {
         doc.inputs.push({
           ...prop,
           required: !prop.isOptional,
         });
-      } else if (prop.decorators?.find(({ name }) => name === 'Output')) {
+      } else if (prop.decorators?.find(({ name }) => name === 'Output') || prop.type.startsWith('OutputEmitterRef')) {
         doc.outputs.push(prop);
       } else {
         acc.push(prop);
