@@ -151,8 +151,6 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
       fixture.detectChanges();
     });
 
-    describe();
-
     it('should render the api', () => {
       expect(fixture.debugElement.query(By.directive(TestFragmentComponent)).componentInstance).toBeDefined();
     });
