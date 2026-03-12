@@ -5,7 +5,7 @@
 </div>
 
 <div class="daff-docs-color-palette-generator__palettes">
-  @for (palette of palettes(); track palette.id) {
+  @for (palette of palettes().values(); track palette.id) {
     <daff-container class="daff-docs-color-palette-generator__card">
       <div class="daff-docs-color-palette-generator__input-row">
         <daff-form-field class="daff-docs-color-palette-generator__form-field">
@@ -69,7 +69,7 @@
         }
       </div>
 
-      @if (palettes().length > 1) {
+      @if (palettes().size > 1) {
         <button daff-stroked-button (click)="deletePalette(palette.id)" type="button" size="sm">
           Remove
         </button>

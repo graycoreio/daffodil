@@ -1,13 +1,13 @@
 import { makeEnvironmentProviders } from '@angular/core';
 
-import { provideDaffDocsExampleContent } from '@daffodil/docs';
+import { provideDaffDocsExampleContent } from '../example/public_api';
 
-export const provideDaffioColorPaletteGeneratorExampleContent = () =>
+export const provideDaffDocsColorPaletteGeneratorExampleContent = () =>
   makeEnvironmentProviders(
     provideDaffDocsExampleContent({
       id: 'color-palette-generator',
       component: () =>
-        import('@daffodil/docs').then(
+        import('./color-palette-generator.component').then(
           (c) => c.DaffDocsColorPaletteGeneratorComponent,
         ),
     }),

@@ -50,14 +50,14 @@ let nextId = 0;
 })
 export class DaffDocsColorPaletteGeneratorComponent implements OnInit {
   readonly faPalette = faPalette;
-  palettes = signal<Palette[]>([]);
-  initialHex = signal('#EFEFEF');
+  readonly palettes = signal<Map<number, Palette>>(new Map());
+  readonly initialHex = '#EFEFEF';
 
   ngOnInit(): void {
-    this.addPalette(this.initialHex());
+    this.addPalette(this.initialHex);
   }
 
-  addPalette(initialHex = this.initialHex()): void {
+  addPalette(initialHex = this.initialHex): void {
     const id = nextId++;
     const hexColorControl = new FormControl<string>(initialHex, [
       Validators.required,
@@ -83,17 +83,25 @@ export class DaffDocsColorPaletteGeneratorComponent implements OnInit {
         return;
       }
       const computed = buildPaletteColors(value);
-      this.palettes.update((palettes) =>
-        palettes.map((p) =>
-          p.id === id ? { ...p, ...computed } : p,
-        ),
-      );
+      this.palettes.update((palettes) => {
+        const existing = palettes.get(id);
+        if (!existing) {
+          return palettes;
+        }
+        const updated = new Map(palettes);
+        updated.set(id, { ...existing, ...computed });
+        return updated;
+      });
     });
 
-    this.palettes.update((p) => [...p, palette]);
+    this.palettes.update((p) => new Map(p).set(id, palette));
   }
 
   deletePalette(id: number): void {
-    this.palettes.update((p) => p.filter((palette) => palette.id !== id));
+    this.palettes.update((p) => {
+      const updated = new Map(p);
+      updated.delete(id);
+      return updated;
+    });
   }
 }
