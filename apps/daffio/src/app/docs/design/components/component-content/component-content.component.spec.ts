@@ -36,6 +36,8 @@ import { DaffioDocViewerComponent } from '../../../components/doc-viewer/doc-vie
   template: '',
 })
 class TestFragmentComponent implements DaffioDocsApiDynamicContentFragment {
+  static shouldRender = () => true;
+
   toc = input<WritableSignal<DaffDocTableOfContents>>();
   child = input(false);
   doc = input();
@@ -148,6 +150,8 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
       tabsComponent.select(component.API_TAB_ID);
       fixture.detectChanges();
     });
+
+    describe();
 
     it('should render the api', () => {
       expect(fixture.debugElement.query(By.directive(TestFragmentComponent)).componentInstance).toBeDefined();
