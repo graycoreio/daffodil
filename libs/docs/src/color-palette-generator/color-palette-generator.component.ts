@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnInit,
-  signal,
 } from '@angular/core';
 import {
   FormControl,
@@ -26,8 +26,6 @@ import {
   Palette,
 } from './helpers';
 
-let nextId = 0;
-
 @Component({
   selector: 'daff-docs-color-palette-generator',
   templateUrl: './color-palette-generator.component.html',
@@ -49,8 +47,11 @@ let nextId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffDocsColorPaletteGeneratorComponent implements OnInit {
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  private nextId = 0;
   readonly faPalette = faPalette;
-  readonly palettes = signal<Map<number, Palette>>(new Map());
+  readonly palettes = new Map<number, Palette>();
   readonly initialHex = '#EFEFEF';
 
   ngOnInit(): void {
@@ -58,7 +59,7 @@ export class DaffDocsColorPaletteGeneratorComponent implements OnInit {
   }
 
   addPalette(initialHex = this.initialHex): void {
-    const id = nextId++;
+    const id = this.nextId++;
     const hexColorControl = new FormControl<string>(initialHex, [
       Validators.required,
       colorValidator(),
@@ -83,25 +84,19 @@ export class DaffDocsColorPaletteGeneratorComponent implements OnInit {
         return;
       }
       const computed = buildPaletteColors(value);
-      this.palettes.update((palettes) => {
-        const existing = palettes.get(id);
-        if (!existing) {
-          return palettes;
-        }
-        const updated = new Map(palettes);
-        updated.set(id, { ...existing, ...computed });
-        return updated;
-      });
+      const existing = this.palettes.get(id);
+      if (existing) {
+        Object.assign(existing, computed);
+        this.cdr.markForCheck();
+      }
     });
 
-    this.palettes.update((p) => new Map(p).set(id, palette));
+    this.palettes.set(id, palette);
+    this.cdr.markForCheck();
   }
 
   deletePalette(id: number): void {
-    this.palettes.update((p) => {
-      const updated = new Map(p);
-      updated.delete(id);
-      return updated;
-    });
+    this.palettes.delete(id);
+    this.cdr.markForCheck();
   }
 }
