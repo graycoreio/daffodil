@@ -1,10 +1,10 @@
 # Roving Tab Index
 
-`@daffodil/design` provides an implementation of roving tab index that aims to address every common use case.
+Roving tab index (RTI) manages keyboard focus across groups of interactive elements.
 
-## RTI Targets
+## Targets
 
-All `<a>` and `<button>` tags are automatically treated as RTI targets. Other elements can be an RTI target by using the `rti` directive. The targets can be navigated between using tab and shift+tab, as usual.
+All `<a>` and `<button>` elements are automatically treated as RTI targets. Other elements can become targets by using the `rti` directive.
 
 ## Groups
 
