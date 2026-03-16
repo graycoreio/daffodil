@@ -1,12 +1,12 @@
 @for (palette of palettes(); track palette.context.name) {
 	@if (palette.context.parsedValue.type === MAP && palette.context.parsedValue.parsed) {
 		<div class="daff-docs-color-palette daff-docs-color-palette__brand-{{palette.context.name.toLowerCase()}}">
-			<div class="daff-docs-color-palette__name" style="background-color: {{palette.context.parsedValue.parsed['60']}};">{{palette.context.name}}</div>
+			<div class="daff-docs-color-palette__name">{{ palette.context.name.replace('daff-', '') }}</div>
 			@for (shade of palette.context.parsedValue.parsed | keyvalue | daffDocsPaletteShadeSort; track shade.key) {
-				<div style="background-color: {{shade.value}};">
-					<span class="daff-docs-color-palette__hex">{{shade.key}}</span>
-					<span class="daff-docs-color-palette__hue">{{shade.value}}</span>
-				</div>
+				<daff-docs-color-strip [background]="$any(shade.value)">
+					<div daffDocsColorStripStep>{{shade.key}}</div>
+					<div daffDocsColorStripHex>{{shade.value}}</div>
+				</daff-docs-color-strip>
 			}
 		</div>
 	}
