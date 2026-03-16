@@ -8,7 +8,6 @@ import { DaffDocsSassParsedMap } from '@daffodil/docs-utils';
 
 @Pipe({
   name: 'daffDocsPaletteShadeSort',
-  standalone: true,
 })
 export class DaffDocsPaletteShadeSortPipe implements PipeTransform {
   transform(value: Array<KeyValue<keyof DaffDocsSassParsedMap, DaffDocsSassParsedMap[keyof DaffDocsSassParsedMap]>>) {

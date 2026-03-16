@@ -12,6 +12,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffDocsPaletteShadeSortPipe } from './shade-sort.pipe';
+import { DAFF_DOCS_COLOR_STRIP_COMPONENTS } from '../color-strip/color-strip';
 
 /**
  * A component that displays color palettes from sass documentation items.
@@ -26,6 +27,7 @@ import { DaffDocsPaletteShadeSortPipe } from './shade-sort.pipe';
   imports: [
     KeyValuePipe,
     DaffDocsPaletteShadeSortPipe,
+    DAFF_DOCS_COLOR_STRIP_COMPONENTS,
   ],
 })
 export class DaffDocsColorPalettesComponent {

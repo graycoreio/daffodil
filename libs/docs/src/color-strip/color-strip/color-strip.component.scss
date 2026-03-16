@@ -1,0 +1,25 @@
+$strip-border-radius: 0.5rem;
+
+.daff-docs-color-strip {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: 1.25rem;
+	padding: 1rem;
+
+	&:first-of-type {
+		border-top-left-radius: $strip-border-radius;
+		border-top-right-radius: $strip-border-radius;
+	}
+
+	&:last-of-type {
+		border-bottom-left-radius: $strip-border-radius;
+		border-bottom-right-radius: $strip-border-radius;
+	}
+
+	&__hex {
+		text-transform: uppercase;
+	}
+}
