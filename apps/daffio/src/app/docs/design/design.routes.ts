@@ -17,6 +17,7 @@ import { DocsResolver } from '../resolvers/docs-resolver.service';
 import { daffioDocsDesignIndexResolver } from './services/index.resolver';
 import { provideDaffioDocsDesignIndexService } from './services/index.service';
 import { daffioDocsApiRolesProvider } from '../api/roles/api-roles.provider';
+import { provideDaffioStorefrontExamplesContent } from '../storefront/examples/content.provider';
 
 export const daffioDocsDesignRoutesFactory = (section: string, ...extraRoutes: Routes) => <Routes> [
   <DaffioRoute>{
@@ -26,6 +27,7 @@ export const daffioDocsDesignRoutesFactory = (section: string, ...extraRoutes: R
       provideDaffioDocsDesignComponentContentComponent(),
       ...daffioDocsApiRolesProvider(),
       provideDaffioDesignExamplesContent(),
+      provideDaffioStorefrontExamplesContent(),
     ],
     resolve: {
       index: daffioDocsDesignIndexResolver,

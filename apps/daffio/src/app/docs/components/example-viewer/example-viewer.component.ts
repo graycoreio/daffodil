@@ -15,6 +15,7 @@ import { DaffDocsDesignExample } from '@daffodil/docs-utils';
 import { DAFFIO_EXAMPLES_CONTENT_COMPONENT_MAP } from './example-components-map.token';
 import { DaffioExampleViewerCodeComponent } from './example-viewer-code/example-viewer-code.component';
 import { DaffioExampleViewerPreviewComponent } from './example-viewer-preview/example-viewer-preview.component';
+import { DAFFIO_DOCS_DESIGN_SECTION } from '../../design/services/index.service';
 import { DaffioDocsService } from '../../services/docs.service';
 
 /**
@@ -52,11 +53,13 @@ export class DaffioExampleViewerComponent {
    */
   example = input.required<string>();
 
+  private readonly section = inject(DAFFIO_DOCS_DESIGN_SECTION);
+
   /**
    * The source files of the example.
    */
   readonly sourceFiles: Resource<DaffDocsDesignExample> = rxResource({
-    params: () => ({ path: `docs/design/examples/${this.example()}` }),
+    params: () => ({ path: `docs/${this.section}/examples/${this.example()}` }),
     stream: ({ params }) => this.docsService.get<any>(params.path),
   });
 
