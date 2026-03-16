@@ -36,6 +36,8 @@ import { DaffioDocViewerComponent } from '../../../components/doc-viewer/doc-vie
   template: '',
 })
 class TestFragmentComponent implements DaffioDocsApiDynamicContentFragment {
+  static shouldRender = () => true;
+
   toc = input<WritableSignal<DaffDocTableOfContents>>();
   child = input(false);
   doc = input();

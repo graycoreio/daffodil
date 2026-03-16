@@ -34,6 +34,8 @@ import { DaffioDocsApiPropertyBlockComponent } from '../../property-block/proper
   ],
 })
 export class DaffioDocsApiOutputsFragmentComponent implements DaffioDocsApiDynamicContentFragment<DaffApiDirective> {
+  static readonly shouldRender = (doc: DaffApiDirective) => doc.outputs.length > 0;
+
   private readonly viewHeaders = viewChildren(DaffioDocsTocHeaderDirective);
   private readonly _toc = computed(() => this.viewHeaders().reduce((toc, directive) => {
     toc.push(directive.entry());

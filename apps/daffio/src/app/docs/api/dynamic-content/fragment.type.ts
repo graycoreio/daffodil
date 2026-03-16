@@ -16,6 +16,10 @@ export interface DaffioDocsApiDynamicContentFragment<T extends DaffApiDocBase = 
   readonly doc: InputSignal<T | any>;
 }
 
+export interface DaffioDocsApiDynamicContentFragmentComponent<T extends DaffApiDocBase = DaffApiDocBase> extends Type<DaffioDocsApiDynamicContentFragment<T>> {
+  shouldRender: (doc: T) => boolean;
+}
+
 export interface DaffioDocsApiDynamicContentFragments<T extends DaffApiDocBase = DaffApiDocBase> {
-  components: Array<Type<DaffioDocsApiDynamicContentFragment<T>>>;
+  components: Array<DaffioDocsApiDynamicContentFragmentComponent<T>>;
 };
