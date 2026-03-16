@@ -10,8 +10,9 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { DaffRovingTabIndexService } from '@daffodil/design';
+
 import { DaffRovingTabIndexBoundaryDirective } from './roving-tab-index-boundary.directive';
-import { DaffRovingTabIndexService } from './roving-tab-index-group.service';
 
 @Component({
   template: `
