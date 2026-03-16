@@ -16,9 +16,7 @@ export class DaffRovingTabIndexService {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-  ) {
-    // this.document.addEventListener('keydown', this.onKeydown.bind(this));
-  }
+  ) {}
 
   enter(group: string) {
     if (this._group() !== group) {

@@ -2,6 +2,10 @@
 
 Roving tab index (RTI) manages keyboard focus across groups of interactive elements.
 
+## Overview
+
+It automatically handles `<a>` and `<button>` elements, supports arbitrarily nested groups with boundary-based scoping, and provides full keyboard navigation support.
+
 ## Targets
 
 All `<a>` and `<button>` elements are automatically treated as RTI targets. Other elements can become targets by using the `rti` directive.
@@ -12,8 +16,15 @@ RTI has the concept of *groups* delineated by boundaries. There is a default "ro
 
 Boundaries are given unique anonymous IDs unless a value is passed to `rtiBoundary`. Targets are considered in the group of the nearest ancestor that is an `rtiBoundary`. This can be overridden by passing a group ID to `rti` but this is only valid if the boundary has also been given a name.
 
-## Behavior
-
-Tab and shift+tab moves focus around between RTI targets in the current group. While having focus on a group, space enters that group. While inside a group, arrow down and up navigate the same as tab and shift+tab, respectively. Escape leaves the current group and enters the previous group. Note that the previous group isn't necessarily the same as the containing group in the DOM as overriding boundary and target values can generate an RTI group hierarchy that is different from the DOM.
-
 <daffio-example-viewer example="rti-nested-groups"></daffio-example-viewer>
+
+## Keyboard navigation
+
+| Key | Action |
+|---|---|
+| <kbd>Tab</kbd> / <kbd>Shift+Tab</kbd> | Moves focus between RTI targets |
+| <kbd>&uarr;</kbd> / <kbd>&darr;</kbd> | Moves focus between targets within a group |
+| <kbd>Space</kbd> | Enters the focused group |
+| <kbd>ESC</kbd> | Leaves the current group |
+
+> Note: the parent group isn't necessarily the containing group in the DOM. Overriding boundary and target values can produce an RTI hierarchy that differs from the DOM tree.
