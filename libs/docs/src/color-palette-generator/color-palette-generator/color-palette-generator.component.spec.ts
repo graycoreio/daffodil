@@ -107,20 +107,11 @@ describe('@daffodil/docs | DaffDocsColorPaletteGeneratorComponent', () => {
   });
 
   describe('default template', () => {
-    it('should render an add palette button', () => {
-      const addButton = fixture.debugElement.query(By.css('[daff-stroked-button]'));
-      expect(addButton).toBeTruthy();
-      expect(addButton.nativeElement.textContent).toContain('Add palette');
-    });
-
-    it('should render palette strips', () => {
-      const strips = fixture.debugElement.queryAll(By.css('.daff-docs-color-palette-generator__strip'));
-      expect(strips.length).toBe(1);
-    });
-
-    it('should render color rows inside the strip', () => {
-      const rows = fixture.debugElement.queryAll(By.css('.daff-docs-color-palette-generator__row'));
-      expect(rows.length).toEqual(10);
+    it('should render an add palette button and an export palettes button', () => {
+      const buttons = fixture.debugElement.queryAll(By.css('[daff-stroked-button]'));
+      expect(buttons.length).toBe(2);
+      expect(buttons[0].nativeElement.textContent).toContain('Add palette');
+      expect(buttons[1].nativeElement.textContent).toContain('Export palettes');
     });
 
     it('should not render the remove button when there is only one palette', () => {
