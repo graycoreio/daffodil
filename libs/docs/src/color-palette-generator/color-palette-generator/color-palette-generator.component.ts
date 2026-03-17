@@ -17,12 +17,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
-import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 import { DAFF_FORM_HELPER_COMPONENTS } from '@daffodil/design/form';
 import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DaffInputComponent } from '@daffodil/design/input';
 import { DaffModalService } from '@daffodil/design/modal';
-import { DAFF_TAG_COMPONENTS } from '@daffodil/design/tag';
 
 import {
   buildPaletteColors,
@@ -43,11 +41,9 @@ import { DaffDocsExportPalettesModalComponent } from '../export-palettes-modal/e
     ReactiveFormsModule,
     FaIconComponent,
     DAFF_BUTTON_COMPONENTS,
-    DAFF_CONTAINER_COMPONENTS,
     DAFF_FORM_FIELD_COMPONENTS,
     DAFF_FORM_HELPER_COMPONENTS,
     DaffInputComponent,
-    DAFF_TAG_COMPONENTS,
     DAFF_DOCS_COLOR_STRIP_COMPONENTS,
   ],
   providers: [

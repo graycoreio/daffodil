@@ -1,23 +1,18 @@
-<div class="daff-docs-color-palette-generator__toolbar">
-  <button daff-stroked-button color="primary" (click)="addPalette()" type="button" size="sm">
-    <fa-icon [icon]="faPlus" daffPrefix></fa-icon>
-    Add palette
-  </button>
-  <button daff-stroked-button color="secondary" (click)="exportPalettes()" type="button" size="sm" aria-haspopup="dialog">
-    Export palettes
-  </button>
-</div>
+<button daff-stroked-button color="theme-contrast" (click)="addPalette()" type="button">
+  <fa-icon [icon]="faPlus" daffPrefix></fa-icon>
+  New palette
+</button>
 
 <div class="daff-docs-color-palette-generator__palettes">
   @for (palette of palettes.values(); track palette.id) {
-    <daff-container>
+    <div class="daffio-docs-color-palette-generator__palette-wrapper">
       <div class="daff-docs-color-palette-generator__input-row">
         <daff-form-field>
           <div class="daff-docs-color-palette-generator__color-picker" daffPrefix (click)="colorInput.click()">
-            <input #colorInput type="color" [value]="palette.hexColorControl.value" (input)="onColorPicked(palette, $event)" />
+            <input #colorInput type="color" [value]="palette.hexColorControl.value" (input)="onColorPicked(palette, $event)" aria-label="Pick a color" />
             <fa-icon [icon]="faCaretDown"></fa-icon>
           </div>
-          <input daff-input type="text" placeholder="#EFEFEF"
+          <input daff-input type="text" placeholder="#EFEFEF" aria-label="Hex color"
             [formControl]="palette.hexColorControl" spellcheck="false" maxlength="7" />
           @if (palette.hexColorControl.dirty && palette.hexColorControl.hasError('color')) {
             <daff-error-message>Invalid hex color</daff-error-message>
@@ -30,19 +25,24 @@
         }
       </div>
 
-      @for (color of palette.colors; track color.daffIncrement) {
-        <daff-docs-color-strip
-          [background]="color.hex"
-          [textColor]="color.luminance_rounded < 50 ? '#fff' : '#000'"
-          [active]="color.originalColor"
-        >
-          <span daffDocsColorStripStep>
-            {{ color.daffIncrement }}
-          </span>
-          <span daffDocsColorStripHex>{{ color.hex }}</span>
-        </daff-docs-color-strip>
-      }
-
-    </daff-container>
+      <div class="daff-docs-color-palette-generator__palette">
+        @for (color of palette.colors; track color.daffIncrement) {
+          <daff-docs-color-strip
+            [background]="color.hex"
+            [textColor]="color.luminance_rounded < 50 ? '#fff' : '#000'"
+            [active]="color.originalColor"
+          >
+            <span daffDocsColorStripStep>
+              {{ color.daffIncrement }}
+            </span>
+            <span daffDocsColorStripHex>{{ color.hex }}</span>
+          </daff-docs-color-strip>
+        }
+      </div>
+    </div>
   }
 </div>
+
+<button class="daff-docs-color-palette-generator__export" daff-stroked-button color="theme-contrast" (click)="exportPalettes()" type="button" aria-haspopup="dialog">
+  Export palettes
+</button>

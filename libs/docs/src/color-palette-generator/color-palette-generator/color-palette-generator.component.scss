@@ -5,16 +5,11 @@
 }
 
 .daff-docs-color-palette-generator {
-	&__toolbar {
-		display: flex;
-		gap: 1rem;
-		margin-bottom: 1.25rem;
-	}
-
 	&__palettes {
 		display: grid;
 		grid-gap: 1.25rem;
 		grid-template-columns: 1fr;
+		margin: 1.25rem 0;
 
 		@include daff.breakpoint(tablet) {
 			grid-template-columns: repeat(2, 1fr);
@@ -50,6 +45,7 @@
 				width: 1.5rem;
 				height: 1.5rem;
 				padding: 0;
+				@include daff.clickable();
 
 				&::-webkit-color-swatch-wrapper {
 					padding: 0;
