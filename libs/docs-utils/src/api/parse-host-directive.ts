@@ -1,7 +1,8 @@
-const REGEX = /(directive: (?<directive>\w+))|(inputs: (?<inputs>\[.+\]))|(outputs: (?<outputs>\[.+\]))/g;
+const REGEX = /(directive: (?<directive>\w+))|(inputs: (?<inputs>\[.+\]))|(outputs: (?<outputs>\[.+\]))|((?<type>^\w+$))/g;
 
 type Groups = Partial<{
   directive: string;
+  type: string;
   inputs: string;
   outputs: string;
 }>;

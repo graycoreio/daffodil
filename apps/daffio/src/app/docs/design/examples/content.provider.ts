@@ -23,6 +23,7 @@ import { provideDaffDesignNotificationExamplesContent } from '@daffodil/design-e
 import { provideDaffDesignPaginatorExamplesContent } from '@daffodil/design-examples/paginator';
 import { provideDaffDesignProgressBarExamplesContent } from '@daffodil/design-examples/progress-bar';
 import { provideDaffDesignRadioExamplesContent } from '@daffodil/design-examples/radio';
+import { provideDaffDesignRtiExamplesContent } from '@daffodil/design-examples/roving-tab-index';
 import { provideDaffDesignSelectExamplesContent } from '@daffodil/design-examples/select';
 import { provideDaffDesignSidebarExamplesContent } from '@daffodil/design-examples/sidebar';
 import { provideDaffDesignSpinnerExamplesContent } from '@daffodil/design-examples/spinner';
@@ -62,6 +63,7 @@ export const provideDaffioDesignExamplesContent = () => makeEnvironmentProviders
   provideDaffDesignPaginatorExamplesContent(),
   provideDaffDesignProgressBarExamplesContent(),
   provideDaffDesignRadioExamplesContent(),
+  provideDaffDesignRtiExamplesContent(),
   provideDaffDesignSelectExamplesContent(),
   provideDaffDesignSidebarExamplesContent(),
   provideDaffDesignSpinnerExamplesContent(),
