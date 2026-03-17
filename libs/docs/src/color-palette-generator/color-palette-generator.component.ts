@@ -10,7 +10,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faPalette } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPalette,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
@@ -51,6 +54,7 @@ export class DaffDocsColorPaletteGeneratorComponent implements OnInit {
 
   private nextId = 0;
   readonly faPalette = faPalette;
+  readonly faTrash = faTrash;
   readonly palettes = new Map<number, Palette>();
   readonly initialHex = '#EFEFEF';
 

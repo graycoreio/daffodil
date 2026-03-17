@@ -22,7 +22,7 @@
 	&__input-row {
 		display: flex;
 		align-items: center;
-		gap: 0.625rem;
+		justify-content: space-between;
 		margin-bottom: 0.5rem;
 	}
 }

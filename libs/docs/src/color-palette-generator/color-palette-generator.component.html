@@ -6,24 +6,20 @@
 
 <div class="daff-docs-color-palette-generator__palettes">
   @for (palette of palettes.values(); track palette.id) {
-    <daff-container class="daff-docs-color-palette-generator__card">
+    <daff-container>
       <div class="daff-docs-color-palette-generator__input-row">
-        <daff-form-field class="daff-docs-color-palette-generator__form-field">
+        <daff-form-field>
           <fa-icon [icon]="faPalette" daffPrefix></fa-icon>
-          <input daff-input type="text" placeholder="#EFEFEF" 
+          <input daff-input type="text" placeholder="#EFEFEF"
             [formControl]="palette.hexColorControl" spellcheck="false" maxlength="7" />
           @if (palette.hexColorControl.dirty && palette.hexColorControl.hasError('color')) {
             <daff-error-message>Invalid hex color</daff-error-message>
           }
         </daff-form-field>
-
-        @if (palette.hexColorControl.valid) {
-          <daff-tag
-            [style.background]="palette.hexColorControl.value"
-            [style.color]="palette.hexColorLuminance <= 50 ? '#fff' : '#000'"
-          >
-            {{ palette.hexColorLuminance }}
-          </daff-tag>
+        @if (palettes.size > 1) {
+          <button daff-icon-button (click)="deletePalette(palette.id)" type="button">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button>
         }
       </div>
 
@@ -39,11 +35,6 @@
         </daff-docs-color-strip>
       }
 
-      @if (palettes.size > 1) {
-        <button daff-stroked-button (click)="deletePalette(palette.id)" type="button" size="sm">
-          Remove
-        </button>
-      }
     </daff-container>
   }
 </div>
