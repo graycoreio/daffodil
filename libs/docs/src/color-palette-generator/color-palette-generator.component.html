@@ -27,47 +27,17 @@
         }
       </div>
 
-      @if (palette.hexColorControl.valid) {
-        <div class="daff-docs-color-palette-generator__meta">
-          <span class="daff-docs-color-palette-generator__meta-item">
-            <span class="daff-docs-color-palette-generator__meta-key">Hue</span>
-            <span class="daff-docs-color-palette-generator__meta-val">
-              {{ palette.hue | number:'1.1-1' }}°
-            </span>
+      @for (color of palette.colors; track color.daffIncrement) {
+        <daff-docs-color-strip
+          [background]="color.hex"
+          [textColor]="color.luminance_rounded < 50 ? '#fff' : '#000'"
+        >
+          <span daffDocsColorStripStep>
+            {{ color.daffIncrement }}
           </span>
-          <span class="daff-docs-color-palette-generator__meta-item">
-            <span class="daff-docs-color-palette-generator__meta-key">Saturation</span>
-            <span class="daff-docs-color-palette-generator__meta-val">
-              {{ palette.saturation | number:'1.1-1' }}%
-            </span>
-          </span>
-          <span class="daff-docs-color-palette-generator__meta-item">
-            <span class="daff-docs-color-palette-generator__meta-key">Luminance</span>
-            <span class="daff-docs-color-palette-generator__meta-val">
-              {{ palette.hexColorLuminance }}%
-            </span>
-          </span>
-        </div>
+          <span daffDocsColorStripHex>{{ color.hex }}</span>
+        </daff-docs-color-strip>
       }
-
-      <div class="daff-docs-color-palette-generator__strip">
-        @for (color of palette.colors; track color.daffIncrement) {
-          <div
-            class="daff-docs-color-palette-generator__row"
-            [class.daff-docs-color-palette-generator__row--original]="color.originalColor"
-            [style.background]="color.hex"
-            [style.color]="color.luminance_rounded < 50 ? '#fff' : '#000'"
-          >
-            <span class="daff-docs-color-palette-generator__step">
-              {{ color.daffIncrement }}
-              <span class="daff-docs-color-palette-generator__step-lum">
-                ({{ color.luminance_rounded }})
-              </span>
-            </span>
-            <span class="daff-docs-color-palette-generator__hex">{{ color.hex }}</span>
-          </div>
-        }
-      </div>
 
       @if (palettes.size > 1) {
         <button daff-stroked-button (click)="deletePalette(palette.id)" type="button" size="sm">

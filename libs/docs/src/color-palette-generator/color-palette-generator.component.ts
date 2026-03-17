@@ -24,6 +24,7 @@ import {
   colorValidator,
   Palette,
 } from './helpers';
+import { DAFF_DOCS_COLOR_STRIP_COMPONENTS } from '../color-strip/color-strip';
 
 @Component({
   selector: 'daff-docs-color-palette-generator',
@@ -41,6 +42,7 @@ import {
     DAFF_FORM_HELPER_COMPONENTS,
     DaffInputComponent,
     DAFF_TAG_COMPONENTS,
+    DAFF_DOCS_COLOR_STRIP_COMPONENTS,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
