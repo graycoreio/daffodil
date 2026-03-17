@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -34,7 +33,6 @@ import {
     class: 'daff-docs-color-palette-generator',
   },
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     FaIconComponent,
     DAFF_BUTTON_COMPONENTS,
