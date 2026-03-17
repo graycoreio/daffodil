@@ -1,3 +1,5 @@
+@use 'utilities' as *;
+
 :host {
 	@include breakpoint(tablet) {
 		width: 40vw;
