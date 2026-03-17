@@ -12,6 +12,7 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   faCaretDown,
+  faPlus,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,6 +21,7 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 import { DAFF_FORM_HELPER_COMPONENTS } from '@daffodil/design/form';
 import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DaffInputComponent } from '@daffodil/design/input';
+import { DaffModalService } from '@daffodil/design/modal';
 import { DAFF_TAG_COMPONENTS } from '@daffodil/design/tag';
 
 import {
@@ -27,7 +29,8 @@ import {
   colorValidator,
   Palette,
 } from './helpers';
-import { DAFF_DOCS_COLOR_STRIP_COMPONENTS } from '../color-strip/color-strip';
+import { DAFF_DOCS_COLOR_STRIP_COMPONENTS } from '../../color-strip/color-strip';
+import { DaffDocsExportPalettesModalComponent } from '../export-palettes-modal/export-palettes-modal.component';
 
 @Component({
   selector: 'daff-docs-color-palette-generator',
@@ -47,13 +50,20 @@ import { DAFF_DOCS_COLOR_STRIP_COMPONENTS } from '../color-strip/color-strip';
     DAFF_TAG_COMPONENTS,
     DAFF_DOCS_COLOR_STRIP_COMPONENTS,
   ],
+  providers: [
+    DaffModalService,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffDocsColorPaletteGeneratorComponent implements OnInit {
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private modalService: DaffModalService,
+  ) {}
 
   private nextId = 0;
   readonly faCaretDown = faCaretDown;
+  readonly faPlus = faPlus;
   readonly faTrash = faTrash;
   readonly palettes = new Map<number, Palette>();
   readonly initialHex = '#EFEFEF';
@@ -108,5 +118,10 @@ export class DaffDocsColorPaletteGeneratorComponent implements OnInit {
   deletePalette(id: number): void {
     this.palettes.delete(id);
     this.cdr.markForCheck();
+  }
+
+  exportPalettes(): void {
+    const ref = this.modalService.open(DaffDocsExportPalettesModalComponent);
+    ref.instance.palettes = Array.from(this.palettes.values());
   }
 }

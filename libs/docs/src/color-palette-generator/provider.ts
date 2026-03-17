@@ -7,7 +7,7 @@ export const provideDaffDocsColorPaletteGeneratorExampleContent = () =>
     provideDaffDocsExampleContent({
       id: 'color-palette-generator',
       component: () =>
-        import('./color-palette-generator.component').then(
+        import('./color-palette-generator/color-palette-generator.component').then(
           (c) => c.DaffDocsColorPaletteGeneratorComponent,
         ),
     }),

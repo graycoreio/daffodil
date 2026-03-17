@@ -1,6 +1,10 @@
 <div class="daff-docs-color-palette-generator__toolbar">
   <button daff-stroked-button color="primary" (click)="addPalette()" type="button" size="sm">
-    + Add palette
+    <fa-icon [icon]="faPlus" daffPrefix></fa-icon>
+    Add palette
+  </button>
+  <button daff-stroked-button color="secondary" (click)="exportPalettes()" type="button" size="sm" aria-haspopup="dialog">
+    Export palettes
   </button>
 </div>
 
@@ -9,9 +13,9 @@
     <daff-container>
       <div class="daff-docs-color-palette-generator__input-row">
         <daff-form-field>
-          <div class="daff-docs-color-palette-generator__color-picker" daffPrefix>
+          <div class="daff-docs-color-palette-generator__color-picker" daffPrefix (click)="colorInput.click()">
             <input #colorInput type="color" [value]="palette.hexColorControl.value" (input)="onColorPicked(palette, $event)" />
-            <fa-icon [icon]="faCaretDown" (click)="colorInput.click()"></fa-icon>
+            <fa-icon [icon]="faCaretDown"></fa-icon>
           </div>
           <input daff-input type="text" placeholder="#EFEFEF"
             [formControl]="palette.hexColorControl" spellcheck="false" maxlength="7" />

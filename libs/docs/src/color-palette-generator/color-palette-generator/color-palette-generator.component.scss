@@ -6,6 +6,8 @@
 
 .daff-docs-color-palette-generator {
 	&__toolbar {
+		display: flex;
+		gap: 1rem;
 		margin-bottom: 1.25rem;
 	}
 
@@ -17,6 +19,10 @@
 		@include daff.breakpoint(tablet) {
 			grid-template-columns: repeat(2, 1fr);
 		}
+
+		@include daff.breakpoint(big-tablet) {
+			grid-template-columns: repeat(3, 1fr);
+		}
 	}
 
 	&__input-row {
@@ -24,6 +30,10 @@
 		align-items: center;
 		justify-content: space-between;
 		margin-bottom: 1rem;
+
+		daff-form-field {
+			max-width: 12rem;
+		}
 	}
 
 	&__color-picker {
@@ -31,6 +41,7 @@
 		align-items: center;
 		gap: 0.25rem;
 		margin-inline: 1rem;
+		@include daff.clickable();
 
 		input {
 			&[type='color'] {
@@ -39,8 +50,6 @@
 				width: 1.5rem;
 				height: 1.5rem;
 				padding: 0;
-
-				@include daff.clickable();
 
 				&::-webkit-color-swatch-wrapper {
 					padding: 0;

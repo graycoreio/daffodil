@@ -1,0 +1,10 @@
+<daff-modal-header>
+  <h3 daffModalTitle>Export Palettes</h3>
+</daff-modal-header>
+<daff-modal-content>
+  <daff-article>
+    @for (palette of palettes; track $index) {
+      <pre><code>{{ getPaletteText(palette) }}</code></pre>
+    }
+  </daff-article>
+</daff-modal-content>
