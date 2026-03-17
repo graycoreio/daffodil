@@ -264,7 +264,9 @@ export const storefrontApiPackage = outputPathsConfigurator({
 })(new Package('storefront-api-docs', [apiDocs]))
   .processor(...CANONICAL_PATH_PROCESSOR_PROVIDER)
   .config((collectLinkableSymbols: CollectLinkableSymbolsProcessor) => {
-    collectLinkableSymbols.section = () => 'storefront';
+    collectLinkableSymbols.section = (doc) => doc.fileInfo.projectRelativePath.includes('src/core')
+      ? `storefront/core/${doc.fileInfo.projectRelativePath.match(/src\/core\/([^/]*)/)[1]}`
+      : 'storefront';
   })
   .config((readTypeScriptModules) => {
     readTypeScriptModules.basePath = STOREFRONT_PATH;
