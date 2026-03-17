@@ -47,50 +47,39 @@ describe('@daffodil/docs | DaffDocsColorPaletteGeneratorComponent', () => {
   });
 
   describe('addPalette', () => {
-
-    it('should add a palette with the given hex color', () => {
-      component.addPalette('#00FF00');
-      expect(component.palettes.size).toBe(2);
-      const palettes = [...component.palettes.values()];
-      const lastPalette = palettes[palettes.length - 1];
-      expect(lastPalette.hexColorControl.value).toBe('#00FF00');
-      expect(lastPalette.hue).toBeDefined();
-      expect(lastPalette.saturation).toBeDefined();
-    });
-
-    it('should generate colors for the given hex color', () => {
-      component.addPalette('#0000FF');
-      const palettes = [...component.palettes.values()];
-      const lastPalette = palettes[palettes.length - 1];
-      expect(lastPalette.colors.length).toEqual(10);
-    });
-
-    it('should use the default hex when no argument is provided', () => {
+    it('should add a palette with the default hex color', () => {
       component.addPalette();
+      expect(component.palettes.size).toBe(2);
       const palettes = [...component.palettes.values()];
       const lastPalette = palettes[palettes.length - 1];
       expect(lastPalette.hexColorControl.value).toBe('#EFEFEF');
     });
-  });
 
-  describe('deletePalette', () => {
-    it('should remove a palette by id', () => {
-      component.addPalette('#FF0000');
-      expect(component.palettes.size).toBe(2);
-      const idToRemove = [...component.palettes.values()][0].id;
-      component.deletePalette(idToRemove);
-      expect(component.palettes.size).toBe(1);
-      expect(component.palettes.has(idToRemove)).toBe(false);
+    it('should generate colors for the default hex color', () => {
+      component.addPalette();
+      const palettes = [...component.palettes.values()];
+      const lastPalette = palettes[palettes.length - 1];
+      expect(lastPalette.colors.length).toEqual(10);
     });
   });
 
-  describe('palette color control value changes', () => {
-    it('should update palette colors when the hex color control value changes to a valid color', () => {
-      const palette = [...component.palettes.values()][0];
+  describe('changing a palette color', () => {
+    it('should update the palette hex color value', () => {
+      component.addPalette();
+      const palette = [...component.palettes.values()][1];
+      palette.hexColorControl.setValue('#FF0000');
+      fixture.detectChanges();
+      expect(palette.hexColorControl.value).toBe('#FF0000');
+    });
+
+    it('should generate colors for the new hex color', () => {
+      component.addPalette();
+      const palette = [...component.palettes.values()][1];
       const originalColors = [...palette.colors];
       palette.hexColorControl.setValue('#FF0000');
       fixture.detectChanges();
-      const updatedPalette = [...component.palettes.values()][0];
+      const updatedPalette = [...component.palettes.values()][1];
+      expect(updatedPalette.colors.length).toEqual(10);
       expect(updatedPalette.colors).not.toEqual(originalColors);
     });
 
@@ -106,28 +95,35 @@ describe('@daffodil/docs | DaffDocsColorPaletteGeneratorComponent', () => {
     });
   });
 
+  describe('deletePalette', () => {
+    it('should remove a palette by id', () => {
+      component.addPalette();
+      expect(component.palettes.size).toBe(2);
+      const idToRemove = [...component.palettes.values()][0].id;
+      component.deletePalette(idToRemove);
+      expect(component.palettes.size).toBe(1);
+      expect(component.palettes.has(idToRemove)).toBe(false);
+    });
+  });
+
   describe('default template', () => {
-    it('should render an add palette button and an export palettes button', () => {
+    it('should render a new palette button and an export palettes button', () => {
       const buttons = fixture.debugElement.queryAll(By.css('[daff-stroked-button]'));
       expect(buttons.length).toBe(2);
-      expect(buttons[0].nativeElement.textContent).toContain('Add palette');
+      expect(buttons[0].nativeElement.textContent).toContain('New palette');
       expect(buttons[1].nativeElement.textContent).toContain('Export palettes');
     });
 
     it('should not render the remove button when there is only one palette', () => {
-      const removeButtons = fixture.debugElement.queryAll(By.css('[daff-stroked-button]')).filter(
-        (el) => el.nativeElement.textContent.includes('Remove'),
-      );
+      const removeButtons = fixture.debugElement.queryAll(By.css('[daff-icon-button]'));
       expect(removeButtons.length).toBe(0);
     });
 
     it('should render remove buttons when there are multiple palettes', () => {
-      component.addPalette('#FF0000');
+      component.addPalette();
       fixture.detectChanges();
 
-      const removeButtons = fixture.debugElement.queryAll(By.css('[daff-stroked-button]')).filter(
-        (el) => el.nativeElement.textContent.includes('Remove'),
-      );
+      const removeButtons = fixture.debugElement.queryAll(By.css('[daff-icon-button]'));
       expect(removeButtons.length).toBe(2);
     });
   });
