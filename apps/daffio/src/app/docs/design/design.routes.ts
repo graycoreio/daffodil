@@ -60,6 +60,26 @@ export const daffioDocsDesignRoutesFactory = (section: string, ...extraRoutes: R
 					},
         ],
       },
+      {
+        path: 'behaviors',
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            component: DaffioDocsDesignComponentOverviewPageComponent,
+          },
+					<DaffioRoute>{
+					  path: '**',
+					  component: DaffioDocsPageComponent,
+					  resolve: {
+					    doc: daffioDocsDesignComponentDocResolver,
+					  },
+					  data: {
+					    sidebarMode: DaffSidebarModeEnum.SideFixed,
+					  },
+					},
+        ],
+      },
       <DaffioRoute>{
         path: '**',
         component: DaffioDocsPageComponent,
