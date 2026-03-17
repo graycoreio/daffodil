@@ -51,8 +51,8 @@ describe('@daffodil/docs | DaffDocsExportPalettesModalComponent', () => {
         hue: 12,
         saturation: 100,
         colors: [
-          { hex: '#fee', luminance_rounded: 96, luminance: 96, daffIncrement: 10, originalColor: false },
-          { hex: '#f00', luminance_rounded: 53, luminance: 53.2, daffIncrement: 20, originalColor: true },
+          { hex: '#fee', luminance: 96, daffIncrement: 10, originalColor: false, textColor: '#000' },
+          { hex: '#f00', luminance: 53.2, daffIncrement: 20, originalColor: true, textColor: '#000' },
         ],
       };
     });

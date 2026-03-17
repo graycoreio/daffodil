@@ -8,10 +8,10 @@ import { Hsluv } from 'hsluv';
 
 export interface PaletteColor {
   hex: string;
-  luminance_rounded: number;
   luminance: number;
   daffIncrement: number;
   originalColor: boolean;
+  textColor: string;
 }
 
 export interface Palette {
@@ -58,10 +58,10 @@ function generatePalette(hue: number, saturation: number): PaletteColor[] {
     c.hsluvToHex();
     colors.push({
       hex: c.hex,
-      luminance_rounded: +c.hsluv_l.toFixed(0),
       luminance: c.hsluv_l,
       daffIncrement,
       originalColor: false,
+      textColor: +c.hsluv_l.toFixed(0) < 50 ? '#fff' : '#000',
     });
   }
   return colors;
@@ -90,10 +90,10 @@ function fitColorIntoPalette(
 
   updated[nearestIndex] = {
     ...updated[nearestIndex],
-    luminance_rounded: +color.luminance.toFixed(0),
     luminance: color.luminance,
     hex: original.hex,
     originalColor: true,
+    textColor: +color.luminance.toFixed(0) < 50 ? '#fff' : '#000',
   };
   return updated;
 }

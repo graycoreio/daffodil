@@ -29,7 +29,7 @@
         @for (color of palette.colors; track color.daffIncrement) {
           <daff-docs-color-strip
             [background]="color.hex"
-            [textColor]="color.luminance_rounded < 50 ? '#fff' : '#000'"
+            [textColor]="color.textColor"
             [active]="color.originalColor"
           >
             <span daffDocsColorStripStep>
