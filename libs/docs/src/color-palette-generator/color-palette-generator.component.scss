@@ -23,6 +23,37 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		margin-bottom: 0.5rem;
+		margin-bottom: 1rem;
+	}
+
+	&__color-picker {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		margin-inline: 1rem;
+
+		input {
+			&[type='color'] {
+				appearance: none;
+				border: none;
+				width: 1.5rem;
+				height: 1.5rem;
+				padding: 0;
+
+				@include daff.clickable();
+
+				&::-webkit-color-swatch-wrapper {
+					padding: 0;
+				}
+
+				&::-webkit-color-swatch {
+					border: none;
+				}
+
+				&::-moz-color-swatch {
+					border: none;
+				}
+			}
+		}
 	}
 }

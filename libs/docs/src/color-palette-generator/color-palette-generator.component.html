@@ -9,7 +9,10 @@
     <daff-container>
       <div class="daff-docs-color-palette-generator__input-row">
         <daff-form-field>
-          <fa-icon [icon]="faPalette" daffPrefix></fa-icon>
+          <div class="daff-docs-color-palette-generator__color-picker" daffPrefix>
+            <input #colorInput type="color" [value]="palette.hexColorControl.value" (input)="onColorPicked(palette, $event)" />
+            <fa-icon [icon]="faCaretDown" (click)="colorInput.click()"></fa-icon>
+          </div>
           <input daff-input type="text" placeholder="#EFEFEF"
             [formControl]="palette.hexColorControl" spellcheck="false" maxlength="7" />
           @if (palette.hexColorControl.dirty && palette.hexColorControl.hasError('color')) {

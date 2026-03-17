@@ -11,7 +11,7 @@ import {
 } from '@angular/forms';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
-  faPalette,
+  faCaretDown,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -53,7 +53,7 @@ export class DaffDocsColorPaletteGeneratorComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) {}
 
   private nextId = 0;
-  readonly faPalette = faPalette;
+  readonly faCaretDown = faCaretDown;
   readonly faTrash = faTrash;
   readonly palettes = new Map<number, Palette>();
   readonly initialHex = '#EFEFEF';
@@ -97,6 +97,12 @@ export class DaffDocsColorPaletteGeneratorComponent implements OnInit {
 
     this.palettes.set(id, palette);
     this.cdr.markForCheck();
+  }
+
+  onColorPicked(palette: Palette, event: Event): void {
+    const hex = (<HTMLInputElement>event.target).value;
+    palette.hexColorControl.setValue(hex);
+    palette.hexColorControl.markAsDirty();
   }
 
   deletePalette(id: number): void {
