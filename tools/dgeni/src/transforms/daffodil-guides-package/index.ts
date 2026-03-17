@@ -204,7 +204,7 @@ export const designDocsPackage = new Package('design-docs', [design])
   .config((addApiSymbolsToPackages: AddApiSymbolsToPackagesProcessor, longDescription: LongDescriptionProcessor) => {
     longDescription.docTypes.push('package-guide');
     addApiSymbolsToPackages.docTypes.push('package-guide');
-    addApiSymbolsToPackages.lookup = (doc) => doc.id.replace('components/', '');
+    addApiSymbolsToPackages.lookup = (doc) => `design/${doc.id.replace('components/', '')}`;
   })
   .config((readFilesProcessor) => {
     readFilesProcessor.basePath = DESIGN_PATH;
@@ -290,7 +290,7 @@ export const storefrontDocsPackage = new Package('storefront-docs', [storefront]
   .config((addApiSymbolsToPackages: AddApiSymbolsToPackagesProcessor, longDescription: LongDescriptionProcessor) => {
     longDescription.docTypes.push('package-guide');
     addApiSymbolsToPackages.docTypes.push('package-guide');
-    addApiSymbolsToPackages.lookup = (doc) => doc.id.replace('components/', '');
+    addApiSymbolsToPackages.lookup = (doc) => `storefront/${doc.id.replace('components/', '')}`;
   })
   .config((readFilesProcessor) => {
     readFilesProcessor.basePath = STOREFRONT_PATH;

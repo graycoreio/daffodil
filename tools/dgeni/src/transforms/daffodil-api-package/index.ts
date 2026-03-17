@@ -46,7 +46,10 @@ import { DAFF_DGENI_EXCLUDED_PACKAGES_REGEX } from '../../constants/excluded-pac
 import { AddKindProcessor } from '../../processors/add-kind';
 import { BreadcrumbProcessor } from '../../processors/breadcrumb';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
-import { COLLECT_LINKABLE_SYMBOLS_PROCESSOR_PROVIDER } from '../../processors/collect-linkable-symbols';
+import {
+  COLLECT_LINKABLE_SYMBOLS_PROCESSOR_PROVIDER,
+  CollectLinkableSymbolsProcessor,
+} from '../../processors/collect-linkable-symbols';
 import { CollectRoutablePathsProcessor } from '../../processors/collect-routable-paths';
 import { CrossEnvSafeNameProcessor } from '../../processors/cross-env-safe-name';
 import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
@@ -225,6 +228,11 @@ export const designApiPackage = outputPathsConfigurator({
 })(new Package('design-api-docs', [apiDocs]))
   .processor(new RemoveDuplicatesProcessor())
   .processor(...CANONICAL_PATH_PROCESSOR_PROVIDER)
+  .config((collectLinkableSymbols: CollectLinkableSymbolsProcessor) => {
+    collectLinkableSymbols.section = (doc) => doc.fileInfo.projectRelativePath.includes('src/core')
+      ? `design/core/${doc.fileInfo.projectRelativePath.match(/src\/core\/([^/]*)/)[1]}`
+      : 'design';
+  })
   .config((readTypeScriptModules) => {
     readTypeScriptModules.basePath = DESIGN_PATH;
     readTypeScriptModules.sourceFiles = [
@@ -255,6 +263,9 @@ export const storefrontApiPackage = outputPathsConfigurator({
   docTypes: [DaffDocsApiType.PACKAGE],
 })(new Package('storefront-api-docs', [apiDocs]))
   .processor(...CANONICAL_PATH_PROCESSOR_PROVIDER)
+  .config((collectLinkableSymbols: CollectLinkableSymbolsProcessor) => {
+    collectLinkableSymbols.section = () => 'storefront';
+  })
   .config((readTypeScriptModules) => {
     readTypeScriptModules.basePath = STOREFRONT_PATH;
     readTypeScriptModules.sourceFiles = [
