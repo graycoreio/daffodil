@@ -1,3 +1,5 @@
 :host {
-	min-width: 500px;
+	@include breakpoint(tablet) {
+		width: 40vw;
+	}
 }
