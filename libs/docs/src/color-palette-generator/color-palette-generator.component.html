@@ -30,6 +30,7 @@
         <daff-docs-color-strip
           [background]="color.hex"
           [textColor]="color.luminance_rounded < 50 ? '#fff' : '#000'"
+          [active]="color.originalColor"
         >
           <span daffDocsColorStripStep>
             {{ color.daffIncrement }}

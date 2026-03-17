@@ -19,6 +19,11 @@ $strip-border-radius: 0.5rem;
 		border-bottom-right-radius: $strip-border-radius;
 	}
 
+	&.active {
+		outline: 0.0625rem solid currentColor;
+		outline-offset: -0.0625rem;
+	}
+
 	&__hex {
 		text-transform: uppercase;
 	}

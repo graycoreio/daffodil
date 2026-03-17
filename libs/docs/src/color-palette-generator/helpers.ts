@@ -11,7 +11,7 @@ export interface PaletteColor {
   luminance_rounded: number;
   luminance: number;
   daffIncrement: number;
-  originalColor?: boolean;
+  originalColor: boolean;
 }
 
 export interface Palette {
@@ -61,6 +61,7 @@ function generatePalette(hue: number, saturation: number): PaletteColor[] {
       luminance_rounded: +c.hsluv_l.toFixed(0),
       luminance: c.hsluv_l,
       daffIncrement,
+      originalColor: false,
     });
   }
   return colors;
