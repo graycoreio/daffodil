@@ -227,6 +227,12 @@ export const designDocsPackage = new Package('design-docs', [design])
           path: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT]}`,
           description: '',
         },
+        {
+          id: 'behaviors',
+          title: 'Behaviors',
+          path: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/behaviors`,
+          description: '',
+        },
         ...docs
           .filter((doc) => doc.docType !== 'index')
           .map(transformDesignGuideDocFactory(DAFF_DOCS_DESIGN_PATH)),
