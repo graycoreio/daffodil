@@ -8,8 +8,8 @@ export class MockAccountRegistration implements DaffAccountRegistration {
   email = faker.internet.email();
   password = faker.string.alphanumeric(16);
   subscribe = faker.datatype.boolean();
-  firstName = faker.name.firstName();
-  lastName = faker.name.lastName();
+  firstName = faker.person.firstName();
+  lastName = faker.person.lastName();
 };
 
 @Injectable({

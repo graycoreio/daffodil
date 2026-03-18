@@ -15,8 +15,8 @@ export class MockMagentoCartAddressInput implements MagentoCartAddressInput {
   telephone = faker.phone.number();
   postcode = faker.location.zipCode();
   city = faker.location.city();
-  firstname = faker.name.firstName();
-  lastname = faker.name.lastName();
+  firstname = faker.person.firstName();
+  lastname = faker.person.lastName();
   save_in_address_book = faker.datatype.boolean();
 }
 

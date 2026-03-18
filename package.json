@@ -26,7 +26,7 @@
     "@angular/service-worker": "^20.0.0",
     "@angular/ssr": "^20.0.0",
     "@apollo/client": "^3.12.6",
-    "@faker-js/faker": "^9.8.0",
+    "@faker-js/faker": "^10.3.0",
     "@fortawesome/angular-fontawesome": "^3.0.0",
     "@fortawesome/fontawesome-svg-core": "^7.0.1",
     "@fortawesome/free-brands-svg-icons": "^7.0.1",
