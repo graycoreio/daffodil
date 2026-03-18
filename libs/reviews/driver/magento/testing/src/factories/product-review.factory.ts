@@ -15,7 +15,7 @@ export class MockMagentoProductReview implements MagentoProductReview {
   text = faker.lorem.words(15);
   average_rating = faker.number.int({ min: 0, max: 100 });
   created_at = faker.date.past().toISOString();
-  nickname = faker.name.firstName();
+  nickname = faker.person.firstName();
   ratings_breakdown = this.createRatings();
 
   constructor(

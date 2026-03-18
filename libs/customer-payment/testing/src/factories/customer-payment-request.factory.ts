@@ -13,7 +13,7 @@ export class MockDaffCustomerPaymentRequest extends MockPaymentRequest implement
   address = this.addressFactory.create();
   default = faker.datatype.boolean();
   nickname = faker.lorem.word();
-  owner = faker.name.fullName();
+  owner = faker.person.fullName();
 
   constructor(
     private addressFactory: DaffCustomerAddressFactory,
