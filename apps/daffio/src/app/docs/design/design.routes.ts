@@ -80,7 +80,7 @@ export const daffioDocsDesignRoutesFactory = (section: string, ...extraRoutes: R
             },
             data: {
               title: 'Behaviors',
-              subtitle: 'Behaviors are blah blah blah.',
+              subtitle: 'Behaviors are reusable, composable traits for building UI components that enforce consistent inputs, types, and patterns across both Daffodil and custom components.',
             },
           },
 					<DaffioRoute>{
