@@ -1,7 +1,5 @@
 import { Document } from 'dgeni';
 
-import { daffDocsApiArrayToDict } from '@daffodil/docs-utils';
-
 import { CollectLinkableSymbolsProcessor } from './collect-linkable-symbols';
 import { FilterableProcessor } from '../utils/filterable-processor.type';
 
@@ -20,8 +18,7 @@ export class AddApiSymbolsToPackagesProcessor implements FilterableProcessor {
       if (this.docTypes.includes(doc.docType)) {
         const exportDocs = CollectLinkableSymbolsProcessor.packages.get(this.lookup(doc));
         if (exportDocs) {
-          doc.symbols = exportDocs?.map((d) => CollectLinkableSymbolsProcessor.symbols.get(d.name));
-          const api = daffDocsApiArrayToDict(exportDocs);
+          doc.symbols = exportDocs?.map((d) => d.path);
         }
       }
       return doc;

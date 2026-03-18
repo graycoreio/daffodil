@@ -197,14 +197,14 @@ export const designDocsPackage = new Package('design-docs', [design])
   .config((computeIdsProcessor, idSanitizer: IdSanitizer) => {
     computeIdsProcessor.idTemplates.push({
       docTypes: ['package-guide'],
-      getId: (doc) => `components/${idSanitizer.sanitize(doc.fileInfo.relativePath)}`,
+      getId: (doc) => `components/${idSanitizer.sanitize(doc.fileInfo.relativePath)}`.replace('components/core', 'behaviors'),
       getAliases: (doc) => [doc.id],
     });
   })
   .config((addApiSymbolsToPackages: AddApiSymbolsToPackagesProcessor, longDescription: LongDescriptionProcessor) => {
     longDescription.docTypes.push('package-guide');
     addApiSymbolsToPackages.docTypes.push('package-guide');
-    addApiSymbolsToPackages.lookup = (doc) => doc.id.replace('components/', '');
+    addApiSymbolsToPackages.lookup = (doc) => `design/${doc.id.replace('components/', '').replace('behaviors', 'core')}`;
   })
   .config((readFilesProcessor) => {
     readFilesProcessor.basePath = DESIGN_PATH;
@@ -225,6 +225,12 @@ export const designDocsPackage = new Package('design-docs', [design])
           id: 'components',
           title: 'Components',
           path: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT]}`,
+          description: '',
+        },
+        {
+          id: 'behaviors',
+          title: 'Behaviors',
+          path: `/${DAFF_DOCS_PATH}/${DAFF_DOCS_DESIGN_PATH}/behaviors`,
           description: '',
         },
         ...docs
@@ -283,14 +289,14 @@ export const storefrontDocsPackage = new Package('storefront-docs', [storefront]
   .config((computeIdsProcessor, idSanitizer: IdSanitizer) => {
     computeIdsProcessor.idTemplates.push({
       docTypes: ['package-guide'],
-      getId: (doc) => `components/${idSanitizer.sanitize(doc.fileInfo.relativePath)}`,
+      getId: (doc) => `components/${idSanitizer.sanitize(doc.fileInfo.relativePath)}`.replace('components/core', 'behaviors'),
       getAliases: (doc) => [doc.id],
     });
   })
   .config((addApiSymbolsToPackages: AddApiSymbolsToPackagesProcessor, longDescription: LongDescriptionProcessor) => {
     longDescription.docTypes.push('package-guide');
     addApiSymbolsToPackages.docTypes.push('package-guide');
-    addApiSymbolsToPackages.lookup = (doc) => doc.id.replace('components/', '');
+    addApiSymbolsToPackages.lookup = (doc) => `storefront/${doc.id.replace('components/', '')}`;
   })
   .config((readFilesProcessor) => {
     readFilesProcessor.basePath = STOREFRONT_PATH;

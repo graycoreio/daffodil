@@ -1,7 +1,7 @@
 <daff-hero>
 	<daff-container size="md">
-		<h1 daffHeroTitle>Components</h1>
-		<p daffHeroSubtitle>Components are reusable UI elements in a design system that helps to create consistent, intuitive experiences across products.</p>
+		<h1 daffHeroTitle>{{ title$ | async }}</h1>
+		<p daffHeroSubtitle>{{ subtitle$ | async }}</p>
 	</daff-container>
 </daff-hero>
 

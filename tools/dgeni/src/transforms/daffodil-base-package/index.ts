@@ -22,6 +22,7 @@ import {
   ConvertToJsonProcessor,
 } from '../../processors/convertToJson';
 import { MARKDOWN_CODE_PROCESSOR_PROVIDER } from '../../processors/markdown';
+import { NORMALIZE_IDS_PROCESSOR_PROVIDER } from '../../processors/normalize-ids';
 import { ID_SANITIZER_PROVIDER } from '../../services/id-sanitizer';
 import {
   PROJECT_ROOT,
@@ -41,6 +42,7 @@ export const daffodilBasePackage = new Package('daffodil-base', [
   .processor(...CONVERT_TO_JSON_PROCESSOR_PROVIDER)
   .processor(...MARKDOWN_CODE_PROCESSOR_PROVIDER)
   .processor(...COLLECT_ROUTABLE_PATHS_PROCESSOR_PROVIDER)
+  .processor(...NORMALIZE_IDS_PROCESSOR_PROVIDER)
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   .factory('packageInfo', () => require(path.resolve(PROJECT_ROOT, 'package.json')))
 

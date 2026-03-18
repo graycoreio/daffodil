@@ -2,8 +2,12 @@ import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import {
+  ActivatedRoute,
+  RouterLink,
+} from '@angular/router';
 import {
   map,
   Observable,
@@ -15,7 +19,6 @@ import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
 import { DaffDocsDesignGuideNavList } from '@daffodil/docs-utils';
 
 import { DaffioInterceptNavigationDirective } from '../../../../core/router/intercept-navigation.directive';
-import { useDaffioNavList } from '../../../composables/nav-index';
 
 @Component({
   selector: 'daffio-docs-design-component-overview',
@@ -32,14 +35,14 @@ import { useDaffioNavList } from '../../../composables/nav-index';
   ],
 })
 export class DaffioDocsDesignComponentOverviewPageComponent {
-  components$: Observable<Array<DaffDocsDesignGuideNavList>> = useDaffioNavList<DaffDocsDesignGuideNavList>().list.pipe(
-    map((docsList) =>
-      docsList
-        .children
-        .find(({ id }) => id === 'components')
-        .children
-        .filter(({ id }) => !!id)
-        .flatMap((d) => d.children.length ? d.children : d),
-    ),
+  private route = inject(ActivatedRoute);
+  components$: Observable<Array<DaffDocsDesignGuideNavList>> = this.route.data.pipe(
+    map((data) => data.components),
+  );
+  title$: Observable<string> = this.route.data.pipe(
+    map((data) => data.title),
+  );
+  subtitle$: Observable<string> = this.route.data.pipe(
+    map((data) => data.subtitle),
   );
 }
