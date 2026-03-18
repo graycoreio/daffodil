@@ -1,11 +1,11 @@
-<button daff-stroked-button color="theme-contrast" (click)="addPalette()" type="button">
+<button daff-stroked-button color="theme-contrast" (click)="addPalette()" type="button" size="sm">
   <fa-icon [icon]="faPlus" daffPrefix></fa-icon>
   New palette
 </button>
 
 <div class="daff-docs-color-palette-generator__palettes">
   @for (palette of palettes.values(); track palette.id) {
-    <div class="daffio-docs-color-palette-generator__palette-wrapper">
+    <div class="daff-docs-color-palette-generator__palette-wrapper">
       <div class="daff-docs-color-palette-generator__input-row">
         <daff-form-field>
           <div class="daff-docs-color-palette-generator__color-picker" daffPrefix (click)="colorInput.click()">
@@ -19,7 +19,7 @@
           }
         </daff-form-field>
         @if (palettes.size > 1) {
-          <button daff-icon-button (click)="deletePalette(palette.id)" type="button">
+          <button class="daff-docs-color-palette-generator__trash-button" daff-icon-button (click)="deletePalette(palette.id)" type="button" aria-label="Delete palette">
             <fa-icon [icon]="faTrash"></fa-icon>
           </button>
         }
