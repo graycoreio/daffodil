@@ -1,0 +1,25 @@
+@mixin color-strip-container {
+	display: block;
+}
+
+@mixin color-strip-row($height: 3rem, $padding: 0 1rem, $border-radius: 0.5rem) {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: $padding;
+	height: $height;
+
+	&:first-child {
+		border-top-left-radius: $border-radius;
+		border-top-right-radius: $border-radius;
+	}
+
+	&:last-child {
+		border-bottom-left-radius: $border-radius;
+		border-bottom-right-radius: $border-radius;
+	}
+}
+
+@mixin color-strip-hex {
+	text-transform: uppercase;
+}

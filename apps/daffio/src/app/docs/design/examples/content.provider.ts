@@ -35,11 +35,13 @@ import { provideDaffDesignTextSnippetExamplesContent } from '@daffodil/design-ex
 import { provideDaffDesignTextareaExamplesContent } from '@daffodil/design-examples/textarea';
 import { provideDaffDesignToastExamplesContent } from '@daffodil/design-examples/toast';
 import { provideDaffDesignTreeExamplesContent } from '@daffodil/design-examples/tree';
+import { provideDaffDocsColorPaletteGeneratorExampleContent } from '@daffodil/docs';
 
 import { provideDaffioDesignColorPalettesExampleContent } from '../containers/color-palettes/provider';
 
 export const provideDaffioDesignExamplesContent = () => makeEnvironmentProviders([
   provideDaffioDesignColorPalettesExampleContent(),
+  provideDaffDocsColorPaletteGeneratorExampleContent(),
   provideDaffDesignAccordionExamplesContent(),
   provideDaffDesignArticleExamplesContent(),
   provideDaffDesignBreadcrumbExamplesContent(),

@@ -13,6 +13,7 @@ import {
     class: 'daff-docs-color-strip',
     '[style.background]': 'background()',
     '[style.color]': 'textColor()',
+    '[class.active]': 'active()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -20,4 +21,5 @@ import {
 export class DaffDocsColorStripComponent {
   readonly background = input.required<string>();
   readonly textColor = input<string>();
+  readonly active = input(false);
 }

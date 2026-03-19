@@ -1,0 +1,48 @@
+<button daff-stroked-button color="theme-contrast" (click)="addPalette()" type="button">
+  <fa-icon [icon]="faPlus" size="sm" daffPrefix></fa-icon>
+  New palette
+</button>
+
+<div class="daff-docs-color-palette-generator__palettes">
+  @for (palette of palettes.values(); track palette.id) {
+    <div class="daff-docs-color-palette-generator__palette-wrapper">
+      <div class="daff-docs-color-palette-generator__input-row">
+        <daff-form-field>
+          <div class="daff-docs-color-palette-generator__color-picker" daffPrefix (click)="colorInput.click()">
+            <input #colorInput type="color" [value]="palette.hexColorControl.value" (input)="onColorPicked(palette, $event)" aria-label="Pick a color" />
+            <fa-icon [icon]="faCaretDown"></fa-icon>
+          </div>
+          <input daff-input type="text" placeholder="#EFEFEF" aria-label="Hex color"
+            [formControl]="palette.hexColorControl" spellcheck="false" maxlength="7" />
+          @if (palette.hexColorControl.dirty && palette.hexColorControl.hasError('color')) {
+            <daff-error-message>Invalid hex color</daff-error-message>
+          }
+        </daff-form-field>
+        @if (palettes.size > 1) {
+          <button class="daff-docs-color-palette-generator__trash-button" daff-icon-button (click)="deletePalette(palette.id)" type="button" aria-label="Delete palette">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button>
+        }
+      </div>
+
+      <div class="daff-docs-color-palette-generator__palette">
+        @for (color of palette.colors; track color.daffIncrement) {
+          <daff-docs-color-strip
+            [background]="color.hex"
+            [textColor]="color.textColor"
+            [active]="color.originalColor"
+          >
+            <span daffDocsColorStripStep>
+              {{ color.daffIncrement }}
+            </span>
+            <span daffDocsColorStripHex>{{ color.hex }}</span>
+          </daff-docs-color-strip>
+        }
+      </div>
+    </div>
+  }
+</div>
+
+<button class="daff-docs-color-palette-generator__export" daff-stroked-button color="theme-contrast" (click)="exportPalettes()" type="button" aria-haspopup="dialog">
+  Export palettes
+</button>
