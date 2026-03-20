@@ -4,6 +4,10 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import {
+  provideRouter,
+  Router,
+} from '@angular/router';
 
 import { DaffioDocRendererComponent } from './doc-renderer.component';
 import { provideDaffioDocsTestingService } from '../../services/testing.provider';
@@ -12,6 +16,7 @@ import { DaffioExampleViewerComponent } from '../example-viewer/example-viewer.c
 describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
   let component: DaffioDocRendererComponent;
   let fixture: ComponentFixture<DaffioDocRendererComponent>;
+  let router: Router;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -20,12 +25,15 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
       ],
       providers: [
         provideDaffioDocsTestingService(),
+        provideRouter([]),
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
+    router = TestBed.inject(Router);
+    spyOn(router, 'navigateByUrl');
     fixture = TestBed.createComponent(DaffioDocRendererComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -44,6 +52,28 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
       const article = fixture.debugElement.query(By.css('daff-article'));
       expect(article.nativeElement.innerHTML).toContain('Test content');
     });
+  });
+
+  it('should handle relative links with angular router', () => {
+    const testContent = '<a data-anchor href="docs/test">Relative link</a>';
+    fixture.componentRef.setInput('contents', testContent);
+    fixture.detectChanges();
+
+    const anchor: HTMLAnchorElement = fixture.debugElement.nativeElement.querySelector('[data-anchor]');
+    anchor.click();
+    fixture.detectChanges();
+    expect(router.navigateByUrl).toHaveBeenCalledWith('docs/test');
+  });
+
+  it('should not absolute links with angular router', () => {
+    const testContent = '<a data-anchor href="javascript://example.com/docs/test">Absolute link</a>';
+    fixture.componentRef.setInput('contents', testContent);
+    fixture.detectChanges();
+
+    const anchor: HTMLAnchorElement = fixture.debugElement.nativeElement.querySelector('[data-anchor]');
+    anchor.click();
+    fixture.detectChanges();
+    expect(router.navigateByUrl).not.toHaveBeenCalled();
   });
 
   describe('when contents contains example placeholders', () => {
