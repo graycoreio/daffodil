@@ -1,3 +1,5 @@
+var SassDaffodilImporterPlugin = require('./sass-daffodil-importer-plugin');
+
 module.exports = function(config) {
   var coverageDir = require('path').join(__dirname, '../../coverage');
 
@@ -39,6 +41,19 @@ module.exports = function(config) {
     browserDisconnectTimeout : 210000,
     browserNoActivityTimeout : 210000,
     singleRun: false,
+  });
+  var _buildWebpack;
+  Object.defineProperty(config, 'buildWebpack', {
+    get: function() { return _buildWebpack; },
+    set: function(value) {
+      if (value && value.webpackConfig) {
+        value.webpackConfig.plugins = value.webpackConfig.plugins || [];
+        value.webpackConfig.plugins.push(new SassDaffodilImporterPlugin());
+      }
+      _buildWebpack = value;
+    },
+    enumerable: true,
+    configurable: true,
   });
 
   return config;
