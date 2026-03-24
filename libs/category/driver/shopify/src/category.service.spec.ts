@@ -21,8 +21,10 @@ import {
   ShopifyCategory,
   shopifyUrlTransformer,
 } from '@daffodil/driver/shopify';
-import { DaffCategoryDriverShopifyCategoryFactory } from '@daffodil/driver/shopify/testing';
-import { ShopifyProductNodeFactory as ShopifyProductFactory } from '@daffodil/driver/shopify/testing';
+import {
+  DaffCategoryDriverShopifyCategoryFactory,
+  ShopifyProductNodeFactory as ShopifyProductFactory,
+} from '@daffodil/driver/shopify/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffShopifyCategoryService } from './category.service';
