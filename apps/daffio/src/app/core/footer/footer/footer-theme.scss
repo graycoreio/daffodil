@@ -1,4 +1,4 @@
-@use 'theme' as *;
+@use '@daffodil/design/scss/theme' as *;
 @use 'sass:map';
 
 @mixin daffio-footer-theme($theme) {

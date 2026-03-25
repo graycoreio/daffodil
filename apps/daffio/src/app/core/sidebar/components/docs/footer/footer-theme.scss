@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use 'theme' as *;
+@use '@daffodil/design/scss/theme' as *;
 
 @mixin daffio-docs-sidebar-footer-theme($theme) {
 	$neutral: daff-get-palette($theme, neutral);

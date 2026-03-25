@@ -1,4 +1,4 @@
-@use 'theme' as *;
+@use '@daffodil/design/scss/theme' as *;
 
 @mixin daffio-api-params-fragment-theme($theme) {
 	$red: daff-get-palette($theme, critical);
