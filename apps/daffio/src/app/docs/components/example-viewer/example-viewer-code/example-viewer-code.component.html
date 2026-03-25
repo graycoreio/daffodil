@@ -11,7 +11,7 @@
 		<fa-icon [icon]="copyIcon"></fa-icon>
 	</button>
 </div>
-<pre class="daffio-example-viewer-code__code-block" [class.full-code]="fullCode()"><code #codeEl [innerHTML]="visibleCode()?.content || ''"></code></pre>
+<pre nocopy class="daffio-example-viewer-code__code-block" [class.full-code]="fullCode()"><code #codeEl [innerHTML]="visibleCode()?.content || ''"></code></pre>
 <button (click)="toggleFullCode()" class="daffio-example-viewer-code__toggle-button" [class.full-code]="fullCode()">
 	@if (fullCode()) {
 		Collapse code <fa-icon [icon]="faChevronUp" size="xs"></fa-icon>
