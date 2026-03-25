@@ -1,7 +1,9 @@
 import { DaffGetCategoryResponse } from '@daffodil/category';
 import { DaffSortDirectionEnum } from '@daffodil/core';
-import { ShopifyCategory } from '@daffodil/driver/shopify';
-import { ShopifyProductCollectionSortKeys } from '@daffodil/driver/shopify';
+import {
+  ShopifyCategory,
+  ShopifyProductCollectionSortKeys,
+} from '@daffodil/driver/shopify';
 import { daffShopifyProductTransformer } from '@daffodil/product/driver/shopify';
 
 import { daffShopifyProductFiltersTransformer } from './shopify-daff-product-filters-transform';
