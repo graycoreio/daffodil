@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 
-import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 import { DaffDocsDesignExample } from '@daffodil/docs-utils';
 
 import { DAFFIO_EXAMPLES_CONTENT_COMPONENT_MAP } from './example-components-map.token';
@@ -29,9 +28,6 @@ import { DaffioDocsService } from '../../services/docs.service';
     class: 'daffio-example-viewer',
     '[class.simple]': 'simple()',
   },
-  hostDirectives: [{
-    directive: DaffArticleEncapsulatedDirective,
-  }],
   imports: [
     DaffioExampleViewerPreviewComponent,
     DaffioExampleViewerCodeComponent,
