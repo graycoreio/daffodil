@@ -56,6 +56,10 @@ export const daffDocsGetRoleFromTsDoc = (doc: DaffDocsTsDocument): DaffDocsApiRo
     case DaffDocsApiType.CONST:
       if (doc.typeChecker.getTypeOfSymbolAtLocation(doc.symbol, doc.variableDeclaration).symbol?.escapedName === 'InjectionToken') {
         return DaffDocsApiRole.TOKEN;
+      } else if (doc.name.startsWith('provide')) {
+        return DaffDocsApiRole.PROVIDER;
+      } else if (doc.name.endsWith('Reducer')) {
+        return DaffDocsApiRole.REDUCER;
       }
       return DaffDocsApiRole.CONSTANT;
 
