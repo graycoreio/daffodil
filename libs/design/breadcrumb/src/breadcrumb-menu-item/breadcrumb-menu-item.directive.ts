@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 import {
-  DAFF_MENU_ITEM_TOKEN,
+  provideDaffMenuItemToken,
   DaffMenuService,
 } from '@daffodil/design/menu';
 
@@ -19,7 +19,7 @@ import {
  */
 @Directive({
   selector: '[daffBreadcrumbMenuItem]',
-  providers: [{ provide: DAFF_MENU_ITEM_TOKEN, useExisting: DaffBreadcrumbMenuItemDirective }],
+  providers: [provideDaffMenuItemToken(DaffBreadcrumbMenuItemDirective)],
 })
 export class DaffBreadcrumbMenuItemDirective implements FocusableOption, AfterViewInit, OnDestroy {
   private _focusableElement: HTMLElement | null = null;

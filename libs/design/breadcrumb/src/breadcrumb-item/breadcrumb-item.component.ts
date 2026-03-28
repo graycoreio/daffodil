@@ -7,7 +7,6 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { DAFF_MENU_ITEM_TOKEN } from '@daffodil/design/menu';
 
 /**
  * Represents each individual breadcrumb item. Must be used on a `<li>` element.
@@ -32,7 +31,6 @@ import { DAFF_MENU_ITEM_TOKEN } from '@daffodil/design/menu';
     'class': 'daff-breadcrumb__item',
     '[attr.aria-current]': '_active ? "page" : null',
   },
-  providers: [{ provide: DAFF_MENU_ITEM_TOKEN, useExisting: DaffBreadcrumbItemComponent }],
 })
 export class DaffBreadcrumbItemComponent {
   /**
