@@ -107,44 +107,41 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
   /**
    * @docs-private
    */
-  _computedBreadcrumbItems = computed(() => {
+  _partition = computed(() => {
     this._isMobile(); // signal rerenders breadcrumb on viewport change
 
     const items = this._breadcrumbItems();
+    const visible: DaffBreadcrumbRender[] = [];
+    const menu: DaffBreadcrumbItemComponent[] = [];
 
-    const rendered = items.reduce<DaffBreadcrumbRender[]>((acc, item, index) => {
+    for(let index = 0; index < items.length; index++) {
+      const item = items[index];
       const res = toRenderType(item, items.length, index);
       if(res) {
         if(index === 0) {
-          return [...acc, { type: 'menu', target: 'mobileMenu' }, res];
+          visible.push({ type: 'menu', target: 'mobileMenu' });
         }
-        return [...acc, res];
+        visible.push(res);
+      } else {
+        if(menu.length === 0) {
+          visible.push({ type: 'menu', target: 'desktopMenu' });
+        }
+        menu.push(item);
       }
-      if(index === 2 && items.length >= 5) {
-        return [...acc, { type: 'menu', target: 'desktopMenu' }];
-      }
-      return acc;
-    }, []);
-    return rendered;
+    }
+
+    return { visible, menu };
   });
 
   /**
    * @docs-private
    */
-  _desktopMenuItems = computed(() => {
-    const items = this._breadcrumbItems();
-    const res = items.reduce<DaffBreadcrumbItemComponent[]>((acc, item, index) => {
-      if(items.length >= 5
-          && (index !== 0 && index !== 1)
-          && (index !== items.length - 1 && index !== items.length - 2)
-      ) {
-        return [...acc, item];
-      } else {
-        return acc;
-      }
-    }, []);
-    return res;
-  });
+  _computedBreadcrumbItems = computed(() => this._partition().visible);
+
+  /**
+   * @docs-private
+   */
+  _desktopMenuItems = computed(() => this._partition().menu);
 
   /**
    * @docs-private
