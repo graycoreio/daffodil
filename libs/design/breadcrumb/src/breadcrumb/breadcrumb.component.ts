@@ -112,14 +112,20 @@ export class DaffBreadcrumbComponent implements AfterContentInit {
 
     const items = this._breadcrumbItems();
 
-    return items.reduce<DaffBreadcrumbRender[]>((acc, item, index) => {
+    const rendered = items.reduce<DaffBreadcrumbRender[]>((acc, item, index) => {
       const res = toRenderType(item, items.length, index);
-      if(Array.isArray(res)) {
-        return [...acc, ...res];
-      } else {
-        return [...acc,  res];
+      if(res) {
+        if(index === 0) {
+          return [...acc, { type: 'menu', target: 'mobileMenu' }, res];
+        }
+        return [...acc, res];
       }
+      if(index === 2 && items.length >= 5) {
+        return [...acc, { type: 'menu', target: 'desktopMenu' }];
+      }
+      return acc;
     }, []);
+    return rendered;
   });
 
   /**

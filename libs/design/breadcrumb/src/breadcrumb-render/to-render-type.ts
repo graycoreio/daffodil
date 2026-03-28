@@ -1,25 +1,26 @@
 import { DaffBreadcrumbItemComponent } from '../public_api';
 import { DaffBreadcrumbRender } from './breadcrumb-render.type';
 
-export const toRenderType = (item: DaffBreadcrumbItemComponent, length: number, index: number): DaffBreadcrumbRender | DaffBreadcrumbRender[] => {
-  if(index === 0) {
-    return [
-      { type: 'menu', target: 'mobileMenu' },
-      { item, type: 'breadcrumb' },
-    ];
-  }
+/**
+ * Determines whether a breadcrumb item should be rendered in the breadcrumb trail.
+ * Returns a {@link DaffBreadcrumbRender} when the item should be visible,
+ * or `null` when the item should be collapsed into a menu.
+ *
+ * When there are fewer than 5 items, all items are rendered.
+ * Otherwise, only the first 2 and last 2 items are rendered.
+ */
+export const toRenderType = (item: DaffBreadcrumbItemComponent, length: number, index: number): DaffBreadcrumbRender | null => {
   if(length < 5) {
     return { item, type: 'breadcrumb' };
-  } else {
-    switch(index) {
-      case 1:
-      case length - 1:
-      case length - 2:
-        return { item, type: 'breadcrumb' };
-      case 2:
-        return { type: 'menu', target: 'desktopMenu' };
-      default:
-        return [];
-    }
+  }
+
+  switch(index) {
+    case 0:
+    case 1:
+    case length - 1:
+    case length - 2:
+      return { item, type: 'breadcrumb' };
+    default:
+      return null;
   }
 };
