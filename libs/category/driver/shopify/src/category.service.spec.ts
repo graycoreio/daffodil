@@ -18,7 +18,12 @@ import {
 } from '@daffodil/category';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 import {
+  DaffFilterEqual,
+  DaffFilterType,
+} from '@daffodil/core';
+import {
   ShopifyCategory,
+  ShopifyFilterType,
   shopifyUrlTransformer,
 } from '@daffodil/driver/shopify';
 import {
@@ -160,6 +165,169 @@ describe('@daffodil/category/driver/shopify | DaffShopifyCategoryService', () =>
         },
       });
     }));
+  });
+
+  describe('filter transformations', () => {
+    const flushCollectionResponse = (op, filters = []) => {
+      op.flush({
+        data: {
+          collection: {
+            __typename: 'Collection',
+            handle: '',
+            id: mockCategory.id,
+            title: mockCategory.name,
+            description: mockCategory.description,
+            onlineStoreUrl: mockCategory.canonicalUrl,
+            image: {
+              altText: '',
+              id: '',
+              url: '',
+            },
+            products: {
+              nodes: [],
+              filters,
+            },
+          },
+        },
+      });
+    };
+
+    it('should parse response filters correctly for display', done => {
+      const colorFilter = {
+        __typename: 'Filter',
+        id: 'filter.v.option.color',
+        label: 'Color',
+        presentation: null,
+        type: ShopifyFilterType.List,
+        values: [
+          { __typename: 'FilterValue', count: 5, id: 'red-1', label: 'Red', input: '{"variantOption":{"name":"Color","value":"Red"}}' },
+          { __typename: 'FilterValue', count: 3, id: 'blue-1', label: 'Blue', input: '{"variantOption":{"name":"Color","value":"Blue"}}' },
+        ],
+      };
+
+      const result = categoryService.get({
+        ...mockCategoryIdRequest,
+        filterRequests: [],
+      });
+
+      result.subscribe(res => {
+        const filterEntry = <DaffFilterEqual>res.categoryPageMetadata.filters['Color'];
+        expect(filterEntry.type).toEqual(DaffFilterType.Equal);
+        expect(filterEntry.name).toEqual('filter.v.option.color');
+        expect(filterEntry.options['Red'].value).toEqual('{"variantOption":{"name":"Color","value":"Red"}}');
+        expect(filterEntry.options['Blue'].value).toEqual('{"variantOption":{"name":"Color","value":"Blue"}}');
+        expect(filterEntry.options['Red'].applied).toBe(false);
+        expect(filterEntry.options['Blue'].applied).toBe(false);
+        done();
+      });
+
+      const op = controller.expectOne(getCategory);
+      flushCollectionResponse(op, [colorFilter]);
+    });
+
+    it('should produce correct GraphQL variables from filter requests', done => {
+      const result = categoryService.get({
+        ...mockCategoryIdRequest,
+        filterRequests: [{
+          type: DaffFilterType.Equal,
+          name: 'filter.v.option.color',
+          value: ['{"variantOption":{"name":"Color","value":"Red"}}'],
+        }],
+      });
+
+      result.subscribe(() => {
+        done();
+      });
+
+      const op = controller.expectOne(getCategory);
+      expect(op.operation.variables.filters).toEqual([
+        { variantOption: { name: 'Color', value: 'Red' }},
+      ]);
+      flushCollectionResponse(op);
+    });
+
+    it('should mark applied filters correctly after a filtered query', done => {
+      const colorFilter = {
+        __typename: 'Filter',
+        id: 'filter.v.option.color',
+        label: 'Color',
+        presentation: null,
+        type: ShopifyFilterType.List,
+        values: [
+          { __typename: 'FilterValue', count: 5, id: 'red-1', label: 'Red', input: '{"variantOption":{"name":"Color","value":"Red"}}' },
+          { __typename: 'FilterValue', count: 3, id: 'blue-1', label: 'Blue', input: '{"variantOption":{"name":"Color","value":"Blue"}}' },
+        ],
+      };
+
+      const result = categoryService.get({
+        ...mockCategoryIdRequest,
+        filterRequests: [{
+          type: DaffFilterType.Equal,
+          name: 'filter.v.option.color',
+          value: ['{"variantOption":{"name":"Color","value":"Red"}}'],
+        }],
+      });
+
+      result.subscribe(res => {
+        const filterEntry = <DaffFilterEqual>res.categoryPageMetadata.filters['Color'];
+        expect(filterEntry.options['Red'].applied).toBe(true);
+        expect(filterEntry.options['Blue'].applied).toBe(false);
+        done();
+      });
+
+      const op = controller.expectOne(getCategory);
+      flushCollectionResponse(op, [colorFilter]);
+    });
+
+    it('should produce correct GraphQL variables for a price range filter', done => {
+      const result = categoryService.get({
+        ...mockCategoryIdRequest,
+        filterRequests: [{
+          type: DaffFilterType.RangeNumeric,
+          name: 'filter.v.price',
+          value: { min: 20, max: 80 },
+        }],
+      });
+
+      result.subscribe(() => {
+        done();
+      });
+
+      const op = controller.expectOne(getCategory);
+      expect(op.operation.variables.filters).toEqual([
+        { price: { min: 20, max: 80 }},
+      ]);
+      flushCollectionResponse(op);
+    });
+
+    it('should produce correct GraphQL variables for mixed filters', done => {
+      const result = categoryService.get({
+        ...mockCategoryIdRequest,
+        filterRequests: [
+          {
+            type: DaffFilterType.Equal,
+            name: 'filter.v.option.color',
+            value: ['{"variantOption":{"name":"Color","value":"Red"}}'],
+          },
+          {
+            type: DaffFilterType.RangeNumeric,
+            name: 'filter.v.price',
+            value: { min: 10, max: 50 },
+          },
+        ],
+      });
+
+      result.subscribe(() => {
+        done();
+      });
+
+      const op = controller.expectOne(getCategory);
+      expect(op.operation.variables.filters).toEqual([
+        { variantOption: { name: 'Color', value: 'Red' }},
+        { price: { min: 10, max: 50 }},
+      ]);
+      flushCollectionResponse(op);
+    });
   });
 
   afterEach(() => {
