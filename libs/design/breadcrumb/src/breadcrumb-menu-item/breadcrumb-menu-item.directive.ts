@@ -2,8 +2,9 @@ import { FocusableOption } from '@angular/cdk/a11y';
 import {
   AfterViewInit,
   Directive,
-  ElementRef,
+  EmbeddedViewRef,
   OnDestroy,
+  ViewContainerRef,
 } from '@angular/core';
 
 import {
@@ -26,7 +27,7 @@ export class DaffBreadcrumbMenuItemDirective implements FocusableOption, AfterVi
   private _clickHandler = () => this._menuService.close();
 
   constructor(
-    private _elementRef: ElementRef,
+    private _viewContainerRef: ViewContainerRef,
     private _menuService: DaffMenuService,
   ) {}
 
@@ -44,11 +45,8 @@ export class DaffBreadcrumbMenuItemDirective implements FocusableOption, AfterVi
   }
 
   private _findFocusableElement(): HTMLElement | null {
-    let node = this._elementRef.nativeElement.previousElementSibling;
-    while (node && node.nodeType !== 1) {
-      node = node.nextSibling;
-    }
-    return node;
+    const view = <EmbeddedViewRef<unknown>>this._viewContainerRef.get(0);
+    return view?.rootNodes.find((n): n is HTMLElement => n.nodeType === Node.ELEMENT_NODE) ?? null;
   }
 
   ngOnDestroy() {
