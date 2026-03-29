@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   DebugElement,
@@ -18,11 +19,14 @@ import { DaffBreadcrumbMenuItemDirective } from './breadcrumb-menu-item.directiv
 
 @Component({
   template: `
-    <a class="breadcrumb-link">Link</a>
-    <span daffBreadcrumbMenuItem></span>
+    <span daffBreadcrumbMenuItem [ngTemplateOutlet]="linkTemplate"></span>
+    <ng-template #linkTemplate>
+      <a class="breadcrumb-link">Link</a>
+    </ng-template>
   `,
   imports: [
     DaffBreadcrumbMenuItemDirective,
+    NgTemplateOutlet,
   ],
 })
 class WrapperComponent {}
