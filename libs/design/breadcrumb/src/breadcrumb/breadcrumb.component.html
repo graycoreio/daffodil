@@ -1,4 +1,4 @@
-@for (breadcrumbItem of _computedBreadcrumbItems(); track breadcrumbItem; let index = $index) {
+@for (breadcrumbItem of _computedBreadcrumbItems(); track breadcrumbItem) {
 	@if (breadcrumbItem.type === 'breadcrumb') {
 		<li class="daff-breadcrumb__item"
 			[class.active]="breadcrumbItem.item._active">
@@ -17,7 +17,7 @@
 
 <ng-template #mobileMenu>
 	<daff-menu>
-		@for (breadcrumbItem of _mobileMenuItems(); track breadcrumbItem; let index = $index) {
+		@for (breadcrumbItem of _mobileMenuItems(); track breadcrumbItem) {
 			<ng-container daffBreadcrumbMenuItem [ngTemplateOutlet]="breadcrumbItem.itemRef"></ng-container>
 		}
 	</daff-menu>	
@@ -25,7 +25,7 @@
 
 <ng-template #desktopMenu>
 	<daff-menu>
-		@for (breadcrumbItem of _desktopMenuItems(); track breadcrumbItem; let index = $index) {
+		@for (breadcrumbItem of _desktopMenuItems(); track breadcrumbItem) {
 			<ng-container daffBreadcrumbMenuItem [ngTemplateOutlet]="breadcrumbItem.itemRef"></ng-container>
 		}
 	</daff-menu>	
