@@ -1,5 +1,11 @@
 import { gql } from 'apollo-angular';
 
+import {
+  shopifyImageFragment,
+  shopifyProductCoreFragment,
+  shopifyProductPriceRangeFragment,
+} from '@daffodil/driver/shopify';
+
 import { ShopifyProductSingleResponse } from '../response.types';
 import { ShopifyProductUrlVariables } from '../variables.types';
 
@@ -9,31 +15,20 @@ import { ShopifyProductUrlVariables } from '../variables.types';
  * The DaffLocatable url is transformed into a Shopify product handle for querying.
  */
 export const getProductByUrl = gql<ShopifyProductSingleResponse, ShopifyProductUrlVariables>`
- query ShopifyGetProductByURL($handle: String!) {
+ query GetProductByURL($handle: String!) {
 	 product(handle: $handle) {
-		 handle
-		 id
-		 title
-		 description
-		 availableForSale
+		 ...productCoreFragment
 		 priceRange {
-			 maxVariantPrice {
-				 amount
-				 currencyCode
-			 }
-			 minVariantPrice {
-						amount
-						currencyCode
-			 }
+			 ...productPriceRangeFragment
 		 }
 		 images(first: 1) {
 			 nodes {
-				 id
-				 url
-				 altText
+				 ...imageFragment
 			 }
 		 }
-		 onlineStoreUrl
 	 }
  }
+ ${shopifyProductCoreFragment}
+ ${shopifyProductPriceRangeFragment}
+ ${shopifyImageFragment}
 `;

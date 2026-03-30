@@ -2,18 +2,18 @@ import { TestBed } from '@angular/core/testing';
 
 import { ShopifyImageNode } from '@daffodil/driver/shopify';
 
-import { ShopifyProductImageNodeFactory } from './product-image-node.factory';
+import { ShopifyImageNodeFactory } from './image-node.factory';
 
-describe('@daffodil/product/driver/shopify/testing | ShopifyProductImageNodeFactory', () => {
+describe('@daffodil/product/driver/shopify/testing | ShopifyImageNodeFactory', () => {
 
-  let factory: ShopifyProductImageNodeFactory;
+  let factory: ShopifyImageNodeFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ShopifyProductImageNodeFactory],
+      providers: [ShopifyImageNodeFactory],
     });
 
-    factory = TestBed.inject(ShopifyProductImageNodeFactory);
+    factory = TestBed.inject(ShopifyImageNodeFactory);
   });
 
   it('should be created', () => {

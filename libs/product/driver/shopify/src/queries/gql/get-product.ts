@@ -1,5 +1,11 @@
 import { gql } from 'apollo-angular';
 
+import {
+  shopifyImageFragment,
+  shopifyProductCoreFragment,
+  shopifyProductPriceRangeFragment,
+} from '@daffodil/driver/shopify';
+
 import { ShopifyProductSingleResponse } from '../response.types';
 import { ShopifyProductIDVariables } from '../variables.types';
 
@@ -7,31 +13,20 @@ import { ShopifyProductIDVariables } from '../variables.types';
  * GraphQL query object for getting a single product by ID.
  */
 export const getProduct = gql<ShopifyProductSingleResponse, ShopifyProductIDVariables>`
- query ShopifyGetAProduct($id: ID!) {
+ query GetAProduct($id: ID!) {
 	 product(id: $id) {
-		 handle
-		 id
-		 title
-		 description
-		 availableForSale
+		...productCoreFragment
 		 priceRange {
-			 maxVariantPrice {
-				 amount
-				 currencyCode
-			 }
-			 minVariantPrice {
-						amount
-						currencyCode
-			 }
+			 ...productPriceRangeFragment
 		 }
 		 images(first: 1) {
 			 nodes {
-				 id
-				 url
-				 altText
+				 ...imageFragment
 			 }
 		 }
-		 onlineStoreUrl
 	 }
  }
+ ${shopifyProductCoreFragment}
+ ${shopifyProductPriceRangeFragment}
+ ${shopifyImageFragment}
 `;

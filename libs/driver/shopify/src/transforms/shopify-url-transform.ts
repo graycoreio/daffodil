@@ -3,8 +3,8 @@
  *
  * See {@link DaffLocatable} for more information on the requirements for the url argument.
  *
- * @param url - string
- * @returns string
+ * @param url - DaffLocatable url (e.g. /coffee-pot.html)
+ * @returns shopify-readable handle
  */
 export const shopifyUrlTransformer = (url: string): string => {
   const noLeadingSlashes = url.split('/').pop() || '';

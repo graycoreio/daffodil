@@ -64,6 +64,7 @@ describe('Driver | Shopify | Product | ProductService', () => {
               onlineStoreUrl: product.canonicalUrl,
               availableForSale: product.in_stock,
               priceRange: {
+                __typename: 'ProductPriceRange',
                 minVariantPrice: {
                   amount: product.price,
                   currencyCode: 'USD',
@@ -107,6 +108,7 @@ describe('Driver | Shopify | Product | ProductService', () => {
       op.flush({
         data: {
           product: {
+            __typename: 'Product',
             handle: '',
             id: product.id,
             title: product.name,
@@ -114,6 +116,7 @@ describe('Driver | Shopify | Product | ProductService', () => {
             availableForSale: product.in_stock,
             onlineStoreUrl: product.canonicalUrl,
             priceRange: {
+              __typename: 'ProductPriceRange',
               minVariantPrice: {
                 amount: product.price,
                 currencyCode: 'USD',
@@ -152,6 +155,7 @@ describe('Driver | Shopify | Product | ProductService', () => {
       op.flush({
         data: {
           product: {
+            __typename: 'Product',
             handle: '',
             id: product.id,
             title: product.name,
@@ -159,6 +163,7 @@ describe('Driver | Shopify | Product | ProductService', () => {
             availableForSale: product.in_stock,
             onlineStoreUrl: product.canonicalUrl,
             priceRange: {
+              __typename: 'ProductPriceRange',
               minVariantPrice: {
                 amount: product.price,
                 currencyCode: 'USD',

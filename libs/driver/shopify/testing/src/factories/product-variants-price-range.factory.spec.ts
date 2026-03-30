@@ -2,18 +2,18 @@ import { TestBed } from '@angular/core/testing';
 
 import { ShopifyProductPriceRange } from '@daffodil/driver/shopify';
 
-import { ShopifyProductPriceRangeFactory } from './product-price-range.factory';
+import { ShopifyProductVariantsPriceRangeFactory } from './product-variants-price-range.factory';
 
-describe('@daffodil/product/driver/shopify/testing | ShopifyProductPriceRangeFactory', () => {
+describe('@daffodil/product/driver/shopify/testing | ShopifyProductVariantsPriceRangeFactory', () => {
 
-  let factory: ShopifyProductPriceRangeFactory;
+  let factory: ShopifyProductVariantsPriceRangeFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ShopifyProductPriceRangeFactory],
+      providers: [ShopifyProductVariantsPriceRangeFactory],
     });
 
-    factory = TestBed.inject(ShopifyProductPriceRangeFactory);
+    factory = TestBed.inject(ShopifyProductVariantsPriceRangeFactory);
   });
 
   it('should be created', () => {
