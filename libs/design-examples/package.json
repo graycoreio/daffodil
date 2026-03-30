@@ -28,5 +28,6 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "description": "Example implementations and demos for @daffodil/design components. Part of the Daffodil ecommerce framework."
 }

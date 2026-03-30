@@ -1,7 +1,7 @@
 {
   "name": "@daffodil/dev-tools",
   "version": "0.0.0-PLACEHOLDER",
-  "description": "Developer tools for Daffodil e-commerce framework",
+  "description": "Developer tools UI for runtime driver switching and configuration in Daffodil applications. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
@@ -31,7 +31,9 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/dev-tools"]
+        "outputs": [
+          "{workspaceRoot}/dist/dev-tools"
+        ]
       }
     }
   }

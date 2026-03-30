@@ -3,12 +3,14 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/auth"]
+        "outputs": [
+          "{workspaceRoot}/dist/auth"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "Reducers, State, Selectors, and Drivers for logging in and registering users.",
+  "description": "Platform-agnostic models, state management, and drivers for user authentication and access token management. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
@@ -38,9 +40,9 @@
   },
   "devDependencies": {
     "@daffodil/core": "0.0.0-PLACEHOLDER",
-		"@daffodil/driver": "0.0.0-PLACEHOLDER"
-	},
-	"optionalDependencies": {
-		"@daffodil/driver": "0.0.0-PLACEHOLDER"
-	}
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
+  }
 }

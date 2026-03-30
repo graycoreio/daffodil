@@ -3,12 +3,14 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/navigation"]
+        "outputs": [
+          "{workspaceRoot}/dist/navigation"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "Reducers, State, Selectors, and Drivers for retrieving navigation/category trees",
+  "description": "Platform-agnostic models, state management, and drivers for ecommerce navigation trees and breadcrumbs. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"

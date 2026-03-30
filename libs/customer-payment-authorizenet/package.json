@@ -3,12 +3,14 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/customer-payment-authorizenet"]
+        "outputs": [
+          "{workspaceRoot}/dist/customer-payment-authorizenet"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "A client-side Angular package for managing ecommerce customer-payment-authorizenets agnostic to the ecommerce platform.",
+  "description": "Platform-agnostic models and Authorize.Net drivers for managing saved customer payment methods. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"

@@ -3,12 +3,14 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/driver"]
+        "outputs": [
+          "{workspaceRoot}/dist/driver"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "A consistent, sane api driver that works with different ecommerce systems.",
+  "description": "Base driver interfaces and utilities for connecting Daffodil to ecommerce platforms. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
@@ -24,8 +26,8 @@
     "lint": "cd ../.. && ng lint driver",
     "lint:fix": "npm run lint -- --fix",
     "publish": "cd ../../dist/driver && npm publish --access=public",
-		"generateFragmentTypes": "ng run driver:generateFragmentTypes",
-		"shopify:codegen:generate": "graphql-codegen -c shopify-codegen.config.ts"
+    "generateFragmentTypes": "ng run driver:generateFragmentTypes",
+    "shopify:codegen:generate": "graphql-codegen -c shopify-codegen.config.ts"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "optionalDependencies": {
@@ -35,8 +37,8 @@
     "@angular/common": "0.0.0-PLACEHOLDER",
     "@angular/core": "0.0.0-PLACEHOLDER",
     "rxjs": "0.0.0-PLACEHOLDER"
-	},
-	"devDependencies": {
-		"@daffodil/core": "0.0.0-PLACEHOLDER"
-	}
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER"
+  }
 }

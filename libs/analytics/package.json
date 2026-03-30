@@ -3,12 +3,14 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/analytics"]
+        "outputs": [
+          "{workspaceRoot}/dist/analytics"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "General package for piping ngrx actions into provided external analytics services.",
+  "description": "Platform-agnostic analytics integration that pipes NgRx actions into external analytics services. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"

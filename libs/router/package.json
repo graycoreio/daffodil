@@ -3,12 +3,14 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/router"]
+        "outputs": [
+          "{workspaceRoot}/dist/router"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "Adds features and provides utils for the Angular router.",
+  "description": "Routing utilities and guards for Angular applications. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"

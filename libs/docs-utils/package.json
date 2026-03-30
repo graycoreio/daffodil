@@ -22,5 +22,6 @@
     "lint:fix": "eslint . --fix",
     "test": "NODE_OPTIONS=\"--no-experimental-strip-types\" ts-node -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
     "test:watch": "ts-node-dev --respawn --debounce 100 -r tsconfig-paths/register ../../node_modules/.bin/jasmine --config=jasmine.json"
-  }
+  },
+  "description": "Internal utilities for Daffodil documentation generation. Part of the Daffodil ecommerce framework."
 }

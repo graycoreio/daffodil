@@ -22,8 +22,11 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/router-store"]
+        "outputs": [
+          "{workspaceRoot}/dist/router-store"
+        ]
       }
     }
-  }
+  },
+  "description": "NgRx router-store utilities with automatic error state clearing on navigation. Part of the Daffodil ecommerce framework."
 }

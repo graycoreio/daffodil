@@ -3,7 +3,9 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/design"]
+        "outputs": [
+          "{workspaceRoot}/dist/design"
+        ]
       }
     }
   },
@@ -25,7 +27,7 @@
     "publish": "cd ../../dist/design && npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
-  "description": "A consistent, sane api driver that works with different ecommerce systems.",
+  "description": "An Angular component library built to support ecommerce applications with accessible UI components and theming. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"

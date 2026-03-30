@@ -1,15 +1,17 @@
 {
   "name": "@daffodil/docs",
-	"private": true,
+  "private": true,
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/docs"]
+        "outputs": [
+          "{workspaceRoot}/dist/docs"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "Provides utils for docs generation.",
+  "description": "Utilities for generating Daffodil documentation pages. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"

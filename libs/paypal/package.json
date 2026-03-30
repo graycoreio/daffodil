@@ -3,12 +3,14 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/paypal"]
+        "outputs": [
+          "{workspaceRoot}/dist/paypal"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "Reducers, State, Selectors, and Drivers for generating paypal tokens",
+  "description": "Platform-agnostic models, state management, and drivers for PayPal Express payment token generation. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"

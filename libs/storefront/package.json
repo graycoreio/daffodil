@@ -5,7 +5,9 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/storefront"]
+        "outputs": [
+          "{workspaceRoot}/dist/storefront"
+        ]
       }
     }
   },
@@ -31,5 +33,6 @@
     "./scss/theme": {
       "sass": "./scss/theme.scss"
     }
-  }
+  },
+  "description": "High-level ecommerce UI components built on @daffodil/design for storefront applications. Part of the Daffodil ecommerce framework."
 }

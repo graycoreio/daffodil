@@ -3,12 +3,14 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/forms"]
+        "outputs": [
+          "{workspaceRoot}/dist/forms"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "General package for forms related features.",
+  "description": "Reusable form utilities and validators for Angular forms. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"

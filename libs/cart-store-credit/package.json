@@ -3,12 +3,14 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/cart-store-credit"]
+        "outputs": [
+          "{workspaceRoot}/dist/cart-store-credit"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "A client-side Angular package for managing ecommerce cart-store-credits agnostic to the ecommerce platform.",
+  "description": "Platform-agnostic models, state management, and drivers for applying store credits to ecommerce carts. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
@@ -47,6 +49,5 @@
     "@daffodil/customer-store-credit": "0.0.0-PLACEHOLDER",
     "@daffodil/cart": "0.0.0-PLACEHOLDER",
     "@daffodil/driver": "0.0.0-PLACEHOLDER"
-
   }
 }

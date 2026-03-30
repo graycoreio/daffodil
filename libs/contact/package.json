@@ -3,7 +3,9 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/contact"]
+        "outputs": [
+          "{workspaceRoot}/dist/contact"
+        ]
       }
     }
   },
@@ -40,5 +42,6 @@
     "@ngrx/effects": "0.0.0-PLACEHOLDER",
     "@ngrx/store": "0.0.0-PLACEHOLDER",
     "angular-in-memory-web-api": "0.0.0-PLACEHOLDER"
-  }
+  },
+  "description": "Platform-agnostic models, state management, and drivers for contact form features. Part of the Daffodil ecommerce framework."
 }

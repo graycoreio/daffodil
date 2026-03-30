@@ -3,12 +3,14 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/external-router"]
+        "outputs": [
+          "{workspaceRoot}/dist/external-router"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "A platform-agnostic package that connects the @angular/router with an external routing service (e.g. an API), allowing for runtime route resolution.",
+  "description": "Platform-agnostic package that connects the Angular router with an external routing service for runtime route resolution. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"

@@ -3,12 +3,14 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/cart-customer"]
+        "outputs": [
+          "{workspaceRoot}/dist/cart-customer"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "Interfaces built for daffodil/state",
+  "description": "Platform-agnostic state management and drivers for customer-specific cart functionality like billing and shipping addresses. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"

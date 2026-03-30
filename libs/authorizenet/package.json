@@ -3,12 +3,14 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/authorizenet"]
+        "outputs": [
+          "{workspaceRoot}/dist/authorizenet"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "An ecommerce package that has multi-platform support and state management features for managing authorize.net payments.",
+  "description": "Platform-agnostic models, state management, and drivers for Authorize.Net payment processing. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
@@ -34,14 +36,14 @@
     "@angular/core": "0.0.0-PLACEHOLDER",
     "@ngrx/effects": "0.0.0-PLACEHOLDER",
     "@ngrx/entity": "0.0.0-PLACEHOLDER",
-		"@ngrx/store": "0.0.0-PLACEHOLDER",
-		"@daffodil/core": "0.0.0-PLACEHOLDER",
-		"@daffodil/cart": "0.0.0-PLACEHOLDER",
+    "@ngrx/store": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/cart": "0.0.0-PLACEHOLDER",
     "rxjs": "0.0.0-PLACEHOLDER"
-	},
-	"devDependencies": {
-		"@daffodil/core": "0.0.0-PLACEHOLDER",
-		"@daffodil/payment": "0.0.0-PLACEHOLDER",
-		"@daffodil/cart": "0.0.0-PLACEHOLDER"
-	}
+  },
+  "devDependencies": {
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/payment": "0.0.0-PLACEHOLDER",
+    "@daffodil/cart": "0.0.0-PLACEHOLDER"
+  }
 }

@@ -3,7 +3,9 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/newsletter"]
+        "outputs": [
+          "{workspaceRoot}/dist/newsletter"
+        ]
       }
     }
   },
@@ -43,5 +45,6 @@
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test newsletter --watch=false --browsers=ChromeHeadless",
     "publish": "cd ../../dist/newsletter && npm publish --access=public"
-  }
+  },
+  "description": "Platform-agnostic models, state management, and drivers for newsletter subscription features. Part of the Daffodil ecommerce framework."
 }

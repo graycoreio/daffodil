@@ -3,12 +3,14 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/core"]
+        "outputs": [
+          "{workspaceRoot}/dist/core"
+        ]
       }
     }
   },
   "version": "0.0.0-PLACEHOLDER",
-  "description": "Interfaces built for daffodil/state",
+  "description": "Foundational interfaces, utilities, and helpers shared across all Daffodil packages. Part of the Daffodil ecommerce framework.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
@@ -23,8 +25,7 @@
     "lint": "cd ../.. && ng lint core",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test core --watch=false --browsers=ChromeHeadless",
-    "reportcoverage":
-      "(../../cc-test-reporter format-coverage -t lcov -o ../../coverage/cc.core.json ../../coverage/libs/core/lcov.info)",
+    "reportcoverage": "(../../cc-test-reporter format-coverage -t lcov -o ../../coverage/cc.core.json ../../coverage/libs/core/lcov.info)",
     "publish": "cd ../../dist/core && npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",

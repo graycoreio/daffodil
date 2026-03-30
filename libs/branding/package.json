@@ -3,7 +3,9 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{workspaceRoot}/dist/branding"]
+        "outputs": [
+          "{workspaceRoot}/dist/branding"
+        ]
       }
     }
   },
@@ -23,5 +25,6 @@
   },
   "devDependencies": {
     "@daffodil/design": "0.0.0-PLACEHOLDER"
-  }
+  },
+  "description": "Reusable branding components including copyright, logos, and theming assets. Part of the Daffodil ecommerce framework."
 }
