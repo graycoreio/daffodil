@@ -134,7 +134,7 @@ describe('ng-add schematic - standalone apps', () => {
     expect(appConfigContent).toContain('from \'@angular/common/http\'');
     expect(appConfigContent).toContain('from \'@daffodil/dev-tools\'');
     expect(appConfigContent).toContain('from \'@daffodil/core\'');
-    expect(appConfigContent).toContain('DEMO_MAGENTO_ENDPOINT_SWITCH');
+    expect(appConfigContent).toContain('DEMO_MAGENTO_DRIVER_CONFIG');
     expect(appConfigContent).toContain('DynamicSwitchDriverService');
 
     // Verify no malformed imports

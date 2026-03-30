@@ -69,9 +69,9 @@ export function addProvidersToStandaloneApp(tree: Tree, project: any, providers:
       }
     }
 
-    // Add DEMO_MAGENTO_ENDPOINT_SWITCH import when using provideMagentoDriver
-    if (provider.includes('DEMO_MAGENTO_ENDPOINT_SWITCH')) {
-      const endpointChange = insertImport(source, configPath, 'DEMO_MAGENTO_ENDPOINT_SWITCH', `${localImportPrefix}/daff/driver/magento/endpoint-switch.token`);
+    // Add DEMO_MAGENTO_DRIVER_CONFIG import when using provideMagentoDriver
+    if (provider.includes('DEMO_MAGENTO_DRIVER_CONFIG')) {
+      const endpointChange = insertImport(source, configPath, 'DEMO_MAGENTO_DRIVER_CONFIG', `${localImportPrefix}/daff/driver/magento/config.token`);
       if (endpointChange instanceof InsertChange) {
         importChanges.push(endpointChange);
       }

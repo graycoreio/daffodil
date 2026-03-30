@@ -2,7 +2,10 @@ export {
   MAGENTO_POSSIBLE_TYPES,
   schema,
 } from './schema/schema';
-export { provideMagentoDriver } from './provider';
+export {
+  DaffMagentoDriverConfig,
+  provideMagentoDriver,
+} from './provider';
 
 export * from './features/public_api';
 export * from './errors/public_api';
