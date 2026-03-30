@@ -38,8 +38,7 @@ export const daffToastDefaultOptions: DaffToastOptions = {
   useParent: true,
 };
 
-const result = createConfigInjectionToken<DaffToastOptions>(daffToastDefaultOptions, 'DAFF_TOAST_OPTIONS');
-
-export const provideDaffToastOptions = result.provider;
-
-export const DAFF_TOAST_OPTIONS = result.token;
+export const {
+  token: DAFF_TOAST_OPTIONS,
+  provider: provideDaffToastOptions,
+} = createConfigInjectionToken<DaffToastOptions>(daffToastDefaultOptions, 'DAFF_TOAST_OPTIONS');
