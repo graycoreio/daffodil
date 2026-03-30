@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://www.daff.io/"><strong>daff.io</strong></a>
-  | 
+  |
   <a href="https://demo.daff.io/"><strong>demo.daff.io</strong></a>
 </p>
 
@@ -115,8 +115,6 @@ Below is a table of currently available Daffodil packages.
 | [@daffodil/ssr](/libs/ssr/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fssr/latest.svg)](https://npmjs.com/package/@daffodil/ssr) | [![experimental](https://img.shields.io/static/v1.svg?label=stability&message=experimental&color=orange)](https://www.github.com/graycoreio/daffodil)
 | [@daffodil/upsell-products](/libs/upsell-products/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fupsell-products/latest.svg)](https://npmjs.com/package/@daffodil/upsell-products) | [![experimental](https://img.shields.io/static/v1.svg?label=stability&message=experimental&color=orange)](https://www.github.com/graycoreio/daffodil)
 <!-- AUTOGENERATE_PACKAGE_END -->
-
-**Note:** About the `checkout` package, it is currently a legacy package; there is no reason to use it. However, the `checkout` package eventually may be filled with extracts from the `cart` and `order` packages.
 
 **Think Daffodil is the bees-knees? Give our repo a star :star: :heart:.**
 
