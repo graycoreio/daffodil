@@ -1,0 +1,17 @@
+<div class="daff-docs-example-viewer-code__nav">
+	<div class="daff-docs-example-viewer-code__tabs">
+		<button class="daff-docs-example-viewer-code__tab" [class.active]="tab() === 'template'" aria-label="View HTML template" (click)="tab.set('template')">
+			HTML
+		</button>
+		<button class="daff-docs-example-viewer-code__tab" [class.active]="tab() === 'script'" aria-label="View JavaScript source" (click)="tab.set('script')">
+			JS
+		</button>
+	</div>
+	<div class="daff-docs-example-viewer-code__actions">
+		<button daff-flat-button size="sm" (click)="toggleFullCode()" class="daff-docs-example-viewer-code__toggle-button" [class.full-code]="fullCode()">
+			{{ fullCode() ? 'Hide code' : 'Show code' }}
+			<fa-icon daffSuffix [icon]="fullCode() ? faEyeSlash : faEye" size="sm"></fa-icon>
+		</button>
+	</div>
+</div>
+<pre class="daff-docs-example-viewer-code__code-block" [class.full-code]="fullCode()" (click)="showFullCode()" tabindex="-1"><code tabindex="-1" #codeEl [innerHTML]="visibleCode()?.content || ''"></code></pre>

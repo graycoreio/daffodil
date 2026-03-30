@@ -1,0 +1,6 @@
+@if (exampleComponent.hasValue()) {
+	<daff-docs-example-viewer-preview [exampleComponent]="exampleComponent.value()" [simple]="simple()"></daff-docs-example-viewer-preview>
+	@if (!simple() && sourceFiles.hasValue()) {
+		<daff-docs-example-viewer-code [source]="sourceFiles.value()"></daff-docs-example-viewer-code>
+	}
+}
