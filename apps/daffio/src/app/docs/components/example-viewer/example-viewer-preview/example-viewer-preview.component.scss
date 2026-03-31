@@ -1,39 +1,41 @@
 @use '@daffodil/design/scss/utilities' as daff;
 
-$border-radius: 0.5rem;
-
 // stylelint-disable selector-class-pattern
 :host {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 2rem;
-	padding: 1rem;
-	border-bottom-left-radius: inherit;
-	border-bottom-right-radius: inherit;
-
-	@include daff.breakpoint(mobile) {
-		padding: 2rem;
-	}
+	background-color: var(--daff-theme);
+	background-image:
+		linear-gradient(45deg, rgba(var(--daff-theme-contrast-rgb), 0.04) 25%, transparent 25%),
+		linear-gradient(-45deg, rgba(var(--daff-theme-contrast-rgb), 0.04) 25%, transparent 25%),
+		linear-gradient(45deg, transparent 75%, rgba(var(--daff-theme-contrast-rgb), 0.04) 75%),
+		linear-gradient(-45deg, transparent 75%, rgba(var(--daff-theme-contrast-rgb), 0.04) 75%);
+	background-size: 1.5rem 1.5rem;
+	background-position: 0 0, 0 0.75rem, 0.75rem -0.75rem, -0.75rem 0;
+	border-radius: 0.5rem;
 
 	&.simple {
 		display: block;
+		background-image: none;
 		padding: 0;
 		border-radius: 0;
+
+		.daffio-example-viewer-preview__content {
+			padding: 0;
+			width: 100%;
+		}
 	}
 }
 
 .daffio-example-viewer-preview {
-	&__nav {
+	&__viewport-controls {
 		display: flex;
-		gap: 1rem;
-	}
-
-	&__viewport-wrapper {
-		display: flex;
-		justify-content: center;
-		border-radius: 2rem;
-		padding: 0 0.25rem;
+		justify-content: flex-end;
+		border-top-left-radius: inherit;
+		border-top-right-radius: inherit;
+		width: 100%;
+		padding: 0.25rem 0.25rem 0.25rem 0;
 	}
 
 	&__viewport-option {
@@ -45,10 +47,37 @@ $border-radius: 0.5rem;
 		padding: 0.5rem;
 	}
 
+	&__icon {
+		content: '';
+		display: inline-block;
+		border-right: 0.125rem solid currentColor;
+		border-bottom: 0.125rem solid currentColor;
+		width: 0.5rem;
+		height: 0.5rem;
+		transform: translateY(-15%) rotate(45deg);
+		transition: transform 150ms;
+
+		@media screen and (prefers-reduced-motion: reduce) {
+			transition-duration: 0;
+		}
+
+		&.open {
+			transform: translateY(40%) rotate(225deg);
+		}
+	}
+
 	&__content {
 		display: block;
+		background-color: var(--daff-theme);
 		margin: 0 auto;
 		width: 100%;
+		padding: 1rem;
+		border-bottom-left-radius: inherit;
+		border-bottom-right-radius: inherit;
+
+		@include daff.breakpoint(mobile) {
+			padding: 2rem;
+		}
 
 		&.desktop {
 			max-width: 100%;

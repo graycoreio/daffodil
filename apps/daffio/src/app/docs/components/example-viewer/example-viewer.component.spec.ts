@@ -72,7 +72,7 @@ describe('@daffodil/daffio | DaffioExampleViewerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should not render daffio-example-viewer-preview when the example has not loaded', () => {
+  it('should not render daffio-example-viewer-code when the example has not loaded', () => {
     expect(fixture.debugElement.query(By.css('daffio-example-viewer-code'))).toBeFalsy();
   });
 
