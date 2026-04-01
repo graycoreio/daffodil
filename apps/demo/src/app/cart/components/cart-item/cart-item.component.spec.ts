@@ -17,7 +17,6 @@ import {
 } from '@daffodil/cart/state/testing';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
 import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
-import { DaffQuantityFieldComponent } from '@daffodil/design/quantity-field';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { DaffSfQuantityFieldComponent } from '@daffodil/storefront/quantity-field';
 
@@ -49,7 +48,6 @@ describe('CartItemComponent', () => {
         DaffCartStateTestingModule,
         ReactiveFormsModule,
         DAFF_FORM_FIELD_COMPONENTS,
-        DaffQuantityFieldComponent,
         CartItemComponent,
         WrapperComponent,
       ],
@@ -69,10 +67,9 @@ describe('CartItemComponent', () => {
     mockCartItem = cartItemFactory.create({ image: productImageFactory.create() });
 
     wrapper.cartItemValue = mockCartItem;
+    fixture.detectChanges();
     cartItemComponent = fixture.debugElement.query(By.css('demo-cart-item'));
     quantityFieldComponent = fixture.debugElement.query(By.css('daff-sf-quantity-field')).componentInstance;
-
-    fixture.detectChanges();
   });
 
   it('should create', () => {

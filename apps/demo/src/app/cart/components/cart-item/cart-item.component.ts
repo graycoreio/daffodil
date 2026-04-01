@@ -21,7 +21,7 @@ import {
   DaffBase64ServiceToken,
 } from '@daffodil/core';
 import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
-import { DaffQuantityFieldComponent } from '@daffodil/design/quantity-field';
+import { DaffSfQuantityFieldComponent } from '@daffodil/storefront/quantity-field';
 
 @Component({
   selector: 'demo-cart-item',
@@ -30,7 +30,7 @@ import { DaffQuantityFieldComponent } from '@daffodil/design/quantity-field';
   imports: [
     ReactiveFormsModule,
     DAFF_FORM_FIELD_COMPONENTS,
-    DaffQuantityFieldComponent,
+    DaffSfQuantityFieldComponent,
   ],
 })
 export class CartItemComponent implements OnInit {

@@ -20,6 +20,7 @@ import {
 } from '@daffodil/cart/testing';
 
 import { CartItemsComponent } from './cart-items.component';
+import { CartItemComponent } from '../cart-item/cart-item.component';
 
 @Component({
   template: '<demo-cart-items [cart]="cartValue"></demo-cart-items>',
@@ -55,8 +56,12 @@ describe('CartItemsComponent', () => {
       providers: [
         provideMockStore({}),
       ],
-    })
-      .compileComponents();
+    });
+    TestBed.overrideComponent(CartItemsComponent, {
+      remove: { imports: [CartItemComponent]},
+      add: { imports: [MockCartItemComponent]},
+    });
+    TestBed.compileComponents();
   }));
 
   beforeEach(() => {
