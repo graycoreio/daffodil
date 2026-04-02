@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use 'theme' as *;
-@use 'utilities' as daff;
+@use '@daffodil/design/scss/theme' as *;
+@use '@daffodil/design/scss/utilities' as daff;
 
 // stylelint-disable selector-class-pattern
 @mixin type-theming($color, $opacity: 0.05) {

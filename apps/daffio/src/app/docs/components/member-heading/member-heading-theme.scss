@@ -1,4 +1,4 @@
-@use 'theme' as *;
+@use '@daffodil/design/scss/theme' as *;
 
 // stylelint-disable selector-class-pattern
 @mixin daffio-docs-member-heading-theme($theme) {

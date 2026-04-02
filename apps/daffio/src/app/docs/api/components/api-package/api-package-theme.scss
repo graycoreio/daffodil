@@ -1,4 +1,4 @@
-@use 'theme' as *;
+@use '@daffodil/design/scss/theme' as *;
 
 @mixin daffio-api-package-theme($theme) {
 	$neutral: daff-get-palette($theme, neutral);

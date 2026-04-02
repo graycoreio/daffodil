@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use 'theme' as *;
+@use '@daffodil/design/scss/theme' as *;
 
 @mixin daffio-home-callout-sponsors-theme($theme) {
 	$secondary: daff-get-palette($theme, secondary);

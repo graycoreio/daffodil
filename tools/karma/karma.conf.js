@@ -1,3 +1,6 @@
+var SassDaffodilImporterPlugin = require('./sass-daffodil-importer-plugin');
+var { interceptNgBuildWebpack } = require('./ng-webpack-interceptor');
+
 module.exports = function(config) {
   var coverageDir = require('path').join(__dirname, '../../coverage');
 
@@ -39,6 +42,14 @@ module.exports = function(config) {
     browserDisconnectTimeout : 210000,
     browserNoActivityTimeout : 210000,
     singleRun: false,
+  });
+  // Angular's Karma builder sets `config.buildWebpack` after this function
+  // returns, so we can't access the webpack config directly. Instead, intercept
+  // the assignment with a setter so we can inject our Sass importer plugin
+  // into the webpack config the moment Angular provides it.
+  interceptNgBuildWebpack(config, function(webpackConfig) {
+    webpackConfig.plugins = webpackConfig.plugins || [];
+    webpackConfig.plugins.push(new SassDaffodilImporterPlugin());
   });
 
   return config;

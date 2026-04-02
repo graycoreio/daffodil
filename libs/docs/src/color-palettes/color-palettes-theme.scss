@@ -1,4 +1,4 @@
-@use 'theme' as *;
+@use '@daffodil/design/scss/theme' as *;
 
 @mixin daff-docs-color-palettes-theme($theme) {
 	$black: daff-get-base-color($theme, 'black');
