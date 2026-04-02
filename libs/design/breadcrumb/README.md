@@ -79,6 +79,11 @@ A breadcrumb consists of the following components:
 </ol>
 ```
 
+## Features
+
+### Truncation
+Breadcrumbs are automatically truncated into an overflow menu on mobile viewports. On desktop, truncation occurs when more than five items are present.
+
 ## Accessibility
 Breadcrumb follows the [Breadcrumb WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/).
 

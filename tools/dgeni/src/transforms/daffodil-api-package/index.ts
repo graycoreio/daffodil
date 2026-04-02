@@ -245,6 +245,7 @@ export const designApiPackage = outputPathsConfigurator({
       'loading-icon/src/index.ts',
       'form/src/index.ts',
       'media-gallery/src/index.ts',
+      'menu/src/index.ts',
       //
       '*/src/index.ts',
       'src/index.ts',

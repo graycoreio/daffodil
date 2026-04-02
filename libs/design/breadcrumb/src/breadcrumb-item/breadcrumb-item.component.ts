@@ -1,8 +1,12 @@
 /* eslint-disable quote-props */
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Directive,
+  Component,
+  TemplateRef,
+  ViewChild,
 } from '@angular/core';
+
 
 /**
  * Represents each individual breadcrumb item. Must be used on a `<li>` element.
@@ -14,16 +18,30 @@ import {
  * </li>
  * ```
  */
-@Directive({
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'li[daffBreadcrumbItem]',
+  template: `
+    <ng-template #item>
+      <ng-content></ng-content>
+    </ng-template>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'class': 'daff-breadcrumb__item',
-    '[class.active]': '_active',
     '[attr.aria-current]': '_active ? "page" : null',
   },
 })
-export class DaffBreadcrumbItemDirective {
-  private _active = false;
+export class DaffBreadcrumbItemComponent {
+  /**
+   * @docs-private
+   */
+  @ViewChild('item', { read: TemplateRef, static: true }) itemRef: TemplateRef<any>;
+
+  /**
+   * @docs-private
+   */
+  _active = false;
 
   constructor( private cdRef: ChangeDetectorRef ) {}
 

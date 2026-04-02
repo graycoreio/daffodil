@@ -3,6 +3,7 @@ import {
   ConfigurableFocusTrapFactory,
   ConfigurableFocusTrap,
   FocusKeyManager,
+  FocusableOption,
 } from '@angular/cdk/a11y';
 import {
   AfterContentInit,
@@ -12,9 +13,11 @@ import {
   ElementRef,
   QueryList,
   ContentChildren,
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { DaffMenuItemComponent } from '../menu-item/menu-item.component';
+import { DAFF_MENU_ITEM_TOKEN } from '../menu-item/menu-item.token';
 import { DaffMenuService } from '../services/menu.service';
 
 /**
@@ -42,6 +45,7 @@ import { DaffMenuService } from '../services/menu.service';
   selector: 'daff-menu',
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
+  encapsulation: ViewEncapsulation.None, // Required to allow breadcrumb items to take on `.daff-menu-item` styles
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'daff-menu',
@@ -55,12 +59,15 @@ import { DaffMenuService } from '../services/menu.service';
 })
 export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
   private _focusTrap: ConfigurableFocusTrap;
-  private _keyManager: FocusKeyManager<DaffMenuItemComponent>;
+  private _keyManager: FocusKeyManager<unknown>; // Matches any component or directive that provides `DAFF_MENU_ITEM_TOKEN`, not just `DaffMenuItemComponent`.
 
   /**
    * @docs-private
+   *
+   * Content children that provide `DAFF_MENU_ITEM_TOKEN` are treated as menu items.
+   * This includes both `daff-menu-item` components and any custom directives that also provide the token.
    */
-  @ContentChildren(DaffMenuItemComponent) private _items: QueryList<DaffMenuItemComponent>;
+  @ContentChildren(DAFF_MENU_ITEM_TOKEN) private _items: QueryList<FocusableOption>;
 
   constructor(
     private _focusTrapFactory: ConfigurableFocusTrapFactory,

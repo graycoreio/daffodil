@@ -1,1 +1,32 @@
-<ng-content select="[daffBreadcrumbItem]"></ng-content>
+@for (breadcrumbItem of _computedBreadcrumbItems(); track breadcrumbItem) {
+	@if (breadcrumbItem.type === 'breadcrumb') {
+		<li class="daff-breadcrumb__item"
+			[class.active]="breadcrumbItem.item._active">
+			<ng-container *ngTemplateOutlet="breadcrumbItem.item.itemRef"></ng-container>
+		</li>
+	} @else {
+		<li class="daff-breadcrumb__item"
+			[class.on-mobile]="breadcrumbItem.target === 'mobileMenu'"
+			[class.on-desktop]="breadcrumbItem.target === 'desktopMenu'">
+			<button class="daff-breadcrumb__menu-activator"
+				[daffMenuActivator]="breadcrumbItem.target === 'mobileMenu' ? mobileMenu : desktopMenu"
+				aria-label="Show more breadcrumb items">...</button>
+		</li>
+	}
+}
+
+<ng-template #mobileMenu>
+	<daff-menu>
+		@for (breadcrumbItem of _mobileMenuItems(); track breadcrumbItem) {
+			<ng-container daffBreadcrumbMenuItem [ngTemplateOutlet]="breadcrumbItem.itemRef"></ng-container>
+		}
+	</daff-menu>	
+</ng-template>
+
+<ng-template #desktopMenu>
+	<daff-menu>
+		@for (breadcrumbItem of _desktopMenuItems(); track breadcrumbItem) {
+			<ng-container daffBreadcrumbMenuItem [ngTemplateOutlet]="breadcrumbItem.itemRef"></ng-container>
+		}
+	</daff-menu>	
+</ng-template>

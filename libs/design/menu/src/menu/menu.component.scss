@@ -1,7 +1,25 @@
-:host {
+@use '../../../scss/interactions';
+
+.daff-menu {
 	display: block;
 	min-width: 7rem;
 	max-width: 20rem;
 	border-radius: 0.25rem;
 	padding: 0.5rem;
+}
+
+
+.daff-menu-item {
+	@include interactions.clickable();
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 1rem;
+	line-height: 1.25rem;
+	border: none;
+	border-radius: 0.25rem;
+	margin: 0;
+	padding: 0.75rem 1rem;
+	text-decoration: none;
+	width: 100%;
 }
