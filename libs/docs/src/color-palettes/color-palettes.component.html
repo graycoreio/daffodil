@@ -1,13 +1,11 @@
-@for (palette of palettes(); track palette.context.name) {
-	@if (palette.context.parsedValue.type === MAP && palette.context.parsedValue.parsed) {
-		<div class="daff-docs-color-palette daff-docs-color-palette__brand-{{palette.context.name.toLowerCase()}}">
-			<div class="daff-docs-color-palette__name">{{ palette.context.name.replace('daff-', '') }}</div>
-			@for (shade of palette.context.parsedValue.parsed | keyvalue | daffDocsPaletteShadeSort; track shade.key) {
-				<daff-docs-color-strip [background]="$any(shade.value)">
-					<div daffDocsColorStripStep>{{shade.key}}</div>
-					<div daffDocsColorStripHex>{{shade.value}}</div>
-				</daff-docs-color-strip>
-			}
-		</div>
-	}
+@for (palette of palettes(); track palette.internal_name) {
+	<div class="daff-docs-color-palette daff-docs-color-palette__brand-{{palette.internal_name}}">
+		<div class="daff-docs-color-palette__name">{{ palette.friendly_name }}</div>
+		@for (shade of palette.shades; track shade.step) {
+			<daff-docs-color-strip [background]="shade.hex">
+				<div daffDocsColorStripStep>{{shade.step}}</div>
+				<div daffDocsColorStripHex>{{shade.hex}}</div>
+			</daff-docs-color-strip>
+		}
+	</div>
 }

@@ -1,4 +1,3 @@
-import { KeyValuePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,12 +5,9 @@ import {
   input,
 } from '@angular/core';
 
-import {
-  DaffDocsSassItem,
-  DaffDocsSassType,
-} from '@daffodil/docs-utils';
+import { DaffDocsSassItem } from '@daffodil/docs-utils';
 
-import { DaffDocsPaletteShadeSortPipe } from './shade-sort.pipe';
+import { sassItemsToPalettes } from './sass-items-to-palettes';
 import { DAFF_DOCS_COLOR_STRIP_COMPONENTS } from '../color-strip/color-strip';
 
 /**
@@ -25,23 +21,18 @@ import { DAFF_DOCS_COLOR_STRIP_COMPONENTS } from '../color-strip/color-strip';
   styleUrls: ['./color-palettes.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    KeyValuePipe,
-    DaffDocsPaletteShadeSortPipe,
     DAFF_DOCS_COLOR_STRIP_COMPONENTS,
   ],
 })
 export class DaffDocsColorPalettesComponent {
-  readonly MAP = DaffDocsSassType.MAP;
-
   /**
    * The sass documentation items to display.
    */
   readonly items = input<Array<DaffDocsSassItem>>([]);
 
   /**
-   * Computed list of items filtered to only include color palettes.
+   * Computed list of items filtered to only include color palettes,
+   * mapped to the ColorPalette view model.
    */
-  readonly palettes = computed(() =>
-    this.items()?.filter((item) => item.group.includes('color-palettes')),
-  );
+  readonly palettes = computed(() => sassItemsToPalettes(this.items()));
 }

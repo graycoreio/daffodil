@@ -11,10 +11,7 @@ import {
   DaffDocsSassParsedPaletteFactory,
   provideDaffDocsSassParsedValueFactories,
 } from '@daffodil/docs/testing';
-import {
-  DaffDocsSassItem,
-  DaffDocsSassType,
-} from '@daffodil/docs-utils';
+import { DaffDocsSassItem } from '@daffodil/docs-utils';
 
 import { DaffDocsColorPalettesComponent } from './color-palettes.component';
 
@@ -74,11 +71,9 @@ describe('@daffodil/docs-components | DaffDocsColorPalettesComponent', () => {
     wrapper.itemsValue.slice(0, 2).forEach((color) => {
       const palette = fixture.debugElement.query(By.css(`.daff-docs-color-palette.daff-docs-color-palette__brand-${color.context.name.toLowerCase()}`));
       expect(palette).toBeTruthy();
-      if (color.context.parsedValue.type === DaffDocsSassType.MAP) {
-        Object.keys(color.context.parsedValue.parsed).forEach((shade) => {
-          expect((<HTMLElement>palette.nativeElement).innerHTML).toContain(shade);
-        });
-      }
+      Object.keys(color.context.parsedValue.parsed).forEach((shade) => {
+        expect((<HTMLElement>palette.nativeElement).innerHTML).toContain(shade);
+      });
     });
   });
 
