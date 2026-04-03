@@ -1,5 +1,6 @@
 /* eslint-disable quote-props */
 
+import { DOCUMENT } from '@angular/common';
 import {
   computed,
   Directive,
@@ -8,7 +9,6 @@ import {
   input,
   untracked,
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 
 import { DaffTreeNotifierService } from '../tree/tree-notifier.service';
 import { DaffTreeFlatNode } from '../utils/flatten-tree';

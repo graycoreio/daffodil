@@ -1,5 +1,5 @@
-import { DaffTreeUi } from '../interfaces/tree-ui';
 import { walkUp } from './walk-up';
+import { DaffTreeUi } from '../interfaces/tree-ui';
 
 /**
  * Open all ancestor nodes of the given node so that it becomes visible in the tree.
