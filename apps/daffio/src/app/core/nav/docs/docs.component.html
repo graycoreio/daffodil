@@ -1,8 +1,8 @@
+@let isBigTablet = isBigTablet$ | async;
 <daffio-header [bordered]="true">
   <a routerLink="/" daffio-logo>
     <daff-branding-logo type="full"></daff-branding-logo>
   </a>
-  <daff-sf-theme-toggle theme-toggle></daff-sf-theme-toggle>
   @for (link of links$ | async; track $index) {
     @if (isComponent(link)) {
       <ng-container [ngComponentOutlet]="link"></ng-container>
@@ -12,7 +12,17 @@
       <a daffioHeaderItem [routerLink]="link.url" [active]="rla.isActive" routerLinkActive #rla="routerLinkActive">{{link.title}}</a>
     }
   }
-  <button daff-icon-button color="theme-contrast" aria-label="Open Navigation Sidebar"
+	@if (isBigTablet) {
+		<daffio-docs-search-button search-desktop></daffio-docs-search-button>
+	} @else {
+		<daffio-docs-search-button search-mobile [icon]="true"></daffio-docs-search-button>
+	}
+	@if (isBigTablet) {
+		<daff-sf-theme-toggle theme-toggle-desktop></daff-sf-theme-toggle>
+	} @else {
+		<daff-sf-theme-toggle theme-toggle-mobile></daff-sf-theme-toggle>
+	}
+  <button daff-icon-button color="theme-contrast" aria-label="Open nav sidebar"
     sidebar-button
     (click)="openSidebar()">
     <fa-icon [icon]="faBars"></fa-icon>

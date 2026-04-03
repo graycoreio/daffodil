@@ -1,0 +1,12 @@
+@use 'theme' as *;
+
+@mixin daffio-docs-search-field-theme($theme) {
+	$neutral: daff-get-palette($theme, neutral);
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$mode: daff-get-theme-mode($theme);
+
+	.daffio-docs-search-field {
+		border-bottom: 1px solid daff-color($neutral, 20);
+	}
+}

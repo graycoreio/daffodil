@@ -30,6 +30,12 @@
       ],
       "@daffodil/docs/testing": [
         "libs/docs/testing/src"
+      ],
+      "@daffodil/docs/state": [
+        "libs/docs/state/src"
+      ],
+      "@daffodil/docs/state/testing": [
+        "libs/docs/state/testing/src"
       ]
     }
   },

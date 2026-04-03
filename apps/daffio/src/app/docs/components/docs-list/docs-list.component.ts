@@ -29,7 +29,7 @@ const DEFAULT_ROUTER_LINK_ACTIVE_CONFIG: RouterLinkActive['routerLinkActiveOptio
 };
 
 const visit = (guide: DaffDocsNavList): DaffTreeData<unknown> => ({
-  id: guide.id,
+  id: guide.path,
   title: guide.title,
   url: guide.path || '',
   items: [],

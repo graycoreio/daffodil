@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/search-docs": [
+        "libs/search-docs/src"
+      ],
+      "@daffodil/search-docs/state": [
+        "libs/search-docs/state/src"
+      ],
+      "@daffodil/search-docs/state/testing": [
+        "libs/search-docs/state/testing/src"
+      ],
+      "@daffodil/search-docs/driver": [
+        "libs/search-docs/driver/src"
+      ],
+      "@daffodil/search-docs/driver/algolia": [
+        "libs/search-docs/driver/algolia/src"
+      ],
+    }
+  }
+}

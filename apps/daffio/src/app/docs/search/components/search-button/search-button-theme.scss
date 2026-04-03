@@ -1,0 +1,28 @@
+@use 'theme' as *;
+
+@mixin daffio-docs-search-button-theme($theme) {
+	$neutral: daff-get-palette($theme, neutral);
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$mode: daff-get-theme-mode($theme);
+
+	.daffio-docs-search-button {
+		@include light($mode) {
+			background: rgba(daff-color($neutral, 20), 0.4);
+			color: daff-color($neutral, 70);
+
+			&__kbd {
+				border: 1px solid daff-color($neutral, 70);
+			}
+		}
+
+		@include dark($mode) {
+			background: daff-color($neutral, 90);
+			color: daff-color($neutral, 40);
+
+			&__kbd {
+				border: 1px solid daff-color($neutral, 40);
+			}
+		}
+	}
+}

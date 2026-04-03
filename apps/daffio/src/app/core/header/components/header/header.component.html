@@ -7,15 +7,14 @@
       <ng-content></ng-content>
     </div>
   </div>
-  <div class="daffio-header__right">
-    <div class="daffio-header__theme-toggle">
-      <ng-content select="[theme-toggle]"></ng-content>
-    </div>
-    <div class="daffio-header__button">
-      <ng-content select="[quickstart-button]"></ng-content>
-    </div>
-    <div class="daffio-header__bars">
-      <ng-content select="[sidebar-button]"></ng-content>
-    </div>
+  <div class="daffio-header__desktop-right">
+    <ng-content select="[search-desktop]"></ng-content>
+    <ng-content select="[theme-toggle-desktop]"></ng-content>
+    <ng-content select="[quickstart-button]"></ng-content>
+  </div>
+  <div class="daffio-header__mobile-right">
+    <ng-content select="[search-mobile]"></ng-content>
+    <ng-content select="[theme-toggle-mobile]"></ng-content>
+    <ng-content select="[sidebar-button]"></ng-content>
   </div>
 </nav>

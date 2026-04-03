@@ -1,0 +1,70 @@
+<daffio-docs-search-field [inputValue]="formControl"></daffio-docs-search-field>
+
+@let recentQueries = recentQueries$ | async;
+@let results = docsResults$ | async;
+@let loading = loading$ | async;
+
+@if (recentQueries?.length > 0 && !results?.length && !loading) {
+	<div class="daffio-docs-search-history">
+		<div class="daffio-docs-search-history__title">
+			Recent
+		</div>
+		<ul class="daffio-docs-search-history__list" role="listbox">
+			@for (result of recentQueries; track $index) {
+				<li daffioDocsSearchResultItem class="daffio-docs-search-results__item">
+					<a [routerLink]="result.id" (click)="onClick(result.id)">
+						<div class="daffio-docs-search-results__result-wrapper">
+							<fa-icon [icon]="faClockRotateLeft" [fixedWidth]="true"></fa-icon>
+							<div class="daffio-docs-search-results__result-package">
+								<div class="daffio-docs-search-results__result">{{result.title || result.name}}</div>
+									@if ('package' in result) {
+										<div class="daffio-docs-search-results__package">{{result.package}}</div>
+									}
+								</div>
+							</div>
+						<span class="daffio-docs-search-results__category">{{result.kind}}</span>
+					</a>
+				</li>
+			}
+		</ul>
+	</div>
+}
+
+@if (results?.length > 0 || loading) {
+	<ul class="daffio-docs-search-results" role="listbox">
+		@for (result of results; track $index) {
+			<li daffioDocsSearchResultItem class="daffio-docs-search-results__item">
+				<a [routerLink]="result.id" (click)="onClick(result.id)">
+					<div class="daffio-docs-search-results__result-wrapper">
+						<fa-icon [icon]="RESULT_ICONS[result.kind]" [fixedWidth]="true"></fa-icon>
+						<div class="daffio-docs-search-results__result-package">
+							<div class="daffio-docs-search-results__result">{{result.title || result.name}}</div>
+								@if ('package' in result) {
+									<div class="daffio-docs-search-results__package">{{result.package}}</div>
+								}
+							</div>
+						</div>
+					<span class="daffio-docs-search-results__category">{{result.kind}}</span>
+				</a>
+			</li>
+		}
+	</ul>
+}
+
+@if (formControl.value && !results?.length && !loading) {
+	<div class="daffio-docs-search-results">
+		<div class="daffio-docs-search-results__no-results">
+			No results found
+		</div>
+	</div>
+}
+
+@if (!formControl.value && !recentQueries?.length && !results?.length && !loading) {
+	<div class="daffio-docs-search-results">
+		<div class="daffio-docs-search-results__start-screen">
+			Start typing to see results
+		</div>
+	</div>
+}
+
+<daffio-docs-search-footer></daffio-docs-search-footer>

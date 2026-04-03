@@ -29,7 +29,7 @@ export const {
    * Provider function for {@link DaffAnalyticsConfig}.
    */
   provider: provideDaffAnalyticsConfig,
-} = createConfigInjectionToken(
+} = createConfigInjectionToken<DaffAnalyticsConfigInterface, typeof defaultConfig>(
   defaultConfig,
   'DaffAnalyticsConfig',
   { providedIn: 'root' },

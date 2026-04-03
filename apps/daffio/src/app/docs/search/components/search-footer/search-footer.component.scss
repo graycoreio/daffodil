@@ -1,0 +1,54 @@
+@use 'utilities' as daff;
+
+:host {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem;
+}
+
+.daffio-docs-search-footer {
+	&__commands {
+		display: none;
+
+		@include daff.breakpoint(tablet) {
+			display: flex;
+			gap: 1rem;
+		}
+	}
+
+	&__command-keys {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: daff.$font-size-sm;
+		line-height: 1.25rem;
+	}
+
+	&__enter-key {
+		transform: rotate(90deg);
+	}
+
+	&__kbd {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0.25rem;
+		font-size: 0.75rem;
+		line-height: 1rem;
+		padding: 0.25rem;
+		box-sizing: border-box;
+	}
+
+	&__algolia {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.75rem;
+		line-height: 1rem;
+	}
+
+	&__algolia-image {
+		width: 62px;
+	}
+}
