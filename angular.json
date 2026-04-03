@@ -273,6 +273,11 @@
                   "with": "apps/daffio/src/environments/environment.prod.ts"
                 }
               ],
+              "security": {
+                "allowedHosts": [
+                  "www.daff.io"
+                ]
+              },
               "serviceWorker": "apps/daffio/ngsw-config.json",
               "outputHashing": "all"
             },
@@ -295,6 +300,11 @@
                   "with": "apps/daffio/src/environments/environment.prod.ts"
                 }
               ],
+              "security": {
+                "allowedHosts": [
+                  "next.daff.io"
+                ]
+              },
               "serviceWorker": "apps/daffio/ngsw-config.json",
               "outputHashing": "all"
             },

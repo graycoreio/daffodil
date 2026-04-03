@@ -50,7 +50,7 @@
     "lint:fix": "ng lint daffio --fix",
     "lint:scss:fix": "ng run lint:scss -- --fix",
     "dev:ssr": "ng run daffio:serve-ssr",
-    "serve:ssr": "node ../../dist/apps/daffio/server/server.mjs",
+    "serve:ssr": "NG_ALLOWED_HOSTS=localhost node ../../dist/apps/daffio/server/server.mjs",
 		"generateSitemap": "ng run daffio:generateSitemap:${NG_BUILD_ENV:-production}"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
