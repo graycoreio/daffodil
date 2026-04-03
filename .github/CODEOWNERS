@@ -115,19 +115,16 @@ libs/**                                                         @graycoreio/daff
 #  @daffodil/demo
 # ================================================
 /apps/demo/**                                                   @graycoreio/daff-docs @graycoreio/daff-marketing
-/apps/demo-e2e/**                                               @graycoreio/daff-docs @graycoreio/daff-marketing
 
 # ================================================
 #  @daffodil/daffio
 # ================================================
 /apps/daffio/**                                                 @graycoreio/daff-docs @graycoreio/daff-marketing
-/apps/daffio-e2e/**                                             @graycoreio/daff-docs
 
 # ================================================
 #  @daffodil/design
 # ================================================
 /apps/design-land/**                                            @graycoreio/daff-design
-/apps/design-land-e2e/**                                        @graycoreio/daff-design    
 /libs/design/**                                                 @graycoreio/daff-design
 /libs/branding/**                                               @graycoreio/daff-marketing @graycoreio/daff-design
 
