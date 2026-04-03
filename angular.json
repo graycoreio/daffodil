@@ -248,7 +248,8 @@
                 "apps/daffio/src/scss",
                 "dist/design/scss",
                 "dist/branding/src/scss",
-                "dist/docs/src/scss"
+                "dist/docs/src/scss",
+                "dist/docs/example-viewer/src/scss"
               ]
             },
             "scripts": []
@@ -364,7 +365,8 @@
                 "apps/daffio/src/scss",
                 "dist/design/scss",
                 "dist/branding/src/scss",
-                "dist/docs/src/scss"
+                "dist/docs/src/scss",
+                "dist/docs/example-viewer/src/scss"
               ]
             },
             "scripts": [],

@@ -10,6 +10,7 @@
 
 // @daffodil/docs
 @use 'daff-docs-theme' as docs;
+@use 'daff-docs-example-viewer-theme' as docs-example-viewer;
 
 .daff-theme-light {
 	background: var(--daff-base-bg);
@@ -21,6 +22,7 @@
 	@include daff-theme.daff-component-themes(daff-theme.$theme);
 	@include daffio-components.component-themes(daff-theme.$theme);
 	@include docs.daff-docs-component-themes(daff-theme.$theme);
+	@include docs-example-viewer.daff-docs-example-viewer-theme(daff-theme.$theme);
 }
 
 .daff-theme-dark {
@@ -33,6 +35,7 @@
 	@include daff-theme.daff-component-themes(daff-theme.$theme-dark);
 	@include daffio-components.component-themes(daff-theme.$theme-dark);
 	@include docs.daff-docs-component-themes(daff-theme.$theme-dark);
+	@include docs-example-viewer.daff-docs-example-viewer-theme(daff-theme.$theme-dark);
 }
 
 body {
