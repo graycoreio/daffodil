@@ -1,10 +1,15 @@
 import {
+  EnvironmentProviders,
   Inject,
   Injectable,
+  makeEnvironmentProviders,
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffDocsExampleServiceInterface } from '@daffodil/docs/example-viewer';
+import {
+  DAFF_DOCS_EXAMPLE_SERVICE,
+  DaffDocsExampleServiceInterface,
+} from '@daffodil/docs/example-viewer';
 import { DaffDocsDesignExample } from '@daffodil/docs-utils';
 
 import { DaffioDocsService } from './docs.service';
@@ -21,3 +26,8 @@ export class DaffioDocsExampleService implements DaffDocsExampleServiceInterface
     return this.docsService.get<any>(`docs/${this.section}/examples/${example}`);
   }
 }
+
+export const provideDaffioDocsExampleService = (): EnvironmentProviders => makeEnvironmentProviders([
+  DaffioDocsExampleService,
+  { provide: DAFF_DOCS_EXAMPLE_SERVICE, useExisting: DaffioDocsExampleService },
+]);

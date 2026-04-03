@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 import { DaffSidebarModeEnum } from '@daffodil/design/sidebar';
-import { DAFF_DOCS_EXAMPLE_SERVICE } from '@daffodil/docs/example-viewer';
 import {
   DAFF_DOC_KIND_PATH_SEGMENT_MAP,
   DaffDocKind,
@@ -19,7 +18,7 @@ import { DocsResolver } from '../resolvers/docs-resolver.service';
 import { daffioDocsDesignIndexResolver } from './resolvers/index.resolver';
 import { provideDaffioDocsDesignIndexService } from './services/index.service';
 import { daffioDocsApiRolesProvider } from '../api/roles/api-roles.provider';
-import { DaffioDocsExampleService } from '../services/example.service';
+import { provideDaffioDocsExampleService } from '../services/example.provider';
 import { provideDaffioStorefrontExamplesContent } from '../storefront/examples/content.provider';
 
 export const daffioDocsDesignRoutesFactory = (section: string, ...extraRoutes: Routes) => <Routes> [
@@ -31,8 +30,7 @@ export const daffioDocsDesignRoutesFactory = (section: string, ...extraRoutes: R
       ...daffioDocsApiRolesProvider(),
       provideDaffioDesignExamplesContent(),
       provideDaffioStorefrontExamplesContent(),
-      DaffioDocsExampleService,
-      { provide: DAFF_DOCS_EXAMPLE_SERVICE, useExisting: DaffioDocsExampleService },
+      provideDaffioDocsExampleService(),
     ],
     resolve: {
       index: daffioDocsDesignIndexResolver,
