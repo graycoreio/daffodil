@@ -1,21 +1,17 @@
 <div class="daffio-example-viewer-code__nav">
-	<div class="daffio-example-viewer-code__file-type">
-		<button class="daffio-example-viewer-code__tab" (click)="tab.set('template')">
+	<div class="daffio-example-viewer-code__tabs">
+		<button class="daffio-example-viewer-code__tab" [class.active]="tab() === 'template'" aria-label="View HTML template" (click)="tab.set('template')">
 			HTML
 		</button>
-		<button class="daffio-example-viewer-code__tab" (click)="tab.set('script')">
+		<button class="daffio-example-viewer-code__tab" [class.active]="tab() === 'script'" aria-label="View JavaScript source" (click)="tab.set('script')">
 			JS
 		</button>
 	</div>
-	<button class="daffio-example-viewer-code__copy-button" (click)="copyCode()">
-		<fa-icon [icon]="copyIcon"></fa-icon>
-	</button>
+	<div class="daffio-example-viewer-code__actions">
+		<button daff-flat-button size="sm" (click)="toggleFullCode()" class="daffio-example-viewer-code__toggle-button" [class.full-code]="fullCode()">
+			{{ fullCode() ? 'Hide code' : 'Show code' }}
+			<fa-icon daffSuffix [icon]="fullCode() ? faEyeSlash : faEye" size="sm"></fa-icon>
+		</button>
+	</div>
 </div>
-<pre nocopy class="daffio-example-viewer-code__code-block" [class.full-code]="fullCode()"><code #codeEl [innerHTML]="visibleCode()?.content || ''"></code></pre>
-<button (click)="toggleFullCode()" class="daffio-example-viewer-code__toggle-button" [class.full-code]="fullCode()">
-	@if (fullCode()) {
-		Collapse code <fa-icon [icon]="faChevronUp" size="xs"></fa-icon>
-	} @else {
-		Show full code <fa-icon [icon]="faChevronDown" size="xs"></fa-icon>
-	}
-</button>
+<pre class="daffio-example-viewer-code__code-block" [class.full-code]="fullCode()" (click)="showFullCode()" tabindex="-1"><code tabindex="-1" #codeEl [innerHTML]="visibleCode()?.content || ''"></code></pre>

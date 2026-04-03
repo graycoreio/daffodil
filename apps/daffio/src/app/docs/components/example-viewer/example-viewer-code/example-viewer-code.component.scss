@@ -3,8 +3,7 @@
 // stylelint-disable selector-class-pattern
 :host {
 	display: block;
-	border-bottom-left-radius: inherit;
-	border-bottom-right-radius: inherit;
+	border-radius: 0.5rem;
 
 	pre {
 		border: none;
@@ -13,6 +12,7 @@
 
 .daffio-example-viewer-code {
 	&__code-block {
+		@include daff.clickable();
 		border-radius: 0;
 		max-height: 8rem;
 		margin: 0;
@@ -20,14 +20,31 @@
 		overflow: hidden;
 
 		&.full-code {
+			cursor: auto;
+			user-select: auto;
 			max-height: 100%;
 		}
+	}
+
+	&__nav {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		border-top-left-radius: inherit;
+		border-top-right-radius: inherit;
+		padding-right: 0.25rem;
+	}
+
+	&__tabs {
+		display: flex;
 	}
 
 	&__tab {
 		@include daff.clickable();
 		appearance: none;
-		border: none;
+		border-left: 0;
+		border-right: 0;
+		border-top: 0;
 		background: none;
 		color: currentColor;
 		font-size: 0.875rem;
@@ -37,40 +54,20 @@
 		text-transform: uppercase;
 	}
 
-	&__nav {
+	&__actions {
 		display: flex;
-		justify-content: space-between;
-		gap: 1rem;
+		align-items: center;
 	}
 
-	&__toggle-button {
-		@include daff.clickable();
-		display: flex;
-		justify-content: center;
-		gap: 0.25rem;
-		appearance: none;
-		border: none;
-		color: currentColor;
-		font-size: 0.875rem;
-		line-height: 1rem;
-		font-weight: 500;
-		width: 100%;
-		padding: 0.5rem 1rem;
-		border-bottom-left-radius: inherit;
-		border-bottom-right-radius: inherit;
-	}
-
-	&__copy-button {
-		@include daff.clickable();
-		display: flex;
-		gap: 0.25rem;
-		appearance: none;
-		background: none;
-		border: none;
-		color: currentColor;
-		font-size: 0.875rem;
-		line-height: 1rem;
-		font-weight: 500;
-		padding: 0.75rem 1rem;
+	&__sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
 	}
 }

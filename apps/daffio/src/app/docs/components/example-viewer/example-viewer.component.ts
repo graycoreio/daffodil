@@ -51,6 +51,7 @@ export class DaffioExampleViewerComponent {
 
   private readonly section = inject(DAFFIO_DOCS_DESIGN_SECTION);
 
+
   /**
    * The source files of the example.
    */

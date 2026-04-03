@@ -43,13 +43,19 @@ describe('@daffodil/daffio | DaffioExampleViewerComponent', () => {
         DaffioExampleViewerComponent,
       ],
       providers: [
-        {
-          provide: DAFFIO_EXAMPLES_CONTENT_COMPONENT_MAP,
-          useValue: mockComponentMap,
-        },
         provideDaffioDocsTestingService(),
       ],
     })
+      .overrideComponent(DaffioExampleViewerComponent, {
+        add: {
+          providers: [
+            {
+              provide: DAFFIO_EXAMPLES_CONTENT_COMPONENT_MAP,
+              useValue: mockComponentMap,
+            },
+          ],
+        },
+      })
       .compileComponents();
   }));
 
@@ -72,7 +78,7 @@ describe('@daffodil/daffio | DaffioExampleViewerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should not render daffio-example-viewer-preview when the example has not loaded', () => {
+  it('should not render daffio-example-viewer-code when the example has not loaded', () => {
     expect(fixture.debugElement.query(By.css('daffio-example-viewer-code'))).toBeFalsy();
   });
 

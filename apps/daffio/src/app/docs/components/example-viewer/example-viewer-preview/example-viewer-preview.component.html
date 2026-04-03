@@ -1,16 +1,24 @@
 @if (!simple()) {
-	<div class="daffio-example-viewer-preview__viewport-wrapper">
-		@for (option of viewportOptions; track option.value) {
-			<button
-				[attr.aria-label]="option.label"
-				class="daffio-example-viewer-preview__viewport-option"
-				(click)="viewport.set(option.value)"
-				[class.selected]="viewport() === option.value">
-				<fa-icon [icon]="option.icon"></fa-icon>
-			</button>
-		}
+	<div class="daffio-example-viewer-preview__viewport-controls">
+		<button daff-flat-button size="sm"
+			class="daffio-example-viewer-preview__viewport-button"
+			[attr.aria-label]="'Viewport size: ' + viewportLabel() + '. Select to change'"
+			[daffMenuActivator]="viewportMenu"
+			#activator="daffMenuActivator">
+				{{ viewportLabel() }}
+				<span daffSuffix class="daffio-example-viewer-preview__icon" [class.open]="activator.isOpen()"></span>
+		</button>
+		<ng-template #viewportMenu>
+			<daff-menu>
+				@for (option of viewportOptions; track option.value) {
+					<button daff-menu-item [attr.aria-label]="'Set viewport to ' + option.label" (click)="selectViewport(option.value)">
+						{{ option.label }}
+					</button>
+				}
+			</daff-menu>
+		</ng-template>
 	</div>
 }
-<div class="daffio-example-viewer-preview__content" [class]="viewportClass()">
+<div class="daffio-example-viewer-preview__content" [class]="viewport()">
 	<ng-container *ngComponentOutlet="exampleComponent()"></ng-container>
 </div>

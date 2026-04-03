@@ -7,12 +7,9 @@ import {
   signal,
   Type,
 } from '@angular/core';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import {
-  faDesktop,
-  faMobileScreenButton,
-  faTabletScreenButton,
-} from '@fortawesome/free-solid-svg-icons';
+
+import { DAFF_FLAT_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffMenuModule } from '@daffodil/design/menu';
 
 export enum DaffioExampleViewerViewportOption {
   DESKTOP = 'desktop',
@@ -30,22 +27,27 @@ export enum DaffioExampleViewerViewportOption {
   },
   imports: [
     NgComponentOutlet,
-    FaIconComponent,
+    DaffMenuModule,
+    DAFF_FLAT_BUTTON_COMPONENTS,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffioExampleViewerPreviewComponent {
-  readonly viewportOptions = [
-    { value: DaffioExampleViewerViewportOption.DESKTOP, label: 'Toggle full screen', icon: faDesktop },
-    { value: DaffioExampleViewerViewportOption.TABLET, label: 'Toggle tablet view', icon: faTabletScreenButton },
-    { value: DaffioExampleViewerViewportOption.MOBILE, label: 'Toggle mobile view', icon: faMobileScreenButton },
-  ];
-
   exampleComponent = input.required<Type<unknown>>();
 
   simple = input(false);
 
-  viewport = signal<DaffioExampleViewerViewportOption>(DaffioExampleViewerViewportOption.DESKTOP);
+  readonly viewport = signal(DaffioExampleViewerViewportOption.DESKTOP);
 
-  viewportClass = computed(() => this.viewport());
+  readonly viewportOptions = [
+    { value: DaffioExampleViewerViewportOption.DESKTOP, label: 'Desktop' },
+    { value: DaffioExampleViewerViewportOption.TABLET, label: 'Tablet' },
+    { value: DaffioExampleViewerViewportOption.MOBILE, label: 'Mobile' },
+  ];
+
+  readonly viewportLabel = computed(() => this.viewportOptions.find((o) => o.value === this.viewport())?.label);
+
+  selectViewport(value: DaffioExampleViewerViewportOption) {
+    this.viewport.set(value);
+  }
 }
