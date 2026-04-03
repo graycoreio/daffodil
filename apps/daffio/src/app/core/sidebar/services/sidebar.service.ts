@@ -64,7 +64,6 @@ export class DaffioSidebarService extends DaffSidebarService {
       map((data) => data.daffioSidebars),
     ),
   ]).pipe(
-    distinctUntilChanged(),
     map(([id, sidebars]) => {
       if(!sidebars?.[id] && isDevMode()) {
         console.warn(
@@ -75,7 +74,7 @@ export class DaffioSidebarService extends DaffSidebarService {
       }
       return sidebars?.[id] ?? undefined;
     }),
-
+    distinctUntilChanged((prev, curr) => prev?.id === curr?.id),
   );
 
   constructor(
