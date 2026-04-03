@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { DaffButtonModule } from '@daffodil/design/button';
 import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffFormFieldLabelDirective } from '@daffodil/design/form';
 import { DaffFormFieldComponent } from '@daffodil/design/form-field';
 import { DaffInputModule } from '@daffodil/design/input';
 import { DaffNewsletterStateModule } from '@daffodil/newsletter/state';
@@ -19,6 +20,7 @@ import { NewsletterComponent } from './newsletter.component';
     DaffNewsletterStateModule,
     ReactiveFormsModule,
     DaffFormFieldComponent,
+    DaffFormFieldLabelDirective,
   ],
   declarations: [
     NewsletterComponent,
