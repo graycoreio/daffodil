@@ -14,22 +14,23 @@ import { BehaviorSubject } from 'rxjs';
 import { DaffDocsDesignExampleFactory } from '@daffodil/docs/testing';
 import { DaffDocsDesignExample } from '@daffodil/docs-utils';
 
-import { DAFF_DOCS_EXAMPLES_CONTENT_COMPONENT_MAP } from './example-components-map.token';
+import { DAFF_DOCS_EXAMPLES_CONTENT_COMPONENT_MAP } from './component-map';
 import { DaffDocsExampleViewerPreviewComponent } from './example-viewer-preview/example-viewer-preview.component';
 import { DaffDocsExampleViewerComponent } from './example-viewer.component';
-import { DaffioDocsService } from '../../../../../apps/daffio/src/app/docs/services/docs.service';
-import { provideDaffioDocsTestingService } from '../../../../../apps/daffio/src/app/docs/services/testing.provider';
+import { DAFF_DOCS_EXAMPLE_SERVICE } from './service/example-docs.service';
+import { DaffDocsExampleServiceInterface } from './service/example-docs.service.interface';
 
 @Component({
   template: `<p>Mock Example Component</p>`,
 })
 class MockExampleComponent {}
 
-describe('@daffodil/daffio | DaffDocsExampleViewerComponent', () => {
+describe('@daffodil/docs | DaffDocsExampleViewerComponent', () => {
   let component: DaffDocsExampleViewerComponent;
   let fixture: ComponentFixture<DaffDocsExampleViewerComponent>;
   let mockComponentMap: Map<string, () => Promise<any>>;
   let getSpy: BehaviorSubject<any>;
+  let mockExampleService: jasmine.SpyObj<DaffDocsExampleServiceInterface>;
   let sourceFileFactory: DaffDocsDesignExampleFactory;
   let sourceFile: DaffDocsDesignExample;
 
@@ -37,6 +38,10 @@ describe('@daffodil/daffio | DaffDocsExampleViewerComponent', () => {
     mockComponentMap = new Map([
       ['test-example', () => Promise.resolve(MockExampleComponent)],
     ]);
+    getSpy = new BehaviorSubject(undefined);
+    mockExampleService = jasmine.createSpyObj<DaffDocsExampleServiceInterface>('DaffDocsExampleService', {
+      get: getSpy,
+    });
 
     TestBed.configureTestingModule({
       imports: [
@@ -47,7 +52,10 @@ describe('@daffodil/daffio | DaffDocsExampleViewerComponent', () => {
           provide: DAFF_DOCS_EXAMPLES_CONTENT_COMPONENT_MAP,
           useValue: mockComponentMap,
         },
-        provideDaffioDocsTestingService(),
+        {
+          provide: DAFF_DOCS_EXAMPLE_SERVICE,
+          useValue: mockExampleService,
+        },
       ],
     })
       .overrideComponent(DaffDocsExampleViewerComponent, {
@@ -68,8 +76,6 @@ describe('@daffodil/daffio | DaffDocsExampleViewerComponent', () => {
     sourceFileFactory = TestBed.inject(DaffDocsDesignExampleFactory);
 
     sourceFile = sourceFileFactory.create();
-    getSpy = new BehaviorSubject(undefined);
-    spyOn(TestBed.inject(DaffioDocsService), 'get').and.returnValue(getSpy);
     fixture = TestBed.createComponent(DaffDocsExampleViewerComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('example', 'test-example');
@@ -82,11 +88,11 @@ describe('@daffodil/daffio | DaffDocsExampleViewerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should not render daffio-example-viewer-code when the example has not loaded', () => {
-    expect(fixture.debugElement.query(By.css('daffio-example-viewer-code'))).toBeFalsy();
+  it('should not render daff-docs-example-viewer-preview when the example has not loaded', () => {
+    expect(fixture.debugElement.query(By.css('daff-docs-example-viewer-code'))).toBeFalsy();
   });
 
-  it('should render daffio-example-viewer-preview when the example and source files have loaded', fakeAsync(() => {
+  it('should render daff-docs-example-viewer-preview when the example and source files have loaded', fakeAsync(() => {
     getSpy.next(sourceFile);
     fixture.detectChanges();
     const preview: DaffDocsExampleViewerPreviewComponent = fixture.debugElement.query(By.directive(DaffDocsExampleViewerPreviewComponent)).componentInstance;
@@ -105,11 +111,11 @@ describe('@daffodil/daffio | DaffDocsExampleViewerComponent', () => {
       fixture.componentRef.setInput('simple', true);
     });
 
-    it('should not render daffio-example-viewer-code', () => {
-      expect(fixture.debugElement.query(By.css('daffio-example-viewer-code'))).toBeFalsy();
+    it('should not render daff-docs-example-viewer-code', () => {
+      expect(fixture.debugElement.query(By.css('daff-docs-example-viewer-code'))).toBeFalsy();
     });
 
-    it('should render daffio-example-viewer-preview even when the source files have not loaded as long as the example is loaded', () => {
+    it('should render daff-docs-example-viewer-preview even when the source files have not loaded as long as the example is loaded', () => {
       const preview: DaffDocsExampleViewerPreviewComponent = fixture.debugElement.query(By.directive(DaffDocsExampleViewerPreviewComponent)).componentInstance;
       expect(preview).toBeTruthy();
       expect(preview.exampleComponent()).toEqual(MockExampleComponent);

@@ -8,13 +8,16 @@ import {
   provideRouter,
   Router,
 } from '@angular/router';
+import { of } from 'rxjs';
 
-import { DaffDocsExampleViewerComponent } from '@daffodil/docs/example-viewer';
+import {
+  DAFF_DOCS_EXAMPLE_SERVICE,
+  DaffDocsExampleViewerComponent,
+} from '@daffodil/docs/example-viewer';
 
 import { DaffDocsDocRendererComponent } from './doc-renderer.component';
-// import { provideDaffioDocsTestingService } from '../../services/testing.provider';
 
-describe('@daffodil/daffio | DaffDocsDocRendererComponent', () => {
+describe('@daffodil/docs | DaffDocsDocRendererComponent', () => {
   let component: DaffDocsDocRendererComponent;
   let fixture: ComponentFixture<DaffDocsDocRendererComponent>;
   let router: Router;
@@ -25,8 +28,11 @@ describe('@daffodil/daffio | DaffDocsDocRendererComponent', () => {
         DaffDocsDocRendererComponent,
       ],
       providers: [
-        // provideDaffioDocsTestingService(),
         provideRouter([]),
+        {
+          provide: DAFF_DOCS_EXAMPLE_SERVICE,
+          useValue: { get: () => of(undefined) },
+        },
       ],
     })
       .compileComponents();
@@ -79,7 +85,7 @@ describe('@daffodil/daffio | DaffDocsDocRendererComponent', () => {
 
   describe('when contents contains example placeholders', () => {
     it('should replace placeholders with example viewer components', () => {
-      const contentWithExample = '<daffio-example-viewer example="test-example"></daffio-example-viewer>';
+      const contentWithExample = '<daff-docs-example-viewer example="test-example"></daff-docs-example-viewer>';
       fixture.componentRef.setInput('contents', contentWithExample);
       fixture.detectChanges();
 
@@ -88,7 +94,7 @@ describe('@daffodil/daffio | DaffDocsDocRendererComponent', () => {
     });
 
     it('should pass the example attribute to the example viewer', () => {
-      const contentWithExample = '<daffio-example-viewer example="my-example-id"></daffio-example-viewer>';
+      const contentWithExample = '<daff-docs-example-viewer example="my-example-id"></daff-docs-example-viewer>';
       fixture.componentRef.setInput('contents', contentWithExample);
       fixture.detectChanges();
 
@@ -98,8 +104,8 @@ describe('@daffodil/daffio | DaffDocsDocRendererComponent', () => {
 
     it('should replace multiple example placeholders', () => {
       const contentWithExamples = `
-        <daffio-example-viewer example="example-1"></daffio-example-viewer>
-        <daffio-example-viewer example="example-2" simple></daffio-example-viewer>
+        <daff-docs-example-viewer example="example-1"></daff-docs-example-viewer>
+        <daff-docs-example-viewer example="example-2" simple></daff-docs-example-viewer>
       `;
       fixture.componentRef.setInput('contents', contentWithExamples);
       fixture.detectChanges();
