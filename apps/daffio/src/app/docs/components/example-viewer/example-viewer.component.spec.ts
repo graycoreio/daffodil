@@ -43,13 +43,19 @@ describe('@daffodil/daffio | DaffioExampleViewerComponent', () => {
         DaffioExampleViewerComponent,
       ],
       providers: [
-        {
-          provide: DAFFIO_EXAMPLES_CONTENT_COMPONENT_MAP,
-          useValue: mockComponentMap,
-        },
         provideDaffioDocsTestingService(),
       ],
     })
+      .overrideComponent(DaffioExampleViewerComponent, {
+        add: {
+          providers: [
+            {
+              provide: DAFFIO_EXAMPLES_CONTENT_COMPONENT_MAP,
+              useValue: mockComponentMap,
+            },
+          ],
+        },
+      })
       .compileComponents();
   }));
 
