@@ -4,10 +4,10 @@ import {
   input,
 } from '@angular/core';
 
+import { DaffDocsDocRendererComponent } from '@daffodil/docs/doc-renderer';
 import { DaffDoc } from '@daffodil/docs-utils';
 
 import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.type';
-import { DaffioDocRendererComponent } from '../doc-renderer/doc-renderer.component';
 import { DaffioDocViewerComponent } from '../doc-viewer/doc-viewer.component';
 
 @Component({
@@ -16,7 +16,7 @@ import { DaffioDocViewerComponent } from '../doc-viewer/doc-viewer.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DaffioDocViewerComponent,
-    DaffioDocRendererComponent,
+    DaffDocsDocRendererComponent,
   ],
 })
 export class DaffioDocsDefaultContentComponent<T extends DaffDoc = DaffDoc> implements DaffioDocsDynamicContent<T> {

@@ -9,22 +9,23 @@ import {
   Router,
 } from '@angular/router';
 
-import { DaffioDocRendererComponent } from './doc-renderer.component';
-import { provideDaffioDocsTestingService } from '../../services/testing.provider';
-import { DaffioExampleViewerComponent } from '../example-viewer/example-viewer.component';
+import { DaffDocsExampleViewerComponent } from '@daffodil/docs/example-viewer';
 
-describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
-  let component: DaffioDocRendererComponent;
-  let fixture: ComponentFixture<DaffioDocRendererComponent>;
+import { DaffDocsDocRendererComponent } from './doc-renderer.component';
+// import { provideDaffioDocsTestingService } from '../../services/testing.provider';
+
+describe('@daffodil/daffio | DaffDocsDocRendererComponent', () => {
+  let component: DaffDocsDocRendererComponent;
+  let fixture: ComponentFixture<DaffDocsDocRendererComponent>;
   let router: Router;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffioDocRendererComponent,
+        DaffDocsDocRendererComponent,
       ],
       providers: [
-        provideDaffioDocsTestingService(),
+        // provideDaffioDocsTestingService(),
         provideRouter([]),
       ],
     })
@@ -34,7 +35,7 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
   beforeEach(() => {
     router = TestBed.inject(Router);
     spyOn(router, 'navigateByUrl');
-    fixture = TestBed.createComponent(DaffioDocRendererComponent);
+    fixture = TestBed.createComponent(DaffDocsDocRendererComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -82,7 +83,7 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
       fixture.componentRef.setInput('contents', contentWithExample);
       fixture.detectChanges();
 
-      const exampleViewer = fixture.debugElement.query(By.directive(DaffioExampleViewerComponent));
+      const exampleViewer = fixture.debugElement.query(By.directive(DaffDocsExampleViewerComponent));
       expect(exampleViewer).toBeTruthy();
     });
 
@@ -91,7 +92,7 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
       fixture.componentRef.setInput('contents', contentWithExample);
       fixture.detectChanges();
 
-      const exampleViewer = fixture.debugElement.query(By.directive(DaffioExampleViewerComponent));
+      const exampleViewer = fixture.debugElement.query(By.directive(DaffDocsExampleViewerComponent));
       expect(exampleViewer.componentInstance.example()).toBe('my-example-id');
     });
 
@@ -103,7 +104,7 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
       fixture.componentRef.setInput('contents', contentWithExamples);
       fixture.detectChanges();
 
-      const exampleViewers = fixture.debugElement.queryAll(By.directive(DaffioExampleViewerComponent));
+      const exampleViewers = fixture.debugElement.queryAll(By.directive(DaffDocsExampleViewerComponent));
       expect(exampleViewers.length).toBe(2);
       expect(exampleViewers[0].componentInstance.example()).toBe('example-1');
       expect(exampleViewers[1].componentInstance.example()).toBe('example-2');

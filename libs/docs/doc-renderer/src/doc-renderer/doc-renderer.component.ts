@@ -14,8 +14,7 @@ import {
 import { Router } from '@angular/router';
 
 import { DaffArticleComponent } from '@daffodil/design/article';
-
-import { DaffioExampleViewerComponent } from '../example-viewer/example-viewer.component';
+import { DaffDocsExampleViewerComponent } from '@daffodil/docs/example-viewer';
 
 /**
  * A component that renders documentation content with embedded example viewers.
@@ -24,7 +23,7 @@ import { DaffioExampleViewerComponent } from '../example-viewer/example-viewer.c
  * instances.
  */
 @Component({
-  selector: `daffio-doc-renderer`,
+  selector: `daff-docs-doc-renderer`,
   imports: [DaffArticleComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -32,7 +31,7 @@ import { DaffioExampleViewerComponent } from '../example-viewer/example-viewer.c
       </daff-article>
 	`,
 })
-export class DaffioDocRendererComponent {
+export class DaffDocsDocRendererComponent {
   /**
    * The raw HTML content to render in the documentation article.
    */
@@ -50,7 +49,10 @@ export class DaffioDocRendererComponent {
       const contents = this.contents();
       // if we track `this.content` then this will infinitely recurse
       untracked(() => {
-        this.content().nativeElement.innerHTML = contents;
+        const content = this.content();
+        if (content) {
+          content.nativeElement.innerHTML = contents;
+        }
       });
       this.renderExamples();
       this.handleRelativeLinks();
@@ -67,7 +69,7 @@ export class DaffioDocRendererComponent {
     for (const anchor of anchors) {
       anchor.addEventListener('click', (e: MouseEvent) => {
         const href = anchor.getAttribute('href');
-        if (this.isRelative(href) && !(e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0)) {
+        if (href && this.isRelative(href) && !(e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0)) {
           e.preventDefault();
           this.router.navigateByUrl(href);
         }
@@ -93,16 +95,16 @@ export class DaffioDocRendererComponent {
     const examplePlaceholders: HTMLElement[] = Array.from(this.elementRef.nativeElement.querySelectorAll('daffio-example-viewer'));
 
     for (const placeholder of examplePlaceholders) {
-      const contentExampleId = placeholder.getAttribute('example');
+      const contentExampleId = placeholder.getAttribute('example') ?? '';
       const simple = placeholder.getAttribute('simple');
-      const exampleRef = this.viewContainerRef.createComponent(DaffioExampleViewerComponent, {
+      const exampleRef = this.viewContainerRef.createComponent(DaffDocsExampleViewerComponent, {
         environmentInjector: this.environmentInjector,
         bindings: [
           inputBinding('example', () => contentExampleId),
           inputBinding('simple', () => simple !== null),
         ],
       });
-      placeholder.parentElement.replaceChild(exampleRef.location.nativeElement, placeholder);
+      placeholder.parentElement?.replaceChild(exampleRef.location.nativeElement, placeholder);
     }
   }
 }
