@@ -26,7 +26,7 @@ export const {
 export class MockDaffDocsSassItem implements DaffDocsSassItem {
   context = {
     type: 'variable',
-    name: faker.color.human(),
+    name: faker.lorem.words(3).replaceAll(' ', '-'),
     value: faker.color.human(),
     parsedValue: sample(this.parsedFactories).create(),
   };
