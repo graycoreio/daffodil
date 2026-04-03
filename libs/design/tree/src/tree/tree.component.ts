@@ -3,11 +3,11 @@ import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
+  computed,
+  contentChild,
+  inject,
+  input,
+  signal,
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
@@ -17,11 +17,7 @@ import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 import { DaffTreeNotifierService } from './tree-notifier.service';
 import { DaffTreeData } from '../interfaces/tree-data';
 import { DaffTreeRenderMode } from '../interfaces/tree-render-mode';
-import { DaffTreeUi } from '../interfaces/tree-ui';
-import {
-  DaffTreeFlatNode,
-  flattenTree,
-} from '../utils/flatten-tree';
+import { flattenTree } from '../utils/flatten-tree';
 import { hydrateTree } from '../utils/hydrate-tree';
 
 /**
@@ -63,7 +59,9 @@ import { hydrateTree } from '../utils/hydrate-tree';
     NgTemplateOutlet,
   ],
 })
-export class DaffTreeComponent implements OnInit, OnChanges {
+export class DaffTreeComponent {
+  private notifier = inject(DaffTreeNotifierService);
+
   /**
    * The rendering mode for nodes in the tree.
    *
@@ -73,12 +71,26 @@ export class DaffTreeComponent implements OnInit, OnChanges {
    * but there may be use-cases (like SEO) where having the tree in the DOM
    * is relevant.
    */
-  @Input() renderMode: DaffTreeRenderMode;
+  readonly renderMode = input<DaffTreeRenderMode>();
+
+  /**
+   * The tree data you would like to render.
+   */
+  readonly tree = input<DaffTreeData<unknown>>();
 
   /**
    * The internal tree element.
    */
-  private _tree: DaffTreeUi<unknown> = undefined;
+  private _tree = computed(() => {
+    const tree = this.tree();
+    return tree ? hydrateTree(tree) : undefined;
+  });
+
+  /**
+   * A revision counter incremented by notifications from tree items.
+   * Used to trigger re-flattening when tree item state changes.
+   */
+  readonly _revision = signal(0);
 
   /**
    * @docs-private
@@ -86,57 +98,29 @@ export class DaffTreeComponent implements OnInit, OnChanges {
    * The flattened tree data. For debugging purposes, you can iterate through this if you want to inspect
    * the resulting array structure we computed to render the tree.
    */
-  public flatTree: DaffTreeFlatNode[] = [];
-
-  /**
-   * The tree data you would like to render.
-   */
-  @Input() tree: DaffTreeData<unknown>;
+  readonly flatTree = computed(() => {
+    this._revision();
+    const tree = this._tree();
+    return tree ? flattenTree(tree, this.renderMode() === 'not-in-dom') : [];
+  });
 
   /**
    * The template used to render tree-nodes that themselves have children.
    *
    * @docs-private
    */
-  @ContentChild('daffTreeItemWithChildrenTpl', { static: true })
-  withChildrenTemplate: TemplateRef<any>;
+  readonly withChildrenTemplate = contentChild<TemplateRef<any>>('daffTreeItemWithChildrenTpl');
 
   /**
    * The template used to render tree-nodes that have no children.
    *
    * @docs-private
    */
-  @ContentChild('daffTreeItemTpl', { static: true }) treeItemTemplate: TemplateRef<any>;
+  readonly treeItemTemplate = contentChild<TemplateRef<any>>('daffTreeItemTpl');
 
-  /**
-   * @docs-private
-   */
-  constructor(private notifier: DaffTreeNotifierService) {}
-
-  /**
-   * @docs-private
-   */
-  ngOnChanges(changes: SimpleChanges): void {
-    if(!changes.tree.currentValue) {
-      this._tree = undefined;
-      this.flatTree = [];
-      return;
-    }
-
-    if(changes.renderMode && !changes.tree) {
-      this.flatTree = flattenTree(this._tree, changes.renderMode.currentValue === 'not-in-dom');
-    } else if(changes.renderMode || changes.tree) {
-      this._tree = hydrateTree(changes.tree?.currentValue ?? this.tree);
-      this.flatTree = flattenTree(this._tree, (changes.renderMode?.currentValue ?? this.renderMode) === 'not-in-dom');
-    }
-  }
-
-  /**
-   * @docs-private
-   */
-  ngOnInit(): void {
+  constructor() {
     this.notifier.notice$.subscribe(() => {
-      this.flatTree = flattenTree(this._tree, this.renderMode === 'not-in-dom');
+      this._revision.update((r) => r + 1);
     });
   }
 }
