@@ -20,6 +20,8 @@ import { DaffTreeRenderMode } from '../interfaces/tree-render-mode';
 import { flattenTree } from '../utils/flatten-tree';
 import { hydrateTree } from '../utils/hydrate-tree';
 
+let daffTreeId = 0;
+
 /**
  * The `DaffTreeComponent` allows you to render tree structures as interactable UI.
  *
@@ -74,6 +76,13 @@ export class DaffTreeComponent {
   readonly renderMode = input<DaffTreeRenderMode>();
 
   /**
+   * A unique identifier for the tree instance.
+   * Used as a prefix for all node IDs in the tree.
+   * If not provided, an auto-incrementing number is used.
+   */
+  readonly id = input<string>(`${daffTreeId++}`);
+
+  /**
    * The tree data you would like to render.
    */
   readonly tree = input<DaffTreeData<unknown>>();
@@ -83,7 +92,7 @@ export class DaffTreeComponent {
    */
   private _tree = computed(() => {
     const tree = this.tree();
-    return tree ? hydrateTree(tree) : undefined;
+    return tree ? hydrateTree(tree, this.id()) : undefined;
   });
 
   /**
