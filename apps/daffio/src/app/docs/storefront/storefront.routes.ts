@@ -3,32 +3,32 @@ import { Routes } from '@angular/router';
 import { DaffSidebarModeEnum } from '@daffodil/design/sidebar';
 import {
   DAFF_DOC_KIND_PATH_SEGMENT_MAP,
-  DAFF_DOCS_DESIGN_PATH,
+  DAFF_DOCS_STOREFRONT_PATH,
   DaffDocKind,
 } from '@daffodil/docs-utils';
 
-import { provideDaffioDocsDesignComponentContentComponent } from './components/component-content/component-content.provider';
-import { DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION } from './containers/docs-list/sidebar.provider';
-import { provideDaffioDesignExamplesContent } from './examples/content.provider';
-import { DaffioDocsDesignComponentOverviewPageComponent } from './pages/components-overview/component-overview.component';
-import { DaffioDocsDesignOverviewPageComponent } from './pages/overview/overview.component';
-import { daffioDocsDesignComponentDocResolver } from './resolvers/component-doc.resolver';
-import { daffioDocsDesignComponentListResolverFactory } from './resolvers/component-list.resolver';
-import { daffioDocsDesignIndexResolver } from './resolvers/index.resolver';
-import { provideDaffioDocsDesignIndexService } from './services/index.service';
+import { provideDaffioStorefrontExamplesContent } from './examples/content.provider';
+import { DaffioDocsStorefrontOverviewPageComponent } from './pages/overview/overview.component';
 import { DaffioRoute } from '../../core/router/route.type';
 import { daffioDocsApiRolesProvider } from '../api/roles/api-roles.provider';
+import { provideDaffioDocsDesignComponentContentComponent } from '../design/components/component-content/component-content.provider';
+import { DAFFIO_DOCS_DESIGN_LIST_SIDEBAR_REGISTRATION } from '../design/containers/docs-list/sidebar.provider';
+import { DaffioDocsDesignComponentOverviewPageComponent } from '../design/pages/components-overview/component-overview.component';
+import { daffioDocsDesignComponentDocResolver } from '../design/resolvers/component-doc.resolver';
+import { daffioDocsDesignComponentListResolverFactory } from '../design/resolvers/component-list.resolver';
+import { daffioDocsDesignIndexResolver } from '../design/resolvers/index.resolver';
+import { provideDaffioDocsDesignIndexService } from '../design/services/index.service';
 import { DaffioDocsPageComponent } from '../pages/docs-page/docs-page.component';
 import { DocsResolver } from '../resolvers/docs-resolver.service';
 
-export const daffioDocsDesignRoutes = <Routes>[
+export const daffioDocsStorefrontRoutes = <Routes>[
   <DaffioRoute>{
     path: '',
     providers: [
-      provideDaffioDocsDesignIndexService(DAFF_DOCS_DESIGN_PATH),
+      provideDaffioDocsDesignIndexService(DAFF_DOCS_STOREFRONT_PATH),
       provideDaffioDocsDesignComponentContentComponent(),
       ...daffioDocsApiRolesProvider(),
-      provideDaffioDesignExamplesContent(),
+      provideDaffioStorefrontExamplesContent(),
     ],
     resolve: {
       index: daffioDocsDesignIndexResolver,
@@ -43,7 +43,7 @@ export const daffioDocsDesignRoutes = <Routes>[
       {
         path: '',
         pathMatch: 'full',
-        component: DaffioDocsDesignOverviewPageComponent,
+        component: DaffioDocsStorefrontOverviewPageComponent,
       },
       {
         path: DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT],
@@ -58,33 +58,6 @@ export const daffioDocsDesignRoutes = <Routes>[
             data: {
               title: 'Components',
               subtitle: 'Components are reusable UI elements in a design system that helps to create consistent, intuitive experiences across products.',
-            },
-          },
-          <DaffioRoute>{
-            path: '**',
-            component: DaffioDocsPageComponent,
-            resolve: {
-              doc: daffioDocsDesignComponentDocResolver,
-            },
-            data: {
-              sidebarMode: DaffSidebarModeEnum.SideFixed,
-            },
-          },
-        ],
-      },
-      {
-        path: 'behaviors',
-        children: [
-          {
-            path: '',
-            pathMatch: 'full',
-            component: DaffioDocsDesignComponentOverviewPageComponent,
-            resolve: {
-              components: daffioDocsDesignComponentListResolverFactory('behaviors'),
-            },
-            data: {
-              title: 'Behaviors',
-              subtitle: 'Behaviors are reusable, composable traits for building UI components that enforce consistent inputs, types, and patterns across both Daffodil and custom components.',
             },
           },
           <DaffioRoute>{
