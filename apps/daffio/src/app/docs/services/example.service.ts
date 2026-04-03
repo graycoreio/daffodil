@@ -18,6 +18,6 @@ export class DaffioDocsExampleService implements DaffDocsExampleServiceInterface
   ) {}
 
   get(example: string): Observable<DaffDocsDesignExample> {
-    return this.docsService.get<any>(`${this.section}/examples/${example}`);
+    return this.docsService.get<any>(`docs/${this.section}/examples/${example}`);
   }
 }
