@@ -7,6 +7,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { DaffContainerModule } from '@daffodil/design/container';
+import { DaffFormFieldLabelDirective } from '@daffodil/design/form';
+import { DaffFormFieldComponent } from '@daffodil/design/form-field';
+import { DaffInputModule } from '@daffodil/design/input';
 import {
   DaffNewsletterStateTestingModule,
   MockDaffNewsletterFacade,
@@ -25,9 +28,12 @@ describe('NewsletterComponent', () => {
         NewsletterComponent,
       ],
       imports: [
+        DaffInputModule,
         DaffContainerModule,
         ReactiveFormsModule,
         DaffNewsletterStateTestingModule,
+        DaffFormFieldComponent,
+        DaffFormFieldLabelDirective,
       ],
     })
       .compileComponents();
