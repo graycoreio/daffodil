@@ -18,7 +18,7 @@ import { DaffDocsExampleViewerComponent } from '@daffodil/docs/example-viewer';
 
 /**
  * A component that renders documentation content with embedded example viewers.
- * Accepts raw HTML content then scans for `daffio-example-viewer`
+ * Accepts raw HTML content then scans for `daff-docs-example-viewer`
  * placeholder elements and replaces them with dynamically created {@link DaffioExampleViewerComponent}
  * instances.
  */
@@ -92,7 +92,7 @@ export class DaffDocsDocRendererComponent {
    * them with dynamically created example viewer components.
    */
   private renderExamples() {
-    const examplePlaceholders: HTMLElement[] = Array.from(this.elementRef.nativeElement.querySelectorAll('daffio-example-viewer'));
+    const examplePlaceholders: HTMLElement[] = Array.from(this.elementRef.nativeElement.querySelectorAll('daff-docs-example-viewer'));
 
     for (const placeholder of examplePlaceholders) {
       const contentExampleId = placeholder.getAttribute('example') ?? '';

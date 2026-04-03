@@ -4,7 +4,7 @@ Native select works alongside the HTML select element, with additional custom st
 ## Overview
 Native select has the same functionality as a native HTML select element, with additional custom styling and functionality. It **cannot** be used by itself and must be contained within a [form field](/libs/design/form-field/README.md).
 
-<daffio-example-viewer example="basic-native-select"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-native-select"></daff-docs-example-viewer>
 
 ## Usage
 To use native select, import `DAFF_NATIVE_SELECT_COMPONENTS` directly into your custom component:
@@ -42,19 +42,19 @@ Native select must be used inside `<daff-form-field>` to enable proper state man
 ### Disabled
 Native select can be disabled in two ways: using Angular's reactive forms with `FormControl` or with the native HTML `disabled` attribute.
 
-<daffio-example-viewer example="native-select-disabled"></daffio-example-viewer>
+<daff-docs-example-viewer example="native-select-disabled"></daff-docs-example-viewer>
 
 ### Error
 Native select supports validation and error messages through Angular's form validation system. Use `<daff-error-message>` within the form field to display context-specific error messages. Error messages automatically appear when the select is invalid and has been touched or submitted.
 
-<daffio-example-viewer example="native-select-error"></daffio-example-viewer>
+<daff-docs-example-viewer example="native-select-error"></daff-docs-example-viewer>
 
 Multiple error messages can be displayed conditionally based on the type of validation error. The form field component handles the styling and positioning of error messages.
 
 ## Hints
 Hints provide additional context or instructions to help users complete the select field correctly. Use `<daff-hint>` within the form field to display helpful information below the select. Unlike error messages, hints are always visible and provide guidance rather than validation feedback.
 
-<daffio-example-viewer example="native-select-hint"></daffio-example-viewer>
+<daff-docs-example-viewer example="native-select-hint"></daff-docs-example-viewer>
 
 ## Accessibility
 When `<daff-form-label>` is used within `<daff-form-field>`, the label automatically associates with the select using the `for` and `id` attributes.

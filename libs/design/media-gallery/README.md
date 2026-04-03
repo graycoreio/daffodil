@@ -4,7 +4,7 @@ A media gallery displays a group of thumbnails in a gallery format, allowing use
 ## Overview
 Media galleries are ideal for showcasing multiple images or other media related to a single product or topic. They provide an interactive way to browse through content with thumbnail previews that update the primary display when selected.
 
-<daffio-example-viewer example="basic-media-gallery"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-media-gallery"></daff-docs-example-viewer>
 
 ## Best practices
 
@@ -86,14 +86,14 @@ A media gallery consists of the following components:
 
 > Never use `[daffThumbnail]` as a standalone element. It must be placed within a `<daff-media-gallery>`. 
 
-<daffio-example-viewer example="media-gallery-with-video"></daffio-example-viewer>
+<daff-docs-example-viewer example="media-gallery-with-video"></daff-docs-example-viewer>
 
 ## Aspect ratio
 Use a consistent aspect ratio across all content to avoid layout shifts. Mismatched content sizes can cause the primary content area to shift as different thumbnails are selected.
 
 Thumbnails are rendered in a square by default, so a 1:1 ratio is recommended, but not required since thumbnails are automatically centered horizontally and vertically.
 
-<daffio-example-viewer example="mismatched-sizes-media-gallery"></daffio-example-viewer>
+<daff-docs-example-viewer example="mismatched-sizes-media-gallery"></daff-docs-example-viewer>
 
 ## Accessibility
 - Always provide an accessible label for each thumbnail using the `label` attribute.

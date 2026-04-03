@@ -4,7 +4,7 @@ Tabs provide a way to navigate between panels that display related content witho
 ## Overview
 Tabs help organize related content into manageable sections, making it easier for users to find and focus on specific information. They're particularly useful for displaying content in compact spaces, such as within [modals](/libs/design/modal/README.md) or [cards](/libs/design/card/README.md), allowing users to switch between sections without navigating away from the current view.
 
-<daffio-example-viewer example="basic-tabs"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-tabs"></daff-docs-example-viewer>
 
 ## Best practices
 

@@ -4,7 +4,7 @@ Theme toggle allows users to switch between light and dark themes.
 ## Overview
 Theme toggle persists the user's preference and integrates with `@daffodil/design`'s theming system.
 
-<daffio-example-viewer example="basic-theme-toggle"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-theme-toggle"></daff-docs-example-viewer>
 
 ## Usage
 To use theme toggle, import `DaffSfThemeToggleComponent` into your custom component:

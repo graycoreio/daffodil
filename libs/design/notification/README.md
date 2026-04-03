@@ -6,7 +6,7 @@ Notifications display short messages that are closely associated with nearby con
 
 Notifications should not be used to display app-level alerts. For global messages, use the [Toast](/libs/design/toast/README.md) component.
 
-<daffio-example-viewer example="default-notification"></daffio-example-viewer>
+<daff-docs-example-viewer example="default-notification"></daff-docs-example-viewer>
 
 ## Best practices
 
@@ -93,19 +93,19 @@ Use the `[daffPrefix]` element to add a decorative icon that provides a quick vi
 ### Status
 Use the `status` property to visually differentiate between notification types such as `info`, `warn`, `critical`, or `success`.
 
-<daffio-example-viewer example="notification-status"></daffio-example-viewer>
+<daff-docs-example-viewer example="notification-status"></daff-docs-example-viewer>
 
 ### Orientation
 Use the `orientation` property to stack notification content either `vertical` (default) or `horizontal`.
 
-<daffio-example-viewer example="notification-orientations"></daffio-example-viewer>
+<daff-docs-example-viewer example="notification-orientations"></daff-docs-example-viewer>
 
 ### Dismissing a notification
 Notifications are persistent by default. To display a close button, set the `dismissible` property to `true`.
 
 > Avoid making critical notifications dismissible to ensure users can read or interact with the necessary information.
 
-<daffio-example-viewer example="dismissible-notification"></daffio-example-viewer>
+<daff-docs-example-viewer example="dismissible-notification"></daff-docs-example-viewer>
 
 ## Accessibility
 **Live region roles:**

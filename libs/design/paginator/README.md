@@ -4,7 +4,7 @@ Pagination organizes and divides large amounts of content on separate pages and 
 ## Overview
 Pagination can be used with a data table or on a page. It automatically truncates page numbers when there are many pages, using ellipses to indicate skipped pages.
 
-<daffio-example-viewer example="basic-paginator"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-paginator"></daff-docs-example-viewer>
 
 ## Best practices
 

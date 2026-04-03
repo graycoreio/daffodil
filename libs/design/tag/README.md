@@ -4,7 +4,7 @@ Tags are compact visual indicators used to display short pieces of information s
 ## Overview
 Tag supports flexible content projection to allow for various combinations of icons, labels, and interactive elements within a consistent container.
 
-<daffio-example-viewer example="basic-tag"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-tag"></daff-docs-example-viewer>
 
 ## Usage
 To use tag in a standalone component, import `DAFF_TAG_COMPONENTS` directly into your custom component.
@@ -60,17 +60,17 @@ Set `disabled` to `true` to disable the tag. Disabled tags cannot be dismissed.
 ## Sizes
 Use the `size` property to control tag dimensions. Supported sizes: `sm`, `md` (default), `lg`.
 
-<daffio-example-viewer example="sizable-tag"></daffio-example-viewer>
+<daff-docs-example-viewer example="sizable-tag"></daff-docs-example-viewer>
 
 ## Colors
 Use the `color` property to change the color of a tag. Supported colors: `primary`, `secondary`, `tertiary`, `dark`, `light`, `theme`, `theme-contrast`.
 
-<daffio-example-viewer example="colorable-tag"></daffio-example-viewer>
+<daff-docs-example-viewer example="colorable-tag"></daff-docs-example-viewer>
 
 ## Status
 Use the `status` property to convey semantic meaning. Supported statuses: `warn`, `critical`, `info`, `success`.
 
-<daffio-example-viewer example="statusable-tag"></daffio-example-viewer>
+<daff-docs-example-viewer example="statusable-tag"></daff-docs-example-viewer>
 
 ## Accessibility
 No additional accessibility annotations are needed.

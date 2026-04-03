@@ -4,7 +4,7 @@ An accordion is a group of vertically stacked, collapsible sections that allow u
 ## Overview
 Accordions help reduce scrolling by hiding non-essential information until it's needed. They organize content into collapsible sections, making it easier for users to find and focus on information relevant to them. This is especially useful for long pages where not all information needs to be visible at once.
 
-<daffio-example-viewer example="basic-accordion"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-accordion"></daff-docs-example-viewer>
 
 ## Best practices
 
@@ -62,12 +62,12 @@ Content placed inside `<daff-accordion-item>` (excluding the title) forms the co
 ### Expand an item by default
 Use the `initiallyExpanded` property on the accordion item to have an item open by default.
 
-<daffio-example-viewer example="initially-expanded-accordion"></daffio-example-viewer>
+<daff-docs-example-viewer example="initially-expanded-accordion"></daff-docs-example-viewer>
 
 ### Disable an accordion item
 Use the `disabled` property on the accordion item to disable and prevent it from being expanded or collapsed.
 
-<daffio-example-viewer example="disabled-accordion"></daffio-example-viewer>
+<daff-docs-example-viewer example="disabled-accordion"></daff-docs-example-viewer>
 
 ## Accessibility
 Accordion follows the [Accordion WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).

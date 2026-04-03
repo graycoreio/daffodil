@@ -17,18 +17,18 @@ Native `<button>` or `<a>` elements should always be used in order to provide an
 - Use `<button>` for actions performed within the same page.
 
 **Basic button**
-<daffio-example-viewer example="basic-button"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-button"></daff-docs-example-viewer>
 
 **Flat button**
-<daffio-example-viewer example="flat-button"></daffio-example-viewer>
+<daff-docs-example-viewer example="flat-button"></daff-docs-example-viewer>
 
 **Stroked button**
-<daffio-example-viewer example="stroked-button"></daffio-example-viewer>
+<daff-docs-example-viewer example="stroked-button"></daff-docs-example-viewer>
 
 > `dark`, `light`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
 **Icon button**
-<daffio-example-viewer example="icon-button"></daffio-example-viewer>
+<daff-docs-example-viewer example="icon-button"></daff-docs-example-viewer>
 
 > `dark`, `light`, and `theme` should be used with caution to ensure that there is sufficient contrast.
 
@@ -87,7 +87,7 @@ Buttons should always have a label, unless you are only using an icon that is un
 ### Icon support
 An icon can be rendered on either side of the button text content with the `daffPrefix` and `daffSuffix` selectors. Avoid using both simultaneously.
 
-<daffio-example-viewer example="button-with-icon"></daffio-example-viewer>
+<daff-docs-example-viewer example="button-with-icon"></daff-docs-example-viewer>
 
 ## Features
 
@@ -101,29 +101,29 @@ Add shadows to buttons with the `elevated` property.
 
 > Note: The `elevated` property is not supported for flat, icon, and underline buttons.
 
-<daffio-example-viewer example="elevated-button"></daffio-example-viewer>
+<daff-docs-example-viewer example="elevated-button"></daff-docs-example-viewer>
 
 ### Sizes
 Use the `size` property to control button dimensions. The default size is `md`.
 
-<daffio-example-viewer example="button-sizes"></daffio-example-viewer>
+<daff-docs-example-viewer example="button-sizes"></daff-docs-example-viewer>
 
 ### Status indicators
 Status indicators help users understand the type of action a button performs and its importance relative to other buttons in the same context. Use the `status` property to convey different semantic meanings.
 
-<daffio-example-viewer example="statusable-button"></daffio-example-viewer>
+<daff-docs-example-viewer example="statusable-button"></daff-docs-example-viewer>
 
 ## States
 
 ### Disabled
 Use the `disabled` property to disable a button that shouldn't be actionable. The button will appear faded and won't respond to user interaction.
 
-<daffio-example-viewer example="disabled-button"></daffio-example-viewer>
+<daff-docs-example-viewer example="disabled-button"></daff-docs-example-viewer>
 
 ### Loading
 Use the `loading` property to indicate that an action is being processed. When `loading` is set to `true`, the button displays a spinner.
 
-<daffio-example-viewer example="loading-button"></daffio-example-viewer>
+<daff-docs-example-viewer example="loading-button"></daff-docs-example-viewer>
 
 ## Accessbility
 Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible experience by default.
