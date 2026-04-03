@@ -2,19 +2,22 @@ import {
   importProvidersFrom,
   makeEnvironmentProviders,
 } from '@angular/core';
-import { provideApollo } from 'apollo-angular';
 
 import { DaffAuthMagentoDriverModule } from '@daffodil/auth/driver/magento';
 import { DaffMagentoAuthorizeNetDriverModule } from '@daffodil/authorizenet/driver/magento';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';
 import { DaffCategoryMagentoDriverModule } from '@daffodil/category/driver/magento';
+import {
+  provideMagentoDriver,
+  withOperationCache,
+} from '@daffodil/driver/magento';
 import { provideDaffExternalRouterMagentoDriver } from '@daffodil/external-router/driver/magento/2.4.3';
 import { DaffGeographyMagentoDriverModule } from '@daffodil/geography/driver/magento';
 import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation/driver/magento';
-import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
+import { DaffNewsletterTestingDriverModule } from '@daffodil/newsletter/driver/testing';
 import { DaffProductMagentoDriverModule } from '@daffodil/product/driver/magento';
 
-import { demoMagentoApolloOptions } from './magento/apollo-options.factory';
+import { possibleTypes } from './magento/fragmentTypes.json';
 import { environment } from '../../environments/environment';
 import { MagentoEnvironmentDriverConfiguration } from '../../environments/environment.interface';
 
@@ -27,12 +30,20 @@ export const provideDemoDrivers = () => [
       }),
       DaffCartMagentoDriverModule.forRoot(),
       DaffNavigationMagentoDriverModule.forRoot(),
-      DaffNewsletterInMemoryDriverModule.forRoot(),
+      DaffNewsletterTestingDriverModule.forRoot(),
       DaffGeographyMagentoDriverModule.forRoot(),
       DaffCategoryMagentoDriverModule.forRoot(),
       DaffMagentoAuthorizeNetDriverModule.forRoot((<MagentoEnvironmentDriverConfiguration>environment.driver).anetConfig),
     ),
-    provideApollo(demoMagentoApolloOptions),
+    provideMagentoDriver(
+      {
+        uri: (<MagentoEnvironmentDriverConfiguration>environment.driver).domain + '/graphql',
+        withCredentials: false,
+        possibleTypes,
+        typePolicies: {},
+      },
+      withOperationCache(),
+    ),
     provideDaffExternalRouterMagentoDriver(),
   ]),
 ];
