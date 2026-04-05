@@ -53,6 +53,16 @@
           }
         ]
       }
+    },
+    "magentoVersion": {
+      "type": "string",
+      "description": "Which version of the Magento API does your store use? Only applies when driver is 'magento'. Supported values: 2.4.1, 2.4.2, 2.4.3",
+      "enum": [
+        "2.4.1",
+        "2.4.2",
+        "2.4.3"
+      ],
+      "default": "2.4.3"
     }
   }
 }

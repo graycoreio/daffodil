@@ -11,13 +11,13 @@ import {
   provideMagentoDriver,
   withOperationCache,
 } from '@daffodil/driver/magento';
-import { provideDaffExternalRouterMagentoDriver } from '@daffodil/external-router/driver/magento/2.4.3';
 import { DaffGeographyMagentoDriverModule } from '@daffodil/geography/driver/magento';
 import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation/driver/magento';
 import { DaffNewsletterTestingDriverModule } from '@daffodil/newsletter/driver/testing';
 import { DaffProductMagentoDriverModule } from '@daffodil/product/driver/magento';
 
 import { possibleTypes } from './magento/fragmentTypes.json';
+import { provideDaffExternalRouterMagentoDriver } from './magento-version';
 import { environment } from '../../environments/environment';
 import { MagentoEnvironmentDriverConfiguration } from '../../environments/environment.interface';
 

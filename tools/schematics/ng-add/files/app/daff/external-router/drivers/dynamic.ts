@@ -20,10 +20,10 @@ import {
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
 import { DaffExternalRouterDriverInterface } from '@daffodil/external-router/driver';
 import { DaffExternalRouterInMemoryDriver } from '@daffodil/external-router/driver/in-memory';
-import { DaffExternalRouterMagentoDriver } from '@daffodil/external-router/driver/magento/2.4.3';
 import { DaffShopifyExternalRouterDriver } from '@daffodil/external-router/driver/shopify';
 
 import { FakeExternalRouterService } from './fake';
+import { DaffExternalRouterMagentoDriver } from '../../drivers/magento-version';
 
 @Injectable({
   providedIn:'root',

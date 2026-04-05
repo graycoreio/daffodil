@@ -8,6 +8,21 @@ import { NgAddOptions } from '../../schema';
 
 export const addCoreProvidersToStandalone = (options: NgAddOptions, project: any): Rule => (tree: Tree) => {
   const driver = options.driver || 'demo';
+  const magentoVersion = options.magentoVersion || '2.4.3';
+
+  if (driver === 'magento' || driver === 'demo') {
+    const stubPath = `${project.sourceRoot}/app/drivers/magento-version.ts`;
+    const stubContent = `// To use a different Magento API version, change the import paths below.
+// Supported versions: 2.4.1, 2.4.2, 2.4.3
+export { provideDaffExternalRouterMagentoDriver } from '@daffodil/external-router/driver/magento/${magentoVersion}';
+export { DaffExternalRouterMagentoDriver } from '@daffodil/external-router/driver/magento/${magentoVersion}';
+`;
+    if (tree.exists(stubPath)) {
+      tree.overwrite(stubPath, stubContent);
+    } else {
+      tree.create(stubPath, stubContent);
+    }
+  }
 
   const coreProviders = [
     'provideHttpClient()',

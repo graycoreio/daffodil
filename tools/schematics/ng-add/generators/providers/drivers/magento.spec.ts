@@ -50,4 +50,20 @@ export class App {}
     expect(appConfigContent).toContain('provideDaffNavigationMagentoDriver');
     expect(appConfigContent).toContain('provideDaffExternalRouterMagentoDriver');
   });
+
+  it('should generate the magento-version stub defaulting to 2.4.3', () => {
+    const rule = addCoreProvidersToStandalone(options, project);
+    const resultTree = <Tree>rule(tree, <any>{});
+    const stubContent = resultTree.read('/projects/test-app/src/app/drivers/magento-version.ts')?.toString();
+
+    expect(stubContent).toContain('@daffodil/external-router/driver/magento/2.4.3');
+  });
+
+  it('should generate the magento-version stub for the specified magentoVersion', () => {
+    const rule = addCoreProvidersToStandalone({ ...options, magentoVersion: '2.4.1' }, project);
+    const resultTree = <Tree>rule(tree, <any>{});
+    const stubContent = resultTree.read('/projects/test-app/src/app/drivers/magento-version.ts')?.toString();
+
+    expect(stubContent).toContain('@daffodil/external-router/driver/magento/2.4.1');
+  });
 });

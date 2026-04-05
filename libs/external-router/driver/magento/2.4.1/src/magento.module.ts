@@ -12,6 +12,8 @@ import { DaffExternalRouterMagentoDriver } from './magento.service';
 /**
  * The module used to configure the {@link DaffExternalRouterDriver} for usage with Magento.
  *
+ * @deprecated Use `provideDaffExternalRouterMagentoDriver` instead.
+ *
  * @example
  * ```ts
  * @NgModule({
@@ -34,6 +36,8 @@ export class DaffExternalRouterDriverMagentoModule {
 
   /**
    * Configures the package for the root injector.
+   *
+   * @deprecated Use `provideDaffExternalRouterMagentoDriver` instead.
    */
   static forRoot(): ModuleWithProviders<DaffExternalRouterDriverMagentoModule> {
     return {
