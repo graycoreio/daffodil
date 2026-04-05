@@ -23,7 +23,7 @@ import { DaffExternalRouterInMemoryDriver } from '@daffodil/external-router/driv
 import { DaffShopifyExternalRouterDriver } from '@daffodil/external-router/driver/shopify';
 
 import { FakeExternalRouterService } from './fake';
-import { DaffExternalRouterMagentoDriver } from '../../drivers/magento-version';
+import { DaffExternalRouterMagentoDriver } from '../../../drivers/magento-version';
 
 @Injectable({
   providedIn:'root',
