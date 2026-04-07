@@ -1,4 +1,4 @@
-import { createSingleInjectionToken } from '@daffodil/core';
+import { createSingletonInjectionToken } from '@daffodil/core';
 
 import { DaffDocsExampleServiceInterface } from './example-docs.service.interface';
 
@@ -6,4 +6,4 @@ import { DaffDocsExampleServiceInterface } from './example-docs.service.interfac
 export const {
   token: DAFF_DOCS_EXAMPLE_SERVICE,
   provider: provideDaffDocsExampleService,
-} = createSingleInjectionToken<DaffDocsExampleServiceInterface>('DAFF_DOCS_EXAMPLE_SERVICE');
+} = createSingletonInjectionToken<DaffDocsExampleServiceInterface>('DAFF_DOCS_EXAMPLE_SERVICE');
