@@ -3,10 +3,8 @@ import {
   InjectionToken,
 } from '@angular/core';
 
-import {
-  DAFF_DOCS_EXAMPLE_CONTENT,
-  DaffDocsExampleContent,
-} from '@daffodil/docs';
+import { DAFF_DOCS_EXAMPLE_CONTENT } from '../example/content.token';
+import { DaffDocsExampleContent } from '../example/content.type';
 
 /**
  * Injection token that provides a map of example component identifiers to their

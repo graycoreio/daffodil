@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import {
   DAFF_DOCS_EXAMPLE_SERVICE,
   DaffDocsExampleServiceInterface,
-} from '@daffodil/docs/example-viewer';
+} from '@daffodil/docs';
 import { DaffDocsDesignExample } from '@daffodil/docs-utils';
 
 import { DaffioDocsService } from './docs.service';

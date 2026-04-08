@@ -19,8 +19,10 @@ import {
   DAFF_TABS_COMPONENTS,
   DaffTabsComponent,
 } from '@daffodil/design/tabs';
-import { DaffDocsApiRoleSectionLabelPipe } from '@daffodil/docs';
-import { DaffDocsDocRendererComponent } from '@daffodil/docs/doc-renderer';
+import {
+  DaffDocsApiRoleSectionLabelPipe ,
+  DaffDocsDocRendererComponent,
+} from '@daffodil/docs';
 import {
   DaffApiDoc,
   DaffDocKind,

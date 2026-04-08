@@ -4,7 +4,7 @@ import {
   input,
 } from '@angular/core';
 
-import { DaffDocsDocRendererComponent } from '@daffodil/docs/doc-renderer';
+import { DaffDocsDocRendererComponent } from '@daffodil/docs';
 import { DaffDoc } from '@daffodil/docs-utils';
 
 import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.type';

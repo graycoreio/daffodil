@@ -28,12 +28,6 @@
       "@daffodil/docs": [
         "libs/docs/src"
       ],
-      "@daffodil/docs/doc-renderer": [
-        "libs/docs/doc-renderer/src"
-      ],
-      "@daffodil/docs/example-viewer": [
-        "libs/docs/example-viewer/src"
-      ],
       "@daffodil/docs/testing": [
         "libs/docs/testing/src"
       ]

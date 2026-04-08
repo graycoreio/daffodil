@@ -10,12 +10,10 @@ import {
 } from '@angular/router';
 import { of } from 'rxjs';
 
-import {
-  DAFF_DOCS_EXAMPLE_SERVICE,
-  DaffDocsExampleViewerComponent,
-} from '@daffodil/docs/example-viewer';
-
 import { DaffDocsDocRendererComponent } from './doc-renderer.component';
+import { DaffDocsExampleViewerComponent } from '../example-viewer/example-viewer.component';
+import { DAFF_DOCS_EXAMPLE_SERVICE } from '../example-viewer/service/example-docs.service';
+
 
 describe('@daffodil/docs | DaffDocsDocRendererComponent', () => {
   let component: DaffDocsDocRendererComponent;

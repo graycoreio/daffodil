@@ -14,7 +14,8 @@ import {
 import { Router } from '@angular/router';
 
 import { DaffArticleComponent } from '@daffodil/design/article';
-import { DaffDocsExampleViewerComponent } from '@daffodil/docs/example-viewer';
+
+import { DaffDocsExampleViewerComponent } from '../example-viewer/example-viewer.component';
 
 /**
  * A component that renders documentation content with embedded example viewers.
