@@ -52,10 +52,6 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoShippingAddress',
       transformedShippingAddress = service.transform(mockMagentoShippingAddress);
     });
 
-    it('should return an object with the correct values', () => {
-      expect(transformedShippingAddress.address_type).toEqual('shipping');
-    });
-
     it('should call the cart address transformer with the address', () => {
       expect(cartAddressTransformerSpy.transform).toHaveBeenCalledWith(mockMagentoShippingAddress);
     });

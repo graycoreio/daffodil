@@ -52,10 +52,6 @@ describe('@daffodil/cart/driver/magento | Transformer | MagentoBillingAddress', 
       transformedBillingAddress = service.transform(mockMagentoBillingAddress);
     });
 
-    it('should return an object with the correct values', () => {
-      expect(transformedBillingAddress.address_type).toEqual('billing');
-    });
-
     it('should call the cart address transformer with the address', () => {
       expect(cartAddressTransformerSpy.transform).toHaveBeenCalledWith(mockMagentoBillingAddress);
     });

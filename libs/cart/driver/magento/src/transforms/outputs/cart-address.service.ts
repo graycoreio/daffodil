@@ -39,7 +39,6 @@ export class DaffMagentoCartAddressTransformer {
       suffix: null,
       middlename: null,
       prefix: null,
-      address_type: null,
     } : null;
   }
 }

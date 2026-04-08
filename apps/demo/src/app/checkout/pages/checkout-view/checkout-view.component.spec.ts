@@ -171,7 +171,6 @@ describe('DemoCheckoutViewComponent', () => {
       it('should trigger address step complete', () => {
         expect(cartFacade.dispatch).toHaveBeenCalledWith(new DemoCompleteAddressStep({
           ...formValue,
-          address_type: 'shipping',
           id: null,
         }));
       });

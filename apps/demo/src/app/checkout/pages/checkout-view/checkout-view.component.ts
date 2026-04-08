@@ -110,7 +110,6 @@ export class DemoCheckoutViewComponent implements OnInit {
     this.cartFacade.dispatch(
       new DemoCompleteAddressStep({
         ...address,
-        address_type: 'shipping',
         id: null,
       }),
     );
