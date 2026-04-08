@@ -36,17 +36,9 @@ export const appConfig: ApplicationConfig = {
 
 ## Providing the Example Service
 
-**`DAFF_DOCS_EXAMPLE_SERVICE` must be provided or the example viewer will error at runtime.**
+**`provideDaffDocsExampleService` must be called or the example viewer will error at runtime.**
 
-`DAFF_DOCS_EXAMPLE_SERVICE` is an injection token for `DaffDocsExampleServiceInterface`, which supplies the source file content for each example. You must provide an implementation that satisfies:
-
-```ts
-interface DaffDocsExampleServiceInterface {
-  get(example: string): Observable<DaffDocsDesignExample>;
-}
-```
-
-Provide it alongside your example content registration. For example, you can create a service that fetches source files from an API and maps it to the token:
+`provideDaffDocsExampleService` registers an implementation of `DaffDocsExampleServiceInterface`, which supplies the source file content for each example. For example, you can create a service that fetches source files from an API and register it with `provideDaffDocsExampleService`:
 
 ```ts
 import {
@@ -57,8 +49,8 @@ import {
 import { Observable } from 'rxjs';
 
 import {
-  DAFF_DOCS_EXAMPLE_SERVICE,
   DaffDocsExampleServiceInterface,
+  provideDaffDocsExampleService,
 } from '@daffodil/docs/example-viewer';
 import { DaffDocsDesignExample } from '@daffodil/docs-utils';
 
@@ -71,7 +63,7 @@ export class MyDocsExampleService implements DaffDocsExampleServiceInterface {
 
 export const provideMyDocsExampleService = (): EnvironmentProviders => makeEnvironmentProviders([
   MyDocsExampleService,
-  { provide: DAFF_DOCS_EXAMPLE_SERVICE, useExisting: MyDocsExampleService },
+  provideDaffDocsExampleService(MyDocsExampleService),
 ]);
 ```
 
