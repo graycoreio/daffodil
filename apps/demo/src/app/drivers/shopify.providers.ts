@@ -7,10 +7,10 @@ import { DaffAuthorizeNetInMemoryDriverModule } from '@daffodil/authorizenet/dri
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
 import { DaffCategoryInMemoryDriverModule } from '@daffodil/category/driver/in-memory';
 import { DaffInMemoryDriverModule } from '@daffodil/driver/in-memory';
-import { provideShopifyApolloDriver } from '@daffodil/driver/shopify';
+import { provideShopifyDriver } from '@daffodil/driver/shopify';
 import { DaffNavigationInMemoryDriverModule } from '@daffodil/navigation/driver/in-memory';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
-import { DaffProductShopifyDriverModule } from '@daffodil/product/driver/shopify';
+import { provideDaffProductShopifyDriver } from '@daffodil/product/driver/shopify';
 import {
   DaffDefaultProductFactory,
   provideDaffProductExtraFactoryTypes,
@@ -26,7 +26,6 @@ export const provideDemoDrivers = () => [
   makeEnvironmentProviders([
     importProvidersFrom(
       DaffInMemoryDriverModule.forRoot(),
-      DaffProductShopifyDriverModule.forRoot(),
       DaffCartInMemoryDriverModule.forRoot(),
       DaffNewsletterInMemoryDriverModule.forRoot(),
       DaffCategoryInMemoryDriverModule.forRoot(),
@@ -34,6 +33,7 @@ export const provideDemoDrivers = () => [
       DaffAuthorizeNetInMemoryDriverModule.forRoot(),
     ),
     provideDaffProductExtraFactoryTypes(DaffDefaultProductFactory),
-    provideShopifyApolloDriver(domain, accessToken),
+    provideShopifyDriver({ domain, accessToken }),
+    provideDaffProductShopifyDriver(),
   ]),
 ];
