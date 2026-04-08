@@ -1,12 +1,8 @@
 # Example Viewer
 
-`@daffodil/docs/example-viewer` provides components and tokens for dynamically rendering live Angular component examples alongside their source files in documentation pages.
+Example viewer provides components and tokens for dynamically rendering live Angular component examples alongside their source files in documentation pages.
 
-## Overview
-
-`@daffodil/docs/example-viewer` provides `DaffDocsExampleViewerComponent`, which dynamically loads and renders a live Angular component example alongside its source files when given an example `id`.
-
-## Registering Examples
+## Registering examples
 
 Each example must be registered via `provideDaffDocsExampleContent` from `@daffodil/docs`. Provide an object with:
 - `id` — a unique string identifier used to reference the example in the template.
@@ -34,7 +30,7 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-## Providing the Example Service
+## Providing the example service
 
 **`provideDaffDocsExampleService` must be called or the example viewer will error at runtime.**
 
@@ -77,7 +73,7 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-## Rendering an Example
+## Rendering an example
 
 Use `DaffDocsExampleViewerComponent` in a template by passing the `example` input set to the registered example `id`:
 
@@ -87,7 +83,7 @@ Use `DaffDocsExampleViewerComponent` in a template by passing the `example` inpu
 
 The component will render the live preview of the example component, and (unless in simple mode) display its source files below.
 
-## Simple Mode
+## Simple mode
 
 Pass `[simple]="true"` to hide the source file panel and only show the live preview:
 
