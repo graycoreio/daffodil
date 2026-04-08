@@ -53,8 +53,10 @@ export class DaffDocsExampleViewerComponent {
    * The source files of the example.
    */
   readonly sourceFiles: Resource<DaffDocsDesignExample | undefined> = rxResource({
-    stream: () => this.docsService.get(this.example()),
+    params: () => ({ example: this.example() }),
+    stream: ({ params }) => this.docsService.get(params.example),
   });
+
 
   /**
    * The dynamically loaded component type to render.
