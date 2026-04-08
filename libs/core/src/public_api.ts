@@ -5,6 +5,7 @@ export { Constructable } from './constructable/constructable';
 export { provideVercelImageLoader } from './image/vercel-image-loader';
 export * from './base64/public_api';
 export * from './collection/public_api';
+export * from './createable/public_api';
 export * from './decorators/public_api';
 export * from './errors/public_api';
 export * from './filterable/public_api';
