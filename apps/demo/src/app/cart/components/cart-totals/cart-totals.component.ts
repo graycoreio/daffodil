@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import {
   Component,
   Input,
@@ -9,11 +10,16 @@ import {
   DaffCartTotalTypeEnum,
 } from '@daffodil/cart';
 
+import { CartTotalsItemComponent } from '../cart-totals-item/cart-totals-item.component';
+
 @Component({
   selector: 'demo-cart-totals',
   templateUrl: './cart-totals.component.html',
   styleUrls: ['./cart-totals.component.scss'],
-  standalone: false,
+  imports: [
+    CurrencyPipe,
+    CartTotalsItemComponent,
+  ],
 })
 export class CartTotalsComponent {
   @Input() cart: DaffCart;

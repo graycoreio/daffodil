@@ -15,7 +15,7 @@ import { CartTotalsItemComponent } from './cart-totals-item.component';
     <ng-container cart-total-value>{{value}}</ng-container>
   </demo-cart-totals-item>
 `,
-  standalone: false,
+  imports: [CartTotalsItemComponent],
 })
 class WrapperComponent {
   label: string;
@@ -30,7 +30,7 @@ describe('CartTotalsItemComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         CartTotalsItemComponent,
         WrapperComponent,
       ],

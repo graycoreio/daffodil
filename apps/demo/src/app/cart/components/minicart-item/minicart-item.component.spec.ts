@@ -17,7 +17,7 @@ import { CartItemComponent } from '../cart-item/cart-item.component';
 
 @Component({
   template: '<demo-minicart-item [item]="cartItemValue"></demo-minicart-item>',
-  standalone: false,
+  imports: [MiniCartItemComponent],
 })
 class WrapperComponent {
   cartItemValue: DaffCartItem;
@@ -36,8 +36,6 @@ describe('MiniCartItemComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-      ],
-      declarations: [
         MiniCartItemComponent,
         WrapperComponent,
       ],

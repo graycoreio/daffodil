@@ -1,16 +1,11 @@
-import {
-  Component,
-  Input,
-  NO_ERRORS_SCHEMA,
-} from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import {
   StoreModule,
   combineReducers,
@@ -34,7 +29,6 @@ import {
   daffComposeReducers,
   daffIdentityReducer,
 } from '@daffodil/core/state';
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductLoadSuccess,
@@ -50,25 +44,10 @@ import {
   OpenAddToCartNotification,
 } from '../../actions/add-to-cart-notification.actions';
 import * as fromAddToCartNotification from '../../reducers/index';
-
-@Component({
-  template: '<demo-add-to-cart-notification></demo-add-to-cart-notification>',
-  standalone: false,
-})
-class WrapperComponent {}
-
-@Component({
-  selector: 'demo-product-added', template: '',
-  standalone: false,
-})
-class MockProductAddedComponent {
-  @Input() product: DaffProduct;
-  @Input() qty: number;
-}
+import { ProductAddedComponent } from '../product-added/product-added.component';
 
 describe('AddToCartNotificationComponent', () => {
-  let wrapper: WrapperComponent;
-  let fixture: ComponentFixture<WrapperComponent>;
+  let fixture: ComponentFixture<AddToCartNotificationComponent>;
   let store: Store<{
     demoAddToCartNotification: fromAddToCartNotification.State;
     cart: DaffCartReducersState;
@@ -78,7 +57,7 @@ describe('AddToCartNotificationComponent', () => {
   let cartFactory: DaffCartFactory;
 
   let addToCartNotification: AddToCartNotificationComponent;
-  let productAdded: MockProductAddedComponent;
+  let productAdded: ProductAddedComponent;
   let stubProduct: DaffProduct;
   let productAddPayload;
   let stubCart: DaffCart;
@@ -98,17 +77,13 @@ describe('AddToCartNotificationComponent', () => {
           ]),
           [DAFF_PRODUCT_STORE_FEATURE_KEY]: combineReducers(daffProductReducers),
         }),
-        NoopAnimationsModule,
-        DaffLoadingIconModule,
-        FontAwesomeModule,
-      ],
-      declarations: [
-        WrapperComponent,
         AddToCartNotificationComponent,
-        MockProductAddedComponent,
       ],
       schemas: [
         NO_ERRORS_SCHEMA,
+      ],
+      providers: [
+        provideNoopAnimations(),
       ],
     })
       .compileComponents();
@@ -122,13 +97,11 @@ describe('AddToCartNotificationComponent', () => {
     productAddPayload = { productId: stubProduct.id, qty: 1 };
     stubCart = cartFactory.create();
 
-    fixture = TestBed.createComponent(WrapperComponent);
-    wrapper = fixture.componentInstance;
+    fixture = TestBed.createComponent(AddToCartNotificationComponent);
+    addToCartNotification = fixture.componentInstance;
     store = TestBed.inject(Store);
 
     fixture.detectChanges();
-
-    addToCartNotification = fixture.debugElement.query(By.css('demo-add-to-cart-notification')).componentInstance;
   });
 
 

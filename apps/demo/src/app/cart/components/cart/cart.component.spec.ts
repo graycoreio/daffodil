@@ -22,7 +22,7 @@ import { CartComponent } from './cart.component';
 
 @Component({
   template: '<demo-cart [cart]="cartValue"></demo-cart>',
-  standalone: false,
+  imports: [CartComponent],
 })
 class WrapperComponent {
   cartValue: DaffCart;
@@ -31,7 +31,6 @@ class WrapperComponent {
 @Component({
   selector: 'demo-cart-items',
   template: '',
-  standalone: false,
 })
 class MockCartItemsComponent {
   @Input() cart: DaffCart;
@@ -40,7 +39,6 @@ class MockCartItemsComponent {
 @Component({
   selector: 'demo-cart-sidebar',
   template: '',
-  standalone: false,
 })
 class MockCartSidebarComponent {
   @Input() cart: DaffCart;
@@ -50,7 +48,6 @@ class MockCartSidebarComponent {
 @Component({
   selector: 'demo-cart-item-count',
   template: '',
-  standalone: false,
 })
 class MockCartItemCountComponent {
   @Input() itemCount: number;
@@ -78,8 +75,6 @@ describe('Cart', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffCartStateTestingModule,
-      ],
-      declarations: [
         WrapperComponent,
         MockCartItemsComponent,
         MockCartSidebarComponent,

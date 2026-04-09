@@ -23,7 +23,7 @@ import { CartSummaryComponent } from './cart-summary.component';
 
 @Component({
   template: '<demo-cart-summary [cart]="cartValue" [title]="titleValue"></demo-cart-summary>',
-  standalone: false,
+  imports: [CartSummaryComponent],
 })
 class WrapperComponent {
   cartValue: DaffCart;
@@ -32,7 +32,6 @@ class WrapperComponent {
 
 @Component({
   selector: 'demo-minicart-item', template: '',
-  standalone: false,
 })
 class MockMiniCartItemComponent {
   @Input() item: DaffCartItem;
@@ -53,8 +52,6 @@ describe('CartSummaryComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-      ],
-      declarations: [
         CartSummaryComponent,
         WrapperComponent,
         MockMiniCartItemComponent,

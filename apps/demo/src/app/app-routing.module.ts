@@ -25,7 +25,7 @@ export const appRoutes: Routes = [
   {
     path: '', component: TemplateComponent, children: [
       { path: 'product-grid', component: ProductGridViewComponent },
-      { path: 'cart',       loadChildren: () => import('./cart/cart.module').then(m => m.DemoCartModule) },
+      { path: 'cart',       loadChildren: () => import('./cart/cart.routes').then(m => m.demoCartRoutes) },
       {
         path: 'product/:id',
         component: ProductViewComponent,

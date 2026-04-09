@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   Input,
@@ -9,11 +10,20 @@ import { map } from 'rxjs/operators';
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFacade } from '@daffodil/cart/state';
 
+import { CartItemCountComponent } from '../cart-item-count/cart-item-count.component';
+import { CartItemsComponent } from '../cart-items/cart-items.component';
+import { CartSidebarComponent } from '../cart-sidebar/cart-sidebar.component';
+
 @Component({
   selector: 'demo-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
-  standalone: false,
+  imports: [
+    AsyncPipe,
+    CartItemsComponent,
+    CartSidebarComponent,
+    CartItemCountComponent,
+  ],
 })
 export class CartComponent implements OnInit {
 

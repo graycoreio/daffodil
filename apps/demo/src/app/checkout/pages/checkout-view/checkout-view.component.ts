@@ -21,7 +21,7 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 import { DaffPersonalAddress } from '@daffodil/geography';
 
-import { CartSummaryWrapperModule } from '../../../cart/components/cart-summary-wrapper/cart-summary-wrapper.module';
+import { CartSummaryWrapperComponent } from '../../../cart/components/cart-summary-wrapper/cart-summary-wrapper.component';
 import {
   DemoCompleteAddressStep,
   DemoCompleteBillingStep,
@@ -59,7 +59,7 @@ import {
     DemoCheckoutBillingAddressSummaryComponent,
     DemoCheckoutPaymentSummaryComponent,
     PlaceOrderModule,
-    CartSummaryWrapperModule,
+    CartSummaryWrapperComponent,
   ],
 })
 export class DemoCheckoutViewComponent implements OnInit {

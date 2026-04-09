@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -6,11 +7,20 @@ import { Observable } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFacade } from '@daffodil/cart/state';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
+import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
+
+import { CartComponent } from '../../components/cart/cart.component';
 
 @Component({
   templateUrl: './cart-view.component.html',
   styleUrls: ['./cart-view.component.scss'],
-  standalone: false,
+  imports: [
+    AsyncPipe,
+    DAFF_LOADING_ICON_COMPONENTS,
+    DAFF_CONTAINER_COMPONENTS,
+    CartComponent,
+  ],
 })
 export class DemoCartViewComponent implements OnInit {
 

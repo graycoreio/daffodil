@@ -16,15 +16,14 @@ import {
   MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffContainerModule } from '@daffodil/design/container';
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
+import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
+import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 import { DemoCartViewComponent } from './cart-view.component';
 
 @Component({
   selector: 'demo-cart',
   template: '',
-  standalone: false,
 })
 class MockCartWrapperComponent {
   @Input() cart: DaffCart;
@@ -39,14 +38,12 @@ describe('DemoCartViewComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
+        DAFF_CONTAINER_COMPONENTS,
+        DAFF_LOADING_ICON_COMPONENTS,
+        DaffCartStateTestingModule,
         DemoCartViewComponent,
         MockCartWrapperComponent,
-      ],
-      imports: [
-        DaffContainerModule,
-        DaffLoadingIconModule,
-        DaffCartStateTestingModule,
       ],
     })
       .compileComponents();

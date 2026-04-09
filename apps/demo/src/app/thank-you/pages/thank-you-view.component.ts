@@ -12,7 +12,7 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 import { DaffOrder } from '@daffodil/order';
 
-import { CartSummaryWrapperModule } from '../../cart/components/cart-summary-wrapper/cart-summary-wrapper.module';
+import { CartSummaryWrapperComponent } from '../../cart/components/cart-summary-wrapper/cart-summary-wrapper.component';
 import { ThankYouComponent } from '../components/thank-you/thank-you.component';
 
 
@@ -23,7 +23,7 @@ import { ThankYouComponent } from '../components/thank-you/thank-you.component';
     LetDirective,
     ThankYouComponent,
     DAFF_CONTAINER_COMPONENTS,
-    CartSummaryWrapperModule,
+    CartSummaryWrapperComponent,
     DAFF_ACCORDION_COMPONENTS,
     DAFF_LOADING_ICON_COMPONENTS,
   ],

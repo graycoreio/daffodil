@@ -12,7 +12,7 @@ import { ProceedToCheckoutDirective } from './proceed-to-checkout.directive';
 
 @Component({
   template: '<div demoProceedToCheckout></div>',
-  standalone: false,
+  imports: [ProceedToCheckoutDirective],
 })
 class WrapperComponent {}
 
@@ -25,8 +25,6 @@ describe('ProceedToCheckoutDirective', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-      ],
-      declarations: [
         WrapperComponent,
         ProceedToCheckoutDirective,
       ],

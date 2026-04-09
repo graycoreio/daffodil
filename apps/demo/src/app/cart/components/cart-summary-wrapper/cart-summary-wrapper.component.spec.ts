@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   Input,
@@ -17,7 +18,7 @@ import {
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
+import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 
 import { CartSummaryWrapperComponent } from './cart-summary-wrapper.component';
 import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
@@ -28,7 +29,10 @@ const stubCartTitle = 'cartTitle';
 
 @Component({
   template: '<demo-cart-summary-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></demo-cart-summary-wrapper>',
-  standalone: false,
+  imports: [
+    AsyncPipe,
+    CartSummaryWrapperComponent,
+  ],
 })
 class WrapperComponent {
   cartValue$: Observable<DaffCart>;
@@ -39,7 +43,6 @@ class WrapperComponent {
 @Component({
   selector: 'demo-cart-summary',
   template: '',
-  standalone: false,
 })
 class MockCartSummaryComponent {
   @Input() cart: DaffCart;
@@ -49,7 +52,6 @@ class MockCartSummaryComponent {
 @Component({
   selector: 'demo-cart-totals',
   template: '',
-  standalone: false,
 })
 class MockCartTotalsComponent {
   @Input() cart: DaffCart;
@@ -58,7 +60,6 @@ class MockCartTotalsComponent {
 @Component({
   selector: 'demo-help-box',
   template: '',
-  standalone: false,
 })
 class MockHelpBoxComponent {}
 
@@ -75,9 +76,7 @@ describe('CartSummaryWrapper', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffLoadingIconModule,
-      ],
-      declarations: [
+        DAFF_LOADING_ICON_COMPONENTS,
         WrapperComponent,
         CartSummaryWrapperComponent,
         MockCartTotalsComponent,

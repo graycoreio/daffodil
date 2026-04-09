@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs';
 
 import { DaffAddToCart } from '@daffodil/cart/state';
-import { DaffModalModule } from '@daffodil/design/modal';
+import { DaffModalService } from '@daffodil/design/modal';
 
 import { AddToCartNotificationEffects } from './add-to-cart-notification.effects';
 import { OpenAddToCartNotification } from '../actions/add-to-cart-notification.actions';
@@ -19,11 +19,9 @@ describe('AddToCartNotificationEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DaffModalModule,
-      ],
       providers: [
         AddToCartNotificationEffects,
+        DaffModalService,
         provideMockStore(),
         provideMockActions(() => actions$),
       ],

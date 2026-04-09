@@ -1,4 +1,8 @@
 import {
+  NgPlural,
+  NgPluralCase,
+} from '@angular/common';
+import {
   Component,
   Input,
 } from '@angular/core';
@@ -7,7 +11,10 @@ import {
   selector: 'demo-cart-item-count',
   templateUrl: './cart-item-count.component.html',
   styleUrls: ['./cart-item-count.component.scss'],
-  standalone: false,
+  imports: [
+    NgPlural,
+    NgPluralCase,
+  ],
 })
 export class CartItemCountComponent {
 
