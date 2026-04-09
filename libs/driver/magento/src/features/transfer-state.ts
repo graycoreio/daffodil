@@ -6,10 +6,8 @@ import {
   type EnvironmentProviders,
   type StateKey,
 } from '@angular/core';
-import {
-  ApolloCache,
-  NormalizedCacheObject,
-} from '@apollo/client/cache';
+import { NormalizedCacheObject } from '@apollo/client/cache';
+import { Apollo } from 'apollo-angular';
 
 import { createSingleInjectionToken } from '@daffodil/core';
 
@@ -41,24 +39,20 @@ export const withDaffDriverMagentoTransferState = <T extends StateKey<any> = Sta
  * Holds the logic for hydrating the Apollo cache with the server's transferred state.
  * It is recommended to use {@link withDaffDriverMagentoTransferState} with {@link provideMagentoDriver}
  * to provide this functionality automatically.
- *
- * @param cache The Apollo cache instance.
  */
-export const provideDaffDriverMagentoTransferState = (cache: ApolloCache<NormalizedCacheObject>): EnvironmentProviders => makeEnvironmentProviders([
+export const provideDaffDriverMagentoTransferState = (): EnvironmentProviders => makeEnvironmentProviders([
   provideAppInitializer(() => {
+    const cache = inject(Apollo).client.cache;
     const transferState = inject(TransferState);
     const stateKey = inject(DAFF_DRIVER_MAGENTO_TRANSFER_STATE_KEY);
     const hasStateKey = transferState.hasKey(stateKey);
     if (hasStateKey) {
-      // reads the serialized cache
       const state = transferState.get<NormalizedCacheObject>(
         stateKey,
         null,
       );
-        // and puts it in the Apollo
       cache.restore(state);
     } else {
-      // serializes the cache and puts it under a key
       transferState.onSerialize(stateKey, () => cache.extract());
     }
   }),
