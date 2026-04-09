@@ -14,12 +14,12 @@
 		grid-template-areas:
 			'repo'
 			'discord';
-		grid-gap: 16px;
+		gap: 16px;
 
 		@include daff.breakpoint(tablet) {
 			grid-template-columns: 1fr 1fr;
 			grid-template-areas: 'repo discord';
-			grid-gap: 16px;
+			gap: 16px;
 		}
 
 		>* {

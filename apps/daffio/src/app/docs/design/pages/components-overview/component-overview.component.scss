@@ -13,7 +13,7 @@
 	&__card-grid {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-gap: 16px;
+		gap: 16px;
 
 		@include daff.breakpoint(tablet) {
 			grid-template-columns: repeat(2, 1fr);

@@ -5,13 +5,13 @@
 		display: grid;
 		grid-template-columns: 112px 112px;
 		grid-template-areas: 'magento shopify';
-		grid-gap: 24px;
+		gap: 24px;
 		justify-content: center;
 
 		@include daff.breakpoint(mobile) {
 			grid-template-columns: 144px 144px;
 			grid-template-areas: 'magento shopify';
-			grid-gap: 48px;
+			gap: 48px;
 		}
 	}
 
