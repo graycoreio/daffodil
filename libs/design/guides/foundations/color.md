@@ -8,14 +8,14 @@ Each palette consists of a collection of [perceptually uniform colors](https://p
 
 For guidance on how to set up your theme with customized palettes, see theming's [create custom palettes](/libs/design/guides/theming/customize-your-own-theme.md#create-custom-palettes) guide.
 
-<daffio-example-viewer example="color-palettes" simple></daffio-example-viewer>
+<daff-docs-example-viewer example="color-palettes" simple></daff-docs-example-viewer>
 
 ## Color palette generator
 Use this generator to create custom color palettes from a single hex color. It uses the HSLuv color space to produce perceptually uniform colors, ensuring consistent lightness and contrast across each palette step.
 
 You can then customize your theme with the generated palette by following the [create custom palettes](/libs/design/guides/theming/customize-your-own-theme.md#create-custom-palettes) guide.
 
-<daffio-example-viewer example="color-palette-generator" simple></daffio-example-viewer>
+<daff-docs-example-viewer example="color-palette-generator" simple></daff-docs-example-viewer>
 
 ## Accessibility
 We are committed to complying with the [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG/). The design system is built to meet these guidelines automatically. If you choose to identify your own color palettes outside of Daffodil's colors, please make sure to choose primary, secondary, tertiary, and extended colors that will pass the guidelines. Ensure there is sufficient color contrast between elements so that people who are visually impaired can see and use your products.

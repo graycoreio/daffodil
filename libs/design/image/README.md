@@ -8,7 +8,7 @@ Image builds on Angular's [`NgOptimizedImage`](https://angular.dev/guide/image-o
 - Ensuring accessibility by requiring descriptive `alt` text
 - Maintaining proper aspect ratios for responsive designs
 
-<daffio-example-viewer example="basic-image"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-image"></daff-docs-example-viewer>
 
 ## Usage
 
@@ -70,7 +70,7 @@ All four of the following attributes are required and will throw an error if mis
 ## Skeleton screen
 Use the `skeleton` property to display a placeholder skeleton screen that helps reduce load-time frustration.
 
-<daffio-example-viewer example="skeleton-image"></daffio-example-viewer>
+<daff-docs-example-viewer example="skeleton-image"></daff-docs-example-viewer>
 
 ## Priority loading
 Use the `priority` property to mark an image as a priority for loading. Priority images are loaded eagerly and not lazy-loaded.

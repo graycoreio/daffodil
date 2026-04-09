@@ -4,7 +4,7 @@ Navbar is a flexible and extensible component that provides a container for navi
 ## Overview
 The navbar contains minimal layout styles, allowing the content within it to be fluid and customizable. It utilizes the `flex` display and is customizable with all the flexbox properties. It's required to be used with the native HTML `<nav>` element to ensure an accessible experience by default.
 
-<daffio-example-viewer example="basic-navbar"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-navbar"></daff-docs-example-viewer>
 
 ## Usage
 
@@ -53,12 +53,12 @@ export class CustomComponentModule { }
 ### Elevation
 Use the `elevated` property to add a shadow effect to the navbar.
 
-<daffio-example-viewer example="elevated-navbar"></daffio-example-viewer>
+<daff-docs-example-viewer example="elevated-navbar"></daff-docs-example-viewer>
 
 ### Blurred background
 Use the `blurred` property to add a semi-transparent background effect to the navbar, creating a frosted glass appearance.
 
-<daffio-example-viewer example="blurred-navbar"></daffio-example-viewer>
+<daff-docs-example-viewer example="blurred-navbar"></daff-docs-example-viewer>
 
 Both `elevated` and `blurred` can be combined for a layered effect:
 
@@ -71,7 +71,7 @@ Both `elevated` and `blurred` can be combined for a layered effect:
 ### Contained navbar
 A navbar can be contained to a specific width by using the [container](/libs/design/container/README.md) component. The layout styles set on the navbar will automatically be passed down to the container.
 
-<daffio-example-viewer example="contained-navbar"></daffio-example-viewer>
+<daff-docs-example-viewer example="contained-navbar"></daff-docs-example-viewer>
 
 ## Accessibility
 Daffodil enforces the usage of the native `<nav>` HTML element to ensure an accessible experience by default. If more than one navbar is used, every navbar should be given a meaningful label by using the `aria-label` attribute.

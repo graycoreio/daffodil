@@ -4,7 +4,7 @@ A progress bar provides visual feedback about the duration or progress of a task
 ## Overview
 Progress bars help users understand the status of ongoing processes or tasks. They can display either determinate progress (when the percentage is known) or indeterminate progress (when the percentage is unknown or cannot be calculated).
 
-<daffio-example-viewer example="progress-bar-default"></daffio-example-viewer>
+<daff-docs-example-viewer example="progress-bar-default"></daff-docs-example-viewer>
 
 ## Best practices
 
@@ -81,7 +81,7 @@ Use determinate progress bars when the percentage of completion is known. This i
 ### Indeterminate
 Use indeterminate progress bars when when the percentage of completion is unknown or cannot be calculated. Set the `indeterminate` property to `true`:
 
-<daffio-example-viewer example="progress-bar-indeterminate"></daffio-example-viewer>
+<daff-docs-example-viewer example="progress-bar-indeterminate"></daff-docs-example-viewer>
 
 ## Features
 
@@ -90,7 +90,7 @@ The default color is `primary`. Use the `color` property to change a progress ba
 
 > `theme`, `white`, and `black` should be used with caution to ensure that there is sufficient contrast.
 
-<daffio-example-viewer example="progress-bar-themes"></daffio-example-viewer>
+<daff-docs-example-viewer example="progress-bar-themes"></daff-docs-example-viewer>
 
 ## Accessibility
 Progress bar implements the ARIA `role="progressbar"` pattern.

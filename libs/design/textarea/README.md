@@ -4,7 +4,7 @@ Textarea works alongside the HTML textarea element, with additional custom styli
 ## Overview
 Textarea has the same functionality as a native HTML textarea element, with additional custom styling and functionality. It **cannot** be used by itself and must be contained within a [form field](/libs/design/src/atoms/form/form-field/README.md).
 
-<daffio-example-viewer example="basic-textarea"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-textarea"></daff-docs-example-viewer>
 
 ## Usage
 To use textarea, import `DaffTextareaComponent` directly into your custom component:
@@ -38,19 +38,19 @@ Textarea must be used inside `<daff-form-field>` to enable proper state manageme
 ### Disabled
 Textarea can be disabled in two ways: using Angular's reactive forms with `FormControl` or with the native HTML `disabled` attribute.
 
-<daffio-example-viewer example="textarea-disabled"></daffio-example-viewer>
+<daff-docs-example-viewer example="textarea-disabled"></daff-docs-example-viewer>
 
 ### Error
 Textarea supports validation and error messages through Angular's form validation system. Use `<daff-error-message>` within the form field to display context-specific error messages. Error messages automatically appear when the textarea is invalid and has been touched or submitted.
 
-<daffio-example-viewer example="textarea-error"></daffio-example-viewer>
+<daff-docs-example-viewer example="textarea-error"></daff-docs-example-viewer>
 
 Multiple error messages can be displayed conditionally based on the type of validation error. The form field component handles the styling and positioning of error messages.
 
 ## Hints
 Hints provide additional context or instructions to help users complete the textarea field correctly. Use `<daff-hint>` within the form field to display helpful information below the textarea. Unlike error messages, hints are always visible and provide guidance rather than validation feedback.
 
-<daffio-example-viewer example="textarea-hint"></daffio-example-viewer>
+<daff-docs-example-viewer example="textarea-hint"></daff-docs-example-viewer>
 
 ## Accessibility
 When `<daff-form-label>` is used within `<daff-form-field>`, the label automatically associates with the textarea using the `for` and `id` attributes.

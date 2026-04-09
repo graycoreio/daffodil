@@ -19,7 +19,10 @@ import {
   DAFF_TABS_COMPONENTS,
   DaffTabsComponent,
 } from '@daffodil/design/tabs';
-import { DaffDocsApiRoleSectionLabelPipe } from '@daffodil/docs';
+import {
+  DaffDocsApiRoleSectionLabelPipe ,
+  DaffDocsDocRendererComponent,
+} from '@daffodil/docs';
 import {
   DaffApiDoc,
   DaffDocKind,
@@ -30,7 +33,6 @@ import {
 import { DaffioSafeHtmlPipe } from '../../../../core/html-sanitizer/safe.pipe';
 import { DaffioInterceptNavigationDirective } from '../../../../core/router/intercept-navigation.directive';
 import { DaffioDocsApiDynamicContentFragmentService } from '../../../api/dynamic-content/fragment.service';
-import { DaffioDocRendererComponent } from '../../../components/doc-renderer/doc-renderer.component';
 import { DaffioDocViewerComponent } from '../../../components/doc-viewer/doc-viewer.component';
 import { DaffioDocsDynamicContent } from '../../../dynamic-content/dynamic-content.type';
 import { DaffioDocsTocHeaderDirective } from '../../../toc/header.directive';
@@ -50,7 +52,7 @@ import { DaffioDocsDesignApiSortSectionLabels } from '../../pipes/sort-api-secti
     DaffioInterceptNavigationDirective,
     DaffioDocsTocHeaderDirective,
     DaffDocsApiRoleSectionLabelPipe,
-    DaffioDocRendererComponent,
+    DaffDocsDocRendererComponent,
   ],
   providers: [
     KeyValuePipe,

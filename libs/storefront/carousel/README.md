@@ -4,7 +4,7 @@ Carousel is a slideshow component for cycling through a series of content.
 ## Overview
 Carousel uses [Swiper](https://swiperjs.com) under the hood. For complete API documentation, refer to the Swiper documentation. Some inputs have been limited to provide better control over the user interface and keep the carousel's API smaller.
 
-<daffio-example-viewer example="basic-carousel"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-carousel"></daff-docs-example-viewer>
 
 ## Usage
 To use carousel, import `DAFF_CAROUSEL_COMPONENTS` into your custom component:

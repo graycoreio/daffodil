@@ -1,7 +1,7 @@
 @use '@daffodil/design/scss/theme' as *;
 
 // stylelint-disable selector-class-pattern
-@mixin daffio-docs-example-viewer-theme($theme) {
+@mixin daff-docs-example-viewer-theme($theme) {
 	$primary: daff-get-palette($theme, primary);
 	$neutral: daff-get-palette($theme, neutral);
 	$base: daff-get-base-color($theme, base);
@@ -13,7 +13,7 @@
 	$border-dark: thin solid daff-color($neutral, 80);
 	$background-dark: daff-color($neutral, 90);
 
-	.daffio-example-viewer-code {
+	.daff-docs-example-viewer-code {
 		@include light($mode) {
 			border: $border-light;
 
@@ -57,7 +57,7 @@
 		}
 	}
 
-	.daffio-example-viewer-preview {
+	.daff-docs-example-viewer-preview {
 		@include light($mode) {
 			border: $border-light;
 

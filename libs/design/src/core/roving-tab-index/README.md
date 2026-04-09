@@ -16,7 +16,7 @@ RTI has the concept of *groups* delineated by boundaries. There is a default "ro
 
 Boundaries are given unique anonymous IDs unless a value is passed to `rtiBoundary`. Targets are considered in the group of the nearest ancestor that is an `rtiBoundary`. This can be overridden by passing a group ID to `rti` but this is only valid if the boundary has also been given a name.
 
-<daffio-example-viewer example="rti-nested-groups"></daffio-example-viewer>
+<daff-docs-example-viewer example="rti-nested-groups"></daff-docs-example-viewer>
 
 ## Keyboard navigation
 

@@ -4,7 +4,7 @@ A sidebar is a component used to display additional information alongside a page
 ## Overview
 Sidebars provide a flexible way to display additional content alongside the main page content. While commonly used for navigation, they can accommodate any type of content. Sidebars support multiple display modes, positions, and include optional header and footer components with minimal styling.
 
-<daffio-example-viewer example="basic-sidebar"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-sidebar"></daff-docs-example-viewer>
 
 ## Best practices
 
@@ -162,16 +162,16 @@ Use the `mode` property to control how the sidebar is displayed:
 | `under` | Sits beneath the main content, which slides over the sidebar when closed. |
 
 **Over and under sidebars**
-<daffio-example-viewer example="over-and-under-sidebars"></daffio-example-viewer>
+<daff-docs-example-viewer example="over-and-under-sidebars"></daff-docs-example-viewer>
 
 **Side fixed sidebar**
-<daffio-example-viewer example="side-fixed-sidebar"></daffio-example-viewer>
+<daff-docs-example-viewer example="side-fixed-sidebar"></daff-docs-example-viewer>
 
 **Two fixed sidebars on either side**
-<daffio-example-viewer example="two-fixed-sidebars-either-side"></daffio-example-viewer>
+<daff-docs-example-viewer example="two-fixed-sidebars-either-side"></daff-docs-example-viewer>
 
 **Fixed and over sidebar**
-<daffio-example-viewer example="fixed-and-over-sidebar"></daffio-example-viewer>
+<daff-docs-example-viewer example="fixed-and-over-sidebar"></daff-docs-example-viewer>
 
 ### Sides
 Use the `side` property to control the placement of the sidebar:
@@ -181,7 +181,7 @@ Use the `side` property to control the placement of the sidebar:
 | `left` (default) | Places the sidebar on the left side of the screen.  |
 | `right` | Places the sidebar on the right side of the screen. |
 
-<daffio-example-viewer example="sidebar-sides"></daffio-example-viewer>
+<daff-docs-example-viewer example="sidebar-sides"></daff-docs-example-viewer>
 
 ## Customizations
 

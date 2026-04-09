@@ -4,7 +4,7 @@ Select allows users to choose from a dropdown panel with a list of options, simi
 ## Overview
 Use select when you need users to pick one option from a list. It works like a standard dropdown menu but gives you more control over how options look and behave. It **cannot** be used by itself and must be contained within a [form field](/libs/design/form-field/README.md).
 
-<daffio-example-viewer example="basic-select"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-select"></daff-docs-example-viewer>
 
 ## Usage
 To use select, import the components directly into your custom component:
@@ -48,19 +48,19 @@ Use `daffSelectOption` to render a list of options in the select panel:
 ### Disabled
 Select can be disabled using Angular's reactive forms with `FormControl`.
 
-<daffio-example-viewer example="disabled-select"></daffio-example-viewer>
+<daff-docs-example-viewer example="disabled-select"></daff-docs-example-viewer>
 
 ### Error
 Select supports validation and error messages through Angular's form validation system. Use `<daff-error-message>` within the form field to display context-specific error messages. Error messages automatically appear when the select is invalid and has been touched or submitted.
 
-<daffio-example-viewer example="select-with-error"></daffio-example-viewer>
+<daff-docs-example-viewer example="select-with-error"></daff-docs-example-viewer>
 
 Multiple error messages can be displayed conditionally based on the type of validation error. The form field component handles the styling and positioning of error messages.
 
 ## Hints
 Hints provide additional context or instructions to help users complete the select field correctly. Use `<daff-hint>` within the form field to display helpful information below the textarea. Unlike error messages, hints are always visible and provide guidance rather than validation feedback.
 
-<daffio-example-viewer example="select-with-hint"></daffio-example-viewer>
+<daff-docs-example-viewer example="select-with-hint"></daff-docs-example-viewer>
 
 ## Accessibility
 Select follows the [Combobox WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/). The combobox activator is combined with an inner `role="listbox"` element opened in a popup.

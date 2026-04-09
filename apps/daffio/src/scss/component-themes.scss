@@ -19,7 +19,6 @@
 @use '../app/docs/api/components/method-block/method-block-theme' as api-method-block;
 @use '../app/docs/api/components/api-item-label/api-item-label-theme' as api-item-label;
 @use '../app/docs/components/doc-viewer/doc-viewer-theme' as doc-viewer;
-@use '../app/docs/components/example-viewer/example-viewer-theme' as example-viewer;
 @use '../app/content/home/components/home-callout-sponsors/home-callout-sponsors-theme' as home-callout-sponsors;
 
 @mixin component-themes($theme) {
@@ -46,5 +45,4 @@
 	@include api-outputs-fragment.daffio-api-outputs-fragment-theme($theme);
 	@include api-item-label.daffio-api-item-label-theme($theme);
 	@include doc-viewer.daffio-doc-viewer-theme($theme);
-	@include example-viewer.daffio-docs-example-viewer-theme($theme);
 }

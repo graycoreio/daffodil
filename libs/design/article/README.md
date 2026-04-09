@@ -53,23 +53,23 @@ export class CustomComponentModule { }
 ### Meta
 Meta displays article metadata such as author name and date. It's a custom directive, not a native element selector. To use it, add `daffArticleMeta` to a paragraph (`<p>`).
 
-<daffio-example-viewer example="article-meta"></daffio-example-viewer>
+<daff-docs-example-viewer example="article-meta"></daff-docs-example-viewer>
 
 ## Features
 
 ### Heading anchor
 `<h2>`, `<h3>`, and `<h4>` headings include an anchor link that directs users to that section and a copy button that copies the heading URL to the clipboard. To disable this, add a `nolink` attribute to the heading element.
 
-<daffio-example-viewer example="article-headings"></daffio-example-viewer>
+<daff-docs-example-viewer example="article-headings"></daff-docs-example-viewer>
 
 ### Code copy
 Code blocks include a copy button by default. To disable this, add a `nocopy` attribute to the `pre` element.
 
 #### Inline code
-<daffio-example-viewer example="article-code-inline"></daffio-example-viewer>
+<daff-docs-example-viewer example="article-code-inline"></daff-docs-example-viewer>
 
 #### Code blocks
-<daffio-example-viewer example="article-code-block"></daffio-example-viewer>
+<daff-docs-example-viewer example="article-code-block"></daff-docs-example-viewer>
 
 ### Encapsulation
 Articles support custom components like [accordion](/libs/design/accordion/README.md), [hero](/libs/design/hero/README.md), or [callout](/libs/design/callout/README.md). Unlike typical HTML elements (`<p>`, `<ol>`, `<ul>`, etc), these components must be style encapsulated to prevent article styles from bleeding into their content.
@@ -94,18 +94,18 @@ For custom components, use the `DaffArticleEncapsulatedDirective` to prevent art
 ## Styled HTML elements
 
 ### Table
-<daffio-example-viewer example="article-table"></daffio-example-viewer>
+<daff-docs-example-viewer example="article-table"></daff-docs-example-viewer>
 
 ### Lists
 
 #### Unordered list
-<daffio-example-viewer example="article-ul"></daffio-example-viewer>
+<daff-docs-example-viewer example="article-ul"></daff-docs-example-viewer>
 
 #### Ordered list
-<daffio-example-viewer example="article-ol"></daffio-example-viewer>
+<daff-docs-example-viewer example="article-ol"></daff-docs-example-viewer>
 
 ### Horizontal rules
-<daffio-example-viewer example="article-hr"></daffio-example-viewer>
+<daff-docs-example-viewer example="article-hr"></daff-docs-example-viewer>
 
 ### Blockquote
-<daffio-example-viewer example="article-blockquote"></daffio-example-viewer>
+<daff-docs-example-viewer example="article-blockquote"></daff-docs-example-viewer>

@@ -8,24 +8,29 @@ import {
   provideRouter,
   Router,
 } from '@angular/router';
+import { of } from 'rxjs';
 
-import { DaffioDocRendererComponent } from './doc-renderer.component';
-import { provideDaffioDocsTestingService } from '../../services/testing.provider';
-import { DaffioExampleViewerComponent } from '../example-viewer/example-viewer.component';
+import { DaffDocsDocRendererComponent } from './doc-renderer.component';
+import { DaffDocsExampleViewerComponent } from '../example-viewer/example-viewer.component';
+import { DAFF_DOCS_EXAMPLE_SERVICE } from '../example-viewer/service/example-docs.service';
 
-describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
-  let component: DaffioDocRendererComponent;
-  let fixture: ComponentFixture<DaffioDocRendererComponent>;
+
+describe('@daffodil/docs | DaffDocsDocRendererComponent', () => {
+  let component: DaffDocsDocRendererComponent;
+  let fixture: ComponentFixture<DaffDocsDocRendererComponent>;
   let router: Router;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffioDocRendererComponent,
+        DaffDocsDocRendererComponent,
       ],
       providers: [
-        provideDaffioDocsTestingService(),
         provideRouter([]),
+        {
+          provide: DAFF_DOCS_EXAMPLE_SERVICE,
+          useValue: { get: () => of(undefined) },
+        },
       ],
     })
       .compileComponents();
@@ -34,7 +39,7 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
   beforeEach(() => {
     router = TestBed.inject(Router);
     spyOn(router, 'navigateByUrl');
-    fixture = TestBed.createComponent(DaffioDocRendererComponent);
+    fixture = TestBed.createComponent(DaffDocsDocRendererComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -78,32 +83,32 @@ describe('@daffodil/daffio | DaffioDocRendererComponent', () => {
 
   describe('when contents contains example placeholders', () => {
     it('should replace placeholders with example viewer components', () => {
-      const contentWithExample = '<daffio-example-viewer example="test-example"></daffio-example-viewer>';
+      const contentWithExample = '<daff-docs-example-viewer example="test-example"></daff-docs-example-viewer>';
       fixture.componentRef.setInput('contents', contentWithExample);
       fixture.detectChanges();
 
-      const exampleViewer = fixture.debugElement.query(By.directive(DaffioExampleViewerComponent));
+      const exampleViewer = fixture.debugElement.query(By.directive(DaffDocsExampleViewerComponent));
       expect(exampleViewer).toBeTruthy();
     });
 
     it('should pass the example attribute to the example viewer', () => {
-      const contentWithExample = '<daffio-example-viewer example="my-example-id"></daffio-example-viewer>';
+      const contentWithExample = '<daff-docs-example-viewer example="my-example-id"></daff-docs-example-viewer>';
       fixture.componentRef.setInput('contents', contentWithExample);
       fixture.detectChanges();
 
-      const exampleViewer = fixture.debugElement.query(By.directive(DaffioExampleViewerComponent));
+      const exampleViewer = fixture.debugElement.query(By.directive(DaffDocsExampleViewerComponent));
       expect(exampleViewer.componentInstance.example()).toBe('my-example-id');
     });
 
     it('should replace multiple example placeholders', () => {
       const contentWithExamples = `
-        <daffio-example-viewer example="example-1"></daffio-example-viewer>
-        <daffio-example-viewer example="example-2" simple></daffio-example-viewer>
+        <daff-docs-example-viewer example="example-1"></daff-docs-example-viewer>
+        <daff-docs-example-viewer example="example-2" simple></daff-docs-example-viewer>
       `;
       fixture.componentRef.setInput('contents', contentWithExamples);
       fixture.detectChanges();
 
-      const exampleViewers = fixture.debugElement.queryAll(By.directive(DaffioExampleViewerComponent));
+      const exampleViewers = fixture.debugElement.queryAll(By.directive(DaffDocsExampleViewerComponent));
       expect(exampleViewers.length).toBe(2);
       expect(exampleViewers[0].componentInstance.example()).toBe('example-1');
       expect(exampleViewers[1].componentInstance.example()).toBe('example-2');

@@ -1,5 +1,7 @@
 @use '../color-palettes/color-palettes-theme' as color-palettes;
+@use '../example-viewer/example-viewer-theme' as example-viewer;
 
 @mixin daff-docs-component-themes($theme) {
 	@include color-palettes.daff-docs-color-palettes-theme($theme);
+	@include example-viewer.daff-docs-example-viewer-theme($theme);
 }

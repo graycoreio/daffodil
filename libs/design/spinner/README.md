@@ -31,7 +31,7 @@ Labels are used to describe the loading state and provide context for users. The
 </daff-spinner>
 ```
 
-<daffio-example-viewer example="spinner-with-label"></daffio-example-viewer>
+<daff-docs-example-viewer example="spinner-with-label"></daff-docs-example-viewer>
 
 ## Features
 
@@ -40,12 +40,12 @@ Use the `color` property to change the color of a spinner.
 
 > Note: `dark`, `light`, and `theme` should be used on appropriate backgrounds for sufficient contrast.
 
-<daffio-example-viewer example="spinner-colors"></daffio-example-viewer>
+<daff-docs-example-viewer example="spinner-colors"></daff-docs-example-viewer>
 
 ### Sizes
 Use the `size` proeprty to change the size of a spinner. The default size is `md`.
 
-<daffio-example-viewer example="spinner-sizes"></daffio-example-viewer>
+<daff-docs-example-viewer example="spinner-sizes"></daff-docs-example-viewer>
 
 ## Accessibility
 The spinner has `role="status"` which announces content changes to assistive technologies.

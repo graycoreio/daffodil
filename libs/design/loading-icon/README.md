@@ -51,7 +51,7 @@ Use the `color` property to change the color of a loading icon. The default colo
 
 > `theme` and `white` should be used on a darker background in order to have sufficient contrast.
 
-<daffio-example-viewer example="loading-icon-color"></daffio-example-viewer>
+<daff-docs-example-viewer example="loading-icon-color"></daff-docs-example-viewer>
 
 ## Accessibility
 Loading icons should be given meaningful labels by using `aria-label` or `aria-labelledby`.

@@ -4,7 +4,7 @@ A switch allows users to toggle the state of a single setting.
 ## Overview
 Switches provide a way to toggle between two states with a visual indicator of the current state. A label can be positioned on the left, right, top, or bottom of the switch. The switch can be set to a disabled state, display a loading indicator, or show a custom error message.
 
-<daffio-example-viewer example="basic-switch"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-switch"></daff-docs-example-viewer>
 
 ## Usage
 
@@ -27,17 +27,17 @@ export class CustomComponent {}
 ## Sizes
 A small switch variant is available for dense layouts. Use the `size="sm"` property to render a more compact version of a switch.
 
-<daffio-example-viewer example="switch-sizes"></daffio-example-viewer>
+<daff-docs-example-viewer example="switch-sizes"></daff-docs-example-viewer>
 
 ## Disable a switch
 Use the `disabled` property on switch to make it non-interactive.
 
-<daffio-example-viewer example="disabled-switch"></daffio-example-viewer>
+<daff-docs-example-viewer example="disabled-switch"></daff-docs-example-viewer>
 
 ## Label positions
 Use the `labelPosition` property to control the visual relationship between the switch and its label. By default, labels appear to the left of the switch control.
 
-<daffio-example-viewer example="switch-label-positions"></daffio-example-viewer>
+<daff-docs-example-viewer example="switch-label-positions"></daff-docs-example-viewer>
 
 ## Accessibility
 Switch follows the [ARIA Switch design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/switch/).

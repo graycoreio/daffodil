@@ -4,7 +4,7 @@ Trees display hierarchical information in a nested, expandable format.
 ## Overview
 Trees help users navigate complex structures by organizing content into parent and child relationships. They're commonly used for navigation menus, file browsers, and category lists. For flat lists without nested content, use the [navigation list](/libs/design/list/README.md) instead.
 
-<daffio-example-viewer example="basic-tree"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-tree"></daff-docs-example-viewer>
 
 ## Usage
 

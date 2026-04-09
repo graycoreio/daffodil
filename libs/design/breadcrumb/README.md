@@ -4,7 +4,7 @@ A breadcrumb is a secondary navigation pattern that shows users their current lo
 ## Overview
 Breadcrumbs visually represent the navigational structure of a site or app and help users navigate to parent levels with ease. Each breadcrumb item corresponds to a level in the hierarchy, with the last item indicating the current page or context.
 
-<daffio-example-viewer example="basic-breadcrumb"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-breadcrumb"></daff-docs-example-viewer>
 
 ## Best practices
 

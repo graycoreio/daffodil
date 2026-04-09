@@ -22,11 +22,11 @@ import { DaffDocsDesignExample } from '@daffodil/docs-utils';
 export type DaffioExampleViewerTab = 'script' | 'template';
 
 @Component({
-  selector: 'daffio-example-viewer-code',
+  selector: 'daff-docs-example-viewer-code',
   templateUrl: './example-viewer-code.component.html',
   styleUrl: './example-viewer-code.component.scss',
   host: {
-    class: 'daffio-example-viewer-code',
+    class: 'daff-docs-example-viewer-code',
   },
   imports: [
     FaIconComponent,
@@ -34,7 +34,7 @@ export type DaffioExampleViewerTab = 'script' | 'template';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffioExampleViewerCodeComponent implements OnDestroy {
+export class DaffDocsExampleViewerCodeComponent implements OnDestroy {
   private readonly ngZone = inject(NgZone);
   private copyTimeoutId?: ReturnType<typeof setTimeout>;
 

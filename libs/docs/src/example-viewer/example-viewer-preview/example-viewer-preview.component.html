@@ -1,12 +1,12 @@
 @if (!simple()) {
-	<div class="daffio-example-viewer-preview__viewport-controls">
+	<div class="daff-docs-example-viewer-preview__viewport-controls">
 		<button daff-flat-button size="sm"
-			class="daffio-example-viewer-preview__viewport-button"
+			class="daff-docs-example-viewer-preview__viewport-button"
 			[attr.aria-label]="'Viewport size: ' + viewportLabel() + '. Select to change'"
 			[daffMenuActivator]="viewportMenu"
 			#activator="daffMenuActivator">
 				{{ viewportLabel() }}
-				<span daffSuffix class="daffio-example-viewer-preview__icon" [class.open]="activator.isOpen()"></span>
+				<span daffSuffix class="daff-docs-example-viewer-preview__icon" [class.open]="activator.isOpen()"></span>
 		</button>
 		<ng-template #viewportMenu>
 			<daff-menu>
@@ -19,6 +19,6 @@
 		</ng-template>
 	</div>
 }
-<div class="daffio-example-viewer-preview__content" [class]="viewport()">
+<div class="daff-docs-example-viewer-preview__content" [class]="viewport()">
 	<ng-container *ngComponentOutlet="exampleComponent()"></ng-container>
 </div>

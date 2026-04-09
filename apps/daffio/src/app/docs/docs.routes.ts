@@ -16,6 +16,7 @@ import { DaffioDocsNavContainer } from '../core/nav/docs/docs.component';
 import { DAFF_DOCS_NAV_SIDEBAR_REGISTRATION } from '../core/nav/docs-sidebar.provider';
 import { DaffioDocsDesignNavMenuComponent } from './design/components/nav-menu/nav-menu.component';
 import { DaffioDocsDesignOverviewPageComponent } from './design/pages/overview/overview.component';
+import { provideDaffioDocsExampleService } from './services/example.provider';
 import { DaffioRouterNamedViewsEnum } from '../core/router/named-views/models/named-views.enum';
 import { DaffioRoute } from '../core/router/route.type';
 import { provideDaffioDocsDesignSection } from './design/services/index.service';
@@ -72,6 +73,7 @@ export const daffioDocsRoutes = <Routes> [
         path: DAFF_DOCS_STOREFRONT_PATH,
         providers: [
           provideDaffioDocsDesignSection(DAFF_DOCS_STOREFRONT_PATH),
+          provideDaffioDocsExampleService(),
         ],
         loadChildren: () => import('./design/design.routes').then(r => r.daffioDocsDesignRoutesFactory(
           DAFF_DOCS_STOREFRONT_PATH,

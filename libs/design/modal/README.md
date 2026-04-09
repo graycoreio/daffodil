@@ -4,7 +4,7 @@ Modal is a dynamically rendered element that floats above the rest of a page's c
 ## Overview
 Modals are used to capture information or attention. They overlay the main content and prevent interaction with the page until the modal is dismissed.
 
-<daffio-example-viewer example="basic-modal"></daffio-example-viewer>
+<daff-docs-example-viewer example="basic-modal"></daff-docs-example-viewer>
 
 ## Best practices
 
