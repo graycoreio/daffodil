@@ -27,6 +27,8 @@
     "build": "bash scripts/build.sh",
     "pack": "cd ../../dist/commerce/ && rm -f dist/commerce/*.tgz && npm pack",
     "publish": "cd ../../dist/commerce && npm publish --access=public",
+    "verdaccio:publish": "bash scripts/publish-local.sh",
+    "verdaccio:unpublish": "bash scripts/unpublish-local.sh",
     "test": "NODE_OPTIONS=\"--no-experimental-strip-types\" ts-node --compiler-options '{\"module\":\"commonjs\"}' -P tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
   },
   "dependencies": {
@@ -61,6 +63,11 @@
   "nx": {
     "targets": {
       "pack": {
+        "dependsOn": [
+          "build"
+        ]
+      },
+      "verdaccio:publish": {
         "dependsOn": [
           "build"
         ]

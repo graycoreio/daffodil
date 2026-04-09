@@ -1,108 +1,85 @@
 # Development Guide
 
+The purpose of this guide is to help you test the `@daffodil/commerce` schematic locally against a fresh Angular application.
+
 ## Testing the ng-add Schematic Locally
 
-To test the `ng-add` schematic in a fresh Angular application locally, follow these steps:
+This guide uses [Verdaccio](https://verdaccio.org/) as a local npm registry to publish and install `@daffodil/*` packages.
 
-### 1. Build the Schematic Package
+### 1. Start Verdaccio
+
+```bash
+docker run -d --name verdaccio -p 4873:4873 verdaccio/verdaccio
+```
+
+Wait for it to be healthy:
+
+```bash
+curl -s http://localhost:4873/-/ping
+```
+
+### 2. Authenticate with Verdaccio
+
+```bash
+REGISTRY_URL="http://localhost:4873"
+TOKEN=$(curl -s -X PUT ${REGISTRY_URL}/-/user/org.couchdb.user:ci \
+  -H "Content-Type: application/json" \
+  -d '{"name":"ci","password":"Ci-test-password-1234","type":"user"}' | jq -r '.token')
+
+if [ -z "$TOKEN" ] || [ "$TOKEN" = "null" ]; then echo "ERROR: Failed to obtain Verdaccio token" && exit 1; fi
+
+export NPM_CONFIG_USERCONFIG=$(pwd)/.npmrc
+sed -i '/@daffodil:registry/d; /localhost:4873/d' .npmrc 2>/dev/null || true && printf "@daffodil:registry=${REGISTRY_URL}\n//localhost:4873/:_authToken=${TOKEN}\n" >> .npmrc
+```
+
+### 3. Build and Publish
 
 From the root of the Daffodil repository:
 
 ```bash
-# Install dependencies
-npm install
-
-# Build if there's a build script available
-npm run build
+npx nx run @daffodil/commerce:verdaccio:publish
 ```
 
-### 2. Create a Test Angular Application
+> [!TIP]
+> To unpublish all `@daffodil/*` packages from Verdaccio:
+> ```bash
+> npx nx run @daffodil/commerce:verdaccio:unpublish
+> ```
+> Both scripts will refuse to run if the `@daffodil` registry is not pointing at localhost.
+
+### 4. Scaffold a Test App and Run the Schematic
 
 ```bash
-# Create a new Angular app in a separate directory
-ng new test-daffodil-app
-cd test-daffodil-app
+mkdir -p /tmp/daffodil-commerce-test && cd /tmp/daffodil-commerce-test
+npx @angular/cli@20 new test-app --style=scss --skip-tests --skip-git --defaults
+
+cd test-app
+npx ng add @daffodil/commerce@0.0.0-test.local
+
 ```
 
-### 3. Testing Methods
-
-#### Method 1: Using npm link
+### 5. Verify
 
 ```bash
-cd dist/commerce
-npm link
-
-# In your test Angular app directory
-cd /path/to/test-daffodil-app
-npm link @daffodil/commerce
-
-# Run the schematic
-ng add @daffodil/commerce
+npx ng build
 ```
-
-#### Method 2: Using npm pack (Recommended)
-
-```bash
-# From the repo root
-# This create a new daffodil-commerce-0.0.0-PLACEHOLDER.tgz file in your dist/commerce folder.
-npx nx run @daffodil/commerce:pack
-
-# Install the package.
-cd /path/to/test-daffodil-app
-npm install /path/to/daffodil-commerce-0.0.0-PLACEHOLDER.tgz
-
-# Run the schematic
-ng add @daffodil/commerce
-```
-
-### 4. Verification Steps
-
-After running the schematic, verify that:
-
-- [ ] New files have been created as expected
-- [ ] Dependencies have been added to `package.json`
-- [ ] Configuration changes have been applied correctly
-- [ ] The application builds successfully: `ng build`
-- [ ] The application serves without errors: `ng serve`
-
-### 5. Development Workflow
-
-For iterative development and testing:
-
-1. Make changes to your schematic code in `/tools/schematics/`
-2. Rebuild the package if necessary
-3. Create a fresh test Angular app or reset your existing test app
-4. Re-install and run the schematic using one of the methods above
-5. Verify the changes work as expected
-6. Repeat until satisfied
-
-### Troubleshooting
-
-#### Common Issues
-
-- **Angular CLI version mismatch**: Ensure your Angular CLI version is compatible with the schematic's Angular version requirements
-- **Peer dependency warnings**: Check that all peer dependencies are satisfied in your test application
-- **Linking issues**: If `npm link` doesn't work reliably, use the `npm pack` method instead
-
-#### Debugging Tips
-
-- Check the schematic's console output for detailed error messages
-- Verify the `collection.json` and `package.json` configurations are correct
-- Test with a completely fresh Angular application to avoid conflicts
-- Use `ng add @daffodil/commerce --dry-run` to see what changes would be made without applying them
 
 ### Clean Up
 
-After testing, clean up your test environment:
-
 ```bash
 # Remove the test application
-rm -rf test-daffodil-app
+rm -rf /tmp/daffodil-commerce-test
 
-# Unlink the package (if you used npm link)
-cd dist/commerce
-npm unlink
+# Stop and remove Verdaccio
+docker stop verdaccio && docker rm verdaccio
 
-# Remove any .tgz files created during testing
-rm *.tgz
+# Remove the Verdaccio lines from .npmrc
+sed -i '/@daffodil:registry/d; /localhost:4873/d' .npmrc
 ```
+
+### Troubleshooting
+
+- **Verdaccio not reachable**: Ensure port 4873 is not in use and the container is running (`docker ps`).
+- **Publish fails with 401**: Re-run the authentication step; the token may have expired.
+- **Angular CLI version mismatch**: Ensure your Angular CLI version is compatible with the schematic's Angular version requirements.
+- Use `ng add @daffodil/commerce --dry-run` to preview changes without applying them.
