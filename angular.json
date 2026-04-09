@@ -323,7 +323,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "allowedHosts": [
-              ".githubpreview.dev"
+              ".githubpreview.dev",
+							"localhost"
             ]
           },
           "configurations": {
