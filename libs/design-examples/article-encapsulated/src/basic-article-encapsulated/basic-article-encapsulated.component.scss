@@ -1,0 +1,27 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.app-pricing-card {
+	border: thin solid #efefef;
+	border-radius: 1rem;
+	padding: 1rem;
+	width: 20rem;
+
+	h3 {
+		font-size: 1rem;
+		line-height: 1.5rem;
+		font-weight: 600;
+		text-transform: uppercase;
+	}
+
+	p {
+		font-size: 3rem;
+		line-height: 3rem;
+		font-weight: 600;
+		margin: 0;
+		padding: 0;
+	}
+}
