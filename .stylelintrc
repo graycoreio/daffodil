@@ -1,6 +1,5 @@
 {
   "plugins": [
-    "stylelint-selector-bem-pattern",
     "@stylistic/stylelint-plugin",
     "./tools/stylelint/no-direct-cursor-pointer.mjs"
   ],

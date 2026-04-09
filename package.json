@@ -132,7 +132,6 @@
     "standard-version": "^9.5.0",
     "stylelint": "^17.0.0",
     "stylelint-config-recommended-scss": "^17.0.0",
-    "stylelint-selector-bem-pattern": "^4.0.1",
     "ts-loader": "^5.4.5",
     "ts-node": "~7.0.1",
     "ts-node-dev": "^1.1.8",
