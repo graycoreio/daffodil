@@ -48,15 +48,10 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService, Daf
     const productFactory = inject(DaffProductExtensionFactory);
 
     if(isPlatformBrowser(platform)) {
-      this._products = JSON.parse(
-        transferState.get(
-          TRANSFER_STATE_KEY,
-          { data: JSON.stringify(productFactory.createMany(35)) },
-        ).data,
-      );
+      this._products = transferState.get(TRANSFER_STATE_KEY, productFactory.createMany(35));
     } else {
       this._products = productFactory.createMany(35);
-      transferState.set(TRANSFER_STATE_KEY, { data: JSON.stringify(this._products) });
+      transferState.set(TRANSFER_STATE_KEY, this._products);
     }
   }
 
