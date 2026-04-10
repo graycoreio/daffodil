@@ -1,6 +1,5 @@
 /**
- * An interface for giving a component the ability to display a compact UI.
- * In order to be compactable, the class must implement this property.
+ * @deprecated Deprecated in version 0.92.0. Will be removed in version 1.0.0.
  */
 export interface DaffCompactable {
   compact: boolean;
