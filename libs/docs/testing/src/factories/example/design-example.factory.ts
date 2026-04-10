@@ -5,7 +5,10 @@ import {
   DaffModelFactory,
   IDaffModelFactory,
 } from '@daffodil/core/testing';
-import { DaffDocsDesignExample } from '@daffodil/docs-utils';
+import {
+  DaffDocsDesignExample,
+  DaffDocsDesignExampleFile,
+} from '@daffodil/docs-utils';
 
 import { DaffDocsDesignExampleFileFactory } from './design-example-file.factory';
 

@@ -7,6 +7,8 @@ import {
 } from '@daffodil/core/testing';
 import {
   ShopifyCategory,
+  ShopifyImageNode,
+  ShopifyProductNode,
   shopifyHandleTransformer,
   shopifyIdTransformer,
   shopifyImageTransformer,
@@ -25,7 +27,7 @@ class MockShopifyCategory implements ShopifyCategory {
   image = <any>shopifyImageTransformer(this.shopifyImageNodeFactory.create(), 'CollectionImage');
   products = {
     edges: [],
-    nodes: this.shopifyProductNodeFactory.createMany(),
+    nodes: this.shopifyProductNodeFactory.createMany(1),
     filters: [],
     pageInfo: {
       hasNextPage: false,

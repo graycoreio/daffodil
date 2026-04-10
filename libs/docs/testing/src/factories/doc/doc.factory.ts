@@ -5,7 +5,10 @@ import {
   DaffModelFactory,
   IDaffModelFactory,
 } from '@daffodil/core/testing';
-import { DaffDoc } from '@daffodil/docs-utils';
+import {
+  DaffDoc,
+  DaffDocTableOfContentsEntry,
+} from '@daffodil/docs-utils';
 
 import { MockBaseDoc } from './base-doc.factory';
 import { DaffBreadcrumbFactory } from '../nav/breadcrumb.factory';

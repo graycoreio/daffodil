@@ -4,7 +4,10 @@ import {
   DaffModelFactory,
   IDaffModelFactory,
 } from '@daffodil/core/testing';
-import { ShopifyProductPriceRange } from '@daffodil/driver/shopify';
+import {
+  ShopifyMoneyV2,
+  ShopifyProductPriceRange,
+} from '@daffodil/driver/shopify';
 
 import { ShopifyMoneyFactory } from './money.factory';
 

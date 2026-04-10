@@ -5,7 +5,10 @@ import {
   DaffModelFactory,
   IDaffModelFactory,
 } from '@daffodil/core/testing';
-import { DaffApiPackageDoc } from '@daffodil/docs-utils';
+import {
+  DaffApiNavDoc,
+  DaffApiPackageDoc,
+} from '@daffodil/docs-utils';
 
 import { DaffApiNavDocFactory } from './api-nav-doc.factory';
 import { DaffBreadcrumbFactory } from './breadcrumb.factory';

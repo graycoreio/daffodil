@@ -6,31 +6,30 @@ import {
   IDaffModelFactory,
 } from '@daffodil/core/testing';
 import {
+  DaffApiActionDoc,
+  DaffApiComponentDoc,
+  DaffApiConstantDoc,
+  DaffApiDirectiveDoc,
   DaffApiDoc,
+  DaffApiErrorDoc,
+  DaffApiFacadeDoc,
+  DaffApiGuardDoc,
+  DaffApiHelperDoc,
+  DaffApiMockDoc,
+  DaffApiModelFactoryDoc,
+  DaffApiModuleDoc,
+  DaffApiOperatorDoc,
+  DaffApiPipeDoc,
+  DaffApiProviderDoc,
+  DaffApiReducerDoc,
+  DaffApiResolverDoc,
+  DaffApiSelectorDoc,
+  DaffApiServiceDoc,
+  DaffApiTokenDoc,
+  DaffApiTypeDoc,
   DaffDocsApiRole,
   DaffDocsApiType,
 } from '@daffodil/docs-utils';
-
-import { DaffApiActionDocFactory } from './action-doc.factory';
-import { DaffApiComponentDocFactory } from './component-doc.factory';
-import { DaffApiConstantDocFactory } from './constant-doc.factory';
-import { DaffApiDirectiveDocFactory } from './directive/directive-doc.factory';
-import { DaffApiErrorDocFactory } from './error-doc.factory';
-import { DaffApiFacadeDocFactory } from './facade-doc.factory';
-import { DaffApiGuardDocFactory } from './guard-doc.factory';
-import { DaffApiHelperDocFactory } from './helper-doc.factory';
-import { DaffApiMockDocFactory } from './mock-doc.factory';
-import { DaffApiModelFactoryDocFactory } from './model-factory-doc.factory';
-import { DaffApiModuleDocFactory } from './module-doc.factory';
-import { DaffApiOperatorDocFactory } from './operator-doc.factory';
-import { DaffApiPipeDocFactory } from './pipe-doc.factory';
-import { DaffApiProviderDocFactory } from './provider-doc.factory';
-import { DaffApiReducerDocFactory } from './reducer-doc.factory';
-import { DaffApiResolverDocFactory } from './resolver-doc.factory';
-import { DaffApiSelectorDocFactory } from './selector-doc.factory';
-import { DaffApiServiceDocFactory } from './service-doc.factory';
-import { DaffApiTokenDocFactory } from './token-doc.factory';
-import { DaffApiTypeDocFactory } from './type/doc.factory';
 
 /**
  * Factory for creating various documentation objects.

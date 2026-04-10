@@ -6,7 +6,9 @@ import {
   IDaffModelFactory,
 } from '@daffodil/core/testing';
 import {
+  ShopifyImageNode,
   ShopifyProductNode,
+  ShopifyProductPriceRange,
   shopifyHandleTransformer,
   shopifyIdTransformer,
   shopifyImageTransformer,
@@ -26,7 +28,7 @@ class MockShopifyProductNode implements ShopifyProductNode {
   id = shopifyIdTransformer(`${faker.number.int({ min: 100000000000 })}`, 'Product');
   images = {
     edges: [],
-    nodes: this.shopifyImageNodeFactory.createMany().map(node => (<any>shopifyImageTransformer(node, 'ProductImage'))),
+    nodes: this.shopifyImageNodeFactory.createMany(1).map(node => (<any>shopifyImageTransformer(node, 'ProductImage'))),
     pageInfo: {
       hasNextPage: false,
       hasPreviousPage: false,

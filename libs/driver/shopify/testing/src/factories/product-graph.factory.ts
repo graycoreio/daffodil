@@ -4,13 +4,17 @@ import {
   DaffModelFactory,
   IDaffModelFactory,
 } from '@daffodil/core/testing';
-import { ShopifyProductGraph } from '@daffodil/driver/shopify';
+import {
+  ShopifyPageInfo,
+  ShopifyProductGraph,
+  ShopifyProductNode,
+} from '@daffodil/driver/shopify';
 
 import { ShopifyPageInfoFactory } from './page-info.factory';
 import { ShopifyProductNodeFactory } from './product-node.factory';
 
 class MockShopifyProductGraph implements ShopifyProductGraph {
-  nodes = this.shopifyProductNodeFactory.createMany();
+  nodes = this.shopifyProductNodeFactory.createMany(1);
   edges = [];
   filters = [];
   pageInfo = this.shopifyPageInfoFactory.create();
