@@ -11,7 +11,7 @@ import { By } from '@angular/platform-browser';
 
 import {
   DaffColorableDirective,
-  DaffPalette,
+  DaffColor,
 } from '@daffodil/design';
 
 @Component({
@@ -23,7 +23,7 @@ import {
 })
 
 class WrapperComponent {
-  color: DaffPalette;
+  color: DaffColor;
 }
 
 describe('@daffodil/design | DaffColorableDirective', () => {

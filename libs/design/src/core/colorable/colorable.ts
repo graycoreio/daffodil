@@ -1,61 +1,66 @@
+/**
+ * @deprecated Deprecated in version 0.92.0. Will be removed in version 1.0.0.
+ */
 export interface DaffColorable {
-  color: DaffPalette;
+  color: DaffColor;
 }
 
 /**
- * These are the valid options that can be passed to a DaffColorable component.
+ * The available color options.
  */
-export type DaffPalette = 'primary' | 'secondary' | 'tertiary' | 'light' | 'dark' | 'theme' | 'theme-contrast' | 'black' | 'white' | undefined;
+export type DaffColor = 'primary' | 'secondary' | 'tertiary' | 'light' | 'dark' | 'theme' | 'theme-contrast' | 'black' | 'white' | undefined;
 
 /**
- * Enumerates the available color palette options for a component.
- * These values can be used to apply specific color styles to components within the application.
+ * @deprecated Deprecated in version 0.92.0. Will be removed in version 1.0.0.
  */
-export enum DaffPaletteEnum {
+export type DaffPalette = DaffColor;
+
+/**
+ * The available color options.
+ */
+export enum DaffColorEnum {
   /**
-   * Your primary color.
+   * The primary color.
    */
   Primary = 'primary',
 
   /**
-   * Your secondary color.
+   * The secondary color.
    */
   Secondary = 'secondary',
 
   /**
-   * Your tertiary color.
+   * The tertiary color.
    */
   Tertiary = 'tertiary',
 
   /**
-   * A light color that does not change based on the defined theme.
+   * A light color that does not change based on the theme.
    */
   Light = 'light',
 
   /**
-   * A dark color that does not change based on the defined theme.
+   * A dark color that does not change based on the theme.
    */
   Dark = 'dark',
 
   /**
-   * A color that matches the defined theme.
+   * A color that matches the theme.
    */
   Theme = 'theme',
 
   /**
-   * A color that contrasts against the defined theme.
+   * A color that contrasts against the theme.
    */
   ThemeContrast = 'theme-contrast',
 
   /**
    * @deprecated Deprecated in version 0.82.0. Will be removed in version 1.0.0.
-   * Black. It's dark.
    */
   Black = 'black',
 
   /**
    * @deprecated Deprecated in version 0.82.0. Will be removed in version 1.0.0.
-   * White. It's bright.
    */
   White = 'white',
 }
