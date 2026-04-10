@@ -8,7 +8,7 @@
 	@include breakpoint(big-tablet) {
 		padding: 50px 0;
 		grid-template-columns: 2fr 1fr;
-		grid-column-gap: 50px;
+		column-gap: 50px;
 	}
 
 	&__desktop-cart {

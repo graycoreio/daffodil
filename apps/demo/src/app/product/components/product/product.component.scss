@@ -3,7 +3,7 @@
 
 .demo-product {
 	display: grid;
-	grid-gap: 25px;
+	gap: 25px;
 	grid-template-columns: 1fr;
 	padding: 25px 0 50px;
 
@@ -14,7 +14,7 @@
 			'image-gallery .'
 			'image-gallery .'
 			'image-gallery .';
-		grid-gap: 25px 50px;
+		gap: 25px 50px;
 		grid-template-columns: 2fr 1fr;
 		padding: 50px 25px;
 	}

@@ -38,7 +38,7 @@
 	&__button-set {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-gap: 5px;
+		gap: 5px;
 
 		@include breakpoint(mobile) {
 			grid-template-columns: 1fr 1fr;

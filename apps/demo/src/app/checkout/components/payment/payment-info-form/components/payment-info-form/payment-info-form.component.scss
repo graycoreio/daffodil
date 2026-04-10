@@ -2,8 +2,8 @@
 
 .demo-payment-info-form {
 	display: grid;
-	grid-column-gap: 10px;
-	grid-row-gap: 15px;
+	column-gap: 10px;
+	row-gap: 15px;
 
 	@include breakpoint(big-tablet) {
 		grid-template-columns: 1fr 1fr;

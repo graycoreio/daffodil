@@ -21,12 +21,12 @@
 	&__grid {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-gap: 50px 0;
+		gap: 50px 0;
 		text-align: center;
 
 		@include breakpoint(big-tablet) {
 			grid-template-columns: 1fr 1fr;
-			grid-gap: 0 50px;
+			gap: 0 50px;
 			text-align: left;
 		}
 	}

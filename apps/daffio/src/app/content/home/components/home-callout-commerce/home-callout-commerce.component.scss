@@ -4,7 +4,7 @@
 	&__grid {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-gap: 4rem;
+		gap: 4rem;
 
 		@include daff.breakpoint(big-tablet) {
 			grid-template-columns: 25rem 1fr;

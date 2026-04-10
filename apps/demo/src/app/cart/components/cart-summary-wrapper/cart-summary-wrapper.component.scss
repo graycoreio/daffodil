@@ -4,7 +4,7 @@
 
 .demo-cart-summary-wrapper {
 	display: grid;
-	grid-row-gap: 15px;
+	row-gap: 15px;
 
 	&__content {
 		@include section-divider();

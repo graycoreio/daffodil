@@ -1,11 +1,11 @@
-const stylelint = require('stylelint');
+import stylelint from 'stylelint';
 
 const ruleName = 'daffodil/no-direct-cursor-pointer';
 const messages = stylelint.utils.ruleMessages(ruleName, {
   rejected: 'Use the `clickable()` mixin instead of directly setting `cursor: pointer;`.',
 });
 
-module.exports = stylelint.createPlugin(ruleName, (primaryOption) => {
+export default stylelint.createPlugin(ruleName, (primaryOption) => {
   return (postcssRoot, postcssResult) => {
     postcssRoot.walkDecls((decl) => {
       if (decl.prop === 'cursor' && decl.value === 'pointer') {
@@ -20,5 +20,4 @@ module.exports = stylelint.createPlugin(ruleName, (primaryOption) => {
   };
 });
 
-module.exports.ruleName = ruleName;
-module.exports.messages = messages;
+export { ruleName, messages };

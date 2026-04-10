@@ -1,8 +1,7 @@
 {
   "plugins": [
-    "stylelint-selector-bem-pattern",
     "@stylistic/stylelint-plugin",
-    "./tools/stylelint/no-direct-cursor-pointer"
+    "./tools/stylelint/no-direct-cursor-pointer.mjs"
   ],
   "extends": "stylelint-config-recommended-scss",
   "rules": {
@@ -53,12 +52,7 @@
     }],
     "selector-type-case": "lower",
     "selector-max-id": 0,
-    "selector-class-pattern": [
-      "(^_?(daff-|demo-|daffio-))|(^(active|horizontal|vertical|left|right|disabled|hidden)$)",
-      {
-        "resolveNestedSelectors": true
-      }
-    ],
+    "selector-class-pattern": "(^_?(daff-|demo-|daffio-))|(^(active|horizontal|vertical|left|right|disabled|hidden)$)",
     "scss/comment-no-loud": true,
     "scss/selector-nest-combinators": "always",
     "scss/selector-no-redundant-nesting-selector": true,

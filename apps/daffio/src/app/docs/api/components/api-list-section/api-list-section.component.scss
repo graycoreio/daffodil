@@ -5,7 +5,7 @@ $api-list-section-item-border-radius: 0.25rem;
 :host {
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-gap: 0.5rem 1.5rem;
+	gap: 0.5rem 1.5rem;
 
 	@include daff.breakpoint(tablet) {
 		grid-template-columns: repeat(2, 1fr);

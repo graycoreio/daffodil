@@ -17,7 +17,7 @@
 	&__palettes {
 		align-self: stretch;
 		display: grid;
-		grid-gap: 1.25rem;
+		gap: 1.25rem;
 		grid-template-columns: 1fr;
 
 		@include daff.breakpoint(tablet) {
