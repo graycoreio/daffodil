@@ -48,23 +48,24 @@ export interface DaffMagentoDriverConfig extends HttpOptions {
  * @param endpoint - The Magento store domain (e.g. "https://www.my-store.com/graphql") or an injection token for a string or function that returns a string
  */
 export function provideMagentoDriver(options: DaffMagentoDriverConfig | InjectionToken<DaffMagentoDriverConfig>, ...features: Array<MagentoDriverFeature>): EnvironmentProviders {
-  const opts: DaffMagentoDriverConfig = {
-    possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
-    typePolicies,
-    ...(options instanceof InjectionToken ? inject(options) : options),
-  };
-  const cache = new InMemoryCache({ typePolicies: opts.typePolicies, possibleTypes: opts.possibleTypes });
   const providers = [
     ...features.flatMap(({ ɵproviders }) => ɵproviders),
-    provideApollo(() => ({
-      ...inject(DAFF_DRIVER_MAGENTO_EXTRA_APOLLO_OPTIONS),
-      link: from([
-        ...inject(DAFF_APOLLO_REQUEST_HANDLERS),
-        onError(inject(DAFF_DRIVER_MAGENTO_ERROR_HANDLER)),
-        inject(HttpLink).create(opts),
-      ]),
-      cache,
-    })),
+    provideApollo(() => {
+      const opts: DaffMagentoDriverConfig = {
+        possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
+        typePolicies,
+        ...(options instanceof InjectionToken ? inject(options) : options),
+      };
+      return {
+        ...inject(DAFF_DRIVER_MAGENTO_EXTRA_APOLLO_OPTIONS),
+        link: from([
+          ...inject(DAFF_APOLLO_REQUEST_HANDLERS),
+          onError(inject(DAFF_DRIVER_MAGENTO_ERROR_HANDLER)),
+          inject(HttpLink).create(opts),
+        ]),
+        cache: new InMemoryCache({ typePolicies: opts.typePolicies, possibleTypes: opts.possibleTypes }),
+      };
+    }),
     provideDaffDriverHttpClientCacheService(DaffDriverHttpClientCacheMagentoService),
 
     // enable caching by default
@@ -73,7 +74,7 @@ export function provideMagentoDriver(options: DaffMagentoDriverConfig | Injectio
   ];
 
   if (features.find(({ ɵkind }) => ɵkind === MagentoDriverFeatureKind.TransferState)) {
-    providers.push(provideDaffDriverMagentoTransferState(cache));
+    providers.push(provideDaffDriverMagentoTransferState());
   }
 
   return makeEnvironmentProviders(providers);
