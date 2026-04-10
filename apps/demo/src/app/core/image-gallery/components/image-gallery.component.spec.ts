@@ -10,9 +10,6 @@ import {
   MockStore,
 } from '@ngrx/store/testing';
 
-import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
-import { DAFF_MEDIA_GALLERY_COMPONENTS } from '@daffodil/design/media-gallery';
-
 import { ImageGalleryComponent } from './image-gallery.component';
 
 const stubImages = [
@@ -22,7 +19,9 @@ const stubImages = [
 
 @Component({
   template: '<demo-image-gallery-container [images]="imagesValue"></demo-image-gallery-container>',
-  standalone: false,
+  imports: [
+    ImageGalleryComponent,
+  ],
 })
 class WrapperComponent {
   imagesValue: Record<string, any>[] = stubImages;
@@ -38,12 +37,7 @@ describe('ImageGalleryComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DAFF_MEDIA_GALLERY_COMPONENTS,
-        DAFF_IMAGE_COMPONENTS,
-      ],
-      declarations: [
         WrapperComponent,
-        ImageGalleryComponent,
       ],
       providers: [
         provideMockStore({}),

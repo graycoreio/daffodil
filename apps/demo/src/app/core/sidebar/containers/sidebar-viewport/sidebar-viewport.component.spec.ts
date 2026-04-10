@@ -8,18 +8,18 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import {
   provideMockStore,
   MockStore,
 } from '@ngrx/store/testing';
 
 import {
-  DaffSidebarModule,
   DaffSidebarSide,
   DaffSidebarViewportComponent,
   DaffSidebarMode,
 } from '@daffodil/design/sidebar';
+import { DaffNavigationStateModule } from '@daffodil/navigation/state';
 
 import { SidebarViewportContainer } from './sidebar-viewport.component';
 import {
@@ -29,10 +29,10 @@ import {
   SetSidebarState,
 } from '../../actions/sidebar.actions';
 import * as fromDemoSidebar from '../../reducers';
+import { SidebarContainer } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'demo-sidebar', template: '',
-  standalone: false,
 })
 class MockSidebarContainer {
   @Input() side: DaffSidebarSide;
@@ -56,17 +56,26 @@ describe('SidebarViewportContainer', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule,
-        DaffSidebarModule,
-      ],
-      declarations: [
         SidebarViewportContainer,
-        MockSidebarContainer,
       ],
       providers: [
         provideMockStore({}),
+        provideNoopAnimations(),
       ],
     })
+      .overrideComponent(SidebarViewportContainer, {
+        remove: {
+          imports: [
+            SidebarContainer,
+            DaffNavigationStateModule,
+          ],
+        },
+        add: {
+          imports: [
+            MockSidebarContainer,
+          ],
+        },
+      })
       .compileComponents();
   }));
 

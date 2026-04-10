@@ -1,11 +1,9 @@
-import { NgModule } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
 import { reducers } from './reducers/index';
 
-@NgModule({
-  imports: [
+export const provideDemoImageGalleryState = () =>
+  importProvidersFrom(
     StoreModule.forFeature('demoImageGallery', reducers),
-  ],
-})
-export class DemoImageGalleryStateModule { }
+  );

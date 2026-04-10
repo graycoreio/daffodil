@@ -3,10 +3,12 @@ import {
   Input,
   OnChanges,
 } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import {
   daffTransformTree,
   DaffTreeData,
+  DAFF_TREE_COMPONENTS,
 } from '@daffodil/design/tree';
 import { DaffNavigationTree } from '@daffodil/navigation';
 
@@ -22,7 +24,10 @@ const transformNavigationTree = (node: DaffNavigationTree): DaffTreeData<unknown
   selector: 'demo-sidebar-list',
   templateUrl: './sidebar-list.component.html',
   styleUrls: ['./sidebar-list.component.scss'],
-  standalone: false,
+  imports: [
+    RouterModule,
+    DAFF_TREE_COMPONENTS,
+  ],
 })
 export class SidebarListComponent implements OnChanges {
   @Input() tree: DaffNavigationTree;

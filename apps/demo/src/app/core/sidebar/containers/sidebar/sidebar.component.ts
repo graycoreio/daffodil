@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   forwardRef,
@@ -5,15 +6,18 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
+import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 import {
   DaffSidebarSide,
   DaffSidebarMode,
   DaffSidebarComponent,
+  DAFF_SIDEBAR_COMPONENTS,
 } from '@daffodil/design/sidebar';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import {
@@ -22,14 +26,23 @@ import {
 } from '@daffodil/navigation/state';
 
 import { CloseSidebar } from '../../actions/sidebar.actions';
+import { SidebarListComponent } from '../../components/sidebar-list/sidebar-list.component';
 import * as fromDemoSidebar from '../../reducers/index';
 
 @Component({
   selector: 'demo-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
-  providers: [{ provide: DaffSidebarComponent, useExisting: forwardRef(() => SidebarContainer) }],
-  standalone: false,
+  providers: [
+    { provide: DaffSidebarComponent, useExisting: forwardRef(() => SidebarContainer) },
+  ],
+  imports: [
+    AsyncPipe,
+    FaIconComponent,
+    DAFF_SIDEBAR_COMPONENTS,
+    DAFF_LOADING_ICON_COMPONENTS,
+    SidebarListComponent,
+  ],
 })
 export class SidebarContainer implements OnInit {
 

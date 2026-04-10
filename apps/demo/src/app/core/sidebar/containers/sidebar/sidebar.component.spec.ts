@@ -5,17 +5,12 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { provideRouter } from '@angular/router';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 
-import { DaffLinkSetModule } from '@daffodil/design/link-set';
-import { DaffLoadingIconModule } from '@daffodil/design/loading-icon';
-import {
-  DaffSidebarModule,
-  DaffSidebarComponent,
-} from '@daffodil/design/sidebar';
+import { DaffSidebarComponent } from '@daffodil/design/sidebar';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationLoad } from '@daffodil/navigation/state';
 import {
@@ -30,7 +25,9 @@ import { SidebarListComponent } from '../../components/sidebar-list/sidebar-list
 
 @Component({
   template: '<demo-sidebar></demo-sidebar>',
-  standalone: false,
+  imports: [
+    SidebarContainer,
+  ],
 })
 class WrapperComponent {}
 
@@ -46,27 +43,17 @@ describe('SidebarContainer', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule,
-        DaffSidebarModule,
-        FontAwesomeModule,
-        DaffLoadingIconModule,
-        DaffLinkSetModule,
-        DaffNavigationStateTestingModule,
-      ],
-      declarations: [
         WrapperComponent,
-        SidebarContainer,
-        SidebarListComponent,
+        DaffNavigationStateTestingModule,
       ],
       providers: [
         provideMockStore(),
+        provideRouter([]),
+        provideNoopAnimations(),
       ],
     })
       .overrideComponent(SidebarListComponent, {
-        remove: {
-          templateUrl: '',
-        },
-        add: {
+        set: {
           template: '',
         },
       })

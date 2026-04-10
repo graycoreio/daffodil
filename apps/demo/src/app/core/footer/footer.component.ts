@@ -1,15 +1,27 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   faTwitter,
   faFacebookF,
   faInstagram,
 } from '@fortawesome/free-brands-svg-icons';
 
+import { DAFF_ICON_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import { DaffContainerComponent } from '@daffodil/design/container';
+import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
+
 @Component({
   selector: 'demo-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
-  standalone: false,
+  imports: [
+    RouterModule,
+    DAFF_LIST_COMPONENTS,
+    DAFF_ICON_BUTTON_COMPONENTS,
+    DaffContainerComponent,
+    FaIconComponent,
+  ],
 })
 export class FooterComponent {
   faTwitter = faTwitter;

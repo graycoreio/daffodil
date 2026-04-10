@@ -24,7 +24,7 @@ import { DaffFormFieldComponent } from '@daffodil/design/form-field';
 import { DaffProduct } from '@daffodil/product';
 import { DaffSfQuantityFieldComponent } from '@daffodil/storefront/quantity-field';
 
-import { ImageGalleryModule } from '../../../core/image-gallery/image-gallery.module';
+import { ImageGalleryComponent } from '../../../core/image-gallery/components/image-gallery.component';
 
 @Component({
   selector: 'demo-product',
@@ -37,7 +37,7 @@ import { ImageGalleryModule } from '../../../core/image-gallery/image-gallery.mo
     DaffContainerComponent,
     DaffFormFieldComponent,
     DaffSfQuantityFieldComponent,
-    ImageGalleryModule,
+    ImageGalleryComponent,
   ],
 })
 export class ProductComponent implements OnInit {

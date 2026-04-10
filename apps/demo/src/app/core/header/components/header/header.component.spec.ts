@@ -4,10 +4,10 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-
-import { DaffNavbarModule } from '@daffodil/design/navbar';
+import {
+  Router,
+  provideRouter,
+} from '@angular/router';
 
 import { DemoHeaderComponent } from './header.component';
 
@@ -19,11 +19,10 @@ describe('DemoHeaderComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffNavbarModule,
-        RouterTestingModule,
-      ],
-      declarations: [
         DemoHeaderComponent,
+      ],
+      providers: [
+        provideRouter([]),
       ],
     })
       .compileComponents();
