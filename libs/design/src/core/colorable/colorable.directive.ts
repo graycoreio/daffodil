@@ -8,83 +8,23 @@ import {
 } from '@angular/core';
 
 import {
-  DaffColorable,
-  DaffPalette,
-  DaffPaletteEnum,
+  DaffColor,
+  DaffColorEnum,
 } from './colorable';
 
-const colorInPalette = (color: string) => (<any>Object).values(DaffPaletteEnum).includes(color);
+const isDaffColor = (color: string) => (<any>Object).values(DaffColorEnum).includes(color);
 
 const validateColor = (color: string) => {
   if(isDevMode()) {
-    if(color !== undefined && !colorInPalette(color)) {
-      console.warn(color + ' is not a valid color in DaffPalette');
+    if(color !== undefined && !isDaffColor(color)) {
+      console.warn(color + ' is not a valid color in DaffColor');
     }
   }
 };
 
 /**
- * `DaffColorableDirective` allows a component to conditionally apply color-specific
- * styles by setting CSS classes based on the specified color. This directive is useful
- * for applying different color palettes to a component in an Angular application.
- *
- * Supported colors: `primary | secondary | tertiary | light | dark | theme | theme-contrast`
- *
- * | Color | Class |
- * | -------- | ----- |
- * | `primary` | `.daff-primary`|
- * | `secondary` | `.daff-secondary`|
- * | `tertiary` | `.daff-tertiary`|
- * | `light` | `daff-light` |
- * | `dark` | `daff-dark` |
- * | `theme` | `daff-theme`|
- * | `theme-contrast` | `.daff-theme-contrast`|
- *
- *  `white` and `black` have been deprecated in favor of `light` and `dark`.
- *
- * @example Implementing it as an attribute directive
- *
- * ```html
- * <div daffColorable [color]="primary">Colored content</div>
- * ```
- *
- *  ```scss
- * .div {
- *  &.daff-primary {
- *    color: daff-color($primary);
- *  }
- * }
- * ```
- *
- * In this example, the `daff-primary` class is applied to the `div` element, allowing you to
- * use the color class to style the `div`.
- *
- * @example Implementing it as an Angular host directive
- *
- * ```ts
- * @Component({
- *  selector: 'custom-component',
- *  template: 'custom-component.html',
- *  hostDirectives: [
- *    {
- *      directive: DaffColorableDirective,
- *      inputs: ['color'],
- *    },
- *  ],
- * })
- * export class CustomComponent {
- *  @HostBinding('class.custom-component') class = true;
- * }
- * ```
- *
- * ```scss
- * .custom-component {
- *  &.daff-primary {
- *    background: daff-color($primary, 10);
- *    color: daff-color($primary, 90);
- *  }
- * }
- * ```
+ * Enforces consistent use of {@link DaffColor} on a component by applying
+ * color-specific CSS classes and validating the color in dev mode.
  */
 @Directive({
   selector: '[daffColorable]',
@@ -100,23 +40,16 @@ const validateColor = (color: string) => {
     '[class.daff-white]': 'color === "white"',
   },
 })
-export class DaffColorableDirective implements DaffColorable, OnChanges, OnInit {
+export class DaffColorableDirective implements OnChanges, OnInit {
   /**
-   * Sets the color on a component.
+   * The color of the component.
    */
-  @Input() color: DaffPalette;
+  @Input() color: DaffColor;
 
   /**
-   * Sets a default color.
-   *
-   * @example
-   * ```ts
-   * constructor(private colorableDirective: DaffColorableDirective) {
-   *  this.colorableDirective.defaultColor = 'theme';
-   * }
-   * ```
+   * The default color used when no color is set.
    */
-  defaultColor: DaffPalette;
+  defaultColor: DaffColor;
 
   /**
    * @docs-private
