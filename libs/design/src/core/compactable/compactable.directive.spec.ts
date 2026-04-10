@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffCompactableDirective } from './compactable.directive';
+import { DaffCompactableDirective } from '@daffodil/design';
 
 @Component({
   template: `
