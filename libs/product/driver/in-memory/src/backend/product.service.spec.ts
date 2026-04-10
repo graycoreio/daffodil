@@ -52,7 +52,7 @@ describe('Driver | InMemory | Product | DaffInMemoryBackendProductService', () =
         });
 
         transferState = TestBed.inject(TransferState);
-        transferState.set(TRANSFER_STATE_KEY, { data: JSON.stringify(mockProducts) });
+        transferState.set(TRANSFER_STATE_KEY, mockProducts);
 
         productTestingService = TestBed.inject(DaffInMemoryBackendProductService);
       });
@@ -105,13 +105,7 @@ describe('Driver | InMemory | Product | DaffInMemoryBackendProductService', () =
       it('should set products in transfer state', () => {
         const transferStateData = transferState.get(TRANSFER_STATE_KEY, null);
         expect(transferStateData).toBeTruthy();
-        expect(transferStateData.data).toBeDefined();
-      });
-
-      it('should serialize products as JSON in transfer state', () => {
-        const transferStateData = transferState.get(TRANSFER_STATE_KEY, null);
-        const products = JSON.parse(transferStateData.data);
-        expect(Array.isArray(products)).toBe(true);
+        expect(Array.isArray(transferStateData)).toBe(true);
       });
     });
   });
