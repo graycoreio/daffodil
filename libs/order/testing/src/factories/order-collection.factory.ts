@@ -5,6 +5,7 @@ import { daffIdentifiableArrayToDict } from '@daffodil/core';
 import {
   DaffCollectionMetadataFactory,
   DaffModelFactory,
+  IDaffModelFactory,
 } from '@daffodil/core/testing';
 import {
   DaffOrder,
@@ -21,8 +22,8 @@ export class MockOrderCollection implements DaffOrderCollection {
   data: DaffOrderCollection['data'];
 
   constructor(
-    protected orderFactory: DaffOrderFactory,
-    protected metadataFactory: DaffCollectionMetadataFactory,
+    protected orderFactory: IDaffModelFactory<DaffOrder>,
+    protected metadataFactory: IDaffModelFactory<DaffCollectionMetadata>,
   ) {
     this.data = this.createOrders();
 

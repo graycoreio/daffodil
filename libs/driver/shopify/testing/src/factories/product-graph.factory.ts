@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import { ShopifyProductGraph } from '@daffodil/driver/shopify';
 
 import { ShopifyPageInfoFactory } from './page-info.factory';
@@ -13,8 +16,8 @@ class MockShopifyProductGraph implements ShopifyProductGraph {
   pageInfo = this.shopifyPageInfoFactory.create();
 
   constructor(
-    protected shopifyProductNodeFactory: ShopifyProductNodeFactory,
-    protected shopifyPageInfoFactory: ShopifyPageInfoFactory,
+    protected shopifyProductNodeFactory: IDaffModelFactory<ShopifyProductNode>,
+    protected shopifyPageInfoFactory: IDaffModelFactory<ShopifyPageInfo>,
   ) {}
 }
 

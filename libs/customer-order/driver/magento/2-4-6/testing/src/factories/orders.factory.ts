@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import {
   MagentoCustomerOrders,
   MagentoCustomerOrder,
@@ -17,8 +20,8 @@ export class MockMagentoCustomerOrders implements MagentoCustomerOrders {
   total_count = this.items.length;
 
   constructor(
-    protected orderFactory: MagentoCustomerOrderFactory,
-    protected pageInfoFactory: MagentoSearchResultPageInfoFactory,
+    protected orderFactory: IDaffModelFactory<MagentoCustomerOrder>,
+    protected pageInfoFactory: IDaffModelFactory<MagentoSearchResultPageInfo>,
   ) {}
 
   private createReviews(): MagentoCustomerOrder[] {

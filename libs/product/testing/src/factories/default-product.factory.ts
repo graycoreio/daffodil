@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import {
   DaffProduct,
   DaffProductTypeEnum,
@@ -36,7 +39,7 @@ export class MockProduct implements DaffProduct {
   meta_description = faker.commerce.productDescription();
 
   constructor(
-    protected imageFactory: DaffProductImageFactory,
+    protected imageFactory: IDaffModelFactory<DaffProductImage>,
   ) {}
 }
 

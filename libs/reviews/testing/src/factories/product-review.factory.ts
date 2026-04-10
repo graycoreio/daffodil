@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import {
   DaffProductReview,
   DaffProductReviewCustomer,
@@ -26,8 +29,8 @@ export class MockProductReview implements DaffProductReview {
   customer = this.createCustomer();
 
   constructor(
-    protected ratingFactory: DaffReviewRatingFactory,
-    protected customerFactory: DaffProductReviewCustomerFactory,
+    protected ratingFactory: IDaffModelFactory<DaffReviewRating>,
+    protected customerFactory: IDaffModelFactory<DaffProductReviewCustomer>,
   ) {}
 
   private createRatings(): DaffReviewRating[] {

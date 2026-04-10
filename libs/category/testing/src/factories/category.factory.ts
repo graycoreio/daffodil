@@ -5,6 +5,7 @@ import { DaffCategory } from '@daffodil/category';
 import { randomSubset } from '@daffodil/core';
 import {
   DaffModelFactory,
+  IDaffModelFactory,
   enforceUnique,
 } from '@daffodil/core/testing';
 import { DaffProduct } from '@daffodil/product';
@@ -25,7 +26,7 @@ export class MockCategory implements DaffCategory {
   product_ids = [faker.number.int({ min: 1, max: 100 }).toString()];
 
   constructor(
-    protected breadcrumbFactory: DaffCategoryBreadcrumbFactory,
+    protected breadcrumbFactory: IDaffModelFactory<DaffCategoryBreadcrumb>,
   ) {}
 }
 

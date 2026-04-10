@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker/locale/en_US';
 
 import {
   DaffModelFactory,
+  IDaffModelFactory,
   enforceUnique,
 } from '@daffodil/core/testing';
 import { MagentoCustomerAddressFactory } from '@daffodil/customer/driver/magento/testing';
@@ -33,7 +34,7 @@ export class MockMagentoTokenBaseCard implements MagentoTokenBaseCard {
   };
 
   constructor(
-    protected addressFactory: MagentoCustomerAddressFactory,
+    protected addressFactory: IDaffModelFactory<MagentoCustomerAddress>,
   ) {}
 }
 

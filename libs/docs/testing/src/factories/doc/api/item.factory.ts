@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import {
   DaffApiDoc,
   DaffDocsApiRole,
@@ -37,26 +40,26 @@ import { DaffApiTypeDocFactory } from './type/doc.factory';
 })
 export class DaffApiDocFactory extends DaffModelFactory<DaffApiDoc> {
   constructor(
-    protected apiActionDocFactory: DaffApiActionDocFactory,
-    protected apiComponentDocFactory: DaffApiComponentDocFactory,
-    protected apiConstantDocFactory: DaffApiConstantDocFactory,
-    protected apiDirectiveDocFactory: DaffApiDirectiveDocFactory,
-    protected apiErrorDocFactory: DaffApiErrorDocFactory,
-    protected apiFacadeDocFactory: DaffApiFacadeDocFactory,
-    protected apiGuardDocFactory: DaffApiGuardDocFactory,
-    protected apiHelperDocFactory: DaffApiHelperDocFactory,
-    protected apiMockDocFactory: DaffApiMockDocFactory,
-    protected apiModelFactoryDocFactory: DaffApiModelFactoryDocFactory,
-    protected apiModuleDocFactory: DaffApiModuleDocFactory,
-    protected apiOperatorDocFactory: DaffApiOperatorDocFactory,
-    protected apiPipeDocFactory: DaffApiPipeDocFactory,
-    protected apiProviderDocFactory: DaffApiProviderDocFactory,
-    protected apiReducerDocFactory: DaffApiReducerDocFactory,
-    protected apiResolverDocFactory: DaffApiResolverDocFactory,
-    protected apiSelectorDocFactory: DaffApiSelectorDocFactory,
-    protected apiServiceDocFactory: DaffApiServiceDocFactory,
-    protected apiTokenDocFactory: DaffApiTokenDocFactory,
-    protected apiTypeDocFactory: DaffApiTypeDocFactory,
+    protected apiActionDocFactory: IDaffModelFactory<DaffApiActionDoc>,
+    protected apiComponentDocFactory: IDaffModelFactory<DaffApiComponentDoc>,
+    protected apiConstantDocFactory: IDaffModelFactory<DaffApiConstantDoc>,
+    protected apiDirectiveDocFactory: IDaffModelFactory<DaffApiDirectiveDoc>,
+    protected apiErrorDocFactory: IDaffModelFactory<DaffApiErrorDoc>,
+    protected apiFacadeDocFactory: IDaffModelFactory<DaffApiFacadeDoc>,
+    protected apiGuardDocFactory: IDaffModelFactory<DaffApiGuardDoc>,
+    protected apiHelperDocFactory: IDaffModelFactory<DaffApiHelperDoc>,
+    protected apiMockDocFactory: IDaffModelFactory<DaffApiMockDoc>,
+    protected apiModelFactoryDocFactory: IDaffModelFactory<DaffApiModelFactoryDoc>,
+    protected apiModuleDocFactory: IDaffModelFactory<DaffApiModuleDoc>,
+    protected apiOperatorDocFactory: IDaffModelFactory<DaffApiOperatorDoc>,
+    protected apiPipeDocFactory: IDaffModelFactory<DaffApiPipeDoc>,
+    protected apiProviderDocFactory: IDaffModelFactory<DaffApiProviderDoc>,
+    protected apiReducerDocFactory: IDaffModelFactory<DaffApiReducerDoc>,
+    protected apiResolverDocFactory: IDaffModelFactory<DaffApiResolverDoc>,
+    protected apiSelectorDocFactory: IDaffModelFactory<DaffApiSelectorDoc>,
+    protected apiServiceDocFactory: IDaffModelFactory<DaffApiServiceDoc>,
+    protected apiTokenDocFactory: IDaffModelFactory<DaffApiTokenDoc>,
+    protected apiTypeDocFactory: IDaffModelFactory<DaffApiTypeDoc>,
   ) {
     super();
   }

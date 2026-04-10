@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import { MockMagentoCustomerOrder } from '@daffodil/customer-order/driver/magento/2-4-6/testing';
 import { MagentoCustomerOrderWithStoreCredit } from '@daffodil/customer-store-credit/driver/magento';
 import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
@@ -28,7 +31,7 @@ export class MockMagentoCustomerOrderWithStoreCredit extends MockMagentoCustomer
     paymentFactory: MagentoOrderPaymentFactory,
     invoiceFactory: MagentoOrderInvoiceFactory,
     creditFactory: MagentoOrderCreditFactory,
-    protected moneyFactory: MagentoMoneyFactory,
+    protected moneyFactory: IDaffModelFactory<MagentoMoney>,
   ) {
     super(
       totalFactory,

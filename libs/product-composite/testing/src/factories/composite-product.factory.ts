@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import { DaffProductTypeEnum } from '@daffodil/product';
 import {
   DaffProductImageFactory,
@@ -18,7 +21,7 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
   items = this.itemFactory.createMany(2);
 
   constructor(
-    protected itemFactory: DaffCompositeProductItemFactory,
+    protected itemFactory: IDaffModelFactory<DaffCompositeProductItem>,
     imageFactory: DaffProductImageFactory,
   ) {
     super(imageFactory);

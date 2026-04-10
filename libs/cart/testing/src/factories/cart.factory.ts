@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 
 import { DaffCartShippingRateFactory } from './cart-shipping-rate.factory';
 import { DaffCartTotalFactory } from './cart-total.factory';
@@ -21,8 +24,8 @@ export class MockCart implements DaffCart {
   extra_attributes = {};
 
   constructor(
-    protected totalFactory: DaffCartTotalFactory,
-    protected shippingInformationFactory: DaffCartShippingRateFactory,
+    protected totalFactory: IDaffModelFactory<DaffCartTotal>,
+    protected shippingInformationFactory: IDaffModelFactory<DaffCartShippingRate>,
   ) {}
 };
 

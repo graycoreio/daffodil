@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import { DaffCountry } from '@daffodil/geography';
 
 import { DaffSubdivisionFactory } from './subdivision.factory';
@@ -15,7 +18,7 @@ export class MockCountry implements DaffCountry {
   subdivisions = this.subdivisionFactory.createMany(faker.number.int({ min: 0, max: 10 }));
 
   constructor(
-    protected subdivisionFactory: DaffSubdivisionFactory,
+    protected subdivisionFactory: IDaffModelFactory<DaffSubdivision>,
   ) {}
 }
 

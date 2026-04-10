@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import { DaffApiPackageDoc } from '@daffodil/docs-utils';
 
 import { DaffApiNavDocFactory } from './api-nav-doc.factory';
@@ -20,7 +23,7 @@ export class MockApiPackageDoc extends MockBaseDoc implements DaffApiPackageDoc 
 
   constructor(
     breadcrumbFactory: DaffBreadcrumbFactory,
-    protected apiNavDocFactory: DaffApiNavDocFactory,
+    protected apiNavDocFactory: IDaffModelFactory<DaffApiNavDoc>,
   ) {
     super(breadcrumbFactory);
   }

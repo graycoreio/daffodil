@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import { DaffDocsDesignExample } from '@daffodil/docs-utils';
 
 import { DaffDocsDesignExampleFileFactory } from './design-example-file.factory';
@@ -19,7 +22,7 @@ export class MockDocsDesignExample implements DaffDocsDesignExample {
   files = this.fileFactory.createMany(faker.number.int({ min: 2, max: 4 }));
 
   constructor(
-    protected fileFactory: DaffDocsDesignExampleFileFactory,
+    protected fileFactory: IDaffModelFactory<DaffDocsDesignExampleFile>,
   ) {}
 }
 

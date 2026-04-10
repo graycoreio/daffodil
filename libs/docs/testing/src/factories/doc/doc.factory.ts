@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import { DaffDoc } from '@daffodil/docs-utils';
 
 import { MockBaseDoc } from './base-doc.factory';
@@ -17,7 +20,7 @@ export class MockDoc extends MockBaseDoc implements DaffDoc {
 
   constructor(
     breadcrumbFactory: DaffBreadcrumbFactory,
-    protected tocFactory: DaffDocTableOfContentsEntryFactory,
+    protected tocFactory: IDaffModelFactory<DaffDocTableOfContentsEntry>,
   ) {
     super(breadcrumbFactory);
   }

@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import { MagentoCustomerOrder } from '@daffodil/customer-order/driver/magento/2-4-6';
 import {
   MagentoOrderAddressFactory,
@@ -35,13 +38,13 @@ export class MockMagentoCustomerOrder implements MagentoCustomerOrder {
   credit_memos = this.creditFactory.createMany(faker.number.int({ min: 1, max: this._numberOfSuborders }));
 
   constructor(
-    protected totalFactory: MagentoOrderTotalFactory,
-    protected itemFactory: MagentoOrderItemFactory,
-    protected addressFactory: MagentoOrderAddressFactory,
-    protected shipmentFactory: MagentoOrderShipmentFactory,
-    protected paymentFactory: MagentoOrderPaymentFactory,
-    protected invoiceFactory: MagentoOrderInvoiceFactory,
-    protected creditFactory: MagentoOrderCreditFactory,
+    protected totalFactory: IDaffModelFactory<MagentoOrderTotal>,
+    protected itemFactory: IDaffModelFactory<MagentoOrderItem>,
+    protected addressFactory: IDaffModelFactory<MagentoOrderAddress>,
+    protected shipmentFactory: IDaffModelFactory<MagentoOrderShipment>,
+    protected paymentFactory: IDaffModelFactory<MagentoOrderPayment>,
+    protected invoiceFactory: IDaffModelFactory<MagentoOrderInvoice>,
+    protected creditFactory: IDaffModelFactory<MagentoOrderCredit>,
   ) {}
 };
 

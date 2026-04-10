@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import {
   ShopifyProductNode,
   shopifyHandleTransformer,
@@ -48,8 +51,8 @@ class MockShopifyProductNode implements ShopifyProductNode {
   vendor = faker.company.name();
 
   constructor(
-    protected shopifyProductVariantsPriceRangeFactory: ShopifyProductVariantsPriceRangeFactory,
-    protected shopifyImageNodeFactory: ShopifyImageNodeFactory,
+    protected shopifyProductVariantsPriceRangeFactory: IDaffModelFactory<ShopifyProductPriceRange>,
+    protected shopifyImageNodeFactory: IDaffModelFactory<ShopifyImageNode>,
   ) {}
 }
 

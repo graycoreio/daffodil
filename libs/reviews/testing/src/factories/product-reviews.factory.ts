@@ -5,6 +5,7 @@ import { daffIdentifiableArrayToDict } from '@daffodil/core';
 import {
   DaffCollectionMetadataFactory,
   DaffModelFactory,
+  IDaffModelFactory,
 } from '@daffodil/core/testing';
 import {
   DaffProductReview,
@@ -21,8 +22,8 @@ export class MockProductReviews implements DaffProductReviews {
   data: DaffProductReviews['data'];
 
   constructor(
-    protected reviewFactory: DaffProductReviewFactory,
-    protected metadataFactory: DaffCollectionMetadataFactory,
+    protected reviewFactory: IDaffModelFactory<DaffProductReview>,
+    protected metadataFactory: IDaffModelFactory<DaffCollectionMetadata>,
   ) {
     this.data = this.createReviews();
 

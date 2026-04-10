@@ -3,7 +3,10 @@ import { faker } from '@faker-js/faker/locale/en_US';
 
 import { MockMagentoCart } from '@daffodil/cart/driver/magento/testing';
 import { MagentoCartWithStoreCredit } from '@daffodil/cart-store-credit/driver/magento';
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 
 export class MockMagentoCartWithStoreCredit extends MockMagentoCart implements MagentoCartWithStoreCredit {
@@ -13,7 +16,7 @@ export class MockMagentoCartWithStoreCredit extends MockMagentoCart implements M
   };
 
   constructor(
-    protected moneyFactory: MagentoMoneyFactory,
+    protected moneyFactory: IDaffModelFactory<MagentoMoney>,
   ) {
     super();
   }

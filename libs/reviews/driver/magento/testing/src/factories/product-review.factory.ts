@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import {
   MagentoProductReview,
   MagentoProductReviewRating,
@@ -19,7 +22,7 @@ export class MockMagentoProductReview implements MagentoProductReview {
   ratings_breakdown = this.createRatings();
 
   constructor(
-    protected ratingFactory: MagentoProductReviewRatingFactory,
+    protected ratingFactory: IDaffModelFactory<MagentoProductReviewRating>,
   ) {}
 
   private createRatings(): MagentoProductReviewRating[] {

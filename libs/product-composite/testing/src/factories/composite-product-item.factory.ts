@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffModelFactory } from '@daffodil/core/testing';
+import {
+  DaffModelFactory,
+  IDaffModelFactory,
+} from '@daffodil/core/testing';
 import {
   DaffCompositeProductItem,
   DaffCompositeProductItemInputEnum,
@@ -28,7 +31,7 @@ export class MockCompositeProductItem implements DaffCompositeProductItem {
   ];
 
   constructor(
-    protected optionFactory: DaffCompositeProductItemOptionFactory,
+    protected optionFactory: IDaffModelFactory<DaffCompositeProductItemOption>,
   ) {}
 }
 
