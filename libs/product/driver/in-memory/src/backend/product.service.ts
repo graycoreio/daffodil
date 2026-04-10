@@ -55,6 +55,7 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService, Daf
         ).data,
       );
     } else {
+      this._products = productFactory.createMany(35);
       transferState.set(TRANSFER_STATE_KEY, { data: JSON.stringify(this._products) });
     }
   }
