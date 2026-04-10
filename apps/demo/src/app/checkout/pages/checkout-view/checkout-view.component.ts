@@ -33,7 +33,7 @@ import { DemoCheckoutBillingFormGroup } from '../../components/payment/models/pa
 import { DemoCheckoutPaymentFormComponent } from '../../components/payment/payment-form/payment-form.component';
 import { demoCheckoutPaymentInfoRequestDataTransform } from '../../components/payment/payment-info-form/transforms/request-data';
 import { DemoCheckoutPaymentSummaryComponent } from '../../components/payment/payment-summary/payment-summary.component';
-import { PlaceOrderModule } from '../../components/place-order/place-order.module';
+import { PlaceOrderComponent } from '../../components/place-order/place-order.component';
 import { DemoCheckoutShippingFormComponent } from '../../components/shipping/shipping-form/shipping-form.component';
 import { DemoCheckoutShippingSummaryComponent } from '../../components/shipping/shipping-summary/shipping-summary.component';
 import { DemoCheckoutShippingAddressFormComponent } from '../../components/shipping-address/form/shipping-address-form.component';
@@ -58,7 +58,7 @@ import {
     DemoCheckoutPaymentFormComponent,
     DemoCheckoutBillingAddressSummaryComponent,
     DemoCheckoutPaymentSummaryComponent,
-    PlaceOrderModule,
+    PlaceOrderComponent,
     CartSummaryWrapperComponent,
   ],
 })

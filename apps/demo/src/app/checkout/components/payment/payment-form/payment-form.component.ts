@@ -13,7 +13,7 @@ import {
 import { DaffAuthorizeNetCreditCard } from '@daffodil/authorizenet';
 import { DaffCartAddress } from '@daffodil/cart';
 import { DaffButtonComponent } from '@daffodil/design/button';
-import { DaffCheckboxModule } from '@daffodil/design/checkbox';
+import { DAFF_CHECKBOX_COMPONENTS } from '@daffodil/design/checkbox';
 import { DaffInputComponent } from '@daffodil/design/input';
 
 import { DemoGeographyAddressSummaryComponent } from '../../../../geography/components/address-summary/address-summary.component';
@@ -32,7 +32,7 @@ import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-i
     DaffInputComponent,
     DemoCheckoutPaymentInfoFormComponent,
     DaffButtonComponent,
-    DaffCheckboxModule,
+    DAFF_CHECKBOX_COMPONENTS,
     DemoCheckoutAddressFormComponent,
     DemoGeographyAddressSummaryComponent,
   ],

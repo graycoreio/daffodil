@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -9,12 +10,16 @@ import {
   DaffCartFacade,
   DaffCartPlaceOrder,
 } from '@daffodil/cart/state';
+import { DaffButtonComponent } from '@daffodil/design/button';
 
 @Component({
   selector: 'demo-place-order',
   templateUrl: './place-order.component.html',
   styleUrls: ['./place-order.component.scss'],
-  standalone: false,
+  imports: [
+    DaffButtonComponent,
+    AsyncPipe,
+  ],
 })
 export class PlaceOrderComponent implements OnInit {
   enablePlaceOrderButton$: Observable<boolean>;

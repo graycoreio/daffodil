@@ -22,7 +22,6 @@ import { PlaceOrderComponent } from './place-order.component';
 describe('PlaceOrderComponent', () => {
   let fixture: ComponentFixture<PlaceOrderComponent>;
   let component: PlaceOrderComponent;
-  const stubEnablePlaceOrderButton = true;
   let store: MockStore<any>;
   let cartFactory: DaffCartFactory;
   let stubCart: DaffCart;
@@ -30,14 +29,12 @@ describe('PlaceOrderComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
+        DaffCartStateTestingModule,
         PlaceOrderComponent,
       ],
       providers: [
         provideMockStore({}),
-      ],
-      imports: [
-        DaffCartStateTestingModule,
       ],
     })
       .compileComponents();
