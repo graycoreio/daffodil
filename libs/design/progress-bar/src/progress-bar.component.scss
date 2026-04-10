@@ -1,5 +1,6 @@
 $height: 4px;
 
+// stylelint-disable selector-class-pattern
 :host(.daff-progress-bar) {
 	$root: '.daff-progress-bar';
 	display: flex;
@@ -30,7 +31,6 @@ $height: 4px;
 		}
 	}
 
-	// stylelint-disable selector-class-pattern
 	&.indeterminate {
 		overflow: hidden;
 
