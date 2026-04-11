@@ -19,10 +19,10 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        AppComponent,
         DemoIndicatorComponent,
       ],
       declarations: [
-        AppComponent,
         MockProductGridContainer,
       ],
     }).compileComponents();
