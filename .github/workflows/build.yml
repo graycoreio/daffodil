@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - develop
-      - support-different-versions-v2
     tags: ["v*"]
   workflow_call:
     inputs:
