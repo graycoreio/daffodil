@@ -229,7 +229,9 @@ jobs:
         working-directory: ${{ steps.test-dir.outputs.path }}
         run: |
           EFFECTIVE_VERSION="${{ matrix.version || env.DEFAULT_MAGENTO_VERSION }}"
-          BUNDLE_DIR=$(node -p "require('path').dirname(require.resolve('@daffodil/external-router/package.json'))")
+          PROJECT_NAME=$(node -p "Object.keys(require('./angular.json').projects)[0]")
+          OUTPUT_PATH=$(node -p "require('./angular.json').projects[Object.keys(require('./angular.json').projects)[0]].architect.build.options.outputPath || 'dist/' + Object.keys(require('./angular.json').projects)[0]")
+          BUNDLE_DIR="${OUTPUT_PATH}/browser"
 
           if [ ! -d "$BUNDLE_DIR" ]; then
             echo "ERROR: Could not find production browser bundle directory: $BUNDLE_DIR" && exit 1
