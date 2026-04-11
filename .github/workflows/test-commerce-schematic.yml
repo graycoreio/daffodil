@@ -224,7 +224,7 @@ jobs:
         working-directory: ${{ steps.test-dir.outputs.path }}
         run: npx ng build
 
-      - name: Verify Magento resolve-url bundle version
+      - name: Verify only configured Magento version is bundled
         if: matrix.driver == 'magento' && steps.ng-build.outcome == 'success'
         working-directory: ${{ steps.test-dir.outputs.path }}
         run: |
