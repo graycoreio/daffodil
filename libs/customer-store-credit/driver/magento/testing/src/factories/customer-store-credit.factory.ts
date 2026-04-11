@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import {
-  DaffModelFactory,
-  IDaffModelFactory,
-} from '@daffodil/core/testing';
+import { DaffModelFactory } from '@daffodil/core/testing';
 import { MagentoCustomerStoreCredit } from '@daffodil/customer-store-credit/driver/magento';
-import { MagentoMoney } from '@daffodil/driver/magento';
 import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 
 export class MockMagentoCustomerStoreCredit implements MagentoCustomerStoreCredit {
@@ -15,7 +11,7 @@ export class MockMagentoCustomerStoreCredit implements MagentoCustomerStoreCredi
   enabled = faker.datatype.boolean();
 
   constructor(
-    protected moneyFactory: IDaffModelFactory<MagentoMoney>,
+    protected moneyFactory: MagentoMoneyFactory,
   ) {}
 }
 
