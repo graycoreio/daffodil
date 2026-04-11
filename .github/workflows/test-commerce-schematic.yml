@@ -216,6 +216,28 @@ jobs:
         working-directory: ${{ steps.test-dir.outputs.path }}
         run: npx ng build
 
+      - name: Verify Magento resolve-url bundle version
+        if: matrix.driver == 'magento' && steps.ng-build.outcome == 'success'
+        working-directory: ${{ steps.test-dir.outputs.path }}
+        run: |
+          BUNDLE_DIR=$(node -p "require('path').dirname(require.resolve('@daffodil/external-router/package.json'))")
+
+          if [ ! -d "$BUNDLE_DIR" ]; then
+            echo "ERROR: Could not find production browser bundle directory: $BUNDLE_DIR" && exit 1
+          fi
+
+          if ! grep -Rq "MagentoResolveUrlv243" "$BUNDLE_DIR"; then
+            echo "ERROR: Expected MagentoResolveUrlv243 to be present in $BUNDLE_DIR" && exit 1
+          fi
+
+          if grep -Rq "MagentoResolveUrlv241" "$BUNDLE_DIR"; then
+            echo "ERROR: Expected MagentoResolveUrlv241 to be absent from $BUNDLE_DIR" && exit 1
+          fi
+
+          if grep -Rq "MagentoResolveUrlv242" "$BUNDLE_DIR"; then
+            echo "ERROR: Expected MagentoResolveUrlv242 to be absent from $BUNDLE_DIR" && exit 1
+          fi
+
       - name: Verify ng add failed
         if: matrix.ng-add-succeed == false
         run: |
