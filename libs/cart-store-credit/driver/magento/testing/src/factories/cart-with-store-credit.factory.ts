@@ -7,6 +7,7 @@ import {
   DaffModelFactory,
   IDaffModelFactory,
 } from '@daffodil/core/testing';
+import { MagentoMoney } from '@daffodil/driver/magento';
 import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 
 export class MockMagentoCartWithStoreCredit extends MockMagentoCart implements MagentoCartWithStoreCredit {
