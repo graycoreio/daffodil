@@ -11,6 +11,9 @@
     "targets": {
       "build": {
         "outputs": ["{workspaceRoot}/dist/apps/demo"]
+      },
+      "serve:ssr": {
+        "dependsOn": ["build"]
       }
     }
   },
@@ -19,7 +22,8 @@
     "lint": "npm run lint:scss && cd ../.. && ng lint demo",
     "lint:fix": "npm run lint -- --fix",
     "lint:scss": "stylelint **/*.scss",
-    "test": "ng test demo --watch=false --browsers=ChromeHeadless"
+    "test": "ng test demo --watch=false --browsers=ChromeHeadless",
+    "serve:ssr": "NG_ALLOWED_HOSTS=localhost node ../../dist/apps/demo/server/server.mjs"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "description": "A demo implementation of the @daffodil libraries for ecommerce",

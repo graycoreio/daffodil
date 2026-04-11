@@ -22,11 +22,16 @@
           }
         },
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular/build:application",
           "options": {
             "outputPath": "dist/apps/demo",
             "index": "apps/demo/src/index.html",
             "browser": "apps/demo/src/main.ts",
+            "server": "apps/demo/src/main.server.ts",
+            "ssr": {
+              "entry": "apps/demo/server/server.ts"
+            },
+            "outputMode": "server",
             "polyfills": [
               "zone.js"
             ],

@@ -3,6 +3,7 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import {
+  APP_ID,
   ApplicationConfig,
   importProvidersFrom,
 } from '@angular/core';
@@ -57,5 +58,9 @@ export const appConfig: ApplicationConfig = {
       { type: DemoCheckoutStepActionTypes.CompleteShippingStepSuccessAction },
       { type: DemoCheckoutStepActionTypes.CompleteBillingStepSuccessAction },
     ),
+    {
+      provide: APP_ID,
+      useValue: 'serverApp',
+    },
   ],
 };
