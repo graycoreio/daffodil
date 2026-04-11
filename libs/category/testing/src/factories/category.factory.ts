@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffCategory } from '@daffodil/category';
+import {
+  DaffCategory,
+  DaffCategoryBreadcrumb,
+} from '@daffodil/category';
 import { randomSubset } from '@daffodil/core';
 import {
   DaffModelFactory,

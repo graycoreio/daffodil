@@ -8,6 +8,7 @@ import {
 import {
   DaffCompositeProductItem,
   DaffCompositeProductItemInputEnum,
+  DaffCompositeProductItemOption,
 } from '@daffodil/product-composite';
 
 import { DaffCompositeProductItemOptionFactory } from './composite-product-item-option.factory';

@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { DaffCart } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartShippingRate,
+  DaffCartTotal,
+} from '@daffodil/cart';
 import {
   DaffModelFactory,
   IDaffModelFactory,
@@ -17,7 +21,7 @@ export class MockCart implements DaffCart {
   billing_address = null;
   shipping_address = null;
   shipping_information = this.shippingInformationFactory.create();
-  totals = this.totalFactory.createAllTotals();
+  totals = this.totalFactory.createMany(8);
   payment = null;
   available_shipping_methods = [];
   available_payment_methods = [];

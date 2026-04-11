@@ -9,7 +9,10 @@ import {
   DaffProductImageFactory,
   MockProduct,
 } from '@daffodil/product/testing';
-import { DaffCompositeProduct } from '@daffodil/product-composite';
+import {
+  DaffCompositeProduct,
+  DaffCompositeProductItem,
+} from '@daffodil/product-composite';
 
 import { DaffCompositeProductItemFactory } from './composite-product-item.factory';
 
