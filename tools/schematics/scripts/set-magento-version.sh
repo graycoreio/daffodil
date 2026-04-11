@@ -8,7 +8,7 @@ fi
 
 CONDITION="magento-${VERSION}"
 
-# Patch angular.json: add version condition to every build configuration across all projects
+# Patch angular.json: add condition to every build configuration across all projects
 ANGULAR=$(jq --arg cond "$CONDITION" '
   .projects |= with_entries(
     .value.architect.build.configurations |= with_entries(
