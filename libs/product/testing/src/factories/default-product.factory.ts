@@ -7,6 +7,7 @@ import {
 } from '@daffodil/core/testing';
 import {
   DaffProduct,
+  DaffProductImage,
   DaffProductTypeEnum,
 } from '@daffodil/product';
 

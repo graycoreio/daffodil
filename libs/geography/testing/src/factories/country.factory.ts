@@ -5,7 +5,10 @@ import {
   DaffModelFactory,
   IDaffModelFactory,
 } from '@daffodil/core/testing';
-import { DaffCountry } from '@daffodil/geography';
+import {
+  DaffCountry,
+  DaffSubdivision,
+} from '@daffodil/geography';
 
 import { DaffSubdivisionFactory } from './subdivision.factory';
 
