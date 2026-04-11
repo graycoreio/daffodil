@@ -22,7 +22,6 @@
   },
   "scripts": {
     "build": "ng build external-router --configuration production",
-    "postbuild": "node scripts/patch-magento-exports.mjs",
     "lint": "cd ../.. && ng lint external-router",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test external-router --watch=false --browsers=ChromeHeadless",
