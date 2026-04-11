@@ -6,7 +6,8 @@ import {
   IDaffModelFactory,
 } from '@daffodil/core/testing';
 import { MagentoCustomerStoreCredit } from '@daffodil/customer-store-credit/driver/magento';
-import { MagentoMoney, MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
+import { MagentoMoney } from '@daffodil/driver/magento';
+import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 
 export class MockMagentoCustomerStoreCredit implements MagentoCustomerStoreCredit {
   __typename = <const>'CustomerStoreCredit';
