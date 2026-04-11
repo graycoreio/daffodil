@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
-import { daffIdentifiableArrayToDict } from '@daffodil/core';
+import {
+  DaffCollectionMetadata,
+  daffIdentifiableArrayToDict,
+} from '@daffodil/core';
 import {
   DaffCollectionMetadataFactory,
   DaffModelFactory,
