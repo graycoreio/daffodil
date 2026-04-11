@@ -21,6 +21,9 @@ const ALL_ENTRIES = [
   'demo',
   'in-memory',
   'magento',
+  'magento-v2.4.1',
+  'magento-v2.4.2',
+  'magento-v2.4.3',
   'module-app-rejection',
   'no-app-routing',
   'shopify',
@@ -74,7 +77,7 @@ describe('computeMatrix', () => {
 
   describe('driver-specific changes', () => {
     it('magento change triggers demo and magento', () => {
-      expect(entryNames(computeMatrix(['libs/driver/magento/src/query.ts'], config, NODE_VERSIONS, ANGULAR_VERSIONS))).toEqual(['demo', 'magento']);
+      expect(entryNames(computeMatrix(['libs/driver/magento/src/query.ts'], config, NODE_VERSIONS, ANGULAR_VERSIONS))).toEqual(['demo', 'magento', 'magento-v2.4.1', 'magento-v2.4.2', 'magento-v2.4.3']);
     });
 
     it('shopify change triggers demo and shopify', () => {
@@ -97,7 +100,7 @@ describe('computeMatrix', () => {
       expect(entryNames(computeMatrix([
         'libs/driver/magento/src/query.ts',
         'libs/driver/shopify/src/service.ts',
-      ], config, NODE_VERSIONS, ANGULAR_VERSIONS))).toEqual(['demo', 'magento', 'shopify']);
+      ], config, NODE_VERSIONS, ANGULAR_VERSIONS))).toEqual(['demo', 'magento', 'magento-v2.4.1', 'magento-v2.4.2', 'magento-v2.4.3', 'shopify']);
     });
 
     it('in-memory + magento triggers their respective entries', () => {
@@ -105,7 +108,7 @@ describe('computeMatrix', () => {
         'libs/driver/in-memory/src/backend.ts',
         'libs/driver/magento/src/query.ts',
       ], config, NODE_VERSIONS, ANGULAR_VERSIONS))).toEqual([
-        'css-style-failure', 'demo', 'in-memory', 'magento', 'no-app-routing', 'skip-package-json',
+        'css-style-failure', 'demo', 'in-memory', 'magento', 'magento-v2.4.1', 'magento-v2.4.2', 'magento-v2.4.3', 'no-app-routing', 'skip-package-json',
       ]);
     });
   });
@@ -171,6 +174,29 @@ describe('computeMatrix', () => {
         'build-succeed': false,
         name: 'css-style-failure',
       });
+    });
+
+    it('magento-v2.4.1 entry has correct structure', () => {
+      const entries = computeMatrix(['libs/driver/magento/src/query.ts'], config, NODE_VERSIONS, ANGULAR_VERSIONS);
+      const entry = entries.find((e) => e.name === 'magento-v2.4.1');
+      expect(entry).toEqual({
+        node_version: '22.21.x',
+        angular_version: '^20',
+        driver: 'magento',
+        base: 'scss-standalone',
+        skip_package_json: false,
+        routing: true,
+        'ng-add-succeed': true,
+        'build-succeed': true,
+        name: 'magento-v2.4.1',
+        version: 241,
+      });
+    });
+
+    it('produces one versioned magento entry per discovered version', () => {
+      const entries = computeMatrix(['libs/driver/magento/src/query.ts'], config, NODE_VERSIONS, ANGULAR_VERSIONS);
+      const magentoVersionEntries = entries.filter((e) => e.driver === 'magento' && e.version !== undefined);
+      expect(magentoVersionEntries.map((e) => e.version)).toEqual([241, 242, 243]);
     });
 
     it('no-app-routing has correct overrides', () => {

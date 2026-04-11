@@ -28,7 +28,27 @@ export interface PackagePathConfig {
    * Paths that affect only the demo entry.
    */
   demoOnly: string[];
+  /**
+   * Magento API version strings discovered from the filesystem
+   * (e.g. ['2.4.1', '2.4.2', '2.4.3']).
+   */
+  magentoVersions: string[];
 }
+
+/**
+ * Discovers Magento API version strings from the filesystem
+ * (e.g. ['2.4.1', '2.4.2', '2.4.3']).
+ */
+const readMagentoVersions = (repoRoot: string): string[] => {
+  const magentoDir = join(repoRoot, 'libs/external-router/driver/magento');
+  if (!existsSync(magentoDir)) {
+    return [];
+  }
+  return readdirSync(magentoDir, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && /^\d+\.\d+\.\d+$/.test(e.name))
+    .map((e) => e.name)
+    .sort();
+};
 
 /**
  * Reads the driver enum from the schematic's schema.json.
@@ -120,5 +140,7 @@ export const derivePathConfig = (repoRoot: string): PackagePathConfig => {
     }
   }
 
-  return { shared, drivers, demoOnly };
+  const magentoVersions = readMagentoVersions(repoRoot);
+
+  return { shared, drivers, demoOnly, magentoVersions };
 };

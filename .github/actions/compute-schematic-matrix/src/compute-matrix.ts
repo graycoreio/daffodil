@@ -47,6 +47,11 @@ export interface MatrixEntry {
    * Optional display name for edge-case entries (e.g. `"skip-package-json"`).
    */
   name?: string;
+  /**
+   * Optional Magento API version number for versioned magento entries
+   * (e.g. `241` for `"2.4.1"`).
+   */
+  version?: number;
 }
 
 const driverEntry = (nodeVersion: string, angularVersion: string, driver: string): MatrixEntry => ({
@@ -81,6 +86,14 @@ const computeMatrixForVersion = (flags: ReturnType<typeof classifyChanges>, conf
   for (const driverName of Object.keys(config.drivers)) {
     if (flags.shared || flags.drivers[driverName]) {
       include.push(entry(driverName));
+    }
+  }
+
+  // add tests for each Magento driver version
+  if (flags.shared || flags.drivers['magento']) {
+    for (const versionStr of config.magentoVersions) {
+      const version = Number(versionStr.replace(/\./g, ''));
+      include.push({ ...entry('magento'), name: `magento-v${versionStr}`, version });
     }
   }
 

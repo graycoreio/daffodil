@@ -58,6 +58,10 @@ describe('derivePathConfig', () => {
     expect(config.drivers['magento']).toContain('libs/external-router/driver/magento/');
   });
 
+  it('discovers magento versions from the filesystem', () => {
+    expect(config.magentoVersions).toEqual(['2.4.1', '2.4.2', '2.4.3']);
+  });
+
   it('discovers shopify driver paths', () => {
     expect(config.drivers['shopify']).toBeDefined();
     expect(config.drivers['shopify']).toContain('libs/driver/shopify/');

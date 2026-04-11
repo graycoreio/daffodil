@@ -34,6 +34,13 @@ var import_path = require("path");
 var SCHEMATIC_DIR = "tools/schematics";
 var DAFFODIL_SCOPE = "@daffodil/";
 var DEMO_DRIVER = "demo";
+var readMagentoVersions = (repoRoot2) => {
+  const magentoDir = (0, import_path.join)(repoRoot2, "libs/external-router/driver/magento");
+  if (!(0, import_fs.existsSync)(magentoDir)) {
+    return [];
+  }
+  return (0, import_fs.readdirSync)(magentoDir, { withFileTypes: true }).filter((e) => e.isDirectory() && /^\d+\.\d+\.\d+$/.test(e.name)).map((e) => e.name).sort();
+};
 var readDriverNames = (repoRoot2) => {
   const schemaPath = (0, import_path.join)(repoRoot2, SCHEMATIC_DIR, "ng-add", "schema.json");
   const schema = JSON.parse((0, import_fs.readFileSync)(schemaPath, "utf-8"));
@@ -89,7 +96,8 @@ var derivePathConfig = (repoRoot2) => {
       }
     }
   }
-  return { shared, drivers, demoOnly };
+  const magentoVersions = readMagentoVersions(repoRoot2);
+  return { shared, drivers, demoOnly, magentoVersions };
 };
 
 // .github/actions/compute-schematic-matrix/src/compute-matrix.ts
@@ -118,6 +126,12 @@ var computeMatrixForVersion = (flags, config2, nodeVersion, angularVersion) => {
   for (const driverName of Object.keys(config2.drivers)) {
     if (flags.shared || flags.drivers[driverName]) {
       include.push(entry(driverName));
+    }
+  }
+  if (flags.shared || flags.drivers["magento"]) {
+    for (const versionStr of config2.magentoVersions) {
+      const version = Number(versionStr.replace(/\./g, ""));
+      include.push({ ...entry("magento"), name: `magento-v${versionStr}`, version });
     }
   }
   if (flags.shared || flags.drivers["in-memory"]) {
