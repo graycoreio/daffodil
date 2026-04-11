@@ -7,6 +7,15 @@ import {
 } from '@daffodil/core/testing';
 import { MagentoCustomerOrder } from '@daffodil/customer-order/driver/magento/2-4-5';
 import {
+  MagentoOrderAddress,
+  MagentoOrderCredit,
+  MagentoOrderInvoice,
+  MagentoOrderItem,
+  MagentoOrderPayment,
+  MagentoOrderShipment,
+  MagentoOrderTotal,
+} from '@daffodil/order/driver/magento/2-4-1';
+import {
   MagentoOrderAddressFactory,
   MagentoOrderInvoiceFactory,
   MagentoOrderItemFactory,
