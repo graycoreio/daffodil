@@ -15,6 +15,9 @@
       "@daffodil/external-router/driver/magento": [
         "libs/external-router/driver/magento/src"
       ],
+      "@daffodil/external-router/driver/magento/base": [
+        "libs/external-router/driver/magento/src"
+      ],
       "@daffodil/external-router/driver/magento/2-4-1": [
         "libs/external-router/driver/magento/2-4-1/src"
       ],
