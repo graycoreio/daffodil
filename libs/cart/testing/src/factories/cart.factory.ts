@@ -21,7 +21,7 @@ export class MockCart implements DaffCart {
   billing_address = null;
   shipping_address = null;
   shipping_information = this.shippingInformationFactory.create();
-  totals = this.totalFactory.createMany(8);
+  totals = this.totalFactory.createMany(8).reduce<Record<string, DaffCartTotal>>((acc, total) => ({ ...acc, [total.name]: total }), {});
   payment = null;
   available_shipping_methods = [];
   available_payment_methods = [];
