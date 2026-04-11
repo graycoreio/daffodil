@@ -27,6 +27,7 @@ env:
   TEST_VERSION: 0.0.0-test.${{ github.run_id }}
   REGISTRY_PORT: 4873
   NX_KEY: ${{ secrets.NX_KEY }}
+  DEFAULT_MAGENTO_VERSION: 243
 
 jobs:
   compute-matrix:
@@ -204,6 +205,13 @@ jobs:
             --skip-confirmation \
             $EXTRA_FLAGS
 
+      - name: Set Magento version conditions
+        if: matrix.driver == 'magento' && matrix.version != ''
+        working-directory: ${{ steps.test-dir.outputs.path }}
+        run: |
+          VERSION=$(echo "${{ matrix.version }}" | sed 's/\(.\)\(.\)\(.\)/\1.\2.\3/')
+          bash "${{ github.workspace }}/tools/schematics/scripts/set-magento-version.sh" "$VERSION"
+
       - name: Raise budget
         if: matrix.driver == 'demo'
         working-directory: ${{ steps.test-dir.outputs.path }}
@@ -220,23 +228,24 @@ jobs:
         if: matrix.driver == 'magento' && steps.ng-build.outcome == 'success'
         working-directory: ${{ steps.test-dir.outputs.path }}
         run: |
+          EFFECTIVE_VERSION="${{ matrix.version || env.DEFAULT_MAGENTO_VERSION }}"
           BUNDLE_DIR=$(node -p "require('path').dirname(require.resolve('@daffodil/external-router/package.json'))")
 
           if [ ! -d "$BUNDLE_DIR" ]; then
             echo "ERROR: Could not find production browser bundle directory: $BUNDLE_DIR" && exit 1
           fi
 
-          if ! grep -Rq "MagentoResolveUrlv243" "$BUNDLE_DIR"; then
-            echo "ERROR: Expected MagentoResolveUrlv243 to be present in $BUNDLE_DIR" && exit 1
-          fi
-
-          if grep -Rq "MagentoResolveUrlv241" "$BUNDLE_DIR"; then
-            echo "ERROR: Expected MagentoResolveUrlv241 to be absent from $BUNDLE_DIR" && exit 1
-          fi
-
-          if grep -Rq "MagentoResolveUrlv242" "$BUNDLE_DIR"; then
-            echo "ERROR: Expected MagentoResolveUrlv242 to be absent from $BUNDLE_DIR" && exit 1
-          fi
+          for v in $(seq 241 ${{ env.DEFAULT_MAGENTO_VERSION }}); do
+            if [ "$v" -eq "$EFFECTIVE_VERSION" ]; then
+              if ! grep -Rq "MagentoResolveUrlv${v}" "$BUNDLE_DIR"; then
+                echo "ERROR: Expected MagentoResolveUrlv${v} to be present in $BUNDLE_DIR" && exit 1
+              fi
+            else
+              if grep -Rq "MagentoResolveUrlv${v}" "$BUNDLE_DIR"; then
+                echo "ERROR: Expected MagentoResolveUrlv${v} to be absent from $BUNDLE_DIR" && exit 1
+              fi
+            fi
+          done
 
       - name: Verify ng add failed
         if: matrix.ng-add-succeed == false
