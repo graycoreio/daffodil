@@ -1,35 +1,33 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker/locale/en_US';
 
+import { DaffModelFactory } from '@daffodil/core/testing';
 import {
-  DaffModelFactory,
-  IDaffModelFactory,
-} from '@daffodil/core/testing';
-import {
-  DaffApiActionDoc,
-  DaffApiComponentDoc,
-  DaffApiConstantDoc,
-  DaffApiDirectiveDoc,
   DaffApiDoc,
-  DaffApiErrorDoc,
-  DaffApiFacadeDoc,
-  DaffApiGuardDoc,
-  DaffApiHelperDoc,
-  DaffApiMockDoc,
-  DaffApiModelFactoryDoc,
-  DaffApiModuleDoc,
-  DaffApiOperatorDoc,
-  DaffApiPipeDoc,
-  DaffApiProviderDoc,
-  DaffApiReducerDoc,
-  DaffApiResolverDoc,
-  DaffApiSelectorDoc,
-  DaffApiServiceDoc,
-  DaffApiTokenDoc,
-  DaffApiTypeDoc,
   DaffDocsApiRole,
   DaffDocsApiType,
 } from '@daffodil/docs-utils';
+
+import { DaffApiActionDocFactory } from './action-doc.factory';
+import { DaffApiComponentDocFactory } from './component-doc.factory';
+import { DaffApiConstantDocFactory } from './constant-doc.factory';
+import { DaffApiDirectiveDocFactory } from './directive/directive-doc.factory';
+import { DaffApiErrorDocFactory } from './error-doc.factory';
+import { DaffApiFacadeDocFactory } from './facade-doc.factory';
+import { DaffApiGuardDocFactory } from './guard-doc.factory';
+import { DaffApiHelperDocFactory } from './helper-doc.factory';
+import { DaffApiMockDocFactory } from './mock-doc.factory';
+import { DaffApiModelFactoryDocFactory } from './model-factory-doc.factory';
+import { DaffApiModuleDocFactory } from './module-doc.factory';
+import { DaffApiOperatorDocFactory } from './operator-doc.factory';
+import { DaffApiPipeDocFactory } from './pipe-doc.factory';
+import { DaffApiProviderDocFactory } from './provider-doc.factory';
+import { DaffApiReducerDocFactory } from './reducer-doc.factory';
+import { DaffApiResolverDocFactory } from './resolver-doc.factory';
+import { DaffApiSelectorDocFactory } from './selector-doc.factory';
+import { DaffApiServiceDocFactory } from './service-doc.factory';
+import { DaffApiTokenDocFactory } from './token-doc.factory';
+import { DaffApiTypeDocFactory } from './type/doc.factory';
 
 /**
  * Factory for creating various documentation objects.
@@ -39,26 +37,26 @@ import {
 })
 export class DaffApiDocFactory extends DaffModelFactory<DaffApiDoc> {
   constructor(
-    protected apiActionDocFactory: IDaffModelFactory<DaffApiActionDoc>,
-    protected apiComponentDocFactory: IDaffModelFactory<DaffApiComponentDoc>,
-    protected apiConstantDocFactory: IDaffModelFactory<DaffApiConstantDoc>,
-    protected apiDirectiveDocFactory: IDaffModelFactory<DaffApiDirectiveDoc>,
-    protected apiErrorDocFactory: IDaffModelFactory<DaffApiErrorDoc>,
-    protected apiFacadeDocFactory: IDaffModelFactory<DaffApiFacadeDoc>,
-    protected apiGuardDocFactory: IDaffModelFactory<DaffApiGuardDoc>,
-    protected apiHelperDocFactory: IDaffModelFactory<DaffApiHelperDoc>,
-    protected apiMockDocFactory: IDaffModelFactory<DaffApiMockDoc>,
-    protected apiModelFactoryDocFactory: IDaffModelFactory<DaffApiModelFactoryDoc>,
-    protected apiModuleDocFactory: IDaffModelFactory<DaffApiModuleDoc>,
-    protected apiOperatorDocFactory: IDaffModelFactory<DaffApiOperatorDoc>,
-    protected apiPipeDocFactory: IDaffModelFactory<DaffApiPipeDoc>,
-    protected apiProviderDocFactory: IDaffModelFactory<DaffApiProviderDoc>,
-    protected apiReducerDocFactory: IDaffModelFactory<DaffApiReducerDoc>,
-    protected apiResolverDocFactory: IDaffModelFactory<DaffApiResolverDoc>,
-    protected apiSelectorDocFactory: IDaffModelFactory<DaffApiSelectorDoc>,
-    protected apiServiceDocFactory: IDaffModelFactory<DaffApiServiceDoc>,
-    protected apiTokenDocFactory: IDaffModelFactory<DaffApiTokenDoc>,
-    protected apiTypeDocFactory: IDaffModelFactory<DaffApiTypeDoc>,
+    protected apiActionDocFactory: DaffApiActionDocFactory,
+    protected apiComponentDocFactory: DaffApiComponentDocFactory,
+    protected apiConstantDocFactory: DaffApiConstantDocFactory,
+    protected apiDirectiveDocFactory: DaffApiDirectiveDocFactory,
+    protected apiErrorDocFactory: DaffApiErrorDocFactory,
+    protected apiFacadeDocFactory: DaffApiFacadeDocFactory,
+    protected apiGuardDocFactory: DaffApiGuardDocFactory,
+    protected apiHelperDocFactory: DaffApiHelperDocFactory,
+    protected apiMockDocFactory: DaffApiMockDocFactory,
+    protected apiModelFactoryDocFactory: DaffApiModelFactoryDocFactory,
+    protected apiModuleDocFactory: DaffApiModuleDocFactory,
+    protected apiOperatorDocFactory: DaffApiOperatorDocFactory,
+    protected apiPipeDocFactory: DaffApiPipeDocFactory,
+    protected apiProviderDocFactory: DaffApiProviderDocFactory,
+    protected apiReducerDocFactory: DaffApiReducerDocFactory,
+    protected apiResolverDocFactory: DaffApiResolverDocFactory,
+    protected apiSelectorDocFactory: DaffApiSelectorDocFactory,
+    protected apiServiceDocFactory: DaffApiServiceDocFactory,
+    protected apiTokenDocFactory: DaffApiTokenDocFactory,
+    protected apiTypeDocFactory: DaffApiTypeDocFactory,
   ) {
     super();
   }
