@@ -9,14 +9,14 @@ fi
 CONDITION="magento-${VERSION}"
 
 # Patch angular.json: add condition to every build configuration across all projects
-# ANGULAR=$(jq --arg cond "$CONDITION" '
-#   .projects |= with_entries(
-#     .value.architect.build.configurations |= with_entries(
-#       .value.conditions = ((.value.conditions // []) + [$cond] | unique)
-#     )
-#   )
-# ' angular.json)
-# echo "$ANGULAR" > angular.json
+ANGULAR=$(jq --arg cond "$CONDITION" '
+  .projects |= with_entries(
+    .value.architect.build.configurations |= with_entries(
+      .value.conditions = ((.value.conditions // []) + [$cond] | unique)
+    )
+  )
+' angular.json)
+echo "$ANGULAR" > angular.json
 
 # Patch tsconfig.json: add customConditions to compilerOptions
 TSCONFIG=$(node -e "
