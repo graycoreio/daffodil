@@ -17,6 +17,7 @@ pkg.exports['./driver/magento/auto'] = {
   'magento-2.4.1': { types: './driver/magento/2.4.1/index.d.ts', default: './fesm2022/daffodil-external-router-driver-magento-2.4.1.mjs' },
   'magento-2.4.2': { types: './driver/magento/2.4.2/index.d.ts', default: './fesm2022/daffodil-external-router-driver-magento-2.4.2.mjs' },
   'magento-2.4.3': { types: './driver/magento/2.4.3/index.d.ts', default: './fesm2022/daffodil-external-router-driver-magento-2.4.3.mjs' },
+  default: { types: './driver/magento/2.4.3/index.d.ts', default: './fesm2022/daffodil-external-router-driver-magento-2.4.3.mjs' },
 };
 
 writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
