@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffDisableableDirective } from './disableable.directive';
+import { DaffDisableableDirective } from '@daffodil/design';
 
 @Component({
   template: `
