@@ -6,7 +6,10 @@ import {
   Input,
 } from '@angular/core';
 
-import { DaffDisableableDirective } from '@daffodil/design';
+import {
+  DaffDisableable,
+  DaffDisableableDirective,
+} from '@daffodil/design';
 
 let tabId = 1;
 
@@ -46,7 +49,7 @@ let tabId = 1;
     },
   ],
 })
-export class DaffTabComponent {
+export class DaffTabComponent implements DaffDisableable {
 
   /**
    * @docs-private

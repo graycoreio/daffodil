@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 
 import {
+  DaffDisableable,
   DaffDisableableDirective,
   DaffSizableDirective,
   DaffSizeSmallType,
@@ -54,7 +55,7 @@ export type DaffSwitchSize = DaffSizeSmallType;
     '[class.bottom]': 'labelPosition === "bottom"',
   },
 })
-export class DaffSwitchComponent extends DaffSizableDirective<DaffSwitchSize> {
+export class DaffSwitchComponent extends DaffSizableDirective<DaffSwitchSize> implements DaffDisableable {
   /**
    * The position of the label relative to the switch.
    */
