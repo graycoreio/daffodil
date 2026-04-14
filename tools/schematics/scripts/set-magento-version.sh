@@ -18,15 +18,4 @@ ANGULAR=$(jq --arg cond "$CONDITION" '
 ' angular.json)
 echo "$ANGULAR" > angular.json
 
-# Patch tsconfig.json: add customConditions to compilerOptions
-# TSCONFIG=$(node -e "
-#   const fs = require('fs');
-#   const raw = fs.readFileSync('tsconfig.json', 'utf8');
-#   const stripped = raw.replace(/\/\*[\s\S]*?\*\//g, '');
-#   process.stdout.write(stripped);
-# " | jq --arg cond "$CONDITION" '
-#   .compilerOptions.customConditions = ((.compilerOptions.customConditions // []) + [$cond] | unique)
-# ')
-# echo "$TSCONFIG" > tsconfig.json
-
 echo "Set Magento version condition: ${CONDITION}"

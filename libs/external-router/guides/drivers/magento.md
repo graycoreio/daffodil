@@ -28,7 +28,7 @@ If `customConditions` is not set, the driver defaults to v2.4.3.
 
 ## Usage
 
-### Step 1 — Set your Magento version in `angular.json` and `tsconfig.json`
+### Step 1 — Set your Magento version in `angular.json`
 
 Set these once. Only change them when you upgrade your Magento version.
 
@@ -47,15 +47,6 @@ Set these once. Only change them when you upgrade your Magento version.
         }
       }
     }
-  }
-}
-```
-
-```jsonc
-// tsconfig.json (or your app-specific tsconfig)
-{
-  "compilerOptions": {
-    "customConditions": ["magento-2.4.3"]
   }
 }
 ```
@@ -82,11 +73,11 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-When you upgrade Magento, only `angular.json` and `tsconfig.json` need to change — `app.config.ts` stays the same.
+When you upgrade Magento, only `angular.json` need to change — `app.config.ts` stays the same.
 
 ## Tree-shaking
 
-The `customConditions` approach means the bundler resolves `@daffodil/external-router/driver/magento` to exactly one version bundle. The other version bundles are never imported and are not included in the final output.
+The `conditions` approach means the bundler resolves `@daffodil/external-router/driver/magento` to exactly one version bundle. The other version bundles are never imported and are not included in the final output.
 
 ## Alternative: version-specific sub-package import
 
