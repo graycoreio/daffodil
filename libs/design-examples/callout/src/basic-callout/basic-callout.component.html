@@ -1,14 +1,5 @@
-<daff-form-field>
-  <daff-form-label>Color</daff-form-label>
-  <daff-select [options]="options" [formControl]="colorControl">
-    <ng-template daffSelectOption let-option="option">
-      {{ option.label }}
-    </ng-template>
-  </daff-select>
-</daff-form-field>
-
-<daff-callout [color]="colorControl.value?.value">
-  <div class="daff-callout-theming__icon" daffCalloutIcon>
+<daff-callout>
+  <div class="daff-basic-callout__icon" daffCalloutIcon>
     <fa-icon [icon]="faTag"></fa-icon>
   </div>
   <div daffCalloutTagline>Limited time offer</div>

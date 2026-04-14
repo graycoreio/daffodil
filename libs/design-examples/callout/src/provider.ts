@@ -4,6 +4,10 @@ import { provideDaffDocsExampleContent } from '@daffodil/docs';
 
 export const provideDaffDesignCalloutExamplesContent = () => makeEnvironmentProviders(provideDaffDocsExampleContent(
   {
+    id: 'basic-callout',
+    component: () => import('./basic-callout/basic-callout.component').then(c => c.BasicCalloutExampleComponent),
+  },
+  {
     id: 'callout-text-alignment',
     component: () => import('./callout-text-alignment/callout-text-alignment.component').then(c => c.CalloutTextAlignmentExampleComponent),
   },
