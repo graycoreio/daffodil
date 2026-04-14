@@ -3,8 +3,8 @@ name: Daffodil Build
 on:
   push:
     branches:
-      - develop
       - support-different-versions-v2
+      - develop
     tags: ["v*"]
   workflow_call:
     inputs:
