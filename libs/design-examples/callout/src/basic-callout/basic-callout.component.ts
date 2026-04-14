@@ -7,20 +7,18 @@ import { faTag } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
-import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 
 @Component({
-  selector: 'compact-callout-example',
-  templateUrl: './compact-callout.component.html',
-  styleUrls: ['./compact-callout.component.scss'],
+  selector: 'basic-callout-example',
+  templateUrl: './basic-callout.component.html',
+  styleUrl: './basic-callout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DAFF_CALLOUT_COMPONENTS,
-    DAFF_CONTAINER_COMPONENTS,
     FaIconComponent,
+    DAFF_CALLOUT_COMPONENTS,
     DaffButtonComponent,
   ],
 })
-export class CompactCalloutExampleComponent {
+export class BasicCalloutExampleComponent {
   faTag = faTag;
 }

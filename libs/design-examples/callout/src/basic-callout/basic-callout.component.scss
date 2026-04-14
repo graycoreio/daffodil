@@ -1,9 +1,9 @@
-.daff-compact-callout {
+.daff-basic-callout {
 	&__icon {
 		display: flex;
-		background: rgba(var(--daff-theme-rgb), 0.2);
+		background: var(--daff-theme-primary);
 		border-radius: 50%;
-		color: var(--daff-theme-contrast-rgb);
+		color: var(--daff-theme);
 		width: 3rem;
 		height: 3rem;
 		justify-content: center;

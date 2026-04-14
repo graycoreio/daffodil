@@ -7,16 +7,18 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faMobile } from '@fortawesome/free-solid-svg-icons';
+import { faTag } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
+import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
 
 @Component({
   selector: 'callout-text-alignment-example',
   templateUrl: './callout-text-alignment.component.html',
-  styleUrls: ['./callout-text-alignment.component.scss'],
+  styleUrl: './callout-text-alignment.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_CALLOUT_COMPONENTS,
@@ -24,16 +26,18 @@ import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
     FaIconComponent,
     DaffButtonComponent,
     ReactiveFormsModule,
+    DAFF_FORM_FIELD_COMPONENTS,
+    DAFF_SELECT_COMPONENTS,
   ],
 })
 export class CalloutTextAlignmentExampleComponent {
-  faMobile = faMobile;
-  textAlignControl: UntypedFormControl = new UntypedFormControl('');
-
+  faTag = faTag;
   options = [
     { value: '', label: 'Default' },
     { value: 'left', label: 'Left' },
     { value: 'center', label: 'Center' },
     { value: 'right', label: 'Right' },
   ];
+
+  textAlignControl: UntypedFormControl = new UntypedFormControl(this.options[0]);
 }
