@@ -11,7 +11,9 @@ import { faMapMarked } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_CARD_COMPONENTS } from '@daffodil/design/card';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
+import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
 
 @Component({
   selector: 'card-orientation-example',
@@ -20,7 +22,9 @@ import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_CARD_COMPONENTS,
+    DAFF_FORM_FIELD_COMPONENTS,
     DAFF_IMAGE_COMPONENTS,
+    DAFF_SELECT_COMPONENTS,
     FaIconComponent,
     DaffButtonComponent,
     ReactiveFormsModule,
@@ -29,11 +33,11 @@ import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
 export class CardOrientationExampleComponent {
   faMapMarked = faMapMarked;
 
-  orientationControl: UntypedFormControl = new UntypedFormControl('');
-
   options = [
     { value: '', label: 'Default' },
     { value: 'vertical', label: 'Vertical' },
     { value: 'horizontal', label: 'Horizontal' },
   ];
+
+  orientationControl: UntypedFormControl = new UntypedFormControl(this.options[0]);
 }

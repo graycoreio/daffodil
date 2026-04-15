@@ -4,8 +4,8 @@ import { provideDaffDocsExampleContent } from '@daffodil/docs';
 
 export const provideDaffDesignCardExamplesContent = () => makeEnvironmentProviders(provideDaffDocsExampleContent(
   {
-    id: 'basic-card',
-    component: () => import('./basic-card/basic-card.component').then(c => c.BasicCardExampleComponent),
+    id: 'basic-cards',
+    component: () => import('./basic-cards/basic-cards.component').then(c => c.BasicCardsExampleComponent),
   },
   {
     id: 'card-orientation',
@@ -22,10 +22,6 @@ export const provideDaffDesignCardExamplesContent = () => makeEnvironmentProvide
   {
     id: 'linkable-card',
     component: () => import('./linkable-card/linkable-card.component').then(c => c.LinkableCardExampleComponent),
-  },
-  {
-    id: 'stroked-card',
-    component: () => import('./stroked-card/stroked-card.component').then(c => c.StrokedCardExampleComponent),
   },
 ));
 

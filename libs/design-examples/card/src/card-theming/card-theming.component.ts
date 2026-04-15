@@ -11,26 +11,23 @@ import {
   DAFF_CARD_COMPONENTS,
   DAFF_STROKED_CARD_COMPONENTS,
 } from '@daffodil/design/card';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
+import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
 
 @Component({
   selector: 'card-theming-example',
   templateUrl: './card-theming.component.html',
-  styles: [`
-    daff-card, daff-stroked-card {
-      max-width: 480px;
-    }
-  `],
+  styleUrl: './card-theming.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_CARD_COMPONENTS,
     DAFF_STROKED_CARD_COMPONENTS,
+    DAFF_FORM_FIELD_COMPONENTS,
+    DAFF_SELECT_COMPONENTS,
     ReactiveFormsModule,
   ],
 })
 export class CardThemingExampleComponent {
-  cardControl: UntypedFormControl = new UntypedFormControl('');
-  strokedCardControl: UntypedFormControl = new UntypedFormControl('');
-
   options = [
     { value: '', label: 'Default' },
     { value: 'primary', label: 'Primary' },
@@ -41,4 +38,7 @@ export class CardThemingExampleComponent {
     { value: 'dark', label: 'Dark' },
     { value: 'light', label: 'Light' },
   ];
+
+  cardControl: UntypedFormControl = new UntypedFormControl(this.options[0]);
+  strokedCardControl: UntypedFormControl = new UntypedFormControl(this.options[0]);
 }
