@@ -16,7 +16,6 @@ import {
   DaffResetPasswordLanding,
 } from '@daffodil/auth/state';
 
-import { DaffAuthResetPasswordGuardRedirectUrl } from './reset-password-guard-redirect.token';
 import { DAFF_AUTH_ROUTING_CONFIG } from '../config/public_api';
 
 @Injectable({
@@ -26,7 +25,6 @@ export class DaffAuthResetPasswordGuard implements CanActivate {
   readonly facade = inject(DaffAuthFacade);
   readonly config = inject(DAFF_AUTH_ROUTING_CONFIG);
   readonly platformId = inject(PLATFORM_ID);
-  readonly redirectUrl = inject(DaffAuthResetPasswordGuardRedirectUrl);
   readonly router = inject(Router);
 
   canActivate(route: ActivatedRouteSnapshot): boolean | UrlTree {
@@ -37,7 +35,7 @@ export class DaffAuthResetPasswordGuard implements CanActivate {
     const token = route.queryParamMap.get(this.config.resetPasswordTokenParam);
 
     if (!token) {
-      return this.router.parseUrl(this.redirectUrl);
+      return this.router.parseUrl(this.config.resetPasswordRedirectPath);
     }
 
     this.facade.dispatch(new DaffResetPasswordLanding(token));

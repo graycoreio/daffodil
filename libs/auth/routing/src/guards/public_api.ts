@@ -10,7 +10,3 @@ export {
   DaffAuthMemberOnlyGuardRedirectUrl,
   provideDaffAuthMemberOnlyGuardRedirectUrl,
 } from './member-only-guard-redirect.token';
-export {
-  DaffAuthResetPasswordGuardRedirectUrl,
-  provideDaffAuthResetPasswordGuardRedirectUrl,
-} from './reset-password-guard-redirect.token';

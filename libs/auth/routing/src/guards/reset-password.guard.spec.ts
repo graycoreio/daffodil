@@ -13,7 +13,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import {
   DAFF_AUTH_ROUTING_CONFIG,
-  provideDaffAuthResetPasswordGuardRedirectUrl,
+  provideDaffAuthRoutingConfig,
 } from '@daffodil/auth/routing';
 import { DaffResetPasswordLanding } from '@daffodil/auth/state';
 import {
@@ -65,7 +65,7 @@ describe('@daffodil/auth/routing | DaffAuthResetPasswordGuard', () => {
             resetPasswordTokenParam: param,
           },
         },
-        provideDaffAuthResetPasswordGuardRedirectUrl(redirectUrl),
+        provideDaffAuthRoutingConfig({ resetPasswordRedirectPath: redirectUrl }),
       ],
     });
 
