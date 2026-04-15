@@ -13,6 +13,7 @@ import {
   DaffSuffixDirective,
   DaffDisableableDirective,
   DaffLoadableDirective,
+  DaffDisableable,
 } from '@daffodil/design';
 
 import { DaffButtonSizableDirective } from './button-sizable.directive';
@@ -48,7 +49,7 @@ import { DaffButtonSizableDirective } from './button-sizable.directive';
     '[attr.tabindex]': 'disabled ? -1 : this.tabindex',
   },
 })
-export class DaffButtonBaseDirective {
+export class DaffButtonBaseDirective implements DaffDisableable {
 
   /**
    * @docs-private
