@@ -30,4 +30,10 @@ export interface DaffAuthRoutingConfig {
    * Defaults to `'/'`.
    */
   tokenExpirationRedirectPath: string;
+
+  /**
+   * The path to which the user will be redirected when the reset password guard blocks activation.
+   * Defaults to `'/'`.
+   */
+  resetPasswordRedirectPath: string;
 }

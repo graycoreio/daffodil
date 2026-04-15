@@ -6,4 +6,5 @@ export const DAFF_AUTH_ROUTING_CONFIG_DEFAULT: DaffAuthRoutingConfig = {
   authCompleteRedirectPath: '/',
   logoutRedirectPath: '/',
   tokenExpirationRedirectPath: '/',
+  resetPasswordRedirectPath: '/',
 };
