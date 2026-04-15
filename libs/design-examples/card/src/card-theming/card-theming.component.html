@@ -1,27 +1,37 @@
-<daff-card [color]="cardControl.value">
-  <div daffCardTagline>Card Tagline</div>
-  <div daffCardTitle>Title</div>
-  <div daffCardContent>
-    <p>Cards are themable.</p>
-  </div>
-</daff-card>
+<div class="daff-card-theming__example-wrapper">
+  <daff-form-field>
+    <daff-form-label>Color</daff-form-label>
+    <daff-select [options]="options" [formControl]="cardControl">
+      <ng-template daffSelectOption let-option="option">
+        {{ option.label }}
+      </ng-template>
+    </daff-select>
+  </daff-form-field>
 
-<select [formControl]="cardControl">
-  @for (option of options; track option) {
-  <option [value]="option.value">{{ option.label }}</option>
-  }
-</select>
+  <daff-card [color]="cardControl.value">
+    <div daffCardTagline>Card Tagline</div>
+    <div daffCardTitle>Title</div>
+    <div daffCardContent>
+      <p>Cards are themable.</p>
+    </div>
+  </daff-card>
+</div>
 
-<daff-stroked-card [color]="strokedCardControl.value">
-  <div daffCardTagline>Card Tagline</div>
-  <div daffCardTitle>Title</div>
-  <div daffCardContent>
-    <p>Cards are themable.</p>
-  </div>
-</daff-stroked-card>
+<div class="daff-card-theming__example-wrapper">
+  <daff-form-field>
+    <daff-form-label>Color</daff-form-label>
+    <daff-select [options]="options" [formControl]="strokedCardControl">
+      <ng-template daffSelectOption let-option="option">
+        {{ option.label }}
+      </ng-template>
+    </daff-select>
+  </daff-form-field>
 
-<select [formControl]="strokedCardControl">
-  @for (option of options; track option) {
-  <option [value]="option.value">{{ option.label }}</option>
-  }
-</select>
+  <daff-stroked-card [color]="strokedCardControl.value">
+    <div daffCardTagline>Card Tagline</div>
+    <div daffCardTitle>Title</div>
+    <div daffCardContent>
+      <p>Cards are themable.</p>
+    </div>
+  </daff-stroked-card>
+</div>

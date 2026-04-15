@@ -11,7 +11,8 @@ import {
   DAFF_CARD_COMPONENTS,
   DAFF_STROKED_CARD_COMPONENTS,
 } from '@daffodil/design/card';
-import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
+import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
 
 @Component({
   selector: 'linkable-card-example',
@@ -21,15 +22,12 @@ import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
   imports: [
     DAFF_CARD_COMPONENTS,
     DAFF_STROKED_CARD_COMPONENTS,
-    DAFF_IMAGE_COMPONENTS,
+    DAFF_FORM_FIELD_COMPONENTS,
+    DAFF_SELECT_COMPONENTS,
     ReactiveFormsModule,
   ],
 })
 export class LinkableCardExampleComponent {
-  basicColorControl: UntypedFormControl = new UntypedFormControl('');
-  raisedColorControl: UntypedFormControl = new UntypedFormControl('');
-  strokedColorControl: UntypedFormControl = new UntypedFormControl('');
-
   options = [
     { value: '', label: 'Default' },
     { value: 'primary', label: 'Primary' },
@@ -40,4 +38,8 @@ export class LinkableCardExampleComponent {
     { value: 'dark', label: 'Dark' },
     { value: 'light', label: 'Light' },
   ];
+
+  basicColorControl: UntypedFormControl = new UntypedFormControl(this.options[0]);
+  raisedColorControl: UntypedFormControl = new UntypedFormControl(this.options[0]);
+  strokedColorControl: UntypedFormControl = new UntypedFormControl(this.options[0]);
 }

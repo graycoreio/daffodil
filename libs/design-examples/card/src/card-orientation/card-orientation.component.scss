@@ -1,4 +1,19 @@
-// stylelint-disable scss/selector-nest-combinators
-daff-card.vertical {
-  max-width: 560px;
+:host {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+
+	daff-form-field {
+		max-width: 15rem;
+		width: 100%;
+	}
+
+	daff-card {
+		width: 100%;
+
+		&.daff-vertical {
+			max-width: 30rem;
+		}
+	}
 }

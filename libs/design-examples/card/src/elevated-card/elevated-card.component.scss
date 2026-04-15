@@ -1,3 +1,11 @@
-daff-card {
-  max-width: 480px;
+:host {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+}
+
+daff-card,
+daff-stroked-card {
+	max-width: 30rem;
 }
