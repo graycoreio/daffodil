@@ -1,41 +1,47 @@
+import { isPlatformServer } from '@angular/common';
 import {
-  Inject,
+  inject,
   Injectable,
+  PLATFORM_ID,
 } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
 import {
-  Observable,
-  of,
-} from 'rxjs';
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  UrlTree,
+} from '@angular/router';
 
 import {
   DaffAuthFacade,
   DaffResetPasswordLanding,
 } from '@daffodil/auth/state';
 
-import {
-  DaffAuthRoutingConfig,
-  DAFF_AUTH_ROUTING_CONFIG,
-} from '../config/public_api';
+import { DaffAuthResetPasswordGuardRedirectUrl } from './reset-password-guard-redirect.token';
+import { DAFF_AUTH_ROUTING_CONFIG } from '../config/public_api';
 
 @Injectable({
   providedIn: 'any',
 })
-export class DaffAuthResetPasswordGuard  {
-  constructor(
-    private facade: DaffAuthFacade,
-    @Inject(DAFF_AUTH_ROUTING_CONFIG) private config: DaffAuthRoutingConfig,
-  ) {}
+export class DaffAuthResetPasswordGuard implements CanActivate {
+  readonly facade = inject(DaffAuthFacade);
+  readonly config = inject(DAFF_AUTH_ROUTING_CONFIG);
+  readonly platformId = inject(PLATFORM_ID);
+  readonly redirectUrl = inject(DaffAuthResetPasswordGuardRedirectUrl);
+  readonly router = inject(Router);
 
-  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
+  canActivate(route: ActivatedRouteSnapshot): boolean | UrlTree {
+    if (isPlatformServer(this.platformId)) {
+      return true;
+    }
+
     const token = route.queryParamMap.get(this.config.resetPasswordTokenParam);
 
     if (!token) {
-      return of(false);
+      return this.router.parseUrl(this.redirectUrl);
     }
 
     this.facade.dispatch(new DaffResetPasswordLanding(token));
 
-    return of(true);
+    return true;
   }
 }

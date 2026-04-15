@@ -7,11 +7,14 @@ import {
 import {
   ActivatedRoute,
   Router,
+  UrlTree,
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Observable } from 'rxjs';
 
-import { DAFF_AUTH_ROUTING_CONFIG } from '@daffodil/auth/routing';
+import {
+  DAFF_AUTH_ROUTING_CONFIG,
+  provideDaffAuthResetPasswordGuardRedirectUrl,
+} from '@daffodil/auth/routing';
 import { DaffResetPasswordLanding } from '@daffodil/auth/state';
 import {
   DaffAuthStateTestingModule,
@@ -34,10 +37,12 @@ describe('@daffodil/auth/routing | DaffAuthResetPasswordGuard', () => {
 
   let param: string;
   let token: string;
+  let redirectUrl: string;
 
   beforeEach(() => {
     param = 'token';
     token = '290384runfei9usnrg0ew9rgm';
+    redirectUrl = 'redirectUrl';
 
     TestBed.configureTestingModule({
       imports: [
@@ -60,6 +65,7 @@ describe('@daffodil/auth/routing | DaffAuthResetPasswordGuard', () => {
             resetPasswordTokenParam: param,
           },
         },
+        provideDaffAuthResetPasswordGuardRedirectUrl(redirectUrl),
       ],
     });
 
@@ -71,7 +77,7 @@ describe('@daffodil/auth/routing | DaffAuthResetPasswordGuard', () => {
   });
 
   describe('canActivate | checking if the route can be activated', () => {
-    let result: Observable<boolean>;
+    let result: boolean | UrlTree;
 
     describe('when there is a token set to the param', () => {
       beforeEach(fakeAsync(() => {
@@ -80,15 +86,11 @@ describe('@daffodil/auth/routing | DaffAuthResetPasswordGuard', () => {
         result = guard.canActivate(TestBed.inject(ActivatedRoute).snapshot);
       }));
 
-      it('should allow activation', done => {
-        result.subscribe(res => {
-          expect(res).toBeTrue();
-          done();
-        });
+      it('should allow activation', () => {
+        expect(result).toBeTrue();
       });
 
       it('should dispatch DaffResetPasswordLanding with the token', () => {
-        result.subscribe();
         expect(mockFacade.dispatch).toHaveBeenCalledWith(new DaffResetPasswordLanding(token));
       });
     });
@@ -100,15 +102,11 @@ describe('@daffodil/auth/routing | DaffAuthResetPasswordGuard', () => {
         result = guard.canActivate(TestBed.inject(ActivatedRoute).snapshot);
       }));
 
-      it('should not allow activation', done => {
-        result.subscribe(res => {
-          expect(res).toBeFalse();
-          done();
-        });
+      it('should return the parsed redirect URL', () => {
+        expect(result.toString()).toEqual(`/${redirectUrl}`);
       });
 
       it('should not dispatch DaffResetPasswordLanding with the token', () => {
-        result.subscribe();
         expect(mockFacade.dispatch).not.toHaveBeenCalledWith(new DaffResetPasswordLanding(token));
       });
     });
