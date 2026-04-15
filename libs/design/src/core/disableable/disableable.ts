@@ -1,6 +1,5 @@
 /**
- * An interface to implement when a component needs a `disabled` property,
- * ensuring a consistent property name across the codebase.
+ * An interface for any component or directive that can be disabled.
  */
 export interface DaffDisableable {
   disabled: boolean;
