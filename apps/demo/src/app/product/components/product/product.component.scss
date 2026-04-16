@@ -52,18 +52,18 @@
 
 	&__brand {
 		color: daff-theme.daff-color($neutral, 80);
-		font-size: $font-size-md;
+		font-size: var(--daff-font-size-md);
 		font-weight: normal;
 	}
 
 	&__name {
-		font-size: $font-size-lg;
+		font-size: var(--daff-font-size-lg);
 		font-weight: bold;
 		padding: 5px 0;
 	}
 
 	&__price {
-		font-size: $font-size-md;
+		font-size: var(--daff-font-size-md);
 	}
 
 	&__qty {

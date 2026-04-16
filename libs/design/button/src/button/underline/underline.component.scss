@@ -1,6 +1,5 @@
 @use '../button-base' as base;
 @use '../../../../scss/layout';
-@use '../../../../scss/typography' as t;
 
 .daff-underline-button {
 	@include base.daff-button-base();
@@ -45,19 +44,19 @@
 	}
 
 	&.daff-sm {
-		font-size: t.$font-size-sm;
+		font-size: var(--daff-font-size-sm);
 		height: 1.25rem;
 		padding: 0 0 0.25rem;
 	}
 
 	&.daff-md {
-		font-size: t.$font-size-base;
+		font-size: var(--daff-font-size-base);
 		height: 1.5rem;
 		padding: 0 0 0.25rem;
 	}
 
 	&.daff-lg {
-		font-size: t.$font-size-md;
+		font-size: var(--daff-font-size-md);
 		height: 1.75rem;
 		padding: 0 0 0.5rem;
 	}
