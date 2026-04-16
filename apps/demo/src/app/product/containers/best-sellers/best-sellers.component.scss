@@ -3,7 +3,7 @@
 .demo-best-sellers {
 	&__title {
 		font-weight: bold;
-		font-size: $font-size-md;
+		font-size: var(--daff-font-size-md);
 		margin-bottom: 30px;
 		text-align: center;
 		text-transform: uppercase;

@@ -5,7 +5,7 @@
 	width: 100%;
 
 	button {
-		font-size: $font-size-md;
+		font-size: var(--daff-font-size-md);
 		width: 100%;
 	}
 }
