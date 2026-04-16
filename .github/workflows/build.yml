@@ -13,6 +13,11 @@ on:
       cache-mode:
         required: true
         type: string
+      angular-versions:
+        required: false
+        type: string
+        default: '^20'
+        description: "Comma-separated Angular version constraints (e.g. '^19,^20')"
     secrets:
       NX_KEY:
         required: true
@@ -148,7 +153,7 @@ jobs:
     with:
       ref: ${{ inputs.ref && inputs.ref || github.sha }}
       node-versions: '22.21.x'
-      angular-versions: '^20'
+      angular-versions: ${{ inputs.angular-versions }}
     secrets:
       NX_KEY: ${{ secrets.NX_KEY }}
       AZURE_NX_CACHE_READONLY_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING || secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
