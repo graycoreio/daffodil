@@ -1,12 +1,11 @@
 @use '../../../scss/interactions';
-@use '../../../scss/typography' as t;
 
 // stylelint-disable selector-class-pattern
 .daff-notification {
 	$root: &;
 	display: flex;
 	border-radius: 0.25rem;
-	font-size: t.$font-size-base;
+	font-size: var(--daff-font-size-base);
 	line-height: 1.5rem;
 	position: relative;
 
@@ -42,13 +41,13 @@
 	}
 
 	&__title {
-		font-size: t.$font-size-base;
+		font-size: var(--daff-font-size-base);
 		font-weight: 600;
 		line-height: 1.5rem;
 	}
 
 	&__message {
-		font-size: t.$font-size-base;
+		font-size: var(--daff-font-size-base);
 		font-weight: normal;
 		line-height: 1.25rem;
 	}

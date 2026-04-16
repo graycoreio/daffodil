@@ -1,7 +1,7 @@
 @use '@daffodil/design/scss/utilities' as *;
 
 .demo-checkout-shipping-address-summary {
-	font-size: $font-size-sm;
+	font-size: var(--daff-font-size-sm);
 	display: grid;
 	grid-template-columns: 4fr 1fr;
 	grid-template-areas:
@@ -21,7 +21,7 @@
 	}
 
 	&__title {
-		font-size: 1rem;
+		font-size: var(--daff-font-size-base);
 		font-weight: bold;
 		margin-bottom: 15px;
 		text-transform: uppercase;
@@ -35,7 +35,7 @@
 	&__edit {
 		grid-area: edit;
 		display: block;
-		font-size: 0.875rem;
+		font-size: var(--daff-font-size-sm);
 		text-decoration: underline;
 		justify-self: end;
 		@include clickable();

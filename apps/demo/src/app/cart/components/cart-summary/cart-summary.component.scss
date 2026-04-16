@@ -38,7 +38,7 @@
 	&__edit-cart {
 		grid-area: edit;
 		justify-self: right;
-		font-size: $font-size-sm;
+		font-size: var(--daff-font-size-sm);
 		text-decoration: underline;
 		@include clickable();
 
@@ -50,6 +50,6 @@
 	&__item-count {
 		float: right;
 		color: daff-theme.daff-color($neutral, 80);
-		font-size: $font-size-sm;
+		font-size: var(--daff-font-size-sm);
 	}
 }

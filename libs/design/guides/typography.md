@@ -77,9 +77,9 @@ You can access the typography utility classes and mixins in your project by addi
 
 ## Typography variables
 
-| Variable          | Value    |
-| ----------------- | -------- |
-| `$font-size-lg`   | 1.5rem   |
-| `$font-size-md`   | 1.25rem  |
-| `$font-size-base` | 1rem     |
-| `$font-size-sm`   | 0.875rem |
+| Variable                | Value    |
+| ----------------------- | -------- |
+| `--daff-font-size-lg`   | 1.5rem   |
+| `--daff-font-size-md`   | 1.25rem  |
+| `--daff-font-size-base` | 1rem     |
+| `--daff-font-size-sm`   | 0.875rem |

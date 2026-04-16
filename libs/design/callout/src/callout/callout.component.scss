@@ -36,7 +36,7 @@
 	}
 
 	&__subtitle {
-		font-size: t.$font-size-md;
+		font-size: var(--daff-font-size-md);
 		margin: 16px 0 0;
 		max-width: 592px;
 		padding: 0;

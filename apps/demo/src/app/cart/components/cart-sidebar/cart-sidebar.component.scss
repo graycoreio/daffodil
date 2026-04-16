@@ -28,7 +28,7 @@
 		margin: 25px 0 0;
 		justify-content: center;
 		width: 100%;
-		font-size: $font-size-md;
+		font-size: var(--daff-font-size-md);
 	}
 
 	&__cart-totals {
