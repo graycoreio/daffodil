@@ -11,5 +11,9 @@ export const provideDaffDesignMenuExamplesContent = () => makeEnvironmentProvide
     id: 'menu-with-icon-toggle',
     component: () => import('./menu-with-icon-toggle/menu-with-icon-toggle.component').then(c => c.MenuWithIconToggleExampleComponent),
   },
+  {
+    id: 'menu-with-id',
+    component: () => import('./menu-with-id/menu-with-id.component').then(c => c.MenuWithIdExampleComponent),
+  },
 ));
 

@@ -105,18 +105,12 @@ The menu activator provides an `isOpen` property that tracks whether the menu is
 
 <daff-docs-example-viewer example="menu-with-icon-toggle"></daff-docs-example-viewer>
 
-```html
-<button [daffMenuActivator]="menuContent" #menu="daffMenuActivator">
-  Options
-  <fa-icon [icon]="menu.isOpen() ? faChevronUp : faChevronDown"></fa-icon>
-</button>
 
-<ng-template #menuContent>
-  <daff-menu>
-    <button daff-menu-item>Menu Item</button>
-  </daff-menu>
-</ng-template>
-```
+### Setting an ID
+
+The menu activator accepts an optional `id` input. When set, the opened menu's `id` is derived as `{id}-menu`. When no `id` is provided, a unique ID is auto-generated.
+
+<daff-docs-example-viewer example="menu-with-id"></daff-docs-example-viewer>
 
 ## Accessibility
 Menu follows the [Menu and Menubar WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).

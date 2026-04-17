@@ -10,6 +10,10 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffMenuComponent } from './menu.component';
+import {
+  DAFF_MENU_CONFIG,
+  DaffMenuConfig,
+} from '../config/menu-config';
 import { DaffMenuItemComponent } from '../menu-item/menu-item.component';
 import { provideTestMenuService } from '../testing/dummy-service';
 
@@ -35,6 +39,7 @@ describe('@daffodil/design/menu | DaffMenuComponent | Defaults', () => {
       ],
       providers: [
         provideTestMenuService(),
+        { provide: DAFF_MENU_CONFIG, useValue: <DaffMenuConfig>{ menuId: 'daff-menu-test' }},
       ],
     })
       .compileComponents();
@@ -65,5 +70,9 @@ describe('@daffodil/design/menu | DaffMenuComponent | Defaults', () => {
 
   it('should have a role of menu', () => {
     expect(de.nativeElement.getAttribute('role')).toBe('menu');
+  });
+
+  it('should have an id matching the provided DAFF_MENU_CONFIG menuId', () => {
+    expect(de.nativeElement.getAttribute('id')).toBe('daff-menu-test');
   });
 });
