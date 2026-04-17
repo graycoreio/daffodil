@@ -47,4 +47,51 @@ describe('@daffodil/design/tree - hydrateTree', () => {
       expect(uiCount).toEqual(dataCount);
     });
   });
+
+  describe('node IDs', () => {
+    it('should use the treeId as the root node ID when provided', () => {
+      const data = { title: 'Root', url: '', id: 'root', items: [], data: {}};
+      const uiTree = hydrateTree(data, 'my-tree');
+      expect(uiTree.id).toEqual('my-tree');
+    });
+
+    it('should fall back to the data id for the root node when treeId is not provided', () => {
+      const data = { title: 'Root', url: '', id: 'root', items: [], data: {}};
+      const uiTree = hydrateTree(data);
+      expect(uiTree.id).toEqual('root');
+    });
+
+    it('should fall back to the data title for the root node when treeId and id are nullish', () => {
+      const data = { title: 'Root', url: '', id: undefined, items: [], data: {}};
+      const uiTree = hydrateTree(data);
+      expect(uiTree.id).toEqual('Root');
+    });
+
+    it('should prefix child node IDs with their parent ID', () => {
+      const data = { title: 'Root', url: '', id: 'root', items: [
+        { title: 'Child A', url: '', id: 'a', items: [], data: {}},
+      ], data: {}};
+      const uiTree = hydrateTree(data, 'my-tree');
+      expect(uiTree.items[0].id).toEqual('my-tree.a');
+    });
+
+    it('should build nested IDs through the full ancestor chain', () => {
+      const data = { title: 'Root', url: '', id: 'root', items: [
+        { title: 'Child A', url: '', id: 'a', items: [
+          { title: 'Child B', url: '', id: 'b', items: [], data: {}},
+        ], data: {}},
+      ], data: {}};
+      const uiTree = hydrateTree(data, 'my-tree');
+      expect(uiTree.items[0].id).toEqual('my-tree.a');
+      expect(uiTree.items[0].items[0].id).toEqual('my-tree.a.b');
+    });
+
+    it('should use the title as fallback for child IDs when id is nullish', () => {
+      const data = { title: 'Root', url: '', id: undefined, items: [
+        { title: 'Child A', url: '', id: undefined, items: [], data: {}},
+      ], data: {}};
+      const uiTree = hydrateTree(data, 'my-tree');
+      expect(uiTree.items[0].id).toEqual('my-tree.Child A');
+    });
+  });
 });

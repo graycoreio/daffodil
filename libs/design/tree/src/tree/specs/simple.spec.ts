@@ -1,6 +1,6 @@
 import {
   Component,
-  Input,
+  signal,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -13,14 +13,14 @@ import { DaffTreeComponent } from '../tree.component';
 
 @Component({
   template: `
-    <ul daff-tree [tree]="data"></ul>
+    <ul daff-tree [tree]="data()"></ul>
   `,
   imports: [
     DaffTreeComponent,
   ],
 })
 class WrapperComponent {
-  @Input() data: DaffTreeData<any>;
+  data = signal<DaffTreeData<any>>(undefined);
 }
 
 describe('@daffodil/design/tree | DaffTreeComponent | Simple', () => {
@@ -54,7 +54,7 @@ describe('@daffodil/design/tree | DaffTreeComponent | Simple', () => {
   });
 
   it('should render nothing within the tree when data is provided with no templates', () => {
-    wrapper.data = { title: '', url: '', id: '', items: [], data: {}};
+    wrapper.data.set({ title: '', url: '', id: '', items: [], data: {}});
     fixture.detectChanges();
 
     expect(el).toBeTruthy();

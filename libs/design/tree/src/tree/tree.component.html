@@ -1,7 +1,7 @@
-@for (node of flatTree; track node.id) {
+@for (node of flatTree(); track node.id) {
 	<li [attr.aria-level]="node.level" [class.hidden]="!node.visible">
 		<ng-container
-			*ngTemplateOutlet="node.hasChildren ? withChildrenTemplate : treeItemTemplate; context: { $implicit: node }">
+			*ngTemplateOutlet="node.hasChildren ? withChildrenTemplate() : treeItemTemplate(); context: { $implicit: node }">
 		</ng-container>
 	</li>
 }

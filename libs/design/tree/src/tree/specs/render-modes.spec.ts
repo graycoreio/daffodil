@@ -1,6 +1,6 @@
 import {
   Component,
-  Input,
+  signal,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -15,7 +15,7 @@ import { DaffTreeComponent } from '../tree.component';
 
 @Component({
   template: `
-    <ul daff-tree [tree]="data" [renderMode]="renderMode">
+    <ul daff-tree [tree]="data()" [renderMode]="renderMode()">
       <ng-template #daffTreeItemWithChildrenTpl let-node>
           <button daffTreeItem [node]="node">{{ node.title }} </button>
       </ng-template>
@@ -31,8 +31,8 @@ import { DaffTreeComponent } from '../tree.component';
   ],
 })
 class WrapperComponent {
-  @Input() data: DaffTreeData<any>;
-  @Input() renderMode: DaffTreeRenderMode;
+  data = signal<DaffTreeData<any>>(undefined);
+  renderMode = signal<DaffTreeRenderMode>(undefined);
 }
 
 
@@ -62,25 +62,25 @@ describe('@daffodil/design/tree | DaffTreeComponent | renderModes', () => {
   });
 
   it('should render two nodes when renderMode is `not-in-dom`', () => {
-    wrapper.data = { title: 'Root', url: '', id: '', items: [
+    wrapper.data.set({ title: 'Root', url: '', id: '', items: [
       { title: 'Child A', url: '', id: '', items: [
         { title: 'Child Aa', url: '', id: '', items: [], data: {}},
       ], data: {}},
       { title: 'Child B', url: '', id: '', items: [], data: {}},
-    ], data: {}};
-    wrapper.renderMode = 'not-in-dom';
+    ], data: {}});
+    wrapper.renderMode.set('not-in-dom');
     fixture.detectChanges();
     expect(fixture.debugElement.queryAll(By.css('li')).length).toEqual(2);
   });
 
   it('should render three nodes when renderMode is `in-dom`', () => {
-    wrapper.data = { title: 'Root', url: '', id: '', items: [
+    wrapper.data.set({ title: 'Root', url: '', id: '', items: [
       { title: 'Child A', url: '', id: '', items: [
         { title: 'Child Aa', url: '', id: '', items: [], data: {}},
       ], data: {}},
       { title: 'Child B', url: '', id: '', items: [], data: {}},
-    ], data: {}};
-    wrapper.renderMode = 'in-dom';
+    ], data: {}});
+    wrapper.renderMode.set('in-dom');
     fixture.detectChanges();
     expect(fixture.debugElement.queryAll(By.css('li')).length).toEqual(3);
   });

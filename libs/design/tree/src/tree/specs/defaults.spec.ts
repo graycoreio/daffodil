@@ -33,7 +33,7 @@ describe('@daffodil/design/tree | DaffTreeComponent | Defaults', () => {
   });
 
   it('should have sane defaults', () => {
-    expect(component.flatTree).toEqual([]);
-    expect(component.tree).toEqual(undefined);
+    expect(component.flatTree()).toEqual([]);
+    expect(component.tree()).toEqual(undefined);
   });
 });

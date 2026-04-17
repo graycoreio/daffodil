@@ -1,6 +1,6 @@
 import {
   Component,
-  Input,
+  signal,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -14,7 +14,7 @@ import { DaffTreeComponent } from '../tree.component';
 
 @Component({
   template: `
-    <ul daff-tree [tree]="data">
+    <ul daff-tree [tree]="data()">
       <ng-template #daffTreeItemWithChildrenTpl let-node>
           <button daffTreeItem [node]="node">{{ node.title }} </button>
       </ng-template>
@@ -30,7 +30,7 @@ import { DaffTreeComponent } from '../tree.component';
   ],
 })
 class WrapperComponent {
-  @Input() data: DaffTreeData<any>;
+  data = signal<DaffTreeData<any>>(undefined);
 }
 
 
@@ -60,23 +60,23 @@ describe('@daffodil/design/tree - DaffTreeComponent | withTemplate', () => {
   });
 
   it('should render something when data and templates are provided', () => {
-    wrapper.data = { title: 'Root', url: '', id: '', items: [
+    wrapper.data.set({ title: 'Root', url: '', id: '', items: [
       { title: 'Child A', url: '', id: '', items: [
         { title: 'Child Aa', url: '', id: '', items: [], data: {}},
       ], data: {}},
       { title: 'Child B', url: '', id: '', items: [], data: {}},
-    ], data: {}};
+    ], data: {}});
     fixture.detectChanges();
     expect(fixture.debugElement.query(By.css('li')).componentInstance instanceof DaffTreeComponent).toBeTrue();
   });
 
   it('should render the same number of items as there are tree branches', () => {
-    wrapper.data = { title: 'Root', url: '', id: '', items: [
+    wrapper.data.set({ title: 'Root', url: '', id: '', items: [
       { title: 'Child A', url: '', id: '', items: [
         { title: 'Child Aa', url: '', id: '', items: [], data: {}},
       ], data: {}},
       { title: 'Child B', url: '', id: '', items: [], data: {}},
-    ], data: {}};
+    ], data: {}});
     fixture.detectChanges();
     expect(fixture.debugElement.queryAll(By.css('li')).length).toEqual(3);
   });

@@ -3,7 +3,7 @@ import { DaffTreeData } from '../interfaces/tree-data';
 import { DaffTreeUi } from '../interfaces/tree-ui';
 
 export const daffDataTreeToUiTree = <T>(data: DaffTreeData<T>, parent: DaffTreeUi<T>, open: boolean = false): DaffTreeUi<T> => ({
-  id: data.id ?? data.title,
+  id: parent ? `${parent.id}.${data.id ?? data.title}` : (data.id ?? data.title),
   title: data.title,
   url: data.url,
   data: data.data,
@@ -16,11 +16,19 @@ export const daffDataTreeToUiTree = <T>(data: DaffTreeData<T>, parent: DaffTreeU
  * This function translates the original data given to us by the client
  * to the internal representation of the tree used by the {@link DaffTreeComponent}
  */
-export const hydrateTree = <T>(data: DaffTreeData<T>): DaffTreeUi<T> => {
-  const tree = daffDataTreeToUiTree(data, undefined, true);
+export const hydrateTree = <T>(data: DaffTreeData<T>, treeId?: string): DaffTreeUi<T> => {
+  const root: DaffTreeUi<T> = {
+    id: treeId ?? (data.id ?? data.title),
+    title: data.title,
+    url: data.url,
+    data: data.data,
+    open: true,
+    parent: undefined,
+    items: [],
+  };
 
   let treeStack = [
-    tree,
+    root,
   ];
 
   traverse(data, (el) => {
@@ -33,5 +41,5 @@ export const hydrateTree = <T>(data: DaffTreeData<T>): DaffTreeUi<T> => {
     return el;
   }, 'items');
 
-  return tree;
+  return root;
 };
