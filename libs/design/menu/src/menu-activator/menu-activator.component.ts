@@ -59,7 +59,7 @@ export class DaffMenuActivatorDirective implements OnDestroy {
   /**
    * The resolved menu ID.
    */
-  menuId = computed(() => {
+  private menuId = computed(() => {
     const id = this.id();
     return id ? `${id}-menu` : this._defaultMenuId;
   });
