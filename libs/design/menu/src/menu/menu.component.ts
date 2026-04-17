@@ -79,6 +79,10 @@ export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
     private _focusTrapFactory: ConfigurableFocusTrapFactory,
     private _elementRef: ElementRef<HTMLElement>,
     private menuService: DaffMenuService,
+
+    /**
+     * @docs-private
+     */
     @Inject(DAFF_MENU_CONFIG) public readonly config: DaffMenuConfig,
   ) {}
 
