@@ -5,6 +5,7 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffSidebarModeEnum,
@@ -84,6 +85,23 @@ describe('DaffioSidebarService', () => {
 
     it('should default to the nav links registration', () => {
       expect(service.activeRegistration$).toBeObservable(cold('a', { a: testRegistration }));
+    });
+
+    it('should only emit an activeRegistration when the sidebar actually changes', () => {
+      const scheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+
+      scheduler.run(({ expectObservable, cold: coldMarble }) => {
+        coldMarble('-a').subscribe(() => {
+          dataSpy.next({
+            daffioSidebars: {
+              [DAFFIO_NAV_SIDEBAR_ID]: { id: DAFFIO_NAV_SIDEBAR_ID },
+            },
+          });
+        });
+        expectObservable(service.activeRegistration$).toBe('a', { a: testRegistration });
+      });
     });
 
     describe('when an unknown sidebar is opened', () => {
