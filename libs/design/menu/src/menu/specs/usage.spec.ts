@@ -10,6 +10,10 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import {
+  DAFF_MENU_CONFIG,
+  DaffMenuConfig,
+} from '../../config/menu-config';
 import { DaffMenuItemComponent } from '../../menu-item/menu-item.component';
 import { DaffMenuService } from '../../services/menu.service';
 import { provideTestMenuService } from '../../testing/dummy-service';
@@ -43,6 +47,7 @@ describe('@daffodil/design/menu | DaffMenuComponent | Usage', () => {
       ],
       providers: [
         provideTestMenuService(),
+        { provide: DAFF_MENU_CONFIG, useValue: <DaffMenuConfig>{ menuId: 'daff-menu-test' }},
       ],
     })
       .compileComponents();

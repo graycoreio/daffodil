@@ -7,7 +7,6 @@ import {
   TemplatePortal,
 } from '@angular/cdk/portal';
 import {
-  ElementRef,
   Injectable,
   Injector,
   TemplateRef,
@@ -22,12 +21,11 @@ import {
 
 import { DaffLazyComponent } from '@daffodil/design';
 
+import {
+  DAFF_MENU_CONFIG,
+  DaffMenuConfig,
+} from '../config/menu-config';
 import { daffMenuCreateOverlay } from '../helpers/create-overlay';
-
-export interface DaffActivatedMenu {
-  el: ElementRef;
-  component: Type<unknown>;
-}
 
 export type DaffMenuSlot = TemplateRef<unknown> | DaffLazyComponent | Type<unknown>;
 
@@ -47,17 +45,22 @@ export class DaffMenuService {
   /**
    * @docs-private
    */
-  protected async _createOverlay(activatorElement: ViewContainerRef, component: DaffMenuSlot) {
+  protected async _createOverlay(activatorElement: ViewContainerRef, component: DaffMenuSlot, config?: DaffMenuConfig) {
     if (!this._overlay) {
       this._overlay = daffMenuCreateOverlay(this.overlay, activatorElement.element);
       if(typeof component === 'object' && (<DaffLazyComponent>component)?.import) {
         component = await (<DaffLazyComponent>component).import();
       }
 
+      const injector = Injector.create({
+        providers: [{ provide: DAFF_MENU_CONFIG, useValue: config }],
+        parent: this.injector,
+      });
+
       if(component instanceof Type) {
-        this._overlay.attach(new ComponentPortal(<Type<unknown>>component, null, this.injector));
+        this._overlay.attach(new ComponentPortal(<Type<unknown>>component, null, injector));
       } else if (component instanceof TemplateRef) {
-        this._overlay.attach(new TemplatePortal(component, activatorElement, null, this.injector));
+        this._overlay.attach(new TemplatePortal(component, activatorElement, null, injector));
       }
 
       this._overlay.backdropClick().pipe(
@@ -83,11 +86,11 @@ export class DaffMenuService {
     this._activator.element.nativeElement.focus();
   }
 
-  open(activator: ViewContainerRef, component: DaffMenuSlot) {
+  open(activator: ViewContainerRef, component: DaffMenuSlot, config?: DaffMenuConfig) {
     if (this._overlay) {
       this._destroyOverlay();
     }
-    this._createOverlay(activator, component);
+    this._createOverlay(activator, component, config);
     this._activator = activator;
     this.$_open.next(true);
   }

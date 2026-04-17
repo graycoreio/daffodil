@@ -1,4 +1,8 @@
-export { DaffMenuService } from './services/menu.service';
+export { DaffMenuConfig } from './config/menu-config';
+export {
+  DaffMenuService,
+  DaffMenuSlot,
+} from './services/menu.service';
 export { DaffMenuActivatorDirective } from './menu-activator/menu-activator.component';
 export { DaffMenuModule } from './menu.module';
 export { DaffMenuComponent } from './menu/menu.component';

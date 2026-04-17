@@ -1,6 +1,8 @@
 import {
   ChangeDetectorRef,
+  computed,
   Directive,
+  input,
   Input,
   OnDestroy,
   signal,
@@ -13,6 +15,7 @@ import {
   takeUntil,
 } from 'rxjs';
 
+import { daffNextMenuId } from '../config/menu-id';
 import { DaffMenuService } from '../services/menu.service';
 
 /**
@@ -31,6 +34,7 @@ import { DaffMenuService } from '../services/menu.service';
     '(click)': 'onClick($event)',
     'aria-haspopup': 'menu',
     '[attr.aria-expanded]': 'ariaExpanded',
+    '[attr.aria-controls]': '_open ? menuId() : null',
   },
   exportAs: 'daffMenuActivator',
 })
@@ -38,12 +42,27 @@ export class DaffMenuActivatorDirective implements OnDestroy {
 
   private _destroyed$ = new Subject<boolean>();
   private _open: boolean;
+  private _defaultMenuId = daffNextMenuId();
   readonly isOpen = signal(false);
 
   /**
    * The menu content to display when activated.
    */
   @Input() daffMenuActivator: Type<unknown> | TemplateRef<unknown>;
+
+  /**
+   * An optional ID for the activator.
+   * When set, the menu's ID is derived as `${id}-menu`.
+   */
+  id = input<string>();
+
+  /**
+   * The resolved menu ID.
+   */
+  private menuId = computed(() => {
+    const id = this.id();
+    return id ? `${id}-menu` : this._defaultMenuId;
+  });
 
   /**
    * @docs-private
@@ -86,6 +105,6 @@ export class DaffMenuActivatorDirective implements OnDestroy {
    */
   onClick(event: MouseEvent) {
     event.preventDefault();
-    this.service.open(this.viewContainerRef, this.daffMenuActivator);
+    this.service.open(this.viewContainerRef, this.daffMenuActivator, { menuId: this.menuId() });
   }
 }

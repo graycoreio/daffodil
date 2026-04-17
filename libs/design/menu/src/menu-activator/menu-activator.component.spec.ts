@@ -9,6 +9,10 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffMenuActivatorDirective } from './menu-activator.component';
+import {
+  DAFF_MENU_CONFIG,
+  DaffMenuConfig,
+} from '../config/menu-config';
 import { DaffMenuComponent } from '../menu/menu.component';
 import { DaffMenuService } from '../services/menu.service';
 import { provideTestMenuService } from '../testing/dummy-service';
@@ -37,6 +41,7 @@ describe('@daffodil/design/menu | DaffMenuActivatorDirective', () => {
       ],
       providers: [
         provideTestMenuService(),
+        { provide: DAFF_MENU_CONFIG, useValue: <DaffMenuConfig>{ menuId: 'daff-menu-test' }},
       ],
     }).compileComponents();
 
@@ -53,6 +58,10 @@ describe('@daffodil/design/menu | DaffMenuActivatorDirective', () => {
 
   it('should have set aria-haspopup to menu', () => {
     expect(de.nativeElement.getAttribute('aria-haspopup')).toBe('menu');
+  });
+
+  it('should set aria-controls to the reserved menu id on init', () => {
+    expect(de.nativeElement.getAttribute('aria-controls')).toMatch(/^daff-menu-\d+$/);
   });
 
   it('should open the menu when the button is clicked', () => {

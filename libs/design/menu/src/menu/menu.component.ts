@@ -11,11 +11,16 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  Inject,
   QueryList,
   ContentChildren,
   ViewEncapsulation,
 } from '@angular/core';
 
+import {
+  DAFF_MENU_CONFIG,
+  DaffMenuConfig,
+} from '../config/menu-config';
 import { DaffMenuItemComponent } from '../menu-item/menu-item.component';
 import { DAFF_MENU_ITEM_TOKEN } from '../menu-item/menu-item.token';
 import { DaffMenuService } from '../services/menu.service';
@@ -51,6 +56,7 @@ import { DaffMenuService } from '../services/menu.service';
     class: 'daff-menu',
     'tabindex': '0',
     'role': 'menu',
+    '[id]': 'config.menuId',
     '(keydown)': 'handleKeydown($event)',
   },
   imports: [
@@ -73,6 +79,11 @@ export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
     private _focusTrapFactory: ConfigurableFocusTrapFactory,
     private _elementRef: ElementRef<HTMLElement>,
     private menuService: DaffMenuService,
+
+    /**
+     * @docs-private
+     */
+    @Inject(DAFF_MENU_CONFIG) public readonly config: DaffMenuConfig,
   ) {}
 
   /**
