@@ -17,7 +17,8 @@
 			"{workspaceRoot}/angular.json",
 			"{workspaceRoot}/tsconfig.json",
 			"{workspaceRoot}/lerna.json",
-			"{workspaceRoot}/package-lock.json"
+			"{workspaceRoot}/package-lock.json",
+			{ "runtime": "node --version" }
 		],
 		"eslint": [
 			"{workspaceRoot}/.eslintrc.js",
