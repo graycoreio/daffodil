@@ -10,7 +10,7 @@ import { DaffMenuItemComponent } from './menu-item/menu-item.component';
 import { DaffMenuService } from './services/menu.service';
 
 /**
- * @deprecated in favor of {@link DAFF_MENU_COMPONENTS}
+ * @deprecated in favor of {@link DAFF_MENU_COMPONENTS} Deprecated in version 0.92.0. Will be removed in version 0.95.0.
  */
 @NgModule({
   imports: [

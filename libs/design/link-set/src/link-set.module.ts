@@ -7,7 +7,7 @@ import { DaffLinkSetItemComponent } from './link-set-item/link-set-item.componen
 import { DaffLinkSetSubheadingDirective } from './link-set-subheading/link-set-subheading.directive';
 
 /**
- * @deprecated
+ * @deprecated Deprecated in version 0.92.0. Will be removed in version 0.95.0.
  */
 @NgModule({
   imports: [
