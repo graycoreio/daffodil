@@ -78,6 +78,6 @@ describe('SidebarListComponent', () => {
 
   it('should pass the transformed tree data to daff-tree', () => {
     const daffTree = de.query(By.directive(DaffTreeComponent));
-    expect(daffTree.componentInstance.tree).toEqual(component.treeData);
+    expect(daffTree.componentInstance.tree()).toEqual(component.treeData);
   });
 });
