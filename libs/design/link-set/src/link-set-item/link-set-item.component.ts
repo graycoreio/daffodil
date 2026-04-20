@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 
 /**
- * @deprecated
+ * @deprecated Deprecated in version 0.92.0. Will be removed in version 0.95.0.
  */
 @Component ({
   // eslint-disable-next-line @angular-eslint/component-selector

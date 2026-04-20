@@ -62,7 +62,7 @@ export const DAFF_STROKED_BUTTON_COMPONENTS = <const> [
 
 /**
  * @docs-private
- * @deprecated
+ * @deprecated Deprecated in version 0.92.0. Will be removed in version 0.95.0.
  */
 export const DAFF_UNDERLINE_BUTTON_COMPONENTS = <const> [
   DaffUnderlineButtonComponent,
