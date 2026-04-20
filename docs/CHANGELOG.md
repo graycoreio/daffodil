@@ -1,5 +1,102 @@
 # Changelog
 
+## [0.92.0](https://github.com/graycoreio/daffodil/compare/v0.91.0...v0.92.0) (2026-04-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **design:** `DaffTreeComponent` and `DaffTreeItemDirective` now expose their inputs (`tree`, `renderMode`, `node`, `selected`), content queries (`withChildrenTemplate`, `treeItemTemplate`), and the public `flatTree` field as signals rather than plain properties. Template bindings (`[tree]="data"`) continue to work, but any programmatic reads must invoke the signal: `component.flatTree` → `component.flatTree()`, `component.tree` → `component.tree()`,`directive.node` → `directive.node()`, and so on. Consumers that read these fields from tests or component code must update accordingly.
+* **cart,demo:** remove deprecated `DaffCartAddress.address_type` field
+* **product,driver:** `provideShopifyApolloDriver` and `DaffProductShopifyDriverModule` have been removed after their deprecation window. There is a replacement `provideShopifyDriver`.
+* **driver:** add feature support to magento driver provider ([#4251](https://github.com/graycoreio/daffodil/issues/4251))
+* **design, storefront:** move `DaffQuantityFieldComponent` into the storefront package ([#4121](https://github.com/graycoreio/daffodil/issues/4121))
+* **design-land:** `design-land` has been deleted from the codebase.
+* **design:** `DaffMutable` has been removed from `@daffodil/design`.
+* **design:** `DaffErrorStateMatcher` has been removed from `@daffodil/design`.
+* **design:** `$daff-primary` and `$daff-accent` color palette maps have been removed.
+* **design:** Navbar inputs now use signals. If you were setting `raised`, update to use `elevated` signal input.
+
+### Features
+
+* **auth:** add SSR handling and redirect behavior to `DaffAuthResetPasswordGuard` ([#4413](https://github.com/graycoreio/daffodil/issues/4413)) ([d30b888](https://github.com/graycoreio/daffodil/commit/d30b8880b92e0743c1f5fe04e09db6af04b9b37a))
+* **builders,daffio:** generate sitemap ([#4152](https://github.com/graycoreio/daffodil/issues/4152)) ([c6b9e65](https://github.com/graycoreio/daffodil/commit/c6b9e65a4393f6041eb99c0f06fe5abc97b68fd0))
+* **cart,demo:** remove deprecated `DaffCartAddress.address_type` field ([ec5baac](https://github.com/graycoreio/daffodil/commit/ec5baac021ca4ccad44a9dc4e84621ef0f236768))
+* **category:** add shopify category driver ([#4395](https://github.com/graycoreio/daffodil/issues/4395)) ([040951d](https://github.com/graycoreio/daffodil/commit/040951db4120bc7f47efe80e5e38e951a9900588))
+* **core:** add createable ([#4412](https://github.com/graycoreio/daffodil/issues/4412)) ([2d19c34](https://github.com/graycoreio/daffodil/commit/2d19c341584c765478a1c8d82317b6a866f5afe4))
+* **daffio, docs:** add color palette generator to color docs page ([#4379](https://github.com/graycoreio/daffodil/issues/4379)) ([4eff32e](https://github.com/graycoreio/daffodil/commit/4eff32e5e5c290bb07f3011e4394b46818b6c683))
+* **daffio, docs:** enable rendering of example code output in design docs ([#4274](https://github.com/graycoreio/daffodil/issues/4274)) ([4c88b0f](https://github.com/graycoreio/daffodil/commit/4c88b0f74e8a67a58c95307dce122020dd2089e7))
+* **daffio, storefront-examples:** register quantity field examples in docs ([#4389](https://github.com/graycoreio/daffodil/issues/4389)) ([1f3902a](https://github.com/graycoreio/daffodil/commit/1f3902a7c5419e6ebb400d98782444c766582459))
+* **daffio, storefront-examples:** render storefront component examples in docs ([#4361](https://github.com/graycoreio/daffodil/issues/4361)) ([259bd52](https://github.com/graycoreio/daffodil/commit/259bd520c916b7d97fcdbc30262ba518ad5bc56c))
+* **daffio:** allow API fragments to control rendering ([#4381](https://github.com/graycoreio/daffodil/issues/4381)) ([29ea24b](https://github.com/graycoreio/daffodil/commit/29ea24b5657f746a6042f2685b84f51f4261ccd9))
+* **daffio:** clarify example viewer UI ([#4404](https://github.com/graycoreio/daffodil/issues/4404)) ([eea2336](https://github.com/graycoreio/daffodil/commit/eea23369bd7417671531dc5a5714cce5f4327e2f))
+* **daffio:** force relative links to use angular navigation ([#4392](https://github.com/graycoreio/daffodil/issues/4392)) ([78ba7e6](https://github.com/graycoreio/daffodil/commit/78ba7e6be4e6191c5ce21c8586df2d2dd24691e6))
+* **daffio:** redirect get started links to docs instead of github ([#4341](https://github.com/graycoreio/daffodil/issues/4341)) ([5bc707e](https://github.com/graycoreio/daffodil/commit/5bc707e38c17716ada5c379a98ae38ab255e99c5))
+* **daffio:** update main docs and marketing mobile sidebar to appear on the right side ([#4329](https://github.com/graycoreio/daffodil/issues/4329)) ([1797c1c](https://github.com/graycoreio/daffodil/commit/1797c1c2a9fb96b6ba2777c62cf984d25eb774ad))
+* **daffio:** update mobile toc to use the DaffMenuModule ([#4328](https://github.com/graycoreio/daffodil/issues/4328)) ([48eb887](https://github.com/graycoreio/daffodil/commit/48eb8878fb8b09af7f08d5fd223fb86cb1aa9344))
+* **demo:** migrate to magento driver provider ([#4406](https://github.com/graycoreio/daffodil/issues/4406)) ([b36bb69](https://github.com/graycoreio/daffodil/commit/b36bb696f8e8acbdf328edfc45856d64b5a2a63c))
+* **design-land:** remove design-land app from codebase ([#4353](https://github.com/graycoreio/daffodil/issues/4353)) ([dd739c5](https://github.com/graycoreio/daffodil/commit/dd739c5e51ab7b3feef4e25e1556b716dc0a9b4e))
+* **design, demo:** deprecate `@daffodil/design/link-set` and replace usage ([#4295](https://github.com/graycoreio/daffodil/issues/4295)) ([d75d063](https://github.com/graycoreio/daffodil/commit/d75d06365c81924b1351df84f01f876e9e7069f0))
+* **design, storefront:** move `DaffQuantityFieldComponent` into the storefront package ([#4121](https://github.com/graycoreio/daffodil/issues/4121)) ([df6d19d](https://github.com/graycoreio/daffodil/commit/df6d19dd67d5d506a36468ccfdce55eed5b6ba8f))
+* **design:** add `aria-controls` support to `DaffMenuComponent` ([#4315](https://github.com/graycoreio/daffodil/issues/4315)) ([daf9a0a](https://github.com/graycoreio/daffodil/commit/daf9a0ae27964b4c3f724bfd241290528d3df8cd))
+* **design:** add `isOpen` property to menu activator to track the menu's open state ([#4299](https://github.com/graycoreio/daffodil/issues/4299)) ([465180b](https://github.com/graycoreio/daffodil/commit/465180b80bc1c6838327fd07c93450d848e00627))
+* **design:** add focus method to input and native select components ([#4348](https://github.com/graycoreio/daffodil/issues/4348)) ([77893c4](https://github.com/graycoreio/daffodil/commit/77893c4bef4c8711eb14256790a1f5f725ace1fa))
+* **design:** add keyboard support and basic aria roles for menu ([#3998](https://github.com/graycoreio/daffodil/issues/3998)) ([8100a38](https://github.com/graycoreio/daffodil/commit/8100a38eb8cb9241ee21ceb7a5187a863c5bc4bc))
+* **design:** add loading property to button ([#4343](https://github.com/graycoreio/daffodil/issues/4343)) ([252c33e](https://github.com/graycoreio/daffodil/commit/252c33e91f6949f31263d2b2d8caa0b11972fcca))
+* **design:** add roving tab index ([#4174](https://github.com/graycoreio/daffodil/issues/4174)) ([d90d967](https://github.com/graycoreio/daffodil/commit/d90d967eff5bc50033d19f2dfe92971a7ef6f652))
+* **design:** add truncated design to `DaffBreadcrumbComponent` ([#4278](https://github.com/graycoreio/daffodil/issues/4278)) ([a5dd535](https://github.com/graycoreio/daffodil/commit/a5dd535c3cb22a143161c2be9a34af7135de707a))
+* **design:** allow `DaffModalService.open` to return a reference instead of a modal instance ([#4321](https://github.com/graycoreio/daffodil/issues/4321)) ([0d57886](https://github.com/graycoreio/daffodil/commit/0d578865d7d3c242819907202102758998c01116))
+* **design:** automatically add anchor link and copy URL button to article headings ([#4260](https://github.com/graycoreio/daffodil/issues/4260)) ([39cfdd4](https://github.com/graycoreio/daffodil/commit/39cfdd46b72e2e1635aa40e68210575953ea7a82))
+* **design:** clean up article copy button and heading link styles ([#4345](https://github.com/graycoreio/daffodil/issues/4345)) ([d66b478](https://github.com/graycoreio/daffodil/commit/d66b478c2662362f8664c1b50d5a49ffd420f388))
+* **design:** convert tree to signals ([#4408](https://github.com/graycoreio/daffodil/issues/4408)) ([03cfe38](https://github.com/graycoreio/daffodil/commit/03cfe380faaf046fb7e6751c945f733cce5f0ba2))
+* **design:** create `DaffLoadableDirective` ([#4335](https://github.com/graycoreio/daffodil/issues/4335)) ([59c55b8](https://github.com/graycoreio/daffodil/commit/59c55b88e31bd1bf916dc48b143cbe0fada891d8))
+* **design:** create `DaffSpinnerComponent` to replace `DaffLoadingIconComponent` ([#4316](https://github.com/graycoreio/daffodil/issues/4316)) ([4a14372](https://github.com/graycoreio/daffodil/commit/4a14372b705b0bdcbcbb565f222ceb86e4e78337))
+* **design:** create DaffDisableable interface and clean up documentation ([#4427](https://github.com/graycoreio/daffodil/issues/4427)) ([8a1d313](https://github.com/graycoreio/daffodil/commit/8a1d313417cc6c8b6ffe5574483091a7a2c6ef6b))
+* **design:** deprecate DaffColorable and clean up documentation ([#4422](https://github.com/graycoreio/daffodil/issues/4422)) ([86cd9cd](https://github.com/graycoreio/daffodil/commit/86cd9cd40178c21821d4484d7749619986f965e5))
+* **design:** deprecate DaffCompactable and clean up documentation ([#4423](https://github.com/graycoreio/daffodil/issues/4423)) ([e57e807](https://github.com/graycoreio/daffodil/commit/e57e807b78c82740f0508e302fadf0090dc46869))
+* **design:** deprecated `DaffUnderlineButtonComponent` ([#4337](https://github.com/graycoreio/daffodil/issues/4337)) ([b576e04](https://github.com/graycoreio/daffodil/commit/b576e04965c5d0caa96dfe5f6745c298b8ad1ff7))
+* **design:** fix form field label styles ([#4347](https://github.com/graycoreio/daffodil/issues/4347)) ([1072f16](https://github.com/graycoreio/daffodil/commit/1072f1620d0c0f7163e4b02904ce157513eb4bac))
+* **design:** remove `DaffErrorStateMatcher` ([#4349](https://github.com/graycoreio/daffodil/issues/4349)) ([9e18f18](https://github.com/graycoreio/daffodil/commit/9e18f185e78388e9760f686b24b73992ccec0889))
+* **design:** remove `DaffMutable` from `@daffodil/design` ([#4350](https://github.com/graycoreio/daffodil/issues/4350)) ([6cb81c9](https://github.com/graycoreio/daffodil/commit/6cb81c9f94884da50af8179d595c0fd5e86fa7db))
+* **design:** remove deprecated variables from color palettes ([#4346](https://github.com/graycoreio/daffodil/issues/4346)) ([edede5d](https://github.com/graycoreio/daffodil/commit/edede5db41f6a40af596d1570b11607bcee1558e))
+* **design:** set default spinner color to `currentColor` ([#4336](https://github.com/graycoreio/daffodil/issues/4336)) ([905aed8](https://github.com/graycoreio/daffodil/commit/905aed8cdc9293b2f598002ca93eb74720824e44))
+* **design:** set nocopy on example viewer code block ([#4397](https://github.com/graycoreio/daffodil/issues/4397)) ([ad4574c](https://github.com/graycoreio/daffodil/commit/ad4574c2791f6cb184708dc68bec9f0ba991308c))
+* **design:** update navbar UI ([#4324](https://github.com/graycoreio/daffodil/issues/4324)) ([15f4803](https://github.com/graycoreio/daffodil/commit/15f4803b5f6982f347c51d5160bafd55799a5ab7))
+* **design:** update text snippet toggle button style ([#4338](https://github.com/graycoreio/daffodil/issues/4338)) ([5331cb6](https://github.com/graycoreio/daffodil/commit/5331cb6facaafd754a9b317e1205364eee7c66fc))
+* **dgeni:** support core design behaviors as components ([#4387](https://github.com/graycoreio/daffodil/issues/4387)) ([6c8790f](https://github.com/graycoreio/daffodil/commit/6c8790fa7fe49c6a44211613210e3cdee6935fdb))
+* **dgeni:** support signal forms of inputs and outputs ([#4382](https://github.com/graycoreio/daffodil/issues/4382)) ([d5ce93e](https://github.com/graycoreio/daffodil/commit/d5ce93e77c43bcae2cc8edec9749054f782c0aa0))
+* **docs-util,daffio:** group API symbols by role in list ([#4262](https://github.com/graycoreio/daffodil/issues/4262)) ([5103bbc](https://github.com/graycoreio/daffodil/commit/5103bbc8b948f992eedfd48abfe7a970750d58ad))
+* **docs-utils:** add API role factories ([#3911](https://github.com/graycoreio/daffodil/issues/3911)) ([cac42f6](https://github.com/graycoreio/daffodil/commit/cac42f69be1a51dab051ca1a286a2d09532535cc))
+* **docs,dgeni,daffio:** add storefront design docs ([#4269](https://github.com/graycoreio/daffodil/issues/4269)) ([bd33c14](https://github.com/graycoreio/daffodil/commit/bd33c1466ffa3c13b96ce19e30256a40a16cd1e3))
+* **docs:** create reusable color strip component ([#4383](https://github.com/graycoreio/daffodil/issues/4383)) ([5c31652](https://github.com/graycoreio/daffodil/commit/5c316525f894631cd89c282298157ed66d498a4a))
+* **docs:** Move `DaffioExampleViewerComponent` and `DaffioDocRendererComponent` to `@daffodil/docs` ([#4407](https://github.com/graycoreio/daffodil/issues/4407)) ([fedf075](https://github.com/graycoreio/daffodil/commit/fedf0759d1056390b381a711df1c6ba92e18a9e1))
+* **driver:** add feature support to magento driver provider ([#4251](https://github.com/graycoreio/daffodil/issues/4251)) ([cff479e](https://github.com/graycoreio/daffodil/commit/cff479ed4618840133874818a2bcfe77c2e468fe))
+* **external-router:** integrate automatic URL resolution from in-memory routable objects ([#4145](https://github.com/graycoreio/daffodil/issues/4145)) ([4fc4df3](https://github.com/graycoreio/daffodil/commit/4fc4df3ef45501edca3be4f054dd22e21c6719e4))
+* **product,driver:** remove old providers and module ([#4411](https://github.com/graycoreio/daffodil/issues/4411)) ([27e2ac3](https://github.com/graycoreio/daffodil/commit/27e2ac337956c9c544dcaa79410600cc1c0cdc75))
+* **product:** transfer in-memory state when hydrating backend  ([#4148](https://github.com/graycoreio/daffodil/issues/4148)) ([fcc04e4](https://github.com/graycoreio/daffodil/commit/fcc04e4b6272637e83dfd8abc1d14a66188027d4))
+* **sassdoc:** output files by symbol group ([#4340](https://github.com/graycoreio/daffodil/issues/4340)) ([13a61db](https://github.com/graycoreio/daffodil/commit/13a61db23e9d11b69c50babfdb3d990da0407aeb))
+* **sassdoc:** separate items by group ([#4300](https://github.com/graycoreio/daffodil/issues/4300)) ([836b998](https://github.com/graycoreio/daffodil/commit/836b998730843f12b99d222b30e67a0d051178e2))
+* **storefront, theme-switch:** move experimental `@daffodil/theme-switch` components into `@daffodil/storefront` ([#4326](https://github.com/graycoreio/daffodil/issues/4326)) ([cb45379](https://github.com/graycoreio/daffodil/commit/cb453794ed1b375029d11cd23b8de1fa40a9bf1e))
+
+
+### Bug Fixes
+
+* **ci:** PRs cannot specify commerce schematic angular version ([#4445](https://github.com/graycoreio/daffodil/issues/4445)) ([01e332a](https://github.com/graycoreio/daffodil/commit/01e332ae450572c28b5a6220f8038cb8860243e5))
+* **daffio:** dedupe `activeRegistration$` by sidebar id ([#4408](https://github.com/graycoreio/daffodil/issues/4408)) ([eaa0d7c](https://github.com/graycoreio/daffodil/commit/eaa0d7ce7f3309f39d990c3f54a51dd41474caa6))
+* **daffio:** fix `DaffioExampleViewerPreviewComponent` to always apply the viewport class ([#4362](https://github.com/graycoreio/daffodil/issues/4362)) ([6123bd9](https://github.com/graycoreio/daffodil/commit/6123bd9d4cb80b3ca87427eedf268cf74e3b591e))
+* **daffio:** Replace `[@use](https://github.com/use) 'utilities'` with `[@use](https://github.com/use) '@daffodil/design/scss/utilities'` ([#4375](https://github.com/graycoreio/daffodil/issues/4375)) ([f6c42f0](https://github.com/graycoreio/daffodil/commit/f6c42f0f33dce59bcddfa29bf11a10649507fafd))
+* **daffio:** resolve docs nav `index` via `DaffRouterDataService` ([#4408](https://github.com/graycoreio/daffodil/issues/4408)) ([028fa0a](https://github.com/graycoreio/daffodil/commit/028fa0a75cab110badcb68f5bad779ef79ac08d0))
+* **demo:** newsletter not using form field component ([#4405](https://github.com/graycoreio/daffodil/issues/4405)) ([1f7b7bb](https://github.com/graycoreio/daffodil/commit/1f7b7bbb8312a94d08f4e4c2aeef31ce8b218079))
+* **design:** button hover and active state styling ([#4380](https://github.com/graycoreio/daffodil/issues/4380)) ([8de0f73](https://github.com/graycoreio/daffodil/commit/8de0f7310ecf359bb4d0d00647b7321be8780a3b))
+* **design:** close menu on menu item click ([#4297](https://github.com/graycoreio/daffodil/issues/4297)) ([bd579a1](https://github.com/graycoreio/daffodil/commit/bd579a1634303bfc7da96093a437976dc78e859f))
+* **design:** menu backdrop click doesn't update state ([#4298](https://github.com/graycoreio/daffodil/issues/4298)) ([d72f004](https://github.com/graycoreio/daffodil/commit/d72f00441e8f53e1b2a2d446940e7b4e68d6819f))
+* **design:** set disabled attribute from ngControl in form field controls ([#4372](https://github.com/graycoreio/daffodil/issues/4372)) ([3c79c2e](https://github.com/graycoreio/daffodil/commit/3c79c2e6c550cf2b7de4e318289020f84757b7fa))
+* **design:** skip code copy button for article encapsulated components ([#4277](https://github.com/graycoreio/daffodil/issues/4277)) ([d625359](https://github.com/graycoreio/daffodil/commit/d625359e75186b55ef2a162e121fdf982dfdd6af))
+* **dgeni:** `[@docs-private](https://github.com/docs-private)` symbols appear in API list ([#4293](https://github.com/graycoreio/daffodil/issues/4293)) ([4d0fce6](https://github.com/graycoreio/daffodil/commit/4d0fce6870750b500e617458c3dbe70136aed210))
+* **dgeni:** members deeply nested in inheritance chain not hoisted ([#4240](https://github.com/graycoreio/daffodil/issues/4240)) ([7139f8c](https://github.com/graycoreio/daffodil/commit/7139f8c80c4fb596684b571db2cf490ccfd320ea))
+* **docs:** colors with spaces caused color-palette tests to fail ([e50e349](https://github.com/graycoreio/daffodil/commit/e50e349efe776fcb0ab0b3683f8eba6b12c1f150))
+* **docs:** support storefront paths ([#4357](https://github.com/graycoreio/daffodil/issues/4357)) ([4a8f1c8](https://github.com/graycoreio/daffodil/commit/4a8f1c848a30570af931138dae9dfefcf1ba509a))
+* **driver:** provideMagentoDriver crashes when options is an InjectionToken ([#4421](https://github.com/graycoreio/daffodil/issues/4421)) ([f9c012d](https://github.com/graycoreio/daffodil/commit/f9c012deb6da4e752763350adf4a16871df4e221))
+
 ## [0.91.0](https://github.com/graycoreio/daffodil/compare/v0.90.0...v0.91.0) (2026-01-05)
 
 
