@@ -435,6 +435,7 @@ export class RoleProcessor implements FilterableProcessor {
       if (prop.decorators?.find(({ name }) => name === 'Input') || prop.type.startsWith('InputSignal')) {
         doc.inputs.push({
           ...prop,
+          default: prop.default?.replace(/input(<.*>)?\((.*)\)/, '$2'),
           required: !prop.isOptional,
         });
       } else if (prop.decorators?.find(({ name }) => name === 'Output') || prop.type.startsWith('OutputEmitterRef')) {
