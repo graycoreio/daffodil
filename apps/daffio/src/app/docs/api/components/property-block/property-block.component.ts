@@ -35,8 +35,4 @@ export class DaffioDocsApiPropertyBlockComponent {
   get id(): string {
     return this.prop.anchor;
   }
-
-  get hasDefault() {
-    return 'default' in this.prop;
-  }
 }

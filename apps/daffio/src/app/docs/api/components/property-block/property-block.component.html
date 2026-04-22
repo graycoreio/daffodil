@@ -8,7 +8,7 @@
 		<tr>
 			<th>Default</th>
 			<td>
-				@if(hasDefault) {
+				@if('default' in prop) {
 					<code>{{prop.default}}</code>
 				} @else {
 					–
