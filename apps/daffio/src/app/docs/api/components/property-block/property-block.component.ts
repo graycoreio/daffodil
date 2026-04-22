@@ -29,8 +29,6 @@ export class DaffioDocsApiPropertyBlockComponent {
   @Input() prop: DaffDocsApiTypeProperty | DaffDocsApiClassProperty;
   @Input() child = false;
 
-  @Input() hasDefaults = true;
-
   @HostBinding('id')
   get id(): string {
     return this.prop.anchor;
