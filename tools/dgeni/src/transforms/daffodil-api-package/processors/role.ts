@@ -42,6 +42,7 @@ import {
 import { createRef } from '../../../utils/create-ref';
 import { FilterableProcessor } from '../../../utils/filterable-processor.type';
 import { getDirectiveDecorator } from '../../../utils/get-directive-decorator';
+import { htmlEncodeBrackets } from '../../../utils/html-brackets';
 import {
   IndexableDoc,
   Indexer,
@@ -66,7 +67,7 @@ export class RoleProcessor implements FilterableProcessor {
   readonly $runBefore = ['rendering-docs', MARKDOWN_CODE_PROCESSOR_NAME];
 
   docTypes = [];
-  readonly symbolSerialize: Serializer<string> = linkSymbols;
+  readonly symbolSerialize: Serializer<string> = (t) => linkSymbols(htmlEncodeBrackets(t));
   readonly markdownSerialize: Serializer<string> = (str: string): string => str ? this.markdown.parse(str) : '';
 
   readonly fundamentalSerialize = (doc) => ({
