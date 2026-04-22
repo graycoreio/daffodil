@@ -44,12 +44,12 @@ export class CollectLinkableSymbolsProcessor implements Processor {
     docs.forEach((doc) => {
       const section = this.section(doc);
       const id = section ? `${section}/${doc.name}` : doc.name;
-      if (CollectLinkableSymbolsProcessor._symbols.get(id)) {
-        this.log.warn(this.createDocMessage(`Linkable symbol collision for name ${id}. Existing path: ${CollectLinkableSymbolsProcessor._symbols.get(id)}, new path: ${doc.path}`));
+      if (CollectLinkableSymbolsProcessor._symbols.get(doc.name)) {
+        this.log.warn(this.createDocMessage(`Linkable symbol collision for name ${doc.name}. Existing path: ${CollectLinkableSymbolsProcessor._symbols.get(doc.name)}, new path: ${doc.path}`));
       }
-      CollectLinkableSymbolsProcessor._symbols.set(id, doc.path);
+      CollectLinkableSymbolsProcessor._symbols.set(doc.name, doc.path);
       if (doc.canonicalPath) {
-        CollectLinkableSymbolsProcessor._canonical.set(id, doc.canonicalPath);
+        CollectLinkableSymbolsProcessor._canonical.set(doc.name, doc.canonicalPath);
       }
       if (doc.docType !== DaffDocsApiType.PACKAGE) {
         const m = doc.id.match(/(.*)\/src/);

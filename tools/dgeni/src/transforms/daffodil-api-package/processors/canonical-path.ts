@@ -30,9 +30,9 @@ export class CanonicalPathProcessor implements FilterableProcessor {
   $process(docs: Array<Document>): Array<Document> {
     return docs.map((doc) => {
       if (this.docTypes.includes(doc.docType)) {
-        const mod = doc.originalModule.match(/(.+)\/src\/.+/)?.[1];
+        const mod = doc.originalModule.match(/(.+)\/src\/.+/)?.[1] || doc.originalModule.match(/src\/core\/([^/]*)/)?.[1];
         if (mod) {
-          doc.canonicalPath = `/${DAFF_DOCS_PATH}/${this.section}/${DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT]}/${mod}?tab=api-tab#${slugify(doc.name)}`;
+          doc.canonicalPath = `/${DAFF_DOCS_PATH}/${this.section}/${doc.originalModule.includes('src/core') ? 'behaviors' : DAFF_DOC_KIND_PATH_SEGMENT_MAP[DaffDocKind.COMPONENT]}/${mod}?tab=api-tab#${slugify(doc.name)}`;
         }
       }
       return doc;
