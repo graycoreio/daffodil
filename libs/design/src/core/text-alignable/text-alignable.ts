@@ -1,5 +1,5 @@
 /**
- * An interface for any component or directive that can be text alignable.
+ * @deprecated Deprecated in version 0.92.1. Will be removed in version 1.0.0.
  */
 export interface DaffTextAlignable {
   textAlignment: DaffTextAlignment;
