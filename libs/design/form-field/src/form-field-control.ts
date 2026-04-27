@@ -7,11 +7,11 @@ import {
 import { DaffFormFieldState } from './form-field-state';
 
 /**
- * An abstract class that form controls must implement to be used with the DaffFormFieldComponent.
+ * Form controls must extend this class to be used inside `DaffFormFieldComponent`.
  *
  * > **Note**
- * > This is an abstract class instead of an interface to support Angular's dependency injection. Interfaces are erased during TypeScript compilation and cannot be used as DI tokens.
- *
+ * > The control is defined as an abstract class instead of an interface to support Angular's dependency injection. Interfaces are erased during TypeScript compilation and cannot be used as DI tokens.
+ * >
  * > By using an abstract class, the Angular DI container can match the class token for injection.
  */
 export abstract class DaffFormFieldControl<T> {

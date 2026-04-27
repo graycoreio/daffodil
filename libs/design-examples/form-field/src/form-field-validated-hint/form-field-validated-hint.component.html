@@ -1,0 +1,5 @@
+<daff-form-field>
+  <daff-form-label>Password</daff-form-label>
+  <input daff-input type="text" name="password" [formControl]="passwordControl" />
+  <daff-hint [validated]="isControlValid">Password must have 8 characters.</daff-hint>
+</daff-form-field>
