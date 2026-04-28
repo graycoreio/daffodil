@@ -40,7 +40,7 @@ import { DaffTextAlignableDirective } from '@daffodil/design';
 export class CustomComponent { }
 ```
 
-### Setting a default alignment
+### Default alignment
 
 Set `defaultAlignment` to apply an alignment when `textAlignment` is not explicitly provided:
 
@@ -50,7 +50,7 @@ constructor(private textAlignable: DaffTextAlignableDirective) {
 }
 ```
 
-## Styling
+## Styles
 
 Use the applied CSS class to style each alignment variant:
 
