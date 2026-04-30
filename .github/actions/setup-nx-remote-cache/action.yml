@@ -3,6 +3,7 @@ author: "Graycore"
 description: "A Github Action that sets up NX Remote Cache Configurations for Daffodil"
 inputs:
   cache-mode:
+    default: "read-only"
     required: false
     description: 'The NX Cache Mode - https://nx.dev/nx-api/azure-cache#cache-modes'
   read-only-azure-connection-string:
@@ -31,7 +32,7 @@ runs:
   - run: echo AZURE_STORAGE_CONNECTION_STRING='${{ inputs.read-write-azure-connection-string }}' >> $GITHUB_ENV
     shell: bash
     name: Set AZURE_STORAGE_CONNECTION_STRING
-    if: ${{ inputs.event-name == 'push' && inputs.cache-mode == 'read-write' }}
+    if: ${{ inputs.event-name == 'push' && inputs.cache-mode != 'read-only' }}
 
   - run: echo AZURE_STORAGE_CONNECTION_STRING='${{ inputs.read-only-azure-connection-string }}' >> $GITHUB_ENV
     shell: bash
