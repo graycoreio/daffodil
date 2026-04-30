@@ -26,14 +26,14 @@ runs:
     if: ${{ inputs.cache-mode }}
 
     ## Set the AZURE_STORAGE_CONNECTION_STRING.
-    ##  - For `pull_request`, this comes from the passed secret.
-    ##  - For `push` this is `AZURE_NX_CACHE_READWRITE_CONNECTION_STRING``.
+    ##  - For `push` without `cache-mode: read-only`, this is the read-write string.
+    ##  - Otherwise (pull_request, workflow_call, or explicit read-only opt-in), this is the read-only string.
   - run: echo AZURE_STORAGE_CONNECTION_STRING='${{ inputs.read-write-azure-connection-string }}' >> $GITHUB_ENV
     shell: bash
     name: Set AZURE_STORAGE_CONNECTION_STRING
-    if: ${{ inputs.event-name == 'push' }}
+    if: ${{ inputs.event-name == 'push' && inputs.cache-mode != 'read-write' }}
 
   - run: echo AZURE_STORAGE_CONNECTION_STRING='${{ inputs.read-only-azure-connection-string }}' >> $GITHUB_ENV
     shell: bash
     name: Set AZURE_STORAGE_CONNECTION_STRING
-    if: ${{ inputs.event-name != 'push' }}
+    if: ${{ inputs.event-name != 'push' || inputs.cache-mode == 'read-only' }}

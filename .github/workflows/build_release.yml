@@ -14,4 +14,4 @@ jobs:
       ref: ${{ github.sha }}
     secrets:
       NX_KEY: ${{ secrets.NX_KEY }}
-      AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
+      AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
