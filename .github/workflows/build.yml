@@ -17,6 +17,14 @@ on:
         required: true
       AZURE_STORAGE_CONNECTION_STRING:
         required: true
+      VERCEL_DAFFIO_NEXT_PROJECT_ID:
+        required: false
+      VERCEL_DAFFIO_PROJECT_ID:
+        required: false
+      VERCEL_TOKEN:
+        required: false
+      VERCEL_ORG:
+        required: false
 env:
   NX_KEY: ${{ secrets.NX_KEY }}
   NG_BUILD_ENV: ${{ github.event_name == 'push' && github.ref_type == 'tag' && 'production' || 'next' }}
