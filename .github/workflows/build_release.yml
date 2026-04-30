@@ -1,0 +1,17 @@
+name: Daffodil Build Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    name: Build Release
+    uses: ./.github/workflows/build.yml
+    with:
+      cache-mode: 'read-write'
+      ref: ${{ github.sha }}
+    secrets:
+      NX_KEY: ${{ secrets.NX_KEY }}
+      AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
