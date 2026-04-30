@@ -31,7 +31,7 @@ runs:
   - run: echo AZURE_STORAGE_CONNECTION_STRING='${{ inputs.read-write-azure-connection-string }}' >> $GITHUB_ENV
     shell: bash
     name: Set AZURE_STORAGE_CONNECTION_STRING
-    if: ${{ inputs.event-name == 'push' && inputs.cache-mode != 'read-write' }}
+    if: ${{ inputs.event-name == 'push' && inputs.cache-mode == 'read-write' }}
 
   - run: echo AZURE_STORAGE_CONNECTION_STRING='${{ inputs.read-only-azure-connection-string }}' >> $GITHUB_ENV
     shell: bash
