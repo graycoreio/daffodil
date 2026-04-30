@@ -10,7 +10,7 @@ jobs:
     name: Build Release
     uses: ./.github/workflows/build.yml
     with:
-      cache-mode: 'read-write'
+      cache-mode: 'read-only'
       ref: ${{ github.sha }}
     secrets:
       NX_KEY: ${{ secrets.NX_KEY }}
