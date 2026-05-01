@@ -24,43 +24,7 @@ const validateOrientation = (orientation: string) => {
 };
 
 /**
- * `DaffOrientableDirective` allows for dynamic orientation of a component by
- * setting CSS classes based on the specified orientation. This directive is
- * useful when orientation needs to be managed dynamically in an Angular component.
- *
- * @example Implementing it as an attribute directive
- *
- * ```html
- * <div daffOrientable [orientation]="horizontal"></div>
- * ```
- *
- * In this example, the `daff-horizontal` class is added to the `div` element, allowing
- * you to style the `div` as you wish using the class.
- *
- * @example Implementing it as an Angular host directive
- *
- * ```ts
- * @Component({
- *  selector: 'custom-component',
- *  template: 'custom-component.html',
- *  hostDirectives: [
- *    {
- *      directive: DaffOrientableDirective,
- *      inputs: ['orientation'],
- *    },
- *  ],
- * })
- * export class CustomComponent { }
- * ```
- *
- * ```scss
- * .custom-component {
- *   &.daff-vertical {
- *     display: flex;
- *     flex-direction: column;
- *  }
- * }
- * ```
+ * `DaffOrientableDirective`enforces consistent use of orientation across components.
  */
 @Directive({
   selector: '[daffOrientable]',
@@ -72,20 +36,11 @@ const validateOrientation = (orientation: string) => {
 export class DaffOrientableDirective implements DaffOrientable, OnChanges, OnInit {
   /**
    * The orientation of the component.
-   *
-   * Options are: `horizontal` and `vertical`.
    */
   @Input() orientation: DaffOrientation;
 
   /**
-   * Sets a default orientation.
-   *
-   * @example
-   * ```ts
-   * constructor(private orientableDirective: DaffOrientableDirective) {
-   *  this.orientableDirective.defaultOrientation = 'horizontal';
-   * }
-   * ```
+   * The default used when no orientation is set.
    */
   public defaultOrientation: DaffOrientation;
 
