@@ -39,10 +39,13 @@ enum DaffFormFieldApperanaceEnum {
 
 export const DaffFormFieldMissingControlMessage = 'A DaffFormFieldComponent must contain a DaffFormFieldControl';
 
+/**
+ * DaffFormFieldComponent is a wrapping component that provides consistent styling and behavior for form control elements.
+ */
 @Component({
   selector: 'daff-form-field',
   templateUrl: './form-field.component.html',
-  styleUrls: ['./form-field.component.scss'],
+  styleUrl: './form-field.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -166,7 +169,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   private _appearance: DaffFormFieldApperanace = DaffFormFieldApperanaceEnum.Fluid;
 
   /**
-   * The appearance style of a form field, whether the label is `fluid` or `fixed`.
+   * The appearance of the form field. Defaults to `fluid`.
    */
   @Input()
   get appearance() {

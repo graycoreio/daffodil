@@ -86,6 +86,8 @@
 
 	&.fluid {
 		#{$root}__control {
+			padding-right: 0;
+
 			* {
 				::-webkit-input-placeholder {
 					opacity: 0;

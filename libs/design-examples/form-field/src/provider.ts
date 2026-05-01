@@ -19,5 +19,9 @@ export const provideDaffDesignFormFieldExamplesContent = () => makeEnvironmentPr
     id: 'form-field-with-suffix',
     component: () => import('./form-field-with-suffix/form-field-with-suffix.component').then(c => c.FormFieldWithSuffixExampleComponent),
   },
+  {
+    id: 'form-field-validated-hint',
+    component: () => import('./form-field-validated-hint/form-field-validated-hint.component').then(c => c.FormFieldValidatedHintExampleComponent),
+  },
 ));
 
