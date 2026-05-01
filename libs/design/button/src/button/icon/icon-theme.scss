@@ -8,12 +8,14 @@
 	color: $base-color;
 
 	&:not(&[disabled], &.daff-disabled) {
-		&:hover {
-			color: $hover-color;
-			@if $base-color == currentColor {
-				opacity: 0.8;
-			} @else {
-				opacity: 1;
+		@media (hover: hover) {
+			&:hover {
+				color: $hover-color;
+				@if $base-color == currentColor {
+					opacity: 0.8;
+				} @else {
+					opacity: 1;
+				}
 			}
 		}
 	}
