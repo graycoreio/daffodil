@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.92.1](https://github.com/graycoreio/daffodil/compare/v0.92.0...v0.92.1) (2026-05-01)
+
+
+### Features
+
+* **daffio:** remove unused `hasDefaults` input ([#4454](https://github.com/graycoreio/daffodil/issues/4454)) ([4dba9b5](https://github.com/graycoreio/daffodil/commit/4dba9b576765408c49648d457b5fdb6880da0704))
+* **design:** deprecate `DaffOrientable` and `DaffOrientationEnum` and update documentation ([#4464](https://github.com/graycoreio/daffodil/issues/4464)) ([5350a02](https://github.com/graycoreio/daffodil/commit/5350a024c0b96d3c05104f10964ec4a591ab4a12))
+* **design:** deprecate `DaffTextAlignableEnum` and `DaffTextAlignable` and update documentation ([#4459](https://github.com/graycoreio/daffodil/issues/4459)) ([bdfb53f](https://github.com/graycoreio/daffodil/commit/bdfb53fb921b6672f5a22b236e937085c2eaa768))
+* **dgeni:** strip input signal factory from  prop default ([#4457](https://github.com/graycoreio/daffodil/issues/4457)) ([9a5f8cb](https://github.com/graycoreio/daffodil/commit/9a5f8cb0a050486a084c779b45ba51193ea84093))
+
+
+### Bug Fixes
+
+* **daffio:** apply correct label class for multi-word api roles ([#4463](https://github.com/graycoreio/daffodil/issues/4463)) ([20bc9c1](https://github.com/graycoreio/daffodil/commit/20bc9c1c5a5f7d3c5a6d45b1161897dcfd2a90d2))
+* **dgeni:** canonical path broken for design behaviors ([#4453](https://github.com/graycoreio/daffodil/issues/4453)) ([b40b38c](https://github.com/graycoreio/daffodil/commit/b40b38c5e05e364bee6c3e7987343d1197f8540c))
+* **dgeni:** generics not appearing in prop types ([#4456](https://github.com/graycoreio/daffodil/issues/4456)) ([616baa0](https://github.com/graycoreio/daffodil/commit/616baa08a6dc4b7a5c0cd1d30703a1b1774ea3d9))
+
 ## [0.92.0](https://github.com/graycoreio/daffodil/compare/v0.91.0...v0.92.0) (2026-04-20)
 
 
