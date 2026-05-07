@@ -12,8 +12,10 @@
 		background: $hover-color;
 	}
 
-	&:hover {
-		color: daff-text-contrast($hover-color);
+	@media (hover: hover) {
+		&:hover {
+			color: daff-text-contrast($hover-color);
+		}
 	}
 
 	&:active {
