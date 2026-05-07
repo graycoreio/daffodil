@@ -73,7 +73,7 @@ export class DaffTreeComponent {
    * but there may be use-cases (like SEO) where having the tree in the DOM
    * is relevant.
    */
-  readonly renderMode = input<DaffTreeRenderMode>();
+  readonly renderMode = input<DaffTreeRenderMode>('in-dom');
 
   /**
    * A unique identifier for the tree instance.
