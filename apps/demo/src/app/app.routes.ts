@@ -1,10 +1,5 @@
-import { NgModule } from '@angular/core';
-import {
-  Routes,
-  RouterModule,
-} from '@angular/router';
+import { Routes } from '@angular/router';
 
-import { provideExternalRouter } from '@daffodil/external-router';
 import { daffExternalMatcherTypeGuard } from '@daffodil/external-router/routing';
 import {
   DaffProductPageIdResolver,
@@ -32,7 +27,7 @@ export const appRoutes: Routes = [
     ],
     children: [
       { path: 'product-grid', component: ProductGridViewComponent },
-      { path: 'cart',       loadChildren: () => import('./cart/cart.routes').then(m => m.demoCartRoutes) },
+      { path: 'cart', loadChildren: () => import('./cart/cart.routes').then(m => m.demoCartRoutes) },
       {
         path: 'product/:id',
         providers: [
@@ -71,18 +66,3 @@ export const appRoutes: Routes = [
     ],
   },
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forRoot(appRoutes, {
-      scrollPositionRestoration: 'enabled',
-    }),
-  ],
-  providers: [
-    provideExternalRouter(),
-  ],
-  exports: [
-    RouterModule,
-  ],
-})
-export class AppRoutingModule {}
