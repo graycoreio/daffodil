@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.92.3-rc.0](https://github.com/graycoreio/daffodil/compare/v0.92.2...v0.92.3-rc.0) (2026-05-12)
+
+
+### Bug Fixes
+
+* noop release commit ([5357430](https://github.com/graycoreio/daffodil/commit/5357430b07716103d11ad17aa17a441e84dbda27))
+
 ## [0.92.2](https://github.com/graycoreio/daffodil/compare/v0.92.1...v0.92.2) (2026-05-12)
 
 
