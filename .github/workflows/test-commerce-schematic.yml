@@ -40,6 +40,7 @@ jobs:
         with:
           fetch-depth: 100
           ref: ${{ inputs.ref && inputs.ref || github.sha }}
+          persist-credentials: false
 
       - name: Get Angular version from package.json
         id: package-angular-version
@@ -93,6 +94,7 @@ jobs:
         with:
           fetch-depth: 1
           ref: ${{ inputs.ref && inputs.ref || github.sha }}
+          persist-credentials: false
 
       - uses: graycoreio/github-actions/setup-node@main
         with:

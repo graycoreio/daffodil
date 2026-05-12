@@ -30,6 +30,7 @@ jobs:
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.ref }}
           fetch-depth: 1
+          persist-credentials: false
 
       - uses: graycoreio/github-actions/setup-node@main
         with:

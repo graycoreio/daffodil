@@ -19,6 +19,7 @@ jobs:
         with:
           fetch-depth: 1
           ref: ${{ github.event_name == 'push' && github.event.ref || github.sha }}
+          persist-credentials: false
 
       - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
         with:

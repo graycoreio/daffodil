@@ -42,6 +42,7 @@ jobs:
         with:
           fetch-depth: 1
           ref: ${{ inputs.ref && inputs.ref || github.sha }}
+          persist-credentials: false
 
       - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
         with:
@@ -68,6 +69,7 @@ jobs:
         with:
           fetch-depth: 1
           ref: ${{ inputs.ref && inputs.ref || github.sha }}
+          persist-credentials: false
 
       - uses: graycoreio/github-actions/setup-node@main
         with:
@@ -103,6 +105,7 @@ jobs:
         with:
           ref: ${{ inputs.ref && inputs.ref || github.sha }}
           fetch-depth: 0
+          persist-credentials: false
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: '22.21.x'
@@ -135,6 +138,7 @@ jobs:
         with:
           fetch-depth: 1
           ref: ${{ inputs.ref && inputs.ref || github.sha }}
+          persist-credentials: false
 
       - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
         with:
