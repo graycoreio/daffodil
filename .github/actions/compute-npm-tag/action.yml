@@ -1,0 +1,10 @@
+name: "Compute npm publish tag"
+author: "Graycore"
+description: "Computes the npm publish tag from package.json. Prerelease versions (those containing '-') publish under 'next', otherwise 'latest'."
+outputs:
+  npm_tag:
+    description: "The computed npm publish tag ('next' for prereleases, 'latest' otherwise)"
+
+runs:
+  using: "node24"
+  main: "dist/main.js"

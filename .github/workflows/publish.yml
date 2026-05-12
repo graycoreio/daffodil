@@ -49,5 +49,10 @@ jobs:
 
       - uses: graycoreio/github-actions/set-versions-from-root@main
 
-      - run: npx nx run-many -t publish
+      - id: compute-npm-tag
+        uses: graycoreio/daffodil/.github/actions/compute-npm-tag@develop
+
+      - run: npx nx run-many -t publish -- --tag $NPM_TAG
         if: github.event.workflow_run.conclusion == 'success'
+        env:
+          NPM_TAG: ${{ steps.compute-npm-tag.outputs.npm_tag }}
