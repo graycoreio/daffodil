@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - develop
+  workflow_dispatch:
+    inputs:
+      release-candidate:
+        description: 'Cut a release-candidate (prerelease) instead of a normal release.'
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   release-please:
@@ -12,13 +19,13 @@ jobs:
       matrix:
         node: [22.21.x]
     steps:
-      - uses: google-github-actions/release-please-action@v3
+      - uses: googleapis/release-please-action@v5
         with:
           token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
-          command: manifest
-          default-branch: develop
+          config-file: ${{ inputs.release-candidate && 'release-please-config.rc.json' || 'release-please-config.json' }}
+          target-branch: develop
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: release-please--branches--develop--components--daffodil
           token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
