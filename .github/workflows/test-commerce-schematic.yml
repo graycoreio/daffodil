@@ -187,7 +187,7 @@ jobs:
             $EXTRA_FLAGS
 
       - name: Cache base app
-        if: steps.cache-base-app.outputs.cache-hit != 'true'
+        if: steps.cache-base-app.outputs.cache-hit != 'true' && github.event_name != 'pull_request' && github.event_name != 'pull_request_target'
         uses: actions/cache/save@v4
         with:
           path: ${{ steps.test-dir.outputs.path }}
