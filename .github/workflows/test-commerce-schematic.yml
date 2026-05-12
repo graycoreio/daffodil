@@ -97,7 +97,6 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
           use-stamp-cache: true
-          working-directory: ${{ github.workspace }}
 
       - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
         with:
@@ -142,7 +141,7 @@ jobs:
         run: |
           npx nx run-many \
             -t publish \
-            --projects="${{ steps.daff-deps.outputs.packages }},@daffodil/commerce"
+            --projects="${{ steps.daff-deps.outputs.packages }},@daffodil/commerce" -- --tag latest
 
       - name: Compute test directory
         id: test-dir
