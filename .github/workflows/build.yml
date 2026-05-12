@@ -28,6 +28,7 @@ on:
 env:
   NX_KEY: ${{ secrets.NX_KEY }}
   NG_BUILD_ENV: ${{ github.event_name == 'push' && github.ref_type == 'tag' && 'production' || 'next' }}
+  NPM_VERSION: 11
 
 jobs:
   lint:
@@ -52,6 +53,7 @@ jobs:
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: ${{ matrix.node }}
+          npm-version: ${{ env.NPM_VERSION }}
           use-stamp-cache: true
 
       - run: npx nx run-many -t lint
@@ -70,6 +72,7 @@ jobs:
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: ${{ matrix.node }}
+          npm-version: ${{ env.NPM_VERSION }}
           use-stamp-cache: true
 
       - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
@@ -103,6 +106,7 @@ jobs:
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: '22.21.x'
+          npm-version: ${{ env.NPM_VERSION }}
           use-stamp-cache: true
       - uses: nrwl/nx-set-shas@v3
         name: Derive appropriate SHAs for base and head for `nx affected` commands
@@ -142,6 +146,7 @@ jobs:
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: ${{ matrix.node }}
+          npm-version: ${{ env.NPM_VERSION }}
           use-stamp-cache: true
 
       - run: npx nx run-many -t test -p ${{ matrix.package }} --parallel=1

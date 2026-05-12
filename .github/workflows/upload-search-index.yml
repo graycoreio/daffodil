@@ -8,6 +8,7 @@ on:
 
 env:
   NX_KEY: ${{ secrets.NX_KEY }}
+  NPM_VERSION: 11
 
 jobs:
   algolia:
@@ -29,6 +30,7 @@ jobs:
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: 22.21.x
+          npm-version: ${{ env.NPM_VERSION }}
           use-stamp-cache: true
 
       - run: npx nx run tools-dgeni:build

@@ -5,6 +5,9 @@ on:
     branches:
       - release-please--branches--develop--components--daffodil
 
+env:
+  NPM_VERSION: 11
+
 jobs:
   build:
     name: Check for Removals
@@ -20,6 +23,7 @@ jobs:
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: ${{ matrix.node }}
+          npm-version: ${{ env.NPM_VERSION }}
           use-stamp-cache: true
 
       - name: Check for Removals

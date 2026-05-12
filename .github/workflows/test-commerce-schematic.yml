@@ -26,6 +26,7 @@ env:
   TEST_VERSION: 0.0.0-test.${{ github.run_id }}
   REGISTRY_PORT: 4873
   NX_KEY: ${{ secrets.NX_KEY }}
+  NPM_VERSION: 11
 
 jobs:
   compute-matrix:
@@ -96,6 +97,7 @@ jobs:
       - uses: graycoreio/github-actions/setup-node@main
         with:
           node-version: ${{ matrix.node_version }}
+          npm-version: ${{ env.NPM_VERSION }}
           use-stamp-cache: true
           working-directory: ${{ github.workspace }}
 
