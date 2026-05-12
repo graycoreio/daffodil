@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.92.2](https://github.com/graycoreio/daffodil/compare/v0.92.1...v0.92.2) (2026-05-12)
+
+
+### Features
+
+* **demo:** Add SSR support ([#4426](https://github.com/graycoreio/daffodil/issues/4426)) ([c88915f](https://github.com/graycoreio/daffodil/commit/c88915fd5499b5239eda531e8e8558046cb470ea))
+* **design:** implement hover media query in button component ([#4467](https://github.com/graycoreio/daffodil/issues/4467)) ([ba8786a](https://github.com/graycoreio/daffodil/commit/ba8786a989ef14d8a1c75a0d27afee2f879fdaf9))
+
 ## [0.92.1](https://github.com/graycoreio/daffodil/compare/v0.92.0...v0.92.1) (2026-05-01)
 
 

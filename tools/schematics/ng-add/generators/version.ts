@@ -1,1 +1,1 @@
-export const version = '0.92.1'; // x-release-please-version
+export const version = '0.92.2'; // x-release-please-version
