@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.92.3-rc.2](https://github.com/graycoreio/daffodil/compare/v0.92.3-rc.1...v0.92.3-rc.2) (2026-05-13)
+
+
+### Features
+
+* **design:** add render mode default to tree ([#4470](https://github.com/graycoreio/daffodil/issues/4470)) ([62bd527](https://github.com/graycoreio/daffodil/commit/62bd527443df09d011d4238120303be8620d967c))
+
 ## [0.92.3-rc.1](https://github.com/graycoreio/daffodil/compare/v0.92.3-rc.0...v0.92.3-rc.1) (2026-05-13)
 
 
