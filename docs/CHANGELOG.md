@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.92.3-rc.1](https://github.com/graycoreio/daffodil/compare/v0.92.3-rc.0...v0.92.3-rc.1) (2026-05-13)
+
+
+### Features
+
+* **storefront:** make publishable ([#4479](https://github.com/graycoreio/daffodil/issues/4479)) ([dd189ad](https://github.com/graycoreio/daffodil/commit/dd189ad733bd32529512e77a6dca2306c999adee))
+
 ## [0.92.3-rc.0](https://github.com/graycoreio/daffodil/compare/v0.92.2...v0.92.3-rc.0) (2026-05-12)
 
 
