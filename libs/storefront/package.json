@@ -1,7 +1,6 @@
 {
   "name": "@daffodil/storefront",
   "version": "0.0.0-PLACEHOLDER",
-  "private": true,
   "nx": {
     "targets": {
       "build": {
@@ -15,7 +14,8 @@
     "build": "ng build storefront --configuration production",
     "lint": "cd ../.. && ng lint storefront",
     "lint:fix": "npm run lint -- --fix",
-    "test": "ng test storefront --watch=false --browsers=ChromeHeadless"
+    "test": "ng test storefront --watch=false --browsers=ChromeHeadless",
+    "publish": "cd ../../dist/storefront && npm publish --access=public"
   },
   "peerDependencies": {
     "@angular/common": "0.0.0-PLACEHOLDER",
