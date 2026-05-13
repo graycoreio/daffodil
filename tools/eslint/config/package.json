@@ -19,7 +19,7 @@
     "typescript-eslint": "0.0.0-PLACEHOLDER"
   },
   "scripts": {
-    "publish": "cd ../../../dist/eslint-config; npm publish --access=public",
+    "publish": "cd ../../../dist/eslint-config && npm publish --access=public",
     "build": "rm -rf ../../../dist/eslint-config && shx mkdir -p ../../../dist/eslint-config && shx cp -r . ../../../dist/eslint-config"
   },
   "nx": {

@@ -25,7 +25,7 @@
     "lint": "cd ../.. && ng lint customer-payment-authorizenet",
     "lint:fix": "npm run lint -- --fix",
     "test": "ng test customer-payment-authorizenet --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/customer-payment-authorizenet; npm publish --access=public)"
+    "publish": "cd ../../dist/customer-payment-authorizenet && npm publish --access=public"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
