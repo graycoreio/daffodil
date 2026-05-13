@@ -18,6 +18,10 @@
     "angular-eslint": "0.0.0-PLACEHOLDER",
     "typescript-eslint": "0.0.0-PLACEHOLDER"
   },
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
   "scripts": {
     "publish": "cd ../../../dist/eslint-config && npm publish --access=public",
     "build": "rm -rf ../../../dist/eslint-config && shx mkdir -p ../../../dist/eslint-config && shx cp -r . ../../../dist/eslint-config"
