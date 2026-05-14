@@ -11,6 +11,11 @@ on:
         type: boolean
         required: false
         default: false
+      release-as:
+        description: 'Force a specific version (e.g. 0.92.3 to graduate an RC).'
+        type: string
+        required: false
+        default: ''
 
 env:
   NPM_VERSION: 11
@@ -22,6 +27,13 @@ jobs:
       matrix:
         node: [22.21.x]
     steps:
+      - name: Override release-as
+        if: inputs.release-as != ''
+        run: |
+          jq --arg v "${{ inputs.release-as }}" '. + {"release-as": $v}' \
+            release-please-config.json > /tmp/rpc.json && \
+            mv /tmp/rpc.json release-please-config.json
+
       - uses: googleapis/release-please-action@v5
         with:
           token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
