@@ -31,14 +31,23 @@ export class DaffCartStorageService {
 
   constructor(private storageService: DaffPersistenceService) {}
 
+  /**
+   * Retrieves the cart ID from storage.
+   */
   getCartId(): string {
     return this.storageService.getItem(this.CART_STORAGE_ID);
   }
 
+  /**
+   * Stores the cart ID in storage.
+   */
   setCartId(value: string): void {
     this.storageService.setItem(this.CART_STORAGE_ID, value);
   }
 
+  /**
+   * Removes the cart ID from storage.
+   */
   removeCartId(): void {
     this.storageService.removeItem(this.CART_STORAGE_ID);
   }
