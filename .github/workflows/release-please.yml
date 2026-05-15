@@ -6,15 +6,11 @@ on:
       - develop
   workflow_dispatch:
     inputs:
-      release-mode:
-        description: 'auto = follow conventional commits; rc = bump the rc suffix; graduate = graduate the current rc to a stable release.'
-        type: choice
+      release-candidate:
+        description: 'Cut a release-candidate (prerelease) instead of a normal release.'
+        type: boolean
         required: false
-        default: auto
-        options:
-          - auto
-          - rc
-          - graduate
+        default: false
 
 env:
   NPM_VERSION: 11
@@ -29,7 +25,7 @@ jobs:
       - uses: googleapis/release-please-action@v5
         with:
           token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
-          config-file: ${{ inputs.release-mode == 'rc' && 'release-please-config.rc.json' || (inputs.release-mode == 'graduate' && 'release-please-config.graduate.json' || 'release-please-config.json') }}
+          config-file: ${{ inputs.release-candidate && 'release-please-config.rc.json' || 'release-please-config.json' }}
           target-branch: develop
 
       - uses: actions/checkout@v6
