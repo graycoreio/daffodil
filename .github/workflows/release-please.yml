@@ -6,17 +6,22 @@ on:
       - develop
   workflow_dispatch:
     inputs:
-      release-candidate:
-        description: 'Cut a release-candidate (prerelease) instead of a normal release.'
-        type: boolean
+      release-mode:
+        description: 'auto = follow conventional commits; rc = bump the rc suffix; stable = open a PR that graduates the current rc to a stable release.'
+        type: choice
         required: false
-        default: false
+        default: auto
+        options:
+          - auto
+          - rc
+          - stable
 
 env:
   NPM_VERSION: 11
 
 jobs:
   release-please:
+    if: github.event_name != 'workflow_dispatch' || inputs.release-mode != 'stable'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,7 +30,7 @@ jobs:
       - uses: googleapis/release-please-action@v5
         with:
           token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
-          config-file: ${{ inputs.release-candidate && 'release-please-config.rc.json' || 'release-please-config.json' }}
+          config-file: ${{ inputs.release-mode == 'rc' && 'release-please-config.rc.json' || 'release-please-config.json' }}
           target-branch: develop
 
       - uses: actions/checkout@v6
@@ -51,3 +56,66 @@ jobs:
           git add ../..
           git commit -m 'docs: annotate deprecation messages' || true
           git push
+
+  graduate:
+    if: github.event_name == 'workflow_dispatch' && inputs.release-mode == 'stable'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
+
+      - name: Compute graduate version
+        id: graduate
+        run: |
+          CURRENT=$(jq -r '."."' .release-please-manifest.json)
+          STABLE="${CURRENT%%-*}"
+          if [ "$CURRENT" = "$STABLE" ]; then
+            echo "::error::Manifest version ${CURRENT} has no prerelease suffix; nothing to graduate."
+            exit 1
+          fi
+          echo "CURRENT=${CURRENT}" >> $GITHUB_OUTPUT
+          echo "STABLE=${STABLE}" >> $GITHUB_OUTPUT
+
+      - name: Open graduate PR
+        env:
+          GRAYBOT_GPG_KEY: ${{ secrets.GRAYBOT_GPG_KEY }}
+          GH_TOKEN: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
+          CURRENT: ${{ steps.graduate.outputs.CURRENT }}
+          STABLE: ${{ steps.graduate.outputs.STABLE }}
+        run: |
+          echo "$GRAYBOT_GPG_KEY" | gpg --batch --import
+          export GPG_KEY_ID=$(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d/ -f2)
+          git config --global user.signingkey $GPG_KEY_ID
+          git config --global commit.gpgSign true
+          git config --global user.email "automation@graycore.io"
+          git config --global user.name "Beep Boop"
+          BRANCH="chore/graduate-v${STABLE}"
+          git checkout -b "$BRANCH"
+          git commit --allow-empty \
+            -m "chore: graduate ${CURRENT} to ${STABLE}" \
+            -m "Release-As: ${STABLE}"
+          git push --force origin "$BRANCH"
+          EXISTING=$(gh pr list --head "$BRANCH" --json number --jq '.[0].number // empty')
+          PR_BODY=$(cat <<EOF
+          Graduates the release line from \`${CURRENT}\` to a stable \`${STABLE}\`.
+
+          When this PR is merged to \`main\`, release-please will pick up the \`Release-As\` footer below and open a release PR for \`v${STABLE}\`.
+
+          Release-As: ${STABLE}
+          EOF
+          )
+          if [ -z "$EXISTING" ]; then
+            gh pr create \
+              --base main \
+              --head "$BRANCH" \
+              --title "chore: graduate ${CURRENT} → ${STABLE}" \
+              --body "$PR_BODY"
+          else
+            gh pr edit "$EXISTING" --body "$PR_BODY"
+            echo "PR #$EXISTING already exists for $BRANCH — updated body"
+          fi
