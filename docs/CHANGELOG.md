@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.92.3](https://github.com/graycoreio/daffodil/compare/v0.92.3-rc.2...v0.92.3) (2026-05-15)
+
+
+### Miscellaneous Chores
+
+* graduate 0.92.3-rc.2 to 0.92.3 ([#4485](https://github.com/graycoreio/daffodil/issues/4485)) ([44b8f4a](https://github.com/graycoreio/daffodil/commit/44b8f4a10e65c57c87f290674b9d11565ac79921))
+
 ## [0.92.3-rc.2](https://github.com/graycoreio/daffodil/compare/v0.92.3-rc.1...v0.92.3-rc.2) (2026-05-13)
 
 
