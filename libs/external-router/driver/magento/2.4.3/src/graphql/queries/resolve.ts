@@ -28,39 +28,40 @@ export const MagentoResolveUrlv243 = gql`
 				canonical_url
 				products {
 					items {
-							name
-							meta_description
-							meta_title
-							canonical_url
-							sku
-							review_count
-							rating_summary
-							image {
-								url
-							}
-							price_range {
-								minimum_price {
-									regular_price {
-										currency
-										value
-									}
-									final_price {
-										currency
-										value
-									}
+						uid
+						name
+						meta_description
+						meta_title
+						canonical_url
+						sku
+						review_count
+						rating_summary
+						image {
+							url
+						}
+						price_range {
+							minimum_price {
+								regular_price {
+									currency
+									value
 								}
-								maximum_price {
-									regular_price {
-										currency
-										value
-									}
-									final_price {
-										currency
-										value
-									}
+								final_price {
+									currency
+									value
+								}
+							}
+							maximum_price {
+								regular_price {
+									currency
+									value
+								}
+								final_price {
+									currency
+									value
 								}
 							}
 						}
+					}
 				}
 			}
 			... on ProductInterface {
