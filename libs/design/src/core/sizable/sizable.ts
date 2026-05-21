@@ -18,6 +18,8 @@ export type DaffSizeXLargeType = 'xl';
 export type DaffSizeAllType = DaffSizeXSmallType | DaffSizeSmallType | DaffSizeMediumType | DaffSizeLargeType | DaffSizeXLargeType;
 
 /**
+ * @deprecated
+ *
  * This enum will be removed from the public api in v1.0.0.
  */
 export enum DaffSizableEnum {
