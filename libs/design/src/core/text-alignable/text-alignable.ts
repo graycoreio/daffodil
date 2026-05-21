@@ -11,6 +11,8 @@ export interface DaffTextAlignable {
 export type DaffTextAlignment = 'left' | 'center' | 'right';
 
 /**
+ * @deprecated
+ *
  * This enum will be removed from the public api in v1.0.0.
  */
 export enum DaffTextAlignmentEnum {

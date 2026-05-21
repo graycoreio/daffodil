@@ -13,6 +13,8 @@ export interface DaffOrientable {
 export type DaffOrientation = 'horizontal' | 'vertical';
 
 /**
+ * @deprecated
+ *
  * This enum will be removed from the public api in v1.0.0.
  */
 export enum DaffOrientationEnum {
