@@ -1,14 +1,10 @@
 /**
- * Interfaces that gives a component the ability to customize sizing for component specific UI.
+ * @deprecated Deprecated in version 0.92.1. Will be removed in version 1.0.0.
  */
 
 export interface DaffSizable<T extends DaffSizeAllType> {
   size: T;
 }
-
-/**
- * The possible types that can be passed to a component that implements DaffSizable
- */
 
 export type DaffSizeXSmallType = 'xs';
 export type DaffSizeSmallType = 'sm';
@@ -17,10 +13,15 @@ export type DaffSizeLargeType = 'lg';
 export type DaffSizeXLargeType = 'xl';
 
 /**
- * The a type representing all available sizes.
+ * All available sizes.
  */
 export type DaffSizeAllType = DaffSizeXSmallType | DaffSizeSmallType | DaffSizeMediumType | DaffSizeLargeType | DaffSizeXLargeType;
 
+/**
+ * @deprecated
+ *
+ * This enum will be removed from the public api in v1.0.0.
+ */
 export enum DaffSizableEnum {
   XSmall = 'xs',
   Small = 'sm',

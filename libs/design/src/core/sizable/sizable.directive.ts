@@ -6,59 +6,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-import {
-  DaffSizable,
-  DaffSizeAllType,
-} from './sizable';
+import { DaffSizeAllType } from './sizable';
 
 /**
- * `DaffSizableDirective` allows for dynamic sizing of a component by setting
- * CSS classes based on the specified size.
- *
- * @example Implementing it as an attribute directive
- *
- * ```html
- * <div daffSizable [size]="small">Sized content</div>
- * ```
- * In this example, the `daff-small` class is applied to the `div` element, allowing you to
- * use the class to style the `div`.
- *
- * @example Implementing it as an Angular host directive
- *
- * ```ts
- * @Component({
- *  standalone: true,
- *  selector: 'custom-component',
- *  template: 'custom-component.html',
- *  hostDirectives: [
- *    {
- *      directive: DaffSizableDirective,
- *      inputs: ['size'],
- *    },
- *  ],
- * })
- * export class CustomComponent { }
- * ```
- *
- * ```scss
- * :host {
- *  &.daff-sm {
- *    width: 24px;
- *  }
- *
- *  &.daff-md {
- *    width: 32px;
- *  }
- * }
- * ```
- *
- * The directive applies the following CSS classes to the component based on the size:
- *
- * - `daff-xs`: Applied when the size is `xs`.
- * - `daff-sm`: Applied when the size is `sm`.
- * - `daff-md`: Applied when the size is `md`.
- * - `daff-lg`: Applied when the size is `lg`.
- * - `daff-xl`: Applied when the size is `xl`.
+ * `DaffSizableDirective` enforces consistent use of sizes across components.
  */
 @Directive({
   selector: '[daffSizable]',
@@ -70,7 +21,7 @@ import {
     '[class.daff-xl]': 'size === "xl"',
   },
 })
-export class DaffSizableDirective<T extends DaffSizeAllType> implements DaffSizable<T>, OnChanges, OnInit {
+export class DaffSizableDirective<T extends DaffSizeAllType> implements OnChanges, OnInit {
   /**
    * The size of the component.
    */
@@ -78,13 +29,6 @@ export class DaffSizableDirective<T extends DaffSizeAllType> implements DaffSiza
 
   /**
    * Sets a default size.
-   *
-   * @example
-   * ```ts
-   * constructor(private sizableDirective: DaffSizableDirective) {
-   *  this.sizableDirective.defaultSize = 'md';
-   * }
-   * ```
    */
   public defaultSize: T;
 
