@@ -37,7 +37,7 @@ export class CustomComponent {}
 
 > **Deprecation notice:**
 > 
-> `DaffCalloutModule` is deprecated. Use the standalone component imports instead.
+> `DaffCardModule` is deprecated. Use the standalone component imports instead.
 
 ## Anatomy
 A card is composed of a container, image, icon, tagline, title, content, and actions, displayed in the order listed:
@@ -60,26 +60,13 @@ A card is composed of a container, image, icon, tagline, title, content, and act
 </daff-card>
 ```
 
-**`<daff-card>`** or **`<daff-stroked-card>`**\
-The wrapper component that holds all card content.
-
-**`[daffCardImage]`**\
-Image element at the top of the card.
-
-**`[daffCardIcon]`**\
-Displays a visual or branding element. Avoid using for interactive icons.
-
-**`[daffCardTagline]`**\
-Short phrase that provides quick context.
-
-**`[daffCardTitle]`**\
-The primary heading of the card.
-
-**`[daffCardContent]`**\
-Flexible container for body text or custom content. It's unstyled except for spacing and **should only be used once per card**.
-
-**`[daffCardActions]`**\
-Container for buttons or links, positioned at the bottom.
+- **`<daff-card>`** or **`<daff-stroked-card>`**: The wrapper component that holds all card content.
+- **`[daffCardImage]`**: Image element at the top of the card.
+- **`[daffCardIcon]`**: Displays a visual or branding element. Avoid using for interactive icons.
+- **`[daffCardTagline]`**: Short phrase that provides quick context.
+- **`[daffCardTitle]`**: The primary heading of the card.
+- **`[daffCardContent]`**: Flexible container for body text or custom content. It's unstyled except for spacing and **should only be used once per card**.
+- **`[daffCardActions]`**: Container for buttons or links, positioned at the bottom.
 
 ## Features
 
@@ -94,7 +81,6 @@ To create an interactive card, apply the component selector to an `<a>` element.
 Cards default to a light gray background. Use the `color` property to change a card's color.
 
 <daff-docs-example-viewer example="card-theming"></daff-docs-example-viewer>
-
 
 ### Elevation
 Use the `elevated` property to add shadows to cards.
