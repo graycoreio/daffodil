@@ -2,21 +2,23 @@
 A list is a stylized container used to vertically group a series of related content.
 
 ## Overview
-List supports two main variants:
+Lists help organize content into a clear, scannable vertical structure. There are two variants: **default** (`daff-list`) for generic content and **navigation** (`daff-nav-list`) for groups of links.
 
-| Attribute | Description |
-| --------- | ----------- |
-| `daff-list` | A standard list used for grouping generic content. |
-| `daff-nav-list` | A navigation list intended for use with anchor elements (`<a>`). |
+<daff-docs-example-viewer example="basic-list"></daff-docs-example-viewer>
+
+## Best practices
+
+**When to use**
+- Grouping related items that share a common theme or category
+- Displaying a series of links for navigation menus
 
 ## Usage
 
-### Within a standalone component
-To use list in a standalone component, import each list type directly into your custom component.
+Import the list style(s) you need into your component:
 
 Available imports:
-- `DAFF_LIST_COMPONENTS`
-- `DAFF_NAV_LIST_COMPONENTS`
+- Default lists: `DAFF_LIST_COMPONENTS`
+- Navigation lists: `DAFF_NAV_LIST_COMPONENTS`
 
 ```ts
 import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
@@ -31,42 +33,13 @@ import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use list in a module, import `DaffListModule` into your custom module:
-
-```ts
-import { NgModule } from '@angular/core';
-import { DaffListModule } from '@daffodil/design/list';
-import { CustomComponent } from './custom.component';
-
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffListModule,
-  ],
-})
-export class CustomComponentModule { }
-```
-
-> This method is deprecated. It's recommended to update all custom components to standalone.
+> **Deprecation notice:**
+> 
+> `DaffListModule` is deprecated. Use the standalone component imports instead.
 
 ## Anatomy
-A list consists of the following components:
+A list is composed of a container and one or more items:
 
-### Container
-**`<daff-list>`**: A standard list wrapper used for grouping generic content items.
-
-**`<daff-nav-list>`**: A navigation list container intended for use with anchor elements (`<a>`).
-
-### Item
-**`<daff-list-item>`**: Individual list items that contain the content for each row in the list.
-
-### Basic structure
 ```html
 <daff-list>
   <daff-list-item>Content item</daff-list-item>
@@ -75,31 +48,31 @@ A list consists of the following components:
 </daff-list>
 ```
 
-```html
-<daff-nav-list>
-  <a href="/" daff-list-item>Navigation link</a>
-  <a href="/" daff-list-item>Navigation link</a>
-  <a href="/" daff-list-item>Navigation link</a>
-</daff-nav-list>
-```
+- **`<daff-list>`** or **`<daff-nav-list>`**: The wrapper component that holds all list items.
+- **`<daff-list-item>`**: An individual item within the list. Use the `[daff-list-item]` attribute on `<a>` elements inside a `<daff-nav-list>`.
 
 ## Features
 
-### Icon support
-Use the `[daffPrefix]` element to display a leading visual icon for a list item.
+### Navigation lists
+Use `<daff-nav-list>` with anchor elements to create a list of links. This is useful for menus, sidebars, and footers.
 
-<daff-docs-example-viewer example="icon-list"></daff-docs-example-viewer>
+<daff-docs-example-viewer example="nav-list"></daff-docs-example-viewer>
 
 ### Multi-line lists
 For list items that contain multiple lines of text, use the `[daffListItemTitle]` element to identify the primary title. Additional supporting content can be added using `<div>` or `<p>` elements.
 
 <daff-docs-example-viewer example="multiline-list"></daff-docs-example-viewer>
 
+### Icon support
+Use the `[daffPrefix]` element to display a leading visual icon for a list item.
+
+<daff-docs-example-viewer example="icon-list"></daff-docs-example-viewer>
+
 ## Accessibility
-By default, list includes appropriate ARIA roles by default to support screen readers and provide an accessible experience.
+By default, list includes appropriate ARIA roles to support screen readers and provide an accessible experience.
 
 - `<daff-list>` is assigned `role="list"` to identify a list of items.
+- `<daff-nav-list>` is assigned `role="navigation"` to indicate that the list is used for navigation.
 - `<daff-list-item>` within a `<daff-list>` is assigned `role="listitem"` to identify a list item contained inside the list.
-- `<daff-nav-list>`is assigned `role="navigation"` to indicate that the list is used for navigation.
 
 > Always provide an accessible label for `<daff-nav-list>` via `aria-label` or `aria-labelledby` to describe its purpose (e.g. `"Footer links"` or `"Sidebar links"`).

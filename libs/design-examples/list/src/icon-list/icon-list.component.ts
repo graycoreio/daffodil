@@ -3,7 +3,11 @@ import {
   Component,
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faLock,
+  faRotateLeft,
+  faTruck,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
 
@@ -17,5 +21,7 @@ import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
   ],
 })
 export class IconListExampleComponent {
-  faInfoCircle = faInfoCircle;
+  faTruck = faTruck;
+  faRotateLeft = faRotateLeft;
+  faLock = faLock;
 }
