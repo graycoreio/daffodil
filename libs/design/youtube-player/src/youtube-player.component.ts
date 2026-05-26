@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
   Input,
   OnInit,
 } from '@angular/core';
@@ -37,13 +36,26 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
   templateUrl: './youtube-player.component.html',
   styleUrl: './youtube-player.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[style.max-width]': 'maxWidth',
+  },
 })
 export class DaffYoutubePlayerComponent implements OnInit {
+  /**
+   * The URL of the YouTube video.
+   */
   @Input() src: SafeUrl;
+
+  /**
+   * The title of the YouTube video.
+   */
   @Input() title = '';
 
   private _width: number;
 
+  /**
+   * The width of the player.
+   */
   @Input()
   get width(): number {
     return this._width;
@@ -55,6 +67,9 @@ export class DaffYoutubePlayerComponent implements OnInit {
 
   private _height: number;
 
+  /**
+   * The height of the player.
+   */
   @Input()
   get height(): number {
     return this._height;
@@ -73,6 +88,9 @@ export class DaffYoutubePlayerComponent implements OnInit {
     validateProperties(this, ['width', 'height']);
   }
 
+  /**
+   * @docs-private
+   */
   get _aspectRatio(): SafeStyle {
     return this.sanitizer.bypassSecurityTrustStyle(this.width + ' / ' + this.height);
   }
@@ -80,7 +98,7 @@ export class DaffYoutubePlayerComponent implements OnInit {
   /**
    * @docs-private
    */
-  @HostBinding('style.max-width') get maxWidth(): string {
+  get maxWidth(): string {
     return this.width + 'px';
   }
 }
