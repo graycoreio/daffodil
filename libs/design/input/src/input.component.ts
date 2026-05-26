@@ -7,7 +7,6 @@ import {
   ChangeDetectionStrategy,
   OnInit,
   Input,
-  HostBinding,
   booleanAttribute,
 } from '@angular/core';
 import {
@@ -45,6 +44,7 @@ import {
     '(blur)': '_handleBlur()',
     '[attr.id]': '_id',
     '[disabled]': 'disabledAttribute',
+    '[required]': 'requiredAttribute',
     '[attr.aria-describedby]': 'ariaDescribedBy',
   },
 })
@@ -100,7 +100,7 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
   /**
    * @docs-private
    */
-  @HostBinding('required') get requiredAttribute() {
+  get requiredAttribute() {
     return this.required || null;
   }
 
