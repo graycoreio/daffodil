@@ -12,8 +12,7 @@ Image builds on Angular's [`NgOptimizedImage`](https://angular.dev/guide/image-o
 
 ## Usage
 
-### Within a standalone component
-To use image in a standalone component, import `DAFF_IMAGE_COMPONENTS` directly into your custom component:
+Import `DAFF_IMAGE_COMPONENTS` into your component:
 
 ```ts
 import { Component } from '@angular/core';
@@ -29,31 +28,9 @@ import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use image in a module, import `DaffImageModule` into your custom module:
-
-```ts
-import { NgModule } from '@angular/core';
-import { DaffImageModule } from '@daffodil/design/image';
-import { CustomComponent } from './custom.component';
-
-@NgModule({
-  declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffImageModule,
-  ],
-})
-export class CustomComponentModule { }
-```
-
-> **Warning**
->
-> This method is deprecated. It's recommended to update all custom components to standalone.
+> **Deprecation notice:**
+> 
+> `DaffImageModule` is deprecated. Use the standalone component imports instead.
 
 ## Required attributes
 All four of the following attributes are required and will throw an error if missing:
@@ -67,12 +44,12 @@ All four of the following attributes are required and will throw an error if mis
 
 ## Features
 
-## Skeleton screen
+### Skeleton screen
 Use the `skeleton` property to display a placeholder skeleton screen that helps reduce load-time frustration.
 
 <daff-docs-example-viewer example="skeleton-image"></daff-docs-example-viewer>
 
-## Priority loading
+### Priority loading
 Use the `priority` property to mark an image as a priority for loading. Priority images are loaded eagerly and not lazy-loaded.
 
 ## Accessibility
