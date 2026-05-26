@@ -34,8 +34,10 @@ html {
 a {
 	color: currentColor;
 
-	&:hover {
-		text-decoration: none;
+	@media (hover: hover) {
+		&:hover {
+			text-decoration: none;
+		}
 	}
 }
 

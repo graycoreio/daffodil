@@ -17,7 +17,12 @@
 			background: $base;
 			color: $base-contrast;
 
-			&:hover,
+			@media (hover: hover) {
+				&:hover {
+					background: rgba(daff-color($neutral, 20), 0.5);
+				}
+			}
+
 			&:focus {
 				background: rgba(daff-color($neutral, 20), 0.5);
 			}
@@ -34,7 +39,12 @@
 			background: $base;
 			color: $base-contrast;
 
-			&:hover,
+			@media (hover: hover) {
+				&:hover {
+					background: rgba(daff-color($neutral, 20), 0.08);
+				}
+			}
+
 			&:focus {
 				background: rgba(daff-color($neutral, 20), 0.08);
 			}

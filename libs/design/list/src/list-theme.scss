@@ -19,19 +19,33 @@
 			}
 
 			@include light($mode) {
-				&:hover,
 				&.active {
 					&::after {
 						background-color: rgba(daff-color($neutral, 20), 0.5);
 					}
 				}
+
+				@media (hover: hover) {
+					&:hover {
+						&::after {
+							background-color: rgba(daff-color($neutral, 20), 0.5);
+						}
+					}
+				}
 			}
 
 			@include dark($mode) {
-				&:hover,
 				&.active {
 					&::after {
 						background-color: rgba(daff-color($neutral, 20), 0.08);
+					}
+				}
+
+				@media (hover: hover) {
+					&:hover {
+						&::after {
+							background-color: rgba(daff-color($neutral, 20), 0.08);
+						}
 					}
 				}
 			}
