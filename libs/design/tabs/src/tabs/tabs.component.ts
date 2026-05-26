@@ -5,7 +5,6 @@ import {
 } from '@angular/common';
 import {
   Component,
-  HostBinding,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ContentChildren,
@@ -63,6 +62,7 @@ import { DaffTabLabelComponent } from './tab-label/tab-label.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'class': 'daff-tabs',
+    '[attr.aria-label]': 'null',
   },
   imports: [
     NgTemplateOutlet,
@@ -84,13 +84,6 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
    * The tab that is selected on initial load. If it's not used, the first tab in the tablist will be selected by default.
    */
   @Input() initiallySelected: string = null;
-
-  /**
-   * @docs-private
-   *
-   * aria-label for the tab.
-   */
-  @HostBinding('attr.aria-label') private externalAriaLabel = null;
 
   /**
    * `aria-label` to label the tablist.
