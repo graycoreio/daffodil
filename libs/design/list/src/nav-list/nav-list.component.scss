@@ -25,7 +25,14 @@
 			z-index: 1;
 		}
 
-		&:hover,
+		@media (hover: hover) {
+			&:hover {
+				&::after {
+					opacity: 1;
+				}
+			}
+		}
+
 		&.active {
 			&::after {
 				opacity: 1;

@@ -15,8 +15,10 @@
 			background-color: $base;
 			color: daff-color($neutral, 90);
 
-			&:hover {
-				background-color: daff-color($neutral, 20);
+			@media (hover: hover) {
+				&:hover {
+					background-color: daff-color($neutral, 20);
+				}
 			}
 
 			&::after {
@@ -37,8 +39,10 @@
 			background-color: $base;
 			color: daff-color($neutral, 20);
 
-			&:hover {
-				background-color: daff-color($neutral, 90);
+			@media (hover: hover) {
+				&:hover {
+					background-color: daff-color($neutral, 90);
+				}
 			}
 
 			&::after {

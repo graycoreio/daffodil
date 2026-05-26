@@ -12,7 +12,14 @@
 		}
 	}
 
-	&:hover,
+	@media (hover: hover) {
+		.daff-card__wrapper {
+			&::after {
+				opacity: 1;
+			}
+		}
+	}
+
 	&:focus {
 		.daff-card__wrapper {
 			&::after {

@@ -6,9 +6,11 @@
 	align-items: center;
 	gap: 0.5rem;
 
-	&:hover {
-		.daff-article-heading-link__button {
-			opacity: 1;
+	@media (hover: hover) {
+		&:hover {
+			.daff-article-heading-link__button {
+				opacity: 1;
+			}
 		}
 	}
 }

@@ -16,7 +16,14 @@
 
 		@include light($mode) {
 			&__page-link {
-				&:hover,
+				@media (hover: hover) {
+					&:hover {
+						&::after {
+							background: daff-color($neutral, 20);
+						}
+					}
+				}
+
 				&.selected {
 					&::after {
 						background: daff-color($neutral, 20);
@@ -27,7 +34,14 @@
 
 		@include dark($mode) {
 			&__page-link {
-				&:hover,
+				@media (hover: hover) {
+					&:hover {
+						&::after {
+							background: daff-color($neutral, 90);
+						}
+					}
+				}
+
 				&.selected {
 					&::after {
 						background: daff-color($neutral, 90);

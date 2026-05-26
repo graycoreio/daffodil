@@ -32,7 +32,12 @@
 					border-top: 1px solid $border-color-light;
 				}
 
-				&:hover,
+				@media (hover: hover) {
+					&:hover {
+						background-color: daff-color($neutral, 10);
+					}
+				}
+
 				&.highlighted {
 					background-color: daff-color($neutral, 10);
 				}
@@ -57,7 +62,10 @@
 					border-top: 1px solid $border-color-dark;
 				}
 
-				&:hover,
+				@media (hover: hover) {
+					background-color: daff-color($neutral, 90);
+				}
+
 				&.highlighted {
 					background-color: daff-color($neutral, 90);
 				}

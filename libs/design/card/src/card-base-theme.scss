@@ -13,7 +13,18 @@
 		}
 	}
 
-	&:hover,
+	@media (hover: hover) {
+		&:hover {
+			color: daff-text-contrast($hover-color);
+
+			.daff-card__wrapper {
+				&::after {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
 	&:focus {
 		color: daff-text-contrast($hover-color);
 

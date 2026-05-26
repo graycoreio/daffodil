@@ -71,8 +71,15 @@ $border-radius: 0.25rem;
 			transition: opacity 300ms;
 		}
 
+		@media (hover: hover) {
+			&:hover {
+				&::after {
+					opacity: 1;
+				}
+			}
+		}
+
 		// stylelint-disable selector-class-pattern
-		&:hover,
 		&:active,
 		&.selected {
 			&::after {
