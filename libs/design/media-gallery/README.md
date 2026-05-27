@@ -13,13 +13,12 @@ Media galleries are ideal for showcasing multiple images or other media related 
 - Providing an interactive way to browse through visual content
 
 **When not to use**
-- You only have one image (use an [Image](/libs/design/image/README.md) instead)
+- You only have one image (use the [image](/libs/design/image/README.md) component instead)
 - The images are unrelated to each other
 
 ## Usage
 
-### Within a standalone component
-To use media gallery in a standalone component, import `DAFF_MEDIA_GALLERY_COMPONENTS` into your custom component:
+Import `DAFF_MEDIA_GALLERY_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_MEDIA_GALLERY_COMPONENTS } from '@daffodil/design/media-gallery';
@@ -34,40 +33,13 @@ import { DAFF_MEDIA_GALLERY_COMPONENTS } from '@daffodil/design/media-gallery';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use media gallery in a module, import `DaffMediaGalleryModule` into your custom module:
-
-```ts
-import { NgModule } from '@angular/core';
-import { DaffMediaGalleryModule } from '@daffodil/design/media-gallery';
-import { CustomComponent } from './custom.component';
-
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffMediaGalleryModule,
-  ],
-})
-export class CustomComponentModule { }
-```
-
-> This method is deprecated. It's recommended to update all custom components to standalone.
+> **Deprecation notice:**
+> 
+> `DaffMediaGalleryModule` is deprecated. Use the standalone component imports instead.
 
 ## Anatomy
-A media gallery consists of the following components:
+A media gallery is composed of a container and one or more thumbnails:
 
-### Container
-**`<daff-media-gallery>`**: The wrapper component that contains all thumbnails and manages the display area.
-
-### Thumbnail
-**`[daffThumbnail]`**: A **structural directive** that defines both the preview image and the content to display when selected. Thumbnails can contain any content type, not just images.
-
-### Basic structure
 ```html
 <daff-media-gallery>
   <ng-template daffThumbnail thumbnailSrc="/thumbnail-path.jpg" label="Your description">
@@ -76,19 +48,36 @@ A media gallery consists of the following components:
 </daff-media-gallery>
 ```
 
-## Thumbnail configuration
+- **`<daff-media-gallery>`**: The wrapper component that contains all thumbnails and manages the display area.
+- **`[daffThumbnail]`**: A **structural directive** that defines both the preview image and the content to display when selected. Thumbnails can contain any content type, not just images.
+
+### Thumbnail configuration
 - `thumbnailSrc` is used for the preview image rendered in the thumbnail strip.
-- The content inside the template will be shown as the primary view when selected.
-- You must include the full content for each thumbnail inside the template, even if it appears to duplicate the thumbnail image since this is what renders in the main display area when selected.
-- Always provide an accessible label for a thumbnail using `label`.
-- The `isVideo` property can be used to display a video icon on the thumbnail.
+- The content inside the template is shown as the primary view when selected.
+- Include the full content for each thumbnail inside the template, even if it appears to duplicate the thumbnail image, since this is what renders in the main display area when selected.
+- Always provide an accessible `label` for a thumbnail.
 - The first thumbnail is selected by default.
 
-> Never use `[daffThumbnail]` as a standalone element. It must be placed within a `<daff-media-gallery>`. 
+> Never use `[daffThumbnail]` as a standalone element. It must be placed within a `<daff-media-gallery>`.
+
+## Features
+
+### Video thumbnails
+Set the `isVideo` property on a thumbnail to display a video icon on its preview, signaling that the content opens a video.
 
 <daff-docs-example-viewer example="media-gallery-with-video"></daff-docs-example-viewer>
 
-## Aspect ratio
+### Iterating thumbnails
+Use a control-flow block such as `@for` to generate thumbnails from a collection of media.
+
+<daff-docs-example-viewer example="iterated-media-gallery"></daff-docs-example-viewer>
+
+### Skeleton screen
+Set the `skeleton` property to `true` to display a placeholder skeleton screen that helps reduce load-time frustration.
+
+<daff-docs-example-viewer example="skeleton-media-gallery"></daff-docs-example-viewer>
+
+### Aspect ratio
 Use a consistent aspect ratio across all content to avoid layout shifts. Mismatched content sizes can cause the primary content area to shift as different thumbnails are selected.
 
 Thumbnails are rendered in a square by default, so a 1:1 ratio is recommended, but not required since thumbnails are automatically centered horizontally and vertically.
@@ -96,6 +85,10 @@ Thumbnails are rendered in a square by default, so a 1:1 ratio is recommended, b
 <daff-docs-example-viewer example="mismatched-sizes-media-gallery"></daff-docs-example-viewer>
 
 ## Accessibility
-- Always provide an accessible label for each thumbnail using the `label` attribute.
+
+### Daffodil provides
 - Each thumbnail is rendered as a button with an autogenerated `aria-controls` value that matches the `id` of the content container displayed when the thumbnail is selected.
 - These `id` values are autogenerated but can be overridden by providing a custom id to the `<daff-media-gallery>` element.
+
+### Developer responsibilities
+- Always provide an accessible label for each thumbnail using the `label` attribute.
