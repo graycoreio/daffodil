@@ -7,7 +7,7 @@ Native select has the same functionality as a native HTML select element, with a
 <daff-docs-example-viewer example="basic-native-select"></daff-docs-example-viewer>
 
 ## Usage
-To use native select, import `DAFF_NATIVE_SELECT_COMPONENTS` directly into your custom component:
+Import `DAFF_NATIVE_SELECT_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_NATIVE_SELECT_COMPONENTS } from '@daffodil/design/native-select';
@@ -25,7 +25,6 @@ export class CustomComponent {}
 ## Anatomy
 Native select must be used inside `<daff-form-field>` to enable proper state management and provide enhanced UI features such as hints, error messages, prefixes, and suffixes. The form field component also ensures accessibility compliance. For more details, see the [form field documentation](/libs/design/form-field/README.md).
 
-### Basic structure
 ```html
 <daff-form-field>
   <daff-form-label>Sort By</daff-form-label>
@@ -37,7 +36,7 @@ Native select must be used inside `<daff-form-field>` to enable proper state man
 </daff-form-field>
 ```
 
-## States
+## Features
 
 ### Disabled
 Native select can be disabled in two ways: using Angular's reactive forms with `FormControl` or with the native HTML `disabled` attribute.
@@ -51,12 +50,15 @@ Native select supports validation and error messages through Angular's form vali
 
 Multiple error messages can be displayed conditionally based on the type of validation error. The form field component handles the styling and positioning of error messages.
 
-## Hints
+### Hints
 Hints provide additional context or instructions to help users complete the select field correctly. Use `<daff-hint>` within the form field to display helpful information below the select. Unlike error messages, hints are always visible and provide guidance rather than validation feedback.
 
 <daff-docs-example-viewer example="native-select-hint"></daff-docs-example-viewer>
 
 ## Accessibility
-When `<daff-form-label>` is used within `<daff-form-field>`, the label automatically associates with the select using the `for` and `id` attributes.
 
-If a `<daff-form-label>` is not specified, use the `<label>` element to associate text with form elements explicitly. The `for` attribute of the label must exactly match the `id` of the form control.
+### Built-in behavior
+- When `<daff-form-label>` is used within `<daff-form-field>`, the label automatically associates with the select using the `for` and `id` attributes.
+
+### Developer responsibilities
+- If a `<daff-form-label>` is not specified, use the `<label>` element to associate text with form elements explicitly. The `for` attribute of the label must exactly match the `id` of the form control.
