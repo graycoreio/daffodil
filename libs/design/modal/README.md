@@ -18,8 +18,7 @@ Modals are used to capture information or attention. They overlay the main conte
 
 ## Usage
 
-### Within a standalone component
-To use modal in a standalone component, import `DAFF_MODAL_COMPONENTS` directly into your custom component:
+Import `DAFF_MODAL_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_MODAL_COMPONENTS } from '@daffodil/design/modal';
@@ -34,49 +33,13 @@ import { DAFF_MODAL_COMPONENTS } from '@daffodil/design/modal';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use modal in a module, import `DaffModalModule` into your custom module:
-
-```ts
-import { NgModule } from '@angular/core';
-import { DaffModalModule } from '@daffodil/design/modal';
-import { CustomComponent } from './custom.component';
-
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffModalModule,
-  ],
-})
-export class CustomComponentModule { }
-```
-
-> This method is deprecated. It's recommended to update all custom components to standalone.
+> **Deprecation notice:**
+> 
+> `DaffModalModule` is deprecated. Use the standalone component imports instead.
 
 ## Anatomy
-A modal consists of the following contents, displayed in the order listed:
+A modal is composed of a header, content, and actions, displayed in the order listed:
 
-### Header
-**`<daff-modal-header>`**: The header section containing the title and optional close button.
-
-#### Title
-**`[daffModalTitle]`**: The primary text summarizing the modal.
-
-#### Close button
-The close button in the header is shown by default but can be hidden by setting the `dismissible` property to `false` on the header.
-
-### Content
-**`<daff-modal-content>`**: The scrollable container for the modal's main content. Use this once per modal to wrap all body content.
-
-### Actions
-**`<daff-modal-actions>`**: The container for action buttons, positioned at the bottom of the modal with right-aligned buttons. If two buttons are needed, place the primary button the left and the secondary button on the right.
-
-### Basic structure
 ```html
 <daff-modal-header>
   <h2 daffModalTitle>Modal Title</h2>
@@ -90,7 +53,14 @@ The close button in the header is shown by default but can be hidden by setting 
 </daff-modal-actions>
 ```
 
-## Dismissing a modal
+- **`<daff-modal-header>`**: The header section containing the title and optional close button.
+- **`[daffModalTitle]`**: The primary text summarizing the modal.
+- **`<daff-modal-content>`**: The scrollable container for the modal's main content. Use this once per modal to wrap all body content.
+- **`<daff-modal-actions>`**: The container for action buttons, positioned at the bottom of the modal with right-aligned buttons. If two buttons are needed, place the primary button on the left and the secondary button on the right.
+
+## Features
+
+### Dismissal
 A modal can be dismissed via:
 - The close button in the header (shown by default)
 - The `ESC` key
@@ -104,7 +74,7 @@ To hide the close button, set `dismissible` to `false` on `<daff-modal-header>`:
 </daff-modal-header>
 ```
 
-### Position configuration
+### Position
 By default, modals are horizontally and vertically centered on the screen. You can position a modal at the top of the screen by passing a `position` configuration when opening the modal:
 
 ```ts
