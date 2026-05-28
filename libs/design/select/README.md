@@ -7,7 +7,7 @@ Use select when you need users to pick one option from a list. It works like a s
 <daff-docs-example-viewer example="basic-select"></daff-docs-example-viewer>
 
 ## Usage
-To use select, import the components directly into your custom component:
+Import `DAFF_SELECT_COMPONENTS` and `DAFF_FORM_FIELD_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
@@ -27,7 +27,6 @@ export class CustomComponent {}
 ## Anatomy
 Select must be used inside `<daff-form-field>` to enable proper state management and provide enhanced UI features such as hints, error messages, prefixes, and suffixes. The form field component also ensures accessibility compliance. For more details, see the [form field documentation](/libs/design/form-field/README.md).
 
-### Basic structure
 Use `daffSelectOption` to render a list of options in the select panel:
 
 ```html
@@ -43,7 +42,7 @@ Use `daffSelectOption` to render a list of options in the select panel:
 </daff-form-field>
 ```
 
-## States
+## Features
 
 ### Disabled
 Select can be disabled using Angular's reactive forms with `FormControl`.
@@ -57,15 +56,15 @@ Select supports validation and error messages through Angular's form validation 
 
 Multiple error messages can be displayed conditionally based on the type of validation error. The form field component handles the styling and positioning of error messages.
 
-## Hints
-Hints provide additional context or instructions to help users complete the select field correctly. Use `<daff-hint>` within the form field to display helpful information below the textarea. Unlike error messages, hints are always visible and provide guidance rather than validation feedback.
+### Hints
+Hints provide additional context or instructions to help users complete the select field correctly. Use `<daff-hint>` within the form field to display helpful information below the select. Unlike error messages, hints are always visible and provide guidance rather than validation feedback.
 
 <daff-docs-example-viewer example="select-with-hint"></daff-docs-example-viewer>
 
 ## Accessibility
 Select follows the [Combobox WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/). The combobox activator is combined with an inner `role="listbox"` element opened in a popup.
 
-### Daffodil provides
+### Built-in behavior
 - Automatic focus trapping when select panel is open
 - `aria-labelledby` associated with the `<daff-form-label>`
 - `aria-expanded` state management

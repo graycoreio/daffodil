@@ -4,8 +4,8 @@ import { provideDaffDocsExampleContent } from '@daffodil/docs';
 
 export const provideDaffDesignSelectExamplesContent = () => makeEnvironmentProviders(provideDaffDocsExampleContent(
   {
-    id: 'default-select',
-    component: () => import('./default-select/default-select.component').then(c => c.DefaultSelectExampleComponent),
+    id: 'basic-select',
+    component: () => import('./basic-select/basic-select.component').then(c => c.BasicSelectExampleComponent),
   },
   {
     id: 'disabled-select',
