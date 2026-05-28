@@ -13,10 +13,12 @@ Progress bars help users understand the status of ongoing processes or tasks. Th
 - Indicating completion of multi-step processes
 - Displaying loading states for time-consuming operations
 
+**When not to use**
+- The operation is short or instantaneous. Use the [spinner](/libs/design/spinner/README.md) component instead.
+
 ## Usage
 
-### Within a standalone component
-To use progress bar in a standalone component, import `DAFF_PROGRESS_BAR_COMPONENTS` directly into your custom component:
+Import `DAFF_PROGRESS_BAR_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_PROGRESS_BAR_COMPONENTS } from '@daffodil/design/progress-bar';
@@ -31,59 +33,30 @@ import { DAFF_PROGRESS_BAR_COMPONENTS } from '@daffodil/design/progress-bar';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use progress bar in a module, import `DaffProgressBarModule` into your custom module:
-
-```ts
-import { NgModule } from '@angular/core';
-import { DaffProgressBarModule } from '@daffodil/design/progress-bar';
-import { CustomComponent } from './custom.component';
-
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffProgressBarModule,
-  ],
-})
-export class CustomComponentModule { }
-```
-
-> This method is deprecated. It's recommended to update all custom components to standalone.
+> **Deprecation notice:**
+> 
+> `DaffProgressBarModule` is deprecated. Use the standalone component imports instead.
 
 ## Anatomy
-A progress bar consists of the following components:
+A progress bar is composed of a container and an optional label:
 
-### Container
-**`<daff-progress-bar>`**: The main progress bar component that displays the progress indicator.
-
-### Label
-**`<daff-progress-bar-label>`**: Label that helps users understand what the progress represents. The label is automatically associated with the progress bar for accessibility.
-
-### Basic structure
 ```html
 <daff-progress-bar>
   <daff-progress-bar-label>File upload</daff-progress-bar-label>
 </daff-progress-bar>
 ```
 
+- **`<daff-progress-bar>`**: The wrapper component that displays the progress indicator.
+- **`<daff-progress-bar-label>`**: A label that describes what the progress represents. The label is automatically associated with the progress bar for accessibility.
+
 If a label is not provided, add an `aria-label` to `<daff-progress-bar>` to ensure an accessible experience.
 
-## Types
-
-### Determinate
-Use determinate progress bars when the percentage of completion is known. This is the default type.
+## Features
 
 ### Indeterminate
-Use indeterminate progress bars when when the percentage of completion is unknown or cannot be calculated. Set the `indeterminate` property to `true`:
+Use an indeterminate progress bar when the percentage of completion is unknown or cannot be calculated. Set the `indeterminate` property to `true`.
 
 <daff-docs-example-viewer example="progress-bar-indeterminate"></daff-docs-example-viewer>
-
-## Features
 
 ### Colors
 The default color is `primary`. Use the `color` property to change a progress bar's color.
@@ -95,7 +68,7 @@ The default color is `primary`. Use the `color` property to change a progress ba
 ## Accessibility
 Progress bar implements the ARIA `role="progressbar"` pattern.
 
-### Daffodil provides
+### Built-in behavior
 - `role="progressbar"` on the progress element
 - `aria-valuemin="0"` and `aria-valuemax="100"` set by default
 - `aria-valuenow` reflecting current progress (for determinate mode)
