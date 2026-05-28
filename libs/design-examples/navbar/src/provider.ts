@@ -19,5 +19,9 @@ export const provideDaffDesignNavbarExamplesContent = () => makeEnvironmentProvi
     id: 'elevated-navbar',
     component: () => import('./elevated-navbar/elevated-navbar.component').then(c => c.ElevatedNavbarExampleComponent),
   },
+  {
+    id: 'blurred-elevated-navbar',
+    component: () => import('./blurred-and-elevated-navbar/blurred-and-elevated-navbar.component').then(c => c.BlurredAndElevatedNavbarExampleComponent),
+  },
 ));
 

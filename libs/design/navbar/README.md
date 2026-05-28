@@ -8,8 +8,7 @@ The navbar contains minimal layout styles, allowing the content within it to be 
 
 ## Usage
 
-### Within a standalone component
-To use navbar in a standalone component, import `DAFF_NAVBAR_COMPONENTS` directly into your custom component:
+Import`DAFF_NAVBAR_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
@@ -24,29 +23,20 @@ import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use navbar in a module, import `DaffNavbarModule` into your custom module:
+> **Deprecation notice:**
+> 
+> `DaffNavbarModule` is deprecated. Use the standalone component imports instead.
 
-```ts
-import { NgModule } from '@angular/core';
-import { DaffNavbarModule } from '@daffodil/design/navbar';
-import { CustomComponent } from './custom.component';
+## Anatomy
+A navbar is a directive applied to a native `<nav>` element:
 
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffNavbarModule,
-  ],
-})
-export class CustomComponentModule { }
+```html
+<nav daff-navbar>
+  <!-- navigation items -->
+</nav>
 ```
 
-> This method is deprecated. It's recommended to update all custom components to standalone.
+- **`nav[daff-navbar]`**: The directive applied to a native `<nav>` element. Provides flexbox layout and styling for navigation content.
 
 ## Features
 
@@ -62,11 +52,7 @@ Use the `blurred` property to add a semi-transparent background effect to the na
 
 Both `elevated` and `blurred` can be combined for a layered effect:
 
-```html
-<nav daff-navbar [elevated]="true" [blurred]="true">
-  <!-- navigation items -->
-</nav>
-```
+<daff-docs-example-viewer example="blurred-elevated-navbar"></daff-docs-example-viewer>
 
 ### Contained navbar
 A navbar can be contained to a specific width by using the [container](/libs/design/container/README.md) component. The layout styles set on the navbar will automatically be passed down to the container.
@@ -74,7 +60,12 @@ A navbar can be contained to a specific width by using the [container](/libs/des
 <daff-docs-example-viewer example="contained-navbar"></daff-docs-example-viewer>
 
 ## Accessibility
-Daffodil enforces the usage of the native `<nav>` HTML element to ensure an accessible experience by default. If more than one navbar is used, every navbar should be given a meaningful label by using the `aria-label` attribute.
+
+### Daffodil provides
+- Enforces the use of the native `<nav>` element so each navbar is recognized as a navigation landmark by assistive technology
+
+### Developer responsibilities
+- If more than one navbar is used on the page, give each one a meaningful `aria-label` to distinguish them
 
 ```html
 <nav daff-navbar aria-label="main navigation">

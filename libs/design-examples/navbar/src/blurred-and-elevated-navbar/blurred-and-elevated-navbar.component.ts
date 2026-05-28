@@ -8,9 +8,9 @@ import { DAFF_BASIC_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
 
 @Component({
-  selector: 'blurred-navbar-example',
-  templateUrl: './blurred-navbar.component.html',
-  styleUrls: ['./blurred-navbar.component.scss'],
+  selector: 'blurred-and-elevated-navbar-example',
+  templateUrl: './blurred-and-elevated-navbar.component.html',
+  styleUrls: ['./blurred-and-elevated-navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_NAVBAR_COMPONENTS,
@@ -20,4 +20,4 @@ import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
     { directive: DaffArticleEncapsulatedDirective },
   ],
 })
-export class BlurredNavbarExampleComponent {}
+export class BlurredAndElevatedNavbarExampleComponent {}
