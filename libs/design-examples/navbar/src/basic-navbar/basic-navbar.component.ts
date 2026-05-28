@@ -3,7 +3,8 @@ import {
   Component,
 } from '@angular/core';
 
-import { DaffButtonComponent } from '@daffodil/design/button';
+import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
+import { DAFF_BASIC_BUTTON_COMPONENTS } from '@daffodil/design/button';
 import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
 
 @Component({
@@ -13,7 +14,10 @@ import { DAFF_NAVBAR_COMPONENTS } from '@daffodil/design/navbar';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_NAVBAR_COMPONENTS,
-    DaffButtonComponent,
+    DAFF_BASIC_BUTTON_COMPONENTS,
+  ],
+  hostDirectives: [
+    { directive: DaffArticleEncapsulatedDirective },
   ],
 })
 export class BasicNavbarExampleComponent {}
