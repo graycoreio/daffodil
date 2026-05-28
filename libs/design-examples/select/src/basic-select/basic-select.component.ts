@@ -13,9 +13,9 @@ import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
 import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';
 
 @Component({
-  selector: 'default-select-example',
-  templateUrl: './default-select.component.html',
-  styleUrls: ['./default-select.component.scss'],
+  selector: 'basic-select-example',
+  templateUrl: './basic-select.component.html',
+  styleUrls: ['./basic-select.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -24,7 +24,7 @@ import { SELECT_EXAMPLE_ADDRESSES } from '../models/addresses';
     DAFF_FORM_FIELD_COMPONENTS,
   ],
 })
-export class DefaultSelectExampleComponent {
+export class BasicSelectExampleComponent {
   control = new FormControl();
 
   options = SELECT_EXAMPLE_ADDRESSES;
