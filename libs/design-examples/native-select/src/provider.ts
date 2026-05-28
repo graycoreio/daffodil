@@ -15,5 +15,9 @@ export const provideDaffDesignNativeSelectExamplesContent = () => makeEnvironmen
     id: 'native-select-error',
     component: () => import('./native-select-error/native-select-error.component').then(c => c.NativeSelectErrorExampleComponent),
   },
+  {
+    id: 'native-select-hint',
+    component: () => import('./native-select-hint/native-select-hint.component').then(c => c.NativeSelectHintExampleComponent),
+  },
 ));
 

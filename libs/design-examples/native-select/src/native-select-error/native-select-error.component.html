@@ -1,14 +1,13 @@
 <daff-form-field>
-  <daff-form-label>Label</daff-form-label>
+  <daff-form-label>Select a size</daff-form-label>
   <select daff-native-select [formControl]="control">
-    <option value="''">Select an option</option>
-    <option value="valid">Valid option</option>
-    <option value="invalid">Invalid option</option>
+    <option value="s">Small</option>
+    <option value="m" disabled>Medium — sold out</option>
+    <option value="l">Large</option>
+    <option value="xl">XL</option>
   </select>
-  <daff-hint>Hint goes here.</daff-hint>
+  <daff-hint>Unsure of your size? Check our size guide.</daff-hint>
   @if (control.errors?.required) {
-  <daff-error-message>This is a required field.</daff-error-message>
-  } @if (control.hasError('pattern')) {
-  <daff-error-message>Your selection is invalid.</daff-error-message>
+    <daff-error-message>Please select a size.</daff-error-message>
   }
 </daff-form-field>

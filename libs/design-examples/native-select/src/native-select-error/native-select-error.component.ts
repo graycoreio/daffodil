@@ -27,8 +27,5 @@ import { DAFF_NATIVE_SELECT_COMPONENTS } from '@daffodil/design/native-select';
   ],
 })
 export class NativeSelectErrorExampleComponent {
-  control = new UntypedFormControl('valid', [
-    Validators.required,
-    Validators.pattern('valid'),
-  ]);
+  control = new UntypedFormControl('', [Validators.required]);
 }

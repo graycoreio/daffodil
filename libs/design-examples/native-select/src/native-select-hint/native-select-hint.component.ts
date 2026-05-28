@@ -3,25 +3,19 @@ import {
   Component,
 } from '@angular/core';
 import {
-  ReactiveFormsModule,
   UntypedFormControl,
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DAFF_NATIVE_SELECT_COMPONENTS } from '@daffodil/design/native-select';
 
 @Component({
-  selector: 'native-select-disabled-example',
-  templateUrl: './native-select-disabled.component.html',
+  selector: 'native-select-hint-example',
+  templateUrl: './native-select-hint.component.html',
   styles: [`
-    :host {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-
-      daff-form-field {
-        max-width: 25rem;
-      }
+    daff-form-field {
+      max-width: 25rem;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,6 +25,6 @@ import { DAFF_NATIVE_SELECT_COMPONENTS } from '@daffodil/design/native-select';
     ReactiveFormsModule,
   ],
 })
-export class NativeSelectDisabledExampleComponent {
-  control = new UntypedFormControl({ value: 'black', disabled: true });
+export class NativeSelectHintExampleComponent {
+  control = new UntypedFormControl();
 }
