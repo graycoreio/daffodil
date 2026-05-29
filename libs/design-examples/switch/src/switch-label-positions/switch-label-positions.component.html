@@ -1,12 +1,15 @@
-<daff-switch
-  [labelPosition]="labelPositionControl.value"
-  [formControl]="labelSwitchExample"
-  ngDefaultControl
-  >Label</daff-switch
->
+<daff-form-field>
+  <daff-form-label>Label position</daff-form-label>
+  <daff-select [options]="options" [formControl]="labelPositionControl">
+    <ng-template daffSelectOption let-option="option">
+      {{ option.label }}
+    </ng-template>
+  </daff-select>
+</daff-form-field>
 
-<select [formControl]="labelPositionControl">
-  @for (option of options; track option) {
-  <option [value]="option.value">{{ option.label }}</option>
-  }
-</select>
+<daff-switch
+  [labelPosition]="labelPositionControl.value?.value"
+  [formControl]="labelSwitchExample"
+  ngDefaultControl>
+  Label
+</daff-switch>

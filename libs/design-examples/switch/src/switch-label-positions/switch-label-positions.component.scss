@@ -1,0 +1,11 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+
+	daff-form-field {
+		max-width: 15rem;
+		width: 100%;
+	}
+}
