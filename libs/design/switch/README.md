@@ -39,7 +39,7 @@ A small switch variant is available for dense layouts. Use the `size="sm"` prope
 
 <daff-docs-example-viewer example="switch-sizes"></daff-docs-example-viewer>
 
-### Disabled state
+### Disabled switch
 Use the `disabled` property on switch to make it non-interactive.
 
 <daff-docs-example-viewer example="disabled-switch"></daff-docs-example-viewer>
