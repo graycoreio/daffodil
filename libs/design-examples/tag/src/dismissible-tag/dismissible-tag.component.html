@@ -1,4 +1,5 @@
-<daff-tag dismissible (closeTag)="hideTag('dismissible')">
-  <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
-  Dismissible
-</daff-tag>
+@if (!isHidden) {
+  <daff-tag dismissible (closeTag)="hideTag()">
+    Brand: Nike
+  </daff-tag>
+}

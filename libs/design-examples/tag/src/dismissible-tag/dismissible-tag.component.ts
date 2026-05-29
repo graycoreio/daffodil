@@ -8,16 +8,9 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { DAFF_TAG_COMPONENTS } from '@daffodil/design/tag';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
+
   selector: 'dismissible-tag-example',
   templateUrl: './dismissible-tag.component.html',
-  styles: [`
-    :host {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-  `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_TAG_COMPONENTS,
@@ -27,10 +20,9 @@ import { DAFF_TAG_COMPONENTS } from '@daffodil/design/tag';
 export class DismissibleTagExampleComponent {
   faCircleCheck = faCircleCheck;
 
-  hiddenTags: { [key: string]: boolean } = {
-    dismissible: false,
-  };
-  hideTag(tagId: string) {
-    this.hiddenTags[tagId] = true;
+  isHidden = false;
+
+  hideTag() {
+    this.isHidden = true;
   }
 }
