@@ -16,7 +16,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
   templateUrl: './input-with-form-field.component.html',
   styles: [`
     daff-form-field {
-      max-width: 320px;
+      max-width: 20rem;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
