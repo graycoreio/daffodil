@@ -13,11 +13,7 @@ import { DaffTextareaComponent } from '@daffodil/design/textarea';
 @Component({
   selector: 'textarea-disabled-example',
   templateUrl: './textarea-disabled.component.html',
-  styles: [`
-    daff-form-field {
-      max-width: 320px;
-    }
-  `],
+  styleUrl: './textarea-disabled.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_FORM_FIELD_COMPONENTS,

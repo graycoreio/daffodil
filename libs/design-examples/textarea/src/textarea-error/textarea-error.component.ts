@@ -16,7 +16,7 @@ import { DaffTextareaComponent } from '@daffodil/design/textarea';
   templateUrl: './textarea-error.component.html',
   styles: [`
     daff-form-field {
-      max-width: 320px;
+      max-width: 20rem;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
