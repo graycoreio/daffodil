@@ -13,11 +13,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
 @Component({
   selector: 'input-disabled-example',
   templateUrl: './input-disabled.component.html',
-  styles: [`
-    daff-form-field {
-      max-width: 320px;
-    }
-  `],
+  styleUrl: './input-disabled.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
