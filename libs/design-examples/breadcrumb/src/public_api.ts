@@ -1,8 +1,3 @@
-import { BasicBreadcrumbExampleComponent } from './basic-breadcrumb/basic-breadcrumb.component';
-import { IteratedBreadcrumbExampleComponent } from './iterated-breadcrumb/iterated-breadcrumb.component';
-
-export const BREADCRUMB_EXAMPLES = [
-  BasicBreadcrumbExampleComponent,
-  IteratedBreadcrumbExampleComponent,
-];
+export { BasicBreadcrumbExampleComponent } from './basic-breadcrumb/basic-breadcrumb.component';
+export { TruncatedBreadcrumbExampleComponent } from './truncated-breadcrumb/truncated-breadcrumb.component';
 export { provideDaffDesignBreadcrumbExamplesContent } from './provider';
