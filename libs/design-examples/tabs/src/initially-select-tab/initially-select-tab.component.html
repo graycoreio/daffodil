@@ -1,52 +1,41 @@
-<daff-tabs aria-label="List of tabs" [initiallySelected]="'tab-4'">
+<daff-tabs aria-label="Product details" [initiallySelected]="'reviews'">
   <daff-tab>
     <daff-tab-label>
-      <fa-icon [icon]="faInfoCircle" daffPrefix></fa-icon>
-      Tab 1
+      <fa-icon [icon]="faAlignLeft" daffPrefix></fa-icon>
+      Description
     </daff-tab-label>
     <daff-tab-panel>
-      Tab 1 Panel
+      A lightweight running shoe with a breathable mesh upper and responsive foam midsole built for everyday miles.
     </daff-tab-panel>
   </daff-tab>
 
   <daff-tab>
     <daff-tab-label>
-      Tab 2
-      <fa-icon [icon]="faInfoCircle" daffSuffix></fa-icon>
+      <fa-icon [icon]="faListUl" daffPrefix></fa-icon>
+      Specifications
     </daff-tab-label>
     <daff-tab-panel>
-      Tab 2 Panel
+      Weight: 8.2 oz. Drop: 8mm. Upper: recycled mesh. Outsole: carbon rubber.
     </daff-tab-panel>
   </daff-tab>
 
   <daff-tab>
     <daff-tab-label>
-      <fa-icon [icon]="faInfoCircle" daffPrefix></fa-icon>
-      Tab 3
-      <fa-icon [icon]="faInfoCircle" daffSuffix></fa-icon>
+      <fa-icon [icon]="faTruck" daffPrefix></fa-icon>
+      Shipping & Returns
     </daff-tab-label>
     <daff-tab-panel>
-      Tab 3 Panel
+      Free standard shipping on orders over $50. Return any unworn item within 30 days for a full refund.
     </daff-tab-panel>
   </daff-tab>
 
-  <daff-tab id="tab-4">
+  <daff-tab id="reviews">
     <daff-tab-label>
-      Tab 4
-      <fa-icon [icon]="faInfoCircle" daffSuffix></fa-icon>
+      <fa-icon [icon]="faStar" daffPrefix></fa-icon>
+      Reviews
     </daff-tab-label>
     <daff-tab-panel>
-      Tab 4 Panel
-    </daff-tab-panel>
-  </daff-tab>
-
-  <daff-tab>
-    <daff-tab-label>
-      Tab 5
-      <fa-icon [icon]="faInfoCircle" daffSuffix></fa-icon>
-    </daff-tab-label>
-    <daff-tab-panel>
-      Tab 5 Panel
+      Rated 4.8 out of 5 from 1,204 verified customer reviews.
     </daff-tab-panel>
   </daff-tab>
 </daff-tabs>

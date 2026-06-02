@@ -4,7 +4,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAlignLeft,
+  faListUl,
+  faTruck,
+  faStar,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { DAFF_PREFIX_SUFFIX_DIRECTIVES } from '@daffodil/design';
 import { DaffButtonComponent } from '@daffodil/design/button';
@@ -26,17 +31,18 @@ import {
   ],
 })
 export class CustomSelectTabsExampleComponent {
-  faInfoCircle = faInfoCircle;
-
-  selectedTab = 'tab-3';
+  faAlignLeft = faAlignLeft;
+  faListUl = faListUl;
+  faTruck = faTruck;
+  faStar = faStar;
 
   @ViewChild(DaffTabsComponent) _tab: DaffTabsComponent;
 
-  selectTabThree() {
-    this._tab.select('tab-3');
+  selectShipping() {
+    this._tab.select('shipping');
   }
 
-  selectTabFive() {
-    this._tab.select('tab-5');
+  selectReviews() {
+    this._tab.select('reviews');
   }
 }
