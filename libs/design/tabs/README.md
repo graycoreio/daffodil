@@ -13,15 +13,13 @@ Tabs help organize related content into manageable sections, making it easier fo
 - Working within limited screen space
 - Allowing users to switch between content views without page navigation
 
-## When not to use
-Avoid tabs when:
+**When not to use**
 - Content needs to be compared or viewed simultaneously
-- Users need to see all content in a sequential sequence
+- Users need to see all content in a sequential order
 
 ## Usage
 
-### Within a standalone component
-To use tabs in a standalone component, import `DAFF_TABS_COMPONENTS` directly into your custom component:
+Import `DAFF_TABS_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_TABS_COMPONENTS } from '@daffodil/design/tabs';
@@ -37,24 +35,8 @@ export class CustomComponent {}
 ```
 
 ## Anatomy
-A tabs component consists of the following components:
+A tabs component is composed of a container, tabs, labels, and panels:
 
-### Container
-**`<daff-tabs>`**: The wrapper component that contains all tabs.
-
-### Tab
-**`<daff-tab>`**: Represents a single tab that groups a label and its corresponding panel together.
-
-### Tab Label
-**`<daff-tab-label>`**: The clickable label that activates its corresponding tab panel. Labels can contain text, icons, or both.
-
-### Icon
-Use the `[daffPrefix]` or `[daffSuffix]` element to add a decorative icon before or after the label text. This provides quick visual cues about the tab's purpose.
-
-### Tab Panel
-**`<daff-tab-panel>`**: The content area displayed when a tab is active.
-
-### Basic structure
 ```html
 <daff-tabs>
   <daff-tab>
@@ -70,34 +52,44 @@ Use the `[daffPrefix]` or `[daffSuffix]` element to add a decorative icon before
 </daff-tabs>
 ```
 
+- **`<daff-tabs>`**: The wrapper component that contains all tabs.
+- **`<daff-tab>`**: A single tab that groups a label and its corresponding panel together.
+- **`<daff-tab-label>`**: The clickable label that activates its corresponding tab panel. Labels can contain text, icons, or both.
+- **`<daff-tab-panel>`**: The content area displayed when a tab is active.
+- Add the `[daffPrefix]` or `[daffSuffix]` directive to an icon to place it before or after the label text. This provides a quick visual cue about the tab's purpose.
+
 ## Features
 
 ### Link mode
-Tabs in link mode replace the tab buttons with anchors, allowing the selected tab to be connected to a URL.
+Set `linkMode` to `true` to replace the tab buttons with anchors, connecting the selected tab to a URL.
 
-By default, the current URL and `tab` query param will be used. These can be overriden with the `url` and `queryParam` inputs, respectively.
+By default, the current URL and `tab` query param are used. Override these with the `url` and `queryParam` inputs, respectively.
 
-```html
-<daff-tabs [linkMode]="true">
-</daff-tabs>
-```
+<daff-docs-example-viewer example="link-tabs"></daff-docs-example-viewer>
+
+### Initially selected tab
+Set the `initiallySelected` input to a tab's `id` to select that tab on load. Without it, the first tab is selected by default.
+
+<daff-docs-example-viewer example="initially-select-tab"></daff-docs-example-viewer>
+
+### Disabled tab
+Set the `disabled` property on a `<daff-tab>` to make it non-interactive.
+
+<daff-docs-example-viewer example="disabled-tabs"></daff-docs-example-viewer>
+
+### Programmatic selection
+Call the `select` method with a tab's `id` to change the active tab from your own code.
+
+<daff-docs-example-viewer example="custom-select-tabs"></daff-docs-example-viewer>
 
 ## Accessibility
 Tabs follow the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
 
-### Daffodil provides
-- `role="tablist"`, `role="tab"`, and `role="tabpanel"` on appropriate elements
-- Unique IDs automatically assigned to each tab (customizable via `id` attribute)
+### Built-in behavior
+- `role="tablist"`, `role="tab"`, and `role="tabpanel"` on the appropriate elements
+- Unique IDs automatically assigned to each tab (customizable via the `id` attribute)
 - `aria-labelledby` linking tab panels to their corresponding tab labels
 - `aria-selected` indicating the active tab
-
-#### Keyboard interactions
-| Key | Action |
-| --- | ------ |
-| `Left Arrow` |  Moves focus and activates the previous tab. If focus is on the first tab, focus moves to the last tab. |
-| `Right Arrow` |  Moves focus and activates the next tab. If focus is on the last tab, focus moves to the first tab. |
-| `Home` |  Moves focus and activates the first tab. |
-| `End` |  Moves focus and activates the last tab. |
 
 ### Developer responsibilities
 - Provide a meaningful `aria-label` on `<daff-tabs>` to describe the tab group
@@ -111,3 +103,11 @@ Tabs follow the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/p
   </daff-tab>
 </daff-tabs>
 ```
+
+### Keyboard interactions
+| Key | Action |
+| --- | ------ |
+| `Left Arrow` |  Moves focus and activates the previous tab. If focus is on the first tab, focus moves to the last tab. |
+| `Right Arrow` |  Moves focus and activates the next tab. If focus is on the last tab, focus moves to the first tab. |
+| `Home` |  Moves focus and activates the first tab. |
+| `End` |  Moves focus and activates the last tab. |
