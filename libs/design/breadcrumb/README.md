@@ -15,8 +15,7 @@ Breadcrumbs visually represent the navigational structure of a site or app and h
 
 ## Usage
 
-### Within a standalone component
-To use breadcrumb in a standalone component, import `DAFF_BREADCRUMB_COMPONENTS` directly into your custom component:
+Import `DAFF_BREADCRUMB_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_BREADCRUMB_COMPONENTS } from '@daffodil/design/breadcrumb';
@@ -31,40 +30,13 @@ import { DAFF_BREADCRUMB_COMPONENTS } from '@daffodil/design/breadcrumb';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use breadcrumb in a module, import `DaffBreadcrumbModule` into your custom module:
-
-```ts
-import { NgModule } from '@angular/core';
-import { DaffBreadcrumbModule } from '@daffodil/design/breadcrumb';
-import { CustomComponent } from './custom.component';
-
-@NgModule({
-  declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffBreadcrumbModule,
-  ],
-})
-export class CustomComponentModule { }
-```
-
-> This method is deprecated. It's recommended to update all custom components to standalone.
+> **Deprecation notice:**
+> 
+> `DaffBreadcrumbModule` is deprecated. Use the standalone component imports instead.
 
 ## Anatomy
-A breadcrumb consists of the following components:
+A breadcrumb is composed of a container and one or more items:
 
-### Container
-**`[daff-breadcrumb]`**: The wrapper that groups all breadcrumb items together. Applied to an `<ol>` element.
-
-### Item
-**`[daffBreadcrumbItem]`**: Individual breadcrumb element within the navigation path. Applied to a `<li>` element.
-
-### Basic structure
 ```html
 <ol daff-breadcrumb>
   <li daffBreadcrumbItem>
@@ -74,20 +46,26 @@ A breadcrumb consists of the following components:
     <a routerLink="/category">Category</a>
   </li>
   <li daffBreadcrumbItem>
-    <span>Current Page</span>
+    <span>Shoes</span>
   </li>
 </ol>
 ```
+
+- **`[daff-breadcrumb]`**: The wrapper that groups all breadcrumb items together. Applied to an `<ol>` element.
+- **`[daffBreadcrumbItem]`**: An individual breadcrumb in the navigation path. Applied to a `<li>` element.
+- Use a link for every item except the last, which represents the current page and is rendered as plain text.
 
 ## Features
 
 ### Truncation
 Breadcrumbs are automatically truncated into an overflow menu on mobile viewports. On desktop, truncation occurs when more than five items are present.
 
+<daff-docs-example-viewer example="truncated-breadcrumb"></daff-docs-example-viewer>
+
 ## Accessibility
 Breadcrumb follows the [Breadcrumb WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/).
 
-### Daffodil provides
+### Built-in behavior
 - `aria-current="page"` automatically applied to the last breadcrumb item
 - Enforces semantic HTML structure (requires `<ol>` and `<li>` elements)
 

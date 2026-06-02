@@ -8,8 +8,8 @@ export const provideDaffDesignBreadcrumbExamplesContent = () => makeEnvironmentP
     component: () => import('./basic-breadcrumb/basic-breadcrumb.component').then(c => c.BasicBreadcrumbExampleComponent),
   },
   {
-    id: 'iterated-breadcrumb',
-    component: () => import('./iterated-breadcrumb/iterated-breadcrumb.component').then(c => c.IteratedBreadcrumbExampleComponent),
+    id: 'truncated-breadcrumb',
+    component: () => import('./truncated-breadcrumb/truncated-breadcrumb.component').then(c => c.TruncatedBreadcrumbExampleComponent),
   },
 ));
 
