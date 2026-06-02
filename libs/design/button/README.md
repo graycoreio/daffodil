@@ -9,7 +9,7 @@ Button supports four variants that change its visual style, each applied as an a
 | `daff-button` | Rectangular button with background color |
 | `daff-flat-button`| Rectangular button with no outline or background color |
 | `daff-icon-button` | Icon only button used with icon fonts |
-| `daff-stroked-button` | Rectangular button with oultline, no background color |
+| `daff-stroked-button` | Rectangular button with outline, no background color |
 
 Native `<button>` or `<a>` elements should always be used in order to provide an easy, accessible experience for users.
 
@@ -34,10 +34,8 @@ Native `<button>` or `<a>` elements should always be used in order to provide an
 
 ## Usage
 
-### Within a standalone component
-To use button in a standalone component, import each button type directly into your custom component.
+Import the button type you need into your component:
 
-Available imports:
 - `DAFF_BASIC_BUTTON_COMPONENTS`
 - `DAFF_FLAT_BUTTON_COMPONENTS`
 - `DAFF_ICON_BUTTON_COMPONENTS`
@@ -57,39 +55,29 @@ import { DAFF_BASIC_BUTTON_COMPONENTS } from '@daffodil/design/button';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use button in a module, import `DaffButtonModule` into your custom module:
-
-```ts
-import { NgModule } from '@angular/core';
-import { DaffButtonModule } from '@daffodil/design/button';
-import { CustomComponent } from './custom.component';
-
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffButtonModule,
-  ],
-})
-export class CustomComponentModule { }
-```
-
-> This method is deprecated. It's recommended to update all custom components to standalone.
+> **Deprecation notice:**
+> 
+> `DaffButtonModule` is deprecated. Use the standalone component imports instead.
 
 ## Anatomy
-Buttons should always have a label, unless you are only using an icon that is universally understood and accessible.
+A button is composed of a label with optional icons:
 
-### Icon support
-An icon can be rendered on either side of the button text content with the `daffPrefix` and `daffSuffix` selectors. Avoid using both simultaneously.
+```html
+<button daff-button>
+  <fa-icon daffPrefix></fa-icon>
+  Add to cart
+</button>
+```
 
-<daff-docs-example-viewer example="button-with-icon"></daff-docs-example-viewer>
+- The label describing the action. Always provide one unless the button uses an icon that is universally understood and accessible.
+- Add the `daffPrefix` or `daffSuffix` directive to an icon to place it before or after the label text. Avoid using both at once.
 
 ## Features
+
+### Icons
+Render an icon on either side of the button label with the `daffPrefix` and `daffSuffix` directives.
+
+<daff-docs-example-viewer example="button-with-icon"></daff-docs-example-viewer>
 
 ### Colors
 Use the `color` property to change the color of a button.
@@ -113,8 +101,6 @@ Status indicators help users understand the type of action a button performs and
 
 <daff-docs-example-viewer example="statusable-button"></daff-docs-example-viewer>
 
-## States
-
 ### Disabled
 Use the `disabled` property to disable a button that shouldn't be actionable. The button will appear faded and won't respond to user interaction.
 
@@ -125,12 +111,15 @@ Use the `loading` property to indicate that an action is being processed. When `
 
 <daff-docs-example-viewer example="loading-button"></daff-docs-example-viewer>
 
-## Accessbility
-Daffodil uses native `<a>` and `<button>` HTML elements to ensure an accessible experience by default.
+## Accessibility
 
-- Use `<a>` for navigation to new pages or different sections.
-- Use `<button>` for actions performed within the same page.
-- Icon only buttons (`<daff-icon-button>`) need to be given meaningful labels using `aria-label` or `aria-labelledby`.
+### Built-in behavior
+- Uses native `<a>` and `<button>` HTML elements for keyboard and screen reader support by default
+
+### Developer responsibilities
+- Use `<a>` for navigation to new pages or different sections
+- Use `<button>` for actions performed within the same page
+- Give icon only buttons (`<daff-icon-button>`) a meaningful label using `aria-label` or `aria-labelledby`
 
 ## Deprecations
 - `<daff-raised-button>` is deprecated and will be removed in v1.0.0. Use the `elevated` property instead.
