@@ -42,7 +42,10 @@ export class DaffListItemComponent {
 
   constructor(private elementRef: ElementRef) {}
 
-  private get _isAnchor() {
+  /**
+   * @docs-private
+   */
+  get _isAnchor() {
     return this.elementRef.nativeElement.nodeName.toLowerCase() === 'a';
   }
 }

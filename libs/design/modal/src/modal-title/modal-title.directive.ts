@@ -19,7 +19,10 @@ let modalTitleId = 0;
 })
 
 export class DaffModalTitleDirective {
-  private _id = '';
+  /**
+   * @docs-private
+   */
+  _id = '';
 
   constructor(@Optional() private modal: DaffModalComponent) {
     modalTitleId++;

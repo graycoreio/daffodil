@@ -89,6 +89,8 @@ export class DaffTreeItemDirective {
   /**
    * Accessibility property, notifying users about whether
    * or not the tree item is open.
+   *
+   * @docs-private
    */
   protected readonly ariaExpanded = computed(() => {
     const node = this.node();

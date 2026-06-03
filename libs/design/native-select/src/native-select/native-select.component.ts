@@ -64,9 +64,11 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
   focused = false;
 
   /**
+   * @docs-private
+   *
    * Implemented as part of DaffFormFieldControl.
    */
-  private get _id() {
+  get _id() {
     return this.formField?.id;
   };
 

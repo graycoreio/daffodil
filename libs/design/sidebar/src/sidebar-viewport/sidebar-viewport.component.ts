@@ -131,9 +131,15 @@ export class DaffSidebarViewportComponent implements AfterContentChecked, OnDest
    */
   private _shift = '0px';
 
-  private _isPaddedLeft = false;
+  /**
+   * @docs-private
+   */
+  _isPaddedLeft = false;
 
-  private _isPaddedRight = false;
+  /**
+   * @docs-private
+   */
+  _isPaddedRight = false;
 
   /**
    * @docs-private

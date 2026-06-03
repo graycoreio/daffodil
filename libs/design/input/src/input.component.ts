@@ -59,7 +59,10 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
    */
   focused = false;
 
-  private get _id() {
+  /**
+   * @docs-private
+   */
+  get _id() {
     return this.formField?.id;
   };
 

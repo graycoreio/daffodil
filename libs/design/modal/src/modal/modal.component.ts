@@ -58,7 +58,10 @@ import { DaffModalService } from '../service/modal.service';
   ],
 })
 export class DaffModalComponent implements AfterContentInit, AfterViewInit, OnDestroy, DaffOpenable {
-  private closing = signal(false);
+  /**
+   * @docs-private
+   */
+  readonly closing = signal(false);
 
   private _ariaLabelledBy = null;
 

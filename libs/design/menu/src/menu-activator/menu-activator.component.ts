@@ -41,8 +41,8 @@ import { DaffMenuService } from '../services/menu.service';
 export class DaffMenuActivatorDirective implements OnDestroy {
 
   private _destroyed$ = new Subject<boolean>();
-  private _open: boolean;
   private _defaultMenuId = daffNextMenuId();
+  protected _open: boolean;
   readonly isOpen = signal(false);
 
   /**
@@ -59,7 +59,7 @@ export class DaffMenuActivatorDirective implements OnDestroy {
   /**
    * The resolved menu ID.
    */
-  private menuId = computed(() => {
+  protected menuId = computed(() => {
     const id = this.id();
     return id ? `${id}-menu` : this._defaultMenuId;
   });

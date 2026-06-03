@@ -56,7 +56,7 @@ import { DaffTagSizableDirective } from './tag-sizable.directive';
   host: {
     class: 'daff-tag',
     '[attr.aria-disabled]': 'disabled ? true : null',
-    '[disabled]': 'disabled',
+    '[attr.disabled]': 'disabled',
     '[class.dismissible]': 'dismissible',
   },
   imports: [
@@ -75,7 +75,10 @@ export class DaffTagComponent {
    */
   @ContentChild(DaffPrefixDirective, { static: true }) _prefix: DaffPrefixDirective;
 
-  private _disabled = false;
+  /**
+   * @docs-private
+   */
+  _disabled = false;
 
   /**
    * The disabled state of the tag.
