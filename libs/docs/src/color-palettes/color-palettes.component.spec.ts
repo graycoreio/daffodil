@@ -78,7 +78,7 @@ describe('@daffodil/docs-components | DaffDocsColorPalettesComponent', () => {
   });
 
   it('should not throw an error when items is undefined', () => {
-    wrapper.itemsValue = undefined;
-    expect(() => fixture.detectChanges()).not.toThrow();
+    const f = TestBed.createComponent(DaffDocsColorPalettesComponent);
+    expect(() => f.detectChanges()).not.toThrow();
   });
 });
