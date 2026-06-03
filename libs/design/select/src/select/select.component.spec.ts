@@ -196,6 +196,7 @@ describe('@daffodil/design/select | DaffSelectComponent', () => {
     describe('and when the tab key is pressed', () => {
       beforeEach(() => {
         TestBed.inject(DOCUMENT).dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
       });
 

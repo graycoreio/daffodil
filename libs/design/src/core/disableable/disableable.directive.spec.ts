@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -14,7 +15,7 @@ import { DaffDisableableDirective } from '@daffodil/design';
 @Component({
   template: `
 		<div daffDisableable
-			[disabled]="disabled">
+			[disabled]="disabled()">
 		</div>`,
   imports: [
     DaffDisableableDirective,
@@ -22,7 +23,7 @@ import { DaffDisableableDirective } from '@daffodil/design';
 })
 
 class WrapperComponent {
-  disabled: boolean;
+  disabled = signal<boolean>(undefined);
 }
 
 describe('@daffodil/design | DaffDisableableDirective', () => {
@@ -54,11 +55,11 @@ describe('@daffodil/design | DaffDisableableDirective', () => {
   });
 
   it('should take disabled as an input', () => {
-    expect(directive.disabled).toEqual(wrapper.disabled);
+    expect(directive.disabled).toEqual(wrapper.disabled());
   });
 
   it('should add a class of "daff-disabled" to the host element when disabled is true', () => {
-    wrapper.disabled = true;
+    wrapper.disabled.set(true);
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({

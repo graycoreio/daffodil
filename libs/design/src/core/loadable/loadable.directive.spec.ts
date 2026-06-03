@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,14 +14,14 @@ import { DaffLoadableDirective } from '@daffodil/design';
 
 @Component({
   template: `
-		<div daffLoadable [loading]="loading"></div>`,
+		<div daffLoadable [loading]="loading()"></div>`,
   imports: [
     DaffLoadableDirective,
   ],
 })
 
 class WrapperComponent {
-  loading: boolean;
+  loading = signal<boolean>(undefined);
 }
 
 describe('@daffodil/design | DaffLoadableDirective', () => {
@@ -53,11 +54,11 @@ describe('@daffodil/design | DaffLoadableDirective', () => {
   });
 
   it('should take loading as an input', () => {
-    expect(directive.loading).toEqual(wrapper.loading);
+    expect(directive.loading).toEqual(wrapper.loading());
   });
 
   it('should add a class of .daff-loading to the host element if loading is set to true', () => {
-    wrapper.loading = true;
+    wrapper.loading.set(true);
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -66,7 +67,7 @@ describe('@daffodil/design | DaffLoadableDirective', () => {
   });
 
   it('should not add a class of .daff-loading to the host element if loading is set to false', () => {
-    wrapper.loading = false;
+    wrapper.loading.set(false);
     fixture.detectChanges();
 
     expect(de.classes['daff-loading']).toBeUndefined();

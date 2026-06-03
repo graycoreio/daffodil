@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -20,7 +21,7 @@ import { DaffTextareaComponent } from '@daffodil/design/textarea';
   template:`
     <daff-form-field>
       <daff-form-label>Label</daff-form-label>
-      <textarea daff-textarea [disabled]="disabledValue"></textarea>
+      <textarea daff-textarea [disabled]="disabledValue()"></textarea>
     </daff-form-field>
   `,
   imports: [
@@ -29,7 +30,7 @@ import { DaffTextareaComponent } from '@daffodil/design/textarea';
   ],
 })
 class WrapperComponent {
-  disabledValue: boolean | string;
+  disabledValue = signal<boolean | string>(undefined);
 }
 
 describe('@daffodil/design/textarea | DaffTextareaComponent | Static Disabled Attribute', () => {
@@ -62,7 +63,7 @@ describe('@daffodil/design/textarea | DaffTextareaComponent | Static Disabled At
 
   describe('when the textarea is disabled', () => {
     beforeEach(() => {
-      wrapper.disabledValue = true;
+      wrapper.disabledValue.set(true);
       fixture.detectChanges();
     });
 
@@ -73,7 +74,7 @@ describe('@daffodil/design/textarea | DaffTextareaComponent | Static Disabled At
 
   describe('when the textarea is no longer disabled', () => {
     beforeEach(() => {
-      wrapper.disabledValue = false;
+      wrapper.disabledValue.set(false);
       fixture.detectChanges();
     });
 
@@ -84,7 +85,7 @@ describe('@daffodil/design/textarea | DaffTextareaComponent | Static Disabled At
 
   describe('when disabled is an empty string', () => {
     beforeEach(() => {
-      wrapper.disabledValue = '';
+      wrapper.disabledValue.set('');
       fixture.detectChanges();
     });
 

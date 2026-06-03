@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,8 +14,8 @@ import { DaffStrokedButtonComponent } from './stroked.component';
 
 @Component({
   template: `
-    <a daff-stroked-button [elevated]="elevated">Stroked Link Button</a>
-    <button daff-stroked-button [elevated]="elevated">Stroked Button</button>
+    <a daff-stroked-button [elevated]="elevated()">Stroked Link Button</a>
+    <button daff-stroked-button [elevated]="elevated()">Stroked Button</button>
   `,
   imports: [
     DaffStrokedButtonComponent,
@@ -22,7 +23,7 @@ import { DaffStrokedButtonComponent } from './stroked.component';
 })
 
 class WrapperComponent {
-  elevated = false;
+  elevated = signal(false);
 }
 
 describe('@daffodil/design/button | DaffStrokedButtonComponent', () => {
@@ -73,11 +74,11 @@ describe('@daffodil/design/button | DaffStrokedButtonComponent', () => {
 
   describe('the elevated property', () => {
     it('should be able to take `elevated` as an input', () => {
-      expect(component.elevated).toEqual(wrapper.elevated);
+      expect(component.elevated).toEqual(wrapper.elevated());
     });
 
     it('should add a class of `.elevated` to the host element if elevated is true', () => {
-      wrapper.elevated = true;
+      wrapper.elevated.set(true);
       fixture.detectChanges();
 
       expect(de.classes).toEqual(jasmine.objectContaining({

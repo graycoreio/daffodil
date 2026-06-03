@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -17,10 +18,10 @@ import { DaffTagComponent } from './tag.component';
 @Component({
   template: `
     <daff-tag
-      [dismissible]="dismissible"
-      [disabled]="disabled"
-      [status]="status"
-      [size]="size"
+      [dismissible]="dismissible()"
+      [disabled]="disabled()"
+      [status]="status()"
+      [size]="size()"
       (closeTag)="onCloseTag()">
       <div>Test Tag</div>
     </daff-tag>
@@ -30,10 +31,10 @@ import { DaffTagComponent } from './tag.component';
   ],
 })
 class WrapperComponent {
-  dismissible = false;
-  disabled = false;
-  status: DaffStatus;
-  size: DaffTagSize;
+  dismissible = signal(false);
+  disabled = signal(false);
+  status = signal<DaffStatus>(undefined);
+  size = signal<DaffTagSize>(undefined);
   closeTagCalled = false;
 
   onCloseTag() {
@@ -70,7 +71,7 @@ describe('@daffodil/design/tag | DaffTagComponent', () => {
 
   describe('dismissible property', () => {
     it('should take dismissible as an input', () => {
-      expect(component.dismissible).toEqual(wrapper.dismissible);
+      expect(component.dismissible).toEqual(wrapper.dismissible());
     });
 
     it('should set dismissible to false by default', () => {
@@ -78,21 +79,21 @@ describe('@daffodil/design/tag | DaffTagComponent', () => {
     });
 
     it('should not show close button when dismissible is false', () => {
-      wrapper.dismissible = false;
+      wrapper.dismissible.set(false);
       fixture.detectChanges();
       const closeButton = de.query(By.css('.daff-tag__close-icon'));
       expect(closeButton).toBeFalsy();
     });
 
     it('should show close button when dismissible is true', () => {
-      wrapper.dismissible = true;
+      wrapper.dismissible.set(true);
       fixture.detectChanges();
       const closeButton = de.query(By.css('.daff-tag__close-icon'));
       expect(closeButton).toBeTruthy();
     });
 
     it('should emit closeTag event when close button is clicked', () => {
-      wrapper.dismissible = true;
+      wrapper.dismissible.set(true);
       fixture.detectChanges();
       const closeButton = de.query(By.css('.daff-tag__close-icon'));
       closeButton.nativeElement.click();
@@ -100,8 +101,8 @@ describe('@daffodil/design/tag | DaffTagComponent', () => {
     });
 
     it('should not emit closeTag event when disabled and close button is clicked', () => {
-      wrapper.dismissible = true;
-      wrapper.disabled = true;
+      wrapper.dismissible.set(true);
+      wrapper.disabled.set(true);
       fixture.detectChanges();
       const closeButton = de.query(By.css('.daff-tag__close-icon'));
       closeButton.nativeElement.click();
@@ -111,7 +112,7 @@ describe('@daffodil/design/tag | DaffTagComponent', () => {
 
   describe('disabled property', () => {
     it('should take disabled as an input', () => {
-      expect(component.disabled).toEqual(wrapper.disabled);
+      expect(component.disabled).toEqual(wrapper.disabled());
     });
 
     it('should set disabled to false by default', () => {
@@ -119,7 +120,7 @@ describe('@daffodil/design/tag | DaffTagComponent', () => {
     });
 
     it('should have disabled property set when disabled is true', () => {
-      wrapper.disabled = true;
+      wrapper.disabled.set(true);
       fixture.detectChanges();
 
       expect(component.disabled).toBe(true);
@@ -127,7 +128,7 @@ describe('@daffodil/design/tag | DaffTagComponent', () => {
     });
 
     it('should not have disabled attribute when disabled is false', () => {
-      wrapper.disabled = false;
+      wrapper.disabled.set(false);
       fixture.detectChanges();
 
       expect(component.disabled).toBe(false);
@@ -137,28 +138,28 @@ describe('@daffodil/design/tag | DaffTagComponent', () => {
 
   describe('status property', () => {
     it('should accept warn status', () => {
-      wrapper.status = 'warn';
+      wrapper.status.set('warn');
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-warn')).toBe(true);
     });
 
     it('should accept critical status', () => {
-      wrapper.status = 'critical';
+      wrapper.status.set('critical');
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-critical')).toBe(true);
     });
 
     it('should accept info status', () => {
-      wrapper.status = 'info';
+      wrapper.status.set('info');
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-info')).toBe(true);
     });
 
     it('should accept success status', () => {
-      wrapper.status = 'success';
+      wrapper.status.set('success');
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-success')).toBe(true);
@@ -167,21 +168,21 @@ describe('@daffodil/design/tag | DaffTagComponent', () => {
 
   describe('size property', () => {
     it('should accept sm size and apply daff-sm class', () => {
-      wrapper.size = 'sm';
+      wrapper.size.set('sm');
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-sm')).toBe(true);
     });
 
     it('should accept md size and apply daff-md class', () => {
-      wrapper.size = 'md';
+      wrapper.size.set('md');
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-md')).toBe(true);
     });
 
     it('should accept lg size and apply daff-lg class', () => {
-      wrapper.size = 'lg';
+      wrapper.size.set('lg');
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-lg')).toBe(true);
@@ -205,14 +206,14 @@ describe('@daffodil/design/tag | DaffTagComponent', () => {
     });
 
     it('should have dismissible class when dismissible is true', () => {
-      wrapper.dismissible = true;
+      wrapper.dismissible.set(true);
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('dismissible')).toBe(true);
     });
 
     it('should not have dismissible class when dismissible is false', () => {
-      wrapper.dismissible = false;
+      wrapper.dismissible.set(false);
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('dismissible')).toBe(false);

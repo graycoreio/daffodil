@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,14 +17,14 @@ import {
 
 @Component({
   template: `
-		<div daffSizable [size]="size"></div>`,
+		<div daffSizable [size]="size()"></div>`,
   imports: [
     DaffSizableDirective,
   ],
 })
 
 class WrapperComponent {
-  size: string;
+  size = signal<string>(undefined);
 }
 
 describe('@daffodil/design | DaffSizableDirective', () => {
@@ -56,11 +57,11 @@ describe('@daffodil/design | DaffSizableDirective', () => {
   });
 
   it('should take size as an input', () => {
-    expect(directive.size).toEqual(wrapper.size);
+    expect(directive.size).toEqual(wrapper.size());
   });
 
   it('should add a class of ".daff-xs" to the host element if size is set to xs', () => {
-    wrapper.size = 'xs';
+    wrapper.size.set('xs');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -69,7 +70,7 @@ describe('@daffodil/design | DaffSizableDirective', () => {
   });
 
   it('should add a class of ".daff-sm" to the host element if size is set to sm', () => {
-    wrapper.size = 'sm';
+    wrapper.size.set('sm');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -78,7 +79,7 @@ describe('@daffodil/design | DaffSizableDirective', () => {
   });
 
   it('should add a class of ".daff-md" to the host element if size is set to md', () => {
-    wrapper.size = 'md';
+    wrapper.size.set('md');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -87,7 +88,7 @@ describe('@daffodil/design | DaffSizableDirective', () => {
   });
 
   it('should add a class of ".daff-lg" to the host element if size is set to lg', () => {
-    wrapper.size = 'lg';
+    wrapper.size.set('lg');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -96,7 +97,7 @@ describe('@daffodil/design | DaffSizableDirective', () => {
   });
 
   it('should add a class of ".daff-xl" to the host element if size is set to xl', () => {
-    wrapper.size = 'xl';
+    wrapper.size.set('xl');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({

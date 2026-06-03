@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,14 +14,14 @@ import { DaffPalette } from '@daffodil/design';
 import { DaffSpinnerComponent } from '@daffodil/design/spinner';
 
 @Component({
-  template: '<daff-spinner [color]="color" [size]="size"></daff-spinner>',
+  template: '<daff-spinner [color]="color()" [size]="size()"></daff-spinner>',
   imports: [
     DaffSpinnerComponent,
   ],
 })
 class WrapperComponent {
-  color: DaffPalette;
-  size: string;
+  color = signal<DaffPalette>(undefined);
+  size = signal<string>(undefined);
 }
 
 describe('@daffodil/design/spinner | DaffSpinnerComponent | Defaults', () => {
@@ -57,14 +58,14 @@ describe('@daffodil/design/spinner | DaffSpinnerComponent | Defaults', () => {
   });
 
   it('should take color as an input', () => {
-    wrapper.color = 'primary';
+    wrapper.color.set('primary');
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
   });
 
   it('should take size as an input', () => {
-    wrapper.size = 'lg';
+    wrapper.size.set('lg');
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('daff-lg')).toEqual(true);

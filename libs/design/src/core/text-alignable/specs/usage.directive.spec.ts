@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,14 +17,14 @@ import {
 
 @Component({
   template: `
-		<div daffTextAlignable [textAlignment]="textAlignment"></div>`,
+		<div daffTextAlignable [textAlignment]="textAlignment()"></div>`,
   imports: [
     DaffTextAlignableDirective,
   ],
 })
 
 class WrapperComponent {
-  textAlignment: DaffTextAlignment;
+  textAlignment = signal<DaffTextAlignment>(undefined);
 }
 
 describe('@daffodil/design | DaffTextAlignableDirective | Usage', () => {
@@ -56,11 +57,11 @@ describe('@daffodil/design | DaffTextAlignableDirective | Usage', () => {
   });
 
   it('should take textAlignment as an input', () => {
-    expect(directive.textAlignment).toEqual(wrapper.textAlignment);
+    expect(directive.textAlignment).toEqual(wrapper.textAlignment());
   });
 
   it('should add a class of ".daff-left" to the host element if textAlignment is set to left', () => {
-    wrapper.textAlignment = 'left';
+    wrapper.textAlignment.set('left');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -69,7 +70,7 @@ describe('@daffodil/design | DaffTextAlignableDirective | Usage', () => {
   });
 
   it('should add a class of ".daff-center" to the host element if textAlignment is set to center', () => {
-    wrapper.textAlignment = 'center';
+    wrapper.textAlignment.set('center');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -78,7 +79,7 @@ describe('@daffodil/design | DaffTextAlignableDirective | Usage', () => {
   });
 
   it('should add a class of ".daff-right" to the host element if textAlignment is set to right', () => {
-    wrapper.textAlignment = 'right';
+    wrapper.textAlignment.set('right');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({

@@ -54,6 +54,7 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbItemComponent', () => {
 
   it('should set aria-current="page" when active', () => {
     component.setActive(true);
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(de.nativeElement.getAttribute('aria-current')).toBe('page');

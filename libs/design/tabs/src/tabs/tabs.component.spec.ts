@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -19,8 +20,8 @@ import { DAFF_TABS_COMPONENTS } from '../tabs';
 @Component({
   template: `
     <daff-tabs
-			[linkMode]="linkModeValue"
-			[url]="urlValue"
+			[linkMode]="linkModeValue()"
+			[url]="urlValue()"
 			(tabChange)="onTabChange($event)"
 		>
       <daff-tab>
@@ -32,7 +33,7 @@ import { DAFF_TABS_COMPONENTS } from '../tabs';
         </daff-tab-panel>
       </daff-tab>
 
-      <daff-tab id="tab-2" [disabled]="disableSecondTab">
+      <daff-tab id="tab-2" [disabled]="disableSecondTab()">
         <daff-tab-label>
           Tab 2
         </daff-tab-label>
@@ -56,12 +57,12 @@ import { DAFF_TABS_COMPONENTS } from '../tabs';
   ],
 })
 class WrapperComponent {
-  linkModeValue: boolean;
-  urlValue: string;
+  linkModeValue = signal<boolean>(undefined);
+  urlValue = signal<string>(undefined);
 
   onTabChange: (val: string) => void;
 
-  disableSecondTab: boolean;
+  disableSecondTab = signal<boolean>(undefined);
 }
 
 describe('@daffodil/design/tabs | DaffTabsComponent', () => {
@@ -116,7 +117,7 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
 
   describe('in link mode', () => {
     beforeEach(() => {
-      wrapper.linkModeValue = true;
+      wrapper.linkModeValue.set(true);
       fixture.detectChanges();
     });
 
@@ -131,8 +132,10 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
       beforeEach(() => {
         locationSpy.isCurrentPathEqualTo.and.returnValue(false);
         component.select('tab-2');
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         onUrlChangeCb('newurl', {});
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
       });
 
@@ -149,8 +152,10 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
       beforeEach(() => {
         locationSpy.isCurrentPathEqualTo.and.returnValue(true);
         component.select('tab-2');
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         onUrlChangeCb(`${path}#an-anchor`, {});
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
       });
 
@@ -161,13 +166,13 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
 
     describe('when a url is specified', () => {
       beforeEach(() => {
-        wrapper.urlValue = 'url';
+        wrapper.urlValue.set('url');
         fixture.detectChanges();
       });
 
       it('should use that value as the router link', () => {
         fixture.debugElement.queryAll(By.directive(DaffTabActivatorComponent)).forEach((tab) => {
-          expect(tab.attributes['href'].slice(1)).toContain(wrapper.urlValue);
+          expect(tab.attributes['href'].slice(1)).toContain(wrapper.urlValue());
         });
       });
     });
@@ -238,7 +243,7 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
   it('should skip disabled tabs when navigating', () => {
     component.select(component._tabs.toArray()[0].id);
 
-    wrapper.disableSecondTab = true;
+    wrapper.disableSecondTab.set(true);
     fixture.detectChanges();
 
     component.next();

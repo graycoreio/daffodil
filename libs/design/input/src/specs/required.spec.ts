@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -24,7 +25,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
   template:`
     <daff-form-field>
       <daff-form-label>Label</daff-form-label>
-      <input daff-input [required]="requiredValue">
+      <input daff-input [required]="requiredValue()">
     </daff-form-field>
   `,
   imports: [
@@ -33,7 +34,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
   ],
 })
 class WrapperComponent {
-  requiredValue: boolean | string;
+  requiredValue = signal<boolean | string>(undefined);
 }
 
 describe('@daffodil/design | DaffInputComponent | Static Required Attribute', () => {
@@ -68,7 +69,7 @@ describe('@daffodil/design | DaffInputComponent | Static Required Attribute', ()
 
   describe('when the input is required', () => {
     beforeEach(() => {
-      wrapper.requiredValue = true;
+      wrapper.requiredValue.set(true);
       fixture.detectChanges();
     });
 
@@ -79,7 +80,7 @@ describe('@daffodil/design | DaffInputComponent | Static Required Attribute', ()
 
   describe('when the input is no longer required', () => {
     beforeEach(() => {
-      wrapper.requiredValue = false;
+      wrapper.requiredValue.set(false);
       fixture.detectChanges();
     });
 
@@ -94,7 +95,7 @@ describe('@daffodil/design | DaffInputComponent | Static Required Attribute', ()
 
   describe('when required is an empty string', () => {
     beforeEach(() => {
-      wrapper.requiredValue = '';
+      wrapper.requiredValue.set('');
       fixture.detectChanges();
     });
 
@@ -162,6 +163,7 @@ describe('@daffodil/design | DaffInputComponent | Reactive Forms Required State'
   describe('when the form control is no longer required', () =>{
     it('should set required to false', () => {
       wrapper.email.setValidators([]);
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(component.required).toEqual(false);
@@ -169,6 +171,7 @@ describe('@daffodil/design | DaffInputComponent | Reactive Forms Required State'
 
     it('should set requiredAttribute to null', () => {
       wrapper.email.setValidators([]);
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(component.requiredAttribute).toEqual(null);

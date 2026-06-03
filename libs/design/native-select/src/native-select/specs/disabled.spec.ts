@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -20,7 +21,7 @@ import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
   template:`
     <daff-form-field>
       <daff-form-label>Label</daff-form-label>
-      <select daff-native-select [disabled]="disabledValue">
+      <select daff-native-select [disabled]="disabledValue()">
         <option value="''">Select an option</option>
         <option value="option1">Option 1</option>
         <option value="option2">Option 2</option>
@@ -34,7 +35,7 @@ import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
   ],
 })
 class WrapperComponent {
-  disabledValue: boolean | string;
+  disabledValue = signal<boolean | string>(undefined);
 }
 
 describe('@daffodil/design | DaffNativeSelectComponent | Static Disabled Attribute', () => {
@@ -67,7 +68,7 @@ describe('@daffodil/design | DaffNativeSelectComponent | Static Disabled Attribu
 
   describe('when the native select is disabled', () => {
     beforeEach(() => {
-      wrapper.disabledValue = true;
+      wrapper.disabledValue.set(true);
       fixture.detectChanges();
     });
 
@@ -78,7 +79,7 @@ describe('@daffodil/design | DaffNativeSelectComponent | Static Disabled Attribu
 
   describe('when the native select is no longer disabled', () => {
     beforeEach(() => {
-      wrapper.disabledValue = false;
+      wrapper.disabledValue.set(false);
       fixture.detectChanges();
     });
 
@@ -89,7 +90,7 @@ describe('@daffodil/design | DaffNativeSelectComponent | Static Disabled Attribu
 
   describe('when disabled is an empty string', () => {
     beforeEach(() => {
-      wrapper.disabledValue = '';
+      wrapper.disabledValue.set('');
       fixture.detectChanges();
     });
 

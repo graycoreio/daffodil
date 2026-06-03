@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,14 +14,14 @@ import { DaffSidebarHeaderComponent } from './sidebar-header.component';
 
 @Component({
   template: `
-    <daff-sidebar-header [dismissible]="dismissible" (closeSidebar)="closeSidebarFunction()">Header</daff-sidebar-header>
+    <daff-sidebar-header [dismissible]="dismissible()" (closeSidebar)="closeSidebarFunction()">Header</daff-sidebar-header>
 	`,
   imports: [
     DaffSidebarHeaderComponent,
   ],
 })
 class WrapperComponent {
-  dismissible: boolean;
+  dismissible = signal<boolean>(undefined);
   closeSidebarFunction = () => {};
 }
 
@@ -60,7 +61,7 @@ describe('@daffodil/design/sidebar | DaffSidebarHeaderComponent', () => {
 
   describe('when dismissible is set to true', () => {
     beforeEach(() => {
-      wrapper.dismissible = true;
+      wrapper.dismissible.set(true);
       fixture.detectChanges();
     });
 
@@ -75,7 +76,7 @@ describe('@daffodil/design/sidebar | DaffSidebarHeaderComponent', () => {
 
   describe('when the close icon button is clicked', () => {
     it('should emit closeNotification', () => {
-      wrapper.dismissible = true;
+      wrapper.dismissible.set(true);
       fixture.detectChanges();
 
       spyOn(component.closeSidebar, 'emit');

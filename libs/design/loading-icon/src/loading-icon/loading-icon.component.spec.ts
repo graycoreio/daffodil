@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -14,13 +15,13 @@ import { DaffPalette } from '@daffodil/design';
 import { DaffLoadingIconComponent } from './loading-icon.component';
 
 @Component({
-  template: '<daff-loading-icon [color]="color"></daff-loading-icon>',
+  template: '<daff-loading-icon [color]="color()"></daff-loading-icon>',
   imports: [
     DaffLoadingIconComponent,
   ],
 })
 class WrapperComponent {
-  color: DaffPalette;
+  color = signal<DaffPalette>(undefined);
 }
 
 describe('@daffodil/design/loading-icon | DaffLoadingIconComponent', () => {
@@ -57,7 +58,7 @@ describe('@daffodil/design/loading-icon | DaffLoadingIconComponent', () => {
   });
 
   it('should take color as an input', () => {
-    wrapper.color = 'primary';
+    wrapper.color.set('primary');
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);

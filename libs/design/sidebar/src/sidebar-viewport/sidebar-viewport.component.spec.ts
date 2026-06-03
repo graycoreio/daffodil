@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -18,7 +19,7 @@ import { DaffSidebarViewportBackdropComponent } from '../sidebar-viewport-backdr
 @Component({
   template: `
     <div class="sidebar-content-wrapper">
-      <daff-sidebar-viewport (backdropClicked)="incrementBackdropClicked()" [navPlacement]="navPlacement">
+      <daff-sidebar-viewport (backdropClicked)="incrementBackdropClicked()" [navPlacement]="navPlacement()">
       </daff-sidebar-viewport>
     </div>`,
   imports: [
@@ -36,7 +37,7 @@ class WrapperComponent {
   reset() {
     this.backdropClickedCounter = 0;
   }
-  navPlacement: DaffNavPlacement = 'above';
+  navPlacement = signal<DaffNavPlacement>('above');
 }
 
 describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Usage', () => {
@@ -77,7 +78,7 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Usage', () =
 
   describe('navPlacement', () => {
     it('should be able to take `navPlacement` as an input', () => {
-      expect(component.navPlacement).toEqual(wrapper.navPlacement);
+      expect(component.navPlacement).toEqual(wrapper.navPlacement());
     });
 
     it('should set the default navPlacement to above', () => {
@@ -85,7 +86,7 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Usage', () =
     });
 
     it('should add a class of `.beside` if navPlacement="beside"', () => {
-      wrapper.navPlacement = 'beside';
+      wrapper.navPlacement.set('beside');
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('beside')).toBeTruthy();

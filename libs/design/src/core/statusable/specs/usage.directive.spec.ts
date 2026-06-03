@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,14 +17,14 @@ import {
 
 @Component({
   template: `
-		<div daffStatusable [status]="status"></div>`,
+		<div daffStatusable [status]="status()"></div>`,
   imports: [
     DaffStatusableDirective,
   ],
 })
 
 class WrapperComponent {
-  status: DaffStatus;
+  status = signal<DaffStatus>(undefined);
 }
 
 describe('@daffodil/design | DaffStatusableDirective | Usage', () => {
@@ -56,11 +57,11 @@ describe('@daffodil/design | DaffStatusableDirective | Usage', () => {
   });
 
   it('should take status as an input', () => {
-    expect(directive.status).toEqual(wrapper.status);
+    expect(directive.status).toEqual(wrapper.status());
   });
 
   it('should add a class of ".daff-info" to the host element if status is set to info', () => {
-    wrapper.status = 'info';
+    wrapper.status.set('info');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -69,7 +70,7 @@ describe('@daffodil/design | DaffStatusableDirective | Usage', () => {
   });
 
   it('should add a class of ".daff-warn" to the host element if status is set to warn', () => {
-    wrapper.status = 'warn';
+    wrapper.status.set('warn');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -78,7 +79,7 @@ describe('@daffodil/design | DaffStatusableDirective | Usage', () => {
   });
 
   it('should add a class of ".daff-critical" to the host element if status is set to critical', () => {
-    wrapper.status = 'critical';
+    wrapper.status.set('critical');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -87,7 +88,7 @@ describe('@daffodil/design | DaffStatusableDirective | Usage', () => {
   });
 
   it('should add a class of ".daff-success" to the host element if status is set to success', () => {
-    wrapper.status = 'success';
+    wrapper.status.set('success');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,10 +16,10 @@ import { DaffProgressBarComponent } from '@daffodil/design/progress-bar';
 @Component({
   template: `
     <daff-progress-bar
-      [color]="color"
-      [percentage]="percentage"
-      [aria-label]="ariaLabel"
-      [indeterminate]="indeterminate"
+      [color]="color()"
+      [percentage]="percentage()"
+      [aria-label]="ariaLabel()"
+      [indeterminate]="indeterminate()"
       (finished)="onTransitionEnd()">
     </daff-progress-bar>
   `,
@@ -27,11 +28,11 @@ import { DaffProgressBarComponent } from '@daffodil/design/progress-bar';
   ],
 })
 class WrapperComponent {
-  color: DaffPalette;
-  percentage: number;
-  ariaLabel: string;
+  color = signal<DaffPalette>(undefined);
+  percentage = signal<number>(undefined);
+  ariaLabel = signal<string>(undefined);
   id: string;
-  indeterminate = false;
+  indeterminate = signal(false);
   onTransitionEnd(): void {};
 }
 
@@ -66,28 +67,28 @@ describe('@daffodil/design/progress-bar | DaffProgressBarComponent | Usage', () 
   });
 
   it('should be able to take `percentage` as an input', () =>{
-    wrapper.percentage = 20;
+    wrapper.percentage.set(20);
     fixture.detectChanges();
 
     expect(component.percentage).toEqual(20);
   });
 
   it('should be able to take `aria-label` as an input', () =>{
-    wrapper.ariaLabel = 'file upload';
+    wrapper.ariaLabel.set('file upload');
     fixture.detectChanges();
 
     expect(component.ariaLabel).toEqual('file upload');
   });
 
   it('should add a class of `indeterminate` to the host when indeterminate is true', () => {
-    wrapper.indeterminate = true;
+    wrapper.indeterminate.set(true);
     fixture.detectChanges();
 
     expect(de.classes['indeterminate']).toBeTrue();
   });
 
   it('should emit `finished` when the progress bar is filled and the transition is complete', () => {
-    wrapper.percentage = 100;
+    wrapper.percentage.set(100);
     spyOn(wrapper, 'onTransitionEnd');
 
     fixture.detectChanges();
@@ -106,7 +107,7 @@ describe('@daffodil/design/progress-bar | DaffProgressBarComponent | Usage', () 
 
   describe('color property', () => {
     it('should take color as an input', () => {
-      expect(progressBar.componentInstance.color).toEqual(wrapper.color);
+      expect(progressBar.componentInstance.color).toEqual(wrapper.color());
     });
   });
 });

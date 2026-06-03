@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -127,7 +128,7 @@ describe('DaffSidebarComponent | Defaults', () => {
 @Component({
   template: `
     <div class="host-element">
-      <daff-sidebar (escapePressed)="pressed()" [mode]="mode" [side]="side" [open]="open"></daff-sidebar>
+      <daff-sidebar (escapePressed)="pressed()" [mode]="mode()" [side]="side()" [open]="open()"></daff-sidebar>
     </div>
   `,
   imports: [
@@ -135,9 +136,9 @@ describe('DaffSidebarComponent | Defaults', () => {
   ],
 })
 class UsageWrapperComponent {
-  open = false;
-  side = 'left';
-  mode = 'side';
+  open = signal(false);
+  side = signal('left');
+  mode = signal('side');
 
   escapePressedCount = 0;
 
@@ -178,7 +179,7 @@ describe('DaffSidebarComponent | Usage', () => {
   describe('setting the side', () => {
     describe('when side="left"', () => {
       it('should add a class of "left" to the host element', () => {
-        wrapper.side = 'left';
+        wrapper.side.set('left');
         fixture.detectChanges();
 
         expect(de.classes.left).toBeTrue();
@@ -187,7 +188,7 @@ describe('DaffSidebarComponent | Usage', () => {
 
     describe('when side="right"', () => {
       it('should add a class of "right" to the host element', () => {
-        wrapper.side = 'right';
+        wrapper.side.set('right');
         fixture.detectChanges();
 
         expect(de.classes.right).toBeTrue();

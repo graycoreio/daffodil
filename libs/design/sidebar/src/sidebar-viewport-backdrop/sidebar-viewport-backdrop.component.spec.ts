@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,8 +16,8 @@ import { DaffSidebarViewportBackdropComponent } from './sidebar-viewport-backdro
 @Component({
   template: `
     <daff-sidebar-viewport-backdrop
-      [fullscreen]="fullscreen"
-      [transparent]="transparent"
+      [fullscreen]="fullscreen()"
+      [transparent]="transparent()"
       (backdropClicked)="backdropFunction()"></daff-sidebar-viewport-backdrop>
     `,
   imports: [
@@ -24,9 +25,9 @@ import { DaffSidebarViewportBackdropComponent } from './sidebar-viewport-backdro
   ],
 })
 class WrapperComponent {
-  fullscreen = false;
+  fullscreen = signal(false);
   showValue = true;
-  transparent = true;
+  transparent = signal(true);
   backdropFunction = () => {};
 }
 
@@ -62,7 +63,7 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportBackdropComponent | Usag
   describe('the transparent property', () => {
     describe('when trasparent="false"', () => {
       it('should not add the class `transparent` to the host element', () => {
-        wrapper.transparent = false;
+        wrapper.transparent.set(false);
         fixture.detectChanges();
 
         expect(de.nativeElement.classList).not.toContain('transparent');
@@ -71,7 +72,7 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportBackdropComponent | Usag
 
     describe('when transparent="true"', () => {
       it('should add the class `transparent` to the host element', () => {
-        wrapper.transparent = true;
+        wrapper.transparent.set(true);
         fixture.detectChanges();
 
         expect(de.nativeElement.classList).toContain('transparent');
@@ -82,7 +83,7 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportBackdropComponent | Usag
   describe('the fullscreen property', () => {
     describe('when fullscreen="false"', () => {
       it('should not add the class `fullscreen` to the host element', () => {
-        wrapper.fullscreen = false;
+        wrapper.fullscreen.set(false);
         fixture.detectChanges();
 
         expect(de.nativeElement.classList).not.toContain('fullscreen');
@@ -91,7 +92,7 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportBackdropComponent | Usag
 
     describe('when fullscreen="true"', () => {
       it('should add the class `fullscreen` to the host element', () => {
-        wrapper.fullscreen = true;
+        wrapper.fullscreen.set(true);
         fixture.detectChanges();
         expect(de.nativeElement.classList).toContain('fullscreen');
       });

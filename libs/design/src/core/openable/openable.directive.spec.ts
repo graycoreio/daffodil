@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,7 +16,7 @@ import { DaffOpenableDirective } from './openable.directive';
   template: `
 		<div daffOpenable
 			(toggled)="toggledFunction($event)"
-      [open]="open">
+      [open]="open()">
 		</div>`,
   imports: [
     DaffOpenableDirective,
@@ -24,7 +25,7 @@ import { DaffOpenableDirective } from './openable.directive';
 
 class WrapperComponent {
   toggledFunction = (val: boolean) => {};
-  open: boolean;
+  open = signal<boolean>(undefined);
 }
 
 describe('@daffodil/design | DaffOpenableDirective | Default as Stateless', () => {
@@ -56,7 +57,7 @@ describe('@daffodil/design | DaffOpenableDirective | Default as Stateless', () =
   });
 
   it('should add a class of "daff-open" to the host element when open is true', () => {
-    wrapper.open = true;
+    wrapper.open.set(true);
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({

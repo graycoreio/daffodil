@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -19,9 +20,9 @@ import { DaffNotificationComponent } from './notification.component';
 @Component ({
   template: `
     <daff-notification
-      [status]="status"
-      [orientation]="orientation"
-      [dismissible]="dismissible"
+      [status]="status()"
+      [orientation]="orientation()"
+      [dismissible]="dismissible()"
       (closeNotification)="closeNotificationFunction()">
     </daff-notification>
   `,
@@ -31,9 +32,9 @@ import { DaffNotificationComponent } from './notification.component';
 })
 
 class WrapperComponent {
-  status: DaffStatus;
-  orientation: DaffOrientation;
-  dismissible = false;
+  status = signal<DaffStatus>(undefined);
+  orientation = signal<DaffOrientation>(undefined);
+  dismissible = signal(false);
   closeNotificationFunction = () => {};
 }
 
@@ -72,7 +73,7 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
 
   describe('the dismissible property', () => {
     it('should take dismissible as an input', () => {
-      expect(component.dismissible).toEqual(wrapper.dismissible);
+      expect(component.dismissible).toEqual(wrapper.dismissible());
     });
 
     it('should set dismissible to false by default', () => {
@@ -91,7 +92,7 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
 
     describe('when dismissible is set to true', () => {
       beforeEach(() => {
-        wrapper.dismissible = true;
+        wrapper.dismissible.set(true);
         fixture.detectChanges();
       });
 
@@ -115,14 +116,14 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
     });
 
     it('should set role to alert if status is warn', () => {
-      wrapper.status = 'warn';
+      wrapper.status.set('warn');
       fixture.detectChanges();
 
       expect(component.role).toBe('alert');
     });
 
     it('should set role to alert if status is critical', () => {
-      wrapper.status = 'critical';
+      wrapper.status.set('critical');
       fixture.detectChanges();
 
       expect(component.role).toBe('alert');
@@ -130,7 +131,7 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
   });
 
   it('should take status as an input', () => {
-    wrapper.status = 'warn';
+    wrapper.status.set('warn');
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
@@ -142,7 +143,7 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
 
   describe('when the close icon button is clicked', () => {
     it('should emit closeNotification', () => {
-      wrapper.dismissible = true;
+      wrapper.dismissible.set(true);
       fixture.detectChanges();
 
       spyOn(component.closeNotification, 'emit');

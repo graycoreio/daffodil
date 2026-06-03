@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,13 +16,13 @@ import {
 } from '@daffodil/design/spinner';
 
 @Component({
-  template: '<daff-spinner [aria-label]="ariaLabel"></daff-spinner>',
+  template: '<daff-spinner [aria-label]="ariaLabel()"></daff-spinner>',
   imports: [
     DaffSpinnerComponent,
   ],
 })
 class WrapperComponent {
-  ariaLabel: string;
+  ariaLabel = signal<string>(undefined);
 }
 
 describe('@daffodil/design/spinner | DaffSpinnerComponent | Without DaffSpinnerLabelDirective', () => {
@@ -46,7 +47,7 @@ describe('@daffodil/design/spinner | DaffSpinnerComponent | Without DaffSpinnerL
   });
 
   it('should set the aria-label attribute to the provided value', () => {
-    wrapper.ariaLabel = 'custom loading message';
+    wrapper.ariaLabel.set('custom loading message');
     fixture.detectChanges();
 
     expect(de.nativeElement.getAttribute('aria-label')).toEqual('custom loading message');

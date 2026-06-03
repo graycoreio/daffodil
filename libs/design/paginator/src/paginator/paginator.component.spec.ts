@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -31,11 +32,11 @@ class TestComponent {}
 @Component({
   template: `
     <daff-paginator
-      [numberOfPages]="numberOfPagesValue"
-      [currentPage]="currentPageValue"
-      [linkMode]="linkModeValue"
-      [url]="urlValue"
-      [queryParam]="queryParamValue">
+      [numberOfPages]="numberOfPagesValue()"
+      [currentPage]="currentPageValue()"
+      [linkMode]="linkModeValue()"
+      [url]="urlValue()"
+      [queryParam]="queryParamValue()">
     </daff-paginator>`,
   imports: [
     DaffPaginatorComponent,
@@ -43,11 +44,11 @@ class TestComponent {}
 })
 
 class WrapperComponent {
-  numberOfPagesValue = 20;
-  currentPageValue = 2;
-  linkModeValue = false;
-  urlValue = '';
-  queryParamValue = '';
+  numberOfPagesValue = signal(20);
+  currentPageValue = signal(2);
+  linkModeValue = signal(false);
+  urlValue = signal('');
+  queryParamValue = signal('');
 }
 
 describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
@@ -101,23 +102,23 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
   });
 
   it('should be able to take currentPage as input', () => {
-    expect(component.currentPage).toEqual(wrapper.currentPageValue);
+    expect(component.currentPage).toEqual(wrapper.currentPageValue());
   });
 
   it('should be able to take linkMode as input', () => {
-    expect(component.linkMode).toEqual(wrapper.linkModeValue);
+    expect(component.linkMode).toEqual(wrapper.linkModeValue());
   });
 
   it('should be able to take url as input', () => {
-    expect(component.url).toEqual(wrapper.urlValue);
+    expect(component.url).toEqual(wrapper.urlValue());
   });
 
   it('should be able to take queryParam as input', () => {
-    expect(component.queryParam).toEqual(wrapper.queryParamValue);
+    expect(component.queryParam).toEqual(wrapper.queryParamValue());
   });
 
   it('should be able to take numberOfPages as input', () => {
-    expect(component.numberOfPages).toEqual(wrapper.numberOfPagesValue);
+    expect(component.numberOfPages).toEqual(wrapper.numberOfPagesValue());
   });
 
   it('should show page numbers within one of the current page', () => {
@@ -131,9 +132,9 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
 
   describe('when the component is in link mode', () => {
     beforeEach(() => {
-      wrapper.linkModeValue = true;
-      wrapper.urlValue = testUrl;
-      wrapper.queryParamValue = 'queryParam';
+      wrapper.linkModeValue.set(true);
+      wrapper.urlValue.set(testUrl);
+      wrapper.queryParamValue.set('queryParam');
       fixture.detectChanges();
     });
 
@@ -149,11 +150,11 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
       }));
 
       it('should set the query param value', () => {
-        expect(Number(route.snapshot.queryParamMap.get(wrapper.queryParamValue))).toEqual(wrapper.currentPageValue - 1);
+        expect(Number(route.snapshot.queryParamMap.get(wrapper.queryParamValue()))).toEqual(wrapper.currentPageValue() - 1);
       });
 
       it('should navigate to the set url', () => {
-        expect(location.path()).toContain(wrapper.urlValue);
+        expect(location.path()).toContain(wrapper.urlValue());
       });
     });
 
@@ -164,11 +165,11 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
       }));
 
       it('should set the query param value', () => {
-        expect(Number(route.snapshot.queryParamMap.get(wrapper.queryParamValue))).toEqual(wrapper.currentPageValue + 1);
+        expect(Number(route.snapshot.queryParamMap.get(wrapper.queryParamValue()))).toEqual(wrapper.currentPageValue() + 1);
       });
 
       it('should navigate to the set url', () => {
-        expect(location.path()).toContain(wrapper.urlValue);
+        expect(location.path()).toContain(wrapper.urlValue());
       });
     });
 
@@ -179,11 +180,11 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
       }));
 
       it('should set the query param value', () => {
-        expect(Number(route.snapshot.queryParamMap.get(wrapper.queryParamValue))).toEqual(3);
+        expect(Number(route.snapshot.queryParamMap.get(wrapper.queryParamValue()))).toEqual(3);
       });
 
       it('should navigate to the set url', () => {
-        expect(location.path()).toContain(wrapper.urlValue);
+        expect(location.path()).toContain(wrapper.urlValue());
       });
     });
   });
@@ -191,8 +192,8 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
   describe('when the numberOfPages is less than 2', () => {
 
     it('should only render one .daff-paginator__page-link', () => {
-      wrapper.numberOfPagesValue = 1;
-      wrapper.currentPageValue = 1;
+      wrapper.numberOfPagesValue.set(1);
+      wrapper.currentPageValue.set(1);
       fixture.detectChanges();
 
       const pageLinks = fixture.debugElement.queryAll(By.css('.daff-paginator__page-link'));
@@ -203,8 +204,8 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
   describe('when the numberOfPages is less than 1', () => {
 
     it('should throw an error', () => {
-      wrapper.numberOfPagesValue = 0;
-      wrapper.currentPageValue = 0;
+      wrapper.numberOfPagesValue.set(0);
+      wrapper.currentPageValue.set(0);
 
       expect(() => fixture.detectChanges()).toThrowError(DaffPaginatorNumberOfPagesErrorMessage);
     });
@@ -213,8 +214,8 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
   describe('when the currentPage is greater than the numberOfPages', () => {
 
     it('should throw an error', () => {
-      wrapper.numberOfPagesValue = 5;
-      wrapper.currentPageValue = 10;
+      wrapper.numberOfPagesValue.set(5);
+      wrapper.currentPageValue.set(10);
 
       expect(() => fixture.detectChanges()).toThrowError(DaffPaginatorPageOutOfRangeErrorMessage);
     });
@@ -225,7 +226,7 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
       spyOn(component.notifyPageChange, 'emit');
       fixture.debugElement.query(By.css('.daff-paginator__previous')).nativeElement.click();
 
-      expect(component.notifyPageChange.emit).toHaveBeenCalledWith(wrapper.currentPageValue-1);
+      expect(component.notifyPageChange.emit).toHaveBeenCalledWith(wrapper.currentPageValue()-1);
     });
   });
 
@@ -234,14 +235,14 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
       spyOn(component.notifyPageChange, 'emit');
       fixture.debugElement.query(By.css('.daff-paginator__next')).nativeElement.click();
 
-      expect(component.notifyPageChange.emit).toHaveBeenCalledWith(wrapper.currentPageValue+1);
+      expect(component.notifyPageChange.emit).toHaveBeenCalledWith(wrapper.currentPageValue()+1);
     });
   });
 
   describe('showNumber', () => {
     describe('when the current page is 1 or 2', () => {
       it('should show page numbers 3 and 4', () => {
-        wrapper.currentPageValue = 1;
+        wrapper.currentPageValue.set(1);
         fixture.detectChanges();
         const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
 
@@ -252,12 +253,12 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
 
     describe('when the current page is one of the last two pages', () => {
       it('should show _numberOfPages-3 and lesser numbers', () => {
-        wrapper.currentPageValue = wrapper.numberOfPagesValue;
+        wrapper.currentPageValue.set(wrapper.numberOfPagesValue());
         fixture.detectChanges();
         const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
 
-        expect(paginator.nativeElement.innerText.includes((wrapper.numberOfPagesValue - 3).toString())).toBeTruthy();
-        expect(paginator.nativeElement.innerText.includes((wrapper.numberOfPagesValue - 2).toString())).toBeTruthy();
+        expect(paginator.nativeElement.innerText.includes((wrapper.numberOfPagesValue() - 3).toString())).toBeTruthy();
+        expect(paginator.nativeElement.innerText.includes((wrapper.numberOfPagesValue() - 2).toString())).toBeTruthy();
       });
     });
   });
@@ -265,7 +266,7 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
   describe('ellipsis appearance', () => {
     describe('when all pages between currentPage and page 1 are shown', () => {
       it('should not show an ellipsis between 1 and the current page', () => {
-        wrapper.currentPageValue = 3;
+        wrapper.currentPageValue.set(3);
         fixture.detectChanges();
         const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
 
@@ -275,7 +276,7 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
 
     describe('when some pages between the currentPage and page 1 are not shown', () => {
       it('should show an ellipsis between 1 and the current page', () => {
-        wrapper.currentPageValue = 7;
+        wrapper.currentPageValue.set(7);
         fixture.detectChanges();
         const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
 
@@ -285,7 +286,7 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
 
     describe('when some pages between the currentPage and the last page are not shown', () => {
       it('should show an ellipsis between the current page and the last page', () => {
-        wrapper.currentPageValue = wrapper.numberOfPagesValue - 8;
+        wrapper.currentPageValue.set(wrapper.numberOfPagesValue() - 8);
         fixture.detectChanges();
         const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
 
@@ -295,7 +296,7 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
 
     describe('when all pages between the currentPage and the last page are shown', () => {
       it('should not show an ellipsis between the current page and the last page', () => {
-        wrapper.currentPageValue = wrapper.numberOfPagesValue - 1;
+        wrapper.currentPageValue.set(wrapper.numberOfPagesValue() - 1);
         fixture.detectChanges();
         const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
 
@@ -307,7 +308,7 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
   describe('changing the current page number', () => {
     describe('when the currentPage is 1', () => {
       it('should disable the previous button', () => {
-        wrapper.currentPageValue = 1;
+        wrapper.currentPageValue.set(1);
         fixture.detectChanges();
 
         expect(fixture.debugElement.query(By.css('.daff-paginator__previous')).nativeElement.disabled).toBeTruthy();
@@ -316,7 +317,7 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
 
     describe('when the currentPage is the last page', () => {
       it('should disable the next button', () => {
-        wrapper.currentPageValue = wrapper.numberOfPagesValue;
+        wrapper.currentPageValue.set(wrapper.numberOfPagesValue());
         fixture.detectChanges();
 
         expect(fixture.debugElement.query(By.css('.daff-paginator__next')).nativeElement.disabled).toBeTruthy();
@@ -336,7 +337,7 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
 
   describe('when the numberOfPages is changed', () => {
     it('should update the view with the new number of pages', () => {
-      wrapper.numberOfPagesValue = 10;
+      wrapper.numberOfPagesValue.set(10);
       fixture.detectChanges();
       const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
 

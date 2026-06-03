@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -25,7 +26,7 @@ import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 import { DaffFormFieldApperanace } from '../form-field/form-field.component';
 
 @Component({ template: `
-  <daff-form-field [id]="id" [appearance]="appearance">
+  <daff-form-field [id]="id()" [appearance]="appearance()">
     <input daff-input [formControl]="formControl">
     <daff-hint></daff-hint>
     <daff-error-message></daff-error-message>
@@ -38,8 +39,8 @@ imports: [
 
 class WrapperComponent {
   formControl = new UntypedFormControl('', Validators.required);
-  id: string;
-  appearance: DaffFormFieldApperanace = 'fixed';
+  id = signal<string>(undefined);
+  appearance = signal<DaffFormFieldApperanace>('fixed');
 }
 
 describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
@@ -73,23 +74,23 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
   });
 
   it('should allow a custom id to be set', () => {
-    expect(component.id).toEqual(wrapper.id);
+    expect(component.id).toEqual(wrapper.id());
   });
 
   describe('setting the appearance of a form field', () => {
     it('should take appearance as an input', () => {
-      expect(component.appearance).toEqual(wrapper.appearance);
+      expect(component.appearance).toEqual(wrapper.appearance());
     });
 
     it('should add a class of "fluid" to the host element when appearance="fluid"', () => {
-      wrapper.appearance = 'fluid';
+      wrapper.appearance.set('fluid');
       fixture.detectChanges();
 
       expect(de.classes.fluid).toBeTrue();
     });
 
     it('should add a class of "fixed" to the host element when appearance="fixed"', () => {
-      wrapper.appearance = 'fixed';
+      wrapper.appearance.set('fixed');
       fixture.detectChanges();
 
       expect(de.classes.fixed).toBeTrue();

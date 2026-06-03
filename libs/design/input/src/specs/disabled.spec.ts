@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -20,7 +21,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
   template:`
     <daff-form-field>
       <daff-form-label>Label</daff-form-label>
-      <input daff-input [disabled]="disabledValue">
+      <input daff-input [disabled]="disabledValue()">
     </daff-form-field>
   `,
   imports: [
@@ -29,7 +30,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
   ],
 })
 class WrapperComponent {
-  disabledValue: boolean | string;
+  disabledValue = signal<boolean | string>(undefined);
 }
 
 describe('@daffodil/design/input | DaffInputComponent | Static Disabled Attribute', () => {
@@ -62,7 +63,7 @@ describe('@daffodil/design/input | DaffInputComponent | Static Disabled Attribut
 
   describe('when the input is disabled', () => {
     beforeEach(() => {
-      wrapper.disabledValue = true;
+      wrapper.disabledValue.set(true);
       fixture.detectChanges();
     });
 
@@ -73,7 +74,7 @@ describe('@daffodil/design/input | DaffInputComponent | Static Disabled Attribut
 
   describe('when the input is no longer disabled', () => {
     beforeEach(() => {
-      wrapper.disabledValue = false;
+      wrapper.disabledValue.set(false);
       fixture.detectChanges();
     });
 
@@ -84,7 +85,7 @@ describe('@daffodil/design/input | DaffInputComponent | Static Disabled Attribut
 
   describe('when disabled is an empty string', () => {
     beforeEach(() => {
-      wrapper.disabledValue = '';
+      wrapper.disabledValue.set('');
       fixture.detectChanges();
     });
 

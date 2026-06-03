@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -18,8 +19,8 @@ import { DaffToast } from '../interfaces/toast';
 @Component ({
   template: `
     <daff-toast
-      [status]="status"
-      [toast]="toast"
+      [status]="status()"
+      [toast]="toast()"
     ></daff-toast>
   `,
   imports: [
@@ -28,8 +29,8 @@ import { DaffToast } from '../interfaces/toast';
 })
 
 class WrapperComponent {
-  status: DaffStatus;
-  toast: DaffToast;
+  status = signal<DaffStatus>(undefined);
+  toast = signal<DaffToast>(undefined);
 }
 
 describe('DaffToastComponent', () => {
@@ -50,11 +51,11 @@ describe('DaffToastComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    wrapper.toast = {
+    wrapper.toast.set({
       title: 'title',
       dismiss: () => {},
       dismissalStream: of(),
-    };
+    });
     de = fixture.debugElement.query(By.css('daff-toast'));
     component = de.componentInstance;
     fixture.detectChanges();
@@ -73,7 +74,7 @@ describe('DaffToastComponent', () => {
   });
 
   it('should take status as an input', () => {
-    wrapper.status = 'warn';
+    wrapper.status.set('warn');
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);

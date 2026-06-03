@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -12,14 +13,14 @@ import { By } from '@angular/platform-browser';
 import { DaffNavbarComponent } from '@daffodil/design/navbar';
 
 @Component({
-  template: '<nav daff-navbar [elevated]="elevated" [blurred]="blurred"></ nav>',
+  template: '<nav daff-navbar [elevated]="elevated()" [blurred]="blurred()"></ nav>',
   imports: [
     DaffNavbarComponent,
   ],
 })
 class WrapperComponent {
-  elevated = false;
-  blurred = false;
+  elevated = signal(false);
+  blurred = signal(false);
 }
 
 describe('@daffodil/design/navbar | DaffNavbarComponent', () => {
@@ -52,14 +53,14 @@ describe('@daffodil/design/navbar | DaffNavbarComponent', () => {
   });
 
   it('should add a class of "elevated" to the host element when elevated is true', () => {
-    wrapper.elevated = true;
+    wrapper.elevated.set(true);
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('elevated')).toEqual(true);
   });
 
   it('should add a class of "blurred" to the host element when blurred is true', () => {
-    wrapper.blurred = true;
+    wrapper.blurred.set(true);
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('blurred')).toEqual(true);
