@@ -6,6 +6,7 @@ import {
   APP_ID,
   ApplicationConfig,
   importProvidersFrom,
+  provideZoneChangeDetection,
 } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
@@ -32,6 +33,7 @@ import { provideDemoDrivers } from './drivers/driver.providers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideZoneChangeDetection(),
     provideAnimations(),
     importProvidersFrom(
       StoreModule.forRoot({}),
