@@ -1,16 +1,11 @@
-
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {
   waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+
+import { DaffRouterDataService } from '@daffodil/router';
 
 import { DaffioDocsPackageCardsContainer } from './package-cards.component';
 import { DaffioRoute } from '../../../../core/router/route.type';
@@ -29,11 +24,9 @@ describe('DaffioDocsPackageCardsContainer', () => {
       ],
       providers: [
         {
-          provide: ActivatedRoute,
-          useValue: jasmine.createSpyObj('ActivatedRoute', [], { data: dataSpy }),
+          provide: DaffRouterDataService,
+          useValue: jasmine.createSpyObj('DaffRouterDataService', [], { data$: dataSpy }),
         },
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
       ],
     })
       .compileComponents();

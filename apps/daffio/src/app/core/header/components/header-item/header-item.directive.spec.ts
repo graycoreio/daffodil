@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -12,11 +13,11 @@ import { By } from '@angular/platform-browser';
 import { DaffioHeaderItemDirective } from './header-item.directive';
 
 @Component({
-  template: `<a daffioHeaderItem [active]="active">Header Item</a>`,
+  template: `<a daffioHeaderItem [active]="active()">Header Item</a>`,
   standalone: false,
 })
 class WrapperComponent {
-  active: boolean;
+  active = signal(false);
 }
 
 describe('DaffioHeaderItemDirective', () => {
@@ -41,7 +42,7 @@ describe('DaffioHeaderItemDirective', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('[daffioHeaderItem]'));
-    component = de.componentInstance;
+    component = de.injector.get(DaffioHeaderItemDirective);
     fixture.detectChanges();
   });
 
@@ -56,11 +57,11 @@ describe('DaffioHeaderItemDirective', () => {
   });
 
   it('should be able to take `active` as an input', () => {
-    expect(component.active).toEqual(wrapper.active);
+    expect(component.active).toEqual(wrapper.active());
   });
 
   it('should add a class of "active" to the host element when active is true', () => {
-    wrapper.active = true;
+    wrapper.active.set(true);
     fixture.detectChanges();
 
     expect(de.classes['active']).toBeTrue();
