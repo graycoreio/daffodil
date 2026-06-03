@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  signal,
+} from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
@@ -20,18 +23,18 @@ import { DaffioDocsTableOfContentsComponent } from '../table-of-contents/table-o
 
 @Component({
   template: `<daffio-doc-viewer
-		[toc]="tocValue"
-		[breadcrumbs]="breadcrumbsValue"
-		[sourcePath]="sourcePathValue"
+		[toc]="tocValue()"
+		[breadcrumbs]="breadcrumbsValue()"
+		[sourcePath]="sourcePathValue()"
 	></daffio-doc-viewer>`,
   imports: [
     DaffioDocViewerComponent,
   ],
 })
 class WrapperComponent {
-  tocValue: DaffDocTableOfContents;
-  breadcrumbsValue: Array<DaffBreadcrumb>;
-  sourcePathValue: string;
+  tocValue = signal<DaffDocTableOfContents>([]);
+  breadcrumbsValue = signal<Array<DaffBreadcrumb>>([]);
+  sourcePathValue = signal('');
 }
 
 describe('DaffioDocViewerComponent', () => {
@@ -58,13 +61,13 @@ describe('DaffioDocViewerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    wrapper.tocValue = [{
+    wrapper.tocValue.set([{
       content: 'content',
       lvl: 1,
       slug: 'slug',
-    }];
-    wrapper.breadcrumbsValue = [];
-    wrapper.sourcePathValue = 'sourcePath';
+    }]);
+    wrapper.breadcrumbsValue.set([]);
+    wrapper.sourcePathValue.set('sourcePath');
     fixture.detectChanges();
 
     component = fixture.debugElement.query(By.directive(DaffioDocViewerComponent)).componentInstance;
@@ -75,24 +78,24 @@ describe('DaffioDocViewerComponent', () => {
   });
 
   it('should take toc as an input', () => {
-    expect(component.toc).toEqual(wrapper.tocValue);
+    expect(component.toc).toEqual(wrapper.tocValue());
   });
 
   it('should take breadcrumbs as an input', () => {
-    expect(component.breadcrumbs).toEqual(wrapper.breadcrumbsValue);
+    expect(component.breadcrumbs).toEqual(wrapper.breadcrumbsValue());
   });
 
   it('should take sourcePath as an input', () => {
-    expect(component.sourcePath()).toEqual(wrapper.sourcePathValue);
+    expect(component.sourcePath()).toEqual(wrapper.sourcePathValue());
   });
 
   it('should render the edit link when sourcePath is defined', () => {
     const el: HTMLAnchorElement = fixture.debugElement.query(By.css('.daffio-doc-viewer__edit-button')).nativeElement;
-    expect(el.href).toContain(wrapper.sourcePathValue);
+    expect(el.href).toContain(wrapper.sourcePathValue());
   });
 
   it('should not render the edit link when sourcePath is undefined', () => {
-    wrapper.sourcePathValue = '';
+    wrapper.sourcePathValue.set('');
     fixture.detectChanges();
     expect(fixture.debugElement.query(By.css('.daffio-doc-viewer__edit-button'))).toBeFalsy();
   });
