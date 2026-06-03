@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  signal,
+} from '@angular/core';
 import {
   ComponentFixture,
   waitForAsync,
@@ -13,14 +16,14 @@ import { DaffRouterNamedViewOutletDirective } from './outlet.directive';
 
 @Component({
   template: `
-    @if (view) {
-      <ng-container [daffRouterNamedViewOutlet]="view"></ng-container>
+    @if (view()) {
+      <ng-container [daffRouterNamedViewOutlet]="view()"></ng-container>
     }
     `,
   standalone: false,
 })
 class WrapperComponent {
-  view?: string;
+  view = signal<string | undefined>(undefined);
 }
 
 @Component({
@@ -81,7 +84,7 @@ describe('@daffodil/router | DaffRouterNamedViewOutletDirective', () => {
 
   describe('when the view is not set', () => {
     beforeEach(() => {
-      wrapper.view = undefined;
+      wrapper.view.set(undefined);
       fixture.detectChanges();
     });
 
@@ -94,7 +97,7 @@ describe('@daffodil/router | DaffRouterNamedViewOutletDirective', () => {
     beforeEach(() => {
       data = {};
       url.next('url');
-      wrapper.view = 'a';
+      wrapper.view.set('a');
       fixture.detectChanges();
     });
 
@@ -111,7 +114,7 @@ describe('@daffodil/router | DaffRouterNamedViewOutletDirective', () => {
         },
       };
       url.next('url');
-      wrapper.view = 'a';
+      wrapper.view.set('a');
       fixture.detectChanges();
     });
 
@@ -129,7 +132,7 @@ describe('@daffodil/router | DaffRouterNamedViewOutletDirective', () => {
         },
       };
       url.next('url');
-      wrapper.view = 'a';
+      wrapper.view.set('a');
       fixture.detectChanges();
     });
 
@@ -174,7 +177,7 @@ describe('@daffodil/router | DaffRouterNamedViewOutletDirective', () => {
           daffNamedViews: {},
         };
         url.next('url');
-        wrapper.view = 'b';
+        wrapper.view.set('b');
         fixture.detectChanges();
       });
 
@@ -192,7 +195,7 @@ describe('@daffodil/router | DaffRouterNamedViewOutletDirective', () => {
           },
         };
         url.next('url');
-        wrapper.view = 'b';
+        wrapper.view.set('b');
         fixture.detectChanges();
       });
 
