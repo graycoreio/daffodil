@@ -1,16 +1,15 @@
+import { HttpHeaders } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import {
   ApolloLink,
   gql,
-  NextLink,
-  Observable,
-  Operation,
-} from '@apollo/client/core';
+} from '@apollo/client';
 import { Apollo } from 'apollo-angular';
 import {
   ApolloTestingController,
   ApolloTestingModule,
 } from 'apollo-angular/testing';
+import { of } from 'rxjs';
 
 import {
   DaffMagentoCacheHeaderApolloLinkGenerator,
@@ -19,11 +18,11 @@ import {
 
 describe('@daffodil/driver/magento | DaffMagentoCacheHeaderApolloLinkGenerator', () => {
   let service: DaffMagentoCacheHeaderApolloLinkGenerator;
-  let operation: Operation;
+  let operation: ApolloLink.Operation;
   let apollo: Apollo;
   let controller: ApolloTestingController;
   let link: ApolloLink;
-  let linkSpy: jasmine.Spy<NextLink>;
+  let linkSpy: jasmine.Spy<ApolloLink.ForwardFunction>;
   let cacheId: string;
   const query = gql`{ Operation(test: string) { name }}`;
 
@@ -40,7 +39,7 @@ describe('@daffodil/driver/magento | DaffMagentoCacheHeaderApolloLinkGenerator',
 
     link = service.getLink();
     linkSpy = jasmine.createSpy();
-    linkSpy.and.returnValue(Observable.of());
+    linkSpy.and.returnValue(of());
     cacheId = 'cacheId';
   });
 
@@ -57,13 +56,13 @@ describe('@daffodil/driver/magento | DaffMagentoCacheHeaderApolloLinkGenerator',
       apollo.query({ query }).subscribe();
       operation = controller.expectOne(query).operation;
       operation.setContext({
-        headers: {
+        headers: new HttpHeaders({
           [MAGENTO_CUSTOMER_CACHE_ID_HEADER]: cacheId,
-        },
+        }),
       });
       link.request(operation, linkSpy);
 
-      expect(operation.getContext().headers?.[MAGENTO_CUSTOMER_CACHE_ID_HEADER]).toEqual(cacheId);
+      expect(operation.getContext().headers?.get(MAGENTO_CUSTOMER_CACHE_ID_HEADER)).toEqual(cacheId);
     });
 
     it('should set the cache header to the new value when the cache ID changes', () => {
@@ -71,20 +70,20 @@ describe('@daffodil/driver/magento | DaffMagentoCacheHeaderApolloLinkGenerator',
       apollo.query({ query }).subscribe();
       operation = controller.expectOne(query).operation;
       operation.setContext({
-        headers: {
+        headers: new HttpHeaders({
           [MAGENTO_CUSTOMER_CACHE_ID_HEADER]: cacheId,
-        },
+        }),
       });
       link.request(operation, linkSpy);
 
       operation.setContext({
-        headers: {
+        headers: new HttpHeaders({
           [MAGENTO_CUSTOMER_CACHE_ID_HEADER]: newCacheId,
-        },
+        }),
       });
       link.request(operation, linkSpy);
 
-      expect(operation.getContext().headers?.[MAGENTO_CUSTOMER_CACHE_ID_HEADER]).toEqual(newCacheId);
+      expect(operation.getContext().headers?.get(MAGENTO_CUSTOMER_CACHE_ID_HEADER)).toEqual(newCacheId);
     });
   });
 });

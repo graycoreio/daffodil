@@ -1,10 +1,10 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer/driver';
 
 import { MagentoUpdateCustomerResponse } from '../models/public_api';
 
-export const validateUpdateCustomerResponse = (response: ApolloQueryResult<MagentoUpdateCustomerResponse>) => {
+export const validateUpdateCustomerResponse = (response: Apollo.QueryResult<MagentoUpdateCustomerResponse>) => {
   if (response.data.updateCustomerV2.customer?.email) {
     return response;
   } else {

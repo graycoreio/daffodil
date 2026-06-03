@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { InMemoryCache } from '@apollo/client/core';
+import { InMemoryCache } from '@apollo/client';
 import { addTypenameToDocument } from '@apollo/client/utilities';
 import {
   ApolloTestingController,
@@ -91,7 +91,6 @@ describe('@daffodil/cart/driver/magento | CartShippingInformationService', () =>
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            addTypename: true,
             possibleTypes: schema.possibleTypes,
           }),
         },

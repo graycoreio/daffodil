@@ -1,9 +1,11 @@
-import { ApolloError } from '@apollo/client/core';
+
+import { CombinedGraphQLErrors } from '@apollo/client';
 
 import { DaffUnauthorizedError } from '@daffodil/auth/driver';
 
 import { MagentoAuthGraphQlErrorCode } from './codes';
 import { transformMagentoAuthError } from './transform';
+
 
 describe('@daffodil/auth/driver/magento | transformMagentoAuthError', () => {
   const unhandledGraphQlError = {
@@ -31,9 +33,10 @@ describe('@daffodil/auth/driver/magento | transformMagentoAuthError', () => {
   };
 
   it('should be able to process graphql errors and return the relevant DaffAuth error if a mapping exists', () => {
-    const error = new ApolloError({
-      graphQLErrors: [handledGraphQlError],
-    });
+    const error = new CombinedGraphQLErrors(
+      {},
+      [handledGraphQlError],
+    );
     const result = transformMagentoAuthError(error);
 
     expect(result).toEqual(jasmine.any(DaffUnauthorizedError));

@@ -1,4 +1,4 @@
-import { RequestHandler } from '@apollo/client/core';
+import { ApolloLink } from '@apollo/client';
 
 import { createMultiInjectionToken } from '@daffodil/core';
 
@@ -15,4 +15,4 @@ export const {
    * Factory provider for {@link DAFF_APOLLO_REQUEST_HANDLERS}.
    */
   factoryProvider: provideDaffApolloRequestHandlerFactories,
-} = createMultiInjectionToken<RequestHandler>('DAFF_APOLLO_REQUEST_HANDLERS');
+} = createMultiInjectionToken<ApolloLink.RequestHandler>('DAFF_APOLLO_REQUEST_HANDLERS');

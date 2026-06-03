@@ -1,5 +1,6 @@
-import { ApolloLink } from '@apollo/client/core';
-import { setContext } from '@apollo/client/link/context';
+import { HttpHeaders } from '@angular/common/http';
+import { ApolloLink } from '@apollo/client';
+import { SetContextLink } from '@apollo/client/link/context';
 
 import { AccessTokenFunction } from '../../config';
 
@@ -10,19 +11,19 @@ import { AccessTokenFunction } from '../../config';
  * @returns An ApolloLink instance that sets authentication headers.
  */
 export function createAuthLink(accessToken: string | AccessTokenFunction): ApolloLink {
-  return setContext(() => {
+  return new SetContextLink(() => {
     if(typeof accessToken === 'function') {
       return {
-        headers: {
+        headers: new HttpHeaders({
           'X-Shopify-Storefront-Access-Token': accessToken(),
-        },
+        }),
       };
     }
 
     return {
-      headers: {
+      headers: new HttpHeaders({
         'X-Shopify-Storefront-Access-Token': accessToken,
-      },
+      }),
     };
   });
 }

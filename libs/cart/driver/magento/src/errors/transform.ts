@@ -1,4 +1,4 @@
-import { ApolloError } from '@apollo/client/core';
+import { CombinedGraphQLErrors } from '@apollo/client';
 import { GraphQLFormattedError } from 'graphql';
 
 import { DaffCartCoupon } from '@daffodil/cart';
@@ -19,6 +19,7 @@ import {
   DaffCartMagentoUserErrorMap,
 } from './map';
 import { MagentoCartUserInputError } from '../models/public_api';
+
 
 /**
  * Transforms a single GraphQL error.
@@ -43,15 +44,15 @@ export function transformMagentoCartGraphQlError(error: GraphQLFormattedError, r
   }
 
   return daffMagentoTransformGraphQlError(error, DaffCartMagentoErrorMap);
-};
+}
 
 /**
  * Transforms only the first GraphQL error with the cart magento error transformer,
  * otherwise falls back to a standard Magento error transform.
  */
 export function transformCartMagentoError(error, requestPayload?: unknown) {
-  if (error.graphQLErrors?.length) {
-    return transformMagentoCartGraphQlError((<ApolloError>error).graphQLErrors[0], requestPayload);
+  if (CombinedGraphQLErrors.is(error)) {
+    return transformMagentoCartGraphQlError(error.errors[0], requestPayload);
   } else {
     return daffTransformMagentoError(error, DaffCartMagentoErrorMap);
   }

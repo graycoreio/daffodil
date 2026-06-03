@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ApolloQueryResult } from '@apollo/client/core';
 import { Apollo } from 'apollo-angular';
 import {
   Observable,
@@ -135,7 +134,7 @@ export class DaffCustomerMagentoAddressService implements DaffCustomerAddressDri
     );
   }
 
-  protected listAddresses(): Observable<ApolloQueryResult<MagentoGetCustomerAddressesResponse>> {
+  protected listAddresses(): Observable<Apollo.QueryResult<MagentoGetCustomerAddressesResponse>> {
     return this.apollo.query<MagentoGetCustomerAddressesResponse>({
       query: getCustomerAddresses,
     }).pipe(

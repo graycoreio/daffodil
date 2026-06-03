@@ -1,4 +1,4 @@
-import { DocumentNode } from '@apollo/client/core';
+import { DocumentNode } from '@apollo/client';
 
 import { createMultiInjectionToken } from '@daffodil/core';
 

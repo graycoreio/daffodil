@@ -1,11 +1,11 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffProductNotFoundError } from '@daffodil/product/driver';
 import { DaffReviewsInvalidAPIResponseError } from '@daffodil/reviews/driver';
 
 import { MagentoGetProductReviewsResponse } from '../models/public_api';
 
-export const validateGetProductReviewsResponse = (response: ApolloQueryResult<MagentoGetProductReviewsResponse>) => {
+export const validateGetProductReviewsResponse = (response: Apollo.QueryResult<MagentoGetProductReviewsResponse>) => {
   if (response.data.products.items?.[0]) {
     if (response.data.products.items[0].reviews) {
       return response;

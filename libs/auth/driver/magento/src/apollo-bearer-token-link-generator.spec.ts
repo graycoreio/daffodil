@@ -2,9 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import {
   DocumentNode,
   gql,
-  NextLink,
-  Operation,
-} from '@apollo/client/core';
+  ApolloLink,
+} from '@apollo/client';
 import { Apollo } from 'apollo-angular';
 import {
   ApolloTestingController,
@@ -18,7 +17,7 @@ import { MagentoAuthApolloBearerTokenLinkGenerator } from './apollo-bearer-token
 describe('@daffodil/auth/driver/magento | MagentoAuthApolloBearerTokenLinkGenerator', () => {
   let service: MagentoAuthApolloBearerTokenLinkGenerator;
   let daffAuthStorageService: jasmine.SpyObj<DaffAuthStorageService>;
-  let operation: Operation;
+  let operation: ApolloLink.Operation;
   let apollo: Apollo;
   let controller: ApolloTestingController;
 
@@ -62,9 +61,9 @@ describe('@daffodil/auth/driver/magento | MagentoAuthApolloBearerTokenLinkGenera
       it('should set the authorization header to the bearer token', () => {
         apollo.query({ query }).subscribe();
         operation = controller.expectOne(query).operation;
-        service.getLink().request(operation, <NextLink><unknown>jasmine.createSpy);
+        service.getLink().request(operation, <ApolloLink.ForwardFunction><unknown>jasmine.createSpy);
 
-        expect(operation.getContext().headers.authorization).toEqual(`Bearer ${token}`);
+        expect(operation.getContext().headers?.get('authorization')).toEqual(`Bearer ${token}`);
       });
     });
 
@@ -76,9 +75,9 @@ describe('@daffodil/auth/driver/magento | MagentoAuthApolloBearerTokenLinkGenera
       it('should not set the authorization header', () => {
         apollo.query({ query }).subscribe();
         operation = controller.expectOne(query).operation;
-        service.getLink().request(operation, <NextLink><unknown>jasmine.createSpy);
+        service.getLink().request(operation, <ApolloLink.ForwardFunction><unknown>jasmine.createSpy);
 
-        expect(operation.getContext().headers?.authorization).toBeUndefined();
+        expect(operation.getContext().headers?.get('authorization')).toBeUndefined();
       });
     });
 
@@ -90,9 +89,9 @@ describe('@daffodil/auth/driver/magento | MagentoAuthApolloBearerTokenLinkGenera
       it('should not crash', () => {
         apollo.query({ query }).subscribe();
         operation = controller.expectOne(query).operation;
-        service.getLink().request(operation, <NextLink><unknown>jasmine.createSpy);
+        service.getLink().request(operation, <ApolloLink.ForwardFunction><unknown>jasmine.createSpy);
 
-        expect(operation.getContext().headers?.authorization).toBeUndefined();
+        expect(operation.getContext().headers?.get('authorization')).toBeUndefined();
       });
     });
   });

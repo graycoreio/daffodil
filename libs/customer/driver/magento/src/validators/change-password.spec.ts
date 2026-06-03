@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer/driver';
 import { MagentoChangePasswordResponse } from '@daffodil/customer/driver/magento';
@@ -8,7 +8,7 @@ import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/testin
 import { validateChangePasswordResponse as validator } from './change-password';
 
 describe('@daffodil/customer/driver/magento | validateChangePasswordResponse', () => {
-  let response: ApolloQueryResult<MagentoChangePasswordResponse>;
+  let response: Apollo.QueryResult<MagentoChangePasswordResponse>;
   let customerFactory: MagentoCustomerFactory;
 
   beforeEach(() => {
@@ -20,8 +20,6 @@ describe('@daffodil/customer/driver/magento | validateChangePasswordResponse', (
           email: 'email',
         },
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

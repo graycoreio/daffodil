@@ -1,10 +1,10 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffContentInvalidAPIResponseError } from '@daffodil/content/driver';
 
 import { MagentoGetBlocksResponse } from '../models/public_api';
 
-export const validateGetBlocksResponse = (response: ApolloQueryResult<MagentoGetBlocksResponse>) => {
+export const validateGetBlocksResponse = (response: Apollo.QueryResult<MagentoGetBlocksResponse>) => {
   if (response.data?.cmsBlocks?.items) {
     if (response.data.cmsBlocks.items.reduce((acc, block) => acc && !!(
       block.identifier

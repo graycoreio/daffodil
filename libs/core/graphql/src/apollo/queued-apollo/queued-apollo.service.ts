@@ -1,8 +1,4 @@
 import { Injectable } from '@angular/core';
-import {
-  MutationOptions,
-  FetchResult,
-} from '@apollo/client/core';
 import { Apollo } from 'apollo-angular';
 import {
   Observable,
@@ -35,7 +31,7 @@ export class DaffQueuedApollo {
    *
    * @param options Mutation options.
    */
-  mutate<T, V = Record<string, any>>(options: MutationOptions<T, V>): Observable<FetchResult<T>> {
+  mutate<T, V = Record<string, any>>(options: Apollo.MutateOptions<T, V>): Observable<Apollo.MutateResult<T>> {
     return new Observable(subscriber => this.addRequestToQueue(subscriber, this.apollo.mutate(options)));
   }
 

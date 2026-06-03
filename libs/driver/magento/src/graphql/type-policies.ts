@@ -1,4 +1,4 @@
-import { TypePolicies } from '@apollo/client/core';
+import { TypePolicies } from '@apollo/client';
 
 /**
  * Custom type policies that allow us to have more granular control

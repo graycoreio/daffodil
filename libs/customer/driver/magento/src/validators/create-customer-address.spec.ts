@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer/driver';
 import { MagentoCreateCustomerAddressResponse } from '@daffodil/customer/driver/magento';
@@ -8,7 +8,7 @@ import { MagentoCustomerAddressFactory } from '@daffodil/customer/driver/magento
 import { validateCreateCustomerAddressResponse as validator } from './create-customer-address';
 
 describe('@daffodil/customer/driver/magento | validateCreateCustomerAddressResponse', () => {
-  let response: ApolloQueryResult<MagentoCreateCustomerAddressResponse>;
+  let response: Apollo.QueryResult<MagentoCreateCustomerAddressResponse>;
   let customerAddressFactory: MagentoCustomerAddressFactory;
 
   beforeEach(() => {
@@ -18,8 +18,6 @@ describe('@daffodil/customer/driver/magento | validateCreateCustomerAddressRespo
       data: {
         createCustomerAddress: customerAddressFactory.create(),
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

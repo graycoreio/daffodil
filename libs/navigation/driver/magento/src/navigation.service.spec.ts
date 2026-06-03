@@ -4,7 +4,7 @@ import {
   flush,
   tick,
 } from '@angular/core/testing';
-import { InMemoryCache } from '@apollo/client/core';
+import { InMemoryCache } from '@apollo/client';
 import { addTypenameToDocument } from '@apollo/client/utilities';
 import {
   ApolloTestingModule,
@@ -50,7 +50,6 @@ describe('@daffodil/navigation/driver/magento | DaffMagentoNavigationService', (
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            addTypename: true,
             possibleTypes: schema.possibleTypes,
           }),
         },
@@ -188,7 +187,6 @@ describe('@daffodil/navigation/driver/magento | DaffMagentoNavigationService | w
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            addTypename: true,
             possibleTypes: schema.possibleTypes,
           }),
         },

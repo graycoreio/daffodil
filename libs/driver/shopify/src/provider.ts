@@ -3,9 +3,9 @@ import {
   InjectionToken,
 } from '@angular/core';
 import {
-  from,
   InMemoryCache,
-} from '@apollo/client/core';
+  ApolloLink,
+} from '@apollo/client';
 import { provideNamedApollo } from 'apollo-angular';
 
 import { DaffShopifyDriverConfig } from './config';
@@ -25,7 +25,7 @@ export const provideShopifyDriver = (config: DaffShopifyDriverConfig | Injection
   const resolvedConfig = config instanceof InjectionToken ? inject(config) : config;
   return {
     [APOLLO_CLIENT_NAME]: {
-      link: from([
+      link: ApolloLink.from([
         createErrorLink(),
         createAuthLink(resolvedConfig.accessToken),
         createHttpLink(resolvedConfig.domain),

@@ -1,10 +1,10 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffAuthInvalidAPIResponseError } from '@daffodil/auth/driver';
 
 import { MagentoGenerateTokenResponse } from '../queries/public_api';
 
-export const validateGenerateTokenResponse = (response: ApolloQueryResult<MagentoGenerateTokenResponse>) => {
+export const validateGenerateTokenResponse = (response: Apollo.QueryResult<MagentoGenerateTokenResponse>) => {
   if (response.data.generateCustomerToken.token) {
     return response;
   } else {

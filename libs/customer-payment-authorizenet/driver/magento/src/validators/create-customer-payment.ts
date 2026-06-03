@@ -1,10 +1,10 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerPaymentInvalidAPIResponseError } from '@daffodil/customer-payment/driver';
 
 import { MagentoCreateCustomerPaymentResponse } from '../models/public_api';
 
-export const validateCreateCustomerPaymentResponse = (response: ApolloQueryResult<MagentoCreateCustomerPaymentResponse>) => {
+export const validateCreateCustomerPaymentResponse = (response: Apollo.QueryResult<MagentoCreateCustomerPaymentResponse>) => {
   if (response.data.createTokenBaseCard?.hash) {
     return response;
   } else {

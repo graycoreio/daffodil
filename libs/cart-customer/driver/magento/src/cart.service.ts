@@ -2,6 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
+import { CombinedGraphQLErrors } from '@apollo/client';
 import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
@@ -47,17 +48,19 @@ export class DaffMagentoCartCustomerService implements DaffCartServiceInterface<
         query: getCustomerCart(this.extraCartFragments),
         errorPolicy: 'all',
       }).pipe(
-        map(({ data, errors }) => ({
+        map(({ data, error }) => ({
           response: data ? this.cartTransformer.transform(data.customerCart) : undefined,
-          errors: errors?.map(e => {
-            const error = transformMagentoCartGraphQlError(e);
+          errors: CombinedGraphQLErrors.is(error)
+            ? error.errors?.map(e => {
+              const err = transformMagentoCartGraphQlError(e);
 
-            if (DAFF_MAGENTO_GET_RECOVERABLE_ERRORS.filter(klass => error instanceof klass).length > 0) {
-              error.recoverable = true;
-            }
+              if (DAFF_MAGENTO_GET_RECOVERABLE_ERRORS.filter(klass => err instanceof klass).length > 0) {
+                err.recoverable = true;
+              }
 
-            return error;
-          }) || [],
+              return err;
+            }) || []
+            : error ? [transformMagentoCartGraphQlError(error)] : [],
         })),
       );
   }

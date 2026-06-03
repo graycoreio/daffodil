@@ -1,4 +1,5 @@
-import { ApolloError } from '@apollo/client/core';
+import { CombinedGraphQLErrors } from '@apollo/client';
+import { ApolloError } from '@apollo/client/v4-migration';
 import { GraphQLError } from 'graphql';
 
 import {
@@ -31,9 +32,10 @@ describe('@daffodil/cart/driver/magento | transformCartMagentoError', () => {
       if(el.category) {
         graphQlError.extensions.category = el.category;
       }
-      apolloError = new ApolloError({
-        graphQLErrors: [graphQlError],
-      });
+      apolloError = new CombinedGraphQLErrors(
+        {},
+        [graphQlError],
+      );
       transformedError = transformCartMagentoError(apolloError);
 
       expect(transformedError).toEqual(jasmine.any(el.type));

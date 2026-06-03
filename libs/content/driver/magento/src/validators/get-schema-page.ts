@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffContentInvalidAPIResponseError } from '@daffodil/content/driver';
 import { validateFieldPresence } from '@daffodil/core';
@@ -6,7 +6,7 @@ import { GraphQlApolloValidator } from '@daffodil/core/graphql';
 
 import { MagentoContentGetSchemaPageResponse } from '../queries/public_api';
 
-export const validateMagentoContentGetSchemaPageResponse: GraphQlApolloValidator<MagentoContentGetSchemaPageResponse> = (response: ApolloQueryResult<MagentoContentGetSchemaPageResponse>) => {
+export const validateMagentoContentGetSchemaPageResponse: GraphQlApolloValidator<MagentoContentGetSchemaPageResponse> = (response: Apollo.QueryResult<MagentoContentGetSchemaPageResponse>) => {
   if (response.data?.route?.type === 'CMS_PAGE') {
     if (validateFieldPresence<any>(response.data.route, 'content_schema_json', 'title', 'identifier')) {
       return response;

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer/driver';
 import { MagentoUpdateCustomerResponse } from '@daffodil/customer/driver/magento';
@@ -8,7 +8,7 @@ import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/testin
 import { validateUpdateCustomerResponse as validator } from './update-customer';
 
 describe('@daffodil/customer/driver/magento | validateUpdateCustomerResponse', () => {
-  let response: ApolloQueryResult<MagentoUpdateCustomerResponse>;
+  let response: Apollo.QueryResult<MagentoUpdateCustomerResponse>;
   let customerFactory: MagentoCustomerFactory;
 
   beforeEach(() => {
@@ -20,8 +20,6 @@ describe('@daffodil/customer/driver/magento | validateUpdateCustomerResponse', (
           customer: customerFactory.create(),
         },
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

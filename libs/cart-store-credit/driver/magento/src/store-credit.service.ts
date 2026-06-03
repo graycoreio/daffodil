@@ -2,7 +2,7 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
-import { DocumentNode } from '@apollo/client/core';
+import { DocumentNode } from '@apollo/client';
 import {
   Observable,
   throwError,

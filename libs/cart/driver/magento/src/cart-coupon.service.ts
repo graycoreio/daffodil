@@ -2,6 +2,7 @@ import {
   Injectable,
   Inject,
 } from '@angular/core';
+import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import {
   throwError,
@@ -46,6 +47,7 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
     @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) private extraCartFragments: DocumentNode[],
     private cartTransformer: DaffMagentoCartTransformer,
+    private apollo: Apollo,
   ) {}
 
   apply(cartId: DaffCart['id'], coupon: DaffCartCoupon): Observable<Partial<DaffCart>> {
@@ -63,8 +65,8 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
   }
 
   list(cartId: DaffCart['id']): Observable<DaffCartCoupon[]> {
-    return this.mutationQueue.mutate<MagentoListCartCouponsResponse>({
-      mutation: listCartCoupons(this.extraCartFragments),
+    return this.apollo.query<MagentoListCartCouponsResponse>({
+      query: listCartCoupons(this.extraCartFragments),
       variables: {
         cartId,
       },

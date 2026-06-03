@@ -1,9 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import {
   gql,
-  NextLink,
-  Operation,
-} from '@apollo/client/core';
+  ApolloLink,
+} from '@apollo/client';
 import { Apollo } from 'apollo-angular';
 import {
   ApolloTestingController,
@@ -16,7 +15,7 @@ import { DAFF_MAGENTO_CACHEABLE_OPERATIONS } from './cacheable-operations-token'
 describe('Driver | Magento | GraphQL | DaffMagentoApolloCacheableOperationsLinkGenerator', () => {
   let service: DaffMagentoApolloCacheableOperationsLinkGenerator;
   let mockOperationConverterFunction;
-  let operation: Operation;
+  let operation: ApolloLink.Operation;
   let apollo: Apollo;
   let controller: ApolloTestingController;
   const cacheableQuery = gql`{ CacheableOperationName(test: string) { name }}`;
@@ -48,7 +47,7 @@ describe('Driver | Magento | GraphQL | DaffMagentoApolloCacheableOperationsLinkG
       apollo.query({ query: cacheableQuery }).subscribe();
       operation = controller.expectOne(cacheableQuery).operation;
       operation.operationName = 'CacheableOperationName';
-      service.getLink().request(operation, <NextLink><unknown>jasmine.createSpy);
+      service.getLink().request(operation, <ApolloLink.ForwardFunction><unknown>jasmine.createSpy);
 
       expect(operation.getContext().method).toEqual('GET');
     });
@@ -58,7 +57,7 @@ describe('Driver | Magento | GraphQL | DaffMagentoApolloCacheableOperationsLinkG
       operation = controller.expectOne(nonCacheableQuery).operation;
       operation.operationName = 'NonCacheableOperationName';
 
-      service.getLink().request(operation, <NextLink><unknown>jasmine.createSpy);
+      service.getLink().request(operation, <ApolloLink.ForwardFunction><unknown>jasmine.createSpy);
 
       expect(operation.getContext().method).not.toEqual('GET');
     });

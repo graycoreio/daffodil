@@ -1,4 +1,5 @@
-import { ApolloError } from '@apollo/client/core';
+import { CombinedGraphQLErrors } from '@apollo/client';
+import { ApolloError } from '@apollo/client/v4-migration';
 import { GraphQLError } from 'graphql';
 
 import { DaffCollectionPageOutOfBoundsError } from '@daffodil/core';
@@ -13,9 +14,10 @@ describe('@daffodil/search-product/driver/magento | transformSearchProductMagent
   describe('when the GraphQL error is an page out of bounds error', () => {
     beforeEach(() => {
       graphQlError = new GraphQLError('The current_page value 5 specified is greater than the 2 page(s) available.');
-      apolloError = new ApolloError({
-        graphQLErrors: [graphQlError],
-      });
+      apolloError = new CombinedGraphQLErrors(
+        {},
+        [graphQlError],
+      );
 
       transformedError = transformSearchProductMagentoError(apolloError);
     });

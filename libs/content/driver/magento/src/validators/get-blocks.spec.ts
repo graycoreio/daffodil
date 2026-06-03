@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffContentInvalidAPIResponseError } from '@daffodil/content/driver';
 import { MagentoGetBlocksResponse } from '@daffodil/content/driver/magento';
@@ -6,7 +6,7 @@ import { MagentoGetBlocksResponse } from '@daffodil/content/driver/magento';
 import { validateGetBlocksResponse as validator } from './get-blocks';
 
 describe('@daffodil/content/driver/magento | validateGetBlocksResponse', () => {
-  let response: ApolloQueryResult<MagentoGetBlocksResponse>;
+  let response: Apollo.QueryResult<MagentoGetBlocksResponse>;
 
   beforeEach(() => {
     response = {
@@ -15,8 +15,6 @@ describe('@daffodil/content/driver/magento | validateGetBlocksResponse', () => {
           items: [],
         },
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

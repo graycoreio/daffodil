@@ -5,17 +5,14 @@ import {
   makeEnvironmentProviders,
 } from '@angular/core';
 import {
-  from,
+  ApolloLink,
   InMemoryCache,
   PossibleTypesMap,
   TypePolicies,
 } from '@apollo/client/core';
-import { onError } from '@apollo/client/link/error';
+import { ErrorLink } from '@apollo/client/link/error';
 import { provideApollo } from 'apollo-angular';
-import {
-  HttpLink,
-  Options as HttpOptions,
-} from 'apollo-angular/http';
+import { HttpLink } from 'apollo-angular/http';
 
 import { DAFF_APOLLO_REQUEST_HANDLERS } from '@daffodil/core/graphql';
 import { provideDaffDriverHttpClientCacheService } from '@daffodil/driver';
@@ -35,7 +32,7 @@ import {
 } from './graphql/public_api';
 import { MAGENTO_POSSIBLE_TYPES } from './schema/schema';
 
-export interface DaffMagentoDriverConfig extends HttpOptions {
+export interface DaffMagentoDriverConfig extends HttpLink.Options {
   possibleTypes?: PossibleTypesMap;
   typePolicies?: TypePolicies;
 }
@@ -58,9 +55,9 @@ export function provideMagentoDriver(options: DaffMagentoDriverConfig | Injectio
       };
       return {
         ...inject(DAFF_DRIVER_MAGENTO_EXTRA_APOLLO_OPTIONS),
-        link: from([
-          ...inject(DAFF_APOLLO_REQUEST_HANDLERS),
-          onError(inject(DAFF_DRIVER_MAGENTO_ERROR_HANDLER)),
+        link: ApolloLink.from([
+          ...inject(DAFF_APOLLO_REQUEST_HANDLERS).map((handler) => new ApolloLink(handler)),
+          new ErrorLink(inject(DAFF_DRIVER_MAGENTO_ERROR_HANDLER)),
           inject(HttpLink).create(opts),
         ]),
         cache: new InMemoryCache({ typePolicies: opts.typePolicies, possibleTypes: opts.possibleTypes }),
