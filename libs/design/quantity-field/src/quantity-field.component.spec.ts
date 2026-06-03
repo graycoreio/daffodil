@@ -14,6 +14,7 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffFormFieldComponent } from '@daffodil/design/form-field';
+import { patchElementFocus } from '@daffodil/design/testing';
 
 import { DaffQuantityFieldComponent } from './quantity-field.component';
 import { DaffQuantityInputComponent } from './quantity-input/quantity-input.component';
@@ -124,6 +125,7 @@ describe('@daffodil/design | DaffQuantityFieldComponent', () => {
     describe('and the input is focused', () => {
       beforeEach(() => {
         const input: DaffQuantityInputComponent = fixture.debugElement.query(By.css('daff-quantity-input')).componentInstance;
+        patchElementFocus(fixture.debugElement.query(By.css('daff-quantity-input input')).nativeElement);
         input.focus();
       });
 
@@ -143,6 +145,7 @@ describe('@daffodil/design | DaffQuantityFieldComponent', () => {
     describe('and the select is focused', () => {
       beforeEach(() => {
         const select: DaffQuantitySelectComponent = fixture.debugElement.query(By.css('daff-quantity-select')).componentInstance;
+        patchElementFocus(fixture.debugElement.query(By.css('daff-quantity-select select')).nativeElement);
         select.focus();
       });
 
