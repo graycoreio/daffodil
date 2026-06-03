@@ -22,6 +22,7 @@ import {
 } from '@daffodil/design/form-field';
 import { DaffInputComponent } from '@daffodil/design/input';
 import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
+import { patchElementFocus } from '@daffodil/design/testing';
 
 import { DaffFormFieldApperanace } from '../form-field/form-field.component';
 
@@ -67,6 +68,7 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
     de = fixture.debugElement.query(By.css('daff-form-field'));
     component = de.componentInstance;
     control = component._control;
+    patchElementFocus(fixture.debugElement.query(By.css('input')).nativeElement);
   });
 
   it('should create', () => {

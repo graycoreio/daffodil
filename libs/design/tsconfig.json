@@ -109,6 +109,9 @@
 			"@daffodil/design/tabs": [
         "libs/design/tabs/src"
       ],
+      "@daffodil/design/testing": [
+        "libs/design/testing/src"
+      ],
       "@daffodil/design/text-snippet": [
         "libs/design/text-snippet/src"
       ],
