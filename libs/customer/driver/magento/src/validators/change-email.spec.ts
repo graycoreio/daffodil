@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer/driver';
 import { MagentoChangeEmailResponse } from '@daffodil/customer/driver/magento';
@@ -8,7 +8,7 @@ import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/testin
 import { validateChangeEmailResponse as validator } from './change-email';
 
 describe('@daffodil/customer/driver/magento | validateChangeEmailResponse', () => {
-  let response: ApolloQueryResult<MagentoChangeEmailResponse>;
+  let response: Apollo.QueryResult<MagentoChangeEmailResponse>;
   let customerFactory: MagentoCustomerFactory;
 
   beforeEach(() => {
@@ -20,8 +20,6 @@ describe('@daffodil/customer/driver/magento | validateChangeEmailResponse', () =
           customer: customerFactory.create(),
         },
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

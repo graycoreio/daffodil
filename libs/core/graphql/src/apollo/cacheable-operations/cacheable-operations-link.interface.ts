@@ -1,4 +1,4 @@
-import { ApolloLink } from '@apollo/client/core';
+import { ApolloLink } from '@apollo/client';
 
 export interface DaffApolloLinkGenerator {
   getLink(): ApolloLink;

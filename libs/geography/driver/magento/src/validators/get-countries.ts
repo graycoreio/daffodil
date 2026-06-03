@@ -1,10 +1,10 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffGeographyInvalidAPIResponseError } from '@daffodil/geography/driver';
 
 import { MagentoGetCountriesResponse } from '../queries/public_api';
 
-export const validateGetCountriesResponse = (response: ApolloQueryResult<MagentoGetCountriesResponse>) => {
+export const validateGetCountriesResponse = (response: Apollo.QueryResult<MagentoGetCountriesResponse>) => {
   if (response.data.countries) {
     return response;
   } else {

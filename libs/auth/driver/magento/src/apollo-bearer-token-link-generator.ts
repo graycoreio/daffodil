@@ -3,11 +3,12 @@ import {
   Injectable,
   makeEnvironmentProviders,
 } from '@angular/core';
-import { ApolloLink } from '@apollo/client/core';
+import { ApolloLink } from '@apollo/client';
 
 import { DaffAuthStorageService } from '@daffodil/auth';
 import {
   DaffApolloLinkGenerator,
+  getApolloOperationHeaders,
   provideDaffApolloHeaderProviders,
 } from '@daffodil/core/graphql';
 import {
@@ -63,10 +64,7 @@ export class MagentoAuthApolloBearerTokenLinkGenerator implements DaffApolloLink
 
       if (token) {
         operation.setContext({
-          headers: {
-            ...operation.getContext().headers,
-            authorization: `Bearer ${token}`,
-          },
+          headers: getApolloOperationHeaders(operation).append('authorization', `Bearer ${token}`),
         });
       }
       return forward(operation);

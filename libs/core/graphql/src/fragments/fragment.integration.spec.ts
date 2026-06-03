@@ -50,6 +50,7 @@ describe('@daffodil/core/graphql | Fragment Integration', () => {
       }
     `;
     mockResponse = {
+      __typename: 'Query',
       id: 'id',
       field11: 'field11',
       field12: 'field12',

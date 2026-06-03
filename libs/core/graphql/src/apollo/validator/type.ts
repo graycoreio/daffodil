@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 /**
  * A validator for a GraphQL Apollo response.
@@ -6,4 +6,4 @@ import { ApolloQueryResult } from '@apollo/client/core';
  * Returns the response and throws no errors to indicate that the response
  * is valid as far as this particular validator is concerned.
  */
-export type GraphQlApolloValidator<T> = (response: ApolloQueryResult<T>) => ApolloQueryResult<T>;
+export type GraphQlApolloValidator<T> = (response: Apollo.QueryResult<T>) => Apollo.QueryResult<T>;

@@ -9,7 +9,7 @@ export const MAGENTO_NAVIGATION_GET_ROOT_CATEGORY_ID_QUERY_NAME = 'MagentoNaviga
  *
  * @param depth The maximum depth to which category children should be added to the fragment.
  */
-export const magentoNavigationGetRootCategoryIdQuery = gql<MagentoNavgiationGetRootCategoryIdResponse, null>`
+export const magentoNavigationGetRootCategoryIdQuery = gql<MagentoNavgiationGetRootCategoryIdResponse, unknown>`
   query ${MAGENTO_NAVIGATION_GET_ROOT_CATEGORY_ID_QUERY_NAME} {
     storeConfig {
       root_category_uid

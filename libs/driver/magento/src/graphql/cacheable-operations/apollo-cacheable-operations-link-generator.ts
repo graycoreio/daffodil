@@ -4,7 +4,7 @@ import {
   Injectable,
   makeEnvironmentProviders,
 } from '@angular/core';
-import { ApolloLink } from '@apollo/client/core';
+import { ApolloLink } from '@apollo/client';
 
 import {
   DaffApolloLinkGenerator,

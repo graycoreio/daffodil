@@ -1,4 +1,5 @@
-import { ApolloError } from '@apollo/client/core';
+import { CombinedGraphQLErrors } from '@apollo/client';
+import { ApolloError } from '@apollo/client/v4-migration';
 import { GraphQLError } from 'graphql';
 
 import { DaffSearchQueryTooShortError } from '@daffodil/search/driver';
@@ -13,9 +14,10 @@ describe('@daffodil/search-product/driver/magento | transformSearchCategoryMagen
   describe('when the GraphQL error is an query too short error', () => {
     beforeEach(() => {
       graphQlError = new GraphQLError('Invalid match filter. Minimum length is 3.');
-      apolloError = new ApolloError({
-        graphQLErrors: [graphQlError],
-      });
+      apolloError = new CombinedGraphQLErrors(
+        {},
+        [graphQlError],
+      );
 
       transformedError = transformSearchCategoryMagentoError(apolloError);
     });

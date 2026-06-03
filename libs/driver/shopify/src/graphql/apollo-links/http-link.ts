@@ -1,6 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { ApolloLink } from '@apollo/client/core';
+import { ApolloLink } from '@apollo/client';
 import { HttpLink } from 'apollo-angular/http';
 
 import { UrlFunction } from '../../config';

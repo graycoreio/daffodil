@@ -1,4 +1,5 @@
-import type { ErrorHandler } from '@apollo/client/link/error';
+import { CombinedGraphQLErrors } from '@apollo/client';
+import type { ErrorLink } from '@apollo/client/link/error';
 
 import { createSingleInjectionToken } from '@daffodil/core';
 
@@ -15,17 +16,16 @@ export const {
    * Provider function for {@link DAFF_DRIVER_MAGENTO_ERROR_HANDLER}.
    */
   provider: provideDaffDriverMagentoErrorHandler,
-} = createSingleInjectionToken<ErrorHandler>('DAFF_DRIVER_MAGENTO_ERROR_HANDLER', {
-  factory: () => ({ graphQLErrors, networkError }) => {
-    if (graphQLErrors) {
-      graphQLErrors.map(({ message, locations, path }) =>
+} = createSingleInjectionToken<ErrorLink.ErrorHandler>('DAFF_DRIVER_MAGENTO_ERROR_HANDLER', {
+  factory: () => ({ error }) => {
+    if (CombinedGraphQLErrors.is(error)) {
+      error.errors.map(({ message, locations, path }) =>
         console.error(
           `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
         ),
       );
-    }
-    if (networkError) {
-      console.error(`[Network error]: ${networkError}`);
+    } else {
+      console.error(`[Network error]: ${error.message}`);
     }
   },
 });
@@ -33,6 +33,6 @@ export const {
 /**
  * A {@link provideMagentoDriver} feature that specifies the error handler.
  */
-export const withDaffDriverMagentoErrorHandler = (handler: ErrorHandler): MagentoDriverFeature => makeMagentoDriverFeature(MagentoDriverFeatureKind.ErrorHandler, [
+export const withDaffDriverMagentoErrorHandler = (handler: ErrorLink.ErrorHandler): MagentoDriverFeature => makeMagentoDriverFeature(MagentoDriverFeatureKind.ErrorHandler, [
   provideDaffDriverMagentoErrorHandler(handler),
 ]);

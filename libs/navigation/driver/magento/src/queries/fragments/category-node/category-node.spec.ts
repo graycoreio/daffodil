@@ -1,8 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  InMemoryCache,
-  ApolloQueryResult,
-} from '@apollo/client/core';
+import { InMemoryCache } from '@apollo/client';
 import {
   gql,
   Apollo,
@@ -52,7 +49,6 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            addTypename: true,
             possibleTypes: schema.possibleTypes,
           }),
         },
@@ -87,7 +83,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 
   describe('when the depth is 0', () => {
     let query: DocumentNode;
-    let response: Observable<ApolloQueryResult<{categoryList: CategoryNode}>>;
+    let response: Observable<Apollo.QueryResult<{categoryList: CategoryNode}>>;
 
     beforeEach(() => {
       const fragment = getCategoryNodeFragment(0);
@@ -129,7 +125,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 
   describe('when the depth is 1', () => {
     let query: DocumentNode;
-    let response: Observable<ApolloQueryResult<{categoryList: CategoryNode}>>;
+    let response: Observable<Apollo.QueryResult<{categoryList: CategoryNode}>>;
 
     beforeEach(() => {
       const fragment = getCategoryNodeFragment(1);
@@ -171,7 +167,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 
   describe('when the depth is 3', () => {
     let query: DocumentNode;
-    let response: Observable<ApolloQueryResult<{categoryList: CategoryNode}>>;
+    let response: Observable<Apollo.QueryResult<{categoryList: CategoryNode}>>;
 
     beforeEach(() => {
       const fragment = getCategoryNodeFragment(3);

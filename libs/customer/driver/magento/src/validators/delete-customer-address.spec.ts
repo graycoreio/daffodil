@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer/driver';
 import { MagentoDeleteCustomerAddressResponse } from '@daffodil/customer/driver/magento';
@@ -6,15 +6,13 @@ import { MagentoDeleteCustomerAddressResponse } from '@daffodil/customer/driver/
 import { validateDeleteCustomerAddressResponse as validator } from './delete-customer-address';
 
 describe('@daffodil/customer/driver/magento | validateDeleteCustomerAddressResponse', () => {
-  let response: ApolloQueryResult<MagentoDeleteCustomerAddressResponse>;
+  let response: Apollo.QueryResult<MagentoDeleteCustomerAddressResponse>;
 
   beforeEach(() => {
     response = {
       data: {
         deleteCustomerAddress: true,
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

@@ -2,7 +2,8 @@ import {
   Injectable,
   makeEnvironmentProviders,
 } from '@angular/core';
-import { ApolloLink } from '@apollo/client/core';
+import { ApolloLink } from '@apollo/client';
+import { map } from 'rxjs';
 
 import {
   DaffApolloLinkGenerator,
@@ -22,19 +23,18 @@ export const provideDaffMagentoCacheHeader = () => makeEnvironmentProviders([
     return (operation, forward) => {
       if (cacheHeader) {
         operation.setContext({
-          headers: {
-            ...operation.getContext().headers,
-            [MAGENTO_CUSTOMER_CACHE_ID_HEADER]: cacheHeader,
-          },
+          headers: operation.getContext().headers.append(MAGENTO_CUSTOMER_CACHE_ID_HEADER, cacheHeader),
         });
       }
-      return forward(operation).map((response) => {
-        const { headers } = operation.getContext().response;
-        if (headers.get(MAGENTO_CUSTOMER_CACHE_ID_HEADER)) {
-          cacheHeader = headers.get(MAGENTO_CUSTOMER_CACHE_ID_HEADER);
-        }
-        return response;
-      });
+      return forward(operation).pipe(
+        map((response) => {
+          const { headers } = operation.getContext().response;
+          if (headers.get(MAGENTO_CUSTOMER_CACHE_ID_HEADER)) {
+            cacheHeader = headers.get(MAGENTO_CUSTOMER_CACHE_ID_HEADER);
+          }
+          return response;
+        }),
+      );
     };
   }),
 ]);
@@ -57,19 +57,18 @@ export class DaffMagentoCacheHeaderApolloLinkGenerator implements DaffApolloLink
     return new ApolloLink((operation, forward) => {
       if (this._cacheHeader) {
         operation.setContext({
-          headers: {
-            ...operation.getContext().headers,
-            [MAGENTO_CUSTOMER_CACHE_ID_HEADER]: this._cacheHeader,
-          },
+          headers: operation.getContext().headers.append(MAGENTO_CUSTOMER_CACHE_ID_HEADER, this._cacheHeader),
         });
       }
-      return forward(operation).map((response) => {
-        const { headers } = operation.getContext().response;
-        if (headers.get(MAGENTO_CUSTOMER_CACHE_ID_HEADER)) {
-          this._cacheHeader = headers.get(MAGENTO_CUSTOMER_CACHE_ID_HEADER);
-        }
-        return response;
-      });
+      return forward(operation).pipe(
+        map((response) => {
+          const { headers } = operation.getContext().response;
+          if (headers.get(MAGENTO_CUSTOMER_CACHE_ID_HEADER)) {
+            this._cacheHeader = headers.get(MAGENTO_CUSTOMER_CACHE_ID_HEADER);
+          }
+          return response;
+        }),
+      );
     });
   }
 }

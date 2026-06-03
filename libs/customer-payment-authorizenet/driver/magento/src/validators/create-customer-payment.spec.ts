@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerPaymentInvalidAPIResponseError } from '@daffodil/customer-payment/driver';
 import { MagentoCreateCustomerPaymentResponse } from '@daffodil/customer-payment-authorizenet/driver/magento';
@@ -8,7 +8,7 @@ import { MagentoTokenBaseCardFactory } from '@daffodil/customer-payment-authoriz
 import { validateCreateCustomerPaymentResponse as validator } from './create-customer-payment';
 
 describe('@daffodil/customer-payment-authorizenet/driver/magento | validateCreateCustomerPaymentResponse', () => {
-  let response: ApolloQueryResult<MagentoCreateCustomerPaymentResponse>;
+  let response: Apollo.QueryResult<MagentoCreateCustomerPaymentResponse>;
   let customerPaymentFactory: MagentoTokenBaseCardFactory;
 
   beforeEach(() => {
@@ -18,8 +18,6 @@ describe('@daffodil/customer-payment-authorizenet/driver/magento | validateCreat
       data: {
         createTokenBaseCard: customerPaymentFactory.create(),
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

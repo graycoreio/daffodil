@@ -1,2 +1,3 @@
-export * from './provider';
-export * from './type';
+export { provideDaffApolloHeaderProviders } from './provider';
+export { DaffApolloHeaderProvider } from './type';
+export { getApolloOperationHeaders } from './get';

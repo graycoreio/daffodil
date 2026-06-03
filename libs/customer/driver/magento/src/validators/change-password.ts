@@ -1,10 +1,10 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer/driver';
 
 import { MagentoChangePasswordResponse } from '../models/public_api';
 
-export const validateChangePasswordResponse = (response: ApolloQueryResult<MagentoChangePasswordResponse>) => {
+export const validateChangePasswordResponse = (response: Apollo.QueryResult<MagentoChangePasswordResponse>) => {
   if (response.data.changeCustomerPassword?.email) {
     return response;
   } else {

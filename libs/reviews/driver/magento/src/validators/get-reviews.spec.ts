@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffProductNotFoundError } from '@daffodil/product/driver';
 import { DaffReviewsInvalidAPIResponseError } from '@daffodil/reviews/driver';
@@ -9,7 +9,7 @@ import { MagentoProductReviewsFactory } from '@daffodil/reviews/driver/magento/t
 import { validateGetProductReviewsResponse as validator } from './get-reviews';
 
 describe('@daffodil/reviews/driver/magento | validateGetProductReviewsResponse', () => {
-  let response: ApolloQueryResult<MagentoGetProductReviewsResponse>;
+  let response: Apollo.QueryResult<MagentoGetProductReviewsResponse>;
   let reviewsFactory: MagentoProductReviewsFactory;
 
   beforeEach(() => {
@@ -24,8 +24,6 @@ describe('@daffodil/reviews/driver/magento | validateGetProductReviewsResponse',
           }],
         },
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

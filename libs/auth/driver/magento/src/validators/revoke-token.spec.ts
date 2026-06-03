@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffAuthInvalidAPIResponseError } from '@daffodil/auth/driver';
 import { MagentoRevokeCustomerTokenResponse } from '@daffodil/auth/driver/magento';
@@ -6,7 +6,7 @@ import { MagentoRevokeCustomerTokenResponse } from '@daffodil/auth/driver/magent
 import { validateRevokeTokenResponse as validator } from './revoke-token';
 
 describe('@daffodil/auth/driver/magento | RevokeToken', () => {
-  let response: ApolloQueryResult<MagentoRevokeCustomerTokenResponse>;
+  let response: Apollo.QueryResult<MagentoRevokeCustomerTokenResponse>;
 
   beforeEach(() => {
     response = {
@@ -15,8 +15,6 @@ describe('@daffodil/auth/driver/magento | RevokeToken', () => {
           result: true,
         },
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

@@ -1,10 +1,10 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerPaymentInvalidAPIResponseError } from '@daffodil/customer-payment/driver';
 
 import { MagentoDeleteCustomerPaymentResponse } from '../models/public_api';
 
-export const validateDeleteCustomerPaymentResponse = (response: ApolloQueryResult<MagentoDeleteCustomerPaymentResponse>) => {
+export const validateDeleteCustomerPaymentResponse = (response: Apollo.QueryResult<MagentoDeleteCustomerPaymentResponse>) => {
   if (response.data.deleteTokenBaseCard) {
     return response;
   } else {

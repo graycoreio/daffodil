@@ -1,10 +1,10 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer-order/driver';
 
 import { MagentoGetCustomerOrderResponse } from '../queries/public_api';
 
-export const validateGetCustomerOrderResponse = (response: ApolloQueryResult<MagentoGetCustomerOrderResponse>) => {
+export const validateGetCustomerOrderResponse = (response: Apollo.QueryResult<MagentoGetCustomerOrderResponse>) => {
   if (response.data.customer?.orders.items[0]) {
     return response;
   } else {

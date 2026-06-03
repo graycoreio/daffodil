@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffOrderInvalidAPIResponseError } from '@daffodil/order/driver';
 import { MagentoGetGuestOrdersResponse } from '@daffodil/order/driver/magento/2-4-1';
@@ -6,7 +6,7 @@ import { MagentoGetGuestOrdersResponse } from '@daffodil/order/driver/magento/2-
 import { validateGetOrdersResponse as validator } from './get-orders';
 
 describe('Order | Driver | Magento | 2.4.1 | Validator | GetOrders', () => {
-  let response: ApolloQueryResult<MagentoGetGuestOrdersResponse>;
+  let response: Apollo.QueryResult<MagentoGetGuestOrdersResponse>;
 
   beforeEach(() => {
     response = {
@@ -15,8 +15,6 @@ describe('Order | Driver | Magento | 2.4.1 | Validator | GetOrders', () => {
           items: [],
         },
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

@@ -1,4 +1,4 @@
-import type { ApolloClientOptions } from '@apollo/client/core';
+import type { ApolloClient } from '@apollo/client';
 
 import { createSingleInjectionToken } from '@daffodil/core';
 
@@ -9,7 +9,7 @@ import { MagentoDriverFeature } from './type';
 /**
  * Apollo client options except link and cache, creation of which is done by {@link provideMagentoDriver}.
  */
-export type DaffDriverMagentoExtraApolloOptions = Omit<ApolloClientOptions<any>, 'link' | 'cache'>;
+export type DaffDriverMagentoExtraApolloOptions = Omit<ApolloClient.Options, 'link' | 'cache'>;
 
 export const {
   /**

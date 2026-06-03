@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffContentInvalidAPIResponseError } from '@daffodil/content/driver';
 import { MagentoContentGetPageResponse } from '@daffodil/content/driver/magento';
@@ -8,7 +8,7 @@ import { MagentoCmsPageFactory } from '@daffodil/content/driver/magento/testing'
 import { validateMagentoContentGetPageResponse as validator } from './get-page';
 
 describe('@daffodil/content/driver/magento | validateMagentoContentGetPageResponse', () => {
-  let response: ApolloQueryResult<MagentoContentGetPageResponse>;
+  let response: Apollo.QueryResult<MagentoContentGetPageResponse>;
   let factory: MagentoCmsPageFactory;
 
   beforeEach(() => {
@@ -18,8 +18,6 @@ describe('@daffodil/content/driver/magento | validateMagentoContentGetPageRespon
       data: {
         route: factory.create(),
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

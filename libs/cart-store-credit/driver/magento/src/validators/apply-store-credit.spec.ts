@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCartStoreCreditInvalidAPIResponseError } from '@daffodil/cart-store-credit/driver';
 import { MagentoApplyStoreCreditResponse } from '@daffodil/cart-store-credit/driver/magento';
@@ -8,7 +8,7 @@ import { MagentoCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/d
 import { validateApplyStoreCreditResponse as validator } from './apply-store-credit';
 
 describe('@daffodil/cart-store-credit/driver/magento | validateApplyStoreCreditResponse', () => {
-  let response: ApolloQueryResult<MagentoApplyStoreCreditResponse>;
+  let response: Apollo.QueryResult<MagentoApplyStoreCreditResponse>;
   let storeCreditFactory: MagentoCartWithStoreCreditFactory;
 
   beforeEach(() => {
@@ -20,8 +20,6 @@ describe('@daffodil/cart-store-credit/driver/magento | validateApplyStoreCreditR
           cart: storeCreditFactory.create(),
         },
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

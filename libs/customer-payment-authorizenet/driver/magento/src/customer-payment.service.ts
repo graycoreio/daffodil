@@ -2,7 +2,6 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
-import { ApolloQueryResult } from '@apollo/client/core';
 import { Apollo } from 'apollo-angular';
 import {
   Observable,
@@ -145,7 +144,7 @@ export class DaffCustomerPaymentAuthorizeNetMagentoService implements DaffCustom
     );
   }
 
-  protected listPayments(): Observable<ApolloQueryResult<MagentoGetCustomerPaymentsResponse>> {
+  protected listPayments(): Observable<Apollo.QueryResult<MagentoGetCustomerPaymentsResponse>> {
     return this.apollo.query<MagentoGetCustomerPaymentsResponse>({
       query: getCustomerPayments,
     }).pipe(

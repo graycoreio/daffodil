@@ -1,4 +1,4 @@
-import { ApolloError } from '@apollo/client/core';
+import { CombinedGraphQLErrors } from '@apollo/client';
 import { GraphQLFormattedError } from 'graphql';
 
 import { DaffError } from '@daffodil/core';
@@ -11,6 +11,7 @@ import {
   MagentoSearchCategoryErrorMap,
   MagentoSearchCategoryErrorMessageRegexMap,
 } from './map';
+
 
 /**
  * Transforms a single GraphQL error.
@@ -31,15 +32,15 @@ export function transformMagentoSearchCategoryGraphQlError(error: GraphQLFormatt
   }
 
   return daffMagentoTransformGraphQlError(error, MagentoSearchCategoryErrorMap);
-};
+}
 
 /**
  * Transforms only the first GraphQL error with the cart magento error transformer,
  * otherwise falls back to a standard Magento error transform.
  */
 export function transformSearchCategoryMagentoError(error, requestPayload?: unknown) {
-  if (error.graphQLErrors?.length) {
-    return transformMagentoSearchCategoryGraphQlError((<ApolloError>error).graphQLErrors[0], requestPayload);
+  if (CombinedGraphQLErrors.is(error)) {
+    return transformMagentoSearchCategoryGraphQlError(error.errors[0], requestPayload);
   } else {
     return daffTransformMagentoError(error, MagentoSearchCategoryErrorMap);
   }

@@ -1,4 +1,4 @@
-import { ApolloError } from '@apollo/client/core';
+import { CombinedGraphQLErrors } from '@apollo/client';
 import { GraphQLFormattedError } from 'graphql';
 
 import { DaffError } from '@daffodil/core';
@@ -28,11 +28,11 @@ export function transformMagentoCartGraphQlError(error: GraphQLFormattedError, r
   }
 
   return daffTransformMagentoError(error, {});
-};
+}
 
 export function transformMagentoReviewsError(error: any, requestPayload?: unknown) {
-  if (error.graphQLErrors?.length) {
-    return transformMagentoCartGraphQlError((<ApolloError>error).graphQLErrors[0], requestPayload);
+  if (CombinedGraphQLErrors.is(error)) {
+    return transformMagentoCartGraphQlError(error.errors[0], requestPayload);
   } else {
     return daffTransformMagentoError(error, {}) || new DaffCustomerStoreCreditInvalidAPIResponseError(error.message);
   }

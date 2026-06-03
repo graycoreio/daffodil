@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerPaymentInvalidAPIResponseError } from '@daffodil/customer-payment/driver';
 import { MagentoDeleteCustomerPaymentResponse } from '@daffodil/customer-payment-authorizenet/driver/magento';
@@ -6,15 +6,13 @@ import { MagentoDeleteCustomerPaymentResponse } from '@daffodil/customer-payment
 import { validateDeleteCustomerPaymentResponse as validator } from './delete-customer-payment';
 
 describe('@daffodil/customer-payment-authorizenet/driver/magento | validateDeleteCustomerPaymentResponse', () => {
-  let response: ApolloQueryResult<MagentoDeleteCustomerPaymentResponse>;
+  let response: Apollo.QueryResult<MagentoDeleteCustomerPaymentResponse>;
 
   beforeEach(() => {
     response = {
       data: {
         deleteTokenBaseCard: true,
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

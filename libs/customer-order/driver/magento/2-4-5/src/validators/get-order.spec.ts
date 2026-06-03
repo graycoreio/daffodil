@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloQueryResult } from '@apollo/client/core';
+import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerInvalidAPIResponseError } from '@daffodil/customer-order/driver';
 import { MagentoGetCustomerOrderResponse } from '@daffodil/customer-order/driver/magento/2-4-5';
@@ -8,7 +8,7 @@ import { MagentoCustomerOrderFactory } from '@daffodil/customer-order/driver/mag
 import { validateGetCustomerOrderResponse as validator } from './get-order';
 
 describe('@daffodil/customer-order/driver/magento/2-4-5 | validateGetCustomerOrderResponse', () => {
-  let response: ApolloQueryResult<MagentoGetCustomerOrderResponse>;
+  let response: Apollo.QueryResult<MagentoGetCustomerOrderResponse>;
   let orderFactory: MagentoCustomerOrderFactory;
 
   beforeEach(() => {
@@ -23,8 +23,6 @@ describe('@daffodil/customer-order/driver/magento/2-4-5 | validateGetCustomerOrd
           },
         },
       },
-      loading: null,
-      networkStatus: null,
     };
   });
 

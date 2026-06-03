@@ -1,11 +1,14 @@
 import { TestBed } from '@angular/core/testing';
+import { InMemoryCache } from '@apollo/client';
 import {
+  APOLLO_TESTING_CACHE,
   ApolloTestingController,
   ApolloTestingModule,
 } from 'apollo-angular/testing';
 import { TestScheduler } from 'rxjs/testing';
 
 import { ID } from '@daffodil/core';
+import { schema } from '@daffodil/driver/magento';
 import {
   DaffExternallyResolvableUrl,
   DaffExternalRouterNotFoundError,
@@ -35,6 +38,14 @@ describe('@daffodil/external-router/driver/magento/2.4.3 | DaffExternalRouterMag
       imports: [
         DaffExternalRouterDriverMagentoModule.forRoot(),
         ApolloTestingModule,
+      ],
+      providers: [
+        {
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            possibleTypes: schema.possibleTypes,
+          }),
+        },
       ],
     });
     service = TestBed.inject(DaffExternalRouterMagentoDriver);
@@ -78,9 +89,7 @@ describe('@daffodil/external-router/driver/magento/2.4.3 | DaffExternalRouterMag
 
       const op = controller.expectOne(MagentoResolveUrlv243);
 
-      op.flush({
-        data: resolution,
-      });
+      op.flushData(resolution);
     });
   });
 

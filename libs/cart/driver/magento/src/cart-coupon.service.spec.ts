@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+import { InMemoryCache } from '@apollo/client';
 import {
+  APOLLO_TESTING_CACHE,
   ApolloTestingController,
   ApolloTestingModule,
 } from 'apollo-angular/testing';
@@ -29,6 +31,7 @@ import {
   DaffCartCouponFactory,
 } from '@daffodil/cart/testing';
 import { DaffBadInputError } from '@daffodil/driver';
+import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartCouponService } from './cart-coupon.service';
 
@@ -56,6 +59,12 @@ describe('@daffodil/cart/driver/magento | CartCouponService', () => {
       ],
       providers: [
         DaffMagentoCartCouponService,
+        {
+          provide: APOLLO_TESTING_CACHE,
+          useValue: new InMemoryCache({
+            possibleTypes: schema.possibleTypes,
+          }),
+        },
       ],
     });
 
@@ -195,7 +204,10 @@ describe('@daffodil/cart/driver/magento | CartCouponService', () => {
   describe('list | listing the coupons in the specified cart', () => {
     describe('when the call to the Magento API is successful', () => {
       beforeEach(() => {
-        mockListCouponsResponse.cart.applied_coupons = [mockDaffCartCoupon];
+        mockListCouponsResponse.cart.applied_coupons = [{
+          ...mockDaffCartCoupon,
+          __typename: 'AppliedCoupon',
+        }];
       });
 
       it('should return a list of coupons', done => {
