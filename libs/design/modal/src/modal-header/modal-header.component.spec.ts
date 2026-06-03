@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,7 +14,7 @@ import { DaffModalHeaderComponent } from './modal-header.component';
 import { DaffModalService } from '../service/modal.service';
 
 @Component ({
-  template: `<daff-modal-header [dismissible]="dismissible"></daff-modal-header>`,
+  template: `<daff-modal-header [dismissible]="dismissible()"></daff-modal-header>`,
   imports: [
     DaffModalHeaderComponent,
   ],
@@ -23,7 +24,7 @@ import { DaffModalService } from '../service/modal.service';
 })
 
 class WrapperComponent {
-  dismissible = true;
+  dismissible = signal(true);
 }
 
 describe('@daffodil/design/modal | DaffModalHeaderComponent', () => {
@@ -67,7 +68,7 @@ describe('@daffodil/design/modal | DaffModalHeaderComponent', () => {
     });
 
     it('should hide the close button if dismissible is false', () => {
-      wrapper.dismissible = false;
+      wrapper.dismissible.set(false);
       fixture.detectChanges();
 
       expect(component.dismissible).toBe(false);

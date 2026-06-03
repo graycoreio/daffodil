@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -14,13 +15,13 @@ import { DaffSizeAllType } from '@daffodil/design';
 import { DaffContainerComponent } from './container.component';
 
 @Component({
-  template: `<daff-container [size]="size"></daff-container>`,
+  template: `<daff-container [size]="size()"></daff-container>`,
   imports: [
     DaffContainerComponent,
   ],
 })
 class WrapperComponent {
-  size: DaffSizeAllType;
+  size = signal<DaffSizeAllType>(undefined);
 }
 
 describe('@daffodil/design/container | DaffContainerComponent', () => {
@@ -60,7 +61,7 @@ describe('@daffodil/design/container | DaffContainerComponent', () => {
 
   describe('setting the size', () => {
     it('should take size as an input', () => {
-      wrapper.size = 'md';
+      wrapper.size.set('md');
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-md')).toEqual(true);

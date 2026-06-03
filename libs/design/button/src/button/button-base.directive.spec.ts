@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -19,17 +20,18 @@ import { DaffButtonSize } from './button-sizable.directive';
 
 @Component({
   template: `
-		<div daffButtonBase [color]="color" [size]="size" [status]="status" [tabindex]="tabindex"></div>`,
+		<div daffButtonBase [color]="color()" [size]="size()" [status]="status()" [tabindex]="tabindex" [disabled]="disabled()"></div>`,
   imports: [
     DaffButtonBaseDirective,
   ],
 })
 
 class WrapperComponent {
-  color: DaffPalette;
-  size: DaffButtonSize;
-  status: DaffStatus;
+  color = signal<DaffPalette>(undefined);
+  size = signal<DaffButtonSize>(undefined);
+  status = signal<DaffStatus>(undefined);
   tabindex = 0;
+  disabled = signal<boolean>(undefined);
 }
 
 describe('@daffodil/design/button | DaffButtonBaseDirective', () => {
@@ -63,11 +65,11 @@ describe('@daffodil/design/button | DaffButtonBaseDirective', () => {
 
   describe('using the color property of a button', () => {
     it('should not set a default color', () => {
-      expect(de.componentInstance.color).toBeFalsy();
+      expect(de.componentInstance.color()).toBeFalsy();
     });
 
     it('should add the class of the defined color to the host element', () => {
-      wrapper.color = 'primary';
+      wrapper.color.set('primary');
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
@@ -76,7 +78,7 @@ describe('@daffodil/design/button | DaffButtonBaseDirective', () => {
 
   describe('using the size property of a button', () => {
     it('should take size as an input', () => {
-      wrapper.size = 'md';
+      wrapper.size.set('md');
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-md')).toEqual(true);
@@ -88,14 +90,14 @@ describe('@daffodil/design/button | DaffButtonBaseDirective', () => {
   });
 
   it('should take status as an input', () => {
-    wrapper.status = 'warn';
+    wrapper.status.set('warn');
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('daff-warn')).toEqual(true);
   });
 
   it('should not set a default status', () => {
-    expect(de.componentInstance.status).toBeFalsy();
+    expect(de.componentInstance.status()).toBeFalsy();
   });
 
   describe('using the tabindex property of a button', () => {
@@ -106,7 +108,7 @@ describe('@daffodil/design/button | DaffButtonBaseDirective', () => {
 
   describe('when the button is disabled', () => {
     beforeEach(() => {
-      directive.disabled = true;
+      wrapper.disabled.set(true);
       fixture.detectChanges();
     });
 

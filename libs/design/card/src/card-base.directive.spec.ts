@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,16 +16,16 @@ import { DaffCardBaseDirective } from './card-base.directive';
 
 @Component({
   template: `
-		<div daffCardBase [color]="color" [orientation]="orientation" [elevated]="elevated"></div>`,
+		<div daffCardBase [color]="color()" [orientation]="orientation()" [elevated]="elevated()"></div>`,
   imports: [
     DaffCardBaseDirective,
   ],
 })
 
 class WrapperComponent {
-  color: DaffPalette;
-  orientation: string;
-  elevated: boolean;
+  color = signal<DaffPalette>(undefined);
+  orientation = signal<string>(undefined);
+  elevated = signal<boolean>(undefined);
 }
 
 describe('@daffodil/design/card | DaffCardBaseDirective', () => {
@@ -56,7 +57,7 @@ describe('@daffodil/design/card | DaffCardBaseDirective', () => {
 
   describe('using the color property of a card', () => {
     it('should add the class of the defined color to the host element', () => {
-      wrapper.color = 'primary';
+      wrapper.color.set('primary');
       fixture.detectChanges();
 
       expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
@@ -69,11 +70,11 @@ describe('@daffodil/design/card | DaffCardBaseDirective', () => {
 
   describe('elevated property', () => {
     it('should be able to take `elevated` as an input', () => {
-      expect(directive.elevated).toEqual(wrapper.elevated);
+      expect(directive.elevated).toEqual(wrapper.elevated());
     });
 
     it('should add a class of "elevated" to the host element when elevated is true', () => {
-      wrapper.elevated = true;
+      wrapper.elevated.set(true);
       fixture.detectChanges();
 
       expect(de.classes['elevated']).toBeTrue();

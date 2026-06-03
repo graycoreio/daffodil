@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -18,7 +19,7 @@ import { DaffCalloutComponent } from './callout.component';
 
 @Component ({
   template: `
-    <daff-callout [color]="color" [textAlignment]="textAlignment" [compact]="compact"></daff-callout>
+    <daff-callout [color]="color()" [textAlignment]="textAlignment()" [compact]="compact()"></daff-callout>
   `,
   imports: [
     DaffCalloutComponent,
@@ -26,9 +27,9 @@ import { DaffCalloutComponent } from './callout.component';
 })
 
 class WrapperComponent {
-  color: DaffPalette;
-  textAlignment: DaffTextAlignment;
-  compact: boolean;
+  color = signal<DaffPalette>(undefined);
+  textAlignment = signal<DaffTextAlignment>(undefined);
+  compact = signal<boolean>(undefined);
 }
 
 describe('@daffodil/design/callout | DaffCalloutComponent', () => {
@@ -65,21 +66,21 @@ describe('@daffodil/design/callout | DaffCalloutComponent', () => {
   });
 
   it('should take color as an input', () => {
-    wrapper.color = 'primary';
+    wrapper.color.set('primary');
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
   });
 
   it('should take textAlignment as an input', () => {
-    wrapper.textAlignment = 'left';
+    wrapper.textAlignment.set('left');
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('daff-left')).toEqual(true);
   });
 
   it('should take compact as an input', () => {
-    wrapper.compact = true;
+    wrapper.compact.set(true);
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('daff-compact')).toEqual(true);

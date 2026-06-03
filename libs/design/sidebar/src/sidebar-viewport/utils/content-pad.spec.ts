@@ -1,7 +1,7 @@
 import {
   Component,
-  Input,
   QueryList,
+  signal,
   ViewChildren,
 } from '@angular/core';
 import {
@@ -16,7 +16,7 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 @Component({
   template: `
-    @for (sidebar of sidebars; track sidebar) {
+    @for (sidebar of sidebars(); track sidebar) {
       <daff-sidebar [side]="sidebar.side" [mode]="sidebar.mode" [open]="sidebar.open"></daff-sidebar>
     }
     `,
@@ -25,7 +25,7 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
   ],
 })
 class IterableWrapperComponent{
-  @Input() sidebars: { side: any; mode: any; open: boolean }[] = [];
+  sidebars = signal<{ side: any; mode: any; open: boolean }[]>([]);
 
   @ViewChildren(DaffSidebarComponent) sidebarComponents: QueryList<DaffSidebarComponent>;
 }
@@ -67,7 +67,7 @@ describe('@daffodil/design | sidebar-viewport | isSidebarViewportContentPadded',
     ];
 
     sidebarCombinations.forEach((el) => {
-      wrapper.sidebars = el.sidebars;
+      wrapper.sidebars.set(el.sidebars);
       fixture.detectChanges();
       expect(isSidebarViewportContentPadded(wrapper.sidebarComponents, 'left')).toEqual(el.left);
       expect(isSidebarViewportContentPadded(wrapper.sidebarComponents, 'right')).toEqual(el.right);

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -43,7 +44,7 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', (
 
 @Component({
   template: `
-    <daff-accordion-item [initiallyExpanded]="initiallyExpandedValue" (toggled)="toggledFunction($event)" [disabled]="disabled">
+    <daff-accordion-item [initiallyExpanded]="initiallyExpandedValue()" (toggled)="toggledFunction($event)" [disabled]="disabled()">
       <h3 daffAccordionItemTitle>Size and Fit</h3>
       <div>no content</div>
     </daff-accordion-item>
@@ -53,9 +54,9 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', (
   ],
 })
 class WrapperComponent {
-  initiallyExpandedValue: boolean;
+  initiallyExpandedValue = signal<boolean>(undefined);
   toggledFunction(val: boolean) {};
-  disabled: boolean;
+  disabled = signal<boolean>(undefined);
 }
 
 describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () => {
@@ -88,13 +89,13 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
   });
 
   it('should be able to accept an initiallyExpanded input', () => {
-    wrapper.initiallyExpandedValue = false;
+    wrapper.initiallyExpandedValue.set(false);
 
     fixture.detectChanges();
 
     expect(daffAccordionItem.initiallyExpanded).toEqual(false);
 
-    wrapper.initiallyExpandedValue = true;
+    wrapper.initiallyExpandedValue.set(true);
 
     fixture.detectChanges();
 
@@ -118,21 +119,21 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
   });
 
   it('should set open to true if initiallyExpanded is true', () => {
-    wrapper.initiallyExpandedValue = true;
+    wrapper.initiallyExpandedValue.set(true);
     fixture.detectChanges();
 
     expect(daffAccordionItem.open).toBeTrue();
   });
 
   it('should set open to false if initiallyExpanded is false', () => {
-    wrapper.initiallyExpandedValue = false;
+    wrapper.initiallyExpandedValue.set(false);
     fixture.detectChanges();
 
     expect(daffAccordionItem.open).toBeFalse();
   });
 
   it('should set open to false if initiallyExpanded is undefined', () => {
-    wrapper.initiallyExpandedValue = undefined;
+    wrapper.initiallyExpandedValue.set(undefined);
     fixture.detectChanges();
 
     expect(daffAccordionItem.open).toBeFalse();
@@ -161,7 +162,7 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
 
   describe('when disabled is set to true on the accordion item', () => {
     beforeEach(() => {
-      wrapper.disabled = true;
+      wrapper.disabled.set(true);
       fixture.detectChanges();
     });
 

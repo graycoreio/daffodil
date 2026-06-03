@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,14 +17,14 @@ import {
 
 @Component({
   template: `
-		<div daffColorable [color]="color"></div>`,
+		<div daffColorable [color]="color()"></div>`,
   imports: [
     DaffColorableDirective,
   ],
 })
 
 class WrapperComponent {
-  color: DaffColor;
+  color = signal<DaffColor>(undefined);
 }
 
 describe('@daffodil/design | DaffColorableDirective', () => {
@@ -56,11 +57,11 @@ describe('@daffodil/design | DaffColorableDirective', () => {
   });
 
   it('should take color as an input', () => {
-    expect(directive.color).toEqual(wrapper.color);
+    expect(directive.color).toEqual(wrapper.color());
   });
 
   it('should add a class of `.daff-primary` to the host element if color is set to primary', () => {
-    wrapper.color = 'primary';
+    wrapper.color.set('primary');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -69,7 +70,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
   });
 
   it('should add a class of `.daff-secondary` to the host element if color is set to secondary', () => {
-    wrapper.color = 'secondary';
+    wrapper.color.set('secondary');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -78,7 +79,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
   });
 
   it('should add a class of `.daff-tertiary` to the host element if color is set to tertiary', () => {
-    wrapper.color = 'tertiary';
+    wrapper.color.set('tertiary');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -87,7 +88,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
   });
 
   it('should add a class of `.daff-black` to the host element if color is set to black', () => {
-    wrapper.color = 'black';
+    wrapper.color.set('black');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -96,7 +97,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
   });
 
   it('should add a class of `.daff-white` to the host element if color is set to white', () => {
-    wrapper.color = 'white';
+    wrapper.color.set('white');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -105,7 +106,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
   });
 
   it('should add a class of `.daff-light` to the host element if color is set to light', () => {
-    wrapper.color = 'light';
+    wrapper.color.set('light');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -114,7 +115,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
   });
 
   it('should add a class of `.daff-dark` to the host element if color is set to dark', () => {
-    wrapper.color = 'dark';
+    wrapper.color.set('dark');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -123,7 +124,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
   });
 
   it('should add a class of `.daff-theme` to the host element if color is set to theme', () => {
-    wrapper.color = 'theme';
+    wrapper.color.set('theme');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -132,7 +133,7 @@ describe('@daffodil/design | DaffColorableDirective', () => {
   });
 
   it('should add a class of `.daff-theme-contrast` to the host element if color is set to theme-contrast', () => {
-    wrapper.color = 'theme-contrast';
+    wrapper.color.set('theme-contrast');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({

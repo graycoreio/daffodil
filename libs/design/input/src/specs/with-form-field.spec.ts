@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -17,7 +18,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
 
 @Component({
   template:`
-    <daff-form-field [id]="id">
+    <daff-form-field [id]="id()">
       <input daff-input>
     </daff-form-field>
   `,
@@ -27,7 +28,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
   ],
 })
 class WrapperComponent {
-  id = 'test';
+  id = signal('test');
 }
 
 describe('@daffodil/design | DaffInputComponent | With Form Field', () => {
@@ -90,7 +91,7 @@ describe('@daffodil/design | DaffInputComponent | With Form Field', () => {
 
   describe('when the form field id gets updated', () => {
     it('should update the input`s id', () => {
-      wrapper.id = 'test-2';
+      wrapper.id.set('test-2');
       fixture.detectChanges();
 
       expect(formField.id).toEqual('test-2');

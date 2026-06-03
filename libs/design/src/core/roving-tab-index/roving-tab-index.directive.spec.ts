@@ -17,14 +17,14 @@ import { DaffRovingTabIndexDirective } from './roving-tab-index.directive';
 
 @Component({
   template: `
-		<div [rti]="rtiValue"></div>
+		<div [rti]="rtiValue()"></div>
 	`,
   imports: [
     DaffRovingTabIndexDirective,
   ],
 })
 class WrapperComponent {
-  rtiValue: string;
+  rtiValue = signal<string>(undefined);
 }
 
 describe('@daffodil/design | DaffRovingTabIndexDirective', () => {
@@ -63,15 +63,15 @@ describe('@daffodil/design | DaffRovingTabIndexDirective', () => {
   });
 
   it('should accept rti as an input', () => {
-    wrapper.rtiValue = 'rtiTest';
+    wrapper.rtiValue.set('rtiTest');
     fixture.detectChanges();
-    expect(directive.rti()).toEqual(wrapper.rtiValue);
+    expect(directive.rti()).toEqual(wrapper.rtiValue());
   });
 
   it('should allow group to be overridden by rti', () => {
-    wrapper.rtiValue = 'rtiTest';
+    wrapper.rtiValue.set('rtiTest');
     fixture.detectChanges();
-    expect(directive.group()).toEqual(wrapper.rtiValue);
+    expect(directive.group()).toEqual(wrapper.rtiValue());
   });
 
   it('should default group to empty string', () => {
@@ -115,7 +115,7 @@ describe('@daffodil/design | DaffRovingTabIndexDirective', () => {
 @Component({
   template: `
 		<div rtiBoundary="group">
-			<div data-sut [rti]="rtiValue"></div>
+			<div data-sut [rti]="rtiValue()"></div>
 		</div>
 	`,
   imports: [
@@ -124,7 +124,7 @@ describe('@daffodil/design | DaffRovingTabIndexDirective', () => {
   ],
 })
 class WrapperInGroupComponent {
-  rtiValue: string;
+  rtiValue = signal<string>(undefined);
 }
 
 describe('@daffodil/design | DaffRovingTabIndexDirective | In Group', () => {
@@ -162,9 +162,9 @@ describe('@daffodil/design | DaffRovingTabIndexDirective | In Group', () => {
   });
 
   it('should allow group to be overridden by rti', () => {
-    wrapper.rtiValue = 'rtiTest';
+    wrapper.rtiValue.set('rtiTest');
     fixture.detectChanges();
-    expect(directive.group()).toEqual(wrapper.rtiValue);
+    expect(directive.group()).toEqual(wrapper.rtiValue());
   });
 
   it('should set tabindex to -1 when the group does not match', () => {

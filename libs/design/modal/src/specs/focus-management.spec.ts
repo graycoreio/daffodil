@@ -84,6 +84,7 @@ describe('@daffodil/design/modal | DaffModalComponent | Focus Management', () =>
     it('should push the activator to the focus stack when modal opens', () => {
       expect(focusStackService.length()).toEqual(0);
       activatorButton.click();
+      fixture.detectChanges();
 
       expect(focusStackService.length()).toEqual(1);
       expect(document.activeElement).not.toEqual(activatorButton);
@@ -92,6 +93,7 @@ describe('@daffodil/design/modal | DaffModalComponent | Focus Management', () =>
     it('should follow complete user interaction flow: focus → click → modal focused → close → button focused', async () => {
       expect(focusStackService.length()).toEqual(0);
       activatorButton.click();
+      fixture.detectChanges();
 
       expect(focusStackService.length()).toEqual(1);
       expect(document.activeElement).not.toEqual(activatorButton);

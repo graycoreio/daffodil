@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,7 +16,7 @@ import { DaffSelectableDirective } from '@daffodil/design';
   template: `
 		<div daffSelected
       (becameSelected)="becameSelectedFunction($event)"
-      [selected]="selected">
+      [selected]="selected()">
 		</div>`,
   imports: [
     DaffSelectableDirective,
@@ -24,7 +25,7 @@ import { DaffSelectableDirective } from '@daffodil/design';
 
 class WrapperComponent {
   becameSelected = (val: boolean) => {};
-  selected: boolean;
+  selected = signal<boolean>(undefined);
 }
 
 describe('@daffodil/design | DaffSelectableDirective', () => {
@@ -56,7 +57,7 @@ describe('@daffodil/design | DaffSelectableDirective', () => {
   });
 
   it('should add a class of "daff-selected" to the host element when selected is true', () => {
-    wrapper.selected = true;
+    wrapper.selected.set(true);
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -70,7 +71,7 @@ describe('@daffodil/design | DaffSelectableDirective', () => {
 
   it('should emit on becameSelected when select is called', () => {
     spyOn(directive.becameSelected, 'emit');
-    wrapper.selected = true;
+    wrapper.selected.set(true);
     directive.select();
 
     expect(directive.becameSelected.emit).toHaveBeenCalledWith();

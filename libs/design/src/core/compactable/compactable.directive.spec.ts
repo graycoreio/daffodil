@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,14 +14,14 @@ import { DaffCompactableDirective } from '@daffodil/design';
 
 @Component({
   template: `
-		<div daffCompactable [compact]="compact"></div>`,
+		<div daffCompactable [compact]="compact()"></div>`,
   imports: [
     DaffCompactableDirective,
   ],
 })
 
 class WrapperComponent {
-  compact: boolean;
+  compact = signal<boolean>(undefined);
 }
 
 describe('@daffodil/design | DaffCompactableDirective', () => {
@@ -53,11 +54,11 @@ describe('@daffodil/design | DaffCompactableDirective', () => {
   });
 
   it('should take compact as an input', () => {
-    expect(directive.compact).toEqual(wrapper.compact);
+    expect(directive.compact).toEqual(wrapper.compact());
   });
 
   it('should add a class of .daff-compact to the host element if compact is set to true', () => {
-    wrapper.compact = true;
+    wrapper.compact.set(true);
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -66,7 +67,7 @@ describe('@daffodil/design | DaffCompactableDirective', () => {
   });
 
   it('should not add a class of .daff-compact to the host element if compact is set to false', () => {
-    wrapper.compact = false;
+    wrapper.compact.set(false);
     fixture.detectChanges();
 
     expect(de.classes['daff-skeleton']).toBeUndefined();

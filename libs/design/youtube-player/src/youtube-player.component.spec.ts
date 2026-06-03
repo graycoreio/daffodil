@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -12,15 +13,15 @@ import { By } from '@angular/platform-browser';
 import { DaffYoutubePlayerComponent } from './youtube-player.component';
 
 @Component({
-  template: `<daff-youtube-player [width]="width" [height]="height"></daff-youtube-player>`,
+  template: `<daff-youtube-player [width]="width()" [height]="height()"></daff-youtube-player>`,
   imports: [
     DaffYoutubePlayerComponent,
   ],
 })
 
 class WrapperComponent {
-  width = 100;
-  height = 100;
+  width = signal(100);
+  height = signal(100);
 }
 
 describe('@daffodil/design/youtube-player | DaffYoutubePlayerComponent', () => {
@@ -54,34 +55,34 @@ describe('@daffodil/design/youtube-player | DaffYoutubePlayerComponent', () => {
   });
 
   it('should be able to take `width` as an input', () => {
-    wrapper.width = 100;
+    wrapper.width.set(100);
     fixture.detectChanges();
 
     expect(component.width).toEqual(100);
   });
 
   it('should be able to take `height` as an input', () => {
-    wrapper.height = 100;
+    wrapper.height.set(100);
     fixture.detectChanges();
 
     expect(component.height).toEqual(100);
   });
 
   it('should throw an error when width is invalid', () => {
-    wrapper.width = null;
+    wrapper.width.set(null);
     expect(() => fixture.detectChanges()).toThrowError(/width/);
   });
 
   it('should throw an error when height is invalid', () => {
-    wrapper.height = undefined;
+    wrapper.height.set(undefined);
     expect(() => fixture.detectChanges()).toThrowError(/height/);
   });
 
   it('sets `max-width` on the host element based on the width', () => {
-    wrapper.width = 300;
+    wrapper.width.set(300);
 
     fixture.detectChanges();
 
-    expect(de.styles['max-width']).toEqual(wrapper.width + 'px');
+    expect(de.styles['max-width']).toEqual(wrapper.width() + 'px');
   });
 });

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  Input,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,7 +16,7 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 @Component({
   template: `
 		<daff-sidebar-viewport>
-		  @for (sidebar of sidebars; track sidebar) {
+		  @for (sidebar of sidebars(); track sidebar) {
 		    <daff-sidebar [side]="sidebar[1]" [mode]="sidebar[0]"></daff-sidebar>
 		  }
 		</daff-sidebar-viewport>
@@ -27,7 +27,7 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
   ],
 })
 class IterableWrapperComponent{
-  @Input() sidebars: any[] = [];
+  sidebars = signal<any[]>([]);
 }
 
 describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Multiple Sidebars', () => {
@@ -78,7 +78,7 @@ describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Multiple Sid
     ];
 
     allowedSidebarCombinations.forEach((el) => {
-      iterableWrapper.sidebars = el;
+      iterableWrapper.sidebars.set(el);
       expect(() => iterableFixture.detectChanges()).not.toThrowError();
     });
   });

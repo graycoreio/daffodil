@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -17,7 +18,7 @@ import { DaffTextareaComponent } from '@daffodil/design/textarea';
 
 @Component({
   template:`
-    <daff-form-field [id]="id">
+    <daff-form-field [id]="id()">
      <textarea daff-textarea></textarea>
     </daff-form-field>
   `,
@@ -27,7 +28,7 @@ import { DaffTextareaComponent } from '@daffodil/design/textarea';
   ],
 })
 class WrapperComponent {
-  id = 'test';
+  id = signal('test');
   required: boolean;
 }
 
@@ -101,7 +102,7 @@ describe('@daffodil/design/textarea | DaffTextareaComponent | With Form Field', 
 
   describe('when the form field id gets updated', () => {
     it('should update the textarea`s id', () => {
-      wrapper.id = 'test-2';
+      wrapper.id.set('test-2');
       fixture.detectChanges();
 
       expect(formField.id).toEqual('test-2');

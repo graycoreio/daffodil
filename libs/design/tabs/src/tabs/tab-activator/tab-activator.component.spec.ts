@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,17 +14,17 @@ import { DaffTabActivatorComponent } from './tab-activator.component';
 
 @Component({
   template: `
-		<button daff-tab-activator [selected]="selected" [tabActivatorId]="tabActivatorId" [panelId]="panelId">Tab Activator</button>
-		<a daff-tab-activator [selected]="selected" [tabActivatorId]="tabActivatorId" [panelId]="panelId">Tab Activator</a>
+		<button daff-tab-activator [selected]="selected()" [tabActivatorId]="tabActivatorId()" [panelId]="panelId()">Tab Activator</button>
+		<a daff-tab-activator [selected]="selected()" [tabActivatorId]="tabActivatorId()" [panelId]="panelId()">Tab Activator</a>
 	`,
   imports: [
     DaffTabActivatorComponent,
   ],
 })
 class WrapperComponent {
-  selected: boolean;
-  tabActivatorId: string;
-  panelId: string;
+  selected = signal<boolean>(undefined);
+  tabActivatorId = signal<string>(undefined);
+  panelId = signal<string>(undefined);
 }
 
 describe('@daffodil/design/tabs | DaffTabActivatorComponent', () => {
@@ -65,12 +66,12 @@ describe('@daffodil/design/tabs | DaffTabActivatorComponent', () => {
   });
 
   it('should take panelId as an input', () => {
-    expect(component.panelId).toEqual(wrapper.panelId);
+    expect(component.panelId).toEqual(wrapper.panelId());
   });
 
   describe('when selected is true', () => {
     beforeEach(() => {
-      wrapper.selected = true;
+      wrapper.selected.set(true);
       fixture.detectChanges();
     });
 
@@ -85,7 +86,7 @@ describe('@daffodil/design/tabs | DaffTabActivatorComponent', () => {
 
   describe('when selected is false', () => {
     beforeEach(() => {
-      wrapper.selected = false;
+      wrapper.selected.set(false);
       fixture.detectChanges();
     });
 
@@ -104,7 +105,7 @@ describe('@daffodil/design/tabs | DaffTabActivatorComponent', () => {
 
   describe('tabActivatorId', () => {
     it('should take tabActivatorId as an input', () => {
-      expect(component.tabActivatorId).toEqual(wrapper.tabActivatorId);
+      expect(component.tabActivatorId).toEqual(wrapper.tabActivatorId());
     });
 
     it('should assign the `tabActivatorId` value to the `id` attribute', () => {

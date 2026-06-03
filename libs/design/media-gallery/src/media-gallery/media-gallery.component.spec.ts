@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -14,7 +15,7 @@ import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
 
 @Component({
   template: `
-    <daff-media-gallery [name]="nameValue" [skeleton]="skeleton" [id]="idValue">
+    <daff-media-gallery [name]="nameValue()" [skeleton]="skeleton()" [id]="idValue()">
       <ng-template daffThumbnail label="First">
         <div>First</div>
       </ng-template>
@@ -29,9 +30,9 @@ import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
   ],
 })
 class WrapperComponent {
-  nameValue: string;
-  skeleton = false;
-  idValue: string;
+  nameValue = signal<string>(undefined);
+  skeleton = signal(false);
+  idValue = signal<string>(undefined);
 }
 
 describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
@@ -54,7 +55,7 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    wrapper.nameValue = stubName;
+    wrapper.nameValue.set(stubName);
     fixture.detectChanges();
 
     de = fixture.debugElement.query(By.css('daff-media-gallery'));
@@ -74,7 +75,7 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
   });
 
   it('should take skeleton as an input', () => {
-    wrapper.skeleton = true;
+    wrapper.skeleton.set(true);
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('daff-skeleton')).toEqual(true);
@@ -113,13 +114,13 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
   });
 
   it('should use the gallery id for thumbnail ids if the gallery has an input id', () => {
-    wrapper.idValue = 'test-gallery';
+    wrapper.idValue.set('test-gallery');
     fixture.detectChanges();
     expect(thumbnailButtons[1].id).toContain('test-gallery');
   });
 
   it('should set an id on the gallery if an id is set', () => {
-    wrapper.idValue = 'test-gallery';
+    wrapper.idValue.set('test-gallery');
     fixture.detectChanges();
     expect(de.nativeElement.id).toEqual('test-gallery');
   });

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  signal,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -20,9 +23,9 @@ import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.c
   template: `
     <daff-quantity-field
       [formControl]="formControl"
-      [min]="minValue"
-      [max]="maxValue"
-      [selectMax]="selectMaxValue"
+      [min]="minValue()"
+      [max]="maxValue()"
+      [selectMax]="selectMaxValue()"
     ></daff-quantity-field>
   `,
   imports: [
@@ -33,9 +36,9 @@ import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.c
   ],
 })
 class WrapperComponent {
-  minValue = 0;
-  maxValue = 50;
-  selectMaxValue = 10;
+  minValue = signal(0);
+  maxValue = signal(50);
+  selectMaxValue = signal(10);
   formControl = new UntypedFormControl(1);
 }
 
@@ -75,7 +78,7 @@ describe('@daffodil/design | DaffQuantityFieldComponent', () => {
 
   describe('on <daff-quantity-select>', () => {
     it('should set the select max prop to selectMax', () => {
-      expect(selectComponent.max).toEqual(wrapper.selectMaxValue);
+      expect(selectComponent.max).toEqual(wrapper.selectMaxValue());
     });
 
     it('should set the select extendable prop to true', () => {
@@ -84,12 +87,12 @@ describe('@daffodil/design | DaffQuantityFieldComponent', () => {
 
     describe('when the max value is less than selectMax', () => {
       beforeEach(() => {
-        wrapper.maxValue = 5;
+        wrapper.maxValue.set(5);
         fixture.detectChanges();
       });
 
       it('should set the select max prop to max', () => {
-        expect(selectComponent.max).toEqual(wrapper.maxValue);
+        expect(selectComponent.max).toEqual(wrapper.maxValue());
       });
 
       it('should set the select extendable prop to false', () => {

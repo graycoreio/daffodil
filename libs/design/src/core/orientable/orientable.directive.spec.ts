@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,14 +17,14 @@ import {
 
 @Component({
   template: `
-		<div daffOrientable [orientation]="orientation"></div>`,
+		<div daffOrientable [orientation]="orientation()"></div>`,
   imports: [
     DaffOrientableDirective,
   ],
 })
 
 class WrapperComponent {
-  orientation: DaffOrientation;
+  orientation = signal<DaffOrientation>(undefined);
 }
 
 describe('@daffodil/design | DaffOrientableDirective', () => {
@@ -56,11 +57,11 @@ describe('@daffodil/design | DaffOrientableDirective', () => {
   });
 
   it('should take orientation as an input', () => {
-    expect(directive.orientation).toEqual(wrapper.orientation);
+    expect(directive.orientation).toEqual(wrapper.orientation());
   });
 
   it('should add a class of .daff-horizontal to the host element if orientation is set to horizontal', () => {
-    wrapper.orientation = 'horizontal';
+    wrapper.orientation.set('horizontal');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({
@@ -69,7 +70,7 @@ describe('@daffodil/design | DaffOrientableDirective', () => {
   });
 
   it('should add a class of .daff-vertical to the host element if orientation is set to vertical', () => {
-    wrapper.orientation = 'vertical';
+    wrapper.orientation.set('vertical');
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({

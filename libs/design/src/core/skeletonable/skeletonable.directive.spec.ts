@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -14,7 +15,7 @@ import { DaffSkeletonableDirective } from '@daffodil/design';
 @Component({
   template: `
 		<div daffSkeletonable
-			[skeleton]="skeleton">
+			[skeleton]="skeleton()">
 		</div>`,
   imports: [
     DaffSkeletonableDirective,
@@ -22,7 +23,7 @@ import { DaffSkeletonableDirective } from '@daffodil/design';
 })
 
 class WrapperComponent {
-  skeleton: boolean;
+  skeleton = signal<boolean>(undefined);
 }
 
 describe('@daffodil/design | DaffSkeletonableDirective', () => {
@@ -54,11 +55,11 @@ describe('@daffodil/design | DaffSkeletonableDirective', () => {
   });
 
   it('should take skeleton as an input', () => {
-    expect(directive.skeleton).toEqual(wrapper.skeleton);
+    expect(directive.skeleton).toEqual(wrapper.skeleton());
   });
 
   it('should add a class of "daff-skeleton" to the host element when skeleton is true', () => {
-    wrapper.skeleton = true;
+    wrapper.skeleton.set(true);
     fixture.detectChanges();
 
     expect(de.classes).toEqual(jasmine.objectContaining({

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,7 +17,7 @@ import {
 
 @Component({
   template: `
-    <ol daff-breadcrumb [skeleton]="skeleton">
+    <ol daff-breadcrumb [skeleton]="skeleton()">
       <li daffBreadcrumbItem><a href="/">Home</a></li>
       <li daffBreadcrumbItem><a href="/cat">Category</a></li>
       <li daffBreadcrumbItem><a href="/cat/sub">Subcategory</a></li>
@@ -29,7 +30,7 @@ import {
   ],
 })
 class WrapperComponent {
-  skeleton: boolean;
+  skeleton = signal<boolean>(undefined);
 }
 
 @Component({
@@ -87,7 +88,7 @@ describe('@daffodil/design/breadcrumb | DaffBreadcrumbComponent', () => {
   });
 
   it('should take skeleton as an input', () => {
-    wrapper.skeleton = true;
+    wrapper.skeleton.set(true);
     fixture.detectChanges();
 
     expect(de.nativeElement.classList.contains('daff-skeleton')).toEqual(true);

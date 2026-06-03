@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -18,7 +19,7 @@ import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 
 @Component({
   template: `
-    <daff-form-field [id]="id">
+    <daff-form-field [id]="id()">
       <select daff-native-select></select>
     </daff-form-field>
   `,
@@ -28,7 +29,7 @@ import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
   ],
 })
 class WrapperComponent {
-  id = 'test';
+  id = signal('test');
 }
 
 describe('@daffodil/design | DaffNativeSelectComponent | With Form Field', () => {
@@ -95,7 +96,7 @@ describe('@daffodil/design | DaffNativeSelectComponent | With Form Field', () =>
 
   describe('when the form field id gets updated', () => {
     it('should update the native-select`s id', () => {
-      wrapper.id = 'test-2';
+      wrapper.id.set('test-2');
       fixture.detectChanges();
 
       expect(formField.id).toEqual('test-2');
