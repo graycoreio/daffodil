@@ -33,10 +33,10 @@ jobs:
           token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
 
       - name: Add Packages to README
-        uses: ./.github/actions/add-packages-to-readme
+        uses: graycoreio/daffodil/.github/actions/add-packages-to-readme@develop
 
       - name: Annotate deprecation messages
-        uses: ./.github/actions/deprecations
+        uses: graycoreio/daffodil/.github/actions/deprecations@develop
         with:
           mode: annotate
 
