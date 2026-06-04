@@ -43,13 +43,12 @@ module.exports = function(config) {
     browserNoActivityTimeout : 210000,
     singleRun: false,
   });
-  // Angular's Karma builder sets `config.buildWebpack` after this function
-  // returns, so we can't access the webpack config directly. Instead, intercept
-  // the assignment with a setter so we can inject our Sass importer plugin
-  // into the webpack config the moment Angular provides it.
-  interceptNgBuildWebpack(config, function(webpackConfig) {
-    webpackConfig.plugins = webpackConfig.plugins || [];
-    webpackConfig.plugins.push(new SassDaffodilImporterPlugin());
+  // Angular's Karma builder sets `config.buildWebpack` (with an already-created
+  // webpack compiler) during karma config parsing. Intercept that assignment and
+  // apply the Sass importer plugin directly to the compiler so it can patch the
+  // sass-loader rules before the first compilation run.
+  interceptNgBuildWebpack(config, function(compiler) {
+    new SassDaffodilImporterPlugin().apply(compiler);
   });
 
   return config;
