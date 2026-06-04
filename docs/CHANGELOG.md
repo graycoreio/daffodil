@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.93.0](https://github.com/graycoreio/daffodil/compare/v0.92.3...v0.93.0) (2026-06-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to angular 21 ([#4442](https://github.com/graycoreio/daffodil/issues/4442))
+
+### Features
+
+* **demo:** use zone change detection ([#4442](https://github.com/graycoreio/daffodil/issues/4442)) ([292176c](https://github.com/graycoreio/daffodil/commit/292176c0bfd556c62cfe4c1606cfd593e2538148))
+* **design:** add deprecate tag to orientable and text alignable ([#4487](https://github.com/graycoreio/daffodil/issues/4487)) ([531b0d0](https://github.com/graycoreio/daffodil/commit/531b0d0d8201d1db42f15a809b1a77025c2cfd10))
+* **design:** deprecate `DaffSizableEnum` and `DaffSizable` and update documentation ([#4465](https://github.com/graycoreio/daffodil/issues/4465)) ([b3f880c](https://github.com/graycoreio/daffodil/commit/b3f880c239cd02027a1245a461990b644f92dcd4))
+* **design:** implement hover media query in design components ([#4493](https://github.com/graycoreio/daffodil/issues/4493)) ([922e73f](https://github.com/graycoreio/daffodil/commit/922e73fdc9f7505823150e6a7a994420e056c557))
+* **design:** relabel formerly private properties to [@docs-private](https://github.com/docs-private) so that angular host can access them ([#4442](https://github.com/graycoreio/daffodil/issues/4442)) ([72bd274](https://github.com/graycoreio/daffodil/commit/72bd2742cb4929e009b21d57e900296d86d51461))
+* **search-product:** make magento incremental seach query cacheable ([#4502](https://github.com/graycoreio/daffodil/issues/4502)) ([ce51864](https://github.com/graycoreio/daffodil/commit/ce5186417d3fa79bc7a4e29e2adb68e626caa651))
+* support @apollo/client@^4 ([#4442](https://github.com/graycoreio/daffodil/issues/4442)) ([70d354e](https://github.com/graycoreio/daffodil/commit/70d354e5554e5f40d8bbea016c7f5954e9e4441f))
+* upgrade to angular 21 ([#4442](https://github.com/graycoreio/daffodil/issues/4442)) ([b4e5c3d](https://github.com/graycoreio/daffodil/commit/b4e5c3d0a4db5ea2653d3a795ea71e2e8d6d3742))
+
+
+### Bug Fixes
+
+* **design:** apply form field control right padding removal only when action is present ([#4492](https://github.com/graycoreio/daffodil/issues/4492)) ([bc34302](https://github.com/graycoreio/daffodil/commit/bc34302962050521dfb4b158f08709b168fdabf2))
+* **external-router:** magento driver does not request product key fields ([#4488](https://github.com/graycoreio/daffodil/issues/4488)) ([89ec493](https://github.com/graycoreio/daffodil/commit/89ec493f12879149cf8a6dab7cde551431035a01))
+
 ## [0.92.3](https://github.com/graycoreio/daffodil/compare/v0.92.3-rc.2...v0.92.3) (2026-05-15)
 
 
