@@ -1,4 +1,6 @@
 
+import { Document } from 'dgeni';
+
 import { DesignExampleDocumentCreatorProcessor } from './designExampleDocumentCreator';
 
 describe('DesignExampleDocumentCreatorProcessor', () => {
