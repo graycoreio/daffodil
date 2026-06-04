@@ -1,0 +1,11 @@
+name: "Deprecations"
+author: "Graycore"
+description: "Manages '@deprecated' annotations in library sources. 'annotate' stamps unannotated tags with deprecation and removal versions; 'check' fails if any symbol is marked for removal in the current version."
+inputs:
+  mode:
+    required: true
+    description: "'annotate' to stamp '@deprecated' tags with version annotations, 'check' to fail when a symbol is due for removal in the current version"
+
+runs:
+  using: "node24"
+  main: "dist/main.js"

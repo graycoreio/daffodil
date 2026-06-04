@@ -16,16 +16,10 @@ on:
           - rc
           - stable
 
-env:
-  NPM_VERSION: 11
-
 jobs:
   release-please:
     if: github.event_name != 'workflow_dispatch' || inputs.release-mode != 'stable'
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [22.21.x]
     steps:
       - uses: googleapis/release-please-action@v5
         with:
@@ -38,14 +32,13 @@ jobs:
           ref: release-please--branches--develop--components--daffodil
           token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
 
-      - uses: graycoreio/github-actions/setup-node@main
-        with:
-          node-version: ${{ matrix.node }}
-          npm-version: ${{ env.NPM_VERSION }}
-          use-stamp-cache: true
-
       - name: Add Packages to README
         uses: ./.github/actions/add-packages-to-readme
+
+      - name: Annotate deprecation messages
+        uses: ./.github/actions/deprecations
+        with:
+          mode: annotate
 
       - name: Commit and push
         run: |
@@ -53,9 +46,7 @@ jobs:
           git config user.email "automation@graycore.io"
           git add README.md
           git commit -m 'docs: autogenerate package table in README' || true
-          cd tools/release
-          npx gulp annotateDeprecationMessages
-          git add ../..
+          git add .
           git commit -m 'docs: annotate deprecation messages' || true
           git push
 
