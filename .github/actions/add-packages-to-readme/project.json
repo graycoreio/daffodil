@@ -1,0 +1,28 @@
+{
+	"name": "add-packages-to-readme",
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": ".github/actions/add-packages-to-readme",
+	"projectType": "application",
+	"targets": {
+		"build": {
+			"executor": "nx:run-commands",
+			"outputs": ["{projectRoot}/dist/main.js"],
+			"options": {
+				"command": "npx esbuild .github/actions/add-packages-to-readme/src/main.ts --bundle --platform=node --outfile=.github/actions/add-packages-to-readme/dist/main.js"
+			}
+		},
+		"test": {
+			"executor": "nx:run-commands",
+			"dependsOn": ["build-test"],
+			"options": {
+				"command": "npx jasmine --config=.github/actions/add-packages-to-readme/jasmine.json"
+			}
+		},
+		"build-test": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "npx esbuild .github/actions/add-packages-to-readme/src/*.spec.ts --bundle --platform=node --outdir=.github/actions/add-packages-to-readme/dist"
+			}
+		}
+	}
+}

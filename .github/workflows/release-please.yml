@@ -45,13 +45,15 @@ jobs:
           use-stamp-cache: true
 
       - name: Add Packages to README
+        uses: ./.github/actions/add-packages-to-readme
+
+      - name: Commit and push
         run: |
           git config user.name "GrayBot"
           git config user.email "automation@graycore.io"
-          cd tools/release
-          npx gulp addPackagesToReadme
-          git add ../../README.md
+          git add README.md
           git commit -m 'docs: autogenerate package table in README' || true
+          cd tools/release
           npx gulp annotateDeprecationMessages
           git add ../..
           git commit -m 'docs: annotate deprecation messages' || true

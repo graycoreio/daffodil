@@ -1,0 +1,8 @@
+{
+  "spec_dir": ".github/actions/add-packages-to-readme/dist",
+  "spec_files": [
+    "**/*[sS]pec.js"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": false
+}
