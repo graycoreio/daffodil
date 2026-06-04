@@ -23,7 +23,8 @@ export const angularEslintConfig = defineConfig([
 				"error",
 				{
 					"style": "kebab-case",
-					"type": "element"
+					"type": "element",
+					"prefix": ""
 				}
 			],
 			"@angular-eslint/contextual-lifecycle": "error",
@@ -32,7 +33,8 @@ export const angularEslintConfig = defineConfig([
 				"error",
 				{
 					"style": "camelCase",
-					"type": "attribute"
+					"type": "attribute",
+					"prefix": ""
 				}
 			],
 			"@angular-eslint/no-conflicting-lifecycle": "error",

@@ -21,6 +21,7 @@ export default defineConfig([
         {
           type: 'element',
           style: 'kebab-case',
+          prefix: '',
         },
       ],
       '@angular-eslint/directive-selector': [
@@ -28,6 +29,7 @@ export default defineConfig([
         {
           type: 'attribute',
           style: 'camelCase',
+          prefix: '',
         },
       ],
       'daff-docs/docs-private-hostbinding-lifecycle': 'error',
@@ -42,6 +44,7 @@ export default defineConfig([
         {
           type: 'element',
           style: 'kebab-case',
+          prefix: '',
         },
       ],
       '@angular-eslint/directive-selector': [
@@ -49,6 +52,7 @@ export default defineConfig([
         {
           type: 'attribute',
           style: 'camelCase',
+          prefix: '',
         },
       ],
     },

@@ -8,7 +8,6 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { DAFF_TAG_COMPONENTS } from '@daffodil/design/tag';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'colorable-tag-example',
   templateUrl: './colorable-tag.component.html',
   styles: [`
