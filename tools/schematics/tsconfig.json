@@ -3,19 +3,14 @@
   "compilerOptions": {
     "outDir": "../../dist/commerce",
     "rootDir": ".",
-    "module": "node16",
-		"moduleResolution": "node16",
-    "target": "es2022",
-    "lib": ["es2022"],
-    "declaration": true,
-    "experimentalDecorators": true,
-    "importHelpers": false,
-    "skipLibCheck": true,
-    "types": ["node"]
+    "module": "node20",
+    "moduleResolution": "node16",
+    "target": "es2023",
+    "lib": [
+      "es2023"
+    ],
+    "declaration": true
   },
-  "include": [
-    "**/*.ts",
-  ],
   "exclude": [
     "**/*.spec.ts",
     "**/files/**/*.ts",
