@@ -51,7 +51,7 @@ npx nx run @daffodil/commerce:verdaccio:publish
 
 ```bash
 mkdir -p /tmp/daffodil-commerce-test && cd /tmp/daffodil-commerce-test
-npx @angular/cli@20 new test-app --style=scss --ssr --defaults --skip-git
+npx @angular/cli@21 new test-app --style=scss --ssr --defaults --skip-git
 
 cd test-app
 npx ng add @daffodil/commerce@0.0.0-test.local
