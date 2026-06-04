@@ -17,6 +17,7 @@ export const daffSearchProductIncrementalQuery = (extraProductFragments: Documen
     products(search: $search, pageSize: $pageSize) {
       items {
         ...product
+        uid
         ${daffBuildFragmentNameSpread(...extraProductFragments)}
       }
 		  total_count

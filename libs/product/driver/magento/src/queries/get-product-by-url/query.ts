@@ -17,6 +17,7 @@ export const getProductByUrl = (extraProductFragments: DocumentNode[] = []) => g
 		route(url: $url) {
       ... on ProductInterface {
         ...magentoProductPage
+        uid
         ${daffBuildFragmentNameSpread(...extraProductFragments)}
       }
     }

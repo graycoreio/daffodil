@@ -92,6 +92,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
         query TestQuery {
           categoryList {
             ...recursiveCategoryNode
+            uid
           }
         }
         ${fragment}
@@ -134,6 +135,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
         query TestQuery {
           categoryList {
             ...recursiveCategoryNode
+            uid
           }
         }
         ${fragment}
@@ -176,6 +178,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
         query TestQuery {
           categoryList {
             ...recursiveCategoryNode
+            uid
           }
         }
         ${fragment}

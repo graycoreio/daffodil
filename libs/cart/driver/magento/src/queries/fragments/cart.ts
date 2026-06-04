@@ -21,6 +21,7 @@ export const cartFragment = gql`
         selected_shipping_method {
           ...selectedShippingMethod
         }
+        street
       }
       available_shipping_methods {
         amount {
@@ -32,15 +33,19 @@ export const cartFragment = gql`
         carrier_title
         method_title
       }
+      street
     }
     items {
       ...cartItem
+      uid
     }
     available_payment_methods {
       ...availablePaymentMethod
+      code
     }
     selected_payment_method {
       ...selectedPaymentMethod
+      code
     }
     applied_coupons {
       ...cartCoupon

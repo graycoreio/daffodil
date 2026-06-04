@@ -10,6 +10,7 @@ export const magentoSearchCategoryResultFragment = gql`
 		products {
 			items {
 				sku
+    uid
 			}
 		}
   }

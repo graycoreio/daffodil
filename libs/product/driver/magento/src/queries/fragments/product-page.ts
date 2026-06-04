@@ -16,6 +16,7 @@ export const magentoProductPageFragment = gql`
 		description {
 			html
 		}
+    uid
 	}
   ${magentoProductFragment}
 `;
