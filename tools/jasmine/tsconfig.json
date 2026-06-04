@@ -1,17 +1,8 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../tsconfig.tools.json",
   "compilerOptions": {
     "outDir": "../../dist/jasmine",
-    "target": "esnext",
-    "module": "node16",
-		"moduleResolution": "node16",
-    "declaration": true,
-    "sourceMap": true,
-    "inlineSources": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "types": ["node","jasmine"]
+    "declaration": true
   },
   "exclude": [
     "src/test.ts",

@@ -13,11 +13,6 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "lib": [
-      "ES2022",
-      "dom",
-      "DOM.Iterable"
-    ],
     "baseUrl": ".",
     "paths": {
       "@daffodil/*": [

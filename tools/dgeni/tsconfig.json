@@ -1,19 +1,11 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../tsconfig.tools.json",
   "compilerOptions": {
-    "outDir": "../dist/out-tsc/tools",
-    "rootDir": ".",
-    "moduleResolution": "node",
     "module": "commonjs",
-		"moduleResolution": "node",
+    "moduleResolution": "node10",
     "target": "es5",
-    "types": [
-      "jasmine",
-      "node"
-    ],
-    "esModuleInterop": true
-  },
-  "include": [
-    "**/*.ts"
-  ]
+    "lib": [
+      "es2022"
+    ]
+  }
 }

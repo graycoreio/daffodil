@@ -1,15 +1,7 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../tsconfig.tools.json",
   "compilerOptions": {
-    "outDir": "../../dist/builders",
-    "module": "node16",
-		"moduleResolution": "node16",
-    "target": "es2018",
-    "types": [
-      "jasmine",
-      "node"
-    ],
-    "skipLibCheck": true
+    "outDir": "../../dist/builders"
   },
   "exclude": [
     "src/test.ts",
