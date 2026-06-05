@@ -5,18 +5,18 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffIconButtonComponent } from '@daffodil/design/button';
+import { DAFF_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
-  selector: 'icon-button-example',
-  templateUrl: './icon-button.component.html',
-  styleUrl: './icon-button.component.scss',
+  selector: 'button-colors-example',
+  templateUrl: './button-colors.component.html',
+  styleUrl: './button-colors.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffIconButtonComponent,
+    DAFF_BUTTON_COMPONENTS,
     FaIconComponent,
   ],
 })
-export class IconButtonExampleComponent {
+export class ButtonColorsExampleComponent {
   faPlus = faPlus;
 }

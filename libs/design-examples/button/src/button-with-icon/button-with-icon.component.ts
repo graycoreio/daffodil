@@ -5,7 +5,7 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   faArrowRight,
-  faUser,
+  faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { DAFF_BASIC_BUTTON_COMPONENTS } from '@daffodil/design/button';
@@ -21,6 +21,6 @@ import { DAFF_BASIC_BUTTON_COMPONENTS } from '@daffodil/design/button';
   ],
 })
 export class ButtonWithIconExampleComponent {
-  faUser = faUser;
+  faShoppingCart = faShoppingCart;
   faArrowRight = faArrowRight;
 }
