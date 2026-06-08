@@ -1,3 +1,40 @@
-<button type="button" daff-icon-button color="theme-contrast" (click)="toggleTheme()" [attr.aria-label]="ariaLabel()">
+<button
+  type="button"
+  daff-icon-button
+  color="theme-contrast"
+  [daffMenuActivator]="menu"
+  [attr.aria-label]="label()">
   <fa-icon [icon]="icon()"></fa-icon>
 </button>
+
+<ng-template #menu>
+  <daff-menu>
+    <button
+      type="button"
+      daff-menu-item
+      aria-label="Set default system theme"
+      [attr.aria-current]="preference() === DaffTheme.System"
+      (click)="systemMode()">
+      <fa-icon [icon]="faCircleHalfStroke" [fixedWidth]="true" daffPrefix></fa-icon>
+      System
+    </button>
+    <button
+      type="button"
+      daff-menu-item
+      aria-label="Set light theme"
+      [attr.aria-current]="preference() === DaffTheme.Light"
+      (click)="lightMode()">
+      <fa-icon [icon]="faSun" [fixedWidth]="true" daffPrefix></fa-icon>
+      Light
+    </button>
+    <button
+      type="button"
+      daff-menu-item
+      aria-label="Set dark theme"
+      [attr.aria-current]="preference() === DaffTheme.Dark"
+      (click)="darkMode()">
+      <fa-icon [icon]="faMoon" [fixedWidth]="true" daffPrefix></fa-icon>
+      Dark
+    </button>
+  </daff-menu>
+</ng-template>
