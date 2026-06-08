@@ -4,28 +4,12 @@ import { provideDaffDocsExampleContent } from '@daffodil/docs';
 
 export const provideDaffDesignButtonExamplesContent = () => makeEnvironmentProviders(provideDaffDocsExampleContent(
   {
-    id: 'basic-button',
-    component: () => import('./basic-button/basic-button.component').then(c => c.BasicButtonExampleComponent),
-  },
-  {
     id: 'elevated-button',
     component: () => import('./elevated-button/elevated-button.component').then(c => c.ElevatedButtonExampleComponent),
   },
   {
-    id: 'flat-button',
-    component: () => import('./flat-button/flat-button.component').then(c => c.FlatButtonExampleComponent),
-  },
-  {
-    id: 'icon-button',
-    component: () => import('./icon-button/icon-button.component').then(c => c.IconButtonExampleComponent),
-  },
-  {
     id: 'statusable-button',
     component: () => import('./statusable-button/statusable-button.component').then(c => c.StatusableButtonExampleComponent),
-  },
-  {
-    id: 'stroked-button',
-    component: () => import('./stroked-button/stroked-button.component').then(c => c.StrokedButtonExampleComponent),
   },
   {
     id: 'button-sizes',
@@ -42,6 +26,14 @@ export const provideDaffDesignButtonExamplesContent = () => makeEnvironmentProvi
   {
     id: 'button-with-icon',
     component: () => import('./button-with-icon/button-with-icon.component').then(c => c.ButtonWithIconExampleComponent),
+  },
+  {
+    id: 'button-types',
+    component: () => import('./button-types/button-types.component').then(c => c.ButtonTypesExampleComponent),
+  },
+  {
+    id: 'button-colors',
+    component: () => import('./button-colors/button-colors.component').then(c => c.ButtonColorsExampleComponent),
   },
 ));
 

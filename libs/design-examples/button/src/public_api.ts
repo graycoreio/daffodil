@@ -1,11 +1,9 @@
 export { provideDaffDesignButtonExamplesContent } from './provider';
-export { BasicButtonExampleComponent } from './basic-button/basic-button.component';
 export { ElevatedButtonExampleComponent } from './elevated-button/elevated-button.component';
-export { FlatButtonExampleComponent } from './flat-button/flat-button.component';
-export { IconButtonExampleComponent } from './icon-button/icon-button.component';
 export { StatusableButtonExampleComponent } from './statusable-button/statusable-button.component';
-export { StrokedButtonExampleComponent } from './stroked-button/stroked-button.component';
 export { ButtonSizesExampleComponent } from './button-sizes/button-sizes.component';
 export { LoadingButtonExampleComponent } from './loading-button/loading-button.component';
 export { DisabledButtonExampleComponent } from './disabled-button/disabled-button.component';
 export { ButtonWithIconExampleComponent } from './button-with-icon/button-with-icon.component';
+export { ButtonTypesExampleComponent } from './button-types/button-types.component';
+export { ButtonColorsExampleComponent } from './button-colors/button-colors.component';

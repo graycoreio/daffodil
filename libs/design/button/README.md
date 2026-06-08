@@ -16,26 +16,13 @@ Native `<button>` or `<a>` elements should always be used in order to provide an
 - Use `<a>` for navigation to new pages or different sections.
 - Use `<button>` for actions performed within the same page.
 
-**Basic button**
-<daff-docs-example-viewer example="basic-button"></daff-docs-example-viewer>
-
-**Flat button**
-<daff-docs-example-viewer example="flat-button"></daff-docs-example-viewer>
-
-**Stroked button**
-<daff-docs-example-viewer example="stroked-button"></daff-docs-example-viewer>
-
-> `dark`, `light`, and `theme` should be used with caution to ensure that there is sufficient contrast.
-
-**Icon button**
-<daff-docs-example-viewer example="icon-button"></daff-docs-example-viewer>
-
-> `dark`, `light`, and `theme` should be used with caution to ensure that there is sufficient contrast.
+<daff-docs-example-viewer example="button-types"></daff-docs-example-viewer>
 
 ## Usage
 
 Import the button type you need into your component:
 
+Available imports:
 - `DAFF_BASIC_BUTTON_COMPONENTS`
 - `DAFF_FLAT_BUTTON_COMPONENTS`
 - `DAFF_ICON_BUTTON_COMPONENTS`
@@ -84,6 +71,8 @@ Use the `color` property to change the color of a button.
 
 > Note: `dark`, `light`, and `theme` should be used on appropriate backgrounds for sufficient contrast.
 
+<daff-docs-example-viewer example="button-colors"></daff-docs-example-viewer>
+
 ### Elevation
 Add shadows to buttons with the `elevated` property.
 
@@ -114,7 +103,7 @@ Use the `loading` property to indicate that an action is being processed. When `
 ## Accessibility
 
 ### Built-in behavior
-- Uses native `<a>` and `<button>` HTML elements for keyboard and screen reader support by default
+- Enforces the use of native `<a>` and `<button>` HTML elements for keyboard and screen reader support by default
 
 ### Developer responsibilities
 - Use `<a>` for navigation to new pages or different sections
