@@ -34,7 +34,7 @@ export const THEME_STORAGE_KEY = 'DAFF_THEME';
 export const coerceValue = (val?: string): DaffTheme =>
   val === DaffTheme.Dark || val === DaffTheme.Light
     ? val
-    : DaffTheme.None;
+    : DaffTheme.System;
 
 /**
  * Generate a StorageEvent
@@ -43,7 +43,7 @@ const storageEventBuilder = (
   value: DaffTheme,
 ): ThemeStorageEvent => ({
   key: THEME_STORAGE_KEY,
-  newValue: coerceValue(value) !== DaffTheme.None ? value : null,
+  newValue: coerceValue(value) !== DaffTheme.System ? value : null,
 });
 
 /**
@@ -111,7 +111,7 @@ export class DaffThemeStorageService {
   }
 
   removeThemeSetting(): void {
-    this.progressStorageEvent(DaffTheme.None);
+    this.progressStorageEvent(DaffTheme.System);
     this.storage.removeItem(THEME_STORAGE_KEY);
   }
 }
