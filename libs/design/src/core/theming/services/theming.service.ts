@@ -70,6 +70,6 @@ export class DaffThemingService {
    * Follow the operating system's theme preference by clearing any stored theme.
    */
   systemMode() {
-    this.themeStorage.setTheme(DaffTheme.System);
+    this.themeStorage.removeThemeSetting();
   }
 }
