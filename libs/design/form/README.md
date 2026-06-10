@@ -8,10 +8,14 @@ This package includes reusable form components that help create consistent and a
 - **Hints** (`<daff-hint>`): Helpful information and validation hints
 - **Error Messages** (`<daff-error-message>`): Validation error messages for form controls
 
-These components can be used independently or within a [form field](/libs/design/form-field/README.md) to organize and style form-related content consistently.
+These components are presentational and have no dependency on [form field](/libs/design/form-field/README.md). They're most commonly used inside a form field, which wires them to their control automatically. Use them on their own when you need the same styling but a form field doesn't fit, such as:
+
+- Controls a form field can't wrap, like checkboxes, radios, switches, or other custom form controls
+- Form-level or cross-field messaging that isn't tied to a single control
 
 ## Usage
-To use form, import `DAFF_FORM_HELPER_COMPONENTS` directly into your custom component:
+
+Import `DAFF_FORM_HELPER_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_FORM_HELPER_COMPONENTS } from '@daffodil/design/form';
@@ -25,6 +29,8 @@ import { DAFF_FORM_HELPER_COMPONENTS } from '@daffodil/design/form';
 })
 export class CustomComponent {}
 ```
+
+## Features
 
 ### Labels
 Labels help users understand what information to enter into a form control. Use `<daff-form-label>` to create accessible labels for form controls.
@@ -65,11 +71,14 @@ Error messages can be used to display validation errors.
 ```
 
 ## Accessibility
-These components include built-in accessibility features:
+
+When used independently, you're responsible for the accessibility wiring yourself, including the label's `for` attribute and `aria-describedby` on the control.
+
+For complete accessibility information and best practices, refer to the [form field accessibility documentation](/libs/design/form-field/README.md#accessibility).
+
+### Built-in behavior
 - `<daff-error-message>` is set to `aria-live="polite"` by default so assistive technology only announce errors when they appear
 
 When used with a [form field](/libs/design/form-field/README.md):
 - `<daff-form-label>` automatically associates with form controls
 - `<daff-hint>` and `<daff-error-message>` are linked to form controls via `aria-describedby`
-
-For complete accessibility information and best practices, refer to the [form field accessibility documentation](/libs/design/form-field/README.md#accessibility).
