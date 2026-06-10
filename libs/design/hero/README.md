@@ -14,14 +14,12 @@ Heroes are the first visual element users see on a page and are intended to make
 - Highlighting promotional content or key features
 - Creating an impactful landing page experience
 
-## When not to use
-Avoid heroes when:
-- Trying to make a visual highlight that's not at the top of a page (use [callout](/libs/design/callout/README.md) instead)
+**When not to use**
+- Making a visual highlight that's not at the top of a page (use [callout](/libs/design/callout/README.md) instead)
 
 ## Usage
 
-### Within a standalone component
-To use the hero components, import `DAFF_HERO_COMPONENTS` directly into your custom component:
+Import `DAFF_HERO_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
@@ -36,52 +34,12 @@ import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use hero in a module, import `DaffHeroModule` into your custom module:
-
-```ts
-import { NgModule } from '@angular/core';
-import { DaffHeroModule } from '@daffodil/design/hero';
-import { CustomComponent } from './custom.component';
-
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffHeroModule,
-  ],
-})
-export class CustomComponentModule { }
-```
-
-> This method is deprecated. It's recommended to update all custom components to standalone.
+> **Deprecation notice:**
+> 
+> `DaffHeroModule` is deprecated. Use the standalone component imports instead.
 
 ## Anatomy
-A hero consists of the following components, displayed in the order listed:
-
-### Container
-**`<daff-hero>`**: The main wrapper that holds all hero content.
-
-### Icon
-**`[daffHeroIcon]`**: Displays visual or branding element. Avoid using for interactive icons.
-
-### Tagline
-**`[daffHeroTagline]`**: Short, memorable phrase that provides quick context.
-
-### Title
-**`[daffHeroTitle]`**: The primary heading text. Applied to heading elements (`<h1>`).
-
-### Subtitle
-**`[daffHeroSubtitle]`**: Secondary descriptive text displayed beneath the title.
-
-### Body
-**`[daffHeroBody]`**: Flexible container for additional content or actions. It's unstyled except for spacing and should only be used once per hero.
-
-### Basic structure
+A hero is composed of a wrapper, icon, tagline, title, subtitle, and body, displayed in the order listed:
 
 ```html
 <daff-hero>
@@ -97,6 +55,13 @@ A hero consists of the following components, displayed in the order listed:
   </div>
 </daff-hero>
 ```
+
+- **`<daff-hero>`**: The wrapper component that holds all hero content.
+- **`[daffHeroIcon]`**: Displays a visual or branding element. Avoid using for interactive or actionable icons.
+- **`[daffHeroTagline]`**: Short, memorable phrase that provides quick context.
+- **`[daffHeroTitle]`**: The primary heading text. Applied to heading elements (`<h1>`).
+- **`[daffHeroSubtitle]`**: Secondary descriptive text displayed beneath the title.
+- **`[daffHeroBody]`**: Flexible container for additional content or actions. It's unstyled except for spacing and **should only be used once per hero**.
 
 ## Features
 
