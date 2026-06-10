@@ -7,27 +7,40 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faMobile } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffPalette } from '@daffodil/design';
 import { DaffButtonComponent } from '@daffodil/design/button';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
+import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
 
 @Component({
   selector: 'hero-theming-example',
   templateUrl: './hero-theming.component.html',
-  styleUrls: ['./hero-theming.component.scss'],
+  styleUrl: './hero-theming.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_HERO_COMPONENTS,
+    DAFF_FORM_FIELD_COMPONENTS,
+    DAFF_SELECT_COMPONENTS,
     FaIconComponent,
     DaffButtonComponent,
     ReactiveFormsModule,
   ],
 })
 export class HeroThemingExampleComponent {
-  faMobile = faMobile;
-  color: DaffPalette = 'primary';
+  faBagShopping = faBagShopping;
 
-  colorControl: UntypedFormControl = new UntypedFormControl('');
+  options = [
+    { value: '', label: 'Default' },
+    { value: 'primary', label: 'Primary' },
+    { value: 'secondary', label: 'Secondary' },
+    { value: 'tertiary', label: 'Tertiary' },
+    { value: 'white', label: 'White' },
+    { value: 'black', label: 'Black' },
+    { value: 'theme', label: 'Theme' },
+    { value: 'theme-contrast', label: 'Theme Contrast' },
+  ];
+
+  colorControl: UntypedFormControl = new UntypedFormControl(this.options[0]);
 }
