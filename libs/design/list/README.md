@@ -69,10 +69,11 @@ Use the `[daffPrefix]` element to display a leading visual icon for a list item.
 <daff-docs-example-viewer example="icon-list"></daff-docs-example-viewer>
 
 ## Accessibility
-By default, list includes appropriate ARIA roles to support screen readers and provide an accessible experience.
 
+### Daffodil provides
 - `<daff-list>` is assigned `role="list"` to identify a list of items.
 - `<daff-nav-list>` is assigned `role="navigation"` to indicate that the list is used for navigation.
 - `<daff-list-item>` within a `<daff-list>` is assigned `role="listitem"` to identify a list item contained inside the list.
 
-> Always provide an accessible label for `<daff-nav-list>` via `aria-label` or `aria-labelledby` to describe its purpose (e.g. `"Footer links"` or `"Sidebar links"`).
+### Developer responsibilities
+- Always provide an accessible label for `<daff-nav-list>` via `aria-label` or `aria-labelledby` to describe its purpose (e.g. `"Footer links"` or `"Sidebar links"`).
