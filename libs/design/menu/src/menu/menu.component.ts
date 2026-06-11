@@ -65,8 +65,7 @@ import { DaffMenuService } from '../services/menu.service';
 })
 export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
   private _focusTrap: ConfigurableFocusTrap;
-  private _keyManager: FocusKeyManager<unknown>; // Matches any component or directive that provides `DAFF_MENU_ITEM_TOKEN`, not just `DaffMenuItemComponent`.
-
+  private _keyManager: FocusKeyManager<unknown>;
   /**
    * @docs-private
    *
@@ -89,7 +88,7 @@ export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
   /**
    * @docs-private
    *
-   * Handle keyboard navigation
+   * Handles keyboard navigation.
    */
   handleKeydown(event: KeyboardEvent): void {
     switch (event.key) {
