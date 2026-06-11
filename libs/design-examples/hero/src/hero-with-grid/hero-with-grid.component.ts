@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faMobile } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
@@ -22,5 +22,5 @@ import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
   ],
 })
 export class HeroWithGridExampleComponent {
-  faMobile = faMobile;
+  faBagShopping = faBagShopping;
 }

@@ -1,39 +1,37 @@
 @use '@daffodil/design/scss/utilities' as *;
 
 .daff-hero-with-grid {
-  &__grid {
-    // stylelint-disable-next-line scss/comment-no-loud
-    /* autoprefixer grid: autoplace */
-    display: grid;
-    grid-template:
-      'image'
-      'content' / 1fr;
-    gap: 24px;
+	&__grid {
+		display: grid;
+		grid-template:
+			'heading'
+			'content' / 1fr;
+		gap: 1.5rem;
 
-    @include breakpoint(tablet) {
-      grid-template: 'image content' / 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-  }
+		@include breakpoint(tablet) {
+			grid-template: 'heading content' / 1fr 1fr;
+			gap: 3rem;
+			align-items: center;
+		}
+	}
 
-  &__image {
-    grid-area: image;
-  }
+	&__heading {
+		grid-area: heading;
+	}
 
-  &__content-wrapper {
-    grid-area: content;
-  }
+	&__content-wrapper {
+		grid-area: content;
+	}
 
-  &__icon {
-    display: flex;
-    background: rgba(var(--daff-theme-rgb), 0.2);
-    border-radius: 50%;
-    color: var(--daff-theme-contrast-rgb);
-    width: 48px;
-    height: 48px;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 0;
-  }
+	&__icon {
+		display: flex;
+		background: rgba(var(--daff-theme-rgb), 0.2);
+		border-radius: 50%;
+		color: var(--daff-theme-contrast-rgb);
+		width: 3rem;
+		height: 3rem;
+		justify-content: center;
+		align-items: center;
+		padding: 0.75rem 0;
+	}
 }

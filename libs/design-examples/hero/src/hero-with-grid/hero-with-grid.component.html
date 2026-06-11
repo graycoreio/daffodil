@@ -1,31 +1,18 @@
 <daff-hero color="theme">
   <daff-container class="daff-hero-with-grid__grid">
-    <div class="daff-hero-with-grid__image">
-      <img
-        src="/assets/design/callout/pwa-illustration.svg"
-        alt="PWA Illustration"
-      />
+    <div class="daff-hero-with-grid__heading">
+      <div class="daff-hero-with-grid__icon" daffHeroIcon>
+        <fa-icon [icon]="faBagShopping"></fa-icon>
+      </div>
+      <p daffHeroTagline>New Season Arrivals</p>
+      <h3 daffHeroTitle>Discover the Summer Collection</h3>
     </div>
     <div class="daff-hero-with-grid__content-wrapper">
-      <div class="daff-hero-with-grid__icon" daffHeroIcon>
-        <fa-icon [icon]="faMobile"></fa-icon>
-      </div>
-      <p daffHeroTagline>Frontend framework for ecommerce PWAs</p>
-      <h3 daffHeroTitle>Daffodil: The next great leap in ecommerce.</h3>
       <div daffHeroSubtitle>
-        <p>
-          Daffodil provides everything you need to create powerful and flexible
-          ecommerce experiences.
-        </p>
-        <p>
-          With Daffodil, ambitious businesses are able to achieve more while
-          minimizing development and maintenance costs.
-        </p>
+        Refresh your wardrobe with lightweight essentials, bold prints, and everyday staples designed to keep you cool all season long.
       </div>
       <div daffHeroBody>
-        <a href="https://www.daff.io" target="_blank" daff-button
-          >Get Started</a
-        >
+        <a routerLink="/shop" daff-button color="primary">Shop the collection</a>
       </div>
     </div>
   </daff-container>

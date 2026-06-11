@@ -7,11 +7,13 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faMobile } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
 import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
+import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
 
 @Component({
   selector: 'hero-text-alignment-example',
@@ -24,10 +26,12 @@ import { DAFF_HERO_COMPONENTS } from '@daffodil/design/hero';
     FaIconComponent,
     DaffButtonComponent,
     ReactiveFormsModule,
+    DAFF_FORM_FIELD_COMPONENTS,
+    DAFF_SELECT_COMPONENTS,
   ],
 })
 export class HeroTextAlignmentExampleComponent {
-  faMobile = faMobile;
+  faBagShopping = faBagShopping;
   textAlignControl: UntypedFormControl = new UntypedFormControl('');
 
   options = [

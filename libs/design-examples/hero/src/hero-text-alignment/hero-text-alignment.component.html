@@ -1,28 +1,24 @@
+<daff-form-field>
+  <daff-form-label>Text alignment</daff-form-label>
+  <daff-select [options]="options" [formControl]="textAlignControl">
+    <ng-template daffSelectOption let-option="option">
+      {{ option.label }}
+    </ng-template>
+  </daff-select>
+</daff-form-field>
+
 <daff-hero [textAlignment]="textAlignControl.value">
   <daff-container size="md">
     <div class="daff-hero-text-alignment__icon" daffHeroIcon>
-      <fa-icon [icon]="faMobile"></fa-icon>
+      <fa-icon [icon]="faBagShopping"></fa-icon>
     </div>
-    <p daffHeroTagline>Frontend framework for ecommerce PWAs</p>
-    <h1 daffHeroTitle>Daffodil: The next great leap in ecommerce.</h1>
+    <p daffHeroTagline>New Season Arrivals</p>
+    <h1 daffHeroTitle>Discover the Summer Collection</h1>
     <h2 daffHeroSubtitle>
-      <p>
-        Daffodil provides everything you need to create powerful and flexible
-        ecommerce experiences.
-      </p>
-      <p>
-        With Daffodil, ambitious businesses are able to achieve more while
-        minimizing development and maintenance costs.
-      </p>
+      Refresh your wardrobe with lightweight essentials, bold prints, and everyday staples designed to keep you cool all season long.
     </h2>
     <div daffHeroBody>
-      <a href="https://www.daff.io" target="_blank" daff-button>Get Started</a>
+      <a routerLink="/shop" daff-button color="theme-contrast">Shop the collection</a>
     </div>
   </daff-container>
 </daff-hero>
-
-<select [formControl]="textAlignControl">
-  @for (option of options; track option) {
-  <option [value]="option.value">{{ option.label }}</option>
-  }
-</select>
