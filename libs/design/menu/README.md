@@ -19,8 +19,7 @@ Menus appear when users interact with a menu activator button. Use menus for sec
 
 ## Usage
 
-### Within a standalone component
-To use menu in a standalone component, import `DAFF_MENU_COMPONENTS` directly into your custom component:
+Import `DAFF_MENU_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_MENU_COMPONENTS } from '@daffodil/design/menu';
@@ -35,52 +34,19 @@ import { DAFF_MENU_COMPONENTS } from '@daffodil/design/menu';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use menu in a module, import `DaffMenuModule` into your custom module:
-
-```ts
-import { NgModule } from '@angular/core';
-import { DaffMenuModule } from '@daffodil/design/menu';
-import { CustomComponent } from './custom.component';
-
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffMenuModule,
-  ],
-})
-export class CustomComponentModule { }
-```
-
-> This method is deprecated. It's recommended to update all custom components to standalone.
+> **Deprecation notice:**
+> 
+> `DaffMenuModule` is deprecated. Use the standalone component imports instead.
 
 ## Anatomy
-A menu component consists of the following parts:
+A menu is composed of an activator, a container, and one or more items:
 
-### Menu Activator
-**`[daffMenuActivator]`**: A directive attached to a button that triggers the menu to open. The selector doubles as an input for the menu content to display.
-
-### Menu
-**`<daff-menu>`**: The container component that holds menu items.
-
-### Menu Item
-**`<daff-menu-item>`**: Represents a single action or navigation item within the menu. Should be used with an anchor or button HTML element.
-
-### Icon
-Use the `[daffPrefix]` directive to add a decorative icon before the menu item content.
-
-### Basic structure
 ```html
-<button [daffMenuActivator]="menu">
-  Open Menu
+<button [daffMenuActivator]="actionsMenu">
+  Actions
 </button>
 
-<ng-template #menu>
+<ng-template #actionsMenu>
   <daff-menu>
     <button daff-menu-item>
       <fa-icon [icon]="faEdit" daffPrefix></fa-icon>
@@ -98,17 +64,20 @@ Use the `[daffPrefix]` directive to add a decorative icon before the menu item c
 </ng-template>
 ```
 
+- **`[daffMenuActivator]`**: A directive attached to a button that triggers the menu to open. The selector doubles as an input for the menu content to display.
+- **`<daff-menu>`**: The container component that holds all menu items.
+- **`<daff-menu-item>`**: A single action or navigation item within the menu. Use with an anchor or button element.
+- **`[daffPrefix]`**: Adds a decorative icon before the menu item content.
+
 ## Features
 
-### Accessing menu state
-The menu activator provides an `isOpen` property that tracks whether the menu is currently open or closed. Use this to update your UI based on the menu state, such as changing icons or styling.
+### Menu state
+Use the actiavtor's `isOpen` property to track whether the menu is currently open or closed. Use this to update your UI based on the menu state, such as changing icons or styling.
 
 <daff-docs-example-viewer example="menu-with-icon-toggle"></daff-docs-example-viewer>
 
-
-### Setting an ID
-
-The menu activator accepts an optional `id` input. When set, the opened menu's `id` is derived as `{id}-menu`. When no `id` is provided, a unique ID is auto-generated.
+### Custom IDs
+Menus generate a unique id automatically. To set your own, add an `id` to the activator and the menu becomes `{id}-menu`.
 
 <daff-docs-example-viewer example="menu-with-id"></daff-docs-example-viewer>
 
@@ -120,7 +89,12 @@ Menu follows the [Menu and Menubar WAI-ARIA design pattern](https://www.w3.org/W
 - Focus management when menu opens and closes
 - `aria-expanded` on the activator indicating the menu state
 
-#### Keyboard interactions
+### Developer responsibilities
+- Provide a meaningful label on the menu activator
+- Ensure menu items have descriptive text or labels
+- Use appropriate HTML elements (`<button>` for actions, `<a>` for navigation)
+
+### Keyboard interactions
 Keyboard focus is placed on the first item when a menu is opened.
 
 | Key | Action |
@@ -131,8 +105,3 @@ Keyboard focus is placed on the first item when a menu is opened.
 | `Up Arrow` | Moves focus to the previous item. If focus is on the first item, focus moves to the last item |
 | `Home` | Moves focus to the first item |
 | `End` | Moves focus to the last item |
-
-### Developer responsibilities
-- Provide a meaningful label on the menu activator
-- Ensure menu items have descriptive text or labels
-- Use appropriate HTML elements (`<button>` for actions, `<a>` for navigation)
