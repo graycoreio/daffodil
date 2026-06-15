@@ -1,21 +1,18 @@
-<daff-notification [status]="statusControl.value">
-  @if (statusControl.value === 'info' || statusControl.value === '') {
-  <fa-icon daffPrefix [icon]="faCheck" [fixedWidth]="true"></fa-icon>
-  } @if (statusControl.value === 'success') {
-  <fa-icon daffPrefix [icon]="faCheck" [fixedWidth]="true"></fa-icon>
-  } @if (statusControl.value === 'warn') {
-  <fa-icon daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
-  } @if (statusControl.value === 'critical') {
-  <fa-icon daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
-  }
-  <div daffNotificationTitle>Title</div>
-  <div daffNotificationMessage>Additional details about this notification.</div>
-</daff-notification>
+<daff-form-field>
+  <daff-form-label>Status</daff-form-label>
+  <daff-select [options]="options" [formControl]="statusControl">
+    <ng-template daffSelectOption let-option="option">
+      {{ option.label }}
+    </ng-template>
+  </daff-select>
+</daff-form-field>
 
-<select [formControl]="statusControl">
-  <option value="">Default</option>
-  <option value="info">Informational</option>
-  <option value="success">Success</option>
-  <option value="warn">Warn</option>
-  <option value="critical">Critical</option>
-</select>
+<daff-notification [status]="statusControl.value?.value">
+  @if (statusControl.value?.value === 'warn' || statusControl.value?.value === 'critical') {
+  <fa-icon daffPrefix [icon]="faExclamation" [fixedWidth]="true"></fa-icon>
+  } @else {
+  <fa-icon daffPrefix [icon]="faCheck" [fixedWidth]="true"></fa-icon>
+  }
+  <div daffNotificationTitle>{{ statusControl.value?.title }}</div>
+  <div daffNotificationMessage>{{ statusControl.value?.message }}</div>
+</daff-notification>

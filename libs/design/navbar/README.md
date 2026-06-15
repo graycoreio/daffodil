@@ -61,7 +61,7 @@ A navbar can be contained to a specific width by using the [container](/libs/des
 
 ## Accessibility
 
-### Daffodil provides
+### Built-in behavior
 - Enforces the use of the native `<nav>` element so each navbar is recognized as a navigation landmark by assistive technology
 
 ### Developer responsibilities

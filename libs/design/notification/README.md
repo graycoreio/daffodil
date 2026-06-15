@@ -17,8 +17,7 @@ Notifications should not be used to display app-level alerts. For global message
 
 ## Usage
 
-### Within a standalone component
-To use notification in a standalone component, import `DAFF_NOTIFICATION_COMPONENTS` directly into your custom component:
+Import `DAFF_NOTIFICATION_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
@@ -33,49 +32,13 @@ import { DAFF_NOTIFICATION_COMPONENTS } from '@daffodil/design/notification';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use notification in a module, import `DaffNotificationModule` into your custom module:
-
-```ts
-import { NgModule } from '@angular/core';
-import { DaffNotificationModule } from '@daffodil/design/notification';
-import { CustomComponent } from './custom.component';
-
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffNotificationModule,
-  ],
-})
-export class CustomComponentModule { }
-```
-
-> This method is deprecated. It's recommended to update all custom components to standalone.
+> **Deprecation notice:**
+> 
+> `DaffNotificationModule` is deprecated. Use the standalone component imports instead.
 
 ## Anatomy
-A notification consists of the following components, displayed in the order listed:
+A notification is composed of a container with a title, message, and optional icon and actions:
 
-### Container
-**`<daff-notification>`**: The wrapper component that contains all notification content.
-
-### Icon
-Use the `[daffPrefix]` element to add a decorative icon that provides a quick visual cue about the notification's purpose.
-
-### Title
-**`[daffNotificationTitle]`**: The primary text summarizing the notification.
-
-### Message
-**`[daffNotificationMessage]`**: Provides additional details or context. Keep this brief—ideally one to two short sentences.
-
-### Actions
-**`[daffNotificationActions]`**: Include actionable buttons related to the notification (e.g., dismiss, navigate). A maximum of two buttons is recommended to keep the notification concise.
-
-### Basic structure
 ```html
 <daff-notification>
   <fa-icon daffPrefix></fa-icon>
@@ -87,6 +50,12 @@ Use the `[daffPrefix]` element to add a decorative icon that provides a quick vi
   </div>
 </daff-notification>
 ```
+
+- **`<daff-notification>`**: The wrapper component that contains all notification content.
+- **`[daffPrefix]`**: A decorative icon that provides a quick visual cue about the notification's purpose.
+- **`[daffNotificationTitle]`**: The primary text summarizing the notification.
+- **`[daffNotificationMessage]`**: Additional details or context. Keep this brief—ideally one to two short sentences.
+- **`[daffNotificationActions]`**: Actionable buttons related to the notification (e.g. dismiss, navigate). A maximum of two buttons is recommended to keep the notification concise.
 
 ## Features
 
@@ -100,7 +69,7 @@ Use the `orientation` property to stack notification content either `vertical` (
 
 <daff-docs-example-viewer example="notification-orientations"></daff-docs-example-viewer>
 
-### Dismissing a notification
+### Dismissable notification
 Notifications are persistent by default. To display a close button, set the `dismissible` property to `true`.
 
 > Avoid making critical notifications dismissible to ensure users can read or interact with the necessary information.
@@ -108,11 +77,7 @@ Notifications are persistent by default. To display a close button, set the `dis
 <daff-docs-example-viewer example="dismissible-notification"></daff-docs-example-viewer>
 
 ## Accessibility
-**Live region roles:**
-- Notifications with `critical` or `warn` status use `role="alert"` for immediate announcement by assistive technologies.
-- All other notifications use `role="status"` for non-interruptive announcements.
 
-See [live region roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#4._live_region_roles) for more information.
-
-**Keyboard focus:**
+### Built-in behavior
+- Notifications with `critical` or `warn` status use `role="alert"` for immediate announcement by assistive technologies, while all other notifications use `role="status"` for non-interruptive announcements. See [live region roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#4._live_region_roles) for more information.
 - Notifications include `tabindex="0"` so they can be discovered by keyboard users.

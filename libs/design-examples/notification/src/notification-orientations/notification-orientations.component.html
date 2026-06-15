@@ -1,10 +1,14 @@
-<daff-notification [orientation]="orientationControl.value">
-  <fa-icon daffPrefix [icon]="faCheck" [fixedWidth]="true"></fa-icon>
-  <div daffNotificationTitle>Title</div>
-  <div daffNotificationMessage>Additional details about this notification.</div>
-</daff-notification>
+<daff-form-field>
+  <daff-form-label>Orientation</daff-form-label>
+  <daff-select [options]="options" [formControl]="orientationControl">
+    <ng-template daffSelectOption let-option="option">
+      {{ option.label }}
+    </ng-template>
+  </daff-select>
+</daff-form-field>
 
-<select [formControl]="orientationControl">
-  <option value="vertical">Vertical</option>
-  <option value="horizontal">Horizontal</option>
-</select>
+<daff-notification [orientation]="orientationControl.value?.value">
+  <fa-icon daffPrefix [icon]="faCheck" [fixedWidth]="true"></fa-icon>
+  <div daffNotificationTitle>Changes saved</div>
+  <div daffNotificationMessage>Your profile details have been updated.</div>
+</daff-notification>
