@@ -206,7 +206,7 @@ body {
 
 ## Accessibility
 
-### Daffodil provides
+### Built-in
 - Automatic focus trapping for `over` and `under` modes (disabled for `side` and `side-fixed` modes)
 - Focus moves to the first tabbable element when sidebar opens
 - Focus returns to the previously focused element when sidebar closes

@@ -70,7 +70,7 @@ Use the `[daffPrefix]` element to display a leading visual icon for a list item.
 
 ## Accessibility
 
-### Daffodil provides
+### Built-in behavior
 - `<daff-list>` is assigned `role="list"` to identify a list of items.
 - `<daff-nav-list>` is assigned `role="navigation"` to indicate that the list is used for navigation.
 - `<daff-list-item>` within a `<daff-list>` is assigned `role="listitem"` to identify a list item contained inside the list.
