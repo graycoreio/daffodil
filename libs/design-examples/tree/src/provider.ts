@@ -7,9 +7,5 @@ export const provideDaffDesignTreeExamplesContent = () => makeEnvironmentProvide
     id: 'basic-tree',
     component: () => import('./basic-tree/basic-tree.component').then(c => c.BasicTreeExampleComponent),
   },
-  {
-    id: 'deep-tree',
-    component: () => import('./deep-tree/deep-tree.component').then(c => c.DeepTreeExampleComponent),
-  },
 ));
 

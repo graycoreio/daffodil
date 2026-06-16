@@ -20,19 +20,52 @@ import {
 })
 export class BasicTreeExampleComponent {
   tree: DaffTreeData<unknown> = {
-    title: 'Root',
+    title: 'Shop',
     items: [
       {
-        title: 'Example Children',
+        title: 'Men',
         items: [
-          { title: 'Example Child', url: '#', id: '', items: [], data: {}},
+          {
+            title: 'Clothing',
+            items: [
+              { title: 'Shirts', url: '#', id: '', items: [], data: {}},
+              { title: 'Pants', url: '#', id: '', items: [], data: {}},
+              { title: 'Outerwear', url: '#', id: '', items: [], data: {}},
+            ],
+            url: '#',
+            id: '',
+            data: {},
+          },
+          { title: 'Shoes', url: '#', id: '', items: [], data: {}},
+          { title: 'Accessories', url: '#', id: '', items: [], data: {}},
         ],
         url: '#',
         id: '',
         data: {},
       },
       {
-        title: 'Example Link',
+        title: 'Women',
+        items: [
+          {
+            title: 'Clothing',
+            items: [
+              { title: 'Dresses', url: '#', id: '', items: [], data: {}},
+              { title: 'Tops', url: '#', id: '', items: [], data: {}},
+              { title: 'Skirts', url: '#', id: '', items: [], data: {}},
+            ],
+            url: '#',
+            id: '',
+            data: {},
+          },
+          { title: 'Shoes', url: '#', id: '', items: [], data: {}},
+          { title: 'Bags', url: '#', id: '', items: [], data: {}},
+        ],
+        url: '#',
+        id: '',
+        data: {},
+      },
+      {
+        title: 'Sale',
         items: [],
         url: '#',
         id: '',
