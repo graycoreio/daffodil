@@ -113,7 +113,7 @@ showModal() {
 ## Accessibility
 Modal implements the [Dialog (Modal) WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
 
-### Daffodil provides
+### Built-in behavior
 - `role="dialog"`
 - `aria-modal="true"`
 - `aria-labelledby` linked to the `[daffModalTitle]` element
