@@ -12,8 +12,8 @@ export const provideDaffDesignSpinnerExamplesContent = () => makeEnvironmentProv
     component: () => import('./spinner-sizes/spinner-sizes.component').then(c => c.SpinnerSizesExampleComponent),
   },
   {
-    id: 'spinner-with-label',
-    component: () => import('./spinner-with-label/spinner-with-label.component').then(c => c.SpinnerWithLabelExampleComponent),
+    id: 'basic-spinner',
+    component: () => import('./basic-spinner/basic-spinner.component').then(c => c.BasicSpinnerExampleComponent),
   },
 ));
 
