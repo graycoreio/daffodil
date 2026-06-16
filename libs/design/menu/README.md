@@ -84,7 +84,7 @@ Menus generate a unique id automatically. To set your own, add an `id` to the ac
 ## Accessibility
 Menu follows the [Menu and Menubar WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
 
-### Daffodil provides
+### Built-in behavior
 - `role="menu"` and `role="menuitem"` on appropriate elements
 - Focus management when menu opens and closes
 - `aria-expanded` on the activator indicating the menu state
