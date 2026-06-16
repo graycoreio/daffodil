@@ -14,12 +14,11 @@ Pagination can be used with a data table or on a page. It automatically truncate
 - Breaking up long-form content into manageable sections
 
 **When not to use**
-- Do not use it to display linear journeys, for example, in a form progression. Instead, use the [progress bar](/libs/design/progress-bar/README.md) or [button](/libs/design/button/README.md) components to navigate forward and backward.
+- Do not use it to display linear journeys, for example, in a form progression. Instead, use the [Progress Bar](/libs/design/progress-bar/README.md) or [Button](/libs/design/button/README.md) components to navigate forward and backward.
 
 ## Usage
 
-### Within a standalone component
-To use paginator in a standalone component, import `DAFF_PAGINATOR_COMPONENTS` directly into your custom component:
+Import `DAFF_PAGINATOR_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_PAGINATOR_COMPONENTS } from '@daffodil/design/paginator';
@@ -34,33 +33,13 @@ import { DAFF_PAGINATOR_COMPONENTS } from '@daffodil/design/paginator';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use paginator in a module, import `DaffPaginatorModule` into your custom module:
+> **Deprecation notice:**
+> 
+> `DaffPaginatorModule` is deprecated. Use the standalone component imports instead.
 
-```ts
-import { NgModule } from '@angular/core';
-import { DaffPaginatorModule } from '@daffodil/design/paginator';
-import { CustomComponent } from './custom.component';
+## Anatomy
+A paginator is a single navigation element labeled for the content it controls:
 
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffPaginatorModule,
-  ],
-})
-export class CustomComponentModule { }
-```
-
-> **Warning**
->
-> This method is deprecated. It's recommended to update all custom components to standalone.
-
-## Basic structure
 ```html
 <daff-paginator aria-label="Search results page"></daff-paginator>
 ```
@@ -72,11 +51,12 @@ Ellipses are used to truncate page numbers when the total number of pages exceed
 
 ## Accessibility
 
-### Daffodil provides
-`role="navigation"` on the paginator element to ensure proper semantic structure.
+### Built-in behavior
+- `role="navigation"` on the paginator element to ensure proper semantic structure
 
 ### Developer responsibilities
-Use `aria-label` or `aria-labelledby` to give a meaningful label to `<daff-paginator>` that describes the content controlled by the paginator. If more than one paginator is used on a page, each will need a unique `aria-label`.
+- Use `aria-label` or `aria-labelledby` to give `<daff-paginator>` a meaningful label that describes the content it controls
+- If more than one paginator is used on a page, give each one a unique `aria-label`
 
 ```html
 <daff-paginator aria-label="Product list paginator">
