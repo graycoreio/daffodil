@@ -8,7 +8,7 @@
     </daff-select>
   </daff-form-field>
 
-  <daff-card [color]="cardControl.value">
+  <daff-card [color]="cardControl.value?.value">
     <div daffCardTagline>Card Tagline</div>
     <div daffCardTitle>Title</div>
     <div daffCardContent>
@@ -27,7 +27,7 @@
     </daff-select>
   </daff-form-field>
 
-  <daff-stroked-card [color]="strokedCardControl.value">
+  <daff-stroked-card [color]="strokedCardControl.value?.value">
     <div daffCardTagline>Card Tagline</div>
     <div daffCardTitle>Title</div>
     <div daffCardContent>
