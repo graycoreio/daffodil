@@ -53,8 +53,7 @@
 	border-radius: 0.25rem;
 	position: relative;
 
-	&[disabled],
-	&.disabled {
+	&.daff-disabled {
 		cursor: not-allowed;
 		opacity: 0.5;
 
