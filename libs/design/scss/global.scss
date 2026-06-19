@@ -25,7 +25,9 @@ html {
 	line-height: 1.5;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
 
+body {
 	::-webkit-scrollbar-track {
 		background: rgba(var(--daff-theme-rgb), 0);
 		// stylelint-disable-next-line daffodil/no-direct-cursor-pointer
