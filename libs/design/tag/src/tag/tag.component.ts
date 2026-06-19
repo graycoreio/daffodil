@@ -14,6 +14,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import {
   DaffArticleEncapsulatedDirective,
   DaffColorableDirective,
+  DaffDisableable,
+  DaffDisableableDirective,
   DaffPrefixDirective,
   DaffStatusableDirective,
 } from '@daffodil/design';
@@ -50,13 +52,16 @@ import { DaffTagSizableDirective } from './tag-sizable.directive';
       directive: DaffStatusableDirective,
       inputs: ['status'],
     },
+    {
+      directive: DaffDisableableDirective,
+      inputs: ['disabled'],
+    },
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'daff-tag',
     '[attr.aria-disabled]': 'disabled ? true : null',
-    '[attr.disabled]': 'disabled',
     '[class.dismissible]': 'dismissible',
   },
   imports: [
@@ -64,7 +69,7 @@ import { DaffTagSizableDirective } from './tag-sizable.directive';
     DaffPrefixDirective,
   ],
 })
-export class DaffTagComponent {
+export class DaffTagComponent implements DaffDisableable {
   /**
    * @docs-private
    */
@@ -77,17 +82,11 @@ export class DaffTagComponent {
 
   /**
    * @docs-private
+   *
+   * Internal function to access the disabled property of the DaffDisableableDirective.
    */
-  _disabled = false;
-
-  /**
-   * The disabled state of the tag.
-   */
-  @Input() get disabled() {
-    return this._disabled;
-  }
-  set disabled(value: any) {
-    this._disabled = coerceBooleanProperty(value);
+  get disabled() {
+    return this.disabledDirective.disabled;
   }
 
   private _dismissible = false;
@@ -113,7 +112,7 @@ export class DaffTagComponent {
    * Internal handler for the close icon click.
    */
   onCloseTag(event: Event) {
-    if (this._disabled) {
+    if (this.disabled) {
       return;
     }
     this.closeTag.emit();
@@ -121,6 +120,7 @@ export class DaffTagComponent {
 
   constructor(
     private size: DaffTagSizableDirective,
+    private disabledDirective: DaffDisableableDirective,
   ) {
     /**
      * Sets the default size of a tag to medium.
