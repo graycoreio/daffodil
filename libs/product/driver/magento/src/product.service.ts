@@ -30,6 +30,7 @@ import { getAllProducts } from './queries/get-all-products';
 import { getProduct } from './queries/get-product';
 import {
   getProductByUrl,
+  magentoProductGetAllValidator,
   magentoProductGetByUrlValidator,
 } from './queries/public_api';
 import { DaffMagentoProductsTransformer } from './transforms/product-transformers';
@@ -92,6 +93,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
         ...this.extraPageFragments,
       ]),
     }).pipe(
+      map(magentoProductGetAllValidator),
       map(result => this.magentoProductsTransformer.transformManyMagentoProducts(result.data.products.items, this.config.baseMediaUrl)),
     );
   }
