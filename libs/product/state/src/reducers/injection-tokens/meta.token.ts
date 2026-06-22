@@ -26,4 +26,5 @@ export const {
    * ```
    */
   provider: daffProductProvideMetaReducers,
+  factoryProvider: daffProductProvideMetaReducerFactories,
 } = createMultiInjectionToken<MetaReducer<DaffProductReducersState>>('DAFF_PRODUCT_META_REDUCERS');
