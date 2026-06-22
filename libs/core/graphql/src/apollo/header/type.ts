@@ -1,5 +1,7 @@
+import { HttpHeaders } from '@angular/common/http';
+
 /**
- * A function that returns a dict of headers to set on the Apollo GraphQL request.
+ * A function that returns headers to set on the Apollo GraphQL request.
  * This function is run in an injection context.
  */
-export type DaffApolloHeaderProvider = () => Record<string, string>;
+export type DaffApolloHeaderProvider = () => HttpHeaders;

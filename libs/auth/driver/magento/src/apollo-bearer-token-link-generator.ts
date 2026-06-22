@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import {
   inject,
   Injectable,
@@ -32,11 +33,11 @@ export function provideMagentoAuthApolloBearerToken() {
         token = storage.getAuthToken();
       } catch(e){}
 
-      return token
+      return new HttpHeaders(token
         ? {
           authorization: `Bearer ${token}`,
         }
-        : {};
+        : {});
     }),
   ]);
 }
