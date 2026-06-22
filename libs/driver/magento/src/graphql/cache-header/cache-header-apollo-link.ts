@@ -7,6 +7,7 @@ import { map } from 'rxjs';
 
 import {
   DaffApolloLinkGenerator,
+  getApolloOperationHeaders,
   provideDaffApolloRequestHandlerFactories,
 } from '@daffodil/core/graphql';
 
@@ -23,7 +24,7 @@ export const provideDaffMagentoCacheHeader = () => makeEnvironmentProviders([
     return (operation, forward) => {
       if (cacheHeader) {
         operation.setContext({
-          headers: operation.getContext().headers.append(MAGENTO_CUSTOMER_CACHE_ID_HEADER, cacheHeader),
+          headers: getApolloOperationHeaders(operation).append(MAGENTO_CUSTOMER_CACHE_ID_HEADER, cacheHeader),
         });
       }
       return forward(operation).pipe(
@@ -57,7 +58,7 @@ export class DaffMagentoCacheHeaderApolloLinkGenerator implements DaffApolloLink
     return new ApolloLink((operation, forward) => {
       if (this._cacheHeader) {
         operation.setContext({
-          headers: operation.getContext().headers.append(MAGENTO_CUSTOMER_CACHE_ID_HEADER, this._cacheHeader),
+          headers: getApolloOperationHeaders(operation).append(MAGENTO_CUSTOMER_CACHE_ID_HEADER, this._cacheHeader),
         });
       }
       return forward(operation).pipe(
