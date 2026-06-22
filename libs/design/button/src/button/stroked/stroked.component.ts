@@ -2,7 +2,7 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input,
+  input,
 } from '@angular/core';
 
 import { DaffSpinnerComponent } from '@daffodil/design/spinner';
@@ -47,5 +47,5 @@ export class DaffStrokedButtonComponent extends DaffButtonBaseDirective {
   /**
    * Whether or not the button displays a shadow.
    */
-  @Input() elevated = false;
+  elevated = input(false);
 }

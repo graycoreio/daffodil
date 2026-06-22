@@ -2,7 +2,7 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input,
+  input,
 } from '@angular/core';
 
 import { DaffSpinnerComponent } from '@daffodil/design/spinner';
@@ -34,7 +34,7 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
   styleUrl: './button.component.scss',
   host: {
     'class': 'daff-button',
-    '[class.elevated]': 'elevated',
+    '[class.elevated]': 'elevated()',
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,5 +46,5 @@ export class DaffButtonComponent extends DaffButtonBaseDirective {
   /**
    * Whether or not the button displays a shadow.
    */
-  @Input() elevated = false;
+  elevated = input(false);
 }
