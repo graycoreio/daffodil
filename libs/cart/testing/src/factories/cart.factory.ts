@@ -15,7 +15,6 @@ export class MockCart implements DaffCart {
   shipping_address = null;
   shipping_information = this.shippingInformationFactory.create();
   totals = this.totalFactory.createAllTotals();
-  payment = null;
   available_shipping_methods = [];
   available_payment_methods = [];
   extra_attributes = {};
@@ -29,7 +28,7 @@ export class MockCart implements DaffCart {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCartFactory extends DaffModelFactory<DaffCart>{
+export class DaffCartFactory extends DaffModelFactory<DaffCart, typeof MockCart>{
   constructor(
     totalFactory: DaffCartTotalFactory,
     shippingInformationFactory: DaffCartShippingRateFactory,
