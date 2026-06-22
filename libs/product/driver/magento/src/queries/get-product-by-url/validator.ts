@@ -3,11 +3,19 @@ import { DaffProductInvalidAPIResponseError } from '@daffodil/product/driver';
 
 import { MagentoProductGetByUrlReponse } from './response.type';
 
-export const magentoProductGetByUrlValidator: GraphQlApolloValidator<MagentoProductGetByUrlReponse>
-	= (response) => {
-	  if (!response.data?.route?.sku) {
-	    throw new DaffProductInvalidAPIResponseError('The platform did not respond with a product.');
-	  }
+interface Shape {
+  data: { route: { sku: true } };
+}
+type ValidatorFn = GraphQlApolloValidator<MagentoProductGetByUrlReponse, Shape>;
 
-	  return response;
-	};
+const isValid = (
+  response: Parameters<ValidatorFn>[0],
+): response is ReturnType<ValidatorFn> => !!response.data?.route?.sku;
+
+export const magentoProductGetByUrlValidator: ValidatorFn = (response) => {
+  if (isValid(response)) {
+    return response;
+  }
+
+  throw new DaffProductInvalidAPIResponseError('The platform did not respond with a product.');
+};
