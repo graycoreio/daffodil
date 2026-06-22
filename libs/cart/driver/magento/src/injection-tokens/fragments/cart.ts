@@ -20,4 +20,5 @@ export const {
    * Provider function for {@link DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS}.
    */
   provider: provideDaffCartMagentoExtraCartFragments,
+  factoryProvider: provideDaffCartMagentoExtraCartFragmentFactories,
 } = createMultiInjectionToken<DocumentNode>('DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS');

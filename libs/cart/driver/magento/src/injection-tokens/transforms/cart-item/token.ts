@@ -24,4 +24,5 @@ export const {
    * ```
    */
   provider: provideDaffCartMagentoCartItemTransforms,
+  factoryProvider: provideDaffCartMagentoCartItemTransformFactories,
 } = createMultiInjectionToken<DaffCartMagentoCartItemTransform>('DAFF_CART_MAGENTO_CART_ITEM_TRANSFORMS');
