@@ -47,7 +47,7 @@ export class DaffMenuService {
    */
   protected async _createOverlay(activatorElement: ViewContainerRef, component: DaffMenuSlot, config?: DaffMenuConfig) {
     if (!this._overlay) {
-      this._overlay = daffMenuCreateOverlay(this.overlay, activatorElement.element);
+      this._overlay = daffMenuCreateOverlay(this.overlay, activatorElement.element, config?.xPosition, config?.yPosition);
       if(typeof component === 'object' && (<DaffLazyComponent>component)?.import) {
         component = await (<DaffLazyComponent>component).import();
       }

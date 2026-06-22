@@ -9,7 +9,8 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffMenuItemComponent } from './menu-item.component';
+import { DaffMenuItemComponent } from '@daffodil/design/menu';
+
 import { provideTestMenuService } from '../testing/dummy-service';
 
 @Component({

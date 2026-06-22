@@ -8,16 +8,18 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import {
+  DAFF_MENU_COMPONENTS,
+  DaffMenuComponent,
+} from '@daffodil/design/menu';
 
 import {
   DAFF_MENU_CONFIG,
   DaffMenuConfig,
 } from '../../config/menu-config';
-import { DaffMenuItemComponent } from '../../menu-item/menu-item.component';
 import { DaffMenuService } from '../../services/menu.service';
 import { provideTestMenuService } from '../../testing/dummy-service';
-import { DaffMenuComponent } from '../menu.component';
 
 @Component({
   template: `
@@ -27,8 +29,7 @@ import { DaffMenuComponent } from '../menu.component';
     </daff-menu>
   `,
   imports: [
-    DaffMenuComponent,
-    DaffMenuItemComponent,
+    DAFF_MENU_COMPONENTS,
   ],
 })
 class WrapperComponent {}
@@ -42,7 +43,6 @@ describe('@daffodil/design/menu | DaffMenuComponent | Usage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule,
         WrapperComponent,
       ],
       providers: [

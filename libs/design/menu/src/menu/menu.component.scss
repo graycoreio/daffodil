@@ -6,8 +6,8 @@
 	max-width: 20rem;
 	border-radius: 0.25rem;
 	padding: 0.5rem;
+	overflow-y: auto;
 }
-
 
 .daff-menu-item {
 	@include interactions.clickable();

@@ -6,7 +6,7 @@
     </button>
 
     @if (toc.length > 0) {
-      <button class="daffio-doc-viewer__button" [daffMenuActivator]="tocMenu" #activator="daffMenuActivator">
+      <button class="daffio-doc-viewer__button" [daffMenuActivator]="tocMenu" xPosition="before" #activator="daffMenuActivator">
         <div>On this page</div>
         <span class="daffio-doc-viewer__button-icon" [class.open]="activator.isOpen()"></span>
       </button>

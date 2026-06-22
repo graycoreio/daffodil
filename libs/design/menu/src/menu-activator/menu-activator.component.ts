@@ -16,6 +16,10 @@ import {
 } from 'rxjs';
 
 import { daffNextMenuId } from '../config/menu-id';
+import {
+  DaffMenuXPosition,
+  DaffMenuYPosition,
+} from '../helpers/menu-position';
 import { DaffMenuService } from '../services/menu.service';
 
 /**
@@ -55,6 +59,16 @@ export class DaffMenuActivatorDirective implements OnDestroy {
    * When set, the menu's ID is derived as `${id}-menu`.
    */
   id = input<string>();
+
+  /**
+   * The horizontal alignment of the menu relative to the activator. Defaults to `after`.
+   */
+  xPosition = input<DaffMenuXPosition>('after');
+
+  /**
+   * The vertical position of the menu relative to the activator. Defaults to `below`.
+   */
+  yPosition = input<DaffMenuYPosition>('below');
 
   /**
    * The resolved menu ID.
@@ -105,6 +119,6 @@ export class DaffMenuActivatorDirective implements OnDestroy {
    */
   onClick(event: MouseEvent) {
     event.preventDefault();
-    this.service.open(this.viewContainerRef, this.daffMenuActivator, { menuId: this.menuId() });
+    this.service.open(this.viewContainerRef, this.daffMenuActivator, { menuId: this.menuId(), xPosition: this.xPosition(), yPosition: this.yPosition() });
   }
 }
