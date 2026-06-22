@@ -21,6 +21,7 @@
     "files.associations": {
         ".sasslintrc": "json"
     },
+    "js/ts.preferences.importModuleSpecifier": "shortest",
     "cSpell.words": [
         "Daffio",
         "Idempotence"
