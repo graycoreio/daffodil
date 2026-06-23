@@ -1,16 +1,18 @@
 # Viewport
 
-The viewport structures a page using a predefined template based on common layout patterns. It hosts one or more [sidebars](/libs/design/sidebar/README.md), positions a navigation area, and manages content shifting and backdrop interactions as sidebars open and close.
+The viewport structures a page using a predefined template based on common layout patterns.
+
+## Overview
+The viewport hosts one or more [sidebars](/libs/design/sidebar/README.md), positions a navigation area, and manages content shifting and backdrop interactions as sidebars open and close.
+
+> A viewport represents the entire page, so an app should render it only once. The `DaffViewportService` manages a single viewport's state, and rendering more than one viewport leads to conflicting state and layout.
 
 ## Usage
-Import `DAFF_VIEWPORT_COMPONENTS` into your component and add `provideDaffViewport()` to its providers so the component and viewport share the same state:
+Import `DAFF_VIEWPORT_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
-import {
-  DAFF_VIEWPORT_COMPONENTS,
-  provideDaffViewport,
-} from '@daffodil/design/viewport';
+import { DAFF_VIEWPORT_COMPONENTS } from '@daffodil/design/viewport';
 
 @Component({
   selector: 'custom-component',
@@ -18,9 +20,6 @@ import {
   imports: [
     DAFF_VIEWPORT_COMPONENTS,
     DAFF_SIDEBAR_COMPONENTS,
-  ],
-  providers: [
-    provideDaffViewport(),
   ],
 })
 export class CustomComponent {}
@@ -53,7 +52,7 @@ A viewport wraps a navigation area, the page content, an optional footer, and an
 
 ## Features
 
-### Opening and closing
+### Visibility
 Open and close sidebars programmatically with the `DaffViewportService`, passing the `side` you want to control:
 
 ```ts
@@ -92,14 +91,5 @@ Use the `navPlacement` property to control where a `[daff-viewport-nav]` element
   <div class="page-content">
     Page content
   </div>
-</daff-viewport>
-```
-
-### Backdrop
-The viewport renders a backdrop while an `over` or `under` sidebar is open. Clicking the backdrop closes any open sidebars and emits the `backdropClicked` event:
-
-```html
-<daff-viewport (backdropClicked)="onBackdropClicked()">
-  <!-- ... -->
 </daff-viewport>
 ```
