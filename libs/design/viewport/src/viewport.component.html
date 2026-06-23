@@ -1,0 +1,18 @@
+<daff-viewport-backdrop [interactable]="_backdropInteractable()"></daff-viewport-backdrop>
+
+<div class="daff-viewport__nav">
+  <ng-content select="[daff-viewport-nav]"></ng-content>
+</div>
+
+<ng-content select="daff-sidebar:not([side=right])"></ng-content>
+
+<div class="daff-viewport__content">
+  <div class="daff-viewport__inner">
+    <ng-content></ng-content>
+    <div class="daff-viewport__footer">
+      <ng-content select="[daff-viewport-footer]"></ng-content>
+    </div>
+  </div>
+</div>
+
+<ng-content select="daff-sidebar[side=right]"></ng-content>

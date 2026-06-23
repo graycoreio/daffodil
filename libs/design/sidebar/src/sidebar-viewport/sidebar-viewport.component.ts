@@ -33,10 +33,8 @@ import {
   isViewportContentShifted,
   sidebarViewportContentShift,
 } from './utils/content-shift';
-import {
-  DaffSidebarAnimationStates,
-  daffSidebarAnimations,
-} from '../animation/sidebar-animation';
+import { daffSidebarAnimations } from '../animation/sidebar-animation';
+import { DaffSidebarAnimationStates } from '../animation/sidebar-animation-state';
 import {
   DaffSidebarViewportAnimationStateWithParams,
   getSidebarViewportAnimationState,

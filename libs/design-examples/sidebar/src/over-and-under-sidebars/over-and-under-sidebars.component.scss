@@ -1,16 +1,27 @@
-daff-sidebar-viewport {
-  height: 288px;
+daff-viewport {
+	height: 18rem;
 }
 
 .over-and-under-sidebars {
-  &__options-container {
-    display: flex;
-    gap: 8px;
-    margin: 0 0 16px;
-  }
+	&__options-container {
+		display: flex;
+		gap: 0.5rem;
 
-  &__footer,
-  &__sidebar-content {
-    padding: 16px;
-  }
+		daff-form-field {
+			width: 10rem;
+		}
+	}
+
+	&__body-content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	&__footer,
+	&__sidebar-content {
+		padding: 1rem;
+	}
 }
