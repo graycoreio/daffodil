@@ -14,26 +14,20 @@ import {
   DaffSidebarHeaderComponent,
 } from '@daffodil/design/sidebar';
 
-import { getAnimationState } from './animation/get-animation-state';
+import { getDaffViewportSidebarAnimationState } from './animation/get-viewport-sidebar-animation-state';
 import { DaffViewportBackdropComponent } from './backdrop/backdrop.component';
 import {
   DaffNavPlacement,
   DaffNavPlacementEnum,
-} from './nav-placement';
-import { DaffViewportService } from './service/viewport-service';
-import { viewportBackdropInteractable } from './viewport-backdrop-interactable';
-import { viewportContentShift } from './viewport-content-shift';
-import { viewportContentPadding } from './viewport-padding';
+} from './helpers/nav-placement';
+import { daffViewportBackdropInteractable } from './helpers/viewport-backdrop-interactable';
+import { daffViewportContentShift } from './helpers/viewport-content-shift';
+import { daffViewportContentPadding } from './helpers/viewport-padding';
+import { DaffViewportService } from './services/viewport.service';
 
-
-//TODO handle shifting content for sidebar-fixed
-//TODO handle content animations for over, under
 //TODO noop backdrop clicked for BC
 @Component({
   selector: 'daff-viewport',
-  imports: [
-    DaffViewportBackdropComponent,
-  ],
   templateUrl: './viewport.component.html',
   styleUrl: './viewport.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,6 +40,9 @@ import { viewportContentPadding } from './viewport-padding';
     '[class.pad-right]': '_isPaddedRight()',
     '[style.--daff-viewport-content-shift.px]': '_contentShift()',
   },
+  imports: [
+    DaffViewportBackdropComponent,
+  ],
 })
 export class DaffViewportComponent {
 
@@ -81,22 +78,22 @@ export class DaffViewportComponent {
   /**
    * @docs-private
    */
-  protected _animationClass = computed<string>(() => getAnimationState(this.sidebars()));
+  protected _animationClass = computed<string>(() => getDaffViewportSidebarAnimationState(this.sidebars()));
 
   /**
    * @docs-private
    */
-  protected _isPaddedLeft = computed<boolean>(() => viewportContentPadding(this.sidebars(), 'left'));
+  protected _isPaddedLeft = computed<boolean>(() => daffViewportContentPadding(this.sidebars(), 'left'));
 
   /**
    * @docs-private
    */
-  protected _isPaddedRight = computed<boolean>(() => viewportContentPadding(this.sidebars(), 'right'));
+  protected _isPaddedRight = computed<boolean>(() => daffViewportContentPadding(this.sidebars(), 'right'));
 
   /**
    * @docs-private
    */
-  protected _contentShift = computed<number>(() => viewportContentShift(this.sidebars()));
+  protected _contentShift = computed<number>(() => daffViewportContentShift(this.sidebars()));
 
   /**
    * Whether the backdrop is interactable. The backdrop is shown and clickable
@@ -104,7 +101,7 @@ export class DaffViewportComponent {
    *
    * @docs-private
    */
-  protected _backdropInteractable = computed<boolean>(() => viewportBackdropInteractable(this.sidebars()));
+  protected _backdropInteractable = computed<boolean>(() => daffViewportBackdropInteractable(this.sidebars()));
 
   /**
    * The backdrop rendered while a sidebar is open.

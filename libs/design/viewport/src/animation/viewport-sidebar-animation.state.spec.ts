@@ -6,9 +6,9 @@ import {
   DaffSidebarModeEnum,
 } from '@daffodil/design/sidebar';
 
-import { getAnimationState } from './get-animation-state';
+import { getDaffViewportSidebarAnimationState } from './get-viewport-sidebar-animation-state';
 
-describe('@daffodil/design/viewport | getAnimationState', () => {
+describe('@daffodil/design/viewport | getDaffViewportSidebarAnimationState', () => {
   const createSidebar = (mode: DaffSidebarMode, open: boolean): DaffSidebarComponent =>
     <DaffSidebarComponent><unknown>{
       mode,
@@ -16,26 +16,26 @@ describe('@daffodil/design/viewport | getAnimationState', () => {
     };
 
   it('should return `none` when there are no sidebars', () => {
-    expect(getAnimationState([])).toEqual('none');
+    expect(getDaffViewportSidebarAnimationState([])).toEqual('none');
   });
 
   it('should return `under-open` when a sidebar in `under` mode is open', () => {
-    expect(getAnimationState([createSidebar(DaffSidebarModeEnum.Under, true)])).toEqual('under-open');
+    expect(getDaffViewportSidebarAnimationState([createSidebar(DaffSidebarModeEnum.Under, true)])).toEqual('under-open');
   });
 
   it('should return `none` when a sidebar in `under` mode is closed', () => {
-    expect(getAnimationState([createSidebar(DaffSidebarModeEnum.Under, false)])).toEqual('none');
+    expect(getDaffViewportSidebarAnimationState([createSidebar(DaffSidebarModeEnum.Under, false)])).toEqual('none');
   });
 
   it('should return `none` when open sidebars are not in `under` mode', () => {
-    expect(getAnimationState([
+    expect(getDaffViewportSidebarAnimationState([
       createSidebar(DaffSidebarModeEnum.Side, true),
       createSidebar(DaffSidebarModeEnum.SideFixed, true),
     ])).toEqual('none');
   });
 
   it('should return `under-open` when any of the sidebars is an open `under` sidebar', () => {
-    expect(getAnimationState([
+    expect(getDaffViewportSidebarAnimationState([
       createSidebar(DaffSidebarModeEnum.Over, true),
       createSidebar(DaffSidebarModeEnum.Under, true),
     ])).toEqual('under-open');

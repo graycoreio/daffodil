@@ -6,9 +6,9 @@ import {
   DaffSidebarSide,
 } from '@daffodil/design/sidebar';
 
-import { viewportContentShift } from './viewport-content-shift';
+import { daffViewportContentShift } from './viewport-content-shift';
 
-describe('@daffodil/design/viewport | viewportContentShift', () => {
+describe('@daffodil/design/viewport | daffViewportContentShift', () => {
   const createSidebar = (mode: DaffSidebarMode, side: DaffSidebarSide, open: boolean): DaffSidebarComponent =>
     <DaffSidebarComponent><unknown>{
       mode,
@@ -34,7 +34,7 @@ describe('@daffodil/design/viewport | viewportContentShift', () => {
     ];
 
     sidebarCombinations.forEach((el) => {
-      expect(viewportContentShift(el.sidebars)).toEqual(el.shift);
+      expect(daffViewportContentShift(el.sidebars)).toEqual(el.shift);
     });
   });
 });

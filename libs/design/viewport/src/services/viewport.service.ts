@@ -5,7 +5,7 @@ import {
 
 import { DaffSidebarSide } from '@daffodil/design/sidebar';
 
-import { DaffViewportState } from './state';
+import { DaffViewportState } from './viewport.state';
 
 @Injectable({
   providedIn: 'root',

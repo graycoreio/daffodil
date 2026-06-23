@@ -9,7 +9,7 @@ import {
  * A left `under` sidebar shifts content right by its width, a right `under`
  * sidebar shifts content left by its width.
  */
-export const viewportContentShift = (sidebars: readonly DaffSidebarComponent[]): number =>
+export const daffViewportContentShift = (sidebars: readonly DaffSidebarComponent[]): number =>
   sidebars
     // read every sidebar's open signal unconditionally so they are all tracked as dependencies
     .map((sidebar) => ({ sidebar, shifted: sidebar.open() && sidebar.mode === DaffSidebarModeEnum.Under }))

@@ -6,9 +6,9 @@ import {
   DaffSidebarSide,
 } from '@daffodil/design/sidebar';
 
-import { viewportContentPadding } from './viewport-padding';
+import { daffViewportContentPadding } from './viewport-padding';
 
-describe('@daffodil/design/viewport | viewportContentPadding', () => {
+describe('@daffodil/design/viewport | daffViewportContentPadding', () => {
   const createSidebar = (mode: DaffSidebarMode, side: DaffSidebarSide, open: boolean): DaffSidebarComponent =>
     <DaffSidebarComponent><unknown>{
       mode,
@@ -34,8 +34,8 @@ describe('@daffodil/design/viewport | viewportContentPadding', () => {
     ];
 
     sidebarCombinations.forEach((el) => {
-      expect(viewportContentPadding(el.sidebars, 'left')).toEqual(el.left);
-      expect(viewportContentPadding(el.sidebars, 'right')).toEqual(el.right);
+      expect(daffViewportContentPadding(el.sidebars, 'left')).toEqual(el.left);
+      expect(daffViewportContentPadding(el.sidebars, 'right')).toEqual(el.right);
     });
   });
 });

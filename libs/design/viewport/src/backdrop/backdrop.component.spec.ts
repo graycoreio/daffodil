@@ -12,6 +12,38 @@ import { By } from '@angular/platform-browser';
 
 import { DaffViewportBackdropComponent } from './backdrop.component';
 
+describe('@daffodil/design/viewport | DaffViewportBackdropComponent | Defaults', () => {
+  let fixture: ComponentFixture<DaffViewportBackdropComponent>;
+  let component: DaffViewportBackdropComponent;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        DaffViewportBackdropComponent,
+      ],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(DaffViewportBackdropComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should set transparent to `false` by default', () => {
+    expect(component.transparent()).toBe(false);
+  });
+
+  it('should set fullscreen to `false` by default', () => {
+    expect(component.fullscreen()).toBe(false);
+  });
+});
+
 @Component({
   template: `
     <daff-viewport-backdrop
@@ -58,85 +90,42 @@ describe('@daffodil/design/viewport | DaffViewportBackdropComponent | Usage', ()
   });
 
   describe('the transparent property', () => {
-    describe('when transparent="false"', () => {
-      it('should not add the class `transparent` to the host element', () => {
-        wrapper.transparent.set(false);
-        fixture.detectChanges();
+    it('should not add the class `transparent` to the host element when transparent="false"', () => {
+      wrapper.transparent.set(false);
+      fixture.detectChanges();
 
-        expect(de.nativeElement.classList).not.toContain('transparent');
-      });
+      expect(de.nativeElement.classList).not.toContain('transparent');
     });
 
-    describe('when transparent="true"', () => {
-      it('should add the class `transparent` to the host element', () => {
-        wrapper.transparent.set(true);
-        fixture.detectChanges();
+    it('should add the class `transparent` to the host element when transparent="true"', () => {
+      wrapper.transparent.set(true);
+      fixture.detectChanges();
 
-        expect(de.nativeElement.classList).toContain('transparent');
-      });
+      expect(de.nativeElement.classList).toContain('transparent');
     });
   });
 
   describe('the fullscreen property', () => {
-    describe('when fullscreen="false"', () => {
-      it('should not add the class `fullscreen` to the host element', () => {
-        wrapper.fullscreen.set(false);
-        fixture.detectChanges();
+    it('should not add the class `fullscreen` to the host element when fullscreen="false"', () => {
+      wrapper.fullscreen.set(false);
+      fixture.detectChanges();
 
-        expect(de.nativeElement.classList).not.toContain('fullscreen');
-      });
+      expect(de.nativeElement.classList).not.toContain('fullscreen');
     });
 
-    describe('when fullscreen="true"', () => {
-      it('should add the class `fullscreen` to the host element', () => {
-        wrapper.fullscreen.set(true);
-        fixture.detectChanges();
+    it('should add the class `fullscreen` to the host element when fullscreen="true"', () => {
+      wrapper.fullscreen.set(true);
+      fixture.detectChanges();
 
-        expect(de.nativeElement.classList).toContain('fullscreen');
-      });
+      expect(de.nativeElement.classList).toContain('fullscreen');
     });
   });
 
-  describe('when the backdrop host element is clicked', () => {
-    it('should emit backdropClicked', () => {
-      spyOn(component.backdropClicked, 'emit');
+  it('should emit backdropClicked when the backdrop host element is clicked', () => {
+    spyOn(component.backdropClicked, 'emit');
 
-      de.nativeElement.click();
+    de.nativeElement.click();
 
-      expect(component.backdropClicked.emit).toHaveBeenCalledWith();
-    });
-  });
-});
-
-
-describe('@daffodil/design/viewport | DaffViewportBackdropComponent | Defaults', () => {
-  let fixture: ComponentFixture<DaffViewportBackdropComponent>;
-  let component: DaffViewportBackdropComponent;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        DaffViewportBackdropComponent,
-      ],
-    })
-      .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DaffViewportBackdropComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should set transparent to `false` by default', () => {
-    expect(component.transparent()).toBe(false);
-  });
-
-  it('should set fullscreen to `false` by default', () => {
-    expect(component.fullscreen()).toBe(false);
+    expect(component.backdropClicked.emit).toHaveBeenCalledWith();
   });
 });

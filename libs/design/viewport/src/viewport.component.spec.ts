@@ -5,7 +5,7 @@ import {
 
 import { DaffViewportComponent } from './viewport.component';
 
-describe('DaffViewportComponent', () => {
+describe('@daffodil/design/viewport | DaffViewportComponent | Defaults', () => {
   let component: DaffViewportComponent;
   let fixture: ComponentFixture<DaffViewportComponent>;
 
@@ -22,5 +22,15 @@ describe('DaffViewportComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should add a class of "daff-viewport" to the host element', () => {
+    expect(fixture.debugElement.classes).toEqual(jasmine.objectContaining({
+      'daff-viewport': true,
+    }));
+  });
+
+  it('should default navPlacement to above', () => {
+    expect(component.navPlacement()).toEqual('above');
   });
 });
