@@ -215,7 +215,7 @@ export class DaffSidebarViewportComponent implements AfterContentChecked, OnDest
   private updateAnimationState() {
     this._animationState = {
       value: getSidebarViewportAnimationState(
-        this.sidebars.reduce((acc: boolean, sidebar) => acc || isViewportContentShifted(sidebar.mode, sidebar.open), false),
+        this.sidebars.reduce((acc: boolean, sidebar) => acc || isViewportContentShifted(sidebar.mode, sidebar.open()), false),
       ),
       params: { shift: this._shift },
     };

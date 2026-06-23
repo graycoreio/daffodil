@@ -84,7 +84,7 @@ export class DaffAccordionItemComponent implements OnInit, DaffOpenable, DaffDis
    * @docs-private
    */
   ngOnInit() {
-    this.openDirective.open = this.initiallyExpanded ? this.initiallyExpanded : this.openDirective.open;
+    this.openDirective.open.update(() => this.initiallyExpanded ? this.initiallyExpanded : this.openDirective.open()) ;
   }
 
   /**

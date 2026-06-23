@@ -10,7 +10,7 @@ export const isViewportContentShifted = (mode: DaffSidebarMode, open: boolean): 
  */
 export const sidebarViewportContentShift = (sidebars: QueryList<DaffSidebarComponent>): number =>
   sidebars.reduce((acc: number, sidebar) => {
-    if(!isViewportContentShifted(sidebar.mode, sidebar.open)) {
+    if(!isViewportContentShifted(sidebar.mode, sidebar.open())) {
       return acc;
     }
 
