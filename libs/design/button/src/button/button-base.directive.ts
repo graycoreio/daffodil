@@ -1,8 +1,7 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  Input,
   Directive,
   ContentChild,
+  input,
 } from '@angular/core';
 
 import {
@@ -46,7 +45,7 @@ import { DaffButtonSizableDirective } from './button-sizable.directive';
   host: {
     '[attr.disabled]': 'disabled ? true : null',
     '[attr.aria-disabled]': 'disabled ? true : null',
-    '[attr.tabindex]': 'disabled ? -1 : this.tabindex',
+    '[attr.tabindex]': 'disabled ? -1 : tabindex()',
   },
 })
 export class DaffButtonBaseDirective implements DaffDisableable {
@@ -75,16 +74,13 @@ export class DaffButtonBaseDirective implements DaffDisableable {
   /**
    * Sets the tabindex.
    */
-  @Input() tabindex = 0;
+  tabindex = input(0);
 
   /**
    * The disabled state of the button.
    */
-  @Input() get disabled() {
+  get disabled() {
     return this.disabledDirective.disabled;
-  }
-  set disabled(value: any) {
-    this.disabledDirective.disabled = coerceBooleanProperty(value);
   }
 
   /**

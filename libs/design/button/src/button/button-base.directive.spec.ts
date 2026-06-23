@@ -102,7 +102,7 @@ describe('@daffodil/design/button | DaffButtonBaseDirective', () => {
 
   describe('using the tabindex property of a button', () => {
     it('should be able to take `tabindex` as an input', () => {
-      expect(directive.tabindex).toEqual(wrapper.tabindex);
+      expect(directive.tabindex()).toEqual(wrapper.tabindex);
     });
   });
 

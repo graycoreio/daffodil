@@ -74,7 +74,7 @@ describe('@daffodil/design/button | DaffStrokedButtonComponent', () => {
 
   describe('the elevated property', () => {
     it('should be able to take `elevated` as an input', () => {
-      expect(component.elevated).toEqual(wrapper.elevated());
+      expect(component.elevated()).toEqual(wrapper.elevated());
     });
 
     it('should add a class of `.elevated` to the host element if elevated is true', () => {
