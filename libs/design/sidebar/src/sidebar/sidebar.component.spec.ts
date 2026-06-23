@@ -213,7 +213,7 @@ describe('DaffSidebarComponent | Usage', () => {
   });
 
   it('should be able to bind to the input `open`', () => {
-    expect(component.open).toEqual(false);
+    expect(component.open()).toEqual(false);
   });
 });
 

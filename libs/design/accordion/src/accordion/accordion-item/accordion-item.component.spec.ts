@@ -37,7 +37,7 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', (
   });
 
   it('should be collapsed by default', () => {
-    expect(component.open).toEqual(false);
+    expect(component.open()).toEqual(false);
   });
 });
 
@@ -107,7 +107,6 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
     fixture.detectChanges();
 
     expect(accordionItemHeader.nativeElement.attributes['aria-expanded'].value).toEqual('true');
-
   });
 
   it('should set aria-expanded to false if open is false', () => {
@@ -115,28 +114,27 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
     fixture.detectChanges();
 
     expect(accordionItemHeader.nativeElement.attributes['aria-expanded'].value).toEqual('false');
-
   });
 
   it('should set open to true if initiallyExpanded is true', () => {
     wrapper.initiallyExpandedValue.set(true);
     fixture.detectChanges();
 
-    expect(daffAccordionItem.open).toBeTrue();
+    expect(daffAccordionItem.open()).toBeTrue();
   });
 
   it('should set open to false if initiallyExpanded is false', () => {
     wrapper.initiallyExpandedValue.set(false);
     fixture.detectChanges();
 
-    expect(daffAccordionItem.open).toBeFalse();
+    expect(daffAccordionItem.open()).toBeFalse();
   });
 
   it('should set open to false if initiallyExpanded is undefined', () => {
     wrapper.initiallyExpandedValue.set(undefined);
     fixture.detectChanges();
 
-    expect(daffAccordionItem.open).toBeFalse();
+    expect(daffAccordionItem.open()).toBeFalse();
   });
 
   describe('when accordion header is clicked', () => {
