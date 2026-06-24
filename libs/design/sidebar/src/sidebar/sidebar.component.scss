@@ -65,19 +65,6 @@ $default-sidebar-width: 15rem;
 	}
 }
 
-:host-context(daff-sidebar-viewport daff-sidebar-viewport) {
-	&.side-fixed {
-		position: sticky;
-	}
-}
-
-:host-context(.daff-sidebar-viewport.beside) {
-	&.side-fixed {
-		top: 0;
-		height: 100%;
-	}
-}
-
 .daff-sidebar {
 	&__body {
 		flex-grow: 1;
