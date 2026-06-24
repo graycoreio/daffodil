@@ -8,7 +8,7 @@ import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
 import { DaffCategoryInMemoryDriverModule } from '@daffodil/category/driver/in-memory';
 import { DaffInMemoryDriverModule } from '@daffodil/driver/in-memory';
 import { provideShopifyDriver } from '@daffodil/driver/shopify';
-import { DaffNavigationInMemoryDriverModule } from '@daffodil/navigation/driver/in-memory';
+import { provideDaffNavigationInMemoryDriver } from '@daffodil/navigation/driver/in-memory';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/driver/in-memory';
 import { provideDaffProductShopifyDriver } from '@daffodil/product/driver/shopify';
 import {
@@ -29,9 +29,9 @@ export const provideDemoDrivers = () => [
       DaffCartInMemoryDriverModule.forRoot(),
       DaffNewsletterInMemoryDriverModule.forRoot(),
       DaffCategoryInMemoryDriverModule.forRoot(),
-      DaffNavigationInMemoryDriverModule.forRoot(),
       DaffAuthorizeNetInMemoryDriverModule.forRoot(),
     ),
+    provideDaffNavigationInMemoryDriver(),
     provideDaffProductExtraFactoryTypes(DaffDefaultProductFactory),
     provideShopifyDriver({ domain, accessToken }),
     provideDaffProductShopifyDriver(),
