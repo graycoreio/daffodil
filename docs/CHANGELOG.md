@@ -1,5 +1,44 @@
 # Changelog
 
+## [0.93.0](https://github.com/graycoreio/daffodil/compare/v0.92.3...v0.93.0) (2026-06-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* **navigation:** `DaffNavigationInMemoryDriverModule` has been removed, use `provideDaffNavigationInMemoryDriver` instead. `DaffNavigationMagentoDriverModule` has been removed, use `provideDaffNavigationMagentoDriver` instead.
+* **design:** `DaffOpenableDirective` now exposes `open` as a signal rather than a plain property. Template bindings ([open]="true / false") continue to work, but any programmatic access must go through the signal API. You must now invoke the signal: `directive.open` -> `directive.open()`.
+* **core,content,category,product:** `GraphQlApolloValidator` now requires 2 type params
+* **core,auth,driver:** `DaffApolloHeaderProvider` now returns `HttpHeaders`
+* upgrade to angular 21 ([#4442](https://github.com/graycoreio/daffodil/issues/4442))
+
+### Features
+
+* **cart,product:** export meta reducer factory providers ([#4545](https://github.com/graycoreio/daffodil/issues/4545)) ([e74bdea](https://github.com/graycoreio/daffodil/commit/e74bdea6e2d54e1bad137dca61411cde64e86fcb))
+* **cart:** export magento driver extension factory providers ([#4546](https://github.com/graycoreio/daffodil/issues/4546)) ([5cdc2b0](https://github.com/graycoreio/daffodil/commit/5cdc2b0d035da5157d343f3c1dcb15976a4b3975))
+* **core,auth,driver:** return headers from `DaffApolloHeaderProvider` ([#4544](https://github.com/graycoreio/daffodil/issues/4544)) ([0c0c29f](https://github.com/graycoreio/daffodil/commit/0c0c29fbe2ea8d326a985108dd579ed92f777814))
+* **core,content,category,product:** allow validators to narrow type ([#4548](https://github.com/graycoreio/daffodil/issues/4548)) ([f0f9d99](https://github.com/graycoreio/daffodil/commit/f0f9d99c384adc1b7e81d147f3fa2d1b0b6fa1ec))
+* **demo:** use zone change detection ([#4442](https://github.com/graycoreio/daffodil/issues/4442)) ([292176c](https://github.com/graycoreio/daffodil/commit/292176c0bfd556c62cfe4c1606cfd593e2538148))
+* **design:** add deprecate tag to orientable and text alignable ([#4487](https://github.com/graycoreio/daffodil/issues/4487)) ([531b0d0](https://github.com/graycoreio/daffodil/commit/531b0d0d8201d1db42f15a809b1a77025c2cfd10))
+* **design:** add global scrollbar styling ([#4526](https://github.com/graycoreio/daffodil/issues/4526)) ([cdf9be7](https://github.com/graycoreio/daffodil/commit/cdf9be724e51723ebc151e1255a621b5c6470127))
+* **design:** convert `@daffodil/design/button` to use signals ([#4542](https://github.com/graycoreio/daffodil/issues/4542)) ([c9071d8](https://github.com/graycoreio/daffodil/commit/c9071d88df0d4cbc098e26e013b39f0d405e4d00))
+* **design:** convert `DaffOpenableDirective` to use signals ([#4553](https://github.com/graycoreio/daffodil/issues/4553)) ([dcc6959](https://github.com/graycoreio/daffodil/commit/dcc695941c368e7305297d070740c743752c7a51))
+* **design:** deprecate `DaffSizableEnum` and `DaffSizable` and update documentation ([#4465](https://github.com/graycoreio/daffodil/issues/4465)) ([b3f880c](https://github.com/graycoreio/daffodil/commit/b3f880c239cd02027a1245a461990b644f92dcd4))
+* **design:** implement hover media query in design components ([#4493](https://github.com/graycoreio/daffodil/issues/4493)) ([922e73f](https://github.com/graycoreio/daffodil/commit/922e73fdc9f7505823150e6a7a994420e056c557))
+* **design:** move global scrollbar style to body only ([#4527](https://github.com/graycoreio/daffodil/issues/4527)) ([2f48ca9](https://github.com/graycoreio/daffodil/commit/2f48ca9d5bc709f1220c7ae76a871b943ef57da7))
+* **design:** relabel formerly private properties to [@docs-private](https://github.com/docs-private) so that angular host can access them ([#4442](https://github.com/graycoreio/daffodil/issues/4442)) ([72bd274](https://github.com/graycoreio/daffodil/commit/72bd2742cb4929e009b21d57e900296d86d51461))
+* **navigation:** remove driver modules ([#4554](https://github.com/graycoreio/daffodil/issues/4554)) ([2c7d3a7](https://github.com/graycoreio/daffodil/commit/2c7d3a79e8e2b0c6f1fbe4b4b5dea5301e89fee3))
+* **search-product:** make magento incremental seach query cacheable ([#4502](https://github.com/graycoreio/daffodil/issues/4502)) ([ce51864](https://github.com/graycoreio/daffodil/commit/ce5186417d3fa79bc7a4e29e2adb68e626caa651))
+* support @apollo/client@^4 ([#4442](https://github.com/graycoreio/daffodil/issues/4442)) ([70d354e](https://github.com/graycoreio/daffodil/commit/70d354e5554e5f40d8bbea016c7f5954e9e4441f))
+* upgrade to angular 21 ([#4442](https://github.com/graycoreio/daffodil/issues/4442)) ([b4e5c3d](https://github.com/graycoreio/daffodil/commit/b4e5c3d0a4db5ea2653d3a795ea71e2e8d6d3742))
+
+
+### Bug Fixes
+
+* **daffio:** `DaffioActiveHeaderService` zombies event listener ([#4556](https://github.com/graycoreio/daffodil/issues/4556)) ([a6c5011](https://github.com/graycoreio/daffodil/commit/a6c5011615491790144fbc894cb3f01d9fe0ddd7))
+* **design:** apply form field control right padding removal only when action is present ([#4492](https://github.com/graycoreio/daffodil/issues/4492)) ([bc34302](https://github.com/graycoreio/daffodil/commit/bc34302962050521dfb4b158f08709b168fdabf2))
+* **design:** use DaffDisableableDirective in tag component ([#4538](https://github.com/graycoreio/daffodil/issues/4538)) ([8cfa69a](https://github.com/graycoreio/daffodil/commit/8cfa69a05c25ee59310363bf7af30ad5e7673ae5))
+* **external-router:** magento driver does not request product key fields ([#4488](https://github.com/graycoreio/daffodil/issues/4488)) ([89ec493](https://github.com/graycoreio/daffodil/commit/89ec493f12879149cf8a6dab7cde551431035a01))
+
 ## [0.92.3](https://github.com/graycoreio/daffodil/compare/v0.92.3-rc.2...v0.92.3) (2026-05-15)
 
 
