@@ -7,7 +7,6 @@ import { BehaviorSubject } from 'rxjs';
 
 import {
   DaffSidebarModeEnum,
-  DaffSidebarRegistration,
   DaffSidebarSideEnum,
 } from '@daffodil/design/sidebar';
 import { DaffViewportService } from '@daffodil/design/viewport';
@@ -15,6 +14,7 @@ import { DaffRouterDataService } from '@daffodil/router';
 
 import { DaffioSidebarService } from './sidebar.service';
 import { DaffioRoute } from '../../router/route.type';
+import { DaffioSidebarRegistration } from '../interfaces/registration.type';
 
 describe('DaffioSidebarService', () => {
   let service: DaffioSidebarService;
@@ -84,7 +84,7 @@ describe('DaffioSidebarService', () => {
     });
 
     describe('when a known sidebar is opened', () => {
-      let registration: DaffSidebarRegistration;
+      let registration: DaffioSidebarRegistration;
 
       beforeEach(() => {
         registration = {
@@ -104,7 +104,7 @@ describe('DaffioSidebarService', () => {
     });
 
     describe('when the route declares a docked sidebar and the viewport is big tablet', () => {
-      let docked: DaffSidebarRegistration;
+      let docked: DaffioSidebarRegistration;
 
       beforeEach(() => {
         docked = {
@@ -127,7 +127,7 @@ describe('DaffioSidebarService', () => {
 
   describe('open', () => {
     it('should open the viewport on the active sidebar side', () => {
-      const registration: DaffSidebarRegistration = {
+      const registration: DaffioSidebarRegistration = {
         id: 'id',
         side: DaffSidebarSideEnum.Right,
       };
