@@ -13,7 +13,7 @@ import {
 } from '@daffodil/driver/magento';
 import { provideDaffExternalRouterMagentoDriver } from '@daffodil/external-router/driver/magento/2.4.3';
 import { DaffGeographyMagentoDriverModule } from '@daffodil/geography/driver/magento';
-import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation/driver/magento';
+import { provideDaffNavigationMagentoDriver } from '@daffodil/navigation/driver/magento';
 import { DaffNewsletterTestingDriverModule } from '@daffodil/newsletter/driver/testing';
 import { DaffProductMagentoDriverModule } from '@daffodil/product/driver/magento';
 
@@ -29,12 +29,12 @@ export const provideDemoDrivers = () => [
         baseMediaUrl: 'https://magento2.test/media/',
       }),
       DaffCartMagentoDriverModule.forRoot(),
-      DaffNavigationMagentoDriverModule.forRoot(),
       DaffNewsletterTestingDriverModule.forRoot(),
       DaffGeographyMagentoDriverModule.forRoot(),
       DaffCategoryMagentoDriverModule.forRoot(),
       DaffMagentoAuthorizeNetDriverModule.forRoot((<MagentoEnvironmentDriverConfiguration>environment.driver).anetConfig),
     ),
+    provideDaffNavigationMagentoDriver(),
     provideMagentoDriver(
       {
         uri: (<MagentoEnvironmentDriverConfiguration>environment.driver).domain + '/graphql',
