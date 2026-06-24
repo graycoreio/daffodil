@@ -1,11 +1,11 @@
 import {
   Directive,
   EventEmitter,
-  Input,
   OnChanges,
   Output,
   SimpleChanges,
   isDevMode,
+  model,
 } from '@angular/core';
 
 import { DaffOpenable } from './openable';
@@ -59,17 +59,17 @@ import { DaffOpenableStateError } from './utils/state-error';
 @Directive({
   selector: '[daffOpenable]',
   host: {
-    '[class.daff-open]': 'open',
+    '[class.daff-open]': 'open()',
   },
 })
 
 export class DaffOpenableDirective implements DaffOpenable, OnChanges {
   /** Controls whether the component is open. */
-  @Input() open = false;
+  open = model(false);
 
   private _setOpen(v: boolean) {
     if(!this.stateless) {
-      this.open = v;
+      this.open.set(v);
     }
   }
 
@@ -111,7 +111,7 @@ export class DaffOpenableDirective implements DaffOpenable, OnChanges {
    * Open or close the component, depending on if it's currently open or not
    */
   toggle() {
-    const state = !this.open;
+    const state = !this.open();
 
     this._setOpen(state);
 
@@ -126,7 +126,7 @@ export class DaffOpenableDirective implements DaffOpenable, OnChanges {
      * Throw an error if open is set in a component that is not stateless
      */
     if(changes.open.currentValue && !this.stateless) {
-      this.open = changes.open.previousValue;
+      this.open.set(changes.open.previousValue);
 
       if(isDevMode()) {
         throw new Error(DaffOpenableStateError);

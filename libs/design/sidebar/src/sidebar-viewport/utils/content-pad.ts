@@ -9,7 +9,7 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
  */
 export const isSidebarViewportContentPadded = (sidebars: QueryList<DaffSidebarComponent>, side: DaffSidebarSide): boolean =>
   sidebars.reduce((acc: boolean, sidebar) => {
-    if(!(sidebar.mode === DaffSidebarModeEnum.SideFixed && sidebar.open)) {
+    if(!(sidebar.mode === DaffSidebarModeEnum.SideFixed && sidebar.open())) {
       return acc || false;
     }
 

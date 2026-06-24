@@ -112,7 +112,7 @@ describe('@daffodil/design | DaffOpenableDirective | States', () => {
 
     fixture.detectChanges();
 
-    expect(statelessComponent.openDirective.open).toEqual(false);
-    expect(statelessComponent.openDirective.open).toEqual(wrapper.statelessOpen);
+    expect(statelessComponent.openDirective.open()).toEqual(false);
+    expect(statelessComponent.openDirective.open()).toEqual(wrapper.statelessOpen);
   });
 });

@@ -1,6 +1,6 @@
 <button type="button" class="daff-accordion-item__header"
   (click)="toggle()"
-  [attr.aria-expanded]="open"
+  [attr.aria-expanded]="open()"
   [attr.aria-controls]="contentId"
   [id]="itemId"
   [disabled]="disabled"

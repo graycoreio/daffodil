@@ -148,7 +148,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
    * @docs-private
    */
   get isOpen() {
-    return this.openDirective.open;
+    return this.openDirective.open();
   }
 
   /**
@@ -300,8 +300,8 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     event?.preventDefault();
     event?.stopPropagation();
 
-    if (!this.openDirective.open) {
-      this.openDirective.open = true;
+    if (!this.openDirective.open()) {
+      this.openDirective.open.set(true);
 
       if (this._value) {
         this._highlighted = this.options.findIndex((v) => v === this._value);
@@ -360,8 +360,8 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
     event?.preventDefault();
     event?.stopPropagation();
 
-    if (this.openDirective.open) {
-      this.openDirective.open = false;
+    if (this.openDirective.open()) {
+      this.openDirective.open.set(false);
       this.cd.markForCheck();
 
       // do we actually have to dispose and recreate the overlay every time we want to close the dropdown?

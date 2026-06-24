@@ -77,7 +77,7 @@ export class DaffSidebarComponent implements DaffOpenable {
    */
   @HostBinding('@transformSidebar') get transformSidebar() {
     return {
-      value: getAnimationState(this.openDirective.open, this.mode),
+      value: getAnimationState(this.openDirective.open(), this.mode),
       params: { width: getSidebarAnimationWidth(this.side, this.width) },
     };
   }

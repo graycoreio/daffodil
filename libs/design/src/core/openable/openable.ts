@@ -1,9 +1,11 @@
+import { Signal } from '@angular/core';
+
 /**
  * An interface for giving a component the ability to display an open UI.
  */
 export interface DaffOpenable {
   /** Whether a component is open or not */
-  open: boolean;
+  open: Signal<boolean>;
 
   /** Reveal the component */
   reveal: () => void;
