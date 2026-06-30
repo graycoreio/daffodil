@@ -33,7 +33,7 @@ describe('DaffioSidebarRoutingModeService', () => {
     snapshotRoot = { data: {}, firstChild: null };
     mode = signal(DaffSidebarModeEnum.Side);
     sidebarServiceSpy = jasmine.createSpyObj('DaffioSidebarService', ['open', 'close']);
-    (sidebarServiceSpy as any).mode = mode;
+    (<any>sidebarServiceSpy).mode = mode;
 
     TestBed.configureTestingModule({
       providers: [

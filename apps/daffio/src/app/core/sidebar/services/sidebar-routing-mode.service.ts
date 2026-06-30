@@ -11,13 +11,11 @@ import {
 } from '@angular/router';
 import { filter } from 'rxjs';
 
-import {
-  daffSidebarIsDockedMode,
-} from '@daffodil/design/sidebar';
+import { daffSidebarIsDockedMode } from '@daffodil/design/sidebar';
 
 import { DaffioSidebarService } from './sidebar.service';
-import { DaffioSidebarRegistration } from '../interfaces/registration.type';
 import { DaffioRoute } from '../../router/route.type';
+import { DaffioSidebarRegistration } from '../interfaces/registration.type';
 
 /**
  * Opens or closes the sidebar in response to Angular's native router
@@ -70,7 +68,7 @@ export class DaffioSidebarRoutingModeService {
     let dockedSidebar: DaffioSidebarRegistration['id'] | undefined;
 
     while (route) {
-      const data = route.data as DaffioRoute['data'];
+      const data = <DaffioRoute['data']>route.data;
 
       if (data?.daffioDockedSidebar) {
         dockedSidebar = data.daffioDockedSidebar;
