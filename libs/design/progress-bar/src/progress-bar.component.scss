@@ -28,6 +28,11 @@ $height: 4px;
 
 		&.determinate-bar {
 			transition: transform 100ms ease-in-out;
+
+			@media screen and (prefers-reduced-motion: reduce) {
+				// slow the transition down to reduce motion while still signalling progress
+				transition-duration: 200ms;
+			}
 		}
 	}
 
@@ -39,6 +44,11 @@ $height: 4px;
 			width: 100%;
 			animation: indeterminate-animation 1500ms infinite linear;
 			transform-origin: 0% 50%;
+
+			@media screen and (prefers-reduced-motion: reduce) {
+				// slow the animation down to reduce motion while still signalling activity
+				animation-duration: 3500ms;
+			}
 		}
 	}
 }
