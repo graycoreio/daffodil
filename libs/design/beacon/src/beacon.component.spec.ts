@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -9,25 +10,27 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffColor } from '@daffodil/design';
+import {
+  DaffColor,
+  DaffColorableDirective,
+  DaffStatus,
+  DaffStatusableDirective,
+} from '@daffodil/design';
+import { DaffBeaconComponent } from '@daffodil/design/beacon';
 
-import { DaffBeaconComponent } from './beacon.component';
 import { DaffBeaconSpeed } from './helpers/beacon-speed';
 
-/**
- * Hosts a `<daff-beacon>` so each param can be driven through a binding, mirroring
- * how a real consumer wires it up.
- */
 @Component({
-  template: `<daff-beacon [color]="color" [size]="size" [speed]="speed"></daff-beacon>`,
+  template: `<daff-beacon [color]="color()" [size]="size()" [speed]="speed()" [status]="status()"></daff-beacon>`,
   imports: [
     DaffBeaconComponent,
   ],
 })
 class WrapperComponent {
-  color: DaffColor;
-  size: string | undefined;
-  speed: DaffBeaconSpeed | undefined;
+  color = signal<DaffColor>(undefined);
+  status = signal<DaffStatus>(undefined);
+  size = signal<string | undefined>(undefined);
+  speed = signal<DaffBeaconSpeed | undefined>(undefined);
 }
 
 describe('@daffodil/design/beacon | DaffBeaconComponent', () => {
@@ -58,13 +61,13 @@ describe('@daffodil/design/beacon | DaffBeaconComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('the size param (DaffSizableDirective)', () => {
-    it('should default to the "daff-sm" size class', () => {
+  describe('the size param', () => {
+    it('should default to "sm"', () => {
       expect(de.classes['daff-sm']).toBeTrue();
     });
 
     it('should apply the matching daff-{size} class when set', () => {
-      wrapper.size = 'lg';
+      wrapper.size.set('lg');
       fixture.detectChanges();
 
       expect(de.classes['daff-lg']).toBeTrue();
@@ -73,36 +76,48 @@ describe('@daffodil/design/beacon | DaffBeaconComponent', () => {
   });
 
   describe('the color param', () => {
-    it('should apply no color class by default, inheriting currentColor', () => {
-      expect(de.classes['daff-primary']).toBeFalsy();
-      expect(de.classes['daff-tertiary']).toBeFalsy();
+    it('should not set a default color', () => {
+      expect(de.injector.get(DaffColorableDirective).color).toBeFalsy();
     });
 
     it('should apply the matching daff-{color} class when set', () => {
-      wrapper.color = 'tertiary';
+      wrapper.color.set('tertiary');
       fixture.detectChanges();
 
       expect(de.classes['daff-tertiary']).toBeTrue();
     });
   });
 
-  describe('the speed param', () => {
-    it('should apply the ".slow" class when speed is "slow"', () => {
-      wrapper.speed = 'slow';
-      fixture.detectChanges();
-
-      expect(de.classes['.slow']).toBeTrue();
-      expect(de.classes['.normal']).toBeFalsy();
-      expect(de.classes['.fast']).toBeFalsy();
+  describe('the status param', () => {
+    it('should not set a default status', () => {
+      expect(de.injector.get(DaffStatusableDirective).status).toBeFalsy();
     });
 
-    it('should apply the ".fast" class when speed is "fast"', () => {
-      wrapper.speed = 'fast';
+    it('should apply the matching daff-{status} class when set', () => {
+      wrapper.status.set('warn');
       fixture.detectChanges();
 
-      expect(de.classes['.fast']).toBeTrue();
-      expect(de.classes['.normal']).toBeFalsy();
-      expect(de.classes['.slow']).toBeFalsy();
+      expect(de.classes['daff-warn']).toBeTrue();
+    });
+  });
+
+  describe('the speed param', () => {
+    it('should apply the "slow" class when speed is "slow"', () => {
+      wrapper.speed.set('slow');
+      fixture.detectChanges();
+
+      expect(de.classes['slow']).toBeTrue();
+      expect(de.classes['normal']).toBeFalsy();
+      expect(de.classes['fast']).toBeFalsy();
+    });
+
+    it('should apply the "fast" class when speed is "fast"', () => {
+      wrapper.speed.set('fast');
+      fixture.detectChanges();
+
+      expect(de.classes['fast']).toBeTrue();
+      expect(de.classes['normal']).toBeFalsy();
+      expect(de.classes['slow']).toBeFalsy();
     });
 
     it('should default to "normal"', () => {
@@ -110,7 +125,7 @@ describe('@daffodil/design/beacon | DaffBeaconComponent', () => {
       beacon.detectChanges();
 
       expect(beacon.componentInstance.speed()).toEqual('normal');
-      expect(de.classes['.normal']).toBeTruthy();
+      expect(beacon.debugElement.classes['normal']).toBeTrue();
     });
   });
 });
