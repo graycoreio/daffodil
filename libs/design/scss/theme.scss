@@ -18,6 +18,7 @@
 
 // @daffodil/design components
 @use './theming/theme-css-variables' as variables;
+@use '../beacon/src/beacon-theme' as beacon;
 @use '../breadcrumb/src/breadcrumb-theme' as breadcrumb;
 @use '../button/src/button/basic/button-theme' as button;
 @use '../button/src/button/flat/flat-theme' as flat-button;
@@ -93,6 +94,7 @@
 	@include select.daff-select-theme($theme);
 	@include native-select.daff-native-select-theme($theme);
 
+	@include beacon.daff-beacon-theme($theme);
 	@include spinner.daff-spinner-theme($theme);
 	@include progress-bar.daff-progress-bar-theme($theme);
 

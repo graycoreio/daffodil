@@ -1,0 +1,61 @@
+@use '../../scss/theming' as *;
+
+@mixin daff-beacon-theme($theme) {
+	$primary: daff-get-palette($theme, primary);
+	$secondary: daff-get-palette($theme, secondary);
+	$tertiary: daff-get-palette($theme, tertiary);
+	$info: daff-get-palette($theme, informational);
+	$warn: daff-get-palette($theme, warn);
+	$critical: daff-get-palette($theme, critical);
+	$success: daff-get-palette($theme, success);
+	$base: daff-get-base-color($theme, base);
+	$base-contrast: daff-get-base-color($theme, base-contrast);
+	$white: daff-get-base-color($theme, 'white');
+	$black: daff-get-base-color($theme, 'black');
+
+	.daff-beacon {
+		&.daff-primary {
+			color: daff-color($primary);
+		}
+
+		&.daff-secondary {
+			color: daff-color($secondary);
+		}
+
+		&.daff-tertiary {
+			color: daff-color($tertiary);
+		}
+
+		&.daff-theme {
+			color: $base;
+		}
+
+		&.daff-theme-contrast {
+			color: $base-contrast;
+		}
+
+		&.daff-dark {
+			color: $black;
+		}
+
+		&.daff-light {
+			color: $white;
+		}
+
+		&.daff-info {
+			color: daff-color($info);
+		}
+
+		&.daff-warn {
+			color: daff-color($warn);
+		}
+
+		&.daff-critical {
+			color: daff-color($critical);
+		}
+
+		&.daff-success {
+			color: daff-color($success);
+		}
+	}
+}
