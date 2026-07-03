@@ -42,6 +42,13 @@
 		}
 	}
 
+	@media screen and (prefers-reduced-motion: reduce) {
+		&.opening,
+		&.closing {
+			animation: none;
+		}
+	}
+
 	@include layout.breakpoint(mobile) {
 		max-height: 80vh;
 		max-width: 80vw;

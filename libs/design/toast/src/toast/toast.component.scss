@@ -144,4 +144,13 @@ $-multiple-toast-margin: 0.75rem;
 	&.slide-in-bottom {
 		animation: slideInBottom 300ms ease-out;
 	}
+
+	@media screen and (prefers-reduced-motion: reduce) {
+		&.slide-in-left,
+		&.slide-in-right,
+		&.slide-in-top,
+		&.slide-in-bottom {
+			animation: none;
+		}
+	}
 }
