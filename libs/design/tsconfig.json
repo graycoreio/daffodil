@@ -85,6 +85,9 @@
       "@daffodil/design/progress-bar": [
         "libs/design/progress-bar/src"
       ],
+      "@daffodil/design/beacon": [
+        "libs/design/beacon/src"
+      ],
       "@daffodil/design/quantity-field": [
         "libs/design/quantity-field/src"
       ],
