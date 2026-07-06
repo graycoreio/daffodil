@@ -3,7 +3,12 @@ import {
   Component,
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircleCheck,
+  faCircleInfo,
+  faCircleXmark,
+  faTriangleExclamation,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { DAFF_TAG_COMPONENTS } from '@daffodil/design/tag';
 
@@ -25,4 +30,7 @@ import { DAFF_TAG_COMPONENTS } from '@daffodil/design/tag';
 })
 export class StatusableTagExampleComponent {
   faCircleCheck = faCircleCheck;
+  faCircleInfo = faCircleInfo;
+  faCircleXmark = faCircleXmark;
+  faTriangleExclamation = faTriangleExclamation;
 }

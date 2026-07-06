@@ -6,6 +6,6 @@
 </div>
 @if (dismissible) {
   <button class="daff-tag__close-icon" (click)="onCloseTag($event)" aria-label="Dismiss" [attr.tabindex]="disabled ? -1 : null">
-    <fa-icon [icon]="faTimes"></fa-icon>
+    <fa-icon [icon]="faTimes" [fixedWidth]="true"></fa-icon>
   </button>
 }

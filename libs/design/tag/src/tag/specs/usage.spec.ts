@@ -11,9 +11,9 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffStatus } from '@daffodil/design';
+import { DaffTagComponent } from '@daffodil/design/tag';
 
-import { DaffTagSize } from './tag-sizable.directive';
-import { DaffTagComponent } from './tag.component';
+import { DaffTagSize } from '../tag-sizable.directive';
 
 @Component({
   template: `
@@ -23,7 +23,7 @@ import { DaffTagComponent } from './tag.component';
       [status]="status()"
       [size]="size()"
       (closeTag)="onCloseTag()">
-      <div>Test Tag</div>
+        Tag
     </daff-tag>
   `,
   imports: [
@@ -42,7 +42,7 @@ class WrapperComponent {
   }
 }
 
-describe('@daffodil/design/tag | DaffTagComponent', () => {
+describe('@daffodil/design/tag | DaffTagComponent | Usage', () => {
   let wrapper: WrapperComponent;
   let component: DaffTagComponent;
   let de: DebugElement;
@@ -72,10 +72,6 @@ describe('@daffodil/design/tag | DaffTagComponent', () => {
   describe('dismissible property', () => {
     it('should take dismissible as an input', () => {
       expect(component.dismissible).toEqual(wrapper.dismissible());
-    });
-
-    it('should set dismissible to false by default', () => {
-      expect(component.dismissible).toBeFalse();
     });
 
     it('should not show close button when dismissible is false', () => {
@@ -113,10 +109,6 @@ describe('@daffodil/design/tag | DaffTagComponent', () => {
   describe('disabled property', () => {
     it('should take disabled as an input', () => {
       expect(component.disabled).toEqual(wrapper.disabled());
-    });
-
-    it('should set disabled to false by default', () => {
-      expect(component.disabled).toBeFalse();
     });
 
     it('should have disabled property set when disabled is true', () => {
@@ -187,10 +179,6 @@ describe('@daffodil/design/tag | DaffTagComponent', () => {
 
       expect(de.nativeElement.classList.contains('daff-lg')).toBe(true);
     });
-
-    it('should default to md size and apply daff-md class', () => {
-      expect(de.nativeElement.classList.contains('daff-md')).toBe(true);
-    });
   });
 
   describe('content projection', () => {
@@ -201,10 +189,6 @@ describe('@daffodil/design/tag | DaffTagComponent', () => {
   });
 
   describe('host classes', () => {
-    it('should have daff-tag class', () => {
-      expect(de.nativeElement.classList.contains('daff-tag')).toBe(true);
-    });
-
     it('should have dismissible class when dismissible is true', () => {
       wrapper.dismissible.set(true);
       fixture.detectChanges();

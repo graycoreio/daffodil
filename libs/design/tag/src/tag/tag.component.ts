@@ -1,5 +1,5 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   ContentChild,
@@ -17,20 +17,21 @@ import {
   DaffDisableable,
   DaffDisableableDirective,
   DaffPrefixDirective,
+  DaffStatus,
   DaffStatusableDirective,
 } from '@daffodil/design';
 
 import { DaffTagSizableDirective } from './tag-sizable.directive';
 
 /**
- * Contains the tag content: checkmark icon, label, and delete button.
+ * DaffTagComponent is an interactive indicator and filter that can be edited or removed, used to represent selections, categories, or applied filters.
  *
  * @example
  * ```html
- *  <daff-tag [dismissible]="true" (closeTag)="onCloseTag()">
- *    <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
- *    <div>Label</div>
- *  </daff-tag>
+ * <daff-tag [dismissible]="true" (closeTag)="onCloseTag()">
+ *   <fa-icon daffPrefix [icon]="faCircleCheck"></fa-icon>
+ *   Label
+ * </daff-tag>
  * ```
  */
 
@@ -50,7 +51,6 @@ import { DaffTagSizableDirective } from './tag-sizable.directive';
     },
     {
       directive: DaffStatusableDirective,
-      inputs: ['status'],
     },
     {
       directive: DaffDisableableDirective,
@@ -89,17 +89,24 @@ export class DaffTagComponent implements DaffDisableable {
     return this.disabledDirective.disabled;
   }
 
-  private _dismissible = false;
+  /**
+   * @deprecated Deprecated in version 0.93.0.
+   *
+   * Sets the status on the tag.
+   */
+  @Input()
+  get status(): DaffStatus {
+    return this.statusable.status;
+  }
+  set status(value: DaffStatus) {
+    this.statusable.status = value;
+  }
 
-  /** Whether the tag can be dismissed by the user.
+  /**
+   * Whether the tag can be dismissed by the user.
    * Displays a close icon if `true`.
    */
-  @Input() get dismissible() {
-    return this._dismissible;
-  }
-  set dismissible(value: any) {
-    this._dismissible = coerceBooleanProperty(value);
-  }
+  @Input({ transform: booleanAttribute }) dismissible = false;
 
   /**
    * Emits when the tag is closed.
@@ -121,6 +128,7 @@ export class DaffTagComponent implements DaffDisableable {
   constructor(
     private size: DaffTagSizableDirective,
     private disabledDirective: DaffDisableableDirective,
+    private statusable: DaffStatusableDirective,
   ) {
     /**
      * Sets the default size of a tag to medium.

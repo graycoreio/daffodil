@@ -1,3 +1,4 @@
+// stylelint-disable selector-class-pattern
 @use '../../scss/theming' as *;
 
 @mixin daff-tag-theme($theme) {
@@ -18,119 +19,215 @@
 			background: daff-color($neutral, 20);
 			color: $black;
 
+			&::after {
+				background: daff-color($neutral, 30);
+			}
+
 			&.daff-primary {
 				background: daff-color($primary, 10);
 				color: daff-color($primary, 70);
+
+				&::after {
+					background: daff-color($primary, 20);
+				}
 			}
 
 			&.daff-secondary {
 				background: daff-color($secondary, 10);
 				color: daff-color($secondary, 70);
+
+				&::after {
+					background: daff-color($secondary, 20);
+				}
 			}
 
 			&.daff-tertiary {
 				background: daff-color($tertiary, 10);
 				color: daff-color($tertiary, 70);
+
+				&::after {
+					background: daff-color($tertiary, 20);
+				}
 			}
 
 			&.daff-dark {
 				background: daff-color($neutral, 90);
 				color: daff-color($neutral, 10);
+
+				&::after {
+					background: daff-color($neutral, 100);
+				}
 			}
 
 			&.daff-light {
 				background: daff-color($neutral, 10);
 				color: daff-color($neutral, 90);
+
+				&::after {
+					background: daff-color($neutral, 20);
+				}
 			}
 
 			&.daff-theme {
 				background: $white;
 				color: $black;
+
+				&::after {
+					background: daff-color($neutral, 20);
+				}
 			}
 
 			&.daff-theme-contrast {
 				background: $black;
 				color: $white;
+
+				&::after {
+					background: daff-color($neutral, 90);
+				}
 			}
 
 			&.daff-warn {
 				background: daff-color($warn, 10);
 				color: daff-color($warn, 70);
+
+				&::after {
+					background: daff-color($warn, 20);
+				}
 			}
 
 			&.daff-success {
 				background: daff-color($success, 10);
 				color: daff-color($success, 70);
+
+				&::after {
+					background: daff-color($success, 20);
+				}
 			}
 
 			&.daff-critical {
 				background: daff-color($critical, 10);
 				color: daff-color($critical, 70);
+
+				&::after {
+					background: daff-color($critical, 20);
+				}
 			}
 
 			&.daff-info {
 				background: daff-color($info, 10);
-				color: daff-color($info, 70);
+				color: daff-color($info, 90);
+
+				&::after {
+					background: daff-color($info, 20);
+				}
 			}
 		}
 
 		@include dark($mode) {
-			background: daff-color($neutral, 90);
+			background: daff-color($neutral, 80);
 			color: daff-color($neutral, 20);
+
+			&::after {
+				background: daff-color($neutral, 90);
+			}
 
 			&.daff-primary {
 				background: daff-color($primary, 90);
 				color: daff-color($primary, 10);
+
+				&::after {
+					background: daff-color($primary, 100);
+				}
 			}
 
 			&.daff-secondary {
 				background: daff-color($secondary, 90);
 				color: daff-color($secondary, 10);
+
+				&::after {
+					background: daff-color($secondary, 100);
+				}
 			}
 
 			&.daff-tertiary {
 				background: daff-color($tertiary, 90);
 				color: daff-color($tertiary, 10);
+
+				&::after {
+					background: daff-color($tertiary, 100);
+				}
 			}
 
 			&.daff-dark {
 				background: daff-color($neutral, 90);
 				color: daff-color($neutral, 10);
+
+				&::after {
+					background: daff-color($neutral, 100);
+				}
 			}
 
 			&.daff-light {
 				background: daff-color($neutral, 10);
 				color: daff-color($neutral, 90);
+
+				&::after {
+					background: daff-color($neutral, 30);
+				}
 			}
 
 			&.daff-theme {
 				background: $black;
 				color: $white;
+
+				&::after {
+					background: daff-color($neutral, 100);
+				}
 			}
 
 			&.daff-theme-contrast {
 				background: $white;
 				color: $black;
+
+				&::after {
+					background: daff-color($neutral, 20);
+				}
 			}
 
 			&.daff-warn {
 				background: daff-color($warn, 90);
 				color: daff-color($warn, 10);
+
+				&::after {
+					background: daff-color($warn, 100);
+				}
 			}
 
 			&.daff-success {
 				background: daff-color($success, 90);
 				color: daff-color($success, 10);
+
+				&::after {
+					background: daff-color($success, 100);
+				}
 			}
 
 			&.daff-critical {
 				background: daff-color($critical, 90);
 				color: daff-color($critical, 10);
+
+				&::after {
+					background: daff-color($critical, 100);
+				}
 			}
 
 			&.daff-info {
-				background: daff-color($info, 70);
+				background: daff-color($info, 80);
 				color: daff-color($info, 10);
+
+				&::after {
+					background: daff-color($neutral, 80);
+				}
 			}
 		}
 	}

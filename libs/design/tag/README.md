@@ -1,8 +1,8 @@
 # Tag
-Tags are compact visual indicators used to display short pieces of information such as status, categories, or labels.
+Tags are interactive indicators and filters that can be edited or removed, used to represent selections, categories, or applied filters.
 
 ## Overview
-Tag supports flexible content projection to allow for various combinations of icons, labels, and interactive elements within a consistent container.
+Tag supports flexible content projection to allow for various combinations of icons, labels, and interactive elements within a consistent container. Tags can be dismissed to remove a selection or filter, making them well suited for filter chips, applied search criteria, and editable selections.
 
 <daff-docs-example-viewer example="basic-tag"></daff-docs-example-viewer>
 
@@ -36,7 +36,7 @@ A tag is composed of a wrapper, an optional prefix, a label, and an optional clo
 - **`<daff-tag>`**: The wrapper component that holds all tag content.
 - **`[daffPrefix]`**: A leading visual, typically an icon, displayed before the label.
 - **Label**: The text content of the tag, projected as a child element.
-- **Close button**: A trailing dismiss button, displayed when `dismissible` is `true`.
+- **Close button**: A trailing remove button, displayed when `dismissible` is `true`.
 
 ## Features
 
@@ -46,7 +46,7 @@ Set `dismissible` to `true` to display a close button. The button emits a `close
 <daff-docs-example-viewer example="dismissible-tag"></daff-docs-example-viewer>
 
 ### Disabled tags
-Set `disabled` to `true` to disable the tag. Disabled tags cannot be dismissed.
+Set `disabled` to `true` to disable the tag. Disabled tags cannot be removed.
 
 <daff-docs-example-viewer example="disabled-tag"></daff-docs-example-viewer>
 
@@ -63,15 +63,19 @@ Use the `color` property to change the color of a tag. Supported colors: `primar
 ### Statuses
 Use the `status` property to convey semantic meaning. Supported statuses: `warn`, `critical`, `info`, `success`.
 
+> **Deprecation notice:**
+>
+> The `status` property is deprecated. Tags are intended for selections, categories, and applied filters, so use the `color` property instead.
+
 <daff-docs-example-viewer example="statusable-tag"></daff-docs-example-viewer>
 
 ## Accessibility
 
 ### Built-in behavior
 - Default tags are not interactive and do not receive focus.
-- Dismissible tags include a focusable close button that can be activated with `Enter` or `Space`.
+- Removable tags include a focusable close button that can be activated with `Enter` or `Space`.
 - Disabled tags expose `aria-disabled="true"` and ignore close button activation.
 
 ### Developer responsibilities
 - Always provide a text label unless the icon is universally understood and accessible.
-- Use the `status` property to communicate semantic meaning, rather than relying on color alone.
+- Communicate meaning through the tag's label or an accessible icon, rather than relying on color alone.
