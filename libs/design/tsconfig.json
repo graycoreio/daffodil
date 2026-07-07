@@ -73,6 +73,9 @@
       "@daffodil/design/modal": [
         "libs/design/modal/src"
       ],
+      "@daffodil/design/native-select": [
+        "libs/design/native-select/src"
+      ],
       "@daffodil/design/navbar": [
         "libs/design/navbar/src"
       ],
@@ -108,6 +111,9 @@
       ],
 			"@daffodil/design/tabs": [
         "libs/design/tabs/src"
+      ],
+      "@daffodil/design/tag": [
+        "libs/design/tag/src"
       ],
       "@daffodil/design/testing": [
         "libs/design/testing/src"
