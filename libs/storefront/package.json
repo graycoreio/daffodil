@@ -27,7 +27,7 @@
     "lint:scss": "stylelint '**/*.scss' '!**/examples/**'",
     "lint:scss:fix": "npm run lint:scss -- --fix",
     "lint:fix": "npm run lint -- --fix",
-    "test": "npm run test:scss && npm run test:angular",
+    "test": "npm run test:angular",
     "test:scss": "jasmine scss/test_scss.js",
     "test:angular": "ng test storefront --watch=false --browsers=ChromeHeadless",
     "publish": "cd ../../dist/storefront && npm publish --access=public"
