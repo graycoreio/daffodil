@@ -133,6 +133,9 @@
       "@daffodil/design/tree": [
         "libs/design/tree/src"
       ],
+      "@daffodil/design/youtube-player": [
+        "libs/design/youtube-player/src"
+      ],
     }
   },
   "references": [

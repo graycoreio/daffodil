@@ -1,8 +1,18 @@
 import { defineConfig } from 'eslint/config';
 import daffDocsPlugin from 'eslint-plugin-daff-docs';
+import daffTsconfigPlugin from 'eslint-plugin-daff-tsconfig';
 import rootConfig from '../../eslint.config.mjs';
 export default defineConfig([
 	...rootConfig,
+	{
+		files: ['**/*.ts'],
+		plugins: {
+			'daff-tsconfig': daffTsconfigPlugin,
+		},
+		rules: {
+			'daff-tsconfig/require-entry-point-paths': 'error',
+		},
+	},
 	{
 		files: ['**/*.component.ts', '**/*.container.ts', '**/*.directive.ts'],
 		plugins: {
