@@ -1,6 +1,13 @@
 {
   "name": "@daffodil/storefront",
   "version": "0.0.0-PLACEHOLDER",
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "description": "High-level ecommerce UI components built on @daffodil/design for storefront applications. Part of the Daffodil ecommerce framework.",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
 	"repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
@@ -16,9 +23,13 @@
   },
   "scripts": {
     "build": "ng build storefront --configuration production",
-    "lint": "cd ../.. && ng lint storefront",
+    "lint": "npm run lint:scss && cd ../.. && ng lint storefront",
+    "lint:scss": "stylelint '**/*.scss' '!**/examples/**'",
+    "lint:scss:fix": "npm run lint:scss -- --fix",
     "lint:fix": "npm run lint -- --fix",
-    "test": "ng test storefront --watch=false --browsers=ChromeHeadless",
+    "test": "npm run test:scss && npm run test:angular",
+    "test:scss": "jasmine scss/test_scss.js",
+    "test:angular": "ng test storefront --watch=false --browsers=ChromeHeadless",
     "publish": "cd ../../dist/storefront && npm publish --access=public"
   },
   "peerDependencies": {
@@ -37,6 +48,5 @@
     "./scss/theme": {
       "sass": "./scss/theme.scss"
     }
-  },
-  "description": "High-level ecommerce UI components built on @daffodil/design for storefront applications. Part of the Daffodil ecommerce framework."
+  }
 }
