@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffTagComponent } from '../tag.component';
+import { DaffTagComponent } from '@daffodil/design/tag';
 
 @Component({
   template: `
@@ -58,7 +58,9 @@ describe('@daffodil/design/tag | DaffTagComponent | Defaults', () => {
     expect(component.disabled).toBeFalse();
   });
 
-  it('should default to md size and apply daff-md class', () => {
-    expect(de.nativeElement.classList.contains('daff-md')).toBe(true);
+  it('should set the default size to `md` and add the `.daff-md` class', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-md': true,
+    }));
   });
 });

@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 import {
   Component,
   DebugElement,
@@ -129,62 +130,76 @@ describe('@daffodil/design/tag | DaffTagComponent | Usage', () => {
   });
 
   describe('status property', () => {
-    it('should accept warn status', () => {
-      wrapper.status.set('warn');
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-warn')).toBe(true);
-    });
-
-    it('should accept critical status', () => {
-      wrapper.status.set('critical');
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-critical')).toBe(true);
-    });
-
-    it('should accept info status', () => {
+    it('should add a class of ".daff-info" to the host element if status is set to info', () => {
       wrapper.status.set('info');
       fixture.detectChanges();
 
-      expect(de.nativeElement.classList.contains('daff-info')).toBe(true);
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-info': true,
+      }));
     });
 
-    it('should accept success status', () => {
+    it('should add a class of ".daff-warn" to the host element if status is set to warn', () => {
+      wrapper.status.set('warn');
+      fixture.detectChanges();
+
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-warn': true,
+      }));
+    });
+
+    it('should add a class of ".daff-critical" to the host element if status is set to critical', () => {
+      wrapper.status.set('critical');
+      fixture.detectChanges();
+
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-critical': true,
+      }));
+    });
+
+    it('should add a class of ".daff-success" to the host element if status is set to success', () => {
       wrapper.status.set('success');
       fixture.detectChanges();
 
-      expect(de.nativeElement.classList.contains('daff-success')).toBe(true);
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-success': true,
+      }));
     });
   });
 
   describe('size property', () => {
-    it('should accept sm size and apply daff-sm class', () => {
+    it('should add a class of ".daff-sm" to the host element if size is set to info', () => {
       wrapper.size.set('sm');
       fixture.detectChanges();
 
-      expect(de.nativeElement.classList.contains('daff-sm')).toBe(true);
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-sm': true,
+      }));
     });
 
-    it('should accept md size and apply daff-md class', () => {
+    it('should add a class of ".daff-md" to the host element if size is set to md', () => {
       wrapper.size.set('md');
       fixture.detectChanges();
 
-      expect(de.nativeElement.classList.contains('daff-md')).toBe(true);
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-md': true,
+      }));
     });
 
-    it('should accept lg size and apply daff-lg class', () => {
+    it('should add a class of ".daff-lg" to the host element if size is set to lg', () => {
       wrapper.size.set('lg');
       fixture.detectChanges();
 
-      expect(de.nativeElement.classList.contains('daff-lg')).toBe(true);
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-lg': true,
+      }));
     });
   });
 
   describe('content projection', () => {
     it('should project content inside the tag', () => {
       const projectedContent = de.query(By.css('.daff-tag__label'));
-      expect(projectedContent.nativeElement.textContent.trim()).toBe('Test Tag');
+      expect(projectedContent.nativeElement.textContent.trim()).toBe('Tag');
     });
   });
 
@@ -193,7 +208,9 @@ describe('@daffodil/design/tag | DaffTagComponent | Usage', () => {
       wrapper.dismissible.set(true);
       fixture.detectChanges();
 
-      expect(de.nativeElement.classList.contains('dismissible')).toBe(true);
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'dismissible': true,
+      }));
     });
 
     it('should not have dismissible class when dismissible is false', () => {
