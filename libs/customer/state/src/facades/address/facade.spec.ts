@@ -4,7 +4,7 @@ import {
   Store,
   StoreModule,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCustomerAddress } from '@daffodil/customer';
 import {
@@ -26,6 +26,8 @@ describe('@daffodil/customer/state | DaffCustomerAddressPageFacade', () => {
   let addressFactory: DaffCustomerAddressFactory;
 
   let mockAddress: DaffCustomerAddress;
+
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -50,6 +52,10 @@ describe('@daffodil/customer/state | DaffCustomerAddressPageFacade', () => {
     mockAddress = addressFactory.create();
 
     store.dispatch(new DaffCustomerAddressLoadSuccess(mockAddress));
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -67,15 +73,17 @@ describe('@daffodil/customer/state | DaffCustomerAddressPageFacade', () => {
 
   describe('addresses$', () => {
     it('should contain the loaded address', () => {
-      const expected = cold('a', { a: jasmine.arrayContaining([jasmine.objectContaining(mockAddress)]) });
-      expect(facade.addresses$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.addresses$).toBe('a', { a: jasmine.arrayContaining([jasmine.objectContaining(mockAddress)]) });
+      });
     });
   });
 
   describe('getAddress$', () => {
     it('should return the requested address', () => {
-      const expected = cold('a', { a: jasmine.objectContaining(mockAddress) });
-      expect(facade.getAddress(mockAddress.id)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.getAddress(mockAddress.id)).toBe('a', { a: jasmine.objectContaining(mockAddress) });
+      });
     });
   });
 });
