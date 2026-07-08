@@ -118,7 +118,6 @@
     "shx": "^0.3.4",
     "stylelint": "^17.0.0",
     "stylelint-config-recommended-scss": "^17.0.0",
-    "ts-loader": "^5.4.5",
     "ts-node": "~7.0.1",
     "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^3.14.2",
