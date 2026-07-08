@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
@@ -62,7 +59,6 @@ describe('@daffodil/customer-store-credit/state | DaffCustomerStoreCreditEffects
   });
 
   describe('when DaffCustomerStoreCreditLoadAction is triggered', () => {
-    let expected;
     let listAction: DaffCustomerStoreCreditLoad;
 
     beforeEach(() => {
@@ -72,28 +68,33 @@ describe('@daffodil/customer-store-credit/state | DaffCustomerStoreCreditEffects
     describe('and the call to the driver is successful', () => {
       beforeEach(() => {
         driverGetSpy.and.returnValue(of(mockStoreCredit));
-        const listSuccessAction = new DaffCustomerStoreCreditLoadSuccess(mockStoreCredit);
-        actions$ = hot('--a', { a: listAction });
-        expected = cold('--b', { b: listSuccessAction });
       });
 
       it('should dispatch a DaffCustomerStoreCreditLoadSuccess action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const listSuccessAction = new DaffCustomerStoreCreditLoadSuccess(mockStoreCredit);
+          actions$ = helpers.hot('--a', { a: listAction });
+          helpers.expectObservable(effects.list$).toBe('--b', { b: listSuccessAction });
+        });
       });
     });
 
     describe('and the call to the driver fails', () => {
-      beforeEach(() => {
-        const error = new DaffCustomerStoreCreditInvalidAPIResponseError('Failed to list customer store credit');
-        const response = cold('#', {}, error);
-        driverGetSpy.and.returnValue(response);
-        const listFailureAction = new DaffCustomerStoreCreditLoadFailure(daffTransformErrorToStateError(error));
-        actions$ = hot('--a', { a: listAction });
-        expected = cold('--b', { b: listFailureAction });
-      });
-
       it('should dispatch a DaffCustomerStoreCreditLoadFailure action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error = new DaffCustomerStoreCreditInvalidAPIResponseError('Failed to list customer store credit');
+          const response = helpers.cold<any>('#', {}, error);
+          driverGetSpy.and.returnValue(response);
+          const listFailureAction = new DaffCustomerStoreCreditLoadFailure(daffTransformErrorToStateError(error));
+          actions$ = helpers.hot('--a', { a: listAction });
+          helpers.expectObservable(effects.list$).toBe('--b', { b: listFailureAction });
+        });
       });
     });
   });
