@@ -4,7 +4,7 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffLoginInfo,
@@ -31,6 +31,7 @@ describe('@daffodil/auth/state | DaffAuthFacade', () => {
   let facade: DaffAuthFacade;
   let authFactory: DaffAuthTokenFactory;
   let accountRegistrationFactory: DaffAccountRegistrationFactory;
+  let scheduler: TestScheduler;
 
   let mockLoginInfo: DaffLoginInfo;
   let mockRegistration: DaffAccountRegistration;
@@ -43,6 +44,10 @@ describe('@daffodil/auth/state | DaffAuthFacade', () => {
   let registerLoading: boolean;
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -88,21 +93,24 @@ describe('@daffodil/auth/state | DaffAuthFacade', () => {
 
   describe('loading$', () => {
     it('should be false if the auth check is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
 
     it('should be true if the auth check is loading', () => {
-      const expected = cold('a', { a: true });
       store.dispatch(new DaffAuthCheck());
-      expect(facade.loading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: true });
+      });
     });
   });
 
   describe('errors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.errors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: [] });
+      });
     });
 
     it('should contain an error upon a failed auth check', () => {
@@ -110,22 +118,25 @@ describe('@daffodil/auth/state | DaffAuthFacade', () => {
         code: 'error code',
         message: 'error message',
       };
-      const expected = cold('a', { a: [error]});
       store.dispatch(new DaffAuthCheckFailure(error));
-      expect(facade.errors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: [error] });
+      });
     });
   });
 
   describe('loggedIn$', () => {
     it('should initially be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loggedIn$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loggedIn$).toBe('a', { a: false });
+      });
     });
 
     it('should be true upon an auth complete', () => {
-      const expected = cold('a', { a: true });
       store.dispatch(new DaffAuthLoginSuccess(null));
-      expect(facade.loggedIn$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loggedIn$).toBe('a', { a: true });
+      });
     });
   });
 });

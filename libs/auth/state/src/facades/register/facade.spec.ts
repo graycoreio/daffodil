@@ -4,7 +4,7 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffAccountRegistration,
@@ -29,6 +29,7 @@ describe('@daffodil/auth/state | DaffAuthRegisterFacade', () => {
   let facade: DaffAuthRegisterFacade;
   let authFactory: DaffAuthTokenFactory;
   let accountRegistrationFactory: DaffAccountRegistrationFactory;
+  let scheduler: TestScheduler;
 
   let mockRegistration: DaffAccountRegistration;
   let mockAuthToken: DaffAuthToken;
@@ -36,6 +37,10 @@ describe('@daffodil/auth/state | DaffAuthRegisterFacade', () => {
   let loading: boolean;
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -73,21 +78,24 @@ describe('@daffodil/auth/state | DaffAuthRegisterFacade', () => {
 
   describe('loading$', () => {
     it('should be false if the auth check is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
 
     it('should be true if the auth check is loading', () => {
-      const expected = cold('a', { a: true });
       store.dispatch(new DaffAuthRegister(mockRegistration));
-      expect(facade.loading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: true });
+      });
     });
   });
 
   describe('errors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.errors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: [] });
+      });
     });
 
     it('should contain an error upon a failed registration', () => {
@@ -95,9 +103,10 @@ describe('@daffodil/auth/state | DaffAuthRegisterFacade', () => {
         code: 'error code',
         message: 'error message',
       };
-      const expected = cold('a', { a: [error]});
       store.dispatch(new DaffAuthRegisterFailure(error));
-      expect(facade.errors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: [error] });
+      });
     });
   });
 });

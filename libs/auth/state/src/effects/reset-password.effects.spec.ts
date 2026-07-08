@@ -173,9 +173,9 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordEffects', () => {
             }
           } else {
             if (el.isAutoLoginTrue) {
-              daffResetPasswordDriver.resetPassword.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+              daffResetPasswordDriver.resetPassword.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
             } else {
-              daffResetPasswordDriver.resetPasswordOnly.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+              daffResetPasswordDriver.resetPasswordOnly.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
             }
           }
           if (el.didPasswordResetSucceed && el.whatErrorWasThrown){
@@ -214,7 +214,7 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordEffects', () => {
           actions$ = helpers.hot('--a', { a: mockAuthSendResetEmailAction });
 
           if(el.whatErrorWasThrown) {
-            daffResetPasswordDriver.sendResetEmail.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+            daffResetPasswordDriver.sendResetEmail.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
           } else {
             daffResetPasswordDriver.sendResetEmail.and.returnValue(of(undefined));
           }
