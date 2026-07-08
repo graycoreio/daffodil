@@ -1,11 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
-import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
 import { of } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffContactDriver } from '@daffodil/contact/driver';
 import { DaffContactTestingDriverModule } from '@daffodil/contact/driver/testing';
@@ -39,77 +36,96 @@ describe('@daffodil/contact/state | DaffContactEffects', () => {
   });
 
   describe('when a ContactSubscribe is triggered', () => {
-    let expected;
     const forumSubmit = new DaffContactSubmit(mockForm);
 
     it('and if the call was successful, it should dispatch a ContactSuccessSubmit', () => {
       const successAction = new DaffContactSubmitSuccess();
       spyOn(daffContactDriver, 'send').and.returnValue(of('mystring'));
 
-      actions$ = hot('--a', { a: forumSubmit });
-      expected = cold('--b', { b: successAction });
-      expect(effects.trySubmission$).toBeObservable(expected);
+      const scheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      scheduler.run(helpers => {
+        actions$ = helpers.hot('--a', { a: forumSubmit });
+        helpers.expectObservable(effects.trySubmission$).toBe('--b', { b: successAction });
+      });
     });
 
     it('and if the call fails, it should dispatch a ContactFailedSubmit', () => {
       const error = [{ code: 'code', recoverable: false, message: 'Failed to submit' }];
-      const response = cold('#', {}, error[0]);
-      spyOn(daffContactDriver, 'send').and.returnValue(response);
       const failedAction = new DaffContactSubmitFailure(error);
 
-      actions$ = hot('--a', { a: forumSubmit });
-      expected = cold('--b', { b: failedAction });
-      expect(effects.trySubmission$).toBeObservable(expected);
+      const scheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      scheduler.run(helpers => {
+        const response = helpers.cold<any>('#', {}, error[0]);
+        spyOn(daffContactDriver, 'send').and.returnValue(response);
+        actions$ = helpers.hot('--a', { a: forumSubmit });
+        helpers.expectObservable(effects.trySubmission$).toBe('--b', { b: failedAction });
+      });
     });
   });
 
   describe('when a ContactRetry is triggered', () => {
-    let expected;
     const forumSubmit = new DaffContactRetry(mockForm);
 
     it('and if the call was successful, it should dispatch a ContactSuccessSubmit', () => {
       const successAction = new DaffContactSubmitSuccess();
       spyOn(daffContactDriver, 'send').and.returnValue(of('mystring'));
 
-      actions$ = hot('--a', { a: forumSubmit });
-      expected = cold('--b', { b: successAction });
-      expect(effects.trySubmission$).toBeObservable(expected);
+      const scheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      scheduler.run(helpers => {
+        actions$ = helpers.hot('--a', { a: forumSubmit });
+        helpers.expectObservable(effects.trySubmission$).toBe('--b', { b: successAction });
+      });
     });
 
     it('and if the call fails, it should dispatch a ContactFailedSubmit', () => {
       const error = [{ code: 'code', recoverable: false, message: 'Failed to submit' }];
-      const response = cold('#', {}, error[0]);
-      spyOn(daffContactDriver, 'send').and.returnValue(response);
       const failedAction = new DaffContactSubmitFailure(error);
 
-      actions$ = hot('--a', { a: forumSubmit });
-      expected = cold('--b', { b: failedAction });
-      expect(effects.trySubmission$).toBeObservable(expected);
+      const scheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      scheduler.run(helpers => {
+        const response = helpers.cold<any>('#', {}, error[0]);
+        spyOn(daffContactDriver, 'send').and.returnValue(response);
+        actions$ = helpers.hot('--a', { a: forumSubmit });
+        helpers.expectObservable(effects.trySubmission$).toBe('--b', { b: failedAction });
+      });
     });
   });
 
   describe('when a ContactCancel is triggered', () => {
-    let expected;
     const forumSubmit = new DaffContactSubmit(mockForm);
     const forumCancel = new DaffContactCancel();
 
     it('it should return an empty observable', () => {
-      actions$ = hot('---d-----', {
-        d: forumCancel,
+      const scheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
       });
-      expected = cold('---------');
-
-      expect(effects.trySubmission$).toBeObservable(expected);
+      scheduler.run(helpers => {
+        actions$ = helpers.hot('---d-----', {
+          d: forumCancel,
+        });
+        helpers.expectObservable(effects.trySubmission$).toBe('---------');
+      });
     });
 
     it('it should cancel a ContactSubmit action', () => {
-      actions$ = hot('--(ad)----', {
-        a: forumSubmit,
-        d: forumCancel,
+      const scheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
       });
-      expected = cold('--------');
-
-      expect(effects.trySubmission$).toBeObservable(expected);
+      scheduler.run(helpers => {
+        actions$ = helpers.hot('--(ad)----', {
+          a: forumSubmit,
+          d: forumCancel,
+        });
+        helpers.expectObservable(effects.trySubmission$).toBe('--------');
+      });
     });
   });
 });
