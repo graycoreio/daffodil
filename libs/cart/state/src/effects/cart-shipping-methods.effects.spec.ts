@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCart,
@@ -80,34 +77,35 @@ describe('@daffodil/cart/state | DaffCartShippingMethodsEffects', () => {
   });
 
   describe('when CartShippingMethodsLoadAction is triggered', () => {
-    let expected;
     const cartCreateAction = new DaffCartShippingMethodsLoad();
 
     describe('and the call to CartService is successful', () => {
-      beforeEach(() => {
-        driverListSpy.and.returnValue(of([mockCartShippingRate]));
-        const cartCreateSuccessAction = new DaffCartShippingMethodsLoadSuccess([mockCartShippingRate]);
-        actions$ = hot('--a', { a: cartCreateAction });
-        expected = cold('--b', { b: cartCreateSuccessAction });
-      });
-
       it('should dispatch a CartShippingMethodsLoadSuccess action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverListSpy.and.returnValue(of([mockCartShippingRate]));
+          const cartCreateSuccessAction = new DaffCartShippingMethodsLoadSuccess([mockCartShippingRate]);
+          actions$ = helpers.hot('--a', { a: cartCreateAction });
+          helpers.expectObservable(effects.list$).toBe('--b', { b: cartCreateSuccessAction });
+        });
       });
     });
 
     describe('and the call to CartService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to list cart shipping methods' };
-        const response = cold('#', {}, error);
-        driverListSpy.and.returnValue(response);
-        const cartCreateFailureAction = new DaffCartShippingMethodsLoadFailure([error]);
-        actions$ = hot('--a', { a: cartCreateAction });
-        expected = cold('--b', { b: cartCreateFailureAction });
-      });
-
       it('should dispatch a CartShippingMethodsLoadFailure action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to list cart shipping methods' };
+          const response = helpers.cold<any>('#', {}, error);
+          driverListSpy.and.returnValue(response);
+          const cartCreateFailureAction = new DaffCartShippingMethodsLoadFailure([error]);
+          actions$ = helpers.hot('--a', { a: cartCreateAction });
+          helpers.expectObservable(effects.list$).toBe('--b', { b: cartCreateFailureAction });
+        });
       });
     });
   });

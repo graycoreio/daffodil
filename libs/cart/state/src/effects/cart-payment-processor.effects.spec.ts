@@ -5,13 +5,10 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCart,
@@ -132,7 +129,6 @@ describe('@daffodil/cart/state | DaffCartPaymentProcessorEffects', () => {
   });;
 
   describe('when the injected payment action is triggered', () => {
-    let expected;
     let paymentApplyAction: TestAction;
     const method = 'updatedMethod';
 
@@ -145,51 +141,53 @@ describe('@daffodil/cart/state | DaffCartPaymentProcessorEffects', () => {
     });
 
     describe('and the call to the injected payment driver is successful', () => {
-      beforeEach(() => {
-        generateTokenSpy.and.returnValue(of(paymentResponse));
-        actions$ = hot('--a', { a: paymentApplyAction });
-      });
-
       describe('and the call to CartPaymentService is successful', () => {
-        beforeEach(() => {
-          driverUpdateSpy.and.returnValue(of(mockCart));
-          const cartPaymentUpdateSuccessAction = new DaffCartPaymentUpdateSuccess(mockCart);
-          actions$ = hot('--a', { a: paymentApplyAction });
-          expected = cold('--b', { b: cartPaymentUpdateSuccessAction });
-        });
-
         it('should dispatch a CartPaymentUpdateSuccess action', () => {
-          expect(effects.update$).toBeObservable(expected);
+          const testScheduler = new TestScheduler((actual, expected) => {
+            expect(actual).toEqual(expected);
+          });
+          testScheduler.run(helpers => {
+            generateTokenSpy.and.returnValue(of(paymentResponse));
+            driverUpdateSpy.and.returnValue(of(mockCart));
+            const cartPaymentUpdateSuccessAction = new DaffCartPaymentUpdateSuccess(mockCart);
+            actions$ = helpers.hot('--a', { a: paymentApplyAction });
+            helpers.expectObservable(effects.update$).toBe('--b', { b: cartPaymentUpdateSuccessAction });
+          });
         });
       });
 
       describe('and the call to CartPaymentService fails', () => {
-        beforeEach(() => {
-          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart payment' };
-          const response = cold('#', {}, error);
-          driverUpdateSpy.and.returnValue(response);
-          const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateFailure([error]);
-          expected = cold('--b', { b: cartPaymentUpdateFailureAction });
-        });
-
         it('should dispatch a CartPaymentUpdateFailure action', () => {
-          expect(effects.update$).toBeObservable(expected);
+          const testScheduler = new TestScheduler((actual, expected) => {
+            expect(actual).toEqual(expected);
+          });
+          testScheduler.run(helpers => {
+            generateTokenSpy.and.returnValue(of(paymentResponse));
+            actions$ = helpers.hot('--a', { a: paymentApplyAction });
+
+            const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart payment' };
+            const response = helpers.cold<any>('#', {}, error);
+            driverUpdateSpy.and.returnValue(response);
+            const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateFailure([error]);
+            helpers.expectObservable(effects.update$).toBe('--b', { b: cartPaymentUpdateFailureAction });
+          });
         });
       });
     });
 
     describe('and the call to the injected payment driver fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to generate token' };
-        const response = cold('#', {}, error);
-        generateTokenSpy.and.returnValue(response);
-        const failureAction = new DaffPaymentGenerateTokenFailure(error);
-        actions$ = hot('--a', { a: paymentApplyAction });
-        expected = cold('--b', { b: failureAction });
-      });
-
       it('should dispatch a DaffPaymentGenerateTokenFailure action', () => {
-        expect(effects.update$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to generate token' };
+          const response = helpers.cold<any>('#', {}, error);
+          generateTokenSpy.and.returnValue(response);
+          const failureAction = new DaffPaymentGenerateTokenFailure(error);
+          actions$ = helpers.hot('--a', { a: paymentApplyAction });
+          helpers.expectObservable(effects.update$).toBe('--b', { b: failureAction });
+        });
       });
     });
   });

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCart,
@@ -17,6 +17,7 @@ describe('Driver | Testing | Cart | CartOrderService', () => {
   let service: DaffTestingCartOrderService;
   let cartFactory: DaffCartFactory;
   let cartPaymentFactory: DaffCartPaymentFactory;
+  let scheduler: TestScheduler;
 
   let mockCart: DaffCart;
   let mockCartPayment: DaffCartPaymentMethod;
@@ -42,6 +43,10 @@ describe('Driver | Testing | Cart | CartOrderService', () => {
       cartId: 'cartId',
     };
     cartId = mockCart.id;
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -50,12 +55,13 @@ describe('Driver | Testing | Cart | CartOrderService', () => {
 
   describe('placeOrder | placing an order and getting an order result', () => {
     it('should return the order ID and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({
-        id: jasmine.truthy(),
-        orderId: jasmine.truthy(),
-        cartId: jasmine.truthy(),
-      }) });
-      expect(service.placeOrder(cartId, mockCartPayment)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.placeOrder(cartId, mockCartPayment)).toBe('(a|)', { a: jasmine.objectContaining({
+          id: jasmine.truthy(),
+          orderId: jasmine.truthy(),
+          cartId: jasmine.truthy(),
+        }) });
+      });
     });
   });
 });
