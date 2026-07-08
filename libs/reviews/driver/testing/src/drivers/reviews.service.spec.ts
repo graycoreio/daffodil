@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCollectionMetadataFactory } from '@daffodil/core/testing';
 import { DaffProduct } from '@daffodil/product';
@@ -13,6 +13,7 @@ import { DaffReviewsTestingService } from './reviews.service';
 
 describe('@daffodil/reviews/driver/testing | DaffReviewsTestingService', () => {
   let service: DaffReviewsTestingService;
+  let scheduler: TestScheduler;
 
   let countryCreateSpy: jasmine.Spy;
 
@@ -42,6 +43,10 @@ describe('@daffodil/reviews/driver/testing | DaffReviewsTestingService', () => {
 
     countryCreateSpy = spyOn(reviewsFactoryService, 'create');
     countryCreateSpy.and.returnValue(mockReviews);
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -50,8 +55,9 @@ describe('@daffodil/reviews/driver/testing | DaffReviewsTestingService', () => {
 
   describe('list', () => {
     it('should return a reviews collection', () => {
-      const expected = cold('(a|)', { a: mockReviews });
-      expect(service.list(productId)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.list(productId)).toBe('(a|)', { a: mockReviews });
+      });
     });
   });
 });
