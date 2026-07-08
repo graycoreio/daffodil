@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCategory,
@@ -28,8 +28,13 @@ describe('@daffodil/category/driver/testing | DaffTestingCategoryService', () =>
   let categoryPageMetadata: DaffCategoryPageMetadata;
   let category: DaffCategory;
   let products: DaffProduct[];
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         DaffProductTestingModule,
@@ -61,22 +66,24 @@ describe('@daffodil/category/driver/testing | DaffTestingCategoryService', () =>
   describe('get', () => {
 
     it('should return a DaffGetCategoryResponse', () => {
-      const expected = cold('(a|)', { a: { category, categoryPageMetadata, products }});
-      expect(categoryService.get({
-        kind: DaffCategoryRequestKind.ID,
-        id: 'id',
-      })).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(categoryService.get({
+          kind: DaffCategoryRequestKind.ID,
+          id: 'id',
+        })).toBe('(a|)', { a: { category, categoryPageMetadata, products }});
+      });
     });
   });
 
   describe('getByUrl', () => {
 
     it('should return a DaffGetCategoryResponse', () => {
-      const expected = cold('(a|)', { a: { category, categoryPageMetadata, products }});
-      expect(categoryService.getByUrl({
-        kind: DaffCategoryRequestKind.URL,
-        url: 'url',
-      })).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(categoryService.getByUrl({
+          kind: DaffCategoryRequestKind.URL,
+          url: 'url',
+        })).toBe('(a|)', { a: { category, categoryPageMetadata, products }});
+      });
     });
   });
 });

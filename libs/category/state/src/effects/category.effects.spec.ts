@@ -6,13 +6,10 @@ import {
   combineReducers,
 } from '@ngrx/store';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCategory,
@@ -118,53 +115,60 @@ describe('DaffCategoryEffects', () => {
   });
 
   describe('when CategoryLoadAction is triggered', () => {
-    let expected;
-
-    beforeEach(() => {
-      actions$ = hot('--a', { a: categoryLoadAction });
-    });
 
     describe('when the call to CategoryService is successful', () => {
       it('should dispatch a DaffCategoryLoadSuccess and a DaffProductGridLoadSuccess action', () => {
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: categoryLoadAction });
+          driverGetSpy.and.returnValue(of({
+            category: stubCategory,
+            categoryPageMetadata: stubCategoryPageMetadata,
+            products: stubProducts,
+          }));
+
+          helpers.expectObservable(effects.loadCategory$).toBe('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
+        });
+      });
+    });
+
+    describe('when the call to CategoryService fails', () => {
+
+      it('should dispatch a CategoryLoadFailure action', () => {
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: categoryLoadAction });
+          const error: DaffStateError = {
+            code: 'error code',
+            recoverable: false,
+            message: 'Failed to load the category',
+          };
+          const response = helpers.cold<any>('#', {}, error);
+          driverGetSpy.and.returnValue(response);
+          const categoryLoadFailureAction = new DaffCategoryLoadFailure(error);
+          helpers.expectObservable(effects.loadCategory$).toBe('--b', { b: categoryLoadFailureAction });
+        });
+      });
+    });
+
+    it('should call get category with the category request from the action payload', () => {
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(helpers => {
+        actions$ = helpers.hot('--a', { a: categoryLoadAction });
         driverGetSpy.and.returnValue(of({
           category: stubCategory,
           categoryPageMetadata: stubCategoryPageMetadata,
           products: stubProducts,
         }));
 
-        expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
-        expect(effects.loadCategory$).toBeObservable(expected);
+        helpers.expectObservable(effects.loadCategory$).toBe('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
       });
-    });
-
-    describe('when the call to CategoryService fails', () => {
-
-      beforeEach(() => {
-        const error: DaffStateError = {
-          code: 'error code',
-          recoverable: false,
-          message: 'Failed to load the category',
-        };
-        const response = cold('#', {}, error);
-        driverGetSpy.and.returnValue(response);
-        const categoryLoadFailureAction = new DaffCategoryLoadFailure(error);
-        expected = cold('--b', { b: categoryLoadFailureAction });
-      });
-
-      it('should dispatch a CategoryLoadFailure action', () => {
-        expect(effects.loadCategory$).toBeObservable(expected);
-      });
-    });
-
-    it('should call get category with the category request from the action payload', () => {
-      driverGetSpy.and.returnValue(of({
-        category: stubCategory,
-        categoryPageMetadata: stubCategoryPageMetadata,
-        products: stubProducts,
-      }));
-
-      expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
-      expect(effects.loadCategory$).toBeObservable(expected);
 
       expect(daffCategoryDriver.get).toHaveBeenCalledWith(categoryRequest);
     });
@@ -176,31 +180,35 @@ describe('DaffCategoryEffects', () => {
       beforeEach(() => {
         otherCategoryRequest = { id: 'someOtherCategory', kind: DaffCategoryRequestKind.ID };
         otherCategoryLoadAction = new DaffCategoryLoad(otherCategoryRequest);
-        actions$ = hot('--(ab)', { a: categoryLoadAction, b: otherCategoryLoadAction });
       });
 
       it('should call get category with the category request from the action payload twice', () => {
-        const resp = {
-          category: null,
-          categoryPageMetadata: null,
-          products: [],
-        };
-        driverGetSpy.withArgs(categoryRequest).and.returnValue(cold('--a', { a: {
-          category: stubCategory,
-          categoryPageMetadata: stubCategoryPageMetadata,
-          products: stubProducts,
-        }}));
-        driverGetSpy.withArgs(otherCategoryRequest).and.returnValue(cold('--a', { a: resp }));
-        const otherCategoryLoadSuccessAction = new DaffCategoryLoadSuccess(resp);
-        const otherProductGridLoadSuccess = new DaffProductGridLoadSuccess(resp.products);
-
-        expected = cold('----(abdc)', {
-          a: productGridLoadSuccessAction,
-          b: categoryLoadSuccessAction,
-          c: otherCategoryLoadSuccessAction,
-          d: otherProductGridLoadSuccess,
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
         });
-        expect(effects.loadCategory$).toBeObservable(expected);
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--(ab)', { a: categoryLoadAction, b: otherCategoryLoadAction });
+          const resp = {
+            category: null,
+            categoryPageMetadata: null,
+            products: [],
+          };
+          driverGetSpy.withArgs(categoryRequest).and.returnValue(helpers.cold('--a', { a: {
+            category: stubCategory,
+            categoryPageMetadata: stubCategoryPageMetadata,
+            products: stubProducts,
+          }}));
+          driverGetSpy.withArgs(otherCategoryRequest).and.returnValue(helpers.cold('--a', { a: resp }));
+          const otherCategoryLoadSuccessAction = new DaffCategoryLoadSuccess(resp);
+          const otherProductGridLoadSuccess = new DaffProductGridLoadSuccess(resp.products);
+
+          helpers.expectObservable(effects.loadCategory$).toBe('----(abdc)', {
+            a: productGridLoadSuccessAction,
+            b: categoryLoadSuccessAction,
+            c: otherCategoryLoadSuccessAction,
+            d: otherProductGridLoadSuccess,
+          });
+        });
 
         expect(daffCategoryDriver.get).toHaveBeenCalledWith(categoryRequest);
         expect(daffCategoryDriver.get).toHaveBeenCalledWith(otherCategoryRequest);
