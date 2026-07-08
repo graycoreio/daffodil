@@ -49,7 +49,6 @@
     "rxjs": "^7.0.0",
     "swiper": "^12.0.3",
     "tslib": "^2.3.0",
-    "web-animations-js": "^2.3.2",
     "webfontloader": "^1.6.28",
     "zone.js": "^0.15.0"
   },
