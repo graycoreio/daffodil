@@ -21,13 +21,13 @@ export const provideDaffApolloHeaderProviders = (...providers: Array<DaffApolloH
         operation.setContext({
           headers: providers.reduce((acc, provider) => {
             const headers = runInInjectionContext(injector, provider);
-            headers.keys().forEach((key) => {
+            return headers.keys().reduce((a, key) => {
               const val = headers.getAll(key);
               if (val) {
-                acc.append(key, val);
+                return acc.append(key, val);
               }
-            });
-            return acc;
+              return a;
+            }, acc);
           }, getApolloOperationHeaders(operation)),
         });
         return forward(operation);
