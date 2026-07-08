@@ -1,0 +1,32 @@
+{
+  "extends": "../../tsconfig.json",
+  "files": [],
+  "include": [],
+  "compilerOptions": {
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/storefront": [
+        "libs/storefront/src"
+      ],
+      "@daffodil/storefront/carousel": [
+        "libs/storefront/carousel/src"
+      ],
+      "@daffodil/storefront/quantity-field": [
+        "libs/storefront/quantity-field/src"
+      ],
+      "@daffodil/storefront/theme-toggle": [
+        "libs/storefront/theme-toggle/src"
+      ]
+    }
+  },
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}

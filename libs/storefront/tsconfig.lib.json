@@ -1,18 +1,26 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/lib",
-    "declaration": true,
+    "outDir": "../../out-tsc/lib",
     "declarationMap": true,
+    "declaration": true,
+    "sourceMap": true,
     "inlineSources": true,
-    "types": []
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "types": [],
   },
-  "include": [
-    "src/**/*.ts"
-  ],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "enableResourceInlining": true
+  },
   "exclude": [
+    "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
 }
