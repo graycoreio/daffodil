@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import {
@@ -74,67 +71,69 @@ describe('@daffodil/order/state | DaffOrderEffects', () => {
   });
 
   describe('when DaffOrderLoadAction is triggered', () => {
-    let expected;
     const orderLoadAction = new DaffOrderLoad(orderId, 'cartId');
 
     describe('and the call to OrderService is successful', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(of(mockOrder));
-        const orderLoadSuccessAction = new DaffOrderLoadSuccess(mockOrder);
-        actions$ = hot('--a', { a: orderLoadAction });
-        expected = cold('--b', { b: orderLoadSuccessAction });
-      });
-
       it('should dispatch a DaffOrderLoadSuccess action', () => {
-        expect(effects.get$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverGetSpy.and.returnValue(of(mockOrder));
+          const orderLoadSuccessAction = new DaffOrderLoadSuccess(mockOrder);
+          actions$ = helpers.hot('--a', { a: orderLoadAction });
+          helpers.expectObservable(effects.get$).toBe('--b', { b: orderLoadSuccessAction });
+        });
       });
     });
 
     describe('and the call to OrderService fails', () => {
-      beforeEach(() => {
-        const error = new DaffOrderNotFoundError('Failed to load order');
-        const response = cold('#', {}, error);
-        driverGetSpy.and.returnValue(response);
-        const orderLoadFailureAction = new DaffOrderLoadFailure(daffTransformErrorToStateError(error));
-        actions$ = hot('--a', { a: orderLoadAction });
-        expected = cold('--b', { b: orderLoadFailureAction });
-      });
-
       it('should dispatch a DaffOrderLoadFailure action', () => {
-        expect(effects.get$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error = new DaffOrderNotFoundError('Failed to load order');
+          const response = helpers.cold<any>('#', {}, error);
+          driverGetSpy.and.returnValue(response);
+          const orderLoadFailureAction = new DaffOrderLoadFailure(daffTransformErrorToStateError(error));
+          actions$ = helpers.hot('--a', { a: orderLoadAction });
+          helpers.expectObservable(effects.get$).toBe('--b', { b: orderLoadFailureAction });
+        });
       });
     });
   });
 
   describe('when DaffOrderListAction is triggered', () => {
-    let expected;
     const orderListAction = new DaffOrderList('cartId');
 
     describe('and the call to OrderService is successful', () => {
-      beforeEach(() => {
-        driverListSpy.and.returnValue(of(mockOrderCollection));
-        const orderListSuccessAction = new DaffOrderListSuccess(mockOrderCollection);
-        actions$ = hot('--a', { a: orderListAction });
-        expected = cold('--b', { b: orderListSuccessAction });
-      });
-
       it('should return a DaffOrderListSucess action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverListSpy.and.returnValue(of(mockOrderCollection));
+          const orderListSuccessAction = new DaffOrderListSuccess(mockOrderCollection);
+          actions$ = helpers.hot('--a', { a: orderListAction });
+          helpers.expectObservable(effects.list$).toBe('--b', { b: orderListSuccessAction });
+        });
       });
     });
 
     describe('and the call to OrderService fails', () => {
-      beforeEach(() => {
-        const error = new DaffOrderNotFoundError('Failed to list the orders');
-        const response = cold('#', {}, error);
-        driverListSpy.and.returnValue(response);
-        const orderListFailureAction = new DaffOrderListFailure(daffTransformErrorToStateError(error));
-        actions$ = hot('--a', { a: orderListAction });
-        expected = cold('--b', { b: orderListFailureAction });
-      });
-
       it('should return a DaffOrderListFailure action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error = new DaffOrderNotFoundError('Failed to list the orders');
+          const response = helpers.cold<any>('#', {}, error);
+          driverListSpy.and.returnValue(response);
+          const orderListFailureAction = new DaffOrderListFailure(daffTransformErrorToStateError(error));
+          actions$ = helpers.hot('--a', { a: orderListAction });
+          helpers.expectObservable(effects.list$).toBe('--b', { b: orderListFailureAction });
+        });
       });
     });
   });
