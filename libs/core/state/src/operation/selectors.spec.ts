@@ -5,8 +5,8 @@ import {
   Store,
   StoreModule,
 } from '@ngrx/store';
-import { hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   daffCompleteOperation,
@@ -77,8 +77,12 @@ describe('@daffodil/core/state | daffOperationStateSelectorFactory', () => {
     });
 
     it('should return the loading state', () => {
-      const expected = hot('a', { a: DaffState.Stable });
-      expect(result).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(result).toBe('a', { a: DaffState.Stable });
+      });
     });
   });
 
@@ -92,8 +96,12 @@ describe('@daffodil/core/state | daffOperationStateSelectorFactory', () => {
       });
 
       it('should return false', () => {
-        const expected = hot('a', { a: false });
-        expect(result).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ expectObservable }) => {
+          expectObservable(result).toBe('a', { a: false });
+        });
       });
     });
 
@@ -104,8 +112,12 @@ describe('@daffodil/core/state | daffOperationStateSelectorFactory', () => {
       });
 
       it('should return true', () => {
-        const expected = hot('a', { a: true });
-        expect(result).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ expectObservable }) => {
+          expectObservable(result).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -120,8 +132,12 @@ describe('@daffodil/core/state | daffOperationStateSelectorFactory', () => {
       });
 
       it('should return false', () => {
-        const expected = hot('a', { a: false });
-        expect(result).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ expectObservable }) => {
+          expectObservable(result).toBe('a', { a: false });
+        });
       });
     });
 
@@ -132,8 +148,12 @@ describe('@daffodil/core/state | daffOperationStateSelectorFactory', () => {
       });
 
       it('should return true', () => {
-        const expected = hot('a', { a: true });
-        expect(result).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ expectObservable }) => {
+          expectObservable(result).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -148,8 +168,12 @@ describe('@daffodil/core/state | daffOperationStateSelectorFactory', () => {
       });
 
       it('should return false', () => {
-        const expected = hot('a', { a: false });
-        expect(result).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ expectObservable }) => {
+          expectObservable(result).toBe('a', { a: false });
+        });
       });
     });
 
@@ -160,8 +184,12 @@ describe('@daffodil/core/state | daffOperationStateSelectorFactory', () => {
       });
 
       it('should return true', () => {
-        const expected = hot('a', { a: true });
-        expect(result).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ expectObservable }) => {
+          expectObservable(result).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -176,8 +204,12 @@ describe('@daffodil/core/state | daffOperationStateSelectorFactory', () => {
       });
 
       it('should return an empty array', () => {
-        const expected = hot('a', { a: []});
-        expect(result).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ expectObservable }) => {
+          expectObservable(result).toBe('a', { a: []});
+        });
       });
     });
 
@@ -188,8 +220,12 @@ describe('@daffodil/core/state | daffOperationStateSelectorFactory', () => {
       });
 
       it('should return those errors', () => {
-        const expected = hot('a', { a: [error]});
-        expect(result).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ expectObservable }) => {
+          expectObservable(result).toBe('a', { a: [error]});
+        });
       });
     });
   });
@@ -204,8 +240,12 @@ describe('@daffodil/core/state | daffOperationStateSelectorFactory', () => {
       });
 
       it('should return false', () => {
-        const expected = hot('a', { a: false });
-        expect(result).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ expectObservable }) => {
+          expectObservable(result).toBe('a', { a: false });
+        });
       });
     });
 
@@ -216,8 +256,12 @@ describe('@daffodil/core/state | daffOperationStateSelectorFactory', () => {
       });
 
       it('should return true', () => {
-        const expected = hot('a', { a: true });
-        expect(result).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ expectObservable }) => {
+          expectObservable(result).toBe('a', { a: true });
+        });
       });
     });
   });
