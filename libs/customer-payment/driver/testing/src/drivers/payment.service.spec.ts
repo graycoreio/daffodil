@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCustomerPaymentFactory } from '@daffodil/customer-payment/testing';
 
@@ -8,6 +8,7 @@ import { DaffCustomerPaymentTestingDriver } from './payment.service';
 describe('@daffodil/customer-payment/driver/testing | DaffCustomerPaymentTestingDriver', () => {
   let service: DaffCustomerPaymentTestingDriver;
   let paymentFactory: DaffCustomerPaymentFactory;
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -18,6 +19,10 @@ describe('@daffodil/customer-payment/driver/testing | DaffCustomerPaymentTesting
 
     service = TestBed.inject(DaffCustomerPaymentTestingDriver);
     paymentFactory = TestBed.inject(DaffCustomerPaymentFactory);
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -26,36 +31,41 @@ describe('@daffodil/customer-payment/driver/testing | DaffCustomerPaymentTesting
 
   describe('list', () => {
     it('should return a DaffCustomerPayment', () => {
-      const expected = cold('(a|)', { a: jasmine.anything() });
-      expect(service.list()).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.list()).toBe('(a|)', { a: jasmine.anything() });
+      });
     });
   });
 
   describe('get', () => {
     it('should return a DaffCustomerPayment', () => {
-      const expected = cold('(a|)', { a: jasmine.anything() });
-      expect(service.get('id')).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.get('id')).toBe('(a|)', { a: jasmine.anything() });
+      });
     });
   });
 
   describe('update', () => {
     it('should return a DaffCustomerPayment', () => {
-      const expected = cold('(a|)', { a: jasmine.anything() });
-      expect(service.update(paymentFactory.create())).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.update(paymentFactory.create())).toBe('(a|)', { a: jasmine.anything() });
+      });
     });
   });
 
   describe('add', () => {
     it('should return', () => {
-      const expected = cold('(a|)', { a: jasmine.anything() });
-      expect(service.add({ kind: 'kind' })).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.add({ kind: 'kind' })).toBe('(a|)', { a: jasmine.anything() });
+      });
     });
   });
 
   describe('delete', () => {
     it('should return a DaffCustomerPayment', () => {
-      const expected = cold('(a|)', { a: jasmine.anything() });
-      expect(service.delete('id')).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.delete('id')).toBe('(a|)', { a: jasmine.anything() });
+      });
     });
   });
 });
