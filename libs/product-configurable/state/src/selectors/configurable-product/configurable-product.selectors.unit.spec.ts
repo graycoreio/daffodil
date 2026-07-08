@@ -618,12 +618,12 @@ describe('Configurable Product Selectors | unit tests', () => {
       const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
       scheduler.run(({ expectObservable }) => {
         expectObservable(selector).toBe('a', {
-        a: {
-          color: ['0', '1', '2'],
-          size: ['0', '1', '2'],
-          material: ['0', '2', '1'],
-        },
-      });
+          a: {
+            color: ['0', '1', '2'],
+            size: ['0', '1', '2'],
+            material: ['0', '2', '1'],
+          },
+        });
       });
     });
 
@@ -642,12 +642,12 @@ describe('Configurable Product Selectors | unit tests', () => {
       const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
       scheduler.run(({ expectObservable }) => {
         expectObservable(selector).toBe('a', {
-        a: {
-          color: ['0', '1', '2'],
-          size: ['0', '1', '2'],
-          material: ['0', '2'],
-        },
-      });
+          a: {
+            color: ['0', '1', '2'],
+            size: ['0', '1', '2'],
+            material: ['0', '2'],
+          },
+        });
       });
     });
 

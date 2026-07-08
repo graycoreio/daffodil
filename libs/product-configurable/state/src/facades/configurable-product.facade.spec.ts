@@ -79,24 +79,24 @@ describe('DaffConfigurableProductFacade', () => {
       ));
       scheduler.run(({ expectObservable }) => {
         expectObservable(facade.getAllAttributes(stubConfigurableProduct.id)).toBe('a', {
-        a: {
-          [stubConfigurableProduct.configurableAttributes[0].code]: [
-            stubConfigurableProduct.configurableAttributes[0].values[0].value,
-            stubConfigurableProduct.configurableAttributes[0].values[1].value,
-            stubConfigurableProduct.configurableAttributes[0].values[2].value,
-          ],
-          [stubConfigurableProduct.configurableAttributes[1].code]: [
-            stubConfigurableProduct.configurableAttributes[1].values[0].value,
-            stubConfigurableProduct.configurableAttributes[1].values[1].value,
-            stubConfigurableProduct.configurableAttributes[1].values[2].value,
-          ],
-          [stubConfigurableProduct.configurableAttributes[2].code]: [
-            stubConfigurableProduct.configurableAttributes[2].values[0].value,
-            stubConfigurableProduct.configurableAttributes[2].values[1].value,
-            stubConfigurableProduct.configurableAttributes[2].values[2].value,
-          ],
-        },
-      });
+          a: {
+            [stubConfigurableProduct.configurableAttributes[0].code]: [
+              stubConfigurableProduct.configurableAttributes[0].values[0].value,
+              stubConfigurableProduct.configurableAttributes[0].values[1].value,
+              stubConfigurableProduct.configurableAttributes[0].values[2].value,
+            ],
+            [stubConfigurableProduct.configurableAttributes[1].code]: [
+              stubConfigurableProduct.configurableAttributes[1].values[0].value,
+              stubConfigurableProduct.configurableAttributes[1].values[1].value,
+              stubConfigurableProduct.configurableAttributes[1].values[2].value,
+            ],
+            [stubConfigurableProduct.configurableAttributes[2].code]: [
+              stubConfigurableProduct.configurableAttributes[2].values[0].value,
+              stubConfigurableProduct.configurableAttributes[2].values[1].value,
+              stubConfigurableProduct.configurableAttributes[2].values[2].value,
+            ],
+          },
+        });
       });
     });
   });
@@ -120,10 +120,10 @@ describe('DaffConfigurableProductFacade', () => {
       ));
       scheduler.run(({ expectObservable }) => {
         expectObservable(facade.getAppliedAttributes(stubConfigurableProduct.id)).toBe('a', {
-        a: {
-          [stubConfigurableProduct.configurableAttributes[0].code]: stubConfigurableProduct.configurableAttributes[0].values[0].value,
-        },
-      });
+          a: {
+            [stubConfigurableProduct.configurableAttributes[0].code]: stubConfigurableProduct.configurableAttributes[0].values[0].value,
+          },
+        });
       });
     });
   });
@@ -529,24 +529,24 @@ describe('DaffConfigurableProductFacade', () => {
     it('should return the selectable attributes for a configurable product', () => {
       scheduler.run(({ expectObservable }) => {
         expectObservable(facade.getSelectableAttributes(stubConfigurableProduct.id)).toBe('a', {
-        a: {
-          [stubConfigurableProduct.configurableAttributes[0].code]: [
-            stubConfigurableProduct.configurableAttributes[0].values[0].value,
-            stubConfigurableProduct.configurableAttributes[0].values[1].value,
-            stubConfigurableProduct.configurableAttributes[0].values[2].value,
-          ],
-          [stubConfigurableProduct.configurableAttributes[1].code]: [
-            stubConfigurableProduct.configurableAttributes[1].values[0].value,
-            stubConfigurableProduct.configurableAttributes[1].values[1].value,
-            stubConfigurableProduct.configurableAttributes[1].values[2].value,
-          ],
-          [stubConfigurableProduct.configurableAttributes[2].code]: [
-            stubConfigurableProduct.configurableAttributes[2].values[0].value,
-            stubConfigurableProduct.configurableAttributes[2].values[2].value,
-            stubConfigurableProduct.configurableAttributes[2].values[1].value,
-          ],
-        },
-      });
+          a: {
+            [stubConfigurableProduct.configurableAttributes[0].code]: [
+              stubConfigurableProduct.configurableAttributes[0].values[0].value,
+              stubConfigurableProduct.configurableAttributes[0].values[1].value,
+              stubConfigurableProduct.configurableAttributes[0].values[2].value,
+            ],
+            [stubConfigurableProduct.configurableAttributes[1].code]: [
+              stubConfigurableProduct.configurableAttributes[1].values[0].value,
+              stubConfigurableProduct.configurableAttributes[1].values[1].value,
+              stubConfigurableProduct.configurableAttributes[1].values[2].value,
+            ],
+            [stubConfigurableProduct.configurableAttributes[2].code]: [
+              stubConfigurableProduct.configurableAttributes[2].values[0].value,
+              stubConfigurableProduct.configurableAttributes[2].values[2].value,
+              stubConfigurableProduct.configurableAttributes[2].values[1].value,
+            ],
+          },
+        });
       });
     });
   });

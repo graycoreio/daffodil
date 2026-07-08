@@ -89,7 +89,7 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordFacade', () => {
   describe('errors$', () => {
     it('should initially be an empty array', () => {
       scheduler.run(({ expectObservable }) => {
-        expectObservable(facade.errors$).toBe('a', { a: [] });
+        expectObservable(facade.errors$).toBe('a', { a: []});
       });
     });
 
@@ -100,7 +100,7 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordFacade', () => {
       };
       store.dispatch(new DaffResetPasswordFailure(error));
       scheduler.run(({ expectObservable }) => {
-        expectObservable(facade.errors$).toBe('a', { a: [error] });
+        expectObservable(facade.errors$).toBe('a', { a: [error]});
       });
     });
   });
