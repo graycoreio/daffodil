@@ -5,7 +5,7 @@ import {
   combineReducers,
   StoreModule,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DAFF_CART_STORE_FEATURE_KEY,
@@ -38,6 +38,8 @@ describe('@daffodil/checkout/state | getCheckoutPlacedOrderSelectors', () => {
   let mockOrder: DaffOrder;
   let mockOrderCollection: DaffOrderCollection;
 
+  let scheduler: TestScheduler;
+
   const {
     selectPlacedOrder,
     selectHasPlacedOrder,
@@ -61,14 +63,19 @@ describe('@daffodil/checkout/state | getCheckoutPlacedOrderSelectors', () => {
     mockOrder = mockOrderCollection.data[mockOrderCollection.metadata.ids[0]];
 
     store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe('selectPlacedOrder', () => {
     it('should initially be null', () => {
       const selector = store.pipe(select(selectPlacedOrder));
-      const expected = cold('a', { a: null });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been placed and loaded', () => {
@@ -79,9 +86,10 @@ describe('@daffodil/checkout/state | getCheckoutPlacedOrderSelectors', () => {
 
       it('should select the most recently placed order', () => {
         const selector = store.pipe(select(selectPlacedOrder));
-        const expected = cold('a', { a: mockOrder });
 
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: mockOrder });
+        });
       });
     });
   });
@@ -89,9 +97,10 @@ describe('@daffodil/checkout/state | getCheckoutPlacedOrderSelectors', () => {
   describe('selectHasPlacedOrder', () => {
     it('should initially be false', () => {
       const selector = store.pipe(select(selectHasPlacedOrder));
-      const expected = cold('a', { a: false });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: false });
+      });
     });
 
     describe('when an order has been placed and loaded', () => {
@@ -102,9 +111,10 @@ describe('@daffodil/checkout/state | getCheckoutPlacedOrderSelectors', () => {
 
       it('should select if the most recently placed order exists', () => {
         const selector = store.pipe(select(selectHasPlacedOrder));
-        const expected = cold('a', { a: true });
 
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
