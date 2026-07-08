@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCart } from '@daffodil/cart';
 import {
@@ -61,7 +58,6 @@ describe('CartResolverEffects', () => {
   });
 
   describe('onResolveCart$', () => {
-    let expected;
     const resolveCartAction = new ResolveCart();
 
     describe('when cart in redux state is defined', () => {
@@ -71,10 +67,13 @@ describe('CartResolverEffects', () => {
 
       it('should dispatch a ResolveCartSuccess action', () => {
         const resolveCartSuccessAction = new ResolveCartSuccess(stubCart);
-        actions$ = hot('--a', { a: resolveCartAction });
-        expected = cold('--b', { b: resolveCartSuccessAction });
-
-        expect(effects.onResolveCart$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: resolveCartAction });
+          helpers.expectObservable(effects.onResolveCart$).toBe('--b', { b: resolveCartSuccessAction });
+        });
       });
     });
 
@@ -93,25 +92,27 @@ describe('CartResolverEffects', () => {
 
         it('should dispatch a ResolveCartSuccess action', () => {
           const resolveCartSuccessAction = new ResolveCartSuccess(stubCart);
-          actions$ = hot('--a', { a: resolveCartAction });
-          expected = cold('--b', { b: resolveCartSuccessAction });
-
-          expect(effects.onResolveCart$).toBeObservable(expected);
+          const testScheduler = new TestScheduler((actual, expected) => {
+            expect(actual).toEqual(expected);
+          });
+          testScheduler.run(helpers => {
+            actions$ = helpers.hot('--a', { a: resolveCartAction });
+            helpers.expectObservable(effects.onResolveCart$).toBe('--b', { b: resolveCartSuccessAction });
+          });
         });
       });
 
       describe('and service call to cartService.get fails', () => {
-        beforeEach(() => {
-          const response = cold('#', {});
-          spyOn(driver, 'get').and.returnValue(response);
-        });
-
         it('should dispatch a ResolveCartSuccessFailure action', () => {
           const resolveCartFailureAction = new ResolveCartFailure(null);
-          actions$ = hot('--a', { a: resolveCartAction });
-          expected = cold('--b', { b: resolveCartFailureAction });
-
-          expect(effects.onResolveCart$).toBeObservable(expected);
+          const testScheduler = new TestScheduler((actual, expected) => {
+            expect(actual).toEqual(expected);
+          });
+          testScheduler.run(helpers => {
+            spyOn(driver, 'get').and.returnValue(helpers.cold<any>('#', {}));
+            actions$ = helpers.hot('--a', { a: resolveCartAction });
+            helpers.expectObservable(effects.onResolveCart$).toBe('--b', { b: resolveCartFailureAction });
+          });
         });
       });
     });
