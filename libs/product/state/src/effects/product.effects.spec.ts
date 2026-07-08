@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
@@ -61,42 +58,43 @@ describe('DaffProductEffects', () => {
 
   describe('when ProductLoadAction is triggered', () => {
 
-    let expected;
     const productLoadAction = new DaffProductLoad(productId);
 
     describe('and the call to ProductService is successful', () => {
 
-      beforeEach(() => {
-        spyOn(daffProductDriver, 'get').and.returnValue(of({
-          id: mockProduct.id,
-          products: [mockProduct],
-        }));
-        const productLoadSuccessAction = new DaffProductLoadSuccess({
-          id: mockProduct.id,
-          products: [mockProduct],
-        });
-        actions$ = hot('--a', { a: productLoadAction });
-        expected = cold('--b', { b: productLoadSuccessAction });
-      });
-
       it('should dispatch a ProductLoadSuccess action', () => {
-        expect(effects.load$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          spyOn(daffProductDriver, 'get').and.returnValue(of({
+            id: mockProduct.id,
+            products: [mockProduct],
+          }));
+          const productLoadSuccessAction = new DaffProductLoadSuccess({
+            id: mockProduct.id,
+            products: [mockProduct],
+          });
+          actions$ = helpers.hot('--a', { a: productLoadAction });
+          helpers.expectObservable(effects.load$).toBe('--b', { b: productLoadSuccessAction });
+        });
       });
     });
 
     describe('and the call to ProductService fails', () => {
 
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load product' };
-        const response = cold('#', {}, error);
-        spyOn(daffProductDriver, 'get').and.returnValue(response);
-        const productLoadFailureAction = new DaffProductLoadFailure(error);
-        actions$ = hot('--a', { a: productLoadAction });
-        expected = cold('--b', { b: productLoadFailureAction });
-      });
-
       it('should dispatch a ProductLoadFailure action', () => {
-        expect(effects.load$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load product' };
+          const response = helpers.cold<any>('#', {}, error);
+          spyOn(daffProductDriver, 'get').and.returnValue(response);
+          const productLoadFailureAction = new DaffProductLoadFailure(error);
+          actions$ = helpers.hot('--a', { a: productLoadAction });
+          helpers.expectObservable(effects.load$).toBe('--b', { b: productLoadFailureAction });
+        });
       });
     });
   });

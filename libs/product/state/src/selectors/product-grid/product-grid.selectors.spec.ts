@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffProduct } from '@daffodil/product';
 import {
@@ -25,12 +25,17 @@ describe('selectProductState', () => {
   let store: Store<DaffProductStateRootSlice>;
   let productFactory: DaffProductFactory;
   let mockProduct: DaffProduct;
+  let scheduler: TestScheduler;
   const {
     selectProductGridState,
     selectProductGridLoadingState,
   } = getDaffProductGridSelectors();
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -60,9 +65,10 @@ describe('selectProductState', () => {
           errors: [],
         };
         const selector = store.pipe(select(selectProductGridState));
-        const expected = cold('a', { a: expectedGridState });
 
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: expectedGridState });
+        });
       });
     });
 
@@ -70,9 +76,10 @@ describe('selectProductState', () => {
 
       it('selects product grid loading state', () => {
         const selector = store.pipe(select(selectProductGridLoadingState));
-        const expected = cold('a', { a: false });
 
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
   });
