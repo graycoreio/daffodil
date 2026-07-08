@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffProductGridLoadSuccess,
@@ -29,6 +29,7 @@ describe('selectConfigurableProductEntitiesState', () => {
   let store: Store<DaffProductStateRootSlice>;
   let configurableProductFactory: DaffConfigurableProductFactory;
   let stubConfigurableProduct: DaffConfigurableProduct;
+  let scheduler: TestScheduler;
   const {
     selectConfigurableProductIds,
     selectConfigurableProductAppliedAttributesEntities,
@@ -38,6 +39,10 @@ describe('selectConfigurableProductEntitiesState', () => {
   } = getDaffConfigurableProductEntitiesSelectors();
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -64,9 +69,9 @@ describe('selectConfigurableProductEntitiesState', () => {
 
     it('selects product ids', () => {
       const selector = store.pipe(select(selectConfigurableProductIds));
-      const expected = cold('a', { a: [stubConfigurableProduct.id]});
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: [stubConfigurableProduct.id]});
+      });
     });
   });
 
@@ -86,9 +91,9 @@ describe('selectConfigurableProductEntitiesState', () => {
       };
 
       const selector = store.pipe(select(selectConfigurableProductAppliedAttributesEntities));
-      const expected = cold('a', { a: expectedDictionary });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: expectedDictionary });
+      });
     });
   });
 
@@ -96,9 +101,9 @@ describe('selectConfigurableProductEntitiesState', () => {
 
     it('selects the total number of configurable products', () => {
       const selector = store.pipe(select(selectConfigurableProductTotal));
-      const expected = cold('a', { a: 1 });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: 1 });
+      });
     });
   });
 
@@ -106,14 +111,14 @@ describe('selectConfigurableProductEntitiesState', () => {
 
     it('selects the configurable product attributes of the given id', () => {
       const selector = store.pipe(select(selectConfigurableProductAppliedAttributes(stubConfigurableProduct.id)));
-      const expected = cold('a', {
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', {
         a: [{
           code: stubConfigurableProduct.configurableAttributes[0].code,
           value: stubConfigurableProduct.configurableAttributes[0].values[0].value,
         }],
       });
-
-      expect(selector).toBeObservable(expected);
+      });
     });
 
     it('should not emit when an unrelated piece of state changes', () => {
@@ -132,13 +137,13 @@ describe('selectConfigurableProductEntitiesState', () => {
 
     it('selects the configurable product attributes of the given id as a dictionary', () => {
       const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary(stubConfigurableProduct.id)));
-      const expected = cold('a', {
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', {
         a: {
           [stubConfigurableProduct.configurableAttributes[0].code]: stubConfigurableProduct.configurableAttributes[0].values[0].value,
         },
       });
-
-      expect(selector).toBeObservable(expected);
+      });
     });
 
     it('should not emit when an unrelated piece of state changes', () => {
