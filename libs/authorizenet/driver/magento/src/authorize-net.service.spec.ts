@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { hot } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   AuthorizeNetResponse,
@@ -37,6 +37,7 @@ describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService
 
 describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService', () => {
   let service: DaffMagentoAuthorizeNetService;
+  let scheduler: TestScheduler;
 
   let acceptSpy: jasmine.Spy;
   let getAcceptSpy: jasmine.Spy;
@@ -113,6 +114,10 @@ describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService
     acceptSpy = jasmine.createSpy();
     getAcceptSpy = spyOn(acceptJsLoaderService, 'getAccept');
     getAcceptSpy.and.returnValue({ dispatchData: acceptSpy });
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -126,8 +131,9 @@ describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService
       });
 
       it('should return the payment info', () => {
-        const expected = hot('a', { a: authorizeNetPayment });
-        expect(service.generateToken(request)).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.generateToken(request)).toBe('a', { a: authorizeNetPayment });
+        });
       });
     });
 
@@ -155,8 +161,9 @@ describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService
 
       it('should throw a past CC expiration error', () => {
         const error = new DaffAuthorizeNetPastCCExpirationError(`${errorCode}: ${errorMessage}`);
-        const expected = hot('#', {}, error);
-        expect(service.generateToken(request)).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.generateToken(request)).toBe('#', {}, error);
+        });
       });
     });
   });
