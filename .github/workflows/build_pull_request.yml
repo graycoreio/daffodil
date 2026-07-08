@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build:
-    name: ${{ github.event.pull_request.head.repo.full_name == github.repository && 'Build PR' || 'Build PR Fork' }}
+    name: Build PR
     uses: graycoreio/daffodil/.github/workflows/build.yml@develop
     with:
       cache-mode: 'read-only'
@@ -18,5 +18,18 @@ jobs:
     secrets:
       NX_KEY: ${{ secrets.NX_KEY }}
       AZURE_STORAGE_CONNECTION_STRING: ${{ github.event.pull_request.head.repo.full_name == github.repository && secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING || secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
+
+  build-success:
+    name: Build PR Success
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: always()
+    steps:
+      - name: Check build result
+        run: |
+          if [[ "${{ needs.build.result }}" != "success" ]]; then
+            echo "Build did not succeed (result: ${{ needs.build.result }})"
+            exit 1
+          fi
 
 
