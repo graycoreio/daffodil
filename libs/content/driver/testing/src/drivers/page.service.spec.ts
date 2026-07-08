@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffContentPage } from '@daffodil/content';
 import { DaffContentHtmlPageFactory } from '@daffodil/content/testing';
@@ -18,7 +18,13 @@ describe('@daffodil/content/driver/testing | DaffContentPageTestingService', () 
   let mockPage: DaffContentPage;
   let contentId: DaffContentPage['id'];
 
+  let scheduler: TestScheduler;
+
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       providers: [
         DaffContentPageTestingService,
@@ -45,8 +51,9 @@ describe('@daffodil/content/driver/testing | DaffContentPageTestingService', () 
 
   describe('get', () => {
     it('should return a DaffContent', () => {
-      const expected = cold('(a|)', { a: mockPage });
-      expect(service.get(contentId)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.get(contentId)).toBe('(a|)', { a: mockPage });
+      });
     });
   });
 });
