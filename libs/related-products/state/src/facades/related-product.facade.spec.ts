@@ -4,7 +4,7 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffProductPageLoadSuccess,
@@ -29,8 +29,13 @@ describe('DaffRelatedProductsFacade', () => {
   let facade: DaffRelatedProductsFacade;
   let productFactory: DaffProductFactory;
   let relatedProductFactory: DaffRelatedProductFactory;
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
@@ -68,12 +73,13 @@ describe('DaffRelatedProductsFacade', () => {
       const mockProduct = relatedProductFactory.create({
         related: productFactory.createMany(3),
       });
-      const expected = cold('a', { a: mockProduct.related });
       store.dispatch(new DaffProductPageLoadSuccess({
         id: mockProduct.id,
         products: [mockProduct, ...mockProduct.related],
       }));
-      expect(facade.relatedProducts$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.relatedProducts$).toBe('a', { a: mockProduct.related });
+      });
     });
   });
 });
