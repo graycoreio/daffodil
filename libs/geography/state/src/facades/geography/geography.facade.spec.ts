@@ -4,7 +4,7 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
@@ -33,6 +33,14 @@ describe('DaffGeographyFacade', () => {
   let mockCountry: DaffCountry;
   let countryId: DaffCountry['id'];
   let errors: string[];
+
+  let scheduler: TestScheduler;
+
+  beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+  });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -72,106 +80,122 @@ describe('DaffGeographyFacade', () => {
 
   describe('loading$', () => {
     it('should be false if the country is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
 
     it('should be true if the country is loading', () => {
-      const expected = cold('a', { a: true });
       store.dispatch(new DaffCountryLoad(countryId));
-      expect(facade.loading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: true });
+      });
     });
   });
 
   describe('errors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: errors });
-      expect(facade.errors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: errors });
+      });
     });
 
     it('should contain an error upon a failed load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
-      const expected = cold('a', { a: [error]});
       store.dispatch(new DaffCountryLoadFailure(error));
-      expect(facade.errors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: [error]});
+      });
     });
   });
 
   describe('countries$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.countries$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.countries$).toBe('a', { a: []});
+      });
     });
 
     it('should be the countries upon a successful load', () => {
-      const expected = cold('a', { a: [jasmine.objectContaining(mockCountry)]});
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      expect(facade.countries$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.countries$).toBe('a', { a: [jasmine.objectContaining(mockCountry)]});
+      });
     });
   });
 
   describe('countryIds$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.countryIds$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.countryIds$).toBe('a', { a: []});
+      });
     });
 
     it('should contain the country id upon a successful country load', () => {
-      const expected = cold('a', { a: [countryId]});
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      expect(facade.countryIds$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.countryIds$).toBe('a', { a: [countryId]});
+      });
     });
   });
 
   describe('countryCount$', () => {
     it('should initially be zero', () => {
-      const expected = cold('a', { a: 0 });
-      expect(facade.countryCount$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.countryCount$).toBe('a', { a: 0 });
+      });
     });
 
     it('should be one upon a successful country load', () => {
-      const expected = cold('a', { a: 1 });
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      expect(facade.countryCount$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.countryCount$).toBe('a', { a: 1 });
+      });
     });
   });
 
   describe('countryEntities$', () => {
     it('should initially be an empty object', () => {
-      const expected = cold('a', { a: {}});
-      expect(facade.countryEntities$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.countryEntities$).toBe('a', { a: {}});
+      });
     });
 
     it('should contain the country upon a successful country load', () => {
-      const expected = cold('a', { a: { [countryId]: jasmine.objectContaining(mockCountry) }});
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      expect(facade.countryEntities$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.countryEntities$).toBe('a', { a: { [countryId]: jasmine.objectContaining(mockCountry) }});
+      });
     });
   });
 
   describe('getCountry | getting a specific country by ID', () => {
     it('should initially be undefined', () => {
-      const expected = cold('a', { a: undefined });
-      expect(facade.getCountry(countryId)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.getCountry(countryId)).toBe('a', { a: undefined });
+      });
     });
 
     it('should be the country upon a successful country load', () => {
-      const expected = cold('a', { a: jasmine.objectContaining(mockCountry) });
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      expect(facade.getCountry(countryId)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.getCountry(countryId)).toBe('a', { a: jasmine.objectContaining(mockCountry) });
+      });
     });
   });
 
   describe('getCountrySubdivisions | getting a specific country\'s subdivisions by country ID', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.getCountrySubdivisions(countryId)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.getCountrySubdivisions(countryId)).toBe('a', { a: []});
+      });
     });
 
     it('should be the country\'s subdivisions upon a successful country load', () => {
-      const expected = cold('a', { a: mockCountry.subdivisions });
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      expect(facade.getCountrySubdivisions(countryId)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.getCountrySubdivisions(countryId)).toBe('a', { a: mockCountry.subdivisions });
+      });
     });
   });
 
@@ -181,9 +205,9 @@ describe('DaffGeographyFacade', () => {
     });
 
     it('should initially be false', () => {
-      const expected = cold('a', { a: false });
-
-      expect(facade.isCountryFullyLoaded(countryId)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.isCountryFullyLoaded(countryId)).toBe('a', { a: false });
+      });
     });
 
     describe('when a country is loaded', () => {
@@ -192,9 +216,9 @@ describe('DaffGeographyFacade', () => {
       });
 
       it('should be true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.isCountryFullyLoaded(countryId)).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.isCountryFullyLoaded(countryId)).toBe('a', { a: true });
+        });
       });
     });
   });
