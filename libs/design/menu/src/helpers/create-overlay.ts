@@ -16,7 +16,7 @@ import {
  * stays anchored to the activator, so this is a single placement rather than a set of
  * fallbacks.
  */
-function daffMenuConnectedPosition(xPosition: DaffMenuXPosition, yPosition: DaffMenuYPosition): ConnectedPosition {
+const daffMenuConnectedPosition = (xPosition: DaffMenuXPosition, yPosition: DaffMenuYPosition): ConnectedPosition => {
   const x = xPosition === 'before' ? 'end' : 'start';
 
   return {
@@ -25,7 +25,7 @@ function daffMenuConnectedPosition(xPosition: DaffMenuXPosition, yPosition: Daff
     originY: yPosition === 'above' ? 'top' : 'bottom',
     overlayY: yPosition === 'above' ? 'bottom' : 'top',
   };
-}
+};
 
 /**
  * The tallest the menu can be without running past the edge of the viewport in the
