@@ -90,7 +90,7 @@ export class DaffTagComponent implements DaffDisableable {
   }
 
   /**
-   * @deprecated Deprecated in version 0.93.0.
+   * @deprecated Deprecated in version 0.93.0. Deprecated in version 0.93.1. Will be removed in version 0.96.0.
    *
    * Sets the status on the tag.
    */
