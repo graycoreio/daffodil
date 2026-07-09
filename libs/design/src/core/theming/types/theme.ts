@@ -4,5 +4,5 @@
 export enum DaffTheme {
   Light = 'light',
   Dark = 'dark',
-  None = 'none'
+  System = 'system'
 }

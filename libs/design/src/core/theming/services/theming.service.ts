@@ -45,6 +45,14 @@ export class DaffThemingService {
   }
 
   /**
+   * Get the user's stored theme preference. Emits `DaffTheme.System` when no
+   * preference is stored and the theme follows the operating system.
+   */
+  getThemePreference(): Observable<DaffTheme> {
+    return this.themeStorage.getThemeAsObservable();
+  }
+
+  /**
    * Set the theme to dark mode.
    */
   darkMode() {
@@ -59,11 +67,9 @@ export class DaffThemingService {
   }
 
   /**
-   * Switch between themes.
+   * Follow the operating system's theme preference by clearing any stored theme.
    */
-  switchTheme(): void {
-    return this.theme === DaffTheme.Dark
-      ? this.lightMode()
-      : this.darkMode();
+  systemMode() {
+    this.themeStorage.removeThemeSetting();
   }
 }

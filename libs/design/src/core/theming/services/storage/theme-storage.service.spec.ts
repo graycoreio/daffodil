@@ -56,7 +56,7 @@ describe('@daffodil/design | DaffThemeStorageService', () => {
     service.setTheme(DaffTheme.Dark);
     expect(service.getTheme()).toEqual(DaffTheme.Dark);
     service.removeThemeSetting();
-    expect(service.getTheme()).toEqual(DaffTheme.None);
+    expect(service.getTheme()).toEqual(DaffTheme.System);
   });
 
   it('should be able to persist values via storage', () => {
@@ -159,7 +159,7 @@ describe('@daffodil/design | DaffThemeStorageService', () => {
         });
       });
 
-      it('should have bad storage values coerced to `none`', () => {
+      it('should have bad storage values coerced to `system`', () => {
         const tempStorage = new DaffMemoryStorageService();
         tempStorage.setItem('DAFF_THEME', 'taco');
 
@@ -167,7 +167,7 @@ describe('@daffodil/design | DaffThemeStorageService', () => {
           service = constructThemeStorageService(document, tempStorage);
 
           const expectedMarble = 'a';
-          const expectedValue = { a: DaffTheme.None };
+          const expectedValue = { a: DaffTheme.System };
 
           expectObservable(service.getThemeAsObservable()).toBe(
             expectedMarble,

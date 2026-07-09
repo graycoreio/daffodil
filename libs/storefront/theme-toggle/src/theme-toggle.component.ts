@@ -6,6 +6,7 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
+  faCircleHalfStroke,
   faMoon,
   faSun,
 } from '@fortawesome/free-solid-svg-icons';
@@ -14,16 +15,15 @@ import {
   DaffTheme,
   DaffThemingService,
 } from '@daffodil/design';
-import { DaffIconButtonComponent } from '@daffodil/design/button';
-
-/** @docs-private */
-export const TOGGLE_TO_LIGHT_LABEL = 'Switch to light mode';
-/** @docs-private */
-export const TOGGLE_TO_DARK_LABEL = 'Switch to dark mode';
+import { DAFF_ICON_BUTTON_COMPONENTS } from '@daffodil/design/button';
+import {
+  DAFF_MENU_COMPONENTS,
+  DaffMenuService,
+} from '@daffodil/design/menu';
 
 /**
- * DaffSfThemeToggleComponent renders a button that toggles the active
- * theme between light and dark.
+ * DaffSfThemeToggleComponent renders a button that opens a menu for choosing
+ * between the light, dark, and system themes.
  */
 @Component({
   selector: 'daff-sf-theme-toggle',
@@ -34,23 +34,67 @@ export const TOGGLE_TO_DARK_LABEL = 'Switch to dark mode';
   },
   imports: [
     FaIconComponent,
-    DaffIconButtonComponent,
+    DAFF_ICON_BUTTON_COMPONENTS,
+    DAFF_MENU_COMPONENTS,
+  ],
+  providers: [
+    DaffMenuService,
   ],
 })
 export class DaffSfThemeToggleComponent {
   /** @docs-private */
-  theme = toSignal(this.themeService.getTheme());
+  DaffTheme = DaffTheme;
 
   /** @docs-private */
-  ariaLabel = computed(() => this.theme() === DaffTheme.Light ? TOGGLE_TO_DARK_LABEL : TOGGLE_TO_LIGHT_LABEL);
+  faSun = faSun;
+  /** @docs-private */
+  faMoon = faMoon;
+  /** @docs-private */
+  faCircleHalfStroke = faCircleHalfStroke;
+
+  /**
+   * @docs-private
+   *
+   * The user's stored theme preference.
+   */
+  preference = toSignal(this.themeService.getThemePreference());
 
   /** @docs-private */
-  icon = computed(() => this.theme() === DaffTheme.Light ? faMoon : faSun);
+  icon = computed(() => {
+    switch (this.preference()) {
+      case DaffTheme.Light:
+        return faSun;
+      case DaffTheme.Dark:
+        return faMoon;
+      default:
+        return faCircleHalfStroke;
+    }
+  });
+
+  /**
+   * @docs-private
+   *
+   * The accessible label for the toggle.
+   */
+  label = computed(() => {
+    const theme = this.preference() ?? DaffTheme.System;
+    return `Change theme. Current theme: ${theme}`;
+  });
 
   constructor(private themeService: DaffThemingService) { }
 
   /** @docs-private */
-  toggleTheme() {
-    this.themeService.switchTheme();
+  lightMode() {
+    this.themeService.lightMode();
+  }
+
+  /** @docs-private */
+  darkMode() {
+    this.themeService.darkMode();
+  }
+
+  /** @docs-private */
+  systemMode() {
+    this.themeService.systemMode();
   }
 }

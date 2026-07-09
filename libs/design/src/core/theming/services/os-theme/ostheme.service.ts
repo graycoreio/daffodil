@@ -57,7 +57,7 @@ export class DaffOsThemeService {
           map((e: MediaQueryListEvent) => e.matches),
           map((prefersDark) => prefersDark ? DaffTheme.Dark : DaffTheme.Light),
         )
-      : of(DaffTheme.None);
+      : of(DaffTheme.System);
   }
 
   /**

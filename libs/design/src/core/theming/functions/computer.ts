@@ -9,7 +9,7 @@ export const daffComputeThemeSetting = (
   storedPreference?: DaffTheme,
   defaultTheme: DaffTheme = DaffTheme.Dark,
 ): DaffTheme => {
-  if (storedPreference) {
+  if (storedPreference && storedPreference !== DaffTheme.System) {
     return storedPreference;
   }
 
