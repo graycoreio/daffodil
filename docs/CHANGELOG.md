@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.93.1](https://github.com/graycoreio/daffodil/compare/v0.93.0...v0.93.1) (2026-07-09)
+
+
+### Features
+
+* **design, design-examples:** migrate sidebar styles to examples ([#4555](https://github.com/graycoreio/daffodil/issues/4555)) ([fe9c81b](https://github.com/graycoreio/daffodil/commit/fe9c81ba969fd18a1fcd80b6436a89314cc91b26))
+* **design, design-examples:** reposition tag as a filter and selection component ([#4566](https://github.com/graycoreio/daffodil/issues/4566)) ([4f02429](https://github.com/graycoreio/daffodil/commit/4f02429e06a76387fc5b8f65cf28b17cebe224ec))
+* **design:** create DaffBeaconComponent ([#4564](https://github.com/graycoreio/daffodil/issues/4564)) ([39ef0ec](https://github.com/graycoreio/daffodil/commit/39ef0ec23fb95e10f235de056eefedadfa793a4e))
+* **design:** update css animations to use the prefers-reduced-motion feature ([#4562](https://github.com/graycoreio/daffodil/issues/4562)) ([0f0eaa3](https://github.com/graycoreio/daffodil/commit/0f0eaa3ba6636e2c0c9f34416fb14179262ba988))
+* **storefront:** convert the theme toggle from a light/dark switch into a menu offering system, light, and dark options ([#4520](https://github.com/graycoreio/daffodil/issues/4520)) ([51921b6](https://github.com/graycoreio/daffodil/commit/51921b6d6354448465eaad6e41ae0aad84f86099))
+
+
+### Bug Fixes
+
+* **core:** `provideDaffApolloHeaderProviders` doesn't return new headers ([#4576](https://github.com/graycoreio/daffodil/issues/4576)) ([004d67e](https://github.com/graycoreio/daffodil/commit/004d67e2516c720f678766662bdec74db0407d5d))
+* **design:** add missing native-select and tag path mappings to tsconfig ([#4569](https://github.com/graycoreio/daffodil/issues/4569)) ([dc2e5de](https://github.com/graycoreio/daffodil/commit/dc2e5de15975fc1565fca016165d278e2e2aa7ce))
+
 ## [0.93.0](https://github.com/graycoreio/daffodil/compare/v0.92.3...v0.93.0) (2026-06-24)
 
 
