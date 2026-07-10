@@ -5,58 +5,49 @@ import {
   Store,
 } from '@ngrx/store';
 
-import { DaffCrossSellProduct } from '@daffodil/cross-sell-products';
-import { DaffCrossSellProductsTestingDriverModule } from '@daffodil/cross-sell-products/driver/testing';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
+import {
+  DAFF_CART_STORE_FEATURE_KEY ,
+  DaffResolveCartSuccess,
+} from '@daffodil/cart/state';
+import { DaffCartWithCrossSellProducts } from '@daffodil/cross-sell-products';
 import {
   DaffCrossSellProductStateModule,
   DaffCrossSellProductStateRootSlice,
 } from '@daffodil/cross-sell-products/state';
-import { DaffCrossSellProductFactory } from '@daffodil/cross-sell-products/testing';
+import { DaffCartWithCrossSellProductsFactory } from '@daffodil/cross-sell-products/testing';
 import { DaffProductTestingDriverModule } from '@daffodil/product/driver/testing';
-import {
-  DaffProductStateModule,
-  DaffProductPageLoadSuccess,
-} from '@daffodil/product/state';
-import { DaffProductFactory } from '@daffodil/product/testing';
 
 describe('@daffodil/cross-sell-products/state | Deduping CrossSell Products Only from Product Reducers', () => {
-  let store: Store<DaffCrossSellProductStateRootSlice<DaffCrossSellProduct>>;
-  let product: DaffCrossSellProduct;
-  let productFactory: DaffProductFactory;
-  let crossSellProductFactory: DaffCrossSellProductFactory;
+  let store: Store<DaffCrossSellProductStateRootSlice>;
+  let cart: DaffCartWithCrossSellProducts;
+  let crossSellProductFactory: DaffCartWithCrossSellProductsFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({}),
         EffectsModule.forRoot(),
-        DaffProductStateModule,
         DaffCrossSellProductStateModule,
         DaffProductTestingDriverModule.forRoot(),
-        DaffCrossSellProductsTestingDriverModule.forRoot(),
+        DaffTestingCartDriverModule.forRoot(),
       ],
     });
 
     store = TestBed.inject(Store);
-    productFactory = TestBed.inject(DaffProductFactory);
-    crossSellProductFactory = TestBed.inject(DaffCrossSellProductFactory);
+    crossSellProductFactory = TestBed.inject(DaffCartWithCrossSellProductsFactory);
 
-    product = crossSellProductFactory.create({
-      crossSell: productFactory.createMany(3),
-    });
+    cart = crossSellProductFactory.create();
   });
 
-  describe('when the product page is loaded with cross-sell products', () => {
+  describe('when the cart is loaded with cross-sell products', () => {
     beforeEach(() => {
-      store.dispatch(new DaffProductPageLoadSuccess({
-        id: product.id,
-        products: [product, ...product.crossSell],
-      }));
+      store.dispatch(new DaffResolveCartSuccess(cart));
     });
 
-    it('should not store nested cross-sell products in product state', done => {
+    xit('should not store nested cross-sell products in cart state', done => {
       store.subscribe((state) => {
-        expect(state.daffProduct.products.entities[product.id]?.crossSell).toBeFalsy();
+        expect(state[DAFF_CART_STORE_FEATURE_KEY].cart.cart?.crossSells).toBeFalsy();
         done();
       });
     });

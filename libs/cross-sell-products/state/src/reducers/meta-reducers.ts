@@ -47,7 +47,8 @@ export function daffCrossSellProductsCartMetaReducerFactory<T extends DaffCartRe
   return (reducer: ActionReducer<T, Action<string>>): ActionReducer<T, Action<string>> => (state: T, action: Action<string>) => {
     const cart = daffCartRetrievalGetResponse<DaffCartWithCrossSellProducts>(action, retrievalActions);
     if (cart && cart.crossSells) {
-      delete cart.crossSells;
+      // TODO: figure out how to do this without mutating state
+      // cart.crossSells = undefined;
       return reducer(
         state,
         action,

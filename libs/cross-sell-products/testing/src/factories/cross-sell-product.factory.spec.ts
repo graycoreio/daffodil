@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCrossSellProduct } from '@daffodil/cross-sell-products';
+import { DaffCartWithCrossSellProducts } from '@daffodil/cross-sell-products';
 import { DaffProductTestingModule } from '@daffodil/product/testing';
 
-import { DaffCrossSellProductFactory } from './cross-sell-product.factory';
+import { DaffCartWithCrossSellProductsFactory } from './cross-sell-product.factory';
 
-describe('@daffodil/cross-sell-products/testing | DaffCrossSellProductFactory', () => {
-
-  let productFactory;
+describe('@daffodil/cross-sell-products/testing | DaffCartWithCrossSellProductsFactory', () => {
+  let factory: DaffCartWithCrossSellProductsFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -15,48 +14,34 @@ describe('@daffodil/cross-sell-products/testing | DaffCrossSellProductFactory', 
         DaffProductTestingModule,
       ],
       providers: [
-        DaffCrossSellProductFactory,
+        DaffCartWithCrossSellProductsFactory,
       ],
     });
 
-    productFactory = TestBed.inject(DaffCrossSellProductFactory);
+    factory = TestBed.inject(DaffCartWithCrossSellProductsFactory);
   });
 
   it('should be created', () => {
-    expect(productFactory).toBeTruthy();
+    expect(factory).toBeTruthy();
   });
 
   describe('create', () => {
 
-    let result: DaffCrossSellProduct;
+    let result: DaffCartWithCrossSellProducts;
 
     beforeEach(() => {
-      result = productFactory.create();
-    });
-
-    it('should return a Product with all required fields defined', () => {
-      expect(result.type).toBeDefined();
-      expect(result.id).toBeDefined();
-      expect(result.url).toBeDefined();
-      expect(result.price).toBeDefined();
-      expect(result.images).toBeDefined();
-      expect(result.discount).toBeDefined();
-      expect(result.name).toBeDefined();
-      expect(result.brand).toBeDefined();
-      expect(result.description).toBeDefined();
-      expect(result.short_description).toBeDefined();
-      expect(result.meta_title).toBeDefined();
-      expect(result.meta_description).toBeDefined();
-      expect(result.in_stock).toBeDefined();
-      expect(result.crossSell).toBeDefined();
+      result = factory.create();
     });
 
     it('should return at least one cross-sell product', () => {
-      expect(result.crossSell.length).toBeGreaterThan(0);
+      expect(result.crossSells.length).toBeGreaterThan(0);
+      expect(result.crossSellIds.length).toBeGreaterThan(0);
     });
 
-    it('should the percentage as a whole number', () => {
-      expect(result.discount.percent % 1).toEqual(0);
+    it('should use product IDs from the list of cross sells', () => {
+      result.crossSellIds.forEach((id) => {
+        expect(result.crossSells).toContain(jasmine.objectContaining({ id }));
+      });
     });
   });
 });

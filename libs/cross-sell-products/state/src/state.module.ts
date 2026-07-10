@@ -6,8 +6,12 @@ import {
 import {
   DAFF_CART_RETRIEVAL_ACTIONS,
   daffCartProvideMetaReducerFactories,
+  DaffCartStateModule,
 } from '@daffodil/cart/state';
-import { daffProductProvideMetaReducerFactories } from '@daffodil/product/state';
+import {
+  daffProductProvideMetaReducerFactories,
+  DaffProductStateModule,
+} from '@daffodil/product/state';
 
 import {
   daffCrossSellProductsCartMetaReducerFactory,
@@ -18,6 +22,10 @@ import {
  * A module that provides the default reducers for the cross-sell product redux state.
  */
 @NgModule({
+  imports: [
+    DaffProductStateModule,
+    DaffCartStateModule,
+  ],
   providers: [
     daffProductProvideMetaReducerFactories(() => daffCrossSellProductEntitiesMetaReducerFactory(inject(DAFF_CART_RETRIEVAL_ACTIONS))),
     daffCartProvideMetaReducerFactories(() => daffCrossSellProductsCartMetaReducerFactory(inject(DAFF_CART_RETRIEVAL_ACTIONS))),
