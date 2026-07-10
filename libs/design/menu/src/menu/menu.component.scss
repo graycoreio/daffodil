@@ -1,5 +1,13 @@
 @use '../../../scss/interactions';
 
+.daff-menu-overlay {
+	> * {
+		&:not(.daff-menu) {
+			display: contents;
+		}
+	}
+}
+
 .daff-menu {
 	display: block;
 	min-width: 7rem;

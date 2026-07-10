@@ -9,9 +9,11 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DAFF_MENU_COMPONENTS } from '@daffodil/design/menu';
+import {
+  DAFF_MENU_COMPONENTS,
+  DaffMenuComponent,
+} from '@daffodil/design/menu';
 
-import { DaffMenuComponent } from './menu.component';
 import {
   DAFF_MENU_CONFIG,
   DaffMenuConfig,

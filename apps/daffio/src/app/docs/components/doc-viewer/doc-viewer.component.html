@@ -1,12 +1,12 @@
 <daff-container size="lg">
   <div class="daffio-doc-viewer__sidebar-activators">
-    <button class="daffio-doc-viewer__button" (click)="open()">
+    <button class="daffio-doc-viewer__menu-button" (click)="open()">
       <fa-icon [icon]="faBars"></fa-icon>
       <div>Menu</div>
     </button>
 
     @if (toc.length > 0) {
-      <button class="daffio-doc-viewer__button" [daffMenuActivator]="tocMenu" xPosition="before" #activator="daffMenuActivator">
+      <button class="daffio-doc-viewer__toc-button" [daffMenuActivator]="tocMenu" xPosition="before" #activator="daffMenuActivator">
         <div>On this page</div>
         <span class="daffio-doc-viewer__button-icon" [class.open]="activator.isOpen()"></span>
       </button>
