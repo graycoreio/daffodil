@@ -21,6 +21,9 @@
       "@daffodil/cross-sell-products/driver/magento": [
         "libs/cross-sell-products/driver/magento/src"
       ],
+      "@daffodil/cross-sell-products/driver/in-memory": [
+        "libs/cross-sell-products/driver/in-memory/src"
+      ],
       "@daffodil/cross-sell-products/testing": [
         "libs/cross-sell-products/testing/src"
       ],

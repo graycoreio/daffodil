@@ -18,8 +18,7 @@ import {
 
 /**
  * A meta reducer that ingests the cross sell products on the cart
- * and them removes them from the payload so that they are not
- * duplicated in state.
+ * and adds them to product entities state.
  */
 export function daffCrossSellProductEntitiesMetaReducerFactory<T extends DaffProductReducersState = DaffProductReducersState>(retrievalActions: Array<DaffCartRetrievalActionInjection>): MetaReducer<T, Action<string>> {
   return (reducer: ActionReducer<T, Action<string>>): ActionReducer<T, Action<string>> => (state: T, action: Action<string>) => {
