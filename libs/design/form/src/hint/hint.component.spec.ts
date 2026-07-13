@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -9,21 +10,23 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffHintComponent } from './hint.component';
+import { DaffHintComponent } from '@daffodil/design/form';
 
 @Component({
-  template: `<daff-hint>Hint</daff-hint>`,
-  standalone: true,
+  template: `<daff-hint [validated]="validated()">Hint</daff-hint>`,
   imports: [
     DaffHintComponent,
   ],
 })
 
-class WrapperComponent {}
+class WrapperComponent {
+  validated = signal(false);
+}
 
 describe('@daffodil/design/form | DaffHintComponent', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
+  let component: DaffHintComponent;
   let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(waitForAsync(() => {
@@ -39,6 +42,7 @@ describe('@daffodil/design/form | DaffHintComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('daff-hint'));
+    component = de.componentInstance;
     fixture.detectChanges();
   });
 
@@ -50,5 +54,18 @@ describe('@daffodil/design/form | DaffHintComponent', () => {
     expect(de.classes).toEqual(jasmine.objectContaining({
       'daff-hint': true,
     }));
+  });
+
+  describe('validated property', () => {
+    it('should take validated as an input', () => {
+      expect(component.validated()).toEqual(wrapper.validated());
+    });
+
+    it('should add a class of "validated" to the host element when validated is true', () => {
+      wrapper.validated.set(true);
+      fixture.detectChanges();
+
+      expect(de.classes['validated']).toBeTrue();
+    });
   });
 });

@@ -1,22 +1,22 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  Input,
+  input,
 } from '@angular/core';
 
 @Component({
   selector: 'daff-hint',
   template: '<ng-content></ng-content>',
-  styleUrls: ['./hint.component.scss'],
+  styleUrl: './hint.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'daff-hint',
-    '[class.validated]': 'validated',
+    '[class.validated]': 'validated()',
   },
 })
 export class DaffHintComponent {
   /**
    * Displays a validated hint UI.
    * */
-  @Input() validated = false;
+  validated = input(false);
 }
