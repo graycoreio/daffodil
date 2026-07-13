@@ -27,7 +27,6 @@ import {
   DaffCartPaymentFactory,
   DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
-import { DaffAccordionItemComponent } from '@daffodil/design/accordion';
 import { DaffPersonalAddress } from '@daffodil/geography';
 import { DaffGeographyTestingDriverModule } from '@daffodil/geography/driver/testing';
 
