@@ -19,6 +19,9 @@
       "@daffodil/design/assets": [
         "libs/design/assets/src"
       ],
+      "@daffodil/design/badge": [
+        "libs/design/badge/src"
+      ],
       "@daffodil/design/breadcrumb": [
         "libs/design/breadcrumb/src"
       ],

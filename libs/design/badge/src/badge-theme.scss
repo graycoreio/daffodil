@@ -1,0 +1,197 @@
+// stylelint-disable selector-class-pattern
+@use '../../scss/theming' as *;
+
+@mixin daff-badge-color-light-variants(
+	$variants,
+	$background,
+	$foreground,
+	$outline-shade
+) {
+	@each $name, $palette in $variants {
+		&.daff-#{$name} {
+			background: daff-color($palette, $background);
+			color: daff-color($palette, $foreground);
+
+			&.outlined {
+				border-color: daff-color($palette, $outline-shade);
+			}
+		}
+	}
+}
+
+@mixin daff-badge-color-dark-variants(
+	$variants,
+	$shade,
+	$foreground,
+	$outline-shade
+) {
+	@each $name, $palette in $variants {
+		&.daff-#{$name} {
+			background: daff-color($palette, $shade);
+			color: daff-color($palette, $foreground);
+
+			&.outlined {
+				border-color: daff-color($palette, $outline-shade);
+			}
+		}
+	}
+}
+
+@mixin daff-badge-theme($theme) {
+	$primary: daff-get-palette($theme, primary);
+	$secondary: daff-get-palette($theme, secondary);
+	$tertiary: daff-get-palette($theme, tertiary);
+	$info: daff-get-palette($theme, informational);
+	$warn: daff-get-palette($theme, warn);
+	$critical: daff-get-palette($theme, critical);
+	$success: daff-get-palette($theme, success);
+	$neutral: daff-get-palette($theme, neutral);
+	$black: daff-get-base-color($theme, 'black');
+	$white: daff-get-base-color($theme, 'white');
+	$mode: daff-get-theme-mode($theme);
+
+	.daff-badge {
+		@include light($mode) {
+			@include daff-badge-color-light-variants(
+				(
+					'primary': $primary,
+					'secondary': $secondary,
+					'tertiary': $tertiary,
+				),
+				10,
+				90,
+				20
+			);
+
+			&.daff-dark {
+				background: daff-color($neutral, 80);
+				color: daff-color($neutral, 10);
+			}
+
+			&.daff-light {
+				background: daff-color($neutral, 10);
+				color: daff-color($neutral, 100);
+			}
+
+			&.daff-theme {
+				background: $white;
+				color: $black;
+			}
+
+			&.daff-theme-contrast {
+				background: daff-color($neutral, 90);
+				color: daff-color($neutral, 10);
+			}
+
+			&.outlined {
+				&.daff-dark {
+					border-color: daff-color($neutral, 90);
+				}
+
+				&.daff-light {
+					border-color: daff-color($neutral, 20);
+				}
+
+				&.daff-theme {
+					border-color: daff-color($neutral, 30);
+				}
+
+				&.daff-theme-contrast {
+					border-color: daff-color($neutral, 100);
+				}
+
+				&.daff-info {
+					border-color: daff-color($neutral, 30);
+				}
+			}
+
+			// `status` is a state modifier that must override `color`. Both apply
+			// equal-specificity `.daff-*` classes to the same element, so these
+			// rules are authored after every color variant above to win the cascade.
+			@include daff-badge-color-light-variants(
+				(
+					'warn': $warn,
+					'critical': $critical,
+					'success': $success,
+				),
+				10,
+				90,
+				20
+			);
+
+			&.daff-info {
+				background: daff-color($neutral, 20);
+				color: daff-color($neutral, 90);
+			}
+		}
+
+		@include dark($mode) {
+			background: daff-color($neutral, 80);
+			color: daff-color($neutral, 20);
+
+			@include daff-badge-color-dark-variants(
+				(
+					'primary': $primary,
+					'secondary': $secondary,
+					'tertiary': $tertiary,
+					'dark': $neutral,
+				),
+				100,
+				20,
+				90
+			);
+
+			&.daff-light {
+				background: daff-color($neutral, 10);
+				color: daff-color($neutral, 100);
+			}
+
+			&.daff-theme {
+				background: $black;
+				color: $white;
+			}
+
+			&.daff-theme-contrast {
+				background: $white;
+				color: $black;
+			}
+
+			&.outlined {
+				&.daff-light {
+					border-color: daff-color($neutral, 30);
+				}
+
+				&.daff-theme {
+					border-color: daff-color($neutral, 90);
+				}
+
+				&.daff-theme-contrast {
+					border-color: daff-color($neutral, 30);
+				}
+
+				&.daff-info {
+					border-color: daff-color($neutral, 80);
+				}
+			}
+
+			// `status` is a state modifier that must override `color`. Both apply
+			// equal-specificity `.daff-*` classes to the same element, so these
+			// rules are authored after every color variant above to win the cascade.
+			@include daff-badge-color-dark-variants(
+				(
+					'warn': $warn,
+					'critical': $critical,
+					'success': $success,
+				),
+				100,
+				20,
+				90
+			);
+
+			&.daff-info {
+				background: daff-color($neutral, 90);
+				color: daff-color($neutral, 20);
+			}
+		}
+	}
+}

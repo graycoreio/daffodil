@@ -1,0 +1,15 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.daff-example-badge-colors {
+	&__wrapper {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.5rem;
+	}
+}
