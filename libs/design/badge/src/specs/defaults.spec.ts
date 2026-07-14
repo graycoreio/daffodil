@@ -1,55 +1,36 @@
+import { DebugElement } from '@angular/core';
 import {
-  Component,
-  DebugElement,
-} from '@angular/core';
-import {
-  waitForAsync,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
-import { DaffStatusableDirective } from '@daffodil/design';
 import {
-  DAFF_BADGE_COMPONENTS,
+  DaffColorableDirective,
+  DaffStatusableDirective,
+} from '@daffodil/design';
+import {
   DaffBadgeComponent,
+  DaffBadgeSizableDirective,
 } from '@daffodil/design/badge';
 
-@Component({
-  template: `
-  <daff-badge>
-		Label
-	</daff-badge>
-  `,
-  imports: [
-    DAFF_BADGE_COMPONENTS,
-  ],
-})
-class WrapperComponent {}
-
 describe('@daffodil/design/badge | DaffBadgeComponent | Defaults', () => {
-  let fixture: ComponentFixture<WrapperComponent>;
-  let de: DebugElement;
-  let wrapper: WrapperComponent;
   let component: DaffBadgeComponent;
-  let progressBar: DebugElement;
+  let fixture: ComponentFixture<DaffBadgeComponent>;
+  let de: DebugElement;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
-        WrapperComponent,
+        DaffBadgeComponent,
       ],
     })
       .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WrapperComponent);
-    wrapper = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css('daff-badge'));
-    component = de.componentInstance;
-    progressBar = fixture.debugElement.query(By.directive(DaffBadgeComponent));
-
+    fixture = TestBed.createComponent(DaffBadgeComponent);
+    component = fixture.componentInstance;
+    de = fixture.debugElement;
     fixture.detectChanges();
   });
 
@@ -64,15 +45,15 @@ describe('@daffodil/design/badge | DaffBadgeComponent | Defaults', () => {
   });
 
   it('should set the default color to `light`', () => {
-    expect(de.nativeElement.classList.contains('daff-light')).toEqual(true);
+    expect(de.injector.get(DaffColorableDirective).color).toEqual('light');
   });
 
   it('should set the default appearance to `filled`', () => {
-    expect(de.nativeElement.classList.contains('filled')).toEqual(true);
+    expect(component.appearance()).toEqual('filled');
   });
 
   it('should set the default size to `md`', () => {
-    expect(de.nativeElement.classList.contains('daff-md')).toEqual(true);
+    expect(de.injector.get(DaffBadgeSizableDirective).size).toEqual('md');
   });
 
   it('should not set a default status', () => {

@@ -16,11 +16,11 @@ import {
 } from '@daffodil/design';
 import {
   DAFF_BADGE_COMPONENTS,
-  DaffBadgeAppearance,
   DaffBadgeComponent,
 } from '@daffodil/design/badge';
 
 import { DaffBadgeSize } from '../badge/badge-sizable.directive';
+import { DaffBadgeAppearance } from '../badge/badge-appearance';
 
 @Component({
   template: `
@@ -85,7 +85,10 @@ describe('@daffodil/design/badge | DaffBadgeComponent | Usage', () => {
 
   describe('using the appearance property of a badge', () => {
     it('should take appearance as an input', () => {
-      expect(component.appearance()).toEqual(wrapper.appearance());
+      wrapper.appearance.set('outlined');
+      fixture.detectChanges();
+
+      expect(component.appearance()).toEqual('outlined');
     });
 
     it('should apply the filled class when appearance is filled', () => {
@@ -102,6 +105,15 @@ describe('@daffodil/design/badge | DaffBadgeComponent | Usage', () => {
 
       expect(de.nativeElement.classList.contains('outlined')).toBe(true);
       expect(de.nativeElement.classList.contains('filled')).toBe(false);
+    });
+
+    it('should default to filled when appearance is undefined', () => {
+      wrapper.appearance.set(undefined);
+      fixture.detectChanges();
+
+      expect(component.appearance()).toEqual('filled');
+      expect(de.nativeElement.classList.contains('filled')).toBe(true);
+      expect(de.nativeElement.classList.contains('outlined')).toBe(false);
     });
   });
 

@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
+  contentChild,
   input,
   ViewEncapsulation,
 } from '@angular/core';
@@ -13,7 +13,10 @@ import {
   DaffStatusableDirective,
 } from '@daffodil/design';
 
-import { DaffBadgeAppearance } from './badge-appearance';
+import {
+  DaffBadgeAppearance,
+  DaffBadgeAppearanceEnum,
+} from './badge-appearance';
 import { DaffBadgeSizableDirective } from './badge-sizable.directive';
 
 /**
@@ -60,12 +63,15 @@ export class DaffBadgeComponent {
   /**
    * @docs-private
    */
-  @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
+  _prefix = contentChild(DaffPrefixDirective);
 
   /**
-   * The visual style of the badge.
+   * The visual style of the badge. Defaults to `filled`.
    */
-  appearance = input<DaffBadgeAppearance>('filled');
+  appearance = input(DaffBadgeAppearanceEnum.Filled, {
+    transform: (value: DaffBadgeAppearance | '' | null | undefined) =>
+      value || DaffBadgeAppearanceEnum.Filled,
+  });
 
   constructor(
     private sizableDirective: DaffBadgeSizableDirective,
