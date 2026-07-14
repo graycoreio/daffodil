@@ -14,6 +14,20 @@ export default defineConfig([
 		},
 	},
 	{
+		files: ['**/*.ts'],
+		ignores: ['**/*.spec.ts'],
+		settings: {
+			'import/resolver': {
+				node: {
+					extensions: ['.ts', '.js'],
+				},
+			},
+		},
+		rules: {
+			'import/no-cycle': ['warn', { ignoreExternal: true }],
+		},
+	},
+	{
 		files: ['**/*.component.ts', '**/*.container.ts', '**/*.directive.ts'],
 		plugins: {
 			'daff-docs': daffDocsPlugin,
