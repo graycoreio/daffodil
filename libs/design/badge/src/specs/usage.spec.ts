@@ -19,8 +19,8 @@ import {
   DaffBadgeComponent,
 } from '@daffodil/design/badge';
 
-import { DaffBadgeSize } from '../badge/badge-sizable.directive';
 import { DaffBadgeAppearance } from '../badge/badge-appearance';
+import { DaffBadgeSize } from '../badge/badge-sizable.directive';
 
 @Component({
   template: `
