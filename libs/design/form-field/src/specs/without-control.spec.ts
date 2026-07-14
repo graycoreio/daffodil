@@ -5,7 +5,8 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 
-import { DAFF_FORM_FIELD_COMPONENTS } from '../form-field';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
+
 import { DaffFormFieldMissingControlMessage } from '../form-field/form-field.component';
 
 @Component({ template: `

@@ -63,11 +63,11 @@ describe('@daffodil/design/textarea | DaffTextareaComponent | With Form Field', 
   });
 
   it('should set the control type to native-textarea', () => {
-    expect(formField._control.controlType).toEqual('native-textarea');
+    expect(formField._control().controlType).toEqual('native-textarea');
   });
 
   it('should set the textarea id to the form field id', () => {
-    expect(component.internalId).toEqual(formField.id);
+    expect(component.internalId).toEqual(formField.id());
   });
 
   it('should set required to false', () => {
@@ -105,7 +105,7 @@ describe('@daffodil/design/textarea | DaffTextareaComponent | With Form Field', 
       wrapper.id.set('test-2');
       fixture.detectChanges();
 
-      expect(formField.id).toEqual('test-2');
+      expect(formField.id()).toEqual('test-2');
       expect(component.internalId).toEqual('test-2');
     });
   });

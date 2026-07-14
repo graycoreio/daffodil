@@ -62,11 +62,11 @@ describe('@daffodil/design | DaffInputComponent | With Form Field', () => {
   });
 
   it('should set the control type to native-input', () => {
-    expect(formField._control.controlType).toEqual('native-input');
+    expect(formField._control().controlType).toEqual('native-input');
   });
 
   it('should set the input id to the form field id', () => {
-    expect(componentDE.attributes.id).toEqual(formField.id);
+    expect(componentDE.attributes.id).toEqual(formField.id());
   });
 
   it('should set required to false', () => {
@@ -94,7 +94,7 @@ describe('@daffodil/design | DaffInputComponent | With Form Field', () => {
       wrapper.id.set('test-2');
       fixture.detectChanges();
 
-      expect(formField.id).toEqual('test-2');
+      expect(formField.id()).toEqual('test-2');
       expect(componentDE.attributes.id).toEqual('test-2');
     });
   });

@@ -67,7 +67,7 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
 
     de = fixture.debugElement.query(By.css('daff-form-field'));
     component = de.componentInstance;
-    control = component._control;
+    control = component._control();
     patchElementFocus(fixture.debugElement.query(By.css('input')).nativeElement);
   });
 
@@ -76,12 +76,12 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
   });
 
   it('should allow a custom id to be set', () => {
-    expect(component.id).toEqual(wrapper.id());
+    expect(component.id()).toEqual(wrapper.id());
   });
 
   describe('setting the appearance of a form field', () => {
     it('should take appearance as an input', () => {
-      expect(component.appearance).toEqual(wrapper.appearance());
+      expect(component.appearance()).toEqual(wrapper.appearance());
     });
 
     it('should add a class of "fluid" to the host element when appearance="fluid"', () => {

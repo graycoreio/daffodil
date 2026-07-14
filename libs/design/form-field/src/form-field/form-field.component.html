@@ -1,41 +1,41 @@
 <ng-content />
 
-@if (isFixed) {
+@if (isFixed()) {
   <ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
 }
 <div class="daff-form-field__wrapper">
 	<div class="daff-form-field__control">
-		@if (_prefix) {
+		@if (_prefix()) {
 			<ng-content select="[daffPrefix]"></ng-content>
 		}
 		<div class="daff-form-field__inner">
-			@if (!isFixed) {
+			@if (!isFixed()) {
 				<ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
 			}
 			<ng-content></ng-content>
 		</div>
-		@if (_suffix) {
+		@if (_suffix()) {
 			<ng-content select="[daffSuffix]"></ng-content>
 		}
-		@if (_action && !isFixed) {
+		@if (_action() && !isFixed()) {
 			<ng-container *ngTemplateOutlet="actionTemplate"></ng-container>
 		}
 	</div>
-	@if ((_action && isFixed)) {
+	@if ((_action() && isFixed())) {
 		<ng-container *ngTemplateOutlet="actionTemplate"></ng-container>
 	}
 </div>
 @if (hasHint()) {
 	<div
 		class="daff-form-field__hint-wrapper"
-		[id]="hintId">
+		[id]="hintId()">
 		<ng-content select="daff-hint"></ng-content>
 	</div>
 }
 @if (hasErrorMessage()) {
 	<div
 		class="daff-form-field__error-wrapper"
-		[id]="errorMessageId">
+		[id]="errorMessageId()">
 		<ng-content select="daff-error-message"></ng-content>
 	</div>
 }
@@ -45,14 +45,14 @@
 </ng-template>
 
 <ng-template #labelTemplate>
-  @if (_formLabelDirective) {
+  @if (_formLabelDirective()) {
     <ng-content select="label[daffFormLabel]"></ng-content>
-  } @else if(_formFieldLabelDirective) {
+  } @else if(_formFieldLabelDirective()) {
     <label class="daff-form-field__label"
-      [attr.for]="autoLabelId"
-      [attr.id]="customId">
+      [attr.for]="autoLabelId()"
+      [attr.id]="customId()">
       <ng-content select="daff-form-label"></ng-content>
-			@if (_control.required) {
+			@if (_control().required) {
 			<span aria-hidden="true">*</span>
 			}
     </label>

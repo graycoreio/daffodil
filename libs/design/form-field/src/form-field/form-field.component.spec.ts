@@ -56,7 +56,7 @@ describe('@daffodil/design/form-field | DaffFormFieldComponent | Defaults', () =
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('daff-form-field'));
     component = de.componentInstance;
-    control = component._control;
+    control = component._control();
 
     fixture.detectChanges();
   });
@@ -71,9 +71,8 @@ describe('@daffodil/design/form-field | DaffFormFieldComponent | Defaults', () =
     }));
   });
 
-
   it('should have a generated id', () => {
-    expect(component.id).toMatch('daff-form-field-[0-9]*');
+    expect(component.id()).toMatch('daff-form-field-[0-9]*');
   });
 
   it('should have a generated id for the hint', () => {
@@ -89,6 +88,6 @@ describe('@daffodil/design/form-field | DaffFormFieldComponent | Defaults', () =
   });
 
   it('should set fluid as the default appearance', () => {
-    expect(component.appearance).toEqual('fluid');
+    expect(component.appearance()).toEqual('fluid');
   });
 });

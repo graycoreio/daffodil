@@ -177,7 +177,7 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
       throw new Error('DaffSelectComponent needs to be used with the DaffFormFieldComponent.');
     }
 
-    this.ariaLabelledBy = this.formField.id;
+    this.ariaLabelledBy = this.formField.id();
 
     this.openDirective.stateless = false;
 
