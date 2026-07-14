@@ -1,6 +1,6 @@
 import {
-  Input,
   Directive,
+  input,
 } from '@angular/core';
 
 import {
@@ -23,14 +23,14 @@ import {
     },
   ],
   host: {
-    '[class.elevated]': 'elevated',
+    '[class.elevated]': 'elevated()',
   },
 })
 export class DaffCardBaseDirective {
   /**
    * Whether or not a card displays a shadow.
    */
-  @Input() elevated = false;
+  elevated = input(false);
 
   constructor(private orientation: DaffOrientableDirective) {
     this.orientation.defaultOrientation = 'vertical';

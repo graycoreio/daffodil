@@ -70,7 +70,7 @@ describe('@daffodil/design/card | DaffCardBaseDirective', () => {
 
   describe('elevated property', () => {
     it('should be able to take `elevated` as an input', () => {
-      expect(directive.elevated).toEqual(wrapper.elevated());
+      expect(directive.elevated()).toEqual(wrapper.elevated());
     });
 
     it('should add a class of "elevated" to the host element when elevated is true', () => {
