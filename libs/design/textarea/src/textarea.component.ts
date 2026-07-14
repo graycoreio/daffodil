@@ -57,7 +57,7 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
   focused = false;
 
   private get _id() {
-    return this.formField?.id;
+    return this.formField?.id();
   };
 
   /**
@@ -128,9 +128,9 @@ export class DaffTextareaComponent extends DaffFormFieldControl<string> implemen
    */
   get ariaDescribedBy() {
     if(this.formField.hasErrorMessage()) {
-      return this.formField.errorMessageId;
+      return this.formField.errorMessageId();
     } else if(this.formField.hasHint()) {
-      return this.formField.hintId;
+      return this.formField.hintId();
     } else {
       return null;
     }

@@ -70,7 +70,7 @@ describe('@daffodil/design | DaffNativeSelectComponent | With Form Field', () =>
   });
 
   it('should set the native select id to the form field id', () => {
-    expect(componentDE.attributes.id).toEqual(formField.id);
+    expect(componentDE.attributes.id).toEqual(formField.id());
   });
 
 
@@ -99,7 +99,7 @@ describe('@daffodil/design | DaffNativeSelectComponent | With Form Field', () =>
       wrapper.id.set('test-2');
       fixture.detectChanges();
 
-      expect(formField.id).toEqual('test-2');
+      expect(formField.id()).toEqual('test-2');
       expect(componentDE.attributes.id).toEqual('test-2');
     });
   });

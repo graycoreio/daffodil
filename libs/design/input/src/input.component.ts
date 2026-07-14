@@ -63,7 +63,7 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
    * @docs-private
    */
   get _id() {
-    return this.formField?.id;
+    return this.formField?.id();
   };
 
   /**
@@ -112,9 +112,9 @@ export class DaffInputComponent extends DaffFormFieldControl<string> implements 
    */
   get ariaDescribedBy() {
     if(this.formField.hasErrorMessage()) {
-      return this.formField.errorMessageId;
+      return this.formField.errorMessageId();
     } else if(this.formField.hasHint()) {
-      return this.formField.hintId;
+      return this.formField.hintId();
     } else {
       return null;
     }

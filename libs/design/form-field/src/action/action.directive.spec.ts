@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffFormFieldActionDirective } from './action.directive';
+import { DaffFormFieldActionDirective } from '@daffodil/design/form-field';
 
 @Component({
   template: `

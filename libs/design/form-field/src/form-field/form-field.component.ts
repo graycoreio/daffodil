@@ -2,15 +2,17 @@ import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   ViewEncapsulation,
-  ContentChild,
   AfterContentInit,
   AfterContentChecked,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input,
   AfterViewInit,
   isDevMode,
   ElementRef,
+  input,
+  contentChild,
+  signal,
+  computed,
 } from '@angular/core';
 
 import {
@@ -53,17 +55,17 @@ export const DaffFormFieldMissingControlMessage = 'A DaffFormFieldComponent must
   ],
   host: {
     class: 'daff-form-field',
-    '[class.is-native-select]': 'isNativeSelect',
-    '[class.has-prefix]': '_prefix',
-    '[class.has-suffix]': '_suffix',
-    '[class.has-action]': '_action',
-    '[class.daff-error]': 'isError',
-    '[class.daff-disabled]': 'isDisabled',
-    '[class.daff-valid]': 'isValid',
+    '[class.is-native-select]': 'isNativeSelect()',
+    '[class.has-prefix]': '_prefix()',
+    '[class.has-suffix]': '_suffix()',
+    '[class.has-action]': '_action()',
+    '[class.daff-error]': 'isError()',
+    '[class.daff-disabled]': 'isDisabled()',
+    '[class.daff-valid]': 'isValid()',
     '[class.daff-focused]': 'isFocused',
     '[class.daff-raised]': 'isRaised',
-    '[class.fluid]': 'appearance === "fluid"',
-    '[class.fixed]': 'appearance === "fixed"',
+    '[class.fluid]': 'appearance() === "fluid"',
+    '[class.fixed]': 'appearance() === "fixed"',
   },
   hostDirectives: [
     {
@@ -74,50 +76,52 @@ export const DaffFormFieldMissingControlMessage = 'A DaffFormFieldComponent must
 })
 export class DaffFormFieldComponent implements AfterContentInit, AfterContentChecked, AfterViewInit {
   /** @docs-private */
-  get isNativeSelect() {
-    return this._control.controlType === 'native-select';
-  }
+  isNativeSelect = computed(() => this._control()?.controlType === 'native-select');
 
-  constructor(private cd: ChangeDetectorRef, public elementRef: ElementRef) {}
-
-  /** @docs-private */
-  @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
+  constructor(
+    private cd: ChangeDetectorRef,
+    public elementRef: ElementRef,
+  ) {}
 
   /** @docs-private */
-  @ContentChild(DaffSuffixDirective) _suffix: DaffSuffixDirective;
+  _prefix = contentChild(DaffPrefixDirective);
+
+  /** @docs-private */
+  _suffix = contentChild(DaffSuffixDirective);
 
   /**
    * @docs-private
    *
    * The child form control that the form field manages.
    */
-  @ContentChild(DaffFormFieldControl) _control: DaffFormFieldControl<unknown>;
+  _control = contentChild(DaffFormFieldControl);
 
   /**
    * @docs-private
+   *
    * @deprecated Deprecated in version 0.86.0. Will be removed in version 1.0.0.
    */
-  @ContentChild(DaffFormLabelDirective) _formLabelDirective: DaffFormLabelDirective;
+  _formLabelDirective = contentChild(DaffFormLabelDirective);
 
   /**
    * @docs-private
    */
-  @ContentChild(DaffFormFieldLabelDirective) _formFieldLabelDirective: DaffFormFieldLabelDirective;
+  _formFieldLabelDirective = contentChild(DaffFormFieldLabelDirective);
 
   /**
    * @docs-private
    */
-  @ContentChild(DaffFormFieldActionDirective) _action: DaffFormFieldActionDirective;
+  _action = contentChild(DaffFormFieldActionDirective);
 
   /**
    * @docs-private
    */
-  @ContentChild(DaffHintComponent) private _hint: DaffHintComponent;
+  private _hint = contentChild(DaffHintComponent);
 
   /**
    * @docs-private
    */
-  @ContentChild(DaffErrorMessageComponent) private _error: DaffErrorMessageComponent;
+  private _error = contentChild(DaffErrorMessageComponent);
 
   /**
    * @docs-private
@@ -125,7 +129,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    * Tracking property to keep a record of whether or not the
    * form field should be marked as error.
    */
-  isError = false;
+  isError = signal(false);
 
   /**
    * @docs-private
@@ -133,7 +137,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    * Tracking property to keep a record of whether or not the
    * form field contains any user input.
    */
-  isFilled = false;
+  isFilled = signal(false);
 
   /**
    * @docs-private
@@ -141,7 +145,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    * Tracking property to keep a record of whether or not the
    * form field should be marked as disabled.
    */
-  isDisabled = false;
+  isDisabled = signal(false);
 
   /**
    * @docs-private
@@ -149,7 +153,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    * Tracking property to keep a record of whether or not the
    * form field should be marked as valid.
    */
-  isValid = false;
+  isValid = signal(false);
 
   /**
    * @docs-private
@@ -157,40 +161,28 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    * Determines whether or not the form field should display its focused state.
    */
   get isFocused() {
-    return this._control?.focused;
+    return this._control()?.focused;
   }
 
   /**
    * @docs-private
    */
   get isRaised() {
-    return this._control?.raised || this.isFilled;
+    return this._control()?.raised || this.isFilled();
   }
-
-  private _appearance: DaffFormFieldApperanace = DaffFormFieldApperanaceEnum.Fluid;
 
   /**
    * The appearance of the form field. Defaults to `fluid`.
    */
-  @Input()
-  get appearance() {
-    return this._appearance;
-  }
-
-  set appearance(value: DaffFormFieldApperanace) {
-    if(value === null || value === undefined || <unknown>value === '') {
-      this._appearance = DaffFormFieldApperanaceEnum.Fluid;
-    } else {
-      this._appearance = value;
-    }
-  };
+  appearance = input(DaffFormFieldApperanaceEnum.Fluid, {
+    transform: (value: DaffFormFieldApperanace | '' | null | undefined) =>
+      value || DaffFormFieldApperanaceEnum.Fluid,
+  });
 
   /**
    * @docs-private
    */
-  get isFixed() {
-    return this._appearance === DaffFormFieldApperanaceEnum.Fixed;
-  }
+  isFixed = computed(() => this.appearance() === DaffFormFieldApperanaceEnum.Fixed);
 
   /**
    * The unique id of the form field. Defaults to an autogenerated value. When using this,
@@ -198,45 +190,37 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    *
    * It gets assigned to the `for` attribute on the `<label>` inside of the form field.
    */
-  @Input() id = 'daff-form-field-' + ++daffFormFieldId;
+  id = input('daff-form-field-' + ++daffFormFieldId);
 
   /**
    * @docs-private
    */
-  hasHint() {
-    return this._hint ? true : false;
-  }
+  hasHint = computed(() => !!this._hint());
 
   /**
    * @docs-private
    */
-  hintId = this.id + '-hint';
+  hintId = computed(() => this.id() + '-hint');
 
   /**
    * @docs-private
    */
-  hasErrorMessage() {
-    return this._error ? true : false;
-  }
+  hasErrorMessage = computed(() => !!this._error());
 
   /**
    * @docs-private
    */
-  errorMessageId = this.id + '-error';
+  errorMessageId = computed(() => this.id() + '-error');
 
   /**
    * @docs-private
    */
-  get autoLabelId() {
-    return this._control.supportsAutoLabelling ? this.id : null;
-  }
+  autoLabelId = computed(() => this._control()?.supportsAutoLabelling ? this.id() : null);
 
   /**
    * @docs-private
    */
-  get customId() {
-    return this._control.supportsAutoLabelling ? null : this.id;
-  }
+  customId = computed(() => this._control()?.supportsAutoLabelling ? null : this.id());
 
   /**
    * @docs-private
@@ -245,18 +229,18 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    */
   ngAfterViewInit() {
     if (isDevMode()) {
-      if (!this._formFieldLabelDirective && this._control.supportsAutoLabelling && !(this._control.id)) {
+      if (!this._formFieldLabelDirective() && this._control()?.supportsAutoLabelling && !(this._control()?.id)) {
         console.warn(
-          `Accessibility Warning: The form field with id "${this.id}" uses a control that supports auto-labelling, but no <daff-form-label> component was found.\n\n` +
+          `Accessibility Warning: The form field with id "${this.id()}" uses a control that supports auto-labelling, but no <daff-form-label> component was found.\n\n` +
           `1. Add a <daff-form-label> component (recommended)\n` +
           `2. OR manually set an 'id' on your input and matching 'for' attribute on your <label>.\n\n` +
           `Why this matters: Proper labelling ensures assistive technologies can identify form fields correctly.`,
         );
       }
 
-      if(this._suffix && this._action && !this.isFixed) {
+      if(this._suffix() && this._action() && !this.isFixed()) {
         console.warn(
-          `UI consideration for form field with id "${this.id}":\n\n` + `In a fluid appearance, avoid using suffix alongside an action.`,
+          `UI consideration for form field with id "${this.id()}":\n\n` + `In a fluid appearance, avoid using suffix alongside an action.`,
         );
       };
     }
@@ -266,7 +250,7 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    * Validates whether or not the form field is in a "usable" state.
    */
   private _validateFormControl() {
-    if (!this._control) {
+    if (!this._control()) {
       throw new Error(DaffFormFieldMissingControlMessage);
     }
   }
@@ -281,11 +265,11 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
   ngAfterContentInit() {
     this._validateFormControl();
 
-    this._control.stateChanges?.subscribe(({ focused, filled, disabled, error, valid }) => {
-      this.isFilled = filled;
-      this.isError = error;
-      this.isDisabled = disabled;
-      this.isValid = valid;
+    this._control()?.stateChanges?.subscribe(({ filled, disabled, error, valid }) => {
+      this.isFilled.set(filled);
+      this.isError.set(error);
+      this.isDisabled.set(disabled);
+      this.isValid.set(valid);
 
       this.cd.markForCheck();
     });

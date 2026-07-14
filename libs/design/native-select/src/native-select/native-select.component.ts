@@ -69,7 +69,7 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
    * Implemented as part of DaffFormFieldControl.
    */
   get _id() {
-    return this.formField?.id;
+    return this.formField?.id();
   };
 
   constructor(
@@ -93,9 +93,9 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
    */
   get ariaDescribedBy() {
     if(this.formField.hasErrorMessage()) {
-      return this.formField.errorMessageId;
+      return this.formField.errorMessageId();
     } else if(this.formField.hasHint()) {
-      return this.formField.hintId;
+      return this.formField.hintId();
     } else {
       return null;
     }
