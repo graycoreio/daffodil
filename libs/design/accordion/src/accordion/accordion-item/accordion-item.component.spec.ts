@@ -10,7 +10,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffAccordionItemComponent } from './accordion-item.component';
+import { DaffAccordionItemComponent } from '@daffodil/design/accordion';
 
 describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', () => {
   let fixture: ComponentFixture<DaffAccordionItemComponent>;
@@ -33,7 +33,7 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', (
   });
 
   it('should set initiallyExpanded to false by default', () => {
-    expect(component.initiallyExpanded).toEqual(false);
+    expect(component.initiallyExpanded()).toEqual(false);
   });
 
   it('should be collapsed by default', () => {
@@ -93,13 +93,13 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Usage', () =
 
     fixture.detectChanges();
 
-    expect(daffAccordionItem.initiallyExpanded).toEqual(false);
+    expect(daffAccordionItem.initiallyExpanded()).toEqual(false);
 
     wrapper.initiallyExpandedValue.set(true);
 
     fixture.detectChanges();
 
-    expect(daffAccordionItem.initiallyExpanded).toEqual(true);
+    expect(daffAccordionItem.initiallyExpanded()).toEqual(true);
   });
 
   it('should set aria-expanded to true if open is true', () => {

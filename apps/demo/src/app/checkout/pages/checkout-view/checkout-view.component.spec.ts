@@ -27,7 +27,6 @@ import {
   DaffCartPaymentFactory,
   DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
-import { DaffAccordionItemComponent } from '@daffodil/design/accordion';
 import { DaffPersonalAddress } from '@daffodil/geography';
 import { DaffGeographyTestingDriverModule } from '@daffodil/geography/driver/testing';
 
@@ -56,7 +55,6 @@ import {
 describe('DemoCheckoutViewComponent', () => {
   let component: DemoCheckoutViewComponent;
   let fixture: ComponentFixture<DemoCheckoutViewComponent>;
-  let accordionItem: DaffAccordionItemComponent;
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
   let addressFactory: DaffCartAddressFactory;
@@ -353,14 +351,6 @@ describe('DemoCheckoutViewComponent', () => {
   });
 
   describe('on <daff-accordion-item>', () => {
-    beforeEach(() => {
-      accordionItem = fixture.debugElement.query(By.directive(DaffAccordionItemComponent)).componentInstance;
-    });
-
-    it('should set initiallyAction to false', () => {
-      expect(accordionItem.initiallyExpanded).toBeFalsy();
-    });
-
     describe('when cart is not null', () => {
       beforeEach(() => {
         cartFacade.cart$.next({

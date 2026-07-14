@@ -4,7 +4,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { DaffAccordionComponent } from './accordion.component';
+import { DaffAccordionComponent } from '@daffodil/design/accordion';
 
 describe('@daffodil/design/accordion | DaffAccordionComponent', () => {
   let component: DaffAccordionComponent;

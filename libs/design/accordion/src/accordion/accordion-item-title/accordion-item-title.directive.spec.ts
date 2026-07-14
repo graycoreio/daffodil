@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffAccordionItemTitleDirective } from './accordion-item-title.directive';
+import { DaffAccordionItemTitleDirective } from '@daffodil/design/accordion';
 
 @Component({
   template: `
