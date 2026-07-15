@@ -1,0 +1,28 @@
+<div class="menu-with-position__options">
+  <daff-form-field>
+    <daff-form-label>Vertical</daff-form-label>
+    <daff-select [options]="yPositions" [formControl]="yPositionControl">
+      <ng-template daffSelectOption let-option="option">
+        {{ option.label }}
+      </ng-template>
+    </daff-select>
+  </daff-form-field>
+
+  <daff-form-field>
+    <daff-form-label>Horizontal</daff-form-label>
+    <daff-select [options]="xPositions" [formControl]="xPositionControl">
+      <ng-template daffSelectOption let-option="option">
+        {{ option.label }}
+      </ng-template>
+    </daff-select>
+  </daff-form-field>
+</div>
+
+<button
+  daff-button
+  color="theme"
+  [daffMenuActivator]="menu"
+  [xPosition]="xPositionControl.value?.value"
+  [yPosition]="yPositionControl.value?.value">
+  Account
+</button>

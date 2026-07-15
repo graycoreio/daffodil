@@ -15,5 +15,9 @@ export const provideDaffDesignMenuExamplesContent = () => makeEnvironmentProvide
     id: 'menu-with-id',
     component: () => import('./menu-with-id/menu-with-id.component').then(c => c.MenuWithIdExampleComponent),
   },
+  {
+    id: 'menu-with-position',
+    component: () => import('./menu-with-position/menu-with-position.component').then(c => c.MenuWithPositionExampleComponent),
+  },
 ));
 

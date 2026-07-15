@@ -1,5 +1,9 @@
 export { DaffMenuConfig } from './config/menu-config';
 export {
+  DaffMenuXPosition,
+  DaffMenuYPosition,
+} from './helpers/menu-position';
+export {
   DaffMenuService,
   DaffMenuSlot,
 } from './services/menu.service';

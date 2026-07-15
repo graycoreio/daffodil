@@ -73,10 +73,70 @@ describe('@daffodil/design/menu | DaffMenuActivatorDirective', () => {
     expect(menuService.open).toHaveBeenCalled();
   });
 
+  it('should open the menu with the default position', () => {
+    const menuService = TestBed.inject(DaffMenuService);
+    spyOn(menuService, 'open');
+
+    de.nativeElement.click();
+
+    expect(menuService.open).toHaveBeenCalledWith(
+      jasmine.anything(),
+      jasmine.anything(),
+      jasmine.objectContaining({ xPosition: 'after', yPosition: 'below' }),
+    );
+  });
+
   it('should focus the button when focus is called', () => {
     const activator = de.injector.get(DaffMenuActivatorDirective);
     activator.focus();
 
     expect(document.activeElement).toEqual(de.nativeElement);
+  });
+});
+
+@Component({
+  template: `
+    <button daffMenuActivator="menu" xPosition="before" yPosition="above"></button>
+    <daff-menu #menu></daff-menu>
+  `,
+  imports: [
+    DaffMenuComponent,
+    DaffMenuActivatorDirective,
+  ],
+})
+class PositionedWrapperComponent {}
+
+describe('@daffodil/design/menu | DaffMenuActivatorDirective | With Custom Position', () => {
+  let fixture: ComponentFixture<PositionedWrapperComponent>;
+  let de: DebugElement;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        PositionedWrapperComponent,
+      ],
+      providers: [
+        provideTestMenuService(),
+        { provide: DAFF_MENU_CONFIG, useValue: <DaffMenuConfig>{ menuId: 'daff-menu-test' }},
+      ],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(PositionedWrapperComponent);
+    fixture.detectChanges();
+
+    de = fixture.debugElement.query(By.directive(DaffMenuActivatorDirective));
+  });
+
+  it('should open the menu with the configured position', () => {
+    const menuService = TestBed.inject(DaffMenuService);
+    spyOn(menuService, 'open');
+
+    de.nativeElement.click();
+
+    expect(menuService.open).toHaveBeenCalledWith(
+      jasmine.anything(),
+      jasmine.anything(),
+      jasmine.objectContaining({ xPosition: 'before', yPosition: 'above' }),
+    );
   });
 });

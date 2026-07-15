@@ -9,19 +9,21 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffMenuComponent } from './menu.component';
+import {
+  DAFF_MENU_COMPONENTS,
+  DaffMenuComponent,
+} from '@daffodil/design/menu';
+
 import {
   DAFF_MENU_CONFIG,
   DaffMenuConfig,
 } from '../config/menu-config';
-import { DaffMenuItemComponent } from '../menu-item/menu-item.component';
 import { provideTestMenuService } from '../testing/dummy-service';
 
 @Component({
   template: `<daff-menu></daff-menu>`,
   imports: [
-    DaffMenuComponent,
-    DaffMenuItemComponent,
+    DAFF_MENU_COMPONENTS,
   ],
 })
 class WrapperComponent {}

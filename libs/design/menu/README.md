@@ -81,6 +81,11 @@ Menus generate a unique id automatically. To set your own, add an `id` to the ac
 
 <daff-docs-example-viewer example="menu-with-id"></daff-docs-example-viewer>
 
+### Customize menu positions
+By default a menu opens below its activator, aligned to its left edge. Set `yPosition` (`below` or `above`) on the activator to control whether it drops down or rises up, and `xPosition` (`after` or `before`) to align the menu's left or right edge with the activator. The menu stays anchored to the activator and scrolls in place when its content is taller than the available space.
+
+<daff-docs-example-viewer example="menu-with-position"></daff-docs-example-viewer>
+
 ## Accessibility
 Menu follows the [Menu and Menubar WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
 

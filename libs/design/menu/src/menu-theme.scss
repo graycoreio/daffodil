@@ -10,7 +10,7 @@
 	@include light($mode) {
 		.daff-menu {
 			background: $base;
-			box-shadow: 0 0 24px rgb($black, 0.12);
+			box-shadow: 0 0 1.5rem rgb($black, 0.12);
 		}
 
 		.daff-menu-item {
@@ -32,7 +32,7 @@
 	@include dark($mode) {
 		.daff-menu {
 			background: $base;
-			box-shadow: 0 0 24px rgb($black, 0.12);
+			box-shadow: 0 0 1.5rem rgb($black, 0.12);
 		}
 
 		.daff-menu-item {

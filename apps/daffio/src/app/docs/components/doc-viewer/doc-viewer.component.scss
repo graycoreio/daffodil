@@ -5,6 +5,18 @@
 	display: block;
 }
 
+@mixin button-base() {
+	@include daff.clickable();
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	gap: 0.5rem;
+	background: var(--daff-theme);
+	border: 0;
+	color: var(--daff-theme-contrast);
+}
+
 .daffio-doc-viewer {
 	&__grid {
 		padding: 1.5rem;
@@ -80,6 +92,7 @@
 		border-bottom: 1px solid rgb(var(--daff-theme-contrast-rgb), 0.1);
 		font-size: 1rem;
 		line-height: 1rem;
+		padding: 0 1rem;
 		position: sticky;
 		top: var(--daff-sidebar-side-fixed-top-shift);
 		height: 3rem;
@@ -92,17 +105,17 @@
 		}
 	}
 
-	&__button {
-		@include daff.clickable();
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-grow: 1;
-		gap: 0.5rem;
-		background: var(--daff-theme);
-		border: 0;
-		color: var(--daff-theme-contrast);
-		padding: 1rem 1.5rem;
+	&__menu-button,
+	&__toc-button {
+		@include button-base();
+	}
+
+	&__menu-button {
+		padding: 1rem 0;
+	}
+
+	&__toc-button {
+		padding: 1rem 0;
 	}
 
 	&__button-icon {
