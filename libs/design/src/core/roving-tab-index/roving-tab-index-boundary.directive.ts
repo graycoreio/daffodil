@@ -7,6 +7,10 @@ import {
   input,
 } from '@angular/core';
 
+import {
+  DAFF_ROVING_TAB_INDEX_BOUNDARY,
+  DaffRovingTabIndexBoundary,
+} from './roving-tab-index-boundary.token';
 import { DaffRovingTabIndexService } from './roving-tab-index-group.service';
 import { DaffRovingTabIndexDirective } from './roving-tab-index.directive';
 
@@ -22,10 +26,16 @@ import { DaffRovingTabIndexDirective } from './roving-tab-index.directive';
   },
   hostDirectives: [
     CdkTrapFocus,
-    forwardRef(() => DaffRovingTabIndexDirective),
+    DaffRovingTabIndexDirective,
+  ],
+  providers: [
+    {
+      provide: DAFF_ROVING_TAB_INDEX_BOUNDARY,
+      useExisting: forwardRef(() => DaffRovingTabIndexBoundaryDirective),
+    },
   ],
 })
-export class DaffRovingTabIndexBoundaryDirective {
+export class DaffRovingTabIndexBoundaryDirective implements DaffRovingTabIndexBoundary {
   /**
    * Don't touch this directly. Use `_uniqueId`.
    */

@@ -1,12 +1,16 @@
 import {
   computed,
   Directive,
+  Inject,
   input,
   Optional,
   SkipSelf,
 } from '@angular/core';
 
-import { DaffRovingTabIndexBoundaryDirective } from './roving-tab-index-boundary.directive';
+import {
+  DAFF_ROVING_TAB_INDEX_BOUNDARY,
+  DaffRovingTabIndexBoundary,
+} from './roving-tab-index-boundary.token';
 import { DaffRovingTabIndexService } from './roving-tab-index-group.service';
 
 /**
@@ -47,7 +51,7 @@ export class DaffRovingTabIndexDirective {
 
   constructor(
     private service: DaffRovingTabIndexService,
-    @Optional() @SkipSelf() private parent: DaffRovingTabIndexBoundaryDirective,
+    @Optional() @SkipSelf() @Inject(DAFF_ROVING_TAB_INDEX_BOUNDARY) private parent: DaffRovingTabIndexBoundary,
   ) {}
 
   /**
