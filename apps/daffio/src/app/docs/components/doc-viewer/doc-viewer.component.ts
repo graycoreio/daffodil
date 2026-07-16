@@ -18,7 +18,7 @@ import { DAFF_ARTICLE_COMPONENTS } from '@daffodil/design/article';
 import { DAFF_BREADCRUMB_COMPONENTS } from '@daffodil/design/breadcrumb';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
 import {
-  DaffMenuModule,
+  DAFF_MENU_COMPONENTS,
   DaffMenuService,
 } from '@daffodil/design/menu';
 import {
@@ -44,9 +44,9 @@ const GITHUB_LINK = 'https://github.com/graycoreio/daffodil/blob/develop';
     DAFF_BREADCRUMB_COMPONENTS,
     DAFF_ARTICLE_COMPONENTS,
     FaIconComponent,
-    DaffMenuModule,
     DaffioDocsScrollToTopComponent,
     DaffioDocsTableOfContentsComponent,
+    DAFF_MENU_COMPONENTS,
   ],
   providers: [
     DaffMenuService,

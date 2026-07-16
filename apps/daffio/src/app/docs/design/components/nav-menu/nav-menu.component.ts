@@ -5,7 +5,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { DaffioHeaderItemDirective } from 'apps/daffio/src/app/core/header/components/header-item/header-item.directive';
 
-import { DaffMenuModule } from '@daffodil/design/menu';
+import { DAFF_MENU_COMPONENTS } from '@daffodil/design/menu';
 
 @Component({
   selector: 'daffio-docs-design-nav-menu',
@@ -14,8 +14,8 @@ import { DaffMenuModule } from '@daffodil/design/menu';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DaffioHeaderItemDirective,
-    DaffMenuModule,
     RouterLink,
+    DAFF_MENU_COMPONENTS,
   ],
 })
 export class DaffioDocsDesignNavMenuComponent {

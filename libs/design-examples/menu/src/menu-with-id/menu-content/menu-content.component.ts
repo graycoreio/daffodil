@@ -9,14 +9,14 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { DaffMenuModule } from '@daffodil/design/menu';
+import { DAFF_MENU_COMPONENTS } from '@daffodil/design/menu';
 
 @Component({
   selector: 'menu-with-id-content',
   templateUrl: './menu-content.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffMenuModule,
+    DAFF_MENU_COMPONENTS,
     FaIconComponent,
   ],
 })
