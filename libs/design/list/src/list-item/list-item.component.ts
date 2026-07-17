@@ -1,14 +1,13 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  ContentChild,
   ElementRef,
-  Input,
+  contentChild,
+  input,
 } from '@angular/core';
 
 import { DaffPrefixDirective } from '@daffodil/design';
 
-/* eslint-disable quote-props */
 /**
  * Individual items within a list.
  *
@@ -24,8 +23,8 @@ import { DaffPrefixDirective } from '@daffodil/design';
     'a[daff-list-item]',
   templateUrl: './list-item.component.html',
   host: {
-    'class': 'daff-list-item',
-    '[class.active]': 'active',
+    class: 'daff-list-item',
+    '[class.active]': 'active()',
     '[attr.role]': 'this._isAnchor ? null : "listitem"',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,12 +32,12 @@ import { DaffPrefixDirective } from '@daffodil/design';
 
 export class DaffListItemComponent {
   /** Whether an item in a `<daff-nav-list>` is the currently active item. */
-  @Input() active = false;
+  active = input(false);
 
   /**
    * @docs-private
    */
-  @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
+  _prefix = contentChild(DaffPrefixDirective);
 
   constructor(private elementRef: ElementRef) {}
 

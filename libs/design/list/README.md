@@ -58,6 +58,16 @@ Use `<daff-nav-list>` with anchor elements to create a list of links. This is us
 
 <daff-docs-example-viewer example="nav-list"></daff-docs-example-viewer>
 
+### Active items
+Use the `active` property to highlight the item in a `<daff-nav-list>` that matches the current page.
+
+```html
+<daff-nav-list aria-label="Sidebar links">
+  <a href="/dashboard" daff-list-item [active]="true">Dashboard</a>
+  <a href="/orders" daff-list-item>Orders</a>
+</daff-nav-list>
+```
+
 ### Multi-line lists
 For list items that contain multiple lines of text, use the `[daffListItemTitle]` element to identify the primary title. Additional supporting content can be added using `<div>` or `<p>` elements.
 

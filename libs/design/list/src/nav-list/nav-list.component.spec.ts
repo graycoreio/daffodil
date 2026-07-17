@@ -9,11 +9,11 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffNavListComponent } from './nav-list.component';
+import { DaffNavListComponent } from '@daffodil/design/list';
 
 @Component({
   template: `
-    <daff-list [mode]="mode"></daff-list>
+    <daff-list></daff-list>
     <daff-nav-list></daff-nav-list>
   `,
   imports: [

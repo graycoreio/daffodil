@@ -6,7 +6,6 @@ import {
 
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
-/* eslint-disable quote-props */
 /**
  * A standard list used for grouping generic content.
  *
@@ -23,8 +22,8 @@ import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
   template: '<ng-content></ng-content>',
   styleUrls: ['./list.component.scss'],
   host: {
-    'class': 'daff-list',
-    'role': 'list',
+    class: 'daff-list',
+    role: 'list',
   },
   hostDirectives: [{
     directive: DaffArticleEncapsulatedDirective,
