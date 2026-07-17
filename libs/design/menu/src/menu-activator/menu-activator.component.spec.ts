@@ -8,12 +8,13 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { DAFF_MENU_COMPONENTS } from '@daffodil/design/menu';
+
 import { DaffMenuActivatorDirective } from './menu-activator.component';
 import {
   DAFF_MENU_CONFIG,
   DaffMenuConfig,
 } from '../config/menu-config';
-import { DaffMenuComponent } from '../menu/menu.component';
 import { DaffMenuService } from '../services/menu.service';
 import { provideTestMenuService } from '../testing/dummy-service';
 
@@ -23,8 +24,7 @@ import { provideTestMenuService } from '../testing/dummy-service';
     <daff-menu #menu></daff-menu>
   `,
   imports: [
-    DaffMenuComponent,
-    DaffMenuActivatorDirective,
+    DAFF_MENU_COMPONENTS,
   ],
 })
 class WrapperComponent {}
@@ -60,12 +60,19 @@ describe('@daffodil/design/menu | DaffMenuActivatorDirective', () => {
     expect(de.nativeElement.getAttribute('aria-haspopup')).toBe('menu');
   });
 
-  it('should set aria-controls to the reserved menu id on init', () => {
+  it('should not set aria-controls while the menu is closed', () => {
+    expect(de.nativeElement.getAttribute('aria-controls')).toBeNull();
+  });
+
+  it('should set aria-controls to the reserved menu id when the menu is open', () => {
+    de.nativeElement.click();
+    fixture.detectChanges();
+
     expect(de.nativeElement.getAttribute('aria-controls')).toMatch(/^daff-menu-\d+$/);
   });
 
   it('should open the menu when the button is clicked', () => {
-    const menuService = TestBed.inject(DaffMenuService);
+    const menuService = de.injector.get(DaffMenuService);
     spyOn(menuService, 'open');
 
     de.nativeElement.click();
@@ -74,7 +81,7 @@ describe('@daffodil/design/menu | DaffMenuActivatorDirective', () => {
   });
 
   it('should open the menu with the default position', () => {
-    const menuService = TestBed.inject(DaffMenuService);
+    const menuService = de.injector.get(DaffMenuService);
     spyOn(menuService, 'open');
 
     de.nativeElement.click();
@@ -100,8 +107,7 @@ describe('@daffodil/design/menu | DaffMenuActivatorDirective', () => {
     <daff-menu #menu></daff-menu>
   `,
   imports: [
-    DaffMenuComponent,
-    DaffMenuActivatorDirective,
+    DAFF_MENU_COMPONENTS,
   ],
 })
 class PositionedWrapperComponent {}
@@ -128,7 +134,7 @@ describe('@daffodil/design/menu | DaffMenuActivatorDirective | With Custom Posit
   });
 
   it('should open the menu with the configured position', () => {
-    const menuService = TestBed.inject(DaffMenuService);
+    const menuService = de.injector.get(DaffMenuService);
     spyOn(menuService, 'open');
 
     de.nativeElement.click();

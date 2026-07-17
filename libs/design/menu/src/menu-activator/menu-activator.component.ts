@@ -41,6 +41,9 @@ import { DaffMenuService } from '../services/menu.service';
     '[attr.aria-controls]': '_open ? menuId() : null',
   },
   exportAs: 'daffMenuActivator',
+  providers: [
+    DaffMenuService,
+  ],
 })
 export class DaffMenuActivatorDirective implements OnDestroy {
 
