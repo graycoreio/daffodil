@@ -1,6 +1,6 @@
 <img class="daff-image"
-	[ngSrc]="src"
-	[alt]="alt"
+	[ngSrc]="src()"
+	[alt]="alt()"
 	fill
-	[priority]="priority"
-	(load)="load.emit" />
+	[priority]="priority()"
+	(load)="loaded.emit()" />

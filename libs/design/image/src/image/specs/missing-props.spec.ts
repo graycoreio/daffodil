@@ -5,11 +5,13 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { DaffImageComponent } from '../image.component';
+import { DaffImageComponent } from '@daffodil/design/image';
 
 @Component({
   template: `<daff-image></daff-image>`,
-  standalone: false,
+  imports: [
+    DaffImageComponent,
+  ],
 })
 
 class WrapperComponent {
@@ -19,15 +21,12 @@ class WrapperComponent {
   height: number;
 }
 
-describe('DaffImageComponent | Props Validation', () => {
+describe('@daffodil/design/image | DaffImageComponent | Props Validation', () => {
   let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffImageComponent,
-      ],
-      declarations: [
         WrapperComponent,
       ],
     })
