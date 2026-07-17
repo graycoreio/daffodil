@@ -1,3 +1,5 @@
+import { Signal } from '@angular/core';
+
 export interface DaffMediaGalleryRegistration {
-  id: string;
+  id: Signal<string>;
 }

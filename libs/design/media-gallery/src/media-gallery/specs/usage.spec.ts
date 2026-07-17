@@ -10,8 +10,10 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffMediaGalleryComponent } from './media-gallery.component';
-import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
+import {
+  DAFF_MEDIA_GALLERY_COMPONENTS,
+  DaffMediaGalleryComponent,
+} from '@daffodil/design/media-gallery';
 
 @Component({
   template: `
@@ -25,8 +27,7 @@ import { DaffThumbnailDirective } from '../thumbnail/thumbnail.directive';
     </daff-media-gallery>
   `,
   imports: [
-    DaffMediaGalleryComponent,
-    DaffThumbnailDirective,
+    DAFF_MEDIA_GALLERY_COMPONENTS,
   ],
 })
 class WrapperComponent {
@@ -35,14 +36,13 @@ class WrapperComponent {
   idValue = signal<string>(undefined);
 }
 
-describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
+describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent | Usage', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let component: DaffMediaGalleryComponent;
   const stubName = 'some name';
   let thumbnailButtons: NodeListOf<HTMLButtonElement>;
-  let panelEl: ReturnType<HTMLElement['querySelector']>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -61,17 +61,10 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
     de = fixture.debugElement.query(By.css('daff-media-gallery'));
     component = de.componentInstance;
     thumbnailButtons = de.nativeElement.querySelectorAll('.daff-thumbnail');
-    panelEl = de.nativeElement.querySelector('.daff-media-gallery__selected-thumbnail');
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should add a daff-media-gallery class to the host element', () => {
-    expect(de.classes).toEqual(jasmine.objectContaining({
-      'daff-media-gallery': true,
-    }));
   });
 
   it('should take skeleton as an input', () => {
@@ -96,23 +89,6 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
     expect(thumbnailButtons[0].getAttribute('aria-controls')).toBeTruthy();
   });
 
-  it('should select the first element by default', () => {
-    fixture.detectChanges();
-    expect(thumbnailButtons[0].classList.contains('daff-selected')).toBeTrue();
-    expect(panelEl.id).toBeTruthy();
-  });
-
-  it('should not select the second element by default', () => {
-    fixture.detectChanges();
-    expect(thumbnailButtons[1].classList.contains('daff-selected')).toBeFalse();
-    expect(thumbnailButtons[1].ariaSelected).toEqual('false');
-  });
-
-  it('should an id on each thumbnail automatically', () => {
-    fixture.detectChanges();
-    expect(thumbnailButtons[1].id).toBeTruthy();
-  });
-
   it('should use the gallery id for thumbnail ids if the gallery has an input id', () => {
     wrapper.idValue.set('test-gallery');
     fixture.detectChanges();
@@ -123,6 +99,15 @@ describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
     wrapper.idValue.set('test-gallery');
     fixture.detectChanges();
     expect(de.nativeElement.id).toEqual('test-gallery');
+  });
+
+  it('should report whether a thumbnail is the selected one', () => {
+    const thumbnails = component._thumbnails();
+    component.selectIndex(1);
+    fixture.detectChanges();
+
+    expect(component._isSelected(thumbnails[1])).toBeTrue();
+    expect(component._isSelected(thumbnails[0])).toBeFalse();
   });
 
   describe('navigation', () => {

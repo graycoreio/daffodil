@@ -67,11 +67,6 @@ Set the `isVideo` property on a thumbnail to display a video icon on its preview
 
 <daff-docs-example-viewer example="media-gallery-with-video"></daff-docs-example-viewer>
 
-### Iterating thumbnails
-Use a control-flow block such as `@for` to generate thumbnails from a collection of media.
-
-<daff-docs-example-viewer example="iterated-media-gallery"></daff-docs-example-viewer>
-
 ### Skeleton screen
 Set the `skeleton` property to `true` to display a placeholder skeleton screen that helps reduce load-time frustration.
 
