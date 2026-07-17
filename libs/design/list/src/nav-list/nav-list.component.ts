@@ -6,7 +6,6 @@ import {
 
 import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 
-/* eslint-disable quote-props */
 /**
  * A navigation list intended for use with anchor elements (`<a>`).
  *
@@ -23,8 +22,8 @@ import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
   template: '<ng-content></ng-content>',
   styleUrl: './nav-list.component.scss',
   host: {
-    'class': 'daff-nav-list',
-    'role': 'navigation',
+    class: 'daff-nav-list',
+    role: 'navigation',
   },
   hostDirectives: [
     {

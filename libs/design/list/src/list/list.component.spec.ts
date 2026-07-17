@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffListComponent } from './list.component';
+import { DaffListComponent } from '@daffodil/design/list';
 
 @Component({
   template: `

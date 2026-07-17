@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffListItemTitleDirective } from './list-item-title.directive';
+import { DaffListItemTitleDirective } from '@daffodil/design/list';
 
 @Component({
   template: `<div daffListItemTitle>Title</div>`,
@@ -19,7 +19,7 @@ import { DaffListItemTitleDirective } from './list-item-title.directive';
 })
 class WrapperComponent {}
 
-describe('DaffListItemTitleDirective', () => {
+describe('@daffodil/design/list | DaffListItemTitleDirective', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;

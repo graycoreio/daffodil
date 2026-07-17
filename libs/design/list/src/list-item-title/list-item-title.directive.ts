@@ -1,6 +1,5 @@
 import { Directive } from '@angular/core';
 
-/* eslint-disable quote-props */
 /**
  * Used to identify the primary title of a list item within a multi-line list.
  *
@@ -12,7 +11,7 @@ import { Directive } from '@angular/core';
 @Directive({
   selector: '[daffListItemTitle]',
   host: {
-    'class': 'daff-list-item__title',
+    class: 'daff-list-item__title',
   },
 })
 

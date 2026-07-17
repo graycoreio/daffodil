@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  signal,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -9,18 +10,20 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffListItemComponent } from './list-item.component';
+import { DaffListItemComponent } from '@daffodil/design/list';
 
 @Component({
   template: `
     <daff-list-item>List Item</daff-list-item>
-    <a daff-list-item>List Item</a>
+    <a daff-list-item [active]="active()">List Item</a>
   `,
   imports: [
     DaffListItemComponent,
   ],
 })
-class WrapperComponent {}
+class WrapperComponent {
+  active = signal(false);
+}
 
 describe('@daffodil/design/list | DaffListItemComponent', () => {
   let wrapper: WrapperComponent;
@@ -65,5 +68,16 @@ describe('@daffodil/design/list | DaffListItemComponent', () => {
 
   it('should not have a role applied if it is used with an anchor element', () => {
     expect(anchorDE.nativeElement.role).toBe(null);
+  });
+
+  it('should not add the "active" class by default', () => {
+    expect(itemDE.classes['active']).toBeFalsy();
+  });
+
+  it('should add the "active" class when `active` is set', () => {
+    fixture.componentInstance.active.set(true);
+    fixture.detectChanges();
+
+    expect(anchorDE.classes['active']).toBe(true);
   });
 });
