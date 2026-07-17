@@ -2,11 +2,9 @@ import { NgOptimizedImage } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
-  Input,
-  EventEmitter,
-  OnInit,
-  Output,
   input,
+  output,
+  computed,
 } from '@angular/core';
 import {
   DomSanitizer,
@@ -15,25 +13,12 @@ import {
 
 import { DaffSkeletonableDirective } from '@daffodil/design';
 
-const validateProperty = (object: Record<string, any>, prop: string) => {
-  if (object[prop] === null || object[prop] === undefined || object[prop] === '') {
+const validateInput = (prop: string) => <T>(value: T): T => {
+  if (value === null || value === undefined || <unknown>value === '') {
     throw new Error(`DaffImageComponent must have a defined ${prop} attribute.`);
   }
-};
 
-const validateProperties = (object: Record<string, any>, props: string[]) => {
-  const invalidProps = props.filter(prop => {
-    try {
-      validateProperty(object, prop);
-    } catch(e) {
-      return true;
-    }
-    return false;
-  });
-
-  if (invalidProps.length) {
-    throw new Error(`DaffImageComponent must have the ${invalidProps.join(',')} attributes defined.`);
-  }
+  return value;
 };
 
 @Component({
@@ -48,69 +33,33 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
     },
   ],
   host: {
-    '[style.max-width]': 'width + "px"',
-    '[style.aspect-ratio]': '_aspectRatio',
+    '[style.max-width]': 'width() + "px"',
+    '[style.aspect-ratio]': '_aspectRatio()',
   },
   imports: [
     NgOptimizedImage,
   ],
 })
-export class DaffImageComponent implements OnInit {
-  private _src: string;
-
+export class DaffImageComponent {
   /**
    * The URL of the image.
    */
-  @Input()
-  get src(): string {
-    return this._src;
-  }
-  set src(value: string) {
-    this._src = value;
-    validateProperty(this, 'src');
-  }
-
-  private _alt: string;
+  src = input.required<string, string>({ transform: validateInput('src') });
 
   /**
    * The alternate text for the image.
    */
-  @Input()
-  get alt(): string {
-    return this._alt;
-  }
-  set alt(value: string) {
-    this._alt = value;
-    validateProperty(this, 'alt');
-  }
-
-  private _width: number;
+  alt = input.required<string, string>({ transform: validateInput('alt') });
 
   /**
    * The width of the image.
    */
-  @Input()
-  get width(): number {
-    return this._width;
-  }
-  set width(value: number) {
-    this._width = value;
-    validateProperty(this, 'width');
-  }
-
-  private _height: number;
+  width = input.required<number, number>({ transform: validateInput('width') });
 
   /**
    * The height of the image.
    */
-  @Input()
-  get height(): number {
-    return this._height;
-  }
-  set height(value: number) {
-    this._height = value;
-    validateProperty(this, 'height');
-  }
+  height = input.required<number, number>({ transform: validateInput('height') });
 
   /**
    * Whether the image should be treated as a priority image for loading.
@@ -121,36 +70,31 @@ export class DaffImageComponent implements OnInit {
   /**
    * Emits when the image has loaded.
    */
-  // TODO: rename event to not collide with native event (unless that's intentional)
-  // eslint-disable-next-line @angular-eslint/no-output-native
-  @Output() load: EventEmitter<void> = new EventEmitter();
-
-  /**
-   * @docs-private
-   */
-  ngOnInit(): void {
-    validateProperties(this, ['src', 'alt', 'width', 'height']);
-  }
+  loaded = output<void>();
 
   constructor(private sanitizer: DomSanitizer) {}
 
   /**
    * @docs-private
    */
-  get _paddingTop(): any {
-    if (!this.height || !this.width ) {
+  _paddingTop = computed(() => {
+    if (!this.height() || !this.width() ) {
       return undefined;
     }
 
-    return this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)');
-  }
+    return this.sanitizer.bypassSecurityTrustStyle(
+      'calc(' + this.height() + ' / ' + this.width() + ' * 100%)',
+    );
+  });
 
   /**
    * @docs-private
    *
    * The aspect ratio of an image, based on the width and height set by the user.
    */
-  get _aspectRatio(): SafeStyle {
-    return this.sanitizer.bypassSecurityTrustStyle(this.width + ' / ' + this.height);
-  }
+  _aspectRatio = computed<SafeStyle>(
+    () => this.sanitizer.bypassSecurityTrustStyle(
+      this.width() + ' / ' + this.height(),
+    ),
+  );
 }
