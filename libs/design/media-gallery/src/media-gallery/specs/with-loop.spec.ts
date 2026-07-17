@@ -10,10 +10,10 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
-import { DAFF_MEDIA_GALLERY_COMPONENTS } from '@daffodil/design/media-gallery';
-
-import { DaffMediaGalleryComponent } from '../media-gallery.component';
-
+import {
+  DAFF_MEDIA_GALLERY_COMPONENTS,
+  DaffMediaGalleryComponent,
+} from '@daffodil/design/media-gallery';
 
 @Component({
   template: `
@@ -43,7 +43,7 @@ class WrapperComponent {
   ];
 }
 
-describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent', () => {
+describe('@daffodil/design/media-gallery | DaffMediaGalleryComponent | With Loop', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;

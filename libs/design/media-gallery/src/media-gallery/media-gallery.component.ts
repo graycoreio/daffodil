@@ -1,17 +1,15 @@
-/* eslint-disable quote-props */
+
 import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   ChangeDetectionStrategy,
-  Input,
-  QueryList,
-  ViewChildren,
   ElementRef,
-  Output,
-  EventEmitter,
   contentChildren,
+  viewChildren,
   signal,
   computed,
+  input,
+  output,
   Signal,
 } from '@angular/core';
 
@@ -41,7 +39,7 @@ let uniqueGalleryId = 0;
 @Component({
   selector: 'daff-media-gallery',
   templateUrl: './media-gallery.component.html',
-  styleUrls: ['./media-gallery.component.scss'],
+  styleUrl: './media-gallery.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
 
@@ -55,8 +53,8 @@ let uniqueGalleryId = 0;
     },
   ],
   host: {
-    'class': 'daff-media-gallery',
-    '[attr.id]': 'id',
+    class: 'daff-media-gallery',
+    '[attr.id]': 'id()',
   },
   imports: [
     DaffThumbnailDirective,
@@ -66,28 +64,27 @@ let uniqueGalleryId = 0;
 })
 export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   /**
-   * The internal ID of the gallery.
+   * The auto-generated ID of the gallery.
    */
-  private _id = 'media-gallery-' + uniqueGalleryId;
+  private _defaultId = 'media-gallery-' + uniqueGalleryId;
 
   /**
    * Custom ID for the media gallery that overrides the auto-generated one. When using this input, it is your responsibility to ensure that the ID is unique.
    */
-  @Input()
-  get id() {
-    return this._id;
-  }
-  set id(val: string | undefined | null) {
-    if(!val){
-      return;
-    }
-    this._id = val;
-  };
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  customId = input<string | undefined | null>(undefined, { alias: 'id' });
+
+  /**
+   * @docs-private
+   *
+   * The resolved ID of the gallery: the custom ID when provided, otherwise the auto-generated one.
+   */
+  id = computed(() => this.customId() || this._defaultId);
 
   /**
    * An event indicating that the selected media gallery element has changed.
    */
-  @Output() elementChange: EventEmitter<number> = new EventEmitter<number>();
+  elementChange = output<number>();
 
   /**
    * @docs-private
@@ -97,7 +94,7 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
   /**
    * @docs-private
    */
-  @ViewChildren('thumbnailButtons', { read: ElementRef }) private _thumbnailButtons: QueryList<ElementRef<HTMLElement>>;
+  private _thumbnailButtons = viewChildren('thumbnailButtons', { read: ElementRef });
 
   /**
    * @docs-private
@@ -128,8 +125,20 @@ export class DaffMediaGalleryComponent implements DaffMediaGalleryRegistration {
 
   private _selectedIndex = signal<number | null>(null);
 
+  /**
+   * @docs-private
+   *
+   * Whether the given thumbnail is the currently selected one.
+   */
+  _isSelected(thumbnail: DaffThumbnailDirective): boolean {
+    return thumbnail === this._selectedThumbnail();
+  }
+
   private focusSelected() {
-    this._thumbnailButtons.get(this._selectedIndex())?.nativeElement.focus();
+    const index = this._selectedIndex();
+    if(index !== null) {
+      this._thumbnailButtons().at(index)?.nativeElement.focus();
+    }
   }
 
   /**

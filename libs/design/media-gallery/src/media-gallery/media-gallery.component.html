@@ -13,21 +13,20 @@
 				class="daff-thumbnail" 
 				role="tab"
 				daffSelected
-				[selected]="thumbnail === _selectedThumbnail()"
-				attr.aria-label="{{ thumbnail.label ?? 'Gallery Element ' + (index + 1) }}"
-				[attr.aria-selected]="thumbnail === _selectedThumbnail() ? 'true' : 'false'"
-				[attr.aria-controls]="thumbnail.selectedThumbnailId"
-				[attr.tabindex]="thumbnail === _selectedThumbnail() ? 0 : -1"
+				[selected]="_isSelected(thumbnail)"
+				attr.aria-label="{{ thumbnail.label() ?? 'Gallery Element ' + (index + 1) }}"
+				[attr.aria-selected]="_isSelected(thumbnail) ? 'true' : 'false'"
+				[attr.aria-controls]="thumbnail.selectedThumbnailId()"
+				[attr.tabindex]="_isSelected(thumbnail) ? 0 : -1"
 				(click)="selectIndex(index)"
-				[attr.id]="thumbnail.id" 
+				[attr.id]="thumbnail.id()"
 				(keydown.arrowright)="next()"
 				(keydown.arrowleft)="previous()">
-				@if (thumbnail.thumbnailSrc) {
-					<img [src]="thumbnail.thumbnailSrc" aria-hidden="true"/>
+				@if (thumbnail.thumbnailSrc()) {
+					<img [src]="thumbnail.thumbnailSrc()" aria-hidden="true"/>
 				}
-				@if (thumbnail.isVideo) {
-					<div class="daff-media-gallery__video-button">
-					</div>
+				@if (thumbnail.isVideo()) {
+					<div class="daff-media-gallery__video-button"></div>
 				}
 			</button>
 		}
@@ -39,7 +38,7 @@
 	tabindex="0"
 	#selectedThumbnail
 	role="tabpanel"
-	[attr.id]="selectedEl?.selectedThumbnailId">
+	[attr.id]="selectedEl?.selectedThumbnailId()">
 		@if(selectedEl) {
 			<ng-container *ngTemplateOutlet="selectedEl.templateRef"></ng-container>
 		}
