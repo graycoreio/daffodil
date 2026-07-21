@@ -17,7 +17,8 @@ import {
   RouterModule,
 } from '@angular/router';
 
-import { DaffPaginatorComponent } from './paginator.component';
+import { DaffPaginatorComponent } from '@daffodil/design/paginator';
+
 import {
   DaffPaginatorNumberOfPagesErrorMessage,
   DaffPaginatorPageOutOfRangeErrorMessage,
@@ -25,7 +26,6 @@ import {
 
 @Component({
   template: '',
-  standalone: false,
 })
 class TestComponent {}
 
@@ -102,29 +102,29 @@ describe('@daffodil/design/paginator | DaffPaginatorComponent', () => {
   });
 
   it('should be able to take currentPage as input', () => {
-    expect(component.currentPage).toEqual(wrapper.currentPageValue());
+    expect(component.currentPage()).toEqual(wrapper.currentPageValue());
   });
 
   it('should be able to take linkMode as input', () => {
-    expect(component.linkMode).toEqual(wrapper.linkModeValue());
+    expect(component.linkMode()).toEqual(wrapper.linkModeValue());
   });
 
   it('should be able to take url as input', () => {
-    expect(component.url).toEqual(wrapper.urlValue());
+    expect(component.url()).toEqual(wrapper.urlValue());
   });
 
   it('should be able to take queryParam as input', () => {
-    expect(component.queryParam).toEqual(wrapper.queryParamValue());
+    expect(component.queryParam()).toEqual(wrapper.queryParamValue());
   });
 
   it('should be able to take numberOfPages as input', () => {
-    expect(component.numberOfPages).toEqual(wrapper.numberOfPagesValue());
+    expect(component.numberOfPages()).toEqual(wrapper.numberOfPagesValue());
   });
 
   it('should show page numbers within one of the current page', () => {
     const paginatorText = fixture.debugElement.query(By.css('daff-paginator')).nativeElement.innerText;
-    const lesserPage = component.currentPage - 1;
-    const greaterPage = component.currentPage + 1;
+    const lesserPage = component.currentPage() - 1;
+    const greaterPage = component.currentPage() + 1;
 
     expect(paginatorText.includes(lesserPage)).toBeTruthy();
     expect(paginatorText.includes(greaterPage)).toBeTruthy();

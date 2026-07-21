@@ -1,23 +1,23 @@
-@if (!linkMode) {
+@if (!linkMode()) {
   <button type="button" class="daff-paginator__previous"
-    [disabled]="_disablePrev"
+    [disabled]="_disablePrev()"
     tabindex="0"
     attr.aria-label="Go to Previous Page"
     (click)="_onNotifyPrevPageChange()">
     <fa-icon [icon]="faChevronLeft" size="sm"></fa-icon> Previous
   </button>
 }
-@if (linkMode) {
-  @if (!_disablePrev) {
+@if (linkMode()) {
+  @if (!_disablePrev()) {
     <a class="daff-paginator__previous"
       attr.aria-label="Go to Previous Page"
-      [routerLink]="url"
+      [routerLink]="url()"
       queryParamsHandling="merge"
-      [queryParams]="_buildPageQueryParams(currentPage - 1)">
+      [queryParams]="_buildPageQueryParams(currentPage() - 1)">
       <fa-icon [icon]="faChevronLeft" size="sm"></fa-icon><span>Previous</span>
     </a>
   }
-  @if (_disablePrev) {
+  @if (_disablePrev()) {
     <span class="daff-paginator__previous disabled"
       attr.aria-label="Go to Previous Page"
       [attr.disabled]="true">
@@ -26,7 +26,7 @@
   }
 }
 
-@if (!linkMode) {
+@if (!linkMode()) {
   <button type="button" class="daff-paginator__page-link"
     [class.selected]="_isSelected(1)"
     tabindex="0"
@@ -36,9 +36,9 @@
   </button>
 }
 
-@if (linkMode) {
+@if (linkMode()) {
   <a class="daff-paginator__page-link"
-    [routerLink]="url"
+    [routerLink]="url()"
     [queryParams]="_buildPageQueryParams(1)"
     queryParamsHandling="merge"
     [class.selected]="_isSelected(1)"
@@ -47,13 +47,13 @@
   </a>
 }
 
-@if (_showFirstEllipsis) {
+@if (_showFirstEllipsis()) {
   <span class="daff-paginator__ellipsis">...</span>
 }
 
-@for (pageNumber of _numberOfPagesArray; track pageNumber) {
+@for (pageNumber of _numberOfPagesArray(); track pageNumber) {
   @if (_showNumber(pageNumber)) {
-    @if (!linkMode) {
+    @if (!linkMode()) {
       <button type="button" class="daff-paginator__page-link"
         [class.selected]="_isSelected(pageNumber)"
         [attr.data-page-number]="pageNumber"
@@ -64,10 +64,10 @@
         <span>{{ pageNumber }}</span>
       </button>
     }
-    @if (linkMode) {
+    @if (linkMode()) {
       <a class="daff-paginator__page-link"
         [attr.data-page-number]="pageNumber"
-        [routerLink]="url"
+        [routerLink]="url()"
         [queryParams]="_buildPageQueryParams(pageNumber)"
         queryParamsHandling="merge"
         [class.selected]="_isSelected(pageNumber)"
@@ -78,53 +78,53 @@
   }
 }
 
-@if (_showLastEllipsis) {
+@if (_showLastEllipsis()) {
   <span class="daff-paginator__ellipsis">...</span>
 }
 
-@if (!(numberOfPages < 2)) {
-  @if (!linkMode) {
+@if (!(numberOfPages() < 2)) {
+  @if (!linkMode()) {
     <button type="button" class="daff-paginator__page-link"
-      [class.selected]="_isSelected(numberOfPages)"
+      [class.selected]="_isSelected(numberOfPages())"
       tabindex="0"
-      attr.aria-label="Go To Page {{numberOfPages}}"
-      (click)="_onNotifyPageChange(numberOfPages)">
-        <span>{{ numberOfPages }}</span>
+      attr.aria-label="Go To Page {{numberOfPages()}}"
+      (click)="_onNotifyPageChange(numberOfPages())">
+        <span>{{ numberOfPages() }}</span>
     </button>
   }
-  @if (linkMode) {
+  @if (linkMode()) {
     <a class="daff-paginator__page-link"
-      [routerLink]="url"
-      [queryParams]="_buildPageQueryParams(numberOfPages)"
+      [routerLink]="url()"
+      [queryParams]="_buildPageQueryParams(numberOfPages())"
       queryParamsHandling="merge"
-      [class.selected]="_isSelected(numberOfPages)"
-      attr.aria-label="Go to Page {{numberOfPages}}">
-        <span>{{ numberOfPages }}</span>
+      [class.selected]="_isSelected(numberOfPages())"
+      attr.aria-label="Go to Page {{numberOfPages()}}">
+        <span>{{ numberOfPages() }}</span>
     </a>
   }
 }
 
-@if (!linkMode) {
+@if (!linkMode()) {
   <button class="daff-paginator__next"
-    [disabled]="_disableNext"
+    [disabled]="_disableNext()"
     tabindex="0"
     attr.aria-label="Go to Next Page"
     (click)="_onNotifyNextPageChange()">
     Next <fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
   </button>
 }
-@if (linkMode) {
-  @if (!_disableNext) {
+@if (linkMode()) {
+  @if (!_disableNext()) {
     <a class="daff-paginator__next"
-      [routerLink]="url"
+      [routerLink]="url()"
       attr.aria-label="Go to Next Page"
       queryParamsHandling="merge"
-      [queryParams]="_buildPageQueryParams(currentPage + 1)">
+      [queryParams]="_buildPageQueryParams(currentPage() + 1)">
       <span>Next</span><fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
     </a>
   }
 
-  @if (_disableNext) {
+  @if (_disableNext()) {
     <span class="daff-paginator__next disabled"
       attr.aria-label="Go to Next Page"
       [attr.disabled]="true">

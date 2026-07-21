@@ -1,15 +1,13 @@
-/* eslint-disable quote-props */
 import {
   Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnChanges,
   ChangeDetectionStrategy,
+  input,
+  output,
+  computed,
 } from '@angular/core';
 import {
   Params,
-  RouterModule,
+  RouterLink,
 } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
@@ -26,19 +24,19 @@ const visiblePageRange = 2;
 
 @Component({
   selector: 'daff-paginator',
-  styleUrls: ['./paginator.component.scss'],
   templateUrl: './paginator.component.html',
+  styleUrl: './paginator.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'daff-paginator',
-    'role': 'navigation',
+    class: 'daff-paginator',
+    role: 'navigation',
   },
   imports: [
     FaIconComponent,
-    RouterModule,
+    RouterLink,
   ],
 })
-export class DaffPaginatorComponent implements OnChanges {
+export class DaffPaginatorComponent {
   /**
    * @docs-private
    */
@@ -54,87 +52,76 @@ export class DaffPaginatorComponent implements OnChanges {
    *
    * For example, if the `numberOfPages` is dynamically changed to a value less than the `currentPage`, the paginator will break.
    */
-  @Input() numberOfPages: number;
+  numberOfPages = input.required<number>();
 
   /**
    * The currently selected page.
    */
-  @Input() currentPage: number;
+  currentPage = input.required<number>();
 
   /**
    * Replace the paginator buttons with links. `url` is required if using this mode.
    */
-  @Input() linkMode = false;
+  linkMode = input(false);
 
   /**
    * The url to which to navigate if the paginator is in link mode.
    * This paginator component will set the page query param.
    */
-  @Input() url?: string;
+  url = input<string>();
 
   /**
    * The query param to which the paginator component will set the current page value in link mode.
    */
-  @Input() queryParam = 'page';
-
-  /**
-   * @docs-private
-   */
-  _numberOfPagesArray: number[];
+  queryParam = input('page');
 
   /**
    * Emits when the current page changes with the new current page.
    */
-  @Output() notifyPageChange: EventEmitter<any> = new EventEmitter();
+  notifyPageChange = output<any>();
+
+  /**
+   * @docs-private
+   */
+  _numberOfPagesArray = computed<number[]>(() => {
+    const numberOfPages = this.numberOfPages();
+
+    if(numberOfPages < 1) {
+      throw new Error(DaffPaginatorNumberOfPagesErrorMessage);
+    } else if(numberOfPages < this.currentPage()) {
+      throw new Error(DaffPaginatorPageOutOfRangeErrorMessage);
+    }
+
+    return numberOfPages < 2 ? [] : Array(numberOfPages-2).fill(numberOfPages-2).map((x,i)=>i+2);
+  });
 
   /**
    * Determines when ellipsis after the first page number should show.
    *
    * @docs-private
    */
-  get _showFirstEllipsis(): boolean {
-    return this.currentPage >= visiblePageRange+2;
-  }
+  _showFirstEllipsis = computed<boolean>(() => this.currentPage() >= visiblePageRange+2);
 
   /**
    * Determines when ellipsis before the final page number should show.
    *
    * @docs-private
    */
-  get _showLastEllipsis(): boolean {
-    return this.currentPage < (this.numberOfPages - visiblePageRange);
-  }
+  _showLastEllipsis = computed<boolean>(() => this.currentPage() < (this.numberOfPages() - visiblePageRange));
 
   /**
    * Determines when the Previous button should be disabled.
    *
    * @docs-private
    */
-  get _disablePrev(): boolean {
-    return this.currentPage === 1;
-  }
+  _disablePrev = computed<boolean>(() => this.currentPage() === 1);
 
   /**
    * Determines when the Next button should be disabled.
    *
    * @docs-private
    */
-  get _disableNext(): boolean {
-    return this.currentPage === this.numberOfPages;
-  }
-
-  /**
-   * @docs-private
-   */
-  ngOnChanges() {
-    if(this.numberOfPages < 1) {
-      throw new Error(DaffPaginatorNumberOfPagesErrorMessage);
-    } else if(this.numberOfPages < this.currentPage) {
-      throw new Error(DaffPaginatorPageOutOfRangeErrorMessage);
-    }
-
-    this._numberOfPagesArray = this.numberOfPages < 2 ? [] : Array(this.numberOfPages-2).fill(this.numberOfPages-2).map((x,i)=>i+2);
-  }
+  _disableNext = computed<boolean>(() => this.currentPage() === this.numberOfPages());
 
   /**
    * Emits the previous page number through notifyPageChange Output.
@@ -142,7 +129,7 @@ export class DaffPaginatorComponent implements OnChanges {
    * @docs-private
    */
   _onNotifyPrevPageChange() {
-    this.notifyPageChange.emit(this.currentPage - 1);
+    this.notifyPageChange.emit(this.currentPage() - 1);
   }
 
   /**
@@ -151,7 +138,7 @@ export class DaffPaginatorComponent implements OnChanges {
    * @docs-private
    */
   _onNotifyNextPageChange() {
-    this.notifyPageChange.emit(this.currentPage + 1);
+    this.notifyPageChange.emit(this.currentPage() + 1);
   }
 
   /**
@@ -169,7 +156,7 @@ export class DaffPaginatorComponent implements OnChanges {
    * @docs-private
    */
   _isSelected(page: number): boolean {
-    return page === this.currentPage;
+    return page === this.currentPage();
   }
 
   /**
@@ -179,9 +166,9 @@ export class DaffPaginatorComponent implements OnChanges {
    * @docs-private
    */
   _showNumber(pageNumber: number): boolean {
-    return Math.abs(this.currentPage - pageNumber) < visiblePageRange
-      || (this.currentPage <= visiblePageRange && pageNumber <= 2*visiblePageRange)
-      || (this.currentPage > this.numberOfPages - visiblePageRange && pageNumber > this.numberOfPages - 2*visiblePageRange);
+    return Math.abs(this.currentPage() - pageNumber) < visiblePageRange
+      || (this.currentPage() <= visiblePageRange && pageNumber <= 2*visiblePageRange)
+      || (this.currentPage() > this.numberOfPages() - visiblePageRange && pageNumber > this.numberOfPages() - 2*visiblePageRange);
   }
 
   /**
@@ -189,7 +176,7 @@ export class DaffPaginatorComponent implements OnChanges {
    */
   _buildPageQueryParams(page: number): Params {
     return {
-      [this.queryParam]: page,
+      [this.queryParam()]: page,
     };
   }
 }
