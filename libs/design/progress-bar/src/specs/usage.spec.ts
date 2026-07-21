@@ -10,7 +10,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffPalette } from '@daffodil/design';
+import { DaffColor } from '@daffodil/design';
 import { DaffProgressBarComponent } from '@daffodil/design/progress-bar';
 
 @Component({
@@ -28,7 +28,7 @@ import { DaffProgressBarComponent } from '@daffodil/design/progress-bar';
   ],
 })
 class WrapperComponent {
-  color = signal<DaffPalette>(undefined);
+  color = signal<DaffColor>(undefined);
   percentage = signal<number>(undefined);
   ariaLabel = signal<string>(undefined);
   id: string;
@@ -70,14 +70,14 @@ describe('@daffodil/design/progress-bar | DaffProgressBarComponent | Usage', () 
     wrapper.percentage.set(20);
     fixture.detectChanges();
 
-    expect(component.percentage).toEqual(20);
+    expect(component.percentage()).toEqual(20);
   });
 
   it('should be able to take `aria-label` as an input', () =>{
     wrapper.ariaLabel.set('file upload');
     fixture.detectChanges();
 
-    expect(component.ariaLabel).toEqual('file upload');
+    expect(component.ariaLabel()).toEqual('file upload');
   });
 
   it('should add a class of `indeterminate` to the host when indeterminate is true', () => {

@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffProgressBarLabelDirective } from './progress-bar-label.directive';
+import { DaffProgressBarLabelDirective } from '@daffodil/design/progress-bar';
 
 @Component({
   template: `<daff-progress-bar-label>Label</daff-progress-bar-label>`,

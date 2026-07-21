@@ -10,8 +10,8 @@ import {
 import { By } from '@angular/platform-browser';
 
 import {
+  DAFF_PROGRESS_BAR_COMPONENTS,
   DaffProgressBarComponent,
-  DaffProgressBarLabelDirective,
 } from '@daffodil/design/progress-bar';
 
 @Component({
@@ -21,8 +21,7 @@ import {
 	</daff-progress-bar>
   `,
   imports: [
-    DaffProgressBarComponent,
-    DaffProgressBarLabelDirective,
+    DAFF_PROGRESS_BAR_COMPONENTS,
   ],
 })
 class WrapperComponent {}
@@ -68,7 +67,7 @@ describe('@daffodil/design/progress-bar | DaffProgressBarComponent | Defaults', 
   });
 
   it('should be unfilled by default', () => {
-    expect(component.percentage).toEqual(0);
+    expect(component.percentage()).toEqual(0);
   });
 
   describe('color property', () => {

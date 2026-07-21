@@ -1,4 +1,4 @@
-@if (_label) {
+@if (_label()) {
 	<div class="daff-progress-bar__label"
 		[attr.id]="id">
 		<ng-content select="daff-progress-bar-label"></ng-content>
@@ -8,9 +8,9 @@
 	role="progressbar"
 	aria-valuemin="0"
 	aria-valuemax="100"
-	[attr.aria-valuenow]="ariaValueNow"
-	[attr.aria-labelledby]="ariaLabelledBy">
-	@if (indeterminate) {
+	[attr.aria-valuenow]="ariaValueNow()"
+	[attr.aria-labelledby]="ariaLabelledBy()">
+	@if (indeterminate()) {
 		<div class="daff-progress-bar__fill indeterminate-bar" aria-hidden="true"></div>
 	} @else {
 		<div class="daff-progress-bar__fill determinate-bar"
