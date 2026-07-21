@@ -1,12 +1,10 @@
-/* eslint-disable quote-props */
 import {
   Component,
-  Input,
-  ContentChild,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Output,
-  EventEmitter,
+  input,
+  output,
+  contentChild,
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -42,7 +40,7 @@ import { DaffNotificationActionsDirective } from '../notification-actions/notifi
 @Component({
   selector: 'daff-notification',
   templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.scss'],
+  styleUrl: './notification.component.scss',
   hostDirectives: [
     { directive: DaffArticleEncapsulatedDirective },
     {
@@ -55,9 +53,9 @@ import { DaffNotificationActionsDirective } from '../notification-actions/notifi
     },
   ],
   host: {
-    'class': 'daff-notification',
-    '[class.dismissible]': 'dismissible',
-    'tabindex': '0',
+    class: 'daff-notification',
+    '[class.dismissible]': 'dismissible()',
+    tabindex: '0',
     '[attr.role]': 'role',
   },
   encapsulation: ViewEncapsulation.None,
@@ -76,12 +74,12 @@ export class DaffNotificationComponent {
   /**
    * @docs-private
    */
-  @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
+  _prefix = contentChild(DaffPrefixDirective);
 
   /**
    * @docs-private
    */
-  @ContentChild(DaffNotificationActionsDirective) _actions: DaffNotificationActionsDirective;
+  _actions = contentChild(DaffNotificationActionsDirective);
 
   /**
    * @docs-private
@@ -96,7 +94,7 @@ export class DaffNotificationComponent {
   /** Whether the notification can be dismissed by the user.
    * Displays a close icon if `true`.
    */
-  @Input() dismissible = false;
+  dismissible = input(false);
 
   constructor(
     private statusDirective: DaffStatusableDirective,
@@ -108,7 +106,7 @@ export class DaffNotificationComponent {
   /**
    * Emits when the notification is closed.
    */
-  @Output() closeNotification: EventEmitter<void> = new EventEmitter();
+  closeNotification = output<void>();
 
   /**
    * @docs-private
