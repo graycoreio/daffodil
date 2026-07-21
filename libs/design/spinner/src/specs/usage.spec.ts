@@ -55,9 +55,10 @@ describe('@daffodil/design/spinner | DaffSpinnerComponent | Without DaffSpinnerL
 });
 
 @Component({
-  template: `<daff-spinner>
-    <daff-spinner-label>Loading content</daff-spinner-label>
-  </daff-spinner>`,
+  template: `
+    <daff-spinner>
+      <daff-spinner-label>Loading content</daff-spinner-label>
+    </daff-spinner>`,
   imports: [
     DAFF_SPINNER_COMPONENTS,
   ],

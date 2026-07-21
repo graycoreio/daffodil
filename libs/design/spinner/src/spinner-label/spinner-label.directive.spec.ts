@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffSpinnerLabelDirective } from './spinner-label.directive';
+import { DaffSpinnerLabelDirective } from '@daffodil/design/spinner';
 
 @Component({
   template: `<daff-spinner-label>Label</daff-spinner-label>`,
@@ -17,7 +17,6 @@ import { DaffSpinnerLabelDirective } from './spinner-label.directive';
     DaffSpinnerLabelDirective,
   ],
 })
-
 class WrapperComponent {}
 
 describe('@daffodil/design/spinner | DaffSpinnerLabelDirective', () => {

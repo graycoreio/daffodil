@@ -10,7 +10,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffPalette } from '@daffodil/design';
+import { DaffColor } from '@daffodil/design';
 import { DaffSpinnerComponent } from '@daffodil/design/spinner';
 
 @Component({
@@ -20,7 +20,7 @@ import { DaffSpinnerComponent } from '@daffodil/design/spinner';
   ],
 })
 class WrapperComponent {
-  color = signal<DaffPalette>(undefined);
+  color = signal<DaffColor>(undefined);
   size = signal<string>(undefined);
 }
 
