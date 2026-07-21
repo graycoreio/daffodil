@@ -1,12 +1,11 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
-  Output,
-  EventEmitter,
-  ChangeDetectorRef,
   booleanAttribute,
-  ContentChild,
+  input,
+  output,
+  computed,
+  contentChild,
 } from '@angular/core';
 
 import { DaffColorableDirective } from '@daffodil/design';
@@ -30,7 +29,7 @@ let daffProgressBarId = 0;
 @Component({
   selector: 'daff-progress-bar',
   templateUrl: './progress-bar.component.html',
-  styleUrls: ['./progress-bar.component.scss'],
+  styleUrl: './progress-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [
     {
@@ -40,51 +39,40 @@ let daffProgressBarId = 0;
   ],
   host: {
     class: 'daff-progress-bar',
-    '[class.indeterminate]': 'indeterminate',
+    '[class.indeterminate]': 'indeterminate()',
   },
 })
 export class DaffProgressBarComponent {
   constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
     private colorable: DaffColorableDirective,
   ) {
     this.colorable.defaultColor = 'primary';
   }
 
-  private _percentage = 0;
-
   /**
    * @docs-private
    */
-  @ContentChild(DaffProgressBarLabelDirective) _label: DaffProgressBarLabelDirective;
+  _label = contentChild(DaffProgressBarLabelDirective);
 
   /**
    * Sets the percentage completion of the progression,
    * expressed as a whole number between 0 and 100.
    */
-  @Input() get percentage(): number {
-    return this._percentage;
-  };
-  set percentage(val: number) {
-    this._percentage = clamp(val, 0, 100);
-    this._changeDetectorRef.markForCheck();
-  }
+  percentage = input(0, { transform: (val: number) => clamp(val, 0, 100) });
 
   /**
    * @docs-private
    */
-  get ariaValueNow() {
-    return this.indeterminate ? null : this.percentage;
-  }
+  ariaValueNow = computed(() => this.indeterminate() ? null : this.percentage());
 
   /**
    * @docs-private
    */
-  get ariaLabelledBy() {
-    if(!this.ariaLabel && this.id) {
+  ariaLabelledBy = computed(() => {
+    if(!this.ariaLabel() && this.id) {
       return this.id;
     }
-  }
+  });
 
   /**
    * @docs-private
@@ -96,7 +84,7 @@ export class DaffProgressBarComponent {
   /**
    * An `aria-label` for the progress bar.
    */
-  @Input('aria-label') ariaLabel = '';
+  ariaLabel = input('', { alias: 'aria-label' });
 
   /**
    * Property to set the animation of a progress bar to
@@ -104,7 +92,7 @@ export class DaffProgressBarComponent {
    *
    * See: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress
    **/
-  @Input({ transform: booleanAttribute }) indeterminate = false;
+  indeterminate = input(false, { transform: booleanAttribute });
 
   /**
    * @docs-private
@@ -112,14 +100,14 @@ export class DaffProgressBarComponent {
    * Returns the transform style for the determinate progress bar.
    */
   _determinateBarTransform(): string {
-    return `scaleX(${this.percentage / 100})`;
+    return `scaleX(${this.percentage() / 100})`;
   }
 
   /**
    * An event that emits each time the progression reaches 100%
    * and the animation is finished.
    */
-  @Output() finished: EventEmitter<void> = new EventEmitter();
+  finished = output<void>();
 
   /**
    * @docs-private
@@ -127,7 +115,7 @@ export class DaffProgressBarComponent {
    * Handles the CSS transition end event.
    */
   onTransitionEnd(event: TransitionEvent): void {
-    if (event.propertyName === 'transform' && this.percentage === 100) {
+    if (event.propertyName === 'transform' && this.percentage() === 100) {
       this.finished.emit();
     }
   }
