@@ -73,11 +73,11 @@ describe('@daffodil/design/notification | DaffNotificationComponent', () => {
 
   describe('the dismissible property', () => {
     it('should take dismissible as an input', () => {
-      expect(component.dismissible).toEqual(wrapper.dismissible());
+      expect(component.dismissible()).toEqual(wrapper.dismissible());
     });
 
     it('should set dismissible to false by default', () => {
-      expect(component.dismissible).toBeFalse();
+      expect(component.dismissible()).toBeFalse();
     });
 
     describe('when dismissible is set to false', () => {

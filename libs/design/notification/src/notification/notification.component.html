@@ -1,4 +1,4 @@
-@if (_prefix) {
+@if (_prefix()) {
   <ng-content select="[daffPrefix]"></ng-content>
 }
 <div class="daff-notification__body">
@@ -6,11 +6,11 @@
     <ng-content select="[daffNotificationTitle]"></ng-content>
     <ng-content select="[daffNotificationMessage]"></ng-content>
   </div>
-  @if (_actions) {
+  @if (_actions()) {
     <ng-content select="[daffNotificationActions]"></ng-content>
   }
 </div>
-@if (dismissible) {
+@if (dismissible()) {
   <button class="daff-notification__close-icon" (click)="onCloseNotification($event)">
     <fa-icon [icon]="faTimes" [fixedWidth]="true"></fa-icon>
   </button>
