@@ -8,7 +8,7 @@
   <circle class="daff-spinner__track" cx="8" cy="8" r="7" vector-effect="non-scaling-stroke"></circle>
   <path class="daff-spinner__path" d="M15 8a7.002 7.002 0 00-7-7" vector-effect="non-scaling-stroke"></path>
 </svg>
-@if (_label) {
+@if (_label()) {
   <div class="daff-spinner__label">
     <ng-content select="daff-spinner-label"></ng-content>
   </div>

@@ -2,7 +2,8 @@ import {
   Component,
   ChangeDetectionStrategy,
   input,
-  ContentChild,
+  computed,
+  contentChild,
 } from '@angular/core';
 
 import {
@@ -23,7 +24,7 @@ import { DaffSpinnerLabelDirective } from './spinner-label/spinner-label.directi
   host: {
     class: 'daff-spinner',
     role: 'status',
-    '[attr.aria-label]': '_ariaLabel',
+    '[attr.aria-label]': '_ariaLabel()',
   },
   hostDirectives: [
     {
@@ -41,7 +42,7 @@ export class DaffSpinnerComponent {
   /**
    * @docs-private
    */
-  @ContentChild(DaffSpinnerLabelDirective) _label: DaffSpinnerLabelDirective;
+  _label = contentChild(DaffSpinnerLabelDirective);
 
   private static readonly SIZE_MAP: Record<DaffSizeAllType, number> = {
     xs: 12,
@@ -59,11 +60,11 @@ export class DaffSpinnerComponent {
   /**
    * @docs-private
    */
-  get _ariaLabel() {
-    if (!this._label) {
+  _ariaLabel = computed(() => {
+    if (!this._label()) {
       return this.ariaLabel();
     }
-  }
+  });
 
   /**
    * @docs-private
