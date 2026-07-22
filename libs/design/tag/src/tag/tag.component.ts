@@ -86,7 +86,7 @@ export class DaffTagComponent implements DaffDisableable {
    * Internal function to access the disabled property of the DaffDisableableDirective.
    */
   get disabled() {
-    return this.disabledDirective.disabled;
+    return this.disabledDirective.disabled();
   }
 
   /**

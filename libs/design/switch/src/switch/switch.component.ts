@@ -69,10 +69,10 @@ export class DaffSwitchComponent extends DaffSizableDirective<DaffSwitchSize> im
    * Whether the switch is disabled.
    */
   @Input() get disabled() {
-    return this.disabledDirective.disabled;
+    return this.disabledDirective.disabled();
   }
   set disabled(value: any) {
-    this.disabledDirective.disabled = coerceBooleanProperty(value);
+    this.disabledDirective.disabled.set(coerceBooleanProperty(value));
   }
 
   /**

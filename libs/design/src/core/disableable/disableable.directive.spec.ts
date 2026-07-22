@@ -55,7 +55,7 @@ describe('@daffodil/design | DaffDisableableDirective', () => {
   });
 
   it('should take disabled as an input', () => {
-    expect(directive.disabled).toEqual(wrapper.disabled());
+    expect(directive.disabled()).toEqual(wrapper.disabled());
   });
 
   it('should add a class of "daff-disabled" to the host element when disabled is true', () => {
