@@ -1,11 +1,11 @@
-/* eslint-disable quote-props */
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   Input,
-  Output,
+  input,
+  model,
+  output,
 } from '@angular/core';
 
 import {
@@ -33,9 +33,8 @@ export type DaffSwitchSize = DaffSizeSmallType;
  */
 @Component({
   selector: 'daff-switch',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './switch.component.html',
-  styleUrls: ['./switch.component.scss'],
+  styleUrl: './switch.component.scss',
   hostDirectives: [
     {
       directive: DaffSizableDirective,
@@ -47,19 +46,20 @@ export type DaffSwitchSize = DaffSizeSmallType;
     },
   ],
   host: {
-    'class': 'daff-switch',
-    '[class.checked]': 'checked',
-    '[class.left]': 'labelPosition === "left"',
-    '[class.right]': 'labelPosition === "right"',
-    '[class.top]': 'labelPosition === "top"',
-    '[class.bottom]': 'labelPosition === "bottom"',
+    class: 'daff-switch',
+    '[class.checked]': 'checked()',
+    '[class.left]': 'labelPosition() === "left"',
+    '[class.right]': 'labelPosition() === "right"',
+    '[class.top]': 'labelPosition() === "top"',
+    '[class.bottom]': 'labelPosition() === "bottom"',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffSwitchComponent extends DaffSizableDirective<DaffSwitchSize> implements DaffDisableable {
   /**
    * The position of the label relative to the switch.
    */
-  @Input() labelPosition: DaffSwitchLabelPosition = DaffSwitchLabelPositionEnum.LEFT;
+  labelPosition = input<DaffSwitchLabelPosition>(DaffSwitchLabelPositionEnum.LEFT);
 
   constructor(private disabledDirective: DaffDisableableDirective) {
     super();
@@ -78,7 +78,7 @@ export class DaffSwitchComponent extends DaffSizableDirective<DaffSwitchSize> im
   /**
    * Current state of switch (on/off).
    */
-  @Input() checked = false;
+  checked = model(false);
 
   /**
    * @docs-private
@@ -91,20 +91,20 @@ export class DaffSwitchComponent extends DaffSizableDirective<DaffSwitchSize> im
    *
    * It gets assigned to the `for` attribute on the `<label>` inside of the switch.
    */
-  @Input() id = 'daff-switch-' + switchIncrementalId++;
+  id = input('daff-switch-' + switchIncrementalId++);
 
   /**
    * Output event triggered when the switch has been toggled.
    */
-  @Output() toggled = new EventEmitter<boolean>();
+  toggled = output<boolean>();
 
   /**
    * @docs-private
    */
   onToggle() {
     if (!this.disabled) {
-      this.checked = !this.checked;
-      this.toggled.emit(this.checked);
+      this.checked.set(!this.checked());
+      this.toggled.emit(this.checked());
     }
   }
 }

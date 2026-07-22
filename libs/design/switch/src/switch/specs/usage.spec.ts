@@ -62,7 +62,7 @@ describe('@daffodil/design/switch | DaffSwitchComponent | Usage', () => {
 
   describe('checked property', () => {
     it('should take `checked` as an input', () => {
-      expect(component.checked).toEqual(wrapper.checked());
+      expect(component.checked()).toEqual(wrapper.checked());
     });
 
     it('should add a class of "checked" to the host element when checked is true', () => {
@@ -88,7 +88,7 @@ describe('@daffodil/design/switch | DaffSwitchComponent | Usage', () => {
 
   describe('labelPosition property', () => {
     it('should take `labelPosition` as an input', () => {
-      expect(component.labelPosition).toEqual(wrapper.labelPosition());
+      expect(component.labelPosition()).toEqual(wrapper.labelPosition());
     });
 
     it('should add a class of "left" to the host element when labelPosition="left"', () => {
