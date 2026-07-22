@@ -9,14 +9,11 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DAFF_UNDERLINE_BUTTON_COMPONENTS } from '@daffodil/design/button';
-
-import { DaffTextSnippetComponent } from './text-snippet.component';
+import { DaffTextSnippetComponent } from '@daffodil/design/text-snippet';
 
 @Component({
   template: '<daff-text-snippet [condensed]="condensed" [html]="html">content</daff-text-snippet>',
   imports: [
-    DAFF_UNDERLINE_BUTTON_COMPONENTS,
     DaffTextSnippetComponent,
   ],
 })
@@ -30,7 +27,7 @@ describe('@daffodil/design/text-snippet | DaffTextSnippetComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let wrapper: WrapperComponent;
   let component: DaffTextSnippetComponent;
-  let componentDe: DebugElement;
+  let de: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -44,12 +41,18 @@ describe('@daffodil/design/text-snippet | DaffTextSnippetComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    componentDe = fixture.debugElement.query(By.css('daff-text-snippet'));
-    component = componentDe.componentInstance;
+    de = fixture.debugElement.query(By.css('daff-text-snippet'));
+    component = de.componentInstance;
   });
 
   it('should create', () => {
     expect(fixture).toBeTruthy();
+  });
+
+  it('should add a class of "daff-text-snippet" to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-text-snippet': true,
+    }));
   });
 
   it('should pass through any html as `innerHtml` on the `html` div inside the component', () => {
@@ -91,7 +94,7 @@ describe('@daffodil/design/text-snippet | DaffTextSnippetComponent', () => {
 
   describe('condensed property', () => {
     it('should set condensed to true by default', () => {
-      expect(component.condensed).toEqual(true);
+      expect(component.condensed()).toEqual(true);
     });
   });
 
@@ -99,7 +102,7 @@ describe('@daffodil/design/text-snippet | DaffTextSnippetComponent', () => {
     wrapper.condensed = true;
     fixture.detectChanges();
 
-    expect(componentDe.query(By.css('.daff-text-snippet__content')).classes.condensed).toBeTruthy();
+    expect(de.query(By.css('.daff-text-snippet__content')).classes.condensed).toBeTruthy();
   });
 
   it('should set aria-expanded to true when text snippet is not condensed', () => {

@@ -1,62 +1,60 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
-  EventEmitter,
-  Output,
   ElementRef,
-  ViewChild,
+  input,
+  model,
+  output,
+  viewChild,
 } from '@angular/core';
 
 @Component({
   selector: 'daff-text-snippet',
   templateUrl: './text-snippet.component.html',
-  styleUrls: ['./text-snippet.component.scss'],
+  styleUrl: './text-snippet.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'daff-text-snippet',
   },
 })
 export class DaffTextSnippetComponent {
-
   /**
    * Whether or not the component should render a condensed version of the content.
    */
-  @Input() condensed = true;
+  condensed = model(true);
 
   /**
    * The HTML content to render inside the snippet.
    */
-  @Input() html = '';
+  html = input('');
 
   /**
    * @docs-private
    */
   ariaExpanded() {
-    return !this.condensed ? true : false;
+    return !this.condensed() ? true : false;
   }
 
   /**
    * @docs-private
    */
-  @ViewChild('contentEl', { read: ElementRef }) contentRef: ElementRef;
+  contentRef = viewChild('contentEl', { read: ElementRef });
 
   /**
    * @docs-private
    */
-  @ViewChild('htmlEl', { read: ElementRef }) htmlRef: ElementRef;
+  htmlRef = viewChild('htmlEl', { read: ElementRef });
 
   /**
    * An output event that can be used to track the state of the component externally.
    */
-  // eslint-disable-next-line @angular-eslint/no-output-native
-  @Output() toggle: EventEmitter<boolean> = new EventEmitter();
+  toggled = output<boolean>();
 
   /**
    * @docs-private
    */
   toggleSnippet() {
-    this.condensed = !this.condensed;
-    this.toggle.emit(this.condensed);
+    this.condensed.set(!this.condensed());
+    this.toggled.emit(this.condensed());
   }
 }
