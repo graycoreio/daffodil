@@ -1,10 +1,9 @@
-/* eslint-disable quote-props */
 import {
-  Input,
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
   ElementRef,
+  input,
 } from '@angular/core';
 
 import { DaffSelectableDirective } from '@daffodil/design';
@@ -22,12 +21,12 @@ import { DaffSelectableDirective } from '@daffodil/design';
     },
   ],
   host: {
-    'class': 'daff-tab-activator',
-    'role': 'tab',
+    class: 'daff-tab-activator',
+    role: 'tab',
     '[attr.aria-selected]': 'ariaSelected',
     '[attr.tabindex]': 'tabIndex',
-    '[attr.id]': 'tabActivatorId',
-    '[attr.aria-controls]': 'panelId',
+    '[attr.id]': 'tabActivatorId()',
+    '[attr.aria-controls]': 'panelId()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -60,9 +59,9 @@ export class DaffTabActivatorComponent {
   /**
    * The html id of the tab activator component
    */
-  @Input() tabActivatorId = '';
+  tabActivatorId = input('');
 
-  @Input() panelId = '';
+  panelId = input('');
 
   /**
    * Sets focus to the native element of the component.

@@ -1,9 +1,9 @@
-@if (_prefix) {
+@if (_prefix()) {
   <ng-content select="[daffPrefix]"></ng-content>
 }
 <div class="daff-tab-label__content">
   <ng-content></ng-content>
 </div>
-@if (_suffix) {
+@if (_suffix()) {
   <ng-content select="[daffSuffix]"></ng-content>
 }

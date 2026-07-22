@@ -13,17 +13,20 @@ import {
 import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 
+import {
+  DaffTabsComponent,
+  DAFF_TABS_COMPONENTS,
+} from '@daffodil/design/tabs';
+
 import { DaffTabActivatorComponent } from './tab-activator/tab-activator.component';
-import { DaffTabsComponent } from './tabs.component';
-import { DAFF_TABS_COMPONENTS } from '../tabs';
 
 @Component({
   template: `
     <daff-tabs
 			[linkMode]="linkModeValue()"
 			[url]="urlValue()"
-			(tabChange)="onTabChange($event)"
-		>
+			[initiallySelected]="initiallySelectedValue()"
+			(tabChange)="onTabChange($event)">
       <daff-tab>
         <daff-tab-label>
           Tab 1
@@ -59,6 +62,7 @@ import { DAFF_TABS_COMPONENTS } from '../tabs';
 class WrapperComponent {
   linkModeValue = signal<boolean>(undefined);
   urlValue = signal<string>(undefined);
+  initiallySelectedValue = signal<string>(undefined);
 
   onTabChange: (val: string) => void;
 
@@ -115,6 +119,16 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
     expect(wrapper).toBeTruthy();
   });
 
+  it('should add a class of "daff-tabs" to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-tabs': true,
+    }));
+  });
+
+  it('should select the first tab by default', () => {
+    expect(component.selectedTab()).toBe(component._tabs()[0].id());
+  });
+
   describe('in link mode', () => {
     beforeEach(() => {
       wrapper.linkModeValue.set(true);
@@ -140,11 +154,11 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
       });
 
       it('should reset the selected tab', () => {
-        expect(component.selectedTab).not.toEqual('tab-2');
+        expect(component.selectedTab()).not.toEqual('tab-2');
       });
 
       it('should notify the parent component that the tab changed', () => {
-        expect(wrapper.onTabChange).toHaveBeenCalledWith(component.selectedTab);
+        expect(wrapper.onTabChange).toHaveBeenCalledWith(component.selectedTab());
       });
     });
 
@@ -160,7 +174,7 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
       });
 
       it('should not reset the selected tab', () => {
-        expect(component.selectedTab).toEqual('tab-2');
+        expect(component.selectedTab()).toEqual('tab-2');
       });
     });
 
@@ -178,16 +192,11 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
     });
   });
 
-  it('should add a class of "daff-tabs" to the host element', () => {
-    expect(de.classes).toEqual(jasmine.objectContaining({
-      'daff-tabs': true,
-    }));
-  });
-
   it('should set selectedTab to initiallySelected if provided', () => {
-    component.initiallySelected = 'tab-2';
+    wrapper.initiallySelectedValue.set('tab-2');
+    fixture.detectChanges();
     component.ngAfterContentInit();
-    expect(component._tabs.toArray()[1].id).toEqual(component.initiallySelected);
+    expect(component._tabs()[1].id()).toEqual(component.initiallySelected());
   });
 
   it('should display a warning if select is called with a tab that does not exist', () => {
@@ -199,13 +208,14 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
   });
 
   it('should set selectedTab to the first tab if initiallySelected is not provided', () => {
-    component.initiallySelected = null;
+    wrapper.initiallySelectedValue.set(null);
+    fixture.detectChanges();
     component.ngAfterContentInit();
-    expect(component.selectedTab).toBe(component._tabs.toArray()[0].id);
+    expect(component.selectedTab()).toBe(component._tabs()[0].id());
   });
 
   it('should emit tabChange when a tab is selected', () => {
-    const id = component._tabs.toArray()[1].id;
+    const id = component._tabs()[1].id();
 
     component.select(id);
     expect(wrapper.onTabChange).toHaveBeenCalledWith(id);
@@ -215,13 +225,13 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
     const index = 1;
     const tab = fixture.debugElement.queryAll(By.directive(DaffTabActivatorComponent))[index].nativeElement;
 
-    component.select(component._tabs.toArray()[index].id);
+    component.select(component._tabs()[index].id());
 
     expect(document.activeElement).toEqual(tab);
   });
 
   it('should navigate to the previous tab when previous is called', () => {
-    component.select(component._tabs.toArray()[1].id);
+    component.select(component._tabs()[1].id());
 
     component.previous();
 
@@ -231,7 +241,7 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
   });
 
   it('should navigate to the next tab when next is called', () => {
-    component.select(component._tabs.toArray()[0].id);
+    component.select(component._tabs()[0].id());
 
     component.next();
 
@@ -241,29 +251,29 @@ describe('@daffodil/design/tabs | DaffTabsComponent', () => {
   });
 
   it('should skip disabled tabs when navigating', () => {
-    component.select(component._tabs.toArray()[0].id);
+    component.select(component._tabs()[0].id());
 
     wrapper.disableSecondTab.set(true);
     fixture.detectChanges();
 
     component.next();
 
-    expect(component.selectedTab).toBe(component._tabs.toArray()[2].id);
+    expect(component.selectedTab()).toBe(component._tabs()[2].id());
   });
 
   it('should select the first tab when selectFirst is called', () => {
     const event = new KeyboardEvent('keydown');
     component.selectFirst(event);
 
-    expect(component.selectedTab).toBe(component._tabs.toArray()[0].id);
+    expect(component.selectedTab()).toBe(component._tabs()[0].id());
   });
 
   it('should select the first tab when selectLast is called', () => {
     const event = new KeyboardEvent('keydown');
     component.selectLast(event);
 
-    const lastTab = component._tabs.toArray()[component._tabs.toArray().length - 1].id;
+    const lastTab = component._tabs()[component._tabs().length - 1].id();
 
-    expect(component.selectedTab).toBe(lastTab);
+    expect(component.selectedTab()).toBe(lastTab);
   });
 });

@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
+  contentChild,
 } from '@angular/core';
 
 import {
@@ -35,10 +35,10 @@ export class DaffTabLabelComponent {
   /**
    * @docs-private
    */
-  @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
+  _prefix = contentChild(DaffPrefixDirective);
 
   /**
    * @docs-private
    */
-  @ContentChild(DaffSuffixDirective) _suffix: DaffSuffixDirective;
+  _suffix = contentChild(DaffSuffixDirective);
 }
