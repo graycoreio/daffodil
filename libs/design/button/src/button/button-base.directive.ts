@@ -80,7 +80,7 @@ export class DaffButtonBaseDirective implements DaffDisableable {
    * The disabled state of the button.
    */
   get disabled() {
-    return this.disabledDirective.disabled;
+    return this.disabledDirective.disabled();
   }
 
   /**

@@ -57,7 +57,7 @@ export class DaffTabComponent implements DaffDisableable {
    * Whether the tab is disabled.
    */
   get disabled() {
-    return this.disabledDirective.disabled;
+    return this.disabledDirective.disabled();
   }
 
   /**

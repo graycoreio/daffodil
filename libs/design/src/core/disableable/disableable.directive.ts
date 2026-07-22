@@ -1,6 +1,6 @@
 import {
   Directive,
-  Input,
+  model,
 } from '@angular/core';
 
 /**
@@ -9,12 +9,12 @@ import {
 @Directive({
   selector: '[daffDisableable]',
   host: {
-    '[class.daff-disabled]': 'disabled',
+    '[class.daff-disabled]': 'disabled()',
   },
 })
 export class DaffDisableableDirective {
   /**
    * Whether the component is disabled.
    */
-  @Input() disabled = false;
+  disabled = model(false);
 }
