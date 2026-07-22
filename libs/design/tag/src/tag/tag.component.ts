@@ -2,10 +2,10 @@ import {
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
-  EventEmitter,
+  contentChild,
   Input,
-  Output,
+  input,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -51,6 +51,7 @@ import { DaffTagSizableDirective } from './tag-sizable.directive';
     },
     {
       directive: DaffStatusableDirective,
+      inputs: ['status'],
     },
     {
       directive: DaffDisableableDirective,
@@ -62,7 +63,7 @@ import { DaffTagSizableDirective } from './tag-sizable.directive';
   host: {
     class: 'daff-tag',
     '[attr.aria-disabled]': 'disabled ? true : null',
-    '[class.dismissible]': 'dismissible',
+    '[class.dismissible]': 'dismissible()',
   },
   imports: [
     FaIconComponent,
@@ -78,7 +79,7 @@ export class DaffTagComponent implements DaffDisableable {
   /**
    * @docs-private
    */
-  @ContentChild(DaffPrefixDirective, { static: true }) _prefix: DaffPrefixDirective;
+  _prefix = contentChild(DaffPrefixDirective);
 
   /**
    * @docs-private
@@ -106,12 +107,12 @@ export class DaffTagComponent implements DaffDisableable {
    * Whether the tag can be dismissed by the user.
    * Displays a close icon if `true`.
    */
-  @Input({ transform: booleanAttribute }) dismissible = false;
+  dismissible = input(false, { transform: booleanAttribute });
 
   /**
    * Emits when the tag is closed.
    */
-  @Output() closeTag: EventEmitter<void> = new EventEmitter();
+  closeTag = output<void>();
 
   /**
    * @docs-private
