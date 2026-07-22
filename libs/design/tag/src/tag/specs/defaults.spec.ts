@@ -51,7 +51,7 @@ describe('@daffodil/design/tag | DaffTagComponent | Defaults', () => {
   });
 
   it('should set dismissible to false by default', () => {
-    expect(component.dismissible).toBeFalse();
+    expect(component.dismissible()).toBeFalse();
   });
 
   it('should set disabled to false by default', () => {

@@ -1,10 +1,10 @@
-@if (_prefix) {
+@if (_prefix()) {
   <ng-content select="[daffPrefix]"></ng-content>
 }
 <div class="daff-tag__label">
   <ng-content></ng-content>
 </div>
-@if (dismissible) {
+@if (dismissible()) {
   <button class="daff-tag__close-icon" (click)="onCloseTag($event)" aria-label="Dismiss" [attr.tabindex]="disabled ? -1 : null">
     <fa-icon [icon]="faTimes" [fixedWidth]="true"></fa-icon>
   </button>

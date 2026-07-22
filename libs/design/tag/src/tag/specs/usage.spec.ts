@@ -72,7 +72,7 @@ describe('@daffodil/design/tag | DaffTagComponent | Usage', () => {
 
   describe('dismissible property', () => {
     it('should take dismissible as an input', () => {
-      expect(component.dismissible).toEqual(wrapper.dismissible());
+      expect(component.dismissible()).toEqual(wrapper.dismissible());
     });
 
     it('should not show close button when dismissible is false', () => {
