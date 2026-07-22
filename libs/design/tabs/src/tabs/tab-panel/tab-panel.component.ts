@@ -1,4 +1,3 @@
-/* eslint-disable quote-props */
 import {
   Component,
   ChangeDetectionStrategy,
@@ -22,9 +21,9 @@ import { DaffTabComponent } from '../tab/tab.component';
   styleUrl: './tab-panel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'daff-tab-panel',
-    'role': 'tabpanel',
-    'tabindex': '0',
+    class: 'daff-tab-panel',
+    role: 'tabpanel',
+    tabindex: '0',
     '[attr.id]': 'tabPanelId',
     '[attr.aria-labelledby]': 'ariaLabelledBy',
   },
@@ -54,7 +53,7 @@ export class DaffTabPanelComponent {
     /**
      * Sets the value of `ariaLabelledBy` to the id of the tab component.
      */
-    this._ariaLabelledBy = this.tab.id;
+    this._ariaLabelledBy = this.tab.id();
 
     this._id = this.tab.panelId;
   }

@@ -66,7 +66,7 @@ describe('@daffodil/design/tabs | DaffTabActivatorComponent', () => {
   });
 
   it('should take panelId as an input', () => {
-    expect(component.panelId).toEqual(wrapper.panelId());
+    expect(component.panelId()).toEqual(wrapper.panelId());
   });
 
   describe('when selected is true', () => {
@@ -100,16 +100,16 @@ describe('@daffodil/design/tabs | DaffTabActivatorComponent', () => {
   });
 
   it('should assign the value of panelId to ariaControls', () => {
-    expect(de.attributes['aria-controls']).toBe(component.panelId);
+    expect(de.attributes['aria-controls']).toBe(component.panelId());
   });
 
   describe('tabActivatorId', () => {
     it('should take tabActivatorId as an input', () => {
-      expect(component.tabActivatorId).toEqual(wrapper.tabActivatorId());
+      expect(component.tabActivatorId()).toEqual(wrapper.tabActivatorId());
     });
 
     it('should assign the `tabActivatorId` value to the `id` attribute', () => {
-      expect(de.attributes.id).toBe(component.tabActivatorId);
+      expect(de.attributes.id).toBe(component.tabActivatorId());
     });
   });
 

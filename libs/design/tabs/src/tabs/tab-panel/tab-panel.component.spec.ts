@@ -31,7 +31,7 @@ describe('@daffodil/design/tabs | DaffTabPanelComponent', () => {
 
   beforeEach(waitForAsync(() => {
     mockTabComponent = jasmine.createSpyObj('DaffTabComponent', [], {
-      id: 'mock-tab-id',
+      id: () => 'mock-tab-id',
       panelId: 'mock-panel-id',
     });
 
@@ -84,6 +84,6 @@ describe('@daffodil/design/tabs | DaffTabPanelComponent', () => {
   });
 
   it('should set ariaLabelledBy to the tab id', () => {
-    expect(component.ariaLabelledBy).toBe(mockTabComponent.id);
+    expect(component.ariaLabelledBy).toBe(mockTabComponent.id());
   });
 });

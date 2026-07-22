@@ -56,7 +56,7 @@ describe('@daffodil/design/tabs | DaffTabComponent | Defaults', () => {
   });
 
   it('should have a generated id', () => {
-    expect(component.id).toMatch('daff-tab-[0-9]*');
+    expect(component.id()).toMatch('daff-tab-[0-9]*');
   });
 });
 
@@ -101,10 +101,10 @@ describe('@daffodil/design/tabs | DaffTabComponent | Custom Id', () => {
   });
 
   it('should take id as an input', () => {
-    expect(component.id).toEqual(wrapper.id);
+    expect(component.id()).toEqual(wrapper.id);
   });
 
   it('should allow a custom id to be set', () => {
-    expect(component.id).toEqual(wrapper.id);
+    expect(component.id()).toEqual(wrapper.id);
   });
 });

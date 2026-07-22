@@ -1,4 +1,3 @@
-/* eslint-disable quote-props */
 import {
   Location,
   NgTemplateOutlet,
@@ -7,15 +6,14 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ContentChildren,
-  QueryList,
   AfterContentInit,
-  Input,
-  Output,
-  EventEmitter,
-  ViewChildren,
   ChangeDetectorRef,
   OnInit,
+  input,
+  output,
+  signal,
+  contentChildren,
+  viewChildren,
 } from '@angular/core';
 import {
   Params,
@@ -61,7 +59,7 @@ import { DaffTabLabelComponent } from './tab-label/tab-label.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'daff-tabs',
+    class: 'daff-tabs',
     '[attr.aria-label]': 'null',
   },
   imports: [
@@ -78,53 +76,53 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
    *
    * The currently selected tab. This property is dynamically updated when a user selects a tab.
    */
-  selectedTab: string;
+  selectedTab = signal<string>(undefined);
 
   /**
    * The tab that is selected on initial load. If it's not used, the first tab in the tablist will be selected by default.
    */
-  @Input() initiallySelected: string = null;
+  initiallySelected = input<string>(null);
 
   /**
    * `aria-label` to label the tablist.
    */
-  @Input('aria-label') ariaLabel = '';
+  ariaLabel = input('', { alias: 'aria-label' });
 
   /**
    * Replace the tab buttons as links.
    */
-  @Input() linkMode = false;
+  linkMode = input(false);
 
   /**
    * The URL to navigate to when the component is in link mode.
    * This component will set the specified query param.
    */
-  @Input() url?: string;
+  url = input<string>();
 
   /**
    * The query parameter that the tabs component will use to set the tab value in link mode.
    */
-  @Input() queryParam = 'tab';
+  queryParam = input('tab');
 
   /**
    * Event emitted when tab selection changes.
    */
-  @Output() tabChange = new EventEmitter<string>();
+  tabChange = output<string>();
 
   /**
    * @docs-private
    */
-  @ContentChildren(DaffTabLabelComponent, { descendants: true }) _labels: QueryList<DaffTabLabelComponent>;
+  _labels = contentChildren(DaffTabLabelComponent, { descendants: true });
 
   /**
    * @docs-private
    */
-  @ContentChildren(DaffTabComponent) _tabs: QueryList<DaffTabComponent>;
+  _tabs = contentChildren(DaffTabComponent);
 
   /**
    * @docs-private
    */
-  @ViewChildren(DaffTabActivatorComponent) _tabActivators: QueryList<DaffTabActivatorComponent>;
+  _tabActivators = viewChildren(DaffTabActivatorComponent);
 
   /**
    * @docs-private
@@ -139,12 +137,12 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
   ) {}
 
   private reset() {
-    if(this.initiallySelected) {
-      this.selectedTab = this.initiallySelected;
+    if(this.initiallySelected()) {
+      this.selectedTab.set(this.initiallySelected());
     }
 
-    if (!this.selectedTab) {
-      this.selectedTab = this._tabs.first.id;
+    if (!this.selectedTab()) {
+      this.selectedTab.set(this._tabs()[0].id());
     }
   }
 
@@ -154,10 +152,10 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
   ngOnInit(): void {
     this.location.onUrlChange(() => {
       // if the app is navigated away from the current page, reset the state
-      if (this.linkMode && !this.location.isCurrentPathEqualTo(this.url, `${this.queryParam}=${this.selectedTab}`)) {
-        this.selectedTab = null;
+      if (this.linkMode() && !this.location.isCurrentPathEqualTo(this.url(), `${this.queryParam()}=${this.selectedTab()}`)) {
+        this.selectedTab.set(null);
         this.reset();
-        this.tabChange.emit(this.selectedTab);
+        this.tabChange.emit(this.selectedTab());
       }
     });
   }
@@ -175,7 +173,7 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
    * Selects a tab and sets focus on the selected tab.
    */
   select(tabId: string) {
-    const tabActivator = this._tabActivators.find(el => el.tabActivatorId === tabId);
+    const tabActivator = this._tabActivators().find(el => el.tabActivatorId() === tabId);
 
     if (!tabActivator) {
       console.warn(`The tab '${tabId}' was not able to be selected because it does not exist. Check the id on your <daff-tab>s.`);
@@ -183,7 +181,7 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
     }
 
     this.tabChange.emit(tabId);
-    this.selectedTab = tabId;
+    this.selectedTab.set(tabId);
     this.cdRef.markForCheck();
 
     tabActivator.focus();
@@ -194,8 +192,8 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
    * Moves forward or backward in the tab array, wrapping around when necessary.
    */
   private navigateTabs(offset: number) {
-    const array = this._tabs.toArray();
-    let selectedIndex = array.findIndex(el => el.id === this.selectedTab);
+    const array = this._tabs();
+    let selectedIndex = array.findIndex(el => el.id() === this.selectedTab());
     const startingIndex = selectedIndex;
     let newIndex;
 
@@ -204,7 +202,7 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
       selectedIndex = newIndex;
     } while (array[newIndex].disabled && selectedIndex !== startingIndex); // Skip disabled tabs
 
-    this.select(array[newIndex].id);
+    this.select(array[newIndex].id());
   }
 
   /**
@@ -212,7 +210,7 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
    */
   _buildQueryParams(tab: string): Params {
     return {
-      [this.queryParam]: tab,
+      [this.queryParam()]: tab,
     };
   }
 
@@ -241,7 +239,7 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
    */
   selectFirst(event: KeyboardEvent | null) {
     event.preventDefault();
-    this.select(this._tabs.toArray()[0].id);
+    this.select(this._tabs()[0].id());
   }
 
   /**
@@ -251,7 +249,7 @@ export class DaffTabsComponent implements AfterContentInit, OnInit {
    */
   selectLast(event: KeyboardEvent | null) {
     event.preventDefault();
-    const array = this._tabs.toArray();
-    this.select(array[array.length - 1].id);
+    const array = this._tabs();
+    this.select(array[array.length - 1].id());
   }
 }
