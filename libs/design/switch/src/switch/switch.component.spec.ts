@@ -13,7 +13,6 @@ import {
   DaffSwitchComponent,
 } from '@daffodil/design/switch';
 
-
 @Component({
   template: `
     <daff-switch>Wifi</daff-switch>
@@ -64,10 +63,10 @@ describe('@daffodil/design/switch | DaffSwitchComponent | Defaults', () => {
   });
 
   it('should have a generated id for the switch control', () => {
-    expect(component.id).toMatch('daff-switch-[0-9]*');
+    expect(component.id()).toMatch('daff-switch-[0-9]*');
   });
 
   it('should set `left` as the default labelPosition', () => {
-    expect(component.labelPosition).toEqual('left');
+    expect(component.labelPosition()).toEqual('left');
   });
 });
