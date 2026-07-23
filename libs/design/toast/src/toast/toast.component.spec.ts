@@ -12,9 +12,9 @@ import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
 import { DaffStatus } from '@daffodil/design';
+import { DaffToast } from '@daffodil/design/toast';
 
 import { DaffToastComponent } from './toast.component';
-import { DaffToast } from '../interfaces/toast';
 
 @Component ({
   template: `
@@ -33,7 +33,7 @@ class WrapperComponent {
   toast = signal<DaffToast>(undefined);
 }
 
-describe('DaffToastComponent', () => {
+describe('@daffodil/design/toast | DaffToastComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;
@@ -65,12 +65,10 @@ describe('DaffToastComponent', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('<daff-toast>', () => {
-    it('should add a class of "daff-toast" to the host element', () => {
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-toast': true,
-      }));
-    });
+  it('should add a class of "daff-toast" to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-toast': true,
+    }));
   });
 
   it('should take status as an input', () => {

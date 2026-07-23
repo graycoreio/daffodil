@@ -21,7 +21,7 @@ import { DaffToastMessageDirective } from './toast-message.directive';
 })
 class WrapperComponent {}
 
-describe('DaffToastMessageDirective', () => {
+describe('@daffodil/design/toast | DaffToastMessageDirective', () => {
   let wrapper: WrapperComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -46,9 +46,9 @@ describe('DaffToastMessageDirective', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('[daffToastMessage]', () => {
-    it('should add a class of `daff-toast__message` to its host element', () => {
-      expect(de.nativeElement.classList.contains('daff-toast__message')).toEqual(true);
-    });
+  it('should add a class of `daff-toast__message` to its host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-toast__message': true,
+    }));
   });
 });

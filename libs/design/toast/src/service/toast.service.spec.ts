@@ -12,10 +12,12 @@ import {
   DaffFocusStackService,
   DAFF_PREFIX_SUFFIX_DIRECTIVES,
 } from '@daffodil/design';
+import {
+  DaffToastService,
+  DaffToast,
+} from '@daffodil/design/toast';
 
 import { DaffToastPositionService } from './position.service';
-import { DaffToastService } from './toast.service';
-import { DaffToast } from '../interfaces/toast';
 import { DaffToastTemplateComponent } from '../toast/toast-template.component';
 import { DaffToastComponent } from '../toast/toast.component';
 import { DaffToastActionsDirective } from '../toast-actions/toast-actions.directive';
