@@ -1,10 +1,9 @@
-/* eslint-disable quote-props */
 import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[daffToastActions]',
   host: {
-    'class': 'daff-toast__actions',
+    class: 'daff-toast__actions',
   },
 })
 

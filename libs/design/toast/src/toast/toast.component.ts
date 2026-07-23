@@ -1,4 +1,3 @@
-/* eslint-disable quote-props */
 import {
   ConfigurableFocusTrap,
   ConfigurableFocusTrapFactory,
@@ -6,13 +5,13 @@ import {
 import {
   Component,
   ElementRef,
-  ContentChild,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   AfterViewInit,
   AfterContentInit,
-  Input,
   OnDestroy,
+  contentChild,
+  input,
 } from '@angular/core';
 
 import {
@@ -35,7 +34,7 @@ import { DaffToastActionsDirective } from '../toast-actions/toast-actions.direct
 @Component({
   selector: 'daff-toast',
   templateUrl: './toast.component.html',
-  styleUrls: ['./toast.component.scss'],
+  styleUrl: './toast.component.scss',
   hostDirectives: [
     { directive: DaffArticleEncapsulatedDirective },
     {
@@ -44,7 +43,7 @@ import { DaffToastActionsDirective } from '../toast-actions/toast-actions.direct
     },
   ],
   host: {
-    'class': 'daff-toast',
+    class: 'daff-toast',
     '(keydown.escape)': 'onEscape()',
   },
   encapsulation: ViewEncapsulation.None,
@@ -54,20 +53,20 @@ export class DaffToastComponent implements AfterContentInit, AfterViewInit, OnDe
   /**
    * @docs-private
    */
-  @ContentChild(DaffToastActionsDirective) _actions: DaffToastActionsDirective;
+  _actions = contentChild(DaffToastActionsDirective);
 
   /**
    * @docs-private
    */
-  @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
+  _prefix = contentChild(DaffPrefixDirective);
 
-  @Input() toast: DaffToast;
+  toast = input.required<DaffToast>();
 
   /**
    * @docs-private
    */
   onEscape() {
-    this.toast.dismiss();
+    this.toast().dismiss();
   }
 
   private _focusTrap: ConfigurableFocusTrap;
@@ -83,7 +82,7 @@ export class DaffToastComponent implements AfterContentInit, AfterViewInit, OnDe
    * @docs-private
    */
   ngAfterContentInit() {
-    if(daffToastChangesFocus(this.toast)) {
+    if(daffToastChangesFocus(this.toast())) {
       this._focusTrap = this._focusTrapFactory.create(
         this._elementRef.nativeElement,
       );
@@ -94,7 +93,7 @@ export class DaffToastComponent implements AfterContentInit, AfterViewInit, OnDe
    * @docs-private
    */
   ngAfterViewInit() {
-    if(daffToastChangesFocus(this.toast)) {
+    if(daffToastChangesFocus(this.toast())) {
       this._focusStack.push();
       this._focusTrap.focusFirstTabbableElementWhenReady();
     }
@@ -104,7 +103,7 @@ export class DaffToastComponent implements AfterContentInit, AfterViewInit, OnDe
    * @docs-private
    */
   ngOnDestroy() {
-    if(daffToastChangesFocus(this.toast)) {
+    if(daffToastChangesFocus(this.toast())) {
       this._focusTrap.destroy();
     }
   }
