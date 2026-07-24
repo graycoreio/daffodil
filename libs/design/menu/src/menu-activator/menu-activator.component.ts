@@ -3,7 +3,6 @@ import {
   computed,
   Directive,
   input,
-  Input,
   OnDestroy,
   signal,
   TemplateRef,
@@ -55,7 +54,7 @@ export class DaffMenuActivatorDirective implements OnDestroy {
   /**
    * The menu content to display when activated.
    */
-  @Input() daffMenuActivator: Type<unknown> | TemplateRef<unknown>;
+  daffMenuActivator = input<Type<unknown> | TemplateRef<unknown>>();
 
   /**
    * An optional ID for the activator.
@@ -122,6 +121,6 @@ export class DaffMenuActivatorDirective implements OnDestroy {
    */
   onClick(event: MouseEvent) {
     event.preventDefault();
-    this.service.open(this.viewContainerRef, this.daffMenuActivator, { menuId: this.menuId(), xPosition: this.xPosition(), yPosition: this.yPosition() });
+    this.service.open(this.viewContainerRef, this.daffMenuActivator(), { menuId: this.menuId(), xPosition: this.xPosition(), yPosition: this.yPosition() });
   }
 }
