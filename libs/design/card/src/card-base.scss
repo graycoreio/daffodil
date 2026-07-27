@@ -11,6 +11,8 @@ $card-inner-border-radius: calc(#{$card-border-radius} - 1px);
 
 	.daff-card__image {
 		display: inline-block;
+		overflow: hidden;
+		height: 100%;
 		width: 100%;
 	}
 
@@ -37,10 +39,6 @@ $card-inner-border-radius: calc(#{$card-border-radius} - 1px);
 
 		.daff-card__image {
 			border-radius: $card-inner-border-radius $card-inner-border-radius 0 0;
-
-			img {
-				border-radius: $card-inner-border-radius $card-inner-border-radius 0 0;
-			}
 		}
 	}
 
@@ -54,14 +52,6 @@ $card-inner-border-radius: calc(#{$card-border-radius} - 1px);
 
 		.daff-card__image {
 			border-radius: $card-inner-border-radius 0 0 $card-inner-border-radius;
-
-			img {
-				border-radius: $card-inner-border-radius 0 0 $card-inner-border-radius;
-				object-fit: cover;
-				object-position: center center;
-				height: 100% !important; /* stylelint-disable-line declaration-no-important */
-				width: 100%;
-			}
 		}
 	}
 
