@@ -1,5 +1,6 @@
 /**
  * The document response for a server-side render.
+ * @deprecated in favor of native Angular features: https://angular.dev/guide/ssr#accessing-request-and-response-via-di.
  */
 export interface DaffSsrResponse {
   /**
