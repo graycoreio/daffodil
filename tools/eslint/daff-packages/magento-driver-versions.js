@@ -1,10 +1,9 @@
 /**
  * magento-driver-versions.js
  *
- * Asserts that every @daffodil/* package exposing a Magento driver via
- * `exports["./driver/magento/auto"]` declares the same complete set of
- * `magento-X.Y.Z` conditions. Set of conditions is derived from union
- *  of all Magento driver versions across all packages.
+ * Asserts that a @daffodil/* package exposing a Magento driver via
+ * `exports["./driver/magento/auto"]` declares a `magento-X.Y.Z` condition
+ * for every versioned driver directory found under `driver/magento/`.
  */
 'use strict';
 
@@ -14,41 +13,23 @@ const path = require('path');
 const AUTO_EXPORT_KEY = './driver/magento/auto';
 const MAGENTO_KEY_RE = /^magento-\d+\.\d+\.\d+$/;
 const VERSION_FROM_KEY_RE = /^magento-(\d+\.\d+\.\d+)$/;
+const VERSION_DIR_RE = /^\d+\.\d+\.\d+$/;
 
-const unionCache = new Map();
-
-function readAutoExport(pkgJsonPath) {
+function readPackageVersions(pkgDir) {
+  const magentoDir = path.join(pkgDir, 'driver', 'magento');
+  const versions = new Set();
+  let entries;
   try {
-    const raw = fs.readFileSync(pkgJsonPath, 'utf8');
-    const json = JSON.parse(raw);
-    return json?.exports?.[AUTO_EXPORT_KEY] ?? null;
+    entries = fs.readdirSync(magentoDir, { withFileTypes: true });
   } catch {
-    return null;
+    return versions;
   }
-}
-
-function computeUnion(repoRoot) {
-  if (unionCache.has(repoRoot)) {
-    return unionCache.get(repoRoot);
-  }
-  const libsDir = path.join(repoRoot, 'libs');
-  const union = new Set();
-  for (const entry of fs.readdirSync(libsDir, { withFileTypes: true })) {
-    if (!entry.isDirectory()) {
-      continue;
-    }
-    const auto = readAutoExport(path.join(libsDir, entry.name, 'package.json'));
-    if (!auto || typeof auto !== 'object') {
-      continue;
-    }
-    for (const key of Object.keys(auto)) {
-      if (MAGENTO_KEY_RE.test(key)) {
-        union.add(key);
-      }
+  for (const entry of entries) {
+    if (entry.isDirectory() && VERSION_DIR_RE.test(entry.name)) {
+      versions.add(`magento-${entry.name}`);
     }
   }
-  unionCache.set(repoRoot, union);
-  return union;
+  return versions;
 }
 
 function getPropKeyName(prop) {
@@ -83,14 +64,14 @@ module.exports = {
     type: 'problem',
     docs: {
       description:
-        'Enforce that every @daffodil package exposing a versioned Magento driver declares the complete, consistent set of magento-X.Y.Z conditions under exports["./driver/magento/auto"]',
+        'Enforce that a @daffodil package exposing a versioned Magento driver declares a magento-X.Y.Z condition under exports["./driver/magento/auto"] for every version directory present under driver/magento/',
     },
     schema: [],
     messages: {
       invalidKey:
         'Key `{{key}}` is not a valid Magento version condition. Expected `magento-<major>.<minor>.<patch>`.',
       missingVersion:
-        'Missing Magento version condition `{{key}}`. All @daffodil packages exposing a Magento driver must declare the same set of versions.',
+        'Missing Magento version condition `{{key}}`. A `driver/magento/{{version}}/` directory exists in this package but has no matching export condition.',
       entryNotObject:
         'Condition `{{key}}` must be an object with `types` and `default` fields.',
       missingField:
@@ -107,10 +88,7 @@ module.exports = {
     if (!filename || path.basename(filename) !== 'package.json') {
       return {};
     }
-    const repoRoot = context.cwd;
-    if (!repoRoot) {
-      return {};
-    }
+    const pkgDir = path.dirname(filename);
 
     return {
       Program(node) {
@@ -132,7 +110,7 @@ module.exports = {
           return;
         }
 
-        const union = computeUnion(repoRoot);
+        const expectedVersions = readPackageVersions(pkgDir);
         const seenVersions = new Set();
 
         function checkEntryShape(prop, keyName, version) {
@@ -220,12 +198,15 @@ module.exports = {
           checkEntryShape(prop, keyName, version);
         }
 
-        for (const expected of union) {
+        for (const expected of expectedVersions) {
           if (!seenVersions.has(expected)) {
             context.report({
               node: autoProp.key,
               messageId: 'missingVersion',
-              data: { key: expected },
+              data: {
+                key: expected,
+                version: expected.match(VERSION_FROM_KEY_RE)[1],
+              },
             });
           }
         }
