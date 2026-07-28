@@ -12,10 +12,11 @@ const path = require('path');
 
 const AUTO_EXPORT_KEY = './driver/magento/auto';
 const MAGENTO_KEY_RE = /^magento-\d+\.\d+\.\d+$/;
-const VERSION_FROM_KEY_RE = /^magento-(\d+\.\d+\.\d+)$/;
-const VERSION_DIR_RE = /^\d+\.\d+\.\d+$/;
+const VERSION_FROM_KEY_RE = /^magento-(\d+\.\d+\.\d+(-p\d+)?)$/;
+const VERSION_DIR_RE = /^\d+\.\d+\.\d+(-p\d+)?$/;
 
 function readPackageVersions(pkgDir) {
+	const packageName = pkgDir.split('/').pop();
   const magentoDir = path.join(pkgDir, 'driver', 'magento');
   const versions = new Set();
   let entries;
@@ -26,7 +27,7 @@ function readPackageVersions(pkgDir) {
   }
   for (const entry of entries) {
     if (entry.isDirectory() && VERSION_DIR_RE.test(entry.name)) {
-      versions.add(`magento-${entry.name}`);
+      versions.add(`${packageName}-magento-${entry.name}`);
     }
   }
   return versions;
@@ -69,7 +70,7 @@ module.exports = {
     schema: [],
     messages: {
       invalidKey:
-        'Key `{{key}}` is not a valid Magento version condition. Expected `magento-<major>.<minor>.<patch>`.',
+        'Key `{{key}}` is not a valid Magento version condition. Expected `<package-name>-magento-<major>.<minor>.<patch>`.',
       missingVersion:
         'Missing Magento version condition `{{key}}`. A `driver/magento/{{version}}/` directory exists in this package but has no matching export condition.',
       entryNotObject:
@@ -89,6 +90,8 @@ module.exports = {
       return {};
     }
     const pkgDir = path.dirname(filename);
+		const packageName = pkgDir.split('/').pop();
+		const MAGENTO_KEY_RE = new RegExp(`^${packageName}-magento-\d+\.\d+\.\d+(-p\d+)?$`);
 
     return {
       Program(node) {
