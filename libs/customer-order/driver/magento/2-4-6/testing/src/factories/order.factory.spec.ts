@@ -4,7 +4,7 @@ import { MagentoCustomerOrder } from '@daffodil/customer-order/driver/magento/2-
 
 import { MagentoCustomerOrderFactory } from './order.factory';
 
-describe('@daffodil/order/magento/2-4-1/testing | MagentoCustomerOrderFactory', () => {
+describe('@daffodil/order/magento/2.4.1/testing | MagentoCustomerOrderFactory', () => {
   let factory: MagentoCustomerOrderFactory;
 
   beforeEach(() => {
