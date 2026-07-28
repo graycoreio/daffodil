@@ -1,7 +1,4 @@
-export {
-  MAGENTO_POSSIBLE_TYPES,
-  schema,
-} from './schema/schema';
+export { MAGENTO_POSSIBLE_TYPES } from './schema/schema';
 export {
   DaffMagentoDriverConfig,
   provideMagentoDriver,

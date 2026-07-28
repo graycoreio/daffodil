@@ -20,7 +20,7 @@ import {
   getCmsPage,
 } from '@daffodil/content/driver/magento';
 import { MagentoCmsPageFactory } from '@daffodil/content/driver/magento/testing';
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 
 import { MagentoContentPageService } from './page.service';
 
@@ -43,7 +43,7 @@ describe('@daffodil/content/driver/magento | MagentoContentPageService', () => {
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],
