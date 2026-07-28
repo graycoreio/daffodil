@@ -1,5 +1,5 @@
 import { defineConfig, globalIgnores } from "eslint/config";
-import { angularEslintConfig, baseEslintConfig, jestEslintConfig, typescriptEslintConfig } from './tools/eslint/config/index.mjs';
+import { angularEslintConfig, baseEslintConfig, jestEslintConfig, packageJsonEslintConfig, typescriptEslintConfig } from './tools/eslint/config/index.mjs';
 
 export default defineConfig([
   globalIgnores([
@@ -8,5 +8,6 @@ export default defineConfig([
   baseEslintConfig,
   typescriptEslintConfig,
   angularEslintConfig,
-  jestEslintConfig
+  jestEslintConfig,
+  packageJsonEslintConfig,
 ]);
