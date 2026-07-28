@@ -3,6 +3,6 @@
     <demo-cart [cart]="cart$ | async" class="demo-cart-view__cart"></demo-cart>
   }
   @if (loading$ | async) {
-    <daff-loading-icon></daff-loading-icon>
+    <daff-spinner></daff-spinner>
   }
 </daff-container>

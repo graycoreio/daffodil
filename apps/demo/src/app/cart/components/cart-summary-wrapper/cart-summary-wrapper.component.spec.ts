@@ -18,7 +18,7 @@ import {
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
+import { DAFF_SPINNER_COMPONENTS } from '@daffodil/design/spinner';
 
 import { CartSummaryWrapperComponent } from './cart-summary-wrapper.component';
 import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
@@ -76,7 +76,7 @@ describe('CartSummaryWrapper', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DAFF_LOADING_ICON_COMPONENTS,
+        DAFF_SPINNER_COMPONENTS,
         WrapperComponent,
         CartSummaryWrapperComponent,
         MockCartTotalsComponent,

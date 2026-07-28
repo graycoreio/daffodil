@@ -9,7 +9,7 @@ import { DaffCartFacade } from '@daffodil/cart/state';
 import { DaffCheckoutPlacedOrderFacade } from '@daffodil/checkout/state';
 import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
-import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
+import { DAFF_SPINNER_COMPONENTS } from '@daffodil/design/spinner';
 import { DaffOrder } from '@daffodil/order';
 
 import { CartSummaryWrapperComponent } from '../../cart/components/cart-summary-wrapper/cart-summary-wrapper.component';
@@ -25,7 +25,7 @@ import { ThankYouComponent } from '../components/thank-you/thank-you.component';
     DAFF_CONTAINER_COMPONENTS,
     CartSummaryWrapperComponent,
     DAFF_ACCORDION_COMPONENTS,
-    DAFF_LOADING_ICON_COMPONENTS,
+    DAFF_SPINNER_COMPONENTS,
   ],
 })
 export class ThankYouViewComponent implements OnInit {

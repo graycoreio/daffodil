@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFacade } from '@daffodil/cart/state';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
-import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
+import { DAFF_SPINNER_COMPONENTS } from '@daffodil/design/spinner';
 
 import { CartComponent } from '../../components/cart/cart.component';
 
@@ -17,7 +17,7 @@ import { CartComponent } from '../../components/cart/cart.component';
   styleUrls: ['./cart-view.component.scss'],
   imports: [
     AsyncPipe,
-    DAFF_LOADING_ICON_COMPONENTS,
+    DAFF_SPINNER_COMPONENTS,
     DAFF_CONTAINER_COMPONENTS,
     CartComponent,
   ],

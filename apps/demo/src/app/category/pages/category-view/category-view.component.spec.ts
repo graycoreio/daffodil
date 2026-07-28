@@ -13,7 +13,7 @@ import {
 } from '@daffodil/category/state/testing';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 import { DaffContainerComponent } from '@daffodil/design/container';
-import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
+import { DaffSpinnerComponent } from '@daffodil/design/spinner';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductFactory,
@@ -39,7 +39,7 @@ describe('CategoryViewComponent', () => {
       imports: [
         CategoryViewComponent,
         DaffContainerComponent,
-        DaffLoadingIconComponent,
+        DaffSpinnerComponent,
         ProductGridComponent,
         DaffCategoryStateTestingModule,
         DaffProductTestingModule,
@@ -91,8 +91,8 @@ describe('CategoryViewComponent', () => {
       expect(productGrid).not.toBeNull();
     });
 
-    it('should not render daff-loading-icon', () => {
-      const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
+    it('should not render daff-spinner', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('daff-spinner'));
 
       expect(loadingIcon).toBeNull();
     });
@@ -110,8 +110,8 @@ describe('CategoryViewComponent', () => {
       expect(productGrid).toBeNull();
     });
 
-    it('should render daff-loading-icon', () => {
-      const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
+    it('should render daff-spinner', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('daff-spinner'));
       expect(loadingIcon).not.toBeNull();
     });
   });

@@ -18,7 +18,7 @@ import {
 import { DaffCartFacade } from '@daffodil/cart/state';
 import { DAFF_ACCORDION_COMPONENTS } from '@daffodil/design/accordion';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
-import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
+import { DAFF_SPINNER_COMPONENTS } from '@daffodil/design/spinner';
 import { DaffPersonalAddress } from '@daffodil/geography';
 
 import { CartSummaryWrapperComponent } from '../../../cart/components/cart-summary-wrapper/cart-summary-wrapper.component';
@@ -49,7 +49,7 @@ import {
   imports: [
     LetDirective,
     DAFF_CONTAINER_COMPONENTS,
-    DAFF_LOADING_ICON_COMPONENTS,
+    DAFF_SPINNER_COMPONENTS,
     DAFF_ACCORDION_COMPONENTS,
     DemoCheckoutShippingAddressFormComponent,
     DemoCheckoutShippingAddressSummaryComponent,

@@ -61,9 +61,6 @@
       "@daffodil/design/list": [
         "libs/design/list/src"
       ],
-      "@daffodil/design/loading-icon": [
-        "libs/design/loading-icon/src"
-      ],
       "@daffodil/design/media-gallery": [
         "libs/design/media-gallery/src"
       ],

@@ -149,8 +149,8 @@ describe('ProductViewComponent', () => {
       expect(productComponent).not.toBeNull();
     });
 
-    it('should not render daff-loading-icon', () => {
-      expect(fixture.debugElement.query(By.css('daff-loading-icon'))).toBeNull();
+    it('should not render daff-spinner', () => {
+      expect(fixture.debugElement.query(By.css('daff-spinner'))).toBeNull();
     });
   });
 
@@ -167,8 +167,8 @@ describe('ProductViewComponent', () => {
       expect(productElement).toBeNull();
     });
 
-    it('should render daff-loading-icon', () => {
-      expect(fixture.debugElement.query(By.css('daff-loading-icon'))).not.toBeNull();
+    it('should render daff-spinner', () => {
+      expect(fixture.debugElement.query(By.css('daff-spinner'))).not.toBeNull();
     });
   });
 });

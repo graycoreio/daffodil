@@ -15,7 +15,6 @@ import { provideDaffDesignHeroExamplesContent } from '@daffodil/design-examples/
 import { provideDaffDesignImageExamplesContent } from '@daffodil/design-examples/image';
 import { provideDaffDesignInputExamplesContent } from '@daffodil/design-examples/input';
 import { provideDaffDesignListExamplesContent } from '@daffodil/design-examples/list';
-import { provideDaffDesignLoadingIconExamplesContent } from '@daffodil/design-examples/loading-icon';
 import { provideDaffDesignMediaGalleryExamplesContent } from '@daffodil/design-examples/media-gallery';
 import { provideDaffDesignMenuExamplesContent } from '@daffodil/design-examples/menu';
 import { provideDaffDesignModalExamplesContent } from '@daffodil/design-examples/modal';
@@ -58,7 +57,6 @@ export const provideDaffioDesignExamplesContent = () => makeEnvironmentProviders
   provideDaffDesignImageExamplesContent(),
   provideDaffDesignInputExamplesContent(),
   provideDaffDesignListExamplesContent(),
-  provideDaffDesignLoadingIconExamplesContent(),
   provideDaffDesignMediaGalleryExamplesContent(),
   provideDaffDesignMenuExamplesContent(),
   provideDaffDesignModalExamplesContent(),

@@ -20,7 +20,7 @@ import {
   DAFF_BASIC_BUTTON_COMPONENTS,
   DAFF_ICON_BUTTON_COMPONENTS,
 } from '@daffodil/design/button';
-import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
+import { DaffSpinnerComponent } from '@daffodil/design/spinner';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductStateRootSlice,
@@ -42,7 +42,7 @@ import { ProductAddedComponent } from '../product-added/product-added.component'
     ViewCartDirective,
     ProceedToCheckoutDirective,
     ProductAddedComponent,
-    DaffLoadingIconComponent,
+    DaffSpinnerComponent,
     DAFF_BASIC_BUTTON_COMPONENTS,
     DAFF_ICON_BUTTON_COMPONENTS,
     FaIconComponent,

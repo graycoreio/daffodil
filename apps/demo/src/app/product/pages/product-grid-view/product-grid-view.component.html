@@ -3,6 +3,6 @@
     <demo-product-grid [products]="products$ | async"></demo-product-grid>
   }
   @if (loading$ | async) {
-    <daff-loading-icon></daff-loading-icon>
+    <daff-spinner></daff-spinner>
   }
   <daff-container>

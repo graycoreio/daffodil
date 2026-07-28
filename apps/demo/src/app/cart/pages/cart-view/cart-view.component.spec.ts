@@ -17,7 +17,7 @@ import {
 } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
-import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
+import { DAFF_SPINNER_COMPONENTS } from '@daffodil/design/spinner';
 
 import { DemoCartViewComponent } from './cart-view.component';
 
@@ -40,7 +40,7 @@ describe('DemoCartViewComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DAFF_CONTAINER_COMPONENTS,
-        DAFF_LOADING_ICON_COMPONENTS,
+        DAFF_SPINNER_COMPONENTS,
         DaffCartStateTestingModule,
         DemoCartViewComponent,
         MockCartWrapperComponent,
@@ -91,14 +91,14 @@ describe('DemoCartViewComponent', () => {
       fixture.detectChanges();
 
       cartWrapper = fixture.debugElement.query(By.css('demo-cart'));
-      loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
+      loadingIcon = fixture.debugElement.query(By.css('daff-spinner'));
     });
 
     it('should not render demo-cart', () => {
       expect(cartWrapper).toBeNull();
     });
 
-    it('should render daff-loading-icon', () => {
+    it('should render daff-spinner', () => {
       expect(loadingIcon).not.toBeNull();
     });
   });
@@ -113,14 +113,14 @@ describe('DemoCartViewComponent', () => {
       fixture.detectChanges();
 
       cartWrapper = fixture.debugElement.query(By.css('demo-cart'));
-      loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
+      loadingIcon = fixture.debugElement.query(By.css('daff-spinner'));
     });
 
     it('should render demo-cart', () => {
       expect(cartWrapper).not.toBeNull();
     });
 
-    it('should not render daff-loading-icon', () => {
+    it('should not render daff-spinner', () => {
       expect(loadingIcon).toBeNull();
     });
   });

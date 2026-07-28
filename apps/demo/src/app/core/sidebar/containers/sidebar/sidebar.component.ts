@@ -12,13 +12,13 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
-import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
 import {
   DaffSidebarSide,
   DaffSidebarMode,
   DaffSidebarComponent,
   DAFF_SIDEBAR_COMPONENTS,
 } from '@daffodil/design/sidebar';
+import { DAFF_SPINNER_COMPONENTS } from '@daffodil/design/spinner';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import {
   DaffNavigationFacade,
@@ -40,7 +40,7 @@ import * as fromDemoSidebar from '../../reducers/index';
     AsyncPipe,
     FaIconComponent,
     DAFF_SIDEBAR_COMPONENTS,
-    DAFF_LOADING_ICON_COMPONENTS,
+    DAFF_SPINNER_COMPONENTS,
     SidebarListComponent,
   ],
 })

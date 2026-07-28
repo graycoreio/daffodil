@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { DaffCategory } from '@daffodil/category';
 import { DaffCategoryFacade } from '@daffodil/category/state';
 import { DaffContainerComponent } from '@daffodil/design/container';
-import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
+import { DaffSpinnerComponent } from '@daffodil/design/spinner';
 import { DaffProduct } from '@daffodil/product';
 
 import { ProductGridComponent } from '../../../product/components/product-grid/product-grid.component';
@@ -19,7 +19,7 @@ import { ProductGridComponent } from '../../../product/components/product-grid/p
   imports: [
     AsyncPipe,
     DaffContainerComponent,
-    DaffLoadingIconComponent,
+    DaffSpinnerComponent,
     ProductGridComponent,
   ],
 })

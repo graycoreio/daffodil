@@ -20,7 +20,7 @@ import {
   DaffCartItemAdd,
   DaffCartStateModule,
 } from '@daffodil/cart/state';
-import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
+import { DaffSpinnerComponent } from '@daffodil/design/spinner';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductPageFacade,
@@ -36,7 +36,7 @@ import { ProductComponent } from '../../components/product/product.component';
   templateUrl: './product-view.component.html',
   imports: [
     AsyncPipe,
-    DaffLoadingIconComponent,
+    DaffSpinnerComponent,
     ProductComponent,
     AddToCartComponent,
     DaffProductStateModule,

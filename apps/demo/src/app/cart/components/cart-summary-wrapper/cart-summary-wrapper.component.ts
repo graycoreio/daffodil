@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { DaffCart } from '@daffodil/cart';
-import { DAFF_LOADING_ICON_COMPONENTS } from '@daffodil/design/loading-icon';
+import { DAFF_SPINNER_COMPONENTS } from '@daffodil/design/spinner';
 
 import { HelpBoxComponent } from '../../../misc/help-box/help-box.component';
 import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
@@ -19,7 +19,7 @@ import { CartTotalsComponent } from '../cart-totals/cart-totals.component';
   imports: [
     CartSummaryComponent,
     CartTotalsComponent,
-    DAFF_LOADING_ICON_COMPONENTS,
+    DAFF_SPINNER_COMPONENTS,
     HelpBoxComponent,
   ],
 })

@@ -6,7 +6,7 @@ import {
 import { Observable } from 'rxjs';
 
 import { DaffContainerComponent } from '@daffodil/design/container';
-import { DaffLoadingIconComponent } from '@daffodil/design/loading-icon';
+import { DaffSpinnerComponent } from '@daffodil/design/spinner';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductGridFacade,
@@ -21,7 +21,7 @@ import { ProductGridComponent } from '../../components/product-grid/product-grid
   templateUrl: './product-grid-view.component.html',
   imports: [
     AsyncPipe,
-    DaffLoadingIconComponent,
+    DaffSpinnerComponent,
     ProductGridComponent,
     DaffContainerComponent,
     DaffProductStateModule,

@@ -78,7 +78,7 @@ describe('ThankYouViewComponent', () => {
       fixture.detectChanges();
 
       thankYouElement = fixture.debugElement.query(By.css('.demo-thank-you'));
-      loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
+      loadingIcon = fixture.debugElement.query(By.css('daff-spinner'));
     });
 
     it('should not render thankYouElement', () => {
@@ -99,7 +99,7 @@ describe('ThankYouViewComponent', () => {
       fixture.detectChanges();
 
       thankYouElement = fixture.debugElement.query(By.css('.demo-thank-you-view'));
-      loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
+      loadingIcon = fixture.debugElement.query(By.css('daff-spinner'));
     });
 
     it('should render demo-thank-you', () => {

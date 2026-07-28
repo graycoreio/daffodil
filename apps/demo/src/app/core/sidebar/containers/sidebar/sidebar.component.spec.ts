@@ -104,8 +104,8 @@ describe('SidebarContainer', () => {
       expect(sidebarListComponent).toBeTruthy();
     });
 
-    it('should not render the daff-loading-icon', () => {
-      const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
+    it('should not render the daff-spinner', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('daff-spinner'));
 
       expect(loadingIcon).toBeFalsy();
     });
@@ -124,8 +124,8 @@ describe('SidebarContainer', () => {
       expect(sidebarListComponent).toBeFalsy();
     });
 
-    it('should render the daff-loading-icon', () => {
-      const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
+    it('should render the daff-spinner', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('daff-spinner'));
 
       expect(loadingIcon).toBeTruthy();
     });
