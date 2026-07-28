@@ -6,12 +6,16 @@
  * condition for every versioned driver directory found under `driver/magento/`.
  */
 
+import type { Rule } from 'eslint';
+import type {
+  AST,
+  RuleListener,
+} from 'jsonc-eslint-parser';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import type { Rule } from 'eslint';
-import type { AST, RuleListener } from 'jsonc-eslint-parser';
 
 const AUTO_EXPORT_KEY = './driver/magento/auto';
+const AUTO_TESING_EXPORT_KEY = './driver/magento/auto/testing';
 const VERSION_DIR_RE = /^\d+\.\d+\.\d+(-p\d+)?$/;
 
 function readPackageVersions(pkgDir: string): Set<string> {
@@ -71,7 +75,7 @@ const rule: Rule.RuleModule = {
     schema: [],
     messages: {
       invalidKey:
-        'Key `{{key}}` is not a valid Magento version condition. Expected `<package-name>-magento-<major>.<minor>.<patch>`.',
+        'Key `{{key}}` is not a valid Magento version condition. Expected `{{packageName}}-magento-<major>.<minor>.<patch>`.',
       missingVersion:
         'Missing Magento version condition `{{key}}`. A `driver/magento/{{version}}/` directory exists in this package but has no matching export condition.',
       entryNotObject:
@@ -81,7 +85,7 @@ const rule: Rule.RuleModule = {
       typesPathMismatch:
         'Condition `{{key}}` has a `types` path that does not reference `./driver/magento/{{version}}/`.',
       defaultPathMismatch:
-        'Condition `{{key}}` has a `default` path that does not end with `-magento-{{version}}.mjs`.',
+        'Condition `{{key}}` has a `default` path that does not end with `-magento-{{version}}{{suffix}}.mjs`.',
     },
   },
 
@@ -91,13 +95,15 @@ const rule: Rule.RuleModule = {
     }
 
     const pkgDir = path.dirname(context.physicalFilename);
+    const expectedVersions = readPackageVersions(pkgDir);
     const packageName = path.basename(pkgDir);
     const MAGENTO_KEY_RE = new RegExp(`^${packageName}-magento-(\\d+\\.\\d+\\.\\d+(-p\\d+)?)$`);
 
     function checkEntryShape(
       prop: AST.JSONProperty,
       keyName: string,
-      version: string | null,
+      version: string | null | undefined,
+      suffix = '',
     ): void {
       if (prop.value.type !== 'JSONObjectExpression') {
         context.report({
@@ -148,11 +154,15 @@ const rule: Rule.RuleModule = {
             messageId: 'missingField',
             data: { key: keyName, field: 'default' },
           });
-        } else if (version !== null && !defaultVal.endsWith(`-magento-${version}.mjs`)) {
+        } else if (version !== null && !defaultVal.endsWith(`-magento-${version}${suffix}.mjs`)) {
           context.report({
             loc: defaultProp.value.loc,
             messageId: 'defaultPathMismatch',
-            data: { key: keyName, version },
+            data: {
+              key: keyName,
+              version,
+              suffix,
+            },
           });
         }
       }
@@ -173,49 +183,62 @@ const rule: Rule.RuleModule = {
         if (!autoProp) {
           return;
         }
-        const autoObj = autoProp.value;
-        if (autoObj.type !== 'JSONObjectExpression') {
+        if (autoProp.value.type !== 'JSONObjectExpression') {
           return;
         }
-
-        const expectedVersions = readPackageVersions(pkgDir);
-        const seenVersions = new Set<string>();
-
-        for (const prop of autoObj.properties) {
-          const keyName = getPropKeyName(prop);
-          if (keyName === null) {
-            continue;
-          }
-
-          if (keyName === 'default') {
-            checkEntryShape(prop, keyName, null);
-            continue;
-          }
-
-          if (!MAGENTO_KEY_RE.test(keyName)) {
-            context.report({
-              loc: prop.key.loc,
-              messageId: 'invalidKey',
-              data: { key: keyName },
-            });
-            continue;
-          }
-
-          seenVersions.add(keyName);
-          const version = MAGENTO_KEY_RE.exec(keyName)![1];
-          checkEntryShape(prop, keyName, version);
+        const objs: Record<string, [AST.JSONProperty, AST.JSONObjectExpression]> = {
+          '': [autoProp, autoProp.value],
+        };
+        const autoTestingProp = findProp(exportsProp.value, AUTO_TESING_EXPORT_KEY);
+        if (!autoTestingProp) {
+          return;
+        }
+        if (autoTestingProp.value.type === 'JSONObjectExpression') {
+          objs['-testing'] = [autoTestingProp, autoTestingProp.value];
         }
 
-        for (const expected of expectedVersions) {
-          if (!seenVersions.has(expected)) {
-            const version = MAGENTO_KEY_RE.exec(expected)![1];
-            context.report({
-              loc: autoProp.key.loc,
-              messageId: 'missingVersion',
-              data: { key: expected, version },
-            });
+        Object.entries(objs).forEach(([suffix, [aProp, autoObj]]) => {
+          const seenVersions = new Set<string>();
+
+          for (const prop of autoObj.properties) {
+            const keyName = getPropKeyName(prop);
+            if (keyName === null) {
+              continue;
+            }
+
+            if (keyName === 'default') {
+              checkEntryShape(prop, keyName, null);
+              continue;
+            }
+
+            if (!MAGENTO_KEY_RE.test(keyName)) {
+              context.report({
+                loc: prop.key.loc,
+                messageId: 'invalidKey',
+                data: {
+                  key: keyName,
+                  packageName,
+                },
+              });
+              continue;
+            }
+
+            seenVersions.add(keyName);
+            const version = MAGENTO_KEY_RE.exec(keyName)?.[1];
+            checkEntryShape(prop, keyName, version, suffix);
           }
-        }
+
+          for (const expected of expectedVersions) {
+            if (!seenVersions.has(expected)) {
+              const version = MAGENTO_KEY_RE.exec(expected)?.[1];
+              context.report({
+                loc: aProp.key.loc,
+                messageId: 'missingVersion',
+                data: { key: expected, version },
+              });
+            }
+          }
+        });
       },
     };
 
