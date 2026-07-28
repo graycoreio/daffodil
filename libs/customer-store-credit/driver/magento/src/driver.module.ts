@@ -7,7 +7,7 @@ import {
 import {
   provideDaffCustomerOrderMagentoExtraOrderFragments,
   provideDaffCustomerOrderMagentoExtraOrderTransforms,
-} from '@daffodil/customer-order/driver/magento/2-4-6';
+} from '@daffodil/customer-order/driver/magento/2.4.6';
 import { provideDaffCustomerStoreCreditDriver } from '@daffodil/customer-store-credit/driver';
 
 import { DaffCustomerStoreCreditMagentoService } from './customer-store-credit.service';
