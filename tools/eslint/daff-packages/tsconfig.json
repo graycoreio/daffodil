@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.tools.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "../../../dist/eslint/daff-packages",
+    "rootDir": ".",
+    "declaration": false,
+    "types": ["node"]
+  },
+  "include": ["*.ts"]
+}

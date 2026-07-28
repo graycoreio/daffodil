@@ -88,7 +88,7 @@
     "eslint": "^9.28.0",
     "eslint-plugin-daff-docs": "file:tools/eslint/daff-docs",
     "eslint-plugin-daff-tsconfig": "file:tools/eslint/daff-tsconfig",
-    "eslint-plugin-daff-packages": "file:tools/eslint/daff-packages",
+    "eslint-plugin-daff-packages": "file:dist/eslint/daff-packages",
     "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-jasmine": "^4.2.1",
     "eslint-plugin-jest": "^28.8.3",
