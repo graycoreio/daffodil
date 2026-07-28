@@ -3,7 +3,8 @@
   "version": "0.0.0-PLACEHOLDER",
   "description": "Eslint shareable config for Angular projects using the Daffodil team's in-house style.",
   "type": "module",
-  "main": "index.mjs",
+  "main": "index.js",
+  "types": "index.d.ts",
   "peerDependencies": {
     "@stylistic/eslint-plugin": "0.0.0-PLACEHOLDER",
     "eslint": "0.0.0-PLACEHOLDER",
@@ -24,7 +25,8 @@
   },
   "scripts": {
     "publish": "cd ../../../dist/eslint-config && npm publish --access=public",
-    "build": "rm -rf ../../../dist/eslint-config && shx mkdir -p ../../../dist/eslint-config && shx cp -r . ../../../dist/eslint-config"
+    "build:copy-package": "shx cp package.json ../../../dist/eslint-config/package.json",
+    "build": "rm -rf ../../../dist/eslint-config && tsc -p tsconfig.json && npm run build:copy-package"
   },
   "nx": {
     "targets": {

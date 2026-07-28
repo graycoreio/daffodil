@@ -203,7 +203,7 @@
               "apps/demo/**/*.ts",
               "apps/demo/**/*.html"
             ],
-            "eslintConfig": "apps/demo/eslint.config.mjs"
+            "eslintConfig": "apps/demo/eslint.config.mts"
           }
         }
       }
@@ -392,7 +392,7 @@
               "apps/daffio/**/*.ts",
               "apps/daffio/**/*.html"
             ],
-            "eslintConfig": "apps/daffio/eslint.config.mjs"
+            "eslintConfig": "apps/daffio/eslint.config.mts"
           }
         },
         "serve-ssr": {
@@ -934,7 +934,7 @@
               "libs/driver/**/*.ts",
               "libs/driver/**/*.html"
             ],
-            "eslintConfig": "libs/driver/eslint.config.mjs"
+            "eslintConfig": "libs/driver/eslint.config.mts"
           }
         },
 				"generateFragmentTypes": {
@@ -985,7 +985,7 @@
               "libs/design/**/*.ts",
               "libs/design/**/*.html"
             ],
-            "eslintConfig": "libs/design/eslint.config.mjs"
+            "eslintConfig": "libs/design/eslint.config.mts"
           }
         }
       }
@@ -1029,7 +1029,7 @@
               "libs/design-examples/**/*.ts",
               "libs/design-examples/**/*.html"
             ],
-            "eslintConfig": "libs/design-examples/eslint.config.mjs"
+            "eslintConfig": "libs/design-examples/eslint.config.mts"
           }
         }
       }
@@ -1068,7 +1068,7 @@
               "libs/branding/**/*.ts",
               "libs/branding/**/*.html"
             ],
-            "eslintConfig": "libs/branding/eslint.config.mjs"
+            "eslintConfig": "libs/branding/eslint.config.mts"
           }
         }
       }
@@ -2279,7 +2279,7 @@
               "libs/storefront/**/*.ts",
               "libs/storefront/**/*.html"
             ],
-            "eslintConfig": "libs/storefront/eslint.config.mjs"
+            "eslintConfig": "libs/storefront/eslint.config.mts"
           }
         }
       }
@@ -2312,7 +2312,7 @@
               "libs/storefront-examples/**/*.ts",
               "libs/storefront-examples/**/*.html"
             ],
-            "eslintConfig": "libs/storefront-examples/eslint.config.mjs"
+            "eslintConfig": "libs/storefront-examples/eslint.config.mts"
           }
         }
       }

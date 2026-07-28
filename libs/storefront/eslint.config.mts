@@ -1,20 +1,30 @@
 import { defineConfig } from 'eslint/config';
-import rootConfig from '../../eslint.config.mjs';
+import daffDocsPlugin from 'eslint-plugin-daff-docs';
+import daffTsconfigPlugin from 'eslint-plugin-daff-tsconfig';
+import rootConfig from '../../eslint.config';
 
 export default defineConfig([
 	...rootConfig,
 	{
-		files: ['**/*.component.ts', '**/*.container.ts', '**/*.directive.ts'],
+		files: ['**/*.ts'],
+		plugins: {
+			'daff-tsconfig': daffTsconfigPlugin,
+		},
 		rules: {
-			'@angular-eslint/prefer-on-push-component-change-detection': [
-				'off'
-      ],
+			'daff-tsconfig/require-entry-point-paths': 'error',
+		},
+	},
+	{
+		files: ['**/*.component.ts', '**/*.container.ts', '**/*.directive.ts'],
+		plugins: {
+					'daff-docs': daffDocsPlugin,
+		},
+		rules: {
 			'@angular-eslint/component-class-suffix': [
 				'error',
 				{
 					suffixes: [
-					  'Component',
-						'Container'
+						'Component'
 					]
 				}
 			],
@@ -22,7 +32,7 @@ export default defineConfig([
 				'error',
 				{
 					type: 'element',
-					prefix: 'daff-branding',
+					prefix: 'daff-sf',
 					style: 'kebab-case'
 				}
 			],
@@ -30,10 +40,11 @@ export default defineConfig([
 				'error',
 				{
 					type: 'attribute',
-					prefix: 'daff-branding',
+					prefix: 'daffSf',
 					style: 'camelCase'
 				}
 			],
+			'daff-docs/docs-private-hostbinding-lifecycle': 'error',
 		}
 	},
 	{
@@ -41,11 +52,14 @@ export default defineConfig([
 			'**/*.spec.ts'
 		],
 		rules: {
+			'@angular-eslint/prefer-on-push-component-change-detection': [
+				0
+			],
 			'@angular-eslint/component-selector': [
 				'error',
 				{
 					type: 'element',
-					prefix: 'daff-branding',
+					prefix: 'daff-sf',
 					style: 'kebab-case'
 				}
 			],
@@ -53,12 +67,9 @@ export default defineConfig([
 				'error',
 				{
 					type: 'attribute',
-					prefix: 'daff-branding',
+					prefix: 'daffSf',
 					style: 'camelCase'
 				}
-			],
-			'@angular-eslint/component-class-suffix': [
-				'off',
 			],
 		}
 	},
