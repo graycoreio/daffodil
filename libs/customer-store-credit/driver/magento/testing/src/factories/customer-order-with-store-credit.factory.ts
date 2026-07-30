@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MockMagentoCustomerOrder } from '@daffodil/customer-order/driver/magento/2-4-6/testing';
+import { MockMagentoCustomerOrder } from '@daffodil/customer-order/driver/magento/2.4.6/testing';
 import { MagentoCustomerOrderWithStoreCredit } from '@daffodil/customer-store-credit/driver/magento';
 import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 import {
@@ -12,7 +12,7 @@ import {
   MagentoOrderPaymentFactory,
   MagentoOrderInvoiceFactory,
   MagentoOrderCreditFactory,
-} from '@daffodil/order/driver/magento/2-4-1/testing';
+} from '@daffodil/order/driver/magento/2.4.1/testing';
 
 export class MockMagentoCustomerOrderWithStoreCredit extends MockMagentoCustomerOrder implements MagentoCustomerOrderWithStoreCredit {
   total = {
