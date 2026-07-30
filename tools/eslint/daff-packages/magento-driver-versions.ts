@@ -179,21 +179,13 @@ export const rule: Rule.RuleModule = {
         if (!exportsProp) {
           return;
         }
+        const objs: Record<string, [AST.JSONProperty, AST.JSONObjectExpression]> = {};
         const autoProp = findProp(exportsProp.value, AUTO_EXPORT_KEY);
-        if (!autoProp) {
-          return;
+        if (autoProp?.value.type === 'JSONObjectExpression') {
+          objs[''] = [autoProp, autoProp.value];
         }
-        if (autoProp.value.type !== 'JSONObjectExpression') {
-          return;
-        }
-        const objs: Record<string, [AST.JSONProperty, AST.JSONObjectExpression]> = {
-          '': [autoProp, autoProp.value],
-        };
         const autoTestingProp = findProp(exportsProp.value, AUTO_TESING_EXPORT_KEY);
-        if (!autoTestingProp) {
-          return;
-        }
-        if (autoTestingProp.value.type === 'JSONObjectExpression') {
+        if (autoTestingProp?.value.type === 'JSONObjectExpression') {
           objs['-testing'] = [autoTestingProp, autoTestingProp.value];
         }
 
