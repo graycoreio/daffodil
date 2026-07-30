@@ -9,6 +9,13 @@
     "build": "tsc -p tsconfig.build.json && npm run build:copy-package",
     "test": "vitest run"
   },
+	"nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/eslint/daff-packages"]
+      }
+    }
+  },
   "peerDependencies": {
     "eslint": "*",
     "jsonc-eslint-parser": "*"
