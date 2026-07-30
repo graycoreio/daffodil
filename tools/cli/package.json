@@ -1,0 +1,70 @@
+{
+  "name": "@daffodil/cli",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Angular schematics for adding Daffodil ecommerce capabilities to existing projects",
+  "keywords": [
+    "angular",
+    "schematics",
+    "daffodil",
+    "ecommerce",
+    "magento",
+    "ng-add"
+  ],
+  "author": "Daffodil Team",
+  "license": "MIT",
+  "schematics": "./collection.json",
+  "bin": {
+    "daff": "./bin/daff.js"
+  },
+  "ng-add": {
+    "save": "dependencies"
+  },
+  "files": [
+    "**/*.js",
+    "**/*.d.ts",
+    "**/*.json",
+    "ng-add/files/**/*"
+  ],
+  "scripts": {
+    "prebuild": "rm -rf ../../dist/cli/*",
+    "build": "bash scripts/build.sh",
+    "pack": "cd ../../dist/cli/ && rm -f dist/cli/*.tgz && npm pack",
+    "publish": "cd ../../dist/cli && npm publish --access=public",
+    "test": "NODE_OPTIONS=\"--no-experimental-strip-types\" ts-node --compiler-options '{\"module\":\"commonjs\"}' -P tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
+		"collect-package-versions": "tsx scripts/collect-platform-versions.mts"
+  },
+  "dependencies": {
+    "@angular-devkit/core": "0.0.0-PLACEHOLDER",
+    "commander": "0.0.0-PLACEHOLDER",
+    "typescript": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "@nx/devkit": "0.0.0-PLACEHOLDER"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil.git",
+    "directory": "tools/schematics"
+  },
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil#readme",
+  "nx": {
+    "targets": {
+      "pack": {
+        "dependsOn": [
+          "build"
+        ]
+      },
+      "verdaccio:publish": {
+        "dependsOn": [
+          "build"
+        ]
+      },
+      "build": {
+        "outputs": ["{workspaceRoot}/dist/cli"]
+      }
+    }
+  }
+}
