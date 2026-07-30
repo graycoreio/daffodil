@@ -58,6 +58,29 @@ describe('magento-driver-versions', () => {
           }
         }`,
       },
+      // testing subpackage can be missing
+      {
+        filename: FILENAME,
+        code: `{
+          "name": "@daffodil/package",
+          "exports": {
+            "./driver/magento/auto": {
+              "package-magento-2.4.5": {
+                "types": "./driver/magento/2.4.5/index.d.ts",
+                "default": "./fesm2022/daffodil-package-magento-2.4.5.mjs"
+              },
+              "package-magento-2.4.6-p1": {
+                "types": "./driver/magento/2.4.6-p1/index.d.ts",
+                "default": "./fesm2022/daffodil-package-magento-2.4.6-p1.mjs"
+              },
+              "default": {
+                "types": "./src/index.d.ts",
+                "default": "./fesm2022/daffodil-package.mjs"
+              }
+            }
+          }
+        }`,
+      },
       // no magento auto export at all
       {
         filename: FILENAME,
@@ -106,6 +129,27 @@ describe('magento-driver-versions', () => {
             messageId: 'missingVersion',
             data: { key: 'package-magento-2.4.6-p1', version: '2.4.6-p1' },
           },
+          {
+            messageId: 'missingVersion',
+            data: { key: 'package-magento-2.4.6-p1', version: '2.4.6-p1' },
+          },
+        ],
+      },
+      // driver/magento/2.4.6-p1/ exists but has no condition in just auto, no testing
+      {
+        filename: FILENAME,
+        code: `{
+          "name": "@daffodil/package",
+          "exports": {
+            "./driver/magento/auto": {
+              "package-magento-2.4.5": {
+                "types": "./driver/magento/2.4.5/index.d.ts",
+                "default": "./fesm2022/daffodil-package-magento-2.4.5.mjs"
+              }
+            }
+          }
+        }`,
+        errors: [
           {
             messageId: 'missingVersion',
             data: { key: 'package-magento-2.4.6-p1', version: '2.4.6-p1' },
