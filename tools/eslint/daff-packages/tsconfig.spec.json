@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.tools.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "types": ["node"]
+  },
+  "include": ["*.spec.ts", "vitest.config.mts"]
+}

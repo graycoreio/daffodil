@@ -65,7 +65,7 @@ function getStringValue(node: AST.JSONExpression): string | null {
   return null;
 }
 
-const rule: Rule.RuleModule = {
+export const rule: Rule.RuleModule = {
   meta: {
     type: 'problem',
     docs: {

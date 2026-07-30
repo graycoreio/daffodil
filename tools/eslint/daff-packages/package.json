@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "build:copy-package": "shx cp package.json ../../../dist/eslint/daff-packages/package.json",
-    "build": "tsc -p tsconfig.json && npm run build:copy-package",
-    "postbuild": "shx rm -rf ../../../node_modules/eslint-plugin-daff-packages && shx mkdir -p ../../../node_modules/eslint-plugin-daff-packages && shx cp -r ../../../dist/eslint/daff-packages/* ../../../node_modules/eslint-plugin-daff-packages"
+    "build": "tsc -p tsconfig.build.json && npm run build:copy-package",
+    "test": "vitest run"
   },
   "peerDependencies": {
     "eslint": "*",
