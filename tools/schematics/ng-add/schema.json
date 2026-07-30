@@ -54,5 +54,39 @@
         ]
       }
     }
-  }
+  },
+	"if": {
+		"properties": {
+			"driver": {
+				"const": "magento"
+			}
+		}
+	},
+	"then": {
+		"properties": {
+			"driverVersion": {
+				"pattern": "[0-9]\\.[0-9]\\.[0-9](-p[0-9])?",
+				"type": "string",
+      	"description": "The version of magento to target."
+			}
+		}
+	},
+	"else": {
+		"if": {
+			"properties": {
+				"driver": {
+					"const": "shopify"
+				}
+			}
+		},
+		"then": {
+			"properties": {
+				"driverVersion": {
+					"pattern": "[0-9]\\.[0-9]\\.[0-9]",
+					"type": "string",
+					"description": "The version of shopify to target."
+				}
+			}
+		}
+	}
 }
