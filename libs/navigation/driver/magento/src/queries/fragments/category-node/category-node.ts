@@ -33,14 +33,18 @@ const categoryNodeFragment = `
  */
 //todo: use nested fragments when this bug is fixed: https://github.com/magento/magento2/issues/31086
 export function getCategoryNodeFragment(depth: number = 3, extraFragments: Array<DocumentNode> = []): DocumentNode {
+  const extraFragmentSpread = daffBuildFragmentNameSpread(...extraFragments);
   const fragmentBody = new Array(depth).fill(null).reduce(acc => `
     ${categoryNodeFragment}
     children_count
     children {
       ${acc}
     }
-    ${daffBuildFragmentNameSpread(...extraFragments)}
-  `, categoryNodeFragment);
+    ${extraFragmentSpread}
+  `, `
+    ${categoryNodeFragment}
+    ${extraFragmentSpread}
+  `);
 
   return gql`
     fragment recursiveCategoryNode on CategoryTree {
