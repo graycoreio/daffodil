@@ -1,8 +1,7 @@
 import { defineConfig } from 'eslint/config';
 import daffDocsPlugin from 'eslint-plugin-daff-docs';
 import daffTsconfigPlugin from 'eslint-plugin-daff-tsconfig';
-import rootConfig from '../../eslint.config.mjs';
-
+import rootConfig from '../../eslint.config';
 export default defineConfig([
 	...rootConfig,
 	{
@@ -15,9 +14,23 @@ export default defineConfig([
 		},
 	},
 	{
+		files: ['**/*.ts'],
+		ignores: ['**/*.spec.ts'],
+		settings: {
+			'import/resolver': {
+				node: {
+					extensions: ['.ts', '.js'],
+				},
+			},
+		},
+		rules: {
+			'import/no-cycle': ['warn', { ignoreExternal: true }],
+		},
+	},
+	{
 		files: ['**/*.component.ts', '**/*.container.ts', '**/*.directive.ts'],
 		plugins: {
-					'daff-docs': daffDocsPlugin,
+			'daff-docs': daffDocsPlugin,
 		},
 		rules: {
 			'@angular-eslint/component-class-suffix': [
@@ -32,7 +45,7 @@ export default defineConfig([
 				'error',
 				{
 					type: 'element',
-					prefix: 'daff-sf',
+					prefix: 'daff',
 					style: 'kebab-case'
 				}
 			],
@@ -40,7 +53,7 @@ export default defineConfig([
 				'error',
 				{
 					type: 'attribute',
-					prefix: 'daffSf',
+					prefix: 'daff',
 					style: 'camelCase'
 				}
 			],
@@ -59,7 +72,7 @@ export default defineConfig([
 				'error',
 				{
 					type: 'element',
-					prefix: 'daff-sf',
+					prefix: 'daff',
 					style: 'kebab-case'
 				}
 			],
@@ -67,7 +80,7 @@ export default defineConfig([
 				'error',
 				{
 					type: 'attribute',
-					prefix: 'daffSf',
+					prefix: 'daff',
 					style: 'camelCase'
 				}
 			],

@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.tools.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/eslint-config",
+    "rootDir": ".",
+    "declaration": true
+  },
+  "include": ["*.ts", "src/*.ts"]
+}

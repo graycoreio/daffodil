@@ -203,7 +203,7 @@
               "apps/demo/**/*.ts",
               "apps/demo/**/*.html"
             ],
-            "eslintConfig": "apps/demo/eslint.config.mjs"
+            "eslintConfig": "apps/demo/eslint.config.mts"
           }
         }
       }
@@ -392,7 +392,7 @@
               "apps/daffio/**/*.ts",
               "apps/daffio/**/*.html"
             ],
-            "eslintConfig": "apps/daffio/eslint.config.mjs"
+            "eslintConfig": "apps/daffio/eslint.config.mts"
           }
         },
         "serve-ssr": {
@@ -463,6 +463,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/analytics/package.json",
               "libs/analytics/**/*.ts",
               "libs/analytics/**/*.html"
             ]
@@ -502,6 +503,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/authorizenet/package.json",
               "libs/authorizenet/**/*.ts",
               "libs/authorizenet/**/*.html"
             ]
@@ -541,6 +543,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/product/package.json",
               "libs/product/**/*.ts",
               "libs/product/**/*.html"
             ]
@@ -580,6 +583,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/related-products/package.json",
               "libs/related-products/**/*.ts",
               "libs/related-products/**/*.html"
             ]
@@ -619,6 +623,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/upsell-products/package.json",
               "libs/upsell-products/**/*.ts",
               "libs/upsell-products/**/*.html"
             ]
@@ -658,6 +663,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/product-configurable/package.json",
               "libs/product-configurable/**/*.ts",
               "libs/product-configurable/**/*.html"
             ]
@@ -697,6 +703,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/product-composite/package.json",
               "libs/product-composite/**/*.ts",
               "libs/product-composite/**/*.html"
             ]
@@ -736,6 +743,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/cart/package.json",
               "libs/cart/**/*.ts",
               "libs/cart/**/*.html"
             ]
@@ -775,6 +783,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/cart-customer/package.json",
               "libs/cart-customer/**/*.ts",
               "libs/cart-customer/**/*.html"
             ]
@@ -814,6 +823,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/category/package.json",
               "libs/category/**/*.ts",
               "libs/category/**/*.html"
             ]
@@ -853,6 +863,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/checkout/package.json",
               "libs/checkout/**/*.ts",
               "libs/checkout/**/*.html"
             ]
@@ -892,6 +903,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/core/package.json",
               "libs/core/**/*.ts",
               "libs/core/**/*.html"
             ]
@@ -931,10 +943,11 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/driver/package.json",
               "libs/driver/**/*.ts",
               "libs/driver/**/*.html"
             ],
-            "eslintConfig": "libs/driver/eslint.config.mjs"
+            "eslintConfig": "libs/driver/eslint.config.mts"
           }
         },
 				"generateFragmentTypes": {
@@ -982,10 +995,11 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/design/package.json",
               "libs/design/**/*.ts",
               "libs/design/**/*.html"
             ],
-            "eslintConfig": "libs/design/eslint.config.mjs"
+            "eslintConfig": "libs/design/eslint.config.mts"
           }
         }
       }
@@ -1026,10 +1040,11 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/design-examples/package.json",
               "libs/design-examples/**/*.ts",
               "libs/design-examples/**/*.html"
             ],
-            "eslintConfig": "libs/design-examples/eslint.config.mjs"
+            "eslintConfig": "libs/design-examples/eslint.config.mts"
           }
         }
       }
@@ -1065,10 +1080,11 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/branding/package.json",
               "libs/branding/**/*.ts",
               "libs/branding/**/*.html"
             ],
-            "eslintConfig": "libs/branding/eslint.config.mjs"
+            "eslintConfig": "libs/branding/eslint.config.mts"
           }
         }
       }
@@ -1105,6 +1121,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/navigation/package.json",
               "libs/navigation/**/*.ts",
               "libs/navigation/**/*.html"
             ]
@@ -1144,6 +1161,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/newsletter/package.json",
               "libs/newsletter/**/*.ts",
               "libs/newsletter/**/*.html"
             ]
@@ -1183,6 +1201,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/contact/package.json",
               "libs/contact/**/*.ts",
               "libs/contact/**/*.html"
             ]
@@ -1222,6 +1241,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/auth/package.json",
               "libs/auth/**/*.ts",
               "libs/auth/**/*.html"
             ]
@@ -1261,6 +1281,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/geography/package.json",
               "libs/geography/**/*.ts",
               "libs/geography/**/*.html"
             ]
@@ -1299,6 +1320,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/paypal/package.json",
               "libs/paypal/**/*.ts",
               "libs/paypal/**/*.html"
             ]
@@ -1338,6 +1360,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/order/package.json",
               "libs/order/**/*.ts",
               "libs/order/**/*.html"
             ]
@@ -1376,6 +1399,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/external-router/package.json",
               "libs/external-router/**/*.ts",
               "libs/external-router/**/*.html"
             ]
@@ -1414,6 +1438,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/search/package.json",
               "libs/search/**/*.ts",
               "libs/search/**/*.html"
             ]
@@ -1452,6 +1477,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/search-product/package.json",
               "libs/search-product/**/*.ts",
               "libs/search-product/**/*.html"
             ]
@@ -1490,6 +1516,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/search-product-composite/package.json",
               "libs/search-product-composite/**/*.ts",
               "libs/search-product-composite/**/*.html"
             ]
@@ -1528,6 +1555,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/search-product-configurable/package.json",
               "libs/search-product-configurable/**/*.ts",
               "libs/search-product-configurable/**/*.html"
             ]
@@ -1566,6 +1594,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/search-category/package.json",
               "libs/search-category/**/*.ts",
               "libs/search-category/**/*.html"
             ]
@@ -1604,6 +1633,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/seo/package.json",
               "libs/seo/**/*.ts",
               "libs/seo/**/*.html"
             ]
@@ -1642,6 +1672,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/content/package.json",
               "libs/content/**/*.ts",
               "libs/content/**/*.html"
             ]
@@ -1680,6 +1711,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/reviews/package.json",
               "libs/reviews/**/*.ts",
               "libs/reviews/**/*.html"
             ]
@@ -1718,6 +1750,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/payment/package.json",
               "libs/payment/**/*.ts",
               "libs/payment/**/*.html"
             ]
@@ -1756,6 +1789,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/forms/package.json",
               "libs/forms/**/*.ts",
               "libs/forms/**/*.html"
             ]
@@ -1794,6 +1828,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/customer/package.json",
               "libs/customer/**/*.ts",
               "libs/customer/**/*.html"
             ]
@@ -1832,6 +1867,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/customer-auth/package.json",
               "libs/customer-auth/**/*.ts",
               "libs/customer-auth/**/*.html"
             ]
@@ -1870,6 +1906,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/customer-order/package.json",
               "libs/customer-order/**/*.ts",
               "libs/customer-order/**/*.html"
             ]
@@ -1907,6 +1944,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/customer-store-credit/package.json",
               "libs/customer-store-credit/**/*.ts",
               "libs/customer-store-credit/**/*.html"
             ]
@@ -1944,6 +1982,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/cart-store-credit/package.json",
               "libs/cart-store-credit/**/*.ts",
               "libs/cart-store-credit/**/*.html"
             ]
@@ -1981,6 +2020,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/customer-payment/package.json",
               "libs/customer-payment/**/*.ts",
               "libs/customer-payment/**/*.html"
             ]
@@ -2018,6 +2058,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/customer-payment-authorizenet/package.json",
               "libs/customer-payment-authorizenet/**/*.ts",
               "libs/customer-payment-authorizenet/**/*.html"
             ]
@@ -2055,6 +2096,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/router/package.json",
               "libs/router/**/*.ts",
               "libs/router/**/*.html"
             ]
@@ -2092,6 +2134,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/ssr/package.json",
               "libs/ssr/**/*.ts",
               "libs/ssr/**/*.html"
             ]
@@ -2134,6 +2177,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/docs/package.json",
               "libs/docs/**/*.ts",
               "libs/docs/**/*.html"
             ]
@@ -2179,6 +2223,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/router-store/package.json",
               "libs/router-store/**/*.ts",
               "libs/router-store/**/*.html"
             ]
@@ -2220,6 +2265,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/dev-tools/package.json",
               "libs/dev-tools/**/*.ts",
               "libs/dev-tools/**/*.html"
             ]
@@ -2276,10 +2322,11 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/storefront/package.json",
               "libs/storefront/**/*.ts",
               "libs/storefront/**/*.html"
             ],
-            "eslintConfig": "libs/storefront/eslint.config.mjs"
+            "eslintConfig": "libs/storefront/eslint.config.mts"
           }
         }
       }
@@ -2309,10 +2356,11 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
+              "libs/storefront-examples/package.json",
               "libs/storefront-examples/**/*.ts",
               "libs/storefront-examples/**/*.html"
             ],
-            "eslintConfig": "libs/storefront-examples/eslint.config.mjs"
+            "eslintConfig": "libs/storefront-examples/eslint.config.mts"
           }
         }
       }

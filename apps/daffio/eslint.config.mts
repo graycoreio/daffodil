@@ -1,43 +1,16 @@
 import { defineConfig } from 'eslint/config';
-import daffDocsPlugin from 'eslint-plugin-daff-docs';
-import daffTsconfigPlugin from 'eslint-plugin-daff-tsconfig';
-import rootConfig from '../../eslint.config.mjs';
+import rootConfig from '../../eslint.config';
 export default defineConfig([
 	...rootConfig,
 	{
-		files: ['**/*.ts'],
-		plugins: {
-			'daff-tsconfig': daffTsconfigPlugin,
-		},
-		rules: {
-			'daff-tsconfig/require-entry-point-paths': 'error',
-		},
-	},
-	{
-		files: ['**/*.ts'],
-		ignores: ['**/*.spec.ts'],
-		settings: {
-			'import/resolver': {
-				node: {
-					extensions: ['.ts', '.js'],
-				},
-			},
-		},
-		rules: {
-			'import/no-cycle': ['warn', { ignoreExternal: true }],
-		},
-	},
-	{
 		files: ['**/*.component.ts', '**/*.container.ts', '**/*.directive.ts'],
-		plugins: {
-			'daff-docs': daffDocsPlugin,
-		},
 		rules: {
 			'@angular-eslint/component-class-suffix': [
 				'error',
 				{
 					suffixes: [
-						'Component'
+						'Component',
+						'Container',
 					]
 				}
 			],
@@ -45,7 +18,7 @@ export default defineConfig([
 				'error',
 				{
 					type: 'element',
-					prefix: 'daff',
+					prefix: 'daffio',
 					style: 'kebab-case'
 				}
 			],
@@ -53,11 +26,16 @@ export default defineConfig([
 				'error',
 				{
 					type: 'attribute',
-					prefix: 'daff',
+					prefix: 'daffio',
 					style: 'camelCase'
 				}
 			],
-			'daff-docs/docs-private-hostbinding-lifecycle': 'error',
+			'no-restricted-imports': ['error', {
+				'patterns': [{
+					'group': ['libs/*'],
+					'message': 'Usage of private modules is not allowed. Did you mean to import from @daffodil/*?'
+				}],
+			}],
 		}
 	},
 	{
@@ -72,7 +50,7 @@ export default defineConfig([
 				'error',
 				{
 					type: 'element',
-					prefix: 'daff',
+					prefix: 'daffio',
 					style: 'kebab-case'
 				}
 			],
@@ -80,7 +58,7 @@ export default defineConfig([
 				'error',
 				{
 					type: 'attribute',
-					prefix: 'daff',
+					prefix: 'daffio',
 					style: 'camelCase'
 				}
 			],

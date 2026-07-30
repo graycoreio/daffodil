@@ -1,0 +1,16 @@
+{
+  "name": "eslint-plugin-daff-packages",
+  "version": "0.0.0",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "private": true,
+  "scripts": {
+    "build:copy-package": "shx cp package.json ../../../dist/eslint/daff-packages/package.json",
+    "build": "tsc -p tsconfig.build.json && npm run build:copy-package",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "eslint": "*",
+    "jsonc-eslint-parser": "*"
+  }
+}

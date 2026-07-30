@@ -1,5 +1,5 @@
 import { defineConfig } from 'eslint/config';
-import rootConfig from '../../eslint.config.mjs';
+import rootConfig from '../../eslint.config';
 
 export default defineConfig([
 	...rootConfig,
@@ -22,7 +22,7 @@ export default defineConfig([
 				'error',
 				{
 					type: 'element',
-					prefix: 'demo',
+					prefix: 'daff-branding',
 					style: 'kebab-case'
 				}
 			],
@@ -30,20 +30,9 @@ export default defineConfig([
 				'error',
 				{
 					type: 'attribute',
-					prefix: 'demo',
+					prefix: 'daff-branding',
 					style: 'camelCase'
 				}
-			],
-			'no-restricted-imports': [
-				'error', 
-				{
-          'patterns': [
-						{
-            	'group': ['libs/*'],
-            	'message': 'Usage of private modules is not allowed. Did you mean to import from @daffodil/*?'
-          	}
-					],
-        }
 			],
 		}
 	},
@@ -56,7 +45,7 @@ export default defineConfig([
 				'error',
 				{
 					type: 'element',
-					prefix: 'demo',
+					prefix: 'daff-branding',
 					style: 'kebab-case'
 				}
 			],
@@ -64,7 +53,7 @@ export default defineConfig([
 				'error',
 				{
 					type: 'attribute',
-					prefix: 'demo',
+					prefix: 'daff-branding',
 					style: 'camelCase'
 				}
 			],

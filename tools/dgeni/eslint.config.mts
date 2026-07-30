@@ -1,6 +1,5 @@
 import { defineConfig } from 'eslint/config';
-import daffDocsPlugin from 'eslint-plugin-daff-docs';
-import rootConfig from '../../eslint.config.mjs';
+import rootConfig from '../../eslint.config';
 export default defineConfig([
 	...rootConfig,
 	{

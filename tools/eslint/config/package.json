@@ -3,7 +3,8 @@
   "version": "0.0.0-PLACEHOLDER",
   "description": "Eslint shareable config for Angular projects using the Daffodil team's in-house style.",
   "type": "module",
-  "main": "index.mjs",
+  "main": "index.js",
+  "types": "index.d.ts",
   "peerDependencies": {
     "@stylistic/eslint-plugin": "0.0.0-PLACEHOLDER",
     "eslint": "0.0.0-PLACEHOLDER",
@@ -12,19 +13,24 @@
     "eslint-plugin-jest": "0.0.0-PLACEHOLDER",
     "eslint-plugin-jsdoc": "0.0.0-PLACEHOLDER",
     "eslint-plugin-modules-newlines": "0.0.0-PLACEHOLDER",
-    "eslint-plugin-unused-imports": "0.0.0-PLACEHOLDER"
+    "eslint-plugin-unused-imports": "0.0.0-PLACEHOLDER",
+    "eslint-plugin-daff-packages": "0.0.0-PLACEHOLDER"
   },
   "optionalDependencies": {
     "angular-eslint": "0.0.0-PLACEHOLDER",
     "typescript-eslint": "0.0.0-PLACEHOLDER"
   },
+	"devDependencies": {
+    "eslint-plugin-daff-packages": "0.0.0-PLACEHOLDER"
+	},
 	"repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
   },
   "scripts": {
     "publish": "cd ../../../dist/eslint-config && npm publish --access=public",
-    "build": "rm -rf ../../../dist/eslint-config && shx mkdir -p ../../../dist/eslint-config && shx cp -r . ../../../dist/eslint-config"
+    "build:copy-package": "shx cp package.json ../../../dist/eslint-config/package.json",
+    "build": "rm -rf ../../../dist/eslint-config && tsc -p tsconfig.json && npm run build:copy-package"
   },
   "nx": {
     "targets": {
