@@ -29,7 +29,8 @@
     "publish": "cd ../../dist/commerce && npm publish --access=public",
     "verdaccio:publish": "bash scripts/publish-local.sh",
     "verdaccio:unpublish": "bash scripts/unpublish-local.sh",
-    "test": "NODE_OPTIONS=\"--no-experimental-strip-types\" ts-node --compiler-options '{\"module\":\"commonjs\"}' -P tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
+    "test": "NODE_OPTIONS=\"--no-experimental-strip-types\" ts-node --compiler-options '{\"module\":\"commonjs\"}' -P tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
+		"collect-package-versions": "tsx scripts/collect-platform-versions.mts"
   },
   "dependencies": {
     "@angular-devkit/core": "0.0.0-PLACEHOLDER",

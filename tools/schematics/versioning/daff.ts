@@ -20,16 +20,16 @@ import {
   resolve,
 } from 'path';
 
-import { DaffJson } from '../versioning/daff-json.type';
-import packagesJson from '../versioning/packages.json';
-import { DaffVersioningPlatform } from '../versioning/platform.type';
-import { DAFF_VERSIONING_PLATFORMS } from '../versioning/platforms.const';
+import { DaffJson } from './daff-json.type';
+import packagesJson from './packages.json';
+import { DaffVersioningPlatform } from './platform.type';
+import { DAFF_VERSIONING_PLATFORMS } from './platforms.const';
 import {
   DAFF_JSON_DEFAULT,
   DaffVersionString,
   getDriverVersion,
   syncProjects,
-} from '../versioning/public_api';
+} from './public_api';
 
 interface Options {
   project?: string;
