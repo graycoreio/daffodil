@@ -17,6 +17,13 @@ import { CategoryNode } from '@daffodil/navigation/driver/magento';
 
 import { getCategoryNodeFragment } from './category-node';
 
+type CategoryNodeWithExtraField = CategoryNode & {
+  extra_field: string;
+  children?: Array<CategoryNode & {
+    extra_field: string;
+  }>;
+};
+
 const generateMagentoCategoryTree = (id: CategoryNode['uid']): CategoryNode => ({
   __typename: 'CategoryTree',
   uid: id,
@@ -193,6 +200,75 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
       const op = controller.expectOne('TestQuery');
 
       op.flushData({ categoryList: depth3NavigationTree });
+    });
+  });
+
+  describe('when extra fragments are provided', () => {
+    const extraFragment = gql`
+      fragment extraFragment on CategoryTree {
+        extra_field
+      }
+    `;
+
+    let query: DocumentNode;
+    let response: Observable<Apollo.QueryResult<{categoryList: CategoryNodeWithExtraField}>>;
+    let extraFieldNavigationTree: CategoryNodeWithExtraField;
+
+    beforeEach(() => {
+      const fragment = getCategoryNodeFragment(1, [extraFragment]);
+
+      query = gql`
+        query TestQuery {
+          categoryList {
+            ...recursiveCategoryNode
+          }
+        }
+        ${fragment}
+      `;
+
+      extraFieldNavigationTree = {
+        ...generateMagentoCategoryTree('2'),
+        extra_field: 'root value',
+        children_count: 1,
+        children: [{
+          ...childlessNavigationTree,
+          extra_field: 'child value',
+        }],
+      };
+
+      response = apollo.query({ query });
+    });
+
+    it('should spread the extra fragments into every level of the tree, including the deepest', () => {
+      const depth = 3;
+      const fragment = getCategoryNodeFragment(depth, [extraFragment]);
+
+      let selectionSet = (<any>fragment.definitions[0]).selectionSet;
+      let levels = 0;
+
+      while (selectionSet) {
+        expect(selectionSet.selections.some(selection =>
+          selection.kind === 'FragmentSpread' && selection.name.value === 'extraFragment',
+        )).toBeTrue();
+        levels++;
+        selectionSet = selectionSet.selections.find(selection =>
+          selection.kind === 'Field' && selection.name.value === 'children',
+        )?.selectionSet;
+      }
+
+      expect(levels).toEqual(depth + 1);
+    });
+
+    it('should query extra fragment fields on the deepest nodes of the tree', done => {
+      response.subscribe(resp => {
+        expect(resp.data.categoryList.extra_field).toEqual('root value');
+        expect(resp.data.categoryList.children[0].extra_field).toEqual('child value');
+        done();
+      });
+
+      const op = controller.expectOne('TestQuery');
+
+      op.flushData({ categoryList: extraFieldNavigationTree });
     });
   });
 
