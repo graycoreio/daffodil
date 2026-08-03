@@ -1,0 +1,14 @@
+{
+  "builders": {
+    "application": {
+      "implementation": "./versioning/application-builder",
+      "schema": "./versioning/daff.schema.json",
+      "description": "Wraps the angular application builder with driver conditions."
+    },
+		"sync": {
+      "implementation": "./versioning/sync-builder",
+      "schema": "./versioning/daff.schema.json",
+      "description": "Modifies application build conditions for the specified driver versions."
+    }
+  }
+}

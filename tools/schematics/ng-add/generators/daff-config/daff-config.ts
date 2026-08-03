@@ -8,12 +8,8 @@ import chalk from 'chalk';
 
 import {
   DAFF_JSON_DEFAULT,
-  DaffJson,
   isSupportedPlatform,
-  packagesJson,
-  syncProjects,
-} from '@daffodil/cli/versioning';
-
+} from '../../../versioning/public_api';
 import { NgAddOptions } from '../../schema';
 
 const DAFF_JSON_PATH = 'daff.json';
@@ -53,32 +49,22 @@ export const addBuildCondition = (options: NgAddOptions, projectName_: string): 
     return (tree: Tree) => tree;
   }
 
-  return (tree: Tree, context: SchematicContext) => {
-    try {
-      const daffJson = tree.readJson(DAFF_JSON_PATH);
-      return daffJson
-        ? updateWorkspace(async (workspace) => {
-          for (const [projectName, project] of [...workspace.projects.entries()].filter(([pName, p]) => p.extensions.projectType === 'application')) {
-            try {
-              workspace.projects.set(
-                projectName,
-                syncProjects(
-									<DaffJson>daffJson,
-									{
-									  angular: project,
-									  name: projectName,
-									},
-									packagesJson,
-                ).angular,
-              );
-            } catch (error: any) {
-              console.warn(`Failed to update project config for ${projectName}, skipping.`, error.message);
-            }
-          }
-        })(tree, context)
-        : tree;
-    } catch (error) {
-      return tree;
-    }
-  };
+  return (tree: Tree, context: SchematicContext) => isSupportedPlatform(options.driver) && options.driverVersion
+    ? updateWorkspace(async (workspace) => {
+      for (const [projectName, project] of [...workspace.projects.entries()].filter(([pName, p]) => p.extensions.projectType === 'application')) {
+        const target = project?.targets.get('build');
+        if (target && options.driver && options.driverVersion) {
+          target.options ??= {};
+          target.options.builder = '@daffodil/commerce:application';
+          target.options.drivers = {
+            [options.driver]: options.driverVersion,
+          };
+          workspace.projects.set(
+            projectName,
+            project,
+          );
+        }
+      }
+    })(tree, context)
+    : tree;
 };

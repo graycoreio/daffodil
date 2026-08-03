@@ -13,6 +13,7 @@
   "author": "Daffodil Team",
   "license": "MIT",
   "schematics": "./collection.json",
+  "builders": "./builders.json",
   "ng-add": {
     "save": "dependencies"
   },
@@ -41,7 +42,6 @@
   "devDependencies": {
     "@angular-devkit/schematics-cli": "0.0.0-PLACEHOLDER",
     "@daffodil/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/cli": "0.0.0-PLACEHOLDER",
     "@daffodil/dev-tools": "0.0.0-PLACEHOLDER",
     "@daffodil/driver": "0.0.0-PLACEHOLDER",
     "@daffodil/external-router": "0.0.0-PLACEHOLDER",
@@ -49,6 +49,7 @@
     "@daffodil/product": "0.0.0-PLACEHOLDER"
   },
   "peerDependencies": {
+    "@angular/build": "0.0.0-PLACEHOLDER",
     "@angular/core": "0.0.0-PLACEHOLDER",
     "@angular/common": "0.0.0-PLACEHOLDER",
     "@daffodil/cli": "0.0.0-PLACEHOLDER",

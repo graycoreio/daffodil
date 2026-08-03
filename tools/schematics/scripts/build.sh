@@ -6,8 +6,9 @@ DIST="../../dist/commerce"
 tsc -p tsconfig.json
 
 cp collection.json "$DIST/"
+cp builders.json "$DIST/"
 cp ng-add/schema.json "$DIST/ng-add/"
-cp versioning/daff.schema.json "$DIST/"
+cp versioning/daff.schema.json "$DIST/versioning/"
 cp -r ng-add/files "$DIST/ng-add/"
 cp README.md "$DIST/"
 

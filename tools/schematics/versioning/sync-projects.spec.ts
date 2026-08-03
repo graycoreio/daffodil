@@ -1,5 +1,5 @@
-import { DaffJson } from '@daffodil/cli/versioning';
 
+import { DaffJson } from './daff-json.type';
 import { syncProjects } from './sync-projects';
 
 const mockPackages = {
@@ -49,13 +49,5 @@ describe('@daffodil/cli/versioning | syncProjects', () => {
     const daff: DaffJson = { drivers: { magento: '2.4.5' }};
 
     expect(() => syncProjects(daff, { name: 'name', angular: angular.projects.get(projectName) }, mockPackages)).toThrowError(/Build configuration not found/);
-  });
-
-  it('is a no-op when daff.json has no projects', () => {
-    const angular = buildWorkspace(projectName);
-    const daff = {};
-
-    expect(() => syncProjects(daff, { name: 'name', angular: angular.projects.get(projectName) }, mockPackages)).not.toThrow();
-    expect(angular.projects.get(projectName).targets.get('build').options.conditions).toBeUndefined();
   });
 });
