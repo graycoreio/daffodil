@@ -20,7 +20,6 @@ export function addDependenciesToPackageJson(options: NgAddOptions): Rule {
       { type: NodeDependencyType.Default, version: `^${version}`, name: '@daffodil/dev-tools' },
       { type: NodeDependencyType.Default, version: `^${version}`, name: '@daffodil/navigation' },
       { type: NodeDependencyType.Default, version: `^${version}`, name: '@daffodil/external-router' },
-      { type: NodeDependencyType.Dev, version: `^${version}`, name: '@daffodil/cli' },
     ];
 
     dependencies.forEach(dependency => {

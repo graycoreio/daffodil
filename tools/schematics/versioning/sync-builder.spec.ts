@@ -48,7 +48,7 @@ const scheduleSync = async (workspaceRoot: string, options: any, target?: Target
   return { output, warnings };
 };
 
-describe('@daffodil/cli/versioning | syncBuilder', () => {
+describe('@daffodil/commerce/versioning | syncBuilder', () => {
   let workspaceRoot: string;
 
   beforeEach(() => {

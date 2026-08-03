@@ -2,7 +2,6 @@ import packageVersions from './packages.json';
 import { DaffPackagePlatformVersions } from './packages.type';
 
 export { DaffJson } from './daff-json.type';
-export { DAFF_JSON_DEFAULT } from './default-daff-json.const';
 export { DaffPackagePlatformVersions } from './packages.type';
 export { DAFF_VERSIONING_PLATFORMS } from './platforms.const';
 export { DaffVersioningPlatform } from './platform.type';

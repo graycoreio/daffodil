@@ -14,7 +14,7 @@ const buildWorkspace = (projectName: string) => {
   return <any>{ projects };
 };
 
-describe('@daffodil/cli/versioning | syncProjects', () => {
+describe('@daffodil/commerce/versioning | syncProjects', () => {
   const projectName = 'app';
 
   it('writes the magento condition derived from daff.json', () => {

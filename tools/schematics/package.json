@@ -52,7 +52,6 @@
     "@angular/build": "0.0.0-PLACEHOLDER",
     "@angular/core": "0.0.0-PLACEHOLDER",
     "@angular/common": "0.0.0-PLACEHOLDER",
-    "@daffodil/cli": "0.0.0-PLACEHOLDER",
     "@angular/router": "0.0.0-PLACEHOLDER"
   },
   "repository": {

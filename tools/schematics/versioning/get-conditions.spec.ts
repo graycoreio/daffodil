@@ -2,7 +2,7 @@ import { DaffJsonProject } from './daff-json.type';
 import { daffVersioningGetConditions } from './get-conditions';
 import { DaffPackagePlatformVersions } from './packages.type';
 
-describe('@daffodil/cli/versioning | daffVersioningGetConditions', () => {
+describe('@daffodil/commerce/versioning | daffVersioningGetConditions', () => {
   it('returns a condition for each package supporting the driver version', () => {
     const daff: DaffJsonProject = { drivers: { magento: '2.4.5' }};
     const packages: DaffPackagePlatformVersions = {
