@@ -18,6 +18,7 @@ import { join } from 'path';
 
 import { DaffJsonProject } from './daff-json.type';
 import packagesJson from './packages.json';
+import { DaffPackagePlatformVersions } from './packages.type';
 import { syncProjects } from './sync-projects';
 
 interface Options extends DaffJsonProject {}
@@ -49,7 +50,7 @@ export const ngJson = (path: string) => {
   };
 };
 
-const builder: Builder<any> = createBuilder(async (options: Options, context: BuilderContext): Promise<Extract<BuilderOutput, {success: boolean}>> => {
+export const createSyncBuilder = (packages: DaffPackagePlatformVersions): Builder<any> => createBuilder(async (options: Options, context: BuilderContext): Promise<Extract<BuilderOutput, {success: boolean}>> => {
   let workspaceOrProject: ReturnType<typeof ngJson | typeof nxProjects> | undefined;
 
   if (existsSync(join(context.workspaceRoot, 'angular.json'))) {
@@ -79,7 +80,7 @@ const builder: Builder<any> = createBuilder(async (options: Options, context: Bu
               angular: project,
               name: projectName,
             },
-						<any>packagesJson,
+            packages,
           ).angular,
         );
       } catch (error: any) {
@@ -102,7 +103,7 @@ const builder: Builder<any> = createBuilder(async (options: Options, context: Bu
                 nx: project,
                 name: project.name || path,
               },
-							<any>packagesJson,
+              packages,
             ),
             null,
             2,
@@ -118,5 +119,7 @@ const builder: Builder<any> = createBuilder(async (options: Options, context: Bu
     success: true,
   };
 });
+
+const builder = createSyncBuilder(<any>packagesJson);
 
 export default builder;

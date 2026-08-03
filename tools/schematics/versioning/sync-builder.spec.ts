@@ -19,9 +19,19 @@ import {
 import { tmpdir } from 'os';
 import { join } from 'path';
 
-import builder from './sync-builder';
+import { DaffPackagePlatformVersions } from './packages.type';
+import { createSyncBuilder } from './sync-builder';
 
 const BUILDER_NAME = 'test:sync';
+
+const FIXTURE_PACKAGES: DaffPackagePlatformVersions = {
+  magento: {
+    'some-package': [<const>'2.4.1'],
+    'other-package': [<const>'2.4.1'],
+  },
+};
+
+const builder = createSyncBuilder(FIXTURE_PACKAGES);
 
 const scheduleSync = async (workspaceRoot: string, options: any, target?: Target) => {
   const registry = new schema.CoreSchemaRegistry();
@@ -88,10 +98,7 @@ describe('@daffodil/commerce/versioning | syncBuilder', () => {
 
       expect(output.success).toBe(true);
       const angularJson = JSON.parse(await readFile(join(workspaceRoot, 'angular.json'), 'utf-8'));
-      expect(angularJson.projects['app-a'].architect.build.options.conditions).toEqual([
-        'order-magento-2.4.1',
-        'external-router-magento-2.4.1',
-      ]);
+      expect(angularJson.projects['app-a'].architect.build.options.conditions).toEqual(['some-package-magento-2.4.1', 'other-package-magento-2.4.1']);
       expect(angularJson.projects['lib-a'].architect.build.options.conditions).toBeUndefined();
     });
 
@@ -112,10 +119,7 @@ describe('@daffodil/commerce/versioning | syncBuilder', () => {
       await scheduleSync(workspaceRoot, { drivers: { magento: '2.4.1' }}, { project: 'app-a', target: 'sync' });
 
       const angularJson = JSON.parse(await readFile(join(workspaceRoot, 'angular.json'), 'utf-8'));
-      expect(angularJson.projects['app-a'].architect.build.options.conditions).toEqual([
-        'order-magento-2.4.1',
-        'external-router-magento-2.4.1',
-      ]);
+      expect(angularJson.projects['app-a'].architect.build.options.conditions).toEqual(['some-package-magento-2.4.1', 'other-package-magento-2.4.1']);
       expect(angularJson.projects['app-b'].architect.build.options.conditions).toBeUndefined();
     });
 
@@ -138,10 +142,7 @@ describe('@daffodil/commerce/versioning | syncBuilder', () => {
       expect(output.success).toBe(true);
       expect(warnings).toEqual(['Failed to update project config for app-broken, skipping.']);
       const angularJson = JSON.parse(await readFile(join(workspaceRoot, 'angular.json'), 'utf-8'));
-      expect(angularJson.projects['app-a'].architect.build.options.conditions).toEqual([
-        'order-magento-2.4.1',
-        'external-router-magento-2.4.1',
-      ]);
+      expect(angularJson.projects['app-a'].architect.build.options.conditions).toEqual(['some-package-magento-2.4.1', 'other-package-magento-2.4.1']);
     });
   });
 
@@ -169,10 +170,7 @@ describe('@daffodil/commerce/versioning | syncBuilder', () => {
 
       expect(output.success).toBe(true);
       const appA = JSON.parse(await readFile(join(workspaceRoot, 'apps/app-a/project.json'), 'utf-8'));
-      expect(appA.nx.targets.build.options.conditions).toEqual([
-        'order-magento-2.4.1',
-        'external-router-magento-2.4.1',
-      ]);
+      expect(appA.nx.targets.build.options.conditions).toEqual(['some-package-magento-2.4.1', 'other-package-magento-2.4.1']);
       const libA = JSON.parse(await readFile(join(workspaceRoot, 'libs/lib-a/project.json'), 'utf-8'));
       expect(libA.targets.build.options.conditions).toBeUndefined();
     });
@@ -192,10 +190,7 @@ describe('@daffodil/commerce/versioning | syncBuilder', () => {
       await scheduleSync(workspaceRoot, { drivers: { magento: '2.4.1' }}, { project: 'app-a', target: 'sync' });
 
       const appA = JSON.parse(await readFile(join(workspaceRoot, 'apps/app-a/project.json'), 'utf-8'));
-      expect(appA.nx.targets.build.options.conditions).toEqual([
-        'order-magento-2.4.1',
-        'external-router-magento-2.4.1',
-      ]);
+      expect(appA.nx.targets.build.options.conditions).toEqual(['some-package-magento-2.4.1', 'other-package-magento-2.4.1']);
       const appB = JSON.parse(await readFile(join(workspaceRoot, 'apps/app-b/project.json'), 'utf-8'));
       expect(appB.targets.build.options.conditions).toBeUndefined();
     });
@@ -217,10 +212,7 @@ describe('@daffodil/commerce/versioning | syncBuilder', () => {
       expect(output.success).toBe(true);
       expect(warnings).toEqual(['Failed to update project config for app-broken, skipping.']);
       const appA = JSON.parse(await readFile(join(workspaceRoot, 'apps/app-a/project.json'), 'utf-8'));
-      expect(appA.nx.targets.build.options.conditions).toEqual([
-        'order-magento-2.4.1',
-        'external-router-magento-2.4.1',
-      ]);
+      expect(appA.nx.targets.build.options.conditions).toEqual(['some-package-magento-2.4.1', 'other-package-magento-2.4.1']);
     });
   });
 });
