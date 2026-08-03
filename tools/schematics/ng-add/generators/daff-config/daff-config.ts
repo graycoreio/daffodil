@@ -4,45 +4,12 @@ import {
   Tree,
 } from '@angular-devkit/schematics';
 import { updateWorkspace } from '@schematics/angular/utility/workspace';
-import chalk from 'chalk';
 
-import {
-  DAFF_JSON_DEFAULT,
-  isSupportedPlatform,
-} from '../../../versioning/public_api';
+import { isSupportedPlatform } from '../../../versioning/public_api';
 import { NgAddOptions } from '../../schema';
-
-const DAFF_JSON_PATH = 'daff.json';
 
 const shouldScaffoldDaffConfig = (options: NgAddOptions): boolean =>
   options.driver === 'magento' || options.driver === 'demo';
-
-export const createDaffJson = (options: NgAddOptions, projectName: string): Rule =>
-  (tree: Tree, context: SchematicContext) => {
-    if (!shouldScaffoldDaffConfig(options)) {
-      return tree;
-    }
-
-    if (tree.exists(DAFF_JSON_PATH)) {
-      context.logger.warn(
-        chalk.yellow(`[WARN] daff.json already exists at the workspace root; leaving it unchanged.`),
-      );
-      return tree;
-    }
-
-    const body = {
-      ...DAFF_JSON_DEFAULT,
-    };
-
-    if (isSupportedPlatform(options.driver) && options.driverVersion) {
-      body.drivers = {
-        [options.driver]: options.driverVersion,
-      };
-    }
-
-    tree.create(DAFF_JSON_PATH, JSON.stringify(body, null, 2) + '\n');
-    return tree;
-  };
 
 export const addBuildCondition = (options: NgAddOptions, projectName_: string): Rule => {
   if (!shouldScaffoldDaffConfig(options)) {
