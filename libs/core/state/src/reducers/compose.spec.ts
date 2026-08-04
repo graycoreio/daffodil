@@ -1,6 +1,6 @@
 import { ActionReducer } from '@ngrx/store';
 
-import { daffComposeReducers } from './create-meta';
+import { daffComposeReducers } from './compose';
 
 interface MockState {
   foo: string;
