@@ -2,7 +2,7 @@ import { Document } from 'dgeni';
 import { ClassExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassExportDoc';
 import type { ClassLikeExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassLikeExportDoc';
 import type { ConstExportDoc } from 'dgeni-packages/typescript/api-doc-types/ConstExportDoc';
-import type { FunctionExportDoc } from 'dgeni-packages/typescript/api-doc-types/FunctionExportDoc';
+import { FunctionExportDoc } from 'dgeni-packages/typescript/api-doc-types/FunctionExportDoc';
 import { MethodMemberDoc } from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
 import { ParameterDoc } from 'dgeni-packages/typescript/api-doc-types/ParameterDoc';
 import { PropertyMemberDoc } from 'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc';
@@ -338,6 +338,19 @@ export class RoleProcessor implements FilterableProcessor {
     ],
   );
 
+  readonly constFuncSerializer = serializeFactory<FunctionExportDoc>(
+    [
+      'declaration',
+      'docType',
+      'overloads',
+      'parameterDocs',
+      'parameters',
+      'symbol',
+      'type',
+      'typeParameters',
+    ],
+  );
+
   constructor(
     private markdown: MarkdownCodeProcessor,
     private inlineTagProcessor: InlineTagProcessor,
@@ -451,6 +464,14 @@ export class RoleProcessor implements FilterableProcessor {
   func(doc: SerializableDoc & IndexableDoc & {parameterDocs: Array<DaffDocsApiFunctionParam & ParameterDoc>} & FunctionExportDoc & DaffDocsApiFunction): SerializableDoc & IndexableDoc & DaffDocsApiFunction {
     doc.serializer = this.functionSerialize;
     doc.indexer = this.baseSearchIndexer;
+    if (!doc.parameterDocs) {
+      const f = new FunctionExportDoc(
+        doc.host,
+        doc.moduleDoc,
+        (<any>doc).variableDeclaration?.initializer?.symbol || doc.typeChecker.getTypeAtLocation((<any>doc).variableDeclaration.name).getSymbol(),
+      );
+      Object.assign(doc, this.constFuncSerializer(f));
+    }
     if (!doc.type) {
       const ret = doc.typeChecker.getReturnTypeOfSignature(<any>doc);
       doc.type = doc.typeChecker.typeToString(ret);
