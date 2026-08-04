@@ -1,1 +1,1 @@
-export { DaffCheckoutStateRootSlice } from './order-reducers.interface';
+export { DaffCheckoutStateRootSlice } from './root-slice.interface';
