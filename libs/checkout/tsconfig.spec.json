@@ -5,7 +5,8 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+		"composite": true
   },
   "files": [
     "test.ts"

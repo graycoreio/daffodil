@@ -1,5 +1,13 @@
 {
   "extends": "../../tsconfig.json",
+	"references": [
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
   "compilerOptions": {
     "baseUrl": "../..",
     "paths": {
@@ -20,6 +28,27 @@
       ],
       "@daffodil/checkout/routing": [
         "libs/checkout/routing/src"
+      ],
+      "@daffodil/checkout/driver": [
+        "libs/checkout/driver/src"
+      ],
+      "@daffodil/checkout/driver/testing": [
+        "libs/checkout/driver/testing/src"
+      ],
+      "@daffodil/checkout/driver/in-memory": [
+        "libs/checkout/driver/in-memory/src"
+      ],
+      "@daffodil/checkout/driver/magento/2.4.7": [
+        "libs/checkout/driver/magento/2.4.7/src"
+      ],
+      "@daffodil/checkout/driver/magento/2.4.7/testing": [
+        "libs/checkout/driver/magento/2.4.7/testing/src"
+      ],
+      "@daffodil/checkout/driver/magento/auto": [
+        "libs/checkout/driver/magento/auto/src"
+      ],
+      "@daffodil/checkout/driver/magento/auto/testing": [
+        "libs/checkout/driver/magento/auto/testing/src"
       ],
     }
   }

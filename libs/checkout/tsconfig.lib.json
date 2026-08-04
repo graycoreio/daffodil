@@ -10,6 +10,7 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "types": [],
+		"composite": true
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,

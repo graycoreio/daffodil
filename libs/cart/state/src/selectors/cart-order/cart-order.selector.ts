@@ -17,6 +17,9 @@ import {
 } from '../../reducers/public_api';
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 
+/**
+ * @deprecated Use {@link DaffCheckoutOrderMemoizedSelectors} instead.
+ */
 export interface DaffCartOrderMemoizedSelectors<
   T extends DaffCart = DaffCart,
   V extends DaffCartOrderResult = DaffCartOrderResult,
@@ -90,6 +93,9 @@ const createCartOrderSelectors = <
   };
 };
 
+/**
+ * @deprecated Use {@link getCheckoutOrderSelectors} instead.
+ */
 export const getCartOrderSelectors: <
   T extends DaffCart = DaffCart,
   V extends DaffCartOrderResult = DaffCartOrderResult,
