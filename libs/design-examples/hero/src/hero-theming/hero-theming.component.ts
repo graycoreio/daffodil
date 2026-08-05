@@ -36,8 +36,8 @@ export class HeroThemingExampleComponent {
     { value: 'primary', label: 'Primary' },
     { value: 'secondary', label: 'Secondary' },
     { value: 'tertiary', label: 'Tertiary' },
-    { value: 'white', label: 'White' },
-    { value: 'black', label: 'Black' },
+    { value: 'light', label: 'Light' },
+    { value: 'dark', label: 'Dark' },
     { value: 'theme', label: 'Theme' },
     { value: 'theme-contrast', label: 'Theme Contrast' },
   ];
