@@ -24,7 +24,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
 import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 import { patchElementFocus } from '@daffodil/design/testing';
 
-import { DaffFormFieldApperanace } from '../form-field/form-field.component';
+import { DaffFormFieldAppearance } from '../form-field/form-field.component';
 
 @Component({ template: `
   <daff-form-field [id]="id()" [appearance]="appearance()">
@@ -41,7 +41,7 @@ imports: [
 class WrapperComponent {
   formControl = new UntypedFormControl('', Validators.required);
   id = signal<string>(undefined);
-  appearance = signal<DaffFormFieldApperanace>('fixed');
+  appearance = signal<DaffFormFieldAppearance>('fixed');
 }
 
 describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
