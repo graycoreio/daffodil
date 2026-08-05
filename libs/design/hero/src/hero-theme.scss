@@ -57,11 +57,21 @@
 			@include daff-hero-theme-variant($base-contrast);
 		}
 
+		// remove when `DaffColorEnum.Black` is removed in v1.0.0
 		&.daff-black {
 			@include daff-hero-theme-variant($black);
 		}
 
+		// remove when `DaffColorEnum.White` is removed in v1.0.0
 		&.daff-white {
+			@include daff-hero-theme-variant($white);
+		}
+
+		&.daff-dark {
+			@include daff-hero-theme-variant($black);
+		}
+
+		&.daff-light {
 			@include daff-hero-theme-variant($white);
 		}
 	}
