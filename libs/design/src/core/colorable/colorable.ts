@@ -35,12 +35,20 @@ export enum DaffColorEnum {
   Tertiary = 'tertiary',
 
   /**
-   * A light color that does not change based on the theme.
+   * A light color.
+   *
+   * This does not track the theme mode. An element with this color stays light
+   * in both light and dark mode. Use `Theme` or `ThemeContrast` instead for a
+   * color that flips with the mode.
    */
   Light = 'light',
 
   /**
-   * A dark color that does not change based on the theme.
+   * A dark color.
+   *
+   * This does not track the theme mode. An element with this color stays dark
+   * in both light and dark mode. Use `Theme` or `ThemeContrast` instead for a
+   * color that flips with the mode.
    */
   Dark = 'dark',
 

@@ -61,7 +61,7 @@ Use an indeterminate progress bar when the percentage of completion is unknown o
 ### Colors
 The default color is `primary`. Use the `color` property to change a progress bar's color.
 
-> `theme`, `white`, and `black` should be used with caution to ensure that there is sufficient contrast.
+> `theme`, `light`, and `dark` should be used with caution to ensure that there is sufficient contrast.
 
 <daff-docs-example-viewer example="progress-bar-themes"></daff-docs-example-viewer>
 
