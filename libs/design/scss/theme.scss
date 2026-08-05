@@ -84,7 +84,6 @@
 	@include stroked-button.daff-stroked-button-theme($theme);
 	@include underline-button.daff-underline-button-theme($theme);
 
-	@include callout.daff-callout-theme($theme);
 	@include card-base.daff-card-base-theme($theme);
 	@include stroked-card.daff-stroked-card-theme($theme);
 
@@ -98,8 +97,6 @@
 	@include spinner.daff-spinner-theme($theme);
 	@include progress-bar.daff-progress-bar-theme($theme);
 
-	@include accordion.daff-accordion-theme($theme);
-	@include article.daff-article-theme($theme);
 	@include callout.daff-callout-theme($theme);
 	@include hero.daff-hero-theme($theme);
 	@include list.daff-list-theme($theme);
@@ -113,7 +110,6 @@
 	@include navbar.daff-navbar-theme($theme);
 	@include notification.daff-notification-theme($theme);
 	@include paginator.daff-paginator-theme($theme);
-	@include progress-bar.daff-progress-bar-theme($theme);
 	@include sidebar.daff-sidebar-theme($theme);
 	@include switch.daff-switch-theme($theme);
 	@include tabs.daff-tabs-theme($theme);
