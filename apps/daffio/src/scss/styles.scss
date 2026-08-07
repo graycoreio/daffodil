@@ -1,9 +1,10 @@
 // DO NOT IMPORT THIS FILE ANYWHERE ELSE
 
 @use 'sass:meta';
-@use 'global';
-@use 'theme' as daff-theme;
+@use '@daffodil/design/scss/global';
+@use '@daffodil/design/scss/theme' as daff-theme;
 @use './component-themes' as daffio-components;
+@use '@daffodil/design/scss/theming/default' as daff-default-theme;
 
 // @daffodil/branding
 @use '@daffodil/branding/scss/component-themes' as branding;
@@ -17,10 +18,10 @@
 
 	@include meta.load-css('highlight.js/scss/a11y-light');
 
-	@include branding.daff-branding-theme(daff-theme.$theme);
-	@include daff-theme.daff-component-themes(daff-theme.$theme);
-	@include daffio-components.component-themes(daff-theme.$theme);
-	@include docs.daff-docs-component-themes(daff-theme.$theme);
+	@include branding.daff-branding-theme(daff-default-theme.$theme);
+	@include daff-theme.daff-component-themes(daff-default-theme.$theme);
+	@include daffio-components.component-themes(daff-default-theme.$theme);
+	@include docs.daff-docs-component-themes(daff-default-theme.$theme);
 }
 
 .daff-theme-dark {
@@ -29,10 +30,10 @@
 
 	@include meta.load-css('highlight.js/scss/a11y-dark');
 
-	@include branding.daff-branding-theme(daff-theme.$theme-dark);
-	@include daff-theme.daff-component-themes(daff-theme.$theme-dark);
-	@include daffio-components.component-themes(daff-theme.$theme-dark);
-	@include docs.daff-docs-component-themes(daff-theme.$theme-dark);
+	@include branding.daff-branding-theme(daff-default-theme.$theme-dark);
+	@include daff-theme.daff-component-themes(daff-default-theme.$theme-dark);
+	@include daffio-components.component-themes(daff-default-theme.$theme-dark);
+	@include docs.daff-docs-component-themes(daff-default-theme.$theme-dark);
 }
 
 body {
