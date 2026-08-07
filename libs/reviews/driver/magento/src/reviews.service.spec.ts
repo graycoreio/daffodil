@@ -11,7 +11,7 @@ import { catchError } from 'rxjs/operators';
 
 import {
   DaffDriverMagentoError,
-  schema,
+  MAGENTO_POSSIBLE_TYPES,
 } from '@daffodil/driver/magento';
 import { DaffProduct } from '@daffodil/product';
 import {
@@ -43,7 +43,7 @@ describe('@daffodil/reviews/driver/magento | DaffReviewsMagentoService', () => {
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

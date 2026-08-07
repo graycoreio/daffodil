@@ -7,7 +7,7 @@ import {
   APOLLO_TESTING_CACHE,
 } from 'apollo-angular/testing';
 
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductServiceInterface,
@@ -69,7 +69,7 @@ describe('@daffodil/product | Querying and Transforming Custom Fields in Magento
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

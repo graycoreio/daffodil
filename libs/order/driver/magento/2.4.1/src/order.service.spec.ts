@@ -10,7 +10,7 @@ import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
 import { DaffCart } from '@daffodil/cart';
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderInvalidAPIResponseError,
@@ -46,7 +46,7 @@ describe('@daffodil/order/driver/magento/2.4.1 | DaffOrderMagentoService', () =>
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

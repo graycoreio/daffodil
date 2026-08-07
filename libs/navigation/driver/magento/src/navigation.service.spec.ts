@@ -13,7 +13,7 @@ import {
   TestOperation,
 } from 'apollo-angular/testing';
 
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 import { DaffNavigationTransformer } from '@daffodil/navigation/driver';
 import {
   DaffMagentoNavigationTransformerService,
@@ -50,7 +50,7 @@ describe('@daffodil/navigation/driver/magento | DaffMagentoNavigationService', (
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],
@@ -187,7 +187,7 @@ describe('@daffodil/navigation/driver/magento | DaffMagentoNavigationService | w
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

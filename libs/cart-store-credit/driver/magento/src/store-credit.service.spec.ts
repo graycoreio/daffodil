@@ -21,7 +21,7 @@ import {
 import { MagentoCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/driver/magento/testing';
 import {
   DaffDriverMagentoError,
-  schema,
+  MAGENTO_POSSIBLE_TYPES,
 } from '@daffodil/driver/magento';
 
 import { DaffCartStoreCreditMagentoService } from './store-credit.service';
@@ -46,7 +46,7 @@ describe('@daffodil/cart-store-credit/driver/magento | DaffCartStoreCreditMagent
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
         provideDaffCartMagentoCartTransforms(

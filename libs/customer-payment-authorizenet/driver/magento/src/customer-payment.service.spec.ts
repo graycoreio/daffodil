@@ -42,7 +42,7 @@ import {
 } from '@daffodil/customer-payment-authorizenet/testing';
 import {
   DaffDriverMagentoError,
-  schema,
+  MAGENTO_POSSIBLE_TYPES,
 } from '@daffodil/driver/magento';
 
 import { DaffCustomerPaymentAuthorizeNetMagentoService } from './customer-payment.service';
@@ -81,7 +81,7 @@ describe('@daffodil/customer-payment-authorizenet/driver/magento | DaffCustomerP
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
         {

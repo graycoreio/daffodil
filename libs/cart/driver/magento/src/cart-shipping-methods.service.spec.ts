@@ -18,7 +18,7 @@ import {
 } from '@daffodil/cart/driver/magento';
 import { MagentoCartShippingMethodFactory } from '@daffodil/cart/driver/magento/testing';
 import { DaffCartShippingRateFactory } from '@daffodil/cart/testing';
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartShippingMethodsService } from './cart-shipping-methods.service';
 
@@ -55,7 +55,7 @@ describe('@daffodil/cart/driver/magento | CartShippingMethodsService', () => {
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

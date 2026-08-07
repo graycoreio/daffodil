@@ -8,7 +8,7 @@ import {
 } from 'apollo-angular/testing';
 import { Observable } from 'rxjs';
 
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 import { DaffProductDriverResponse } from '@daffodil/product/driver';
 import {
   MagentoSimpleProduct,
@@ -35,7 +35,7 @@ describe('@daffodil/product/driver/magento | DaffMagentoProductService', () => {
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

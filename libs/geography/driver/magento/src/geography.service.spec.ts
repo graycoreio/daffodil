@@ -11,7 +11,7 @@ import { catchError } from 'rxjs/operators';
 
 import {
   DaffDriverMagentoError,
-  schema,
+  MAGENTO_POSSIBLE_TYPES,
 } from '@daffodil/driver/magento';
 import {
   DaffCountry,
@@ -65,7 +65,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

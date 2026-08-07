@@ -26,7 +26,7 @@ import { MagentoCustomerAddressFactory } from '@daffodil/customer/driver/magento
 import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
 import {
   DaffDriverMagentoError,
-  schema,
+  MAGENTO_POSSIBLE_TYPES,
 } from '@daffodil/driver/magento';
 
 import { DaffCustomerMagentoAddressService } from './address.service';
@@ -56,7 +56,7 @@ describe('@daffodil/customer/driver/magento | DaffCustomerMagentoAddressService'
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

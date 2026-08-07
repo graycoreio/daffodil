@@ -17,7 +17,7 @@ import {
 } from '@daffodil/cart/driver/magento';
 import { MagentoCartPaymentMethodFactory } from '@daffodil/cart/driver/magento/testing';
 import { DaffCartPaymentFactory } from '@daffodil/cart/testing';
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
 import { listPaymentMethods } from './queries/public_api';
@@ -48,7 +48,7 @@ describe('@daffodil/cart/driver/magento | CartPaymentMethodsService', () => {
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

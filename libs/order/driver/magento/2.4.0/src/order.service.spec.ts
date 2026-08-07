@@ -10,7 +10,7 @@ import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
 import { DaffCart } from '@daffodil/cart';
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 import {
   DaffOrder,
   DaffOrderAddress,
@@ -112,7 +112,7 @@ describe('Order | Driver | Magento | 2.4.0 | OrderService', () => {
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

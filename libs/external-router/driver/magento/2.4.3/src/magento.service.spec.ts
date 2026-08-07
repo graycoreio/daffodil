@@ -8,7 +8,7 @@ import {
 import { TestScheduler } from 'rxjs/testing';
 
 import { ID } from '@daffodil/core';
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 import {
   DaffExternallyResolvableUrl,
   DaffExternalRouterNotFoundError,
@@ -43,7 +43,7 @@ describe('@daffodil/external-router/driver/magento/2.4.3 | DaffExternalRouterMag
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

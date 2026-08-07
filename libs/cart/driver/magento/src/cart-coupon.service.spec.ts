@@ -31,7 +31,7 @@ import {
   DaffCartCouponFactory,
 } from '@daffodil/cart/testing';
 import { DaffBadInputError } from '@daffodil/driver';
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartCouponService } from './cart-coupon.service';
 
@@ -62,7 +62,7 @@ describe('@daffodil/cart/driver/magento | CartCouponService', () => {
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

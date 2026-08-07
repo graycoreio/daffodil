@@ -12,7 +12,7 @@ import { catchError } from 'rxjs/operators';
 import { DaffCollectionMetadata } from '@daffodil/core';
 import {
   MagentoSearchResultPageInfo,
-  schema,
+  MAGENTO_POSSIBLE_TYPES,
 } from '@daffodil/driver/magento';
 import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/testing';
 import {
@@ -74,7 +74,7 @@ describe('@daffodil/search-product/driver/magento | DaffSearchProductMagentoDriv
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

@@ -36,7 +36,7 @@ import {
   getCustomerCart,
   MagentoGetCustomerCartResponse,
 } from '@daffodil/cart-customer/driver/magento';
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartCustomerService } from './cart.service';
 
@@ -78,7 +78,7 @@ describe('@daffodil/cart-customer/driver/magento | DaffMagentoCartCustomerServic
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

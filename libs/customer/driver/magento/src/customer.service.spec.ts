@@ -26,7 +26,7 @@ import { MagentoCustomerFactory } from '@daffodil/customer/driver/magento/testin
 import { DaffCustomerFactory } from '@daffodil/customer/testing';
 import {
   DaffDriverMagentoError,
-  schema,
+  MAGENTO_POSSIBLE_TYPES,
 } from '@daffodil/driver/magento';
 
 import { DaffCustomerMagentoService } from './customer.service';
@@ -51,7 +51,7 @@ describe('@daffodil/customer/driver/magento | DaffCustomerMagentoService', () =>
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

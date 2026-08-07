@@ -53,7 +53,7 @@ import {
 } from '@daffodil/cart/testing';
 import { DaffError } from '@daffodil/core';
 import { DaffBadInputError } from '@daffodil/driver';
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -112,7 +112,7 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

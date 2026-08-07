@@ -43,7 +43,7 @@ import {
   DaffCartAddressFactory,
   DaffCartPaymentFactory,
 } from '@daffodil/cart/testing';
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartPaymentService } from './cart-payment.service';
 
@@ -107,7 +107,7 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartPaymentService', () => 
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

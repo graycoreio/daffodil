@@ -38,7 +38,7 @@ import {
   DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
 import { DaffError } from '@daffodil/core';
-import { schema } from '@daffodil/driver/magento';
+import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartShippingAddressService } from './cart-shipping-address.service';
 
@@ -89,7 +89,7 @@ describe('@daffodil/cart/driver/magento | DaffMagentoCartShippingAddressService'
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
       ],

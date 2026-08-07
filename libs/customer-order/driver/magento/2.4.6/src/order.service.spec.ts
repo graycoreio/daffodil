@@ -27,7 +27,7 @@ import { MagentoCustomerOrdersFactory } from '@daffodil/customer-order/driver/ma
 import {
   MagentoSortEnum ,
   DaffDriverMagentoError,
-  schema,
+  MAGENTO_POSSIBLE_TYPES,
 } from '@daffodil/driver/magento';
 
 import { DaffCustomerOrderMagentoService } from './order.service';
@@ -56,7 +56,7 @@ describe('@daffodil/customer-order/driver/magento/2.4.6 | DaffCustomerOrderMagen
         {
           provide: APOLLO_TESTING_CACHE,
           useValue: new InMemoryCache({
-            possibleTypes: schema.possibleTypes,
+            possibleTypes: MAGENTO_POSSIBLE_TYPES.possibleTypes,
           }),
         },
         {
