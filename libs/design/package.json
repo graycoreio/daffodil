@@ -57,6 +57,9 @@
     "./scss/global": {
       "sass": "./scss/global.scss"
     },
+    "./scss/theme/default": {
+      "sass": "./scss/theming/default/_index.scss"
+    },
     "./scss/theme": {
       "sass": "./scss/theme.scss"
     },

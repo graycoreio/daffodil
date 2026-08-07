@@ -1,7 +1,7 @@
-@use 'configure-palette';
-@use './create-theme/create-theme';
-@use 'color-palettes' as palette;
-@use '../core';
+@use '../configure-palette';
+@use '../create-theme/create-theme';
+@use '../color-palettes' as palette;
+@use '../../core';
 
 $primary: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
 $secondary: configure-palette.daff-configure-palette(palette.$daff-purple, 60);

@@ -1,0 +1,15 @@
+// This file only exists for builds inside the Daffodil monorepo. Consumers of
+// the published package never load it.
+//
+// Externally, `@daffodil/design/scss/theme/default` resolves through the `sass`
+// condition of the `exports` map in package.json, which points straight at
+// `scss/theming/default/_index.scss`.
+//
+// Inside the monorepo there is no `node_modules/@daffodil/design`, so the
+// specifier instead resolves via the root tsconfig `paths` mapping
+// (`@daffodil/*` -> `dist/*`). That mapping bypasses `exports` entirely, leaving
+// Angular's Sass importer to fall back to joining the remaining specifier
+// segments onto the package root verbatim. `scss/theme/default` therefore has to
+// exist as a real file for the monorepo apps to resolve it.
+
+@forward '../theming/default';
