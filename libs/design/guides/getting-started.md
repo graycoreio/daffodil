@@ -49,15 +49,16 @@ There is a minimal required global style for the Daffodil Design System to opera
 > For more information on our approach to these kinds of styles, see the [Global Styles guide.](/libs/design/guides/foundations/global-styles.md)
 
 ## Add a theme
-A theme must be configured in order for Daffodil Design components to work properly.
+A theme must be configured in order for Daffodil Design components to work properly. Daffodil Design provides a default theme, but it is not automatically configured and must be added to your styles.
 
-The `daff-component-themes` mixin includes styles for all components. The example below demonstrates how to use Daffodil Design's default theme, where the `$theme` variable is the default configured theme. The mixin is included in the `html` selector to ensure that component styles are applied across the entire application.
+The `daff-component-themes` mixin includes styles for all components. The example below demonstrates how to add the default theme, where the `$theme` variable is the default configured theme. The mixin is included in the `html` selector to ensure that component styles are applied across the entire application.
 
 ```scss
 @use '@daffodil/design/scss/theme' as daff-theme;
+@use '@daffodil/design/scss/theme/default' as daff-default-theme;
 
 html {
-	@include daff-theme.daff-component-themes(daff-theme.$theme);
+	@include daff-theme.daff-component-themes(daff-default-theme.$theme);
 }
 ```
 
