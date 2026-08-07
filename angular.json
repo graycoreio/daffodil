@@ -252,7 +252,6 @@
               "includePaths": [
                 "apps/daffio/src/scss",
                 "dist/design/scss",
-                "dist/branding/src/scss",
                 "dist/docs/src/scss"
               ]
             },
@@ -368,7 +367,6 @@
               "includePaths": [
                 "apps/daffio/src/scss",
                 "dist/design/scss",
-                "dist/branding/src/scss",
                 "dist/docs/src/scss"
               ]
             },

@@ -1,5 +1,4 @@
-@use '../../scss/branding-theme';
-@use 'theme' as daff-theme;
+@use '@daffodil/design/scss/theme' as daff-theme;
 
 @mixin daff-logo-theme($theme) {
 	$neutral: daff-theme.daff-get-palette($theme, neutral);

@@ -1,4 +1,4 @@
-@use '../lib/logo/logo-theme' as logo;
+@use '../src/lib/logo/logo-theme' as logo;
 
 @mixin daff-branding-theme($theme) {
   @include logo.daff-logo-theme($theme);
