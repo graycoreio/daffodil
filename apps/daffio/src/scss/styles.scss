@@ -4,7 +4,7 @@
 @use '@daffodil/design/scss/global';
 @use '@daffodil/design/scss/theme' as daff-theme;
 @use './component-themes' as daffio-components;
-@use '@daffodil/design/scss/theming/default' as daff-default-theme;
+@use '@daffodil/design/scss/theme/default' as daff-default-theme;
 
 // @daffodil/branding
 @use '@daffodil/branding/scss/component-themes' as branding;
