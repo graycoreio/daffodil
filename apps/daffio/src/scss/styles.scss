@@ -6,7 +6,7 @@
 @use './component-themes' as daffio-components;
 
 // @daffodil/branding
-@use 'daff-branding-theme' as branding;
+@use '@daffodil/branding/scss/component-themes' as branding;
 
 // @daffodil/docs
 @use 'daff-docs-theme' as docs;
