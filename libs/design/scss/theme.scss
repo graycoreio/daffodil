@@ -20,6 +20,7 @@
 @use './theming/theme-css-variables' as variables;
 @use '../beacon/src/beacon-theme' as beacon;
 @use '../breadcrumb/src/breadcrumb-theme' as breadcrumb;
+@use '../badge/src/badge-theme' as badge;
 @use '../button/src/button/basic/button-theme' as button;
 @use '../button/src/button/flat/flat-theme' as flat-button;
 @use '../button/src/button/icon/icon-theme' as icon-button;
@@ -73,6 +74,7 @@
 
 	@include accordion.daff-accordion-theme($theme);
 	@include article.daff-article-theme($theme);
+	@include badge.daff-badge-theme($theme);
 	@include tag.daff-tag-theme($theme);
 	@include breadcrumb.daff-breadcrumb-theme($theme);
 

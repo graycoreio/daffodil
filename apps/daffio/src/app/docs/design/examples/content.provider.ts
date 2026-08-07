@@ -3,6 +3,7 @@ import { makeEnvironmentProviders } from '@angular/core';
 import { provideDaffDesignAccordionExamplesContent } from '@daffodil/design-examples/accordion';
 import { provideDaffDesignArticleExamplesContent } from '@daffodil/design-examples/article';
 import { provideDaffDesignArticleEncapsulatedExamplesContent } from '@daffodil/design-examples/article-encapsulated';
+import { provideDaffDesignBadgeExamplesContent } from '@daffodil/design-examples/badge';
 import { provideDaffDesignBeaconExamplesContent } from '@daffodil/design-examples/beacon';
 import { provideDaffDesignBreadcrumbExamplesContent } from '@daffodil/design-examples/breadcrumb';
 import { provideDaffDesignButtonExamplesContent } from '@daffodil/design-examples/button';
@@ -45,6 +46,7 @@ export const provideDaffioDesignExamplesContent = () => makeEnvironmentProviders
   provideDaffDocsColorPaletteGeneratorExampleContent(),
   provideDaffDesignAccordionExamplesContent(),
   provideDaffDesignArticleExamplesContent(),
+  provideDaffDesignBadgeExamplesContent(),
   provideDaffDesignBeaconExamplesContent(),
   provideDaffDesignBreadcrumbExamplesContent(),
   provideDaffDesignButtonExamplesContent(),
