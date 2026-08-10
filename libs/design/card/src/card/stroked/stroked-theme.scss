@@ -13,9 +13,11 @@
 	}
 
 	@media (hover: hover) {
-		.daff-card__wrapper {
-			&::after {
-				opacity: 1;
+		&:hover {
+			.daff-card__wrapper {
+				&::after {
+					opacity: 1;
+				}
 			}
 		}
 	}
@@ -107,33 +109,23 @@
 			}
 
 			&.daff-primary {
-				@include linkable-stroked-card-theme-variant(
-					daff-color($primary)
-				);
+				@include linkable-stroked-card-theme-variant(daff-color($primary));
 			}
 
 			&.daff-secondary {
-				@include linkable-stroked-card-theme-variant(
-					daff-color($secondary)
-				);
+				@include linkable-stroked-card-theme-variant(daff-color($secondary));
 			}
 
 			&.daff-tertiary {
-				@include linkable-stroked-card-theme-variant(
-					daff-color($tertiary)
-				);
+				@include linkable-stroked-card-theme-variant(daff-color($tertiary));
 			}
 
 			&.daff-dark {
-				@include linkable-stroked-card-theme-variant(
-					daff-color($neutral, 90)
-				);
+				@include linkable-stroked-card-theme-variant(daff-color($neutral, 90));
 			}
 
 			&.daff-light {
-				@include linkable-stroked-card-theme-variant(
-					daff-color($neutral, 20)
-				);
+				@include linkable-stroked-card-theme-variant(daff-color($neutral, 20));
 			}
 		}
 	}

@@ -63,7 +63,9 @@
 				}
 
 				@media (hover: hover) {
-					background-color: daff-color($neutral, 90);
+					&:hover {
+						background-color: daff-color($neutral, 90);
+					}
 				}
 
 				&.highlighted {
