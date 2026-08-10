@@ -1,5 +1,6 @@
 @use '@daffodil/design/scss/utilities' as *;
-@import 'theme';
+@use '@daffodil/design/scss/theme' as daff-theme;
+@use 'demo-theme' as *;
 
 .demo-product {
 	display: grid;
@@ -50,7 +51,7 @@
 	}
 
 	&__brand {
-		color: daff-color($daff-neutral, 80);
+		color: daff-theme.daff-color($neutral, 80);
 		font-size: $font-size-md;
 		font-weight: normal;
 	}
@@ -84,7 +85,7 @@
 	}
 
 	&__accordion {
-		border-top: 1px solid daff-color($daff-neutral, 20);
+		border-top: 1px solid daff-theme.daff-color($neutral, 20);
 		margin: 50px 0 0;
 
 		a {

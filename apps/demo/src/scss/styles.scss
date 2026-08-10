@@ -2,8 +2,10 @@
 // If you do, you will increase the final size of the css
 // footprint for each import. Obviously, this is undesirable.
 
-@use 'global';
-@use 'demo-theme';
-@use 'theme' as daff-theme;
+@use '@daffodil/design/scss/global' as *;
+@use '@daffodil/design/scss/theme' as daff-theme;
+@use 'demo-theme' as demo-theme;
 
-@include daff-theme.daff-component-themes(demo-theme.$theme);
+html {
+	@include daff-theme.daff-component-themes(demo-theme.$theme);
+}

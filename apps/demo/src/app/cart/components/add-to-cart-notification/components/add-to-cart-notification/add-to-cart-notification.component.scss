@@ -1,8 +1,8 @@
-@use 'demo-theme';
+@use '@daffodil/design/scss/theme' as *;
 @use '@daffodil/design/scss/utilities' as *;
 
 .demo-add-to-cart-notification {
-	background-color: demo-theme.$white;
+	background-color: $white;
 	padding: 25px;
 	position: relative;
 	width: 100vw;

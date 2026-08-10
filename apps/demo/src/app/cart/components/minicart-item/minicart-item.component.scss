@@ -1,4 +1,5 @@
-@use 'demo-theme';
+@use 'demo-theme' as *;
+@use '@daffodil/design/scss/theme' as daff-theme;
 @use '@daffodil/design/scss/utilities' as *;
 
 :host {
@@ -26,13 +27,13 @@
 
 	&__price {
 		font-size: 1rem;
-		color: demo-theme.daff-color(demo-theme.$secondary);
+		color: daff-theme.daff-color($secondary);
 		margin-bottom: 15px;
 	}
 
 	&__info {
 		font-size: $font-size-sm;
-		color: demo-theme.daff-color(demo-theme.$neutral, 90);
+		color: daff-theme.daff-color($neutral, 90);
 		line-height: 1.25rem;
 	}
 
@@ -46,7 +47,7 @@
 
 		> * {
 			font-size: $font-size-sm;
-			color: demo-theme.daff-color(demo-theme.$neutral);
+			color: daff-theme.daff-color($neutral);
 			text-decoration: underline;
 
 			&:last-child {

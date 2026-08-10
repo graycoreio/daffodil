@@ -1,4 +1,5 @@
 @use '@daffodil/design/scss/utilities' as *;
+@use '@daffodil/design/scss/theme' as daff-theme;
 @use 'demo-theme' as *;
 
 .demo-thank-you-view {
@@ -21,7 +22,7 @@
 
 	&__mobile-cart {
 		display: block;
-		border-top: 1px solid daff-color($daff-neutral, 20);
+		border-top: 1px solid daff-theme.daff-color($neutral, 20);
 
 		@include breakpoint(big-tablet) {
 			display: none;

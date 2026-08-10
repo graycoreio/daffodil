@@ -1,8 +1,9 @@
 @use '@daffodil/design/scss/utilities' as *;
-@import 'theme';
+@use '@daffodil/design/scss/theme' as daff-theme;
+@use 'demo-theme' as *;
 
 .demo-help-box {
-	border: 1px solid daff-color($daff-neutral, 20);
+	border: 1px solid daff-theme.daff-color($neutral, 20);
 	padding: 25px;
 
 	&__title {

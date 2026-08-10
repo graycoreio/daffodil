@@ -1,7 +1,8 @@
 @use '@daffodil/design/scss/utilities' as *;
 @use 'demo-theme' as *;
+@use '@daffodil/design/scss/theme' as daff-theme;
 
 .demo-cart-item-count {
-	color: daff-color($daff-neutral, 80);
+	color: daff-theme.daff-color($neutral, 80);
 	font-size: $font-size-sm;
 }

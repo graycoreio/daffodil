@@ -1,4 +1,5 @@
 @use '@daffodil/design/scss/utilities' as *;
+@use '@daffodil/design/scss/theme' as daff-theme;
 @use 'demo-theme' as *;
 @use '../../../../scss/mixins/dividers' as *;
 
@@ -48,7 +49,7 @@
 
 	&__item-count {
 		float: right;
-		color: daff-color($daff-neutral, 80);
+		color: daff-theme.daff-color($neutral, 80);
 		font-size: $font-size-sm;
 	}
 }

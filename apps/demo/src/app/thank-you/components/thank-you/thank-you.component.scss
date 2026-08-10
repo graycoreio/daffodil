@@ -1,6 +1,7 @@
 @use '@daffodil/design/scss/utilities' as *;
 @use '../../../../scss/mixins/dividers' as *;
 @use 'demo-theme' as *;
+@use '@daffodil/design/scss/theme' as daff-theme;
 
 .demo-thank-you {
 	padding: 25px 0;
@@ -8,7 +9,7 @@
 
 	@include breakpoint(big-tablet) {
 		padding: 50px 0;
-		border-top: 1px solid daff-color($daff-neutral, 20);
+		border-top: 1px solid daff-theme.daff-color($neutral, 20);
 	}
 
 	&__title {
