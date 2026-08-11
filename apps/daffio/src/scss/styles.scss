@@ -10,7 +10,7 @@
 @use '@daffodil/branding/scss/component-themes' as branding;
 
 // @daffodil/docs
-@use 'daff-docs-theme' as docs;
+@use '@daffodil/docs/scss/component-themes' as docs;
 
 .daff-theme-light {
 	background: var(--daff-base-bg);

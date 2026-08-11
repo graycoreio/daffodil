@@ -248,8 +248,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "apps/daffio/src/scss",
-                "dist/docs/src/scss"
+                "apps/daffio/src/scss"
               ]
             },
             "scripts": []
@@ -362,8 +361,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "apps/daffio/src/scss",
-                "dist/docs/src/scss"
+                "apps/daffio/src/scss"
               ]
             },
             "scripts": [],

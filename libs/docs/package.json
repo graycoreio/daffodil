@@ -38,5 +38,10 @@
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@daffodil/design": "0.0.0-PLACEHOLDER",
     "@daffodil/docs-utils": "0.0.0-PLACEHOLDER"
+  },
+  "exports": {
+    "./scss/component-themes": {
+      "sass": "./scss/component-themes.scss"
+    }
   }
 }
