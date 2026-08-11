@@ -1,10 +1,11 @@
-@use 'demo-theme';
+@use 'demo-theme' as *;
+@use '@daffodil/design/scss/theme' as daff-theme;
 @use '@daffodil/design/scss/utilities' as *;
 
 :host {
 	display: block;
-	background: demo-theme.daff-color(demo-theme.$neutral, 100);
-	color: demo-theme.$white;
+	background: daff-theme.daff-color($neutral, 100);
+	color: daff-theme.$white;
 	padding: 50px 25px;
 	margin: 0;
 
@@ -46,7 +47,7 @@
 
 	&__input {
 		width: 60%;
-		border: 1px solid demo-theme.$white;
+		border: 1px solid daff-theme.$white;
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
 
@@ -55,7 +56,7 @@
 		}
 
 		&:focus, &:hover {
-			border: 1px solid demo-theme.$white;
+			border: 1px solid daff-theme.$white;
 		}
 	}
 

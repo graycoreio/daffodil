@@ -1,5 +1,5 @@
 @use '@daffodil/design/scss/utilities' as *;
-@import 'theme';
+@use '@daffodil/design/scss/theme' as daff-theme;
 
 .demo-checkout-shipping-options {
 	border: 0;
@@ -25,7 +25,7 @@
 
 	&__invalid {
 		font-size: $font-size-sm;
-		color: $error;
+		color: daff-theme.$error;
 	}
 
 	&__radio {

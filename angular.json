@@ -50,8 +50,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "apps/demo/src/scss",
-                "dist/design/scss"
+                "apps/demo/src/scss"
               ]
             },
             "scripts": []
@@ -186,8 +185,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "apps/demo/src/scss",
-                "dist/design/scss"
+                "apps/demo/src/scss"
               ]
             },
             "assets": [

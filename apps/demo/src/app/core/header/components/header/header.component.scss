@@ -1,5 +1,6 @@
 @use '@daffodil/design/scss/utilities' as *;
 @use 'demo-theme' as *;
+@use '@daffodil/design/scss/theme' as daff-theme;
 @use '../../../../../scss/mixins/dividers' as *;
 
 .demo-header {
@@ -7,7 +8,7 @@
 	@include section-divider();
 
 	&__menu {
-		border-right: 1px solid daff-color($daff-neutral, 20);
+		border-right: 1px solid daff-theme.daff-color($neutral, 20);
 		padding: 15px;
 	}
 

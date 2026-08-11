@@ -1,5 +1,6 @@
-@use 'demo-theme';
+@use '@daffodil/design/scss/theme' as daff-theme;
+@use 'demo-theme' as *;
 
-@mixin section-divider($size: 1px, $color: demo-theme.daff-color(demo-theme.$neutral, 20)) {
+@mixin section-divider($size: 1px, $color: daff-theme.daff-color($neutral, 20)) {
 	border-bottom: solid 1px $color;
 }
