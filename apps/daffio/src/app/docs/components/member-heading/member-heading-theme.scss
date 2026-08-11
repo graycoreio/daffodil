@@ -8,7 +8,7 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daffio-docs-member-heading {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			&.property {
 				.daffio-docs-member-heading__name {
 					background-color: daff-color($primary, 10);
@@ -31,7 +31,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			&.property {
 				.daffio-docs-member-heading__name {
 					background-color: daff-color($primary, 90);

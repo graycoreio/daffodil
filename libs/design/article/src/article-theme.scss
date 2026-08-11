@@ -14,7 +14,7 @@
 	$table-border-dark: daff-color($neutral, 80);
 
 	.daff-article {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			color: $text-color-light;
 
 			@include stopsArticleCascade(a) {
@@ -98,7 +98,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			color: $text-color-dark;
 
 			@include stopsArticleCascade(a) {

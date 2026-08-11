@@ -11,7 +11,7 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daffio-home-callout-commerce {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			&__video {
 				box-shadow: 0 0 1.5rem 0 rgba($black, 0.4);
 			}
@@ -23,7 +23,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			&__video {
 				border: thin solid daff-color($neutral, 80);
 				box-shadow: 0 0 1.5rem 0 rgba($black, 0.2);

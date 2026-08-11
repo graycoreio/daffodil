@@ -11,7 +11,7 @@
 	.daff-tree-item {
 		$root: &;
 
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			background-color: $base;
 			color: daff-color($neutral, 90);
 
@@ -35,7 +35,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			background-color: $base;
 			color: daff-color($neutral, 20);
 

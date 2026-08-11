@@ -17,7 +17,7 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-callout {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			@include daff-callout-theme-variant(daff-color($neutral, 10));
 
 			&.daff-primary {
@@ -33,7 +33,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			@include daff-callout-theme-variant(daff-color($neutral, 90));
 
 			&.daff-primary {

@@ -10,11 +10,11 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daffio-home-hero {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			background: url('/assets/hero-bg.svg');
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			background: url('/assets/hero-bg-dark.svg');
 		}
 

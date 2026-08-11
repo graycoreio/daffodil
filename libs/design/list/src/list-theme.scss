@@ -18,7 +18,7 @@
 				background-color: $base;
 			}
 
-			@include light($mode) {
+			@include daff-light-mode($mode) {
 				&.active {
 					&::after {
 						background-color: rgba(daff-color($neutral, 20), 0.5);
@@ -34,7 +34,7 @@
 				}
 			}
 
-			@include dark($mode) {
+			@include daff-dark-mode($mode) {
 				&.active {
 					&::after {
 						background-color: rgba(daff-color($neutral, 20), 0.08);

@@ -14,7 +14,7 @@
 		}
 	}
 
-	@include light($mode) {
+	@include daff-light-mode($mode) {
 		.daffio-header {
 			&.bordered {
 				.daffio-header__navbar {
@@ -30,7 +30,7 @@
 		}
 	}
 
-	@include dark($mode) {
+	@include daff-dark-mode($mode) {
 		.daffio-header {
 			&.bordered {
 				.daffio-header__navbar {

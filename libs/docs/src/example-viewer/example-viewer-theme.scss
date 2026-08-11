@@ -14,7 +14,7 @@
 	$background-dark: daff-color($neutral, 90);
 
 	.daff-docs-example-viewer-code {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			border: $border-light;
 
 			&__nav {
@@ -31,7 +31,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			border: $border-dark;
 
 			&__nav {
@@ -58,7 +58,7 @@
 	}
 
 	.daff-docs-example-viewer-preview {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			border: $border-light;
 
 			&__viewport-controls {
@@ -67,7 +67,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			border: $border-dark;
 
 			&__viewport-controls {

@@ -12,7 +12,7 @@
 
 	// stylelint-disable selector-class-pattern
 	.daff-form-field {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			.daff-form-field__control {
 				border: 1px solid daff-color($neutral);
 				color: daff-color($neutral);
@@ -30,7 +30,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			.daff-form-field__control {
 				border: 1px solid daff-color($neutral, 40);
 				color: daff-color($neutral, 40);

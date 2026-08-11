@@ -54,7 +54,7 @@
 	}
 
 	.daff-card {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			@include daff-basic-card-theme-variant(daff-color($neutral, 10));
 
 			&.daff-primary {
@@ -70,7 +70,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			@include daff-basic-card-theme-variant(daff-color($neutral, 90));
 
 			&.daff-primary {
@@ -117,7 +117,7 @@
 		}
 
 		&.daff-card {
-			@include light($mode) {
+			@include daff-light-mode($mode) {
 				@include daff-linkable-card-theme-variant(daff-color($neutral, 20));
 
 				&.daff-primary {
@@ -149,7 +149,7 @@
 				}
 			}
 
-			@include dark($mode) {
+			@include daff-dark-mode($mode) {
 				@include daff-linkable-card-theme-variant(daff-color($neutral, 80));
 
 				&.daff-primary {

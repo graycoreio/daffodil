@@ -14,7 +14,7 @@
 			color: $base-contrast;
 		}
 
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			&__page-link {
 				@media (hover: hover) {
 					&:hover {
@@ -32,7 +32,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			&__page-link {
 				@media (hover: hover) {
 					&:hover {

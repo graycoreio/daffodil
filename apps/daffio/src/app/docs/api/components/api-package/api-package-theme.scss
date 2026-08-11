@@ -15,7 +15,7 @@
 				}
 			}
 
-			@include light($mode) {
+			@include daff-light-mode($mode) {
 				&__subpackage-name {
 					a {
 						&:hover {
@@ -25,7 +25,7 @@
 				}
 			}
 
-			@include dark($mode) {
+			@include daff-dark-mode($mode) {
 				&__subpackage-name {
 					a {
 						&:hover {

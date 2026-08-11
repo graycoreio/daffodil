@@ -7,14 +7,14 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-skeleton {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			&::before,
 			::before {
 				background: daff-color($neutral, 20);
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			&::before,
 			::before {
 				background: daff-color($neutral, 90);

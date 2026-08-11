@@ -25,7 +25,7 @@
 			}
 		}
 
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			&__item {
 				&::after {
 					background: rgba(daff-color($neutral, 20), 0.5);
@@ -33,7 +33,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			&__item {
 				&::after {
 					background: rgba(daff-color($neutral, 80), 0.5);

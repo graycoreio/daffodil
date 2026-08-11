@@ -24,7 +24,7 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-underline-button {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			@include daff-underline-button-theme-variant(
 				daff-color($neutral, 70)
 			);
@@ -80,7 +80,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			@include daff-underline-button-theme-variant(
 				daff-color($neutral, 40)
 			);

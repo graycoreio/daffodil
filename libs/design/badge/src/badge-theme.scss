@@ -51,7 +51,7 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-badge {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			@include daff-badge-color-light-variants(
 				(
 					'primary': $primary,
@@ -125,7 +125,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			background: daff-color($neutral, 80);
 			color: daff-color($neutral, 20);
 

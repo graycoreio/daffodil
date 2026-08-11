@@ -7,11 +7,11 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-hint {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			color: daff-color($neutral, 80);
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			color: daff-color($neutral, 30);
 		}
 

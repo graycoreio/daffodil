@@ -8,7 +8,7 @@
 	.daff-media-gallery {
 		$root: &;
 
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			.daff-thumbnail {
 				background: daff-color($neutral, 20);
 
@@ -18,7 +18,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			.daff-thumbnail {
 				background: daff-color($neutral, 70);
 
