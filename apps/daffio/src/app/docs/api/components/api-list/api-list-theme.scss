@@ -16,7 +16,7 @@
 			}
 		}
 
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			&__package-wrapper {
 				border-bottom: 1px solid daff-color($neutral, 20);
 			}
@@ -30,7 +30,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			&__package-wrapper {
 				border-bottom: 1px solid daff-color($neutral, 80);
 			}

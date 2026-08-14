@@ -6,7 +6,7 @@
 	$base-contrast: daff-get-base-color($theme, base-contrast);
 	$mode: daff-get-theme-mode($theme);
 
-	@include light($mode) {
+	@include daff-light-mode($mode) {
 		.daff-tabs {
 			&__tab-list {
 				&::after {
@@ -25,7 +25,7 @@
 		}
 	}
 
-	@include dark($mode) {
+	@include daff-dark-mode($mode) {
 		.daff-tabs {
 			&__tab-list {
 				&::after {

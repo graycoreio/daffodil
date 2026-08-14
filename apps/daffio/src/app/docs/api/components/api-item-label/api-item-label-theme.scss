@@ -18,7 +18,7 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daffio-docs-api-item-label {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			// Angular Framework
 			&.component {
 				@include type-theming(daff-color($primary, 90));
@@ -115,7 +115,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			// Angular Framework
 			&.component {
 				@include type-theming(daff-color($primary, 10), 0.1);

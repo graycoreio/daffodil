@@ -18,13 +18,13 @@
 			color: daff-text-contrast($base);
 		}
 
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			#{$root}__track {
 				background: daff-color($neutral, 30);
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			#{$root}__track {
 				background: daff-color($neutral, 80);
 			}

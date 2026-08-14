@@ -6,7 +6,7 @@
 
 	.daffio-docs-scroll-to-top {
 		&__button {
-			@include light($mode) {
+			@include daff-light-mode($mode) {
 				color: daff-color($neutral, 80);
 
 				&:hover {
@@ -14,7 +14,7 @@
 				}
 			}
 
-			@include dark($mode) {
+			@include daff-dark-mode($mode) {
 				color: daff-color($neutral, 40);
 
 				&:hover {

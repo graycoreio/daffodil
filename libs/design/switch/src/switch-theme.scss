@@ -21,7 +21,7 @@
 			}
 		}
 
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			&__toggle {
 				background-color: daff-color($neutral, 30);
 
@@ -37,7 +37,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			&__toggle {
 				background-color: daff-color($neutral, 70);
 

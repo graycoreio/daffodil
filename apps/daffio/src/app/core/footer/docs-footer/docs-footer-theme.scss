@@ -7,7 +7,7 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daffio-docs-footer {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			border-top: 1px solid daff-color($neutral, 20);
 
 			&__copyright {
@@ -23,7 +23,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			border-top: 1px solid daff-color($neutral, 80);
 
 			&__copyright {

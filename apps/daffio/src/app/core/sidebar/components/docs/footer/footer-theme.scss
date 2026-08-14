@@ -6,7 +6,7 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daffio-docs-sidebar-footer {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			border-top: 1px solid daff-color($neutral, 20);
 
 			&::after {
@@ -14,7 +14,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			border-top: 1px solid daff-color($neutral, 90);
 
 			&::after {

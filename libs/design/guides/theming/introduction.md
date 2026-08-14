@@ -20,8 +20,10 @@ Add it to your `styles.scss` file to apply styles globally:
 @include daff-theme.daff-component-themes(daff-default-theme.$theme);
 ```
 
+> This applies the light theme only. To support both light and dark modes, see the [modes](/libs/design/guides/theming/modes.md) documentation.
+
 ## Next steps
 To learn more about theming, see:
 
-- [Light and dark modes](/libs/design/guides/theming/modes.md)
+- [Modes](/libs/design/guides/theming/modes.md)
 - [Customize your own theme](/libs/design/guides/theming/customize-your-own-theme.md)

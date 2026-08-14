@@ -14,14 +14,14 @@
 			color: $base-contrast;
 		}
 
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			&__logo,
 			&__link {
 				background: daff-color($neutral, 10);
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			&__logo,
 			&__link {
 				background: daff-color($neutral, 90);

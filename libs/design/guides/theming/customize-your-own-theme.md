@@ -2,7 +2,7 @@
 Daffodil allows you to define custom themes to match your brand’s visual style. This involves creating custom color palettes, configuring them, and applying them to your application.
 
 ## Create custom palettes
-Create a palettes file with Sass maps that include hues from `10` to `100` in increments of 10. These palettes will be used for `$primary`, `$secondary`, and `$tertiary` colors.
+Create a palettes file with Sass maps that include hues from `10` to `100` in increments of 10. Create a palette for each color your theme needs. Primary, secondary, and tertiary are required. Neutral and the status colors are optional and fall back to Daffodil's defaults.
 
 **Example:**
 ```scss
@@ -41,6 +41,8 @@ $app-secondary-dark: daff-theme.daff-configure-palette(palette.$app-green, 50);
 $app-tertiary-dark: daff-theme.daff-configure-palette(palette.$app-purple, 50);
 ```
 
+> Use a lighter hue for dark mode so colors stay legible against a dark background. Daffodil's default theme uses `60` for light mode and `50` for dark mode.
+
 ## Define themes
 Use the `daff-create-theme` function to define light and dark themes. This function accepts a single map parameter with configuration options.
 
@@ -62,16 +64,19 @@ Use the `daff-create-theme` function to define light and dark themes. This funct
 | -------- | ----------- |
 | `'mode'` | Theme mode (`light` or `dark`). Defaults to `light` if not provided |
 | `'neutral'` | The neutral color palette |
-| `'info'` | The informational color palette |
+| `'informational'` | The informational color palette |
 | `'warn'` | The warning color palette |
 | `'critical'` | The critical/error color palette |
 | `'success'` | The success color palette |
 | `'text-color-default'` | The default text color |
 | `'text-color-inverse'` | The inverse text color |
 
-**Example with required parameters only:**
+Define a light and a dark theme so your app can support both modes.
+
+**Example with required keys only:**
 
 ```scss
+// app-theme.scss
 @use '@daffodil/design/scss/theme' as daff-theme;
 @use 'app-color-palettes' as palette; // your palettes file
 
@@ -79,17 +84,29 @@ $app-primary: daff-theme.daff-configure-palette(palette.$app-blue, 60);
 $app-secondary: daff-theme.daff-configure-palette(palette.$app-green, 60);
 $app-tertiary: daff-theme.daff-configure-palette(palette.$app-purple, 60);
 
-$theme: daff-theme.daff-create-theme((
-  'mode': 'light'
+$app-primary-dark: daff-theme.daff-configure-palette(palette.$app-blue, 50);
+$app-secondary-dark: daff-theme.daff-configure-palette(palette.$app-green, 50);
+$app-tertiary-dark: daff-theme.daff-configure-palette(palette.$app-purple, 50);
+
+$theme-light: daff-theme.daff-create-theme((
+  'mode': 'light',
   'primary': $app-primary,
   'secondary': $app-secondary,
   'tertiary': $app-tertiary,
 ));
+
+$theme-dark: daff-theme.daff-create-theme((
+  'mode': 'dark',
+  'primary': $app-primary-dark,
+  'secondary': $app-secondary-dark,
+  'tertiary': $app-tertiary-dark,
+));
 ```
 
-**Example with optional parameters:**
+**Example with optional keys:**
 
 ```scss
+// app-theme.scss
 @use '@daffodil/design/scss/theme' as daff-theme;
 @use 'app-color-palettes' as palette; // your palettes file
 
@@ -102,6 +119,7 @@ $theme: daff-theme.daff-create-theme((
   'primary': $app-primary,
   'secondary': $app-secondary,
   'tertiary': $app-tertiary,
+  'neutral': daff-theme.daff-configure-palette(palette.$app-neutral, 60),
   'informational': daff-theme.daff-configure-palette(palette.$app-blue, 40),
   'warn': daff-theme.daff-configure-palette(palette.$app-orange, 40),
   'critical': daff-theme.daff-configure-palette(palette.$app-red, 40),
@@ -112,7 +130,7 @@ $theme: daff-theme.daff-create-theme((
 ```
 
 ## Apply themes
-Finally, include your custom themes in your global styles.scss file:
+Include your themes in your global `styles.scss` file the same way you would the default theme, using your own theme variables in place of Daffodil's:
 
 ```scss
 @use '@daffodil/design/scss/theme' as daff-theme;
@@ -126,3 +144,5 @@ Finally, include your custom themes in your global styles.scss file:
   @include daff-theme.daff-component-themes(app-theme.$theme-dark);
 }
 ```
+
+Switching between the two also requires `DAFF_THEME_INITIALIZER`. See [light and dark modes](/libs/design/guides/theming/modes.md) for the full setup.

@@ -6,12 +6,12 @@
 
 	.daff-breadcrumb__item {
 		a, .daff-breadcrumb__menu-activator {
-			@include light($mode) {
+			@include daff-light-mode($mode) {
 				color: daff-color($neutral, 80);
 				text-decoration-color: daff-color($neutral, 80);
 			}
 
-			@include dark($mode) {
+			@include daff-dark-mode($mode) {
 				color: daff-color($neutral, 30);
 				text-decoration-color: daff-color($neutral, 30);
 			}

@@ -5,11 +5,11 @@
 	$mode: daff-theme.daff-get-theme-mode($theme);
 
 	.daff-branding-logo {
-		@include daff-theme.light($mode) {
+		@include daff-theme.daff-light-mode($mode) {
 			fill: daff-theme.daff-color($neutral, 90);
 		}
 
-		@include daff-theme.dark($mode) {
+		@include daff-theme.daff-dark-mode($mode) {
 			fill: daff-theme.daff-color($neutral, 10);
 		}
 	}

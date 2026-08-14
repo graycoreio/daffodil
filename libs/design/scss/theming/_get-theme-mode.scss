@@ -17,7 +17,7 @@
 /// 	@use '@daffodil/design/scss/theme' as daff-theme;
 ///
 /// 	@mixin custom-content-theme($theme) {
-/// 		$mode: daff-get-theme-mode($theme);
+/// 		$mode: daff-theme.daff-get-theme-mode($theme);
 /// 	}
 ///
 

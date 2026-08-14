@@ -15,7 +15,7 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-tag {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			background: daff-color($neutral, 20);
 			color: $black;
 
@@ -123,7 +123,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			background: daff-color($neutral, 80);
 			color: daff-color($neutral, 20);
 

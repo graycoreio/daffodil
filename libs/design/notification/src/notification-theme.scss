@@ -12,7 +12,7 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-notification {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			background: daff-color($neutral, 10);
 			border: 1px solid daff-color($neutral, 20);
 			color: $base-contrast;
@@ -58,7 +58,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			background: daff-color($neutral, 90);
 			border: 1px solid daff-color($neutral, 80);
 			color: $base-contrast;

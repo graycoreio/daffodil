@@ -7,7 +7,7 @@
 	$base-contrast: daff-get-base-color($theme, base-contrast);
 	$mode: daff-get-theme-mode($theme);
 
-	@include light($mode) {
+	@include daff-light-mode($mode) {
 		.daff-menu {
 			background: $base;
 			box-shadow: 0 0 1.5rem rgb($black, 0.12);
@@ -29,7 +29,7 @@
 		}
 	}
 
-	@include dark($mode) {
+	@include daff-dark-mode($mode) {
 		.daff-menu {
 			background: $base;
 			box-shadow: 0 0 1.5rem rgb($black, 0.12);

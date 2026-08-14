@@ -46,7 +46,7 @@
 			}
 		}
 
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			&.daff-primary {
 				@include daff-stroked-button-theme-variant(
 					daff-color($primary)
@@ -98,7 +98,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			&.daff-primary {
 				@include daff-stroked-button-theme-variant(
 					daff-color($primary, 40)

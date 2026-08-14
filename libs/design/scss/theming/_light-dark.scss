@@ -11,16 +11,16 @@
 /// 	@mixin custom-content-theme($theme) {
 /// 		$mode: daff-theme.daff-get-theme-mode($theme);
 ///
-/// 		@include daff-theme.light($mode) {
+/// 		@include daff-theme.daff-light-mode($mode) {
 /// 			color: blue;
 ///
-///   		.class {
-///   			background: white;
-///				}
-///	 		}
+/// 			.class {
+/// 				background: white;
+/// 			}
+/// 		}
 /// 	}
 ///
-@mixin light($mode) {
+@mixin daff-light-mode($mode) {
 	@if $mode == 'light' {
 		@content;
 	}
@@ -39,16 +39,41 @@
 /// 	@mixin custom-content-theme($theme) {
 /// 		$mode: daff-theme.daff-get-theme-mode($theme);
 ///
-/// 		@include daff-theme.dark($mode) {
+/// 		@include daff-theme.daff-dark-mode($mode) {
 /// 			color: white;
 ///
-///   		.class {
-///   			background: blue;
-///				}
-///	 		}
+/// 			.class {
+/// 				background: blue;
+/// 			}
+/// 		}
 /// 	}
-@mixin dark($mode) {
+///
+@mixin daff-dark-mode($mode) {
 	@if $mode == 'dark' {
+		@content;
+	}
+}
+
+/// @deprecated Use `daff-light-mode` instead.
+///
+/// @group Theming
+///
+/// @alias daff-light-mode
+///
+@mixin light($mode) {
+	@include daff-light-mode($mode) {
+		@content;
+	}
+}
+
+/// @deprecated Use `daff-dark-mode` instead.
+///
+/// @group Theming
+///
+/// @alias daff-dark-mode
+///
+@mixin dark($mode) {
+	@include daff-dark-mode($mode) {
 		@content;
 	}
 }

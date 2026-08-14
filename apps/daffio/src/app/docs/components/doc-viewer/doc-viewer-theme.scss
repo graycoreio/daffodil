@@ -5,7 +5,7 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daffio-doc-viewer {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			&__toc-links {
 				border-top: 1px solid daff-color($neutral, 30);
 			}
@@ -19,7 +19,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			&__toc-links {
 				border-top: 1px solid daff-color($neutral, 70);
 			}

@@ -14,7 +14,7 @@
 	.daff-select {
 		$root: '.daff-select';
 
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			&.disabled {
 				#{$root}__field {
 					color: daff-color($neutral, 50);
@@ -44,7 +44,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			&.disabled {
 				#{$root}__field {
 					color: daff-color($neutral, 70);

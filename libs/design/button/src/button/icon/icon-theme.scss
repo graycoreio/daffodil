@@ -41,7 +41,7 @@
 	$mode: daff-get-theme-mode($theme);
 
 	.daff-icon-button {
-		@include light($mode) {
+		@include daff-light-mode($mode) {
 			@include daff-icon-button-theme-variant(
 				daff-color($neutral, 50),
 				daff-color($neutral, 60),
@@ -129,7 +129,7 @@
 			}
 		}
 
-		@include dark($mode) {
+		@include daff-dark-mode($mode) {
 			@include daff-icon-button-theme-variant(
 				daff-color($neutral, 50),
 				daff-color($neutral, 40),
