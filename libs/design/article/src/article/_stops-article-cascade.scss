@@ -1,6 +1,10 @@
 @mixin stopsArticleCascade($selector...) {
 	#{$selector} {
-		&:not(.daff-ae *, .daff-ae) {
+		// `.daff-ae` only stops the cascade when it sits between the element and
+		// the article. Anchoring it to `.daff-article` keeps article styles
+		// working when an article is nested inside an encapsulated component.
+		// `:where` keeps the anchored selector from raising specificity.
+		&:not(.daff-ae, :where(.daff-article .daff-ae *)) {
 			@content;
 		}
 	}
