@@ -1,7 +1,7 @@
 // stylelint-disable @stylistic/max-line-length
 @use 'sass:map';
-@use 'get-color';
-@use '../core/error/error-to-string';
+@use '../get-color';
+@use '../../core/error/error-to-string';
 
 /// @access private
 /// The distance between two adjacent hues in a color palette.
