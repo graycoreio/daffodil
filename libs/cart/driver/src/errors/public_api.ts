@@ -9,5 +9,6 @@ export { DaffInvalidCouponCodeError } from './invalid-coupon-code';
 export { DaffInvalidEmailError } from './invalid-email';
 export { DaffInvalidRegionError } from './invalid-region';
 export { DaffProductOutOfStockError } from './product-out-of-stock';
+export { DaffProductInsufficientStockError } from './product-insufficient-stock';
 export { DaffCartItemExceedsMaxQtyError } from './item-exceeds-max-qty';
 export { DaffUnauthorizedForCartError } from './unauthorized-for-cart';
