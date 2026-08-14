@@ -311,7 +311,12 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "security": {
+                "allowedHosts": [
+                  "localhost"
+                ]
+              }
             },
             "libs": {
               "tsConfig": "apps/daffio/tsconfig.dev.json"
