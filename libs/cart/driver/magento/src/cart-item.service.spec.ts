@@ -22,7 +22,7 @@ import {
   DaffCartDriverErrorCodes,
   DaffCartItemExceedsMaxQtyError,
   DaffCartNotFoundError,
-  DaffProductOutOfStockError,
+  DaffProductInsufficientStockError,
 } from '@daffodil/cart/driver';
 import {
   DaffMagentoCartTransformer,
@@ -356,7 +356,7 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
       it('should throw an error', done => {
         service.add(cartId, mockDaffConfigurableCartItemInput).pipe(
           catchError((error: DaffError) => {
-            expect(error.code).toEqual(DaffCartDriverErrorCodes.PRODUCT_OUT_OF_STOCK);
+            expect(error.code).toEqual(DaffCartDriverErrorCodes.PRODUCT_INSUFFICIENT_STOCK);
             done();
             return [];
           }),
@@ -450,10 +450,10 @@ describe('@daffodil/cart/driver/magento | CartItemService', () => {
       });
 
       describe('because the there is insufficient stock of the requested product', () => {
-        it('should throw a DaffProductOutOfStockError', done => {
+        it('should throw a DaffProductInsufficientStockError', done => {
           service.update(cartId, mockDaffCartItem.id, mockDaffCartItem).pipe(
-            catchError((err: DaffProductOutOfStockError) => {
-              expect(err).toEqual(jasmine.any(DaffProductOutOfStockError));
+            catchError((err: DaffProductInsufficientStockError) => {
+              expect(err).toEqual(jasmine.any(DaffProductInsufficientStockError));
               done();
               return [];
             }),
