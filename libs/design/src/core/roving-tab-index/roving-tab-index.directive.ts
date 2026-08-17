@@ -26,6 +26,8 @@ import { DaffRovingTabIndexService } from './roving-tab-index-group.service';
     '(keydown.escape)': 'leaveGroup($event)',
     '(keydown.arrowup)': 'previous($event)',
     '(keydown.arrowdown)': 'next($event)',
+    '(keydown.tab)': 'next($event)',
+    '(keydown.shift.tab)': 'previous($event)',
   },
 })
 export class DaffRovingTabIndexDirective {
@@ -57,24 +59,33 @@ export class DaffRovingTabIndexDirective {
   /**
    * @docs-private
    */
-  leaveGroup(evt: Event) {
-    evt.stopPropagation();
-    this.service.leave();
+  protected leaveGroup(evt: Event) {
+    if (this.service.group()) {
+      evt.preventDefault();
+      evt.stopPropagation();
+      this.service.leave();
+    }
   }
 
   /**
    * @docs-private
    */
-  next(evt: Event) {
-    evt.stopPropagation();
-    this.service.next();
+  protected next(evt: Event) {
+    if (this.service.group()) {
+      evt.preventDefault();
+      evt.stopPropagation();
+      this.service.next();
+    }
   }
 
   /**
    * @docs-private
    */
-  previous(evt: Event) {
-    evt.stopPropagation();
-    this.service.previous();
+  protected previous(evt: Event) {
+    if (this.service.group()) {
+      evt.preventDefault();
+      evt.stopPropagation();
+      this.service.previous();
+    }
   }
 }
