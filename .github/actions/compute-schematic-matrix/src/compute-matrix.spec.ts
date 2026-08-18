@@ -10,7 +10,7 @@ import {
 } from './path-config';
 
 const REPO_ROOT = join(__dirname, '..', '..', '..', '..');
-const NODE_VERSIONS = ['22.21.x'];
+const NODE_VERSIONS = ['24.19.x'];
 const ANGULAR_VERSIONS = ['^20'];
 
 const entryNames = (entries: MatrixEntry[]): string[] =>
@@ -114,7 +114,7 @@ describe('computeMatrix', () => {
     it('driver entry has correct defaults', () => {
       const [demo] = computeMatrix(['libs/dev-tools/src/component.ts'], config, NODE_VERSIONS, ANGULAR_VERSIONS);
       expect(demo).toEqual({
-        node_version: '22.21.x',
+        node_version: '24.19.x',
         angular_version: '^20',
         driver: 'demo',
         base: 'scss-standalone',
@@ -129,7 +129,7 @@ describe('computeMatrix', () => {
       const entries = computeMatrix(['tools/schematics/ng-add/index.ts'], config, NODE_VERSIONS, ANGULAR_VERSIONS);
       const entry = entries.find((e) => e.name === 'skip-package-json');
       expect(entry).toEqual({
-        node_version: '22.21.x',
+        node_version: '24.19.x',
         angular_version: '^20',
         driver: 'in-memory',
         base: 'scss-standalone',
@@ -145,7 +145,7 @@ describe('computeMatrix', () => {
       const entries = computeMatrix(['tools/schematics/ng-add/index.ts'], config, NODE_VERSIONS, ANGULAR_VERSIONS);
       const entry = entries.find((e) => e.name === 'module-app-rejection');
       expect(entry).toEqual({
-        node_version: '22.21.x',
+        node_version: '24.19.x',
         angular_version: '^20',
         driver: 'in-memory',
         base: 'scss-module',
@@ -161,7 +161,7 @@ describe('computeMatrix', () => {
       const entries = computeMatrix(['tools/schematics/ng-add/index.ts'], config, NODE_VERSIONS, ANGULAR_VERSIONS);
       const entry = entries.find((e) => e.name === 'css-style-failure');
       expect(entry).toEqual({
-        node_version: '22.21.x',
+        node_version: '24.19.x',
         angular_version: '^20',
         driver: 'in-memory',
         base: 'css-standalone',
@@ -177,7 +177,7 @@ describe('computeMatrix', () => {
       const entries = computeMatrix(['tools/schematics/ng-add/index.ts'], config, NODE_VERSIONS, ANGULAR_VERSIONS);
       const entry = entries.find((e) => e.name === 'no-app-routing');
       expect(entry).toEqual({
-        node_version: '22.21.x',
+        node_version: '24.19.x',
         angular_version: '^20',
         driver: 'in-memory',
         base: 'scss-standalone',

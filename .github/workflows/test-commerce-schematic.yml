@@ -9,8 +9,8 @@ on:
       node-versions:
         required: false
         type: string
-        default: '22.21.x'
-        description: "Comma-separated Node.js versions (e.g. '22.21.x,20.x')"
+        default: '24.19.x'
+        description: "Comma-separated Node.js versions (e.g. '24.19.x,20.x')"
       angular-versions:
         required: false
         type: string

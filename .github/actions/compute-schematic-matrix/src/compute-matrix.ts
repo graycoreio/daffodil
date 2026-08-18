@@ -12,7 +12,7 @@ import {
  */
 export interface MatrixEntry {
   /**
-   * Node.js version for the test runner (e.g. `"22.21.x"`).
+   * Node.js version for the test runner (e.g. `"24.19.x"`).
    */
   node_version: string;
   /**
