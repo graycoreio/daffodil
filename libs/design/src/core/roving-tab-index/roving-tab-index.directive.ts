@@ -1,9 +1,11 @@
 import {
+  afterNextRender,
   computed,
   Directive,
   Inject,
   input,
   Optional,
+  signal,
   SkipSelf,
 } from '@angular/core';
 
@@ -31,6 +33,8 @@ import { DaffRovingTabIndexService } from './roving-tab-index-group.service';
   },
 })
 export class DaffRovingTabIndexDirective {
+  private readonly _hydrationWorkaround = signal(false);
+
   /**
    * Allows the RTI group to be overriden.
    * By default it will be the nearest ancestor or the default root group if no boundary ancestor exists.
@@ -41,7 +45,11 @@ export class DaffRovingTabIndexDirective {
    * The group in which this RTI target resides.
    * See {@link DaffRovingTabIndexBoundaryDirective} to make an element act as the boundary of an RTI group.
    */
-  readonly group = computed(() => this.rti() || this.parent?.effectiveBoundary() || '');
+  readonly group = computed(() =>
+    this._hydrationWorkaround()
+      ? this.rti() || this.parent?.effectiveBoundary() || ''
+      : this.rti() || this.parent?.effectiveBoundary() || '',
+  );
   /**
    * @docs-private
    */
@@ -54,7 +62,11 @@ export class DaffRovingTabIndexDirective {
   constructor(
     private service: DaffRovingTabIndexService,
     @Optional() @SkipSelf() @Inject(DAFF_ROVING_TAB_INDEX_BOUNDARY) private parent: DaffRovingTabIndexBoundary,
-  ) {}
+  ) {
+    afterNextRender({
+      read: () => this._hydrationWorkaround.set(true),
+    });
+  }
 
   /**
    * @docs-private

@@ -37,15 +37,10 @@ export class DaffRovingTabIndexBoundaryDirective implements DaffRovingTabIndexBo
   /**
    * Don't touch this directly. Use `_uniqueId`.
    */
-  private static _uniqueIdCounter = 0;
-
-  /**
-   * Don't touch this directly. Use `_uniqueId`.
-   */
   private _cachedUniqueId: string | undefined;
   private get _uniqueId(): string {
     if (!this._cachedUniqueId) {
-      this._cachedUniqueId = `ε-rtiBoundary-${DaffRovingTabIndexBoundaryDirective._uniqueIdCounter++}`;
+      this._cachedUniqueId = `ε-rtiBoundary-${crypto.randomUUID()}`;
     }
     return this._cachedUniqueId;
   }
