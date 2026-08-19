@@ -5,7 +5,7 @@ import { DaffSsrResponse } from '@daffodil/ssr';
 /**
  * A response that interfaces with the express request.
  *
- * @deprecated in favor of native Angular features: https://angular.dev/guide/ssr#accessing-request-and-response-via-di.
+ * @deprecated in favor of native Angular features: https://angular.dev/guide/ssr#accessing-request-and-response-via-di. Deprecated in version 0.94.0. Will be removed in version 0.97.0.
  * @inheritdoc
  */
 export class DaffSsrExpressResponse implements DaffSsrResponse {
