@@ -1,1 +1,2 @@
 export const DAFF_PRODUCT_IN_MEMORY_COLLECTION_NAME = 'products';
+export const DAFF_PRODUCT_CUSTOM_ATTRIBUTE_IN_MEMORY_COLLECTION_NAME = 'customAttributes';
