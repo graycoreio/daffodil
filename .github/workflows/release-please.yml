@@ -22,25 +22,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: googleapis/release-please-action@v5
+        id: release-please
         with:
           token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
           config-file: ${{ inputs.release-mode == 'rc' && 'release-please-config.rc.json' || 'release-please-config.json' }}
           target-branch: develop
 
       - uses: actions/checkout@v6
+        if: steps.release-please.outputs.prs_created == 'true'
         with:
-          ref: release-please--branches--develop--components--daffodil
+          ref: ${{ fromJSON(steps.release-please.outputs.pr).headBranchName }}
           token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
 
       - name: Add Packages to README
+        if: steps.release-please.outputs.prs_created == 'true'
         uses: graycoreio/daffodil/.github/actions/add-packages-to-readme@develop
 
       - name: Annotate deprecation messages
+        if: steps.release-please.outputs.prs_created == 'true'
         uses: graycoreio/daffodil/.github/actions/deprecations@develop
         with:
           mode: annotate
 
       - name: Commit and push
+        if: steps.release-please.outputs.prs_created == 'true'
         run: |
           git config user.name "GrayBot"
           git config user.email "automation@graycore.io"
