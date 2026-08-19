@@ -2,7 +2,7 @@ import { DaffSsrResponse } from './type';
 
 /**
  * A noop response that will be used in all environments except SSR.
- * @deprecated in favor of native Angular features: https://angular.dev/guide/ssr#accessing-request-and-response-via-di.
+ * @deprecated in favor of native Angular features: https://angular.dev/guide/ssr#accessing-request-and-response-via-di. Deprecated in version 0.94.0. Will be removed in version 0.97.0.
  */
 export class DaffSsrNoopResponse implements DaffSsrResponse {
   /**
