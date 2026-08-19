@@ -1,0 +1,107 @@
+@use 'true' as *;
+@use 'sass:map';
+@use '../color-shift' as *;
+@use '../color-palettes' as palette;
+@use '../configure-palette' as *;
+@use '../get-color' as *;
+@use '../../core/error/error-to-string';
+
+@include describe('daff-color-shift') {
+	$default: daff-configure-palette(palette.$daff-blue);
+	$light: daff-configure-palette(palette.$daff-blue, 30);
+	$dark: daff-configure-palette(palette.$daff-blue, 50);
+	$lightest: daff-configure-palette(palette.$daff-blue, 10);
+	$darkest: daff-configure-palette(palette.$daff-blue, 100);
+
+	@include it('returns the default color when there is no shift') {
+		@include assert-equal(daff-color-shift($default), daff-color($default));
+		@include assert-equal(daff-color-shift($default, 0), daff-color($default, 60));
+	}
+
+	@include it('returns a darker color for positive steps') {
+		@include assert-equal(daff-color-shift($default, 1), daff-color($default, 70));
+		@include assert-equal(daff-color-shift($default, 2), daff-color($default, 80));
+	}
+
+	@include it('returns a lighter color for negative steps') {
+		@include assert-equal(daff-color-shift($dark, -1), daff-color($dark, 40));
+		@include assert-equal(daff-color-shift($dark, -2), daff-color($dark, 30));
+	}
+
+	@include it('shifts relative to the hue the palette was configured with') {
+		@include assert-equal(daff-color-shift($light, 1), daff-color($light, 40));
+		@include assert-equal(daff-color-shift($light, 2), daff-color($light, 50));
+	}
+
+	@include it('shifts across the whole palette') {
+		@include assert-equal(daff-color-shift($lightest, 9), daff-color($lightest, 100));
+		@include assert-equal(daff-color-shift($darkest, -9), daff-color($darkest, 10));
+	}
+
+	@include it('shifts relative to the configured hue, not a duplicate color earlier in the palette') {
+		$duplicate: daff-configure-palette((10: #ffffff, 20: #cccccc, 30: #cccccc, 40: #999999), 30);
+
+		@include assert-equal(daff-color-shift($duplicate, 1), #999999);
+	}
+
+	@include error-to-string.set-use-string(true);
+
+	@include it('errors when the shift falls past the dark end of the palette') {
+		@include assert-equal(
+			daff-color-shift($darkest, 1),
+			'Cannot shift `1` step(s) from hue `100`. `110` does not exist in palette.'
+		);
+	}
+
+	@include it('errors when the shift falls past the light end of the palette') {
+		@include assert-equal(
+			daff-color-shift($lightest, -1),
+			'Cannot shift `-1` step(s) from hue `10`. `0` does not exist in palette.'
+		);
+	}
+
+	@include it('errors when the shift lands between hues') {
+		@include assert-equal(
+			daff-color-shift($default, 0.5),
+			'Cannot shift `0.5` step(s) from hue `60`. `65` does not exist in palette.'
+		);
+	}
+
+	@include it('errors when the palette was not configured with daff-configure-palette') {
+		@include assert-equal(
+			daff-color-shift(palette.$daff-blue, 1),
+			'Palette has no `default-hue`. Configure it with `daff-configure-palette`.'
+		);
+	}
+
+	@include it('errors when the palette has a default color but no default hue') {
+		$manual: map.merge(palette.$daff-blue, ('default': daff-color(palette.$daff-blue, 60)));
+
+		@include assert-equal(
+			daff-color-shift($manual, 1),
+			'Palette has no `default-hue`. Configure it with `daff-configure-palette`.'
+		);
+	}
+
+	@include error-to-string.set-use-string(false);
+}
+
+@include describe('daff-configure-palette') {
+	@include it('records the hue the default was configured from') {
+		@include assert-equal(
+			map.get(daff-configure-palette(palette.$daff-blue), 'default-hue'),
+			60
+		);
+		@include assert-equal(
+			map.get(daff-configure-palette(palette.$daff-blue, 30), 'default-hue'),
+			30
+		);
+	}
+
+	@include it('replaces the recorded hue when a palette is reconfigured') {
+		$reconfigured: daff-configure-palette(daff-configure-palette(palette.$daff-blue, 30), 80);
+
+		@include assert-equal(map.get($reconfigured, 'default-hue'), 80);
+		@include assert-equal(map.get($reconfigured, 'default'), daff-color(palette.$daff-blue, 80));
+	}
+}

@@ -7,6 +7,9 @@
 /// as the palette’s default color. The palette can then be used
 /// to configure themes by setting them as primary, secondary, or tertiary colors.
 ///
+/// The hue is recorded alongside the color as `default-hue`, so that colors can
+/// be selected relative to the default with `daff-color-shift`.
+///
 /// @group Theming
 ///
 /// @param {Map} $color-palette — A color palette map (e.g., `$daff-blue`, `$daff-purple`).
@@ -21,7 +24,8 @@
 	@return map.merge(
 		$color-palette,
 		(
-			'default': get-color.daff-color($color-palette, $hue)
+			'default': get-color.daff-color($color-palette, $hue),
+			'default-hue': $hue
 		)
 	);
 }

@@ -1,0 +1,56 @@
+// stylelint-disable @stylistic/max-line-length
+@use 'sass:map';
+@use '../get-color';
+@use '../../core/error/error-to-string';
+
+/// @access private
+/// The distance between two adjacent hues in a color palette.
+$hue-step: 10;
+
+/// Retrieves a color relative to a palette's default hue.
+///
+/// Positive steps move toward the darker end of the palette, negative steps
+/// toward the lighter end. Use this instead of a hardcoded hue when a color is
+/// meant to sit a fixed distance from a palette's default, such as the hover
+/// and active states of a component.
+///
+/// The palette must be configured with `daff-configure-palette`, which records
+/// the hue that the default was set from.
+///
+/// @group Theming
+///
+/// @param {Map} $palette — The palette to retrieve a color from.
+/// @param {Number} $steps [0] — How many hue steps to shift from the default.
+///
+/// @return {Color} The color `$steps` away from the palette's default hue.
+///
+/// @throws Will throw an error if `$palette` was not configured with
+/// `daff-configure-palette`, or if the shifted hue does not exist in `$palette`.
+///
+/// @example scss
+/// 	// $primary configured at hue 60
+/// 	.custom-content {
+/// 		background-color: daff-color($primary); // hue 60
+/// 		border-color: daff-color-shift($primary, 1); // hue 70
+/// 		color: daff-color-shift($primary, -1); // hue 50
+/// 	}
+///
+@function daff-color-shift($palette, $steps: 0) {
+	$default-hue: map.get($palette, 'default-hue');
+
+	@if ($default-hue == null) {
+		@return error-to-string.error-to-string(
+			'Palette has no `default-hue`. Configure it with `daff-configure-palette`.'
+		);
+	}
+
+	$hue: $default-hue + ($steps * $hue-step);
+
+	@if (not map.has-key($palette, $hue)) {
+		@return error-to-string.error-to-string(
+			'Cannot shift `#{$steps}` step(s) from hue `#{$default-hue}`. `#{$hue}` does not exist in palette.'
+		);
+	}
+
+	@return get-color.daff-color($palette, $hue);
+}
