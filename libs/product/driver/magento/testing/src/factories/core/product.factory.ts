@@ -25,6 +25,10 @@ export class MockMagentoCoreProduct extends MockMagentoProductPreview implements
     html: faker.lorem.words(3),
   };
   media_gallery_entries = [];
+  custom_attributesV2 = {
+    items: [],
+    errors: [],
+  };
 }
 
 /**
