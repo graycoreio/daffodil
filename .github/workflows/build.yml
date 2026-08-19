@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [22.21.x]
+        node: [24.19.x]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [22.21.x]
+        node: [24.19.x]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -108,7 +108,7 @@ jobs:
           persist-credentials: false
       - uses: graycoreio/github-actions/setup-node@main
         with:
-          node-version: '22.21.x'
+          node-version: '24.19.x'
           npm-version: ${{ env.NPM_VERSION }}
           use-stamp-cache: true
       - uses: nrwl/nx-set-shas@v3
@@ -129,7 +129,7 @@ jobs:
       fail-fast: false
       matrix:
         package: ${{ fromJSON(needs.compute_packages.outputs.packages) }}
-        node: [22.21.x]
+        node: [24.19.x]
     needs:
       - compute_packages
       - build
@@ -163,7 +163,7 @@ jobs:
     uses: ./.github/workflows/test-commerce-schematic.yml
     with:
       ref: ${{ inputs.ref && inputs.ref || github.sha }}
-      node-versions: '22.21.x'
+      node-versions: '24.19.x'
     secrets:
       NX_KEY: ${{ secrets.NX_KEY }}
       AZURE_NX_CACHE_READONLY_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING || secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
@@ -180,5 +180,5 @@ jobs:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG: ${{ secrets.VERCEL_ORG }}
     with:
-      artifact: daffio-22.21.x
+      artifact: daffio-24.19.x
       artifact-zip-name: daffio.zip
