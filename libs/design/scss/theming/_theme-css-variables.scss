@@ -34,7 +34,7 @@
 	--daff-theme-black: #{$black};
 	--daff-theme-gray: #{daff-color($neutral)};
 	--daff-base-bg: #{$base};
-	--daff-base-text: #{daff-text-contrast($base)};
+	--daff-base-text: #{core.daff-map-get($theme, 'text-color-default')};
 }
 
 @mixin daff-theme-css-variables($theme) {

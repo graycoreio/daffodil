@@ -1,13 +1,10 @@
 @use 'true' as *;
 @use 'sass:list';
-@use 'sass:map';
 @use '../create-theme' as *;
 @use '../color-palettes' as palette;
 @use '../configure-palette';
 @use '../get-color';
-@use '../get-base-color' as *;
 @use './get-font-colors' as *;
-@use '../configure-theme' as ct;
 
 @include describe('daff-get-font-colors') {
 	$primary: configure-palette.daff-configure-palette(palette.$daff-blue, 60);
@@ -17,8 +14,6 @@
 	$font-dark: get-color.daff-color(palette.$daff-neutral, 100);
 	$default-dark: palette.$black;
 	$default-light: palette.$white;
-	$white: palette.$white;
-	$black: palette.$black;
 
 	@include it('returns theme text colors when provided') {
 		$config: (
@@ -61,12 +56,5 @@
 		$colors: daff-get-font-colors($theme);
 		@include assert-equal(list.nth($colors, 1), $font-light);
 		@include assert-equal(list.nth($colors, 2), $default-dark);
-	}
-
-	@include it('returns base colors when theme map is created with daff-configure-theme instead of daff-create-theme') {
-		$theme: ct.daff-configure-theme($primary, $secondary, $tertiary, 'light');
-		$colors: daff-get-font-colors($theme);
-		@include assert-equal(list.nth($colors, 1), $white);
-		@include assert-equal(list.nth($colors, 2), $black);
 	}
 }

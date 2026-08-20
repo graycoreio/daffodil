@@ -39,8 +39,5 @@
 	) {
 		@error '' + $palette + ' is not a supported palette in Daffodil`s theme configurations.';
 	}
-	@if ($palette == 'neutral') {
-		@return map-get.daff-map-get($theme, 'core', $palette);
-	}
 	@return map-get.daff-map-get($theme, $palette);
 }
