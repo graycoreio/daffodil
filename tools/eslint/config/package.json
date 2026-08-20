@@ -13,16 +13,12 @@
     "eslint-plugin-jest": "0.0.0-PLACEHOLDER",
     "eslint-plugin-jsdoc": "0.0.0-PLACEHOLDER",
     "eslint-plugin-modules-newlines": "0.0.0-PLACEHOLDER",
-    "eslint-plugin-unused-imports": "0.0.0-PLACEHOLDER",
-    "eslint-plugin-daff-packages": "0.0.0-PLACEHOLDER"
+    "eslint-plugin-unused-imports": "0.0.0-PLACEHOLDER"
   },
   "optionalDependencies": {
     "angular-eslint": "0.0.0-PLACEHOLDER",
     "typescript-eslint": "0.0.0-PLACEHOLDER"
   },
-	"devDependencies": {
-    "eslint-plugin-daff-packages": "0.0.0-PLACEHOLDER"
-	},
 	"repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
