@@ -31,6 +31,7 @@ import {
   CANONICAL_PATH_PROCESSOR_PROVIDER,
   CanonicalPathProcessor,
 } from './processors/canonical-path';
+import { CONST_FUNCTIONS_PROCESSOR_PROVIDER } from './processors/const-functions';
 import { HOIST_PRIVATE_PARENTS_PROCESSOR_PROVIDER } from './processors/hoist-private-parents';
 import {
   IMPORT_EXAMPLE_PROCESSOR_PROVIDER,
@@ -98,6 +99,7 @@ export const apiDocsBase = new Package('api-base', [
   .processor(...IMPORT_EXAMPLE_PROCESSOR_PROVIDER)
   .processor(...ROLE_PROVIDER)
   .processor(...INLINE_TAG_PROCESSOR_PROVIDER)
+  .processor(...CONST_FUNCTIONS_PROCESSOR_PROVIDER)
   .factory(getLinkInfo)
   .factory('API_DOC_TYPES_TO_RENDER', (EXPORT_DOC_TYPES) => EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe']))
   .config((readFilesProcessor, readTypeScriptModules, tsParser) => {
