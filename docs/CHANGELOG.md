@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.94.1-rc.0](https://github.com/graycoreio/daffodil/compare/v0.94.0...v0.94.1-rc.0) (2026-08-21)
+
+
+### Bug Fixes
+
+* **dgeni:** const functions don't show params ([#4638](https://github.com/graycoreio/daffodil/issues/4638)) ([ded3c9e](https://github.com/graycoreio/daffodil/commit/ded3c9e565efdcd3bef22a1072dd272e692e109e))
+* **eslint:** linting dep tree ([#4675](https://github.com/graycoreio/daffodil/issues/4675)) ([ddfaa72](https://github.com/graycoreio/daffodil/commit/ddfaa72afe3545b4a813a404a79aff3b8b892a40))
+
 ## [0.94.0](https://github.com/graycoreio/daffodil/compare/v0.93.1...v0.94.0) (2026-08-19)
 
 
