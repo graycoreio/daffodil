@@ -55,6 +55,9 @@
       "@daffodil/design/image": [
         "libs/design/image/src"
       ],
+      "@daffodil/design/image-lite": [
+        "libs/design/image-lite/src"
+      ],
       "@daffodil/design/input": [
         "libs/design/input/src"
       ],

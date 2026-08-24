@@ -55,6 +55,7 @@
 @use '../text-snippet//src/text-snippet-theme' as text-snippet;
 @use '../tree/src/tree-theme' as tree;
 @use '../toast/src/toast-theme' as toast;
+@use '../image-lite//src/image-theme' as image-lite;
 
 //
 // Generates the styles of `@daffodil/design`'s component themes.
@@ -102,6 +103,7 @@
 	@include hero.daff-hero-theme($theme);
 	@include list.daff-list-theme($theme);
 
+	@include image-lite.daff-image-lite-theme($theme);
 	@include media-gallery.daff-media-gallery-theme($theme);
 	@include menu.daff-menu-theme($theme);
 	@include modal.daff-modal-theme($theme);
