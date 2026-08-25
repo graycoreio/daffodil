@@ -53,24 +53,24 @@
 			&.daff-primary {
 				@include daff-button-theme-variant(
 					daff-color($primary),
-					daff-color($primary, 70),
-					daff-color($primary, 80)
+					daff-color-shift($primary, 1),
+					daff-color-shift($primary, 2)
 				);
 			}
 
 			&.daff-secondary {
 				@include daff-button-theme-variant(
 					daff-color($secondary),
-					daff-color($secondary, 70),
-					daff-color($secondary, 80)
+					daff-color-shift($secondary, 1),
+					daff-color-shift($secondary, 2)
 				);
 			}
 
 			&.daff-tertiary {
 				@include daff-button-theme-variant(
 					daff-color($tertiary),
-					daff-color($tertiary, 70),
-					daff-color($tertiary, 80)
+					daff-color-shift($tertiary, 1),
+					daff-color-shift($tertiary, 2)
 				);
 			}
 
@@ -109,24 +109,24 @@
 			&.daff-warn {
 				@include daff-button-theme-variant(
 					daff-color($warn),
-					daff-color($warn, 70),
-					daff-color($warn, 80)
+					daff-color-shift($warn, 1),
+					daff-color-shift($warn, 2)
 				);
 			}
 
 			&.daff-success {
 				@include daff-button-theme-variant(
 					daff-color($success),
-					daff-color($success, 70),
-					daff-color($success, 80)
+					daff-color-shift($success, 1),
+					daff-color-shift($success, 2)
 				);
 			}
 
 			&.daff-critical {
 				@include daff-button-theme-variant(
 					daff-color($critical),
-					daff-color($critical, 70),
-					daff-color($critical, 80)
+					daff-color-shift($critical, 1),
+					daff-color-shift($critical, 2)
 				);
 			}
 		}
@@ -141,24 +141,24 @@
 			&.daff-primary {
 				@include daff-button-theme-variant(
 					daff-color($primary),
-					daff-color($primary, 40),
-					daff-color($primary, 30)
+					daff-color-shift($primary, -1),
+					daff-color-shift($primary, -2)
 				);
 			}
 
 			&.daff-secondary {
 				@include daff-button-theme-variant(
 					daff-color($secondary),
-					daff-color($secondary, 40),
-					daff-color($secondary, 30)
+					daff-color-shift($secondary, -1),
+					daff-color-shift($secondary, -2)
 				);
 			}
 
 			&.daff-tertiary {
 				@include daff-button-theme-variant(
 					daff-color($tertiary),
-					daff-color($tertiary, 40),
-					daff-color($tertiary, 30)
+					daff-color-shift($tertiary, -1),
+					daff-color-shift($tertiary, -2)
 				);
 			}
 
@@ -197,24 +197,24 @@
 			&.daff-warn {
 				@include daff-button-theme-variant(
 					daff-color($warn),
-					daff-color($warn, 40),
-					daff-color($warn, 30)
+					daff-color-shift($warn, -1),
+					daff-color-shift($warn, -2)
 				);
 			}
 
 			&.daff-success {
 				@include daff-button-theme-variant(
 					daff-color($success),
-					daff-color($success, 40),
-					daff-color($success, 30)
+					daff-color-shift($success, -1),
+					daff-color-shift($success, -2)
 				);
 			}
 
 			&.daff-critical {
 				@include daff-button-theme-variant(
 					daff-color($critical),
-					daff-color($critical, 40),
-					daff-color($critical, 30)
+					daff-color-shift($critical, -1),
+					daff-color-shift($critical, -2)
 				);
 			}
 		}

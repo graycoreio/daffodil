@@ -101,19 +101,19 @@
 		@include daff-dark-mode($mode) {
 			&.daff-primary {
 				@include daff-stroked-button-theme-variant(
-					daff-color($primary, 40)
+					daff-color-shift($primary, -1)
 				);
 			}
 
 			&.daff-secondary {
 				@include daff-stroked-button-theme-variant(
-					daff-color($secondary, 40)
+					daff-color-shift($secondary, -1)
 				);
 			}
 
 			&.daff-tertiary {
 				@include daff-stroked-button-theme-variant(
-					daff-color($tertiary, 40)
+					daff-color-shift($tertiary, -1)
 				);
 			}
 
@@ -135,19 +135,19 @@
 
 			&.daff-warn {
 				@include daff-stroked-button-theme-variant(
-					daff-color($warn, 40)
+					daff-color-shift($warn, -1)
 				);
 			}
 
 			&.daff-critical {
 				@include daff-stroked-button-theme-variant(
-					daff-color($critical, 40)
+					daff-color-shift($critical, -1)
 				);
 			}
 
 			&.daff-success {
 				@include daff-stroked-button-theme-variant(
-					daff-color($success, 40)
+					daff-color-shift($success, -1)
 				);
 			}
 		}
