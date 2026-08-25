@@ -45,7 +45,7 @@ Add the `daff-image` attribute to an `<img>` and set the source with `ngSrc` ins
 | `width` | The intrinsic width of the image in pixels. |
 | `height` | The intrinsic height of the image in pixels. |
 
-`ngSrc`, `width`, and `height` are required by `NgOptimizedImage` and will throw an error if missing. `alt` is not enforced, but should always be set. See [Accessibility](#accessibility).
+`ngSrc`, `width`, and `height` are required by `NgOptimizedImage` and will throw an error if missing. `alt` is not enforced, but should always be set.
 
 ## Features
 
