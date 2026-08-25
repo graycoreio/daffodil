@@ -6,12 +6,11 @@
     [label]="element.alt"
   >
     @switch (element.type) { @case ('image') {
-    <daff-image
-      [src]="element.src"
+    <img daff-image
+      [ngSrc]="element.src"
       [alt]="element.alt"
       [width]="element.width"
-      [height]="element.height"
-    ></daff-image>
+      [height]="element.height" />
     } }
   </ng-template>
   }

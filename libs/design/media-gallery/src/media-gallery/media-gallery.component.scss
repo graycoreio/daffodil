@@ -99,16 +99,11 @@
 	}
 
 	&__selected-thumbnail {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-grow: 1;
-		width: 100%;
 		order: 1;
+		width: 100%;
 
 		@include layout.breakpoint(big-tablet) {
 			order: 2;
-			margin: 0;
 		}
 	}
 
