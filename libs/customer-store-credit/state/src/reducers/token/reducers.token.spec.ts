@@ -1,7 +1,14 @@
+import { inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ActionReducer } from '@ngrx/store';
+import {
+  ActionReducer,
+  combineReducers,
+} from '@ngrx/store';
 
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  daffComposeReducers,
+  DaffStateError,
+} from '@daffodil/core/state';
 import {
   daffCustomerStoreCreditProvideExtraReducers,
   DaffCustomerStoreCreditReducersState,
@@ -9,7 +16,12 @@ import {
   DaffCustomerStoreCreditLoadFailure,
 } from '@daffodil/customer-store-credit/state';
 
-import { DAFF_CUSTOMER_STORE_CREDIT_REDUCERS } from './reducers.token';
+import { DAFF_CUSTOMER_STORE_CREDIT_EXTRA_REDUCERS } from './extra.token';
+import {
+  DAFF_CUSTOMER_STORE_CREDIT_REDUCERS,
+  provideDaffCustomerStoreCreditReducersFactory,
+} from './reducers.token';
+import { daffCustomerStoreCreditReducer } from '../store-credit/public_api';
 
 describe('@daffodil/customer-store-credit/state | daffCustomerStoreCreditProvideExtraReducers', () => {
   let extraError: DaffStateError;
@@ -46,6 +58,12 @@ describe('@daffodil/customer-store-credit/state | daffCustomerStoreCreditProvide
     TestBed.configureTestingModule({
       providers: [
         ...daffCustomerStoreCreditProvideExtraReducers(extraReducer),
+        provideDaffCustomerStoreCreditReducersFactory(() => daffComposeReducers([
+          combineReducers({
+            storeCredit: daffCustomerStoreCreditReducer,
+          }),
+          ...inject(DAFF_CUSTOMER_STORE_CREDIT_EXTRA_REDUCERS),
+        ])),
       ],
     });
 

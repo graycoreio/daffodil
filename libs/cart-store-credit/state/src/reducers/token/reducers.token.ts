@@ -1,15 +1,8 @@
-import { inject } from '@angular/core';
-import {
-  ActionReducer,
-  combineReducers,
-} from '@ngrx/store';
+import { ActionReducer } from '@ngrx/store';
 
 import { createSingleInjectionToken } from '@daffodil/core';
-import { daffComposeReducers } from '@daffodil/core/state';
 
-import { DAFF_CART_STORE_CREDIT_EXTRA_REDUCERS } from './extra.token';
 import { DaffCartStoreCreditReducersState } from '../reducers.interface';
-import { daffCartStoreCreditReducer } from '../store-credit/public_api';
 
 export const {
   /**
@@ -23,15 +16,10 @@ export const {
    * Provider function for {@link DAFF_CART_STORE_CREDIT_REDUCERS}.
    */
   provider: provideDaffCartStoreCreditReducers,
+  /**
+   * Factory provider function for {@link DAFF_CART_STORE_CREDIT_REDUCERS}.
+   */
+  factoryProvider: provideDaffCartStoreCreditReducersFactory,
 } = createSingleInjectionToken<ActionReducer<DaffCartStoreCreditReducersState>>(
   'DAFF_CART_STORE_CREDIT_REDUCERS',
-  {
-    providedIn: 'any',
-    factory: () => daffComposeReducers([
-      combineReducers({
-        storeCredit: daffCartStoreCreditReducer,
-      }),
-      ...inject(DAFF_CART_STORE_CREDIT_EXTRA_REDUCERS),
-    ]),
-  },
 );

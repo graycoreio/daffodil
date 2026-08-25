@@ -1,14 +1,7 @@
-import { inject } from '@angular/core';
-import {
-  ActionReducer,
-  combineReducers,
-} from '@ngrx/store';
+import { ActionReducer } from '@ngrx/store';
 
 import { createSingleInjectionToken } from '@daffodil/core';
-import { daffComposeReducers } from '@daffodil/core/state';
 
-import { DAFF_AUTHORIZE_NET_EXTRA_REDUCERS } from './extra.token';
-import { daffAuthorizeNetReducer } from '../authorize-net/authorize-net.reducer';
 import { DaffAuthorizeNetReducersState } from '../authorize-net-reducers.interface';
 
 export const {
@@ -23,15 +16,10 @@ export const {
    * Provider function for {@link DAFF_AUTHORIZE_NET_REDUCERS}.
    */
   provider: provideDaffAuthorizeNetReducers,
+  /**
+   * Factory provider function for {@link DAFF_AUTHORIZE_NET_REDUCERS}.
+   */
+  factoryProvider: provideDaffAuthorizeNetReducersFactory,
 } = createSingleInjectionToken<ActionReducer<DaffAuthorizeNetReducersState>>(
   'DAFF_AUTHORIZE_NET_REDUCERS',
-  {
-    providedIn: 'any',
-    factory: () => daffComposeReducers([
-      combineReducers({
-        authorizeNet: daffAuthorizeNetReducer,
-      }),
-      ...inject(DAFF_AUTHORIZE_NET_EXTRA_REDUCERS),
-    ]),
-  },
 );

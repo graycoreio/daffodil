@@ -1,6 +1,11 @@
+import { inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ActionReducer } from '@ngrx/store';
+import {
+  ActionReducer,
+  combineReducers,
+} from '@ngrx/store';
 
+import { daffComposeReducers } from '@daffodil/core/state';
 import {
   daffSearchProvideExtraReducers,
   DaffSearchReducersState,
@@ -8,7 +13,12 @@ import {
   DaffSearchLoad,
 } from '@daffodil/search/state';
 
-import { DAFF_SEARCH_REDUCERS } from './reducers.token';
+import { daffSearchReducers } from '../reducers';
+import { DAFF_SEARCH_EXTRA_REDUCERS } from './extra.token';
+import {
+  DAFF_SEARCH_REDUCERS,
+  provideDaffSearchReducersFactory,
+} from './reducers.token';
 
 describe('daffSearchProvideExtraReducers', () => {
   let extraQuery: string;
@@ -36,6 +46,10 @@ describe('daffSearchProvideExtraReducers', () => {
     TestBed.configureTestingModule({
       providers: [
         ...daffSearchProvideExtraReducers(extraReducer),
+        provideDaffSearchReducersFactory(() => daffComposeReducers([
+          combineReducers(daffSearchReducers),
+          ...inject(DAFF_SEARCH_EXTRA_REDUCERS),
+        ])),
       ],
     });
 

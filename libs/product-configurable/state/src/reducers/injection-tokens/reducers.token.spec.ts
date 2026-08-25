@@ -1,9 +1,11 @@
+import { inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import {
   ActionReducer,
   combineReducers,
 } from '@ngrx/store';
 
+import { daffComposeReducers } from '@daffodil/core/state';
 import { DaffProductPageLoadSuccess } from '@daffodil/product/state';
 import { DaffConfigurableProduct } from '@daffodil/product-configurable';
 import {
@@ -12,8 +14,13 @@ import {
 } from '@daffodil/product-configurable/state';
 import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
 
-import { DAFF_PRODUCT_CONFIGURABLE_REDUCERS } from './reducers.token';
+import { DAFF_PRODUCT_CONFIGURABLE_EXTRA_REDUCERS } from './extra.token';
+import {
+  DAFF_PRODUCT_CONFIGURABLE_REDUCERS,
+  provideDaffProductConfigurableReducersFactory,
+} from './reducers.token';
 import { daffConfigurableProductAppliedAttributesEntitiesAdapter } from '../configurable-product-entities/configurable-product-entities-reducer-adapter';
+import { daffConfigurableProductReducers } from '../configurable-product-reducers';
 
 describe('daffProductConfigurableProvideExtraReducers', () => {
   let productFactory: DaffConfigurableProductFactory;
@@ -42,6 +49,10 @@ describe('daffProductConfigurableProvideExtraReducers', () => {
     TestBed.configureTestingModule({
       providers: [
         ...daffProductConfigurableProvideExtraReducers(extraReducer),
+        provideDaffProductConfigurableReducersFactory(() => daffComposeReducers([
+          combineReducers(daffConfigurableProductReducers),
+          ...inject(DAFF_PRODUCT_CONFIGURABLE_EXTRA_REDUCERS),
+        ])),
       ],
     });
 
