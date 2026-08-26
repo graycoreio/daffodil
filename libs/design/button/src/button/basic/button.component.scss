@@ -3,7 +3,7 @@
 
 .daff-button {
 	@include base.daff-button-base();
-	@include base.daff-button-background(4px);
+	@include base.daff-button-background(0.25rem);
 	@include base.daff-button-elevated();
 	@include base.daff-button-sizes();
 }
