@@ -17,6 +17,7 @@ export const getSelectedShippingMethod = (extraCartFragments: DocumentNode[] = [
         selected_shipping_method {
           ...selectedShippingMethod
         }
+        street
       }
       ${daffBuildFragmentNameSpread(...extraCartFragments)}
     }

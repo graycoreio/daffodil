@@ -19,6 +19,7 @@ export const getProduct = (extraProductFragments: DocumentNode[] = []) => gql`
     }){
       items {
         ...magentoProductPage
+        uid
         ${daffBuildFragmentNameSpread(...extraProductFragments)}
       }
     }

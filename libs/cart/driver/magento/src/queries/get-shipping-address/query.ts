@@ -15,6 +15,7 @@ export const getShippingAddress = (extraCartFragments: DocumentNode[] = []) => g
     cart(cart_id: $cartId) {
       shipping_addresses {
         ...cartAddress
+        street
       }
       email
       ${daffBuildFragmentNameSpread(...extraCartFragments)}

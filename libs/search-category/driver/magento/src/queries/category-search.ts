@@ -13,6 +13,7 @@ export const categorySearch = () => gql`
     }, pageSize: $pageSize) {
       items {
         ...categoryTree
+        uid
       }
     }
   }

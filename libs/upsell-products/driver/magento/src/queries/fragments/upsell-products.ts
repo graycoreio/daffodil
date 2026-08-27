@@ -11,8 +11,10 @@ export const magentoUpsellProductsFragment = (extraProductFragments: DocumentNod
   fragment upsellProducts on ProductInterface {
     upsell_products {
       ...magentoProductPreview
+      uid
       ${daffBuildFragmentNameSpread(...extraProductFragments)}
     }
+    uid
 	}
 	${magentoProductPreviewFragment}
   ${daffBuildFragmentDefinition(...extraProductFragments)}
