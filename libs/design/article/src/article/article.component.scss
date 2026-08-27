@@ -2,6 +2,12 @@
 @use '../../../scss/layout';
 @use 'stops-article-cascade' as *;
 
+@mixin default-code-text() {
+	font-size: var(--daff-font-size-sm);
+	font-weight: 600;
+	line-height: 0.875rem;
+}
+
 .daff-article {
 	display: block;
 	overflow: hidden;
@@ -17,9 +23,7 @@
 		}
 
 		code {
-			font-size: 0.875rem;
-			font-weight: 600;
-			line-height: 0.875rem;
+			@include default-code-text();
 		}
 	}
 
@@ -29,9 +33,7 @@
 		overflow-wrap: break-word;
 
 		code {
-			font-size: 0.875rem;
-			font-weight: 600;
-			line-height: 0.875rem;
+			@include default-code-text();
 		}
 	}
 
@@ -45,7 +47,7 @@
 			font-weight: 400;
 
 			code {
-				font-size: 1rem;
+				font-size: var(--daff-font-size-base);
 				line-height: 1rem;
 			}
 
@@ -71,13 +73,13 @@
 	}
 
 	@include stopsArticleCascade(h3) {
-		font-size: 1.5rem;
+		font-size: var(--daff-font-size-lg);
 		line-height: 2rem;
 		margin-top: 2.5rem;
 	}
 
 	@include stopsArticleCascade(h4) {
-		font-size: 1.25rem;
+		font-size: var(--daff-font-size-md);
 		line-height: 1.5rem;
 		margin-top: 2rem;
 	}
@@ -90,7 +92,7 @@
 	}
 
 	@include stopsArticleCascade(h6) {
-		font-size: 1rem;
+		font-size: var(--daff-font-size-base);
 		font-weight: 600;
 		line-height: 1.5rem;
 		margin-top: 1.5rem;
@@ -115,7 +117,7 @@
 		code {
 			display: block;
 			line-height: 1.5rem;
-			font-size: t.$font-size-sm;
+			font-size: var(--daff-font-size-sm);
 			overflow-x: auto;
 			padding: 1.5rem;
 		}
@@ -123,13 +125,13 @@
 
 	code {
 		border-radius: 0.25rem;
-		font-size: t.$font-size-sm;
+		font-size: var(--daff-font-size-sm);
 		line-height: 1rem;
 		padding: 0.125rem 0.25rem;
 	}
 
 	&__meta {
-		font-size: t.$font-size-sm;
+		font-size: var(--daff-font-size-sm);
 	}
 
 	hr {
