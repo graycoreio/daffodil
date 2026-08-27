@@ -1,9 +1,11 @@
 import {
+  afterNextRender,
   computed,
   Directive,
   Inject,
   input,
   Optional,
+  signal,
   SkipSelf,
 } from '@angular/core';
 
@@ -26,9 +28,13 @@ import { DaffRovingTabIndexService } from './roving-tab-index-group.service';
     '(keydown.escape)': 'leaveGroup($event)',
     '(keydown.arrowup)': 'previous($event)',
     '(keydown.arrowdown)': 'next($event)',
+    '(keydown.tab)': 'next($event)',
+    '(keydown.shift.tab)': 'previous($event)',
   },
 })
 export class DaffRovingTabIndexDirective {
+  private readonly _hydrationWorkaround = signal(false);
+
   /**
    * Allows the RTI group to be overriden.
    * By default it will be the nearest ancestor or the default root group if no boundary ancestor exists.
@@ -39,7 +45,11 @@ export class DaffRovingTabIndexDirective {
    * The group in which this RTI target resides.
    * See {@link DaffRovingTabIndexBoundaryDirective} to make an element act as the boundary of an RTI group.
    */
-  readonly group = computed(() => this.rti() || this.parent?.effectiveBoundary() || '');
+  readonly group = computed(() =>
+    this._hydrationWorkaround()
+      ? this.rti() || this.parent?.effectiveBoundary() || ''
+      : this.rti() || this.parent?.effectiveBoundary() || '',
+  );
   /**
    * @docs-private
    */
@@ -52,29 +62,42 @@ export class DaffRovingTabIndexDirective {
   constructor(
     private service: DaffRovingTabIndexService,
     @Optional() @SkipSelf() @Inject(DAFF_ROVING_TAB_INDEX_BOUNDARY) private parent: DaffRovingTabIndexBoundary,
-  ) {}
-
-  /**
-   * @docs-private
-   */
-  leaveGroup(evt: Event) {
-    evt.stopPropagation();
-    this.service.leave();
+  ) {
+    afterNextRender({
+      read: () => this._hydrationWorkaround.set(true),
+    });
   }
 
   /**
    * @docs-private
    */
-  next(evt: Event) {
-    evt.stopPropagation();
-    this.service.next();
+  protected leaveGroup(evt: Event) {
+    if (this.service.group()) {
+      evt.preventDefault();
+      evt.stopPropagation();
+      this.service.leave();
+    }
   }
 
   /**
    * @docs-private
    */
-  previous(evt: Event) {
-    evt.stopPropagation();
-    this.service.previous();
+  protected next(evt: Event) {
+    if (this.service.group()) {
+      evt.preventDefault();
+      evt.stopPropagation();
+      this.service.next();
+    }
+  }
+
+  /**
+   * @docs-private
+   */
+  protected previous(evt: Event) {
+    if (this.service.group()) {
+      evt.preventDefault();
+      evt.stopPropagation();
+      this.service.previous();
+    }
   }
 }
