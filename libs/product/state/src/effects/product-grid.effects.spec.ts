@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
@@ -56,36 +53,37 @@ describe('DaffProductGridEffects', () => {
 
   describe('when ProductGridLoadAction is triggered', () => {
 
-    let expected;
     const productGridLoadAction = new DaffProductGridLoad();
 
     describe('and the call to ProductService is successful', () => {
 
-      beforeEach(() => {
-        spyOn(daffProductDriver, 'getAll').and.returnValue(of(mockProductGrid));
-        const productGridLoadSuccessAction = new DaffProductGridLoadSuccess(mockProductGrid);
-        actions$ = hot('--a', { a: productGridLoadAction });
-        expected = cold('--b', { b: productGridLoadSuccessAction });
-      });
-
       it('should dispatch a ProductGridLoadSuccess action', () => {
-        expect(effects.loadAll$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          spyOn(daffProductDriver, 'getAll').and.returnValue(of(mockProductGrid));
+          const productGridLoadSuccessAction = new DaffProductGridLoadSuccess(mockProductGrid);
+          actions$ = helpers.hot('--a', { a: productGridLoadAction });
+          helpers.expectObservable(effects.loadAll$).toBe('--b', { b: productGridLoadSuccessAction });
+        });
       });
     });
 
     describe('and the call to ProductService fails', () => {
 
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load product grid' };
-        const response = cold('#', {}, error);
-        spyOn(daffProductDriver, 'getAll').and.returnValue(response);
-        const productGridLoadFailureAction = new DaffProductGridLoadFailure(error);
-        actions$ = hot('--a', { a: productGridLoadAction });
-        expected = cold('--b', { b: productGridLoadFailureAction });
-      });
-
       it('should dispatch a ProductGridLoadFailure action', () => {
-        expect(effects.loadAll$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load product grid' };
+          const response = helpers.cold<any>('#', {}, error);
+          spyOn(daffProductDriver, 'getAll').and.returnValue(response);
+          const productGridLoadFailureAction = new DaffProductGridLoadFailure(error);
+          actions$ = helpers.hot('--a', { a: productGridLoadAction });
+          helpers.expectObservable(effects.loadAll$).toBe('--b', { b: productGridLoadFailureAction });
+        });
       });
     });
   });

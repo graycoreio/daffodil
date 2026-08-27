@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { HubspotResponse } from '@daffodil/driver/hubspot';
 import { DaffHubspotResponseFactory } from '@daffodil/driver/hubspot/testing';
@@ -15,6 +15,7 @@ describe('newsletterHubspotService', () => {
   const responseFactory: DaffHubspotResponseFactory = new DaffHubspotResponseFactory();
 
   const sampleResponse: HubspotResponse = responseFactory.create();
+  let submit: () => Observable<HubspotResponse>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -29,7 +30,7 @@ describe('newsletterHubspotService', () => {
         {
           provide: DAFF_NEWSLETTER_HUBSPOT_FORMS_TOKEN,
           useValue: {
-            submit: (): Observable<HubspotResponse> => hot('--a', { a: sampleResponse }),
+            submit: (): Observable<HubspotResponse> => submit(),
           },
         },
       ],
@@ -41,16 +42,28 @@ describe('newsletterHubspotService', () => {
   it('should take a DaffNewsletterSubmission string convert a HubspotResponse to a DaffNewsletterResponse', () => {
     const newsletterSubmission: DaffNewsletterSubmission = 'test@email.com';
 
-    newsletterHubspotService.send(newsletterSubmission).subscribe((resp) => {
-      expect(resp).toEqual({ message: sampleResponse.inlineMessage });
+    const testScheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+    testScheduler.run(({ hot }) => {
+      submit = () => hot('--a', { a: sampleResponse });
+      newsletterHubspotService.send(newsletterSubmission).subscribe((resp) => {
+        expect(resp).toEqual({ message: sampleResponse.inlineMessage });
+      });
     });
   });
 
   it('should take a DaffNewsletterSubmission convert a HubspotResponse to a DaffNewsletterResponse', () => {
     const newsletterSubmission: DaffNewsletterSubmission = 'test@email.com';
 
-    newsletterHubspotService.send(newsletterSubmission).subscribe((resp) => {
-      expect(resp).toEqual({ message: sampleResponse.inlineMessage });
+    const testScheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+    testScheduler.run(({ hot }) => {
+      submit = () => hot('--a', { a: sampleResponse });
+      newsletterHubspotService.send(newsletterSubmission).subscribe((resp) => {
+        expect(resp).toEqual({ message: sampleResponse.inlineMessage });
+      });
     });
   });
 });

@@ -4,9 +4,9 @@ import {
   ApolloTestingController,
 } from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
-import { cold } from 'jasmine-marbles';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffAuthToken,
@@ -271,9 +271,12 @@ describe('@daffodil/auth/driver/magento | DaffMagentoResetPasswordService', () =
 
       describe('and the response passes validation', () => {
         it('should return void and not throw an error', () => {
-          const expected = cold('-', {});
-
-          expect(service.resetPasswordOnly(mockResetInfo)).toBeObservable(expected);
+          const scheduler = new TestScheduler((actual, expected) => {
+            expect(actual).toEqual(expected);
+          });
+          scheduler.run(({ expectObservable }) => {
+            expectObservable(service.resetPasswordOnly(mockResetInfo)).toBe('-', {});
+          });
 
           const op = controller.expectOne(resetPasswordMutation);
 

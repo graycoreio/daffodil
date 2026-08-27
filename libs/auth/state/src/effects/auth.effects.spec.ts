@@ -1,10 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
@@ -39,15 +35,10 @@ import {
 import { DaffAuthEffects } from './auth.effects';
 import { DAFF_AUTH_UNAUTHENTICATED_HOOK } from '../injection-tokens/unauthenticated/hook.token';
 
-const getScheduler = () => new TestScheduler((actual, expected) => {
-  expect(actual).toEqual(expected);
-});
-
 describe('@daffodil/auth/state | DaffAuthEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffAuthEffects;
 
-  let scheduler: TestScheduler;
   let daffAuthStorageService: DaffAuthStorageService;
   let daffAuthDriver: jasmine.SpyObj<DaffAuthServiceInterface>;
   let clientCacheSpy: jasmine.SpyObj<DaffDriverHttpClientCacheServiceInterface>;
@@ -106,153 +97,140 @@ describe('@daffodil/auth/state | DaffAuthEffects', () => {
   });
 
   describe('authCheckInterval$', () => {
-    let expected;
-
     describe('when there is a token in storage', () => {
-
-      beforeEach(() => {
-        const mockAuthCheckAction = new DaffAuthCheck();
-        getTokenSpy.and.returnValue('token');
-
-        expected = cold('b', { b: mockAuthCheckAction });
-      });
-
       it('should dispatch DaffAuthCheck every 100 ms', () => {
-        // TODO: fixgure out how to pass scheduler
-        expect(effects.authCheckInterval$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const mockAuthCheckAction = new DaffAuthCheck();
+          getTokenSpy.and.returnValue('token');
+
+          // TODO: fixgure out how to pass scheduler
+          helpers.expectObservable(effects.authCheckInterval$).toBe('b', { b: mockAuthCheckAction });
+        });
       });
     });
   });
 
   describe('check$ | when the user checks if their auth token is valid', () => {
-    let expected;
-
-    const mockAuthCheckAction = new DaffAuthCheck();
-
-    beforeEach(() => {
-      actions$ = hot('--a', { a: mockAuthCheckAction });
-      getTokenSpy.and.returnValue('token');
-    });
-
     describe('and the check is successful', () => {
-      beforeEach(() => {
-        daffAuthDriver.check.and.returnValue(of(undefined));
-        const mockAuthCheckSuccessAction = new DaffAuthCheckSuccess();
-
-        expected = cold('--b', { b: mockAuthCheckSuccessAction });
-      });
-
       it('should notify state that the check succeeded', () => {
-        expect(effects.check$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const mockAuthCheckAction = new DaffAuthCheck();
+          actions$ = helpers.hot('--a', { a: mockAuthCheckAction });
+          getTokenSpy.and.returnValue('token');
+
+          daffAuthDriver.check.and.returnValue(of(undefined));
+          const mockAuthCheckSuccessAction = new DaffAuthCheckSuccess();
+
+          helpers.expectObservable(effects.check$).toBe('--b', { b: mockAuthCheckSuccessAction });
+        });
       });
     });
 
     describe('and the check fails', () => {
-      let error: DaffAuthenticationFailedError;
-
-      beforeEach(() => {
-        error = new DaffAuthenticationFailedError('Auth token is not valid');
-        const response = cold('#', {}, error);
-        daffAuthDriver.check.and.returnValue(response);
-        const mockAuthCheckFailureAction = jasmine.any(DaffAuthCheckFailure);
-
-        expected = cold('--b', { b: mockAuthCheckFailureAction });
-      });
-
       it('should notify state that the check failed', () => {
-        expect(effects.check$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const mockAuthCheckAction = new DaffAuthCheck();
+          actions$ = helpers.hot('--a', { a: mockAuthCheckAction });
+          getTokenSpy.and.returnValue('token');
+
+          const error = new DaffAuthenticationFailedError('Auth token is not valid');
+          const response = helpers.cold<any>('#', {}, error);
+          daffAuthDriver.check.and.returnValue(response);
+          const mockAuthCheckFailureAction = jasmine.any(DaffAuthCheckFailure);
+
+          helpers.expectObservable(effects.check$).toBe('--b', { b: mockAuthCheckFailureAction });
+        });
       });
     });
   });
 
   describe('resetToUnauthenticated$', () => {
-    let expected;
-
     describe('when DaffAuthCheckFailure is dispatched for an unauthorized error', () => {
-      let revokeAction: DaffAuthCheckFailure;
-
-      beforeEach(() => {
-        revokeAction = new DaffAuthCheckFailure(new DaffUnauthorizedError('error'));
-        actions$ = hot('--a', { a: revokeAction });
-        expected = cold('--a', { a: new DaffAuthResetToUnauthenticated(revokeAction.type) });
-      });
-
       it('should dispatch DaffAuthResetToUnauthenticated', () => {
-        expect(effects.resetToUnauthenticated$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const revokeAction = new DaffAuthCheckFailure(new DaffUnauthorizedError('error'));
+          actions$ = helpers.hot('--a', { a: revokeAction });
+          helpers.expectObservable(effects.resetToUnauthenticated$).toBe('--a', { a: new DaffAuthResetToUnauthenticated(revokeAction.type) });
+        });
       });
     });
 
     describe('when DaffAuthCheckFailure is dispatched for an authentication failed error', () => {
-      let revokeAction: DaffAuthCheckFailure;
-
-      beforeEach(() => {
-        revokeAction = new DaffAuthCheckFailure(new DaffAuthenticationFailedError('error'));
-        actions$ = hot('--a', { a: revokeAction });
-        expected = cold('--a', { a: new DaffAuthResetToUnauthenticated(revokeAction.type) });
-      });
-
       it('should dispatch DaffAuthResetToUnauthenticated', () => {
-        expect(effects.resetToUnauthenticated$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const revokeAction = new DaffAuthCheckFailure(new DaffAuthenticationFailedError('error'));
+          actions$ = helpers.hot('--a', { a: revokeAction });
+          helpers.expectObservable(effects.resetToUnauthenticated$).toBe('--a', { a: new DaffAuthResetToUnauthenticated(revokeAction.type) });
+        });
       });
     });
 
     describe('when DaffAuthCheckFailure is dispatched for some random reason', () => {
-      let revokeAction: DaffAuthCheckFailure;
-
-      beforeEach(() => {
-        revokeAction = new DaffAuthCheckFailure(new DaffAuthInvalidAPIResponseError(''));
-        actions$ = hot('---');
-        expected = cold('---');
-      });
-
       it('should not dispatch DaffAuthResetToUnauthenticated', () => {
-        expect(effects.resetToUnauthenticated$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const revokeAction = new DaffAuthCheckFailure(new DaffAuthInvalidAPIResponseError(''));
+          actions$ = helpers.hot('---');
+          helpers.expectObservable(effects.resetToUnauthenticated$).toBe('---');
+        });
       });
     });
 
     describe('when AuthGuardLogout is dispatched', () => {
-      let authLogoutSuccessAction: DaffAuthGuardLogout;
-
-      beforeEach(() => {
-        authLogoutSuccessAction = new DaffAuthGuardLogout({ code: 'code', message: 'message' });
-        actions$ = hot('--a', { a: authLogoutSuccessAction });
-        expected = cold('--a', { a: new DaffAuthResetToUnauthenticated(authLogoutSuccessAction.type) });
-      });
-
       it('should dispatch DaffAuthResetToUnauthenticated', () => {
-        expect(effects.resetToUnauthenticated$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const authLogoutSuccessAction = new DaffAuthGuardLogout({ code: 'code', message: 'message' });
+          actions$ = helpers.hot('--a', { a: authLogoutSuccessAction });
+          helpers.expectObservable(effects.resetToUnauthenticated$).toBe('--a', { a: new DaffAuthResetToUnauthenticated(authLogoutSuccessAction.type) });
+        });
       });
     });
 
     describe('when LogoutSuccess is dispatched', () => {
-      let authLogoutSuccessAction: DaffAuthLogoutSuccess;
-
-      beforeEach(() => {
-        authLogoutSuccessAction = new DaffAuthLogoutSuccess();
-        actions$ = hot('--a', { a: authLogoutSuccessAction });
-        expected = cold('--a', { a: new DaffAuthResetToUnauthenticated(authLogoutSuccessAction.type) });
-      });
-
       it('should dispatch DaffAuthResetToUnauthenticated', () => {
-        expect(effects.resetToUnauthenticated$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const authLogoutSuccessAction = new DaffAuthLogoutSuccess();
+          actions$ = helpers.hot('--a', { a: authLogoutSuccessAction });
+          helpers.expectObservable(effects.resetToUnauthenticated$).toBe('--a', { a: new DaffAuthResetToUnauthenticated(authLogoutSuccessAction.type) });
+        });
       });
     });
   });
 
   describe('clearClientCache$', () => {
-    let expected;
-
     describe('when DaffAuthResetToUnauthenticated is dispatched', () => {
-      let revokeAction: DaffAuthResetToUnauthenticated;
-
-      beforeEach(() => {
-        revokeAction = new DaffAuthResetToUnauthenticated('trigger');
-        actions$ = hot('--a', { a: revokeAction });
-        expected = cold('---');
-      });
-
       it('should reset the client cache after a delay', () => {
-        expect(effects.clearClientCache$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const revokeAction = new DaffAuthResetToUnauthenticated('trigger');
+          actions$ = helpers.hot('--a', { a: revokeAction });
+          helpers.expectObservable(effects.clearClientCache$).toBe('---');
+        });
         expect(unauthenticatedHook).toHaveBeenCalledWith('trigger');
         expect(clientCacheSpy.reset).toHaveBeenCalledWith();
       });

@@ -4,7 +4,7 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento';
 import {
@@ -23,6 +23,7 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetFacade', () => {
   let store: Store<DaffAuthorizeNetStateRootSlice>;
   let facade: DaffAuthorizeNetFacade;
   let mockError: DaffStateError;
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,6 +44,10 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetFacade', () => {
       code: 'code',
       message: 'error',
     };
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -62,39 +67,42 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetFacade', () => {
   describe('isAcceptJsLoaded$', () => {
 
     it('should return false by default', () => {
-      const expected = cold('a', { a: false });
-
-      expect(facade.isAcceptJsLoaded$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.isAcceptJsLoaded$).toBe('a', { a: false });
+      });
     });
   });
 
   describe('loading$', () => {
 
     it('should return loading state for submitting a payment method', () => {
-      const expected = cold('a', { a: false });
       store.dispatch(new DaffCartPaymentMethodAdd({
         method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
         payment_info: null,
       }));
-      expect(facade.loading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
   });
 
   describe('paymentError$', () => {
 
     it('should return the current error message', () => {
-      const expected = cold('a', { a: mockError });
       store.dispatch(new DaffAuthorizeNetUpdatePaymentFailure(mockError));
-      expect(facade.paymentError$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.paymentError$).toBe('a', { a: mockError });
+      });
     });
   });
 
   describe('acceptJsLoadError$', () => {
 
     it('should return the acceptJsLoad error message', () => {
-      const expected = cold('a', { a: mockError });
       store.dispatch(new DaffLoadAcceptJsFailure(mockError));
-      expect(facade.acceptJsLoadError$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.acceptJsLoadError$).toBe('a', { a: mockError });
+      });
     });
   });
 });

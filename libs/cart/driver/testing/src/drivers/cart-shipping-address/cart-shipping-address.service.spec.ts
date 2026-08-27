@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCart,
@@ -16,6 +16,7 @@ describe('Driver | Testing | Cart | CartShippingAddressService', () => {
   let service: DaffTestingCartShippingAddressService;
   let cartFactory: DaffCartFactory;
   let cartAddressFactory: DaffCartAddressFactory;
+  let scheduler: TestScheduler;
 
   let mockCart: DaffCart;
   let mockCartAddress: DaffCartAddress;
@@ -36,6 +37,10 @@ describe('Driver | Testing | Cart | CartShippingAddressService', () => {
     mockCartAddress = cartAddressFactory.create();
     cartId = mockCart.id;
     mockCart.shipping_address = mockCartAddress;
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -44,8 +49,9 @@ describe('Driver | Testing | Cart | CartShippingAddressService', () => {
 
   describe('get | getting a cart shipping address', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.get(cartId)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.get(cartId)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 
@@ -58,8 +64,9 @@ describe('Driver | Testing | Cart | CartShippingAddressService', () => {
     });
 
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.update(cartId, mockCartAddressUpdate)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.update(cartId, mockCartAddressUpdate)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 });

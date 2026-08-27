@@ -6,11 +6,8 @@ import {
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
 import { Observable } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { provideDaffAuthRoutingConfig } from '@daffodil/auth/routing';
 import {
@@ -76,14 +73,14 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
   });
 
   describe('when DaffAuthLoginSuccess is dispatched', () => {
-    beforeEach(() => {
-      actions$ = hot('--a', { a: new DaffAuthLoginSuccess(null) });
-    });
-
     it('should navigate to the customer dashboard page', () => {
-      const expected = cold('---');
-
-      expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(helpers => {
+        actions$ = helpers.hot('--a', { a: new DaffAuthLoginSuccess(null) });
+        helpers.expectObservable(effects.redirectAfterLoginOrRegister$).toBe('---');
+      });
       expect(routerNavigateSpy).toHaveBeenCalledWith(authCompleteRedirectUrl);
     });
 
@@ -93,23 +90,27 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
       });
 
       it('should navigate to the redirect URL', () => {
-        const expected = cold('---');
-
-        expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: new DaffAuthLoginSuccess(null) });
+          helpers.expectObservable(effects.redirectAfterLoginOrRegister$).toBe('---');
+        });
         expect(routerNavigateSpy).toHaveBeenCalledWith(redirectUrl);
       });
     });
   });
 
   describe('when DaffAuthRegisterSuccess is dispatched', () => {
-    beforeEach(() => {
-      actions$ = hot('--a', { a: new DaffAuthRegisterSuccess('token') });
-    });
-
     it('should navigate to the customer dashboard page', () => {
-      const expected = cold('---');
-
-      expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(helpers => {
+        actions$ = helpers.hot('--a', { a: new DaffAuthRegisterSuccess('token') });
+        helpers.expectObservable(effects.redirectAfterLoginOrRegister$).toBe('---');
+      });
       expect(routerNavigateSpy).toHaveBeenCalledWith(authCompleteRedirectUrl);
     });
 
@@ -119,23 +120,27 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
       });
 
       it('should navigate to the redirect URL', () => {
-        const expected = cold('---');
-
-        expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: new DaffAuthRegisterSuccess('token') });
+          helpers.expectObservable(effects.redirectAfterLoginOrRegister$).toBe('---');
+        });
         expect(routerNavigateSpy).toHaveBeenCalledWith(redirectUrl);
       });
     });
   });
 
   describe('when DaffResetPasswordSuccess is dispatched', () => {
-    beforeEach(() => {
-      actions$ = hot('--a', { a: new DaffResetPasswordSuccess('token') });
-    });
-
     it('should navigate to the customer dashboard page', () => {
-      const expected = cold('---');
-
-      expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(helpers => {
+        actions$ = helpers.hot('--a', { a: new DaffResetPasswordSuccess('token') });
+        helpers.expectObservable(effects.redirectAfterLoginOrRegister$).toBe('---');
+      });
       expect(routerNavigateSpy).toHaveBeenCalledWith(authCompleteRedirectUrl);
     });
 
@@ -145,9 +150,13 @@ describe('@daffodil/auth/routing | DaffAuthRedirectEffects', () => {
       });
 
       it('should navigate to the redirect URL', () => {
-        const expected = cold('---');
-
-        expect(effects.redirectAfterLoginOrRegister$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: new DaffResetPasswordSuccess('token') });
+          helpers.expectObservable(effects.redirectAfterLoginOrRegister$).toBe('---');
+        });
         expect(routerNavigateSpy).toHaveBeenCalledWith(redirectUrl);
       });
     });

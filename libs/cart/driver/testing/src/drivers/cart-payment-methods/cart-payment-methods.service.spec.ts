@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCart,
@@ -16,6 +16,7 @@ describe('Driver | Testing | Cart | CartPaymentMethodsService', () => {
   let service: DaffTestingCartPaymentMethodsService;
   let cartFactory: DaffCartFactory;
   let paymentFactory: DaffCartPaymentFactory;
+  let scheduler: TestScheduler;
 
   let mockCart: DaffCart;
   let mockCartPaymentMethods: DaffCartPaymentMethod[];
@@ -36,6 +37,10 @@ describe('Driver | Testing | Cart | CartPaymentMethodsService', () => {
     mockCart = cartFactory.create();
     mockCartPaymentMethods = paymentFactory.createMany(3);
     cartId = mockCart.id;
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -44,8 +49,9 @@ describe('Driver | Testing | Cart | CartPaymentMethodsService', () => {
 
   describe('list | list a cart\'s payment methods', () => {
     it('should return an array and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Array) });
-      expect(service.list(cartId)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.list(cartId)).toBe('(a|)', { a: jasmine.any(Array) });
+      });
     });
   });
 });

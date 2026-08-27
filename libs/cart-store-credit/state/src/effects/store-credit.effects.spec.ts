@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCartStorageService } from '@daffodil/cart';
 import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
@@ -76,7 +73,6 @@ describe('@daffodil/cart-store-credit/state | DaffCartStoreCreditEffects', () =>
   });
 
   describe('when DaffCartStoreCreditApplyAction is triggered', () => {
-    let expected;
     let applyAction: DaffCartStoreCreditApply;
 
     beforeEach(() => {
@@ -84,36 +80,36 @@ describe('@daffodil/cart-store-credit/state | DaffCartStoreCreditEffects', () =>
     });
 
     describe('and the call to the driver is successful', () => {
-      beforeEach(() => {
-        driverApplySpy.and.returnValue(of(mockCartWithStoreCredit));
-        const applySuccessAction = new DaffCartStoreCreditApplySuccess(mockCartWithStoreCredit);
-        actions$ = hot('--a', { a: applyAction });
-        expected = cold('--b', { b: applySuccessAction });
-      });
-
       it('should dispatch a DaffCartStoreCreditApplySuccess action', () => {
-        expect(effects.apply$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverApplySpy.and.returnValue(of(mockCartWithStoreCredit));
+          const applySuccessAction = new DaffCartStoreCreditApplySuccess(mockCartWithStoreCredit);
+          actions$ = helpers.hot('--a', { a: applyAction });
+          helpers.expectObservable(effects.apply$).toBe('--b', { b: applySuccessAction });
+        });
       });
     });
 
     describe('and the call to the driver fails', () => {
-      beforeEach(() => {
-        const error = new DaffCartStoreCreditInvalidAPIResponseError('Failed to apply cart store credit');
-        const response = cold('#', {}, error);
-        driverApplySpy.and.returnValue(response);
-        const applyFailureAction = new DaffCartStoreCreditApplyFailure([daffTransformErrorToStateError(error)]);
-        actions$ = hot('--a', { a: applyAction });
-        expected = cold('--b', { b: applyFailureAction });
-      });
-
       it('should dispatch a DaffCartStoreCreditApplyFailure action', () => {
-        expect(effects.apply$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error = new DaffCartStoreCreditInvalidAPIResponseError('Failed to apply cart store credit');
+          driverApplySpy.and.returnValue(helpers.cold<any>('#', {}, error));
+          const applyFailureAction = new DaffCartStoreCreditApplyFailure([daffTransformErrorToStateError(error)]);
+          actions$ = helpers.hot('--a', { a: applyAction });
+          helpers.expectObservable(effects.apply$).toBe('--b', { b: applyFailureAction });
+        });
       });
     });
   });
 
   describe('when DaffCartStoreCreditRemoveAction is triggered', () => {
-    let expected;
     let removeAction: DaffCartStoreCreditRemove;
 
     beforeEach(() => {
@@ -121,30 +117,31 @@ describe('@daffodil/cart-store-credit/state | DaffCartStoreCreditEffects', () =>
     });
 
     describe('and the call to the driver is successful', () => {
-      beforeEach(() => {
-        driverRemoveSpy.and.returnValue(of(mockCartWithStoreCredit));
-        const removeSuccessAction = new DaffCartStoreCreditRemoveSuccess(mockCartWithStoreCredit);
-        actions$ = hot('--a', { a: removeAction });
-        expected = cold('--b', { b: removeSuccessAction });
-      });
-
       it('should dispatch a DaffCartStoreCreditRemoveSuccess action', () => {
-        expect(effects.remove$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverRemoveSpy.and.returnValue(of(mockCartWithStoreCredit));
+          const removeSuccessAction = new DaffCartStoreCreditRemoveSuccess(mockCartWithStoreCredit);
+          actions$ = helpers.hot('--a', { a: removeAction });
+          helpers.expectObservable(effects.remove$).toBe('--b', { b: removeSuccessAction });
+        });
       });
     });
 
     describe('and the call to the driver fails', () => {
-      beforeEach(() => {
-        const error = new DaffCartStoreCreditInvalidAPIResponseError('Failed to remove cart store credit');
-        const response = cold('#', {}, error);
-        driverRemoveSpy.and.returnValue(response);
-        const removeFailureAction = new DaffCartStoreCreditRemoveFailure([daffTransformErrorToStateError(error)]);
-        actions$ = hot('--a', { a: removeAction });
-        expected = cold('--b', { b: removeFailureAction });
-      });
-
       it('should dispatch a DaffCartStoreCreditRemoveFailure action', () => {
-        expect(effects.remove$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error = new DaffCartStoreCreditInvalidAPIResponseError('Failed to remove cart store credit');
+          driverRemoveSpy.and.returnValue(helpers.cold<any>('#', {}, error));
+          const removeFailureAction = new DaffCartStoreCreditRemoveFailure([daffTransformErrorToStateError(error)]);
+          actions$ = helpers.hot('--a', { a: removeAction });
+          helpers.expectObservable(effects.remove$).toBe('--b', { b: removeFailureAction });
+        });
       });
     });
   });

@@ -4,7 +4,7 @@ import {
   StoreModule,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   daffContactStateReducer,
@@ -20,6 +20,7 @@ describe('@daffodil/contact/state | Selectors', () => {
 
   let store: Store<DaffContactStateRootSlice>;
   let mockContactState: DaffContactState;
+  let scheduler: TestScheduler;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -30,14 +31,19 @@ describe('@daffodil/contact/state | Selectors', () => {
     });
     mockContactState = daffContactReducerInitialState;
     store = TestBed.inject(Store);
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe('the selectDaffContactSuccess', () => {
     it('should select the success property of the contact state', () =>{
       const selector = store.pipe(select(selectDaffContactSuccess));
-      const expected = cold('a', { a: mockContactState.success });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockContactState.success });
+      });
     });
   });
 });

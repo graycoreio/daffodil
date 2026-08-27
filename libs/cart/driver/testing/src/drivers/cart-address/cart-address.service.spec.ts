@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCart,
@@ -16,6 +16,7 @@ describe('Driver | Testing | Cart | CartAddressService', () => {
   let service: DaffTestingCartAddressService;
   let cartFactory: DaffCartFactory;
   let cartAddressFactory: DaffCartAddressFactory;
+  let scheduler: TestScheduler;
 
   let mockCart: DaffCart;
   let mockCartAddress: DaffCartAddress;
@@ -37,6 +38,10 @@ describe('Driver | Testing | Cart | CartAddressService', () => {
     cartId = mockCart.id;
     mockCart.billing_address = mockCartAddress;
     mockCart.shipping_address = mockCartAddress;
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -53,8 +58,9 @@ describe('Driver | Testing | Cart | CartAddressService', () => {
     });
 
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.update(cartId, mockCartAddressUpdate)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.update(cartId, mockCartAddressUpdate)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 });

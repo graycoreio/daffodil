@@ -2,13 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { ROUTER_NAVIGATED } from '@ngrx/router-store';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   BehaviorSubject,
   Observable,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffSidebarModeEnum,
@@ -67,9 +64,13 @@ describe('DaffioSidebarRoutingModeEffects', () => {
       });
 
       it('should close the sidebar', () => {
-        actions$ = hot( '--a', { a: action });
-
-        expect(effects.openOrCloseSidebar$).toBeObservable(cold('---'));
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: action });
+          helpers.expectObservable(effects.openOrCloseSidebar$).toBe('---');
+        });
         expect(sidebarServiceSpy.close).toHaveBeenCalledOnceWith();
       });
     });
@@ -82,9 +83,13 @@ describe('DaffioSidebarRoutingModeEffects', () => {
       });
 
       it('should close the sidebar', () => {
-        actions$ = hot( '--a', { a: action });
-
-        expect(effects.openOrCloseSidebar$).toBeObservable(cold('---'));
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: action });
+          helpers.expectObservable(effects.openOrCloseSidebar$).toBe('---');
+        });
         expect(sidebarServiceSpy.close).toHaveBeenCalledOnceWith();
       });
     });
@@ -101,9 +106,13 @@ describe('DaffioSidebarRoutingModeEffects', () => {
       });
 
       it('should open the docked sidebar', () => {
-        actions$ = hot( '--a', { a: action });
-
-        expect(effects.openOrCloseSidebar$).toBeObservable(cold('---'));
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: action });
+          helpers.expectObservable(effects.openOrCloseSidebar$).toBe('---');
+        });
         expect(sidebarServiceSpy.open).toHaveBeenCalledOnceWith(dockedSidebar);
       });
     });

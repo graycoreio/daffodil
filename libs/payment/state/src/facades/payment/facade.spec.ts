@@ -4,7 +4,7 @@ import {
   Store,
   StoreModule,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   daffPaymentReducerFactory,
@@ -20,6 +20,8 @@ describe('@daffodil/payment/state | DaffPaymentPageFacade', () => {
   let facade: DaffPaymentPageFacade;
 
   let errors: string[];
+
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -39,6 +41,10 @@ describe('@daffodil/payment/state | DaffPaymentPageFacade', () => {
     facade = TestBed.inject(DaffPaymentPageFacade);
 
     errors = [];
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -56,15 +62,17 @@ describe('@daffodil/payment/state | DaffPaymentPageFacade', () => {
 
   describe('loading$', () => {
     it('should be false if the payment is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
   });
 
   describe('errors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: errors });
-      expect(facade.errors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: errors });
+      });
     });
   });
 });

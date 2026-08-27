@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffStateError } from '@daffodil/core/state';
 import {
@@ -67,36 +64,37 @@ describe('DaffPaypalEffects', () => {
 
   describe('when DaffGeneratePaypalExpressToken is triggered', () => {
 
-    let expected;
     const paypalLoadAction = new DaffGeneratePaypalExpressToken(paypalRequest);
 
     describe('and the call to PaypalService is successful', () => {
 
-      beforeEach(() => {
-        spyOn(daffPaypalDriver, 'generateToken').and.returnValue(of(paypalTokenResponse));
-        const paypalLoadSuccessAction = new DaffGeneratePaypalExpressTokenSuccess(paypalTokenResponse);
-        actions$ = hot('--a', { a: paypalLoadAction });
-        expected = cold('--b', { b: paypalLoadSuccessAction });
-      });
-
       it('should dispatch a PaypalLoadSuccess action', () => {
-        expect(effects.generatePaypalExpressToken$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          spyOn(daffPaypalDriver, 'generateToken').and.returnValue(of(paypalTokenResponse));
+          const paypalLoadSuccessAction = new DaffGeneratePaypalExpressTokenSuccess(paypalTokenResponse);
+          actions$ = helpers.hot('--a', { a: paypalLoadAction });
+          helpers.expectObservable(effects.generatePaypalExpressToken$).toBe('--b', { b: paypalLoadSuccessAction });
+        });
       });
     });
 
     describe('and the call to PaypalService fails', () => {
 
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to retrieve token' };
-        const response = cold('#', {}, error);
-        spyOn(daffPaypalDriver, 'generateToken').and.returnValue(response);
-        const paypalLoadFailureAction = new DaffGeneratePaypalExpressTokenFailure(error);
-        actions$ = hot('--a', { a: paypalLoadAction });
-        expected = cold('--b', { b: paypalLoadFailureAction });
-      });
-
       it('should dispatch a PaypalLoadFailure action', () => {
-        expect(effects.generatePaypalExpressToken$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to retrieve token' };
+          const response = helpers.cold<any>('#', {}, error);
+          spyOn(daffPaypalDriver, 'generateToken').and.returnValue(response);
+          const paypalLoadFailureAction = new DaffGeneratePaypalExpressTokenFailure(error);
+          actions$ = helpers.hot('--a', { a: paypalLoadAction });
+          helpers.expectObservable(effects.generatePaypalExpressToken$).toBe('--b', { b: paypalLoadFailureAction });
+        });
       });
     });
   });

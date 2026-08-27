@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffAuthStateRootSlice,
@@ -20,6 +20,7 @@ import { daffAuthSelectorFactory } from './auth.selector';
 
 describe('@daffodil/auth/state | daffAuthSelectorFactory', () => {
   let store: Store<DaffAuthStateRootSlice>;
+  let scheduler: TestScheduler;
 
   let state: DaffAuthReducerState;
   let loading: boolean;
@@ -32,6 +33,10 @@ describe('@daffodil/auth/state | daffAuthSelectorFactory', () => {
   } = daffAuthSelectorFactory();
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -54,16 +59,18 @@ describe('@daffodil/auth/state | daffAuthSelectorFactory', () => {
   describe('selectAuthState', () => {
     it('selects the auth state', () => {
       const selector = store.pipe(select(selectAuthState));
-      const expected = cold('a', { a: state });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: state });
+      });
     });
   });
 
   describe('selectAuthLoggedIn', () => {
     it('returns the logged in state', () => {
       const selector = store.pipe(select(selectAuthLoggedIn));
-      const expected = cold('a', { a: loggedIn });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: loggedIn });
+      });
     });
   });
 });
