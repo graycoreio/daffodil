@@ -5,6 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   MockProduct,
   DaffProductKindFactory,
+  DaffProductCustomAttributeValueFactory,
   DaffProductImageFactory,
 } from '@daffodil/product/testing';
 import { DaffReviewedProduct } from '@daffodil/reviews';
@@ -24,12 +25,13 @@ export class MockReviewedProduct extends MockProduct implements DaffReviewedProd
 @Injectable({
   providedIn: 'root',
 })
-export class DaffReviewedProductFactory extends DaffModelFactory<DaffReviewedProduct>{
+export class DaffReviewedProductFactory extends DaffModelFactory<DaffReviewedProduct, typeof MockReviewedProduct>{
   constructor(
     private productKindFactory: DaffProductKindFactory,
     imageFactory: DaffProductImageFactory,
+    customAttributeFactory: DaffProductCustomAttributeValueFactory,
   ) {
-    super(MockReviewedProduct, imageFactory);
+    super(MockReviewedProduct, imageFactory, customAttributeFactory);
   }
 
   create(partial: Partial<DaffReviewedProduct> = {}): DaffReviewedProduct {

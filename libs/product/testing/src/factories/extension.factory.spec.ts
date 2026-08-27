@@ -11,6 +11,7 @@ import {
   MockProduct,
   DaffProductKindFactory,
   DaffProductImageFactory,
+  DaffProductCustomAttributeValueFactory,
 } from '@daffodil/product/testing';
 
 import { DaffProductExtensionFactory } from './extension.factory';
@@ -22,11 +23,12 @@ class TestMockProduct extends MockProduct {
 @Injectable({
   providedIn: 'root',
 })
-class TestProductFactory extends DaffModelFactory<DaffProduct> {
+class TestProductFactory extends DaffModelFactory<DaffProduct, typeof TestMockProduct> {
   constructor(
     imageFactory: DaffProductImageFactory,
+    customAttributeFactory: DaffProductCustomAttributeValueFactory,
   ) {
-    super(TestMockProduct, imageFactory);
+    super(TestMockProduct, imageFactory, customAttributeFactory);
   }
 }
 
@@ -38,11 +40,12 @@ class TestMockProductKind extends MockProduct {
 @Injectable({
   providedIn: 'root',
 })
-class TestProductKindFactory extends DaffModelFactory<DaffProduct> {
+class TestProductKindFactory extends DaffModelFactory<DaffProduct, typeof TestMockProductKind> {
   constructor(
     imageFactory: DaffProductImageFactory,
+    customAttributeFactory: DaffProductCustomAttributeValueFactory,
   ) {
-    super(TestMockProductKind, imageFactory);
+    super(TestMockProductKind, imageFactory, customAttributeFactory);
   }
 }
 

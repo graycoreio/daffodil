@@ -1,7 +1,11 @@
 import { Provider } from '@angular/core';
 
-import { provideDaffProductDriver } from '@daffodil/product/driver';
+import {
+  provideDaffProductDriver,
+  provideDaffProductCustomAttributeDriver,
+} from '@daffodil/product/driver';
 
+import { DaffShopifyProductCustomAttributeService } from './custom-attribute.service';
 import { DaffShopifyProductService } from './product.service';
 
 /**
@@ -12,4 +16,6 @@ import { DaffShopifyProductService } from './product.service';
 export const provideDaffProductShopifyDriver = (): Provider[] => [
   DaffShopifyProductService,
   provideDaffProductDriver(DaffShopifyProductService),
+  DaffShopifyProductCustomAttributeService,
+  provideDaffProductCustomAttributeDriver(DaffShopifyProductCustomAttributeService),
 ];

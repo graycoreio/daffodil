@@ -19,3 +19,5 @@ export {
   MagentoSortDirectionEnum,
   MagentoSortFieldAction,
 } from './sort';
+export { MagentoCustomAttributes } from './custom-attributes.type';
+export { MagentoAttributesList } from './attributes-list.type';

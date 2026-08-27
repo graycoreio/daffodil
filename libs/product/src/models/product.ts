@@ -5,6 +5,7 @@ import {
 } from '@daffodil/core';
 
 import { DaffProductImage } from './product-image';
+import { DaffProductCustomAttributeValue } from '../custom-attribute/public_api';
 
 /**
  * The possible product types.
@@ -82,6 +83,11 @@ export interface DaffProduct
    * A description of the product for usage in search engine results.
    */
   meta_description?: string;
+
+  /**
+   * A list of custom attribute values on the product.
+   */
+  customAttributes?: Array<DaffProductCustomAttributeValue>;
 }
 
 /**
