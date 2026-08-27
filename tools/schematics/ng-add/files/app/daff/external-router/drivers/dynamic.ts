@@ -18,9 +18,11 @@ import {
   DaffDriverConfig,
 } from '@daffodil/dev-tools';
 import { DaffExternallyResolvableUrl } from '@daffodil/external-router';
-import { DaffExternalRouterDriverInterface } from '@daffodil/external-router/driver';
+import {
+  DaffExternalRouterDriver,
+  DaffExternalRouterDriverInterface,
+} from '@daffodil/external-router/driver';
 import { DaffExternalRouterInMemoryDriver } from '@daffodil/external-router/driver/in-memory';
-import { DaffExternalRouterMagentoDriver } from '@daffodil/external-router/driver/magento/2.4.3';
 import { DaffShopifyExternalRouterDriver } from '@daffodil/external-router/driver/shopify';
 
 import { FakeExternalRouterService } from './fake';
@@ -35,7 +37,7 @@ export class DynamicExternalRouterDriver implements DaffExternalRouterDriverInte
   public readonly driverChanged$ = this.driverChange$.asObservable();
 
   private inmemoryDriver = inject(DaffExternalRouterInMemoryDriver);
-  private magentoDriver = inject(DaffExternalRouterMagentoDriver);
+  private magentoDriver = inject<DaffExternalRouterDriverInterface>(DaffExternalRouterDriver);
   private shopifyDriver = inject(DaffShopifyExternalRouterDriver);
   private fakeDriver = inject(FakeExternalRouterService);
 

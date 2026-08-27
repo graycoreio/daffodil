@@ -3,4 +3,5 @@ export interface NgAddOptions {
   skipPackageJson?: boolean;
   isNewProject?: boolean;
   driver?: 'magento' | 'shopify' | 'in-memory' | 'demo';
+  driverVersion?: string;
 }

@@ -8,6 +8,7 @@ import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import chalk from 'chalk';
 
+import { addBuildCondition } from './generators/daff-config/daff-config';
 import { addDependenciesToPackageJson } from './generators/dependencies';
 import { initAppProviders } from './generators/providers/init';
 import { initAppRouting } from './generators/routing/init';
@@ -31,7 +32,8 @@ export function ngAdd(options: NgAddOptions): Rule {
     }
 
     const workspace = await getWorkspace(tree);
-    const project = workspace.projects.get(options.project || <string>workspace.extensions.defaultProject);
+    const projectName = options.project || <string>workspace.extensions.defaultProject;
+    const project = workspace.projects.get(projectName);
 
     if (!project) {
       throw new Error(`Project "${options.project}" not found.`);
@@ -52,6 +54,9 @@ export function ngAdd(options: NgAddOptions): Rule {
 
     // Add template files for demo components
     rules.push(addTemplateFiles(options, project));
+
+    // pre-populate angular.json build conditions (magento only)
+    rules.push(addBuildCondition(options, projectName));
 
     // Schedule package installation
     if (!options.skipPackageJson) {

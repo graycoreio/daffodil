@@ -13,6 +13,7 @@
   "author": "Daffodil Team",
   "license": "MIT",
   "schematics": "./collection.json",
+  "builders": "./builders.json",
   "ng-add": {
     "save": "dependencies"
   },
@@ -29,7 +30,8 @@
     "publish": "cd ../../dist/commerce && npm publish --access=public",
     "verdaccio:publish": "bash scripts/publish-local.sh",
     "verdaccio:unpublish": "bash scripts/unpublish-local.sh",
-    "test": "NODE_OPTIONS=\"--no-experimental-strip-types\" ts-node --compiler-options '{\"module\":\"commonjs\"}' -P tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
+    "test": "NODE_OPTIONS=\"--no-experimental-strip-types\" ts-node --compiler-options '{\"module\":\"commonjs\"}' -P tsconfig.spec.json -r tsconfig-paths/register ../../node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
+		"collect-package-versions": "node ../../dist/commerce/scripts/collect-platform-versions.js"
   },
   "dependencies": {
     "@angular-devkit/core": "0.0.0-PLACEHOLDER",
@@ -47,6 +49,7 @@
     "@daffodil/product": "0.0.0-PLACEHOLDER"
   },
   "peerDependencies": {
+    "@angular/build": "0.0.0-PLACEHOLDER",
     "@angular/core": "0.0.0-PLACEHOLDER",
     "@angular/common": "0.0.0-PLACEHOLDER",
     "@angular/router": "0.0.0-PLACEHOLDER"
@@ -68,6 +71,11 @@
         ]
       },
       "verdaccio:publish": {
+        "dependsOn": [
+          "build"
+        ]
+      },
+			"collect-package-versions": {
         "dependsOn": [
           "build"
         ]
