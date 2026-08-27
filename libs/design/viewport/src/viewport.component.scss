@@ -1,0 +1,119 @@
+@use './scss/z-index';
+@use './scss/animation';
+@use '../../scss/layout';
+
+// stylelint-disable selector-class-pattern
+:host {
+	display: flex;
+	min-height: 100dvh;
+	position: relative;
+	width: 100%;
+	z-index: z-index.$daff-sidebar-viewport-z-index;
+	transform: none;
+	overflow-x: clip;
+
+	.daff-viewport__inner {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	&.pad-left {
+		.daff-viewport__inner {
+			padding-left: 0;
+
+			@include layout.breakpoint(big-tablet) {
+				padding-left: var(--daff-sidebar-left-width, 15rem);
+			}
+		}
+
+		&.beside {
+			.daff-viewport__nav {
+				padding-left: 0;
+
+				@include layout.breakpoint(big-tablet) {
+					padding-left: var(--daff-sidebar-left-width, 15rem);
+				}
+			}
+		}
+	}
+
+	.daff-viewport__nav,
+	.daff-viewport__content {
+		transition: transform animation.$duration
+			animation.$sidebar-animate-in-transition;
+	}
+
+	&.under-open {
+		overflow: clip;
+
+		daff-viewport-backdrop,
+		.daff-viewport__nav,
+		.daff-viewport__content {
+			transform: translateX(var(--daff-viewport-content-shift, 0));
+		}
+	}
+
+	&.pad-right {
+		.daff-viewport__inner {
+			padding-right: 0;
+
+			@include layout.breakpoint(big-tablet) {
+				padding-right: var(--daff-sidebar-right-width, 15rem);
+			}
+		}
+
+		&.beside {
+			.daff-viewport__nav {
+				padding-right: 0;
+
+				@include layout.breakpoint(big-tablet) {
+					padding-right: var(--daff-sidebar-right-width, 15rem);
+				}
+			}
+		}
+	}
+}
+
+.daff-viewport {
+	$root: &;
+
+	&__content {
+		flex: 0 1 auto;
+		width: 100%;
+		z-index: z-index.$daff-sidebar-content-z-index;
+		min-height: 100%;
+	}
+
+	&__nav {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: z-index.$daff-sidebar-nav-z-index;
+
+		&:empty {
+			display: none;
+		}
+
+		&:not(:empty) {
+			~ #{$root}__content {
+				margin-top: var(--daff-sidebar-side-fixed-top-shift, 4rem);
+			}
+		}
+	}
+
+	&__footer {
+		margin-top: auto;
+	}
+}
+
+:host-context(daff-viewport daff-viewport) {
+	transform: translateX(0);
+	min-height: auto;
+
+	.daff-viewport__inner {
+		// stylelint-disable declaration-no-important
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+}

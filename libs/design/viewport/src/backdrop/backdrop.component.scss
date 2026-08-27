@@ -1,0 +1,47 @@
+@use '../../../scss/interactions';
+@use '../scss/z-index';
+@use '../scss/animation';
+
+$bg-color: rgba(0, 0, 0, 0.3);
+$highlight-color: rgba(0, 0, 0, 0);
+
+:host {
+	display: block;
+	background: $bg-color;
+	-webkit-tap-highlight-color: $highlight-color;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: z-index.$daff-sidebar-backdrop-z-index;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition:
+		opacity animation.$duration linear,
+		visibility 0ms linear animation.$duration,
+		transform animation.$duration animation.$sidebar-animate-in-transition;
+
+	&.interactable { /* stylelint-disable-line selector-class-pattern */
+		opacity: 1;
+		visibility: visible;
+		pointer-events: all;
+		transition:
+			opacity animation.$duration linear,
+			transform animation.$duration animation.$sidebar-animate-in-transition;
+		@include interactions.clickable;
+	}
+
+	&.transparent { /* stylelint-disable-line selector-class-pattern */
+		background: none;
+	}
+
+	&:focus,
+	&:active,
+	&:visited {
+		outline: 0;
+	}
+
+	&.fullscreen { /* stylelint-disable-line selector-class-pattern */
+		position: absolute;
+	}
+}

@@ -1,6 +1,6 @@
 import { AnimationStateWithParams } from '@daffodil/design';
 
-import { DaffSidebarAnimationStates } from './sidebar-animation';
+import { DaffSidebarAnimationStates } from './sidebar-animation-state';
 
 export type DaffSidebarViewportAnimationState = DaffSidebarAnimationStates.OPEN | DaffSidebarAnimationStates.CLOSED;
 

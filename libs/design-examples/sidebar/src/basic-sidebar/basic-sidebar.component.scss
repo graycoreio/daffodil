@@ -1,7 +1,15 @@
 daff-sidebar-viewport {
-  height: 288px;
+	height: 18rem;
 }
 
-.basic-sidebar {
-  border-right: 1px solid rgb(var(--daff-theme-contrast-rgb), 0.1);
+.daff-example-basic-sidebar {
+	border-right: 1px solid rgb(var(--daff-theme-contrast-rgb), 0.1);
+
+	&__sidebar-content {
+		padding: 0 1rem;
+	}
+
+	&__content {
+		padding: 1rem;
+	}
 }
