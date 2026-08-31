@@ -1,4 +1,8 @@
-import { FocusableOption } from '@angular/cdk/a11y';
+import {
+  FocusableOption,
+  FocusMonitor,
+  FocusOrigin,
+} from '@angular/cdk/a11y';
 import {
   AfterViewInit,
   Directive,
@@ -29,6 +33,7 @@ export class DaffBreadcrumbMenuItemDirective implements FocusableOption, AfterVi
   constructor(
     private _viewContainerRef: ViewContainerRef,
     private _menuService: DaffMenuService,
+    private _focusMonitor: FocusMonitor,
   ) {}
 
   /**
@@ -38,10 +43,23 @@ export class DaffBreadcrumbMenuItemDirective implements FocusableOption, AfterVi
     this._focusableElement = this._findFocusableElement();
     this._focusableElement?.classList.add('daff-menu-item'); // For styling
     this._focusableElement?.addEventListener('click', this._clickHandler);
+
+    if (this._focusableElement) {
+      this._focusMonitor.monitor(this._focusableElement, false);
+    }
   }
 
-  focus() {
-    this._focusableElement?.focus(); // Allows `FocusKeyManager` to focus on the element
+  // Allows `FocusKeyManager` to focus on the element
+  focus(origin?: FocusOrigin, options?: FocusOptions) {
+    if (!this._focusableElement) {
+      return;
+    }
+
+    if (origin) {
+      this._focusMonitor.focusVia(this._focusableElement, origin, options);
+    } else {
+      this._focusableElement.focus(options);
+    }
   }
 
   private _findFocusableElement(): HTMLElement | null {
@@ -52,5 +70,9 @@ export class DaffBreadcrumbMenuItemDirective implements FocusableOption, AfterVi
   ngOnDestroy() {
     this._focusableElement?.removeEventListener('click', this._clickHandler);
     this._focusableElement?.classList.remove('daff-menu-item');
+
+    if (this._focusableElement) {
+      this._focusMonitor.stopMonitoring(this._focusableElement);
+    }
   }
 }

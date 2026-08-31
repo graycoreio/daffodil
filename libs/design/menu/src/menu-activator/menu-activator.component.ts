@@ -1,3 +1,4 @@
+import { FocusOrigin } from '@angular/cdk/a11y';
 import {
   ChangeDetectorRef,
   computed,
@@ -35,6 +36,8 @@ import { DaffMenuService } from '../services/menu.service';
   selector: '[daffMenuActivator]',
   host: {
     '(click)': 'onClick($event)',
+    '(mousedown)': '_onMousedown($event)',
+    '(keydown)': '_onKeydown($event)',
     'aria-haspopup': 'menu',
     '[attr.aria-expanded]': 'ariaExpanded',
     '[attr.aria-controls]': '_open ? menuId() : null',
@@ -48,6 +51,7 @@ export class DaffMenuActivatorDirective implements OnDestroy {
 
   private _destroyed$ = new Subject<boolean>();
   private _defaultMenuId = daffNextMenuId();
+  private _openedBy: FocusOrigin = null;
   protected _open: boolean;
   readonly isOpen = signal(false);
 
@@ -118,9 +122,33 @@ export class DaffMenuActivatorDirective implements OnDestroy {
 
   /**
    * @docs-private
+   *
+   * A touch tap fires `mousedown` too, so this covers pointer interaction generally.
+   */
+  _onMousedown(event: MouseEvent) {
+    this._openedBy = event.button === 0 ? 'mouse' : null;
+  }
+
+  /**
+   * @docs-private
+   */
+  _onKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this._openedBy = 'keyboard';
+    }
+  }
+
+  /**
+   * @docs-private
    */
   onClick(event: MouseEvent) {
     event.preventDefault();
-    this.service.open(this.viewContainerRef, this.daffMenuActivator(), { menuId: this.menuId(), xPosition: this.xPosition(), yPosition: this.yPosition() });
+    this.service.open(
+      this.viewContainerRef,
+      this.daffMenuActivator(),
+      { menuId: this.menuId(), xPosition: this.xPosition(), yPosition: this.yPosition() },
+      this._openedBy ?? 'program',
+    );
+    this._openedBy = null;
   }
 }
