@@ -69,8 +69,8 @@ $supported-theme-modes: (
 /// 	$critical: configure-palette.daff-configure-palette(palette.$daff-red, 60);
 /// 	$success: configure-palette.daff-configure-palette(palette.$daff-green, 60);
 /// 	$neutral: configure-palette.daff-configure-palette(palette.$daff-neutral, 60);
-/// 	$text-color-default: get-color.daff-color(palette.$daff-neutral, 10);
-/// 	$text-color-inverse: get-color.daff-color(palette.$daff-neutral, 100);
+/// 	$text-color-default: get-color.daff-color(palette.$daff-neutral, 100);
+/// 	$text-color-inverse: get-color.daff-color(palette.$daff-neutral, 10);
 /// 	$theme: daff-create-theme((
 /// 		'mode': 'light',
 /// 		'primary': $primary,

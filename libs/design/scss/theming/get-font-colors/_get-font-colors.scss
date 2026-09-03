@@ -1,36 +1,18 @@
 @use 'sass:map';
-@use 'sass:list';
-@use '../get-base-color' as *;
 
-/// Returns a light and dark color.
+/// @access private
 ///
-/// If you are not using Daffodil's default theme, a theme **must** be
-/// created with `daff-create-theme` before this function can be used.
-/// See the [customize your own theme](daff.io/docs/design/theming/customize-your-own-theme)
-/// guide for more information.
+/// Returns a theme's default and inverse text colors as a contrast pair.
 ///
-/// @group Theming
+/// Which of the two is the lighter color depends on the theme mode, so callers
+/// should treat the list as `(default, inverse)` rather than `(light, dark)`.
 ///
 /// @param {Map} $theme — A theme map created with the `daff-create-theme` function.
 ///
-/// @return {List} — Returns a list of colors
-///
-/// @example scss
-/// 	@use '@daffodil/design/scss/theme' as daff-theme;
-///
-/// 	@mixin custom-content-theme($theme) {
-/// 		$availableColors: daff-theme.daff-get-font-colors($theme);
-/// 	}
-///
+/// @return {List} — The theme's `text-color-default` and `text-color-inverse`.
 @function daff-get-font-colors($theme) {
-	@if (map.get($theme, 'text-color-default')) {
-		@return (
-			map.get($theme, 'text-color-default'),
-			map.get($theme, 'text-color-inverse')
-		);
-	}
 	@return (
-		daff-get-base-color($theme, 'white'),
-		daff-get-base-color($theme, 'black')
+		map.get($theme, 'text-color-default'),
+		map.get($theme, 'text-color-inverse')
 	);
 }
