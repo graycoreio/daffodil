@@ -14,6 +14,7 @@ import { provideDaffDesignContainerExamplesContent } from '@daffodil/design-exam
 import { provideDaffDesignFormFieldExamplesContent } from '@daffodil/design-examples/form-field';
 import { provideDaffDesignHeroExamplesContent } from '@daffodil/design-examples/hero';
 import { provideDaffDesignImageExamplesContent } from '@daffodil/design-examples/image';
+import { provideDaffDesignImageLiteExamplesContent } from '@daffodil/design-examples/image-lite';
 import { provideDaffDesignInputExamplesContent } from '@daffodil/design-examples/input';
 import { provideDaffDesignListExamplesContent } from '@daffodil/design-examples/list';
 import { provideDaffDesignMediaGalleryExamplesContent } from '@daffodil/design-examples/media-gallery';
@@ -57,6 +58,7 @@ export const provideDaffioDesignExamplesContent = () => makeEnvironmentProviders
   provideDaffDesignFormFieldExamplesContent(),
   provideDaffDesignHeroExamplesContent(),
   provideDaffDesignImageExamplesContent(),
+  provideDaffDesignImageLiteExamplesContent(),
   provideDaffDesignInputExamplesContent(),
   provideDaffDesignListExamplesContent(),
   provideDaffDesignMediaGalleryExamplesContent(),

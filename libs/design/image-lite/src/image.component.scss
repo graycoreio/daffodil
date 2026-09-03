@@ -1,0 +1,22 @@
+@use '../../scss/state';
+
+:host {
+	display: block;
+	max-width: 100%;
+	height: auto;
+
+	&.daff-skeleton {
+		animation: loading 1000ms linear infinite alternate;
+		object-fit: none;
+		object-position: -200% -200%;
+	}
+}
+
+@keyframes loading {
+	from {
+		opacity: 0.5;
+	}
+	to {
+		opacity: 1;
+	}
+}

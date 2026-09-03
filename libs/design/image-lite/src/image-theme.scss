@@ -1,0 +1,18 @@
+@use '../../scss/theming' as *;
+
+@mixin daff-image-lite-theme($theme) {
+	$neutral: daff-get-palette($theme, neutral);
+	$mode: daff-get-theme-mode($theme);
+
+	.daff-image-lite {
+		&.daff-skeleton {
+			@include daff-light-mode($mode) {
+				background-color: daff-color($neutral, 20);
+			}
+
+			@include daff-dark-mode($mode) {
+				background-color: daff-color($neutral, 90);
+			}
+		}
+	}
+}

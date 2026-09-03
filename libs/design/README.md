@@ -37,6 +37,7 @@ Refer to the [Upgrade Guide](/libs/design/guides/upgrading.md).
   * [Native Select](/libs/design/src/atoms/form/native-select/README.md)
   * [Quantity Field](/libs/design/src/atoms/form/quantity-field/README.md)
 * [Image](/libs/design/image/README.md)
+* [Image Lite](/libs/design/image-lite/README.md)
 * [Tag](/libs/design/tag/README.md)
 
 ### Molecules
