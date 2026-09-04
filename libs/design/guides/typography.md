@@ -66,7 +66,6 @@ The headline mixins are responsive and will adjust at the `tablet` breakpoint.
 
 | Mixin   | Description                                                                  |
 | ------------- | ---------------------------------------------------------------------------- |
-| uppercase     | Changes the casing of a piece of text to uppercase                           |
 | text-truncate | Forces a line of text to ellipsis once it reaches the width of its container. It should only be used if the element has a display of `block` or `inline-block`. |
 
 You can access the typography utility classes and mixins in your project by adding the following to your Sass file:
