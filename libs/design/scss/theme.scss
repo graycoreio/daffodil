@@ -117,17 +117,3 @@
 	@include toast.daff-toast-theme($theme);
 	@include tree.daff-tree-theme($theme);
 }
-
-//
-// @deprecated
-// Generates the styles of a @daffodil/design theme.
-//
-// Usage:
-// ```scss
-// @use '@daffodil/design/scss/theme';
-//
-// @include daff-theme($theme);
-// ```
-@mixin daff-theme($theme) {
-	@include daff-component-themes($theme);
-}
