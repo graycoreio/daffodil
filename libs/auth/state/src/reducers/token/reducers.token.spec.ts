@@ -1,15 +1,29 @@
+import { inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ActionReducer } from '@ngrx/store';
+import {
+  ActionReducer,
+  combineReducers,
+} from '@ngrx/store';
 
 import {
   DaffAuthFeatureState,
   daffAuthInitialState,
   DaffAuthCheck,
 } from '@daffodil/auth/state';
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  daffComposeReducers,
+  DaffStateError,
+} from '@daffodil/core/state';
 
-import { daffAuthProvideExtraReducers } from './extra.token';
-import { DAFF_AUTH_REDUCERS } from './reducers.token';
+import {
+  DAFF_AUTH_EXTRA_REDUCERS,
+  daffAuthProvideExtraReducers,
+} from './extra.token';
+import {
+  DAFF_AUTH_REDUCERS,
+  provideDaffAuthReducersFactory,
+} from './reducers.token';
+import { daffAuthReducers } from '../auth-reducers';
 
 describe('@daffodil/auth/state | daffAuthProvideExtraReducers', () => {
   let extraReducer: ActionReducer<DaffAuthFeatureState>;
@@ -47,6 +61,10 @@ describe('@daffodil/auth/state | daffAuthProvideExtraReducers', () => {
     TestBed.configureTestingModule({
       providers: [
         ...daffAuthProvideExtraReducers(extraReducer),
+        provideDaffAuthReducersFactory(() => daffComposeReducers([
+          combineReducers(daffAuthReducers),
+          ...inject(DAFF_AUTH_EXTRA_REDUCERS),
+        ])),
       ],
     });
 

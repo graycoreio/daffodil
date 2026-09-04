@@ -1,3 +1,4 @@
+import { inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import {
   ActionReducer,
@@ -6,6 +7,7 @@ import {
 
 import {
   daffCollectionReducerInitialState,
+  daffComposeReducers,
   daffIdentityReducer,
 } from '@daffodil/core/state';
 import { DaffProductReviews } from '@daffodil/reviews';
@@ -18,7 +20,12 @@ import {
 } from '@daffodil/reviews/state';
 import { DaffProductReviewsFactory } from '@daffodil/reviews/testing';
 
-import { DAFF_REVIEWS_REDUCERS } from './reducers.token';
+import { DAFF_REVIEWS_EXTRA_REDUCERS } from './extra.token';
+import {
+  DAFF_REVIEWS_REDUCERS,
+  provideDaffReviewsReducersFactory,
+} from './reducers.token';
+import { daffReviewsReducers } from '../reducers';
 
 describe('@daffodil/reviews/state | DAFF_REVIEWS_REDUCERS', () => {
   let productReviewsFactory: DaffProductReviewsFactory;
@@ -51,6 +58,10 @@ describe('@daffodil/reviews/state | DAFF_REVIEWS_REDUCERS', () => {
     TestBed.configureTestingModule({
       providers: [
         ...daffReviewsProvideExtraReducers(extraReducer),
+        provideDaffReviewsReducersFactory(() => daffComposeReducers([
+          combineReducers(daffReviewsReducers),
+          ...inject(DAFF_REVIEWS_EXTRA_REDUCERS),
+        ])),
       ],
     });
 

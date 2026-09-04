@@ -1,5 +1,9 @@
+import { inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ActionReducer } from '@ngrx/store';
+import {
+  ActionReducer,
+  combineReducers,
+} from '@ngrx/store';
 
 import { DaffCartPaymentMethod } from '@daffodil/cart';
 import {
@@ -9,8 +13,20 @@ import {
   DaffCartPaymentLoadSuccess,
 } from '@daffodil/cart/state';
 import { DaffCartPaymentFactory } from '@daffodil/cart/testing';
+import {
+  daffComposeReducers,
+  daffIdentityReducer,
+} from '@daffodil/core/state';
 
-import { DAFF_CART_REDUCERS } from './reducers.token';
+import { DAFF_CART_EXTRA_REDUCERS } from './extra.token';
+import {
+  DAFF_CART_REDUCERS,
+  provideDaffCartReducersFactory,
+} from './reducers.token';
+import { DAFF_CART_RETRIEVAL_ACTIONS } from '../../cart-retrieval/public_api';
+import { daffCartRetrievalActionsReducerFactory } from '../cart/retrieval-actions.reducer';
+import { daffCartItemEntitiesRetrievalActionsReducerFactory } from '../cart-item-entities/retrieval-actions.reducer';
+import { daffCartReducers } from '../cart-reducers';
 
 describe('@daffodil/cart/state | daffCartProvideExtraReducers', () => {
   let paymentFactory: DaffCartPaymentFactory;
@@ -43,6 +59,19 @@ describe('@daffodil/cart/state | daffCartProvideExtraReducers', () => {
     TestBed.configureTestingModule({
       providers: [
         ...daffCartProvideExtraReducers(extraReducer),
+        provideDaffCartReducersFactory(() => {
+          const retrievalActions = inject(DAFF_CART_RETRIEVAL_ACTIONS);
+
+          return daffComposeReducers([
+            combineReducers(daffCartReducers),
+            combineReducers({
+              cart: daffCartRetrievalActionsReducerFactory(retrievalActions),
+              cartItems: daffCartItemEntitiesRetrievalActionsReducerFactory(retrievalActions),
+              order: daffIdentityReducer,
+            }),
+            ...inject(DAFF_CART_EXTRA_REDUCERS),
+          ]);
+        }),
       ],
     });
 

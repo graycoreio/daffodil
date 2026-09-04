@@ -1,15 +1,7 @@
-import { inject } from '@angular/core';
-import {
-  ActionReducer,
-  combineReducers,
-} from '@ngrx/store';
+import { ActionReducer } from '@ngrx/store';
 
 import { createSingleInjectionToken } from '@daffodil/core';
-import { daffComposeReducers } from '@daffodil/core/state';
 
-import { DAFF_PAYMENT_EXTRA_REDUCERS } from './extra.token';
-import { DAFF_PAYMENT_AVAILABLE_PROCESSORS } from '../../injection-tokens/public_api';
-import { daffPaymentReducerFactory } from '../payment/reducer';
 import { DaffPaymentReducersState } from '../reducers.interface';
 
 export const {
@@ -24,15 +16,10 @@ export const {
    * Provider function for {@link DAFF_PAYMENT_REDUCERS}.
    */
   provider: provideDaffPaymentReducers,
+  /**
+   * Factory provider function for {@link DAFF_PAYMENT_REDUCERS}.
+   */
+  factoryProvider: provideDaffPaymentReducersFactory,
 } = createSingleInjectionToken<ActionReducer<DaffPaymentReducersState>>(
   'DAFF_PAYMENT_REDUCERS',
-  {
-    providedIn: 'any',
-    factory: () => daffComposeReducers([
-      combineReducers({
-        payment: daffPaymentReducerFactory(inject(DAFF_PAYMENT_AVAILABLE_PROCESSORS).map(({ action }) => action)),
-      }),
-      ...inject(DAFF_PAYMENT_EXTRA_REDUCERS),
-    ]),
-  },
 );

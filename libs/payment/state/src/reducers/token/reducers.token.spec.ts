@@ -1,7 +1,14 @@
+import { inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ActionReducer } from '@ngrx/store';
+import {
+  ActionReducer,
+  combineReducers,
+} from '@ngrx/store';
 
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  daffComposeReducers,
+  DaffStateError,
+} from '@daffodil/core/state';
 import {
   daffPaymentProvideExtraReducers,
   DaffPaymentReducersState,
@@ -9,7 +16,13 @@ import {
   DaffPaymentGenerateTokenFailure,
 } from '@daffodil/payment/state';
 
-import { DAFF_PAYMENT_REDUCERS } from './reducers.token';
+import { DAFF_PAYMENT_EXTRA_REDUCERS } from './extra.token';
+import {
+  DAFF_PAYMENT_REDUCERS,
+  provideDaffPaymentReducersFactory,
+} from './reducers.token';
+import { DAFF_PAYMENT_AVAILABLE_PROCESSORS } from '../../injection-tokens/public_api';
+import { daffPaymentReducerFactory } from '../payment/reducer';
 
 describe('daffPaymentProvideExtraReducers', () => {
   let extraError: DaffStateError;
@@ -46,6 +59,12 @@ describe('daffPaymentProvideExtraReducers', () => {
     TestBed.configureTestingModule({
       providers: [
         ...daffPaymentProvideExtraReducers(extraReducer),
+        provideDaffPaymentReducersFactory(() => daffComposeReducers([
+          combineReducers({
+            payment: daffPaymentReducerFactory(inject(DAFF_PAYMENT_AVAILABLE_PROCESSORS).map(({ action }) => action)),
+          }),
+          ...inject(DAFF_PAYMENT_EXTRA_REDUCERS),
+        ])),
       ],
     });
 

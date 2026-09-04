@@ -1,14 +1,24 @@
-import { NgModule } from '@angular/core';
+import {
+  inject,
+  NgModule,
+} from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import {
   combineReducers,
   StoreModule,
 } from '@ngrx/store';
 
+import {
+  daffComposeReducers,
+  daffIdentityReducer,
+} from '@daffodil/core/state';
 import { daffPaymentProvideExtraReducers } from '@daffodil/payment/state';
 
 import { daffCartRetrivalActions } from './actions/cart-retrieval';
-import { daffCartProvideRetrievalActions } from './cart-retrieval/public_api';
+import {
+  DAFF_CART_RETRIEVAL_ACTIONS,
+  daffCartProvideRetrievalActions,
+} from './cart-retrieval/public_api';
 import { DaffCartAddressEffects } from './effects/cart-address.effects';
 import { DaffCartBillingAddressEffects } from './effects/cart-billing-address.effects';
 import { DaffCartCouponEffects } from './effects/cart-coupon.effects';
@@ -23,10 +33,17 @@ import { DaffCartShippingInformationEffects } from './effects/cart-shipping-info
 import { DaffCartShippingMethodsEffects } from './effects/cart-shipping-methods.effects';
 import { DaffCartEffects } from './effects/cart.effects';
 import { provideDaffCartItemStateDebounceTime } from './injection-tokens/cart-item-state-debounce-time';
+import { daffCartRetrievalActionsReducerFactory } from './reducers/cart/retrieval-actions.reducer';
+import { daffCartItemEntitiesRetrievalActionsReducerFactory } from './reducers/cart-item-entities/retrieval-actions.reducer';
 import { daffCartPaymentReducer } from './reducers/cart-payment/payment.reducer';
+import { daffCartReducers } from './reducers/cart-reducers';
 import { DAFF_CART_STORE_FEATURE_KEY } from './reducers/public_api';
 import { DAFF_CART_STORE_CONFIG } from './reducers/token/config.token';
-import { DAFF_CART_REDUCERS } from './reducers/token/reducers.token';
+import { DAFF_CART_EXTRA_REDUCERS } from './reducers/token/extra.token';
+import {
+  DAFF_CART_REDUCERS,
+  provideDaffCartReducersFactory,
+} from './reducers/token/reducers.token';
 
 @NgModule({
   imports: [
@@ -53,6 +70,22 @@ import { DAFF_CART_REDUCERS } from './reducers/token/reducers.token';
       payment: daffCartPaymentReducer,
     })),
     daffCartProvideRetrievalActions(...daffCartRetrivalActions),
+    provideDaffCartReducersFactory(() => {
+      const retrievalActions = inject(DAFF_CART_RETRIEVAL_ACTIONS);
+
+      return daffComposeReducers([
+        // daffodil reducers should run first, don't change this
+        // TODO: enforce this somehow (meta-reducers?)
+        combineReducers(daffCartReducers),
+        //
+        combineReducers({
+          cart: daffCartRetrievalActionsReducerFactory(retrievalActions),
+          cartItems: daffCartItemEntitiesRetrievalActionsReducerFactory(retrievalActions),
+          order: daffIdentityReducer,
+        }),
+        ...inject(DAFF_CART_EXTRA_REDUCERS),
+      ]);
+    }),
   ],
 })
 export class DaffCartStateModule {}

@@ -1,7 +1,14 @@
+import { inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ActionReducer } from '@ngrx/store';
+import {
+  ActionReducer,
+  combineReducers,
+} from '@ngrx/store';
 
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  daffComposeReducers,
+  DaffStateError,
+} from '@daffodil/core/state';
 import {
   daffCustomerPaymentProvideExtraReducers,
   DaffCustomerPaymentReducersState,
@@ -10,7 +17,13 @@ import {
   daffCustomerPaymentEntitiesAdapter,
 } from '@daffodil/customer-payment/state';
 
-import { DAFF_CUSTOMER_PAYMENT_REDUCERS } from './reducers.token';
+import { DAFF_CUSTOMER_PAYMENT_EXTRA_REDUCERS } from './extra.token';
+import {
+  DAFF_CUSTOMER_PAYMENT_REDUCERS,
+  provideDaffCustomerPaymentReducersFactory,
+} from './reducers.token';
+import { daffCustomerPaymentReducer } from '../payment/public_api';
+import { daffCustomerPaymentEntitiesReducer } from '../payment-entities/public_api';
 
 describe('@daffodil/customer-payment/state | daffCustomerPaymentProvideExtraReducers', () => {
   let extraError: DaffStateError;
@@ -48,6 +61,13 @@ describe('@daffodil/customer-payment/state | daffCustomerPaymentProvideExtraRedu
     TestBed.configureTestingModule({
       providers: [
         ...daffCustomerPaymentProvideExtraReducers(extraReducer),
+        provideDaffCustomerPaymentReducersFactory(() => daffComposeReducers([
+          combineReducers({
+            payment: daffCustomerPaymentReducer,
+            paymentEntities: daffCustomerPaymentEntitiesReducer,
+          }),
+          ...inject(DAFF_CUSTOMER_PAYMENT_EXTRA_REDUCERS),
+        ])),
       ],
     });
 
