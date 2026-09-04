@@ -90,6 +90,67 @@ describe('@daffodil/design/menu | DaffMenuActivatorDirective', () => {
       jasmine.anything(),
       jasmine.anything(),
       jasmine.objectContaining({ xPosition: 'after', yPosition: 'below' }),
+      jasmine.anything(),
+    );
+  });
+
+  it('should open the menu with a program origin when nothing preceded the click', () => {
+    const menuService = de.injector.get(DaffMenuService);
+    spyOn(menuService, 'open');
+
+    de.nativeElement.click();
+
+    expect(menuService.open).toHaveBeenCalledWith(
+      jasmine.anything(),
+      jasmine.anything(),
+      jasmine.anything(),
+      'program',
+    );
+  });
+
+  it('should open the menu with a mouse origin when the click follows a mousedown', () => {
+    const menuService = de.injector.get(DaffMenuService);
+    spyOn(menuService, 'open');
+
+    de.nativeElement.dispatchEvent(new MouseEvent('mousedown', { button: 0 }));
+    de.nativeElement.click();
+
+    expect(menuService.open).toHaveBeenCalledWith(
+      jasmine.anything(),
+      jasmine.anything(),
+      jasmine.anything(),
+      'mouse',
+    );
+  });
+
+  it('should open the menu with a keyboard origin when the click follows an Enter keydown', () => {
+    const menuService = de.injector.get(DaffMenuService);
+    spyOn(menuService, 'open');
+
+    de.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+    de.nativeElement.click();
+
+    expect(menuService.open).toHaveBeenCalledWith(
+      jasmine.anything(),
+      jasmine.anything(),
+      jasmine.anything(),
+      'keyboard',
+    );
+  });
+
+  it('should not carry the origin over to the next open', () => {
+    const menuService = de.injector.get(DaffMenuService);
+    spyOn(menuService, 'open');
+
+    de.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+    de.nativeElement.click();
+    de.nativeElement.click();
+
+    expect(menuService.open).toHaveBeenCalledWith(
+      jasmine.anything(),
+      jasmine.anything(),
+      jasmine.anything(),
+      'program',
     );
   });
 
@@ -143,6 +204,7 @@ describe('@daffodil/design/menu | DaffMenuActivatorDirective | With Custom Posit
       jasmine.anything(),
       jasmine.anything(),
       jasmine.objectContaining({ xPosition: 'before', yPosition: 'above' }),
+      jasmine.anything(),
     );
   });
 });
