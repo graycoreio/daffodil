@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.95.0](https://github.com/graycoreio/daffodil/compare/v0.94.1...v0.95.0) (2026-09-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **design:** The `daff-theme` mixin has been removed from `@daffodil/design/scss/theme`. Use `daff-component-themes` instead. The `embolden` mixin and `.embolden` class have been removed from `@daffodil/design/scss/typography`. Use the `$bold-font-weight` variable or `font-weight: bold` instead.
+* **design:** The `daff-configure-theme` function has been removed from `@daffodil/design`. Use `daff-create-theme` instead.
+
+### Features
+
+* **design:** create `@daffodil/design/image-lite` ([#4681](https://github.com/graycoreio/daffodil/issues/4681)) ([539cd57](https://github.com/graycoreio/daffodil/commit/539cd572eaaeb2a3b5128fca7a93091d4976bdc5))
+* **design:** implement `daff-color-shift` in `@daffodil/design/button` themes ([#4685](https://github.com/graycoreio/daffodil/issues/4685)) ([50adf6f](https://github.com/graycoreio/daffodil/commit/50adf6f0b8677c90b677a52739d9ab28330536a3))
+* **design:** remove `daff-configure-theme` function ([#4671](https://github.com/graycoreio/daffodil/issues/4671)) ([6307b1e](https://github.com/graycoreio/daffodil/commit/6307b1e42fc5196f6bd722593c98a404dbed7984))
+* **design:** remove deprecated typography and theme sass APIs ([#4694](https://github.com/graycoreio/daffodil/issues/4694)) ([a1cf660](https://github.com/graycoreio/daffodil/commit/a1cf6604640db6f4a5393af12baac844b0d3179f))
+
+
+### Bug Fixes
+
+* **design:** remove nav list item hover flicker on non-white backgrounds ([#4691](https://github.com/graycoreio/daffodil/issues/4691)) ([429489c](https://github.com/graycoreio/daffodil/commit/429489cf595463cfc8cbeab04dc1a1adb32cf698))
+* **design:** render list item prefix above the nav list hover overlay ([#4692](https://github.com/graycoreio/daffodil/issues/4692)) ([7974cc3](https://github.com/graycoreio/daffodil/commit/7974cc3b54e55c89e53b5f9e61360056238c8259))
+* update browserlist compatibility ([#4679](https://github.com/graycoreio/daffodil/issues/4679)) ([b8f824f](https://github.com/graycoreio/daffodil/commit/b8f824f4a7810c130ed158816277eeddad5a3d88))
+* update browserslist config to support all browsers ([#4687](https://github.com/graycoreio/daffodil/issues/4687)) ([445e796](https://github.com/graycoreio/daffodil/commit/445e7960d581b50951f1bc8d16457aabafd72340))
+
 ## [0.94.1](https://github.com/graycoreio/daffodil/compare/v0.94.1-rc.0...v0.94.1) (2026-08-21)
 
 
