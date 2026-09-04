@@ -43,7 +43,7 @@ A media gallery is composed of a container and one or more thumbnails:
 ```html
 <daff-media-gallery>
   <ng-template daffThumbnail thumbnailSrc="/thumbnail-path.jpg" label="Your description">
-    <daff-image src="/image-path.jpg" alt="Your description" width="500" height="500"></daff-image>
+    <img daff-image ngSrc="/image-path.jpg" alt="Your description" width="500" height="500" />
   </ng-template>
 </daff-media-gallery>
 ```

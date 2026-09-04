@@ -1,12 +1,11 @@
 <daff-media-gallery>
   @for(image of images; track image) {
     <ng-template daffThumbnail [thumbnailSrc]="image.url" [label]="image.label">
-      <daff-image 
+      <img daff-image
         alt="{{ image.label }}"
-        src="{{ image.url }}"
+        ngSrc="{{ image.url }}"
         width="594"
-        height="737">
-      </daff-image>
+        height="737" />
     </ng-template>
   }
 </daff-media-gallery>

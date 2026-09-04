@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { DaffImageComponent } from '@daffodil/design/image';
+import { DAFF_IMAGE_LITE_COMPONENTS } from '@daffodil/design/image-lite';
 import { DAFF_MEDIA_GALLERY_COMPONENTS } from '@daffodil/design/media-gallery';
 
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
@@ -17,7 +17,7 @@ import * as fromDemoImageGallery from '../reducers/index';
   templateUrl: './image-gallery.component.html',
   encapsulation: ViewEncapsulation.None,
   imports: [
-    DaffImageComponent,
+    DAFF_IMAGE_LITE_COMPONENTS,
     DAFF_MEDIA_GALLERY_COMPONENTS,
   ],
 })

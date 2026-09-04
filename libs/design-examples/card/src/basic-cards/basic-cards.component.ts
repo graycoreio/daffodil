@@ -7,7 +7,7 @@ import { faMapMarked } from '@fortawesome/free-solid-svg-icons';
 
 import { DaffButtonComponent } from '@daffodil/design/button';
 import { DAFF_ALL_CARD_COMPONENTS } from '@daffodil/design/card';
-import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
+import { DAFF_IMAGE_LITE_COMPONENTS } from '@daffodil/design/image-lite';
 
 @Component({
   selector: 'basic-cards-example',
@@ -16,9 +16,9 @@ import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_ALL_CARD_COMPONENTS,
-    DAFF_IMAGE_COMPONENTS,
     FaIconComponent,
     DaffButtonComponent,
+    DAFF_IMAGE_LITE_COMPONENTS,
   ],
 })
 export class BasicCardsExampleComponent {

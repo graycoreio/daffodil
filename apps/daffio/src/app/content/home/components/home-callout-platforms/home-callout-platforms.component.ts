@@ -6,7 +6,7 @@ import {
 
 import { DAFF_CALLOUT_COMPONENTS } from '@daffodil/design/callout';
 import { DAFF_CONTAINER_COMPONENTS } from '@daffodil/design/container';
-import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
+import { DAFF_IMAGE_LITE_COMPONENTS } from '@daffodil/design/image-lite';
 
 @Component({
   selector: 'daffio-home-callout-platforms',
@@ -15,7 +15,7 @@ import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_CALLOUT_COMPONENTS,
-    DAFF_IMAGE_COMPONENTS,
+    DAFF_IMAGE_LITE_COMPONENTS,
     DAFF_CONTAINER_COMPONENTS,
   ],
 })

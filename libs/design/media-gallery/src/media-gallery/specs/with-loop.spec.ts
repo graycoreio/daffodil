@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
+import { DAFF_IMAGE_LITE_COMPONENTS } from '@daffodil/design/image-lite';
 import {
   DAFF_MEDIA_GALLERY_COMPONENTS,
   DaffMediaGalleryComponent,
@@ -20,12 +20,11 @@ import {
 		<daff-media-gallery>
 			@for(image of images; track image) {
 				<ng-template daffThumbnail [thumbnailSrc]="image.url" [label]="image.label">
-					<daff-image 
+					<img daff-image
 						alt="{{ image.label }}"
-						src="{{ image.url }}"
+						ngSrc="{{ image.url }}"
 						width="594"
-						height="737">
-					</daff-image>
+						height="737" />
 				</ng-template>
 			}
 		</daff-media-gallery>
@@ -33,7 +32,7 @@ import {
 	`,
   imports: [
     DAFF_MEDIA_GALLERY_COMPONENTS,
-    DAFF_IMAGE_COMPONENTS,
+    DAFF_IMAGE_LITE_COMPONENTS,
   ],
 })
 class WrapperComponent {
