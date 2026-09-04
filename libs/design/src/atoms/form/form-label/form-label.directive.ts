@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 /**
- * @deprecated in favor of the {@link DaffFormFieldLabelDirective}. Deprecated in version 0.86.0. Will be removed in version 1.0.0.
+ * @deprecated in favor of the {@link DaffFormFieldLabelDirective}. Deprecated in version 0.86.0. Will be removed in version 0.95.0.
  */
 @Directive({
   selector: '[daffFormLabel]',

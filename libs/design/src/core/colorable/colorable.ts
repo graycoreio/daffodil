@@ -1,5 +1,5 @@
 /**
- * @deprecated Deprecated in version 0.92.0. Will be removed in version 1.0.0.
+ * @deprecated Deprecated in version 0.92.0. Will be removed in version 0.95.0.
  */
 export interface DaffColorable {
   color: DaffColor;
@@ -11,7 +11,7 @@ export interface DaffColorable {
 export type DaffColor = 'primary' | 'secondary' | 'tertiary' | 'light' | 'dark' | 'theme' | 'theme-contrast' | 'black' | 'white' | undefined;
 
 /**
- * @deprecated Deprecated in version 0.92.0. Will be removed in version 1.0.0.
+ * @deprecated Deprecated in version 0.92.0. Will be removed in version 0.95.0.
  */
 export type DaffPalette = DaffColor;
 
