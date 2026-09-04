@@ -6,6 +6,7 @@
 	$base: daff-get-base-color($theme, base);
 	$base-contrast: daff-get-base-color($theme, base-contrast);
 	$mode: daff-get-theme-mode($theme);
+	$bg-color: daff-color($neutral, 20);
 
 	.daff-list,
 	.daff-nav-list {
@@ -15,20 +16,20 @@
 	.daff-nav-list {
 		.daff-list-item {
 			&::after {
-				background-color: $base;
+				background-color: rgba($bg-color, 0.5);
 			}
 
 			@include daff-light-mode($mode) {
 				&.active {
 					&::after {
-						background-color: rgba(daff-color($neutral, 20), 0.5);
+						background-color: rgba($bg-color, 0.5);
 					}
 				}
 
 				@media (hover: hover) {
 					&:hover {
 						&::after {
-							background-color: rgba(daff-color($neutral, 20), 0.5);
+							background-color: rgba($bg-color, 0.5);
 						}
 					}
 				}
@@ -37,14 +38,14 @@
 			@include daff-dark-mode($mode) {
 				&.active {
 					&::after {
-						background-color: rgba(daff-color($neutral, 20), 0.08);
+						background-color: rgba($bg-color, 0.08);
 					}
 				}
 
 				@media (hover: hover) {
 					&:hover {
 						&::after {
-							background-color: rgba(daff-color($neutral, 20), 0.08);
+							background-color: rgba($bg-color, 0.08);
 						}
 					}
 				}
