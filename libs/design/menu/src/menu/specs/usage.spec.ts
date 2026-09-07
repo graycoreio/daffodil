@@ -66,7 +66,13 @@ describe('@daffodil/design/menu | DaffMenuComponent | Usage', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should focus the first focusable child when menu is opened', () => {
+  it('should not take focus on its own', () => {
+    expect(document.activeElement).not.toEqual(de.query(By.css('#focused')).nativeElement);
+  });
+
+  it('should focus its first item when asked to', () => {
+    component.focusFirstItem();
+
     expect(document.activeElement).toEqual(de.query(By.css('#focused')).nativeElement);
   });
 
@@ -76,6 +82,7 @@ describe('@daffodil/design/menu | DaffMenuComponent | Usage', () => {
     beforeEach(() => {
       menuService = TestBed.inject(DaffMenuService);
       spyOn(menuService, 'close');
+      spyOn(menuService, 'closeAll');
       spyOn(component['_keyManager'], 'onKeydown');
     });
 
@@ -114,6 +121,28 @@ describe('@daffodil/design/menu | DaffMenuComponent | Usage', () => {
       component.handleKeydown(event);
 
       expect(component['_keyManager'].onKeydown).toHaveBeenCalledWith(event);
+    });
+
+    it('should close every open menu on Tab', () => {
+      component.handleKeydown(new KeyboardEvent('keydown', { key: 'Tab' }));
+
+      expect(menuService.closeAll).toHaveBeenCalled();
+    });
+
+    it('should leave Tab free to move focus on to the next control', () => {
+      const event = new KeyboardEvent('keydown', { key: 'Tab', cancelable: true });
+
+      component.handleKeydown(event);
+
+      expect(event.defaultPrevented).toBe(false);
+    });
+
+    it('should leave the arrow keys that open and leave a submenu to the item that owns them', () => {
+      component.handleKeydown(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+      component.handleKeydown(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
+
+      expect(menuService.close).not.toHaveBeenCalled();
+      expect(component['_keyManager'].onKeydown).not.toHaveBeenCalled();
     });
   });
 });
