@@ -3,6 +3,11 @@ export {
   DaffProductDriver,
   provideDaffProductDriver,
 } from './interfaces/product-service.interface';
+export {
+  DaffProductCustomAttributeServiceInterface,
+  DaffProductCustomAttributeDriver,
+  provideDaffProductCustomAttributeDriver,
+} from './interfaces/custom-attribute-service.interface';
 
 export * from './models/public_api';
 export * from './errors/public_api';

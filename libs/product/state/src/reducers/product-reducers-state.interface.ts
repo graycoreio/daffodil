@@ -1,6 +1,10 @@
 import { EntityState } from '@ngrx/entity';
 
-import { DaffProduct } from '@daffodil/product';
+import { DaffOperationState } from '@daffodil/core/state';
+import {
+  DaffProduct,
+  DaffProductCustomAttribute,
+} from '@daffodil/product';
 
 import { DaffProductReducerState } from './product/product-reducer-state.interface';
 import { DaffProductGridReducerState } from './product-grid/product-grid-reducer-state.interface';
@@ -13,6 +17,8 @@ export interface DaffProductReducersState<T extends DaffProduct = DaffProduct> {
   products: EntityState<T>;
   productGrid: DaffProductGridReducerState<T>;
   product: DaffProductReducerState;
+  customAttributes: EntityState<DaffProductCustomAttribute>;
+  customAttributesOperation: DaffOperationState;
 }
 
 export interface DaffProductStateRootSlice<T extends DaffProduct = DaffProduct> {

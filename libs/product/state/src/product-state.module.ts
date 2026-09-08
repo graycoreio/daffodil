@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { provideDaffProductCustomAttributesState } from './custom-attributes/public_api';
 import { DaffProductGridEffects } from './effects/product-grid.effects';
 import { DaffProductPageEffects } from './effects/product-page.effects';
 import { DaffProductEffects } from './effects/product.effects';
@@ -20,6 +21,9 @@ import { DAFF_PRODUCT_STORE_FEATURE_KEY } from './reducers/public_api';
       DaffProductEffects,
       DaffProductPageEffects,
     ]),
+  ],
+  providers: [
+    provideDaffProductCustomAttributesState(),
   ],
 })
 export class DaffProductStateModule { }

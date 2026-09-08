@@ -1,3 +1,4 @@
+export { magentoProductCustomAttributesFragment } from './custom-attributes';
 export { magentoProductFragment } from './product';
 export { magentoProductPreviewFragment } from './product-preview';
 export { magentoProductPageFragment } from './product-page';

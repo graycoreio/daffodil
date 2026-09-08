@@ -86,7 +86,7 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService, Daf
    * @returns An http response object
    */
   get(reqInfo: RequestInfo) {
-    if(reqInfo.id?.includes('.html')) {
+    if (reqInfo.id?.includes('.html')) {
       const product =  this._products.find((p) => daffUriTruncateLeadingSlash(p.url)  === reqInfo.id);
 
       if(!product) {
