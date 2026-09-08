@@ -1,7 +1,7 @@
 @use '@daffodil/design/scss/utilities' as *;
 
 .demo-checkout-payment-summary {
-	font-size: $font-size-sm;
+	font-size: var(--daff-font-size-sm);
 	display: grid;
 	grid-template-columns: 4fr 1fr;
 	grid-template-areas:

@@ -19,7 +19,7 @@
 				align-items: center;
 				gap: 0.5rem;
 				color: currentColor;
-				font-size: daff.$font-size-base;
+				font-size: var(--daff-font-family-base);
 				font-weight: 500;
 				line-height: 64px;
 				padding: 0 1rem;
