@@ -1,14 +1,7 @@
-import { inject } from '@angular/core';
-import {
-  ActionReducer,
-  combineReducers,
-} from '@ngrx/store';
+import { ActionReducer } from '@ngrx/store';
 
 import { createSingleInjectionToken } from '@daffodil/core';
-import { daffComposeReducers } from '@daffodil/core/state';
 
-import { DAFF_PRODUCT_COMPOSITE_EXTRA_REDUCERS } from './extra.token';
-import { daffCompositeProductReducers } from '../composite-product-reducers';
 import { DaffCompositeProductReducersState } from '../composite-product-reducers-state.interface';
 
 export const {
@@ -23,12 +16,10 @@ export const {
    * Provider function for {@link DAFF_PRODUCT_COMPOSITE_REDUCERS}.
    */
   provider: provideDaffProductCompositeReducers,
+  /**
+   * Factory provider function for {@link DAFF_PRODUCT_COMPOSITE_REDUCERS}.
+   */
+  factoryProvider: provideDaffProductCompositeReducersFactory,
 } = createSingleInjectionToken<ActionReducer<DaffCompositeProductReducersState>>(
   'DAFF_PRODUCT_COMPOSITE_REDUCERS',
-  {
-    factory: () => daffComposeReducers([
-      combineReducers(daffCompositeProductReducers),
-      ...inject(DAFF_PRODUCT_COMPOSITE_EXTRA_REDUCERS),
-    ]),
-  },
 );

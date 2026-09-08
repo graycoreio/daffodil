@@ -1,14 +1,7 @@
-import { inject } from '@angular/core';
-import {
-  ActionReducer,
-  combineReducers,
-} from '@ngrx/store';
+import { ActionReducer } from '@ngrx/store';
 
 import { createSingleInjectionToken } from '@daffodil/core';
-import { daffComposeReducers } from '@daffodil/core/state';
 
-import { DAFF_SEARCH_EXTRA_REDUCERS } from './extra.token';
-import { daffSearchReducers } from '../reducers';
 import { DaffSearchReducersState } from '../reducers.interface';
 
 export const {
@@ -23,13 +16,10 @@ export const {
    * Provider function for {@link DAFF_SEARCH_REDUCERS}.
    */
   provider: provideDaffSearchReducers,
+  /**
+   * Factory provider function for {@link DAFF_SEARCH_REDUCERS}.
+   */
+  factoryProvider: provideDaffSearchReducersFactory,
 } = createSingleInjectionToken<ActionReducer<DaffSearchReducersState>>(
   'DAFF_SEARCH_REDUCERS',
-  {
-    providedIn: 'any',
-    factory: () => daffComposeReducers([
-      combineReducers(daffSearchReducers),
-      ...inject(DAFF_SEARCH_EXTRA_REDUCERS),
-    ]),
-  },
 );

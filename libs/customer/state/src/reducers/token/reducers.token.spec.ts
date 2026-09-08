@@ -1,7 +1,14 @@
+import { inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ActionReducer } from '@ngrx/store';
+import {
+  ActionReducer,
+  combineReducers,
+} from '@ngrx/store';
 
-import { DaffStateError } from '@daffodil/core/state';
+import {
+  daffComposeReducers,
+  DaffStateError,
+} from '@daffodil/core/state';
 import {
   daffCustomerProvideExtraReducers,
   DaffCustomerReducersState,
@@ -11,7 +18,14 @@ import {
   daffCustomerAddressEntitiesAdapter,
 } from '@daffodil/customer/state';
 
-import { DAFF_CUSTOMER_REDUCERS } from './reducers.token';
+import { DAFF_CUSTOMER_EXTRA_REDUCERS } from './extra.token';
+import {
+  DAFF_CUSTOMER_REDUCERS,
+  provideDaffCustomerReducersFactory,
+} from './reducers.token';
+import { daffCustomerAddressReducer } from '../address/public_api';
+import { daffCustomerAddressEntitiesReducer } from '../address-entities/public_api';
+import { daffCustomerReducer } from '../customer/reducer';
 
 describe('@daffodil/customer/state | daffCustomerProvideExtraReducers', () => {
   let extraError: DaffStateError;
@@ -50,6 +64,14 @@ describe('@daffodil/customer/state | daffCustomerProvideExtraReducers', () => {
     TestBed.configureTestingModule({
       providers: [
         ...daffCustomerProvideExtraReducers(extraReducer),
+        provideDaffCustomerReducersFactory(() => daffComposeReducers([
+          combineReducers({
+            customer: daffCustomerReducer,
+            address: daffCustomerAddressReducer,
+            addressEntities: daffCustomerAddressEntitiesReducer,
+          }),
+          ...inject(DAFF_CUSTOMER_EXTRA_REDUCERS),
+        ])),
       ],
     });
 

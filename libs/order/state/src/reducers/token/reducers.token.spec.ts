@@ -1,9 +1,14 @@
+import { inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ActionReducer } from '@ngrx/store';
+import {
+  ActionReducer,
+  combineReducers,
+} from '@ngrx/store';
 
 import {
   DaffStateError,
   daffCollectionReducerInitialState,
+  daffComposeReducers,
 } from '@daffodil/core/state';
 import {
   daffOrderProvideExtraReducers,
@@ -13,7 +18,14 @@ import {
   daffGetOrderAdapter,
 } from '@daffodil/order/state';
 
-import { DAFF_ORDER_REDUCERS } from './reducers.token';
+import { daffOrderReducer } from '../order/order.reducer';
+import { daffOrderEntitiesReducer } from '../order-entities/public_api';
+import { daffOrdersCollectionReducer } from '../public_api';
+import { DAFF_ORDER_EXTRA_REDUCERS } from './extra.token';
+import {
+  DAFF_ORDER_REDUCERS,
+  provideDaffOrderReducersFactory,
+} from './reducers.token';
 
 describe('@daffodil/order/state | daffOrderProvideExtraReducers', () => {
   let extraError: DaffStateError;
@@ -52,6 +64,14 @@ describe('@daffodil/order/state | daffOrderProvideExtraReducers', () => {
     TestBed.configureTestingModule({
       providers: [
         ...daffOrderProvideExtraReducers(extraReducer),
+        provideDaffOrderReducersFactory(() => daffComposeReducers([
+          combineReducers({
+            order: daffOrderReducer,
+            orders: daffOrderEntitiesReducer,
+            collection: daffOrdersCollectionReducer,
+          }),
+          ...inject(DAFF_ORDER_EXTRA_REDUCERS),
+        ])),
       ],
     });
 

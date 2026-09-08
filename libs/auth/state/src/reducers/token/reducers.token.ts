@@ -1,15 +1,8 @@
-import { inject } from '@angular/core';
-import {
-  ActionReducer,
-  combineReducers,
-} from '@ngrx/store';
+import { ActionReducer } from '@ngrx/store';
 
 import { createSingleInjectionToken } from '@daffodil/core';
-import { daffComposeReducers } from '@daffodil/core/state';
 
-import { DAFF_AUTH_EXTRA_REDUCERS } from './extra.token';
 import { DaffAuthFeatureState } from '../auth-feature-state.interface';
-import { daffAuthReducers } from '../auth-reducers';
 
 export const {
   /**
@@ -23,12 +16,10 @@ export const {
    * Provider function for {@link DAFF_AUTH_REDUCERS}.
    */
   provider: provideDaffAuthReducers,
+  /**
+   * Factory provider function for {@link DAFF_AUTH_REDUCERS}.
+   */
+  factoryProvider: provideDaffAuthReducersFactory,
 } = createSingleInjectionToken<ActionReducer<DaffAuthFeatureState>>(
   'DAFF_AUTH_REDUCERS',
-  {
-    factory: () => daffComposeReducers([
-      combineReducers(daffAuthReducers),
-      ...inject(DAFF_AUTH_EXTRA_REDUCERS),
-    ]),
-  },
 );

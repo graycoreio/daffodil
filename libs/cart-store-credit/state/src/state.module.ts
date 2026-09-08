@@ -1,4 +1,7 @@
-import { NgModule } from '@angular/core';
+import {
+  inject,
+  NgModule,
+} from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import {
   combineReducers,
@@ -6,13 +9,19 @@ import {
 } from '@ngrx/store';
 
 import { daffCartProvideExtraReducers } from '@daffodil/cart/state';
+import { daffComposeReducers } from '@daffodil/core/state';
 
 import { DaffCartStoreCreditEffects } from './effects/store-credit.effects';
 import {
   daffCartStoreCreditCartReducers,
   DAFF_CART_STORE_CREDIT_STORE_FEATURE_KEY,
 } from './reducers/public_api';
-import { DAFF_CART_STORE_CREDIT_REDUCERS } from './reducers/token/reducers.token';
+import { daffCartStoreCreditReducer } from './reducers/store-credit/public_api';
+import { DAFF_CART_STORE_CREDIT_EXTRA_REDUCERS } from './reducers/token/extra.token';
+import {
+  DAFF_CART_STORE_CREDIT_REDUCERS,
+  provideDaffCartStoreCreditReducersFactory,
+} from './reducers/token/reducers.token';
 
 /**
  * Creates the cart store credit feature store.
@@ -28,6 +37,12 @@ import { DAFF_CART_STORE_CREDIT_REDUCERS } from './reducers/token/reducers.token
     ...daffCartProvideExtraReducers(
       combineReducers(daffCartStoreCreditCartReducers),
     ),
+    provideDaffCartStoreCreditReducersFactory(() => daffComposeReducers([
+      combineReducers({
+        storeCredit: daffCartStoreCreditReducer,
+      }),
+      ...inject(DAFF_CART_STORE_CREDIT_EXTRA_REDUCERS),
+    ])),
   ],
 })
 export class DaffCartStoreCreditStateModule {}

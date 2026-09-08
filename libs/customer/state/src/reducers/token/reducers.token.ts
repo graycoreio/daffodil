@@ -1,16 +1,7 @@
-import { inject } from '@angular/core';
-import {
-  ActionReducer,
-  combineReducers,
-} from '@ngrx/store';
+import { ActionReducer } from '@ngrx/store';
 
 import { createSingleInjectionToken } from '@daffodil/core';
-import { daffComposeReducers } from '@daffodil/core/state';
 
-import { DAFF_CUSTOMER_EXTRA_REDUCERS } from './extra.token';
-import { daffCustomerAddressReducer } from '../address/public_api';
-import { daffCustomerAddressEntitiesReducer } from '../address-entities/public_api';
-import { daffCustomerReducer } from '../customer/reducer';
 import { DaffCustomerReducersState } from '../reducers.interface';
 
 export const {
@@ -25,17 +16,10 @@ export const {
    * Provider function for {@link DAFF_CUSTOMER_REDUCERS}.
    */
   provider: provideDaffCustomerReducers,
+  /**
+   * Factory provider function for {@link DAFF_CUSTOMER_REDUCERS}.
+   */
+  factoryProvider: provideDaffCustomerReducersFactory,
 } = createSingleInjectionToken<ActionReducer<DaffCustomerReducersState>>(
   'DAFF_CUSTOMER_REDUCERS',
-  {
-    providedIn: 'any',
-    factory: () => daffComposeReducers([
-      combineReducers({
-        customer: daffCustomerReducer,
-        address: daffCustomerAddressReducer,
-        addressEntities: daffCustomerAddressEntitiesReducer,
-      }),
-      ...inject(DAFF_CUSTOMER_EXTRA_REDUCERS),
-    ]),
-  },
 );
