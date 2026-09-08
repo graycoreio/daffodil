@@ -29,6 +29,7 @@ export const {
    * Provider function for {@link DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK}.
    */
   provider: provideDaffCartInMemoryExtraAttributesHook,
+  factoryProvider: provideDaffCartInMemoryExtraAttributesHookFactory,
 } = createSingleInjectionToken<DaffCartInMemoryExtraAttributesHook>(
   'DAFF_CART_IN_MEMORY_EXTRA_ATTRIBUTES_HOOK',
   { factory: () => (reqInfo, cart) => ({}) },
