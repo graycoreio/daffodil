@@ -21,6 +21,9 @@ const validateInput = (prop: string) => <T>(value: T): T => {
   return value;
 };
 
+/**
+ * @deprecated in favor of {@link DaffImageLiteComponent}. Deprecated in version 0.95.0. Will be removed in version 0.98.0.
+ */
 @Component({
   selector: 'daff-image',
   templateUrl: './image.component.html',

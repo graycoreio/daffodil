@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { DAFF_IMAGE_COMPONENTS } from '@daffodil/design/image';
+import { DAFF_IMAGE_LITE_COMPONENTS } from '@daffodil/design/image-lite';
 import { DAFF_MEDIA_GALLERY_COMPONENTS } from '@daffodil/design/media-gallery';
 
 @Component({
@@ -12,7 +12,7 @@ import { DAFF_MEDIA_GALLERY_COMPONENTS } from '@daffodil/design/media-gallery';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DAFF_MEDIA_GALLERY_COMPONENTS,
-    DAFF_IMAGE_COMPONENTS,
+    DAFF_IMAGE_LITE_COMPONENTS,
   ],
 })
 export class MismatchedSizesMediaGalleryExampleComponent {}

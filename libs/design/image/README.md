@@ -1,6 +1,10 @@
 # Image
 Image has built-in performance and accessibility optimizations that allow users to easily display responsive images.
 
+> **Deprecation notice:**
+>
+> Image is deprecated in version 0.95.0 and will be removed in version 0.98.0. Use [Image Lite](/libs/design/image-lite/README.md) instead.
+
 ## Overview
 Image builds on Angular's [`NgOptimizedImage`](https://angular.dev/guide/image-optimization) to provide responsive images with stable layouts out of the box. It helps to avoid common image-related performance and accessibility issues by:
 
