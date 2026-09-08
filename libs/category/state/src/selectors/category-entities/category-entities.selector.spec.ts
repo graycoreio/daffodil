@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCategory,
@@ -31,9 +31,14 @@ describe('DaffCategoryEntitiesSelectors', () => {
   let categoryPageMetadataFactory: DaffCategoryPageMetadataFactory;
   let stubCategory: DaffCategory;
   let stubMetadata: DaffCategoryPageMetadata;
+  let scheduler: TestScheduler;
   const categorySelectors = getDaffCategoryEntitiesSelectors<DaffCategory>();
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -55,8 +60,9 @@ describe('DaffCategoryEntitiesSelectors', () => {
 
     it('returns all category ids', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryIds));
-      const expected = cold('a', { a: [stubCategory.id]});
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: [stubCategory.id]});
+      });
     });
   });
 
@@ -67,8 +73,9 @@ describe('DaffCategoryEntitiesSelectors', () => {
       expectedDictionary[stubCategory.id] = stubCategory;
 
       const selector = store.pipe(select(categorySelectors.selectCategoryEntities));
-      const expected = cold('a', { a: expectedDictionary });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: expectedDictionary });
+      });
     });
   });
 
@@ -76,8 +83,9 @@ describe('DaffCategoryEntitiesSelectors', () => {
 
     it('returns all categories as an array', () => {
       const selector = store.pipe(select(categorySelectors.selectAllCategories));
-      const expected = cold('a', { a: [stubCategory]});
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: [stubCategory]});
+      });
     });
   });
 
@@ -85,8 +93,9 @@ describe('DaffCategoryEntitiesSelectors', () => {
 
     it('returns the total number of categories', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryTotal));
-      const expected = cold('a', { a: 1 });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: 1 });
+      });
     });
   });
 });

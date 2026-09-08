@@ -6,7 +6,7 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartBillingAddressGuardRedirectUrl } from '@daffodil/cart/routing';
@@ -35,9 +35,14 @@ describe('@daffodil/cart/routing | DaffBillingAddressGuard', () => {
   let service: DaffBillingAddressGuard;
   let store: Store<any>;
   let router: Router;
+  let scheduler: TestScheduler;
   const stubUrl = 'url';
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       providers: [
         { provide: DaffCartBillingAddressGuardRedirectUrl, useValue: stubUrl },
@@ -71,9 +76,10 @@ describe('@daffodil/cart/routing | DaffBillingAddressGuard', () => {
         billing_address: new DaffCartAddressFactory().create(),
       });
       store.dispatch(new DaffCartLoadSuccess(cart));
-      const expected = cold('(a|)', { a: true });
 
-      expect(service.canActivate()).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.canActivate()).toBe('(a|)', { a: true });
+      });
     });
 
     describe('when there is no billing address', () => {
@@ -87,9 +93,9 @@ describe('@daffodil/cart/routing | DaffBillingAddressGuard', () => {
       });
 
       it('should not allow activation', () => {
-        const expected = cold('(a|)', { a: false });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: false });
+        });
       });
 
       it('should redirect to the given DaffCartBillingAddressGuardRedirectUrl', () => {

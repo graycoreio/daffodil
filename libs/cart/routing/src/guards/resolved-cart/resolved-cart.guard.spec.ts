@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCartResolveState,
@@ -17,8 +17,13 @@ describe('@daffodil/cart/routing | DaffResolvedCartGuard', () => {
   let service: DaffResolvedCartGuard;
   let facade;
   let router: Router;
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [DaffCartStateTestingModule, RouterTestingModule],
     });
@@ -44,9 +49,9 @@ describe('@daffodil/cart/routing | DaffResolvedCartGuard', () => {
       });
 
       it('should not emit', () => {
-        const expected = cold('-');
-
-        expect(service.canActivate()).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('-');
+        });
       });
     });
 
@@ -56,9 +61,9 @@ describe('@daffodil/cart/routing | DaffResolvedCartGuard', () => {
       });
 
       it('should allow activation', () => {
-        const expected = cold('(a|)', { a: true });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: true });
+        });
       });
     });
 
@@ -77,8 +82,9 @@ describe('@daffodil/cart/routing | DaffResolvedCartGuard', () => {
             },
           });
 
-          const expected = cold('(a|)', { a: false });
-          expect(service.canActivate()).toBeObservable(expected);
+          scheduler.run(({ expectObservable }) => {
+            expectObservable(service.canActivate()).toBe('(a|)', { a: false });
+          });
         });
       });
 
@@ -91,8 +97,9 @@ describe('@daffodil/cart/routing | DaffResolvedCartGuard', () => {
           },
         });
 
-        const expected = cold('(a|)', { a: router.parseUrl('some-path') });
-        expect(service.canActivate()).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: router.parseUrl('some-path') });
+        });
       });
     });
   });

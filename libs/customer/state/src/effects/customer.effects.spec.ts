@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import { DaffCustomer } from '@daffodil/customer';
@@ -77,133 +74,137 @@ describe('@daffodil/customer/state | DaffCustomerEffects', () => {
   });
 
   describe('when DaffCustomerLoadAction is triggered', () => {
-    let expected;
     const customerLoadAction = new DaffCustomerLoad();
 
     describe('and the call to CustomerService is successful', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(of(mockCustomer));
-        const customerLoadSuccessAction = new DaffCustomerLoadSuccess(mockCustomer);
-        actions$ = hot('--a', { a: customerLoadAction });
-        expected = cold('--b', { b: customerLoadSuccessAction });
-      });
-
       it('should dispatch a DaffCustomerLoadSuccess action', () => {
-        expect(effects.get$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverGetSpy.and.returnValue(of(mockCustomer));
+          const customerLoadSuccessAction = new DaffCustomerLoadSuccess(mockCustomer);
+          actions$ = helpers.hot('--a', { a: customerLoadAction });
+          helpers.expectObservable(effects.get$).toBe('--b', { b: customerLoadSuccessAction });
+        });
       });
     });
 
     describe('and the call to CustomerService fails', () => {
-      beforeEach(() => {
-        const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer');
-        const response = cold('#', {}, error);
-        driverGetSpy.and.returnValue(response);
-        const customerLoadFailureAction = new DaffCustomerLoadFailure(daffTransformErrorToStateError(error));
-        actions$ = hot('--a', { a: customerLoadAction });
-        expected = cold('--b', { b: customerLoadFailureAction });
-      });
-
       it('should dispatch a DaffCustomerLoadFailure action', () => {
-        expect(effects.get$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer');
+          const response = helpers.cold<any>('#', {}, error);
+          driverGetSpy.and.returnValue(response);
+          const customerLoadFailureAction = new DaffCustomerLoadFailure(daffTransformErrorToStateError(error));
+          actions$ = helpers.hot('--a', { a: customerLoadAction });
+          helpers.expectObservable(effects.get$).toBe('--b', { b: customerLoadFailureAction });
+        });
       });
     });
   });
 
   describe('when DaffCustomerUpdateAction is triggered', () => {
-    let expected;
     const customerUpdateAction = new DaffCustomerUpdate(mockCustomer);
 
     describe('and the call to CustomerService is successful', () => {
-      beforeEach(() => {
-        driverUpdateSpy.and.returnValue(of(mockCustomer));
-        const customerUpdateSuccessAction = new DaffCustomerUpdateSuccess(mockCustomer);
-        actions$ = hot('--a', { a: customerUpdateAction });
-        expected = cold('--b', { b: customerUpdateSuccessAction });
-      });
-
       it('should dispatch a DaffCustomerUpdateSuccess action', () => {
-        expect(effects.update$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverUpdateSpy.and.returnValue(of(mockCustomer));
+          const customerUpdateSuccessAction = new DaffCustomerUpdateSuccess(mockCustomer);
+          actions$ = helpers.hot('--a', { a: customerUpdateAction });
+          helpers.expectObservable(effects.update$).toBe('--b', { b: customerUpdateSuccessAction });
+        });
       });
     });
 
     describe('and the call to CustomerService fails', () => {
-      beforeEach(() => {
-        const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer');
-        const response = cold('#', {}, error);
-        driverUpdateSpy.and.returnValue(response);
-        const customerUpdateFailureAction = new DaffCustomerUpdateFailure(daffTransformErrorToStateError(error));
-        actions$ = hot('--a', { a: customerUpdateAction });
-        expected = cold('--b', { b: customerUpdateFailureAction });
-      });
-
       it('should dispatch a DaffCustomerUpdateFailure action', () => {
-        expect(effects.update$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer');
+          const response = helpers.cold<any>('#', {}, error);
+          driverUpdateSpy.and.returnValue(response);
+          const customerUpdateFailureAction = new DaffCustomerUpdateFailure(daffTransformErrorToStateError(error));
+          actions$ = helpers.hot('--a', { a: customerUpdateAction });
+          helpers.expectObservable(effects.update$).toBe('--b', { b: customerUpdateFailureAction });
+        });
       });
     });
   });
 
   describe('when DaffCustomerChangeEmailAction is triggered', () => {
-    let expected;
     const customerChangeEmailAction = new DaffCustomerChangeEmail('email', 'password');
 
     describe('and the call to CustomerService is successful', () => {
-      beforeEach(() => {
-        driverEmailSpy.and.returnValue(of(mockCustomer));
-        const customerChangeEmailSuccessAction = new DaffCustomerChangeEmailSuccess(mockCustomer);
-        actions$ = hot('--a', { a: customerChangeEmailAction });
-        expected = cold('--b', { b: customerChangeEmailSuccessAction });
-      });
-
       it('should dispatch a DaffCustomerChangeEmailSuccess action', () => {
-        expect(effects.changeEmail$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverEmailSpy.and.returnValue(of(mockCustomer));
+          const customerChangeEmailSuccessAction = new DaffCustomerChangeEmailSuccess(mockCustomer);
+          actions$ = helpers.hot('--a', { a: customerChangeEmailAction });
+          helpers.expectObservable(effects.changeEmail$).toBe('--b', { b: customerChangeEmailSuccessAction });
+        });
       });
     });
 
     describe('and the call to CustomerService fails', () => {
-      beforeEach(() => {
-        const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer');
-        const response = cold('#', {}, error);
-        driverEmailSpy.and.returnValue(response);
-        const customerChangeEmailFailureAction = new DaffCustomerChangeEmailFailure(daffTransformErrorToStateError(error));
-        actions$ = hot('--a', { a: customerChangeEmailAction });
-        expected = cold('--b', { b: customerChangeEmailFailureAction });
-      });
-
       it('should dispatch a DaffCustomerChangeEmailFailure action', () => {
-        expect(effects.changeEmail$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer');
+          const response = helpers.cold<any>('#', {}, error);
+          driverEmailSpy.and.returnValue(response);
+          const customerChangeEmailFailureAction = new DaffCustomerChangeEmailFailure(daffTransformErrorToStateError(error));
+          actions$ = helpers.hot('--a', { a: customerChangeEmailAction });
+          helpers.expectObservable(effects.changeEmail$).toBe('--b', { b: customerChangeEmailFailureAction });
+        });
       });
     });
   });
 
   describe('when DaffCustomerChangePasswordAction is triggered', () => {
-    let expected;
     const customerChangePasswordAction = new DaffCustomerChangePassword('old', 'new');
 
     describe('and the call to CustomerService is successful', () => {
-      beforeEach(() => {
-        driverPasswordSpy.and.returnValue(of(undefined));
-        const customerChangePasswordSuccessAction = new DaffCustomerChangePasswordSuccess();
-        actions$ = hot('--a', { a: customerChangePasswordAction });
-        expected = cold('--b', { b: customerChangePasswordSuccessAction });
-      });
-
       it('should dispatch a DaffCustomerChangePasswordSuccess action', () => {
-        expect(effects.changePassword$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverPasswordSpy.and.returnValue(of(undefined));
+          const customerChangePasswordSuccessAction = new DaffCustomerChangePasswordSuccess();
+          actions$ = helpers.hot('--a', { a: customerChangePasswordAction });
+          helpers.expectObservable(effects.changePassword$).toBe('--b', { b: customerChangePasswordSuccessAction });
+        });
       });
     });
 
     describe('and the call to CustomerService fails', () => {
-      beforeEach(() => {
-        const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer');
-        const response = cold('#', {}, error);
-        driverPasswordSpy.and.returnValue(response);
-        const customerChangePasswordFailureAction = new DaffCustomerChangePasswordFailure(daffTransformErrorToStateError(error));
-        actions$ = hot('--a', { a: customerChangePasswordAction });
-        expected = cold('--b', { b: customerChangePasswordFailureAction });
-      });
-
       it('should dispatch a DaffCustomerChangePasswordFailure action', () => {
-        expect(effects.changePassword$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer');
+          const response = helpers.cold<any>('#', {}, error);
+          driverPasswordSpy.and.returnValue(response);
+          const customerChangePasswordFailureAction = new DaffCustomerChangePasswordFailure(daffTransformErrorToStateError(error));
+          actions$ = helpers.hot('--a', { a: customerChangePasswordAction });
+          helpers.expectObservable(effects.changePassword$).toBe('--b', { b: customerChangePasswordFailureAction });
+        });
       });
     });
   });

@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import { DaffCountry } from '@daffodil/geography';
@@ -69,67 +66,69 @@ describe('Daffodil | Geography | GeographyEffects', () => {
   });
 
   describe('when DaffCountryLoadAction is triggered', () => {
-    let expected;
     const countryLoadAction = new DaffCountryLoad(countryId);
 
     describe('and the call to GeographyService is successful', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(of(mockCountry));
-        const countryLoadSuccessAction = new DaffCountryLoadSuccess(mockCountry);
-        actions$ = hot('--a', { a: countryLoadAction });
-        expected = cold('--b', { b: countryLoadSuccessAction });
-      });
-
       it('should dispatch a DaffCountryLoadSuccess action', () => {
-        expect(effects.get$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverGetSpy.and.returnValue(of(mockCountry));
+          const countryLoadSuccessAction = new DaffCountryLoadSuccess(mockCountry);
+          actions$ = helpers.hot('--a', { a: countryLoadAction });
+          helpers.expectObservable(effects.get$).toBe('--b', { b: countryLoadSuccessAction });
+        });
       });
     });
 
     describe('and the call to GeographyService fails', () => {
-      beforeEach(() => {
-        const error = new DaffCountryNotFoundError('Failed to load country');
-        const response = cold('#', {}, error);
-        driverGetSpy.and.returnValue(response);
-        const countryLoadFailureAction = new DaffCountryLoadFailure(daffTransformErrorToStateError(error));
-        actions$ = hot('--a', { a: countryLoadAction });
-        expected = cold('--b', { b: countryLoadFailureAction });
-      });
-
       it('should dispatch a DaffCountryLoadFailure action', () => {
-        expect(effects.get$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error = new DaffCountryNotFoundError('Failed to load country');
+          const response = helpers.cold<any>('#', {}, error);
+          driverGetSpy.and.returnValue(response);
+          const countryLoadFailureAction = new DaffCountryLoadFailure(daffTransformErrorToStateError(error));
+          actions$ = helpers.hot('--a', { a: countryLoadAction });
+          helpers.expectObservable(effects.get$).toBe('--b', { b: countryLoadFailureAction });
+        });
       });
     });
   });
 
   describe('when DaffCountryListAction is triggered', () => {
-    let expected;
     const countryListAction = new DaffCountryList();
 
     describe('and the call to GeographyService is successful', () => {
-      beforeEach(() => {
-        driverListSpy.and.returnValue(of([mockCountry]));
-        const countryListSuccessAction = new DaffCountryListSuccess([mockCountry]);
-        actions$ = hot('--a', { a: countryListAction });
-        expected = cold('--b', { b: countryListSuccessAction });
-      });
-
       it('should return a DaffCountryListSucess action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverListSpy.and.returnValue(of([mockCountry]));
+          const countryListSuccessAction = new DaffCountryListSuccess([mockCountry]);
+          actions$ = helpers.hot('--a', { a: countryListAction });
+          helpers.expectObservable(effects.list$).toBe('--b', { b: countryListSuccessAction });
+        });
       });
     });
 
     describe('and the call to GeographyService fails', () => {
-      beforeEach(() => {
-        const error = new DaffCountryNotFoundError('Failed to list the countries');
-        const response = cold('#', {}, error);
-        driverListSpy.and.returnValue(response);
-        const countryListFailureAction = new DaffCountryListFailure(daffTransformErrorToStateError(error));
-        actions$ = hot('--a', { a: countryListAction });
-        expected = cold('--b', { b: countryListFailureAction });
-      });
-
       it('should return a DaffCountryListFailure action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error = new DaffCountryNotFoundError('Failed to list the countries');
+          const response = helpers.cold<any>('#', {}, error);
+          driverListSpy.and.returnValue(response);
+          const countryListFailureAction = new DaffCountryListFailure(daffTransformErrorToStateError(error));
+          actions$ = helpers.hot('--a', { a: countryListAction });
+          helpers.expectObservable(effects.list$).toBe('--b', { b: countryListFailureAction });
+        });
       });
     });
   });

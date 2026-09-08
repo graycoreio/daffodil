@@ -1,11 +1,8 @@
 /* eslint-disable no-restricted-globals */
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
 import { Observable } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffPaypalExpressTokenResponse } from '@daffodil/paypal';
 import { DaffGeneratePaypalExpressTokenSuccess } from '@daffodil/paypal/state';
@@ -49,19 +46,22 @@ describe('@daffodil/paypal/routing | DaffPaypalExpressRedirectEffects', () => {
   });
 
   describe('when DaffGeneratePaypalExpressTokenSuccess is triggered', () => {
-    let expected;
     let paypalLoadAction: DaffGeneratePaypalExpressTokenSuccess;
 
     beforeEach(() => {
       window.location = <string & Location>{};
       paypalLoadAction = new DaffGeneratePaypalExpressTokenSuccess(paypalTokenResponse);
-      actions$ = hot('--a', { a: paypalLoadAction });
-      expected = cold('---');
     });
 
     // can't mock window.location
     xit('should navigate to the start URL', () => {
-      expect(effects.redirectUserToStartUrl$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(helpers => {
+        actions$ = helpers.hot('--a', { a: paypalLoadAction });
+        helpers.expectObservable(effects.redirectUserToStartUrl$).toBe('---');
+      });
     });
   });
 });

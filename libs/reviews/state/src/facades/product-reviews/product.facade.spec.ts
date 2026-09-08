@@ -4,7 +4,7 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffProductReview,
@@ -25,6 +25,7 @@ describe('@daffodil/reviews/state | DaffProductReviewsFacade', () => {
   let facade: DaffProductReviewsFacade;
   let productReviewsFactory: DaffProductReviewsFactory;
   let mockReviews: DaffProductReviews;
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -45,6 +46,10 @@ describe('@daffodil/reviews/state | DaffProductReviewsFacade', () => {
     mockReviews = productReviewsFactory.create();
 
     store.dispatch(new DaffReviewsProductListSuccess(mockReviews));
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -68,8 +73,9 @@ describe('@daffodil/reviews/state | DaffProductReviewsFacade', () => {
     });
 
     it('should be an observable of a product review', () => {
-      const expected = cold('a', { a: review });
-      expect(facade.getProductReview(review.id)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.getProductReview(review.id)).toBe('a', { a: review });
+      });
     });
   });
 });

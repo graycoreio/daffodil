@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffProduct } from '@daffodil/product';
 import {
@@ -24,6 +24,7 @@ describe('selectProductState', () => {
   let store: Store<DaffProductStateRootSlice>;
   let productFactory: DaffProductFactory;
   let mockProduct: DaffProduct;
+  let scheduler: TestScheduler;
   const {
     selectCurrentProductState,
     selectCurrentProductId,
@@ -31,6 +32,10 @@ describe('selectProductState', () => {
   } = getDaffProductPageSelectors();
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -66,9 +71,10 @@ describe('selectProductState', () => {
 
       it('returns the state for the current product', () => {
         const selector = store.pipe(select(selectCurrentProductState));
-        const expected = cold('a', { a: jasmine.objectContaining(expectedProductState) });
 
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: jasmine.objectContaining(expectedProductState) });
+        });
       });
     });
 
@@ -76,18 +82,20 @@ describe('selectProductState', () => {
 
       it('returns the current product id', () => {
         const selector = store.pipe(select(selectCurrentProductId));
-        const expected = cold('a', { a: mockProduct.id });
 
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: mockProduct.id });
+        });
       });
     });
 
     describe('selectCurrentProduct', () => {
       it('selects the selected product', () => {
         const selector = store.pipe(select(selectCurrentProduct));
-        const expected = cold('a', { a: mockProduct });
 
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: mockProduct });
+        });
       });
     });
   });

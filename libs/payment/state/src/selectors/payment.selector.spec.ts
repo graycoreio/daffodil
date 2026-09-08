@@ -5,7 +5,7 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffPaymentStateRootSlice } from '@daffodil/payment/state';
 
@@ -21,6 +21,8 @@ describe('@daffodil/payment/state | daffPaymentGetSelectors', () => {
 
   let loading: boolean;
   let errors: string[];
+
+  let scheduler: TestScheduler;
 
   const {
     selectPaymentLoading,
@@ -42,23 +44,29 @@ describe('@daffodil/payment/state | daffPaymentGetSelectors', () => {
 
     loading = false;
     errors = [];
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe('selectPaymentLoading', () => {
     it('should select the loading property of the payment state', () => {
       const selector = store.pipe(select(selectPaymentLoading));
-      const expected = cold('a', { a: loading });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: loading });
+      });
     });
   });
 
   describe('selectPaymentErrors', () => {
     it('should select the error property of the payment state', () => {
       const selector = store.pipe(select(selectPaymentErrors));
-      const expected = cold('a', { a: errors });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors });
+      });
     });
   });
 });

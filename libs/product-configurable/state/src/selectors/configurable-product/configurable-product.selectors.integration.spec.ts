@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffProductLoadSuccess,
@@ -29,6 +29,7 @@ describe('Configurable Product Selectors | integration tests', () => {
   let store: Store<DaffProductStateRootSlice>;
   let configurableProductFactory: DaffConfigurableProductFactory;
   let stubConfigurableProduct: DaffConfigurableProduct;
+  let scheduler: TestScheduler;
   const {
     selectSelectableConfigurableProductAttributes,
   } = getDaffConfigurableProductSelectors();
@@ -38,6 +39,10 @@ describe('Configurable Product Selectors | integration tests', () => {
   } = getDaffConfigurableProductEntitiesSelectors();
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -70,15 +75,15 @@ describe('Configurable Product Selectors | integration tests', () => {
     it(`should include all attribute values for the selected attribute code;
 				should include only attributes values for the remaining attribute codes that match variants having the selected attribute value`, () => {
       const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
-      const expected = cold('a', {
-        a: {
-          color: ['0', '1'],
-          size: ['1', '0'],
-          material: ['0', '2', '1'],
-        },
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', {
+          a: {
+            color: ['0', '1'],
+            size: ['1', '0'],
+            material: ['0', '2', '1'],
+          },
+        });
       });
-
-      expect(selector).toBeObservable(expected);
     });
   });
 
@@ -105,15 +110,15 @@ describe('Configurable Product Selectors | integration tests', () => {
 				should include only attribute values for the second selected attribute code that match variants having the first selected attribute value;
 				should include only attribute values for the remaining attribute codes that match variants having both the first and second selected attribute values`, () => {
       const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
-      const expected = cold('a', {
-        a: {
-          color: ['0', '1', '2'],
-          size: ['0', '1', '2'],
-          material: ['0', '2'],
-        },
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', {
+          a: {
+            color: ['0', '1', '2'],
+            size: ['0', '1', '2'],
+            material: ['0', '2'],
+          },
+        });
       });
-
-      expect(selector).toBeObservable(expected);
     });
 
     describe('and a different first selection (color) is chosen', () => {
@@ -128,13 +133,13 @@ describe('Configurable Product Selectors | integration tests', () => {
 
       it('should clear the second selection (size)', () => {
         const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary(stubConfigurableProduct.id)));
-        const expected = cold('a', {
-          a: {
-            color: '1',
-          },
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', {
+            a: {
+              color: '1',
+            },
+          });
         });
-
-        expect(selector).toBeObservable(expected);
       });
     });
 
@@ -150,14 +155,14 @@ describe('Configurable Product Selectors | integration tests', () => {
 
       it('should not clear the first selection (color)', () => {
         const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary(stubConfigurableProduct.id)));
-        const expected = cold('a', {
-          a: {
-            color: '0',
-            size: '0',
-          },
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', {
+            a: {
+              color: '0',
+              size: '0',
+            },
+          });
         });
-
-        expect(selector).toBeObservable(expected);
       });
     });
   });
@@ -168,14 +173,14 @@ describe('Configurable Product Selectors | integration tests', () => {
       products: [stubConfigurableProduct],
     }));
     const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
-    const expected = cold('a', {
-      a: {
-        color: ['0', '1', '2'],
-        size: ['0', '1', '2'],
-        material: ['0', '2', '1'],
-      },
+    scheduler.run(({ expectObservable }) => {
+      expectObservable(selector).toBe('a', {
+        a: {
+          color: ['0', '1', '2'],
+          size: ['0', '1', '2'],
+          material: ['0', '2', '1'],
+        },
+      });
     });
-
-    expect(selector).toBeObservable(expected);
   });
 });

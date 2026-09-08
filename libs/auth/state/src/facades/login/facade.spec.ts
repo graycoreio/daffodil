@@ -4,7 +4,7 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffLoginInfo,
@@ -30,6 +30,7 @@ describe('@daffodil/auth/state | DaffAuthLoginFacade', () => {
   let facade: DaffAuthLoginFacade;
   let authFactory: DaffAuthTokenFactory;
   let accountRegistrationFactory: DaffAccountRegistrationFactory;
+  let scheduler: TestScheduler;
 
   let mockLoginInfo: DaffLoginInfo;
   let mockRegistration: DaffAccountRegistration;
@@ -38,6 +39,10 @@ describe('@daffodil/auth/state | DaffAuthLoginFacade', () => {
   let loading: boolean;
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -79,21 +84,24 @@ describe('@daffodil/auth/state | DaffAuthLoginFacade', () => {
 
   describe('loading$', () => {
     it('should be false if the login is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
 
     it('should be true if the login is loading', () => {
-      const expected = cold('a', { a: true });
       store.dispatch(new DaffAuthLogin(mockLoginInfo));
-      expect(facade.loading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: true });
+      });
     });
   });
 
   describe('errors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.errors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: []});
+      });
     });
 
     it('should contain an error upon a failed login', () => {
@@ -101,9 +109,10 @@ describe('@daffodil/auth/state | DaffAuthLoginFacade', () => {
         code: 'error code',
         message: 'error message',
       };
-      const expected = cold('a', { a: [error]});
       store.dispatch(new DaffAuthLoginFailure(error));
-      expect(facade.errors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: [error]});
+      });
     });
   });
 });

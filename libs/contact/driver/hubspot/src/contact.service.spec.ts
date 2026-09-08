@@ -1,9 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  cold,
-  hot,
-} from 'jasmine-marbles';
-import { Observable } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { HubspotResponse } from '@daffodil/driver/hubspot';
 
@@ -14,15 +10,16 @@ const stubHubspotResponse: HubspotResponse = { inlineMessage: '123', errors: []}
 
 describe('@daffodil/contact/driver/hubspot | DaffContactHubspotService', () => {
   let service: DaffContactHubspotService;
+  let hubspotFormsServiceSpy: jasmine.SpyObj<{ submit: (payload: any) => any }>;
 
   beforeEach(() => {
+    hubspotFormsServiceSpy = jasmine.createSpyObj('DaffHubspotFormsService', ['submit']);
+
     TestBed.configureTestingModule({
       providers: [
         {
           provide: DAFF_CONTACT_HUBSPOT_FORMS_TOKEN,
-          useValue: {
-            submit: (): Observable<any> => hot('--a', { a: stubHubspotResponse }),
-          },
+          useValue: hubspotFormsServiceSpy,
         },
       ],
     });
@@ -37,8 +34,14 @@ describe('@daffodil/contact/driver/hubspot | DaffContactHubspotService', () => {
   describe('when sending', () => {
     it('should return an observable of DaffContactResponse', () => {
       const payload = { email: 'email@email.edu' };
-      const expected = cold('--b', { b: { message: '123' }});
-      expect(service.send(payload)).toBeObservable(expected);
+
+      const scheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      scheduler.run(helpers => {
+        hubspotFormsServiceSpy.submit.and.returnValue(helpers.hot('--a', { a: stubHubspotResponse }));
+        helpers.expectObservable(service.send(payload)).toBe('--b', { b: { message: '123' }});
+      });
     });
   });
 });

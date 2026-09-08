@@ -4,7 +4,7 @@ import {
   Store,
   StoreModule,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCustomerPayment } from '@daffodil/customer-payment';
 import {
@@ -25,6 +25,7 @@ describe('@daffodil/customer-payment/state | DaffCustomerPaymentPageFacade', () 
   let paymentFactory: DaffCustomerPaymentFactory;
 
   let mockPayment: DaffCustomerPayment;
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -48,6 +49,10 @@ describe('@daffodil/customer-payment/state | DaffCustomerPaymentPageFacade', () 
     mockPayment = paymentFactory.create();
 
     store.dispatch(new DaffCustomerPaymentLoadSuccess(mockPayment));
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -65,15 +70,17 @@ describe('@daffodil/customer-payment/state | DaffCustomerPaymentPageFacade', () 
 
   describe('payments$', () => {
     it('should contain the loaded payment', () => {
-      const expected = cold('a', { a: jasmine.arrayContaining([jasmine.objectContaining(mockPayment)]) });
-      expect(facade.payments$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.payments$).toBe('a', { a: jasmine.arrayContaining([jasmine.objectContaining(mockPayment)]) });
+      });
     });
   });
 
   describe('getPayment$', () => {
     it('should return the requested payment', () => {
-      const expected = cold('a', { a: jasmine.objectContaining(mockPayment) });
-      expect(facade.getPayment(mockPayment.id)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.getPayment(mockPayment.id)).toBe('a', { a: jasmine.objectContaining(mockPayment) });
+      });
     });
   });
 });

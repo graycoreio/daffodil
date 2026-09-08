@@ -5,7 +5,7 @@ import {
   select,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCountry } from '@daffodil/geography';
 import {
@@ -27,12 +27,18 @@ describe('Geography | Selector | Geography', () => {
   let errors: string[];
   let mockCountry: DaffCountry;
 
+  let scheduler: TestScheduler;
+
   const {
     selectGeographyLoading,
     selectGeographyErrors,
   } = getGeographySelectors();
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -54,18 +60,20 @@ describe('Geography | Selector | Geography', () => {
   describe('selectGeographyLoading', () => {
     it('should select the loading property of the geography state', () => {
       const selector = store.pipe(select(selectGeographyLoading));
-      const expected = cold('a', { a: loading });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: loading });
+      });
     });
   });
 
   describe('selectGeographyErrors', () => {
     it('should select the error property of the geography state', () => {
       const selector = store.pipe(select(selectGeographyErrors));
-      const expected = cold('a', { a: errors });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors });
+      });
     });
   });
 });

@@ -8,11 +8,8 @@ import {
   provideRouter,
 } from '@angular/router';
 import { provideMockActions } from '@ngrx/effects/testing';
-import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
 import { Observable } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffAuthToken } from '@daffodil/auth';
 import { DaffAuthLoginSuccess } from '@daffodil/auth/state';
@@ -57,18 +54,21 @@ describe('DemoAuthEffects', () => {
   describe('authSuccess$ | navigating to homepage after login success', () => {
     describe('when AuthLoginSuccessAction is triggered', () => {
       let navigateSpy;
-      let expected;
 
       const mockAuthLoginSuccessAction = new DaffAuthLoginSuccess(mockAuthToken);
 
       beforeEach(() => {
         navigateSpy = spyOn(router, 'navigateByUrl');
-        actions$ = hot('--a', { a: mockAuthLoginSuccessAction });
-        expected = cold('---');
       });
 
       it('should navigate to the homepage', () => {
-        expect(effects.authSuccess$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: mockAuthLoginSuccessAction });
+          helpers.expectObservable(effects.authSuccess$).toBe('---');
+        });
         expect(navigateSpy).toHaveBeenCalledWith(homepageUrl);
       });
     });

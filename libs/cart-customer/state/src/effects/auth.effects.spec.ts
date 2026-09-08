@@ -167,7 +167,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
                 errors: [],
               }));
             } else {
-              driverGetSpy.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+              driverGetSpy.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
             }
             if (el.wasCardIdInStorage) {
               if (el.didFirstDriverCallSucceed) {
@@ -176,7 +176,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
                   errors: [],
                 }));
               } else {
-                driverMergeSpy.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+                driverMergeSpy.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
               }
             }
 

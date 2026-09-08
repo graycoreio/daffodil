@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffPaypalExpressTokenRequest,
@@ -22,6 +22,8 @@ describe('@daffodil/paypal/driver/testing | DaffTestingPaypalService', () => {
   const mockPaypalTokenResponseFactory = jasmine.createSpyObj('DaffPaypalExpressTokenResponseFactory', ['create']);
   mockPaypalTokenResponseFactory.create.and.returnValue(paypalTokenResponse);
 
+  let scheduler: TestScheduler;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -34,6 +36,10 @@ describe('@daffodil/paypal/driver/testing | DaffTestingPaypalService', () => {
     paypalTokenRequestFactory = TestBed.inject(DaffPaypalExpressTokenRequestFactory);
 
     paypalRequest = paypalTokenRequestFactory.create();
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -43,8 +49,9 @@ describe('@daffodil/paypal/driver/testing | DaffTestingPaypalService', () => {
   describe('generateToken', () => {
 
     it('should return a paypal token response', () => {
-      const expected = cold('(a|)', { a: paypalTokenResponse });
-      expect(paypalService.generateToken('cartId', paypalRequest)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(paypalService.generateToken('cartId', paypalRequest)).toBe('(a|)', { a: paypalTokenResponse });
+      });
     });
   });
 });

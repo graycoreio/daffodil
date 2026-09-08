@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffAuthorizeNetPaymentId } from '@daffodil/authorizenet/driver';
 import { DaffCustomerPaymentAuthorizeNetApplyRequest } from '@daffodil/customer-payment-authorizenet';
@@ -16,7 +16,13 @@ describe('@daffodil/customer-payment-authorizenet/driver/magento | DaffCustomerP
   let paymentId: string;
   let mockRequest: DaffCustomerPaymentAuthorizeNetApplyRequest;
 
+  let scheduler: TestScheduler;
+
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     paymentId = 'paymentId';
 
     TestBed.configureTestingModule({
@@ -41,17 +47,18 @@ describe('@daffodil/customer-payment-authorizenet/driver/magento | DaffCustomerP
 
   describe('generateToken', () => {
     it('should return the formatted response', () => {
-      const expected = cold('(a|)', { a: {
-        method: paymentId,
-        data: {
-          code: paymentId,
-          tokenbase_data: {
-            card_id: mockRequest.data.id,
-            cc_cid: mockRequest.data.securityCode,
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.generateToken(mockRequest)).toBe('(a|)', { a: {
+          method: paymentId,
+          data: {
+            code: paymentId,
+            tokenbase_data: {
+              card_id: mockRequest.data.id,
+              cc_cid: mockRequest.data.securityCode,
+            },
           },
-        },
-      }});
-      expect(service.generateToken(mockRequest)).toBeObservable(expected);
+        }});
+      });
     });
   });
 });

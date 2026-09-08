@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
@@ -7,6 +7,7 @@ import { DaffTestingNavigationService } from './navigation.service';
 
 describe('Driver | Testing | Navigation | NavigationService', () => {
   let navigationService;
+  let scheduler: TestScheduler;
   const navigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
   const navigation = navigationTreeFactory.create();
   const mockNavigationFactory = jasmine.createSpyObj('DaffNavigationTreeFactory', ['create']);
@@ -20,6 +21,9 @@ describe('Driver | Testing | Navigation | NavigationService', () => {
       ],
     });
     navigationService = TestBed.inject(DaffTestingNavigationService);
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -29,8 +33,9 @@ describe('Driver | Testing | Navigation | NavigationService', () => {
   describe('get', () => {
 
     it('should return a single navigation', () => {
-      const expected = cold('(a|)', { a: navigation });
-      expect(navigationService.get('1')).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(navigationService.get('1')).toBe('(a|)', { a: navigation });
+      });
     });
   });
 });

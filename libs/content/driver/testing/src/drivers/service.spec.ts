@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffContentBlock } from '@daffodil/content';
 import { DaffContentBlockFactory } from '@daffodil/content/testing';
@@ -18,7 +18,13 @@ describe('@daffodil/content/driver/testing | DaffTestingContentService', () => {
   let mockBlock: DaffContentBlock;
   let contentId: DaffContentBlock['id'];
 
+  let scheduler: TestScheduler;
+
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       providers: [
         DaffTestingContentService,
@@ -45,8 +51,9 @@ describe('@daffodil/content/driver/testing | DaffTestingContentService', () => {
 
   describe('get', () => {
     it('should return a DaffContent', () => {
-      const expected = cold('(a|)', { a: { [mockBlock.id]: mockBlock }});
-      expect(service.getBlocks(contentId)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.getBlocks(contentId)).toBe('(a|)', { a: { [mockBlock.id]: mockBlock }});
+      });
     });
   });
 });
