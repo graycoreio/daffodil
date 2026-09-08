@@ -123,10 +123,12 @@ export class DaffMenuComponent implements AfterContentInit, AfterViewInit {
    * @docs-private
    */
   ngAfterViewInit() {
-    // Set focus to the first menu item when menu opens
-    if (this._items.length > 0) {
-      this._keyManager.setFirstItemActive();
-      this._keyManager.setActiveItem(0);
+    // Focus the first menu item when the menu opens. The origin decides how that focus looks.
+    this._keyManager.setFocusOrigin(this.menuService.origin).setFirstItemActive();
+
+    // With no items to focus, fall back to the menu itself so Escape still closes it.
+    if (!this._keyManager.activeItem) {
+      this._elementRef.nativeElement.focus();
     }
   }
 }
