@@ -29,20 +29,6 @@
 		&[disabled] {
 			cursor: not-allowed;
 		}
-
-		&::after {
-			content: '';
-			position: absolute;
-			top: 48%;
-			right: 0.125rem;
-			display: inline-block;
-			border-right: 0.125rem solid currentColor;
-			border-bottom: 0.125rem solid currentColor;
-			width: 0.5rem;
-			height: 0.5rem;
-			transform: translateY(-50%) rotate(45deg);
-			transition: transform 150ms;
-		}
 	}
 
 	&.daff-open {

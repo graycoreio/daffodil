@@ -22,6 +22,7 @@ import {
 import {
   DaffFormFieldComponent,
   DaffFormFieldControl,
+  DaffFormFieldControlTypesEnum,
 } from '@daffodil/design/form-field';
 
 /**
@@ -49,7 +50,7 @@ import {
 })
 export class DaffTextareaComponent extends DaffFormFieldControl<string> implements DaffFormFieldControl<string>, OnInit {
   /** @docs-private */
-  controlType = 'native-textarea';
+  controlType = DaffFormFieldControlTypesEnum.Input;
 
   /**
    * @docs-private

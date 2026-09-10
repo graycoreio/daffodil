@@ -42,6 +42,7 @@ import {
 
 import { DaffOpenableDirective } from '@daffodil/design';
 import {
+  DaffFormFieldControlTypesEnum ,
   DaffFormFieldComponent,
   DaffFormFieldControl,
 } from '@daffodil/design/form-field';
@@ -81,8 +82,12 @@ let daffSelectOtionsId = 0;
   ],
 })
 export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<string> implements DaffFormFieldControl<string>, OnInit, OnDestroy, ControlValueAccessor {
-  /** @docs-private */
-  controlType = 'custom-select';
+  /**
+   * @docs-private
+   *
+   * Implemented as part of DaffFormFieldControl.
+   */
+  controlType = DaffFormFieldControlTypesEnum.Dropdown;
 
   /**
    * @docs-private
@@ -106,6 +111,13 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
    */
   get raised() {
     return this.focused && this.isOpen;
+  }
+
+  /**
+   * @docs-private
+   */
+  get opened() {
+    return this.isOpen;
   }
 
   /** @docs-private */
@@ -307,18 +319,18 @@ export class DaffSelectComponent<T = unknown> extends DaffFormFieldControl<strin
         this._highlighted = this.options.findIndex((v) => v === this._value);
       }
 
-      const formFieldEl = this.formField.elementRef.nativeElement;
-      const formFieldWidth = formFieldEl.getBoundingClientRect().width;
+      const wrapperEl = this.formField._wrapper().nativeElement;
+      const wrapperWidth = wrapperEl.getBoundingClientRect().width;
 
       this._overlay = this.overlay.create({
         hasBackdrop: true,
         backdropClass: 'cdk-overlay-transparent-backdrop',
         scrollStrategy: this.overlay.scrollStrategies.block(),
         disposeOnNavigation: true,
-        width: `${formFieldWidth}px`,
+        width: `${wrapperWidth}px`,
         positionStrategy: this.overlay
           .position()
-          .flexibleConnectedTo(formFieldEl)
+          .flexibleConnectedTo(wrapperEl)
           .withPositions([
             {
               originX: 'start',

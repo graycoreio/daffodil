@@ -60,8 +60,8 @@ describe('@daffodil/design/select | DaffSelectComponent | With Form Field', () =
     expect(wrapper).toBeTruthy();
   });
 
-  it('should set the control type to custom-select', () => {
-    expect(formField._control().controlType).toEqual('custom-select');
+  it('should set the control type to dropdown', () => {
+    expect(formField._control().controlType).toEqual('dropdown');
   });
 
   it('should set required to false', () => {

@@ -61,8 +61,8 @@ describe('@daffodil/design | DaffInputComponent | With Form Field', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should set the control type to native-input', () => {
-    expect(formField._control().controlType).toEqual('native-input');
+  it('should set the control type to input', () => {
+    expect(formField._control().controlType).toEqual('input');
   });
 
   it('should set the input id to the form field id', () => {

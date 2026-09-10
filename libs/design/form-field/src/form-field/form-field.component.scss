@@ -4,9 +4,10 @@
 // stylelint-disable selector-class-pattern
 .daff-form-field {
 	$root: &;
-	display: flex;
+	display: inline-flex;
 	flex-direction: column;
 	gap: 0.25rem;
+	min-width: 0;
 	position: relative;
 
 	&.has-prefix {
@@ -26,6 +27,8 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
+		width: 0;
+		min-width: 100%;
 	}
 
 	&__wrapper {
@@ -38,7 +41,7 @@
 		align-items: center;
 		border-radius: 0.25rem;
 		font-size: t.$font-size-base;
-		line-height: 1rem;
+		line-height: 1.25rem;
 		padding: 0 1rem;
 		position: relative;
 		width: 100%;
@@ -51,7 +54,7 @@
 		}
 	}
 
-	&.is-native-select {
+	&.is-dropdown {
 		#{$root}__control {
 			&::after {
 				content: '';
@@ -64,6 +67,22 @@
 				width: 0.5rem;
 				height: 0.5rem;
 				transform: translateY(-50%) rotate(45deg);
+				transition: transform 150ms;
+			}
+		}
+
+		label,
+		.daff-form-label,
+		.daff-form-field__label {
+			padding-right: 1rem;
+		}
+
+		&.daff-open {
+			#{$root}__control {
+				&::after {
+					top: 56%;
+					transform: translateY(-50%) rotate(225deg);
+				}
 			}
 		}
 	}
@@ -74,7 +93,7 @@
 		select {
 			font-size: 1rem;
 			line-height: 1.5rem;
-			padding: calc(0.75rem - 1px) 0;
+			padding: calc(0.75rem - 0.0625rem) 0;
 
 			* {
 				::-webkit-input-placeholder {
@@ -120,18 +139,19 @@
 		.daff-form-field__label {
 			position: absolute;
 			left: 0;
-			top: 1.25rem;
+			top: 1.125rem;
+			max-width: 100%;
 			pointer-events: none;
 			transform-origin: left top;
 			transition: transform 150ms;
-			white-space: nowrap;
+			@include t.text-truncate();
 
 			+,
 			~ * {
 				input,
 				textarea,
 				select {
-					padding: calc(1.5rem - 1px) 0 calc(0.5rem - 1px);
+					padding: calc(1.5rem - 0.0625rem) 0 calc(0.5rem - 0.0625rem);
 				}
 			}
 		}
@@ -140,7 +160,8 @@
 			label,
 			.daff-form-label,
 			#{$root}__label {
-				transform: translateY(-75%) scale(0.75);
+				max-width: calc(100% * 4 / 3);
+				transform: translateY(-50%) scale(0.75);
 			}
 
 			* {
@@ -163,9 +184,15 @@
 	}
 
 	&__inner {
-		flex-grow: 1;
+		flex: auto;
+		min-width: 0;
+		width: 12rem;
 		position: relative;
 		overflow: hidden;
+
+		&:has(textarea[cols]) {
+			width: auto;
+		}
 	}
 
 	.daff-prefix,
@@ -176,8 +203,8 @@
 		appearance: none;
 		background: none;
 		border: none;
-		height: calc(3rem - 2px);
-		min-width: calc(3rem - 2px);
+		height: calc(3rem - 0.125rem);
+		min-width: calc(3rem - 0.125rem);
 	}
 
 	&.daff-skeleton {

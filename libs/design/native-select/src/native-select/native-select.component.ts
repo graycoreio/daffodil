@@ -22,6 +22,7 @@ import {
 import {
   DaffFormFieldComponent,
   DaffFormFieldControl,
+  DaffFormFieldControlTypesEnum,
 } from '@daffodil/design/form-field';
 
 /**
@@ -54,7 +55,7 @@ export class DaffNativeSelectComponent extends DaffFormFieldControl<string> impl
    *
    * Implemented as part of DaffFormFieldControl.
    */
-  controlType = 'native-select';
+  controlType = DaffFormFieldControlTypesEnum.Dropdown;
 
   /**
    * @docs-private

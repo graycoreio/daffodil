@@ -65,8 +65,8 @@ describe('@daffodil/design | DaffNativeSelectComponent | With Form Field', () =>
     expect(wrapper).toBeTruthy();
   });
 
-  it('should set the control type to `native-select', () => {
-    expect(component.controlType).toEqual('native-select');
+  it('should set the control type to `dropdown', () => {
+    expect(component.controlType).toEqual('dropdown');
   });
 
   it('should set the native select id to the form field id', () => {
