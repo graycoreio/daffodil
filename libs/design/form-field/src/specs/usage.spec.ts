@@ -24,7 +24,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
 import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 import { patchElementFocus } from '@daffodil/design/testing';
 
-import { DaffFormFieldAppearance } from '../form-field/form-field.component';
+import { DaffFormFieldAppearance } from '../helpers/appearance';
 
 @Component({ template: `
   <daff-form-field [id]="id()" [appearance]="appearance()">

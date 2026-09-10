@@ -3,7 +3,7 @@
 @if (isFixed()) {
   <ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
 }
-<div class="daff-form-field__wrapper">
+<div class="daff-form-field__wrapper" #wrapper>
 	<div class="daff-form-field__control">
 		@if (_prefix()) {
 			<ng-content select="[daffPrefix]"></ng-content>

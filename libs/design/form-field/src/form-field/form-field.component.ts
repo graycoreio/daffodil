@@ -11,6 +11,7 @@ import {
   ElementRef,
   input,
   contentChild,
+  viewChild,
   signal,
   computed,
 } from '@angular/core';
@@ -29,15 +30,13 @@ import {
 
 import { DaffFormFieldActionDirective } from '../action/action.directive';
 import { DaffFormFieldControl } from '../form-field-control';
+import {
+  DaffFormFieldAppearance,
+  DaffFormFieldAppearanceEnum,
+} from '../helpers/appearance';
+import { DaffFormFieldControlTypesEnum } from '../helpers/control-types';
 
 let daffFormFieldId = 0;
-
-export type DaffFormFieldAppearance = 'fluid' | 'fixed';
-
-enum DaffFormFieldAppearanceEnum {
-  Fluid = 'fluid',
-  Fixed = 'fixed',
-}
 
 export const DaffFormFieldMissingControlMessage = 'A DaffFormFieldComponent must contain a DaffFormFieldControl';
 
@@ -55,7 +54,7 @@ export const DaffFormFieldMissingControlMessage = 'A DaffFormFieldComponent must
   ],
   host: {
     class: 'daff-form-field',
-    '[class.is-native-select]': 'isNativeSelect()',
+    '[class.is-dropdown]': 'isDropdown()',
     '[class.has-prefix]': '_prefix()',
     '[class.has-suffix]': '_suffix()',
     '[class.has-action]': '_action()',
@@ -64,6 +63,7 @@ export const DaffFormFieldMissingControlMessage = 'A DaffFormFieldComponent must
     '[class.daff-valid]': 'isValid()',
     '[class.daff-focused]': 'isFocused',
     '[class.daff-raised]': 'isRaised',
+    '[class.daff-open]': 'isOpen',
     '[class.fluid]': 'appearance() === "fluid"',
     '[class.fixed]': 'appearance() === "fixed"',
   },
@@ -76,12 +76,21 @@ export const DaffFormFieldMissingControlMessage = 'A DaffFormFieldComponent must
 })
 export class DaffFormFieldComponent implements AfterContentInit, AfterContentChecked, AfterViewInit {
   /** @docs-private */
-  isNativeSelect = computed(() => this._control()?.controlType === 'native-select');
+  isDropdown = computed(() => this._control()?.controlType === DaffFormFieldControlTypesEnum.Dropdown);
 
   constructor(
     private cd: ChangeDetectorRef,
     public elementRef: ElementRef,
   ) {}
+
+  /**
+   * @docs-private
+   *
+   * The element that wraps the form field's control. Useful as an anchor for
+   * controls that need to position content relative to the control itself,
+   * rather than the entire form field.
+   */
+  _wrapper = viewChild<ElementRef<HTMLElement>>('wrapper');
 
   /** @docs-private */
   _prefix = contentChild(DaffPrefixDirective);
@@ -169,6 +178,15 @@ export class DaffFormFieldComponent implements AfterContentInit, AfterContentChe
    */
   get isRaised() {
     return this._control()?.raised || this.isFilled();
+  }
+
+  /**
+   * @docs-private
+   *
+   * Determines whether or not the form field should display its open state.
+   */
+  get isOpen() {
+    return this._control()?.opened;
   }
 
   /**

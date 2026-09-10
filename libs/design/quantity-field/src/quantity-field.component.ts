@@ -13,7 +13,10 @@ import {
   NgControl,
 } from '@angular/forms';
 
-import { DaffFormFieldControl } from '@daffodil/design/form-field';
+import {
+  DaffFormFieldControl,
+  DaffFormFieldControlTypesEnum,
+} from '@daffodil/design/form-field';
 
 import { DaffQuantityInputComponent } from './quantity-input/quantity-input.component';
 import { DaffQuantitySelectComponent } from './quantity-select/quantity-select.component';
@@ -102,8 +105,7 @@ export class DaffQuantityFieldComponent extends DaffFormFieldControl<number> imp
   get controlType() {
     // TODO: use enum
     return this.showInputField
-      ? 'native-input'
-      : 'native-select';
+      ? DaffFormFieldControlTypesEnum.Input : DaffFormFieldControlTypesEnum.Dropdown;
   }
 
   get showInputField(): boolean {

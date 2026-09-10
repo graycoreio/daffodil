@@ -14,7 +14,7 @@
 	.daff-form-field {
 		@include daff-light-mode($mode) {
 			.daff-form-field__control {
-				border: 1px solid daff-color($neutral);
+				border: 0.0625rem solid daff-color($neutral);
 				color: daff-color($neutral);
 
 				* {
@@ -32,7 +32,7 @@
 
 		@include daff-dark-mode($mode) {
 			.daff-form-field__control {
-				border: 1px solid daff-color($neutral, 40);
+				border: 0.0625rem solid daff-color($neutral, 40);
 				color: daff-color($neutral, 40);
 
 				* {
@@ -50,7 +50,7 @@
 
 		&.daff-focused {
 			.daff-form-field__control {
-				border: 1px solid daff-color($primary);
+				border: 0.0625rem solid daff-color($primary);
 			}
 
 			&.fluid {
@@ -64,7 +64,11 @@
 
 		&.daff-error {
 			.daff-form-field__control {
-				border: 1px solid daff-color($critical);
+				border: 0.0625rem solid daff-color($critical);
+
+				&::after {
+					border-color: daff-color($critical);
+				}
 			}
 
 			&.fluid {

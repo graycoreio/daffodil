@@ -30,6 +30,7 @@ import { takeUntil } from 'rxjs/operators';
 import {
   DaffFormFieldComponent,
   DaffFormFieldControl,
+  DaffFormFieldControlTypesEnum,
 } from '@daffodil/design/form-field';
 
 import { DaffSfQuantityInputComponent } from './quantity-input/quantity-input.component';
@@ -78,7 +79,7 @@ export class DaffSfQuantityFieldComponent extends DaffFormFieldControl<number> i
 
   /** @docs-private */
   get controlType() {
-    return this._showInputField() ? 'native-input' : 'native-select';
+    return this._showInputField() ? DaffFormFieldControlTypesEnum.Input : DaffFormFieldControlTypesEnum.Dropdown;
   }
 
   /**

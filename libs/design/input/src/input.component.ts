@@ -23,6 +23,7 @@ import {
 import {
   DaffFormFieldComponent,
   DaffFormFieldControl,
+  DaffFormFieldControlTypesEnum,
 } from '@daffodil/design/form-field';
 
 /**
@@ -49,8 +50,12 @@ import {
   },
 })
 export class DaffInputComponent extends DaffFormFieldControl<string> implements DaffFormFieldControl<string>, OnInit {
-  /** @docs-private */
-  controlType = 'native-input';
+  /**
+   * @docs-private
+   *
+   * Implemented as part of DaffFormFieldControl.
+   */
+  controlType = DaffFormFieldControlTypesEnum.Input;
 
   /**
    * @docs-private

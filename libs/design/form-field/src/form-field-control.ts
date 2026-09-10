@@ -5,6 +5,7 @@ import {
 } from 'rxjs';
 
 import { DaffFormFieldState } from './form-field-state';
+import { DaffFormFieldControlTypesEnum } from './helpers/control-types';
 
 /**
  * Form controls must extend this class to be used inside `DaffFormFieldComponent`.
@@ -16,10 +17,9 @@ import { DaffFormFieldState } from './form-field-state';
  */
 export abstract class DaffFormFieldControl<T> {
   /**
-   * The type of the control (e.g., 'input', 'select', 'textarea').
-   * Used to apply control-specific styling or behavior.
+   * The type of the control. Used to apply control-specific styling or behavior.
    */
-  abstract readonly controlType?: any;
+  abstract readonly controlType?: DaffFormFieldControlTypesEnum;
 
   /**
    * Whether the control supports automatic label behavior.
@@ -55,6 +55,16 @@ export abstract class DaffFormFieldControl<T> {
    */
   get raised() {
     return this.focused;
+  };
+
+  /**
+   * Whether the control is currently open. Only relevant for controls
+   * that expand, like dropdowns.
+   *
+   * Defaults to `false`.
+   */
+  get opened(): boolean {
+    return false;
   };
 
   /**
