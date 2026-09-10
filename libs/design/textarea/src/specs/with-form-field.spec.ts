@@ -62,8 +62,8 @@ describe('@daffodil/design/textarea | DaffTextareaComponent | With Form Field', 
     expect(wrapper).toBeTruthy();
   });
 
-  it('should set the control type to native-textarea', () => {
-    expect(formField._control().controlType).toEqual('native-textarea');
+  it('should set the control type to input', () => {
+    expect(formField._control().controlType).toEqual('input');
   });
 
   it('should set the textarea id to the form field id', () => {

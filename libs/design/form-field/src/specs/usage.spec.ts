@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  Input,
   signal,
 } from '@angular/core';
 import {
@@ -19,9 +20,9 @@ import {
   DAFF_FORM_FIELD_COMPONENTS,
   DaffFormFieldComponent,
   DaffFormFieldControl,
+  DaffFormFieldControlTypesEnum,
 } from '@daffodil/design/form-field';
 import { DaffInputComponent } from '@daffodil/design/input';
-import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 import { patchElementFocus } from '@daffodil/design/testing';
 
 import { DaffFormFieldAppearance } from '../helpers/appearance';
@@ -44,7 +45,7 @@ class WrapperComponent {
   appearance = signal<DaffFormFieldAppearance>('fixed');
 }
 
-describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
+describe('@daffodil/design/form-field | DaffFormFieldComponent | Usage', () => {
   let wrapper: WrapperComponent;
   let component: DaffFormFieldComponent;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -193,6 +194,21 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage', () => {
     });
   });
 
+  describe('open state', () => {
+    it('should set the `daff-open` class on the host element when the child control is open', () => {
+      spyOnProperty(control, 'opened').and.returnValue(true);
+      control.emitState();
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-open')).toEqual(true);
+    });
+
+    it('should not set the `daff-open` class on the host element when the child control is not open', () => {
+      expect(control.opened).toBeFalse();
+      expect(de.nativeElement.classList.contains('daff-open')).toEqual(false);
+    });
+  });
+
   it('should not add the `has-prefix` class to the host element if prefix is not used', () => {
     expect(de.nativeElement.classList.contains('has-prefix')).toEqual(false);
   });
@@ -218,7 +234,7 @@ imports: [
 class WithPrefixSuffixComponent {
 }
 
-describe('@daffodil/design | DaffFormFieldComponent | Usage - Prefix, Suffix, & Action', () => {
+describe('@daffodil/design/form-field | DaffFormFieldComponent | Usage - Prefix, Suffix, & Action', () => {
   let wrapper: WithPrefixSuffixComponent;
   let component: DaffFormFieldComponent;
   let fixture: ComponentFixture<WithPrefixSuffixComponent>;
@@ -260,45 +276,79 @@ describe('@daffodil/design | DaffFormFieldComponent | Usage - Prefix, Suffix, & 
 });
 
 @Component({
+  selector: 'daff-control-stub',
+  template: '',
+  providers: [
+    { provide: DaffFormFieldControl, useExisting: ControlStubComponent },
+  ],
+})
+class ControlStubComponent extends DaffFormFieldControl<string> {
+  @Input() controlType: DaffFormFieldControlTypesEnum;
+
+  focused = false;
+  required = false;
+  disabled = false;
+  value = '';
+
+  constructor() {
+    super(null);
+  }
+
+  focus() {}
+}
+
+@Component({
   template: `
     <daff-form-field>
-      <select daff-native-select></select>
+      <daff-control-stub [controlType]="controlType"></daff-control-stub>
     </daff-form-field>`,
   imports: [
     DAFF_FORM_FIELD_COMPONENTS,
-    DaffNativeSelectComponent,
-    ReactiveFormsModule,
+    ControlStubComponent,
   ],
 })
 
-class NativeSelectWrapper {}
+class ControlWrapper {
+  controlType: DaffFormFieldControlTypesEnum;
+}
 
-describe('@daffodil/design | DaffFormFieldComponent | Usage - Native Select Control', () => {
-  let wrapper: NativeSelectWrapper;
-  let fixture: ComponentFixture<NativeSelectWrapper>;
+describe('@daffodil/design/form-field | DaffFormFieldComponent | Usage - Control Types', () => {
+  let wrapper: ControlWrapper;
+  let fixture: ComponentFixture<ControlWrapper>;
   let de: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NativeSelectWrapper,
+        ControlWrapper,
       ],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NativeSelectWrapper);
+    fixture = TestBed.createComponent(ControlWrapper);
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('daff-form-field'));
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
+
     expect(wrapper).toBeTruthy();
   });
 
-  it('should add a class of "is-native-select" to a native select control', () => {
-    expect(de.nativeElement.classList.contains('is-native-select')).toEqual(true);
+  it('should add a class of "is-dropdown" when the control is a dropdown', () => {
+    wrapper.controlType = DaffFormFieldControlTypesEnum.Dropdown;
+    fixture.detectChanges();
+
+    expect(de.nativeElement.classList.contains('is-dropdown')).toEqual(true);
+  });
+
+  it('should not add a class of "is-dropdown" when the control is not a dropdown', () => {
+    wrapper.controlType = DaffFormFieldControlTypesEnum.Input;
+    fixture.detectChanges();
+
+    expect(de.nativeElement.classList.contains('is-dropdown')).toEqual(false);
   });
 });
