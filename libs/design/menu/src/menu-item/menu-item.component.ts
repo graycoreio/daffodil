@@ -1,10 +1,16 @@
 /* eslint-disable quote-props */
-import { FocusableOption } from '@angular/cdk/a11y';
 import {
+  FocusableOption,
+  FocusMonitor,
+  FocusOrigin,
+} from '@angular/cdk/a11y';
+import {
+  AfterViewInit,
   Component,
   ChangeDetectionStrategy,
   ContentChild,
   ElementRef,
+  OnDestroy,
 } from '@angular/core';
 
 import { DaffPrefixDirective } from '@daffodil/design';
@@ -35,7 +41,7 @@ import { DaffMenuService } from '../services/menu.service';
   providers: [provideDaffMenuItemToken(DaffMenuItemComponent)],
 })
 
-export class DaffMenuItemComponent implements FocusableOption {
+export class DaffMenuItemComponent implements FocusableOption, AfterViewInit, OnDestroy {
   /**
    * @docs-private
    */
@@ -44,7 +50,24 @@ export class DaffMenuItemComponent implements FocusableOption {
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _menuService: DaffMenuService,
+    private _focusMonitor: FocusMonitor,
   ) {}
+
+  /**
+   * @docs-private
+   *
+   * Monitoring the item is what lets `focus` mark it as keyboard focused.
+   */
+  ngAfterViewInit() {
+    this._focusMonitor.monitor(this._elementRef, false);
+  }
+
+  /**
+   * @docs-private
+   */
+  ngOnDestroy() {
+    this._focusMonitor.stopMonitoring(this._elementRef);
+  }
 
   /**
    * @docs-private
@@ -54,9 +77,13 @@ export class DaffMenuItemComponent implements FocusableOption {
   }
 
   /**
-   * Focus the menu item.
+   * Focus the menu item. The item only takes on focus styling when `origin` is `keyboard`.
    */
-  focus() {
-    this._elementRef.nativeElement.focus();
+  focus(origin?: FocusOrigin, options?: FocusOptions) {
+    if (origin) {
+      this._focusMonitor.focusVia(this._elementRef, origin, options);
+    } else {
+      this._elementRef.nativeElement.focus(options);
+    }
   }
 }

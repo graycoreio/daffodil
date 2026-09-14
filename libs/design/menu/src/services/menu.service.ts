@@ -1,3 +1,4 @@
+import { FocusOrigin } from '@angular/cdk/a11y';
 import {
   Overlay,
   OverlayRef,
@@ -33,9 +34,18 @@ export type DaffMenuSlot = TemplateRef<unknown> | DaffLazyComponent | Type<unkno
 export class DaffMenuService {
   protected _overlay: OverlayRef | null;
   private _activator: ViewContainerRef;
+  private _origin: FocusOrigin = 'program';
 
   private $_open: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public open$: Observable<boolean> = this.$_open.asObservable();
+
+  /**
+   * What opened the menu. The menu focuses its first item either way, but items
+   * only take on keyboard focus styling when the menu was opened from the keyboard.
+   */
+  get origin(): FocusOrigin {
+    return this._origin;
+  }
 
   constructor(
     protected overlay: Overlay,
@@ -86,10 +96,12 @@ export class DaffMenuService {
     this._activator.element.nativeElement.focus();
   }
 
-  open(activator: ViewContainerRef, component: DaffMenuSlot, config?: DaffMenuConfig) {
+  open(activator: ViewContainerRef, component: DaffMenuSlot, config?: DaffMenuConfig, origin: FocusOrigin = 'program') {
     if (this._overlay) {
       this._destroyOverlay();
     }
+
+    this._origin = origin;
     this._createOverlay(activator, component, config);
     this._activator = activator;
     this.$_open.next(true);

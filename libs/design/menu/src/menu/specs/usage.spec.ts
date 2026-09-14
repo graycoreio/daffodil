@@ -1,3 +1,4 @@
+import { FocusOrigin } from '@angular/cdk/a11y';
 import {
   Component,
   DebugElement,
@@ -19,7 +20,10 @@ import {
   DaffMenuConfig,
 } from '../../config/menu-config';
 import { DaffMenuService } from '../../services/menu.service';
-import { provideTestMenuService } from '../../testing/dummy-service';
+import {
+  DummyMenuService,
+  provideTestMenuService,
+} from '../../testing/dummy-service';
 
 @Component({
   template: `
@@ -53,13 +57,21 @@ describe('@daffodil/design/menu | DaffMenuComponent | Usage', () => {
       .compileComponents();
   }));
 
-  beforeEach(() => {
+  const createFixture = (origin?: FocusOrigin) => {
+    if (origin) {
+      (<DummyMenuService><unknown>TestBed.inject(DaffMenuService)).origin = origin;
+    }
+
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     fixture.detectChanges();
 
     de = fixture.debugElement.query(By.css('daff-menu'));
     component = de.componentInstance;
+  };
+
+  beforeEach(() => {
+    createFixture();
   });
 
   it('should create', () => {
@@ -68,6 +80,34 @@ describe('@daffodil/design/menu | DaffMenuComponent | Usage', () => {
 
   it('should focus the first focusable child when menu is opened', () => {
     expect(document.activeElement).toEqual(de.query(By.css('#focused')).nativeElement);
+  });
+
+  describe('when the menu is opened from the keyboard', () => {
+    beforeEach(() => {
+      createFixture('keyboard');
+    });
+
+    it('should focus the first focusable child', () => {
+      expect(document.activeElement).toEqual(de.query(By.css('#focused')).nativeElement);
+    });
+
+    it('should mark the first focusable child as keyboard focused', () => {
+      expect(de.query(By.css('#focused')).nativeElement.classList).toContain('cdk-keyboard-focused');
+    });
+  });
+
+  describe('when the menu is opened with a pointer', () => {
+    beforeEach(() => {
+      createFixture('mouse');
+    });
+
+    it('should focus the first focusable child', () => {
+      expect(document.activeElement).toEqual(de.query(By.css('#focused')).nativeElement);
+    });
+
+    it('should not mark the first focusable child as keyboard focused', () => {
+      expect(de.query(By.css('#focused')).nativeElement.classList).not.toContain('cdk-keyboard-focused');
+    });
   });
 
   describe('Keyboard Events', () => {
