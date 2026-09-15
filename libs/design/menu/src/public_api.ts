@@ -7,7 +7,10 @@ export {
   DaffMenuService,
   DaffMenuSlot,
 } from './services/menu.service';
-export { DaffMenuActivatorDirective } from './menu-activator/menu-activator.component';
+export {
+  DaffMenuActivatorDirective,
+  DaffMenuTrigger,
+} from './menu-activator/menu-activator.component';
 export { DaffMenuModule } from './menu.module';
 export { DaffMenuComponent } from './menu/menu.component';
 export { DaffMenuItemComponent } from './menu-item/menu-item.component';

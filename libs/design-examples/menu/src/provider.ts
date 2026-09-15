@@ -12,6 +12,14 @@ export const provideDaffDesignMenuExamplesContent = () => makeEnvironmentProvide
     component: () => import('./menu-with-icon-toggle/menu-with-icon-toggle.component').then(c => c.MenuWithIconToggleExampleComponent),
   },
   {
+    id: 'nested-menu',
+    component: () => import('./nested-menu/nested-menu.component').then(c => c.NestedMenuExampleComponent),
+  },
+  {
+    id: 'nested-menu-with-click',
+    component: () => import('./nested-menu-with-click/nested-menu-with-click.component').then(c => c.NestedMenuWithClickExampleComponent),
+  },
+  {
     id: 'menu-with-id',
     component: () => import('./menu-with-id/menu-with-id.component').then(c => c.MenuWithIdExampleComponent),
   },

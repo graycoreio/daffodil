@@ -66,12 +66,12 @@ describe('@daffodil/design/menu | DaffMenuComponent | Defaults', () => {
     }));
   });
 
-  it('should have a tabindex of 0', () => {
-    expect(de.nativeElement.tabIndex).toEqual(0);
-  });
-
   it('should have a role of menu', () => {
     expect(de.nativeElement.getAttribute('role')).toBe('menu');
+  });
+
+  it('should set aria-orietnation to vertical', () => {
+    expect(de.nativeElement.getAttribute('aria-orientation')).toBe('vertical');
   });
 
   it('should have an id matching the provided DAFF_MENU_CONFIG menuId', () => {
