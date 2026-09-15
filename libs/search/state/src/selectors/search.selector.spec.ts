@@ -6,7 +6,7 @@ import {
   combineReducers,
   createSelector,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffSearchResult,
@@ -39,6 +39,8 @@ describe('@daffodil/search/state | daffSearchCreateSearchSelectors', () => {
   let errors: string[];
   let mockSearchResults: DaffSearchResult[];
 
+  let scheduler: TestScheduler;
+
   const {
     selectSearchLoading,
     selectSearchErrors,
@@ -47,6 +49,10 @@ describe('@daffodil/search/state | daffSearchCreateSearchSelectors', () => {
   } = daffSearchCreateSearchSelectors(selectSearchState);
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -66,27 +72,30 @@ describe('@daffodil/search/state | daffSearchCreateSearchSelectors', () => {
   describe('selectSearchLoading', () => {
     it('should select the loading property of the search state', () => {
       const selector = store.pipe(select(selectSearchLoading));
-      const expected = cold('a', { a: loading });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: loading });
+      });
     });
   });
 
   describe('selectSearchErrors', () => {
     it('should select the error property of the search state', () => {
       const selector = store.pipe(select(selectSearchErrors));
-      const expected = cold('a', { a: errors });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors });
+      });
     });
   });
 
   describe('selectSearchResultIds', () => {
     it('should initially be an empty dictionary', () => {
       const selector = store.pipe(select(selectSearchResultIds));
-      const expected = cold('a', { a: {}});
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: {}});
+      });
     });
 
     describe('when search results have been loaded', () => {
@@ -99,11 +108,12 @@ describe('@daffodil/search/state | daffSearchCreateSearchSelectors', () => {
 
       it('should select the specified search result collection', () => {
         const selector = store.pipe(select(selectSearchResultIds));
-        const expected = cold('a', { a: {
-          [mockSearchResults[0].kind]: [mockSearchResults[0].id],
-        }});
 
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: {
+            [mockSearchResults[0].kind]: [mockSearchResults[0].id],
+          }});
+        });
       });
     });
   });
@@ -112,9 +122,10 @@ describe('@daffodil/search/state | daffSearchCreateSearchSelectors', () => {
     describe('when there have been no recent search queries', () => {
       it('should be an empty array', () => {
         const selector = store.pipe(select(selectRecent));
-        const expected = cold('a', { a: []});
 
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: []});
+        });
       });
     });
 
@@ -128,9 +139,10 @@ describe('@daffodil/search/state | daffSearchCreateSearchSelectors', () => {
 
       it('should contain the recent search queries', () => {
         const selector = store.pipe(select(selectRecent));
-        const expected = cold('a', { a: jasmine.arrayContaining([query]) });
 
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: jasmine.arrayContaining([query]) });
+        });
       });
     });
   });

@@ -5,7 +5,7 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DAFF_PRODUCT_STORE_FEATURE_KEY,
@@ -48,7 +48,13 @@ describe('@daffodil/search-product/state | DaffSearchProductFacade', () => {
   let mockSearchResult: DaffSearchProductResult;
   let mockSearchResultResponse: DaffSearchDriverResponse;
 
+  let scheduler: TestScheduler;
+
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -89,15 +95,17 @@ describe('@daffodil/search-product/state | DaffSearchProductFacade', () => {
 
   describe('productResults$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.productResults$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.productResults$).toBe('a', { a: []});
+      });
     });
 
     it('should be the productResults upon a successful load', () => {
-      const expected = cold('a', { a: [mockSearchResult]});
       store.dispatch(new DaffSearchLoadSuccess(mockSearchResultResponse));
       store.dispatch(new DaffProductGridLoadSuccess([mockSearchResult]));
-      expect(facade.productResults$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.productResults$).toBe('a', { a: [mockSearchResult]});
+      });
     });
   });
 });

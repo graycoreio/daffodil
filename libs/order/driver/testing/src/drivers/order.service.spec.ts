@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffOrder } from '@daffodil/order';
 import { DaffOrderFactory } from '@daffodil/order/testing';
@@ -15,6 +15,8 @@ describe('Driver | Testing | Order | OrderService', () => {
 
   let mockOrder: DaffOrder;
   let orderId: DaffOrder['id'];
+
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -33,6 +35,10 @@ describe('Driver | Testing | Order | OrderService', () => {
     orderCreateManySpy = spyOn(orderFactory, 'createMany');
     orderCreateSpy.and.returnValue(mockOrder);
     orderCreateManySpy.and.returnValue([mockOrder]);
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -41,15 +47,17 @@ describe('Driver | Testing | Order | OrderService', () => {
 
   describe('get', () => {
     it('should return a DaffOrder', () => {
-      const expected = cold('(a|)', { a: mockOrder });
-      expect(service.get(orderId)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.get(orderId)).toBe('(a|)', { a: mockOrder });
+      });
     });
   });
 
   describe('list', () => {
     it('should return a list of DaffOrders', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({ data: { [orderId]: mockOrder }}) });
-      expect(service.list()).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.list()).toBe('(a|)', { a: jasmine.objectContaining({ data: { [orderId]: mockOrder }}) });
+      });
     });
   });
 });

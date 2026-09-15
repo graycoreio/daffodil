@@ -4,7 +4,7 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCartPlaceOrderSuccess,
@@ -29,6 +29,8 @@ describe('@daffodil/checkout/state | DaffCheckoutPlacedOrderFacade', () => {
 
   let mockOrder: DaffOrder;
 
+  let scheduler: TestScheduler;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -47,6 +49,10 @@ describe('@daffodil/checkout/state | DaffCheckoutPlacedOrderFacade', () => {
     orderFactory = TestBed.inject(DaffOrderFactory);
 
     mockOrder = orderFactory.create();
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -64,29 +70,33 @@ describe('@daffodil/checkout/state | DaffCheckoutPlacedOrderFacade', () => {
 
   describe('placedOrder$', () => {
     it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.placedOrder$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.placedOrder$).toBe('a', { a: null });
+      });
     });
 
     it('should contain the order upon a successful place order and order load', () => {
-      const expected = cold('a', { a: mockOrder });
       store.dispatch(new DaffCartPlaceOrderSuccess({ orderId: mockOrder.id, cartId: 'cartId' }));
       store.dispatch(new DaffOrderLoadSuccess(mockOrder));
-      expect(facade.placedOrder$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.placedOrder$).toBe('a', { a: mockOrder });
+      });
     });
   });
 
   describe('hasPlacedOrder$', () => {
     it('should initially be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.hasPlacedOrder$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.hasPlacedOrder$).toBe('a', { a: false });
+      });
     });
 
     it('should be true upon a successful place order and order load', () => {
-      const expected = cold('a', { a: true });
       store.dispatch(new DaffCartPlaceOrderSuccess({ orderId: mockOrder.id, cartId: 'cartId' }));
       store.dispatch(new DaffOrderLoadSuccess(mockOrder));
-      expect(facade.hasPlacedOrder$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.hasPlacedOrder$).toBe('a', { a: true });
+      });
     });
   });
 });

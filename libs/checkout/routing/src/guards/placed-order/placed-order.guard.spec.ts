@@ -6,7 +6,7 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   daffCartReducers,
@@ -35,6 +35,8 @@ describe('@daffodil/checkout/routing | DaffCheckoutPlacedOrderGuard', () => {
 
   const stubUrl = 'url';
 
+  let scheduler: TestScheduler;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -57,6 +59,10 @@ describe('@daffodil/checkout/routing | DaffCheckoutPlacedOrderGuard', () => {
 
     orderFactory = TestBed.inject(DaffOrderFactory);
     mockOrder = orderFactory.create();
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -71,9 +77,9 @@ describe('@daffodil/checkout/routing | DaffCheckoutPlacedOrderGuard', () => {
       });
 
       it('should allow activation when there is a placed order', () => {
-        const expected = cold('a', { a: true });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('a', { a: true });
+        });
       });
     });
 
@@ -83,9 +89,9 @@ describe('@daffodil/checkout/routing | DaffCheckoutPlacedOrderGuard', () => {
       });
 
       it('should not allow activation', () => {
-        const expected = cold('a', { a: false });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('a', { a: false });
+        });
       });
 
       it('should redirect to the given DaffCheckoutPlacedOrderGuardRedirectUrl', () => {

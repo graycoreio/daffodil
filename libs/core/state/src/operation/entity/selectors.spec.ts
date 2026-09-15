@@ -8,8 +8,8 @@ import {
   MockStore,
   provideMockStore,
 } from '@ngrx/store/testing';
-import { hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffIdentifiable } from '@daffodil/core';
 import {
@@ -77,8 +77,12 @@ describe('@daffodil/core/state | daffOperationEntityStateSelectorFactory', () =>
     });
 
     it('should return the specified entity', () => {
-      const expected = hot('a', { a: jasmine.objectContaining(entity) });
-      expect(result).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(result).toBe('a', { a: jasmine.objectContaining(entity) });
+      });
     });
   });
 
@@ -112,8 +116,12 @@ describe('@daffodil/core/state | daffOperationEntityStateSelectorFactory', () =>
         });
 
         it('should return the rest of the entities', () => {
-          const expected = hot('a', { a: jasmine.arrayContaining(entities.map(e => jasmine.objectContaining(e))) });
-          expect(result).toBeObservable(expected);
+          const testScheduler = new TestScheduler((actual, expected) => {
+            expect(actual).toEqual(expected);
+          });
+          testScheduler.run(({ expectObservable }) => {
+            expectObservable(result).toBe('a', { a: jasmine.arrayContaining(entities.map(e => jasmine.objectContaining(e))) });
+          });
         });
       });
 
@@ -141,8 +149,12 @@ describe('@daffodil/core/state | daffOperationEntityStateSelectorFactory', () =>
         });
 
         it('should return the rest of the entities', () => {
-          const expected = hot('a', { a: jasmine.arrayContaining(entities.map(e => jasmine.objectContaining(e))) });
-          expect(result).toBeObservable(expected);
+          const testScheduler = new TestScheduler((actual, expected) => {
+            expect(actual).toEqual(expected);
+          });
+          testScheduler.run(({ expectObservable }) => {
+            expectObservable(result).toBe('a', { a: jasmine.arrayContaining(entities.map(e => jasmine.objectContaining(e))) });
+          });
         });
       });
     });

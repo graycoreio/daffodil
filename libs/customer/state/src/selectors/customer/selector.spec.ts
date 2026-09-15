@@ -5,7 +5,7 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCustomer } from '@daffodil/customer';
 import {
@@ -28,6 +28,8 @@ describe('@daffodil/customer/state | daffCustomerGetSelectors', () => {
   let mockCustomer: DaffCustomer;
   let loading: boolean;
   let errors: string[];
+
+  let scheduler: TestScheduler;
 
   const {
     selectCustomer,
@@ -52,15 +54,19 @@ describe('@daffodil/customer/state | daffCustomerGetSelectors', () => {
     mockCustomer = customerFactory.create();
     loading = false;
     errors = [];
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe('selectCustomer', () => {
     describe('before the customer is loaded', () => {
       it('should return null', () => {
-        const selector = store.pipe(select(selectCustomer));
-        const expected = cold('a', { a: null });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectCustomer));
+          expectObservable(selector).toBe('a', { a: null });
+        });
       });
     });
 
@@ -70,10 +76,10 @@ describe('@daffodil/customer/state | daffCustomerGetSelectors', () => {
       });
 
       it('should select the customer', () => {
-        const selector = store.pipe(select(selectCustomer));
-        const expected = cold('a', { a: mockCustomer });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectCustomer));
+          expectObservable(selector).toBe('a', { a: mockCustomer });
+        });
       });
     });
   });

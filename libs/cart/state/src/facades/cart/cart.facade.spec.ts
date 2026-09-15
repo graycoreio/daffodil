@@ -4,7 +4,7 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCartOrderResult,
@@ -88,6 +88,7 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   let cartAddressFactory: DaffCartAddressFactory;
   let paymentFactory: DaffCartPaymentFactory;
   let shippingMethodFactory: DaffCartShippingRateFactory;
+  let scheduler: TestScheduler;
 
   let loading: DaffCartLoading;
   let errors: DaffCartErrors;
@@ -96,6 +97,10 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   const paymentId = 'even dumber';
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -174,46 +179,50 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
 
   describe('resolved$', () => {
     it('should be the resolved state', () => {
-      const expected = cold('a', { a: DaffCartResolveState.Default });
-      expect(facade.resolved$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.resolved$).toBe('a', { a: DaffCartResolveState.Default });
+      });
     });
   });
 
   describe('cart$', () => {
     it('should initially be cart with no defined properties', () => {
-      const expected = cold('a', { a: daffCartReducerInitialState.cart });
-      expect(facade.cart$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.cart$).toBe('a', { a: daffCartReducerInitialState.cart });
+      });
     });
 
     it('should be the cart upon a successful load', () => {
       const cart = cartFactory.create();
-      const expected = cold('a', { a: cart });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.cart$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.cart$).toBe('a', { a: cart });
+      });
     });
   });
 
   describe('errors$', () => {
     it('should initially be an empty errors object', () => {
-      const expected = cold('a', { a: errors });
-      expect(facade.errors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: errors });
+      });
     });
   });
 
   describe('loadingObject$', () => {
     it('returns cart loading object state', () => {
-      const expected = cold('a', { a: loading });
-
-      expect(facade.loadingObject$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loadingObject$).toBe('a', { a: loading });
+      });
     });
   });
 
   describe('featureLoading$', () => {
     describe('when all the cart operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.featureLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.featureLoading$).toBe('a', { a: false });
+        });
       });
     });
   });
@@ -221,9 +230,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('featureResolving$', () => {
     describe('when all the cart operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.featureResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.featureResolving$).toBe('a', { a: false });
+        });
       });
     });
   });
@@ -231,9 +240,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('featureMutating$', () => {
     describe('when all the cart operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.featureMutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.featureMutating$).toBe('a', { a: false });
+        });
       });
     });
   });
@@ -241,9 +250,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('loading$', () => {
     describe('when the cart operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.loading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.loading$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -253,9 +262,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.loading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.loading$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -263,9 +272,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('resolving$', () => {
     describe('when the cart operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.resolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.resolving$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -275,9 +284,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.resolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.resolving$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -285,9 +294,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('mutating$', () => {
     describe('when the cart operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.mutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.mutating$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -297,9 +306,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.mutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.mutating$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -307,9 +316,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('itemLoading$', () => {
     describe('when the cart item operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.itemLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.itemLoading$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -319,9 +328,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.itemLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.itemLoading$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -329,9 +338,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('itemAdding$', () => {
     describe('when the cart item add operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.itemAdding$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.itemAdding$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -345,9 +354,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.itemAdding$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.itemAdding$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -355,9 +364,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('itemResolving$', () => {
     describe('when the cart item operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.itemResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.itemResolving$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -367,9 +376,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.itemResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.itemResolving$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -377,9 +386,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('itemMutating$', () => {
     describe('when the cart item operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.itemMutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.itemMutating$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -391,9 +400,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.itemMutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.itemMutating$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -401,9 +410,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('billingAddressLoading$', () => {
     describe('when the cart billing operations have completed', () => {
       it('should return false state', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.billingAddressLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.billingAddressLoading$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -413,9 +422,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true state', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.billingAddressLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.billingAddressLoading$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -423,9 +432,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('billingAddressResolving$', () => {
     describe('when the cart billing operations have completed', () => {
       it('should return false state', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.billingAddressResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.billingAddressResolving$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -435,9 +444,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true state', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.billingAddressResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.billingAddressResolving$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -445,9 +454,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('billingAddressMutating$', () => {
     describe('when the cart billing operations have completed', () => {
       it('should return false state', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.billingAddressMutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.billingAddressMutating$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -457,9 +466,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true state', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.billingAddressMutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.billingAddressMutating$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -467,9 +476,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('shippingAddressLoading$', () => {
     describe('when the cart shipping operations have completed', () => {
       it('should return false state', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.shippingAddressLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingAddressLoading$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -479,9 +488,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true state', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.shippingAddressLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingAddressLoading$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -489,9 +498,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('shippingAddressResolving$', () => {
     describe('when the cart shipping operations have completed', () => {
       it('should return false state', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.shippingAddressResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingAddressResolving$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -501,9 +510,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true state', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.shippingAddressResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingAddressResolving$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -511,9 +520,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('shippingAddressMutating$', () => {
     describe('when the cart shipping operations have completed', () => {
       it('should return false state', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.shippingAddressMutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingAddressMutating$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -523,9 +532,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true state', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.shippingAddressMutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingAddressMutating$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -533,9 +542,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('shippingInformationLoading$', () => {
     describe('when the cart shipping operations have completed', () => {
       it('should return false state', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.shippingInformationLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingInformationLoading$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -545,9 +554,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true state', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.shippingInformationLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingInformationLoading$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -555,9 +564,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('shippingInformationResolving$', () => {
     describe('when the cart shipping operations have completed', () => {
       it('should return false state', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.shippingInformationResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingInformationResolving$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -567,9 +576,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true state', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.shippingInformationResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingInformationResolving$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -577,9 +586,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('shippingInformationMutating$', () => {
     describe('when the cart shipping operations have completed', () => {
       it('should return false state', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.shippingInformationMutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingInformationMutating$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -589,9 +598,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true state', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.shippingInformationMutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingInformationMutating$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -599,9 +608,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('shippingMethodsLoading$', () => {
     describe('when the cart shipping operations have completed', () => {
       it('should return false state', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.shippingMethodsLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingMethodsLoading$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -611,9 +620,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true state', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.shippingMethodsLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingMethodsLoading$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -621,9 +630,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('shippingMethodsResolving$', () => {
     describe('when the cart shipping operations have completed', () => {
       it('should return false state', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.shippingMethodsResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingMethodsResolving$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -633,9 +642,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true state', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.shippingMethodsResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.shippingMethodsResolving$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -643,9 +652,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('paymentLoading$', () => {
     describe('when the cart payment operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.paymentLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentLoading$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -655,9 +664,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.paymentLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentLoading$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -665,9 +674,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('paymentResolving$', () => {
     describe('when the cart payment operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.paymentResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentResolving$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -677,9 +686,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.paymentResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentResolving$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -687,9 +696,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('paymentMutating$', () => {
     describe('when the cart payment operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.paymentMutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentMutating$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -699,9 +708,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.paymentMutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentMutating$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -709,9 +718,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('paymentMethodsLoading$', () => {
     describe('when the cart payment operations have completed', () => {
       it('should return false state', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.paymentMethodsLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentMethodsLoading$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -721,9 +730,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true state', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.paymentMethodsLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentMethodsLoading$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -731,9 +740,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('paymentMethodsResolving$', () => {
     describe('when the cart payment operations have completed', () => {
       it('should return false state', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.paymentMethodsResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentMethodsResolving$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -743,9 +752,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true state', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.paymentMethodsResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentMethodsResolving$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -753,9 +762,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('couponLoading$', () => {
     describe('when the cart coupon operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.couponLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.couponLoading$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -765,9 +774,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.couponLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.couponLoading$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -775,9 +784,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('couponResolving$', () => {
     describe('when the cart coupon operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.couponResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.couponResolving$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -787,9 +796,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.couponResolving$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.couponResolving$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -797,9 +806,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('couponMutating$', () => {
     describe('when the cart coupon operations have completed', () => {
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.couponMutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.couponMutating$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -809,164 +818,186 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.couponMutating$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.couponMutating$).toBe('a', { a: true });
+        });
       });
     });
   });
 
   describe('cartErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.cartErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.cartErrors$).toBe('a', { a: []});
+      });
     });
 
     it('should contain an error upon a failed cart load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
-      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartLoadFailure([error]));
-      expect(facade.cartErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.cartErrors$).toBe('a', { a: [error]});
+      });
     });
   });
 
   describe('itemErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.itemErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.itemErrors$).toBe('a', { a: []});
+      });
     });
 
     it('should contain an error upon a failed item load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
-      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartItemLoadFailure([error], 'itemId'));
-      expect(facade.itemErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.itemErrors$).toBe('a', { a: [error]});
+      });
     });
   });
 
   describe('billingAddressErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.billingAddressErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.billingAddressErrors$).toBe('a', { a: []});
+      });
     });
 
     it('should contain an error upon a failed billing address load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
-      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartBillingAddressLoadFailure([error]));
-      expect(facade.billingAddressErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.billingAddressErrors$).toBe('a', { a: [error]});
+      });
     });
   });
 
   describe('shippingAddressErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.shippingAddressErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.shippingAddressErrors$).toBe('a', { a: []});
+      });
     });
 
     it('should contain an error upon a failed shipping address load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
-      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartShippingAddressLoadFailure([error]));
-      expect(facade.shippingAddressErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.shippingAddressErrors$).toBe('a', { a: [error]});
+      });
     });
   });
 
   describe('shippingInformationErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.shippingInformationErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.shippingInformationErrors$).toBe('a', { a: []});
+      });
     });
 
     it('should contain an error upon a failed shipping information load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
-      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartShippingInformationLoadFailure([error]));
-      expect(facade.shippingInformationErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.shippingInformationErrors$).toBe('a', { a: [error]});
+      });
     });
   });
 
   describe('shippingMethodsErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.shippingMethodsErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.shippingMethodsErrors$).toBe('a', { a: []});
+      });
     });
 
     it('should contain an error upon a failed shipping methods load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
-      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartShippingMethodsLoadFailure([error]));
-      expect(facade.shippingMethodsErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.shippingMethodsErrors$).toBe('a', { a: [error]});
+      });
     });
   });
 
   describe('paymentErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.paymentErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.paymentErrors$).toBe('a', { a: []});
+      });
     });
 
     it('should contain an error upon a failed payment load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
-      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartPaymentLoadFailure([error]));
-      expect(facade.paymentErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.paymentErrors$).toBe('a', { a: [error]});
+      });
     });
   });
 
   describe('paymentMethodsErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.paymentMethodsErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.paymentMethodsErrors$).toBe('a', { a: []});
+      });
     });
 
     it('should contain an error upon a failed payment methods load', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
-      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartPaymentMethodsLoadFailure([error]));
-      expect(facade.paymentMethodsErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.paymentMethodsErrors$).toBe('a', { a: [error]});
+      });
     });
   });
 
   describe('couponErrors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.couponErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.couponErrors$).toBe('a', { a: []});
+      });
     });
 
     it('should contain an error upon a failed coupon list', () => {
       const error: DaffStateError = { code: 'error code', message: 'error message' };
-      const expected = cold('a', { a: [error]});
       facade.dispatch(new DaffCartCouponListFailure([error]));
-      expect(facade.couponErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.couponErrors$).toBe('a', { a: [error]});
+      });
     });
   });
 
   describe('itemEntities$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.itemEntities$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.itemEntities$).toBe('a', { a: []});
+      });
     });
 
     it('should be the cart items upon a successful cart item list', () => {
       const statefulCartItems = statefulCartItemFactory.createMany(2, { daffState: <any>jasmine.anything() });
-      const expected = cold('a', { a: statefulCartItems });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
-      expect(facade.itemEntities$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.itemEntities$).toBe('a', { a: statefulCartItems });
+      });
     });
   });
 
   describe('totalItems$', () => {
     it('should initially be zero', () => {
-      const expected = cold('a', { a: 0 });
-      expect(facade.totalItems$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.totalItems$).toBe('a', { a: 0 });
+      });
     });
 
     it('should be the total number of cart items upon a successful cart item list', () => {
       const statefulCartItems = statefulCartItemFactory.createMany(2, { daffState: <any>jasmine.anything() });
-      const expected = cold('a', { a: statefulCartItems.reduce((acc, item) => acc + item.qty, 0) });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
-      expect(facade.totalItems$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.totalItems$).toBe('a', { a: statefulCartItems.reduce((acc, item) => acc + item.qty, 0) });
+      });
     });
   });
 
@@ -974,9 +1005,10 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
 
     it('should return whether or not the cart has out of stock items', () => {
       const statefulCartItems = statefulCartItemFactory.createMany(2, { daffState: <any>jasmine.anything() });
-      const expected = cold('a', { a: false });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
-      expect(facade.hasOutOfStockItems$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.hasOutOfStockItems$).toBe('a', { a: false });
+      });
     });
   });
 
@@ -986,9 +1018,10 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
         in_stock: false,
         daffState: <any>jasmine.anything(),
       });
-      const expected = cold('a', { a: statefulCartItems });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
-      expect(facade.outOfStockItems$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.outOfStockItems$).toBe('a', { a: statefulCartItems });
+      });
     });
   });
 
@@ -998,29 +1031,32 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
         in_stock: true,
         daffState: <any>jasmine.anything(),
       });
-      const expected = cold('a', { a: statefulCartItems });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
-      expect(facade.inStockItems$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.inStockItems$).toBe('a', { a: statefulCartItems });
+      });
     });
   });
 
   describe('itemDictionary$', () => {
     it('should initially be an empty object', () => {
-      const expected = cold('a', { a: {}});
-      expect(facade.itemDictionary$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.itemDictionary$).toBe('a', { a: {}});
+      });
     });
 
     it('should be the cart items upon a successful cart item list', () => {
       const statefulCartItems = statefulCartItemFactory.createMany(2, { daffState: <any>jasmine.anything() });
-      const expected = cold('a', {
-        a:
-          statefulCartItems.reduce((acc, item) => ({
-            ...acc,
-            [item.id]: item,
-          }), {}),
-      });
       facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
-      expect(facade.itemDictionary$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.itemDictionary$).toBe('a', {
+          a:
+            statefulCartItems.reduce((acc, item) => ({
+              ...acc,
+              [item.id]: item,
+            }), {}),
+        });
+      });
     });
   });
 
@@ -1042,8 +1078,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return null', () => {
-        const expected = cold('a', { a: null });
-        expect(facade.paymentId$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentId$).toBe('a', { a: null });
+        });
       });
     });
 
@@ -1059,8 +1096,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return null', () => {
-        const expected = cold('a', { a: null });
-        expect(facade.paymentId$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentId$).toBe('a', { a: null });
+        });
       });
     });
 
@@ -1076,8 +1114,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return undefined', () => {
-        const expected = cold('a', { a: undefined });
-        expect(facade.paymentId$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentId$).toBe('a', { a: undefined });
+        });
       });
     });
 
@@ -1093,8 +1132,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return the platform agnostic payment ID', () => {
-        const expected = cold('a', { a: paymentId });
-        expect(facade.paymentId$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.paymentId$).toBe('a', { a: paymentId });
+        });
       });
     });
   });
@@ -1102,8 +1142,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
   describe('isCartEmpty$', () => {
     it('should return whether the cart is empty', () => {
       const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.items.length === 0 });
-      expect(facade.isCartEmpty$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.isCartEmpty$).toBe('a', { a: cart.items.length === 0 });
+      });
     });
   });
 
@@ -1125,9 +1166,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
         });
 
         it('should return true', () => {
-          const expected = cold('a', { a: true });
-
-          expect(facade.isBillingSameAsShipping$).toBeObservable(expected);
+          scheduler.run(({ expectObservable }) => {
+            expectObservable(facade.isBillingSameAsShipping$).toBe('a', { a: true });
+          });
         });
       });
 
@@ -1138,9 +1179,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
         });
 
         it('should return false', () => {
-          const expected = cold('a', { a: false });
-
-          expect(facade.isBillingSameAsShipping$).toBeObservable(expected);
+          scheduler.run(({ expectObservable }) => {
+            expectObservable(facade.isBillingSameAsShipping$).toBe('a', { a: false });
+          });
         });
       });
     });
@@ -1152,9 +1193,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.isBillingSameAsShipping$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.isBillingSameAsShipping$).toBe('a', { a: false });
+        });
       });
     });
 
@@ -1165,17 +1206,18 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.isBillingSameAsShipping$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.isBillingSameAsShipping$).toBe('a', { a: false });
+        });
       });
     });
   });
 
   describe('orderResultLoading$', () => {
     it('should initially be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.orderResultLoading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.orderResultLoading$).toBe('a', { a: false });
+      });
     });
 
     describe('when there is a place order request in progress', () => {
@@ -1184,16 +1226,18 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should be true', () => {
-        const expected = cold('a', { a: true });
-        expect(facade.orderResultLoading$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.orderResultLoading$).toBe('a', { a: true });
+        });
       });
     });
   });
 
   describe('orderResultErrors$', () => {
     it('should initially be empty', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.orderResultErrors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.orderResultErrors$).toBe('a', { a: []});
+      });
     });
 
     describe('when a place order request has failed', () => {
@@ -1205,16 +1249,18 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should contain the error', () => {
-        const expected = cold('a', { a: [error]});
-        expect(facade.orderResultErrors$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.orderResultErrors$).toBe('a', { a: [error]});
+        });
       });
     });
   });
 
   describe('orderResult$', () => {
     it('should initially be a cart order result object with a null ID', () => {
-      const expected = cold('a', { a: jasmine.objectContaining({ orderId: null, cartId: null }) });
-      expect(facade.orderResult$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.orderResult$).toBe('a', { a: jasmine.objectContaining({ orderId: null, cartId: null }) });
+      });
     });
 
     describe('when a place order request has succeeded', () => {
@@ -1223,16 +1269,18 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should be the cart order result object', () => {
-        const expected = cold('a', { a: mockCartOrderResult });
-        expect(facade.orderResult$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.orderResult$).toBe('a', { a: mockCartOrderResult });
+        });
       });
     });
   });
 
   describe('orderResultId$', () => {
     it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.orderResultId$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.orderResultId$).toBe('a', { a: null });
+      });
     });
 
     describe('when a place order request has succeeded', () => {
@@ -1241,16 +1289,18 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should be the cart order result ID', () => {
-        const expected = cold('a', { a: mockCartOrderResult.orderId });
-        expect(facade.orderResultId$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.orderResultId$).toBe('a', { a: mockCartOrderResult.orderId });
+        });
       });
     });
   });
 
   describe('orderResultCartId$', () => {
     it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.orderResultCartId$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.orderResultCartId$).toBe('a', { a: null });
+      });
     });
 
     describe('when a place order request has succeeded', () => {
@@ -1259,16 +1309,18 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should be the cart ID', () => {
-        const expected = cold('a', { a: mockCartOrderResult.cartId });
-        expect(facade.orderResultCartId$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.orderResultCartId$).toBe('a', { a: mockCartOrderResult.cartId });
+        });
       });
     });
   });
 
   describe('hasOrderResult$', () => {
     it('should initially be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.hasOrderResult$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.hasOrderResult$).toBe('a', { a: false });
+      });
     });
 
     describe('when a place order request has succeeded', () => {
@@ -1277,8 +1329,9 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should be true', () => {
-        const expected = cold('a', { a: true });
-        expect(facade.hasOrderResult$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.hasOrderResult$).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -1290,9 +1343,10 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       const cart = cartFactory.create({
         items: cartItems,
       });
-      const expected = cold('a', { a: cartItems[0].attributes });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getConfiguredCartItemAttributes(cart.items[0].id)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.getConfiguredCartItemAttributes(cart.items[0].id)).toBe('a', { a: cartItems[0].attributes });
+      });
     });
   });
 
@@ -1303,9 +1357,10 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       const cart = cartFactory.create({
         items: cartItems,
       });
-      const expected = cold('a', { a: cartItems[0].options });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCompositeCartItemOptions(cart.items[0].id)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.getCompositeCartItemOptions(cart.items[0].id)).toBe('a', { a: cartItems[0].options });
+      });
     });
   });
 
@@ -1315,9 +1370,10 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       const cart = cartFactory.create({
         items: statefulCartItemFactory.createMany(2, { daffState: <any>jasmine.anything() }),
       });
-      const expected = cold('a', { a: !cart.items[0].in_stock });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.isCartItemOutOfStock(cart.items[0].id)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.isCartItemOutOfStock(cart.items[0].id)).toBe('a', { a: !cart.items[0].in_stock });
+      });
     });
   });
 
@@ -1331,14 +1387,16 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should be true', () => {
-        const expected = cold('a', { a: true });
-        expect(facade.hasBillingAddress$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.hasBillingAddress$).toBe('a', { a: true });
+        });
       });
     });
 
     it('should initially be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.hasBillingAddress$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.hasBillingAddress$).toBe('a', { a: false });
+      });
     });
   });
 
@@ -1352,14 +1410,16 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should be true', () => {
-        const expected = cold('a', { a: true });
-        expect(facade.hasShippingAddress$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.hasShippingAddress$).toBe('a', { a: true });
+        });
       });
     });
 
     it('should initially be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.hasShippingAddress$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.hasShippingAddress$).toBe('a', { a: false });
+      });
     });
   });
 
@@ -1373,14 +1433,16 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should be true', () => {
-        const expected = cold('a', { a: true });
-        expect(facade.hasShippingMethod$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.hasShippingMethod$).toBe('a', { a: true });
+        });
       });
     });
 
     it('should initially be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.hasShippingMethod$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.hasShippingMethod$).toBe('a', { a: false });
+      });
     });
   });
 
@@ -1394,14 +1456,16 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should be true', () => {
-        const expected = cold('a', { a: true });
-        expect(facade.hasPaymentMethod$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.hasPaymentMethod$).toBe('a', { a: true });
+        });
       });
     });
 
     it('should initially be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.hasPaymentMethod$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.hasPaymentMethod$).toBe('a', { a: false });
+      });
     });
   });
 
@@ -1419,14 +1483,16 @@ describe('@daffodil/cart/state | DaffCartFacade', () => {
       });
 
       it('should be true', () => {
-        const expected = cold('a', { a: true });
-        expect(facade.canPlaceOrder$).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(facade.canPlaceOrder$).toBe('a', { a: true });
+        });
       });
     });
 
     it('should initially be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.canPlaceOrder$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.canPlaceOrder$).toBe('a', { a: false });
+      });
     });
   });
 });

@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffProductPageLoadSuccess,
@@ -32,12 +32,17 @@ describe('selectUpsellProductsState', () => {
   let productFactory: DaffProductFactory;
   let upsellProductFactory: DaffUpsellProductFactory;
   let mockProduct: DaffUpsellProduct;
+  let scheduler: TestScheduler;
   const {
     selectUpsellProductIds,
     selectUpsellProducts,
   } = getDaffUpsellProductsPageSelectors();
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -66,9 +71,10 @@ describe('selectUpsellProductsState', () => {
 
     it('returns the upsell product IDs', () => {
       const selector = store.pipe(select(selectUpsellProductIds));
-      const expected = cold('a', { a: mockProduct.upsell.map(({ id }) => id) });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockProduct.upsell.map(({ id }) => id) });
+      });
     });
   });
 
@@ -76,9 +82,10 @@ describe('selectUpsellProductsState', () => {
 
     it('returns the upsell products', () => {
       const selector = store.pipe(select(selectUpsellProducts));
-      const expected = cold('a', { a: mockProduct.upsell });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockProduct.upsell });
+      });
     });
   });
 });

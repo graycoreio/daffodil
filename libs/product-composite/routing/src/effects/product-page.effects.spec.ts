@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
 import { Observable } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffProductPageLoadSuccess } from '@daffodil/product/state';
 import {
@@ -69,65 +66,83 @@ describe('@daffodil/product-composite/routing | DaffProductCompositePageEffects'
   });
 
   describe('when ProductPageLoadSuccessAction is triggered', () => {
-    let expected;
 
     describe('when called with a route with a set query param', () => {
+      let productLoadSuccessAction: DaffProductPageLoadSuccess;
+
       beforeEach(() => {
         const response = {
           id: product.id,
           products: [product],
         };
-        const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
+        productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
         param = `${btoa(JSON.stringify(selection))}`;
-
-        actions$ = hot('--a', { a: productLoadSuccessAction });
-        expected = cold('--(abc)', {
-          a: new DaffCompositeProductApplyOption(product.id, product.items[0].id, product.items[0].options[0].id, product.items[0].options[0].quantity),
-          b: new DaffCompositeProductApplyOption(product.id, product.items[0].id, product.items[0].options[1].id, product.items[0].options[1].quantity),
-          c: new DaffCompositeProductApplyOption(product.id, product.items[1].id, product.items[1].options[0].id, product.items[1].options[0].quantity),
-        });
       });
 
       it('should apply the composite product options specified', () => {
-        expect(effects.preselectCompositeOptions$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: productLoadSuccessAction });
+          helpers.expectObservable(effects.preselectCompositeOptions$).toBe('--(abc)', {
+            a: new DaffCompositeProductApplyOption(product.id, product.items[0].id, product.items[0].options[0].id, product.items[0].options[0].quantity),
+            b: new DaffCompositeProductApplyOption(product.id, product.items[0].id, product.items[0].options[1].id, product.items[0].options[1].quantity),
+            c: new DaffCompositeProductApplyOption(product.id, product.items[1].id, product.items[1].options[0].id, product.items[1].options[0].quantity),
+          });
+        });
       });
     });
 
     describe('when called with a route with no set query param', () => {
+      let productLoadSuccessAction: DaffProductPageLoadSuccess;
+
       beforeEach(() => {
         param = ``;
         const response = {
           id: product.id,
           products: [product],
         };
-        const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
-        actions$ = hot('--a', { a: productLoadSuccessAction });
-        expected = cold('---');
+        productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
       });
 
       it('should not apply any composite product options', () => {
-        expect(effects.preselectCompositeOptions$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: productLoadSuccessAction });
+          helpers.expectObservable(effects.preselectCompositeOptions$).toBe('---');
+        });
       });
     });
 
     describe('when called with a route with junk set as the query param', () => {
+      let productLoadSuccessAction: DaffProductPageLoadSuccess;
+
       beforeEach(() => {
         param = `iamjunkanddonotdecodetoanythingworthwhile`;
         const response = {
           id: product.id,
           products: [product],
         };
-        const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
-        actions$ = hot('--a', { a: productLoadSuccessAction });
-        expected = cold('---');
+        productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
       });
 
       it('should not error or apply any composite product options', () => {
-        expect(effects.preselectCompositeOptions$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: productLoadSuccessAction });
+          helpers.expectObservable(effects.preselectCompositeOptions$).toBe('---');
+        });
       });
     });
 
     describe('when called with a route with nothing set as the query param', () => {
+      let productLoadSuccessAction: DaffProductPageLoadSuccess;
+
       beforeEach(() => {
         param = ``;
 
@@ -135,17 +150,23 @@ describe('@daffodil/product-composite/routing | DaffProductCompositePageEffects'
           id: product.id,
           products: [product],
         };
-        const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
-        actions$ = hot('--a', { a: productLoadSuccessAction });
-        expected = cold('---');
+        productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
       });
 
       it('should not error or apply any composite product options', () => {
-        expect(effects.preselectCompositeOptions$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: productLoadSuccessAction });
+          helpers.expectObservable(effects.preselectCompositeOptions$).toBe('---');
+        });
       });
     });
 
     describe('when called with a route with an invalid selection set as the query param', () => {
+      let productLoadSuccessAction: DaffProductPageLoadSuccess;
+
       beforeEach(() => {
         param = `${btoa(JSON.stringify({
           somerandomid: ['iamnotanoptionid'],
@@ -155,13 +176,17 @@ describe('@daffodil/product-composite/routing | DaffProductCompositePageEffects'
           id: product.id,
           products: [product],
         };
-        const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
-        actions$ = hot('--a', { a: productLoadSuccessAction });
-        expected = cold('---');
+        productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
       });
 
       it('should not error or apply any composite product options', () => {
-        expect(effects.preselectCompositeOptions$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: productLoadSuccessAction });
+          helpers.expectObservable(effects.preselectCompositeOptions$).toBe('---');
+        });
       });
     });
   });

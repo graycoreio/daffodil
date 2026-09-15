@@ -2,10 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import {
-  cold,
-  hot,
-} from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCartOrderResultGuardRedirectUrl } from '@daffodil/cart/routing';
 import { DaffCartFacade } from '@daffodil/cart/state';
@@ -17,9 +14,14 @@ describe('@daffodil/cart/routing | DaffOrderResultGuard', () => {
   let guard: DaffOrderResultGuard;
   let facade;
   let router: Router;
+  let scheduler: TestScheduler;
   const stubUrl = 'url';
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       providers: [
         { provide: DaffCartOrderResultGuardRedirectUrl, useValue: stubUrl },
@@ -42,32 +44,31 @@ describe('@daffodil/cart/routing | DaffOrderResultGuard', () => {
 
   describe('canActivate', () => {
     describe('when there is an order result', () => {
-      beforeEach(() => {
-        facade.hasOrderResult$ = hot('--a', { a: true });
-      });
-
       it('should allow activation when there is a order result', () => {
-        const expected = cold('--a', { a: true });
-
-        expect(guard.canActivate()).toBeObservable(expected);
+        scheduler.run(({ hot, expectObservable }) => {
+          facade.hasOrderResult$ = hot('--a', { a: true });
+          expectObservable(guard.canActivate()).toBe('--a', { a: true });
+        });
       });
     });
 
     describe('when there is no order result', () => {
-      let expected;
-
       beforeEach(() => {
-        expected = cold('--a', { a: false });
         spyOn(router, 'navigateByUrl');
-        facade.hasOrderResult$ = hot('--a', { a: false });
       });
 
       it('should not allow activation', () => {
-        expect(guard.canActivate()).toBeObservable(expected);
+        scheduler.run(({ hot, expectObservable }) => {
+          facade.hasOrderResult$ = hot('--a', { a: false });
+          expectObservable(guard.canActivate()).toBe('--a', { a: false });
+        });
       });
 
       it('should redirect to the given DaffCartOrderResultGuardRedirectUrl', () => {
-        expect(guard.canActivate()).toBeObservable(expected);
+        scheduler.run(({ hot, expectObservable }) => {
+          facade.hasOrderResult$ = hot('--a', { a: false });
+          expectObservable(guard.canActivate()).toBe('--a', { a: false });
+        });
         expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
       });
     });

@@ -5,7 +5,7 @@ import {
   select,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   daffCartReducers,
@@ -47,6 +47,8 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
   let mockOrderItem: DaffOrderItem;
   let mockOrderTotal: DaffOrderTotal;
   let orderId: DaffOrder['id'];
+
+  let scheduler: TestScheduler;
 
   const {
     selectAllOrders,
@@ -99,14 +101,18 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       data: daffIdentifiableArrayToDict([mockOrder]),
     });
     orderId = mockOrder.id;
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe('selectAllOrders', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectAllOrders));
-      const expected = cold('a', { a: []});
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectAllOrders));
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -115,20 +121,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select all of the orders', () => {
-        const selector = store.pipe(select(selectAllOrders));
-        const expected = cold('a', { a: [mockOrder]});
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectAllOrders));
+          expectObservable(selector).toBe('a', { a: [mockOrder]});
+        });
       });
     });
   });
 
   describe('selectOrderEntities', () => {
     it('should initially be an empty object', () => {
-      const selector = store.pipe(select(selectOrderEntities));
-      const expected = cold('a', { a: {}});
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderEntities));
+        expectObservable(selector).toBe('a', { a: {}});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -137,20 +143,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select all of the orders', () => {
-        const selector = store.pipe(select(selectOrderEntities));
-        const expected = cold('a', { a: { [orderId]: mockOrder }});
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderEntities));
+          expectObservable(selector).toBe('a', { a: { [orderId]: mockOrder }});
+        });
       });
     });
   });
 
   describe('selectOrderIds', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderIds));
-      const expected = cold('a', { a: []});
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderIds));
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -159,20 +165,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select all of the order IDs', () => {
-        const selector = store.pipe(select(selectOrderIds));
-        const expected = cold('a', { a: [orderId]});
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderIds));
+          expectObservable(selector).toBe('a', { a: [orderId]});
+        });
       });
     });
   });
 
   describe('selectOrderTotal', () => {
     it('should initially be 0', () => {
-      const selector = store.pipe(select(selectOrderTotal));
-      const expected = cold('a', { a: 0 });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderTotal));
+        expectObservable(selector).toBe('a', { a: 0 });
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -181,20 +187,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the total number of orders', () => {
-        const selector = store.pipe(select(selectOrderTotal));
-        const expected = cold('a', { a: 1 });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderTotal));
+          expectObservable(selector).toBe('a', { a: 1 });
+        });
       });
     });
   });
 
   describe('selectOrderTotals', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderTotals(mockOrder.id)));
-      const expected = cold('a', { a: []});
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderTotals(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -203,20 +209,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the order\'s totals', () => {
-        const selector = store.pipe(select(selectOrderTotals(mockOrder.id)));
-        const expected = cold('a', { a: mockOrder.totals });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderTotals(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrder.totals });
+        });
       });
     });
   });
 
   describe('selectOrderAppliedCodes', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderAppliedCodes(mockOrder.id)));
-      const expected = cold('a', { a: []});
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderAppliedCodes(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -225,20 +231,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the order\'s applied codes', () => {
-        const selector = store.pipe(select(selectOrderAppliedCodes(mockOrder.id)));
-        const expected = cold('a', { a: mockOrder.applied_codes });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderAppliedCodes(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrder.applied_codes });
+        });
       });
     });
   });
 
   describe('selectOrderItems', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderItems(mockOrder.id)));
-      const expected = cold('a', { a: []});
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderItems(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -247,20 +253,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the order\'s items', () => {
-        const selector = store.pipe(select(selectOrderItems(mockOrder.id)));
-        const expected = cold('a', { a: mockOrder.items });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderItems(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrder.items });
+        });
       });
     });
   });
 
   describe('selectOrderBillingAddresses', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderBillingAddresses(mockOrder.id)));
-      const expected = cold('a', { a: []});
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderBillingAddresses(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -269,20 +275,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the order\'s addresses', () => {
-        const selector = store.pipe(select(selectOrderBillingAddresses(mockOrder.id)));
-        const expected = cold('a', { a: mockOrder.billing_addresses });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderBillingAddresses(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrder.billing_addresses });
+        });
       });
     });
   });
 
   describe('selectOrderShippingTotalAddresses', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderShippingTotalAddresses(mockOrder.id)));
-      const expected = cold('a', { a: []});
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderShippingTotalAddresses(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -291,20 +297,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the order\'s addresses', () => {
-        const selector = store.pipe(select(selectOrderShippingTotalAddresses(mockOrder.id)));
-        const expected = cold('a', { a: mockOrder.shipping_addresses });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderShippingTotalAddresses(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrder.shipping_addresses });
+        });
       });
     });
   });
 
   describe('selectOrderShipments', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderShipments(mockOrder.id)));
-      const expected = cold('a', { a: []});
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderShipments(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -313,20 +319,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the order\'s shipments', () => {
-        const selector = store.pipe(select(selectOrderShipments(mockOrder.id)));
-        const expected = cold('a', { a: mockOrder.shipments });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderShipments(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrder.shipments });
+        });
       });
     });
   });
 
   describe('selectOrderPayment', () => {
     it('should initially be null', () => {
-      const selector = store.pipe(select(selectOrderPayment(mockOrder.id)));
-      const expected = cold('a', { a: null });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderPayment(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -335,20 +341,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the order\'s payment', () => {
-        const selector = store.pipe(select(selectOrderPayment(mockOrder.id)));
-        const expected = cold('a', { a: mockOrder.payment });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderPayment(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrder.payment });
+        });
       });
     });
   });
 
   describe('selectOrderInvoices', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderInvoices(mockOrder.id)));
-      const expected = cold('a', { a: []});
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderInvoices(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -357,20 +363,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the order\'s invoices', () => {
-        const selector = store.pipe(select(selectOrderInvoices(mockOrder.id)));
-        const expected = cold('a', { a: mockOrder.invoices });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderInvoices(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrder.invoices });
+        });
       });
     });
   });
 
   describe('selectOrderCredits', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderCredits(mockOrder.id)));
-      const expected = cold('a', { a: []});
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderCredits(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -379,20 +385,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the order\'s credits', () => {
-        const selector = store.pipe(select(selectOrderCredits(mockOrder.id)));
-        const expected = cold('a', { a: mockOrder.credits });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderCredits(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrder.credits });
+        });
       });
     });
   });
 
   describe('selectOrderItem', () => {
     it('should initially be null', () => {
-      const selector = store.pipe(select(selectOrderItem(mockOrder.id, mockOrderItem.id)));
-      const expected = cold('a', { a: null });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderItem(mockOrder.id, mockOrderItem.id)));
+        expectObservable(selector).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -401,20 +407,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the order item', () => {
-        const selector = store.pipe(select(selectOrderItem(mockOrder.id, mockOrderItem.id)));
-        const expected = cold('a', { a: mockOrderItem });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderItem(mockOrder.id, mockOrderItem.id)));
+          expectObservable(selector).toBe('a', { a: mockOrderItem });
+        });
       });
     });
   });
 
   describe('selectOrderGrandTotal', () => {
     it('should initially be null', () => {
-      const selector = store.pipe(select(selectOrderGrandTotal(mockOrder.id)));
-      const expected = cold('a', { a: null });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderGrandTotal(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded with a grand total', () => {
@@ -424,20 +430,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the grand total', () => {
-        const selector = store.pipe(select(selectOrderGrandTotal(mockOrder.id)));
-        const expected = cold('a', { a: mockOrderTotal });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderGrandTotal(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrderTotal });
+        });
       });
     });
   });
 
   describe('selectOrderSubtotal', () => {
     it('should initially be null', () => {
-      const selector = store.pipe(select(selectOrderSubtotal(mockOrder.id)));
-      const expected = cold('a', { a: null });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderSubtotal(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded with a subtotal', () => {
@@ -447,20 +453,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the subtotal', () => {
-        const selector = store.pipe(select(selectOrderSubtotal(mockOrder.id)));
-        const expected = cold('a', { a: mockOrderTotal });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderSubtotal(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrderTotal });
+        });
       });
     });
   });
 
   describe('selectOrderShippingTotal', () => {
     it('should initially be null', () => {
-      const selector = store.pipe(select(selectOrderShippingTotal(mockOrder.id)));
-      const expected = cold('a', { a: null });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderShippingTotal(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded with a shipping total', () => {
@@ -470,20 +476,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the shipping total', () => {
-        const selector = store.pipe(select(selectOrderShippingTotal(mockOrder.id)));
-        const expected = cold('a', { a: mockOrderTotal });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderShippingTotal(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrderTotal });
+        });
       });
     });
   });
 
   describe('selectOrderDiscountTotal', () => {
     it('should initially be null', () => {
-      const selector = store.pipe(select(selectOrderDiscountTotal(mockOrder.id)));
-      const expected = cold('a', { a: null });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderDiscountTotal(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded with a discount total', () => {
@@ -493,20 +499,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the discount total', () => {
-        const selector = store.pipe(select(selectOrderDiscountTotal(mockOrder.id)));
-        const expected = cold('a', { a: mockOrderTotal });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderDiscountTotal(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrderTotal });
+        });
       });
     });
   });
 
   describe('selectOrderHasDiscount', () => {
     it('should initially be false', () => {
-      const selector = store.pipe(select(selectOrderHasDiscount(mockOrder.id)));
-      const expected = cold('a', { a: false });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderHasDiscount(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: false });
+      });
     });
 
     describe('when an order has been loaded with a discount total', () => {
@@ -516,10 +522,10 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should return true', () => {
-        const selector = store.pipe(select(selectOrderHasDiscount(mockOrder.id)));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderHasDiscount(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -530,20 +536,20 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should return false', () => {
-        const selector = store.pipe(select(selectOrderHasDiscount(mockOrder.id)));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderHasDiscount(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
   });
 
   describe('selectOrderTaxTotal', () => {
     it('should initially be null', () => {
-      const selector = store.pipe(select(selectOrderTaxTotal(mockOrder.id)));
-      const expected = cold('a', { a: null });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrderTaxTotal(mockOrder.id)));
+        expectObservable(selector).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded with a tax total', () => {
@@ -553,10 +559,10 @@ describe('@daffodil/order/state | getDaffOrderEntitySelectors', () => {
       });
 
       it('should select the tax total', () => {
-        const selector = store.pipe(select(selectOrderTaxTotal(mockOrder.id)));
-        const expected = cold('a', { a: mockOrderTotal });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          const selector = store.pipe(select(selectOrderTaxTotal(mockOrder.id)));
+          expectObservable(selector).toBe('a', { a: mockOrderTotal });
+        });
       });
     });
   });

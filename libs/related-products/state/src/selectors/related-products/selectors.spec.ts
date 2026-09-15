@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffProductPageLoadSuccess,
@@ -32,12 +32,17 @@ describe('selectRelatedProductsState', () => {
   let productFactory: DaffProductFactory;
   let relatedProductFactory: DaffRelatedProductFactory;
   let mockProduct: DaffRelatedProduct;
+  let scheduler: TestScheduler;
   const {
     selectRelatedProductIds,
     selectRelatedProducts,
   } = getDaffRelatedProductsPageSelectors();
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -66,9 +71,10 @@ describe('selectRelatedProductsState', () => {
 
     it('returns the related product IDs', () => {
       const selector = store.pipe(select(selectRelatedProductIds));
-      const expected = cold('a', { a: mockProduct.related.map(({ id }) => id) });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockProduct.related.map(({ id }) => id) });
+      });
     });
   });
 
@@ -76,9 +82,10 @@ describe('selectRelatedProductsState', () => {
 
     it('returns the related products', () => {
       const selector = store.pipe(select(selectRelatedProducts));
-      const expected = cold('a', { a: mockProduct.related });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockProduct.related });
+      });
     });
   });
 });

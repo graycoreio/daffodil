@@ -4,7 +4,7 @@ import {
   StoreModule,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffNewsletterState,
@@ -20,6 +20,7 @@ import { selectDaffNewsletterSuccess } from './newsletter.selector';
 describe('DaffNewsletterSelectors', () => {
   let store: Store<DaffNewsletterStateRootSlice>;
   let mockNewsletter: DaffNewsletterState;
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -32,13 +33,17 @@ describe('DaffNewsletterSelectors', () => {
 
     mockNewsletter = daffNewsletterReducerInitialState;
     store = TestBed.inject(Store);
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe('selectDaffNewsletterSuccess', () =>{
     it('selects the success property of newsletter state', () => {
       const selector = store.pipe(select(selectDaffNewsletterSuccess));
-      const expected = cold('a', { a: mockNewsletter.success });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockNewsletter.success });
+      });
     });
   });
 });

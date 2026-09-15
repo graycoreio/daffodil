@@ -1,15 +1,17 @@
-import {
-  cold,
-  hot,
-} from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { observe } from './observe';
 
 describe('@daffodil/core | observe', () => {
   describe('when the passed value is an observable', () => {
     it('should return an equivalent observable', () => {
-      const val = 5;
-      expect(observe(hot('--a', { a: val }))).toBeObservable(cold('--a', { a: val }));
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(helpers => {
+        const val = 5;
+        helpers.expectObservable(observe(helpers.hot('--a', { a: val }))).toBe('--a', { a: val });
+      });
     });
   });
 

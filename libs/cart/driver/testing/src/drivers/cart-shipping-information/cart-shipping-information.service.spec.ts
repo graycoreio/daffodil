@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCart,
@@ -16,6 +16,7 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
   let service: DaffTestingCartShippingInformationService;
   let cartFactory: DaffCartFactory;
   let cartShippingRateFactory: DaffCartShippingRateFactory;
+  let scheduler: TestScheduler;
 
   let mockCart: DaffCart;
   let mockCartShippingInfo: DaffCartShippingRate;
@@ -37,6 +38,10 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
     mockCartShippingInfo = cartShippingRateFactory.create();
     mockCart.shipping_information = mockCartShippingInfo;
     cartId = mockCart.id;
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -45,8 +50,9 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
 
   describe('get | getting a cart\'s shipping info', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.get(cartId)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.get(cartId)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 
@@ -55,15 +61,17 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
     const info: Partial<DaffCartShippingRate> = { price: newPrice };
 
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.update(cartId, info)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.update(cartId, info)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 
   describe('delete | deleting the selected shipping method', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.delete(cartId)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.delete(cartId)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 });

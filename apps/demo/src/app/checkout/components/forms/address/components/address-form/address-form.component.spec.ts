@@ -7,8 +7,8 @@ import {
 import { By } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCountry } from '@daffodil/geography';
 import { DaffGeographyTestingDriverModule } from '@daffodil/geography/driver/testing';
@@ -101,7 +101,12 @@ describe('DemoCheckoutAddressFormComponent', () => {
     });
 
     it('should render a list of the subdivisions', () => {
-      expect(component.stateSelectValues$).toBeObservable(cold('a', { a: mockCountry.subdivisions }));
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(component.stateSelectValues$).toBe('a', { a: mockCountry.subdivisions });
+      });
     });
   });
 });

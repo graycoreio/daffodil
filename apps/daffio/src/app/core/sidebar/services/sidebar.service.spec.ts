@@ -3,7 +3,6 @@ import {
   BreakpointState,
 } from '@angular/cdk/layout';
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 
@@ -21,8 +20,13 @@ describe('DaffioSidebarService', () => {
   let service: DaffioSidebarService;
   let dataSpy: BehaviorSubject<DaffioRoute['data']>;
   let breakpointSpy: BehaviorSubject<BreakpointState>;
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     dataSpy = new BehaviorSubject({});
     breakpointSpy = new BehaviorSubject({
       matches: false,
@@ -54,19 +58,25 @@ describe('DaffioSidebarService', () => {
       dataSpy.next({
         sidebarMode: DaffSidebarModeEnum.Side,
       });
-      expect(service.mode$).toBeObservable(cold('a', { a: DaffSidebarModeEnum.Side }));
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.mode$).toBe('a', { a: DaffSidebarModeEnum.Side });
+      });
     });
 
     it('should default the mode to side-fixed', () => {
       dataSpy.next({});
-      expect(service.mode$).toBeObservable(cold('a', { a: DaffSidebarModeEnum.SideFixed }));
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.mode$).toBe('a', { a: DaffSidebarModeEnum.SideFixed });
+      });
     });
   });
 
   it('should have a mode of under when the viewport is smaller than big tablet', () => {
     breakpointSpy.next({ matches: false, breakpoints: {}});
 
-    expect(service.mode$).toBeObservable(cold('(ab)', { a: DaffSidebarModeEnum.SideFixed, b: DaffSidebarModeEnum.Under }));
+    scheduler.run(({ expectObservable }) => {
+      expectObservable(service.mode$).toBe('(ab)', { a: DaffSidebarModeEnum.SideFixed, b: DaffSidebarModeEnum.Under });
+    });
   });
 
   describe('activeRegistration$', () => {
@@ -84,14 +94,12 @@ describe('DaffioSidebarService', () => {
     });
 
     it('should default to the nav links registration', () => {
-      expect(service.activeRegistration$).toBeObservable(cold('a', { a: testRegistration }));
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.activeRegistration$).toBe('a', { a: testRegistration });
+      });
     });
 
     it('should only emit an activeRegistration when the sidebar actually changes', () => {
-      const scheduler = new TestScheduler((actual, expected) => {
-        expect(actual).toEqual(expected);
-      });
-
       scheduler.run(({ expectObservable, cold: coldMarble }) => {
         coldMarble('-a').subscribe(() => {
           dataSpy.next({
@@ -110,7 +118,9 @@ describe('DaffioSidebarService', () => {
       });
 
       it('should not return a registration', () => {
-        expect(service.activeRegistration$).toBeObservable(cold('a', { a: undefined }));
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.activeRegistration$).toBe('a', { a: undefined });
+        });
       });
     });
 
@@ -128,7 +138,9 @@ describe('DaffioSidebarService', () => {
       });
 
       it('should return the registration', () => {
-        expect(service.activeRegistration$).toBeObservable(cold('a', { a: testRegistration }));
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.activeRegistration$).toBe('a', { a: testRegistration });
+        });
       });
     });
   });

@@ -6,7 +6,7 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCart,
@@ -37,6 +37,7 @@ describe('@daffodil/cart/routing | DaffCartInStockItemsGuard', () => {
   let service: DaffCartInStockItemsGuard;
   let store: Store<any>;
   let router: Router;
+  let scheduler: TestScheduler;
 
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
@@ -47,6 +48,10 @@ describe('@daffodil/cart/routing | DaffCartInStockItemsGuard', () => {
   const stubUrl = 'url';
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       providers: [
         { provide: DaffCartInStockItemsGuardRedirectUrl, useValue: stubUrl },
@@ -93,9 +98,9 @@ describe('@daffodil/cart/routing | DaffCartInStockItemsGuard', () => {
       });
 
       it('should allow activation', () => {
-        const expected = cold('(a|)', { a: true });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: true });
+        });
       });
     });
 
@@ -113,9 +118,9 @@ describe('@daffodil/cart/routing | DaffCartInStockItemsGuard', () => {
       });
 
       it('should not allow activation', () => {
-        const expected = cold('(a|)', { a: false });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: false });
+        });
       });
 
       it('should redirect to the given DaffCartInStockItemsGuardRedirectUrl', () => {
@@ -138,9 +143,9 @@ describe('@daffodil/cart/routing | DaffCartInStockItemsGuard', () => {
       });
 
       it('should allow activation', () => {
-        const expected = cold('(a|)', { a: true });
-
-        expect(service.canActivateChild()).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.canActivateChild()).toBe('(a|)', { a: true });
+        });
       });
     });
 
@@ -158,9 +163,9 @@ describe('@daffodil/cart/routing | DaffCartInStockItemsGuard', () => {
       });
 
       it('should not allow activation', () => {
-        const expected = cold('(a|)', { a: false });
-
-        expect(service.canActivateChild()).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.canActivateChild()).toBe('(a|)', { a: false });
+        });
       });
 
       it('should redirect to the given DaffCartInStockItemsGuardRedirectUrl', () => {

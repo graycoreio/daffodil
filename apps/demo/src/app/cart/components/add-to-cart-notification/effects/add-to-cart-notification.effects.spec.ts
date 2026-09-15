@@ -1,11 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
 import { Observable } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffAddToCart } from '@daffodil/cart/state';
 import { DaffModalService } from '@daffodil/design/modal';
@@ -36,17 +33,17 @@ describe('AddToCartNotificationEffects', () => {
 
   describe('addToCart$', () => {
 
-    let expected;
     const addToCartAction = new DaffAddToCart({ productId: 'id', qty: 1 });
 
-    beforeEach(() => {
-      const openAddToCartNotificationAction = new OpenAddToCartNotification();
-      actions$ = hot('--a', { a: addToCartAction });
-      expected = cold('--b', { b: openAddToCartNotificationAction });
-    });
-
     it('should dispatch a OpenAddToCartNotification action', () => {
-      expect(effects.addToCart$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(helpers => {
+        const openAddToCartNotificationAction = new OpenAddToCartNotification();
+        actions$ = helpers.hot('--a', { a: addToCartAction });
+        helpers.expectObservable(effects.addToCart$).toBe('--b', { b: openAddToCartNotificationAction });
+      });
     });
   });
 });

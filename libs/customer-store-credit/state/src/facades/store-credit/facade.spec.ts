@@ -4,7 +4,7 @@ import {
   Store,
   StoreModule,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
 import {
@@ -24,6 +24,7 @@ describe('@daffodil/customer-store-credit/state | DaffCustomerStoreCreditPageFac
   let storeCreditFactory: DaffCustomerStoreCreditFactory;
 
   let mockStoreCredit: DaffCustomerStoreCredit;
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -46,6 +47,10 @@ describe('@daffodil/customer-store-credit/state | DaffCustomerStoreCreditPageFac
     mockStoreCredit = storeCreditFactory.create();
 
     store.dispatch(new DaffCustomerStoreCreditLoadSuccess(mockStoreCredit));
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -63,8 +68,9 @@ describe('@daffodil/customer-store-credit/state | DaffCustomerStoreCreditPageFac
 
   describe('storeCredit$', () => {
     it('should contain the loaded credit', () => {
-      const expected = cold('a', { a: mockStoreCredit });
-      expect(facade.storeCredit$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.storeCredit$).toBe('a', { a: mockStoreCredit });
+      });
     });
   });
 });

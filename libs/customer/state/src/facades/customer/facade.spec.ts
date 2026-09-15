@@ -4,7 +4,7 @@ import {
   Store,
   StoreModule,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   daffCustomerAddressEntitiesReducer,
@@ -22,6 +22,8 @@ describe('@daffodil/customer/state | DaffCustomerPageFacade', () => {
   let facade: DaffCustomerPageFacade;
 
   let errors: string[];
+
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,6 +45,10 @@ describe('@daffodil/customer/state | DaffCustomerPageFacade', () => {
     facade = TestBed.inject(DaffCustomerPageFacade);
 
     errors = [];
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -60,22 +66,25 @@ describe('@daffodil/customer/state | DaffCustomerPageFacade', () => {
 
   describe('customer$', () => {
     it('should be null', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.customer$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.customer$).toBe('a', { a: null });
+      });
     });
   });
 
   describe('loading$', () => {
     it('should be false if the customer is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
   });
 
   describe('errors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: errors });
-      expect(facade.errors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: errors });
+      });
     });
   });
 });

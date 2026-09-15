@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffSearchResultCollection } from '@daffodil/search';
 import {
@@ -62,7 +62,13 @@ class TestDriver2 implements DaffSearchDriverKindedInterface {
 describe('@daffodil/search/driver/federated | DaffSearchFederatedDriver', () => {
   let service: DaffSearchFederatedDriver;
 
+  let scheduler: TestScheduler;
+
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       providers: [
         DaffSearchFederatedDriver,
@@ -85,14 +91,14 @@ describe('@daffodil/search/driver/federated | DaffSearchFederatedDriver', () => 
     });
 
     it('should invoke and collect the result from the injected drivers', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({
-        collection: {
-          testDriver1: jasmine.truthy(),
-          testDriver2: jasmine.truthy(),
-        },
-      }) });
-
-      expect(result).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(result).toBe('(a|)', { a: jasmine.objectContaining({
+          collection: {
+            testDriver1: jasmine.truthy(),
+            testDriver2: jasmine.truthy(),
+          },
+        }) });
+      });
     });
   });
 
@@ -104,12 +110,12 @@ describe('@daffodil/search/driver/federated | DaffSearchFederatedDriver', () => 
     });
 
     it('should invoke and collect the result from the injected drivers', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({
-        testIncremental1: jasmine.truthy(),
-        testIncremental2: jasmine.truthy(),
-      }) });
-
-      expect(result).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(result).toBe('(a|)', { a: jasmine.objectContaining({
+          testIncremental1: jasmine.truthy(),
+          testIncremental2: jasmine.truthy(),
+        }) });
+      });
     });
   });
 });

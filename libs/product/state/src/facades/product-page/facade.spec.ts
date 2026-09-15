@@ -4,7 +4,7 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   daffProductReducers,
@@ -23,8 +23,13 @@ describe('DaffProductPageFacade', () => {
   let store: Store<DaffProductStateRootSlice>;
   let facade: DaffProductPageFacade;
   let productFactory: DaffProductFactory;
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
@@ -56,32 +61,36 @@ describe('DaffProductPageFacade', () => {
 
   describe('loading$', () => {
     it('should be false if the product state is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
 
     it('should be true if the product state is loading', () => {
-      const expected = cold('a', { a: true });
       store.dispatch(new DaffProductPageLoad('1'));
-      expect(facade.loading$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: true });
+      });
     });
   });
 
   describe('product$', () => {
     it('should initially be undefined', () => {
-      const initial = cold('a', { a: undefined });
-      expect(facade.product$).toBeObservable(initial);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.product$).toBe('a', { a: undefined });
+      });
     });
 
     it('should be an observable of the currently selected product', () => {
       const product = productFactory.create();
-      const expected = cold('a', { a: product });
       store.dispatch(new DaffProductPageLoad(product.id));
       store.dispatch(new DaffProductPageLoadSuccess({
         id: product.id,
         products: [product],
       }));
-      expect(facade.product$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.product$).toBe('a', { a: product });
+      });
     });
   });
 });

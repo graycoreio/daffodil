@@ -6,7 +6,7 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartShippingMethodGuardRedirectUrl } from '@daffodil/cart/routing';
@@ -32,9 +32,14 @@ describe('@daffodil/cart/routing | DaffShippingMethodGuard', () => {
   let service: DaffShippingMethodGuard;
   let store: Store<any>;
   let router: Router;
+  let scheduler: TestScheduler;
   const stubUrl = 'url';
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       providers: [
         { provide: DaffCartShippingMethodGuardRedirectUrl, useValue: stubUrl },
@@ -66,9 +71,10 @@ describe('@daffodil/cart/routing | DaffShippingMethodGuard', () => {
     it('should allow activation when there is a shipping method', () => {
       const cart: DaffCart = TestBed.inject(DaffCartFactory).create();
       store.dispatch(new DaffCartLoadSuccess(cart));
-      const expected = cold('(a|)', { a: true });
 
-      expect(service.canActivate()).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.canActivate()).toBe('(a|)', { a: true });
+      });
     });
 
     describe('when there is no shipping method', () => {
@@ -82,9 +88,9 @@ describe('@daffodil/cart/routing | DaffShippingMethodGuard', () => {
       });
 
       it('should not allow activation', () => {
-        const expected = cold('(a|)', { a: false });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: false });
+        });
       });
 
       it('should redirect to the given DaffCartShippingMethodGuardRedirectUrl', () => {

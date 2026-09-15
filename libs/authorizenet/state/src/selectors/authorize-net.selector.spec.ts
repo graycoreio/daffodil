@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento';
 import {
@@ -24,6 +24,7 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetSelectors', () => {
 
   let store: Store<DaffAuthorizeNetStateRootSlice>;
   let mockError: DaffStateError;
+  let scheduler: TestScheduler;
   const {
     selectAuthorizeNetState,
     selectIsAcceptJsLoaded,
@@ -52,6 +53,10 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetSelectors', () => {
       method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
       payment_info: null,
     }));
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe('selectAuthorizeNetState', () => {
@@ -64,8 +69,9 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetSelectors', () => {
         acceptJsLoadError: null,
       };
       const selector = store.pipe(select(selectAuthorizeNetState));
-      const expected = cold('a', { a: expectedFeatureState });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: expectedFeatureState });
+      });
     });
   });
 
@@ -73,8 +79,9 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetSelectors', () => {
 
     it('selects whether the acceptJs library has loaded', () => {
       const selector = store.pipe(select(selectIsAcceptJsLoaded));
-      const expected = cold('a', { a: false });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: false });
+      });
     });
   });
 
@@ -82,8 +89,9 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetSelectors', () => {
 
     it('selects the loading state', () => {
       const selector = store.pipe(select(selectLoading));
-      const expected = cold('a', { a: false });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: false });
+      });
     });
   });
 
@@ -93,8 +101,9 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetSelectors', () => {
       store.dispatch(new DaffAuthorizeNetUpdatePaymentFailure(mockError));
 
       const selector = store.pipe(select(selectPaymentError));
-      const expected = cold('a', { a: mockError });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockError });
+      });
     });
   });
 
@@ -104,8 +113,9 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetSelectors', () => {
       store.dispatch(new DaffLoadAcceptJsFailure(mockError));
 
       const selector = store.pipe(select(selectAcceptJsLoadError));
-      const expected = cold('a', { a: mockError });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockError });
+      });
     });
   });
 });

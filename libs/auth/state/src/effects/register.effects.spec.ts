@@ -175,9 +175,9 @@ describe('@daffodil/auth/state | DaffAuthRegisterEffects', () => {
             }
           } else {
             if (el.isAutoLoginTrue) {
-              daffRegisterDriver.register.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+              daffRegisterDriver.register.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
             } else {
-              daffRegisterDriver.registerOnly.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+              daffRegisterDriver.registerOnly.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
             }
           }
 

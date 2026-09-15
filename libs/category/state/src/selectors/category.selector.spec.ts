@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCategory,
@@ -44,10 +44,15 @@ describe('@daffodil/category/state | DaffCategorySelectors', () => {
   let stubCategory: DaffCategory;
   let stubMetadata: DaffCategoryPageMetadata;
   let product: DaffProduct;
+  let scheduler: TestScheduler;
 
   const categorySelectors = getDaffCategorySelectors();
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -105,16 +110,18 @@ describe('@daffodil/category/state | DaffCategorySelectors', () => {
 
     it('selects the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCurrentCategory));
-      const expected = cold('a', { a: stubCategory });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: stubCategory });
+      });
     });
   });
 
   describe('selectCategoryPageProducts', () => {
     it('selects the products of the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageProducts));
-      const expected = cold('a', { a: [product]});
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: [product]});
+      });
     });
 
     it('selects the products in the right order', () => {
@@ -141,8 +148,9 @@ describe('@daffodil/category/state | DaffCategorySelectors', () => {
       ]);
       store.dispatch(loadAProducts);
       store.dispatch(loadA);
-      const expectedA = cold('a', { a: [productA, productB]});
-      expect(selector).toBeObservable(expectedA);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: [productA, productB]});
+      });
 
       //Load the same products in a different order
       const loadB = new DaffCategoryPageLoadSuccess({
@@ -161,10 +169,11 @@ describe('@daffodil/category/state | DaffCategorySelectors', () => {
         productB,
       ]);
 
-      const expectedB = cold('b', { b: [productB, productA]});
       store.dispatch(loadBProducts);
       store.dispatch(loadB);
-      expect(selector).toBeObservable(expectedB);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('b', { b: [productB, productA]});
+      });
     });
   });
 
@@ -172,8 +181,9 @@ describe('@daffodil/category/state | DaffCategorySelectors', () => {
 
     it('selects the category by id', () => {
       const selector = store.pipe(select(categorySelectors.selectCategory(stubCategory.id)));
-      const expected = cold('a', { a: stubCategory });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: stubCategory });
+      });
     });
 
     it('should not emit when an unrelated piece of state changes', () => {
@@ -192,8 +202,9 @@ describe('@daffodil/category/state | DaffCategorySelectors', () => {
 
     it('selects products by category', () => {
       const selector = store.pipe(select(categorySelectors.selectProductsByCategory(stubCategory.id)));
-      const expected = cold('a', { a: [product]});
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: [product]});
+      });
     });
 
     it('should not emit when an unrelated piece of state changes', () => {
@@ -212,8 +223,9 @@ describe('@daffodil/category/state | DaffCategorySelectors', () => {
 
     it('selects products by category', () => {
       const selector = store.pipe(select(categorySelectors.selectTotalProductsByCategory(stubCategory.id)));
-      const expected = cold('a', { a: 1 });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: 1 });
+      });
     });
 
     it('should not emit when an unrelated piece of state changes', () => {

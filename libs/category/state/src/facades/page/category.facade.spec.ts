@@ -4,7 +4,7 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCategory,
@@ -49,8 +49,13 @@ describe('@daffodil/category/state | DaffCategoryFacade', () => {
   let stubCategory: DaffCategory;
   let stubCategoryMetadata: DaffCategoryPageMetadata;
   let stubProduct: DaffProduct;
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -95,44 +100,50 @@ describe('@daffodil/category/state | DaffCategoryFacade', () => {
 
   describe('category$', () => {
     it('should be undefined initially', () => {
-      const expected = cold('a', { a: undefined });
-      expect(facade.category$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.category$).toBe('a', { a: undefined });
+      });
     });
 
     it('should be a category after a category is loaded successfully', () => {
-      const expected = cold('a', { a: stubCategory });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
-      expect(facade.category$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.category$).toBe('a', { a: stubCategory });
+      });
     });
   });
 
   describe('loadingState$', () => {
 
     it('should return an observable of the daffState', () => {
-      const expected = cold('a', { a: DaffState.Stable });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
-      expect(facade.loadingState$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.loadingState$).toBe('a', { a: DaffState.Stable });
+      });
     });
   });
 
   describe('products$', () => {
     it('should be undefined initially', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.products$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.products$).toBe('a', { a: []});
+      });
     });
 
     it('should return an observable of the selectCategoryProducts state', () => {
-      const expected = cold('a', { a: [stubProduct]});
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       store.dispatch(new DaffProductGridLoadSuccess([stubProduct]));
-      expect(facade.products$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.products$).toBe('a', { a: [stubProduct]});
+      });
     });
   });
 
   describe('errors$', () => {
     it('should be an empty array initially', () => {
-      const initial = cold('a', { a: []});
-      expect(facade.errors$).toBeObservable(initial);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: []});
+      });
     });
 
     it('should be an observable of an array of the current errors', () => {
@@ -140,72 +151,80 @@ describe('@daffodil/category/state | DaffCategoryFacade', () => {
         code: 'error code',
         message: 'Failed to load the category',
       };
-      const expected = cold('a', { a: [error]});
       store.dispatch(new DaffCategoryPageLoad({ id: 'id', kind: DaffCategoryRequestKind.ID }));
       store.dispatch(new DaffCategoryPageLoadFailure(error));
-      expect(facade.errors$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: [error]});
+      });
     });
   });
 
   describe('getCategoryById', () => {
 
     it('should be an observable of a category that matches the provided id', () => {
-      const expected = cold('a', { a: stubCategory });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       store.dispatch(new DaffProductGridLoadSuccess([stubProduct]));
-      expect(facade.getCategoryById(stubCategory.id)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.getCategoryById(stubCategory.id)).toBe('a', { a: stubCategory });
+      });
     });
   });
 
   describe('getProductsByCategory', () => {
     it('should be an observable of an array of products that are filtered by the provided category id', () => {
-      const expected = cold('a', { a: [stubProduct]});
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       store.dispatch(new DaffProductGridLoadSuccess([stubProduct]));
-      expect(facade.getProductsByCategory(stubCategory.id)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.getProductsByCategory(stubCategory.id)).toBe('a', { a: [stubProduct]});
+      });
     });
   });
 
   describe('getTotalProductsByCategory', () => {
 
     it('should be an observable of the number of products that are filtered by the provided category id', () => {
-      const expected = cold('a', { a: 1 });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
       store.dispatch(new DaffProductGridLoadSuccess([stubProduct]));
-      expect(facade.getTotalProductsByCategory(stubCategory.id)).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.getTotalProductsByCategory(stubCategory.id)).toBe('a', { a: 1 });
+      });
     });
   });
 
   describe('isCategoryEmpty$', () => {
 
     it('should return false when the category has products', () => {
-      const expected = cold('a', { a: false });
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: [stubProduct]}));
-      expect(facade.isCategoryEmpty$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.isCategoryEmpty$).toBe('a', { a: false });
+      });
     });
 
     it('should return true when the category has no products', () => {
-      const expected = cold('a', { a: true });
       stubCategoryMetadata.ids = [];
       stubCategoryMetadata.count = 0;
       store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageMetadata: stubCategoryMetadata, products: []}));
-      expect(facade.isCategoryEmpty$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.isCategoryEmpty$).toBe('a', { a: true });
+      });
     });
   });
 
   describe('mutating$', () => {
 
     it('should return whether the category page is mutating', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.mutating$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.mutating$).toBe('a', { a: false });
+      });
     });
   });
 
   describe('resolving$', () => {
 
     it('should return whether the category page is resolving', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.resolving$).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(facade.resolving$).toBe('a', { a: false });
+      });
     });
   });
 });

@@ -1,12 +1,18 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffTestingSearchDriver } from './search.service';
 
 describe('@daffodil/driver/testing | DaffTestingSearchDriver', () => {
   let service: DaffTestingSearchDriver;
 
+  let scheduler: TestScheduler;
+
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       providers: [
         DaffTestingSearchDriver,
@@ -22,15 +28,17 @@ describe('@daffodil/driver/testing | DaffTestingSearchDriver', () => {
 
   describe('search', () => {
     it('should return a DaffSearchResultCollection', () => {
-      const expected = cold('(a|)', { a: jasmine.notEmpty() });
-      expect(service.search('query')).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.search('query')).toBe('(a|)', { a: jasmine.notEmpty() });
+      });
     });
   });
 
   describe('incremental', () => {
     it('should return a DaffSearchResultCollection', () => {
-      const expected = cold('(a|)', { a: jasmine.notEmpty() });
-      expect(service.incremental('query')).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.incremental('query')).toBe('(a|)', { a: jasmine.notEmpty() });
+      });
     });
   });
 });

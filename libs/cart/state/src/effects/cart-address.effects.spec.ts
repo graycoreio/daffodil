@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCart,
@@ -90,7 +87,6 @@ describe('@daffodil/cart/state | DaffCartAddressEffects', () => {
   });
 
   describe('when CartAddressUpdateAction is triggered', () => {
-    let expected;
     let cartAddressUpdateAction;
     const street = 'updatedStreet';
 
@@ -102,41 +98,46 @@ describe('@daffodil/cart/state | DaffCartAddressEffects', () => {
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
         getCartIdSpy.and.callFake(throwStorageError);
-
-        actions$ = hot('--a', { a: cartAddressUpdateAction });
-        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
-        expect(effects.update$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: cartAddressUpdateAction });
+          helpers.expectObservable(effects.update$).toBe('--b', { b: cartStorageFailureAction });
+        });
       });
     });
 
     describe('and the calls to the services are successful', () => {
-      beforeEach(() => {
-        driverUpdateSpy.and.returnValue(of(mockCart));
-        const cartAddressUpdateSuccessAction = new DaffCartAddressUpdateSuccess(mockCart);
-        actions$ = hot('--a', { a: cartAddressUpdateAction });
-        expected = cold('--b', { b: cartAddressUpdateSuccessAction });
-      });
-
       it('should dispatch a CartAddressUpdateSuccess action', () => {
-        expect(effects.update$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverUpdateSpy.and.returnValue(of(mockCart));
+          const cartAddressUpdateSuccessAction = new DaffCartAddressUpdateSuccess(mockCart);
+          actions$ = helpers.hot('--a', { a: cartAddressUpdateAction });
+          helpers.expectObservable(effects.update$).toBe('--b', { b: cartAddressUpdateSuccessAction });
+        });
       });
     });
 
     describe('and the call to CartAddressService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart address' };
-        const response = cold('#', {}, error);
-        driverUpdateSpy.and.returnValue(response);
-        const cartAddressUpdateFailureAction = new DaffCartAddressUpdateFailure([error]);
-        actions$ = hot('--a', { a: cartAddressUpdateAction });
-        expected = cold('--b', { b: cartAddressUpdateFailureAction });
-      });
-
       it('should dispatch a CartAddressUpdateFailure action', () => {
-        expect(effects.update$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart address' };
+          const response = helpers.cold<any>('#', {}, error);
+          driverUpdateSpy.and.returnValue(response);
+          const cartAddressUpdateFailureAction = new DaffCartAddressUpdateFailure([error]);
+          actions$ = helpers.hot('--a', { a: cartAddressUpdateAction });
+          helpers.expectObservable(effects.update$).toBe('--b', { b: cartAddressUpdateFailureAction });
+        });
       });
     });
   });

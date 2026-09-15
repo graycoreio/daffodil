@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffProductGridLoadSuccess,
@@ -27,6 +27,7 @@ describe('selectCompositeProductEntitiesState', () => {
   let store: Store<DaffCompositeProductStateRootSlice>;
   let compositeProductFactory: DaffCompositeProductFactory;
   let stubCompositeProduct: DaffCompositeProduct;
+  let scheduler: TestScheduler;
   const {
     selectCompositeProductIds,
     selectCompositeProductAppliedOptionsEntities,
@@ -36,6 +37,10 @@ describe('selectCompositeProductEntitiesState', () => {
   } = getDaffCompositeProductEntitiesSelectors();
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -57,9 +62,10 @@ describe('selectCompositeProductEntitiesState', () => {
 
     it('selects product ids', () => {
       const selector = store.pipe(select(selectCompositeProductIds));
-      const expected = cold('a', { a: [stubCompositeProduct.id]});
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: [stubCompositeProduct.id]});
+      });
     });
   });
 
@@ -83,9 +89,10 @@ describe('selectCompositeProductEntitiesState', () => {
       };
 
       const selector = store.pipe(select(selectCompositeProductAppliedOptionsEntities));
-      const expected = cold('a', { a: expectedDictionary });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: expectedDictionary });
+      });
     });
   });
 
@@ -93,9 +100,10 @@ describe('selectCompositeProductEntitiesState', () => {
 
     it('selects the total number of composite products', () => {
       const selector = store.pipe(select(selectCompositeProductTotal));
-      const expected = cold('a', { a: 1 });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: 1 });
+      });
     });
   });
 
@@ -103,14 +111,15 @@ describe('selectCompositeProductEntitiesState', () => {
 
     it('selects the composite product applied options of the given id', () => {
       const selector = store.pipe(select(selectCompositeProductAppliedOptions(stubCompositeProduct.id)));
-      const expected = cold('a', {
-        a: {
-          [stubCompositeProduct.items[0].id]: stubCompositeProduct.items[0].options[0],
-          [stubCompositeProduct.items[1].id]: stubCompositeProduct.items[1].options[0],
-        },
-      });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', {
+          a: {
+            [stubCompositeProduct.items[0].id]: stubCompositeProduct.items[0].options[0],
+            [stubCompositeProduct.items[1].id]: stubCompositeProduct.items[1].options[0],
+          },
+        });
+      });
     });
 
     it('should not emit when an unrelated piece of state changes', () => {
@@ -129,11 +138,12 @@ describe('selectCompositeProductEntitiesState', () => {
 
     it('selects the composite product applied options of the given id', () => {
       const selector = store.pipe(select(selectIsCompositeProductItemRequired(stubCompositeProduct.id, stubCompositeProduct.items[0].id)));
-      const expected = cold('a', {
-        a: stubCompositeProduct.items[0].required,
-      });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', {
+          a: stubCompositeProduct.items[0].required,
+        });
+      });
     });
 
     it('should not emit when an unrelated piece of state changes', () => {

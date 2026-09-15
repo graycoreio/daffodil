@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffProductReview,
@@ -26,6 +26,7 @@ describe('selectProductEntitiesState', () => {
   let store: Store<DaffReviewsStateRootSlice>;
   let reviewsFactory: DaffProductReviewsFactory;
   let mockProductReviews: DaffProductReviews;
+  let scheduler: TestScheduler;
 
   const {
     selectProductReview,
@@ -46,6 +47,10 @@ describe('selectProductEntitiesState', () => {
     mockProductReviews = reviewsFactory.create();
 
     store.dispatch(new DaffReviewsProductListSuccess(mockProductReviews));
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe('selectProductReview', () => {
@@ -57,9 +62,10 @@ describe('selectProductEntitiesState', () => {
 
     it('should select the product of the given id', () => {
       const selector = store.pipe(select(selectProductReview(mockReview.id)));
-      const expected = cold('a', { a: mockReview });
 
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockReview });
+      });
     });
 
     it('should not emit when an unrelated piece of state changes', () => {

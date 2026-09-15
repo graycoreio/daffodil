@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffAuthStateRootSlice,
@@ -23,6 +23,7 @@ import {
 
 describe('@daffodil/auth/state | daffAuthResetPasswordSelectorFactory', () => {
   let store: Store<DaffAuthStateRootSlice>;
+  let scheduler: TestScheduler;
 
   let state: DaffAuthResetPasswordReducerState;
   let loading: boolean;
@@ -35,6 +36,10 @@ describe('@daffodil/auth/state | daffAuthResetPasswordSelectorFactory', () => {
   } = daffAuthResetPasswordSelectorFactory();
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -58,8 +63,9 @@ describe('@daffodil/auth/state | daffAuthResetPasswordSelectorFactory', () => {
     it('selects the register state', () => {
       store.dispatch(new DaffResetPasswordLanding(token));
       const selector = store.pipe(select(selectAuthResetPasswordState));
-      const expected = cold('a', { a: state });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: state });
+      });
     });
   });
 
@@ -67,8 +73,9 @@ describe('@daffodil/auth/state | daffAuthResetPasswordSelectorFactory', () => {
     it('returns the reset password token', () => {
       store.dispatch(new DaffResetPasswordLanding(token));
       const selector = store.pipe(select(selectAuthResetPasswordToken));
-      const expected = cold('a', { a: token });
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: token });
+      });
     });
   });
 });

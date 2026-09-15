@@ -8,7 +8,7 @@ import {
   MockStore,
   provideMockStore,
 } from '@ngrx/store/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCollectionMetadata,
@@ -83,76 +83,116 @@ describe('@daffodil/core/state | DaffCollectionFacade', () => {
 
   describe('currentPage$', () => {
     it('should return an observable of the current page', () => {
-      const expected = cold('a', { a: collectionMetadata.currentPage });
-      expect(facade.currentPage$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(facade.currentPage$).toBe('a', { a: collectionMetadata.currentPage });
+      });
     });
   });
 
   describe('metadata$', () => {
     it('should return an observable of the collection metadata', () => {
-      const expected = cold('a', { a: collectionMetadata });
-      expect(facade.metadata$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(facade.metadata$).toBe('a', { a: collectionMetadata });
+      });
     });
   });
 
   describe('request$', () => {
     it('should return an observable of the collection request', () => {
-      const expected = cold('a', { a: {
-        appliedSortOption: collectionMetadata.appliedSortOption,
-        appliedSortDirection: collectionMetadata.appliedSortDirection,
-        currentPage: collectionMetadata.currentPage,
-        pageSize: collectionMetadata.pageSize,
-      }});
-      expect(facade.request$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(facade.request$).toBe('a', { a: {
+          appliedSortOption: collectionMetadata.appliedSortOption,
+          appliedSortDirection: collectionMetadata.appliedSortDirection,
+          currentPage: collectionMetadata.currentPage,
+          pageSize: collectionMetadata.pageSize,
+        }});
+      });
     });
   });
 
   describe('totalPages$', () => {
     it('should return an observable of the total number of pages', () => {
-      const expected = cold('a', { a: collectionMetadata.totalPages });
-      expect(facade.totalPages$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(facade.totalPages$).toBe('a', { a: collectionMetadata.totalPages });
+      });
     });
   });
 
   describe('count$', () => {
     it('should return an observable of the total number of entities', () => {
-      const expected = cold('a', { a: collectionMetadata.count });
-      expect(facade.count$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(facade.count$).toBe('a', { a: collectionMetadata.count });
+      });
     });
   });
 
   describe('pageSize$', () => {
     it('should return an observable of the page size', () => {
-      const expected = cold('a', { a: collectionMetadata.pageSize });
-      expect(facade.pageSize$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(facade.pageSize$).toBe('a', { a: collectionMetadata.pageSize });
+      });
     });
   });
 
   describe('sortOptions$', () => {
     it('should return an observable of the sort options', () => {
-      const expected = cold('a', { a: collectionMetadata.sortOptions.options });
-      expect(facade.sortOptions$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(facade.sortOptions$).toBe('a', { a: collectionMetadata.sortOptions.options });
+      });
     });
   });
 
   describe('appliedSortOption$', () => {
     it('should return an observable of the applied sort option', () => {
-      const expected = cold('a', { a: collectionMetadata.appliedSortOption });
-      expect(facade.appliedSortOption$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(facade.appliedSortOption$).toBe('a', { a: collectionMetadata.appliedSortOption });
+      });
     });
   });
 
   describe('appliedSortDirection$', () => {
     it('should return an observable of the applied sort direction', () => {
-      const expected = cold('a', { a: collectionMetadata.appliedSortDirection });
-      expect(facade.appliedSortDirection$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(facade.appliedSortDirection$).toBe('a', { a: collectionMetadata.appliedSortDirection });
+      });
     });
   });
 
   describe('filters$', () => {
     it('should return an observable of the filters', () => {
-      const expected = cold('a', { a: collectionMetadata.filters });
-      expect(facade.filters$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(facade.filters$).toBe('a', { a: collectionMetadata.filters });
+      });
     });
   });
 
@@ -160,8 +200,12 @@ describe('@daffodil/core/state | DaffCollectionFacade', () => {
     it('should return an observable of the applied filters', () => {
       const expectedFilters: DaffFilters = {};
 
-      const expected = cold('a', { a: expectedFilters });
-      expect(facade.appliedFilters$).toBeObservable(expected);
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
+      });
+      testScheduler.run(({ expectObservable }) => {
+        expectObservable(facade.appliedFilters$).toBe('a', { a: expectedFilters });
+      });
     });
   });
 });

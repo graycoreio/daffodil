@@ -5,7 +5,7 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCart,
@@ -74,6 +74,7 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
   let loading: DaffCartLoading;
   let errors: DaffCartErrors;
   let error: DaffStateError;
+  let scheduler: TestScheduler;
   const {
     selectCartValue,
 
@@ -133,6 +134,10 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
   } = getCartSelectors();
 
   beforeEach(() => {
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -199,51 +204,51 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
   describe('selectCartValue', () => {
     it('returns cart state', () => {
       const selector = store.pipe(select(selectCartValue));
-      const expected = cold('a', { a: cart });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: cart });
+      });
     });
   });
 
   describe('selectCartResolved', () => {
     it('should initially be default', () => {
       const selector = store.pipe(select(selectCartResolved));
-      const expected = cold('a', { a: DaffCartResolveState.Succeeded });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: DaffCartResolveState.Succeeded });
+      });
     });
 
     it('should be resolving after cart resolution has been initiated', () => {
       const selector = store.pipe(select(selectCartResolved));
-      const expected = cold('a', { a: DaffCartResolveState.Resolving });
       store.dispatch(new DaffResolveCart());
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: DaffCartResolveState.Resolving });
+      });
     });
 
     it('should be succeeded after cart resolution success', () => {
       const selector = store.pipe(select(selectCartResolved));
-      const expected = cold('a', { a: DaffCartResolveState.Succeeded });
       store.dispatch(new DaffResolveCartSuccess(cart));
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: DaffCartResolveState.Succeeded });
+      });
     });
 
     it('should be failed after cart resolution failure', () => {
       const selector = store.pipe(select(selectCartResolved));
-      const expected = cold('a', { a: DaffCartResolveState.Failed });
       store.dispatch(new DaffResolveCartFailure([error]));
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: DaffCartResolveState.Failed });
+      });
     });
   });
 
   describe('selectCartLoadingObject', () => {
     it('returns cart loading object state', () => {
       const selector = store.pipe(select(selectCartLoadingObject));
-      const expected = cold('a', { a: loading });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: loading });
+      });
     });
   });
 
@@ -251,9 +256,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when all the cart operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectCartFeatureLoading));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -264,9 +269,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartFeatureLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -277,9 +282,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartFeatureLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -290,9 +295,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectCartFeatureLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -303,9 +308,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectCartFeatureLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -316,9 +321,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectCartFeatureLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -329,9 +334,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectCartFeatureLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -342,9 +347,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartFeatureLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -355,9 +360,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectCartFeatureLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -368,9 +373,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartFeatureLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -379,9 +384,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when all the cart operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectCartFeatureResolving));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -392,9 +397,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartFeatureResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -405,9 +410,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartFeatureResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -418,9 +423,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectCartFeatureResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -431,9 +436,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectCartFeatureResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -444,9 +449,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectCartFeatureResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -457,9 +462,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectCartFeatureResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -470,9 +475,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartFeatureResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -483,9 +488,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectCartFeatureResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -496,9 +501,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartFeatureResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -507,9 +512,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when all the cart operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectCartFeatureMutating));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -520,9 +525,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartFeatureMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -533,9 +538,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartFeatureMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -546,9 +551,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectCartFeatureMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -559,9 +564,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectCartFeatureMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -572,9 +577,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectCartFeatureMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -585,9 +590,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartFeatureMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -598,9 +603,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartFeatureMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -615,9 +620,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartFeatureMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -626,9 +631,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectCartLoading));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -639,9 +644,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -650,9 +655,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectCartResolving));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -663,9 +668,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -674,9 +679,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectCartMutating));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -687,9 +692,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -698,9 +703,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart item operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectItemLoading));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -711,9 +716,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectItemLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -722,9 +727,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart item add operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectItemAdding));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -739,9 +744,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectItemAdding));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -750,9 +755,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart item operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectItemResolving));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -763,9 +768,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectItemResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -774,9 +779,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart billing operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectBillingAddressLoading));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -787,9 +792,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectBillingAddressLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -798,9 +803,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart billing operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectBillingAddressResolving));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -811,9 +816,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectBillingAddressResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -822,9 +827,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart billing operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectBillingAddressMutating));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -835,9 +840,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectBillingAddressMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -846,9 +851,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart shipping address operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectShippingAddressLoading));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -859,9 +864,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectShippingAddressLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -870,9 +875,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart shipping address operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectShippingAddressResolving));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -883,9 +888,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectShippingAddressResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -894,9 +899,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart shipping address operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectShippingAddressMutating));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -907,9 +912,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectShippingAddressMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -918,9 +923,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart shipping operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectShippingInformationLoading));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -931,9 +936,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectShippingInformationLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -942,9 +947,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart shipping operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectShippingInformationResolving));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -955,9 +960,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectShippingInformationResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -966,9 +971,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart shipping operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectShippingInformationMutating));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -979,9 +984,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectShippingInformationMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -990,9 +995,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart shipping methods operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectShippingMethodsLoading));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -1003,9 +1008,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectShippingMethodsLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -1014,9 +1019,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart shipping methods operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectShippingMethodsResolving));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -1027,9 +1032,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectShippingMethodsResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -1038,9 +1043,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart payment operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectPaymentLoading));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -1051,9 +1056,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectPaymentLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -1062,9 +1067,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart payment operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectPaymentResolving));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -1075,9 +1080,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectPaymentResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -1086,9 +1091,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart payment operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectPaymentMutating));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -1099,9 +1104,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectPaymentMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -1110,9 +1115,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart payment methods operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectPaymentMethodsLoading));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -1123,9 +1128,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectPaymentMethodsLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -1134,9 +1139,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart payment methods operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectPaymentMethodsResolving));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -1147,9 +1152,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true state', () => {
         const selector = store.pipe(select(selectPaymentMethodsResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -1158,9 +1163,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart coupon operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectCouponLoading));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -1171,9 +1176,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCouponLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -1182,9 +1187,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart coupon operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectCouponResolving));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -1195,9 +1200,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCouponResolving));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -1206,9 +1211,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart coupon operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectCouponMutating));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -1219,9 +1224,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCouponMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });
@@ -1229,90 +1234,90 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
   describe('selectCartErrorsObject', () => {
     it('returns cart errors object state', () => {
       const selector = store.pipe(select(selectCartErrorsObject));
-      const expected = cold('a', { a: errors });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors });
+      });
     });
   });
 
   describe('selectCartErrors', () => {
     it('returns cart errors state', () => {
       const selector = store.pipe(select(selectCartErrors));
-      const expected = cold('a', { a: errors[DaffCartOperationType.Cart] });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors[DaffCartOperationType.Cart] });
+      });
     });
   });
 
   describe('selectItemErrors', () => {
     it('returns item errors state', () => {
       const selector = store.pipe(select(selectItemErrors));
-      const expected = cold('a', { a: errors[DaffCartOperationType.Item] });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors[DaffCartOperationType.Item] });
+      });
     });
   });
 
   describe('selectBillingAddressErrors', () => {
     it('returns billing address errors state', () => {
       const selector = store.pipe(select(selectBillingAddressErrors));
-      const expected = cold('a', { a: errors[DaffCartOperationType.BillingAddress] });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors[DaffCartOperationType.BillingAddress] });
+      });
     });
   });
 
   describe('selectShippingAddressErrors', () => {
     it('returns shipping address errors state', () => {
       const selector = store.pipe(select(selectShippingAddressErrors));
-      const expected = cold('a', { a: errors[DaffCartOperationType.ShippingAddress] });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors[DaffCartOperationType.ShippingAddress] });
+      });
     });
   });
 
   describe('selectShippingInformationErrors', () => {
     it('returns shipping information errors state', () => {
       const selector = store.pipe(select(selectShippingInformationErrors));
-      const expected = cold('a', { a: errors[DaffCartOperationType.ShippingInformation] });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors[DaffCartOperationType.ShippingInformation] });
+      });
     });
   });
 
   describe('selectShippingMethodsErrors', () => {
     it('returns shipping methods errors state', () => {
       const selector = store.pipe(select(selectShippingMethodsErrors));
-      const expected = cold('a', { a: errors[DaffCartOperationType.ShippingMethods] });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors[DaffCartOperationType.ShippingMethods] });
+      });
     });
   });
 
   describe('selectPaymentErrors', () => {
     it('returns payment errors state', () => {
       const selector = store.pipe(select(selectPaymentErrors));
-      const expected = cold('a', { a: errors[DaffCartOperationType.Payment] });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors[DaffCartOperationType.Payment] });
+      });
     });
   });
 
   describe('selectPaymentMethodsErrors', () => {
     it('returns payment methods errors state', () => {
       const selector = store.pipe(select(selectPaymentMethodsErrors));
-      const expected = cold('a', { a: errors[DaffCartOperationType.PaymentMethods] });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors[DaffCartOperationType.PaymentMethods] });
+      });
     });
   });
 
   describe('selectCouponErrors', () => {
     it('returns coupon errors state', () => {
       const selector = store.pipe(select(selectCouponErrors));
-      const expected = cold('a', { a: errors[DaffCartOperationType.Coupon] });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors[DaffCartOperationType.Coupon] });
+      });
     });
   });
 
@@ -1326,25 +1331,25 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
         }],
       }));
       const selector = store.pipe(select(selectCartHasOutOfStockItems));
-      const expected = cold('a', { a: true });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: true });
+      });
     });
 
     it('should return false when no items are out of stock', () => {
       const selector = store.pipe(select(selectCartHasOutOfStockItems));
-      const expected = cold('a', { a: false });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: false });
+      });
     });
   });
 
   describe('selectIsCartEmpty', () => {
     it('selects whether the cart is empty', () => {
       const selector = store.pipe(select(selectIsCartEmpty));
-      const expected = cold('a', { a: cart.items.length === 0 });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: cart.items.length === 0 });
+      });
     });
   });
 
@@ -1360,9 +1365,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
         it('should return true', () => {
           const selector = store.pipe(select(selectIsBillingSameAsShipping));
-          const expected = cold('a', { a: true });
-
-          expect(selector).toBeObservable(expected);
+          scheduler.run(({ expectObservable }) => {
+            expectObservable(selector).toBe('a', { a: true });
+          });
         });
       });
 
@@ -1379,9 +1384,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
         it('should return false', () => {
           const selector = store.pipe(select(selectIsBillingSameAsShipping));
-          const expected = cold('a', { a: false });
-
-          expect(selector).toBeObservable(expected);
+          scheduler.run(({ expectObservable }) => {
+            expectObservable(selector).toBe('a', { a: false });
+          });
         });
       });
 
@@ -1398,9 +1403,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
         it('should return false', () => {
           const selector = store.pipe(select(selectIsBillingSameAsShipping));
-          const expected = cold('a', { a: false });
-
-          expect(selector).toBeObservable(expected);
+          scheduler.run(({ expectObservable }) => {
+            expectObservable(selector).toBe('a', { a: false });
+          });
         });
       });
     });
@@ -1415,9 +1420,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return false', () => {
         const selector = store.pipe(select(selectIsBillingSameAsShipping));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -1431,9 +1436,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return false', () => {
         const selector = store.pipe(select(selectIsBillingSameAsShipping));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
   });
@@ -1442,9 +1447,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart has a billing address', () => {
       it('should return true', () => {
         const selector = store.pipe(select(selectHasBillingAddress));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -1458,9 +1463,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return false', () => {
         const selector = store.pipe(select(selectHasBillingAddress));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
   });
@@ -1469,9 +1474,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart has a shipping address', () => {
       it('should return true', () => {
         const selector = store.pipe(select(selectHasShippingAddress));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -1485,9 +1490,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return false', () => {
         const selector = store.pipe(select(selectHasShippingAddress));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
   });
@@ -1496,9 +1501,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart has a selected shipping method', () => {
       it('should return true', () => {
         const selector = store.pipe(select(selectHasShippingMethod));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -1512,9 +1517,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return false', () => {
         const selector = store.pipe(select(selectHasShippingMethod));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
   });
@@ -1523,9 +1528,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart has a selected payment method', () => {
       it('should return true', () => {
         const selector = store.pipe(select(selectHasPaymentMethod));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -1539,9 +1544,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return false', () => {
         const selector = store.pipe(select(selectHasPaymentMethod));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -1558,9 +1563,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return false', () => {
         const selector = store.pipe(select(selectHasPaymentMethod));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
   });
@@ -1569,9 +1574,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
     describe('when the cart has all the required fields for placing an order', () => {
       it('should return true', () => {
         const selector = store.pipe(select(selectCanPlaceOrder));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
@@ -1585,9 +1590,9 @@ describe('@daffodil/cart/state | getCartSelectors', () => {
 
       it('should return false', () => {
         const selector = store.pipe(select(selectCanPlaceOrder));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        scheduler.run(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
   });

@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCart,
@@ -103,185 +100,201 @@ describe('@daffodil/cart/state | DaffCartCouponEffects', () => {
   });
 
   describe('when CartCouponApplyAction is triggered', () => {
-    let expected;
     const cartCouponApplyAction = new DaffCartCouponApply(mockCoupon);
 
     describe('and the call to CartCouponService is successful', () => {
-      beforeEach(() => {
-        driverApplySpy.and.returnValue(of(mockCart));
-        const cartCouponApplySuccessAction = new DaffCartCouponApplySuccess(mockCart);
-        actions$ = hot('--a', { a: cartCouponApplyAction });
-        expected = cold('--b', { b: cartCouponApplySuccessAction });
-      });
-
       it('should dispatch a CartCouponApplySuccess action', () => {
-        expect(effects.apply$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverApplySpy.and.returnValue(of(mockCart));
+          const cartCouponApplySuccessAction = new DaffCartCouponApplySuccess(mockCart);
+          actions$ = helpers.hot('--a', { a: cartCouponApplyAction });
+          helpers.expectObservable(effects.apply$).toBe('--b', { b: cartCouponApplySuccessAction });
+        });
       });
     });
 
     describe('and the call to CartCouponService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to apply coupon to cart' };
-        const response = cold('#', {}, error);
-        driverApplySpy.and.returnValue(response);
-        const cartCouponApplyFailureAction = new DaffCartCouponApplyFailure([error]);
-        actions$ = hot('--a', { a: cartCouponApplyAction });
-        expected = cold('--b', { b: cartCouponApplyFailureAction });
-      });
-
       it('should dispatch a CartCouponApplyFailure action', () => {
-        expect(effects.apply$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to apply coupon to cart' };
+          const response = helpers.cold<any>('#', {}, error);
+          driverApplySpy.and.returnValue(response);
+          const cartCouponApplyFailureAction = new DaffCartCouponApplyFailure([error]);
+          actions$ = helpers.hot('--a', { a: cartCouponApplyAction });
+          helpers.expectObservable(effects.apply$).toBe('--b', { b: cartCouponApplyFailureAction });
+        });
       });
     });
 
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
         getCartIdSpy.and.callFake(throwStorageError);
-
-        actions$ = hot('--a', { a: cartCouponApplyAction });
-        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
-        expect(effects.apply$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: cartCouponApplyAction });
+          helpers.expectObservable(effects.apply$).toBe('--b', { b: cartStorageFailureAction });
+        });
       });
     });
   });
 
   describe('when CartCouponListAction is triggered', () => {
-    let expected;
     const cartCouponListAction = new DaffCartCouponList();
 
     describe('and the call to CartCouponService is successful', () => {
-      beforeEach(() => {
-        driverListSpy.and.returnValue(of([mockCoupon]));
-        const cartCouponListSuccessAction = new DaffCartCouponListSuccess([mockCoupon]);
-        actions$ = hot('--a', { a: cartCouponListAction });
-        expected = cold('--b', { b: cartCouponListSuccessAction });
-      });
-
       it('should dispatch a CartCouponListSuccess action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverListSpy.and.returnValue(of([mockCoupon]));
+          const cartCouponListSuccessAction = new DaffCartCouponListSuccess([mockCoupon]);
+          actions$ = helpers.hot('--a', { a: cartCouponListAction });
+          helpers.expectObservable(effects.list$).toBe('--b', { b: cartCouponListSuccessAction });
+        });
       });
     });
 
     describe('and the call to CartCouponService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to list coupons' };
-        const response = cold('#', {}, error);
-        driverListSpy.and.returnValue(response);
-        const cartCouponListFailureAction = new DaffCartCouponListFailure([error]);
-        actions$ = hot('--a', { a: cartCouponListAction });
-        expected = cold('--b', { b: cartCouponListFailureAction });
-      });
-
       it('should dispatch a CartCouponListFailure action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to list coupons' };
+          const response = helpers.cold<any>('#', {}, error);
+          driverListSpy.and.returnValue(response);
+          const cartCouponListFailureAction = new DaffCartCouponListFailure([error]);
+          actions$ = helpers.hot('--a', { a: cartCouponListAction });
+          helpers.expectObservable(effects.list$).toBe('--b', { b: cartCouponListFailureAction });
+        });
       });
     });
 
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
         getCartIdSpy.and.callFake(throwStorageError);
-
-        actions$ = hot('--a', { a: cartCouponListAction });
-        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
-        expect(effects.list$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: cartCouponListAction });
+          helpers.expectObservable(effects.list$).toBe('--b', { b: cartStorageFailureAction });
+        });
       });
     });
   });
 
   describe('when CartCouponRemoveAction is triggered', () => {
-    let expected;
     const cartCouponRemoveAction = new DaffCartCouponRemove(mockCoupon);
 
     describe('and the call to CartCouponService is successful', () => {
-      beforeEach(() => {
-        driverRemoveSpy.and.returnValue(of(mockCart));
-        const cartCouponRemoveSuccessAction = new DaffCartCouponRemoveSuccess(mockCart);
-        actions$ = hot('--a', { a: cartCouponRemoveAction });
-        expected = cold('--b', { b: cartCouponRemoveSuccessAction });
-      });
-
       it('should dispatch a CartCouponApplySuccess action', () => {
-        expect(effects.remove$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverRemoveSpy.and.returnValue(of(mockCart));
+          const cartCouponRemoveSuccessAction = new DaffCartCouponRemoveSuccess(mockCart);
+          actions$ = helpers.hot('--a', { a: cartCouponRemoveAction });
+          helpers.expectObservable(effects.remove$).toBe('--b', { b: cartCouponRemoveSuccessAction });
+        });
       });
     });
 
     describe('and the call to CartCouponService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove a coupon from the cart' };
-        const response = cold('#', {}, error);
-        driverRemoveSpy.and.returnValue(response);
-        const cartCouponRemoveFailureAction = new DaffCartCouponRemoveFailure([error]);
-        actions$ = hot('--a', { a: cartCouponRemoveAction });
-        expected = cold('--b', { b: cartCouponRemoveFailureAction });
-      });
-
       it('should dispatch a CartCouponApplyFailure action', () => {
-        expect(effects.remove$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove a coupon from the cart' };
+          const response = helpers.cold<any>('#', {}, error);
+          driverRemoveSpy.and.returnValue(response);
+          const cartCouponRemoveFailureAction = new DaffCartCouponRemoveFailure([error]);
+          actions$ = helpers.hot('--a', { a: cartCouponRemoveAction });
+          helpers.expectObservable(effects.remove$).toBe('--b', { b: cartCouponRemoveFailureAction });
+        });
       });
     });
 
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
         getCartIdSpy.and.callFake(throwStorageError);
-
-        actions$ = hot('--a', { a: cartCouponRemoveAction });
-        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
-        expect(effects.remove$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: cartCouponRemoveAction });
+          helpers.expectObservable(effects.remove$).toBe('--b', { b: cartStorageFailureAction });
+        });
       });
     });
   });
 
   describe('when CartCouponRemoveAllAction is triggered', () => {
-    let expected;
     const cartCouponRemoveAllAction = new DaffCartCouponRemoveAll();
 
     describe('and the clear call to driver is successful', () => {
-      beforeEach(() => {
-        driverRemoveAllSpy.and.returnValue(of(mockCart));
-        const cartCouponRemoveAllSuccessAction = new DaffCartCouponRemoveAllSuccess(mockCart);
-        actions$ = hot('--a', { a: cartCouponRemoveAllAction });
-        expected = cold('--b', { b: cartCouponRemoveAllSuccessAction });
-      });
-
       it('should return a DaffCartCouponRemoveAllSucess action', () => {
-        expect(effects.removeAll$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          driverRemoveAllSpy.and.returnValue(of(mockCart));
+          const cartCouponRemoveAllSuccessAction = new DaffCartCouponRemoveAllSuccess(mockCart);
+          actions$ = helpers.hot('--a', { a: cartCouponRemoveAllAction });
+          helpers.expectObservable(effects.removeAll$).toBe('--b', { b: cartCouponRemoveAllSuccessAction });
+        });
       });
     });
 
     describe('and the call to CartCouponService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove all coupons from the cart' };
-        const response = cold('#', {}, error);
-        driverRemoveAllSpy.and.returnValue(response);
-        const cartCouponRemoveAllFailureAction = new DaffCartCouponRemoveAllFailure([error]);
-        actions$ = hot('--a', { a: cartCouponRemoveAllAction });
-        expected = cold('--b', { b: cartCouponRemoveAllFailureAction });
-      });
-
       it('should return a DaffCartCouponRemoveAllFailure action', () => {
-        expect(effects.removeAll$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove all coupons from the cart' };
+          const response = helpers.cold<any>('#', {}, error);
+          driverRemoveAllSpy.and.returnValue(response);
+          const cartCouponRemoveAllFailureAction = new DaffCartCouponRemoveAllFailure([error]);
+          actions$ = helpers.hot('--a', { a: cartCouponRemoveAllAction });
+          helpers.expectObservable(effects.removeAll$).toBe('--b', { b: cartCouponRemoveAllFailureAction });
+        });
       });
     });
 
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
         getCartIdSpy.and.callFake(throwStorageError);
-
-        actions$ = hot('--a', { a: cartCouponRemoveAllAction });
-        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
-        expect(effects.removeAll$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(helpers => {
+          actions$ = helpers.hot('--a', { a: cartCouponRemoveAllAction });
+          helpers.expectObservable(effects.removeAll$).toBe('--b', { b: cartStorageFailureAction });
+        });
       });
     });
   });

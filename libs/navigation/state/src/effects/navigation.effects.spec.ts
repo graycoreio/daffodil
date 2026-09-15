@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffNavigationTree } from '@daffodil/navigation';
 import {
@@ -58,7 +55,6 @@ describe('DaffNavigationEffects', () => {
   });
 
   describe('when NavigationLoadAction is triggered without a payload', () => {
-    let expected;
     let navigationLoadAction: DaffNavigationLoad;
 
     beforeEach(() => {
@@ -66,36 +62,39 @@ describe('DaffNavigationEffects', () => {
     });
 
     describe('and the call to NavigationService is successful', () => {
-      beforeEach(() => {
+      it('should dispatch a NavigationLoadSuccess action', () => {
         spyOn(daffNavigationDriver, 'getTree').and.returnValue(of(mockNavigation));
         const navigationLoadSuccessAction = new DaffNavigationLoadSuccess(mockNavigation);
-        actions$ = hot('--a', { a: navigationLoadAction });
-        expected = cold('--b', { b: navigationLoadSuccessAction });
-      });
 
-      it('should dispatch a NavigationLoadSuccess action', () => {
-        expect(effects.loadNavigation$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ hot, expectObservable }) => {
+          actions$ = hot('--a', { a: navigationLoadAction });
+          expectObservable(effects.loadNavigation$).toBe('--b', { b: navigationLoadSuccessAction });
+        });
       });
     });
 
     describe('and the call to NavigationService fails', () => {
-      beforeEach(() => {
-        const error = { code: 'code', recoverable: false, message: 'error message' };
-        const response = cold('#', {}, error);
-        spyOn(daffNavigationDriver, 'getTree').and.returnValue(response);
-        const navigationLoadFailureAction = new DaffNavigationLoadFailure(error);
-        actions$ = hot('--a', { a: navigationLoadAction });
-        expected = cold('--b', { b: navigationLoadFailureAction });
-      });
-
       it('should dispatch a NavigationLoadFailure action', () => {
-        expect(effects.loadNavigation$).toBeObservable(expected);
+        const error = { code: 'code', recoverable: false, message: 'error message' };
+        const navigationLoadFailureAction = new DaffNavigationLoadFailure(error);
+
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ hot, cold, expectObservable }) => {
+          const response = cold<any>('#', {}, error);
+          spyOn(daffNavigationDriver, 'getTree').and.returnValue(response);
+          actions$ = hot('--a', { a: navigationLoadAction });
+          expectObservable(effects.loadNavigation$).toBe('--b', { b: navigationLoadFailureAction });
+        });
       });
     });
   });
 
   describe('when NavigationLoadAction is triggered with a payload', () => {
-    let expected;
     let navigationLoadAction: DaffNavigationLoad;
 
     beforeEach(() => {
@@ -103,30 +102,34 @@ describe('DaffNavigationEffects', () => {
     });
 
     describe('and the call to NavigationService is successful', () => {
-      beforeEach(() => {
+      it('should dispatch a NavigationLoadSuccess action', () => {
         spyOn(daffNavigationDriver, 'get').and.returnValue(of(mockNavigation));
         const navigationLoadSuccessAction = new DaffNavigationLoadSuccess(mockNavigation);
-        actions$ = hot('--a', { a: navigationLoadAction });
-        expected = cold('--b', { b: navigationLoadSuccessAction });
-      });
 
-      it('should dispatch a NavigationLoadSuccess action', () => {
-        expect(effects.loadNavigation$).toBeObservable(expected);
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ hot, expectObservable }) => {
+          actions$ = hot('--a', { a: navigationLoadAction });
+          expectObservable(effects.loadNavigation$).toBe('--b', { b: navigationLoadSuccessAction });
+        });
       });
     });
 
     describe('and the call to NavigationService fails', () => {
-      beforeEach(() => {
-        const error = { code: 'code', recoverable: false, message: 'error message' };
-        const response = cold('#', {}, error);
-        spyOn(daffNavigationDriver, 'get').and.returnValue(response);
-        const navigationLoadFailureAction = new DaffNavigationLoadFailure(error);
-        actions$ = hot('--a', { a: navigationLoadAction });
-        expected = cold('--b', { b: navigationLoadFailureAction });
-      });
-
       it('should dispatch a NavigationLoadFailure action', () => {
-        expect(effects.loadNavigation$).toBeObservable(expected);
+        const error = { code: 'code', recoverable: false, message: 'error message' };
+        const navigationLoadFailureAction = new DaffNavigationLoadFailure(error);
+
+        const testScheduler = new TestScheduler((actual, expected) => {
+          expect(actual).toEqual(expected);
+        });
+        testScheduler.run(({ hot, cold, expectObservable }) => {
+          const response = cold<any>('#', {}, error);
+          spyOn(daffNavigationDriver, 'get').and.returnValue(response);
+          actions$ = hot('--a', { a: navigationLoadAction });
+          expectObservable(effects.loadNavigation$).toBe('--b', { b: navigationLoadFailureAction });
+        });
       });
     });
   });

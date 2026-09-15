@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCustomerFactory } from '@daffodil/customer/testing';
 
@@ -8,6 +8,8 @@ import { DaffCustomerTestingDriver } from './customer.service';
 describe('@daffodil/customer/driver/testing | DaffCustomerTestingDriver', () => {
   let service: DaffCustomerTestingDriver;
   let customerFactory: DaffCustomerFactory;
+
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -18,6 +20,10 @@ describe('@daffodil/customer/driver/testing | DaffCustomerTestingDriver', () => 
 
     service = TestBed.inject(DaffCustomerTestingDriver);
     customerFactory = TestBed.inject(DaffCustomerFactory);
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   it('should be created', () => {
@@ -26,29 +32,33 @@ describe('@daffodil/customer/driver/testing | DaffCustomerTestingDriver', () => 
 
   describe('get', () => {
     it('should return a DaffCustomer', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
-      expect(service.get()).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.get()).toBe('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
+      });
     });
   });
 
   describe('update', () => {
     it('should return a DaffCustomer', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
-      expect(service.update(customerFactory.create())).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.update(customerFactory.create())).toBe('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
+      });
     });
   });
 
   describe('changePassword', () => {
     it('should return', () => {
-      const expected = cold('(a|)', { a: undefined });
-      expect(service.changePassword('old', 'new')).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.changePassword('old', 'new')).toBe('(a|)', { a: undefined });
+      });
     });
   });
 
   describe('changeEmail', () => {
     it('should return a DaffCustomer', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
-      expect(service.changeEmail('email', 'password')).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        expectObservable(service.changeEmail('email', 'password')).toBe('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
+      });
     });
   });
 });

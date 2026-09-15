@@ -5,7 +5,7 @@ import {
   select,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffOrderCollection } from '@daffodil/order';
 import {
@@ -24,6 +24,8 @@ describe('Order | Selector | Order', () => {
   let orderCollectionFactory: DaffOrderCollectionFactory;
 
   let mockOrderCollection: DaffOrderCollection;
+
+  let scheduler: TestScheduler;
 
   const {
     selectOrders,
@@ -44,14 +46,18 @@ describe('Order | Selector | Order', () => {
     mockOrderCollection = orderCollectionFactory.create();
 
     store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe('selectOrders', () => {
     it('should select the orders from the collection', () => {
-      const selector = store.pipe(select(selectOrders));
-      const expected = cold('a', { a: jasmine.arrayContaining(Object.values(mockOrderCollection.data)) });
-
-      expect(selector).toBeObservable(expected);
+      scheduler.run(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrders));
+        expectObservable(selector).toBe('a', { a: jasmine.arrayContaining(Object.values(mockOrderCollection.data)) });
+      });
     });
   });
 });

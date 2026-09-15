@@ -11,8 +11,8 @@ import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 import { DaffDocFactory } from '@daffodil/docs/testing';
 import { DaffDoc } from '@daffodil/docs-utils';
@@ -88,8 +88,12 @@ describe('DaffioDocsPageComponent', () => {
   });
 
   it('should initialize `doc$` to the resolved doc from the activated route', () => {
-    const expected = cold('a', { a: doc });
-    expect(component.doc$).toBeObservable(expected);
+    const testScheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+    testScheduler.run(({ expectObservable }) => {
+      expectObservable(component.doc$).toBe('a', { a: doc });
+    });
   });
 
   it('should render the dynamic component with the doc', () => {
