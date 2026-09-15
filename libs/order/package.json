@@ -41,5 +41,35 @@
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@daffodil/geography": "0.0.0-PLACEHOLDER",
     "@daffodil/product": "0.0.0-PLACEHOLDER"
-  }
+  },
+	"exports": {
+		"./driver/magento/auto": {
+			"order-magento-2.4.0": {
+				"types": "./driver/magento/2.4.0/index.d.ts",
+				"default": "./fesm2022/daffodil-order-driver-magento-2.4.0.mjs"
+			},
+			"order-magento-2.4.1": {
+				"types": "./driver/magento/2.4.1/index.d.ts",
+				"default": "./fesm2022/daffodil-order-driver-magento-2.4.1.mjs"
+			},
+			"default": {
+				"types": "./driver/magento/2.4.1/index.d.ts",
+				"default": "./fesm2022/daffodil-order-driver-magento-2.4.1.mjs"
+			}
+		},
+		"./driver/magento/auto/testing": {
+			"order-magento-2.4.0": {
+				"types": "./driver/magento/2.4.0/testing/index.d.ts",
+				"default": "./fesm2022/daffodil-order-driver-magento-2.4.0-testing.mjs"
+			},
+			"order-magento-2.4.1": {
+				"types": "./driver/magento/2.4.1/testing/index.d.ts",
+				"default": "./fesm2022/daffodil-order-driver-magento-2.4.1-testing.mjs"
+			},
+			"default": {
+				"types": "./driver/magento/2.4.1/testing/index.d.ts",
+				"default": "./fesm2022/daffodil-order-driver-magento-2.4.1-testing.mjs"
+			}
+		}
+	}
 }
