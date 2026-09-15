@@ -10,6 +10,9 @@ import {
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
+import { DaffSidebarSide } from '../helper/sidebar-side';
+import { DaffSidebarComponent } from '../sidebar/sidebar.component';
+
 /**
  * Sidebar header is a child component of the sidebar that is used to display a header container,
  * positioned at the top of a sidebar. It includes an optional title (`[daffSidebarHeaderTitle]`)
@@ -45,12 +48,14 @@ export class DaffSidebarHeaderComponent {
   /**
    * Output event triggered when the close icon is clicked.
    */
-  @Output() closeSidebar: EventEmitter<void> = new EventEmitter();
+  @Output() closeSidebar: EventEmitter<DaffSidebarSide> = new EventEmitter();
+
+  constructor(private sidebar: DaffSidebarComponent) {}
 
   /**
    * @docs-private
    */
   onCloseSidebar(event: Event) {
-    this.closeSidebar.emit();
+    this.closeSidebar.emit(this.sidebar.side);
   }
 }

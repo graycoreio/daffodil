@@ -1,5 +1,7 @@
-import { DaffSidebarAnimationStates } from './sidebar-animation';
-import { getAnimationState } from './sidebar-animation-state';
+import {
+  DaffSidebarAnimationStates,
+  getAnimationState,
+} from './sidebar-animation-state';
 import { DaffSidebarModeEnum } from '../helper/sidebar-mode';
 
 describe('@daffodil/design/sidebar | SidebarAnimationState Calculation', () => {

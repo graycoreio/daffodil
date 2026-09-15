@@ -1,22 +1,24 @@
-@let component = component$ | async;
+@let component = this.component();
 
-<daff-sidebar-viewport (backdropClicked)="close()">
-	<daff-sidebar class="daffio-sidebar" [mode]="mode$ | async" [side]="component?.side || 'left'" [open]="showSidebar()" (escapePressed)="close()">
-		@if (showSidebarHeader$ | async) {
-			<ng-container [ngComponentOutlet]="component?.header" [ngComponentOutletInjector]="injector" ngProjectAs="daff-sidebar-header"></ng-container>
-		}
+<daff-viewport>
+	<daff-sidebar class="daffio-sidebar" [mode]="mode()" [side]="component?.side || 'left'">
+			@if (showSidebarHeader()) {
+				<daff-sidebar-header [dismissible]="true">
+					<ng-container [ngComponentOutlet]="component?.header" ngProjectAs="daff-sidebar-header"></ng-container>
+				</daff-sidebar-header>
+				}
 		@if (component?.body) {
-			<ng-container [ngComponentOutlet]="component.body" [ngComponentOutletInjector]="injector"></ng-container>
+			<ng-container [ngComponentOutlet]="component.body" [ngComponentOutletInjector]="injector()"></ng-container>
 		}
-		@if (showSidebarFooter$ | async) {
-			<ng-container [ngComponentOutlet]="component?.footer" [ngComponentOutletInjector]="injector" ngProjectAs="daff-sidebar-footer"></ng-container>
+		@if (showSidebarFooter()) {
+			<ng-container [ngComponentOutlet]="component?.footer" [ngComponentOutletInjector]="injector()" ngProjectAs="daff-sidebar-footer"></ng-container>
 		}
 	</daff-sidebar>
-	<ng-container daff-sidebar-viewport-nav>
-		<ng-content select="[daff-sidebar-viewport-nav]"></ng-content>
+	<ng-container daff-viewport-nav>
+		<ng-content select="[daff-viewport-nav]"></ng-content>
 	</ng-container>
 	<ng-content></ng-content>
-	<ng-container daff-sidebar-viewport-footer>
-		<ng-content select="[daff-sidebar-viewport-footer]"></ng-content>
+	<ng-container daff-viewport-footer>
+		<ng-content select="[daff-viewport-footer]"></ng-content>
 	</ng-container>
-</daff-sidebar-viewport>
+</daff-viewport>
