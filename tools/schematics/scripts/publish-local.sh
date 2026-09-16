@@ -61,6 +61,6 @@ env \
   node "$ACTIONS_REPO/set-versions-from-root/dist/index.js"
 
 # Publish @daffodil/commerce and its dependencies to Verdaccio
-npx nx run-many -t publish --projects="${PACKAGES},@daffodil/commerce"
+npx nx run-many -t publish --projects="${PACKAGES},@daffodil/commerce" -- --tag latest
 
 echo "Done."
