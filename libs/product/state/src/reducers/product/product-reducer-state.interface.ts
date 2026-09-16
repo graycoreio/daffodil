@@ -11,6 +11,8 @@ export interface DaffProductReducerState extends DaffOperationState {
   currentProductId: DaffProduct['id'];
   /**
    * The quantity chosen for the current product.
+   *
+   * @deprecated
    */
   qty: number;
 }
