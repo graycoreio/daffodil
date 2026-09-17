@@ -21,16 +21,14 @@
 				}
 			}
 
+			&__options {
+				background-color: $base;
+				border: thin solid $border-color-light;
+			}
+
 			&__option {
 				background-color: $base;
-				border-bottom: 1px solid $border-color-light;
-				border-left: 1px solid $border-color-light;
-				border-right: 1px solid $border-color-light;
 				color: $base-contrast;
-
-				&:first-of-type {
-					border-top: 1px solid $border-color-light;
-				}
 
 				@media (hover: hover) {
 					&:hover {
@@ -51,16 +49,14 @@
 				}
 			}
 
+			&__options {
+				background-color: $base;
+				border: thin solid $border-color-dark;
+			}
+
 			&__option {
 				background-color: $base;
-				border-bottom: 1px solid $border-color-dark;
-				border-left: 1px solid $border-color-dark;
-				border-right: 1px solid $border-color-dark;
 				color: $base-contrast;
-
-				&:first-of-type {
-					border-top: 1px solid $border-color-dark;
-				}
 
 				@media (hover: hover) {
 					&:hover {

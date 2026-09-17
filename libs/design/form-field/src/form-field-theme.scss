@@ -51,6 +51,10 @@
 		&.daff-focused {
 			.daff-form-field__control {
 				border: 0.0625rem solid daff-color($primary);
+
+				&::after {
+					border-color: daff-color($primary);
+				}
 			}
 
 			&.fluid {
