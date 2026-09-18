@@ -5,6 +5,8 @@
     "rootDir": ".",
     "module": "node20",
     "moduleResolution": "node16",
+		"allowImportingTsExtensions": true,
+		"rewriteRelativeImportExtensions": true,
     "target": "es2023",
     "lib": [
       "es2023"
