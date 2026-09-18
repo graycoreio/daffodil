@@ -90,8 +90,8 @@ export abstract class DaffFormFieldControl<T> {
       focused: this.focused,
       filled: !!this.value,
       disabled: this.ngControl?.disabled ?? this.disabled,
-      error: this.ngControl?.errors && (this.ngControl?.dirty || this.ngControl?.touched),
-      valid: !this.ngControl?.errors && this.ngControl?.dirty,
+      error: this.ngControl?.invalid && (this.ngControl?.dirty || this.ngControl?.touched),
+      valid: this.ngControl?.valid && this.ngControl?.dirty,
     };
   }
 
