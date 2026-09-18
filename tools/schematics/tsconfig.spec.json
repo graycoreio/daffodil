@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "composite": true,
     "outDir": "../../out-tsc/spec",
 		"module": "commonjs",
 		"moduleResolution": "node10",
