@@ -4,9 +4,13 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffProductDriver } from '@daffodil/product/driver';
+import {
+  provideDaffProductDriver,
+  provideDaffProductCustomAttributeDriver,
+} from '@daffodil/product/driver';
 import { DaffProductTestingModule } from '@daffodil/product/testing';
 
+import { DaffTestingProductCustomAttributeService } from './custom-attribute.service';
 import { DaffTestingProductService } from './product.service';
 
 /**
@@ -24,6 +28,7 @@ export class DaffProductTestingDriverModule {
       ngModule: DaffProductTestingDriverModule,
       providers: [
         provideDaffProductDriver(DaffTestingProductService),
+        provideDaffProductCustomAttributeDriver(DaffTestingProductCustomAttributeService),
       ],
     };
   }

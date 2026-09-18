@@ -31,4 +31,5 @@ export const daffShopifyProductTransformer = (node: ShopifyProductNode): DaffPro
   price: node.priceRange.maxVariantPrice.amount,
   in_stock: node.availableForSale,
   description: node.description,
+  customAttributes: [],
 });

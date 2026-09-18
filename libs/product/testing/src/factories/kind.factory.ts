@@ -1,6 +1,6 @@
 import {
   Injectable,
-  Inject,
+  inject,
 } from '@angular/core';
 
 import { sample } from '@daffodil/core';
@@ -19,9 +19,9 @@ import { DAFF_PRODUCT_TYPE_FACTORIES } from '../injection-tokens/public_api';
   providedIn: 'root',
 })
 export class DaffProductKindFactory extends DaffModelFactory<DaffProduct> {
-  constructor(
-    @Inject(DAFF_PRODUCT_TYPE_FACTORIES) private productTypeFactories: DaffModelFactory<DaffProduct>[],
-  ) {
+  private readonly productTypeFactories = inject(DAFF_PRODUCT_TYPE_FACTORIES);
+
+  constructor() {
     super(MockProduct);
   }
 

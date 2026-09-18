@@ -5,14 +5,19 @@ import {
 } from '@angular/core';
 
 import { provideManyDaffMagentoCacheableOperations } from '@daffodil/driver/magento';
-import { provideDaffProductDriver } from '@daffodil/product/driver';
+import {
+  provideDaffProductDriver,
+  provideDaffProductCustomAttributeDriver,
+} from '@daffodil/product/driver';
 
 import { MAGENTO_PRODUCT_CONFIG_DEFAULT } from './config/public_api';
+import { DaffMagentoProductCustomAttributeService } from './custom-attribute.service';
 import {
   DaffProductMagentoDriverConfig,
   provideMagentoProductConfig,
 } from './interfaces/public_api';
 import { DaffMagentoProductService } from './product.service';
+import { DAFF_MAGENTO_GET_ATTRIBUTES_LIST_QUERY_NAME } from './queries/attributes-list';
 import { DAFF_MAGENTO_GET_ALL_PRODUCTS_QUERY_NAME } from './queries/get-all-products';
 import { DAFF_MAGENTO_GET_A_PRODUCT_QUERY_NAME } from './queries/get-product';
 import { DAFF_MAGENTO_GET_A_PRODUCT_BY_URL_QUERY_NAME } from './queries/get-product-by-url/query';
@@ -32,10 +37,12 @@ export class DaffProductMagentoDriverModule {
       ngModule: DaffProductMagentoDriverModule,
       providers: [
         provideDaffProductDriver(DaffMagentoProductService),
+        provideDaffProductCustomAttributeDriver(DaffMagentoProductCustomAttributeService),
         provideManyDaffMagentoCacheableOperations(
           DAFF_MAGENTO_GET_ALL_PRODUCTS_QUERY_NAME,
           DAFF_MAGENTO_GET_A_PRODUCT_QUERY_NAME,
           DAFF_MAGENTO_GET_A_PRODUCT_BY_URL_QUERY_NAME,
+          DAFF_MAGENTO_GET_ATTRIBUTES_LIST_QUERY_NAME,
         ),
         provideMagentoProductConfig(config),
       ],
