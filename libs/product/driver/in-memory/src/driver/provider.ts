@@ -7,17 +7,20 @@ import {
   provideDaffInMemoryBackends,
   provideDaffInMemoryRoutableObjects,
 } from '@daffodil/driver/in-memory';
-import { provideDaffProductDriver } from '@daffodil/product/driver';
+import {
+  provideDaffProductDriver,
+  provideDaffProductCustomAttributeDriver,
+} from '@daffodil/product/driver';
 import {
   DaffDefaultProductFactory,
   provideDaffProductExtraFactoryTypes,
 } from '@daffodil/product/testing';
 
-import {
-  DaffInMemoryBackendProductService,
-  DaffInMemoryProductService,
-} from '../public_api';
+import { DaffInMemoryProductCustomAttributeService } from './custom-attribute.service';
+import { DaffInMemoryProductService } from './product.service';
 import { daffProductInMemoryRoutableObjects } from './routable-objects.token';
+import { DaffInMemoryBackendProductCustomAttributeService } from '../backend/custom-attribute.service';
+import { DaffInMemoryBackendProductService } from '../backend/product.service';
 
 /**
  * Provides the Daffodil product in-memory driver and its dependencies.
@@ -26,6 +29,11 @@ export const provideDaffProductInMemoryDriver = (): Array<Provider | Environment
   DaffInMemoryProductService,
   provideDaffProductDriver(DaffInMemoryProductService),
   provideDaffProductExtraFactoryTypes(DaffDefaultProductFactory),
-  provideDaffInMemoryBackends(DaffInMemoryBackendProductService),
+  provideDaffInMemoryBackends(
+    DaffInMemoryBackendProductService,
+    DaffInMemoryBackendProductCustomAttributeService,
+  ),
   provideDaffInMemoryRoutableObjects('PRODUCT', daffProductInMemoryRoutableObjects),
+  DaffInMemoryProductCustomAttributeService,
+  provideDaffProductCustomAttributeDriver(DaffInMemoryProductCustomAttributeService),
 ];
