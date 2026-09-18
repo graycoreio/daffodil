@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.95.0](https://github.com/graycoreio/daffodil/compare/v0.94.1...v0.95.0) (2026-09-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **design, storefront:** `DaffFormFieldControl.controlType` is now typed as `DaffFormFieldControlTypesEnum` instead of `any`. Controls that set it to an arbitrary string such as `'native-input'` or `'native-select'` must use `DaffFormFieldControlTypesEnum.Input` or `DaffFormFieldControlTypesEnum.Dropdown` instead. The `is-native-select` class on `DaffFormFieldComponent` has been renamed to `is-dropdown`.
+* **design:** The `daff-theme` mixin has been removed from `@daffodil/design/scss/theme`. Use `daff-component-themes` instead. The `embolden` mixin and `.embolden` class have been removed from `@daffodil/design/scss/typography`. Use the `$bold-font-weight` variable or `font-weight: bold` instead.
+* **design:** The `daff-configure-theme` function has been removed from `@daffodil/design`. Use `daff-create-theme` instead.
+
+### Features
+
+* **design, design-examples, daffio, demo:** deprecate `@daffodil/design/image` in favor of `@daffodil/design/image-lite` ([#4683](https://github.com/graycoreio/daffodil/issues/4683)) ([86bf16c](https://github.com/graycoreio/daffodil/commit/86bf16c5bdaa28094feabda1745ef5109566f0fc))
+* **design, storefront:** share dropdown styling across form field controls ([#4696](https://github.com/graycoreio/daffodil/issues/4696)) ([6aec094](https://github.com/graycoreio/daffodil/commit/6aec094cfd1e397d957a497489855d216e24d408))
+* **design:** create `@daffodil/design/image-lite` ([#4681](https://github.com/graycoreio/daffodil/issues/4681)) ([539cd57](https://github.com/graycoreio/daffodil/commit/539cd572eaaeb2a3b5128fca7a93091d4976bdc5))
+* **design:** implement `daff-color-shift` in `@daffodil/design/button` themes ([#4685](https://github.com/graycoreio/daffodil/issues/4685)) ([50adf6f](https://github.com/graycoreio/daffodil/commit/50adf6f0b8677c90b677a52739d9ab28330536a3))
+* **design:** remove `daff-configure-theme` function ([#4671](https://github.com/graycoreio/daffodil/issues/4671)) ([6307b1e](https://github.com/graycoreio/daffodil/commit/6307b1e42fc5196f6bd722593c98a404dbed7984))
+* **design:** remove deprecated typography and theme sass APIs ([#4694](https://github.com/graycoreio/daffodil/issues/4694)) ([a1cf660](https://github.com/graycoreio/daffodil/commit/a1cf6604640db6f4a5393af12baac844b0d3179f))
+* **design:** respect the browser's default font size ([#4703](https://github.com/graycoreio/daffodil/issues/4703)) ([5a2da58](https://github.com/graycoreio/daffodil/commit/5a2da58c48f91fac86f724a1b9366ae994507f28))
+* **design:** update select and form field borders ([#4701](https://github.com/graycoreio/daffodil/issues/4701)) ([559897e](https://github.com/graycoreio/daffodil/commit/559897eb66e58d647ff013ce44848adf016485cd))
+* **product:** deprecate qty action ([#4697](https://github.com/graycoreio/daffodil/issues/4697)) ([bbb3856](https://github.com/graycoreio/daffodil/commit/bbb3856b4fefe2d2c63c3e52501f55cd154a3088))
+
+
+### Bug Fixes
+
+* **all:** lazy loaded environments do not load extra reducers ([#4686](https://github.com/graycoreio/daffodil/issues/4686)) ([6a2c681](https://github.com/graycoreio/daffodil/commit/6a2c6817df7ace2240ba4878cbdab7039adf9ef0))
+* **commerce:** unit test type hinting ([#4698](https://github.com/graycoreio/daffodil/issues/4698)) ([819bca8](https://github.com/graycoreio/daffodil/commit/819bca80836bbfdde6fb543dba601c2f8369b992))
+* **design:** delay select error state until the options list closes ([#4700](https://github.com/graycoreio/daffodil/issues/4700)) ([65df5ee](https://github.com/graycoreio/daffodil/commit/65df5eebeeb947053f0e8ff5a93bfe369d5ce32c))
+* **design:** remove nav list item hover flicker on non-white backgrounds ([#4691](https://github.com/graycoreio/daffodil/issues/4691)) ([429489c](https://github.com/graycoreio/daffodil/commit/429489cf595463cfc8cbeab04dc1a1adb32cf698))
+* **design:** render list item prefix above the nav list hover overlay ([#4692](https://github.com/graycoreio/daffodil/issues/4692)) ([7974cc3](https://github.com/graycoreio/daffodil/commit/7974cc3b54e55c89e53b5f9e61360056238c8259))
+* update browserlist compatibility ([#4679](https://github.com/graycoreio/daffodil/issues/4679)) ([b8f824f](https://github.com/graycoreio/daffodil/commit/b8f824f4a7810c130ed158816277eeddad5a3d88))
+* update browserslist config to support all browsers ([#4687](https://github.com/graycoreio/daffodil/issues/4687)) ([445e796](https://github.com/graycoreio/daffodil/commit/445e7960d581b50951f1bc8d16457aabafd72340))
+
 ## [0.94.1](https://github.com/graycoreio/daffodil/compare/v0.94.1-rc.0...v0.94.1) (2026-08-21)
 
 
