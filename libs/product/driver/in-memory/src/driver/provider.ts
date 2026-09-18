@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 
 import {
+  DaffInMemoryBackendInterface,
   provideDaffInMemoryBackends,
   provideDaffInMemoryRoutableObjects,
 } from '@daffodil/driver/in-memory';
@@ -29,7 +30,7 @@ export const provideDaffProductInMemoryDriver = (): Array<Provider | Environment
   DaffInMemoryProductService,
   provideDaffProductDriver(DaffInMemoryProductService),
   provideDaffProductExtraFactoryTypes(DaffDefaultProductFactory),
-  provideDaffInMemoryBackends(
+  provideDaffInMemoryBackends<DaffInMemoryBackendInterface>(
     DaffInMemoryBackendProductService,
     DaffInMemoryBackendProductCustomAttributeService,
   ),
