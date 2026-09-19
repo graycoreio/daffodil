@@ -28,7 +28,7 @@ export function daffProductCustomAttributesEntitiesReducer(
   action: DaffProductCustomAttributesActions,
 ): EntityState<DaffProductCustomAttribute> {
   switch (action.type) {
-    case DaffProductCustomAttributesActionTypes.ListSuccess:
+    case DaffProductCustomAttributesActionTypes.SearchSuccess:
       return daffProductCustomAttributesEntitiesAdapter().upsertMany(action.payload, state);
     default:
       return state;

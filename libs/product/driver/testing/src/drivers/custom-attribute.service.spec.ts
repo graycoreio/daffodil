@@ -8,7 +8,7 @@ import { DaffTestingProductCustomAttributeService } from './custom-attribute.ser
 describe('@daffodil/product/driver/testing | DaffTestingProductCustomAttributeService', () => {
   let service: DaffTestingProductCustomAttributeService;
   let customAttributeFactory: DaffProductCustomAttributeFactory;
-  let stubCustomAttributes: DaffProductCustomAttribute[];
+  let stubCustomAttribute: DaffProductCustomAttribute;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -16,18 +16,26 @@ describe('@daffodil/product/driver/testing | DaffTestingProductCustomAttributeSe
     service = TestBed.inject(DaffTestingProductCustomAttributeService);
     customAttributeFactory = TestBed.inject(DaffProductCustomAttributeFactory);
 
-    stubCustomAttributes = customAttributeFactory.createMany(5);
-    spyOn(customAttributeFactory, 'createMany').and.returnValue(stubCustomAttributes);
+    stubCustomAttribute = customAttributeFactory.create();
+    spyOn(customAttributeFactory, 'create').and.returnValue(stubCustomAttribute);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('list', () => {
-    it('should return a list of custom attributes', () => {
-      service.list().subscribe(result => {
-        expect(result).toEqual(stubCustomAttributes);
+  describe('search', () => {
+    it('should return a custom attribute for each requested ID', done => {
+      service.search([stubCustomAttribute.id, 'another']).subscribe(result => {
+        expect(result).toEqual([stubCustomAttribute, stubCustomAttribute]);
+        done();
+      });
+    });
+
+    it('should create the custom attributes with the requested IDs', done => {
+      service.search([stubCustomAttribute.id]).subscribe(() => {
+        expect(customAttributeFactory.create).toHaveBeenCalledWith({ id: stubCustomAttribute.id });
+        done();
       });
     });
   });

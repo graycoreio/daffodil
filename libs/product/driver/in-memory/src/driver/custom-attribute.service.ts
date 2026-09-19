@@ -1,4 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpParams,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
@@ -24,7 +27,12 @@ export class DaffInMemoryProductCustomAttributeService extends DaffInMemoryDrive
     super(config, DAFF_PRODUCT_CUSTOM_ATTRIBUTE_IN_MEMORY_COLLECTION_NAME);
   }
 
-  list(): Observable<DaffProductCustomAttribute[]> {
-    return this.http.get<DaffProductCustomAttribute[]>(`${this.url}/`);
+  /**
+   * The requested IDs are passed as repeated `id` URL query parameters.
+   */
+  search(ids: Array<DaffProductCustomAttribute['id']>): Observable<DaffProductCustomAttribute[]> {
+    return this.http.get<DaffProductCustomAttribute[]>(`${this.url}/`, {
+      params: new HttpParams().appendAll({ id: ids }),
+    });
   }
 }

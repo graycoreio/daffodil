@@ -7,32 +7,34 @@ import { DaffProductCustomAttribute } from '@daffodil/product';
  * The product custom attributes action types enum.
  */
 export enum DaffProductCustomAttributesActionTypes {
-  List = '[@daffodil/product] Product Custom Attributes List Action',
-  ListSuccess = '[@daffodil/product] Product Custom Attributes List Success Action',
-  ListFailure = '[@daffodil/product] Product Custom Attributes List Failure Action',
+  Search = '[@daffodil/product] Product Custom Attributes Search Action',
+  SearchSuccess = '[@daffodil/product] Product Custom Attributes Search Success Action',
+  SearchFailure = '[@daffodil/product] Product Custom Attributes Search Failure Action',
 }
 
 /**
- * Lists the available product custom attributes.
+ * Searches for the product custom attributes with the given IDs.
  */
-export class DaffProductCustomAttributesList implements Action {
-  readonly type = DaffProductCustomAttributesActionTypes.List;
+export class DaffProductCustomAttributesSearch implements Action {
+  readonly type = DaffProductCustomAttributesActionTypes.Search;
+
+  constructor(public payload: Array<DaffProductCustomAttribute['id']>) {}
 }
 
 /**
- * Indicates a successful listing of product custom attributes.
+ * Indicates a successful search of product custom attributes.
  */
-export class DaffProductCustomAttributesListSuccess implements Action {
-  readonly type = DaffProductCustomAttributesActionTypes.ListSuccess;
+export class DaffProductCustomAttributesSearchSuccess implements Action {
+  readonly type = DaffProductCustomAttributesActionTypes.SearchSuccess;
 
   constructor(public payload: DaffProductCustomAttribute[]) {}
 }
 
 /**
- * A failed product custom attributes list with the error message.
+ * A failed product custom attributes search with the error message.
  */
-export class DaffProductCustomAttributesListFailure implements Action {
-  readonly type = DaffProductCustomAttributesActionTypes.ListFailure;
+export class DaffProductCustomAttributesSearchFailure implements Action {
+  readonly type = DaffProductCustomAttributesActionTypes.SearchFailure;
 
   constructor(public payload: DaffStateError) {}
 }
@@ -41,6 +43,6 @@ export class DaffProductCustomAttributesListFailure implements Action {
  * A union of the product custom attributes action types.
  */
 export type DaffProductCustomAttributesActions =
-  | DaffProductCustomAttributesList
-  | DaffProductCustomAttributesListSuccess
-  | DaffProductCustomAttributesListFailure;
+  | DaffProductCustomAttributesSearch
+  | DaffProductCustomAttributesSearchSuccess
+  | DaffProductCustomAttributesSearchFailure;

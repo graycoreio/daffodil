@@ -10,7 +10,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffProductCustomAttribute } from '@daffodil/product';
 import { DaffProductCustomAttributeFactory } from '@daffodil/product/testing';
 
-import { DaffProductCustomAttributesListSuccess } from './actions';
+import { DaffProductCustomAttributesSearchSuccess } from './actions';
 import { getDaffProductCustomAttributesSelectors } from './selectors';
 import {
   daffProductReducers,
@@ -56,7 +56,7 @@ describe('@daffodil/product/state | getDaffProductCustomAttributesSelectors', ()
 
     describe('after the custom attributes are loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffProductCustomAttributesListSuccess([mockCustomAttribute]));
+        store.dispatch(new DaffProductCustomAttributesSearchSuccess([mockCustomAttribute]));
       });
 
       it('should select the custom attributes', () => {
@@ -80,7 +80,7 @@ describe('@daffodil/product/state | getDaffProductCustomAttributesSelectors', ()
 
     describe('after the custom attributes are loaded', () => {
       beforeEach(() => {
-        store.dispatch(new DaffProductCustomAttributesListSuccess([mockCustomAttribute]));
+        store.dispatch(new DaffProductCustomAttributesSearchSuccess([mockCustomAttribute]));
       });
 
       it('should select the custom attribute entities', () => {

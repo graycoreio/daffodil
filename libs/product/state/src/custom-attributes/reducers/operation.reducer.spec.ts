@@ -7,9 +7,9 @@ import {
 
 import { daffProductCustomAttributesOperationReducer as reducer } from './operation.reducer';
 import {
-  DaffProductCustomAttributesList,
-  DaffProductCustomAttributesListSuccess,
-  DaffProductCustomAttributesListFailure,
+  DaffProductCustomAttributesSearch,
+  DaffProductCustomAttributesSearchSuccess,
+  DaffProductCustomAttributesSearchFailure,
 } from '../actions';
 
 describe('@daffodil/product/state | daffProductCustomAttributesOperationReducer', () => {
@@ -23,13 +23,13 @@ describe('@daffodil/product/state | daffProductCustomAttributesOperationReducer'
     });
   });
 
-  describe('when List is triggered', () => {
+  describe('when Search is triggered', () => {
     let result: DaffOperationState;
 
     beforeEach(() => {
-      const listAction = new DaffProductCustomAttributesList();
+      const searchAction = new DaffProductCustomAttributesSearch(['brand']);
 
-      result = reducer(initialState, listAction);
+      result = reducer(initialState, searchAction);
     });
 
     it('sets loading state to resolving', () => {
@@ -37,7 +37,7 @@ describe('@daffodil/product/state | daffProductCustomAttributesOperationReducer'
     });
   });
 
-  describe('when ListSuccess is triggered', () => {
+  describe('when SearchSuccess is triggered', () => {
     let mockError: DaffStateError;
     let result: DaffOperationState;
     let state: DaffOperationState;
@@ -53,9 +53,9 @@ describe('@daffodil/product/state | daffProductCustomAttributesOperationReducer'
         daffErrors: [mockError],
       };
 
-      const listSuccess = new DaffProductCustomAttributesListSuccess([]);
+      const searchSuccess = new DaffProductCustomAttributesSearchSuccess([]);
 
-      result = reducer(state, listSuccess);
+      result = reducer(state, searchSuccess);
     });
 
     it('sets loading to stable', () => {
@@ -67,7 +67,7 @@ describe('@daffodil/product/state | daffProductCustomAttributesOperationReducer'
     });
   });
 
-  describe('when ListFailure is triggered', () => {
+  describe('when SearchFailure is triggered', () => {
     let result: DaffOperationState;
     let state: DaffOperationState;
     let mockError: DaffStateError;
@@ -85,9 +85,9 @@ describe('@daffodil/product/state | daffProductCustomAttributesOperationReducer'
         ],
       };
 
-      const listFailureAction = new DaffProductCustomAttributesListFailure(mockError);
+      const searchFailureAction = new DaffProductCustomAttributesSearchFailure(mockError);
 
-      result = reducer(state, listFailureAction);
+      result = reducer(state, searchFailureAction);
     });
 
     it('stores the errors in state', () => {

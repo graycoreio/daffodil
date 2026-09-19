@@ -17,9 +17,9 @@ export const {
 /**
  * An interface for any product custom attribute service drivers.
  */
-export interface DaffProductCustomAttributeServiceInterface {
+export interface DaffProductCustomAttributeServiceInterface<T extends DaffProductCustomAttribute = DaffProductCustomAttribute> {
   /**
-   * Get the list of all custom attribute definitions.
+   * Get all custom attribute definitions referenced by the passed IDs.
    */
-  list(): Observable<DaffProductCustomAttribute[]>;
+  search(ids: Array<T['id']>): Observable<T[]>;
 }

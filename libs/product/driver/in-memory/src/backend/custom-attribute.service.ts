@@ -19,7 +19,7 @@ import { CUSTOM_ATTRIBUTE_TRANSFER_STATE_KEY } from './custom-attribute-transfer
 import { DAFF_PRODUCT_CUSTOM_ATTRIBUTE_IN_MEMORY_COLLECTION_NAME } from '../collection-name.const';
 
 /**
- * An in-memory service that stubs out the backend service for listing product custom attributes.
+ * An in-memory service that stubs out the backend service for searching product custom attributes.
  *
  * @Param customAttributeFactory: DaffProductCustomAttributeFactory instance
  */
@@ -64,14 +64,20 @@ export class DaffInMemoryBackendProductCustomAttributeService implements InMemor
   }
 
   /**
-   * Responds to GET requests with the full list of custom attributes.
+   * Responds to GET requests with the custom attributes matching the requested IDs.
+   * The IDs are passed as repeated `id` URL query parameters.
+   * Responds with the full list when no IDs are requested.
    *
    * @param reqInfo request object
    * @returns An http response object
    */
   get(reqInfo: RequestInfo) {
+    const ids = reqInfo.query.get('id');
+
     return reqInfo.utils.createResponse$(() => ({
-      body: this._customAttributes,
+      body: ids?.length
+        ? this._customAttributes.filter((attribute) => ids.includes(attribute.id))
+        : this._customAttributes,
       status: STATUS.OK,
     }));
   }

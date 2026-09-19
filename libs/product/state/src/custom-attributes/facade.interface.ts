@@ -8,7 +8,7 @@ import { DaffProductCustomAttribute } from '@daffodil/product';
  */
 export interface DaffProductCustomAttributesFacadeInterface extends DaffOperationStateFacadeInterface {
   /**
-   * A list of all product custom attributes.
+   * The product custom attributes that have been loaded into state.
    */
   customAttributes$: Observable<DaffProductCustomAttribute[]>;
 }

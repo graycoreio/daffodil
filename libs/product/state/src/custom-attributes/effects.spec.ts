@@ -20,9 +20,9 @@ import { DaffProductTestingDriverModule } from '@daffodil/product/driver/testing
 import { DaffProductCustomAttributeFactory } from '@daffodil/product/testing';
 
 import {
-  DaffProductCustomAttributesList,
-  DaffProductCustomAttributesListSuccess,
-  DaffProductCustomAttributesListFailure,
+  DaffProductCustomAttributesSearch,
+  DaffProductCustomAttributesSearchSuccess,
+  DaffProductCustomAttributesSearchFailure,
 } from './actions';
 import { DaffProductCustomAttributesEffects } from './effects';
 
@@ -34,7 +34,7 @@ describe('@daffodil/product/state | DaffProductCustomAttributesEffects', () => {
   let mockCustomAttributes: DaffProductCustomAttribute[];
 
   let daffDriver: DaffProductCustomAttributeServiceInterface;
-  let driverListSpy: jasmine.Spy<DaffProductCustomAttributeServiceInterface['list']>;
+  let driverSearchSpy: jasmine.Spy<DaffProductCustomAttributeServiceInterface['search']>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -53,46 +53,53 @@ describe('@daffodil/product/state | DaffProductCustomAttributesEffects', () => {
 
     mockCustomAttributes = customAttributeFactory.createMany(2);
 
-    driverListSpy = spyOn(daffDriver, 'list');
+    driverSearchSpy = spyOn(daffDriver, 'search');
   });
 
   it('should be created', () => {
     expect(effects).toBeTruthy();
   });
 
-  describe('when DaffList is triggered', () => {
+  describe('when DaffProductCustomAttributesSearch is triggered', () => {
     let expected;
-    let listAction: DaffProductCustomAttributesList;
+    let searchAction: DaffProductCustomAttributesSearch;
+    let mockIds: Array<DaffProductCustomAttribute['id']>;
 
     beforeEach(() => {
-      listAction = new DaffProductCustomAttributesList();
+      mockIds = mockCustomAttributes.map(({ id }) => id);
+      searchAction = new DaffProductCustomAttributesSearch(mockIds);
     });
 
     describe('and the call to the driver is successful', () => {
       beforeEach(() => {
-        driverListSpy.and.returnValue(of(mockCustomAttributes));
-        const listSuccessAction = new DaffProductCustomAttributesListSuccess(mockCustomAttributes);
-        actions$ = hot('--a', { a: listAction });
-        expected = cold('--b', { b: listSuccessAction });
+        driverSearchSpy.and.returnValue(of(mockCustomAttributes));
+        const searchSuccessAction = new DaffProductCustomAttributesSearchSuccess(mockCustomAttributes);
+        actions$ = hot('--a', { a: searchAction });
+        expected = cold('--b', { b: searchSuccessAction });
       });
 
-      it('should dispatch a DaffProductCustomAttributesListSuccess action', () => {
-        expect(effects.list$).toBeObservable(expected);
+      it('should dispatch a DaffProductCustomAttributesSearchSuccess action', () => {
+        expect(effects.search$).toBeObservable(expected);
+      });
+
+      it('should call the driver with the requested IDs', () => {
+        expect(effects.search$).toBeObservable(expected);
+        expect(driverSearchSpy).toHaveBeenCalledWith(mockIds);
       });
     });
 
     describe('and the call to the driver fails', () => {
       beforeEach(() => {
-        const error = new DaffProductInvalidAPIResponseError('Failed to list product custom attributes');
+        const error = new DaffProductInvalidAPIResponseError('Failed to search product custom attributes');
         const response = cold('#', {}, error);
-        driverListSpy.and.returnValue(response);
-        const listFailureAction = new DaffProductCustomAttributesListFailure(daffTransformErrorToStateError(error));
-        actions$ = hot('--a', { a: listAction });
-        expected = cold('--b', { b: listFailureAction });
+        driverSearchSpy.and.returnValue(response);
+        const searchFailureAction = new DaffProductCustomAttributesSearchFailure(daffTransformErrorToStateError(error));
+        actions$ = hot('--a', { a: searchAction });
+        expected = cold('--b', { b: searchFailureAction });
       });
 
-      it('should dispatch a DaffProductCustomAttributesListFailure action', () => {
-        expect(effects.list$).toBeObservable(expected);
+      it('should dispatch a DaffProductCustomAttributesSearchFailure action', () => {
+        expect(effects.search$).toBeObservable(expected);
       });
     });
   });

@@ -18,7 +18,7 @@ import { DaffProductCustomAttributeServiceInterface } from '@daffodil/product/dr
   providedIn: 'root',
 })
 export class DaffShopifyProductCustomAttributeService implements DaffProductCustomAttributeServiceInterface {
-  list(): Observable<DaffProductCustomAttribute[]> {
+  search(ids: Array<DaffProductCustomAttribute['id']>): Observable<DaffProductCustomAttribute[]> {
     return of([]);
   }
 }

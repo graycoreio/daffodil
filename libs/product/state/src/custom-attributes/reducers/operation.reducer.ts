@@ -9,7 +9,7 @@ import {
 import {
   DaffProductCustomAttributesActions,
   DaffProductCustomAttributesActionTypes,
-  DaffProductCustomAttributesListFailure,
+  DaffProductCustomAttributesSearchFailure,
 } from '../actions';
 
 /**
@@ -20,14 +20,14 @@ export function daffProductCustomAttributesOperationReducer(
   action: DaffProductCustomAttributesActions,
 ): DaffOperationState {
   switch (action.type) {
-    case DaffProductCustomAttributesActionTypes.List:
+    case DaffProductCustomAttributesActionTypes.Search:
       return daffStartResolution(state);
 
-    case DaffProductCustomAttributesActionTypes.ListSuccess:
+    case DaffProductCustomAttributesActionTypes.SearchSuccess:
       return daffCompleteOperation(state);
 
-    case DaffProductCustomAttributesActionTypes.ListFailure:
-      return daffOperationFailed([(<DaffProductCustomAttributesListFailure>action).payload], state);
+    case DaffProductCustomAttributesActionTypes.SearchFailure:
+      return daffOperationFailed([(<DaffProductCustomAttributesSearchFailure>action).payload], state);
 
     default:
       return state;

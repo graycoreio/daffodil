@@ -119,22 +119,53 @@ describe('Driver | InMemory | Product | DaffInMemoryBackendProductCustomAttribut
   });
 
   describe('get', () => {
-    let reqInfoStub: any;
-    let result: any;
-
-    beforeEach(() => {
-      reqInfoStub = {
-        utils: {
-          createResponse$: (func: () => any) => func(),
-        },
-      };
-
-      result = customAttributeTestingService.get(reqInfoStub);
+    const buildReqInfo = (ids?: string[]): any => ({
+      query: new Map(ids ? [['id', ids]] : []),
+      utils: {
+        createResponse$: (func: () => any) => func(),
+      },
     });
 
-    it('should return the full list of custom attributes', () => {
-      expect(result.body).toEqual(customAttributeTestingService.customAttributes);
-      expect(result.status).toEqual(200);
+    describe('when IDs are requested', () => {
+      let requested: DaffProductCustomAttribute;
+      let result: any;
+
+      beforeEach(() => {
+        requested = customAttributeTestingService.customAttributes[1];
+
+        result = customAttributeTestingService.get(buildReqInfo([requested.id]));
+      });
+
+      it('should return only the requested custom attributes', () => {
+        expect(result.body).toEqual([requested]);
+        expect(result.status).toEqual(200);
+      });
+    });
+
+    describe('when an unknown ID is requested', () => {
+      let result: any;
+
+      beforeEach(() => {
+        result = customAttributeTestingService.get(buildReqInfo(['not a real ID']));
+      });
+
+      it('should return an empty list', () => {
+        expect(result.body).toEqual([]);
+        expect(result.status).toEqual(200);
+      });
+    });
+
+    describe('when no IDs are requested', () => {
+      let result: any;
+
+      beforeEach(() => {
+        result = customAttributeTestingService.get(buildReqInfo());
+      });
+
+      it('should return the full list of custom attributes', () => {
+        expect(result.body).toEqual(customAttributeTestingService.customAttributes);
+        expect(result.status).toEqual(200);
+      });
     });
   });
 });

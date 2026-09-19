@@ -6,15 +6,15 @@ import { map } from 'rxjs/operators';
 import { DaffProductCustomAttribute } from '@daffodil/product';
 import { DaffProductCustomAttributeServiceInterface } from '@daffodil/product/driver';
 
-import { MagentoAttributesList } from './models/public_api';
+import { MAGENTO_PRODUCT_ATTRIBUTE_ENTITY_TYPE } from './models/public_api';
 import {
-  getAttributesList,
-  magentoAttributesListValidator,
+  magentoAttributesSearch,
+  magentoAttributesSearchValidator,
 } from './queries/public_api';
 import { DaffMagentoCustomAttributeTransformer } from './transforms/public_api';
 
 /**
- * A service for making magento apollo queries for the list of {@link DaffProductCustomAttribute}s.
+ * A service for querying product custom attribute definitions from Magento.
  *
  * @inheritdoc
  */
@@ -27,12 +27,18 @@ export class DaffMagentoProductCustomAttributeService implements DaffProductCust
     private customAttributeTransformer: DaffMagentoCustomAttributeTransformer,
   ) {}
 
-  list(): Observable<DaffProductCustomAttribute[]> {
-    return this.apollo.query<{ attributesList: MagentoAttributesList }>({
-      query: getAttributesList(),
+  search(ids: Array<DaffProductCustomAttribute['id']>): Observable<DaffProductCustomAttribute[]> {
+    return this.apollo.query({
+      query: magentoAttributesSearch(),
+      variables: {
+        attributes: ids.map((id) => ({
+          attribute_code: id,
+          entity_type: MAGENTO_PRODUCT_ATTRIBUTE_ENTITY_TYPE,
+        })),
+      },
     }).pipe(
-      map(magentoAttributesListValidator),
-      map(result => this.customAttributeTransformer.transformManyMagentoAttributes(result.data.attributesList.items)),
+      map(magentoAttributesSearchValidator),
+      map(result => result.data.customAttributeMetadataV2.items.map((a) => this.customAttributeTransformer.transformMagentoAttribute(a))),
     );
   }
 }

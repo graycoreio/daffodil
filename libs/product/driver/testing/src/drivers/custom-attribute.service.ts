@@ -19,7 +19,7 @@ import { DaffProductCustomAttributeFactory } from '@daffodil/product/testing';
 export class DaffTestingProductCustomAttributeService implements DaffProductCustomAttributeServiceInterface {
   constructor(private customAttributeFactory: DaffProductCustomAttributeFactory) {}
 
-  list(): Observable<DaffProductCustomAttribute[]> {
-    return of(this.customAttributeFactory.createMany(5));
+  search(ids: Array<DaffProductCustomAttribute['id']>): Observable<DaffProductCustomAttribute[]> {
+    return of(ids.map((id) => this.customAttributeFactory.create({ id })));
   }
 }

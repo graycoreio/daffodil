@@ -7,7 +7,7 @@ import {
   daffProductCustomAttributesEntitiesAdapter,
   daffProductCustomAttributesEntitiesReducer,
 } from './entities.reducer';
-import { DaffProductCustomAttributesListSuccess } from '../actions';
+import { DaffProductCustomAttributesSearchSuccess } from '../actions';
 
 describe('@daffodil/product/state | daffProductCustomAttributesEntitiesReducer', () => {
   let customAttributeFactory: DaffProductCustomAttributeFactory;
@@ -27,15 +27,15 @@ describe('@daffodil/product/state | daffProductCustomAttributesEntitiesReducer',
     });
   });
 
-  describe('when ListSuccess is triggered', () => {
+  describe('when SearchSuccess is triggered', () => {
     let customAttributes: DaffProductCustomAttribute[];
     let result;
 
     beforeEach(() => {
       customAttributes = customAttributeFactory.createMany(2);
-      const listSuccess = new DaffProductCustomAttributesListSuccess(customAttributes);
+      const searchSuccess = new DaffProductCustomAttributesSearchSuccess(customAttributes);
 
-      result = daffProductCustomAttributesEntitiesReducer(initialState, listSuccess);
+      result = daffProductCustomAttributesEntitiesReducer(initialState, searchSuccess);
     });
 
     it('sets expected number of custom attributes on state', () => {

@@ -19,9 +19,9 @@ describe('Driver | Shopify | Product | ProductCustomAttributeService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('list', () => {
-    it('should return an empty list, as Shopify has no concept of a catalog-wide list of custom attribute definitions', () => {
-      service.list().subscribe(customAttributes => {
+  describe('search', () => {
+    it('should return an empty list, as Shopify has no concept of custom attribute definitions in the Storefront API', () => {
+      service.search(['brand']).subscribe(customAttributes => {
         expect(customAttributes).toEqual([]);
       });
     });

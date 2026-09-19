@@ -23,8 +23,9 @@ import {
 
 import {
   DaffProductCustomAttributesActionTypes,
-  DaffProductCustomAttributesListFailure,
-  DaffProductCustomAttributesListSuccess,
+  DaffProductCustomAttributesSearch,
+  DaffProductCustomAttributesSearchFailure,
+  DaffProductCustomAttributesSearchSuccess,
 } from './actions';
 import { DAFF_PRODUCT_ERROR_MATCHER } from '../injection-tokens/public_api';
 
@@ -37,14 +38,14 @@ export class DaffProductCustomAttributesEffects {
   ) {}
 
   /**
-   * An effect for listing the product custom attributes.
+   * An effect for searching the product custom attributes.
    */
-  list$ = createEffect(() => this.actions$.pipe(
-    ofType(DaffProductCustomAttributesActionTypes.List),
-    switchMap(() =>
-      this.driver.list().pipe(
-        map(resp => new DaffProductCustomAttributesListSuccess(resp)),
-        catchError((error: DaffError) => of(new DaffProductCustomAttributesListFailure(this.errorMatcher(error)))),
+  search$ = createEffect(() => this.actions$.pipe(
+    ofType(DaffProductCustomAttributesActionTypes.Search),
+    switchMap((action: DaffProductCustomAttributesSearch) =>
+      this.driver.search(action.payload).pipe(
+        map(resp => new DaffProductCustomAttributesSearchSuccess(resp)),
+        catchError((error: DaffError) => of(new DaffProductCustomAttributesSearchFailure(this.errorMatcher(error)))),
       ),
     ),
   ));

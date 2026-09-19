@@ -10,7 +10,8 @@ import {
 import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
 import { DaffProductCustomAttributeKind } from '@daffodil/product';
 import {
-  getAttributesList,
+  magentoAttributesSearch,
+  MAGENTO_PRODUCT_ATTRIBUTE_ENTITY_TYPE,
   MagentoAttribute,
   MagentoAttributeFrontendInputEnum,
 } from '@daffodil/product/driver/magento';
@@ -57,9 +58,9 @@ describe('@daffodil/product/driver/magento | DaffMagentoProductCustomAttributeSe
     expect(service).toBeTruthy();
   });
 
-  describe('list | listing the custom attributes', () => {
+  describe('search | searching the custom attributes by ID', () => {
     it('should return a list of DaffProductCustomAttributes', done => {
-      service.list().subscribe(result => {
+      service.search([stubMagentoAttribute.code]).subscribe(result => {
         expect(result).toEqual([{
           id: stubMagentoAttribute.code,
           kind: DaffProductCustomAttributeKind.SCALAR,
@@ -68,11 +69,33 @@ describe('@daffodil/product/driver/magento | DaffMagentoProductCustomAttributeSe
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getAttributesList()));
+      const op = controller.expectOne(addTypenameToDocument(magentoAttributesSearch()));
 
       op.flush({
         data: {
-          attributesList: {
+          customAttributeMetadataV2: {
+            items: [stubMagentoAttribute],
+            errors: [],
+          },
+        },
+      });
+    });
+
+    it('should query the passed IDs as product attribute codes', done => {
+      service.search([stubMagentoAttribute.code]).subscribe(() => {
+        done();
+      });
+
+      const op = controller.expectOne(addTypenameToDocument(magentoAttributesSearch()));
+
+      expect(op.operation.variables.attributes).toEqual([{
+        attribute_code: stubMagentoAttribute.code,
+        entity_type: MAGENTO_PRODUCT_ATTRIBUTE_ENTITY_TYPE,
+      }]);
+
+      op.flush({
+        data: {
+          customAttributeMetadataV2: {
             items: [stubMagentoAttribute],
             errors: [],
           },

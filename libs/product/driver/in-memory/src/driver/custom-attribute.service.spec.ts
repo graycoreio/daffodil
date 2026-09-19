@@ -9,6 +9,7 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { InMemoryBackendConfig } from 'angular-in-memory-web-api';
 
+import { DaffProductCustomAttribute } from '@daffodil/product';
 import { DaffProductCustomAttributeFactory } from '@daffodil/product/testing';
 
 import { DaffInMemoryProductCustomAttributeService } from './custom-attribute.service';
@@ -46,15 +47,24 @@ describe('@daffodil/product/driver/in-memory | ProductCustomAttributeService', (
     expect(customAttributeService).toBeTruthy();
   });
 
-  describe('list | getting a list of custom attributes', () => {
-    it('should send a get request', () => {
-      const mockCustomAttributes = customAttributeFactory.createMany(3);
+  describe('search | searching for custom attributes by ID', () => {
+    let mockCustomAttributes: DaffProductCustomAttribute[];
 
-      customAttributeService.list().subscribe(customAttributes => {
+    beforeEach(() => {
+      mockCustomAttributes = customAttributeFactory.createMany(3);
+    });
+
+    it('should send a get request with the requested IDs', () => {
+      const ids = mockCustomAttributes.map(({ id }) => id);
+
+      customAttributeService.search(ids).subscribe(customAttributes => {
         expect(customAttributes).toEqual(mockCustomAttributes);
       });
 
-      const req = httpMock.expectOne(`${customAttributeService['url']}/`);
+      const req = httpMock.expectOne(
+        ({ url, params }) => url === `${customAttributeService['url']}/`
+          && JSON.stringify(params.getAll('id')) === JSON.stringify(ids),
+      );
       expect(req.request.method).toBe('GET');
 
       req.flush(mockCustomAttributes);

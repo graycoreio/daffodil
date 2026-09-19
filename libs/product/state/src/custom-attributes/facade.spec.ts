@@ -9,7 +9,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffProductCustomAttribute } from '@daffodil/product';
 import { DaffProductCustomAttributeFactory } from '@daffodil/product/testing';
 
-import { DaffProductCustomAttributesListSuccess } from './actions';
+import { DaffProductCustomAttributesSearchSuccess } from './actions';
 import { DaffProductCustomAttributesFacade } from './facade';
 import {
   daffProductReducers,
@@ -42,7 +42,7 @@ describe('@daffodil/product/state | DaffProductCustomAttributesFacade', () => {
 
     mockCustomAttribute = customAttributeFactory.create();
 
-    store.dispatch(new DaffProductCustomAttributesListSuccess([mockCustomAttribute]));
+    store.dispatch(new DaffProductCustomAttributesSearchSuccess([mockCustomAttribute]));
   });
 
   it('should be created', () => {

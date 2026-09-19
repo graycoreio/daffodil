@@ -11,7 +11,7 @@ import {
 } from '../custom-attributes/public_api';
 
 /**
- * Transforms a magento MagentoAttribute from the attributesList query into a DaffProductCustomAttribute.
+ * Transforms a magento MagentoAttribute from the custom attribute metadata query into a DaffProductCustomAttribute.
  */
 @Injectable({
   providedIn: 'root',
@@ -38,12 +38,5 @@ export class DaffMagentoCustomAttributeTransformer {
           label: attribute.label,
         };
     }
-  }
-
-  /**
-   * Transforms many magento MagentoAttributes from the attributesList query into DaffProductCustomAttributes.
-   */
-  transformManyMagentoAttributes(attributes: MagentoAttribute[]): DaffProductCustomAttribute[] {
-    return attributes.map(attribute => this.transformMagentoAttribute(attribute));
   }
 }

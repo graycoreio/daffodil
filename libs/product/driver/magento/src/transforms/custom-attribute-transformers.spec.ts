@@ -86,10 +86,4 @@ describe('@daffodil/product/driver/magento | DaffMagentoCustomAttributeTransform
       });
     });
   });
-
-  describe('transformManyMagentoAttributes', () => {
-    it('should transform many attributes', () => {
-      expect(service.transformManyMagentoAttributes([stubMagentoAttribute, stubMagentoAttribute]).length).toEqual(2);
-    });
-  });
 });

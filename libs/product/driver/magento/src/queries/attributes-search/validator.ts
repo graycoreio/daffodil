@@ -1,18 +1,18 @@
 import { GraphQlApolloValidator } from '@daffodil/core/graphql';
 import { DaffProductInvalidAPIResponseError } from '@daffodil/product/driver';
 
-import { MagentoAttributesList } from '../../models/public_api';
+import { MagentoCustomAttributeSearchResponse } from './response.type';
 
 interface Shape {
-  data: { attributesList: { items: true } };
+  data: { customAttributeMetadataV2: { items: true } };
 }
-type ValidatorFn = GraphQlApolloValidator<{ attributesList: MagentoAttributesList }, Shape>;
+type ValidatorFn = GraphQlApolloValidator<MagentoCustomAttributeSearchResponse, Shape>;
 
 const isValid = (
   response: Parameters<ValidatorFn>[0],
-): response is ReturnType<ValidatorFn> => !!response.data?.attributesList?.items;
+): response is ReturnType<ValidatorFn> => !!response.data?.customAttributeMetadataV2?.items;
 
-export const magentoAttributesListValidator: ValidatorFn = (response) => {
+export const magentoAttributesSearchValidator: ValidatorFn = (response) => {
   if (isValid(response)) {
     return response;
   }
