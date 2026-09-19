@@ -6,6 +6,7 @@ import {
   MockProduct,
   DaffProductKindFactory,
   DaffProductImageFactory,
+  DaffProductCustomAttributeValueFactory,
 } from '@daffodil/product/testing';
 import { DaffRelatedProduct } from '@daffodil/related-products';
 
@@ -18,8 +19,9 @@ export class MockRelatedProduct extends MockProduct implements DaffRelatedProduc
   constructor(
     productFactory: DaffProductKindFactory,
     imageFactory: DaffProductImageFactory,
+    customAttributeFactory: DaffProductCustomAttributeValueFactory,
   ) {
-    super(imageFactory);
+    super(imageFactory, customAttributeFactory);
 
     this.related = productFactory.createMany(3);
   }
@@ -31,11 +33,12 @@ export class MockRelatedProduct extends MockProduct implements DaffRelatedProduc
 @Injectable({
   providedIn: 'root',
 })
-export class DaffRelatedProductFactory extends DaffModelFactory<DaffRelatedProduct>{
+export class DaffRelatedProductFactory extends DaffModelFactory<DaffRelatedProduct, typeof MockRelatedProduct>{
   constructor(
     productKindFactory: DaffProductKindFactory,
     imageFactory: DaffProductImageFactory,
+    customAttributeFactory: DaffProductCustomAttributeValueFactory,
   ) {
-    super(MockRelatedProduct, productKindFactory, imageFactory);
+    super(MockRelatedProduct, productKindFactory, imageFactory, customAttributeFactory);
   }
 }

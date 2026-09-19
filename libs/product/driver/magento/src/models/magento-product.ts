@@ -1,3 +1,4 @@
+import { MagentoCustomAttributes } from './custom-attributes.type';
 import { MagentoProductPreview } from './product-preview.interface';
 
 export enum MagentoProductTypeEnum {
@@ -26,4 +27,5 @@ export interface MagentoProduct extends MagentoProductPreview {
   description?: {
     html: string;
   };
+  custom_attributesV2?: MagentoCustomAttributes;
 }
