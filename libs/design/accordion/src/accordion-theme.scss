@@ -8,10 +8,10 @@
 
 	.daff-accordion-item {
 		@include daff-light-mode($mode) {
-			border-top: 1px solid daff-color($neutral, 20);
+			border-top: thin solid daff-color($neutral, 20);
 
 			&:last-child {
-				border-bottom: 1px solid daff-color($neutral, 20);
+				border-bottom: thin solid daff-color($neutral, 20);
 			}
 
 			.daff-accordion-item__header {
@@ -24,10 +24,10 @@
 		}
 
 		@include daff-dark-mode($mode) {
-			border-top: 1px solid daff-color($neutral, 80);
+			border-top: thin solid daff-color($neutral, 80);
 
 			&:last-child {
-				border-bottom: 1px solid daff-color($neutral, 80);
+				border-bottom: thin solid daff-color($neutral, 80);
 			}
 
 			.daff-accordion-item__header {
