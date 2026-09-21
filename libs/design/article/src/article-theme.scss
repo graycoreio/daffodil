@@ -28,7 +28,7 @@
 
 			pre {
 				background: rgba(daff-color($neutral, 20), 0.3);
-				border: 1px solid daff-color($neutral, 20);
+				border: thin solid daff-color($neutral, 20);
 
 				code {
 					background: none;
@@ -38,7 +38,7 @@
 
 			&__copy-button {
 				background: daff-color($neutral, 10);
-				border: 1px solid daff-color($neutral, 20);
+				border: thin solid daff-color($neutral, 20);
 			}
 
 			hr {
@@ -47,7 +47,7 @@
 
 			blockquote {
 				background: rgba(daff-color($primary), 0.1);
-				border-left: 4px solid daff-color($primary, 50);
+				border-left: 0.25rem solid daff-color($primary, 50);
 				color: daff-color($primary, 100);
 
 				code {
@@ -62,7 +62,7 @@
 			}
 
 			table {
-				border: 1px solid $table-border-light;
+				border: thin solid $table-border-light;
 
 				th {
 					background: daff-color($neutral, 10);
@@ -71,13 +71,13 @@
 				th,
 				td {
 					&:not(:last-child) {
-						border-right: 1px solid $table-border-light;
+						border-right: thin solid $table-border-light;
 					}
 				}
 
 				thead {
 					th {
-						border-bottom: 1px solid $table-border-light;
+						border-bottom: thin solid $table-border-light;
 					}
 				}
 
@@ -85,7 +85,7 @@
 					&:not(:last-child) {
 						th,
 						td {
-							border-bottom: 1px solid $table-border-light;
+							border-bottom: thin solid $table-border-light;
 						}
 					}
 				}
@@ -112,7 +112,7 @@
 
 			pre {
 				background: rgba(daff-color($neutral, 20), 0.15);
-				border: 1px solid rgba(daff-color($neutral, 20), 0.15);
+				border: thin solid rgba(daff-color($neutral, 20), 0.15);
 
 				code {
 					background: none;
@@ -122,7 +122,7 @@
 
 			&__copy-button {
 				background: daff-color($neutral, 90);
-				border: 1px solid daff-color($neutral, 80);
+				border: thin solid daff-color($neutral, 80);
 			}
 
 			hr {
@@ -131,7 +131,7 @@
 
 			blockquote {
 				background: rgba(daff-color($primary), 0.12);
-				border-left: 4px solid daff-color($primary, 40);
+				border-left: 0.25rem solid daff-color($primary, 40);
 				color: daff-color($primary, 10);
 
 				code {
@@ -146,7 +146,7 @@
 			}
 
 			table {
-				border: 1px solid $table-border-dark;
+				border: thin solid $table-border-dark;
 
 				th {
 					background: daff-color($neutral, 90);
@@ -155,13 +155,13 @@
 				th,
 				td {
 					&:not(:last-child) {
-						border-right: 1px solid $table-border-dark;
+						border-right: thin solid $table-border-dark;
 					}
 				}
 
 				thead {
 					th {
-						border-bottom: 1px solid $table-border-dark;
+						border-bottom: thin solid $table-border-dark;
 					}
 				}
 
@@ -169,7 +169,7 @@
 					&:not(:last-child) {
 						th,
 						td {
-							border-bottom: 1px solid $table-border-dark;
+							border-bottom: thin solid $table-border-dark;
 						}
 					}
 				}

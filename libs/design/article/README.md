@@ -6,8 +6,7 @@ Article is designed for content pages that display large blocks of text-driven i
 
 ## Usage
 
-### Within a standalone component
-To use article in a standalone component, import `DAFF_ARTICLE_COMPONENTS` directly into your custom component:
+Import `DAFF_ARTICLE_COMPONENTS` into your component:
 
 ```ts
 import { DAFF_ARTICLE_COMPONENTS } from '@daffodil/design/article';
@@ -22,31 +21,9 @@ import { DAFF_ARTICLE_COMPONENTS } from '@daffodil/design/article';
 export class CustomComponent {}
 ```
 
-### Within a module (deprecated)
-To use article in a module, import `DaffArticleModule` into your custom module:
-
-```ts
-import { NgModule } from '@angular/core';
-import { DaffArticleModule } from '@daffodil/design/article';
-import { CustomComponent } from './custom.component';
-
-@NgModule({
-	declarations: [
-    CustomComponent,
-  ],
-  exports: [
-    CustomComponent,
-  ],
-  imports: [
-    DaffArticleModule,
-  ],
-})
-export class CustomComponentModule { }
-```
-
-> **Warning**
->
-> This method is deprecated. It's recommended to update all custom components to standalone.
+> **Deprecation notice:**
+> 
+> `DaffArticleModule` is deprecated. Use the standalone component imports instead.
 
 ## Custom elements
 
