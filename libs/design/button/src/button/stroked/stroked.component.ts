@@ -35,7 +35,7 @@ import { DaffButtonBaseDirective } from '../button-base.directive';
   styleUrl: './stroked.component.scss',
   host: {
     'class': 'daff-stroked-button',
-    '[class.elevated]': 'elevated',
+    '[class.elevated]': 'elevated()',
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
