@@ -13,7 +13,7 @@
 				background: daff-color($neutral, 20);
 
 				&.daff-selected {
-					border: 1px solid daff-color($neutral);
+					border: thin solid daff-color($neutral);
 				}
 			}
 		}
@@ -23,13 +23,13 @@
 				background: daff-color($neutral, 70);
 
 				&.daff-selected {
-					border: 1px solid daff-color($neutral, 30);
+					border: thin solid daff-color($neutral, 30);
 				}
 			}
 		}
 
 		.daff-thumbnail {
-			border: 1px solid transparent;
+			border: thin solid transparent;
 		}
 
 		&.daff-skeleton {
