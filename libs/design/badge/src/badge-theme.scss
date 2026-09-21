@@ -105,9 +105,6 @@
 				}
 			}
 
-			// `status` is a state modifier that must override `color`. Both apply
-			// equal-specificity `.daff-*` classes to the same element, so these
-			// rules are authored after every color variant above to win the cascade.
 			@include daff-badge-color-light-variants(
 				(
 					'warn': $warn,
@@ -174,9 +171,6 @@
 				}
 			}
 
-			// `status` is a state modifier that must override `color`. Both apply
-			// equal-specificity `.daff-*` classes to the same element, so these
-			// rules are authored after every color variant above to win the cascade.
 			@include daff-badge-color-dark-variants(
 				(
 					'warn': $warn,
