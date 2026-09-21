@@ -1,7 +1,7 @@
 @use '../../../../scss/theming' as *;
 
 @mixin stroked-card-theme-variant($color) {
-	border: 1px solid $color;
+	border: thin solid $color;
 	color: $color;
 }
 
