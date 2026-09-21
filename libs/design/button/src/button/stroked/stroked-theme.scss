@@ -1,7 +1,7 @@
 @use '../../../../scss/theming' as *;
 
 @mixin daff-stroked-button-theme-variant($base-color) {
-	border: 1px solid $base-color;
+	border: thin solid $base-color;
 	color: $base-color;
 	background-color: transparent;
 
@@ -33,7 +33,7 @@
 
 	.daff-stroked-button {
 		background: transparent;
-		border: 1px solid daff-color($neutral, 50);
+		border: thin solid daff-color($neutral, 50);
 		color: currentColor;
 
 		&::after {
