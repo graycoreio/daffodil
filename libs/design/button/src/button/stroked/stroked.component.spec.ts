@@ -85,5 +85,12 @@ describe('@daffodil/design/button | DaffStrokedButtonComponent', () => {
         elevated: true,
       }));
     });
+
+    it('should not add a class of `.elevated` to the host element if elevated is false', () => {
+      wrapper.elevated.set(false);
+      fixture.detectChanges();
+
+      expect(de.classes['elevated']).toBeFalsy();
+    });
   });
 });
