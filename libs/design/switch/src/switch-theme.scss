@@ -31,7 +31,7 @@
 
 				&:focus {
 					&::after {
-						outline: 2px solid rgba($base-contrast, 0.08);
+						outline: 0.125rem solid rgba($base-contrast, 0.08);
 					}
 				}
 			}
@@ -47,7 +47,7 @@
 
 				&:focus {
 					&::after {
-						outline: 2px solid rgba($base-contrast, 0.15);
+						outline: 0.125rem solid rgba($base-contrast, 0.15);
 					}
 				}
 			}
