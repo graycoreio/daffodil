@@ -78,7 +78,7 @@
 	}
 
 	&.daff-skeleton {
-		max-width: 290px;
+		max-width: 18rem;
 		@include state.skeleton-screen(100%, 1.5rem);
 
 		#{$root}__item {
