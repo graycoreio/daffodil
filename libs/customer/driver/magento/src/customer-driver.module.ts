@@ -4,14 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import {
-  provideDaffCustomerAddressDriver,
-  provideDaffCustomerDriver,
-} from '@daffodil/customer/driver';
+import { provideDaffCustomerMagentoDriver } from './provider';
 
-import { DaffCustomerMagentoAddressService } from './address.service';
-import { DaffCustomerMagentoService } from './customer.service';
-
+/**
+ * @deprecated in favor of {@link provideDaffCustomerMagentoDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -22,8 +19,7 @@ export class DaffCustomerMagentoDriverModule {
     return {
       ngModule: DaffCustomerMagentoDriverModule,
       providers: [
-        provideDaffCustomerDriver(DaffCustomerMagentoService),
-        provideDaffCustomerAddressDriver(DaffCustomerMagentoAddressService),
+        provideDaffCustomerMagentoDriver(),
       ],
     };
   }
