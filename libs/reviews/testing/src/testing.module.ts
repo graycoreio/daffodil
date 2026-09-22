@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 
-import { provideDaffProductExtraProductFactories } from '@daffodil/product/testing';
-
-import { DaffReviewedProductFactory } from './factories/public_api';
+import { provideDaffReviewsTesting } from './provider';
 
 /**
  * Provides the reviewed product as an extra product factory.
+ *
+ * @deprecated in favor of {@link provideDaffReviewsTesting}
  */
 @NgModule({
   providers: [
-    provideDaffProductExtraProductFactories(DaffReviewedProductFactory),
+    provideDaffReviewsTesting(),
   ],
 })
 export class DaffReviewTestingModule { }
