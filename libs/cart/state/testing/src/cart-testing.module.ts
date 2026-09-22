@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import { DaffCartFacade } from '@daffodil/cart/state';
+import { provideDaffCartStateTesting } from './provider';
 
-import { MockDaffCartFacade } from './mock-cart-facade';
-
+/**
+ * @deprecated in favor of {@link provideDaffCartStateTesting}
+ */
 @NgModule({
   providers: [
-    { provide: DaffCartFacade, useExisting: MockDaffCartFacade },
+    provideDaffCartStateTesting(),
   ],
 })
 export class DaffCartStateTestingModule { }
