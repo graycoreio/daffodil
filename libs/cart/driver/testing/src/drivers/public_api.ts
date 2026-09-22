@@ -11,3 +11,4 @@ export { DaffTestingCartOrderService } from './cart-order/cart-order.service';
 export { DaffTestingCartCouponService } from './cart-coupon/cart-coupon.service';
 
 export { DaffTestingCartDriverModule } from './cart-driver.module';
+export { provideDaffCartTestingDriver } from './provider';
