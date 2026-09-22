@@ -4,10 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffReviewsDriver } from '@daffodil/reviews/driver';
+import { provideDaffReviewsTestingDriver } from './provider';
 
-import { DaffReviewsTestingService } from './reviews.service';
-
+/**
+ * @deprecated in favor of {@link provideDaffReviewsTestingDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +19,7 @@ export class DaffReviewsTestingDriverModule {
     return {
       ngModule: DaffReviewsTestingDriverModule,
       providers: [
-        provideDaffReviewsDriver(DaffReviewsTestingService),
+        provideDaffReviewsTestingDriver(),
       ],
     };
   }
