@@ -20,3 +20,4 @@ export { DaffMagentoCartShippingMethodsService } from './cart-shipping-methods.s
 export { DaffMagentoCartShippingInformationService } from './cart-shipping-information.service';
 
 export { DaffCartMagentoDriverModule } from './cart-driver.module';
+export { provideDaffCartMagentoDriver } from './provider';
