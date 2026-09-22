@@ -4,10 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffGeographyDriver } from '@daffodil/geography/driver';
+import { provideDaffGeographyTestingDriver } from './provider';
 
-import { DaffTestingGeographyService } from './geography.service';
-
+/**
+ * @deprecated in favor of {@link provideDaffGeographyTestingDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +19,7 @@ export class DaffGeographyTestingDriverModule {
     return {
       ngModule: DaffGeographyTestingDriverModule,
       providers: [
-        provideDaffGeographyDriver(DaffTestingGeographyService),
+        provideDaffGeographyTestingDriver(),
       ],
     };
   }
