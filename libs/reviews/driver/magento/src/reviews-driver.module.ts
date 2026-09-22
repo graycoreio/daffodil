@@ -4,20 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento';
-import {
-  provideDaffProductMagentoExtraProductPreviewFragments,
-  provideDaffProductMagentoExtraProductPreviewTransforms,
-} from '@daffodil/product/driver/magento';
-import { provideDaffReviewsDriver } from '@daffodil/reviews/driver';
+import { provideDaffReviewsMagentoDriver } from './provider';
 
-import {
-  magentoReviewedProductFragment,
-  MAGENTO_REVIEWS_LIST_QUERY_NAME,
-} from './queries/public_api';
-import { DaffReviewsMagentoService } from './reviews.service';
-import { magentoReviewedProductTransform } from './transforms/public_api';
-
+/**
+ * @deprecated in favor of {@link provideDaffReviewsMagentoDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -28,14 +19,7 @@ export class DaffReviewsMagentoDriverModule {
     return {
       ngModule: DaffReviewsMagentoDriverModule,
       providers: [
-        provideDaffReviewsDriver(DaffReviewsMagentoService),
-        ...provideDaffProductMagentoExtraProductPreviewFragments(
-          magentoReviewedProductFragment,
-        ),
-        ...provideDaffProductMagentoExtraProductPreviewTransforms(
-          magentoReviewedProductTransform,
-        ),
-        provideDaffMagentoCacheableOperation(MAGENTO_REVIEWS_LIST_QUERY_NAME),
+        provideDaffReviewsMagentoDriver(),
       ],
     };
   }
