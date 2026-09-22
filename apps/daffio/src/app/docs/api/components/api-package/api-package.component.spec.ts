@@ -9,7 +9,6 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DaffioActiveHeaderService } from '../../../../core/dynamic-fragment/service';
 
 import {
   DaffApiNavPackageDoc,
@@ -19,6 +18,7 @@ import {
 } from '@daffodil/docs-utils';
 
 import { DaffioApiPackageComponent } from './api-package.component';
+import { DaffioActiveHeaderService } from '../../../../core/dynamic-fragment/service';
 import { DaffioApiListSectionComponent } from '../api-list-section/api-list-section.component';
 
 @Component({
