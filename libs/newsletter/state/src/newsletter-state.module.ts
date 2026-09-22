@@ -7,6 +7,9 @@ import { DaffNewsletterEffects } from './effects/newsletter.effects';
 import { DAFF_NEWSLETTER_STORE_FEATURE_KEY } from './reducers/newsletter-store-feature-key';
 import { daffNewsletterStateReducer } from './reducers/newsletter.reducer';
 
+/**
+ * @deprecated in favor of {@link provideDaffNewsletterState}
+ */
 @NgModule({
   imports: [
     CommonModule,
