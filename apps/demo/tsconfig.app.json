@@ -6,6 +6,7 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
+    "composite": true
   },
   "exclude": [
     "src/test.ts",

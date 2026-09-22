@@ -4,7 +4,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/libs/design-examples",
-    "types": ["jasmine"]
+    "types": ["jasmine"],
+    "composite": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "**/*.ts"]
 }

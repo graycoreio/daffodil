@@ -6,6 +6,7 @@
     "declaration": true,
     "inlineSources": true,
     "types": [],
+    "composite": true
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,

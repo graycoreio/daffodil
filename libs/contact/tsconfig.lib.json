@@ -8,6 +8,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "types": [],
+    "composite": true
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
