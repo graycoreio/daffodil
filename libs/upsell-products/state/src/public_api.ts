@@ -3,3 +3,4 @@ export * from './reducers/public_api';
 export * from './selectors/public_api';
 
 export { DaffUpsellProductStateModule } from './state.module';
+export { provideDaffUpsellProductsState } from './provider';

@@ -11,6 +11,8 @@ import {
 
 /**
  * A module that provides the default reducers for the upsell product redux state.
+ *
+ * @deprecated in favor of {@link provideDaffUpsellProductsState}
  */
 @NgModule({
   imports: [
