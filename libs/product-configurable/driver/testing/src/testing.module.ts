@@ -4,11 +4,12 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffProductExtraFactoryTypes } from '@daffodil/product/testing';
-import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
+import { provideDaffProductConfigurableTestingDriver } from './provider';
 
 /**
  * Module for providing the configurable product factory to the product kind factory.
+ *
+ * @deprecated in favor of {@link provideDaffProductConfigurableTestingDriver}
  */
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ export class DaffConfigurableProductTestingDriverModule {
     return {
       ngModule: DaffConfigurableProductTestingDriverModule,
       providers: [
-        provideDaffProductExtraFactoryTypes(DaffConfigurableProductFactory),
+        provideDaffProductConfigurableTestingDriver(),
       ],
     };
   }
