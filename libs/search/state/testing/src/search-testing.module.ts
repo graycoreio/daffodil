@@ -1,19 +1,15 @@
 import { NgModule } from '@angular/core';
 
-import {
-  DaffSearchIncrementalFacade,
-  DaffSearchPageFacade,
-} from '@daffodil/search/state';
-
-import { MockDaffSearchFacade } from './mock-search-facade';
+import { provideDaffSearchStateTesting } from './provider';
 
 /**
  * Provides the {@link MockDaffSearchFacade} for {@link DaffSearchFacade}.
+ *
+ * @deprecated in favor of {@link provideDaffSearchStateTesting}
  */
 @NgModule({
   providers: [
-    { provide: DaffSearchPageFacade, useExisting: MockDaffSearchFacade },
-    { provide: DaffSearchIncrementalFacade, useExisting: MockDaffSearchFacade },
+    provideDaffSearchStateTesting(),
   ],
 })
 export class DaffSearchStateTestingModule {}
