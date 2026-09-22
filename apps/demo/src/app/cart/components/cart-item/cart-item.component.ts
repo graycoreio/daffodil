@@ -3,7 +3,7 @@ import {
   Inject,
   Input,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ReactiveFormsModule,

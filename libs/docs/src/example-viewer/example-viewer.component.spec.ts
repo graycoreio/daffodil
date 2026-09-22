@@ -1,7 +1,7 @@
 import {
   ApplicationRef,
   Component,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,

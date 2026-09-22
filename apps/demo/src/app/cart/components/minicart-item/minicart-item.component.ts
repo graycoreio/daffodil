@@ -2,7 +2,7 @@ import {
   Component,
   Input,
   HostBinding,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Router } from '@angular/router';
 

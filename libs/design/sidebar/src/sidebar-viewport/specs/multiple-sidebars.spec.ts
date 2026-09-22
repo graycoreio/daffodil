@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   signal,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,

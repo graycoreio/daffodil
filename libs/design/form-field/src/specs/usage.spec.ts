@@ -3,7 +3,7 @@ import {
   DebugElement,
   Input,
   signal,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,

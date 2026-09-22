@@ -2,7 +2,7 @@ import {
   Component,
   Input,
   OnChanges,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 

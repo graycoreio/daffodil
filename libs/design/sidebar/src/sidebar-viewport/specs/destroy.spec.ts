@@ -2,7 +2,7 @@ import { A11yModule } from '@angular/cdk/a11y';
 import {
   Component,
   DOCUMENT,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,

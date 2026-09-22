@@ -4,7 +4,7 @@ import {
   Output,
   EventEmitter,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 

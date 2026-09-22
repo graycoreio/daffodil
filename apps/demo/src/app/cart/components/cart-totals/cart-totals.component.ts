@@ -2,7 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import {
   Component,
   Input,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import {

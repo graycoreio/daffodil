@@ -2,7 +2,7 @@ import {
   HttpClient,
   provideHttpClient,
   withInterceptorsFromDi,
-  withXhr
+  withXhr,
 } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { TestBed } from '@angular/core/testing';

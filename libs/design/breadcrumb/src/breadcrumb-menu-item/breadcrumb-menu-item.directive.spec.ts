@@ -2,7 +2,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   DebugElement,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,

@@ -1,7 +1,7 @@
 import {
   Component,
   Input,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -34,7 +34,7 @@ class WrapperComponent {
 
 @Component({
   selector: 'demo-minicart-item', changeDetection: ChangeDetectionStrategy.Eager,
- template: '',
+  template: '',
 })
 class MockMiniCartItemComponent {
   @Input() item: DaffCartItem;

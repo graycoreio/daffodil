@@ -2,7 +2,7 @@ import {
   Component,
   Input,
   ViewEncapsulation,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { DaffCart } from '@daffodil/cart';

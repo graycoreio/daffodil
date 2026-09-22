@@ -1,7 +1,7 @@
 import {
   Component,
   input,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,

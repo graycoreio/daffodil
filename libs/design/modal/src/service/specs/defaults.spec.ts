@@ -2,7 +2,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import {
   Component,
   ViewContainerRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   TestBed,

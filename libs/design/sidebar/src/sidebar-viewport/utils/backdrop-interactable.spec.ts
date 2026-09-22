@@ -3,7 +3,7 @@ import {
   Input,
   QueryList,
   ViewChildren,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   TestBed,

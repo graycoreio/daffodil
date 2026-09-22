@@ -5,7 +5,7 @@ import {
 import {
   PLATFORM_ID,
   Component,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   TestBed,

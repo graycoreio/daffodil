@@ -3,7 +3,7 @@ import {
   QueryList,
   signal,
   ViewChildren,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
