@@ -6,10 +6,12 @@
     "outDir": "../out-tsc/spec",
     "types": [
       "jasmine"
-    ]
+    ],
+    "composite": true
   },
   "include": [
     "**/*.spec.ts",
-    "**/*.d.ts"
+    "**/*.d.ts",
+    "**/*.ts"
   ]
 }

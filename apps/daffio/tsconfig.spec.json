@@ -5,12 +5,14 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "composite": true
   },
   "files": [
     "src/test.ts"  ],
   "include": [
     "**/*.spec.ts",
-    "**/*.d.ts"
+    "**/*.d.ts",
+    "**/*.ts"
   ]
 }

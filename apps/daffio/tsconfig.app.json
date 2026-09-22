@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/apps/daffio",
     "skipLibCheck": true,
+    "composite": true
   },
   "exclude": [
     "test.ts",
