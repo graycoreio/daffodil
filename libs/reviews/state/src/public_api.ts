@@ -5,3 +5,4 @@ export * from './selectors/public_api';
 export * from './injection-tokens/public_api';
 
 export { DaffReviewsStateModule } from './state.module';
+export { provideDaffReviewsState } from './provider';
