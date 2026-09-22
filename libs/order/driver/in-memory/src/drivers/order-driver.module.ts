@@ -4,12 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
-import { provideDaffOrderDriver } from '@daffodil/order/driver';
+import { provideDaffOrderInMemoryDriver } from './provider';
 
-import { DaffInMemoryOrderService } from './order.service';
-import { DaffInMemoryBackendOrderService } from '../backend/order.service';
-
+/**
+ * @deprecated in favor of {@link provideDaffOrderInMemoryDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -20,8 +19,7 @@ export class DaffOrderInMemoryDriverModule {
     return {
       ngModule: DaffOrderInMemoryDriverModule,
       providers: [
-        provideDaffOrderDriver(DaffInMemoryOrderService),
-        provideDaffInMemoryBackends(DaffInMemoryBackendOrderService),
+        provideDaffOrderInMemoryDriver(),
       ],
     };
   }
