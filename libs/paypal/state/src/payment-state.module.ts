@@ -19,6 +19,9 @@ import {
 } from './actions/paypal.actions';
 import { daffPaypalPaymentReducer } from './reducers/payment/reducer';
 
+/**
+ * @deprecated in favor of {@link provideDaffPaypalPaymentState}
+ */
 @NgModule({
   imports: [
     DaffPaymentStateModule,
