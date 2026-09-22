@@ -1,5 +1,7 @@
-import { DaffFilterRangeRequestOption } from './public_api';
-import { DaffFilterType } from '../filter-type';
+import {
+  DaffFilterRangeRequestOption,
+  DaffFilterType,
+} from '../../../filterable/public_api';
 
 /**
  * The base interface for range requests. Range requests have a name and a
