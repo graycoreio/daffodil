@@ -1,4 +1,5 @@
 export { DaffAuthMagentoDriverModule } from './auth-driver.module';
+export { provideDaffAuthMagentoDriver } from './provider';
 
 export { DaffMagentoAuthService } from './auth.service';
 export { DaffMagentoLoginService } from './login.service';
