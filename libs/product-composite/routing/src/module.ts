@@ -11,6 +11,9 @@ import {
 import { DaffProductCompositePageEffects } from './effects/public_api';
 import { DaffProductCompositeQueryParamService } from './services/query-param.service';
 
+/**
+ * @deprecated in favor of {@link provideDaffProductCompositeRouting}
+ */
 @NgModule({
   imports: [
     EffectsModule.forFeature([DaffProductCompositePageEffects]),
