@@ -4,22 +4,12 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import {
-  provideDaffCustomerAddressDriver,
-  provideDaffCustomerDriver,
-} from '@daffodil/customer/driver';
-import {
-  DaffInMemoryBackendInterface,
-  provideDaffInMemoryBackends,
-} from '@daffodil/driver/in-memory';
-
-import { DaffCustomerAddressInMemoryDriver } from './address.service';
-import { DaffCustomerInMemoryDriver } from './customer.service';
-import { DaffCustomerAddressInMemoryBackendService } from '../backend/address.service';
-import { DaffCustomerInMemoryBackendService } from '../backend/customer.service';
+import { provideDaffCustomerInMemoryDriver } from '../provider';
 
 /**
  * Provides the {@link DaffCustomerInMemoryDriver} as the {@link DaffCustomerDriver}.
+ *
+ * @deprecated in favor of {@link provideDaffCustomerInMemoryDriver}
  */
 @NgModule({
   imports: [
@@ -31,12 +21,7 @@ export class DaffCustomerInMemoryDriverModule {
     return {
       ngModule: DaffCustomerInMemoryDriverModule,
       providers: [
-        provideDaffCustomerDriver(DaffCustomerInMemoryDriver),
-        provideDaffCustomerAddressDriver(DaffCustomerAddressInMemoryDriver),
-        provideDaffInMemoryBackends<DaffInMemoryBackendInterface>(
-          DaffCustomerInMemoryBackendService,
-          DaffCustomerAddressInMemoryBackendService,
-        ),
+        provideDaffCustomerInMemoryDriver(),
       ],
     };
   }

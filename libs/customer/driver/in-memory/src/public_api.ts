@@ -3,3 +3,4 @@ export { DaffCustomerAddressInMemoryBackendService } from './backend/address.ser
 export { DaffCustomerInMemoryDriver } from './driver/customer.service';
 export { DaffCustomerAddressInMemoryDriver } from './driver/address.service';
 export { DaffCustomerInMemoryDriverModule } from './driver/customer-driver.module';
+export { provideDaffCustomerInMemoryDriver } from './provider';
