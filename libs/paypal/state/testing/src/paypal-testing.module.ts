@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import { DaffPaypalFacade } from '@daffodil/paypal/state';
+import { provideDaffPaypalStateTesting } from './provider';
 
-import { MockDaffPaypalFacade } from './mock-paypal-facade';
-
+/**
+ * @deprecated in favor of {@link provideDaffPaypalStateTesting}
+ */
 @NgModule({
   providers: [
-    { provide: DaffPaypalFacade, useExisting: MockDaffPaypalFacade },
+    provideDaffPaypalStateTesting(),
   ],
 })
 export class DaffPaypalStateTestingModule { }
