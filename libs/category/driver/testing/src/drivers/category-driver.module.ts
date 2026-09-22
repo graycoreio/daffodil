@@ -4,12 +4,12 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffCategoryDriver } from '@daffodil/category/driver';
-
-import { DaffTestingCategoryService } from './category.service';
+import { provideDaffCategoryTestingDriver } from './provider';
 
 /**
  * A module for providing the {@link DaffTestingCategoryService} for the {@link DaffCategoryDriver} token.
+ *
+ * @deprecated in favor of {@link provideDaffCategoryTestingDriver}
  */
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ export class DaffCategoryTestingDriverModule {
     return {
       ngModule: DaffCategoryTestingDriverModule,
       providers: [
-        provideDaffCategoryDriver(DaffTestingCategoryService),
+        provideDaffCategoryTestingDriver(),
       ],
     };
   }
