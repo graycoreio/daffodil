@@ -10,3 +10,4 @@ export { DaffInMemoryCartOrderService } from './cart-order/cart-order.service';
 export { DaffInMemoryCartCouponService } from './cart-coupon/cart-coupon.service';
 
 export { DaffCartInMemoryDriverModule } from './cart-driver.module';
+export { provideDaffCartInMemoryDriver } from './provider';
