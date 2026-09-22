@@ -7,31 +7,14 @@ import {
   DaffCartRoutingConfiguration,
   provideDaffCartRoutingConfig,
 } from './config/config';
-import {
-  DaffCartBillingAddressGuardRedirectUrl,
-  DaffCartShippingAddressGuardRedirectUrl,
-  DaffCartShippingMethodGuardRedirectUrl,
-  DaffCartPaymentMethodGuardRedirectUrl,
-  DaffCartOrderResultGuardRedirectUrl,
-  DaffCartItemsGuardRedirectUrl,
-  DaffResolveCartGuardRedirectUrl,
-} from './guards/public_api';
-import {
-  DaffEmptyCartResolverRedirectUrl,
-  DaffCartResolverRedirectUrl,
-} from './resolvers/public_api';
+import { provideDaffCartRouting } from './provider';
 
+/**
+ * @deprecated in favor of {@link provideDaffCartRouting}
+ */
 @NgModule({
   providers: [
-    { provide: DaffCartBillingAddressGuardRedirectUrl, useValue: '/' },
-    { provide: DaffCartItemsGuardRedirectUrl, useValue: '/' },
-    { provide: DaffCartShippingAddressGuardRedirectUrl, useValue: '/' },
-    { provide: DaffCartShippingMethodGuardRedirectUrl, useValue: '/' },
-    { provide: DaffCartPaymentMethodGuardRedirectUrl, useValue: '/' },
-    { provide: DaffCartOrderResultGuardRedirectUrl, useValue: '/' },
-    { provide: DaffEmptyCartResolverRedirectUrl, useValue: '/' },
-    { provide: DaffCartResolverRedirectUrl, useValue: '/' },
-    { provide: DaffResolveCartGuardRedirectUrl, useValue: '/' },
+    provideDaffCartRouting(),
   ],
 })
 export class DaffCartRoutingModule {
