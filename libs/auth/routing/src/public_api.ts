@@ -4,3 +4,7 @@ export * from './helpers/public_api';
 
 export * from './module';
 export * from './redirect.module';
+export {
+  provideDaffAuthRouting,
+  provideDaffAuthRoutingRedirect,
+} from './provider';
