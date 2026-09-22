@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 
-import { DaffCustomerPaymentPageFacade } from '@daffodil/customer-payment/state';
-
-import { MockDaffCustomerPaymentPageFacade } from './mock-payment-facade';
+import { provideDaffCustomerPaymentStateTesting } from './provider';
 
 /**
  * Provides the {@link MockDaffCustomerPaymentPageFacade} for {@link DaffCustomerPaymentPageFacade}.
+ *
+ * @deprecated in favor of {@link provideDaffCustomerPaymentStateTesting}
  */
 @NgModule({
   providers: [
-    { provide: DaffCustomerPaymentPageFacade, useExisting: MockDaffCustomerPaymentPageFacade },
+    provideDaffCustomerPaymentStateTesting(),
   ],
 })
 export class DaffCustomerPaymentStateTestingModule {}
