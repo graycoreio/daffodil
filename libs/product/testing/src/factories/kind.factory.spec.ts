@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProduct } from '@daffodil/product';
 import {
+  DaffProductCustomAttributeValueFactory,
   DaffProductImageFactory,
   MockProduct,
   provideDaffProductExtraFactoryTypes,
@@ -18,17 +19,17 @@ class TestMockProduct extends MockProduct {
 @Injectable({
   providedIn: 'root',
 })
-class TestProductFactory extends DaffModelFactory<DaffProduct> {
+class TestProductFactory extends DaffModelFactory<DaffProduct, typeof TestMockProduct> {
   constructor(
     imageFactory: DaffProductImageFactory,
+    customAttributeFactory: DaffProductCustomAttributeValueFactory,
   ) {
-    super(TestMockProduct, imageFactory);
+    super(TestMockProduct, imageFactory, customAttributeFactory);
   }
 }
 
 describe('@daffodil/product/testing | DaffProductKindFactory', () => {
-
-  let productFactory;
+  let productFactory: DaffProductKindFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
