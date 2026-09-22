@@ -4,17 +4,14 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import {
-  DaffPaypalExpressDriverConfig,
-  provideDaffPaypalExpressDriver,
-  provideDaffPaypalExpressDriverConfig,
-  provideDaffPaypalExpressPaymentDriver,
-} from '@daffodil/paypal/driver';
+import { DaffPaypalExpressDriverConfig } from '@daffodil/paypal/driver';
 
 import { MAGENTO_PAYPAL_EXPRESS_DRIVER_CONFIG_DEFAULT } from './config/default';
-import { DaffMagentoPaypalPaymentService } from './paypal-payment.service';
-import { DaffMagentoPaypalService } from './paypal.service';
+import { provideDaffPaypalMagentoDriver } from './provider';
 
+/**
+ * @deprecated in favor of {@link provideDaffPaypalMagentoDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -25,12 +22,7 @@ export class DaffPaypalMagentoDriverModule {
     return {
       ngModule: DaffPaypalMagentoDriverModule,
       providers: [
-        provideDaffPaypalExpressDriver(DaffMagentoPaypalService),
-        provideDaffPaypalExpressPaymentDriver(DaffMagentoPaypalPaymentService),
-        provideDaffPaypalExpressDriverConfig({
-          ...MAGENTO_PAYPAL_EXPRESS_DRIVER_CONFIG_DEFAULT,
-          ...config,
-        }),
+        provideDaffPaypalMagentoDriver(config),
       ],
     };
   }
