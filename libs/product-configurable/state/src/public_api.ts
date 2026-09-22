@@ -5,3 +5,4 @@ export * from './selectors/public_api';
 export * from './helpers/public_api';
 
 export { DaffConfigurableProductStateModule } from './configurable-product-state.module';
+export { provideDaffProductConfigurableState } from './provider';
