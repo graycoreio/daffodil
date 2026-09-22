@@ -35,6 +35,9 @@ import {
 } from './reducers/token/reducers.token';
 
 
+/**
+ * @deprecated in favor of {@link provideDaffAuthState}
+ */
 @NgModule({
   imports: [
     StoreModule.forFeature(DAFF_AUTH_STORE_FEATURE_KEY, DAFF_AUTH_REDUCERS),
