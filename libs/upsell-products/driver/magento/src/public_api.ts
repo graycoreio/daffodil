@@ -4,3 +4,4 @@ export { DaffMagentoUpsellProductsTransformers } from './transforms/product-resp
 export * from './models/public_api';
 
 export { DaffUpsellProductsMagentoDriverModule } from './magento.module';
+export { provideDaffUpsellProductsMagentoDriver } from './provider';
