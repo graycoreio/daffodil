@@ -104,7 +104,10 @@ describe('@daffodil/cart/driver/magento | CartCouponService', () => {
   describe('apply | applying a coupon to the specified cart', () => {
     describe('when the call to the Magento API is successful', () => {
       beforeEach(() => {
-        mockApplyCouponResponse.applyCouponToCart.cart.applied_coupons = [mockDaffCartCoupon];
+        mockApplyCouponResponse.applyCouponToCart.cart.applied_coupons = [{
+          __typename: 'AppliedCoupon',
+          code: mockDaffCartCoupon.code,
+        }];
       });
 
       it('should return a cart with the coupon applied', done => {

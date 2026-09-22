@@ -9,7 +9,10 @@ import {
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
-import { provideDaffCartMagentoCartTransforms } from '@daffodil/cart/driver/magento';
+import {
+  provideDaffCartMagentoCartTransforms,
+  provideDaffCartMagentoExtraCartFragments,
+} from '@daffodil/cart/driver/magento';
 import {
   MagentoCartWithStoreCredit,
   MagentoApplyStoreCreditResponse,
@@ -17,6 +20,7 @@ import {
   MagentoRemoveStoreCreditResponse,
   magentoRemoveStoreCredit,
   magentoCartWithStoreCreditTransform,
+  magentoCartStoreCreditFragment,
 } from '@daffodil/cart-store-credit/driver/magento';
 import { MagentoCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/driver/magento/testing';
 import {
@@ -52,6 +56,7 @@ describe('@daffodil/cart-store-credit/driver/magento | DaffCartStoreCreditMagent
         provideDaffCartMagentoCartTransforms(
           magentoCartWithStoreCreditTransform,
         ),
+        provideDaffCartMagentoExtraCartFragments(magentoCartStoreCreditFragment),
       ],
     });
 
@@ -86,7 +91,7 @@ describe('@daffodil/cart-store-credit/driver/magento | DaffCartStoreCreditMagent
           done();
         });
 
-        const op = controller.expectOne(addTypenameToDocument(magentoApplyStoreCredit()));
+        const op = controller.expectOne(addTypenameToDocument(magentoApplyStoreCredit([magentoCartStoreCreditFragment])));
 
         op.flush({
           data: mockApplyStoreCreditResponse,
@@ -104,7 +109,7 @@ describe('@daffodil/cart-store-credit/driver/magento | DaffCartStoreCreditMagent
           }),
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(magentoApplyStoreCredit()));
+        const op = controller.expectOne(addTypenameToDocument(magentoApplyStoreCredit([magentoCartStoreCreditFragment])));
 
         op.graphqlErrors([new GraphQLError(
           'Generic error.',
@@ -131,7 +136,7 @@ describe('@daffodil/cart-store-credit/driver/magento | DaffCartStoreCreditMagent
           done();
         });
 
-        const op = controller.expectOne(addTypenameToDocument(magentoRemoveStoreCredit()));
+        const op = controller.expectOne(addTypenameToDocument(magentoRemoveStoreCredit([magentoCartStoreCreditFragment])));
 
         op.flush({
           data: mockRemoveStoreCreditResponse,
@@ -149,7 +154,7 @@ describe('@daffodil/cart-store-credit/driver/magento | DaffCartStoreCreditMagent
           }),
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(magentoRemoveStoreCredit()));
+        const op = controller.expectOne(addTypenameToDocument(magentoRemoveStoreCredit([magentoCartStoreCreditFragment])));
 
         op.graphqlErrors([new GraphQLError(
           'Generic error.',

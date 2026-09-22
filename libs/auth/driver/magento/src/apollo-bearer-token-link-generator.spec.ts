@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import {
   DocumentNode,
@@ -63,7 +64,7 @@ describe('@daffodil/auth/driver/magento | MagentoAuthApolloBearerTokenLinkGenera
         operation = controller.expectOne(query).operation;
         service.getLink().request(operation, <ApolloLink.ForwardFunction><unknown>jasmine.createSpy);
 
-        expect(operation.getContext().headers?.get('authorization')).toEqual(`Bearer ${token}`);
+        expect((<HttpHeaders>operation.getContext().headers)?.get('authorization')).toEqual(`Bearer ${token}`);
       });
     });
 
@@ -77,7 +78,7 @@ describe('@daffodil/auth/driver/magento | MagentoAuthApolloBearerTokenLinkGenera
         operation = controller.expectOne(query).operation;
         service.getLink().request(operation, <ApolloLink.ForwardFunction><unknown>jasmine.createSpy);
 
-        expect(operation.getContext().headers?.get('authorization')).toBeUndefined();
+        expect((<HttpHeaders>operation.getContext().headers)?.get('authorization')).toBeUndefined();
       });
     });
 
@@ -91,7 +92,7 @@ describe('@daffodil/auth/driver/magento | MagentoAuthApolloBearerTokenLinkGenera
         operation = controller.expectOne(query).operation;
         service.getLink().request(operation, <ApolloLink.ForwardFunction><unknown>jasmine.createSpy);
 
-        expect(operation.getContext().headers?.get('authorization')).toBeUndefined();
+        expect((<HttpHeaders>operation.getContext().headers)?.get('authorization')).toBeUndefined();
       });
     });
   });
