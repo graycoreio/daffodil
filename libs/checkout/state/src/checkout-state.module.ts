@@ -5,6 +5,8 @@ import { DaffOrderStateModule } from '@daffodil/order/state';
 
 /**
  * The module for `@daffodil/checkout/state`.
+ *
+ * @deprecated in favor of {@link provideDaffCheckoutState}
  */
 @NgModule({
   imports: [
