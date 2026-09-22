@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 
-import { DaffPaymentResponseFactory } from './factories/public_api';
-import { provideDaffPaymentResponseKindFactories } from './injection-tokens/public_api';
+import { provideDaffPaymentTesting } from './provider';
 
 /**
  * Provides the default payment result factory as a payment result type factory.
+ *
+ * @deprecated in favor of {@link provideDaffPaymentTesting}
  */
 @NgModule({
   providers: [
-    provideDaffPaymentResponseKindFactories(DaffPaymentResponseFactory),
+    provideDaffPaymentTesting(),
   ],
 })
 export class DaffPaymentTestingModule { }
