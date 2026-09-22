@@ -17,6 +17,9 @@ import { DaffSearchProductDriverOptions } from '@daffodil/search-product/driver'
 
 import { DaffSearchProductRoutingCollectionEffects } from './effects/collection-route.effects';
 
+/**
+ * @deprecated in favor of {@link provideDaffSearchProductRouting}
+ */
 @NgModule({
   imports: [
     DaffProductRoutingModule,
