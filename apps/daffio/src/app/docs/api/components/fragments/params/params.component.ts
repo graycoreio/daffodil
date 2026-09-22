@@ -9,13 +9,13 @@ import {
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faCode } from '@fortawesome/free-solid-svg-icons';
-import { DaffioSafeHtmlPipe } from 'apps/daffio/src/app/core/html-sanitizer/safe.pipe';
 
 import {
   DaffDocsApiFunction,
   DaffDocTableOfContents,
 } from '@daffodil/docs-utils';
 
+import { DaffioSafeHtmlPipe } from '../../../../../core/html-sanitizer/safe.pipe';
 import { DaffioInterceptNavigationDirective } from '../../../../../core/router/intercept-navigation.directive';
 import { DaffioDocsTocHeaderDirective } from '../../../../toc/header.directive';
 import { DaffioDocsApiDynamicContentFragment } from '../../../dynamic-content/fragment.type';

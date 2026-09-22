@@ -7,13 +7,13 @@ import {
 import { By } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { DemoGeographyAddressSummaryComponent } from 'apps/demo/src/app/geography/components/address-summary/address-summary.component';
 
 import { DaffCartAddress } from '@daffodil/cart';
 import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 import { DaffGeographyTestingDriverModule } from '@daffodil/geography/driver/testing';
 
 import { DemoCheckoutPaymentFormComponent } from './payment-form.component';
+import { DemoGeographyAddressSummaryComponent } from '../../../../geography/components/address-summary/address-summary.component';
 import { DemoCheckoutAddressFormComponent } from '../../forms/address/components/address-form/address-form.component';
 import { DemoCheckoutAddressFormFactory } from '../../forms/address/factories/address-form.factory';
 import { DemoCheckoutBillingFormGroup } from '../models/payment-form.type';

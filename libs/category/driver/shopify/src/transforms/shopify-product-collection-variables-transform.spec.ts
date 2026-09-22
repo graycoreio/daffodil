@@ -5,7 +5,7 @@ import {
 } from '@daffodil/category';
 import { DaffSortDirectionEnum } from '@daffodil/core';
 
-import { shopifyProductCollectionVariablesTransformer } from './shopify-product-collection-variables-transform.ts';
+import { shopifyProductCollectionVariablesTransformer } from './shopify-product-collection-variables-transform';
 
 describe('@daffodil/category/driver/shopify | shopifyProductCollectionVariablesTransformer', () => {
   describe('transforming a category ID request', () => {

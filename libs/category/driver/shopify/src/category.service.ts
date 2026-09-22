@@ -19,7 +19,7 @@ import {
   getCategoryByUrl,
 } from './queries/public_api';
 import { daffShopifyCategoryTransformer } from './transforms/public_api';
-import { shopifyProductCollectionVariablesTransformer } from './transforms/shopify-product-collection-variables-transform.ts';
+import { shopifyProductCollectionVariablesTransformer } from './transforms/shopify-product-collection-variables-transform';
 
 /**
  * A service for making shopify apollo queries for categories. Should be provided via the {@link DaffCategoryDriver} token.
