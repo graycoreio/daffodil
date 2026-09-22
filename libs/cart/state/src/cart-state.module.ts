@@ -45,6 +45,9 @@ import {
   provideDaffCartReducersFactory,
 } from './reducers/token/reducers.token';
 
+/**
+ * @deprecated in favor of {@link provideDaffCartState}
+ */
 @NgModule({
   imports: [
     StoreModule.forFeature(DAFF_CART_STORE_FEATURE_KEY, DAFF_CART_REDUCERS, DAFF_CART_STORE_CONFIG),
