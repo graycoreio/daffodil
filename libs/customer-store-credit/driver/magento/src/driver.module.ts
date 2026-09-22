@@ -4,16 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import {
-  provideDaffCustomerOrderMagentoExtraOrderFragments,
-  provideDaffCustomerOrderMagentoExtraOrderTransforms,
-} from '@daffodil/customer-order/driver/magento/2.4.6';
-import { provideDaffCustomerStoreCreditDriver } from '@daffodil/customer-store-credit/driver';
+import { provideDaffCustomerStoreCreditMagentoDriver } from './provider';
 
-import { DaffCustomerStoreCreditMagentoService } from './customer-store-credit.service';
-import { magentoCustomerOrderStoreCreditTotalFragment } from './queries/public_api';
-import { magentoCustomerOrderWithStoreCreditTransform } from './transforms/public_api';
-
+/**
+ * @deprecated in favor of {@link provideDaffCustomerStoreCreditMagentoDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -24,13 +19,7 @@ export class DaffCustomerStoreCreditMagentoDriverModule {
     return {
       ngModule: DaffCustomerStoreCreditMagentoDriverModule,
       providers: [
-        provideDaffCustomerStoreCreditDriver(DaffCustomerStoreCreditMagentoService),
-        provideDaffCustomerOrderMagentoExtraOrderFragments(
-          magentoCustomerOrderStoreCreditTotalFragment,
-        ),
-        provideDaffCustomerOrderMagentoExtraOrderTransforms(
-          magentoCustomerOrderWithStoreCreditTransform,
-        ),
+        provideDaffCustomerStoreCreditMagentoDriver(),
       ],
     };
   }
