@@ -24,6 +24,8 @@ import { DAFF_PRODUCT_STORE_FEATURE_KEY } from './reducers/public_api';
 
 /**
  * A module that provides the default reducers and effects for the product redux state.
+ *
+ * @deprecated in favor of {@link provideDaffProductState}
  */
 @NgModule({
   imports: [
