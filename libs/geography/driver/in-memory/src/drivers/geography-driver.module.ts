@@ -4,12 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
-import { provideDaffGeographyDriver } from '@daffodil/geography/driver';
+import { provideDaffGeographyInMemoryDriver } from './provider';
 
-import { DaffInMemoryGeographyService } from './geography.service';
-import { DaffInMemoryBackendGeographyService } from '../backend/geography.service';
-
+/**
+ * @deprecated in favor of {@link provideDaffGeographyInMemoryDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -20,8 +19,7 @@ export class DaffGeographyInMemoryDriverModule {
     return {
       ngModule: DaffGeographyInMemoryDriverModule,
       providers: [
-        provideDaffGeographyDriver(DaffInMemoryGeographyService),
-        provideDaffInMemoryBackends(DaffInMemoryBackendGeographyService),
+        provideDaffGeographyInMemoryDriver(),
       ],
     };
   }
