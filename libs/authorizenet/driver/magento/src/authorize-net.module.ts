@@ -4,18 +4,13 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import {
-  DaffAuthorizeNetConfig,
-  provideDaffAuthorizeNetConfigToken,
-  provideDaffAuthorizeNetDriver,
-  provideDaffAuthorizeNetPaymentDriver,
-  provideDaffAuthorizeNetPaymentId,
-} from '@daffodil/authorizenet/driver';
+import { DaffAuthorizeNetConfig } from '@daffodil/authorizenet/driver';
 
-import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from './authorize-net-payment-id';
-import { DaffMagentoAuthorizeNetService } from './authorize-net.service';
-import { DaffMagentoAuthorizeNetPaymentService } from './payment.service';
+import { provideDaffAuthorizeNetMagentoDriver } from './provider';
 
+/**
+ * @deprecated in favor of {@link provideDaffAuthorizeNetMagentoDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -23,17 +18,10 @@ import { DaffMagentoAuthorizeNetPaymentService } from './payment.service';
 })
 export class DaffMagentoAuthorizeNetDriverModule {
   static forRoot(config: DaffAuthorizeNetConfig): ModuleWithProviders<DaffMagentoAuthorizeNetDriverModule> {
-    if(!config.apiLoginID || !config.clientKey) {
-      throw Error('You must provide an apiLoginID and clientKey for Authorize.Net configuration.');
-    }
-
     return {
       ngModule: DaffMagentoAuthorizeNetDriverModule,
       providers: [
-        provideDaffAuthorizeNetConfigToken(config),
-        provideDaffAuthorizeNetDriver(DaffMagentoAuthorizeNetService),
-        provideDaffAuthorizeNetPaymentDriver(DaffMagentoAuthorizeNetPaymentService),
-        provideDaffAuthorizeNetPaymentId(MAGENTO_AUTHORIZE_NET_PAYMENT_ID),
+        provideDaffAuthorizeNetMagentoDriver(config),
       ],
     };
   }
