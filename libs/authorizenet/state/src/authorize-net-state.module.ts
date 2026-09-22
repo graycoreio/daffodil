@@ -25,6 +25,9 @@ import {
   provideDaffAuthorizeNetReducersFactory,
 } from './reducers/token/reducers.token';
 
+/**
+ * @deprecated in favor of {@link provideDaffAuthorizeNetState}
+ */
 @NgModule({
   imports: [
     StoreModule.forFeature(DAFF_AUTHORIZENET_STORE_FEATURE_KEY, DAFF_AUTHORIZE_NET_REDUCERS),
