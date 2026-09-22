@@ -12,6 +12,9 @@ import {
 import { DaffSearchIncrementalEffects } from './effects/incremental.effects';
 import { DaffSearchStateModule } from './search.module';
 
+/**
+ * @deprecated in favor of {@link provideDaffSearchIncrementalState}
+ */
 @NgModule({
   imports: [
     EffectsModule.forFeature([

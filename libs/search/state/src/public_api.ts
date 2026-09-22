@@ -8,3 +8,8 @@ export * from './injection-tokens/public_api';
 export * from './search.module';
 export * from './incremental.module';
 export * from './page.module';
+export {
+  provideDaffSearchState,
+  provideDaffSearchIncrementalState,
+  provideDaffSearchPageState,
+} from './provider';
