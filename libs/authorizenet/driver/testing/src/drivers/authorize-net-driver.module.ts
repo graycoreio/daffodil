@@ -4,10 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffAuthorizeNetDriver } from '@daffodil/authorizenet/driver';
+import { provideDaffAuthorizeNetTestingDriver } from './provider';
 
-import { DaffTestingAuthorizeNetService } from './authorize-net.service';
-
+/**
+ * @deprecated in favor of {@link provideDaffAuthorizeNetTestingDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +19,7 @@ export class DaffTestingAuthorizeNetDriverModule {
     return {
       ngModule: DaffTestingAuthorizeNetDriverModule,
       providers: [
-        provideDaffAuthorizeNetDriver(DaffTestingAuthorizeNetService),
+        provideDaffAuthorizeNetTestingDriver(),
       ],
     };
   }
