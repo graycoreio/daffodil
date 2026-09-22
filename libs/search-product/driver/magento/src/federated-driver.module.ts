@@ -5,20 +5,18 @@ import {
 } from '@angular/core';
 
 import {
-  DAFF_SEARCH_FEDERATED_DRIVERS,
-  provideDaffSearchFederatedDrivers,
-} from '@daffodil/search/driver/federated';
-
-import { DaffSearchProductMagentoCoreModule } from './core.module';
-import { DaffSearchProductMagentoDriver } from './product-search.service';
+  provideDaffSearchProductMagentoFederatedDriver,
+  provideDaffSearchProductMagentoFederatedFeatureDriver,
+} from './provider';
 
 /**
  * A module that provides product search query as a cacheable network operation.
+ *
+ * @deprecated in favor of {@link provideDaffSearchProductMagentoFederatedDriver}
  */
 @NgModule({
   imports: [
     CommonModule,
-    DaffSearchProductMagentoCoreModule,
   ],
 })
 export class DaffSearchProductMagentoFederatedDriverModule {
@@ -29,7 +27,7 @@ export class DaffSearchProductMagentoFederatedDriverModule {
     return {
       ngModule: DaffSearchProductMagentoFederatedDriverModule,
       providers: [
-        provideDaffSearchFederatedDrivers(DaffSearchProductMagentoDriver),
+        provideDaffSearchProductMagentoFederatedDriver(),
       ],
     };
   }
@@ -41,11 +39,7 @@ export class DaffSearchProductMagentoFederatedDriverModule {
     return {
       ngModule: DaffSearchProductMagentoFederatedDriverModule,
       providers: [
-        {
-          provide: DAFF_SEARCH_FEDERATED_DRIVERS,
-          multi: true,
-          useClass: DaffSearchProductMagentoDriver,
-        },
+        provideDaffSearchProductMagentoFederatedFeatureDriver(),
       ],
     };
   }
