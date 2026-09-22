@@ -5,11 +5,5 @@
 	},
 	"angularCompilerOptions": {
 		"compilationMode": "full",
-		"extendedDiagnostics": {
-			"checks": {
-				"nullishCoalescingNotNullable": "suppress",
-				"optionalChainNotNullable": "suppress"
-			}
-		}
 	}
 }

@@ -4,13 +4,13 @@
   "include": [],
   "compilerOptions": {
     "paths": {
-      "@daffodil/*": ["dist/*"],
-      "@daffodil/storefront-examples": ["libs/storefront-examples/src"],
+      "@daffodil/*": ["../../dist/*"],
+      "@daffodil/storefront-examples": ["../../libs/storefront-examples/src"],
       "@daffodil/storefront-examples/carousel": [
-        "libs/storefront-examples/carousel/src"
+        "../../libs/storefront-examples/carousel/src"
       ],
       "@daffodil/storefront-examples/theme-toggle": [
-        "libs/storefront-examples/theme-toggle/src"
+        "../../libs/storefront-examples/theme-toggle/src"
       ],
     }
   },
