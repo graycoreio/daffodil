@@ -7,15 +7,14 @@ import {
   DaffProductRoutingConfig,
   provideDaffProductRoutingConfig,
 } from './config/public_api';
-import {
-  DaffProductGetCollectionRequestFromRoute,
-  DaffProductGetQueryParamsFromRequest,
-} from './services/public_api';
+import { provideDaffProductRouting } from './provider';
 
+/**
+ * @deprecated in favor of {@link provideDaffProductRouting}
+ */
 @NgModule({
   providers: [
-    DaffProductGetCollectionRequestFromRoute,
-    DaffProductGetQueryParamsFromRequest,
+    provideDaffProductRouting(),
   ],
 })
 export class DaffProductRoutingModule {
@@ -23,6 +22,7 @@ export class DaffProductRoutingModule {
     return {
       ngModule: DaffProductRoutingModule,
       providers: [
+        // always provide the config, even when undefined, to preserve the previous behavior
         provideDaffProductRoutingConfig(config),
       ],
     };

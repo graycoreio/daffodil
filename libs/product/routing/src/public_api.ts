@@ -6,3 +6,4 @@ export * from './constants/public_api';
 export * from './effects/public_api';
 export * from './discrete-filter-params/public_api';
 export * from './module';
+export { provideDaffProductRouting } from './provider';
