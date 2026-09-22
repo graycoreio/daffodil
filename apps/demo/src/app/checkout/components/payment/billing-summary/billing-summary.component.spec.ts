@@ -5,7 +5,7 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DemoGeographyAddressSummaryComponent } from 'apps/demo/src/app/geography/components/address-summary/address-summary.component';
+import { DemoGeographyAddressSummaryComponent } from '../../../../geography/components/address-summary/address-summary.component';
 
 import { DaffCartAddress } from '@daffodil/cart';
 import { DaffCartAddressFactory } from '@daffodil/cart/testing';

@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faCode } from '@fortawesome/free-solid-svg-icons';
-import { DaffioSafeHtmlPipe } from 'apps/daffio/src/app/core/html-sanitizer/safe.pipe';
+import { DaffioSafeHtmlPipe } from '../../../../core/html-sanitizer/safe.pipe';
 
 import { DaffDocsApiTypeMethod } from '@daffodil/docs-utils';
 

@@ -9,7 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DaffioActiveHeaderService } from 'apps/daffio/src/app/core/dynamic-fragment/service';
+import { DaffioActiveHeaderService } from '../../../../core/dynamic-fragment/service';
 
 import {
   DaffApiNavPackageDoc,

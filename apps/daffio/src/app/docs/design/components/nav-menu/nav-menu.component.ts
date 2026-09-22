@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DaffioHeaderItemDirective } from 'apps/daffio/src/app/core/header/components/header-item/header-item.directive';
+import { DaffioHeaderItemDirective } from '../../../../core/header/components/header-item/header-item.directive';
 
 import { DAFF_MENU_COMPONENTS } from '@daffodil/design/menu';
 
