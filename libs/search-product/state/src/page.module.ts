@@ -6,6 +6,9 @@ import { DaffSearchPageStateModule } from '@daffodil/search/state';
 import { DaffSearchProductStateCoreModule } from './core.module';
 import { DaffSearchProductCollectionEffects } from './effects/collection.effects';
 
+/**
+ * @deprecated in favor of {@link provideDaffSearchProductPageState}
+ */
 @NgModule({
   imports: [
     DaffSearchProductStateCoreModule,
