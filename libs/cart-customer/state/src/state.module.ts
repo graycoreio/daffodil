@@ -18,6 +18,9 @@ import { DaffCartCustomerUnauthorizedEffects } from './effects/unauthorized.effe
 import { daffCartCustomerLoginMutatingReducerMap } from './reducers/login-mutating';
 import { daffCartCustomerUnauthenticatedReset } from './reducers/unauthenticated-reset';
 
+/**
+ * @deprecated in favor of {@link provideDaffCartCustomerState}
+ */
 @NgModule({
   imports: [
     EffectsModule.forFeature([
