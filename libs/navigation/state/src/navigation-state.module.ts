@@ -6,6 +6,9 @@ import { DaffNavigationEffects } from './effects/navigation.effects';
 import { daffNavigationReducers } from './reducers/navigation-reducers';
 import { DAFF_NAVIGATION_STORE_FEATURE_KEY } from './reducers/public_api';
 
+/**
+ * @deprecated in favor of {@link provideDaffNavigationState}
+ */
 @NgModule({
   imports: [
     StoreModule.forFeature(DAFF_NAVIGATION_STORE_FEATURE_KEY, daffNavigationReducers),
