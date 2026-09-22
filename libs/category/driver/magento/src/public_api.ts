@@ -1,5 +1,6 @@
 export { DaffMagentoCategoryService } from './category.service';
 export { DaffCategoryMagentoDriverModule } from './category-driver.module';
+export { provideDaffCategoryMagentoDriver } from './provider';
 
 export * from './models/public_api';
 export * from './queries/public_api';
