@@ -25,6 +25,9 @@ import {
   provideDaffOrderReducersFactory,
 } from './reducers/token/reducers.token';
 
+/**
+ * @deprecated in favor of {@link provideDaffOrderState}
+ */
 @NgModule({
   imports: [
     DaffCartStateModule,
