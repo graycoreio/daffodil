@@ -10,6 +10,7 @@ export {
 } from './actions/contact.actions';
 
 export { DaffContactStateModule } from './contact.module';
+export { provideDaffContactState } from './provider';
 
 export { DaffContactEffects } from './effects/contact.effects';
 export { DaffContactFacade } from './facades/contact.facade';
