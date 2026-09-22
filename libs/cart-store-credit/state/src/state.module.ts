@@ -25,6 +25,8 @@ import {
 
 /**
  * Creates the cart store credit feature store.
+ *
+ * @deprecated in favor of {@link provideDaffCartStoreCreditState}
  */
 @NgModule({
   imports: [
