@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -20,6 +21,7 @@ import {
 		<daff-progress-bar-label></daff-progress-bar-label>
 	</daff-progress-bar>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_PROGRESS_BAR_COMPONENTS,
   ],

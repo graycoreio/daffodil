@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffFormFieldActionDirective } from '@daffodil/design/form-field';
   template: `
     <div daffFormFieldAction>Title</div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffFormFieldActionDirective,
   ],

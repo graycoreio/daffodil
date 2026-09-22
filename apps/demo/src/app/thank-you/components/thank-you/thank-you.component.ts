@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { DaffOrder } from '@daffodil/order';
@@ -11,6 +12,7 @@ import { PrintOrderSummaryComponent } from '../print-order-summary/print-order-s
   selector: 'demo-thank-you',
   templateUrl: './thank-you.component.html',
   styleUrls: ['./thank-you.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     PrintOrderSummaryComponent,
   ],

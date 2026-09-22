@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -12,6 +15,7 @@ import { ProceedToCheckoutDirective } from './proceed-to-checkout.directive';
 
 @Component({
   template: '<div demoProceedToCheckout></div>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ProceedToCheckoutDirective],
 })
 class WrapperComponent {}

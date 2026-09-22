@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffSidebarFooterComponent } from './sidebar-footer.component';
 
 @Component({
   template: `<daff-sidebar-footer>Footer</daff-sidebar-footer>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSidebarFooterComponent,
   ],

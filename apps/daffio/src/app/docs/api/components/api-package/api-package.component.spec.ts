@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -25,6 +26,7 @@ import { DaffioApiListSectionComponent } from '../api-list-section/api-list-sect
   template: `
     <daffio-api-package [doc]="apiListValue"></daffio-api-package>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffioApiPackageComponent,
   ],

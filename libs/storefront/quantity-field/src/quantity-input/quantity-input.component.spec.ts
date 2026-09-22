@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -23,6 +26,7 @@ import { DaffSfQuantityInputComponent } from './quantity-input.component';
       [max]="maxValue"
     ></daff-sf-quantity-input>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSfQuantityInputComponent,
     DaffInputComponent,

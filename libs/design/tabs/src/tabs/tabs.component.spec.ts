@@ -4,6 +4,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -55,6 +56,7 @@ import { DaffTabActivatorComponent } from './tab-activator/tab-activator.compone
       </daff-tab>
     </daff-tabs>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_TABS_COMPONENTS,
   ],

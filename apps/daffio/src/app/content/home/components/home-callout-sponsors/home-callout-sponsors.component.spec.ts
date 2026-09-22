@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -14,6 +15,7 @@ import { DaffioHomeCalloutSponsorsComponent } from './home-callout-sponsors.comp
 
 @Component({
   template: `<daffio-home-callout-sponsors></daffio-home-callout-sponsors>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [DaffioHomeCalloutSponsorsComponent],
 })
 class WrapperComponent {}

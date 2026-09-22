@@ -3,6 +3,7 @@ import {
   DebugElement,
   inject,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -20,6 +21,7 @@ import { DaffArticleComponent } from '../article.component';
 
 @Component({
   template: `<daff-article><div [innerHTML]="htmlContents()"></div></daff-article>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffArticleComponent,
   ],

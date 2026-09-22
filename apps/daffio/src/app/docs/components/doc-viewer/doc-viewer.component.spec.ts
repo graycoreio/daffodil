@@ -1,6 +1,7 @@
 import {
   Component,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -27,6 +28,7 @@ import { DaffioDocsTableOfContentsComponent } from '../table-of-contents/table-o
 		[breadcrumbs]="breadcrumbsValue()"
 		[sourcePath]="sourcePathValue()"
 	></daffio-doc-viewer>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffioDocViewerComponent,
   ],

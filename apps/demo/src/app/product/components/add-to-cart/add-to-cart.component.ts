@@ -5,6 +5,7 @@ import {
   Input,
   ViewEncapsulation,
   HostBinding,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import {
@@ -18,6 +19,7 @@ import { DaffButtonComponent } from '@daffodil/design/button';
   templateUrl: './add-to-cart.component.html',
   styleUrls: ['./add-to-cart.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffButtonComponent,
   ],

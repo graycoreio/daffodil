@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -19,6 +22,7 @@ import { DemoGeographyAddressSummaryComponent } from '../../../../geography/comp
       (edit)="editShippingInfoFunction()"
     ></demo-checkout-shipping-address-summary>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DemoCheckoutShippingAddressSummaryComponent,
   ],

@@ -22,7 +22,8 @@
   daff-button
   color="theme"
   [daffMenuActivator]="menu"
-  [xPosition]="xPositionControl.value?.value"
-  [yPosition]="yPositionControl.value?.value">
+  [xPosition]="$safeNavigationMigration(xPositionControl.value?.value)"
+  [yPosition]="$safeNavigationMigration(yPositionControl.value?.value)"
+>
   Account
 </button>

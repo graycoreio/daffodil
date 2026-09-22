@@ -1,6 +1,7 @@
 import {
   ApplicationRef,
   Component,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -21,6 +22,7 @@ import { DAFF_DOCS_EXAMPLE_SERVICE } from './service/example-docs.service';
 import { DaffDocsExampleServiceInterface } from './service/example-docs.service.interface';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `<p>Mock Example Component</p>`,
 })
 class MockExampleComponent {}

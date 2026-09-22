@@ -3,6 +3,7 @@ import {
   Input,
   ViewEncapsulation,
   OnInit,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 
@@ -16,6 +17,7 @@ import * as fromDemoImageGallery from '../reducers/index';
   selector: 'demo-image-gallery-container',
   templateUrl: './image-gallery.component.html',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_IMAGE_LITE_COMPONENTS,
     DAFF_MEDIA_GALLERY_COMPONENTS,

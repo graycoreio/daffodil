@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -28,6 +29,7 @@ import { provideTestMenuService } from '../../testing/dummy-service';
       <button daff-menu-item id="not-focused">Test 2</button>
     </daff-menu>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_MENU_COMPONENTS,
   ],

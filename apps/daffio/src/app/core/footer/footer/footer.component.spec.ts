@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -21,6 +22,7 @@ import { DaffioFooterComponent } from './footer.component';
 
 @Component({
   template: `<daffio-footer></daffio-footer>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class WrapperComponent { }

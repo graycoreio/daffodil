@@ -5,139 +5,139 @@
   "compilerOptions": {
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/design": [
-        "libs/design/src"
+        "../../libs/design/src"
       ],
       "@daffodil/design/accordion": [
-        "libs/design/accordion/src"
+        "../../libs/design/accordion/src"
       ],
       "@daffodil/design/article": [
-        "libs/design/article/src"
+        "../../libs/design/article/src"
       ],
       "@daffodil/design/assets": [
-        "libs/design/assets/src"
+        "../../libs/design/assets/src"
       ],
       "@daffodil/design/badge": [
-        "libs/design/badge/src"
+        "../../libs/design/badge/src"
       ],
       "@daffodil/design/breadcrumb": [
-        "libs/design/breadcrumb/src"
+        "../../libs/design/breadcrumb/src"
       ],
       "@daffodil/design/button": [
-        "libs/design/button/src"
+        "../../libs/design/button/src"
       ],
       "@daffodil/design/callout": [
-        "libs/design/callout/src"
+        "../../libs/design/callout/src"
       ],
       "@daffodil/design/card": [
-        "libs/design/card/src"
+        "../../libs/design/card/src"
       ],
       "@daffodil/design/checkbox": [
-        "libs/design/checkbox/src"
+        "../../libs/design/checkbox/src"
       ],
       "@daffodil/design/container": [
-        "libs/design/container/src"
+        "../../libs/design/container/src"
       ],
       "@daffodil/design/form": [
-        "libs/design/form/src"
+        "../../libs/design/form/src"
       ],
       "@daffodil/design/form-field": [
-        "libs/design/form-field/src"
+        "../../libs/design/form-field/src"
       ],
       "@daffodil/design/guides": [
-        "libs/design/guides/src"
+        "../../libs/design/guides/src"
       ],
       "@daffodil/design/hero": [
-        "libs/design/hero/src"
+        "../../libs/design/hero/src"
       ],
       "@daffodil/design/image": [
-        "libs/design/image/src"
+        "../../libs/design/image/src"
       ],
       "@daffodil/design/image-lite": [
-        "libs/design/image-lite/src"
+        "../../libs/design/image-lite/src"
       ],
       "@daffodil/design/input": [
-        "libs/design/input/src"
+        "../../libs/design/input/src"
       ],
       "@daffodil/design/link-set": [
-        "libs/design/link-set/src"
+        "../../libs/design/link-set/src"
       ],
       "@daffodil/design/list": [
-        "libs/design/list/src"
+        "../../libs/design/list/src"
       ],
       "@daffodil/design/media-gallery": [
-        "libs/design/media-gallery/src"
+        "../../libs/design/media-gallery/src"
       ],
       "@daffodil/design/menu": [
-        "libs/design/menu/src"
+        "../../libs/design/menu/src"
       ],
       "@daffodil/design/modal": [
-        "libs/design/modal/src"
+        "../../libs/design/modal/src"
       ],
       "@daffodil/design/native-select": [
-        "libs/design/native-select/src"
+        "../../libs/design/native-select/src"
       ],
       "@daffodil/design/navbar": [
-        "libs/design/navbar/src"
+        "../../libs/design/navbar/src"
       ],
       "@daffodil/design/notification": [
-        "libs/design/notification/src"
+        "../../libs/design/notification/src"
       ],
       "@daffodil/design/paginator": [
-        "libs/design/paginator/src"
+        "../../libs/design/paginator/src"
       ],
       "@daffodil/design/progress-bar": [
-        "libs/design/progress-bar/src"
+        "../../libs/design/progress-bar/src"
       ],
       "@daffodil/design/beacon": [
-        "libs/design/beacon/src"
+        "../../libs/design/beacon/src"
       ],
       "@daffodil/design/quantity-field": [
-        "libs/design/quantity-field/src"
+        "../../libs/design/quantity-field/src"
       ],
       "@daffodil/design/radio": [
-        "libs/design/radio/src"
+        "../../libs/design/radio/src"
       ],
       "@daffodil/design/spinner": [
-        "libs/design/spinner/src"
+        "../../libs/design/spinner/src"
       ],
       "@daffodil/design/scss": [
-        "libs/design/scss/src"
+        "../../libs/design/scss/src"
       ],
       "@daffodil/design/select": [
-        "libs/design/select/src"
+        "../../libs/design/select/src"
       ],
       "@daffodil/design/sidebar": [
-        "libs/design/sidebar/src"
+        "../../libs/design/sidebar/src"
       ],
       "@daffodil/design/switch": [
-        "libs/design/switch/src"
+        "../../libs/design/switch/src"
       ],
 			"@daffodil/design/tabs": [
-        "libs/design/tabs/src"
+        "../../libs/design/tabs/src"
       ],
       "@daffodil/design/tag": [
-        "libs/design/tag/src"
+        "../../libs/design/tag/src"
       ],
       "@daffodil/design/testing": [
-        "libs/design/testing/src"
+        "../../libs/design/testing/src"
       ],
       "@daffodil/design/text-snippet": [
-        "libs/design/text-snippet/src"
+        "../../libs/design/text-snippet/src"
       ],
       "@daffodil/design/textarea": [
-        "libs/design/textarea/src"
+        "../../libs/design/textarea/src"
       ],
       "@daffodil/design/toast": [
-        "libs/design/toast/src"
+        "../../libs/design/toast/src"
       ],
       "@daffodil/design/tree": [
-        "libs/design/tree/src"
+        "../../libs/design/tree/src"
       ],
       "@daffodil/design/youtube-player": [
-        "libs/design/youtube-player/src"
+        "../../libs/design/youtube-player/src"
       ],
     }
   },

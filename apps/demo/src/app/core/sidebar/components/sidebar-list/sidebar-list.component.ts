@@ -2,6 +2,7 @@ import {
   Component,
   Input,
   OnChanges,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -24,6 +25,7 @@ const transformNavigationTree = (node: DaffNavigationTree): DaffTreeData<unknown
   selector: 'demo-sidebar-list',
   templateUrl: './sidebar-list.component.html',
   styleUrls: ['./sidebar-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RouterModule,
     DAFF_TREE_COMPONENTS,

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffToastActionsDirective } from './toast-actions.directive';
   template: `
     <div daffToastActions><button>Click me!</button></div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffToastActionsDirective,
   ],

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffioHomeCalloutPlatformsComponent } from './home-callout-platforms.co
 
 @Component({
   template: `<daffio-home-callout-platforms></daffio-home-callout-platforms>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffioHomeCalloutPlatformsComponent,
   ],

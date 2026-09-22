@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -10,6 +11,7 @@ import { DaffProduct } from '@daffodil/product';
   selector: 'demo-product-card',
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RouterLink,
   ],

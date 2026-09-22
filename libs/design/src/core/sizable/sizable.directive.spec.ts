@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -18,6 +19,7 @@ import {
 @Component({
   template: `
 		<div daffSizable [size]="size()"></div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSizableDirective,
   ],

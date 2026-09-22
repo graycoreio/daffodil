@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -9,6 +12,7 @@ import { DaffImageComponent } from '@daffodil/design/image';
 
 @Component({
   template: `<daff-image></daff-image>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffImageComponent,
   ],

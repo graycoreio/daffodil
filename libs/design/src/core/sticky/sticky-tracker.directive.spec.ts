@@ -2,6 +2,7 @@ import {
   Component,
   ViewChild,
   ElementRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -26,6 +27,7 @@ const DEBOUNCE_TIMEOUT = 5;
       <div style="height: 100vh;">Content below</div>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffStickyTrackerDirective,
   ],
@@ -48,6 +50,7 @@ class TopStickyTestComponent {
       <div style="height: 100vh;">Content below</div>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffStickyTrackerDirective,
   ],
@@ -70,6 +73,7 @@ class BottomStickyTestComponent {
       <div style="height: 100vh;">Content below</div>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffStickyTrackerDirective,
   ],

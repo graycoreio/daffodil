@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -14,6 +15,7 @@ import { DaffHintComponent } from '@daffodil/design/form';
 
 @Component({
   template: `<daff-hint [validated]="validated()">Hint</daff-hint>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffHintComponent,
   ],

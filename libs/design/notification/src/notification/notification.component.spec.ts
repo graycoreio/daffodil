@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -26,6 +27,7 @@ import { DaffNotificationComponent } from './notification.component';
       (closeNotification)="closeNotificationFunction()">
     </daff-notification>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffNotificationComponent,
   ],

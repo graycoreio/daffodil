@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -33,6 +34,7 @@ import { DaffBadgeSize } from '../badge/badge-sizable.directive';
         Badge
     </daff-badge>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_BADGE_COMPONENTS,
   ],

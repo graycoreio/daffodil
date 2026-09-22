@@ -1,6 +1,7 @@
 import {
   Component,
   input,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -23,6 +24,7 @@ import { DaffioDocsDynamicContent } from '../../dynamic-content/dynamic-content.
 
 @Component({
   selector: 'daffio-mock-content',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 class MockContentComponent implements DaffioDocsDynamicContent {

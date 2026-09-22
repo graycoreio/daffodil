@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffHeroIconDirective } from './hero-icon.directive';
 
 @Component({
   template: `<div daffHeroIcon>Hero Icon</div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffHeroIconDirective,
   ],

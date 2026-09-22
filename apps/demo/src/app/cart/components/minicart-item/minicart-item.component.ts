@@ -2,6 +2,7 @@ import {
   Component,
   Input,
   HostBinding,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -10,6 +11,7 @@ import { DaffCartItem } from '@daffodil/cart';
 @Component({
   selector: 'demo-minicart-item',
   templateUrl: './minicart-item.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./minicart-item.component.scss'],
 })
 export class MiniCartItemComponent {

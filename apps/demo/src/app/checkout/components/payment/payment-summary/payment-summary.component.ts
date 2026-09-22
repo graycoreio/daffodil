@@ -3,6 +3,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { DaffAuthorizeNetCreditCard } from '@daffodil/authorizenet';
@@ -10,6 +11,7 @@ import { DaffAuthorizeNetCreditCard } from '@daffodil/authorizenet';
 @Component({
   selector: 'demo-checkout-payment-summary',
   templateUrl: './payment-summary.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./payment-summary.component.scss'],
 })
 export class DemoCheckoutPaymentSummaryComponent {

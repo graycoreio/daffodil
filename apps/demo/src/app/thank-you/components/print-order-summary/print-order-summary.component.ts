@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { DAFF_BASIC_BUTTON_COMPONENTS } from '@daffodil/design/button';
 
 @Component({
   selector: 'demo-print-order-summary',
   templateUrl: './print-order-summary.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_BASIC_BUTTON_COMPONENTS,
   ],

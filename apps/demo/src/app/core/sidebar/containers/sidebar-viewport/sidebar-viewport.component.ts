@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   Store,
@@ -24,6 +25,7 @@ import { SidebarContainer } from '../sidebar/sidebar.component';
 @Component({
   selector: 'demo-sidebar-viewport-container',
   templateUrl: './sidebar-viewport.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AsyncPipe,
     DAFF_SIDEBAR_COMPONENTS,

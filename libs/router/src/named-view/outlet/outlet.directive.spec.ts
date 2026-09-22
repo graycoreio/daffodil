@@ -1,6 +1,7 @@
 import {
   Component,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -20,6 +21,7 @@ import { DaffRouterNamedViewOutletDirective } from './outlet.directive';
       <ng-container [daffRouterNamedViewOutlet]="view()"></ng-container>
     }
     `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class WrapperComponent {
@@ -28,12 +30,14 @@ class WrapperComponent {
 
 @Component({
   template: 'component A',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class AComponent {}
 
 @Component({
   template: 'component B',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class BComponent {}

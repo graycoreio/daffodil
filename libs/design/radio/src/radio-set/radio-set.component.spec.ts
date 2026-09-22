@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -26,6 +27,7 @@ import { DaffRadioSetComponent } from './radio-set.component';
       <daff-radio formControlName="fruit" value="peach">Peach</daff-radio>
     </daff-radio-set>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_RADIO_COMPONENTS,
     ReactiveFormsModule,

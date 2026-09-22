@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -28,6 +29,7 @@ import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
       <select daff-native-select [required]="requiredValue()"></select>
     </daff-form-field>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_FORM_FIELD_COMPONENTS,
     DaffNativeSelectComponent,
@@ -116,6 +118,7 @@ describe('@daffodil/design | DaffNativeSelectComponent | Static Required Attribu
       <select daff-native-select [formControl]="control"></select>
     </daff-form-field>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_FORM_FIELD_COMPONENTS,
     DaffNativeSelectComponent,

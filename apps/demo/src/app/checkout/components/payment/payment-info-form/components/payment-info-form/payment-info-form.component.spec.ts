@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -16,6 +19,7 @@ import { PaymentInfoFormGroup } from '../../models/payment-form.type';
       [formGroup]="formGroupValue"
     ></demo-payment-info-form>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DemoCheckoutPaymentInfoFormComponent,
   ],
