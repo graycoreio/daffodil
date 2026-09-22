@@ -4,11 +4,12 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffSearchResultKindFactories } from '@daffodil/search/testing';
-import { DaffSearchProductResultFactory } from '@daffodil/search-product/testing';
+import { provideDaffSearchProductTestingDriver } from './provider';
 
 /**
  * Module for providing the product search result factory as a search result kind factory.
+ *
+ * @deprecated in favor of {@link provideDaffSearchProductTestingDriver}
  */
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ export class DaffSearchProductTestingDriverModule {
     return {
       ngModule: DaffSearchProductTestingDriverModule,
       providers: [
-        provideDaffSearchResultKindFactories(DaffSearchProductResultFactory),
+        provideDaffSearchProductTestingDriver(),
       ],
     };
   }
