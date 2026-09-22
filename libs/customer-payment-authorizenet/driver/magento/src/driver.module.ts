@@ -4,13 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { DaffAuthorizeNetPaymentDriver } from '@daffodil/authorizenet/driver';
-import { provideDaffCustomerPaymentDriver } from '@daffodil/customer-payment/driver';
-import { provideDaffCustomerPaymentAuthorizeNetPaymentDriver } from '@daffodil/customer-payment-authorizenet/driver';
+import { provideDaffCustomerPaymentAuthorizeNetMagentoDriver } from './provider';
 
-import { DaffCustomerPaymentAuthorizeNetMagentoService } from './customer-payment.service';
-import { DaffCustomerPaymentAuthorizeNetMagentoPaymentService } from './payment.service';
-
+/**
+ * @deprecated in favor of {@link provideDaffCustomerPaymentAuthorizeNetMagentoDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -21,13 +19,7 @@ export class DaffCustomerPaymentAuthorizeNetMagentoDriverModule {
     return {
       ngModule: DaffCustomerPaymentAuthorizeNetMagentoDriverModule,
       providers: [
-        provideDaffCustomerPaymentDriver(DaffCustomerPaymentAuthorizeNetMagentoService),
-        // TODO: use provider function
-        {
-          provide: DaffAuthorizeNetPaymentDriver,
-          useExisting: DaffCustomerPaymentAuthorizeNetMagentoPaymentService,
-        },
-        provideDaffCustomerPaymentAuthorizeNetPaymentDriver(DaffCustomerPaymentAuthorizeNetMagentoPaymentService),
+        provideDaffCustomerPaymentAuthorizeNetMagentoDriver(),
       ],
     };
   }
