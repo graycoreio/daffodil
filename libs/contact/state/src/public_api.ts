@@ -9,6 +9,8 @@ export {
   DaffContactSubmit,
 } from './actions/contact.actions';
 
+export { DaffContactStateModule } from './contact.module';
+
 export { DaffContactEffects } from './effects/contact.effects';
 export { DaffContactFacade } from './facades/contact.facade';
 export { DaffContactFacadeInterface } from './facades/contact-facade.interface';
