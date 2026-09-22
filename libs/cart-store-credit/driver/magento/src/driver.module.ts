@@ -4,16 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import {
-  provideDaffCartMagentoCartTransforms,
-  provideDaffCartMagentoExtraCartFragments,
-} from '@daffodil/cart/driver/magento';
-import { provideDaffCartStoreCreditDriver } from '@daffodil/cart-store-credit/driver';
+import { provideDaffCartStoreCreditMagentoDriver } from './provider';
 
-import { magentoCartStoreCreditFragment } from './queries/public_api';
-import { DaffCartStoreCreditMagentoService } from './store-credit.service';
-import { magentoCartWithStoreCreditTransform } from './transforms/public_api';
-
+/**
+ * @deprecated in favor of {@link provideDaffCartStoreCreditMagentoDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -24,11 +19,7 @@ export class DaffCartStoreCreditMagentoDriverModule {
     return {
       ngModule: DaffCartStoreCreditMagentoDriverModule,
       providers: [
-        provideDaffCartStoreCreditDriver(DaffCartStoreCreditMagentoService),
-        provideDaffCartMagentoExtraCartFragments(magentoCartStoreCreditFragment),
-        provideDaffCartMagentoCartTransforms(
-          magentoCartWithStoreCreditTransform,
-        ),
+        provideDaffCartStoreCreditMagentoDriver(),
       ],
     };
   }
