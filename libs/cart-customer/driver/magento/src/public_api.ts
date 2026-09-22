@@ -5,5 +5,6 @@ export { DaffMagentoCartCustomerService } from './cart.service';
 export { DaffMagentoCartCustomerPaymentService } from './payment.service';
 
 export { DaffCartCustomerMagentoDriverModule } from './cart-driver.module';
+export { provideDaffCartCustomerMagentoDriver } from './provider';
 
 export * from './queries/public_api';
