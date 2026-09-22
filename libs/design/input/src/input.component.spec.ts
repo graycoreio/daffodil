@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   TestBed,
@@ -8,6 +8,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
 
 @Component({
   template: `<input daff-input>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffInputComponent,
   ],

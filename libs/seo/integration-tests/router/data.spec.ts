@@ -2,6 +2,7 @@ import { provideLocationMocks } from '@angular/common/testing';
 import {
   Component,
   inject,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
@@ -19,6 +20,7 @@ import {
 
 @Component({
   selector: 'lib-seo-compomnent', template: 'my-component',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class SeoTestComponent {}

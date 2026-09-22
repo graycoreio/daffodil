@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -19,6 +20,7 @@ import { ProductGridComponent } from '../../components/product-grid/product-grid
 @Component({
   selector: 'demo-product-grid-view',
   templateUrl: './product-grid-view.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AsyncPipe,
     DaffSpinnerComponent,

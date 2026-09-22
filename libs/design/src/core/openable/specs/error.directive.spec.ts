@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffOpenableStateError } from '../utils/state-error';
   template: '',
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'stateful-component',
+  changeDetection: ChangeDetectionStrategy.Eager,
   hostDirectives: [
     {
       directive: DaffOpenableDirective,
@@ -32,6 +34,7 @@ class StatefulComponent {
 
 @Component({
   template: `<stateful-component [open]="true"></stateful-component>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     StatefulComponent,
   ],

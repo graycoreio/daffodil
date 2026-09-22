@@ -1,15 +1,24 @@
 /* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
 /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../../dist/out-tsc/libs/design-examples",
-    "declaration": true,
-    "declarationMap": true,
-    "inlineSources": true,
-    "types": [],
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/out-tsc/libs/design-examples",
+		"declaration": true,
+		"declarationMap": true,
+		"inlineSources": true,
+		"types": [],
     "composite": true
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["**/*.spec.ts"]
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": ["**/*.spec.ts"],
+	"angularCompilerOptions": {
+		"extendedDiagnostics": {
+			"checks": {
+				"nullishCoalescingNotNullable": "suppress",
+				"optionalChainNotNullable": "suppress"
+			}
+		},
+		"strictTemplates": false
+	}
 }

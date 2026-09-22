@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffNotificationTitleDirective } from './notification-title.directive';
   template: `
     <h3 daffNotificationTitle>Title</h3>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffNotificationTitleDirective,
   ],

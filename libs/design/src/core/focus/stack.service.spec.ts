@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
@@ -14,6 +14,7 @@ import { DaffFocusStackService } from './stack.service';
     <button id="three">three</button>
     <button id="four">four</button>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class FakeComponent {}

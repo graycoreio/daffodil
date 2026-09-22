@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -17,6 +18,7 @@ import { DaffCardComponent } from './basic.component';
     <a daff-card></a>
   `,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffCardComponent,
   ],

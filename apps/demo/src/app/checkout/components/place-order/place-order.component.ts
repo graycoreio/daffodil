@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -16,6 +17,7 @@ import { DaffButtonComponent } from '@daffodil/design/button';
   selector: 'demo-place-order',
   templateUrl: './place-order.component.html',
   styleUrls: ['./place-order.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffButtonComponent,
     AsyncPipe,

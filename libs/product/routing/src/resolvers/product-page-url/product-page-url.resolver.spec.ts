@@ -5,6 +5,7 @@ import {
 import {
   PLATFORM_ID,
   Component,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   TestBed,
@@ -40,6 +41,7 @@ import { DaffProductPageUrlResolver } from './product-page-url.resolver';
 
 @Component({
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class TestComponent {}

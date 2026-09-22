@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -18,6 +18,7 @@ import { ThankYouComponent } from './thank-you.component';
       [order]="orderValue"
     ></demo-thank-you>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ThankYouComponent,
   ],

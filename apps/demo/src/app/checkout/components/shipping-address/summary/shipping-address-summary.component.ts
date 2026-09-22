@@ -3,6 +3,7 @@ import {
   Output,
   EventEmitter,
   Input,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { DaffPersonalAddress } from '@daffodil/geography';
@@ -13,6 +14,7 @@ import { DemoGeographyAddressSummaryComponent } from '../../../../geography/comp
   selector: 'demo-checkout-shipping-address-summary',
   templateUrl: './shipping-address-summary.component.html',
   styleUrls: ['./shipping-address-summary.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DemoGeographyAddressSummaryComponent,
   ],

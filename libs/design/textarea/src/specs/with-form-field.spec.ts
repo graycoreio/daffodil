@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -22,6 +23,7 @@ import { DaffTextareaComponent } from '@daffodil/design/textarea';
      <textarea daff-textarea></textarea>
     </daff-form-field>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffTextareaComponent,
     DAFF_FORM_FIELD_COMPONENTS,

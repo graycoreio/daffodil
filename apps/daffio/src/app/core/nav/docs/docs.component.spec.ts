@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
@@ -18,6 +18,7 @@ import { DaffioNavLink } from '../link/type';
 
 @Component({
   template: '<daffio-docs-nav-container></daffio-docs-nav-container>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffioDocsNavContainer,
   ],

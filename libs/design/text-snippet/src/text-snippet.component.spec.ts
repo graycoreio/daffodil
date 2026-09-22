@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   TestBed,
@@ -13,6 +14,7 @@ import { DaffTextSnippetComponent } from '@daffodil/design/text-snippet';
 
 @Component({
   template: '<daff-text-snippet [condensed]="condensed" [html]="html">content</daff-text-snippet>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffTextSnippetComponent,
   ],

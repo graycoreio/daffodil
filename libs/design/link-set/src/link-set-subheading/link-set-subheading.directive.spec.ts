@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffLinkSetSubheadingDirective } from './link-set-subheading.directive'
 
 @Component({
   template: `<div daffLinkSetSubheading>Subheading</div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffLinkSetSubheadingDirective,
   ],

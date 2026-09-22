@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -14,6 +15,7 @@ import { DaffioHomeHeroComponent } from './home-hero.component';
 
 @Component({
   template: `<daffio-home-hero></daffio-home-hero>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [DaffioHomeHeroComponent],
 })
 class WrapperComponent {}

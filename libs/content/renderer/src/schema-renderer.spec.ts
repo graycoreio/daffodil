@@ -1,6 +1,7 @@
 import {
   Component,
   input,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -21,6 +22,7 @@ import { DaffContentSchemaRenderer } from './schema-renderer';
 @Component({
   selector: 'test-component',
   template: '<div class="test-component-content"><ng-content></ng-content></div>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 class TestComponent {
@@ -30,6 +32,7 @@ class TestComponent {
 @Component({
   selector: 'test-component-with-input',
   template: '<div class="input-value">{{ testInput() }}</div>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 class TestComponentWithInput {

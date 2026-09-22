@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   ComponentFixture,
   waitForAsync,
@@ -19,6 +19,7 @@ import {
   template: `
     <daff-checkbox name="test" value="testValue" [formControl]="checkbox"></daff-checkbox>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffCheckboxComponent,
     DaffCheckboxControlValueAccessorDirective,

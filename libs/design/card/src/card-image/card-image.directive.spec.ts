@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffCardImageDirective } from './card-image.directive';
 
 @Component({
   template: `<img src="/" daffCardImage />`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffCardImageDirective,
   ],

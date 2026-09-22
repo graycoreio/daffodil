@@ -1,5 +1,5 @@
 import { provideLocationMocks } from '@angular/common/testing';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import {
   provideRouter ,
@@ -13,6 +13,7 @@ import { daffExternalMatcherTypeGuard } from '@daffodil/external-router/routing'
 // Dummy component for routing
 @Component({
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class DummyComponent {}
@@ -20,6 +21,7 @@ class DummyComponent {}
 // Dummy component for routing
 @Component({
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class DummyOtherComponent {}

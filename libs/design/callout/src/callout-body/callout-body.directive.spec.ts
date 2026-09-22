@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffCalloutBodyDirective } from './callout-body.directive';
   template: `
     <h3 daffCalloutBody>Lorem Ipsum</h3>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffCalloutBodyDirective,
   ],

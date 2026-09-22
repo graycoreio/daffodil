@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -14,6 +14,7 @@ import {
   template: '',
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'custom-component',
+  changeDetection: ChangeDetectionStrategy.Eager,
   hostDirectives: [
     {
       directive: DaffTextAlignableDirective,

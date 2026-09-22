@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -23,6 +24,7 @@ import { DemoCartViewComponent } from './cart-view.component';
 
 @Component({
   selector: 'demo-cart',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 class MockCartWrapperComponent {

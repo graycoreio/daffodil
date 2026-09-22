@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -19,6 +19,7 @@ import { DaffDocsColorPalettesComponent } from './color-palettes.component';
   template: `
 		<daff-docs-color-palettes [items]="itemsValue"></daff-docs-color-palettes>
 	`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffDocsColorPalettesComponent,
   ],

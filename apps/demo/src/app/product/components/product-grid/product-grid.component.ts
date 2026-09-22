@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { DaffProduct } from '@daffodil/product';
@@ -11,6 +12,7 @@ import { ProductCardComponent } from '../product-card/product-card.component';
   selector: 'demo-product-grid',
   templateUrl: './product-grid.component.html',
   styleUrls: ['./product-grid.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ProductCardComponent,
   ],

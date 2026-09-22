@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { DemoIndicatorComponent } from './routing/indicator/indicator.component';
@@ -7,6 +7,7 @@ import { DemoIndicatorComponent } from './routing/indicator/indicator.component'
   selector: 'demo-app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RouterOutlet, DemoIndicatorComponent],
 })
 export class AppComponent {}

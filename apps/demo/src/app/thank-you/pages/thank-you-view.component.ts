@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { LetDirective } from '@ngrx/component';
 import { Observable } from 'rxjs';
@@ -19,6 +20,7 @@ import { ThankYouComponent } from '../components/thank-you/thank-you.component';
 @Component({
   templateUrl: './thank-you-view.component.html',
   styleUrls: ['./thank-you-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     LetDirective,
     ThankYouComponent,

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffHeroSubtitleDirective } from './hero-subtitle.directive';
   template: `
     <h1 daffHeroSubtitle>Lorem Ipsum</h1>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffHeroSubtitleDirective,
   ],

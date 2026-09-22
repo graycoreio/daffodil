@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -14,6 +15,7 @@ import { DaffNavbarComponent } from '@daffodil/design/navbar';
 
 @Component({
   template: '<nav daff-navbar [elevated]="elevated()" [blurred]="blurred()"></ nav>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffNavbarComponent,
   ],

@@ -1,6 +1,7 @@
 import {
   Component,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -15,6 +16,7 @@ import { DaffTreeComponent } from '../tree.component';
   template: `
     <ul daff-tree [tree]="data()"></ul>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffTreeComponent,
   ],

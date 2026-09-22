@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffCalloutTitleDirective } from './callout-title.directive';
   template: `
     <h3 daffCalloutTitle>Lorem Ipsum</h3>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffCalloutTitleDirective,
   ],

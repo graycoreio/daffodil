@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -16,6 +17,7 @@ import { DaffRadioComponent } from '@daffodil/design/radio';
   template: `
     <daff-radio name="test" value="testValue" aria-labelledby="user" aria-label="test"></daff-radio>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffRadioComponent,
     ReactiveFormsModule,

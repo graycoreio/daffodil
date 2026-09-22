@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -23,6 +24,7 @@ import {
       <daff-checkbox value="pickle">Peach</daff-checkbox>
     </daff-checkbox-set>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_CHECKBOX_COMPONENTS,
     ReactiveFormsModule,

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -16,6 +17,7 @@ import { DaffioDocsFooterComponent } from './docs-footer.component';
 
 @Component({
   template: `<daffio-docs-footer></daffio-docs-footer>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffioDocsFooterComponent,
     DAFF_CONTAINER_COMPONENTS,

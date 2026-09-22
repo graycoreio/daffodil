@@ -4,6 +4,7 @@ import {
   Output,
   EventEmitter,
   OnInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -21,6 +22,7 @@ import {
   selector: 'demo-checkout-shipping-address-form',
   templateUrl: './shipping-address-form.component.html',
   styleUrls: ['./shipping-address-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DemoCheckoutAddressFormComponent,
     ReactiveFormsModule,

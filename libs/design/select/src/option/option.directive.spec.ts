@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -19,6 +20,7 @@ import { DaffSelectOptionDirective } from './option.directive';
   template: `
     <div daffSelectOption>Content</div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSelectOptionDirective,
   ],

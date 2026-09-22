@@ -3,6 +3,7 @@ import {
   DebugElement,
   signal,
   WritableSignal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -19,6 +20,7 @@ import { DaffRovingTabIndexDirective } from './roving-tab-index.directive';
   template: `
 		<div [rti]="rtiValue()"></div>
 	`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffRovingTabIndexDirective,
   ],
@@ -118,6 +120,7 @@ describe('@daffodil/design | DaffRovingTabIndexDirective', () => {
 			<div data-sut [rti]="rtiValue()"></div>
 		</div>
 	`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffRovingTabIndexDirective,
     DaffRovingTabIndexBoundaryDirective,
@@ -184,6 +187,7 @@ describe('@daffodil/design | DaffRovingTabIndexDirective | In Group', () => {
   template: `
 		<a></a>
 	`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffRovingTabIndexDirective,
   ],
@@ -230,6 +234,7 @@ describe('@daffodil/design | DaffRovingTabIndexDirective | Anchor', () => {
   template: `
 		<button></button>
 	`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffRovingTabIndexDirective,
   ],

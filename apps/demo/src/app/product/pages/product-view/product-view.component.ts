@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   ActivatedRoute,
@@ -34,6 +35,7 @@ import { ProductComponent } from '../../components/product/product.component';
 @Component({
   selector: 'demo-product-view',
   templateUrl: './product-view.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AsyncPipe,
     DaffSpinnerComponent,

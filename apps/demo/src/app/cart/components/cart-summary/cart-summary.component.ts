@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -12,6 +13,7 @@ import { MiniCartItemComponent } from '../minicart-item/minicart-item.component'
   selector: 'demo-cart-summary',
   templateUrl: './cart-summary.component.html',
   styleUrls: ['./cart-summary.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MiniCartItemComponent,
   ],

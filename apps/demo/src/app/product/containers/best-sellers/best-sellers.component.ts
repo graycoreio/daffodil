@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   map,
@@ -23,6 +24,7 @@ import { ProductGridComponent } from '../../components/product-grid/product-grid
   selector: 'demo-best-sellers',
   templateUrl: './best-sellers.component.html',
   styleUrls: ['./best-sellers.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AsyncPipe,
     DaffSpinnerComponent,

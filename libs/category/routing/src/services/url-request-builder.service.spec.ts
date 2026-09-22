@@ -1,6 +1,7 @@
 import {
   Component,
   inject,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   TestBed,
@@ -28,6 +29,7 @@ import { DAFF_CATEGORY_ROUTING_OPTIONS_BUILDER } from '../injection-tokens/reque
 
 @Component({
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class TestComponent {}

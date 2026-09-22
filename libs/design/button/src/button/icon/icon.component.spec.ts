@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,6 +17,7 @@ import { DaffIconButtonComponent } from './icon.component';
     <a daff-icon-button>Icon Link Button</a>
     <button daff-icon-button>Icon Button</button>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffIconButtonComponent,
   ],

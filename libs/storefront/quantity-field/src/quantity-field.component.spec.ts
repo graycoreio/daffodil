@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -25,6 +25,7 @@ import { DaffSfQuantitySelectComponent } from './quantity-select/quantity-select
       [selectMax]="selectMaxValue"
     ></daff-sf-quantity-field>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSfQuantityFieldComponent,
     DaffSfQuantityInputComponent,

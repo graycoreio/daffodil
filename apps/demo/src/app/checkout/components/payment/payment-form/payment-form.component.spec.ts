@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -29,6 +29,7 @@ import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-i
       (submitted)="submittedFunction($event)"
     ></demo-checkout-payment-form>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DemoCheckoutPaymentFormComponent,
   ],

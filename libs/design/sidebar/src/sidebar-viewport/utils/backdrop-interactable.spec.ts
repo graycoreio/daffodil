@@ -3,6 +3,7 @@ import {
   Input,
   QueryList,
   ViewChildren,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   TestBed,
@@ -19,6 +20,7 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
     <daff-sidebar side="left" mode="side"></daff-sidebar>
     <daff-sidebar side="right" [mode]="mode" [open]="true"></daff-sidebar>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSidebarComponent,
   ],

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,6 +17,7 @@ import { DaffNavListComponent } from '@daffodil/design/list';
     <daff-list></daff-list>
     <daff-nav-list></daff-nav-list>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffNavListComponent,
   ],

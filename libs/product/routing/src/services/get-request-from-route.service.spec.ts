@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   fakeAsync,
   TestBed,
@@ -25,6 +25,7 @@ import { DAFF_PRODUCT_ROUTING_CONFIG } from '../config/token';
 
 @Component({
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class TestComponent {}

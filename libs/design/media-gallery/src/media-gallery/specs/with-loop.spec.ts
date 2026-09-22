@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -30,6 +31,7 @@ import {
 		</daff-media-gallery>
 
 	`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_MEDIA_GALLERY_COMPONENTS,
     DAFF_IMAGE_LITE_COMPONENTS,

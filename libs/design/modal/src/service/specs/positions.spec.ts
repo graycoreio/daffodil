@@ -1,6 +1,7 @@
 import {
   Component,
   ViewContainerRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   TestBed,
@@ -13,6 +14,7 @@ import { DaffModalService } from '../modal.service';
 
 @Component({
   selector: 'daff-dynamic-component',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
 		<p>It works!</p>
 	`,
@@ -20,6 +22,7 @@ import { DaffModalService } from '../modal.service';
 class DynamicComponent {}
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 class WrapperComponent {

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffArticleComponent } from './article.component';
 
 @Component ({
   template: `<daff-article></daff-article>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffArticleComponent,
   ],

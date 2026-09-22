@@ -1,19 +1,18 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../../dist/out-tsc/libs/docs",
-    "types": [
-      "jasmine",
-      "node"
-    ],
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/out-tsc/libs/docs",
+		"types": ["jasmine", "node"],
     "composite": true
-  },
-  "files": [
-    "test.ts"
-  ],
-  "include": [
-    "**/*.spec.ts",
-    "**/*.d.ts",
-    "**/*.ts"
-  ]
+	},
+	"files": ["test.ts"],
+	"include": ["**/*.spec.ts", "**/*.d.ts", "**/*.ts"],
+	"angularCompilerOptions": {
+		"extendedDiagnostics": {
+			"checks": {
+				"nullishCoalescingNotNullable": "suppress",
+				"optionalChainNotNullable": "suppress"
+			}
+		}
+	}
 }

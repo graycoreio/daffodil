@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -13,6 +13,7 @@ import { AddToCartComponent } from './add-to-cart.component';
 
 @Component({
   template: '<demo-add-to-cart (addToCart)="eventCatcher()" [additive]="additiveValue" [qty]="qtyValue"></demo-add-to-cart>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [AddToCartComponent],
 })
 class WrapperComponent {

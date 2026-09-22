@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -17,6 +18,7 @@ import {
   template: `
     <daff-switch>Wifi</daff-switch>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_SWITCH_COMPONENTS,
   ],

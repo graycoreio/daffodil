@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffNotificationActionsDirective } from './notification-actions.directi
   template: `
     <h3 daffNotificationActions>Lorem Ipsum</h3>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffNotificationActionsDirective,
   ],

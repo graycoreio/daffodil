@@ -7,7 +7,7 @@
   </daff-select>
 </daff-form-field>
 
-<daff-callout [color]="colorControl.value?.value">
+<daff-callout [color]="$safeNavigationMigration(colorControl.value?.value)">
   <div class="daff-callout-theming__icon" daffCalloutIcon>
     <fa-icon [icon]="faTag"></fa-icon>
   </div>
@@ -15,14 +15,12 @@
   <h3 daffCalloutTitle>Summer Sale — Up to 30% off sitewide.</h3>
   <div daffCalloutSubtitle>
     <p>
-      Shop our biggest sale of the season with up to 30% off on select styles, accessories, and more.
+      Shop our biggest sale of the season with up to 30% off on select styles,
+      accessories, and more.
     </p>
-    <p>
-      Use code SUMMER30 at checkout. Offer ends July 31.
-    </p>
+    <p>Use code SUMMER30 at checkout. Offer ends July 31.</p>
   </div>
   <div daffCalloutBody>
-    <a daff-button color="theme-contrast" routerLink="/sale"
-      >Shop the sale</a>
+    <a daff-button color="theme-contrast" routerLink="/sale">Shop the sale</a>
   </div>
 </daff-callout>

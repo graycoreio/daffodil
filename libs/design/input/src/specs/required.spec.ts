@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -28,6 +29,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
       <input daff-input [required]="requiredValue()">
     </daff-form-field>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffInputComponent,
     DAFF_FORM_FIELD_COMPONENTS,
@@ -116,6 +118,7 @@ describe('@daffodil/design | DaffInputComponent | Static Required Attribute', ()
       <input daff-input type="text" name="email" [formControl]="email">
     </daff-form-field>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffInputComponent,
     DAFF_FORM_FIELD_COMPONENTS,

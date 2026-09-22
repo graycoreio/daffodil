@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -22,6 +23,7 @@ import { DaffBeaconSpeed } from './helpers/beacon-speed';
 
 @Component({
   template: `<daff-beacon [color]="color()" [size]="size()" [speed]="speed()" [status]="status()"></daff-beacon>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffBeaconComponent,
   ],

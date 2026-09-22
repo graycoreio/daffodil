@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -26,6 +27,7 @@ import {
       </ng-template>
     </daff-media-gallery>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_MEDIA_GALLERY_COMPONENTS,
   ],

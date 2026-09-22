@@ -11,14 +11,14 @@
   <a
     daff-card
     href="/product/classic-leather-jacket"
-    [color]="basicColorControl.value?.value"
+    [color]="$safeNavigationMigration(basicColorControl.value?.value)"
   >
     <div daffCardTagline>New Arrival</div>
     <h4 daffCardTitle>Classic Leather Jacket</h4>
     <div daffCardContent>
       <p>
-        A timeless jacket crafted from premium full-grain leather
-        with a soft interior lining.
+        A timeless jacket crafted from premium full-grain leather with a soft
+        interior lining.
       </p>
     </div>
   </a>
@@ -37,14 +37,14 @@
   <a
     daff-stroked-card
     href="/product/classic-leather-jacket"
-    [color]="strokedColorControl.value?.value"
+    [color]="$safeNavigationMigration(strokedColorControl.value?.value)"
   >
     <div daffCardTagline>New Arrival</div>
     <h4 daffCardTitle>Classic Leather Jacket</h4>
     <div daffCardContent>
       <p>
-        A timeless jacket crafted from premium full-grain leather
-        with a soft interior lining.
+        A timeless jacket crafted from premium full-grain leather with a soft
+        interior lining.
       </p>
     </div>
   </a>

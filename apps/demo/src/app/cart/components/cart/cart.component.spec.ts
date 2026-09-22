@@ -2,6 +2,7 @@ import {
   Component,
   Input,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -22,6 +23,7 @@ import { CartComponent } from './cart.component';
 
 @Component({
   template: '<demo-cart [cart]="cartValue"></demo-cart>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CartComponent],
 })
 class WrapperComponent {
@@ -30,6 +32,7 @@ class WrapperComponent {
 
 @Component({
   selector: 'demo-cart-items',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 class MockCartItemsComponent {
@@ -38,6 +41,7 @@ class MockCartItemsComponent {
 
 @Component({
   selector: 'demo-cart-sidebar',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 class MockCartSidebarComponent {
@@ -47,6 +51,7 @@ class MockCartSidebarComponent {
 
 @Component({
   selector: 'demo-cart-item-count',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 class MockCartItemCountComponent {

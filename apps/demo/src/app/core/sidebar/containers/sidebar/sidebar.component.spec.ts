@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -25,6 +25,7 @@ import { SidebarListComponent } from '../../components/sidebar-list/sidebar-list
 
 @Component({
   template: '<demo-sidebar></demo-sidebar>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     SidebarContainer,
   ],

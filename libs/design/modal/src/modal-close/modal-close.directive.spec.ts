@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -19,6 +20,7 @@ import { DaffModalService } from '../service/modal.service';
   imports: [
     DaffModalCloseDirective,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     DaffModalService,
   ],

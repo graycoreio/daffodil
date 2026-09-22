@@ -2,6 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import {
   Component,
   Input,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import {
@@ -16,6 +17,7 @@ import { CartTotalsItemComponent } from '../cart-totals-item/cart-totals-item.co
   selector: 'demo-cart-totals',
   templateUrl: './cart-totals.component.html',
   styleUrls: ['./cart-totals.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CurrencyPipe,
     CartTotalsItemComponent,

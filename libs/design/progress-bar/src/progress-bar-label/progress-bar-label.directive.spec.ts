@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffProgressBarLabelDirective } from '@daffodil/design/progress-bar';
 
 @Component({
   template: `<daff-progress-bar-label>Label</daff-progress-bar-label>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffProgressBarLabelDirective,
   ],
