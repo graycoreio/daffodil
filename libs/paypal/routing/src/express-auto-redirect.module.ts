@@ -5,6 +5,8 @@ import { DaffPaypalExpressRedirectEffects } from './effects/express-redirect.eff
 
 /**
  * Provides the effects necessary for automatically redirecting the user to paypal upon successful epxress token generation.
+ *
+ * @deprecated in favor of {@link provideDaffPaypalExpressAutoRedirect}
  */
 @NgModule({
   imports: [
