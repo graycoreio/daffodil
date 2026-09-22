@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import { DaffNewsletterFacade } from '@daffodil/newsletter/state';
+import { provideDaffNewsletterStateTesting } from './provider';
 
-import { MockDaffNewsletterFacade } from './mock-newsletter-facade';
-
+/**
+ * @deprecated in favor of {@link provideDaffNewsletterStateTesting}
+ */
 @NgModule({
   providers: [
-    { provide: DaffNewsletterFacade, useExisting: MockDaffNewsletterFacade },
+    provideDaffNewsletterStateTesting(),
   ],
 })
 export class DaffNewsletterStateTestingModule { }
