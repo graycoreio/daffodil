@@ -3,3 +3,4 @@ export * from './injection-tokens/public_api';
 export * from './helpers';
 
 export { DaffProductTestingModule } from './testing.module';
+export { provideDaffProductTesting } from './provider';
