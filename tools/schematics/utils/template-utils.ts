@@ -1,7 +1,7 @@
 import { Tree } from '@angular-devkit/schematics';
-import ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 import { insertImport } from '@schematics/angular/utility/ast-utils';
 import { InsertChange } from '@schematics/angular/utility/change';
+import * as ts from 'typescript';
 
 export function addTemplateToComponent(
   tree: Tree,
