@@ -6,3 +6,4 @@ export * from './injection-tokens/public_api';
 export * from './models/public_api';
 
 export * from './payment.module';
+export { provideDaffPaymentState } from './provider';
