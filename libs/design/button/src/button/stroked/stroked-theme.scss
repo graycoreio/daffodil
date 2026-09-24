@@ -1,6 +1,10 @@
 @use '../../../../scss/theming' as *;
+@use '../button-base' as base;
 
-@mixin daff-stroked-button-theme-variant($base-color) {
+@mixin daff-stroked-button-theme-variant(
+	$base-color,
+	$focus-color: rgba($base-color, 0.5)
+) {
 	border: thin solid $base-color;
 	color: $base-color;
 	background-color: transparent;
@@ -9,11 +13,7 @@
 		background-color: rgba($base-color, 0.1);
 	}
 
-	&:active {
-		&::after {
-			background-color: rgba($base-color, 0.15);
-		}
-	}
+	@include base.daff-button-focus-ring($focus-color);
 }
 
 @mixin daff-stroked-button-theme($theme) {
@@ -40,29 +40,19 @@
 			background: rgba(daff-color($neutral, 50), 0.1);
 		}
 
-		&:active {
-			&::after {
-				background: rgba(daff-color($neutral, 50), 0.2);
-			}
-		}
+		@include base.daff-button-focus-ring(daff-color($neutral, 20));
 
 		@include daff-light-mode($mode) {
 			&.daff-primary {
-				@include daff-stroked-button-theme-variant(
-					daff-color($primary)
-				);
+				@include daff-stroked-button-theme-variant(daff-color($primary));
 			}
 
 			&.daff-secondary {
-				@include daff-stroked-button-theme-variant(
-					daff-color($secondary)
-				);
+				@include daff-stroked-button-theme-variant(daff-color($secondary));
 			}
 
 			&.daff-tertiary {
-				@include daff-stroked-button-theme-variant(
-					daff-color($tertiary)
-				);
+				@include daff-stroked-button-theme-variant(daff-color($tertiary));
 			}
 
 			&.daff-dark {
@@ -86,19 +76,17 @@
 			}
 
 			&.daff-critical {
-				@include daff-stroked-button-theme-variant(
-					daff-color($critical)
-				);
+				@include daff-stroked-button-theme-variant(daff-color($critical));
 			}
 
 			&.daff-success {
-				@include daff-stroked-button-theme-variant(
-					daff-color($success)
-				);
+				@include daff-stroked-button-theme-variant(daff-color($success));
 			}
 		}
 
 		@include daff-dark-mode($mode) {
+			@include base.daff-button-focus-ring(rgba(daff-color($neutral, 90), 0.8));
+
 			&.daff-primary {
 				@include daff-stroked-button-theme-variant(
 					daff-color-shift($primary, -1)
@@ -134,9 +122,7 @@
 			}
 
 			&.daff-warn {
-				@include daff-stroked-button-theme-variant(
-					daff-color-shift($warn, -1)
-				);
+				@include daff-stroked-button-theme-variant(daff-color-shift($warn, -1));
 			}
 
 			&.daff-critical {

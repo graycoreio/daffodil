@@ -1,9 +1,10 @@
 @use '../../../../scss/theming' as *;
+@use '../button-base' as base;
 
 @mixin daff-button-theme-variant(
 	$base-color,
 	$hover-color,
-	$active-color: $hover-color
+	$focus-color: rgba($base-color, 0.5),
 ) {
 	background-color: $base-color;
 	color: daff-text-contrast($base-color);
@@ -18,13 +19,7 @@
 		}
 	}
 
-	&:active {
-		color: daff-text-contrast($active-color);
-
-		&::after {
-			background: $active-color;
-		}
-	}
+	@include base.daff-button-focus-ring($focus-color);
 }
 
 @mixin daff-button-theme($theme) {
@@ -47,14 +42,13 @@
 			@include daff-button-theme-variant(
 				daff-color($neutral, 10),
 				daff-color($neutral, 20),
-				daff-color($neutral, 30)
+				daff-color($neutral, 20),
 			);
 
 			&.daff-primary {
 				@include daff-button-theme-variant(
 					daff-color($primary),
 					daff-color-shift($primary, 1),
-					daff-color-shift($primary, 2)
 				);
 			}
 
@@ -62,7 +56,6 @@
 				@include daff-button-theme-variant(
 					daff-color($secondary),
 					daff-color-shift($secondary, 1),
-					daff-color-shift($secondary, 2)
 				);
 			}
 
@@ -70,7 +63,6 @@
 				@include daff-button-theme-variant(
 					daff-color($tertiary),
 					daff-color-shift($tertiary, 1),
-					daff-color-shift($tertiary, 2)
 				);
 			}
 
@@ -78,7 +70,6 @@
 				@include daff-button-theme-variant(
 					daff-color($neutral, 100),
 					daff-color($neutral, 90),
-					daff-color($neutral, 80)
 				);
 			}
 
@@ -86,7 +77,6 @@
 				@include daff-button-theme-variant(
 					daff-color($neutral, 10),
 					daff-color($neutral, 20),
-					daff-color($neutral, 30)
 				);
 			}
 
@@ -94,7 +84,6 @@
 				@include daff-button-theme-variant(
 					$base,
 					daff-color($neutral, 20),
-					daff-color($neutral, 30)
 				);
 			}
 
@@ -102,7 +91,6 @@
 				@include daff-button-theme-variant(
 					$base-contrast,
 					daff-color($neutral, 90),
-					daff-color($neutral, 80)
 				);
 			}
 
@@ -110,7 +98,6 @@
 				@include daff-button-theme-variant(
 					daff-color($warn),
 					daff-color-shift($warn, 1),
-					daff-color-shift($warn, 2)
 				);
 			}
 
@@ -118,7 +105,6 @@
 				@include daff-button-theme-variant(
 					daff-color($success),
 					daff-color-shift($success, 1),
-					daff-color-shift($success, 2)
 				);
 			}
 
@@ -126,7 +112,6 @@
 				@include daff-button-theme-variant(
 					daff-color($critical),
 					daff-color-shift($critical, 1),
-					daff-color-shift($critical, 2)
 				);
 			}
 		}
@@ -135,14 +120,13 @@
 			@include daff-button-theme-variant(
 				daff-color($neutral, 90),
 				daff-color($neutral, 80),
-				daff-color($neutral, 70)
+				rgba(daff-color($neutral, 90), 0.8),
 			);
 
 			&.daff-primary {
 				@include daff-button-theme-variant(
 					daff-color($primary),
 					daff-color-shift($primary, -1),
-					daff-color-shift($primary, -2)
 				);
 			}
 
@@ -150,7 +134,6 @@
 				@include daff-button-theme-variant(
 					daff-color($secondary),
 					daff-color-shift($secondary, -1),
-					daff-color-shift($secondary, -2)
 				);
 			}
 
@@ -158,7 +141,6 @@
 				@include daff-button-theme-variant(
 					daff-color($tertiary),
 					daff-color-shift($tertiary, -1),
-					daff-color-shift($tertiary, -2)
 				);
 			}
 
@@ -166,7 +148,6 @@
 				@include daff-button-theme-variant(
 					daff-color($neutral, 100),
 					daff-color($neutral, 90),
-					daff-color($neutral, 80)
 				);
 			}
 
@@ -174,7 +155,6 @@
 				@include daff-button-theme-variant(
 					$white,
 					daff-color($neutral, 20),
-					daff-color($neutral, 30)
 				);
 			}
 
@@ -182,7 +162,6 @@
 				@include daff-button-theme-variant(
 					$base,
 					daff-color($neutral, 90),
-					daff-color($neutral, 80)
 				);
 			}
 
@@ -190,7 +169,6 @@
 				@include daff-button-theme-variant(
 					$base-contrast,
 					daff-color($neutral, 20),
-					daff-color($neutral, 30)
 				);
 			}
 
@@ -198,7 +176,6 @@
 				@include daff-button-theme-variant(
 					daff-color($warn),
 					daff-color-shift($warn, -1),
-					daff-color-shift($warn, -2)
 				);
 			}
 
@@ -206,7 +183,6 @@
 				@include daff-button-theme-variant(
 					daff-color($success),
 					daff-color-shift($success, -1),
-					daff-color-shift($success, -2)
 				);
 			}
 
@@ -214,7 +190,6 @@
 				@include daff-button-theme-variant(
 					daff-color($critical),
 					daff-color-shift($critical, -1),
-					daff-color-shift($critical, -2)
 				);
 			}
 		}

@@ -1,17 +1,17 @@
 @use '../../../../scss/theming' as *;
+@use '../button-base' as base;
 
-@mixin daff-flat-button-theme-variant($base-color) {
+@mixin daff-flat-button-theme-variant(
+	$base-color,
+	$focus-color: rgba($base-color, 0.5),
+) {
 	color: $base-color;
 
 	&::after {
 		background-color: rgba($base-color, 0.1);
 	}
 
-	&:active {
-		&::after {
-			background-color: rgba($base-color, 0.15);
-		}
-	}
+	@include base.daff-button-focus-ring($focus-color);
 }
 
 @mixin daff-flat-button-theme($theme) {
@@ -33,6 +33,7 @@
 		@include daff-light-mode($mode) {
 			@include daff-flat-button-theme-variant(
 				$base-contrast,
+				daff-color($neutral, 20),
 			);
 
 			&.daff-primary {
@@ -99,6 +100,7 @@
 		@include daff-dark-mode($mode) {
 			@include daff-flat-button-theme-variant(
 				$base-contrast,
+				rgba(daff-color($neutral, 90), 0.8),
 			);
 
 			&.daff-primary {

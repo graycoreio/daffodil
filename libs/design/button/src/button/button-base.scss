@@ -97,6 +97,15 @@
 	}
 }
 
+@mixin daff-button-focus-ring($color) {
+	&:not(&[disabled], &.daff-disabled) {
+		&:focus-visible {
+			outline: 0.125rem solid $color;
+			outline-offset: 0.125rem;
+		}
+	}
+}
+
 @mixin daff-button-sizes {
 	&.daff-sm {
 		font-size: t.$font-size-sm;
