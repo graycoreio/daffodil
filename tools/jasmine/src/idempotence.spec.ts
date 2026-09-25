@@ -1,4 +1,4 @@
-import { setup } from './index';
+import { setup } from './index.js';
 
 describe('@daffodil/core/testing/jasmine | idempotenceMatcher', () => {
   const anArityOneIdempotentFunction = (a: number) => a;
