@@ -69,7 +69,7 @@ export const flattenTree = (daffUiTree: DaffTreeUi<unknown>, removeNodes: boolea
         url : el.url,
         visible: !hasClosedAncestor,
         hasChildren: el.items.length > 0,
-        data: undefined,
+        data: el.data,
         _treeRef: el._treeRef,
       });
     } else if(removeNodes && el._treeRef.parent?.open) {
@@ -80,7 +80,7 @@ export const flattenTree = (daffUiTree: DaffTreeUi<unknown>, removeNodes: boolea
         url : el.url,
         visible: !hasClosedAncestor,
         hasChildren: el.items.length > 0,
-        data: undefined,
+        data: el.data,
         _treeRef: el._treeRef,
       });
     }
