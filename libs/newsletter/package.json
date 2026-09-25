@@ -37,7 +37,8 @@
   "homepage": "https://github.com/graycoreio/daffodil",
   "devDependencies": {
     "@daffodil/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/driver": "0.0.0-PLACEHOLDER"
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "@daffodil/jasmine": "0.0.0-PLACEHOLDER"
   },
   "scripts": {
     "build": "ng build newsletter --configuration production",

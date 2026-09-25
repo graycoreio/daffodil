@@ -1,14 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
 
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffNewsletterServiceInterface,
   DaffNewsletterDriver,
@@ -51,7 +48,6 @@ describe('NewsletterEffects', () => {
   });
 
   describe('when NewsletterSubscribe is triggered', () => {
-    let expected;
     const newsletterSubscribe = new DaffNewsletterSubscribe(mockNewsletter);
 
     describe('and the call to NewsletterService is successful', () => {
@@ -59,28 +55,30 @@ describe('NewsletterEffects', () => {
         const successAction = new DaffNewsletterSubscribeSuccess();
         spyOn(daffNewsletterDriver, 'send').and.returnValue(of({ message: 'mystring' }));
 
-        actions$ = hot('--a', { a: newsletterSubscribe });
-        expected = cold('--b', { b: successAction });
-        expect(effects.trySubmission$).toBeObservable(expected);
+        runMarbles(({ hot, expectObservable }) => {
+          actions$ = hot('--a', { a: newsletterSubscribe });
+          expectObservable(effects.trySubmission$).toBe('--b', { b: successAction });
+        });
       });
     });
 
     describe('and the call to NewsletterService fails', () => {
       it('it should dispatch a NewsletterFailedSubscribe', () => {
         const error = { code: 'code', recoverable: false, message: 'Failed to subscribe to newsletter' };
-        const response = cold('#', {}, error);
-        spyOn(daffNewsletterDriver, 'send').and.returnValue(response);
         const failedAction = new DaffNewsletterSubscribeFailure([error]);
 
-        actions$ = hot('--a', { a: newsletterSubscribe });
-        expected = cold('--b', { b: failedAction });
-        expect(effects.trySubmission$).toBeObservable(expected);
+        runMarbles(({ hot, cold, expectObservable }) => {
+          const response = cold<any>('#', {}, error);
+          spyOn(daffNewsletterDriver, 'send').and.returnValue(response);
+
+          actions$ = hot('--a', { a: newsletterSubscribe });
+          expectObservable(effects.trySubmission$).toBe('--b', { b: failedAction });
+        });
       });
     });
   });
 
   describe('when Retry is triggered', () => {
-    let expected;
     const newsletterRetry = new DaffNewsletterRetry(mockNewsletter);
 
     describe('and the call to NewsletterService is successful', () => {
@@ -88,49 +86,51 @@ describe('NewsletterEffects', () => {
         const successAction = new DaffNewsletterSubscribeSuccess();
         spyOn(daffNewsletterDriver, 'send').and.returnValue(of({ message: 'mystring' }));
 
-        actions$ = hot('--a', { a: newsletterRetry });
-        expected = cold('--b', { b: successAction });
-        expect(effects.trySubmission$).toBeObservable(expected);
+        runMarbles(({ hot, expectObservable }) => {
+          actions$ = hot('--a', { a: newsletterRetry });
+          expectObservable(effects.trySubmission$).toBe('--b', { b: successAction });
+        });
       });
     });
 
     describe('and the call to NewsletterService fails', () => {
       it('it should dispatch a NewsletterFailedSubscribe', () => {
         const error = { code: 'code', recoverable: false, message: 'Failed to subscribe to newsletter' };
-        const response = cold('#', {}, error);
-        spyOn(daffNewsletterDriver, 'send').and.returnValue(response);
         const failedAction = new DaffNewsletterSubscribeFailure([error]);
 
-        actions$ = hot('--a', { a: newsletterRetry });
-        expected = cold('--b', { b: failedAction });
-        expect(effects.trySubmission$).toBeObservable(expected);
+        runMarbles(({ hot, cold, expectObservable }) => {
+          const response = cold<any>('#', {}, error);
+          spyOn(daffNewsletterDriver, 'send').and.returnValue(response);
+
+          actions$ = hot('--a', { a: newsletterRetry });
+          expectObservable(effects.trySubmission$).toBe('--b', { b: failedAction });
+        });
       });
     });
   });
 
   describe('when Newsletter cancel is triggered', () => {
-    let expected;
     const newsletterSubscribe = new DaffNewsletterSubscribe(mockNewsletter);
     const newsletterCancel = new DaffNewsletterCancel();
 
     it('it should return an empty observable', () => {
-      actions$ = hot('---d-----', {
-        a: newsletterSubscribe,
-        d: newsletterCancel,
+      runMarbles(({ hot, expectObservable }) => {
+        actions$ = hot('---d-----', {
+          a: newsletterSubscribe,
+          d: newsletterCancel,
+        });
+        expectObservable(effects.trySubmission$).toBe('---------');
       });
-      expected = cold('---------');
-
-      expect(effects.trySubmission$).toBeObservable(expected);
     });
 
     it('it should cancel a newsletter subscribe action', () => {
-      actions$ = hot('--(ad)----', {
-        a: newsletterSubscribe,
-        d: newsletterCancel,
+      runMarbles(({ hot, expectObservable }) => {
+        actions$ = hot('--(ad)----', {
+          a: newsletterSubscribe,
+          d: newsletterCancel,
+        });
+        expectObservable(effects.trySubmission$).toBe('--------');
       });
-      expected = cold('--------');
-
-      expect(effects.trySubmission$).toBeObservable(expected);
     });
   });
 });

@@ -4,8 +4,8 @@ import {
   StoreModule,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffNewsletterState,
   daffNewsletterStateReducer,
@@ -37,8 +37,9 @@ describe('DaffNewsletterSelectors', () => {
   describe('selectDaffNewsletterSuccess', () =>{
     it('selects the success property of newsletter state', () => {
       const selector = store.pipe(select(selectDaffNewsletterSuccess));
-      const expected = cold('a', { a: mockNewsletter.success });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockNewsletter.success });
+      });
     });
   });
 });
