@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffPaypalExpressTokenRequest,
   DaffPaypalExpressTokenResponse,
@@ -43,8 +43,9 @@ describe('@daffodil/paypal/driver/testing | DaffTestingPaypalService', () => {
   describe('generateToken', () => {
 
     it('should return a paypal token response', () => {
-      const expected = cold('(a|)', { a: paypalTokenResponse });
-      expect(paypalService.generateToken('cartId', paypalRequest)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(paypalService.generateToken('cartId', paypalRequest)).toBe('(a|)', { a: paypalTokenResponse });
+      });
     });
   });
 });

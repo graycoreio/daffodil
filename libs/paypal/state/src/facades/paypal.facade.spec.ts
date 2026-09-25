@@ -4,9 +4,9 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffPaypalExpressTokenRequest,
   DaffPaypalExpressTokenResponse,
@@ -72,31 +72,35 @@ describe('DaffPaypalFacade', () => {
   describe('paypalStartUrl$', () => {
 
     it('should return the paypal start url', () => {
-      const expected = cold('a', { a: stubPaypalTokenResponse.urls.start });
-      store.dispatch(new DaffGeneratePaypalExpressTokenSuccess(stubPaypalTokenResponse));
-      expect(facade.paypalStartUrl$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        store.dispatch(new DaffGeneratePaypalExpressTokenSuccess(stubPaypalTokenResponse));
+        expectObservable(facade.paypalStartUrl$).toBe('a', { a: stubPaypalTokenResponse.urls.start });
+      });
     });
   });
 
   describe('paypalEditUrl$', () => {
 
     it('should return the paypal edit url', () => {
-      const expected = cold('a', { a: stubPaypalTokenResponse.urls.edit });
-      store.dispatch(new DaffGeneratePaypalExpressTokenSuccess(stubPaypalTokenResponse));
-      expect(facade.paypalEditUrl$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        store.dispatch(new DaffGeneratePaypalExpressTokenSuccess(stubPaypalTokenResponse));
+        expectObservable(facade.paypalEditUrl$).toBe('a', { a: stubPaypalTokenResponse.urls.edit });
+      });
     });
   });
 
   describe('loading$', () => {
     it('should be false if the paypal state is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
 
     it('should be true if the paypal state is loading', () => {
-      const expected = cold('a', { a: true });
-      store.dispatch(new DaffGeneratePaypalExpressToken(paypalRequest));
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        store.dispatch(new DaffGeneratePaypalExpressToken(paypalRequest));
+        expectObservable(facade.loading$).toBe('a', { a: true });
+      });
     });
   });
 
@@ -104,9 +108,10 @@ describe('DaffPaypalFacade', () => {
 
     it('should be an observable of an array of the current errors', () => {
       const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to retrieve token' };
-      const expected = cold('a', { a: error });
-      store.dispatch(new DaffGeneratePaypalExpressTokenFailure(error));
-      expect(facade.error$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        store.dispatch(new DaffGeneratePaypalExpressTokenFailure(error));
+        expectObservable(facade.error$).toBe('a', { a: error });
+      });
     });
   });
 });
