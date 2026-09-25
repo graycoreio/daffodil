@@ -4,7 +4,6 @@ import {
   Store,
   StoreModule,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import {
   daffCustomerAddressEntitiesReducer,
@@ -14,6 +13,7 @@ import {
   DaffCustomerStateRootSlice,
   DAFF_CUSTOMER_STORE_FEATURE_KEY,
 } from '@daffodil/customer/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCustomerPageFacade } from './facade';
 
@@ -60,22 +60,25 @@ describe('@daffodil/customer/state | DaffCustomerPageFacade', () => {
 
   describe('customer$', () => {
     it('should be null', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.customer$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.customer$).toBe('a', { a: null });
+      });
     });
   });
 
   describe('loading$', () => {
     it('should be false if the customer is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
   });
 
   describe('errors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: errors });
-      expect(facade.errors$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: errors });
+      });
     });
   });
 });

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCustomerFactory } from '@daffodil/customer/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCustomerTestingDriver } from './customer.service';
 
@@ -26,29 +26,33 @@ describe('@daffodil/customer/driver/testing | DaffCustomerTestingDriver', () => 
 
   describe('get', () => {
     it('should return a DaffCustomer', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
-      expect(service.get()).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.get()).toBe('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
+      });
     });
   });
 
   describe('update', () => {
     it('should return a DaffCustomer', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
-      expect(service.update(customerFactory.create())).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.update(customerFactory.create())).toBe('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
+      });
     });
   });
 
   describe('changePassword', () => {
     it('should return', () => {
-      const expected = cold('(a|)', { a: undefined });
-      expect(service.changePassword('old', 'new')).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.changePassword('old', 'new')).toBe('(a|)', { a: undefined });
+      });
     });
   });
 
   describe('changeEmail', () => {
     it('should return a DaffCustomer', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
-      expect(service.changeEmail('email', 'password')).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.changeEmail('email', 'password')).toBe('(a|)', { a: jasmine.objectContaining({ id: jasmine.anything(), email: jasmine.anything() }) });
+      });
     });
   });
 });

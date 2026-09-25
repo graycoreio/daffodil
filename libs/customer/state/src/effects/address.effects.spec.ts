@@ -1,10 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
@@ -35,6 +31,7 @@ import {
   DaffCustomerAddressListSuccess,
 } from '@daffodil/customer/state';
 import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCustomerAddressEffects } from './address.effects';
 
@@ -82,7 +79,6 @@ describe('@daffodil/customer/state | DaffCustomerAddressEffects', () => {
   });
 
   describe('when DaffCustomerAddressListAction is triggered', () => {
-    let expected;
     let listAction: DaffCustomerAddressList;
 
     beforeEach(() => {
@@ -90,36 +86,31 @@ describe('@daffodil/customer/state | DaffCustomerAddressEffects', () => {
     });
 
     describe('and the call to the driver is successful', () => {
-      beforeEach(() => {
-        driverListSpy.and.returnValue(of([mockAddress]));
-        const listSuccessAction = new DaffCustomerAddressListSuccess([mockAddress]);
-        actions$ = hot('--a', { a: listAction });
-        expected = cold('--b', { b: listSuccessAction });
-      });
-
       it('should dispatch a DaffCustomerAddressListSuccess action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        runMarbles(helpers => {
+          driverListSpy.and.returnValue(of([mockAddress]));
+          const listSuccessAction = new DaffCustomerAddressListSuccess([mockAddress]);
+          actions$ = helpers.hot('--a', { a: listAction });
+          helpers.expectObservable(effects.list$).toBe('--b', { b: listSuccessAction });
+        });
       });
     });
 
     describe('and the call to the driver fails', () => {
-      beforeEach(() => {
-        const error = new DaffCustomerInvalidAPIResponseError('Failed to list customer address');
-        const response = cold('#', {}, error);
-        driverListSpy.and.returnValue(response);
-        const listFailureAction = new DaffCustomerAddressListFailure(daffTransformErrorToStateError(error));
-        actions$ = hot('--a', { a: listAction });
-        expected = cold('--b', { b: listFailureAction });
-      });
-
       it('should dispatch a DaffCustomerAddressListFailure action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error = new DaffCustomerInvalidAPIResponseError('Failed to list customer address');
+          const response = helpers.cold<any>('#', {}, error);
+          driverListSpy.and.returnValue(response);
+          const listFailureAction = new DaffCustomerAddressListFailure(daffTransformErrorToStateError(error));
+          actions$ = helpers.hot('--a', { a: listAction });
+          helpers.expectObservable(effects.list$).toBe('--b', { b: listFailureAction });
+        });
       });
     });
   });
 
   describe('when DaffCustomerAddressLoadAction is triggered', () => {
-    let expected;
     let loadAction: DaffCustomerAddressLoad;
 
     beforeEach(() => {
@@ -127,36 +118,31 @@ describe('@daffodil/customer/state | DaffCustomerAddressEffects', () => {
     });
 
     describe('and the call to the driver is successful', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(of(mockAddress));
-        const loadSuccessAction = new DaffCustomerAddressLoadSuccess(mockAddress);
-        actions$ = hot('--a', { a: loadAction });
-        expected = cold('--b', { b: loadSuccessAction });
-      });
-
       it('should dispatch a DaffCustomerAddressLoadSuccess action', () => {
-        expect(effects.get$).toBeObservable(expected);
+        runMarbles(helpers => {
+          driverGetSpy.and.returnValue(of(mockAddress));
+          const loadSuccessAction = new DaffCustomerAddressLoadSuccess(mockAddress);
+          actions$ = helpers.hot('--a', { a: loadAction });
+          helpers.expectObservable(effects.get$).toBe('--b', { b: loadSuccessAction });
+        });
       });
     });
 
     describe('and the call to the driver fails', () => {
-      beforeEach(() => {
-        const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer address');
-        const response = cold('#', {}, error);
-        driverGetSpy.and.returnValue(response);
-        const loadFailureAction = new DaffCustomerAddressLoadFailure(daffTransformErrorToStateError(error), mockAddress.id);
-        actions$ = hot('--a', { a: loadAction });
-        expected = cold('--b', { b: loadFailureAction });
-      });
-
       it('should dispatch a DaffCustomerAddressLoadFailure action', () => {
-        expect(effects.get$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer address');
+          const response = helpers.cold<any>('#', {}, error);
+          driverGetSpy.and.returnValue(response);
+          const loadFailureAction = new DaffCustomerAddressLoadFailure(daffTransformErrorToStateError(error), mockAddress.id);
+          actions$ = helpers.hot('--a', { a: loadAction });
+          helpers.expectObservable(effects.get$).toBe('--b', { b: loadFailureAction });
+        });
       });
     });
   });
 
   describe('when DaffCustomerAddressUpdateAction is triggered', () => {
-    let expected;
     let updateAction: DaffCustomerAddressUpdate;
 
     beforeEach(() => {
@@ -164,36 +150,31 @@ describe('@daffodil/customer/state | DaffCustomerAddressEffects', () => {
     });
 
     describe('and the call to the driver is successful', () => {
-      beforeEach(() => {
-        driverUpdateSpy.and.returnValue(of([mockAddress]));
-        const updateSuccessAction = new DaffCustomerAddressUpdateSuccess([mockAddress]);
-        actions$ = hot('--a', { a: updateAction });
-        expected = cold('--b', { b: updateSuccessAction });
-      });
-
       it('should dispatch a DaffCustomerAddressUpdateSuccess action', () => {
-        expect(effects.update$).toBeObservable(expected);
+        runMarbles(helpers => {
+          driverUpdateSpy.and.returnValue(of([mockAddress]));
+          const updateSuccessAction = new DaffCustomerAddressUpdateSuccess([mockAddress]);
+          actions$ = helpers.hot('--a', { a: updateAction });
+          helpers.expectObservable(effects.update$).toBe('--b', { b: updateSuccessAction });
+        });
       });
     });
 
     describe('and the call to the driver fails', () => {
-      beforeEach(() => {
-        const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer address');
-        const response = cold('#', {}, error);
-        driverUpdateSpy.and.returnValue(response);
-        const updateFailureAction = new DaffCustomerAddressUpdateFailure(daffTransformErrorToStateError(error), mockAddress.id);
-        actions$ = hot('--a', { a: updateAction });
-        expected = cold('--b', { b: updateFailureAction });
-      });
-
       it('should dispatch a DaffCustomerAddressUpdateFailure action', () => {
-        expect(effects.update$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer address');
+          const response = helpers.cold<any>('#', {}, error);
+          driverUpdateSpy.and.returnValue(response);
+          const updateFailureAction = new DaffCustomerAddressUpdateFailure(daffTransformErrorToStateError(error), mockAddress.id);
+          actions$ = helpers.hot('--a', { a: updateAction });
+          helpers.expectObservable(effects.update$).toBe('--b', { b: updateFailureAction });
+        });
       });
     });
   });
 
   describe('when DaffCustomerAddressDeleteAction is triggered', () => {
-    let expected;
     let deleteAction: DaffCustomerAddressDelete;
 
     beforeEach(() => {
@@ -201,63 +182,54 @@ describe('@daffodil/customer/state | DaffCustomerAddressEffects', () => {
     });
 
     describe('and the call to the driver is successful', () => {
-      beforeEach(() => {
-        driverDeleteSpy.and.returnValue(of([]));
-        const deleteSuccessAction = new DaffCustomerAddressDeleteSuccess([]);
-        actions$ = hot('--a', { a: deleteAction });
-        expected = cold('--b', { b: deleteSuccessAction });
-      });
-
       it('should dispatch a DaffCustomerAddressDeleteSuccess action', () => {
-        expect(effects.delete$).toBeObservable(expected);
+        runMarbles(helpers => {
+          driverDeleteSpy.and.returnValue(of([]));
+          const deleteSuccessAction = new DaffCustomerAddressDeleteSuccess([]);
+          actions$ = helpers.hot('--a', { a: deleteAction });
+          helpers.expectObservable(effects.delete$).toBe('--b', { b: deleteSuccessAction });
+        });
       });
     });
 
     describe('and the call to the driver fails', () => {
-      beforeEach(() => {
-        const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer address');
-        const response = cold('#', {}, error);
-        driverDeleteSpy.and.returnValue(response);
-        const deleteFailureAction = new DaffCustomerAddressDeleteFailure(daffTransformErrorToStateError(error), mockAddress.id);
-        actions$ = hot('--a', { a: deleteAction });
-        expected = cold('--b', { b: deleteFailureAction });
-      });
-
       it('should dispatch a DaffCustomerAddressDeleteFailure action', () => {
-        expect(effects.delete$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer address');
+          const response = helpers.cold<any>('#', {}, error);
+          driverDeleteSpy.and.returnValue(response);
+          const deleteFailureAction = new DaffCustomerAddressDeleteFailure(daffTransformErrorToStateError(error), mockAddress.id);
+          actions$ = helpers.hot('--a', { a: deleteAction });
+          helpers.expectObservable(effects.delete$).toBe('--b', { b: deleteFailureAction });
+        });
       });
     });
   });
 
   describe('when DaffCustomerAddressAddAction is triggered', () => {
-    let expected;
     const customerAddAction = new DaffCustomerAddressAdd(mockAddress, 'placeholder');
 
     describe('and the call to the driver is successful', () => {
-      beforeEach(() => {
-        driverAddSpy.and.returnValue(of([mockAddress]));
-        const customerAddSuccessAction = new DaffCustomerAddressAddSuccess([mockAddress]);
-        actions$ = hot('--a', { a: customerAddAction });
-        expected = cold('--b', { b: customerAddSuccessAction });
-      });
-
       it('should dispatch a DaffCustomerAddressAddSuccess action', () => {
-        expect(effects.add$).toBeObservable(expected);
+        runMarbles(helpers => {
+          driverAddSpy.and.returnValue(of([mockAddress]));
+          const customerAddSuccessAction = new DaffCustomerAddressAddSuccess([mockAddress]);
+          actions$ = helpers.hot('--a', { a: customerAddAction });
+          helpers.expectObservable(effects.add$).toBe('--b', { b: customerAddSuccessAction });
+        });
       });
     });
 
     describe('and the call to the driver fails', () => {
-      beforeEach(() => {
-        const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer address');
-        const response = cold('#', {}, error);
-        driverAddSpy.and.returnValue(response);
-        const customerAddFailureAction = new DaffCustomerAddressAddFailure(daffTransformErrorToStateError(error), 'placeholder');
-        actions$ = hot('--a', { a: customerAddAction });
-        expected = cold('--b', { b: customerAddFailureAction });
-      });
-
       it('should dispatch a DaffCustomerAddressAddFailure action', () => {
-        expect(effects.add$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error = new DaffCustomerInvalidAPIResponseError('Failed to load customer address');
+          const response = helpers.cold<any>('#', {}, error);
+          driverAddSpy.and.returnValue(response);
+          const customerAddFailureAction = new DaffCustomerAddressAddFailure(daffTransformErrorToStateError(error), 'placeholder');
+          actions$ = helpers.hot('--a', { a: customerAddAction });
+          helpers.expectObservable(effects.add$).toBe('--b', { b: customerAddFailureAction });
+        });
       });
     });
   });
