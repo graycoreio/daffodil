@@ -89,7 +89,7 @@ describe('@daffodil/auth/state | DaffAuthRegisterFacade', () => {
   describe('errors$', () => {
     it('should initially be an empty array', () => {
       runMarbles(({ expectObservable }) => {
-        expectObservable(facade.errors$).toBe('a', { a: [] });
+        expectObservable(facade.errors$).toBe('a', { a: []});
       });
     });
 
@@ -100,7 +100,7 @@ describe('@daffodil/auth/state | DaffAuthRegisterFacade', () => {
       };
       store.dispatch(new DaffAuthRegisterFailure(error));
       runMarbles(({ expectObservable }) => {
-        expectObservable(facade.errors$).toBe('a', { a: [error] });
+        expectObservable(facade.errors$).toBe('a', { a: [error]});
       });
     });
   });

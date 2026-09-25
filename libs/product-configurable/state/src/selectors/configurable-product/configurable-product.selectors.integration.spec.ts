@@ -72,12 +72,12 @@ describe('Configurable Product Selectors | integration tests', () => {
       const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', {
-        a: {
-          color: ['0', '1'],
-          size: ['1', '0'],
-          material: ['0', '2', '1'],
-        },
-      });
+          a: {
+            color: ['0', '1'],
+            size: ['1', '0'],
+            material: ['0', '2', '1'],
+          },
+        });
       });
     });
   });
@@ -107,12 +107,12 @@ describe('Configurable Product Selectors | integration tests', () => {
       const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', {
-        a: {
-          color: ['0', '1', '2'],
-          size: ['0', '1', '2'],
-          material: ['0', '2'],
-        },
-      });
+          a: {
+            color: ['0', '1', '2'],
+            size: ['0', '1', '2'],
+            material: ['0', '2'],
+          },
+        });
       });
     });
 
@@ -130,10 +130,10 @@ describe('Configurable Product Selectors | integration tests', () => {
         const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary(stubConfigurableProduct.id)));
         runMarbles(({ expectObservable }) => {
           expectObservable(selector).toBe('a', {
-          a: {
-            color: '1',
-          },
-        });
+            a: {
+              color: '1',
+            },
+          });
         });
       });
     });
@@ -152,11 +152,11 @@ describe('Configurable Product Selectors | integration tests', () => {
         const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary(stubConfigurableProduct.id)));
         runMarbles(({ expectObservable }) => {
           expectObservable(selector).toBe('a', {
-          a: {
-            color: '0',
-            size: '0',
-          },
-        });
+            a: {
+              color: '0',
+              size: '0',
+            },
+          });
         });
       });
     });
@@ -170,12 +170,12 @@ describe('Configurable Product Selectors | integration tests', () => {
     const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
     runMarbles(({ expectObservable }) => {
       expectObservable(selector).toBe('a', {
-      a: {
-        color: ['0', '1', '2'],
-        size: ['0', '1', '2'],
-        material: ['0', '2', '1'],
-      },
-    });
+        a: {
+          color: ['0', '1', '2'],
+          size: ['0', '1', '2'],
+          material: ['0', '2', '1'],
+        },
+      });
     });
   });
 });

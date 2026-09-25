@@ -108,11 +108,11 @@ describe('selectConfigurableProductEntitiesState', () => {
       const selector = store.pipe(select(selectConfigurableProductAppliedAttributes(stubConfigurableProduct.id)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', {
-        a: [{
-          code: stubConfigurableProduct.configurableAttributes[0].code,
-          value: stubConfigurableProduct.configurableAttributes[0].values[0].value,
-        }],
-      });
+          a: [{
+            code: stubConfigurableProduct.configurableAttributes[0].code,
+            value: stubConfigurableProduct.configurableAttributes[0].values[0].value,
+          }],
+        });
       });
     });
 
@@ -134,10 +134,10 @@ describe('selectConfigurableProductEntitiesState', () => {
       const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary(stubConfigurableProduct.id)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', {
-        a: {
-          [stubConfigurableProduct.configurableAttributes[0].code]: stubConfigurableProduct.configurableAttributes[0].values[0].value,
-        },
-      });
+          a: {
+            [stubConfigurableProduct.configurableAttributes[0].code]: stubConfigurableProduct.configurableAttributes[0].values[0].value,
+          },
+        });
       });
     });
 

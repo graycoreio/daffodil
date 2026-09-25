@@ -134,23 +134,23 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubCompositeProduct.id)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price + stubPrice00 - stubCompositeProduct.discount.amount - stubDiscountAmount00,
-          discount: {
-            amount: null,
-            percent: null,
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price + stubPrice00 - stubCompositeProduct.discount.amount - stubDiscountAmount00,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice00,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice00,
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price + stubPrice01 - stubCompositeProduct.discount.amount - stubDiscountAmount01,
-          discount: {
-            amount: null,
-            percent: null,
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price + stubPrice01 - stubCompositeProduct.discount.amount - stubDiscountAmount01,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice01,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01,
-        },
-      }});
+        }});
       });
     });
 
@@ -164,27 +164,27 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						stubPrice00 - stubDiscountAmount00 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice00 + (stubPrice11 * stubQty1),
           },
-          originalPrice: stubCompositeProduct.price + stubPrice00 + (stubPrice11 * stubQty1),
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						stubPrice01 - stubDiscountAmount01 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice01 + (stubPrice11 * stubQty1),
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01 + (stubPrice11 * stubQty1),
-        },
-      }});
+        }});
       });
     });
 
@@ -202,27 +202,27 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
-        },
-      }});
+        }});
       });
     });
 
@@ -238,27 +238,27 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						stubPrice01 - stubDiscountAmount01 +
 						stubPrice11 - stubDiscountAmount11,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11,
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						stubPrice01 - stubDiscountAmount01 +
 						stubPrice11 - stubDiscountAmount11,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11,
-        },
-      }});
+        }});
       });
     });
 
@@ -274,25 +274,25 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice00 - stubDiscountAmount00) * stubQty0,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0),
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0),
-        },
-      }});
+        }});
       });
     });
   });
@@ -322,24 +322,24 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration(stubCompositeProduct.id)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price + stubPrice00 - stubCompositeProduct.discount.amount - stubDiscountAmount00,
-          discount: {
-            amount: null,
-            percent: null,
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price + stubPrice00 - stubCompositeProduct.discount.amount - stubDiscountAmount00,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice00,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice00,
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11 -
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11 -
 						stubCompositeProduct.discount.amount - stubDiscountAmount01 - stubDiscountAmount11,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11,
-        },
-      }});
+        }});
       });
     });
 
@@ -354,24 +354,24 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + (stubPrice00 - stubDiscountAmount00) * stubQty0,
-          discount: {
-            amount: null,
-            percent: null,
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + (stubPrice00 - stubDiscountAmount00) * stubQty0,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0),
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice00 - stubDiscountAmount00) * stubQty0 + (stubPrice11 - stubDiscountAmount11),
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0) + (stubPrice11),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0) + (stubPrice11),
-        },
-      }});
+        }});
       });
     });
 
@@ -389,27 +389,27 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
-        },
-      }});
+        }});
       });
     });
 
@@ -425,27 +425,27 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						stubPrice01 - stubDiscountAmount01 +
 						stubPrice11 - stubDiscountAmount11,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11,
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						stubPrice01 - stubDiscountAmount01 +
 						stubPrice11 - stubDiscountAmount11,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11,
-        },
-      }});
+        }});
       });
     });
 
@@ -461,25 +461,25 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice00 - stubDiscountAmount00) * stubQty0,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0),
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0 + (stubPrice11 - stubDiscountAmount11) * stubQty1,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
-        },
-      }});
+        }});
       });
     });
   });
@@ -521,27 +521,27 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured(stubCompositeProduct.id)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1),
-        },
-      }});
+        }});
       });
     });
 
@@ -570,25 +570,25 @@ describe('@daffodil/product-composite/state | getDaffCompositeProductPriceSelect
       const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured(stubCompositeProduct.id)));
       runMarbles(({ expectObservable }) => {
         expectObservable(selector).toBe('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice00 - stubDiscountAmount00) * stubQty0,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0),
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0,
-          discount: {
-            amount: null,
-            percent: null,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0),
           },
-          originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0),
-        },
-      }});
+        }});
       });
     });
   });
