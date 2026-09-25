@@ -4,8 +4,8 @@ import {
   Store,
   StoreModule,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import {
   daffPaymentReducerFactory,
   DaffPaymentReducersState,
@@ -56,15 +56,17 @@ describe('@daffodil/payment/state | DaffPaymentPageFacade', () => {
 
   describe('loading$', () => {
     it('should be false if the payment is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
   });
 
   describe('errors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: errors });
-      expect(facade.errors$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: errors });
+      });
     });
   });
 });
