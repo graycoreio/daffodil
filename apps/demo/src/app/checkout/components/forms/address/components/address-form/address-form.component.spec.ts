@@ -7,7 +7,6 @@ import {
 import { By } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffCountry } from '@daffodil/geography';
@@ -21,6 +20,7 @@ import {
   MockDaffGeographyFacade,
 } from '@daffodil/geography/state/testing';
 import { DaffCountryFactory } from '@daffodil/geography/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DemoCheckoutAddressFormComponent } from './address-form.component';
 import { DemoCheckoutAddressFormFactory } from '../../factories/address-form.factory';
@@ -101,7 +101,9 @@ describe('DemoCheckoutAddressFormComponent', () => {
     });
 
     it('should render a list of the subdivisions', () => {
-      expect(component.stateSelectValues$).toBeObservable(cold('a', { a: mockCountry.subdivisions }));
+      runMarbles(({ expectObservable }) => {
+        expectObservable(component.stateSelectValues$).toBe('a', { a: mockCountry.subdivisions });
+      });
     });
   });
 });
