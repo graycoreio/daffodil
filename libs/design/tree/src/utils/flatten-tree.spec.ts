@@ -207,6 +207,23 @@ describe('@daffodil/design/tree - flattenTree', () => {
     expect(flat[4].visible).toEqual(true);
   });
 
+  it('should preserve the data of each node', () => {
+    const data = { title: 'Root', url: '', id: '', items: [
+      { title: 'Child A', url: '', id: '', items: [
+        { title: 'Child Aa', url: '', id: '', items: [], data: { external: true }},
+      ], data: { external: false }},
+    ], data: {}};
+
+    const flat = flattenTree(hydrateTree(data));
+
+    expect(flat[0].data).toEqual({ external: false });
+    expect(flat[1].data).toEqual({ external: true });
+
+    const flatRemoved = flattenTree(hydrateTree(data), true);
+
+    expect(flatRemoved[0].data).toEqual({ external: false });
+  });
+
   it('should handle deep trees correctly', () => {
     const root: DaffTreeUi<any> = {
       title: 'Root',
