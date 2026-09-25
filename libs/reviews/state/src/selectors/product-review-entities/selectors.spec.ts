@@ -5,8 +5,8 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffProductReview,
   DaffProductReviews,
@@ -57,9 +57,10 @@ describe('selectProductEntitiesState', () => {
 
     it('should select the product of the given id', () => {
       const selector = store.pipe(select(selectProductReview(mockReview.id)));
-      const expected = cold('a', { a: mockReview });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockReview });
+      });
     });
 
     it('should not emit when an unrelated piece of state changes', () => {

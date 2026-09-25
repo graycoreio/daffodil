@@ -4,8 +4,8 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffReviewsProductList,
   DaffReviewsProductListSuccess,
@@ -54,28 +54,32 @@ describe('@daffodil/reviews/state | DaffProductPageReviewsFacade', () => {
 
   describe('loading$', () => {
     it('should be false if the state is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
 
     it('should be true if the state is loading', () => {
-      const expected = cold('a', { a: true });
       store.dispatch(new DaffReviewsProductList('1'));
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: true });
+      });
     });
   });
 
   describe('productReviews$', () => {
     it('should initially be an empty array', () => {
-      const initial = cold('a', { a: []});
-      expect(facade.productReviews$).toBeObservable(initial);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.productReviews$).toBe('a', { a: []});
+      });
     });
 
     it('should be an observable of the currently selected product', () => {
       const reviews = reviewsFactory.create();
-      const expected = cold('a', { a: jasmine.arrayContaining(Object.values(reviews.data)) });
       store.dispatch(new DaffReviewsProductListSuccess(reviews));
-      expect(facade.productReviews$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.productReviews$).toBe('a', { a: jasmine.arrayContaining(Object.values(reviews.data)) });
+      });
     });
   });
 });
