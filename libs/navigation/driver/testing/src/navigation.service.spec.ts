@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { DaffTestingNavigationService } from './navigation.service';
@@ -29,8 +29,9 @@ describe('Driver | Testing | Navigation | NavigationService', () => {
   describe('get', () => {
 
     it('should return a single navigation', () => {
-      const expected = cold('(a|)', { a: navigation });
-      expect(navigationService.get('1')).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(navigationService.get('1')).toBe('(a|)', { a: navigation });
+      });
     });
   });
 });
