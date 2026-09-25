@@ -5,9 +5,9 @@ import {
   of,
   tap,
 } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
 
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffSearchResult,
   DaffSearchResultCollection,
@@ -95,16 +95,12 @@ describe('@daffodil/search/state | DaffSearchPageEffects', () => {
     });
 
     it('should call the driver with the query', done => {
-      const testScheduler = new TestScheduler((actual, ex) => {
-        expect(actual).toEqual(ex);
-      });
-
       const searchResultLoadSuccessAction = new DaffSearchLoadSuccess({
         collection: mockCollection,
         metadata: {},
       });
 
-      testScheduler.run(({ hot, expectObservable }) => {
+      runMarbles(({ hot, expectObservable }) => {
         actions$ = hot('--a', { a: searchLoadAction });
 
         const expectedMarble = '--a';
@@ -125,16 +121,12 @@ describe('@daffodil/search/state | DaffSearchPageEffects', () => {
 
     describe('and the call to SearchDriver is successful', () => {
       it('should return a DaffSearchLoadSucess action', () => {
-        const testScheduler = new TestScheduler((actual, ex) => {
-          expect(actual).toEqual(ex);
-        });
-
         const searchResultLoadSuccessAction = new DaffSearchLoadSuccess({
           collection: mockCollection,
           metadata: {},
         });
 
-        testScheduler.run(({ hot, expectObservable }) => {
+        runMarbles(({ hot, expectObservable }) => {
           actions$ = hot('--a', { a: searchLoadAction });
 
           const expectedMarble = '--a';
@@ -153,11 +145,7 @@ describe('@daffodil/search/state | DaffSearchPageEffects', () => {
       let searchResultLoadFailureAction: DaffSearchLoadFailure;
 
       it('should return a DaffSearchLoadFailure action', () => {
-        const testScheduler = new TestScheduler((actual, ex) => {
-          expect(actual).toEqual(ex);
-        });
-
-        testScheduler.run(({ hot, expectObservable, cold }) => {
+        runMarbles(({ hot, expectObservable, cold }) => {
           const error = new DaffSearchInvalidAPIResponseError('Failed to search');
           const response = cold<DaffSearchDriverResponse>('#', {}, error);
           driverSearchSpy.and.returnValue(response);

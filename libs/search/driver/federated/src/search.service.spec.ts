@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 import {
   Observable,
   of,
 } from 'rxjs';
 
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffSearchResultCollection } from '@daffodil/search';
 import {
   DaffSearchDriverKindedInterface,
@@ -85,14 +85,14 @@ describe('@daffodil/search/driver/federated | DaffSearchFederatedDriver', () => 
     });
 
     it('should invoke and collect the result from the injected drivers', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({
-        collection: {
-          testDriver1: jasmine.truthy(),
-          testDriver2: jasmine.truthy(),
-        },
-      }) });
-
-      expect(result).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(result).toBe('(a|)', { a: jasmine.objectContaining({
+          collection: {
+            testDriver1: jasmine.truthy(),
+            testDriver2: jasmine.truthy(),
+          },
+        }) });
+      });
     });
   });
 
@@ -104,12 +104,12 @@ describe('@daffodil/search/driver/federated | DaffSearchFederatedDriver', () => 
     });
 
     it('should invoke and collect the result from the injected drivers', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({
-        testIncremental1: jasmine.truthy(),
-        testIncremental2: jasmine.truthy(),
-      }) });
-
-      expect(result).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(result).toBe('(a|)', { a: jasmine.objectContaining({
+          testIncremental1: jasmine.truthy(),
+          testIncremental2: jasmine.truthy(),
+        }) });
+      });
     });
   });
 });

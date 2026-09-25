@@ -5,9 +5,9 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffSearchResult,
   DaffSearchResultCollection,
@@ -82,67 +82,76 @@ describe('@daffodil/search/state | DaffSearchFacadeBase', () => {
 
   describe('loading$', () => {
     it('should be false if the search is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
 
     it('should be true if the search is loading', () => {
-      const expected = cold('a', { a: true });
       store.dispatch(new DaffSearchLoad('query'));
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: true });
+      });
     });
   });
 
   describe('errors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: errors });
-      expect(facade.errors$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: errors });
+      });
     });
 
     it('should contain an error upon a failed load', () => {
       const error: DaffStateError = { code: 'code', message: 'message' };
-      const expected = cold('a', { a: [error]});
       store.dispatch(new DaffSearchLoadFailure(error));
-      expect(facade.errors$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: [error]});
+      });
     });
   });
 
   describe('recent$', () => {
     it('should be the recent search queries', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.recent$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.recent$).toBe('a', { a: []});
+      });
     });
   });
 
   describe('searchResultIds$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: {}});
-      expect(facade.searchResultIds$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.searchResultIds$).toBe('a', { a: {}});
+      });
     });
 
     it('should contain the search id upon a successful search load', () => {
-      const expected = cold('a', { a: { [mockSearchResult.kind]: [searchResultId]}});
       store.dispatch(new DaffSearchLoadSuccess({
         collection: mockSearchResultCollection,
         metadata: {},
       }));
-      expect(facade.searchResultIds$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.searchResultIds$).toBe('a', { a: { [mockSearchResult.kind]: [searchResultId]}});
+      });
     });
   });
 
   describe('resultCount$', () => {
     it('should initially be zero', () => {
-      const expected = cold('a', { a: 0 });
-      expect(facade.resultCount$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.resultCount$).toBe('a', { a: 0 });
+      });
     });
 
     it('should be one upon a successful search load', () => {
-      const expected = cold('a', { a: 1 });
       store.dispatch(new DaffSearchLoadSuccess({
         collection: mockSearchResultCollection,
         metadata: {},
       }));
-      expect(facade.resultCount$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.resultCount$).toBe('a', { a: 1 });
+      });
     });
   });
 });
