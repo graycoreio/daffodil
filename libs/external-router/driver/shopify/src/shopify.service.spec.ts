@@ -1,22 +1,17 @@
 import { TestBed } from '@angular/core/testing';
-import { TestScheduler } from 'rxjs/testing';
+
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffShopifyExternalRouterDriver } from './shopify.service';
 
 describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDriver', () => {
   let service: DaffShopifyExternalRouterDriver;
-  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [DaffShopifyExternalRouterDriver],
     });
     service = TestBed.inject(DaffShopifyExternalRouterDriver);
-
-    scheduler = new TestScheduler((actual, expected) => {
-      // eslint-disable-next-line jasmine/no-expect-in-setup-teardown
-      expect(actual).toEqual(expected);
-    });
   });
 
   it('should be created', () => {
@@ -26,7 +21,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
   describe('resolve', () => {
     describe('when the URL matches a product pattern', () => {
       it('should return a resolved product route for /products/my-product', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -42,7 +37,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should return a resolved product route for products/slug (no leading slash)', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -58,7 +53,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should handle product slugs with dashes', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -74,7 +69,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should handle product slugs with underscores', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -90,7 +85,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should handle product slugs with numbers', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -106,7 +101,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should handle product slugs with file extensions and return a slug without extension', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -122,7 +117,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should return successfully for URLs with query parameters (undefined behavior)', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -138,7 +133,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should return successfully for URLs with hash fragments (undefined behavior)', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -154,7 +149,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should handle product slugs with special characters (undefined behavior)', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -170,7 +165,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should return 404 for nested paths (regex only matches direct product slugs)', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -188,7 +183,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
 
     describe('when the URL does not match any pattern', () => {
       it('should return a 404 result for non-product URLs', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -204,7 +199,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should return a 404 result for homepage', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -220,7 +215,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should return a 404 result for empty string', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -236,7 +231,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should return a 404 result for /pages/about', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -252,7 +247,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should return a 404 result for /blogs/news', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -268,7 +263,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should return a 404 result for URLs that start with product but not products', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -284,7 +279,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should return a 404 result for /products without a slug', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
@@ -300,7 +295,7 @@ describe('@daffodil/external-router/driver/shopify | DaffShopifyExternalRouterDr
       });
 
       it('should return a 404 result for /products/ with trailing slash but no slug', () => {
-        scheduler.run(helpers => {
+        runMarbles(helpers => {
           const { expectObservable } = helpers;
           const expected = '(a|)';
 
