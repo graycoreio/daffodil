@@ -5,15 +5,14 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
 
 import { DaffDocsNavList } from '@daffodil/docs-utils';
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffRouterDataService } from '@daffodil/router';
 
 import { useDaffioNavList } from './nav-index';
 
 describe('useDaffioNavList', () => {
-  let scheduler: TestScheduler;
   let dataSpy: BehaviorSubject<any>;
   let list: Observable<DaffDocsNavList>;
 
@@ -24,9 +23,6 @@ describe('useDaffioNavList', () => {
   };
 
   beforeEach(() => {
-    scheduler = new TestScheduler((actual, expected) => {
-      expect(actual).toEqual(expected);
-    });
     dataSpy = new BehaviorSubject({});
 
     TestBed.configureTestingModule({
@@ -47,7 +43,7 @@ describe('useDaffioNavList', () => {
 
   describe('when the merged router data contains an index resolved on an ancestor route', () => {
     it('should emit that index', () => {
-      scheduler.run(({ expectObservable }) => {
+      runMarbles(({ expectObservable }) => {
         dataSpy.next({ index: stubNavList });
         expectObservable(list).toBe('a', { a: stubNavList });
       });
@@ -56,7 +52,7 @@ describe('useDaffioNavList', () => {
 
   describe('when the merged router data has no index', () => {
     it('should not emit', () => {
-      scheduler.run(({ expectObservable }) => {
+      runMarbles(({ expectObservable }) => {
         dataSpy.next({});
         expectObservable(list).toBe('');
       });
@@ -65,7 +61,7 @@ describe('useDaffioNavList', () => {
 
   describe('when the router data emits a falsy value', () => {
     it('should not emit', () => {
-      scheduler.run(({ expectObservable }) => {
+      runMarbles(({ expectObservable }) => {
         dataSpy.next(null);
         expectObservable(list).toBe('');
       });
@@ -80,7 +76,7 @@ describe('useDaffioNavList', () => {
     };
 
     it('should re-emit with the updated index', () => {
-      scheduler.run(({ expectObservable }) => {
+      runMarbles(({ expectObservable }) => {
         dataSpy.next({ index: stubNavList });
         dataSpy.next({ index: secondNavList });
         expectObservable(list).toBe('a', { a: secondNavList });

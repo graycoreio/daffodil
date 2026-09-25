@@ -4,7 +4,6 @@ import {
   Router,
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { cold } from 'jasmine-marbles';
 import {
   of,
   Observable,
@@ -13,6 +12,7 @@ import {
 
 import { DaffDocFactory } from '@daffodil/docs/testing';
 import { DaffDoc } from '@daffodil/docs-utils';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DocsResolver } from './docs-resolver.service';
 import { DaffioDocsServiceInterface } from '../services/docs-service.interface';
@@ -52,8 +52,9 @@ describe('DocsResolver', () => {
   });
 
   it('should complete with a doc', () => {
-    const expected = cold('(a|)', { a: doc });
-    expect(resolver.resolve(null, <RouterStateSnapshot>{ url: 'my/path' })).toBeObservable(expected);
+    runMarbles(({ expectObservable }) => {
+      expectObservable(resolver.resolve(null, <RouterStateSnapshot>{ url: 'my/path' })).toBe('(a|)', { a: doc });
+    });
   });
 
   describe('if the doc doesn\'t exist (the doc service errors)', () => {
@@ -63,8 +64,9 @@ describe('DocsResolver', () => {
     });
 
     it('should resolve with an empty observable', () => {
-      const expected = cold('(|)');
-      expect(resolver.resolve(null, <RouterStateSnapshot>{ url: 'my/path' })).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(resolver.resolve(null, <RouterStateSnapshot>{ url: 'my/path' })).toBe('(|)');
+      });
     });
 
     it('should redirect to the 404 page', () => {

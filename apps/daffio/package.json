@@ -71,6 +71,7 @@
     "@daffodil/tools-dgeni": "0.0.0-PLACEHOLDER",
     "@daffodil/storefront": "0.0.0-PLACEHOLDER",
     "@daffodil/storefront-examples": "0.0.0-PLACEHOLDER",
-    "@ngrx/component": "0.0.0-PLACEHOLDER"
+    "@ngrx/component": "0.0.0-PLACEHOLDER",
+    "@daffodil/jasmine": "0.0.0-PLACEHOLDER"
   }
 }
