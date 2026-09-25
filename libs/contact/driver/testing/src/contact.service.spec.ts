@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { TestScheduler } from 'rxjs/testing';
+
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffTestingContactService } from './contact.service';
 
@@ -22,16 +23,12 @@ describe('@daffodil/contact/driver/testing | DaffTestingContactService', () => {
   describe('when sending', () => {
     it('should return an observable of DaffContactResponse', () => {
 
-      const testScheduler = new TestScheduler((actual, expectation) => {
-        expect(actual).toEqual(expectation);
-      });
-
       const payload = { email: 'email@email.edu' };
       const expected = { a: { message: 'success' }};
 
       const send = service.send(payload);
 
-      testScheduler.run((helpers) => {
+      runMarbles((helpers) => {
         const { expectObservable } = helpers;
 
         expectObservable(send).toBe('----------(a|)', expected);
