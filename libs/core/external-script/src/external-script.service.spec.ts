@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { TestScheduler } from 'rxjs/testing';
+
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffExternalScriptService } from './external-script.service';
 
@@ -16,15 +17,10 @@ export const FAKE_DOCUMENT = <Document>{
 
 describe('@daffodil/core/external-script | DaffExternalScriptService', () => {
   let service: DaffExternalScriptService;
-  let testScheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = new DaffExternalScriptService(FAKE_DOCUMENT);
-
-    testScheduler = new TestScheduler((actual, expected) => {
-      expect(actual).toEqual(expected);
-    });
   });
 
   it('should be created', () => {
@@ -32,7 +28,7 @@ describe('@daffodil/core/external-script | DaffExternalScriptService', () => {
   });
 
   it('should throw an error when the script errors', () => {
-    testScheduler.run((helpers) => {
+    runMarbles((helpers) => {
       const { expectObservable } = helpers;
       const expected = '(#)';
 
@@ -43,7 +39,7 @@ describe('@daffodil/core/external-script | DaffExternalScriptService', () => {
   });
 
   it('should emit true when it loads a success script', () => {
-    testScheduler.run((helpers) => {
+    runMarbles((helpers) => {
       const { expectObservable } = helpers;
       const expected = 'a';
 

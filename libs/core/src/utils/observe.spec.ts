@@ -1,15 +1,15 @@
-import {
-  cold,
-  hot,
-} from 'jasmine-marbles';
+
+import { runMarbles } from '@daffodil/jasmine';
 
 import { observe } from './observe';
 
 describe('@daffodil/core | observe', () => {
   describe('when the passed value is an observable', () => {
     it('should return an equivalent observable', () => {
-      const val = 5;
-      expect(observe(hot('--a', { a: val }))).toBeObservable(cold('--a', { a: val }));
+      runMarbles(helpers => {
+        const val = 5;
+        helpers.expectObservable(observe(helpers.hot('--a', { a: val }))).toBe('--a', { a: val });
+      });
     });
   });
 

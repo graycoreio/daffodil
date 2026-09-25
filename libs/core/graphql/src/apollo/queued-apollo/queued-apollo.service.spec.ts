@@ -10,7 +10,8 @@ import {
   switchMap,
   take,
 } from 'rxjs/operators';
-import { TestScheduler } from 'rxjs/testing';
+
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffQueuedApollo } from './queued-apollo.service';
 
@@ -18,7 +19,6 @@ describe('@daffodil/core/graphql | DaffQueuedApollo', () => {
   let service: DaffQueuedApollo;
   let apollo: Apollo;
   let apolloMutateSpy: jasmine.Spy;
-  let testScheduler: TestScheduler;
 
   const req0 = gql`
     mutation TestRequest0 {
@@ -56,9 +56,6 @@ describe('@daffodil/core/graphql | DaffQueuedApollo', () => {
       ],
     });
 
-    testScheduler = new TestScheduler((a, b) => {
-      expect(a).toEqual(b);
-    });
     service = TestBed.inject(DaffQueuedApollo);
     apollo = TestBed.inject(Apollo);
 
@@ -71,7 +68,7 @@ describe('@daffodil/core/graphql | DaffQueuedApollo', () => {
 
     describe('canceling multiple queued mutate requests', () => {
       it('should not cancel other operations', () => {
-        testScheduler.run(({ cold, expectObservable }) => {
+        runMarbles(({ cold, expectObservable }) => {
           apolloMutateSpy.withArgs(jasmine.objectContaining({
             mutation: req0,
           })).and.returnValue(cold('--a', { a: data0 }));
@@ -109,7 +106,7 @@ describe('@daffodil/core/graphql | DaffQueuedApollo', () => {
     describe('when multiple requests are made', () => {
       describe('and the first one completes successfully', () => {
         it('should make the second request after the first one completes', () => {
-          testScheduler.run(({ cold, expectObservable }) => {
+          runMarbles(({ cold, expectObservable }) => {
             apolloMutateSpy.withArgs(jasmine.objectContaining({
               mutation: req0,
             })).and.returnValue(cold('--a', { a: data0 }));
@@ -132,7 +129,7 @@ describe('@daffodil/core/graphql | DaffQueuedApollo', () => {
 
       describe('and the first one throws an error', () => {
         it('should make the second request after the first one throws an error', () => {
-          testScheduler.run(({ cold, expectObservable }) => {
+          runMarbles(({ cold, expectObservable }) => {
             apolloMutateSpy.withArgs(jasmine.objectContaining({
               mutation: req0,
             })).and.returnValue(cold('--#', {}, 'error'));
@@ -156,7 +153,7 @@ describe('@daffodil/core/graphql | DaffQueuedApollo', () => {
 
     describe('when the apollo request observable completes', () => {
       it('should complete the returned observable', () => {
-        testScheduler.run(({ cold, expectObservable }) => {
+        runMarbles(({ cold, expectObservable }) => {
           apolloMutateSpy.withArgs(jasmine.objectContaining({
             mutation: req0,
           })).and.returnValue(cold('--|'));
@@ -171,7 +168,7 @@ describe('@daffodil/core/graphql | DaffQueuedApollo', () => {
     });
 
     it('should unsubscribe from the apollo request observable after it emits once', () => {
-      testScheduler.run(({ cold, expectObservable }) => {
+      runMarbles(({ cold, expectObservable }) => {
         apolloMutateSpy.withArgs(jasmine.objectContaining({
           mutation: req0,
         })).and.returnValue(cold('--a--a', { a: data0 }));
@@ -187,7 +184,7 @@ describe('@daffodil/core/graphql | DaffQueuedApollo', () => {
     describe('when apollo throws an error', () => {
       it('should pass that error to the returned observable', () => {
         const error = new Error('error');
-        testScheduler.run(({ cold, expectObservable }) => {
+        runMarbles(({ cold, expectObservable }) => {
           apolloMutateSpy.withArgs(jasmine.objectContaining({
             mutation: req0,
           })).and.returnValue(cold('--#', {}, error));

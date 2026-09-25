@@ -7,7 +7,6 @@ import {
   provideMockStore,
   MockStore,
 } from '@ngrx/store/testing';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffCollectionMetadata,
@@ -23,6 +22,7 @@ import {
   DaffFilterEqualOptionFactory,
   DaffFilterFactory,
 } from '@daffodil/core/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { daffCollectionSelectorFactory } from './selector-factory';
 
@@ -70,8 +70,9 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
   describe('selectCollectionFilters', () => {
     it('selects filters of the collection', () => {
       const selector = store.pipe(select(selectors.selectCollectionFilters));
-      const expected = cold('a', { a: stubCollectionMetadata.filters });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: stubCollectionMetadata.filters });
+      });
     });
   });
 
@@ -114,8 +115,9 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
       });
 
       const selector = store.pipe(select(selectors.selectCollectionAppliedFilters));
-      const expected = cold('a', { a: expectedAppliedFilters });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: expectedAppliedFilters });
+      });
     });
 
     it('selects the applied filters of the collection', () => {
@@ -140,85 +142,95 @@ describe('@daffodil/core/state | daffCollectionSelectorFactory', () => {
       });
 
       const selector = store.pipe(select(selectors.selectCollectionAppliedFilters));
-      const expected = cold('a', { a: expectedAppliedFilters });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: expectedAppliedFilters });
+      });
     });
   });
 
   describe('selectCollectionMetadata', () => {
     it('selects the collection metadata', () => {
       const selector = store.pipe(select(selectors.selectCollectionMetadata));
-      const expected = cold('a', { a: stubCollectionMetadata });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: stubCollectionMetadata });
+      });
     });
   });
 
   describe('selectCollectionRequest', () => {
     it('builds a collection request', () => {
       const selector = store.pipe(select(selectors.selectCollectionRequest));
-      const expected = cold('a', { a: {
-        appliedSortOption: stubCollectionMetadata.appliedSortOption,
-        appliedSortDirection: stubCollectionMetadata.appliedSortDirection,
-        currentPage: stubCollectionMetadata.currentPage,
-        pageSize: stubCollectionMetadata.pageSize,
-      }});
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: {
+          appliedSortOption: stubCollectionMetadata.appliedSortOption,
+          appliedSortDirection: stubCollectionMetadata.appliedSortDirection,
+          currentPage: stubCollectionMetadata.currentPage,
+          pageSize: stubCollectionMetadata.pageSize,
+        }});
+      });
     });
   });
 
   describe('selectCollectionCount', () => {
     it('selects the current page of the collection', () => {
       const selector = store.pipe(select(selectors.selectCollectionCount));
-      const expected = cold('a', { a: stubCollectionMetadata.count });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: stubCollectionMetadata.count });
+      });
     });
   });
 
   describe('selectCollectionCurrentPage', () => {
     it('selects the current page of the collection', () => {
       const selector = store.pipe(select(selectors.selectCollectionCurrentPage));
-      const expected = cold('a', { a: stubCollectionMetadata.currentPage });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: stubCollectionMetadata.currentPage });
+      });
     });
   });
 
   describe('selectCollectionTotalPages', () => {
     it('selects the total pages of items of the collection', () => {
       const selector = store.pipe(select(selectors.selectCollectionTotalPages));
-      const expected = cold('a', { a: stubCollectionMetadata.totalPages });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: stubCollectionMetadata.totalPages });
+      });
     });
   });
 
   describe('selectCollectionPageSize', () => {
     it('selects the page size of the collection', () => {
       const selector = store.pipe(select(selectors.selectCollectionPageSize));
-      const expected = cold('a', { a: stubCollectionMetadata.pageSize });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: stubCollectionMetadata.pageSize });
+      });
     });
   });
 
   describe('selectCollectionSortOptions', () => {
     it('selects the sort options of the collection', () => {
       const selector = store.pipe(select(selectors.selectCollectionSortOptions));
-      const expected = cold('a', { a: stubCollectionMetadata.sortOptions.options });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: stubCollectionMetadata.sortOptions.options });
+      });
     });
   });
 
   describe('selectCollectionAppliedSortOption', () => {
     it('selects the applied sort option of the collection page', () => {
       const selector = store.pipe(select(selectors.selectCollectionAppliedSortOption));
-      const expected = cold('a', { a: stubCollectionMetadata.appliedSortOption });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: stubCollectionMetadata.appliedSortOption });
+      });
     });
   });
 
   describe('selectCollectionAppliedSortDirection', () => {
     it('selects the applied sort direction of the collection page', () => {
       const selector = store.pipe(select(selectors.selectCollectionAppliedSortDirection));
-      const expected = cold('a', { a: stubCollectionMetadata.appliedSortDirection });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: stubCollectionMetadata.appliedSortDirection });
+      });
     });
   });
 });
