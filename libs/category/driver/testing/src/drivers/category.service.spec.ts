@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffCategory,
@@ -10,6 +9,7 @@ import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,
 } from '@daffodil/category/testing';
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductFactory,
@@ -61,22 +61,24 @@ describe('@daffodil/category/driver/testing | DaffTestingCategoryService', () =>
   describe('get', () => {
 
     it('should return a DaffGetCategoryResponse', () => {
-      const expected = cold('(a|)', { a: { category, categoryPageMetadata, products }});
-      expect(categoryService.get({
-        kind: DaffCategoryRequestKind.ID,
-        id: 'id',
-      })).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(categoryService.get({
+          kind: DaffCategoryRequestKind.ID,
+          id: 'id',
+        })).toBe('(a|)', { a: { category, categoryPageMetadata, products }});
+      });
     });
   });
 
   describe('getByUrl', () => {
 
     it('should return a DaffGetCategoryResponse', () => {
-      const expected = cold('(a|)', { a: { category, categoryPageMetadata, products }});
-      expect(categoryService.getByUrl({
-        kind: DaffCategoryRequestKind.URL,
-        url: 'url',
-      })).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(categoryService.getByUrl({
+          kind: DaffCategoryRequestKind.URL,
+          url: 'url',
+        })).toBe('(a|)', { a: { category, categoryPageMetadata, products }});
+      });
     });
   });
 });
