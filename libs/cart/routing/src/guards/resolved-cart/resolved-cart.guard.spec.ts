@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffCartResolveState,
   DaffCartFacade,
 } from '@daffodil/cart/state';
 import { DaffCartStateTestingModule } from '@daffodil/cart/state/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffResolvedCartGuard } from './resolved-cart.guard';
 import { daffCartRoutingConfigurationDefault } from '../../config/config';
@@ -44,9 +44,9 @@ describe('@daffodil/cart/routing | DaffResolvedCartGuard', () => {
       });
 
       it('should not emit', () => {
-        const expected = cold('-');
-
-        expect(service.canActivate()).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('-');
+        });
       });
     });
 
@@ -56,9 +56,9 @@ describe('@daffodil/cart/routing | DaffResolvedCartGuard', () => {
       });
 
       it('should allow activation', () => {
-        const expected = cold('(a|)', { a: true });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: true });
+        });
       });
     });
 
@@ -77,8 +77,9 @@ describe('@daffodil/cart/routing | DaffResolvedCartGuard', () => {
             },
           });
 
-          const expected = cold('(a|)', { a: false });
-          expect(service.canActivate()).toBeObservable(expected);
+          runMarbles(({ expectObservable }) => {
+            expectObservable(service.canActivate()).toBe('(a|)', { a: false });
+          });
         });
       });
 
@@ -91,8 +92,9 @@ describe('@daffodil/cart/routing | DaffResolvedCartGuard', () => {
           },
         });
 
-        const expected = cold('(a|)', { a: router.parseUrl('some-path') });
-        expect(service.canActivate()).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: router.parseUrl('some-path') });
+        });
       });
     });
   });

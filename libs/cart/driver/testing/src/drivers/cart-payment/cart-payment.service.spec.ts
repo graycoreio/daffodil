@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffCart,
@@ -9,6 +8,7 @@ import {
   DaffCartFactory,
   DaffCartPaymentFactory,
 } from '@daffodil/cart/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffTestingCartPaymentService } from './cart-payment.service';
 
@@ -45,8 +45,9 @@ describe('Driver | Testing | Cart | CartPaymentService', () => {
 
   describe('get | getting a cart payment method', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.get(cartId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.get(cartId)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 
@@ -56,8 +57,9 @@ describe('Driver | Testing | Cart | CartPaymentService', () => {
     });
 
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.update(cartId, mockPayment)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.update(cartId, mockPayment)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 
@@ -67,15 +69,17 @@ describe('Driver | Testing | Cart | CartPaymentService', () => {
     });
 
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.updateWithBilling(cartId, mockPayment, {})).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.updateWithBilling(cartId, mockPayment, {})).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 
   describe('remove | removing the payment method from the cart', () => {
     it('should return undefined and not throw an error', () => {
-      const expected = cold('(a|)', { a: undefined });
-      expect(service.remove(cartId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.remove(cartId)).toBe('(a|)', { a: undefined });
+      });
     });
   });
 });

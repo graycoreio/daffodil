@@ -6,7 +6,6 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffCart,
@@ -30,6 +29,7 @@ import {
   daffComposeReducers,
   daffIdentityReducer,
 } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCartInStockItemsGuard } from './in-stock-items.guard';
 
@@ -93,9 +93,9 @@ describe('@daffodil/cart/routing | DaffCartInStockItemsGuard', () => {
       });
 
       it('should allow activation', () => {
-        const expected = cold('(a|)', { a: true });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: true });
+        });
       });
     });
 
@@ -113,9 +113,9 @@ describe('@daffodil/cart/routing | DaffCartInStockItemsGuard', () => {
       });
 
       it('should not allow activation', () => {
-        const expected = cold('(a|)', { a: false });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: false });
+        });
       });
 
       it('should redirect to the given DaffCartInStockItemsGuardRedirectUrl', () => {
@@ -138,9 +138,9 @@ describe('@daffodil/cart/routing | DaffCartInStockItemsGuard', () => {
       });
 
       it('should allow activation', () => {
-        const expected = cold('(a|)', { a: true });
-
-        expect(service.canActivateChild()).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.canActivateChild()).toBe('(a|)', { a: true });
+        });
       });
     });
 
@@ -158,9 +158,9 @@ describe('@daffodil/cart/routing | DaffCartInStockItemsGuard', () => {
       });
 
       it('should not allow activation', () => {
-        const expected = cold('(a|)', { a: false });
-
-        expect(service.canActivateChild()).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.canActivateChild()).toBe('(a|)', { a: false });
+        });
       });
 
       it('should redirect to the given DaffCartInStockItemsGuardRedirectUrl', () => {

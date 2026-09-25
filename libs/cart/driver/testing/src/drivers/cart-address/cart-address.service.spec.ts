@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffCart,
@@ -9,6 +8,7 @@ import {
   DaffCartFactory,
   DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffTestingCartAddressService } from './cart-address.service';
 
@@ -53,8 +53,9 @@ describe('Driver | Testing | Cart | CartAddressService', () => {
     });
 
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.update(cartId, mockCartAddressUpdate)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.update(cartId, mockCartAddressUpdate)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 });

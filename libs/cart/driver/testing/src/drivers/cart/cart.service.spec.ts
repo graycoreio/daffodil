@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffTestingCartService } from './cart.service';
 
@@ -34,31 +34,35 @@ describe('@daffodil/cart/driver/testing | DaffTestingCartService', () => {
 
   describe('get | getting a cart', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.get(cartId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.get(cartId)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 
   describe('merge', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.merge(cartId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.merge(cartId)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 
   describe('create | creating a cart', () => {
     it('should return a cart ID and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.objectContaining({
-        id: jasmine.truthy(),
-      }) });
-      expect(service.create()).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.create()).toBe('(a|)', { a: jasmine.objectContaining({
+          id: jasmine.truthy(),
+        }) });
+      });
     });
   });
 
   describe('clear | clearing all items from the cart', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.clear(cartId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.clear(cartId)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 });

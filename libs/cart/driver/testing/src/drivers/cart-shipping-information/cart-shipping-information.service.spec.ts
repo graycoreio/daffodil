@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffCart,
@@ -9,6 +8,7 @@ import {
   DaffCartFactory,
   DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffTestingCartShippingInformationService } from './cart-shipping-information.service';
 
@@ -45,8 +45,9 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
 
   describe('get | getting a cart\'s shipping info', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.get(cartId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.get(cartId)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 
@@ -55,15 +56,17 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
     const info: Partial<DaffCartShippingRate> = { price: newPrice };
 
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.update(cartId, info)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.update(cartId, info)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 
   describe('delete | deleting the selected shipping method', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.delete(cartId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.delete(cartId)).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 });

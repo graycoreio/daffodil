@@ -6,7 +6,6 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartShippingAddressGuardRedirectUrl } from '@daffodil/cart/routing';
@@ -27,6 +26,7 @@ import {
   daffComposeReducers,
   daffIdentityReducer,
 } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffShippingAddressGuard } from './shipping-address.guard';
 
@@ -71,9 +71,10 @@ describe('@daffodil/cart/routing | DaffShippingAddressGuard', () => {
         shipping_address: new DaffCartAddressFactory().create(),
       });
       store.dispatch(new DaffCartLoadSuccess(cart));
-      const expected = cold('(a|)', { a: true });
 
-      expect(service.canActivate()).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.canActivate()).toBe('(a|)', { a: true });
+      });
     });
 
     describe('when there is no shipping address', () => {
@@ -87,9 +88,9 @@ describe('@daffodil/cart/routing | DaffShippingAddressGuard', () => {
       });
 
       it('should not allow activation', () => {
-        const expected = cold('(a|)', { a: false });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: false });
+        });
       });
 
       it('should redirect to the given DaffCartShippingAddressGuardRedirectUrl', () => {
