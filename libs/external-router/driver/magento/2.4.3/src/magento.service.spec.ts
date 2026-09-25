@@ -5,7 +5,6 @@ import {
   ApolloTestingController,
   ApolloTestingModule,
 } from 'apollo-angular/testing';
-import { TestScheduler } from 'rxjs/testing';
 
 import { ID } from '@daffodil/core';
 import { MAGENTO_POSSIBLE_TYPES } from '@daffodil/driver/magento';
@@ -26,7 +25,6 @@ import { createMagentoProductRoute } from '../testing/create-product-route';
 describe('@daffodil/external-router/driver/magento/2.4.3 | DaffExternalRouterMagentoDriver', () => {
   let service: DaffExternalRouterMagentoDriver;
   let controller: ApolloTestingController;
-  let scheduler: TestScheduler;
   let id: ID;
   let responseUrl: string;
   let requestUrl: string;
@@ -50,10 +48,6 @@ describe('@daffodil/external-router/driver/magento/2.4.3 | DaffExternalRouterMag
     });
     service = TestBed.inject(DaffExternalRouterMagentoDriver);
     controller = TestBed.inject(ApolloTestingController);
-
-    scheduler = new TestScheduler((actual, expected) => {
-      expect(actual).toEqual(expected);
-    });
 
     responseUrl = 'url';
     requestUrl = `/${responseUrl}`;

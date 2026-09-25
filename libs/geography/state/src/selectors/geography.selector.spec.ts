@@ -5,7 +5,6 @@ import {
   select,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCountry } from '@daffodil/geography';
 import {
@@ -15,6 +14,7 @@ import {
   DaffCountryListSuccess,
 } from '@daffodil/geography/state';
 import { DaffCountryFactory } from '@daffodil/geography/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { getGeographySelectors } from './geography.selector';
 
@@ -54,18 +54,20 @@ describe('Geography | Selector | Geography', () => {
   describe('selectGeographyLoading', () => {
     it('should select the loading property of the geography state', () => {
       const selector = store.pipe(select(selectGeographyLoading));
-      const expected = cold('a', { a: loading });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: loading });
+      });
     });
   });
 
   describe('selectGeographyErrors', () => {
     it('should select the error property of the geography state', () => {
       const selector = store.pipe(select(selectGeographyErrors));
-      const expected = cold('a', { a: errors });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors });
+      });
     });
   });
 });

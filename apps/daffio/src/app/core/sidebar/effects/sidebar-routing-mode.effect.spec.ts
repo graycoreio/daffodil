@@ -2,10 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { ROUTER_NAVIGATED } from '@ngrx/router-store';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   BehaviorSubject,
   Observable,
 } from 'rxjs';
@@ -14,6 +10,7 @@ import {
   DaffSidebarModeEnum,
   DaffSidebarRegistration,
 } from '@daffodil/design/sidebar';
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffRouterDataService } from '@daffodil/router';
 
 import { DaffioSidebarRoutingModeEffects } from './sidebar-routing-mode.effects';
@@ -67,9 +64,10 @@ describe('DaffioSidebarRoutingModeEffects', () => {
       });
 
       it('should close the sidebar', () => {
-        actions$ = hot( '--a', { a: action });
-
-        expect(effects.openOrCloseSidebar$).toBeObservable(cold('---'));
+        runMarbles(helpers => {
+          actions$ = helpers.hot('--a', { a: action });
+          helpers.expectObservable(effects.openOrCloseSidebar$).toBe('---');
+        });
         expect(sidebarServiceSpy.close).toHaveBeenCalledOnceWith();
       });
     });
@@ -82,9 +80,10 @@ describe('DaffioSidebarRoutingModeEffects', () => {
       });
 
       it('should close the sidebar', () => {
-        actions$ = hot( '--a', { a: action });
-
-        expect(effects.openOrCloseSidebar$).toBeObservable(cold('---'));
+        runMarbles(helpers => {
+          actions$ = helpers.hot('--a', { a: action });
+          helpers.expectObservable(effects.openOrCloseSidebar$).toBe('---');
+        });
         expect(sidebarServiceSpy.close).toHaveBeenCalledOnceWith();
       });
     });
@@ -101,9 +100,10 @@ describe('DaffioSidebarRoutingModeEffects', () => {
       });
 
       it('should open the docked sidebar', () => {
-        actions$ = hot( '--a', { a: action });
-
-        expect(effects.openOrCloseSidebar$).toBeObservable(cold('---'));
+        runMarbles(helpers => {
+          actions$ = helpers.hot('--a', { a: action });
+          helpers.expectObservable(effects.openOrCloseSidebar$).toBe('---');
+        });
         expect(sidebarServiceSpy.open).toHaveBeenCalledOnceWith(dockedSidebar);
       });
     });

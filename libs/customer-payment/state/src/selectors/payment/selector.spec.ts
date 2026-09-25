@@ -5,7 +5,6 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCustomerPayment } from '@daffodil/customer-payment';
 import {
@@ -17,6 +16,7 @@ import {
   daffCustomerPaymentEntitiesReducer,
 } from '@daffodil/customer-payment/state';
 import { DaffCustomerPaymentFactory } from '@daffodil/customer-payment/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { daffCustomerPaymentGetSelectors } from './selector';
 
@@ -57,9 +57,10 @@ describe('@daffodil/payment/state | daffCustomerPaymentGetSelectors', () => {
     describe('before the payment is loaded', () => {
       it('should return nully', () => {
         const selector = store.pipe(select(selectPayment(mockCustomerPayment.id)));
-        const expected = cold('a', { a: jasmine.falsy() });
 
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: jasmine.falsy() });
+        });
       });
     });
 
@@ -70,9 +71,10 @@ describe('@daffodil/payment/state | daffCustomerPaymentGetSelectors', () => {
 
       it('should select the payment', () => {
         const selector = store.pipe(select(selectPayment(mockCustomerPayment.id)));
-        const expected = cold('a', { a: jasmine.objectContaining(mockCustomerPayment) });
 
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: jasmine.objectContaining(mockCustomerPayment) });
+        });
       });
     });
   });
@@ -81,9 +83,10 @@ describe('@daffodil/payment/state | daffCustomerPaymentGetSelectors', () => {
     describe('before the payment is loaded', () => {
       it('should return an empty array', () => {
         const selector = store.pipe(select(selectPayments));
-        const expected = cold('a', { a: []});
 
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: []});
+        });
       });
     });
 
@@ -94,9 +97,10 @@ describe('@daffodil/payment/state | daffCustomerPaymentGetSelectors', () => {
 
       it('should select the payments', () => {
         const selector = store.pipe(select(selectPayments));
-        const expected = cold('a', { a: [jasmine.objectContaining(mockCustomerPayment)]});
 
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: [jasmine.objectContaining(mockCustomerPayment)]});
+        });
       });
     });
   });

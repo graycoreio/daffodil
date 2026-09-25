@@ -6,7 +6,6 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartPaymentMethodGuardRedirectUrl } from '@daffodil/cart/routing';
@@ -27,6 +26,7 @@ import {
   daffComposeReducers,
   daffIdentityReducer,
 } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffPaymentMethodGuard } from './payment-method.guard';
 
@@ -71,9 +71,10 @@ describe('@daffodil/cart/routing | DaffPaymentMethodGuard', () => {
         payment: new DaffCartPaymentFactory().create(),
       });
       store.dispatch(new DaffCartLoadSuccess(cart));
-      const expected = cold('(a|)', { a: true });
 
-      expect(service.canActivate()).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.canActivate()).toBe('(a|)', { a: true });
+      });
     });
 
     describe('when there is no payment method', () => {
@@ -87,9 +88,9 @@ describe('@daffodil/cart/routing | DaffPaymentMethodGuard', () => {
       });
 
       it('should not allow activation', () => {
-        const expected = cold('(a|)', { a: false });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: false });
+        });
       });
 
       it('should redirect to the given DaffCartPaymentMethodGuardRedirectUrl', () => {

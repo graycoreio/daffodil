@@ -5,8 +5,8 @@ import {
   select,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffOrderCollection } from '@daffodil/order';
 import {
   daffOrderReducers,
@@ -48,10 +48,10 @@ describe('Order | Selector | Order', () => {
 
   describe('selectOrders', () => {
     it('should select the orders from the collection', () => {
-      const selector = store.pipe(select(selectOrders));
-      const expected = cold('a', { a: jasmine.arrayContaining(Object.values(mockOrderCollection.data)) });
-
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        const selector = store.pipe(select(selectOrders));
+        expectObservable(selector).toBe('a', { a: jasmine.arrayContaining(Object.values(mockOrderCollection.data)) });
+      });
     });
   });
 });

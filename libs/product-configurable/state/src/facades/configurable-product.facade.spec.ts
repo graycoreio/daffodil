@@ -4,8 +4,8 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffProductLoadSuccess,
   daffProductReducers,
@@ -67,57 +67,59 @@ describe('DaffConfigurableProductFacade', () => {
   describe('getAllAttributes', () => {
 
     it('should return an Observable dictionary of all attributes', () => {
-      const expected = cold('a', {
-        a: {
-          [stubConfigurableProduct.configurableAttributes[0].code]: [
-            stubConfigurableProduct.configurableAttributes[0].values[0].value,
-            stubConfigurableProduct.configurableAttributes[0].values[1].value,
-            stubConfigurableProduct.configurableAttributes[0].values[2].value,
-          ],
-          [stubConfigurableProduct.configurableAttributes[1].code]: [
-            stubConfigurableProduct.configurableAttributes[1].values[0].value,
-            stubConfigurableProduct.configurableAttributes[1].values[1].value,
-            stubConfigurableProduct.configurableAttributes[1].values[2].value,
-          ],
-          [stubConfigurableProduct.configurableAttributes[2].code]: [
-            stubConfigurableProduct.configurableAttributes[2].values[0].value,
-            stubConfigurableProduct.configurableAttributes[2].values[1].value,
-            stubConfigurableProduct.configurableAttributes[2].values[2].value,
-          ],
-        },
-      });
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.configurableAttributes[0].values[0].value,
       ));
-      expect(facade.getAllAttributes(stubConfigurableProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getAllAttributes(stubConfigurableProduct.id)).toBe('a', {
+          a: {
+            [stubConfigurableProduct.configurableAttributes[0].code]: [
+              stubConfigurableProduct.configurableAttributes[0].values[0].value,
+              stubConfigurableProduct.configurableAttributes[0].values[1].value,
+              stubConfigurableProduct.configurableAttributes[0].values[2].value,
+            ],
+            [stubConfigurableProduct.configurableAttributes[1].code]: [
+              stubConfigurableProduct.configurableAttributes[1].values[0].value,
+              stubConfigurableProduct.configurableAttributes[1].values[1].value,
+              stubConfigurableProduct.configurableAttributes[1].values[2].value,
+            ],
+            [stubConfigurableProduct.configurableAttributes[2].code]: [
+              stubConfigurableProduct.configurableAttributes[2].values[0].value,
+              stubConfigurableProduct.configurableAttributes[2].values[1].value,
+              stubConfigurableProduct.configurableAttributes[2].values[2].value,
+            ],
+          },
+        });
+      });
     });
   });
 
   describe('getAllVariants', () => {
 
     it('should return an Observable dictionary of all attributes', () => {
-      const expected = cold('a', { a: stubConfigurableProduct.variants });
-
-      expect(facade.getAllVariants(stubConfigurableProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getAllVariants(stubConfigurableProduct.id)).toBe('a', { a: stubConfigurableProduct.variants });
+      });
     });
   });
 
   describe('getAppliedAttributes', () => {
 
     it('should return an Observable dictionary of applied attributes', () => {
-      const expected = cold('a', {
-        a: {
-          [stubConfigurableProduct.configurableAttributes[0].code]: stubConfigurableProduct.configurableAttributes[0].values[0].value,
-        },
-      });
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.configurableAttributes[0].values[0].value,
       ));
-      expect(facade.getAppliedAttributes(stubConfigurableProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getAppliedAttributes(stubConfigurableProduct.id)).toBe('a', {
+          a: {
+            [stubConfigurableProduct.configurableAttributes[0].code]: stubConfigurableProduct.configurableAttributes[0].values[0].value,
+          },
+        });
+      });
     });
   });
 
@@ -150,14 +152,15 @@ describe('DaffConfigurableProductFacade', () => {
         id: product.id,
         products: [product],
       }));
-      const expected = cold('a', { a: 1 });
 
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.configurableAttributes[0].values[0].value,
       ));
-      expect(facade.getMinimumPrice(stubConfigurableProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getMinimumPrice(stubConfigurableProduct.id)).toBe('a', { a: 1 });
+      });
     });
   });
 
@@ -190,14 +193,15 @@ describe('DaffConfigurableProductFacade', () => {
         id: product.id,
         products: [product],
       }));
-      const expected = cold('a', { a: 4 });
 
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.configurableAttributes[0].values[0].value,
       ));
-      expect(facade.getMaximumPrice(stubConfigurableProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getMaximumPrice(stubConfigurableProduct.id)).toBe('a', { a: 4 });
+      });
     });
   });
 
@@ -246,14 +250,15 @@ describe('DaffConfigurableProductFacade', () => {
         id: product.id,
         products: [product],
       }));
-      const expected = cold('a', { a: 1 });
 
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.configurableAttributes[0].values[0].value,
       ));
-      expect(facade.getMinimumDiscountedPrice(stubConfigurableProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getMinimumDiscountedPrice(stubConfigurableProduct.id)).toBe('a', { a: 1 });
+      });
     });
   });
 
@@ -302,14 +307,15 @@ describe('DaffConfigurableProductFacade', () => {
         id: product.id,
         products: [product],
       }));
-      const expected = cold('a', { a: 3 });
 
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.configurableAttributes[0].values[0].value,
       ));
-      expect(facade.getMaximumDiscountedPrice(stubConfigurableProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getMaximumDiscountedPrice(stubConfigurableProduct.id)).toBe('a', { a: 3 });
+      });
     });
   });
 
@@ -354,14 +360,15 @@ describe('DaffConfigurableProductFacade', () => {
         id: product.id,
         products: [product],
       }));
-      const expected = cold('a', { a: 1 });
 
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.configurableAttributes[0].values[0].value,
       ));
-      expect(facade.getMinimumPercentDiscount(stubConfigurableProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getMinimumPercentDiscount(stubConfigurableProduct.id)).toBe('a', { a: 1 });
+      });
     });
   });
 
@@ -406,14 +413,15 @@ describe('DaffConfigurableProductFacade', () => {
         id: product.id,
         products: [product],
       }));
-      const expected = cold('a', { a: 3 });
 
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.configurableAttributes[0].values[0].value,
       ));
-      expect(facade.getMaximumPercentDiscount(stubConfigurableProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getMaximumPercentDiscount(stubConfigurableProduct.id)).toBe('a', { a: 3 });
+      });
     });
   });
 
@@ -446,14 +454,15 @@ describe('DaffConfigurableProductFacade', () => {
         id: product.id,
         products: [product],
       }));
-      const expected = cold('a', { a: true });
 
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.configurableAttributes[0].values[0].value,
       ));
-      expect(facade.isPriceRanged(stubConfigurableProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.isPriceRanged(stubConfigurableProduct.id)).toBe('a', { a: true });
+      });
     });
   });
 
@@ -498,41 +507,42 @@ describe('DaffConfigurableProductFacade', () => {
         id: product.id,
         products: [product],
       }));
-      const expected = cold('a', { a: true });
 
       store.dispatch(new DaffConfigurableProductApplyAttribute(
         stubConfigurableProduct.id,
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.configurableAttributes[0].values[0].value,
       ));
-      expect(facade.hasDiscount(stubConfigurableProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.hasDiscount(stubConfigurableProduct.id)).toBe('a', { a: true });
+      });
     });
   });
 
   describe('getSelectableAttributes', () => {
 
     it('should return the selectable attributes for a configurable product', () => {
-      const expected = cold('a', {
-        a: {
-          [stubConfigurableProduct.configurableAttributes[0].code]: [
-            stubConfigurableProduct.configurableAttributes[0].values[0].value,
-            stubConfigurableProduct.configurableAttributes[0].values[1].value,
-            stubConfigurableProduct.configurableAttributes[0].values[2].value,
-          ],
-          [stubConfigurableProduct.configurableAttributes[1].code]: [
-            stubConfigurableProduct.configurableAttributes[1].values[0].value,
-            stubConfigurableProduct.configurableAttributes[1].values[1].value,
-            stubConfigurableProduct.configurableAttributes[1].values[2].value,
-          ],
-          [stubConfigurableProduct.configurableAttributes[2].code]: [
-            stubConfigurableProduct.configurableAttributes[2].values[0].value,
-            stubConfigurableProduct.configurableAttributes[2].values[2].value,
-            stubConfigurableProduct.configurableAttributes[2].values[1].value,
-          ],
-        },
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getSelectableAttributes(stubConfigurableProduct.id)).toBe('a', {
+          a: {
+            [stubConfigurableProduct.configurableAttributes[0].code]: [
+              stubConfigurableProduct.configurableAttributes[0].values[0].value,
+              stubConfigurableProduct.configurableAttributes[0].values[1].value,
+              stubConfigurableProduct.configurableAttributes[0].values[2].value,
+            ],
+            [stubConfigurableProduct.configurableAttributes[1].code]: [
+              stubConfigurableProduct.configurableAttributes[1].values[0].value,
+              stubConfigurableProduct.configurableAttributes[1].values[1].value,
+              stubConfigurableProduct.configurableAttributes[1].values[2].value,
+            ],
+            [stubConfigurableProduct.configurableAttributes[2].code]: [
+              stubConfigurableProduct.configurableAttributes[2].values[0].value,
+              stubConfigurableProduct.configurableAttributes[2].values[2].value,
+              stubConfigurableProduct.configurableAttributes[2].values[1].value,
+            ],
+          },
+        });
       });
-
-      expect(facade.getSelectableAttributes(stubConfigurableProduct.id)).toBeObservable(expected);
     });
   });
 
@@ -548,10 +558,11 @@ describe('DaffConfigurableProductFacade', () => {
         stubConfigurableProduct.configurableAttributes[0].code,
         stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code],
       ));
-      const expected = cold('a', { a:
-				stubConfigurableProduct.variants.slice(0, 4) });
 
-      expect(facade.getMatchingVariants(stubConfigurableProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getMatchingVariants(stubConfigurableProduct.id)).toBe('a', { a:
+				stubConfigurableProduct.variants.slice(0, 4) });
+      });
     });
   });
 });

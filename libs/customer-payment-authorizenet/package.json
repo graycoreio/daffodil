@@ -47,6 +47,7 @@
   "devDependencies": {
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@daffodil/customer-payment": "0.0.0-PLACEHOLDER",
-    "@daffodil/authorizenet": "0.0.0-PLACEHOLDER"
+    "@daffodil/authorizenet": "0.0.0-PLACEHOLDER",
+    "@daffodil/jasmine": "0.0.0-PLACEHOLDER"
   }
 }

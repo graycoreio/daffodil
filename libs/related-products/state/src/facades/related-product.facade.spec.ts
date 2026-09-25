@@ -4,8 +4,8 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffProductPageLoadSuccess,
   daffProductReducers,
@@ -68,12 +68,13 @@ describe('DaffRelatedProductsFacade', () => {
       const mockProduct = relatedProductFactory.create({
         related: productFactory.createMany(3),
       });
-      const expected = cold('a', { a: mockProduct.related });
       store.dispatch(new DaffProductPageLoadSuccess({
         id: mockProduct.id,
         products: [mockProduct, ...mockProduct.related],
       }));
-      expect(facade.relatedProducts$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.relatedProducts$).toBe('a', { a: mockProduct.related });
+      });
     });
   });
 });

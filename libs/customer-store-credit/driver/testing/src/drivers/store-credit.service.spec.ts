@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCustomerStoreCreditFactory } from '@daffodil/customer-store-credit/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCustomerStoreCreditTestingDriver } from './store-credit.service';
 
@@ -26,8 +26,9 @@ describe('@daffodil/customer-store-credit/driver/testing | DaffCustomerStoreCred
 
   describe('get', () => {
     it('should return a DaffCustomerStoreCredit', () => {
-      const expected = cold('(a|)', { a: jasmine.anything() });
-      expect(service.get()).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.get()).toBe('(a|)', { a: jasmine.anything() });
+      });
     });
   });
 });

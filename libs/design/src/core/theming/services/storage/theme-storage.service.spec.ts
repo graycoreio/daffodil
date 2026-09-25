@@ -6,6 +6,7 @@ import {
 import { TestScheduler } from 'rxjs/testing';
 
 import { DaffPersistenceService } from '@daffodil/core';
+import { createTestScheduler } from '@daffodil/jasmine';
 
 import {
   DaffThemeStorageService,
@@ -76,9 +77,7 @@ describe('@daffodil/design | DaffThemeStorageService', () => {
 
   describe('the observable theme', () => {
     beforeEach(() => {
-      testScheduler = new TestScheduler((actual, expected) => {
-        expect(actual).toEqual(expected);
-      });
+      testScheduler = createTestScheduler();
     });
 
     it('should be whatever is in storage if document does not have a window', () => {

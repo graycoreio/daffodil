@@ -4,10 +4,6 @@ import {
 } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import {
-  cold,
-  hot,
-} from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
 
 import {
@@ -22,6 +18,7 @@ import {
 }  from '@daffodil/cart/state';
 import { DaffCartStateTestingModule } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffResolveCartGuard } from './resolve-cart.guard';
 
@@ -75,74 +72,74 @@ describe('@daffodil/cart/routing | DaffResolveCartGuard', () => {
       });
 
       describe('and when the resolved state is default and the cart is resolved successfully', () => {
-        beforeEach(() => {
-          cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Default, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Succeeded });
-        });
-
         it('should dispatch a DaffResolveCart action', () => {
           spyOn(cartFacade, 'dispatch');
-          const expected = cold('--a', { a: true });
-          expect(cartResolver.canActivate()).toBeObservable(expected);
+          runMarbles(({ hot, expectObservable }) => {
+            cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Default, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Succeeded });
+            expectObservable(cartResolver.canActivate()).toBe('--a', { a: true });
+          });
           expect(cartFacade.dispatch).toHaveBeenCalledWith(new DaffResolveCart());
         });
 
         it('should return true when success is dispatched', () => {
-          const expected = cold('--a', { a: true });
-          expect(cartResolver.canActivate()).toBeObservable(expected);
+          runMarbles(({ hot, expectObservable }) => {
+            cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Default, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Succeeded });
+            expectObservable(cartResolver.canActivate()).toBe('--a', { a: true });
+          });
         });
       });
 
       describe('and when the resolved state is default and the cart is not resolved successfully', () => {
-        beforeEach(() => {
-          cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Default, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Failed });
-        });
-
         it('should dispatch a DaffResolveCart action', () => {
           spyOn(cartFacade, 'dispatch');
-          const expected = cold('--a', { a: router.parseUrl(stubUrl) });
-          expect(cartResolver.canActivate()).toBeObservable(expected);
+          runMarbles(({ hot, expectObservable }) => {
+            cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Default, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Failed });
+            expectObservable(cartResolver.canActivate()).toBe('--a', { a: router.parseUrl(stubUrl) });
+          });
           expect(cartFacade.dispatch).toHaveBeenCalledWith(new DaffResolveCart());
         });
 
         it('should redirect when failure is dispatched', () => {
-          const expected = cold('--a', { a: router.parseUrl(stubUrl) });
-          expect(cartResolver.canActivate()).toBeObservable(expected);
+          runMarbles(({ hot, expectObservable }) => {
+            cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Default, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Failed });
+            expectObservable(cartResolver.canActivate()).toBe('--a', { a: router.parseUrl(stubUrl) });
+          });
         });
       });
 
       describe('and when the resolved state is resolving and the cart is resolved successfully', () => {
-        beforeEach(() => {
-          cartFacade.resolved$ = hot('-bc', { b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Succeeded });
-        });
-
         it('should not dispatch a DaffResolveCart action', () => {
           spyOn(cartFacade, 'dispatch');
-          const expected = cold('--a', { a: true });
-          expect(cartResolver.canActivate()).toBeObservable(expected);
+          runMarbles(({ hot, expectObservable }) => {
+            cartFacade.resolved$ = hot('-bc', { b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Succeeded });
+            expectObservable(cartResolver.canActivate()).toBe('--a', { a: true });
+          });
           expect(cartFacade.dispatch).not.toHaveBeenCalledWith(new DaffResolveCart());
         });
 
         it('should return true when success is dispatched', () => {
-          const expected = cold('--a', { a: true });
-          expect(cartResolver.canActivate()).toBeObservable(expected);
+          runMarbles(({ hot, expectObservable }) => {
+            cartFacade.resolved$ = hot('-bc', { b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Succeeded });
+            expectObservable(cartResolver.canActivate()).toBe('--a', { a: true });
+          });
         });
       });
 
       describe('and when the resolved state is resolving and the cart is not resolved successfully', () => {
-        beforeEach(() => {
-          cartFacade.resolved$ = hot('-bc', { b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Failed });
-        });
-
         it('should not dispatch a DaffResolveCart action', () => {
           spyOn(cartFacade, 'dispatch');
-          const expected = cold('--a', { a: router.parseUrl(stubUrl) });
-          expect(cartResolver.canActivate()).toBeObservable(expected);
+          runMarbles(({ hot, expectObservable }) => {
+            cartFacade.resolved$ = hot('-bc', { b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Failed });
+            expectObservable(cartResolver.canActivate()).toBe('--a', { a: router.parseUrl(stubUrl) });
+          });
           expect(cartFacade.dispatch).not.toHaveBeenCalledWith(new DaffResolveCart());
         });
 
         it('should redirect when failure is dispatched', () => {
-          const expected = cold('--a', { a: router.parseUrl(stubUrl) });
-          expect(cartResolver.canActivate()).toBeObservable(expected);
+          runMarbles(({ hot, expectObservable }) => {
+            cartFacade.resolved$ = hot('-bc', { b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Failed });
+            expectObservable(cartResolver.canActivate()).toBe('--a', { a: router.parseUrl(stubUrl) });
+          });
         });
       });
 
@@ -168,38 +165,38 @@ describe('@daffodil/cart/routing | DaffResolveCartGuard', () => {
       });
 
       describe('and when the resolved state is failed and the cart is resolved successfully', () => {
-        beforeEach(() => {
-          cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Failed, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Succeeded });
-        });
-
         it('should dispatch a DaffResolveCart action', () => {
           spyOn(cartFacade, 'dispatch');
-          const expected = cold('--a', { a: true });
-          expect(cartResolver.canActivate()).toBeObservable(expected);
+          runMarbles(({ hot, expectObservable }) => {
+            cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Failed, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Succeeded });
+            expectObservable(cartResolver.canActivate()).toBe('--a', { a: true });
+          });
           expect(cartFacade.dispatch).toHaveBeenCalledWith(new DaffResolveCart());
         });
 
         it('should return true when success is dispatched', () => {
-          const expected = cold('--a', { a: true });
-          expect(cartResolver.canActivate()).toBeObservable(expected);
+          runMarbles(({ hot, expectObservable }) => {
+            cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Failed, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Succeeded });
+            expectObservable(cartResolver.canActivate()).toBe('--a', { a: true });
+          });
         });
       });
 
       describe('and when the resolved state is failed and the cart is not resolved successfully', () => {
-        beforeEach(() => {
-          cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Failed, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Failed });
-        });
-
         it('should dispatch a DaffResolveCart action', () => {
           spyOn(cartFacade, 'dispatch');
-          const expected = cold('--a', { a: router.parseUrl(stubUrl) });
-          expect(cartResolver.canActivate()).toBeObservable(expected);
+          runMarbles(({ hot, expectObservable }) => {
+            cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Failed, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Failed });
+            expectObservable(cartResolver.canActivate()).toBe('--a', { a: router.parseUrl(stubUrl) });
+          });
           expect(cartFacade.dispatch).toHaveBeenCalledWith(new DaffResolveCart());
         });
 
         it('should redirect when failure is dispatched', () => {
-          const expected = cold('--a', { a: router.parseUrl(stubUrl) });
-          expect(cartResolver.canActivate()).toBeObservable(expected);
+          runMarbles(({ hot, expectObservable }) => {
+            cartFacade.resolved$ = hot('abc', { a: DaffCartResolveState.Failed, b: DaffCartResolveState.Resolving, c: DaffCartResolveState.Failed });
+            expectObservable(cartResolver.canActivate()).toBe('--a', { a: router.parseUrl(stubUrl) });
+          });
         });
       });
     });

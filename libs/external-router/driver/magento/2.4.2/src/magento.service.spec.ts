@@ -3,7 +3,6 @@ import {
   ApolloTestingController,
   ApolloTestingModule,
 } from 'apollo-angular/testing';
-import { TestScheduler } from 'rxjs/testing';
 
 import { ID } from '@daffodil/core';
 import {
@@ -22,7 +21,6 @@ import { DaffExternalRouterMagentoDriver } from './magento.service';
 describe('@daffodil/external-router/driver/magento/2.4.2 | DaffExternalRouterMagentoDriver', () => {
   let service: DaffExternalRouterMagentoDriver;
   let controller: ApolloTestingController;
-  let scheduler: TestScheduler;
   let id: ID;
   let responseUrl: string;
   let requestUrl: string;
@@ -38,10 +36,6 @@ describe('@daffodil/external-router/driver/magento/2.4.2 | DaffExternalRouterMag
     });
     service = TestBed.inject(DaffExternalRouterMagentoDriver);
     controller = TestBed.inject(ApolloTestingController);
-
-    scheduler = new TestScheduler((actual, expected) => {
-      expect(actual).toEqual(expected);
-    });
 
     responseUrl = 'url';
     requestUrl = `/${responseUrl}`;

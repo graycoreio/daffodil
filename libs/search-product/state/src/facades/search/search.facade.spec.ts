@@ -5,8 +5,8 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DAFF_PRODUCT_STORE_FEATURE_KEY,
   daffProductReducers,
@@ -89,15 +89,17 @@ describe('@daffodil/search-product/state | DaffSearchProductFacade', () => {
 
   describe('productResults$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.productResults$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.productResults$).toBe('a', { a: []});
+      });
     });
 
     it('should be the productResults upon a successful load', () => {
-      const expected = cold('a', { a: [mockSearchResult]});
       store.dispatch(new DaffSearchLoadSuccess(mockSearchResultResponse));
       store.dispatch(new DaffProductGridLoadSuccess([mockSearchResult]));
-      expect(facade.productResults$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.productResults$).toBe('a', { a: [mockSearchResult]});
+      });
     });
   });
 });

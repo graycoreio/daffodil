@@ -5,9 +5,9 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffPaypalExpressTokenResponse } from '@daffodil/paypal';
 import {
   DaffPaypalStateRootSlice,
@@ -60,9 +60,10 @@ describe('@daffodil/paypal/state | getDaffPaypalSelectors', () => {
         loading: false,
         error: null,
       };
-      const selector = store.pipe(select(selectPaypalState));
-      const expected = cold('a', { a: expectedState });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        const selector = store.pipe(select(selectPaypalState));
+        expectObservable(selector).toBe('a', { a: expectedState });
+      });
     });
   });
 
@@ -72,18 +73,20 @@ describe('@daffodil/paypal/state | getDaffPaypalSelectors', () => {
         startUrl: stubPaypalTokenResponse.urls.start,
         editUrl: stubPaypalTokenResponse.urls.edit,
       };
-      const selector = store.pipe(select(selectPaypalExpressState));
-      const expected = cold('a', { a: expectedState });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        const selector = store.pipe(select(selectPaypalExpressState));
+        expectObservable(selector).toBe('a', { a: expectedState });
+      });
     });
   });
 
   describe('selectPaypalLoading', () => {
 
     it('returns the loading state for generating a paypal token nonce', () => {
-      const selector = store.pipe(select(selectPaypalLoading));
-      const expected = cold('a', { a: false });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        const selector = store.pipe(select(selectPaypalLoading));
+        expectObservable(selector).toBe('a', { a: false });
+      });
     });
   });
 
@@ -91,28 +94,31 @@ describe('@daffodil/paypal/state | getDaffPaypalSelectors', () => {
 
     it('returns any current errors', () => {
       const error: DaffStateError = { code: 'code', recoverable: false, message: 'error message' };
-      store.dispatch(new DaffGeneratePaypalExpressTokenFailure(error));
-      const selector = store.pipe(select(selectPaypalError));
-      const expected = cold('a', { a: error });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        store.dispatch(new DaffGeneratePaypalExpressTokenFailure(error));
+        const selector = store.pipe(select(selectPaypalError));
+        expectObservable(selector).toBe('a', { a: error });
+      });
     });
   });
 
   describe('selectPaypalStartUrl', () => {
 
     it('returns the paypal start url', () => {
-      const selector = store.pipe(select(selectPaypalStartUrl));
-      const expected = cold('a', { a: stubPaypalTokenResponse.urls.start });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        const selector = store.pipe(select(selectPaypalStartUrl));
+        expectObservable(selector).toBe('a', { a: stubPaypalTokenResponse.urls.start });
+      });
     });
   });
 
   describe('selectPaypalEditUrl', () => {
 
     it('returns the paypal edit url', () => {
-      const selector = store.pipe(select(selectPaypalEditUrl));
-      const expected = cold('a', { a: stubPaypalTokenResponse.urls.edit });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        const selector = store.pipe(select(selectPaypalEditUrl));
+        expectObservable(selector).toBe('a', { a: stubPaypalTokenResponse.urls.edit });
+      });
     });
   });
 });

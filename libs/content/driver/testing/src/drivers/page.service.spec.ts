@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import { DaffContentPage } from '@daffodil/content';
 import { DaffContentHtmlPageFactory } from '@daffodil/content/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffContentPageTestingService } from './page.service';
 
@@ -45,8 +45,9 @@ describe('@daffodil/content/driver/testing | DaffContentPageTestingService', () 
 
   describe('get', () => {
     it('should return a DaffContent', () => {
-      const expected = cold('(a|)', { a: mockPage });
-      expect(service.get(contentId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.get(contentId)).toBe('(a|)', { a: mockPage });
+      });
     });
   });
 });

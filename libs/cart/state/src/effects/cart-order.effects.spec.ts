@@ -1,10 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
@@ -39,6 +35,7 @@ import {
   DaffStateError,
   daffTransformErrorToStateError,
 } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCartOrderEffects } from './cart-order.effects';
 
@@ -107,144 +104,136 @@ describe('@daffodil/cart/state | DaffCartOrderEffects', () => {
   });
 
   describe('placeOrder$ | placing an order', () => {
-    let expected;
     const cartPlaceOrderAction = new DaffCartPlaceOrder(mockDaffCartPayment);
 
     describe('when the call to CartOrderService is successful', () => {
-      beforeEach(() => {
-        const response: DaffCartOrderResult = {
-          orderId,
-          cartId: mockCart.id,
-        };
-        const cartPlaceOrderSuccessAction = new DaffCartPlaceOrderSuccess(response);
-
-        driverPlaceOrderSpy.and.returnValue(of(response));
-        actions$ = hot('--a', { a: cartPlaceOrderAction });
-        expected = cold('--b', { b: cartPlaceOrderSuccessAction });
-      });
-
       it('should dispatch a CartPlaceOrderSuccess action', () => {
-        expect(effects.placeOrder$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const response: DaffCartOrderResult = {
+            orderId,
+            cartId: mockCart.id,
+          };
+          const cartPlaceOrderSuccessAction = new DaffCartPlaceOrderSuccess(response);
+
+          driverPlaceOrderSpy.and.returnValue(of(response));
+          actions$ = helpers.hot('--a', { a: cartPlaceOrderAction });
+          helpers.expectObservable(effects.placeOrder$).toBe('--b', { b: cartPlaceOrderSuccessAction });
+        });
       });
     });
 
     describe('and the call to CartOrderService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to place order' };
-        const response = cold('#', {}, error);
-        const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure([error]);
-
-        driverPlaceOrderSpy.and.returnValue(response);
-        actions$ = hot('--a', { a: cartPlaceOrderAction });
-        expected = cold('--b', { b: cartPlaceOrderFailureAction });
-      });
-
       it('should dispatch a CartPlaceOrderFailure action', () => {
-        expect(effects.placeOrder$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to place order' };
+          const response = helpers.cold<any>('#', {}, error);
+          const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure([error]);
+
+          driverPlaceOrderSpy.and.returnValue(response);
+          actions$ = helpers.hot('--a', { a: cartPlaceOrderAction });
+          helpers.expectObservable(effects.placeOrder$).toBe('--b', { b: cartPlaceOrderFailureAction });
+        });
       });
     });
 
     describe('and the call to CartOrderService fails due to a product out of stock error', () => {
-      let error: DaffStateError;
-
-      beforeEach(() => {
-        error = daffTransformErrorToStateError(new DaffProductOutOfStockError('Product out of stock'));
-        const response = cold('#', {}, error);
-
-        driverPlaceOrderSpy.and.returnValue(response);
-        actions$ = hot('--a', { a: cartPlaceOrderAction });
-      });
-
       it('should try to resolve the cart', () => {
-        expect(effects.placeOrder$).toBeObservable(cold('--b', { b: jasmine.anything() }));
+        runMarbles(helpers => {
+          const error = daffTransformErrorToStateError(new DaffProductOutOfStockError('Product out of stock'));
+          const response = helpers.cold<any>('#', {}, error);
+
+          driverPlaceOrderSpy.and.returnValue(response);
+          actions$ = helpers.hot('--a', { a: cartPlaceOrderAction });
+
+          helpers.expectObservable(effects.placeOrder$).toBe('--b', { b: jasmine.anything() });
+        });
         expect(getCartSpy.getCartOrFail).toHaveBeenCalledWith();
       });
 
       describe('when the resolve cart is successful', () => {
-        beforeEach(() => {
-          const failureFromOoSAction = new DaffCartPlaceOrderFailureFromOutOfStockProduct([error], mockCart);
-
-          getCartSpy.getCartOrFail.and.returnValue(of({
-            errors: [],
-            response: mockCart,
-          }));
-          actions$ = hot('--a', { a: cartPlaceOrderAction });
-          expected = cold('--b', { b: failureFromOoSAction });
-        });
-
         it('should dispatch a DaffCartPlaceOrderFailureFromOutOfStockProduct action', () => {
-          expect(effects.placeOrder$).toBeObservable(expected);
+          runMarbles(helpers => {
+            const error = daffTransformErrorToStateError(new DaffProductOutOfStockError('Product out of stock'));
+            const response = helpers.cold<any>('#', {}, error);
+            driverPlaceOrderSpy.and.returnValue(response);
+
+            const failureFromOoSAction = new DaffCartPlaceOrderFailureFromOutOfStockProduct([error], mockCart);
+
+            getCartSpy.getCartOrFail.and.returnValue(of({
+              errors: [],
+              response: mockCart,
+            }));
+            actions$ = helpers.hot('--a', { a: cartPlaceOrderAction });
+            helpers.expectObservable(effects.placeOrder$).toBe('--b', { b: failureFromOoSAction });
+          });
         });
       });
 
       describe('and the resolve cart driver call has errors', () => {
-        beforeEach(() => {
-          const cartResolveError: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to get cart' };
-          const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure([error, cartResolveError]);
-
-          getCartSpy.getCartOrFail.and.returnValue(of({
-            errors: [<any>cartResolveError],
-            response: mockCart,
-          }));
-          actions$ = hot('--a', { a: cartPlaceOrderAction });
-          expected = cold('--b', { b: cartPlaceOrderFailureAction });
-        });
-
         it('should dispatch a CartPlaceOrderFailure action', () => {
-          expect(effects.placeOrder$).toBeObservable(expected);
+          runMarbles(helpers => {
+            const error = daffTransformErrorToStateError(new DaffProductOutOfStockError('Product out of stock'));
+            const response = helpers.cold<any>('#', {}, error);
+            driverPlaceOrderSpy.and.returnValue(response);
+
+            const cartResolveError: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to get cart' };
+            const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure([error, cartResolveError]);
+
+            getCartSpy.getCartOrFail.and.returnValue(of({
+              errors: [<any>cartResolveError],
+              response: mockCart,
+            }));
+            actions$ = helpers.hot('--a', { a: cartPlaceOrderAction });
+            helpers.expectObservable(effects.placeOrder$).toBe('--b', { b: cartPlaceOrderFailureAction });
+          });
         });
       });
 
       describe('and the resolve cart fails', () => {
-        beforeEach(() => {
-          const cartResolveError: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to get cart' };
-          const response = cold('#', {}, cartResolveError);
-          const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure([error, cartResolveError]);
-
-          getCartSpy.getCartOrFail.and.returnValue(response);
-          actions$ = hot('--a', { a: cartPlaceOrderAction });
-          expected = cold('--b', { b: cartPlaceOrderFailureAction });
-        });
-
         it('should dispatch a CartPlaceOrderFailure action', () => {
-          expect(effects.placeOrder$).toBeObservable(expected);
+          runMarbles(helpers => {
+            const error = daffTransformErrorToStateError(new DaffProductOutOfStockError('Product out of stock'));
+            const response = helpers.cold<any>('#', {}, error);
+            driverPlaceOrderSpy.and.returnValue(response);
+
+            const cartResolveError: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to get cart' };
+            const cartResolveResponse = helpers.cold<any>('#', {}, cartResolveError);
+            const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure([error, cartResolveError]);
+
+            getCartSpy.getCartOrFail.and.returnValue(cartResolveResponse);
+            actions$ = helpers.hot('--a', { a: cartPlaceOrderAction });
+            helpers.expectObservable(effects.placeOrder$).toBe('--b', { b: cartPlaceOrderFailureAction });
+          });
         });
       });
     });
 
     describe('and the storage service throws an error', () => {
-      beforeEach(() => {
-        const cartResolveError = new DaffStorageServiceError('An error occurred during storage.');
-        const response = cold('#', {}, cartResolveError);
-        getCartSpy.getCartIdOrFail.and.returnValue(response);
-
-        actions$ = hot('--a', { a: cartPlaceOrderAction });
-        expected = cold('--b', { b: cartStorageFailureAction });
-      });
-
       it('should return a DaffCartStorageFailure', () => {
-        expect(effects.placeOrder$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const cartResolveError = new DaffStorageServiceError('An error occurred during storage.');
+          const response = helpers.cold<any>('#', {}, cartResolveError);
+          getCartSpy.getCartIdOrFail.and.returnValue(response);
+
+          actions$ = helpers.hot('--a', { a: cartPlaceOrderAction });
+          helpers.expectObservable(effects.placeOrder$).toBe('--b', { b: cartStorageFailureAction });
+        });
       });
     });
   });
 
   describe('resetCart$ | resetting the cart after a successful order', () => {
-    let expected;
-    let cartOrderSuccessAction;
-
-    beforeEach(() => {
-      const cartCreateAction = new DaffCartCreate();
-      const response: DaffCartOrderResult = {
-        orderId: 'orderId',
-        cartId: mockCart.id,
-      };
-      cartOrderSuccessAction = new DaffCartPlaceOrderSuccess(response);
-      actions$ = hot('--a', { a: cartOrderSuccessAction });
-      expected = cold('--b', { b: cartCreateAction });
-    });
-
     it('should create a new cart', () => {
-      expect(effects.resetCart$).toBeObservable(expected);
+      runMarbles(helpers => {
+        const cartCreateAction = new DaffCartCreate();
+        const response: DaffCartOrderResult = {
+          orderId: 'orderId',
+          cartId: mockCart.id,
+        };
+        const cartOrderSuccessAction = new DaffCartPlaceOrderSuccess(response);
+        actions$ = helpers.hot('--a', { a: cartOrderSuccessAction });
+        helpers.expectObservable(effects.resetCart$).toBe('--b', { b: cartCreateAction });
+      });
     });
   });
 });

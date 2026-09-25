@@ -4,7 +4,6 @@ import {
   Store,
   StoreModule,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
 import {
@@ -15,6 +14,7 @@ import {
   DAFF_CUSTOMER_STORE_CREDIT_STORE_FEATURE_KEY,
 } from '@daffodil/customer-store-credit/state';
 import { DaffCustomerStoreCreditFactory } from '@daffodil/customer-store-credit/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCustomerStoreCreditPageFacade } from './facade';
 
@@ -63,8 +63,9 @@ describe('@daffodil/customer-store-credit/state | DaffCustomerStoreCreditPageFac
 
   describe('storeCredit$', () => {
     it('should contain the loaded credit', () => {
-      const expected = cold('a', { a: mockStoreCredit });
-      expect(facade.storeCredit$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.storeCredit$).toBe('a', { a: mockStoreCredit });
+      });
     });
   });
 });

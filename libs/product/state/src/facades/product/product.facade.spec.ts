@@ -4,9 +4,9 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { daffSubtract } from '@daffodil/core';
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffProductLoad,
   DaffProductLoadSuccess,
@@ -56,26 +56,28 @@ describe('DaffProductFacade', () => {
   describe('getProduct()', () => {
     it('should be an observable of a product', () => {
       const product = productFactory.create();
-      const expected = cold('a', { a: product });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
         products: [product],
       }));
-      expect(facade.getProduct(product.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getProduct(product.id)).toBe('a', { a: product });
+      });
     });
   });
 
   describe('getPrice()', () => {
     it('should be an observable of a product', () => {
       const product = productFactory.create();
-      const expected = cold('a', { a: product.price });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
         products: [product],
       }));
-      expect(facade.getPrice(product.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getPrice(product.id)).toBe('a', { a: product.price });
+      });
     });
   });
 
@@ -84,13 +86,14 @@ describe('DaffProductFacade', () => {
       const product = productFactory.create({
         discount: { amount: 20, percent: 10 },
       });
-      const expected = cold('a', { a: true });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
         products: [product],
       }));
-      expect(facade.hasDiscount(product.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.hasDiscount(product.id)).toBe('a', { a: true });
+      });
     });
   });
 
@@ -99,26 +102,28 @@ describe('DaffProductFacade', () => {
       const product = productFactory.create({
         discount: { amount: 20, percent: 10 },
       });
-      const expected = cold('a', { a: 20 });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
         products: [product],
       }));
-      expect(facade.getDiscountAmount(product.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getDiscountAmount(product.id)).toBe('a', { a: 20 });
+      });
     });
   });
 
   describe('getDiscountedPrice()', () => {
     it('should be an observable of the discounted price of a product', () => {
       const product = productFactory.create();
-      const expected = cold('a', { a: daffSubtract(product.price, product.discount.amount) });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
         products: [product],
       }));
-      expect(facade.getDiscountedPrice(product.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getDiscountedPrice(product.id)).toBe('a', { a: daffSubtract(product.price, product.discount.amount) });
+      });
     });
   });
 
@@ -127,13 +132,14 @@ describe('DaffProductFacade', () => {
       const product = productFactory.create({
         discount: { amount: 20, percent: 10 },
       });
-      const expected = cold('a', { a: 10 });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
         products: [product],
       }));
-      expect(facade.getDiscountPercent(product.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getDiscountPercent(product.id)).toBe('a', { a: 10 });
+      });
     });
   });
 
@@ -143,13 +149,14 @@ describe('DaffProductFacade', () => {
         discount: { amount: 20, percent: 10 },
         in_stock: false,
       });
-      const expected = cold('a', { a: true });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess({
         id: product.id,
         products: [product],
       }));
-      expect(facade.isOutOfStock(product.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.isOutOfStock(product.id)).toBe('a', { a: true });
+      });
     });
   });
 });

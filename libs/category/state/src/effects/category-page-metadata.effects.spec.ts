@@ -5,7 +5,6 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffCategory,
@@ -50,6 +49,7 @@ import {
   DaffFilterRequestFactory,
   DaffFilterToggleRequestFactory,
 } from '@daffodil/core/testing';
+import { createTestScheduler } from '@daffodil/jasmine';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductGridLoadSuccess } from '@daffodil/product/state';
 import { DaffProductFactory } from '@daffodil/product/testing';
@@ -80,9 +80,7 @@ describe('@daffodil/category/state | DaffCategoryPageMetadataEffects', () => {
   const testDriverSuccess = (cb: () => Action) => {
     describe('throttling the request', () => {
       it('should call immediately, but throttle subsequent events within a specified timeframe, firing off the last event after throttle', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
 
         const stubCategoryPageMetadata = categoryPageMetadataFactory.create({
           filters: daffFilterArrayToDict(filterFactory.createMany(3)),
@@ -130,9 +128,7 @@ describe('@daffodil/category/state | DaffCategoryPageMetadataEffects', () => {
 
     describe('and the driver call succeeds', () => {
       it('should call get category with filter requests merged with state', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
 
         const stubCategoryPageMetadata = categoryPageMetadataFactory.create({
           filters: daffFilterArrayToDict(filterFactory.createMany(3)),
@@ -182,9 +178,7 @@ describe('@daffodil/category/state | DaffCategoryPageMetadataEffects', () => {
   const testDriverFailure = (cb: () => Action) => {
     describe('and the driver call fails', () => {
       it('should emit DaffCategoryPageLoadFailure with the transformed error', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
 
         const stubCategoryPageMetadata = categoryPageMetadataFactory.create({
           filters: daffFilterArrayToDict(filterFactory.createMany(3)),

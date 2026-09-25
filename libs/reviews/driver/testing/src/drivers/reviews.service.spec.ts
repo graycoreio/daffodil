@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCollectionMetadataFactory } from '@daffodil/core/testing';
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductReviews } from '@daffodil/reviews';
 import {
@@ -50,8 +50,9 @@ describe('@daffodil/reviews/driver/testing | DaffReviewsTestingService', () => {
 
   describe('list', () => {
     it('should return a reviews collection', () => {
-      const expected = cold('(a|)', { a: mockReviews });
-      expect(service.list(productId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.list(productId)).toBe('(a|)', { a: mockReviews });
+      });
     });
   });
 });

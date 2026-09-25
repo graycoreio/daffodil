@@ -5,7 +5,6 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCustomer } from '@daffodil/customer';
 import {
@@ -18,6 +17,7 @@ import {
   daffCustomerAddressEntitiesReducer,
 } from '@daffodil/customer/state';
 import { DaffCustomerFactory } from '@daffodil/customer/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { daffCustomerGetSelectors } from './selector';
 
@@ -57,10 +57,10 @@ describe('@daffodil/customer/state | daffCustomerGetSelectors', () => {
   describe('selectCustomer', () => {
     describe('before the customer is loaded', () => {
       it('should return null', () => {
-        const selector = store.pipe(select(selectCustomer));
-        const expected = cold('a', { a: null });
-
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          const selector = store.pipe(select(selectCustomer));
+          expectObservable(selector).toBe('a', { a: null });
+        });
       });
     });
 
@@ -70,10 +70,10 @@ describe('@daffodil/customer/state | daffCustomerGetSelectors', () => {
       });
 
       it('should select the customer', () => {
-        const selector = store.pipe(select(selectCustomer));
-        const expected = cold('a', { a: mockCustomer });
-
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          const selector = store.pipe(select(selectCustomer));
+          expectObservable(selector).toBe('a', { a: mockCustomer });
+        });
       });
     });
   });

@@ -4,13 +4,13 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import {
   daffCartReducers,
   DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
 import { DaffStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffOrder,
   DaffOrderCollection,
@@ -80,88 +80,100 @@ describe('DaffOrderFacade', () => {
 
   describe('loading$', () => {
     it('should be false if the order is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
 
     it('should be true if the order is loading', () => {
-      const expected = cold('a', { a: true });
-      store.dispatch(new DaffOrderLoad(orderId));
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        store.dispatch(new DaffOrderLoad(orderId));
+        expectObservable(facade.loading$).toBe('a', { a: true });
+      });
     });
   });
 
   describe('errors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: errors });
-      expect(facade.errors$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: errors });
+      });
     });
 
     it('should contain an error upon a failed load', () => {
       const error: DaffStateError = { code: 'code', recoverable: false, message: 'message' };
-      const expected = cold('a', { a: [error]});
-      store.dispatch(new DaffOrderLoadFailure(error));
-      expect(facade.errors$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        store.dispatch(new DaffOrderLoadFailure(error));
+        expectObservable(facade.errors$).toBe('a', { a: [error]});
+      });
     });
   });
 
   describe('orders$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.orders$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.orders$).toBe('a', { a: []});
+      });
     });
 
     it('should be the orders upon a successful load', () => {
-      const expected = cold('a', { a: jasmine.arrayContaining(Object.values(mockOrderCollection.data)) });
-      store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
-      expect(facade.orders$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        store.dispatch(new DaffOrderListSuccess(mockOrderCollection));
+        expectObservable(facade.orders$).toBe('a', { a: jasmine.arrayContaining(Object.values(mockOrderCollection.data)) });
+      });
     });
   });
 
   describe('orderIds$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.orderIds$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.orderIds$).toBe('a', { a: []});
+      });
     });
 
     it('should contain the order id upon a successful order load', () => {
-      const expected = cold('a', { a: [orderId]});
-      store.dispatch(new DaffOrderLoadSuccess(mockOrder));
-      expect(facade.orderIds$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        store.dispatch(new DaffOrderLoadSuccess(mockOrder));
+        expectObservable(facade.orderIds$).toBe('a', { a: [orderId]});
+      });
     });
   });
 
   describe('orderCount$', () => {
     it('should initially be zero', () => {
-      const expected = cold('a', { a: 0 });
-      expect(facade.orderCount$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.orderCount$).toBe('a', { a: 0 });
+      });
     });
 
     it('should be one upon a successful order load', () => {
-      const expected = cold('a', { a: 1 });
-      store.dispatch(new DaffOrderLoadSuccess(mockOrder));
-      expect(facade.orderCount$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        store.dispatch(new DaffOrderLoadSuccess(mockOrder));
+        expectObservable(facade.orderCount$).toBe('a', { a: 1 });
+      });
     });
   });
 
   describe('orderEntities$', () => {
     it('should initially be an empty object', () => {
-      const expected = cold('a', { a: {}});
-      expect(facade.orderEntities$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.orderEntities$).toBe('a', { a: {}});
+      });
     });
 
     it('should contain the order upon a successful order load', () => {
-      const expected = cold('a', { a: { [orderId]: mockOrder }});
-      store.dispatch(new DaffOrderLoadSuccess(mockOrder));
-      expect(facade.orderEntities$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        store.dispatch(new DaffOrderLoadSuccess(mockOrder));
+        expectObservable(facade.orderEntities$).toBe('a', { a: { [orderId]: mockOrder }});
+      });
     });
   });
 
   describe('getOrder$', () => {
     it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-
-      expect(facade.getOrder$(orderId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getOrder$(orderId)).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -170,18 +182,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the order', () => {
-        const expected = cold('a', { a: mockOrder });
-
-        expect(facade.getOrder$(orderId)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getOrder$(orderId)).toBe('a', { a: mockOrder });
+        });
       });
     });
   });
 
   describe('getTotals$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-
-      expect(facade.getTotals$(orderId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getTotals$(orderId)).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -190,18 +202,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the order\'s totals', () => {
-        const expected = cold('a', { a: mockOrder.totals });
-
-        expect(facade.getTotals$(orderId)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getTotals$(orderId)).toBe('a', { a: mockOrder.totals });
+        });
       });
     });
   });
 
   describe('getAppliedCodes$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-
-      expect(facade.getAppliedCodes$(orderId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getAppliedCodes$(orderId)).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -210,18 +222,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the order\'s applied codes', () => {
-        const expected = cold('a', { a: mockOrder.applied_codes });
-
-        expect(facade.getAppliedCodes$(orderId)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getAppliedCodes$(orderId)).toBe('a', { a: mockOrder.applied_codes });
+        });
       });
     });
   });
 
   describe('getItems$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-
-      expect(facade.getItems$(orderId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getItems$(orderId)).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -230,18 +242,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the order\'s items', () => {
-        const expected = cold('a', { a: mockOrder.items });
-
-        expect(facade.getItems$(orderId)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getItems$(orderId)).toBe('a', { a: mockOrder.items });
+        });
       });
     });
   });
 
   describe('getBillingAddresses$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-
-      expect(facade.getBillingAddresses$(orderId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getBillingAddresses$(orderId)).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -250,18 +262,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the order\'s addresses', () => {
-        const expected = cold('a', { a: mockOrder.billing_addresses });
-
-        expect(facade.getBillingAddresses$(orderId)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getBillingAddresses$(orderId)).toBe('a', { a: mockOrder.billing_addresses });
+        });
       });
     });
   });
 
   describe('getShippingAddresses$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-
-      expect(facade.getShippingAddresses$(orderId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getShippingAddresses$(orderId)).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -270,18 +282,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the order\'s addresses', () => {
-        const expected = cold('a', { a: mockOrder.shipping_addresses });
-
-        expect(facade.getShippingAddresses$(orderId)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getShippingAddresses$(orderId)).toBe('a', { a: mockOrder.shipping_addresses });
+        });
       });
     });
   });
 
   describe('getShipments$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-
-      expect(facade.getShipments$(orderId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getShipments$(orderId)).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -290,18 +302,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the order\'s shipments', () => {
-        const expected = cold('a', { a: mockOrder.shipments });
-
-        expect(facade.getShipments$(orderId)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getShipments$(orderId)).toBe('a', { a: mockOrder.shipments });
+        });
       });
     });
   });
 
   describe('getPayment$', () => {
     it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-
-      expect(facade.getPayment$(orderId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getPayment$(orderId)).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -310,18 +322,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the order\'s payment', () => {
-        const expected = cold('a', { a: mockOrder.payment });
-
-        expect(facade.getPayment$(orderId)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getPayment$(orderId)).toBe('a', { a: mockOrder.payment });
+        });
       });
     });
   });
 
   describe('getInvoices$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-
-      expect(facade.getInvoices$(orderId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getInvoices$(orderId)).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -330,18 +342,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the order\'s invoices', () => {
-        const expected = cold('a', { a: mockOrder.invoices });
-
-        expect(facade.getInvoices$(orderId)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getInvoices$(orderId)).toBe('a', { a: mockOrder.invoices });
+        });
       });
     });
   });
 
   describe('getCredits$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-
-      expect(facade.getCredits$(orderId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getCredits$(orderId)).toBe('a', { a: []});
+      });
     });
 
     describe('when an order has been loaded', () => {
@@ -350,18 +362,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the order\'s credits', () => {
-        const expected = cold('a', { a: mockOrder.credits });
-
-        expect(facade.getCredits$(orderId)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getCredits$(orderId)).toBe('a', { a: mockOrder.credits });
+        });
       });
     });
   });
 
   describe('getGrandTotal$', () => {
     it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-
-      expect(facade.getGrandTotal$(mockOrder.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getGrandTotal$(mockOrder.id)).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded with a grand total', () => {
@@ -371,18 +383,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the grand total', () => {
-        const expected = cold('a', { a: mockOrderTotal });
-
-        expect(facade.getGrandTotal$(mockOrder.id)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getGrandTotal$(mockOrder.id)).toBe('a', { a: mockOrderTotal });
+        });
       });
     });
   });
 
   describe('getSubtotal$', () => {
     it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-
-      expect(facade.getSubtotal$(mockOrder.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getSubtotal$(mockOrder.id)).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded with a subtotal', () => {
@@ -392,18 +404,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the subtotal', () => {
-        const expected = cold('a', { a: mockOrderTotal });
-
-        expect(facade.getSubtotal$(mockOrder.id)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getSubtotal$(mockOrder.id)).toBe('a', { a: mockOrderTotal });
+        });
       });
     });
   });
 
   describe('getShippingTotal$', () => {
     it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-
-      expect(facade.getShippingTotal$(mockOrder.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getShippingTotal$(mockOrder.id)).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded with a shipping total', () => {
@@ -413,18 +425,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the shipping total', () => {
-        const expected = cold('a', { a: mockOrderTotal });
-
-        expect(facade.getShippingTotal$(mockOrder.id)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getShippingTotal$(mockOrder.id)).toBe('a', { a: mockOrderTotal });
+        });
       });
     });
   });
 
   describe('getDiscountTotal$', () => {
     it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-
-      expect(facade.getDiscountTotal$(mockOrder.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getDiscountTotal$(mockOrder.id)).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded with a discount total', () => {
@@ -434,9 +446,9 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the discount total', () => {
-        const expected = cold('a', { a: mockOrderTotal });
-
-        expect(facade.getDiscountTotal$(mockOrder.id)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getDiscountTotal$(mockOrder.id)).toBe('a', { a: mockOrderTotal });
+        });
       });
     });
   });
@@ -449,9 +461,9 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should return true', () => {
-        const expected = cold('a', { a: true });
-
-        expect(facade.hasDiscount$(mockOrder.id)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.hasDiscount$(mockOrder.id)).toBe('a', { a: true });
+        });
       });
     });
 
@@ -463,18 +475,18 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should return false', () => {
-        const expected = cold('a', { a: false });
-
-        expect(facade.hasDiscount$(mockOrder.id)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.hasDiscount$(mockOrder.id)).toBe('a', { a: false });
+        });
       });
     });
   });
 
   describe('getTaxTotal$', () => {
     it('should initially be null', () => {
-      const expected = cold('a', { a: null });
-
-      expect(facade.getTaxTotal$(mockOrder.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getTaxTotal$(mockOrder.id)).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been loaded with a tax total', () => {
@@ -484,9 +496,9 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the tax total', () => {
-        const expected = cold('a', { a: mockOrderTotal });
-
-        expect(facade.getTaxTotal$(mockOrder.id)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(facade.getTaxTotal$(mockOrder.id)).toBe('a', { a: mockOrderTotal });
+        });
       });
     });
   });

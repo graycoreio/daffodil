@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffTestingAuthorizeNetService } from './authorize-net.service';
 
@@ -22,15 +23,16 @@ describe('@daffodil/authorizenet/driver/testing | AuthorizeNetService', () => {
 
   describe('generateToken', () => {
     it('should return an object and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Object) });
-      expect(service.generateToken({
-        creditCard: {
-          cardnumber: '1234123412341234',
-          month: 'month',
-          year: 'year',
-          securitycode: '123',
-        },
-      })).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.generateToken({
+          creditCard: {
+            cardnumber: '1234123412341234',
+            month: 'month',
+            year: 'year',
+            securitycode: '123',
+          },
+        })).toBe('(a|)', { a: jasmine.any(Object) });
+      });
     });
   });
 });

@@ -5,7 +5,6 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffError,
@@ -34,6 +33,7 @@ import {
   DaffFilterRequestFactory,
   DaffFilterToggleRequestFactory,
 } from '@daffodil/core/testing';
+import { createTestScheduler } from '@daffodil/jasmine';
 import { DaffProductStateTestingModule } from '@daffodil/product/state/testing';
 import { DaffSearchDriver } from '@daffodil/search/driver';
 import { DaffSearchTestingDriverModule } from '@daffodil/search/driver/testing';
@@ -79,9 +79,7 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
   const testDriverSuccess = (cb: () => Action) => {
     describe('throttling the request', () => {
       it('should call immediately, but throttle subsequent events within a specified timeframe, firing off the last event after throttle', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
 
         const stubCollectionMetadata = productCollectionMetadataFactory.create({
           filters: daffFilterArrayToDict(filterFactory.createMany(3)),
@@ -120,9 +118,7 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
 
     describe('and the driver call succeeds', () => {
       it('should call the driver with filter requests merged with state', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
 
         const stubCollectionMetadata = productCollectionMetadataFactory.create({
           filters: daffFilterArrayToDict(filterFactory.createMany(3)),
@@ -163,9 +159,7 @@ describe('@daffodil/product/state | DaffProductCollectionEffects', () => {
   const testDriverFailure = (cb: () => Action) => {
     describe('and the driver call fails', () => {
       it('should emit DaffCategoryPageLoadFailure with the transformed error', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
 
         const stubCollectionMetadata = productCollectionMetadataFactory.create({
           filters: daffFilterArrayToDict(filterFactory.createMany(3)),

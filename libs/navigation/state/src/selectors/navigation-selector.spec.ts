@@ -5,8 +5,8 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import {
   DaffNavigationLoadSuccess,
@@ -50,8 +50,9 @@ describe('DaffNavigationSelectors', () => {
 
       it('selects the navigation state', () => {
         const selector = store.pipe(select(selectNavigationTree));
-        const expected = cold('a', { a: mockNavigation });
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: mockNavigation });
+        });
       });
     });
 
@@ -59,8 +60,9 @@ describe('DaffNavigationSelectors', () => {
 
       it('selects the loading state of the navigation', () => {
         const selector = store.pipe(select(selectNavigationLoading));
-        const expected = cold('a', { a: false });
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
 
@@ -68,8 +70,9 @@ describe('DaffNavigationSelectors', () => {
 
       it('returns the selected navigation id', () => {
         const selector = store.pipe(select(selectNavigationErrors));
-        const expected = cold('a', { a: []});
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: []});
+        });
       });
     });
   });

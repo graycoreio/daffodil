@@ -5,14 +5,7 @@ import {
   MockStore,
   provideMockStore,
 } from '@ngrx/store/testing';
-import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
-  Observable,
-  of,
-} from 'rxjs';
+import { of } from 'rxjs';
 
 import { DaffAuthStorageService } from '@daffodil/auth';
 import {
@@ -22,6 +15,7 @@ import {
   DaffUnauthorizedError,
 } from '@daffodil/auth/driver';
 import { DaffAuthGuardLogout } from '@daffodil/auth/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffAuthGuestOnlyGuardRedirectUrl } from './guest-only-guard-redirect.token';
 import { GuestOnlyGuard } from './guest-only.guard';
@@ -72,66 +66,59 @@ describe('@daffodil/auth/routing | GuestOnlyGuard', () => {
   });
 
   describe('canActivate | checking if the route can be activated', () => {
-    let expected;
-    let result: Observable<boolean>;
-
-    beforeEach(() => {
-      result = guard.canActivate();
-    });
-
     describe('when the check succeeds', () => {
-      beforeEach(() => {
-        daffAuthCheckService.check.and.returnValue(hot('--a', { a: undefined }));
-        result = guard.canActivate();
-        expected = cold('--b', { b: false });
-      });
-
       it('should return false', () => {
-        expect(result).toBeObservable(expected);
+        runMarbles(helpers => {
+          daffAuthCheckService.check.and.returnValue(helpers.hot('--a', { a: undefined }));
+          const result = guard.canActivate();
+          helpers.expectObservable(result).toBe('--b', { b: false });
+        });
       });
     });
 
     describe('when the check fails', () => {
-      beforeEach(() => {
-        daffAuthCheckService.check.and.returnValue(hot('--#', {}, new DaffAuthInvalidAPIResponseError('error')));
-        result = guard.canActivate();
-        expected = cold('--(b|)', { b: true });
-      });
-
       it('should return true', () => {
-        expect(result).toBeObservable(expected);
+        runMarbles(helpers => {
+          daffAuthCheckService.check.and.returnValue(helpers.hot('--#', {}, new DaffAuthInvalidAPIResponseError('error')));
+          const result = guard.canActivate();
+          helpers.expectObservable(result).toBe('--(b|)', { b: true });
+        });
       });
 
       describe('from an unauthorized error', () => {
-        beforeEach(() => {
-          daffAuthCheckService.check.and.returnValue(hot('--#', {}, new DaffUnauthorizedError('error')));
-          result = guard.canActivate();
-          expected = cold('--(b|)', { b: true });
-        });
-
         it('should return true', () => {
-          expect(result).toBeObservable(expected);
+          runMarbles(helpers => {
+            daffAuthCheckService.check.and.returnValue(helpers.hot('--#', {}, new DaffUnauthorizedError('error')));
+            const result = guard.canActivate();
+            helpers.expectObservable(result).toBe('--(b|)', { b: true });
+          });
         });
 
         it('should dispatch guard logout', () => {
-          expect(result).toBeObservable(expected);
+          runMarbles(helpers => {
+            daffAuthCheckService.check.and.returnValue(helpers.hot('--#', {}, new DaffUnauthorizedError('error')));
+            const result = guard.canActivate();
+            helpers.expectObservable(result).toBe('--(b|)', { b: true });
+          });
           expect(mockStore.dispatch).toHaveBeenCalledWith(jasmine.any(DaffAuthGuardLogout));
         });
       });
 
       describe('from an unauthenticated error', () => {
-        beforeEach(() => {
-          daffAuthCheckService.check.and.returnValue(hot('--#', {}, new DaffAuthenticationFailedError('error')));
-          result = guard.canActivate();
-          expected = cold('--(b|)', { b: true });
-        });
-
         it('should return true', () => {
-          expect(result).toBeObservable(expected);
+          runMarbles(helpers => {
+            daffAuthCheckService.check.and.returnValue(helpers.hot('--#', {}, new DaffAuthenticationFailedError('error')));
+            const result = guard.canActivate();
+            helpers.expectObservable(result).toBe('--(b|)', { b: true });
+          });
         });
 
         it('should dispatch guard logout', () => {
-          expect(result).toBeObservable(expected);
+          runMarbles(helpers => {
+            daffAuthCheckService.check.and.returnValue(helpers.hot('--#', {}, new DaffAuthenticationFailedError('error')));
+            const result = guard.canActivate();
+            helpers.expectObservable(result).toBe('--(b|)', { b: true });
+          });
           expect(mockStore.dispatch).toHaveBeenCalledWith(jasmine.any(DaffAuthGuardLogout));
         });
       });

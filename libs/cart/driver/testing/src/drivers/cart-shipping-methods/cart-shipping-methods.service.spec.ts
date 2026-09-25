@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffCart,
@@ -9,6 +8,7 @@ import {
   DaffCartFactory,
   DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffTestingCartShippingMethodsService } from './cart-shipping-methods.service';
 
@@ -44,8 +44,9 @@ describe('Driver | Testing | Cart | CartShippingMethodsService', () => {
 
   describe('list | list a cart\'s payment methods', () => {
     it('should return an array and not throw an error', () => {
-      const expected = cold('(a|)', { a: jasmine.any(Array) });
-      expect(service.list(cartId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.list(cartId)).toBe('(a|)', { a: jasmine.any(Array) });
+      });
     });
   });
 });

@@ -5,7 +5,6 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffCategory,
@@ -26,6 +25,7 @@ import {
   DaffFilterEqualFactory,
   DaffFilterEqualOptionFactory,
 } from '@daffodil/core/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { getDaffCategoryPageSelectors } from './category-page.selector';
 
@@ -68,10 +68,11 @@ describe('@daffodil/category/state | DaffCategoryPageSelectors', () => {
 
     it('selects CategoryReducerState for category', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryState));
-      const expected = cold('a', { a: jasmine.objectContaining({
-        id: stubCategory.id,
-      }) });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: jasmine.objectContaining({
+          id: stubCategory.id,
+        }) });
+      });
     });
   });
 
@@ -79,8 +80,9 @@ describe('@daffodil/category/state | DaffCategoryPageSelectors', () => {
 
     it('selects the product_ids of the current category page', () => {
       const selector = store.pipe(select(categorySelectors.selectCategoryPageProductIds));
-      const expected = cold('a', { a: stubCategoryPageMetadata.ids });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: stubCategoryPageMetadata.ids });
+      });
     });
   });
 
@@ -88,8 +90,9 @@ describe('@daffodil/category/state | DaffCategoryPageSelectors', () => {
 
     it('selects whether the current category page is empty of products', () => {
       const selector = store.pipe(select(categorySelectors.selectIsCategoryPageEmpty));
-      const expected = cold('a', { a: !stubCategoryPageMetadata.ids.length });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: !stubCategoryPageMetadata.ids.length });
+      });
     });
   });
 
@@ -97,8 +100,9 @@ describe('@daffodil/category/state | DaffCategoryPageSelectors', () => {
 
     it('selects the id of the current category', () => {
       const selector = store.pipe(select(categorySelectors.selectCurrentCategoryId));
-      const expected = cold('a', { a: stubCategory.id });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: stubCategory.id });
+      });
     });
   });
 });

@@ -3,7 +3,6 @@ import {
   StoreModule,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import {
   daffContactStateReducer,
@@ -13,6 +12,7 @@ import {
   DaffContactStateRootSlice,
   DAFF_CONTACT_STORE_FEATURE_KEY,
 } from '@daffodil/contact/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffContactFacade } from './contact.facade';
 
@@ -48,42 +48,48 @@ describe('@daffodil/contact/state | DaffContactFacade', () => {
 
   describe('success$ observable', () => {
     it('should intially be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.success$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.success$).toBe('a', { a: false });
+      });
     });
 
     it('should return true after a successful submission', () => {
-      const expected = cold('a', { a: true });
       store.dispatch(new DaffContactSubmitSuccess());
-      expect(facade.success$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.success$).toBe('a', { a: true });
+      });
     });
   });
 
   describe('loading$ observable', () => {
     it('should intially be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
 
     it('should be true if a submit action is sent', () => {
-      const expected = cold('a', { a: true });
       const payload = { email: 'email@email.com' };
       store.dispatch(new DaffContactSubmit(payload));
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: true });
+      });
     });
   });
 
   describe('error$ observable', () => {
     it('should intially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.error$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.error$).toBe('a', { a: []});
+      });
     });
 
     it('should return an error when it fails', () => {
       const error = [{ code: 'code', message: 'Failed to submit' }];
-      const expected = cold('a', { a: error });
       store.dispatch(new DaffContactSubmitFailure(error));
-      expect(facade.error$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.error$).toBe('a', { a: error });
+      });
     });
   });
 });

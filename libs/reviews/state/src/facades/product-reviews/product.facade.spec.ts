@@ -4,8 +4,8 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffProductReview,
   DaffProductReviews,
@@ -68,8 +68,9 @@ describe('@daffodil/reviews/state | DaffProductReviewsFacade', () => {
     });
 
     it('should be an observable of a product review', () => {
-      const expected = cold('a', { a: review });
-      expect(facade.getProductReview(review.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getProductReview(review.id)).toBe('a', { a: review });
+      });
     });
   });
 });

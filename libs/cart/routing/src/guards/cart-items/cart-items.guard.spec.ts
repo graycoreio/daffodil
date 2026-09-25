@@ -6,7 +6,6 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffCart,
@@ -30,6 +29,7 @@ import {
   daffComposeReducers,
   daffIdentityReducer,
 } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCartItemsGuard } from './cart-items.guard';
 
@@ -91,9 +91,9 @@ describe('@daffodil/cart/routing | DaffCartItemsGuard', () => {
       });
 
       it('should allow activation', () => {
-        const expected = cold('(a|)', { a: true });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: true });
+        });
       });
     });
 
@@ -108,9 +108,9 @@ describe('@daffodil/cart/routing | DaffCartItemsGuard', () => {
       });
 
       it('should not allow activation', () => {
-        const expected = cold('(a|)', { a: false });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('(a|)', { a: false });
+        });
       });
 
       it('should redirect to the given DaffCartItemsGuardRedirectUrl', () => {

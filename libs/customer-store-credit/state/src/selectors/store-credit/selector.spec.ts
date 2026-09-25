@@ -5,7 +5,6 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
 import {
@@ -17,6 +16,7 @@ import {
   daffCustomerStoreCreditInitialState,
 } from '@daffodil/customer-store-credit/state';
 import { DaffCustomerStoreCreditFactory } from '@daffodil/customer-store-credit/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { daffCustomerStoreCreditGetSelectors } from './selector';
 
@@ -55,9 +55,10 @@ describe('@daffodil/customer-store-credit/state | daffCustomerStoreCreditGetSele
     describe('before the store credit is loaded', () => {
       it('should return the initial state', () => {
         const selector = store.pipe(select(selectStoreCredit));
-        const expected = cold('a', { a: daffCustomerStoreCreditInitialState.storeCredit });
 
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: daffCustomerStoreCreditInitialState.storeCredit });
+        });
       });
     });
 
@@ -68,9 +69,10 @@ describe('@daffodil/customer-store-credit/state | daffCustomerStoreCreditGetSele
 
       it('should select the store credit', () => {
         const selector = store.pipe(select(selectStoreCredit));
-        const expected = cold('a', { a: mockStoreCredit });
 
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: mockStoreCredit });
+        });
       });
     });
   });

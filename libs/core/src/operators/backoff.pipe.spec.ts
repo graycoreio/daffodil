@@ -7,22 +7,16 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
-import { TestScheduler } from 'rxjs/testing';
+
+import { runMarbles } from '@daffodil/jasmine';
 
 import { backoff } from './backoff.pipe';
 
 describe('@daffodil/core | backoff', () => {
-  let testScheduler: TestScheduler;
-
-  beforeEach(() => {
-    testScheduler = new TestScheduler((actual, expected) => {
-      expect(actual).toEqual(expected);
-    });
-  });
 
   it(`should throw the error if the maximum tries is exceeded
 			 should retry attempts with delays in powers of 2`, () => {
-    testScheduler.run(({ expectObservable }) => {
+    runMarbles(({ expectObservable }) => {
       const expectedMarble = '10ms 20ms 40ms 80ms #';
       const expectedValue = null;
       const expectedError = new Error('error message');
@@ -35,7 +29,7 @@ describe('@daffodil/core | backoff', () => {
 
   it('should succeed if the stream is successful after a backoff retry', () => {
     let count = 0;
-    testScheduler.run(({ expectObservable }) => {
+    runMarbles(({ expectObservable }) => {
       const value = 'b';
       const expectedMarble = '20ms 40ms (a|)';
       const expectedValue = { a: value };
@@ -50,7 +44,7 @@ describe('@daffodil/core | backoff', () => {
   });
 
   it('should pass through a successful stream', () => {
-    testScheduler.run(({ expectObservable }) => {
+    runMarbles(({ expectObservable }) => {
       const value = 'b';
       const expectedMarble = '(a|)';
       const expectedValue = { a: value };

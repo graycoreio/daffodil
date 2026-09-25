@@ -5,8 +5,8 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductLoad,
@@ -60,9 +60,10 @@ describe('selectProductState', () => {
           errors: [],
         };
         const selector = store.pipe(select(selectProductGridState));
-        const expected = cold('a', { a: expectedGridState });
 
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: expectedGridState });
+        });
       });
     });
 
@@ -70,9 +71,10 @@ describe('selectProductState', () => {
 
       it('selects product grid loading state', () => {
         const selector = store.pipe(select(selectProductGridLoadingState));
-        const expected = cold('a', { a: false });
 
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
   });

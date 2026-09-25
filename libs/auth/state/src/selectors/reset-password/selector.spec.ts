@@ -5,7 +5,6 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffAuthStateRootSlice,
@@ -14,6 +13,7 @@ import {
   daffAuthReducers,
 } from '@daffodil/auth/state';
 import { DaffStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { daffAuthResetPasswordSelectorFactory } from './selector';
 import {
@@ -58,8 +58,9 @@ describe('@daffodil/auth/state | daffAuthResetPasswordSelectorFactory', () => {
     it('selects the register state', () => {
       store.dispatch(new DaffResetPasswordLanding(token));
       const selector = store.pipe(select(selectAuthResetPasswordState));
-      const expected = cold('a', { a: state });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: state });
+      });
     });
   });
 
@@ -67,8 +68,9 @@ describe('@daffodil/auth/state | daffAuthResetPasswordSelectorFactory', () => {
     it('returns the reset password token', () => {
       store.dispatch(new DaffResetPasswordLanding(token));
       const selector = store.pipe(select(selectAuthResetPasswordToken));
-      const expected = cold('a', { a: token });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: token });
+      });
     });
   });
 });

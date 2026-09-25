@@ -8,7 +8,6 @@ import {
   MockStore,
   provideMockStore,
 } from '@ngrx/store/testing';
-import { hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
 import { DaffIdentifiable } from '@daffodil/core';
@@ -21,6 +20,7 @@ import {
   daffOperationEntityCreateFakeId,
 } from '@daffodil/core/state';
 import { DaffIdentifiableFactory } from '@daffodil/core/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { daffOperationEntityStateSelectorFactory } from './selectors';
 
@@ -77,8 +77,9 @@ describe('@daffodil/core/state | daffOperationEntityStateSelectorFactory', () =>
     });
 
     it('should return the specified entity', () => {
-      const expected = hot('a', { a: jasmine.objectContaining(entity) });
-      expect(result).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(result).toBe('a', { a: jasmine.objectContaining(entity) });
+      });
     });
   });
 
@@ -112,8 +113,9 @@ describe('@daffodil/core/state | daffOperationEntityStateSelectorFactory', () =>
         });
 
         it('should return the rest of the entities', () => {
-          const expected = hot('a', { a: jasmine.arrayContaining(entities.map(e => jasmine.objectContaining(e))) });
-          expect(result).toBeObservable(expected);
+          runMarbles(({ expectObservable }) => {
+            expectObservable(result).toBe('a', { a: jasmine.arrayContaining(entities.map(e => jasmine.objectContaining(e))) });
+          });
         });
       });
 
@@ -141,8 +143,9 @@ describe('@daffodil/core/state | daffOperationEntityStateSelectorFactory', () =>
         });
 
         it('should return the rest of the entities', () => {
-          const expected = hot('a', { a: jasmine.arrayContaining(entities.map(e => jasmine.objectContaining(e))) });
-          expect(result).toBeObservable(expected);
+          runMarbles(({ expectObservable }) => {
+            expectObservable(result).toBe('a', { a: jasmine.arrayContaining(entities.map(e => jasmine.objectContaining(e))) });
+          });
         });
       });
     });

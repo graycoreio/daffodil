@@ -5,9 +5,9 @@ import {
   of,
   tap,
 } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
 
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
+import { createTestScheduler } from '@daffodil/jasmine';
 import {
   DaffSearchResult,
   DaffSearchResultCollection,
@@ -96,9 +96,7 @@ describe('@daffodil/search/state | DaffSearchIncrementalEffects', () => {
 
     describe('debouncing the request', () => {
       it('should call the driver', () => {
-        const testScheduler = new TestScheduler((actual, ex) => {
-          expect(actual).toEqual(ex);
-        });
+        const testScheduler = createTestScheduler();
 
         const searchResultIncrementalSuccessAction = new DaffSearchIncrementalSuccess(mockCollection);
 
@@ -118,9 +116,7 @@ describe('@daffodil/search/state | DaffSearchIncrementalEffects', () => {
     });
 
     it('should call the driver with the query and the limit', done => {
-      const testScheduler = new TestScheduler((actual, ex) => {
-        expect(actual).toEqual(ex);
-      });
+      const testScheduler = createTestScheduler();
 
       const searchResultIncrementalSuccessAction = new DaffSearchIncrementalSuccess(mockCollection);
 
@@ -148,9 +144,7 @@ describe('@daffodil/search/state | DaffSearchIncrementalEffects', () => {
 
     describe('and the call to SearchDriver is successful', () => {
       it('should return a DaffSearchIncrementalSucess action', () => {
-        const testScheduler = new TestScheduler((actual, ex) => {
-          expect(actual).toEqual(ex);
-        });
+        const testScheduler = createTestScheduler();
 
         const searchResultIncrementalSuccessAction = new DaffSearchIncrementalSuccess(mockCollection);
 
@@ -173,9 +167,7 @@ describe('@daffodil/search/state | DaffSearchIncrementalEffects', () => {
       let searchResultIncrementalFailureAction: DaffSearchIncrementalFailure;
 
       it('should return a DaffSearchIncrementalFailure action', () => {
-        const testScheduler = new TestScheduler((actual, ex) => {
-          expect(actual).toEqual(ex);
-        });
+        const testScheduler = createTestScheduler();
 
         testScheduler.run(({ hot, expectObservable, cold }) => {
           const error = new DaffSearchInvalidAPIResponseError('Failed to search');

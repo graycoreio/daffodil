@@ -5,8 +5,8 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffPaymentStateRootSlice } from '@daffodil/payment/state';
 
 import { daffPaymentGetSelectors } from './payment.selector';
@@ -47,18 +47,20 @@ describe('@daffodil/payment/state | daffPaymentGetSelectors', () => {
   describe('selectPaymentLoading', () => {
     it('should select the loading property of the payment state', () => {
       const selector = store.pipe(select(selectPaymentLoading));
-      const expected = cold('a', { a: loading });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: loading });
+      });
     });
   });
 
   describe('selectPaymentErrors', () => {
     it('should select the error property of the payment state', () => {
       const selector = store.pipe(select(selectPaymentErrors));
-      const expected = cold('a', { a: errors });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: errors });
+      });
     });
   });
 });

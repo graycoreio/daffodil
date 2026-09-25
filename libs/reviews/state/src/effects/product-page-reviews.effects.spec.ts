@@ -1,15 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductReviews } from '@daffodil/reviews';
 import {
@@ -62,35 +59,33 @@ describe('@daffodil/reviews/state | DaffProductPageReviewsEffects', () => {
 
   describe('when ReviewsProductListAction is triggered', () => {
 
-    let expected;
     const reviewsListAction = new DaffReviewsProductList(productId);
 
     describe('and the call to ProductService is successful', () => {
       beforeEach(() => {
         spyOn(driver, 'list').and.returnValue(of(mockProductReviews));
-        const reviewsListSuccessAction = new DaffReviewsProductListSuccess(mockProductReviews);
-        actions$ = hot('--a', { a: reviewsListAction });
-        expected = cold('--b', { b: reviewsListSuccessAction });
       });
 
       it('should dispatch a ProductLoadSuccess action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        const reviewsListSuccessAction = new DaffReviewsProductListSuccess(mockProductReviews);
+        runMarbles(({ hot, expectObservable }) => {
+          actions$ = hot('--a', { a: reviewsListAction });
+          expectObservable(effects.list$).toBe('--b', { b: reviewsListSuccessAction });
+        });
       });
     });
 
     describe('and the call to ProductService fails', () => {
 
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load product reviews' };
-        const response = cold('#', {}, error);
-        spyOn(driver, 'list').and.returnValue(response);
-        const reviewsListFailureAction = new DaffReviewsProductListFailure(error);
-        actions$ = hot('--a', { a: reviewsListAction });
-        expected = cold('--b', { b: reviewsListFailureAction });
-      });
-
       it('should dispatch a ProductLoadFailure action', () => {
-        expect(effects.list$).toBeObservable(expected);
+        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load product reviews' };
+        const reviewsListFailureAction = new DaffReviewsProductListFailure(error);
+        runMarbles(({ hot, cold, expectObservable }) => {
+          const response = cold<any>('#', {}, error);
+          spyOn(driver, 'list').and.returnValue(response);
+          actions$ = hot('--a', { a: reviewsListAction });
+          expectObservable(effects.list$).toBe('--b', { b: reviewsListFailureAction });
+        });
       });
     });
   });

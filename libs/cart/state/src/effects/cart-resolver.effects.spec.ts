@@ -2,10 +2,6 @@ import { PLATFORM_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
   throwError,
@@ -37,6 +33,7 @@ import {
   DaffError,
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCartResolverEffects } from './cart-resolver.effects';
 
@@ -107,22 +104,15 @@ describe('@daffodil/cart/state | DaffCartResolverEffects | in the browser', () =
   });
 
   describe('onResolveCart() | when DaffResolveCartSuccess is dispatched', () => {
-    beforeEach(() => {
-      actions$ = hot('--a', { a: new DaffResolveCartSuccess(stubCart) });
-    });
-
     it('should emit nothing', () => {
-      const expected = cold('---');
-
-      expect(effects.onResolveCart()).toBeObservable(expected);
+      runMarbles(helpers => {
+        actions$ = helpers.hot('--a', { a: new DaffResolveCartSuccess(stubCart) });
+        helpers.expectObservable(effects.onResolveCart()).toBe('---');
+      });
     });
   });
 
   describe('onResolveCart() | when DaffResolveCart is dispatched', () => {
-    beforeEach(() => {
-      actions$ = hot('--a', { a: new DaffResolveCart() });
-    });
-
     describe('when cart resolution is attempted on the server', () => {
       let errorMessage: string;
 
@@ -136,13 +126,14 @@ describe('@daffodil/cart/state | DaffCartResolverEffects | in the browser', () =
       });
 
       it('should emit an action indicating that server side resolution occurred', () => {
-        const error = new DaffCartServerSideResolutionError(errorMessage);
-        const resolveCartServerSide = new DaffResolveCartServerSide([daffTransformErrorToStateError(error)]);
-        const expected = cold('--a', {
-          a: resolveCartServerSide,
+        runMarbles(helpers => {
+          actions$ = helpers.hot('--a', { a: new DaffResolveCart() });
+          const error = new DaffCartServerSideResolutionError(errorMessage);
+          const resolveCartServerSide = new DaffResolveCartServerSide([daffTransformErrorToStateError(error)]);
+          helpers.expectObservable(effects.onResolveCart()).toBe('--a', {
+            a: resolveCartServerSide,
+          });
         });
-
-        expect(effects.onResolveCart()).toBeObservable(expected);
       });
     });
 
@@ -157,66 +148,62 @@ describe('@daffodil/cart/state | DaffCartResolverEffects | in the browser', () =
       });
 
       it('should indicate cart resolution failure due to cart ID retrieval', () => {
-        const error = new DaffCartStorageResolutionError(errorMessage);
-        const resolveCartFailureAction = new DaffResolveCartFailure([
-          daffTransformErrorToStateError(error),
-        ]);
-        const expected = cold('--b', {
-          b: resolveCartFailureAction,
+        runMarbles(helpers => {
+          actions$ = helpers.hot('--a', { a: new DaffResolveCart() });
+          const error = new DaffCartStorageResolutionError(errorMessage);
+          const resolveCartFailureAction = new DaffResolveCartFailure([
+            daffTransformErrorToStateError(error),
+          ]);
+          helpers.expectObservable(effects.onResolveCart()).toBe('--b', {
+            b: resolveCartFailureAction,
+          });
         });
-
-        expect(effects.onResolveCart()).toBeObservable(expected);
       });
     });
 
     describe('when the cart fails to resolve', () => {
-      let errorMessage: string;
-      let error: DaffError;
-
-      beforeEach(() => {
-        errorMessage = 'error';
-        error = new DaffCartResolutionError(errorMessage);
-        const response = cold(
-          '#',
-          {},
-          error,
-        );
-        cartResolverSpy.getCartOrFail.and.returnValue(response);
-      });
+      const errorMessage = 'error';
 
       describe('and a daffodil error is thrown', () => {
+        it('should indicate failed cart resolution while preserving the original error', () => {
+          runMarbles(helpers => {
+            actions$ = helpers.hot('--a', { a: new DaffResolveCart() });
+            const error: DaffError = new DaffProductOutOfStockError(errorMessage);
+            const response = helpers.cold<any>(
+              '#',
+              {},
+              error,
+            );
+            cartResolverSpy.getCartOrFail.and.returnValue(response);
 
-        beforeEach(() => {
-          error = new DaffProductOutOfStockError(errorMessage);
-          const response = cold(
+            const resolveCartFailureAction = new DaffResolveCartFailure([
+              daffTransformErrorToStateError(error),
+            ]);
+            helpers.expectObservable(effects.onResolveCart()).toBe('--b', {
+              b: resolveCartFailureAction,
+            });
+          });
+        });
+      });
+
+      it('should indicate failed cart resolution', () => {
+        runMarbles(helpers => {
+          actions$ = helpers.hot('--a', { a: new DaffResolveCart() });
+          const error: DaffError = new DaffCartResolutionError(errorMessage);
+          const response = helpers.cold<any>(
             '#',
             {},
             error,
           );
           cartResolverSpy.getCartOrFail.and.returnValue(response);
-        });
 
-        it('should indicate failed cart resolution while preserving the original error', () => {
           const resolveCartFailureAction = new DaffResolveCartFailure([
             daffTransformErrorToStateError(error),
           ]);
-          const expected = cold('--b', {
+          helpers.expectObservable(effects.onResolveCart()).toBe('--b', {
             b: resolveCartFailureAction,
           });
-
-          expect(effects.onResolveCart()).toBeObservable(expected);
         });
-      });
-
-      it('should indicate failed cart resolution', () => {
-        const resolveCartFailureAction = new DaffResolveCartFailure([
-          daffTransformErrorToStateError(error),
-        ]);
-        const expected = cold('--b', {
-          b: resolveCartFailureAction,
-        });
-
-        expect(effects.onResolveCart()).toBeObservable(expected);
       });
     });
 
@@ -229,12 +216,13 @@ describe('@daffodil/cart/state | DaffCartResolverEffects | in the browser', () =
       });
 
       it('should indicate that a cart has resolved successfully', () => {
-        const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
-        const expected = cold('--b', {
-          b: resolveCartSuccessAction,
+        runMarbles(helpers => {
+          actions$ = helpers.hot('--a', { a: new DaffResolveCart() });
+          const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
+          helpers.expectObservable(effects.onResolveCart()).toBe('--b', {
+            b: resolveCartSuccessAction,
+          });
         });
-
-        expect(effects.onResolveCart()).toBeObservable(expected);
       });
     });
 
@@ -251,15 +239,16 @@ describe('@daffodil/cart/state | DaffCartResolverEffects | in the browser', () =
       });
 
       it('should indicate that a cart has resolved partially successfully', () => {
-        const resolveCartSuccessAction = new DaffResolveCartPartialSuccess(
-          stubCart,
-          [daffTransformErrorToStateError(oosError)],
-        );
-        const expected = cold('--b', {
-          b: resolveCartSuccessAction,
+        runMarbles(helpers => {
+          actions$ = helpers.hot('--a', { a: new DaffResolveCart() });
+          const resolveCartSuccessAction = new DaffResolveCartPartialSuccess(
+            stubCart,
+            [daffTransformErrorToStateError(oosError)],
+          );
+          helpers.expectObservable(effects.onResolveCart()).toBe('--b', {
+            b: resolveCartSuccessAction,
+          });
         });
-
-        expect(effects.onResolveCart()).toBeObservable(expected);
       });
     });
   });

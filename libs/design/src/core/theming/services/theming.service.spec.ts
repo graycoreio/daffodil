@@ -3,7 +3,8 @@ import {
   of,
   BehaviorSubject,
 } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
+
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffOsThemeService } from './os-theme/ostheme.service';
 import { DaffThemeStorageService } from './storage/theme-storage.service';
@@ -11,7 +12,6 @@ import { DaffThemingService } from './theming.service';
 import { DaffTheme } from '../types/theme';
 
 describe('@daffodil/design | DaffThemingService', () => {
-  let testScheduler: TestScheduler;
 
   const constructThemingService = (
     themePreference: Observable<any>,
@@ -29,12 +29,6 @@ describe('@daffodil/design | DaffThemingService', () => {
     return { service: new DaffThemingService(osTheme, themeStorage), osTheme, themeStorage };
   };
 
-  beforeEach(() => {
-    testScheduler = new TestScheduler((actual, expected) => {
-      expect(actual).toEqual(expected);
-    });
-  });
-
   it('should be created', () => {
     expect(constructThemingService(
       of(undefined), of(undefined),
@@ -45,7 +39,7 @@ describe('@daffodil/design | DaffThemingService', () => {
    * This test also acts as an integration test for daffComputeThemeSetting
    */
   it('should compute the theme from os and storage settings', () => {
-    testScheduler.run(({ expectObservable, cold }) => {
+    runMarbles(({ expectObservable, cold }) => {
       const osThemeMarble = cold('a', { a: undefined });
       const themeStorageMarble = cold('a', { a: undefined });
 
@@ -59,7 +53,7 @@ describe('@daffodil/design | DaffThemingService', () => {
 
   it('should be able to set the theme to light', () => {
 
-    testScheduler.run(({ expectObservable, cold }) => {
+    runMarbles(({ expectObservable, cold }) => {
       const osThemeMarble = cold('a', { a: undefined });
       const themeStorageMarble = cold('a b', { a: undefined, b: DaffTheme.Light });
 
@@ -73,7 +67,7 @@ describe('@daffodil/design | DaffThemingService', () => {
 
   it('should be able to update the theme to dark', () => {
 
-    testScheduler.run(({ expectObservable, cold }) => {
+    runMarbles(({ expectObservable, cold }) => {
       const osThemeMarble = cold('a', { a: undefined });
       const themeStorageMarble = cold('a b', { a: DaffTheme.Light, b: DaffTheme.Dark });
 
@@ -121,7 +115,7 @@ describe('@daffodil/design | DaffThemingService', () => {
   });
 
   it('should expose the stored theme preference', () => {
-    testScheduler.run(({ expectObservable, cold }) => {
+    runMarbles(({ expectObservable, cold }) => {
       const osThemeMarble = cold('a', { a: undefined });
       const themeStorageMarble = cold('a b c', { a: DaffTheme.System, b: DaffTheme.Light, c: DaffTheme.Dark });
 

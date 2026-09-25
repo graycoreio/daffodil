@@ -6,10 +6,6 @@ import {
   Store,
 } from '@ngrx/store';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
@@ -51,6 +47,7 @@ import {
   DaffError,
   DaffInheritableError,
 } from '@daffodil/core';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffAuthorizeNetEffects } from './authorize-net.effects';
 
@@ -111,45 +108,41 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetEffects', () => {
 
   describe('updatePayment$', () => {
 
-    let expected;
-
     describe('when the call to the AuthorizeNetService is successful', () => {
 
       beforeEach(() => {
-        const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
         spyOn(authorizeNetPaymentService, 'generateToken').and.returnValue(of('token'));
-        actions$ = hot('--a', { a: authorizeNetUpdatePayment });
       });
 
       it('should dispatch a DaffCartPaymentUpdateWithBilling action', () => {
+        const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
         const cartPaymentUpdateWithBillingAction = new DaffCartPaymentUpdateWithBilling({
           method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
           payment_info: 'token',
         }, stubAddress);
-        expected = cold('--a', { a: cartPaymentUpdateWithBillingAction });
-        expect(effects.updatePayment$).toBeObservable(expected);
+        runMarbles(({ hot, expectObservable }) => {
+          actions$ = hot('--a', { a: authorizeNetUpdatePayment });
+          expectObservable(effects.updatePayment$).toBe('--a', { a: cartPaymentUpdateWithBillingAction });
+        });
       });
     });
 
     describe('when the call to the AuthorizeNetService fails', () => {
 
-      beforeEach(() => {
+      it('should dispatch an AuthorizeNetUpdatePaymentFailure action', () => {
         const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
         const error = new MockError('Failed to retrieve the token');
-        const response = cold('#', {}, error);
-        spyOn(authorizeNetPaymentService, 'generateToken').and.returnValue(response);
-
         const authorizeNetUpdatePaymentFailureAction = new DaffAuthorizeNetUpdatePaymentFailure({
           code: error.code,
           recoverable: false,
           message: error.message,
         });
-        actions$ = hot('--a', { a: authorizeNetUpdatePayment });
-        expected = cold('--b', { b: authorizeNetUpdatePaymentFailureAction });
-      });
-
-      it('should dispatch an AuthorizeNetUpdatePaymentFailure action', () => {
-        expect(effects.updatePayment$).toBeObservable(expected);
+        runMarbles(({ hot, cold, expectObservable }) => {
+          const response = cold<any>('#', {}, error);
+          spyOn(authorizeNetPaymentService, 'generateToken').and.returnValue(response);
+          actions$ = hot('--a', { a: authorizeNetUpdatePayment });
+          expectObservable(effects.updatePayment$).toBe('--b', { b: authorizeNetUpdatePaymentFailureAction });
+        });
       });
     });
   });
@@ -161,10 +154,11 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetEffects', () => {
       const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
       const cartPaymentUpdateWithBillingSuccess = new DaffCartPaymentUpdateWithBillingSuccess(stubCart);
       const authorizeNetPaymentUpdateSuccess = new DaffAuthorizeNetUpdatePaymentSuccess();
-      actions$ = hot('--a--b', { a: authorizeNetUpdatePayment, b: cartPaymentUpdateWithBillingSuccess });
 
-      const expected = cold('-----c', { c: authorizeNetPaymentUpdateSuccess });
-      expect(effects.updatePaymentSuccessSubstream$).toBeObservable(expected);
+      runMarbles(({ hot, expectObservable }) => {
+        actions$ = hot('--a--b', { a: authorizeNetUpdatePayment, b: cartPaymentUpdateWithBillingSuccess });
+        expectObservable(effects.updatePaymentSuccessSubstream$).toBe('-----c', { c: authorizeNetPaymentUpdateSuccess });
+      });
     });
   });
 
@@ -180,10 +174,10 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetEffects', () => {
         recoverable: false,
         message: mockErrorMessage,
       });
-      actions$ = hot('--ab', { a: authorizeNetUpdatePayment, b: cartPaymentUpdateWithBillingFailure });
-
-      const expected = cold('---c', { c: authorizeNetPaymentUpdateFailure });
-      expect(effects.updatePaymentFailureSubstream$).toBeObservable(expected);
+      runMarbles(({ hot, expectObservable }) => {
+        actions$ = hot('--ab', { a: authorizeNetUpdatePayment, b: cartPaymentUpdateWithBillingFailure });
+        expectObservable(effects.updatePaymentFailureSubstream$).toBe('---c', { c: authorizeNetPaymentUpdateFailure });
+      });
     });
   });
 
@@ -191,8 +185,11 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetEffects', () => {
 
     it('should load the acceptJs library', () => {
       const loadAcceptJsAction = new DaffLoadAcceptJs();
-      actions$ = hot('--a', { a: loadAcceptJsAction });
-      effects.loadAcceptJs$().subscribe();
+
+      runMarbles(({ hot }) => {
+        actions$ = hot('--a', { a: loadAcceptJsAction });
+        effects.loadAcceptJs$().subscribe();
+      });
 
       setTimeout(() => {
         expect(acceptJsLoadingServiceSpy.load).toHaveBeenCalled();
@@ -203,33 +200,36 @@ describe('@daffodil/authorizenet/state | DaffAuthorizeNetEffects', () => {
     it('should trigger a DaffLoadAcceptJsSuccess action if acceptJs loads', () => {
       acceptJsLoadingServiceSpy.getAccept.and.returnValue(true);
       const loadAcceptJsAction = new DaffLoadAcceptJs();
-      actions$ = hot('--a', { a: loadAcceptJsAction });
-      const expected = cold('--b', { b: new DaffLoadAcceptJsSuccess() });
 
-      expect(effects.loadAcceptJs$()).toBeObservable(expected);
+      runMarbles(({ hot, expectObservable }) => {
+        actions$ = hot('--a', { a: loadAcceptJsAction });
+        expectObservable(effects.loadAcceptJs$()).toBe('--b', { b: new DaffLoadAcceptJsSuccess() });
+      });
     });
 
     it('should trigger a DaffLoadAcceptJsFailure action if acceptJs fails to load', () => {
       const mockError = new MockError('Accept Js has failed to load.');
       acceptJsLoadingServiceSpy.getAccept.and.throwError(mockError);
       const loadAcceptJsAction = new DaffLoadAcceptJs();
-      actions$ = hot('--a', { a: loadAcceptJsAction });
-      const expected = cold('--b', { b: new DaffLoadAcceptJsFailure({
-        code: mockError.code,
-        recoverable: false,
-        message: mockError.message,
-      }) });
 
-      expect(effects.loadAcceptJs$(0, 0)).toBeObservable(expected);
+      runMarbles(({ hot, expectObservable }) => {
+        actions$ = hot('--a', { a: loadAcceptJsAction });
+        expectObservable(effects.loadAcceptJs$(0, 0)).toBe('--b', { b: new DaffLoadAcceptJsFailure({
+          code: mockError.code,
+          recoverable: false,
+          message: mockError.message,
+        }) });
+      });
     });
 
     it('should trigger a DaffLoadAcceptJsFailure action if acceptJs fails to load but does not throw an error', () => {
       acceptJsLoadingServiceSpy.getAccept.and.returnValue(null);
       const loadAcceptJsAction = new DaffLoadAcceptJs();
-      actions$ = hot('--a', { a: loadAcceptJsAction });
-      const expected = cold('--b', { b: new DaffLoadAcceptJsFailure(<any>jasmine.any(DaffAuthorizeNetAcceptjsMissingError)) });
 
-      expect(effects.loadAcceptJs$(0, 0)).toBeObservable(expected);
+      runMarbles(({ hot, expectObservable }) => {
+        actions$ = hot('--a', { a: loadAcceptJsAction });
+        expectObservable(effects.loadAcceptJs$(0, 0)).toBe('--b', { b: new DaffLoadAcceptJsFailure(<any>jasmine.any(DaffAuthorizeNetAcceptjsMissingError)) });
+      });
     });
   });
 });

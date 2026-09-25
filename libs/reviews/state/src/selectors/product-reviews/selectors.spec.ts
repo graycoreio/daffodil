@@ -5,8 +5,8 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffProductReviews } from '@daffodil/reviews';
 import {
   DaffReviewsStateRootSlice,
@@ -60,9 +60,10 @@ describe('selectReviewsState', () => {
 
     it('returns the state for the current product page reviews', () => {
       const selector = store.pipe(select(selectProductPageReviewsState));
-      const expected = cold('a', { a: expectedState });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: expectedState });
+      });
     });
   });
 
@@ -70,9 +71,10 @@ describe('selectReviewsState', () => {
 
     it('selects the loading state of the current product page reviews', () => {
       const selector = store.pipe(select(selectProductPageReviewsLoading));
-      const expected = cold('a', { a: false });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: false });
+      });
     });
   });
 
@@ -80,18 +82,20 @@ describe('selectReviewsState', () => {
 
     it('returns the current product page reviews errors', () => {
       const selector = store.pipe(select(selectProductPageReviewsErrors));
-      const expected = cold('a', { a: []});
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
   });
 
   describe('selectProductPageReviews', () => {
     it('selects the product reviews', () => {
       const selector = store.pipe(select(selectProductPageReviews));
-      const expected = cold('a', { a: jasmine.arrayContaining(Object.values(mockProductReviews.data)) });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: jasmine.arrayContaining(Object.values(mockProductReviews.data)) });
+      });
     });
   });
 });

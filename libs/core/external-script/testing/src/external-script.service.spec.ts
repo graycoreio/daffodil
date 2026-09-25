@@ -1,19 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-import { TestScheduler } from 'rxjs/testing';
+
+import { runMarbles } from '@daffodil/jasmine';
 
 import { TestScripts } from './constants';
 import { DaffExternalScriptTestingService } from './external-script.service';
 
 describe('DaffExternalScriptTestingService', () => {
   let service: DaffExternalScriptTestingService;
-  let testScheduler: TestScheduler;
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(DaffExternalScriptTestingService);
-
-    testScheduler = new TestScheduler((actual, expected) => {
-      expect(actual).toEqual(expected);
-    });
   });
 
   it('should be created', () => {
@@ -21,7 +17,7 @@ describe('DaffExternalScriptTestingService', () => {
   });
 
   it('should throw an error when given an error script', () => {
-    testScheduler.run((helpers) => {
+    runMarbles((helpers) => {
       const { expectObservable } = helpers;
       const expected = '(#)';
 
@@ -31,7 +27,7 @@ describe('DaffExternalScriptTestingService', () => {
   });
 
   it('should throw an error when given an unknown script', () => {
-    testScheduler.run((helpers) => {
+    runMarbles((helpers) => {
       const { expectObservable } = helpers;
       const expected = '(#)';
 
@@ -41,7 +37,7 @@ describe('DaffExternalScriptTestingService', () => {
   });
 
   it('should emit true when it loads a success script', () => {
-    testScheduler.run((helpers) => {
+    runMarbles((helpers) => {
       const { expectObservable } = helpers;
       const expected = '(a|)';
 

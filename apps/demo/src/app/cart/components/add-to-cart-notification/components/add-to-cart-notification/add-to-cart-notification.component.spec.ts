@@ -11,7 +11,6 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
 import {
@@ -29,6 +28,7 @@ import {
   daffComposeReducers,
   daffIdentityReducer,
 } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductLoadSuccess,
@@ -135,40 +135,45 @@ describe('AddToCartNotificationComponent', () => {
   });
 
   describe('ngOnInit', () => {
+
     beforeEach(() => {
       addToCartNotification.ngOnInit();
     });
 
     it('should initialize open$', () => {
-      const expected = cold('a', { a: false });
-
-      expect(addToCartNotification.open$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(addToCartNotification.open$).toBe('a', { a: false });
+      });
     });
 
     it('should initialize loading$', () => {
-      const expected = cold('a', { a: false });
-
-      expect(addToCartNotification.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(addToCartNotification.loading$).toBe('a', { a: false });
+      });
     });
 
     it('should initialize productQty$', () => {
-      const expected = cold('a', { a: 0 });
-      expect(addToCartNotification.productQty$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(addToCartNotification.productQty$).toBe('a', { a: 0 });
+      });
     });
 
     it('should initialize productId$', () => {
-      const expected = cold('a', { a: null });
-      expect(addToCartNotification.productId$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(addToCartNotification.productId$).toBe('a', { a: null });
+      });
     });
 
     it('should initialize product$', () => {
-      const expected = cold('a', { a: undefined });
-      expect(addToCartNotification.product$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(addToCartNotification.product$).toBe('a', { a: undefined });
+      });
     });
 
     it('should return cartItemCount$', () => {
-      const expected = cold('a', { a: 0 });
-      expect(addToCartNotification.cartItemCount$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(addToCartNotification.cartItemCount$).toBe('a', { a: 0 });
+      });
     });
   });
 

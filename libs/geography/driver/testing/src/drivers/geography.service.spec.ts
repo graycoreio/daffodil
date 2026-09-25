@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffCountry,
@@ -9,6 +8,7 @@ import {
   DaffCountryFactory,
   DaffSubdivisionFactory,
 } from '@daffodil/geography/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffTestingGeographyService } from './geography.service';
 
@@ -63,15 +63,17 @@ describe('Driver | Testing | Geography | GeographyService', () => {
 
   describe('get', () => {
     it('should return a DaffCountry', () => {
-      const expected = cold('(a|)', { a: mockCountry });
-      expect(service.get(countryId)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.get(countryId)).toBe('(a|)', { a: mockCountry });
+      });
     });
   });
 
   describe('list', () => {
     it('should return a list of DaffCountries', () => {
-      const expected = cold('(a|)', { a: [mockCountry]});
-      expect(service.list()).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.list()).toBe('(a|)', { a: [mockCountry]});
+      });
     });
   });
 });

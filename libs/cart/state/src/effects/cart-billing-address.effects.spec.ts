@@ -1,10 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
@@ -32,6 +28,7 @@ import {
   DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCartBillingAddressEffects } from './cart-billing-address.effects';
 
@@ -85,40 +82,34 @@ describe('@daffodil/cart/state | DaffCartBillingAddressEffects', () => {
   });
 
   describe('when CartBillingAddressLoadAction is triggered', () => {
-    let expected;
     const cartBillingAddressLoadAction = new DaffCartBillingAddressLoad();
 
     describe('and the call to CartBillingAddressService is successful', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(of(mockCartBillingAddress));
-        const cartBillingAddressLoadSuccessAction = new DaffCartBillingAddressLoadSuccess(mockCartBillingAddress);
-        actions$ = hot('--a', { a: cartBillingAddressLoadAction });
-        expected = cold('--b', { b: cartBillingAddressLoadSuccessAction });
-      });
-
       it('should dispatch a CartBillingAddressLoadSuccess action', () => {
-        expect(effects.get$).toBeObservable(expected);
+        runMarbles(helpers => {
+          driverGetSpy.and.returnValue(of(mockCartBillingAddress));
+          const cartBillingAddressLoadSuccessAction = new DaffCartBillingAddressLoadSuccess(mockCartBillingAddress);
+          actions$ = helpers.hot('--a', { a: cartBillingAddressLoadAction });
+          helpers.expectObservable(effects.get$).toBe('--b', { b: cartBillingAddressLoadSuccessAction });
+        });
       });
     });
 
     describe('and the call to CartBillingAddressService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart billing address' };
-        const response = cold('#', {}, error);
-        driverGetSpy.and.returnValue(response);
-        const cartBillingAddressLoadFailureAction = new DaffCartBillingAddressLoadFailure([error]);
-        actions$ = hot('--a', { a: cartBillingAddressLoadAction });
-        expected = cold('--b', { b: cartBillingAddressLoadFailureAction });
-      });
-
       it('should dispatch a CartBillingAddressLoadFailure action', () => {
-        expect(effects.get$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart billing address' };
+          const response = helpers.cold<any>('#', {}, error);
+          driverGetSpy.and.returnValue(response);
+          const cartBillingAddressLoadFailureAction = new DaffCartBillingAddressLoadFailure([error]);
+          actions$ = helpers.hot('--a', { a: cartBillingAddressLoadAction });
+          helpers.expectObservable(effects.get$).toBe('--b', { b: cartBillingAddressLoadFailureAction });
+        });
       });
     });
   });
 
   describe('when CartBillingAddressUpdateAction is triggered', () => {
-    let expected;
     let cartCreateAction;
     const street = 'updatedStreet';
 
@@ -128,30 +119,26 @@ describe('@daffodil/cart/state | DaffCartBillingAddressEffects', () => {
     });
 
     describe('and the call to CartBillingAddressService is successful', () => {
-      beforeEach(() => {
-        driverUpdateSpy.and.returnValue(of(mockCart));
-        const cartCreateSuccessAction = new DaffCartBillingAddressUpdateSuccess(mockCart);
-        actions$ = hot('--a', { a: cartCreateAction });
-        expected = cold('--b', { b: cartCreateSuccessAction });
-      });
-
       it('should dispatch a CartBillingAddressUpdateSuccess action', () => {
-        expect(effects.update$).toBeObservable(expected);
+        runMarbles(helpers => {
+          driverUpdateSpy.and.returnValue(of(mockCart));
+          const cartCreateSuccessAction = new DaffCartBillingAddressUpdateSuccess(mockCart);
+          actions$ = helpers.hot('--a', { a: cartCreateAction });
+          helpers.expectObservable(effects.update$).toBe('--b', { b: cartCreateSuccessAction });
+        });
       });
     });
 
     describe('and the call to CartBillingAddressService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart billing address' };
-        const response = cold('#', {}, error);
-        driverUpdateSpy.and.returnValue(response);
-        const cartCreateFailureAction = new DaffCartBillingAddressUpdateFailure([error]);
-        actions$ = hot('--a', { a: cartCreateAction });
-        expected = cold('--b', { b: cartCreateFailureAction });
-      });
-
       it('should dispatch a CartBillingAddressUpdateFailure action', () => {
-        expect(effects.update$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart billing address' };
+          const response = helpers.cold<any>('#', {}, error);
+          driverUpdateSpy.and.returnValue(response);
+          const cartCreateFailureAction = new DaffCartBillingAddressUpdateFailure([error]);
+          actions$ = helpers.hot('--a', { a: cartCreateAction });
+          helpers.expectObservable(effects.update$).toBe('--b', { b: cartCreateFailureAction });
+        });
       });
     });
   });

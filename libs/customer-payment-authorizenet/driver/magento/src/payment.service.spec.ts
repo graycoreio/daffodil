@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import { DaffAuthorizeNetPaymentId } from '@daffodil/authorizenet/driver';
 import { DaffCustomerPaymentAuthorizeNetApplyRequest } from '@daffodil/customer-payment-authorizenet';
 import { DaffCustomerPaymentAuthorizeNetApplyRequestFactory } from '@daffodil/customer-payment-authorizenet/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCustomerPaymentAuthorizeNetMagentoPaymentService } from './payment.service';
 
@@ -41,17 +41,18 @@ describe('@daffodil/customer-payment-authorizenet/driver/magento | DaffCustomerP
 
   describe('generateToken', () => {
     it('should return the formatted response', () => {
-      const expected = cold('(a|)', { a: {
-        method: paymentId,
-        data: {
-          code: paymentId,
-          tokenbase_data: {
-            card_id: mockRequest.data.id,
-            cc_cid: mockRequest.data.securityCode,
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.generateToken(mockRequest)).toBe('(a|)', { a: {
+          method: paymentId,
+          data: {
+            code: paymentId,
+            tokenbase_data: {
+              card_id: mockRequest.data.id,
+              cc_cid: mockRequest.data.securityCode,
+            },
           },
-        },
-      }});
-      expect(service.generateToken(mockRequest)).toBeObservable(expected);
+        }});
+      });
     });
   });
 });

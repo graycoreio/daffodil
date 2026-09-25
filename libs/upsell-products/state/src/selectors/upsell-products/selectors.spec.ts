@@ -5,8 +5,8 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffProductPageLoadSuccess,
   daffProductReducers,
@@ -66,9 +66,10 @@ describe('selectUpsellProductsState', () => {
 
     it('returns the upsell product IDs', () => {
       const selector = store.pipe(select(selectUpsellProductIds));
-      const expected = cold('a', { a: mockProduct.upsell.map(({ id }) => id) });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockProduct.upsell.map(({ id }) => id) });
+      });
     });
   });
 
@@ -76,9 +77,10 @@ describe('selectUpsellProductsState', () => {
 
     it('returns the upsell products', () => {
       const selector = store.pipe(select(selectUpsellProducts));
-      const expected = cold('a', { a: mockProduct.upsell });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockProduct.upsell });
+      });
     });
   });
 });

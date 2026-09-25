@@ -5,7 +5,6 @@ import {
   select,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCountry } from '@daffodil/geography';
 import {
@@ -17,6 +16,7 @@ import {
   DaffGeographyStateRootSlice,
 } from '@daffodil/geography/state';
 import { DaffCountryFactory } from '@daffodil/geography/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { getDaffCountryEntitySelectors } from './country-entities.selector';
 
@@ -59,45 +59,50 @@ describe('Geography | Selector | CountryEntities', () => {
   describe('selectAllCountries', () => {
     it('should select all of the countries', () => {
       const selector = store.pipe(select(selectAllCountries));
-      const expected = cold('a', { a: [jasmine.objectContaining(mockCountry)]});
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: [jasmine.objectContaining(mockCountry)]});
+      });
     });
   });
 
   describe('selectCountryEntities', () => {
     it('should select all of the countries', () => {
       const selector = store.pipe(select(selectCountryEntities));
-      const expected = cold('a', { a: { [countryId]: jasmine.objectContaining(mockCountry) }});
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: { [countryId]: jasmine.objectContaining(mockCountry) }});
+      });
     });
   });
 
   describe('selectCountryIds', () => {
     it('should select all of the country IDs', () => {
       const selector = store.pipe(select(selectCountryIds));
-      const expected = cold('a', { a: [countryId]});
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: [countryId]});
+      });
     });
   });
 
   describe('selectCountryTotal', () => {
     it('should select the total number of countries', () => {
       const selector = store.pipe(select(selectCountryTotal));
-      const expected = cold('a', { a: 1 });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: 1 });
+      });
     });
   });
 
   describe('selectCountry', () => {
     it('should select a specific country by ID', () => {
       const selector = store.pipe(select(selectCountry(mockCountry.id)));
-      const expected = cold('a', { a: jasmine.objectContaining(mockCountry) });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: jasmine.objectContaining(mockCountry) });
+      });
     });
 
     it('should not emit when an unrelated piece of state changes', () => {
@@ -115,9 +120,10 @@ describe('Geography | Selector | CountryEntities', () => {
   describe('selectCountrySubdivisions', () => {
     it('should select a specific country\'s subdivisions by ID', () => {
       const selector = store.pipe(select(selectCountrySubdivisions(mockCountry.id)));
-      const expected = cold('a', { a: mockCountry.subdivisions });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: mockCountry.subdivisions });
+      });
     });
 
     it('should not emit when an unrelated piece of state changes', () => {
@@ -135,9 +141,10 @@ describe('Geography | Selector | CountryEntities', () => {
   describe('selectIsCountryFullyLoaded', () => {
     it('should initially be false', () => {
       const selector = store.pipe(select(selectIsCountryFullyLoaded(mockCountry.id)));
-      const expected = cold('a', { a: false });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: false });
+      });
     });
 
     it('should not emit when an unrelated piece of state changes', () => {
@@ -158,9 +165,10 @@ describe('Geography | Selector | CountryEntities', () => {
 
       it('should be true', () => {
         const selector = store.pipe(select(selectIsCountryFullyLoaded(mockCountry.id)));
-        const expected = cold('a', { a: true });
 
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });

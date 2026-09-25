@@ -2,10 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
@@ -29,6 +25,7 @@ import {
   DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { CheckoutEffects } from './checkout.effects';
 import {
@@ -93,7 +90,6 @@ describe('CheckoutEffects', () => {
   });
 
   describe('when DemoCompleteAddressStepAction is triggered', () => {
-    let expected;
     let action: DemoCompleteAddressStep;
 
     beforeEach(() => {
@@ -103,50 +99,47 @@ describe('CheckoutEffects', () => {
     describe('and the call to the driver is successful', () => {
       beforeEach(() => {
         shippingAddressUpdateSpy.and.returnValue(of(stubCart));
-        const successAction = new DemoCompleteAddressStepSuccess(stubCart);
-        actions$ = hot('--a', { a: action });
-        expected = cold('--b', { b: successAction });
       });
 
       it('should dispatch a DemoCompleteAddressStepSuccess action', () => {
-        expect(effects.completeAddressStep$).toBeObservable(expected);
+        const successAction = new DemoCompleteAddressStepSuccess(stubCart);
+        runMarbles(helpers => {
+          actions$ = helpers.hot('--a', { a: action });
+          helpers.expectObservable(effects.completeAddressStep$).toBe('--b', { b: successAction });
+        });
       });
     });
 
     describe('and the call to the driver fails', () => {
-      beforeEach(() => {
-        const error = new DaffCartInvalidAPIResponseError('Failed to list customer address');
-        const response = cold('#', {}, error);
-        shippingAddressUpdateSpy.and.returnValue(response);
-        const failureAction = new DemoCompleteAddressStepFailure([daffTransformErrorToStateError(error)]);
-        actions$ = hot('--a', { a: action });
-        expected = cold('--b', { b: failureAction });
-      });
-
       it('should dispatch a DemoCompleteAddressStepFailure action', () => {
-        expect(effects.completeAddressStep$).toBeObservable(expected);
+        const error = new DaffCartInvalidAPIResponseError('Failed to list customer address');
+        const failureAction = new DemoCompleteAddressStepFailure([daffTransformErrorToStateError(error)]);
+        runMarbles(helpers => {
+          shippingAddressUpdateSpy.and.returnValue(helpers.cold<any>('#', {}, error));
+          actions$ = helpers.hot('--a', { a: action });
+          helpers.expectObservable(effects.completeAddressStep$).toBe('--b', { b: failureAction });
+        });
       });
     });
   });
 
   describe('when DemoCompleteAddressStepSuccessAction is triggered', () => {
-    let expected;
     let action: DemoCompleteAddressStepSuccess;
 
     beforeEach(() => {
       action = new DemoCompleteAddressStepSuccess(stubCart);
-      actions$ = hot('--a', { a: action });
-      expected = cold('---');
     });
 
     it('should go to the shipping step', () => {
-      expect(effects.onCompleteAddressStep$).toBeObservable(expected);
+      runMarbles(helpers => {
+        actions$ = helpers.hot('--a', { a: action });
+        helpers.expectObservable(effects.onCompleteAddressStep$).toBe('---');
+      });
       expect(stepServiceSpy.goToStep).toHaveBeenCalledOnceWith(DemoCheckoutStep.SHIPPING);
     });
   });
 
   describe('when DemoCompleteShippingStepAction is triggered', () => {
-    let expected;
     let action: DemoCompleteShippingStep;
 
     beforeEach(() => {
@@ -156,60 +149,58 @@ describe('CheckoutEffects', () => {
     describe('and the call to the driver is successful', () => {
       beforeEach(() => {
         shippingUpdateSpy.and.returnValue(of(stubCart));
-        const successAction = new DemoCompleteShippingStepSuccess(stubCart);
-        actions$ = hot('--a', { a: action });
-        expected = cold('--b', { b: successAction });
       });
 
       it('should dispatch a DemoCompleteShippingStepSuccess action', () => {
-        expect(effects.completeShippingStep$).toBeObservable(expected);
+        const successAction = new DemoCompleteShippingStepSuccess(stubCart);
+        runMarbles(helpers => {
+          actions$ = helpers.hot('--a', { a: action });
+          helpers.expectObservable(effects.completeShippingStep$).toBe('--b', { b: successAction });
+        });
       });
     });
 
     describe('and the call to the driver fails', () => {
-      beforeEach(() => {
-        const error = new DaffCartInvalidAPIResponseError('Failed to list customer address');
-        const response = cold('#', {}, error);
-        shippingUpdateSpy.and.returnValue(response);
-        const failureAction = new DemoCompleteShippingStepFailure([daffTransformErrorToStateError(error)]);
-        actions$ = hot('--a', { a: action });
-        expected = cold('--b', { b: failureAction });
-      });
-
       it('should dispatch a DemoCompleteShippingStepFailure action', () => {
-        expect(effects.completeShippingStep$).toBeObservable(expected);
+        const error = new DaffCartInvalidAPIResponseError('Failed to list customer address');
+        const failureAction = new DemoCompleteShippingStepFailure([daffTransformErrorToStateError(error)]);
+        runMarbles(helpers => {
+          shippingUpdateSpy.and.returnValue(helpers.cold<any>('#', {}, error));
+          actions$ = helpers.hot('--a', { a: action });
+          helpers.expectObservable(effects.completeShippingStep$).toBe('--b', { b: failureAction });
+        });
       });
     });
   });
 
   describe('when DemoCompleteShippingStepSuccessAction is triggered', () => {
-    let expected;
     let action: DemoCompleteShippingStepSuccess;
 
     beforeEach(() => {
       action = new DemoCompleteShippingStepSuccess(stubCart);
-      actions$ = hot('--a', { a: action });
-      expected = cold('---');
     });
 
     it('should go to the billing step', () => {
-      expect(effects.onCompleteShippingStep$).toBeObservable(expected);
+      runMarbles(helpers => {
+        actions$ = helpers.hot('--a', { a: action });
+        helpers.expectObservable(effects.onCompleteShippingStep$).toBe('---');
+      });
       expect(stepServiceSpy.goToStep).toHaveBeenCalledOnceWith(DemoCheckoutStep.BILLING);
     });
   });
 
   describe('when DemoCompleteBillingStepSuccessAction is triggered', () => {
-    let expected;
     let action: DemoCompleteBillingStepSuccess;
 
     beforeEach(() => {
       action = new DemoCompleteBillingStepSuccess(stubCart);
-      actions$ = hot('--a', { a: action });
-      expected = cold('---');
     });
 
     it('should go to the review step', () => {
-      expect(effects.onCompleteBillingStep$).toBeObservable(expected);
+      runMarbles(helpers => {
+        actions$ = helpers.hot('--a', { a: action });
+        helpers.expectObservable(effects.onCompleteBillingStep$).toBe('---');
+      });
       expect(stepServiceSpy.goToStep).toHaveBeenCalledOnceWith(DemoCheckoutStep.REVIEW);
     });
   });

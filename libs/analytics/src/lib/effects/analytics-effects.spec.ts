@@ -3,7 +3,8 @@ import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
 import { of } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
+
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffAnalyticsEffects } from './analytics-effects';
 import {
@@ -18,7 +19,6 @@ import {
 describe('@daffodil/analytics | DaffAnalyticsEffects', () => {
   let actions$: Actions;
   let effects: DaffAnalyticsEffects;
-  let testScheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,9 +26,6 @@ describe('@daffodil/analytics | DaffAnalyticsEffects', () => {
         provideMockActions(() => actions$),
         DaffAnalyticsEffects,
       ],
-    });
-    testScheduler = new TestScheduler((actual, expected) => {
-      expect(actual).toEqual(expected);
     });
   });
 
@@ -44,7 +41,7 @@ describe('@daffodil/analytics | DaffAnalyticsEffects', () => {
       type: 'Test Action',
     };
 
-    testScheduler.run((helpers) => {
+    runMarbles((helpers) => {
       const { expectObservable, hot } = helpers;
       effects = TestBed.inject(DaffAnalyticsEffects);
 
@@ -65,7 +62,7 @@ describe('@daffodil/analytics | DaffAnalyticsEffects', () => {
       type: 'Test Action',
     };
 
-    testScheduler.run((helpers) => {
+    runMarbles((helpers) => {
       const { expectObservable, hot } = helpers;
       effects = TestBed.inject(DaffAnalyticsEffects);
 
@@ -92,7 +89,7 @@ describe('@daffodil/analytics | DaffAnalyticsEffects', () => {
       type: 'Test Action',
     };
 
-    testScheduler.run((helpers) => {
+    runMarbles((helpers) => {
       const { expectObservable, hot } = helpers;
       effects = TestBed.inject(DaffAnalyticsEffects);
 

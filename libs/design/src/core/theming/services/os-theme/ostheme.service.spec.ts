@@ -5,6 +5,8 @@ import {
 } from 'rxjs/operators';
 import { TestScheduler } from 'rxjs/testing';
 
+import { createTestScheduler } from '@daffodil/jasmine';
+
 import { DaffOsThemeService } from './ostheme.service';
 
 describe('@daffodil/design | DaffOsThemeService', () => {
@@ -32,9 +34,7 @@ describe('@daffodil/design | DaffOsThemeService', () => {
   describe('working with the operating system theme preference as an observable', () => {
 
     beforeEach(() => {
-      testScheduler = new TestScheduler((actual, expected) => {
-        expect(actual).toEqual(expected);
-      });
+      testScheduler = createTestScheduler();
     });
 
     it('should be able to retrieve the current theme preference', () => {

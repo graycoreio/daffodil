@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { hot } from 'jasmine-marbles';
 
 import {
   AuthorizeNetResponse,
@@ -14,6 +13,7 @@ import {
   DaffAuthorizeNetUnconfiguredError,
 } from '@daffodil/authorizenet/driver';
 import { MagentoAuthorizeNetPayment } from '@daffodil/authorizenet/driver/magento';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffMagentoAuthorizeNetService } from './authorize-net.service';
 
@@ -126,8 +126,9 @@ describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService
       });
 
       it('should return the payment info', () => {
-        const expected = hot('a', { a: authorizeNetPayment });
-        expect(service.generateToken(request)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.generateToken(request)).toBe('a', { a: authorizeNetPayment });
+        });
       });
     });
 
@@ -155,8 +156,9 @@ describe('@daffodil/authorizenet/driver/magento | DaffMagentoAuthorizeNetService
 
       it('should throw a past CC expiration error', () => {
         const error = new DaffAuthorizeNetPastCCExpirationError(`${errorCode}: ${errorMessage}`);
-        const expected = hot('#', {}, error);
-        expect(service.generateToken(request)).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.generateToken(request)).toBe('#', {}, error);
+        });
       });
     });
   });

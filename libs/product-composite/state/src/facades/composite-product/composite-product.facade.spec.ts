@@ -5,7 +5,6 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import {
   daffAdd,
@@ -13,6 +12,7 @@ import {
   daffMultiply,
   daffSubtract,
 } from '@daffodil/core';
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffProductLoadSuccess,
   daffProductReducers,
@@ -110,57 +110,57 @@ describe('DaffCompositeProductFacade', () => {
           qty: 1,
         },
       };
-      const expected = cold('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
-						stubPrice01 - stubDiscountAmount01,
-          discount: {
-            amount: null,
-            percent: null,
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getRequiredItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)).toBe('a', { a: {
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+							stubPrice01 - stubDiscountAmount01,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice01,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01,
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
-						stubPrice01 - stubDiscountAmount01,
-          discount: {
-            amount: null,
-            percent: null,
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+							stubPrice01 - stubDiscountAmount01,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice01,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01,
-        },
-      }});
-
-      expect(facade.getRequiredItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)).toBeObservable(expected);
+        }});
+      });
     });
   });
 
   describe('getOptionalItemPricesForConfiguration', () => {
 
     it('should return the broadest price range for a composite product including optional items', () => {
-      const expected = cold('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
-						stubPrice00 - stubDiscountAmount00,
-          discount: {
-            amount: null,
-            percent: null,
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getOptionalItemPricesForConfiguration(stubCompositeProduct.id)).toBe('a', { a: {
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+							stubPrice00 - stubDiscountAmount00,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice00,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice00,
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
-						stubPrice01 - stubDiscountAmount01 +
-						stubPrice11 - stubDiscountAmount11,
-          discount: {
-            amount: null,
-            percent: null,
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+							stubPrice01 - stubDiscountAmount01 +
+							stubPrice11 - stubDiscountAmount11,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11,
-        },
-      }});
-
-      expect(facade.getOptionalItemPricesForConfiguration(stubCompositeProduct.id)).toBeObservable(expected);
+        }});
+      });
     });
   });
 
@@ -173,40 +173,40 @@ describe('DaffCompositeProductFacade', () => {
 				stubCompositeProduct.items[0].options[1].id,
 				1,
       ));
-      const expected = cold('a', { a: {
-        minPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
-						stubPrice01 - stubDiscountAmount01,
-          discount: {
-            amount: null,
-            percent: null,
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getPricesAsCurrentlyConfigured(stubCompositeProduct.id)).toBe('a', { a: {
+          minPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+							stubPrice01 - stubDiscountAmount01,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice01,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01,
-        },
-        maxPrice: {
-          discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
-						stubPrice01 - stubDiscountAmount01,
-          discount: {
-            amount: null,
-            percent: null,
+          maxPrice: {
+            discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+							stubPrice01 - stubDiscountAmount01,
+            discount: {
+              amount: null,
+              percent: null,
+            },
+            originalPrice: stubCompositeProduct.price + stubPrice01,
           },
-          originalPrice: stubCompositeProduct.price + stubPrice01,
-        },
-      }});
-
-      expect(facade.getPricesAsCurrentlyConfigured(stubCompositeProduct.id)).toBeObservable(expected);
+        }});
+      });
     });
   });
 
   describe('getAppliedOptions', () => {
 
     it('should return the applied option for a composite product', () => {
-      const expected = cold('a', { a: {
-        [stubCompositeProduct.items[0].id]: stubCompositeProduct.items[0].options[0],
-        [stubCompositeProduct.items[1].id]: null,
-      }});
-
-      expect(facade.getAppliedOptions(stubCompositeProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getAppliedOptions(stubCompositeProduct.id)).toBe('a', { a: {
+          [stubCompositeProduct.items[0].id]: stubCompositeProduct.items[0].options[0],
+          [stubCompositeProduct.items[1].id]: null,
+        }});
+      });
     });
   });
 
@@ -239,9 +239,10 @@ describe('DaffCompositeProductFacade', () => {
       }));
 
       const expectedDiscountAmount = daffAdd(stubCompositeProduct.discount.amount, stubCompositeProduct.items[0].options[0].discount.amount);
-      const expected = cold('a', { a: expectedDiscountAmount });
 
-      expect(facade.getDiscountAmount(stubCompositeProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getDiscountAmount(stubCompositeProduct.id)).toBe('a', { a: expectedDiscountAmount });
+      });
     });
   });
 
@@ -278,18 +279,19 @@ describe('DaffCompositeProductFacade', () => {
       const selectedOptionDiscountedPrice = daffSubtract(stubCompositeProduct.items[0].options[0].price, stubCompositeProduct.items[0].options[0].discount.amount);
       const totalDiscountedPrice = daffAdd(primaryProductDiscountedPrice, selectedOptionDiscountedPrice);
       const expectedDiscountPercent = daffMultiply(daffDivide(daffSubtract(totalOriginalPrice, totalDiscountedPrice), totalOriginalPrice), 100);
-      const expected = cold('a', { a: expectedDiscountPercent });
 
-      expect(facade.getDiscountPercent(stubCompositeProduct.id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.getDiscountPercent(stubCompositeProduct.id)).toBe('a', { a: expectedDiscountPercent });
+      });
     });
   });
 
   describe('isItemRequired', () => {
 
     it('should return whether the composite product item is required', () => {
-      const expected = cold('a', { a: stubCompositeProduct.items[0].required });
-
-      expect(facade.isItemRequired(stubCompositeProduct.id, stubCompositeProduct.items[0].id)).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.isItemRequired(stubCompositeProduct.id, stubCompositeProduct.items[0].id)).toBe('a', { a: stubCompositeProduct.items[0].required });
+      });
     });
   });
 });

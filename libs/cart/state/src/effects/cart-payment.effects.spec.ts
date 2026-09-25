@@ -1,10 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
@@ -40,6 +36,7 @@ import {
   DaffCartAddressFactory,
 } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCartPaymentEffects } from './cart-payment.effects';
 
@@ -99,40 +96,34 @@ describe('@daffodil/cart/state | DaffCartPaymentEffects', () => {
   });
 
   describe('when CartPaymentLoadAction is triggered', () => {
-    let expected;
     const cartPaymentLoadAction = new DaffCartPaymentLoad();
 
     describe('and the call to CartPaymentService is successful', () => {
-      beforeEach(() => {
-        driverGetSpy.and.returnValue(of(mockCartPayment));
-        const cartPaymentLoadSuccessAction = new DaffCartPaymentLoadSuccess(mockCartPayment);
-        actions$ = hot('--a', { a: cartPaymentLoadAction });
-        expected = cold('--b', { b: cartPaymentLoadSuccessAction });
-      });
-
       it('should dispatch a CartPaymentLoadSuccess action', () => {
-        expect(effects.get$).toBeObservable(expected);
+        runMarbles(helpers => {
+          driverGetSpy.and.returnValue(of(mockCartPayment));
+          const cartPaymentLoadSuccessAction = new DaffCartPaymentLoadSuccess(mockCartPayment);
+          actions$ = helpers.hot('--a', { a: cartPaymentLoadAction });
+          helpers.expectObservable(effects.get$).toBe('--b', { b: cartPaymentLoadSuccessAction });
+        });
       });
     });
 
     describe('and the call to CartPaymentService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart payment' };
-        const response = cold('#', {}, error);
-        driverGetSpy.and.returnValue(response);
-        const cartPaymentLoadFailureAction = new DaffCartPaymentLoadFailure([error]);
-        actions$ = hot('--a', { a: cartPaymentLoadAction });
-        expected = cold('--b', { b: cartPaymentLoadFailureAction });
-      });
-
       it('should dispatch a CartPaymentLoadFailure action', () => {
-        expect(effects.get$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load cart payment' };
+          const response = helpers.cold<any>('#', {}, error);
+          driverGetSpy.and.returnValue(response);
+          const cartPaymentLoadFailureAction = new DaffCartPaymentLoadFailure([error]);
+          actions$ = helpers.hot('--a', { a: cartPaymentLoadAction });
+          helpers.expectObservable(effects.get$).toBe('--b', { b: cartPaymentLoadFailureAction });
+        });
       });
     });
   });
 
   describe('when CartPaymentUpdateAction is triggered', () => {
-    let expected;
     let cartPaymentUpdateAction;
     const method = 'updatedMethod';
 
@@ -142,36 +133,31 @@ describe('@daffodil/cart/state | DaffCartPaymentEffects', () => {
     });
 
     describe('and the call to CartPaymentService is successful', () => {
-      beforeEach(() => {
-        driverUpdateSpy.and.returnValue(of(mockCart));
-        const cartPaymentUpdateSuccessAction = new DaffCartPaymentUpdateSuccess(mockCart);
-        actions$ = hot('--a', { a: cartPaymentUpdateAction });
-        expected = cold('--b', { b: cartPaymentUpdateSuccessAction });
-      });
-
       it('should dispatch a CartPaymentUpdateSuccess action', () => {
-        expect(effects.update$).toBeObservable(expected);
+        runMarbles(helpers => {
+          driverUpdateSpy.and.returnValue(of(mockCart));
+          const cartPaymentUpdateSuccessAction = new DaffCartPaymentUpdateSuccess(mockCart);
+          actions$ = helpers.hot('--a', { a: cartPaymentUpdateAction });
+          helpers.expectObservable(effects.update$).toBe('--b', { b: cartPaymentUpdateSuccessAction });
+        });
       });
     });
 
     describe('and the call to CartPaymentService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart payment' };
-        const response = cold('#', {}, error);
-        driverUpdateSpy.and.returnValue(response);
-        const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateFailure([error]);
-        actions$ = hot('--a', { a: cartPaymentUpdateAction });
-        expected = cold('--b', { b: cartPaymentUpdateFailureAction });
-      });
-
       it('should dispatch a CartPaymentUpdateFailure action', () => {
-        expect(effects.update$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart payment' };
+          const response = helpers.cold<any>('#', {}, error);
+          driverUpdateSpy.and.returnValue(response);
+          const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateFailure([error]);
+          actions$ = helpers.hot('--a', { a: cartPaymentUpdateAction });
+          helpers.expectObservable(effects.update$).toBe('--b', { b: cartPaymentUpdateFailureAction });
+        });
       });
     });
   });
 
   describe('when CartPaymentUpdateWithBillingAction is triggered', () => {
-    let expected;
     let cartPaymentUpdateAction;
     const method = 'updatedMethod';
 
@@ -181,63 +167,54 @@ describe('@daffodil/cart/state | DaffCartPaymentEffects', () => {
     });
 
     describe('and the call to CartPaymentService is successful', () => {
-      beforeEach(() => {
-        driverUpdateSpy.and.returnValue(of(mockCart));
-        const cartPaymentUpdateSuccessAction = new DaffCartPaymentUpdateWithBillingSuccess(mockCart);
-        actions$ = hot('--a', { a: cartPaymentUpdateAction });
-        expected = cold('--b', { b: cartPaymentUpdateSuccessAction });
-      });
-
       it('should dispatch a CartPaymentUpdateWithBillingSuccess action', () => {
-        expect(effects.updateWithBilling$).toBeObservable(expected);
+        runMarbles(helpers => {
+          driverUpdateSpy.and.returnValue(of(mockCart));
+          const cartPaymentUpdateSuccessAction = new DaffCartPaymentUpdateWithBillingSuccess(mockCart);
+          actions$ = helpers.hot('--a', { a: cartPaymentUpdateAction });
+          helpers.expectObservable(effects.updateWithBilling$).toBe('--b', { b: cartPaymentUpdateSuccessAction });
+        });
       });
     });
 
     describe('and the call to CartPaymentService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart payment and billing address' };
-        const response = cold('#', {}, error);
-        driverUpdateSpy.and.returnValue(response);
-        const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateWithBillingFailure([error]);
-        actions$ = hot('--a', { a: cartPaymentUpdateAction });
-        expected = cold('--b', { b: cartPaymentUpdateFailureAction });
-      });
-
       it('should dispatch a CartPaymentUpdateWithBillingFailure action', () => {
-        expect(effects.updateWithBilling$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to update cart payment and billing address' };
+          const response = helpers.cold<any>('#', {}, error);
+          driverUpdateSpy.and.returnValue(response);
+          const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateWithBillingFailure([error]);
+          actions$ = helpers.hot('--a', { a: cartPaymentUpdateAction });
+          helpers.expectObservable(effects.updateWithBilling$).toBe('--b', { b: cartPaymentUpdateFailureAction });
+        });
       });
     });
   });
 
   describe('when CartPaymentRemoveAction is triggered', () => {
-    let expected;
     const cartPaymentRemoveAction = new DaffCartPaymentRemove();
 
     describe('and the clear call to driver is successful', () => {
-      beforeEach(() => {
-        driverRemoveSpy.and.returnValue(of(undefined));
-        const cartPaymentRemoveSuccessAction = new DaffCartPaymentRemoveSuccess();
-        actions$ = hot('--a', { a: cartPaymentRemoveAction });
-        expected = cold('--b', { b: cartPaymentRemoveSuccessAction });
-      });
-
       it('should return a DaffCartPaymentRemoveSucess action', () => {
-        expect(effects.remove$).toBeObservable(expected);
+        runMarbles(helpers => {
+          driverRemoveSpy.and.returnValue(of(undefined));
+          const cartPaymentRemoveSuccessAction = new DaffCartPaymentRemoveSuccess();
+          actions$ = helpers.hot('--a', { a: cartPaymentRemoveAction });
+          helpers.expectObservable(effects.remove$).toBe('--b', { b: cartPaymentRemoveSuccessAction });
+        });
       });
     });
 
     describe('and the call to CartPaymentService fails', () => {
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove the cart payment' };
-        const response = cold('#', {}, error);
-        driverRemoveSpy.and.returnValue(response);
-        const cartPaymentRemoveFailureAction = new DaffCartPaymentRemoveFailure([error]);
-        actions$ = hot('--a', { a: cartPaymentRemoveAction });
-        expected = cold('--b', { b: cartPaymentRemoveFailureAction });
-      });
-
       it('should return a DaffCartPaymentRemoveFailure action', () => {
-        expect(effects.remove$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to remove the cart payment' };
+          const response = helpers.cold<any>('#', {}, error);
+          driverRemoveSpy.and.returnValue(response);
+          const cartPaymentRemoveFailureAction = new DaffCartPaymentRemoveFailure([error]);
+          actions$ = helpers.hot('--a', { a: cartPaymentRemoveAction });
+          helpers.expectObservable(effects.remove$).toBe('--b', { b: cartPaymentRemoveFailureAction });
+        });
       });
     });
   });

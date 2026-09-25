@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCustomerPaymentFactory } from '@daffodil/customer-payment/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCustomerPaymentTestingDriver } from './payment.service';
 
@@ -26,36 +26,41 @@ describe('@daffodil/customer-payment/driver/testing | DaffCustomerPaymentTesting
 
   describe('list', () => {
     it('should return a DaffCustomerPayment', () => {
-      const expected = cold('(a|)', { a: jasmine.anything() });
-      expect(service.list()).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.list()).toBe('(a|)', { a: jasmine.anything() });
+      });
     });
   });
 
   describe('get', () => {
     it('should return a DaffCustomerPayment', () => {
-      const expected = cold('(a|)', { a: jasmine.anything() });
-      expect(service.get('id')).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.get('id')).toBe('(a|)', { a: jasmine.anything() });
+      });
     });
   });
 
   describe('update', () => {
     it('should return a DaffCustomerPayment', () => {
-      const expected = cold('(a|)', { a: jasmine.anything() });
-      expect(service.update(paymentFactory.create())).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.update(paymentFactory.create())).toBe('(a|)', { a: jasmine.anything() });
+      });
     });
   });
 
   describe('add', () => {
     it('should return', () => {
-      const expected = cold('(a|)', { a: jasmine.anything() });
-      expect(service.add({ kind: 'kind' })).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.add({ kind: 'kind' })).toBe('(a|)', { a: jasmine.anything() });
+      });
     });
   });
 
   describe('delete', () => {
     it('should return a DaffCustomerPayment', () => {
-      const expected = cold('(a|)', { a: jasmine.anything() });
-      expect(service.delete('id')).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.delete('id')).toBe('(a|)', { a: jasmine.anything() });
+      });
     });
   });
 });

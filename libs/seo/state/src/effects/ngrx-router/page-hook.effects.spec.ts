@@ -13,12 +13,9 @@ import {
   ROUTER_NAVIGATED,
 } from '@ngrx/router-store';
 import { Action } from '@ngrx/store';
-import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffSeoRestoreableServiceInterface } from '@daffodil/seo';
 import { DaffSeoUpdateActionPair } from '@daffodil/seo/state';
 
@@ -112,7 +109,6 @@ describe('@daffodil/seo/state | DaffSeoPageHookEffects', () => {
   });
 
   describe('when a provided action type is dispatched', () => {
-    let expected;
     let providedAction;
 
     beforeEach(() => {
@@ -123,90 +119,86 @@ describe('@daffodil/seo/state | DaffSeoPageHookEffects', () => {
           url2: 'url2',
         },
       };
-
-      actions$ = hot('--a', { a: providedAction });
-      expected = cold('---');
     });
 
     it('should upsert all of the truthy info', () => {
-      expect(effects.getData$).toBeObservable(expected);
+      runMarbles(helpers => {
+        actions$ = helpers.hot('--a', { a: providedAction });
+        helpers.expectObservable(effects.getData$).toBe('---');
+      });
       expect(upsertSpy).toHaveBeenCalledWith('url1');
       expect(upsertSpy).toHaveBeenCalledWith('url2');
     });
   });
 
   describe('when ROUTER_REQUEST is triggered', () => {
-    let expected;
     let navigationStartAction: Action;
 
     beforeEach(() => {
       navigationStartAction = {
         type: ROUTER_REQUEST,
       };
-
-      actions$ = hot('--a', { a: navigationStartAction });
-      expected = cold('---');
     });
 
     it('should remove the info', () => {
-      expect(effects.remove$).toBeObservable(expected);
+      runMarbles(helpers => {
+        actions$ = helpers.hot('--a', { a: navigationStartAction });
+        helpers.expectObservable(effects.remove$).toBe('---');
+      });
       expect(clearSpy).toHaveBeenCalledOnceWith();
     });
   });
 
   describe('when ROUTER_CANCEL is triggered', () => {
-    let expected;
     let navigationCancelAction: Action;
 
     beforeEach(() => {
       navigationCancelAction = {
         type: ROUTER_CANCEL,
       };
-
-      actions$ = hot('--a', { a: navigationCancelAction });
     });
 
     it('should restore the info', () => {
-      expected = cold('---');
-      expect(effects.restore$).toBeObservable(expected);
+      runMarbles(helpers => {
+        actions$ = helpers.hot('--a', { a: navigationCancelAction });
+        helpers.expectObservable(effects.restore$).toBe('---');
+      });
       expect(restoreSpy).toHaveBeenCalledOnceWith();
     });
   });
 
   describe('when ROUTER_ERROR is triggered', () => {
-    let expected;
     let navigationCancelAction: Action;
 
     beforeEach(() => {
       navigationCancelAction = {
         type: ROUTER_ERROR,
       };
-
-      actions$ = hot('--a', { a: navigationCancelAction });
     });
 
     it('should restore the info', () => {
-      expected = cold('---');
-      expect(effects.restore$).toBeObservable(expected);
+      runMarbles(helpers => {
+        actions$ = helpers.hot('--a', { a: navigationCancelAction });
+        helpers.expectObservable(effects.restore$).toBe('---');
+      });
       expect(restoreSpy).toHaveBeenCalledOnceWith();
     });
   });
 
   describe('when ROUTER_NAVIGATED is triggered', () => {
-    let expected;
     let navigationStartAction: Action;
 
     beforeEach(() => {
       navigationStartAction = {
         type: ROUTER_NAVIGATED,
       };
-
-      actions$ = hot('--a', { a: navigationStartAction });
-      expected = cold('---');
     });
 
     it('should empty the restore cache', () => {
-      expect(effects.emptyRestoreCache$).toBeObservable(expected);
+      runMarbles(helpers => {
+        actions$ = helpers.hot('--a', { a: navigationStartAction });
+        helpers.expectObservable(effects.emptyRestoreCache$).toBe('---');
+      });
       expect(emptySpy).toHaveBeenCalledOnceWith();
     });
   });

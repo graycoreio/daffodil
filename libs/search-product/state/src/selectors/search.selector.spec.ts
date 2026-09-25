@@ -5,8 +5,8 @@ import {
   select,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffProductGridLoadSuccess,
   daffProductReducers,
@@ -63,9 +63,10 @@ describe('@daffodil/search-product/state | daffSearchProductCreateSelectors', ()
   describe('selectProductResultIds', () => {
     it('should initially be an empty array', () => {
       const selector = store.pipe(select(selectProductResultIds));
-      const expected = cold('a', { a: []});
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
 
     describe('when search results have been loaded', () => {
@@ -78,9 +79,10 @@ describe('@daffodil/search-product/state | daffSearchProductCreateSelectors', ()
 
       it('should select the product search result IDs', () => {
         const selector = store.pipe(select(selectProductResultIds));
-        const expected = cold('a', { a: mockSearchResults.map(({ id }) => id) });
 
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: mockSearchResults.map(({ id }) => id) });
+        });
       });
     });
   });
@@ -88,9 +90,10 @@ describe('@daffodil/search-product/state | daffSearchProductCreateSelectors', ()
   describe('selectProductResults', () => {
     it('should initially be an empty array', () => {
       const selector = store.pipe(select(selectProductResults));
-      const expected = cold('a', { a: []});
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
 
     describe('when search results have been loaded', () => {
@@ -104,9 +107,10 @@ describe('@daffodil/search-product/state | daffSearchProductCreateSelectors', ()
 
       it('should select the product search results', () => {
         const selector = store.pipe(select(selectProductResults));
-        const expected = cold('a', { a: mockSearchResults });
 
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: mockSearchResults });
+        });
       });
     });
   });

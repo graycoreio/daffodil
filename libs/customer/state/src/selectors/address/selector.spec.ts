@@ -5,7 +5,6 @@ import {
   StoreModule,
   combineReducers,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCustomerAddress } from '@daffodil/customer';
 import {
@@ -18,6 +17,7 @@ import {
   daffCustomerAddressEntitiesReducer,
 } from '@daffodil/customer/state';
 import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { daffCustomerAddressGetSelectors } from './selector';
 
@@ -58,10 +58,10 @@ describe('@daffodil/customer/state | daffCustomerAddressGetSelectors', () => {
   describe('selectAddress', () => {
     describe('before the address is loaded', () => {
       it('should return nully', () => {
-        const selector = store.pipe(select(selectAddress(mockCustomerAddress.id)));
-        const expected = cold('a', { a: jasmine.falsy() });
-
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          const selector = store.pipe(select(selectAddress(mockCustomerAddress.id)));
+          expectObservable(selector).toBe('a', { a: jasmine.falsy() });
+        });
       });
     });
 
@@ -71,10 +71,10 @@ describe('@daffodil/customer/state | daffCustomerAddressGetSelectors', () => {
       });
 
       it('should select the address', () => {
-        const selector = store.pipe(select(selectAddress(mockCustomerAddress.id)));
-        const expected = cold('a', { a: jasmine.objectContaining(mockCustomerAddress) });
-
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          const selector = store.pipe(select(selectAddress(mockCustomerAddress.id)));
+          expectObservable(selector).toBe('a', { a: jasmine.objectContaining(mockCustomerAddress) });
+        });
       });
     });
   });
@@ -82,10 +82,10 @@ describe('@daffodil/customer/state | daffCustomerAddressGetSelectors', () => {
   describe('selectAddresses', () => {
     describe('before the address is loaded', () => {
       it('should return an empty array', () => {
-        const selector = store.pipe(select(selectAddresses));
-        const expected = cold('a', { a: []});
-
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          const selector = store.pipe(select(selectAddresses));
+          expectObservable(selector).toBe('a', { a: []});
+        });
       });
     });
 
@@ -95,10 +95,10 @@ describe('@daffodil/customer/state | daffCustomerAddressGetSelectors', () => {
       });
 
       it('should select the addresses', () => {
-        const selector = store.pipe(select(selectAddresses));
-        const expected = cold('a', { a: [jasmine.objectContaining(mockCustomerAddress)]});
-
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          const selector = store.pipe(select(selectAddresses));
+          expectObservable(selector).toBe('a', { a: [jasmine.objectContaining(mockCustomerAddress)]});
+        });
       });
     });
   });

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { TestScheduler } from 'rxjs/testing';
 
 import { DaffExternalRouterNotFoundError } from '@daffodil/external-router';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffExternalRouterDriverTestingConfig } from './config';
 import { DaffExternalRouterDriverTestingModule } from './testing.module';
@@ -9,7 +9,6 @@ import { DaffExternalRouterTestingDriver } from './testing.service';
 
 describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDriver', () => {
   let service: DaffExternalRouterTestingDriver;
-  let scheduler: TestScheduler;
 
   const setupTest = (
     configuration: DaffExternalRouterDriverTestingConfig = {},
@@ -19,9 +18,6 @@ describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDr
     });
     service = TestBed.inject(DaffExternalRouterTestingDriver);
 
-    scheduler = new TestScheduler((actual, expected) => {
-      expect(actual).toEqual(expected);
-    });
   };
 
   it('should be created', () => {
@@ -35,7 +31,7 @@ describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDr
       [url]: 'PRODUCT',
     });
 
-    scheduler.run(helpers => {
+    runMarbles(helpers => {
       const { expectObservable } = helpers;
       const expected = '(a|)';
 
@@ -47,7 +43,7 @@ describe('@daffodil/external-router/driver/testing | DaffExternalRouterTestingDr
 
   it('should throw a not found error if the route lookup fails', () => {
     setupTest();
-    scheduler.run(helpers => {
+    runMarbles(helpers => {
       const { expectObservable } = helpers;
       const expected = '#';
 

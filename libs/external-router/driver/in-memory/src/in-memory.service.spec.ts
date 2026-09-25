@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { TestScheduler } from 'rxjs/testing';
 
 import { daffUriTruncateLeadingSlash } from '@daffodil/core/routing';
 import { DaffExternalRouterNotFoundError } from '@daffodil/external-router';
@@ -8,12 +7,12 @@ import {
   DaffExternalRouterDriverInMemoryConfig,
   provideDaffExternalRouterInMemoryDriver,
 } from '@daffodil/external-router/driver/in-memory';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffExternalRouterInMemoryDriver } from './in-memory.service';
 
 describe('@daffodil/external-router/driver/in-memory | DaffExternalRouterInMemoryDriver', () => {
   let service: DaffExternalRouterInMemoryDriver;
-  let scheduler: TestScheduler;
 
   const setupTest = (
     configuration?: DaffExternalRouterDriverInMemoryConfig,
@@ -26,9 +25,6 @@ describe('@daffodil/external-router/driver/in-memory | DaffExternalRouterInMemor
 
     service = TestBed.inject(DaffExternalRouterInMemoryDriver);
 
-    scheduler = new TestScheduler((actual, expected) => {
-      expect(actual).toEqual(expected);
-    });
   };
 
   it('should be created', () => {
@@ -48,7 +44,7 @@ describe('@daffodil/external-router/driver/in-memory | DaffExternalRouterInMemor
         } : DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION,
     });
 
-    scheduler.run(helpers => {
+    runMarbles(helpers => {
       const { expectObservable } = helpers;
       const expected = '(a|)';
 
@@ -70,7 +66,7 @@ describe('@daffodil/external-router/driver/in-memory | DaffExternalRouterInMemor
         } : DAFF_EXTERNAL_ROUTER_NOT_FOUND_RESOLUTION,
     });
 
-    scheduler.run(helpers => {
+    runMarbles(helpers => {
       const { expectObservable } = helpers;
       const expected = '#';
 

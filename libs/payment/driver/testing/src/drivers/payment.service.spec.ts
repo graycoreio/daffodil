@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffPaymentRequestFactory } from '@daffodil/payment/testing';
 
 import { DaffPaymentTestingDriver } from './payment.service';
@@ -26,8 +26,9 @@ describe('@daffodil/driver/testing | DaffPaymentTestingDriver', () => {
 
   describe('generateToken', () => {
     it('should return a DaffPaymentResponse', () => {
-      const expected = cold('(a|)', { a: jasmine.notEmpty() });
-      expect(service.generateToken(requestFactory.create())).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.generateToken(requestFactory.create())).toBe('(a|)', { a: jasmine.notEmpty() });
+      });
     });
   });
 });

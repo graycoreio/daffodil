@@ -5,8 +5,8 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffProductLoadSuccess,
   daffProductReducers,
@@ -70,15 +70,15 @@ describe('Configurable Product Selectors | integration tests', () => {
     it(`should include all attribute values for the selected attribute code;
 				should include only attributes values for the remaining attribute codes that match variants having the selected attribute value`, () => {
       const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
-      const expected = cold('a', {
-        a: {
-          color: ['0', '1'],
-          size: ['1', '0'],
-          material: ['0', '2', '1'],
-        },
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', {
+          a: {
+            color: ['0', '1'],
+            size: ['1', '0'],
+            material: ['0', '2', '1'],
+          },
+        });
       });
-
-      expect(selector).toBeObservable(expected);
     });
   });
 
@@ -105,15 +105,15 @@ describe('Configurable Product Selectors | integration tests', () => {
 				should include only attribute values for the second selected attribute code that match variants having the first selected attribute value;
 				should include only attribute values for the remaining attribute codes that match variants having both the first and second selected attribute values`, () => {
       const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
-      const expected = cold('a', {
-        a: {
-          color: ['0', '1', '2'],
-          size: ['0', '1', '2'],
-          material: ['0', '2'],
-        },
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', {
+          a: {
+            color: ['0', '1', '2'],
+            size: ['0', '1', '2'],
+            material: ['0', '2'],
+          },
+        });
       });
-
-      expect(selector).toBeObservable(expected);
     });
 
     describe('and a different first selection (color) is chosen', () => {
@@ -128,13 +128,13 @@ describe('Configurable Product Selectors | integration tests', () => {
 
       it('should clear the second selection (size)', () => {
         const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary(stubConfigurableProduct.id)));
-        const expected = cold('a', {
-          a: {
-            color: '1',
-          },
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', {
+            a: {
+              color: '1',
+            },
+          });
         });
-
-        expect(selector).toBeObservable(expected);
       });
     });
 
@@ -150,14 +150,14 @@ describe('Configurable Product Selectors | integration tests', () => {
 
       it('should not clear the first selection (color)', () => {
         const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary(stubConfigurableProduct.id)));
-        const expected = cold('a', {
-          a: {
-            color: '0',
-            size: '0',
-          },
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', {
+            a: {
+              color: '0',
+              size: '0',
+            },
+          });
         });
-
-        expect(selector).toBeObservable(expected);
       });
     });
   });
@@ -168,14 +168,14 @@ describe('Configurable Product Selectors | integration tests', () => {
       products: [stubConfigurableProduct],
     }));
     const selector = store.pipe(select(selectSelectableConfigurableProductAttributes(stubConfigurableProduct.id)));
-    const expected = cold('a', {
-      a: {
-        color: ['0', '1', '2'],
-        size: ['0', '1', '2'],
-        material: ['0', '2', '1'],
-      },
+    runMarbles(({ expectObservable }) => {
+      expectObservable(selector).toBe('a', {
+        a: {
+          color: ['0', '1', '2'],
+          size: ['0', '1', '2'],
+          material: ['0', '2', '1'],
+        },
+      });
     });
-
-    expect(selector).toBeObservable(expected);
   });
 });

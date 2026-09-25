@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
+
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffTestingSearchDriver } from './search.service';
 
@@ -22,15 +23,17 @@ describe('@daffodil/driver/testing | DaffTestingSearchDriver', () => {
 
   describe('search', () => {
     it('should return a DaffSearchResultCollection', () => {
-      const expected = cold('(a|)', { a: jasmine.notEmpty() });
-      expect(service.search('query')).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.search('query')).toBe('(a|)', { a: jasmine.notEmpty() });
+      });
     });
   });
 
   describe('incremental', () => {
     it('should return a DaffSearchResultCollection', () => {
-      const expected = cold('(a|)', { a: jasmine.notEmpty() });
-      expect(service.incremental('query')).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(service.incremental('query')).toBe('(a|)', { a: jasmine.notEmpty() });
+      });
     });
   });
 });

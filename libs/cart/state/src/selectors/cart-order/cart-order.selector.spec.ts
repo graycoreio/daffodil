@@ -5,7 +5,6 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
 import {
@@ -27,6 +26,7 @@ import {
   daffComposeReducers,
   daffIdentityReducer,
 } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { getCartOrderSelectors } from './cart-order.selector';
 
@@ -91,9 +91,9 @@ describe('@daffodil/cart/state | getCartOrderSelectors', () => {
         errors: [],
       };
       const selector = store.pipe(select(selectCartOrderState));
-      const expected = cold('a', { a: expectedOrderState });
-
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: expectedOrderState });
+      });
     });
   });
 
@@ -105,18 +105,18 @@ describe('@daffodil/cart/state | getCartOrderSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartOrderLoading));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
     describe('when there is not a cart order operation in progress', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectCartOrderLoading));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
   });
@@ -129,18 +129,18 @@ describe('@daffodil/cart/state | getCartOrderSelectors', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectCartOrderMutating));
-        const expected = cold('a', { a: true });
-
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
 
     describe('when there is not a place order operation in progress', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectCartOrderMutating));
-        const expected = cold('a', { a: false });
-
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: false });
+        });
       });
     });
   });
@@ -148,46 +148,49 @@ describe('@daffodil/cart/state | getCartOrderSelectors', () => {
   describe('selectCartOrderErrors', () => {
     it('selects the errors associated with place order', () => {
       const selector = store.pipe(select(selectCartOrderErrors));
-      const expected = cold('a', { a: []});
-
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: []});
+      });
     });
   });
 
   describe('selectCartOrderValue', () => {
     it('selects the order object', () => {
       const selector = store.pipe(select(selectCartOrderValue));
-      const expected = cold('a', { a: jasmine.objectContaining({
-        orderId,
-        cartId: cart.id,
-      }) });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: jasmine.objectContaining({
+          orderId,
+          cartId: cart.id,
+        }) });
+      });
     });
   });
 
   describe('selectCartOrderId', () => {
     it('selects the ID of the order object', () => {
       const selector = store.pipe(select(selectCartOrderId));
-      const expected = cold('a', { a: orderId });
-
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: orderId });
+      });
     });
   });
 
   describe('selectCartOrderCartId', () => {
     it('selects the cart ID of the order object', () => {
       const selector = store.pipe(select(selectCartOrderCartId));
-      const expected = cold('a', { a: cart.id });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: cart.id });
+      });
     });
   });
 
   describe('selectHasOrderResult', () => {
     it('selects the order object', () => {
       const selector = store.pipe(select(selectHasOrderResult));
-      const expected = cold('a', { a: true });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: true });
+      });
     });
   });
 });

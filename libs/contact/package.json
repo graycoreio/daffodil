@@ -26,7 +26,8 @@
   },
   "devDependencies": {
     "@daffodil/driver": "0.0.0-PLACEHOLDER",
-    "@daffodil/core": "0.0.0-PLACEHOLDER"
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/jasmine": "0.0.0-PLACEHOLDER"
   },
   "peerDependencies": {
     "@angular/common": "0.0.0-PLACEHOLDER",

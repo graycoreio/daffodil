@@ -5,7 +5,6 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffAuthResetPasswordInfo,
@@ -34,6 +33,7 @@ import {
   DaffStorageServiceError,
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffAuthResetPasswordEffects } from './reset-password.effects';
 
@@ -154,10 +154,7 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordEffects', () => {
       ];
 
       testStates.forEach((el) => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
-        testScheduler.run(helpers => {
+        runMarbles(helpers => {
           const mockAuthResetPasswordAction = new DaffResetPassword(mockResetInfo, el.isAutoLoginTrue);
           actions$ = helpers.hot('--a', { a: mockAuthResetPasswordAction });
           if (el.didPasswordResetSucceed) {
@@ -173,9 +170,9 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordEffects', () => {
             }
           } else {
             if (el.isAutoLoginTrue) {
-              daffResetPasswordDriver.resetPassword.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+              daffResetPasswordDriver.resetPassword.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
             } else {
-              daffResetPasswordDriver.resetPasswordOnly.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+              daffResetPasswordDriver.resetPasswordOnly.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
             }
           }
           if (el.didPasswordResetSucceed && el.whatErrorWasThrown){
@@ -206,15 +203,12 @@ describe('@daffodil/auth/state | DaffAuthResetPasswordEffects', () => {
       ];
 
       testStates.forEach((el) => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
-        testScheduler.run(helpers => {
+        runMarbles(helpers => {
           const mockAuthSendResetEmailAction = new DaffSendResetEmail(email);
           actions$ = helpers.hot('--a', { a: mockAuthSendResetEmailAction });
 
           if(el.whatErrorWasThrown) {
-            daffResetPasswordDriver.sendResetEmail.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+            daffResetPasswordDriver.sendResetEmail.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
           } else {
             daffResetPasswordDriver.sendResetEmail.and.returnValue(of(undefined));
           }
