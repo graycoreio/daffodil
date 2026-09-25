@@ -1,15 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import {
-  hot,
-  cold,
-} from 'jasmine-marbles';
-import {
   Observable,
   of,
 } from 'rxjs';
 
 import { DaffStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffProduct } from '@daffodil/product';
 import {
   DaffProductDriver,
@@ -62,47 +59,41 @@ describe('DaffProductPageEffects', () => {
 
   describe('when ProductPageLoadAction is triggered', () => {
 
-    let expected;
     const productPageLoadAction = new DaffProductPageLoad(productId);
 
     describe('and the call to ProductService is successful', () => {
 
-      beforeEach(() => {
-        const response = {
-          id: mockProduct.id,
-          products: [mockProduct],
-        };
-        spyOn(daffProductDriver, 'get').and.returnValue(of(response));
-        const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
-        actions$ = hot('--a', { a: productPageLoadAction });
-        expected = cold('--b', { b: productLoadSuccessAction });
-      });
-
       it('should dispatch a ProductLoadSuccess action', () => {
-        expect(effects.load$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const response = {
+            id: mockProduct.id,
+            products: [mockProduct],
+          };
+          spyOn(daffProductDriver, 'get').and.returnValue(of(response));
+          const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
+          actions$ = helpers.hot('--a', { a: productPageLoadAction });
+          helpers.expectObservable(effects.load$).toBe('--b', { b: productLoadSuccessAction });
+        });
       });
     });
 
     describe('and the call to ProductService fails', () => {
 
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load product' };
-        const response = cold('#', {}, error);
-        spyOn(daffProductDriver, 'get').and.returnValue(response);
-        const productLoadFailureAction = new DaffProductPageLoadFailure(error);
-        actions$ = hot('--a', { a: productPageLoadAction });
-        expected = cold('--b', { b: productLoadFailureAction });
-      });
-
       it('should dispatch a ProductLoadFailure action', () => {
-        expect(effects.load$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load product' };
+          const response = helpers.cold<any>('#', {}, error);
+          spyOn(daffProductDriver, 'get').and.returnValue(response);
+          const productLoadFailureAction = new DaffProductPageLoadFailure(error);
+          actions$ = helpers.hot('--a', { a: productPageLoadAction });
+          helpers.expectObservable(effects.load$).toBe('--b', { b: productLoadFailureAction });
+        });
       });
     });
   });
 
   describe('when ProductPageLoadByUrlAction is triggered', () => {
 
-    let expected;
     let productPageLoadAction: DaffProductPageLoadByUrl;
 
     beforeEach(() => {
@@ -111,35 +102,31 @@ describe('DaffProductPageEffects', () => {
 
     describe('and the call to ProductService is successful', () => {
 
-      beforeEach(() => {
-        const response = {
-          id: mockProduct.id,
-          products: [mockProduct],
-        };
-        spyOn(daffProductDriver, 'getByUrl').and.returnValue(of(response));
-        const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
-        actions$ = hot('--a', { a: productPageLoadAction });
-        expected = cold('--b', { b: productLoadSuccessAction });
-      });
-
       it('should dispatch a ProductLoadSuccess action', () => {
-        expect(effects.loadByUrl$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const response = {
+            id: mockProduct.id,
+            products: [mockProduct],
+          };
+          spyOn(daffProductDriver, 'getByUrl').and.returnValue(of(response));
+          const productLoadSuccessAction = new DaffProductPageLoadSuccess(response);
+          actions$ = helpers.hot('--a', { a: productPageLoadAction });
+          helpers.expectObservable(effects.loadByUrl$).toBe('--b', { b: productLoadSuccessAction });
+        });
       });
     });
 
     describe('and the call to ProductService fails', () => {
 
-      beforeEach(() => {
-        const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load product' };
-        const response = cold('#', {}, error);
-        spyOn(daffProductDriver, 'getByUrl').and.returnValue(response);
-        const productLoadFailureAction = new DaffProductPageLoadFailure(error);
-        actions$ = hot('--a', { a: productPageLoadAction });
-        expected = cold('--b', { b: productLoadFailureAction });
-      });
-
       it('should dispatch a ProductLoadFailure action', () => {
-        expect(effects.loadByUrl$).toBeObservable(expected);
+        runMarbles(helpers => {
+          const error: DaffStateError = { code: 'code', recoverable: false, message: 'Failed to load product' };
+          const response = helpers.cold<any>('#', {}, error);
+          spyOn(daffProductDriver, 'getByUrl').and.returnValue(response);
+          const productLoadFailureAction = new DaffProductPageLoadFailure(error);
+          actions$ = helpers.hot('--a', { a: productPageLoadAction });
+          helpers.expectObservable(effects.loadByUrl$).toBe('--b', { b: productLoadFailureAction });
+        });
       });
     });
   });

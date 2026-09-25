@@ -13,7 +13,6 @@ import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffSortDirectionEnum ,
@@ -41,6 +40,7 @@ import {
   DaffFilterRequestFactory,
   DaffFilterToggleRequestFactory,
 } from '@daffodil/core/testing';
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffProductCollection } from '@daffodil/product';
 import { DaffProductGetQueryParamsFromRequest } from '@daffodil/product/routing';
 import { DaffProductStateTestingModule } from '@daffodil/product/state/testing';
@@ -114,10 +114,6 @@ describe('@daffodil/product/routing | DaffProductRoutingCollectionEffects', () =
 
   const testDriverSuccess = (cb: () => Action) => {
     it('should set the query params to the product collection request', fakeAsync(() => {
-      const testScheduler = new TestScheduler((actual, expected) => {
-        expect(actual).toEqual(expected);
-      });
-
       const stubCollectionMetadata = productCollectionMetadataFactory.create({
         filters: daffFilterArrayToDict(filterFactory.createMany(3)),
       });
@@ -133,7 +129,7 @@ describe('@daffodil/product/routing | DaffProductRoutingCollectionEffects', () =
 
       facade.metadata$.next(stubCollectionMetadata);
 
-      testScheduler.run(({ hot, expectObservable }) => {
+      runMarbles(({ hot, expectObservable }) => {
         actions$ = hot('--a', { a: cb() });
 
         const expectedMarble = '---';
