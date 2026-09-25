@@ -5,7 +5,6 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCart } from '@daffodil/cart';
 import {
@@ -16,6 +15,7 @@ import {
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import { MockDaffCollectionFacade } from '@daffodil/core/state/testing';
+import { createTestScheduler } from '@daffodil/jasmine';
 import { DaffOrderCollection } from '@daffodil/order';
 import {
   DaffOrderServiceInterface,
@@ -56,9 +56,7 @@ describe('@daffodil/order/state | DaffOrderCollectionEffects', () => {
   const testDriverSuccess = (cb: () => Action) => {
     describe('throttling the request', () => {
       it('should call immediately, but throttle subsequent events within a specified timeframe, firing off the last event after throttle', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
         const request = daffCollectionBuildRequestFromMetadata(mockOrderCollection.metadata);
 
         driverSpy.and.returnValue(of(mockOrderCollection));
@@ -84,9 +82,7 @@ describe('@daffodil/order/state | DaffOrderCollectionEffects', () => {
 
     describe('and the driver call succeeds', () => {
       it('should call the driver with filter requests merged with state', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
         const request = daffCollectionBuildRequestFromMetadata(mockOrderCollection.metadata);
 
         driverSpy.and.returnValue(of(mockOrderCollection));
@@ -114,9 +110,7 @@ describe('@daffodil/order/state | DaffOrderCollectionEffects', () => {
   const testDriverFailure = (cb: () => Action) => {
     describe('and the driver call fails', () => {
       it('should emit DaffCategoryPageLoadFailure with the transformed error', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
         const request = daffCollectionBuildRequestFromMetadata(mockOrderCollection.metadata);
 
         collectionFacade.metadata$.next(mockOrderCollection.metadata);
