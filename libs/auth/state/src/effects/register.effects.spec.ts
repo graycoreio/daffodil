@@ -5,7 +5,6 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffLoginInfo,
@@ -34,6 +33,7 @@ import {
   DaffStorageServiceError,
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffAuthRegisterEffects } from './register.effects';
 
@@ -154,11 +154,7 @@ describe('@daffodil/auth/state | DaffAuthRegisterEffects', () => {
       ];
 
       testStates.forEach((el) => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
-
-        testScheduler.run(helpers => {
+        runMarbles(helpers => {
           const mockAuthRegisterAction = new DaffAuthRegister(mockRegistration, el.isAutoLoginTrue);
           actions$ = helpers.hot('--a', { a: mockAuthRegisterAction });
 
@@ -175,9 +171,9 @@ describe('@daffodil/auth/state | DaffAuthRegisterEffects', () => {
             }
           } else {
             if (el.isAutoLoginTrue) {
-              daffRegisterDriver.register.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+              daffRegisterDriver.register.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
             } else {
-              daffRegisterDriver.registerOnly.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+              daffRegisterDriver.registerOnly.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
             }
           }
 

@@ -4,7 +4,6 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffLoginInfo,
@@ -21,6 +20,7 @@ import {
   DaffAccountRegistrationFactory,
 } from '@daffodil/auth/testing';
 import { DaffStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffAuthLoginFacade } from './facade';
 import { DaffAuthLogin } from '../../public_api';
@@ -79,21 +79,24 @@ describe('@daffodil/auth/state | DaffAuthLoginFacade', () => {
 
   describe('loading$', () => {
     it('should be false if the login is not loading', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: false });
+      });
     });
 
     it('should be true if the login is loading', () => {
-      const expected = cold('a', { a: true });
       store.dispatch(new DaffAuthLogin(mockLoginInfo));
-      expect(facade.loading$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.loading$).toBe('a', { a: true });
+      });
     });
   });
 
   describe('errors$', () => {
     it('should initially be an empty array', () => {
-      const expected = cold('a', { a: []});
-      expect(facade.errors$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: [] });
+      });
     });
 
     it('should contain an error upon a failed login', () => {
@@ -101,9 +104,10 @@ describe('@daffodil/auth/state | DaffAuthLoginFacade', () => {
         code: 'error code',
         message: 'error message',
       };
-      const expected = cold('a', { a: [error]});
       store.dispatch(new DaffAuthLoginFailure(error));
-      expect(facade.errors$).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(facade.errors$).toBe('a', { a: [error] });
+      });
     });
   });
 });

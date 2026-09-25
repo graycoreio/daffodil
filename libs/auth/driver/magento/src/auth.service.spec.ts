@@ -4,7 +4,6 @@ import {
   ApolloTestingController,
 } from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
-import { cold } from 'jasmine-marbles';
 import { catchError } from 'rxjs/operators';
 
 import {
@@ -21,6 +20,7 @@ import {
   DaffAccountRegistrationFactory,
   DaffAuthTokenFactory,
 } from '@daffodil/auth/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffMagentoAuthService } from './auth.service';
 
@@ -88,9 +88,9 @@ describe('@daffodil/auth/driver/magento | AuthService', () => {
         });
 
         it('should return void and not throw an error', () => {
-          const expected = cold('-', {});
-
-          expect(service.check()).toBeObservable(expected);
+          runMarbles(({ expectObservable }) => {
+            expectObservable(service.check()).toBe('-', {});
+          });
 
           const op = controller.expectOne(checkTokenQuery);
 

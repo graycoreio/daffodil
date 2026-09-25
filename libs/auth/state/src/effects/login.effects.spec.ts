@@ -36,6 +36,7 @@ import {
   DaffStorageServiceError,
 } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
+import { createTestScheduler } from '@daffodil/jasmine';
 
 import { DaffAuthLoginEffects } from './login.effects';
 
@@ -152,9 +153,7 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
 
     describe('when login succeeds and token storage succeeds', () => {
       it('should return DaffAuthLoginSuccess and store the token', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
 
         setupLoginDriver(testScheduler, true);
         setupStorageService(true);
@@ -168,9 +167,7 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
 
     describe('when login succeeds but token storage fails with DaffStorageServiceError', () => {
       it('should return DaffAuthLoginFailure with storage failure error', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
 
         const storageError = new DaffStorageServiceError('Storage of auth token has failed.');
         setupLoginDriver(testScheduler, true);
@@ -188,9 +185,7 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
 
     describe('when login succeeds but token storage fails with DaffServerSideStorageError', () => {
       it('should return DaffAuthServerSide action', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
 
         const serverSideError = new DaffServerSideStorageError('Server side');
         setupLoginDriver(testScheduler, true);
@@ -206,9 +201,7 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
 
     describe('when login fails with authentication error', () => {
       it('should return DaffAuthLoginFailure with authentication error', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
 
         const authError = new DaffAuthenticationFailedError('Failed to log in');
         setupLoginDriver(testScheduler, false, authError);
@@ -227,9 +220,7 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
 
     describe('when logout succeeds', () => {
       it('should return DaffAuthLogoutSuccess', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
 
         setupLogoutDriver(testScheduler, true);
 
@@ -240,9 +231,7 @@ describe('@daffodil/auth/state | DaffAuthLoginEffects', () => {
 
     describe('when logout fails with API response error', () => {
       it('should return DaffAuthLogoutFailure with the error', () => {
-        const testScheduler = new TestScheduler((actual, expected) => {
-          expect(actual).toEqual(expected);
-        });
+        const testScheduler = createTestScheduler();
 
         const apiError = new DaffAuthInvalidAPIResponseError('Failed to log out');
         setupLogoutDriver(testScheduler, false, apiError);

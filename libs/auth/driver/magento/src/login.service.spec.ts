@@ -4,7 +4,6 @@ import {
   ApolloTestingController,
 } from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
-import { cold } from 'jasmine-marbles';
 import { catchError } from 'rxjs/operators';
 
 import {
@@ -28,6 +27,7 @@ import {
   DaffAccountRegistrationFactory,
   DaffAuthTokenFactory,
 } from '@daffodil/auth/testing';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffMagentoLoginService } from './login.service';
 
@@ -194,9 +194,9 @@ describe('@daffodil/auth/driver/magento | LoginService', () => {
       describe('and the response passes validation', () => {
 
         it('should return void and not throw an error', () => {
-          const expected = cold('-', {});
-
-          expect(service.logout()).toBeObservable(expected);
+          runMarbles(({ expectObservable }) => {
+            expectObservable(service.logout()).toBe('-', {});
+          });
 
           const op = controller.expectOne(revokeCustomerTokenMutation);
 

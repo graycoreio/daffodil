@@ -5,7 +5,6 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import {
   DaffAuthStateRootSlice,
@@ -15,6 +14,7 @@ import {
   daffAuthInitialState,
 } from '@daffodil/auth/state';
 import { DaffStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { daffAuthSelectorFactory } from './auth.selector';
 
@@ -54,16 +54,18 @@ describe('@daffodil/auth/state | daffAuthSelectorFactory', () => {
   describe('selectAuthState', () => {
     it('selects the auth state', () => {
       const selector = store.pipe(select(selectAuthState));
-      const expected = cold('a', { a: state });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: state });
+      });
     });
   });
 
   describe('selectAuthLoggedIn', () => {
     it('returns the logged in state', () => {
       const selector = store.pipe(select(selectAuthLoggedIn));
-      const expected = cold('a', { a: loggedIn });
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: loggedIn });
+      });
     });
   });
 });
