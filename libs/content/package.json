@@ -36,7 +36,8 @@
   },
   "devDependencies": {
     "@daffodil/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/driver": "0.0.0-PLACEHOLDER"
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "@daffodil/jasmine": "0.0.0-PLACEHOLDER"
   },
   "optionalDependencies": {
     "monaco-editor": "0.0.0-PLACEHOLDER"
