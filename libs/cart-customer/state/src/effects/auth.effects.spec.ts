@@ -5,7 +5,6 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffAuthLoginSuccess,
@@ -28,6 +27,7 @@ import {
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffStorageServiceError } from '@daffodil/core';
 import { DaffStateError } from '@daffodil/core/state';
+import { runMarbles } from '@daffodil/jasmine';
 
 import { DaffCartCustomerAuthEffects } from './auth.effects';
 
@@ -156,10 +156,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
         ];
 
         testStates.forEach((el) => {
-          const testScheduler = new TestScheduler((actual, expected) => {
-            expect(actual).toEqual(expected);
-          });
-          testScheduler.run(helpers => {
+          runMarbles(helpers => {
             getCartIdSpy.and.returnValue(el.whatCardIdWasFound);
             if (el.didLastDriverCallSucceed) {
               driverGetSpy.and.returnValue(of({
@@ -167,7 +164,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
                 errors: [],
               }));
             } else {
-              driverGetSpy.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+              driverGetSpy.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
             }
             if (el.wasCardIdInStorage) {
               if (el.didFirstDriverCallSucceed) {
@@ -176,7 +173,7 @@ describe('@daffodil/cart-customer/state | DaffCartCustomerAuthEffects', () => {
                   errors: [],
                 }));
               } else {
-                driverMergeSpy.and.returnValue(helpers.cold('#', {}, el.whatErrorWasThrown));
+                driverMergeSpy.and.returnValue(helpers.cold<any>('#', {}, el.whatErrorWasThrown));
               }
             }
 
