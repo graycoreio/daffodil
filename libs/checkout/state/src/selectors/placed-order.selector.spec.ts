@@ -5,7 +5,6 @@ import {
   combineReducers,
   StoreModule,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import {
   DAFF_CART_STORE_FEATURE_KEY,
@@ -13,6 +12,7 @@ import {
   DaffCartPlaceOrderSuccess,
 } from '@daffodil/cart/state';
 import { DaffCheckoutStateRootSlice } from '@daffodil/checkout/state';
+import { runMarbles } from '@daffodil/jasmine';
 import {
   DaffOrder,
   DaffOrderCollection,
@@ -66,9 +66,10 @@ describe('@daffodil/checkout/state | getCheckoutPlacedOrderSelectors', () => {
   describe('selectPlacedOrder', () => {
     it('should initially be null', () => {
       const selector = store.pipe(select(selectPlacedOrder));
-      const expected = cold('a', { a: null });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: null });
+      });
     });
 
     describe('when an order has been placed and loaded', () => {
@@ -79,9 +80,10 @@ describe('@daffodil/checkout/state | getCheckoutPlacedOrderSelectors', () => {
 
       it('should select the most recently placed order', () => {
         const selector = store.pipe(select(selectPlacedOrder));
-        const expected = cold('a', { a: mockOrder });
 
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: mockOrder });
+        });
       });
     });
   });
@@ -89,9 +91,10 @@ describe('@daffodil/checkout/state | getCheckoutPlacedOrderSelectors', () => {
   describe('selectHasPlacedOrder', () => {
     it('should initially be false', () => {
       const selector = store.pipe(select(selectHasPlacedOrder));
-      const expected = cold('a', { a: false });
 
-      expect(selector).toBeObservable(expected);
+      runMarbles(({ expectObservable }) => {
+        expectObservable(selector).toBe('a', { a: false });
+      });
     });
 
     describe('when an order has been placed and loaded', () => {
@@ -102,9 +105,10 @@ describe('@daffodil/checkout/state | getCheckoutPlacedOrderSelectors', () => {
 
       it('should select if the most recently placed order exists', () => {
         const selector = store.pipe(select(selectHasPlacedOrder));
-        const expected = cold('a', { a: true });
 
-        expect(selector).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(selector).toBe('a', { a: true });
+        });
       });
     });
   });

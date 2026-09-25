@@ -6,13 +6,13 @@ import {
   combineReducers,
   Store,
 } from '@ngrx/store';
-import { cold } from 'jasmine-marbles';
 
 import {
   daffCartReducers,
   DaffCartPlaceOrderSuccess,
   DAFF_CART_STORE_FEATURE_KEY,
 } from '@daffodil/cart/state';
+import { runMarbles } from '@daffodil/jasmine';
 import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderFacade,
@@ -71,9 +71,9 @@ describe('@daffodil/checkout/routing | DaffCheckoutPlacedOrderGuard', () => {
       });
 
       it('should allow activation when there is a placed order', () => {
-        const expected = cold('a', { a: true });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('a', { a: true });
+        });
       });
     });
 
@@ -83,9 +83,9 @@ describe('@daffodil/checkout/routing | DaffCheckoutPlacedOrderGuard', () => {
       });
 
       it('should not allow activation', () => {
-        const expected = cold('a', { a: false });
-
-        expect(service.canActivate()).toBeObservable(expected);
+        runMarbles(({ expectObservable }) => {
+          expectObservable(service.canActivate()).toBe('a', { a: false });
+        });
       });
 
       it('should redirect to the given DaffCheckoutPlacedOrderGuardRedirectUrl', () => {
