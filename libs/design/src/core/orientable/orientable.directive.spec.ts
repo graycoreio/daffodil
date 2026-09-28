@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -18,6 +19,7 @@ import {
 @Component({
   template: `
 		<div daffOrientable [orientation]="orientation()"></div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffOrientableDirective,
   ],

@@ -11,25 +11,25 @@
   "compilerOptions": {
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/core": [
-        "libs/core/src"
+        "../../libs/core/src"
       ],
       "@daffodil/core/testing": [
-        "libs/core/testing/src"
+        "../../libs/core/testing/src"
       ],
       "@daffodil/core/graphql": [
-        "libs/core/graphql/src"
+        "../../libs/core/graphql/src"
       ],
       "@daffodil/core/state": [
-        "libs/core/state/src"
+        "../../libs/core/state/src"
       ],
       "@daffodil/core/state/testing": [
-        "libs/core/state/testing/src"
+        "../../libs/core/state/testing/src"
       ],
       "@daffodil/core/routing": [
-        "libs/core/routing/src"
+        "../../libs/core/routing/src"
       ],
     }
   }

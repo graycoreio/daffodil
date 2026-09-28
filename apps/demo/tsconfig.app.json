@@ -1,22 +1,18 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../../dist/apps/demo",
-    "types": [],
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/apps/demo",
+		"types": [],
+		"resolveJsonModule": true,
+		"allowSyntheticDefaultImports": true,
+		"skipLibCheck": true,
     "composite": true
-  },
-  "exclude": [
-    "src/test.ts",
-    "**/*.spec.ts"
-  ],
-  "include": [
-    "**/*.ts"
-	],
+	},
+	"exclude": ["src/test.ts", "**/*.spec.ts"],
+	"include": ["**/*.ts"],
 	"angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  },
+		"fullTemplateTypeCheck": true,
+		"strictInjectionParameters": true,
+		"strictTemplates": false
+	}
 }

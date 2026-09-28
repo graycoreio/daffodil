@@ -1,57 +1,67 @@
-<button #field class="daff-select__field"
-  type="button"
-  (click)="open($event)"
-  (focus)="focus()"
-  (blur)="blur()"
-  [disabled]="disabled"
-  role="combobox"
-  aria-haspopup="listbox"
-  [attr.aria-expanded]="isOpen"
-  [attr.aria-controls]="optionsId"
-  (keydown.arrowdown)="open($event)"
-  (keydown.arrowup)="open($event)"
-  (keydown.alt.arrowup)="open($event)"
-  (keydown.alt.arrowdown)="open($event)"
-  (keydown.space)="open($event)"
-  (keydown.enter)="open($event)">
-  @if (value) {
-    <ng-container
-      [ngTemplateOutlet]="optionTemplate?.templateRef"
-      [ngTemplateOutletContext]="
-      {
-        option: value,
-        isSelected: true,
-        isHighlighted: true,
-      }
-      "><div></div>
-    </ng-container>
-  }
+<button
+	#field
+	class="daff-select__field"
+	type="button"
+	(click)="open($event)"
+	(focus)="focus()"
+	(blur)="blur()"
+	[disabled]="disabled"
+	role="combobox"
+	aria-haspopup="listbox"
+	[attr.aria-expanded]="isOpen"
+	[attr.aria-controls]="optionsId"
+	(keydown.arrowdown)="open($event)"
+	(keydown.arrowup)="open($event)"
+	(keydown.alt.arrowup)="open($event)"
+	(keydown.alt.arrowdown)="open($event)"
+	(keydown.space)="open($event)"
+	(keydown.enter)="open($event)"
+>
+	@if (value) {
+		<ng-container
+			[ngTemplateOutlet]="$safeNavigationMigration(optionTemplate?.templateRef)"
+			[ngTemplateOutletContext]="{
+				option: value,
+				isSelected: true,
+				isHighlighted: true,
+			}"
+			><div></div>
+		</ng-container>
+	}
 </button>
 <ng-template cdkPortal #optionsTemplate="cdkPortal">
-  <div class="daff-select__options" #optionsEl
-    [id]="optionsId"
-    tabindex="0"
-    role="listbox"
-    (blur)="blur()"
-    (keydown.enter)="selectHighlighted($event)"
-    (keydown.space)="selectHighlighted($event)"
-    (keydown.escape)="close($event)"
-    (keydown.arrowdown)="highlightNext($event)"
-    (keydown.arrowup)="highlightPrevious($event)">
-    @for (option of options; track $index; let i = $index) {
-      <div class="daff-select__option"
-      [class.selected]="value === option"
-      [class.highlighted]="highlighted === i"
-      (click)="selectOption(option)">
-        <ng-container
-          [ngTemplateOutlet]="optionTemplate?.templateRef"
-          [ngTemplateOutletContext]="{
-            isSelected: value === option,
-            isHighlighted: highlighted === i,
-            option
-          }">
-        </ng-container>
-      </div>
-    }
-  </div>
+	<div
+		class="daff-select__options"
+		#optionsEl
+		[id]="optionsId"
+		tabindex="0"
+		role="listbox"
+		(blur)="blur()"
+		(keydown.enter)="selectHighlighted($event)"
+		(keydown.space)="selectHighlighted($event)"
+		(keydown.escape)="close($event)"
+		(keydown.arrowdown)="highlightNext($event)"
+		(keydown.arrowup)="highlightPrevious($event)"
+	>
+		@for (option of options; track $index; let i = $index) {
+			<div
+				class="daff-select__option"
+				[class.selected]="value === option"
+				[class.highlighted]="highlighted === i"
+				(click)="selectOption(option)"
+			>
+				<ng-container
+					[ngTemplateOutlet]="
+						$safeNavigationMigration(optionTemplate?.templateRef)
+					"
+					[ngTemplateOutletContext]="{
+						isSelected: value === option,
+						isHighlighted: highlighted === i,
+						option,
+					}"
+				>
+				</ng-container>
+			</div>
+		}
+	</div>
 </ng-template>

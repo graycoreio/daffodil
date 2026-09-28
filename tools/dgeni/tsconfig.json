@@ -4,6 +4,9 @@
     "module": "commonjs",
     "moduleResolution": "node10",
     "target": "es5",
+    "ignoreDeprecations": "6.0",
+    "rootDir": ".",
+    "baseUrl": "../..",
     "lib": [
       "es2022"
     ]

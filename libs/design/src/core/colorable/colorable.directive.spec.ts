@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -18,6 +19,7 @@ import {
 @Component({
   template: `
 		<div daffColorable [color]="color()"></div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffColorableDirective,
   ],

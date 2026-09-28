@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -32,6 +35,7 @@ import { DemoCheckoutAddressFormGroup } from '../../models/address-form.type';
       [formGroup]="formGroupValue"
     ></demo-checkout-address-form>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DemoCheckoutAddressFormComponent,
   ],

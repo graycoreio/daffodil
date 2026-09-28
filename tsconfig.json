@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strict": false,
     "target": "ES2022",
     "module": "ES2022",
     "outDir": "./dist/out-tsc",
@@ -13,10 +14,9 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "baseUrl": ".",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "./dist/*"
       ]
     },
     "useDefineForClassFields": false

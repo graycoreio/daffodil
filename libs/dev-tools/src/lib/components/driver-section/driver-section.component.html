@@ -1,72 +1,111 @@
 <h3>{{ driver.name }}</h3>
 <div class="driver-controls">
-  @if (driver.message) {
-    <div class="driver-message" [class.message-info]="driver.message.type === 'info'"
-         [class.message-warning]="driver.message.type === 'warning'"
-         [class.message-error]="driver.message.type === 'error'"
-         [class.message-success]="driver.message.type === 'success'">
-      <div class="message-header">
-        <h4>{{ driver.message.title }}</h4>
-      </div>
-      <p>{{ driver.message.text }}</p>
-      @if (driver.message.link) {
-        <a [href]="driver.message.link.url" target="_blank" class="message-link">
-          <span class="link-icon">🔗</span>
-          {{ driver.message.link.text }}
-        </a>
-      }
-    </div>
-  }
+	@if (driver.message) {
+		<div
+			class="driver-message"
+			[class.message-info]="driver.message.type === 'info'"
+			[class.message-warning]="driver.message.type === 'warning'"
+			[class.message-error]="driver.message.type === 'error'"
+			[class.message-success]="driver.message.type === 'success'"
+		>
+			<div class="message-header">
+				<h4>{{ driver.message.title }}</h4>
+			</div>
+			<p>{{ driver.message.text }}</p>
+			@if (driver.message.link) {
+				<a
+					[href]="driver.message.link.url"
+					target="_blank"
+					class="message-link"
+				>
+					<span class="link-icon">🔗</span>
+					{{ driver.message.link.text }}
+				</a>
+			}
+		</div>
+	}
 
-  <div class="driver-select">
-    <label>Current Driver:</label>
-    <select [value]="selectedDriver?.id" (change)="onDriverChange($event)">
-      @for (availableDriver of driver.availableDrivers; track availableDriver.id) {
-        <option [value]="availableDriver.id" [disabled]="availableDriver.disabled">
-          {{ availableDriver.name }}
-        </option>
-      }
-    </select>
-  </div>
+	<div class="driver-select">
+		<label>Current Driver:</label>
+		<select
+			[value]="$safeNavigationMigration(selectedDriver?.id)"
+			(change)="onDriverChange($event)"
+		>
+			@for (
+				availableDriver of driver.availableDrivers;
+				track availableDriver.id
+			) {
+				<option
+					[value]="availableDriver.id"
+					[disabled]="availableDriver.disabled"
+				>
+					{{ availableDriver.name }}
+				</option>
+			}
+		</select>
+	</div>
 
-  @if (selectedDriver && selectedDriver.properties && selectedDriver.properties.size > 0) {
-    <div class="driver-properties" [class.disabled]="selectedDriver.disabled">
-      <h4>Driver Properties</h4>
-      @for (entry of getPropertiesEntries(); track entry[0]) {
-        <div class="property-field">
-          <label>{{ entry[1].label }}</label>
-          <input
-            type="text"
-            [value]="propertyValues[entry[0]] || ''"
-            [placeholder]="entry[1].placeholder || ''"
-            [disabled]="selectedDriver.disabled"
-            (input)="onPropertyChange(entry[0], $any($event.target).value)"
-          />
-        </div>
-      }
-    </div>
-  }
+	@if (
+		selectedDriver &&
+		selectedDriver.properties &&
+		selectedDriver.properties.size > 0
+	) {
+		<div class="driver-properties" [class.disabled]="selectedDriver.disabled">
+			<h4>Driver Properties</h4>
+			@for (entry of getPropertiesEntries(); track entry[0]) {
+				<div class="property-field">
+					<label>{{ entry[1].label }}</label>
+					<input
+						type="text"
+						[value]="propertyValues[entry[0]] || ''"
+						[placeholder]="entry[1].placeholder || ''"
+						[disabled]="selectedDriver.disabled"
+						(input)="onPropertyChange(entry[0], $any($event.target).value)"
+					/>
+				</div>
+			}
+		</div>
+	}
 
-  @if (selectedDriverMessage) {
-    <div class="driver-message" [class.message-info]="selectedDriverMessage.type === 'info'"
-         [class.message-warning]="selectedDriverMessage.type === 'warning'"
-         [class.message-error]="selectedDriverMessage.type === 'error'"
-         [class.message-success]="selectedDriverMessage.type === 'success'">
-      <div class="message-header">
-        <h4>{{ selectedDriverMessage.title }}</h4>
-      </div>
-      <p>{{ selectedDriverMessage.text }}</p>
-      @if (selectedDriverMessage.link) {
-        <a [href]="selectedDriverMessage.link.url" target="_blank" class="message-link">
-          <span class="link-icon">🔗</span>
-          {{ selectedDriverMessage.link.text }}
-        </a>
-      }
-    </div>
-  }
-  
-  <div class="quick-actions">
-    <button class="quick-btn primary" [disabled]="selectedDriver?.disabled" (click)="onApplyChanges()">Apply Changes</button>
-    <button class="quick-btn" [disabled]="selectedDriver?.disabled" (click)="onResetToDefault()">Reset to Default</button>
-  </div>
+	@if (selectedDriverMessage) {
+		<div
+			class="driver-message"
+			[class.message-info]="selectedDriverMessage.type === 'info'"
+			[class.message-warning]="selectedDriverMessage.type === 'warning'"
+			[class.message-error]="selectedDriverMessage.type === 'error'"
+			[class.message-success]="selectedDriverMessage.type === 'success'"
+		>
+			<div class="message-header">
+				<h4>{{ selectedDriverMessage.title }}</h4>
+			</div>
+			<p>{{ selectedDriverMessage.text }}</p>
+			@if (selectedDriverMessage.link) {
+				<a
+					[href]="selectedDriverMessage.link.url"
+					target="_blank"
+					class="message-link"
+				>
+					<span class="link-icon">🔗</span>
+					{{ selectedDriverMessage.link.text }}
+				</a>
+			}
+		</div>
+	}
+
+	<div class="quick-actions">
+		<button
+			class="quick-btn primary"
+			[disabled]="$safeNavigationMigration(selectedDriver?.disabled)"
+			(click)="onApplyChanges()"
+		>
+			Apply Changes
+		</button>
+		<button
+			class="quick-btn"
+			[disabled]="$safeNavigationMigration(selectedDriver?.disabled)"
+			(click)="onResetToDefault()"
+		>
+			Reset to Default
+		</button>
+	</div>
 </div>

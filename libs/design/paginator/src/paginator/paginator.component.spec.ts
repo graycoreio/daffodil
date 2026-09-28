@@ -3,6 +3,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -25,6 +26,7 @@ import {
 } from '../utils/paginator-errors';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 class TestComponent {}
@@ -38,6 +40,7 @@ class TestComponent {}
       [url]="urlValue()"
       [queryParam]="queryParamValue()">
     </daff-paginator>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffPaginatorComponent,
   ],

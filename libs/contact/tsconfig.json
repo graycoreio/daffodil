@@ -11,28 +11,28 @@
   "compilerOptions": {
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/contact": [
-        "libs/contact/src"
+        "../../libs/contact/src"
       ],
       "@daffodil/contact/driver": [
-        "libs/contact/driver/src"
+        "../../libs/contact/driver/src"
       ],
       "@daffodil/contact/driver/in-memory": [
-        "libs/contact/driver/in-memory/src"
+        "../../libs/contact/driver/in-memory/src"
       ],
       "@daffodil/contact/driver/hubspot": [
-        "libs/contact/driver/hubspot/src"
+        "../../libs/contact/driver/hubspot/src"
       ],
       "@daffodil/contact/driver/testing": [
-        "libs/contact/driver/testing/src"
+        "../../libs/contact/driver/testing/src"
       ],
       "@daffodil/contact/state": [
-        "libs/contact/state/src"
+        "../../libs/contact/state/src"
       ],
       "@daffodil/contact/state/testing": [
-        "libs/contact/state/testing/src"
+        "../../libs/contact/state/testing/src"
       ]
     }
   }

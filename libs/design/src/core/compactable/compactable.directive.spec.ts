@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffCompactableDirective } from '@daffodil/design';
 @Component({
   template: `
 		<div daffCompactable [compact]="compact()"></div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffCompactableDirective,
   ],

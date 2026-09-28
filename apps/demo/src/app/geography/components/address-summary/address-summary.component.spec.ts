@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -13,6 +16,7 @@ import { DemoGeographyAddressSummaryComponent } from './address-summary.componen
 
 @Component({
   template: '<demo-geography-address-summary [address]="addressValue"></demo-geography-address-summary>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DemoGeographyAddressSummaryComponent,
   ],

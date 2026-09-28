@@ -9,40 +9,39 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/customer": [
-        "libs/customer/src"
+        "../../libs/customer/src"
       ],
       "@daffodil/customer/testing": [
-        "libs/customer/testing/src"
+        "../../libs/customer/testing/src"
       ],
       "@daffodil/customer/state": [
-        "libs/customer/state/src"
+        "../../libs/customer/state/src"
       ],
       "@daffodil/customer/state/testing": [
-        "libs/customer/state/testing/src"
+        "../../libs/customer/state/testing/src"
       ],
       "@daffodil/customer/driver": [
-        "libs/customer/driver/src"
+        "../../libs/customer/driver/src"
       ],
       "@daffodil/customer/driver/in-memory": [
-        "libs/customer/driver/in-memory/src"
+        "../../libs/customer/driver/in-memory/src"
       ],
       "@daffodil/customer/driver/testing": [
-        "libs/customer/driver/testing/src"
+        "../../libs/customer/driver/testing/src"
       ],
       "@daffodil/customer/driver/magento": [
-        "libs/customer/driver/magento/src"
+        "../../libs/customer/driver/magento/src"
       ],
       "@daffodil/customer/driver/magento/testing": [
-        "libs/customer/driver/magento/testing/src"
+        "../../libs/customer/driver/magento/testing/src"
       ],
       "@daffodil/customer/routing": [
-        "libs/customer/routing/src"
+        "../../libs/customer/routing/src"
       ],
     }
   }

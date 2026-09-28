@@ -9,37 +9,36 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/external-router": [
-        "libs/external-router/src"
+        "../../libs/external-router/src"
       ],
       "@daffodil/external-router/driver": [
-        "libs/external-router/driver/src"
+        "../../libs/external-router/driver/src"
       ],
       "@daffodil/external-router/driver/magento": [
-        "libs/external-router/driver/magento/src"
+        "../../libs/external-router/driver/magento/src"
       ],
       "@daffodil/external-router/driver/magento/2.4.1": [
-        "libs/external-router/driver/magento/2.4.1/src"
+        "../../libs/external-router/driver/magento/2.4.1/src"
       ],
       "@daffodil/external-router/driver/magento/2.4.2": [
-        "libs/external-router/driver/magento/2.4.2/src"
+        "../../libs/external-router/driver/magento/2.4.2/src"
       ],
       "@daffodil/external-router/driver/magento/2.4.3": [
-        "libs/external-router/driver/magento/2.4.3/src"
+        "../../libs/external-router/driver/magento/2.4.3/src"
       ],
       "@daffodil/external-router/driver/testing": [
-        "libs/external-router/driver/testing/src"
+        "../../libs/external-router/driver/testing/src"
       ],
       "@daffodil/external-router/driver/in-memory": [
-        "libs/external-router/driver/in-memory/src"
+        "../../libs/external-router/driver/in-memory/src"
       ],
       "@daffodil/external-router/routing": [
-        "libs/external-router/routing/src"
+        "../../libs/external-router/routing/src"
       ],
     }
   }

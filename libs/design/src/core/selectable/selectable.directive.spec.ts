@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -18,6 +19,7 @@ import { DaffSelectableDirective } from '@daffodil/design';
       (becameSelected)="becameSelectedFunction($event)"
       [selected]="selected()">
 		</div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSelectableDirective,
   ],

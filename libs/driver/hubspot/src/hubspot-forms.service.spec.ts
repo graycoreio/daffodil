@@ -4,6 +4,7 @@ import {
   HttpRequest,
   provideHttpClient,
   withInterceptorsFromDi,
+  withXhr,
 } from '@angular/common/http';
 import {
   HttpTestingController,
@@ -32,7 +33,7 @@ describe('DaffHubspotFormsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
+      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()],
     });
 
     httpMock = TestBed.inject(HttpTestingController);

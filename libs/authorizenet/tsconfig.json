@@ -9,34 +9,33 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/authorizenet": [
-        "libs/authorizenet/src"
+        "../../libs/authorizenet/src"
       ],
       "@daffodil/authorizenet/testing": [
-        "libs/authorizenet/testing/src"
+        "../../libs/authorizenet/testing/src"
       ],
       "@daffodil/authorizenet/state": [
-        "libs/authorizenet/state/src"
+        "../../libs/authorizenet/state/src"
       ],
       "@daffodil/authorizenet/state/testing": [
-        "libs/authorizenet/state/testing/src"
+        "../../libs/authorizenet/state/testing/src"
       ],
       "@daffodil/authorizenet/driver": [
-        "libs/authorizenet/driver/src"
+        "../../libs/authorizenet/driver/src"
       ],
       "@daffodil/authorizenet/driver/testing": [
-        "libs/authorizenet/driver/testing/src"
+        "../../libs/authorizenet/driver/testing/src"
       ],
       "@daffodil/authorizenet/driver/in-memory": [
-        "libs/authorizenet/driver/in-memory/src"
+        "../../libs/authorizenet/driver/in-memory/src"
       ],
       "@daffodil/authorizenet/driver/magento": [
-        "libs/authorizenet/driver/magento/src"
+        "../../libs/authorizenet/driver/magento/src"
       ],
     }
   }

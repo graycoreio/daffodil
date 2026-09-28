@@ -7,16 +7,19 @@
   </daff-select>
 </daff-form-field>
 
-<daff-hero [color]="colorControl.value?.value">
+<daff-hero [color]="$safeNavigationMigration(colorControl.value?.value)">
   <div class="daff-hero-theming__icon" daffHeroIcon>
     <fa-icon [icon]="faBagShopping"></fa-icon>
   </div>
   <p daffHeroTagline>New Season Arrivals</p>
   <h1 daffHeroTitle>Discover the Summer Collection</h1>
   <h2 daffHeroSubtitle>
-    Refresh your wardrobe with lightweight essentials, bold prints, and everyday staples designed to keep you cool all season long.
+    Refresh your wardrobe with lightweight essentials, bold prints, and everyday
+    staples designed to keep you cool all season long.
   </h2>
   <div daffHeroBody>
-    <a routerLink="/shop" daff-button color="theme-contrast">Shop the collection</a>
+    <a routerLink="/shop" daff-button color="theme-contrast"
+      >Shop the collection</a
+    >
   </div>
 </daff-hero>

@@ -9,31 +9,30 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/payment": [
-        "libs/payment/src"
+        "../../libs/payment/src"
       ],
       "@daffodil/payment/testing": [
-        "libs/payment/testing/src"
+        "../../libs/payment/testing/src"
       ],
       "@daffodil/payment/state": [
-        "libs/payment/state/src"
+        "../../libs/payment/state/src"
       ],
       "@daffodil/payment/state/testing": [
-        "libs/payment/state/testing/src"
+        "../../libs/payment/state/testing/src"
       ],
       "@daffodil/payment/driver": [
-        "libs/payment/driver/src"
+        "../../libs/payment/driver/src"
       ],
       "@daffodil/payment/driver/in-memory": [
-        "libs/payment/driver/in-memory/src"
+        "../../libs/payment/driver/in-memory/src"
       ],
       "@daffodil/payment/driver/testing": [
-        "libs/payment/driver/testing/src"
+        "../../libs/payment/driver/testing/src"
       ],
     }
   }

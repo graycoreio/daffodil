@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import {
   Component,
   Input,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -29,6 +30,7 @@ const stubCartTitle = 'cartTitle';
 
 @Component({
   template: '<demo-cart-summary-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></demo-cart-summary-wrapper>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AsyncPipe,
     CartSummaryWrapperComponent,
@@ -42,6 +44,7 @@ class WrapperComponent {
 
 @Component({
   selector: 'demo-cart-summary',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 class MockCartSummaryComponent {
@@ -51,6 +54,7 @@ class MockCartSummaryComponent {
 
 @Component({
   selector: 'demo-cart-totals',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 class MockCartTotalsComponent {
@@ -59,6 +63,7 @@ class MockCartTotalsComponent {
 
 @Component({
   selector: 'demo-help-box',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 class MockHelpBoxComponent {}

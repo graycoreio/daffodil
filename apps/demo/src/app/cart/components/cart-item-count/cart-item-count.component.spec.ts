@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { CartItemCountComponent } from './cart-item-count.component';
 
 @Component({
   template: '<demo-cart-item-count [itemCount]="itemCountValue"></demo-cart-item-count>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CartItemCountComponent],
 })
 class WrapperComponent {

@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -17,6 +18,7 @@ import { DaffSkeletonableDirective } from '@daffodil/design';
 		<div daffSkeletonable
 			[skeleton]="skeleton()">
 		</div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSkeletonableDirective,
   ],

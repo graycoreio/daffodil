@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -23,6 +24,7 @@ import { DaffToastComponent } from './toast.component';
       [toast]="toast()"
     ></daff-toast>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffToastComponent,
   ],

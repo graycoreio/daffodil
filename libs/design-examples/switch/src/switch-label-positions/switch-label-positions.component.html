@@ -8,8 +8,9 @@
 </daff-form-field>
 
 <daff-switch
-  [labelPosition]="labelPositionControl.value?.value"
+  [labelPosition]="$safeNavigationMigration(labelPositionControl.value?.value)"
   [formControl]="labelSwitchExample"
-  ngDefaultControl>
+  ngDefaultControl
+>
   Label
 </daff-switch>

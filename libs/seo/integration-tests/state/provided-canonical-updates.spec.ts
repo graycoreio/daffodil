@@ -4,6 +4,7 @@ import {
   Injectable,
   Component,
   DOCUMENT,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   TestBed,
@@ -95,6 +96,7 @@ export class FailGuard  {
 
 @Component({
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class MockComponent {}

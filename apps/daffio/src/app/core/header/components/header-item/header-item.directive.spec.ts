@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -14,6 +15,7 @@ import { DaffioHeaderItemDirective } from './header-item.directive';
 
 @Component({
   template: `<a daffioHeaderItem [active]="active()">Header Item</a>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class WrapperComponent {

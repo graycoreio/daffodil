@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -17,6 +18,7 @@ import { DaffCardBaseDirective } from './card-base.directive';
 @Component({
   template: `
 		<div daffCardBase [color]="color()" [orientation]="orientation()" [elevated]="elevated()"></div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffCardBaseDirective,
   ],

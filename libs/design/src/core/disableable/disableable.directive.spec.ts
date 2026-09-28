@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -17,6 +18,7 @@ import { DaffDisableableDirective } from '@daffodil/design';
 		<div daffDisableable
 			[disabled]="disabled()">
 		</div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffDisableableDirective,
   ],

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -19,6 +22,7 @@ const stubImages = [
 
 @Component({
   template: '<demo-image-gallery-container [images]="imagesValue"></demo-image-gallery-container>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ImageGalleryComponent,
   ],

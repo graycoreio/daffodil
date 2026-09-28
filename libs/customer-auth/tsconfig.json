@@ -9,16 +9,15 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/customer-auth": [
-        "libs/customer-auth/src"
+        "../../libs/customer-auth/src"
       ],
       "@daffodil/customer-auth/state": [
-        "libs/customer-auth/state/src"
+        "../../libs/customer-auth/state/src"
       ],
     }
   }

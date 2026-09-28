@@ -34,7 +34,6 @@ export const angularEslintConfig = defineConfig([
           prefix: '',
         },
       ],
-      '@angular-eslint/no-conflicting-lifecycle': 'error',
       '@angular-eslint/no-input-rename': 'error',
       '@angular-eslint/no-inputs-metadata-property': 'error',
       '@angular-eslint/no-output-native': 'error',

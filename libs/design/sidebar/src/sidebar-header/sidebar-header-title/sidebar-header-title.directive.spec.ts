@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffSidebarHeaderTitleDirective } from './sidebar-header-title.directiv
 
 @Component({
   template: `<h2 daffSidebarHeaderTitle>Title</h2>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSidebarHeaderTitleDirective,
   ],

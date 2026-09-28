@@ -1,13 +1,26 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
-    "declaration": true,
-    "declarationMap": true,
-    "inlineSources": true,
-    "types": [],
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/out-tsc",
+		"declaration": true,
+		"declarationMap": true,
+		"inlineSources": true,
+		"types": [],
     "composite": true
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts", "src/test-setup.ts", "**/*.stories.ts", "**/*.stories.js"]
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": [
+		"src/**/*.spec.ts",
+		"src/test-setup.ts",
+		"**/*.stories.ts",
+		"**/*.stories.js"
+	],
+	"angularCompilerOptions": {
+		"extendedDiagnostics": {
+			"checks": {
+				"nullishCoalescingNotNullable": "suppress",
+				"optionalChainNotNullable": "suppress"
+			}
+		}
+	}
 }

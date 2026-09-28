@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -21,6 +22,7 @@ import { DaffCalloutComponent } from './callout.component';
   template: `
     <daff-callout [color]="color()" [textAlignment]="textAlignment()" [compact]="compact()"></daff-callout>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffCalloutComponent,
   ],

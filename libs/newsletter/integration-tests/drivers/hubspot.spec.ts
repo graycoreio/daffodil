@@ -1,6 +1,7 @@
 import {
   provideHttpClient,
   withInterceptorsFromDi,
+  withXhr,
 } from '@angular/common/http';
 import {
   HttpTestingController,
@@ -27,7 +28,7 @@ describe('DaffNewsletterHubspotDriver', () => {
           guid: '123123',
         }),
       ],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
+      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()],
     });
 
     httpMock = TestBed.inject(HttpTestingController);

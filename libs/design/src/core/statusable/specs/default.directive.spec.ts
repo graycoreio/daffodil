@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffStatusableDirective } from '@daffodil/design';
   template: `<div>Test</div>`,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'custom-component',
+  changeDetection: ChangeDetectionStrategy.Eager,
   hostDirectives: [
     {
       directive: DaffStatusableDirective,

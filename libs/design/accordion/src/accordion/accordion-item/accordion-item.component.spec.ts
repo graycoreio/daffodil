@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -49,6 +50,7 @@ describe('@daffodil/design/accordion | DaffAccordionItemComponent | Defaults', (
       <div>no content</div>
     </daff-accordion-item>
     `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffAccordionItemComponent,
   ],

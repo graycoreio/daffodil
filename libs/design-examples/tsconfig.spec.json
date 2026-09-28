@@ -1,11 +1,20 @@
 /* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
 /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../../dist/out-tsc/libs/design-examples",
-    "types": ["jasmine"],
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/out-tsc/libs/design-examples",
+		"types": ["jasmine"],
     "composite": true
-  },
-  "include": ["src/**/*.ts", "**/*.ts"]
+	},
+	"include": ["src/**/*.ts", "**/*.ts"],
+	"angularCompilerOptions": {
+		"extendedDiagnostics": {
+			"checks": {
+				"nullishCoalescingNotNullable": "suppress",
+				"optionalChainNotNullable": "suppress"
+			}
+		},
+		"strictTemplates": false
+	}
 }

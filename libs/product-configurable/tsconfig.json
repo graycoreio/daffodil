@@ -9,37 +9,36 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/product-configurable": [
-        "libs/product-configurable/src"
+        "../../libs/product-configurable/src"
       ],
       "@daffodil/product-configurable/testing": [
-        "libs/product-configurable/testing/src"
+        "../../libs/product-configurable/testing/src"
       ],
       "@daffodil/product-configurable/state": [
-        "libs/product-configurable/state/src"
+        "../../libs/product-configurable/state/src"
       ],
       "@daffodil/product-configurable/state/testing": [
-        "libs/product-configurable/state/testing/src"
+        "../../libs/product-configurable/state/testing/src"
       ],
       "@daffodil/product-configurable/driver": [
-        "libs/product-configurable/driver/src"
+        "../../libs/product-configurable/driver/src"
       ],
       "@daffodil/product-configurable/driver/magento": [
-        "libs/product-configurable/driver/magento/src"
+        "../../libs/product-configurable/driver/magento/src"
       ],
       "@daffodil/product-configurable/driver/magento/testing": [
-        "libs/product-configurable/driver/magento/testing/src"
+        "../../libs/product-configurable/driver/magento/testing/src"
       ],
       "@daffodil/product-configurable/driver/testing": [
-        "libs/product-configurable/driver/testing/src"
+        "../../libs/product-configurable/driver/testing/src"
       ],
       "@daffodil/product-configurable/driver/in-memory": [
-        "libs/product-configurable/driver/in-memory/src"
+        "../../libs/product-configurable/driver/in-memory/src"
       ],
     }
   }

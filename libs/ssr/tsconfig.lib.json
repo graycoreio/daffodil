@@ -1,13 +1,21 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../../dist/out-tsc/libs/ssr",
-    "declaration": true,
-    "declarationMap": true,
-    "inlineSources": true,
-    "types": [],
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/out-tsc/libs/ssr",
+		"declaration": true,
+		"declarationMap": true,
+		"inlineSources": true,
+		"types": [],
     "composite": true
-  },
-  "exclude": ["**/*.spec.ts", "**/*.test.ts"],
-  "include": ["**/*.ts"]
+	},
+	"exclude": ["**/*.spec.ts", "**/*.test.ts"],
+	"include": ["**/*.ts"],
+	"angularCompilerOptions": {
+		"extendedDiagnostics": {
+			"checks": {
+				"nullishCoalescingNotNullable": "suppress",
+				"optionalChainNotNullable": "suppress"
+			}
+		}
+	}
 }

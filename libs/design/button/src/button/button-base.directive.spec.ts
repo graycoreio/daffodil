@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -21,6 +22,7 @@ import { DaffButtonSize } from './button-sizable.directive';
 @Component({
   template: `
 		<div daffButtonBase [color]="color()" [size]="size()" [status]="status()" [tabindex]="tabindex" [disabled]="disabled()"></div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffButtonBaseDirective,
   ],

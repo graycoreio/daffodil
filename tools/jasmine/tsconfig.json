@@ -2,6 +2,7 @@
   "extends": "../tsconfig.tools.json",
   "compilerOptions": {
     "outDir": "../../dist/jasmine",
+    "rootDir": "./src",
     "declaration": true
   },
   "exclude": [

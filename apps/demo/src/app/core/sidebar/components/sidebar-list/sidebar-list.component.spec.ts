@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -18,6 +19,7 @@ import { SidebarListComponent } from './sidebar-list.component';
 
 @Component({
   template: '<demo-sidebar-list [tree]="tree"></demo-sidebar-list>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     SidebarListComponent,
   ],

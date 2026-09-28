@@ -1,20 +1,19 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../../dist/out-tsc/libs/dev-tools",
-    "allowSyntheticDefaultImports": true,
-    "types": [
-      "jasmine",
-      "node"
-    ],
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/out-tsc/libs/dev-tools",
+		"allowSyntheticDefaultImports": true,
+		"types": ["jasmine", "node"],
     "composite": true
-  },
-  "files": [
-    "src/test.ts"
-  ],
-  "include": [
-    "**/*.spec.ts",
-    "**/*.d.ts",
-    "**/*.ts"
-  ]
+	},
+	"files": ["src/test.ts"],
+	"include": ["**/*.spec.ts", "**/*.d.ts", "**/*.ts"],
+	"angularCompilerOptions": {
+		"extendedDiagnostics": {
+			"checks": {
+				"nullishCoalescingNotNullable": "suppress",
+				"optionalChainNotNullable": "suppress"
+			}
+		}
+	}
 }

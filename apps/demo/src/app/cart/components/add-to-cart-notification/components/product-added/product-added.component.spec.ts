@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -18,6 +21,7 @@ const stubQty = 1;
 
 @Component({
   template: '<demo-product-added [qty]="qtyValue" [product]="productValue"></demo-product-added>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ProductAddedComponent],
 })
 class WrapperComponent {

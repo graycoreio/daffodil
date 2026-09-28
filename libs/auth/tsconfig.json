@@ -9,37 +9,36 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/auth": [
-        "libs/auth/src"
+        "../../libs/auth/src"
       ],
       "@daffodil/auth/state": [
-        "libs/auth/state/src"
+        "../../libs/auth/state/src"
       ],
       "@daffodil/auth/state/testing": [
-        "libs/auth/state/testing/src"
+        "../../libs/auth/state/testing/src"
       ],
       "@daffodil/auth/driver": [
-        "libs/auth/driver/src"
+        "../../libs/auth/driver/src"
       ],
       "@daffodil/auth/driver/testing": [
-        "libs/auth/driver/testing/src"
+        "../../libs/auth/driver/testing/src"
       ],
       "@daffodil/auth/driver/in-memory": [
-        "libs/auth/driver/in-memory/src"
+        "../../libs/auth/driver/in-memory/src"
       ],
       "@daffodil/auth/driver/magento": [
-        "libs/auth/driver/magento/src"
+        "../../libs/auth/driver/magento/src"
       ],
       "@daffodil/auth/testing": [
-        "libs/auth/testing/src"
+        "../../libs/auth/testing/src"
       ],
       "@daffodil/auth/routing": [
-        "libs/auth/routing/src"
+        "../../libs/auth/routing/src"
       ],
     }
   }

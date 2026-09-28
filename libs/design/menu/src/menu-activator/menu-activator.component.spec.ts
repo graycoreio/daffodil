@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -23,6 +24,7 @@ import { provideTestMenuService } from '../testing/dummy-service';
     <button daffMenuActivator="menu"></button>
     <daff-menu #menu></daff-menu>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_MENU_COMPONENTS,
   ],
@@ -106,6 +108,7 @@ describe('@daffodil/design/menu | DaffMenuActivatorDirective', () => {
     <button daffMenuActivator="menu" xPosition="before" yPosition="above"></button>
     <daff-menu #menu></daff-menu>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_MENU_COMPONENTS,
   ],

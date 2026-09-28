@@ -9,34 +9,33 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/upsell-products": [
-        "libs/upsell-products/src"
+        "../../libs/upsell-products/src"
       ],
       "@daffodil/upsell-products/state": [
-        "libs/upsell-products/state/src"
+        "../../libs/upsell-products/state/src"
       ],
       "@daffodil/upsell-products/state/testing": [
-        "libs/upsell-products/state/testing/src"
+        "../../libs/upsell-products/state/testing/src"
       ],
       "@daffodil/upsell-products/driver": [
-        "libs/upsell-products/driver/src"
+        "../../libs/upsell-products/driver/src"
       ],
       "@daffodil/upsell-products/driver/testing": [
-        "libs/upsell-products/driver/testing/src"
+        "../../libs/upsell-products/driver/testing/src"
       ],
       "@daffodil/upsell-products/driver/in-memory": [
-        "libs/upsell-products/driver/in-memory/src"
+        "../../libs/upsell-products/driver/in-memory/src"
       ],
       "@daffodil/upsell-products/driver/magento": [
-        "libs/upsell-products/driver/magento/src"
+        "../../libs/upsell-products/driver/magento/src"
       ],
       "@daffodil/upsell-products/testing": [
-        "libs/upsell-products/testing/src"
+        "../../libs/upsell-products/testing/src"
       ],
     }
   }

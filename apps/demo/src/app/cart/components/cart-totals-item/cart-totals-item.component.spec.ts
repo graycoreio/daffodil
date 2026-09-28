@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -15,6 +18,7 @@ import { CartTotalsItemComponent } from './cart-totals-item.component';
     <ng-container cart-total-value>{{value}}</ng-container>
   </demo-cart-totals-item>
 `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CartTotalsItemComponent],
 })
 class WrapperComponent {

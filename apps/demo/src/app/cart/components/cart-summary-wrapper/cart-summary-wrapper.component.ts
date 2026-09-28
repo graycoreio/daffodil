@@ -2,6 +2,7 @@ import {
   Component,
   Input,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { DaffCart } from '@daffodil/cart';
@@ -16,6 +17,7 @@ import { CartTotalsComponent } from '../cart-totals/cart-totals.component';
   templateUrl: './cart-summary-wrapper.component.html',
   styleUrls: ['./cart-summary-wrapper.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CartSummaryComponent,
     CartTotalsComponent,

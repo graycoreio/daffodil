@@ -3,6 +3,7 @@ import {
   QueryList,
   signal,
   ViewChildren,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -20,6 +21,7 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
       <daff-sidebar [side]="sidebar.side" [mode]="sidebar.mode" [open]="sidebar.open"></daff-sidebar>
     }
     `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSidebarComponent,
   ],

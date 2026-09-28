@@ -4,6 +4,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ReactiveFormsModule,
@@ -27,6 +28,7 @@ import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-i
   selector: 'demo-checkout-payment-form',
   templateUrl: './payment-form.component.html',
   styleUrls: ['./payment-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     DaffInputComponent,
