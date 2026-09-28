@@ -7,6 +7,7 @@ import {
   DaffProductTypeEnum,
 } from '@daffodil/product';
 
+import { DaffProductCustomAttributeValueFactory } from './custom-attribute-value.factory';
 import { DaffProductImageFactory } from './product-image.factory';
 
 /**
@@ -34,9 +35,11 @@ export class MockProduct implements DaffProduct {
   short_description = faker.commerce.productDescription();
   meta_title = faker.commerce.productName();
   meta_description = faker.commerce.productDescription();
+  customAttributes = this.customAttributeFactory.createMany(faker.number.int({ min: 3, max: 5 }));
 
   constructor(
     protected imageFactory: DaffProductImageFactory,
+    protected customAttributeFactory: DaffProductCustomAttributeValueFactory,
   ) {}
 }
 
@@ -46,10 +49,11 @@ export class MockProduct implements DaffProduct {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffDefaultProductFactory extends DaffModelFactory<DaffProduct> {
+export class DaffDefaultProductFactory extends DaffModelFactory<DaffProduct, typeof MockProduct> {
   constructor(
     imageFactory: DaffProductImageFactory,
+    customAttributeFactory: DaffProductCustomAttributeValueFactory,
   ) {
-    super(MockProduct, imageFactory);
+    super(MockProduct, imageFactory, customAttributeFactory);
   }
 }

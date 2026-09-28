@@ -10,6 +10,7 @@ import {
 
 import { daffComposeReducers } from '@daffodil/core/state';
 
+import { provideDaffProductCustomAttributesState } from './custom-attributes/public_api';
 import { DaffProductGridEffects } from './effects/product-grid.effects';
 import { DaffProductPageEffects } from './effects/product-page.effects';
 import { DaffProductEffects } from './effects/product.effects';
@@ -39,6 +40,7 @@ import { DAFF_PRODUCT_STORE_FEATURE_KEY } from './reducers/public_api';
       combineReducers(daffProductReducers),
       ...inject(DAFF_PRODUCT_EXTRA_REDUCERS),
     ])),
+    provideDaffProductCustomAttributesState(),
   ],
 })
 export class DaffProductStateModule { }

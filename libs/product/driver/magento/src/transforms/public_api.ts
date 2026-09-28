@@ -5,3 +5,4 @@ export * from './simple-product-transformers';
 export * from './aggregate/public_api';
 export * from './applied-sort-option';
 export * from './collection-metadata';
+export * from './custom-attribute-transformers';

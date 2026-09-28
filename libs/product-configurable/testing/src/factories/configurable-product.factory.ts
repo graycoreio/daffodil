@@ -5,6 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProductTypeEnum } from '@daffodil/product';
 import {
   DaffProductImageFactory,
+  DaffProductCustomAttributeValueFactory,
   MockProduct,
 } from '@daffodil/product/testing';
 import { DaffConfigurableProduct } from '@daffodil/product-configurable';
@@ -32,7 +33,7 @@ export class MockConfigurableProduct extends MockProduct implements DaffConfigur
           label: 'Blue',
           swatch: {
             value: '#0000FF',
-            thumbnail: null,
+            thumbnail: undefined,
           },
         },
         {
@@ -40,7 +41,7 @@ export class MockConfigurableProduct extends MockProduct implements DaffConfigur
           label: 'Yellow',
           swatch: {
             value: '#FFFF00',
-            thumbnail: null,
+            thumbnail: undefined,
           },
         },
         {
@@ -48,7 +49,7 @@ export class MockConfigurableProduct extends MockProduct implements DaffConfigur
           label: 'Red',
           swatch: {
             value: '#FF0000',
-            thumbnail: null,
+            thumbnail: undefined,
           },
         },
       ],
@@ -61,17 +62,17 @@ export class MockConfigurableProduct extends MockProduct implements DaffConfigur
         {
           value: '0',
           label: 'Small',
-          swatch: null,
+          swatch: undefined,
         },
         {
           value: '1',
           label: 'Medium',
-          swatch: null,
+          swatch: undefined,
         },
         {
           value: '2',
           label: 'Large',
-          swatch: null,
+          swatch: undefined,
         },
       ],
     },
@@ -83,17 +84,17 @@ export class MockConfigurableProduct extends MockProduct implements DaffConfigur
         {
           value: '0',
           label: 'Cotton',
-          swatch: null,
+          swatch: undefined,
         },
         {
           value: '1',
           label: 'Polyester',
-          swatch: null,
+          swatch: undefined,
         },
         {
           value: '2',
           label: 'Spandex',
-          swatch: null,
+          swatch: undefined,
         },
       ],
     },
@@ -248,10 +249,11 @@ export class MockConfigurableProduct extends MockProduct implements DaffConfigur
 @Injectable({
   providedIn: 'root',
 })
-export class DaffConfigurableProductFactory extends DaffModelFactory<DaffConfigurableProduct>{
+export class DaffConfigurableProductFactory extends DaffModelFactory<DaffConfigurableProduct, typeof MockConfigurableProduct>{
   constructor(
     imageFactory: DaffProductImageFactory,
+    customAttributeFactory: DaffProductCustomAttributeValueFactory,
   ) {
-    super(MockConfigurableProduct, imageFactory);
+    super(MockConfigurableProduct, imageFactory, customAttributeFactory);
   }
 }
