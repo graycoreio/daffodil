@@ -54,7 +54,7 @@ const ngJson = (path: string) => {
  */
 export const createSyncBuilder = (): Builder<any> => createBuilder(async (options: Options, context: BuilderContext): Promise<Extract<BuilderOutput, {success: boolean}>> => {
   let workspaceOrProject: ReturnType<typeof ngJson | typeof nxProjects> | undefined;
-  const packages = await collectPlatformVersions([`${context.workspaceRoot}/node_modules/@daffodil/**`, ...options.packages.map((p) => `${context.workspaceRoot}/${p}`)]);
+  const packages = await collectPlatformVersions([`${context.workspaceRoot}/node_modules/@daffodil/**`, ...options?.packages?.map((p) => `${context.workspaceRoot}/${p}`) || []]);
 
   if (existsSync(join(context.workspaceRoot, 'angular.json'))) {
     workspaceOrProject = ngJson(join(context.workspaceRoot, 'angular.json'));

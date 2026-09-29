@@ -1,6 +1,6 @@
-import { DaffVersioningProject } from './project.type';
 import { daffVersioningGetConditions } from './get-conditions';
 import { DaffPackagePlatformVersions } from './packages.type';
+import { DaffVersioningProject } from './project.type';
 
 describe('@daffodil/commerce/versioning | daffVersioningGetConditions', () => {
   it('returns a condition for each package supporting the driver version', () => {

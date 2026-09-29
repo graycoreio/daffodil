@@ -22,5 +22,5 @@ export interface DaffVersioningProject {
    * The packages that contain third party auto versioned drivers.
    * Daffodil packages are automatically included; there is no need to specify it here.
    */
-  packages: Array<string>;
+  packages?: Array<string>;
 }

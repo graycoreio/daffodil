@@ -19,19 +19,28 @@ import {
 import { tmpdir } from 'os';
 import { join } from 'path';
 
-import { DaffPackagePlatformVersions } from './packages.type';
 import { createSyncBuilder } from './sync-builder';
 
 const BUILDER_NAME = 'test:sync';
 
-const FIXTURE_PACKAGES: DaffPackagePlatformVersions = {
-  magento: {
-    'some-package': [<const>'2.4.1'],
-    'other-package': [<const>'2.4.1'],
-  },
+const FIXTURE_PACKAGES = ['some-package', 'other-package'];
+
+const writeFixturePackages = async (workspaceRoot: string) => {
+  for (const packageName of FIXTURE_PACKAGES) {
+    const dir = join(workspaceRoot, 'node_modules', '@daffodil', packageName);
+    mkdirSync(dir, { recursive: true });
+    await writeFile(join(dir, 'package.json'), JSON.stringify({
+      name: `@daffodil/${packageName}`,
+      exports: {
+        './driver/magento/auto': {
+          [`${packageName}-magento-2.4.1`]: './driver/magento/2-4-1/index.js',
+        },
+      },
+    }));
+  }
 };
 
-const builder = createSyncBuilder(FIXTURE_PACKAGES);
+const builder = createSyncBuilder();
 
 const scheduleSync = async (workspaceRoot: string, options: any, target?: Target) => {
   const registry = new schema.CoreSchemaRegistry();
@@ -61,8 +70,9 @@ const scheduleSync = async (workspaceRoot: string, options: any, target?: Target
 describe('@daffodil/commerce/versioning | syncBuilder', () => {
   let workspaceRoot: string;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     workspaceRoot = mkdtempSync(join(tmpdir(), 'daff-sync-builder-'));
+    await writeFixturePackages(workspaceRoot);
   });
 
   afterEach(() => {
