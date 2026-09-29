@@ -23,8 +23,10 @@
 				}
 			}
 
-			&:focus {
+			&:focus-visible {
 				background: rgba(daff-color($neutral, 20), 0.5);
+				outline: 0.125rem solid daff-color($neutral, 20);
+				outline-offset: 0.125rem;
 			}
 		}
 	}
@@ -45,8 +47,10 @@
 				}
 			}
 
-			&:focus {
+			&:focus-visible {
 				background: rgba(daff-color($neutral, 20), 0.08);
+				outline: 0.125rem solid daff-color($neutral, 20);
+				outline-offset: 0.125rem;
 			}
 		}
 	}
