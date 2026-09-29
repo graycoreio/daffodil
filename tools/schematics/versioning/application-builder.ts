@@ -24,7 +24,7 @@ interface Options extends DaffVersioningProject, ApplicationBuilderOptions {}
  * See {@link DaffVersioningProject} for configuration options.
  */
 const builder: Builder<any> = createBuilder((options: Options, context: BuilderContext): Observable<BuilderOutput> => {
-  const b = collectPlatformVersions([`${context.workspaceRoot}/node_modules/@daffodil/**`, ...options.packages.map((p) => `${context.workspaceRoot}/${p}`)]).then((packages) =>
+  const b = collectPlatformVersions([`${context.workspaceRoot}/node_modules/@daffodil/**`, ...options.packages.map((p) => `${context.workspaceRoot}/node_modules/${p}`)]).then((packages) =>
     daffVersioningGetConditions(options, packages),
   ).then((conditions) => {
     context.logger.info(`Running application builder with the following conditions: ${conditions}`);
