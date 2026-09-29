@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "drivers": {
+			"type": "object",
+			"properties": {
+				"magento": {
+					"type": "string"
+				}
+			},
+			"additionalProperties": false,
+			"description": "The version of drivers that the application targets."
+		},
+		"packages": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"additionalProperties": false,
+			"description": "Globs, relative to the workspace root, pointing to node modules that contain auto versioned daffodil driver packages. First party daffodil drivers are automatically included; only include third party drivers that need to be auto versioned."
+		},
+		"$schema": {
+			"type": "string"
+		}
+  },
+  "additionalProperties": true
+}

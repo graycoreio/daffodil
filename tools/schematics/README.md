@@ -101,3 +101,60 @@ ng new test-app
 cd test-app
 ng add @daffodil/ecommerce
 ```
+
+## Driver Auto Versioning
+
+This package export two builders which enable the application to use Daffodil auto versioned drivers.
+Read more about driver auto versioning [here](/docs/guides/essentials/auto-versioning.md).
+
+### Application Builder
+
+This is the recommended way to use auto versioned drivers. `@daffodil/commerce:application` wraps `@angular/build:application` and allows a list of platform versions to be specified.
+Daffodil will then, under the hood, select the driver versions that are applicable to that platform version.
+
+```json
+{
+  ...
+  "builder": "@daffodil/commerce:application",
+  "options": {
+    ...
+    "drivers": {
+      "magento": "2.4.7-p8"
+    }
+  }
+}
+```
+
+Then import from the auto subpackage instead of a specific version.
+
+```ts
+import {...} from '@daffodil/<lib>/driver/magento/auto';
+```
+
+### Sync Builder
+
+If the `@daffodil/commerce:application` builder does not meet the needs of the application then the commerce package provides a `@daffodil/commerce:sync` builder that will modify the builder configuration directly.
+
+```json
+{
+  "architect": {
+    "sync": {
+      "builder": "@daffodil/commerce:sync",
+      "options": {
+        "drivers": {
+          "magento": "2.4.7-p8"
+        }
+      }
+    },
+    "build": {
+      ...
+      "options": {
+        ...
+        "conditions": [...] // <-- this is what the sync builder creates
+      }
+    }
+  }
+}
+```
+
+It is then the responsibility of the app to run the sync builder anytime that the platform version changes.
