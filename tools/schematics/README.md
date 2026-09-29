@@ -101,3 +101,10 @@ ng new test-app
 cd test-app
 ng add @daffodil/ecommerce
 ```
+
+## Driver Auto Versioning
+
+This package also exports two builders which [enable Angular applications to automatically select Daffodil driver versions for the requested platform version](/docs/guides/essentials/drivers.md#automatically-versioned-drivers):
+
+- [`@daffodil/commerce:application`](/docs/guides/essentials/drivers.md#application-builder)
+- [`@daffodil/commerce:sync`](/docs/guides/essentials/drivers.md#sync-builder)

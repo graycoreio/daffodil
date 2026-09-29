@@ -69,6 +69,7 @@
     "@ngrx/schematics": "^21",
     "@ngrx/store-devtools": "^21",
     "@nx/azure-cache": "^4.0.0",
+    "@nx/devkit": "^20.8.4",
     "@schematics/angular": "^21",
     "@stylistic/eslint-plugin": "^2.7.2",
     "@stylistic/stylelint-plugin": "^5.0.0",
