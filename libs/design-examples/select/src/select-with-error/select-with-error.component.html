@@ -7,7 +7,7 @@
       <div>{{ option.city }}, {{ option.state }} {{ option.postcode }}</div>
     </ng-template>
   </daff-select>
-  @if (control.invalid) {
+  @if (control.touched && control.invalid) {
   <daff-error-message>This field is required</daff-error-message>
   }
 </daff-form-field>
