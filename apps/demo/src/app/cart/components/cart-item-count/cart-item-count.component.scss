@@ -4,5 +4,5 @@
 
 .demo-cart-item-count {
 	color: daff-theme.daff-color($neutral, 80);
-	font-size: $font-size-sm;
+	font-size: var(--daff-font-size-sm);
 }

@@ -1,5 +1,5 @@
-@use '../../../scss/typography' as t;
 @use '../../../scss/state';
+@use '../../../scss/typography' as t;
 
 // stylelint-disable selector-class-pattern
 .daff-form-field {
@@ -40,7 +40,7 @@
 		display: flex;
 		align-items: center;
 		border-radius: 0.25rem;
-		font-size: t.$font-size-base;
+		font-size: var(--daff-font-family-base);
 		line-height: 1.25rem;
 		padding: 0 1rem;
 		position: relative;

@@ -4,7 +4,7 @@
 
 .demo-cart-item {
 	display: grid;
-	font-size: $font-size-sm;
+	font-size: var(--daff-font-size-sm);
 	column-gap: 20px;
 	row-gap: 15px;
 	grid-template-columns: 1fr 3fr;
