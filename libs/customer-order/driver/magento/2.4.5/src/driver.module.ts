@@ -4,11 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffOrderDriver } from '@daffodil/order/driver';
+import { provideDaffCustomerOrderMagentoDriver } from './provider';
 
-import { DaffCustomerOrderMagentoService } from './order.service';
-import { MagentoCustomerOrderCollectionTransformer } from './transforms/public_api';
-
+/**
+ * @deprecated prefer {@link provideDaffCustomerOrderMagentoDriver}.
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -19,8 +19,7 @@ export class DaffCustomerOrderMagentoDriverModule {
     return {
       ngModule: DaffCustomerOrderMagentoDriverModule,
       providers: [
-        MagentoCustomerOrderCollectionTransformer,
-        provideDaffOrderDriver(DaffCustomerOrderMagentoService),
+        provideDaffCustomerOrderMagentoDriver(),
       ],
     };
   }
