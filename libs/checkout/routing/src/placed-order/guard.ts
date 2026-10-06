@@ -8,7 +8,7 @@ import { tap } from 'rxjs/operators';
 
 import { DaffCheckoutPlacedOrderFacade } from '@daffodil/checkout/state';
 
-import { DaffCheckoutPlacedOrderGuardRedirectUrl } from './placed-order-guard-redirect.token';
+import { DaffCheckoutPlacedOrderGuardRedirectUrl } from './guard-redirect.token';
 
 /**
  * A routing guard that will redirect to a given url if the placed order is not defined.
