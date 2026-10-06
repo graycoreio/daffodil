@@ -8,7 +8,7 @@ import { provideDaffOrderDriver } from '@daffodil/order/driver';
 import { DaffOrderMagentoService } from './order.service';
 
 /**
- * Provides a 2.4.1 Magento implementation of {@link DaffOrderServiceInterface}.
+ * Provides a 2.4.1 (and onward) Magento implementation of {@link DaffOrderServiceInterface}.
  */
 export const provideDaffOrderMagentoDriver = (
 ): EnvironmentProviders => makeEnvironmentProviders([
