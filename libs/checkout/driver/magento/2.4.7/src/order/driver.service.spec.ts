@@ -85,7 +85,6 @@ describe('@daffodil/checkout/driver/magento/2.4.7 | MagentoCheckoutOrderService'
         it('should throw a DaffCartNotFoundError', done => {
           service.placeOrder(cartId).pipe(
             catchAndArrayifyErrors((errors) => {
-              console.log(errors);
               expect(errors).toEqual(jasmine.arrayContaining([jasmine.objectContaining({ code: DaffCartDriverErrorCodes.CART_NOT_FOUND })]));
               done();
               return of();
