@@ -4,3 +4,4 @@ export {
   DAFF_DRIVER_NETWORK_ERROR_CODE,
 } from './network-error.class';
 export { DaffDriverErrorCodes } from './codes';
+export { daffAutoDriverErrorMessage } from './auto-import-message';

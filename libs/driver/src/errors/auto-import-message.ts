@@ -1,0 +1,2 @@
+export const daffAutoDriverErrorMessage = (feature: string): string =>
+  `Your application has loaded an empty auto driver into the app bundle. Typically this happens if you have not selected an appropriate platform version for a driver you have loaded. Only import the auto driver if you are using auto driver versioning. Ensure you have followed the guide at https://daff.io/docs/guides/essentials/drivers#automatically-versioned-drivers. If you do not correct this then ${feature} will be missing a driver and will not function as intended.`;
