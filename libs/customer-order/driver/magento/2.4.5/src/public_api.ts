@@ -9,3 +9,4 @@ export * from './interfaces/public_api';
 export { DaffCustomerOrderMagentoService } from './order.service';
 
 export { DaffCustomerOrderMagentoDriverModule } from './driver.module';
+export { provideDaffCustomerOrderMagentoDriver } from './provider';
