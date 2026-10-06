@@ -1,6 +1,8 @@
 import { isDevMode } from '@angular/core';
 
-const MESSAGE = 'The auto driver entrypoint is a placeholder for auto driver versioning. It should not end up in the app bundle. Ensure you have followed the guide at https://daff.io/docs/guides/essentials/drivers#automatically-versioned-drivers.';
+import { daffAutoDriverErrorMessage } from '@daffodil/driver';
+
+const MESSAGE = daffAutoDriverErrorMessage('order');
 
 if (isDevMode()) {
   throw new Error(MESSAGE);
