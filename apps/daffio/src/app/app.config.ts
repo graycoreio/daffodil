@@ -38,11 +38,10 @@ import { provideDaffioSidebarFeature } from './core/sidebar/provider';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideZoneChangeDetection(
-      {
-        eventCoalescing: true,
-      },
-    ),
+    // eventCoalescing is intentionally left off: it defers change detection past the
+    // router's anchor/scroll-restoration step, so the target content isn't rendered
+    // yet when the router tries to scroll to it.
+    provideZoneChangeDetection(),
     provideAnimations(),
     importProvidersFrom(
       StoreModule.forRoot({}),
