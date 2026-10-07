@@ -31,8 +31,8 @@
       "@daffodil/related-products/driver/in-memory": [
         "../../libs/related-products/driver/in-memory/src"
       ],
-      "@daffodil/related-products/driver/magento": [
-        "../../libs/related-products/driver/magento/src"
+      "@daffodil/related-products/driver/magento/2.4.7": [
+        "../../libs/related-products/driver/magento/2.4.7/src"
       ],
       "@daffodil/related-products/testing": [
         "../../libs/related-products/testing/src"
