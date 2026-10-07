@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCustomerStoreCredit } from '@daffodil/customer-store-credit';
-import { MagentoCustomerStoreCredit } from '@daffodil/customer-store-credit/driver/magento';
-import { MagentoCustomerStoreCreditFactory } from '@daffodil/customer-store-credit/driver/magento/testing';
+import { MagentoCustomerStoreCredit } from '@daffodil/customer-store-credit/driver/magento/2.4.7';
+import { MagentoCustomerStoreCreditFactory } from '@daffodil/customer-store-credit/driver/magento/2.4.7/testing';
 
 import { magentoCustomerStoreCreditTransform } from './customer-store-credit';
 

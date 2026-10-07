@@ -34,11 +34,11 @@
       "@daffodil/customer-store-credit/driver/testing": [
         "../../libs/customer-store-credit/driver/testing/src"
       ],
-      "@daffodil/customer-store-credit/driver/magento": [
-        "../../libs/customer-store-credit/driver/magento/src"
+      "@daffodil/customer-store-credit/driver/magento/2.4.7": [
+        "../../libs/customer-store-credit/driver/magento/2.4.7/src"
       ],
-      "@daffodil/customer-store-credit/driver/magento/testing": [
-        "../../libs/customer-store-credit/driver/magento/testing/src"
+      "@daffodil/customer-store-credit/driver/magento/2.4.7/testing": [
+        "../../libs/customer-store-credit/driver/magento/2.4.7/testing/src"
       ],
       "@daffodil/customer-store-credit/routing": [
         "../../libs/customer-store-credit/routing/src"

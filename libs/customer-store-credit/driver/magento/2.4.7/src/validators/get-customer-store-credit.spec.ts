@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { Apollo } from 'apollo-angular';
 
 import { DaffCustomerStoreCreditInvalidAPIResponseError } from '@daffodil/customer-store-credit/driver';
-import { MagentoGetCustomerStoreCreditResponse } from '@daffodil/customer-store-credit/driver/magento';
-import { MagentoCustomerStoreCreditFactory } from '@daffodil/customer-store-credit/driver/magento/testing';
+import { MagentoGetCustomerStoreCreditResponse } from '@daffodil/customer-store-credit/driver/magento/2.4.7';
+import { MagentoCustomerStoreCreditFactory } from '@daffodil/customer-store-credit/driver/magento/2.4.7/testing';
 
 import { validateGetCustomerStoreCreditResponse as validator } from './get-customer-store-credit';
 

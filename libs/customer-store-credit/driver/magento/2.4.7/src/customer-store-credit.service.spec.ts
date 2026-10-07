@@ -13,8 +13,8 @@ import {
   MagentoCustomerStoreCredit,
   MagentoGetCustomerStoreCreditResponse,
   getCustomerStoreCredit,
-} from '@daffodil/customer-store-credit/driver/magento';
-import { MagentoCustomerStoreCreditFactory } from '@daffodil/customer-store-credit/driver/magento/testing';
+} from '@daffodil/customer-store-credit/driver/magento/2.4.7';
+import { MagentoCustomerStoreCreditFactory } from '@daffodil/customer-store-credit/driver/magento/2.4.7/testing';
 import {
   DaffDriverMagentoError,
   MAGENTO_POSSIBLE_TYPES,

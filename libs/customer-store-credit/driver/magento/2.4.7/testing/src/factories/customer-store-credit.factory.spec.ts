@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoCustomerStoreCredit } from '@daffodil/customer-store-credit/driver/magento';
+import { MagentoCustomerStoreCredit } from '@daffodil/customer-store-credit/driver/magento/2.4.7';
 
 import { MagentoCustomerStoreCreditFactory } from './customer-store-credit.factory';
 
