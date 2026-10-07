@@ -31,8 +31,8 @@
       "@daffodil/upsell-products/driver/in-memory": [
         "../../libs/upsell-products/driver/in-memory/src"
       ],
-      "@daffodil/upsell-products/driver/magento": [
-        "../../libs/upsell-products/driver/magento/src"
+      "@daffodil/upsell-products/driver/magento/2.4.7": [
+        "../../libs/upsell-products/driver/magento/2.4.7/src"
       ],
       "@daffodil/upsell-products/testing": [
         "../../libs/upsell-products/testing/src"

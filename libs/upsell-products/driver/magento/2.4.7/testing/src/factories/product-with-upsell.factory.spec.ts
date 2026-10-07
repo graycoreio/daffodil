@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoProductWithUpsell } from '@daffodil/upsell-products/driver/magento';
+import { MagentoProductWithUpsell } from '@daffodil/upsell-products/driver/magento/2.4.7';
 
 import { MagentoProductWithUpsellFactory } from './product-with-upsell.factory';
 
