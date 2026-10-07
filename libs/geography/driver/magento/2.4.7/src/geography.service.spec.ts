@@ -29,7 +29,7 @@ import {
   MagentoCountry,
   MagentoGetCountriesResponse,
   getCountries,
-} from '@daffodil/geography/driver/magento';
+} from '@daffodil/geography/driver/magento/2.4.7';
 import {
   DaffCountryFactory,
   DaffSubdivisionFactory,
