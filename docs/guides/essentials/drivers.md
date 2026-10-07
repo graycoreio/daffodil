@@ -27,7 +27,7 @@ export interface DaffProductServiceInterface<T extends DaffProduct = DaffProduct
   getByUrl(url: DaffProduct['url']): Observable<DaffProductDriverResponse<T>>;
 }
 
-// Cart driver interface  
+// Cart driver interface
 export interface DaffCartServiceInterface<T extends DaffCart = DaffCart> {
   get(id: T['id']): Observable<DaffDriverResponse<T>>;
   create(): Observable<{id: T['id']}>;
@@ -121,6 +121,12 @@ export class ProductComponent {
   }
 }
 ```
+
+## Supported platform versions
+
+Unless otherwise stated, Daffodil supports the platform versions each platform maintains under standard support.
+
+- [Magento](https://magento.watch/versions#magento-community)
 
 ## Versioned drivers
 
