@@ -1,7 +1,7 @@
 @use '@daffodil/design/scss/utilities' as *;
 
 .demo-checkout-billing-summary {
-	font-size: $font-size-sm;
+	font-size: var(--daff-font-size-sm);
 
 	&__title {
 		font-weight: bold;

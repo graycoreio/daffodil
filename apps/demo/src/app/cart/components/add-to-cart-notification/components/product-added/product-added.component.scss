@@ -18,19 +18,19 @@
 
 	&__name {
 		@include clickable();
-		font-size: $font-size-md;
+		font-size: var(--daff-font-size-md);
 		font-weight: bold;
 		margin-bottom: 5px;
 	}
 
 	&__price {
-		font-size: $font-size-md;
 		color: daff-theme.daff-color($secondary);
+		font-size: var(--daff-font-size-md);
 		margin-bottom: 15px;
 	}
 
 	&__info {
-		font-size: $font-size-sm;
+		font-size: var(--daff-font-size-sm);
 		line-height: 1.25rem;
 	}
 }

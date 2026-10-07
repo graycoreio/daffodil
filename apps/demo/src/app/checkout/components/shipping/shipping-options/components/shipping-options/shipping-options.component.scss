@@ -24,8 +24,8 @@
 	}
 
 	&__invalid {
-		font-size: $font-size-sm;
 		color: daff-theme.$error;
+		font-size: var(--daff-font-size-sm);
 	}
 
 	&__radio {
