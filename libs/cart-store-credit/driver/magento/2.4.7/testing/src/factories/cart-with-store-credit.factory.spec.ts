@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoCartWithStoreCredit } from '@daffodil/cart-store-credit/driver/magento';
+import { MagentoCartWithStoreCredit } from '@daffodil/cart-store-credit/driver/magento/2.4.7';
 
 import { MagentoCartWithStoreCreditFactory } from './cart-with-store-credit.factory';
 

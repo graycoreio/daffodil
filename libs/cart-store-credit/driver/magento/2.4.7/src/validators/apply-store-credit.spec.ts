@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { Apollo } from 'apollo-angular';
 
 import { DaffCartStoreCreditInvalidAPIResponseError } from '@daffodil/cart-store-credit/driver';
-import { MagentoApplyStoreCreditResponse } from '@daffodil/cart-store-credit/driver/magento';
-import { MagentoCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/driver/magento/testing';
+import { MagentoApplyStoreCreditResponse } from '@daffodil/cart-store-credit/driver/magento/2.4.7';
+import { MagentoCartWithStoreCreditFactory } from '@daffodil/cart-store-credit/driver/magento/2.4.7/testing';
 
 import { validateApplyStoreCreditResponse as validator } from './apply-store-credit';
 
