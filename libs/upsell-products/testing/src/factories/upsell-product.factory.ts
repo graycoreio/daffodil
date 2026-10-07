@@ -6,6 +6,7 @@ import {
   MockProduct,
   DaffProductKindFactory,
   DaffProductImageFactory,
+  DaffProductCustomAttributeValueFactory,
 } from '@daffodil/product/testing';
 import { DaffUpsellProduct } from '@daffodil/upsell-products';
 
@@ -18,8 +19,9 @@ export class MockUpsellProduct extends MockProduct implements DaffUpsellProduct 
   constructor(
     productFactory: DaffProductKindFactory,
     imageFactory: DaffProductImageFactory,
+    customAttributeFactory: DaffProductCustomAttributeValueFactory,
   ) {
-    super(imageFactory);
+    super(imageFactory, customAttributeFactory);
 
     this.upsell = productFactory.createMany(3);
   }
@@ -31,11 +33,12 @@ export class MockUpsellProduct extends MockProduct implements DaffUpsellProduct 
 @Injectable({
   providedIn: 'root',
 })
-export class DaffUpsellProductFactory extends DaffModelFactory<DaffUpsellProduct>{
+export class DaffUpsellProductFactory extends DaffModelFactory<DaffUpsellProduct, typeof MockUpsellProduct>{
   constructor(
     productKindFactory: DaffProductKindFactory,
     imageFactory: DaffProductImageFactory,
+    customAttributeFactory: DaffProductCustomAttributeValueFactory,
   ) {
-    super(MockUpsellProduct, productKindFactory, imageFactory);
+    super(MockUpsellProduct, productKindFactory, imageFactory, customAttributeFactory);
   }
 }
