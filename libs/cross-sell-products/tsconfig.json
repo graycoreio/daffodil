@@ -1,0 +1,32 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/cross-sell-products": [
+        "libs/cross-sell-products/src"
+      ],
+      "@daffodil/cross-sell-products/state": [
+        "libs/cross-sell-products/state/src"
+      ],
+      "@daffodil/cross-sell-products/state/testing": [
+        "libs/cross-sell-products/state/testing/src"
+      ],
+      "@daffodil/cross-sell-products/driver": [
+        "libs/cross-sell-products/driver/src"
+      ],
+      "@daffodil/cross-sell-products/driver/magento": [
+        "libs/cross-sell-products/driver/magento/src"
+      ],
+      "@daffodil/cross-sell-products/driver/in-memory": [
+        "libs/cross-sell-products/driver/in-memory/src"
+      ],
+      "@daffodil/cross-sell-products/testing": [
+        "libs/cross-sell-products/testing/src"
+      ],
+    }
+  }
+}

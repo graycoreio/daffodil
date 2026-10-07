@@ -1,0 +1,16 @@
+import { Action } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { DaffStoreFacade } from '@daffodil/core/state';
+import { DaffProduct } from '@daffodil/product';
+
+
+/**
+ * A facade for getting state about a particular product's cross-sell products.
+ */
+export interface DaffCrossSellProductsFacadeInterface<T extends DaffProduct = DaffProduct> extends DaffStoreFacade<Action> {
+  /**
+   * A list of cross-sell products of the current product.
+   */
+  crossSellProducts$: Observable<T[]>;
+}
