@@ -13,7 +13,14 @@ import {
   DaffButtonComponent,
   DaffIconButtonComponent,
 } from '@daffodil/design/button';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
+import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
 import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
+import {
+  DAFF_VIEWPORT_COMPONENTS,
+  DaffViewportService,
+  provideDaffViewport,
+} from '@daffodil/design/viewport';
 
 @Component({
   selector: 'over-and-under-sidebars-example',
@@ -26,20 +33,27 @@ import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
     ReactiveFormsModule,
     DaffButtonComponent,
     DaffIconButtonComponent,
+    DAFF_VIEWPORT_COMPONENTS,
+    DAFF_SELECT_COMPONENTS,
+    DAFF_FORM_FIELD_COMPONENTS,
+  ],
+  providers: [
+    provideDaffViewport(),
   ],
 })
 export class OverandUnderSidebarsExampleComponent {
   faTimes = faTimes;
 
-  open = false;
+  modes = [
+    { label: 'Over', value: 'over' },
+    { label: 'Under', value: 'under' },
+  ];
 
-  modeControl: FormControl = new FormControl('over');
+  modeControl: FormControl = new FormControl(this.modes[0]);
+
+  constructor(private viewportService: DaffViewportService) {}
 
   openSidebar() {
-    this.open = !this.open;
-  }
-
-  closeSidebar() {
-    this.open = false;
+    this.viewportService.open('left');
   }
 }

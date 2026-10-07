@@ -1,11 +1,19 @@
 import {
   EnvironmentProviders,
-  importProvidersFrom,
+  inject,
+  makeEnvironmentProviders,
+  provideEnvironmentInitializer,
 } from '@angular/core';
-import { EffectsModule } from '@ngrx/effects';
 
-import { DaffioSidebarRoutingModeEffects } from './effects/sidebar-routing-mode.effects';
+import { DaffioSidebarRoutingModeService } from './services/sidebar-routing-mode.service';
 
-export const provideDaffioSidebarFeature = (): EnvironmentProviders[] => [
-  importProvidersFrom(EffectsModule.forFeature([DaffioSidebarRoutingModeEffects])),
-];
+/**
+ * Eagerly instantiates the {@link DaffioSidebarRoutingModeService} so its
+ * route-driven open/close effect is active for the lifetime of the app.
+ */
+export const provideDaffioSidebarFeature = (): EnvironmentProviders =>
+  makeEnvironmentProviders([
+    provideEnvironmentInitializer(() => {
+      inject(DaffioSidebarRoutingModeService);
+    }),
+  ]);

@@ -13,7 +13,14 @@ import {
   DaffButtonComponent,
   DaffIconButtonComponent,
 } from '@daffodil/design/button';
+import { DAFF_FORM_FIELD_COMPONENTS } from '@daffodil/design/form-field';
+import { DAFF_SELECT_COMPONENTS } from '@daffodil/design/select';
 import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
+import {
+  DAFF_VIEWPORT_COMPONENTS,
+  DaffViewportService,
+  provideDaffViewport,
+} from '@daffodil/design/viewport';
 
 @Component({
   selector: 'sidebar-sides-example',
@@ -26,6 +33,12 @@ import { DAFF_SIDEBAR_COMPONENTS } from '@daffodil/design/sidebar';
     ReactiveFormsModule,
     DaffButtonComponent,
     DaffIconButtonComponent,
+    DAFF_VIEWPORT_COMPONENTS,
+    DAFF_SELECT_COMPONENTS,
+    DAFF_FORM_FIELD_COMPONENTS,
+  ],
+  providers: [
+    provideDaffViewport(),
   ],
 })
 export class SidebarSidesExampleComponent {
@@ -33,13 +46,16 @@ export class SidebarSidesExampleComponent {
 
   open = false;
 
-  sideControl: FormControl = new FormControl('left');
+  sides = [
+    { label: 'Left', value: 'left' },
+    { label: 'Right', value: 'right' },
+  ];
+
+  sideControl: FormControl = new FormControl(this.sides[0]);
+
+  constructor(private viewportService: DaffViewportService) {}
 
   openSidebar() {
-    this.open = !this.open;
-  }
-
-  closeSidebar() {
-    this.open = false;
+    this.viewportService.open(this.sideControl.value.value);
   }
 }

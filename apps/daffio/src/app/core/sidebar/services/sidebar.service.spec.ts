@@ -3,24 +3,24 @@ import {
   BreakpointState,
 } from '@angular/cdk/layout';
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
 
 import {
   DaffSidebarModeEnum,
-  DaffSidebarRegistration,
+  DaffSidebarSideEnum,
 } from '@daffodil/design/sidebar';
+import { DaffViewportService } from '@daffodil/design/viewport';
 import { DaffRouterDataService } from '@daffodil/router';
 
 import { DaffioSidebarService } from './sidebar.service';
-import { DAFFIO_NAV_SIDEBAR_ID } from '../../nav/header/sidebar-id';
 import { DaffioRoute } from '../../router/route.type';
+import { DaffioSidebarRegistration } from '../interfaces/registration.type';
 
 describe('DaffioSidebarService', () => {
   let service: DaffioSidebarService;
   let dataSpy: BehaviorSubject<DaffioRoute['data']>;
   let breakpointSpy: BehaviorSubject<BreakpointState>;
+  let viewportServiceSpy: jasmine.SpyObj<DaffViewportService>;
 
   beforeEach(() => {
     dataSpy = new BehaviorSubject({});
@@ -28,6 +28,7 @@ describe('DaffioSidebarService', () => {
       matches: false,
       breakpoints: {},
     });
+    viewportServiceSpy = jasmine.createSpyObj('DaffViewportService', ['open', 'close']);
 
     TestBed.configureTestingModule({
       providers: [
@@ -37,7 +38,11 @@ describe('DaffioSidebarService', () => {
         },
         {
           provide: BreakpointObserver,
-          useValue: jasmine.createSpyObj('BreakpintObserver', { observe: breakpointSpy }),
+          useValue: jasmine.createSpyObj('BreakpointObserver', { observe: breakpointSpy }),
+        },
+        {
+          provide: DaffViewportService,
+          useValue: viewportServiceSpy,
         },
       ],
     });
@@ -45,91 +50,104 @@ describe('DaffioSidebarService', () => {
     service = TestBed.inject(DaffioSidebarService);
   });
 
-  describe('when the viewport is big tablet or bigger', () => {
-    beforeEach(() => {
-      breakpointSpy.next({ matches: true, breakpoints: {}});
-    });
-
-    it('should pull sidebar mode from router data', () => {
-      dataSpy.next({
-        sidebarMode: DaffSidebarModeEnum.Side,
-      });
-      expect(service.mode$).toBeObservable(cold('a', { a: DaffSidebarModeEnum.Side }));
-    });
-
-    it('should default the mode to side-fixed', () => {
-      dataSpy.next({});
-      expect(service.mode$).toBeObservable(cold('a', { a: DaffSidebarModeEnum.SideFixed }));
-    });
-  });
-
-  it('should have a mode of under when the viewport is smaller than big tablet', () => {
-    breakpointSpy.next({ matches: false, breakpoints: {}});
-
-    expect(service.mode$).toBeObservable(cold('(ab)', { a: DaffSidebarModeEnum.SideFixed, b: DaffSidebarModeEnum.Under }));
-  });
-
-  describe('activeRegistration$', () => {
-    let testRegistration: DaffSidebarRegistration;
-
-    beforeEach(() => {
-      testRegistration = {
-        id: DAFFIO_NAV_SIDEBAR_ID,
-      };
-      dataSpy.next({
-        daffioSidebars: {
-          [DAFFIO_NAV_SIDEBAR_ID]: testRegistration,
-        },
-      });
-    });
-
-    it('should default to the nav links registration', () => {
-      expect(service.activeRegistration$).toBeObservable(cold('a', { a: testRegistration }));
-    });
-
-    it('should only emit an activeRegistration when the sidebar actually changes', () => {
-      const scheduler = new TestScheduler((actual, expected) => {
-        expect(actual).toEqual(expected);
-      });
-
-      scheduler.run(({ expectObservable, cold: coldMarble }) => {
-        coldMarble('-a').subscribe(() => {
-          dataSpy.next({
-            daffioSidebars: {
-              [DAFFIO_NAV_SIDEBAR_ID]: { id: DAFFIO_NAV_SIDEBAR_ID },
-            },
-          });
-        });
-        expectObservable(service.activeRegistration$).toBe('a', { a: testRegistration });
-      });
-    });
-
-    describe('when an unknown sidebar is opened', () => {
+  describe('mode', () => {
+    describe('when the viewport is big tablet or bigger', () => {
       beforeEach(() => {
-        service.open('id');
+        breakpointSpy.next({ matches: true, breakpoints: {}});
       });
 
-      it('should not return a registration', () => {
-        expect(service.activeRegistration$).toBeObservable(cold('a', { a: undefined }));
+      it('should pull the sidebar mode from router data', () => {
+        dataSpy.next({
+          sidebarMode: DaffSidebarModeEnum.Side,
+        });
+
+        expect(service.mode()).toEqual(DaffSidebarModeEnum.Side);
       });
+
+      it('should default the mode to side-fixed', () => {
+        dataSpy.next({});
+
+        expect(service.mode()).toEqual(DaffSidebarModeEnum.SideFixed);
+      });
+    });
+
+    it('should have a mode of under when the viewport is smaller than big tablet', () => {
+      breakpointSpy.next({ matches: false, breakpoints: {}});
+
+      expect(service.mode()).toEqual(DaffSidebarModeEnum.Under);
+    });
+  });
+
+  describe('activeRegistration', () => {
+    it('should be undefined when no sidebar has been opened', () => {
+      expect(service.activeRegistration()).toBeUndefined();
     });
 
     describe('when a known sidebar is opened', () => {
+      let registration: DaffioSidebarRegistration;
+
       beforeEach(() => {
-        testRegistration = {
+        registration = {
           id: 'id',
         };
         dataSpy.next({
           daffioSidebars: {
-            id: testRegistration,
+            id: registration,
           },
         });
-        service.open(testRegistration.id);
+        service.open(registration.id);
       });
 
       it('should return the registration', () => {
-        expect(service.activeRegistration$).toBeObservable(cold('a', { a: testRegistration }));
+        expect(service.activeRegistration()).toEqual(registration);
       });
+    });
+
+    describe('when the route declares a docked sidebar and the viewport is big tablet', () => {
+      let docked: DaffioSidebarRegistration;
+
+      beforeEach(() => {
+        docked = {
+          id: 'docked',
+        };
+        breakpointSpy.next({ matches: true, breakpoints: {}});
+        dataSpy.next({
+          daffioDockedSidebar: docked.id,
+          daffioSidebars: {
+            [docked.id]: docked,
+          },
+        });
+      });
+
+      it('should return the docked registration', () => {
+        expect(service.activeRegistration()).toEqual(docked);
+      });
+    });
+  });
+
+  describe('open', () => {
+    it('should open the viewport on the active sidebar side', () => {
+      const registration: DaffioSidebarRegistration = {
+        id: 'id',
+        side: DaffSidebarSideEnum.Right,
+      };
+      dataSpy.next({
+        daffioSidebars: {
+          id: registration,
+        },
+      });
+
+      service.open(registration.id);
+
+      expect(viewportServiceSpy.open).toHaveBeenCalledWith(DaffSidebarSideEnum.Right);
+    });
+  });
+
+  describe('close', () => {
+    it('should close the viewport', () => {
+      service.close();
+
+      expect(viewportServiceSpy.close).toHaveBeenCalledWith('left');
     });
   });
 });

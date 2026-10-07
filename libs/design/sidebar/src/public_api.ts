@@ -17,3 +17,8 @@ export {
 export { daffSidebarIsDockedMode } from './helper/is-docked-mode';
 export { daffSidebarIsFloatingMode } from './helper/is-floating-mode';
 export { DAFF_SIDEBAR_COMPONENTS } from './sidebar';
+
+export {
+  DaffSidebarAnimationStates,
+  DaffSidebarAnimationState,
+} from './animation/sidebar-animation-state';

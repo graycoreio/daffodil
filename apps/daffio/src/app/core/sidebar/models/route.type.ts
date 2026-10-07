@@ -6,9 +6,9 @@ import { DaffioSidebarRegistration } from '../interfaces/registration.type';
 
 export interface DaffioRouteWithSidebars extends Route {
   data?: Route['data'] & {
-    /**
-     * A collection of sidebars available on the current page.
-     */
+  /**
+   * A collection of sidebars available on the current page.
+   */
     daffioSidebars?: Record<DaffioSidebarRegistration['id'], DaffioSidebarRegistration>;
     /**
      * The sidebar that should be shown automatically (if any) when the viewport enters big tablet.

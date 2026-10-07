@@ -1,5 +1,15 @@
 import { DaffSidebarMode } from '../helper/sidebar-mode';
 
+export enum DaffSidebarAnimationStates {
+  OPEN = 'open',
+  CLOSED = 'closed',
+  UNDEROPEN = 'under-open',
+  UNDERCLOSED = 'under-closed',
+  SIDEFIXEDOPEN = 'side-fixed-open',
+  SIDEFIXEDCLOSED = 'side-fixed-closed',
+  NONE = 'none'
+}
+
 export type DaffSidebarAnimationState =
 'open' | 'closed' | 'under-open' | 'under-closed' | 'side-fixed-open' | 'side-fixed-closed' | 'none';
 

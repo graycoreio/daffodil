@@ -1,28 +1,19 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import {
-  AsyncPipe,
-  NgComponentOutlet,
-} from '@angular/common';
+import { NgComponentOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   Inject,
   Injector,
-  OnInit,
-  Signal,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import {
   ActivatedRoute,
   ChildrenOutletContexts,
   PRIMARY_OUTLET,
 } from '@angular/router';
-import {
-  combineLatest,
-  map,
-  Observable,
-  startWith,
-  tap,
-} from 'rxjs';
+import { map } from 'rxjs';
 
 import {
   DaffBreakpoints,
@@ -31,11 +22,10 @@ import {
 import {
   DaffSidebarComponent,
   daffSidebarIsFloatingMode,
-  DaffSidebarModeEnum,
-  DaffSidebarViewportComponent,
+  DaffSidebarHeaderComponent,
 } from '@daffodil/design/sidebar';
+import { DAFF_VIEWPORT_COMPONENTS } from '@daffodil/design/viewport';
 
-import { DaffioSidebarRegistration } from '../../interfaces/registration.type';
 import { DaffioSidebarService } from '../../services/sidebar.service';
 
 @Component({
@@ -44,56 +34,69 @@ import { DaffioSidebarService } from '../../services/sidebar.service';
   styleUrls: ['./sidebar-viewport.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DaffSidebarViewportComponent,
+    DAFF_VIEWPORT_COMPONENTS,
+    DaffSidebarHeaderComponent,
     DaffSidebarComponent,
-    AsyncPipe,
     NgComponentOutlet,
   ],
 })
-export class DaffioSidebarViewportContainer implements OnInit {
-  showSidebar: Signal<boolean>;
-  mode$: Observable<DaffSidebarModeEnum>;
-  showSidebarHeader$: Observable<boolean>;
-  showSidebarFooter$: Observable<boolean>;
-  isBigTablet$: Observable<boolean>;
-  component$: Observable<DaffioSidebarRegistration>;
-  injector = this._injector;
+export class DaffioSidebarViewportContainer {
+  /**
+   * The currently active sidebar.
+   */
+  readonly component = this.sidebarService.activeRegistration;
 
-  ngOnInit() {
-    this.component$ = this.sidebarService.activeRegistration$.pipe(
-      tap(() => {
-        const outlet = this.childrenOutletContext.getContext(PRIMARY_OUTLET);
-        this.injector = outlet?.injector
-          ? Injector.create({
-            parent: outlet.injector,
-            providers: [
-              { provide: ActivatedRoute, useValue: outlet.route },
-            ],
-          })
-          : this._injector;
-      }),
-    );
-    this.showSidebar = this.sidebarService.isOpen;
-    this.mode$ = this.sidebarService.mode$;
-    this.isBigTablet$ = this.breakpointObserver.observe(DaffBreakpoints.BIG_TABLET).pipe(
-      startWith({ matches: true }),
+  /**
+   * The current sidebar mode.
+   */
+  readonly mode = this.sidebarService.mode;
+
+  /**
+   * Whether or not we're on a larger screen size.
+   */
+  readonly isBigTablet = toSignal(
+    this.breakpointObserver.observe(DaffBreakpoints.BIG_TABLET).pipe(
       map((result) => result?.matches),
-    );
-    this.showSidebarHeader$ = combineLatest([
-      this.component$,
-      this.mode$,
-      this.isBigTablet$,
-    ]).pipe(
-      map(([component, mode, isBigTablet]) => component?.header && (component.headerStrategy ? component.headerStrategy(isBigTablet, mode) : daffSidebarIsFloatingMode(mode))),
-    );
-    this.showSidebarFooter$ = combineLatest([
-      this.component$,
-      this.mode$,
-      this.isBigTablet$,
-    ]).pipe(
-      map(([component, mode, isBigTablet]) => component?.footer && (component.footerStrategy ? component.footerStrategy(isBigTablet, mode) : daffSidebarIsFloatingMode(mode))),
-    );
-  }
+    ),
+    { initialValue: true },
+  );
+
+  /**
+   * @docs-private
+   */
+  readonly injector = computed(() => {
+    // recompute the injector whenever the active registration changes
+    this.component();
+    const outlet = this.childrenOutletContext.getContext(PRIMARY_OUTLET);
+    return outlet?.injector
+      ? Injector.create({
+        parent: outlet.injector,
+        providers: [
+          { provide: ActivatedRoute, useValue: outlet.route },
+        ],
+      })
+      : this._injector;
+  });
+
+  /**
+   * Whether or not to show the sidebar header content.
+   */
+  readonly showSidebarHeader = computed(() => {
+    const component = this.component();
+    const mode = this.mode();
+    const isBigTablet = this.isBigTablet();
+    return component?.headerStrategy ? component.headerStrategy(isBigTablet, mode) : daffSidebarIsFloatingMode(mode);
+  });
+
+  /**
+   * Whether or not to show the sidebar footer content.
+   */
+  readonly showSidebarFooter = computed(() => {
+    const component = this.component();
+    const mode = this.mode();
+    const isBigTablet = this.isBigTablet();
+    return component?.footer && (component.footerStrategy ? component.footerStrategy(isBigTablet, mode) : daffSidebarIsFloatingMode(mode));
+  });
 
   constructor(
     private sidebarService: DaffioSidebarService,
@@ -101,8 +104,4 @@ export class DaffioSidebarViewportContainer implements OnInit {
     private childrenOutletContext: ChildrenOutletContexts,
     private _injector: Injector,
   ) { }
-
-  close() {
-    this.sidebarService.close();
-  }
 }
