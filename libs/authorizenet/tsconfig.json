@@ -34,8 +34,8 @@
       "@daffodil/authorizenet/driver/in-memory": [
         "../../libs/authorizenet/driver/in-memory/src"
       ],
-      "@daffodil/authorizenet/driver/magento": [
-        "../../libs/authorizenet/driver/magento/src"
+      "@daffodil/authorizenet/driver/magento/2.4.7": [
+        "../../libs/authorizenet/driver/magento/2.4.7/src"
       ],
     }
   }

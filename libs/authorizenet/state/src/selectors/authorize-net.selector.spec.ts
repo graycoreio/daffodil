@@ -7,7 +7,7 @@ import {
 } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento';
+import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento/2.4.7';
 import {
   DaffAuthorizeNetStateRootSlice,
   daffAuthorizeNetReducers,
