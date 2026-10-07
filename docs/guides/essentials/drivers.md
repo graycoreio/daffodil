@@ -122,9 +122,9 @@ export class ProductComponent {
 }
 ```
 
-## Supported Platform Versions
+## Supported platform versions
 
-Unless otherwise stated, Daffodil supports the same versions of a platform that are supported by the platform under standard maintenance.
+Unless otherwise stated, Daffodil supports the platform versions each platform maintains under standard support.
 
 - [Magento](https://magento.watch/versions#magento-community)
 
