@@ -4,7 +4,7 @@ import {
   DaffCategory,
   DaffCategoryBreadcrumb,
 } from '@daffodil/category';
-import { MagentoCategory } from '@daffodil/category/driver/magento';
+import { MagentoCategory } from '@daffodil/category/driver/magento/2.4.7';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 import { MagentoProduct } from '@daffodil/product/driver/magento';
 

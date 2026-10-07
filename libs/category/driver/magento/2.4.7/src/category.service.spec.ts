@@ -22,8 +22,8 @@ import {
   MagentoGetCategoryAndProductsResponse,
   MagentoGetCategoryAndProductsQuery,
   MagentoCategoryUrlResolverResponse,
-} from '@daffodil/category/driver/magento';
-import { DaffCategoryDriverMagentoCategoryFactory } from '@daffodil/category/driver/magento/testing';
+} from '@daffodil/category/driver/magento/2.4.7';
+import { DaffCategoryDriverMagentoCategoryFactory } from '@daffodil/category/driver/magento/2.4.7/testing';
 import {
   DaffCategoryFactory,
   DaffCategoryPageMetadataFactory,

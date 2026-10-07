@@ -1,6 +1,6 @@
 import { gql } from 'apollo-angular';
 
-import { magentoCategoryTreeFragment } from '@daffodil/category/driver/magento';
+import { magentoCategoryTreeFragment } from '@daffodil/category/driver/magento/2.4.7';
 
 export const DAFF_MAGENTO_SEARCH_FOR_CATEGORIES_QUERY_NAME = 'MagentoSearchForCategories';
 

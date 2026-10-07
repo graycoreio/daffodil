@@ -6,8 +6,8 @@ import {
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
-import { MagentoCategory } from '@daffodil/category/driver/magento';
-import { DaffCategoryDriverMagentoCategoryFactory } from '@daffodil/category/driver/magento/testing';
+import { MagentoCategory } from '@daffodil/category/driver/magento/2.4.7';
+import { DaffCategoryDriverMagentoCategoryFactory } from '@daffodil/category/driver/magento/2.4.7/testing';
 import { DAFF_SEARCH_CATEGORY_RESULT_KIND } from '@daffodil/search-category';
 import { MagentoSearchForCategoriesResponse } from '@daffodil/search-category/driver/magento';
 

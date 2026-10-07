@@ -9,7 +9,7 @@ import {
   map,
 } from 'rxjs/operators';
 
-import { DaffMagentoCategoryTransformerService } from '@daffodil/category/driver/magento';
+import { DaffMagentoCategoryTransformerService } from '@daffodil/category/driver/magento/2.4.7';
 import {
   DaffSearchResultCollection,
   daffSearchTransformResultsToCollection,
