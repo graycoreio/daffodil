@@ -18,8 +18,8 @@ import {
   getProductReviews,
   MagentoGetProductReviewsResponse,
   MagentoProductReviews,
-} from '@daffodil/reviews/driver/magento';
-import { MagentoProductReviewsFactory } from '@daffodil/reviews/driver/magento/testing';
+} from '@daffodil/reviews/driver/magento/2.4.7';
+import { MagentoProductReviewsFactory } from '@daffodil/reviews/driver/magento/2.4.7/testing';
 
 import { DaffReviewsMagentoService } from './reviews.service';
 

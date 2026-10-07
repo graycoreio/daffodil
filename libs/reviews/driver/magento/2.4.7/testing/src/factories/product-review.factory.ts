@@ -5,7 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import {
   MagentoProductReview,
   MagentoProductReviewRating,
-} from '@daffodil/reviews/driver/magento';
+} from '@daffodil/reviews/driver/magento/2.4.7';
 
 import { MagentoProductReviewRatingFactory } from './product-review-rating.factory';
 

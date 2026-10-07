@@ -7,7 +7,7 @@ import { MagentoSearchResultPageInfoFactory } from '@daffodil/driver/magento/tes
 import {
   MagentoProductReviews,
   MagentoProductReview,
-} from '@daffodil/reviews/driver/magento';
+} from '@daffodil/reviews/driver/magento/2.4.7';
 
 import { MagentoProductReviewFactory } from './product-review.factory';
 
