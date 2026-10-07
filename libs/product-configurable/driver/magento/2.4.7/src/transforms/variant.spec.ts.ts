@@ -7,8 +7,8 @@ import {
   MagentoConfigurableProduct,
   MagentoConfigurableProductVariant,
   MagentoConfigurableAttributeOption,
-} from '@daffodil/product-configurable/driver/magento';
-import { MagentoConfigurableProductFactory } from '@daffodil/product-configurable/driver/magento/testing';
+} from '@daffodil/product-configurable/driver/magento/2.4.7';
+import { MagentoConfigurableProductFactory } from '@daffodil/product-configurable/driver/magento/2.4.7/testing';
 import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/testing';
 
 import {

@@ -8,7 +8,7 @@ import { MagentoConfigurableProductVariant } from '../../../models/public_api';
 
 const {
   /**
-   * A multi-provider injection token for providing extra transform logic in `@daffodil/product-configurable/driver/magento`.
+   * A multi-provider injection token for providing extra transform logic in `@daffodil/product-configurable/driver/magento/2.4.7`.
    * It is run after the standard transforms for each product preview and passed both the current transformed Daffodil configurable product variant and the Magento configurable product variant.
    *
    * See {@link MagentoConfigurableProductVariant} for more info.
@@ -18,7 +18,7 @@ const {
 } = createMultiInjectionToken<MagentoConfigurableProductVariantExtraTransform>('DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_VARIANT_TRANSFORMS');
 
 /**
- * Provides extra configurable product variant transforms for `@daffodil/product-configurable/driver/magento`.
+ * Provides extra configurable product variant transforms for `@daffodil/product-configurable/driver/magento/2.4.7`.
  *
  * See {@link DAFF_PRODUCT_CONFIGURABLE_MAGENTO_EXTRA_VARIANT_TRANSFORMS}.
  *

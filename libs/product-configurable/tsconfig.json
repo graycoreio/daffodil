@@ -28,11 +28,11 @@
       "@daffodil/product-configurable/driver": [
         "../../libs/product-configurable/driver/src"
       ],
-      "@daffodil/product-configurable/driver/magento": [
-        "../../libs/product-configurable/driver/magento/src"
+      "@daffodil/product-configurable/driver/magento/2.4.7": [
+        "../../libs/product-configurable/driver/magento/2.4.7/src"
       ],
-      "@daffodil/product-configurable/driver/magento/testing": [
-        "../../libs/product-configurable/driver/magento/testing/src"
+      "@daffodil/product-configurable/driver/magento/2.4.7/testing": [
+        "../../libs/product-configurable/driver/magento/2.4.7/testing/src"
       ],
       "@daffodil/product-configurable/driver/testing": [
         "../../libs/product-configurable/driver/testing/src"

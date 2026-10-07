@@ -6,8 +6,8 @@ import {
   MagentoConfigurableProductVariant,
   MagentoConfigurableProductVariantExtraTransform,
   MagentoConfigurableProductVariantTransform,
-} from '@daffodil/product-configurable/driver/magento';
-import { MagentoConfigurableProductFactory } from '@daffodil/product-configurable/driver/magento/testing';
+} from '@daffodil/product-configurable/driver/magento/2.4.7';
+import { MagentoConfigurableProductFactory } from '@daffodil/product-configurable/driver/magento/2.4.7/testing';
 
 import { DAFF_PRODUCT_CONFIGURABLE_MAGENTO_VARIANT_TRANSFORM } from './token';
 
