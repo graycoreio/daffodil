@@ -9,7 +9,7 @@ import { DaffCustomerOrderMagentoService } from './order.service';
 import { MagentoCustomerOrderCollectionTransformer } from './transforms/public_api';
 
 /**
- * Provides a Magento v2.4.6 implementation of {@link DaffOrderServiceInterface}.
+ * Provides a Magento v2.4.6 (and onward) implementation of {@link DaffOrderServiceInterface}.
  */
 export const provideDaffCustomerOrderMagentoDriver = (
 ): EnvironmentProviders => makeEnvironmentProviders([
