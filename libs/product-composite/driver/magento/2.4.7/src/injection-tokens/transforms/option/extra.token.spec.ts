@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoBundleProductOptionExtraTransform } from '@daffodil/product-composite/driver/magento';
+import { MagentoBundleProductOptionExtraTransform } from '@daffodil/product-composite/driver/magento/2.4.7';
 
 import {
   provideDaffProductCompositeMagentoExtraOptionTransforms,

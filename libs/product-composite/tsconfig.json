@@ -28,11 +28,11 @@
       "@daffodil/product-composite/state/testing": [
         "../../libs/product-composite/state/testing/src"
       ],
-      "@daffodil/product-composite/driver/magento": [
-        "../../libs/product-composite/driver/magento/src"
+      "@daffodil/product-composite/driver/magento/2.4.7": [
+        "../../libs/product-composite/driver/magento/2.4.7/src"
       ],
-      "@daffodil/product-composite/driver/magento/testing": [
-        "../../libs/product-composite/driver/magento/testing/src"
+      "@daffodil/product-composite/driver/magento/2.4.7/testing": [
+        "../../libs/product-composite/driver/magento/2.4.7/testing/src"
       ],
       "@daffodil/product-composite/driver/in-memory": [
         "../../libs/product-composite/driver/in-memory/src"

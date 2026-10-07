@@ -10,12 +10,12 @@ import {
   MagentoBundledProduct,
   MagentoBundledProductItemOption,
   MagentoBundledProductItemTransformer,
-} from '@daffodil/product-composite/driver/magento';
+} from '@daffodil/product-composite/driver/magento/2.4.7';
 import {
   MagentoBundledProductFactory,
   MagentoBundledProductItemFactory,
   MagentoBundledProductItemOptionFactory,
-} from '@daffodil/product-composite/driver/magento/testing';
+} from '@daffodil/product-composite/driver/magento/2.4.7/testing';
 
 import { MagentoBundledProductTransformer } from './product-transformer.service';
 

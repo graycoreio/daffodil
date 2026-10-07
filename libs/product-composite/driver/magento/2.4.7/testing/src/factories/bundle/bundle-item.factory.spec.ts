@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoBundledProductItem } from '@daffodil/product-composite/driver/magento';
+import { MagentoBundledProductItem } from '@daffodil/product-composite/driver/magento/2.4.7';
 
 import { MagentoBundledProductItemFactory } from './bundle-item.factory';
 

@@ -6,8 +6,8 @@ import {
   MagentoBundledProductItemOption,
   MagentoBundleProductOptionExtraTransform,
   MagentoBundleProductOptionTransform,
-} from '@daffodil/product-composite/driver/magento';
-import { MagentoBundledProductItemOptionFactory } from '@daffodil/product-composite/driver/magento/testing';
+} from '@daffodil/product-composite/driver/magento/2.4.7';
+import { MagentoBundledProductItemOptionFactory } from '@daffodil/product-composite/driver/magento/2.4.7/testing';
 
 import { DAFF_PRODUCT_COMPOSITE_MAGENTO_OPTION_TRANSFORM } from './token';
 
