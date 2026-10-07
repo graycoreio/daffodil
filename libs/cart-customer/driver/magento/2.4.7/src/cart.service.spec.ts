@@ -23,11 +23,11 @@ import {
   MagentoCartItem,
   DaffMagentoCartTransformer,
   DaffMagentoCartService,
-} from '@daffodil/cart/driver/magento';
+} from '@daffodil/cart/driver/magento/2.4.7';
 import {
   MagentoCartFactory,
   MagentoCartItemFactory,
-} from '@daffodil/cart/driver/magento/testing';
+} from '@daffodil/cart/driver/magento/2.4.7/testing';
 import {
   DaffCartFactory,
   DaffCartItemFactory,

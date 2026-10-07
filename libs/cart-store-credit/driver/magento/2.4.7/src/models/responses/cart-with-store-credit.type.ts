@@ -1,4 +1,4 @@
-import { MagentoCart } from '@daffodil/cart/driver/magento';
+import { MagentoCart } from '@daffodil/cart/driver/magento/2.4.7';
 import { MagentoMoney } from '@daffodil/driver/magento';
 
 export interface MagentoCartWithStoreCredit extends MagentoCart {

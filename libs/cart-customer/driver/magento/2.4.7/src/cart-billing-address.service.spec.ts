@@ -9,7 +9,7 @@ import {
   DaffCart,
   DaffCartAddress,
 } from '@daffodil/cart';
-import { DaffMagentoCartBillingAddressService } from '@daffodil/cart/driver/magento';
+import { DaffMagentoCartBillingAddressService } from '@daffodil/cart/driver/magento/2.4.7';
 import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoCartCustomerBillingAddressService } from './cart-billing-address.service';

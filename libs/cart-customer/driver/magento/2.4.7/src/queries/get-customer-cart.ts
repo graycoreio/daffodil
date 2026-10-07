@@ -1,7 +1,7 @@
 import { gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 
-import { cartFragment } from '@daffodil/cart/driver/magento';
+import { cartFragment } from '@daffodil/cart/driver/magento/2.4.7';
 import {
   daffBuildFragmentNameSpread,
   daffBuildFragmentDefinition,

@@ -6,7 +6,7 @@ import {
 import {
   provideDaffCartMagentoCartTransforms,
   provideDaffCartMagentoExtraCartFragments,
-} from '@daffodil/cart/driver/magento';
+} from '@daffodil/cart/driver/magento/2.4.7';
 import { provideDaffCartStoreCreditDriver } from '@daffodil/cart-store-credit/driver';
 
 import { magentoCartStoreCreditFragment } from './queries/public_api';

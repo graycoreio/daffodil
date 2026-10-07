@@ -1,0 +1,34 @@
+import { TestBed } from '@angular/core/testing';
+
+import { MagentoShippingAddress } from '@daffodil/cart/driver/magento/2.4.7';
+
+import { MagentoShippingAddressFactory } from './shipping-address.factory';
+
+describe('@daffodil/cart/driver/magento/testing | MagentoShippingAddressFactory', () => {
+  let factory: MagentoShippingAddressFactory;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [MagentoShippingAddressFactory],
+    });
+
+    factory = TestBed.inject(MagentoShippingAddressFactory);
+  });
+
+  it('should be created', () => {
+    expect(factory).toBeTruthy();
+  });
+
+  describe('create', () => {
+    let result: MagentoShippingAddress;
+
+    beforeEach(() => {
+      result = factory.create();
+    });
+
+    it('should return a ShippingAddress with all required fields defined', () => {
+      expect(result.available_shipping_methods).toBeDefined();
+      expect(result.selected_shipping_method).toBeDefined();
+    });
+  });
+});

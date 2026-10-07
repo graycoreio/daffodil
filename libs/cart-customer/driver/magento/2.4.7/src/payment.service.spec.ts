@@ -10,7 +10,7 @@ import {
   DaffCartAddress,
   DaffCartPaymentMethod,
 } from '@daffodil/cart';
-import { DaffMagentoCartPaymentService } from '@daffodil/cart/driver/magento';
+import { DaffMagentoCartPaymentService } from '@daffodil/cart/driver/magento/2.4.7';
 import {
   DaffCartAddressFactory,
   DaffCartPaymentFactory,

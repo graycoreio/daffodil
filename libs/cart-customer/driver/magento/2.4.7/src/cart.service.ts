@@ -16,7 +16,7 @@ import {
   DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
   DAFF_MAGENTO_GET_RECOVERABLE_ERRORS,
   transformMagentoCartGraphQlError,
-} from '@daffodil/cart/driver/magento';
+} from '@daffodil/cart/driver/magento/2.4.7';
 import { DaffDriverResponse } from '@daffodil/driver';
 
 import {

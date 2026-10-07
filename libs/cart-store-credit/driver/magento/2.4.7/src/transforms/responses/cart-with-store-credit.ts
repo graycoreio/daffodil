@@ -1,5 +1,5 @@
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartMagentoCartTransform } from '@daffodil/cart/driver/magento';
+import { DaffCartMagentoCartTransform } from '@daffodil/cart/driver/magento/2.4.7';
 import { DaffCartWithStoreCredit } from '@daffodil/cart-store-credit';
 
 import { MagentoCartWithStoreCredit } from '../../models/public_api';
