@@ -11,6 +11,8 @@ import { DAFF_CART_IN_MEMORY_CART_ORDER_COLLECTION_NAME } from '../../collection
 
 /**
  * @inheritdoc
+ *
+ * @deprecated Use {@link DaffCheckoutInMemoryBackendOrderService} instead.
  */
 @Injectable({
   providedIn: 'root',

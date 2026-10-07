@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { DaffCheckoutPlacedOrderGuardRedirectUrl } from './guards/public_api';
+import { DaffCheckoutPlacedOrderGuardRedirectUrl } from './placed-order/public_api';
 
 @NgModule({
   providers: [
