@@ -11,8 +11,10 @@ export const magentoRelatedProductsFragment = (extraProductFragments: DocumentNo
   fragment relatedProducts on ProductInterface {
     related_products {
       ...magentoProductPreview
+      uid
       ${daffBuildFragmentNameSpread(...extraProductFragments)}
     }
+    uid
 	}
 	${magentoProductPreviewFragment}
   ${daffBuildFragmentDefinition(...extraProductFragments)}

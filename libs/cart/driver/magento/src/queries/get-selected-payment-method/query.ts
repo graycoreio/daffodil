@@ -15,6 +15,7 @@ export const getSelectedPaymentMethod = (extraCartFragments: DocumentNode[] = []
     cart(cart_id: $cartId) {
       selected_payment_method {
         ...selectedPaymentMethod
+        code
       }
       ${daffBuildFragmentNameSpread(...extraCartFragments)}
     }

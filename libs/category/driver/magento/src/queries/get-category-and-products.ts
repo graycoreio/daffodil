@@ -21,6 +21,7 @@ query ${DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME}($categoryFilters: Cat
 {
   categoryList(filters: $categoryFilters) {
 		...categoryTree
+  uid
     ${daffBuildFragmentNameSpread(...extraCategoryFragments)}
 	}
 	products(filter: $productFilter, search: $search, pageSize: $pageSize, currentPage: $currentPage, sort: $sort)
@@ -28,6 +29,7 @@ query ${DAFF_MAGENTO_GET_CATEGORY_AND_PRODUCTS_QUERY_NAME}($categoryFilters: Cat
 		total_count
 		items {
 			...product
+   uid
       ${daffBuildFragmentNameSpread(...extraProductFragments)}
 		}
 		page_info {

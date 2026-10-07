@@ -38,6 +38,7 @@ fragment magentoBundledProduct on BundleProduct {
 						}
 					}
 				}
+    uid
 			}
 		}
 	}

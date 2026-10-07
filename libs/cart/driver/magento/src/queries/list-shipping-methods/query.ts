@@ -20,6 +20,8 @@ export const listShippingMethods = (extraCartFragments: DocumentNode[] = []) => 
 				street
         available_shipping_methods {
           ...availableShippingMethod
+          carrier_code
+          method_code
         }
       }
       ${daffBuildFragmentNameSpread(...extraCartFragments)}

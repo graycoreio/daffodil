@@ -25,6 +25,7 @@ export const cartItemFragment = gql`
 		uid
     product {
       ...cartItemProduct
+      uid
     }
     quantity
     prices {

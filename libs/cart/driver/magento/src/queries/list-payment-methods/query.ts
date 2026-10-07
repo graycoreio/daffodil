@@ -15,6 +15,7 @@ export const listPaymentMethods = (extraCartFragments: DocumentNode[] = []) => g
     cart(cart_id: $cartId) {
       available_payment_methods {
         ...availablePaymentMethod
+        code
       }
       ${daffBuildFragmentNameSpread(...extraCartFragments)}
     }

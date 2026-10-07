@@ -15,6 +15,7 @@ export const listCartItems = (extraCartFragments: DocumentNode[] = []) => gql<Ma
     cart(cart_id: $cartId) {
       items {
         ...cartItem
+        uid
       }
       ${daffBuildFragmentNameSpread(...extraCartFragments)}
     }
