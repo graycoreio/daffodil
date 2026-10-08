@@ -12,7 +12,7 @@ export interface DaffProductReducerState extends DaffOperationState {
   /**
    * The quantity chosen for the current product.
    *
-   * @deprecated
+   * @deprecated Deprecated in version 0.95.0. Will be removed in version 0.98.0.
    */
   qty: number;
 }
