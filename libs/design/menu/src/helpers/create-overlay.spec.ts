@@ -1,4 +1,7 @@
-import { STANDARD_DROPDOWN_BELOW_POSITIONS } from '@angular/cdk/overlay';
+import {
+  STANDARD_DROPDOWN_ADJACENT_POSITIONS,
+  STANDARD_DROPDOWN_BELOW_POSITIONS,
+} from '@angular/cdk/overlay';
 import { ElementRef } from '@angular/core';
 
 import { daffMenuCreateOverlay } from './create-overlay';
@@ -25,6 +28,7 @@ describe('@daffodil/design/menu | daffMenuCreateOverlay', () => {
       position: jasmine.createSpy('position').and.returnValue(positionStrategy),
       scrollStrategies: {
         block: jasmine.createSpy('block').and.returnValue('block'),
+        reposition: jasmine.createSpy('reposition').and.returnValue('reposition'),
       },
     };
   });
@@ -97,6 +101,59 @@ describe('@daffodil/design/menu | daffMenuCreateOverlay', () => {
       daffMenuCreateOverlay(overlay, element, 'before', 'below');
 
       expect(position()).toEqual(jasmine.objectContaining({ originX: 'end', overlayX: 'end' }));
+    });
+  });
+
+  describe('a top-level (non-nested) menu', () => {
+    it('should own a backdrop', () => {
+      daffMenuCreateOverlay(overlay, element);
+
+      expect(config().hasBackdrop).toBe(true);
+    });
+
+    it('should block page scroll', () => {
+      daffMenuCreateOverlay(overlay, element);
+
+      expect(overlay.scrollStrategies.block).toHaveBeenCalled();
+      expect(config().scrollStrategy).toBe('block');
+    });
+  });
+
+  describe('a nested submenu', () => {
+    it('should not own a backdrop', () => {
+      daffMenuCreateOverlay(overlay, element, 'after', 'below', true);
+
+      expect(config().hasBackdrop).toBe(false);
+    });
+
+    it('should reposition rather than block scroll so it tracks its parent item', () => {
+      daffMenuCreateOverlay(overlay, element, 'after', 'below', true);
+
+      expect(overlay.scrollStrategies.reposition).toHaveBeenCalled();
+      expect(config().scrollStrategy).toBe('reposition');
+    });
+
+    it('should use the CDK standard adjacent positions', () => {
+      daffMenuCreateOverlay(overlay, element, 'after', 'below', true);
+
+      expect(positions()).toEqual(STANDARD_DROPDOWN_ADJACENT_POSITIONS);
+    });
+
+    it('should open to the right of the item, top-aligned, as its first choice', () => {
+      daffMenuCreateOverlay(overlay, element, 'after', 'below', true);
+
+      expect(position()).toEqual(jasmine.objectContaining({
+        originX: 'end',
+        overlayX: 'start',
+        originY: 'top',
+        overlayY: 'top',
+      }));
+    });
+
+    it('should fall back to the left side of the item', () => {
+      daffMenuCreateOverlay(overlay, element, 'after', 'below', true);
+
+      expect(positions()).toContain(jasmine.objectContaining({ originX: 'start', overlayX: 'end' }));
     });
   });
 });

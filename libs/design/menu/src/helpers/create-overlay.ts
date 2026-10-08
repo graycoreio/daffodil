@@ -2,6 +2,7 @@ import {
   ConnectedPosition,
   Overlay,
   OverlayConfig,
+  STANDARD_DROPDOWN_ADJACENT_POSITIONS,
   STANDARD_DROPDOWN_BELOW_POSITIONS,
 } from '@angular/cdk/overlay';
 import { ElementRef } from '@angular/core';
@@ -33,12 +34,13 @@ export const daffMenuCreateOverlay = (
   element: ElementRef,
   xPosition: DaffMenuXPosition = 'after',
   yPosition: DaffMenuYPosition = 'below',
+  nested = false,
   config: OverlayConfig = {},
 ) => overlay.create({
-  hasBackdrop: true,
+  hasBackdrop: !nested,
   backdropClass: 'cdk-overlay-transparent-backdrop',
   panelClass: 'daff-menu-overlay',
-  scrollStrategy: overlay.scrollStrategies.block(),
+  scrollStrategy: nested ? overlay.scrollStrategies.reposition() : overlay.scrollStrategies.block(),
   disposeOnNavigation: true,
   positionStrategy: overlay
     .position()
@@ -47,10 +49,12 @@ export const daffMenuCreateOverlay = (
     .withPush(false)
     .withViewportMargin(24)
     .withPositions(
-      [
-        daffMenuConnectedPosition(xPosition, yPosition),
-        ...STANDARD_DROPDOWN_BELOW_POSITIONS,
-      ],
+      nested
+        ? STANDARD_DROPDOWN_ADJACENT_POSITIONS
+        : [
+          daffMenuConnectedPosition(xPosition, yPosition),
+          ...STANDARD_DROPDOWN_BELOW_POSITIONS,
+        ],
     ),
   ...config,
 });
