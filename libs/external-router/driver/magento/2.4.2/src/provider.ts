@@ -11,6 +11,8 @@ import { DaffExternalRouterMagentoDriver } from './magento.service';
 
 /**
  * Provides a Magento v2.4.2 implementation of {@link DaffExternalRouterDriver}.
+ *
+ * @deprecated This version of Magento is unsupported. Use `@daffodil/external-router/driver/magento/2.4.3` instead.
  */
 export const provideDaffExternalRouterMagentoDriver = (
 ): EnvironmentProviders => makeEnvironmentProviders([
