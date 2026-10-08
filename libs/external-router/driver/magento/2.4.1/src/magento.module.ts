@@ -23,7 +23,7 @@ import { provideDaffExternalRouterMagentoDriver } from './provider';
  *
  * Note that this package depends upon ApolloClient, as the Magento driver uses GraphQl to make it's API calls.
  *
- * @deprecated prefer {@link provideDaffExternalRouterMagentoDriver}.
+ * @deprecated prefer {@link provideDaffExternalRouterMagentoDriver}. Deprecated in version 0.95.0. Will be removed in version 0.98.0.
  */
 @NgModule({
   declarations: [],
