@@ -4,11 +4,8 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento';
-import { provideDaffExternalRouterDriver } from '@daffodil/external-router/driver';
 
-import { DAFF_MAGENTO_RESOLVE_URL_QUERY_NAME } from './graphql/queries/resolve-url-v2.4.1';
-import { DaffExternalRouterMagentoDriver } from './magento.service';
+import { provideDaffExternalRouterMagentoDriver } from './provider';
 /**
  * The module used to configure the {@link DaffExternalRouterDriver} for usage with Magento.
  *
@@ -25,6 +22,8 @@ import { DaffExternalRouterMagentoDriver } from './magento.service';
  * ```
  *
  * Note that this package depends upon ApolloClient, as the Magento driver uses GraphQl to make it's API calls.
+ *
+ * @deprecated prefer {@link provideDaffExternalRouterMagentoDriver}.
  */
 @NgModule({
   declarations: [],
@@ -39,8 +38,7 @@ export class DaffExternalRouterDriverMagentoModule {
     return {
       ngModule: DaffExternalRouterDriverMagentoModule,
       providers: [
-        provideDaffExternalRouterDriver(DaffExternalRouterMagentoDriver),
-        provideDaffMagentoCacheableOperation(DAFF_MAGENTO_RESOLVE_URL_QUERY_NAME),
+        provideDaffExternalRouterMagentoDriver(),
       ],
     };
   }

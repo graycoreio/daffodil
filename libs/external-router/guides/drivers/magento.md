@@ -43,3 +43,7 @@ export const appConfig: ApplicationConfig = {
   ],
 };
 ```
+
+## Auto versioning
+
+This driver supports auto versioning and is the recommended way to use the driver. Follow [this guide](/docs/guides/essentials/drivers.md#automatically-versioned-drivers) to set it up and import from `@daffodil/external-router/driver/magento/auto`.
