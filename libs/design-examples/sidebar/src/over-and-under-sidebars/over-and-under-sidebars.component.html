@@ -1,12 +1,9 @@
-<daff-sidebar-viewport (backdropClicked)="closeSidebar()">
+<daff-viewport>
   <daff-sidebar
     class="over-sidebar"
-    [mode]="modeControl.value"
-    side="left"
-    [open]="open"
-    (escapePressed)="closeSidebar()"
-  >
-    <daff-sidebar-header [dismissible]="true" (closeSidebar)="closeSidebar()">
+    [mode]="modeControl.value.value"
+    side="left">
+    <daff-sidebar-header [dismissible]="true">
       <div daffSidebarHeaderTitle>Title</div>
     </daff-sidebar-header>
     <div class="over-and-under-sidebars__sidebar-content">
@@ -20,15 +17,18 @@
   </daff-sidebar>
   <div class="over-and-under-sidebars__body-content">
     <div class="over-and-under-sidebars__options-container">
-      <div class="over-and-under-sidebars__option-text">Mode:</div>
-      <select [formControl]="modeControl">
-        <option value="over">Over</option>
-        <option value="under">Under</option>
-      </select>
+      <daff-form-field>
+        <daff-form-label>Mode</daff-form-label>
+        <daff-select [options]="modes" [formControl]="modeControl">
+          <ng-template daffSelectOption let-option="option">
+            {{ option.label }}
+          </ng-template>
+        </daff-select>
+      </daff-form-field>
     </div>
 
     <button daff-button (click)="openSidebar()">
-      Open
+      Toggle sidebar
     </button>
   </div>
-</daff-sidebar-viewport>
+</daff-viewport>

@@ -11,6 +11,9 @@ import {
 import { By } from '@angular/platform-browser';
 
 import { DaffSidebarHeaderComponent } from './sidebar-header.component';
+import { DaffSidebarComponent } from '../sidebar/sidebar.component';
+
+const sidebarSide = 'left';
 
 @Component({
   template: `
@@ -35,6 +38,9 @@ describe('@daffodil/design/sidebar | DaffSidebarHeaderComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         WrapperComponent,
+      ],
+      providers: [
+        { provide: DaffSidebarComponent, useValue: { side: sidebarSide }},
       ],
     })
       .compileComponents();
@@ -75,7 +81,7 @@ describe('@daffodil/design/sidebar | DaffSidebarHeaderComponent', () => {
   });
 
   describe('when the close icon button is clicked', () => {
-    it('should emit closeNotification', () => {
+    it('should emit closeSidebar with the sidebar side', () => {
       wrapper.dismissible.set(true);
       fixture.detectChanges();
 
@@ -83,7 +89,7 @@ describe('@daffodil/design/sidebar | DaffSidebarHeaderComponent', () => {
 
       fixture.debugElement.query(By.css('.daff-sidebar-header__close-icon')).nativeElement.click();
 
-      expect(component.closeSidebar.emit).toHaveBeenCalledWith();
+      expect(component.closeSidebar.emit).toHaveBeenCalledWith(sidebarSide);
     });
   });
 });

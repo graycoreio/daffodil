@@ -7,7 +7,7 @@ import {
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffSidebarViewportComponent } from './../sidebar-viewport.component';
-import { DaffSidebarAnimationStates } from '../../animation/sidebar-animation';
+import { DaffSidebarAnimationStates } from '../../animation/sidebar-animation-state';
 import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 
 describe('@daffodil/design/sidebar | DaffSidebarViewportComponent | Defaults', () => {
