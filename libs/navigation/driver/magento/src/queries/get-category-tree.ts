@@ -15,6 +15,7 @@ export function daffMagentoGetCategoryTree(depth: number = 3, extraFragments: Ar
     query ${DAFF_MAGENTO_GET_CATEGORY_TREE_QUERY_NAME}($filters: CategoryFilterInput!){
       categoryList(filters: $filters) {
         ...recursiveCategoryNode
+        uid
       }
     }
     ${getCategoryNodeFragment(depth, extraFragments)}

@@ -14,6 +14,7 @@ export const magentoProductFragment = gql`
 		short_description {
 			html
 		}
+    uid
 	}
   ${magentoProductPreviewFragment}
 `;

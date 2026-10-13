@@ -37,6 +37,7 @@ interface MyMagentoProduct extends MagentoProduct {
 const myProductFragment = gql`
   fragment MyProductFragment on ProductInterface {
     updated_at
+    uid
   }
 `;
 

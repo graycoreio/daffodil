@@ -25,6 +25,7 @@ export const productSearch = (extraProductFragments: DocumentNode[] = []) => gql
     products(filter: $filter, search: $search, pageSize: $pageSize, currentPage: $currentPage, sort: $sort) {
       items {
         ...product
+        uid
         ${daffBuildFragmentNameSpread(...extraProductFragments)}
       }
       page_info {

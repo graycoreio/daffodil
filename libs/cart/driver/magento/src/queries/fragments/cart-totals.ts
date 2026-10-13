@@ -13,7 +13,9 @@ export const cartTotalsFragment = gql`
         selected_shipping_method {
           ...selectedShippingMethod
         }
+        street
       }
+      street
     }
     prices {
       ...prices

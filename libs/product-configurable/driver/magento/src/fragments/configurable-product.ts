@@ -16,6 +16,7 @@ export const magentoConfigurableProductFragment = (extraVariantFragments: Array<
 				label
 				value_index
 			}
+   uid
 		}
 		variants {
 			${daffBuildFragmentNameSpread(...extraVariantFragments)}
@@ -42,8 +43,10 @@ export const magentoConfigurableProductFragment = (extraVariantFragments: Array<
 					url
 					label
 				}
+    uid
 			}
 		}
+  uid
   }
 ${daffBuildFragmentDefinition(...extraVariantFragments)}
 `;

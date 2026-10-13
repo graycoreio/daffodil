@@ -23,6 +23,7 @@ export const getProductReviews = gql`
             ...magentoSearchResultPageInfo
           }
         }
+        uid
       }
     }
   }

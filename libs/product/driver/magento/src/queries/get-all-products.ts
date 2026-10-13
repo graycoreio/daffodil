@@ -16,6 +16,7 @@ export const getAllProducts = (extraProductFragments: DocumentNode[] = []) => gq
       total_count
       items {
         ...magentoProductPage
+        uid
         ${daffBuildFragmentNameSpread(...extraProductFragments)}
       }
       page_info {
