@@ -6,7 +6,7 @@
 
 	&__close {
 		@include clickable();
-		font-size: $font-size-md;
+		font-size: var(--daff-font-size-md);
 		position: absolute;
 		right: 25px;
 		top: 25px;

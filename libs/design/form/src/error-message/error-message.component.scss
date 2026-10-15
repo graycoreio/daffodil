@@ -2,6 +2,6 @@
 
 :host {
 	display: block;
-	font-size: t.$font-size-sm;
+	font-size: var(--daff-font-size-sm);
 	line-height: 1rem;
 }

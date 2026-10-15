@@ -32,8 +32,8 @@
 	}
 
 	&__info {
-		font-size: $font-size-sm;
 		color: daff-theme.daff-color($neutral, 90);
+		font-size: var(--daff-font-size-sm);
 		line-height: 1.25rem;
 	}
 
@@ -46,8 +46,8 @@
 		}
 
 		> * {
-			font-size: $font-size-sm;
 			color: daff-theme.daff-color($neutral);
+			font-size: var(--daff-font-size-sm);
 			text-decoration: underline;
 
 			&:last-child {
