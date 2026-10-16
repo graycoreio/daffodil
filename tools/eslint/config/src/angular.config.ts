@@ -56,8 +56,18 @@ export const angularEslintConfig = defineConfig([
       'no-restricted-imports': [
         'error',
         {
-          message: 'Please import directly from "rxjs" instead',
-          name: 'rxjs/Rx',
+          paths: [
+            {
+              message: 'Please import directly from "rxjs" instead',
+              name: 'rxjs/Rx',
+            },
+          ],
+          patterns: [
+            {
+              group: ['libs/**', 'apps/**'],
+              message: 'Use relative imports or public @daffodil package imports instead of repository-root paths.',
+            },
+          ],
         },
       ],
     },
