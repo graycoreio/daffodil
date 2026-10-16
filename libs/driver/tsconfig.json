@@ -9,28 +9,27 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/driver": [
-        "libs/driver/src"
+        "../../libs/driver/src"
       ],
       "@daffodil/driver/hubspot": [
-        "libs/driver/hubspot/src"
+        "../../libs/driver/hubspot/src"
       ],
       "@daffodil/driver/hubspot/testing": [
-        "libs/driver/hubspot/testing/src"
+        "../../libs/driver/hubspot/testing/src"
       ],
       "@daffodil/driver/magento": [
-        "libs/driver/magento/src"
+        "../../libs/driver/magento/src"
       ],
       "@daffodil/driver/magento/testing": [
-        "libs/driver/magento/testing/src"
+        "../../libs/driver/magento/testing/src"
       ],
       "@daffodil/driver/in-memory": [
-        "libs/driver/in-memory/src"
+        "../../libs/driver/in-memory/src"
       ],
     },
     "resolveJsonModule": true

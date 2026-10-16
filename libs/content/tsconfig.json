@@ -9,31 +9,30 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/content": [
-        "libs/content/src"
+        "../../libs/content/src"
       ],
       "@daffodil/content/testing": [
-        "libs/content/testing/src"
+        "../../libs/content/testing/src"
       ],
       "@daffodil/content/state": [
-        "libs/content/state/src"
+        "../../libs/content/state/src"
       ],
       "@daffodil/content/driver": [
-        "libs/content/driver/src"
+        "../../libs/content/driver/src"
       ],
       "@daffodil/content/driver/testing": [
-        "libs/content/driver/testing/src"
+        "../../libs/content/driver/testing/src"
       ],
       "@daffodil/content/driver/magento": [
-        "libs/content/driver/magento/src"
+        "../../libs/content/driver/magento/src"
       ],
       "@daffodil/content/driver/magento/testing": [
-        "libs/content/driver/magento/testing/src"
+        "../../libs/content/driver/magento/testing/src"
       ],
     }
   }
