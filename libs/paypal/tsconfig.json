@@ -9,37 +9,36 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/paypal": [
-        "libs/paypal/src"
+        "../../libs/paypal/src"
       ],
       "@daffodil/paypal/state": [
-        "libs/paypal/state/src"
+        "../../libs/paypal/state/src"
       ],
       "@daffodil/paypal/state/testing": [
-        "libs/paypal/state/testing/src"
+        "../../libs/paypal/state/testing/src"
       ],
       "@daffodil/paypal/driver": [
-        "libs/paypal/driver/src"
+        "../../libs/paypal/driver/src"
       ],
       "@daffodil/paypal/driver/testing": [
-        "libs/paypal/driver/testing/src"
+        "../../libs/paypal/driver/testing/src"
       ],
       "@daffodil/paypal/driver/in-memory": [
-        "libs/paypal/driver/in-memory/src"
+        "../../libs/paypal/driver/in-memory/src"
       ],
       "@daffodil/paypal/driver/magento": [
-        "libs/paypal/driver/magento/src"
+        "../../libs/paypal/driver/magento/src"
       ],
       "@daffodil/paypal/testing": [
-        "libs/paypal/testing/src"
+        "../../libs/paypal/testing/src"
       ],
       "@daffodil/paypal/routing": [
-        "libs/paypal/routing/src"
+        "../../libs/paypal/routing/src"
       ],
     }
   }

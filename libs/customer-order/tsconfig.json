@@ -9,31 +9,30 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/customer-order": [
-        "libs/customer-order/src"
+        "../../libs/customer-order/src"
       ],
       "@daffodil/customer-order/state": [
-        "libs/customer-order/state/src"
+        "../../libs/customer-order/state/src"
       ],
       "@daffodil/customer-order/driver": [
-        "libs/customer-order/driver/src"
+        "../../libs/customer-order/driver/src"
       ],
       "@daffodil/customer-order/driver/magento/2.4.5": [
-        "libs/customer-order/driver/magento/2.4.5/src"
+        "../../libs/customer-order/driver/magento/2.4.5/src"
       ],
       "@daffodil/customer-order/driver/magento/2.4.5/testing": [
-        "libs/customer-order/driver/magento/2.4.5/testing/src"
+        "../../libs/customer-order/driver/magento/2.4.5/testing/src"
       ],
       "@daffodil/customer-order/driver/magento/2.4.6": [
-        "libs/customer-order/driver/magento/2.4.6/src"
+        "../../libs/customer-order/driver/magento/2.4.6/src"
       ],
       "@daffodil/customer-order/driver/magento/2.4.6/testing": [
-        "libs/customer-order/driver/magento/2.4.6/testing/src"
+        "../../libs/customer-order/driver/magento/2.4.6/testing/src"
       ],
     }
   }

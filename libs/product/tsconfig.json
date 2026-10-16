@@ -5,40 +5,39 @@
 		{"path": "./tsconfig.spec.json"}
 	],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/product": [
-        "libs/product/src"
+        "../../libs/product/src"
       ],
       "@daffodil/product/state": [
-        "libs/product/state/src"
+        "../../libs/product/state/src"
       ],
       "@daffodil/product/state/testing": [
-        "libs/product/state/testing/src"
+        "../../libs/product/state/testing/src"
       ],
       "@daffodil/product/driver": [
-        "libs/product/driver/src"
+        "../../libs/product/driver/src"
       ],
       "@daffodil/product/driver/testing": [
-        "libs/product/driver/testing/src"
+        "../../libs/product/driver/testing/src"
       ],
       "@daffodil/product/driver/in-memory": [
-        "libs/product/driver/in-memory/src"
+        "../../libs/product/driver/in-memory/src"
       ],
       "@daffodil/product/driver/magento": [
-        "libs/product/driver/magento/src"
+        "../../libs/product/driver/magento/src"
       ],
       "@daffodil/product/driver/shopify": [
-        "libs/product/driver/shopify/src"
+        "../../libs/product/driver/shopify/src"
       ],
       "@daffodil/product/testing": [
-        "libs/product/testing/src"
+        "../../libs/product/testing/src"
       ],
       "@daffodil/product/routing": [
-        "libs/product/routing/src"
+        "../../libs/product/routing/src"
       ],
     }
   }
