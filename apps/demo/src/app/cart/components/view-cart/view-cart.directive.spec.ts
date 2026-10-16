@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -12,6 +12,7 @@ import { ViewCartDirective } from './view-cart.directive';
 
 @Component({
   template: '<div demoViewCart></div>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ViewCartDirective],
 })
 class WrapperComponent {}

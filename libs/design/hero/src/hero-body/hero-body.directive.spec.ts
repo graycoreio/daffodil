@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffHeroBodyDirective } from './hero-body.directive';
 
 @Component({
   template: `<h1 daffHeroBody>Hero Body</h1>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffHeroBodyDirective,
   ],

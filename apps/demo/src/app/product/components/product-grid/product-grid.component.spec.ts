@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -17,6 +18,7 @@ import { ProductGridComponent } from './product-grid.component';
 
 @Component({
   template: '<demo-product-grid [products]="productsValue"></demo-product-grid>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ProductGridComponent],
 })
 class WrapperComponent {
@@ -25,6 +27,7 @@ class WrapperComponent {
 
 @Component({
   selector: 'demo-product-card',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 class MockProductCardComponent {

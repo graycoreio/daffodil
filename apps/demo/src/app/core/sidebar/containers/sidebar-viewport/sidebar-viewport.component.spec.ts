@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -32,7 +33,8 @@ import * as fromDemoSidebar from '../../reducers';
 import { SidebarContainer } from '../sidebar/sidebar.component';
 
 @Component({
-  selector: 'demo-sidebar', template: '',
+  selector: 'demo-sidebar', changeDetection: ChangeDetectionStrategy.Eager,
+ template: '',
 })
 class MockSidebarContainer {
   @Input() side: DaffSidebarSide;

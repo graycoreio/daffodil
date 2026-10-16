@@ -3,6 +3,7 @@ import {
   DebugElement,
   Input,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -33,6 +34,7 @@ import { DaffFormFieldAppearance } from '../helpers/appearance';
     <daff-hint></daff-hint>
     <daff-error-message></daff-error-message>
   </daff-form-field>`,
+changeDetection: ChangeDetectionStrategy.Eager,
 imports: [
   DAFF_FORM_FIELD_COMPONENTS,
   DaffInputComponent,
@@ -225,6 +227,7 @@ describe('@daffodil/design/form-field | DaffFormFieldComponent | Usage', () => {
     <div daffSuffix></div>
     <div daffFormFieldAction></div>
   </daff-form-field>`,
+changeDetection: ChangeDetectionStrategy.Eager,
 imports: [
   DAFF_FORM_FIELD_COMPONENTS,
   DaffInputComponent,
@@ -302,6 +305,7 @@ class ControlStubComponent extends DaffFormFieldControl<string> {
     <daff-form-field>
       <daff-control-stub [controlType]="controlType"></daff-control-stub>
     </daff-form-field>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_FORM_FIELD_COMPONENTS,
     ControlStubComponent,

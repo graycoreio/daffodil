@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -23,6 +24,7 @@ import { DaffProgressBarComponent } from '@daffodil/design/progress-bar';
       (finished)="onTransitionEnd()">
     </daff-progress-bar>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffProgressBarComponent,
   ],

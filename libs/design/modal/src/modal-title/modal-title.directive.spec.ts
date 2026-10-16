@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffModalTitleDirective } from './modal-title.directive';
   template: `
     <h2 daffModalTitle>Lorem Ipsum</h2>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffModalTitleDirective,
   ],

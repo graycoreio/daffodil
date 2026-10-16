@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -15,6 +15,7 @@ import { DaffRadioComponent } from './radio.component';
   template: `
     <daff-radio name="test" value="testValue"></daff-radio>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_RADIO_COMPONENTS,
   ],

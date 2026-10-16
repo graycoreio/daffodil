@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -21,6 +22,7 @@ import { DaffSwitchSize } from '../switch.component';
   template: `
     <daff-switch [size]="size()" [labelPosition]="labelPosition()" [checked]="checked()">Wifi</daff-switch>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_SWITCH_COMPONENTS,
   ],

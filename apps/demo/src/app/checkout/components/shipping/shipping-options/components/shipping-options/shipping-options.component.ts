@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -13,6 +14,7 @@ import { DemoCheckoutShippingFormGroup } from '../../models/shipping-form.type';
   selector: 'demo-checkout-shipping-options',
   templateUrl: './shipping-options.component.html',
   styleUrls: ['./shipping-options.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     DAFF_RADIO_COMPONENTS,

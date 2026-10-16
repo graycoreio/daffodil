@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffBreadcrumbItemComponent } from '@daffodil/design/breadcrumb';
 
 @Component({
   template: `<li daffBreadcrumbItem>Breadcrumb Item</li>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffBreadcrumbItemComponent,
   ],

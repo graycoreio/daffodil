@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -21,6 +21,7 @@ import { DaffSfQuantitySelectComponent } from './quantity-select.component';
       [disabled]="disabled"
     ></daff-sf-quantity-select>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSfQuantitySelectComponent,
   ],

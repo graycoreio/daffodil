@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
@@ -13,6 +13,7 @@ import { DaffFormFieldMissingControlMessage } from '../form-field/form-field.com
   <daff-form-field>
     <daff-error-message></daff-error-message>
   </daff-form-field>`,
+changeDetection: ChangeDetectionStrategy.Eager,
 imports: [
   DAFF_FORM_FIELD_COMPONENTS,
 ]})

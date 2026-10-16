@@ -5,6 +5,7 @@ import {
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -18,6 +19,7 @@ import { DaffModalService } from '../service/modal.service';
 
 @Component({
   template: `<p>It works!</p>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 class DynamicComponent {}
@@ -29,6 +31,7 @@ class DynamicComponent {}
     PortalModule,
     DynamicComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     DaffModalService,
   ],

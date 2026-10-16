@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -21,6 +22,7 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
 		  }
 		</daff-sidebar-viewport>
 		`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSidebarComponent,
     DaffSidebarViewportComponent,

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,6 +17,7 @@ import { DaffTabComponent } from '../tab/tab.component';
   template: `
 		<daff-tab-panel></daff-tab-panel>
 	`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffTabPanelComponent,
   ],

@@ -1,11 +1,17 @@
 {
-  "extends": "./tsconfig.app.json",
-  "compilerOptions": {
-    "baseUrl": "../..",
-    "paths": {
-      "@daffodil/*": [
-        "libs/*/src"
-      ],
-    }
-  }
+	"extends": "./tsconfig.app.json",
+	"compilerOptions": {
+		"baseUrl": "../..",
+		"paths": {
+			"@daffodil/*": ["libs/*/src"]
+		}
+	},
+	"angularCompilerOptions": {
+		"extendedDiagnostics": {
+			"checks": {
+				"nullishCoalescingNotNullable": "suppress",
+				"optionalChainNotNullable": "suppress"
+			}
+		}
+	}
 }

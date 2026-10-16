@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -20,6 +21,7 @@ import { DaffImageComponent } from '@daffodil/design/image';
       [width]="width()"
       [height]="height()">
     </daff-image>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffImageComponent,
   ],

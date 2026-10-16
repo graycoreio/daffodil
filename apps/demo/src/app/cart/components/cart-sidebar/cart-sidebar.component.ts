@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { DaffCart } from '@daffodil/cart';
@@ -14,6 +15,7 @@ import { ProceedToCheckoutDirective } from '../proceed-to-checkout/proceed-to-ch
   selector: 'demo-cart-sidebar',
   templateUrl: './cart-sidebar.component.html',
   styleUrls: ['./cart-sidebar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CartTotalsComponent,
     ProceedToCheckoutDirective,

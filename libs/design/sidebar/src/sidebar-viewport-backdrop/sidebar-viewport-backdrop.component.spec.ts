@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -20,6 +21,7 @@ import { DaffSidebarViewportBackdropComponent } from './sidebar-viewport-backdro
       [transparent]="transparent()"
       (backdropClicked)="backdropFunction()"></daff-sidebar-viewport-backdrop>
     `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSidebarViewportBackdropComponent,
   ],

@@ -6,6 +6,7 @@ import {
   Output,
   ViewEncapsulation,
   Inject,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   ReactiveFormsModule,
@@ -31,6 +32,7 @@ import { ImageGalleryComponent } from '../../../core/image-gallery/components/im
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     DAFF_ACCORDION_COMPONENTS,

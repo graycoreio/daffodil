@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
@@ -15,6 +15,7 @@ import { DaffioApiListSectionComponent } from './api-list-section.component';
   template: `
     <daffio-api-list-section [children]="apiListValue"></daffio-api-list-section>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffioApiListSectionComponent,
   ],

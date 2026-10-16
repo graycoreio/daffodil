@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffListItemTitleDirective } from '@daffodil/design/list';
 
 @Component({
   template: `<div daffListItemTitle>Title</div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffListItemTitleDirective,
   ],

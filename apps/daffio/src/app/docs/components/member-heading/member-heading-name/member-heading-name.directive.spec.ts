@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffioDocsMemberHeadingNameDirective } from './member-heading-name.dire
 
 @Component({
   template: `<div daffioDocsMemberHeadingName>Name</div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffioDocsMemberHeadingNameDirective,
   ],
