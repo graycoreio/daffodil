@@ -1,7 +1,7 @@
 import {
   Component,
   Input,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,

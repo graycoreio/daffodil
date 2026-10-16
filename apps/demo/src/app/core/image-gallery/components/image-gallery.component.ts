@@ -3,7 +3,7 @@ import {
   Input,
   ViewEncapsulation,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 

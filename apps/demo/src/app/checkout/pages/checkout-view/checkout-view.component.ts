@@ -1,7 +1,7 @@
 import {
   Component,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { LetDirective } from '@ngrx/component';
 import {

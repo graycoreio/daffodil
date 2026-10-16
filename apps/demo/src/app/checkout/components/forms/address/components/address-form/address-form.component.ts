@@ -4,7 +4,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {

@@ -1,7 +1,7 @@
 import {
   Component,
   ViewContainerRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   TestBed,

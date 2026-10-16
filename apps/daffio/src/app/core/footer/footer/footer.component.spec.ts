@@ -1,7 +1,7 @@
 import {
   Component,
   DebugElement,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
