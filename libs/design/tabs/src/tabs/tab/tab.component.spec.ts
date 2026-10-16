@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffTabComponent } from './tab.component';
   template: `
 		<daff-tab [disabled]="disabled"></daff-tab>
 	`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffTabComponent,
   ],
@@ -64,6 +66,7 @@ describe('@daffodil/design/tabs | DaffTabComponent | Defaults', () => {
   template: `
 		<daff-tab [id]="id"></daff-tab>
 	`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffTabComponent,
   ],

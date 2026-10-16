@@ -1,25 +1,23 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../../dist/out-tsc/lib",
-    "declarationMap": true,
-    "declaration": true,
-    "inlineSources": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "types": [],
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/out-tsc/lib",
+		"declarationMap": true,
+		"declaration": true,
+		"inlineSources": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"types": [],
     "composite": true
-  },
-  "angularCompilerOptions": {
-    "annotateForClosureCompiler": true,
-    "skipTemplateCodegen": true,
-    "strictMetadataEmit": true,
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true,
-    "enableResourceInlining": true
-  },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
-  ]
+	},
+	"angularCompilerOptions": {
+		"annotateForClosureCompiler": true,
+		"skipTemplateCodegen": true,
+		"strictMetadataEmit": true,
+		"fullTemplateTypeCheck": true,
+		"strictInjectionParameters": true,
+		"enableResourceInlining": true,
+		"strictTemplates": false
+	},
+	"exclude": ["test.ts", "**/*.spec.ts"]
 }

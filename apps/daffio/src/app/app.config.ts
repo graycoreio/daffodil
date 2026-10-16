@@ -1,6 +1,7 @@
 import {
   provideHttpClient,
   withInterceptorsFromDi,
+  withXhr,
 } from '@angular/common/http';
 import {
   APP_ID,
@@ -76,7 +77,7 @@ export const appConfig: ApplicationConfig = {
       useValue: 'serverApp',
     },
     provideDaffSeoRouterSchema(),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withXhr(), withInterceptorsFromDi()),
     provideDaffRouterDataServiceConfig(daffioRouterDataServiceConfig),
     provideDaffioSidebarFeature(),
     provideScrollOffset(),

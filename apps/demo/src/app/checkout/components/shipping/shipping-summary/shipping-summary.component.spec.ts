@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -17,6 +20,7 @@ import { DemoCheckoutShippingSummaryComponent } from './shipping-summary.compone
       [selectedShippingOption]="shippingValue"
       (editShippingInfo)="editShippingInfoFunction()"></demo-checkout-shipping-summary>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DemoCheckoutShippingSummaryComponent,
   ],

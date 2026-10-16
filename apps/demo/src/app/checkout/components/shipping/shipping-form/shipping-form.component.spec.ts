@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -23,6 +26,7 @@ import { DemoCheckoutShippingOptionsComponent } from '../shipping-options/compon
       [options]="optionsValue"
       (submitted)="submittedFunction($event)"></demo-checkout-shipping-form>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DemoCheckoutShippingFormComponent,
   ],

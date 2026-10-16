@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,6 +17,7 @@ import { DaffCheckboxComponent } from '@daffodil/design/checkbox';
   template: `
     <daff-checkbox value="testValue"></daff-checkbox>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffCheckboxComponent,
     ReactiveFormsModule,

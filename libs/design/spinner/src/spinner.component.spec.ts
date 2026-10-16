@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffSpinnerComponent } from '@daffodil/design/spinner';
 
 @Component({
   template: '<daff-spinner [color]="color()" [size]="size()"></daff-spinner>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSpinnerComponent,
   ],

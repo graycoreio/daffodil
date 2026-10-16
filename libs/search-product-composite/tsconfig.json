@@ -9,16 +9,15 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/search-product-composite": [
-        "libs/search-product-composite/src"
+        "../../libs/search-product-composite/src"
       ],
       "@daffodil/search-product-composite/state": [
-        "libs/search-product-composite/state/src"
+        "../../libs/search-product-composite/state/src"
       ],
     }
   }

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffSpinnerLabelDirective } from '@daffodil/design/spinner';
 
 @Component({
   template: `<daff-spinner-label>Label</daff-spinner-label>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSpinnerLabelDirective,
   ],

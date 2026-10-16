@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,6 +17,7 @@ import { DaffSidebarHeaderComponent } from './sidebar-header.component';
   template: `
     <daff-sidebar-header [dismissible]="dismissible()" (closeSidebar)="closeSidebarFunction()">Header</daff-sidebar-header>
 	`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSidebarHeaderComponent,
   ],

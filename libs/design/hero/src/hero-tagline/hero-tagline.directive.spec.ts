@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -15,6 +16,7 @@ import { DaffHeroTaglineDirective } from './hero-tagline.directive';
   template: `
     <h1 daffHeroTagline>Lorem Ipsum</h1>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffHeroTaglineDirective,
   ],

@@ -1,6 +1,7 @@
 import {
   Component,
   input,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -21,6 +22,7 @@ import { DaffContentEditableRenderer } from './editable-renderer';
 @Component({
   selector: 'test-component',
   template: '<div class="test-component"><ng-content></ng-content></div>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 class TestComponent {

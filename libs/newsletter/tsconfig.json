@@ -11,28 +11,28 @@
   "compilerOptions": {
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/newsletter": [
-        "libs/newsletter/src"
+        "../../libs/newsletter/src"
       ],
       "@daffodil/newsletter/state": [
-        "libs/newsletter/state/src"
+        "../../libs/newsletter/state/src"
       ],
       "@daffodil/newsletter/state/testing": [
-        "libs/newsletter/state/testing/src"
+        "../../libs/newsletter/state/testing/src"
       ],
       "@daffodil/newsletter/driver": [
-        "libs/newsletter/driver/src"
+        "../../libs/newsletter/driver/src"
       ],
       "@daffodil/newsletter/driver/testing": [
-        "libs/newsletter/driver/testing/src"
+        "../../libs/newsletter/driver/testing/src"
       ],
       "@daffodil/newsletter/driver/in-memory": [
-        "libs/newsletter/driver/in-memory/src"
+        "../../libs/newsletter/driver/in-memory/src"
       ],
       "@daffodil/newsletter/driver/hubspot": [
-        "libs/newsletter/driver/hubspot/src"
+        "../../libs/newsletter/driver/hubspot/src"
       ],
     }
   }

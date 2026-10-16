@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
@@ -15,6 +18,7 @@ import { DAFF_LIST_COMPONENTS } from '@daffodil/design/list';
   selector: 'demo-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RouterModule,
     DAFF_LIST_COMPONENTS,

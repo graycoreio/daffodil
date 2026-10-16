@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -17,6 +20,7 @@ import { CartItemComponent } from '../cart-item/cart-item.component';
 
 @Component({
   template: '<demo-minicart-item [item]="cartItemValue"></demo-minicart-item>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MiniCartItemComponent],
 })
 class WrapperComponent {

@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -26,6 +27,7 @@ import { ProductComponent } from './product.component';
 
 @Component({
   template: '<demo-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></demo-product>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ProductComponent],
 })
 class WrapperComponent {
@@ -36,6 +38,7 @@ class WrapperComponent {
 
 @Component({
   selector: 'demo-image-gallery-container',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 class MockImageGalleryContainer {

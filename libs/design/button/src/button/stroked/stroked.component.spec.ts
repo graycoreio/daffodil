@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -17,6 +18,7 @@ import { DaffStrokedButtonComponent } from './stroked.component';
     <a daff-stroked-button [elevated]="elevated()">Stroked Link Button</a>
     <button daff-stroked-button [elevated]="elevated()">Stroked Button</button>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffStrokedButtonComponent,
   ],

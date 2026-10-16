@@ -9,25 +9,24 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/checkout": [
-        "libs/checkout/src"
+        "../../libs/checkout/src"
       ],
       "@daffodil/checkout/state": [
-        "libs/checkout/state/src"
+        "../../libs/checkout/state/src"
       ],
       "@daffodil/checkout/state/testing": [
-        "libs/checkout/state/testing/src"
+        "../../libs/checkout/state/testing/src"
       ],
       "@daffodil/checkout/testing": [
-        "libs/checkout/testing/src"
+        "../../libs/checkout/testing/src"
       ],
       "@daffodil/checkout/routing": [
-        "libs/checkout/routing/src"
+        "../../libs/checkout/routing/src"
       ],
     }
   }

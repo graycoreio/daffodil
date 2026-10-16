@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffCardTitleDirective } from './card-title.directive';
 
 @Component({
   template: `<div daffCardTitle></div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffCardTitleDirective,
   ],

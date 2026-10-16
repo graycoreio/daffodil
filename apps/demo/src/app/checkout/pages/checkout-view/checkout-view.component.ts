@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { LetDirective } from '@ngrx/component';
 import {
@@ -46,6 +47,7 @@ import {
 @Component({
   templateUrl: './checkout-view.component.html',
   styleUrls: ['./checkout-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     LetDirective,
     DAFF_CONTAINER_COMPONENTS,

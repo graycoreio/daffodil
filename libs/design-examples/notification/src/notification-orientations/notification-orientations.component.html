@@ -7,7 +7,9 @@
   </daff-select>
 </daff-form-field>
 
-<daff-notification [orientation]="orientationControl.value?.value">
+<daff-notification
+  [orientation]="$safeNavigationMigration(orientationControl.value?.value)"
+>
   <fa-icon daffPrefix [icon]="faCheck" [fixedWidth]="true"></fa-icon>
   <div daffNotificationTitle>Changes saved</div>
   <div daffNotificationMessage>Your profile details have been updated.</div>

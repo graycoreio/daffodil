@@ -9,19 +9,18 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/seo": [
-        "libs/seo/src"
+        "../../libs/seo/src"
       ],
       "@daffodil/seo/state": [
-        "libs/seo/state/src"
+        "../../libs/seo/state/src"
       ],
       "@daffodil/seo/router": [
-        "libs/seo/router/src"
+        "../../libs/seo/router/src"
       ],
     }
   }

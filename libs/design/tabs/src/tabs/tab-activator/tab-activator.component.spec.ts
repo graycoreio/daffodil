@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -17,6 +18,7 @@ import { DaffTabActivatorComponent } from './tab-activator.component';
 		<button daff-tab-activator [selected]="selected()" [tabActivatorId]="tabActivatorId()" [panelId]="panelId()">Tab Activator</button>
 		<a daff-tab-activator [selected]="selected()" [tabActivatorId]="tabActivatorId()" [panelId]="panelId()">Tab Activator</a>
 	`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffTabActivatorComponent,
   ],

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,6 +17,7 @@ import { DaffFlatButtonComponent } from './flat.component';
     <a daff-flat-button>Flat Link Button</a>
     <button daff-flat-button>Flat Button</button>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffFlatButtonComponent,
   ],

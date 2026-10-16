@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   TestBed,
   waitForAsync,
@@ -10,6 +13,7 @@ import { DemoIndicatorComponent } from './routing/indicator/indicator.component'
 
 @Component({
   selector: 'demo-product-grid-view', template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class MockProductGridContainer {}

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   TestBed,
   waitForAsync,
@@ -16,6 +19,7 @@ import {
   template: `
     <daff-checkbox aria-label="testLabel" aria-labelledby="testParent"></daff-checkbox>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_CHECKBOX_COMPONENTS,
     ReactiveFormsModule,
