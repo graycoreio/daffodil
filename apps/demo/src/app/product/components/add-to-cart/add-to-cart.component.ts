@@ -5,7 +5,7 @@ import {
   Input,
   ViewEncapsulation,
   HostBinding,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import {

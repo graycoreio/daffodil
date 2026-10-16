@@ -3,7 +3,7 @@ import {
   Output,
   EventEmitter,
   Input,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { DaffCartShippingRate } from '@daffodil/cart';

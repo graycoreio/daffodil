@@ -4,7 +4,7 @@ import {
   Injectable,
   Component,
   DOCUMENT,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   TestBed,

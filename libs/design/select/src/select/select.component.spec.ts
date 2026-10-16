@@ -5,7 +5,7 @@ import {
   Component,
   DebugElement,
   DOCUMENT,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,

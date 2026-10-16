@@ -3,7 +3,7 @@ import {
   DebugElement,
   signal,
   WritableSignal,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,

@@ -3,7 +3,7 @@ import {
   Input,
   Output,
   EventEmitter,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { DaffAuthorizeNetCreditCard } from '@daffodil/authorizenet';

@@ -3,7 +3,7 @@ import {
   Component,
   getDebugNode,
   DOCUMENT,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,

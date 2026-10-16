@@ -2,7 +2,7 @@ import { provideLocationMocks } from '@angular/common/testing';
 import {
   Component,
   inject,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';

@@ -6,7 +6,7 @@ import {
   Output,
   ViewEncapsulation,
   Inject,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ReactiveFormsModule,
