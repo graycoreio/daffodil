@@ -1,9 +1,8 @@
-import { CdkTrapFocus } from '@angular/cdk/a11y';
 import {
   computed,
   Directive,
-  effect,
   forwardRef,
+  inject,
   input,
 } from '@angular/core';
 
@@ -25,7 +24,6 @@ import { DaffRovingTabIndexDirective } from './roving-tab-index.directive';
     '(keydown.space)': 'enterGroup($event)',
   },
   hostDirectives: [
-    CdkTrapFocus,
     DaffRovingTabIndexDirective,
   ],
   providers: [
@@ -39,18 +37,15 @@ export class DaffRovingTabIndexBoundaryDirective implements DaffRovingTabIndexBo
   /**
    * Don't touch this directly. Use `_uniqueId`.
    */
-  private static _uniqueIdCounter = 0;
-
-  /**
-   * Don't touch this directly. Use `_uniqueId`.
-   */
   private _cachedUniqueId: string | undefined;
   private get _uniqueId(): string {
     if (!this._cachedUniqueId) {
-      this._cachedUniqueId = `ε-rtiBoundary-${DaffRovingTabIndexBoundaryDirective._uniqueIdCounter++}`;
+      this._cachedUniqueId = `ε-rtiBoundary-${crypto.randomUUID()}`;
     }
     return this._cachedUniqueId;
   }
+
+  private readonly groupService = inject(DaffRovingTabIndexService);
 
   /**
    * The name of the group for which that this element will act as boundary.
@@ -61,15 +56,6 @@ export class DaffRovingTabIndexBoundaryDirective implements DaffRovingTabIndexBo
    * The name of the group defined by this boundary.
    */
   readonly effectiveBoundary = computed(() => this.rtiBoundary() || this._uniqueId);
-
-  constructor(
-    private groupService: DaffRovingTabIndexService,
-    private focusTrap: CdkTrapFocus,
-  ) {
-    effect(() => {
-      this.focusTrap.enabled = this.effectiveBoundary() === this.groupService.group();
-    });
-  }
 
   /**
    * @docs-private

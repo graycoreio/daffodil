@@ -78,8 +78,9 @@ describe('@daffodil/design | DaffRovingTabIndexDirective', () => {
     expect(directive.group()).toEqual('');
   });
 
-  describe('when the escape key is pressed', () => {
+  describe('when the escape key is pressed when inside a group', () => {
     beforeEach(() => {
+      groupSpy.set('test');
       (<HTMLElement>de.nativeElement).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
       fixture.detectChanges();
     });
@@ -89,8 +90,9 @@ describe('@daffodil/design | DaffRovingTabIndexDirective', () => {
     });
   });
 
-  describe('when the up arrow is pressed', () => {
+  describe('when the up arrow is pressed when inside a group', () => {
     beforeEach(() => {
+      groupSpy.set('test');
       (<HTMLElement>de.nativeElement).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
       fixture.detectChanges();
     });
@@ -100,14 +102,83 @@ describe('@daffodil/design | DaffRovingTabIndexDirective', () => {
     });
   });
 
-  describe('when the down arrow is pressed', () => {
+  describe('when the down arrow is pressed when inside a group', () => {
     beforeEach(() => {
+      groupSpy.set('test');
       (<HTMLElement>de.nativeElement).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
       fixture.detectChanges();
     });
 
     it('should navigate to the next target', () => {
       expect(serviceSpy.next).toHaveBeenCalledWith();
+    });
+  });
+
+  describe('when the up arrow is pressed when not inside a group', () => {
+    beforeEach(() => {
+      (<HTMLElement>de.nativeElement).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+      fixture.detectChanges();
+    });
+
+    it('should not navigate to the previous target', () => {
+      expect(serviceSpy.previous).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('when the down arrow is pressed when not inside a group', () => {
+    beforeEach(() => {
+      (<HTMLElement>de.nativeElement).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+      fixture.detectChanges();
+    });
+
+    it('should not navigate to the next target', () => {
+      expect(serviceSpy.next).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('when the tab key is pressed when inside a group', () => {
+    beforeEach(() => {
+      groupSpy.set('test');
+      (<HTMLElement>de.nativeElement).dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
+      fixture.detectChanges();
+    });
+
+    it('should navigate to the next target', () => {
+      expect(serviceSpy.next).toHaveBeenCalledWith();
+    });
+  });
+
+  describe('when the tab plus shift key is pressed when inside a group', () => {
+    beforeEach(() => {
+      groupSpy.set('test');
+      (<HTMLElement>de.nativeElement).dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true }));
+      fixture.detectChanges();
+    });
+
+    it('should navigate to the previous target', () => {
+      expect(serviceSpy.previous).toHaveBeenCalledWith();
+    });
+  });
+
+  describe('when the tab key is pressed when not inside a group', () => {
+    beforeEach(() => {
+      (<HTMLElement>de.nativeElement).dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
+      fixture.detectChanges();
+    });
+
+    it('should not navigate to the previous target', () => {
+      expect(serviceSpy.previous).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('when the tab plus shift key is pressed when not inside a group', () => {
+    beforeEach(() => {
+      (<HTMLElement>de.nativeElement).dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true }));
+      fixture.detectChanges();
+    });
+
+    it('should not navigate to the next target', () => {
+      expect(serviceSpy.next).not.toHaveBeenCalled();
     });
   });
 });

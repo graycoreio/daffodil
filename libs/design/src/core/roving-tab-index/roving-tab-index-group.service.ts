@@ -63,26 +63,4 @@ export class DaffRovingTabIndexService {
         : ary[index === ary.length - 1 ? 0 : index + 1]).focus();
     }
   }
-
-  onKeydown(evt: Event) {
-    if ('key' in evt) {
-      switch ((<KeyboardEvent>evt).key) {
-        case 'ArrowUp':
-        case 'ArrowDown':
-          if (this._group()) {
-            evt.preventDefault();
-            const ary = Array.from(this.document.querySelectorAll<HTMLElement>(`[data-rti="${this._group()}"]`));
-            const index = ary.findIndex((el) => el === this.document.activeElement);
-            (<HTMLElement>this.document.activeElement).blur();
-            ((<KeyboardEvent>evt).key === 'ArrowUp'
-              ? ary[index === 0 ? ary.length - 1 : index - 1]
-              : ary[index === ary.length - 1 ? 0 : index + 1]).focus();
-          }
-          break;
-
-        default:
-          break;
-      }
-    }
-  }
 }
