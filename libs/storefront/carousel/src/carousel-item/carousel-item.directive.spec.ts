@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffSfCarouselItemDirective } from './carousel-item.directive';
 
 @Component({
   template: `<div daffSfCarouselItem></div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSfCarouselItemDirective,
   ],

@@ -3,6 +3,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -27,6 +28,7 @@ import { DaffTagSize } from '../tag-sizable.directive';
         Tag
     </daff-tag>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffTagComponent,
   ],

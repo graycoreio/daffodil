@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { BestSellersComponent } from '../../product/containers/best-sellers/best-sellers.component';
 
@@ -6,6 +6,7 @@ import { BestSellersComponent } from '../../product/containers/best-sellers/best
   selector: 'demo-not-found',
   templateUrl: './not-found.component.html',
   styleUrls: ['./not-found.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     BestSellersComponent,
   ],

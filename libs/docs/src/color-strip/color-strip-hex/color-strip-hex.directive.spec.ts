@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffDocsColorStripHexDirective } from './color-strip-hex.directive';
 
 @Component({
   template: `<div daffDocsColorStripHex>#000000</div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffDocsColorStripHexDirective,
   ],

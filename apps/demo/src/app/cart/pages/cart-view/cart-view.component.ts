@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import {
   Component,
   OnInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -15,6 +16,7 @@ import { CartComponent } from '../../components/cart/cart.component';
 @Component({
   templateUrl: './cart-view.component.html',
   styleUrls: ['./cart-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AsyncPipe,
     DAFF_SPINNER_COMPONENTS,

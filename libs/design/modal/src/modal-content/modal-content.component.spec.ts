@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -17,6 +18,7 @@ import { DaffModalContentComponent } from './modal-content.component';
       Content
     </daff-modal-content>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffModalContentComponent,
   ],

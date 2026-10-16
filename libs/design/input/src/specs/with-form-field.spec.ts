@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -22,6 +23,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
       <input daff-input>
     </daff-form-field>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffInputComponent,
     DAFF_FORM_FIELD_COMPONENTS,

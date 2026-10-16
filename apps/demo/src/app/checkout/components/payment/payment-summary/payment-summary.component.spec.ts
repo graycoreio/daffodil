@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -16,6 +16,7 @@ import { DemoCheckoutPaymentSummaryComponent } from './payment-summary.component
     [paymentInfo]="paymentInfoValue"
     (editPaymentInfo)="editPaymentInfoFunction()"
   ></demo-checkout-payment-summary>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DemoCheckoutPaymentSummaryComponent,
   ],

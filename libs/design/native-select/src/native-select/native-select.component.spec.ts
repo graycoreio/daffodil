@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   TestBed,
@@ -8,6 +8,7 @@ import { DaffNativeSelectComponent } from '@daffodil/design/native-select';
 
 @Component({
   template: `<select daff-native-select></select>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffNativeSelectComponent,
   ],

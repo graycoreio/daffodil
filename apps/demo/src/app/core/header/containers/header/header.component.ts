@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
@@ -17,6 +17,7 @@ import { DemoHeaderComponent } from '../../components/header/header.component';
 @Component({
   selector: 'demo-header-container',
   templateUrl: './header.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RouterModule,
     FaIconComponent,

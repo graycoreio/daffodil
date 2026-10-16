@@ -2,6 +2,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -24,6 +25,7 @@ import { DaffBreadcrumbMenuItemDirective } from './breadcrumb-menu-item.directiv
       <a class="breadcrumb-link">Link</a>
     </ng-template>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffBreadcrumbMenuItemDirective,
     NgTemplateOutlet,

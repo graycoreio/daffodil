@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -13,6 +13,7 @@ import { DaffOpenableDirective } from '../openable.directive';
 		<p>Hello stateful!</p>
 		`,
   selector: 'daff-stateful',
+  changeDetection: ChangeDetectionStrategy.Eager,
   hostDirectives: [
     {
       directive: DaffOpenableDirective,
@@ -36,6 +37,7 @@ class StatefulComponent {
 		<p>Hello stateless!</p>
 		`,
   selector: 'daff-stateless',
+  changeDetection: ChangeDetectionStrategy.Eager,
   hostDirectives: [
     {
       directive: DaffOpenableDirective,
@@ -58,6 +60,7 @@ class StatelessComponent {
 		<daff-stateful (toggled)="toggledFunction()"></daff-stateful>
 		<daff-stateless [open]="statelessOpen" (toggled)="toggledFunction()"></daff-stateless>
 	`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     StatefulComponent,
     StatelessComponent,

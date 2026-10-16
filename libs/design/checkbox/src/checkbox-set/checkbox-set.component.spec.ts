@@ -2,6 +2,7 @@ import {
   Component,
   ViewChild,
   OnInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -28,6 +29,7 @@ import {
       <daff-checkbox [formControl]="checkboxArray.at(2)" value="option3">Option 3 </daff-checkbox>
     </daff-checkbox-set>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_CHECKBOX_COMPONENTS,
     ReactiveFormsModule,

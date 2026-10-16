@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   Router,
@@ -20,6 +21,7 @@ import { RouterPercentEnum } from '../router-percent-enum';
 @Component({
   selector: 'demo-routing-indicator',
   templateUrl: './indicator.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffProgressBarComponent,
   ],
