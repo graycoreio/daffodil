@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -14,6 +15,7 @@ import { DaffArticleEncapsulatedDirective } from '@daffodil/design';
 @Component({
   template: `
 		<div daffArticleEncapsulated></div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffArticleEncapsulatedDirective,
   ],

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
@@ -16,6 +19,7 @@ import { DaffRadioComponent } from '../radio/radio.component';
   template: `
     <daff-radio name="test" value="testValue" [formControl]="radio"></daff-radio>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffRadioComponent,
     ReactiveFormsModule,

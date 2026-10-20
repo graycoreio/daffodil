@@ -1,6 +1,7 @@
 import {
   Component,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -18,6 +19,7 @@ import {
       <div *daffCarouselItem>Some Item</div>
     </daff-sf-carousel>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSfCarouselComponent,
   ],

@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -14,6 +15,7 @@ import { DaffYoutubePlayerComponent } from './youtube-player.component';
 
 @Component({
   template: `<daff-youtube-player [width]="width()" [height]="height()"></daff-youtube-player>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffYoutubePlayerComponent,
   ],

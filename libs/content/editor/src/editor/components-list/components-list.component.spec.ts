@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
@@ -11,6 +14,7 @@ import { ComponentsListComponent } from './components-list.component';
 @Component({
   selector: 'test-component-a',
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 class TestComponentA {}
@@ -18,6 +22,7 @@ class TestComponentA {}
 @Component({
   selector: 'test-component-b',
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 class TestComponentB {}

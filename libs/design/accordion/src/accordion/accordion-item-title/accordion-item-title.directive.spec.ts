@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffAccordionItemTitleDirective } from '@daffodil/design/accordion';
   template: `
     <div daffAccordionItemTitle>Title</div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffAccordionItemTitleDirective,
   ],

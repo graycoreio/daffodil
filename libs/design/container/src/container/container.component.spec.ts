@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,6 +17,7 @@ import { DaffContainerComponent } from './container.component';
 
 @Component({
   template: `<daff-container [size]="size()"></daff-container>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffContainerComponent,
   ],

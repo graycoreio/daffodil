@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -28,6 +29,7 @@ import { DaffTextareaComponent } from '@daffodil/design/textarea';
       <textarea daff-textarea [required]="requiredValue()"></textarea>
     </daff-form-field>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffTextareaComponent,
     DAFF_FORM_FIELD_COMPONENTS,
@@ -116,6 +118,7 @@ describe('@daffodil/design/textarea | DaffTextareaComponent | Static Required At
       <textarea daff-textarea type="text" name="message" [formControl]="message"></textarea>
     </daff-form-field>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffTextareaComponent,
     DAFF_FORM_FIELD_COMPONENTS,

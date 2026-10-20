@@ -2,6 +2,7 @@ import { A11yModule } from '@angular/cdk/a11y';
 import {
   Component,
   DOCUMENT,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -19,6 +20,7 @@ import { DaffSidebarComponent } from '../../sidebar/sidebar.component';
       <daff-sidebar side="left" mode="over" [open]="true"></daff-sidebar>
     </daff-sidebar-viewport>
     `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSidebarViewportComponent,
     DaffSidebarComponent,

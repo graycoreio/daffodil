@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffLogoComponent } from './logo.component';
 
 @Component({
   template: `<daff-branding-logo></daff-branding-logo>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class WrapperComponent {}
