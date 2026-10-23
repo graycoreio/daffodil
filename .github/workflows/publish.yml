@@ -9,7 +9,6 @@ on:
   workflow_dispatch:
 
 env:
-  NX_KEY: ${{ secrets.NX_KEY }}
   NG_BUILD_ENV: production
   NPM_VERSION: 11
 
@@ -39,12 +38,7 @@ jobs:
           use-stamp-cache: true
           registry-url: 'https://registry.npmjs.org'
 
-      - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
-        with:
-          cache-mode: read-only
-          read-only-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
-          read-write-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
-          event-name: ${{ github.event_name }}
+      # No remote Nx cache here: published packages are always built from scratch.
 
       - run: npx nx run-many -t build
 

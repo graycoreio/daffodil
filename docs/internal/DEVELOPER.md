@@ -45,6 +45,24 @@ For example,
 npx nx run @daffodil/core:build
 ```
 
+### Build Cache
+Nx caches the results of `build`, `test` and `lint` locally, so repeating a task with unchanged inputs is instant. Nx 23 keeps this cache outside the repository (under `~/.nx/`); `npx nx reset` clears it.
+
+#### Shared remote cache (maintainers)
+Maintainers can also read from (and, if allowed, write to) the team's shared cache, by running an [nx-remote-cache](https://github.com/graycoreio/nx-remote-cache#local-instance-binary-or-docker) instance on their own machine. It talks to the cache storage with your own Azure login: whether you can write depends on the Azure role you've been given, not on anything in this repository.
+
+1. Start a local instance, as described in nx-remote-cache's "Local instance" docs (Docker Compose or the binary).
+2. Point Nx at it in a `.env` file at the repository root (it's git-ignored, and Nx loads it automatically):
+
+```bash
+NX_SELF_HOSTED_REMOTE_CACHE_SERVER=http://127.0.0.1:<port of your local instance>
+NX_SELF_HOSTED_REMOTE_CACHE_ACCESS_TOKEN=<the token your local instance accepts>
+```
+
+With both set, Nx checks its local cache first, then the shared one, and stores what it builds in both. Anything else, e.g. contributors without access, works exactly as before: leave the variables unset and Nx only uses its local cache.
+
+> If your local instance isn't running while these variables are set, Nx fails the run instead of falling back. Comment them out of `.env` when you stop the instance.
+
 ## Running unit tests
 Much like builds, we utilize Lerna and the Angular CLI to run our tests.
 

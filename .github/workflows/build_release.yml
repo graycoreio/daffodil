@@ -5,6 +5,12 @@ on:
     tags:
       - 'v*'
 
+# build.yml's jobs request id-token (for the remote cache); a caller must grant at least what its
+# called jobs request, even though release runs skip the cache.
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   build:
     name: Build Release
@@ -13,8 +19,6 @@ jobs:
       cache-mode: 'read-only'
       ref: ${{ github.sha }}
     secrets:
-      NX_KEY: ${{ secrets.NX_KEY }}
-      AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
       VERCEL_DAFFIO_NEXT_PROJECT_ID: ${{ secrets.VERCEL_DAFFIO_NEXT_PROJECT_ID }}
       VERCEL_DAFFIO_PROJECT_ID: ${{ secrets.VERCEL_DAFFIO_PROJECT_ID }}
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

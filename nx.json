@@ -4,11 +4,6 @@
 		"defaultBase": "develop"
 	},
 	"extends": "nx/presets/npm.json",
-	"azure": {
-		"container": "cache",
-		"localMode": "read-write",
-		"accountName": "daffodilnx"
-	},
 	"namedInputs": {
 		"default": ["{projectRoot}/**/*"],
 		"notSpec": ["!{projectRoot}/**/*.spec.{ts,tsx}"],
@@ -33,15 +28,6 @@
 			"{workspaceRoot}/libs/**/*.scss"
 		]
 	},
-	"tasksRunnerOptions": {
-		"default": {
-			"runner": "nx/tasks-runners/default",
-			"options": {
-				"cacheDirectory": ".nx_cache",
-				"cacheableOperations": ["build", "test", "lint"]
-			}
-		}
-	},
 	"targetDependencies": {
 		"build": [
 			{
@@ -52,6 +38,7 @@
 	},
 	"targetDefaults": {
 		"build": {
+			"cache": true,
 			"inputs": [
 				"default",
 				"^default",
@@ -64,6 +51,7 @@
 			"dependsOn": ["^build"]
 		},
 		"test": {
+			"cache": true,
 			"inputs": [
 				"default",
 				"sharedGlobals",
@@ -72,6 +60,7 @@
 			"dependsOn": ["build"]
 		},
 		"lint": {
+			"cache": true,
 			"inputs": ["default", "eslint"],
 			"dependsOn": [
 				{
@@ -88,5 +77,6 @@
 				}
 			]
 		}
-	}
+	},
+	"analytics": false
 }
