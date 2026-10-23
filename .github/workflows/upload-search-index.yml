@@ -36,6 +36,7 @@ jobs:
           reader-client-id: ${{ vars.NX_CACHE_READER_CLIENT_ID }}
           storage-account: ${{ vars.NX_CACHE_STORAGE_ACCOUNT }}
           storage-container: ${{ vars.NX_CACHE_STORAGE_CONTAINER }}
+          github-token: ${{ secrets.NX_CACHE_RELEASE_TOKEN }} # downloads the server release
 
       - uses: graycoreio/github-actions/setup-node@main
         with:

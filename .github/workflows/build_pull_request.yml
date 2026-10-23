@@ -20,6 +20,7 @@ jobs:
     # runs build.yml from develop, which requires them until the new version is merged; remove
     # these two lines (and the declarations in build.yml) afterwards.
     secrets:
+      NX_CACHE_RELEASE_TOKEN: ${{ secrets.NX_CACHE_RELEASE_TOKEN }}
       NX_KEY: ${{ secrets.NX_KEY }}
       AZURE_STORAGE_CONNECTION_STRING: ${{ github.event.pull_request.head.repo.full_name == github.repository && secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING || secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
 

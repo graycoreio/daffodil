@@ -15,6 +15,9 @@ on:
         required: false
         type: string
         description: "Comma-separated Angular version constraints (e.g. '^19,^20'). Defaults to the @angular/core version in package.json."
+    secrets:
+      NX_CACHE_RELEASE_TOKEN:
+        required: false
 
 env:
   WORK_DIR: /tmp/daffodil-commerce-test
@@ -109,6 +112,7 @@ jobs:
           reader-client-id: ${{ vars.NX_CACHE_READER_CLIENT_ID }}
           storage-account: ${{ vars.NX_CACHE_STORAGE_ACCOUNT }}
           storage-container: ${{ vars.NX_CACHE_STORAGE_CONTAINER }}
+          github-token: ${{ secrets.NX_CACHE_RELEASE_TOKEN }} # downloads the server release
 
       - name: Authenticate with Verdaccio
         run: |

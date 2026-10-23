@@ -28,6 +28,9 @@ on:
         required: false
       VERCEL_ORG:
         required: false
+      # Read access to graycoreio/nx-remote-cache releases (private), for the remote Nx cache.
+      NX_CACHE_RELEASE_TOKEN:
+        required: false
 env:
   NG_BUILD_ENV: ${{ github.event_name == 'push' && github.ref_type == 'tag' && 'production' || 'next' }}
   NPM_VERSION: 11
@@ -62,6 +65,7 @@ jobs:
           reader-client-id: ${{ vars.NX_CACHE_READER_CLIENT_ID }}
           storage-account: ${{ vars.NX_CACHE_STORAGE_ACCOUNT }}
           storage-container: ${{ vars.NX_CACHE_STORAGE_CONTAINER }}
+          github-token: ${{ secrets.NX_CACHE_RELEASE_TOKEN }} # downloads the server release
 
       - uses: graycoreio/github-actions/setup-node@main
         with:
@@ -105,6 +109,7 @@ jobs:
           reader-client-id: ${{ vars.NX_CACHE_READER_CLIENT_ID }}
           storage-account: ${{ vars.NX_CACHE_STORAGE_ACCOUNT }}
           storage-container: ${{ vars.NX_CACHE_STORAGE_CONTAINER }}
+          github-token: ${{ secrets.NX_CACHE_RELEASE_TOKEN }} # downloads the server release
 
       - run: npx nx run-many -t build --parallel=1
 
@@ -178,6 +183,7 @@ jobs:
           reader-client-id: ${{ vars.NX_CACHE_READER_CLIENT_ID }}
           storage-account: ${{ vars.NX_CACHE_STORAGE_ACCOUNT }}
           storage-container: ${{ vars.NX_CACHE_STORAGE_CONTAINER }}
+          github-token: ${{ secrets.NX_CACHE_RELEASE_TOKEN }} # downloads the server release
 
       - uses: graycoreio/github-actions/setup-node@main
         with:
@@ -196,6 +202,8 @@ jobs:
     with:
       ref: ${{ inputs.ref && inputs.ref || github.sha }}
       node-versions: '24.19.x'
+    secrets:
+      NX_CACHE_RELEASE_TOKEN: ${{ secrets.NX_CACHE_RELEASE_TOKEN }}
     permissions:
       contents: read
       id-token: write # remote Nx cache (GitHub OIDC)
