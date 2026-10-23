@@ -12,7 +12,7 @@ permissions:
 jobs:
   build:
     name: Build PR
-    uses: graycoreio/daffodil/.github/workflows/build.yml@develop
+    uses: ./.github/workflows/build.yml # fork test: this branch's build, not upstream develop's
     with:
       cache-mode: 'read-only'
       ref: ${{ github.event.pull_request.head.sha }}

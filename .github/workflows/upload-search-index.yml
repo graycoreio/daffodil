@@ -26,7 +26,7 @@ jobs:
       # Remote Nx cache: starts the cache server inside this job, authenticated with the job's
       # GitHub OIDC token. Skipped for tag/release runs, so release artifacts are always built
       # from scratch (tags also can't match a federated credential).
-      - uses: graycoreio/github-actions/nx-remote-cache@feat/nx-remote-cache
+      - uses: graycoreio/nx-remote-cache-action@test/ts-action
         if: github.ref_type != 'tag'
         with:
           mode: local
@@ -37,6 +37,7 @@ jobs:
           storage-account: ${{ vars.NX_CACHE_STORAGE_ACCOUNT }}
           storage-container: ${{ vars.NX_CACHE_STORAGE_CONTAINER }}
           github-token: ${{ secrets.NX_CACHE_RELEASE_TOKEN }} # downloads the server release
+          server-repo: griest024/nx-remote-cache # fork test: private copy the token can read
 
       - uses: graycoreio/github-actions/setup-node@main
         with:
