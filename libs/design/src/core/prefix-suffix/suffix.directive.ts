@@ -1,8 +1,7 @@
 import { Directive } from '@angular/core';
 
 /**
- * DaffSuffixDirective can be used to place content after another piece of content
- * in components like `DaffFormFieldComponent` or `DaffListComponent`.
+ * Places content after the main content of a component.
  */
 @Directive({
   selector: '[daffSuffix]',
