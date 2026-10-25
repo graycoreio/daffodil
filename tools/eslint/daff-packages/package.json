@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-daff-packages",
-  "version": "0.0.0",
+  "version": "0.0.0-PLACEHOLDER",
   "main": "index.js",
   "types": "index.d.ts",
   "private": true,

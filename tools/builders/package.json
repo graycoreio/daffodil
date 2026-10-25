@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/builders",
-  "version": "0.0.1",
+  "version": "0.0.0-PLACEHOLDER",
   "description": "Custom Angular builders for Daffodil projects.",
   "builders": "builders.json",
   "scripts": {
