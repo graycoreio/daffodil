@@ -1,4 +1,5 @@
 import { ESLint } from 'eslint';
+import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import {
   describe,
@@ -7,6 +8,11 @@ import {
 } from 'vitest';
 
 const repositoryRoot = resolve(import.meta.dirname, '../../../..');
+// Load the built package through Node, as consumers do, rather than Vitest's source transforms.
+const require = createRequire(import.meta.url);
+const { angularEslintConfig } = require(
+  resolve(repositoryRoot, 'dist/eslint-config/index.js'),
+);
 
 describe.each([
   ['root', 'eslint.config.mts', 'libs/core/src/import-check.ts'],
@@ -34,10 +40,37 @@ describe.each([
       },
     );
 
-    const restrictions = result.messages.filter(
-      (message) => message.ruleId === 'no-restricted-imports',
+    expect(result.messages).toEqual(expectedErrors === 0 ? [] : [
+      expect.objectContaining({
+        ruleId: 'no-restricted-imports',
+        severity: 2,
+      }),
+    ]);
+  });
+});
+
+describe('published Angular config', () => {
+  it.each([
+    ['libs/example', 0],
+    ['apps/example', 0],
+    ['rxjs/Rx', 1],
+  ])('checks import from %s', async (importPath, expectedErrors) => {
+    const eslint = new ESLint({
+      cwd: repositoryRoot,
+      overrideConfigFile: true,
+      overrideConfig: angularEslintConfig,
+    });
+
+    const [result] = await eslint.lintText(
+      `import { Something } from '${importPath}';\nexport { Something };\n`,
+      { filePath: 'consumer/example.ts' },
     );
 
-    expect(restrictions).toHaveLength(expectedErrors);
+    expect(result.messages).toEqual(expectedErrors === 0 ? [] : [
+      expect.objectContaining({
+        ruleId: 'no-restricted-imports',
+        severity: 2,
+      }),
+    ]);
   });
 });

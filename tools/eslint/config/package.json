@@ -36,6 +36,16 @@
     "targets": {
       "build": {
         "outputs": ["{workspaceRoot}/dist/eslint-config"]
+      },
+      "test": {
+        "inputs": [
+          "default",
+          "sharedGlobals",
+          "{workspaceRoot}/eslint.config.mts",
+          "{workspaceRoot}/apps/daffio/eslint.config.mts",
+          "{workspaceRoot}/apps/demo/eslint.config.mts",
+          { "dependentTasksOutputFiles": "**/*", "transitive": true }
+        ]
       }
     }
   },
