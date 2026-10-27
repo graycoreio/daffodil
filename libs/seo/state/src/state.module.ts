@@ -5,6 +5,9 @@ import { DaffSeoCanonicalUrlEffects } from './effects/ngrx-router/canonical.effe
 import { DaffSeoMetaEffects } from './effects/ngrx-router/meta.effects';
 import { DaffSeoTitleEffects } from './effects/ngrx-router/title.effects';
 
+/**
+ * @deprecated Use {@link provideDaffSeoState} instead.
+ */
 @NgModule({
   imports: [
     EffectsModule.forFeature([
