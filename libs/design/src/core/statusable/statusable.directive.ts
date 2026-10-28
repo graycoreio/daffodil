@@ -27,46 +27,8 @@ const validateStatus = (status: string) => {
 };
 
 /**
- * `DaffStatusableDirective` allows a component to conditionally apply status-specific
- * styles by setting CSS classes based on the specified status. This directive is useful
- * for indicating different statuses such as info, warning, critical, or success states.
- *
- * @example Implementing it as an attribute directive
- *
- * ```html
- * <div daffStatusable [status]="componentStatus">Status content</div>
- * ```
- *
- * @example Implementing it as an Angular host directive
- *
- * ```ts
- * @Component({
- *  selector: 'custom-component',
- *  template: 'custom-component.html',
- *  hostDirectives: [
- *    {
- *      directive: DaffStatusableDirective,
- *      inputs: ['status'],
- *    },
- *  ],
- * })
- * export class CustomComponent { }
- *
- * ```scss
- * :host {
- *  &.daff-critical {
- *    background: daff-color($red, 10);
- *    color: daff-color($red, 90);
- *  }
- * }
- * ```
- *
- * The directive applies the following CSS classes to the component based on the status:
- *
- * - `daff-info`: Applied when the status is `info`.
- * - `daff-warn`: Applied when the status is `warn`.
- * - `daff-critical`: Applied when the status is `critical`.
- * - `daff-success`: Applied when the status is `success`.
+ * Enforces consistent use of {@link DaffStatus} on a component by applying
+ * status-specific CSS classes and validating the status in dev mode.
  */
 @Directive({
   selector: '[daffStatusable]',
@@ -79,19 +41,12 @@ const validateStatus = (status: string) => {
 })
 export class DaffStatusableDirective implements DaffStatusable, OnChanges, OnInit {
   /**
-   * Sets the status on a component.
+   * The status of the component.
    */
   @Input() status: DaffStatus;
 
   /**
-   * Sets a default status.
-   *
-   * @example
-   * ```ts
-   * constructor(private statusDirective: DaffStatusableDirective) {
-   *  this.statusDirective.defaultStatus = 'info';
-   * }
-   * ```
+   * The default status used when no status is set.
    */
   defaultStatus: DaffStatus;
 
