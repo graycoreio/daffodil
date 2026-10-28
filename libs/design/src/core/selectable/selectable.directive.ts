@@ -8,6 +8,9 @@ import {
 
 import { DaffSelectable } from '../selectable/selectable';
 
+/**
+ * Enforces consistent use of the selected state.
+ */
 @Directive({
   selector: '[daffSelected]',
   host: {
@@ -17,7 +20,7 @@ import { DaffSelectable } from '../selectable/selectable';
 
 export class DaffSelectableDirective implements DaffSelectable {
   /**
-   * Controls whether the component is selected.
+   * Whether the component is selected.
    */
   @Input() selected = false;
 
