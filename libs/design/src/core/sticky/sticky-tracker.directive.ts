@@ -10,10 +10,16 @@ import {
   DOCUMENT,
 } from '@angular/core';
 
+/**
+ * Tracks when a sticky element becomes pinned so it can be styled differently.
+ */
 @Directive({
   selector: '[daffStickyTracker]',
 })
 export class DaffStickyTrackerDirective implements OnDestroy {
+  /**
+   * The edge of the scroll container the element sticks to.
+   */
   @Input() sticky: 'top' | 'bottom' | undefined = undefined;
 
   private sentinelObserver?: IntersectionObserver;
