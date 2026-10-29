@@ -4,11 +4,6 @@
 		"defaultBase": "develop"
 	},
 	"extends": "nx/presets/npm.json",
-	"azure": {
-		"container": "cache",
-		"localMode": "read-write",
-		"accountName": "daffodilnx"
-	},
 	"namedInputs": {
 		"default": ["{projectRoot}/**/*"],
 		"notSpec": ["!{projectRoot}/**/*.spec.{ts,tsx}"],
@@ -88,5 +83,14 @@
 				}
 			]
 		}
-	}
+	},
+	"plugins": [
+		{
+			"plugin": "@graycore/nx-remote-cache",
+			"options": {
+				"storageAccount": "daffodilnxcache",
+				"storageContainer": "nx-cache-v1"
+			}
+		}
+	]
 }
