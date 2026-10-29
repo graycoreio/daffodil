@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   build:
@@ -15,9 +16,6 @@ jobs:
     with:
       cache-mode: 'read-only'
       ref: ${{ github.event.pull_request.head.sha }}
-    secrets:
-      NX_KEY: ${{ secrets.NX_KEY }}
-      AZURE_STORAGE_CONNECTION_STRING: ${{ github.event.pull_request.head.repo.full_name == github.repository && secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING || secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
 
   build-success:
     name: Build PR Success

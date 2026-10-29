@@ -7,26 +7,29 @@ on:
     - cron: 0 4 * * *
 
 env:
-  NX_KEY: ${{ secrets.NX_KEY }}
   NPM_VERSION: 11
+  # Remote Nx cache: the @graycore/nx-remote-cache plugin (nx.json) starts the cache server
+  # whenever Nx runs tasks, authenticated with the job's GitHub OIDC token. It only takes the CI
+  # identities from here. Jobs without an OIDC token (fork PRs) build without the cache.
+  NX_REMOTE_CACHE_TENANT_ID: ${{ vars.NX_CACHE_TENANT_ID }}
+  NX_REMOTE_CACHE_READER_CLIENT_ID: ${{ vars.NX_CACHE_READER_CLIENT_ID }}
+  NX_REMOTE_CACHE_ACCESS: read
+  # Release (tag) runs always build from scratch; tags also can't match a federated credential.
+  NX_REMOTE_CACHE: ${{ github.ref_type == 'tag' && 'off' || 'on' }}
 
 jobs:
   algolia:
     name: Upload Algolia Index
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
           ref: ${{ github.event_name == 'push' && github.event.ref || github.sha }}
           persist-credentials: false
-
-      - uses: graycoreio/daffodil/.github/actions/setup-nx-remote-cache@develop
-        with:
-          cache-mode: 'read-only'
-          read-only-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
-          read-write-azure-connection-string: ${{ secrets.AZURE_NX_CACHE_READWRITE_CONNECTION_STRING }}
-          event-name: ${{ github.event_name }}
 
       - uses: graycoreio/github-actions/setup-node@main
         with:

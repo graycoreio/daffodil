@@ -5,6 +5,13 @@ on:
     tags:
       - 'v*'
 
+# We need this here because build.yml's jobs request `id-token: write` for the remote Nx cache, and
+# GitHub fails a reusable workflow call when the caller grants less than the called jobs request.
+# Release runs don't actually use the cache (it's off for tags).
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   build:
     name: Build Release
@@ -13,8 +20,6 @@ jobs:
       cache-mode: 'read-only'
       ref: ${{ github.sha }}
     secrets:
-      NX_KEY: ${{ secrets.NX_KEY }}
-      AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_NX_CACHE_READONLY_CONNECTION_STRING }}
       VERCEL_DAFFIO_NEXT_PROJECT_ID: ${{ secrets.VERCEL_DAFFIO_NEXT_PROJECT_ID }}
       VERCEL_DAFFIO_PROJECT_ID: ${{ secrets.VERCEL_DAFFIO_PROJECT_ID }}
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

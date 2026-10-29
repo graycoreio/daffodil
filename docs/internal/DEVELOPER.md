@@ -45,6 +45,24 @@ For example,
 npx nx run @daffodil/core:build
 ```
 
+### Build Cache
+Nx caches the results of `build`, `test` and `lint` locally, so repeating a task with unchanged inputs is instant. `npx nx reset` clears it.
+
+#### Shared remote cache (maintainers)
+The [@graycore/nx-remote-cache](https://github.com/graycoreio/nx-remote-cache) plugin (configured in `nx.json`) gives Nx a shared remote cache. 
+
+To use the shared remote cache, you must have [`az`](https://learn.microsoft.com/cli/azure/install-azure-cli) installed and you must run `az login`.
+
+Without an `az login` (or without a role on the container), Nx runs with only its local cache, exactly as before.
+
+To check whether you're connected, and with what access:
+
+```bash
+npx nx @graycore/nx-remote-cache
+```
+
+To turn the remote cache off, set `NX_REMOTE_CACHE=off` (e.g. in a git-ignored `.env` at the repository root), then run `npx nx daemon --stop`.
+
 ## Running unit tests
 Much like builds, we utilize Lerna and the Angular CLI to run our tests.
 
