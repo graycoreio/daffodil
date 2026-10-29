@@ -4,5 +4,6 @@ export * from './facades/public_api';
 export * from './reducers/public_api';
 export * from './selectors/public_api';
 export * from './injection-tokens/public_api';
+export * from './custom-attributes/public_api';
 
 export { DaffProductStateModule } from './product-state.module';

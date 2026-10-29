@@ -38,7 +38,7 @@ export class MockCompositeProductItem implements DaffCompositeProductItem {
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCompositeProductItemFactory extends DaffModelFactory<DaffCompositeProductItem>{
+export class DaffCompositeProductItemFactory extends DaffModelFactory<DaffCompositeProductItem, typeof MockCompositeProductItem>{
   constructor(
     optionFactory: DaffCompositeProductItemOptionFactory,
   ) {

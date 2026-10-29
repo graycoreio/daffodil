@@ -9,4 +9,6 @@ export const daffSearchProductProductReducers: ActionReducerMap<DaffProductReduc
   products: daffSearchProductEntitiesReducer,
   product: daffIdentityReducer,
   productGrid: daffIdentityReducer,
+  customAttributes: daffIdentityReducer,
+  customAttributesOperation: daffIdentityReducer,
 };

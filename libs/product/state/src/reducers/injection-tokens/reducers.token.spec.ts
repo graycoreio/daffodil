@@ -8,6 +8,7 @@ import {
 import {
   daffComposeReducers,
   daffIdentityReducer,
+  daffOperationInitialState,
 } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 import {
@@ -20,12 +21,12 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DAFF_PRODUCT_EXTRA_REDUCERS } from './extra.token';
 import {
+  provideDaffProductReducersFactory ,
   DAFF_PRODUCT_REDUCERS,
-  provideDaffProductReducersFactory,
 } from './reducers.token';
+import { daffProductCustomAttributesEntitiesAdapter } from '../../custom-attributes/reducers/public_api';
 import { daffProductReducerInitialState } from '../product/product.reducer';
 import { daffProductReducers } from '../product-reducers';
-
 describe('@daffodil/product/state | daffProductProvideExtraReducers', () => {
   let productFactory: DaffProductFactory;
   let mockProduct: DaffProduct;
@@ -39,6 +40,8 @@ describe('@daffodil/product/state | daffProductProvideExtraReducers', () => {
       product: daffProductReducerInitialState,
       products: daffProductEntitiesAdapter().getInitialState(),
       productGrid: null,
+      customAttributes: daffProductCustomAttributesEntitiesAdapter().getInitialState(),
+      customAttributesOperation: daffOperationInitialState,
     };
     extraReducer = combineReducers<DaffProductReducersState>({
       product: (state, action) => ({
@@ -47,6 +50,8 @@ describe('@daffodil/product/state | daffProductProvideExtraReducers', () => {
       }),
       products: daffIdentityReducer,
       productGrid: daffIdentityReducer,
+      customAttributes: daffIdentityReducer,
+      customAttributesOperation: daffIdentityReducer,
     });
 
     TestBed.configureTestingModule({

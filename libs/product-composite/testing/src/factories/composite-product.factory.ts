@@ -4,6 +4,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProductTypeEnum } from '@daffodil/product';
 import {
   DaffProductImageFactory,
+  DaffProductCustomAttributeValueFactory,
   MockProduct,
 } from '@daffodil/product/testing';
 import { DaffCompositeProduct } from '@daffodil/product-composite';
@@ -20,8 +21,9 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
   constructor(
     protected itemFactory: DaffCompositeProductItemFactory,
     imageFactory: DaffProductImageFactory,
+    customAttributeFactory: DaffProductCustomAttributeValueFactory,
   ) {
-    super(imageFactory);
+    super(imageFactory, customAttributeFactory);
   }
 }
 
@@ -31,11 +33,12 @@ export class MockCompositeProduct extends MockProduct implements DaffCompositePr
 @Injectable({
   providedIn: 'root',
 })
-export class DaffCompositeProductFactory extends DaffModelFactory<DaffCompositeProduct>{
+export class DaffCompositeProductFactory extends DaffModelFactory<DaffCompositeProduct, typeof MockCompositeProduct>{
   constructor(
     itemFactory: DaffCompositeProductItemFactory,
     imageFactory: DaffProductImageFactory,
+    customAttributeFactory: DaffProductCustomAttributeValueFactory,
   ) {
-    super(MockCompositeProduct, itemFactory, imageFactory);
+    super(MockCompositeProduct, itemFactory, imageFactory, customAttributeFactory);
   }
 }

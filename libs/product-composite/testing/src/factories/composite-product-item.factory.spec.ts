@@ -5,14 +5,9 @@ import { DaffCompositeProductItem } from '@daffodil/product-composite';
 import { DaffCompositeProductItemFactory } from './composite-product-item.factory';
 
 describe('@daffodil/product-composite/testing | DaffCompositeProductItemFactory', () => {
-
-  let compositeProductFactory;
+  let compositeProductFactory: DaffCompositeProductItemFactory;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [DaffCompositeProductItemFactory],
-    });
-
     compositeProductFactory = TestBed.inject(DaffCompositeProductItemFactory);
   });
 
