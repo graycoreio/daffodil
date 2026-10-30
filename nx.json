@@ -69,6 +69,16 @@
 				}
 			]
 		},
+		"lint:fix": {
+			"cache": true,
+			"inputs": ["default", "eslint"],
+			"dependsOn": [
+				{
+					"projects": ["@daffodil/eslint-config"],
+					"target": "build"
+				}
+			]
+		},
 		"generateFragmentTypes": {
 			"dependsOn": [
 				{
