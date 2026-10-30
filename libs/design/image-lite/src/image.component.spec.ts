@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -18,6 +19,7 @@ import {
 @Component({
   template: `
     <img daff-image [skeleton]="skeleton()">`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_IMAGE_LITE_COMPONENTS,
   ],

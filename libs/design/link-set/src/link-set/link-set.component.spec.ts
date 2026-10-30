@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffLinkSetComponent } from './link-set.component';
 
 @Component ({
   template: `<daff-link-set></daff-link-set>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffLinkSetComponent,
   ],

@@ -3,6 +3,7 @@ import {
   Component,
   getDebugNode,
   DOCUMENT,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -19,6 +20,7 @@ import {
 } from '@daffodil/design/modal';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '<div>Modal content</div>',
 })
 class ModalContentComponent {}
@@ -28,6 +30,7 @@ class ModalContentComponent {}
   imports: [
     DaffModalComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     DaffModalService,
   ],

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffDocsColorStripStepDirective } from './color-strip-step.directive';
 
 @Component({
   template: `<div daffDocsColorStripStep>10</div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffDocsColorStripStepDirective,
   ],

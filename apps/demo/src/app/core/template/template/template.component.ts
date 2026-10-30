@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { NewsletterModule } from '../../../newsletter/newsletter.module';
@@ -9,6 +9,7 @@ import { SidebarViewportContainer } from '../../sidebar/containers/sidebar-viewp
 @Component({
   templateUrl: './template.component.html',
   styleUrls: ['./template.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RouterModule,
     DemoHeaderContainer,

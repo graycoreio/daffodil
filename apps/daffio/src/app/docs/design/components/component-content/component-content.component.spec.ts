@@ -7,6 +7,7 @@ import {
   Component,
   input,
   WritableSignal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -33,6 +34,7 @@ import { provideDaffioDocsApiDynamicFragments } from '../../../api/dynamic-conte
 import { DaffioDocViewerComponent } from '../../../components/doc-viewer/doc-viewer.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 class TestFragmentComponent implements DaffioDocsApiDynamicContentFragment {
@@ -47,6 +49,7 @@ class TestFragmentComponent implements DaffioDocsApiDynamicContentFragment {
   template: `<daffio-docs-design-component-content
 		[doc]="docValue"
 	></daffio-docs-design-component-content>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffioDocsDesignComponentContentComponent,
   ],

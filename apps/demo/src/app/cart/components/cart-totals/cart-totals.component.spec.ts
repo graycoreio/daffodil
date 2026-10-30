@@ -2,6 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import {
   Component,
   Input,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -24,6 +25,7 @@ import { CartTotalsItemComponent } from '../cart-totals-item/cart-totals-item.co
 
 @Component({
   template: '<demo-cart-totals [cart]="cartValue"></demo-cart-totals>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CartTotalsComponent],
 })
 class WrapperComponent {

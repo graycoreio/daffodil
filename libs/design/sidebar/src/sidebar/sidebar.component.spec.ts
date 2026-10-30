@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -70,6 +71,7 @@ describe('@daffodil/design/sidebar | DaffSidebarComponent', () => {
       <daff-sidebar [mode]="mode" [side]="side"></daff-sidebar>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSidebarComponent,
   ],
@@ -131,6 +133,7 @@ describe('DaffSidebarComponent | Defaults', () => {
       <daff-sidebar (escapePressed)="pressed()" [mode]="mode()" [side]="side()" [open]="open()"></daff-sidebar>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSidebarComponent,
   ],

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { DaffNavbarComponent } from '@daffodil/design/navbar';
@@ -7,6 +7,7 @@ import { DaffNavbarComponent } from '@daffodil/design/navbar';
   selector: 'demo-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffNavbarComponent,
   ],

@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -24,6 +25,7 @@ import {
       <li daffBreadcrumbItem><a href="/cat/sub/curr">Current</a></li>
     </ol>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffBreadcrumbComponent,
     DaffBreadcrumbItemComponent,
@@ -45,6 +47,7 @@ class WrapperComponent {
 			<li daffBreadcrumbItem><a href="/l1/l2/l3/l4/l5/curr">Current</a></li>
 		</ol>
 	`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffBreadcrumbComponent,
     DaffBreadcrumbItemComponent,

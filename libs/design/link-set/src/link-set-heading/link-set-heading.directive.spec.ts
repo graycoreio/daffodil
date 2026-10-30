@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffLinkSetHeadingDirective } from './link-set-heading.directive';
 
 @Component({
   template: `<div daffLinkSetHeading>Heading</div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffLinkSetHeadingDirective,
   ],

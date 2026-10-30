@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -14,6 +15,7 @@ import { DaffManageContainerLayoutDirective } from './manage-container-layout.di
 @Component({
   template: `
 		<div daffManageContainerLayout></div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 

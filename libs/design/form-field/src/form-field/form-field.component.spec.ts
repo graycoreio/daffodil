@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -25,6 +26,7 @@ import { DaffInputComponent } from '@daffodil/design/input';
     <daff-hint>Hint></daff-hint>
     <daff-error-message>Error</daff-error-message>
   </daff-form-field>`,
+changeDetection: ChangeDetectionStrategy.Eager,
 imports: [
   DAFF_FORM_FIELD_COMPONENTS,
   DaffInputComponent,

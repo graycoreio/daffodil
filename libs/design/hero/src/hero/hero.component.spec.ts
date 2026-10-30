@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -19,6 +20,7 @@ import { DaffHeroComponent } from './hero.component';
 
 @Component({
   template: `<daff-hero [color]="color()" [textAlignment]="textAlignment()" [compact]="compact()"></daff-hero>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffHeroComponent,
   ],

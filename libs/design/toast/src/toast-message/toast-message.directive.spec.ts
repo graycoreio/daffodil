@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   waitForAsync,
@@ -15,6 +16,7 @@ import { DaffToastMessageDirective } from './toast-message.directive';
   template: `
     <div daffToastMessage>Message</div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffToastMessageDirective,
   ],

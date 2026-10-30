@@ -3,6 +3,7 @@ import {
   Inject,
   Input,
   OnInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   ReactiveFormsModule,
@@ -27,6 +28,7 @@ import { DaffSfQuantityFieldComponent } from '@daffodil/storefront/quantity-fiel
   selector: 'demo-cart-item',
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     DAFF_FORM_FIELD_COMPONENTS,
