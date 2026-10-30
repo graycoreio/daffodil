@@ -3,7 +3,7 @@ import {
   Component,
   importProvidersFrom,
   inject,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import {

@@ -1,4 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { BestSellersComponent } from '../../product/containers/best-sellers/best-sellers.component';
 

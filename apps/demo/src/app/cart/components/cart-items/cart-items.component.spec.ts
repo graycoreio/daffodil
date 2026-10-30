@@ -1,7 +1,7 @@
 import {
   Component,
   Input,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -34,7 +34,7 @@ class WrapperComponent {
 
 @Component({
   selector: 'demo-cart-item', changeDetection: ChangeDetectionStrategy.Eager,
- template: '',
+  template: '',
 })
 class MockCartItemComponent {
   @Input() item: DaffCartItem;
