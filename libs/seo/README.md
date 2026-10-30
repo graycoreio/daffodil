@@ -16,3 +16,26 @@ Install with yarn:
 ```
 yarn add @daffodil/seo
 ```
+
+## Providing SEO state
+
+Register the state provider alongside the NgRx root providers to automatically
+manage page titles, meta tags, and canonical URLs:
+
+```ts
+import { ApplicationConfig } from '@angular/core';
+import { provideEffects } from '@ngrx/effects';
+import { provideStore } from '@ngrx/store';
+import { provideDaffSeoState } from '@daffodil/seo/state';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideStore(),
+    provideEffects(),
+    provideDaffSeoState(),
+  ],
+};
+```
+
+`DaffSeoStateModule` remains available for NgModule-based applications, but is
+deprecated in favor of `provideDaffSeoState`.
