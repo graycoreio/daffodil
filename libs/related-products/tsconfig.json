@@ -9,34 +9,33 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/related-products": [
-        "libs/related-products/src"
+        "../../libs/related-products/src"
       ],
       "@daffodil/related-products/state": [
-        "libs/related-products/state/src"
+        "../../libs/related-products/state/src"
       ],
       "@daffodil/related-products/state/testing": [
-        "libs/related-products/state/testing/src"
+        "../../libs/related-products/state/testing/src"
       ],
       "@daffodil/related-products/driver": [
-        "libs/related-products/driver/src"
+        "../../libs/related-products/driver/src"
       ],
       "@daffodil/related-products/driver/testing": [
-        "libs/related-products/driver/testing/src"
+        "../../libs/related-products/driver/testing/src"
       ],
       "@daffodil/related-products/driver/in-memory": [
-        "libs/related-products/driver/in-memory/src"
+        "../../libs/related-products/driver/in-memory/src"
       ],
       "@daffodil/related-products/driver/magento": [
-        "libs/related-products/driver/magento/src"
+        "../../libs/related-products/driver/magento/src"
       ],
       "@daffodil/related-products/testing": [
-        "libs/related-products/testing/src"
+        "../../libs/related-products/testing/src"
       ],
     }
   }

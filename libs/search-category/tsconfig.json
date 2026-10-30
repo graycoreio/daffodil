@@ -9,28 +9,27 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/search-category": [
-        "libs/search-category/src"
+        "../../libs/search-category/src"
       ],
       "@daffodil/search-category/driver": [
-        "libs/search-category/driver/src"
+        "../../libs/search-category/driver/src"
       ],
       "@daffodil/search-category/driver/testing": [
-        "libs/search-category/driver/testing/src"
+        "../../libs/search-category/driver/testing/src"
       ],
       "@daffodil/search-category/driver/in-memory": [
-        "libs/search-category/driver/in-memory/src"
+        "../../libs/search-category/driver/in-memory/src"
       ],
       "@daffodil/search-category/driver/magento": [
-        "libs/search-category/driver/magento/src"
+        "../../libs/search-category/driver/magento/src"
       ],
       "@daffodil/search-category/testing": [
-        "libs/search-category/testing/src"
+        "../../libs/search-category/testing/src"
       ],
     }
   }

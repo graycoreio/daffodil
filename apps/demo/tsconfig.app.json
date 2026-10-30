@@ -12,12 +12,6 @@
 	"include": ["**/*.ts"],
 	"angularCompilerOptions": {
 		"fullTemplateTypeCheck": true,
-		"extendedDiagnostics": {
-			"checks": {
-				"nullishCoalescingNotNullable": "suppress",
-				"optionalChainNotNullable": "suppress"
-			}
-		},
 		"strictInjectionParameters": true,
 		"strictTemplates": false
 	}

@@ -5,6 +5,7 @@
     "outDir": "../../out-tsc/spec",
 		"module": "commonjs",
 		"moduleResolution": "node10",
+		"ignoreDeprecations": "6.0",
     "types": [
       "jasmine",
       "node"

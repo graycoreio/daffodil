@@ -9,37 +9,36 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "../..",
     "paths": {
       "@daffodil/*": [
-        "dist/*"
+        "../../dist/*"
       ],
       "@daffodil/reviews": [
-        "libs/reviews/src"
+        "../../libs/reviews/src"
       ],
       "@daffodil/reviews/state": [
-        "libs/reviews/state/src"
+        "../../libs/reviews/state/src"
       ],
       "@daffodil/reviews/state/testing": [
-        "libs/reviews/state/testing/src"
+        "../../libs/reviews/state/testing/src"
       ],
       "@daffodil/reviews/driver": [
-        "libs/reviews/driver/src"
+        "../../libs/reviews/driver/src"
       ],
       "@daffodil/reviews/driver/testing": [
-        "libs/reviews/driver/testing/src"
+        "../../libs/reviews/driver/testing/src"
       ],
       "@daffodil/reviews/driver/in-memory": [
-        "libs/reviews/driver/in-memory/src"
+        "../../libs/reviews/driver/in-memory/src"
       ],
       "@daffodil/reviews/driver/magento": [
-        "libs/reviews/driver/magento/src"
+        "../../libs/reviews/driver/magento/src"
       ],
       "@daffodil/reviews/driver/magento/testing": [
-        "libs/reviews/driver/magento/testing/src"
+        "../../libs/reviews/driver/magento/testing/src"
       ],
       "@daffodil/reviews/testing": [
-        "libs/reviews/testing/src"
+        "../../libs/reviews/testing/src"
       ],
     }
   }
