@@ -29,12 +29,23 @@
   "scripts": {
     "publish": "cd ../../../dist/eslint-config && npm publish --access=public",
     "build:copy-package": "shx cp package.json ../../../dist/eslint-config/package.json",
-    "build": "rm -rf ../../../dist/eslint-config && tsc -p tsconfig.json && npm run build:copy-package"
+    "build": "rm -rf ../../../dist/eslint-config && tsc -p tsconfig.json && npm run build:copy-package",
+    "test": "vitest run"
   },
   "nx": {
     "targets": {
       "build": {
         "outputs": ["{workspaceRoot}/dist/eslint-config"]
+      },
+      "test": {
+        "inputs": [
+          "default",
+          "sharedGlobals",
+          "{workspaceRoot}/eslint.config.mts",
+          "{workspaceRoot}/apps/daffio/eslint.config.mts",
+          "{workspaceRoot}/apps/demo/eslint.config.mts",
+          { "dependentTasksOutputFiles": "**/*", "transitive": true }
+        ]
       }
     }
   },

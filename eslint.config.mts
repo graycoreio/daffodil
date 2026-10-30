@@ -11,4 +11,26 @@ export default defineConfig([
   angularEslintConfig,
   jestEslintConfig,
   packageJsonEslintConfig,
+  {
+    files: ['**/*.ts'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            {
+              name: 'rxjs/Rx',
+              message: 'Please import directly from "rxjs" instead',
+            },
+          ],
+          patterns: [
+            {
+              group: ['libs/**', 'apps/**'],
+              message: 'Use relative imports or public @daffodil package imports instead of repository-root paths.',
+            },
+          ],
+        },
+      ],
+    },
+  },
 ]);
