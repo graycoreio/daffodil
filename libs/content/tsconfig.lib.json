@@ -21,7 +21,8 @@
 		},
 		"strictInjectionParameters": true,
 		"enableResourceInlining": true,
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+		"strictTemplates": false
 	},
 	"exclude": ["./test.ts", "**/*.spec.ts"]
 }

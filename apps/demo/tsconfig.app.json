@@ -18,6 +18,7 @@
 				"optionalChainNotNullable": "suppress"
 			}
 		},
-		"strictInjectionParameters": true
+		"strictInjectionParameters": true,
+		"strictTemplates": false
 	}
 }
