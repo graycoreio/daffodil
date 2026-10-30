@@ -1,6 +1,7 @@
 import {
   provideHttpClient,
   withInterceptorsFromDi,
+  withXhr
 } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {
@@ -75,7 +76,7 @@ describe('DaffioDocsDesignComponentContentComponent', () => {
       providers: [
         DaffioActiveHeaderService,
         DaffioDocsApiDynamicContentFragmentService,
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideDaffioDocsApiDynamicFragments({
           role: DaffDocsApiRole.COMPONENT,

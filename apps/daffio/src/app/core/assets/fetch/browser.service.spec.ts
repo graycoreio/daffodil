@@ -1,6 +1,7 @@
 import {
   provideHttpClient,
   withInterceptorsFromDi,
+  withXhr
 } from '@angular/common/http';
 import {
   HttpTestingController,
@@ -27,7 +28,7 @@ describe('DaffioAssetFetchBrowserService', () => {
       imports: [],
       providers: [
         DaffioAssetFetchBrowserService,
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting(),
         {
           provide: TransferState,
