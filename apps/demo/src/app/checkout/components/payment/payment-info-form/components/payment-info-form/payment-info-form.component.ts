@@ -2,6 +2,7 @@
 import {
   Component,
   Input,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -27,6 +28,7 @@ const currentYear = new Date().getFullYear();
   selector: 'demo-payment-info-form',
   templateUrl: './payment-info-form.component.html',
   styleUrls: ['./payment-info-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
     DaffInputComponent,

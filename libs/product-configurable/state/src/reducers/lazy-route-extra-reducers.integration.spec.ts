@@ -2,6 +2,7 @@ import { provideLocationMocks } from '@angular/common/testing';
 import {
   Component,
   importProvidersFrom,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import {
@@ -45,6 +46,7 @@ import { DaffConfigurableProductFactory } from '@daffodil/product-configurable/t
 @Component({
   selector: 'daff-lazy-route-test',
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 class DaffLazyRouteTestComponent {}

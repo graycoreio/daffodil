@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -18,6 +19,7 @@ import { DaffModalActionsComponent } from './modal-actions.component';
       <button>Save</button>
     </daff-modal-actions>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffModalActionsComponent,
   ],

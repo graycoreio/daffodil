@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -27,6 +28,7 @@ import { DaffSelectComponent } from '@daffodil/design/select';
       <daff-select [options]="options" [formControl]="control"></daff-select>
     </daff-form-field>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSelectComponent,
     DAFF_FORM_FIELD_COMPONENTS,

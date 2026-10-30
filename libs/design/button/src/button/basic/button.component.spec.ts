@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -17,6 +18,7 @@ import { DaffButtonComponent } from './button.component';
     <a daff-button [elevated]="elevated()">Link Button</a>
     <button daff-button [elevated]="elevated()">Button</button>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffButtonComponent,
   ],

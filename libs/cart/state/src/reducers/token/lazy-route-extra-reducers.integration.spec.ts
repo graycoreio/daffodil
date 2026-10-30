@@ -3,6 +3,7 @@ import {
   Component,
   importProvidersFrom,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import {
@@ -59,6 +60,7 @@ import {
 @Component({
   selector: 'daff-lazy-route-test',
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 class DaffLazyRouteTestComponent {}

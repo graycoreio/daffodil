@@ -3,6 +3,7 @@ import {
   Output,
   EventEmitter,
   Input,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { DaffCartShippingRate } from '@daffodil/cart';
@@ -10,6 +11,7 @@ import { DaffCartShippingRate } from '@daffodil/cart';
 @Component({
   selector: 'demo-checkout-shipping-summary',
   templateUrl: './shipping-summary.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./shipping-summary.component.scss'],
 })
 export class DemoCheckoutShippingSummaryComponent {

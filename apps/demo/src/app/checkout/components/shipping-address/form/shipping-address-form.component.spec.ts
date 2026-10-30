@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   waitForAsync,
   ComponentFixture,
@@ -24,6 +27,7 @@ import { DemoCheckoutAddressFormGroup } from '../../forms/address/models/address
       [shippingAddress]="shippingAddressValue"
       (submitted)="submittedFunction($event)"></demo-checkout-shipping-address-form>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DemoCheckoutShippingAddressFormComponent,
   ],

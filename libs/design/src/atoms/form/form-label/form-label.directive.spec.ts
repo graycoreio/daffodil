@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -13,6 +14,7 @@ import { DaffFormLabelDirective } from './form-label.directive';
 
 @Component({
   template: `<div daffFormLabel>Label</div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffFormLabelDirective,
   ],

@@ -1,6 +1,7 @@
 import {
   Component,
   DebugElement,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -16,6 +17,7 @@ import { DaffUnderlineButtonComponent } from './underline.component';
     <a daff-underline-button>Underline Link Button</a>
     <button daff-underline-button>Underline Button</button>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffUnderlineButtonComponent,
   ],

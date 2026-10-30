@@ -2,6 +2,7 @@ import {
   Component,
   DebugElement,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   waitForAsync,
@@ -17,6 +18,7 @@ import {
 
 @Component({
   template: '<daff-spinner [aria-label]="ariaLabel()"></daff-spinner>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DaffSpinnerComponent,
   ],
@@ -59,6 +61,7 @@ describe('@daffodil/design/spinner | DaffSpinnerComponent | Without DaffSpinnerL
     <daff-spinner>
       <daff-spinner-label>Loading content</daff-spinner-label>
     </daff-spinner>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DAFF_SPINNER_COMPONENTS,
   ],
