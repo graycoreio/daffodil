@@ -39,7 +39,7 @@ describe('DaffioDocsApiDynamicContentFragmentService', () => {
       docType: DaffDocsApiType.CLASS,
     };
 
-    expect(service.get(doc)).toBe(serviceFragments);
+    expect(service.get(doc).components).toBe(serviceFragments.components);
   });
 
   it('should return the fragments registered for the role and doc type of a class helper', () => {
@@ -48,7 +48,7 @@ describe('DaffioDocsApiDynamicContentFragmentService', () => {
       docType: DaffDocsApiType.CLASS,
     };
 
-    expect(service.get(doc)).toBe(classHelperFragments);
+    expect(service.get(doc).components).toBe(classHelperFragments.components);
   });
 
   it('should return the fragments registered for the role and doc type of a function helper', () => {
@@ -57,7 +57,7 @@ describe('DaffioDocsApiDynamicContentFragmentService', () => {
       docType: DaffDocsApiType.FUNCTION,
     };
 
-    expect(service.get(doc)).toBe(functionHelperFragments);
+    expect(service.get(doc).components).toBe(functionHelperFragments.components);
   });
 
   it('should return the base fragments when nothing is registered for the role', () => {
