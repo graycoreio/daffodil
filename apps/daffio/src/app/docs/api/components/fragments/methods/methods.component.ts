@@ -28,7 +28,7 @@ import { DaffioDocsApiMethodBlockComponent } from '../../method-block/method-blo
   ],
 })
 export class DaffioDocsApiMethodsFragmentComponent implements DaffioDocsApiDynamicContentFragment<DaffApiType> {
-  static readonly shouldRender = (doc: DaffApiType) => doc.methods?.length > 0;
+  static readonly shouldRender = (doc: DaffApiType) => doc.methods.length > 0;
 
   private readonly viewHeaders = viewChildren(DaffioDocsTocHeaderDirective);
   private readonly _toc = computed(() => this.viewHeaders().reduce((toc, directive) => {
