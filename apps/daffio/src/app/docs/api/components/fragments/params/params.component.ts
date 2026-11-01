@@ -33,7 +33,7 @@ import { DaffioDocsApiDynamicContentFragment } from '../../../dynamic-content/fr
   ],
 })
 export class DaffioDocsApiParamsFragmentComponent implements DaffioDocsApiDynamicContentFragment<DaffDocsApiFunction> {
-  static readonly shouldRender = (doc: DaffDocsApiFunction) => doc.parameterDocs?.length > 0;
+  static readonly shouldRender = (doc: DaffDocsApiFunction) => doc.parameterDocs.length > 0;
 
   readonly faCode = faCode;
 

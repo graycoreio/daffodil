@@ -1,7 +1,13 @@
-import { DaffDocsApiRole } from '@daffodil/docs-utils';
+import {
+  DaffDocsApiRole,
+  DaffDocsApiType,
+} from '@daffodil/docs-utils';
 
 import { DaffioDocsApiDynamicContentFragmentService } from '../dynamic-content/fragment.service';
-import { provideDaffioDocsApiDynamicMultiRoleFragment } from '../dynamic-content/fragments.token';
+import {
+  provideDaffioDocsApiDynamicMultiRoleDocTypeFragment,
+  provideDaffioDocsApiDynamicMultiRoleFragment,
+} from '../dynamic-content/fragments.token';
 import { DAFFIO_DOCS_API_DIRECTIVE_FRAGMENTS } from './fragments/directive';
 import { DAFFIO_DOCS_API_FUNCTION_FRAGMENTS } from './fragments/function';
 import { DAFFIO_DOCS_API_TYPE_FRAGMENTS } from './fragments/type';
@@ -26,9 +32,19 @@ export const daffioDocsApiRolesProvider = () => [
   ),
   ...provideDaffioDocsApiDynamicMultiRoleFragment(
     DAFFIO_DOCS_API_FUNCTION_FRAGMENTS,
-    DaffDocsApiRole.HELPER,
     DaffDocsApiRole.REDUCER,
     DaffDocsApiRole.PROVIDER,
+  ),
+  // helpers can be classes or functions
+  ...provideDaffioDocsApiDynamicMultiRoleDocTypeFragment(
+    DAFFIO_DOCS_API_TYPE_FRAGMENTS,
+    DaffDocsApiType.CLASS,
+    DaffDocsApiRole.HELPER,
+  ),
+  ...provideDaffioDocsApiDynamicMultiRoleDocTypeFragment(
+    DAFFIO_DOCS_API_FUNCTION_FRAGMENTS,
+    DaffDocsApiType.FUNCTION,
+    DaffDocsApiRole.HELPER,
   ),
   DaffioDocsApiDynamicContentFragmentService,
 ];
