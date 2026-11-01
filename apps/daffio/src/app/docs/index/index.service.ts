@@ -1,31 +1,27 @@
 import {
-  Inject,
+  inject,
   Injectable,
 } from '@angular/core';
+import {
+  from,
+  map,
+  Observable,
+} from 'rxjs';
 
 import {
-  DAFF_DOC_KIND_PATH_SEGMENT_MAP,
-  DAFF_DOCS_PATH,
   DaffDocKind,
   DaffDocsNavList,
 } from '@daffodil/docs-utils';
 
-import {
-  DaffioAssetFetchService,
-  DaffioAssetFetchServiceInterface,
-} from '../../core/assets/fetch/service.interface';
-import { DAFFIO_DOCS_PATH_TOKEN } from '../services/docs-path.token';
+import { DAFFIO_DOCS_INDEX_LOADERS } from './loaders.token';
 
 @Injectable()
 export class DaffioDocsIndexService<T extends DaffDocsNavList = DaffDocsNavList> {
+  private loaders = inject(DAFFIO_DOCS_INDEX_LOADERS);
 
-  constructor(
-    @Inject(DaffioAssetFetchService) private fetchAsset: DaffioAssetFetchServiceInterface,
-    @Inject(DAFFIO_DOCS_PATH_TOKEN) private docsPath: string,
-  ) {}
-
-  getListForKind(kind: DaffDocKind) {
-    const path = `${DAFF_DOC_KIND_PATH_SEGMENT_MAP[kind]}/index`;
-    return this.fetchAsset.fetch<T>(`${this.docsPath}/${DAFF_DOCS_PATH}/${path}.json`, path);
+  getListForKind(kind: DaffDocKind): Observable<T> {
+    return from(this.loaders[kind]()).pipe(
+      map((module) => <T>module.default),
+    );
   }
 }
