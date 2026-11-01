@@ -1,65 +1,60 @@
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
-import {
-  BehaviorSubject,
-  of,
-} from 'rxjs';
 
-import { DaffDocFactory } from '@daffodil/docs/testing';
 import {
-  DaffDoc,
   DaffDocKind,
+  DaffDocsNavList,
 } from '@daffodil/docs-utils';
 
 import { DaffioDocsIndexService } from './index.service';
-import {
-  DaffioAssetFetchService,
-  DaffioAssetFetchServiceInterface,
-} from '../../core/assets/fetch/service.interface';
-import { DaffioRoute } from '../../core/router/route.type';
-import { mockPackages } from '../testing/factories/packages-list.factory';
+import { DAFFIO_DOCS_INDEX_LOADERS } from './loaders.token';
 
 describe('DaffioDocsIndexService', () => {
   let service: DaffioDocsIndexService;
-  let fetchAssetServiceSpy: jasmine.SpyObj<DaffioAssetFetchServiceInterface>;
-  let activatedRouteSpy: BehaviorSubject<ActivatedRoute>;
-  let doc: DaffDoc;
-  const mockGuideList = mockPackages;
+  let packagesLoaderSpy: jasmine.Spy;
+  let guidesLoaderSpy: jasmine.Spy;
+  const packagesIndex: DaffDocsNavList = {
+    id: 'packages',
+    title: 'Packages',
+    path: '/docs/packages',
+    children: [
+      {
+        id: 'cart',
+        title: 'Cart',
+        path: '/docs/packages/cart',
+        children: [],
+      },
+    ],
+  };
 
   beforeEach(() => {
-    fetchAssetServiceSpy = jasmine.createSpyObj('DaffioAssetFetchService', ['fetch']);
-    activatedRouteSpy = new BehaviorSubject(null);
+    packagesLoaderSpy = jasmine.createSpy('packagesLoader').and.resolveTo({ default: packagesIndex });
+    guidesLoaderSpy = jasmine.createSpy('guidesLoader');
 
     TestBed.configureTestingModule({
       providers: [
         DaffioDocsIndexService,
         {
-          provide: DaffioAssetFetchService,
-          useValue: fetchAssetServiceSpy,
+          provide: DAFFIO_DOCS_INDEX_LOADERS,
+          useValue: {
+            [DaffDocKind.PACKAGE]: packagesLoaderSpy,
+            [DaffDocKind.GUIDE]: guidesLoaderSpy,
+          },
         },
       ],
     });
 
     service = TestBed.inject(DaffioDocsIndexService);
-
-    doc = TestBed.inject(DaffDocFactory).create();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should be able to retrieve a list with a kind', (done) => {
-    fetchAssetServiceSpy.fetch.and.returnValue(of(mockGuideList));
-    activatedRouteSpy.next(<ActivatedRoute>{
-      data: of<DaffioRoute['data']>({
-        docKind: DaffDocKind.PACKAGE,
-      }),
-    });
-
-    service.getListForKind(DaffDocKind.PACKAGE).subscribe((guides) => {
-      expect(guides).toEqual(mockGuideList);
-      expect(fetchAssetServiceSpy.fetch).toHaveBeenCalledWith('/assets/daffio/docs/packages/index.json', `packages/index`);
+  it('should load the index for the requested kind', (done) => {
+    service.getListForKind(DaffDocKind.PACKAGE).subscribe((list) => {
+      expect(list).toEqual(packagesIndex);
+      expect(packagesLoaderSpy).toHaveBeenCalledWith();
+      expect(guidesLoaderSpy).not.toHaveBeenCalled();
       done();
     });
   });
