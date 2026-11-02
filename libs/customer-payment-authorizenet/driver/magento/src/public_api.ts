@@ -7,3 +7,4 @@ export * from './validators/public_api';
 export { DaffCustomerPaymentAuthorizeNetMagentoService } from './customer-payment.service';
 
 export { DaffCustomerPaymentAuthorizeNetMagentoDriverModule } from './driver.module';
+export { provideDaffCustomerPaymentAuthorizeNetMagentoDriver } from './provider';
