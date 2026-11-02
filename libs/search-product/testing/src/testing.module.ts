@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 
-import { provideDaffSearchResultKindFactories } from '@daffodil/search/testing';
-
-import { DaffSearchProductResultFactory } from './factories/public_api';
+import { provideDaffSearchProductTesting } from './provider';
 
 /**
  * Provides the default search result factory as a search result type factory.
+ *
+ * @deprecated in favor of {@link provideDaffSearchProductTesting}
  */
 @NgModule({
   providers: [
-    provideDaffSearchResultKindFactories(DaffSearchProductResultFactory),
+    provideDaffSearchProductTesting(),
   ],
 })
 export class DaffSearchProductTestingModule { }
