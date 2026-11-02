@@ -5,11 +5,12 @@ import {
 } from '@angular/core';
 
 import { DaffHubspotConfig } from '@daffodil/driver/hubspot';
-import { provideDaffNewsletterDriver } from '@daffodil/newsletter/driver';
 
-import { provideDaffNewsletterConfigToken } from './config/newsletter-config.interface';
-import { DaffNewsletterHubspotService } from './newsletter.service';
+import { provideDaffNewsletterHubSpotDriver } from './provider';
 
+/**
+ * @deprecated in favor of {@link provideDaffNewsletterHubSpotDriver}
+ */
 @NgModule({
   imports: [CommonModule],
 })
@@ -20,9 +21,7 @@ export class DaffNewsletterHubSpotDriverModule {
     return {
       ngModule: DaffNewsletterHubSpotDriverModule,
       providers: [
-        DaffNewsletterHubspotService,
-        provideDaffNewsletterDriver(DaffNewsletterHubspotService),
-        provideDaffNewsletterConfigToken(config),
+        provideDaffNewsletterHubSpotDriver(config),
       ],
     };
   }
