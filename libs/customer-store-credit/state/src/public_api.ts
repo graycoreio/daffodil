@@ -5,3 +5,4 @@ export * from './facades/public_api';
 export * from './injection-tokens/public_api';
 
 export * from './state.module';
+export { provideDaffCustomerStoreCreditState } from './provider';

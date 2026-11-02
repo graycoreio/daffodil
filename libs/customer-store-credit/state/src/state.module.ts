@@ -21,6 +21,8 @@ import {
 
 /**
  * Creates the customer store credit feature store.
+ *
+ * @deprecated in favor of {@link provideDaffCustomerStoreCreditState}
  */
 @NgModule({
   imports: [
