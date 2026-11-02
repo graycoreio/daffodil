@@ -1,6 +1,7 @@
 export { DaffMagentoPaypalService } from './paypal.service';
 export { DaffMagentoPaypalPaymentService } from './paypal-payment.service';
 export { DaffPaypalMagentoDriverModule } from './paypal-driver.module';
+export { provideDaffPaypalMagentoDriver } from './provider';
 export { magentoGenerateTokenMutation } from './mutations/generate-token';
 export { MAGENTO_PAYPAL_EXPRESS_DRIVER_CONFIG_DEFAULT } from './config/default';
 
