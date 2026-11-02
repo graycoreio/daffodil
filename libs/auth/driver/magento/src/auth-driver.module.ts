@@ -4,18 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import {
-  provideDaffRegisterDriver,
-  provideDaffLoginDriver,
-  provideDaffAuthDriver,
-  provideDaffResetPasswordDriver,
-} from '@daffodil/auth/driver';
+import { provideDaffAuthMagentoDriver } from './provider';
 
-import { DaffMagentoAuthService } from './auth.service';
-import { DaffMagentoLoginService } from './login.service';
-import { DaffMagentoRegisterService } from './register.service';
-import { DaffMagentoResetPasswordService } from './reset-password.service';
-
+/**
+ * @deprecated in favor of {@link provideDaffAuthMagentoDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -26,10 +19,7 @@ export class DaffAuthMagentoDriverModule {
     return {
       ngModule: DaffAuthMagentoDriverModule,
       providers: [
-        provideDaffRegisterDriver(DaffMagentoRegisterService),
-        provideDaffLoginDriver(DaffMagentoLoginService),
-        provideDaffAuthDriver(DaffMagentoAuthService),
-        provideDaffResetPasswordDriver(DaffMagentoResetPasswordService),
+        provideDaffAuthMagentoDriver(),
       ],
     };
   }
