@@ -4,17 +4,14 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffExternalRouterDriver } from '@daffodil/external-router/driver';
-
-import {
-  DaffExternalRouterDriverTestingConfig,
-  provideDaffExternalRouterDriverTestingConfig,
-} from './config';
-import { DaffExternalRouterTestingDriver } from './testing.service';
+import { DaffExternalRouterDriverTestingConfig } from './config';
+import { provideDaffExternalRouterTestingDriver } from './provider';
 
 /**
  * The `DaffExternalRouterDriverTestingModule` is an importable NgModule that can
  * be used to configure the {@link DaffExternalRouterTestingDriver}.
+ *
+ * @deprecated in favor of {@link provideDaffExternalRouterTestingDriver}
  */
 @NgModule({
   declarations: [],
@@ -27,8 +24,7 @@ export class DaffExternalRouterDriverTestingModule {
     return {
       ngModule: DaffExternalRouterDriverTestingModule,
       providers: [
-        provideDaffExternalRouterDriver(DaffExternalRouterTestingDriver),
-        provideDaffExternalRouterDriverTestingConfig(config),
+        provideDaffExternalRouterTestingDriver(config),
       ],
     };
   }
