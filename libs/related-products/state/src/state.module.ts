@@ -11,6 +11,8 @@ import {
 
 /**
  * A module that provides the default reducers for the related product redux state.
+ *
+ * @deprecated in favor of {@link provideDaffRelatedProductsState}
  */
 @NgModule({
   imports: [
