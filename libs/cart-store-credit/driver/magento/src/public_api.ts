@@ -7,3 +7,4 @@ export * from './validators/public_api';
 export { DaffCartStoreCreditMagentoService } from './store-credit.service';
 
 export { DaffCartStoreCreditMagentoDriverModule } from './driver.module';
+export { provideDaffCartStoreCreditMagentoDriver } from './provider';
