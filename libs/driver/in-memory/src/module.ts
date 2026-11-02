@@ -1,19 +1,18 @@
 import {
   NgModule,
   ModuleWithProviders,
-  importProvidersFrom,
 } from '@angular/core';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
-import { DaffInMemoryRootBackend } from './backend/public_api';
 import {
   DAFF_IN_MEMORY_DRIVER_CONFIG_DEFAULT,
   DaffInMemoryDriverConfig,
-  provideDaffInMemoryDriverConfig,
 } from './config/public_api';
+import { provideDaffInMemoryDriver } from './provider';
 
 /**
  * Sets up the angular in memory web API with the {@link DaffInMemoryRootBackend}.
+ *
+ * @deprecated in favor of {@link provideDaffInMemoryDriver}
  */
 @NgModule()
 export class DaffInMemoryDriverModule {
@@ -21,8 +20,7 @@ export class DaffInMemoryDriverModule {
     return {
       ngModule: DaffInMemoryDriverModule,
       providers: [
-        importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryRootBackend, config)),
-        provideDaffInMemoryDriverConfig(config),
+        provideDaffInMemoryDriver(config),
       ],
     };
   }

@@ -7,13 +7,15 @@ import {
 import { HttpClientInMemoryWebApiModule  } from 'angular-in-memory-web-api';
 
 import {
-  DAFF_IN_MEMORY_DRIVER_CONFIG_DEFAULT,
   DaffInMemoryBackendInterface,
-  DaffInMemoryDriverConfig,
   DaffInMemoryRootBackend,
   provideDaffInMemoryBackends,
+} from './backend/public_api';
+import {
+  DAFF_IN_MEMORY_DRIVER_CONFIG_DEFAULT,
+  DaffInMemoryDriverConfig,
   provideDaffInMemoryDriverConfig,
-} from './public_api';
+} from './config/public_api';
 
 /**
  * Configures the Angular in-memory web API with Daffodil backend services.
