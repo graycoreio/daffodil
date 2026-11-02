@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 
-import { DaffCartStoreCreditPageFacade } from '@daffodil/cart-store-credit/state';
-import { MockDaffOperationStateFacade } from '@daffodil/core/state/testing';
+import { provideDaffCartStoreCreditStateTesting } from './provider';
 
 /**
  * Provides the {@link MockDaffCartStoreCreditPageFacade} for {@link DaffCartStoreCreditPageFacade}.
+ *
+ * @deprecated in favor of {@link provideDaffCartStoreCreditStateTesting}
  */
 @NgModule({
   providers: [
-    { provide: DaffCartStoreCreditPageFacade, useExisting: MockDaffOperationStateFacade },
+    provideDaffCartStoreCreditStateTesting(),
   ],
 })
 export class DaffCartStoreCreditStateTestingModule {}
