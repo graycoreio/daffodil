@@ -15,6 +15,9 @@ import { DaffAuthRedirectEffects } from './effects/redirect.effects';
 import { daffAuthRoutingRedirectUnauthenticatedHookFactory } from './helpers/public_api';
 
 
+/**
+ * @deprecated in favor of {@link provideDaffAuthRoutingRedirect}
+ */
 @NgModule({
   imports: [
     EffectsModule.forFeature([

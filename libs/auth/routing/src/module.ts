@@ -3,29 +3,19 @@ import {
   NgModule,
 } from '@angular/core';
 
-import {
-  DaffAuthRoutingConfig,
-  provideDaffAuthRoutingConfig,
-} from './config/public_api';
-import {
-  DaffAuthResetPasswordGuard,
-  GuestOnlyGuard,
-  MemberOnlyGuard,
-} from './guards/public_api';
+import { DaffAuthRoutingConfig } from './config/public_api';
+import { provideDaffAuthRouting } from './provider';
 
-@NgModule({
-  providers: [
-    DaffAuthResetPasswordGuard,
-    MemberOnlyGuard,
-    GuestOnlyGuard,
-  ],
-})
+/**
+ * @deprecated in favor of {@link provideDaffAuthRouting}
+ */
+@NgModule()
 export class DaffAuthRoutingModule {
   static withConfig(config?: Partial<DaffAuthRoutingConfig>): ModuleWithProviders<DaffAuthRoutingModule> {
     return {
       ngModule: DaffAuthRoutingModule,
       providers: [
-        provideDaffAuthRoutingConfig(config),
+        provideDaffAuthRouting(config),
       ],
     };
   }
