@@ -7,3 +7,4 @@ export * from './validators/public_api';
 export { DaffReviewsMagentoService } from './reviews.service';
 
 export { DaffReviewsMagentoDriverModule } from './reviews-driver.module';
+export { provideDaffReviewsMagentoDriver } from './provider';
