@@ -4,12 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffInMemoryBackends } from '@daffodil/driver/in-memory';
-import { provideDaffPaypalExpressDriver } from '@daffodil/paypal/driver';
+import { provideDaffPaypalInMemoryDriver } from './provider';
 
-import { DaffInMemoryPaypalService } from './paypal.service';
-import { DaffInMemoryBackendPaypalService } from '../backend/public_api';
-
+/**
+ * @deprecated in favor of {@link provideDaffPaypalInMemoryDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -20,8 +19,7 @@ export class DaffPaypalInMemoryDriverModule {
     return {
       ngModule: DaffPaypalInMemoryDriverModule,
       providers: [
-        provideDaffPaypalExpressDriver(DaffInMemoryPaypalService),
-        provideDaffInMemoryBackends(DaffInMemoryBackendPaypalService),
+        provideDaffPaypalInMemoryDriver(),
       ],
     };
   }
