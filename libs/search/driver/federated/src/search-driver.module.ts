@@ -5,19 +5,18 @@ import {
 } from '@angular/core';
 
 import {
-  DaffSearchDriver,
-  provideDaffSearchDriver,
-} from '@daffodil/search/driver';
-
-import {
   DaffSearchFederatedDriverConfig,
   DAFF_SEARCH_FEDERATED_CONFIG_DEFAULT,
-  provideDaffSearchFederatedConfig,
 } from './config/public_api';
-import { DaffSearchFederatedDriver } from './search.service';
+import {
+  provideDaffSearchFederatedDriver,
+  provideDaffSearchFederatedFeatureDriver,
+} from './provider';
 
 /**
  * Provides the {@link DaffSearchFederatedDriver} as the {@link DaffSearchDriver}.
+ *
+ * @deprecated in favor of {@link provideDaffSearchFederatedDriver}
  */
 @NgModule({
   imports: [
@@ -29,8 +28,7 @@ export class DaffSearchFederatedDriverModule {
     return {
       ngModule: DaffSearchFederatedDriverModule,
       providers: [
-        provideDaffSearchDriver(DaffSearchFederatedDriver),
-        provideDaffSearchFederatedConfig(config),
+        provideDaffSearchFederatedDriver(config),
       ],
     };
   }
@@ -39,11 +37,7 @@ export class DaffSearchFederatedDriverModule {
     return {
       ngModule: DaffSearchFederatedDriverModule,
       providers: [
-        {
-          provide: DaffSearchDriver,
-          useClass: DaffSearchFederatedDriver,
-        },
-        provideDaffSearchFederatedConfig(config),
+        provideDaffSearchFederatedFeatureDriver(config),
       ],
     };
   }
