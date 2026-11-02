@@ -12,3 +12,4 @@ export { DaffNavigationFacadeInterface } from './facades/navigation-facade.inter
 export { DaffNavigationFacade } from './facades/navigation.facade';
 
 export { DaffNavigationStateModule } from './navigation-state.module';
+export { provideDaffNavigationState } from './provider';
