@@ -4,3 +4,4 @@ export { DaffMagentoRelatedProductsTransformers } from './transforms/product-res
 export * from './models/public_api';
 
 export { DaffRelatedProductsMagentoDriverModule } from './related-products-driver.module';
+export { provideDaffRelatedProductsMagentoDriver } from './provider';
