@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 
-import { DaffCheckoutPlacedOrderFacade } from '@daffodil/checkout/state';
-
-import { MockDaffCheckoutPlacedOrderFacade } from './mock-placed-order-facade';
+import { provideDaffCheckoutStateTesting } from './provider';
 
 /**
  * Mocks the `@daffodil/checkout/state` facades for testing purposes.
+ *
+ * @deprecated in favor of {@link provideDaffCheckoutStateTesting}
  */
 @NgModule({
   providers: [
-    { provide: DaffCheckoutPlacedOrderFacade, useExisting: MockDaffCheckoutPlacedOrderFacade },
+    provideDaffCheckoutStateTesting(),
   ],
 })
 export class DaffCheckoutStateTestingModule {}
