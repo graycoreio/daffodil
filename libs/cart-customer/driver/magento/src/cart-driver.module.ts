@@ -4,20 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import {
-  provideDaffCartAddressDriver,
-  provideDaffCartBillingAddressDriver,
-  provideDaffCartDriver,
-  provideDaffCartPaymentDriver,
-  provideDaffCartShippingAddressDriver,
-} from '@daffodil/cart/driver';
+import { provideDaffCartCustomerMagentoDriver } from './provider';
 
-import { DaffMagentoCartCustomerAddressService } from './cart-address.service';
-import { DaffMagentoCartCustomerBillingAddressService } from './cart-billing-address.service';
-import { DaffMagentoCartCustomerShippingAddressService } from './cart-shipping-address.service';
-import { DaffMagentoCartCustomerService } from './cart.service';
-import { DaffMagentoCartCustomerPaymentService } from './payment.service';
-
+/**
+ * @deprecated in favor of {@link provideDaffCartCustomerMagentoDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -28,11 +19,7 @@ export class DaffCartCustomerMagentoDriverModule {
     return {
       ngModule: DaffCartCustomerMagentoDriverModule,
       providers: [
-        provideDaffCartDriver(DaffMagentoCartCustomerService),
-        provideDaffCartAddressDriver(DaffMagentoCartCustomerAddressService),
-        provideDaffCartBillingAddressDriver(DaffMagentoCartCustomerBillingAddressService),
-        provideDaffCartShippingAddressDriver(DaffMagentoCartCustomerShippingAddressService),
-        provideDaffCartPaymentDriver(DaffMagentoCartCustomerPaymentService),
+        provideDaffCartCustomerMagentoDriver(),
       ],
     };
   }
