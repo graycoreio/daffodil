@@ -8,6 +8,9 @@ import {
   DAFF_GEOGRAPHY_STORE_FEATURE_KEY,
 } from './reducers/public_api';
 
+/**
+ * @deprecated in favor of {@link provideDaffGeographyState}
+ */
 @NgModule({
   imports: [
     StoreModule.forFeature(DAFF_GEOGRAPHY_STORE_FEATURE_KEY, daffGeographyReducers),
