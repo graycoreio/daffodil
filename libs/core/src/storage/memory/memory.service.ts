@@ -1,8 +1,13 @@
+import { Injectable } from '@angular/core';
+
 import { DaffPersistenceService } from '../persistence.interface';
 
 /**
  * @inheritdoc
  */
+@Injectable({
+  providedIn: 'root',
+})
 export class DaffMemoryStorageService implements DaffPersistenceService {
   memory: { [x: string]: any } = {};
 
