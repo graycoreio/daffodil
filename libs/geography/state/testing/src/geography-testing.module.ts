@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import { DaffGeographyFacade } from '@daffodil/geography/state';
+import { provideDaffGeographyStateTesting } from './provider';
 
-import { MockDaffGeographyFacade } from './mock-geography-facade';
-
+/**
+ * @deprecated in favor of {@link provideDaffGeographyStateTesting}
+ */
 @NgModule({
   providers: [
-    { provide: DaffGeographyFacade, useExisting: MockDaffGeographyFacade },
+    provideDaffGeographyStateTesting(),
   ],
 })
 export class DaffGeographyStateTestingModule {}
