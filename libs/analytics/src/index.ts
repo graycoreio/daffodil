@@ -1,4 +1,5 @@
 export { DaffAnalyticsModule } from './lib/analytics.module';
+export { provideDaffAnalytics } from './lib/provide-analytics';
 export { DaffAnalyticsConfigInterface } from './lib/config/config';
 export {
   DaffAnalyticsTrackerClass,
