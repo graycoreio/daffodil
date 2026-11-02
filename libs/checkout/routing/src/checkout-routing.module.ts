@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import { DaffCheckoutPlacedOrderGuardRedirectUrl } from './guards/public_api';
+import { provideDaffCheckoutRouting } from './provider';
 
+/**
+ * @deprecated in favor of {@link provideDaffCheckoutRouting}
+ */
 @NgModule({
   providers: [
-    { provide: DaffCheckoutPlacedOrderGuardRedirectUrl, useValue: '/' },
+    provideDaffCheckoutRouting(),
   ],
 })
 export class DaffCheckoutRoutingModule {}
