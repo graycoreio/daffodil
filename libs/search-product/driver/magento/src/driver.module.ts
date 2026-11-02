@@ -4,15 +4,14 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffSearchDriver } from '@daffodil/search/driver';
+import { provideDaffSearchProductMagentoDriver } from './provider';
 
-import { DaffSearchProductMagentoCoreModule } from './core.module';
-import { DaffSearchProductMagentoDriver } from './product-search.service';
-
+/**
+ * @deprecated in favor of {@link provideDaffSearchProductMagentoDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
-    DaffSearchProductMagentoCoreModule,
   ],
 })
 export class DaffSearchProductMagentoDriverModule {
@@ -23,7 +22,7 @@ export class DaffSearchProductMagentoDriverModule {
     return {
       ngModule: DaffSearchProductMagentoDriverModule,
       providers: [
-        provideDaffSearchDriver(DaffSearchProductMagentoDriver),
+        provideDaffSearchProductMagentoDriver(),
       ],
     };
   }
