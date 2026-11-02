@@ -4,12 +4,13 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffContactDriver } from '@daffodil/contact/driver';
 import { DaffHubspotConfig } from '@daffodil/driver/hubspot';
 
-import { provideDaffContactHubspotConfig } from './config/contact-config.interface';
-import { DaffContactHubspotService } from './contact.service';
+import { provideDaffContactHubSpotDriver } from './provider';
 
+/**
+ * @deprecated in favor of {@link provideDaffContactHubSpotDriver}
+ */
 @NgModule({
   imports: [CommonModule],
 })
@@ -20,8 +21,7 @@ export class DaffContactHubSpotDriverModule {
     return {
       ngModule: DaffContactHubSpotDriverModule,
       providers: [
-        provideDaffContactDriver(DaffContactHubspotService),
-        provideDaffContactHubspotConfig(config),
+        provideDaffContactHubSpotDriver(config),
       ],
     };
   }
