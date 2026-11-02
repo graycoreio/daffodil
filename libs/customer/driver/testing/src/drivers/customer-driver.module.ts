@@ -4,16 +4,12 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import {
-  provideDaffCustomerAddressDriver,
-  provideDaffCustomerDriver,
-} from '@daffodil/customer/driver';
-
-import { DaffCustomerAddressTestingDriver } from './address.service';
-import { DaffCustomerTestingDriver } from './customer.service';
+import { provideDaffCustomerTestingDriver } from '../provider';
 
 /**
  * Provides the {@link DaffCustomerTestingDriver} as the {@link DaffCustomerDriver}.
+ *
+ * @deprecated in favor of {@link provideDaffCustomerTestingDriver}
  */
 @NgModule({
   imports: [
@@ -25,8 +21,7 @@ export class DaffCustomerTestingDriverModule {
     return {
       ngModule: DaffCustomerTestingDriverModule,
       providers: [
-        provideDaffCustomerDriver(DaffCustomerTestingDriver),
-        provideDaffCustomerAddressDriver(DaffCustomerAddressTestingDriver),
+        provideDaffCustomerTestingDriver(),
       ],
     };
   }
