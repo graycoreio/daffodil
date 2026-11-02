@@ -4,10 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffNavigationDriver } from '@daffodil/navigation/driver';
+import { provideDaffNavigationTestingDriver } from './provider';
 
-import { DaffTestingNavigationService } from './navigation.service';
-
+/**
+ * @deprecated in favor of {@link provideDaffNavigationTestingDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +19,7 @@ export class DaffNavigationTestingDriverModule {
     return {
       ngModule: DaffNavigationTestingDriverModule,
       providers: [
-        provideDaffNavigationDriver(DaffTestingNavigationService),
+        provideDaffNavigationTestingDriver(),
       ],
     };
   }
