@@ -4,11 +4,12 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffProductExtraProductFactories } from '@daffodil/product/testing';
-import { DaffUpsellProductFactory } from '@daffodil/upsell-products/testing';
+import { provideDaffUpsellProductsTestingDriver } from './provider';
 
 /**
  * Module for providing the upsell product fields to the product extension factory.
+ *
+ * @deprecated in favor of {@link provideDaffUpsellProductsTestingDriver}
  */
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ export class DaffUpsellProductsTestingDriverModule {
     return {
       ngModule: DaffUpsellProductsTestingDriverModule,
       providers: [
-        provideDaffProductExtraProductFactories(DaffUpsellProductFactory),
+        provideDaffUpsellProductsTestingDriver(),
       ],
     };
   }
