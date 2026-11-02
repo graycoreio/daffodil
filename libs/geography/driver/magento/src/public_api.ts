@@ -7,3 +7,4 @@ export * from './queries/public_api';
 export { DaffGeographyMagentoService } from './geography.service';
 
 export { DaffGeographyMagentoDriverModule } from './geography-driver.module';
+export { provideDaffGeographyMagentoDriver } from './provider';
