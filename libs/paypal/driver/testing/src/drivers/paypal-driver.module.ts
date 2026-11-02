@@ -4,10 +4,11 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffPaypalExpressDriver } from '@daffodil/paypal/driver';
+import { provideDaffPaypalTestingDriver } from './provider';
 
-import { DaffTestingPaypalService } from './paypal.service';
-
+/**
+ * @deprecated in favor of {@link provideDaffPaypalTestingDriver}
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +19,7 @@ export class DaffPaypalTestingDriverModule {
     return {
       ngModule: DaffPaypalTestingDriverModule,
       providers: [
-        provideDaffPaypalExpressDriver(DaffTestingPaypalService),
+        provideDaffPaypalTestingDriver(),
       ],
     };
   }
