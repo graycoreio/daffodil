@@ -17,3 +17,4 @@ export { DaffNewsletterFacade } from './facades/newsletter.facade';
 export { DaffNewsletterFacadeInterface } from './facades/newsletter-facade.interface';
 
 export { DaffNewsletterStateModule } from './newsletter-state.module';
+export { provideDaffNewsletterState } from './provider';
