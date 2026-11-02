@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import { DaffContactFacade } from '@daffodil/contact/state';
+import { provideDaffContactStateTesting } from './provider';
 
-import { MockDaffContactFacade } from './mock-contact-facade';
-
+/**
+ * @deprecated in favor of {@link provideDaffContactStateTesting}
+ */
 @NgModule({
-  providers: [{ provide: DaffContactFacade, useClass: MockDaffContactFacade }],
+  providers: [
+    provideDaffContactStateTesting(),
+  ],
 })
 export class DaffContactStateTestingModule {}
