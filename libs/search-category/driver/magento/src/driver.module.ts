@@ -4,24 +4,19 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffMagentoCacheableOperation } from '@daffodil/driver/magento';
 import {
-  DAFF_SEARCH_FEDERATED_DRIVERS,
-  provideDaffSearchFederatedDrivers,
-} from '@daffodil/search/driver/federated';
-
-import { DaffSearchCategoryMagentoDriver } from './category-search.service';
-import { DAFF_MAGENTO_SEARCH_FOR_CATEGORIES_QUERY_NAME } from './queries/category-search';
+  provideDaffSearchCategoryMagentoDriver,
+  provideDaffSearchCategoryMagentoFeatureDriver,
+} from './provider';
 
 /**
  * A module that provides product search query as a cacheable network operation.
+ *
+ * @deprecated in favor of {@link provideDaffSearchCategoryMagentoDriver}
  */
 @NgModule({
   imports: [
     CommonModule,
-  ],
-  providers: [
-    provideDaffMagentoCacheableOperation(DAFF_MAGENTO_SEARCH_FOR_CATEGORIES_QUERY_NAME),
   ],
 })
 export class DaffSearchCategoryMagentoDriverModule {
@@ -29,7 +24,7 @@ export class DaffSearchCategoryMagentoDriverModule {
     return {
       ngModule: DaffSearchCategoryMagentoDriverModule,
       providers: [
-        provideDaffSearchFederatedDrivers(DaffSearchCategoryMagentoDriver),
+        provideDaffSearchCategoryMagentoDriver(),
       ],
     };
   }
@@ -38,11 +33,7 @@ export class DaffSearchCategoryMagentoDriverModule {
     return {
       ngModule: DaffSearchCategoryMagentoDriverModule,
       providers: [
-        {
-          provide: DAFF_SEARCH_FEDERATED_DRIVERS,
-          multi: true,
-          useClass: DaffSearchCategoryMagentoDriver,
-        },
+        provideDaffSearchCategoryMagentoFeatureDriver(),
       ],
     };
   }
