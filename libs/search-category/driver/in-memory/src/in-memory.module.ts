@@ -4,12 +4,12 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 
-import { provideDaffSearchInMemoryBackends } from '@daffodil/search/driver/in-memory';
-
-import { DaffSearchCategoryInMemoryBackendService } from './backend/search.service';
+import { provideDaffSearchCategoryInMemoryDriver } from './provider';
 
 /**
  * Module for providing the {@link DaffSearchProductInMemoryBackendService} as a search in-memory child backend.
+ *
+ * @deprecated in favor of {@link provideDaffSearchCategoryInMemoryDriver}
  */
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ export class DaffSearchCategoryInMemoryDriverModule {
     return {
       ngModule: DaffSearchCategoryInMemoryDriverModule,
       providers: [
-        provideDaffSearchInMemoryBackends(DaffSearchCategoryInMemoryBackendService),
+        provideDaffSearchCategoryInMemoryDriver(),
       ],
     };
   }
