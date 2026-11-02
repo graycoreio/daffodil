@@ -22,6 +22,8 @@ import {
 
 /**
  * Creates the customer feature store.
+ *
+ * @deprecated in favor of {@link provideDaffCustomerPaymentState}
  */
 @NgModule({
   imports: [
