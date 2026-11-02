@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import { DaffAuthorizeNetFacade } from '@daffodil/authorizenet/state';
+import { provideDaffAuthorizeNetStateTesting } from './provider';
 
-import { MockDaffAuthorizeNetFacade } from './mock-authorize-net-facade';
-
+/**
+ * @deprecated in favor of {@link provideDaffAuthorizeNetStateTesting}
+ */
 @NgModule({
   providers: [
-    { provide: DaffAuthorizeNetFacade, useExisting: MockDaffAuthorizeNetFacade },
+    provideDaffAuthorizeNetStateTesting(),
   ],
 })
 export class DaffAuthorizeNetStateTestingModule {}
