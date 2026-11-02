@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import { DaffRelatedProductsFacade } from '@daffodil/related-products/state';
+import { provideDaffRelatedProductsStateTesting } from './provider';
 
-import { MockDaffRelatedProductsFacade } from './mock-related-products.facade';
-
-
+/**
+ * @deprecated in favor of {@link provideDaffRelatedProductsStateTesting}
+ */
 @NgModule({
   providers: [
-    { provide: DaffRelatedProductsFacade, useExisting: MockDaffRelatedProductsFacade },
+    provideDaffRelatedProductsStateTesting(),
   ],
 })
 export class DaffRelatedProductsStateTestingModule {}
