@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { DaffCustomerAddress } from '@daffodil/customer';
 import { DaffCustomerAddressFactory } from '@daffodil/customer/testing';
 import { DaffCustomerPaymentAuthorizeNet } from '@daffodil/customer-payment-authorizenet';
-import { MagentoTokenBaseCardUpdateInput } from '@daffodil/customer-payment-authorizenet/driver/magento';
+import { MagentoTokenBaseCardUpdateInput } from '@daffodil/customer-payment-authorizenet/driver/magento/2.4.7';
 import { DaffCustomerPaymentAuthorizeNetFactory } from '@daffodil/customer-payment-authorizenet/testing';
 
 import { magentoCustomerPaymentAnetCCTypeRequestTransform } from './cc-type';

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoTokenBaseCard } from '@daffodil/customer-payment-authorizenet/driver/magento';
+import { MagentoTokenBaseCard } from '@daffodil/customer-payment-authorizenet/driver/magento/2.4.7';
 
 import { MagentoTokenBaseCardFactory } from './token-base-card.factory';
 

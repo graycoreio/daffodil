@@ -25,11 +25,11 @@
       "@daffodil/customer-payment-authorizenet/driver": [
         "../../libs/customer-payment-authorizenet/driver/src"
       ],
-      "@daffodil/customer-payment-authorizenet/driver/magento": [
-        "../../libs/customer-payment-authorizenet/driver/magento/src"
+      "@daffodil/customer-payment-authorizenet/driver/magento/2.4.7": [
+        "../../libs/customer-payment-authorizenet/driver/magento/2.4.7/src"
       ],
-      "@daffodil/customer-payment-authorizenet/driver/magento/testing": [
-        "../../libs/customer-payment-authorizenet/driver/magento/testing/src"
+      "@daffodil/customer-payment-authorizenet/driver/magento/2.4.7/testing": [
+        "../../libs/customer-payment-authorizenet/driver/magento/2.4.7/testing/src"
       ],
     }
   }

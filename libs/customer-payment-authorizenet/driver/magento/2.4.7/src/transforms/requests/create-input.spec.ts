@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { MagentoAuthorizeNetPayment } from '@daffodil/authorizenet/driver/magento/2.4.7';
 import { DaffCustomerPaymentAuthorizeNetRequest } from '@daffodil/customer-payment-authorizenet';
-import { MagentoTokenBaseCardCreateInput } from '@daffodil/customer-payment-authorizenet/driver/magento';
+import { MagentoTokenBaseCardCreateInput } from '@daffodil/customer-payment-authorizenet/driver/magento/2.4.7';
 import { DaffCustomerPaymentAuthorizeNetRequestFactory } from '@daffodil/customer-payment-authorizenet/testing';
 
 import { magentoCustomerPaymentAnetCCTypeRequestTransform } from './cc-type';

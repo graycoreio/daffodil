@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCustomerPaymentAuthorizeNet } from '@daffodil/customer-payment-authorizenet';
-import { MagentoTokenBaseCard } from '@daffodil/customer-payment-authorizenet/driver/magento';
-import { MagentoTokenBaseCardFactory } from '@daffodil/customer-payment-authorizenet/driver/magento/testing';
+import { MagentoTokenBaseCard } from '@daffodil/customer-payment-authorizenet/driver/magento/2.4.7';
+import { MagentoTokenBaseCardFactory } from '@daffodil/customer-payment-authorizenet/driver/magento/2.4.7/testing';
 
 import { magentoCustomerPaymentAnetCCTypeResponseTransform } from './card-type';
 import { magentoCustomerPaymentAuthorizeNetTransform } from './customer-payment';
